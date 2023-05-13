@@ -2,75 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA21E7015B0
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 11:30:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FF137015B8
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 11:31:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237227AbjEMJan (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 05:30:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34448 "EHLO
+        id S238057AbjEMJb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 05:31:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237864AbjEMJal (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 05:30:41 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 762826592
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:30:36 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bc040c7b8so16370044a12.2
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:30:36 -0700 (PDT)
+        with ESMTP id S232182AbjEMJb0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 05:31:26 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E5AA65A4
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:31:25 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4effb818c37so12292720e87.3
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:31:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683970235; x=1686562235;
+        d=linaro.org; s=google; t=1683970283; x=1686562283;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NhRme26woaE0QLjWxrcWAlz/7S0SNVKgtvSiagJnvc0=;
-        b=GysXJ5S3JWP71IaR2cLteiizuQ68yHsRh9aUhgVnxfaGGMXflReAasQRQsDnV9X6bk
-         vYztN6B9Vrhn3f3WaYVEURw/CppRpi7n2AzeAyyjCZhZCVg4r6/Ye7fRthjm5rcXrabW
-         BQv+fR0fwS9PUaAprkXl+N616pk2xieLI4CiQC6PdxuEjoU+uWp1P0xAdqKgj4lP4WdZ
-         oGHwjwtiIFzY9IsyCNMVqS70SWAdnkUK2xXX4bMLgA67dKhus+1/tBjgXMQ8lYmQNq2s
-         Y5mUY9+lw/8JNNDGgiBvgC8Ww+k163cXRRYnOgSBm+cw4CcziZgePEHEpBEJDsTH6Qks
-         Jn4Q==
+        bh=lUD4atLoPUIqjUvA0YjSVxN7DgNyn2K6Ux+4HF37qDw=;
+        b=sm3NRyP0J3NqxqEIFRQCRrwOLtg1vWJzmjaMYf+mIKUS7vg2RvP8n3PG8Vx6Cyt2CV
+         QexpDhTkT6smrGSocC830PESlzbJyoPQjhm5CvC5AAkoeLcWLeK8ILai5HO/QQUWZW44
+         Vsgth+luZZ1XF9GlrumMoLBBXrTEXc+F/c0A4vj9Pg+CXMKrbFhpnL1Vg5nVYDC7QSGe
+         ffV3H8pZTxWmXMih8vbT95yey4xHnCqNxNlXKyHgwx++Dznn0zQght5u1e0xmcQh85Ik
+         d/wGLggJBEaEdm2BnVxKXD+7KGZ3H5xpi7/OyNUSBhWepShQh61fpQX/HVT4n6YCualk
+         wtYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683970235; x=1686562235;
+        d=1e100.net; s=20221208; t=1683970283; x=1686562283;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NhRme26woaE0QLjWxrcWAlz/7S0SNVKgtvSiagJnvc0=;
-        b=XdIZ1GCYuFfK9+4vR5PTu8CCi2tUYB6gZCPoT6sbBn8vS0gSfGNP1WcYc1wRGIMkQU
-         TCSiLGVJ2E1glnplDftOXPxLImQO9PlckLU7dB6QThDTNrXRuU0MCYzky1ZZdp8qsRun
-         oND4OioyJBkOXhtLOdkp9kVlUUwPGncsY8cwVaVqym8z+sf5chY8yj0YH/O64LjwV/RA
-         UT8ICVeHE3r5fmwpvuH6dhQTljCr9uVTAgj5VDSmJ0gXur9630VTJ+x7BIPixADNXyZU
-         Rg2iNMvKl3pGgqkMw/zO022iwoISWYV30BJK88gbeI43qnX/u3rmUdNM710eJ8VhORnf
-         FfVA==
-X-Gm-Message-State: AC+VfDywjwTeJTDuwb3q8S+PRfJPEf3yzZ7sgXJZpJ+Fqyd63pzjPgGU
-        mMxGcGs7pV2ImcilBFq73k9qKw==
-X-Google-Smtp-Source: ACHHUZ7XuZam+xQ4Qz3NmieRw8oqJ4cXve9jQjRUs9dnsS5DXTPFnWEy7s2YqOvYmbNCNh7mMvBqTw==
-X-Received: by 2002:a17:906:5d08:b0:96a:ca96:3e49 with SMTP id g8-20020a1709065d0800b0096aca963e49mr2472966ejt.13.1683970234925;
-        Sat, 13 May 2023 02:30:34 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:1d0:810a:586c:c5ba? ([2a02:810d:15c0:828:1d0:810a:586c:c5ba])
-        by smtp.gmail.com with ESMTPSA id qh20-20020a170906ecb400b009655eb8be26sm6597895ejb.73.2023.05.13.02.30.33
+        bh=lUD4atLoPUIqjUvA0YjSVxN7DgNyn2K6Ux+4HF37qDw=;
+        b=W7WrPo8p6Ric6L1ko8UnJPgZjYHi9I7VyXWxjagt2reyuT5wr6jaCiWY8PUm9Q7gx8
+         C3VY+/R5P5/emsikAvwoiayecYJjKmptV+SssNyjFiAgRakwD8z6XDnqjNWmSI56eEDO
+         hx8bqr5QFp7QG2MEtYOfTsKANRgd43PxmdYN5mKl18c+kgUsmUlGXl36/xTICtDcvZr4
+         4V09sbWeBSlBfReGyVfhjLXlL8srfZfqW9nJBeoZ/BTvNwyi2+h068Z4JXp1KDFrtFX/
+         pQY2Xnecyfkk65utlGhPnO+VxLg1JAwlRDFU+4PU0Qy0pWAyid9ielYGs59a1cEDKjG/
+         u0vA==
+X-Gm-Message-State: AC+VfDw/HPe0rFnmv7iWZLk2Ja+5Lm0Tw/Oswk4C7kO9Y3+PwWRzuf9J
+        o3RCWz/JR8xPBLq+MlCBccTGUQ==
+X-Google-Smtp-Source: ACHHUZ5PNBp2uiCZ8ExV5VzLLfR+n+dW/07yLYvNPQq080llCfdeUDV4flAZk4NkLIP0rVzQ/cUWvA==
+X-Received: by 2002:ac2:508b:0:b0:4f0:7d5:1723 with SMTP id f11-20020ac2508b000000b004f007d51723mr4313274lfm.42.1683970283339;
+        Sat, 13 May 2023 02:31:23 -0700 (PDT)
+Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
+        by smtp.gmail.com with ESMTPSA id w3-20020ac254a3000000b004f06aa3d856sm1774987lfk.3.2023.05.13.02.31.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 May 2023 02:30:34 -0700 (PDT)
-Message-ID: <744b499a-36f5-b9da-bb26-56e1616351f4@linaro.org>
-Date:   Sat, 13 May 2023 11:30:33 +0200
+        Sat, 13 May 2023 02:31:23 -0700 (PDT)
+Message-ID: <c308dde1-52cc-10b4-876e-a6e51dbf09f8@linaro.org>
+Date:   Sat, 13 May 2023 11:31:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 09/10] arm64: dts: qcom: qdu1000: Add
- LLCC/system-cache-controller
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v3 0/2] Add F(x)tec Pro1X (QX1050) DTS
 Content-Language: en-US
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
+To:     Dang Huynh <danct12@riseup.net>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
- <20230512122134.24339-10-quic_kbajaj@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230512122134.24339-10-quic_kbajaj@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230505-fxtec-pro1x-support-v3-0-0c9c7f58b205@riseup.net>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230505-fxtec-pro1x-support-v3-0-0c9c7f58b205@riseup.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,14 +77,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2023 14:21, Komal Bajaj wrote:
-> Add a DT node for Last level cache (aka. system cache) controller
-> which provides control over the last level cache present on QDU1000
-> and QRU1000 SoCs.
+
+
+On 13.05.2023 03:05, Dang Huynh wrote:
+> The F(x)tec Pro1X is a mobile phone released by FX Technologies Ltd
+> in 2022.
 > 
+> The phone is exactly the same as the Pro1 released in 2019 with some
+> changes:
+> - MSM8998 -> SM6115
+> - Camera button is no longer multistate
+> - Only one 48MP back camera
+> - A new keyboard layout picked by the community.
+> 
+> Signed-off-by: Dang Huynh <danct12@riseup.net>
+> ---
+> Changes in v3:
+> - Corrected changes from previous version
+"fix bug" is not very specific, please try listing them out
+individually the next time around!
 
-Must be squashed. It's difficult to spot the changes against original code.
-
-Best regards,
-Krzysztof
-
+Konrad
+> - DTS is now licensed under GPL2+ & BSD3 
+> - Regulators now uses pm6125_* alias
+> - Link to v2: https://lore.kernel.org/r/20230505-fxtec-pro1x-support-v2-0-0ea2378ba9ae@riseup.net
+> 
+> Changes in v2:
+> - Corrected model property in DTS. 
+> - Changes requested by Caleb and Krzysztof. 
+> - Link to v1: https://lore.kernel.org/r/20230505-fxtec-pro1x-support-v1-1-1d9473b4d6e4@riseup.net
+> 
+> ---
+> Dang Huynh (2):
+>       dt-bindings: arm: qcom: Add Fxtec Pro1X
+>       arm64: dts: qcom: Add Fxtec Pro1X (QX1050) DTS
+> 
+>  Documentation/devicetree/bindings/arm/qcom.yaml |   5 +
+>  arch/arm64/boot/dts/qcom/Makefile               |   1 +
+>  arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 250 ++++++++++++++++++++++++
+>  3 files changed, 256 insertions(+)
+> ---
+> base-commit: 145e5cddfe8b4bf607510b2dcf630d95f4db420f
+> change-id: 20230505-fxtec-pro1x-support-7f782f0480e9
+> 
+> Best regards,
