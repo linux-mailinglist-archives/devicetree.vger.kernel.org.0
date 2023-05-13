@@ -2,103 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFA27701599
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 11:24:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 638FB7015A9
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 11:29:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234163AbjEMJYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 05:24:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58594 "EHLO
+        id S237806AbjEMJ3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 05:29:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232557AbjEMJYB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 05:24:01 -0400
+        with ESMTP id S232192AbjEMJ3P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 05:29:15 -0400
 Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE35C40FB
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:23:59 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-94a342f7c4cso1955682166b.0
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:23:59 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E4510D9
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:29:14 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-96649b412easo1289672266b.0
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:29:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683969838; x=1686561838;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=linaro.org; s=google; t=1683970153; x=1686562153;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+nUJ6bVVbajhYwzqyGBHtXorNDh8RrDk7cVB9nWp+XA=;
-        b=GY6OGlUsN9I5wgSgN/Y6d6Oq7TYwbRgw9h10QC0u33QloU8zUQMELVg5A5EFBP2TMK
-         5+DacRzMzbe+aUVG8N3JlMQcsu+nRIyL6RkcgvccBdxX7dlkvJZW+L1ADOwdrlXlFn8z
-         nA+UL39YcebKcms/hSP3rpVc5rgY7uHBRyL0VK0sP/BPmeADdZsTUqV6zSx6EZR2P9ew
-         iTWLvGS48yx4Rj+rvSbUGFyS+uAVh1qmjb8GydfyaEzvF3XmCg8KvLm2Y5f9NNrdz8k6
-         ZxUH1Sf4k7zPSHciwm/OK3QT4L85cmEeWh5BHmajOsGJ4p0tL++tbFBvAoG+v23csiYC
-         AvcQ==
+        bh=/ZFPzkUq5fjkT/XAwddhc7FJwecr3Vxjb2F6rFeEitA=;
+        b=D8OkNtQFNmFXcFrQ6E+pgBGiQnwpyxXyE33DVSKsPoQ6Ypj0zKvfhKfyk3tv8OppeY
+         Y+U/NIeN369Su9Mihuxk6yqlSn/2e6iloeZ/82ywbhzFbUdiKPT8MWnXRFzVTBhx4q+M
+         fNQs3nCW9xpNHwYhFHcTxth2HoVVOyROG2xR60VMGit46t8lnwxRLXrxIDslAxzPmG89
+         Zy1LdJsbJ1Y9XQmD0WesRgUknxQBTVd9Q84/O51YnuF2uFhvNnEdEiLUSet8WtDcQgzc
+         LjWQlBzF8dQTfikKvHpCR2O+486GtjCf21DpHwYX+wEwcYMR4ASj0rIBGyV7icj2zCnQ
+         BoxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683969838; x=1686561838;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20221208; t=1683970153; x=1686562153;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+nUJ6bVVbajhYwzqyGBHtXorNDh8RrDk7cVB9nWp+XA=;
-        b=FoMSK52j68d0TpVsIT8veKmBR+0c3xUc+ITJF286NqViCRQc1Hdhfe+jlV1PK8bQe1
-         3bBdm1W6VRw/1/nXxgfTjGy8KWgJkVuCRKhONZAxwf5Z5RkeFBNtDYlCaboiEFiO+JiQ
-         eTck4/SCqY3RxGVzv7GTrv10UobyngJdYgaukZn8g1WkhhkvUZ8LyAYzr8dr53rzZFe9
-         gQncIUi+YyDCxbIl9mnkzCwORQzdkOH1c5oi8S8YnRlkG3RJhLwZor9FVaKmafEba4oX
-         sBdyGxD3+NfBBJ0VeaP7N+N/LdTgmZBCfxMOjewTuAR8fJoZKGOG3yBUyB1Zs4Uqqekk
-         6OdA==
-X-Gm-Message-State: AC+VfDzXgg110+fpOM69RNra4fUQoE3bWDJqgwMgBVMWalsXVzAlGbWn
-        so3Tly61YQPViCu59kCd3MFhuQ==
-X-Google-Smtp-Source: ACHHUZ6k34w7iV1aLVJwog/4Ot7rebbRo2qcqGCxyaHSI/PQtwd4jd6J8SiA3ejtI7MpSvBRMN2D2A==
-X-Received: by 2002:a17:906:db08:b0:965:fa80:bf1 with SMTP id xj8-20020a170906db0800b00965fa800bf1mr25142579ejb.32.1683969838396;
-        Sat, 13 May 2023 02:23:58 -0700 (PDT)
+        bh=/ZFPzkUq5fjkT/XAwddhc7FJwecr3Vxjb2F6rFeEitA=;
+        b=YrDa00YXdCmeW8028mz5aM4w4ZphQiJOQFStYyhtyMc36ZqzFwtNXiv9y7XRmvrglf
+         F3zQfHokyrmT6tPIFcVubPiVLzDMvPfv58n/88MW2tz7Oa24Unk/njW8xNyK28jOGkC9
+         GOjjTJ4VM92OXHtXv5E3HyJ0TmnIPF0pqOywQi1Ov19yLYOHijDLs9AykWmqgiKSytju
+         hXS76HKp/xvw+FM7SVry0XclS0Kafjex36FAxNqXWVM1xB3XJTdN0xT1nJTkebDNn0La
+         fXbv9Sm1wfVVhZQTYKCXBKTN3vIs573EAJmIzMO0q4pmuQETtg+bLSpB76goo8/BWawd
+         DG6w==
+X-Gm-Message-State: AC+VfDybqpzEvYvcfiJ+ot7qycXDtdOPYJWIIbHoZQ4HaJYDAOkyNUeG
+        Ht+jmJ/MCZRBA03YNQBhVoD5wfwbbCYHHd5Wml8IXg==
+X-Google-Smtp-Source: ACHHUZ7IA9rSCrcG3EzFbtg+41tbzkCdq4ssKuHHqr3GcPR+vSFA+AhYi4T6PVtMxBJFhlKXqwYmRQ==
+X-Received: by 2002:a17:907:744:b0:953:83a2:c813 with SMTP id xc4-20020a170907074400b0095383a2c813mr20551069ejb.32.1683970152914;
+        Sat, 13 May 2023 02:29:12 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:1d0:810a:586c:c5ba? ([2a02:810d:15c0:828:1d0:810a:586c:c5ba])
-        by smtp.gmail.com with ESMTPSA id og40-20020a1709071de800b0095807ab4b57sm6668852ejc.178.2023.05.13.02.23.57
+        by smtp.gmail.com with ESMTPSA id n17-20020a170906725100b0096a6bf89259sm3202087ejk.167.2023.05.13.02.29.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 May 2023 02:23:57 -0700 (PDT)
-Message-ID: <6e61929a-b2f2-1e17-0166-42fe1004c345@linaro.org>
-Date:   Sat, 13 May 2023 11:23:56 +0200
+        Sat, 13 May 2023 02:29:12 -0700 (PDT)
+Message-ID: <c9e37cb2-75f7-e335-05ac-01197a9ba14c@linaro.org>
+Date:   Sat, 13 May 2023 11:29:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH] arm64: dts: imx8mq-mnt-reform2: drop simple-panel
- compatible
+Subject: Re: [PATCH v3 07/10] dt-bindings: arm: msm: Add LLCC compatible for
+ QDU1000/QRU1000
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230512204627.3304342-1-dario.binacchi@amarulasolutions.com>
- <6a1bdc48-a65f-43c3-0a41-bd45c0c3b0aa@linaro.org>
-In-Reply-To: <6a1bdc48-a65f-43c3-0a41-bd45c0c3b0aa@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
+ <20230512122134.24339-8-quic_kbajaj@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230512122134.24339-8-quic_kbajaj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/05/2023 11:22, Krzysztof Kozlowski wrote:
-> On 12/05/2023 22:46, Dario Binacchi wrote:
->> The "simple-panel" compatible is not documented and nothing in Linux
->> kernel binds to it.
->>
->> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
->> ---
->>
->>  arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts | 2 +-
+On 12/05/2023 14:21, Komal Bajaj wrote:
+> Add LLCC compatible for QDU1000/QRU1000 SoCs.
 > 
-> I already sent it:
-> 
-> https://lore.kernel.org/all/20230326204502.80794-1-krzysztof.kozlowski@linaro.org/
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 
-And makes me wonder, why did you use exactly the same words as my patch...
+Use subject prefixes matching the subsystem (which you can get for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching). In this case - cache: qcom,llcc: - and drop
+redundant parts in subject.
+
+With subject fixes:
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
