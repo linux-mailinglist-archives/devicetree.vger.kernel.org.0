@@ -2,72 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E9BD7015C5
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 11:32:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B03C7015C9
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 11:33:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238046AbjEMJcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 05:32:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36828 "EHLO
+        id S233923AbjEMJdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 05:33:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238138AbjEMJcc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 05:32:32 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E0F31BF8
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:32:25 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f25d79f6bfso6168361e87.2
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:32:25 -0700 (PDT)
+        with ESMTP id S232234AbjEMJdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 05:33:06 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 807B26A79
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:33:04 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-965a68abfd4so2057518666b.2
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 02:33:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1683970344; x=1686562344;
+        d=linaro.org; s=google; t=1683970383; x=1686562383;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=U2j6yML4VTm3RVRtiB9T22cc6YbB1Ma6I3GUz3afvnQ=;
-        b=BgznDqJ+nt9aOGWWdP0VCBeM/dZAH1NWKeAu3LCBA3g/EtdSbMjUb++vfQZpPaMyxJ
-         HGx5PeVxw8jo65XZgN/Un3YezyPKeffZY4DEMSTdq3niy51pOzHHJkoefalEevSLElHT
-         AZIw0eigKMVedzRFWDt+0OYRR6k77PAyMjl2TNb6TqALzBep1BY57Le+29YvuL34/uAr
-         zxUpg1s4lJ1MU1S/L1CwbGA6Qq84HjDDvp6v1zJUIiljli8IhpeCdeOdEwd7AZzfGNv3
-         V+IqsMv1TtWGHMtVt0KYCZcnk4XGTGVYQMevd8weq4gSj2qVGw8agMEYnhhrFJtm874q
-         hXbg==
+        bh=5bjlRqIfrmAy2t4cl4T8kdHUjaX/ag9QYXtsc2MuGRw=;
+        b=KKQhGqn7zd4PYy+zRI6+QsJzUQCoT8os7Yd4pgH9KccYC86dIm5huzj0f85Ezak930
+         V7fsmYhQLbzfZ96+NaGjzetLCtPswBNc4rvSdycSiG4TWDh1rpwJdAhAlcRsPduIwkgW
+         Q0FU83RiDiNZoQpJjH7UM9Km6ZXdG8FYviL+7D9rHeHNGpylQTFaWzmNqN5SVnbwr1+j
+         Q9TVyUuF547crHDEqZyQsctegU1jYm9T9Z91Ohb/xJw1gYTFd0PzyxO45u8eyyJ6jNBY
+         p/nofwhceNjX4stMTM9iocOkTtRp0lmHdh3T/uFGHOsk+9EG2aoZSJAHzyUqdOvJu/Re
+         5AMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683970344; x=1686562344;
+        d=1e100.net; s=20221208; t=1683970383; x=1686562383;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U2j6yML4VTm3RVRtiB9T22cc6YbB1Ma6I3GUz3afvnQ=;
-        b=KAoC2JnTsUEtzgW76S5dr9JAtkPI4C9Ey1LMCQL7Ep83DaTEc3rCMk/rgYPQqCjy7O
-         4IZnMegsfqnoanihG8a0c+dhD9+/iGrQiEjKQBE6eaZ7bDMTL14wZa3IhkfE9v3UQGbn
-         8TkpGRlGN+ItD6PGeQ1VL8iG11s80bMu/QYP31IFI/eSdySfvlrUtSCkXamxQrkLGkQc
-         8hTA4xsUDnSL6buWGp/99iubR3aiJGUw4QpD8TSWSNcZvOCkAy8Vuchb5AqQPTgiIDbF
-         G/6KkfV7ZzI6bHNaIr/C3XB82J6Kna/Af8ypdhJ2rUAJRy6pO3RQKgShp/1jE+bdHL8c
-         HXNw==
-X-Gm-Message-State: AC+VfDx31zTqC8FjnMg2v+p4pQWBqB8JsU3Zr9KANAyiXbxz0wkB+dXO
-        7/k31+PvgVJN1JdDlUu5/wWCO/gWvSozSfIqIdo=
-X-Google-Smtp-Source: ACHHUZ4NVuG1OTzPXNqnrX5GD1aVOu+Ye+VfUtyrYPkJvJxa++hTsnA78hXsEVY2zLHvAaJlDqAQqA==
-X-Received: by 2002:ac2:4253:0:b0:4ea:f632:4738 with SMTP id m19-20020ac24253000000b004eaf6324738mr3926014lfl.6.1683970343710;
-        Sat, 13 May 2023 02:32:23 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id z9-20020ac24f89000000b004e8451948desm1791263lfs.227.2023.05.13.02.32.22
+        bh=5bjlRqIfrmAy2t4cl4T8kdHUjaX/ag9QYXtsc2MuGRw=;
+        b=YLPULn6Ucr5xxaHwmdBYE4KRr5jsW/szQqmKYL7lhKWxngn/XZqBP3VqAqU1H+we6f
+         eo184jCgtQayFERXdpcRtF4i4UaA6Jk/cn0qA0ZiZG9aNmZtiV05G0kPcr54whmLK6yi
+         Ucz6wqhFjXBCalS4OBcdtw0iOkTxPVSlvc8Y6wNv+ha9TwhKnFnybn/0B4t+oyASQL8q
+         oyfIgarHccHMVr23OSMKCon561wqotaBpdv0aWHBcyDt4paCIL0H59NovxwsLx/kVFLk
+         rX8GoVHzG+maC4/E0rAd+Ez+kALvipCeNsZYNCqgXmcwpgpPIHhs1pPYG3tH3779tEyO
+         ANGQ==
+X-Gm-Message-State: AC+VfDzcmEAe3mgDIcMAidM4Ucjt0Kgg+JV8ZgGnceZ3YyWjdEGwnhWY
+        PSZdUjWBYwjsovpLO3SSCK+KjA==
+X-Google-Smtp-Source: ACHHUZ4sWARPNPph+9RlcI3oXg7kqpz2p34sb8nigaWurTMe8EkI2O7CnE5vyrkmM8Mt4jk3/N0mmA==
+X-Received: by 2002:a17:907:a4d:b0:95e:de94:5bea with SMTP id be13-20020a1709070a4d00b0095ede945beamr25096100ejc.56.1683970382855;
+        Sat, 13 May 2023 02:33:02 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:1d0:810a:586c:c5ba? ([2a02:810d:15c0:828:1d0:810a:586c:c5ba])
+        by smtp.gmail.com with ESMTPSA id i18-20020a1709063c5200b00965a56f82absm6547662ejg.212.2023.05.13.02.33.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 May 2023 02:32:23 -0700 (PDT)
-Message-ID: <7a41e701-d184-53d1-04bc-b39868eb6bf5@linaro.org>
-Date:   Sat, 13 May 2023 11:32:21 +0200
+        Sat, 13 May 2023 02:33:02 -0700 (PDT)
+Message-ID: <525d7b15-ffbd-22d9-7ad5-0a0ff7290620@linaro.org>
+Date:   Sat, 13 May 2023 11:33:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add Fxtec Pro1X (QX1050) DTS
+ Thunderbird/102.11.0
+Subject: Re: [Patch v7] dt-bindings: media: s5p-mfc: convert bindings to
+ json-schema
 Content-Language: en-US
-To:     Dang Huynh <danct12@riseup.net>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230505-fxtec-pro1x-support-v3-0-0c9c7f58b205@riseup.net>
- <20230505-fxtec-pro1x-support-v3-2-0c9c7f58b205@riseup.net>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230505-fxtec-pro1x-support-v3-2-0c9c7f58b205@riseup.net>
+To:     Aakarsh Jain <aakarsh.jain@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     m.szyprowski@samsung.com, andrzej.hajda@intel.com,
+        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        ezequiel@vanguardiasur.com.ar, jernej.skrabec@gmail.com,
+        benjamin.gaignard@collabora.com, krzysztof.kozlowski+dt@linaro.org,
+        stanimir.varbanov@linaro.org, dillon.minfei@gmail.com,
+        david.plowman@raspberrypi.com, mark.rutland@arm.com,
+        robh+dt@kernel.org, krzk+dt@kernel.org, andi@etezian.org,
+        alim.akhtar@samsung.com, aswani.reddy@samsung.com,
+        pankaj.dubey@samsung.com
+References: <CGME20230328114738epcas5p475b8fa1d1e86bbb86d004afe365e0259@epcas5p4.samsung.com>
+ <20230328114729.61436-1-aakarsh.jain@samsung.com>
+ <ad96f28a-7b2d-a58b-50fb-648063ed0b18@linaro.org>
+ <000001d983eb$e0692280$a13b6780$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <000001d983eb$e0692280$a13b6780$@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -78,322 +87,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/05/2023 11:34, Aakarsh Jain wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
+>> Sent: 28 March 2023 20:06
+>> To: Aakarsh Jain <aakarsh.jain@samsung.com>; linux-arm-
+>> kernel@lists.infradead.org; linux-media@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; devicetree@vger.kernel.org
+>> Cc: m.szyprowski@samsung.com; andrzej.hajda@intel.com;
+>> mchehab@kernel.org; hverkuil-cisco@xs4all.nl;
+>> ezequiel@vanguardiasur.com.ar; jernej.skrabec@gmail.com;
+>> benjamin.gaignard@collabora.com; krzysztof.kozlowski+dt@linaro.org;
+>> stanimir.varbanov@linaro.org; dillon.minfei@gmail.com;
+>> david.plowman@raspberrypi.com; mark.rutland@arm.com;
+>> robh+dt@kernel.org; krzk+dt@kernel.org; andi@etezian.org;
+>> alim.akhtar@samsung.com; aswani.reddy@samsung.com;
+>> pankaj.dubey@samsung.com
+>> Subject: Re: [Patch v7] dt-bindings: media: s5p-mfc: convert bindings to json-
+>> schema
+>>
+>> On 28/03/2023 13:47, Aakarsh Jain wrote:
+>>> Convert s5p-mfc bindings to DT schema format using json-schema.
+>>>
+>>> Signed-off-by: Aakarsh Jain <aakarsh.jain@samsung.com>
+>>> ---
+>>> changes since v6:
+>>
+>> This is a friendly reminder during the review process.
+>>
+>> It looks like you received a tag and forgot to add it.
+>>
+>> If you do not know the process, here is a short explanation:
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>> versions. However, there's no need to repost patches *only* to add the
+>> tags. The upstream maintainer will do that for acks received on the version
+>> they apply.
+>>
+>> https://protect2.fireeye.com/v1/url?k=03601d03-62eb0848-0361964c-
+>> 74fe485fb305-ca0023b5279dd925&q=1&e=9490b51d-9547-4566-bb76-
+>> 8c1401745ae1&u=https%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv5.17%2Fs
+>> ource%2FDocumentation%2Fprocess%2Fsubmitting-patches.rst%23L540
+>>
+>> If a tag was not added on purpose, please state why and what changed.
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> 
+> Hi Krzysztof,
+> 
+> I don’t see this patch in linux-next. It's been more than a month now. 
+> Please let me know if any other changes required.
 
+I already provided you review tag.
 
-On 13.05.2023 03:05, Dang Huynh wrote:
-> The F(x)tec Pro1X is a mobile phone released by FX Technologies Ltd
-> in 2022.
-> 
-> The phone is exactly the same as the Pro1 released in 2019 with some
-> changes:
-> - MSM8998 -> SM6115
-> - Camera button is no longer multistate
-> - Only one 48MP back camera
-> - A new keyboard layout picked by the community.
-> 
-> This commit has the following features working:
-> - Display (using simplefb)
-> - UFS
-> - Power and volume buttons
-> - Pinctrl
-> - RPM Regulators
-> - USB (Device Mode)
-> 
-> To get a successful boot run:
-> 
-> cat arch/arm64/boot/Image.gz arch/arm64/boot/dts/qcom/\
-> sm6115-fxtec-pro1x.dtb  > .Image.gz-dtb
-> 
-> mkbootimg --kernel .Image.gz-dtb \
-> --ramdisk initrd.img \
-> --base 0x0 \
-> --kernel_offset 0x8000 \
-> --ramdisk_offset 0x1000000 \
-> --second_offset 0xf00000 \
-> --tags_offset 0x100 \
-> --pagesize 4096 \
-> --cmdline "CMDLINE HERE" \
-> -o qx1050-boot.img
-> 
-> fastboot flash boot qx1050-boot.img
-> fastboot erase dtbo
-> fastboot reboot
-> 
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Best regards,
+Krzysztof
 
-Konrad
->  arch/arm64/boot/dts/qcom/Makefile               |   1 +
->  arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 250 ++++++++++++++++++++++++
->  2 files changed, 251 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index d42c59572ace..e311ba675f35 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -174,6 +174,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-shift-axolotl.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm4250-oneplus-billie2.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm6115-fxtec-pro1x.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6115p-lenovo-j606f.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-> new file mode 100644
-> index 000000000000..3ce9875e932c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-> @@ -0,0 +1,250 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +/*
-> + * Copyright (c) 2023, Dang Huynh <danct12@riseup.net>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sm6115.dtsi"
-> +#include "pm6125.dtsi"
-> +#include <dt-bindings/arm/qcom,ids.h>
-> +
-> +/ {
-> +	model = "F(x)tec Pro1X (QX1050)";
-> +	compatible = "fxtec,pro1x", "qcom,sm6115";
-> +	chassis-type = "handset";
-> +
-> +	qcom,msm-id = <QCOM_ID_SM6115 0x10000>;
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		framebuffer0: framebuffer@5c000000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0x0 0x5c000000 0x0 (1080 * 2160 * 4)>;
-> +			width = <1080>;
-> +			height = <2160>;
-> +			stride = <(1080 * 4)>;
-> +			format = "a8r8g8b8";
-> +			clocks = <&gcc GCC_DISP_HF_AXI_CLK>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-0 = <&vol_up_n>;
-> +		pinctrl-names = "default";
-> +
-> +		key-volume-up {
-> +			label = "Volume Up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&pm6125_gpios 5 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <15>;
-> +			linux,can-disable;
-> +			gpio-key,wakeup;
-> +		};
-> +	};
-> +};
-> +
-> +&dispcc {
-> +	/* HACK: disable until a panel driver is ready to retain simplefb */
-> +	status = "disabled";
-> +};
-> +
-> +&pm6125_gpios {
-> +	vol_up_n: vol-up-n-state {
-> +		pins = "gpio5";
-> +		function = "normal";
-> +		power-source = <0>;
-> +		bias-pull-up;
-> +		input-enable;
-> +	};
-> +};
-> +
-> +&pon_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +&pon_resin {
-> +	linux,code = <KEY_VOLUMEDOWN>;
-> +	status = "okay";
-> +};
-> +
-> +&rpm_requests {
-> +	regulators-0 {
-> +		compatible = "qcom,rpm-pm6125-regulators";
-> +
-> +		pm6125_s6a: s6 {
-> +			regulator-min-microvolt = <304000>;
-> +			regulator-max-microvolt = <1456000>;
-> +		};
-> +
-> +		pm6125_s7a: s7 {
-> +			regulator-min-microvolt = <1280000>;
-> +			regulator-max-microvolt = <2040000>;
-> +		};
-> +
-> +		pm6125_s8a: s8 {
-> +			regulator-min-microvolt = <1064000>;
-> +			regulator-max-microvolt = <1304000>;
-> +		};
-> +
-> +		pm6125_l1a: l1 {
-> +			regulator-min-microvolt = <952000>;
-> +			regulator-max-microvolt = <1152000>;
-> +		};
-> +
-> +		pm6125_l4a: l4 {
-> +			regulator-min-microvolt = <488000>;
-> +			regulator-max-microvolt = <1000000>;
-> +		};
-> +
-> +		pm6125_l5a: l5 {
-> +			regulator-min-microvolt = <1648000>;
-> +			regulator-max-microvolt = <3056000>;
-> +		};
-> +
-> +		pm6125_l6a: l6 {
-> +			regulator-min-microvolt = <576000>;
-> +			regulator-max-microvolt = <656000>;
-> +		};
-> +
-> +		pm6125_l7a: l7 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1304000>;
-> +		};
-> +
-> +		pm6125_l8a: l8 {
-> +			regulator-min-microvolt = <400000>;
-> +			regulator-max-microvolt = <728000>;
-> +		};
-> +
-> +		pm6125_l9a: l9 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2000000>;
-> +		};
-> +
-> +		pm6125_l10a: l10 {
-> +			regulator-min-microvolt = <1704000>;
-> +			regulator-max-microvolt = <1904000>;
-> +		};
-> +
-> +		pm6125_l11a: l11 {
-> +			regulator-min-microvolt = <1704000>;
-> +			regulator-max-microvolt = <1952000>;
-> +			regulator-allow-set-load;
-> +		};
-> +
-> +		pm6125_l12a: l12 {
-> +			regulator-min-microvolt = <1624000>;
-> +			regulator-max-microvolt = <1984000>;
-> +		};
-> +
-> +		pm6125_l13a: l13 {
-> +			regulator-min-microvolt = <1504000>;
-> +			regulator-max-microvolt = <1952000>;
-> +		};
-> +
-> +		pm6125_l14a: l14 {
-> +			regulator-min-microvolt = <1704000>;
-> +			regulator-max-microvolt = <1904000>;
-> +		};
-> +
-> +		pm6125_l15a: l15 {
-> +			regulator-min-microvolt = <2920000>;
-> +			regulator-max-microvolt = <3232000>;
-> +		};
-> +
-> +		pm6125_l16a: l16 {
-> +			regulator-min-microvolt = <1704000>;
-> +			regulator-max-microvolt = <1904000>;
-> +		};
-> +
-> +		pm6125_l17a: l17 {
-> +			regulator-min-microvolt = <1152000>;
-> +			regulator-max-microvolt = <1384000>;
-> +		};
-> +
-> +		pm6125_l18a: l18 {
-> +			regulator-min-microvolt = <1104000>;
-> +			regulator-max-microvolt = <1312000>;
-> +		};
-> +
-> +		pm6125_l19a: l19 {
-> +			regulator-min-microvolt = <1624000>;
-> +			regulator-max-microvolt = <3304000>;
-> +		};
-> +
-> +		pm6125_l20a: l20 {
-> +			regulator-min-microvolt = <1624000>;
-> +			regulator-max-microvolt = <3304000>;
-> +		};
-> +
-> +		pm6125_l21a: l21 {
-> +			regulator-min-microvolt = <2400000>;
-> +			regulator-max-microvolt = <3600000>;
-> +		};
-> +
-> +		pm6125_l22a: l22 {
-> +			regulator-min-microvolt = <2952000>;
-> +			regulator-max-microvolt = <3304000>;
-> +		};
-> +
-> +		pm6125_l23a: l23 {
-> +			regulator-min-microvolt = <3200000>;
-> +			regulator-max-microvolt = <3400000>;
-> +		};
-> +
-> +		pm6125_l24a: l24 {
-> +			regulator-min-microvolt = <2704000>;
-> +			regulator-max-microvolt = <3600000>;
-> +			regulator-allow-set-load;
-> +		};
-> +	};
-> +};
-> +
-> +&sleep_clk {
-> +	clock-frequency = <32764>;
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = <0 4>, <14 4>;
-> +};
-> +
-> +&ufs_mem_hc {
-> +	vcc-supply = <&pm6125_l24a>;
-> +	vcc-max-microamp = <600000>;
-> +	vccq2-supply = <&pm6125_l11a>;
-> +	vccq2-max-microamp = <600000>;
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_phy {
-> +	vdda-phy-supply = <&pm6125_l4a>;
-> +	vdda-pll-supply = <&pm6125_l12a>;
-> +	vddp-ref-clk-supply = <&pm6125_l18a>;
-> +	status = "okay";
-> +};
-> +
-> +&usb {
-> +	status = "okay";
-> +};
-> +
-> +&usb_dwc3 {
-> +	maximum-speed = "high-speed";
-> +	dr_mode = "peripheral";
-> +};
-> +
-> +&usb_hsphy {
-> +	vdd-supply = <&pm6125_l4a>;
-> +	vdda-pll-supply = <&pm6125_l12a>;
-> +	vdda-phy-dpdm-supply = <&pm6125_l15a>;
-> +	status = "okay";
-> +};
-> +
-> +&xo_board {
-> +	clock-frequency = <19200000>;
-> +};
-> 
