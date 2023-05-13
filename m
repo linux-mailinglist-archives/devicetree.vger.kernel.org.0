@@ -2,74 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3930C701552
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 10:51:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC17D701576
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 11:00:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232564AbjEMIvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 04:51:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43826 "EHLO
+        id S229463AbjEMJAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 05:00:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbjEMIvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 04:51:09 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA6646BC
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 01:51:09 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-ba6fffc5524so2638885276.3
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 01:51:09 -0700 (PDT)
+        with ESMTP id S229882AbjEMJAC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 05:00:02 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AAC24EEB
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 01:59:59 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2ad9f2926adso64517521fa.1
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 01:59:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683967868; x=1686559868;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zYlqmqzmZQIzuckqyml+D+cUQfB/LAmhyfGQVjeCZAE=;
-        b=fBy+bVnvXyp5nt8dyaQa1jrqetVUWB6vS+JWPi6U05DWuPSOv6YJRfIzrtScKI9mFe
-         9KNEpILByCMXsb17ExcJN1alDSdWGRlvgn2aN+SEXwuVVQBgR62UrQABIU3bPaV0NtC9
-         1JNvW09ZGCVHtFraTsABaWZ5AAZW9FNtjhjwmVTCZGcUJobXLpaA5k9ErrQ4oj75cjiS
-         cagOk3qb4zTImtQxPqqTszxAdbfDwBK+QAMt6qnfmy4sxD8GL/a5HaWOzEjYqd9i+UYp
-         LVk1UKixKwGgZU43prON8Ide4O7eIEPOnKeUKmpYbFv+J6EUylYPKHhgBOnw51HLd9hX
-         CKmA==
+        d=linaro.org; s=google; t=1683968398; x=1686560398;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YV/mnZ4/4r3AbGxzYpTnL7fXn/4PhGDzkVnVht6PIUY=;
+        b=hydG02x8sN3Dc1uuIrMUyEL0Lbr9XO80nlza33L7ih1cLxw/mJf97Bf8dZAljcKrs7
+         HZVxeGdtJxKwBoKaSTNTgpl2Abp0QVtYNe3x3AHzqb0yVJKbKpGXea4xsSZWNEuE6O9i
+         B6TBd8wKi0FO4ehtxmdFpaC4cyTmMrLd+yWJOK7TEhWLwGiaKuCWlGAUt+78urdCs4+S
+         X8vD+wk5DIyELX/JzrJN78k+ekM3nQ0Gp8WHWHCZzWggEMEX1WeN/ibAb/4z9QFWjS4n
+         MmgOY0zYcC/GbWBCohV7VoamXoQQyzBCp+rduT/FWHJvFPYFSXY0PUMUOG/+nE1rDW4Q
+         Wj2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683967868; x=1686559868;
-        h=to:subject:message-id:date:from:reply-to:mime-version
+        d=1e100.net; s=20221208; t=1683968398; x=1686560398;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zYlqmqzmZQIzuckqyml+D+cUQfB/LAmhyfGQVjeCZAE=;
-        b=BRq98ucn3FFGtTOICXn3fzyuUDwlLQqGVS6Bs0S+kGuOHfG9OfYX6d0ASf87ECvINF
-         zCzzhkZPBvyI4I4uT6t1hXpe+JPlMQbDjDD3D6AzNv79auQMqU5ACnim/omtit/J652R
-         Bpbcq8ytvMC9bJGVlQGDsDEJPBSppLuhWZJSpCk/Oz8PbYdPWa9DqpxM+H3VVETFn6mV
-         /nR9RK/BXSm/24Sx4OzNsa9VpNFZBMBeKwjZtlmnxCmRXk4g/cCwd3kGlWm0fIrxrSyT
-         WdihVjvkqxa7qOfkdxOBjTCXCKl9e8lN1ul8V2+wiby+96/E6L4MHD6p0uMnlqyVe0M2
-         Brdg==
-X-Gm-Message-State: AC+VfDz0AzwRzafPGbQQXLiK5JroIKaOR2NyxLtRDPkxUcUl9TlyZq3J
-        2rodTycgPKMyvTlwK960dqhvbiNeKo/S8T2Pzls=
-X-Google-Smtp-Source: ACHHUZ5W4oCdZWCodKLBGuHs3eW6tibA6PljsnqVLBW6NyjAalKzIPRFDNITfzjQGStBqSrM86Pjz5jbDIDSti1HxWk=
-X-Received: by 2002:a05:6902:70d:b0:ba7:50d4:d914 with SMTP id
- k13-20020a056902070d00b00ba750d4d914mr1838206ybt.5.1683967868148; Sat, 13 May
- 2023 01:51:08 -0700 (PDT)
+        bh=YV/mnZ4/4r3AbGxzYpTnL7fXn/4PhGDzkVnVht6PIUY=;
+        b=SgbWfHw9jwqBpfc4o7+oIOIsevfZ/J9uqmaF5WHGCpYoQVu5i/Ba/zT11x7bO/NYlK
+         wUgVynZ4+b9YryXyAOFQx8QlsNdnT2njhHzCqYEHqPctyacJdXUf3vS+dQjEQ3y7GJj1
+         kmGmpKM4NRANDpv3+i3Fkr4Aq9W625KFHpVGvaThQdYDCa0pDzbkHt2E+Fk7ow8ksBYm
+         HT0GSIQmxQmDMhMDqq5MvuUGAmAAFeppmeoKhfyK90b93U5iLYlqRuHaUwv3F/xSrkPh
+         xgFq0XOwp9B2nMLX7WLYHtv0WjwBvUPZ4TBQtlc7NjHNfO034yZtBs3/55I9SngbQnW8
+         Yhvg==
+X-Gm-Message-State: AC+VfDwJbf+sYXHQLyUbGf+GiIDvYGNuuVYIMQCEJLyf7uzCVqLuu7Zv
+        uXnEGeKq1O8Pxt65hrXLkPF5kOjmYUMlJpuWjJg=
+X-Google-Smtp-Source: ACHHUZ5/oqXsjheRMdwkquVqrIgZ9TCHtwYEIipwgHc9qOwzW5KHHGhiProtciW738juU+Gtz6MOyw==
+X-Received: by 2002:a2e:9bd7:0:b0:2ad:9161:7aca with SMTP id w23-20020a2e9bd7000000b002ad91617acamr5113901ljj.41.1683968397737;
+        Sat, 13 May 2023 01:59:57 -0700 (PDT)
+Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
+        by smtp.gmail.com with ESMTPSA id y5-20020a2e95c5000000b002addbc16a54sm342220ljh.41.2023.05.13.01.59.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 13 May 2023 01:59:57 -0700 (PDT)
+Message-ID: <9c07e0a1-d3a6-03df-87a0-f2bdbac7d8f3@linaro.org>
+Date:   Sat, 13 May 2023 10:59:55 +0200
 MIME-Version: 1.0
-Received: by 2002:a05:7108:52a0:b0:2f2:90f8:f42c with HTTP; Sat, 13 May 2023
- 01:51:07 -0700 (PDT)
-Reply-To: ninacoulibaly03@hotmail.com
-From:   nina coulibaly <nina.coulibaly011@gmail.com>
-Date:   Sat, 13 May 2023 01:51:07 -0700
-Message-ID: <CAJe7QkqpkKY_YvcNdU7_wvCnYkpkU=vUn7jK3VmJusO7SEc6TQ@mail.gmail.com>
-Subject: from nina coulibaly
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=4.9 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v6 2/4] interconnect: add clk-based icc provider support
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Georgi Djakov <djakov@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-pm@vger.kernel.org
+References: <20230512001334.2983048-1-dmitry.baryshkov@linaro.org>
+ <20230512001334.2983048-3-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230512001334.2983048-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear,
 
-Please grant me permission to share a very crucial discussion with
-you. I am looking forward to hearing from you at your earliest
-convenience.
 
-Mrs. Nina Coulibaly
+On 12.05.2023 02:13, Dmitry Baryshkov wrote:
+> For some devices it is useful to export clocks as interconnect providers,
+> if the clock corresponds to bus bandwidth.
+> 
+> For example, on MSM8996 the cluster interconnect clock should be scaled
+> according to the cluster frequencies. Exporting it as an interconnect
+> allows one to properly describe this as the cluster bandwidth
+> requirements.
+> 
+> Tested-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+[...]
+
+> +
+> +	for (i = 0, j = 0; i < num_clocks; i++) {
+> +		qp->clocks[i].clk = data[i].clk;
+> +
+> +		node = icc_node_create(first_id + j);
+> +		if (IS_ERR(node)) {
+> +			ret = PTR_ERR(node);
+> +			goto err;
+> +		}
+> +
+> +		node->name = devm_kasprintf(dev, GFP_KERNEL, "%s_master", data[i].name);
+> +		node->data = &qp->clocks[i];
+> +		icc_node_add(node, provider);
+> +		/* link to the next node, slave */
+> +		icc_link_create(node, first_id + j + 1);
+> +		onecell->nodes[j++] = node;
+> +
+> +		node = icc_node_create(first_id + j);
+> +		if (IS_ERR(node)) {
+> +			ret = PTR_ERR(node);
+> +			goto err;
+> +		}
+> +
+> +		node->name = devm_kasprintf(dev, GFP_KERNEL, "%s_slave", data[i].name);
+> +		/* no data for slave node */
+> +		icc_node_add(node, provider);
+> +		onecell->nodes[j++] = node;
+I'm still not very into using 2 iterators and modifying one
+on the flight, but I don't think I have any other issues with
+this driver..
+
+Some sort of a Mostly-Acked-by tag would be helpful here!
+
+Konrad
+> +	}
+> +
+> +	onecell->num_nodes = j;
+> +
+> +	ret = icc_provider_register(provider);
+> +	if (ret)
+> +		goto err;
+> +
+> +	return provider;
+> +
+> +err:
+> +	icc_nodes_remove(provider);
+> +
+> +	return ERR_PTR(ret);
+> +}
+> +
+> +/**
+> + * icc_clk_unregister() - unregister a previously registered clk interconnect provider
+> + * @provider: provider returned by icc_clk_register()
+> + */
+> +void icc_clk_unregister(struct icc_provider *provider)
+> +{
+> +	struct icc_clk_provider *qp = container_of(provider, struct icc_clk_provider, provider);
+> +	int i;
+> +
+> +	icc_provider_deregister(&qp->provider);
+> +	icc_nodes_remove(&qp->provider);
+> +
+> +	for (i = 0; i < qp->num_clocks; i++) {
+> +		struct icc_clk_node *qn = &qp->clocks[i];
+> +
+> +		if (qn->enabled)
+> +			clk_disable_unprepare(qn->clk);
+> +	}
+> +}
+> diff --git a/include/linux/interconnect-clk.h b/include/linux/interconnect-clk.h
+> new file mode 100644
+> index 000000000000..0cd80112bea5
+> --- /dev/null
+> +++ b/include/linux/interconnect-clk.h
+> @@ -0,0 +1,22 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2023, Linaro Ltd.
+> + */
+> +
+> +#ifndef __LINUX_INTERCONNECT_CLK_H
+> +#define __LINUX_INTERCONNECT_CLK_H
+> +
+> +struct device;
+> +
+> +struct icc_clk_data {
+> +	struct clk *clk;
+> +	const char *name;
+> +};
+> +
+> +struct icc_provider *icc_clk_register(struct device *dev,
+> +				      unsigned int first_id,
+> +				      unsigned int num_clocks,
+> +				      const struct icc_clk_data *data);
+> +void icc_clk_unregister(struct icc_provider *provider);
+> +
+> +#endif
