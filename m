@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C6597018F6
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 20:08:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE54270190A
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 20:11:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232449AbjEMSIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 14:08:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47464 "EHLO
+        id S231137AbjEMSL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 14:11:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230501AbjEMSIP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 14:08:15 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B3FD40C7
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 11:08:08 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50b9ef67f35so19764795a12.2
-        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 11:08:08 -0700 (PDT)
+        with ESMTP id S237261AbjEMSLK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 14:11:10 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 492B15241
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 11:10:45 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-965a68abfd4so2120920066b.2
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 11:10:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684001287; x=1686593287;
+        d=linaro.org; s=google; t=1684001442; x=1686593442;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Pz3pC3oD+mRQD2yh5jV0jp+d2wnh2+HWJqx/JQaPzB0=;
-        b=EVBWjh+d6IhLcfQHvnPqNtgl2kB1ZPchXw0HXjFU2qSUtuwNy0q6Sp0YZggQOXxfjz
-         oEcw/2Tl/2G+fh5jken5DOv1L2V0oQGBznQKAHYXr5FEYY+2rEcvHxbvLt9IC6T7d2pm
-         j+JUVuj+iQUbkEXes1F1CBctgEWYrWPuR7xLWrMjBF263X4+bzOn/pWNhcqVAypZKXAx
-         ikR1LxkTi5RNV8l0ufwPRld9j5r5vXg8+d6nfVq3ozPse6EdauUgXDDiXX8GGkzWphAd
-         OXs/uwKHfMDIkh+2EG5f+tVdc5Zs9rGtQ8K5jD4iljzDntk+BUytG4wJjg7lSp4gpCJp
-         o9CQ==
+        bh=asRLFK82ncBJ7EVq/Dhl1nUHlScwu3SdKHKnttIsNYI=;
+        b=XmRywTsS7onQO/3tHnBX2wyc89syRYvSX+xFqr275wpbwv8IZEPbyhhRURubwBpqXV
+         4HEo8lvd3EASN8hUPKSGQTP2O4D1zrkCdrMgC2UsnnHjvm26LVb5a5c4R/1VVBd01RLQ
+         6npHwWs4GWuRUY9DvCHoSqy0tXqD2bGwhVbjjNsjd1/HZNXdGquihPBZdD6akmkywnIN
+         GeXA+jg3ikKDwAD90Ldg1axNDQhnxsZcSsQGW3fFtXUB2rDGHcia4ig+XyJP8MWKjMrx
+         DO8UibPa/n7WWcqN8RfZ6vU7w8MFqc8hHUY0AHgJcy7bn9FvFzCdRY4poufUHdc92sF7
+         x8IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684001287; x=1686593287;
+        d=1e100.net; s=20221208; t=1684001442; x=1686593442;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pz3pC3oD+mRQD2yh5jV0jp+d2wnh2+HWJqx/JQaPzB0=;
-        b=SaMtOazoBCl8N5CzXg4+kaFWaM3j2BgjwgFqt2TDLENLSHzI+2eJKJeP64uBgCLB/m
-         M81YwhwkwIxVmctpn6aYu5cjHa9dApVEXxt9tm4CDqdS4I9a3xX0F/l5WwxJQ2nQwE3s
-         0ZjRYoh/S0UM/lwRFYLRUF+2/ms4aPOCm/6wtYM8wauEr0NBuHm0qqHIMdXi7ZGR3TB4
-         yaCresIgu0WcFsjDheLXjrUIPCxpxPkr5HFQWtgPd8UsTDxuYO3QFvJJ0hjE+retubsq
-         +OHDOPXwL9uDeKFVFDxCSQDDbVfn/YSgXxbRiN0/uMv0KdTjvPUvLY41tCnblU7nnOEd
-         9o/w==
-X-Gm-Message-State: AC+VfDx6zCwn3OBBq6TpkuDfMvUpoIeA/6NmbPex2N8vwVUpaBNYEHv0
-        Y6zW3rY7e8PCd6E/v9G3S2AY7g==
-X-Google-Smtp-Source: ACHHUZ7ZC5ghgGrfBuRI4KprxyOU5k85ez2jlpAKSpf+r5Q8qvL256LVhRrTCK365P5OAJhDuRHo/g==
-X-Received: by 2002:a17:907:9405:b0:957:12a6:a00f with SMTP id dk5-20020a170907940500b0095712a6a00fmr25591950ejc.21.1684001286843;
-        Sat, 13 May 2023 11:08:06 -0700 (PDT)
+        bh=asRLFK82ncBJ7EVq/Dhl1nUHlScwu3SdKHKnttIsNYI=;
+        b=jlXZt6FtHmCNRZmAJcGyRjIybT+uFCfHwX01QTWsBETbll/veWNNZKFLB+QVpx7jRc
+         xOlBNH2N5ElwGDyrlTJFJTLrp49ra2VkGB4up6SfImIF2PzPyaSBgmajWpGUW7AOetG5
+         8jI35Vzhh6G1k7VwL9PhIlvTbp/tgYBxBNNR5/fDjo0jNQd1CgatZx+VaUPeil+q5+uj
+         TRZKVyk7sThElctFIlP33DUcfYxoe8Bc4kSEh3y27jISWXOAiMXlU1I0AxMl4XDvu4Dp
+         P78U7W21vDwznUibq+/L6MkvOVDiEjBgQ8+lW6YjUo1Z9ae1b8NUu5CkaWotSPFKvAjv
+         bcYg==
+X-Gm-Message-State: AC+VfDx+PF0SM5+PWDzQR55IeA/57fCH7vQ12TgmgRwjbBRtmfoQZciv
+        B20+yI2/cEx44iqcbMvo8jJRDA==
+X-Google-Smtp-Source: ACHHUZ4PSooit252IModjMMxOmb6oJFwPUivZyt7UuYW0HsmJinDs36UhBfIbLv1Q09qUZG09GYEdg==
+X-Received: by 2002:a17:907:360a:b0:960:7643:c973 with SMTP id bk10-20020a170907360a00b009607643c973mr24289620ejc.66.1684001441875;
+        Sat, 13 May 2023 11:10:41 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:ba68:e5c9:694e:c6e4? ([2a02:810d:15c0:828:ba68:e5c9:694e:c6e4])
-        by smtp.gmail.com with ESMTPSA id ib10-20020a1709072c6a00b009531d9efcc4sm7023439ejc.133.2023.05.13.11.08.05
+        by smtp.gmail.com with ESMTPSA id k10-20020a1709063fca00b00965f4171642sm6908597ejj.125.2023.05.13.11.10.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 May 2023 11:08:06 -0700 (PDT)
-Message-ID: <db2dcafb-db14-96ab-87cc-88408f3bab4b@linaro.org>
-Date:   Sat, 13 May 2023 20:08:05 +0200
+        Sat, 13 May 2023 11:10:41 -0700 (PDT)
+Message-ID: <b179185a-0aa8-e58c-4fe0-4b83396ef30e@linaro.org>
+Date:   Sat, 13 May 2023 20:10:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 05/10] dt-bindings: mfd: cirrus,cs42l43: Add initial DT
- binding
+Subject: Re: [PATCH 1/3] dt-bindings: iio: st,lsm6dsx: reference common schema
+ for mount-matrix
 Content-Language: en-US
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     broonie@kernel.org, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, linus.walleij@linaro.org,
-        vkoul@kernel.org, lgirdwood@gmail.com,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Conor Dooley <conor@kernel.org>
+Cc:     Lorenzo Bianconi <lorenzo@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Daniel Campello <campello@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
- <20230512122838.243002-6-ckeepax@opensource.cirrus.com>
- <5969fe82-69cd-34d6-edd1-d16ea741d9cb@linaro.org>
- <20230512161803.GM68926@ediswmail.ad.cirrus.com>
+References: <20230507173923.263741-1-krzysztof.kozlowski@linaro.org>
+ <20230507-brutishly-underhand-48c2949eb46c@spud>
+ <20230513191355.28cdbb23@jic23-huawei>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230512161803.GM68926@ediswmail.ad.cirrus.com>
+In-Reply-To: <20230513191355.28cdbb23@jic23-huawei>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,39 +84,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/05/2023 18:18, Charles Keepax wrote:
-> On Fri, May 12, 2023 at 05:25:52PM +0200, Krzysztof Kozlowski wrote:
->> On 12/05/2023 14:28, Charles Keepax wrote:
->>> The CS42L43 is an audio CODEC with integrated MIPI SoundWire interface
->>> (Version 1.2.1 compliant), I2C, SPI, and I2S/TDM interfaces designed
->>> for portable applications. It provides a high dynamic range, stereo
->>> DAC for headphone output, two integrated Class D amplifiers for
->>
->> ...
->>
->>> +
->>> +  interrupt-controller: true
->>> +
->>> +  '#interrupt-cells':
->>> +    const: 2
->>
->> Hm, are you sure? Who is the consumer/user of this interrupt controller?
->>
+On 13/05/2023 20:13, Jonathan Cameron wrote:
+> On Sun, 7 May 2023 22:06:56 +0100
+> Conor Dooley <conor@kernel.org> wrote:
 > 
-> Anyone who wants the device has GPIOs that can signal IRQs. Some
-> of the other IRQs could be more generally useful, such as some of
-> the jack detection ones.
+>> On Sun, May 07, 2023 at 07:39:21PM +0200, Krzysztof Kozlowski wrote:
+>>> Reference iio.yaml schema from dtschema to allow already used
+>>> mount-matrix property:
+>>>
+>>>   msm8953-xiaomi-daisy.dtb: imu@6a: Unevaluated properties are not allowed ('mount-matrix' was unexpected)
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>  
+>>
+>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>>
+>> Thanks,
+>> Conor.
+> 
+> Krzysztof,
+> 
+> These look fine to me, but I guess I should wait for the
+> dt-schema patch to land before taking them?
 
-
-OK, makes sense, but it is a bit odd then to have:
-codec {
-  which is GPIO and interrupt controller, but not pin controller
-  pinctrl {
-    pin controller, which is not GPIO and not interrupt controller
-  }
-}
-Maybe all the GPIO/pin/related interrupt properties should be moved to
-pinctrl node?
+You can grab first patch independently. #2 and #3 should indeed wait a
+bit for Rob's ack. They do not have any conflicts but they will fix
+nothing without dtschema patch.
 
 Best regards,
 Krzysztof
