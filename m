@@ -2,62 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B204D701613
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 12:14:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA05370161E
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 12:21:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238172AbjEMKOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 06:14:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55564 "EHLO
+        id S233923AbjEMKVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 06:21:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238270AbjEMKOE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 06:14:04 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D81C14EEB;
-        Sat, 13 May 2023 03:14:00 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34DADnqZ064579;
-        Sat, 13 May 2023 05:13:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1683972829;
-        bh=QP9DLvpI2LxPsticdZKwk8ul13y1Xt9EKIf/9b5Kiwo=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=FOuxbSnq337fJurJ/347oAcyZxK9AA5WZztlmltrnmWgt+Son+CtZlqgiBdYxxUZq
-         dNXS7Brs1EJSuJPOZyqRNBQlaBSKOVAKZHwu83f0GGgv0OAzxfEcMWYKjoT3uoOtom
-         Qr0sim9ZN2glKBxC7E5Nccxf21F5boxXirJlmxIU=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34DADnVD039626
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 13 May 2023 05:13:49 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 13
- May 2023 05:13:48 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 13 May 2023 05:13:48 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34DADl3f123835;
-        Sat, 13 May 2023 05:13:48 -0500
-From:   Vaishnav Achath <vaishnav.a@ti.com>
-To:     <vigneshr@ti.com>, <nm@ti.com>, <kristo@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <afd@ti.com>
-CC:     <vaishnav.a@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <u-kumar1@ti.com>
-Subject: [PATCH v3 2/2] arm64: dts: ti: k3-j7200-mcu-wakeup: Update fss node and hbmc_mux
-Date:   Sat, 13 May 2023 15:43:43 +0530
-Message-ID: <20230513101343.785-3-vaishnav.a@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230513101343.785-1-vaishnav.a@ti.com>
-References: <20230513101343.785-1-vaishnav.a@ti.com>
+        with ESMTP id S229653AbjEMKVj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 06:21:39 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6745C4C38;
+        Sat, 13 May 2023 03:21:38 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-965ab8ed1fcso2001299366b.2;
+        Sat, 13 May 2023 03:21:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1683973297; x=1686565297;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VfXf7Z/pwISSyuK+G+umykCTaKNJLWzISvgkZ065u5k=;
+        b=aR6Sr3i5k6WraX9j/SyZ2Rxrq7j31Tk45stLmYBeyAGOgaR2TR3tP1VaG5v7dbGscu
+         8pOw7C4PSCdVcXlDOe/kNdIFvO7I9Vnd4jKmCekdV8+DLPuNi7uzFADogRFQLbzGVBSE
+         4lr6PqMINBzXP4cEgQjt62DrwEBLBMITxVFfijt/oz9ITGvKuvXL/l0EpPZjRz7uBT0j
+         tkMVfvHX/TyM3T7mpECAqzPW5E4XeBcWGqV3yEM4AKwNJniJiYzio8LLgPZBFtPG+fUd
+         x6voE9h29AS6ZVvQ7vNSTaT9B9YXfqytPGVJCTh/wMaQpfsVoG3IaEmG6QuHUy8GeV6q
+         Y+fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1683973297; x=1686565297;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VfXf7Z/pwISSyuK+G+umykCTaKNJLWzISvgkZ065u5k=;
+        b=FWDsKyXoRDCNK6O8hRgywzT5PdfWdgFtulUAZY2i63u9ZKsLDCL1BYj4uHJcXcUqq0
+         FnFkGj2SP46B7rNtfIFDbl2yM7kTiweJZDxG9783G342GccceN+OqKJkplhKD44/6i4G
+         1E5Z8+d4JrxKCnFmrTpdjf+7XloDxaf/KY9YrMYkURnA1HhiArnkbct2qCJH95bBpsgl
+         pxRW10M+uFRLmSfwBFxGtJo+K+nf4sPsjldudPO4aBp5fIJPzv0Q5rrZie373KP+z9/D
+         Hk5b6o9bTlRaZ5Ti31JiAg3t+l9DOuZ/1b8CJHw43wueB2YrYPox8q1zHEZBQmqU61Oy
+         c6jA==
+X-Gm-Message-State: AC+VfDw5echIApLTrmYEb8dmaU936K7rX/Ag98lNMIjCfaEzaJi18SRw
+        rox80ixP8tpuiEG30XimqKZPqsJOidZLfwx8pec=
+X-Google-Smtp-Source: ACHHUZ4de0cW1jvj/9uHt+A8zE/qtBZ1cxXz0GH361g1zYUo9VbzkUW+vXmb5SVO1ltaKq1HwKDg6xa4D0S3/9GPg+E=
+X-Received: by 2002:a17:907:1c14:b0:95e:d74d:c4e6 with SMTP id
+ nc20-20020a1709071c1400b0095ed74dc4e6mr33805176ejc.25.1683973296581; Sat, 13
+ May 2023 03:21:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+References: <20230513065228.25971-1-cnsztl@gmail.com> <ff7aa7b6-dc45-25ba-9636-058c2bb73a6d@linaro.org>
+In-Reply-To: <ff7aa7b6-dc45-25ba-9636-058c2bb73a6d@linaro.org>
+From:   Tianling Shen <cnsztl@gmail.com>
+Date:   Sat, 13 May 2023 18:21:24 +0800
+Message-ID: <CAOP2_TjbWMpqPtpAfRZSh5+da6HxCJb_f59_jNX73Cc0vg_n2Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: Add doc for FriendlyARM NanoPi R2C Plus
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Andy Yan <andyshrk@163.com>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Andrew Powers-Holmes <aholmes@omnom.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,59 +82,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nishanth Menon <nm@ti.com>
+Hi Krzysztof,
 
-FSS node claims to be a syscon node, while it actually is a simple bus
-where OSPI, HBMC peripherals are located and a mux for path select
-between OSPI and Hyperbus which can be modelled as a reg-mux. So model
-it accordingly and use reg-mux to describe the hbmc_mux.
+On Sat, May 13, 2023 at 5:17=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 13/05/2023 08:52, Tianling Shen wrote:
+> > Add devicetree binding documentation for the NanoPi R2C Plus.
+> >
+> > Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+>
+> subject: missing prefixes (arm: rockchip:)
+>
+> Drop "doc for"
+>
+> Subject: drop second/last, redundant "doc". The "dt-bindings" prefix is
+> already stating that these are bindings and it is documentation.
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
-Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
----
+Thanks for the suggestion! Will send v2 for it.
 
-V2->V3:
- * Keep register regions unchanged as it is correct according to memory
-  map.
- * Update commit messages as per Vignesh's suggestion.
+Regards,
+Tianling.
 
-V1->V2:
- * Address feedback from Udit to limit the FSS register region size as
- per TRM.
- * Use reg-mux changes to simplify the hbmc-mux modelling.
- * Update commit message to reflect changes.
-
-Depends on:
- https://lore.kernel.org/all/20230424184810.29453-1-afd@ti.com/
-
- arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index b58a31371bf3..a7dd771b83e2 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -338,15 +338,16 @@
- 		status = "disabled";
- 	};
- 
--	fss: syscon@47000000 {
--		compatible = "syscon", "simple-mfd";
-+	fss: bus@47000000 {
-+		compatible = "simple-bus";
- 		reg = <0x00 0x47000000 0x00 0x100>;
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges;
- 
--		hbmc_mux: hbmc-mux {
--			compatible = "mmio-mux";
-+		hbmc_mux: mux-controller@47000004 {
-+			compatible = "reg-mux";
-+			reg = <0x00 0x47000004 0x00 0x2>;
- 			#mux-control-cells = <1>;
- 			mux-reg-masks = <0x4 0x2>; /* HBMC select */
- 		};
--- 
-2.17.1
-
+> > ---
+> >  Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
+>
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> Best regards,
+> Krzysztof
+>
