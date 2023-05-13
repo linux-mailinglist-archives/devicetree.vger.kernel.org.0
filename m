@@ -2,114 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA05370161E
-	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 12:21:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 960BC70161D
+	for <lists+devicetree@lfdr.de>; Sat, 13 May 2023 12:21:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233923AbjEMKVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 06:21:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58910 "EHLO
+        id S233374AbjEMKVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 06:21:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbjEMKVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 06:21:39 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6745C4C38;
-        Sat, 13 May 2023 03:21:38 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-965ab8ed1fcso2001299366b.2;
-        Sat, 13 May 2023 03:21:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683973297; x=1686565297;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VfXf7Z/pwISSyuK+G+umykCTaKNJLWzISvgkZ065u5k=;
-        b=aR6Sr3i5k6WraX9j/SyZ2Rxrq7j31Tk45stLmYBeyAGOgaR2TR3tP1VaG5v7dbGscu
-         8pOw7C4PSCdVcXlDOe/kNdIFvO7I9Vnd4jKmCekdV8+DLPuNi7uzFADogRFQLbzGVBSE
-         4lr6PqMINBzXP4cEgQjt62DrwEBLBMITxVFfijt/oz9ITGvKuvXL/l0EpPZjRz7uBT0j
-         tkMVfvHX/TyM3T7mpECAqzPW5E4XeBcWGqV3yEM4AKwNJniJiYzio8LLgPZBFtPG+fUd
-         x6voE9h29AS6ZVvQ7vNSTaT9B9YXfqytPGVJCTh/wMaQpfsVoG3IaEmG6QuHUy8GeV6q
-         Y+fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683973297; x=1686565297;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VfXf7Z/pwISSyuK+G+umykCTaKNJLWzISvgkZ065u5k=;
-        b=FWDsKyXoRDCNK6O8hRgywzT5PdfWdgFtulUAZY2i63u9ZKsLDCL1BYj4uHJcXcUqq0
-         FnFkGj2SP46B7rNtfIFDbl2yM7kTiweJZDxG9783G342GccceN+OqKJkplhKD44/6i4G
-         1E5Z8+d4JrxKCnFmrTpdjf+7XloDxaf/KY9YrMYkURnA1HhiArnkbct2qCJH95bBpsgl
-         pxRW10M+uFRLmSfwBFxGtJo+K+nf4sPsjldudPO4aBp5fIJPzv0Q5rrZie373KP+z9/D
-         Hk5b6o9bTlRaZ5Ti31JiAg3t+l9DOuZ/1b8CJHw43wueB2YrYPox8q1zHEZBQmqU61Oy
-         c6jA==
-X-Gm-Message-State: AC+VfDw5echIApLTrmYEb8dmaU936K7rX/Ag98lNMIjCfaEzaJi18SRw
-        rox80ixP8tpuiEG30XimqKZPqsJOidZLfwx8pec=
-X-Google-Smtp-Source: ACHHUZ4de0cW1jvj/9uHt+A8zE/qtBZ1cxXz0GH361g1zYUo9VbzkUW+vXmb5SVO1ltaKq1HwKDg6xa4D0S3/9GPg+E=
-X-Received: by 2002:a17:907:1c14:b0:95e:d74d:c4e6 with SMTP id
- nc20-20020a1709071c1400b0095ed74dc4e6mr33805176ejc.25.1683973296581; Sat, 13
- May 2023 03:21:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230513065228.25971-1-cnsztl@gmail.com> <ff7aa7b6-dc45-25ba-9636-058c2bb73a6d@linaro.org>
-In-Reply-To: <ff7aa7b6-dc45-25ba-9636-058c2bb73a6d@linaro.org>
-From:   Tianling Shen <cnsztl@gmail.com>
-Date:   Sat, 13 May 2023 18:21:24 +0800
-Message-ID: <CAOP2_TjbWMpqPtpAfRZSh5+da6HxCJb_f59_jNX73Cc0vg_n2Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: Add doc for FriendlyARM NanoPi R2C Plus
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229653AbjEMKVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 06:21:31 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96DE93AAE
+        for <devicetree@vger.kernel.org>; Sat, 13 May 2023 03:21:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
+        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:Reply-To:Content-ID
+        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+        Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=r4FKpG6h8Ccm2WtNhuX+D2RRGyGAFCrIdmqI/o6ZimE=; b=1KeeLNZCdJOSqlLoQPLQS0/Mj3
+        8ovb1q6Co9WjdYGbABWcgvKFLluH6S/QxhRyEzXCMVYb3YcAj3Z2qQ9jI5T5MZhi5gWb6p1FhEGL5
+        ECuw8jVH4IygoHlV7QGUr/fgT8uv3Dvxzrs9w7ssMEGPTOKe5X+fKBCJeD1YwQymEjbXvPlmazxtr
+        yNPMNUYSdjwWLRbP6ES9X1N/kF+ly5J1mIJllbyX/eB1fRLl2ptw6ZTRJHiAGUB6OPueRnIX+5BGx
+        xLvvKLvkbKa70mynxfiD3VjRQXb3uSEcB8lLpWTiKTLnKGKiWwWkDzH5LWrhTbLoLrDSZZZj8Q07A
+        C3u87KyA==;
+Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:49806 helo=rmk-PC.armlinux.org.uk)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <rmk@armlinux.org.uk>)
+        id 1pxmNR-0001E8-8O; Sat, 13 May 2023 11:21:25 +0100
+Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <rmk@rmk-PC.armlinux.org.uk>)
+        id 1pxmNQ-0034DX-Jo; Sat, 13 May 2023 11:21:24 +0100
+From:   "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+To:     Gregory Clement <gregory.clement@bootlin.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Andy Yan <andyshrk@163.com>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Andrew Powers-Holmes <aholmes@omnom.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: armada388-clearfog: add missing phy-modes
+MIME-Version: 1.0
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <E1pxmNQ-0034DX-Jo@rmk-PC.armlinux.org.uk>
+Sender: Russell King <rmk@armlinux.org.uk>
+Date:   Sat, 13 May 2023 11:21:24 +0100
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+The DSA framework has got more picky about always having a phy-mode,
+particularly for the CPU port. Add the missing phy-mode properties
+for every port which does not have an integrated PHY.
 
-On Sat, May 13, 2023 at 5:17=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 13/05/2023 08:52, Tianling Shen wrote:
-> > Add devicetree binding documentation for the NanoPi R2C Plus.
-> >
-> > Signed-off-by: Tianling Shen <cnsztl@gmail.com>
->
-> subject: missing prefixes (arm: rockchip:)
->
-> Drop "doc for"
->
-> Subject: drop second/last, redundant "doc". The "dt-bindings" prefix is
-> already stating that these are bindings and it is documentation.
+Add a phy-mode property to the ethernet interface facing the switch
+as this was configured using SGMII - as the switch is actually
+using 1000base-x, let's have some consistency between the two link
+partners.
 
-Thanks for the suggestion! Will send v2 for it.
+Additionally, the cpu label has never actually been used in the
+binding, so remove it.
 
-Regards,
-Tianling.
+Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+---
+This continues on with Andrew's patch set from April, fixing up
+SolidRun's Armada-388 based Clearfog board with a 88e6176 switch.
 
-> > ---
-> >  Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
->
->
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> Best regards,
-> Krzysztof
->
+ arch/arm/boot/dts/armada-388-clearfog.dts | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/armada-388-clearfog.dts b/arch/arm/boot/dts/armada-388-clearfog.dts
+index 95299167dcf5..32c569df142f 100644
+--- a/arch/arm/boot/dts/armada-388-clearfog.dts
++++ b/arch/arm/boot/dts/armada-388-clearfog.dts
+@@ -47,6 +47,8 @@ button-0 {
+ 
+ &eth1 {
+ 	/* ethernet@30000 */
++	phy-mode = "1000base-x";
++
+ 	fixed-link {
+ 		speed = <1000>;
+ 		full-duplex;
+@@ -129,8 +131,9 @@ port@4 {
+ 
+ 			port@5 {
+ 				reg = <5>;
+-				label = "cpu";
+ 				ethernet = <&eth1>;
++				phy-mode = "1000base-x";
++
+ 				fixed-link {
+ 					speed = <1000>;
+ 					full-duplex;
+@@ -141,6 +144,8 @@ port@6 {
+ 				/* 88E1512 external phy */
+ 				reg = <6>;
+ 				label = "lan6";
++				phy-mode = "rgmii-id";
++
+ 				fixed-link {
+ 					speed = <1000>;
+ 					full-duplex;
+-- 
+2.30.2
+
