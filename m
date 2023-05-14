@@ -2,170 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E649701D1E
-	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 13:46:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27C17701D2B
+	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 13:58:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230190AbjENLqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 07:46:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48072 "EHLO
+        id S234152AbjENL6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 07:58:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229894AbjENLqt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 07:46:49 -0400
-Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 210BAE53
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 04:46:48 -0700 (PDT)
-Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-1840ad6769fso2669864fac.0
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 04:46:48 -0700 (PDT)
+        with ESMTP id S229635AbjENL6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 07:58:22 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CF7C198B
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 04:58:20 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-50bc2feb320so17835960a12.3
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 04:58:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684064808; x=1686656808;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gyHlGYB80oRDTwmntEB4eE2KyN02HoYnzhC8yBB86pI=;
-        b=VhkXYYoFSDFJf6rhfUGqKNZ4K17rvw4Nxv2omBRVE7CiV92hKfeok6aLjdqjHriTM/
-         t/xyJDbt+C4lxSWNvMueOE1+ls+pwRrO855Ci7cQ9BrfFLdmVKKsYYZaLDTVTV9j0c2V
-         GjWGVvR1M75rm1zG+YYSZo8dnbfNWvKkAGQJJnaraIgTs1gbTElIiwG0K5iqJvs4a5lc
-         jQjjgHf73jNv022dqEosRPpKmAqrD1bbPK/xAzDxzjQIdIC2//zomARDcq7yTgHilUSe
-         0rwzCgPkdmLQKS3CxJ8byTIiBsJDvz8N+hL+SvlcpaiiEGuIK5ksWVFwRivaLx85wTUd
-         SHRA==
+        d=linaro.org; s=google; t=1684065499; x=1686657499;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ueNUY+61RC+vr33b4+u6+BrfZ3BJJhhclw2Re6JpY94=;
+        b=HL2l6tFwqcvaksx52yisq7RR0TRrXrwkOo8dOwyznXSYvgZPyuKE52NZ2FSkxurUoY
+         H9hFJg0E1CxzU5GMJwPE8BJUge2Rf5sz5GK6VG+k9+cKf4Ool8T46BE6P3fq+TaJNakx
+         WoyuSJNfRYecVKgg3LCS5/s32OI+xHx5rlbz9TFAhrW80O8mHPNcJsSMNpbnq/WDSHPo
+         IAX5J1ZmsRFHQOEtp8kFZpMpnYuls63XJsesPTcv4zaH+byEB8O3qpiIqFyiyXsx+M5U
+         W6Ph4TKH5qALtwZnjls6KlAQo+dOC/RoOr8NlN8IlZd3KL88uclJN709RtZMOZqxFf3r
+         f3gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684064808; x=1686656808;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gyHlGYB80oRDTwmntEB4eE2KyN02HoYnzhC8yBB86pI=;
-        b=O1/Gvkpeme+pMzBn0o2GF6SYhy4Dfrd9BclIpRlnvrgzc6Lv0ndQWq9d7bNQEHySVo
-         yiTdqr64az/FriB5Sj+uQxW5yXBBlVR7NpnidWIlbeR/bT9GKNZW+OU80JIRrLMZhLgM
-         a6buteihvLeBwB6rNCsec6g+cweiejp1GLF4M9Kgd2ERGQf3xx58Luqox5gnmeLqaazv
-         Xah+2fxnzntANg15WKPEjKhI2uRU0e1mBPpCeBcqRvMbeN8axha4WrMYnXJYjUVcbOKF
-         w/F95g7loXNH8LM39pss4BqINjmtZD6w5Ffhc22dSvBFtMBtERS9MJqpWP9DlaGrDcBa
-         H6rg==
-X-Gm-Message-State: AC+VfDwhZ9mIvj8Pu5UYC2DKR7sXio9T/pJ4ShZUhDsZ3uLDrzHXYqfD
-        KD2WOu3VCOI8nNS3gN53Ruk=
-X-Google-Smtp-Source: ACHHUZ4J9vwJHrSe8mPwRe+tPXJuzsy7gUAH2EQohaWQf5FZz0Utkz052QRTwo0hCaeeE5y7ozcC6w==
-X-Received: by 2002:a4a:c583:0:b0:551:f7be:908a with SMTP id x3-20020a4ac583000000b00551f7be908amr3404715oop.0.1684064807716;
-        Sun, 14 May 2023 04:46:47 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:804:1822:9c47:e4e6])
-        by smtp.gmail.com with ESMTPSA id s25-20020a4ae559000000b0051134f333d3sm9961242oot.16.2023.05.14.04.46.44
+        d=1e100.net; s=20221208; t=1684065499; x=1686657499;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ueNUY+61RC+vr33b4+u6+BrfZ3BJJhhclw2Re6JpY94=;
+        b=CBWEPwwFMnm50mMNU5H84B+LIRPUIlKQFlJa0HBbHRhKJpacxuU6kCOgoOSThPtyDR
+         zdZ3Vaxmg5Et8E15xogALQ4i8/zECrTUgvEvZt9g+ENizp/juJpI5ULfMmuUU32k6Btm
+         ZNC68nnjMOwBYyy5J1buWIxBlqVL+1IENmozeKC1eiZubsJObrqGa05d03fZHPV9ptvm
+         2yW8hr48Reh5a7CPqVonU51GUbIywgKkdxKQQwL3iQRlWJrKs5fCCW+Uhl9RqRwXB00A
+         nLqGFmbSwep1SszpWbXO3zJZoYmFT9Ol7agxRrUG4l3dGD/8kzBaEAkoCprTuj+ey1yq
+         EjSQ==
+X-Gm-Message-State: AC+VfDzOfuVrvyk7jTHRHjBTWoGuPt0bsu9qj7MrS6mkxJdi1tp4U1BJ
+        +TeUigQukeLq8S99PP9AkCivjA==
+X-Google-Smtp-Source: ACHHUZ7xsDrMn8wajAMkmg1yh4SBoBjpfcp8VcuzhBb/J3uNhg9BgkGqNoFX7nma8bpIZP3t7rtMsA==
+X-Received: by 2002:a17:907:928e:b0:96a:8412:a43d with SMTP id bw14-20020a170907928e00b0096a8412a43dmr8603542ejc.33.1684065498811;
+        Sun, 14 May 2023 04:58:18 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:715f:ddce:f2ba:123b])
+        by smtp.gmail.com with ESMTPSA id i24-20020a1709067a5800b00965aee5be9asm8223005ejo.170.2023.05.14.04.58.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 May 2023 04:46:47 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     neil.armstrong@linaro.org
-Cc:     marex@denx.de, dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        jagan@amarulasolutions.com, Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v4 2/2] drm: bridge: samsung-dsim: Implement support for clock/data polarity swap
-Date:   Sun, 14 May 2023 08:46:25 -0300
-Message-Id: <20230514114625.98372-2-festevam@gmail.com>
+        Sun, 14 May 2023 04:58:18 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4] dt-bindings: net: nxp,sja1105: document spi-cpol/cpha
+Date:   Sun, 14 May 2023 13:57:41 +0200
+Message-Id: <20230514115741.40423-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230514114625.98372-1-festevam@gmail.com>
-References: <20230514114625.98372-1-festevam@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marek Vasut <marex@denx.de>
+Some boards use SJA1105 Ethernet Switch with SPI CPHA, while ones with
+SJA1110 use SPI CPOL, so document this to fix dtbs_check warnings:
 
-Implement support for DSI clock and data lane DN/DP polarity swap by
-means of decoding 'lane-polarities' DT property. The controller does
-support DN/DP swap of clock lane and all data lanes, the controller
-does not support polarity swap of individual data lane bundles, add
-a check which verifies all data lanes have the same polarity.
+  arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: ethernet-switch@0: Unevaluated properties are not allowed ('spi-cpol' was unexpected)
 
-This has been validated on an imx8mm board that actually has the MIPI DSI
-clock lanes inverted.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Reviewed-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
+
 Changes since v3:
-- None
+1. Rebase.
+2. Require cpha/cpol properties on respective variants (thus update
+   example).
 
- drivers/gpu/drm/bridge/samsung-dsim.c | 27 ++++++++++++++++++++++++++-
- include/drm/bridge/samsung-dsim.h     |  2 ++
- 2 files changed, 28 insertions(+), 1 deletion(-)
+Changes since v2:
+1. Add allOf:if:then, based on feedback from Vladimir.
 
-diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
-index e0a402a85787..5791148e2da2 100644
---- a/drivers/gpu/drm/bridge/samsung-dsim.c
-+++ b/drivers/gpu/drm/bridge/samsung-dsim.c
-@@ -183,6 +183,8 @@
- #define DSIM_AFC_CTL(x)			(((x) & 0x7) << 5)
+Changes since v1:
+1. Add also cpha.
+---
+ .../bindings/net/dsa/nxp,sja1105.yaml         | 32 ++++++++++++++++---
+ 1 file changed, 28 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+index 9a64ed658745..991448962c93 100644
+--- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+@@ -12,10 +12,6 @@ description:
+   cs_sck_delay of 500ns. Ensuring that this SPI timing requirement is observed
+   depends on the SPI bus master driver.
  
- /* DSIM_PLLCTRL */
-+#define DSIM_PLL_DPDNSWAP_CLK		(1 << 25)
-+#define DSIM_PLL_DPDNSWAP_DAT		(1 << 24)
- #define DSIM_FREQ_BAND(x)		((x) << 24)
- #define DSIM_PLL_EN			BIT(23)
- #define DSIM_PLL_P(x, offset)		((x) << (offset))
-@@ -622,6 +624,11 @@ static unsigned long samsung_dsim_set_pll(struct samsung_dsim *dsi,
- 		reg |= DSIM_FREQ_BAND(band);
- 	}
+-allOf:
+-  - $ref: dsa.yaml#/$defs/ethernet-ports
+-  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+-
+ maintainers:
+   - Vladimir Oltean <vladimir.oltean@nxp.com>
  
-+	if (dsi->swap_dn_dp_clk)
-+		reg |= DSIM_PLL_DPDNSWAP_CLK;
-+	if (dsi->swap_dn_dp_data)
-+		reg |= DSIM_PLL_DPDNSWAP_DAT;
+@@ -36,6 +32,9 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  spi-cpha: true
++  spi-cpol: true
 +
- 	samsung_dsim_write(dsi, DSIM_PLLCTRL_REG, reg);
+   # Optional container node for the 2 internal MDIO buses of the SJA1110
+   # (one for the internal 100base-T1 PHYs and the other for the single
+   # 100base-TX PHY). The "reg" property does not have physical significance.
+@@ -109,6 +108,30 @@ $defs:
+        1860, 1880, 1900, 1920, 1940, 1960, 1980, 2000, 2020, 2040, 2060, 2080,
+        2100, 2120, 2140, 2160, 2180, 2200, 2220, 2240, 2260]
  
- 	timeout = 1000;
-@@ -1696,7 +1703,9 @@ static int samsung_dsim_parse_dt(struct samsung_dsim *dsi)
- {
- 	struct device *dev = dsi->dev;
- 	struct device_node *node = dev->of_node;
--	int ret;
-+	u32 lane_polarities[5] = { 0 };
-+	struct device_node *endpoint;
-+	int i, nr_lanes, ret;
- 
- 	ret = samsung_dsim_of_read_u32(node, "samsung,pll-clock-frequency",
- 				       &dsi->pll_clk_rate);
-@@ -1713,6 +1722,22 @@ static int samsung_dsim_parse_dt(struct samsung_dsim *dsi)
- 	if (ret < 0)
- 		return ret;
- 
-+	endpoint = of_graph_get_endpoint_by_regs(node, 1, -1);
-+	nr_lanes = of_property_count_u32_elems(endpoint, "data-lanes");
-+	if (nr_lanes > 0 && nr_lanes <= 4) {
-+		/* Polarity 0 is clock lane, 1..4 are data lanes. */
-+		of_property_read_u32_array(endpoint, "lane-polarities",
-+					   lane_polarities, nr_lanes + 1);
-+		for (i = 1; i <= nr_lanes; i++) {
-+			if (lane_polarities[1] != lane_polarities[i])
-+				DRM_DEV_ERROR(dsi->dev, "Data lanes polarities do not match");
-+		}
-+		if (lane_polarities[0])
-+			dsi->swap_dn_dp_clk = true;
-+		if (lane_polarities[1])
-+			dsi->swap_dn_dp_data = true;
-+	}
++allOf:
++  - $ref: dsa.yaml#/$defs/ethernet-ports
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - if:
++      properties:
++        compatible:
++          enum:
++            - nxp,sja1105e
++            - nxp,sja1105t
++            - nxp,sja1105p
++            - nxp,sja1105q
++            - nxp,sja1105r
++            - nxp,sja1105s
++    then:
++      properties:
++        spi-cpol: false
++      required:
++        - spi-cpha
++    else:
++      properties:
++        spi-cpha: false
++      required:
++        - spi-cpol
 +
- 	return 0;
- }
+ unevaluatedProperties: false
  
-diff --git a/include/drm/bridge/samsung-dsim.h b/include/drm/bridge/samsung-dsim.h
-index ba5484de2b30..6a37d1e079bf 100644
---- a/include/drm/bridge/samsung-dsim.h
-+++ b/include/drm/bridge/samsung-dsim.h
-@@ -95,6 +95,8 @@ struct samsung_dsim {
- 	u32 mode_flags;
- 	u32 format;
+ examples:
+@@ -120,6 +143,7 @@ examples:
+             ethernet-switch@1 {
+                     reg = <0x1>;
+                     compatible = "nxp,sja1105t";
++                    spi-cpha;
  
-+	bool swap_dn_dp_clk;
-+	bool swap_dn_dp_data;
- 	int state;
- 	struct drm_property *brightness;
- 	struct completion completed;
+                     ethernet-ports {
+                             #address-cells = <1>;
 -- 
 2.34.1
 
