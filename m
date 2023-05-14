@@ -2,112 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65E56701F00
-	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 20:39:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB985701F1C
+	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 21:00:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230421AbjENSjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 14:39:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37826 "EHLO
+        id S234652AbjENTAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 15:00:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjENSjg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 14:39:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97FE53AA0;
-        Sun, 14 May 2023 11:39:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1CBA860DF5;
-        Sun, 14 May 2023 18:39:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 423EFC433EF;
-        Sun, 14 May 2023 18:39:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684089574;
-        bh=0qXKkwNgm6r8LyU3fLXnR/zhU9ezOkHvW6g+/vQsORQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZN0yKtHCAVyLMwWTyWR2il5idn3KVri9Dkfgi3FgoqH4LUvPSKfFS3njmzMdJv7bi
-         8GxNaqYWiDext2jk8UEk8IxirT0OfC+aDvAGODzjkSgEZHzoTFVCm3rKw95dG7PLKU
-         07g3QH7ah/bGxGAcrZk0a60PHmHueegY2myFlwP11ze1n6YqqNNQG5t8ozSYZUqfCx
-         LjGtP+5UnDd6Wymf1/Ui7Jc3XcFdIwwPPUr+A/kin8rPf31XRLWkiX+brZbu2TkUio
-         0oWlJoxCH+86JhRe1knEU4z0y0ulqdZoSTpc/J9BVNvbvD6zSE8DTMTfC4p5iCqbNE
-         ZJhcn07dyo2mg==
-Date:   Sun, 14 May 2023 19:39:28 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S229611AbjENTAW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 15:00:22 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20FB1737;
+        Sun, 14 May 2023 12:00:20 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id 41be03b00d2f7-530638a60e1so4505502a12.2;
+        Sun, 14 May 2023 12:00:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684090820; x=1686682820;
+        h=content-disposition:mime-version:message-id:subject:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mvaHiNJqWsmyFn/ekVz/emUkR3dSqPvXajmdSTajqVE=;
+        b=GVmeq51NK/tWqfjYVZEWsoyWH0NmNmKnj9v+Xqu/VprIo3dXKjY0sSSvsEFFpVsquH
+         totFEhYQwnUrkj6etw4SZqwKbZBsnPmOhAEBz2Ep0CBFxuPaIWfDi6cGeS6dB/P8cqm3
+         ktsltV8z2PtEjWSqVbb/YsEiAZ6rxw0M/e73u18dvkw9wJ2wgP2Z7lBYd8+4qLKVs+4e
+         y+CRf+9pFbyms0PfrRZMb7kRUR1fF4sqYz4HDEUNZC+YlIyZWXHk62Gsxq2JNPLmS5EA
+         RQ2pYIOIQOF8zGKnzKsCeaytGbBcWPRwSQ0Y9qTZ1KdPJcZeYlp3KOvw6SurwNz1W2lf
+         s5cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684090820; x=1686682820;
+        h=content-disposition:mime-version:message-id:subject:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mvaHiNJqWsmyFn/ekVz/emUkR3dSqPvXajmdSTajqVE=;
+        b=iDfBMV2qT9UfzI8Ak6dQwVy/vKXNIbRdzqNYzRweD9fNW/hl65xGmvbpy/YnQzIvfU
+         w8SalyPUlZui/BYixin6/Ryg/LynN5oqQzOciaSXhMkZ32v11uVp8Lytm8LvuxDEDjn3
+         m0Ie6hsdsB4jmVdOP0t2YyNOypMX0Dh7GzMU0Epty9OpQCmprJpJ3PoQXHsWS6R4vK+q
+         MOqzxOzDBb+WP27/VdCjXRK1XKQfE68kjSCJqBPphRp7bRYYLVwPu7uB3mqgBspA28Q7
+         zNgl80RzKqUD7MlFMzxouOR/nInrqWL77nnEhPSsyCbK4OF5GzvPiMipo6EygSZgYfzD
+         40jA==
+X-Gm-Message-State: AC+VfDxfpz7QjuuA2Qz6wuQPUeelxJH6YLgsfLtrCOFb/2EUdJu/kjHF
+        /PRjdkVWpnBB5pgBvMTGoSObh1v61qh8E98d
+X-Google-Smtp-Source: ACHHUZ6UaDgvw4ldOShttN91tw6g3sRFHfvY4bFY+iVSiTr1DADT7l9mQeikUuI8sXnwLSonlwpNbg==
+X-Received: by 2002:a05:6a21:32a0:b0:ff:f2c3:c103 with SMTP id yt32-20020a056a2132a000b000fff2c3c103mr35826539pzb.18.1684090818757;
+        Sun, 14 May 2023 12:00:18 -0700 (PDT)
+Received: from yoga ([2400:1f00:13:3840:2d88:3593:2af7:2b37])
+        by smtp.gmail.com with ESMTPSA id p19-20020a63f453000000b005287b22ea8esm10133177pgk.88.2023.05.14.12.00.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 May 2023 12:00:18 -0700 (PDT)
+Date:   Mon, 15 May 2023 00:30:09 +0530
+From:   Anup Sharma <anupnewsmail@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: Re: [PATCH v3 06/10] dt-bindings: riscv: Add bouffalolab bl808 board
- compatibles
-Message-ID: <20230514-kinetic-backlog-b9573ae06507@spud>
-References: <20230514165651.2199-1-jszhang@kernel.org>
- <20230514165651.2199-7-jszhang@kernel.org>
+        Anup Sharma <anupnewsmail@gmail.com>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        u.kleine-koenig@pengutronix.de, andriy.shevchenko@linux.intel.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Add dt-binding support for ti tmp006
+Message-ID: <cover.1684089997.git.anupnewsmail@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jd7+Ni3EpcRTOoVW"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230514165651.2199-7-jszhang@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+These patches introduce device tree binding support and
+add an of_device_id table entry to the driver.
 
---jd7+Ni3EpcRTOoVW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Anup Sharma (2):
+  dt-bindings: iio: temperature: Add support for tmp006
+  iio: temperature: tmp006: Add OF device matching support
 
-On Mon, May 15, 2023 at 12:56:47AM +0800, Jisheng Zhang wrote:
+ .../bindings/iio/temperature/ti,tmp006.yaml   | 42 +++++++++++++++++++
+ drivers/iio/temperature/tmp006.c              | 10 ++++-
+ 2 files changed, 51 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/ti,tmp006.yaml
 
-> +title: Bouffalo Lab Technology SoC-based boards
+-- 
+2.34.1
 
-I know you're only propagating an existing pattern, but the "SoC-based"
-looks rather odd!
-
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - description: Carrier boards for the Sipeed M1s SoM
-> +        items:
-> +          - enum:
-> +              - sipeed,m1s-dock
-
-BTW, do you know of any other m1s compatible docks?
-I couldn't find any other ones via Google, so maybe it is just worth
-swapping the enum here for another const.
-Either is fine by me though.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---jd7+Ni3EpcRTOoVW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGEq4AAKCRB4tDGHoIJi
-0gALAP9Ok3alh7NIJMaSq8fKkKGEXm45QwG/nxQVUVvv5NFqIQD+NT/UaDdpRQ9b
-AtE7/sESaeGevB6XmhBXdSnfDb6n3Ak=
-=aXIX
------END PGP SIGNATURE-----
-
---jd7+Ni3EpcRTOoVW--
