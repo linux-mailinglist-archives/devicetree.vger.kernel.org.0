@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B916E701CCA
-	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 11:55:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD84F701CD0
+	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 12:05:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232109AbjENJzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 05:55:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56460 "EHLO
+        id S231916AbjENKFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 06:05:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbjENJzr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 05:55:47 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4A089D
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 02:55:45 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-969f90d71d4so1034584366b.3
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 02:55:45 -0700 (PDT)
+        with ESMTP id S229611AbjENKFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 06:05:52 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4CBEE64
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 03:05:50 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50bdd7b229cso21000549a12.0
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 03:05:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684058144; x=1686650144;
+        d=linaro.org; s=google; t=1684058749; x=1686650749;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=DmnCd9zBSpzSRwFsU5TtJIOG/MCBXv4toD2D925k+2k=;
-        b=AWNmy5FBccEuQgwM1II/lH3TjYuI1CWhObctyu4ktSINIKc1QgcniKjKgFNcNakdKm
-         ZE+dHukU5YKKrCfW0AHAmhCxQwHu9NsH+M9YfTgrmdkwblST1Y2w8hXWM2CaMr4W9RHr
-         d7o09e3odUGHjZ5EJDXocOHtyXS0gO9d0PnZM17ZU1xvffirHLPmBvvP8EZgCnRJ5lZh
-         eVMlW+d/Qqdjr/G+MKZjx745hKuSKVgPyRF7ogv5HWhEl6SqK0Jr7FbPz6d1/IvotPOV
-         Jm8WSxsLIS6jJdgINxct2xfQshwY5jy6Ljxfy/fZSNSMfg/Iq/GdOy1uhyDvk1YZbJGk
-         koeg==
+        bh=AEESkSmM2yg5voafFPesEW8VArx2oSNLqjShFMs/DuM=;
+        b=OyLcn1Yv30MUfI8z9ssANMpeZZts+OprdcA/iasJMb1DMpuk1R5D101T5Yu1rj/Zt4
+         7a2n5wCr0ZBcql6hmpuMzw/R+9iNvyBs4Ae0DnBhr/UJWMWiICKFdgJQtixVz7Aj93AH
+         TzBms5ISW5vsqLODzC/ul2SxCrouPD7n804OjnQQQuXxIgloyac5ehD9/hRQebBF2SHl
+         0SOLTEpFq8Owh87R9grGOOecAuj9+ZHHwvGnJqKzbQbwihax+W/IEu8BEyXAnn/i3MiN
+         +ElxCKV/NLh49jtFFYTn0rrYFCNmEj6aR+QKMy9V7WlluQt61sW4OA23c8N4mzIhyC1O
+         C8Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684058144; x=1686650144;
+        d=1e100.net; s=20221208; t=1684058749; x=1686650749;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DmnCd9zBSpzSRwFsU5TtJIOG/MCBXv4toD2D925k+2k=;
-        b=BUFnyTWwUX7dzgQ5yUL9VBN4MLMOwDC5hs0sM0TzX33NMSRtxkiYqMNink+PZ2Rzyn
-         cPF/U8NB/4kduizyFrmk80jv36hXkXOF5kJFSiY/UjggJcmpthdEtIO8jLLVvE1Nj5iM
-         Nxczf1tb6sIohT04J+owILItTecMluMfFZHxYbR+QG08ruIWZIXRN4vf7ZYl74gB3mHr
-         OEOXAh4apMqw0b/rpK9Mwv3s9nxASxVSlbY9i+VeyYgh/bXRX3F9bwyoK6OzGs01+8D7
-         JbXEf/qtymej1Hf3hTW27xKDJS/Gmieq1gpZNtYLY6H3QNjY4gZgsKKBo8LPeLO1rwvv
-         0v1w==
-X-Gm-Message-State: AC+VfDyBzCzMhNTJYGrt5UgjfmDykfQnukL5DnKvNZD/JdEK6gcQshVD
-        0Jt0Fb68lyigKRSKGgFzMmtcdQ==
-X-Google-Smtp-Source: ACHHUZ7hRkuoxb1+sQp7/C83yF5sWrBdHlBQlIGqSszE7wlv1cUtZW6L2gB9QqiiPEPzG8C+ePthow==
-X-Received: by 2002:a17:907:9810:b0:96a:861:a2ac with SMTP id ji16-20020a170907981000b0096a0861a2acmr16240193ejc.0.1684058144158;
-        Sun, 14 May 2023 02:55:44 -0700 (PDT)
+        bh=AEESkSmM2yg5voafFPesEW8VArx2oSNLqjShFMs/DuM=;
+        b=dh5nOZ4Y5llqhOw7Fli+xqDjhkJf9glnLG8Rc0VgL6fdYStnTpeAaYR8YH3Z/Rd9X+
+         UQBFNO8/qkj5xvugNWPUrkN4/rhkzUW087ZGbrIN6liFLWaNCoAv00uRSK58nK1onser
+         4yqIDptRhDb+OsjTH2H0IZk7zRb+LqWnDC+qjp6Ry6PoiekTnCalNEyl6AkZGuz3Jj4a
+         d2l9PAwjzyl9GGIsqh+iAp1B6QiMKPIDcBlxzXXVicm6zj7iTSDZ9y75B+X95XZlGWBP
+         EFKh43/UKM0OvxCmZGfBX5UAxWbIWTp9qgMX732D3iJUYAqsl3/Em2rqOn9xVz6ORS+Y
+         q7ug==
+X-Gm-Message-State: AC+VfDxRwf0/vZQ/oq5gWP0Iym5vXFXkA5h/GzFoQ0kukQX7fzkKKlCK
+        Yg8TUkoD93eAoJ73vT9LgomK8YEQg8bXrQ7Hs/bjEQ==
+X-Google-Smtp-Source: ACHHUZ5SOGjQ1VP1duapR1kvjIiip6JZnD1Ud80MrMaoNp6c05dBBuvaom4AcL6CYJlc978ETuJfaQ==
+X-Received: by 2002:a17:907:720e:b0:966:5a6c:752d with SMTP id dr14-20020a170907720e00b009665a6c752dmr21669896ejc.20.1684058749230;
+        Sun, 14 May 2023 03:05:49 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:715f:ddce:f2ba:123b? ([2a02:810d:15c0:828:715f:ddce:f2ba:123b])
-        by smtp.gmail.com with ESMTPSA id r9-20020aa7cb89000000b005021d210899sm5667044edt.23.2023.05.14.02.55.42
+        by smtp.gmail.com with ESMTPSA id w13-20020a170907270d00b0095fbb1b72c2sm7974519ejk.63.2023.05.14.03.05.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 May 2023 02:55:43 -0700 (PDT)
-Message-ID: <51dbd824-7d90-8a69-902b-d643347abdf3@linaro.org>
-Date:   Sun, 14 May 2023 11:55:42 +0200
+        Sun, 14 May 2023 03:05:48 -0700 (PDT)
+Message-ID: <b53ffbf3-68c0-244f-0d0b-62a671d0aaef@linaro.org>
+Date:   Sun, 14 May 2023 12:05:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 3/3] arm64: dts: allwinner: h6: tanix-tx6: Add compatible
- bluetooth
+Subject: Re: [PATCH v3 1/2] dt-bindings: samsung,mipi-dsim: Add
+ 'lane-polarities'
 Content-Language: en-US
-To:     Rudi Heitbaum <rudi@heitbaum.com>, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, wens@csie.org, jernej.skrabec@gmail.com,
-        samuel@sholland.org, marcel@holtmann.org, johan.hedberg@gmail.com,
-        luiz.dentz@gmail.com, anarsoul@gmail.com, alistair@alistair23.me
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-bluetooth@vger.kernel.org
-References: <20230514074731.70614-1-rudi@heitbaum.com>
- <20230514074731.70614-4-rudi@heitbaum.com>
+To:     Fabio Estevam <festevam@gmail.com>, neil.armstrong@linaro.org
+Cc:     dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        jagan@amarulasolutions.com, Fabio Estevam <festevam@denx.de>
+References: <20230509191059.3327960-1-festevam@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230514074731.70614-4-rudi@heitbaum.com>
+In-Reply-To: <20230509191059.3327960-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,33 +76,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/05/2023 09:47, Rudi Heitbaum wrote:
-> Tanix TX6 comes either with RTL8822BS or RTL8822CS wifi+bt combo module.
-> Add compatible for RTL8822BS as it uses different firmware.
+On 09/05/2023 21:10, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: Rudi Heitbaum <rudi@heitbaum.com>
+> The Samsung DSIM IP block allows the inversion of the clock and
+> data lanes.
+> 
+> Add an optional property called 'lane-polarities' that describes the
+> polarities of the MIPI DSI clock and data lanes.
+> 
+> This property is useful for properly describing the hardware when the
+> board designer decided to switch the polarities of the MIPI DSI
+> clock and/or data lanes.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
-
-Thank you for your patch. There is something to discuss/improve.
-
->  arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Changes since v2:
+> - Use video-interfaces.yaml (Rob).
 > 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-> index 9a38ff9b3fc7..9460ccbc247d 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-> @@ -21,7 +21,7 @@ &uart1 {
->  	status = "okay";
+>  .../display/bridge/samsung,mipi-dsim.yaml     | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+> index e841659e20cd..dad6d06fbdd9 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+> @@ -105,6 +105,35 @@ properties:
+>            DSI output port node to the panel or the next bridge
+>            in the chain.
 >  
->  	bluetooth {
-> -		compatible = "realtek,rtl8822cs-bt";
-> +		compatible = "realtek,rtl8822bs-bt", "realtek,rtl8822cs-bt";
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/media/video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                oneOf:
 
-This neither matches bindings nor your commit msg. If device has
-different chips, then you should not stuff all of compatibles together.
-Please analyze the case. Maybe you need different boards for different
-revisions?
+Drop oneOf, no need for it.
+
+> +                  - minItems: 1
+> +                    maxItems: 4
+> +                    uniqueItems: true
+> +                    items:
+> +                      enum: [ 1, 2, 3, 4 ]
+> +                    description:
+> +                      See ../../media/video-interfaces.yaml for details.
+
+Drop description, it's obvious.
+
+> +
+> +              lane-polarities:
+> +                minItems: 1
+> +                maxItems: 5
+> +                items:
+> +                  enum: [ 0, 1 ]
+
+Drop items, it's already in video-interfaces.
+
+> +                description:
+> +                  See ../../media/video-interfaces.yaml for details.
+
+Drop this piece.
+
+> +                  The Samsung MIPI DSI IP requires that all the data lanes have
+> +                  the same polarity.
+> +
+> +            dependencies:
+> +              lane-polarities: [data-lanes]
+> +
+>  required:
+>    - clock-names
+>    - clocks
 
 Best regards,
 Krzysztof
