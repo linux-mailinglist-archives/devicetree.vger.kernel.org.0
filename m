@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FBC7701E44
-	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 18:43:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA3E9701E47
+	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 18:45:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230496AbjENQn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 12:43:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36868 "EHLO
+        id S229585AbjENQo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 12:44:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233187AbjENQnZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 12:43:25 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5A943C07
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 09:43:22 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-965c3f9af2aso1810477066b.0
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 09:43:22 -0700 (PDT)
+        with ESMTP id S231493AbjENQo4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 12:44:56 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7B9C3C1D
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 09:44:54 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so104500993a12.1
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 09:44:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684082601; x=1686674601;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1684082693; x=1686674693;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4spgMntPB3LCUVqHkhSqU+qO4ZV/kE2zwnApUafRYkg=;
-        b=wnDSe5Eh1EA+khgHLHK6bWcwx6mk/1MFGA0p08W5Mwz1YJyRBppd2MLg73PSsDASFe
-         mj8Icbp6p32t6oMzSkm3S+wKamKURvyA7/RUeq8sxOP96YthFvrZZkblByhqk/GI8Scu
-         p6PVmJJNygjxVStUSFXYzkVTubqi35niAID5iFMvo049WgFwOZVmeGeqs8ZqSjqjOSWu
-         I50MrK2eoA4UgUkeTW0g+53oo8bbv1FdWKCEfzUG4ww1qaj+SJomd5YynDfRQx6JfKs6
-         53QnyRRpgmWV1n0iMeZ7Y69k+T9T+pNuwfq+KVrmRFi/0jXRl6U7Bho+MogixhZ33ic0
-         nn9g==
+        bh=rINqlL2c8jKFx65s1S5lPme8A0ex2087xMbzH+6dEqQ=;
+        b=G0kkmhtRbuMAFyz5REUm85lg8GVuIkgDeDSSH9vb8lQNxaEYtzlJSwVLr4+WXYi976
+         uJLBhOoX/ti6pWc6runOZxS4loOkTJv/vcors1Phcix/U8R1c3xc3Bd5KcL+vRTmIlIU
+         bVoAUrjIg1o+wClpXqlON3C21pkWNq7/Sr4+yi/gQIWtlY0nluhHTYPszQZPSZG/GvDN
+         YCPce5ULfTeDkg1rp1WWnghJe5dBgpvvdozC3ihlLEGpuEtPVuDh+vNQzu0sqwLCS/ln
+         agh4tEw2DxvCi1upnBY2IH43eqt1COezkNJECcVdsoIjsG5rnvh+Zzcq6NOlbN6DR4NC
+         U7LQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684082601; x=1686674601;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1684082693; x=1686674693;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4spgMntPB3LCUVqHkhSqU+qO4ZV/kE2zwnApUafRYkg=;
-        b=AmGqwbpmeqoVVAcr8c2DDpTn94ROkK8zisAiOvBRY9ZZROV08xpRsjO+a5kWvjrQL9
-         NUHEmfIocKAj0+wULrTNm9J7YCJXbdxpVIB2i7KT8gQ+xbqyHe4UZ5Edfcjwhxf+GH8n
-         U0MGOyp4vS9KlMTEC6v4bT9THo569pUifq+9RzxjGYgGqFcRhb/UkiSq8jn7RLwNpAmR
-         hxXG/nsgLC8eFFUAq1+SbjXpNRha+YCQ0flqjUxrO80LwoAb80qeHpAfQm/HUrdJ7lig
-         Z21SUp08oodx0KtSmTP1uBrTek0dgJGkIzZtkhnKO2PWQJ49QZMeieZyjjAxeEv1L2QL
-         v/8A==
-X-Gm-Message-State: AC+VfDxbN5PUNP/nGd1TgRbJcVu+n1hixm76+UCImAPXebNhy8Ms8H40
-        bDVq/1X9eACMx7khc12zEQpthw==
-X-Google-Smtp-Source: ACHHUZ4wKLYVNC10wfemrXflp1NJh60COumq314MHATvysNxMLWA0CUuYlbZZ5GDFvDfcBKLz94RDA==
-X-Received: by 2002:a17:906:58c8:b0:966:168d:8c5 with SMTP id e8-20020a17090658c800b00966168d08c5mr26374950ejs.57.1684082601102;
-        Sun, 14 May 2023 09:43:21 -0700 (PDT)
+        bh=rINqlL2c8jKFx65s1S5lPme8A0ex2087xMbzH+6dEqQ=;
+        b=Zj5rJJGA5PxHAHso97erCKiTx6R7Ewei859tPquXlFUkOSa5GlsJhT3x7LH0UfMsJu
+         huZfz3QCqEqsyaguAck6Wp2oEBT8WWS3gdeIcfoKInxhfr6zGDF1/sg9Bt1g4WZpyruB
+         lZcshMChTUpiwl3j66dCbQPg89AapNUrICOU3SkSXFOejJ4FNULcRQk3sjq23niBtje7
+         45PPEv1kR4LWTLrHUv8lz31AtANgkdaH4QGkvJ932hMXMloPF7P9Vf5nyvm5c21KiGB6
+         9EmqMMBgbHrl2lO1IO0mbMwmoZASY2ivZqGojiewJcSjbwSwvIClHuRYn09R6THH601b
+         oalQ==
+X-Gm-Message-State: AC+VfDxk1IGcEt/jS+ivl5qe/2nfubWP2a+aq7atpI5D5V0Qm7kHcrq2
+        uqhxwnMoXXiM9IFuX5sh8tENuw==
+X-Google-Smtp-Source: ACHHUZ5/WyRf2UuM4SE6FMYjH1YFSP+Bj1lt5YCVb26J/gTV6zGBKP0EE75wnp8npwWVo/oUULu+kQ==
+X-Received: by 2002:a17:907:6da5:b0:94a:6229:8fc1 with SMTP id sb37-20020a1709076da500b0094a62298fc1mr28689766ejc.31.1684082693433;
+        Sun, 14 May 2023 09:44:53 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:a146:6594:d73a:8280? ([2a02:810d:15c0:828:a146:6594:d73a:8280])
-        by smtp.gmail.com with ESMTPSA id fe18-20020a1709072a5200b00968242f8c37sm8341504ejc.50.2023.05.14.09.43.19
+        by smtp.gmail.com with ESMTPSA id hf15-20020a1709072c4f00b008f89953b761sm8311624ejc.3.2023.05.14.09.44.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 May 2023 09:43:20 -0700 (PDT)
-Message-ID: <bd03403e-9246-faad-c23f-89417e31aeda@linaro.org>
-Date:   Sun, 14 May 2023 18:43:18 +0200
+        Sun, 14 May 2023 09:44:52 -0700 (PDT)
+Message-ID: <4d9944f9-b42b-fc66-8fc6-081f4a689ea1@linaro.org>
+Date:   Sun, 14 May 2023 18:44:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v5 09/10] dt-bindings: power: supply: rt5033-battery: Add
- power-supplies as a property
+Subject: Re: [PATCH v5 10/10] dt-bindings: Add rt5033 mfd, regulator and
+ charger
+Content-Language: en-US
 To:     Jakob Hauser <jahau@rocketmail.com>,
         Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
@@ -73,10 +74,9 @@ Cc:     Beomho Seo <beomho.seo@samsung.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
 References: <20230514123130.41172-1-jahau@rocketmail.com>
- <20230514123130.41172-10-jahau@rocketmail.com>
-Content-Language: en-US
+ <20230514123130.41172-11-jahau@rocketmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230514123130.41172-10-jahau@rocketmail.com>
+In-Reply-To: <20230514123130.41172-11-jahau@rocketmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,14 +90,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 14/05/2023 14:31, Jakob Hauser wrote:
-> Additionally to the already available ref "power-supply.yaml", add
-> "power-supplies" as a property. Otherwise, when referencing rt5033-battery in
-> an example, message "'power-supplies' does not match any of the regexes:
-> 'pinctrl-[0-9]+'" will be returned.
+> Add device tree binding documentation for rt5033 multifunction device, voltage
+> regulator and battery charger.
 > 
+> Cc: Beomho Seo <beomho.seo@samsung.com>
+> Cc: Chanwoo Choi <cw00.choi@samsung.com>
 > Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
 
-Instead just change additionalProp->unevaluatedProperties: false.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
