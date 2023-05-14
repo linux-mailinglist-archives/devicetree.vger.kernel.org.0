@@ -2,86 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA3E9701E47
-	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 18:45:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F97D701E77
+	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 19:08:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229585AbjENQo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 12:44:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37372 "EHLO
+        id S233071AbjENRIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 13:08:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231493AbjENQo4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 12:44:56 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7B9C3C1D
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 09:44:54 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so104500993a12.1
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 09:44:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684082693; x=1686674693;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rINqlL2c8jKFx65s1S5lPme8A0ex2087xMbzH+6dEqQ=;
-        b=G0kkmhtRbuMAFyz5REUm85lg8GVuIkgDeDSSH9vb8lQNxaEYtzlJSwVLr4+WXYi976
-         uJLBhOoX/ti6pWc6runOZxS4loOkTJv/vcors1Phcix/U8R1c3xc3Bd5KcL+vRTmIlIU
-         bVoAUrjIg1o+wClpXqlON3C21pkWNq7/Sr4+yi/gQIWtlY0nluhHTYPszQZPSZG/GvDN
-         YCPce5ULfTeDkg1rp1WWnghJe5dBgpvvdozC3ihlLEGpuEtPVuDh+vNQzu0sqwLCS/ln
-         agh4tEw2DxvCi1upnBY2IH43eqt1COezkNJECcVdsoIjsG5rnvh+Zzcq6NOlbN6DR4NC
-         U7LQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684082693; x=1686674693;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rINqlL2c8jKFx65s1S5lPme8A0ex2087xMbzH+6dEqQ=;
-        b=Zj5rJJGA5PxHAHso97erCKiTx6R7Ewei859tPquXlFUkOSa5GlsJhT3x7LH0UfMsJu
-         huZfz3QCqEqsyaguAck6Wp2oEBT8WWS3gdeIcfoKInxhfr6zGDF1/sg9Bt1g4WZpyruB
-         lZcshMChTUpiwl3j66dCbQPg89AapNUrICOU3SkSXFOejJ4FNULcRQk3sjq23niBtje7
-         45PPEv1kR4LWTLrHUv8lz31AtANgkdaH4QGkvJ932hMXMloPF7P9Vf5nyvm5c21KiGB6
-         9EmqMMBgbHrl2lO1IO0mbMwmoZASY2ivZqGojiewJcSjbwSwvIClHuRYn09R6THH601b
-         oalQ==
-X-Gm-Message-State: AC+VfDxk1IGcEt/jS+ivl5qe/2nfubWP2a+aq7atpI5D5V0Qm7kHcrq2
-        uqhxwnMoXXiM9IFuX5sh8tENuw==
-X-Google-Smtp-Source: ACHHUZ5/WyRf2UuM4SE6FMYjH1YFSP+Bj1lt5YCVb26J/gTV6zGBKP0EE75wnp8npwWVo/oUULu+kQ==
-X-Received: by 2002:a17:907:6da5:b0:94a:6229:8fc1 with SMTP id sb37-20020a1709076da500b0094a62298fc1mr28689766ejc.31.1684082693433;
-        Sun, 14 May 2023 09:44:53 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:a146:6594:d73a:8280? ([2a02:810d:15c0:828:a146:6594:d73a:8280])
-        by smtp.gmail.com with ESMTPSA id hf15-20020a1709072c4f00b008f89953b761sm8311624ejc.3.2023.05.14.09.44.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 May 2023 09:44:52 -0700 (PDT)
-Message-ID: <4d9944f9-b42b-fc66-8fc6-081f4a689ea1@linaro.org>
-Date:   Sun, 14 May 2023 18:44:51 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v5 10/10] dt-bindings: Add rt5033 mfd, regulator and
- charger
-Content-Language: en-US
-To:     Jakob Hauser <jahau@rocketmail.com>,
-        Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S230281AbjENRII (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 13:08:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607F54230;
+        Sun, 14 May 2023 10:08:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E04DB618B8;
+        Sun, 14 May 2023 17:08:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 303B8C433D2;
+        Sun, 14 May 2023 17:07:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684084082;
+        bh=srHAo0Y9b1qf2rL+g1G7GWSxmyN50IIlO+TTLU3U41E=;
+        h=From:To:Cc:Subject:Date:From;
+        b=hhX7qZTcONw+c5MKoJz/MFIzS2L9mGoGHUx01wCjDsf9VjRwGicpXV1a0c+XIoQ2k
+         StCZ2xLDojeV7i0RQTG3/yGXGc8kh+Tp0M2nyUfeFuCLbNlz8sd9LEFqPwzxX6DCZK
+         +qYQ1hgxhy1iRVJbwBCDwSimRsMHXj/cez1MV7k/ZZNX6RhCwmGVom614WnumvF+7n
+         IYbM7tXXu1kEFGVxPXmrxOwlOSjyZNLbKM2ueOB/trhKKEeDzKb1W0o6p9CXeXhk6A
+         FPIcQDTiumYo2Q2i0p5fB1K/mdIop5yHkpvunXwXg1fsEkni5uLSrlsbR8epSfdOQX
+         LcUE/gbPaNmKw==
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Henrik Grimler <henrik@grimler.se>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230514123130.41172-1-jahau@rocketmail.com>
- <20230514123130.41172-11-jahau@rocketmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230514123130.41172-11-jahau@rocketmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>
+Cc:     Samuel Holland <samuel@sholland.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-serial@vger.kernel.org
+Subject: [PATCH v3 00/10] riscv: add Bouffalolab bl808 support
+Date:   Mon, 15 May 2023 00:56:41 +0800
+Message-Id: <20230514165651.2199-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,18 +61,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/05/2023 14:31, Jakob Hauser wrote:
-> Add device tree binding documentation for rt5033 multifunction device, voltage
-> regulator and battery charger.
-> 
-> Cc: Beomho Seo <beomho.seo@samsung.com>
-> Cc: Chanwoo Choi <cw00.choi@samsung.com>
-> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
+This series adds Bouffalolab uart driver and basic devicetrees for
+Bouffalolab bl808 SoC and Sipeed M1s dock board.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Since v2:
+  - fix dt_binding_check and dtbs_check warnings
+  - use uart_port_tx_limited() helper in uart driver
+  - collect Acked-by/Reviewed-by tag
+  - uart0 -> uart3
+  - update "riscv,ndev" property
+  - mv vendor prefix binding as the first patch
+  - add compatible string for bouffalolab bl808 plic
 
-Best regards,
-Krzysztof
+Since v1:
+  - use FIELD_PREP and FIELD_GET macro
+  - rewrite bflb_uart_tx_chars()
+  - add vendor prefix for bouffalolab
+  - add dt binding for bl808 compatibles
+  - enable SOC_BOUFFALOLAB in defconfig
+  - collect Reviewed-by tag
+  - modify commit-msg as suggested
+
+
+Jisheng Zhang (10):
+  dt-bindings: vendor-prefixes: add bouffalolab
+  dt-bindings: interrupt-controller: Add bouffalolab bl808 plic
+  dt-bindings: serial: add documentation for Bouffalolab UART Driver
+  serial: bflb_uart: add Bouffalolab UART Driver
+  riscv: add the Bouffalolab SoC family Kconfig option
+  dt-bindings: riscv: Add bouffalolab bl808 board compatibles
+  riscv: dts: bouffalolab: add the bl808 SoC base device tree
+  riscv: dts: bouffalolab: add Sipeed M1s SoM and Dock devicetree
+  MAINTAINERS: riscv: add entry for Bouffalolab SoC
+  riscv: defconfig: enable BOUFFALOLAB SoC
+
+ .../sifive,plic-1.0.0.yaml                    |   1 +
+ .../bindings/riscv/bouffalolab.yaml           |  29 +
+ .../serial/bouffalolab,bl808-uart.yaml        |  47 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ arch/riscv/Kconfig.socs                       |   5 +
+ arch/riscv/boot/dts/Makefile                  |   1 +
+ arch/riscv/boot/dts/bouffalolab/Makefile      |   2 +
+ .../dts/bouffalolab/bl808-sipeed-m1s-dock.dts |  25 +
+ .../dts/bouffalolab/bl808-sipeed-m1s.dtsi     |  21 +
+ arch/riscv/boot/dts/bouffalolab/bl808.dtsi    |  73 +++
+ arch/riscv/configs/defconfig                  |   1 +
+ drivers/tty/serial/Kconfig                    |  18 +
+ drivers/tty/serial/Makefile                   |   1 +
+ drivers/tty/serial/bflb_uart.c                | 586 ++++++++++++++++++
+ include/uapi/linux/serial_core.h              |   3 +
+ 16 files changed, 822 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/riscv/bouffalolab.yaml
+ create mode 100644 Documentation/devicetree/bindings/serial/bouffalolab,bl808-uart.yaml
+ create mode 100644 arch/riscv/boot/dts/bouffalolab/Makefile
+ create mode 100644 arch/riscv/boot/dts/bouffalolab/bl808-sipeed-m1s-dock.dts
+ create mode 100644 arch/riscv/boot/dts/bouffalolab/bl808-sipeed-m1s.dtsi
+ create mode 100644 arch/riscv/boot/dts/bouffalolab/bl808.dtsi
+ create mode 100644 drivers/tty/serial/bflb_uart.c
+
+-- 
+2.40.0
 
