@@ -2,168 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27C17701D2B
-	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 13:58:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C840701D45
+	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 14:25:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234152AbjENL6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 07:58:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51322 "EHLO
+        id S229526AbjENMZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 08:25:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229635AbjENL6W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 07:58:22 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CF7C198B
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 04:58:20 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-50bc2feb320so17835960a12.3
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 04:58:20 -0700 (PDT)
+        with ESMTP id S233095AbjENMZq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 08:25:46 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F15D8270A;
+        Sun, 14 May 2023 05:25:45 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1ab0c697c84so88975825ad.3;
+        Sun, 14 May 2023 05:25:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684065499; x=1686657499;
+        d=gmail.com; s=20221208; t=1684067145; x=1686659145;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ueNUY+61RC+vr33b4+u6+BrfZ3BJJhhclw2Re6JpY94=;
-        b=HL2l6tFwqcvaksx52yisq7RR0TRrXrwkOo8dOwyznXSYvgZPyuKE52NZ2FSkxurUoY
-         H9hFJg0E1CxzU5GMJwPE8BJUge2Rf5sz5GK6VG+k9+cKf4Ool8T46BE6P3fq+TaJNakx
-         WoyuSJNfRYecVKgg3LCS5/s32OI+xHx5rlbz9TFAhrW80O8mHPNcJsSMNpbnq/WDSHPo
-         IAX5J1ZmsRFHQOEtp8kFZpMpnYuls63XJsesPTcv4zaH+byEB8O3qpiIqFyiyXsx+M5U
-         W6Ph4TKH5qALtwZnjls6KlAQo+dOC/RoOr8NlN8IlZd3KL88uclJN709RtZMOZqxFf3r
-         f3gQ==
+        bh=eJtkEQLwd7Qa7A4qK6Edti5i00jqeiQeXfJVryR8JcA=;
+        b=SIY4C+T2I0C52S7gQJuVzeEMZFgj0o8Emz6v8xbTpDJD7iu9LvkHP/XKTHRILIbQcl
+         bRIKVu7XcmifCL6o+jg6Wwyv8vd/Vf2dpbrcma4VTXbNePdxvF0CLz30CxNp1zDc75SY
+         R1PGxoVs0LlbR1BjKnIJhJVRD6EM8vKm3NpBPxHUly/nmxNNmRjXt1Rv7rBRsakaC30S
+         TLW+kaggoguy0dHyQs60HVVTpOgxeVe+TPtBqpu4r/I/rtBMotYGdbhRjDSckiSEiGgt
+         M8i+Lwh23V1Nc/tAEleaz49YlTb2b5qZd3ig2mbjYgBSvvUT0qmxtJojxD5GSNOPXXN1
+         f4eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684065499; x=1686657499;
+        d=1e100.net; s=20221208; t=1684067145; x=1686659145;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ueNUY+61RC+vr33b4+u6+BrfZ3BJJhhclw2Re6JpY94=;
-        b=CBWEPwwFMnm50mMNU5H84B+LIRPUIlKQFlJa0HBbHRhKJpacxuU6kCOgoOSThPtyDR
-         zdZ3Vaxmg5Et8E15xogALQ4i8/zECrTUgvEvZt9g+ENizp/juJpI5ULfMmuUU32k6Btm
-         ZNC68nnjMOwBYyy5J1buWIxBlqVL+1IENmozeKC1eiZubsJObrqGa05d03fZHPV9ptvm
-         2yW8hr48Reh5a7CPqVonU51GUbIywgKkdxKQQwL3iQRlWJrKs5fCCW+Uhl9RqRwXB00A
-         nLqGFmbSwep1SszpWbXO3zJZoYmFT9Ol7agxRrUG4l3dGD/8kzBaEAkoCprTuj+ey1yq
-         EjSQ==
-X-Gm-Message-State: AC+VfDzOfuVrvyk7jTHRHjBTWoGuPt0bsu9qj7MrS6mkxJdi1tp4U1BJ
-        +TeUigQukeLq8S99PP9AkCivjA==
-X-Google-Smtp-Source: ACHHUZ7xsDrMn8wajAMkmg1yh4SBoBjpfcp8VcuzhBb/J3uNhg9BgkGqNoFX7nma8bpIZP3t7rtMsA==
-X-Received: by 2002:a17:907:928e:b0:96a:8412:a43d with SMTP id bw14-20020a170907928e00b0096a8412a43dmr8603542ejc.33.1684065498811;
-        Sun, 14 May 2023 04:58:18 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:715f:ddce:f2ba:123b])
-        by smtp.gmail.com with ESMTPSA id i24-20020a1709067a5800b00965aee5be9asm8223005ejo.170.2023.05.14.04.58.17
+        bh=eJtkEQLwd7Qa7A4qK6Edti5i00jqeiQeXfJVryR8JcA=;
+        b=HY0IEJU5arrP0akzuV72oI2gFW+xser4mYx5OVc34ve8B4BfYKsryDgHYWRtuBTXRv
+         E0zlYK5IruJozhW0lAV4boB5LMH2OO2yvVgFEU4q+T3LBoUXBA0qhMuSGiwvtkMNeyH+
+         HPuTGpNjCfb3Pij9qazbqrun6VoO/6uUFWGVcO9e0+JeRevN8mqqoyC6rQywGF77iNNN
+         wv+atAcMCgXZlG3PQt+mvxbibjnlvm8rVr+tbVNaaQU2zl6B0m9z6SBrXXK0tMAAb3fs
+         Pt+ol4TnzwYvXK5aNbicUa6s6m0TMNK9spsIh1JmhSPzFks1tc2Nzy1Dx/xSpfph8o2T
+         Jf8A==
+X-Gm-Message-State: AC+VfDwOyjHrkTLeGafElolRwd46q2hmS9KM4CBnGzCOf7xiLSOdoqzF
+        k4N/bjEY2JZtLgaoTv3+Das=
+X-Google-Smtp-Source: ACHHUZ6NRqpfucIOVjtK9NCyhezD5/4TH/aHpYpJlZjut2EW1BcrDDewEt7AZxY9omwFIslEdXwctA==
+X-Received: by 2002:a17:902:cece:b0:1a8:626:6d9d with SMTP id d14-20020a170902cece00b001a806266d9dmr40923458plg.62.1684067145347;
+        Sun, 14 May 2023 05:25:45 -0700 (PDT)
+Received: from d.home.yangfl.dn42 ([104.28.245.199])
+        by smtp.gmail.com with ESMTPSA id jo13-20020a170903054d00b001a641e4738asm11380077plb.1.2023.05.14.05.25.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 May 2023 04:58:18 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        Sun, 14 May 2023 05:25:44 -0700 (PDT)
+From:   David Yang <mmyangfl@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     David Yang <mmyangfl@gmail.com>, Wei Xu <xuwei5@hisilicon.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4] dt-bindings: net: nxp,sja1105: document spi-cpol/cpha
-Date:   Sun, 14 May 2023 13:57:41 +0200
-Message-Id: <20230514115741.40423-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: hi3798cv200: Fix clocks order of sd0
+Date:   Sun, 14 May 2023 20:25:33 +0800
+Message-Id: <20230514122533.382910-1-mmyangfl@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some boards use SJA1105 Ethernet Switch with SPI CPHA, while ones with
-SJA1110 use SPI CPOL, so document this to fix dtbs_check warnings:
+"ciu" and "biu" were incorrectly swapped. Fix their order.
 
-  arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: ethernet-switch@0: Unevaluated properties are not allowed ('spi-cpol' was unexpected)
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Signed-off-by: David Yang <mmyangfl@gmail.com>
 ---
+ arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Changes since v3:
-1. Rebase.
-2. Require cpha/cpol properties on respective variants (thus update
-   example).
-
-Changes since v2:
-1. Add allOf:if:then, based on feedback from Vladimir.
-
-Changes since v1:
-1. Add also cpha.
----
- .../bindings/net/dsa/nxp,sja1105.yaml         | 32 ++++++++++++++++---
- 1 file changed, 28 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-index 9a64ed658745..991448962c93 100644
---- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-@@ -12,10 +12,6 @@ description:
-   cs_sck_delay of 500ns. Ensuring that this SPI timing requirement is observed
-   depends on the SPI bus master driver.
- 
--allOf:
--  - $ref: dsa.yaml#/$defs/ethernet-ports
--  - $ref: /schemas/spi/spi-peripheral-props.yaml#
--
- maintainers:
-   - Vladimir Oltean <vladimir.oltean@nxp.com>
- 
-@@ -36,6 +32,9 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  spi-cpha: true
-+  spi-cpol: true
-+
-   # Optional container node for the 2 internal MDIO buses of the SJA1110
-   # (one for the internal 100base-T1 PHYs and the other for the single
-   # 100base-TX PHY). The "reg" property does not have physical significance.
-@@ -109,6 +108,30 @@ $defs:
-        1860, 1880, 1900, 1920, 1940, 1960, 1980, 2000, 2020, 2040, 2060, 2080,
-        2100, 2120, 2140, 2160, 2180, 2200, 2220, 2240, 2260]
- 
-+allOf:
-+  - $ref: dsa.yaml#/$defs/ethernet-ports
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - nxp,sja1105e
-+            - nxp,sja1105t
-+            - nxp,sja1105p
-+            - nxp,sja1105q
-+            - nxp,sja1105r
-+            - nxp,sja1105s
-+    then:
-+      properties:
-+        spi-cpol: false
-+      required:
-+        - spi-cpha
-+    else:
-+      properties:
-+        spi-cpha: false
-+      required:
-+        - spi-cpol
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -120,6 +143,7 @@ examples:
-             ethernet-switch@1 {
-                     reg = <0x1>;
-                     compatible = "nxp,sja1105t";
-+                    spi-cpha;
- 
-                     ethernet-ports {
-                             #address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+index a83b9d4f172e..ed1b5a7a6067 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+@@ -302,8 +302,8 @@ sd0: mmc@9820000 {
+ 			compatible = "snps,dw-mshc";
+ 			reg = <0x9820000 0x10000>;
+ 			interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&crg HISTB_SDIO0_CIU_CLK>,
+-				 <&crg HISTB_SDIO0_BIU_CLK>;
++			clocks = <&crg HISTB_SDIO0_BIU_CLK>,
++				 <&crg HISTB_SDIO0_CIU_CLK>;
+ 			clock-names = "biu", "ciu";
+ 			resets = <&crg 0x9c 4>;
+ 			reset-names = "reset";
 -- 
-2.34.1
+2.39.2
 
