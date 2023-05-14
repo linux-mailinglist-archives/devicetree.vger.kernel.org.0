@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFBE8701B35
-	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 04:32:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 280AF701B4B
+	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 05:04:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbjENCck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 May 2023 22:32:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39128 "EHLO
+        id S229464AbjENDEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 May 2023 23:04:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjENCcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 22:32:39 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DFD92130;
-        Sat, 13 May 2023 19:32:38 -0700 (PDT)
+        with ESMTP id S229447AbjENDEK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 May 2023 23:04:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 128052682;
+        Sat, 13 May 2023 20:04:09 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E864861491;
-        Sun, 14 May 2023 02:32:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 850C4C433D2;
-        Sun, 14 May 2023 02:32:29 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9E17560B21;
+        Sun, 14 May 2023 03:04:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81CCFC433D2;
+        Sun, 14 May 2023 03:04:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684031557;
-        bh=sc8UrLU9bo7pQFPgnJPVQgPMdYWPTHV76oVXH1yQ2AE=;
+        s=k20201202; t=1684033448;
+        bh=qBKHzMDQiTvfzVdcv7w2wZ86uejJYLs96FLiWxr9gDg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=I2LbixDJa5CO0sa33Glfx6FSbrCkYbFMusB55WLtTGdpkdXw/8hSVSflSnFD5CSpi
-         itvewSz2ZSY5lOQlFvd9EraxKA79s/VGOQD0Rz/MGyqIMCiU5K5ncPo60bOphoBzxu
-         2h0n8YwyX/pzW7DFyA7J7xyXMyd/AdiCm4GEdn/Fu5e4XlYKgihI7GXidUbBTUcD5K
-         BQ/znbT5RyERmzxRUzWJ2A8USeazmJvKc7mQJCRM+mooSQCEkw1ea263a/fYK92SGu
-         5M/51hoazdfTe5rXR08zPb/TNEZRtROx+0oMrx4v5UA9J1Mmp00InheM7jc7Cb5vZX
-         hJl0Na02paMZw==
-Date:   Sun, 14 May 2023 10:32:22 +0800
+        b=pt5dlSh8KyrkRWFEyAPyVCZ0gHKN2C8eQizB3ypJRVNDduv0V5UupoBRXwCkiedFC
+         wp20xHeXeb2BWTgqH3pCQ892jz6JxYyByskoaaZzSFL7ovYdPuW38zd9trBmYFta49
+         UIEhaccS8ZoN6CxNwfah9RsSZjqt5QhXjbcss2nIk6bJxWSNpvhDCV/5m+TJzh2Vmc
+         uUdxn3GY/YAhjjy6fNhXASFGq6ermoM1e6vBQNy3p1aIaXxq+QXTqM/EkAgr8zggxH
+         dF0kiTXi+571Jy+Km1c929ZUesgAaAy7C+sE3+Hna6NxLUv4IJXag0jYJ5/bqXt/Js
+         cT9OCCpe0fbOA==
+Date:   Sun, 14 May 2023 11:03:54 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
+To:     Andrejs Cainikovs <andrejs.cainikovs@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
-        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, Jacky Bai <ping.bai@nxp.com>
-Subject: Re: [PATCH V3 6/6] ARM: dts: imx6ul: Add clock and PGC node to GPC
-Message-ID: <20230514023222.GH727834@dragon>
-References: <20230414091947.7831-1-stefan.wahren@i2se.com>
- <20230414091947.7831-7-stefan.wahren@i2se.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+Subject: Re: [PATCH v1 1/4] arm64: dts: colibri-imx8x: fix eval board pin
+ configuration
+Message-ID: <20230514030354.GJ727834@dragon>
+References: <20230417173830.19401-1-andrejs.cainikovs@toradex.com>
+ <20230417173830.19401-2-andrejs.cainikovs@toradex.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230414091947.7831-7-stefan.wahren@i2se.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230417173830.19401-2-andrejs.cainikovs@toradex.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,16 +65,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 14, 2023 at 11:19:47AM +0200, Stefan Wahren wrote:
-> According to fsl,imx-gpc.yaml the General Power Control requires
-> a ipg clock and a Power Gating Control node. So add them to fix
-> the dtbs_check warnings on i.MX6UL boards:
+On Mon, Apr 17, 2023 at 07:38:27PM +0200, Andrejs Cainikovs wrote:
+> From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
 > 
-> gpc@20dc000: 'clocks' is a required property
-> gpc@20dc000: 'clock-names' is a required property
-> gpc@20dc000: 'pgc' is a required property
+> Fix pinctrl groups to have SODIMM 75 only in one group.
+> Remove configuration of the pin at SoM level because it is normally
+> used as CSI_MCLK at camera interface connector.
+> Without this fix it is not possible, without redefining iomuxc pinctrl,
+> to use CSI_MCLK signal and leads to the following error messages:
 > 
-> Suggested-by: Jacky Bai <ping.bai@nxp.com>
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> imx8qxp-pinctrl scu:pinctrl: pin IMX8QXP_CSI_MCLK already requested
+> imx8qxp-pinctrl scu:pinctrl: pin-147 (16-003c) status -22
+> 
+> Fixes: 4d2adf738169 ("arm64: dts: colibri-imx8x: Split pinctrl_hog1")
+> 
 
-Applied, thanks!
+Unneeded newline.  Fixes tag can just be part of Signed-off-by section.
+
+Shawn
+
+> Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+> Signed-off-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+> index 7cad79102e1a..6f88c11f16e1 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
+> @@ -365,7 +365,7 @@ &usdhc2 {
+>  &iomuxc {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_ext_io0>, <&pinctrl_hog0>, <&pinctrl_hog1>,
+> -		    <&pinctrl_hog2>, <&pinctrl_lpspi2_cs2>;
+> +		    <&pinctrl_lpspi2_cs2>;
+>  
+>  	/* On-module touch pen-down interrupt */
+>  	pinctrl_ad7879_int: ad7879intgrp {
+> @@ -499,8 +499,7 @@ pinctrl_hog0: hog0grp {
+>  	};
+>  
+>  	pinctrl_hog1: hog1grp {
+> -		fsl,pins = <IMX8QXP_CSI_MCLK_LSIO_GPIO3_IO01			0x20>,		/* SODIMM  75 */
+> -			   <IMX8QXP_QSPI0A_SCLK_LSIO_GPIO3_IO16			0x20>;		/* SODIMM  93 */
+> +		fsl,pins = <IMX8QXP_QSPI0A_SCLK_LSIO_GPIO3_IO16			0x20>;		/* SODIMM  93 */
+>  	};
+>  
+>  	pinctrl_hog2: hog2grp {
+> -- 
+> 2.34.1
+> 
