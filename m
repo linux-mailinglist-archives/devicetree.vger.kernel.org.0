@@ -2,96 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 792A2701CE5
-	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 12:41:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 364DC701CED
+	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 13:01:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230043AbjENKly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 06:41:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36218 "EHLO
+        id S232122AbjENLBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 07:01:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233748AbjENKlx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 06:41:53 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB2031731
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 03:41:48 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50db91640d3so9693287a12.0
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 03:41:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684060907; x=1686652907;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gwvE8GNOC0Y0ULH3wWZ0RD6YUfvTg/EgGGBaYirIjjU=;
-        b=X8vX7sb/2ICyD45fHKhcZEvafp0UJUpUyLdrS4617/T11tJ03hIm25+AmlJV8b4SkX
-         0ezvvPbDG/H7FyF8GzXE9VgleFOnawnlxOvMfnYP4H0Hm/4Kmqd9pPdfH1rMas7LAoRb
-         zm2us3n5EzsL0P0Jhe+W7FtgMjBIadSNPohNb6RW4NoprSIsGAQxSLAJKLnKstM+bzX/
-         XB2lWH3zmviWy+Q4+4LVIuIu5ouJWaKk4O0L8115o3Z2p0Opw/SkRmdEtL9eEnTn/yse
-         bzwngs61W3zBYHfrJud9wcXLwM5gTcix/QzmnTo+DG04LxHla+cSljwtBybl0e6jw9D8
-         vR9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684060907; x=1686652907;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gwvE8GNOC0Y0ULH3wWZ0RD6YUfvTg/EgGGBaYirIjjU=;
-        b=Pnj4JocNV/WJWGaji7upzEXaVC/DX1Tp2MiN972zcHlzR1PpGfCKY+ywBL+wUrOluu
-         WPrz+AuDQvc8D+0An0fGAbgsJZ7f1KzSmSlxeDGLZV3P4atLJd9c41BxIJ3vexE8CsFe
-         Jm2qPjGVWmHKkBpO99CB3kMxmWqMWBZHTRbgAvIHIaSszM2gu8c3XzI08GhGZFWi/Z+a
-         nqXiBINOnEaYmgYeWxgw1PtL7yDWX7JgWVYzZvPDqeiiA5ujsWmQL4pNgExNLHJ6z7x2
-         apWeHGGndnf9whISmqdfgzPwhHglZvGeEx4NR0KJaiW1bolCK/CbfAYlrQDPG0ElzL1t
-         /l2A==
-X-Gm-Message-State: AC+VfDwY4Jzk8Sfq7iHbl9i5qExtvVWH83Hr2vBICH0gMw4JXjuy3Oa7
-        BErVmLeTPvLz27aqbokfIkLVtw==
-X-Google-Smtp-Source: ACHHUZ71Wpwgtz5ebkZ+S7SwGCJVQIZ49/lwyvoEEIpUuaCZjlowkuyZuXXdaQeWV8w2n4DxmA/8uw==
-X-Received: by 2002:aa7:d945:0:b0:50b:e1d1:91cb with SMTP id l5-20020aa7d945000000b0050be1d191cbmr23936014eds.8.1684060907378;
-        Sun, 14 May 2023 03:41:47 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:715f:ddce:f2ba:123b? ([2a02:810d:15c0:828:715f:ddce:f2ba:123b])
-        by smtp.gmail.com with ESMTPSA id b13-20020a056402138d00b004af6c5f1805sm5854441edv.52.2023.05.14.03.41.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 May 2023 03:41:46 -0700 (PDT)
-Message-ID: <a032d9e6-6cb5-1856-9eda-28028bf05633@linaro.org>
-Date:   Sun, 14 May 2023 12:41:45 +0200
+        with ESMTP id S229548AbjENLBW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 07:01:22 -0400
+Received: from connect.vanmierlo.com (fieber.vanmierlo.com [84.243.197.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06DE61FE4;
+        Sun, 14 May 2023 04:01:17 -0700 (PDT)
+X-Footer: dmFubWllcmxvLmNvbQ==
+Received: from roundcube.vanmierlo.com ([192.168.37.37])
+        (authenticated user m.brock@vanmierlo.com)
+        by connect.vanmierlo.com (Kerio Connect 9.4.2) with ESMTPA;
+        Sun, 14 May 2023 13:01:10 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [Patch v8 0/8] Tegra234 Memory interconnect support
-Content-Language: en-US
-To:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
-        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
-        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
-        lpieralisi@kernel.org, helgaas@kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, mmaddireddy@nvidia.com, kw@linux.com,
-        bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
-        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
-References: <20230511173211.9127-1-sumitg@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230511173211.9127-1-sumitg@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
+Date:   Sun, 14 May 2023 13:01:10 +0200
+From:   m.brock@vanmierlo.com
+To:     "Guntupalli, Manikanta" <manikanta.guntupalli@amd.com>
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jirislaby@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "git (AMD-Xilinx)" <git@amd.com>,
+        "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
+        "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+        "Goud, Srinivas" <srinivas.goud@amd.com>, manion05gk@gmail.com
+Subject: Re: [PATCH 0/2] Add rs485 support to uartps driver
+In-Reply-To: <DM4PR12MB61098014775DE9950A0E2E588C779@DM4PR12MB6109.namprd12.prod.outlook.com>
+References: <1682512187-8828-1-git-send-email-manikanta.guntupalli@amd.com>
+ <6b72c56e79a44fec348de26d14d9dce0@vanmierlo.com>
+ <DM4PR12MB61098014775DE9950A0E2E588C779@DM4PR12MB6109.namprd12.prod.outlook.com>
+Message-ID: <309c98bbe25b8493ac35c8da97f9bff1@vanmierlo.com>
+X-Sender: m.brock@vanmierlo.com
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/05/2023 19:32, Sumit Gupta wrote:
-> Hi All,
+Guntupalli, Manikanta schreef op 2023-05-10 18:26:
+> Hi Maarten,
 > 
-> Have incorporated the suggestions in v7. Only changed 'patch 1' in v7
-> to fix possible race when setting 'mc->bpmp' as pointed by Krzysztof.
-> Requesting to merge the patch series.
+>> -----Original Message-----
+>> From: m.brock@vanmierlo.com <m.brock@vanmierlo.com>
+>> Sent: Thursday, May 4, 2023 5:52 PM
+>> To: Guntupalli, Manikanta <manikanta.guntupalli@amd.com>
+>> Cc: gregkh@linuxfoundation.org; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; michal.simek@xilinx.com; linux-
+>> serial@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; jirislaby@kernel.org; linux-arm-
+>> kernel@lists.infradead.org; Simek, Michal <michal.simek@amd.com>; git
+>> (AMD-Xilinx) <git@amd.com>; Pandey, Radhey Shyam
+>> <radhey.shyam.pandey@amd.com>; Datta, Shubhrajyoti
+>> <shubhrajyoti.datta@amd.com>; Goud, Srinivas <srinivas.goud@amd.com>;
+>> manion05gk@gmail.com
+>> Subject: Re: [PATCH 0/2] Add rs485 support to uartps driver
+>> 
+>> Manikanta Guntupalli wrote 2023-04-26 14:29:
+>> > Add optional gpio property to uartps node to support rs485 Add rs485
+>> > support to uartps driver
+>> >
+>> > Manikanta Guntupalli (2):
+>> >   dt-bindings: Add optional gpio property to uartps node to support
+>> >     rs485
+>> >   tty: serial: uartps: Add rs485 support to uartps driver
+>> >
+>> >  .../devicetree/bindings/serial/cdns,uart.yaml |  5 +
+>> >  drivers/tty/serial/xilinx_uartps.c            | 96 ++++++++++++++++++-
+>> >  2 files changed, 100 insertions(+), 1 deletion(-)
+>> 
+>> Why would you want to use a GPIO and not RTS for choosing the 
+>> direction as
+>> is more common in this case?
+> In ZynqMp platform Cadence UART Controller RTS signal routed to
+> external through the PL(Programmable Logic) design not through
+> Multiplexed IO.
+
+Then why not route RXD & TXD to the PL as well and connect the module to 
+a
+PMOD connector connected to the PL? But I admit that a GPIO always works 
+as
+well.
+
+>> And have you thought about configuring the polarity?
+> GPIO polarity configured through device tree property.
 > 
+> &uart0 {
+>         ...
+>         txrx-gpios = <&gpio 72 GPIO_ACTIVE_LOW>;
+>         linux,rs485-enabled-at-boot-time;
+> };
 
-Can I apply it since you request it? I asked you long time ago to
-clearly state dependencies or merging limitations. It's v8 and cover
-letter still does not state it. Neither the patches do.
+Useable, but not honoring 
+SER_RS485_RTS_ON_SEND/SER_RS485_RTS_AFTER_SEND.
 
-Best regards,
-Krzysztof
+>> How long will the signal be active before the real transmission begins 
+>> so the
+>> driver can settle?
+> Default is RE(GPIO LOW) and while sending we drive the pin to HIGH. We
+> wait for transmission completion, for that we check Transmitter state
+> machine active status to ZERO and TX FIFO EMPTY.
+
+How does that take delay_rts_before_send/delay_rts_after_send into 
+account?
+Not every driver switches direction as fast as you would like.
+
+> Thanks,
+> Manikanta.
+
+Greetings,
+Maarten
 
