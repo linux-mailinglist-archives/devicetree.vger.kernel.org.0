@@ -2,57 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EFA3702064
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 00:17:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA58A70206E
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 00:26:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229980AbjENWRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 18:17:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59342 "EHLO
+        id S229539AbjENW0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 18:26:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229534AbjENWRp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 18:17:45 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB48C10F0
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 15:17:43 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pyK21-0007SO-TN; Mon, 15 May 2023 00:17:33 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pyK1y-000DdW-CM; Mon, 15 May 2023 00:17:30 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pyK1x-004SF2-Kh; Mon, 15 May 2023 00:17:29 +0200
-Date:   Mon, 15 May 2023 00:17:29 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH 1/2] dt-bindings: timer: fsl,imxgpt: Add i.MX8MP variant
-Message-ID: <20230514221729.zk3xvgmkeubooiwd@pengutronix.de>
-References: <20230327173526.851734-1-u.kleine-koenig@pengutronix.de>
- <20230327173526.851734-2-u.kleine-koenig@pengutronix.de>
+        with ESMTP id S229534AbjENW0S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 18:26:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0790C10EF;
+        Sun, 14 May 2023 15:26:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9249C60A69;
+        Sun, 14 May 2023 22:26:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64084C433EF;
+        Sun, 14 May 2023 22:26:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684103175;
+        bh=qZPBY2YELueAw7NlsCPdq55MgAj+fENSLQw5RDolD10=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Ahgd9lcp5n6zhgBsVCJXQ19zUhFYwQU1hRw9h6GwbX9da6rYpKbi5vWzaoprUE8C2
+         F4vZVROCYXZVl2HU2EU5H2zK2OWAUr9ul5YHJ+FGcaBtT3nrb+csEbFkSTrXHPGsLx
+         irNPMGNfY/ygWyGB4yf3HU77DFVGXGlEiiyQGw08w1IjfvVtMy2Rw1KJXZhhJ+OQkM
+         QgG3X8vjHIkgsLejCeHWTJGbP1ebvWK8BoGQhOPheJmbXcSI9a4nn4s6tgTRSiB+9K
+         sRfLE354WMXqzidOLnOOoB5F/P8Qa4oyhrclMz4ZLd1bKj1yQCdDQhmt0ZXASRoeT8
+         Y5lga/AsGIcJw==
+From:   Damien Le Moal <dlemoal@kernel.org>
+To:     devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-ide@vger.kernel.org
+Subject: [PATCH] dt-bindings: Change documentation contact email
+Date:   Mon, 15 May 2023 07:26:14 +0900
+Message-Id: <20230514222614.115299-1-dlemoal@kernel.org>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lrvlaqneq4ybm7wy"
-Content-Disposition: inline
-In-Reply-To: <20230327173526.851734-2-u.kleine-koenig@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,60 +51,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Change my email address to dlemoal@kernel.org.
 
---lrvlaqneq4ybm7wy
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
+---
+ Documentation/devicetree/bindings/ata/ahci-common.yaml          | 2 +-
+ Documentation/devicetree/bindings/clock/canaan,k210-clk.yaml    | 2 +-
+ Documentation/devicetree/bindings/mfd/canaan,k210-sysctl.yaml   | 2 +-
+ .../devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml          | 2 +-
+ Documentation/devicetree/bindings/reset/canaan,k210-rst.yaml    | 2 +-
+ Documentation/devicetree/bindings/riscv/canaan.yaml             | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
 
-Hello,
+diff --git a/Documentation/devicetree/bindings/ata/ahci-common.yaml b/Documentation/devicetree/bindings/ata/ahci-common.yaml
+index 7fdf40954a4c..38770c4c85fd 100644
+--- a/Documentation/devicetree/bindings/ata/ahci-common.yaml
++++ b/Documentation/devicetree/bindings/ata/ahci-common.yaml
+@@ -8,7 +8,7 @@ title: Common Properties for Serial ATA AHCI controllers
+ 
+ maintainers:
+   - Hans de Goede <hdegoede@redhat.com>
+-  - Damien Le Moal <damien.lemoal@opensource.wdc.com>
++  - Damien Le Moal <dlemoal@kernel.org>
+ 
+ description:
+   This document defines device tree properties for a common AHCI SATA
+diff --git a/Documentation/devicetree/bindings/clock/canaan,k210-clk.yaml b/Documentation/devicetree/bindings/clock/canaan,k210-clk.yaml
+index 998e5cce652f..380cb6d80025 100644
+--- a/Documentation/devicetree/bindings/clock/canaan,k210-clk.yaml
++++ b/Documentation/devicetree/bindings/clock/canaan,k210-clk.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Canaan Kendryte K210 Clock
+ 
+ maintainers:
+-  - Damien Le Moal <damien.lemoal@wdc.com>
++  - Damien Le Moal <dlemoal@kernel.org>
+ 
+ description: |
+   Canaan Kendryte K210 SoC clocks driver bindings. The clock
+diff --git a/Documentation/devicetree/bindings/mfd/canaan,k210-sysctl.yaml b/Documentation/devicetree/bindings/mfd/canaan,k210-sysctl.yaml
+index 8459d3642205..3b3beab9db3f 100644
+--- a/Documentation/devicetree/bindings/mfd/canaan,k210-sysctl.yaml
++++ b/Documentation/devicetree/bindings/mfd/canaan,k210-sysctl.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Canaan Kendryte K210 System Controller
+ 
+ maintainers:
+-  - Damien Le Moal <damien.lemoal@wdc.com>
++  - Damien Le Moal <dlemoal@kernel.org>
+ 
+ description:
+   Canaan Inc. Kendryte K210 SoC system controller which provides a
+diff --git a/Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml b/Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml
+index 7f4f36a58e56..739a08f00467 100644
+--- a/Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Canaan Kendryte K210 FPIOA
+ 
+ maintainers:
+-  - Damien Le Moal <damien.lemoal@wdc.com>
++  - Damien Le Moal <dlemoal@kernel.org>
+ 
+ description:
+   The Canaan Kendryte K210 SoC Fully Programmable IO Array (FPIOA)
+diff --git a/Documentation/devicetree/bindings/reset/canaan,k210-rst.yaml b/Documentation/devicetree/bindings/reset/canaan,k210-rst.yaml
+index ee8a2dcf5dfa..0c0135964b91 100644
+--- a/Documentation/devicetree/bindings/reset/canaan,k210-rst.yaml
++++ b/Documentation/devicetree/bindings/reset/canaan,k210-rst.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Canaan Kendryte K210 Reset Controller
+ 
+ maintainers:
+-  - Damien Le Moal <damien.lemoal@wdc.com>
++  - Damien Le Moal <dlemoal@kernel.org>
+ 
+ description: |
+   Canaan Kendryte K210 reset controller driver which supports the SoC
+diff --git a/Documentation/devicetree/bindings/riscv/canaan.yaml b/Documentation/devicetree/bindings/riscv/canaan.yaml
+index f8f3f286bd55..41fd11f70a49 100644
+--- a/Documentation/devicetree/bindings/riscv/canaan.yaml
++++ b/Documentation/devicetree/bindings/riscv/canaan.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Canaan SoC-based boards
+ 
+ maintainers:
+-  - Damien Le Moal <damien.lemoal@wdc.com>
++  - Damien Le Moal <dlemoal@kernel.org>
+ 
+ description:
+   Canaan Kendryte K210 SoC-based boards
+-- 
+2.40.1
 
-On Mon, Mar 27, 2023 at 07:35:25PM +0200, Uwe Kleine-K=F6nig wrote:
-> The i.MX8MP has the same register layout as the i.MX6DL, so add it as a
-> variant allowing to add the GPT IP blocks to the i.MX8MP's dtsi file.
->=20
-> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml b/Do=
-cumentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-> index 716c6afcca1f..f5f8b297da13 100644
-> --- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-> +++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-> @@ -31,6 +31,7 @@ properties:
->            - enum:
->                - fsl,imx6sl-gpt
->                - fsl,imx6sx-gpt
-> +              - fsl,imx8mp-gpt
->                - fsl,imxrt1050-gpt
->                - fsl,imxrt1170-gpt
->            - const: fsl,imx6dl-gpt
-
-Patch 2 (which makes use of fsl,imx8mp-gpt in the imx8mp.dtsi) is
-already applied. I wonder who will pick up this one?!
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---lrvlaqneq4ybm7wy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmRhXfgACgkQj4D7WH0S
-/k6V/Af/QCb7ZnvVzRWyM9Y0nFAKUQzc5CKd3IAr50iDwfDCf8Y148BCKqX9PN+c
-WKQbf+A9BHcqhqu1AoQoZQks6M55/0ic4USIKAXw1wlyo7C+mukCNP2PCoiG9GM6
-2NjH8raKtv8vmRG40vhVbA1o6VkK5Qts8ICeTZriiWH0oTuM2jMmwi+gPKJeYbsM
-VtgYI9eG7Z1bQe25NkQb9s1PAg2QwIimInYyWXLlUzlPkrVgm9D2OS5gbTnwAX9T
-MuLTnr6HyFNOOukCv2ZNGoQADugwqCmVy1est0bC98yUaLj05U9yrVpaqjW4qsFl
-wmK7PsSd15Dk5ebLcr9FQPoRYWXZvw==
-=Cqjt
------END PGP SIGNATURE-----
-
---lrvlaqneq4ybm7wy--
