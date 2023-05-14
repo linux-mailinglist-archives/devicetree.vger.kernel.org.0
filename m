@@ -2,45 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3B4E702096
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 00:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D37D27020A1
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 01:20:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbjENWxF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 18:53:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40098 "EHLO
+        id S230025AbjENXLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 19:11:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229710AbjENWxF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 18:53:05 -0400
+        with ESMTP id S229800AbjENXLT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 19:11:19 -0400
 Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B5501B8
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 15:53:03 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C037E79;
+        Sun, 14 May 2023 16:11:17 -0700 (PDT)
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id C315182721;
-        Mon, 15 May 2023 00:53:00 +0200 (CEST)
+        by phobos.denx.de (Postfix) with ESMTPSA id 13178847CF;
+        Mon, 15 May 2023 01:11:16 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684104781;
-        bh=8278qfdJLJmGtt8Qh8DdNJl3+DEkpTOnmYeoRqtPpVE=;
+        s=phobos-20191101; t=1684105876;
+        bh=qbKC27OXD3a+sAVXe2pU/nJvOObH8por3f0ttK7EJVU=;
         h=From:To:Cc:Subject:Date:From;
-        b=thXosdtWLiUzrK6qj/LqkEC3wkbR24ZbBjpH3YWkVXwG7TA8/7uABBHglju9AwABM
-         +vK3Ya24/Fe0vBLUGWm11OVT7rSSXLZRudleUMDnBfUQJjSAB/EDye/3eYJzG6fj/I
-         qyNSRV74bV6a79+yN5l0qR/Qqvtl0edRTtDY68Vz82+fl9gb1k7q+Q0m3TCEf5txnu
-         Fn2lSVRMIp0KZIcJJu0dzo5oxCuX8Ss6pIAjckJGyT2h0tt8v3d7TGVgfx5peKvuvN
-         1WruRPAJMVl+DzCE9rPSUEaE4UBP4FImVbDDEocwP6YWUeqrFeOpP7XhXpNc6wJRoB
-         C5cd5x0ziYJIw==
+        b=SBex1qckjm1XCOG9HjZ8nIISzCJVJh3vhFFDMbn7EADj+bGchV83E6pip/ZCKJlJM
+         y2UNEP24O+FAPJydr382ff+4rXa63qAkcJ06jr420w12Br0ro50a9FHfLTKV0xSBA8
+         H96ggcRDpH9ygeNm6Kmfb5WxNkiKwUxi5GI0o/hxxTUTuyWUBJW5HN5Hi+U0PfqSEj
+         0RvAQUJbo5OW699Uh5scqaTtaXLsXCxg/05QFu8BaG/T3VOQED8P0af4S6N/ODnE5g
+         qdwSq+ihR2VqBl6ihMm+T9kCt4ck25r3MW76BSjuwsf5F4FLGwtLPvceesgFVwY46J
+         5oHkDMKyHUihg==
 From:   Marek Vasut <marex@denx.de>
 To:     devicetree@vger.kernel.org
 Cc:     Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org
-Subject: [PATCH] ASoC: dt-bindings: ssm2518: Convert to dtschema
-Date:   Mon, 15 May 2023 00:52:43 +0200
-Message-Id: <20230514225243.777504-1-marex@denx.de>
+        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org
+Subject: [PATCH] dt-bindings: usb: snps,dwc3: Fix "snps,hsphy_interface" type
+Date:   Mon, 15 May 2023 01:11:02 +0200
+Message-Id: <20230514231102.788841-1-marex@denx.de>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -56,104 +55,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the ADI SSM2518 audio CODEC bindings to DT schema.
+The "snps,hsphy_interface" is string, not u8. Fix the type.
 
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
 Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Felipe Balbi <balbi@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>
-Cc: Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>
 Cc: Rob Herring <robh+dt@kernel.org>
-Cc: alsa-devel@alsa-project.org
 Cc: devicetree@vger.kernel.org
+Cc: linux-usb@vger.kernel.org
 ---
- .../bindings/sound/adi,ssm2518.yaml           | 47 +++++++++++++++++++
- .../devicetree/bindings/sound/ssm2518.txt     | 20 --------
- 2 files changed, 47 insertions(+), 20 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/adi,ssm2518.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/ssm2518.txt
+ Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/adi,ssm2518.yaml b/Documentation/devicetree/bindings/sound/adi,ssm2518.yaml
-new file mode 100644
-index 0000000000000..f3f32540779c6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/adi,ssm2518.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/adi,ssm2518.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices SSM2518 audio amplifier
-+
-+maintainers:
-+  - Lars-Peter Clausen <lars@metafoo.de>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: adi,ssm2518
-+
-+  reg:
-+    maxItems: 1
-+    description: |
-+       I2C address of the device. This will either be 0x34 (ADDR pin low)
-+       or 0x35 (ADDR pin high)
-+
-+  gpios:
-+    maxItems: 1
-+    description: |
-+       GPIO connected to the nSD pin. If the property is not present
-+       it is assumed that the nSD pin is hardwired to always on.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+   i2c {
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     codec@34 {
-+       compatible = "adi,ssm2518";
-+       reg = <0x34>;
-+       gpios = <&gpio 5 0>;
-+     };
-+   };
-diff --git a/Documentation/devicetree/bindings/sound/ssm2518.txt b/Documentation/devicetree/bindings/sound/ssm2518.txt
-deleted file mode 100644
-index 59381a778c797..0000000000000
---- a/Documentation/devicetree/bindings/sound/ssm2518.txt
-+++ /dev/null
-@@ -1,20 +0,0 @@
--SSM2518 audio amplifier
--
--This device supports I2C only.
--
--Required properties:
--  - compatible : Must be "adi,ssm2518"
--  - reg : the I2C address of the device. This will either be 0x34 (ADDR pin low)
--	or 0x35 (ADDR pin high)
--
--Optional properties:
--  - gpios : GPIO connected to the nSD pin. If the property is not present it is
--	        assumed that the nSD pin is hardwired to always on.
--
--Example:
--
--	ssm2518: ssm2518@34 {
--		compatible = "adi,ssm2518";
--		reg = <0x34>;
--		gpios = <&gpio 5 0>;
--	};
+diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+index 50edc4da780e9..4f7625955cccc 100644
+--- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+@@ -287,7 +287,7 @@ properties:
+     description:
+       High-Speed PHY interface selection between UTMI+ and ULPI when the
+       DWC_USB3_HSPHY_INTERFACE has value 3.
+-    $ref: /schemas/types.yaml#/definitions/uint8
++    $ref: /schemas/types.yaml#/definitions/string
+     enum: [utmi, ulpi]
+ 
+   snps,quirk-frame-length-adjustment:
 -- 
 2.39.2
 
