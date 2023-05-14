@@ -2,99 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70ED4701C92
-	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 11:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 024C0701CAD
+	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 11:40:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234425AbjENJXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 05:23:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44504 "EHLO
+        id S229758AbjENJkd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 05:40:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233239AbjENJXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 05:23:17 -0400
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B01A51FF6;
-        Sun, 14 May 2023 02:23:14 -0700 (PDT)
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        by mail11.truemail.it (Postfix) with ESMTPA id 21D9421326;
-        Sun, 14 May 2023 11:23:12 +0200 (CEST)
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
+        with ESMTP id S230043AbjENJkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 05:40:32 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 903F52109
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 02:40:29 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bc37e1525so21604291a12.1
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 02:40:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684057228; x=1686649228;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BUW5Igqs7LC8kFWD+gx7NXGPi2rebIGLbHvwwwSiejg=;
+        b=qXXhvc16BjYtVI3RbWOmC2jcpEyJzngGFk7rTOlKurSjGDFWBpYgdEvBtpF7PbvqPk
+         LcF8bPTz/Z2ubuDmYhgV4xpBsUpjue1LmwZElZ5UBB3Ko/KlU8ajA0UnrVTl7a6MrT/R
+         8ZFK0CXEPdUAYwSd9NrcTMyzrHZRaCaEjkk/f8HcdW4jOnbwkRi+iFozOOjGzTn/WjNP
+         EMVB013lxv2F6V1fzPbMtP4n/+dw/vhcALq2AUFAFTngW/dtGKYKjRISLzCtnwDsoa0L
+         rNozicmyV8IeEo9P2/2j3Gntpa75d5DBBMc1QToOBDpLjhFPh5WWT9e59MeOz8xE+zL4
+         1FkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684057228; x=1686649228;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BUW5Igqs7LC8kFWD+gx7NXGPi2rebIGLbHvwwwSiejg=;
+        b=hsh+UWognS1FRqX5lVSksMrGOcRb9AZQlDGHm6KXV9AuCe6+Z1OSB92scHgJFI/X6k
+         wjirMOXBNeapwHyJqeIASz8Nylo7KbAEqfV+KvZ8sNLJUHJD//ta8AZ2rlJfEcDOaZjf
+         bAPB+8629pMsY6gkjck/2cKTYlzv4W0Igj83QpA4F3a8gbYdgDe7rx+Thfc85GAtpTx5
+         V4XZs74R4i2A1m4ambm1ww/zb+av5xp1ONW5acaXKyTBMbjiOaqqyesdFv+NmTjhYDEM
+         G5YCiN3IneihZGciN7YHA+KdKItM5AmSTYf5N+Ft3//qniOb8cIsirIuucnXA1qT8q8Q
+         VPfQ==
+X-Gm-Message-State: AC+VfDzARwGQAtXLrOiM0XeG4V0c8rj6Z5YV4YZVEb4n92HzTGZAC3cD
+        20rcZ76VoqP6u55RCW8OTHlQ6Q==
+X-Google-Smtp-Source: ACHHUZ5tvbL4jEsqJPpeimvea31dJCAToYMyDZrxSAb7ema2CejXD77WW74NrQEAUWZyA9z90xWIjA==
+X-Received: by 2002:a17:907:1b29:b0:94f:2d5f:6949 with SMTP id mp41-20020a1709071b2900b0094f2d5f6949mr32171616ejc.42.1684057227954;
+        Sun, 14 May 2023 02:40:27 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:715f:ddce:f2ba:123b? ([2a02:810d:15c0:828:715f:ddce:f2ba:123b])
+        by smtp.gmail.com with ESMTPSA id w10-20020a170907270a00b00965e9a23f2bsm7882998ejk.134.2023.05.14.02.40.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 14 May 2023 02:40:27 -0700 (PDT)
+Message-ID: <e61d2168-9114-6f95-2607-a553d1046caa@linaro.org>
+Date:   Sun, 14 May 2023 11:40:26 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3 1/4] dt-bindings: remoteproc: st,stm32-rproc: Rework
+ reset declarations
+Content-Language: en-US
+To:     Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>
-Subject: [PATCH v2 4/4] arm64: dts: colibri-imx8x: delete adc1 and dsp
-Date:   Sun, 14 May 2023 11:22:46 +0200
-Message-Id: <20230514092246.9741-5-francesco@dolcini.it>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230514092246.9741-1-francesco@dolcini.it>
-References: <20230514092246.9741-1-francesco@dolcini.it>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230512093926.661509-1-arnaud.pouliquen@foss.st.com>
+ <20230512093926.661509-2-arnaud.pouliquen@foss.st.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230512093926.661509-2-arnaud.pouliquen@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+On 12/05/2023 11:39, Arnaud Pouliquen wrote:
+> With the introduction of the SCMI (System Control and Management
+> Interface), it is now possible to use the SCMI to handle the
+> hold boot instead of a dedicated SMC call.
+> 
+> As consequence two configurations are possible:
+> - without SCMI server on OP-TEE:
+>   use the Linux rcc reset service and use syscon for the MCU hold boot
+> - With SCMI server on OP-TEE:
+>   use the SCMI reset service for both the MCU reset and the MCU hold boot.
+> 
 
-i.MX8, i.MX8X, i.MX8XP and i.MX8XL SOC device trees are all based on
-imx8-ss-*.dtsi files. For i.MX8X and i.MX8XP these device trees
-should be updated with some peripherals removed or updated, similar
-to i.MX8XL (imx8dxl-ss-*.dtsi files). However, it looks like only
-i.MX8 and i.MX8XL are up to date, but for i.MX8X and i.MX8XP some
-of the peripherals got inherited from imx8-ss-*.dtsi files, but in
-reality they are not present on SOC.
-As a result, during resource partition ownership check U-Boot receives
-messages from SCU firmware about these resources not owned by boot
-partition. In reality, these resources are not owned by anyone, as
-they simply does not exist, but are defined in Linux device tree.
-This change removes those peripherals, which are listed during
-U-Boot resource partition ownership check as warnings:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-  ## Flattened Device Tree blob at 9d400000
-     Booting using the fdt blob at 0x9d400000
-     Loading Device Tree to 00000000fd652000, end 00000000fd67efff ... OK
-  Disable clock-controller@59580000 rsrc 512 not owned
-  Disable clock-controller@5ac90000 rsrc 102 not owned
-
-  Starting kernel ...
-
-Fixes: ba5a5615d54f ("arm64: dts: freescale: add initial support for colibri imx8x")
-Signed-off-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
-v2: Fixed patch From:
----
- arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-index b0d6f632622c..49d105eb4769 100644
---- a/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8x-colibri.dtsi
-@@ -769,3 +769,10 @@ pinctrl_wifi: wifigrp {
- 		fsl,pins = <IMX8QXP_SCU_BOOT_MODE3_SCU_DSC_RTC_CLOCK_OUTPUT_32K	0x20>;
- 	};
- };
-+
-+/* Delete peripherals which are not present on SOC, but are defined in imx8-ss-*.dtsi */
-+
-+/delete-node/ &adc1;
-+/delete-node/ &adc1_lpcg;
-+/delete-node/ &dsp;
-+/delete-node/ &dsp_lpcg;
--- 
-2.25.1
+Best regards,
+Krzysztof
 
