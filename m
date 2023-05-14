@@ -2,64 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4555C701EDC
-	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 20:17:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3765D701EF6
+	for <lists+devicetree@lfdr.de>; Sun, 14 May 2023 20:32:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbjENSRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 14:17:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60388 "EHLO
+        id S229808AbjENSci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 14:32:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjENSRf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 14:17:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2C85E7D;
-        Sun, 14 May 2023 11:17:34 -0700 (PDT)
+        with ESMTP id S229627AbjENSch (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 14:32:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0083D3A8F;
+        Sun, 14 May 2023 11:32:36 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 58B5C60C83;
-        Sun, 14 May 2023 18:17:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A925C433EF;
-        Sun, 14 May 2023 18:17:30 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8A6B960E09;
+        Sun, 14 May 2023 18:32:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07C23C433D2;
+        Sun, 14 May 2023 18:32:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684088253;
-        bh=SXJLVv/HvNDzSRRKMFSxrVM4xR+cEIslWBlIbmqArow=;
+        s=k20201202; t=1684089155;
+        bh=7SF2s/sBjm/0i3IHqpFOWVHtaUTAVHvigECCD/BwQZc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iE6+p7ALLemY+7tmB7CNTX4o5H7iYKssz/NaNU+tfDQZQ/sorTRwd7Fbf+ZAWbuIY
-         dXyfw+odRVZoe3FUn7+m5tWtJYurYT7PZTRX9Lpz2b2GJeTLA+Po4SZoVdpRnGKoxH
-         tPsCevqXuuScEcRncjUQqQVGCTjVObKPvDWsFDFqmqE0mMDNYk8xVSl10eHoQJri9l
-         ylEqq2QbSXYc603Tegi9kKMFRZIJalHwQbvIPytXWFL5NUyTexD2csMuTSgORd+FOB
-         UE3bafqueIaM17vgICWjFjgWlt4yJoKs0Km7QA8e/TSL11xc/5KoAcut/DgmnqgxhD
-         MPhgPhkKIR6pw==
-Date:   Sun, 14 May 2023 19:17:27 +0100
+        b=fBv4gT0G2WLmIM2s3wpKCKMCHzLJSbrIaF0LQmVMkHU9IL4GOHumqYc7Q9/nP9Nc3
+         b02ZzB9lW0oKDDmTObpGCL83CfYVwO66CCohkgiO9ipv+f0d7xm9uJUxkm50H6Uysp
+         nn80PCSpDU0pPCmzEmJywZLkX/xjT7y30Ryuys/KxVeb4I8/aP+gfo9N0zodaf/dMS
+         fh4fbaefm9FDUL2CI/JVlCS2+SbDthyhAwUHiRH6V/R2vXqOaruvYOyK4+rS0wCmnd
+         9j5vA4CXqzAWR1LCHSj8UzlGKhqMDu/CIDJAlhH9JV97t6couYBxfk1EVqOaqh91jz
+         lD8IcJ+zwNP3w==
+Date:   Sun, 14 May 2023 19:32:30 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: Re: [PATCH v3 03/10] dt-bindings: serial: add documentation for
- Bouffalolab UART Driver
-Message-ID: <20230514-bust-slam-10c7b9cbe455@spud>
-References: <20230514165651.2199-1-jszhang@kernel.org>
- <20230514165651.2199-4-jszhang@kernel.org>
+        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: net: nxp,sja1105: document spi-cpol/cpha
+Message-ID: <20230514-turf-phrase-10b6d87ff953@spud>
+References: <20230514115741.40423-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Ki4ujBbqbmYfXfWC"
+        protocol="application/pgp-signature"; boundary="mSAgB206fnXq8olk"
 Content-Disposition: inline
-In-Reply-To: <20230514165651.2199-4-jszhang@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230514115741.40423-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,33 +64,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Ki4ujBbqbmYfXfWC
+--mSAgB206fnXq8olk
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, May 15, 2023 at 12:56:44AM +0800, Jisheng Zhang wrote:
+On Sun, May 14, 2023 at 01:57:41PM +0200, Krzysztof Kozlowski wrote:
 
-> +$id: http://devicetree.org/schemas/serial/bouffalolab,uart.yaml#
+> +allOf:
+> +  - $ref: dsa.yaml#/$defs/ethernet-ports
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - nxp,sja1105e
+> +            - nxp,sja1105t
 
-$id: relative path/filename doesn't match actual path or filename
-        expected: http://devicetree.org/schemas/serial/bouffalolab,bl808-uart.yaml#
+Is there a particular reason you did not put the "t" variant after the
+"s" one?
 
-Please test the bindings before submission - even dtbs_check catches
-that one!
-Otherwise, looks fine.
+> +            - nxp,sja1105p
+> +            - nxp,sja1105q
+> +            - nxp,sja1105r
+> +            - nxp,sja1105s
+
+Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
---Ki4ujBbqbmYfXfWC
+--mSAgB206fnXq8olk
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGEltwAKCRB4tDGHoIJi
-0sJzAP4wOVsTrnPAx57F7gbDXMwebUBq2uM/cNtSEUKhxRG3hQEA1rTf27u+b4/N
-rFfHcmLPetqevaLUWqT9ZTVqLimRyAA=
-=QtXo
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGEpPgAKCRB4tDGHoIJi
+0ralAQDLtAfoq69IAyctRckQJLLDRDFiNaMMYGsE5X8hCvDWdgEA7KUux1pUvOp7
+2A0BVBw6RL9NP4JYF3JnNb5MuGtPZAg=
+=VMqL
 -----END PGP SIGNATURE-----
 
---Ki4ujBbqbmYfXfWC--
+--mSAgB206fnXq8olk--
