@@ -2,67 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25CB6703562
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:58:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF26D7035CA
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:02:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243287AbjEOQ62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 12:58:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38748 "EHLO
+        id S243557AbjEORCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 13:02:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243283AbjEOQ61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:58:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10C2E76B4;
-        Mon, 15 May 2023 09:58:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8EF3062A44;
-        Mon, 15 May 2023 16:58:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A470BC433EF;
-        Mon, 15 May 2023 16:58:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684169903;
-        bh=6BQOnnLnMvzGvxFLqtdRHmW64RX2LYl5ly/0PZlbWY4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uFA00hLTT5BbFjhLbVztbrAoZT+hr5ViQyB6ttyIf7aUbfStvozk22/i/6bAcrdg6
-         cOXaJ8HN8AS5wkECfmYsjWqmoELp8BIhmyltHys4ngMw16sKLauCO1xeq6HGGsmKex
-         MSFSCp/eBwuFj3PmRoQhrC8YGmxw1IpVxS7uJ7f0ARLSzo7SskAoZFowQyVUderMAU
-         Dk2qPGrvwwB/IAXx9WENV3imzu5pacDz3Bm1apJ4YRz3/V3UjLuXwWPq2nduKPSx0h
-         gt2sERrWqrHBakuTYxNmDdQjBKrceNd+4Hvn+9hOLBvMPHAtXatfbl/wTGIVwPd/Qk
-         4ptkXcYrwi4eA==
-Date:   Mon, 15 May 2023 17:58:17 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S243415AbjEORCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:02:25 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72850902F
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 10:00:26 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f00d41df22so67528404e87.1
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 10:00:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684170019; x=1686762019;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GYDwAxBjxKaXqirWOJFxiCv8QGm8k3OjcSxYqeRJPfI=;
+        b=YOnY7USwDtFpLdcfcnjLDXxR3Rzemt5HfA95dOoQzZszqRGaiWd1Nh2ZdcpX3NLYGs
+         ikS4HhOTrLSC3eqx5bJNlWMJ38p3duPgFYy84YImiuHN9UL2CtQ524UBEjo4ul1n2mcI
+         kweMJRMKAOrP2QX/TWshabbDDGyJmldHK+FeRDwypPOM6Z5U2ErvEpm2VyO84FzNHrJr
+         xwhG5b1EfprPc86YWG5Kumi6X60VIpQM07snIXkkvUIS4qjMPGBNvDnlNJeRZy1n17SM
+         s7Z7M+puRDKzrjItuogDhpOao3H+WRXY9TBZVJ4YMFhGvZd4t/YfXLDOqvVivQABDkyE
+         HcXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684170019; x=1686762019;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GYDwAxBjxKaXqirWOJFxiCv8QGm8k3OjcSxYqeRJPfI=;
+        b=HkBMcdKo0mlFu5off1BWkDY1Ykbg5DwT5zzr0w3JEF1W+wY509i+ga7eTKzLQAcDva
+         ++7nfd1I2OjgOsSngECgDcKY9zNnVVCgYm/4+Dx7lHLPLCsYENsfMGxEYphkAIECgKdD
+         cgxskPcWjdnpKp3nxOXPFTGmZ9nq3uGkWnp6b08zVhLfdCG9oKrxMLz/VrGAyorA3rV5
+         ML9GU2rZALu80xyGdJxeUC5t+ff6e4noupBeSkvQCmLS9owtXzdBqAaZScnQTSmTk4W5
+         wuUSVZgBAYdx7GNc4/TM4FgOWF1kigEA7bQ6QvLte5cWkYsM+WXnagKO/h33R3L4IW7a
+         aiAQ==
+X-Gm-Message-State: AC+VfDwybBrQLUY63LVumWM1Ilrt3gr8ehr6kEEycEQXzAsQNO8tDler
+        BD4ja8p6pfrAwNC7svlqw/nYUA==
+X-Google-Smtp-Source: ACHHUZ5p/F4cQAqLEz7OU0T2Q8kbCZQCyAysDd2OXRAyAEd+2o0ur2AykpobhzcwlPiRwmA5VFiqmg==
+X-Received: by 2002:a2e:b4a6:0:b0:2ac:7fc5:e4a9 with SMTP id q6-20020a2eb4a6000000b002ac7fc5e4a9mr5957561ljm.16.1684170018863;
+        Mon, 15 May 2023 10:00:18 -0700 (PDT)
+Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
+        by smtp.gmail.com with ESMTPSA id c24-20020a05651c015800b002a9ebff8431sm3856802ljd.94.2023.05.15.10.00.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 May 2023 10:00:18 -0700 (PDT)
+Message-ID: <b0cf5634-60e4-adba-92df-73f05451cd9f@linaro.org>
+Date:   Mon, 15 May 2023 19:00:17 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: qrb4210-rb2: Enable display out
+Content-Language: en-US
+To:     Caleb Connolly <caleb.connolly@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: Re: [PATCH v3 03/10] dt-bindings: serial: add documentation for
- Bouffalolab UART Driver
-Message-ID: <20230515-florist-perky-f26b996f2179@spud>
-References: <20230514165651.2199-1-jszhang@kernel.org>
- <20230514165651.2199-4-jszhang@kernel.org>
- <20230514-bust-slam-10c7b9cbe455@spud>
- <ZGFuikzSsP81/d23@xhacker>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="YTtL81Hy5mMcU1A7"
-Content-Disposition: inline
-In-Reply-To: <ZGFuikzSsP81/d23@xhacker>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230515-topic-rb2-bits-v1-0-a52d154a639d@linaro.org>
+ <20230515-topic-rb2-bits-v1-2-a52d154a639d@linaro.org>
+ <fd4276f6-f54b-3455-1263-8a8d534f0bda@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <fd4276f6-f54b-3455-1263-8a8d534f0bda@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,43 +84,55 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---YTtL81Hy5mMcU1A7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 15, 2023 at 07:28:10AM +0800, Jisheng Zhang wrote:
-> On Sun, May 14, 2023 at 07:17:27PM +0100, Conor Dooley wrote:
-> > On Mon, May 15, 2023 at 12:56:44AM +0800, Jisheng Zhang wrote:
-> >=20
-> > > +$id: http://devicetree.org/schemas/serial/bouffalolab,uart.yaml#
-> >=20
-> > $id: relative path/filename doesn't match actual path or filename
-> >         expected: http://devicetree.org/schemas/serial/bouffalolab,bl80=
-8-uart.yaml#
-> >=20
-> > Please test the bindings before submission - even dtbs_check catches
-> > that one!
->=20
-> Aha, I knew the reason. I did run dt_binding_check and dtbs_check,
-> but then I read one of comments in v2 which suggests the renaming,
-> that's to say the dtbs_check is done before the renmaing. Sorry for
-> confusion
+On 15.05.2023 17:57, Caleb Connolly wrote:
+> 
+> 
+> On 15/05/2023 13:04, Konrad Dybcio wrote:
+>> The RB2 has a HDMI output via an LT9611UXC bridge. Set it up.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 88 +++++++++++++++++++++++++++++++-
+>>  1 file changed, 87 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+>> index 80c6b59c8ff6..9b539720f05d 100644
+>> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> 
+> [...]
+>> @@ -312,11 +385,24 @@ &sleep_clk {
+>>  };
+>>  
+>>  &tlmm {
+>> -	gpio-reserved-ranges = <37 5>, <43 2>, <47 1>,
+>> +	gpio-reserved-ranges = <43 2>, <47 1>,
+> 
+> Is this intentional?
+Yes, notice how this included the reset pin. These pins are
+not even really reserved, there's no FPC on this board..
 
-No worries.
-Serial aisde, rest of the series looks grand to me, perhaps you want to
-resubmit the serial bits separately & I'll grab the riscv bits once the
-serial side is sorted out?
-
---YTtL81Hy5mMcU1A7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGJkqQAKCRB4tDGHoIJi
-0jbsAQDmdx3opFq95JKgP8MHlcdz0QcdrvfeH/2ZDILcK+oWWAD/YaBNfF32rw1t
-yXQ9e/DkpxyDG+ftGg6vVGK3FORScA8=
-=PWZq
------END PGP SIGNATURE-----
-
---YTtL81Hy5mMcU1A7--
+Konrad
+>>  			       <49 1>, <52 1>, <54 1>,
+>>  			       <56 3>, <61 2>, <64 1>,
+>>  			       <68 1>, <72 8>, <96 1>;
+>>  
+>> +	lt9611_rst_pin: lt9611-rst-state {
+>> +		pins = "gpio41";
+>> +		function = "gpio";
+>> +		input-disable;
+>> +		output-high;
+>> +	};
+>> +
+>> +	lt9611_irq_pin: lt9611-irq-state {
+>> +		pins = "gpio46";
+>> +		function = "gpio";
+>> +		bias-disable;
+>> +	};
+>> +
+>>  	sdc2_card_det_n: sd-card-det-n-state {
+>>  		pins = "gpio88";
+>>  		function = "gpio";
+>>
+> 
