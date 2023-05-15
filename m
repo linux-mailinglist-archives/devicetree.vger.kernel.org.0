@@ -2,102 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A951370258E
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:58:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3826702584
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:56:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238621AbjEOG6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 02:58:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55568 "EHLO
+        id S233016AbjEOG4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 02:56:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240155AbjEOG5x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:57:53 -0400
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2065.outbound.protection.outlook.com [40.107.215.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DA611BCA
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:56:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=afp5wTnDZojgQV5D5kawm2zyscGwp6i9s3b5AotjkyZaF5vfAXyKuMpheHLrsbYKpLX7YTjK/eriWkJzC+qclvxah7dvAFw3nT3gpOeaAVNXPY/E3oy/1ys6o9WxX8WJe0B1AUBX3fcTcpcKQXPKTrynYWRbIObSr/2mZCByPiUVXkwdHfEQl2dNO6RkCaaDwXme6Q/6JEcDpZEjOABGv+uAI64DkCm2ycCeCtyl9Fdh3UfbmiNxEtaB6U3TKP4JzfOR/5Wys8IoydTOdn8F4P+6gLtxTPD7hvQd2Y/PFy1I26oXmy6to+XO3mS/fobhqhLH7aj+HRru3s/mf/OSdA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0/Q9nKJ4v6s3zcOR8J2AQCVgwhPzs+EW/cYda6rmjMA=;
- b=JDO85Ck50ngmzePfLd0Blb0ms1n6eLaLRcUBn4xG6X7ApTPCZt3YFeEWKtNMVsMdtInut1iblGr0u0zzEfnHOSnIZhH5frcZLikCtq3yuP2vWIfQng3Q9vSLO6UUdQnHs8h1wQaJkzf7y8XUA8S178RU/l74FYEB62R91UKcYbImhx6jUngl1ABjkK+66jmmPGl6WkjjR2jc9KsBUsJSTQ58CoSALlztaXgKAGMNn/6L5nal7k2u0zjQdi0097FJxBE8TKo3xP98qHCT2ZoM/lUDP6yF2Nife49azjQ0Dmr/glklcFI0Eh8fOmk5XCmN/CbV2jQwH3C932TCCsqnKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 175.98.123.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=nuvoton.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=nuvoton.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0/Q9nKJ4v6s3zcOR8J2AQCVgwhPzs+EW/cYda6rmjMA=;
- b=T6ePWt7s0fZm8chWHJapKdlYIfnjYiKHTDS0PQYrcbjf7F5NyODh75jXiOfKqxAaW++bpWuGmFDkThKeXdUPmWWobBJaNmDKnj7F6jqrW5w4BjdMFgJZJ738bdUbtiBAhIvSKKUUTRxNW6a8GTGOsGTKXYlOAO5E3kVjUsNMGM0=
-Received: from TYCP286CA0325.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:3b7::8)
- by PUZPR03MB5990.apcprd03.prod.outlook.com (2603:1096:301:b5::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.30; Mon, 15 May
- 2023 06:56:37 +0000
-Received: from TYZAPC01FT058.eop-APC01.prod.protection.outlook.com
- (2603:1096:400:3b7:cafe::66) by TYCP286CA0325.outlook.office365.com
- (2603:1096:400:3b7::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.30 via Frontend
- Transport; Mon, 15 May 2023 06:56:37 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
- smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nuvoton.com;
-Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
- 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
- client-ip=175.98.123.7; helo=NTHCCAS04.nuvoton.com; pr=C
-Received: from NTHCCAS04.nuvoton.com (175.98.123.7) by
- TYZAPC01FT058.mail.protection.outlook.com (10.118.152.155) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.20.6411.14 via Frontend Transport; Mon, 15 May 2023 06:56:37 +0000
-Received: from NTHCCAS02.nuvoton.com (10.1.9.121) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 15
- May 2023 14:56:35 +0800
-Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS02.nuvoton.com
- (10.1.9.121) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Mon, 15 May
- 2023 14:56:35 +0800
-Received: from localhost.localdomain (10.11.36.27) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server id 15.1.2176.2 via Frontend Transport;
- Mon, 15 May 2023 14:56:35 +0800
-From:   David Lin <CTLIN0@nuvoton.com>
-To:     <broonie@kernel.org>
-CC:     <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <YHCHuang@nuvoton.com>,
-        <KCHSU0@nuvoton.com>, <WTLI@nuvoton.com>, <SJLIN0@nuvoton.com>,
-        <ctlin0.linux@gmail.com>, David Lin <CTLIN0@nuvoton.com>
-Subject: [PATCH v2] ASoC: dt-bindings: nau8824: Convert to dtschema
-Date:   Mon, 15 May 2023 14:55:58 +0800
-Message-ID: <20230515065557.614125-1-CTLIN0@nuvoton.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S240145AbjEOG4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:56:20 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA2AF40F1
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:55:17 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-96aa0cab88dso512952666b.1
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:55:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684133715; x=1686725715;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=VqGX5ctcKAXxkRzjTkksosSHlQ9ngzAuzu906fQFrGw=;
+        b=FJ95fP7XxExf0Il+p8NulbDUA1BV+n9a/IbJOSbX+wc7RGMSQyOfXUnaQr9Zk56JIG
+         02gTXdyGzswFSXvTs0asS6zUdjiTKJSNZx+bypI8d6CcxW25FmoKRPzH+psHsKpk9/oK
+         rWnojx2495hUD/X3DW4FVUEVL5AIMkgYYnyoTkPD3pNqHzjmSNR7rbRvVnjvhdq6NuLn
+         6YzsOcRDRYJshlUJK9Y131DPUkWbMQztYeMUTb1ZBf7OqPiQCtllXD3nU3elaFt/4wtu
+         S5dNevdH6jwDFbNsJPA+vRLUN4UzXr8tLBfKKE9yrIBsfiDaQa3KbsNMx61enm8dsyqM
+         4JtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684133715; x=1686725715;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VqGX5ctcKAXxkRzjTkksosSHlQ9ngzAuzu906fQFrGw=;
+        b=SSZvM6XCRqad06lAp5moR3ksv2mFolZHIbGJhN18vGZuqC93fACm0cQm3jRUgYaJNa
+         w7DGLoU8tx/xYJtfdLOIbxw7Za4vCt0XAMENE8HReKyvXUxpHVSZZJ/hCQcvEKtyKhw8
+         CfuzLaHk3SB4Xrted2mWdgwO9m5OkQya4R4bzxbNKz9tIXu2DTEds1IDIp0G5sErAfAd
+         fsEWrAbNZx9b8vN2ZhgX6e60O9SfgPrlSv0TtiTukjPZ0zY1LHNj5I6FeYAvhOWqMMKx
+         oK7YqsZWvESaTaAK9l3TbOMXpXZjVaJHpUuo8d9YIWq9i42L2m0mxxxP0oYmLsFnxa5J
+         m93w==
+X-Gm-Message-State: AC+VfDyYxl044cPUR4XG+qzdZTNl/32pxu99iONxztsDl8R2Xs6yUaSY
+        LQGt7OxwuJMtvgB0nqWgkhg=
+X-Google-Smtp-Source: ACHHUZ5kkwiQnaI2jwzmOENKOlrQVYAp6ZD+lECBhgmh0OtCK4DtjwmjSOrHKABbEiI780cgluAXbg==
+X-Received: by 2002:a17:907:7e99:b0:96a:2dd7:2ef9 with SMTP id qb25-20020a1709077e9900b0096a2dd72ef9mr17808760ejc.39.1684133714451;
+        Sun, 14 May 2023 23:55:14 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef05:8700:c599:e44a:8287:c91c? (p200300f6ef058700c599e44a8287c91c.dip0.t-ipconnect.de. [2003:f6:ef05:8700:c599:e44a:8287:c91c])
+        by smtp.gmail.com with ESMTPSA id my11-20020a1709065a4b00b0096650f46004sm9041713ejc.56.2023.05.14.23.55.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 May 2023 23:55:14 -0700 (PDT)
+Message-ID: <09aa65f606fb122add78833d18a75019c02852cc.camel@gmail.com>
+Subject: Re: [RFC PATCH 0/1] of: dynamic: allow freeing of_nodes after the
+ overlay changeset
+From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To:     Frank Rowand <frowand.list@gmail.com>,
+        Nuno Sa <nuno.sa@analog.com>, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        GregKroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Mon, 15 May 2023 08:57:29 +0200
+In-Reply-To: <32553632-d8c8-f110-ebc0-78f7bbb66f91@gmail.com>
+References: <20230511151047.1779841-1-nuno.sa@analog.com>
+         <32553632-d8c8-f110-ebc0-78f7bbb66f91@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NotSetDelaration: True
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZAPC01FT058:EE_|PUZPR03MB5990:EE_
-X-MS-Office365-Filtering-Correlation-Id: 86f67724-b70e-4fb8-8297-08db55118764
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6LiKkcQWBaxVP673rUYNDF03xZA1wvJFtZ/MK/NEQC0OIpGaj2FUs6AqDmC8KB8QRSc52HR83U5hK+lpX5FaeugycJgFVLKi73JYo1mvrFXgdQipFNFVZaCCLf+C2LiRG908e2WNKAFMJF5EKAkjifNEapja9cYmO0MV6x2Z83x+ASdN23j5im3ijTsckiHKrEf7Cxz7sSPkcYLcScc9QM9iQWInQNz63282fM0m/vZZN/Ynf9dRoBVg5xzOXL6vgVWKZKFH+W2HE91VMjuwZmQeAzpgPU7eKnTTOHEDA7SQTw9sNN48YXxRFx2oMZf8+0p8L9hK6lr0AKh/p9qg8+He8b3H198QcXft5wgrwTwe7lG7cd99ArOf+FaxVPpsNo+ihfDcYCYbv7LFXiFM8uycE7bgK3SMpKUVglIedOXZHXGAGuXm0tBBgNvq9XDqsTPpjewfJSupoRnXTeAvwddwgkxVDcvxrjEIh8+yzk+ql0miep4D5jFGFMRZPsHgBwUax4rpKCm1o2yaeSNCxsJBnAHwp8QqewC6rBaTyMqS9lCYIQg/enwWjUTcQZzxHVnOVQcYxWMaPBYDqz5zOcOjSg438ymH7JLFxDs8BIOlXco6RUJ2P6TUnjuP8XkNHCXZYwdtoyeyMGJgjQT3k8MDposzYOnj9yOr0O75fiX6r9KYYeqfbk0hNztNX66Z48j8+Is59bagsypjqLWb+KZmrGWdYF/dHjnBv6VxTfo=
-X-Forefront-Antispam-Report: CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS04.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(396003)(346002)(376002)(136003)(451199021)(46966006)(40470700004)(36840700001)(356005)(81166007)(86362001)(82310400005)(82740400003)(36756003)(33656002)(40460700003)(4326008)(316002)(41300700001)(6916009)(5660300002)(8936002)(8676002)(54906003)(26005)(186003)(1076003)(40480700001)(107886003)(426003)(336012)(47076005)(2616005)(2906002)(966005)(70206006)(70586007)(478600001)(83380400001)(36860700001)(6666004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: nuvoton.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2023 06:56:37.6279
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86f67724-b70e-4fb8-8297-08db55118764
-X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS04.nuvoton.com]
-X-MS-Exchange-CrossTenant-AuthSource: TYZAPC01FT058.eop-APC01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR03MB5990
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -105,303 +76,305 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the NAU8824 audio CODEC bindings to DT schema.
+On Sun, 2023-05-14 at 16:20 -0500, Frank Rowand wrote:
+> On 5/11/23 10:10, Nuno Sa wrote:
+> > There are valid cases where we might get in here with an unexpected
+> > refcount. One example are devlinks between suppliers <-> consumers.
+> > When a link is created, it will grab a reference to both the supplier a=
+nd
+> > the consumer devices (which can, potentially, hold a reference to it's
+> > of_node) and this reference is not synchronously dropped when unbinding=
+ the
+> > device from the driver. Instead, a work item is queued (see
+> > devlink_dev_release()). This async nature will make that
+> > __of_changeset_entry_destroy() is reached with a refcount > 1. But,
+> > eventually, all the refcounts are released and of_node_release() is
+> > reached.
+> >=20
+> > All the above will lead to leaks and the following dumps:
+> >=20
+> > [ 1297.035424] OF: ERROR: memory leak, expected refcount 1 instead of 2=
+,
+> > of_node_get()/of_node_put() unbalanced - destroy cset entry: attach ove=
+rlay
+> > node /fpga-axi/dummy_dev
+> > [ 1297.050763] OF: ERROR: memory leak, expected refcount 1 instead of 3=
+,
+> > of_node_get()/of_node_put() unbalanced - destroy cset entry: attach ove=
+rlay
+> > node /regulator-vio
+> > [ 1297.065654] OF: ERROR: memory leak, expected refcount 1 instead of 3=
+,
+> > of_node_get()/of_node_put() unbalanced - destroy cset entry: attach ove=
+rlay
+> > node /regulator-vdd-1-8
+> > [ 1297.080885] OF: ERROR: memory leak, expected refcount 1 instead of 3=
+,
+> > of_node_get()/of_node_put() unbalanced - destroy cset entry: attach ove=
+rlay
+> > node /regulator-vref
+> >=20
+> > =C2=A01297.168367] ------------[ cut here ]------------
+> > [ 1297.173000] WARNING: CPU: 0 PID: 15340 at lib/refcount.c:25
+> > kobject_get+0x9c/0xa0
+> > [ 1297.180514] refcount_t: addition on 0; use-after-free.
+> > [ 1297.185661] Modules linked in:
+> > [ 1297.188727] CPU: 0 PID: 15340 Comm: kworker/0:2 Not tainted 6.3.1-di=
+rty
+> > #5
+> > [ 1297.195617] Hardware name: Xilinx Zynq Platform
+> > [ 1297.200158] Workqueue: events_long device_link_release_fn
+> > [ 1297.205600]=C2=A0 unwind_backtrace from show_stack+0x10/0x14
+> > [ 1297.210880]=C2=A0 show_stack from dump_stack_lvl+0x40/0x4c
+> > [ 1297.215983]=C2=A0 dump_stack_lvl from __warn+0x78/0x124
+> > [ 1297.220816]=C2=A0 __warn from warn_slowpath_fmt+0x134/0x18c
+> > [ 1297.220857]=C2=A0 warn_slowpath_fmt from kobject_get+0x9c/0xa0
+> > [ 1297.220892]=C2=A0 kobject_get from of_node_get+0x14/0x1c
+> > [ 1297.236279]=C2=A0 of_node_get from of_fwnode_get+0x34/0x40
+> > [ 1297.236324]=C2=A0 of_fwnode_get from fwnode_full_name_string+0x34/0x=
+a0
+> > [ 1297.247455]=C2=A0 fwnode_full_name_string from device_node_string+0x=
+5a8/0x750
+> > [ 1297.247488]=C2=A0 device_node_string from pointer+0x3d0/0x67c
+> > [ 1297.259497]=C2=A0 pointer from vsnprintf+0x20c/0x410
+> > [ 1297.264063]=C2=A0 vsnprintf from vprintk_store+0x12c/0x430
+> > [ 1297.269176]=C2=A0 vprintk_store from vprintk_emit+0xe0/0x23c
+> > [ 1297.274454]=C2=A0 vprintk_emit from vprintk_default+0x20/0x28
+> > [ 1297.274503]=C2=A0 vprintk_default from _printk+0x2c/0x58
+> > [ 1297.274534]=C2=A0 _printk from kobject_put+0x8c/0x130
+> > [ 1297.289299]=C2=A0 kobject_put from platform_device_release+0x10/0x3c
+> > [ 1297.295245]=C2=A0 platform_device_release from device_release+0x30/0=
+xa0
+> > [ 1297.301458]=C2=A0 device_release from kobject_put+0x8c/0x130
+> > [ 1297.306718]=C2=A0 kobject_put from device_link_release_fn+0x54/0xa8
+> > [ 1297.312588]=C2=A0 device_link_release_fn from process_one_work+0x1fc=
+/0x4c8
+> > [ 1297.319079]=C2=A0 process_one_work from worker_thread+0x50/0x54c
+> > [ 1297.324684]=C2=A0 worker_thread from kthread+0xd0/0xec
+> > [ 1297.329421]=C2=A0 kthread from ret_from_fork+0x14/0x2c
+> > [ 1297.334153] Exception stack(0xe0b95fb0 to 0xe0b95ff8)
+> > [ 1297.339200] 5fa0:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 00000000 00000000
+> > 00000000 00000000
+> > [ 1297.347386] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000=
+000
+> > 00000000 00000000
+> > [ 1297.355577] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000=
+000
+> > [ 1297.362192] ---[ end trace 0000000000000000 ]---
+> > [ 1297.366805] ------------[ cut here ]------------
+> > [ 1297.371416] WARNING: CPU: 0 PID: 15340 at lib/refcount.c:28
+> > fwnode_full_name_string+0x8c/0xa0
+> > [ 1297.379957] refcount_t: underflow; use-after-free.
+> > [ 1297.384739] Modules linked in:
+> > [ 1297.387789] CPU: 0 PID: 15340 Comm: kworker/0:2 Tainted: G=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > W=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 6.3.1-dirty #5
+> > [ 1297.396136] Hardware name: Xilinx Zynq Platform
+> > [ 1297.400660] Workqueue: events_long device_link_release_fn
+> > [ 1297.406079]=C2=A0 unwind_backtrace from show_stack+0x10/0x14
+> > [ 1297.411319]=C2=A0 show_stack from dump_stack_lvl+0x40/0x4c
+> > [ 1297.416389]=C2=A0 dump_stack_lvl from __warn+0x78/0x124
+> > [ 1297.421206]=C2=A0 __warn from warn_slowpath_fmt+0x134/0x18c
+> > [ 1297.426361]=C2=A0 warn_slowpath_fmt from fwnode_full_name_string+0x8=
+c/0xa0
+> > [ 1297.432820]=C2=A0 fwnode_full_name_string from device_node_string+0x=
+5a8/0x750
+> > [ 1297.439537]=C2=A0 device_node_string from pointer+0x3d0/0x67c
+> > [ 1297.444867]=C2=A0 pointer from vsnprintf+0x20c/0x410
+> > [ 1297.449406]=C2=A0 vsnprintf from vprintk_store+0x12c/0x430
+> > [ 1297.454484]=C2=A0 vprintk_store from vprintk_emit+0xe0/0x23c
+> > [ 1297.459727]=C2=A0 vprintk_emit from vprintk_default+0x20/0x28
+> > [ 1297.465056]=C2=A0 vprintk_default from _printk+0x2c/0x58
+> > [ 1297.469944]=C2=A0 _printk from kobject_put+0x8c/0x130
+> > [ 1297.474570]=C2=A0 kobject_put from platform_device_release+0x10/0x3c
+> > [ 1297.480507]=C2=A0 platform_device_release from device_release+0x30/0=
+xa0
+> > [ 1297.486705]=C2=A0 device_release from kobject_put+0x8c/0x130
+> > [ 1297.491947]=C2=A0 kobject_put from device_link_release_fn+0x54/0xa8
+> > [ 1297.497798]=C2=A0 device_link_release_fn from process_one_work+0x1fc=
+/0x4c8
+> > [ 1297.504256]=C2=A0 process_one_work from worker_thread+0x50/0x54c
+> > [ 1297.509828]=C2=A0 worker_thread from kthread+0xd0/0xec
+> > [ 1297.514550]=C2=A0 kthread from ret_from_fork+0x14/0x2c
+> > [ 1297.519263] Exception stack(0xe0b95fb0 to 0xe0b95ff8)
+> > [ 1297.524308] 5fa0:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 00000000 00000000
+> > 00000000 00000000
+> > [ 1297.532478] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000=
+000
+> > 00000000 00000000
+> > [ 1297.540653] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000=
+000
+> > [ 1297.547256] ---[ end trace 0000000000000000 ]---
+> > [ 1297.168353] OF: ERROR: memory leak before free overlay changeset,=C2=
+=A0
+> > /regulator-vref
+> > [ 1297.551874] ------------[ cut here ]------------
+> > [ 1297.551880] WARNING: CPU: 0 PID: 15340 at lib/refcount.c:22
+> > kobject_get+0x88/0xa0
+> > [ 1297.551903] refcount_t: saturated; leaking memory.
+> > [ 1297.551908] Modules linked in:
+> > [ 1297.551918] CPU: 0 PID: 15340 Comm: kworker/0:2 Tainted: G=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > W=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 6.3.1-dirty #5
+> > [ 1297.551931] Hardware name: Xilinx Zynq Platform
+> > [ 1297.551938] Workqueue: events_long device_link_release_fn
+> > [ 1297.551965]=C2=A0 unwind_backtrace from show_stack+0x10/0x14
+> > [ 1297.551994]=C2=A0 show_stack from dump_stack_lvl+0x40/0x4c
+> > [ 1297.552023]=C2=A0 dump_stack_lvl from __warn+0x78/0x124
+> > [ 1297.552059]=C2=A0 __warn from warn_slowpath_fmt+0x134/0x18c
+> > [ 1297.552092]=C2=A0 warn_slowpath_fmt from kobject_get+0x88/0xa0
+> > [ 1297.552123]=C2=A0 kobject_get from of_node_get+0x14/0x1c
+> > [ 1297.552146]=C2=A0 of_node_get from of_fwnode_get+0x34/0x40
+> > [ 1297.552173]=C2=A0 of_fwnode_get from fwnode_full_name_string+0x34/0x=
+a0
+> > [ 1297.552204]=C2=A0 fwnode_full_name_string from device_node_string+0x=
+5a8/0x750
+> > [ 1297.552234]=C2=A0 device_node_string from pointer+0x3d0/0x67c
+> > [ 1297.552262]=C2=A0 pointer from vsnprintf+0x20c/0x410
+> > [ 1297.552289]=C2=A0 vsnprintf from vscnprintf+0x10/0x24
+> > [ 1297.552317]=C2=A0 vscnprintf from printk_sprint+0x18/0xf4
+> > [ 1297.552353]=C2=A0 printk_sprint from vprintk_store+0x2d0/0x430
+> > [ 1297.552388]=C2=A0 vprintk_store from vprintk_emit+0xe0/0x23c
+> > [ 1297.552422]=C2=A0 vprintk_emit from vprintk_default+0x20/0x28
+> > [ 1297.552457]=C2=A0 vprintk_default from _printk+0x2c/0x58
+> > [ 1297.552483]=C2=A0 _printk from kobject_put+0x8c/0x130
+> > [ 1297.552507]=C2=A0 kobject_put from platform_device_release+0x10/0x3c
+> > [ 1297.552539]=C2=A0 platform_device_release from device_release+0x30/0=
+xa0
+> > [ 1297.552571]=C2=A0 device_release from kobject_put+0x8c/0x130
+> > [ 1297.552599]=C2=A0 kobject_put from device_link_release_fn+0x54/0xa8
+> > [ 1297.552630]=C2=A0 device_link_release_fn from process_one_work+0x1fc=
+/0x4c8
+> > [ 1297.552657]=C2=A0 process_one_work from worker_thread+0x50/0x54c
+> > [ 1297.552674]=C2=A0 worker_thread from kthread+0xd0/0xec
+> > [ 1297.552701]=C2=A0 kthread from ret_from_fork+0x14/0x2c
+> > [ 1297.552724] Exception stack(0xe0b95fb0 to 0xe0b95ff8)
+> > [ 1297.552736] 5fa0:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 00000000 00000000
+> > 00000000 00000000
+> > [ 1297.552749] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000=
+000
+> > 00000000 00000000
+> > [ 1297.552760] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000=
+000
+> > [ 1297.552768] ---[ end trace 0000000000000000 ]---
+> > [ 1297.769464] OF: ERROR: memory leak before free overlay changeset,=C2=
+=A0
+> > /regulator-vdd-1-8
+> > [ 1297.777337] OF: ERROR: memory leak before free overlay changeset,=C2=
+=A0 /fpga-
+> > axi/dummy_dev
+> > [ 1297.777360] OF: ERROR: memory leak before free overlay changeset,=C2=
+=A0
+> > /regulator-vio
+> >=20
+> > the above is easily reproducible with a dummy platform device that just
+> > gets some regulators (devlinks are created at that point).
+> >=20
+> > The culprit of the above is actually this line:
+> >=20
+> > https://elixir.bootlin.com/linux/v6.4-rc1/source/drivers/of/dynamic.c#L=
+366
+> >=20
+> > This also makes me wonder if we should not have an extra patch just pri=
+nting
+> > 'node->full_name' instead of '%pOF'. As seen, we should not make any
+> > assumptions
+> > (like parent's being around :)) at this stage.
+> >=20
+> > To fix the issue, I'm adding a new OVERLAY flag to inform that the chan=
+geset
+> > is already gone so if we ever reach of_node_release() we can proceed
+> > normally. Obviously, I'm not really sure about this and that's the whol=
+e
+> > reason
+> > why I'm bringing this as an RFC. This looks like a nasty corner case an=
+d I
+> > know
+> > that adding/removing devices dynamically is far from being easy to hand=
+le...
+> >=20
+> > Also not sure if the driver core folks should be aware of this...
+> >=20
+> > Lastly, one of workarounding this issue is by manually unbiding the dev=
+ice
+> > from the driver before removing the overlay which would (potentially) g=
+ive
+> > time for the workers to run.
+> >=20
+> > Nuno Sa (1):
+> > =C2=A0 of: dynamic: allow freeing of_nodes after the overlay changeset
+> >=20
+> > =C2=A0drivers/of/dynamic.c | 31 +++++++++++++++++++++++++++----
+> > =C2=A0include/linux/of.h=C2=A0=C2=A0 |=C2=A0 1 +
+> > =C2=A02 files changed, 28 insertions(+), 4 deletions(-)
+> >=20
+>=20
+> Very nice problem description, thanks.
+>=20
+> You have found a real problem of how the devlink implementation did not
+> consider
+> the impact on overlays.=C2=A0 The overlay removal process does not expect=
+ any node
+> created by an overlay apply to exist at the moment that the overlay remov=
+al
+> completes (to be a little more pedantic, the removal process of deletes n=
+odes
+> and
+> properties occurs in the exact opposite order that they were created.=C2=
+=A0 Thus
+> even
+> partly through the overlay removal, a node is deleted before its parent i=
+s
+> deleted.=C2=A0 Also, all of the properties for any node deleted during th=
+e removal
+> are deleted (even if the node refcount does not reach zero).
+>=20
+> The RFC patch does not attempt to fix the actual problem, it merely suppr=
+esses
+> reporting the symptom.
+>=20
+> -Frank
+>=20
 
-Signed-off-by: David Lin <CTLIN0@nuvoton.com>
----
-Change:
-V1 -> V2:
-  - Correct the maximun and maxItems from 4 to 8 for sar-threshold-num
-    and sar-threshold, respectively. 
+Hi Frank,
 
- .../devicetree/bindings/sound/nau8824.txt     |  88 ---------
- .../bindings/sound/nuvoton,nau8824.yaml       | 182 ++++++++++++++++++
- 2 files changed, 182 insertions(+), 88 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/nau8824.txt
- create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8824.yaml
+Thanks for taking a look into this. I was afraid that this was to
+straightforward indeed. So I guess you're saying this is something that nee=
+ds to
+be fixed at the devlink level?
 
-diff --git a/Documentation/devicetree/bindings/sound/nau8824.txt b/Documentation/devicetree/bindings/sound/nau8824.txt
-deleted file mode 100644
-index e0058b97e49a..000000000000
---- a/Documentation/devicetree/bindings/sound/nau8824.txt
-+++ /dev/null
-@@ -1,88 +0,0 @@
--Nuvoton NAU8824 audio codec
--
--This device supports I2C only.
--
--Required properties:
--  - compatible : Must be "nuvoton,nau8824"
--
--  - reg : the I2C address of the device. This is either 0x1a (CSB=0) or 0x1b (CSB=1).
--
--Optional properties:
--  - nuvoton,jkdet-polarity: JKDET pin polarity. 0 - active high, 1 - active low.
--
--  - nuvoton,vref-impedance: VREF Impedance selection
--      0 - Open
--      1 - 25 kOhm
--      2 - 125 kOhm
--      3 - 2.5 kOhm
--
--  - nuvoton,micbias-voltage: Micbias voltage level.
--      0 - VDDA
--      1 - VDDA
--      2 - VDDA * 1.1
--      3 - VDDA * 1.2
--      4 - VDDA * 1.3
--      5 - VDDA * 1.4
--      6 - VDDA * 1.53
--      7 - VDDA * 1.53
--
--  - nuvoton,sar-threshold-num: Number of buttons supported
--  - nuvoton,sar-threshold: Impedance threshold for each button. Array that contains up to 8 buttons configuration. SAR value is calculated as
--    SAR = 255 * MICBIAS / SAR_VOLTAGE * R / (2000 + R)
--    where MICBIAS is configured by 'nuvoton,micbias-voltage', SAR_VOLTAGE is configured by 'nuvoton,sar-voltage', R - button impedance.
--    Refer datasheet section 10.2 for more information about threshold calculation.
--
--  - nuvoton,sar-hysteresis: Button impedance measurement hysteresis.
--
--  - nuvoton,sar-voltage: Reference voltage for button impedance measurement.
--      0 - VDDA
--      1 - VDDA
--      2 - VDDA * 1.1
--      3 - VDDA * 1.2
--      4 - VDDA * 1.3
--      5 - VDDA * 1.4
--      6 - VDDA * 1.53
--      7 - VDDA * 1.53
--
--  - nuvoton,sar-compare-time: SAR compare time
--      0 - 500 ns
--      1 - 1 us
--      2 - 2 us
--      3 - 4 us
--
--  - nuvoton,sar-sampling-time: SAR sampling time
--      0 - 2 us
--      1 - 4 us
--      2 - 8 us
--      3 - 16 us
--
--  - nuvoton,short-key-debounce: Button short key press debounce time.
--      0 - 30 ms
--      1 - 50 ms
--      2 - 100 ms
--
--  - nuvoton,jack-eject-debounce: Jack ejection debounce time.
--      0 - 0 ms
--      1 - 1 ms
--      2 - 10 ms
--
--
--Example:
--
--  headset: nau8824@1a {
--      compatible = "nuvoton,nau8824";
--      reg = <0x1a>;
--      interrupt-parent = <&gpio>;
--      interrupts = <TEGRA_GPIO(E, 6) IRQ_TYPE_LEVEL_LOW>;
--      nuvoton,vref-impedance = <2>;
--      nuvoton,micbias-voltage = <6>;
--      // Setup 4 buttons impedance according to Android specification
--      nuvoton,sar-threshold-num = <4>;
--      nuvoton,sar-threshold = <0xc 0x1e 0x38 0x60>;
--      nuvoton,sar-hysteresis = <0>;
--      nuvoton,sar-voltage = <6>;
--      nuvoton,sar-compare-time = <1>;
--      nuvoton,sar-sampling-time = <1>;
--      nuvoton,short-key-debounce = <0>;
--      nuvoton,jack-eject-debounce = <1>;
--  };
-diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8824.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8824.yaml
-new file mode 100644
-index 000000000000..3dbf438c3841
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8824.yaml
-@@ -0,0 +1,182 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/nuvoton,nau8824.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NAU8824 audio CODEC
-+
-+maintainers:
-+  - John Hsu <KCHSU0@nuvoton.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nuvoton,nau8824
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  nuvoton,jkdet-polarity:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      JKDET pin polarity.
-+    enum:
-+      - 0 # active high
-+      - 1 # active low
-+    default: 1
-+
-+  nuvoton,vref-impedance:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      VREF Impedance selection.
-+    enum:
-+      - 0 # Open
-+      - 1 # 25 kOhm
-+      - 2 # 125 kOhm
-+      - 3 # 2.5 kOhm
-+    default: 2
-+
-+  nuvoton,micbias-voltage:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Micbias voltage level.
-+    enum:
-+      - 0 # VDDA
-+      - 1 # VDDA
-+      - 2 # VDDA * 1.1
-+      - 3 # VDDA * 1.2
-+      - 4 # VDDA * 1.3
-+      - 5 # VDDA * 1.4
-+      - 6 # VDDA * 1.53
-+      - 7 # VDDA * 1.53
-+    default: 6
-+
-+  nuvoton,sar-threshold-num:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Number of buttons supported.
-+    minimum: 1
-+    maximum: 8
-+    default: 4
-+
-+  nuvoton,sar-threshold:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description:
-+      Impedance threshold for each button. Array that contains up to 8 buttons
-+      configuration. SAR value is calculated as
-+      SAR = 255 * MICBIAS / SAR_VOLTAGE * R / (2000 + R) where MICBIAS is
-+      configured by 'nuvoton,micbias-voltage', SAR_VOLTAGE is configured by
-+      'nuvoton,sar-voltage', R - button impedance.
-+      Refer datasheet section 10.2 for more information about threshold
-+      calculation.
-+    minItems: 1
-+    maxItems: 8
-+    items:
-+      minimum: 0
-+      maximum: 255
-+
-+  nuvoton,sar-hysteresis:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Button impedance measurement hysteresis.
-+    default: 0
-+
-+  nuvoton,sar-voltage:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Reference voltage for button impedance measurement.
-+    enum:
-+      - 0 # VDDA
-+      - 1 # VDDA
-+      - 2 # VDDA * 1.1
-+      - 3 # VDDA * 1.2
-+      - 4 # VDDA * 1.3
-+      - 5 # VDDA * 1.4
-+      - 6 # VDDA * 1.53
-+      - 7 # VDDA * 1.53
-+    default: 6
-+
-+  nuvoton,sar-compare-time:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      SAR compare time.
-+    enum:
-+      - 0 # 500ns
-+      - 1 # 1us
-+      - 2 # 2us
-+      - 3 # 4us
-+    default: 1
-+
-+  nuvoton,sar-sampling-time:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      SAR sampling time.
-+    enum:
-+      - 0 # 2us
-+      - 1 # 4us
-+      - 2 # 8us
-+      - 3 # 16us
-+    default: 1
-+
-+  nuvoton,short-key-debounce:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Button short key press debounce time.
-+    enum:
-+      - 0 # 30 ms
-+      - 1 # 50 ms
-+      - 2 # 100 ms
-+    default: 0
-+
-+  nuvoton,jack-eject-debounce:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Jack ejection debounce time.
-+    enum:
-+      - 0 # 0 ms
-+      - 1 # 1 ms
-+      - 2 # 10 ms
-+    default: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        codec@1a {
-+            #sound-dai-cells = <0>;
-+            compatible = "nuvoton,nau8824";
-+            reg = <0x1a>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <38 IRQ_TYPE_LEVEL_LOW>;
-+            nuvoton,vref-impedance = <2>;
-+            nuvoton,micbias-voltage = <6>;
-+            nuvoton,sar-threshold-num = <4>;
-+            // Setup 4 buttons impedance according to Android specification
-+            nuvoton,sar-threshold = <0xc 0x1e 0x38 0x60>;
-+            nuvoton,sar-hysteresis = <0>;
-+            nuvoton,sar-voltage = <6>;
-+            nuvoton,sar-compare-time = <1>;
-+            nuvoton,sar-sampling-time = <1>;
-+            nuvoton,short-key-debounce = <0>;
-+            nuvoton,jack-eject-debounce = <1>;
-+        };
-+    };
--- 
-2.25.1
++cc Greg and Rafael for some help and advice :)
 
+So, I'd very much try to give this a proper fix but this is messing with ve=
+ry
+core components so any help would be welcome. The only think that comes to =
+my
+mind is to have some kind of syncing between the moment (or even before) th=
+e
+work is queued and the moment the node is deleted. I guess this would have =
+to
+happen at the kobject level...
+
+Another piece of information is that this is an issue for platform devices =
+and
+pretty much for any device that releases the node during it's .dev.release
+callback (which BTW, sound correct to me). For example, spi and i2c devices=
+ are
+releasing the node during the driver - device unbind and not when the devic=
+e
+gets released. This actually gives time for things to settle before reachin=
+g the
+point of deleting the node (not saying this correct or should be the soluti=
+on
+for this case).
+
+- Nuno S=C3=A1
