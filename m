@@ -2,60 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CA1D7020F4
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 03:08:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 281CF70211B
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 03:26:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234226AbjEOBIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 21:08:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34768 "EHLO
+        id S231232AbjEOB0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 21:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231132AbjEOBIy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 21:08:54 -0400
+        with ESMTP id S230281AbjEOB0e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 21:26:34 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D25C110E9;
-        Sun, 14 May 2023 18:08:50 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B4210E5;
+        Sun, 14 May 2023 18:26:33 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6744C61008;
-        Mon, 15 May 2023 01:08:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27439C433D2;
-        Mon, 15 May 2023 01:08:48 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3291760ED6;
+        Mon, 15 May 2023 01:26:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68DEBC433D2;
+        Mon, 15 May 2023 01:26:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684112929;
-        bh=UFENhqiakD8QEtrxSxXbki36RDciOCSV149yt6dLUlo=;
+        s=k20201202; t=1684113992;
+        bh=FBAJcK48G0/3ozZ6xTCX78O8o6Xt6mni2Fpe2uK3Mws=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MqHY9HYLeLXi4X5n8tlA7eZm0k1zWxi6SE24zzL6vY3HeFydLIlXAeZfuxfCQMdBa
-         osGgaBJaF8NiHdQc5assWlUveJQw10+sC4S8OWBhynMwo2mxBIy+Msyj0NIcnDvvNo
-         5b8/xoJ5n5lQcnI5XXaUJMc0wDG24CSzavQJ7fPOlpSeH9Il55dc4LUGodOXpP55/I
-         HjNP2l3t8ohx6pnNvdPpXMbNvFjRG8OCL3Kbc+RHCubIgvOPeWdfo2pA8btRes3QK0
-         dRvploNr47/xOMW0g5jhccZMEN3xea4i3rwgcvmVQpGNxagOCMHDtrokcbVqr8F/BA
-         xxdBfc0HZjgdQ==
-Date:   Mon, 15 May 2023 10:08:41 +0900
-From:   Mark Brown <broonie@kernel.org>
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     Marc Zyngier <maz@kernel.org>, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        tglx@linutronix.de, linus.walleij@linaro.org, vkoul@kernel.org,
-        lgirdwood@gmail.com, yung-chuan.liao@linux.intel.com,
-        sanyog.r.kale@intel.com, pierre-louis.bossart@linux.intel.com,
-        alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 07/10] irqchip/cs42l43: Add support for the cs42l43 IRQs
-Message-ID: <ZGGGGcZNEx7o8GC6@finisterre.sirena.org.uk>
-References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
- <20230512122838.243002-8-ckeepax@opensource.cirrus.com>
- <86o7mpmvqq.wl-maz@kernel.org>
- <20230512153933.GH68926@ediswmail.ad.cirrus.com>
- <86mt29mt2m.wl-maz@kernel.org>
- <20230512164233.GN68926@ediswmail.ad.cirrus.com>
+        b=ISQOrI7quFV4DMPDKbpBcxUM6gqiWDlXYrRu5TTjJrw+MmevG3z4xNctsre1aPAa1
+         xE/N3eeE5Ukv7LTLWWgJry17l1cMskXIB8jFBaDI6V8baGeE2VQDePcm2pE4pSKYZ6
+         GBi706Zl5uST6BDhVEaJkxfBp+tFxh5k6DzFV7/Z/1JqeySSFrXCcBo0HgnanL+BjO
+         Mt4bclWu37nBWqzqrBSZxnGPGThuLaWgV8VF9OVxqfrc7uWaViG08ianLVybz8xTYY
+         8gIHVsoOXCzxAgCtZsN+/QY1MO0fXozRA09uNGcw8AduYM8Ff/TJUSfG2bqqr/Rrsu
+         GiETTgU1h6TFQ==
+Date:   Mon, 15 May 2023 09:26:19 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH V2 1/3] arm64: dts: imx8mn: Add CSI and ISI Nodes
+Message-ID: <20230515012619.GA767028@dragon>
+References: <20230507151549.1216019-1-aford173@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="elVqdTBpOwS6uzdG"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230512164233.GN68926@ediswmail.ad.cirrus.com>
-X-Cookie: Avoid contact with eyes.
+In-Reply-To: <20230507151549.1216019-1-aford173@gmail.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -66,33 +64,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, May 07, 2023 at 10:15:46AM -0500, Adam Ford wrote:
+> The CSI in the imx8mn is the same as what is used in the imx8mm,
+> but it's routed to the ISI on the Nano. Add both the ISI and CSI
+> nodes, and pointing them to each other. Since the CSI capture is
+> dependent on an attached camera, mark both ISI and CSI as
+> disabled by default.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
---elVqdTBpOwS6uzdG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Fri, May 12, 2023 at 04:42:33PM +0000, Charles Keepax wrote:
-
-> I guess if Mark doesn't mind I think the only internal bit of the
-> device that uses the IRQs is the CODEC driver so I could move the
-> IRQ handling in there, it does seem a little odd to me, but I
-> guess I don't have any problems with it.
-
-The obvious (and previously standard) place for it would be the MFD.
-
---elVqdTBpOwS6uzdG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRhhhgACgkQJNaLcl1U
-h9AQBwf/Vl7z7xogRyvrOyQVvmOhb4t1sIM1jgniNv/+CSDFa4/NyBY16e3xpB59
-b5NYJGg0YEv4Zo19kQql1gLRJPIaW5AkS+gK7qIFRlAnnx8aJc1MlwrVWZKUmRPY
-eoJMOiHSt8WnHU2ib94i8kpDtpzPI5D9nmTnn63wWCiWEv28gu57kGp21j/5zuBi
-FssPHGDJIIskV8g7lqRxjNmY/eEy22/afYtGy9yYS9yyqPZCFATQ/998Fo+r11u/
-OWS0qAXCzxT+3OKj/nabwTenvVqnwXjCmfdI4Oq83I3Ecf04lVHt+hxk1SLACcdz
-vDQ+BpPpUMUg561BpqXtF0Vv5KkdSg==
-=ORMJ
------END PGP SIGNATURE-----
-
---elVqdTBpOwS6uzdG--
+Applied all, thanks!
