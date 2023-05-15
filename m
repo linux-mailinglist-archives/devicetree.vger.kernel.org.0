@@ -2,95 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2B9570380A
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:26:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 291EE703843
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:31:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244220AbjEOR05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 13:26:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47820 "EHLO
+        id S244160AbjEORbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 13:31:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244218AbjEOR0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:26:35 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBFA812083;
-        Mon, 15 May 2023 10:25:16 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 711ED86065;
-        Mon, 15 May 2023 19:25:11 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684171511;
-        bh=XV+2Gebwur2daq+O9s5byj0Uz04kWhlx7VGxC+IjJ6Q=;
-        h=From:To:Cc:Subject:Date:From;
-        b=tBleERXDQwQYDSP0G/qGkg+cfn+9fBkHfUX4YxDyIZ+b9bKv8MuJZtdyOJ6zxHZS+
-         fa0C1jBak7M8C/gwtdsPVkcaPUL8NWzD5fRyYtWvJCQ9UytqSyiXhNIuaJYZvozALb
-         cw1wjcVL28hRySGWIQGNhYO0STUKrgHG1EMbF5iwe2130QPr7pjj6I5AFR6cYd5pDi
-         2iZ2VQEasFS5SNGOouCxwvhvh2RgVrxsE9opPFHu1gpzC2qWG4D7Co/XKbcPcpaAtJ
-         xV8qc0xmXUphB3es2MflUIogh4m1P1jbhy4uOTdG3FzRBzc/mScWlWYqxnju2xXsJM
-         J+OfCut3ddGew==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S244167AbjEORac (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:30:32 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02AF7DD88
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 10:27:48 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1aaf21bb427so93240575ad.1
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 10:27:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684171666; x=1686763666;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=HV5hzOslSr/FLxQgkUOdAb0ubgv7oB3Gzqp0pqYMQsc=;
+        b=X/eq65FBsDIPDo2Wfb1iwHSoJisHGVKTWyP2n3KTfJga69cQVWysciK1ZDjhlavC7r
+         KF0RmdnEOogoZKah/bR6k20VbeKpwafYM9t8+/0zY0xRXIduYg5yKbZ9E6spflp3waIe
+         GHVj0DHBIfvPtm7rnej1OBje66kBLGnnF/lbmDHV3A0dDQxPl5+hmVEmPpmEDv9w3OHh
+         UdmxdlwCJkaUDXTY0670ar+7CIlGLDPLlRePUFxclSKX/9evlhDEUmIW0nfA20CB5udq
+         MKNhHPmvJbbF59DU9avkZkGi6z+FgiUYleHpVpaKex3BexNZMM6HvJcuYogUEAzL7LUs
+         da0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684171666; x=1686763666;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HV5hzOslSr/FLxQgkUOdAb0ubgv7oB3Gzqp0pqYMQsc=;
+        b=SG4Jeem7mhufn5BnNmY16kvTSep/4fcTOlp41f7jh3KjBUQiqHiM8ppCsXox2tI8CW
+         VXqQkAikSVG0WeomgJ/tbwv61klcPBZxKI7OCcN54DpwaSOqJ6qEkxBGT9m/m7zKyBov
+         w1gYku9EMD62/jtdV5ykjkWpjlK75UXijyUYoyYCvlcdscQFrh8K0FKbHqTL01VQAbLI
+         mfsdGKjxOcJEO8HSizXJ6NA4+We50wHe4sJpt47TpmVf25UujnTMphZwjaz8FUZGtXKI
+         CJecqK+wAl8QMEbfTbFlpzzV/J+T13VSaHvmTswq0KDrRGUkSzbSUSlffYqJwq1Xo7Ae
+         g30w==
+X-Gm-Message-State: AC+VfDxqL6ap5Vl8ZnxmgWOfZM6ZcVVerCEy7fCrr1Ak/wptkCIiRMOZ
+        0p7Z8wTpp/rx2A9gHoIVkErZZg==
+X-Google-Smtp-Source: ACHHUZ7MrWABVtEdp/AF7fMlIN83m73eYhwUr7xcWs5Y2Ma+gMOWf1rxaW/Y38x6qhqzqMOLcvdB2A==
+X-Received: by 2002:a17:902:a516:b0:1ab:1355:1a45 with SMTP id s22-20020a170902a51600b001ab13551a45mr32579411plq.30.1684171665794;
+        Mon, 15 May 2023 10:27:45 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:d401:af78:6aa0:cf61])
+        by smtp.gmail.com with ESMTPSA id d1-20020a170902aa8100b001aafb802efbsm13847316plr.12.2023.05.15.10.27.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 May 2023 10:27:45 -0700 (PDT)
+Date:   Mon, 15 May 2023 11:27:43 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
-        stable@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: usb: snps,dwc3: Fix "snps,hsphy_interface" type
-Date:   Mon, 15 May 2023 19:24:56 +0200
-Message-Id: <20230515172456.179049-1-marex@denx.de>
-X-Mailer: git-send-email 2.39.2
+        Bjorn Andersson <andersson@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/4] stm32mp15: update remoteproc to support SCMI
+ Device tree
+Message-ID: <ZGJrj9Vu2H9NZdlH@p14s>
+References: <20230512093926.661509-1-arnaud.pouliquen@foss.st.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230512093926.661509-1-arnaud.pouliquen@foss.st.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "snps,hsphy_interface" is string, not u8. Fix the type.
+On Fri, May 12, 2023 at 11:39:22AM +0200, Arnaud Pouliquen wrote:
+> Update vs V2[1]:
+> ---------------
+> - update yaml to remove label in examples
+> - fix error management for  devm_reset_control_get_optional(dev, "hold_boot")
+> - rebased on commit ac9a78681b92 ("Linux 6.4-rc1")
+> 
+> [1]https://lore.kernel.org/lkml/20230504094641.870378-1-arnaud.pouliquen@foss.st.com/T/
+> 
+> 
+> Description:
+> -----------
+> This series updates the stm32_rproc driver and associated DT node to
+> support device tree configuration with and without SCMI server. 
+> The impact is mainly on the MCU hold boot management.
+> 
+> Three configurations have to be supported:
+> 
+> 1) Configuration without OP-TEE SCMI (legacy): Trusted context not activated
+> - The MCU reset is controlled through the Linux RCC reset driver.
+> - The MCU HOLD BOOT is controlled through The RCC sysconf.
+> 
+> 2) Configuration with SCMI server: Trusted context activated
+> - The MCU reset is controlled through the SCMI reset service.
+> - The MCU HOLD BOOT is no more controlled through a SMC call service but
+>   through the SCMI reset service.
+> 
+> 3) Configuration with OP-TEE SMC call (deprecated): Trusted context activated
+> - The MCU reset is controlled through the Linux RCC reset driver.
+> - The MCU HOLD BOOT is controlled through The SMC call.
+> 
+> In consequence this series:
+> - adds the use of the SCMI reset service to manage the MCU hold boot,
+> - determines the configuration to use depending on the presence of the
+>   "reset-names" property
+>   if ( "reset-names" property contains "hold_boot")
+>   then use reset_control services
+>   else use regmap access based on "st,syscfg-holdboot" property.
+> - set the DT st,syscfg-tz property as deprecated
+> 
+> Arnaud Pouliquen (4):
+>   dt-bindings: remoteproc: st,stm32-rproc: Rework reset declarations
+>   remoteproc: stm32: Allow hold boot management by the SCMI reset
+>     controller
+>   ARM: dts: stm32: Update reset declarations
+>   ARM: dts: stm32: fix m4_rproc references to use SCMI
+> 
+>  .../bindings/remoteproc/st,stm32-rproc.yaml   | 44 +++++++++--
+>  arch/arm/boot/dts/stm32mp151.dtsi             |  2 +-
+>  arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts    |  6 +-
+>  arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts    |  6 +-
+>  arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts    |  6 +-
+>  arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts    |  6 +-
+>  drivers/remoteproc/stm32_rproc.c              | 76 ++++++++++++++-----
+>  7 files changed, 111 insertions(+), 35 deletions(-)
+> 
 
-Fixes: 389d77658801 ("dt-bindings: usb: Convert DWC USB3 bindings to DT schema")
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Felipe Balbi <balbi@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-usb@vger.kernel.org
-Cc: stable@vger.kernel.org
----
-V2: Add Fixes, RB from Krzysztof, CC stable
----
- Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I have applied patch 1 and 2.  Unless Alexandre wants to proceed differently,
+patches 3 and 4 should go through his tree.
 
-diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-index 50edc4da780e9..4f7625955cccc 100644
---- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-@@ -287,7 +287,7 @@ properties:
-     description:
-       High-Speed PHY interface selection between UTMI+ and ULPI when the
-       DWC_USB3_HSPHY_INTERFACE has value 3.
--    $ref: /schemas/types.yaml#/definitions/uint8
-+    $ref: /schemas/types.yaml#/definitions/string
-     enum: [utmi, ulpi]
- 
-   snps,quirk-frame-length-adjustment:
--- 
-2.39.2
+Thanks,
+Mathieu
 
+> -- 
+> 2.25.1
+> 
