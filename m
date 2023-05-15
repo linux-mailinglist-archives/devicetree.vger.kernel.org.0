@@ -2,93 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF3387033DB
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 376EF70344E
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:46:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242885AbjEOQmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 12:42:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45010 "EHLO
+        id S242975AbjEOQqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 12:46:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242626AbjEOQmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:42:13 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5298944B3
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:42:10 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-965a68abfd4so2478147966b.2
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:42:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684168929; x=1686760929;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pGn8HAuIocxoHajMCSRRfoguprnK9ZSWlAhG7ClLNxU=;
-        b=ntSUivjlQsSveCo7qvqN4hvYLt8/4YSecdN3T8kf9zGq+Yc6ZGkxC3iSAbw7l0ol/J
-         p8Y3Fv1b/fXPs8S6bWHfgdBVHc+6f8dC3qXxlEjweK0Dr+BbPMgnTtPsoWsd+7sigaz6
-         P2tI2n8ChAvwCCsm8Ih3MzBzbdX8dufLrMLfasxGZCKS6GwB8edWSB3kMyPnEZvffz38
-         yZuSueXFekNmMyd606fbEUpjGYy/eIEPkIZQfBquwUJNOhU+qXiTycmEaIVG6xV0A25g
-         UhM09eopARPRGIzugkU1Rh6GCT6oy2f+VufN3WG0Ln7+XJHuZ5hlikXTl0kYRaS864d1
-         tuwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684168929; x=1686760929;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pGn8HAuIocxoHajMCSRRfoguprnK9ZSWlAhG7ClLNxU=;
-        b=REcgKyig8EH90HoCa4BODlJ38ep/pypKX5FyrfahF0rI+m9N3aJCKA//TRxsH1sc0x
-         cmibi9GKz7W2xQ9nCX5dx22cXJW4Lp+K64l7WXyqPpRH7HE+RH3H6afcV/Ye/ABXKn31
-         6dvIzZTvo5nIXlYYUIY9Es0lPChahjJrBeFNm3AblMOY0AQ9MqeN+/lOcL/a2I9ZlAFL
-         MJSMCqfwSN31hcxQZXRcky137BsCymb/nDRDCwpn3UBmYXm6bXJdv132I+Dj5mV5aUbo
-         PWVplANDYgSuIHIGGhw+P4XjeaDVvNGW6fruO+pJdsbGSNHzvWZ3twfupqkaoz7XujSS
-         UpCQ==
-X-Gm-Message-State: AC+VfDzaozkW4kpheuTDTAT1RY0/zkblCx/22647XUGo109jKNRgscyE
-        4lJmN8UUbEJDRPr+P2etbFLFOQ==
-X-Google-Smtp-Source: ACHHUZ7QficGch3Sl9q7M8rHIXIEkBIuRgf/Sni/Jw1SxXmU9/+Vxw6610XGNRBN7zoz6cqyNfYj6A==
-X-Received: by 2002:a17:907:d86:b0:94a:9c4e:d2e9 with SMTP id go6-20020a1709070d8600b0094a9c4ed2e9mr31118316ejc.0.1684168928739;
-        Mon, 15 May 2023 09:42:08 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id n8-20020a056402514800b0050d8aac0a1esm7408463edd.19.2023.05.15.09.42.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 09:42:08 -0700 (PDT)
-Message-ID: <5f41d497-8b3c-42b4-22ba-b24772abb3a5@linaro.org>
-Date:   Mon, 15 May 2023 18:42:06 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v4 04/13] dt-bindings: display: add Amlogic MIPI DSI Host
- Controller bindings
-Content-Language: en-US
-To:     neil.armstrong@linaro.org, Jerome Brunet <jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        with ESMTP id S242991AbjEOQqq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:46:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E21DB;
+        Mon, 15 May 2023 09:46:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 08E3362914;
+        Mon, 15 May 2023 16:46:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C4D8C433D2;
+        Mon, 15 May 2023 16:46:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684169204;
+        bh=eL6yi8hMio7duV0WcJ4yRmARZWgFYml5JEHbo9uWn+c=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ogeSGaFFFvjbPGqY4fxX+spkml9Sb//s1UTvN5ItUHwSUxdO19Y5JNiXhApeuaIVv
+         6Ah747zLCTDSMzxR5e4DFvTy9Ov3n6OqOlp1/n8d5LK5XLeX/mqqyhd60RXg+ICx/K
+         k2wMW9aREKv9ZfJyLnW84qtlqO/jQkDCdmamz0BPpCHkrFq8umU868A11jr3p2HO+i
+         6ak7XhVQk1Hp7/IZs6lqyoZjUsYg29t5Q/0WI9HoWZlxdSPVPqeHbNAAUr07AyEwl/
+         KTDKsaLAyD75obXfofZ3ZxAG00g+4tetgJSYhIaqN8cNq9gabfmYD4qCmd7osMDNFz
+         gf0A+oRXUzmmw==
+From:   Conor Dooley <conor@kernel.org>
+To:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Nicolas Belin <nbelin@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-phy@lists.infradead.org
-References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
- <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-4-2592c29ea263@linaro.org>
- <fe2f22c7-8c39-faf3-bc65-a7c089200134@linaro.org>
- <eaa3ecd0-dcf0-01d8-b3ea-9dd900215839@linaro.org>
- <80da6b9e-ba82-d2c9-2854-b444635150fd@linaro.org>
- <14405799-9b56-6767-4a35-51ab8ae636a9@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <14405799-9b56-6767-4a35-51ab8ae636a9@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/2] Add watchdog nodes in StarFive JH7100/JH7110 DTS
+Date:   Mon, 15 May 2023 17:46:33 +0100
+Message-Id: <20230515-tribesman-sloppily-658f86d776ac@spud>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230509151723.84989-1-xingyu.wu@starfivetech.com>
+References: <20230509151723.84989-1-xingyu.wu@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=610; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=q4UXWBBFSwrCUpZYR2X7bAvP0FrsLTRfFER3VBh/8+A=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDClJic8TON0778U8FM7zuXNtguXjL/w2Yc9frHt/4tObj RN+cDx61lHKwiDGwSArpsiSeLuvRWr9H5cdzj1vYeawMoEMYeDiFICJCLowMjx1+f/o2YmWU8IM bnd/X3b4XsazbNsawadR99e2h0u51MxmZLjSXnXh4eO8w5VLV6+qiSjkW35BJy612c95ukPdU83 z+9kA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,41 +63,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 18:28, neil.armstrong@linaro.org wrote:
->> It's just a link stored in automated responses, what's here childish?
->> It's still valid in current cycle! Look:
->>
->> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
->>
->> What's the difference? Srsly, I can point you to submitting patches
->> without reference to specific line if you wish... Or you can check by
->> yourself.
->>
->> I give the same reviews to so many people that have templates and Elixir
->> happens to be the only place allowing bookmarking specific line. Which
->> is helpful for beginners because the entire doc is huge.
->>
->> I can make an exception for you and never paste direct links.
+From: Conor Dooley <conor.dooley@microchip.com>
+
+On Tue, 09 May 2023 23:17:21 +0800, Xingyu Wu wrote:
+> and JH7110 SoCs. Patch 1 adds the node in JH7100 dts and Patch 2 adds it
+> in JH7110 dts. This patch serises are based on Linux 6.4-rc1.
 > 
-> I value those kind of links for beginners and newcomers, really, it's a good
-> thing to do and we should all do the same.
+> Xingyu Wu (2):
+>   riscv: dts: starfive: jh7100: Add watchdog node
+>   riscv: dts: starfive: jh7110: Add watchdog node
+> 
+> [...]
 
-Hm, if I understand correctly, you felt being patronized by my link? I
-apologize for that. It was not my intention and there is really no need
-to feel like that. Look, I have many, many templates so I can speed up
-review. This one I gave to many:
+Applied to riscv-dt-for-next, thanks!
 
-https://lore.kernel.org/all/?q=f%3Akrzysztof+%22Please+wrap+commit+message+according+to+Linux+coding+style%22
+[1/2] riscv: dts: starfive: jh7100: Add watchdog node
+      https://git.kernel.org/conor/c/435ac3fbfbc6
+[2/2] riscv: dts: starfive: jh7110: Add watchdog node
+      https://git.kernel.org/conor/c/6361b7de262a
 
-Writing same review every damn time is a boring, absolutely huge waste
-of time. People just make too many same mistakes. Better to hit key
-shortcut.
-
-Over the time most of my templates grew a bit, because when I wrote
-"Please wrap to 75" submitter did not know what to wrap or why. To save
-myself work I extend the template to something more. The entire text and
-link is for the beginner, not for you.
-
-Best regards,
-Krzysztof
-
+Thanks,
+Conor.
