@@ -2,56 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F311703BF6
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 20:08:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5853D703C39
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 20:15:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245147AbjEOSIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 14:08:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
+        id S243053AbjEOSPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 14:15:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245007AbjEOSIV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 14:08:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 826EA1B745;
-        Mon, 15 May 2023 11:05:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 003BC630BC;
-        Mon, 15 May 2023 18:05:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4F97C433EF;
-        Mon, 15 May 2023 18:05:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1684173909;
-        bh=yQ98w9QUGg3XRw3+2/5fzj43wg/PyIVrcGZnO0h76Lo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MyhN0CFXvbMsW/PZwpi8yeAlbGyCsrZQZYyYAsxTGudFyxQ83mtrc1cyHfw4ZYTkP
-         eLJXbMR8vqT+YF3VFcY3rU5FbfXW71UXcPnm+nzJfOXpt9SZtx+2QBJm2W0SjI0Drx
-         kuEOkA+nXfZrFl2xtTAAycxb/NEUNGqZ+Xko//zk=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     stable@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        patches@lists.linux.dev, Randy Dunlap <rdunlap@infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Rich Felker <dalias@libc.org>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-        linux-sh@vger.kernel.org
-Subject: [PATCH 5.4 246/282] sh: init: use OF_EARLY_FLATTREE for early init
-Date:   Mon, 15 May 2023 18:30:24 +0200
-Message-Id: <20230515161729.630553967@linuxfoundation.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230515161722.146344674@linuxfoundation.org>
-References: <20230515161722.146344674@linuxfoundation.org>
-User-Agent: quilt/0.67
+        with ESMTP id S245210AbjEOSOq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 14:14:46 -0400
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD7851C058
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 11:12:21 -0700 (PDT)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-55a8019379fso121161787b3.0
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 11:12:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684174341; x=1686766341;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=UG/nFHajbw6yGBJ4fCskpIHD7pUkyYFl7ARQwWR7+5g=;
+        b=e4wwH+a1K8FA8UbtOQBmqfe6jF7c6u1C5D92koHM17o1iBgPKALC6S9in/UrMcNEH1
+         FC1jlwEpdp3FvhUppF2bixpI8LPEmwn1Bc2Z2hWFRjqF25FInk9kRfh4WbNFjU/jM3ZW
+         ZeLLoIykVvZq3vorbIYg/PjMkB2w1noBVIiqYelQEH4eWa/bhMNR36h3s8IQF268FzT7
+         gYlZdWF56fc7grjcjJeHLrXzSMi4UKEyMJouQBz7BbJ/of1qdvV+DIDVDNaQJ+cG60lX
+         TBXSFkBQcnSzuUjOKNg/YykesABAjk0KEQLsL5AepFZtoICaUKqkpwYLSJlk3bRwLr9u
+         kkTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684174341; x=1686766341;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UG/nFHajbw6yGBJ4fCskpIHD7pUkyYFl7ARQwWR7+5g=;
+        b=JwZF+Zv6chC02IL7ix5vuhGMGWy6vJInPyjJ2U5ekcRklpoxxqBRbuAFc//UdWH8cW
+         mIQx4xZ/x8gDoFVebs4sMF1R79DfnQkPpkgI01BCU/RX8JTzC4frD3asMY9R5O1M4/cG
+         JTDUcPUo++V3APmvkJVLDdBN0gesMYnaSW+2AZR+rOqy3E095Pw89GEiIeHQkAeEraZG
+         28qu/hdkUXQyhLKaPm0I8pRIBXBPAAjh0zXUX4ujVP17xug5KAvIOC2gx10sTD8071xt
+         9kfKOffl4BFmN5XVtMjEG4tN//A2hBDDl4B0f1MrHW7tXUIYKM6X++YXBdpprbBkaojZ
+         vqyg==
+X-Gm-Message-State: AC+VfDyD2wBSL8miraSewzKdQgCELpT8cykB7A3KEOGvlKKs5RLtAM3I
+        OqrBbekCGRP8EaERB5/7dTg/4yL7JlqMtpH9T0zgAg==
+X-Google-Smtp-Source: ACHHUZ5Je4xHDAe5fAqetLKWX9Q5WA/cboHR794VQTukqIEajO+ASQg+ec6Wn/TrZhVsOgwuhlftAuFikK2s7X/3scM=
+X-Received: by 2002:a81:8605:0:b0:559:d97c:6fd6 with SMTP id
+ w5-20020a818605000000b00559d97c6fd6mr32416639ywf.21.1684174341008; Mon, 15
+ May 2023 11:12:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20230509161218.11979-1-quic_jkona@quicinc.com>
+ <20230509161218.11979-5-quic_jkona@quicinc.com> <7faf4c16-98ff-f27d-d1fd-3058370c06f5@linaro.org>
+ <CAA8EJpo1iMj90BPc6gYngSrJqd8WWArRndgbcVg1fYBKBpVfAQ@mail.gmail.com> <68c3f24f-99a2-ad7c-9371-33ccaf5740dd@linaro.org>
+In-Reply-To: <68c3f24f-99a2-ad7c-9371-33ccaf5740dd@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 15 May 2023 21:12:10 +0300
+Message-ID: <CAA8EJprfVJxaGT80OxX6HXP5E8yCmpA3K82CL5JQdS923w7whQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8550: Add video clock controller
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,89 +76,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Randy Dunlap <rdunlap@infradead.org>
+On Mon, 15 May 2023 at 16:08, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 15.05.2023 14:57, Dmitry Baryshkov wrote:
+> > On Mon, 15 May 2023 at 15:28, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> >>
+> >>
+> >>
+> >> On 9.05.2023 18:12, Jagadeesh Kona wrote:
+> >>> Add device node for video clock controller on Qualcomm SM8550 platform.
+> >>>
+> >>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> >>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> >>> ---
+> >>>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 12 ++++++++++++
+> >>>  1 file changed, 12 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> >>> index 6e9bad8f6f33..e67e7c69dae6 100644
+> >>> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> >>> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> >>> @@ -7,6 +7,7 @@
+> >>>  #include <dt-bindings/clock/qcom,sm8550-gcc.h>
+> >>>  #include <dt-bindings/clock/qcom,sm8550-tcsr.h>
+> >>>  #include <dt-bindings/clock/qcom,sm8550-dispcc.h>
+> >>> +#include <dt-bindings/clock/qcom,sm8550-videocc.h>
+> >>>  #include <dt-bindings/dma/qcom-gpi.h>
+> >>>  #include <dt-bindings/gpio/gpio.h>
+> >>>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> >>> @@ -759,6 +760,17 @@ gcc: clock-controller@100000 {
+> >>>                                <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+> >>>               };
+> >>>
+> >>> +             videocc: clock-controller@aaf0000 {
+> >> This node should be moved down. Nodes with unit addresses
+> >> should be sorted alphanumerically.
+> >>
+> >>> +                     compatible = "qcom,sm8550-videocc";
+> >>> +                     reg = <0 0x0aaf0000 0 0x10000>;
+> >>> +                     clocks = <&bi_tcxo_div2>, <&gcc GCC_VIDEO_AHB_CLK>;
+> >> One per line, please
+> >>
+> >> Also, any reason the XO clock does not come from RPMhCC?
+> >
+> > bi_tcxo_div_2 is an RPMhCC clock with the fixed divider.
+> Hm, I don't see it neither on -next or in this patchset..
 
-commit 6cba655543c7959f8a6d2979b9d40a6a66b7ed4f upstream.
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/sm8550.dtsi?h=next-20230515#n41
 
-When CONFIG_OF_EARLY_FLATTREE and CONFIG_SH_DEVICE_TREE are not set,
-SH3 build fails with a call to early_init_dt_scan(), so in
-arch/sh/kernel/setup.c and arch/sh/kernel/head_32.S, use
-CONFIG_OF_EARLY_FLATTREE instead of CONFIG_OF_FLATTREE.
-
-Fixes this build error:
-../arch/sh/kernel/setup.c: In function 'sh_fdt_init':
-../arch/sh/kernel/setup.c:262:26: error: implicit declaration of function 'early_init_dt_scan' [-Werror=implicit-function-declaration]
-  262 |         if (!dt_virt || !early_init_dt_scan(dt_virt)) {
-
-Fixes: 03767daa1387 ("sh: fix build regression with CONFIG_OF && !CONFIG_OF_FLATTREE")
-Fixes: eb6b6930a70f ("sh: fix memory corruption of unflattened device tree")
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Suggested-by: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: devicetree@vger.kernel.org
-Cc: Rich Felker <dalias@libc.org>
-Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Cc: linux-sh@vger.kernel.org
-Cc: stable@vger.kernel.org
-Reviewed-by: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Link: https://lore.kernel.org/r/20230306040037.20350-4-rdunlap@infradead.org
-Signed-off-by: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- arch/sh/kernel/head_32.S |    6 +++---
- arch/sh/kernel/setup.c   |    4 ++--
- 2 files changed, 5 insertions(+), 5 deletions(-)
-
---- a/arch/sh/kernel/head_32.S
-+++ b/arch/sh/kernel/head_32.S
-@@ -64,7 +64,7 @@ ENTRY(_stext)
- 	ldc	r0, r6_bank
- #endif
- 
--#ifdef CONFIG_OF_FLATTREE
-+#ifdef CONFIG_OF_EARLY_FLATTREE
- 	mov	r4, r12		! Store device tree blob pointer in r12
- #endif
- 	
-@@ -315,7 +315,7 @@ ENTRY(_stext)
- 10:		
- #endif
- 
--#ifdef CONFIG_OF_FLATTREE
-+#ifdef CONFIG_OF_EARLY_FLATTREE
- 	mov.l	8f, r0		! Make flat device tree available early.
- 	jsr	@r0
- 	 mov	r12, r4
-@@ -346,7 +346,7 @@ ENTRY(stack_start)
- 5:	.long	start_kernel
- 6:	.long	cpu_init
- 7:	.long	init_thread_union
--#if defined(CONFIG_OF_FLATTREE)
-+#if defined(CONFIG_OF_EARLY_FLATTREE)
- 8:	.long	sh_fdt_init
- #endif
- 
---- a/arch/sh/kernel/setup.c
-+++ b/arch/sh/kernel/setup.c
-@@ -243,7 +243,7 @@ void __init __weak plat_early_device_set
- {
- }
- 
--#ifdef CONFIG_OF_FLATTREE
-+#ifdef CONFIG_OF_EARLY_FLATTREE
- void __ref sh_fdt_init(phys_addr_t dt_phys)
- {
- 	static int done = 0;
-@@ -330,7 +330,7 @@ void __init setup_arch(char **cmdline_p)
- 	/* Let earlyprintk output early console messages */
- 	early_platform_driver_probe("earlyprintk", 1, 1);
- 
--#ifdef CONFIG_OF_FLATTREE
-+#ifdef CONFIG_OF_EARLY_FLATTREE
- #ifdef CONFIG_USE_BUILTIN_DTB
- 	unflatten_and_copy_device_tree();
- #else
-
-
+-- 
+With best wishes
+Dmitry
