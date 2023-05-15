@@ -2,54 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 558A8702279
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 05:33:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFC74702268
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 05:32:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239530AbjEODdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 23:33:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43290 "EHLO
+        id S239399AbjEODcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 23:32:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238452AbjEODdD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 23:33:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5DFD1BD7;
-        Sun, 14 May 2023 20:30:38 -0700 (PDT)
+        with ESMTP id S238811AbjEODbT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 23:31:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C5CD1FD5;
+        Sun, 14 May 2023 20:29:49 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 885BB61E46;
-        Mon, 15 May 2023 03:29:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FF83C4339C;
-        Mon, 15 May 2023 03:29:25 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F218961E41;
+        Mon, 15 May 2023 03:29:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C07F4C433EF;
+        Mon, 15 May 2023 03:29:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684121366;
-        bh=Vc48zhXdXW2DwPisW5JMemJ+aJ34aLl88B7TdtDzoSc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Ji5bDr5iiqDK9556h8HVRaqWc4++TqzzUz89psbfiNnHp6KzhsRmtWun1pgpBVBuX
-         H+yBdSYOGwByL0kuTVC7zx5EiR72csbr/Pviz0aZb+emlSkFgm5g561PgOahuO4T2s
-         Atq/oOahmoU5J/QkLRzTUhSd47wbZ8h0ciDZEDXuLg0CCDREVo0vw946bdW2htAOdG
-         l0dpHNY3WxeD9E2Lm6AtCQndBBvakr5W88Gcp57j0wKE+vJmmcQIS7lO54WvifjUdT
-         9sf5BdI66Bu+g+ucUGHT+3ITkn1qGwJ8QDelaQnE6BJ1cKDzPr0XT97iKYRr6dfjF3
-         tnIrbah9XTlcQ==
+        s=k20201202; t=1684121368;
+        bh=htnO5qmkxPpaAyW1KrLyYCFRc26DsdPe9S1odeINOvg=;
+        h=From:To:Subject:Date:In-Reply-To:References:From;
+        b=kN3rNeaqWRFmoUlbUgwleEZCKW2lcmK/Hvcn+lBe5Tl4r8rw0BfMAvC9V1eft/0pJ
+         GI9Ejh+dG6O9TA2rZ0uJHepdd+SrQ6F8r8YRrr7uLw1FktHV2hZFn++S2Qqdd0Gcdr
+         AwCVP8vwCb19WJdvLCdgEvGOpNKwBWjBQapxrSseo5E5rQExsheoFZftCkKM7HoVtb
+         0m10XtpTZyWuMtIUYnGnrAl2WYTYvn5BGM4/G1NlHIJxByds6Oo+etkDlqLwv3GQMk
+         JSnnofzoSz8N0QAhLK7/+mJjJeTiliDF/HlyD/O+bvda9dRXDAstNYVCKkGHCpEn8o
+         T2iGAuAfNj2AQ==
 From:   Bjorn Andersson <andersson@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Revert "arm64: dts: qcom: sc8280xp: remove superfluous "input-enable""
-Date:   Sun, 14 May 2023 20:33:04 -0700
-Message-Id: <168412158456.1260758.15280942821090239789.b4-ty@kernel.org>
+Subject: Re: (subset) [PATCH v2 1/4] arm64: dts: qcom: sm8150: drop incorrect serial properties
+Date:   Sun, 14 May 2023 20:33:07 -0700
+Message-Id: <168412158456.1260758.2723323536611790207.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230411170938.1657387-1-krzysztof.kozlowski@linaro.org>
-References: <20230411170938.1657387-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230417080818.28398-1-krzysztof.kozlowski@linaro.org>
+References: <20230417080818.28398-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -58,17 +57,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Apr 2023 19:09:38 +0200, Krzysztof Kozlowski wrote:
-> This reverts commit 87e1f7b1a041a37390bf4fa7913683fb4f8d00d8 because it
-> removed input-enable from the LPASS TLMM, where it is still correct
-> (both bindings and Linux driver parse it).
+On Mon, 17 Apr 2023 10:08:15 +0200, Krzysztof Kozlowski wrote:
+> Drop incorrect and unused serial properties - address/size-cells and
+> reg-names:
+> 
+>   sa8155p-adp.dtb: geniqup@ac0000: serial@a84000: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'reg-names' were unexpected)
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc8280xp: Revert "arm64: dts: qcom: sc8280xp: remove superfluous "input-enable""
-      commit: 2d80b1e649dd74f5226484e244e57990348a9f18
+[1/4] arm64: dts: qcom: sm8150: drop incorrect serial properties
+      commit: e10094bf590696a7f845790485cc3f753b2fd94a
+[2/4] arm64: dts: qcom: sm8150: add missing qcom,smmu-500 fallback
+      commit: 83254172fa7f4d4a400f2ff441f111e424dd5ee0
+[3/4] arm64: dts: qcom: sm8150: drop snps,dw-pcie fallback compatible
+      commit: 7df522338d63c42946eb82f8af7dba8c363bd725
+[4/4] arm64: dts: qcom: sc8280xp: correct GIC child node name
+      commit: 9230758996c3ff0b5cf8e8506731c956bfb351bf
 
 Best regards,
 -- 
