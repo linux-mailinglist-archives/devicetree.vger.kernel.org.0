@@ -2,261 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4698E70329F
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:16:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E28F07032B6
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:19:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236831AbjEOQQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 12:16:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48676 "EHLO
+        id S242529AbjEOQS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 12:18:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242512AbjEOQQC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:16:02 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0711E199
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:16:01 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f475366514so43678965e9.2
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:16:00 -0700 (PDT)
+        with ESMTP id S242300AbjEOQSo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:18:44 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22910A3;
+        Mon, 15 May 2023 09:18:43 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96622bca286so2067008766b.1;
+        Mon, 15 May 2023 09:18:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684167359; x=1686759359;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=1eFh76R1BbOhO7jbuJiT5KDrPf1DGlfPfXIlsfDDt+0=;
-        b=Qv3cGYa1MY+UApUS2SSzI8upM2KLcv3RozBn7O9YHN7jVF9JvR6Xtzh/HsxdeeQ3yR
-         muaB380CPeNT2SzmI+tdjxVBFzpD82fzmUKbwNM0On0PeinadnmlPDcenRkcwfWdUnUp
-         UAkshoNmew207+QEZf4lCTKuxIz3KsgnE6rCmbfPaIra7sUcQzCvyh3yqG2/HL24/dME
-         VFiqLCpzE83ceqYZ54ZRrVYANzujLXdqUJaqC+1HNEgJKMbWDc1LEVu2t69MHmabcnAm
-         atsE3Got5Aq9sKrefAiOXern0fE4uwFPh5uMlKirIIBr6kx2kN0pzRQ+7HtB0D+Z/yBT
-         Y3HQ==
+        d=gmail.com; s=20221208; t=1684167521; x=1686759521;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fFPJu/bdf2To7OKUQNPH4m9IQexv87evllOs7pwaC0s=;
+        b=HOI4BtGRGKeREF4vFCjUoTunSeoZhYrwxv47tp75FfmjjcgWHsaU0LNYoVuKZrMktk
+         hqnIWnXQb2ZfIUWOuSigjbAmmxsWMLe3HoI9rUbL/UDVgYtGx5YtzY0RcqES+MTXVvR1
+         hDy5+Aj56e/EaKdD+mRC9hKUcKxf1WalvDAvcjlUFDy0GQprZivcrhDgOKsh5HvbvNrF
+         y6aeTIBOi2EYSWOYWNOJpYnIOLmYGiJUoP83ZTY7j+HcaEbEd6SN2u5/VbJsg9oOb4g4
+         EUMNKOklA2Cck+L3MZEP6xP4GMOVmdwDpEmt11g44Gg1sb2sR66mrk9filyfrArjC5cp
+         AoEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684167359; x=1686759359;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1eFh76R1BbOhO7jbuJiT5KDrPf1DGlfPfXIlsfDDt+0=;
-        b=ZsTGQ8cRUFw8Kmt49M8HCl/vrX4WlpKY8h0OPUhrWoynj2uQCxxPH+DgQSjN0SSiDl
-         TYvIr/jJ6AtUVHgRFq0GPyV0mfYbS7SNI3qEjEc6iV8B2DX6Wo2VSKJVqvJ/ssR2oaPM
-         sVamQhaGeGXaNTjHcTex3kkA/dmk7YyT+JZTeJ9YRs+idpwGTDvI4dBCgxx70xr2Qyn6
-         l9sIccj09qFheoFuHrV5fcoxpqYEkgkAtahXDylSjp41VT5+XttAdC5Eq+vB1RACqr8m
-         f0x7SyVnCaHm+FoFws+VNMM8fO58yvvHAOYgIlzBxEIohTiAGKkZstX/aFGtCduNEfUb
-         MhZQ==
-X-Gm-Message-State: AC+VfDyb4b//0Zvi8O30P3U9wcFERDJRqNaWQNlygCSPNpRWsrk12c6X
-        ZziFpClU9ayrJXNBubCcMKKHUA==
-X-Google-Smtp-Source: ACHHUZ5wgr21VVtcT7Q5D+SElbddLchkhKpg+bRM3EH8a2/Wwegv+h0BQcv4jrbuguVShjaWyjs2yw==
-X-Received: by 2002:a1c:7412:0:b0:3f4:298f:4d01 with SMTP id p18-20020a1c7412000000b003f4298f4d01mr16772932wmc.26.1684167359358;
-        Mon, 15 May 2023 09:15:59 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:ee7:a396:6195:bb56? ([2a01:e0a:982:cbb0:ee7:a396:6195:bb56])
-        by smtp.gmail.com with ESMTPSA id f24-20020a1cc918000000b003f0ad8d1c69sm37288889wmb.25.2023.05.15.09.15.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 09:15:58 -0700 (PDT)
-Message-ID: <eaa3ecd0-dcf0-01d8-b3ea-9dd900215839@linaro.org>
-Date:   Mon, 15 May 2023 18:15:57 +0200
+        d=1e100.net; s=20221208; t=1684167521; x=1686759521;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fFPJu/bdf2To7OKUQNPH4m9IQexv87evllOs7pwaC0s=;
+        b=OaJgIFpzvW35q/x6rkvvpf7YrobK0jFQ8fE/cbupTpMk+UpEAy5PAFg7P0+xnRbEhl
+         uc7If/S6AudcW0s9bLuTXjTJvvVbftDyktkIMYFFScGc1UFFETmD2nMKvlngDoxSYcBn
+         QIY65JdlnkCoYiB7y2PqANYv5av2kouX1hL2yflE1QONSLTbiNsqvaLSmjMf9onpEdf5
+         jFtLwh5Jhd52DjoobJ0jry0rOFblDksgRmtxLUDq5e3AvrALaSlaxJBpi3HckibQjrtf
+         cVFoR3sqnk7Z2sz1mvj8ujltoQyQdzqmu3DELwMQpygjZQVJn2Bft2/eXrlTgNVd6Ur3
+         7DSA==
+X-Gm-Message-State: AC+VfDwMK/MPgzpe/jWPiLkeJ29OGvmyIbIlLjBj4sDD2Mk7gAkMEnnT
+        b6jfwq+t3JGNWB8xqnN6VqCxg1f7fLGjRg==
+X-Google-Smtp-Source: ACHHUZ7syZQng2BvbRJEc59vRXvP+m7Y4V8LOWuPg2Y+gG3U6DbYMfHN6uYfLKL8kbgDSe1ANhRheQ==
+X-Received: by 2002:a17:907:d91:b0:933:4d37:82b2 with SMTP id go17-20020a1709070d9100b009334d3782b2mr31727220ejc.57.1684167521167;
+        Mon, 15 May 2023 09:18:41 -0700 (PDT)
+Received: from orome (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id hg10-20020a1709072cca00b009659c23e78fsm9653018ejc.215.2023.05.15.09.18.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 May 2023 09:18:40 -0700 (PDT)
+Date:   Mon, 15 May 2023 18:18:38 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Sumit Gupta <sumitg@nvidia.com>, treding@nvidia.com,
+        dmitry.osipenko@collabora.com, viresh.kumar@linaro.org,
+        rafael@kernel.org, jonathanh@nvidia.com, robh+dt@kernel.org,
+        lpieralisi@kernel.org, helgaas@kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, mmaddireddy@nvidia.com, kw@linux.com,
+        bhelgaas@google.com, vidyas@nvidia.com, sanjayc@nvidia.com,
+        ksitaraman@nvidia.com, ishah@nvidia.com, bbasu@nvidia.com
+Subject: Re: [Patch v8 0/8] Tegra234 Memory interconnect support
+Message-ID: <ZGJbXg88JOu4aiNe@orome>
+References: <20230511173211.9127-1-sumitg@nvidia.com>
+ <a032d9e6-6cb5-1856-9eda-28028bf05633@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v4 04/13] dt-bindings: display: add Amlogic MIPI DSI Host
- Controller bindings
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Nicolas Belin <nbelin@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-phy@lists.infradead.org
-References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
- <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-4-2592c29ea263@linaro.org>
- <fe2f22c7-8c39-faf3-bc65-a7c089200134@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <fe2f22c7-8c39-faf3-bc65-a7c089200134@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="8qg6A1xwpz6/pQdH"
+Content-Disposition: inline
+In-Reply-To: <a032d9e6-6cb5-1856-9eda-28028bf05633@linaro.org>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/05/2023 20:32, Krzysztof Kozlowski wrote:
-> On 12/05/2023 15:11, Neil Armstrong wrote:
->> The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
->> with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI Glue
->> on the same Amlogic SoCs.
-> 
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v5.18-rc4/source/Documentation/process/submitting-patches.rst#L586
 
-This message may be automatic, but context is always important when reviewing,
-this commit message is a re-spin on v3 that was reviewed by rob but I decided to remove the review
-tags since I added a new clock and did some other cleanups.
+--8qg6A1xwpz6/pQdH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-While the process describes "how the patch itself *should* be formatted", it's a best effort
-and not a blocker.
+On Sun, May 14, 2023 at 12:41:45PM +0200, Krzysztof Kozlowski wrote:
+> On 11/05/2023 19:32, Sumit Gupta wrote:
+> > Hi All,
+> >=20
+> > Have incorporated the suggestions in v7. Only changed 'patch 1' in v7
+> > to fix possible race when setting 'mc->bpmp' as pointed by Krzysztof.
+> > Requesting to merge the patch series.
+> >=20
+>=20
+> Can I apply it since you request it? I asked you long time ago to
+> clearly state dependencies or merging limitations. It's v8 and cover
+> letter still does not state it. Neither the patches do.
 
-I'll fix the wrapping since you pointed out, but referring to the submitting-patches.rst
-file (from a very old v5.18-rc4 version) is kind of childish.
+I thought we had discussed and agreed to merge this through the Tegra
+tree, which is why you had provided Acked-bys on all the patches. I was
+waiting for a final Acked-by on patch 1, since that was the only one
+still being revised.
 
-> 
-> Subject: drop second/last, redundant "bindings". The "dt-bindings"
-> prefix is already stating that these are bindings.
-> 
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   .../display/amlogic,meson-g12a-dw-mipi-dsi.yaml    | 117 +++++++++++++++++++++
->>   1 file changed, 117 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-g12a-dw-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-g12a-dw-mipi-dsi.yaml
->> new file mode 100644
->> index 000000000000..8169c7e93ff5
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-g12a-dw-mipi-dsi.yaml
->> @@ -0,0 +1,117 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +# Copyright 2020 BayLibre, SAS
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/amlogic,meson-g12a-dw-mipi-dsi.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Amlogic specific extensions to the Synopsys Designware MIPI DSI Host Controller
->> +
->> +maintainers:
->> +  - Neil Armstrong <neil.armstrong@linaro.org>
->> +
->> +description: |
->> +  The Amlogic Meson Synopsys Designware Integration is composed of
->> +  - A Synopsys DesignWare MIPI DSI Host Controller IP
->> +  - A TOP control block controlling the Clocks & Resets of the IP
->> +
->> +allOf:
->> +  - $ref: dsi-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - amlogic,meson-g12a-dw-mipi-dsi
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    minItems: 3
-> 
-> Missing maxItems
+If you prefer to merge this, that works for me too. In that case, the
+series:
 
-Ack
+Acked-by: Thierry Reding <treding@nvidia.com>
 
-> 
->> +
->> +  clock-names:
->> +    minItems: 3
->> +    items:
->> +      - const: pclk
->> +      - const: bit_clk
->> +      - const: px_clk
->> +      - const: meas_clk
-> 
-> Drop _clk suffixes. pclk can stay, it's a bit odd but recently Rob
-> clarified that suffix with underscore should not be there.
+Although it might be good if I pick up at least patch 8, just as a
+precautionary measure to avoid potential conflicts going forward. As I
+understand, it should be safe to apply that separately.
 
-Ack
+Thierry
 
-> 
->> +
->> +  resets:
->> +    minItems: 1
-> 
-> maxItems instead
+--8qg6A1xwpz6/pQdH
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Ack
+-----BEGIN PGP SIGNATURE-----
 
-> 
->> +
->> +  reset-names:
->> +    items:
->> +      - const: top
->> +
->> +  phys:
->> +    minItems: 1
-> 
-> Ditto
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmRiW14ACgkQ3SOs138+
+s6Hwyg//UwQpQ0EtSE3NvPmUTkNdtOnRCNocLMvlMPxH/nQSEy+fKcNW1vtXrFWn
+2hOa0ZdmQaS+3M8ZECIQlnuu9AsBJuivyeuGhOvyf7FX96wiGqtgSxbZHk/mzljL
+N3n1dOX90QYos9kh2OvRxreV/CnSwutuvs3AmhXv3MS1MNHBSFCAJ/RIc+n8McqU
+WDxRDhdyUyPdfsaO7rEpdm3VbSQqcUSEnY6q93lJd6/I4xYacQDPsKxlSyurZT07
+pqn+6oPTXnfRJH2qhXPDLceVLV2RxJdj8dv5ig/cpZBGPUPSY7gDsVhpib8OikUt
+NXfT/TXX0GVwC+w0T7BXbFS1ZlHUeoA/cW+l5wOjz5zKHMNqkjpKYQ8gHDC3fX7p
+0Lm4Jpj+TRr5Crb0pXNdRk9t5ZxeFGndOyqOW2CZTEbVNKjSNVsEhGd5AmsEny0u
+6yk9+iLf1mcLrWwzAWF6WwzyYOcB45cDRv8YFbyaTy9HIVH0ZZuJi+anaYZQRcOF
+sK3ERbA9P/e+d0j7pRgN8J2DR44z71Qq5jP338tBUeyq4xG970h4ikdVd9rF7Arb
+8ZJyRhHJnQ4zfbhCRGioIU5aINj3yn87p9l1N5MIoFV4ZzsGiO2e1zAGBUh7QN/b
+5YxjVuIyMSsH+tYrb5GHHtrJPmBOV9swfnwQHkfXiIEMd1Lnn3c=
+=V4PZ
+-----END PGP SIGNATURE-----
 
-Ack
-
-> 
->> +
->> +  phy-names:
->> +    items:
->> +      - const: dphy
->> +
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +
->> +    properties:
->> +      port@0:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        description: Input node to receive pixel data.
->> +
->> +      port@1:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        description: DSI output node to panel.
->> +
->> +    required:
->> +      - port@0
->> +      - port@1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - reset-names
->> +  - phys
->> +  - phy-names
->> +  - ports
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    dsi@7000 {
->> +          compatible = "amlogic,meson-g12a-dw-mipi-dsi";
->> +          reg = <0x6000 0x400>;
-> 
-> Your reg does not match unit address. The dt_binding_check should
-> actually complain about it.
-
-Well, it doesn't, will fix
-
-Thanks,
-Neil
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
+--8qg6A1xwpz6/pQdH--
