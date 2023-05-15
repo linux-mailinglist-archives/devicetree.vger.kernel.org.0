@@ -2,316 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 667F8702990
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 11:53:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E3D070299B
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 11:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233666AbjEOJxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 05:53:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55794 "EHLO
+        id S239768AbjEOJyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 05:54:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240904AbjEOJwa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 05:52:30 -0400
-Received: from mail-yw1-x112c.google.com (mail-yw1-x112c.google.com [IPv6:2607:f8b0:4864:20::112c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 305DC26AD
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 02:51:39 -0700 (PDT)
-Received: by mail-yw1-x112c.google.com with SMTP id 00721157ae682-55af4277904so186101657b3.1
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 02:51:39 -0700 (PDT)
+        with ESMTP id S240013AbjEOJxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 05:53:48 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB8FD213D
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 02:53:16 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-306f2b42a86so8177160f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 02:53:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684144297; x=1686736297;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=IF6RYhi9196ABKVQuykto9HSRX1UUNxAVL8RwbebD6Y=;
-        b=sL8H4oQe5XjWXMsicnXlIlhqp+6Cqc1VH3jd+E2QPvjxjnzEICur1g0y3vq9Gac8c6
-         lQgwUGSgMMcoXvNSGe9Q+Dlxi0sa7t38U3OO2LWXxraPi41oLlNjiINIKquBHEpCx/9Y
-         rPWvhzUffBEWis4dvDBrW1+Lbd3DI3kYPzm8eM8qKbqk9mBq5MfqyyaufUJd9+AY932x
-         fzCgQdilG0ljG1+DX1LATkCYF5ONMY15CEYldT4wwSXNxcDVS1ET3s+SQMoIrV9dLecE
-         vLpChenSJffNxxKWPk2o8lfMRTqJx8n8JBk6TZoXDiAwgqJRgHYjd92miZIM+WgN47Pu
-         POeQ==
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1684144395; x=1686736395;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4xoKLoBtO6JbCjepCa5c12r42aP/CGO4v/y128we9BQ=;
+        b=21H8dYaOZv0Nu034SJA5yJfTXlAxp6uvDuHiV/WEDpTbaVXJcFmPyMwDxnaCOeiS/U
+         HxqhNJTJfl3A6P48YyRVZZzuJQaPXSjnqQL6LuJ0NwwEcMhsQgbIk0W3IYBb8YRb2DO5
+         oDqHoX7ivR91Q93gcXMODInL29kM5lEuOOC+m5/VKPERSN0Rs639hLjfeJt1+K7GgXYB
+         lLLBqGyox5z/nboZv0gjYUWjMTRo9vJa1Xzbc3Wk6gM22vrCmIpohBgx5rqrEmUasxYY
+         vUGl7IVC1Jf/Nb52OUlLgF641K9pUd6AzBuloMij778+qBcXcfM3+mHhgQbWQAMSDI+x
+         CLTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684144297; x=1686736297;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1684144395; x=1686736395;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=IF6RYhi9196ABKVQuykto9HSRX1UUNxAVL8RwbebD6Y=;
-        b=FJ4Hq717uI1QwLpLqy3+fglln4srSChZ3Ohbsz+g+41zl4udyfvzRKATVca/EBdI2L
-         NQNUc/IlNRGXgv114x5EGYMd2cGailX4AZb5xpr+K2kDhoe13O3dNE8LglaPOdo6pCea
-         gHkA6ohn/1u0tHDlYDQ+RwzPEHUbyTE55aqWNYz5EHU+AfHaTDqnA4jguPEntZA5KLu/
-         vWCWmuxTzwBPKkwEqFGMV3wVJuLajpsm0sM/SQVIyCiiMSzmrCgoeaLtl4VGdB3QQcgY
-         s8BKNTs0oUgIuB8H90ICUSwDcBT+JiFOyNoHYaDC2b3OAZ3l3KuiKacipYx+wWS4u+tq
-         dyvg==
-X-Gm-Message-State: AC+VfDxEosfhzLlA0xyB3ZCJ9FqE/LvDde3Diw8rU1phMoxqm6TV9t4X
-        Ea4VEiZpoY6j2zliZHKtTfosXLvBfqHGYoX4Nhz6Qg==
-X-Google-Smtp-Source: ACHHUZ61RyajDItskrYu6z17N6xzCcMJCJ9wzZmcXym4gZ2NR7VnuAiYU0EkS7VmIsqXJ7Tacga8wHRHyCgX8tkF9EQ=
-X-Received: by 2002:a81:658a:0:b0:55d:8768:4081 with SMTP id
- z132-20020a81658a000000b0055d87684081mr29351285ywb.7.1684144297357; Mon, 15
- May 2023 02:51:37 -0700 (PDT)
+        bh=4xoKLoBtO6JbCjepCa5c12r42aP/CGO4v/y128we9BQ=;
+        b=kOI2tdLFgFRuK/cdMPKa33EsPc4a00ea9gzYXsm7FTMw1OMWzpd82WV7okxN1EIKL1
+         PTH/lLFtqTuneBL2dd0QmDHQg0xoNKC5E3Rfg5zn4LSeI8jCmHtMdDDfhBduIQvh562L
+         5+ovBWtoDENVe2X4WCYo1z9LQE414FZd/zXQZ3N4yu6b+Armw+LoG/LtOGdXKcH3EpfE
+         pfmgQR3mHavgz3GcqpyWnGxgM0UVqyDXU5MV0p17vKUL4r78pUg2OfjOALVyVbvjDmG8
+         tRvglfL3W3cMkNvy1jiiUNRDXdzH43aWt+Mka573dzPkOPEm80E42HSOUNxyLFNvboQi
+         YMaQ==
+X-Gm-Message-State: AC+VfDylYAb1f37+oB9cV9zWpapLJn+tYQdShy3xA+o0mEtERg+itTcn
+        2QcdBmcNWrzg0RF1if9wkgb9eQ==
+X-Google-Smtp-Source: ACHHUZ7uQiiIX7ojRv2QU5h9YTwUl2i38KxCdmaX6EFJ8ZTx9bFauBpjvVJkLmp8Na07xcfW2d3LBg==
+X-Received: by 2002:adf:e84e:0:b0:306:35fa:202b with SMTP id d14-20020adfe84e000000b0030635fa202bmr21392240wrn.6.1684144395121;
+        Mon, 15 May 2023 02:53:15 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:1388:9f6:c7d9:3b77])
+        by smtp.gmail.com with ESMTPSA id q12-20020a05600000cc00b0030795b2be15sm24228443wrx.103.2023.05.15.02.53.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 May 2023 02:53:14 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH v4 0/3] arm64: qcom: sa8775p: add support for UFS
+Date:   Mon, 15 May 2023 11:53:05 +0200
+Message-Id: <20230515095308.183424-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20230421124938.21974-1-quic_devipriy@quicinc.com>
- <20230421124938.21974-5-quic_devipriy@quicinc.com> <CAA8EJppyro1wM3KmDU3DVjKCqXH5+KaNoT_7ObVuuYNMoZKpoA@mail.gmail.com>
- <a220e00d-0559-35d5-80e9-7e11e566851a@quicinc.com> <e7b4afde-2cd7-0ab5-8a15-446173b42c40@linaro.org>
- <97315104-d9cc-27f8-8c52-b99080179269@quicinc.com>
-In-Reply-To: <97315104-d9cc-27f8-8c52-b99080179269@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 15 May 2023 12:51:26 +0300
-Message-ID: <CAA8EJpqrza+r3bygJh=TmNuNYUFspqvuV7gDFb5-QZcs4j3Dbg@mail.gmail.com>
-Subject: Re: [PATCH V3 4/6] arm64: dts: qcom: ipq9574: Add PCIe PHYs and
- controller nodes
-To:     Devi Priya <quic_devipriy@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, mani@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-clk@vger.kernel.org, quic_srichara@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_ipkumar@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 May 2023 at 12:36, Devi Priya <quic_devipriy@quicinc.com> wrote:
->
->
->
-> On 5/8/2023 5:10 PM, Dmitry Baryshkov wrote:
-> > On 08/05/2023 13:53, Devi Priya wrote:
-> >>
-> >>
-> >> On 4/22/2023 5:49 AM, Dmitry Baryshkov wrote:
-> >>> On Fri, 21 Apr 2023 at 15:50, Devi Priya <quic_devipriy@quicinc.com>
-> >>> wrote:
-> >>>>
-> >>>> Add PCIe0, PCIe1, PCIe2, PCIe3 (and corresponding PHY) devices
-> >>>> found on IPQ9574 platform. The PCIe0 & PCIe1 are 1-lane Gen3
-> >>>> host whereas PCIe2 & PCIe3 are 2-lane Gen3 host.
-> >>>>
-> >>>> Co-developed-by: Anusha Rao <quic_anusha@quicinc.com>
-> >>>> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> >>>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> >>>> ---
-> >>>>   Changes in V3:
-> >>>>          - Fixed up the PCI I/O port ranges
-> >>>>
-> >>>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 375
-> >>>> +++++++++++++++++++++++++-
-> >>>>   1 file changed, 370 insertions(+), 5 deletions(-)
-> >>>>
-> >>>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> >>>> b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> >>>> index e757b57957cf..953a839a1141 100644
-> >>>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> >>>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> >>>> @@ -6,8 +6,8 @@
-> >>>>    * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights
-> >>>> reserved.
-> >>>>    */
-> >>>>
-> >>>> -#include <dt-bindings/interrupt-controller/arm-gic.h>
-> >>>>   #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
-> >>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> >>>>   #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
-> >>>>
-> >>>>   / {
-> >>>> @@ -116,6 +116,58 @@
-> >>>>                  #size-cells = <1>;
-> >>>>                  ranges = <0 0 0 0xffffffff>;
-> >>>>
-> >>>> +               pcie0_phy: phy@84000 {
-> >>>> +                       compatible =
-> >>>> "qcom,ipq9574-qmp-gen3x1-pcie-phy";
-> >>>> +                       reg = <0x00084000 0x1000>;
-> >>>> +
-> >>>> +                       clocks = <&gcc GCC_PCIE0_AUX_CLK>,
-> >>>> +                                <&gcc GCC_PCIE0_AHB_CLK>,
-> >>>> +                                <&gcc GCC_ANOC_PCIE0_1LANE_M_CLK>,
-> >>>> +                                <&gcc GCC_SNOC_PCIE0_1LANE_S_CLK>,
-> >>>> +                                <&gcc GCC_PCIE0_PIPE_CLK>;
-> >>>> +                       clock-names = "aux", "cfg_ahb", "anoc_lane",
-> >>>> "snoc_lane", "pipe";
-> >>>> +
-> >>>> +                       assigned-clocks = <&gcc GCC_PCIE0_AUX_CLK>;
-> >>>> +                       assigned-clock-rates = <20000000>;
-> >>>> +
-> >>>> +                       resets = <&gcc GCC_PCIE0_PHY_BCR>,
-> >>>> +                                <&gcc GCC_PCIE0PHY_PHY_BCR>;
-> >>>> +                       reset-names = "phy", "common";
-> >>>> +
-> >>>> +                       #clock-cells = <0>;
-> >>>> +                       clock-output-names = "gcc_pcie0_pipe_clk_src";
-> >>>> +
-> >>>> +                       #phy-cells = <0>;
-> >>>> +                       status = "disabled";
-> >>>> +
-> >>>> +               };
-> >>>> +
-> >>>> +               pcie2_phy: phy@8c000 {
-> >>>> +                       compatible =
-> >>>> "qcom,ipq9574-qmp-gen3x2-pcie-phy";
-> >>>> +                       reg = <0x0008c000 0x2000>;
-> >>>> +
-> >>>> +                       clocks = <&gcc GCC_PCIE2_AUX_CLK>,
-> >>>> +                                <&gcc GCC_PCIE2_AHB_CLK>,
-> >>>> +                                <&gcc GCC_ANOC_PCIE2_2LANE_M_CLK>,
-> >>>> +                                <&gcc GCC_SNOC_PCIE2_2LANE_S_CLK>,
-> >>>> +                                <&gcc GCC_PCIE2_PIPE_CLK>;
-> >>>> +                       clock-names = "aux", "cfg_ahb", "anoc_lane",
-> >>>> "snoc_lane", "pipe";
-> >>>> +
-> >>>> +                       assigned-clocks = <&gcc GCC_PCIE2_AUX_CLK>;
-> >>>> +                       assigned-clock-rates = <20000000>;
-> >>>> +
-> >>>> +                       resets = <&gcc GCC_PCIE2_PHY_BCR>,
-> >>>> +                                <&gcc GCC_PCIE2PHY_PHY_BCR>;
-> >>>> +                       reset-names = "phy", "common";
-> >>>> +
-> >>>> +                       #clock-cells = <0>;
-> >>>> +                       clock-output-names = "gcc_pcie2_pipe_clk_src";
-> >>>> +
-> >>>> +                       #phy-cells = <0>;
-> >>>> +                       status = "disabled";
-> >>>> +
-> >>>> +               };
-> >>>> +
-> >>>>                  rng: rng@e3000 {
-> >>>>                          compatible = "qcom,prng-ee";
-> >>>>                          reg = <0x000e3000 0x1000>;
-> >>>> @@ -123,6 +175,58 @@
-> >>>>                          clock-names = "core";
-> >>>>                  };
-> >>>>
-> >>>> +               pcie3_phy: phy@f4000 {
-> >>>> +                       compatible =
-> >>>> "qcom,ipq9574-qmp-gen3x2-pcie-phy";
-> >>>> +                       reg = <0x000f4000 0x2000>;
-> >>>> +
-> >>>> +                       clocks = <&gcc GCC_PCIE3_AUX_CLK>,
-> >>>> +                                <&gcc GCC_PCIE3_AHB_CLK>,
-> >>>> +                                <&gcc GCC_ANOC_PCIE3_2LANE_M_CLK>,
-> >>>> +                                <&gcc GCC_SNOC_PCIE3_2LANE_S_CLK>,
-> >>>> +                                <&gcc GCC_PCIE3_PIPE_CLK>;
-> >>>> +                       clock-names = "aux", "cfg_ahb", "anoc_lane",
-> >>>> "snoc_lane", "pipe";
-> >>>> +
-> >>>> +                       assigned-clocks = <&gcc GCC_PCIE3_AUX_CLK>;
-> >>>> +                       assigned-clock-rates = <20000000>;
-> >>>> +
-> >>>> +                       resets = <&gcc GCC_PCIE3_PHY_BCR>,
-> >>>> +                                <&gcc GCC_PCIE3PHY_PHY_BCR>;
-> >>>> +                       reset-names = "phy", "common";
-> >>>> +
-> >>>> +                       #clock-cells = <0>;
-> >>>> +                       clock-output-names = "gcc_pcie3_pipe_clk_src";
-> >>>> +
-> >>>> +                       #phy-cells = <0>;
-> >>>> +                       status = "disabled";
-> >>>> +
-> >>>> +               };
-> >>>> +
-> >>>> +               pcie1_phy: phy@fc000 {
-> >>>> +                       compatible =
-> >>>> "qcom,ipq9574-qmp-gen3x1-pcie-phy";
-> >>>> +                       reg = <0x000fc000 0x1000>;
-> >>>> +
-> >>>> +                       clocks = <&gcc GCC_PCIE1_AUX_CLK>,
-> >>>> +                                <&gcc GCC_PCIE1_AHB_CLK>,
-> >>>> +                                <&gcc GCC_ANOC_PCIE1_1LANE_M_CLK>,
-> >>>> +                                <&gcc GCC_SNOC_PCIE1_1LANE_S_CLK>,
-> >>>> +                                <&gcc GCC_PCIE1_PIPE_CLK>;
-> >>>> +                       clock-names = "aux", "cfg_ahb", "anoc_lane",
-> >>>> "snoc_lane", "pipe";
-> >>>> +
-> >>>> +                       assigned-clocks = <&gcc GCC_PCIE1_AUX_CLK>;
-> >>>> +                       assigned-clock-rates = <20000000>;
-> >>>> +
-> >>>> +                       resets = <&gcc GCC_PCIE1_PHY_BCR>,
-> >>>> +                                <&gcc GCC_PCIE1PHY_PHY_BCR>;
-> >>>> +                       reset-names = "phy", "common";
-> >>>> +
-> >>>> +                       #clock-cells = <0>;
-> >>>> +                       clock-output-names = "gcc_pcie1_pipe_clk_src";
-> >>>> +
-> >>>> +                       #phy-cells = <0>;
-> >>>> +                       status = "disabled";
-> >>>> +
-> >>>> +               };
-> >>>> +
-> >>>>                  tlmm: pinctrl@1000000 {
-> >>>>                          compatible = "qcom,ipq9574-tlmm";
-> >>>>                          reg = <0x01000000 0x300000>;
-> >>>> @@ -146,10 +250,10 @@
-> >>>>                          reg = <0x01800000 0x80000>;
-> >>>>                          clocks = <&xo_board_clk>,
-> >>>>                                   <&sleep_clk>,
-> >>>> -                                <0>,
-> >>>> -                                <0>,
-> >>>> -                                <0>,
-> >>>> -                                <0>,
-> >>>> +                                <&pcie0_phy>,
-> >>>> +                                <&pcie1_phy>,
-> >>>> +                                <&pcie2_phy>,
-> >>>> +                                <&pcie3_phy>,
-> >>>>                                   <0>;
-> >>>>                          #clock-cells = <1>;
-> >>>>                          #reset-cells = <1>;
-> >>>> @@ -478,6 +582,267 @@
-> >>>>                                  status = "disabled";
-> >>>>                          };
-> >>>>                  };
-> >>>> +
-> >>>> +               pcie1: pci@10000000 {
-> >>>> +                       compatible = "qcom,pcie-ipq9574";
-> >>>> +                       reg =  <0x10000000 0xf1d>,
-> >>>> +                              <0x10000F20 0xa8>,
-> >>>> +                              <0x10001000 0x1000>,
-> >>>> +                              <0x000F8000 0x4000>,
-> >>>> +                              <0x10100000 0x1000>;
-> >>>> +                       reg-names = "dbi", "elbi", "atu", "parf",
-> >>>> "config";
-> >>>> +                       device_type = "pci";
-> >>>> +                       linux,pci-domain = <2>;
-> >>>> +                       bus-range = <0x00 0xff>;
-> >>>> +                       num-lanes = <1>;
-> >>>> +                       #address-cells = <3>;
-> >>>> +                       #size-cells = <2>;
-> >>>> +
-> >>>> +                       ranges = <0x01000000 0x0 0x00000000
-> >>>> 0x10200000 0x0 0x100000>,  /* I/O */
-> >>>> +                                <0x02000000 0x0 0x10300000
-> >>>> 0x10300000 0x0 0x7d00000>; /* MEM */
-> >>>> +
-> >>>> +                       #interrupt-cells = <1>;
-> >>>> +                       interrupt-map-mask = <0 0 0 0x7>;
-> >>>> +                       interrupt-map = <0 0 0 1 &intc 0 35
-> >>>> IRQ_TYPE_LEVEL_HIGH>, /* int_a */
-> >>>> +                                       <0 0 0 2 &intc 0 49
-> >>>> IRQ_TYPE_LEVEL_HIGH>, /* int_b */
-> >>>> +                                       <0 0 0 3 &intc 0 84
-> >>>> IRQ_TYPE_LEVEL_HIGH>, /* int_c */
-> >>>> +                                       <0 0 0 4 &intc 0 85
-> >>>> IRQ_TYPE_LEVEL_HIGH>; /* int_d */
-> >>>> +
-> >>>
-> >>> No iommu-map?
-> >> We do not enable the IOMMU stage1 translation for PCIe and the registers
-> >> have secure access only from TrustZone (It enables only stage2 for
-> >> Access control)
-> >
-> > So, no SMMU protection for PCIe transactions? This sounds like a step
-> > backwards.
-> Yes, we are not using stage1 translations.
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-We = software or we = hardware? If there is a hardware interface to
-SMMU, please describe it here.
+Update relevant DT bindings, add new config to the driver and add UFS
+and PHY nodes to the .dtsi and enable them in the board .dts for
+sa8775p-ride.
+
+v3 -> v4:
+- drop applied patches
+- mark the UFS as dma-coherent
+
+v2 -> v3:
+- fix DT bindings: move allOf: below required:
+- collect review tags
+
+v1 -> v2:
+- order new compatibles alphabetically
+- rework the UFS PHY bindings to accomodate more clocks
+- add a comment in the .dts regarding a non-standard clock used
+  by the UFS PHY
+
+Bartosz Golaszewski (3):
+  dt-bindings: ufs: qcom: add compatible for sa8775p
+  arm64: dts: qcom: sa8775p: add UFS nodes
+  arm64: dts: qcom: sa8775p-ride: enable UFS
+
+ .../devicetree/bindings/ufs/qcom,ufs.yaml     |  2 +
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts     | 19 ++++++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 59 +++++++++++++++++++
+ 3 files changed, 80 insertions(+)
 
 -- 
-With best wishes
-Dmitry
+2.39.2
+
