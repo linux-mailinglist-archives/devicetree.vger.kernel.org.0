@@ -2,135 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9121270268A
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 09:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FC047026EE
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 10:14:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239943AbjEOH6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 03:58:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34740 "EHLO
+        id S229834AbjEOIOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 04:14:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239895AbjEOH6c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 03:58:32 -0400
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2105.outbound.protection.outlook.com [40.107.255.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4667F1735;
-        Mon, 15 May 2023 00:58:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L+gWho9tVWV1XFaDQDkHmCJ5C8NRYyxWhjeCgzH2OWQaUsV94s34JwPx1g7f0OQKW+tk/c9a/bFmlcsjHXAXetK7axh/B5Vp9wJ0NgByJi0HmFuKVChiPfFdX+sziIfFk/XSDOIVEUu89PVI905AHG6pJp3+gTfCcTE7EK8qG2EhdR60HZ5+fg9bAlfoLOq1g4LWHluG45vq06hqCQlnEglZZVYHOC42BGyXjFpEZhFK1Zyi87+xRnhgU5bIhQy9pnSsmyKTgcuMlLp/ckStoZ3esv7U79WO9uTYEaNn3Y9otX6hOtK5JeAw8l6w0LbQpfZzlPCGXWkOt5d8RSl7hw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q8fXjhgqM6L0HAKjUwrAyfy7ZuTSadPp4PAc4iUvn8g=;
- b=dzfELt3EfnnshJFZDgc/DdMSO6Fr0Rs7ahGLDhtZPsuVv2olLG9l4vyxE1QWASWFoavQUg08IN8cM4cqWKt0MfjRZ6hD9wokNnQ+oOA3q12De9RBTVjUK2ydJ0OSXKwadeNLQJGgC9Ne7AAeDuHF1c5c7OYZ+QvjHqrAi2hQPBCV9Yh629QwzDAh8ZOskQi7CUXqICezXByM0gpC230p/pYO/7Cg2O1GihE4lOU7DtXk8qQRtMlOT8yNMKJ7p0JKxCmxokoNmOHXBJCOi6NbxuQNjxUZx7HYRtRQpyg2DQr2QfVxUWH9dcCK6intAyBkvxAe20dhJBYw2Q83vrqHrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q8fXjhgqM6L0HAKjUwrAyfy7ZuTSadPp4PAc4iUvn8g=;
- b=zTkk5+WD8AjjG1OTk2iIn1BbgH/GN8FdR9YTWVN7GfeLV6i3/lGrwkxwpCmK+s6rlDlckGi61YWTwd54anOkqc8jv/Q7hQOCNgG5Wef8sI5be5LA3rUzRT4SFlXtu7Ixuc6qGMVFKtPWN7rQVCYrQFo0ZtqyvTMUGn2aHSzGF8hRnWEt4BTUkSGwVcHRo28pyWFMd6uB5iDLvBZ9eHbiy1vD8hH/CVRs10fWZ6eGPwgCEEjnllYkKbi1IdC5GD8MrD2WmjgIGiBLJd6lpZpanR8vuX5QeNQoVyDleEAR+wIHo72Uu+L/Gi5azZAfyNSKwB3VNpDUyTq9gsp1qcKO/g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from SG2PR03MB6730.apcprd03.prod.outlook.com (2603:1096:4:1d5::9) by
- SEYPR03MB6901.apcprd03.prod.outlook.com (2603:1096:101:b4::10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6387.30; Mon, 15 May 2023 07:58:04 +0000
-Received: from SG2PR03MB6730.apcprd03.prod.outlook.com
- ([fe80::e116:7d2a:af78:fcf1]) by SG2PR03MB6730.apcprd03.prod.outlook.com
- ([fe80::e116:7d2a:af78:fcf1%5]) with mapi id 15.20.6387.023; Mon, 15 May 2023
- 07:58:04 +0000
-Message-ID: <33f5ff59-db7b-7576-64cb-972c0dfb0f7b@amlogic.com>
-Date:   Mon, 15 May 2023 15:57:20 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH V8 1/4] dt-bindings: clock: document Amlogic S4 SoC PLL
- clock controller
-Content-Language: en-US
-From:   Yu Tu <yu.tu@amlogic.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S229523AbjEOIOG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 04:14:06 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 592F7A4;
+        Mon, 15 May 2023 01:14:04 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8Dxh+nK6WFkZsAIAA--.15268S3;
+        Mon, 15 May 2023 16:14:02 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx87DI6WFkaWtfAA--.34622S3;
+        Mon, 15 May 2023 16:14:01 +0800 (CST)
+Subject: Re: [PATCH v9 2/2] spi: loongson: add bus driver for the loongson spi
+ controller
+To:     andy.shevchenko@gmail.com
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-References: <20230515031557.31143-1-yu.tu@amlogic.com>
- <20230515031557.31143-2-yu.tu@amlogic.com>
- <590560c9-4da6-bbd4-6aac-de57ab5403ba@linaro.org>
- <8c6ad0a9-7820-c7a2-bd3b-1eee87d96728@amlogic.com>
-In-Reply-To: <8c6ad0a9-7820-c7a2-bd3b-1eee87d96728@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SG2PR06CA0236.apcprd06.prod.outlook.com
- (2603:1096:4:ac::20) To SG2PR03MB6730.apcprd03.prod.outlook.com
- (2603:1096:4:1d5::9)
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230426071045.20753-1-zhuyinbo@loongson.cn>
+ <20230426071045.20753-3-zhuyinbo@loongson.cn> <ZFkPZhF8QqScXAmH@surfacebook>
+ <049c871d-c658-24c1-91e6-701098f5fc28@loongson.cn>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <16913b76-0256-492a-ec90-d367f2b52cc3@loongson.cn>
+Date:   Mon, 15 May 2023 16:14:00 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PR03MB6730:EE_|SEYPR03MB6901:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7523bf29-dce9-4638-f41e-08db551a1c50
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PAuvxfKPDZqnH/YqZS1KugmKM4bQOsI0vhnN7QJ5Bi/NeyOBgt6NHTvpJ2OV5trE2Fp3C89pp9XSVyFYtt3dkdJ/PC9VjDAhDi6oCWgprEAUgE0Kq5oDJX6u3w0UMEAsCze05hl1RZBXEV3LOOOwmXFu7hiWjzGTcarLHhREy46OtChFm5UpQ6JxCBdb+pJuIF+89++USwLUYTLwkhjYltjwUtZ2vS5W9WvpMW/tSgKSdnGRl3TvYabgoH8LKESOjYr+FiIXf2HCNtqUQXODqE2ZkI6dr7Ya0maPA1UvL48EPyDryHVWhJdxAX2Fj/Cga9i2wrz6bUvzIdWx8kZFY3J7ZKp3/dGOcmlkTcVvGEtYEDpqqpZrfF6l0ldRrqpAou0PwDmjvdUI3MIePriXJDikD3EmsBPM8CKsDMCeeMK57lpFpKHviFPYK8fDnw4hus8NKrlY31YNVslTuxNhoH6ZLbOKat0oprUgxl5SrTBDB/sUjFmuKbsa8wAXjGSva64JHuDBYMMG3feAQDjjxl44mOYqSn5POIEEG0dLhYRVTTIJkuBfU4o6gaGwSbyrckE2crJU3c3i9xxJ99BJwaO5ln7dsVsd5D18RiUzWAHA6FbNftZPpShRlASuYEfS532e+kyh9C9KuxcXDS4lUpFlPYjXljlnmh8iCXEzsd0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB6730.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39850400004)(376002)(396003)(346002)(136003)(366004)(451199021)(316002)(4326008)(66946007)(2906002)(31686004)(5660300002)(44832011)(8936002)(8676002)(7416002)(66556008)(66476007)(41300700001)(86362001)(2616005)(110136005)(478600001)(966005)(36756003)(6666004)(6486002)(6512007)(26005)(186003)(6506007)(53546011)(31696002)(83380400001)(107886003)(921005)(38100700002)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?amZCSWN0QUsvTVlVT3JMUDBlNHVKMVJUNmRkc1gzdkpwVFAyQno0WllXZjlO?=
- =?utf-8?B?azRFSVVYVkR6NWtSUGRMdWpmSVNXMUpoZE9vSXJzRklNVTBwUmlZb0xLZlBh?=
- =?utf-8?B?RnF2SHJXVHQvcDNvTzVwc0xDRnZJdkdPUys0cXRNVGtERVF1YXdRUG90ajRR?=
- =?utf-8?B?NXN1RG8zMGVEeE1sYmNSVmNaNGFJZ2ozMVp6dHhnSXZrb0JHVVRyQjdXMnYv?=
- =?utf-8?B?OE5oNmxQemlYLy9ranoydi9ZS3VPZWorRjduMXBDdXJrellWMi82MjlNcmVD?=
- =?utf-8?B?bHJ0dDVsWGNSazR6Z25GK3RrMVJMNUlzQlVEeUsza084TUJmOXp5VFA5Umwr?=
- =?utf-8?B?d21lVHVVUXlQTXRDSS9VOTMrUmpUWjBhanBoUGNKNkNxbVk4bHVReldwcHkv?=
- =?utf-8?B?cExkTjZoRnNMd0h3ZWc5Q3FOdkdSdDVhQlhGcWRidGppajFqMUVxcHpOejBL?=
- =?utf-8?B?UitOT1YwSVZkSGloTWE2RmxMRi80YmJrbXN6c1F4Zm1RN2o1UVV5RWdKaEx2?=
- =?utf-8?B?QUtDUzA4MkJxNTVHQmlwTHY1U2NNamc1dDFpRHBUZlAzMEtKS0MxdTh1d29J?=
- =?utf-8?B?bjVWOE5ZMGpSWVNIYWh4NkRwTkdvZEFmU05NZWRvTU5EcHF4ZUk2dXBsQi9D?=
- =?utf-8?B?bGYvYW9TNW5JZk43SjlnTlN1QzgzcEx2UG1Qb2dTNHRxd3ZxM0RHcEd2M1R4?=
- =?utf-8?B?Zm1uWS80L3A2Y25oUjl0T3BKM2w5UFZSTUNiZGhSVEhiZ1lENEZVUUZZcFZS?=
- =?utf-8?B?OSs2NUhwTkc1WnVCdm8wMmZpQ0hzS0U1QVh4UDBSRFpid29EMGRwcURvWkZI?=
- =?utf-8?B?S3NxeS8wQ1lCd29qUDFjbVhGQm1oSWF3ZzFKU1l4UTJwZ3A2ZmpFZ3hwa29q?=
- =?utf-8?B?emFJMVc5REdvcEI0MDcyOXFmOHdhZjRzaW44U25pV2tPSThJRzUvRnhOQ3ly?=
- =?utf-8?B?OE9iZlhOcW5QSm5WKzNFMXBrUS9KTHJMN2hINlBZMDQxc0hSa1JuelhpTlp0?=
- =?utf-8?B?aEVYUzQwNm1oMHdCUjdzaXJiT0dGT21NaDFKYmxZM2s2STVEVWxXSGxXZFBi?=
- =?utf-8?B?Ui82UWdnUUNLYTZybFlDRWlMU3JQMTZobVhyUzJSY1g0aXlzam5MelBBaFNx?=
- =?utf-8?B?RGl2SmpqWTJIUms5dkpPRmx3NHcrZ0ZlL2tweHR5MStYSW9MSVQ0SWtPYXRn?=
- =?utf-8?B?Yk1vU1ZTWFdPcVdQb21LTXJ3ajNNbjhPQnZBQ3pVcURWZ0pQWHdCdDRQNlYx?=
- =?utf-8?B?dWZZb2JnRjh6Witlam5IT2g5K2loRjhzRkErSnA0cCtZV1FocENtTFpjMWNC?=
- =?utf-8?B?NjhiT1kraEozQjFZWkxaYUdtQjJPb3RkRTNRRVQ2b2hRams2a0lVaGF6dDQ2?=
- =?utf-8?B?clloV1NRVFQ3ZXdMbFFHVHowWmo0clpXcUpSMDhYTnQ0ZHlCV1B0bGo4RUlG?=
- =?utf-8?B?NnFHRisrWis1R3B3NVJkU3I2YldMUDE0T2x6L095YW9VZm1IaGNKbGFsMURh?=
- =?utf-8?B?SlBEckNodk1CY1JVTkpBR3h6dVJ3c1k4ZlgxdloxcXREc0hpU2RzY1l5QURi?=
- =?utf-8?B?aUJxYlRIQStTRXdrN2t2d1lQcnRYa3JJTk1xUFlkSnYxd0UvU0x0WUFVcUJi?=
- =?utf-8?B?dDNkczBqaC9aR2JqdFBMc1ZhOEZPcmlJZHBIcjBDYnJ5ZHVXd21KeEwrNkE4?=
- =?utf-8?B?ZE1qWTRvVDRuY1Vlb0lVeG1jZWtZcHhqTTU1cUhjZTRRaFN4dzVzYVJzcERa?=
- =?utf-8?B?YlB5WUh0bGVESXR1T2ZPT0FvTFFsek95bXlqT2hvWCtYUWNpQUtKWDlOSWJN?=
- =?utf-8?B?Q0d3Z1llQ2puVVRiRnJBTzNsc3dFOS9rNUxNRUJnd0tnMmRzNjluQnhsOHkw?=
- =?utf-8?B?bXNnL2FsQVVXazhydUlhRmZzdlNJQmYySjBYcXZvaWFCTXI3cmpDYlIxZjMw?=
- =?utf-8?B?Q012K1BmNUZVYWpmOUhwKzdOMWtGTmFnT0R2TktPVjJXU0VId0xnTGp5RGVW?=
- =?utf-8?B?Q3ZqTEhiaThpcU03ZW9DMlRxV2xGZ0REUElqb0tXb0xVUjFrZ25QRkNBcWNm?=
- =?utf-8?B?dFJrV0hOQlpJM29lOU5rUkJ2R01mU2d0RHZZYTl6ekdyanFMd04vSVNLOE1l?=
- =?utf-8?Q?essIyqUQ1Eq2sw9sqIWGCPpKI?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7523bf29-dce9-4638-f41e-08db551a1c50
-X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB6730.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2023 07:58:03.9271
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IoVJKoHl+fXuZ0nW33MhsszKOHoeDjRDGl2W6xKefwxtXGRBLKqATxlBh3VwV7wJLXJX0qQgCY81Z1br9A6vKw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB6901
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <049c871d-c658-24c1-91e6-701098f5fc28@loongson.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Dx87DI6WFkaWtfAA--.34622S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvdXoW7Wr4ruFWDtF13Ar1kJF4ktFb_yoWktrc_A3
+        y09F1fXrW8J3ykJFykJw43ua9rAa1UKr98tayjv3Wava47JFs7Kr15u3Z3tFWDGr47Jrnx
+        Ary3urWa9345ZjkaLaAFLSUrUUUUbb8apTn2vfkv8UJUUUU8wcxFpf9Il3svdxBIdaVrn0
+        xqx4xG64xvF2IEw4CE5I8CrVC2j2Jv73VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUY
+        z7CY07I20VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2
+        IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84AC
+        jcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84
+        ACjcxK6I8E87Iv6xkF7I0E14v26F4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc80
+        4VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67
+        AKxVWUXVWUAwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48I
+        cVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21l42xK82IYc2Ij64vIr41l42xK82IY6x8Erc
+        xFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2Iq
+        xVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42
+        IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY
+        6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aV
+        CY1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUzgAwDUUUU
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -139,40 +71,47 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2023/5/15 15:35, Yu Tu wrote:
-> Hi Krzysztof,
->      Thank you for your prompt reply.
+在 2023/5/11 下午3:18, zhuyinbo 写道:
 > 
-> On 2023/5/15 14:32, Krzysztof Kozlowski wrote:
->> On 15/05/2023 05:15, Yu Tu wrote:
->>> Add the S4 PLL clock controller dt-bindings in the s4 SoC family.
->>>
->>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>
->> This is a friendly reminder during the review process.
->>
->> It looks like you received a tag and forgot to add it.
->>
->> If you do not know the process, here is a short explanation:
->> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->> versions. However, there's no need to repost patches *only* to add the
->> tags. The upstream maintainer will do that for acks received on the
->> version they apply.
->>
->> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
->>
->> If a tag was not added on purpose, please state why and what changed.
 > 
-> Yes. I don't know the process. So I need to add Reviewed-by: Rob Herring 
-> <robh@kernel.org>. And resend V8?
-> 
-
-I would like to ask you again by the way. I'm not sure if I can just add 
-the TAG. Because I actually changed the V8.
-
-https://lore.kernel.org/all/4f73fde6-bc67-ac31-08d2-3e84b0646e73@linaro.org/
+> 在 2023/5/8 下午11:04, andy.shevchenko@gmail.com 写道:
 
 >>
->> Best regards,
->> Krzysztof
+>>> +config SPI_LOONGSON_CORE
+>>> +    tristate "Loongson SPI Controller Core Driver Support"
 >>
+>> Does it need to be visible to the user?
+> 
+
+
+I try to set it invisible that by removing the SPI_LOONGSON_CORE Kconfig
+or removing "tristate "Loongson SPI Controller Core Driver Support" that
+will cause spi-core driver doesn't be compiled or compiled fail issue,
+so I will still set it visible to the user.
+
+>>
+>>> +    res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>>> +    if (res == NULL) {
+>>
+>> Why not using devm_platform_ioremap_resource()?
+> okay, I will use it.
+>>
+>>> +        dev_err(dev, "cannot get io resource memory\n");
+>>> +        return -ENOENT;
+>>
+>>     return dev_err_probe();
+
+
+It seems that there is no need to print memory log when use
+devm_platform_ioremap_resource because this function had contained
+the this memory log print thus I will return PTR_ERR(reg_base).
+
+         reg_base = devm_platform_ioremap_resource(pdev, 0);
+         if (IS_ERR(reg_base))
+                 return PTR_ERR(reg_base);
+
+Thanks.
+
+>>
+>>
+
