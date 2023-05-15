@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D419703541
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:57:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B088970365A
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:09:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243247AbjEOQ5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 12:57:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36924 "EHLO
+        id S243725AbjEORJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 13:09:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243245AbjEOQ5O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:57:14 -0400
+        with ESMTP id S243714AbjEORJA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:09:00 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C03A6EA6;
-        Mon, 15 May 2023 09:57:06 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48208DC7D;
+        Mon, 15 May 2023 10:07:31 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2192E62A22;
-        Mon, 15 May 2023 16:57:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5014C433D2;
-        Mon, 15 May 2023 16:57:04 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F1F9462B15;
+        Mon, 15 May 2023 17:07:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2C06C433EF;
+        Mon, 15 May 2023 17:07:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1684169825;
+        s=korg; t=1684170444;
         bh=h5mK51aebmM7frvlZj9/VAIXXGKmEyWTQHFtggW+AO4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CKnK31qLHFe/4Z/aJSbld5qtLY/z+vMHguZrsp707x/IvWcNcdBeyvzB4l2k0fSka
-         4Kf4QR43tNZ9g2Pvg6UZjhxDXaYc6KfCXlYhp7rEGsj4vu6fu3yjs7YH8jfH1r+MXw
-         20MKuhi8rX07Qvbi9RtogQOKUwJpx1HynJ6lYxX4=
+        b=TUUex4b+EBVZSy5aCJ4ugxmMLgITfSGXFhnfrrNiH2GVkg946j0O4BSyETxD78HqG
+         sIav+/u1PBHfUcmAn2QutjTvKUwYPoXRrS87z4hJTr3RmalU1a88F2rQq73dhVp4HH
+         s+iHM6TdUoksFmQ++gIrAGIQ/27dL96OZF3MY0cI=
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     stable@vger.kernel.org
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -39,12 +39,12 @@ Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
         John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
         linux-sh@vger.kernel.org
-Subject: [PATCH 6.3 153/246] sh: init: use OF_EARLY_FLATTREE for early init
-Date:   Mon, 15 May 2023 18:26:05 +0200
-Message-Id: <20230515161727.144541252@linuxfoundation.org>
+Subject: [PATCH 6.1 133/239] sh: init: use OF_EARLY_FLATTREE for early init
+Date:   Mon, 15 May 2023 18:26:36 +0200
+Message-Id: <20230515161725.683902109@linuxfoundation.org>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230515161722.610123835@linuxfoundation.org>
-References: <20230515161722.610123835@linuxfoundation.org>
+In-Reply-To: <20230515161721.545370111@linuxfoundation.org>
+References: <20230515161721.545370111@linuxfoundation.org>
 User-Agent: quilt/0.67
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
