@@ -2,63 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 385FA702FF2
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 16:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1877C703045
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 16:43:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238677AbjEOOeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 10:34:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58686 "EHLO
+        id S241894AbjEOOnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 10:43:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241849AbjEOOeA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 10:34:00 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3B0D268A;
-        Mon, 15 May 2023 07:33:30 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34FEWpL6026951;
-        Mon, 15 May 2023 09:32:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684161171;
-        bh=xouBqGJTe/JCoQCmMoRe3QLxsICzaUsthaIXw/SyHus=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=sHtubQSG0J4ZNrsvueP+naKaGOMIVFd25b9/OlwmsfEud4lnI+4wvBIToJty9sZjg
-         2KMToqmxv1D7Rlmj+9zxraSHaYCzO4vb5bWq7QIvqsQFjDM0tfUUn1/ur+rUk4acKu
-         0OtLDiUBE7jcxJGDXitwuB13aXS9mAzmLWCX+v5o=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34FEWoa8057487
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 15 May 2023 09:32:51 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
- May 2023 09:32:50 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 15 May 2023 09:32:50 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34FEWoHo007535;
-        Mon, 15 May 2023 09:32:50 -0500
-Date:   Mon, 15 May 2023 09:32:50 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Nitin Yadav <n-yadav@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am62-main: add sa3_secproxy in
- cbass_main
-Message-ID: <20230515143250.jxwwgse24lrcqouc@grunge>
-References: <20230510123216.3440019-1-n-yadav@ti.com>
- <20230510123216.3440019-3-n-yadav@ti.com>
+        with ESMTP id S239761AbjEOOnI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 10:43:08 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3308F1FCF
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 07:42:58 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <pza@pengutronix.de>)
+        id 1pyZPU-0001LS-4g; Mon, 15 May 2023 16:42:48 +0200
+Received: from pza by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <pza@pengutronix.de>)
+        id 1pyZPR-0007uO-70; Mon, 15 May 2023 16:42:45 +0200
+Date:   Mon, 15 May 2023 16:42:45 +0200
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Jack Zhu <jack.zhu@starfivetech.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, changhuang.liang@starfivetech.com
+Subject: Re: [PATCH v1 3/5] media: cadence: Add operation on reset
+Message-ID: <20230515144245.GA29284@pengutronix.de>
+References: <20230512102637.50917-1-jack.zhu@starfivetech.com>
+ <20230512102637.50917-4-jack.zhu@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230510123216.3440019-3-n-yadav@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20230512102637.50917-4-jack.zhu@starfivetech.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: pza@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,45 +59,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18:02-20230510, Nitin Yadav wrote:
-> Add sa3_secproxy node in k3-am62-main.dtsi to keep device tree
-> nodes in sync with u-boot nodes.
-> 
-> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> index b3e4857bbbe4..7c2af5b0e022 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -42,6 +42,15 @@ gic_its: msi-controller@1820000 {
->  		};
->  	};
+Hi Jack,
+
+On Fri, May 12, 2023 at 06:26:35PM +0800, Jack Zhu wrote:
+[...]
+> @@ -299,6 +312,16 @@ static int csi2rx_get_resources(struct csi2rx_priv *csi2rx,
+>  		return PTR_ERR(csi2rx->p_clk);
+>  	}
 >  
-> +	sa3_secproxy: secproxy@44880000 {
-> +		compatible = "ti,am654-secure-proxy";
-> +		#mbox-cells = <1>;
-> +		reg-names = "rt", "scfg", "target_data";
-> +		reg = <0x00 0x44880000 0x00 0x20000>,
-> +		      <0x0 0x44860000 0x0 0x20000>,
-> +		      <0x0 0x43600000 0x0 0x10000>;
-be consistent with 0x00 instead of 0x0
+> +	csi2rx->sys_rst = devm_reset_control_get_optional_exclusive(&pdev->dev,
+> +								    "sys_rst");
 
-You want this marked reserved and documented since it is to be used only by HSM
-processors and NOT general processors.
+This doesn't match the bindings documented in patch 2.
+Should this be "sys"?
 
-> +	};
+> +	if (IS_ERR(csi2rx->sys_rst))
+> +		return PTR_ERR(csi2rx->sys_rst);
 > +
->  	main_conf: syscon@100000 {
->  		compatible = "syscon", "simple-mfd";
->  		reg = <0x00 0x00100000 0x00 0x20000>;
-> -- 
-> 2.25.1
-> 
+> +	csi2rx->p_rst = devm_reset_control_get_optional_exclusive(&pdev->dev,
+> +								  "p_rst");
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+This doesn't match the bindings documented in patch 2.
+Should this be "reg_bank"?
+
+> +	if (IS_ERR(csi2rx->p_rst))
+> +		return PTR_ERR(csi2rx->p_rst);
+> +
+>  	csi2rx->dphy = devm_phy_optional_get(&pdev->dev, "dphy");
+>  	if (IS_ERR(csi2rx->dphy)) {
+>  		dev_err(&pdev->dev, "Couldn't get external D-PHY\n");
+> @@ -349,14 +372,21 @@ static int csi2rx_get_resources(struct csi2rx_priv *csi2rx,
+>  	}
+>  
+>  	for (i = 0; i < csi2rx->max_streams; i++) {
+> -		char clk_name[16];
+> +		char name[16];
+>  
+> -		snprintf(clk_name, sizeof(clk_name), "pixel_if%u_clk", i);
+> -		csi2rx->pixel_clk[i] = devm_clk_get(&pdev->dev, clk_name);
+> +		snprintf(name, sizeof(name), "pixel_if%u_clk", i);
+> +		csi2rx->pixel_clk[i] = devm_clk_get(&pdev->dev, name);
+>  		if (IS_ERR(csi2rx->pixel_clk[i])) {
+> -			dev_err(&pdev->dev, "Couldn't get clock %s\n", clk_name);
+> +			dev_err(&pdev->dev, "Couldn't get clock %s\n", name);
+>  			return PTR_ERR(csi2rx->pixel_clk[i]);
+>  		}
+> +
+> +		snprintf(name, sizeof(name), "pixel_if%u_rst", i);
+
+This doesn't match the bindings documented in patch 2.
+Should this be "pixel_if%u"?
+
+regards
+Philipp
