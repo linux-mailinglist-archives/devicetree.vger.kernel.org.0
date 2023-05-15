@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50D2770244D
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51ECD702454
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:18:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238679AbjEOGR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 02:17:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50060 "EHLO
+        id S238984AbjEOGS1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 02:18:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238452AbjEOGRz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:17:55 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39B952120
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:17:54 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50be17a1eceso22863006a12.2
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:17:54 -0700 (PDT)
+        with ESMTP id S238619AbjEOGS0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:18:26 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D7E11BF9
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:18:23 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-50bc37e1525so22868229a12.1
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:18:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684131472; x=1686723472;
+        d=linaro.org; s=google; t=1684131502; x=1686723502;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ldBcmg1Q8SbxfgETwxTKU35G/M1o/OwaJtErXXKJya8=;
-        b=snK0yUYEFNsLAhu8Aoqi2COu/QBq02FeqAtIXCZoVgUuNV39L7uZo7RxlD4vrvq22R
-         CBYNUnoPlvSeLXd+OJnUuyJDMCvFZc51YbmLDNJyh4PMoYFOb3fuFjVQAi1EZN03YmHV
-         37YVRyTJlSHmicqbZcFodYCf8Ji4dm+ewWBgG8qL/VJI3DcvNuhJGIH8jyfqk4nNEh1K
-         UjI1QK4w02YldqSbr3sahPUhHjzrt2d2fQhFSPkLX2tEFp5kVbnJSXV82l72GZbhVbjB
-         d60P6s7WprwdSnxtFyUY5yeI4zxiFWIux3GRSojrDds8oja5/tJJRHvxwSz7ikwOE/33
-         K0XQ==
+        bh=dsn+9t9oVdV6VsJksU9eG/4JyWhhvtoT+WJssMz6Kqk=;
+        b=IaxJvjTC9o2itPehQq+Fh3w60a6Z3j7hL5QJ+hrh3bl84WOTypS4In51mPjFyGiYm4
+         6mKPKxMqNLTmVFXDhDWpkCS6rt3kkAb8w2MAWvlrvefURGJyUdEsP2hSshZY9iH1G0kX
+         m402++3rcCuBf6fKZ8tjYe2JHo7EzyPrSTvHhK8hgPDe8oAeaAjzcNm54tMcwrktF8o5
+         FUfBduSosyBSqdMwYJGd5mCeJ8I3k0HpHG91DE1h/wh4pqBQn81vRU9zlRFVjZVu/VUa
+         sZg80j2zaiV+UNCx3prJ6VdIJ/hzwqjuKerymez+V1cl1M9q/IUw5azAvnqrfF7IkNbQ
+         0Vsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684131472; x=1686723472;
+        d=1e100.net; s=20221208; t=1684131502; x=1686723502;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ldBcmg1Q8SbxfgETwxTKU35G/M1o/OwaJtErXXKJya8=;
-        b=LZogbmCmUmK6pWJjso6dJsMGtcr7Pr65iWmEZ5t7mOpplks3M9j0h31mVSV7SnffNr
-         w1iBYVi3NwylubWwuExWG/+quOWij/SwcOOsVrMbMyZVTinqU2hr6UnZIBWGHhGHZ/nR
-         TXskgdEneIhz1W0zbrXgZKyRU6aMjavBuGxR4PiBozc+y80DiXwbGEoN6EsOd3uTbN9k
-         HzgeScyWhu2WlZjG2Ld6rZhPo2eyqxN+CHhhHzAMCQIiz7wo7kFYYrphJVTY2/Le45CQ
-         2GWUDWzQkfNCWD0vRJrJpQGs1uTR4Im/8xQX5//7URGRqFjGo5Dka3RHkyWCGnyjAuW5
-         n2KA==
-X-Gm-Message-State: AC+VfDwXLlQmIgSCzy2q2QVMGUEiUBc3V6I4XgOsQHPvvAKswH17gQM4
-        v5ot1bRw/6NTmEKsSOAe53RaAQ==
-X-Google-Smtp-Source: ACHHUZ7CM7AjXzzAxacy/dfNX6gRdlHAbIjGTapjY57KXBzUnPctv4wcLOJGWnmVVI2ylxRy6gvKNQ==
-X-Received: by 2002:aa7:d686:0:b0:50b:f9d8:ff72 with SMTP id d6-20020aa7d686000000b0050bf9d8ff72mr25877744edr.31.1684131472556;
-        Sun, 14 May 2023 23:17:52 -0700 (PDT)
+        bh=dsn+9t9oVdV6VsJksU9eG/4JyWhhvtoT+WJssMz6Kqk=;
+        b=Vo/hDYfXDeKUqBxTkn4oWsxsPZ1cYM/uPObBPbPn0gl1aWl+ImLAQrM+W68P4ftH5R
+         qzkJMCFG4aXp4XmvVnZnNeer/rYYTWNDeuCZbbyRHiG8nknTdA4IUUHRxAaPpWzNQBvT
+         MdxmVV4uUXNZvRzH5S93srmSS6ns9J9xf541O92nTKdevHvkMUdiqPeGQNVlJYkyMFFp
+         LBJ2+Bu0hfOBvz1HRdX/rKw3T7QqIG/ZS3nYpI2ebAh7FjGTYWnDr196M4fpYEZTppv/
+         BsxNXCkEXK5kIQt3EkD8/7+W2pr3oWbitpXswLfjtg8BeNrXs+8S9O8sru4Ip6Ee28As
+         KTig==
+X-Gm-Message-State: AC+VfDyCx/DdaYE40kvcLESDqrC6MOfTXgUmr/37gsVika4DuGZeC4HT
+        brvYXJZy6Qgtmsh7CFglEjzl3g==
+X-Google-Smtp-Source: ACHHUZ4oVzGPtamm9pgZntqiXiY0OraZvsaEW1dnClbV9M3ieJqpsTcbFb10UO9ZQOKGAwkSNtvfgQ==
+X-Received: by 2002:a17:907:97c9:b0:96a:1348:7a27 with SMTP id js9-20020a17090797c900b0096a13487a27mr20117942ejc.12.1684131501689;
+        Sun, 14 May 2023 23:18:21 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id l23-20020aa7c3d7000000b004f9e6495f94sm6823347edr.50.2023.05.14.23.17.51
+        by smtp.gmail.com with ESMTPSA id d1-20020a170907272100b0094bb4c75695sm9056804ejl.194.2023.05.14.23.18.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 May 2023 23:17:52 -0700 (PDT)
-Message-ID: <3954a518-0e10-63ec-6a87-a127862966b0@linaro.org>
-Date:   Mon, 15 May 2023 08:17:50 +0200
+        Sun, 14 May 2023 23:18:21 -0700 (PDT)
+Message-ID: <1a72facf-422e-7a1a-032e-8760424b012d@linaro.org>
+Date:   Mon, 15 May 2023 08:18:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: iio: temperature: Add support for tmp006
+Subject: Re: [PATCH 2/2] iio: temperature: tmp006: Add OF device matching
+ support
 Content-Language: en-US
 To:     Anup Sharma <anupnewsmail@gmail.com>,
         Jonathan Cameron <jic23@kernel.org>,
@@ -67,9 +68,9 @@ To:     Anup Sharma <anupnewsmail@gmail.com>,
         linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <cover.1684089997.git.anupnewsmail@gmail.com>
- <e6e56cd513625c76435f444f13c640f9556fb2bc.1684089997.git.anupnewsmail@gmail.com>
+ <d0114a66fa3e9fb07a98dde3cc0bd87c526a3753.1684089997.git.anupnewsmail@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e6e56cd513625c76435f444f13c640f9556fb2bc.1684089997.git.anupnewsmail@gmail.com>
+In-Reply-To: <d0114a66fa3e9fb07a98dde3cc0bd87c526a3753.1684089997.git.anupnewsmail@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,20 +83,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/05/2023 21:01, Anup Sharma wrote:
-> Add devicetree binding document for TMP006, IR thermopile sensor.
+On 14/05/2023 21:03, Anup Sharma wrote:
+> Adds an of_device_id table entry to the driver, enabling
+> device matching through device tree. With this update, the driver
+> can now match devices using both the i2c_device_id entry and the
+> newly added of_device_id table.
 > 
 > Signed-off-by: Anup Sharma <anupnewsmail@gmail.com>
-> 
-
-Missing ---
-
-
-> Changes:
-> V1 -> V2: Removed redundant dt-binding from subject.
->           Added supply information.
->           Adhere to the generic node name.
 > ---
+>  drivers/iio/temperature/tmp006.c | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/temperature/tmp006.c b/drivers/iio/temperature/tmp006.c
+> index cdf08477e63f..2b1782263cc9 100644
+> --- a/drivers/iio/temperature/tmp006.c
+> +++ b/drivers/iio/temperature/tmp006.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/module.h>
+>  #include <linux/pm.h>
+>  #include <linux/bitops.h>
+> +#include <linux/mod_devicetable.h>
+>  
+>  #include <linux/iio/iio.h>
+>  #include <linux/iio/sysfs.h>
+> @@ -272,15 +273,22 @@ static int tmp006_resume(struct device *dev)
+>  
+>  static DEFINE_SIMPLE_DEV_PM_OPS(tmp006_pm_ops, tmp006_suspend, tmp006_resume);
+>  
+> +static const struct of_device_id tmp006_of_match[] = {
+> +	{ .compatible = "ti,tmp006", },
+> +	{ }
+> +};
+> +
+
+Drop blank line.
+
+> +MODULE_DEVICE_TABLE(of, tmp006_of_match);
+> +
+>  static const struct i2c_device_id tmp006_id[] = {
+>  	{ "tmp006", 0 },
+>  	{ }
+>  };
+> -MODULE_DEVICE_TABLE(i2c, tmp006_id);
+
+This should stay.
 
 
 Best regards,
