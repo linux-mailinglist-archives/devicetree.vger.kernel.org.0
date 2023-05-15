@@ -2,54 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7CD1703170
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 17:22:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E413970317E
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 17:24:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242366AbjEOPWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 11:22:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37582 "EHLO
+        id S239399AbjEOPYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 11:24:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242346AbjEOPWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 11:22:02 -0400
+        with ESMTP id S241917AbjEOPYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 11:24:33 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE3DC9;
-        Mon, 15 May 2023 08:22:01 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB80BFC;
+        Mon, 15 May 2023 08:24:32 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C869C6263B;
-        Mon, 15 May 2023 15:22:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B3CDC4339C;
-        Mon, 15 May 2023 15:21:56 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6140862651;
+        Mon, 15 May 2023 15:24:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DED9C4339B;
+        Mon, 15 May 2023 15:24:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684164120;
-        bh=IV23AsLNwzuLafgNGOBzEcDmQMycztCu/qSgpLGtNyc=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=hOwQ53vEjcIEHXAAGk2B4KhBN8Wp+N66F8w2n5/xtxMXRxE5OrLZRAxIeFekq/Hct
-         RXTuj4cFbjNzvhgcqzN5gtLl8znvvkAZ3qZXRrAmHyOrpQuUGZ96rBbde7nBSFvMZy
-         /zeqKHjU7IR1t65jbf0FjZyJYG/vnoPRKzBYsbwkhIgrzZVQhQpg+0rbx5wPTkLwpV
-         j/8cfMA+otARRpIXfF0YLf+4iGKgGUVJjDquusl+6B77gvLA8KEYjCW0dRL5hagRKe
-         NyFDcItKNAe/LhoQQ0VBHYPFB/IjyiVBtNZL80FC3/grNiorJhbU7RvkWIS+GeqIaO
-         /ZG8SCmp8PzWw==
-From:   Mark Brown <broonie@kernel.org>
-To:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, linus.walleij@linaro.org,
-        vkoul@kernel.org, Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     lgirdwood@gmail.com, yung-chuan.liao@linux.intel.com,
-        sanyog.r.kale@intel.com, pierre-louis.bossart@linux.intel.com,
-        alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
-References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
-Subject: Re: (subset) [PATCH 00/10] Add cs42l43 PC focused SoundWire CODEC
-Message-Id: <168416411599.413889.14124867507842096231.b4-ty@kernel.org>
-Date:   Tue, 16 May 2023 00:21:55 +0900
+        s=k20201202; t=1684164271;
+        bh=TOYagaF2OGRnswyh28jqySIaCoaZNMX7ZtxpN/6ZW4k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YlZp68+dEDaJDBwLsJHJrfG7G5nP96VM+syGAf5B6w7O5ESdeNbuMgY19mwuHPI7I
+         VBqbc3WMtkgj/G+pmssyh59OmJFajE1+7+gUlJCanH4TttBQf8PDqP8/+3lX9XBlvu
+         Y/FfVwyAbXqZbb2vv2raN4GU1oBFh1J7pgUD551wZS4bYnCmhaQTKd9Mjfebcmok7u
+         bFETCw0/c3xdRPkCz38urceAQDaSAHTFNXKIPVSIEm3GZoof/BMNptH/t4sYRFfYio
+         tDo6DAPEJmHpGKIeHsUqOs6d5Idjbu1M0Bea41a88K0XNMLQrTtl2FLhrtR+KLqVa5
+         b2x0E4PaLNhBQ==
+Date:   Mon, 15 May 2023 16:24:25 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: [GIT PULL] Immutable branch between MFD, Clk, Input, Pinctrl, RTC,
+ Power, Regulator and Sound due for the v6.5 merge window
+Message-ID: <20230515152425.GV10825@google.com>
+References: <20230504173618.142075-1-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-bfdf5
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230504173618.142075-1-sebastian.reichel@collabora.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -60,49 +64,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 May 2023 13:28:28 +0100, Charles Keepax wrote:
-> This patch chain adds support for the Cirrus Logic cs42l43 PC focused
-> SoundWire CODEC. Some supporting work is included in the chain,
-> including adding an ASoC control notification helper function and
-> adding support for IRQs generated by the in-band SoundWire alert
-> mechanism.
-> 
-> The chain is currently based of v6.4-rc1 because I am not 100% sure
-> which tree we want to send everything through. The CODEC support
-> has a build dependency on both the SoundWire change and the ASoC
-> soc-component change.
-> 
-> [...]
+Enjoy!
 
-Applied to
+The following changes since commit ac9a78681b921877518763ba0e89202254349d1b:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+  Linux 6.4-rc1 (2023-05-07 13:34:35 -0700)
 
-Thanks!
+are available in the Git repository at:
 
-[02/10] ASoC: soc-component: Add notify control helper function
-        commit: ace9ed54bd874f2c63723b13b1747f6463e2587e
-[03/10] ASoC: ak4118: Update to use new component control notify helper
-        commit: 476d942e50d4f22d8621a18612dd6cfbf0a5d1d9
-[04/10] ASoC: wm_adsp: Update to use new component control notify helepr
-        commit: 95d06196c83c9dc1b6fd6cda07a1bac54ca2d568
+  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tb-mfd-clk-input-pinctrl-power-rtc-sound-v6.5
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+for you to fetch changes up to 924764aa5f2e705f46f548611e6a9d6b986ae880:
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+  pinctrl: rk805: Add rk806 pinctrl support (2023-05-15 16:21:01 +0100)
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+----------------------------------------------------------------
+Immutable branch between MFD, Clk, Input, Pinctrl, RTC, Power, Regulator and Sound due for the v6.5 merge window
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+----------------------------------------------------------------
+Sebastian Reichel (9):
+      clk: RK808: Reduce 'struct rk808' usage
+      mfd: rk808: Convert to device managed resources
+      mfd: rk808: Use dev_err_probe
+      mfd: rk808: Replace 'struct i2c_client' with 'struct device'
+      mfd: rk808: Split into core and i2c
+      mfd: rk8xx-i2c: Use device_get_match_data
+      dt-bindings: mfd: Add rk806 binding
+      mfd: rk8xx: Add rk806 support
+      pinctrl: rk805: Add rk806 pinctrl support
 
-Thanks,
-Mark
+ .../devicetree/bindings/mfd/rockchip,rk806.yaml    | 406 ++++++++++++++++++++
+ drivers/clk/Kconfig                                |   2 +-
+ drivers/clk/clk-rk808.c                            |  34 +-
+ drivers/input/misc/Kconfig                         |   2 +-
+ drivers/mfd/Kconfig                                |  21 +-
+ drivers/mfd/Makefile                               |   4 +-
+ drivers/mfd/{rk808.c => rk8xx-core.c}              | 352 ++++++-----------
+ drivers/mfd/rk8xx-i2c.c                            | 185 +++++++++
+ drivers/mfd/rk8xx-spi.c                            | 124 ++++++
+ drivers/pinctrl/Kconfig                            |   2 +-
+ drivers/pinctrl/pinctrl-rk805.c                    | 189 ++++++++--
+ drivers/power/supply/Kconfig                       |   2 +-
+ drivers/regulator/Kconfig                          |   2 +-
+ drivers/rtc/Kconfig                                |   2 +-
+ include/linux/mfd/rk808.h                          | 417 ++++++++++++++++++++-
+ sound/soc/codecs/Kconfig                           |   2 +-
+ 16 files changed, 1464 insertions(+), 282 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk806.yaml
+ rename drivers/mfd/{rk808.c => rk8xx-core.c} (71%)
+ create mode 100644 drivers/mfd/rk8xx-i2c.c
+ create mode 100644 drivers/mfd/rk8xx-spi.c
 
+-- 
+Lee Jones [李琼斯]
