@@ -2,98 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06C33702622
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 09:36:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D7F070262A
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 09:37:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbjEOHgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 03:36:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49164 "EHLO
+        id S238231AbjEOHg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 03:36:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229701AbjEOHgD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 03:36:03 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C638910DC;
-        Mon, 15 May 2023 00:36:00 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 43A1124E1B5;
-        Mon, 15 May 2023 15:35:38 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 15 May
- 2023 15:35:38 +0800
-Received: from [192.168.125.124] (113.72.146.187) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 15 May
- 2023 15:35:37 +0800
-Message-ID: <00e8d677-052c-68a1-3ba6-71aa2315feca@starfivetech.com>
-Date:   Mon, 15 May 2023 15:35:36 +0800
+        with ESMTP id S238258AbjEOHgx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 03:36:53 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BDEF1710;
+        Mon, 15 May 2023 00:36:51 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34F7aZXP064742;
+        Mon, 15 May 2023 02:36:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684136195;
+        bh=08o8EyWqOpKfyd0hyqux8FTD1PJ7h92J62j8ZZJ/QPc=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=epLlIyNQwg2S18mNbFRtTHOFiobOWOEqtKi59Snq5qmCcg4ufveNCFY3OjQnssTXS
+         XfDvmjbXLjBG8K9vvbY2evrifF4NJYDUOT2BeJQypbBcAm1F1+0BLQqmBFsGSH2oaL
+         EDy6crlJT1B/J65hZhHkRZABDkHwDzECpg2WDyio=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34F7aZOE114774
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 15 May 2023 02:36:35 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
+ May 2023 02:36:35 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 15 May 2023 02:36:35 -0500
+Received: from [172.24.145.61] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34F7aVHm059347;
+        Mon, 15 May 2023 02:36:32 -0500
+Message-ID: <65c6a354-434b-4e50-81ec-8ce705df2888@ti.com>
+Date:   Mon, 15 May 2023 13:06:31 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v1 2/2] riscv: dts: starfive: jh7110: Add watchdog node
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+CC:     Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <afd@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH v4 1/5] arm64: dts: ti: k3-j784s4-main: Add system
+ controller and SERDES lane mux
 Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>
-CC:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        <linux-kernel@vger.kernel.org>
-References: <20230509151723.84989-1-xingyu.wu@starfivetech.com>
- <20230509151723.84989-3-xingyu.wu@starfivetech.com>
-From:   Walker Chen <walker.chen@starfivetech.com>
-In-Reply-To: <20230509151723.84989-3-xingyu.wu@starfivetech.com>
+To:     "Verma, Achal" <a-verma1@ti.com>
+References: <20230425131607.290707-1-j-choudhary@ti.com>
+ <20230425131607.290707-2-j-choudhary@ti.com>
+ <a033cec5-0272-186e-d53e-d101835cc9eb@ti.com>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <a033cec5-0272-186e-d53e-d101835cc9eb@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.146.187]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Achal,
 
-
-On 2023/5/9 23:17, Xingyu Wu wrote:
-> Add the watchdog node for the Starfive JH7110 SoC.
+On 15/05/23 11:25, Verma, Achal wrote:
+> Hi,
 > 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> On 4/25/2023 6:46 PM, Jayesh Choudhary wrote:
+>> From: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>
+>> The system controller node manages the CTRL_MMR0 region.
+>> Add serdes_ln_ctrl node which is used for controlling the SERDES lane mux.
+>>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> [j-choudhary@ti.com: Add reg property to fix dtc warning]
+>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 23 ++++++++++++++++++++++
+>>   1 file changed, 23 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> index e9169eb358c1..29be6d28ee31 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
+>> @@ -5,6 +5,9 @@
+>>    * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
+>>    */
+>>   +#include <dt-bindings/mux/mux.h>
+>> +#include <dt-bindings/mux/ti-serdes.h>
+>> +
+>>   &cbass_main {
+>>       msmc_ram: sram@70000000 {
+>>           compatible = "mmio-sram";
+>> @@ -26,6 +29,26 @@ l3cache-sram@200000 {
+>>           };
+>>       };
+>>   +    scm_conf: syscon@100000 {
+> Please check syscon address.
+
+0x100000 is the base address of the CTRL_MMR module. Could you please clarify
+why the address is incorrect? The registers for J784S4 SoC can be viewed at:
+https://www.ti.com/lit/zip/spruj52
+
 > 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index 4c5fdb905da8..47c163ec0bf1 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -469,6 +469,16 @@ sysgpio: pinctrl@13040000 {
->  			#gpio-cells = <2>;
->  		};
->  
-> +		watchdog@13070000 {
-> +			compatible = "starfive,jh7110-wdt";
-> +			reg = <0x0 0x13070000 0x0 0x10000>;
-> +			clocks = <&syscrg JH7110_SYSCLK_WDT_APB>,
-> +				 <&syscrg JH7110_SYSCLK_WDT_CORE>;
-> +			clock-names = "apb", "core";
-> +			resets = <&syscrg JH7110_SYSRST_WDT_APB>,
-> +				 <&syscrg JH7110_SYSRST_WDT_CORE>;
-> +		};
-> +
->  		aoncrg: clock-controller@17000000 {
->  			compatible = "starfive,jh7110-aoncrg";
->  			reg = <0x0 0x17000000 0x0 0x10000>;
+> Thanks,
+> Achal Verma
+>> +        compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
+>> +        reg = <0x00 0x00100000 0x00 0x1c000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges = <0x00 0x00 0x00100000 0x1c000>;
+>> +
+>> +        serdes_ln_ctrl: mux-controller@4080 {
+>> +            compatible = "mmio-mux";
+>> +            reg = <0x00004080 0x30>;
+>> +            #mux-control-cells = <1>;
+>> +            mux-reg-masks = <0x4080 0x3>, <0x4084 0x3>, /* SERDES0 lane0/1
+>> select */
+>> +                    <0x4088 0x3>, <0x408c 0x3>, /* SERDES0 lane2/3 select */
+>> +                    <0x4090 0x3>, <0x4094 0x3>, /* SERDES1 lane0/1 select */
+>> +                    <0x4098 0x3>, <0x409c 0x3>, /* SERDES1 lane2/3 select */
+>> +                    <0x40a0 0x3>, <0x40a4 0x3>, /* SERDES2 lane0/1 select */
+>> +                    <0x40a8 0x3>, <0x40ac 0x3>; /* SERDES2 lane2/3 select */
+>> +        };
+>> +    };
+>> +
+>>       gic500: interrupt-controller@1800000 {
+>>           compatible = "arm,gic-v3";
+>>           #address-cells = <2>;
 
-
-Reviewed-by: Walker Chen <walker.chen@starfivetech.com>
-
-Thanks!
+-- 
+Regards,
+Siddharth.
