@@ -2,59 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6759703940
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:40:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F311703BF6
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 20:08:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242397AbjEORkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 13:40:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34324 "EHLO
+        id S245147AbjEOSIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 14:08:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242686AbjEORkH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:40:07 -0400
+        with ESMTP id S245007AbjEOSIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 14:08:21 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF1FD17971;
-        Mon, 15 May 2023 10:37:28 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 826EA1B745;
+        Mon, 15 May 2023 11:05:10 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8581E62DD3;
-        Mon, 15 May 2023 17:37:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43D87C4339C;
-        Mon, 15 May 2023 17:37:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684172226;
-        bh=98fQRjRbIONriWHlH0jkdaXZtrfJPS0ULJrgh04jqRg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cGyw1bkpr9f7GqhykoFj+LHG6LjTaTEaVHjneXE6Tce9OHVKXZuSNB3GPMRY1deRX
-         /QY0neJgSM8drcYk3Ryl7F4WHZlUs+wnV1uQXLLPPQCWBc76fdTOCXJipLPDPJmG9s
-         2X+AgkuBuLQgc3Ad5DnlQZS8Bhf8sWxakUSHE8iv5NvzLHwQGgRrJuZQhEtuDq/8/y
-         1AFd0gupvZh9LXPChv8hiEe9jVq5q/zOyMcWO8g5w52VdVBUk3ptLJsmzftZLUHPOo
-         f4KY6BbkjO+CzcHKS2winJbvp7HYnXILJ9F8nIWZxG26+PVRwAFdz73tdXfXCESXDm
-         8qQ4VTxZho5EQ==
-Date:   Mon, 15 May 2023 18:36:58 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Anusha Rao <quic_anusha@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        thara.gopinath@gmail.com, herbert@gondor.apana.org.au,
-        davem@davemloft.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        bhupesh.sharma@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_poovendh@quicinc.com
-Subject: Re: [PATCH V2 3/4] dt-bindings: qcom-qce: add SoC compatible string
- for ipq9574
-Message-ID: <20230515-hull-contented-48626dc36eb7@spud>
-References: <20230515150722.12196-1-quic_anusha@quicinc.com>
- <20230515150722.12196-4-quic_anusha@quicinc.com>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 003BC630BC;
+        Mon, 15 May 2023 18:05:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4F97C433EF;
+        Mon, 15 May 2023 18:05:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1684173909;
+        bh=yQ98w9QUGg3XRw3+2/5fzj43wg/PyIVrcGZnO0h76Lo=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=MyhN0CFXvbMsW/PZwpi8yeAlbGyCsrZQZYyYAsxTGudFyxQ83mtrc1cyHfw4ZYTkP
+         eLJXbMR8vqT+YF3VFcY3rU5FbfXW71UXcPnm+nzJfOXpt9SZtx+2QBJm2W0SjI0Drx
+         kuEOkA+nXfZrFl2xtTAAycxb/NEUNGqZ+Xko//zk=
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     stable@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        patches@lists.linux.dev, Randy Dunlap <rdunlap@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Rich Felker <dalias@libc.org>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+        linux-sh@vger.kernel.org
+Subject: [PATCH 5.4 246/282] sh: init: use OF_EARLY_FLATTREE for early init
+Date:   Mon, 15 May 2023 18:30:24 +0200
+Message-Id: <20230515161729.630553967@linuxfoundation.org>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230515161722.146344674@linuxfoundation.org>
+References: <20230515161722.146344674@linuxfoundation.org>
+User-Agent: quilt/0.67
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="1KmiYcElde803Ao3"
-Content-Disposition: inline
-In-Reply-To: <20230515150722.12196-4-quic_anusha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -65,55 +59,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Randy Dunlap <rdunlap@infradead.org>
 
---1KmiYcElde803Ao3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+commit 6cba655543c7959f8a6d2979b9d40a6a66b7ed4f upstream.
 
-On Mon, May 15, 2023 at 08:37:21PM +0530, Anusha Rao wrote:
-> Document the compatible string for ipq9574.
+When CONFIG_OF_EARLY_FLATTREE and CONFIG_SH_DEVICE_TREE are not set,
+SH3 build fails with a call to early_init_dt_scan(), so in
+arch/sh/kernel/setup.c and arch/sh/kernel/head_32.S, use
+CONFIG_OF_EARLY_FLATTREE instead of CONFIG_OF_FLATTREE.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Fixes this build error:
+../arch/sh/kernel/setup.c: In function 'sh_fdt_init':
+../arch/sh/kernel/setup.c:262:26: error: implicit declaration of function 'early_init_dt_scan' [-Werror=implicit-function-declaration]
+  262 |         if (!dt_virt || !early_init_dt_scan(dt_virt)) {
 
-Thanks,
-Conor.
+Fixes: 03767daa1387 ("sh: fix build regression with CONFIG_OF && !CONFIG_OF_FLATTREE")
+Fixes: eb6b6930a70f ("sh: fix memory corruption of unflattened device tree")
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+Suggested-by: Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: devicetree@vger.kernel.org
+Cc: Rich Felker <dalias@libc.org>
+Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+Cc: linux-sh@vger.kernel.org
+Cc: stable@vger.kernel.org
+Reviewed-by: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+Link: https://lore.kernel.org/r/20230306040037.20350-4-rdunlap@infradead.org
+Signed-off-by: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ arch/sh/kernel/head_32.S |    6 +++---
+ arch/sh/kernel/setup.c   |    4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
->=20
-> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
-> ---
->  Changes in V2:
-> 	- Added a new compatible for ipq9574 SoC.
->=20
->  Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Doc=
-umentation/devicetree/bindings/crypto/qcom-qce.yaml
-> index e375bd981300..0d1deae06e2d 100644
-> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> @@ -28,6 +28,7 @@ properties:
->            - enum:
->                - qcom,ipq6018-qce
->                - qcom,ipq8074-qce
-> +              - qcom,ipq9574-qce
->                - qcom,msm8996-qce
->                - qcom,sdm845-qce
->            - const: qcom,ipq4019-qce
-> --=20
-> 2.17.1
->=20
+--- a/arch/sh/kernel/head_32.S
++++ b/arch/sh/kernel/head_32.S
+@@ -64,7 +64,7 @@ ENTRY(_stext)
+ 	ldc	r0, r6_bank
+ #endif
+ 
+-#ifdef CONFIG_OF_FLATTREE
++#ifdef CONFIG_OF_EARLY_FLATTREE
+ 	mov	r4, r12		! Store device tree blob pointer in r12
+ #endif
+ 	
+@@ -315,7 +315,7 @@ ENTRY(_stext)
+ 10:		
+ #endif
+ 
+-#ifdef CONFIG_OF_FLATTREE
++#ifdef CONFIG_OF_EARLY_FLATTREE
+ 	mov.l	8f, r0		! Make flat device tree available early.
+ 	jsr	@r0
+ 	 mov	r12, r4
+@@ -346,7 +346,7 @@ ENTRY(stack_start)
+ 5:	.long	start_kernel
+ 6:	.long	cpu_init
+ 7:	.long	init_thread_union
+-#if defined(CONFIG_OF_FLATTREE)
++#if defined(CONFIG_OF_EARLY_FLATTREE)
+ 8:	.long	sh_fdt_init
+ #endif
+ 
+--- a/arch/sh/kernel/setup.c
++++ b/arch/sh/kernel/setup.c
+@@ -243,7 +243,7 @@ void __init __weak plat_early_device_set
+ {
+ }
+ 
+-#ifdef CONFIG_OF_FLATTREE
++#ifdef CONFIG_OF_EARLY_FLATTREE
+ void __ref sh_fdt_init(phys_addr_t dt_phys)
+ {
+ 	static int done = 0;
+@@ -330,7 +330,7 @@ void __init setup_arch(char **cmdline_p)
+ 	/* Let earlyprintk output early console messages */
+ 	early_platform_driver_probe("earlyprintk", 1, 1);
+ 
+-#ifdef CONFIG_OF_FLATTREE
++#ifdef CONFIG_OF_EARLY_FLATTREE
+ #ifdef CONFIG_USE_BUILTIN_DTB
+ 	unflatten_and_copy_device_tree();
+ #else
 
---1KmiYcElde803Ao3
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGJtugAKCRB4tDGHoIJi
-0lTsAP98vINl5qwa4mwXN5MAy30GSKbEzxqH9j57jfS+ZRaVyQEAkAHcT7+n5aaj
-CSCU2+v6aAOTrxqZpWXlSzyJXNUAIwc=
-=AVb7
------END PGP SIGNATURE-----
-
---1KmiYcElde803Ao3--
