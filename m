@@ -2,115 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C107027B5
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 10:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D52FB7027CD
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 11:05:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232224AbjEOI6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 04:58:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41546 "EHLO
+        id S229963AbjEOJFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 05:05:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbjEOI6k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 04:58:40 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4609F0;
-        Mon, 15 May 2023 01:58:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1684141118; x=1715677118;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hMsyLAgqduiMwamIfLzaLKeu61ywdWXcxC7+DE2RUok=;
-  b=cIMQZPHSEx5zGh9UXDYDyic8v9fmfjZu71fXn+7OhL1/iWALE15DbPNH
-   mCcKaSnA7wl7AKDrDPywolp2JdgjoOWwJM8/qGylwSLUka8DDx+sHAUYo
-   C3gC0H4u2oOKbnxxa3+o+xh8qs1lgGPCkazuunOIEsJRN/EEyQvOnCsIk
-   bJPil/SshjtOHcCNWTMiPltmuuSp0UDD4MTrgp/cEELABRDWf9Cvtcbrq
-   fc40Nm3zqAQ3DmK/3qu9Xpw2LlB7TMaxOIjplQzXq/BvkwrxADfNep9/x
-   A3WvjaWh9TDRN18PT2rcdsMBiYe4UpOzH+juE0ORibWkosxU+rRoPES2M
-   g==;
-X-IronPort-AV: E=Sophos;i="5.99,276,1677567600"; 
-   d="asc'?scan'208";a="213313694"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 May 2023 01:58:37 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 15 May 2023 01:58:37 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Mon, 15 May 2023 01:58:33 -0700
-Date:   Mon, 15 May 2023 09:58:12 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Walker Chen <walker.chen@starfivetech.com>
-CC:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Claudiu Beznea <Claudiu.Beznea@microchip.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
+        with ESMTP id S238811AbjEOJE7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 05:04:59 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C202A7
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 02:04:57 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50b37f3e664so22019554a12.1
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 02:04:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684141495; x=1686733495;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1e7xyhKbSUAtL/71OLze3JqXZR39ywi21V8nEPRiV68=;
+        b=MgrbJuPSda7/FkfizR4/3Rn0sQfPc3PH2digK9QUZv2bZ042i8f4m24og7HQejhAiZ
+         TcWng0vCnqHgKU3qfEwkq/uySuYn7dLwXbPeeGr8I4gEzyaIiOBRodAcvdNrTg5qBTM/
+         7GA8aiRO/orCzS2aVyrOus/FXdrWZ0K5wOmVkZmu3lpJt3lyY9KApDW5uqt/O7J76Uy5
+         db7C3o8bgPfVefXXLIUht9qMnt5lBOA/Jj9+RzMOlvDsXrZvcRDcKmQ5ISEPu03TeYkt
+         /bstflZYkyJdPf/VqkorhrdaFpiq+X1NoDFj90Q6fwiLgw5Adml0LBvakLNwuxBTlmnH
+         +Ufg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684141495; x=1686733495;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1e7xyhKbSUAtL/71OLze3JqXZR39ywi21V8nEPRiV68=;
+        b=dbMmLekLSAyBfluV3PwF5j9+q5zD9NuPxt7cUJgE9vvbTXafARnJb5jL8AhRfkg54z
+         yzvdR/EZM8KtPQOwP5Lw/DrLdO2epgMAB05dqwklvXBrHmU/WwX6rqu3+kJtlRsIywui
+         bm/3xFRj+sShUtfuHSECD2mwqRJuH3G/YIAQQ6rVenRPSl1iLKUqIpfUn4WJGYOKy10H
+         scSpU0MlOWemovdPc0QrN0+0FUsiwV5PEYYh5J8dOBYSD6kOA773fepKqHUY5yPBV0xv
+         yf9guFj5WgrV0BMjjq06s0o7zVJ7xGPt6Y1qO6yCCAKbfZLR8PzWiaClidLRlFzI0WeQ
+         9+sg==
+X-Gm-Message-State: AC+VfDzJqA9qoe1+uzOOZrYFqTEutSNF9/BKeK/qQOnBrLYVHwsTsfrG
+        GYxZh7lvRcvgvAEPC1yo7B3lrA==
+X-Google-Smtp-Source: ACHHUZ6/arwWykTMjW8t+mn8sE98dIyHPxmoftrOdRUms9psWi0+scmOgQUrHXIQ4Gm7LEJOfzX26w==
+X-Received: by 2002:a17:907:842:b0:94e:c8c:42ec with SMTP id ww2-20020a170907084200b0094e0c8c42ecmr27657027ejb.20.1684141495477;
+        Mon, 15 May 2023 02:04:55 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
+        by smtp.gmail.com with ESMTPSA id ml17-20020a170906cc1100b009661484e84esm9245894ejb.191.2023.05.15.02.04.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 May 2023 02:04:54 -0700 (PDT)
+Message-ID: <ec7dcbbb-7e9e-04bb-930a-0b96acbd4aed@linaro.org>
+Date:   Mon, 15 May 2023 11:04:53 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3 02/10] dt-bindings: nvmem: qfprom: Add compatible for
+ QDU1000/QRU1000
+Content-Language: en-US
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v4 3/3] riscv: dts: starfive: add the node and pins
- configuration for tdm
-Message-ID: <20230515-dragonish-diffuser-48a1c6f4c8ae@wendy>
-References: <20230511091549.28003-1-walker.chen@starfivetech.com>
- <20230511091549.28003-4-walker.chen@starfivetech.com>
- <cd7803a2-38a0-c498-467f-1ef802645527@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="UHn8PAOuSV97BRQJ"
-Content-Disposition: inline
-In-Reply-To: <cd7803a2-38a0-c498-467f-1ef802645527@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
+ <20230512122134.24339-3-quic_kbajaj@quicinc.com>
+ <4766aabc-9b03-3241-82e3-8c4799ea7978@linaro.org>
+ <ec2f0259-9d57-7125-7df8-c773b60e8c72@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ec2f0259-9d57-7125-7df8-c773b60e8c72@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---UHn8PAOuSV97BRQJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 15/05/2023 09:08, Komal Bajaj wrote:
+> 
+> 
+> On 5/12/2023 10:26 PM, Krzysztof Kozlowski wrote:
+>> On 12/05/2023 14:21, Komal Bajaj wrote:
+>>> Document the QFPROM on QDU1000/QRU1000 SOCs.
+>>>
+>>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+>>> index 8d8503dd934b..59082f6e8c9f 100644
+>>> --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+>>> +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+>>> @@ -26,6 +26,7 @@ properties:
+>>>             - qcom,msm8996-qfprom
+>>>             - qcom,msm8998-qfprom
+>>>             - qcom,qcs404-qfprom
+>>> +          - qcom,qdu1000-qfprom
+>> Above qcs, to keep alphabetical order.
+> qdu alphatecially comes after qcs, right? Did I misinterpret your comment?
 
-On Mon, May 15, 2023 at 04:44:54PM +0800, Walker Chen wrote:
+Ups...
 
-> Hi Conor / Emil,
->=20
-> Based on our discussion a few days ago, the new version of patch for dts =
-looks like this,
-> Please help to review and provide your comments if you feel free.
+Best regards,
+Krzysztof
 
-> On 2023/5/11 17:15, Walker Chen wrote:
-
-It's only been 4 days chief, of which 2 were the weekend, you don't need
-to bump it yet! You'd be better off asking one of your co-workers to
-review the content, instead of me. I'll happily apply the patch, with
-appropriate review, once the dt-binding has been applied by Mark. I do
-not have the capacity to review the detail of individual patches adding
-peripherals unfortunately.
-Getting your co-workers to look at your patches, and doing the same for
-theirs, is almost always a good idea for speeding up the process
-
-Thanks for dropping the overlay though,
-Conor.
-
---UHn8PAOuSV97BRQJ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGH0JAAKCRB4tDGHoIJi
-0jLDAQDrt1XJCjQ6JyzG4qMUGcwEUFr+S+UP7zNXLyeoCpvSIAEAjxdzf/onbCjn
-NqfHT2twydBb9KiPvxH3Xjj9vO+hnQQ=
-=spdl
------END PGP SIGNATURE-----
-
---UHn8PAOuSV97BRQJ--
