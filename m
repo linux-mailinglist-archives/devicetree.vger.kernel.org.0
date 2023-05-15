@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E3517031D0
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 17:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B59857031D8
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 17:50:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242192AbjEOPtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 11:49:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53438 "EHLO
+        id S242224AbjEOPuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 11:50:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242173AbjEOPtO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 11:49:14 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5725C1FDF
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 08:49:13 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-50b8d2eed3dso19588403a12.0
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 08:49:13 -0700 (PDT)
+        with ESMTP id S240266AbjEOPuj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 11:50:39 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E651FD5
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 08:50:37 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50bc394919cso19075849a12.2
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 08:50:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684165752; x=1686757752;
+        d=linaro.org; s=google; t=1684165836; x=1686757836;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kuOCDCQ4uINGloh17xpbxDK2AcWsbYuvkyT42cPN6a8=;
-        b=O+78KgpflUclh0zjxfHNPcCNpqtzSLCtAlBE9xkG80phUPVBKslpp5A0Jv2xvfxMcd
-         pgk+IW/1taJ6EIlCacLVRbvRCv5mX3JybYhNqFiJvhmcNOQ2AeYm/rS08w3I+EfhBO7a
-         /kvknpWp5ey7BqrPSNVOEpWvdw1oBNK1896l1vVosQDEHEZdwCegVJiUjm0mgVSyBFzL
-         DaJ/wmXurOBk3keeopemVbRYn4Hyetm2XxDBQFKn43QBE5g6fHE5Upfg1ImOG6VhIvfA
-         T5ThgP9Bo2GsCtsxZ/dY/RFH3YO9YfcY1xxNDyY9cxVNkF7qlMprqVxbUMJtBMr/Ysc4
-         dvww==
+        bh=I9ir8VjD7MAqquvJv40c/6+htwdH9IBw366Pp2iRs/M=;
+        b=Nbs+zq9wXaEp0Xr+tVC3RQmnkbX032OScImE/xWT+SQ9UIwGiaPR44f5nilova52+6
+         t5bSsUshr0n1a1RLse2NDfvuquBFFC2NchVEc9UciePF+vF5hP6MbzeBAA6QcJA5UkQT
+         asd5YPoifnGlnRr4VIUB8x7k+tTAHKUHkLMuKbApe9Rye76hWhbwTXFLmpJ3/oqsZ3Uc
+         sB6L072XzqEmFV+ermZ+YmfnBlXfrXevM3RbUuAWj6qNNciVhLyS1S85P0geeav8FOom
+         fB57btP2THPdAt+qdHUvMgL9a/9wOTXcicgY/kwJwdsPoYCLP8I63GDnC3DYfUPHpcU1
+         v6Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684165752; x=1686757752;
+        d=1e100.net; s=20221208; t=1684165836; x=1686757836;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kuOCDCQ4uINGloh17xpbxDK2AcWsbYuvkyT42cPN6a8=;
-        b=ltcWfKrI6gjZCsSFVhhglEJ4cZcjlEqJ5+E/+yVQkYz71QM6JFaTzu5+6+hizNa6iI
-         wrNQ94QZjHzc3vER6AXtkd2c0T4xkizeY+uTysS5KNhCJcHn4dyZDKLrSM/yQdSrNi5k
-         AUxQKLVQm/GYg/xQkw8UCqg12iDkK+KevzXLxgZAn2+dsdwblD1UfTNWh9XWWOQ51UlA
-         aHZX7rWC177R/nQoPTixYPKQKVT68Kc9AVZk2INL5JCEqTcMVYwpBPDuf8NqXwGt1YZc
-         ewGdpcA9KrRTX00OjJ2OGbAok1Q7ChfGJ7ClJh1j2gnUMYoRm0/GZ0QbQSAVtsBdHb4Y
-         aipA==
-X-Gm-Message-State: AC+VfDztI7/eXt93Fj6bfmD5fxEsaQKcI2o2/i5pv5R3S+4OoR5BopP2
-        XsmJT5eqIdD+xwzzJCavuM5Uew==
-X-Google-Smtp-Source: ACHHUZ4Nr88M1lwj1aXZZ/iZMf/swEizt4nguAp5wUyPAk7yNMOTEYXJ4r0IoPj396w6FVjy3qisIQ==
-X-Received: by 2002:a17:906:c14f:b0:94d:a2c2:9aeb with SMTP id dp15-20020a170906c14f00b0094da2c29aebmr36793720ejc.49.1684165751836;
-        Mon, 15 May 2023 08:49:11 -0700 (PDT)
+        bh=I9ir8VjD7MAqquvJv40c/6+htwdH9IBw366Pp2iRs/M=;
+        b=ImFQxvSB3gClutk3eW0dAyihrM0nT2zQdS4HbCxGNDf1QM9/18brqK0z2K2qKPHg2v
+         EyfsRFxwHFyJ83+v7YNAqSk8roe6l8C3BKrpTVWKgKUw9462kHw8kj4nGgde6AeYayn0
+         aQfA/QZiOtC+vQQgBPI83bqoOBioYKvoPWYiFe/VTJNDzOTt9PpiCE7yF0rrYzHHodsy
+         AeuF4JABfTTOHt97CxjE1BDcJwWiq/DXS1gFDl0dYUCE1c7/SzRf8MbW+Obvt//ConzN
+         FfyuoDTAnQNV+Efb3cvPPfJdS/23bYogQs8/HHzI8aYABLucN9jNRMqN8cplkKHcprbX
+         yTew==
+X-Gm-Message-State: AC+VfDy2hfVDiXn0DaFdUkgTbaUKvrXKoWaDaPzimwutTOeHoqOas+Om
+        JhVfLTfenmK9zQqGliEZvF8cxg==
+X-Google-Smtp-Source: ACHHUZ7K0gcmiNFnYb+oMM9HY+xnS0+OTG2o+6ATw0GEllGGmnO8V/LL60oko2lvxXwM5mvdYMIgVw==
+X-Received: by 2002:a17:907:2dab:b0:96a:2b4:eb65 with SMTP id gt43-20020a1709072dab00b0096a02b4eb65mr19324293ejc.9.1684165836436;
+        Mon, 15 May 2023 08:50:36 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id ta26-20020a1709078c1a00b009663b1addb0sm9679862ejc.224.2023.05.15.08.49.10
+        by smtp.gmail.com with ESMTPSA id rq12-20020a17090788cc00b0094f0f0de1bcsm9412732ejc.200.2023.05.15.08.50.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 08:49:11 -0700 (PDT)
-Message-ID: <15dfe603-7d77-9dbe-30b6-b79fb7334682@linaro.org>
-Date:   Mon, 15 May 2023 17:49:10 +0200
+        Mon, 15 May 2023 08:50:35 -0700 (PDT)
+Message-ID: <0648846c-4d12-21f4-7522-a869c75f2587@linaro.org>
+Date:   Mon, 15 May 2023 17:50:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH] ASoC: dt-bindings: ssm2518: Convert to dtschema
+Subject: Re: [PATCH] dt-bindings: usb: snps,dwc3: Fix "snps,hsphy_interface"
+ type
 Content-Language: en-US
 To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
 Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org
-References: <20230514225243.777504-1-marex@denx.de>
+        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org
+References: <20230514231102.788841-1-marex@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230514225243.777504-1-marex@denx.de>
+In-Reply-To: <20230514231102.788841-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,19 +78,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 00:52, Marek Vasut wrote:
-> Convert the ADI SSM2518 audio CODEC bindings to DT schema.
+On 15/05/2023 01:11, Marek Vasut wrote:
+> The "snps,hsphy_interface" is string, not u8. Fix the type.
 > 
 > Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: alsa-devel@alsa-project.org
-> Cc: devicetree@vger.kernel.org
+
+Fixes: 389d77658801 ("dt-bindings: usb: Convert DWC USB3 bindings to DT
+schema")
+
+And cc-stable.
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
