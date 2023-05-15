@@ -2,124 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC2277029EB
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 12:03:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7288702A03
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 12:05:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240485AbjEOKDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 06:03:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37670 "EHLO
+        id S240545AbjEOKFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 06:05:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240943AbjEOKDM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 06:03:12 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4661DE5D;
-        Mon, 15 May 2023 03:02:53 -0700 (PDT)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34F5WRGW024445;
-        Mon, 15 May 2023 05:02:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=Dbath1udrCW8z6DIMjvXKGKZ7Y0Y4bUg2k1Qq4nsa8I=;
- b=N1Y9RrrdtpkyWCO3O79I/Z0dre7bjVf29OofkQJhCM0EJx0kG5nJpveDUEJLEpNZs5ko
- nLkSe5Ojx+AZ09GgFc6hjPxracRbkpKHrpKqB7XQtFZmlp3Rj5owfrnE/FE2uXtEIJWc
- B8amnGLzY/zG8u3y0UIKLN7+7s8vUIzpZMLnSz9hOaM7gcCV8A4vyxtYaJgpNLAmC2QI
- ZVh8XFv5Sc4gf+RkkbA9NqqodZYjaX+oVXaOAGYi4U3N29FU8FB3N97LSv5h4j0hWWsh
- eLTWD+7+xG5csTtLpKKZahLGAL/q3/ZmvR/1BhRbZHuqI6damknQB4oQfEmZKUwW/hWo 8w== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3qj7y12q01-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 May 2023 05:02:28 -0500
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Mon, 15 May
- 2023 05:02:25 -0500
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 15 May 2023 05:02:25 -0500
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id C2B8845;
-        Mon, 15 May 2023 10:02:25 +0000 (UTC)
-Date:   Mon, 15 May 2023 10:02:25 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <broonie@kernel.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <tglx@linutronix.de>, <maz@kernel.org>, <linus.walleij@linaro.org>,
-        <vkoul@kernel.org>, <lgirdwood@gmail.com>,
-        <yung-chuan.liao@linux.intel.com>, <sanyog.r.kale@intel.com>,
-        <pierre-louis.bossart@linux.intel.com>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 05/10] dt-bindings: mfd: cirrus,cs42l43: Add initial DT
- binding
-Message-ID: <20230515100225.GR68926@ediswmail.ad.cirrus.com>
-References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
- <20230512122838.243002-6-ckeepax@opensource.cirrus.com>
- <5969fe82-69cd-34d6-edd1-d16ea741d9cb@linaro.org>
- <20230512161803.GM68926@ediswmail.ad.cirrus.com>
- <db2dcafb-db14-96ab-87cc-88408f3bab4b@linaro.org>
+        with ESMTP id S240454AbjEOKFW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 06:05:22 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 077A519BF
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 03:04:47 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-50bc2feb320so19210591a12.3
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 03:04:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684145084; x=1686737084;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XyEboodinoETFVIKDJ6MaTczEBVanL7D2yaqefiBb6w=;
+        b=agNiLDnOYfkL2mCqKdqZSIiw70w52wrUzYgCUEB9n9qAUNdE3IdkTCGecuhuqmqtw8
+         VbBnHMCmBZqIlWOujTG6Va8H4lYgd6yZCw8Hpsh1WMRMi6sWR9CV5Zz+PI9y7w66//fg
+         arIWFcrfvMNI6tXxJfu9CJuqzfVPCCJXSFfujf2SlRVkcOVZzEbpj9uL91ebQdwYdGGG
+         CbwgZp8Xda1ViZ6vvEebMUxYDF/F4JOxw/58B/jGCB4h0Cjhl291HV4z/BwINGd3eH5u
+         3xWWfX6QvTTqZC9ircJRO5wuJMvJNb1rKfZ4JR+EFQndEWL5x+zFeDnzajqWMyvorZ5x
+         c4jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684145084; x=1686737084;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XyEboodinoETFVIKDJ6MaTczEBVanL7D2yaqefiBb6w=;
+        b=jbeQ4jE31ex8kHop5gnMnocQWD74D/z3oOSz3Ypiljonz1MDWnIC+uzG0dgRYDDE8H
+         jN+ESCIV7g68bceAotOQNVn8oSoGSF1rb5u2Hyb/Twjmk/Gl4W0FuZHAZpQaGP85QUSB
+         RAxHwzGUNhakyqfxPX5gEGmdZiV0zQX0cd4+HEpwEVpkw6WZsFmhOVQJuGMRSx0jC+WI
+         INcBvSGan3aq2EZcGeDmA9zm3RNAuM4ZxPspEqRIljjh0YULZXJt7CLG3LFas9HUqav5
+         L82/8AGF8yM2IN9zPT9xFIxgotedog7nKMbB0Z0eyeb7bLYWfjXXtWOI3TzeQCCOD5Mu
+         lzlQ==
+X-Gm-Message-State: AC+VfDzTCocNDLHdf6/bLwZwvrqTUh2tsT47tfDeMKHbtQs5jM+AfyAS
+        +Jaz1kLR3Scc3OIBII2XzXlCKg==
+X-Google-Smtp-Source: ACHHUZ5HNnM1GF9ntlgBSWxnLUIuD7ee0ze5RiVw+zE9WMPn5mg3W9l+AOnJxUyQYhNRbGifB0Mx6Q==
+X-Received: by 2002:a50:ec8a:0:b0:50b:c275:6c56 with SMTP id e10-20020a50ec8a000000b0050bc2756c56mr26793165edr.16.1684145084277;
+        Mon, 15 May 2023 03:04:44 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
+        by smtp.gmail.com with ESMTPSA id s15-20020a056402164f00b0050d56dffc93sm7229454edx.12.2023.05.15.03.04.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 May 2023 03:04:43 -0700 (PDT)
+Message-ID: <0b0c8f9f-bbb0-16e9-1556-eb2ac8cf1981@linaro.org>
+Date:   Mon, 15 May 2023 12:04:42 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <db2dcafb-db14-96ab-87cc-88408f3bab4b@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: GnlTQhIlwLNY3S7LBUO1FLvr8l9zp2hX
-X-Proofpoint-ORIG-GUID: GnlTQhIlwLNY3S7LBUO1FLvr8l9zp2hX
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V8 1/4] dt-bindings: clock: document Amlogic S4 SoC PLL
+ clock controller
+Content-Language: en-US
+To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     kelvin.zhang@amlogic.com, qi.duan@amlogic.com
+References: <20230515031557.31143-1-yu.tu@amlogic.com>
+ <20230515031557.31143-2-yu.tu@amlogic.com>
+ <590560c9-4da6-bbd4-6aac-de57ab5403ba@linaro.org>
+ <8c6ad0a9-7820-c7a2-bd3b-1eee87d96728@amlogic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8c6ad0a9-7820-c7a2-bd3b-1eee87d96728@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 13, 2023 at 08:08:05PM +0200, Krzysztof Kozlowski wrote:
-> On 12/05/2023 18:18, Charles Keepax wrote:
-> > On Fri, May 12, 2023 at 05:25:52PM +0200, Krzysztof Kozlowski wrote:
-> >> On 12/05/2023 14:28, Charles Keepax wrote:
-> >>> The CS42L43 is an audio CODEC with integrated MIPI SoundWire interface
-> >>> (Version 1.2.1 compliant), I2C, SPI, and I2S/TDM interfaces designed
-> >>> for portable applications. It provides a high dynamic range, stereo
-> >>> DAC for headphone output, two integrated Class D amplifiers for
-> >>
-> >> ...
-> >>
-> >>> +
-> >>> +  interrupt-controller: true
-> >>> +
-> >>> +  '#interrupt-cells':
-> >>> +    const: 2
-> >>
-> >> Hm, are you sure? Who is the consumer/user of this interrupt controller?
-> >>
-> > 
-> > Anyone who wants the device has GPIOs that can signal IRQs. Some
-> > of the other IRQs could be more generally useful, such as some of
-> > the jack detection ones.
+On 15/05/2023 09:35, Yu Tu wrote:
+> Hi Krzysztof,
+> 	Thank you for your prompt reply.
 > 
+> On 2023/5/15 14:32, Krzysztof Kozlowski wrote:
+>> On 15/05/2023 05:15, Yu Tu wrote:
+>>> Add the S4 PLL clock controller dt-bindings in the s4 SoC family.
+>>>
+>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>
+>> This is a friendly reminder during the review process.
+>>
+>> It looks like you received a tag and forgot to add it.
+>>
+>> If you do not know the process, here is a short explanation:
+>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>> versions. However, there's no need to repost patches *only* to add the
+>> tags. The upstream maintainer will do that for acks received on the
+>> version they apply.
+>>
+>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+>>
+>> If a tag was not added on purpose, please state why and what changed.
 > 
-> OK, makes sense, but it is a bit odd then to have:
-> codec {
->   which is GPIO and interrupt controller, but not pin controller
->   pinctrl {
->     pin controller, which is not GPIO and not interrupt controller
->   }
-> }
-> Maybe all the GPIO/pin/related interrupt properties should be moved to
-> pinctrl node?
-> 
+> Yes. I don't know the process. So I need to add Reviewed-by: Rob Herring 
+> <robh@kernel.org>. And resend V8?
 
-I will have a look at that although I have a vague memory that
-this made the pinctrl very sad doing this. Presumably a bug
-somewhere but might take me a while to figure that out. The
-interrupt controller is a bit of a grey area as well since it
-has a bunch of IRQs that don't relate to the pins as well as
-some that do. So logically it might be better suited on the root
-node.
+Yes. I cannot add it top your emails.
 
-Thanks,
-Charles
+Best regards,
+Krzysztof
+
