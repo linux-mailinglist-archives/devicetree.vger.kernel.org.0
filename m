@@ -2,86 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54F48702A0B
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 12:07:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAD53702A13
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 12:08:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241032AbjEOKH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 06:07:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42900 "EHLO
+        id S240943AbjEOKIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 06:08:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240972AbjEOKHG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 06:07:06 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 299D826AB
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 03:06:24 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-96adcb66f37so428480266b.1
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 03:06:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684145182; x=1686737182;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B2hjpXzaWeM8OT7/yysLcClGVQFFFKoxwvBr9CBiXm0=;
-        b=BGiDtiloaV0WzQ3uHy4knefdHmJU85un1qrGqD9miGs79g3shQ31A8PRnGtjJ6S4cL
-         KhzcPGZoA7ABjuSOuh5At7Q39EfK63v7WaL++PrV7t59z5yHPvB/ZklYzLDFfJGnlR+R
-         bpslU+v3kPne8rbftHd71wrEEOeGyDp7z+3vIvcERHc6JNQudKVKNxGA3777Fzt0J0Gg
-         z3mli3vXAubfR6w8aoQyJwYRJcF3XLOuTAoe0a/piJxJttHpAJNRKj2x2wcaLpNoBAHz
-         LuUQSD09m3VF9wON+XX31yp20oiqJV6ypuzQ9BxuonDZnTaOr6nqkuYqT0rmFBFQlWw7
-         bLIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684145182; x=1686737182;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B2hjpXzaWeM8OT7/yysLcClGVQFFFKoxwvBr9CBiXm0=;
-        b=SH7c7+sEmdrvzc09kbbW4wKOWr3ttiBAqdPI4dg2iflLpCl9SUT66PLUrHSZEcgDhX
-         0rvXbS2dqOiMIBMpW1KoYIZzpUQl3WQWeB7S9V0Vj4r0IryduiqueuMVhO+5KLl2F7wM
-         9WZ/24+0DUhRUMmKt8oFfKtmmOj3y/g3tYtx+BfT9VoQyegWo/H5PYVP4d4S5h+kjmM7
-         haMbf7ND8daIr+59IAlYjlPkCJAmj2CEv/0lKPJ3lEabe0cHacoe55Fko/At7YTRK8Qw
-         4XPN+8mL+sgZUxGTdHrH7Pkso/qAtSagH0C6CLJ1vJjxz+315fGLzroG+cljlR4xQysv
-         CggA==
-X-Gm-Message-State: AC+VfDxdrZJ/j5En8e2UCrp/oS2lspxvGnU7geXyD7t35z1lLaymTX1M
-        VQNWX2730nU/DJUy8LxZ/jTVwg==
-X-Google-Smtp-Source: ACHHUZ4sgPSj3/bY/sz0i8Il1c6eLwrf8kl8HHpsjyXJB0xJi8Gxcu96OyGJ+tDfG3La5Lgd6wWFZA==
-X-Received: by 2002:a17:906:4784:b0:94f:7486:85a7 with SMTP id cw4-20020a170906478400b0094f748685a7mr34326781ejc.31.1684145182522;
-        Mon, 15 May 2023 03:06:22 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id kz23-20020a17090777d700b009659fed3612sm9193781ejc.24.2023.05.15.03.06.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 03:06:21 -0700 (PDT)
-Message-ID: <4a04ef11-d87d-4464-a907-badc920d595d@linaro.org>
-Date:   Mon, 15 May 2023 12:06:20 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V8 1/4] dt-bindings: clock: document Amlogic S4 SoC PLL
- clock controller
-Content-Language: en-US
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+        with ESMTP id S240413AbjEOKI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 06:08:26 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3CD781FE2;
+        Mon, 15 May 2023 03:08:16 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 765DB2F4;
+        Mon, 15 May 2023 03:09:00 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CFD0E3F67D;
+        Mon, 15 May 2023 03:08:12 -0700 (PDT)
+Date:   Mon, 15 May 2023 11:08:10 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Ayan Kumar Halder <ayankuma@amd.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+        geert+renesas@glider.be, magnus.damm@gmail.com,
+        konrad.dybcio@linaro.org, andersson@kernel.org,
+        mazziesaccount@gmail.com, conor.dooley@microchip.com, j@jannau.net,
+        mailingradian@gmail.com, me@iskren.info, lpieralisi@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-References: <20230515031557.31143-1-yu.tu@amlogic.com>
- <20230515031557.31143-2-yu.tu@amlogic.com>
- <590560c9-4da6-bbd4-6aac-de57ab5403ba@linaro.org>
- <8c6ad0a9-7820-c7a2-bd3b-1eee87d96728@amlogic.com>
- <33f5ff59-db7b-7576-64cb-972c0dfb0f7b@amlogic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <33f5ff59-db7b-7576-64cb-972c0dfb0f7b@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
+        linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, Julien Grall <julien@xen.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Michal Orzel <michal.orzel@amd.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Michal Simek <michal.simek@xilinx.com>
+Subject: Re: Need suggestions for smp related properties in cpus.yaml to
+ support smpboot for cortex-r52 based platform
+Message-ID: <20230515100810.ctebdbqlienbcf7t@bogus>
+References: <c5ed90c7-7126-0757-a0e3-e3d1fcab2ecc@amd.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <c5ed90c7-7126-0757-a0e3-e3d1fcab2ecc@amd.com>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,43 +55,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 09:57, Yu Tu wrote:
-> 
-> 
-> On 2023/5/15 15:35, Yu Tu wrote:
->> Hi Krzysztof,
->>      Thank you for your prompt reply.
->>
->> On 2023/5/15 14:32, Krzysztof Kozlowski wrote:
->>> On 15/05/2023 05:15, Yu Tu wrote:
->>>> Add the S4 PLL clock controller dt-bindings in the s4 SoC family.
->>>>
->>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>>
->>> This is a friendly reminder during the review process.
->>>
->>> It looks like you received a tag and forgot to add it.
->>>
->>> If you do not know the process, here is a short explanation:
->>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->>> versions. However, there's no need to repost patches *only* to add the
->>> tags. The upstream maintainer will do that for acks received on the
->>> version they apply.
->>>
->>> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
->>>
->>> If a tag was not added on purpose, please state why and what changed.
->>
->> Yes. I don't know the process. So I need to add Reviewed-by: Rob Herring 
->> <robh@kernel.org>. And resend V8?
->>
-> 
-> I would like to ask you again by the way. I'm not sure if I can just add 
-> the TAG. Because I actually changed the V8.
+On Thu, May 11, 2023 at 10:35:37AM +0100, Ayan Kumar Halder wrote:
+> Hi Device Tree engineers,
+>
+> Recently I have ported Xen on Cortex-R52 (AArch32-V8R processor) for our AMD
+> platform.
+>
 
-Your changelog in cover letter does not describe it. It only mentions
-vaguely "change patch series". Describe exactly what changed.
+I remember that there was some exploration on feasibility of using PSCI
+here. What happened to that ? Any summary why that was dropped ?
 
-Best regards,
-Krzysztof
+> I was discussing with xen-devel community about how we can properly support
+> smpboot when I was suggested that this might be the correct forum for
+> discussion.
+>
+> Please refer
+> https://lists.xenproject.org/archives/html/xen-devel/2023-05/msg00224.html
+> and the follow-ups for context.
+>
+>
+> The way smpboot works on our platform is as follows:-
+>
+> 1. core0 writes to register (say regA) the address of the secondary core
+> initialization routine.
+>
+> 2. core0 writes to another register (say regB) the value "0x1" to put the
+> secondary core in reset mode.
+>
+> 3. core0 writes to regB the value "0x0" to pull the secondary core out of
+> reset mode.
+>
+> regA, regB will differ for core1, core2, core3 and so on.
+>
 
+Sounds OK but will you ever need to support power management on these cores ?
+If so, just start with PSCI or provide reasons as why it doesn't fit well
+before exploring and extending the existing spin table bindings.
+
+>
+> Currently, I am trying to bringup core1 only.
+>
+>
+> I am thinking to use "enable-method=spin-table" in the cpu node for core1.�
+> So that I can use "cpu-release-address" for regA.
+>
+> For regB, I am thinking of introducing a new property "amd-cpu-reset-addr"
+> in the cpu node.
+>
+> Please let me know your thoughts on this approach. I am also open to any
+> alternative suggestions.
+>
+>
+> Also I see that in https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/devicetree/bindings/arm/cpus.yaml#L87
+> , "arm,cortex-r52" is missing.
+>
+
+Yes that should be fine IMO.
+
+> Can I submit a patch (a one line change) to add this ?
+>
+
+Of course, it makes it easy to accept or reject rather than this question
+hidden as part of other discussion.
+
+--
+Regards,
+Sudeep
