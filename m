@@ -2,73 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6C7E702C3B
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 14:05:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AB69702C82
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 14:17:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240690AbjEOMF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 08:05:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59076 "EHLO
+        id S241683AbjEOMR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 08:17:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241875AbjEOMFD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 08:05:03 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F056B1FE5
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 05:04:08 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-94a342f7c4cso2311275166b.0
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 05:04:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684152247; x=1686744247;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2/nlan8NsKQaqVLCr51QfC/hNbeFSNTXRRDAB3FVPas=;
-        b=ByoRjCzbZlDhT1T9pjQEYxr54YRw44V8aNUv9jfd5JCNP8tHSMuToNR/AON5XhQOmw
-         N40Kl/3OLlocsZ4d9J6Kn7vUs9/ZVehfyNn5RyuY8fBOdTbsM6OSE/tm9Oh9hYZtBT1A
-         rbxBFvkvqcGnMKja3ynsVt20EiEKi2YE3+SrV5OGR6t4lHveWTtmgAksr7JO7ceasrTJ
-         7F0woxS2bnN2EVU8rslQE62j9dDrwpLpurk01imY+qvNvqiVHXgGrSyPClPx0u1yOMoF
-         NfSX/hzAgDXlfsmrgFfUiFNX7jDD7okvDYvv7hfnpJlVhIhrQmhb8hVm3+ifeZLht279
-         fJxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684152247; x=1686744247;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2/nlan8NsKQaqVLCr51QfC/hNbeFSNTXRRDAB3FVPas=;
-        b=K88+9pKmOAFuuhlleuJHMfFV/QojJHULJ8JV1ZyRxrQ26keFvtlrjRqXlkIMbgFtfN
-         KQTHmYJKKQeuOHQkwZ40HQ5d1BvidsAHAvPmTF9Ld4n4GyHZhbJxH2o9dt9M+TyOhOMH
-         nLUUUhmmz0KpM59NS9jwOPQeKFcLe5lbxlH+5MORjnu3bbSwjqzcgq1rBm4wwcSWNSQZ
-         YpvWe4KcFCOb+9c8UDcYHYJkBEhLdZ2k0D7SLQ0kATCNwwA+g+KqSf3/xbCBrfz+xU1I
-         OYafNSnMA9ikb98C7P2tERAjNFGF6Jnrtb37Kzt4ujmIklcNwynR7HyqDJote62i4nX7
-         XthQ==
-X-Gm-Message-State: AC+VfDxURwtLIz/qLx9KSSSxO1i0ygSTOMQpXjNchC7NfivwPNsTsRaN
-        4Fjfl09Pnl4BhNtRc7f6DW7D4Q==
-X-Google-Smtp-Source: ACHHUZ4whC+e3qGJCrdvneIaAmKdoHpgCsOxbqCTyf91AW/nF0/VvKIN+NibbQBny50EjV05s6mA/g==
-X-Received: by 2002:a17:906:974b:b0:957:943e:7416 with SMTP id o11-20020a170906974b00b00957943e7416mr34190677ejy.15.1684152247320;
-        Mon, 15 May 2023 05:04:07 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id k10-20020a1709067aca00b0096a1ba4e0d1sm7811245ejo.32.2023.05.15.05.03.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 05:04:02 -0700 (PDT)
-Message-ID: <e8d7e008-db27-9ac5-6728-d3f7a19c10c9@linaro.org>
-Date:   Mon, 15 May 2023 14:03:56 +0200
+        with ESMTP id S241567AbjEOMR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 08:17:26 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7F801BC;
+        Mon, 15 May 2023 05:17:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4C9F7612E1;
+        Mon, 15 May 2023 12:17:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC3B8C433EF;
+        Mon, 15 May 2023 12:17:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684153044;
+        bh=psCF5o/T20b4f4p5xyBgm+VFMGIPmacOnDTeHqQWNlg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DV7A8KDiRX7WwTnraCg0WMuXXeMSe9TUv22YdSsAVSKkDRnrRfudnufc/OM9/+ozl
+         obmG+zcn/tFyzRWHecyoilsVCK2W8I6d3Bx40D9R2DvfgBdN+hraamiIZVpmt/DXJ6
+         v8FwPHPGzyqQJldVVKNUsf/5tpH4T01rz3N19EjUHjsQTUHWZXfhgM95gWhJptXt54
+         JRLZJ9DXthn4YHRVmvw/4QgKYjuH+RWYoO/ZLmP3+bIDgVN5EhrgUt5g6CWC86ZBaH
+         X2Eq1nJWrqIpJ/bJ0B0xMUIT5fCmeLDS7qzKiwZC2PnUg6BlBOwGEXCruVVez9Jn2M
+         A99ehA/OFv+Bg==
+Date:   Mon, 15 May 2023 13:17:17 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-doc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 0/8] Add PMI632 PMIC and RGB LED on
+ sdm632-fairphone-fp3
+Message-ID: <20230515121717.GC10825@google.com>
+References: <20230414-pmi632-v2-0-98bafa909c36@z3ntu.xyz>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 3/3] ASoC: dt-bindings: Add ESS ES9218P codec
-Content-Language: en-US
-To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
-        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230515074021.31257-1-aidanmacdonald.0x0@gmail.com>
- <20230515074021.31257-3-aidanmacdonald.0x0@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230515074021.31257-3-aidanmacdonald.0x0@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230414-pmi632-v2-0-98bafa909c36@z3ntu.xyz>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,19 +70,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 09:40, Aidan MacDonald wrote:
-> Device tree bindings for the ESS ES9218P codec, which uses an
-> I2C control interface.
+On Tue, 18 Apr 2023, Luca Weiss wrote:
+
+> Add support for the PMI632 PMIC in the spmi-gpio & qcom-lpg driver, add
+> the dtsi for the PMIC and enable the notification LED on fairphone-fp3.
 > 
-> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
+> Changes in v2:
+> - Add qcom,pmi632-gpio to all the needed places in yaml
+> - Add patch documenting led path
+> - Pick up tags
+> - Drop vadc pre-scaling patch since it was applied
+> - Link to v1: https://lore.kernel.org/r/20230414-pmi632-v1-0-fe94dc414832@z3ntu.xyz
 > 
-> Notes:
->     v1->v2
+> ---
+> Luca Weiss (8):
+>       dt-bindings: pinctrl: qcom,pmic-gpio: add PMI632
+>       pinctrl: qcom: spmi-gpio: Add PMI632 support
+>       dt-bindings: leds: qcom-lpg: Add compatible for PMI632 LPG block
+>       leds: qcom-lpg: Add support for PMI632 LPG
+>       dt-bindings: mfd: qcom-spmi-pmic: Add PMI632 compatible
+>       arm64: dts: qcom: Add PMI632 PMIC
+>       arm64: dts: qcom: sdm632-fairphone-fp3: Add notification LED
+>       Documentation: leds: Add "rgb:status" path
+> 
+>  .../devicetree/bindings/leds/leds-qcom-lpg.yaml    |   1 +
+>  .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    |   1 +
+>  .../bindings/pinctrl/qcom,pmic-gpio.yaml           |   3 +
+>  Documentation/leds/well-known-leds.txt             |   1 +
+>  arch/arm64/boot/dts/qcom/pmi632.dtsi               | 165 +++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sdm632-fairphone-fp3.dts  |  29 ++++
+>  drivers/leds/rgb/leds-qcom-lpg.c                   |  15 ++
+>  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c           |   1 +
+>  8 files changed, 216 insertions(+)
 
+Please rebase anything that is yet to be applied and submit a [RESEND].
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thank you.
 
-Best regards,
-Krzysztof
+> ---
+> base-commit: 3f49aa65798675341eb9d4f947c40558564b2e6d
+> change-id: 20230414-pmi632-4ae03225ae75
+> 
+> Best regards,
+> -- 
+> Luca Weiss <luca@z3ntu.xyz>
+ 
 
+-- 
+Lee Jones [李琼斯]
