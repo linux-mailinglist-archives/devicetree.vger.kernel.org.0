@@ -2,114 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71E0370275C
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 10:39:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A125E702771
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 10:42:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229964AbjEOIjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 04:39:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55766 "EHLO
+        id S235307AbjEOImH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 04:42:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbjEOIi7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 04:38:59 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A941C11F;
-        Mon, 15 May 2023 01:38:58 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34F6Bg1E025364;
-        Mon, 15 May 2023 08:38:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=30vfg2gUjXCO7Iilww/cuZYL0d/96lf2URufFIPhtJk=;
- b=MMcR2Ti/PAPiSA5mdx/1vfkb6huZRiTkAJRDKhW6YLYWUgbBxorB4OsccoGVpFcgvYyy
- 1Vl19HySVGhqV+kIQlXreqwXTHI5QoKwpm/L84bV0XqjHJoKfqLVWxSPNjm4EkeX1IYS
- w8vmakqRAolQfKBsFgMwLD/GMcM24w4TIRR9XmxpJoSCV4AuJlePECYz9MyMsViF5JwQ
- NJVQrpeB7fJNmVhRgVI+Ds1XgvCGp7h7s8aqeIh57lCCGNSixCDRr4LUEZTY2FZ/rcvr
- ajNwHbXg8fKeZ3cx12yR12uL/gKeK/LqvJgMcUTLZDp5jZ3CwSBMp9EvN6QiZm6aqy1K mQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qj1vr35ba-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 May 2023 08:38:54 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34F8crIH013977
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 May 2023 08:38:53 GMT
-Received: from [10.214.230.142] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 15 May
- 2023 01:38:49 -0700
-Message-ID: <10136d1e-8ac7-45b8-caa5-3a9aed523ab3@quicinc.com>
-Date:   Mon, 15 May 2023 14:08:45 +0530
+        with ESMTP id S236972AbjEOImB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 04:42:01 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E7F9CE;
+        Mon, 15 May 2023 01:42:00 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50db7ec8188so11080032a12.2;
+        Mon, 15 May 2023 01:42:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684140119; x=1686732119;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=fD0fpSqeYQATHAfxrc40asdZfIrotxKdFwnOOUQo9hA=;
+        b=iiP2zX4BRcy2fPNOu0OxN1fusbX6TYkeV1IJiwa4zYhVPths+Vwqo0AvCi+shkIqhf
+         qBVd8uDcIbXbtHyMIDx7CjvxhBXlAFhRM3Buj9Jo2Bu15RAhPIsA7JGbhSCFsfaong97
+         J+UMD4NAvRqCwayPzWaORcDsxkp/JzwiDJ6/1KXGaD3lsCinNftj/n2jFbdWRwS4dFpJ
+         60E8Qk/28/NPiAYp5DELIv7d9S5f04BiqA/be0OGfa0tbC2Ek41dLa4pEQr+5CVyzZUF
+         lOSqRNPcZJBdohYPX7H1yf04EpSpc09lrxr9NWq975BMNf+kcHkqGwMrNaryRua16lWc
+         xEsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684140119; x=1686732119;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fD0fpSqeYQATHAfxrc40asdZfIrotxKdFwnOOUQo9hA=;
+        b=CXFBKhQv2QYgI6tI+lmUxEG44DxmONgGIlyKKcA8ci3Dq9qJQcNlvL46d+0Gp0l/jR
+         wBuKFH8NTGfcMJmqUiRBW3r5tIQiIrVNNo2JJ3huNr9wQ6yN0lzeCNtQYeLpnsbpeArN
+         mwFeyyRKx0BWtaqwTcyTAhyOdOah9TTrMbXHyUoxilVziLkVxlgEeGUot14WK77vmEvk
+         9/ZXsB6UoRuf/1IgbzM0ZjnZSKg2Te6N3c08Sinqs25Bc1EBI1Q8T65i5gKBif4EHoHR
+         X0ioeDk8DjXuzxE3ka/5UjX4R0RTm2nt+EnArNw+0QSHhFUc5PG+lS8XC3JhcFXPx/fc
+         kxvQ==
+X-Gm-Message-State: AC+VfDwQsQw/KFwFiVqc9GuwLJlrttv5Dhi7FrLNzCK4AxQ3Io0Mw/5f
+        KTzJc+dXktniE7jmF0KV/qzxMrSxNjR7Ae/m0c0=
+X-Google-Smtp-Source: ACHHUZ7XXPpX3mJ7rJEv+Y0TAqfS548hzthsIYZYYrXMGfy7iGC11VFTocLjvHY8MV96XpSzHEV6vQWxTsrWW541Cdk=
+X-Received: by 2002:a05:6402:2d0:b0:50d:91c8:9e16 with SMTP id
+ b16-20020a05640202d000b0050d91c89e16mr22573811edx.12.1684140118752; Mon, 15
+ May 2023 01:41:58 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 07/10] dt-bindings: arm: msm: Add LLCC compatible for
- QDU1000/QRU1000
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org> <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
+In-Reply-To: <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Mon, 15 May 2023 10:41:45 +0200
+Message-ID: <CAFqH_520eLGP8wmD6fYyCvXscsndeGka3moVk3G6VpW3zsEhXQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] ARM: dts: Move .dts files to vendor sub-directories
+To:     Rob Herring <robh@kernel.org>
+Cc:     soc@kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
- <20230512122134.24339-8-quic_kbajaj@quicinc.com>
- <c9e37cb2-75f7-e335-05ac-01197a9ba14c@linaro.org>
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
-In-Reply-To: <c9e37cb2-75f7-e335-05ac-01197a9ba14c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ys1yC9ITtZVzF8aVkRJrH1jeCsC_SzLc
-X-Proofpoint-ORIG-GUID: ys1yC9ITtZVzF8aVkRJrH1jeCsC_SzLc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-15_05,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- adultscore=0 bulkscore=0 clxscore=1015 impostorscore=0 mlxlogscore=670
- lowpriorityscore=0 malwarescore=0 phishscore=0 suspectscore=0 spamscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305150074
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Russell King <linux@armlinux.org.uk>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Lars Persson <lars.persson@axis.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Baruch Siach <baruch@tkos.co.il>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Jean-Marie Verdun <verdun@hpe.com>,
+        Nick Hawkins <nick.hawkins@hpe.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Daniel Palmer <daniel@thingy.jp>,
+        Romain Perier <romain.perier@gmail.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Marek Vasut <marex@denx.de>, Qin Jian <qinjian@cqplus1.com>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Paul Barker <paul.barker@sancloud.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@axis.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
+Missatge de Rob Herring <robh@kernel.org> del dia dv., 5 de maig 2023
+a les 5:29:
+>
+> The arm dts directory has grown to 1553 boards which makes it a bit
+> unwieldy to maintain and use. Past attempts stalled out due to plans to
+> move .dts files out of the kernel tree. Doing that is no longer planned
+> (any time soon at least), so let's go ahead and group .dts files by
+> vendors. This move aligns arm with arm64 .dts file structure.
+>
+> Doing this enables building subsets of dts files by vendor easily
+> without changing kernel configs:
+>
+> make allyesconfig
+> make arch/arm/boot/dts/ti/
+>
+> There's no change to dtbs_install as the flat structure is maintained on
+> install.
+>
+> The naming of vendor directories is roughly in this order of preference:
+> - Matching original and current SoC vendor prefix/name (e.g. ti, qcom)
+> - Current vendor prefix/name if still actively sold (SoCs which have
+>   been aquired) (e.g. nxp/imx)
+> - Existing platform name for older platforms not sold/maintained by any
+>   company (e.g. gemini, nspire)
+>
+> The whole move was scripted with the exception of MAINTAINERS.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-On 5/13/2023 2:59 PM, Krzysztof Kozlowski wrote:
-> On 12/05/2023 14:21, Komal Bajaj wrote:
->> Add LLCC compatible for QDU1000/QRU1000 SoCs.
->>
->> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> Use subject prefixes matching the subsystem (which you can get for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching). In this case - cache: qcom,llcc: - and drop
-> redundant parts in subject.
->
-> With subject fixes:
-Okay, will do that.
+For ARM/IGEP boards
 
-Thanks,
-Komal
->
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> Best regards,
-> Krzysztof
->
-
+Acked-by: Enric Balletbo i Serra <eballetbo@gmail.com>
