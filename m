@@ -2,120 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 330CF702B70
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 13:26:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55674702B7F
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 13:29:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241247AbjEOL0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 07:26:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35566 "EHLO
+        id S240784AbjEOL3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 07:29:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241250AbjEOL0U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 07:26:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C8FC1736;
-        Mon, 15 May 2023 04:26:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S238998AbjEOL3g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 07:29:36 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07043F1;
+        Mon, 15 May 2023 04:29:34 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B522C622BE;
-        Mon, 15 May 2023 11:26:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9818CC433D2;
-        Mon, 15 May 2023 11:25:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684149961;
-        bh=MBqNZwSUWIVyUFPu5xzrWq+IS+ipisPvB7leUbn8x7I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KFbji4AXA3hGRsqTwofLDZiiIfOsCOOHJjiwkI4H4/iGfs82EgkS5b1Xg0tLaoqh/
-         tJ3DPhdMHBOVrCpMIZdlKFsIAa3H18C9ex5U3yjpI6X83AIpfcyksAvxVywqgfkpoW
-         sVVLV0/2LJ5LaVTgNFNS6P+BrBxDDkogc2PQdFDVzskUrXiXZWJVGFGjU36gn8sAPZ
-         t6feA4rv/otyZkO6Cim+P7ICaZ2Myn68JP356IAppwnzC+OuvMgyGYAQrGzLrvmCRv
-         qE0XMb5fBJz9q9qUd785/TUka+DUI4OPC1H6/LMzHlne0JMH0BQC4YeL5q6bP8g4PM
-         lr8KyMx0+2NpQ==
-Date:   Mon, 15 May 2023 12:25:54 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Charles Keepax <ckeepax@opensource.cirrus.com>, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, tglx@linutronix.de, linus.walleij@linaro.org,
-        vkoul@kernel.org, lgirdwood@gmail.com,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 07/10] irqchip/cs42l43: Add support for the cs42l43 IRQs
-Message-ID: <20230515112554.GA10825@google.com>
-References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
- <20230512122838.243002-8-ckeepax@opensource.cirrus.com>
- <86o7mpmvqq.wl-maz@kernel.org>
- <20230512153933.GH68926@ediswmail.ad.cirrus.com>
- <86mt29mt2m.wl-maz@kernel.org>
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3FEC866031D7;
+        Mon, 15 May 2023 12:29:32 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1684150173;
+        bh=LalSUny/QCaFULSY0Y9gSNVhlJDeYPhrQGuFROWyytw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=KpKmsN5/9J1wHY56LlCOFpCD6W3pBeBcdtaRkSb9eI40rreAuKsiJ7tbFXfrxRJUI
+         hQMDZaKki177BFrFuCu88KKfHZHTe70Ef/AqqGDw/18eHlpes2ouOx1TmrFxoHN6eB
+         NLL6ceySSM01MGsPrpR4iFJThyppcY1rLJmZSPa8/AvXu3GKSIKlkn5iPfBmIYn6R9
+         DsI0IdM6go9YBf8XhbWr4L1rSkeVPMAHvOJjpbFMOr8b1QjvnYvxKbKY4QRrUUcSZl
+         8Wn+k9Nrs0KrmZItbJ52hS7gFZLD2g2AJ/ceM1clu9XmOmed2nQj6RwGZBBS4K9R20
+         sRiPG+/cHtXOg==
+Message-ID: <df8571eb-fba9-0ba7-88d0-1a74114bd73f@collabora.com>
+Date:   Mon, 15 May 2023 13:29:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <86mt29mt2m.wl-maz@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 3/6] arm64: dts: mediatek: mt8183: Add
+ mediatek,gicr-save-quirk
+Content-Language: en-US
+To:     Douglas Anderson <dianders@chromium.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        wenst@chromium.org, Eddie Huang <eddie.huang@mediatek.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Ben Ho <Ben.Ho@mediatek.com>, Weiyi Lu <weiyi.lu@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Tinghan Shen <tinghan.shen@mediatek.com>, jwerner@chromium.org,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        yidilin@chromium.org, Seiya Wang <seiya.wang@mediatek.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org
+References: <20230511150539.6.Ia0b6ebbaa351e3cd67e201355b9ae67783c7d718@changeid>
+ <20230511150539.3.I525a2ed4260046d43c885ee1275e91707743df1c@changeid>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230511150539.3.I525a2ed4260046d43c885ee1275e91707743df1c@changeid>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 May 2023, Marc Zyngier wrote:
-
-> On Fri, 12 May 2023 16:39:33 +0100,
-> Charles Keepax <ckeepax@opensource.cirrus.com> wrote:
-> > 
-> > On Fri, May 12, 2023 at 04:10:05PM +0100, Marc Zyngier wrote:
-> > > On Fri, 12 May 2023 13:28:35 +0100,
-> > > Charles Keepax <ckeepax@opensource.cirrus.com> wrote:
-> > > > 
-> > > > The CS42L43 is an audio CODEC with integrated MIPI SoundWire interface
-> > > > (Version 1.2.1 compliant), I2C, SPI, and I2S/TDM interfaces designed
-> > > > for portable applications. It provides a high dynamic range, stereo
-> > > > DAC for headphone output, two integrated Class D amplifiers for
-> > > > loudspeakers, and two ADCs for wired headset microphone input or
-> > > > stereo line input. PDM inputs are provided for digital microphones.
-> > > > 
-> > > > The IRQ chip provides IRQ functionality both to other parts of the
-> > > > cs42l43 device and to external devices that wish to use its IRQs.
-> > > 
-> > > Sorry, but this isn't much of an interrupt controller driver. A modern
-> > > interrupt controller driver is firmware-driven (DT or ACPI, pick your
-> > > poison), uses irq domains, and uses the irqchip API.
-> > > 
-> > 
-> > Apologies but I really need a little help clarifying the issues
-> > here. I am totally happy to fix things up but might need a couple
-> > pointers.
-> > 
-> > 1) uses the irqchip API / uses irq domains
-> > 
-> > The driver does use both the irqchip API and domains, what
-> > part of the IRQ API are we not using that we should be?
-> > 
-> > The driver registers an irq domain using
-> > irq_domain_create_linear.  It requests its parent IRQ using
-> > request_threaded_irq. It passes IRQs onto the devices requesting
-> > IRQs from it using handle_nested_irq and irq_find_mapping.
-> > 
-> > Is the objection here that regmap is making these calls for us,
-> > rather than them being hard coded into this driver?
+Il 12/05/23 00:05, Douglas Anderson ha scritto:
+> Firmware shipped on mt8183 Chromebooks is affected by the GICR
+> save/restore issue as described by the patch ("dt-bindings:
+> interrupt-controller: arm,gic-v3: Add quirk for Mediatek SoCs w/
+> broken FW"). Add the quirk property.
 > 
-> That's one of the reasons. Look at the existing irqchip drivers: they
-> have nothing in common with yours. The regmap irqchip abstraction may
-> be convenient for what you are doing, but the result isn't really an
-> irqchip driver. It is something that is a small bit of a larger device
-> and not an interrupt controller driver on its own. The irqchip
-> subsystem is there for "first class" interrupt controllers.
+> Fixes: e526c9bc11f8 ("arm64: dts: Add Mediatek SoC MT8183 and evaluation board dts and Makefile")
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
+> 
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 5169779d01df..39545172fce5 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -709,6 +709,7 @@ gic: interrupt-controller@c000000 {
+>   			      <0 0x0c400000 0 0x2000>,   /* GICC */
+>   			      <0 0x0c410000 0 0x1000>,   /* GICH */
+>   			      <0 0x0c420000 0 0x2000>;   /* GICV */
+> +			mediatek,gicr-save-quirk;
 
-I'm not aware of another subsystem that deals with !IRQChip level IRQ
-controllers.  Where do simple or "second class" interrupt controllers
-go?
+Nit: Can you please move this after interrupts?
 
--- 
-Lee Jones [李琼斯]
+Thanks,
+Angelo
+
+>   
+>   			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH 0>;
+>   			ppi-partitions {
+
+
