@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6806C7038B6
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:34:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6683B703AB0
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:54:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244339AbjEOReQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 13:34:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52722 "EHLO
+        id S242615AbjEORyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 13:54:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244323AbjEOReB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:34:01 -0400
+        with ESMTP id S243346AbjEORxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:53:47 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EB93DC77;
-        Mon, 15 May 2023 10:31:50 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70C8E3C3D;
+        Mon, 15 May 2023 10:51:49 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0EDB362D4A;
-        Mon, 15 May 2023 17:31:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0665C4339C;
-        Mon, 15 May 2023 17:31:48 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 70FD562F55;
+        Mon, 15 May 2023 17:50:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3196FC433D2;
+        Mon, 15 May 2023 17:50:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1684171909;
-        bh=h5mK51aebmM7frvlZj9/VAIXXGKmEyWTQHFtggW+AO4=;
+        s=korg; t=1684173024;
+        bh=TIZDeQVkkjTF/wP3p4B70cxMgyU+BR6heqHpnz7WagQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=V6hP1pGKwOoTGYu+wNfRzOGkYOuEH7gmpcexEAwSn9J+9/bPtqhMycaZLaW8jrMQf
-         oiEUI7ipyg1YdVkHwOQvU7D5K8qEvS4JEvAzYxs3GqF9dPiMXirjhSi96YCEFviK1v
-         W4PEtfTk6xFt0xGIVf5cUav0g14fsHH3zwt7gHi4=
+        b=JrGFLPQJKQI9m16qLYJL2riPrhuY2Mo3tMQFAyurxCSgw9nVf7q7PpLNnwtXITPPg
+         iNdOaBgFMXTGkgVjN6O8tftnV9PNnSIGcN/JVM0CoiRe+tfN9A1kBgyiGRaR+QATHh
+         JyOR63sclizc8buiuFlqlSzG5efLLNoxqcX1/lFE=
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     stable@vger.kernel.org
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -39,12 +39,12 @@ Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
         John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
         linux-sh@vger.kernel.org
-Subject: [PATCH 5.15 077/134] sh: init: use OF_EARLY_FLATTREE for early init
-Date:   Mon, 15 May 2023 18:29:14 +0200
-Message-Id: <20230515161705.748158315@linuxfoundation.org>
+Subject: [PATCH 5.10 343/381] sh: init: use OF_EARLY_FLATTREE for early init
+Date:   Mon, 15 May 2023 18:29:54 +0200
+Message-Id: <20230515161752.358306563@linuxfoundation.org>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230515161702.887638251@linuxfoundation.org>
-References: <20230515161702.887638251@linuxfoundation.org>
+In-Reply-To: <20230515161736.775969473@linuxfoundation.org>
+References: <20230515161736.775969473@linuxfoundation.org>
 User-Agent: quilt/0.67
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -134,7 +134,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  void __ref sh_fdt_init(phys_addr_t dt_phys)
  {
  	static int done = 0;
-@@ -326,7 +326,7 @@ void __init setup_arch(char **cmdline_p)
+@@ -329,7 +329,7 @@ void __init setup_arch(char **cmdline_p)
  	/* Let earlyprintk output early console messages */
  	sh_early_platform_driver_probe("earlyprintk", 1, 1);
  
