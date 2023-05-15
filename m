@@ -2,59 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92620703187
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 17:28:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80B73703194
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 17:31:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238267AbjEOP2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 11:28:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41270 "EHLO
+        id S242161AbjEOPbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 11:31:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240538AbjEOP2h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 11:28:37 -0400
+        with ESMTP id S240326AbjEOPbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 11:31:11 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C4A519AA;
-        Mon, 15 May 2023 08:28:36 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4E7319BA;
+        Mon, 15 May 2023 08:31:08 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D73CC62093;
-        Mon, 15 May 2023 15:28:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75951C433EF;
-        Mon, 15 May 2023 15:28:32 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 25DAD6224D;
+        Mon, 15 May 2023 15:31:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5874C4339B;
+        Mon, 15 May 2023 15:31:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684164515;
-        bh=OGtmFJDczh3lYYzoiMZ4oyNnfvHEjzaMRFzhpDA09j4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NAoTbfQu22qiYm8SDgNHeAgqv9i+33VJd3ttD9ikwxavqhcGnUAkZzvGMUX8atDxm
-         qMGn4EusTXzzPV8LbBv+BJT8nqyF3ZoGhJgjAeQOLRftx52X9nojXypic+681cmuAV
-         o8J9tTyF2p/k0IAvc9fxacMrMux9CRFc3Yg6k1Z+EX1tTyM50NVjQUuLeNoetWtlXV
-         /qmRRYz7a2RD5mb8j7hJcvI3oghFJPh0+OMNEOBL4PdvnSbe85H/Ed9NIwMnEsb8JY
-         XSU0Y05T299LtDJ6FDAEOcNI9mCAdtiNHRVD4FINCsa9GOnHaRta99g9X/3I68IOAp
-         9tqU40fJBtG+g==
-Date:   Mon, 15 May 2023 16:28:29 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Shengyu Qu <wiagn233@outlook.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
-        lgirdwood@gmail.com, broonie@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        conor.dooley@microchip.com,
-        Martin Botka <martin.botka@somainline.org>
-Subject: Re: [PATCH v3 2/3] mfd: axp20x: Add support for AXP15060 PMIC
-Message-ID: <20230515152829.GW10825@google.com>
-References: <20230421150816.10513-1-wiagn233@outlook.com>
- <TY3P286MB261162D57695AC8164ED50E298609@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
- <20230426142740.GN50521@google.com>
- <20230503120759.6fd6a7a9@donnerap.cambridge.arm.com>
- <19bccb62-b7e0-855d-fb5f-4fd3dde4f6f0@linaro.org>
- <20230515105229.GI8963@google.com>
- <20230515161940.3bcbe932@donnerap.cambridge.arm.com>
+        s=k20201202; t=1684164667;
+        bh=TDEwSTLolQvMt4EHNuIwFIk4wEdg1IERZQM09Ze3bf4=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=udjI6GHbvobyWeQRDig3BYNl3hGfXA0T0gv9JC3DL5xeSh7F1qstjH26S/xR6euR8
+         1I1UB1fCCSloIr0x6svQWaYIem0Xap9HizBbJqyZSye7xAKcfMWEQOkHBO9pXH7O72
+         yodzUprJMtzbiDGKsJLF3O3ni8s9zdt9DrzhIV+jgo1uhJL9+nEbd2C7Ym4K5L0r1Z
+         jH0LU9w7dUdPdNNINo2YeBg6Bpm+HDxkCf5b1KbB6tN9Vkjrj4EstuPn9gVVYflNQD
+         358K2AJVpS7D9iAjOwKmg22xTYEsDP/swVfhg+5KRKuzdy7quGzOZk1bXd2/tdEyfe
+         poLGS98x6vH/A==
+From:   Mark Brown <broonie@kernel.org>
+To:     lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+        Trevor Wu <trevor.wu@mediatek.com>
+Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20230510035526.18137-1-trevor.wu@mediatek.com>
+References: <20230510035526.18137-1-trevor.wu@mediatek.com>
+Subject: Re: [PATCH v4 0/9] ASoC: mediatek: mt8188: revise AFE driver
+Message-Id: <168416466452.415808.13353377218867876489.b4-ty@kernel.org>
+Date:   Tue, 16 May 2023 00:31:04 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230515161940.3bcbe932@donnerap.cambridge.arm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-bfdf5
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -65,113 +58,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 May 2023, Andre Przywara wrote:
-
-> On Mon, 15 May 2023 11:52:29 +0100
-> Lee Jones <lee@kernel.org> wrote:
+On Wed, 10 May 2023 11:55:17 +0800, Trevor Wu wrote:
+> The series of patches consists of four major changes.
+> First, remove redundant supply for ADDA DAI dirver. Second, revise ETDM
+> control including APLL dynamic switch via DAPM, so APLL can be enabled
+> when it is really required. Third, update AFE probe function. Bus
+> protection change was dropped at the previous patch because the dependent
+> change was not accepted at that time. Finally, correct some binding errors
+> and add required clocks.
 > 
-> > On Thu, 04 May 2023, Krzysztof Kozlowski wrote:
-> > 
-> > > On 03/05/2023 13:07, Andre Przywara wrote:  
-> > > > On Wed, 26 Apr 2023 15:27:40 +0100
-> > > > Lee Jones <lee@kernel.org> wrote:
-> > > > 
-> > > > Hi Lee,
-> > > > 
-> > > > I see this patch in Linus' tree, but something must have gone wrong here,
-> > > > can you please check? See below ...
-> > > >   
-> > > >> On Fri, 21 Apr 2023, Shengyu Qu wrote:
-> > > >>  
-> > > >>> The AXP15060 is a PMIC chip produced by X-Powers, and could be connected
-> > > >>> via an I2C bus.
-> > > >>>
-> > > >>> Describe the regmap and the MFD bits, along with the registers exposed
-> > > >>> via I2C. Eventually advertise the device using a new compatible string
-> > > >>> and add support for power off the system.
-> > > >>>
-> > > >>> The driver would disable PEK function if IRQ is not configured in device
-> > > >>> tree, since some boards (For example, Starfive Visionfive 2) didn't
-> > > >>> connect IRQ line of PMIC to SOC.
-> > > >>>
-> > > >>> GPIO function isn't enabled in this commit, since its configuration
-> > > >>> operation is different from any existing AXP PMICs and needs
-> > > >>> logic modification on existing driver. GPIO support might come in later
-> > > >>> patches.
-> > > >>>
-> > > >>> ---    
-> > > >>
-> > > >> You must not use these above the tags or Git will drop them.
-> > > >>  
-> > > >>> Changes since v2:
-> > > >>>  - Rebase to AXP313a series v10 [1] + newest (20230420) -next branch  
-> > > > 
-> > > > So this patch was based on the AXP313a series, but I don't see that in
-> > > > Linus' tree (or in any of your trees, if I have checked correctly).
-> > > > There must have been a conflict, as this [PATCH v3 2/3] diff actually lists
-> > > > the axp313a entry in the context lines.
-> > > >   
-> > > >>>  - Add axp_regulator_only_cells rather than directly using axp806_cells
-> > > >>>    for cases that IRQ line isn't connected.
-> > > >>>
-> > > >>> Changes since v1:
-> > > >>>  - Nothing
-> > > >>>
-> > > >>> [1] https://lore.kernel.org/linux-sunxi/20230401001850.4988-1-andre.przywara@arm.com/
-> > > >>>
-> > > >>> Signed-off-by: Shengyu Qu <wiagn233@outlook.com>
-> > > >>> ---    
-> > > >>
-> > > >> Put change-logs here instead.
-> > > >>  
-> > > >>>  drivers/mfd/axp20x-i2c.c   |   2 +
-> > > >>>  drivers/mfd/axp20x.c       | 107 +++++++++++++++++++++++++++++++++++++
-> > > >>>  include/linux/mfd/axp20x.h |  85 +++++++++++++++++++++++++++++
-> > > >>>  3 files changed, 194 insertions(+)    
-> > > >>
-> > > >> I manually added the missing tags for this and the DT patch and applied.  
-> > > > 
-> > > > So this patch doesn't list any tags aside from Shengyu's
-> > > > Signed-off-by. The patch in Linus' tree list a Reviewed-by: from
-> > > > Krzysztof, which I don't see anywhere in the thread, he just reviewed the
-> > > > binding patch, AFAICT.   
-> > > 
-> > > Yep, I never reviewed this.
-> > >   
-> > > > I see your tentative R-b: on v2, but with the
-> > > > request to rebase and resend, which he did with v3. The applied patch
-> > > > looks like v3, but not on the base commit this was send against.
-> > > > 
-> > > > So I am slightly confused, and am also wondering what happened to the
-> > > > AXP313a patches? I see the binding patch merged, but not the MFD part,
-> > > > even though you replied saying so.  
-> > > 
-> > > Because the patch #1 was broken, see:
-> > > https://lore.kernel.org/all/TY3P286MB261177CF7AA2959BD9517DA998609@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM/
-> > > 
-> > > The SoB and Reviewed-by were after --- and apparently b4 understood it
-> > > as cover letter and applied everywhere.
-> > > 
-> > > Lee,
-> > > Do you have the latest b4? If yes, this should be reported as b4 bug,
-> > > assuming you used it.  
-> > 
-> > I am using b4, although the version I'm using is quite old (0.9.0).
-> > 
-> > Also, this was quite some time ago - I have slept since applying this
-> > and do not distinctly remember doing so.  Thus, the application of your
-> > R-b may well have been a mistake on my part.  I'll keep an eye for such
-> > things in the future and if I see (and remember) an issue, I'll report
-> > it.
-> 
-> So what are we going to do about the two series now? I guess it's not
-> worthwhile to revert Shengyu's patch, just for the wrong R-b: tag?
+> [...]
 
-No, I won't be reverting any patches.
+Applied to
 
-> So does this mean both series should be rebased on top of that and re-sent?
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Yes please.
+Thanks!
 
--- 
-Lee Jones [李琼斯]
+[1/9] ASoC: mediatek: mt8188: remove supply AUDIO_HIRES
+      commit: 4db399793c34c72dcad18815d54c0cd23750b8f1
+[2/9] ASoC: mediatek: mt8188: complete set_tdm_slot function
+      commit: 2664c8790cfdcaa81ff8b3b9f649a6635955d636
+[3/9] ASoC: mediatek: mt8188: revise ETDM control flow
+      commit: e5d2bd4103df419fd33131f1aa7a8dea35e3638c
+[4/9] ASoC: mediatek: mt8188: refine APLL control
+      commit: 9be0213a6858d0084a9e800d2b451678f014f337
+[5/9] ASoC: mediatek: mt8188: combine afe component registration
+      commit: e9eab4bed0436a7b7268114ecf55fe4989855d47
+[6/9] ASoC: mediatek: mt8188: add bus protection
+      commit: fb167449cec1d2f34ef4c6d17ff860076ac0fc44
+[7/9] ASoC: mediatek: mt8188: add required clocks
+      commit: 2e5c422a624aa35cefb5a448a2040df6627f505b
+[8/9] ASoC: dt-bindings: mediatek,mt8188-afe: correct clock name
+      commit: 1e4fe75e9746be8e40c57132bb3fba1ce3dd24af
+[9/9] ASoC: dt-bindings: mediatek,mt8188-afe: add audio properties
+      commit: 739ee993c38596d93150f96153f9bb1cfd7733bc
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
