@@ -2,66 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 268C1702124
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 03:31:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93BA2702139
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 03:41:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229708AbjEOBa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 21:30:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42284 "EHLO
+        id S238099AbjEOBlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 21:41:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229976AbjEOBa5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 21:30:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D1D7B9;
-        Sun, 14 May 2023 18:30:54 -0700 (PDT)
+        with ESMTP id S229539AbjEOBlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 21:41:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E38E170B;
+        Sun, 14 May 2023 18:41:05 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3913961CD2;
-        Mon, 15 May 2023 01:30:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BF83C433D2;
-        Mon, 15 May 2023 01:30:44 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 20E5661B5C;
+        Mon, 15 May 2023 01:41:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDD91C433D2;
+        Mon, 15 May 2023 01:41:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684114253;
-        bh=1YwRJsz4bjeDzaGLdHHEuhRHYha2f/lVMZzE4VeBLss=;
+        s=k20201202; t=1684114864;
+        bh=79lWb3D7lA4dEhtUweaJXHJcOyYQuE3lhF99vOoPvus=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AdyfZzvnn2zXvAJDRCz7VSgDYQxv+LKtlTorkA2TGfXRvZw9zlScV8KqzRy02zGXx
-         cwxiBEU2Vo1iYRmUrIizxU3iknvZrqNIBkMGL55IIpZ5Jh+N/FQxxQRe2M5R9x0D1w
-         BlwCHWOnyL0F8XW8+navcvSgLJLR+eVg32TqD+pY2eXPqV+eCk42zfsa+HiyPJH8dv
-         +VPXxzONymQmZ0gNyPHYuoxzd4qct7PcmTOOEB3QVTy2i9JlUXKMt13u/D6FOeQGtJ
-         fWsJXrHPEtWrPUE/MpXwEMQ05xD6hfbwYAXRFcBKSC8t89Y2UwUm53qF5r8I5cGs0K
-         RX1gc7DbZah3A==
-Date:   Mon, 15 May 2023 09:30:38 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Adam Ford <aford173@gmail.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Richard Leitner <richard.leitner@skidata.com>,
-        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
+        b=KfOxkjKk//cAqrgPGIWIx4zmzZIhWIfhvE70oxhX8EWydVjSWjP3eg6drFuw8cyHp
+         ZyTdyKgKNEtJFsJZG/ez6yVgH9xShT8vAxrQjqOs8UF2l5dmC4otBT2yi6VpZMbZh4
+         oQGj2qMDasMW4teQ1uoViJGkRIld5ng1KArRJSR00aPNt+beUNFQOQGvydyTEzCNZx
+         4wY3QptbNtrPVp05iSwm3F+5xofr0ohjyBE8trJ9QHXErQgpa0EhuPe3GGO+vbkUNl
+         szLsneRyHURh100f6C9wr3FAYUt/vq7MAuRYMkcm9SwYgRl6BwXJhxFwKgOCopOoVA
+         S4QS5H6Y4ST1A==
+Date:   Sun, 14 May 2023 18:44:57 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v8 1/2] arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX
-Message-ID: <20230515013038.GB767028@dragon>
-References: <20230508114236.8444-1-marex@denx.de>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH] arm64: dts: qcom: add device tree for DB845c working
+ in dual DSI mode
+Message-ID: <20230515014457.gqbvyyr75bnvi724@ripper>
+References: <20230118082048.2198715-1-dmitry.baryshkov@linaro.org>
+ <20230118173242.cjh5izohjros6wxd@builder.lan>
+ <DFBA966D-3AAF-4E6D-880C-897CB901AEE1@linaro.org>
+ <20230407164833.2ws22rr4lu6g25dj@ripper>
+ <da2d90cf-1f36-7c59-7b29-ee98ab85f960@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230508114236.8444-1-marex@denx.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <da2d90cf-1f36-7c59-7b29-ee98ab85f960@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,18 +62,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 08, 2023 at 01:42:35PM +0200, Marek Vasut wrote:
-> Add all SAI nodes, SDMA2 and SDMA3 nodes, and AudioMIX node. This is
-> needed to get audio operational on i.MX8MP .
+On Fri, Apr 07, 2023 at 08:09:23PM +0300, Dmitry Baryshkov wrote:
+> On 07/04/2023 19:48, Bjorn Andersson wrote:
+> > On Wed, Jan 18, 2023 at 08:47:53PM +0200, Dmitry Baryshkov wrote:
+> > > 18 января 2023 г. 19:32:42 GMT+02:00, Bjorn Andersson <andersson@kernel.org> пишет:
+> > > > On Wed, Jan 18, 2023 at 10:20:48AM +0200, Dmitry Baryshkov wrote:
+> > > > > While we are testing the DB845c working in dual DSI mode (which is
+> > > > > required for the 4k support), create a separate device tree using this
+> > > > > configuration.
+> > > > > 
+> > > > 
+> > > > I don't think it's right to change the DTB on your device depending on
+> > > > your TV's ability to do 4k or not...
+> > > > 
+> > > > I ran into this problem when playing around with 4k-support on the RB3
+> > > > as well a while back. I was not able to figure out a way to run the
+> > > > lt9611 off two inputs for the lower resolutions and ended never posted
+> > > > anything because I couldn't come up with any good solution.
+> > > 
+> > > 
+> > > This is implemented with the latest lt9611 patchset, referenced in the patch annotation.
+> > > 
+> > > I posted this as an RFC with the separate dts to let people test dual DSI, DPU wide planes, etc. and to compare that with plain old single link DSI/lt9611.
+> > > 
+> > > > 
+> > > > 
+> > > > Would it be possible somehow to describe the two ports in DT, but have
+> > > > the display driver use one or both depending on the number of inputs
+> > > > needed by the lt9611?
+> > > 
+> > > This would be very problemsome. Even switching the number of lanes
+> > > goes against the standard and is not supported by Linux kernel.
+> > > Supporting switching the host off and on would be a real troublle.
+> > > 
+> > 
+> > Does this imply that switching resolution in runtime is not possible for
+> > any of these DSI->HDMI/DP/eDP bridges?
+> > 
+> > The immediate worry is that we need 4k and non-4k variants of every
+> > mezzanine (unless we start doing overlays). But beyond that I still
+> > don't like the fact that you need to change firmware depending on which
+> > monitor/TV you're going to connect the board to. (And with the current
+> > boot.img-based design, this is overly cumbersome)
+> No. With the latest lt9611 driver and with the current msm/msm-next it
+> should not be necessary to have a separate dtsi. I submitted this patch as
+> an RFC to let people compare 2xDSI vs single-link cases. Currently I'm happy
+> with the way it works, so I can probably send this as a patch to main
+> sdm845-db845c.dtb.
 > 
-> Acked-by: Peng Fan <peng.fan@nxp.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
-> Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
-> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Tested-by: Richard Leitner <richard.leitner@skidata.com>
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> As a background info:
+> - lt9611 driver can utilize either one or two DSI links
+> - drm/msm can output 4k over two DSI links in bonded mode.
+> - drm/msm will still utilize two DSI links for smaller resolutions
+> (switching between single and bonded DSI modes doesn't seem practical).
+> - If just one DSI link is supplied, 1080p is the maximum resolution that can
+> be supported.
+> 
 
-Applied both, thanks!
+Sorry, I missed your reply earlier. If we can run the lower resolutions
+off two bonded DSI I think we should make that the default
+configuration - it's just that when I tried it a few years ago I had
+problems getting a working output... But much has changed since then.
+
+There is a dip switch to allow one of the DSI links to be passed onto
+one of the HS-connectors, but for anyone to use that they would need a
+mezzaine dts anyways, so they can unbond the DSIs there.
+
+Regards,
+Bjorn
