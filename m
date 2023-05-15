@@ -2,137 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A646B7040E4
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 00:23:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4349970410B
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 00:39:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245344AbjEOWXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 18:23:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37468 "EHLO
+        id S231455AbjEOWjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 18:39:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236784AbjEOWXl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 18:23:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BDFEA3;
-        Mon, 15 May 2023 15:23:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231416AbjEOWjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 18:39:41 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C95BA5DA;
+        Mon, 15 May 2023 15:39:39 -0700 (PDT)
+Received: from mercury (unknown [185.254.75.28])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 035846334A;
-        Mon, 15 May 2023 22:23:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 191A4C433D2;
-        Mon, 15 May 2023 22:23:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684189419;
-        bh=OqIemthk74Japxf8JKty+wpFYdyckxcj/Mt28A6kSCU=;
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 573D366031CE;
+        Mon, 15 May 2023 23:39:38 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1684190378;
+        bh=6vM/tOGnmSln8Pv6kLk4Nazaz+fmc1Ds2gNBAqt+6QY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=J5uGurHmS/0tRRbC7hB2MmYS8N06SxfaPIOP4Ch/thZWa/94X9c8zKIl1D0wSnCjk
-         dqBRrTNde11hMZcSBH1zyPJWt5MateFyXxPxSGOpd2jT2Fz51l3xmilc1MRjo/DIj4
-         4lhVERDDv1fNus0XCxlYxU4dh2qNS5Kx3vA+78uNSXIkU7pC/qnYwuA2hqEO2n6mgt
-         EFhtTDAGl8p27u3cho7fV2IuBkc4I5HiciCI+zqUNU0BrF8KtveSqHCOIc5bIVi4Ua
-         EC0GuBHLmURNMjkxGUfDl/CXGuJniAGQ9al+OlAK1Bj6Oki4cyH2cCXBchjTNW8y/r
-         2OzRZOJEMwQPw==
-Date:   Mon, 15 May 2023 15:27:30 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
-        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
-        ahalaney@redhat.com
-Subject: Re: [PATCH v8 6/9] usb: dwc3: qcom: Add multiport controller support
- for qcom wrapper
-Message-ID: <20230515222730.7snn2i33gkg6ctd2@ripper>
-References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
- <20230514054917.21318-7-quic_kriskura@quicinc.com>
+        b=DFnrYCBNczfCveW7dnMU+fPv/O26FpDbqbPIpYed+dTvvmEQ+MgMqX5tX0hg9XpvA
+         gYUcqumzHphpwrpQFmPiGPln0se6QiGfDu9zGvRozoyONGQcYQjCWB06+NH3zjo3OJ
+         NGLoh+zMdz1TV+Wtk1Yfk3yG2OmXHgze2qCtClJ7fQr+hhfwJkdahdx3Bk5QQeHjCR
+         hQqHcs00KcPTMU4+p9daYFfLZfgG98ty1X81iXopQUYqQ5ms3r8dK2so63/SCy5W1G
+         9tC5PAn1Px/zaRbIzggH7TrjKbJeiGbpPAj79+BJ/MXS5tHIM4ScXuTyYdRgIXEN9l
+         oriZFsc2waV7w==
+Received: by mercury (Postfix, from userid 1000)
+        id 26E0E1060F7F; Tue, 16 May 2023 00:39:36 +0200 (CEST)
+Date:   Tue, 16 May 2023 00:39:36 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     Iskren Chernev <me@iskren.info>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Matheus Castello <matheus@castello.eng.br>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 4/4] power: max17040: get thermal data from adc if
+ available
+Message-ID: <20230515223936.fwayzfd77hvgpscy@mercury.elektranox.org>
+References: <20230308084419.11934-1-clamor95@gmail.com>
+ <20230308084419.11934-5-clamor95@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="qf65dea75uga2xk7"
 Content-Disposition: inline
-In-Reply-To: <20230514054917.21318-7-quic_kriskura@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230308084419.11934-5-clamor95@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 14, 2023 at 11:19:14AM +0530, Krishna Kurapati wrote:
-> QCOM SoC SA8295P's tertiary quad port controller supports 2 HS+SS
-> ports and 2 HS only ports. Add support for configuring PWR_EVENT_IRQ's
-> for all the ports during suspend/resume.
-> 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+
+--qf65dea75uga2xk7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Wed, Mar 08, 2023 at 10:44:19AM +0200, Svyatoslav Ryhel wrote:
+> Since fuel gauge does not support thermal monitoring,
+> some vendors may couple this fuel gauge with thermal/adc
+> sensor to monitor battery cell exact temperature.
+>=20
+> Add this feature by adding optional iio thermal channel.
+>=20
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  drivers/usb/dwc3/dwc3-qcom.c | 28 ++++++++++++++++++++++------
->  1 file changed, 22 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index 959fc925ca7c..7a9bce66295d 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -37,7 +37,10 @@
->  #define PIPE3_PHYSTATUS_SW			BIT(3)
->  #define PIPE_UTMI_CLK_DIS			BIT(8)
->  
-> -#define PWR_EVNT_IRQ_STAT_REG			0x58
-> +#define PWR_EVNT_IRQ1_STAT_REG			0x58
-> +#define PWR_EVNT_IRQ2_STAT_REG			0x1dc
-> +#define PWR_EVNT_IRQ3_STAT_REG			0x228
-> +#define PWR_EVNT_IRQ4_STAT_REG			0x238
->  #define PWR_EVNT_LPM_IN_L2_MASK			BIT(4)
->  #define PWR_EVNT_LPM_OUT_L2_MASK		BIT(5)
->  
-> @@ -93,6 +96,13 @@ struct dwc3_qcom {
->  	struct icc_path		*icc_path_apps;
+>  drivers/power/supply/max17040_battery.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>=20
+> diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supp=
+ly/max17040_battery.c
+> index 6dfce7b1309e..8c743c26dc6e 100644
+> --- a/drivers/power/supply/max17040_battery.c
+> +++ b/drivers/power/supply/max17040_battery.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/of_device.h>
+>  #include <linux/regmap.h>
+>  #include <linux/slab.h>
+> +#include <linux/iio/consumer.h>
+> =20
+>  #define MAX17040_VCELL	0x02
+>  #define MAX17040_SOC	0x04
+> @@ -143,6 +144,7 @@ struct max17040_chip {
+>  	struct power_supply		*battery;
+>  	struct power_supply_battery_info	*batt_info;
+>  	struct chip_data		data;
+> +	struct iio_channel		*channel_temp;
+> =20
+>  	/* battery capacity */
+>  	int soc;
+> @@ -416,6 +418,11 @@ static int max17040_get_property(struct power_supply=
+ *psy,
+>  	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
+>  		val->intval =3D chip->batt_info->charge_full_design_uah;
+>  		break;
+> +	case POWER_SUPPLY_PROP_TEMP:
+> +		iio_read_channel_raw(chip->channel_temp,
+> +				     &val->intval);
+> +		val->intval *=3D 10;
+
+return iio_read_channel_processed_scale(chip->channel_temp, &val->intval, 1=
+0);
+
+> +		break;
+>  	case POWER_SUPPLY_PROP_TEMP_MIN:
+>  		if (chip->batt_info->temp_min =3D=3D INT_MIN)
+>  			return -ENODATA;
+> @@ -452,6 +459,7 @@ static enum power_supply_property max17040_battery_pr=
+ops[] =3D {
+>  	POWER_SUPPLY_PROP_HEALTH,
+>  	POWER_SUPPLY_PROP_ENERGY_FULL_DESIGN,
+>  	POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
+> +	POWER_SUPPLY_PROP_TEMP,
+
+You should only expose this, if chip->channel_temp is not NULL. Use
+devm_kmemdup() to copy the array into a private copy in chip and
+modify it on the fly.
+   =20
+>  	POWER_SUPPLY_PROP_TEMP_MIN,
+>  	POWER_SUPPLY_PROP_TEMP_MAX,
 >  };
->  
-> +static u32 pwr_evnt_irq_stat_reg_offset[4] = {
-> +			PWR_EVNT_IRQ1_STAT_REG,
-> +			PWR_EVNT_IRQ2_STAT_REG,
-> +			PWR_EVNT_IRQ3_STAT_REG,
-> +			PWR_EVNT_IRQ4_STAT_REG,
+> @@ -560,9 +568,24 @@ static int max17040_probe(struct i2c_client *client)
+>  		}
+>  	}
+> =20
+> +	if (of_property_read_bool(client->dev.of_node, "io-channels")) {
 
-Seems to be excessive indentation of these...
+device_property_present()
 
-Can you also please confirm that these should be counted starting at 1 -
-given that you otherwise talk about port0..N-1?
+> +		chip->channel_temp =3D iio_channel_get(&client->dev, "temp");
 
-> +};
+devm_iio_channel_get()
+
+> +		if (IS_ERR(chip->channel_temp))
+> +			return dev_err_probe(&client->dev, PTR_ERR(chip->channel_temp),
+> +					     "failed to get temp\n");
+> +	};
+
+Also this must be acquired before registering the power-supply device.
+
+-- Sebastian
+
 > +
->  static inline void dwc3_qcom_setbits(void __iomem *base, u32 offset, u32 val)
->  {
->  	u32 reg;
-> @@ -413,13 +423,16 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
->  {
->  	u32 val;
->  	int i, ret;
-> +	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
->  
->  	if (qcom->is_suspended)
->  		return 0;
->  
-> -	val = readl(qcom->qscratch_base + PWR_EVNT_IRQ_STAT_REG);
-> -	if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
-> -		dev_err(qcom->dev, "HS-PHY not in L2\n");
-> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
+>  	return 0;
+>  }
+> =20
+> +static void max17040_remove(struct i2c_client *client)
+> +{
+> +	struct max17040_chip *chip =3D i2c_get_clientdata(client);
+> +
+> +	if (chip->channel_temp)
+> +		iio_channel_release(chip->channel_temp);
+> +}
+> +
+>  #ifdef CONFIG_PM_SLEEP
+> =20
+>  static int max17040_suspend(struct device *dev)
+> @@ -642,6 +665,7 @@ static struct i2c_driver max17040_i2c_driver =3D {
+>  		.pm	=3D MAX17040_PM_OPS,
+>  	},
+>  	.probe_new	=3D max17040_probe,
+> +	.remove		=3D max17040_remove,
+>  	.id_table	=3D max17040_id,
+>  };
+>  module_i2c_driver(max17040_i2c_driver);
+> --=20
+> 2.37.2
+>=20
 
-In the event that the dwc3 core fails to acquire or enable e.g. clocks
-its drvdata will be NULL. If you then hit a runtime pm transition in the
-dwc3-qcom glue you will dereference NULL here. (You can force this issue
-by e.g. returning -EINVAL from dwc3_clk_enable()).
+--qf65dea75uga2xk7
+Content-Type: application/pgp-signature; name="signature.asc"
 
-So if you're peaking into qcom->dwc3 you need to handle the fact that
-dwc might be NULL, here and in resume below.
+-----BEGIN PGP SIGNATURE-----
 
-Regards,
-Bjorn
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmRitKQACgkQ2O7X88g7
++poRgBAAoaWYMbFxktJscB6lYr/T3va54JzJqn51XXuvWr1kUghcrL4NPSVlxfWS
+MVbgljHERs0DeNmnXTT0cPwBh7q0Bur9Fttn+hsRWN7iHsSb4DCPpZALdNO5f+gI
+d+eFiqSPPMm40gOBYn/vyQRVJ4TloU9yeglbCWkA1EKeG0Glg/PtYO3PYiXnkrE8
+5LNjRd8+zVyC0S678gDCIp6qhlLWh8vjQoJhxWT51OSnSEUnXSb9G1OO2bXyPiNU
++eqrPfvtpLP5PvYzuJAXoN3tH8wQxZQAgnGZvlvOC3FcvZYZuj6T8OUIVzCWTi5j
+sdidzm8sgAdHaQBq7uF7UtWgZU+FzFMZAtWaz73UuQErSqUB5gxaWS4jNU3ij92M
+ZgPop+nwTSWfW8bpd5ozmKoPqxdBghO3K02DdgPk2sAzWg/G6B5vDP2swDosgiX1
+Y5MMwYUQB1zPF01o6T0JEEapvqwWqNGE5i+0QBD8thqezFDZVrxlE95sAcwU6au2
+JKmqBsUppYR1qBhJFOhkmrpaYBMxBQpXiioUr5VLjoOX7dqDQOkDzWA783iAVMFS
+0NqdCv8VyTyDUUb/1asqaWZZ+YGhml4LYY/R8aJ89MczGEpgcEo8j3XStxSASzTz
+hsXURUNYifNWvPH0xWYEzNLsIBsnwpgFYi/SqpWNn+1tI8H7LJ8=
+=+09U
+-----END PGP SIGNATURE-----
+
+--qf65dea75uga2xk7--
