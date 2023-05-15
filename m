@@ -2,60 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 281CF70211B
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 03:26:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 268C1702124
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 03:31:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231232AbjEOB0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 21:26:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40634 "EHLO
+        id S229708AbjEOBa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 21:30:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230281AbjEOB0e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 21:26:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B4210E5;
-        Sun, 14 May 2023 18:26:33 -0700 (PDT)
+        with ESMTP id S229976AbjEOBa5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 21:30:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D1D7B9;
+        Sun, 14 May 2023 18:30:54 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3291760ED6;
-        Mon, 15 May 2023 01:26:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68DEBC433D2;
-        Mon, 15 May 2023 01:26:27 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3913961CD2;
+        Mon, 15 May 2023 01:30:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BF83C433D2;
+        Mon, 15 May 2023 01:30:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684113992;
-        bh=FBAJcK48G0/3ozZ6xTCX78O8o6Xt6mni2Fpe2uK3Mws=;
+        s=k20201202; t=1684114253;
+        bh=1YwRJsz4bjeDzaGLdHHEuhRHYha2f/lVMZzE4VeBLss=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ISQOrI7quFV4DMPDKbpBcxUM6gqiWDlXYrRu5TTjJrw+MmevG3z4xNctsre1aPAa1
-         xE/N3eeE5Ukv7LTLWWgJry17l1cMskXIB8jFBaDI6V8baGeE2VQDePcm2pE4pSKYZ6
-         GBi706Zl5uST6BDhVEaJkxfBp+tFxh5k6DzFV7/Z/1JqeySSFrXCcBo0HgnanL+BjO
-         Mt4bclWu37nBWqzqrBSZxnGPGThuLaWgV8VF9OVxqfrc7uWaViG08ianLVybz8xTYY
-         8gIHVsoOXCzxAgCtZsN+/QY1MO0fXozRA09uNGcw8AduYM8Ff/TJUSfG2bqqr/Rrsu
-         GiETTgU1h6TFQ==
-Date:   Mon, 15 May 2023 09:26:19 +0800
+        b=AdyfZzvnn2zXvAJDRCz7VSgDYQxv+LKtlTorkA2TGfXRvZw9zlScV8KqzRy02zGXx
+         cwxiBEU2Vo1iYRmUrIizxU3iknvZrqNIBkMGL55IIpZ5Jh+N/FQxxQRe2M5R9x0D1w
+         BlwCHWOnyL0F8XW8+navcvSgLJLR+eVg32TqD+pY2eXPqV+eCk42zfsa+HiyPJH8dv
+         +VPXxzONymQmZ0gNyPHYuoxzd4qct7PcmTOOEB3QVTy2i9JlUXKMt13u/D6FOeQGtJ
+         fWsJXrHPEtWrPUE/MpXwEMQ05xD6hfbwYAXRFcBKSC8t89Y2UwUm53qF5r8I5cGs0K
+         RX1gc7DbZah3A==
+Date:   Mon, 15 May 2023 09:30:38 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
         Fabio Estevam <festevam@gmail.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Adam Ford <aford173@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Richard Leitner <richard.leitner@skidata.com>,
+        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH V2 1/3] arm64: dts: imx8mn: Add CSI and ISI Nodes
-Message-ID: <20230515012619.GA767028@dragon>
-References: <20230507151549.1216019-1-aford173@gmail.com>
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v8 1/2] arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX
+Message-ID: <20230515013038.GB767028@dragon>
+References: <20230508114236.8444-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230507151549.1216019-1-aford173@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230508114236.8444-1-marex@denx.de>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,13 +70,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 07, 2023 at 10:15:46AM -0500, Adam Ford wrote:
-> The CSI in the imx8mn is the same as what is used in the imx8mm,
-> but it's routed to the ISI on the Nano. Add both the ISI and CSI
-> nodes, and pointing them to each other. Since the CSI capture is
-> dependent on an attached camera, mark both ISI and CSI as
-> disabled by default.
+On Mon, May 08, 2023 at 01:42:35PM +0200, Marek Vasut wrote:
+> Add all SAI nodes, SDMA2 and SDMA3 nodes, and AudioMIX node. This is
+> needed to get audio operational on i.MX8MP .
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Acked-by: Peng Fan <peng.fan@nxp.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+> Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
+> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Tested-by: Richard Leitner <richard.leitner@skidata.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-Applied all, thanks!
+Applied both, thanks!
