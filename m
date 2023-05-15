@@ -2,60 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ABF9702C1E
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 13:58:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9755A702AD1
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 12:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241696AbjEOL6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 07:58:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54914 "EHLO
+        id S239707AbjEOKnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 06:43:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241705AbjEOL5s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 07:57:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A77A40E3;
-        Mon, 15 May 2023 04:55:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9C729614A2;
-        Mon, 15 May 2023 11:54:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04E4CC433D2;
-        Mon, 15 May 2023 11:54:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684151699;
-        bh=kh1kY/KhPkOpkYVPUCfFY3w8ObJ/nJNgBlNa4gelO4c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hzgQWD7bVW5NZ64o0Hk29zdp3hNcGMVcH3Xa3KVWNAvNhDg0DgjqbeV7p882MNW5/
-         i8bJq5rZmUCotx1A6xgE1J4bajAIFLQEw0lXLOHxFz5G/28admhEttNQqoSRfka7R8
-         41AgS7KCXXJTWWC0hQmndSenHynLhjQ/IA29MHJ3IrTzvwB2uQQYs7GZ2nxSysEX3o
-         DQ/3CSjqhMxtRobrbSZ5Z1zfsKjtVFHta++1YYxoAQVNQ9gV3qWzUc+gcro6wDLBp9
-         9Inf0rxksfRRcSP/Go3YsGbLmDGnsWbURx+ddNo4WY9bhlVmMlf3wLOildNBOPTUj1
-         PLGDB7MN12mVQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pyWn2-00040G-FC; Mon, 15 May 2023 13:54:56 +0200
-Date:   Mon, 15 May 2023 13:54:56 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
+        with ESMTP id S235490AbjEOKnE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 06:43:04 -0400
+Received: from forward500a.mail.yandex.net (forward500a.mail.yandex.net [178.154.239.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3488196;
+        Mon, 15 May 2023 03:43:02 -0700 (PDT)
+Received: from mail-nwsmtp-smtp-production-main-18.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-18.vla.yp-c.yandex.net [IPv6:2a02:6b8:c1f:5f1d:0:640:49bf:0])
+        by forward500a.mail.yandex.net (Yandex) with ESMTP id A5D035EB08;
+        Mon, 15 May 2023 13:42:58 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-18.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id vgXTnwxsAGk0-U9VWOEj0;
+        Mon, 15 May 2023 13:42:57 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1684147377;
+        bh=5Yf+nT9MWwC9WKid3XZN6dD355P7wOWx3LcVfWCOKwU=;
+        h=References:Date:In-Reply-To:Cc:To:From:Subject:Message-ID;
+        b=Kw42ataQQQf6GiAII5s/bVVcljzb8dMqqPOKnGk2UH1RgDrMoSaaZ6HPsy8gmkQBd
+         /Ewuww9pyci6rIgsziayoea/GQeSqIvFV8m7tNxu19Jj87Y0X4XGN8vyfZRJwpSnpX
+         wgHU8sdZ60mBnoDD4DQeGfNBCokPGSO2PVfb5/wk=
+Authentication-Results: mail-nwsmtp-smtp-production-main-18.vla.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
+Message-ID: <c42805a244149e1887dca2c414a36243f862fcae.camel@maquefel.me>
+Subject: Re: [PATCH 18/43] dt-bindings: net: Add DT bindings ep93xx eth
+From:   Nikita Shubin <nikita.shubin@maquefel.me>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Flush RSC sleep & wake votes
-Message-ID: <ZGIdkHn6bVbln5uy@hovoldconsulting.com>
-References: <20230512150425.3171122-1-quic_bjorande@quicinc.com>
- <f6ecd66b-e207-0ed9-0ff3-1febfdf5bce9@linaro.org>
- <20230515023828.jqrrqkit5ygovimp@ripper>
+Date:   Mon, 15 May 2023 16:42:57 +0300
+In-Reply-To: <7f05ecdc-cbbd-40b0-9a40-229e18aec721@lunn.ch>
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+         <20230424123522.18302-19-nikita.shubin@maquefel.me>
+         <7f05ecdc-cbbd-40b0-9a40-229e18aec721@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230515023828.jqrrqkit5ygovimp@ripper>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,39 +61,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 14, 2023 at 07:38:28PM -0700, Bjorn Andersson wrote:
-> On Sat, May 13, 2023 at 11:09:07AM +0200, Konrad Dybcio wrote:
-> > 
-> > 
-> > On 12.05.2023 17:04, Bjorn Andersson wrote:
-> > > The rpmh driver will cache sleep and wake votes until the cluster
-> > > power-domain is about to enter idle, to avoid unnecessary writes. So
-> > > associate the apps_rsc with the cluster pd, so that it can be notified
-> > > about this event.
-> > > 
-> > > Without this, only AMC votes are being commited.
-> > Ouch.
-> > 
-> > Should we make this required: in bindings and add it to all
-> > platforms?
-> > 
-> 
-> I though this was an optimization and in the absence of this callback
-> the driver would just write out wake and sleep sets as well. But per the
-> current implementation (and perhaps some underlying cause?) it is indeed
-> required, if you care about power consumption.
-> 
-> > > 
-> > > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> > > ---
-> > Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
-> > 
-> 
-> The Fixes sounds reasonable.
+Hello Andrew!
 
-Note that support for the cluster domain was not added until 6.2 and
-commit 25092e6100ac ("soc: qcom: rpmh-rsc: Attach RSC to cluster PM
-domain") while support for sc8280xp went into 5.19 IIRC.
+On Mon, 2023-04-24 at 15:39 +0200, Andrew Lunn wrote:
+> > +=C2=A0 copy_addr:
+> > +=C2=A0=C2=A0=C2=A0 type: boolean
+> > +=C2=A0=C2=A0=C2=A0 description:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Flag indicating that the MAC address sh=
+ould be copied
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from the IndAd registers (as programmed=
+ by the bootloader)
+>=20
+> Looking at ep93xx_register_eth(), all callers are setting copy_addr
+> to
+> 1. So i don't think you need this.
 
-Johan
+Agreed. Dropped copy_addr entirely.
+
+>=20
+> > +
+> > +=C2=A0 phy_id:
+> > +=C2=A0=C2=A0=C2=A0 description: MII phy_id to use
+>=20
+> The eEP93xx Ethernet driver is a very old driver, so it is doing MDIO
+> and PHY the old way. Ideally you should be using ep93xx_mdio_read()
+> and ep93xx_mdio_write() to create an MDIO bus with
+> of_mdiobus_regsiter, and then use a phy-handle to point to the PHY on
+> the bus. It will then be the same as all other ethernet drivers using
+> DT.
+
+I've tinkered with the preferred way, however this involves turning on=20
+
+- CONFIG_PHYLIB
+- CONFIG_MDIO_DEVICE
+
+And maybe CONFIG_MICREL_PHY (at least for me, unless i can use some
+common phy driver) which implies a kernel size increase - which is
+undesirable for us.
+
+Can we slip by with something like:
+
++       np =3D of_parse_phandle(pdev->dev.of_node, "phy-handle", 0);
++       if (!np) {
++               dev_err(&pdev->dev, "Please provide \"phy-handle\"\n");
++               return -ENODEV;
++       }
++
++       if (of_property_read_u32(np, "reg", &phy_id)) {
++               dev_err(&pdev->dev, "Failed to locate \"phy_id\"\n");
++               return -ENOENT;
++       }
+
+And standard device tree bindings ?:
+
++    ethernet@80010000 {
++      compatible =3D "cirrus,ep9301-eth";
++      reg =3D <0x80010000 0x10000>;
++      interrupt-parent =3D <&vic1>;
++      interrupts =3D <7>;
++      phy-handle =3D <&phy0>;
++      mdio {
++        #address-cells =3D <1>;
++        #size-cells =3D <0>;
++        phy0: ethernet-phy@1 {
++          reg =3D <1>;
++          device_type =3D "ethernet-phy";
++        };
++      };
++    };
+
+
+>=20
+> =C2=A0=C2=A0=C2=A0 Andrew
+
