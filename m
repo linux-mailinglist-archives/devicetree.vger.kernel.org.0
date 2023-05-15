@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F97F7031EE
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 17:56:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB984703202
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 17:58:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242300AbjEOP4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 11:56:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57054 "EHLO
+        id S238267AbjEOP56 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 11:57:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232079AbjEOP4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 11:56:32 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 914F110F7
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 08:56:30 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50b383222f7so19073680a12.3
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 08:56:30 -0700 (PDT)
+        with ESMTP id S242462AbjEOP5y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 11:57:54 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA5AB26B8
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 08:57:51 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50b8d2eed3dso19604786a12.0
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 08:57:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684166189; x=1686758189;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YkouFW20JzzuaHMHZlrmNq9tS+5cnYopE+beF+b+m2k=;
-        b=HI5BAWj65uI+2FvBMTDnSynAXsAXC989f0371owOdAejsiDnL5JtOJwj/elZfqbtmR
-         y6DMy9F3/Wz02eUOtwtEnDMfTysjUM3mdxLQI57acakIekxXmwDuy4wVoWa4phMMO0lv
-         hVGaPa6GhFcXOmyJaOZmGsniHxQXdRR1KpL9ArZp8myErUMr2BlF7RgaxQy6L+HVfteB
-         Q+4bfeDBJ6xGYTh2WCCqPQwYpPQ2rRO9TQ2GQNtg8ODYXg/MDJ/KQbN64LeZmp+9nPn0
-         ie+vysSsG1aJUOUpm0NWho+U/sI3WdksW/bChVn6zbCdwPK9FXcAFUUBR4SGbvj0S9rE
-         np/w==
+        d=linaro.org; s=google; t=1684166270; x=1686758270;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=N44qBs+/LT+cRlOP5z8nHjZf1DtaB9wj003fafSrmqs=;
+        b=EpTkWaQ1fCz5WVnLJRhuCVM58P3m2LJ9vsvcYlBxjHIoXkQDTbMD0+kPBFJcQmvOoL
+         O6WRsD6awQcp2u05901XRiRVTxd7oGtlaAPCRYP5Zj2RKd9wm+m9WLuFpO3VFtJ/8xgw
+         L5lWMK5UD6n7r4k9t/CkllKxqoyhdiCVgMTPiYnKCkx6nv3zWE+FAA0yRA7aQUQhyy5W
+         edXilxKMV8Flh/y+sik6OXxI8bic9gshFnxYgT/tSJSvan7xJXMHDgBDdhDfnIVKZ0d3
+         C7syKvkQEtfo5pbZXkLYKw1Rp/VPKxzLvpfN5wu9P1q4uYElM6uQW5WN6dILOvtp3SJa
+         1pew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684166189; x=1686758189;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YkouFW20JzzuaHMHZlrmNq9tS+5cnYopE+beF+b+m2k=;
-        b=IulO6iMaVp9RKNdrrRPD4Luy34GEIu03gER2L/HyUFe4cj3gkA3B+0fGCA4BGO//xm
-         Cmv0gzCTBn7GFjrO5F9JqBNdC92Fow5ndxHl3oHxTk44COg3i20zSZi00qSbmAWdnlEK
-         1pmQW2vM9GAofi1iYCqnM/ac9+U2Iczf1EKAXKYpNzMfCZIkoR3/1ypIfCM3hZ7rfOhf
-         m31Su7w26hj5HNrL5+MIJ4pCI0kW6HO9DGU2RW1klKIlM3SQOd7YBpppH7ga6XNwi5fc
-         P9MSS7TYfeSNu4YG8HPILZfwT54E4AIZgHMXO9nZCzPwoCCDg6dOiXBJYY+X/9bBiSlu
-         uJ0A==
-X-Gm-Message-State: AC+VfDzUOc2H5/LHUCtWgM5jAkLnKt8WYnpEapq5eAl9mHqCg70PypwX
-        RgDl26cDQkZjVK6NfBbUWmWlwg==
-X-Google-Smtp-Source: ACHHUZ6GRbmvc6wpuZVkVxSoPXedQtVnvRI1oEmNM5eXUodXM+9R372TbXhnWl6rp5ztjLiErqN3wA==
-X-Received: by 2002:aa7:da08:0:b0:506:8470:c323 with SMTP id r8-20020aa7da08000000b005068470c323mr24080906eds.24.1684166189058;
-        Mon, 15 May 2023 08:56:29 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id h10-20020a50ed8a000000b004c2158e87e6sm7358044edr.97.2023.05.15.08.56.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 08:56:28 -0700 (PDT)
-Message-ID: <156eb77e-b586-53d9-7d90-17b5dfce0682@linaro.org>
-Date:   Mon, 15 May 2023 17:56:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v7 1/2] dt-bindings: omap: Partially convert omap.txt to
- yaml
-Content-Language: en-US
-To:     Andreas Kemnade <andreas@kemnade.info>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        tony@atomide.com, afd@ti.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-References: <20230515074512.66226-1-andreas@kemnade.info>
- <20230515074512.66226-2-andreas@kemnade.info>
+        d=1e100.net; s=20221208; t=1684166270; x=1686758270;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N44qBs+/LT+cRlOP5z8nHjZf1DtaB9wj003fafSrmqs=;
+        b=CZFdm59V8GhNKE9R4b3vFRB/MI9gRpHWlR/gHDeGX8Gvo4SBrMpz9MAmZ1WXi6rUSC
+         MJcNGQbpIEt0EjYs/RDYTqL2Icl62R5YVmeM67r2StQxUR9Bd2o2Nfs+zcfwowngW8Fu
+         79U4B0Qjwh3AZjzwNk5DLAVoM+LFblZB7GKHlZkWmqXknzcEXp8o8nmCwfks09617GPO
+         WpQ9hoKZKvKQYySWP+fk4gUE0oZNTigs2OeUA2ione5wcaf5H1PQN4+uXmQgHkE3fWJd
+         v1s1Qwmt9O6gQ4AeW3DG56R3SpWhvVvQlFt1YE0KgtFTpRuK3Y03TvHSZ1AHZBLCvszU
+         ivFg==
+X-Gm-Message-State: AC+VfDxVAR8wa2xhJygpHHjax04dKDfuOAn26R8Aa1iNhmDvec4NaEEy
+        T+2On5VVZade4FrHhfiUuwYD4w==
+X-Google-Smtp-Source: ACHHUZ7NT0Y5GoL/YpdcQtWvtqFV+rnrFZAUKYumGeb7FEoYpZ3FAe+d8ZwLsbJmsLDK47ObaroKbw==
+X-Received: by 2002:a05:6402:160e:b0:50b:ca4a:8451 with SMTP id f14-20020a056402160e00b0050bca4a8451mr26810793edv.14.1684166270112;
+        Mon, 15 May 2023 08:57:50 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
+        by smtp.gmail.com with ESMTPSA id r16-20020aa7cfd0000000b0050bd245d39esm7506574edy.6.2023.05.15.08.57.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 May 2023 08:57:49 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230515074512.66226-2-andreas@kemnade.info>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH] dt-bindings: vendor-prefixes: document TeeJet
+Date:   Mon, 15 May 2023 17:57:47 +0200
+Message-Id: <20230515155747.499371-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,20 +71,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 09:45, Andreas Kemnade wrote:
-> From: Andrew Davis <afd@ti.com>
-> 
-> Convert omap.txt to yaml.
-> 
-> CC: linux-omap@vger.kernel.org
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> [reduced to only OMAP3/4/5 and AM3, adding Epson Moverio BT-200]
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
+Document TeeJet vendor prefix (used in am3517_mt_ventoux.dts board).
 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
 
-Best regards,
-Krzysztof
+Cc: Andreas Kemnade <andreas@kemnade.info>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index c3d426509e7e..5258090e2e02 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1341,6 +1341,8 @@ patternProperties:
+     description: Technologic Systems
+   "^techstar,.*":
+     description: Shenzhen Techstar Electronics Co., Ltd.
++  "^teejet,.*":
++    description: TeeJet
+   "^teltonika,.*":
+     description: Teltonika Networks
+   "^tempo,.*":
+-- 
+2.34.1
 
