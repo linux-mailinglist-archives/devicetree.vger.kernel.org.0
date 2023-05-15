@@ -2,55 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6683B703AB0
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:54:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B16ED703309
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:32:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242615AbjEORyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 13:54:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53946 "EHLO
+        id S242733AbjEOQcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 12:32:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243346AbjEORxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:53:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70C8E3C3D;
-        Mon, 15 May 2023 10:51:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 70FD562F55;
-        Mon, 15 May 2023 17:50:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3196FC433D2;
-        Mon, 15 May 2023 17:50:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1684173024;
-        bh=TIZDeQVkkjTF/wP3p4B70cxMgyU+BR6heqHpnz7WagQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JrGFLPQJKQI9m16qLYJL2riPrhuY2Mo3tMQFAyurxCSgw9nVf7q7PpLNnwtXITPPg
-         iNdOaBgFMXTGkgVjN6O8tftnV9PNnSIGcN/JVM0CoiRe+tfN9A1kBgyiGRaR+QATHh
-         JyOR63sclizc8buiuFlqlSzG5efLLNoxqcX1/lFE=
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     stable@vger.kernel.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        patches@lists.linux.dev, Randy Dunlap <rdunlap@infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Rich Felker <dalias@libc.org>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
-        linux-sh@vger.kernel.org
-Subject: [PATCH 5.10 343/381] sh: init: use OF_EARLY_FLATTREE for early init
-Date:   Mon, 15 May 2023 18:29:54 +0200
-Message-Id: <20230515161752.358306563@linuxfoundation.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230515161736.775969473@linuxfoundation.org>
-References: <20230515161736.775969473@linuxfoundation.org>
-User-Agent: quilt/0.67
+        with ESMTP id S242722AbjEOQc3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:32:29 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4531210C3
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:32:28 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9659e9bbff5so2407311966b.1
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:32:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684168347; x=1686760347;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3v/Wb7rBhzrVb0azi8VEofeBQJDbLwQtTKKw6U3ZDgU=;
+        b=IQsT47xSa6tWwtSS4bpFB6i7IlU4UCWjoB2VM6EVgVr5RwUXSq3USycHcD4tbK/vCl
+         XKFNwbFQf/jruqOo/rvlMLjUuPCZycBQeUffWIkGgw5dBLDgAwgJsfn9sB2c1gpt/MWb
+         ZimOxt+//pU5CUmXwdB6oaX701pD1/lBK9C8i44PPeQrgsn9OEHGJWH/NYbcHEPFyLA7
+         Bsl/ZYBWcDioxjk2hHAzwoKjTcchrRCwPZ+4MkGwJt8hwBqHRsFf9J56AHJFmzCUvieH
+         SSmmFu0lLW2Mx6PmN0R2RGRyKeGfRuZzS/ydIrOHo83gK/ShptAv3j5ZJAky00BooIMT
+         CZzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684168347; x=1686760347;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3v/Wb7rBhzrVb0azi8VEofeBQJDbLwQtTKKw6U3ZDgU=;
+        b=KA/ZYno/+yMiLQTT+Z02AGadGHCHpz9lUnFGJZMd5ZhZCFRJs3MW2excg7YPfrY3+c
+         A7B/HOzIjF42X/EM4Tgie+0ksbN4sevp4XwrUDZ6q4A402Q/AIuEsqPpvIoKjvj8BieB
+         sQ930WnM3ksCudLwRb9zq9UHrS5Ckpr1wjH0024hcJi36t9CkpPkkHby318+827UdEor
+         zqoOFzgClwfZ2C5FsZgbUaNJAw7q4gpBx/fvsZjX8fOgS7NJ9CcjTeGA0xq90/dVHPXY
+         e12Dq97beADw7xO2a+i6/ZpmJGXjZAKqkmKU/xmLMNwB/gydDF0YH3YIK4HNJFfkKA9l
+         Vb9A==
+X-Gm-Message-State: AC+VfDy3tsTdaNF2w6XYxJHcWRI3bl9SEME8NelxnngwPtbQr6bd+Tb2
+        KNgQC/t7nBZaqxE+uD1UUNYcFw==
+X-Google-Smtp-Source: ACHHUZ6gTLs+3cm2BhuQPDtT2O40r+PYINlcdVU5ENN0zj7TYzrHOXrFQdEsXBWgivvJve1UghmM7A==
+X-Received: by 2002:a17:907:7fa8:b0:96a:9b5b:5d80 with SMTP id qk40-20020a1709077fa800b0096a9b5b5d80mr11887393ejc.13.1684168346707;
+        Mon, 15 May 2023 09:32:26 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
+        by smtp.gmail.com with ESMTPSA id s25-20020a170906285900b0096a5d341b50sm6679818ejc.111.2023.05.15.09.32.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 May 2023 09:32:26 -0700 (PDT)
+Message-ID: <17bfc33b-029f-a0f1-564d-e8c8d0a8695c@linaro.org>
+Date:   Mon, 15 May 2023 18:32:24 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 01/13] dt-bindings: clk: g12a-clkc: export VCLK2_SEL
+ and add CTS_ENCL clock ids
+Content-Language: en-US
+To:     neil.armstrong@linaro.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Nicolas Belin <nbelin@baylibre.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-phy@lists.infradead.org, David Airlie <airlied@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>
+References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
+ <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-1-2592c29ea263@linaro.org>
+ <5cb38be4-a27f-dc1a-cbb9-c195505a9e7c@linaro.org>
+ <9fa0662e-8854-05f9-da7f-ec8e08d2badf@linaro.org>
+ <d5c030f9-2f4d-25cc-b922-d00f5033ac37@linaro.org>
+ <6228670c-3e06-3061-f304-a2c641962ffa@linaro.org>
+ <9cba6384-123b-1cd1-ed02-08365a0ed529@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9cba6384-123b-1cd1-ed02-08365a0ed529@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,89 +97,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Randy Dunlap <rdunlap@infradead.org>
+On 15/05/2023 18:22, neil.armstrong@linaro.org wrote:
+>>> Meson is the only or almost the only platform making such changes. I
+>>> don't get why, because the conflict could be easily avoided with using
+>>> different names for defines in bindings and local clock. Approach of
+>>> having bindings strictly tied with driver commit is never desired.
+> 
+> If we did it now, we would have make it differently and expose all the clock
+> IDs on the bindings like on Qcom, be sure of that.
 
-commit 6cba655543c7959f8a6d2979b9d40a6a66b7ed4f upstream.
+No, you just keep different names. The only problem here is that your
+clock name is the same thus you cannot split bindings into separate patch.
 
-When CONFIG_OF_EARLY_FLATTREE and CONFIG_SH_DEVICE_TREE are not set,
-SH3 build fails with a call to early_init_dt_scan(), so in
-arch/sh/kernel/setup.c and arch/sh/kernel/head_32.S, use
-CONFIG_OF_EARLY_FLATTREE instead of CONFIG_OF_FLATTREE.
+> 
+>>
+>> Also one more argument maybe not relevant here but for other cases -
+>> this makes literally impossible to include the clock ID in DTS in the
+>> same kernel revision, because you must not merge driver branch to DTS
+>> branch. SoC folks were complaining about this many times.
+> 
+> Actually we handle this very simply by having such patches merged in a immutable
+> branch merged in the clock and DT pull-requests, it worked perfectly so far
+> and neither Stephen or Arnd complained about that.
 
-Fixes this build error:
-../arch/sh/kernel/setup.c: In function 'sh_fdt_init':
-../arch/sh/kernel/setup.c:262:26: error: implicit declaration of function 'early_init_dt_scan' [-Werror=implicit-function-declaration]
-  262 |         if (!dt_virt || !early_init_dt_scan(dt_virt)) {
+Arnd, Olof,
 
-Fixes: 03767daa1387 ("sh: fix build regression with CONFIG_OF && !CONFIG_OF_FLATTREE")
-Fixes: eb6b6930a70f ("sh: fix memory corruption of unflattened device tree")
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Suggested-by: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Cc: devicetree@vger.kernel.org
-Cc: Rich Felker <dalias@libc.org>
-Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Cc: linux-sh@vger.kernel.org
-Cc: stable@vger.kernel.org
-Reviewed-by: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Link: https://lore.kernel.org/r/20230306040037.20350-4-rdunlap@infradead.org
-Signed-off-by: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- arch/sh/kernel/head_32.S |    6 +++---
- arch/sh/kernel/setup.c   |    4 ++--
- 2 files changed, 5 insertions(+), 5 deletions(-)
+Any changes in the policies? Do you allow now driver branches (with
+driver code) to be merged into DT branch?
 
---- a/arch/sh/kernel/head_32.S
-+++ b/arch/sh/kernel/head_32.S
-@@ -64,7 +64,7 @@ ENTRY(_stext)
- 	ldc	r0, r6_bank
- #endif
- 
--#ifdef CONFIG_OF_FLATTREE
-+#ifdef CONFIG_OF_EARLY_FLATTREE
- 	mov	r4, r12		! Store device tree blob pointer in r12
- #endif
- 	
-@@ -315,7 +315,7 @@ ENTRY(_stext)
- 10:		
- #endif
- 
--#ifdef CONFIG_OF_FLATTREE
-+#ifdef CONFIG_OF_EARLY_FLATTREE
- 	mov.l	8f, r0		! Make flat device tree available early.
- 	jsr	@r0
- 	 mov	r12, r4
-@@ -346,7 +346,7 @@ ENTRY(stack_start)
- 5:	.long	start_kernel
- 6:	.long	cpu_init
- 7:	.long	init_thread_union
--#if defined(CONFIG_OF_FLATTREE)
-+#if defined(CONFIG_OF_EARLY_FLATTREE)
- 8:	.long	sh_fdt_init
- #endif
- 
---- a/arch/sh/kernel/setup.c
-+++ b/arch/sh/kernel/setup.c
-@@ -244,7 +244,7 @@ void __init __weak plat_early_device_set
- {
- }
- 
--#ifdef CONFIG_OF_FLATTREE
-+#ifdef CONFIG_OF_EARLY_FLATTREE
- void __ref sh_fdt_init(phys_addr_t dt_phys)
- {
- 	static int done = 0;
-@@ -329,7 +329,7 @@ void __init setup_arch(char **cmdline_p)
- 	/* Let earlyprintk output early console messages */
- 	sh_early_platform_driver_probe("earlyprintk", 1, 1);
- 
--#ifdef CONFIG_OF_FLATTREE
-+#ifdef CONFIG_OF_EARLY_FLATTREE
- #ifdef CONFIG_USE_BUILTIN_DTB
- 	unflatten_and_copy_device_tree();
- #else
-
+Best regards,
+Krzysztof
 
