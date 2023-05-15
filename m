@@ -2,81 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 418FF702BA1
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 13:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05CDD702BC7
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 13:49:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241211AbjEOLjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 07:39:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42798 "EHLO
+        id S239672AbjEOLtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 07:49:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241371AbjEOLhU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 07:37:20 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D060C1BE9;
-        Mon, 15 May 2023 04:35:43 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C232A66058D2;
-        Mon, 15 May 2023 12:35:41 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1684150542;
-        bh=CoVmOGnZnhGZ+HBuANfDBQiUGvmHxOM62UqpRM52qwE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Lq0llcnh5lVf9KC+UPEru9iK3dGpTBhV++7MnW3w8b7NsKdoUuyzMFVbLtGGA6CcL
-         NYqeTVX69lKHwuSfLBY0PMZOwtrL0l/pDT3llUG6JMw41mW0X/sNBUQhE9nyh7pw8I
-         BW6eR5SrDAbEqy86VcRmpeIvkvLb/GJXgpPSsQXMq9xSMZWrBpO6sHtpynt5XV9zsk
-         fWO51+Dlw2VFS9ajWkCIN3DjwZO8G2MG4CayJD8vhNibhrQmKIGlkvdDvB35GB/0MD
-         rk4e8I+cC6UsKIysgpAJ2Muzsp/3lG205Wmi/9qnvdjuTjm+uhE+NfvgvGKUQHidtP
-         fppBV8d4sIxCA==
-Message-ID: <5b972568-133c-b5b7-c87e-06f3e8b0432f@collabora.com>
-Date:   Mon, 15 May 2023 13:35:39 +0200
+        with ESMTP id S239894AbjEOLri (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 07:47:38 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C1B43C16
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 04:38:22 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f14ec8d72aso12485442e87.1
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 04:38:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684150694; x=1686742694;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B94EAWMCxnjRsfG9Aoezq0coWavG9yclOh4BGcxeBcc=;
+        b=ztL9dg+YLd9M7xYFmtYovoUfLqvN7jxg+dxRkN0eVAF6E/GZATYDPVD3JQRE6P/rbC
+         VK5k5GLBXxnoy+9dg4mv/KJxQ81Rf+ZTRKXx2nxbHlAkVY0mAuPzK6tffV6pzo+7sFc3
+         Ht5z0PSvtvIeOgIgR9eorIQRL7o6bMt92gJOaaYo1/Xwmi3bRO49DnCjVbG4u7QJZvoQ
+         zsCMPhMkR7kVbKwm4qiUpAnZXAXpItitSLdaZ91jgmA1QFA7aM4EmGi/LY3iTe2maTLG
+         5H3PO4RP1e+Er2bwokLBVLUx4CHiGc5j+frY0Gpj8KQK9NFrbKtVGIPXdNsgSJujjmlb
+         emwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684150694; x=1686742694;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B94EAWMCxnjRsfG9Aoezq0coWavG9yclOh4BGcxeBcc=;
+        b=YRRqIDGmybRCOSL1zdvftYyudzRPhWv+EVr6o9Qwz54BVTufIJ0xhuLiti57EVsCbc
+         VMRhFZOv4oBBGX2hNZ+C6cQ3rvJT1sa7fYJ/xzlBl69GPDm66HhaWmeul/Gd7LOKta30
+         NxJZc0M4Yg3cyXqajj7ik2RvqQ8cCrB61mnQyHAg0Y5Q4P8gEHGfvMG+mjaPPB8PYn6m
+         8ZvC1fszerqJUn5f5EssJJIm/xuzHd0IKJeGbqEPmsxyg22zpWVN5dv9NeRx9EJs0Sdl
+         2oX56ob87yuBs/cQGp4tHIiNMwapKFVU5JXtGEZKpP9U9Wftu4wkFCd4V2iymjevWWwk
+         7EIA==
+X-Gm-Message-State: AC+VfDzVfuyC+y/5i4UJo7rraxgKPVrw/v2TFp9HK0FsTQF5exww433Q
+        kQEvbmQIdqoGzoN4LBoXoE+7gg==
+X-Google-Smtp-Source: ACHHUZ42o3v3m46gPMHThnWw+kJUwMKBvavuc1DP77n61UIo+p+oDH/TYv88aHOjQVq3irP3KsIKMg==
+X-Received: by 2002:ac2:5091:0:b0:4f3:7d0e:3684 with SMTP id f17-20020ac25091000000b004f37d0e3684mr1609828lfm.44.1684150694385;
+        Mon, 15 May 2023 04:38:14 -0700 (PDT)
+Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
+        by smtp.gmail.com with ESMTPSA id o18-20020ac24352000000b004eed8de597csm2533789lfl.32.2023.05.15.04.38.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 May 2023 04:38:14 -0700 (PDT)
+Message-ID: <ea23f3ae-4790-b633-b9f2-ee37324dbb73@linaro.org>
+Date:   Mon, 15 May 2023 13:38:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v7 02/11] arm64: defconfig: enable Mediatek PMIC key
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3 06/10] clk: qcom: gcc-mdm9615: use proper parent for
+ pll0_vote clock
 Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>
-References: <20230203-evk-board-support-v7-0-98cbdfac656e@baylibre.com>
- <20230203-evk-board-support-v7-2-98cbdfac656e@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230203-evk-board-support-v7-2-98cbdfac656e@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, stable@kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20230512211727.3445575-1-dmitry.baryshkov@linaro.org>
+ <20230512211727.3445575-7-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230512211727.3445575-7-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 11/05/23 18:29, Alexandre Mergnat ha scritto:
-> Some Mediatek PMIC devices can manage Power and Home keys (buttons).
-> This patch enable the driver which handle the 2 keys managed by the
-> Mediatek PMIC.
+
+
+On 12.05.2023 23:17, Dmitry Baryshkov wrote:
+> The pll0_vote clock definitely should have pll0 as a parent (instead of
+> pll8).
 > 
-> Tested-by: Kevin Hilman <khilman@baylibre.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> Fixes: 7792a8d6713c ("clk: mdm9615: Add support for MDM9615 Clock Controllers")
+> Cc: stable@kernel.org
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Having this at least as a module helps CIs, so:
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+Konrad
+>  drivers/clk/qcom/gcc-mdm9615.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/qcom/gcc-mdm9615.c b/drivers/clk/qcom/gcc-mdm9615.c
+> index fb5c1244fb97..2f921891008d 100644
+> --- a/drivers/clk/qcom/gcc-mdm9615.c
+> +++ b/drivers/clk/qcom/gcc-mdm9615.c
+> @@ -58,7 +58,7 @@ static struct clk_regmap pll0_vote = {
+>  	.enable_mask = BIT(0),
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "pll0_vote",
+> -		.parent_names = (const char *[]){ "pll8" },
+> +		.parent_names = (const char *[]){ "pll0" },
+>  		.num_parents = 1,
+>  		.ops = &clk_pll_vote_ops,
+>  	},
