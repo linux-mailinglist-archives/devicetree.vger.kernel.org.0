@@ -2,177 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8FBA702C9A
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 14:25:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1555702CAC
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 14:28:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231348AbjEOMZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 08:25:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51434 "EHLO
+        id S240112AbjEOM2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 08:28:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229679AbjEOMZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 08:25:39 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED0521BC;
-        Mon, 15 May 2023 05:25:38 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 830EB66031DA;
-        Mon, 15 May 2023 13:25:36 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1684153537;
-        bh=Rl/jN3uyJpuesLYqs5+0/hmh5nAfzeWPHpb4ipmQ1nU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=kap+61MDpii8Ol4UUwUo3Es7XYvHv0eY8dkzOCI9GNudoOfzvnO0AvU7ohyHgS29d
-         3OHVSbifF1xrxx2Yg/gxUB0ovoCTqJ+eVAqsKvRIn7c2oqfaXewWH/gx63v9H86q2q
-         MEUkcpmstAk8tiDYtQlsPG3UGXKBzNgZ1FeS8B905iGklIVCZmrHsItqkxIyjiaaZn
-         slTD+ZY3rdZUqWHnw4ZUwhY7QIRPcpw3681xVe9KmV54uIvx3EmR/Iz8spk+NXSz8P
-         3FRX9MsaUH0Z05TLp/9GpnoaiBKWnQlxNhA9UkAwZaDqaNtWmuAv6FH57HPB8EIPfy
-         Q+7xbpmw+5RiQ==
-Message-ID: <f96c6809-d7d4-4030-5805-ca79f87715ce@collabora.com>
-Date:   Mon, 15 May 2023 14:25:34 +0200
+        with ESMTP id S241789AbjEOM2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 08:28:08 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D301E68
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 05:28:04 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f22908a082so11521786e87.1
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 05:28:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684153683; x=1686745683;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yoeAd/K4QIDgkvT3+E4nIpalAbE2Kg0RA7njx4ZUB9o=;
+        b=kkUhFgQBKR3CcOLZ9bFPHYivAdu25L9X8RiIypwoROJyetd8r0Ijm6NwyWGI6W3r45
+         7swiHnN0HK80Quvm4j2vnlTESSyc0CS+V/ury/4G3CoQxRJQw6WvbTOQYc0dJCD529az
+         A/It3iOj1E3njTHUq2RifrNr8b/l5hy4GAtN7grl8o7TEFLOikptTe4KBX2HY5uylhRP
+         fObXZ6Ton5DY1CJmJx5nnLBpL30s8BsK250ocXTFe/5GyKeKiMOHVHDdw6t46PFDxyj1
+         zx1u9vjrxa4F8JOfkE79XQs6jSN+hb8hgzpecphvsL7kFTXSaOzsi/lDbdzcMAknf+sN
+         X7yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684153683; x=1686745683;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yoeAd/K4QIDgkvT3+E4nIpalAbE2Kg0RA7njx4ZUB9o=;
+        b=GfFgAF1lkX759jiMXATjZDCtEr/RhFu/SlqaQznh2JtvMMbiw8JhMnAzqRwYjCd9/P
+         gSXbj2RzUhajZY17yzRdzfryhll8zMZL/Bg1UZXEwkg+IuqOw29l2RIiss5/TwHD2msE
+         SYpSgtgXfDbqopU4SMfFltIJUJkOKKGMXCf6j156S5Z5tK+nvX56HNghViCEBd11gym5
+         4gF1SwMzO49kZdonv0fcBIka6Hzp6bt6IXdUixaXsXepGnKFuhbFvS+hZhxCtw0o4wxV
+         wvZya2Jgy9amtesm5MCaJXbxfdrMxM7bdBlknBo2WdQgFcTY/r+Bd/rsha1Deg6oyHA+
+         cejw==
+X-Gm-Message-State: AC+VfDzcKNaViV+e2LgQ9dx9AZmRSRse3nyuKn9Wc5UwiUySxyXmqGJg
+        iI9YIuVHaauqMRkjIO5+QbTA8A==
+X-Google-Smtp-Source: ACHHUZ5k7aoY9byMTZ4V9sueHRpljE0/O1NNZq32QU6twxBwfUwsRYGK2AsXbQMLig6sPqvQcM+5Eg==
+X-Received: by 2002:a05:6512:66:b0:4ef:f5fe:bc76 with SMTP id i6-20020a056512006600b004eff5febc76mr6008797lfo.14.1684153682685;
+        Mon, 15 May 2023 05:28:02 -0700 (PDT)
+Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
+        by smtp.gmail.com with ESMTPSA id v3-20020ac25583000000b004f143c11cbcsm2559651lfg.51.2023.05.15.05.28.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 May 2023 05:28:02 -0700 (PDT)
+Message-ID: <7faf4c16-98ff-f27d-d1fd-3058370c06f5@linaro.org>
+Date:   Mon, 15 May 2023 14:28:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: add mediatek mipi csi driver v
- 0.5
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8550: Add video clock controller
 Content-Language: en-US
-To:     Julien Stephan <jstephan@baylibre.com>
-Cc:     krzysztof.kozlowski@linaro.org, robh@kernel.org,
-        chunkuang.hu@kernel.org, linux-mediatek@lists.infradead.org,
-        Florian Sylvestre <fsylvestre@baylibre.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Andy Hsieh <andy.hsieh@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20230515090551.1251389-1-jstephan@baylibre.com>
- <20230515090551.1251389-2-jstephan@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230515090551.1251389-2-jstephan@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Michael Turquette <mturquette@baylibre.com>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230509161218.11979-1-quic_jkona@quicinc.com>
+ <20230509161218.11979-5-quic_jkona@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230509161218.11979-5-quic_jkona@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/05/23 11:05, Julien Stephan ha scritto:
-> From: Florian Sylvestre <fsylvestre@baylibre.com>
+
+
+On 9.05.2023 18:12, Jagadeesh Kona wrote:
+> Add device node for video clock controller on Qualcomm SM8550 platform.
 > 
-> This adds the bindings, for the MIPI CD-PHY module v 0.5 embedded in
-> some Mediatek soc, such as the mt8365
-> 
-> Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 > ---
->   .../phy/mediatek,phy-mipi-csi-0-5.yaml        | 62 +++++++++++++++++++
->   MAINTAINERS                                   |  6 ++
->   2 files changed, 68 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml b/Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml
-> new file mode 100644
-> index 000000000000..5aa8c0b41cdf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0-Only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/mediatek,phy-mipi-csi-0-5.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index 6e9bad8f6f33..e67e7c69dae6 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -7,6 +7,7 @@
+>  #include <dt-bindings/clock/qcom,sm8550-gcc.h>
+>  #include <dt-bindings/clock/qcom,sm8550-tcsr.h>
+>  #include <dt-bindings/clock/qcom,sm8550-dispcc.h>
+> +#include <dt-bindings/clock/qcom,sm8550-videocc.h>
+>  #include <dt-bindings/dma/qcom-gpi.h>
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> @@ -759,6 +760,17 @@ gcc: clock-controller@100000 {
+>  				 <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+>  		};
+>  
+> +		videocc: clock-controller@aaf0000 {
+This node should be moved down. Nodes with unit addresses
+should be sorted alphanumerically.
+
+> +			compatible = "qcom,sm8550-videocc";
+> +			reg = <0 0x0aaf0000 0 0x10000>;
+> +			clocks = <&bi_tcxo_div2>, <&gcc GCC_VIDEO_AHB_CLK>;
+One per line, please
+
+Also, any reason the XO clock does not come from RPMhCC?
+
+Konrad
+> +			power-domains = <&rpmhpd SM8550_MMCX>;
+> +			required-opps = <&rpmhpd_opp_low_svs>;
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +		};
 > +
-> +title: Mediatek Sensor Interface MIPI CSI CD-PHY
-> +
-> +maintainers:
-> +  - Julien Stephan <jstephan@baylibre.com>
-> +  - Andy Hsieh <andy.hsieh@mediatek.com>
-> +
-> +description:
-> +  The SENINF CD-PHY is a set of CD-PHY connected to the SENINF CSI-2
-> +  receivers. The number of PHYs depends on the SoC model.
-> +  Depending on the soc model, each PHYs can support CDPHY or DPHY only
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,phy-mipi-csi-0-5
-
-mediatek,mtXXXX-csi-rx sounds great, doesn't it?
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#phy-cells':
-> +    const: 0
-> +
-> +  mediatek,is_cdphy:
-
-No underscores please: mediatek,is-cdphy
-
-> +    description:
-> +      Specify if the current phy support CDPHY configuration
-
-Description fits in one line.
-
-     description: Specify if the current phy support CDPHY configuration
-
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#phy-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      mipi_rx_csi0: mipi_rx_csi0@11c10000 {
-
-csi0_rx: phy@11c10000
-
-> +        compatible = "mediatek,phy-mipi-csi-0-5";
-> +        reg = <0 0x11C10000 0 0x2000>;
-> +        status = "okay";
-> +        mediatek,is_cdphy;
-> +        #phy-cells = <0>;
-> +      };
-> +
-> +      mipi_rx_csi1: mipi-rx-csi1@11c12000 {
-
-csi1_rx: phy@11c20000
-
-> +        compatible = "mediatek,phy-mipi-csi-0-5";
-> +        reg = <0 0x11C12000 0 0x2000>;
-> +        status = "disabled";
-> +        #phy-cells = <0>;
-> +      };
-> +    };
-> +...
-
-Regards,
-Angelo
-
+>  		ipcc: mailbox@408000 {
+>  			compatible = "qcom,sm8550-ipcc", "qcom,ipcc";
+>  			reg = <0 0x00408000 0 0x1000>;
