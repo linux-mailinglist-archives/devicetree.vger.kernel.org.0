@@ -2,131 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7284702402
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:03:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48C24702418
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:07:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239047AbjEOGDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 02:03:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38984 "EHLO
+        id S238267AbjEOGHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 02:07:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238763AbjEOGCc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:02:32 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B3136196;
-        Sun, 14 May 2023 22:55:48 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34F5tB5O127291;
-        Mon, 15 May 2023 00:55:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684130111;
-        bh=pTV45Nc44Jpl0p9mX7mYfYtmuNLxWRaLA4blUzB8VEw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=URpbXcPRR/GYp6ocIzZG0mCDYAE9Nuc0FiaJF0qcfcD/6/OHdc6b6nS+WN3RFVV9Z
-         9YPeeMNrebGZEtVaa4jzArGFOUTPctYuIwHpLEAeo1MheSme4tP88INUqf3CoFOr5A
-         sr6QWFvthUTlsyIwTtZrh8KgMIVUegQ85vHjknRc=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34F5tBjo055400
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 15 May 2023 00:55:11 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
- May 2023 00:55:11 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 15 May 2023 00:55:11 -0500
-Received: from [172.24.216.170] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34F5t7be027448;
-        Mon, 15 May 2023 00:55:08 -0500
-Message-ID: <a033cec5-0272-186e-d53e-d101835cc9eb@ti.com>
-Date:   Mon, 15 May 2023 11:25:07 +0530
+        with ESMTP id S238183AbjEOGHc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:07:32 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 037B32703;
+        Sun, 14 May 2023 23:04:29 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id BD54D24DB84;
+        Mon, 15 May 2023 14:04:27 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 15 May
+ 2023 14:04:27 +0800
+Received: from [192.168.155.85] (202.188.176.82) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 15 May
+ 2023 14:04:24 +0800
+Message-ID: <3ec4b399-48d8-0129-85b7-0fe30e6de9c5@starfivetech.com>
+Date:   Mon, 15 May 2023 14:04:21 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-Subject: Re: [PATCH v4 1/5] arm64: dts: ti: k3-j784s4-main: Add system
- controller and SERDES lane mux
+Subject: Re: [PATCH v7 4/4] crypto: starfive - Add hash and HMAC support
 Content-Language: en-US
-To:     Jayesh Choudhary <j-choudhary@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <afd@ti.com>, <s-vadapalli@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Achal Verma <a-verma1@ti.com>
-References: <20230425131607.290707-1-j-choudhary@ti.com>
- <20230425131607.290707-2-j-choudhary@ti.com>
-From:   "Verma, Achal" <a-verma1@ti.com>
-In-Reply-To: <20230425131607.290707-2-j-choudhary@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Herbert Xu <herbert@gondor.apana.org.au>
+CC:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230504073400.1170979-1-jiajie.ho@starfivetech.com>
+ <20230504073400.1170979-5-jiajie.ho@starfivetech.com>
+ <ZF4bKe0YkpcQakLs@gondor.apana.org.au>
+ <2ae2d187-5db7-9207-7846-1a80e87047b2@starfivetech.com>
+ <ZGGz4YFDMKQThG2x@gondor.apana.org.au>
+From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
+In-Reply-To: <ZGGz4YFDMKQThG2x@gondor.apana.org.au>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [202.188.176.82]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 15/5/2023 12:24 pm, Herbert Xu wrote:
+> On Mon, May 15, 2023 at 11:27:35AM +0800, Jia Jie Ho wrote:
+>>
+>> I've added COMPILE_TEST in the Kconfig, then ran make W=1, sparse and smatch.
+>> However it did not produce the error message.
+> 
+> I guess you weren't testing on a 64-bit platform.  BIT(2) is
+> an unsigned long, so ~BIT(2) is 64-bit long on 64-bit platforms.
+> 
+I am cross-compiling on a 64-bit platform. 
+I'll check my compiler settings again in case this masks errors in future patches.
 
-On 4/25/2023 6:46 PM, Jayesh Choudhary wrote:
-> From: Siddharth Vadapalli <s-vadapalli@ti.com>
+> You're trying to feed it into writel which takes a 32-bit value,
+> hence the warning.
 > 
-> The system controller node manages the CTRL_MMR0 region.
-> Add serdes_ln_ctrl node which is used for controlling the SERDES lane mux.
+> If you have to use the BIT macro, then you need to cast the result
+> to u32:
 > 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> [j-choudhary@ti.com: Add reg property to fix dtc warning]
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 23 ++++++++++++++++++++++
->   1 file changed, 23 insertions(+)
+> #define STARFIVE_IE_MASK_HASH_DONE ((u32)BIT(2))
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> index e9169eb358c1..29be6d28ee31 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-> @@ -5,6 +5,9 @@
->    * Copyright (C) 2022 Texas Instruments Incorporated - https://www.ti.com/
->    */
->   
-> +#include <dt-bindings/mux/mux.h>
-> +#include <dt-bindings/mux/ti-serdes.h>
-> +
->   &cbass_main {
->   	msmc_ram: sram@70000000 {
->   		compatible = "mmio-sram";
-> @@ -26,6 +29,26 @@ l3cache-sram@200000 {
->   		};
->   	};
->   
-> +	scm_conf: syscon@100000 {
-Please check syscon address.
+> But it's probably a lot clearer if you do it as:
+> 
+> #define STARFIVE_IE_MASK_HASH_DONE 0x4
+Sure, I'll do this for the next version.
 
 Thanks,
-Achal Verma
-> +		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
-> +		reg = <0x00 0x00100000 0x00 0x1c000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x00 0x00 0x00100000 0x1c000>;
-> +
-> +		serdes_ln_ctrl: mux-controller@4080 {
-> +			compatible = "mmio-mux";
-> +			reg = <0x00004080 0x30>;
-> +			#mux-control-cells = <1>;
-> +			mux-reg-masks = <0x4080 0x3>, <0x4084 0x3>, /* SERDES0 lane0/1 select */
-> +					<0x4088 0x3>, <0x408c 0x3>, /* SERDES0 lane2/3 select */
-> +					<0x4090 0x3>, <0x4094 0x3>, /* SERDES1 lane0/1 select */
-> +					<0x4098 0x3>, <0x409c 0x3>, /* SERDES1 lane2/3 select */
-> +					<0x40a0 0x3>, <0x40a4 0x3>, /* SERDES2 lane0/1 select */
-> +					<0x40a8 0x3>, <0x40ac 0x3>; /* SERDES2 lane2/3 select */
-> +		};
-> +	};
-> +
->   	gic500: interrupt-controller@1800000 {
->   		compatible = "arm,gic-v3";
->   		#address-cells = <2>;
+Jia Jie
+
