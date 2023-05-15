@@ -2,72 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A91197024A8
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:27:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2946B7024AF
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:30:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239631AbjEOG1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 02:27:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59994 "EHLO
+        id S238221AbjEOGaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 02:30:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239766AbjEOG1c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:27:32 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325302D5D
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:27:25 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-965f7bdab6bso2159428966b.3
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:27:25 -0700 (PDT)
+        with ESMTP id S235023AbjEOGaI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:30:08 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F34F8FC
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:30:06 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bc070c557so22907299a12.0
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:30:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684132043; x=1686724043;
+        d=linaro.org; s=google; t=1684132205; x=1686724205;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fPH+8xvBh7NiA0Q/69MSU5S3kxpPxX+T6hvZkKu8gFc=;
-        b=bq3jJGSEp9INUCx1XHGMmoRyFQACqzGSIl3W4kUwn8VkHgx/N8k8S9we6QD9nhYC1J
-         aXHBJQML+9dC9xgZNlO7KTgCehQIv6L5Y08FbkVwgCzmyBT1tWWHJWrq3z2BJqRjv8gm
-         fw/RhfjNnlh35OQ39j9MI8IqGFVCZgWG+4bceY39I+EneDAXiNWyeZ+HftVJ5FFRz0+t
-         RTeBVju0xsxLvlwviFNlZt/CZD8HMaHB+v5dgAZRhkMtU8hzKUe8KZ/rrRqAqZU0cAeg
-         4KmMKIgVHKcglZA7kDXMmPF9cgolZSCD7eOlPiWR3WRW52tEfZyLVbLIfOM5PLzJdiYe
-         eWSQ==
+        bh=Kn6XWJzZPydQzgeYFrbx1sjz6cI4FNY/Nw1YMTWWXts=;
+        b=vTV9+PWsfUPU7o08VeoQmeKFuq8m7s3IRuW05VJyXuqYKuJ7amYwepiDfoHIV1VJT+
+         WGi77C7zj6COr+62ipQCwVCUjfzuo08LwrjvPj9Gl/KBrQxUsEegX7TJW657UmXUBXKG
+         NbP4IrQ8lRw5+nALXjh3YOzvaL7TATxkqpiGt2zMEi9q++hKSRVDmcd4yEwJKFgcTMzC
+         S4Vsjs6PS5P4PcycbvaQZ2sfFBQVYQJ5kg/rkTknfPdXgWJ/STPi7SX59iLt7PvHtino
+         kITk9gNo2f4t03SSpL912ciUlrNlNr6XHE5h33r+rkeTP6TjA2dRbtNed5azNZ4Mavca
+         nfQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684132043; x=1686724043;
+        d=1e100.net; s=20221208; t=1684132205; x=1686724205;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fPH+8xvBh7NiA0Q/69MSU5S3kxpPxX+T6hvZkKu8gFc=;
-        b=eo247cA+0GAcmENP1QvDoKt+Lq3xLIgFYwzB4cxVtYoAqmqdifrGP5ZveS7oNIDUBh
-         l7pAylOq+KKNmlVNq0RD5QyqxAPeiZ39ZEdbMwG9WfCXcVIPMklCawBmdT0xXNEiH6a9
-         L6U3jR4+7DD3XmfbLEof345loA8q9muAGZPa1YBHKY1CLpMk1JSOCYvWmLncpac2pX7+
-         CKoaxWY8nnlg2ZQXPVPZ5OgGi2OMplm08/jUDLra8nFXDD1nJ/cV+UMk6tFlWWaVRj3K
-         fmswWVckf571AIGj0YwbX39etrUkVmIF9Pupc+0C4rnoFDVnp0a6EmgHlGr/y6ubB1RV
-         2KIw==
-X-Gm-Message-State: AC+VfDzPnkrpDufAHqm8TeJdMiAwlJkzb6nluQzpmQiOjF+4EjkLA76u
-        GDRaBFli2PzRynX4RTBg6rXGzg==
-X-Google-Smtp-Source: ACHHUZ6KhAPIFec8ZHcD908Z5f0wNboh61jxF1yxMAz9PexUx03rIa02ja5P3qimJ/lzKhVbLNL3UQ==
-X-Received: by 2002:a17:907:8688:b0:96a:3005:61b7 with SMTP id qa8-20020a170907868800b0096a300561b7mr14216778ejc.74.1684132043675;
-        Sun, 14 May 2023 23:27:23 -0700 (PDT)
+        bh=Kn6XWJzZPydQzgeYFrbx1sjz6cI4FNY/Nw1YMTWWXts=;
+        b=Hrw2C5qpLOz0B3mRVJzfjUuKA2UUQIBwfbsZt95dV/Hvggl1Tf/tYwkKrQY+Vv1NFd
+         MS2GX0AFkLEvD8fuCpdn/ycXb92+kDvxa1+r8QAXhHR0vct3xvsuZiok5KhfPZgI1oAy
+         aYFMensvKmS/ZAHYphhOg+/1bmyqFQm6qb+i42wMh9CON3FgkEToZ6bRpQ4xmG2FinCR
+         V3JXzpep3ajz6/mzZB6+oCGLzG5Ace5t8yU1PLyFhrJhCaQOHVX6cMSJe11hH39KNLiM
+         nfhw0PSY01cor+r58KIK/qwsfd2R2cEs74wyOixXKejUTmklOan+SqNkncF6pZ8Tz4EW
+         /rRw==
+X-Gm-Message-State: AC+VfDz0w8oUwInnUjHyaaXtm8Rgx4St68z9UkKVpWNp2vvJHg94MsxJ
+        u0OPskYf6wIOED0oWI1Kj6BGkg==
+X-Google-Smtp-Source: ACHHUZ7dHL7i65f2PEn0cQstrqSEa3FO60Q0LgeDTKAXZXkqJuHJJSR3AzQ/G8l3t/el+OGTHrOk9A==
+X-Received: by 2002:aa7:d5ce:0:b0:50b:cf07:ad0 with SMTP id d14-20020aa7d5ce000000b0050bcf070ad0mr24238090eds.37.1684132205445;
+        Sun, 14 May 2023 23:30:05 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id hf15-20020a1709072c4f00b008f89953b761sm9004330ejc.3.2023.05.14.23.27.22
+        by smtp.gmail.com with ESMTPSA id b4-20020aa7df84000000b0050673b13b58sm6766923edy.56.2023.05.14.23.30.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 May 2023 23:27:23 -0700 (PDT)
-Message-ID: <fef0ac30-73c1-86a7-e114-0846ba735965@linaro.org>
-Date:   Mon, 15 May 2023 08:27:22 +0200
+        Sun, 14 May 2023 23:30:04 -0700 (PDT)
+Message-ID: <5530a1f3-ae89-29e9-dab5-c93f617edbff@linaro.org>
+Date:   Mon, 15 May 2023 08:30:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 2/3] clk: thead: add support for the T-HEAD TH1520 CCU
+Subject: Re: [PATCH 2/2] dt-bindings: gnss: Add U-Blox Zed-F9
 Content-Language: en-US
-To:     Yangtao Li <frank.li@vivo.com>, mturquette@baylibre.com,
-        sboyd@kernel.org, Jisheng Zhang <jszhang@kernel.org>,
-        Wei Fu <wefu@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Icenowy Zheng <uwu@icenowy.me>
-References: <20230515054402.27633-1-frank.li@vivo.com>
- <20230515054402.27633-3-frank.li@vivo.com>
+To:     alison@she-devel.com, johan@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, achaiken@aurora.tech,
+        Rob Herring <robh@kernel.org>
+References: <20230515004025.1133572-1-alison@she-devel.com>
+ <20230515004025.1133572-3-alison@she-devel.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230515054402.27633-3-frank.li@vivo.com>
+In-Reply-To: <20230515004025.1133572-3-alison@she-devel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,23 +77,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 07:44, Yangtao Li wrote:
-> Add support for th1520 in the clock framework.
+On 15/05/2023 02:40, alison@she-devel.com wrote:
+> From: Alison Chaiken <achaiken@aurora.tech>
 > 
-> Cc: Icenowy Zheng <uwu@icenowy.me>
-> Cc: Wei Fu <wefu@redhat.com>
-> Cc: Jisheng Zhang <jszhang@kernel.org>
-> Signed-off-by: Yangtao Li <frank.li@vivo.com>
+> Add support for the U-Blox Zed-F9P GNSS device.
+> 
+> Signed-off-by: Alison Chaiken <achaiken@aurora.tech>
 > ---
->  drivers/clk/Kconfig                      |   6 +
->  drivers/clk/Makefile                     |   1 +
->  drivers/clk/clk-th1520.c                 | 999 +++++++++++++++++++++++
->  include/dt-bindings/clock/th1520-clock.h |  92 +++
->  4 files changed, 1098 insertions(+)
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Please run scripts/checkpatch.pl and fix reported warnings.
+Not a correct placement. Apply the patch yourself and you will see.
 
-Bindings are always separate patches.
+Also, this is not v1, but v6.
 
 Best regards,
 Krzysztof
