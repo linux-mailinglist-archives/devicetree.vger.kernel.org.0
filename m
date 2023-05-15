@@ -2,102 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 487E77020E9
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 02:59:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CA1D7020F4
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 03:08:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237997AbjEOA7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 20:59:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60994 "EHLO
+        id S234226AbjEOBIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 21:08:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbjEOA7D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 20:59:03 -0400
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 612A91710;
-        Sun, 14 May 2023 17:59:00 -0700 (PDT)
-Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 15 May 2023 09:58:58 +0900
-Received: from mail.mfilter.local (mail-arc02.css.socionext.com [10.213.46.40])
-        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 5DAAB206CB11;
-        Mon, 15 May 2023 09:58:58 +0900 (JST)
-Received: from kinkan2.css.socionext.com ([172.31.9.51]) by m-FILTER with ESMTP; Mon, 15 May 2023 09:58:58 +0900
-Received: from [10.212.159.55] (unknown [10.212.159.55])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 715D3B6CD6;
-        Mon, 15 May 2023 09:58:56 +0900 (JST)
-Message-ID: <77abbe8a-5114-66b6-46b2-14e29f433446@socionext.com>
-Date:   Mon, 15 May 2023 09:58:55 +0900
+        with ESMTP id S231132AbjEOBIy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 21:08:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D25C110E9;
+        Sun, 14 May 2023 18:08:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6744C61008;
+        Mon, 15 May 2023 01:08:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27439C433D2;
+        Mon, 15 May 2023 01:08:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684112929;
+        bh=UFENhqiakD8QEtrxSxXbki36RDciOCSV149yt6dLUlo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MqHY9HYLeLXi4X5n8tlA7eZm0k1zWxi6SE24zzL6vY3HeFydLIlXAeZfuxfCQMdBa
+         osGgaBJaF8NiHdQc5assWlUveJQw10+sC4S8OWBhynMwo2mxBIy+Msyj0NIcnDvvNo
+         5b8/xoJ5n5lQcnI5XXaUJMc0wDG24CSzavQJ7fPOlpSeH9Il55dc4LUGodOXpP55/I
+         HjNP2l3t8ohx6pnNvdPpXMbNvFjRG8OCL3Kbc+RHCubIgvOPeWdfo2pA8btRes3QK0
+         dRvploNr47/xOMW0g5jhccZMEN3xea4i3rwgcvmVQpGNxagOCMHDtrokcbVqr8F/BA
+         xxdBfc0HZjgdQ==
+Date:   Mon, 15 May 2023 10:08:41 +0900
+From:   Mark Brown <broonie@kernel.org>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     Marc Zyngier <maz@kernel.org>, lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        tglx@linutronix.de, linus.walleij@linaro.org, vkoul@kernel.org,
+        lgirdwood@gmail.com, yung-chuan.liao@linux.intel.com,
+        sanyog.r.kale@intel.com, pierre-louis.bossart@linux.intel.com,
+        alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 07/10] irqchip/cs42l43: Add support for the cs42l43 IRQs
+Message-ID: <ZGGGGcZNEx7o8GC6@finisterre.sirena.org.uk>
+References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
+ <20230512122838.243002-8-ckeepax@opensource.cirrus.com>
+ <86o7mpmvqq.wl-maz@kernel.org>
+ <20230512153933.GH68926@ediswmail.ad.cirrus.com>
+ <86mt29mt2m.wl-maz@kernel.org>
+ <20230512164233.GN68926@ediswmail.ad.cirrus.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Subject: Re: [PATCH 4/4] ARM: dts: Move .dts files to vendor sub-directories
-To:     Rob Herring <robh@kernel.org>, soc@kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Lars Persson <lars.persson@axis.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Baruch Siach <baruch@tkos.co.il>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Jean-Marie Verdun <verdun@hpe.com>,
-        Nick Hawkins <nick.hawkins@hpe.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Peter Rosin <peda@axentia.se>, Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Romain Perier <romain.perier@gmail.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Marek Vasut <marex@denx.de>, Qin Jian <qinjian@cqplus1.com>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Paul Barker <paul.barker@sancloud.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Enric Balletbo i Serra <eballetbo@gmail.com>,
-        Javier Martinez Canillas <javier@dowhile0.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@axis.com
-References: <20230504-arm-dts-mv-v1-0-2c8e51a2b6c4@kernel.org>
- <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
-Content-Language: en-US
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-In-Reply-To: <20230504-arm-dts-mv-v1-4-2c8e51a2b6c4@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="elVqdTBpOwS6uzdG"
+Content-Disposition: inline
+In-Reply-To: <20230512164233.GN68926@ediswmail.ad.cirrus.com>
+X-Cookie: Avoid contact with eyes.
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -106,41 +66,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-On 2023/05/05 12:29, Rob Herring wrote:
-> The arm dts directory has grown to 1553 boards which makes it a bit
-> unwieldy to maintain and use. Past attempts stalled out due to plans to
-> move .dts files out of the kernel tree. Doing that is no longer planned
-> (any time soon at least), so let's go ahead and group .dts files by
-> vendors. This move aligns arm with arm64 .dts file structure.
-> 
-> Doing this enables building subsets of dts files by vendor easily
-> without changing kernel configs:
-> 
-> make allyesconfig
-> make arch/arm/boot/dts/ti/
-> 
-> There's no change to dtbs_install as the flat structure is maintained on
-> install.
-> 
-> The naming of vendor directories is roughly in this order of preference:
-> - Matching original and current SoC vendor prefix/name (e.g. ti, qcom)
-> - Current vendor prefix/name if still actively sold (SoCs which have
->    been aquired) (e.g. nxp/imx)
-> - Existing platform name for older platforms not sold/maintained by any
->    company (e.g. gemini, nspire)
-> 
-> The whole move was scripted with the exception of MAINTAINERS.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+--elVqdTBpOwS6uzdG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-For socionext platform:
+On Fri, May 12, 2023 at 04:42:33PM +0000, Charles Keepax wrote:
 
-Acked-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> I guess if Mark doesn't mind I think the only internal bit of the
+> device that uses the IRQs is the CODEC driver so I could move the
+> IRQ handling in there, it does seem a little odd to me, but I
+> guess I don't have any problems with it.
 
-Thank you,
+The obvious (and previously standard) place for it would be the MFD.
 
----
-Best Regards
-Kunihiko Hayashi
+--elVqdTBpOwS6uzdG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRhhhgACgkQJNaLcl1U
+h9AQBwf/Vl7z7xogRyvrOyQVvmOhb4t1sIM1jgniNv/+CSDFa4/NyBY16e3xpB59
+b5NYJGg0YEv4Zo19kQql1gLRJPIaW5AkS+gK7qIFRlAnnx8aJc1MlwrVWZKUmRPY
+eoJMOiHSt8WnHU2ib94i8kpDtpzPI5D9nmTnn63wWCiWEv28gu57kGp21j/5zuBi
+FssPHGDJIIskV8g7lqRxjNmY/eEy22/afYtGy9yYS9yyqPZCFATQ/998Fo+r11u/
+OWS0qAXCzxT+3OKj/nabwTenvVqnwXjCmfdI4Oq83I3Ecf04lVHt+hxk1SLACcdz
+vDQ+BpPpUMUg561BpqXtF0Vv5KkdSg==
+=ORMJ
+-----END PGP SIGNATURE-----
+
+--elVqdTBpOwS6uzdG--
