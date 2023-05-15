@@ -2,60 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B0F702D39
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 14:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2F8F702D4A
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 14:59:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239894AbjEOM43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 08:56:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44340 "EHLO
+        id S242091AbjEOM6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 08:58:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242164AbjEOM4Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 08:56:25 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D47A1BC5;
-        Mon, 15 May 2023 05:55:50 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id B25E985F71;
-        Mon, 15 May 2023 14:55:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684155348;
-        bh=q7l/rpFtzMMtTi2QEH2d8cneVzx5hYI5+mDkbNkqf4o=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Gil6/kBpXeWn4qsccIAb1SoAD96Ezr43ETkPH8VFrk6pF0jEqXBFmluTIvk1wAIDw
-         ORjlwBTZZz58/O2tscA2qzjVYsprcsYlEBJAWpl5fQdtYCAZF/lfjqljZdynVnmjsh
-         zqWMLbLLH0ubhmR6kZOESZvji9QZ6/Kk0rPrxHaeiOaq9UcAYsLPNUbynmFAMTivBo
-         Vx64Bc2hE1sUSNDMaPisyF/8aO/ih6E3x6fbBo9IziFsZ0yjm9khbz1rxF/Vpmad2S
-         8Yje5aFizpsXPGtuRDbAuT5lZ1vlfaaAr/kghvcIen/iEunfwnFSWLofxBAQidGV+U
-         wl5iaGerG1Olw==
-Message-ID: <9b62a0db-1374-2c89-5ea3-286467bd1e4e@denx.de>
-Date:   Mon, 15 May 2023 14:55:47 +0200
+        with ESMTP id S242046AbjEOM6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 08:58:05 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D884718F
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 05:58:03 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-ba6f89a8c5dso5597969276.2
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 05:58:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684155483; x=1686747483;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HXqDQRh3lmw332MPRvHZucQcQJLpqaLIK4wu8oQfcgE=;
+        b=nW1I839PaX6h9dZPy+wPPlK9E5my1YR0mZqI+8SXWJ54ChnlV3NyrP7PDtv8FARxgv
+         N+KlKw1wbJROgv1WvJ1ahWUn0cMtxt3javmg9ag+Lj4akVdt6pRDaC+OTqhD/gzHFmrL
+         b7qEI0nqk1VxyYDYY1RZL2bF/O9OwqhtkvQ+ZUnXIg0qnZL4yn1miukLr2fMWWnF8z6I
+         wG9hwC30pN6HwkGGAfF6c5Sb8Dl0d15fcHKMQrnkoXsqOWHk2e5HFwrwAtINadH4IUOU
+         6bYrCPRaiiiy7TOk659Ql1aP6p55wlCi6ACZXlFBLkXSVyVvEfpz/9kdjDkOHfdy9tVx
+         HeRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684155483; x=1686747483;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HXqDQRh3lmw332MPRvHZucQcQJLpqaLIK4wu8oQfcgE=;
+        b=V6MVlWxgM7uE0fdtFqkWE/jp2HR/IbowfNS3MNFsIpyVGbelLhU/3gMoKMjZPcRSIf
+         imD4VThvdOv+uElkxGW857daHiUiF6pUocHdmJOrPXf7pmyHlZLODUqsqPnHBJkPIFBi
+         boXyTITFz8b5MLzWr0lzB48yyQB1kZi05zMIm/dsNjkVH1mkHpEZZc7iGxMkbxoSjK+l
+         OOG1qi8bp5IlseF+en8nf6HlC7DgsF9jEp0nifhArAh9Aegz5vriH4t1UZRMsihTXDie
+         w4enbLuMuKkTN5/y5hQnRlOGANC3pVOy5CMHkMofDU/gVFymsMaWGLPQhypNKbisSugV
+         keLw==
+X-Gm-Message-State: AC+VfDyby+5BOTBSyu84gImkaCRaauUsiUlnzjzLsbVvoR4AZO+cIfBU
+        w6svisypqGhVIwOD1VG7ACW9hEHeKETiWOZAIzNm2w==
+X-Google-Smtp-Source: ACHHUZ5HcaVgTLl9wGnyPOESD2iVVb16GOSG7yMh3VRdCQ/p+kSj3yrx3LaanFXqAed3eneQWizWHF6gPhbKR7UzPZo=
+X-Received: by 2002:a25:adc3:0:b0:ba6:ba75:2315 with SMTP id
+ d3-20020a25adc3000000b00ba6ba752315mr10259485ybe.47.1684155482912; Mon, 15
+ May 2023 05:58:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] dt-bindings: usb: usb251xb: correct swap-dx-lanes type to
- uint32
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Richard Leitner <richard.leitner@linux.dev>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+References: <20230509161218.11979-1-quic_jkona@quicinc.com>
+ <20230509161218.11979-5-quic_jkona@quicinc.com> <7faf4c16-98ff-f27d-d1fd-3058370c06f5@linaro.org>
+In-Reply-To: <7faf4c16-98ff-f27d-d1fd-3058370c06f5@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 15 May 2023 15:57:52 +0300
+Message-ID: <CAA8EJpo1iMj90BPc6gYngSrJqd8WWArRndgbcVg1fYBKBpVfAQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8550: Add video clock controller
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     mike.looijmans@topic.nl
-References: <20230515103337.130607-1-krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20230515103337.130607-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,37 +75,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/15/23 12:33, Krzysztof Kozlowski wrote:
-> The "swap-dx-lanes" was never described as uint8 in original TXT
-> bindings and Linuxx driver expects uint32.  Fix the type to match Linux
+On Mon, 15 May 2023 at 15:28, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+>
+>
+> On 9.05.2023 18:12, Jagadeesh Kona wrote:
+> > Add device node for video clock controller on Qualcomm SM8550 platform.
+> >
+> > Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> > Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8550.dtsi | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > index 6e9bad8f6f33..e67e7c69dae6 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> > @@ -7,6 +7,7 @@
+> >  #include <dt-bindings/clock/qcom,sm8550-gcc.h>
+> >  #include <dt-bindings/clock/qcom,sm8550-tcsr.h>
+> >  #include <dt-bindings/clock/qcom,sm8550-dispcc.h>
+> > +#include <dt-bindings/clock/qcom,sm8550-videocc.h>
+> >  #include <dt-bindings/dma/qcom-gpi.h>
+> >  #include <dt-bindings/gpio/gpio.h>
+> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > @@ -759,6 +760,17 @@ gcc: clock-controller@100000 {
+> >                                <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+> >               };
+> >
+> > +             videocc: clock-controller@aaf0000 {
+> This node should be moved down. Nodes with unit addresses
+> should be sorted alphanumerically.
+>
+> > +                     compatible = "qcom,sm8550-videocc";
+> > +                     reg = <0 0x0aaf0000 0 0x10000>;
+> > +                     clocks = <&bi_tcxo_div2>, <&gcc GCC_VIDEO_AHB_CLK>;
+> One per line, please
+>
+> Also, any reason the XO clock does not come from RPMhCC?
 
-Linux , one x too many .
+bi_tcxo_div_2 is an RPMhCC clock with the fixed divider.
 
-> driver expectation and original binding.
-> 
-> Fixes: fff61d4ccf3d ("dt-bindings: usb: usb251xb: Convert to YAML schema")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Cc: mike.looijmans@topic.nl
-> ---
->   Documentation/devicetree/bindings/usb/usb251xb.yaml | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/usb251xb.yaml b/Documentation/devicetree/bindings/usb/usb251xb.yaml
-> index 4d1530816817..ac5b99710332 100644
-> --- a/Documentation/devicetree/bindings/usb/usb251xb.yaml
-> +++ b/Documentation/devicetree/bindings/usb/usb251xb.yaml
-> @@ -231,7 +231,7 @@ properties:
->         power-on sequence to a port until the port has adequate power.
->   
->     swap-dx-lanes:
-> -    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->       description: |
->         Specifies the ports which will swap the differential-pair (D+/D-),
->         default is not-swapped.
+>
+> Konrad
+> > +                     power-domains = <&rpmhpd SM8550_MMCX>;
+> > +                     required-opps = <&rpmhpd_opp_low_svs>;
+> > +                     #clock-cells = <1>;
+> > +                     #reset-cells = <1>;
+> > +                     #power-domain-cells = <1>;
+> > +             };
+> > +
+> >               ipcc: mailbox@408000 {
+> >                       compatible = "qcom,sm8550-ipcc", "qcom,ipcc";
+> >                       reg = <0 0x00408000 0 0x1000>;
 
-Would it make more sense to update the driver instead ? I doubt you 
-could have more than 256 ports on this device after all.
+
+
+-- 
+With best wishes
+Dmitry
