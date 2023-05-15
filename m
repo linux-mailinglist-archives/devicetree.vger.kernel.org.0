@@ -2,67 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CD45702459
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F41A8702460
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:20:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239058AbjEOGS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 02:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51032 "EHLO
+        id S230496AbjEOGUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 02:20:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239442AbjEOGSh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:18:37 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 735021BF9;
-        Sun, 14 May 2023 23:18:28 -0700 (PDT)
-X-UUID: 4b63faaef2e811ed9cb5633481061a41-20230515
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=1DzBxETsAAtn/WkXHPbWWEDwRESy0yoELlXkiZv6Fr8=;
-        b=PjwgAdJ39n1Tj1JRb7ywvJgjWrMWQoGgmXxfa8IxkPc/fhGVs2oFN2YoEAfK94SMD1bJJw74tx6my3Vvdzr4SOjcZzN2eQiDvfLiOOIBY28r/M5O6cEDYwCSXQyTjF4g5vLrp4kxxWG4duyK0h2rpUwdJ5QLKDZfIYe01EDc0To=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.24,REQID:c0055105-3491-48fb-afe2-4e1142d3bffb,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:100
-X-CID-INFO: VERSION:1.1.24,REQID:c0055105-3491-48fb-afe2-4e1142d3bffb,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
-        N:quarantine,TS:100
-X-CID-META: VersionHash:178d4d4,CLOUDID:5503d9c0-e32c-4c97-918d-fbb3fc224d4e,B
-        ulkID:230515141824V4BZ34CF,BulkQuantity:1,Recheck:0,SF:38|29|28|17|19|48,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:40,QS:nil,BEC:nil,COL
-        :0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-UUID: 4b63faaef2e811ed9cb5633481061a41-20230515
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <shuijing.li@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1293574623; Mon, 15 May 2023 14:18:22 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 15 May 2023 14:18:22 +0800
-Received: from mszsdhlt06.gcn.mediatek.inc (10.16.6.206) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 15 May 2023 14:18:22 +0800
-From:   Shuijing Li <shuijing.li@mediatek.com>
-To:     <thierry.reding@gmail.com>, <matthias.bgg@gmail.com>,
-        <angelogioacchino.delregno@collabora.com>
-CC:     <devicetree@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <jitao.shi@mediatek.com>, Shuijing Li <shuijing.li@mediatek.com>
-Subject: [PATCH] pwm: mtk_disp: Fix the disable flow of disp_pwm
-Date:   Mon, 15 May 2023 14:18:45 +0800
-Message-ID: <20230515061845.10241-1-shuijing.li@mediatek.com>
-X-Mailer: git-send-email 2.40.1
+        with ESMTP id S229701AbjEOGUP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:20:15 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEC21E54
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:20:14 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bcb229adaso22493235a12.2
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:20:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684131613; x=1686723613;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QQk+upFNjcsFg1sTfIoyMrAZ0ApZ4GLo1P0y6xEnNys=;
+        b=eT0zT+xSEQfDoDpnMzqokrZq7gA0Mk4Nl7GfodQ7lqZ4h3G6ka03Cbiveo8IwiPO+b
+         T0VQkylmmVv2AJT5dTNUqMIxGe4DyF3NY7PdPFchGkaYDprgHSqoXIEsUNtkpkM4atpq
+         qC42V8fC4L3TfJT0uKK6DfchiSkdR5T1mXw4ps7hdgoKYW/rCcK91I2HYLSTkiO8c5FF
+         rwwoDlXNR7R7lwAhTa2KIh+zYg4GB4Pb5/ADnSpRV+5zNDfyYKwdCdWo72TMC4faz6xm
+         zjBzHFxbrGpMMfVdRU5378K6p/bo8wRO4P7lTIRQzf5Dor3g3vA5eSERa3n55lA3pF50
+         My2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684131613; x=1686723613;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QQk+upFNjcsFg1sTfIoyMrAZ0ApZ4GLo1P0y6xEnNys=;
+        b=bPixeAGLHSxQYdo+7E2eRnoNyWAJKGgdUAncMID+k283/F1Ikxqzwsz1ym8uzwle+T
+         mOhiqILwS0c7UEtESYWLYFbA5w0xb7DF35d6rpJVqYBI8tUnGgJBV+xra1+9YtPwHxtr
+         jyj2oHH6VZaKY1irVamsSLd/wPrfh4Zk0Py6AMiAKN1CohBjJKlT6oOfyWhzJ/dmg4bt
+         Y+MBfvsEd/XxpFsZs665Fj/orWFwIaycL+mFdZd+hMv0Ey8T4CvZtpVDBURji7hBMznM
+         J48k7ghc59x/i9XUuD7pVQvs7rJDdss2PRT5T6GXpluFR9aB0Dk4w84LEcbuPZgH/ifd
+         Ez0w==
+X-Gm-Message-State: AC+VfDx+V/SBKwy0WZPZ99onrwnJyGmkXRcs9BheiscujjKfHLypy2wO
+        cJU6tuPBGzj7nziJnXvZO85sTQ==
+X-Google-Smtp-Source: ACHHUZ4d3vzQJ1tsE9pjK4Ao9lH+3iqMv3T57c0i5bYRSlbvDcF9FXiWrVuPBq1Ny5XbBiLytc4Yeg==
+X-Received: by 2002:a17:906:dc8c:b0:96a:6723:da48 with SMTP id cs12-20020a170906dc8c00b0096a6723da48mr14316989ejc.75.1684131613237;
+        Sun, 14 May 2023 23:20:13 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
+        by smtp.gmail.com with ESMTPSA id jl4-20020a17090775c400b009658475919csm9072367ejc.188.2023.05.14.23.20.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 14 May 2023 23:20:12 -0700 (PDT)
+Message-ID: <21488506-9e91-e7b4-a995-645b70c720bf@linaro.org>
+Date:   Mon, 15 May 2023 08:20:11 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] ASoC: dt-bindings: nau8824: Convert to dtschema
+Content-Language: en-US
+To:     AS50 CTLin0 <ctlin0@nuvoton.com>, broonie@kernel.org
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, YHCHuang@nuvoton.com,
+        KCHSU0@nuvoton.com, WTLI@nuvoton.com, SJLIN0@nuvoton.com,
+        ctlin0.linux@gmail.com
+References: <20230512120146.600128-1-CTLIN0@nuvoton.com>
+ <877338f8-d157-0f91-33a3-fdb03566aa57@linaro.org>
+ <a1afe69d-2bb1-02d8-3573-dec370cc1a9b@nuvoton.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a1afe69d-2bb1-02d8-3573-dec370cc1a9b@nuvoton.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,33 +79,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a flow error in the original mtk_disp_pwm_apply() function.
-If this function is called when the clock is disabled, there will be a
-chance to operate the disp_pwm register, resulting in disp_pwm exception.
-Fix this accordingly.
+On 15/05/2023 04:47, AS50 CTLin0 wrote:
+> On 5/14/2023 2:38 AM, Krzysztof Kozlowski wrote:
+>> On 12/05/2023 14:01, David Lin wrote:
+>>> Convert the NAU8824 audio CODEC bindings to DT schema.
+>>>
+>>> Signed-off-by: David Lin <CTLIN0@nuvoton.com>
+>>> ---
+>> Thank you for your patch. There is something to discuss/improve.
+>>
+>>> +
+>>> +  nuvoton,sar-threshold-num:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description:
+>>> +      Number of buttons supported.
+>>> +    minimum: 1
+>>> +    maximum: 4
+>>> +    default: 4
+>>> +
+>>> +  nuvoton,sar-threshold:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>> +    description:
+>>> +      Impedance threshold for each button. Array that contains up to 8 buttons
+>>> +      configuration. SAR value is calculated as
+>>> +      SAR = 255 * MICBIAS / SAR_VOLTAGE * R / (2000 + R) where MICBIAS is
+>>> +      configured by 'nuvoton,micbias-voltage', SAR_VOLTAGE is configured by
+>>> +      'nuvoton,sar-voltage', R - button impedance.
+>>> +      Refer datasheet section 10.2 for more information about threshold
+>>> +      calculation.
+>>> +    minItems: 1
+>>> +    maxItems: 4
+>> Your description mentions 8 buttons, so maybe it should be 8 here? Or
+>> description needs a fix?
+> Driver just handle maxima 4 buttons for general application, but the the
+> above description is truly hardware capability with 8 buttons support.
 
-Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
----
- drivers/pwm/pwm-mtk-disp.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+Then it should be 8.
 
-diff --git a/drivers/pwm/pwm-mtk-disp.c b/drivers/pwm/pwm-mtk-disp.c
-index 79e321e96f56..cb699fa9a5ae 100644
---- a/drivers/pwm/pwm-mtk-disp.c
-+++ b/drivers/pwm/pwm-mtk-disp.c
-@@ -80,10 +80,9 @@ static int mtk_disp_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 		return -EINVAL;
- 
- 	if (!state->enabled) {
--		mtk_disp_pwm_update_bits(mdp, DISP_PWM_EN, mdp->data->enable_mask,
--					 0x0);
--
- 		if (mdp->enabled) {
-+			mtk_disp_pwm_update_bits(mdp, DISP_PWM_EN,
-+						 mdp->data->enable_mask, 0x0);
- 			clk_disable_unprepare(mdp->clk_mm);
- 			clk_disable_unprepare(mdp->clk_main);
- 		}
--- 
-2.40.1
+Best regards,
+Krzysztof
 
