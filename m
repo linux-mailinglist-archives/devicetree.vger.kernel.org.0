@@ -2,85 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B607A702430
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:12:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 949AC702448
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:16:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232353AbjEOGMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 02:12:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47578 "EHLO
+        id S233993AbjEOGQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 02:16:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbjEOGMj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:12:39 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 306D61B8
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:12:36 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-96652cb7673so1467914766b.0
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:12:36 -0700 (PDT)
+        with ESMTP id S233813AbjEOGQz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:16:55 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24A4319A4
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:16:53 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50be0d835aaso21815103a12.3
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:16:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1684131154; x=1686723154;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QGQqACAtxVd3+isW2epC7gqLpY6OemSJdFuWDlSDAdc=;
-        b=VUc3hbcjytBj5aTVCffVk+cmWgl6blwmePp6+3rczcJaGu4QLTZ0qWlyBAvP8l/k7y
-         20twm51yI1qkSxUBEuauDH5oBvO0P6wxXVBki6CP3aEpKsAxMypaaj/uswQmZx6+MUYl
-         ezpYGl3X4dEk/uyOBBNDutb119Oti+A0eXGpPKY/qSfUFLzPYPMxthNGF9/rwd+y20yg
-         O24bpj8rpuhaQitTP5hiR23SbapVIxOcxD3Q1naes4IBlDwrBcBu4vHEVGSfrJNJIjEP
-         bgGOdLf3fPs3QEz5yGRIqYkw+IjNYfi6mS82GB7KJyc7fdWBP6wdhUH+NdrLKTONPFtj
-         HPOg==
+        d=linaro.org; s=google; t=1684131411; x=1686723411;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mZ5kJ511V5u6WUmG5YfaTjlPGFBPqbatIvhaf5zTdqs=;
+        b=VuyeuFRJI64MXgzuJK1WDorl7u6mnSd6M0HJ8lg0XzMeni30ZjRRIw840m8FQKcmwh
+         DdyFDmREcChDzoRD/tnwuOCdoiUOmbtJ2QLt2gl9ULqaFfhxbOYBCKjfgmVIhHUTi4Gc
+         56SWn2+g2FFqRUlbljxL9h8a+ZGmPfmcZzrO+7BdBnGJT4I36hkeweFJi3r7Btpxibm7
+         +3YLuMjS+vuZZa8F9e9yrAAyH8A/dc/0N8o9OBn2nV4F9lM8O8csLU43f4SJBvkiJ6Jp
+         lWcUVoUQDB65nZ1ZWuTk4bWYt59CiZDlkg40SsJYvkK5ZXhYFEVo82CRzez4u3dA6d4R
+         ZQIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684131154; x=1686723154;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=QGQqACAtxVd3+isW2epC7gqLpY6OemSJdFuWDlSDAdc=;
-        b=KAbAowuPGOV3ZSCCvxC18NuX5rXCsR58NG7BGZYCqMLuekSCvhf4p8c7QtF+82KWEm
-         +KZemYoU8OzCFJGujY3WHT91RrA0D4Re+ZpNEv/9487F1jbaDYES2dZqpatQrW4vn76I
-         BqcDz7vsbKRkK3dAT7kMZVmYr51ds5gg3y0+qWQZ1vj07a2Nb/lkVmgp1BSODbBpDXq2
-         dd4c+a2ax4RsRTnyf6nNHEBQXJKx1a1h/8L2NKF85/Wm58r6kgSaZZElceUoTOagkAtx
-         M15PJRSpqwqVUKbiwY/FoClwE0GE9OlgZuj+A9qExOQv5OviTA2wWRaoQyzhx13ER1yZ
-         YJbg==
-X-Gm-Message-State: AC+VfDxxnJviLENIXw+P2pixkK4hFopVKFVgt2BNJo+vp1r0ZsYJalD0
-        BhTRWQao1lO8K/TsSMI1YbdEuA==
-X-Google-Smtp-Source: ACHHUZ6VdyzxojOvlJcM3eGCjirMUeOR1VFBmDIxIiphgjub9RZOGHgCoqUyr8RlkVy6ccA25FFuqA==
-X-Received: by 2002:a17:907:7e99:b0:96a:2dd7:2ef9 with SMTP id qb25-20020a1709077e9900b0096a2dd72ef9mr17702781ejc.39.1684131154628;
-        Sun, 14 May 2023 23:12:34 -0700 (PDT)
-Received: from localhost (k10064.upc-k.chello.nl. [62.108.10.64])
-        by smtp.gmail.com with ESMTPSA id q10-20020a1709064cca00b0096b524b160asm337851ejt.82.2023.05.14.23.12.33
+        d=1e100.net; s=20221208; t=1684131411; x=1686723411;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mZ5kJ511V5u6WUmG5YfaTjlPGFBPqbatIvhaf5zTdqs=;
+        b=GDzpHHUdkZS7EjjTNFjQhVu3s7Vo7SWO6qNYlCST2djickoqi7TaAe47yq8UEG8bJW
+         03NsP7dbG0s1puHAEgPg7046g55zo0E07xo+PttgNS4Izb2ynW7ToK3w3+mmuXO/R4tV
+         X0wWXr54hrNlqDBTkvlxxS7yw6zeJwug4uRSj3Saz0WbS3z3vhAwO93xn7hBYOCkjtBA
+         1fNhIQta8mH5U21kS8CLyADS4bRQ8kSs+bX52u8t+Fn8O5HKkSAbLNnPJ+FDj8cn5350
+         vOmSvRFNDc0XwenI/dgRIj9pa8Gba3Nm1l350Duh62GHtE2jocmFTBE6D5m0mQk86IwL
+         /0Wg==
+X-Gm-Message-State: AC+VfDwk9jzWPSZJ73fkuD9RtbsMy1neWd2jYVEiAiaMueRuYhyS31sk
+        n3t5WhYq7RUtIq4eeu/F4EtaQQ==
+X-Google-Smtp-Source: ACHHUZ43MvCNly+ACjj3Ax0quy88zzu2VF57GZ6fBNDMqBAYJgfySRCBsmHbOLilHbum7IvU4GddGA==
+X-Received: by 2002:a17:906:eeca:b0:965:d17b:292 with SMTP id wu10-20020a170906eeca00b00965d17b0292mr27943156ejb.60.1684131411544;
+        Sun, 14 May 2023 23:16:51 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
+        by smtp.gmail.com with ESMTPSA id j11-20020a1709062a0b00b0094e62aa8bcesm9042798eje.29.2023.05.14.23.16.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 May 2023 23:12:34 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        Sun, 14 May 2023 23:16:51 -0700 (PDT)
+Message-ID: <7b890572-c6a4-425c-4583-1c56f382acb8@linaro.org>
+Date:   Mon, 15 May 2023 08:16:49 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [RESEND PATCH v6 1/2] dt-bindings: edac: Add bindings for Xilinx
+ Versal EDAC for DDRMC
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        linux-edac@vger.kernel.org
+Cc:     git@amd.com, devicetree@vger.kernel.org, rric@kernel.org,
+        shubhrajyoti.datta@gmail.com, james.morse@arm.com,
+        tony.luck@intel.com, mchehab@kernel.org, bp@alien8.de,
+        robh+dt@kernel.org, sai.krishna.potthuri@amd.com
+References: <20230514172432.12505-1-shubhrajyoti.datta@amd.com>
+ <20230514172432.12505-2-shubhrajyoti.datta@amd.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230514172432.12505-2-shubhrajyoti.datta@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 15 May 2023 08:12:33 +0200
-Message-Id: <CSMMO2ZBOS6Y.3SAQOHDLW68ME@otso>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        "Eric Dumazet" <edumazet@google.com>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        "Paolo Abeni" <pabeni@redhat.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Marcel Holtmann" <marcel@holtmann.org>,
-        "Johan Hedberg" <johan.hedberg@gmail.com>,
-        "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-bluetooth@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 0/4] Add WCN3988 Bluetooth support for Fairphone 4
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>
-X-Mailer: aerc 0.15.1
-References: <20230421-fp4-bluetooth-v2-0-3de840d5483e@fairphone.com>
- <CABBYNZJPw=Oxi+J2oA=6aosEZjCBK=u=8HEJywzRJCCrmGnkGA@mail.gmail.com>
-In-Reply-To: <CABBYNZJPw=Oxi+J2oA=6aosEZjCBK=u=8HEJywzRJCCrmGnkGA@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,72 +79,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri May 12, 2023 at 10:53 PM CEST, Luiz Augusto von Dentz wrote:
-> Hi Luca,
->
-> On Fri, May 12, 2023 at 6:58=E2=80=AFAM Luca Weiss <luca.weiss@fairphone.=
-com> wrote:
-> >
-> > Add support in the btqca/hci_qca driver for the WCN3988 and add it to
-> > the sm7225 Fairphone 4 devicetree.
-> >
-> > Devicetree patches go via Qualcomm tree, the rest via their respective
-> > trees.
->
-> Just to be sure, patches 1-2 shall be applied to bluetooth-next the
-> remaining are going to be handled elsewhere?
+On 14/05/2023 19:24, Shubhrajyoti Datta wrote:
+> Add device tree bindings for Xilinx Versal EDAC for DDR
+> controller.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Co-developed-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> ---
 
-Sounds good.
+I believe there were changes... Subject prefix needs fixing, not edac
+anymore.
 
->
-> > --
-> > Previously with the RFC version I've had problems before with Bluetooth
-> > scanning failing like the following:
-> >
-> >   [bluetooth]# scan on
-> >   Failed to start discovery: org.bluez.Error.InProgress
-> >
-> >   [  202.371374] Bluetooth: hci0: Opcode 0x200b failed: -16
-> >
-> > This appears to only happen with driver built-in (=3Dy) when the suppor=
-ted
-> > local commands list doesn't get updated in the Bluetooth core and
-> > use_ext_scan() returning false. I'll try to submit this separately sinc=
-e
-> > this now works well enough with =3Dm. But in both cases (=3Dy, =3Dm) it=
-'s
-> > behaving a bit weirdly before (re-)setting the MAC address with "sudo
-> > btmgmt public-addr fo:oo:ba:ar"
-> >
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> > Changes in v2:
-> > - Add pinctrl & 'tlmm 64' irq to uart node
-> > - Pick up tags
-> > - Link to v1: https://lore.kernel.org/r/20230421-fp4-bluetooth-v1-0-043=
-0e3a7e0a2@fairphone.com
-> >
-> > ---
-> > Luca Weiss (4):
-> >       dt-bindings: net: qualcomm: Add WCN3988
-> >       Bluetooth: btqca: Add WCN3988 support
-> >       arm64: dts: qcom: sm6350: add uart1 node
-> >       arm64: dts: qcom: sm7225-fairphone-fp4: Add Bluetooth
-> >
-> >  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml |   2 +
-> >  arch/arm64/boot/dts/qcom/sm6350.dtsi               |  63 +++++++++++++
-> >  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts  | 103 +++++++++++++=
-++++++++
-> >  drivers/bluetooth/btqca.c                          |  13 ++-
-> >  drivers/bluetooth/btqca.h                          |  12 ++-
-> >  drivers/bluetooth/hci_qca.c                        |  12 +++
-> >  6 files changed, 201 insertions(+), 4 deletions(-)
-> > ---
-> > base-commit: f2fe50eb7ca6b7bc6c63745f5c26f7c6022fcd4a
-> > change-id: 20230421-fp4-bluetooth-b36a0e87b9c8
-> >
-> > Best regards,
-> > --
-> > Luca Weiss <luca.weiss@fairphone.com>
-> >
+While at it:
+Subject: drop second/last, redundant "bindings for". The "dt-bindings"
+prefix is already stating that these are bindings.
+
+Best regards,
+Krzysztof
 
