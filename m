@@ -2,98 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 220607020D7
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 02:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F40547020E4
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 02:57:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232572AbjEOAkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 20:40:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56204 "EHLO
+        id S230166AbjEOA5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 20:57:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237910AbjEOAks (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 20:40:48 -0400
-Received: from mx.kolabnow.com (mx.kolabnow.com [212.103.80.153])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86546171F;
-        Sun, 14 May 2023 17:40:47 -0700 (PDT)
-Received: from localhost (unknown [127.0.0.1])
-        by mx.kolabnow.com (Postfix) with ESMTP id 2EDB9139D;
-        Mon, 15 May 2023 02:40:46 +0200 (CEST)
-Authentication-Results: ext-mx-out001.mykolab.com (amavisd-new);
-        dkim=pass (4096-bit key) reason="pass (just generated, assumed good)"
-        header.d=kolabnow.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kolabnow.com; h=
-        content-transfer-encoding:organization:mime-version:references
-        :in-reply-to:message-id:date:date:subject:subject:from:from
-        :received:received:received; s=dkim20160331; t=1684111245; x=
-        1685925646; bh=xl+VA9Ad46B1yVLIPQ7112+42HpIeEILYeifuWaP7dU=; b=R
-        cNn4zzG1k2XgCWVF3m+AJm324PsoQWpu2R3umtF/0x4gcsHOLWxxokWZ27Pjbtsw
-        qcX8sMiAGnkhWw8gycQ5FzU2jkv1Z28TObH5ZoZAheEAj5hOeC/iqGW/7wsd6OEa
-        U+yOw5p3My3S6CzI14broinzSGO5BzTTtmc1MUDQ8zVdd+jVvleKZX3s0pD1wh2n
-        WQiesrpqEgwsPg358b7gxP5dpHLaMtAfXE5hsPtMGlCEbpCLzIH7BZwLsH1obaQe
-        H3zKFYkS8aUOeh+r2Grq0DmE/rjK8xCLiqC1CgLjnhjoj00tJTo/zLoPvp09zEzx
-        b1kMp6ghqJHOCkkrpN44NfzrB5AMgmjdZfp+GNH93cZMIg/jvGabgai4lgkbRJHO
-        rDvdGmYe35ZTynMVCUK9TbA93dpe+lZvvpL93AZTlGRSm8lnQlA/biSYiF+tQMqF
-        qGe1OeP1BqeOraotTbuQFWlS9XwZ7YOS5++J49owOle+6EJboP7DVOfz3LmwZSFo
-        UuDxAzNWpKGNm681SxfYQTr0nuT5eTyoejGVOuns5wy0erbp/+77KqAIqEDTvAXO
-        C/fU9WibwKVQQJe61WTftMKA6xAHwGsbABgQmpwjBNSLfuxt8HZJDcfTKtRNikU6
-        tGfOL7EPtpzJ2+ONLrM9uN664Z6GbaTcXwRPo2reW4=
-X-Virus-Scanned: amavisd-new at mykolab.com
-X-Spam-Score: -1.9
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-Received: from mx.kolabnow.com ([127.0.0.1])
-        by localhost (ext-mx-out001.mykolab.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 997h_OOvf3ad; Mon, 15 May 2023 02:40:45 +0200 (CEST)
-Received: from int-mx002.mykolab.com (unknown [10.9.13.2])
-        by mx.kolabnow.com (Postfix) with ESMTPS id 4092B1071;
-        Mon, 15 May 2023 02:40:45 +0200 (CEST)
-Received: from ext-subm001.mykolab.com (unknown [10.9.6.1])
-        by int-mx002.mykolab.com (Postfix) with ESMTPS id A57253E6D;
-        Mon, 15 May 2023 02:40:44 +0200 (CEST)
-From:   alison@she-devel.com
-To:     johan@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alison@she-devel.com,
-        achaiken@aurora.tech, Rob Herring <robh@kernel.org>
-Subject: [PATCH 2/2] dt-bindings: gnss: Add U-Blox Zed-F9
-Date:   Sun, 14 May 2023 17:40:25 -0700
-Message-Id: <20230515004025.1133572-3-alison@she-devel.com>
-In-Reply-To: <20230515004025.1133572-1-alison@she-devel.com>
-References: <20230515004025.1133572-1-alison@she-devel.com>
+        with ESMTP id S229980AbjEOA5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 20:57:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B04D810F1;
+        Sun, 14 May 2023 17:57:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 44924618A8;
+        Mon, 15 May 2023 00:57:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC775C433D2;
+        Mon, 15 May 2023 00:57:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684112261;
+        bh=ZlJ0oVkgI0zlprQ/KHy+1dFyoFMssfZ33Pdw+Ts3G5A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NazBCmbOxlej/wvIz8qbl8Vl8u1N4E+MVuDyllmzUCkJBHkRKtjOpeTrtuHS+9U6U
+         sKkDVuCzNZ9wYbF1PU96UaKmk9B6bo8SdwABM/sT59ASkK2uw8dK9kr8l1G58RMkEq
+         BOdUUGbcla9igZeBjsD52hXm405Vf+npEz1abrw2RHSlePy5WhVJw9/x2Fg1b+ODkw
+         u/cp8GeQiFIpqKQDBwpe/MsAWOzSR5yxaUxck3cXDNDfkBzg9E+fY1DnGd0+hHj9vR
+         VntNfymGXOFd9EypCsX5qoGw+BME3kmeqP+Qf21k+Qhda5ZXiklRQA075Z6zc2t5M3
+         qutCYEtL1P9yw==
+Date:   Mon, 15 May 2023 08:57:30 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     imx@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        coresight@lists.linaro.org
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: Add coresight trace components
+Message-ID: <20230515005730.GB727834@dragon>
+References: <20230505195151.1874071-1-Frank.Li@nxp.com>
 MIME-Version: 1.0
-Organization: Aurora Innovation
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230505195151.1874071-1-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alison Chaiken <achaiken@aurora.tech>
+On Fri, May 05, 2023 at 03:51:51PM -0400, Frank Li wrote:
+> Add coresight trace components (ETM, ETF, ETB and Funnel).
+> 
+> ┌───────┐  ┌───────┐  ┌───────┐
+> │ CPU0  ├─►│ ETM0  ├─►│       │
+> └───────┘  └───────┘  │       │
+>                       │       │
+> ┌───────┐  ┌───────┐  │  ATP  │
+> │ CPU1  ├─►│ ETM1  ├─►│       │
+> └───────┘  └───────┘  │       │
+>                       │ FUNNEL│
+> ┌───────┐  ┌───────┐  │       │
+> │ CPU2  ├─►│ ETM2  ├─►│       │
+> └───────┘  └───────┘  │       │   ┌─────┐  ┌─────┐
+>                       │       │   │     │  │     │
+> ┌───────┐  ┌───────┐  │       │   │ M7  │  │ DSP │
+> │ CPU3  ├─►│ ETM3  ├─►│       │   │     │  │     │
+> └───────┘  └───────┘  └───┬───┘   └──┬──┘  └──┬──┘               AXI
+>                           │          │        │                   ▲
+>                           ▼          ▼        ▼                   │
+>                       ┌───────────────────────────┐   ┌─────┐   ┌─┴──┐
+>                       │          ATP FUNNEL       ├──►│ETF  ├─► │ETR │
+>                       └───────────────────────────┘   └─────┘   └────┘
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 179 ++++++++++++++++++++++
+>  1 file changed, 179 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index a19224fe1a6a..0fa74477b9e1 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -304,6 +304,185 @@ soc: soc@0 {
+>  		nvmem-cells = <&imx8mp_uid>;
+>  		nvmem-cell-names = "soc_unique_id";
+>  
+> +		etm0: etm@28440000 {
+> +			compatible = "arm,coresight-etm4x", "arm,primecell";
+> +			reg = <0x28440000 0x10000>;
+> +			arm,primecell-periphid = <0xbb95d>;
+> +			cpu = <&A53_0>;
+> +			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+> +			clock-names = "apb_pclk";
 
-Add support for the U-Blox Zed-F9P GNSS device.
+Have a newline between properties and child node.
 
-Signed-off-by: Alison Chaiken <achaiken@aurora.tech>
----
-Acked-by: Rob Herring <robh@kernel.org>
+> +			out-ports {
+> +				port {
+> +					etm0_out_port: endpoint {
+> +						remote-endpoint = <&ca_funnel_in_port0>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etm1: etm@28540000 {
+> +			compatible = "arm,coresight-etm4x", "arm,primecell";
+> +			reg = <0x28540000 0x10000>;
+> +			arm,primecell-periphid = <0xbb95d>;
+> +			cpu = <&A53_1>;
+> +			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+> +			clock-names = "apb_pclk";
+> +			out-ports {
+> +				port {
+> +					etm1_out_port: endpoint {
+> +						remote-endpoint = <&ca_funnel_in_port1>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etm2: etm@28640000 {
+> +			compatible = "arm,coresight-etm4x", "arm,primecell";
+> +			reg = <0x28640000 0x10000>;
+> +			arm,primecell-periphid = <0xbb95d>;
+> +			cpu = <&A53_2>;
+> +			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+> +			clock-names = "apb_pclk";
+> +			out-ports {
+> +				port {
+> +					etm2_out_port: endpoint {
+> +						remote-endpoint = <&ca_funnel_in_port2>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etm3: etm@28740000 {
+> +			compatible = "arm,coresight-etm4x", "arm,primecell";
+> +			reg = <0x28740000 0x10000>;
+> +			arm,primecell-periphid = <0xbb95d>;
+> +			cpu = <&A53_3>;
+> +			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+> +			clock-names = "apb_pclk";
+> +			out-ports {
+> +				port {
+> +					etm3_out_port: endpoint {
+> +						remote-endpoint = <&ca_funnel_in_port3>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		funnel {
+> +			/*
+> +			 * non-configurable funnel don't show up on the AMBA
+> +			 * bus.  As such no need to add "arm,primecell".
+> +			 */
+> +			compatible = "arm,coresight-static-funnel";
 
- Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Ditto
 
-diff --git a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-index 4835a280b3bf..86b65d4d9266 100644
---- a/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-+++ b/Documentation/devicetree/bindings/gnss/u-blox,neo-6m.yaml
-@@ -21,6 +21,7 @@ properties:
-       - u-blox,neo-6m
-       - u-blox,neo-8
-       - u-blox,neo-m8
-+      - u-blox,zed-f9p
- 
-   reg:
-     description: >
--- 
-2.39.2
+> +			in-ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
 
+Ditto
+
+> +				port@0 {
+> +					reg = <0>;
+
+Ditto
+
+> +					ca_funnel_in_port0: endpoint {
+> +						remote-endpoint = <&etm0_out_port>;
+> +					};
+> +				};
+> +				port@1 {
+
+Have a newline between nodes.
+
+Shawn
+
+> +					reg = <1>;
+> +					ca_funnel_in_port1: endpoint {
+> +						remote-endpoint = <&etm1_out_port>;
+> +					};
+> +				};
+> +				port@2 {
+> +					reg = <2>;
+> +					ca_funnel_in_port2: endpoint {
+> +						remote-endpoint = <&etm2_out_port>;
+> +					};
+> +				};
+> +				port@3 {
+> +					reg = <3>;
+> +					ca_funnel_in_port3: endpoint {
+> +						remote-endpoint = <&etm3_out_port>;
+> +					};
+> +				};
+> +			};
+> +			out-ports {
+> +				port {
+> +					ca_funnel_out_port0: endpoint {
+> +						remote-endpoint = <&hugo_funnel_in_port0>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		funnel@28c03000 {
+> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +			reg = <0x28c03000 0x1000>;
+> +			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+> +			clock-names = "apb_pclk";
+> +			in-ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				port@0 {
+> +					reg = <0>;
+> +					hugo_funnel_in_port0: endpoint {
+> +						remote-endpoint = <&ca_funnel_out_port0>;
+> +					};
+> +				};
+> +				port@1 {
+> +					reg = <1>;
+> +					hugo_funnel_in_port1: endpoint {
+> +					/* M7 input */
+> +					};
+> +				};
+> +				port@2 {
+> +					reg = <2>;
+> +					hugo_funnel_in_port2: endpoint {
+> +					/* DSP input */
+> +					};
+> +				};
+> +				/* the other input ports are not connect to anything */
+> +			};
+> +			out-ports {
+> +				port {
+> +					hugo_funnel_out_port0: endpoint {
+> +						remote-endpoint = <&etf_in_port>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etf@28c04000 {
+> +			compatible = "arm,coresight-tmc", "arm,primecell";
+> +			reg = <0x28c04000 0x1000>;
+> +			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+> +			clock-names = "apb_pclk";
+> +			in-ports {
+> +				port {
+> +					etf_in_port: endpoint {
+> +						remote-endpoint = <&hugo_funnel_out_port0>;
+> +					};
+> +				};
+> +			};
+> +			out-ports {
+> +				port {
+> +					etf_out_port: endpoint {
+> +						remote-endpoint = <&etr_in_port>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		etr@28c06000 {
+> +			compatible = "arm,coresight-tmc", "arm,primecell";
+> +			reg = <0x28c06000 0x1000>;
+> +			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+> +			clock-names = "apb_pclk";
+> +			in-ports {
+> +				port {
+> +					etr_in_port: endpoint {
+> +						remote-endpoint = <&etf_out_port>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+>  		aips1: bus@30000000 {
+>  			compatible = "fsl,aips-bus", "simple-bus";
+>  			reg = <0x30000000 0x400000>;
+> -- 
+> 2.34.1
+> 
