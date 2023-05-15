@@ -2,163 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24DD07032DA
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D419703541
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242680AbjEOQYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 12:24:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56952 "EHLO
+        id S243247AbjEOQ5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 12:57:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242192AbjEOQYp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:24:45 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C5F695
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:24:43 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        with ESMTP id S243245AbjEOQ5O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:57:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C03A6EA6;
+        Mon, 15 May 2023 09:57:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id C35F78471B;
-        Mon, 15 May 2023 18:24:40 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684167881;
-        bh=Ju+Ku51EIWB24IvQ1oukH2kWYgilIj6x0dUyJqz9fcc=;
-        h=From:To:Cc:Subject:Date:From;
-        b=fipf9xyYAUyS6ebKXaUnibUctoPEuHndbPoJnzE54LFiiznE7iPub4IBpj8a4Sl9T
-         6MuA18dp5OsdVnlsl4aEClMzu+fB6KQJ49BivOzqUlCsvaW9vPl4OePO7/oJ3j8LkZ
-         vCBl76pvYaezY6NYUho1/XTxvNTcpDazAF5lB2ywMm4lgGN1WlL7YGXDUCujQ95c3D
-         rX5eaCeOcUoiiD7OPf0mp2mt9LIlOl5NznIAzv6KyHMMiWWBEGlht4vtPvXfmy7azX
-         1C9C0QLc5LWOOTWQ4RaCe/4Lr2Epk7fMqOL8FB0asn58GqEbks22wAZ0QNIceScWKR
-         R3RSvnVN2sKGA==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2192E62A22;
+        Mon, 15 May 2023 16:57:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5014C433D2;
+        Mon, 15 May 2023 16:57:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1684169825;
+        bh=h5mK51aebmM7frvlZj9/VAIXXGKmEyWTQHFtggW+AO4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=CKnK31qLHFe/4Z/aJSbld5qtLY/z+vMHguZrsp707x/IvWcNcdBeyvzB4l2k0fSka
+         4Kf4QR43tNZ9g2Pvg6UZjhxDXaYc6KfCXlYhp7rEGsj4vu6fu3yjs7YH8jfH1r+MXw
+         20MKuhi8rX07Qvbi9RtogQOKUwJpx1HynJ6lYxX4=
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     stable@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        patches@lists.linux.dev, Randy Dunlap <rdunlap@infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mp: Add TC9595 bridge on DH electronics i.MX8M Plus DHCOM
-Date:   Mon, 15 May 2023 18:24:24 +0200
-Message-Id: <20230515162424.67597-1-marex@denx.de>
-X-Mailer: git-send-email 2.39.2
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Rich Felker <dalias@libc.org>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+        linux-sh@vger.kernel.org
+Subject: [PATCH 6.3 153/246] sh: init: use OF_EARLY_FLATTREE for early init
+Date:   Mon, 15 May 2023 18:26:05 +0200
+Message-Id: <20230515161727.144541252@linuxfoundation.org>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230515161722.610123835@linuxfoundation.org>
+References: <20230515161722.610123835@linuxfoundation.org>
+User-Agent: quilt/0.67
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add TC9595 DSI-to-DPI and DSI-to-(e)DP bridge to
-DH electronics i.MX8M Plus DHCOM SoM . The bridge
-is populated on the SoM, but disabled by default
-unless used for display output.
+From: Randy Dunlap <rdunlap@infradead.org>
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
+commit 6cba655543c7959f8a6d2979b9d40a6a66b7ed4f upstream.
+
+When CONFIG_OF_EARLY_FLATTREE and CONFIG_SH_DEVICE_TREE are not set,
+SH3 build fails with a call to early_init_dt_scan(), so in
+arch/sh/kernel/setup.c and arch/sh/kernel/head_32.S, use
+CONFIG_OF_EARLY_FLATTREE instead of CONFIG_OF_FLATTREE.
+
+Fixes this build error:
+../arch/sh/kernel/setup.c: In function 'sh_fdt_init':
+../arch/sh/kernel/setup.c:262:26: error: implicit declaration of function 'early_init_dt_scan' [-Werror=implicit-function-declaration]
+  262 |         if (!dt_virt || !early_init_dt_scan(dt_virt)) {
+
+Fixes: 03767daa1387 ("sh: fix build regression with CONFIG_OF && !CONFIG_OF_FLATTREE")
+Fixes: eb6b6930a70f ("sh: fix memory corruption of unflattened device tree")
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+Suggested-by: Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
 Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
+Cc: Rich Felker <dalias@libc.org>
+Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+Cc: linux-sh@vger.kernel.org
+Cc: stable@vger.kernel.org
+Reviewed-by: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+Link: https://lore.kernel.org/r/20230306040037.20350-4-rdunlap@infradead.org
+Signed-off-by: John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- .../boot/dts/freescale/imx8mp-dhcom-som.dtsi  | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
+ arch/sh/kernel/head_32.S |    6 +++---
+ arch/sh/kernel/setup.c   |    4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-index 98a11c31d7d45..9c0cb75386e36 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-@@ -240,6 +240,36 @@ &i2c3 {
- 	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	status = "okay";
+--- a/arch/sh/kernel/head_32.S
++++ b/arch/sh/kernel/head_32.S
+@@ -64,7 +64,7 @@ ENTRY(_stext)
+ 	ldc	r0, r6_bank
+ #endif
  
-+	tc_bridge: bridge@f {
-+		compatible = "toshiba,tc9595", "toshiba,tc358767";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_tc9595>;
-+		reg = <0xf>;
-+		clock-names = "ref";
-+		clocks = <&clk IMX8MP_CLK_CLKOUT2>;
-+		assigned-clocks = <&clk IMX8MP_CLK_CLKOUT2_SEL>,
-+				  <&clk IMX8MP_CLK_CLKOUT2>,
-+				  <&clk IMX8MP_AUDIO_PLL2_OUT>;
-+		assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL2_OUT>;
-+		assigned-clock-rates = <13000000>, <13000000>, <156000000>;
-+		reset-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
-+		status = "disabled";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				tc_bridge_in: endpoint {
-+					data-lanes = <1 2 3 4>;
-+					remote-endpoint = <&dsi_out>;
-+				};
-+			};
-+		};
-+	};
-+
- 	pmic: pmic@25 {
- 		compatible = "nxp,pca9450c";
- 		reg = <0x25>;
-@@ -406,6 +436,22 @@ &i2c5 {	/* HDMI EDID bus */
- 	status = "okay";
- };
+-#ifdef CONFIG_OF_FLATTREE
++#ifdef CONFIG_OF_EARLY_FLATTREE
+ 	mov	r4, r12		! Store device tree blob pointer in r12
+ #endif
+ 	
+@@ -315,7 +315,7 @@ ENTRY(_stext)
+ 10:		
+ #endif
  
-+&mipi_dsi {
-+	samsung,burst-clock-frequency = <160000000>;
-+	samsung,esc-clock-frequency = <10000000>;
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+
-+			dsi_out: endpoint {
-+				data-lanes = <1 2 3 4>;
-+				remote-endpoint = <&tc_bridge_in>;
-+			};
-+		};
-+	};
-+};
-+
- &pwm1 {
- 	pinctrl-0 = <&pinctrl_pwm1>;
- 	pinctrl-names = "default";
-@@ -880,6 +926,15 @@ MX8MP_IOMUXC_SAI3_TXD__AUDIOMIX_SAI3_TX_DATA00	0xd6
- 		>;
- 	};
+-#ifdef CONFIG_OF_FLATTREE
++#ifdef CONFIG_OF_EARLY_FLATTREE
+ 	mov.l	8f, r0		! Make flat device tree available early.
+ 	jsr	@r0
+ 	 mov	r12, r4
+@@ -346,7 +346,7 @@ ENTRY(stack_start)
+ 5:	.long	start_kernel
+ 6:	.long	cpu_init
+ 7:	.long	init_thread_union
+-#if defined(CONFIG_OF_FLATTREE)
++#if defined(CONFIG_OF_EARLY_FLATTREE)
+ 8:	.long	sh_fdt_init
+ #endif
  
-+	pinctrl_tc9595: dhcom-tc9595-grp {
-+		fsl,pins = <
-+			/* RESET_DSIBRIDGE */
-+			MX8MP_IOMUXC_SAI1_RXC__GPIO4_IO01		0x40000146
-+			/* DSI-CONV_INT Interrupt */
-+			MX8MP_IOMUXC_SAI5_RXD0__GPIO3_IO21		0x141
-+		>;
-+	};
-+
- 	pinctrl_touch: dhcom-touch-grp {
- 		fsl,pins = <
- 			/* #TOUCH_INT */
--- 
-2.39.2
+--- a/arch/sh/kernel/setup.c
++++ b/arch/sh/kernel/setup.c
+@@ -244,7 +244,7 @@ void __init __weak plat_early_device_set
+ {
+ }
+ 
+-#ifdef CONFIG_OF_FLATTREE
++#ifdef CONFIG_OF_EARLY_FLATTREE
+ void __ref sh_fdt_init(phys_addr_t dt_phys)
+ {
+ 	static int done = 0;
+@@ -326,7 +326,7 @@ void __init setup_arch(char **cmdline_p)
+ 	/* Let earlyprintk output early console messages */
+ 	sh_early_platform_driver_probe("earlyprintk", 1, 1);
+ 
+-#ifdef CONFIG_OF_FLATTREE
++#ifdef CONFIG_OF_EARLY_FLATTREE
+ #ifdef CONFIG_USE_BUILTIN_DTB
+ 	unflatten_and_copy_device_tree();
+ #else
+
 
