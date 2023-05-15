@@ -2,98 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 913FC703125
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 17:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA90870312A
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 17:11:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242228AbjEOPLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 11:11:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55350 "EHLO
+        id S242005AbjEOPLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 11:11:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242166AbjEOPK5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 11:10:57 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13EE2268A
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 08:10:43 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50be0d835aaso22871737a12.3
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 08:10:43 -0700 (PDT)
+        with ESMTP id S239554AbjEOPL3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 11:11:29 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3529BD9;
+        Mon, 15 May 2023 08:11:28 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-965e4be7541so2245920566b.1;
+        Mon, 15 May 2023 08:11:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684163441; x=1686755441;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4dnxS6bebPi30xTKUPU+L19vcnTGWL1fmevHJGOvyjc=;
-        b=Nkwq2YIwWS6xvjHlLXRuxLoIL9KryOGpC29ZFtBRcKob5sCd+EWGTuvj/VSKIf+bi8
-         GkQT5+afOwy0wJAi0jbL/2kyYGTiEBXp/PELq6QTTI0w0pENVL1G4XW8SPlOpKqYzSnV
-         JY7+WGEZCPGQ6Fsl8nGw9UOK056dn+cn4GIjwLStzguiG/+bhWeEYbTA8IThyHiAgKIO
-         ilcv2NnE9Zmyz+5qvUsMLqtDmpmWoVGZ3PshIWTpu66F0uV9OfS8Kl8JNTCVdWkMJTwQ
-         Ur6GB4TcNciffZcZM1DQa3HM+qqlgkuK9s3liliV4bM6S9BD6aNRxpEnYTsmb/EnKiC+
-         cV9Q==
+        d=gmail.com; s=20221208; t=1684163486; x=1686755486;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xsvUBcMhOXjqd9ZDcNssy54SV6VYhmPfH6EPl2aTGuo=;
+        b=SUOsWuqoVICxibXu5xSHf8Z0wc7B1eU3oJwjbr2GaBlSNqD6QimfxV3isULv6T1sqa
+         ohUq01s1RmY1Sjpgo48anUM/RStTdiBNL7muGnj/U9V9qbZVrzyTNpMc0eSqcEC9iucA
+         s2DnHiW5D0Bv8PqFXMBJ8SmblAkH9vvJMKPwDVMtQyDe/knCsQwsZ4iCtEkg6ZAGOSQ1
+         47xb2Lxm5xHkrHK4kGFejDWeLdoSrdE+LlIYQrkrMyR5jJuEERh+av8VH0xlr6doydB+
+         fMnIJcOfK0rKiIz9T7jFqDobjLm2EK2b/BwpWd9yfLlGITR0QWC8hQy9fqKgpZqWPqrb
+         PGPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684163441; x=1686755441;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4dnxS6bebPi30xTKUPU+L19vcnTGWL1fmevHJGOvyjc=;
-        b=WPHjmlxYBpsoa3vdpmyaljknSLNxYhPpatPXrjJlOxcgWqdaEJdphrzHGBHA/VpaaY
-         FSviQyzlHXqUsOICl86+A5VyOAnKPfs0qfsu4GMKG2PA88Pn66ZrPtFzch/XvWuGWFb/
-         8+AGZWFMDUhHXo70tnaKOd1U5O3fBKuzgaV1iC/aXORkylMyu/+Vd/y3dl4Shah8bLim
-         6Fr0ym3QFQ7fCxSl2i+a9gpQE9rHt3vZVMoWyx2HKRXhOAGkFzYGygrqao4Vfy/wuL5H
-         aqY8DsbNPyaZb5iV+TyahD10UD5cyboDris4JBz689H/13LI2LsWFKX/O5V68U5iSF2n
-         JCNg==
-X-Gm-Message-State: AC+VfDwaE/XOHsEphBJ5DA8LX/wEW/RZD1JyKFaa5XnX11QgNlFYVlz0
-        CEnghxYGJgCH74gwDTsWJ2jH5A==
-X-Google-Smtp-Source: ACHHUZ4uTt5hCbjW33/lWRj6gQsUI0Ta1IrSdDVfzipYmq6V6RjZMn6YIMulsQ6RaYB2frYhVPf5fw==
-X-Received: by 2002:a17:907:3e13:b0:948:b9ea:3302 with SMTP id hp19-20020a1709073e1300b00948b9ea3302mr38985546ejc.1.1684163441102;
-        Mon, 15 May 2023 08:10:41 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id og16-20020a1709071dd000b0096637a19dcasm9661939ejc.4.2023.05.15.08.10.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 08:10:40 -0700 (PDT)
-Message-ID: <bca80787-f0d1-b42d-7e42-4c445f8d2ed1@linaro.org>
-Date:   Mon, 15 May 2023 17:10:39 +0200
+        d=1e100.net; s=20221208; t=1684163486; x=1686755486;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xsvUBcMhOXjqd9ZDcNssy54SV6VYhmPfH6EPl2aTGuo=;
+        b=hz+eof0ErrjYBE5zrPVZj9NOklXUrUHGYIPnlVdJzpMgkIqsSJD9sGr1UMZEpvayP8
+         e0myn4TZ8xDD7xZZIlZnGCWBkydRgXC17rJhFO2AGfJbWQlvhnp0EaJjjdGecpnrlE9u
+         Q+y8EOuSgydVgGDVkqv7rTiMlQ7PRiaKW0tgMlbc+YglXuuNsOrYvR51aNzUASpn8XSw
+         GSFETed26wWnsdu+dTwgnRIVAsWYltSYDRuKQPCcgsUgTFA4G2RxUA2NoWeLLKXZYvZy
+         7XjQcsq2tLCLOP3wuLTEPcUCNqiEAMargGKfkM2BmJw1k1Cnnwpi9D79kmOS2LVD33gf
+         EISw==
+X-Gm-Message-State: AC+VfDwzlG7svMIqIGr5MVv99fIa3ENU94dZhTJwSwJUzZgaJU/dn4Ji
+        wOW6Txe41IF036GD9ChYsewDGLlwivu9+Q==
+X-Google-Smtp-Source: ACHHUZ7YBwqr/F4kfwrb+asV0F0rUDMrK6vKIRJEw+6w/Q+GtuWiyFCIKfCFQCRmpUrxC7SxmBYCIg==
+X-Received: by 2002:a17:907:d1c:b0:966:5912:c4b with SMTP id gn28-20020a1709070d1c00b0096659120c4bmr25950950ejc.76.1684163486444;
+        Mon, 15 May 2023 08:11:26 -0700 (PDT)
+Received: from orome (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id tc19-20020a1709078d1300b00969f2d5267asm9185757ejc.114.2023.05.15.08.11.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 May 2023 08:11:25 -0700 (PDT)
+Date:   Mon, 15 May 2023 17:11:24 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Shubhi Garg <shgarg@nvidia.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jonathanh@nvidia.com, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: tegra: Document compatible for IGX
+Message-ID: <ZGJLnKTfUx0ImP_B@orome>
+References: <20230508102733.1751527-1-shgarg@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 2/3] mfd: axp20x: Add support for AXP15060 PMIC
-To:     Shengyu Qu <wiagn233@outlook.com>, Lee Jones <lee@kernel.org>
-Cc:     Andre Przywara <andre.przywara@arm.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
-        lgirdwood@gmail.com, broonie@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        conor.dooley@microchip.com,
-        Martin Botka <martin.botka@somainline.org>
-References: <20230421150816.10513-1-wiagn233@outlook.com>
- <TY3P286MB261162D57695AC8164ED50E298609@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
- <20230426142740.GN50521@google.com>
- <20230503120759.6fd6a7a9@donnerap.cambridge.arm.com>
- <19bccb62-b7e0-855d-fb5f-4fd3dde4f6f0@linaro.org>
- <20230515105229.GI8963@google.com>
- <TY3P286MB2611F5969DC0F3F11FB8689B98789@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TY3P286MB2611F5969DC0F3F11FB8689B98789@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="AWy5YPLxdPOo+rxH"
+Content-Disposition: inline
+In-Reply-To: <20230508102733.1751527-1-shgarg@nvidia.com>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 16:19, Shengyu Qu wrote:
-> Hi Lee,
-> 
-> Why there's no news about patch 3 for my series and axp313a series?
-> 
-> It can't work without patch 3. And could we see the fix for patch1/2 in
 
-You got feedback, didn't you? Patch is broken. Don't ping to apply
-broken patch, but fix the patch and send a new version.
+--AWy5YPLxdPOo+rxH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Mon, May 08, 2023 at 10:27:32AM +0000, Shubhi Garg wrote:
+> Document the compatible strings used for Nvidia IGX Orin Development
+> kit which uses P3701 SKU8 and P3740 carrier board.
+>=20
+> Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
+> ---
+>=20
+> v2: sorted IGX Orin position as per part number. Since
+> P3740 is designed prior to P3768, it is placed before Orin NX.
+>=20
+>  Documentation/devicetree/bindings/arm/tegra.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 
+Both patches applied.
+
+Thanks,
+Thierry
+
+--AWy5YPLxdPOo+rxH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmRiS5wACgkQ3SOs138+
+s6F+tw//V7IBe5CmY9Ky5oBnDZAn1CoU2LbNEl/l3/MK1DLml1GtJ1lqK08n0rOZ
+xrdqIFoPmv8y8aJPCvmdvqA8X+xN6eEq8YDb2Xswz/Cd6LnEBiWn+Bes2ln8oy05
+kDbTG3wnzOIAGCCwSgyUVfb0DX9e0/80ysIRtO7riCrmN3wmXiNXmvDEljBt/5Ej
+wE9dODkYcNd4QsMDmIHyKKoOcuQA27uF6Uj5QCYkMdfe+aaEaFk20AIbDLbcvBPu
+j3F0l8YeESDzxmnMbh1QnqrWkkH3q1gz6GxzYtJpmbZi3L8Uy/ebH4pFhBtvT1Fo
+pEivtS7oeoXkOdpkfnpvnJ/T2NfbtUd60817mV4Obw1RTNz5wJ+HjA4vERhGS2AZ
+w8jek2/CVYoKgg5/aITN3aesWem7PTSeHenT5iex0Bzlbl6WAgPgmsVXjc78exXu
+3BOIDSLGIDLm8xgSIHOfaS4LUCdaUY8XRc2t+9uf7JvBMes82MAdcuNm87ipLLbL
+YFOWKJbmyQEsRDO+FTC5S5oZpaGTPnFn5pC4mwldZC8n7PDIw8ir+M196CGjcKid
+siqlzjjXsCG9HSLtl02sosThE70Qld/HIerSVHkA62BiMWoMRxOehce1W+IWR3v2
+iyek02J+reWP7JDbmnuozO0RWDNe2ccoHi4ZW+bb/KzpBO/Ocwc=
+=Wq7D
+-----END PGP SIGNATURE-----
+
+--AWy5YPLxdPOo+rxH--
