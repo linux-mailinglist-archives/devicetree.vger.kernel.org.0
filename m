@@ -2,90 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 090A7703236
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:06:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2CD070325B
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:09:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242492AbjEOQGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 12:06:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37844 "EHLO
+        id S242017AbjEOQJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 12:09:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242504AbjEOQGt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:06:49 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F98110E7
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:06:32 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f50020e0f8so58720975e9.0
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:06:32 -0700 (PDT)
+        with ESMTP id S242618AbjEOQJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:09:48 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E943F173D
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:09:20 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9659443fb56so2036500066b.2
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:09:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684166789; x=1686758789;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=lWOCuNPc2Qhm23nE7fOQTHAU+RRC9bg5RSfsC5uCndw=;
-        b=CAUxT2wohMzyPhNhiBK32M6vlIx8hjwrVFS/n+Ot/KTQtHRMY3fI6QG2sJREE1OTod
-         q0kxQyT51lSIWKyeNrkRGWvXmM6VYcnE/shvjL4QQ4S/Ff4WEwb01lHxi3kURR4jje9q
-         yv2/BxYGfvDvqMI2RPSrnPcYwtM7HmfKOr/IYEnmvKwFcPM2CuyqyquUQzVkKRjTpaKS
-         4pHa2UrqLiNvuuDBv5dY0qoYXayT+6jQV7Kf56962q/E1fkquwmzEZ0fxvYAJ9PXlxKG
-         h9ALmY7IRxNx1ck0lxQ0q1sJua1B/292RKS3TRum9Xg4Ad2WPIGs06g30e6Xa33ZqHKf
-         xnLw==
+        d=linaro.org; s=google; t=1684166948; x=1686758948;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=341TNjLWrBgE06nFCXy3o4trQtS4Kz/UyWl3asj+o58=;
+        b=ONmAmt0S8b3OAN/l1TQZYtuIvY0578ZosX/w1FdaADgF8DjUcfRXTTvt6hP0d1v2cc
+         37EtDRvHGmFf4ep9TBiC40u+2tTqMMNYSuoa8B6CLxXznVl7Zj35gzWrnXen5rSXtF0a
+         BocBIDBVOBCCg7EFXXvjjEuecNXt2zn252WGHbfckcca8W/gGY3x/zvcscQtjUHbzkge
+         B2jmXvLUsvMd1doGDaq0ZGSCjWKA0li4kyHZMuAHXOTcDEgPmuv0soWQVLCqx507aqzr
+         b8xiTDG0qL3WGBSSM6vtYcp0LL1c7ZVjP6F6ZwVUa+cgJz/ns5O17zYKDsKb6V0g1t6R
+         4T0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684166789; x=1686758789;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :references:cc:to:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lWOCuNPc2Qhm23nE7fOQTHAU+RRC9bg5RSfsC5uCndw=;
-        b=k6uYK+/lyZ4PQUmqSL6NXeXAKZn4MAU7kzAUBfGRd9t1xB4XDBbdPw4Fl1XHeJzFNl
-         7S0BGxAUqamRwOROu7pdM5Ht4O92UcoVLm4W8RjF7C/1c7vCknbWeKqSoa4IlB5bIAx1
-         cGXcvon3KQ9EOy74WEC8hy45Z/HvUYbaWX14kvKuH4QLB0dSlXz6d/2yJrlZ6RGMnOh0
-         60c9aZDAQZQwcaUG3slEkDdJLK3e5tVjOLZppZBJq3h01bfP3ergy1u6TqI/PJJZzjIA
-         P2JwopNB7TGaw7RJNxFzcTGiNDHE8vuyW0d+PelYAgzCM0Xw+l/Brx/1Mp2zjf865BSN
-         o42Q==
-X-Gm-Message-State: AC+VfDyVxFzggBo228ywLzUbsayPYsOr1EuucJtFjo2AbEcabDpjRxwS
-        8ac7KtDDeeLAUEK6qch+hv1Ymg==
-X-Google-Smtp-Source: ACHHUZ5y+S1cl668Cm09EQ1NgXHqr+j/kjOw7Ds31xnaNEbo1aQsxXOF8pRWNpL+J37Gpkvap2Ec/A==
-X-Received: by 2002:a05:600c:4444:b0:3f3:284d:8cec with SMTP id v4-20020a05600c444400b003f3284d8cecmr24800387wmn.2.1684166789290;
-        Mon, 15 May 2023 09:06:29 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:ee7:a396:6195:bb56? ([2a01:e0a:982:cbb0:ee7:a396:6195:bb56])
-        by smtp.gmail.com with ESMTPSA id c3-20020a7bc843000000b003f42314832fsm25497766wml.18.2023.05.15.09.06.28
+        d=1e100.net; s=20221208; t=1684166948; x=1686758948;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=341TNjLWrBgE06nFCXy3o4trQtS4Kz/UyWl3asj+o58=;
+        b=VI0gcNhEeCwDMRFEFGBCtC9ln0WXp8cxXXWZEyXntHsAdjshFBOQrCW3j1fUxgN5kG
+         Kn/dQwhuLlboLMhxYCFnNVE/bDIpQUoOef7pbJX3eMQAqGfup1o9gc0dabMUwvznSj6I
+         1Swb2hrkiR/JQM8ao/2ef1xAhVx3JK+9AMl0TwYbLyu2uvpsVFqiV1X0HpqwaWAj7TNV
+         EjvashJDMTsi6dDjauu49JaFOakJQOtWcabIBPgyojYy9usBvegkHJba8Fd2bujS2eXv
+         gDUo7hm9l6biDXD38p0UzF1MZ7GEmvggyv9KpDmP9TOL/d3zafstVZ+KoDtW1JRQ2dN6
+         tB4A==
+X-Gm-Message-State: AC+VfDyHb7N7vN0MaYFYy1d2J36kzUuD0IpNGEKxLwCf+PsNfS/gC3Hu
+        ArJj9Au/Pe6N4MAnac3bnqpOBA==
+X-Google-Smtp-Source: ACHHUZ4odzxwMAuZw7Ku9tt9Loesq0gqkp8UBDEeokIAa/0wKQVcMK8RQ1H3FKZsj1eTfL2Hu17Z/w==
+X-Received: by 2002:a17:906:fd83:b0:94a:845c:3529 with SMTP id xa3-20020a170906fd8300b0094a845c3529mr29009595ejb.9.1684166948208;
+        Mon, 15 May 2023 09:09:08 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
+        by smtp.gmail.com with ESMTPSA id bm11-20020a170906c04b00b00965ec1faf27sm9738207ejb.74.2023.05.15.09.09.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 09:06:28 -0700 (PDT)
-Message-ID: <9fa0662e-8854-05f9-da7f-ec8e08d2badf@linaro.org>
-Date:   Mon, 15 May 2023 18:06:27 +0200
+        Mon, 15 May 2023 09:09:07 -0700 (PDT)
+Message-ID: <d6ea080e-f16b-d5e3-d826-3d7d620af820@linaro.org>
+Date:   Mon, 15 May 2023 18:09:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v4 01/13] dt-bindings: clk: g12a-clkc: export VCLK2_SEL
- and add CTS_ENCL clock ids
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Nicolas Belin <nbelin@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-phy@lists.infradead.org
-References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
- <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-1-2592c29ea263@linaro.org>
- <5cb38be4-a27f-dc1a-cbb9-c195505a9e7c@linaro.org>
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3 1/4] dt-bindings: thermal: tsens: Fix "make dtbs_check"
+ error
 Content-Language: en-US
-Organization: Linaro Developer Services
-In-Reply-To: <5cb38be4-a27f-dc1a-cbb9-c195505a9e7c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, amitk@kernel.org,
+        thara.gopinath@gmail.com, rafael@kernel.org,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1684140883.git.quic_varada@quicinc.com>
+ <72707b76a717b410b06ed7fcc854314104f5f845.1684140883.git.quic_varada@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <72707b76a717b410b06ed7fcc854314104f5f845.1684140883.git.quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -97,29 +80,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/05/2023 20:28, Krzysztof Kozlowski wrote:
-> On 12/05/2023 15:11, Neil Armstrong wrote:
->> Expose VCLK2_SEL clock id and add new ids for the CTS_ENCL and CTS_ENCL_SEL
->> clocks on G12A compatible SoCs.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/clk/meson/g12a.h              | 1 -
->>   include/dt-bindings/clock/g12a-clkc.h | 3 +++
->>   2 files changed, 3 insertions(+), 1 deletion(-)
-> 
-> Bindings must be a separate patch from the driver changes. If this
-> causes bisectability issues, this means entire solution breaks ABI and
-> is not appropriate anyway...
+On 15/05/2023 12:13, Varadarajan Narayanan wrote:
+> While verifying make dtbs_check for ipq9574, qcm2290-tsens and
+> sm6375-tsens threw the following errors.
+> 	['qcom,qcm2290-tsens', 'qcom,tsens-v2'] is too long
+> 	...
+> 	['qcom,sm6375-tsens', 'qcom,tsens-v2'] is too long
 
-This is basically how we handled CLK IDs on Amlogic clk bindings for the
-last years, the amount of changes is very low and rather exceptional
-compared to early development stage.
+Subject: Fix error can be anything, so this should be specific, e.g.
+Document missing QCM2290
 
-Neil
 
-> 
-> Best regards,
-> Krzysztof
-> 
+https://lore.kernel.org/all/20230314-topic-2290_compats-v1-6-47e26c3c0365@linaro.org/
+
+Best regards,
+Krzysztof
 
