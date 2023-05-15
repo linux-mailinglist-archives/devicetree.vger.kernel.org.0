@@ -2,128 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A064D703F72
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 23:15:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED26C703FC5
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 23:26:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245189AbjEOVPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 17:15:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45766 "EHLO
+        id S245548AbjEOV0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 17:26:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245308AbjEOVPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 17:15:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50AD8A27C;
-        Mon, 15 May 2023 14:15:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S245546AbjEOV03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 17:26:29 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B5D124AF;
+        Mon, 15 May 2023 14:26:14 -0700 (PDT)
+Received: from mercury (unknown [185.254.75.28])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D96A6621BA;
-        Mon, 15 May 2023 21:15:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F193FC433EF;
-        Mon, 15 May 2023 21:15:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684185336;
-        bh=enJwNWaLT/meCbucP4lqULVPUm7Z2anbwiRCF5jSvnM=;
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 167ED660322C;
+        Mon, 15 May 2023 22:26:12 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1684185972;
+        bh=xBml64hfGbUyOg9fPkEIiKZA7tz7tTNBBUqM9DwGxec=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=H3zjzNo6kWA6B9UFM9EqS17kkmQTU5sYbi9N6m1jY7ALNqKsyxrcVmkMM9xGvwNdW
-         8t9TDkZDXpLshYYxrnACwUAqmfzaqSWi6xOGE///W8CnbmsoIconzPKo1uMAeMdn0a
-         RM9P44Tr0g3plnCh8jE4vclyEnauJ34MkGPeVtlz9M1NU0KSRGk0BkjQ3tm2KdEMua
-         XDKqoRao70IL3M2fbp6ldjniomCdKteN79SiTDM3dIlbkbTTkmppbNrriSXL5Hm7hr
-         qUyIu9NbpHHZTrIim5JxeKGtVZ86Lh0sgA68Sjc5NOJRa3klD7F6wYyPC3A+4wmcVG
-         xTzyYGSrtyoNg==
-Date:   Mon, 15 May 2023 14:19:27 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
-        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
-        ahalaney@redhat.com
-Subject: Re: [PATCH v8 4/9] usb: dwc3: core: Skip setting event buffers for
- host only controllers
-Message-ID: <20230515211927.bcartfqerpcgmp5w@ripper>
-References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
- <20230514054917.21318-5-quic_kriskura@quicinc.com>
+        b=U81MtIo/0rXt7lYfN0f/XXxv59vfg3IPFyYLB6Moh94Sn3C7CAAJl+7/fphgeBUVy
+         HkNEvG57xULpFV4kB2WP73LI6OPCfYhH7V8bUty3JldSuSp4Dl0xAU4jzKR6HELibj
+         FV2cL30B0k5acQsD2vK4ZuqjEBB0VEeYCxwmWlVJ/WdjTxVzHa641Bc71v+soiwkA9
+         28be9bA99pWOIx4+DJWpzqlgMp165tMdHL7xBqFU5WWWJ3V1pe5qJ0fPOGsy7keSLk
+         MNgRWDfy7P6wA0O3QEH/S58Q7SxxKdFOIRwn0h0gxniJwxrpyfJgoNp8w2ouIibYsZ
+         qmdserQEKeUAQ==
+Received: by mercury (Postfix, from userid 1000)
+        id 65F771060F7F; Mon, 15 May 2023 23:26:09 +0200 (CEST)
+Date:   Mon, 15 May 2023 23:26:09 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, wens@csie.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/7] axp20x_usb_power: Add support for AXP192
+Message-ID: <20230515212609.iorat5drawgl6re4@mercury.elektranox.org>
+References: <20230510115046.963432-1-aidanmacdonald.0x0@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="a6mt77smbvbeae6h"
 Content-Disposition: inline
-In-Reply-To: <20230514054917.21318-5-quic_kriskura@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230510115046.963432-1-aidanmacdonald.0x0@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 14, 2023 at 11:19:12AM +0530, Krishna Kurapati wrote:
-> On some SoC's like SA8295P where the tertiary controller is host-only
 
-Please add "Qualcomm" before SA8295P.
+--a6mt77smbvbeae6h
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> capable, GEVTADDRHI/LO, GEVTSIZ, GEVTCOUNT registers are not accessible.
-> Trying to setup them up during core_init leads to a crash.
+Hi,
 
-s/setup/access/ (or "write to"?) and presumably this is a problem beyond
-core_init, so I would suggest dropping "up during core_init" from the
-sentence.
+On Wed, May 10, 2023 at 12:50:39PM +0100, Aidan MacDonald wrote:
+> This adds support for the AXP192's USB power supply. Most of this
+> series (patches 1-5) consists of refactoring the driver to avoid
+> explicit checks based on the variant ID. Doing that makes it very
+> easy to add support for the AXP192 in patches 6-7, and as a nice
+> side benefit, should make the driver more maintainable.
+>=20
+> Patches 1-5 are unchanged from their previous submission[1].
+>=20
+> [1] https://lore.kernel.org/all/20230218204946.106316-1-aidanmacdonald.0x=
+0@gmail.com/
+>=20
+> Aidan MacDonald (7):
+>   power: supply: axp20x_usb_power: Simplify USB current limit handling
+>   power: supply: axp20x_usb_power: Use regmap fields for VBUS monitor
+>     feature
+>   power: supply: axp20x_usb_power: Use regmap fields for USB BC feature
+>   power: supply: axp20x_usb_power: Use regmap field for VBUS disabling
+>   power: supply: axp20x_usb_power: Remove variant IDs from VBUS polling
+>     check
+>   power: supply: axp20x_usb_power: Add support for AXP192
+>   dt-bindings: power: supply: axp20x: Add AXP192 compatible
+>=20
+>  .../x-powers,axp20x-usb-power-supply.yaml     |   1 +
+>  drivers/power/supply/axp20x_usb_power.c       | 307 +++++++++---------
+>  2 files changed, 153 insertions(+), 155 deletions(-)
 
-> 
-> For DRD/Peripheral supported controllers, event buffer setup is done
-> again in gadget_pullup. Skip setup or cleanup of event buffers if
-> controller is host-only capable.
-> 
+Thanks, queued to power-supply's for-next branch.
 
-With that, this looks reasonable to me.
+-- Sebastian
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+--a6mt77smbvbeae6h
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Regards,
-Bjorn
+-----BEGIN PGP SIGNATURE-----
 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  drivers/usb/dwc3/core.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> index e983aef1fb93..46192d08d1b6 100644
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -505,6 +505,11 @@ static int dwc3_alloc_event_buffers(struct dwc3 *dwc, unsigned int length)
->  int dwc3_event_buffers_setup(struct dwc3 *dwc)
->  {
->  	struct dwc3_event_buffer	*evt;
-> +	unsigned int			hw_mode;
-> +
-> +	hw_mode = DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
-> +	if (hw_mode == DWC3_GHWPARAMS0_MODE_HOST)
-> +		return 0;
->  
->  	evt = dwc->ev_buf;
->  	evt->lpos = 0;
-> @@ -522,6 +527,11 @@ int dwc3_event_buffers_setup(struct dwc3 *dwc)
->  void dwc3_event_buffers_cleanup(struct dwc3 *dwc)
->  {
->  	struct dwc3_event_buffer	*evt;
-> +	unsigned int			hw_mode;
-> +
-> +	hw_mode = DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
-> +	if (hw_mode == DWC3_GHWPARAMS0_MODE_HOST)
-> +		return;
->  
->  	evt = dwc->ev_buf;
->  
-> -- 
-> 2.40.0
-> 
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmRio20ACgkQ2O7X88g7
++pqRIw//fAhw4acR6HfzG4hURUubFcQ+xKwpK4elZLBa53QheG8V57JAgL/+5iML
+bwQHtYPtUs/7sLUogLq1sRmfGvlEQdmocmXNoqD3Xtjbyd2TCsxfjlVgs7TLkdWt
+u37tta9Cg2dc5H4xOCN/JtJ9ph52cwflvSe20zxpK33a5iHFJvlkgNCmk3+rTDCl
+IfUjKUSuz1+aliGSS3BdpC5WXFNw/NBmy0sAXppSgNhKKUdNIlp6fuR8xmZlBOAH
++WjttsYgwPRjql31utZY58eHl20lDYs0KyCXIYuJsRkvtIlhhzU4MXp4j+etCYqI
+g3q86rNKKcd6r+lvuc2+n/K3b/WZLpItkIblKa1HK87YeQne7f/KcLNjFNmGn7PC
+f/PLP2JyFuGZbZoGaykO5K1VHpPkvGwOMzB1El6DqGU66r0QI/vCx6SMKT/yElPl
+x1GV6X7vdVIOcF/FOgGWKM2DZQs4XwsKWsFni8QT792PVirrQ6ZOXKrbXoM+GlYa
+PgolTMxwVA3QjwVUDy3NdTJb8kjQG3Cg9uFpprQj4EmjK/SRH3Gm+apwHxWj914I
+k1+J8SuM99SnMn+mttCk9sQU5/EJsix7yALYC7CHc7zxFxeJFb2auv9CPM2oTINq
+ChxyeIu1wHtaoqL2Gb2UgyT5QQlLKFLeD1benqkaPLM+L3vEW94=
+=HEMW
+-----END PGP SIGNATURE-----
+
+--a6mt77smbvbeae6h--
