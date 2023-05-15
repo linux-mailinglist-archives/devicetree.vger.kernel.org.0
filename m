@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1259702295
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 05:48:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8075E7022E6
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 06:25:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234849AbjEODsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 23:48:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50608 "EHLO
+        id S230501AbjEOEZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 00:25:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232859AbjEODsK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 23:48:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AC01114;
-        Sun, 14 May 2023 20:48:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A3D2660FC4;
-        Mon, 15 May 2023 03:48:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82382C433EF;
-        Mon, 15 May 2023 03:48:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1684122488;
-        bh=RidPZhJkoUld6CNFvvrP8xj6SI/WUIo1S2NgvKLeUk8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=joek3vtE+6F3TdtNmJELEU8Gqcc/vzwrzYMPmYOHiDtjTG6WACP9M5AU+UxaMxO7k
-         ZYbjMpCBsnQPpMsF0TBE5HJxEZ2WY7mR0cx4WVtCQxjR9wGFhrA4x6/vfSRJ3Zj9m8
-         aiQAbuXT+fAKIiC4nQQLEJSBEBixpw68yEvCHAaA=
-Date:   Mon, 15 May 2023 05:48:04 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Marco Felsch <m.felsch@pengutronix.de>, andreas@fatal.se,
-        jun.li@nxp.com, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229539AbjEOEZG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 00:25:06 -0400
+Received: from 167-179-156-38.a7b39c.syd.nbn.aussiebb.net (167-179-156-38.a7b39c.syd.nbn.aussiebb.net [167.179.156.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EFC810CC;
+        Sun, 14 May 2023 21:25:04 -0700 (PDT)
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
+        id 1pyPkf-0090a9-6j; Mon, 15 May 2023 12:24:02 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Mon, 15 May 2023 12:24:01 +0800
+Date:   Mon, 15 May 2023 12:24:01 +0800
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     Jia Jie Ho <jiajie.ho@starfivetech.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/4] Add i.MX8MP-EVK USB Gadget Support
-Message-ID: <2023051525-spew-uncouple-a098@gregkh>
-References: <20230504-b4-v6-3-topic-boards-imx8mp-evk-dual-role-usb-v2-0-3889b1b2050c@pengutronix.de>
- <20230514132122.GZ727834@dragon>
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v7 4/4] crypto: starfive - Add hash and HMAC support
+Message-ID: <ZGGz4YFDMKQThG2x@gondor.apana.org.au>
+References: <20230504073400.1170979-1-jiajie.ho@starfivetech.com>
+ <20230504073400.1170979-5-jiajie.ho@starfivetech.com>
+ <ZF4bKe0YkpcQakLs@gondor.apana.org.au>
+ <2ae2d187-5db7-9207-7846-1a80e87047b2@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230514132122.GZ727834@dragon>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <2ae2d187-5db7-9207-7846-1a80e87047b2@starfivetech.com>
+X-Spam-Status: No, score=2.7 required=5.0 tests=BAYES_00,HELO_DYNAMIC_IPADDR2,
+        RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS,TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 14, 2023 at 09:21:22PM +0800, Shawn Guo wrote:
-> On Thu, May 04, 2023 at 03:46:49PM +0200, Marco Felsch wrote:
-> > Hi all,
-> > 
-> > this adds the usb gadget support to the i.MX8MP-EVK. This Series is
-> > based on [1] and therefore it is already a v2. Thanks to Li and Andreas
-> > for the very useful feedback.
-> > 
-> > Patch1-3: Add the mssing support for USB-SS GPIO muxes. This is required
-> >           to have proper USB-SS support on the EVK.
-> > 
-> > Patch4: Adds the devicetree integration.
-> 
-> Please send the DTS change separately afterwards, as we do not want
-> Greg's tool to pick it up into USB tree.
+On Mon, May 15, 2023 at 11:27:35AM +0800, Jia Jie Ho wrote:
+>
+> I've added COMPILE_TEST in the Kconfig, then ran make W=1, sparse and smatch.
+> However it did not produce the error message.
 
-"Greg's tool" is the standard `b4` tool that lots of kernel maintainers
-are now using.  So this isn't some magic thing that is unique to me...
+I guess you weren't testing on a 64-bit platform.  BIT(2) is
+an unsigned long, so ~BIT(2) is 64-bit long on 64-bit platforms.
 
-thanks,
+You're trying to feed it into writel which takes a 32-bit value,
+hence the warning.
 
-greg k-h
+If you have to use the BIT macro, then you need to cast the result
+to u32:
+
+#define STARFIVE_IE_MASK_HASH_DONE ((u32)BIT(2))
+
+But it's probably a lot clearer if you do it as:
+
+#define STARFIVE_IE_MASK_HASH_DONE 0x4
+
+Cheers,
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
