@@ -2,141 +2,430 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F978702741
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 10:33:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBA7970274D
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 10:34:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229877AbjEOIcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 04:32:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49862 "EHLO
+        id S229994AbjEOIdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 04:33:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233488AbjEOIc1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 04:32:27 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9839E12D;
-        Mon, 15 May 2023 01:32:26 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34F32J4l027752;
-        Mon, 15 May 2023 08:32:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=31qlG62B100FzHux/VseUvydofig2BmNp+uWcXuYTqM=;
- b=a95lVBH7ybKpyiU4WzCAzXw2SKK9Wb+FarIBfHMFQnPI0sZAlccLFlNS8qhlGWg3V26L
- TbM9eM3MbScCo46PSSiOJlPsOH/5P2jGnrFJ57XN2mkeITEVXECQOVcLPYAdJ/O3avdt
- MtDFnpPPePnAAW46z5sWhnaq34EwqtH3aoqXmffwKJT5408rGRcLE8DHmsOaQUe9tGYB
- IMETdQnw7GkB1m7R4iBXRhy+czPrpvmItOwx6oBDbWmWTi9hXI9ReX5NDM5HksvfzETG
- ILky171WpqXBsYj3EClIY2izC+YAL8iTFnee64QDyY76zUSlODkCN61ZjiMdHewk5Rv+ /w== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qj257u3sw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 May 2023 08:32:22 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34F8WKMo005515
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 May 2023 08:32:21 GMT
-Received: from [10.214.230.142] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 15 May
- 2023 01:32:16 -0700
-Message-ID: <257e11b5-29b5-78c6-882b-ec3bb64ee28b@quicinc.com>
-Date:   Mon, 15 May 2023 14:02:11 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v3 04/10] nvmem: qfprom: Add support for secure reading on
- QDU1000/QRU1000
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S238132AbjEOIdr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 04:33:47 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE36319A6
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 01:33:19 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f004cc54f4so14307930e87.3
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 01:33:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684139598; x=1686731598;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hRRentaSeR2AdtvuXHv1bfygQdAEcNZfrmAEm/Kcgb0=;
+        b=g7q9CG7g/XvOgAoSIfYglV/ckHWZ1TANp57NyYQYwWtlVbsrKSiVfz4+HUA9xaPAVZ
+         qBl69N6E+Mk+QVmb3iI3A2E3qggiEqP8TZjZJHjJ6IE8KUhTYeCnSUY5HUVT5aEC72cW
+         qJUQ29tQXJMwxwJ5RRJIX+Bqeny2ZzU9PRuFAkfW1YkrJvpmMkerqzsCqfOG/K2OYO+C
+         0uwK/U7Fd4xvtWioWxAnzn7hlnxPhWLqkEU8nNeB3T9pxlD+XcadZHs5ViZwCJpErc8o
+         8cdwAW/3XSXMaiUp48Z4UEYkYD5nL1cXJ0w89OopjDtP5Y1WRhrF9/CKRzEnSt/Wb6sQ
+         GKrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684139598; x=1686731598;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hRRentaSeR2AdtvuXHv1bfygQdAEcNZfrmAEm/Kcgb0=;
+        b=OBdIGxuOtfeEkxZ/w6AjkvONIQaUunWTvZ4Ls9967xxnT5Fu4BVvXSnGSNk3kLoydZ
+         KjQperitfGdSvf4/PfjrEcmrQqx12bePxpalfZIvuucJAvljSAz037zbWEIxMI/4ITKQ
+         UEncVyiLyBBNtGUo7mjcs50jANuBKm7hE4nnkJXAT0YAWoFGss2GdPG6qzQWfrO5les+
+         9QhpwX51QS6shYPqzE5GQUCgc4Wd9P21mm7fDYbeB16+FhxvlOsPARcGpWrTKJMuD5lF
+         LB9DRLRjPXYc72GG8aPHccGNBrgxS+v4ixq2KcQYZOp2aOugpEcrHLvhT9lVwXVtsiAx
+         ukFg==
+X-Gm-Message-State: AC+VfDzP7C1AeLA1st4U7xmSO0wapHm5kIw2+uSlRuaAYGhrLEc/I301
+        nZbPjI3lsUffmadt3J0oOJI=
+X-Google-Smtp-Source: ACHHUZ6hIx2waVTMd7P4xU8BhLanKZgiI2m4CDKNq0A94CJmnTgn1IITypaZDTELZjtBG5GE5I8qZw==
+X-Received: by 2002:ac2:4f8e:0:b0:4f1:3eea:eaf9 with SMTP id z14-20020ac24f8e000000b004f13eeaeaf9mr6398532lfs.24.1684139597843;
+        Mon, 15 May 2023 01:33:17 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id p3-20020a05651238c300b004f251e73fc5sm2510638lft.30.2023.05.15.01.33.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 May 2023 01:33:17 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
- <20230512122134.24339-5-quic_kbajaj@quicinc.com>
- <68f9bee2-5a5b-2962-6c3d-e73ade371545@linaro.org>
- <CAA8EJppObh3h8sxB_f9SQy7EQ1Gfhe9EbzV=wsUbVNj9PtX=GA@mail.gmail.com>
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
-In-Reply-To: <CAA8EJppObh3h8sxB_f9SQy7EQ1Gfhe9EbzV=wsUbVNj9PtX=GA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: e2FyqXZKg770d_sX7Q6RbS-823qodcBo
-X-Proofpoint-GUID: e2FyqXZKg770d_sX7Q6RbS-823qodcBo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-15_05,2023-05-05_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- impostorscore=0 mlxlogscore=999 lowpriorityscore=0 clxscore=1011
- spamscore=0 mlxscore=0 priorityscore=1501 suspectscore=0 adultscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305150073
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] ARM: dts: BCM5301X: Specify MAC addresses on Luxul devices
+Date:   Mon, 15 May 2023 10:33:08 +0200
+Message-Id: <20230515083308.7612-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
+Use NRAM (NVMEM device) and its "et0macaddr" variable (NVMEM cell) to
+point Ethernet devices to their MAC addresses.
 
-On 5/12/2023 11:01 PM, Dmitry Baryshkov wrote:
-> On Fri, 12 May 2023 at 20:01, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->> On 12/05/2023 14:21, Komal Bajaj wrote:
->>> Add qfprom driver support for QDU1000/QRU1000 SOCs.
->>>
->>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->>> ---
->>>   drivers/nvmem/qfprom.c | 5 +++++
->>>   1 file changed, 5 insertions(+)
->>>
->>> diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
->>> index 20662e2d3732..12a7981a8a71 100644
->>> --- a/drivers/nvmem/qfprom.c
->>> +++ b/drivers/nvmem/qfprom.c
->>> @@ -109,6 +109,10 @@ struct qfprom_soc_compatible_data {
->>>        bool secure;
->>>   };
->>>
->>> +static const struct qfprom_soc_compatible_data qdu1000_qfprom = {
->>> +     .secure = true
->>> +};
->>> +
->>>   static const struct nvmem_keepout sc7180_qfprom_keepout[] = {
->>>        {.start = 0x128, .end = 0x148},
->>>        {.start = 0x220, .end = 0x228}
->>> @@ -490,6 +494,7 @@ static int qfprom_probe(struct platform_device *pdev)
->>>
->>>   static const struct of_device_id qfprom_of_match[] = {
->>>        { .compatible = "qcom,qfprom",},
->>> +     { .compatible = "qcom,qdu1000-qfprom", .data = &qdu1000_qfprom},
->>>        { .compatible = "qcom,sc7180-qfprom", .data = &sc7180_qfprom},
->> I have doubts that this is still compatible with qcom,qfprom. It uses
->> entirely different read method. That's why generic fallbacks are bad,
->> one more case to my growing list of awesome examples. :)
-Okay, will do that.
-> Yes, it looks like it should be 'qcom,qdu1000-qfprom",
-> "qcom,scm-qfprom". And possibly a separate driver for scm-qfprom.
-The only difference here is in read method, which can be controlled by a 
-single property,
-do we really need to write a separate driver for just reading secure 
-feature register.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+This is based on top of the accepted:
+dt-bindings: nvmem: brcm,nvram: add #nvmem-cell-cells for MACs
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230421084312.27932-1-zajec5@gmail.com/
+---
+ arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts     | 13 +++++++++++++
+ arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts     | 13 +++++++++++++
+ arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts    | 13 +++++++++++++
+ arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts    | 11 +++++++++++
+ arch/arm/boot/dts/bcm47094-luxul-abr-4500.dts    | 11 +++++++++++
+ arch/arm/boot/dts/bcm47094-luxul-xap-1610.dts    | 13 +++++++++++++
+ arch/arm/boot/dts/bcm47094-luxul-xbr-4500.dts    | 11 +++++++++++
+ arch/arm/boot/dts/bcm47094-luxul-xwc-2000.dts    | 13 +++++++++++++
+ arch/arm/boot/dts/bcm47094-luxul-xwr-3100.dts    | 11 +++++++++++
+ arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts |  5 ++++-
+ 10 files changed, 113 insertions(+), 1 deletion(-)
 
-Thanks,
-Komal
->
->
+diff --git a/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts b/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts
+index 6de7fe204b0c..9b98a0179f05 100644
+--- a/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts
++++ b/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts
+@@ -20,6 +20,14 @@ memory@0 {
+ 		reg = <0x00000000 0x08000000>;
+ 	};
+ 
++	nvram@1eff0000 {
++		compatible = "brcm,nvram";
++		reg = <0x1eff0000 0x10000>;
++
++		et0macaddr: et0macaddr {
++		};
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -53,6 +61,11 @@ button-restart {
+ 	};
+ };
+ 
++&gmac0 {
++	nvmem-cells = <&et0macaddr>;
++	nvmem-cell-names = "mac-address";
++};
++
+ &spi_nor {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts b/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts
+index f5b75ba93512..4ca348c06b51 100644
+--- a/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts
++++ b/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts
+@@ -24,6 +24,14 @@ memory@0 {
+ 		reg = <0x00000000 0x08000000>;
+ 	};
+ 
++	nvram@1eff0000 {
++		compatible = "brcm,nvram";
++		reg = <0x1eff0000 0x10000>;
++
++		et0macaddr: et0macaddr {
++		};
++	};
++
+ 	nand_controller: nand-controller@18028000 {
+ 		nand@0 {
+ 			partitions {
+@@ -60,6 +68,11 @@ button-restart {
+ 	};
+ };
+ 
++&gmac0 {
++	nvmem-cells = <&et0macaddr>;
++	nvmem-cell-names = "mac-address";
++};
++
+ &spi_nor {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts b/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts
+index 76c9b30b868d..edc194085995 100644
+--- a/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts
++++ b/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts
+@@ -20,6 +20,14 @@ memory@0 {
+ 		reg = <0x00000000 0x08000000>;
+ 	};
+ 
++	nvram@1eff0000 {
++		compatible = "brcm,nvram";
++		reg = <0x1eff0000 0x10000>;
++
++		et0macaddr: et0macaddr {
++		};
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -53,6 +61,11 @@ button-restart {
+ 	};
+ };
+ 
++&gmac0 {
++	nvmem-cells = <&et0macaddr>;
++	nvmem-cell-names = "mac-address";
++};
++
+ &spi_nor {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts b/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts
+index 6ef0c0788e62..97b61d9d4be9 100644
+--- a/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts
++++ b/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts
+@@ -24,6 +24,10 @@ memory@0 {
+ 	nvram@1eff0000 {
+ 		compatible = "brcm,nvram";
+ 		reg = <0x1eff0000 0x10000>;
++
++		et0macaddr: et0macaddr {
++			#nvmem-cell-cells = <1>;
++		};
+ 	};
+ 
+ 	leds {
+@@ -106,6 +110,11 @@ &usb2 {
+ 	vcc-gpio = <&chipcommon 9 GPIO_ACTIVE_HIGH>;
+ };
+ 
++&gmac0 {
++	nvmem-cells = <&et0macaddr 0>;
++	nvmem-cell-names = "mac-address";
++};
++
+ &spi_nor {
+ 	status = "okay";
+ };
+@@ -137,6 +146,8 @@ port@3 {
+ 		port@4 {
+ 			reg = <4>;
+ 			label = "wan";
++			nvmem-cells = <&et0macaddr 5>;
++			nvmem-cell-names = "mac-address";
+ 		};
+ 
+ 		port@5 {
+diff --git a/arch/arm/boot/dts/bcm47094-luxul-abr-4500.dts b/arch/arm/boot/dts/bcm47094-luxul-abr-4500.dts
+index 41a0722fa64a..ae5523870854 100644
+--- a/arch/arm/boot/dts/bcm47094-luxul-abr-4500.dts
++++ b/arch/arm/boot/dts/bcm47094-luxul-abr-4500.dts
+@@ -25,6 +25,10 @@ memory@0 {
+ 	nvram@1eff0000 {
+ 		compatible = "brcm,nvram";
+ 		reg = <0x1eff0000 0x10000>;
++
++		et0macaddr: et0macaddr {
++			#nvmem-cell-cells = <1>;
++		};
+ 	};
+ 
+ 	leds {
+@@ -61,6 +65,11 @@ &usb3 {
+ 	vcc-gpio = <&chipcommon 18 GPIO_ACTIVE_HIGH>;
+ };
+ 
++&gmac0 {
++	nvmem-cells = <&et0macaddr 0>;
++	nvmem-cell-names = "mac-address";
++};
++
+ &spi_nor {
+ 	status = "okay";
+ };
+@@ -76,6 +85,8 @@ ports {
+ 		port@0 {
+ 			reg = <0>;
+ 			label = "wan";
++			nvmem-cells = <&et0macaddr 1>;
++			nvmem-cell-names = "mac-address";
+ 		};
+ 
+ 		port@1 {
+diff --git a/arch/arm/boot/dts/bcm47094-luxul-xap-1610.dts b/arch/arm/boot/dts/bcm47094-luxul-xap-1610.dts
+index c56c7e366848..9220f193499e 100644
+--- a/arch/arm/boot/dts/bcm47094-luxul-xap-1610.dts
++++ b/arch/arm/boot/dts/bcm47094-luxul-xap-1610.dts
+@@ -20,6 +20,14 @@ memory@0 {
+ 		reg = <0x00000000 0x08000000>;
+ 	};
+ 
++	nvram@1eff0000 {
++		compatible = "brcm,nvram";
++		reg = <0x1eff0000 0x10000>;
++
++		et0macaddr: et0macaddr {
++		};
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -51,6 +59,11 @@ button-restart {
+ 	};
+ };
+ 
++&gmac0 {
++	nvmem-cells = <&et0macaddr>;
++	nvmem-cell-names = "mac-address";
++};
++
+ &spi_nor {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/bcm47094-luxul-xbr-4500.dts b/arch/arm/boot/dts/bcm47094-luxul-xbr-4500.dts
+index 1b5c91a524ac..2bd64dcd4353 100644
+--- a/arch/arm/boot/dts/bcm47094-luxul-xbr-4500.dts
++++ b/arch/arm/boot/dts/bcm47094-luxul-xbr-4500.dts
+@@ -25,6 +25,10 @@ memory@0 {
+ 	nvram@1eff0000 {
+ 		compatible = "brcm,nvram";
+ 		reg = <0x1eff0000 0x10000>;
++
++		et0macaddr: et0macaddr {
++			#nvmem-cell-cells = <1>;
++		};
+ 	};
+ 
+ 	leds {
+@@ -61,6 +65,11 @@ &usb3 {
+ 	vcc-gpio = <&chipcommon 18 GPIO_ACTIVE_HIGH>;
+ };
+ 
++&gmac0 {
++	nvmem-cells = <&et0macaddr 0>;
++	nvmem-cell-names = "mac-address";
++};
++
+ &spi_nor {
+ 	status = "okay";
+ };
+@@ -76,6 +85,8 @@ ports {
+ 		port@0 {
+ 			reg = <0>;
+ 			label = "wan";
++			nvmem-cells = <&et0macaddr 1>;
++			nvmem-cell-names = "mac-address";
+ 		};
+ 
+ 		port@1 {
+diff --git a/arch/arm/boot/dts/bcm47094-luxul-xwc-2000.dts b/arch/arm/boot/dts/bcm47094-luxul-xwc-2000.dts
+index 739063b77b1f..8a6d19f985c1 100644
+--- a/arch/arm/boot/dts/bcm47094-luxul-xwc-2000.dts
++++ b/arch/arm/boot/dts/bcm47094-luxul-xwc-2000.dts
+@@ -22,6 +22,14 @@ memory@0 {
+ 		      <0x88000000 0x18000000>;
+ 	};
+ 
++	nvram@1eff0000 {
++		compatible = "brcm,nvram";
++		reg = <0x1eff0000 0x10000>;
++
++		et0macaddr: et0macaddr {
++		};
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -47,6 +55,11 @@ &uart1 {
+ 	status = "okay";
+ };
+ 
++&gmac0 {
++	nvmem-cells = <&et0macaddr>;
++	nvmem-cell-names = "mac-address";
++};
++
+ &spi_nor {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/bcm47094-luxul-xwr-3100.dts b/arch/arm/boot/dts/bcm47094-luxul-xwr-3100.dts
+index 7afc68d5d2c2..ebea188bd2d7 100644
+--- a/arch/arm/boot/dts/bcm47094-luxul-xwr-3100.dts
++++ b/arch/arm/boot/dts/bcm47094-luxul-xwr-3100.dts
+@@ -25,6 +25,10 @@ memory@0 {
+ 	nvram@1eff0000 {
+ 		compatible = "brcm,nvram";
+ 		reg = <0x1eff0000 0x10000>;
++
++		et0macaddr: et0macaddr {
++			#nvmem-cell-cells = <1>;
++		};
+ 	};
+ 
+ 	leds {
+@@ -101,6 +105,11 @@ &usb3 {
+ 	vcc-gpio = <&chipcommon 18 GPIO_ACTIVE_HIGH>;
+ };
+ 
++&gmac0 {
++	nvmem-cells = <&et0macaddr 0>;
++	nvmem-cell-names = "mac-address";
++};
++
+ &spi_nor {
+ 	status = "okay";
+ };
+@@ -136,6 +145,8 @@ port@3 {
+ 		port@4 {
+ 			reg = <4>;
+ 			label = "wan";
++			nvmem-cells = <&et0macaddr 5>;
++			nvmem-cell-names = "mac-address";
+ 		};
+ 
+ 		port@5 {
+diff --git a/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts b/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts
+index 60a2c441d5bd..2dd05f4dce92 100644
+--- a/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts
++++ b/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts
+@@ -27,6 +27,7 @@ nvram@1eff0000 {
+ 		reg = <0x1eff0000 0x10000>;
+ 
+ 		et0macaddr: et0macaddr {
++			#nvmem-cell-cells = <1>;
+ 		};
+ 	};
+ 
+@@ -76,7 +77,7 @@ button-restart {
+ };
+ 
+ &gmac0 {
+-	nvmem-cells = <&et0macaddr>;
++	nvmem-cells = <&et0macaddr 0>;
+ 	nvmem-cell-names = "mac-address";
+ };
+ 
+@@ -119,6 +120,8 @@ port@3 {
+ 		port@4 {
+ 			reg = <4>;
+ 			label = "wan";
++			nvmem-cells = <&et0macaddr 5>;
++			nvmem-cell-names = "mac-address";
+ 		};
+ 
+ 		port@5 {
+-- 
+2.35.3
 
