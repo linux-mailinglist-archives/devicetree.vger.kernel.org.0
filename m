@@ -2,63 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 459D77025A0
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 09:02:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10E717025AF
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 09:09:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240574AbjEOHCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 03:02:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60188 "EHLO
+        id S239442AbjEOHJW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 03:09:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240563AbjEOHCl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 03:02:41 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC67219AB;
-        Mon, 15 May 2023 00:02:29 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34F72Kkh013964;
-        Mon, 15 May 2023 02:02:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684134140;
-        bh=+UGCfRfOa+AFwijrMK7A4+tz9yRwLUTbdpKYoq2rPMQ=;
-        h=From:To:CC:Subject:Date;
-        b=au/mVJjwkkmGTkwxhC5UsyFVhgMLOc8vth1MncdBstDVeI7kYkD1bj57oMVKxDBJI
-         IOjGZeYzBKzw/SaWuJNiIvOfuU9ImchZ3nVRss6FQBmQgtNyS0RGM0ZU6cDXantwbg
-         SVE6TDlcdZzoRBcuSiXDVkhSqT/d0Swua3bJM0rU=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34F72KH1095095
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 15 May 2023 02:02:20 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
- May 2023 02:02:20 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 15 May 2023 02:02:20 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34F72JAI089287;
-        Mon, 15 May 2023 02:02:20 -0500
-From:   Achal Verma <a-verma1@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S236289AbjEOHJV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 03:09:21 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F137E60;
+        Mon, 15 May 2023 00:09:20 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34F6b2xS016937;
+        Mon, 15 May 2023 07:09:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=ezrCAq5SGgSWhAp9SRpG6vrj+OTqUnkKuCr9XJhQ4O0=;
+ b=n2JK+xqZ6dIz4xdmXCxXzfZLj8zHycxo+luyV5NVXyheEBSGAx8WY7qHw4GPCG8r4hMY
+ 5FJMujOLpLLN6afrhe8r+K5RJ5K8MC18zTBuFTjp1Rw9bcQxxM7cxDFKInCg7BRR5dcD
+ jGbUv5kfDcGoPYDgsVwqQ/Txx5KkVqAvZMn+bjYXIlinBNmRXvGB23KRzzqxty5pPsPc
+ iXtpOkrZ+dLLSfScrq0Li1/K9hI99+cqBpo1SATeMiPmePwWEK2cT9t5CvIz9fbs7R7n
+ MrKN4CHe8q1C/XIBpqEZt0K49CUAfXV2TQwbG3eRnjhslXF/9TUa96y543z4Z0rsIqgV WA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qj2sb3002-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 15 May 2023 07:09:17 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34F79BNP031427
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 15 May 2023 07:09:11 GMT
+Received: from [10.214.230.142] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 15 May
+ 2023 00:08:34 -0700
+Message-ID: <ec2f0259-9d57-7125-7df8-c773b60e8c72@quicinc.com>
+Date:   Mon, 15 May 2023 12:38:30 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v3 02/10] dt-bindings: nvmem: qfprom: Add compatible for
+ QDU1000/QRU1000
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Achal Verma <a-verma1@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j784s4: Add initial PCIe/SerDes support for J784S4
-Date:   Mon, 15 May 2023 12:32:19 +0530
-Message-ID: <20230515070219.2381457-1-a-verma1@ti.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
+ <20230512122134.24339-3-quic_kbajaj@quicinc.com>
+ <4766aabc-9b03-3241-82e3-8c4799ea7978@linaro.org>
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+In-Reply-To: <4766aabc-9b03-3241-82e3-8c4799ea7978@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: I6ESg3VsdIqBlSYt16-dXym-YIxc5fF4
+X-Proofpoint-ORIG-GUID: I6ESg3VsdIqBlSYt16-dXym-YIxc5fF4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-15_04,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=896
+ priorityscore=1501 lowpriorityscore=0 adultscore=0 malwarescore=0
+ spamscore=0 bulkscore=0 impostorscore=0 clxscore=1015 mlxscore=0
+ phishscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2304280000 definitions=main-2305150064
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,243 +88,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matt Ranostay <mranostay@ti.com>
 
-J784S4 SoC supports two PCIE instances as follows:
-* PCIE0 - 4x lanes
-* PCIE1 - 4x lanes
 
-J784S4 EVM board has the following PCIE connectors:
-* PCIE0 - 4x lanes
-* PCIE1 - 2x lanes
+On 5/12/2023 10:26 PM, Krzysztof Kozlowski wrote:
+> On 12/05/2023 14:21, Komal Bajaj wrote:
+>> Document the QFPROM on QDU1000/QRU1000 SOCs.
+>>
+>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+>> ---
+>>   Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+>> index 8d8503dd934b..59082f6e8c9f 100644
+>> --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+>> +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+>> @@ -26,6 +26,7 @@ properties:
+>>             - qcom,msm8996-qfprom
+>>             - qcom,msm8998-qfprom
+>>             - qcom,qcs404-qfprom
+>> +          - qcom,qdu1000-qfprom
+> Above qcs, to keep alphabetical order.
+qdu alphatecially comes after qcs, right? Did I misinterpret your comment?
+>
+> That's a new patch? Nothing in changelog suggested it...
+Yes, that is a new patch from v2. Will mention in cover letter in the 
+next patch.
 
-Signed-off-by: Matt Ranostay <mranostay@ti.com>
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Signed-off-by: Achal Verma <a-verma1@ti.com>
----
-
-This patch depends on:
-https://lore.kernel.org/all/20230310111630.743023-1-s-vadapalli@ti.com/
-https://lore.kernel.org/all/20230425131607.290707-1-j-choudhary@ti.com/
-https://lore.kernel.org/all/20230401112633.2406604-1-a-verma1@ti.com/
-
- arch/arm64/boot/dts/ti/k3-j784s4-evm.dts   |  65 +++++++++++
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 126 +++++++++++++++++++++
- 2 files changed, 191 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-index 75d635c9992b..27f5902f0bfb 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-@@ -261,6 +261,71 @@ &main_sdhci1 {
- 	vqmmc-supply = <&vdd_sd_dv>;
- };
- 
-+&serdes0 {
-+	status = "okay";
-+	serdes0_pcie_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <4>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>,
-+			 <&serdes_wiz0 3>, <&serdes_wiz0 4>;
-+	};
-+};
-+
-+&serdes_wiz0 {
-+	status = "okay";
-+};
-+
-+&serdes1 {
-+	status = "okay";
-+	serdes1_pcie_link: phy@0 {
-+		reg = <0>;
-+		cdns,num-lanes = <2>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_PCIE>;
-+		resets = <&serdes_wiz1 1>, <&serdes_wiz1 2>;
-+	};
-+};
-+
-+&serdes_wiz1 {
-+	status = "okay";
-+};
-+
-+&pcie0_rc {
-+	status = "okay";
-+	reset-gpios = <&exp1 6 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes1_pcie_link>;
-+	phy-names = "pcie-phy";
-+};
-+
-+&pcie0_ep {
-+	phys = <&serdes1_pcie_link>;
-+	phy-names = "pcie-phy";
-+};
-+
-+&pcie1_rc {
-+	status = "okay";
-+	num-lanes = <2>;
-+	reset-gpios = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+};
-+
-+&pcie1_ep {
-+	num-lanes = <2>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+};
-+
-+&serdes_ln_ctrl {
-+	idle-states = <J784S4_SERDES0_LANE0_PCIE1_LANE0>, <J784S4_SERDES0_LANE1_PCIE1_LANE1>,
-+		<J784S4_SERDES0_LANE2_IP3_UNUSED>, <J784S4_SERDES0_LANE3_USB>,
-+		<J784S4_SERDES1_LANE0_PCIE0_LANE0>, <J784S4_SERDES1_LANE1_PCIE0_LANE1>,
-+		<J784S4_SERDES1_LANE2_PCIE0_LANE2>, <J784S4_SERDES1_LANE3_PCIE0_LANE3>,
-+		<J784S4_SERDES2_LANE2_QSGMII_LANE1>, <J784S4_SERDES2_LANE3_QSGMII_LANE2>;
-+};
-+
- &main_gpio0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index 5fa31fe2311b..206f3d206c4c 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -949,6 +949,132 @@ cpts@310d0000 {
- 		};
- 	};
- 
-+	pcie0_rc: pcie@2900000 {
-+		compatible = "ti,j784s4-pcie-host";
-+		reg = <0x00 0x02900000 0x00 0x1000>,
-+		      <0x00 0x02907000 0x00 0x400>,
-+		      <0x00 0x0d000000 0x00 0x00800000>,
-+		      <0x00 0x10000000 0x00 0x00001000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
-+		device_type = "pci";
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4070>;
-+		max-link-speed = <3>;
-+		num-lanes = <4>;
-+		power-domains = <&k3_pds 332 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 332 0>;
-+		clock-names = "fck";
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		bus-range = <0x0 0xff>;
-+		vendor-id = <0x104c>;
-+		device-id = <0xb00d>;
-+		msi-map = <0x0 &gic_its 0x0 0x10000>;
-+		dma-coherent;
-+		ranges = <0x01000000 0x0 0x10001000 0x0 0x10001000 0x0 0x0010000>,
-+			 <0x02000000 0x0 0x10011000 0x0 0x10011000 0x0 0x7fef000>;
-+		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
-+		#interrupt-cells = <1>;
-+		interrupt-map-mask = <0 0 0 7>;
-+		interrupt-map = <0 0 0 1 &pcie0_intc 0>,
-+				<0 0 0 2 &pcie0_intc 0>,
-+				<0 0 0 3 &pcie0_intc 0>,
-+				<0 0 0 4 &pcie0_intc 0>;
-+		status = "disabled";
-+
-+		pcie0_intc: interrupt-controller {
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+			interrupt-parent = <&gic500>;
-+			interrupts = <GIC_SPI 312 IRQ_TYPE_EDGE_RISING>;
-+		};
-+	};
-+
-+	pcie0_ep: pcie-ep@2900000 {
-+		compatible = "ti,j784s4-pcie-ep";
-+		reg = <0x00 0x02900000 0x00 0x1000>,
-+		      <0x00 0x02907000 0x00 0x400>,
-+		      <0x00 0x0d000000 0x00 0x00800000>,
-+		      <0x00 0x10000000 0x00 0x08000000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4070>;
-+		max-link-speed = <3>;
-+		num-lanes = <4>;
-+		power-domains = <&k3_pds 332 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 332 0>;
-+		clock-names = "fck";
-+		max-functions = /bits/ 8 <6>;
-+		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
-+		dma-coherent;
-+		status = "disabled";
-+	};
-+
-+	pcie1_rc: pcie@2910000 {
-+		compatible = "ti,j784s4-pcie-host";
-+		reg = <0x00 0x02910000 0x00 0x1000>,
-+		      <0x00 0x02917000 0x00 0x400>,
-+		      <0x00 0x0d800000 0x00 0x00800000>,
-+		      <0x00 0x18000000 0x00 0x00001000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "cfg";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
-+		device_type = "pci";
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
-+		max-link-speed = <3>;
-+		num-lanes = <4>;
-+		power-domains = <&k3_pds 333 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 333 0>;
-+		clock-names = "fck";
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		bus-range = <0x0 0xff>;
-+		vendor-id = <0x104c>;
-+		device-id = <0xb013>;
-+		msi-map = <0x0 &gic_its 0x10000 0x10000>;
-+		dma-coherent;
-+		ranges = <0x01000000 0x0 0x18001000  0x00 0x18001000  0x0 0x0010000>,
-+			 <0x02000000 0x0 0x18011000  0x00 0x18011000  0x0 0x7fef000>;
-+		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
-+		#interrupt-cells = <1>;
-+		interrupt-map-mask = <0 0 0 7>;
-+		interrupt-map = <0 0 0 1 &pcie1_intc 0>,
-+				<0 0 0 2 &pcie1_intc 0>,
-+				<0 0 0 3 &pcie1_intc 0>,
-+				<0 0 0 4 &pcie1_intc 0>;
-+		status = "disabled";
-+
-+		pcie1_intc: interrupt-controller {
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+			interrupt-parent = <&gic500>;
-+			interrupts = <GIC_SPI 324 IRQ_TYPE_EDGE_RISING>;
-+		};
-+	};
-+
-+	pcie1_ep: pcie-ep@2910000 {
-+		compatible = "ti,j784s4-pcie-ep";
-+		reg = <0x00 0x02910000 0x00 0x1000>,
-+		      <0x00 0x02917000 0x00 0x400>,
-+		      <0x00 0x0d800000 0x00 0x00800000>,
-+		      <0x00 0x18000000 0x00 0x08000000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
-+		max-link-speed = <3>;
-+		num-lanes = <4>;
-+		power-domains = <&k3_pds 333 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 333 0>;
-+		clock-names = "fck";
-+		max-functions = /bits/ 8 <6>;
-+		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
-+		dma-coherent;
-+		status = "disabled";
-+	};
-+
- 	main_mcan0: can@2701000 {
- 		compatible = "bosch,m_can";
- 		reg = <0x00 0x02701000 0x00 0x200>,
--- 
-2.25.1
+Thanks,
+Komal
+>
+> Best regards,
+> Krzysztof
+>
 
