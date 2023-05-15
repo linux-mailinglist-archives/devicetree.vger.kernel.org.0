@@ -2,108 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A53D7020CD
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 02:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEAEC7020D3
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 02:40:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231232AbjEOAeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 May 2023 20:34:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54084 "EHLO
+        id S237835AbjEOAko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 May 2023 20:40:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229800AbjEOAeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 20:34:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DC4110CA;
-        Sun, 14 May 2023 17:34:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C68B1611FE;
-        Mon, 15 May 2023 00:34:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2348C433EF;
-        Mon, 15 May 2023 00:34:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684110874;
-        bh=hZX3lsPty37NkozQs0xkxwcNAftmAAsvZvG63ar1tIc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tuMQ48xUx7MMO850z8B3/cCEiLYwhg2q8ds2b/lxdcNBqP2JHA8a/Igij0hhBolnc
-         8vlgzxmahgWWF9eYjRbvkHkZpSNJle7oxokov+AZW61dnBqThYqgcB5Wo7sHb8Ui6K
-         uTqAGBo70MojaUEIMom1PbH8MJoAsABdkCZDqUmI05REkz03fznjdZADFzjCSEbLW5
-         uZ56rZu9MzhKRmORGcSV+0ngSHYvEPerS7iD1MJhZW5BB5+rihUUtP/Vlb66hm7q2u
-         swrR3w2XNiGl58pMnqSJwMWmySE6CFwPfqZgWk20IXUGgDRYkKIRyMiyDr1+IHCRsW
-         fu4ji2xx8U9kg==
-Date:   Mon, 15 May 2023 09:34:26 +0900
-From:   Mark Brown <broonie@kernel.org>
-To:     =?iso-8859-1?Q?B=F6rge_Str=FCmpfel?= <boerge.struempfel@gmail.com>
-Cc:     bstruempfel@ultratronik.de, andy.shevchenko@gmail.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] spi: dt-bindings: Introduce spi-mosi-idle-low flag
-Message-ID: <ZGF+Ei5sn4ci41LU@finisterre.sirena.org.uk>
-References: <20230511135632.78344-1-bstruempfel@ultratronik.de>
- <20230511231317.158214-1-bstruempfel@ultratronik.de>
- <20230511231317.158214-2-bstruempfel@ultratronik.de>
- <ZF2y1YNkSbXzRm4V@finisterre.sirena.org.uk>
- <CAEktqcthEG=AWTk9VcVkwexH6xV_xHw1hqxkkPkD=d1NqPKqSg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jG3+yPPt0iwCjHtr"
-Content-Disposition: inline
-In-Reply-To: <CAEktqcthEG=AWTk9VcVkwexH6xV_xHw1hqxkkPkD=d1NqPKqSg@mail.gmail.com>
-X-Cookie: Avoid contact with eyes.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S229800AbjEOAkn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 May 2023 20:40:43 -0400
+Received: from mx.kolabnow.com (mx.kolabnow.com [212.103.80.154])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FAE510CA;
+        Sun, 14 May 2023 17:40:42 -0700 (PDT)
+Received: from localhost (unknown [127.0.0.1])
+        by mx.kolabnow.com (Postfix) with ESMTP id 08100126D;
+        Mon, 15 May 2023 02:40:40 +0200 (CEST)
+Authentication-Results: ext-mx-out002.mykolab.com (amavisd-new);
+        dkim=pass (4096-bit key) reason="pass (just generated, assumed good)"
+        header.d=kolabnow.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kolabnow.com; h=
+        content-transfer-encoding:organization:mime-version:message-id
+        :date:date:subject:subject:from:from:received:received:received;
+         s=dkim20160331; t=1684111234; x=1685925635; bh=scwQURvSKJBR0lm+
+        FvAYEjMCy6XK60m9FLCtAzxekeo=; b=WmezPnO4KFPNadHpZv5Nlgt+r/9VMDst
+        im9Iff/TjwnbDq8erJys3WUVm/czaM+Et8cq25I5VfVqpoTywpoICVK1ODP8ei7S
+        rXyPAf5SS84czzYHZRBgMUgkD7ShaHfPzuCEvUaCXYHQUVcXKDeRKNO26YpRqIZ2
+        J/qqQRnOkQN9ePaTggSh6CTVS8MnuxRN6h2cigCTKJboZQkaz52Gj98hZL5/+OUe
+        lDEXorO5v45uuDMAehQR9qvcOQcuN8M+Vbix9ViFijgVv5tq4jpR2YMpPTJkwFgx
+        O598NIUS8zsZ3pGBCxm+uHwt1XMALHQW+u8qcs3T0lzS437KOYY2Lc1gzYSK83eq
+        Bexg6Hz/E4b1C0OFXdjq+1bMJOfe5/JQSyn5zbZn1ankYQqDuP9ZCLthSZ+J5n6Q
+        JOLHNYkxWqLjkwZQ4cHaBIBx7zhXt+HfHmKhu8SST8BIKpNI1VhI2kdnLP6Y/LvP
+        G0VhTmGKQ3KFdOj7BO8z44iORIXa4YE7DRdhy4VJNOaeiVqVfmcLpN06tpKXPILm
+        OJyGb33xlVfCNP5sHhht2tyW1nOrZ3sK/K3+c77D9OTMMQIFcbOYmU43jqQ7CxCA
+        9g3jCSq2Dx/LAxDs+rLPwAF0nXKbe9IPtKOWY4virg4kROgGwfWLCxdetOlE++zN
+        yYVK/OMrMoA=
+X-Virus-Scanned: amavisd-new at mykolab.com
+X-Spam-Score: -1.9
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
+Received: from mx.kolabnow.com ([127.0.0.1])
+        by localhost (ext-mx-out002.mykolab.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id ImGuEhtW9N6F; Mon, 15 May 2023 02:40:34 +0200 (CEST)
+Received: from int-mx002.mykolab.com (unknown [10.9.13.2])
+        by mx.kolabnow.com (Postfix) with ESMTPS id 9ABDD1238;
+        Mon, 15 May 2023 02:40:33 +0200 (CEST)
+Received: from ext-subm001.mykolab.com (unknown [10.9.6.1])
+        by int-mx002.mykolab.com (Postfix) with ESMTPS id DCBE83E6D;
+        Mon, 15 May 2023 02:40:32 +0200 (CEST)
+From:   alison@she-devel.com
+To:     johan@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alison@she-devel.com,
+        achaiken@aurora.tech
+Subject: [PATCH v6 0/2]
+Date:   Sun, 14 May 2023 17:40:23 -0700
+Message-Id: <20230515004025.1133572-1-alison@she-devel.com>
+MIME-Version: 1.0
+Organization: Aurora Innovation
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Alison Chaiken <alison@she-devel.com>
 
---jG3+yPPt0iwCjHtr
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add generalized support for setting arbitrary configuration of the
+U-Blox Zed-F9P GNSS.  Employ the new functionality to set the baud rate
+of the Zed-F9P if the devicetree specifies a non-default value.
 
-On Fri, May 12, 2023 at 08:54:19AM +0200, B=F6rge Str=FCmpfel wrote:
-> Am Fr., 12. Mai 2023 um 05:30 Uhr schrieb Mark Brown <broonie@kernel.org>:
+Tested with 6.1.22, only on a U-Blox Zed-F9P GNSS.
 
-> > If this is always required for a given device (which I'd expect to be
-> > the case) why configure it through DT?  I know we've got some legacy
-> > stuff like that but not all legacy DT choices were good and no need to
-> > continue the pattern.
+Thanks very much Krzysztof Kozlowski for your patient and helpful
+advice.
 
-> Yes this will always be the case for specific spi-device, spi-controller
-> combinations. Just to make sure, that I understand your suggestion
-> correctly: You propose to check from the specific spi-device-driver, if
-> the spi-controller supports this particular mode-bit, and then set it if
-> it does and thereby loose the need for the DT entry completely?
+V6 -> V5 Change #ifdef to _maybe_unused and fix warnings.
+V5 -> V4 Wrap all new code in a CONFIG_OF=y check and fixes
+V4 -> V3 Lookup device-specific properties by matching driver data.
+V2 -> V3 Add email recipients whom I foolishly missed the first two times.
+V1 -> V2 Fixes error identified by kernel test robot:
 
-Yes, we shouldn't need DT here.  Though the device should just be
-setting this unconditionally if it's always required.
+Alison Chaiken (2):
+  gnss: ubx: customize serial device open to set U-Blox Zed-F9P baud
+  dt-bindings: gnss: Add U-Blox Zed-F9
 
---jG3+yPPt0iwCjHtr
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/gnss/u-blox,neo-6m.yaml          |   1 +
+ drivers/gnss/ubx.c                            | 241 +++++++++++++++++-
+ 2 files changed, 231 insertions(+), 11 deletions(-)
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRhfhEACgkQJNaLcl1U
-h9CUQwf9GOgkGMy4AAK5Y1LcKpaX1j7DIItEjuPWsM9sjmduKp921EvFyALp/hqU
-UdQ3emjnx3i2kaV+9GxNuIB3auUEu2xE2guAzd2tRbLbDOaK/4k8G3blLSghOBYu
-CQy7EGP8JKKM658ru88SQMTC2A7IXS5HNh0s1WwakmaynDYkIk0bO0dqz8zwR23P
-BoYJQgr9Z6TQwoivQ9/M5pO3cH/FIEw1gY8ajxdbsUXwRd75qJCL+rLjNbC654cb
-kryggjSO7KUNPUpUdQM/H9p2W7v1zl4iJcvr8P3/b9k7qwwluFSFJHyUnOZ3Ecd8
-gOIvDmrDs66z0vPIcd8Mb5X73Dr0mg==
-=QIKm
------END PGP SIGNATURE-----
+base-commit: ac9a78681b921877518763ba0e89202254349d1b
+-- 
+2.39.2
 
---jG3+yPPt0iwCjHtr--
