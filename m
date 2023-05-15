@@ -2,259 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 805F7704003
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 23:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C509C7040D2
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 00:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245628AbjEOVnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 17:43:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38458 "EHLO
+        id S231202AbjEOWRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 18:17:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245631AbjEOVnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 17:43:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F37E37DAA;
-        Mon, 15 May 2023 14:43:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S240909AbjEOWRS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 18:17:18 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5249830E8;
+        Mon, 15 May 2023 15:17:17 -0700 (PDT)
+Received: from mercury (unknown [185.209.196.239])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 908C66153D;
-        Mon, 15 May 2023 21:43:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88361C4339E;
-        Mon, 15 May 2023 21:43:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684187020;
-        bh=b+pXr4Hrxo2j7GrVI2Y1r49la08BF7ssH996PN0WsJw=;
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 041A266031CE;
+        Mon, 15 May 2023 23:17:16 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1684189036;
+        bh=Poy+wtaWYf9GDOq/ot+oI5x8t5ldZp8lzSTkQfYQHkU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YoiPYmWfQxUh4yS2f9BOVWk4MJtIqlqiw0TaU1DxI8jJitoIaE3iWpUKUB83n8lSF
-         Lf5e/onvs8yvVj8g1eYGgmEUA2SptH8QRh7dCUYpygfQGEcNo9n887hfKBxC83o6kl
-         M7ouOIlsUVU9TC3wVRt/GZgtJRTABw/sDSu8UFUAnolgZNTgfqs8k1FwZsspMpGVnb
-         cpacoB+hmpZ141HUzvcJFYqMoXsGadxNrcs7H0yOYZD4kD4SpXoGKBpbsTd9zsSloS
-         ZIpI1Uj1EDEqYRxxOyTHIPT4e5+bX18jBW2LVQ86YTO+nOJ1U3HSfruX426QZzigMI
-         GkoHNgtRaUYBg==
-Date:   Mon, 15 May 2023 14:47:30 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
-        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
-        ahalaney@redhat.com
-Subject: Re: [PATCH v8 5/9] usb: dwc3: core: Refactor PHY logic to support
- Multiport Controller
-Message-ID: <20230515214730.epeelsnp3bznssr5@ripper>
-References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
- <20230514054917.21318-6-quic_kriskura@quicinc.com>
+        b=C5rAly5QqApyomEA33ZZtCXgcChgClTuXF+SPqTEz51nrJNcX9qm5rraP25XKHAIh
+         N2B9im3G1D5iJfLx42K0d7bvtxtIcqmlKFEfoy9Q5q4e7FddN88nIsbrV8qggySeOv
+         u/QT9W005TBTGQUNWh2kfwq9QQhm1FLT0+e1e0fp2ePaWDmBpg7M6BxTU5vdVpgnIh
+         vhjoffgx9oaGBV48utICgnCp5TOLRgZW0rLFGlQhjKxqUYdLGnmA/nyhBlDffu4krt
+         CjfIAo8JGi7XAYrXr7SdlcxXgumK959XhVm00/s8w9KVlWkL/hQuCHFOGzcAYWsVQP
+         jM086vMrDX6VA==
+Received: by mercury (Postfix, from userid 1000)
+        id 4C88C106138C; Tue, 16 May 2023 00:17:13 +0200 (CEST)
+Date:   Tue, 16 May 2023 00:17:13 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     Iskren Chernev <me@iskren.info>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Matheus Castello <matheus@castello.eng.br>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/4] dt-bindings: power: supply: maxim,max17040:
+ update properties
+Message-ID: <20230515221713.oatxpsfvqcjwsuux@mercury.elektranox.org>
+References: <20230308084419.11934-1-clamor95@gmail.com>
+ <20230308084419.11934-2-clamor95@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3aena5x5ifgdhepq"
 Content-Disposition: inline
-In-Reply-To: <20230514054917.21318-6-quic_kriskura@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230308084419.11934-2-clamor95@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 14, 2023 at 11:19:13AM +0530, Krishna Kurapati wrote:
-> Currently the DWC3 driver supports only single port controller
-> which requires at most one HS and one SS PHY.
-> 
-> But the DWC3 USB controller can be connected to multiple ports and
-> each port can have their own PHYs. Each port of the multiport
-> controller can either be HS+SS capable or HS only capable
-> Proper quantification of them is required to modify GUSB2PHYCFG
-> and GUSB3PIPECTL registers appropriately.
-> 
-> Add support for detecting, obtaining and configuring phy's supported
-> by a multiport controller and limit the max number of ports
-> supported to 4.
-> 
-> Co-developed-by: Harsh Agarwal <quic_harshq@quicinc.com>
 
-Please include Harsh's signed-off-by as well here, to clarify that you
-both certify the origin of this patch.
+--3aena5x5ifgdhepq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+Hi,
+
+On Wed, Mar 08, 2023 at 10:44:16AM +0200, Svyatoslav Ryhel wrote:
+> Add simple cell, status, health and temperature properties.
+>=20
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  drivers/usb/dwc3/core.c | 266 ++++++++++++++++++++++++++++++----------
->  drivers/usb/dwc3/core.h |  11 +-
->  drivers/usb/dwc3/drd.c  |  13 +-
->  3 files changed, 213 insertions(+), 77 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-[..]
-> @@ -744,22 +777,38 @@ static int dwc3_phy_setup(struct dwc3 *dwc)
->  static int dwc3_phy_init(struct dwc3 *dwc)
->  {
->  	int ret;
-> +	int i;
-> +	int j;
->  
->  	usb_phy_init(dwc->usb2_phy);
->  	usb_phy_init(dwc->usb3_phy);
->  
-> -	ret = phy_init(dwc->usb2_generic_phy);
-> -	if (ret < 0)
-> -		goto err_shutdown_usb3_phy;
-> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-> +		ret = phy_init(dwc->usb2_generic_phy[i]);
-> +		if (ret < 0) {
-> +			/* clean up prior initialized HS PHYs */
-> +			for (j = 0; j < i; j++)
-> +				phy_exit(dwc->usb2_generic_phy[j]);
-> +			goto err_shutdown_usb3_phy;
-
-The idiomatic form is to goto err_exit_usb2_phy and let it phy_exit()
-from i - 1 to 0. That would avoid duplicating this snippet.
-
-> +		}
-> +	}
->  
-> -	ret = phy_init(dwc->usb3_generic_phy);
-> -	if (ret < 0)
-> -		goto err_exit_usb2_phy;
-> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-
-When you call dwc3_ss_phy_setup() the index refer to port0, port1... but
-when you refer to the phys you consistently loops over num_usb2_ports.
-
-The only case I can think of where this would be useful is if it's not
-the first N ports that are SS-capable (e.g. port0 and port can do SS).
-
-If this is the case, is it correct that this should not be reflected in
-the index passed to e.g. dwc3_ss_phy_setup()?
-
-If this is not the case, could you please transition these SS-related
-loops to iterate over usb3_generic_phy[0..num_usb3_ports)?
-
-> +		ret = phy_init(dwc->usb3_generic_phy[i]);
-> +		if (ret < 0) {
-> +			/* clean up prior initialized SS PHYs */
-> +			for (j = 0; j < i; j++)
-> +				phy_exit(dwc->usb3_generic_phy[j]);
-> +			goto err_exit_usb2_phy;
-
-For the purpose of symmetry, same suggestion as above. phy_exit() i - 1
-through 0, then reset j to dwc->num_usb2_ports and fall through to
-err_exit_usb2_phy.
-
-> +		}
-> +	}
->  
->  	return 0;
->  
->  err_exit_usb2_phy:
-> -	phy_exit(dwc->usb2_generic_phy);
-> +	for (i = 0; i < dwc->num_usb2_ports; i++)
-> +		phy_exit(dwc->usb2_generic_phy[i]);
+>  .../bindings/power/supply/maxim,max17040.yaml | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max1704=
+0.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
+> index 3a529326ecbd..6f1c25b4729f 100644
+> --- a/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max17040.yaml
+> @@ -55,6 +55,20 @@ properties:
+>    interrupts:
+>      maxItems: 1
+> =20
+> +  monitored-battery:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: phandle to the battery node being monitored
 > +
->  err_shutdown_usb3_phy:
->  	usb_phy_shutdown(dwc->usb3_phy);
->  	usb_phy_shutdown(dwc->usb2_phy);
-> @@ -769,8 +818,12 @@ static int dwc3_phy_init(struct dwc3 *dwc)
-[..]
->  static int dwc3_phy_power_on(struct dwc3 *dwc)
->  {
->  	int ret;
-> +	int i;
-> +	int j;
->  
->  	usb_phy_set_suspend(dwc->usb2_phy, 0);
->  	usb_phy_set_suspend(dwc->usb3_phy, 0);
->  
-> -	ret = phy_power_on(dwc->usb2_generic_phy);
-> -	if (ret < 0)
-> -		goto err_suspend_usb3_phy;
-> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-> +		ret = phy_power_on(dwc->usb2_generic_phy[i]);
-> +		if (ret < 0) {
-> +			/* Turn off prior ON'ed HS Phy's */
-> +			for (j = 0; j < i; j++)
-> +				phy_power_off(dwc->usb2_generic_phy[j]);
-> +			goto err_suspend_usb3_phy;
+> +  power-supplies: true
 
-As above, I'd prefer that you don't duplicate the phy_power_off() loop.
+The above two should not be needed, since the binding inherits them:
 
-> +		}
-> +	}
->  
-> -	ret = phy_power_on(dwc->usb3_generic_phy);
-> -	if (ret < 0)
-> -		goto err_power_off_usb2_phy;
-> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-> +		ret = phy_power_on(dwc->usb3_generic_phy[i]);
-> +		if (ret < 0) {
-> +			/* Turn of prior ON'ed SS Phy's */
-> +			for (j = 0; j < i; j++)
-> +				phy_power_off(dwc->usb3_generic_phy[j]);
-> +			goto err_power_off_usb2_phy;
-> +		}
-> +	}
->  
->  	return 0;
-[..]
-> +static int dwc3_get_multiport_phys(struct dwc3 *dwc)
-> +{
-> +	int ret;
-> +	struct device *dev = dwc->dev;
-> +	int i;
-> +	char phy_name[11];
+```
+allOf:
+  - $ref: power-supply.yaml#
 
-It would be prettier if you sorted these lines by length, longest
-first...
+unevaluatedProperties: false
+```
 
-[..]
-> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> index d3401963bc27..84f6303922aa 100644
-> --- a/drivers/usb/dwc3/core.h
-> +++ b/drivers/usb/dwc3/core.h
-> @@ -35,6 +35,9 @@
->  
->  #define DWC3_MSG_MAX	500
->  
-> +/* Number of ports supported by a multiport controller */
-> +#define MAX_PORTS_SUPPORTED	4
+Otherwise LGTM.
 
-I think it would be preferred to prefix this DWC3_ (so perhaps just
-DWC3_MAX_PORTS, to keep it shorter)
-
-Regards,
-Bjorn
+-- Sebastian
 
 > +
->  /* Define XHCI Extcap register offsets for getting multiport info */
->  #define XHCI_HCC_PARAMS_OFFSET	0x10
->  #define DWC3_XHCI_HCSPARAMS1	0x04
-> @@ -1038,8 +1041,8 @@ struct dwc3_scratchpad_array {
->   * @usb3_phy: pointer to USB3 PHY
->   * @num_usb2_ports: number of usb2 ports.
->   * @num_usb3_ports: number of usb3 ports.
-> - * @usb2_generic_phy: pointer to USB2 PHY
-> - * @usb3_generic_phy: pointer to USB3 PHY
-> + * @usb2_generic_phy: pointer to array of USB2 PHY
-> + * @usb3_generic_phy: pointer to array of USB3 PHY
->   * @phys_ready: flag to indicate that PHYs are ready
->   * @ulpi: pointer to ulpi interface
->   * @ulpi_ready: flag to indicate that ULPI is initialized
-> @@ -1178,8 +1181,8 @@ struct dwc3 {
->  	u8			num_usb2_ports;
->  	u8			num_usb3_ports;
->  
-> -	struct phy		*usb2_generic_phy;
-> -	struct phy		*usb3_generic_phy;
-> +	struct phy		*usb2_generic_phy[MAX_PORTS_SUPPORTED];
-> +	struct phy		*usb3_generic_phy[MAX_PORTS_SUPPORTED];
->  
->  	bool			phys_ready;
+> +  io-channels:
+> +    items:
+> +      - description: battery temperature
+> +
+> +  io-channel-names:
+> +    items:
+> +      - const: temp
+> +
+>    wakeup-source:
+>      type: boolean
+>      description: |
+> @@ -95,3 +109,26 @@ examples:
+>          wakeup-source;
+>        };
+>      };
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c0 {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      fuel-gauge@36 {
+> +        compatible =3D "maxim,max17043";
+> +        reg =3D <0x36>;
+> +
+> +        interrupt-parent =3D <&gpio>;
+> +        interrupts =3D <144 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +        monitored-battery =3D <&battery>;
+> +        power-supplies =3D <&charger>;
+> +
+> +        io-channels =3D <&adc 8>;
+> +        io-channel-names =3D "temp";
+> +
+> +        maxim,alert-low-soc-level =3D <10>;
+> +        wakeup-source;
+> +      };
+> +    };
+> --=20
+> 2.37.2
+>=20
 
+--3aena5x5ifgdhepq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmRir2UACgkQ2O7X88g7
++pomyxAAhwG0eUxHeP9GtV1b5iuoRP4GRT72EHjs/CifNKYeaUPS42F4BP18yPnC
+TVOYXU19DkthvmfCs1HmfKSZvJGp3eMDECjBAWteLMHPUduPOC/+x0a2UZrnTkAY
+g5R/zIhY1aRpfUfH08aVcEKhK8VbWn25zjlK6Jx0NAeOyw89Qv4UELw9TS+hOQRc
+B8ZTZpeTRwXX4+sYxt3SbiVmOg73ttyXwzrQWpYwTNyHbja2JLtGfe3uumihwF4N
+xIbNNyd3AvgN5rBxdKgw10xV2XsbooNDj6KcOsimtnyrRh1Q2nai7ZYlSt7/2+B9
+PT40jnc4kGuR4Zg+eAN/YRgSMXOfNfCljWlPUVw1NM/GOf8o1AhZD4OqInzxUo4e
+A7nDthnGGyxw54M6gVC1pVVJyt1vBu6K5zjlaoB/OWVL/2edi88pCqNdlibyGPF5
+JiCeQvTAKRx1fuycyEeUjhr9OQLqu4hTUOz07u/Q2Xgkp+w1ZYOFBdSkLYfRLAOq
+JrZFzVJS/SiQhwQ21vIWCE2btXo+5dsgRoAjoCDp/w083Q315k2Ylm86cQMQQVH+
+L7HO+Lms07fJnCJoBmrq2hUzMv2nEdiBCefkt2VPbp2hinWGufibTB/4XtFeQMez
+T5pNUSZB/30X027knuSluhJHKzgBWWMNrwDLwNt3ZYQYXEcbcrU=
+=qiL/
+-----END PGP SIGNATURE-----
+
+--3aena5x5ifgdhepq--
