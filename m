@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8ADA7024BC
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:32:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0DE77024BF
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 08:32:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239757AbjEOGcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 02:32:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34052 "EHLO
+        id S239814AbjEOGcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 02:32:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238522AbjEOGcR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:32:17 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B6F11B
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:32:16 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50bc25f0c7dso22304716a12.3
-        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:32:16 -0700 (PDT)
+        with ESMTP id S239291AbjEOGcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 02:32:32 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F48B186
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:32:31 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so108299725a12.0
+        for <devicetree@vger.kernel.org>; Sun, 14 May 2023 23:32:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684132334; x=1686724334;
+        d=linaro.org; s=google; t=1684132349; x=1686724349;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=A8a1pVM0DGaS6W157+gRqo4eM7NjJYx+JRCtEwK9RVc=;
-        b=X95T5aNKRiJwuBsbVb8C0GoOMrInmKOp5JQPOcKq6pUuAIOUxsSvf7wS2Ve/SCuLYG
-         FCFhplDCdm3cIshKUJ7Oc8xsJXrxT7zHF3wFKxAx8sQQSq1We2ikruwy0I6QTaN5a5Vx
-         5MklXle+9kdlCHyDlpcjVkO4aWp7MrEzJgd8pd9a84Ie/DVbVPKGRzbee152l7CJKP4d
-         c0aZ4lp4j2MKNBXXMqZTsCxXvgeY2IMIcQkcE9HqbHo6Wll4UX0dkkOlkzHiZENfUwU9
-         Ilo/rXT4fnsKi9KGdurJqUXLZeNZF90LaFAcKfOQeS0026JDQrPdqF1A8P77SRaT6MpG
-         KVnA==
+        bh=S/hYvCcBf6b2cvUWeK/Zz7sqw40AaKUPJTT2dMrut/Q=;
+        b=anAg46r3ItG7TxcWPmGuHeXhHGLKN+nwU5I/BaIYPU4UiOscHUTadRL+pNRbf/gYVb
+         8MREHFIQAa9kjGLnQykkQe9c5bLgg85EQVXWPsJzjJuPq3DoMcwDL4Z/Yk6Y4MCBqbMt
+         FiM0re6eTy6RayocX6uDWemmtmLxfNWKTItPkbHpmfnqULHK/EelaOr1KnkkS8J8zG4S
+         gHSAu4G6iBMwAxFc1Zn+tfOkxaFSXUkn3fYvPljK4aMNzLROLTTAMniixl1XB3p6+fg3
+         XrnDDUWkx4JnxaGcmA/1h3oC0bfflrFgXikACk6tTT6ReFWajycMuQaWkMi7r1A35Wui
+         qrBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684132334; x=1686724334;
+        d=1e100.net; s=20221208; t=1684132349; x=1686724349;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A8a1pVM0DGaS6W157+gRqo4eM7NjJYx+JRCtEwK9RVc=;
-        b=ZRngo3i0bIjUACPSQeVeXiEb3N9rihXBD1PMEN5y3sabmPntRv7TVd9Yqwy9jEn4yh
-         SKPbJtB/+LX5zDibh6UDgJR35xlXS7oSW+qCtXkJ9lPRidr6K7O3Q44TKzueYiFQ7WiC
-         Nhxf3RTh4LwDGfCZS6v7w2iTE32aD2uVtDfBSI60XX+xswOrusA6A0dM7XCTUS6WMa+C
-         XSZMahsp049uoaiUXKThnGuZgoJ0CKdxVP1bUP0IAvR0D85KXT3/KIo60OwYd5/LSID4
-         B/3Mlu3u7wdxd7BcjG18wRlRDZMluG108P5t7m0eMJFFidUBPGhRZiS/Kgz1TDW0yi/9
-         cZKA==
-X-Gm-Message-State: AC+VfDz1pH/hfgubMfvnXa8npTEH6ZhfstqCqrK7g+AudLf5C4NKaDQG
-        DQZKmd7fQpv85ISjUrP5Qf/lrg==
-X-Google-Smtp-Source: ACHHUZ6sKt1eBJkYlCxRQgz0lccW3BVyRVXju0DAlM9C3GIp+OCy5RuvfUTTAHCZJzcT/to3hYZalA==
-X-Received: by 2002:aa7:d853:0:b0:4fc:725:e670 with SMTP id f19-20020aa7d853000000b004fc0725e670mr22863203eds.11.1684132334593;
-        Sun, 14 May 2023 23:32:14 -0700 (PDT)
+        bh=S/hYvCcBf6b2cvUWeK/Zz7sqw40AaKUPJTT2dMrut/Q=;
+        b=aPnK9zwGatrjGE31/jptFnLK+mhJ28acjoa4g5wPcvd9SP/tA9wMPqGDZT7PuHHLnr
+         vOrZe5PC/gNLvP5U3NJVAgaQhX7g3HcaxWNP251TR8Wj3oCTrMMKup3mocAEWqne5hwI
+         evZjJvk7+COyuZYNS6qKpvRjruEpPmreGLLxN2NKHVhLYPwlh33IrvuBdn0X+nDEqTGr
+         lSdlxfyf7f4vAuUVLQd3GZs7vhRFWtTgnhaAUSfjBqOUkVde4PicpiHYOEQKzgdv+r/l
+         h4K45RQQdB2j+yyjtXNpUGoQwDVF4wdFEeeOIhuxiY50HWD6WAtkceSlbU3CCy91iQv6
+         zh/Q==
+X-Gm-Message-State: AC+VfDy7cxYkkl7BdoFSNuhMEumfZuXBlxUtcGP9Nrr4YP94MS+m2Tg8
+        kPsY3BuEls1YcmhxIU7JDABLOA==
+X-Google-Smtp-Source: ACHHUZ5G5Kk8YwVeXUzhpeXKMrTcjuQZ9G2Q+2fbGgBS0iUKQ7ma65pjl4f7B8m21PO/4Bg2keLvVg==
+X-Received: by 2002:a17:907:3d89:b0:94e:4285:390c with SMTP id he9-20020a1709073d8900b0094e4285390cmr31602369ejc.10.1684132349638;
+        Sun, 14 May 2023 23:32:29 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id l1-20020a056402344100b0050504648fc4sm6870988edc.80.2023.05.14.23.32.13
+        by smtp.gmail.com with ESMTPSA id bu2-20020a170906a14200b0096654fdbe34sm9129015ejb.142.2023.05.14.23.32.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 May 2023 23:32:14 -0700 (PDT)
-Message-ID: <590560c9-4da6-bbd4-6aac-de57ab5403ba@linaro.org>
-Date:   Mon, 15 May 2023 08:32:12 +0200
+        Sun, 14 May 2023 23:32:29 -0700 (PDT)
+Message-ID: <0ff4b9fb-c56d-b896-e2de-c2f189a5e6d0@linaro.org>
+Date:   Mon, 15 May 2023 08:32:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH V8 1/4] dt-bindings: clock: document Amlogic S4 SoC PLL
- clock controller
+Subject: Re: [PATCH V8 2/4] dt-bindings: clock: document Amlogic S4 SoC
+ peripherals clock controller
 Content-Language: en-US
 To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
@@ -71,14 +71,14 @@ To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc:     kelvin.zhang@amlogic.com, qi.duan@amlogic.com
 References: <20230515031557.31143-1-yu.tu@amlogic.com>
- <20230515031557.31143-2-yu.tu@amlogic.com>
+ <20230515031557.31143-3-yu.tu@amlogic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230515031557.31143-2-yu.tu@amlogic.com>
+In-Reply-To: <20230515031557.31143-3-yu.tu@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,7 +87,8 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 15/05/2023 05:15, Yu Tu wrote:
-> Add the S4 PLL clock controller dt-bindings in the s4 SoC family.
+> Add the S4 peripherals clock controller dt-bindings in the s4 SoC
+> family.
 > 
 > Signed-off-by: Yu Tu <yu.tu@amlogic.com>
 
@@ -104,6 +105,7 @@ version they apply.
 https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
 
 If a tag was not added on purpose, please state why and what changed.
+
 
 Best regards,
 Krzysztof
