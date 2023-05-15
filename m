@@ -2,126 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0868A70348E
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25CB6703562
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:58:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243062AbjEOQtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 12:49:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54996 "EHLO
+        id S243287AbjEOQ62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 12:58:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243064AbjEOQtb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:49:31 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22EB759F7;
-        Mon, 15 May 2023 09:49:30 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34FGmqCT058261;
-        Mon, 15 May 2023 11:48:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684169332;
-        bh=WYd+HVrvnZqOOIEZzprHDBIRRRbxOwfly0aIcgGcCPA=;
-        h=Date:Subject:From:To:CC:References:In-Reply-To;
-        b=iiIiWjd7bc5jfMNHn2gZH4rUNBemTTyTqFNwW5TrplB4d93zNHJmg9L5XmOXrCSyB
-         NJM9CxisGQmSs98u5njB+dhQbgsMmfXUli6ppu4ekI/ToTedMgefrQg454VOhnzXJB
-         NlzUp9YAG6j2UzNXCS1p4gObu0QRHepNt121fSLk=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34FGmq5t085842
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 15 May 2023 11:48:52 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
- May 2023 11:48:52 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 15 May 2023 11:48:52 -0500
-Received: from [10.250.35.77] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34FGmpJV101621;
-        Mon, 15 May 2023 11:48:51 -0500
-Message-ID: <1118291b-1137-6368-6202-e54151f01eb0@ti.com>
-Date:   Mon, 15 May 2023 11:48:51 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] kbuild: Disallow DTB overlays to built from .dts named
- source files
-Content-Language: en-US
-From:   Andrew Davis <afd@ti.com>
-To:     Nicolas Schier <nicolas@fjasle.eu>
-CC:     Sascha Hauer <s.hauer@pengutronix.de>,
+        with ESMTP id S243283AbjEOQ61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:58:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10C2E76B4;
+        Mon, 15 May 2023 09:58:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8EF3062A44;
+        Mon, 15 May 2023 16:58:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A470BC433EF;
+        Mon, 15 May 2023 16:58:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684169903;
+        bh=6BQOnnLnMvzGvxFLqtdRHmW64RX2LYl5ly/0PZlbWY4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uFA00hLTT5BbFjhLbVztbrAoZT+hr5ViQyB6ttyIf7aUbfStvozk22/i/6bAcrdg6
+         cOXaJ8HN8AS5wkECfmYsjWqmoELp8BIhmyltHys4ngMw16sKLauCO1xeq6HGGsmKex
+         MSFSCp/eBwuFj3PmRoQhrC8YGmxw1IpVxS7uJ7f0ARLSzo7SskAoZFowQyVUderMAU
+         Dk2qPGrvwwB/IAXx9WENV3imzu5pacDz3Bm1apJ4YRz3/V3UjLuXwWPq2nduKPSx0h
+         gt2sERrWqrHBakuTYxNmDdQjBKrceNd+4Hvn+9hOLBvMPHAtXatfbl/wTGIVwPd/Qk
+         4ptkXcYrwi4eA==
+Date:   Mon, 15 May 2023 17:58:17 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        <devicetree@vger.kernel.org>, <linux-kbuild@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230306224752.8417-1-afd@ti.com> <ZAi+Qo1z2OkrqncP@fjasle.eu>
- <b3820dd3-83dd-278e-e9ad-814be0bc8cfa@ti.com>
-In-Reply-To: <b3820dd3-83dd-278e-e9ad-814be0bc8cfa@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Subject: Re: [PATCH v3 03/10] dt-bindings: serial: add documentation for
+ Bouffalolab UART Driver
+Message-ID: <20230515-florist-perky-f26b996f2179@spud>
+References: <20230514165651.2199-1-jszhang@kernel.org>
+ <20230514165651.2199-4-jszhang@kernel.org>
+ <20230514-bust-slam-10c7b9cbe455@spud>
+ <ZGFuikzSsP81/d23@xhacker>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="YTtL81Hy5mMcU1A7"
+Content-Disposition: inline
+In-Reply-To: <ZGFuikzSsP81/d23@xhacker>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/8/23 9:01 AM, Andrew Davis wrote:
-> On 3/8/23 10:56 AM, Nicolas Schier wrote:
->> On Mon, Mar 06, 2023 at 04:47:52PM -0600 Andrew Davis wrote:
->>> As a follow up to the series allowing DTB overlays to built from .dtso
->>> files. Now that all overlays have been renamed, remove the ability to
->>> build from overlays from .dts files to prevent any files with the old
->>          ^^^^
->>
->> The first "from" sounds superfluous to me.
->>
-> 
-> It is a typo, feel free to drop it locally whoever takes this patch.
-> 
 
-Seems no one took this last cycle.. Still valid and applies for this one.
+--YTtL81Hy5mMcU1A7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Andrew
+On Mon, May 15, 2023 at 07:28:10AM +0800, Jisheng Zhang wrote:
+> On Sun, May 14, 2023 at 07:17:27PM +0100, Conor Dooley wrote:
+> > On Mon, May 15, 2023 at 12:56:44AM +0800, Jisheng Zhang wrote:
+> >=20
+> > > +$id: http://devicetree.org/schemas/serial/bouffalolab,uart.yaml#
+> >=20
+> > $id: relative path/filename doesn't match actual path or filename
+> >         expected: http://devicetree.org/schemas/serial/bouffalolab,bl80=
+8-uart.yaml#
+> >=20
+> > Please test the bindings before submission - even dtbs_check catches
+> > that one!
+>=20
+> Aha, I knew the reason. I did run dt_binding_check and dtbs_check,
+> but then I read one of comments in v2 which suggests the renaming,
+> that's to say the dtbs_check is done before the renmaing. Sorry for
+> confusion
 
-> Thanks,
-> Andrew
-> 
->> Kind regards,
->> Nicolas
->>> name from accidental being added.
->>>
->>> Signed-off-by: Andrew Davis <afd@ti.com>
->>> ---
->>>   scripts/Makefile.lib | 3 ---
->>>   1 file changed, 3 deletions(-)
->>>
->>> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
->>> index 100a386fcd71..68d0134bdbf9 100644
->>> --- a/scripts/Makefile.lib
->>> +++ b/scripts/Makefile.lib
->>> @@ -418,9 +418,6 @@ endif
->>>   $(obj)/%.dtb: $(src)/%.dts $(DTC) $(DT_TMP_SCHEMA) FORCE
->>>       $(call if_changed_dep,dtb)
->>> -$(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
->>> -    $(call if_changed_dep,dtc)
->>> -
->>>   $(obj)/%.dtbo: $(src)/%.dtso $(DTC) FORCE
->>>       $(call if_changed_dep,dtc)
->>> -- 
->>> 2.39.2
->>
+No worries.
+Serial aisde, rest of the series looks grand to me, perhaps you want to
+resubmit the serial bits separately & I'll grab the riscv bits once the
+serial side is sorted out?
+
+--YTtL81Hy5mMcU1A7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGJkqQAKCRB4tDGHoIJi
+0jbsAQDmdx3opFq95JKgP8MHlcdz0QcdrvfeH/2ZDILcK+oWWAD/YaBNfF32rw1t
+yXQ9e/DkpxyDG+ftGg6vVGK3FORScA8=
+=PWZq
+-----END PGP SIGNATURE-----
+
+--YTtL81Hy5mMcU1A7--
