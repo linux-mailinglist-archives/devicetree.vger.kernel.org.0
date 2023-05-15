@@ -2,65 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C2737037B3
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:23:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5A27037FA
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:26:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244157AbjEORXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 13:23:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40934 "EHLO
+        id S244249AbjEOR0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 13:26:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243778AbjEORXU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:23:20 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5495C5FC4;
-        Mon, 15 May 2023 10:21:48 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34FHLfT2021835;
-        Mon, 15 May 2023 12:21:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684171301;
-        bh=5Bn2akr6gA+EsKPuX9IZMqXU+VZigh8oWkYRin7Nvw8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=KgnWVk6KLipsYQZlNdcLNppWj8A7U87iKQdRlYXh9+7fTSP4FxwtXYHHXE2y6PJRY
-         LCKfFlldzPKb1sYFJhP62WvDzyaHrAK3ndeRvWdXk2vd0npSJ4F7lsWG8sKjkQlfgY
-         EVPxt6LkKBStnz7UXXqKZdIYLIelxsQqzR1pKlMU=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34FHLfRQ010867
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 15 May 2023 12:21:41 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
- May 2023 12:21:41 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 15 May 2023 12:21:41 -0500
-Received: from lelv0327.itg.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34FHLcpY002823;
-        Mon, 15 May 2023 12:21:40 -0500
-From:   Andrew Davis <afd@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S244084AbjEORZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:25:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49ABC100F4;
+        Mon, 15 May 2023 10:24:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 293CB62CD7;
+        Mon, 15 May 2023 17:24:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04A7CC4339B;
+        Mon, 15 May 2023 17:24:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684171484;
+        bh=2WihzjevgA/VftUyRW5cgW08ExyJfimZx9zxWsTB+Bo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eGk1ivJDCnlpT9Abm/hXbBUycqR9dUnSnLNFdUWJemevTNpFm1UPz9hFe9C0s6M1n
+         qXaPK1rSHR++txgXexCXWsVGs+FL6n5BkKZ+68M3WQWTh1TrdFtXMC8DTP5NNlsbwn
+         8aa9VELn5jfpfzPtoIDTjBppP2tGioOuRKovaKRjzZiEwFkkIAJWeC1aeNbijzmrra
+         Po0Ech39PbHFrJJEVD4QknC822WsHYDkn5jhd+7mShuUg0JJZ4xSubv5pjr0VMpjNl
+         9I5ENLj2gQhN/Et/CvsVzmLH2dpm7AsXNAtxeg5io6h+yc8qVAvLnFfzE+rl++O+Oq
+         /m8T/J8SdTKaQ==
+Date:   Mon, 15 May 2023 18:24:40 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Nelson <robertcnelson@gmail.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Andrew Davis <afd@ti.com>
-Subject: [PATCH 5/5] arm64: dts: ti: k3-j721e: Enable MDIO nodes at the board level
-Date:   Mon, 15 May 2023 12:21:37 -0500
-Message-ID: <20230515172137.474626-5-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230515172137.474626-1-afd@ti.com>
-References: <20230515172137.474626-1-afd@ti.com>
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Andreas Kemnade <andreas@kemnade.info>
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: document TeeJet
+Message-ID: <20230515-cover-dallying-fb1599444827@spud>
+References: <20230515155747.499371-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="f6Qn7+5fTTxrbIBt"
+Content-Disposition: inline
+In-Reply-To: <20230515155747.499371-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,102 +57,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MDIO nodes defined in the top-level J721e SoC dtsi files are incomplete
-and will not be functional unless they are extended with a pinmux.
 
-As the attached PHY is only known about at the board integration level,
-these nodes should only be enabled when provided with this information.
+--f6Qn7+5fTTxrbIBt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Disable the MDIO nodes in the dtsi files and only enable the ones that
-are actually pinned out on a given board.
+On Mon, May 15, 2023 at 05:57:47PM +0200, Krzysztof Kozlowski wrote:
+> Document TeeJet vendor prefix (used in am3517_mt_ventoux.dts board).
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts    | 10 ----------
- arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts |  8 --------
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi             |  2 ++
- arch/arm64/boot/dts/ti/k3-j721e-sk.dts                |  8 --------
- 4 files changed, 2 insertions(+), 26 deletions(-)
+I tried to google what a mt ventoux was but there appears to be precious
+little information on it.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-index be0c5431119e..a7b686cab3e6 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-@@ -883,16 +883,6 @@ &pcie1_rc {
- 	reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_HIGH>;
- };
- 
--&icssg0_mdio {
--	/* Unused */
--	status = "disabled";
--};
--
--&icssg1_mdio {
--	/* Unused */
--	status = "disabled";
--};
--
- &ufs_wrapper {
- 	status = "disabled";
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index 975a5161eb96..68afc3cedfd8 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -843,14 +843,6 @@ &pcie2_rc {
- 	num-lanes = <2>;
- };
- 
--&icssg0_mdio {
--	status = "disabled";
--};
--
--&icssg1_mdio {
--	status = "disabled";
--};
--
- &mcu_mcan0 {
- 	status = "okay";
- 	pinctrl-names = "default";
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 18f4661d37bf..65d087cf8cd9 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -2013,6 +2013,7 @@ icssg0_mdio: mdio@32400 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			bus_freq = <1000000>;
-+			status = "disabled";
- 		};
- 	};
- 
-@@ -2154,6 +2155,7 @@ icssg1_mdio: mdio@32400 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			bus_freq = <1000000>;
-+			status = "disabled";
- 		};
- 	};
- 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-index 66a8559b3755..94bf5057f363 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-sk.dts
-@@ -893,14 +893,6 @@ &pcie1_rc {
- 	num-lanes = <2>;
- };
- 
--&icssg0_mdio {
--	status = "disabled";
--};
--
--&icssg1_mdio {
--	status = "disabled";
--};
--
- &ufs_wrapper {
- 	status = "disabled";
- };
--- 
-2.39.2
+Cheers,
+Conor.
 
+> Cc: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
+umentation/devicetree/bindings/vendor-prefixes.yaml
+> index c3d426509e7e..5258090e2e02 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1341,6 +1341,8 @@ patternProperties:
+>      description: Technologic Systems
+>    "^techstar,.*":
+>      description: Shenzhen Techstar Electronics Co., Ltd.
+> +  "^teejet,.*":
+> +    description: TeeJet
+>    "^teltonika,.*":
+>      description: Teltonika Networks
+>    "^tempo,.*":
+> --=20
+> 2.34.1
+>=20
+
+--f6Qn7+5fTTxrbIBt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGJq2AAKCRB4tDGHoIJi
+0qp7AP9m1NXo9WESblF1ux0++KWkRFk5T4b8CcRC7hoNS82MpgEAw/ZIuWXYPrLC
+7FV8RDjRiEi1eZn1KT44o2iPFz2urAk=
+=rQuS
+-----END PGP SIGNATURE-----
+
+--f6Qn7+5fTTxrbIBt--
