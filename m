@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB9CD702D60
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 15:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96F20702D62
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 15:04:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242099AbjEONEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 09:04:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50310 "EHLO
+        id S242109AbjEONEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 09:04:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242089AbjEONEc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 09:04:32 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 239981999
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 06:04:31 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f004cc54f4so14683683e87.3
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 06:04:31 -0700 (PDT)
+        with ESMTP id S242106AbjEONEd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 09:04:33 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F6519B7
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 06:04:32 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2ac80ed7f26so135377181fa.1
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 06:04:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684155869; x=1686747869;
+        d=linaro.org; s=google; t=1684155870; x=1686747870;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TGOJOYG70cN/KGmZclN4Kq6rfFVITAlENQe3wvldGFk=;
-        b=a5nDGF7rksHDgevXg2zyWmIWc8vj2V5NROKEZVW5SsCDhfUkFbh/HagIviZR+7JvI0
-         LTwBO0a2RSIYhHRNQ75PAfl7gwOmFDzd8iar6DtY91nhlhFuvOT6+ajuq19iZAzbzu3Q
-         tjCm3FWOdHmDuT0XAonZWPFrGRKNfDZNZXXzWmixbYTdQF214lu9No8kgV5+C7WbS/PI
-         5wSkaqOs40/HPFF3Pv426msimLO/iA6tT89HztE3jMvgJnbUkqrFeqysE4+cu2aNoGrA
-         1LLctSnuZngzIDd2ohtPyN9Q/LbkzY4hsQSp7U5hkwRAGef5ReFS85WcqTbfIQrcyMCX
-         S3Bw==
+        bh=m2/tkDIoYNjgUmzZJee4bBP3k9tNdqD/UOXI+DkOBoc=;
+        b=gy32jItCDuWHzsiEBoXF+Lxe78CF2xA6qCgJLYKIRzjMYE9xEhu4ewIfGiR+FsIvcX
+         4m7BwmZy6iy9y5EmRQcsj1E2wpeYTGIAuTEUxIVnKkHmEduUAFBu2oFvBWNfCcjgJ8bf
+         VD31nJKbvI+rr7DQdpbvoKRWkGCpCTC89oDsMiQXa6KWevRnU9mpDy2u9UImVQGBZzeW
+         SrjgHwm/TUxsJP8tLLBSFYpnT6d/udz3OFRxKC5/ky/P5GIqJGuR4ouKzVHp1bH4BQ22
+         vyCVrfqWhEiClClzYViofKIxBOUq3lI2BUGlNuQFf8/scbzF7gbyZwn5UW8Q/laJHobC
+         JD9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684155869; x=1686747869;
+        d=1e100.net; s=20221208; t=1684155870; x=1686747870;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=TGOJOYG70cN/KGmZclN4Kq6rfFVITAlENQe3wvldGFk=;
-        b=M7/q4EKZbKihO9ZDhX1KLdrthT7NpLHY+lKd8GOtoErqHBygOXPbI6d98hShNLgAzZ
-         Zk7euWb5CjbJbn650O7xLBT90O9xVmQtsNgmBrKy2m3bhMh0ELSxSWG/uTRDKBpNkcQk
-         VUYoqiBiNv2zPD+Btl9yOEZzd1GTXTsW5iDu2JECWKBH0Ab4wsPSAug/p4s2Er7bZcVA
-         XOITTlc66fWPYogmhwU0HtNtHqQPm7GLqk6A3obwBX3yHBc0Y7vxFPvEcy6x/NjPgl1E
-         xqBrRM5y2u+SQggPkhago/UfFL6kb+n67Vlvn7ERytxC7llw0g20KLkTQXFwmH4X7IV9
-         KkLQ==
-X-Gm-Message-State: AC+VfDxcfU+a0p+7BR43M5KTQrPsihJgwDlWUghqItQRG8Knp1tFFMQ3
-        JNhrHM9vPXkEruK+GMAcDSYJkA==
-X-Google-Smtp-Source: ACHHUZ62QeRsBJLuZ86JMb5gIDlBTyRP1XPTcVM+7GKy4gX/gFNF1oWdNsslGDUQa6nUX/AKEi4JKA==
-X-Received: by 2002:ac2:46fc:0:b0:4e8:4abf:f19d with SMTP id q28-20020ac246fc000000b004e84abff19dmr6724908lfo.15.1684155869511;
-        Mon, 15 May 2023 06:04:29 -0700 (PDT)
+        bh=m2/tkDIoYNjgUmzZJee4bBP3k9tNdqD/UOXI+DkOBoc=;
+        b=dSa9tzCbLvEy9G+Tlri1PKYt16JcvCCTaxVs/kTMcAZLVqHry4c8b6iAWoNhlFcAhd
+         OSixRUOTUiykFWCK7SO4tRTBTtxW38wxX2+IYlvC+QrBEDypAQr6fJ8EHkLBAy1pNM3X
+         hegOk4kjERUwRBnT5eGdi/G1QRo8ZVvIBLZqtu8d6co/VMOP9PlkzdyBU/Bniyry/U7y
+         1nDwIlVQItHmizmq0TXylJs8oRhNALbPf1fLL0g0u6iMNabLwJdJLIn58p7p/8KrKjQg
+         7k45QIihNRYGs4+f5ej9t6iEo0X5W+2eCAPf4NWJ2YnDJE0b/LwaovDeMfw9nHgHZI6z
+         bXWQ==
+X-Gm-Message-State: AC+VfDwFLkpYjQESX4aMbzhsHtvTN5nhn6SVRZ68kHsVenIDciiKV4qr
+        VUmq/eWswnicqzcsPkQLUBB+9Q==
+X-Google-Smtp-Source: ACHHUZ6dhCM9WsTOgBuzUKY8VdLldrJJ2ARzWzNRChRiYgE79NdxYYyP+feT993QbDiIqNt/ICqGWg==
+X-Received: by 2002:a2e:9d03:0:b0:2a7:a616:c39 with SMTP id t3-20020a2e9d03000000b002a7a6160c39mr7060152lji.48.1684155870641;
+        Mon, 15 May 2023 06:04:30 -0700 (PDT)
 Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id x27-20020ac25ddb000000b004f37a64c90asm785823lfq.303.2023.05.15.06.04.28
+        by smtp.gmail.com with ESMTPSA id x27-20020ac25ddb000000b004f37a64c90asm785823lfq.303.2023.05.15.06.04.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 May 2023 06:04:29 -0700 (PDT)
+        Mon, 15 May 2023 06:04:30 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Mon, 15 May 2023 15:04:14 +0200
-Subject: [PATCH 3/5] arm64: dts: qcom: qrb4210-rb2: Add GPIO LEDs
+Date:   Mon, 15 May 2023 15:04:15 +0200
+Subject: [PATCH 4/5] arm64: dts: qcom: qrb4210-rb2: Enable load setting on
+ SDHCI VQMMC
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230515-topic-rb2-bits-v1-3-a52d154a639d@linaro.org>
+Message-Id: <20230515-topic-rb2-bits-v1-4-a52d154a639d@linaro.org>
 References: <20230515-topic-rb2-bits-v1-0-a52d154a639d@linaro.org>
 In-Reply-To: <20230515-topic-rb2-bits-v1-0-a52d154a639d@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
@@ -69,11 +70,11 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1684155864; l=1837;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1684155864; l=994;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=gmZbSh+JOUC+q5+4Lzmg2xUn1mIKUGv1YtKkgkYpX78=;
- b=fZAz1gy9ePR31Ep8NxEzX/W0TI0WEiBFUIeyMvp9kchEpAsW12jE3xheLtb/D+6lfseIw//GW
- +NHQruS5/M2DS4c3wnx0n0kdFILoBibvbEBjQaIYHdPKjHvZRNOpNK6
+ bh=5QQdPjDBeY9vuV0k49Svsx2cwcJ7/t3g8jImhtA6NXg=;
+ b=KWq0dG+FBeabaLiR2bgh96N0xMCpj8Ka3o/MSpg0kbUs/LqrwosH+WVvzQ8PclNGQopB6U0YX
+ 7nI4tVqXY8kAQLmECPpJBSsrYqcB71CGhySzryHIW4D91R0YSaL/rFP
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,74 +87,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the three LEDs (blue/yellow/green) connected to TLMM GPIOs.
+The MMC core calls regulator_set_load on VQMMC, enable loadsetting to
+make it effective.
 
+Fixes: 8d58a8c0d930 ("arm64: dts: qcom: Add base qrb4210-rb2 board dts")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 36 ++++++++++++++++++++++++++++++--
- 1 file changed, 34 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-index 9b539720f05d..eeee268ebfe2 100644
+index eeee268ebfe2..224c96bba35f 100644
 --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
 +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-@@ -5,6 +5,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/leds/common.h>
- #include "sm4250.dtsi"
- 
- / {
-@@ -30,6 +31,38 @@ hdmi_con: endpoint {
+@@ -283,6 +283,7 @@ vreg_l4a_0p9: l4 {
+ 		vreg_l5a_2p96: l5 {
+ 			regulator-min-microvolt = <1648000>;
+ 			regulator-max-microvolt = <3056000>;
++			regulator-allow-set-load;
  		};
- 	};
  
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-bt {
-+			label = "blue:bt";
-+			function = LED_FUNCTION_BLUETOOTH;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&tlmm 45 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "bluetooth-power";
-+			default-state = "off";
-+		};
-+
-+		led-user0 {
-+			label = "green:user0";
-+			function = LED_FUNCTION_INDICATOR;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&tlmm 52 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "none";
-+			default-state = "off";
-+			panic-indicator;
-+		};
-+
-+		led-wlan {
-+			label = "yellow:wlan";
-+			function = LED_FUNCTION_WLAN;
-+			color = <LED_COLOR_ID_YELLOW>;
-+			gpios = <&tlmm 47 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "phy0tx";
-+			default-state = "off";
-+		};
-+	};
-+
- 	vreg_hdmi_out_1p2: regulator-hdmi-out-1p2 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VREG_HDMI_OUT_1P2";
-@@ -385,8 +418,7 @@ &sleep_clk {
- };
+ 		vreg_l6a_0p6: l6 {
+@@ -313,6 +314,7 @@ vreg_l10a_1p8: l10 {
+ 		vreg_l11a_1p8: l11 {
+ 			regulator-min-microvolt = <1704000>;
+ 			regulator-max-microvolt = <1952000>;
++			regulator-allow-set-load;
+ 		};
  
- &tlmm {
--	gpio-reserved-ranges = <43 2>, <47 1>,
--			       <49 1>, <52 1>, <54 1>,
-+	gpio-reserved-ranges = <43 2>, <49 1>, <54 1>,
- 			       <56 3>, <61 2>, <64 1>,
- 			       <68 1>, <72 8>, <96 1>;
- 
+ 		vreg_l12a_1p8: l12 {
 
 -- 
 2.40.1
