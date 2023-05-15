@@ -2,181 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA98B7040DB
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 00:21:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A646B7040E4
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 00:23:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245753AbjEOWVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 18:21:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35322 "EHLO
+        id S245344AbjEOWXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 18:23:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245707AbjEOWVR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 18:21:17 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB73283CF;
-        Mon, 15 May 2023 15:21:12 -0700 (PDT)
-Received: from mercury (unknown [185.209.196.239])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        with ESMTP id S236784AbjEOWXl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 18:23:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BDFEA3;
+        Mon, 15 May 2023 15:23:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E820966031F6;
-        Mon, 15 May 2023 23:21:10 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1684189271;
-        bh=TljpJuryyNUQm+r5oLFgy7IGcSJ+Q9wT05wsiU65Aw8=;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 035846334A;
+        Mon, 15 May 2023 22:23:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 191A4C433D2;
+        Mon, 15 May 2023 22:23:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684189419;
+        bh=OqIemthk74Japxf8JKty+wpFYdyckxcj/Mt28A6kSCU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=l5tcLAf4N5zEwsMORMvOFHVHWsYTdiFzxns8WMwhHXsOpqVOdtccj7HZ3QsOe9eWX
-         bDAck7J6tjdNMksodrmGOIMC9mgFAbizNjjPwwLwISSwB+w5Egbt4TXvgSd9gsOYGY
-         0bjD569lCcaUYtaPoy6ToJ/CssJxY5l+F61JkBNqxTcQ2Gjdzvduw2oDgjon1WvirK
-         SxlgvN1NTEAYwYdN12mbxVszflgXfs5iKz6jUlofh3/hMeMN1upA+lBWNcz5QHNRZ/
-         fHsFiLQwkkvS/QqN96r+jzqPkbynGwWNpFUPnnIhsV0vtm6e4/veFIlrIEfWHHy2Yj
-         8Zcz3vuBXy/JA==
-Received: by mercury (Postfix, from userid 1000)
-        id 5A7971060F7F; Tue, 16 May 2023 00:21:07 +0200 (CEST)
-Date:   Tue, 16 May 2023 00:21:07 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     Iskren Chernev <me@iskren.info>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Matheus Castello <matheus@castello.eng.br>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/4] power: max17040: add simple battery cell support
-Message-ID: <20230515222107.kwcb6astisbmdcwe@mercury.elektranox.org>
-References: <20230308084419.11934-1-clamor95@gmail.com>
- <20230308084419.11934-3-clamor95@gmail.com>
+        b=J5uGurHmS/0tRRbC7hB2MmYS8N06SxfaPIOP4Ch/thZWa/94X9c8zKIl1D0wSnCjk
+         dqBRrTNde11hMZcSBH1zyPJWt5MateFyXxPxSGOpd2jT2Fz51l3xmilc1MRjo/DIj4
+         4lhVERDDv1fNus0XCxlYxU4dh2qNS5Kx3vA+78uNSXIkU7pC/qnYwuA2hqEO2n6mgt
+         EFhtTDAGl8p27u3cho7fV2IuBkc4I5HiciCI+zqUNU0BrF8KtveSqHCOIc5bIVi4Ua
+         EC0GuBHLmURNMjkxGUfDl/CXGuJniAGQ9al+OlAK1Bj6Oki4cyH2cCXBchjTNW8y/r
+         2OzRZOJEMwQPw==
+Date:   Mon, 15 May 2023 15:27:30 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
+        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
+        ahalaney@redhat.com
+Subject: Re: [PATCH v8 6/9] usb: dwc3: qcom: Add multiport controller support
+ for qcom wrapper
+Message-ID: <20230515222730.7snn2i33gkg6ctd2@ripper>
+References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
+ <20230514054917.21318-7-quic_kriskura@quicinc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="hkrjka3iyhxlb5qx"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230308084419.11934-3-clamor95@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230514054917.21318-7-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---hkrjka3iyhxlb5qx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Wed, Mar 08, 2023 at 10:44:17AM +0200, Svyatoslav Ryhel wrote:
-> Simple battery cell allows to pass some constant data
-> about battery controlled by this fuel gauge.
->=20
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+On Sun, May 14, 2023 at 11:19:14AM +0530, Krishna Kurapati wrote:
+> QCOM SoC SA8295P's tertiary quad port controller supports 2 HS+SS
+> ports and 2 HS only ports. Add support for configuring PWR_EVENT_IRQ's
+> for all the ports during suspend/resume.
+> 
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
 > ---
-
-This patch is no longer needed, since the core should automatically
-expose the properties with the latest kernel:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-id=3D27a2195efa8d26447c40dd4a6299ea0247786d75
-
--- Sebastian
-
->  drivers/power/supply/max17040_battery.c | 34 +++++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
->=20
-> diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supp=
-ly/max17040_battery.c
-> index d1075959dd46..2778ed5b5c14 100644
-> --- a/drivers/power/supply/max17040_battery.c
-> +++ b/drivers/power/supply/max17040_battery.c
-> @@ -141,6 +141,7 @@ struct max17040_chip {
->  	struct regmap			*regmap;
->  	struct delayed_work		work;
->  	struct power_supply		*battery;
-> +	struct power_supply_battery_info	*batt_info;
->  	struct chip_data		data;
-> =20
->  	/* battery capacity */
-> @@ -400,6 +401,28 @@ static int max17040_get_property(struct power_supply=
- *psy,
->  	case POWER_SUPPLY_PROP_CAPACITY_ALERT_MIN:
->  		val->intval =3D chip->low_soc_alert;
->  		break;
-> +
-> +	case POWER_SUPPLY_PROP_TECHNOLOGY:
-> +		val->intval =3D chip->batt_info->technology;
-> +		break;
-> +	case POWER_SUPPLY_PROP_ENERGY_FULL_DESIGN:
-> +		val->intval =3D chip->batt_info->energy_full_design_uwh;
-> +		break;
-> +	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
-> +		val->intval =3D chip->batt_info->charge_full_design_uah;
-> +		break;
-> +	case POWER_SUPPLY_PROP_TEMP_MIN:
-> +		if (chip->batt_info->temp_min =3D=3D INT_MIN)
-> +			return -ENODATA;
-> +
-> +		val->intval =3D chip->batt_info->temp_min * 10;
-> +		break;
-> +	case POWER_SUPPLY_PROP_TEMP_MAX:
-> +		if (chip->batt_info->temp_max =3D=3D INT_MAX)
-> +			return -ENODATA;
-> +
-> +		val->intval =3D chip->batt_info->temp_max * 10;
-> +		break;
->  	default:
->  		return -EINVAL;
->  	}
-> @@ -418,6 +441,11 @@ static enum power_supply_property max17040_battery_p=
-rops[] =3D {
->  	POWER_SUPPLY_PROP_VOLTAGE_NOW,
->  	POWER_SUPPLY_PROP_CAPACITY,
->  	POWER_SUPPLY_PROP_CAPACITY_ALERT_MIN,
-> +	POWER_SUPPLY_PROP_TECHNOLOGY,
-> +	POWER_SUPPLY_PROP_ENERGY_FULL_DESIGN,
-> +	POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
-> +	POWER_SUPPLY_PROP_TEMP_MIN,
-> +	POWER_SUPPLY_PROP_TEMP_MAX,
+>  drivers/usb/dwc3/dwc3-qcom.c | 28 ++++++++++++++++++++++------
+>  1 file changed, 22 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+> index 959fc925ca7c..7a9bce66295d 100644
+> --- a/drivers/usb/dwc3/dwc3-qcom.c
+> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+> @@ -37,7 +37,10 @@
+>  #define PIPE3_PHYSTATUS_SW			BIT(3)
+>  #define PIPE_UTMI_CLK_DIS			BIT(8)
+>  
+> -#define PWR_EVNT_IRQ_STAT_REG			0x58
+> +#define PWR_EVNT_IRQ1_STAT_REG			0x58
+> +#define PWR_EVNT_IRQ2_STAT_REG			0x1dc
+> +#define PWR_EVNT_IRQ3_STAT_REG			0x228
+> +#define PWR_EVNT_IRQ4_STAT_REG			0x238
+>  #define PWR_EVNT_LPM_IN_L2_MASK			BIT(4)
+>  #define PWR_EVNT_LPM_OUT_L2_MASK		BIT(5)
+>  
+> @@ -93,6 +96,13 @@ struct dwc3_qcom {
+>  	struct icc_path		*icc_path_apps;
 >  };
-> =20
->  static const struct power_supply_desc max17040_battery_desc =3D {
-> @@ -470,6 +498,12 @@ static int max17040_probe(struct i2c_client *client)
->  		return PTR_ERR(chip->battery);
->  	}
-> =20
-> +	if (client->dev.of_node) {
-> +		if (power_supply_get_battery_info(chip->battery, &chip->batt_info))
-> +			dev_warn(&client->dev,
-> +				 "No monitored battery, some properties will be missing\n");
-> +	}
+>  
+> +static u32 pwr_evnt_irq_stat_reg_offset[4] = {
+> +			PWR_EVNT_IRQ1_STAT_REG,
+> +			PWR_EVNT_IRQ2_STAT_REG,
+> +			PWR_EVNT_IRQ3_STAT_REG,
+> +			PWR_EVNT_IRQ4_STAT_REG,
+
+Seems to be excessive indentation of these...
+
+Can you also please confirm that these should be counted starting at 1 -
+given that you otherwise talk about port0..N-1?
+
+> +};
 > +
->  	ret =3D max17040_get_version(chip);
->  	if (ret < 0)
->  		return ret;
-> --=20
-> 2.37.2
->=20
+>  static inline void dwc3_qcom_setbits(void __iomem *base, u32 offset, u32 val)
+>  {
+>  	u32 reg;
+> @@ -413,13 +423,16 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
+>  {
+>  	u32 val;
+>  	int i, ret;
+> +	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
+>  
+>  	if (qcom->is_suspended)
+>  		return 0;
+>  
+> -	val = readl(qcom->qscratch_base + PWR_EVNT_IRQ_STAT_REG);
+> -	if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
+> -		dev_err(qcom->dev, "HS-PHY not in L2\n");
+> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
 
---hkrjka3iyhxlb5qx
-Content-Type: application/pgp-signature; name="signature.asc"
+In the event that the dwc3 core fails to acquire or enable e.g. clocks
+its drvdata will be NULL. If you then hit a runtime pm transition in the
+dwc3-qcom glue you will dereference NULL here. (You can force this issue
+by e.g. returning -EINVAL from dwc3_clk_enable()).
 
------BEGIN PGP SIGNATURE-----
+So if you're peaking into qcom->dwc3 you need to handle the fact that
+dwc might be NULL, here and in resume below.
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmRisFMACgkQ2O7X88g7
-+poBdQ//W4rRMW3jBCMvd0Ift+Be0vCAjMBzuaI/dNcZDI50E0Mvm0xFQXm6hgCQ
-S1tjwQ3iNsF3eYn+nUZlcOqyT/jk3AMOLipUmqbcsHIck1Yn1gaIp44K0/S6z96z
-rpFwYfge7CAE3JSZdfz3iSDlMeOSMX7gzdLuPAcL6rjF22bl54plFh7gCgD1URCr
-6ZBrdtEEgYlvT5wMyM0CTf0uctirG4LgULPPVd7gSJ4nQ8KalJ0M67fhvntGKAxP
-zAFM+VOKZVhFuQtxExjbUzKZ6kB9MNAtBhFfZ5Wbk5n8IzBn/X4j0aovfc3mJGPE
-PitJceG5YrbUaVrQ05Z8b0mkspoHLtOBkC+X4aMRWKh1rvmdYd4U7Ht6fMqB8W/v
-RGz9OlNdinkckrypi1UdP9Na3IqWpTR2m/QW8AGkz/E1dkcjUkl1tNDwsKj5Ff1W
-0K0WsDj13U2nCsDmAPEj3xkwBtpj0u1oh35EYpA87DEE58YmOUqQf+nESjaUt/U4
-KArMCBBWyUwQJJs1DCI/oHV5mrczHwU9HAkXTT+fla29NkJVoZ1ffg//skc5dgfY
-XJAdFZS5LueJcHrSifKKxWZDIcka7/e52Tt9dNIaPieWmLtWo7GYNPEE7S27UFiM
-6TNzt0C1orsvvKLeiYt5WeMlwtF1Av0rBq1PZ1nM7VfH3KPPz9k=
-=IFJn
------END PGP SIGNATURE-----
-
---hkrjka3iyhxlb5qx--
+Regards,
+Bjorn
