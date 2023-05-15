@@ -2,123 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEB06703721
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:17:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A7CF70375B
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:20:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243840AbjEORRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 13:17:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60980 "EHLO
+        id S243933AbjEORUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 13:20:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243912AbjEORQt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:16:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A39711558;
-        Mon, 15 May 2023 10:15:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D24DE62BE0;
-        Mon, 15 May 2023 17:15:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97BB7C4339C;
-        Mon, 15 May 2023 17:15:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684170931;
-        bh=Ev9noomAYJfnt2AIcctg5rEid6cEDTtCWoPYWoVf+aQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HkwiFK+JuMl25oOozpqhCwBZrNmt5R+yTHWLNsmkSSGle0QgrkFnRG5Eivgw+nn9o
-         5tYNxUYoFLwBMndntqThOY/VxXn7OLjnexsp0Op4L+ETxEcUNimiCeledGaHalADcY
-         aClbbxd9kXSuKR7k6qVaQCcbQnUhzirHnGDpHoLsTa2zUdOYupO6ZrXZ06vxvRhk6c
-         pRIURWR1dpLFOBDbkgVRhenkpVbrX8YqjF9RZqksfmCdrI2dJWuskGgZb7pvIqkXRI
-         tuzfD5husbKiz1LsPLly/mIT5A+byE8uzJKg7I6uVBuoLrxko1BToNdl1HZv1UADxA
-         0pLqH3AO4XIrw==
-Date:   Mon, 15 May 2023 18:15:26 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Yangtao Li <frank.li@vivo.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Icenowy Zheng <uwu@icenowy.me>, Wei Fu <wefu@redhat.com>,
-        Jisheng Zhang <jszhang@kernel.org>
-Subject: Re: [PATCH 3/3] MAINTAINERS: update entry for T-HEAD RISC-V SoC
-Message-ID: <20230515-skimpily-pluck-0a1f71e36020@spud>
-References: <20230515054402.27633-1-frank.li@vivo.com>
- <20230515054402.27633-4-frank.li@vivo.com>
+        with ESMTP id S243965AbjEORTr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:19:47 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFA7A49D5;
+        Mon, 15 May 2023 10:17:48 -0700 (PDT)
+Received: from p5dc58da0.dip0.t-ipconnect.de ([93.197.141.160] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1pybpK-0004pc-2e; Mon, 15 May 2023 19:17:38 +0200
+Date:   Mon, 15 May 2023 19:17:35 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     arnd@arndb.de, olof@lixom.net, soc@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, bcousson@baylibre.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: omap4: add initial support for Epson Moverio
+ BT-200
+Message-ID: <20230515191735.6d671ef1@aktux>
+In-Reply-To: <20230327082137.GH7501@atomide.com>
+References: <20230313110409.2294154-1-andreas@kemnade.info>
+        <20230327082137.GH7501@atomide.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.24; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="++jOKj3XXxEhTRyC"
-Content-Disposition: inline
-In-Reply-To: <20230515054402.27633-4-frank.li@vivo.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---++jOKj3XXxEhTRyC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, 27 Mar 2023 11:21:37 +0300
+Tony Lindgren <tony@atomide.com> wrote:
 
-On Mon, May 15, 2023 at 01:44:01PM +0800, Yangtao Li wrote:
-> Wei and me would like to help support and maintain too.
->=20
-> Cc: Icenowy Zheng <uwu@icenowy.me>
-> Cc: Wei Fu <wefu@redhat.com>
-> Cc: Jisheng Zhang <jszhang@kernel.org>
-> Signed-off-by: Yangtao Li <frank.li@vivo.com>
-> ---
->  MAINTAINERS | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e1e51accec4f..dc35c654f78e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18155,11 +18155,15 @@ T:	git https://git.kernel.org/pub/scm/linux/ker=
-nel/git/conor/linux.git/
->  F:	Documentation/devicetree/bindings/riscv/
->  F:	arch/riscv/boot/dts/
-> =20
-> -RISC-V THEAD SoC SUPPORT
-> +RISC-V T-HEAD SOC SUPPORT
->  M:	Jisheng Zhang <jszhang@kernel.org>
-> +M:	Wei Fu <wefu@redhat.com>
-> +M:	Yangtao Li <frank.li@vivo.com>
->  L:	linux-riscv@lists.infradead.org
->  S:	Maintained
->  F:	arch/riscv/boot/dts/thead/
-> +F:	drivers/clk/clk-th1520.c
+> * Andreas Kemnade <andreas@kemnade.info> [230313 13:04]:
+> > yes, epson,embt2ws is unknown, is the txt->yaml conversion around the
+> > corner? I would then resubmit it includding an addition
+> > to that yaml. If not probably I resubmit the conversion patch with
+> > the compatible added. But that should not stop the rest of this patch from
+> > being reviewed.  
+> 
+> Yeah let's do the yaml conversion first as otherwise we'll be adding some
+> extra warnings for the dt folks.
+> 
+> Your patch looks otherwise OK to me.
+> 
+do you expect any action from me here? As Krzysztof has given his
+Reviewed-by on the conversion patch, I would expect that it gets in right
+after that omap.yaml conversion patch if nobody objects.
 
-Please tell me you actually communicated with Jisheng this time about
-maintainership of stuff, since you're signing them up to maintain the
-dt-bindings and the clock driver!
-
-Thanks,
-Conor.
-
-> +F:	include/dt-bindings/clock/th1520-clock.h
-> =20
->  RNBD BLOCK DRIVERS
->  M:	Md. Haris Iqbal <haris.iqbal@ionos.com>
-> --=20
-> 2.39.0
->=20
-
---++jOKj3XXxEhTRyC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGJorgAKCRB4tDGHoIJi
-0hKKAQDjAVao6ahBxcrNBFDV6+WHrLkkFLBnLKnwkip62Qw5WwD/UQA7kNd/ynHV
-xPGDx/VtvKrvvAVJX7emHY4xguA2JAQ=
-=oQCM
------END PGP SIGNATURE-----
-
---++jOKj3XXxEhTRyC--
+Regards,
+Andreas
