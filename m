@@ -2,73 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 291EE703843
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 526257038FA
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:37:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244160AbjEORbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 13:31:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47258 "EHLO
+        id S244418AbjEORhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 13:37:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244167AbjEORac (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:30:32 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02AF7DD88
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 10:27:48 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1aaf21bb427so93240575ad.1
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 10:27:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684171666; x=1686763666;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HV5hzOslSr/FLxQgkUOdAb0ubgv7oB3Gzqp0pqYMQsc=;
-        b=X/eq65FBsDIPDo2Wfb1iwHSoJisHGVKTWyP2n3KTfJga69cQVWysciK1ZDjhlavC7r
-         KF0RmdnEOogoZKah/bR6k20VbeKpwafYM9t8+/0zY0xRXIduYg5yKbZ9E6spflp3waIe
-         GHVj0DHBIfvPtm7rnej1OBje66kBLGnnF/lbmDHV3A0dDQxPl5+hmVEmPpmEDv9w3OHh
-         UdmxdlwCJkaUDXTY0670ar+7CIlGLDPLlRePUFxclSKX/9evlhDEUmIW0nfA20CB5udq
-         MKNhHPmvJbbF59DU9avkZkGi6z+FgiUYleHpVpaKex3BexNZMM6HvJcuYogUEAzL7LUs
-         da0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684171666; x=1686763666;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HV5hzOslSr/FLxQgkUOdAb0ubgv7oB3Gzqp0pqYMQsc=;
-        b=SG4Jeem7mhufn5BnNmY16kvTSep/4fcTOlp41f7jh3KjBUQiqHiM8ppCsXox2tI8CW
-         VXqQkAikSVG0WeomgJ/tbwv61klcPBZxKI7OCcN54DpwaSOqJ6qEkxBGT9m/m7zKyBov
-         w1gYku9EMD62/jtdV5ykjkWpjlK75UXijyUYoyYCvlcdscQFrh8K0FKbHqTL01VQAbLI
-         mfsdGKjxOcJEO8HSizXJ6NA4+We50wHe4sJpt47TpmVf25UujnTMphZwjaz8FUZGtXKI
-         CJecqK+wAl8QMEbfTbFlpzzV/J+T13VSaHvmTswq0KDrRGUkSzbSUSlffYqJwq1Xo7Ae
-         g30w==
-X-Gm-Message-State: AC+VfDxqL6ap5Vl8ZnxmgWOfZM6ZcVVerCEy7fCrr1Ak/wptkCIiRMOZ
-        0p7Z8wTpp/rx2A9gHoIVkErZZg==
-X-Google-Smtp-Source: ACHHUZ7MrWABVtEdp/AF7fMlIN83m73eYhwUr7xcWs5Y2Ma+gMOWf1rxaW/Y38x6qhqzqMOLcvdB2A==
-X-Received: by 2002:a17:902:a516:b0:1ab:1355:1a45 with SMTP id s22-20020a170902a51600b001ab13551a45mr32579411plq.30.1684171665794;
-        Mon, 15 May 2023 10:27:45 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:d401:af78:6aa0:cf61])
-        by smtp.gmail.com with ESMTPSA id d1-20020a170902aa8100b001aafb802efbsm13847316plr.12.2023.05.15.10.27.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 May 2023 10:27:45 -0700 (PDT)
-Date:   Mon, 15 May 2023 11:27:43 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S244435AbjEORgw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:36:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4106317949;
+        Mon, 15 May 2023 10:34:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 143C262DB6;
+        Mon, 15 May 2023 17:34:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 106D6C433A1;
+        Mon, 15 May 2023 17:34:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684172065;
+        bh=ZhczMg7BcIRbvgQ6nKtaj0yIcga6i1Gg3pQFmQuOxFM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oMgl1ycJpxn4uldR6cZJiQnZU/65OoKiShjWRSze6hCT1SKoSBxwY/ZoBha1x6NGt
+         Ad6s0x7YZRfz4C56Xx28lWAT7EnM6H2qqxJDKcoZHLFhhYH4eKFNj3+2sSWKnNBkOK
+         UYJcZozK/Ief3CdBIumcZ9Z4WEkXrKPWELR+b3z0PiVd2Nejk8Fh5jTXRIkaWDMaxP
+         k7ZlBnnRizzrtNEplHB00LQAozY2DUCc/DYbB3l99XrsfGB5lttzSUD348xz7zY4Ol
+         XG4zV74rk77vtyd/kcaIF2zlfODLGLMfzf2qbp3L1AO9r2VyrsjnEtvAVtKahdX0g5
+         pzc+rtW3H7LKg==
+Date:   Mon, 15 May 2023 18:34:16 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     Felix Fietkau <nbd@nbd.name>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/4] stm32mp15: update remoteproc to support SCMI
- Device tree
-Message-ID: <ZGJrj9Vu2H9NZdlH@p14s>
-References: <20230512093926.661509-1-arnaud.pouliquen@foss.st.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Peter Chiu <chui-hao.chiu@mediatek.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Alexander Couzens <lynxis@fe80.eu>,
+        Sujuan Chen <sujuan.chen@mediatek.com>,
+        Bo Jiao <bo.jiao@mediatek.com>,
+        Nicolas Cavallari <nicolas.cavallari@green-communications.fr>,
+        Howard Hsu <howard-yh.hsu@mediatek.com>,
+        MeiChia Chiu <MeiChia.Chiu@mediatek.com>,
+        Johannes Berg <johannes.berg@intel.com>,
+        Wang Yufen <wangyufen@huawei.com>,
+        Lorenz Brun <lorenz@brun.one>, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: wireless: mt76: add bindings
+ for MT7981
+Message-ID: <20230515-kilt-reanalyze-a38e556756e4@spud>
+References: <cover.1684155848.git.daniel@makrotopia.org>
+ <0f04fcc9f81cd15a8ee2a9194cf95f2b924ef299.1684155848.git.daniel@makrotopia.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="4YT4Z+CDln4kywVw"
 Content-Disposition: inline
-In-Reply-To: <20230512093926.661509-1-arnaud.pouliquen@foss.st.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <0f04fcc9f81cd15a8ee2a9194cf95f2b924ef299.1684155848.git.daniel@makrotopia.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,69 +86,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 12, 2023 at 11:39:22AM +0200, Arnaud Pouliquen wrote:
-> Update vs V2[1]:
-> ---------------
-> - update yaml to remove label in examples
-> - fix error management for  devm_reset_control_get_optional(dev, "hold_boot")
-> - rebased on commit ac9a78681b92 ("Linux 6.4-rc1")
-> 
-> [1]https://lore.kernel.org/lkml/20230504094641.870378-1-arnaud.pouliquen@foss.st.com/T/
-> 
-> 
-> Description:
-> -----------
-> This series updates the stm32_rproc driver and associated DT node to
-> support device tree configuration with and without SCMI server. 
-> The impact is mainly on the MCU hold boot management.
-> 
-> Three configurations have to be supported:
-> 
-> 1) Configuration without OP-TEE SCMI (legacy): Trusted context not activated
-> - The MCU reset is controlled through the Linux RCC reset driver.
-> - The MCU HOLD BOOT is controlled through The RCC sysconf.
-> 
-> 2) Configuration with SCMI server: Trusted context activated
-> - The MCU reset is controlled through the SCMI reset service.
-> - The MCU HOLD BOOT is no more controlled through a SMC call service but
->   through the SCMI reset service.
-> 
-> 3) Configuration with OP-TEE SMC call (deprecated): Trusted context activated
-> - The MCU reset is controlled through the Linux RCC reset driver.
-> - The MCU HOLD BOOT is controlled through The SMC call.
-> 
-> In consequence this series:
-> - adds the use of the SCMI reset service to manage the MCU hold boot,
-> - determines the configuration to use depending on the presence of the
->   "reset-names" property
->   if ( "reset-names" property contains "hold_boot")
->   then use reset_control services
->   else use regmap access based on "st,syscfg-holdboot" property.
-> - set the DT st,syscfg-tz property as deprecated
-> 
-> Arnaud Pouliquen (4):
->   dt-bindings: remoteproc: st,stm32-rproc: Rework reset declarations
->   remoteproc: stm32: Allow hold boot management by the SCMI reset
->     controller
->   ARM: dts: stm32: Update reset declarations
->   ARM: dts: stm32: fix m4_rproc references to use SCMI
-> 
->  .../bindings/remoteproc/st,stm32-rproc.yaml   | 44 +++++++++--
->  arch/arm/boot/dts/stm32mp151.dtsi             |  2 +-
->  arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts    |  6 +-
->  arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts    |  6 +-
->  arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts    |  6 +-
->  arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts    |  6 +-
->  drivers/remoteproc/stm32_rproc.c              | 76 ++++++++++++++-----
->  7 files changed, 111 insertions(+), 35 deletions(-)
-> 
 
-I have applied patch 1 and 2.  Unless Alexandre wants to proceed differently,
-patches 3 and 4 should go through his tree.
+--4YT4Z+CDln4kywVw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, May 15, 2023 at 03:25:59PM +0200, Daniel Golle wrote:
+> Add mediatek,mt7981-wmac compatible string entry.
+
+The driver patch gets a nice:
+| Add support for the MediaTek MT7981 SoC which is similar to the MT7986
+| but with a newer IP cores and only 2x ARM Cortex-A53 instead of 4x.
+| Unlike MT7986 the MT7981 can only connect a single wireless frontend,
+| usually MT7976 is used for DBDC.
+
+That actually explains that there is something different between this
+and the other listed compatibles. It'd be nice to have that in the
+bindings patch too...
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
-Mathieu
+Conor.
 
-> -- 
-> 2.25.1
-> 
+>=20
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  .../devicetree/bindings/net/wireless/mediatek,mt76.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76=
+=2Eyaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> index 67b63f119f64..9081731611ef 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> @@ -28,6 +28,7 @@ properties:
+>        - mediatek,mt76
+>        - mediatek,mt7628-wmac
+>        - mediatek,mt7622-wmac
+> +      - mediatek,mt7981-wmac
+>        - mediatek,mt7986-wmac
+> =20
+>    reg:
+> --=20
+> 2.40.1
+>=20
+
+--4YT4Z+CDln4kywVw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGJtGAAKCRB4tDGHoIJi
+0m8EAQDXmdphlAVTvvvqQJrTwZ4enaM2W2GFPoOhXz0fS8Vx0gD/bBbExt7v1pm3
+pMR0d6NEE1L+GwbYb5+Li25BBZasnAs=
+=e6RM
+-----END PGP SIGNATURE-----
+
+--4YT4Z+CDln4kywVw--
