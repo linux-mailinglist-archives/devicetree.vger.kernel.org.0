@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA477703449
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:46:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 293457037A0
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242985AbjEOQqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 12:46:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50856 "EHLO
+        id S244133AbjEORXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 13:23:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242970AbjEOQqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:46:37 -0400
+        with ESMTP id S243778AbjEORXA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:23:00 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E93A94EE7;
-        Mon, 15 May 2023 09:46:34 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 169251248B;
+        Mon, 15 May 2023 10:21:08 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 86B6162907;
-        Mon, 15 May 2023 16:46:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FD08C433D2;
-        Mon, 15 May 2023 16:46:33 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EA8DB62C65;
+        Mon, 15 May 2023 17:21:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9005C433EF;
+        Mon, 15 May 2023 17:21:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1684169193;
-        bh=4zIpdbbR4MfzIjZvHW7a1FTFF5jI7bmPAeYOIqvkwEk=;
+        s=korg; t=1684171267;
+        bh=h5mK51aebmM7frvlZj9/VAIXXGKmEyWTQHFtggW+AO4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=LsjcpikHBT3Ufrmx9jzL7fvrWYxPS8vqvcKv+yTkVDUMgT7bwt/Yx6fzkpsIYv7cB
-         S8QFqHeTVDy0HsDd8d6nWF7LaMIE4e0PaYk8x8bXH/D5484FZcKk9hUTNur2X+MjVX
-         PGwiIKw0nH3H3wvieKpvQIJBCjHhcBj6EsfEN4ns=
+        b=OiISy/CXzo5KaHmwuCLa+V2rMYanClreSTTj9VE+RMhuKJhW1W30JSuL0l0D4Jl8T
+         mEg6IKJ3mo8wWTTI697GAlrwoe36/oWiEzRmPTsDaCLDD4BvSH8FJIeMFH9NJrvRwK
+         KF8ghGhp+thz9lSiMs6dFpo+e+mNu6DNaArqSmmM=
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     stable@vger.kernel.org
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -39,12 +39,12 @@ Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
         John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
         linux-sh@vger.kernel.org
-Subject: [PATCH 4.19 172/191] sh: init: use OF_EARLY_FLATTREE for early init
-Date:   Mon, 15 May 2023 18:26:49 +0200
-Message-Id: <20230515161713.674951042@linuxfoundation.org>
+Subject: [PATCH 6.2 154/242] sh: init: use OF_EARLY_FLATTREE for early init
+Date:   Mon, 15 May 2023 18:28:00 +0200
+Message-Id: <20230515161726.509748856@linuxfoundation.org>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230515161707.203549282@linuxfoundation.org>
-References: <20230515161707.203549282@linuxfoundation.org>
+In-Reply-To: <20230515161721.802179972@linuxfoundation.org>
+References: <20230515161721.802179972@linuxfoundation.org>
 User-Agent: quilt/0.67
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -96,7 +96,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
 --- a/arch/sh/kernel/head_32.S
 +++ b/arch/sh/kernel/head_32.S
-@@ -67,7 +67,7 @@ ENTRY(_stext)
+@@ -64,7 +64,7 @@ ENTRY(_stext)
  	ldc	r0, r6_bank
  #endif
  
@@ -105,7 +105,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  	mov	r4, r12		! Store device tree blob pointer in r12
  #endif
  	
-@@ -318,7 +318,7 @@ ENTRY(_stext)
+@@ -315,7 +315,7 @@ ENTRY(_stext)
  10:		
  #endif
  
@@ -114,7 +114,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  	mov.l	8f, r0		! Make flat device tree available early.
  	jsr	@r0
  	 mov	r12, r4
-@@ -349,7 +349,7 @@ ENTRY(stack_start)
+@@ -346,7 +346,7 @@ ENTRY(stack_start)
  5:	.long	start_kernel
  6:	.long	cpu_init
  7:	.long	init_thread_union
@@ -125,7 +125,7 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  
 --- a/arch/sh/kernel/setup.c
 +++ b/arch/sh/kernel/setup.c
-@@ -242,7 +242,7 @@ void __init __weak plat_early_device_set
+@@ -244,7 +244,7 @@ void __init __weak plat_early_device_set
  {
  }
  
@@ -134,9 +134,9 @@ Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
  void __ref sh_fdt_init(phys_addr_t dt_phys)
  {
  	static int done = 0;
-@@ -329,7 +329,7 @@ void __init setup_arch(char **cmdline_p)
+@@ -326,7 +326,7 @@ void __init setup_arch(char **cmdline_p)
  	/* Let earlyprintk output early console messages */
- 	early_platform_driver_probe("earlyprintk", 1, 1);
+ 	sh_early_platform_driver_probe("earlyprintk", 1, 1);
  
 -#ifdef CONFIG_OF_FLATTREE
 +#ifdef CONFIG_OF_EARLY_FLATTREE
