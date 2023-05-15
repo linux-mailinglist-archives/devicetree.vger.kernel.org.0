@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D52FB7027CD
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 11:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D5587027D0
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 11:05:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229963AbjEOJFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 05:05:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45440 "EHLO
+        id S237954AbjEOJFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 05:05:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238811AbjEOJE7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 05:04:59 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C202A7
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 02:04:57 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50b37f3e664so22019554a12.1
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 02:04:56 -0700 (PDT)
+        with ESMTP id S231691AbjEOJFL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 05:05:11 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 583E8F0
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 02:05:05 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bd2d7ba74so109274083a12.1
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 02:05:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684141495; x=1686733495;
+        d=linaro.org; s=google; t=1684141504; x=1686733504;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1e7xyhKbSUAtL/71OLze3JqXZR39ywi21V8nEPRiV68=;
-        b=MgrbJuPSda7/FkfizR4/3Rn0sQfPc3PH2digK9QUZv2bZ042i8f4m24og7HQejhAiZ
-         TcWng0vCnqHgKU3qfEwkq/uySuYn7dLwXbPeeGr8I4gEzyaIiOBRodAcvdNrTg5qBTM/
-         7GA8aiRO/orCzS2aVyrOus/FXdrWZ0K5wOmVkZmu3lpJt3lyY9KApDW5uqt/O7J76Uy5
-         db7C3o8bgPfVefXXLIUht9qMnt5lBOA/Jj9+RzMOlvDsXrZvcRDcKmQ5ISEPu03TeYkt
-         /bstflZYkyJdPf/VqkorhrdaFpiq+X1NoDFj90Q6fwiLgw5Adml0LBvakLNwuxBTlmnH
-         +Ufg==
+        bh=KuwukPTyOXu6w4JEQ/VrXwexvRuPurINFM94wED3Sso=;
+        b=Kv2ht60gYFBv4etr27i9EKrgSochPbuhVf5uJlzNG/lc21Y8EBQWy06sYdLkyISS23
+         zDgVeR5VJinSrx76bcM1QgZp4Rsuf677CDq9ChvmSrKYiIg7rBbvcWexOtZ//G17lvHr
+         v3CRmxnrmn6gCyhQlTWtc3f0BpOx9gXao+Wj9chY3IftxW/aDganPGRviRHhINuFCd+N
+         EPeMO0spmg7puz0od5egsciVSeB2iUherUdEjHJGnQ1Ayi7+7TxJtNTb8NVsSM7GVKTJ
+         OcdIkV4KvYAAkAVTW1i2xmwaYG4OETpSXfqG15bQXQ0BO5ovfp+HrXsk0n/KadvFS5bc
+         mrDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684141495; x=1686733495;
+        d=1e100.net; s=20221208; t=1684141504; x=1686733504;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1e7xyhKbSUAtL/71OLze3JqXZR39ywi21V8nEPRiV68=;
-        b=dbMmLekLSAyBfluV3PwF5j9+q5zD9NuPxt7cUJgE9vvbTXafARnJb5jL8AhRfkg54z
-         yzvdR/EZM8KtPQOwP5Lw/DrLdO2epgMAB05dqwklvXBrHmU/WwX6rqu3+kJtlRsIywui
-         bm/3xFRj+sShUtfuHSECD2mwqRJuH3G/YIAQQ6rVenRPSl1iLKUqIpfUn4WJGYOKy10H
-         scSpU0MlOWemovdPc0QrN0+0FUsiwV5PEYYh5J8dOBYSD6kOA773fepKqHUY5yPBV0xv
-         yf9guFj5WgrV0BMjjq06s0o7zVJ7xGPt6Y1qO6yCCAKbfZLR8PzWiaClidLRlFzI0WeQ
-         9+sg==
-X-Gm-Message-State: AC+VfDzJqA9qoe1+uzOOZrYFqTEutSNF9/BKeK/qQOnBrLYVHwsTsfrG
-        GYxZh7lvRcvgvAEPC1yo7B3lrA==
-X-Google-Smtp-Source: ACHHUZ6/arwWykTMjW8t+mn8sE98dIyHPxmoftrOdRUms9psWi0+scmOgQUrHXIQ4Gm7LEJOfzX26w==
-X-Received: by 2002:a17:907:842:b0:94e:c8c:42ec with SMTP id ww2-20020a170907084200b0094e0c8c42ecmr27657027ejb.20.1684141495477;
-        Mon, 15 May 2023 02:04:55 -0700 (PDT)
+        bh=KuwukPTyOXu6w4JEQ/VrXwexvRuPurINFM94wED3Sso=;
+        b=an5YvyQVUW3fETe9jBF2mJJlBBPPX/wrh04KetWadCUA0dU8webk3VsvUAXgKgBfgF
+         VyFLqrcHgCeEO1FWUdfaOXD9NcEYF+vPhNZBNKngz2ZPTzm428zyVka60SCV0Yj5khjo
+         RwZQscd1Je4qTZUfDMI+NsfiKQg4FKcygyHuhmuoaPnuCOsdcON7XmT2y+e/Ktd++yKl
+         BCKTO06mJabMKivz7XH6wenzLt5w2ZtFhLUozDiq+RLN/AV/HdBLQ+StBKGai6on2Pfq
+         tO0xDEbMElc7HurtDDYWbX1m7Du9S2f/i0m4Fv+sq2wZl2xmeQ/WIB57jrz23lvgRfPn
+         f4fg==
+X-Gm-Message-State: AC+VfDxsEQoo7PghuVa7UqmObRwJaYMWymCMI6Ywk7rwAPOahxjjcnvC
+        A/+YQoVqQAjmpO2CL6KVs78+wQ==
+X-Google-Smtp-Source: ACHHUZ69UoYWOUicY+L0mCVSuMqQk8xbvxh05YvF9x5IjZ3VBDavAVm8Ei+PNtD2wopg59g8izC9eA==
+X-Received: by 2002:a17:907:7baa:b0:966:1484:469e with SMTP id ne42-20020a1709077baa00b009661484469emr25828771ejc.17.1684141503759;
+        Mon, 15 May 2023 02:05:03 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id ml17-20020a170906cc1100b009661484e84esm9245894ejb.191.2023.05.15.02.04.54
+        by smtp.gmail.com with ESMTPSA id my37-20020a1709065a6500b0094f44bdf7acsm9232272ejc.57.2023.05.15.02.05.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 02:04:54 -0700 (PDT)
-Message-ID: <ec7dcbbb-7e9e-04bb-930a-0b96acbd4aed@linaro.org>
-Date:   Mon, 15 May 2023 11:04:53 +0200
+        Mon, 15 May 2023 02:05:03 -0700 (PDT)
+Message-ID: <e553d2c4-8891-fe84-eff3-d3f6a35b7e09@linaro.org>
+Date:   Mon, 15 May 2023 11:05:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
@@ -69,10 +69,8 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
  <20230512122134.24339-3-quic_kbajaj@quicinc.com>
- <4766aabc-9b03-3241-82e3-8c4799ea7978@linaro.org>
- <ec2f0259-9d57-7125-7df8-c773b60e8c72@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ec2f0259-9d57-7125-7df8-c773b60e8c72@quicinc.com>
+In-Reply-To: <20230512122134.24339-3-quic_kbajaj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,31 +83,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 09:08, Komal Bajaj wrote:
+On 12/05/2023 14:21, Komal Bajaj wrote:
+> Document the QFPROM on QDU1000/QRU1000 SOCs.
 > 
-> 
-> On 5/12/2023 10:26 PM, Krzysztof Kozlowski wrote:
->> On 12/05/2023 14:21, Komal Bajaj wrote:
->>> Document the QFPROM on QDU1000/QRU1000 SOCs.
->>>
->>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->>> ---
->>>   Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
->>>   1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
->>> index 8d8503dd934b..59082f6e8c9f 100644
->>> --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
->>> +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
->>> @@ -26,6 +26,7 @@ properties:
->>>             - qcom,msm8996-qfprom
->>>             - qcom,msm8998-qfprom
->>>             - qcom,qcs404-qfprom
->>> +          - qcom,qdu1000-qfprom
->> Above qcs, to keep alphabetical order.
-> qdu alphatecially comes after qcs, right? Did I misinterpret your comment?
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
 
-Ups...
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
