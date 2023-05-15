@@ -2,69 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CBEC702C2D
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 14:03:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6C7E702C3B
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 14:05:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241110AbjEOMDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 08:03:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33260 "EHLO
+        id S240690AbjEOMF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 08:05:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241262AbjEOMDC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 08:03:02 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 603F03C22;
-        Mon, 15 May 2023 05:01:20 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8Bx7eoNH2Jk980IAA--.15319S3;
-        Mon, 15 May 2023 20:01:17 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Cx4zgNH2JkywNgAA--.34962S3;
-        Mon, 15 May 2023 20:01:17 +0800 (CST)
-Subject: Re: [PATCH v9 2/2] spi: loongson: add bus driver for the loongson spi
- controller
-To:     andy.shevchenko@gmail.com
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230426071045.20753-1-zhuyinbo@loongson.cn>
- <20230426071045.20753-3-zhuyinbo@loongson.cn> <ZFkPZhF8QqScXAmH@surfacebook>
- <049c871d-c658-24c1-91e6-701098f5fc28@loongson.cn>
- <16913b76-0256-492a-ec90-d367f2b52cc3@loongson.cn>
- <ZGH4SPsu40Mt-Z8f@surfacebook>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <109a8453-2172-a2ee-8672-8efb489e3dd9@loongson.cn>
-Date:   Mon, 15 May 2023 20:01:17 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S241875AbjEOMFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 08:05:03 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F056B1FE5
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 05:04:08 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-94a342f7c4cso2311275166b.0
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 05:04:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684152247; x=1686744247;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2/nlan8NsKQaqVLCr51QfC/hNbeFSNTXRRDAB3FVPas=;
+        b=ByoRjCzbZlDhT1T9pjQEYxr54YRw44V8aNUv9jfd5JCNP8tHSMuToNR/AON5XhQOmw
+         N40Kl/3OLlocsZ4d9J6Kn7vUs9/ZVehfyNn5RyuY8fBOdTbsM6OSE/tm9Oh9hYZtBT1A
+         rbxBFvkvqcGnMKja3ynsVt20EiEKi2YE3+SrV5OGR6t4lHveWTtmgAksr7JO7ceasrTJ
+         7F0woxS2bnN2EVU8rslQE62j9dDrwpLpurk01imY+qvNvqiVHXgGrSyPClPx0u1yOMoF
+         NfSX/hzAgDXlfsmrgFfUiFNX7jDD7okvDYvv7hfnpJlVhIhrQmhb8hVm3+ifeZLht279
+         fJxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684152247; x=1686744247;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2/nlan8NsKQaqVLCr51QfC/hNbeFSNTXRRDAB3FVPas=;
+        b=K88+9pKmOAFuuhlleuJHMfFV/QojJHULJ8JV1ZyRxrQ26keFvtlrjRqXlkIMbgFtfN
+         KQTHmYJKKQeuOHQkwZ40HQ5d1BvidsAHAvPmTF9Ld4n4GyHZhbJxH2o9dt9M+TyOhOMH
+         nLUUUhmmz0KpM59NS9jwOPQeKFcLe5lbxlH+5MORjnu3bbSwjqzcgq1rBm4wwcSWNSQZ
+         YpvWe4KcFCOb+9c8UDcYHYJkBEhLdZ2k0D7SLQ0kATCNwwA+g+KqSf3/xbCBrfz+xU1I
+         OYafNSnMA9ikb98C7P2tERAjNFGF6Jnrtb37Kzt4ujmIklcNwynR7HyqDJote62i4nX7
+         XthQ==
+X-Gm-Message-State: AC+VfDxURwtLIz/qLx9KSSSxO1i0ygSTOMQpXjNchC7NfivwPNsTsRaN
+        4Fjfl09Pnl4BhNtRc7f6DW7D4Q==
+X-Google-Smtp-Source: ACHHUZ4whC+e3qGJCrdvneIaAmKdoHpgCsOxbqCTyf91AW/nF0/VvKIN+NibbQBny50EjV05s6mA/g==
+X-Received: by 2002:a17:906:974b:b0:957:943e:7416 with SMTP id o11-20020a170906974b00b00957943e7416mr34190677ejy.15.1684152247320;
+        Mon, 15 May 2023 05:04:07 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
+        by smtp.gmail.com with ESMTPSA id k10-20020a1709067aca00b0096a1ba4e0d1sm7811245ejo.32.2023.05.15.05.03.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 May 2023 05:04:02 -0700 (PDT)
+Message-ID: <e8d7e008-db27-9ac5-6728-d3f7a19c10c9@linaro.org>
+Date:   Mon, 15 May 2023 14:03:56 +0200
 MIME-Version: 1.0
-In-Reply-To: <ZGH4SPsu40Mt-Z8f@surfacebook>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 3/3] ASoC: dt-bindings: Add ESS ES9218P codec
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Cx4zgNH2JkywNgAA--.34962S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW7CrWfWFy5Cw1UXF47JF43KFg_yoW8Cr1fpF
-        n7Aa17uryrtrn5Kr17tryv9FZIyFWkJ390q3s3Jas3ZF90yFy2kr47ZFZF9w1Iqrs7Jry2
-        v3WfuFZ2va98XFDanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bTkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUGVWUXwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM2
-        8EF7xvwVC2z280aVCY1x0267AKxVW0oVCq3wAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8I
-        j28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2
-        WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkE
-        bVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxAIw28IcxkI7VAKI4
-        8JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AK
-        xVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67
-        AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI
-        42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMI
-        IF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVF
-        xhVjvjDU0xZFpf9x07jbVyxUUUUU=
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+To:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230515074021.31257-1-aidanmacdonald.0x0@gmail.com>
+ <20230515074021.31257-3-aidanmacdonald.0x0@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230515074021.31257-3-aidanmacdonald.0x0@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,64 +77,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 15/05/2023 09:40, Aidan MacDonald wrote:
+> Device tree bindings for the ESS ES9218P codec, which uses an
+> I2C control interface.
+> 
+> Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
+> ---
+> 
+> Notes:
+>     v1->v2
 
 
-在 2023/5/15 下午5:15, andy.shevchenko@gmail.com 写道:
-> Mon, May 15, 2023 at 04:14:00PM +0800, zhuyinbo kirjoitti:
->> 在 2023/5/11 下午3:18, zhuyinbo 写道:
->>> 在 2023/5/8 下午11:04, andy.shevchenko@gmail.com 写道:
-> 
-> ...
-> 
->>>>> +config SPI_LOONGSON_CORE
->>>>> +    tristate "Loongson SPI Controller Core Driver Support"
->>>>
->>>> Does it need to be visible to the user?
->>
->> I try to set it invisible that by removing the SPI_LOONGSON_CORE Kconfig
->> or removing "tristate "Loongson SPI Controller Core Driver Support" that
->> will cause spi-core driver doesn't be compiled or compiled fail issue,
->> so I will still set it visible to the user.
-> 
-> Making a symbol selectable only can be achieved by removing the description
-> (near to tristate directive), have you tried that?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Is it like this ?
-
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -517,7 +517,7 @@ config SPI_LM70_LLP
-           a parallel port.
-
-  config SPI_LOONGSON_CORE
--       tristate "Loongson SPI Controller Core Driver Support"
-+       tristate
-         depends on LOONGARCH || COMPILE_TEST
-
-
-Thanks.
-> 
-> ...
-> 
->>>>> +    res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>>>> +    if (res == NULL) {
->>>>
->>>> Why not using devm_platform_ioremap_resource()?
->>> okay, I will use it.
->>>>
->>>>> +        dev_err(dev, "cannot get io resource memory\n");
->>>>> +        return -ENOENT;
->>>>
->>>>      return dev_err_probe();
->>
->> It seems that there is no need to print memory log when use
->> devm_platform_ioremap_resource because this function had contained
->> the this memory log print thus I will return PTR_ERR(reg_base).
->>
->>          reg_base = devm_platform_ioremap_resource(pdev, 0);
->>          if (IS_ERR(reg_base))
->>                  return PTR_ERR(reg_base);
-> 
-> Good catch! Sure, go with this.
-> 
+Best regards,
+Krzysztof
 
