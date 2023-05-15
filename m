@@ -2,80 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF26D7035CA
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:02:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C36F4703642
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:08:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243557AbjEORCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 13:02:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40894 "EHLO
+        id S243477AbjEORIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 13:08:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243415AbjEORCZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:02:25 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72850902F
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 10:00:26 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f00d41df22so67528404e87.1
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 10:00:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684170019; x=1686762019;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GYDwAxBjxKaXqirWOJFxiCv8QGm8k3OjcSxYqeRJPfI=;
-        b=YOnY7USwDtFpLdcfcnjLDXxR3Rzemt5HfA95dOoQzZszqRGaiWd1Nh2ZdcpX3NLYGs
-         ikS4HhOTrLSC3eqx5bJNlWMJ38p3duPgFYy84YImiuHN9UL2CtQ524UBEjo4ul1n2mcI
-         kweMJRMKAOrP2QX/TWshabbDDGyJmldHK+FeRDwypPOM6Z5U2ErvEpm2VyO84FzNHrJr
-         xwhG5b1EfprPc86YWG5Kumi6X60VIpQM07snIXkkvUIS4qjMPGBNvDnlNJeRZy1n17SM
-         s7Z7M+puRDKzrjItuogDhpOao3H+WRXY9TBZVJ4YMFhGvZd4t/YfXLDOqvVivQABDkyE
-         HcXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684170019; x=1686762019;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GYDwAxBjxKaXqirWOJFxiCv8QGm8k3OjcSxYqeRJPfI=;
-        b=HkBMcdKo0mlFu5off1BWkDY1Ykbg5DwT5zzr0w3JEF1W+wY509i+ga7eTKzLQAcDva
-         ++7nfd1I2OjgOsSngECgDcKY9zNnVVCgYm/4+Dx7lHLPLCsYENsfMGxEYphkAIECgKdD
-         cgxskPcWjdnpKp3nxOXPFTGmZ9nq3uGkWnp6b08zVhLfdCG9oKrxMLz/VrGAyorA3rV5
-         ML9GU2rZALu80xyGdJxeUC5t+ff6e4noupBeSkvQCmLS9owtXzdBqAaZScnQTSmTk4W5
-         wuUSVZgBAYdx7GNc4/TM4FgOWF1kigEA7bQ6QvLte5cWkYsM+WXnagKO/h33R3L4IW7a
-         aiAQ==
-X-Gm-Message-State: AC+VfDwybBrQLUY63LVumWM1Ilrt3gr8ehr6kEEycEQXzAsQNO8tDler
-        BD4ja8p6pfrAwNC7svlqw/nYUA==
-X-Google-Smtp-Source: ACHHUZ5p/F4cQAqLEz7OU0T2Q8kbCZQCyAysDd2OXRAyAEd+2o0ur2AykpobhzcwlPiRwmA5VFiqmg==
-X-Received: by 2002:a2e:b4a6:0:b0:2ac:7fc5:e4a9 with SMTP id q6-20020a2eb4a6000000b002ac7fc5e4a9mr5957561ljm.16.1684170018863;
-        Mon, 15 May 2023 10:00:18 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id c24-20020a05651c015800b002a9ebff8431sm3856802ljd.94.2023.05.15.10.00.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 10:00:18 -0700 (PDT)
-Message-ID: <b0cf5634-60e4-adba-92df-73f05451cd9f@linaro.org>
-Date:   Mon, 15 May 2023 19:00:17 +0200
+        with ESMTP id S243674AbjEORIF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:08:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC408A46;
+        Mon, 15 May 2023 10:06:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DC83A62B03;
+        Mon, 15 May 2023 17:06:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03D5EC4339C;
+        Mon, 15 May 2023 17:06:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684170396;
+        bh=iEG55+eMRMDRtNqfDsjn9pvk5SCvqsO11Osuy3nfDHU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rk8ZEfmtTh0LDp7vJ2orZEeJWmHHQ6YVhdmzT8GUuBIxYaITJ6ru9ZbvEcGExN1iw
+         ohv55hHHeBYWi4sVQUOi2oLgjoA5CkzKn1mfrgRYY8LlYez4L+OecyeqDRlLePVW38
+         cyV8N5+p8DiFBmLzUSfpaMZAQ0AvOOJhe7ip6jvb0BnGAI/ZAvT+Yrl45XOF3tTF9I
+         MvuTWfqkzZmpoaARLezsB3bRYLXfS4b8i1wAx5wH6+6Wb4llknPr+tY+8T5/eZ/DOd
+         ngNQMsijhmeBjfc2dl390pL91xRh9Rhb176evuyO5TrAuz42nWRVsVxt0MqiuKXL1D
+         70xjROOV/w8Tg==
+Date:   Mon, 15 May 2023 18:06:31 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        alison@she-devel.com
+Cc:     alison@she-devel.com, johan@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        achaiken@aurora.tech, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: gnss: Add U-Blox Zed-F9
+Message-ID: <20230515-relation-sandal-32e4e580daba@spud>
+References: <20230515004025.1133572-1-alison@she-devel.com>
+ <20230515004025.1133572-3-alison@she-devel.com>
+ <5530a1f3-ae89-29e9-dab5-c93f617edbff@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/5] arm64: dts: qcom: qrb4210-rb2: Enable display out
-Content-Language: en-US
-To:     Caleb Connolly <caleb.connolly@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230515-topic-rb2-bits-v1-0-a52d154a639d@linaro.org>
- <20230515-topic-rb2-bits-v1-2-a52d154a639d@linaro.org>
- <fd4276f6-f54b-3455-1263-8a8d534f0bda@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <fd4276f6-f54b-3455-1263-8a8d534f0bda@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="4k/pillGtsSsyiz/"
+Content-Disposition: inline
+In-Reply-To: <5530a1f3-ae89-29e9-dab5-c93f617edbff@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,55 +60,42 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--4k/pillGtsSsyiz/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 15.05.2023 17:57, Caleb Connolly wrote:
-> 
-> 
-> On 15/05/2023 13:04, Konrad Dybcio wrote:
->> The RB2 has a HDMI output via an LT9611UXC bridge. Set it up.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 88 +++++++++++++++++++++++++++++++-
->>  1 file changed, 87 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> index 80c6b59c8ff6..9b539720f05d 100644
->> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> 
-> [...]
->> @@ -312,11 +385,24 @@ &sleep_clk {
->>  };
->>  
->>  &tlmm {
->> -	gpio-reserved-ranges = <37 5>, <43 2>, <47 1>,
->> +	gpio-reserved-ranges = <43 2>, <47 1>,
-> 
-> Is this intentional?
-Yes, notice how this included the reset pin. These pins are
-not even really reserved, there's no FPC on this board..
+On Mon, May 15, 2023 at 08:30:03AM +0200, Krzysztof Kozlowski wrote:
+> On 15/05/2023 02:40, alison@she-devel.com wrote:
+> > From: Alison Chaiken <achaiken@aurora.tech>
+> >=20
+> > Add support for the U-Blox Zed-F9P GNSS device.
+> >=20
+> > Signed-off-by: Alison Chaiken <achaiken@aurora.tech>
+> > ---
+> > Acked-by: Rob Herring <robh@kernel.org>
+>=20
+> Not a correct placement. Apply the patch yourself and you will see.
+>=20
+> Also, this is not v1, but v6.
 
-Konrad
->>  			       <49 1>, <52 1>, <54 1>,
->>  			       <56 3>, <61 2>, <64 1>,
->>  			       <68 1>, <72 8>, <96 1>;
->>  
->> +	lt9611_rst_pin: lt9611-rst-state {
->> +		pins = "gpio41";
->> +		function = "gpio";
->> +		input-disable;
->> +		output-high;
->> +	};
->> +
->> +	lt9611_irq_pin: lt9611-irq-state {
->> +		pins = "gpio46";
->> +		function = "gpio";
->> +		bias-disable;
->> +	};
->> +
->>  	sdc2_card_det_n: sd-card-det-n-state {
->>  		pins = "gpio88";
->>  		function = "gpio";
->>
-> 
+Aye, something is going quite badly wrong in terms of versioning :/
+Got a v6 cover letter, v5 patch 1 and an unversioned patch 2.
+
+FWIW, the --reroll flag to git format-patch should handle that for you:
+https://git-scm.com/docs/git-format-patch#Documentation/git-format-patch.tx=
+t---reroll-countltngt
+
+
+--4k/pillGtsSsyiz/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGJmlwAKCRB4tDGHoIJi
+0negAQDdInT74CYcLWVtT92O9oOolh/+swmpaCn0Zm0y0qmyJwEAxGRdtwYQLOs/
+V3zWdkgM+n2zcXA4v7CeAj4uQFBSQA4=
+=fSZk
+-----END PGP SIGNATURE-----
+
+--4k/pillGtsSsyiz/--
