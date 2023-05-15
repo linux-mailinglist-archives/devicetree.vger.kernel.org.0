@@ -2,111 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF5A27037FA
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:26:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2B9570380A
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 19:26:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244249AbjEOR0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 13:26:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41672 "EHLO
+        id S244220AbjEOR05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 13:26:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244084AbjEORZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:25:54 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49ABC100F4;
-        Mon, 15 May 2023 10:24:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S244218AbjEOR0f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 13:26:35 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBFA812083;
+        Mon, 15 May 2023 10:25:16 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 293CB62CD7;
-        Mon, 15 May 2023 17:24:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04A7CC4339B;
-        Mon, 15 May 2023 17:24:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684171484;
-        bh=2WihzjevgA/VftUyRW5cgW08ExyJfimZx9zxWsTB+Bo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eGk1ivJDCnlpT9Abm/hXbBUycqR9dUnSnLNFdUWJemevTNpFm1UPz9hFe9C0s6M1n
-         qXaPK1rSHR++txgXexCXWsVGs+FL6n5BkKZ+68M3WQWTh1TrdFtXMC8DTP5NNlsbwn
-         8aa9VELn5jfpfzPtoIDTjBppP2tGioOuRKovaKRjzZiEwFkkIAJWeC1aeNbijzmrra
-         Po0Ech39PbHFrJJEVD4QknC822WsHYDkn5jhd+7mShuUg0JJZ4xSubv5pjr0VMpjNl
-         9I5ENLj2gQhN/Et/CvsVzmLH2dpm7AsXNAtxeg5io6h+yc8qVAvLnFfzE+rl++O+Oq
-         /m8T/J8SdTKaQ==
-Date:   Mon, 15 May 2023 18:24:40 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 711ED86065;
+        Mon, 15 May 2023 19:25:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1684171511;
+        bh=XV+2Gebwur2daq+O9s5byj0Uz04kWhlx7VGxC+IjJ6Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=tBleERXDQwQYDSP0G/qGkg+cfn+9fBkHfUX4YxDyIZ+b9bKv8MuJZtdyOJ6zxHZS+
+         fa0C1jBak7M8C/gwtdsPVkcaPUL8NWzD5fRyYtWvJCQ9UytqSyiXhNIuaJYZvozALb
+         cw1wjcVL28hRySGWIQGNhYO0STUKrgHG1EMbF5iwe2130QPr7pjj6I5AFR6cYd5pDi
+         2iZ2VQEasFS5SNGOouCxwvhvh2RgVrxsE9opPFHu1gpzC2qWG4D7Co/XKbcPcpaAtJ
+         xV8qc0xmXUphB3es2MflUIogh4m1P1jbhy4uOTdG3FzRBzc/mScWlWYqxnju2xXsJM
+         J+OfCut3ddGew==
+From:   Marek Vasut <marex@denx.de>
+To:     devicetree@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Andreas Kemnade <andreas@kemnade.info>
-Subject: Re: [PATCH] dt-bindings: vendor-prefixes: document TeeJet
-Message-ID: <20230515-cover-dallying-fb1599444827@spud>
-References: <20230515155747.499371-1-krzysztof.kozlowski@linaro.org>
+        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: usb: snps,dwc3: Fix "snps,hsphy_interface" type
+Date:   Mon, 15 May 2023 19:24:56 +0200
+Message-Id: <20230515172456.179049-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="f6Qn7+5fTTxrbIBt"
-Content-Disposition: inline
-In-Reply-To: <20230515155747.499371-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The "snps,hsphy_interface" is string, not u8. Fix the type.
 
---f6Qn7+5fTTxrbIBt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fixes: 389d77658801 ("dt-bindings: usb: Convert DWC USB3 bindings to DT schema")
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Felipe Balbi <balbi@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-usb@vger.kernel.org
+Cc: stable@vger.kernel.org
+---
+V2: Add Fixes, RB from Krzysztof, CC stable
+---
+ Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Mon, May 15, 2023 at 05:57:47PM +0200, Krzysztof Kozlowski wrote:
-> Document TeeJet vendor prefix (used in am3517_mt_ventoux.dts board).
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+index 50edc4da780e9..4f7625955cccc 100644
+--- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+@@ -287,7 +287,7 @@ properties:
+     description:
+       High-Speed PHY interface selection between UTMI+ and ULPI when the
+       DWC_USB3_HSPHY_INTERFACE has value 3.
+-    $ref: /schemas/types.yaml#/definitions/uint8
++    $ref: /schemas/types.yaml#/definitions/string
+     enum: [utmi, ulpi]
+ 
+   snps,quirk-frame-length-adjustment:
+-- 
+2.39.2
 
-I tried to google what a mt ventoux was but there appears to be precious
-little information on it.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
-> Cc: Andreas Kemnade <andreas@kemnade.info>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
-umentation/devicetree/bindings/vendor-prefixes.yaml
-> index c3d426509e7e..5258090e2e02 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1341,6 +1341,8 @@ patternProperties:
->      description: Technologic Systems
->    "^techstar,.*":
->      description: Shenzhen Techstar Electronics Co., Ltd.
-> +  "^teejet,.*":
-> +    description: TeeJet
->    "^teltonika,.*":
->      description: Teltonika Networks
->    "^tempo,.*":
-> --=20
-> 2.34.1
->=20
-
---f6Qn7+5fTTxrbIBt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGJq2AAKCRB4tDGHoIJi
-0qp7AP9m1NXo9WESblF1ux0++KWkRFk5T4b8CcRC7hoNS82MpgEAw/ZIuWXYPrLC
-7FV8RDjRiEi1eZn1KT44o2iPFz2urAk=
-=rQuS
------END PGP SIGNATURE-----
-
---f6Qn7+5fTTxrbIBt--
