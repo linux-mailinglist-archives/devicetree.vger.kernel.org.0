@@ -2,73 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E7E1703261
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:10:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A06670326D
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 18:13:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242622AbjEOQK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 12:10:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43932 "EHLO
+        id S242440AbjEOQNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 12:13:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242605AbjEOQKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:10:55 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 017E7E58
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:10:35 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50bc37e1525so24120587a12.1
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:10:35 -0700 (PDT)
+        with ESMTP id S235569AbjEOQNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 12:13:32 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E91E4
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:13:30 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-50bc5197d33so23746517a12.1
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 09:13:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684167032; x=1686759032;
+        d=linaro.org; s=google; t=1684167209; x=1686759209;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=f5u9vDehDmYuDw7sZnsIeSRZIwkHStHgFkydaXN+v5o=;
-        b=YCa8T8lnx/Yl/WK1Sl0I2bPrxrqOKduRQx0hc9FYzW7PZ/u3q8/FJE3fO6U9Dv+Q7c
-         TFglYIqVXWhLmPPr9HctX33pBldxbpeZ+7LjbpSCIM9f+l6dFpIg70EMcbRVD8xgWON8
-         Uut/nJPGb82ErKtaXI7ZndAJopZWNriV0fU9ZMaaK+0DsM8qfeivbvCV0cxl/FENLuaT
-         SYNoqSAAC4GTFLFAl3/Rrls77mLeo0CYe9fkC76Bii3MS176EbN+6S+D7dW21d0ZbBg+
-         MOv2FiDAxbE6ofcwuVi0iSipmy5qN/6AOjgfGBTMJt8XQ0iqd5d66Bw+ww7q8WQlle0v
-         /Z/w==
+        bh=3yt4YgbivgZUy6CAslsw+wadUPBQOwji2oiOofBvyIE=;
+        b=tvs2Mv99cUuowVkw8JTeEyS/FlaWUvXfiycER2K09ffw24sZE99oSHdjDUylXJ69U2
+         KNIiD/UHhj6g393JsIvEaj+9KgZ7Eeeny9e5wGJwJ1BELrLiU/1XbrZd2SDvj2GyGqo+
+         f+JKfAYvK6mUQeV2Ylp2AbqIgisP74v15CsUqJx6inHF6uQQCbAK4K8tp+7fkwLf/kDB
+         drJMnfDTsAbi5KudzxLBcM62VMdp08O4g2BYfdfoCHNfA68JKi+GTmI+0V0C8MmghyfB
+         D/+Cadlj/0qPlOuhfTkCHjcnfxkSYIu0D+Z9sMrX4tlVFa/pKmphFbJI8oyGjzgH3T6C
+         ThOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684167032; x=1686759032;
+        d=1e100.net; s=20221208; t=1684167209; x=1686759209;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f5u9vDehDmYuDw7sZnsIeSRZIwkHStHgFkydaXN+v5o=;
-        b=FkHg1jjVezrY9FVxWbwTPYBrjegrESFwHYP4rB6v/FqKM8WfQPOjMu6C1KxR4LrsO+
-         p/tXQE/xqdCso4Q1yJNhyp4+gBEpTeprzaSzjJSo6+lXA03+MF/fZ9qzTC0QgF2q1Mbz
-         Vqm5UEN/ge5woYrHPTk3/u4ymoutX8dFWEZMHwLbe6sMst9wZAk/kMQ55cTxhdDtXjE5
-         qDJnbb3d/jIQ+hYFW5sGcYMRStz621sjy5u8uG1mlXaY2kEQMW2zpqJGoQU22aJN1oPI
-         1Lr0g2zSAkFRqmvrVJGg9Jz7jCEF0iS4Lh7tKhyVwu/sB3PYE+J1pDDk4Pme/lS2f/2A
-         llAQ==
-X-Gm-Message-State: AC+VfDwXUiZ7fq8PoT+xReIAEdXO+WrnnxVl13phB7/MNlNM8uKOq73v
-        SaLxDfsUjOMH37+eKmkCyJ3Hug==
-X-Google-Smtp-Source: ACHHUZ6wmG3zZT4QW9j4vulIfUnt73ppJGW1AERIlJ4c1BTxoeEj665kuGd249dK9rIgRStBx4hPGQ==
-X-Received: by 2002:aa7:c919:0:b0:510:487d:c0a7 with SMTP id b25-20020aa7c919000000b00510487dc0a7mr4454291edt.5.1684167031930;
-        Mon, 15 May 2023 09:10:31 -0700 (PDT)
+        bh=3yt4YgbivgZUy6CAslsw+wadUPBQOwji2oiOofBvyIE=;
+        b=GPvjq+ytC35oagGGgGQl6z1Qtv2RIlEvq0ei7G8M1I7314XgSd/RQrjg/ginndjC6r
+         //KdvMqvQl+I/Msqrp4Gcdh1WJUhIraOUYdVuvhO0ODdsXw7LTI3qPaymGphrzAihZz1
+         7c33F31ipYCl+agLl13YgAdIuC4N3k7CWfVDfyrYVxCj4cqsBTzKXyIaNOAlS7S43ghD
+         zLuIHyLhN2pVWXaZChWoFeF4rnd8SDXWun+Jygn191qf3vwcrBKAB4aBfCvo8lsYpKU1
+         NKHe2l//z/iScSePlS6tiUIKZlNWFlz6h//echTOeOXSht4SItXmvQ75ZLUk3UhFfy68
+         +G+g==
+X-Gm-Message-State: AC+VfDzWyBh0hXVVBCeeqKTkhGtSNgLGoA4YmIVI6N9iR6aYS9lev1AJ
+        jcSA6g4Mk4omn86PmXbAvVmNpw==
+X-Google-Smtp-Source: ACHHUZ6JMgRptdYRZnYUUXM44TYqSaYO8I3VL38YTcY8hYIY4ozSR1UzRxR5NBJBepvv5Q/oNsFiyw==
+X-Received: by 2002:a17:906:7947:b0:94e:dd68:aba1 with SMTP id l7-20020a170906794700b0094edd68aba1mr31163585ejo.67.1684167208792;
+        Mon, 15 May 2023 09:13:28 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:6470:25b8:7c2d:1992? ([2a02:810d:15c0:828:6470:25b8:7c2d:1992])
-        by smtp.gmail.com with ESMTPSA id bf18-20020a0564021a5200b004bd6e3ed196sm7290137edb.86.2023.05.15.09.10.30
+        by smtp.gmail.com with ESMTPSA id og51-20020a1709071df300b009662c57b4ffsm9775345ejc.96.2023.05.15.09.13.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 09:10:31 -0700 (PDT)
-Message-ID: <b7e749ff-f4f0-0e61-9aae-876db4278fbc@linaro.org>
-Date:   Mon, 15 May 2023 18:10:29 +0200
+        Mon, 15 May 2023 09:13:27 -0700 (PDT)
+Message-ID: <d5c030f9-2f4d-25cc-b922-d00f5033ac37@linaro.org>
+Date:   Mon, 15 May 2023 18:13:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v3 2/4] dt-bindings: thermal: tsens: Add ipq9574
- compatible
+Subject: Re: [PATCH v4 01/13] dt-bindings: clk: g12a-clkc: export VCLK2_SEL
+ and add CTS_ENCL clock ids
 Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, amitk@kernel.org,
-        thara.gopinath@gmail.com, rafael@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Praveenkumar I <quic_ipkumar@quicinc.com>
-References: <cover.1684140883.git.quic_varada@quicinc.com>
- <37adcf5d8d545a076e8ed971a4fb6c6c2833ef3c.1684140883.git.quic_varada@quicinc.com>
+To:     neil.armstrong@linaro.org, Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     Nicolas Belin <nbelin@baylibre.com>,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-phy@lists.infradead.org
+References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
+ <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-1-2592c29ea263@linaro.org>
+ <5cb38be4-a27f-dc1a-cbb9-c195505a9e7c@linaro.org>
+ <9fa0662e-8854-05f9-da7f-ec8e08d2badf@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <37adcf5d8d545a076e8ed971a4fb6c6c2833ef3c.1684140883.git.quic_varada@quicinc.com>
+In-Reply-To: <9fa0662e-8854-05f9-da7f-ec8e08d2badf@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,85 +94,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 12:13, Varadarajan Narayanan wrote:
-> From: Praveenkumar I <quic_ipkumar@quicinc.com>
+On 15/05/2023 18:06, Neil Armstrong wrote:
+> On 13/05/2023 20:28, Krzysztof Kozlowski wrote:
+>> On 12/05/2023 15:11, Neil Armstrong wrote:
+>>> Expose VCLK2_SEL clock id and add new ids for the CTS_ENCL and CTS_ENCL_SEL
+>>> clocks on G12A compatible SoCs.
+>>>
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> ---
+>>>   drivers/clk/meson/g12a.h              | 1 -
+>>>   include/dt-bindings/clock/g12a-clkc.h | 3 +++
+>>>   2 files changed, 3 insertions(+), 1 deletion(-)
+>>
+>> Bindings must be a separate patch from the driver changes. If this
+>> causes bisectability issues, this means entire solution breaks ABI and
+>> is not appropriate anyway...
 > 
-> Qualcomm IPQ9574 has tsens v2.3.1 block, which is similar to IPQ8074 tsens.
-> 
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> [v3]:
-> 	Fix dt_binding_check & dtbs_check errors (Used
-> 	Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-> 	as reference/example)
-> 
-> 	Drop 'Acked-by: Rob Herring' as suggested in review
-> 
-> [v2]:
-> 	Thanks to Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 	for the tip to make qcom,ipq8074-tsens as fallback.
-> ---
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> index d9aa54c..57e3908 100644
-> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -19,6 +19,11 @@ description: |
->  properties:
->    compatible:
->      oneOf:
-> +      - const: qcom,tsens-v0_1
-> +      - const: qcom,tsens-v1
-> +      - const: qcom,tsens-v2
+> This is basically how we handled CLK IDs on Amlogic clk bindings for the
+> last years, the amount of changes is very low and rather exceptional
+> compared to early development stage.
 
-Nope, these are not correct.
+The commits with bindings are used in devicetree-rebasing repo, so we
+want them to be separate.
 
-> +      - const: qcom,ipq8074-tsens
-
-Also nope, this is already there.
-
-> +
->        - description: msm8960 TSENS based
->          items:
->            - enum:
-> @@ -66,8 +71,10 @@ properties:
->            - const: qcom,tsens-v2
->  
->        - description: v2 of TSENS with combined interrupt
-> -        enum:
-> -          - qcom,ipq8074-tsens
-
-Why?
-
-> +        items:
-> +          - enum:
-> +              - qcom,ipq9574-tsens
-> +          - const: qcom,ipq8074-tsens
->  
->    reg:
->      items:
-> @@ -279,6 +286,7 @@ allOf:
->            contains:
->              enum:
->                - qcom,ipq8074-tsens
-> +              - qcom,ipq9574-tsens
-
-Not needed, drop.
-
->      then:
->        properties:
->          interrupts:
-> @@ -294,6 +302,7 @@ allOf:
->            contains:
->              enum:
->                - qcom,ipq8074-tsens
-> +              - qcom,ipq9574-tsens
-
-Ditto.
-
+Meson is the only or almost the only platform making such changes. I
+don't get why, because the conflict could be easily avoided with using
+different names for defines in bindings and local clock. Approach of
+having bindings strictly tied with driver commit is never desired.
 
 Best regards,
 Krzysztof
