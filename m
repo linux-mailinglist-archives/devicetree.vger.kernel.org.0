@@ -2,307 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA5E4703F5E
-	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 23:06:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2D0C703F6C
+	for <lists+devicetree@lfdr.de>; Mon, 15 May 2023 23:14:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245472AbjEOVGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 17:06:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40036 "EHLO
+        id S243061AbjEOVOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 17:14:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245496AbjEOVE6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 17:04:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 357B649C2;
-        Mon, 15 May 2023 14:04:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BF2C6632A4;
-        Mon, 15 May 2023 21:04:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7FA3C433D2;
-        Mon, 15 May 2023 21:04:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684184675;
-        bh=GWzxMjl91X2Ct/xEUFZR5ZsGBUvaYEpIHmdKG6tU3ws=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Bw8572amwu7kEoovEupC1TVW3weSfmMVF/7yL+eCIWMOiWPh2/MDRZXf4s0lhHONl
-         izMz7Wv4EDVAd6vQ8uJPNdqtQ1CesYMiUbgXKtGKPp6KVBfghqGvYJtorKv9ajEmiR
-         vc7QwRcNW+tivCFfssD6uAY5DFth28JGgIh1h6155KSyp4jWGKdnG3daueUSK7A5YV
-         90cYiA6924WEMZjwFXb6dqXIAutE4C9e1t0jyXL8ahY8XYIu4m8zSoWNcIQ8l5L99q
-         5ach0VZ54QDy/T5QHQhHIYzyu0knaReF/T3e9ToGLbcdVEm3kqJDOBQ1iGd4Ei1R7W
-         CVzbvHVIjRDyQ==
-Date:   Mon, 15 May 2023 14:08:26 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S242603AbjEOVOP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 17:14:15 -0400
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2124.outbound.protection.outlook.com [40.107.14.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9574A271;
+        Mon, 15 May 2023 14:14:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZGyGU577ZfuckFeyll9AU25BPJ7ro+itXBc3z/bVO+BJ1l2c077MEPc1e6vpDn74gtsU1R2B4IpoPNg6bSWfpYpg+nodtnnRKCqoZnS1SoyobQWjE6yNZ/zRmcm7DBvAlRd8vMTPWvUiiFUQSgm9yiymoO5OskpEAhcyTAagUA20zjFZIcacS757cXBxJjUVvFZMSHh21DAp37B//wh4d1Mu2iPMwuPoz9zhuKJ6Eiw4bxR22NeTDlxFbFmu5p9ReQvA5mH7D0hmkiVrgpqxwnn4UBtnyOMY4jynYiXm+cgiLedPhLn+3v5kv8kD2qV9ZfJ07hnlNfPGlHDteVwiLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fUc+RLNlFbpZthquqkhLSd4fhx8myazm1WV7gNrmhpo=;
+ b=h4C53B1BbC48y41oXQ1hlS3uATT845r4igaAQZK+sjWgNaDj7ieOzV9UTzF+jbE2+bK89hk0C3PNibNkDj72f4t99LdzhWPwFQDJXzxufW4gF9MS/Dst2WU69Kq3Jz5Ks7TvgP/XmZy/a8uJazqyAj3xIuKyQ02E98WeV/VOVor+eo8T3BPhXJYTgES7HoRJLZuhP2i3+RYbEWtm7nklfz68A/DfsqKq3hUeLLjzkrFSGN8vcPa/8NP60KnCPEWTPXgrnuDZ/KUzWKftBpJeL5/gTz+K/f68ZPpY5oqhv8vuD5UezbiiASDJYauGrADt+9m24TSQlYSXFVEIL88aDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
+ dkim=pass header.d=axentia.se; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fUc+RLNlFbpZthquqkhLSd4fhx8myazm1WV7gNrmhpo=;
+ b=HcxV/TxDPs0UsSF1Nko2E+nyQZ+Y2Z0oa+LT5dFUakxZG3pLT2/nDCbFKBa621H6XP5q7ot1j7HVpBpO4rUgo9/7IiUhwCafm8BPPzvgb3aDiHEIBrakLTnUZX5URAjEPyYQbxff/Yms8/Id2NXIGmE/2u6XbT0ZFk26Y660B+E=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axentia.se;
+Received: from VI1PR02MB4445.eurprd02.prod.outlook.com (2603:10a6:803:ab::28)
+ by DB9PR02MB9971.eurprd02.prod.outlook.com (2603:10a6:10:45d::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6387.30; Mon, 15 May
+ 2023 21:14:10 +0000
+Received: from VI1PR02MB4445.eurprd02.prod.outlook.com
+ ([fe80::b703:24c6:975a:bf84]) by VI1PR02MB4445.eurprd02.prod.outlook.com
+ ([fe80::b703:24c6:975a:bf84%4]) with mapi id 15.20.6387.030; Mon, 15 May 2023
+ 21:14:09 +0000
+Message-ID: <13c1f6ea-63b5-9667-18a2-705829c46437@axentia.se>
+Date:   Mon, 15 May 2023 23:14:06 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.0
+Subject: Re: [PATCH] mux: mmio: use reg property when parent device is not a
+ syscon
+Content-Language: sv-SE, en-US
+To:     Andrew Davis <afd@ti.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
-        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
-        ahalaney@redhat.com
-Subject: Re: [PATCH v8 3/9] usb: dwc3: core: Access XHCI address space
- temporarily to read port info
-Message-ID: <20230515210826.gwvmyrxrtt6yjc44@ripper>
-References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
- <20230514054917.21318-4-quic_kriskura@quicinc.com>
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230515191909.611241-1-afd@ti.com>
+From:   Peter Rosin <peda@axentia.se>
+In-Reply-To: <20230515191909.611241-1-afd@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MM0P280CA0072.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:190:8::30) To VI1PR02MB4445.eurprd02.prod.outlook.com
+ (2603:10a6:803:ab::28)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230514054917.21318-4-quic_kriskura@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VI1PR02MB4445:EE_|DB9PR02MB9971:EE_
+X-MS-Office365-Filtering-Correlation-Id: ad6d470d-3e44-4de1-e0b7-08db558952d1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sI0/I7ck6Njc1R/KAKTTpie0ZThIVe3qZqTOKTqlu4GqRxrXYgptCdW/pjViOfLg8BK0n1qnS+zVP8JZ7Dc8pcOPMDopM7A8mrfJHHZbcbrVEQ9rVAR4mwn9lxyKdXQAa3qBV/Bz1oHEUDdokbf/PKBAOlOgxIRA+CNZTTOVbWJJyv3QjIA6ReqkHn5aqD/f1LtNVm04KI0R9GJDBqqsJJb7yuDp4k+7vH5Z/2enm6ofmtbdJBSOfTWA25QNDqqXxwBlmZKSjk9fwrloFvNt8mOxrzYxPW3YZ2ugmk+P/XAvNf3gU8dOyO6jKhOajxmJVh3OH3WeO3Y2W5xzkPGxkdFaEsXm4pPEPV1bIVzXhRHl4iGAqkhWv0KNPKbXZHveOjbW7LiRyQVlTHys8z1AMpYy+LTuuVXGfIrnFxW/2Sh2LFX5SPwmbd7V7NVKBIIK1IEoAPDGDM8zSFJU55YSmc8huna3QfsiPTj5cmTlf5qSzI4LpKdF9V4K7BDfqPNeZDkzLEc3PqUSGBg2gSguvQEh21ekOriq/GEsx1WkpDo9kZotgclt6roqNm9uiqTBAwBMw679zH+dJSGkJTtoTsPlTheHZPY4Bm8sBCQgSbJcV0oeXHIUdnPw+g1/QJpoceEXOS2Mt/Oo4kaUcLmxDQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR02MB4445.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(346002)(396003)(39840400004)(376002)(136003)(366004)(451199021)(83380400001)(31686004)(5660300002)(8936002)(8676002)(31696002)(316002)(86362001)(2906002)(2616005)(186003)(110136005)(6506007)(6512007)(478600001)(26005)(66476007)(66556008)(66946007)(41300700001)(38100700002)(6666004)(36756003)(4326008)(6486002)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N0tsZHZsbGNDd213Y3MrZkxITXpHTUlIOVNVVnRSZmFLeEwzeU50aVlTdlJE?=
+ =?utf-8?B?K212cFFWWTRsVjFWbW41UWZYNlVLZEtuZW04MHdlVXJieVRrUzE5WVlQRktB?=
+ =?utf-8?B?RUs5enU4Y3ZINHRIM1BGOWNLYitOMGFuNVBQMktmZ2NCSUlNdnA3cjA0d0Rz?=
+ =?utf-8?B?WGFpRWw5WDI3WTVWMWVLSnRORDJwTmlOejdFRzdQOVpaaW1SL3Z5TVhySFNa?=
+ =?utf-8?B?R3VvbjZLMnRwbnlrTUJMaFV3SFhsQThSUlY5Z3U5UEprWkRTS3U2RmNhd0Jt?=
+ =?utf-8?B?Y0I3NElYL0hnN1FjZHgxNzd4VFZvMFB0MTRjN245SnFRbTM3K3lpR1JaV3Fx?=
+ =?utf-8?B?Q01VMm5iZVcxMlN5VzFpYmtrMFJoS2M3c1lJUnlXM1VhVTMvb2dDVXZqeStU?=
+ =?utf-8?B?NVkxZXQyeStHd3Jmc1VFOElpSzJJb3FzMDVHSTM3VHdBbi9zL040NjQzUGtM?=
+ =?utf-8?B?a3ZHSjJnZnZRa21DSFhDUWtvNFMxUDY5R3BCQmpYU0ZsWXhtUXBXOHg5SDJC?=
+ =?utf-8?B?ZVUrdTUwTTdrdVFBamdXdVROOHMxWTd4MWUzQVZKaWN4NncwTEM0K29QK3Nz?=
+ =?utf-8?B?RXF5SGxyU1R0c3dIY2ttM1dvK1NIaVBXOTFOTWJNNkpKbkcwRS9HZnJ3SFgr?=
+ =?utf-8?B?aG9vUWJIRmxRUElvRktBRk9wdTk4aldNWTA2VUNnUzdUMDlJcm9MWkVXbWlE?=
+ =?utf-8?B?dUJZV2pKTE9OTVc4SFRHL3FDMW5YMjV0RjI1Y1NJYjhXbVNCUjdRMGphTmt0?=
+ =?utf-8?B?RTg3NkJycDdxSS9sTTkyc2twVFZRekdNL21jTmI5SDFMRWhGNHo4c3hhY0Nk?=
+ =?utf-8?B?cE1vM3pFOHRucUo0aHV5ZW52NE1wYUhUZVFQQzUxOTFHd3ZYMnY5b1FEUGoy?=
+ =?utf-8?B?aFhTS2gybVZ3ZTcrYnNuUW1HWHRSYW9IQ3dVYXhMTk5lNHd6OXhNNjI0QmVp?=
+ =?utf-8?B?WVpJYllCQmZlSU1WcEx4eHFUTXBwRUR3UkluT0dtUE1hOTJWT1JiMXBxRVJS?=
+ =?utf-8?B?WU9qbUN0aDhFekFZK1JpV0FZYjNkWEFuc0wzdGY5dnQyZUFuYzd0dkdrdGtk?=
+ =?utf-8?B?VGpVaTRLVDgwYVhSd3hybUlzL3lDNi9LYTlGVDFRcGFkVHBrSUJzQ1R5eDZn?=
+ =?utf-8?B?ak1aZjVxVmNnTjJFR1lJVlNjaEk2SEJaMW81QlQzTUROYmg3M2tyUXBkWlNZ?=
+ =?utf-8?B?MXNtNHV2aXpFeEo4VWp1cWtXdy9mYTFVUnZ1b1NQMDdLd3BIc3JWb1Riekxy?=
+ =?utf-8?B?UUI2dVpNTncvZDJZS1N2bXVuTzFzTmpJdDJwcGJLUUNuKzV0MjVuWTlyYkFI?=
+ =?utf-8?B?YURMc0FTb0VyNHFlcS9DOVk3SjcxVGZCTWtPd3ppSXJrem9KR1VkSngzeTJq?=
+ =?utf-8?B?emxLdmdkSUZiUElMS0kxT2dWMlQxSWltYWhJUlltVVhHNVZ2Tk5SZG8wbFZs?=
+ =?utf-8?B?SEcrY004L0hlVi9Xc1B1eTArUkh5ZGROcWhMRUZMQ2xLL0REMVdQSURKWnhX?=
+ =?utf-8?B?c1Z3Z1dYZ1JpRUs3dithMWdaRWFERWhIYnpsWDIzZlE0S0NCa20vM09oR0lp?=
+ =?utf-8?B?UFY0UGhRTXprdUFsS3ZMMGNaeGRoMUdMdTZWa2NFalp0SWZEMG96bGdiMXQ0?=
+ =?utf-8?B?Sll6N0hpeDY5eUZXcUR5VmZuV0dDSWZjaW1zZzhKdzI0YTdTaU9RNkZiUGZD?=
+ =?utf-8?B?dGJYR3NjSjdRY1M4cGVhNzl2c3RIQjJoemVkNTM0WkozeTc1NW1ISnFxUlRW?=
+ =?utf-8?B?Mk5TVnhpTHZLSmtod0hkSUlTSmJmT2NVSnhCZkhWV0M3OThCRlR2bUlPUDJK?=
+ =?utf-8?B?L2J6OG5oOHh2TGh5dzlwRG1xZitYeXIvT01yNkxOYjFzUkowcGh4MzZZRHJa?=
+ =?utf-8?B?VXRKckYzZndUVXIyamtjaXkvNFNmNHFxU3dvREZFczAza0kvMWV2bXk0UWlT?=
+ =?utf-8?B?eHlpc3lNaHBTZkNNTVZ4Y3BNV0p0WXBpdC9PaWtXK1ErQzFFV1lmWTlhWnR5?=
+ =?utf-8?B?YkNiZ3ZEeEJ4Ulpwdk9URUZEdTdaMzl1MFdLMG40Z1cvMUI0SGt2T2piaGRm?=
+ =?utf-8?B?UEVIY2Z6MUZqUnpNZ2ZDcGhudXpIOUtQeHFTeWFDOVMvdTVWeEdJbnNaZUpq?=
+ =?utf-8?Q?N+fkMh9V5zjbelVhZtqXkrB8M?=
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: ad6d470d-3e44-4de1-e0b7-08db558952d1
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR02MB4445.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2023 21:14:09.4290
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: opnU5sR52TWO7ckrvxhvFrceCxBLAV6sGhBe10Lhi+NuIPFdsz810RCESZ1ULPac
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR02MB9971
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 14, 2023 at 11:19:11AM +0530, Krishna Kurapati wrote:
-> Currently host-only capable DWC3 controllers support Multiport.
-> Temporarily map XHCI address space for host-only controllers and parse
-> XHCI Extended Capabilities registers to read number of usb2 ports and
-> usb3 ports present on multiport controller. Each USB Port is at least HS
-> capable.
-> 
-> The port info for usb2 and usb3 phy are identified as num_usb2_ports
-> and num_usb3_ports. The intention is as follows:
-> 
-> Wherever we need to perform phy operations like:
-> 
-> LOOP_OVER_NUMBER_OF_AVAILABLE_PORTS()
-> {
-> 	phy_set_mode(dwc->usb2_generic_phy[i], PHY_MODE_USB_HOST);
-> 	phy_set_mode(dwc->usb3_generic_phy[i], PHY_MODE_USB_HOST);
-> }
-> 
-> If number of usb2 ports is 3, loop can go from index 0-2 for
-> usb2_generic_phy. If number of usb3-ports is 2, we don't know for sure,
-> if the first 2 ports are SS capable or some other ports like (2 and 3)
-> are SS capable. So instead, num_usb2_ports is used to loop around all
-> phy's (both hs and ss) for performing phy operations. If any
-> usb3_generic_phy turns out to be NULL, phy operation just bails out.
-> 
-> num_usb3_ports is used to modify GUSB3PIPECTL registers while setting up
-> phy's as we need to know how many SS capable ports are there for this.
-> 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+Hi!
+
+2023-05-15 at 21:19, Andrew Davis wrote:
+> The DT binding for the reg-mux compatible states it can be used when the
+> "parent device of mux controller is not syscon device". It also allows
+> for a reg property. When the parent device is indeed not a syscon device,
+> nor is it a regmap provider, we should fallback to using that reg
+> property to identify the address space to use for this mux.
+
+We should? Says who?
+
+Don't get me wrong, I'm not saying the change is bad or wrong, I would just
+like to see an example where it matters. Or, at least some rationale for why
+the code needs to change other than covering some case that looks like it
+could/should be possible based on the binding. I.e., why is it not better to
+"close the hole" in the binding instead?
+
+Cheers,
+Peter
+
+> Signed-off-by: Andrew Davis <afd@ti.com>
 > ---
->  drivers/usb/dwc3/core.c | 113 ++++++++++++++++++++++++++++++++++++++++
->  drivers/usb/dwc3/core.h |  17 +++++-
->  2 files changed, 129 insertions(+), 1 deletion(-)
+>  drivers/mux/mmio.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> index 0beaab932e7d..e983aef1fb93 100644
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -1767,6 +1767,104 @@ static int dwc3_get_clocks(struct dwc3 *dwc)
->  	return 0;
->  }
+> diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
+> index 44a7a0e885b8..42e00b9fd0a9 100644
+> --- a/drivers/mux/mmio.c
+> +++ b/drivers/mux/mmio.c
+> @@ -44,10 +44,13 @@ static int mux_mmio_probe(struct platform_device *pdev)
+>  	int ret;
+>  	int i;
 >  
-> +/**
-> + * dwc3_xhci_find_next_ext_cap - Find the offset of the extended capabilities
-> + *					with capability ID id.
-
-() after function name in kernel-doc
-
-> + *
-> + * @base:	PCI MMIO registers base address.
-
-Should this be "XHCI MMIO..."?
-
-> + * @start:	address at which to start looking, (0 or HCC_PARAMS to start at
-> + *		beginning of list)
-> + * @id:		Extended capability ID to search for, or 0 for the next
-> + *		capability
-> + *
-> + * Returns the offset of the next matching extended capability structure.
-
-Return: The offset...
-
-Per https://www.kernel.org/doc/html/next/doc-guide/kernel-doc.html.
-
-> + * Some capabilities can occur several times, e.g., the XHCI_EXT_CAPS_PROTOCOL,
-> + * and this provides a way to find them all.
-> + */
-> +static int dwc3_xhci_find_next_ext_cap(void __iomem *base, u32 start, int id)
-> +{
-> +	u32 val;
-> +	u32 next;
-> +	u32 offset;
-> +
-> +	offset = start;
-> +	if (!start || start == XHCI_HCC_PARAMS_OFFSET) {
-> +		val = readl(base + XHCI_HCC_PARAMS_OFFSET);
-> +		if (val == ~0)
-> +			return 0;
-> +		offset = XHCI_HCC_EXT_CAPS(val) << 2;
-> +		if (!offset)
-> +			return 0;
-> +	}
-> +	do {
-> +		val = readl(base + offset);
-> +		if (val == ~0)
-> +			return 0;
-> +		if (offset != start && (id == 0 || XHCI_EXT_CAPS_ID(val) == id))
-> +			return offset;
-> +
-> +		next = XHCI_EXT_CAPS_NEXT(val);
-> +		offset += next << 2;
-> +	} while (next);
-> +
-> +	return 0;
-> +}
-> +
-> +static int dwc3_read_port_info(struct dwc3 *dwc)
-> +{
-> +	void __iomem		*regs;
-> +	u32			offset;
-> +	u32			temp;
-> +	u8			major_revision;
-> +	int			ret = 0;
-
-Please drop the spacing between type and variable name here, if nothing
-else it's inconsistent with the previous function.
-
-Regards,
-Bjorn
-
-> +
-> +	/*
-> +	 * Remap xHCI address space to access XHCI ext cap regs,
-> +	 * since it is needed to get port info.
-> +	 */
-> +	regs = ioremap(dwc->xhci_resources[0].start,
-> +				resource_size(&dwc->xhci_resources[0]));
-> +	if (IS_ERR(regs))
-> +		return PTR_ERR(regs);
-> +
-> +	offset = dwc3_xhci_find_next_ext_cap(regs, 0,
-> +					XHCI_EXT_CAPS_PROTOCOL);
-> +	while (offset) {
-> +		temp = readl(regs + offset);
-> +		major_revision = XHCI_EXT_PORT_MAJOR(temp);
-> +
-> +		temp = readl(regs + offset + 0x08);
-> +		if (major_revision == 0x03) {
-> +			dwc->num_usb3_ports += XHCI_EXT_PORT_COUNT(temp);
-> +		} else if (major_revision <= 0x02) {
-> +			dwc->num_usb2_ports += XHCI_EXT_PORT_COUNT(temp);
-> +		} else {
-> +			dev_err(dwc->dev,
-> +				"Unrecognized port major revision %d\n", major_revision);
-> +			ret = -EINVAL;
-> +			goto unmap_reg;
-> +		}
-> +
-> +		offset = dwc3_xhci_find_next_ext_cap(regs, offset,
-> +						XHCI_EXT_CAPS_PROTOCOL);
-> +	}
-> +
-> +	temp = readl(regs + DWC3_XHCI_HCSPARAMS1);
-> +	if (HCS_MAX_PORTS(temp) != (dwc->num_usb3_ports + dwc->num_usb2_ports)) {
-> +		dev_err(dwc->dev,
-> +			"Mismatched reported MAXPORTS (%d)\n", HCS_MAX_PORTS(temp));
-> +		ret = -EINVAL;
-> +		goto unmap_reg;
-> +	}
-> +
-> +	dev_dbg(dwc->dev,
-> +		"hs-ports: %d ss-ports: %d\n", dwc->num_usb2_ports, dwc->num_usb3_ports);
-> +
-> +unmap_reg:
-> +	iounmap(regs);
-> +	return ret;
-> +}
-> +
->  static int dwc3_probe(struct platform_device *pdev)
->  {
->  	struct device		*dev = &pdev->dev;
-> @@ -1774,6 +1872,7 @@ static int dwc3_probe(struct platform_device *pdev)
->  	void __iomem		*regs;
->  	struct dwc3		*dwc;
->  	int			ret;
-> +	unsigned int		hw_mode;
->  
->  	dwc = devm_kzalloc(dev, sizeof(*dwc), GFP_KERNEL);
->  	if (!dwc)
-> @@ -1843,6 +1942,20 @@ static int dwc3_probe(struct platform_device *pdev)
->  			goto err_disable_clks;
->  	}
->  
-> +	/*
-> +	 * Currently DWC3 controllers that are host-only capable
-> +	 * support Multiport
-> +	 */
-> +	hw_mode = DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
-> +	if (hw_mode == DWC3_GHWPARAMS0_MODE_HOST) {
-> +		ret = dwc3_read_port_info(dwc);
-> +		if (ret)
-> +			goto err_disable_clks;
+> -	if (of_device_is_compatible(np, "mmio-mux"))
+> +	if (of_device_is_compatible(np, "mmio-mux")) {
+>  		regmap = syscon_node_to_regmap(np->parent);
+> -	else
+> -		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
 > +	} else {
-> +		dwc->num_usb2_ports = 1;
-> +		dwc->num_usb3_ports = 1;
+> +		regmap = dev_get_regmap(dev->parent, NULL);
+> +		if (!regmap)
+> +			regmap = device_node_to_regmap(np) ?: ERR_PTR(-ENODEV);
 > +	}
-> +
->  	spin_lock_init(&dwc->lock);
->  	mutex_init(&dwc->mutex);
->  
-> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> index d56457c02996..d3401963bc27 100644
-> --- a/drivers/usb/dwc3/core.h
-> +++ b/drivers/usb/dwc3/core.h
-> @@ -35,6 +35,17 @@
->  
->  #define DWC3_MSG_MAX	500
->  
-> +/* Define XHCI Extcap register offsets for getting multiport info */
-> +#define XHCI_HCC_PARAMS_OFFSET	0x10
-> +#define DWC3_XHCI_HCSPARAMS1	0x04
-> +#define XHCI_EXT_CAPS_PROTOCOL	2
-> +#define XHCI_HCC_EXT_CAPS(x)    (((x) >> 16) & 0xffff)
-> +#define XHCI_EXT_CAPS_ID(x)     (((x) >> 0) & 0xff)
-> +#define XHCI_EXT_CAPS_NEXT(x)   (((x) >> 8) & 0xff)
-> +#define XHCI_EXT_PORT_MAJOR(x)  (((x) >> 24) & 0xff)
-> +#define XHCI_EXT_PORT_COUNT(x)  (((x) >> 8) & 0xff)
-> +#define HCS_MAX_PORTS(x)        (((x) >> 24) & 0x7f)
-> +
->  /* Global constants */
->  #define DWC3_PULL_UP_TIMEOUT	500	/* ms */
->  #define DWC3_BOUNCE_SIZE	1024	/* size of a superspeed bulk */
-> @@ -1025,6 +1036,8 @@ struct dwc3_scratchpad_array {
->   * @usb_psy: pointer to power supply interface.
->   * @usb2_phy: pointer to USB2 PHY
->   * @usb3_phy: pointer to USB3 PHY
-> + * @num_usb2_ports: number of usb2 ports.
-> + * @num_usb3_ports: number of usb3 ports.
->   * @usb2_generic_phy: pointer to USB2 PHY
->   * @usb3_generic_phy: pointer to USB3 PHY
->   * @phys_ready: flag to indicate that PHYs are ready
-> @@ -1162,6 +1175,9 @@ struct dwc3 {
->  	struct usb_phy		*usb2_phy;
->  	struct usb_phy		*usb3_phy;
->  
-> +	u8			num_usb2_ports;
-> +	u8			num_usb3_ports;
-> +
->  	struct phy		*usb2_generic_phy;
->  	struct phy		*usb3_generic_phy;
->  
-> @@ -1649,5 +1665,4 @@ static inline int dwc3_ulpi_init(struct dwc3 *dwc)
->  static inline void dwc3_ulpi_exit(struct dwc3 *dwc)
->  { }
->  #endif
-> -
->  #endif /* __DRIVERS_USB_DWC3_CORE_H */
-> -- 
-> 2.40.0
-> 
+>  	if (IS_ERR(regmap)) {
+>  		ret = PTR_ERR(regmap);
+>  		dev_err(dev, "failed to get regmap: %d\n", ret);
