@@ -2,262 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2473A7052ED
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 17:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 894D0705437
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:42:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234211AbjEPP5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 11:57:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52980 "EHLO
+        id S229565AbjEPQmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 12:42:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232890AbjEPP5d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 11:57:33 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3593A3C3A
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:57:31 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9659f452148so2620869666b.1
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:57:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684252650; x=1686844650;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YFdAn7Fjdx2rJ76WHO6PHBO3/n+aln2mjGgewNBmIEI=;
-        b=a2D+8t+JvAvQiQfiUf/HNoXN2nApCfMqc2zY3l9l+k0y4g3vmrlApiQMQ+GRspKp+v
-         aFSYnR149w3u26IWDqVaETeE8Q2wRI+7RB0oJEFCsLBWz6J3+nsMgJP6uds3MWytl3ca
-         8kPwF7LQyJvAMskAT+xxeTudCn0bcy9ZnkzqcRKtWzFo4JjAdWk6eEipckv9XFmEYr3j
-         CjNlwdz+mz4d2BlQ1eY2kPtYcijmzXfvwKLjddEnPlSBdLZMUpwTWklJYeRVmvBvhMla
-         /hNmPVvp5J2liSfcFhLhQck1WIr+DgV4893vxsm7QwwqFo5SPkCOqGjEKjX/Fk+NPOd4
-         4+6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684252650; x=1686844650;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YFdAn7Fjdx2rJ76WHO6PHBO3/n+aln2mjGgewNBmIEI=;
-        b=A2sbv6NfU0UN7uLp7dd1wvGDT9kPF73LYjMiHSDIoZFqkxXo/64v/dba0JttBN8i6D
-         lOfpHgiLZiJHRgZZswXHqW/Y6uFDY4li74bTm1AXpTXTFR8WkLxz2Hb1DTIOU0WROfMa
-         GhDSDZ3xWCQ4hydOpPBncbe3MuTcmIvtEJVbQGBj1t6A2/r4eaIR7ukOL2I9D3PPYNUM
-         mFs3XJrV1d4naIR3Mo1rKR0OH8yNGVqRMFhPGlnR8tnCGXPBULcoyTzoai+623S2N6Vj
-         VaCqWaFIPMoZqTlPIclqDXVmHvu6T28MVsm0gSwS1qGGEdDMGkqM5svZzWAte9dBPcsu
-         h7cA==
-X-Gm-Message-State: AC+VfDwH6/zl5ADZNXjmPwGNGHRL34PGQMP+jQYyeIoUARMmk0ezg1xM
-        ej/AAuqUMWxByVX0dsiLNfYG0g==
-X-Google-Smtp-Source: ACHHUZ4LicxoTrUfWiE2B86KO8Cl3YoygDk/rLnT/Sw4BYRU6yHuzrzZFmi7+8KBxCsQ26l23fn97A==
-X-Received: by 2002:a17:907:7e8f:b0:969:e7da:fcb1 with SMTP id qb15-20020a1709077e8f00b00969e7dafcb1mr29092821ejc.13.1684252649625;
-        Tue, 16 May 2023 08:57:29 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
-        by smtp.gmail.com with ESMTPSA id l21-20020a170906a41500b00965c6c63ea3sm11074850ejz.35.2023.05.16.08.57.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 08:57:29 -0700 (PDT)
-Message-ID: <023f6cf9-0f08-f27e-d203-5ff78faf110f@linaro.org>
-Date:   Tue, 16 May 2023 17:57:28 +0200
+        with ESMTP id S229580AbjEPQmV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:42:21 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7BF1A5F1;
+        Tue, 16 May 2023 09:41:58 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34GEbKCS025457;
+        Tue, 16 May 2023 15:49:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=7GmFsIyYLDO0Uzcku7fTuqy+8j8iq7zS8tmiHeE4lcc=;
+ b=VzSFcI0YfkS4VIZbc1BI674coEvoMgqz7DzKjPMFkw/VZQ/rccifC0Moryt1gp5fWcsB
+ YKTQSvytDItLpE1hcVDqdZmohgPk0geWqWtU69h2RWo73ubo8ay+DtyGV4JR9jjIhzLH
+ s0yGqxhfT2E1pcZKpaGbuZMJIQRGy+LjRvQBWgByLrw0E9ZrK73mZZw72byQPLNNkvy+
+ Gq3csGT7H5iNL4PdQnGsb1186Fj386fMDNSUcEB5v6+6GY/EFp0jthd2qkUBfCiQwxdO
+ otdHvEMToBLZ1p8Ac1F5yNedwx5ycELPlY67fRtWmKAf70ULSxDI+fNGOWyBSRSQN9UU dA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qm6r3rxay-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 May 2023 15:49:18 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34GFnHZQ003434
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 May 2023 15:49:17 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Tue, 16 May 2023 08:49:17 -0700
+Date:   Tue, 16 May 2023 08:49:16 -0700
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+CC:     Bjorn Andersson <andersson@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, <linux-mmc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc8280xp: Add SDC2 and enable on
+ CRD
+Message-ID: <20230516154916.GA606695@hu-bjorande-lv.qualcomm.com>
+References: <20230509030136.1524860-1-quic_bjorande@quicinc.com>
+ <20230509030136.1524860-2-quic_bjorande@quicinc.com>
+ <0855c1ea-2104-c7ab-e775-1340dac21c58@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2] dt-bindings: display: panel: add
- panel-mipi-dsi-bringup
-Content-Language: en-US
-To:     =?UTF-8?B?UGF1bG8gUGF2YcSNacSH?= <pavacic.p@gmail.com>,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
-        robh+dt@kernel.org, daniel@ffwll.ch
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <0855c1ea-2104-c7ab-e775-1340dac21c58@linaro.org>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: znyBCV67pOdHq29Cz0OLiUJUPV6Sp56j
+X-Proofpoint-GUID: znyBCV67pOdHq29Cz0OLiUJUPV6Sp56j
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-16_08,2023-05-16_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 impostorscore=0 mlxscore=0 spamscore=0 phishscore=0
+ clxscore=1015 bulkscore=0 adultscore=0 suspectscore=0 malwarescore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305160134
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 15:09, Paulo Pavačić wrote:
-> Add dt-bindings documentation for panel-mipi-dsi-bringup which currently
-> supports fannal,c3004 panel. Also added fannal to vendor-prefixes.
-
-Thank you for your patch. There is something to discuss/improve.
-
+On Tue, May 16, 2023 at 03:22:41AM +0200, Konrad Dybcio wrote:
 > 
-> v2 changelog:
-
-Please put changelog after ---
-
-Missing user of the bindings - driver or DTS. Please sent patches
-together as patchset.
-
-
-
->   - revised driver title, now describes purpose
->   - revised description, now describes hw
->   - revised maintainers, now has only 1 mail
->   - removed diacritics from commit/commit author
->   - properties/compatible is now enum
->   - compatible using only lowercase
->   - revised dts example
->   - modified MAINTAINERS in this commit (instead of driver commit)
->   - dt_bindings_check checked yml
->   - checkpatch warning fixed
 > 
-> Signed-off-by: Paulo Pavacic <pavacic.p@gmail.com>
-> ---
->  .../display/panel/panel-mipi-dsi-bringup.yaml | 54 +++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
->  MAINTAINERS                                   |  6 +++
->  3 files changed, 62 insertions(+)
->  create mode 100644
-> Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
-
-Still wrong filename. You did not respond to my previous comments, so I
-don't really understand what's this.
-
-Judging by compatible, this should be fannal,c3004.yaml
-
-If not, explain please.
-
+> On 9.05.2023 05:01, Bjorn Andersson wrote:
+> > The CRD has Micro SD slot, introduce the necessary DeviceTree nodes for
+> > enabling this.
+> > 
+> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 80 +++++++++++++++++++++++
+> >  arch/arm64/boot/dts/qcom/sc8280xp.dtsi    | 39 +++++++++++
+> >  2 files changed, 119 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> > index 5b25d54b9591..f83411e0e7f8 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> > @@ -308,6 +308,13 @@ vreg_l1c: ldo1 {
+> >  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> >  		};
+> >  
+> > +		vreg_l6c: ldo6 {
+> > +			regulator-name = "vreg_l6c";
+> > +			regulator-min-microvolt = <1800000>;
+> > +			regulator-max-microvolt = <2960000>;
+> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> > +		};
+> > +
+> >  		vreg_l7c: ldo7 {
+> >  			regulator-name = "vreg_l7c";
+> >  			regulator-min-microvolt = <2504000>;
+> > @@ -318,6 +325,13 @@ vreg_l7c: ldo7 {
+> >  						   RPMH_REGULATOR_MODE_HPM>;
+> >  		};
+> >  
+> > +		vreg_l9c: ldo9 {
+> > +			regulator-name = "vreg_l9c";
+> > +			regulator-min-microvolt = <2960000>;
+> > +			regulator-max-microvolt = <2960000>;
+> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> Generally I ask people to add the missing regulator-allow-set-load,
+> but in case of the RPMh driver, should we also consider allowing LPM?
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
-> b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
-> new file mode 100644
-> index 000000000000..c9e2b545657e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-mipi-dsi-bringup.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MIPI DSI Bringup Panel Porting Bindings
 
-Drop Bindings. I don't understand what is "Porting" in the terms of
-hardware. If it these are bindings for Panel, please write here proper
-hardware.
+I prefer to avoid LPM and dynamic load management, because I don't think
+we're doing a good enough job across the kernel to ensure we get back to
+HPM when needed.
 
-> +
-> +description: |
-> +  MIPI DSI Bringup Panel porting bindings to be used for a collection of panels
+At some point this needs to be re-evaluated though.
 
-I have no clue what is "Bringup panel". Is it technical term for some
-type of panels?
-
-> +  from different manufacturers which don't require backlight control from the
-> +  driver and have a single reset pin which is required to be passed as an
-> +  argument.
-
-Drop "driver"
-
-> +
-> +maintainers:
-> +  - Paulo Pavacic <pavacic.p@gmail.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +
-
-Drop blank line.
-
-> +  compatible:
-> +    enum:
-> +      # compatible must be listed in alphabetical order, ordered by compatible.
-> +      # The description in the comment is mandatory for each compatible.
-
-Drop above comment.
-
-> +
-> +        # Fannal 480x800 panel
-> +      - fannal,c3004
-> +
-> +  reg: true
-> +  reset-gpios: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reset-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    //example on IMX8MM where GPIO pin 9 is used as a reset pin
-
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-I asked to drop the comment.
-
-> +    mipi_dsi@32e10000 {
-
-dsi {
-
-There is no way it was correct in current form.
-
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
-
-> +        panel@0 {
-> +            compatible = "fannal,c3004";
-> +            reg = <0>;
-> +            pinctrl-0 = <&pinctrl_mipi_dsi_rst>;
-> +            pinctrl-names = "default";
-> +            reset-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 82d39ab0231b..f962750f630a 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -462,6 +462,8 @@ patternProperties:
->      description: Facebook
->    "^fairphone,.*":
->      description: Fairphone B.V.
-> +  "^fannal,.*":
-> +    description: Fannal Electronics Co., Ltd
->    "^faraday,.*":
->      description: Faraday Technology Corporation
->    "^fastrax,.*":
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e0ad886d3163..46f988ee60bd 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6566,6 +6566,12 @@ T:    git git://anongit.freedesktop.org/drm/drm-misc
->  F:    Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
->  F:    drivers/gpu/drm/tiny/panel-mipi-dbi.c
+> > +		};
+> > +
+> >  		vreg_l13c: ldo13 {
+> >  			regulator-name = "vreg_l13c";
+> >  			regulator-min-microvolt = <3072000>;
+> > @@ -600,6 +614,18 @@ &remoteproc_nsp0 {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&sdc2 {
+> > +	cd-gpios = <&tlmm 131 GPIO_ACTIVE_LOW>;
+> > +	pinctrl-names = "default", "sleep";
+> > +	pinctrl-0 = <&sdc2_default_state>;
+> > +	pinctrl-1 = <&sdc2_sleep_state>;
+> pinctrl-n
+> pinctrl-names
 > 
-> +DRM DRIVER FOR MIPI DSI BRINGUP
-> +M:    Paulo Pavacic <pavacic.p@gmail.com>
-> +S:    Maintained
-> +C:    mipi-dsi-bringup:matrix.org
+> please
 
-Missing protocol. See explanation of C: entry at the beginning.
+That's ugly, but I see the symmetry to other -# vs -names
 
-> +F:    Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
-> +
->  DRM DRIVER FOR MSM ADRENO GPU
->  M:    Rob Clark <robdclark@gmail.com>
->  M:    Abhinav Kumar <quic_abhinavk@quicinc.com>
+> > +	vmmc-supply = <&vreg_l9c>;
+> > +	vqmmc-supply = <&vreg_l6c>;
+> > +	no-sdio;
+> > +	no-mmc;
+> > +	status = "okay";
+> > +};
+> > +
+> >  &uart17 {
+> >  	compatible = "qcom,geni-debug-uart";
+> >  
+> > @@ -842,6 +868,60 @@ wake-n-pins {
+> >  		};
+> >  	};
+> >  
+> > +	sdc2_default_state: sdc2-default-state {
+> > +		clk-pins {
+> > +			pins = "sdc2_clk";
+> > +			drive-strength = <16>;
+> > +			bias-disable;
+> > +		};
+> > +
+> > +		cmd-pins {
+> > +			pins = "sdc2_cmd";
+> > +			drive-strength = <16>;
+> > +			bias-pull-up;
+> > +		};
+> > +
+> > +		data-pins {
+> > +			pins = "sdc2_data";
+> > +			drive-strength = <16>;
+> > +			bias-pull-up;
+> > +		};
+> > +
+> > +		card-detect-pins {
+> > +			pins = "gpio131";
+> > +			function = "gpio";
+> > +			drive-strength = <2>;
+> > +			bias-disable;
+> > +		};
+> > +	};
+> > +
+> > +	sdc2_sleep_state: sdc2-sleep-state {
+> > +		clk-pins {
+> > +			pins = "sdc2_clk";
+> > +			drive-strength = <2>;
+> > +			bias-disable;
+> > +		};
+> > +
+> > +		cmd-pins {
+> > +			pins = "sdc2_cmd";
+> > +			drive-strength = <2>;
+> > +			bias-pull-up;
+> > +		};
+> > +
+> > +		data-pins {
+> > +			pins = "sdc2_data";
+> > +			drive-strength = <2>;
+> > +			bias-pull-up;
+> > +		};
+> > +
+> > +		card-detect-pins {
+> > +			pins = "gpio131";
+> > +			function = "gpio";
+> > +			drive-strength = <2>;
+> > +			bias-disable;
+> > +		};
+> > +	};
+> That's totally SoC-specific, modulo the CD pin which can have
+> its own separate node and label
+> 
 
-Best regards,
-Krzysztof
+The drive-strength and bias properties are board specific. Also, at this
+time the CRD is the only board I'm aware of having the SD-card slot.
 
+I suggest that we move it out of here once there's another user...
+
+> > +
+> >  	tpad_default: tpad-default-state {
+> >  		int-n-pins {
+> >  			pins = "gpio182";
+> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> > index 8fa9fbfe5d00..21dfb48d923c 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> > @@ -2815,6 +2815,45 @@ data-pins {
+> >  			};
+> >  		};
+> >  
+> > +		sdc2: mmc@8804000 {
+> > +			compatible = "qcom,sc8280xp-sdhci", "qcom,sdhci-msm-v5";
+> > +			reg = <0 0x08804000 0 0x1000>;
+> > +
+> > +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
+> > +			interrupt-names = "hc_irq", "pwr_irq";
+> > +
+> > +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+> > +				 <&gcc GCC_SDCC2_APPS_CLK>,
+> > +				 <&rpmhcc RPMH_CXO_CLK>;
+> > +			clock-names = "iface", "core", "xo";
+> > +			resets = <&gcc GCC_SDCC4_BCR>;
+> 4?
+> 
+
+That's a typo. Thanks.
+
+> > +			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
+> > +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
+> > +			interconnect-names = "sdhc-ddr","cpu-sdhc";
+> > +			iommus = <&apps_smmu 0x4e0 0x0>;
+> > +			power-domains = <&rpmhpd SC8280XP_CX>;
+> > +			operating-points-v2 = <&sdc2_opp_table>;
+> > +			bus-width = <4>;
+> > +			dma-coherent;
+> > +
+> > +			status = "disabled";
+> > +
+> > +			sdc2_opp_table: opp-table {
+> > +				compatible = "operating-points-v2";
+> > +
+> > +				opp-100000000 {
+> > +					opp-hz = /bits/ 64 <100000000>;
+> > +					required-opps = <&rpmhpd_opp_low_svs>;
+> You specified interconnects, but no bw values.. was that on purpose?
+> 
+
+Assumed the driver did something clever, when I didn't see anything for
+the other boards I looked at either. Will reconsider.
+
+> Other than these nits, lgtm
+> (generally, my dt sources don't even have sdhci to compare)
+> 
+
+Thanks,
+Bjorn
+
+> Konrad
+> > +				};
+> > +
+> > +				opp-202000000 {
+> > +					opp-hz = /bits/ 64 <202000000>;
+> > +					required-opps = <&rpmhpd_opp_svs_l1>;
+> > +				};
+> > +			};
+> > +		};
+> > +
+> >  		usb_0_qmpphy: phy@88eb000 {
+> >  			compatible = "qcom,sc8280xp-qmp-usb43dp-phy";
+> >  			reg = <0 0x088eb000 0 0x4000>;
