@@ -2,234 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFB75704C74
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:37:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A38B704C8A
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:42:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232997AbjEPLhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 07:37:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34232 "EHLO
+        id S232971AbjEPLmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 07:42:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232651AbjEPLhF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:37:05 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0887EBD;
-        Tue, 16 May 2023 04:37:04 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7C0DC2F4;
-        Tue, 16 May 2023 04:37:48 -0700 (PDT)
-Received: from [10.163.71.75] (unknown [10.163.71.75])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 318063F663;
-        Tue, 16 May 2023 04:36:57 -0700 (PDT)
-Message-ID: <6ebe814c-437a-dead-cdaa-d6b48fa36ba7@arm.com>
-Date:   Tue, 16 May 2023 17:06:54 +0530
+        with ESMTP id S232383AbjEPLmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:42:12 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29F4144B9
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:42:10 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-965ab8ed1fcso2591703666b.2
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:42:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684237328; x=1686829328;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7dd+jxyo01xM6Elj5j3Ewa9arjCRO1A5vQvJrDdMrVA=;
+        b=oaKRhLTOsWr0cp5nS3K+eXyGIZa1ZOqW0/peqp88GZloMpkRP+y+/o3V5Tb4FFXs20
+         fpryACjparz+FPiaYUorHvJOfMEGRf8HDbnNznP5lewpiWbq6jg6JhINSBTMvCYF52WR
+         uQY5cmU2DECoBj4oBX8SEsGz4IM+lA+tvK8nnNKNV7ftxNLTnEe18BZmvlcjQ0UJqFia
+         J/6i7ltd9ctq573ZTTZ2j8i5ai2+yG1TgnQrqKY1AoYcOA+9ugDen5++NCHSxB/zwMvB
+         KtvXqhV8neKX4dmt0I76P++ttxkRF00KcxkNttLCZXFQVXzD7Rt0heggL3vZNpJAOhHG
+         r+Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684237328; x=1686829328;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7dd+jxyo01xM6Elj5j3Ewa9arjCRO1A5vQvJrDdMrVA=;
+        b=Dk7fh9/+50YtzGdUJnTwkIT2C60EGsoSqMG8wNBtCdcJ9ifL8fjllQS3OMH2X59iey
+         FBP8+xpDXjM/gtJ3QsDx3p3P/4OoVgufH93jPYmkKJqRPvMz29kiAaf98MrfeajamJ4z
+         2ZiMEnGO5BsM3AX0pA9rhoewuk1lvHMylF2k9KTs+l89GFYPa5j6Uq0Hzp4vkoRyphB5
+         UK7W7QZsUdC67c/kjm1XMdXkNL+kD96FhTKhPrsuNOljv+Xy9FU+Bn1/TLEHMN+bocVE
+         b0oCIUEYx0yKDVcCUcse7/2rKjgZ5kTpHWdTq7BGEgSSn6XvzVX1+MWiAWOSozNnUbui
+         mAtA==
+X-Gm-Message-State: AC+VfDzaQvILgAohPdZer51x+tUe0l5A4F+2N92EzGptDldBgdEf+MHD
+        7rjRoZwnplgLzCBB/jnUHd/TnA==
+X-Google-Smtp-Source: ACHHUZ5TORQfsqjiqzlCHtscGpUuOUJ0YIj3T/Sqe16I98quxG9QKlegiw2uX92GUEZYHMlRe7JHZA==
+X-Received: by 2002:a17:907:9302:b0:94f:59aa:8a7c with SMTP id bu2-20020a170907930200b0094f59aa8a7cmr30721340ejc.20.1684237328508;
+        Tue, 16 May 2023 04:42:08 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
+        by smtp.gmail.com with ESMTPSA id n12-20020a1709065dac00b009663cf5dc2fsm10928746ejv.66.2023.05.16.04.42.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 May 2023 04:42:07 -0700 (PDT)
+Message-ID: <f013e9a1-81cd-14ed-0126-6edaee3a73fc@linaro.org>
+Date:   Tue, 16 May 2023 13:42:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH V2 4/5] coresight: etm4x: Change etm4_platform_driver
- driver for MMIO devices
+ Thunderbird/102.11.0
+Subject: Re: [EXT] Re: [PATCH 1/2 v7] dt-bindings: watchdog: marvell GTI
+ system watchdog driver
 Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org
-Cc:     scclevenger@os.amperecomputing.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230327050537.30861-1-anshuman.khandual@arm.com>
- <20230327050537.30861-5-anshuman.khandual@arm.com>
- <775052f2-ef23-c015-86e9-daaffca75527@arm.com>
-From:   Anshuman Khandual <anshuman.khandual@arm.com>
-In-Reply-To: <775052f2-ef23-c015-86e9-daaffca75527@arm.com>
+To:     Sunil Kovvuri Goutham <sgoutham@marvell.com>,
+        Bharat Bhushan <bbhushan2@marvell.com>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230508131515.19403-1-bbhushan2@marvell.com>
+ <ea9ae4c9-2808-bf22-70a3-bb7e7b1168d0@linaro.org>
+ <DM5PR1801MB1883175A2538B85FEF571B7AE3769@DM5PR1801MB1883.namprd18.prod.outlook.com>
+ <8119eec8-0190-b6a5-85a7-301bcb81b0c9@linaro.org>
+ <DM5PR1801MB1883A414F47BB56E9537673AE3769@DM5PR1801MB1883.namprd18.prod.outlook.com>
+ <8b540cc2-bc0d-9d8b-45e6-98410322b3f6@linaro.org>
+ <BY3PR18MB4737947E20CB44CE6DAB940DC6799@BY3PR18MB4737.namprd18.prod.outlook.com>
+ <578a743e-dee4-59b7-2f4e-290b551211e0@linaro.org>
+ <BY3PR18MB47373D22B01071D5DC2B5F5DC6799@BY3PR18MB4737.namprd18.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <BY3PR18MB47373D22B01071D5DC2B5F5DC6799@BY3PR18MB4737.namprd18.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 3/27/23 20:24, Suzuki K Poulose wrote:
-> On 27/03/2023 06:05, Anshuman Khandual wrote:
->> Add support for handling MMIO based devices via platform driver. We need to
->> make sure that :
->>
->> 1) The APB clock, if present is enabled at probe and via runtime_pm ops
->> 2) Use the ETM4x architecture or CoreSight architecture registers to
->>     identify a device as CoreSight ETM4x, instead of relying a white list of
->>     "Peripheral IDs"
->>
->> The driver doesn't get to handle the devices yet, until we wire the ACPI
->> changes to move the devices to be handled via platform driver than the
->> etm4_amba driver.
->>
->> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
->> Cc: Mike Leach <mike.leach@linaro.org>
->> Cc: Leo Yan <leo.yan@linaro.org>
->> Cc: coresight@lists.linaro.org
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-kernel@vger.kernel.org
->> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
->> ---
->>   .../coresight/coresight-etm4x-core.c          | 62 +++++++++++++++++--
->>   drivers/hwtracing/coresight/coresight-etm4x.h |  4 ++
->>   include/linux/coresight.h                     | 47 ++++++++++++++
->>   3 files changed, 109 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> index 3521838ab4fb..bef205023bbe 100644
->> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> @@ -30,6 +30,7 @@
->>   #include <linux/platform_device.h>
->>   #include <linux/pm_runtime.h>
->>   #include <linux/property.h>
->> +#include <linux/clk/clk-conf.h>
->>     #include <asm/barrier.h>
->>   #include <asm/sections.h>
->> @@ -1067,12 +1068,22 @@ static bool etm4_init_sysreg_access(struct etmv4_drvdata *drvdata,
->>       return true;
->>   }
->>   +static bool is_etm4x_devtype(void __iomem *base)
->> +{
->> +    u32 devtype = readl(base + TRCDEVTYPE);
->> +
->> +    return (devtype == ETM_DEVTYPE_ETMv4x_ARCH);
->> +}
->> +
->>   static bool etm4_init_iomem_access(struct etmv4_drvdata *drvdata,
->>                      struct csdev_access *csa)
->>   {
->>       u32 devarch = readl_relaxed(drvdata->base + TRCDEVARCH);
->>       u32 idr1 = readl_relaxed(drvdata->base + TRCIDR1);
->>   +    if (!is_coresight_device(drvdata->base) || !is_etm4x_devtype(drvdata->base))
->> +        return false;
->> +
->>       /*
->>        * All ETMs must implement TRCDEVARCH to indicate that
->>        * the component is an ETMv4. To support any broken
->> @@ -2133,6 +2144,7 @@ static int etm4_probe_amba(struct amba_device *adev, const struct amba_id *id)
->>     static int etm4_probe_platform_dev(struct platform_device *pdev)
->>   {
->> +    struct resource *res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>       struct etmv4_drvdata *drvdata;
->>       int ret;
->>   @@ -2140,7 +2152,18 @@ static int etm4_probe_platform_dev(struct platform_device *pdev)
->>       if (!drvdata)
->>           return -ENOMEM;
->>   -    drvdata->base = NULL;
->> +    drvdata->pclk = coresight_get_enable_apb_pclk(&pdev->dev);
->> +    if (IS_ERR(drvdata->pclk))
->> +        return -ENODEV;
->> +
->> +    if (res) {
->> +        drvdata->base = devm_ioremap_resource(&pdev->dev, res);
->> +        if (IS_ERR(drvdata->base)) {
->> +            clk_put(drvdata->pclk);
->> +            return PTR_ERR(drvdata->base);
->> +        }
->> +    }
->> +
->>       dev_set_drvdata(&pdev->dev, drvdata);
->>       pm_runtime_get_noresume(&pdev->dev);
->>       pm_runtime_set_active(&pdev->dev);
->> @@ -2186,7 +2209,7 @@ static struct amba_cs_uci_id uci_id_etm4[] = {
->>           /*  ETMv4 UCI data */
->>           .devarch    = ETM_DEVARCH_ETMv4x_ARCH,
->>           .devarch_mask    = ETM_DEVARCH_ID_MASK,
->> -        .devtype    = 0x00000013,
->> +        .devtype    = ETM_DEVTYPE_ETMv4x_ARCH,
->>       }
->>   };
->>   @@ -2244,6 +2267,10 @@ static int __exit etm4_remove_platform_dev(struct platform_device *pdev)
->>         if (drvdata)
->>           ret = etm4_remove_dev(drvdata);
->> +
->> +    if (drvdata->pclk)
->> +        clk_put(drvdata->pclk);
->> +
->>       pm_runtime_disable(&pdev->dev);
->>       return ret;
->>   }
->> @@ -2284,7 +2311,33 @@ static struct amba_driver etm4x_amba_driver = {
->>       .id_table    = etm4_ids,
->>   };
->>   -static const struct of_device_id etm4_sysreg_match[] = {
->> +#ifdef CONFIG_PM
->> +static int etm4_runtime_suspend(struct device *dev)
->> +{
->> +    struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
->> +
->> +    if (!IS_ERR(drvdata->pclk))
->> +        clk_disable_unprepare(drvdata->pclk);
->> +
->> +    return 0;
->> +}
->> +
->> +static int etm4_runtime_resume(struct device *dev)
->> +{
->> +    struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
->> +
->> +    if (!IS_ERR(drvdata->pclk))
->> +        clk_prepare_enable(drvdata->pclk);
->> +
->> +    return 0;
->> +}
->> +#endif
->> +
->> +static const struct dev_pm_ops etm4_dev_pm_ops = {
->> +    SET_RUNTIME_PM_OPS(etm4_runtime_suspend, etm4_runtime_resume, NULL)
->> +};
->> +
->> +static const struct of_device_id etm4_match[] = {
->>       { .compatible    = "arm,coresight-etm4x-sysreg" },
->>       { .compatible    = "arm,embedded-trace-extension" },
->>       {}
->> @@ -2295,8 +2348,9 @@ static struct platform_driver etm4_platform_driver = {
->>       .remove        = etm4_remove_platform_dev,
->>       .driver            = {
->>           .name            = "coresight-etm4x",
->> -        .of_match_table        = etm4_sysreg_match,
->> +        .of_match_table        = etm4_match,
->>           .suppress_bind_attrs    = true,
->> +        .pm            = &etm4_dev_pm_ops,
->>       },
->>   };
->>   diff --git a/drivers/hwtracing/coresight/coresight-etm4x.h b/drivers/hwtracing/coresight/coresight-etm4x.h
->> index 434f4e95ee17..78dfe7949548 100644
->> --- a/drivers/hwtracing/coresight/coresight-etm4x.h
->> +++ b/drivers/hwtracing/coresight/coresight-etm4x.h
->> @@ -701,6 +701,8 @@
->>   #define ETM_DEVARCH_ETE_ARCH                        \
->>       (ETM_DEVARCH_ARCHITECT_ARM | ETM_DEVARCH_ARCHID_ETE | ETM_DEVARCH_PRESENT)
->>   +#define ETM_DEVTYPE_ETMv4x_ARCH        0x00000013
+On 16/05/2023 13:24, Sunil Kovvuri Goutham wrote:
 > 
-> This has nothing to do with ETMv4 ARCH. This indicates :
 > 
-> [3:0] == 0x3 -> Indicates CoreSight Source
-> [7:4] == 0x1 -> Generates PE trace
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Tuesday, May 16, 2023 3:55 PM
+>> To: Sunil Kovvuri Goutham <sgoutham@marvell.com>; Bharat Bhushan
+>> <bbhushan2@marvell.com>; wim@linux-watchdog.org; linux@roeck-us.net;
+>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; linux-
+>> watchdog@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org
+>> Subject: Re: [EXT] Re: [PATCH 1/2 v7] dt-bindings: watchdog: marvell GTI system
+>> watchdog driver
+>>
+>> On 16/05/2023 12:06, Sunil Kovvuri Goutham wrote:
+>>
+>>
+>>>>>>> Marvell have octeontx2 series of processor which have watchdog timer.
+>>>>>>> In 95xx,98xx,96xx are the processors in octeontx2 series of
+>>>>>>> processor. So
+>>>>>> octeontx2-95xx is on soc, octeontx2-96xx is another and so on.
+>>>>>>
+>>>>>> No, 95xx is not a processor. Otherwise please point me to exact
+>>>>>> product datasheet. Hint: I checked it.
+>>>>>
+>>>>> Looks like 95xx data sheet is not public, will remove in that case.
+>>>>
+>>>> We can talk about 96xx. Can you point me to the SoC named exactly like this?
+>>>> Hint: I checked it.
+>>>
+>>> To recap what Bharat mentioned before along with references to individual
+>> processors.
+>>> OcteonTx2 is a family of processors
+>>> https://www.marvell.com/products/data-processing-units.html
+>>> Please check for "OCTEON TX2 DPUs"
+>>> CN96xx and CN98xx are two silicon variants in this family.
+>>> https://www.marvell.com/content/dam/marvell/en/public-collateral/embed
+>>> ded-processors/marvell-infrastructure-processors-octeon-tx2-cn92xx-cn9
+>>> 6xx-cn98xx-product-brief-2020-02.pdf
+>>
+>> This is a product brief which further suggests CN96xx is a family (or sub-family).
+>>
+>> "xx" is pretty often used as family, not as product. Otherwise how one product
+>> CN92XX can come with 12-18 cores *in the same time*?
 > 
-> So, we could call it : CS_DEVTYPE_PE_TRACE, but not ETMv4x
+> "xx" here suggests skews, some 92xx may have 18 cores and some may have
+> few cores fused out resulting in 12cores.
 
-Sure, will rename it as suggested.
+Is the DTSI for them the same? IOW, 12-core and 18-core SoCs have
+exactly the same DTSI with all properties being the same, valid and not
+customized by firmware per skew? If we talk about ARM architecture, DTS
+expects CPUs there, so I really wonder how do you write one DTS which
+has in the same time 12 and 18 enabled CPUs. Remember - the same time
+and not changed by firmware.
 
 > 
-> Rest looks good to me.
+>>
+>>>
+>>> Since the HW block is same in all the variants of silicons in this
+>>> family, we would like to use a generic string instead of different
+>>> compatible string for each one. ie
+>>> - const: marvell,octeontx2-wdt
+>>> Hope this is okay.
+>>
+>> https://urldefense.proofpoint.com/v2/url?u=https-
+>> 3A__elixir.bootlin.com_linux_v6.1-
+>> 2Drc1_source_Documentation_devicetree_bindings_writing-2Dbindings.rst-
+>> 23L42&d=DwIDaQ&c=nKjWec2b6R0mOyPaz7xtfQ&r=q3VKxXQKiboRw_F01ggTz
+>> HuhwawxR1P9_tMCN2FODU4&m=GGfz5QI8ldHRqao5OsrfuHZQso5LLNBeBxCZr
+>> Ai7Zow-
+>> qoKl_S1Yw90OWnSZ3FFx&s=kM0VFY1b15BYvp2EUapQjZ6Eb96aZ_yAE76EKCmA
+>> aEQ&e=
+>>
+>>>
+>>> Same with CN10K or Octeon10 family of silicons.
+>>> https://www.marvell.com/products/data-processing-units.html
+>>> Please check for "OCTEON 10"
+>>>
+>>> CN103xx and CN106xx are two silicons in this family.
+>>
+>> Are they? "Up to 8" cores, so how this can be one specific silicon? One customer
+>> buys CN10300 with 8 cores, second buys exactly the same CN10300 and has 4
+>> cores?
+>>
+>> You are mixing families and specific devices.
 > 
-> Suzuki
+> I was making it simple to understand.
 > 
-> _______________________________________________
-> CoreSight mailing list -- coresight@lists.linaro.org
-> To unsubscribe send an email to coresight-leave@lists.linaro.org
+> OcteonTx2 and Octeon10 (CN10K) are two generations of Octeon processors from Marvell.
+
+I know. I don't think we talk about the same thing...
+
+> Within each generation there are multiple silicon variants.
+> Again for each variant there are multiple skews.
+> 
+> Since the watchdog hardware block functionality is same across all of above
+> generations / variants / families / skews, is it okay to use below compatible strings ?
+
+You got the link which explains it.
+
+We had this discussions for thousands times. Just a few references from
+bookmarks:
+
+https://lore.kernel.org/all/20220822181701.GA89665-robh@kernel.org/
+https://lore.kernel.org/all/78651e07-6b3e-4243-8e1f-fcd1dfb3ffe1@www.fastmail.com/
+https://lore.kernel.org/all/288f56ba9cfad46354203b7698babe91@walle.cc/
+https://lore.kernel.org/all/106e443a-e765-51fe-b556-e4e7e2aa771c@linaro.org/
+
+Explain me how is this different. Please do not repeat the same
+arguments as everywhere else, because we covered them.
+
+> 
+> - const: marvell,octeontx2-wdt
+> - const: marvell,cn10k-wdt
+> 
+> Also this is the same naming we have been using in other drivers as well.
+> drivers/net/ethernet/marvell/octeontx2
+> drivers/net/ethernet/marvell/octeontx2/af/rvu_cn10k.c
+
+Ah, the argument "others did it" or "in the past we did". If the
+approach is buggy, does it mean you should duplicate the same buggy
+approach to new bindings?
+
+Best regards,
+Krzysztof
+
