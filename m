@@ -2,199 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF4F670549C
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 19:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E9347054A4
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 19:02:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbjEPRBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 13:01:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35380 "EHLO
+        id S230154AbjEPRCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 13:02:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbjEPRBN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 13:01:13 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C556EA5C4
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 10:00:42 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1ae3fe67980so7185475ad.3
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 10:00:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684256441; x=1686848441;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=A2isPeHLFTut2+mOKdMyVDlP/q2NZewEWxVxxvIO/Yc=;
-        b=eRKpjGAcT4ydGtuypR1jvNliTZGpV2leuaDZz83tI20QdbCsZ7qXlYJUXHwpqdpUTN
-         6Qy2YUPnnA7AWrC+94F4nqBjrZ4kI8UjNKQHxif2A8NSP6GfdYx3gUsse5n/WdIqAPyA
-         AnZQbtAdXEWZTmfJXrVtTd25lMZm1XQQ6Ff21a5A7IqpfcMntLfPDtJI/LtLiLCzCXHf
-         BoXaKUGKWYpTpIgM/Tw25G4wh/mrwxeBQmxbZlbmQOoLVFWQfoSI10UGYfz5ukUD9K2m
-         QFytZRFjh8VlGLdt314vkZlNBcBy013jMZtyX3IZpdnraSwkMPaIzA8ubz6xYuJZW12q
-         /c7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684256441; x=1686848441;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A2isPeHLFTut2+mOKdMyVDlP/q2NZewEWxVxxvIO/Yc=;
-        b=hTMc4zP06F16xWqd3DoHWR5P//tXFI3aIuq0nRMlRdAMJBzliXZ95qj8DbpXnRmAyo
-         oJoewpQKnsKZ+hmPzk6g8U1aJnenPC7/WhS6PmA4PEOpSBH+I9VgiSvyp86/runln5hK
-         ngEHsGtVj6PhIxLDnZO/yF4H/9TTcJMHREdddJkrn6CERwpihP2fAm7UXY5TvAKPFQau
-         1K5nrceJgiGVqUKv8OpUsRqxygAThAjRyGD9dPZHg4O4HTaSy+Lc+MOwGXh0RBsDC37Z
-         tTsm+OqPnekgWwSoNKO0cJl+QHOPbvvXWsLhVkHm9uqejFPsBREPoWSdb8Tyg2OphdbM
-         VwSA==
-X-Gm-Message-State: AC+VfDxTLRisFbsgV7tF5kTEl8KCJHyDMD79ikvrZD3nX8Q4/T4gqncC
-        IBE3EVuIQiALzQtZQUVhq4GWOw==
-X-Google-Smtp-Source: ACHHUZ5Oj+Q36rLinLQtgeWgi/+xRXp4Qu5QFFdXKuJd7rG3YFE70e/wjN6HQkclYeSkPaxJbjPcqg==
-X-Received: by 2002:a17:903:32cc:b0:1ad:cba5:5505 with SMTP id i12-20020a17090332cc00b001adcba55505mr26320003plr.14.1684256441196;
-        Tue, 16 May 2023 10:00:41 -0700 (PDT)
-Received: from localhost (63-228-113-140.tukw.qwest.net. [63.228.113.140])
-        by smtp.gmail.com with ESMTPSA id f10-20020a17090274ca00b001ab28f620d0sm15716212plt.290.2023.05.16.10.00.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 10:00:39 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Julien Stephan <jstephan@baylibre.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh@kernel.org, chunkuang.hu@kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Florian Sylvestre <fsylvestre@baylibre.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Andy Hsieh <andy.hsieh@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S229852AbjEPRCo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 13:02:44 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 200B083EC;
+        Tue, 16 May 2023 10:02:23 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34GE7fMQ015581;
+        Tue, 16 May 2023 19:01:58 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=EEGjMvBwmChywxvRvi7rS3GCQucVoQGQ96IwahsoA5Q=;
+ b=rnPxbOSHwO2TIpEiV36gayBM2qIkRyZ7Lm9yeNMl3nyf/YO56dDvdN9nmRH+ARYZncXJ
+ chxQzRNF0+GwPltv3+zJoSpa+eeyIG6fj8/NhsZa55VQ7TPzIyMluubHpfpLF95aAfAX
+ LQTodchwDIsyreKvVi1zCT2q4xwkJyRqhzePsV3IfjllNyx1apre7nNKbmycAfL3zJ5P
+ 5DN1vr9wnx2mDHvC8MKYgZ7jq3AZnwEYAthHXyJdz+MlqrsW+Z+O2RkUA6DhCqzjmqrW
+ YinV9MP8sDAMg6dQpUpdp/rzQByw4K4FRgQ7yEbpxqSV5O2ysl+04aeeR/ZHw1YvFM8N uQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qm7tfagke-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 May 2023 19:01:58 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 336B410002A;
+        Tue, 16 May 2023 19:01:57 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1A10423BDF3;
+        Tue, 16 May 2023 19:01:57 +0200 (CEST)
+Received: from [10.201.21.213] (10.201.21.213) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 16 May
+ 2023 19:01:53 +0200
+Message-ID: <33acd8d5-20bf-e39d-85c8-4379f5e7e6ad@foss.st.com>
+Date:   Tue, 16 May 2023 19:01:52 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v3 4/4] ARM: dts: stm32: fix m4_rproc references to use
+ SCMI
+Content-Language: en-US
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: add mediatek mipi csi driver v
- 0.5
-In-Reply-To: <1853f049-4f00-b7f0-973a-2c4e7b0b2634@linaro.org>
-References: <20230515090551.1251389-1-jstephan@baylibre.com>
- <20230515090551.1251389-2-jstephan@baylibre.com>
- <ab9aa30f-82d7-1d14-5561-e19ff10af0b0@linaro.org>
- <4yppinkucchwnwtnnpbqdn4bejmntjq3q6mx6es55f2pwyce3c@qdhdks47lpyt>
- <1853f049-4f00-b7f0-973a-2c4e7b0b2634@linaro.org>
-Date:   Tue, 16 May 2023 10:00:39 -0700
-Message-ID: <7h353w2oug.fsf@baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230512093926.661509-1-arnaud.pouliquen@foss.st.com>
+ <20230512093926.661509-5-arnaud.pouliquen@foss.st.com>
+ <20c010da-7245-7acf-db2f-991ee2975ea2@foss.st.com>
+From:   Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Organization: STMicroelectronics
+In-Reply-To: <20c010da-7245-7acf-db2f-991ee2975ea2@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.201.21.213]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-16_09,2023-05-16_01,2023-02-09_01
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+Hi Alex,
 
-> On 16/05/2023 11:41, Julien Stephan wrote:
->> On Tue, May 16, 2023 at 10:07:47AM +0200, Krzysztof Kozlowski wrote:
->>> On 15/05/2023 11:05, Julien Stephan wrote:
->>>> From: Florian Sylvestre <fsylvestre@baylibre.com>
->>>>
->>>> This adds the bindings, for the MIPI CD-PHY module v 0.5 embedded in
->>>> some Mediatek soc, such as the mt8365
->>>>
->>>> Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
->>>> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
->>>
->>> What are the changes? IOW: changelog here or in cover letter.
->>>
->> Hi Krzysztof,
->> I added a changelog in the cover letter, but I will try to be more
->> descritpive next time. Changes from v1 are mainly style issues fixed
->> (mostly from your first review)
->
-> What do you mean by "in cover letter"? There is no cover letter.
+On 5/16/23 17:35, Alexandre TORGUE wrote:
+> Hi Arnaud
+> 
+> On 5/12/23 11:39, Arnaud Pouliquen wrote:
+>> Fixes stm32mp15*-scmi DTS files introduced in [1]:
+>> This patch fixes the node which uses the MCU reset and adds the
+>> missing HOLD_BOOT which is also handled by the SCMI reset service.
+>>
+>> This change cannot be applied as a fix on commit [1], the management
+>> of the hold boot impacts also the stm32_rproc driver.
+>>
+>> [1] 'commit 5b7e58313a77 ("ARM: dts: stm32: Add SCMI version of STM32 boards
+>> (DK1/DK2/ED1/EV1)")'
+>>
+>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+>> ---
+> 
+> I just ran YAML validation on your DT patches and it fails. I added your DT
+> patches + dt-binding one (just for the test). I got the following issue:
+> 
+> /arch/arm/boot/dts/stm32mp157c-ed1-scmi.dtb: m4@10000000: st,syscfg-holdboot:
+> False schema does not allow [[7, 268, 1]]
+>     From schema:
+> /local/home/frq08678/STLINUX/kernel/my-kernel/stm32/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+> 
+> Do I miss another dt-binding update not present in this series ?
 
-Julien, your cover letter[1] was sent to a a different list of
-recipients than the patches, and most important for this thread, it was
-*not* sent to the devictree list. So I'm guessing that's why Krzysztof
-doesn't see it in his devicetree review queue.  Generally, you should
-have the same list of recipients for the cover letter as the patches
-since reviewers/maintainers generally filter mail based on which mailing
-lists are in to/cc.
+I reproduced the issue.
 
->> 
->>> Subject: you have some multiple spaces.
->>>
->>> Subject: drop driver. Bindings are not for drivers.
->>>
->>>> ---
->>>>  .../phy/mediatek,phy-mipi-csi-0-5.yaml        | 62 +++++++++++++++++++
->>>>  MAINTAINERS                                   |  6 ++
->>>>  2 files changed, 68 insertions(+)
->>>>  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml b/Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml
->>>> new file mode 100644
->>>> index 000000000000..5aa8c0b41cdf
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml
->>>> @@ -0,0 +1,62 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-Only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/phy/mediatek,phy-mipi-csi-0-5.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Mediatek Sensor Interface MIPI CSI CD-PHY
->>>> +
->>>> +maintainers:
->>>> +  - Julien Stephan <jstephan@baylibre.com>
->>>> +  - Andy Hsieh <andy.hsieh@mediatek.com>
->>>> +
->>>> +description:
->>>> +  The SENINF CD-PHY is a set of CD-PHY connected to the SENINF CSI-2
->>>> +  receivers. The number of PHYs depends on the SoC model.
->>>> +  Depending on the soc model, each PHYs can support CDPHY or DPHY only
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - mediatek,phy-mipi-csi-0-5
->>>
->>> SoC based compatibles. 0-5 is odd.
->>>
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  '#phy-cells':
->>>> +    const: 0
->>>> +
->>>> +  mediatek,is_cdphy:
->>>
->>> No underscores in node names.
->>>
->>>> +    description:
->>>> +      Specify if the current phy support CDPHY configuration
->>>
->>> Why this cannot be implied from compatible? Add specific compatibles.
->>>
->>>
->> This cannot be implied by compatible because the number of phys depends
->> on the soc and each phy can be either D-PHY only or CD-PHY capable.
->> For example mt8365 has 2 phy: CSI0 and CSI1. CSI1 is DPHY only and CSI0 is CD-PHY
->
-> So it is SoC specific so why it cannot be implied by compatible? I don't
-> understand. You will have SoC specific compatibles, right? or you just
-> ignored my comments here?
+I need to add "/delete-property/ st,syscfg-holdboot;" in stm32mp157*-scmi.dts
+files.
 
-Julien, I think you had SoC specific compatibles in an earlier version
-but then changed it to be generic based on reviewer feedback.  However,
-that earlier version of the driver was trying to do a bunch of SoC
-specific logic internally and support multiple SoCs.  You've now greatly
-simplified the driver, with only a few SoC specific decisions needed.
-These can be implied by the driver based SoC specific compatible, as
-Krzysztof suggests, so you should just go back to having SoC specific
-compatibles.
+As Mathieu already integrates the patch 1/4 and 2/4, I will send a V4 containing
+only the patches 3 and 4.
 
-Kevin
+Thanks,
+Arnaud
 
-[1] https://lore.kernel.org/linux-mediatek/20230515090551.1251389-1-jstephan@baylibre.com/#r
+> 
+> alex
+> 
+>>   arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts | 6 ++++--
+>>   arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts | 6 ++++--
+>>   arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts | 6 ++++--
+>>   arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts | 6 ++++--
+>>   4 files changed, 16 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
+>> b/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
+>> index e539cc80bef8..134788e64265 100644
+>> --- a/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
+>> +++ b/arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts
+>> @@ -55,8 +55,10 @@ &mdma1 {
+>>       resets = <&scmi_reset RST_SCMI_MDMA>;
+>>   };
+>>   -&mlahb {
+>> -    resets = <&scmi_reset RST_SCMI_MCU>;
+>> +&m4_rproc {
+>> +    resets = <&scmi_reset RST_SCMI_MCU>,
+>> +         <&scmi_reset RST_SCMI_MCU_HOLD_BOOT>;
+>> +    reset-names =  "mcu_rst", "hold_boot";
+>>   };
+>>     &rcc {
+>> diff --git a/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
+>> b/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
+>> index 97e4f94b0a24..c42e658debfb 100644
+>> --- a/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
+>> +++ b/arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts
+>> @@ -61,8 +61,10 @@ &mdma1 {
+>>       resets = <&scmi_reset RST_SCMI_MDMA>;
+>>   };
+>>   -&mlahb {
+>> -    resets = <&scmi_reset RST_SCMI_MCU>;
+>> +&m4_rproc {
+>> +    resets = <&scmi_reset RST_SCMI_MCU>,
+>> +         <&scmi_reset RST_SCMI_MCU_HOLD_BOOT>;
+>> +    reset-names =  "mcu_rst", "hold_boot";
+>>   };
+>>     &rcc {
+>> diff --git a/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
+>> b/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
+>> index 9cf0a44d2f47..7a56ff2d4185 100644
+>> --- a/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
+>> +++ b/arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts
+>> @@ -60,8 +60,10 @@ &mdma1 {
+>>       resets = <&scmi_reset RST_SCMI_MDMA>;
+>>   };
+>>   -&mlahb {
+>> -    resets = <&scmi_reset RST_SCMI_MCU>;
+>> +&m4_rproc {
+>> +    resets = <&scmi_reset RST_SCMI_MCU>,
+>> +         <&scmi_reset RST_SCMI_MCU_HOLD_BOOT>;
+>> +    reset-names =  "mcu_rst", "hold_boot";
+>>   };
+>>     &rcc {
+>> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
+>> b/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
+>> index 3b9dd6f4ccc9..119874dd91e4 100644
+>> --- a/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
+>> +++ b/arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts
+>> @@ -66,8 +66,10 @@ &mdma1 {
+>>       resets = <&scmi_reset RST_SCMI_MDMA>;
+>>   };
+>>   -&mlahb {
+>> -    resets = <&scmi_reset RST_SCMI_MCU>;
+>> +&m4_rproc {
+>> +    resets = <&scmi_reset RST_SCMI_MCU>,
+>> +         <&scmi_reset RST_SCMI_MCU_HOLD_BOOT>;
+>> +    reset-names =  "mcu_rst", "hold_boot";
+>>   };
+>>     &rcc {
+> 
