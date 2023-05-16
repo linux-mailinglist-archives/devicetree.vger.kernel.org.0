@@ -2,99 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65E507054A9
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 19:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B3477054CE
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 19:15:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbjEPREe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 13:04:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38974 "EHLO
+        id S230206AbjEPRPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 13:15:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbjEPREd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 13:04:33 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E470E131;
-        Tue, 16 May 2023 10:04:25 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34GH4HqG072550;
-        Tue, 16 May 2023 12:04:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684256657;
-        bh=rGBz1Lk2ymMxVaQM6dL4QCfsjWcHHyRlf/X4IvKG/HI=;
-        h=Date:Subject:To:References:From:In-Reply-To;
-        b=yBUiRODiiQgzZtAfAHm4NuaZYARaJXyEFqgxc8MArY64kILNBQpYAm0GY/VtzyGhN
-         CpykqAGE2pBf6tSVZ3lViCffHICLW8NuOB5LI0MfMqT1eHLSqpzFMSZ1xEyk6iVgKc
-         nmZKWn3/7OLDQhq2RYLEgGxhs+u3HEX36pfSly7A=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34GH4HNX101719
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 16 May 2023 12:04:17 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
- May 2023 12:04:17 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 16 May 2023 12:04:17 -0500
-Received: from [10.249.133.214] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34GH4EeK099267;
-        Tue, 16 May 2023 12:04:14 -0500
-Message-ID: <e331d497-9b70-7895-24e1-8932457aa611@ti.com>
-Date:   Tue, 16 May 2023 22:34:13 +0530
+        with ESMTP id S229928AbjEPRP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 13:15:29 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21F257DBB
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 10:15:28 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-ba818eb96dcso1118345276.0
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 10:15:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684257327; x=1686849327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ukVhfKT0mgHG11lGn0vYg1p+mBZBetpSLxzQrrq4sCI=;
+        b=qKixGlL5+nxj7tkgi3LANSRTBXsdGbOzI2FobrZdmUaJ0AsQkwmHHkBdbQ9aL+XR8E
+         BH9kbJDvGKbDACU861FInxJoKsdjDKZZsVca6ugKf2+uvsXU0AZh053tfBfMsotsspKl
+         STGsKM4tqgFt/w9doDR0BK15waVcb16bkFqhELEui25F3rRYsRXmcKKnH4OVaLRun7L5
+         LAins/6qDaMFg4vBs46HUDdZchMDsdHldzkc0kdCo+7IT1dCGm+fsnuuW8b6Cgr3A24a
+         p2xA67TCKRvZ3u1OPwSEqnWiuq+81xLapggYccLTL8zAWYvajIAXEqQMAsE4sNKt0jLM
+         AqLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684257327; x=1686849327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ukVhfKT0mgHG11lGn0vYg1p+mBZBetpSLxzQrrq4sCI=;
+        b=HQ6CO9p/QkunTZPFAN0JUdHzqBgj3MbpxW0ME6h4PqoiAT8qBaY3gPQutidMcgE9Wn
+         O1EDMiHBFBoq+bXLZlMaxj2pBmVfMQ/aebzTgeINOpUZ12IiYKA+BNS3AwjdmtXeXvT+
+         kOAU+7yz7WzxbTeT5nm1xDQL0PpyP0kNvbR6p9mKUHCK/xNUxbA3u/PnGu2w1CvtkQj8
+         oHxoMedYHpZiUQjGe6GqHodisDA9rYUHWBeZcQ6RjPGOp7iaJJhE46P9NUeyvNVr1POl
+         DL+3prMkXteE8eD65pZy829avAjkHpG4YvVJdZTsjtcEjHDJ8T/BZ5MJGWWMv9JW2ihC
+         PdtQ==
+X-Gm-Message-State: AC+VfDysomRtS0xTZI5f88s8S+ovTM7x8Mbyvqnvp1MCnmglSQJocjEn
+        +5smCDBVgsCJYokNexPNm9bQMUDmHyXY1Va8pU/w8Q==
+X-Google-Smtp-Source: ACHHUZ7NFOL9q2zyk8wGdHYwQCiYoz226yOqca154O5zJmUfiITU983nmgR3lS0yynOppeDLt38EJxDq1roTnHNDqLI=
+X-Received: by 2002:a25:5344:0:b0:ba8:a3b:8e12 with SMTP id
+ h65-20020a255344000000b00ba80a3b8e12mr2862948ybb.42.1684257327196; Tue, 16
+ May 2023 10:15:27 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] arm64: dts: ti: add missing cache properties
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+References: <20230516133011.108093-1-krzysztof.kozlowski@linaro.org>
+ <CAA8EJpoTgseo3j_5Ab7cQs3ZZZymALpRqpuWGPyKpTEbXR-Cqw@mail.gmail.com> <2e6f282c-33d9-7f96-0338-c4fd457d04fa@linaro.org>
+In-Reply-To: <2e6f282c-33d9-7f96-0338-c4fd457d04fa@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 16 May 2023 20:15:16 +0300
+Message-ID: <CAA8EJpq0x=H_SirdOwwhuiU7b1GPhP6-3xgR9PTQ_b2HYinMzQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8550-qrd: add PCIe0
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230421223143.115099-1-krzysztof.kozlowski@linaro.org>
- <168425511044.243008.2148983708471957289.b4-ty@linaro.org>
-From:   "Raghavendra, Vignesh" <vigneshr@ti.com>
-In-Reply-To: <168425511044.243008.2148983708471957289.b4-ty@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Tue, 16 May 2023 at 19:43, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 16/05/2023 18:39, Dmitry Baryshkov wrote:
+> > On Tue, 16 May 2023 at 16:30, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> Add PCIe0 nodes used with WCN7851 device.  The PCIe1 is not connected,
+> >> thus skip pcie_1_phy_aux_clk input clock to GCC.
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> ---
+> >>  arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 32 +++++++++++++++++++++++++
+> >>  1 file changed, 32 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> >> index ccc58e6b45bd..e7a2bc5d788b 100644
+> >> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> >> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> >> @@ -385,6 +385,38 @@ vreg_l3g_1p2: ldo3 {
+> >>         };
+> >>  };
+> >>
+> >> +&gcc {
+> >> +       clocks = <&bi_tcxo_div2>, <&sleep_clk>,
+> >> +                <&pcie0_phy>,
+> >> +                <&pcie1_phy>,
+> >> +                <0>,
+> >> +                <&ufs_mem_phy 0>,
+> >> +                <&ufs_mem_phy 1>,
+> >> +                <&ufs_mem_phy 2>,
+> >> +                <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+> >> +};
+> >
+> > Is there any reason to disable the PCIe1 PHY AUX clock here? I mean,
+> > the PCIe1 is still enabled in the hardware.
+>
+> I was thinking about this. The AUX clock seems to be an external clock,
+> although I could not find it in schematics. I assume that on QRD8550 it
+> could be missing, if it is really external. OTOH, downstream DTS did not
+> seem to care...
 
-On 5/16/2023 10:09 PM, Krzysztof Kozlowski wrote:
-> 
-> On Sat, 22 Apr 2023 00:31:43 +0200, Krzysztof Kozlowski wrote:
->> As all level 2 and level 3 caches are unified, add required
->> cache-unified properties to fix warnings like:
->>
->>   k3-am6528-iot2050-basic-pg2.dtb: l3-cache0: 'cache-unified' is a required property
->>
->>
-> 
-> Applied, thanks!
-> 
-> Please let me know if this should go through any other tree.
-> 
-> [1/1] arm64: dts: ti: add missing cache properties
->       https://git.kernel.org/krzk/linux-dt/c/be9633397b9f268242724a0c763839579761ee60
-> 
-> Best regards,
+I might be completely wrong here, but I think that AUX clock is yet
+another clock provided by the PHY to the GCC, which we were just
+ignoring for now. For example, for sm8450 we have <0> there. I don't
+see it as an external clock, so I think it is internal to the SoC.
 
-
-I have already queued it up at [0] for testing (should be part of linux-next already)..
-I intend to send out this as part of fixes PR towards -rc3 tomo. Would you mind dropping this from your tree?
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git/commit/?h=ti-k3-dts-next&id=27244f81d6f6abbf06fc705a940ba650fd687b9f
-
-Regards
-Vignesh
+-- 
+With best wishes
+Dmitry
