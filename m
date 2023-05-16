@@ -2,268 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 577A470481F
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28A3B704A02
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:06:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231389AbjEPIrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 04:47:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60238 "EHLO
+        id S232094AbjEPKGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 06:06:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231236AbjEPIrX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:47:23 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2999019BD;
-        Tue, 16 May 2023 01:47:22 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f13bfe257aso15868515e87.3;
-        Tue, 16 May 2023 01:47:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684226840; x=1686818840;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=pIs7xrpXMUe39rrvrGOq+duHo9PtLlvjA/J+15gmNUM=;
-        b=c/mlcl+sDW2dCiuSBhRV0vh1HdyD/q5u+7JcwUfC0prnFCZGvu5XVOY2kFCgPiE1TP
-         n3l9jjx/CLiwAWkj4jW7uFKBurZ2Gu01FfclJZiRMjmkwqtEvpUDjtyfWC2dvFznQRJK
-         fciX6lJxS8kmKV/vCgNSWsUNVnpytxqGFFVQADkFmcROFhYI2gnlNeMtsBtTEiickae2
-         4867l05/oQWrOEFFMXFRgDwfuRDwxKavpYtVtsaOAOlkxO3LYmYuHu/TywKnGSOvosJq
-         Rj03H2JL8srZbQPLf5V2LAoUPRMPjcVf+uogFqQkVZOO2XOz6tzazhKNMlg0MsvSa3d6
-         /XTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684226840; x=1686818840;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pIs7xrpXMUe39rrvrGOq+duHo9PtLlvjA/J+15gmNUM=;
-        b=bKoUq5p+2+WJQAiOhfwUBxPVieRfjPCTrvkkmwZ7PPpImxEJJb9Q/VRY0zPA1nQ1lh
-         +TxGIhOeGyGFgnIO1C3of/dPrPe0Pks/gwRm9MT7k9WGl+jM/aK1cnDCRcqTa3Nl7Vsa
-         W22hJXTooITq7cENRXgsZ7i292fvos5ArMDdajbzEjjgRtqbmPmAVHCKP53ypvIXsMEL
-         g8K1KoUtZvQD/0w+dBhMJLbUzLsZnxjvEaODGgjcdTomJk3TTj/I/vjk9SQpzHdS5iwq
-         Xmtwvplas9nC4TQMrVCcnvqkJbmHA9ydKEZRhSwtKTB4iGUyDyFUFHRFsm10ZhQYNCgb
-         5YVw==
-X-Gm-Message-State: AC+VfDxGFPrU+MsMNUrKkMHheEiycW0eQEN/efrdG+fCDUIqqoZ1kO3H
-        0bJPCLY4fG5h6NkH1RhHZTwrAiTLg0Loqg==
-X-Google-Smtp-Source: ACHHUZ6eGlsrqTErXAX7ikC8ZXUz16DB7kO0+AP6R4MKOd88jLadIORj03U/3MHBGIl2VpjKYVG4yQ==
-X-Received: by 2002:ac2:5a03:0:b0:4ed:c7cc:6f12 with SMTP id q3-20020ac25a03000000b004edc7cc6f12mr6675761lfn.34.1684226840062;
-        Tue, 16 May 2023 01:47:20 -0700 (PDT)
-Received: from [100.119.125.242] (93-80-67-66.broadband.corbina.ru. [93.80.67.66])
-        by smtp.gmail.com with ESMTPSA id o8-20020ac24348000000b004d5a6dcb94fsm2900210lfl.33.2023.05.16.01.47.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 01:47:19 -0700 (PDT)
-Message-ID: <e6247cb39cc16a9328d9432e0595745b67c0aed5.camel@gmail.com>
-Subject: Re: [PATCH v2 3/5] dt-bindings: net: add mac-address-increment
- option
-From:   Ivan Mikhaylov <fr0st61te@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Paul Fertser <fercerpav@gmail.com>
-Date:   Tue, 16 May 2023 11:47:17 +0000
-In-Reply-To: <5b826dc7-2d02-d4ed-3b6a-63737abe732b@linaro.org>
-References: <20230509143504.30382-1-fr0st61te@gmail.com>
-         <20230509143504.30382-4-fr0st61te@gmail.com>
-         <6b5be71e-141e-c02a-8cba-a528264b26c2@linaro.org>
-         <fc3dae42f2dfdf046664d964bae560ff6bb32f69.camel@gmail.com>
-         <8de01e81-43dc-71af-f56f-4fba957b0b0b@linaro.org>
-         <be85bef7e144ebe08f422bf53bb81b59a130cb29.camel@gmail.com>
-         <5b826dc7-2d02-d4ed-3b6a-63737abe732b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1 
+        with ESMTP id S232097AbjEPKGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:06:40 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E2D730F1;
+        Tue, 16 May 2023 03:06:39 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34G6M7hK009174;
+        Tue, 16 May 2023 10:06:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=9h0jmH84R2TaYymrs4MYfVGew85BHcwc0i5WV14Zc7c=;
+ b=mfWui5iIyAgdJGcMyk4GReQHFMUVueU68FfRCJ4cpYSg76w9wBzqufHJTt3ZHmUswJU7
+ VjAniv33dAsvu1SMTdV8lDWDTNYxMiry+1W1ZRBMuGiag5zyIBtnJaP143hc5zgimn9U
+ XKQAMPIYOrGzVx5jFfpd4sXg3q2efJ+92ewm9hy6osCP2weku8mph+t0/ksUDS1iWzQC
+ 2oSR03LSCLWzhfWZCtb7gW/8ajwOyHtZkB9Q7lecWlPociVjtS+GlfS2not05/LvnOEC
+ TWWcQl5yvsC5vxWpp4WFYhagRuVJ2mM4cEx5hEv/8ifj+CVDG2A2kohJFfPEMyHx2vUZ +w== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qm1x08nrj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 May 2023 10:06:30 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34GA6ToM021109
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 May 2023 10:06:29 GMT
+Received: from [10.50.13.62] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 16 May
+ 2023 03:06:24 -0700
+Message-ID: <75a408c2-3d41-95a3-5c48-a68c84ba4f57@quicinc.com>
+Date:   Tue, 16 May 2023 15:36:13 +0530
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH V3 0/6] Incremental patches on minimal boot support
+From:   Devi Priya <quic_devipriy@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
+References: <20230425084010.15581-1-quic_devipriy@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20230425084010.15581-1-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: quoBuvkMU_D9C7LoeVvqY0lCkq1ELWBS
+X-Proofpoint-GUID: quoBuvkMU_D9C7LoeVvqY0lCkq1ELWBS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-16_03,2023-05-05_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=999 bulkscore=0 mlxscore=0 impostorscore=0
+ spamscore=0 adultscore=0 phishscore=0 clxscore=1015 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305160085
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2023-05-12 at 11:24 +0200, Krzysztof Kozlowski wrote:
-> On 12/05/2023 13:28, Ivan Mikhaylov wrote:
-> > On Fri, 2023-05-12 at 08:22 +0200, Krzysztof Kozlowski wrote:
-> > > On 11/05/2023 01:31, Ivan Mikhaylov wrote:
-> > > > On Wed, 2023-05-10 at 16:48 +0200, Krzysztof Kozlowski wrote:
-> > > > > On 09/05/2023 16:35, Ivan Mikhaylov wrote:
-> > > > > > Add the mac-address-increment option for specify MAC
-> > > > > > address
-> > > > > > taken
-> > > > > > by
-> > > > > > any other sources.
-> > > > > >=20
-> > > > > > Signed-off-by: Paul Fertser <fercerpav@gmail.com>
-> > > > > > Signed-off-by: Ivan Mikhaylov <fr0st61te@gmail.com>
-> > > > > > ---
-> > > > > > =C2=A0.../devicetree/bindings/net/ethernet-controller.yaml=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > > > > > | 8
-> > > > > > ++++++++
-> > > > > > =C2=A01 file changed, 8 insertions(+)
-> > > > > >=20
-> > > > > > diff --git
-> > > > > > a/Documentation/devicetree/bindings/net/ethernet-
-> > > > > > controller.yaml
-> > > > > > b/Documentation/devicetree/bindings/net/ethernet-
-> > > > > > controller.yaml
-> > > > > > index 00be387984ac..6900098c5105 100644
-> > > > > > --- a/Documentation/devicetree/bindings/net/ethernet-
-> > > > > > controller.yaml
-> > > > > > +++ b/Documentation/devicetree/bindings/net/ethernet-
-> > > > > > controller.yaml
-> > > > > > @@ -34,6 +34,14 @@ properties:
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 minItems: 6
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 6
-> > > > > > =C2=A0
-> > > > > > +=C2=A0 mac-address-increment:
-> > > > > > +=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/int3=
-2
-> > > > > > +=C2=A0=C2=A0=C2=A0 description:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Specifies the MAC address incre=
-ment to be added to
-> > > > > > the
-> > > > > > MAC
-> > > > > > address.
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Should be used in cases when th=
-ere is a need to use
-> > > > > > MAC
-> > > > > > address
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 different from one obtained by =
-any other level, like
-> > > > > > u-
-> > > > > > boot
-> > > > > > or the
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 NC-SI stack.
-> > > > >=20
-> > > > > We don't store MAC addresses in DT, but provide simple
-> > > > > placeholder
-> > > > > for
-> > > > > firmware or bootloader. Why shall we store static "increment"
-> > > > > part of
-> > > > > MAC address? Can't the firmware give you proper MAC address?
-> > > > >=20
-> > > > > Best regards,
-> > > > > Krzysztof
-> > > > >=20
-> > > >=20
-> > > > Krzysztof, maybe that's a point to make commit message with
-> > > > better
-> > > > explanation from my side. At current time there is at least two
-> > > > cases
-> > > > where I see it's possible to be used:
-> > > >=20
-> > > > 1. NC-SI
-> > > > 2. embedded
-> > > >=20
-> > > > At NC-SI level there is Get Mac Address command which provides
-> > > > to
-> > > > BMC
-> > > > mac address from the host which is same as host mac address, it
-> > > > happens
-> > > > at runtime and overrides old one.
-> > > >=20
-> > > > Also, this part was also to be discussed 2 years ago in this
-> > > > thread:
-> > > > https://lore.kernel.org/all/OF8E108F72.39D22E89-ON00258765.001E46EB=
--00258765.00251157@ibm.com/
-> > >=20
-> > > Which was not sent to Rob though...
-> > >=20
-> > >=20
-> > > >=20
-> > > > Where Milton provided this information:
-> > > >=20
-> > > > DTMF spec DSP0222 NC-SI (network controller sideband interface)
-> > > > is a method to provide a BMC (Baseboard management controller)
-> > > > shared
-> > > > access to an external ethernet port for comunication to the
-> > > > management
-> > > > network in the outside world.=C2=A0 The protocol describes ethernet
-> > > > packets=20
-> > > > that control selective bridging implemented in a host network
-> > > > controller
-> > > > to share its phy.=C2=A0 Various NIC OEMs have added a query to find
-> > > > out
-> > > > the=20
-> > > > address the host is using, and some vendors have added code to
-> > > > query
-> > > > host
-> > > > nic and set the BMC mac to a fixed offset (current hard coded
-> > > > +1
-> > > > from
-> > > > the host value).=C2=A0 If this is compiled in the kernel, the NIC
-> > > > OEM is
-> > > > recognised and the BMC doesn't miss the NIC response the
-> > > > address is
-> > > > set
-> > > > once each time the NCSI stack reinitializes.=C2=A0 This mechanism
-> > > > overrides
-> > > > any mac-address or local-mac-address or other assignment.
-> > > >=20
-> > > > DSP0222
-> > > > https://www.dmtf.org/documents/pmci/network-controller-sideband-int=
-erface-nc-si-specification-110
-> > > >=20
-> > > >=20
-> > > > In embedded case, sometimes you have different multiple
-> > > > ethernet
-> > > > interfaces which using one mac address which increments or
-> > > > decrements
-> > > > for particular interface, just for better explanation, there is
-> > > > patch
-> > > > with explanation which providing them such way of work:
-> > > > https://github.com/openwrt/openwrt/blob/master/target/linux/generic=
-/pending-5.15/682-of_net-add-mac-address-increment-support.patch
-> > > >=20
-> > > > In their rep a lot of dts using such option.
-> > >=20
-> > > None of these explain why this is property of the hardware. I
-> > > understand
-> > > that this is something you want Linux to do, but DT is not for
-> > > that
-> > > purpose. Do not encode system policies into DT and what above
-> > > commit
-> > > says is a policy.
-> > >=20
-> >=20
-> > Krzysztof, okay then to which DT subsystem it should belong? To
-> > ftgmac100 after conversion?
->=20
-> To my understanding, decision to add some numbers to MAC address does
-> not look like DT property at all. Otherwise please help me to
-> understand
-> - why different boards with same device should have different
-> offset/value?
->=20
-> Anyway, commit msg also lacks any justification for this.
->=20
-> Best regards,
-> Krzysztof
->=20
-
-Krzysztof, essentially some PCIe network cards have like an additional
-*MII interface which connects directly to a BMC (separate SoC for
-managing a motherboard) and by sending special ethernet type frames
-over that connection (called NC-SI) the BMC can obtain MAC, get link
-parameters etc. So it's natural for a vendor to allocate two MACs per
-such a board with PCIe card intergrated, with one MAC "flashed into"
-the network card, under the assumption that the BMC should
-automatically use the next MAC. So it's the property of the hardware as
-the vendor designs it, not a matter of usage policy.
-
-Also at the nvmem binding tree is "nvmem-cell-cells" which is literally
-the same as what was proposed but on different level.
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/D=
-ocumentation/devicetree/bindings/nvmem?id=3D7e2805c203a6c8dc85c1cfda205161e=
-d39ae82d5
 
 
-Thanks.
+On 4/25/2023 2:10 PM, Devi Priya wrote:
+> Patchset V9 of the series: Add minimal boot support for IPQ9574 has been
+> merged and is available in linux-next/master.
+> V12 being the latest revision posted in the series, the delta between
+> revisions V9 and V12 is posted as a separate series as suggested by
+> Bjorn to avoid possible confusions.
+> 
+> This series adds the delta changes between revisions V9 and V12.
+> 
+> V9 can be found at:
+> https://lore.kernel.org/linux-arm-msm/20230316072940.29137-1-quic_devipriy@quicinc.com/
+> 
+> V12 can be found at:
+> https://lore.kernel.org/linux-arm-msm/20230410135948.11970-1-quic_devipriy@quicinc.com/
+> 
+> Changes in V3:
+> 	- Detailed change logs are added to the respective patches.
+> 
+> Changes in V2:
+> https://lore.kernel.org/linux-arm-msm/20230417053355.25691-1-quic_devipriy@quicinc.com/
+> 	- Updated the subject & commit message of [PATCH V2 1/4]
+> 	- No changes were made to any other patches
+> 
+> Changes in V1:
+> 	- The Delta between V9 & V12 is added to the change log of
+> 	  the respective patches for quick reference
+> 
+Gentle reminder!
+
+Thanks,
+Devi Priya
+
+> Devi Priya (6):
+>    arm64: dts: qcom: ipq9574: Update the size of GICC & GICV regions
+>    dt-bindings: clock: qcom,ipq9574-gcc: Add maintainer
+>    clk: qcom: gcc-ipq9574: Clean up included headers
+>    clk: qcom: gcc-ipq9574: constify struct clk_init_data
+>    arm64: dts: qcom: ipq9574: Drop bias_pll_ubi_nc_clk input
+>    arm64: dts: qcom: ipq9574: rename al02-c7 dts to rdp433
+> 
+>   .../bindings/clock/qcom,ipq9574-gcc.yaml      |   1 +
+>   arch/arm64/boot/dts/qcom/Makefile             |   2 +-
+>   ...ipq9574-al02-c7.dts => ipq9574-rdp433.dts} |   2 +-
+>   arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  14 +-
+>   drivers/clk/qcom/gcc-ipq9574.c                | 434 +++++++++---------
+>   5 files changed, 224 insertions(+), 229 deletions(-)
+>   rename arch/arm64/boot/dts/qcom/{ipq9574-al02-c7.dts => ipq9574-rdp433.dts} (97%)
+> 
