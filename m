@@ -2,95 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 415C4704F87
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 543A8704F8B
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:41:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233693AbjEPNlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:41:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51586 "EHLO
+        id S233727AbjEPNlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:41:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233687AbjEPNlK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:41:10 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2CA4EED
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:41:03 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f509ec3196so27149815e9.1
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:41:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684244462; x=1686836462;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :to:content-language:subject:reply-to:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pi52h4BwbyrvN/UFSfSTrTKE7cXA4CH95lTEYcAxXFI=;
-        b=giOtGLEEfJCagK7Rug5WXqi4WKzgSfeHJwKdHxs9AfpiffCA0F853lNyAIXbEkSNhC
-         oS90RbBPSF5JztJHvPO2Fz7Nfj8TmS2tEMfiGm2uvvtvJWsm9ewZBE0T0sal73G6K4U2
-         XdIFLhn11NzKWHU8L7OxgDsMTEx/fLra2AZchQc+NWFB8Dt3D/XSTooSf2DQ93Ux2gu6
-         3J3V2KrByG+tjW/eJ3OsU3qsNAVtIM5W7T+wacHntBr/rSkeHW6a9MPMOQgiDcuQR6bx
-         q/7yubfyReY+5FwCyvZ8+d06PPyaMFdT//BaWnzDdSwUVuBIW24AphARg06i81RhVCWr
-         RozQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684244462; x=1686836462;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :to:content-language:subject:reply-to:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Pi52h4BwbyrvN/UFSfSTrTKE7cXA4CH95lTEYcAxXFI=;
-        b=VdExfyiVUrSTGPhPbj9oDi/Ri/2SrAVZcZQv0ZgCi411g7hnugozFej6MCNIbe4VoN
-         jDz/pzFfHsfZ3R4PXkoLMHWZGfPtV6uN7da4agujVhDD+7EPVX8qr1R189EJcBd/jb53
-         bxmu7lL64X1EJ1/MQluP645RsKgLHWd3lLgJasPZJFt7lV7Eu5mQHCQRmeAFl4KcRrvu
-         g4lBzly8tF2wt18ucUz+u4/Wkw4wtWhi9E4Elh+i/8isFR4JLKY5SezcJBwpWzNHXhFS
-         NRf8SCGrYmwbSmQCKvam+uKeWSIMX4MVAFv9I3OCLIQHOBs5zSuz+hj2TuOUnspbb2kL
-         kVGg==
-X-Gm-Message-State: AC+VfDxhacMFjVM2UJRAMC8MIUMzTGI44M55lxNXaFFRJP5iSizU+fy9
-        OK178mOD+Eb7hvs/gQ3E/EqQxQ==
-X-Google-Smtp-Source: ACHHUZ4sAY7KhOuQSLuY70WCNRujQd68fSqdKJsRuMmYQ9ieu+JhsUY9pR3vwmATgb0JkCiF9y/icw==
-X-Received: by 2002:a05:6000:114b:b0:307:8a39:555f with SMTP id d11-20020a056000114b00b003078a39555fmr24009097wrx.17.1684244462091;
-        Tue, 16 May 2023 06:41:02 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:86be:97a:a043:77a8? ([2a01:e0a:982:cbb0:86be:97a:a043:77a8])
-        by smtp.gmail.com with ESMTPSA id u9-20020adfed49000000b0030647449730sm2672349wro.74.2023.05.16.06.41.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 06:41:01 -0700 (PDT)
-Message-ID: <14b029a3-dffa-7d4f-688a-fdb9bad585b1@linaro.org>
-Date:   Tue, 16 May 2023 15:41:00 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550-qrd: add USB OTG
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S233705AbjEPNlR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:41:17 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07D2D527B
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:41:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=9xfd6NH3CoOxve18+7m506bfVoopAHGoLPPR40WYTWo=; b=UAl0vwed0WN7IqNzVgPpYra7sZ
+        ux3l2VE1Ht8mNB/mnHX/VG3uef0I4qFVpXLbCM3e34KuYvZLCA8C0Q5u3AU1pt6NbKnY0b7PJKDCJ
+        CmgmmTkq5kCo8ScoaJ37/7oVGb69UHVJ1CPQ76ZR8f8hKZIzYwaBhNiYwcvGlOHefXEc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pyuvK-00D1Mn-99; Tue, 16 May 2023 15:41:06 +0200
+Date:   Tue, 16 May 2023 15:41:06 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230516133011.108093-1-krzysztof.kozlowski@linaro.org>
- <20230516133011.108093-2-krzysztof.kozlowski@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230516133011.108093-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Stefan Agner <stefan@agner.ch>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm: dts: update arm sfp bindings to use -gpios
+Message-ID: <349b5851-e8ff-49d1-a58c-a3854cd41e82@lunn.ch>
+References: <E1pyrIG-005B4H-VG@rmk-PC.armlinux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <E1pyrIG-005B4H-VG@rmk-PC.armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 15:30, Krzysztof Kozlowski wrote:
-> Add missing parts of USB stack to enable USB OTG mode.  The QRD8550
-> comes with one USB Type-C port.
+On Tue, May 16, 2023 at 10:48:32AM +0100, Russell King (Oracle) wrote:
+> It was decided that SFP should use the -gpios suffix rather than -gpio.
+> Update various boards to follow this.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 > ---
->   arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 52 ++++++++++++++++++++++++-
->   1 file changed, 51 insertions(+), 1 deletion(-)
+>  arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi | 6 +++---
+>  arch/arm/boot/dts/armada-388-clearfog.dtsi     | 8 ++++----
+>  arch/arm/boot/dts/vf610-zii-cfu1.dts           | 4 ++--
+>  3 files changed, 9 insertions(+), 9 deletions(-)
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Hi Russell
+
+We probably want two patches, since there are two Maintainers
+involved.
+
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
