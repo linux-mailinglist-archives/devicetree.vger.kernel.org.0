@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB492704F03
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:15:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1835704F05
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:16:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232376AbjEPNPe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:15:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60458 "EHLO
+        id S232617AbjEPNQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:16:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232321AbjEPNPd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:15:33 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C92A7
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:15:32 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-6ab13ebd75bso603775a34.0
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:15:32 -0700 (PDT)
+        with ESMTP id S232321AbjEPNQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:16:42 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2BAA7
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:16:41 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-64357904632so2971329b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:16:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684242931; x=1686834931;
+        d=gmail.com; s=20221208; t=1684243000; x=1686835000;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8M1CkEaQmILboM4aYksgyMh6Zp1q5h2RHHddRmh6ZZ4=;
-        b=sqU59nBGdFKWGbL0tH3USun1IB9pDADWybMpY1+sZawAP2zxqsMIJlvolOLn7jd95V
-         fOd6YVYk7jdfDJMAj7G6ALXWct4U+vF54zv8LXtL0bHN9b6+oCRJZI6m90wAFr/rUiDQ
-         hNdwLyT6IiinB+IdMLpFa8HITW1MKGeswB75fYON+QRyqrsAgwGlx17YbNGtg/befMjJ
-         lhNQNjN0AENu+fsFbCZI7+Wo481DDV45t7tNLooCYwM+sdOJ+5BbRca3s9MgDvOh5sSv
-         e7psTIozNTjF/m6vkoAfT9bCnrYc9n9CfKXu0Lrv7vyTUfIo7M2KUXzhOsZ/VfDtN50b
-         s1tw==
+        bh=Lvk2eCTeFxnOegJLRKuQYsp3qkoShxPgWkq7zqncysc=;
+        b=G8TxbNZAyJLDeAWzY88l2egKcO+5IwuQzapnrO6iFlRwBviZYEJFwb5oVm+KbD1bHw
+         AOacLw1t6AqmJPGlRUTYTWl8czSYbPO9otBq2rV/Y2qMpMKTqcbyy0dj0JSEn/muwFti
+         QEFtlEJu09QuYzvPqczd0S0vMig89LCBmRLU6HlmPEw2Zd8j/9NYRfh7049HvyXx16X9
+         GAZW8FA8DL+V0T2kxS9ww3z68KizJHzaPWskTVmV/UJ7RVl/1zWxWz6/OIY32iHna0ZA
+         2Y84v+Mt1Hd3ir0NgCRYtb6RcAMNCqRFnvoKDdvIY2Zn1fn7Xm9SPV1UlvlS3EBvWovL
+         gB4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684242931; x=1686834931;
+        d=1e100.net; s=20221208; t=1684243000; x=1686835000;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=8M1CkEaQmILboM4aYksgyMh6Zp1q5h2RHHddRmh6ZZ4=;
-        b=i07/8IUOby5NfO/qvROjhddxJeTAn2mnn+Nnc04ZNmPd7N9LvTTg2+S4z1tichvHee
-         ZhSrTuMhvNIUPZKcc26d30sUOH4ngfWNwHjx3nOgZWRpjyFTv9k/FBa537AhEbQvOIt9
-         K0gusYzz6C2FvQVqXqwPx19sE5CtflwL7wokD1jfkQSA4PFEj8hRLg2yB5QtCEEioESN
-         T6NtnMmeTIU2V5lGxkTCo7EK79Df5aDkdu/0iGVQMZrKmR3bweDYCMBBCJDEgLNiHFma
-         +Al0es8H0rwvmUCyCAQGPQu3/ECgnlJwPUzrLOUhsLX0SaOpFVGpdC1eTslVaMvU9rIB
-         dl8Q==
-X-Gm-Message-State: AC+VfDxiKZ37hKyCbewQEFmDnuvOKCnxClCSco70CeuAhAui4koJeSL9
-        hWHZD7n/As6KqxS0rqobmBq5lVXPJDE++A==
-X-Google-Smtp-Source: ACHHUZ58Mkx4TYdA+kCdgy42EyUN7rZ9l9IIUs5P3R8Dj8yBAiQks0QnEHCOz1XNqapoBaFPyZlrJA==
-X-Received: by 2002:a05:6830:380d:b0:6a6:2563:2dcb with SMTP id bh13-20020a056830380d00b006a625632dcbmr6489169otb.3.1684242931428;
-        Tue, 16 May 2023 06:15:31 -0700 (PDT)
+        bh=Lvk2eCTeFxnOegJLRKuQYsp3qkoShxPgWkq7zqncysc=;
+        b=J5W7YtTOusxjPS4vVSUug/v0K6Qcc46oX0UkdOU+h7BXh+owAOAhIhH0uHefrrWzsC
+         aAoVdKJxIAEDjIeRwIzkCOfBlSmpmI59L0LOlpHMkO6OozIjlxA88A9IRgbHy1Z0cMDB
+         f0S5kH5/EIoLkAknRpQSAJa45fbDJKiOFdefsSEaXlCM8rx7mxvc29C4sG8ctbAwUdgB
+         blm/ia8llb4qn5GVZeUo4I2DbLLkmqcJPMidkdZ7zQ4Ru3Q2EzCUGJLvdSThPwz6qxET
+         62HYRVPakR1CXFbwDOSRxP0qQSEe0z7c7ouuKJE0jBvCw1bsmk/WVf3d4PE+4ueU4z3k
+         WT2Q==
+X-Gm-Message-State: AC+VfDz29bZVCFLDvbi4ogSAAHbIMwRs+3GBol5BA3swTSY64JVTi6MP
+        ADX2f0kNHopZJ2RVX2n57X8=
+X-Google-Smtp-Source: ACHHUZ73yjg63AgSN9Se97DiGnX4h6MvKNrMIBgFoo/KD7e29+kzP+RwWdMh/bv1VqKimJ7uAO8ZWQ==
+X-Received: by 2002:a05:6a21:6da6:b0:f1:1ab5:5076 with SMTP id wl38-20020a056a216da600b000f11ab55076mr14677545pzb.2.1684243000433;
+        Tue, 16 May 2023 06:16:40 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:12fe:baa9:ec21:f64b])
-        by smtp.gmail.com with ESMTPSA id l6-20020a4a4346000000b0052a32a952e9sm11833897ooj.48.2023.05.16.06.15.28
+        by smtp.gmail.com with ESMTPSA id s19-20020a170902b19300b001ab0159b9edsm9361010plr.250.2023.05.16.06.16.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 06:15:30 -0700 (PDT)
+        Tue, 16 May 2023 06:16:39 -0700 (PDT)
 From:   Fabio Estevam <festevam@gmail.com>
-To:     joel@jms.id.au
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+To:     daniel@zonque.org
+Cc:     haojian.zhuang@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] ARM: dts: aspeed-bmc-facebook: Replace deprecated spi-gpio properties
-Date:   Tue, 16 May 2023 10:15:15 -0300
-Message-Id: <20230516131515.580069-1-festevam@gmail.com>
+Subject: [PATCH] ARM: dts: pxa300-raumfeld: Replace deprecated spi-gpio properties
+Date:   Tue, 16 May 2023 10:16:30 -0300
+Message-Id: <20230516131630.580213-1-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -78,44 +79,26 @@ Use the recommeded 'miso-gpios', 'mosi-gpios' and 'sck-gpios' instead.
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts | 6 +++---
- arch/arm/boot/dts/aspeed-bmc-facebook-wedge400.dts  | 6 +++---
- 2 files changed, 6 insertions(+), 6 deletions(-)
+ arch/arm/boot/dts/pxa300-raumfeld-common.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-index e899de681f47..005c4f62b4d7 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-@@ -39,9 +39,9 @@ spi1_gpio: spi1-gpio {
- 		#address-cells = <1>;
+diff --git a/arch/arm/boot/dts/pxa300-raumfeld-common.dtsi b/arch/arm/boot/dts/pxa300-raumfeld-common.dtsi
+index 147c99191dc2..5e93f315588a 100644
+--- a/arch/arm/boot/dts/pxa300-raumfeld-common.dtsi
++++ b/arch/arm/boot/dts/pxa300-raumfeld-common.dtsi
+@@ -74,9 +74,9 @@ spi: spi {
  		#size-cells = <0>;
- 
--		gpio-sck = <&gpio0 ASPEED_GPIO(Z, 3) GPIO_ACTIVE_HIGH>;
--		gpio-mosi = <&gpio0 ASPEED_GPIO(Z, 4) GPIO_ACTIVE_HIGH>;
--		gpio-miso = <&gpio0 ASPEED_GPIO(Z, 5) GPIO_ACTIVE_HIGH>;
-+		sck-gpios = <&gpio0 ASPEED_GPIO(Z, 3) GPIO_ACTIVE_HIGH>;
-+		mosi-gpios = <&gpio0 ASPEED_GPIO(Z, 4) GPIO_ACTIVE_HIGH>;
-+		miso-gpios = <&gpio0 ASPEED_GPIO(Z, 5) GPIO_ACTIVE_HIGH>;
- 		num-chipselects = <1>;
- 		cs-gpios = <&gpio0 ASPEED_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
- 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-wedge400.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-wedge400.dts
-index ed305948386f..7a3f0e81e96f 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-wedge400.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-wedge400.dts
-@@ -74,9 +74,9 @@ spi_gpio: spi {
- 		#size-cells = <0>;
- 
- 		cs-gpios = <&gpio ASPEED_GPIO(R, 2) GPIO_ACTIVE_LOW>;
--		gpio-sck = <&gpio ASPEED_GPIO(R, 3) GPIO_ACTIVE_HIGH>;
--		gpio-mosi = <&gpio ASPEED_GPIO(R, 4) GPIO_ACTIVE_HIGH>;
--		gpio-miso = <&gpio ASPEED_GPIO(R, 5) GPIO_ACTIVE_HIGH>;
-+		sck-gpios = <&gpio ASPEED_GPIO(R, 3) GPIO_ACTIVE_HIGH>;
-+		mosi-gpios = <&gpio ASPEED_GPIO(R, 4) GPIO_ACTIVE_HIGH>;
-+		miso-gpios = <&gpio ASPEED_GPIO(R, 5) GPIO_ACTIVE_HIGH>;
- 		num-chipselects = <1>;
- 
- 		tpmdev@0 {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&spi_pins>;
+-		gpio-sck = <&gpio 95 GPIO_ACTIVE_HIGH>;
+-		gpio-miso = <&gpio 98 GPIO_ACTIVE_HIGH>;
+-		gpio-mosi = <&gpio 97 GPIO_ACTIVE_HIGH>;
++		sck-gpios = <&gpio 95 GPIO_ACTIVE_HIGH>;
++		miso-gpios = <&gpio 98 GPIO_ACTIVE_HIGH>;
++		mosi-gpios = <&gpio 97 GPIO_ACTIVE_HIGH>;
+ 		cs-gpios = <
+ 			&gpio 34 GPIO_ACTIVE_HIGH
+ 			&gpio 125 GPIO_ACTIVE_HIGH
 -- 
 2.34.1
 
