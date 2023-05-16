@@ -2,145 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 637FD7051E8
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 17:17:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F2BA7051E3
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 17:17:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233664AbjEPPR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 11:17:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44792 "EHLO
+        id S229664AbjEPPRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 11:17:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233371AbjEPPR1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 11:17:27 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D72A87A95
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:17:23 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34GCFQ8d014872;
-        Tue, 16 May 2023 17:17:15 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=/E/EqirfA5WHMXEwmJ82wXT1PWo3fz2gyrcgcd1p8vo=;
- b=z2knDP1gNNpEPQyFgeXlAuZlvCU5W2MKhC1G5MAdrVIf2klCsWlkNUmTMLpxqznlNMvd
- D909x33guFPM3Guf+G/F13euayBfYG6Favel362EH2JuW5YXti1SMhlzCjSgoVw95JjG
- bMLc2/hl3A/19w7ou7BrTpf8jYYc3FeNr00LnOMq2U9eEH7nwd3+b6339a/4uhrmIe5s
- 1PRAAaL+Zgh1CzyEGnqqgnFQ4t7pDPD/C+iH4s0hGY+gVIEBpxBvl436RtxXTg2fqNl7
- a95Uo2Iu4EReeHZ+kPlvW7xCJCjQxVU5ocBwuGA16UbPQArzZ8e6/USINc5UqGgeOT53 pA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qkhp0hqsg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 16 May 2023 17:17:15 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7044710002A;
-        Tue, 16 May 2023 17:17:00 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6873D228A43;
-        Tue, 16 May 2023 17:17:00 +0200 (CEST)
-Received: from [10.252.0.230] (10.252.0.230) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 16 May
- 2023 17:16:59 +0200
-Message-ID: <5b8cdb16-dc93-e3c6-4e13-4e72dce18a58@foss.st.com>
-Date:   Tue, 16 May 2023 17:16:59 +0200
+        with ESMTP id S233511AbjEPPRT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 11:17:19 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA307A92
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:17:13 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-96652cb7673so1794577266b.0
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:17:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684250231; x=1686842231;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s0lCm3iG0pXdFFf2LiZLAcS+oXB2fCjsEQx26FGefBo=;
+        b=Ock+dXRpE6ZvT5f3R/3I6ixw0WaylD6JfMxORJ/RZP9zRQVqcYMs2S0spKA7vG/r2I
+         nsed8ZaD6xNYInAV6H1xDGne2gG6CSAHzxx2l8b+moJ4qVFXWKZnbDkARwTFkhYvC03l
+         fqNwM0T9hrIzjZ0NjwS+Ct/lXWjX+ddNKLUCt/JNkqWZcOAxRvzF8AFiVYz0PN1T7HUf
+         kFCSyTFYm0qe1E3QkQpgGRnXamU6dw58u8be7yTDIs66KugMhWO/KrBzhkoog+h3/Tne
+         02ORlsCfUvvZZblGfDNRFmWjlkhHkUA/JlY9qCdCbsRIRjWMCcnvrQQSIB+uC+aaid01
+         0ijg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684250231; x=1686842231;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=s0lCm3iG0pXdFFf2LiZLAcS+oXB2fCjsEQx26FGefBo=;
+        b=CwDz+V7itJZC07QgVj8ui3wSo/d6R1PIrDWV7md9Jp4zdHCGkyTxM+xEDngAB2KXYp
+         inaC6G2GxCbyYwOjO5WmazaouDXdQ74+mpvoKR3idrcCAU7KFJtbRm4KSoBbWZte7Wwc
+         o+VLCH0fzzjFajU6zS3EOm5AkWrl9VUV3B0oVTWZEnyHPVV8bHSFtiiYpVyu2AyS5FgU
+         YAGkCLIXroXiV/3qgxhMLei8snTrtm6q6NrgkW6qowi8yhAEvDvc+92+eHQHdoAtHFdz
+         l9H783WyX8R3mYsx4UtaJX35/c7Yze+ji7/mePlQjmje+U5NDl2qL3wxhbdxNOLhr844
+         ltsA==
+X-Gm-Message-State: AC+VfDy4wtWYUKgnuxqkx6x4Z2Kl5uHpRF2FCWwe6Ar7WFEqYVTrJDao
+        +TMdJKqEj86vucdkB+s1OyyebA==
+X-Google-Smtp-Source: ACHHUZ7LuW59MV2maSsv4YGosQ/nSRc/ya6gIddFgArCauQXSfupdE/pYwXHIqR4afjo+Y7hLVWITw==
+X-Received: by 2002:a17:907:d06:b0:966:37b2:734a with SMTP id gn6-20020a1709070d0600b0096637b2734amr36602432ejc.22.1684250231573;
+        Tue, 16 May 2023 08:17:11 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
+        by smtp.gmail.com with ESMTPSA id jr18-20020a170906515200b00965f5d778e3sm11096028ejc.120.2023.05.16.08.17.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 08:17:11 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        "Signed-off-by : Abel Vesa" <abel.vesa@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sm8550-qrd: add display and panel
+Date:   Tue, 16 May 2023 17:17:08 +0200
+Message-Id: <20230516151708.213744-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v9 00/10] ARM: stm32: add support for Phycore STM32MP1
-Content-Language: en-US
-To:     Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230505060158.16516-1-s.trumtrar@pengutronix.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230505060158.16516-1-s.trumtrar@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.252.0.230]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-16_08,2023-05-16_01,2023-02-09_01
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Steffen
+Enable Display Subsystem with Visionox VTDR6130 Panel (same as on
+MTP8550).
 
-On 5/5/23 08:01, Steffen Trumtrar wrote:
-> Hi,
-> 
-> this series adds support for the Phytec STM32MP1-based SoM and board.
-> 
-> Phytec itself calls the board "Phycore STM32MP1-3" and has other
-> endnumbers. I only have access to the "-3" and that's what this series
-> adds.
-> 
->      Changes since v8:
->        - fix typo: rgmii-sleep-8 -> rgmii-sleep-3
->        - rebase to v6.3
-> 
->      Changes since v7:
->        - remove unused gpu_reservde memory range
->        - get rid of duplicate ethernet clock assignments
->        - remove secure-status for sdmmc
->      
->      Changes since v6:
->        - rename mdio0->mdio
->      
->      Changes since v5:
->        - cleanup dt_bindings_check warnings
->      
->      Changes since v4:
->        - cleanup usage of "status = okay|disabled"
->        - fix remaining non-generic node names
->        - rework sai nodes to not duplicate the existing settings in stm32mp151.dtsi
->      
->      Changes since v3:
->        - cleanup board-compatible
->        - cleanup aliases
->        - rename nodes according to schema
->        - use interrupt flag
-> 
-> 
-> Best regards,
-> Steffen Trumtrar
-> 
-> 
-> Steffen Trumtrar (10):
->    ARM: dts: stm32: Add alternate pinmux for ethernet
->    ARM: dts: stm32: Add alternate pinmux for sai2b
->    ARM: dts: stm32: Add new pinmux for sdmmc1_b4
->    ARM: dts: stm32: Add new pinmux for sdmmc2_d47
->    ARM: dts: stm32: Add pinmux for USART1 pins
->    ARM: dts: stm32: Add idle/sleep pinmux for USART3
->    ARM: dts: stm32: Add sleep pinmux for SPI1 pins_a
->    dt-bindings: arm: stm32: Add Phytec STM32MP1 board
->    ARM: dts: stm32: add STM32MP1-based Phytec SoM
->    ARM: dts: stm32: add STM32MP1-based Phytec board
-> 
->   .../devicetree/bindings/arm/stm32/stm32.yaml  |   6 +
->   arch/arm/boot/dts/Makefile                    |   3 +-
->   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi      | 231 +++++++
->   .../dts/stm32mp157c-phycore-stm32mp1-3.dts    |  60 ++
->   .../stm32mp157c-phycore-stm32mp15-som.dtsi    | 577 ++++++++++++++++++
->   5 files changed, 876 insertions(+), 1 deletion(-)
->   create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
->   create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp15-som.dtsi
-> 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Series applied on stm32-next. Thanks for your efforts!
+---
 
-Regards
-Alex
+Context in the patch depends on:
+1. https://lore.kernel.org/linux-arm-msm/20230516133011.108093-1-krzysztof.kozlowski@linaro.org/T/#t
+2. https://lore.kernel.org/linux-arm-msm/20230512160452.206585-1-krzysztof.kozlowski@linaro.org/
+---
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 76 +++++++++++++++++++++++++
+ 1 file changed, 76 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+index 30b36a149125..03bf6bc2db4d 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+@@ -420,6 +420,10 @@ vreg_l3g_1p2: ldo3 {
+ 	};
+ };
+ 
++&dispcc {
++	status = "okay";
++};
++
+ &gcc {
+ 	clocks = <&bi_tcxo_div2>, <&sleep_clk>,
+ 		 <&pcie0_phy>,
+@@ -431,6 +435,50 @@ &gcc {
+ 		 <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+ };
+ 
++&mdss {
++	status = "okay";
++};
++
++&mdss_dsi0 {
++	vdda-supply = <&vreg_l3e_1p2>;
++	status = "okay";
++
++	panel@0 {
++		compatible = "visionox,vtdr6130";
++		reg = <0>;
++
++		pinctrl-names = "default", "sleep";
++		pinctrl-0 = <&sde_dsi_active>, <&sde_te_active>;
++		pinctrl-1 = <&sde_dsi_suspend>, <&sde_te_suspend>;
++
++		vddio-supply = <&vreg_l12b_1p8>;
++		vci-supply = <&vreg_l13b_3p0>;
++		vdd-supply = <&vreg_l11b_1p2>;
++
++		reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
++
++		port {
++			panel0_in: endpoint {
++				remote-endpoint = <&mdss_dsi0_out>;
++			};
++		};
++	};
++};
++
++&mdss_dsi0_out {
++	remote-endpoint = <&panel0_in>;
++	data-lanes = <0 1 2 3>;
++};
++
++&mdss_dsi0_phy {
++	vdds-supply = <&vreg_l1e_0p88>;
++	status = "okay";
++};
++
++&mdss_mdp {
++	status = "okay";
++};
++
+ &pcie_1_phy_aux_clk {
+ 	status = "disabled";
+ };
+@@ -532,6 +580,34 @@ wcd_tx: codec@0,3 {
+ &tlmm {
+ 	gpio-reserved-ranges = <32 8>;
+ 
++	sde_dsi_active: sde-dsi-active-state {
++		pins = "gpio133";
++		function = "gpio";
++		drive-strength = <8>;
++		bias-disable;
++	};
++
++	sde_dsi_suspend: sde-dsi-suspend-state {
++		pins = "gpio133";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
++
++	sde_te_active: sde-te-active-state {
++		pins = "gpio86";
++		function = "mdp_vsync";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
++
++	sde_te_suspend: sde-te-suspend-state {
++		pins = "gpio86";
++		function = "mdp_vsync";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
++
+ 	wcd_default: wcd-reset-n-active-state {
+ 		pins = "gpio108";
+ 		function = "gpio";
+-- 
+2.34.1
 
