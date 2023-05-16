@@ -2,92 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB8EC704F76
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:38:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D8C2704F21
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:22:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233643AbjEPNiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:38:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49540 "EHLO
+        id S233500AbjEPNWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:22:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233298AbjEPNiG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:38:06 -0400
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1086CA;
-        Tue, 16 May 2023 06:38:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-        s=default2211; h=Content-Transfer-Encoding:MIME-Version:References:
-        In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=Tc4N6cacmpKk5k4on8VEF7pB3edhIp5X8MzTz70xu0Q=; b=V4ydLiGbTg7AztiSATz1zSo8dd
-        DlIqofKsUzJRdOOOpdJkrzr2lEM6WLJUl85oHIz7IEhdy0L+1m3enmVBD8rqHhx7IMz/0rPeDb4IS
-        uz4zS3Q3eaVS8qxMrJPKO0CtQdJzn3GyeAswiDYe28gMofn0hyBOvKM79cwYKmDTQt8ChzlHd5/lG
-        hVzYTnuPZtlfEEybVZDjanyl9Y4fVsvDdgjvQNEeg9O3DMjclBjVYYYylhCE1ppgrYwU/w99xYO77
-        jJsgQTdV0hPKWRkgF3vMNiDOkyHqfhTBB0VllVO6OAHqiOuV/w1aPTyc+oJtYj4vr9kkqKFcniFk3
-        mPWZNKmg==;
-Received: from sslproxy03.your-server.de ([88.198.220.132])
-        by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <sean@geanix.com>)
-        id 1pyudb-000AJG-94; Tue, 16 May 2023 15:22:47 +0200
-Received: from [185.17.218.86] (helo=zen..)
-        by sslproxy03.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sean@geanix.com>)
-        id 1pyuda-000NS5-RA; Tue, 16 May 2023 15:22:46 +0200
-From:   Sean Nyekjaer <sean@geanix.com>
-To:     robh+dt@kernel.org, Lee Jones <lee@kernel.org>,
+        with ESMTP id S233071AbjEPNWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:22:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBF833A9D;
+        Tue, 16 May 2023 06:22:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 57D7063A0E;
+        Tue, 16 May 2023 13:22:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAC46C4339C;
+        Tue, 16 May 2023 13:22:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684243370;
+        bh=+sPUthy7aIz73vxHLbcpB1b2jpbwC7HJrTOIMZMo2dE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uPYOuK4MsGdqbnn/xMDKkUnZ4yYcIuyBc3wmFOmWi0M1zulETSYFuwtqUCrDRWI5S
+         wVgIQoGalPhgXBR/I5WssTLKmq6aTcrsCJUtSooWl34gqA1lzOk4MpXdwpQp4uI1ix
+         UxdzERwnISLKF24Av3xmoQrl0qjZ57o4EfWErx8mzgrIZ5TrmzYI5ABlT5e+uuy5rl
+         m5ShpiTBT8U6M4bVGmzempnsCwRwUYC+UX8Dwlya7GJyyjdUslWoAv5UVFoYyEhMEI
+         2k0EvrnUPDzM8TriF9OikZq4XzzY8CwIj/Z+UQn841ylHadecHfO4QMMpUByPVPigy
+         Qi/cGvspkIySw==
+Date:   Tue, 16 May 2023 18:52:46 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        pascal Paillet <p.paillet@foss.st.com>
-Cc:     devicetree@vger.kernel.org, Sean Nyekjaer <sean@geanix.com>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] dt-bindings: mfd: stpmic1: add fsl,pmic-poweroff property
-Date:   Tue, 16 May 2023 15:22:24 +0200
-Message-Id: <20230516132225.3012541-3-sean@geanix.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230516132225.3012541-1-sean@geanix.com>
-References: <20230516132225.3012541-1-sean@geanix.com>
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v14 06/15] clk: Add Lynx 10G SerDes PLL driver
+Message-ID: <ZGODpt7MARD47us7@matsya>
+References: <20230413160607.4128315-1-sean.anderson@seco.com>
+ <20230413160607.4128315-7-sean.anderson@seco.com>
+ <ZFi9t84UoIfUyHhi@matsya>
+ <1012f955-180e-0013-cc13-1da10991b5f5@seco.com>
+ <ZFpD4I2LK9YIQQat@matsya>
+ <d230c641-7270-c768-fd48-9012c01621b2@seco.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.8/26908/Tue May 16 09:24:20 2023)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d230c641-7270-c768-fd48-9012c01621b2@seco.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the new optional "fsl,pmic-poweroff" property.
+On 09-05-23, 11:26, Sean Anderson wrote:
+> On 5/9/23 09:00, Vinod Koul wrote:
+> > On 08-05-23, 11:31, Sean Anderson wrote:
+> >> On 5/8/23 05:15, Vinod Koul wrote:
+> > 
+> >> >> +int lynx_clks_init(struct device *dev, struct regmap *regmap,
+> >> >> +		   struct clk *plls[2], struct clk *ex_dlys[2], bool compat);
+> >> > 
+> >> > so you have an exported symbol for clk driver init in phy driver header?
+> >> > can you please explain why..?
+> >> 
+> >> So that it can be called at the appropriate time during the phy's probe function.
+> >> 
+> >> This is really an integral part of the phy driver, but I was directed to split it
+> >> off and put it in another subsystem's directory.
+> > 
+> > That is right clock should be belong to clk driver. IIUC the hardware is
+> > phy along with clocks and you are doing the clk init. I think that may
+> > not be correct model, you should really have a device tree node to
+> > represent the clock and the phy node
+> > 
+> > 
+> > What stops this from being modelled as it is in the hardware?
+> 
+> It *is* modeled as it is in hardware. With just the serdes compatible,
+> we have all the information we need to create the clocks. So we do so.
+> There's no need for a separate device just to create four clocks.
+> 
+> These clocks cannot be used by any other device (except possibly by
+> putting a lane into test mode). So there is no benefit from making them
+> a separate device, except an increase in complexity due to ordering and
+> dynamic lookup. By doing things this way we know that either there was
+> an error or the clocks all exist, and the lifetime of the clocks matches
+> the serdes.
 
-Signed-off-by: Sean Nyekjaer <sean@geanix.com>
----
- Documentation/devicetree/bindings/mfd/st,stpmic1.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Okay that does makes sense.
 
-diff --git a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
-index 9573e4af949e..5183a7c660d2 100644
---- a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
-+++ b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
-@@ -26,6 +26,14 @@ properties:
- 
-   interrupt-controller: true
- 
-+  st,pmic-poweroff:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      if present, configure the PMIC to shutdown all power rails when
-+      power off sequence have finished.
-+      Use this option if the SoC should be powered off by external power management
-+      IC (PMIC).
-+
-   onkey:
-     type: object
- 
+In that case why should this not be in the phy driver itself. There are
+already few examples og phy drivers having inbuild clk where is makes
+sense. You register the clk_ops as part of phy driver
+
+Thanks
+
 -- 
-2.40.0
-
+~Vinod
