@@ -2,103 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57AB970454C
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 08:27:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB8F570455A
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 08:34:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230258AbjEPG1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 02:27:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44968 "EHLO
+        id S230180AbjEPGd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 02:33:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230238AbjEPG13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 02:27:29 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C33271BD9;
-        Mon, 15 May 2023 23:27:24 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1aaef97652fso94723305ad.0;
-        Mon, 15 May 2023 23:27:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684218444; x=1686810444;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hDJU7d4CldRrZbTj5Wu/ESDtc5CL1I9TeYQbHB2PtSM=;
-        b=RYul+8KFV0YsDXiizxVd7ZTOSng23EQbwCPvT2UomqojgwgtelJY1Xds4rf+hkU2N6
-         3d4Cl6B0k+HX7J53pV+zFKnsQUjyHAc3okBFF/zihacBDbjt4xJmJtjvwsxuMr56kOa8
-         QflmeCjOTwv2VCC8rW24shyRS9YHDEuUMeF0yIsjD6ZckzusiBfBCPtt8A9lOmgApjVn
-         1G6blP85CBIkaE8sAak7N6PNoKS6CsDWA9dKnf3hrPb5XIM5qD/nKBUp2NpxeyEPGbEI
-         AY0cXp2N6h85vI3DA6nr1orgTkCv7L9lu+4QA7c3sACCJ4Be+dRSs0+tmpSJiaI5HiYc
-         492A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684218444; x=1686810444;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hDJU7d4CldRrZbTj5Wu/ESDtc5CL1I9TeYQbHB2PtSM=;
-        b=KnCmLYwO4VlevQq3/8khd1hUJScDm4vTpNmtQzLgDJhv+IcYEmDjNskpnjKi9aOZ7y
-         5RN1/XskWA3FTlrBsy3DVl02O9ZDGY7EjCPwnVzPn9sFukyG2i0+ancpF7Tt8Do+oQM1
-         HVWFMCuSMV0Vh3lvjzei0dAmAzM6KNHEodAcZASENFUY7ci9kvas8dUkFjQPBgCFYvNJ
-         S4QMJZbHZh6+RPUSYZR1Z5Z99R3/9sDlfjNj+Rc7UAQIyxX6yMSUavu6EyNlwyRXNqQa
-         wMVpXCn4CfyXwg809iUT/7gE4lWNPI5ukhiZ6ZuuKK5jQPpnvL2ZZh/WlZYATTzrHQrX
-         SE+Q==
-X-Gm-Message-State: AC+VfDyQHvuIr7pQfgnNDKC2DlzG2VN8JeiRTU++wHesofaGclgnj+30
-        qFWCp2m8SJ1Ie7R76hBdXAE=
-X-Google-Smtp-Source: ACHHUZ4+6x7bslUpOA2kbWjjyhXhO5nDmcecsqWTE7TLBI3nXL3l9PBKUvKQuHAGP+ZbjbSwhjs5Ig==
-X-Received: by 2002:a17:903:230e:b0:1ad:164:74ee with SMTP id d14-20020a170903230e00b001ad016474eemr26560319plh.15.1684218444120;
-        Mon, 15 May 2023 23:27:24 -0700 (PDT)
-Received: from localhost.localdomain (n220246252240.netvigator.com. [220.246.252.240])
-        by smtp.gmail.com with ESMTPSA id j18-20020a170902da9200b001aaea7bdaa7sm14579710plx.50.2023.05.15.23.27.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 May 2023 23:27:23 -0700 (PDT)
-From:   Jianhua Lu <lujianhua000@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S230054AbjEPGd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 02:33:58 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FFA71FD4;
+        Mon, 15 May 2023 23:33:56 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34G6XhTC061465;
+        Tue, 16 May 2023 01:33:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684218823;
+        bh=kQRrE7NQZFThfXtU1mqcmhZYEzl2mdVQGQNER6/T2C0=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=Sil2Z57zIaLO+SgeLTzPZaxtl3XHObFirJgsO7Lpx0evRCQK3xO0FQ958WeRRKe8J
+         myieRPQ33oWhT+d4qYPdIm4RBmByO7Xsj6++saNDI2bzJb3zvLwB/HQmGkrsz+C16y
+         /QIFLsz83hRme9bc3EJ4Vl80zbnU74t8cPx+gGF4=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34G6XhhE026382
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 16 May 2023 01:33:43 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
+ May 2023 01:33:42 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 16 May 2023 01:33:42 -0500
+Received: from [172.24.145.61] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34G6XdN3016858;
+        Tue, 16 May 2023 01:33:39 -0500
+Message-ID: <728c0165-3caa-de09-2493-e7225a78b77a@ti.com>
+Date:   Tue, 16 May 2023 12:03:38 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jianhua Lu <lujianhua000@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: [RESEND,PATCH 3/3] arm64: dts: qcom: sm8250-xiaomi-elish: remove redundant empty line
-Date:   Tue, 16 May 2023 14:26:57 +0800
-Message-Id: <20230516062657.28616-3-lujianhua000@gmail.com>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <20230516062657.28616-1-lujianhua000@gmail.com>
-References: <20230516062657.28616-1-lujianhua000@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <s-vadapalli@ti.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-j7200: correct num-lanes requested for
+ PCIe
+Content-Language: en-US
+To:     Achal Verma <a-verma1@ti.com>
+References: <20230516062212.2635948-1-a-verma1@ti.com>
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <20230516062212.2635948-1-a-verma1@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove a redundant empty line introduced by
-  commit 51c4c2bd6f31 ("arm64: dts: qcom: sm8250-xiaomi-elish-boe: Add mdss and dsi panel")
+Achal,
 
-Fixes: 51c4c2bd6f31 ("arm64: dts: qcom: sm8250-xiaomi-elish-boe: Add mdss and dsi panel")
-Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
----
- arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+On 16/05/23 11:52, Achal Verma wrote:
+> From: Matt Ranostay <mranostay@ti.com>
+> 
+> J7200 has a limited 2x support for PCIe, and the properties should be
+> updated as such.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-index 8af6a0120a50..eaac00085894 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-@@ -504,7 +504,6 @@ panel_in_1: endpoint {
- 					remote-endpoint = <&dsi1_out>;
- 				};
- 			};
--
- 		};
- 	};
- };
+According to J7200 Datasheet at [0], the SoC supports up to x4 PCIe lanes. Could
+you please clarify where the lanes are documented to be 2x?
+
+[0]: https://www.ti.com/lit/ds/symlink/dra821u-q1.pdf
+
+> 
+> Signed-off-by: Matt Ranostay <mranostay@ti.com>
+> Signed-off-by: Achal Verma <a-verma1@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> index ef352e32f19d..5e62b431d6e8 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+> @@ -729,7 +729,7 @@ pcie1_rc: pcie@2910000 {
+>  		device_type = "pci";
+>  		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
+>  		max-link-speed = <3>;
+> -		num-lanes = <4>;
+> +		num-lanes = <2>;
+>  		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
+>  		clocks = <&k3_clks 240 6>;
+>  		clock-names = "fck";
+> @@ -757,7 +757,7 @@ pcie1_ep: pcie-ep@2910000 {
+>  		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
+>  		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
+>  		max-link-speed = <3>;
+> -		num-lanes = <4>;
+> +		num-lanes = <2>;
+>  		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
+>  		clocks = <&k3_clks 240 6>;
+>  		clock-names = "fck";
+
 -- 
-2.39.3
-
+Regards,
+Siddharth.
