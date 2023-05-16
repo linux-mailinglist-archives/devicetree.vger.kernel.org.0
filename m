@@ -2,64 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2806704A25
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:10:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33F4A704A3D
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:15:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232246AbjEPKKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 06:10:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41988 "EHLO
+        id S231877AbjEPKP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 06:15:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232249AbjEPKJ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:09:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 910D12719;
-        Tue, 16 May 2023 03:09:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F16C16374A;
-        Tue, 16 May 2023 10:09:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93DF8C4339E;
-        Tue, 16 May 2023 10:09:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684231784;
-        bh=UzWc5Lwm75FxyK+w8YmzHI/DvA777osEnR4l5zmjBh4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OaXk2JUlwNc9953eKu4k6Tz88/RHcSQ8rAN8NQIWm6MZ7UtyQPb+nTSAEsZhCXBVf
-         +XANWEmW4zXYMNZvFxACRsTpj47X29nqAcf9nIfyqGzYR3tsiiwqtLonq1fVvXFLwY
-         EaqnQpFCrX5dV0ZfIPMxoNV5xeYCcHKO5+xnaYQnjMmLtEiCoDYZMRML44IgvRNpXN
-         8ji3D//H6icA/jIND8ED/ofji+rWgN/sytWNwUR3Q0pRQi+0zQTOsE51S3fyJwOn8f
-         EcpwXoYvQBP9mBGIYa2llUd5CdqZ3WeOFo/1knvE6ImJ46qrJ7FHALZW92M/3m+xfW
-         a0TNvvur6xjTQ==
-Date:   Tue, 16 May 2023 11:09:36 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Charles Keepax <ckeepax@opensource.cirrus.com>, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, tglx@linutronix.de, linus.walleij@linaro.org,
-        vkoul@kernel.org, lgirdwood@gmail.com,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 07/10] irqchip/cs42l43: Add support for the cs42l43 IRQs
-Message-ID: <20230516100936.GF10825@google.com>
-References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
- <20230512122838.243002-8-ckeepax@opensource.cirrus.com>
- <86o7mpmvqq.wl-maz@kernel.org>
- <20230512153933.GH68926@ediswmail.ad.cirrus.com>
- <86mt29mt2m.wl-maz@kernel.org>
- <20230515112554.GA10825@google.com>
- <86h6scmzf7.wl-maz@kernel.org>
+        with ESMTP id S232062AbjEPKPZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:15:25 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57AE419BE;
+        Tue, 16 May 2023 03:15:23 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34G9MbJu013973;
+        Tue, 16 May 2023 12:15:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=b2O6FR2ovvQRh+31RdmxtB/NfNxgt4m1O3dgHwOSoEc=;
+ b=4vZKhhRk8ckCL8Oe18i+UNSo+TO/4sHJM0jp5GK9wd0evrVg5yA0wgO7wviwhi3VBmTE
+ AnfZ3q0yTQe9W7Wf5l0r6MBRXn6NGv7R+UdNMFDtLtkzfCE8SAZTx4XR8RkmmgfA/AbG
+ Pvr5msfd6a/rdliDZA0lNWdF+1gFZjFABfRn6JDxdGQa9MCm5dB37Mzx+A10LdpKU6Rh
+ DJ+HA8geffM1l4juo/plfgo8OSv65pSIOcZQROu/b3LkfrveMuvIMEaLu8g3UVtKgMla
+ Y5a29p5njvg3HCo4Hkrlv/kJWLvhez+ti/LQCQbT0jChT1qkspj/TJJ7cTpxujH02552 bg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qhyyh8t1b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 May 2023 12:15:10 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5D5EB100034;
+        Tue, 16 May 2023 12:15:09 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 558AC21A21A;
+        Tue, 16 May 2023 12:15:09 +0200 (CEST)
+Received: from [10.252.0.230] (10.252.0.230) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 16 May
+ 2023 12:15:08 +0200
+Message-ID: <b3084c19-7948-bf64-a63b-eb2f353502a1@foss.st.com>
+Date:   Tue, 16 May 2023 12:15:08 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <86h6scmzf7.wl-maz@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH] ARM: dts: stm32: add part number for STM32MP15x
+Content-Language: en-US
+To:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20230407203151.1.Ia16c922b77242e5832106fedc76d27f7ed4dd952@changeid>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230407203151.1.Ia16c922b77242e5832106fedc76d27f7ed4dd952@changeid>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.252.0.230]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-16_04,2023-05-05_01,2023-02-09_01
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,77 +76,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 May 2023, Marc Zyngier wrote:
+Hi Patrick
 
-> On Mon, 15 May 2023 12:25:54 +0100,
-> Lee Jones <lee@kernel.org> wrote:
-> > 
-> > On Fri, 12 May 2023, Marc Zyngier wrote:
-> > 
-> > > On Fri, 12 May 2023 16:39:33 +0100,
-> > > Charles Keepax <ckeepax@opensource.cirrus.com> wrote:
-> > > > 
-> > > > On Fri, May 12, 2023 at 04:10:05PM +0100, Marc Zyngier wrote:
-> > > > > On Fri, 12 May 2023 13:28:35 +0100,
-> > > > > Charles Keepax <ckeepax@opensource.cirrus.com> wrote:
-> > > > > > 
-> > > > > > The CS42L43 is an audio CODEC with integrated MIPI SoundWire interface
-> > > > > > (Version 1.2.1 compliant), I2C, SPI, and I2S/TDM interfaces designed
-> > > > > > for portable applications. It provides a high dynamic range, stereo
-> > > > > > DAC for headphone output, two integrated Class D amplifiers for
-> > > > > > loudspeakers, and two ADCs for wired headset microphone input or
-> > > > > > stereo line input. PDM inputs are provided for digital microphones.
-> > > > > > 
-> > > > > > The IRQ chip provides IRQ functionality both to other parts of the
-> > > > > > cs42l43 device and to external devices that wish to use its IRQs.
-> > > > > 
-> > > > > Sorry, but this isn't much of an interrupt controller driver. A modern
-> > > > > interrupt controller driver is firmware-driven (DT or ACPI, pick your
-> > > > > poison), uses irq domains, and uses the irqchip API.
-> > > > > 
-> > > > 
-> > > > Apologies but I really need a little help clarifying the issues
-> > > > here. I am totally happy to fix things up but might need a couple
-> > > > pointers.
-> > > > 
-> > > > 1) uses the irqchip API / uses irq domains
-> > > > 
-> > > > The driver does use both the irqchip API and domains, what
-> > > > part of the IRQ API are we not using that we should be?
-> > > > 
-> > > > The driver registers an irq domain using
-> > > > irq_domain_create_linear.  It requests its parent IRQ using
-> > > > request_threaded_irq. It passes IRQs onto the devices requesting
-> > > > IRQs from it using handle_nested_irq and irq_find_mapping.
-> > > > 
-> > > > Is the objection here that regmap is making these calls for us,
-> > > > rather than them being hard coded into this driver?
-> > > 
-> > > That's one of the reasons. Look at the existing irqchip drivers: they
-> > > have nothing in common with yours. The regmap irqchip abstraction may
-> > > be convenient for what you are doing, but the result isn't really an
-> > > irqchip driver. It is something that is a small bit of a larger device
-> > > and not an interrupt controller driver on its own. The irqchip
-> > > subsystem is there for "first class" interrupt controllers.
-> > 
-> > I'm not aware of another subsystem that deals with !IRQChip level IRQ
-> > controllers.  Where do simple or "second class" interrupt controllers
-> > go?
+On 4/7/23 20:31, Patrick Delaunay wrote:
+> The STM32MP15x Device Part Number is located in the first 8 bits of OTP4,
+> this patch add its description as the NVMEM cell.
 > 
-> This isn't an interrupt controller. This is internal signalling, local
-> to a single component that has been artificially broken into discrete
-> bits, including an interrupt controller. The only *real* interrupts
-> here are the GPIOs.
+> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+> ---
 > 
-> I'm happy to see an interrupt controller for the GPIOs. But the rest
-> is just internal muck that doesn't really belong here. Where should it
+>   arch/arm/boot/dts/stm32mp151.dtsi | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+> index 4e437d3f2ed6..3cf78f706400 100644
+> --- a/arch/arm/boot/dts/stm32mp151.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
+> @@ -1620,6 +1620,9 @@ bsec: efuse@5c005000 {
+>   			reg = <0x5c005000 0x400>;
+>   			#address-cells = <1>;
+>   			#size-cells = <1>;
+> +			part_number_otp: part-number-otp@4 {
+> +				reg = <0x4 0x1>;
+> +			};
+>   			ts_cal1: calib@5c {
+>   				reg = <0x5c 0x2>;
+>   			};
 
-You should have been a poet! =;-)
+Applied on stm32-next.
 
-> go? Together with the rest of the stuff that manages the block as a
-> whole. Which looks like the MFD subsystem to me.
-
-Very well.  Let's see this "muck" in a patch please!
-
--- 
-Lee Jones [李琼斯]
+Thanks.
+Alex
