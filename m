@@ -2,67 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1835704F05
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39F94704F07
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:17:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232617AbjEPNQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:16:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60624 "EHLO
+        id S232834AbjEPNRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:17:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232321AbjEPNQm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:16:42 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2BAA7
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:16:41 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-64357904632so2971329b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:16:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684243000; x=1686835000;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lvk2eCTeFxnOegJLRKuQYsp3qkoShxPgWkq7zqncysc=;
-        b=G8TxbNZAyJLDeAWzY88l2egKcO+5IwuQzapnrO6iFlRwBviZYEJFwb5oVm+KbD1bHw
-         AOacLw1t6AqmJPGlRUTYTWl8czSYbPO9otBq2rV/Y2qMpMKTqcbyy0dj0JSEn/muwFti
-         QEFtlEJu09QuYzvPqczd0S0vMig89LCBmRLU6HlmPEw2Zd8j/9NYRfh7049HvyXx16X9
-         GAZW8FA8DL+V0T2kxS9ww3z68KizJHzaPWskTVmV/UJ7RVl/1zWxWz6/OIY32iHna0ZA
-         2Y84v+Mt1Hd3ir0NgCRYtb6RcAMNCqRFnvoKDdvIY2Zn1fn7Xm9SPV1UlvlS3EBvWovL
-         gB4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684243000; x=1686835000;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Lvk2eCTeFxnOegJLRKuQYsp3qkoShxPgWkq7zqncysc=;
-        b=J5W7YtTOusxjPS4vVSUug/v0K6Qcc46oX0UkdOU+h7BXh+owAOAhIhH0uHefrrWzsC
-         aAoVdKJxIAEDjIeRwIzkCOfBlSmpmI59L0LOlpHMkO6OozIjlxA88A9IRgbHy1Z0cMDB
-         f0S5kH5/EIoLkAknRpQSAJa45fbDJKiOFdefsSEaXlCM8rx7mxvc29C4sG8ctbAwUdgB
-         blm/ia8llb4qn5GVZeUo4I2DbLLkmqcJPMidkdZ7zQ4Ru3Q2EzCUGJLvdSThPwz6qxET
-         62HYRVPakR1CXFbwDOSRxP0qQSEe0z7c7ouuKJE0jBvCw1bsmk/WVf3d4PE+4ueU4z3k
-         WT2Q==
-X-Gm-Message-State: AC+VfDz29bZVCFLDvbi4ogSAAHbIMwRs+3GBol5BA3swTSY64JVTi6MP
-        ADX2f0kNHopZJ2RVX2n57X8=
-X-Google-Smtp-Source: ACHHUZ73yjg63AgSN9Se97DiGnX4h6MvKNrMIBgFoo/KD7e29+kzP+RwWdMh/bv1VqKimJ7uAO8ZWQ==
-X-Received: by 2002:a05:6a21:6da6:b0:f1:1ab5:5076 with SMTP id wl38-20020a056a216da600b000f11ab55076mr14677545pzb.2.1684243000433;
-        Tue, 16 May 2023 06:16:40 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:12fe:baa9:ec21:f64b])
-        by smtp.gmail.com with ESMTPSA id s19-20020a170902b19300b001ab0159b9edsm9361010plr.250.2023.05.16.06.16.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 06:16:39 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     daniel@zonque.org
-Cc:     haojian.zhuang@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] ARM: dts: pxa300-raumfeld: Replace deprecated spi-gpio properties
-Date:   Tue, 16 May 2023 10:16:30 -0300
-Message-Id: <20230516131630.580213-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S232321AbjEPNRK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:17:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E68FE1BCA;
+        Tue, 16 May 2023 06:17:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 83C6F639E1;
+        Tue, 16 May 2023 13:17:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09BD4C433D2;
+        Tue, 16 May 2023 13:17:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684243027;
+        bh=Q822amfXHYVNZj8qT92UOupIha/Yo6CzcR8/30zrIJQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=T4QvBKtT/hm77F4Yd1YdfW4pv+xrH7qXkvokmjq1Rb10P7TF381PyA+Vho+dkCais
+         WURsVW6fmrrM5LaLBhL69muJt+NvMPgN1usTXafPB3YNNR8BwhtyFN5AbCFhsrUzoT
+         IJyesGu0gilMAYuE/M/HEf7TCmthQzY0M1xCk3x//vm2SgYuyJN35edyjoGCnhAQNO
+         9KCpi7lOLFO34scQvfOL9Qk1GIhcmEGJSq6tEYdh9gz8qUFI0HyJkSmYxmhuBtKRYu
+         /dLNVm35lozZgsoyNu7U9clt60TUU5O+h/CER9nxn0/B2Z6F0M0TIe8bajFVztMWdO
+         ygfmMYxWSlQKQ==
+Date:   Tue, 16 May 2023 18:47:03 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        imx@lists.linux.dev, fushi.peng@nxp.com
+Subject: Re: [PATCH v3 1/2] phy: cadence: salvo: Add
+ cdns,usb2-disconnect-threshold-microvolt property
+Message-ID: <ZGOCT0Mdg3Jtar6c@matsya>
+References: <20230510140504.2164565-1-Frank.Li@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230510140504.2164565-1-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,35 +58,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On 10-05-23, 10:05, Frank Li wrote:
+> Add cdns,usb2-disconnect-threshold-microvolt property to address fake USB
+> disconnection issue during enumeration or suspend state for difference
+> platform.
 
-As stated in Documentation/devicetree/bindings/spi/spi-gpio.yaml,
-'gpio-miso', 'gpio-mosi' and 'gpio-sck' are deprecated properties.
+This fails to apply for me on phy/next. What tree was this based on?
 
-Use the recommeded 'miso-gpios', 'mosi-gpios' and 'sck-gpios' instead.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change from v2 to v3
+> - add cdns prefix
+> Change from v1 to v2
+> - remove empty change before #include 
+> - Remove dts change from patch
+> 
+>  drivers/phy/cadence/phy-cadence-salvo.c | 29 +++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/drivers/phy/cadence/phy-cadence-salvo.c b/drivers/phy/cadence/phy-cadence-salvo.c
+> index 23be27a747a9..ab7eca515059 100644
+> --- a/drivers/phy/cadence/phy-cadence-salvo.c
+> +++ b/drivers/phy/cadence/phy-cadence-salvo.c
+> @@ -6,6 +6,7 @@
+>   * Copyright (c) 2019-2020 NXP
+>   */
+>  
+> +#include <linux/bitfield.h>
+>  #include <linux/clk.h>
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+> @@ -91,9 +92,19 @@
+>  
+>  /* USB2 PHY register definition */
+>  #define UTMI_REG15				0xaf
+> +#define UTMI_AFE_RX_REG0			0x0d
+>  #define UTMI_AFE_RX_REG5			0x12
+>  #define UTMI_AFE_BC_REG4			0x29
+>  
+> +/* Align UTMI_AFE_RX_REG0 bit[7:6] define */
+> +enum usb2_disconn_threshold {
+> +	USB2_DISCONN_THRESHOLD_575 = 0x0,
+> +	USB2_DISCONN_THRESHOLD_610 = 0x1,
+> +	USB2_DISCONN_THRESHOLD_645 = 0x3,
+> +};
+> +
+> +#define RX_USB2_DISCONN_MASK			GENMASK(7, 6)
+> +
+>  /* TB_ADDR_TX_RCVDETSC_CTRL */
+>  #define RXDET_IN_P3_32KHZ			BIT(0)
+>  /*
+> @@ -125,6 +136,7 @@ struct cdns_salvo_phy {
+>  	struct clk *clk;
+>  	void __iomem *base;
+>  	struct cdns_salvo_data *data;
+> +	enum usb2_disconn_threshold usb2_disconn;
+>  };
+>  
+>  static const struct of_device_id cdns_salvo_phy_of_match[];
+> @@ -261,6 +273,12 @@ static int cdns_salvo_phy_init(struct phy *phy)
+>  
+>  	cdns_salvo_write(salvo_phy, USB2_PHY_OFFSET, UTMI_AFE_RX_REG5,
+>  			 0x5);
+> +
+> +	value = cdns_salvo_read(salvo_phy, USB2_PHY_OFFSET, UTMI_AFE_RX_REG0);
+> +	value &= ~RX_USB2_DISCONN_MASK;
+> +	value = FIELD_PREP(RX_USB2_DISCONN_MASK, salvo_phy->usb2_disconn);
+> +	cdns_salvo_write(salvo_phy, USB2_PHY_OFFSET, UTMI_AFE_RX_REG0, value);
+> +
+>  	udelay(10);
+>  
+>  	clk_disable_unprepare(salvo_phy->clk);
+> @@ -315,6 +333,7 @@ static int cdns_salvo_phy_probe(struct platform_device *pdev)
+>  	struct device *dev = &pdev->dev;
+>  	struct cdns_salvo_phy *salvo_phy;
+>  	struct cdns_salvo_data *data;
+> +	u32 val;
+>  
+>  	data = (struct cdns_salvo_data *)of_device_get_match_data(dev);
+>  	salvo_phy = devm_kzalloc(dev, sizeof(*salvo_phy), GFP_KERNEL);
+> @@ -326,6 +345,16 @@ static int cdns_salvo_phy_probe(struct platform_device *pdev)
+>  	if (IS_ERR(salvo_phy->clk))
+>  		return PTR_ERR(salvo_phy->clk);
+>  
+> +	if (of_property_read_u32(dev->of_node, "cdns,usb2-disconnect-threshold-microvolt", &val))
+> +		val = 575;
+> +
+> +	if (val < 610)
+> +		salvo_phy->usb2_disconn = USB2_DISCONN_THRESHOLD_575;
+> +	else if (val < 645)
+> +		salvo_phy->usb2_disconn = USB2_DISCONN_THRESHOLD_610;
+> +	else
+> +		salvo_phy->usb2_disconn = USB2_DISCONN_THRESHOLD_645;
+> +
+>  	salvo_phy->base = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(salvo_phy->base))
+>  		return PTR_ERR(salvo_phy->base);
+> -- 
+> 2.34.1
+> 
+> 
+> -- 
+> linux-phy mailing list
+> linux-phy@lists.infradead.org
+> https://lists.infradead.org/mailman/listinfo/linux-phy
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/pxa300-raumfeld-common.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm/boot/dts/pxa300-raumfeld-common.dtsi b/arch/arm/boot/dts/pxa300-raumfeld-common.dtsi
-index 147c99191dc2..5e93f315588a 100644
---- a/arch/arm/boot/dts/pxa300-raumfeld-common.dtsi
-+++ b/arch/arm/boot/dts/pxa300-raumfeld-common.dtsi
-@@ -74,9 +74,9 @@ spi: spi {
- 		#size-cells = <0>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&spi_pins>;
--		gpio-sck = <&gpio 95 GPIO_ACTIVE_HIGH>;
--		gpio-miso = <&gpio 98 GPIO_ACTIVE_HIGH>;
--		gpio-mosi = <&gpio 97 GPIO_ACTIVE_HIGH>;
-+		sck-gpios = <&gpio 95 GPIO_ACTIVE_HIGH>;
-+		miso-gpios = <&gpio 98 GPIO_ACTIVE_HIGH>;
-+		mosi-gpios = <&gpio 97 GPIO_ACTIVE_HIGH>;
- 		cs-gpios = <
- 			&gpio 34 GPIO_ACTIVE_HIGH
- 			&gpio 125 GPIO_ACTIVE_HIGH
 -- 
-2.34.1
-
+~Vinod
