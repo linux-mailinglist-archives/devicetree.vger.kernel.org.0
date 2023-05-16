@@ -2,260 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C19E2705048
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 16:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48270705072
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 16:20:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233877AbjEPOOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 10:14:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50888 "EHLO
+        id S233373AbjEPOUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 10:20:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233714AbjEPOOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 10:14:08 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB99AB;
-        Tue, 16 May 2023 07:14:02 -0700 (PDT)
-Received: from kwepemm600004.china.huawei.com (unknown [172.30.72.54])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4QLJ5504b1zTkbX;
-        Tue, 16 May 2023 22:09:12 +0800 (CST)
-Received: from [10.67.103.231] (10.67.103.231) by
- kwepemm600004.china.huawei.com (7.193.23.242) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Tue, 16 May 2023 22:13:59 +0800
-Message-ID: <f0733521-2557-fdaf-e59b-b10d515c487c@huawei.com>
-Date:   Tue, 16 May 2023 22:13:58 +0800
+        with ESMTP id S233570AbjEPOUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 10:20:10 -0400
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 570A983CC
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 07:19:55 -0700 (PDT)
+Received: by mail-qt1-x82d.google.com with SMTP id d75a77b69052e-3f39600f9b8so45651601cf.3
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 07:19:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1684246793; x=1686838793;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Um1tUxrJi7GYgRkSCDyfBikS3Jewh3k7uhzREmBIwwY=;
+        b=ZOCp4xaFxexSDGJYQZSqZNykw1Le/JfuA3Ze1ozd+i7MNRSCmmK1MVQr1IgEDP62qx
+         EbnFYB5XOOslcwUFPzeBIa+9x5FhRIm5zNS0QvPnJCZfrknNRWWPRHZxT+Ef2Ng/dNJQ
+         y4lSwUtjMY4+R3APscBh1MdGfLarRZNIZnMpk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684246793; x=1686838793;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Um1tUxrJi7GYgRkSCDyfBikS3Jewh3k7uhzREmBIwwY=;
+        b=Ql1+1Wpg7llnTVR3oFBEu53R4fm+n2HXwKTp41jz906sJLMJys72cE+RS09+KShMn8
+         l6Iajya0qHXH7xbZS6srCUFI3tiAc2mYRiCuUMyImmOKov1CIYQcgsak3b0JT6e5KoXN
+         l+WikZdVDEV2JVP0Me8dqfYvpthwyYZapWrljDkCIA5Xe2/JsPJ5TXQlk2958PGqG3GV
+         5E6CaAjrFR2xCwXQMknxmEiOKTgt1JyOfT+PxGRnOurYVmD3r9y4E12sYY+cEH6lrD3f
+         fHks558TjhGeBGaEaaDLVdT1xe36Nt4UFFZF7JGmNek3z8fQjte9EXjiRM1mMyG0lvaf
+         k6/Q==
+X-Gm-Message-State: AC+VfDwORak4GXJdPdroQLWNbInSPh5dUMuKmAD4igq0dz3yAwatssGH
+        bJd5NwZNDLCn/VeLadRYSdYfWPC15DtmDwF54F0=
+X-Google-Smtp-Source: ACHHUZ6Dql4F7KaiN36NDMPOLarmB+h3n40LAmTX7rchmffZ2W+RfEetHlNK8X2LEmIjToYxcKe45Q==
+X-Received: by 2002:ac8:5c89:0:b0:3f2:13:ee85 with SMTP id r9-20020ac85c89000000b003f20013ee85mr60377981qta.29.1684246793457;
+        Tue, 16 May 2023 07:19:53 -0700 (PDT)
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com. [209.85.160.170])
+        by smtp.gmail.com with ESMTPSA id p26-20020ac8409a000000b003ef58044a4bsm4596717qtl.34.2023.05.16.07.19.52
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 May 2023 07:19:52 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-3f38824a025so1817231cf.0
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 07:19:52 -0700 (PDT)
+X-Received: by 2002:ac8:4e86:0:b0:3f5:4eb4:414f with SMTP id
+ 6-20020ac84e86000000b003f54eb4414fmr3310qtp.13.1684246791898; Tue, 16 May
+ 2023 07:19:51 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH] soc: hisilicon: Support HCCS driver on Kunpeng SoC
-To:     Sudeep Holla <sudeep.holla@arm.com>
-CC:     Arnd Bergmann <arnd@arndb.de>,
-        Bjorn Andersson <andersson@kernel.org>,
+References: <20230515131353.v2.cover@dianders> <20230515131353.v2.2.I88dc0a0eb1d9d537de61604cd8994ecc55c0cac1@changeid>
+ <3cc683e7-28aa-7b6e-1499-3aca953294cc@collabora.com>
+In-Reply-To: <3cc683e7-28aa-7b6e-1499-3aca953294cc@collabora.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 16 May 2023 07:19:39 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UKC9mDab4nYu7OFSOEpsm-CJ=dvcXzHOG-a74JeELQkw@mail.gmail.com>
+Message-ID: <CAD=FV=UKC9mDab4nYu7OFSOEpsm-CJ=dvcXzHOG-a74JeELQkw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] irqchip/gic-v3: Disable pseudo NMIs on Mediatek
+ devices w/ firmware issues
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <soc@kernel.org>,
-        <wanghuiqiang@huawei.com>, <tanxiaofei@huawei.com>,
-        <liuyonglong@huawei.com>, <huangdaode@huawei.com>,
-        <linux-acpi@vger.kernel.org>, Len Brown <lenb@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230424073020.4039-1-lihuisong@huawei.com>
- <e0c4f4b5-8b34-4542-b676-f98ddb8ef586@app.fastmail.com>
- <20230425103040.znv66k364ant6klq@bogus>
- <c7d9c3c5-e400-c60a-52e0-0f267ec8c517@huawei.com>
- <20230425131918.5tf5vot4h7jf54xk@bogus>
- <db6c713c-f99c-fa3f-8d38-9a5d50889cc2@huawei.com>
- <20230515130807.pdvx7bxwjkfdsmsr@bogus>
- <aa5b1919-74c6-1f97-78af-ab5f0904c3ce@huawei.com>
- <20230516122931.il4ai7fyxdo5gsff@bogus>
-From:   "lihuisong (C)" <lihuisong@huawei.com>
-In-Reply-To: <20230516122931.il4ai7fyxdo5gsff@bogus>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.67.103.231]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- kwepemm600004.china.huawei.com (7.193.23.242)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        wenst@chromium.org, yidilin@chromium.org,
+        Tinghan Shen <tinghan.shen@mediatek.com>, jwerner@chromium.org,
+        Weiyi Lu <weiyi.lu@mediatek.com>, Ben Ho <Ben.Ho@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep,
+Hi,
 
-Thanks for your reply.
+On Tue, May 16, 2023 at 6:23=E2=80=AFAM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 15/05/23 22:13, Douglas Anderson ha scritto:
+> > Some Chromebooks with Mediatek SoCs have a problem where the firmware
+> > doesn't properly save/restore certain GICR registers. Newer
+> > Chromebooks should fix this issue and we may be able to do firmware
+> > updates for old Chromebooks. At the moment, the only known issue with
+> > these Chromebooks is that we can't enable "pseudo NMIs" since the
+> > priority register can be lost. Enabling "pseudo NMIs" on Chromebooks
+> > with the problematic firmware causes crashes and freezes.
+> >
+> > Let's detect devices with this problem and then disable "pseudo NMIs"
+> > on them. We'll detect the problem by looking for the presence of the
+> > "mediatek,broken-save-restore-fw" property in the GIC device tree
+> > node. Any devices with fixed firmware will not have this property.
+> >
+> > Our detection plan works because we never bake a Chromebook's device
+> > tree into firmware. Instead, device trees are always bundled with the
+> > kernel. We'll update the device trees of all affected Chromebooks and
+> > then we'll never enable "pseudo NMI" on a kernel that is bundled with
+> > old device trees. When a firmware update is shipped that fixes this
+> > issue it will know to patch the device tree to remove the property.
+> >
+> > In order to make this work, the quick detection mechanism of the GICv3
+> > code is extended to be able to look for properties in addition to
+> > looking at "compatible".
+> >
+> > Reviewed-by: Julius Werner <jwerner@chromium.org>
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+>
+> I don't like firmware removing properties from my devicetrees and I'd lik=
+e this
+> issue to get addressed in another way (use a scratch register? and check =
+it in
+> Linux drivers to determine if the issue is not present: if scratch contai=
+ns BIT(x),
+> do not parse the quirk) but that's a different discussion which is a bit =
+out of
+> context for this patch, so:
+
+Any particular reason why? IMO it's actually a fair bit cleaner to
+have firmware remove a property that's specifically documented for the
+firmware to remove compared to having firmware adding properties to or
+otherwise messing with the device tree. For the removal case, it's
+easy from the device tree git history to find out about the property,
+when it was added, and that it is expected that some versions of
+firmware will remove it. IMO having firmware add properties can be a
+little more mysterious, though that has its place too. In general,
+though, firmware is expected to be able to be able to touch up the
+device tree. It puts things in "chosen", adds bits describing the
+firmware, can add things to the device tree to describe components it
+is uniquely able to probe (like SDRAM), could enable/disable a
+component if it has info about their presence, etc.
+
+I'm happy to hear other opinions on it, but in my mind having a
+sideband bit telling us to ignore the quirk is more confusing instead
+of less confusing.
 
 
-在 2023/5/16 20:29, Sudeep Holla 写道:
-> On Tue, May 16, 2023 at 03:35:54PM +0800, lihuisong (C) wrote:
->> 在 2023/5/15 21:08, Sudeep Holla 写道:
->>> On Thu, May 04, 2023 at 09:16:16PM +0800, lihuisong (C) wrote:
->>>> I'm tring to use CRS with GAS to report PCC channel ID and get other
->>>> informations driver need by address.
->>> OK you had pcc-chan-id pcc-type and device-flags in the DSD style bindings
->>> to begin with. I haven't understood device-flags here so can't comment on
->>> that.
->> We want to use the 'device-flags' to report some information by bit.
-> Please give more details, until then NACK for the idea.
-ok.
->
->> Currently, this driver requests PCC channel and use type2 to communicate
->> with firmware.
-> OKAY...
->
->> But, if some platform support type3 and PCC Operation Region, driver can
->> choice this method to communicate with firmware.
->> So firmware and driver have to use this flag to make compatibility.
->>
-> I would rather add such things to the spec if it is any sort of limitation
-> with the current specification.
-Agreed. but I think there isn't any limitation for this with the current 
-specification.
-There is no strong connection between PCC Operation Region and type3.
-Driver can also use PCC to communicate with platform even if the type is 
-type3.
-In other words, it depends on driver's choice.
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
 
-Here, we want to use one bit in device-flags to indicates that
-firmware and driver use PCC operation Region on feature platform instead 
-of only using PCC.
-
-Sorry, I have to admit that the implementation of this driver about this 
-really needs
-to be optimized to make it more clear.
->
->>>> I found a way to obtain the generic register information according to
->>>> "Referencing the PCC address space" in ACPI spec.
->>>> And driver also get the PCC generic register information successfully.
->>>>
->>> Can you elaborate ? I assume by that you must be able to get pcc-chan-id
->> Yes，driver can get pcc-chan-id by below register.
->>
->> Register (PCC, RegisterBitWidth, RegisterBitOffset, RegisterAddress, AccessSize)
->>
-> Good to know.
->
->>> right ? You must not need pcc-type as the pcc mailbox driver must handle
->>> the type for you. If not, we may need to fix or add any missing support.
->> Yes, PCC driver doesn't support it currently. And aother patch [1] we've
->> been talking about does it.
->> If it is applied to kernel, we can drop this pcc-type here.
->>
->> [1] https://patchwork.kernel.org/project/linux-acpi/patch/20230423110335.2679-2-lihuisong@huawei.com/
-> OK then we are good, no need for pcc-type then ?
-If driver may support more PCC types, the type also need be known by driver.
-Because not all types have the same header size.
-The PCC type can be obtained from the PCCT by requesting PCC channel.
- From this point, this pcc type here is unnecessary, right?
->
->>>> But I don't know how to set and use the address in PCC register.
->>> It must be same as what you would have specified in you new bindings
->>> under "pcc-chan-id". I am confused as you say you were able to get the
->>> PCC generic register information successfully but you still claim you
->>> don't know how to set or use the address.
->> My confusion about this address is mentioned below.
-> OK
->
->>>> Where should this address come from?
->>>> It seems that ACPI spec is not very detailed about this.
->>>> Do you have any suggestions?
->>>>
->>> I am afraid, I don't have any as I am failing to understand the exact issue
->>> you are facing.
->>>
->>> Let me try to ask the question explicity here:
->>>
->>> If you are just referring to just the <RegisterAddress,> in
->>>
->>> Register (PCC, RegisterBitWidth, RegisterBitOffset, RegisterAddress, AccessSize)
->> Yeah, this is what I'm using.
->>> then,
->>>
->>> RegisterAddress is usually the offset in the comms address associated with
->> Communication subspace in share memory of PCC subspace?
->>> the PCC subspace ID specified in AccessSize. Yes the use of AccessSize for
->>> the PCC subspace ID is bit confusing though.
->>>
->>> You can either list all the registers with _CRS individually or the driver
->> List all the registers as following way?
->> Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
->> {
->>      QWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed,
->> NonCacheable, ReadWrite,
->>          0x0000000000000000, // Granularity
->>          0x0000000098190000, // Range Minimum
->>          0x000000009819FFFF, // Range Maximum
->>          0x0000000000000000, // Translation Offset
->>          0x0000000000010000, // Length
->>          ,, , AddressRangeMemory, TypeStatic)
->> })
-> Not sure if you can use QWordMemory here TBH.
-Above way is what you say?
->
->>> can just use the PCC subspace ID in AccessSize and keep RegisterAddress = 0
->>> but access individual offset based on its own knowledge. I haven't seen the
->> Following words come from ACPI spec.
->> -->
->> As an example, the following resource template refers to the feld occupying
->> bits 8 through 15 at address 0x30 in PCC
->> subspace 9:
->> ResourceTemplate()
->> {
->> Register (
->>      PCC, //AddressSpaceKeyword
->>      8, //RegisterBitWidth
->>      8, //RegisterBitOffset
->>     pcc 0x30, //RegisterAddress
->>      9 //AccessSize (subspace ID)
->>      )
->> }
->>
->> If the width of the address is 32bit, set RegisterAddress to 0,
->> RegisterBitOffset to 0 and set RegisterBitWidth to 64 here.
->> Driver can access to the ((void __iomem *)pcc_comm_addr + 0x8 + 0) and
->> ((void __iomem *)pcc_comm_addr + 0x8 + 4) address，right?
->> (This virtual address = pcc mapped address + header size + offset within PCC
->> subspace.)
-> Yes that's my understanding. I remember seeing the driver is just fetching
-> pcc-chan-id using DSD style key-value pair, which means you don't need
-> any other info other than the PCC subspace/channel ID, just have address
-> as 0.
-But I still need the device-flags to report if use PCC operation Region.
-If so I have to dig one address register from comm subspace, right?
->
-> Also I see the driver uses type for just rejecting the type 3 PCCT. The
-> question is will the driver probe and run on a platform with type 3 PCCT ?
-Yes，some platforms may use PCC operation Region.
-> If so what is the problem running on such a platform. I see it is useless
-I didn't found any problems. But this driver should consider the 
-possibility above mentioned.
-> check in the driver and can be dropped. Also the comment above enum
-> HCCS_DEV_FLAGS_INTR_B is confusing and  so is the way flags is used.
-Thanks for you bringing it up.
-Indeed, this HCCS_DEV_FLAGS_INTR_B is not good.
-I'm going to replace it with PCC operation Region flag.
->
->>> full driver yet but I assuming that's how you would have used if you went with
->>> your DSD pcc-chan-id proposal.
->>>
->>>> On the other hand, we think that System Memory space + method can also
->>>> achieve above goal. What do you think of that?
->>> Again I don't understand what you mean by that.
->> Sorry, here is what I want to say.
->> -->
->> OperationRegion (CCS0, SystemMemory, 0x00000002081000CC, 0x04)
->> Field (CCS0, DWordAcc, NoLock, Preserve)
->> {
->>      HAU1,   32
->> }
->> OperationRegion (CCS1, SystemMemory, 0x0000000201070410, 0x04)
->> Field (CCS1, DWordAcc, NoLock, Preserve)
->> {
->>      HCGE,   32
->> }
->> Method (_DSM, 2, Serialized)  // _DSM: Device-Specific Method
->> {
->>      If ((Arg0 == ToUUID ("b06b81ab-0134-4a45-9b0c-483447b95fa7")))
->>      {
->>          If ((Arg1 == One))
->>          {
->>              Return (HAU1)
->>          }
->>
->>          Return (HCGE)
->>      }
->> }
->>
->> Driver can call _DSM method to get some information, such as pcc_chan_id and
->> device_flags.
-> Big fat NACK for _DSM for the above purpose, please stop abusing _DSM or _DSD
-> for such information which can be obtained with the existing _CRS.
-Get it. Thanks.
-> .
+Thanks!
