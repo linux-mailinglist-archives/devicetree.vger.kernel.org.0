@@ -2,195 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7A6C704C4E
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:26:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 072B8704BCD
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:07:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232611AbjEPL0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 07:26:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55186 "EHLO
+        id S232598AbjEPLHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 07:07:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232119AbjEPL0L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:26:11 -0400
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72808A9;
-        Tue, 16 May 2023 04:26:10 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 1019F5C0040;
-        Tue, 16 May 2023 07:03:24 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Tue, 16 May 2023 07:03:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1684235004; x=1684321404; bh=oG
-        PUyY4yOz1WGHHszNYUVcNjTWFW5iDK/V4m5UVgnR4=; b=u0dLgjR28/VUWc9UXa
-        1ieJatFzXqFB2OTuWSJKHAEFcbw2GG7e+VB91wwXsIluDMoImUF+Wlns5DPtpTEn
-        bK9WxIW9Aqz3b3sD2whWE7t1rTiy3JEblbfK/BIPAaBP7HrBVInFfW+uNgr0C5bG
-        7P3zzCHMmLMMzoZGMFF3eT4SQ53ltUAs89/iIInqTeQiw2MbKqGSXIPQNxozfTkP
-        anaRtkULBQcsJ4vHkCCwshC9tvHzVTY3EKJ9BYdplmZfylN0zKKxrgj3A26wxf7t
-        L16ftbfQEoPo8xQt9hH9+ZagOp9Pcqwxtu6VfPhlnPtIGfUylSNCtEV3iydHQ0RL
-        7tNg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1684235004; x=1684321404; bh=oGPUyY4yOz1WG
-        HHszNYUVcNjTWFW5iDK/V4m5UVgnR4=; b=d1bhxwARlVsUGSNkdNQwEG+OzSCgY
-        rWtF/JWFxjiD1UZkLCww3i0xPEcoOZ4epcRYG4Kb3yWqwmlr/sTxCbWCrF1iHATv
-        gHt/Um0FXfZ7okpgekmRj+e8buh2LzmYAPx4vHciNWQt0pQM8+4dtzsBn4FwH7qA
-        hJNdqSy3YlXf5zXRHY0ilBh9sJ+X83XOTVh7OZJU1FrUoJNyfPWJNsp+VkFA97ur
-        6TyVKaH8nTlSa1P6jlFRSkTAnV92njIwu2dXAZ48wLToGqHkH3FX73RtVl8Da+ew
-        Nj2UHR3sBxODQiTGsbiHTufF13fsM90kphJazsYoe1p13xj9NLzSxtF5g==
-X-ME-Sender: <xms:-mJjZBHz4LwqB9dwBPD_0kW5iN4br5CTjqrUyClEA_CKLiNDSVu4Sw>
-    <xme:-mJjZGXgyp_PhaxgHTFIGJQoW3qUoj1wuR5_PD9IEfe2ZwgwaLmCutYCD4qCltHCx
-    XSsRXKkOcOppOSI1vc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeehledgfeehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:-mJjZDKheLkxkYltH5LKHOrq6dIOmLUfGPaozLyw6CHt817keEY1MQ>
-    <xmx:-mJjZHH6KpQzZWUL48pz0mRNzu3_rf4lrs01I4o7H65gr4GKJ7QWJQ>
-    <xmx:-mJjZHXsvc0LbcwxEoE5UdpEgP5ckkIZIDbNPtCXXRT3CgMht-LcMA>
-    <xmx:_GJjZAbSoNXXu3RyqGk2TISdgK6tRgCUi67z4178MnSkgsDiDlJJvw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 5C737B60086; Tue, 16 May 2023 07:03:22 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-415-gf2b17fe6c3-fm-20230503.001-gf2b17fe6
-Mime-Version: 1.0
-Message-Id: <bc5118f2-8982-46ff-bc75-d0c71475e909@app.fastmail.com>
-In-Reply-To: <20230515181606.65953-9-blarson@amd.com>
-References: <20230515181606.65953-1-blarson@amd.com>
- <20230515181606.65953-9-blarson@amd.com>
-Date:   Tue, 16 May 2023 13:03:01 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Brad Larson" <blarson@amd.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org,
-        "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
-        linux-spi@vger.kernel.org,
-        "Adrian Hunter" <adrian.hunter@intel.com>, alcooperx@gmail.com,
-        "Andy Shevchenko" <andy.shevchenko@gmail.com>,
-        brendan.higgins@linux.dev,
-        "Brian Norris" <briannorris@chromium.org>,
-        "Catalin Marinas" <catalin.marinas@arm.com>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        "David Gow" <davidgow@google.com>, gsomlo@gmail.com,
-        "Greg Ungerer" <gerg@linux-m68k.org>,
-        "Hal Feng" <hal.feng@starfivetech.com>,
-        "Hitomi Hasegawa" <hasegawa-hitomi@fujitsu.com>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
-        "Lee Jones" <lee.jones@linaro.org>,
-        "Mark Brown" <broonie@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        "Randy Dunlap" <rdunlap@infradead.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Samuel Holland" <samuel@sholland.org>,
-        "Serge Semin" <fancer.lancer@gmail.com>, skhan@linuxfoundation.org,
-        suravee.suthikulpanit@amd.com,
-        "Tom Lendacky" <thomas.lendacky@amd.com>,
-        "Tony Huang" <tonyhuang.sunplus@gmail.com>,
-        "Ulf Hansson" <ulf.hansson@linaro.org>, vaishnav.a@ti.com,
-        "Walker Chen" <walker.chen@starfivetech.com>,
-        "Will Deacon" <will@kernel.org>,
-        "Yinbo Zhu" <zhuyinbo@loongson.cn>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v14 8/8] soc: amd: Add support for AMD Pensando SoC Controller
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S232587AbjEPLHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:07:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC0E57ED5
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:05:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F1E8C62D31
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 11:04:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0357C433D2;
+        Tue, 16 May 2023 11:04:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684235082;
+        bh=qlF2YnvuRTsoXVl0R8KA2/G/Oe6yD9FTJLXBqHH9TW4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=T/RabFK5kc+mggPSFtnpUhZA++RQvZqSZkWd2p5k9gUtFmUPsJPfbsQnEM92WvIBX
+         j2ktSyb5t3pM8/H5cx5jWpWBtFRj4aXp5bPZzjW+KcZ/7A3etAuJ/LnieMCaXURyXd
+         xMPDErmEE3VzEp+M5ArJdlkP8YOvDhiLwaUn25rPDd9IZlXbEcgGouML2fbWAONy+w
+         YGXw/iqMzODpzUpujeXxkne17YWv+Nnsc2hPcmBLNRSvljSr+zpMqyNYG1wegSYXX5
+         J+3V/GB+rgFAtScCUjb9qW3VeGG4SE/kMpbHyhX1qT+HfAypocOtNrKS/uyk6QL1ET
+         GvKIAwAH+DFDQ==
+Message-ID: <27d5081b-a251-5512-a077-a9905b29d7f2@kernel.org>
+Date:   Tue, 16 May 2023 13:04:37 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: add panel-mipi-dsi-bringup DT schema
+To:     =?UTF-8?B?UGF1bG8gUGF2YcSNacSH?= <pavacic.p@gmail.com>,
+        neil.armstrong@linaro.org, sam@ravnborg.org, conor+dt@kernel.org
+Cc:     devicetree@vger.kernel.org
+References: <CAO9szn3t-giVipb5oH_3mzQZbnXbDqqz0WEg8uAmo-1W2uKzFg@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <CAO9szn3t-giVipb5oH_3mzQZbnXbDqqz0WEg8uAmo-1W2uKzFg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 15, 2023, at 20:16, Brad Larson wrote:
-> The Pensando SoC controller is a SPI connected companion device
-> that is present in all Pensando SoC board designs.  The essential
-> board management registers are accessed on chip select 0 with
-> board mgmt IO support accessed using additional chip selects.
->
-> Signed-off-by: Brad Larson <blarson@amd.com>
+On 16/05/2023 12:27, Paulo Pavačić wrote:
+> From 5a202ed7c7aa3433e348c5fed176defab1af1fae Mon Sep 17 00:00:00 2001
+> From: =?UTF-8?q?Paulo=20Pava=C4=8Di=C4=87?= <paulo.pavacic@zenitel.com>
+> Date: Tue, 16 May 2023 12:17:38 +0200
+> Subject: [PATCH] dt-bindings: add panel-mipi-dsi-bringup DT schema
+> MIME-Version: 1.0
+> Content-Type: text/plain; charset=UTF-8
+> Content-Transfer-Encoding: 8bit
 
-Hi Brad,
+Your patch/email header looks corrupted. Please use standard tools like
+git format-patch or b4.
 
-I'm sorry I wasn't paying enough attention to this driver as the
-past 13 revisions went by.
+Also:
 
-> v10 changes:
-> - Different driver implementation specific to this Pensando controller device.
-> - Moved to soc/amd directory under new name based on guidance.  This driver is
->   of no use to any design other than all Pensando SoC based cards.
-> - Removed use of builtin_driver, can be built as a module.
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC.  It might happen, that command when run on an older
+kernel, gives you outdated entries.  Therefore please be sure you base
+your patches on recent Linux kernel.
 
-it looks like this was a fundamental change that I failed to see.
+Due to above, limited review. Please fix everything and send v2 for full
+review.
 
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +menu "AMD Pensando SoC drivers"
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
+
+A nit, subject: drop second/last, redundant "DT schema". The
+"dt-bindings" prefix is already stating that these are bindings.
+
+> 
+> Add dt-bindings documentation for panel-mipi-dsi-bringup which currently
+> supports fannal,C3004 panel. Also added fannal to vendor-prefixes.
+> 
+> Signed-off-by: Paulo Pavačić <pavacic.p@gmail.com>
+> ---
+>  .../display/panel/panel-mipi-dsi-bringup.yaml | 65 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  2 files changed, 67 insertions(+)
+>  create mode 100644
+> Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
+> b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
+> new file mode 100644
+> index 000000000000..a867f86fa984
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/panel-mipi-dsi-bringup.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +config AMD_PENSANDO_CTRL
-> +	tristate "AMD Pensando SoC Controller"
-> +	depends on SPI_MASTER=y
-> +	depends on (ARCH_PENSANDO && OF) || COMPILE_TEST
-> +	default ARCH_PENSANDO
-> +	select REGMAP_SPI
-> +	select MFD_SYSCON
-> +	help
-> +	  Enables AMD Pensando SoC controller device support.  This is a SPI
-> +	  attached companion device in all Pensando SoC board designs which
-> +	  provides essential board control/status registers and management IO
-> +	  support.
+> +title: MIPI DSI Bringup driver
 
-So generally speaking, I don't want custom user interfaces in
-drivers/soc. It looks like this one has internal interfaces for
-a reset controller and the regmap, so those parts are fine, but
-I'm confused about the purpose of the ioctl interface:
+Drop driver. Explain what is "bringup". We describe hardware, not driver.
 
-> +static long
-> +penctrl_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
-> +{
+> +
+> +description: |
+> +  This document defines device tree for the MIPI DSI Bringup driver. And all
 
-> +	if (num_msgs > 1) {
-> +		msg++;
-> +		if (msg->len > PENCTRL_MAX_MSG_LEN) {
-> +			ret = -EINVAL;
-> +			goto out_unlock;
-> +		}
-> +		t[1].rx_buf = rx_buf;
-> +		t[1].len = msg->len;
-> +	}
-> +	spi_message_init_with_transfers(&m, t, num_msgs);
+Drop redundant pieces like "This document ..." and any references to driver.
 
-This seems to be just a passthrough of user space messages, which
-is what the spidev driver already provides, but using a different
-ioctl interface. I don't really want any user-level interfaces
-in drivers/soc as a rule, but having one that duplicates existing
-functionality seems particularly wrong.
+> +  the required parameters to get your panel to work. Driver was made to help
+> +  enabling MIPI DSI panels, to get those first pixels drawn on to the screen.
+> +  Since already you have to patch the driver with initialization sequences all
+> +  the settings such as DSI lanes, video mode, dsi formats are set in the
+> +  driver directly. SInce adding new panel can be overwhelming and to make
 
-Can you explain what the purpose is? Is this about serializing
-access between the in-kernel reset control and the user-side
-access?
+Since?
 
-Also, can you explain why this needs a low-lever user interface
-in the first place, rather than something that can be expressed
-using high-level abstractions as you already do with the reset
-control?
+> +  porting easier, you can search for word `INTERACTION` in the driver
+> +  to check sections that you have to modify .
 
-All of the above should be part of the changelog text to get a
-driver like this merged. I don't think we can get a quick
-solution here though, so maybe you can start by removing the
-ioctl side and having the rest of the driver in drivers/reset?
+Everything should be rephrased to describe hardware, not driver.
 
-     Arnd
+> +
+> +
+> +maintainers:
+> +  - |
+> +      Paulo Pavačić
+> +      <paulo.pavacic@zenitel.com> <pavacic.p@gmail.com> <@ppavacic:matrix.org>
+
+That's not how we code it... Look at the files.
+
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: fannal,C3004
+
+OK, I am now confused. Bindings file name must match compatible. Why do
+you describe everything as some MIPI bringup driver and then add
+compatible for specific device?
+
+Also, only lowercase.
+
+
+> +
+> +  reg: true
+> +  reset-gpios: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    //example on IMX8MM where GPIO pin 9 is used as a reset pin
+
+Drop
+
+> +    &mipi_dsi {
+
+This should be regular node.
+
+> +        status = "okay";
+
+Drop
+
+> +        panel@0 {
+> +            status = "okay";
+
+Drop
+
+> +            reg = <0>;
+> +            compatible = "fannal,C3004";
+
+Compatible is first, reg is second.
+
+> +            pinctrl-0 = <&pinctrl_mipi_dsi_rst>;
+> +            pinctrl-names = "default";
+> +            reset-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
+> +        };
+> +    };
+> +    &iomuxc {
+> +         pinctrl_mipi_dsi_rst: pinctrl_mipi_dsi_rst {
+
+Drop entire node.
+
+This is so far away from any acceptable DTS... please look at existing
+bindings.
+
+Best regards,
+Krzysztof
+
