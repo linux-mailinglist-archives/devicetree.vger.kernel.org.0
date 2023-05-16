@@ -2,125 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0AA0704959
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:31:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5C6470498F
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:42:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231768AbjEPJbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 05:31:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43502 "EHLO
+        id S231947AbjEPJmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 05:42:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231833AbjEPJbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:31:43 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C1C1713
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 02:31:41 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9659443fb56so2177348266b.2
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 02:31:41 -0700 (PDT)
+        with ESMTP id S230517AbjEPJmI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:42:08 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEAF640EE
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 02:42:00 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f475366514so49252545e9.2
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 02:42:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684229500; x=1686821500;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nihm3Do/jYZpk5hTKjhQtOwCyKKzOg7ffIDGvfFkZDY=;
-        b=E2OQ4sV77vnvS3oG+lICbJM8PRrM0Is0aTrjTci7hnYWEF03LsA5F3vzNIkclaoSoF
-         uDpC1BvLXFrx6JJvnNO/wuUExwsdcxdGyGdwAhfH8KvAkMenO+qGftPHZsbuDM0y0Qmj
-         rMMkDbQ+buTOrmNHEraj4COZs1ZOCm30l59N4HAZ+fHC8ymVp5T6a/kQWZZwKFRkqcm/
-         +exwEJf+5Zb1lqYVmH5SiP3A5PKeN1lwvxBk+TIZqjeR9hio957ljYRWCZPutYVsK0a1
-         SeWa7/PfZnJhqFvSCpg2KfZa992P9QzcD4XqHUQ1/D6w1Jg7L43zuTf21eBYXYgE3f35
-         B8dQ==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684230119; x=1686822119;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=uHdslW5e1QTcIDouIG+in/KkFSBqX+6yDdC3nU0nD/A=;
+        b=t8BcB2NCIb19w3SWPpkqhYIgvE9sdfHSmIZbU28lV542GDLl7qxk1cZLXBrp0t9ucX
+         CnCZglQvK2XA0ux0BlPEoi+5LYoebRQDQBeO5i6xasJN1bIGrYgQyc6ucqqeI4d3+9EH
+         Nq5C1K7PTu0wCIwcWBAuXRnugKfdywJQhknLyo0GmsVsqCDIL0kBR7b1cm0OS+OiB6Mz
+         cP+d1TB2BAkgefOYquy8lXZ1zspXBnRMgFF79aorT7yztRbhod/6r7tob9FFG8IgpWia
+         V7+cME6K0gyqmw3KTFZsu5rZbgPM+6XryZwJU7OJMgDovzXXpMqqZb7SzkMENoy2reVT
+         ABfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684229500; x=1686821500;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nihm3Do/jYZpk5hTKjhQtOwCyKKzOg7ffIDGvfFkZDY=;
-        b=HF875/nHIbjhW22gf5Xd2Ig6JsxYpLT0t7DmiC167ckY461ytn2AiBN5jBx5gcwg7H
-         cFM/uMzDF5RH9y6Sf8QEvOfnXR4NMJfyBruu/4i9Z4APxT+efEBhO2A+9ZGxTG8WrosP
-         nNiMo2aRgDBKkwiiO+ItW0atZ4EcOhkPDpIZuMssabk658lcpMP7IOWfMDsSAWFnH2Pj
-         26sD6NCBP71K4HcLeqsbtyuz7bsgDuyvlzV3ppSb3RswKN6zhzlqDLfCX/lZfLh2SnfF
-         +HbJVZ9PGPkG2ULIaPD4J63YNpFNWJzFuthXxz8TeUPbPeRzgftdR5YW8OO01HUWQW/r
-         fE/g==
-X-Gm-Message-State: AC+VfDyjRSzECP8RbbU60BrtUODuTWnesKSbz7IkePxK01bJxKm+zeHY
-        mAGoHElaSLHrUdDFYB/G7bW+dg==
-X-Google-Smtp-Source: ACHHUZ5S7lHC9GBB63RVot5UzBveUyGBIm2S66/kFGOsCzwp9dmxU9oMaB3+0GcTywB8/5fNKb3Bcg==
-X-Received: by 2002:a17:907:2d91:b0:969:f3b4:83 with SMTP id gt17-20020a1709072d9100b00969f3b40083mr22191059ejc.71.1684229499757;
-        Tue, 16 May 2023 02:31:39 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
-        by smtp.gmail.com with ESMTPSA id d21-20020a170906c21500b00965fdb90801sm10804120ejz.153.2023.05.16.02.31.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 02:31:39 -0700 (PDT)
-Message-ID: <0aa96881-73ee-0aa5-efc7-7fa94248789d@linaro.org>
-Date:   Tue, 16 May 2023 11:31:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V8 RESEND 0/4] Add S4 SoC PLL and Peripheral clock
-Content-Language: en-US
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        d=1e100.net; s=20221208; t=1684230119; x=1686822119;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uHdslW5e1QTcIDouIG+in/KkFSBqX+6yDdC3nU0nD/A=;
+        b=BTD2Ct1Dq0xX9j8orA2WsWP0L8AUZ8XBsEX020ItKMNTgCFPPcd4BWnWwC5o6+tUgU
+         SNtVSEGfvyE/NX4v2hHVGnLLKZkV69UKhhU7Jkdtvbe4ZpAeosWPvZXSfph7WBsR4sv0
+         ydoD2aesu03ZHF8TOp2ZVpfxiuvxVFxMPIo768EsE3t/2HLvvyFY3Tdtzm5bOYY7wl8m
+         /ctTWAVzD6creMoX/VletzkpKTwCeEpsR+eqZqS4t2uxiJ+kNeA9/bTGaWFC4yAJwxnc
+         20LA2JEh89rCji1PzUNyUTh/1XCJn4yn+IHh0/Vy+WwJXx0U2CutLLpfG3lSsJKFSa5R
+         4dZw==
+X-Gm-Message-State: AC+VfDzLLoB0xghc38o6sgzII/lltfi0rfq1Yydzd7ddQkLOCvITqJi7
+        wlk7X4ytj5W6X48ZRuJXtK+ydA==
+X-Google-Smtp-Source: ACHHUZ5jidpKUY9Gm2VWn+jw+Iklv4TIxan5q8PXSPngdCXx1jC/S9Fy0dMRPoa9hf0zox3WjEZ34g==
+X-Received: by 2002:a7b:c7d7:0:b0:3f4:286f:1d99 with SMTP id z23-20020a7bc7d7000000b003f4286f1d99mr17672826wmk.32.1684230119308;
+        Tue, 16 May 2023 02:41:59 -0700 (PDT)
+Received: from localhost ([2a01:e0a:55f:21e0:fd3b:9fed:e621:cc8f])
+        by smtp.gmail.com with ESMTPSA id z9-20020a05600c114900b003f50e29bce3sm1637127wmz.48.2023.05.16.02.41.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 02:41:58 -0700 (PDT)
+Date:   Tue, 16 May 2023 11:41:57 +0200
+From:   Julien Stephan <jstephan@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     robh@kernel.org, chunkuang.hu@kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Florian Sylvestre <fsylvestre@baylibre.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Andy Hsieh <andy.hsieh@mediatek.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-References: <20230516064736.10270-1-yu.tu@amlogic.com>
- <c4d30304-08d8-6a31-8f91-7840fe2922fb@linaro.org>
- <bfc27a11-9be1-2391-3d26-62aa29fac190@amlogic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bfc27a11-9be1-2391-3d26-62aa29fac190@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: add mediatek mipi csi driver v
+ 0.5
+Message-ID: <4yppinkucchwnwtnnpbqdn4bejmntjq3q6mx6es55f2pwyce3c@qdhdks47lpyt>
+References: <20230515090551.1251389-1-jstephan@baylibre.com>
+ <20230515090551.1251389-2-jstephan@baylibre.com>
+ <ab9aa30f-82d7-1d14-5561-e19ff10af0b0@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ab9aa30f-82d7-1d14-5561-e19ff10af0b0@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 11:25, Yu Tu wrote:
-> 
-> 
-> On 2023/5/16 17:20, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On 16/05/2023 08:47, Yu Tu wrote:
->>> 1. Add S4 SoC PLL and Peripheral clock controller dt-bindings.
->>> 2. Add PLL and Peripheral clock controller driver for S4 SOC.
->>>
->>> Yu Tu (4):
->>>    dt-bindings: clock: document Amlogic S4 SoC PLL clock controller
->>>    dt-bindings: clock: document Amlogic S4 SoC peripherals clock
->>>      controller
->>>    clk: meson: S4: add support for Amlogic S4 SoC PLL clock driver
->>>    clk: meson: s4: add support for Amlogic S4 SoC peripheral clock
->>>      controller
->>>
->>> V7 -> V8:
->>> 1. Change patch 0001/0002 dt-bindings title description, remove "meson".
->>> Suggested by Dmitry, Neil.
->>
->> So you only removed one word from title and description? This does not
->> justify dropping review tag.
-> 
-> Yes. I just remove one work.
-> 
->>
->> You already got a comment for this - add the tag.
-> 
-> I wonder what I should do next?
-> Add the tag and RESEND it again?
+On Tue, May 16, 2023 at 10:07:47AM +0200, Krzysztof Kozlowski wrote:
+> On 15/05/2023 11:05, Julien Stephan wrote:
+> > From: Florian Sylvestre <fsylvestre@baylibre.com>
+> >
+> > This adds the bindings, for the MIPI CD-PHY module v 0.5 embedded in
+> > some Mediatek soc, such as the mt8365
+> >
+> > Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
+> > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+>
+> What are the changes? IOW: changelog here or in cover letter.
+>
+Hi Krzysztof,
+I added a changelog in the cover letter, but I will try to be more
+descritpive next time. Changes from v1 are mainly style issues fixed
+(mostly from your first review)
 
-I cannot add other people tags, e.g. b4 ignores them.
+> Subject: you have some multiple spaces.
+>
+> Subject: drop driver. Bindings are not for drivers.
+>
+> > ---
+> >  .../phy/mediatek,phy-mipi-csi-0-5.yaml        | 62 +++++++++++++++++++
+> >  MAINTAINERS                                   |  6 ++
+> >  2 files changed, 68 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml b/Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml
+> > new file mode 100644
+> > index 000000000000..5aa8c0b41cdf
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml
+> > @@ -0,0 +1,62 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-Only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/phy/mediatek,phy-mipi-csi-0-5.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Mediatek Sensor Interface MIPI CSI CD-PHY
+> > +
+> > +maintainers:
+> > +  - Julien Stephan <jstephan@baylibre.com>
+> > +  - Andy Hsieh <andy.hsieh@mediatek.com>
+> > +
+> > +description:
+> > +  The SENINF CD-PHY is a set of CD-PHY connected to the SENINF CSI-2
+> > +  receivers. The number of PHYs depends on the SoC model.
+> > +  Depending on the soc model, each PHYs can support CDPHY or DPHY only
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mediatek,phy-mipi-csi-0-5
+>
+> SoC based compatibles. 0-5 is odd.
+>
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#phy-cells':
+> > +    const: 0
+> > +
+> > +  mediatek,is_cdphy:
+>
+> No underscores in node names.
+>
+> > +    description:
+> > +      Specify if the current phy support CDPHY configuration
+>
+> Why this cannot be implied from compatible? Add specific compatibles.
+>
+>
+This cannot be implied by compatible because the number of phys depends
+on the soc and each phy can be either D-PHY only or CD-PHY capable.
+For example mt8365 has 2 phy: CSI0 and CSI1. CSI1 is DPHY only and CSI0 is CD-PHY
 
-Best regards,
-Krzysztof
-
+Regards,
+Julien
+> > +    type: boolean
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - '#phy-cells'
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    soc {
+> > +      #address-cells = <2>;
+> > +      #size-cells = <2>;
+> > +
+> > +      mipi_rx_csi0: mipi_rx_csi0@11c10000 {
+>
+> No underscores in node names. How this is v2?
+>
+> > +        compatible = "mediatek,phy-mipi-csi-0-5";
+> > +        reg = <0 0x11C10000 0 0x2000>;
+> > +        status = "okay";
+>
+> Drop
+>
+> > +        mediatek,is_cdphy;
+> > +        #phy-cells = <0>;
+> > +      };
+> > +
+> > +      mipi_rx_csi1: mipi-rx-csi1@11c12000 {
+> > +        compatible = "mediatek,phy-mipi-csi-0-5";
+> > +        reg = <0 0x11C12000 0 0x2000>;
+> > +        status = "disabled";
+>
+> ???
+>
+>
+> Best regards,
+> Krzysztof
+>
