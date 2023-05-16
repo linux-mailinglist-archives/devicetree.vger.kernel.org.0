@@ -2,79 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2348B704C0A
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 996FC704C0D
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:13:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232941AbjEPLMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 07:12:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60798 "EHLO
+        id S232952AbjEPLND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 07:13:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232536AbjEPLMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:12:31 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A15072B2
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:11:06 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f50020e0f8so22009445e9.0
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:11:06 -0700 (PDT)
+        with ESMTP id S232887AbjEPLMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:12:45 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37E6A7284
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:11:24 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f42c86543bso56699605e9.3
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:11:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20221208.gappssmtp.com; s=20221208; t=1684235421; x=1686827421;
+        d=monstr-eu.20221208.gappssmtp.com; s=20221208; t=1684235439; x=1686827439;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YNjwXBkcy6KijUdpAsjIu5H6GIauZBXhecU6vjfAIRc=;
-        b=NNdjJ8vrtYAGnft88NseP68qY0OUVZ2/LF6M2rFSit+0NW54DdHZcn1Uqp21GiMA/c
-         n4A1Cecyg2Tr53jdHjhF5USAH9okvTF7AjZiCnwh0zw91lz130dBLdiZ+nP/l0KWrpGK
-         MCIwzQ25ImDmsa9dHxN2LBNWxZ4K3Ddc35Fi67B2ZP7UH5fBoUb8ISONkTTd3OiWEZSD
-         zLNkL8o/6aBrVLFwqbrOmoydNs2/adwVQz052T0jgtSwTAD7JvtI2ocXJVi6D7iSTvry
-         DN1BzADhQnLIoLIfUUIPXC47ViAxMkvHV3QpwoXRtmzJd1J559nxiwlMyOFeCzwt7uw4
-         Unqw==
+        bh=ioKORldIiYtB2SsGKnyxrBw0xwGmK5RidmBBlL5Ztds=;
+        b=40g2ESP3KvxEEYuVtdIXFyMVaWbC1e7CZd1xVEqbSAkTCEUtoem9DC0tYoJW4uRXQQ
+         48Qixe8+UYVFllhjeqX3m45D+820Ig2NvrNRGs8DfDLYZ9vA0+x6IXrTjuaHU0kWXZ9A
+         bABF4AKGh1gBzJXTQ+FNckD3xPvPwQ1bLpwxOO1db1fVd4JD+X/dezTBXDH5FjB2CfKv
+         bnXBsmhqLKIU3MTz1z/sPbI/ycX0KrIn7uB4K5GitA6vUtVrqju8pKahtdpWmOFZnCxM
+         n2339rx66eyunXwUWDFq1Q00DEJjnwPDFSHWTFs6CZBLHP44V80PV+YU1gUpBdvnpcmU
+         OaEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684235421; x=1686827421;
+        d=1e100.net; s=20221208; t=1684235439; x=1686827439;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YNjwXBkcy6KijUdpAsjIu5H6GIauZBXhecU6vjfAIRc=;
-        b=Y79vwRf+z15GrmXqTlXxN8w9mK33+WtxyOJ5UhpD0Ff7VwnpwznmFxHJG4tsW7bTH2
-         fllsALpTL5/6dxcMa7rCXgbblS1yeHwFUgkJ8rPfMDRPG7HKisEO/SuXpxW1robtcvgJ
-         7x0nkI4dGuGoQBr2jwqSROshKCba/rS81oI5h2szLwyuITvAfnWpQBzP06uC6kpxEvnx
-         B8alYh66i/y9KzKPRQ7jEXfjcr6gz7QQa1kypiF3GXX6G9Epv7Gp2k3h3Uu1jSDKM6+f
-         LeZGPXWAurUJEjiQUUc0aREdHt4x4Jaw8Owf7XQumhMrsQd8zaVpKL/0n3mx3LDzuLaZ
-         Clcg==
-X-Gm-Message-State: AC+VfDznCozihNZO+1LuSJxl8SdDtJ+wqOr0Q8vPeXwPPxeZj9kI2quG
-        O/cCxcoqLfwqewOzesDM5WFhSw==
-X-Google-Smtp-Source: ACHHUZ4iMLzlkaJooOgmfeEdxRBgFNq3eqLbJCl9kFmJukkX1V4EqGwwxsoH+SgOXolggbAsyOT53g==
-X-Received: by 2002:adf:f189:0:b0:306:45ef:9935 with SMTP id h9-20020adff189000000b0030645ef9935mr28827909wro.13.1684235421603;
-        Tue, 16 May 2023 04:10:21 -0700 (PDT)
+        bh=ioKORldIiYtB2SsGKnyxrBw0xwGmK5RidmBBlL5Ztds=;
+        b=Fd180h7Qvy6jaSws1tR8hraTeTV3OrYK6M1ZA0diIydPAdVtR/6UFKKCogApngcgaV
+         hMSpFVH0jvqhCLO3MuKJ6NcdtC/3ncTojRKQEh4yM4lkds/byHrOmq9Ejj57px/N3u0h
+         tZqfVbkSnetf0n6e5Lj7PRbD5ABvnKNzUS6R6VkuoPiZdUpwn/5bTkOqyt/0aFwRhscP
+         v3To8u7kHbWw8EIiR5CO68Shq/K9G8OSUuVQ7awxXECg/PgVlt3ec/9WZblk0qYHZWe/
+         gZ3Y79JJUhZEFPsSubL0voZYrAN2PqmKpIVvTSOOYLUeoNr+M6E6x4ZNy1Vj4Ir1FTOI
+         xYsQ==
+X-Gm-Message-State: AC+VfDy1o7TC5bmvK4oOCF60Ejt6H+K0H4UpyrCA8ifpJGyC7mz5m+H3
+        i7o6j8rZG/ljjDa5YeJxmYhxIA==
+X-Google-Smtp-Source: ACHHUZ5R6+MuvE6h14q57HcZGLB0AA9F4N+zYdvtEsrXQsbxZuCoO7tuvAUaio+gGs0oh0bRHN7INA==
+X-Received: by 2002:adf:f344:0:b0:308:d687:c1f9 with SMTP id e4-20020adff344000000b00308d687c1f9mr10930163wrp.63.1684235439550;
+        Tue, 16 May 2023 04:10:39 -0700 (PDT)
 Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id c10-20020adfed8a000000b003062b2c5255sm2268734wro.40.2023.05.16.04.10.20
+        by smtp.gmail.com with ESMTPSA id c5-20020a5d63c5000000b003090cb7a9e6sm2262351wrw.31.2023.05.16.04.10.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 04:10:20 -0700 (PDT)
-Message-ID: <7d3d0e78-e569-852c-ecb1-c714cc4fe9ba@monstr.eu>
-Date:   Tue, 16 May 2023 13:10:19 +0200
+        Tue, 16 May 2023 04:10:38 -0700 (PDT)
+Message-ID: <ceda3aab-067a-caf3-2f95-5724ef1b18d0@monstr.eu>
+Date:   Tue, 16 May 2023 13:10:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 22/23] arm64: zynqmp: Describe bus-width for SD card on
- KV260
+Subject: Re: [PATCH 23/23] arm64: zynqmp: Add phase tags marking
 Content-Language: en-US
 To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
         michal.simek@xilinx.com, git@xilinx.com
-Cc:     Andrew Davis <afd@ti.com>,
-        Ashok Reddy Soma <ashok.reddy.soma@xilinx.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+Cc:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
+        Harini Katakam <harini.katakam@amd.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Parth Gajjar <parth.gajjar@amd.com>,
+        Piyush Mehta <piyush.mehta@xilinx.com>,
+        Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        Tanmay Shah <tanmay.shah@amd.com>,
+        Vishal Sagar <vishal.sagar@amd.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <cover.1683034376.git.michal.simek@amd.com>
- <b4046d2f593047400c190e438fd9d05128c293d9.1683034376.git.michal.simek@amd.com>
+ <48b554aef75d11e6ad2ef7d21f22accb35432112.1683034376.git.michal.simek@amd.com>
 From:   Michal Simek <monstr@monstr.eu>
-In-Reply-To: <b4046d2f593047400c190e438fd9d05128c293d9.1683034376.git.michal.simek@amd.com>
+In-Reply-To: <48b554aef75d11e6ad2ef7d21f22accb35432112.1683034376.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,39 +93,187 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 5/2/23 15:35, Michal Simek wrote:
-> SD card is connected with 4 data lines which should be described properly.
+> bootph-all as phase tag was added to dt-schema
+> (dtschema/schemas/bootph.yaml) to cover U-Boot challenges with DT.
+> That's why add it also to Linux to be aligned with bootloader requirement.
 > 
 > Signed-off-by: Michal Simek <michal.simek@amd.com>
 > ---
 > 
->   arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso | 1 +
->   arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso | 1 +
->   2 files changed, 2 insertions(+)
+> ---
+>   arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi    |  6 ++++++
+>   arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts |  3 +++
+>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi            | 12 ++++++++++++
+>   3 files changed, 21 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-> index 776444714fad..dcc51b3adab0 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-> @@ -136,6 +136,7 @@ &sdhci1 { /* on CC with tuned parameters */
->   	disable-wp;
->   	xlnx,mio-bank = <1>;
->   	assigned-clock-rates = <187498123>;
-> +	bus-width = <4>;
->   };
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+> index 581221fdadf1..719ea5d5ae88 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+> @@ -11,30 +11,35 @@
+>   #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
+>   / {
+>   	pss_ref_clk: pss_ref_clk {
+> +		bootph-all;
+>   		compatible = "fixed-clock";
+>   		#clock-cells = <0>;
+>   		clock-frequency = <33333333>;
+>   	};
 >   
->   &gem3 { /* required by spec */
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-> index 78d082a11492..3384df3d5920 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-> @@ -119,6 +119,7 @@ &sdhci1 { /* on CC with tuned parameters */
->   	clk-phase-uhs-sdr25 = <120>, <60>;
->   	clk-phase-uhs-ddr50 = <126>, <48>;
->   	assigned-clock-rates = <187498123>;
-> +	bus-width = <4>;
->   };
+>   	video_clk: video_clk {
+> +		bootph-all;
+>   		compatible = "fixed-clock";
+>   		#clock-cells = <0>;
+>   		clock-frequency = <27000000>;
+>   	};
 >   
->   &gem3 { /* required by spec */
+>   	pss_alt_ref_clk: pss_alt_ref_clk {
+> +		bootph-all;
+>   		compatible = "fixed-clock";
+>   		#clock-cells = <0>;
+>   		clock-frequency = <0>;
+>   	};
+>   
+>   	gt_crx_ref_clk: gt_crx_ref_clk {
+> +		bootph-all;
+>   		compatible = "fixed-clock";
+>   		#clock-cells = <0>;
+>   		clock-frequency = <108000000>;
+>   	};
+>   
+>   	aux_ref_clk: aux_ref_clk {
+> +		bootph-all;
+>   		compatible = "fixed-clock";
+>   		#clock-cells = <0>;
+>   		clock-frequency = <27000000>;
+> @@ -43,6 +48,7 @@ aux_ref_clk: aux_ref_clk {
+>   
+>   &zynqmp_firmware {
+>   	zynqmp_clk: clock-controller {
+> +		bootph-all;
+>   		#clock-cells = <1>;
+>   		compatible = "xlnx,zynqmp-clk";
+>   		clocks = <&pss_ref_clk>, <&video_clk>, <&pss_alt_ref_clk>,
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+> index 78ff6a9b3144..8afdf4408a78 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+> @@ -243,17 +243,20 @@ tpm@0 { /* slm9670 - U144 */
+>   
+>   &i2c1 {
+>   	status = "okay";
+> +	bootph-all;
+>   	clock-frequency = <400000>;
+>   	scl-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
+>   	sda-gpios = <&gpio 25 GPIO_ACTIVE_HIGH>;
+>   
+>   	eeprom: eeprom@50 { /* u46 - also at address 0x58 */
+> +		bootph-all;
+>   		compatible = "st,24c64", "atmel,24c64"; /* st m24c64 */
+>   		reg = <0x50>;
+>   		/* WP pin EE_WP_EN connected to slg7x644092@68 */
+>   	};
+>   
+>   	eeprom_cc: eeprom@51 { /* required by spec - also at address 0x59 */
+> +		bootph-all;
+>   		compatible = "st,24c64", "atmel,24c64"; /* st m24c64 */
+>   		reg = <0x51>;
+>   	};
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> index d01d4334c95f..51b8349dcacd 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -127,6 +127,7 @@ rproc_1_fw_image: memory@3ef00000 {
+>   	};
+>   
+>   	zynqmp_ipi: zynqmp_ipi {
+> +		bootph-all;
+>   		compatible = "xlnx,zynqmp-ipi-mailbox";
+>   		interrupt-parent = <&gic>;
+>   		interrupts = <0 35 4>;
+> @@ -136,6 +137,7 @@ zynqmp_ipi: zynqmp_ipi {
+>   		ranges;
+>   
+>   		ipi_mailbox_pmu1: mailbox@ff9905c0 {
+> +			bootph-all;
+>   			reg = <0x0 0xff9905c0 0x0 0x20>,
+>   			      <0x0 0xff9905e0 0x0 0x20>,
+>   			      <0x0 0xff990e80 0x0 0x20>,
+> @@ -152,6 +154,7 @@ ipi_mailbox_pmu1: mailbox@ff9905c0 {
+>   	dcc: dcc {
+>   		compatible = "arm,dcc";
+>   		status = "disabled";
+> +		bootph-all;
+>   	};
+>   
+>   	pmu {
+> @@ -177,8 +180,10 @@ zynqmp_firmware: zynqmp-firmware {
+>   			compatible = "xlnx,zynqmp-firmware";
+>   			#power-domain-cells = <1>;
+>   			method = "smc";
+> +			bootph-all;
+>   
+>   			zynqmp_power: zynqmp-power {
+> +				bootph-all;
+>   				compatible = "xlnx,zynqmp-power";
+>   				interrupt-parent = <&gic>;
+>   				interrupts = <0 35 4>;
+> @@ -258,6 +263,7 @@ r5f-1 {
+>   
+>   	amba: axi {
+>   		compatible = "simple-bus";
+> +		bootph-all;
+>   		#address-cells = <2>;
+>   		#size-cells = <2>;
+>   		ranges;
+> @@ -699,6 +705,7 @@ pcie_intc: legacy-interrupt-controller {
+>   		};
+>   
+>   		qspi: spi@ff0f0000 {
+> +			bootph-all;
+>   			compatible = "xlnx,zynqmp-qspi-1.0";
+>   			status = "disabled";
+>   			clock-names = "ref_clk", "pclk";
+> @@ -745,6 +752,7 @@ sata: ahci@fd0c0000 {
+>   		};
+>   
+>   		sdhci0: mmc@ff160000 {
+> +			bootph-all;
+>   			compatible = "xlnx,zynqmp-8.9a", "arasan,sdhci-8.9a";
+>   			status = "disabled";
+>   			interrupt-parent = <&gic>;
+> @@ -759,6 +767,7 @@ sdhci0: mmc@ff160000 {
+>   		};
+>   
+>   		sdhci1: mmc@ff170000 {
+> +			bootph-all;
+>   			compatible = "xlnx,zynqmp-8.9a", "arasan,sdhci-8.9a";
+>   			status = "disabled";
+>   			interrupt-parent = <&gic>;
+> @@ -851,6 +860,7 @@ ttc3: timer@ff140000 {
+>   		};
+>   
+>   		uart0: serial@ff000000 {
+> +			bootph-all;
+>   			compatible = "xlnx,zynqmp-uart", "cdns,uart-r1p12";
+>   			status = "disabled";
+>   			interrupt-parent = <&gic>;
+> @@ -861,6 +871,7 @@ uart0: serial@ff000000 {
+>   		};
+>   
+>   		uart1: serial@ff010000 {
+> +			bootph-all;
+>   			compatible = "xlnx,zynqmp-uart", "cdns,uart-r1p12";
+>   			status = "disabled";
+>   			interrupt-parent = <&gic>;
+> @@ -982,6 +993,7 @@ zynqmp_dpdma: dma-controller@fd4c0000 {
+>   		};
+>   
+>   		zynqmp_dpsub: display@fd4a0000 {
+> +			bootph-all;
+>   			compatible = "xlnx,zynqmp-dpsub-1.7";
+>   			status = "disabled";
+>   			reg = <0x0 0xfd4a0000 0x0 0x1000>,
 
 Applied.
 M
@@ -128,3 +285,4 @@ Maintainer of Linux kernel - Xilinx Microblaze
 Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP/Versal ARM64 SoCs
 U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal/Versal NET SoCs
 TF-A maintainer - Xilinx ZynqMP/Versal/Versal NET SoCs
+
