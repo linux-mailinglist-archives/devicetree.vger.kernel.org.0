@@ -2,108 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33F4A704A3D
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:15:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DCF6704A3B
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:15:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231877AbjEPKP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 06:15:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45992 "EHLO
+        id S230292AbjEPKPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 06:15:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232062AbjEPKPZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:15:25 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57AE419BE;
-        Tue, 16 May 2023 03:15:23 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34G9MbJu013973;
-        Tue, 16 May 2023 12:15:10 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=b2O6FR2ovvQRh+31RdmxtB/NfNxgt4m1O3dgHwOSoEc=;
- b=4vZKhhRk8ckCL8Oe18i+UNSo+TO/4sHJM0jp5GK9wd0evrVg5yA0wgO7wviwhi3VBmTE
- AnfZ3q0yTQe9W7Wf5l0r6MBRXn6NGv7R+UdNMFDtLtkzfCE8SAZTx4XR8RkmmgfA/AbG
- Pvr5msfd6a/rdliDZA0lNWdF+1gFZjFABfRn6JDxdGQa9MCm5dB37Mzx+A10LdpKU6Rh
- DJ+HA8geffM1l4juo/plfgo8OSv65pSIOcZQROu/b3LkfrveMuvIMEaLu8g3UVtKgMla
- Y5a29p5njvg3HCo4Hkrlv/kJWLvhez+ti/LQCQbT0jChT1qkspj/TJJ7cTpxujH02552 bg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qhyyh8t1b-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 16 May 2023 12:15:10 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5D5EB100034;
-        Tue, 16 May 2023 12:15:09 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 558AC21A21A;
-        Tue, 16 May 2023 12:15:09 +0200 (CEST)
-Received: from [10.252.0.230] (10.252.0.230) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 16 May
- 2023 12:15:08 +0200
-Message-ID: <b3084c19-7948-bf64-a63b-eb2f353502a1@foss.st.com>
-Date:   Tue, 16 May 2023 12:15:08 +0200
+        with ESMTP id S231895AbjEPKPP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:15:15 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70DB610DC
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 03:15:13 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f4ec041fc3so35968075e9.1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 03:15:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684232112; x=1686824112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u6hotZHN8F9GNcRVXqml63G6mGoDwzmzd1ogRplEl7A=;
+        b=SDhZGQz5V3SpYUUAG+uNAFNGhnNYPNqZAwiuBxZuB26G0qwLy9arpDWno5m+HEtaSd
+         viRZEzVSIoMJeRNV3JZT/flDlg7xAOdRRui4DCMyKJaMnN17VosKMzvqpN2XFSPSaqS5
+         EA9FClOtKW/q5SxCn1QNh6rUaSvk12dpOzdQCRzrtfZZTxcDtWr6AWoTtyLjy2m48r7S
+         drGc0xro/Txc9sqafClJooMRNPqPEjyJw61DvShlvObUAfkfu81FX52w6CfIWh1FqS7A
+         yXyF1K0uI7wG1kOe5F2TMEbeYL4NVzAk1CArA7BynVp7y6B61dAqRN9alIqgSZ8vZo2F
+         bhxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684232112; x=1686824112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u6hotZHN8F9GNcRVXqml63G6mGoDwzmzd1ogRplEl7A=;
+        b=QOIpuW2zVQEw8LhEN9Dsxrc0RPaSZT6ejMFY/vftcJd8wJDEN/o80J9J2LovMV1Bfs
+         qTsCyNQtKRNV8X1Z5FDriwDbXq17QDC4ZCxU3GeHiJC8ni54eX7oGmvOQvc7pp5/yjYL
+         LKPsvjgWlMlh/2MQVKIaKB6LlCGNTxXwPV8lDLI5wqACKLgs2ETqZtY6TXqrdrnG8BNr
+         CHYG33rZ0SESjb577MWUbDoYz/ZekQsUoyyKzsf6vEYKSAGN5C2/3CeB8LvXkM3YRTTM
+         ce8XA/cqaEdVx0srPOqDXuG1YKEL/FpElWHj/QQJ/UxDrCbaovNOEVNBqE/c3XQHbUk2
+         7/lQ==
+X-Gm-Message-State: AC+VfDxxGgYKdSJmo5aMnCoAM+esOkXN7AknN4kI3zhziGHAq3vgtQZ4
+        jQ7GhWJ1N/1jtVuZ7v5U5xDGSQ==
+X-Google-Smtp-Source: ACHHUZ65rv/dw7p0nohu7DByQygeobX+M09FaCDj6gFZbJEE3WkNFueyBIUJEXdBv1OGMUkYFyePZg==
+X-Received: by 2002:a1c:770e:0:b0:3f5:e88:ffc4 with SMTP id t14-20020a1c770e000000b003f50e88ffc4mr3507273wmi.33.1684232111893;
+        Tue, 16 May 2023 03:15:11 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id m7-20020a7bcb87000000b003f4290720d0sm1742351wmi.47.2023.05.16.03.15.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 May 2023 03:15:11 -0700 (PDT)
+Message-ID: <f4b774a6-d739-2fae-cdbb-9554fb0db707@linaro.org>
+Date:   Tue, 16 May 2023 11:15:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] ARM: dts: stm32: add part number for STM32MP15x
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v8 04/11] dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy:
+ Add input and output ports
 Content-Language: en-US
-To:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20230407203151.1.Ia16c922b77242e5832106fedc76d27f7ed4dd952@changeid>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230407203151.1.Ia16c922b77242e5832106fedc76d27f7ed4dd952@changeid>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, luca.weiss@fairphone.com,
+        lujianhua000@gmail.com, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        konrad.dybcio@linaro.org, caleb.connolly@linaro.org,
+        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20230515133643.3621656-1-bryan.odonoghue@linaro.org>
+ <20230515133643.3621656-5-bryan.odonoghue@linaro.org>
+ <20230515195949.yemdw4n2pquive2r@ripper>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230515195949.yemdw4n2pquive2r@ripper>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.252.0.230]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-16_04,2023-05-05_01,2023-02-09_01
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Patrick
+On 15/05/2023 20:59, Bjorn Andersson wrote:
+> Perhaps we could put some of this in a separate yaml and include that?
 
-On 4/7/23 20:31, Patrick Delaunay wrote:
-> The STM32MP15x Device Part Number is located in the first 8 bits of OTP4,
-> this patch add its description as the NVMEM cell.
-> 
-> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
-> ---
-> 
->   arch/arm/boot/dts/stm32mp151.dtsi | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-> index 4e437d3f2ed6..3cf78f706400 100644
-> --- a/arch/arm/boot/dts/stm32mp151.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
-> @@ -1620,6 +1620,9 @@ bsec: efuse@5c005000 {
->   			reg = <0x5c005000 0x400>;
->   			#address-cells = <1>;
->   			#size-cells = <1>;
-> +			part_number_otp: part-number-otp@4 {
-> +				reg = <0x4 0x1>;
-> +			};
->   			ts_cal1: calib@5c {
->   				reg = <0x5c 0x2>;
->   			};
+Ok sure.
 
-Applied on stm32-next.
-
-Thanks.
-Alex
+---
+bod
