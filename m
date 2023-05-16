@@ -2,204 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2C507048D8
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:16:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33BA17048E0
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:17:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231907AbjEPJQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 05:16:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53692 "EHLO
+        id S232087AbjEPJRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 05:17:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231987AbjEPJQh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:16:37 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 817D24EDD;
-        Tue, 16 May 2023 02:15:45 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50bc5197d33so25225555a12.1;
-        Tue, 16 May 2023 02:15:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684228495; x=1686820495;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tWRz/dtuEAlvoTpK4wwHN8J++rGj37sontn+jndrmPM=;
-        b=Ecx6GH5pLKCyWaPjaCt8A98NT9jc7KikKMZl+YDWl70ubboIGL4S+BMYdWGAYxvx77
-         owY7/HOmWSQVbfvLaY1YlTQqVx3TOeD8MBIpwCc+9SW6I6/4dMEqUgOoPlfUR1FoYI66
-         CeueIUpF20fcplgX1d38vKT6tjt2MzuURE+9X0B2X+k2RPwudeiYHAYFQZrEL+6YcvZV
-         Ggl9zhjQp9Ztl/yz1TzBjaqLXW/8JNlS1kW6qo+9F8hLTREOhbe1n5lHCwIXu5/+9/6j
-         w8BE2bPiM9DYXwbhFW3KcFLebmBPSLhFqXZLUrq686lAUmxjlC5lwMctJ+tK1JVffaFR
-         VD4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684228495; x=1686820495;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tWRz/dtuEAlvoTpK4wwHN8J++rGj37sontn+jndrmPM=;
-        b=CtjdMsim2wXMvVdI216aoCNDDWirGZZlT2Xq8hzwQjmq2Wss7SLzzshXA6/nvvvTm2
-         65Aam9j7+gfh2HPRMNilV13YDwLTUhaorR/oGld2kKdZ3QK3FtnPDHKiVlaYBh7f16x5
-         MUGKGgpdTCJ5MaJnXR/ouBXlVozEw6Rk1BJwq4EPPLifnXHrMaBmsBfZNe5AxtJO9v8c
-         rL4xDBVfFWVnmUtnoLdlyGf0gu0X+YapUeS5EqCFPBfbwfWFUrIHb0dvIdZr4IqbxXWC
-         4a1SaSvx8VUGzmxa2dCfhD8tQfVlCKif+O3n0y3UkJEJuPkSv2aTcLR8nXlrTN71cujj
-         E8aA==
-X-Gm-Message-State: AC+VfDxpyzYPOT6jir9vSweGHlypAAStdDTlLoWi9zwDZaGpFgKu38LD
-        8IhaFsY0d2xfCyKaisRHqEs=
-X-Google-Smtp-Source: ACHHUZ72S8q+djK5XS8l8jM00K5FNc0ejOx8zT3psl9bAI6+DgUhqL04tf2ZZiw3IgdChZKZczUyNQ==
-X-Received: by 2002:a17:906:9b89:b0:96a:6939:11af with SMTP id dd9-20020a1709069b8900b0096a693911afmr15263419ejc.50.1684228494940;
-        Tue, 16 May 2023 02:14:54 -0700 (PDT)
-Received: from orome (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id kz23-20020a17090777d700b009659fed3612sm10589445ejc.24.2023.05.16.02.14.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 02:14:54 -0700 (PDT)
-Date:   Tue, 16 May 2023 11:14:52 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
+        with ESMTP id S231986AbjEPJRP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:17:15 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2BA25BBF;
+        Tue, 16 May 2023 02:16:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684228604; x=1715764604;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Kb56PZ4c03l2GhNe6a5xbJY4KvpJ9NK+1Yzfq2wlekI=;
+  b=wJZ+Vh/ybYmiUV+0TocdvvdedACtDK4A1Y/Bxj4RAsPTdWJ+NP2upAwB
+   27p3DrhaDtSDjI4zdMn8ZoqwX7eH0RwQEnya0UfQe3jMKvL3F7T4h7MKQ
+   6K9jH8jHT25mcQo4OIUEuuUGAyYJqmN0etYRkTMM5yKgseIaYMFxS+yFD
+   LCpPXwWdcomMUsx4lIAcxTf5cIY7Poy6mwzwO3Qxqkn+5HI9UIAgOjIBM
+   FrNRcv1/4SwVz7EpN1QjW8WnbPSmysNHVuidK0xzZv6n0lejBhU/ZjxPU
+   2PXsZ+uo7nTaAjUBy2Q0TPDvpeOkjvCF1M4AfBetsPSnKXEDVZJVLVrnp
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.99,278,1677567600"; 
+   d="asc'?scan'208";a="215627684"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 May 2023 02:16:04 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 16 May 2023 02:16:03 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 16 May 2023 02:16:01 -0700
+Date:   Tue, 16 May 2023 10:15:40 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Peter De Schrijver <pdeschrijver@nvidia.com>, jonathanh@nvidia.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stefank@nvidia.com
-Subject: Re: [PATCH v4 5/6] dt-bindings: Add support for tegra186-bpmp DRAM
- MRQ GSCs
-Message-ID: <ZGNJjFOUFZ2rYu5X@orome>
-References: <20230511132048.1122075-1-pdeschrijver@nvidia.com>
- <20230511132048.1122075-6-pdeschrijver@nvidia.com>
- <80ff83ab-d5e9-7a00-1099-a752330ef28d@linaro.org>
+CC:     Conor Dooley <conor@kernel.org>, <soc@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Olof Johansson <olof@lixom.net>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v1] Documentation/process: add soc maintainer handbook
+Message-ID: <20230516-tactical-handcraft-d245a095faa4@wendy>
+References: <20230515-geometry-olympics-b0556ff8a5f7@spud>
+ <cf1c6b8c-8a3f-eca1-948f-e41946d4c34c@linaro.org>
+ <20230516-grader-dejected-df65cdc584b3@wendy>
+ <cca446b3-9b92-3191-ae0d-1bd7e552c90f@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="9J2Kz8gt9fDKhsNu"
+        protocol="application/pgp-signature"; boundary="PtBfR+i2mj9pXUBf"
 Content-Disposition: inline
-In-Reply-To: <80ff83ab-d5e9-7a00-1099-a752330ef28d@linaro.org>
-User-Agent: Mutt/2.2.10 (2023-03-25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <cca446b3-9b92-3191-ae0d-1bd7e552c90f@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---9J2Kz8gt9fDKhsNu
+--PtBfR+i2mj9pXUBf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 12, 2023 at 08:45:22AM +0200, Krzysztof Kozlowski wrote:
-> On 11/05/2023 15:20, Peter De Schrijver wrote:
-> > Add memory-region property to the tegra186-bpmp binding to support
-> > DRAM MRQ GSCs.
->=20
-> Use subject prefixes matching the subsystem (which you can get for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching).
->=20
+On Tue, May 16, 2023 at 11:06:41AM +0200, Krzysztof Kozlowski wrote:
+> On 16/05/2023 10:57, Conor Dooley wrote:
+> > On Tue, May 16, 2023 at 10:31:19AM +0200, Krzysztof Kozlowski wrote:
+> >> On 15/05/2023 21:20, Conor Dooley wrote:
+
+> >>> + - Defer the devicetree changes to a release after the binding and d=
+river have
+> >>> +   already been merged
+> >>> +
+> >>> + - Change the bindings in a shared immutable branch that is used as =
+the base for
+> >>> +   both the driver change and the devicetree changes
+> >>
+> >> The policy told to me some time ago was that no merges from driver
+> >> branch or tree are allowed towards DTS branch, even if they come only
+> >> with binding header change. There are exceptions for this, e.g. [1], b=
+ut
+> >> that would mean we need to express here rules for cross-tree merges.
 > >=20
-> > Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
-> > Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
-> > Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
-> > ---
-> >  .../firmware/nvidia,tegra186-bpmp.yaml        | 37 +++++++++++++++++--
-> >  1 file changed, 34 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/firmware/nvidia,tegra186=
--bpmp.yaml b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpm=
-p.yaml
-> > index 833c07f1685c..f3e02c9d090d 100644
-> > --- a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.y=
-aml
-> > @@ -57,8 +57,11 @@ description: |
-> >    "#address-cells" or "#size-cells" property.
-> > =20
-> >    The shared memory area for the IPC TX and RX between CPU and BPMP are
-> > -  predefined and work on top of sysram, which is an SRAM inside the
-> > -  chip. See ".../sram/sram.yaml" for the bindings.
-> > +  predefined and work on top of either sysram, which is an SRAM inside=
- the
-> > +  chip, or in normal SDRAM.
-> > +  See ".../sram/sram.yaml" for the bindings for the SRAM case.
-> > +  See "../reserved-memory/nvidia,tegra264-bpmp-shmem.yaml" for binding=
-s for
-> > +  the SDRAM case.
-> > =20
-> >  properties:
-> >    compatible:
-> > @@ -81,6 +84,11 @@ properties:
-> >      minItems: 2
-> >      maxItems: 2
-> > =20
-> > +  memory-region:
-> > +    description: phandle to reserved memory region used for IPC between
-> > +      CPU-NS and BPMP.
-> > +    maxItems: 1
-> > +
-> >    "#clock-cells":
-> >      const: 1
-> > =20
-> > @@ -115,10 +123,15 @@ properties:
-> > =20
-> >  additionalProperties: false
-> > =20
-> > +oneOf:
-> > +  - required:
-> > +      - memory-region
-> > +  - required:
-> > +      - shmem
-> > +
-> >  required:
-> >    - compatible
-> >    - mboxes
-> > -  - shmem
-> >    - "#clock-cells"
-> >    - "#power-domain-cells"
-> >    - "#reset-cells"
-> > @@ -184,3 +197,21 @@ examples:
-> >              #thermal-sensor-cells =3D <1>;
-> >          };
-> >      };
-> > +
-> > +  - |
-> > +    #include <dt-bindings/mailbox/tegra186-hsp.h>
-> > +
-> > +    bpmp {
-> > +        compatible =3D "nvidia,tegra186-bpmp";
-> > +        interconnects =3D <&mc TEGRA186_MEMORY_CLIENT_BPMPR &emc>,
-> > +                        <&mc TEGRA186_MEMORY_CLIENT_BPMPW &emc>,
-> > +                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAR &emc>,
-> > +                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAW &emc>;
-> > +        interconnect-names =3D "read", "write", "dma-mem", "dma-write";
-> > +        mboxes =3D <&hsp_top1 TEGRA_HSP_MBOX_TYPE_DB
-> > +                            TEGRA_HSP_DB_MASTER_BPMP>;
-> > +        memory-region =3D <&dram_cpu_bpmp_mail>;
+> > I've got away with having an immutable branch for dt-binding headers!
 >=20
-> I am not sure if difference with one property justifies new example...
+> Of course, all is in an immutable branch, but in which tree?
 
-It makes sense in this case, in my opinion, because both memory-region
-and shmem properties are mutually exclusive, so this is a good way to
-make sure both validation paths are tested.
+For example:
+- dt-bindings & header with the clock defines in the base/immutable branch
+  on top of -rc1
+- driver patches on top of the immutable branch, in a PR to Stephen
+- dts patches on top of the immutable branch, PR to Arnd
 
-Thierry
+So, clock tree doesn't get the dts, soc tree doesn't get the driver.
+Hopefully that clarifies what I meant.
 
---9J2Kz8gt9fDKhsNu
+> I talk about a case when driver tree, e.g. different clock maintainer,
+> takes the binding.
+
+If the other tree just "takes the binding", without some coordination,
+then you're SOOL and have to wait a release.
+
+> > That said, Arnd did actually have a look at this (and suggested some
+> > changes) before I sent it & did not cry fowl about this section. IIRC,
+> > this is actually his wording, not mine.
+
+Probably worth Arnd chiming in & just telling us what he is okay with
+taking.
+
+Cheers,
+Conor.
+
+--PtBfR+i2mj9pXUBf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmRjSYwACgkQ3SOs138+
-s6HJeA//V9jHTmp8k/QOCnT9ZE9dGCF6Ng9NBjuIxqan2up3nyUTy8UBwXnai5UP
-mop1HVvUeyfzHFo481s8QN9Luj5O94MaQuI14GeO+tmMAhQXiK7XPPOwpalrFgRn
-Y0FY1wb33xwRVfDat4AdrB/WFwRX5XpN0Is084sBCyQMXVcNDcoGq/4S9hOLF53Y
-YByRM6Np74N0Me30CgTEfWzOZ0s25D5YinlEB0TEVdShXlfdQdaKvNkv/j/4xQvp
-MMhV7QlVa/16EjftOvNPodJVmxauxa0nwSYWyP5Ia2xZRk1/DF54CWtETf5Dvca4
-1+mcMhuwtyPePkq88KtQorUSS6Pp8Nrey0YPPlrQxQDbw/M492fxDV7HFwhqmhfq
-sKcFohb/2767aEPDQld2Zr9yYvAeBZLSPmrqpyM+Ae3Aaz2yCkvbocCeYn1dKLGK
-T9pv6WPTQ5T1LKwwoyMjM/qhvN5r/bCdYYWjjRr4bRm7vR04QIqWfowckTdedfyq
-ZuvUEUtMEI1ckK8t3sJYkfM9GgmkNp4QhKxd2wPLmAPGWWkH1qBFmtW0ZGPQSThl
-nlaNMryce8HiL9d+LtNoHY9Dm/qGAhKINfmVkF2VOgP21QGyJl7OkHjRW7ILBRaf
-PGWK31d9loM3wm8XKsTp1J2NpAruywcDHT44yZXn2nHzpmTEiNw=
-=OXT8
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGNJvAAKCRB4tDGHoIJi
+0q0lAP4yeb7Qv9khm4px8qzetAw8FByjxe7F7Hb5Iu38DARrsQEAhy8q7y1R1tmp
+IJ/kRF2k57AInRDcYTR/PChtZvzF/AA=
+=20NK
 -----END PGP SIGNATURE-----
 
---9J2Kz8gt9fDKhsNu--
+--PtBfR+i2mj9pXUBf--
