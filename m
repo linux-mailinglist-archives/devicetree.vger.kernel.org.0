@@ -2,130 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 581F270479A
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:20:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 471987047A5
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:21:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231317AbjEPIUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 04:20:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41860 "EHLO
+        id S231158AbjEPIVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 04:21:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231741AbjEPIUH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:20:07 -0400
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4123040DE;
-        Tue, 16 May 2023 01:19:59 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id AE00A5C01BA;
-        Tue, 16 May 2023 04:19:58 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Tue, 16 May 2023 04:19:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1684225198; x=1684311598; bh=/z
-        Oa7snEU3Cp/EeHjqLX2PpkdorLY7kygrSpj6S6YOk=; b=FAEydWB/kiSkfeXIOD
-        C2AI0MFMwa0AYMof78OjMTcYRKAP28pWtvKNzwid6BnCvSevEWC3/X/QcSfCToU2
-        F8fM4azm9lKq0wQdollznwHX9js7QB0amVRvWJXk7mG1LkAd8o7kGrGI8fk2tEeZ
-        exJQgaODPo2NsBmZF/pKpB9Gyy1kAlotpa55UwkZyueem1xlfhrZ+PEcIGMC+A77
-        riNyhuPPl71MicJaiHVQxKRalo+MAvEWzeIGA/A/OIsiweKXxqevwTRF4NikIax8
-        o+rB21JmmlqVaK7yALgrAZFtviAahN3F77kzKxqUa3+OtzaYWlo5NQp+ss7gne2P
-        Tugw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1684225198; x=1684311598; bh=/zOa7snEU3Cp/
-        EeHjqLX2PpkdorLY7kygrSpj6S6YOk=; b=VltTvEGRgjkVrCYFHjhqv2JcrnYA7
-        kP0az0DvZdTVRJLCMLhRmW6O08T9CK14RBrcsI/BbiYtuXs6huZtYcYlin9jptyb
-        AmKhBcnnxqT3oYbX6Ix2PVuDT02mrdTLdIHAFdmu0WvVuUsIQ2SWPWpkN5Y0anZX
-        yGcvTDX00c4J1Ouhhnj/89TKEff/ADZ62lk0+Hsr1BYmSi0hrymazgSQXAeo761K
-        0bHl46u533+x6spAOzsA700NilOdNIKEn0lwR2Ce5nKF2Q+Zwpy6I+bp3fLyODf0
-        NtJWxwJhrGPB3sJqLaDipf8DvVqw9ktQUvIoqmHYd6pNybxu4e9xOOzFg==
-X-ME-Sender: <xms:rjxjZHA3ZBSUC6pJ6khnKwcOIKP_T2E1Nss8bKbTOrpBF-FXzqthMw>
-    <xme:rjxjZNhWsDux6uOEcNPk-P_PapV_y8eefOjBJPXMiub7KwVUH7uoDKGXApAxtwgnA
-    7GYOQVHaQLhKl5nGhU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeehledgtddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:rjxjZClimy6GdniBJuKdmUJqBYPygwhVeL3IWa9UBP8fDvCvQ-lmTg>
-    <xmx:rjxjZJwNCcOjLVr10PC90SADQIcpe6Gra6LMabaRzHQMPDahQwxL0Q>
-    <xmx:rjxjZMS3KD0MvXxmy_wAPCcBx-IWioDQLomYiSfYEHJqdlrHPRosmQ>
-    <xmx:rjxjZF_NLF-hxcK4Xfjgya5Ol92jUCGM3bs3V6lkvs3IT6TU5z7uwQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 7C615B60086; Tue, 16 May 2023 04:19:58 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-415-gf2b17fe6c3-fm-20230503.001-gf2b17fe6
-Mime-Version: 1.0
-Message-Id: <3faa9bf7-b42c-4951-8103-9ea2fe02eac1@app.fastmail.com>
-In-Reply-To: <35863b47c04c2edd7ae49c57d23682aba6111d4f.1683628357.git.quic_schowdhu@quicinc.com>
-References: <cover.1683628357.git.quic_schowdhu@quicinc.com>
- <35863b47c04c2edd7ae49c57d23682aba6111d4f.1683628357.git.quic_schowdhu@quicinc.com>
-Date:   Tue, 16 May 2023 10:19:38 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Souradeep Chowdhury" <quic_schowdhu@quicinc.com>,
-        "Andy Gross" <agross@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        "Sibi Sankar" <quic_sibis@quicinc.com>,
-        "Rajendra Nayak" <quic_rjendra@quicinc.com>
-Subject: Re: [PATCH V6 2/3] soc: qcom: boot_stat: Add Driver Support for Boot Stats
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S230324AbjEPIVx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:21:53 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D515E132;
+        Tue, 16 May 2023 01:21:51 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id E992A85D4E;
+        Tue, 16 May 2023 10:21:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1684225310;
+        bh=mNgFrfL2AiW/TFUWEH5fhJpUJ/Oa0Wnf/DxLzgqHfyA=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=CIUi4ZVF/12jwJcvBGx7di7M1xOydHn5KCEEv9+WlCWpZrT6z36xkGcqUSVwFvtsM
+         wBLQ5R5t6ncEmvpViagXLXU0/CzZq5AZfMDkRBplID1YA3H8sJTg8SmgVG11Ut06ya
+         i/caIBywidu7yhJIBFvzQ8Q7mS/frNCBklM6dG9RCgEb9+D2DNdZNNFmF+LrmKxveV
+         P8tlmvsSfhYv3vJ1Y7TQxRi0srIkNRB7VAdB6FkKS4GoN3B6bCUjGDbKUg1ByrwLCH
+         7zgAYCROvPgW2h+US0S3ETb2RbqEXd9NrWxKgvW0OceeQvrJa/UCvL6bVeQvqaG0nc
+         zWzieSK6il2XA==
+Message-ID: <cfff63bc-a4d7-7124-2c43-bf90b5ccd2e9@denx.de>
+Date:   Tue, 16 May 2023 10:21:49 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: usb: usb251xb: correct swap-dx-lanes type to
+ uint32
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        mike.looijmans@topic.nl,
+        Richard Leitner <richard.leitner@linux.dev>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230515103337.130607-1-krzysztof.kozlowski@linaro.org>
+ <9b62a0db-1374-2c89-5ea3-286467bd1e4e@denx.de>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.ed9c8f5a-900b-42eb-a8c2-543ccf3145e3@emailsignatures365.codetwo.com>
+ <da66656e-ddd6-99cf-41ee-d6b2d318bdff@topic.nl>
+ <601bd136-ddae-2889-0e63-5f62484ec849@denx.de>
+ <9ae25267-c4de-8f14-df62-d9d0d1f1420c@linaro.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <9ae25267-c4de-8f14-df62-d9d0d1f1420c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 9, 2023, at 12:52, Souradeep Chowdhury wrote:
-> All of Qualcomm's proprietary Android boot-loaders capture boot time
-> stats, like the time when the bootloader started execution and at what
-> point the bootloader handed over control to the kernel etc. in the IMEM
-> region. This information is captured in a specific format by this driver
-> by mapping a structure to the IMEM memory region and then accessing the
-> members of the structure to show the information within debugfs file.
-> This information is useful in verifying if the existing boot KPIs have
-> regressed or not. The information is shown in milliseconds, a sample
-> log from sm8450(waipio) device is as follows:-
->
-> /sys/kernel/debug/qcom_boot_stats # cat abl_time
-> 17898 ms
-> /sys/kernel/debug/qcom_boot_stats # cat pre_abl_time
-> 2879 ms
->
-> The Module Power Manager(MPM) sleep counter starts ticking at the PBL
-> stage and the timestamp generated by the sleep counter is logged by
-> the Qualcomm proprietary bootloader(ABL) at two points-> First when it
-> starts execution which is logged here as "pre_abl_time" and the second
-> when it is about to load the kernel logged as "abl_time". Documentation
-> details are also added in Documentation/ABI/testing/debugfs-driver-bootstat
->
-> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
-> ---
->  .../ABI/testing/debugfs-driver-bootstat       |  17 +++
->  drivers/soc/qcom/Kconfig                      |  10 ++
->  drivers/soc/qcom/Makefile                     |   1 +
->  drivers/soc/qcom/boot_stats.c                 | 100 ++++++++++++++++++
+On 5/16/23 10:19, Krzysztof Kozlowski wrote:
+> On 15/05/2023 15:47, Marek Vasut wrote:
+>>> Please consider the environment before printing this e-mail
+>>> On 15-05-2023 14:55, Marek Vasut wrote:
+>>>> On 5/15/23 12:33, Krzysztof Kozlowski wrote: diff --git
+>>>> a/Documentation/devicetree/bindings/usb/usb251xb.yaml
+>>>> b/Documentation/devicetree/bindings/usb/usb251xb.yaml
+>>>>> index 4d1530816817..ac5b99710332 100644
+>>>>> --- a/Documentation/devicetree/bindings/usb/usb251xb.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/usb/usb251xb.yaml
+>>>>> @@ -231,7 +231,7 @@ properties:
+>>>>>          power-on sequence to a port until the port has adequate power.
+>>>>>        swap-dx-lanes:
+>>>>> -    $ref: /schemas/types.yaml#/definitions/uint8-array
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>>>        description: |
+>>>>>          Specifies the ports which will swap the differential-pair
+>>>>> (D+/D-),
+>>>>>          default is not-swapped.
+>>>>
+>>>> Would it make more sense to update the driver instead ? I doubt you
+>>>> could have more than 256 ports on this device after all.
+>>>
+>>>
+>>> I guess there's a bunch of devicetrees already out there using the
+>>> (misdocumented) 32-bit array binding, they'd break in a bad way...
+>>
+>> I think it is the other way around -- if the binding was documented as
+>> u8, then the existing DTs should use the u8 type if they are compliant
+>> to the binding document.
+>>
+>> I see one board in next which uses this property and sets it to 0 , so
+>> this one is not affected either way:
+>> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dts:
+>> swap-dx-lanes = <0>;
+> 
+> 
+> First of all, the original binding did not define it as u8. It actually
+> skipped the type entirely but:
+>   - Example shown u32,
+>   - Driver used u32,
+>   - In-tree user uses u32 (although as pointed - as 0 so not really
+> relevant).
+> 
+> Thus the ABI is rather defined by not-breaking users here, so I would
+> stick to fixing it to u32.
 
-As mentioned in my reply to the binding, I don't think this should
-be a driver at all. On top of that, even if it was a driver, it is
-clearly not a "soc" driver since nothing in it has any relevance to
-the hardware, rather than the first-stage loader, and drivers/soc/
-drivers should never have their own user space interface either.
-
-       Arnd
+Fine by me.
