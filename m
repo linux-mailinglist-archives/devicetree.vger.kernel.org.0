@@ -2,83 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6AB9704C67
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74F8C704C6C
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:33:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232992AbjEPLdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 07:33:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59592 "EHLO
+        id S232135AbjEPLdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 07:33:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232981AbjEPLdC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:33:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C86C18E
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:33:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0FA1563689
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 11:33:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42FFCC433EF;
-        Tue, 16 May 2023 11:32:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684236779;
-        bh=0PS6ardThJaJ++J5auE9WG9aAgJdzGh1BCUH6jcAVNQ=;
-        h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-        b=kBETNDWs9n5PcMdAz6V9UhahqvscRjmjAYv3WeIg5IB0cZ2x5JLVn6I3bz3LROUSY
-         t+jql4A54lk/+sZ9UUVbY3KiX3oPEbRwB72nL4sYNd2p6cGUc3q65OWVB/AvLfiLLs
-         3kvUZnxWq9zmRbTM6stpyTVcDoO25DvXluIySm5hEOz6M1jfzKMc+Z5A2e9/VLubV4
-         a8ASLjzPQNXfH4xc7MuSMytvwtnBKQCmTx4RH9AE04yrcfT8i7OBxaY5tXTl0n81ic
-         NfU19G3xQGuy+ZP/QutLxcvdGqWodVt4m6vYB/m/TSS5H75uaH84R2s1U5b4z3bcFq
-         Iyv7jcc81cneQ==
-Message-ID: <77229d68-18a3-ce8a-654c-20c7ba9030ea@kernel.org>
-Date:   Tue, 16 May 2023 13:32:55 +0200
+        with ESMTP id S232951AbjEPLdx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:33:53 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 885A31706;
+        Tue, 16 May 2023 04:33:33 -0700 (PDT)
+Received: from localhost ([31.220.116.19]) by mrelayeu.kundenserver.de
+ (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1Mgebs-1qfvqJ3NM4-00h9en; Tue, 16 May 2023 13:33:15 +0200
+Date:   Tue, 16 May 2023 13:33:15 +0200
+From:   Andreas Klinger <ak@it-klinger.de>
+To:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v5 3/3] MAINTAINERS: Add Honeywell mprls0025pa sensor
+Message-ID: <ZGNp+1uNAxi3uxjM@arbad>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] dt-bindings: add panel-mipi-dsi-bringup DT schema
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     =?UTF-8?B?UGF1bG8gUGF2YcSNacSH?= <pavacic.p@gmail.com>,
-        neil.armstrong@linaro.org, sam@ravnborg.org, conor+dt@kernel.org
-Cc:     devicetree@vger.kernel.org
-References: <CAO9szn3t-giVipb5oH_3mzQZbnXbDqqz0WEg8uAmo-1W2uKzFg@mail.gmail.com>
- <27d5081b-a251-5512-a077-a9905b29d7f2@kernel.org>
-Content-Language: en-US
-In-Reply-To: <27d5081b-a251-5512-a077-a9905b29d7f2@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-9.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZGNpZM137jF5yzie@arbad>
+X-Provags-ID: V03:K1:peVyRgwjHFGVxMrgmPGl1jAtQyPNxbiY2xOEXrNk74SQiTDEaK0
+ 6fHP1dR5YNNj/93fBEGOXD0bvPRahRQOJMHWQGe+8XBEr0ohqW2+9rfyzYQhOFW2KNNgAui
+ 8IsIK4BqemzPnxrCWXiZ2WM9qNOlOVqw4iOX3BJ1/1RkgW8IF0WjbpKv288sE1NUMY+O5yl
+ XJos9c+Gsl+Hs2gf7uflA==
+UI-OutboundReport: notjunk:1;M01:P0:07K7YA//TZ8=;iyp6BNkczS70A5Qz2B5EnqB8xe9
+ 1X4yUpGVtd8+1cpl0xH8+yq/d5aoYktFtEijleXqRIKh+YFr6y7XhiuRBU3VkopY8Hv/v+hGV
+ 5si6mI+aOmiZE5sg308j0eYjDdKIkz+lPZLZWmGOLC9/yTroRihRoYHctEIe9PG4MUqvKzx4h
+ CPECRMoGybiPW3yw/xlCDCCbWjWjx3+zeyAb07w8L66i9U5adCVCPO3W0+zxn3cJwBAKJMIbL
+ wYklWISxPKe7ZbFno6Mq/tmddc9XNeLnKekGTR8ZgdRedtjITihGP7g38CAH3jNaRwqstNXkJ
+ RgJHnyPzobgp6sFui5nKvE60D8K4jeFiw1cAyQ633iPyk0sOLj3B2vWVc+eDmHl+cqcKY4ya8
+ GnVN3DWP+esjaB0+na0KSFEBcDe12nKTMJtlIwj9SYgCvfXs+B8yqDq38c/JDUKhCGsw28Ho4
+ TXe+t0d+kffDoNHJhOfqz52p65FGEg8YOoRFIRXmHc6Jrm0YbzZVSwB/lx5DhEGOXZnKQFYQV
+ oPgNw9wCUv0SxODLLlRmtiDHbCUP2T4ec8aM0Gn+i/JXp1lEsm5Lm0q4VVnFI2II4KCVfuP4+
+ GXBHl5l+R8ae90rbGY17dulxp1qjj1GdIp3zKt/rqcGIgguHp4kSLmignlO0XPfUdKgRT0u9q
+ cj5IQ9nQBqvG1BAEIvWeJIEgOCHlDBqEQYknzG5cBQ==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 13:04, Krzysztof Kozlowski wrote:
-> On 16/05/2023 12:27, Paulo Pavačić wrote:
->> From 5a202ed7c7aa3433e348c5fed176defab1af1fae Mon Sep 17 00:00:00 2001
->> From: =?UTF-8?q?Paulo=20Pava=C4=8Di=C4=87?= <paulo.pavacic@zenitel.com>
->> Date: Tue, 16 May 2023 12:17:38 +0200
->> Subject: [PATCH] dt-bindings: add panel-mipi-dsi-bringup DT schema
->> MIME-Version: 1.0
->> Content-Type: text/plain; charset=UTF-8
->> Content-Transfer-Encoding: 8bit
-> 
-> Your patch/email header looks corrupted. Please use standard tools like
-> git format-patch or b4.
-> 
+Add myself as a maintainer for Honeywell mprls0025pa sensor.
 
-Also there are few other issues - missing checkpatch and testing
-(dt_bindings_check).
+Signed-off-by: Andreas Klinger <ak@it-klinger.de>
+---
+ MAINTAINERS | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-https://patchwork.ozlabs.org/project/devicetree-bindings/patch/CAO9szn3t-giVipb5oH_3mzQZbnXbDqqz0WEg8uAmo-1W2uKzFg@mail.gmail.com/
-
-Please fix everything, prepare v2 with proper changelog, run all the
-tools and send to appropriate folks.
-
-Best regards,
-Krzysztof
-
+diff --git a/MAINTAINERS b/MAINTAINERS
+index c6545eb54104..7b68ec3fba88 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9361,6 +9361,13 @@ F:	lib/test_hmm*
+ F:	mm/hmm*
+ F:	tools/testing/selftests/mm/*hmm*
+ 
++HONEYWELL MPRLS0025PA PRESSURE SENSOR SERIES IIO DRIVER
++M:	Andreas Klinger <ak@it-klinger.de>
++L:	linux-iio@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
++F:	drivers/iio/pressure/mprls0025pa.c
++
+ HOST AP DRIVER
+ M:	Jouni Malinen <j@w1.fi>
+ L:	linux-wireless@vger.kernel.org
+-- 
+2.30.2
