@@ -2,109 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAB1370478A
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:14:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4258704787
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:14:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230292AbjEPIOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 04:14:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39318 "EHLO
+        id S231347AbjEPIOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 04:14:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231579AbjEPIOD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:14:03 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91DC644B6
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:14:01 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 704F48662C;
-        Tue, 16 May 2023 10:13:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684224839;
-        bh=8RygKMYsHSQoSEojTlfwJEXOmWXW2dNWXM36Les/NxY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MRE1QKWR7tytdT0q/SoJhIgcS/RBb26lDqNVuFRoQAQ0GcX+EVSem6zVu8Vn+X+Yg
-         bzXM33yAPK2coJnaEJiDgSpijdFlU8CL/uR3B3fDAnYLN3PsPoCF97heF7NhNN8Yk5
-         Y8oEKjMejw0k865d1Sn6cd9j1p+/pLekNJYFz+APk1UIY+4hUrtAhz1463ESO3WVW0
-         YNnJKwJwlkH6rMDHhiU+4mXAORUwaFM4dR82ffA6dYOGwJy5T2gmLz/95S40/h9cud
-         GnKBSXAv7u+PzaTOafWT0EFl5ZTtV9yIMvwl5R8jctQ0Y42ZaXSVYkVaiGc2Tba44w
-         waHwnwJIrbyaQ==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: imx8mp: Add DeWarp Engine DT node
-Date:   Tue, 16 May 2023 10:13:54 +0200
-Message-Id: <20230516081354.38868-2-marex@denx.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230516081354.38868-1-marex@denx.de>
-References: <20230516081354.38868-1-marex@denx.de>
+        with ESMTP id S231300AbjEPIOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:14:01 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3C2C422B
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:13:59 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-965fc25f009so2260091366b.3
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:13:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684224838; x=1686816838;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lj3Qee7I1DqHX3iE2V1/eDMAAPnia5Mrja+K3B6fCN0=;
+        b=v0Gfj6SyCh7dP8UQPg7f5xW9zWuhSGt51yv7j7BiQK4ytL0CiBWgT2jDeovohlq9Hw
+         jp3po2kaW2mHOkmv0UfSADTTKMJCo1FyB9oZmb8MSZhu1Ee/YwmyIB2d8gpbXULcufu5
+         xx4ymrCPQKUGQI8HicF9Cd4V5aK4dICSJfXsffdHRbs6VwVAOs+O/zBrp2T9h+0cNGU3
+         73UUq3Hk+5t7l7D3NbC6fIORw+eBn+ugTxeMRzVffdQm+NInJOuf7VtvsBIe8x15sKqM
+         g1JAZYpEOygCfOzG69zPO514fOjVuj6a7jJp21x5DaiJAFq9sQvfd2cGzqAvW7ANy/d8
+         +HvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684224838; x=1686816838;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lj3Qee7I1DqHX3iE2V1/eDMAAPnia5Mrja+K3B6fCN0=;
+        b=N5fPijmav3pZsW4nzIaCm9StHhFdlhLbOrM2A7yDrzleb5IBcP5NSG/7j9ucjf54Vg
+         3KiuC23KxhqB4pubw5xEqzWW//Jy5QMVeDAFH2XuM4ajOx34aht24Yuo+NvVmHBIulzL
+         XZnHoCQ3OYjNDav+1uuH670J0hza+jeEo4daB6dEahMpXBZG+6hk9xxyWBVbVxlc9FG4
+         Hw+R61/sOlAr8SmvfO8tZshnjpk2RmL1XQSGhf5fYu23HaSa1mVwJ+6WBp6TTL20Hfhf
+         wW4lp+Ydw1kmHlMpd8Un9EEBzYx8tHQODZMlh9OOqxC4bJdasKGUTW5WI8xu8tdpCYcn
+         DI0g==
+X-Gm-Message-State: AC+VfDyFdh+cblT/+vpTieUKC8qKNFdC/YaB8JC7O5HHBBxT6bWGmISE
+        4or5PFsSEXQYSuFveU45ZiR6Ww==
+X-Google-Smtp-Source: ACHHUZ6ZnmSuHolDYS7+IxqHFlvTopiIXdz7o7ZKRY5vLLeZmDFuZbsDSvyaaR9ddGPlvDUeWVRNUA==
+X-Received: by 2002:a17:907:6da3:b0:969:9118:a991 with SMTP id sb35-20020a1709076da300b009699118a991mr27564806ejc.42.1684224838234;
+        Tue, 16 May 2023 01:13:58 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:4d4a:9b97:62e:1439? ([2a02:810d:15c0:828:4d4a:9b97:62e:1439])
+        by smtp.gmail.com with ESMTPSA id mm30-20020a170906cc5e00b0096595cc87cesm10689220ejb.132.2023.05.16.01.13.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 May 2023 01:13:57 -0700 (PDT)
+Message-ID: <99e39fb6-26e0-eb9a-3c07-e07d1fa4122c@linaro.org>
+Date:   Tue, 16 May 2023 10:13:56 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 2/4] dt-bindings: touchscreen: add virtual-touchscreen
+ and virtual-buttons properties
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Javier Carrasco <javier.carrasco@wolfvision.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Bastian Hecht <hechtb@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230510-feature-ts_virtobj_patch-v2-0-f68a6bfe7a0f@wolfvision.net>
+ <20230510-feature-ts_virtobj_patch-v2-2-f68a6bfe7a0f@wolfvision.net>
+ <58c8b822-8b47-3269-3b78-334b53c20bff@linaro.org>
+In-Reply-To: <58c8b822-8b47-3269-3b78-334b53c20bff@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT node for the DeWarp Engine of the i.MX8MP.
+On 16/05/2023 10:10, Krzysztof Kozlowski wrote:
+> On 15/05/2023 17:00, Javier Carrasco wrote:
+>> The virtual-touchscreen object defines an area within the touchscreen
+>> where touch events are reported and their coordinates get converted to
+>> the virtual origin. This object avoids getting events from areas that
+>> are physically hidden by overlay frames.
+>>
+>> For touchscreens where overlay buttons on the touchscreen surface are
+>> provided, the virtual-buttons object contains a node for every button
+>> and the key event that should be reported when pressed.
+>>
+>> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+>> ---
+> 
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Richard Cochran <richardcochran@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
----
-V2: Update on top of 1/2
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Apologies, second thoughts - why calling all this binding and properties
+"virtual"? That's the word which immediately raises questions, because
+bindings are only for real things, not virtual.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index a3ffd53a95357..cd64b39e7d4b8 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1366,6 +1366,16 @@ isi_in_1: endpoint {
- 				};
- 			};
- 
-+			dewarp: dwe@32e30000 {
-+				compatible = "nxp,imx8mp-dw100";
-+				reg = <0x32e30000 0x10000>;
-+				interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-+					 <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-+				clock-names = "axi", "ahb";
-+				power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_DWE>;
-+			};
-+
- 			mipi_csi_0: csi@32e40000 {
- 				compatible = "fsl,imx8mp-mipi-csi2", "fsl,imx8mm-mipi-csi2";
- 				reg = <0x32e40000 0x10000>;
--- 
-2.39.2
+Touchscreen is just clipped, not virtual, so maybe "clipped-area"
+instead of virtual-touchscreen? Buttons are real, so maybe just "buttons"?
+
+Best regards,
+Krzysztof
 
