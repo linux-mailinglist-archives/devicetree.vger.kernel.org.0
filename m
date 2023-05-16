@@ -2,109 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 360AC7053FB
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:35:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0343F705406
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:36:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbjEPQfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 12:35:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60932 "EHLO
+        id S229831AbjEPQg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 12:36:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231480AbjEPQel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:34:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EA44D863;
-        Tue, 16 May 2023 09:34:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E2BCF63C4E;
-        Tue, 16 May 2023 16:34:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81033C433EF;
-        Tue, 16 May 2023 16:34:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684254848;
-        bh=a5gD6Sj2I5YN1JdKb6fmBN6fLXBHxziCoDX0JM00sqY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MLKshx667MZY3r80PjDOVG+7FWMX01YuYGt1yw90uoPbquW2BUeLngRKkIZDcOBxr
-         rlGZSjBHuZLG45fPyH8+0WXp/Pgz5latxrdbFPe6Ye9HO4T+wA7I1n818XGez3vpdd
-         j7ctedMTOLqRIL6ZdyY1avZBpPG7ZrxHvT1jSxuM3MCZJy/SoJ5UkqpWUttP6qLufS
-         /g6fkOLnum8xOd53DX2MXKL5hiEz2W+n8c+XpHG2ktB8arJJ3BHsrcmXjvOxs9oivy
-         pM9F/nmY4YOoUAQnpxQZoZTif7eKDipWLCudOTQmdJZsSFRvoqoeXDYfSQZE+IGn/y
-         qOps90klCQwoA==
-Date:   Tue, 16 May 2023 22:04:04 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Frank Li <Frank.Li@nxp.com>
-Cc:     devicetree@vger.kernel.org, fushi.peng@nxp.com,
-        imx@lists.linux.dev, kernel@pengutronix.de, kishon@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, robh+dt@kernel.org,
-        s.hauer@pengutronix.de, shawnguo@kernel.org
-Subject: Re: [PATCH v4 3/6] phy: cadence: salvo: add bist fix
-Message-ID: <ZGOwfFlqWIrAXpHy@matsya>
-References: <20230516154329.3155031-1-Frank.Li@nxp.com>
- <20230516154329.3155031-4-Frank.Li@nxp.com>
+        with ESMTP id S229918AbjEPQgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:36:21 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274A7AD2D
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:35:56 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-6438d95f447so9983652b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:35:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edgeble-ai.20221208.gappssmtp.com; s=20221208; t=1684254955; x=1686846955;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MtjTsM1mEuCx1mqdMrVR2DcjL7gurSFESB57j4R5kX8=;
+        b=rcgpt9POa2STf+Dn/QCe97IruTS7MNOkeO0RKWk0bqI80eCeU+e4YMmerDnE+6SGQR
+         Ijueii/irgmFTJjef5fObBPDuBd3TyRNu3pUGaq4v9DTlH15qECJFEt73NDudR6jpdad
+         gAg53LG4/SVOXc70Clec/K1lUhRZenoCO0GGmPnqezdhFG3n1THR/FhcRD0/u6KBobSv
+         XPk8HtF4WgAWykUzUaltyiT90gM9gplLSpV/vognvnSD/OjkxiRhmSXzh5ds5nq9Mrmv
+         9vKDyJKnddiMYhY1AjWcjMxSFJmXZm3lNsbEl1cYgWTf3IJNLb5wCwT6cSEOMCRwd9sf
+         isfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684254955; x=1686846955;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MtjTsM1mEuCx1mqdMrVR2DcjL7gurSFESB57j4R5kX8=;
+        b=EW1KfbEgGKhNHNdEiK9vE7pY1FdMwV5aCe2V2n9RYZHGsiBxeG2X2sMyYFemgYj5Vc
+         KHHoPoLXEifKkzgRyR4NuIBZx1DyhOlpDSgj/nI2CTFuByrywWDXwGIhYAG13Xxc51Y+
+         AlJV9hSFxKgRmb4KXT9rh/RhaFI2N/ereK18YyUgbY/YOYquHKsHEQYD+bG/ozNXdAL1
+         e8niJpFgweI/sjqauv6NWKMpj8HCLG4U2zEC//iDnsQdIQwh8DS7o28enJg18soI3B/N
+         Ep7Z0o/WABaJx3wzP3x81N8i/0vL1QkmArShmZqr2WUylI9PNbrfKhgt00zmsihHm+Kf
+         NIrw==
+X-Gm-Message-State: AC+VfDzZf6rYPv1CcUN6HuwEU/arG/wkE4vcHi4hIEtRQTu1Dd26kXuJ
+        kfhAzcra4D9cMxj+4lXuRI7IWw==
+X-Google-Smtp-Source: ACHHUZ7TRgRmCwRk/OxbjWskDkXi/JZIDxgcWdtaggzPh9w/3ugpcpcbsaDgvzJ3wViiEFtVGr5HJQ==
+X-Received: by 2002:a05:6a00:248c:b0:647:e6d9:88c2 with SMTP id c12-20020a056a00248c00b00647e6d988c2mr35018625pfv.0.1684254955163;
+        Tue, 16 May 2023 09:35:55 -0700 (PDT)
+Received: from localhost.localdomain ([2405:201:c00a:a181:890:d993:6673:2242])
+        by smtp.gmail.com with ESMTPSA id u19-20020aa78393000000b00642f527cd28sm13686983pfm.33.2023.05.16.09.35.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 09:35:54 -0700 (PDT)
+From:   Jagan Teki <jagan@edgeble.ai>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Jagan Teki <jagan@edgeble.ai>
+Subject: [PATCH 1/4] dt-bindings: arm: rockchip: Add Edgeble Neural Compute Module 6B
+Date:   Tue, 16 May 2023 22:04:51 +0530
+Message-Id: <20230516163454.997736-1-jagan@edgeble.ai>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230516154329.3155031-4-Frank.Li@nxp.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-05-23, 11:43, Frank Li wrote:
-> From: Peter Chen <peter.chen@nxp.com>
-> 
-> Very limited parts may fail to work on full speed mode (both host and
-> device modes) for USB3 port due to higher threshold in full speed receiver
-> of USB2.0 PHY.
-> 
-> One example failure symptom is, the enumeration is failed when connecting
-> full speed USB mouse to USB3 port, especially under high temperature.
-> 
-> The workaround is to configure threshold voltage value of single ended
-> receiver by setting USB2.0 PHY register AFE_RX_REG5[2:0] to 3'b101.
-> 
-> Signed-off-by: Peter Chen <peter.chen@nxp.com>
+Neural Compute Module 6B(Neu6B) is a 96boards SoM-CB compute module
+based on Rockchip RK3588J from Edgeble AI.
 
-This needs senders S-o-b as well!
+Edgeble Neural Compute Module 6B(Neu6B) IO board is an industrial
+form factor evaluation board from Edgeble AI.
 
-> ---
->  drivers/phy/cadence/phy-cadence-salvo.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/phy/cadence/phy-cadence-salvo.c b/drivers/phy/cadence/phy-cadence-salvo.c
-> index 2e3d4d8fb8eb..b9866dc146ce 100644
-> --- a/drivers/phy/cadence/phy-cadence-salvo.c
-> +++ b/drivers/phy/cadence/phy-cadence-salvo.c
-> @@ -91,6 +91,7 @@
->  
->  /* USB2 PHY register definition */
->  #define UTMI_REG15				0xaf
-> +#define UTMI_AFE_RX_REG5			0x12
->  
->  /* TB_ADDR_TX_RCVDETSC_CTRL */
->  #define RXDET_IN_P3_32KHZ			BIT(0)
-> @@ -247,6 +248,8 @@ static int cdns_salvo_phy_init(struct phy *phy)
->  	cdns_salvo_write(salvo_phy, USB2_PHY_OFFSET, UTMI_REG15,
->  			 value | TXVALID_GATE_THRESHOLD_HS_0US);
->  
-> +	cdns_salvo_write(salvo_phy, USB2_PHY_OFFSET, UTMI_AFE_RX_REG5,
-> +			 0x5);
+Neu6B needs to mount on top of this IO board in order to create complete
+Edgeble Neural Compute Module 6B(Neu6B) IO platform.
 
-single line reads better
+This patch add dt-bindings for Edgeble Neu6 Model B SoM based IO board.
 
->  	udelay(10);
->  
->  	clk_disable_unprepare(salvo_phy->clk);
-> -- 
-> 2.34.1
+Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+---
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index ec141c937b8b..8a7fbcac87e6 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -102,6 +102,12 @@ properties:
+           - const: edgeble,neural-compute-module-6a     # Edgeble Neural Compute Module 6A SoM
+           - const: rockchip,rk3588
+ 
++      - description: Edgeble Neural Compute Module 6(Neu6) Model B SoM based boards
++        items:
++          - const: edgeble,neural-compute-module-6b-io  # Edgeble Neural Compute Module 6B IO Board
++          - const: edgeble,neural-compute-module-6b     # Edgeble Neural Compute Module 6B SoM
++          - const: rockchip,rk3588
++
+       - description: Elgin RV1108 R1
+         items:
+           - const: elgin,rv1108-r1
 -- 
-~Vinod
+2.25.1
+
