@@ -2,124 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DD8B70557A
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 19:53:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D64387053AA
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:25:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231337AbjEPRx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 13:53:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43912 "EHLO
+        id S229915AbjEPQZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 12:25:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232037AbjEPRxx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 13:53:53 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BC259023;
-        Tue, 16 May 2023 10:53:50 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34GGO7Rj071804;
-        Tue, 16 May 2023 11:24:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684254247;
-        bh=Jblb0PC4fH1cGMHpT0SSQ/Z4qJufjm+kpEpZep59/is=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=SrYhEZsWRUVN+Fc6EXfN0fbbcqUPEveajCAJsQHaRlb2O7WQvGb7YaLCuisPSQox+
-         QJyH4gfxEjZVx3F8GsOU+xvZwzcmpngDqQUTeLtLoSDRXstUvBqjzGbIYqyWorLHMD
-         2MlU7Qfbj3ewrZPiU/JAGSBcTCHMUwRmAx2RtuY4=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34GGO75W009875
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 16 May 2023 11:24:07 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
- May 2023 11:24:07 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 16 May 2023 11:24:07 -0500
-Received: from [10.249.131.60] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34GGO3QF061504;
-        Tue, 16 May 2023 11:24:04 -0500
-Message-ID: <aad0e90c-bc5f-a6d0-3114-570d990cffbc@ti.com>
-Date:   Tue, 16 May 2023 21:54:03 +0530
+        with ESMTP id S229822AbjEPQZT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:25:19 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F522448C
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:25:03 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50bcae898b2so25245797a12.0
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:25:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684254266; x=1686846266;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6PXu56U51tiuz+1OMnm6ufBCGFIJbizyW7wqsREp9Wo=;
+        b=Z5K4uSyOgZFCQqMHuaBOPqfc1oPYL0OMIYgoyVIwBeZr8I2yJPFLBcysS4WoyWN1Ib
+         RQOoYuU6d6kWYRDCoqxH11PPpgjppHGhuKGy1CvNGOrRNxObt8zKQZvMg85RFP1jrjI7
+         443ufNacw8nVj3wgdEsCJyYoI2PbHOv1kWY42ELhKnPa3ITal5BPzy+dnT0k8MDeFOPu
+         stiMLAM9Ujo8JTb/1TtLj0M+PbmW1va8zdH/EnzhOWsCUzetNv28tJzjqjIMdMilWhIa
+         u0KXvHU8fbpA4dzeGYc1x+hZSeJNcHtpWCUyPT7jpN4ktBUe1GD7LW/0awiepYB9Uh3z
+         q95w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684254266; x=1686846266;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6PXu56U51tiuz+1OMnm6ufBCGFIJbizyW7wqsREp9Wo=;
+        b=XIvldG04OxCvdzD6vNmeSo/GSoyNEJZIstgScZ2HvIge/PvhPRoozCR4CRJNyZhggG
+         AD3Oxg/GdUtcBStf9I6yTg26NzK/oi69+o9weqxUWan4E2+/xPtBYVEBM5vFZL0DnqRX
+         fB2NJtzmjxJel/JP36OMxRILASzRVG3iywU0xP+Nq0863/x4gzxFuct11gqnOoSBHudE
+         kDpirb0COE7bpVPh5VQXdMC4rX+xs+4X6Ymnep9wgOTf2OCJ4Lb5fj9iIuEy3tW+m/Wr
+         tj00K6C+WpSOtzRxhAMAgMc8lNmYK5clLj8zJC6duZs+bvLQaC26L42rbXUkJCtmCLo2
+         b9bw==
+X-Gm-Message-State: AC+VfDwr5/PfFYtX2JSEUzOW551emWdFEgPRn9hWvxNjlchqf1PCO9HZ
+        GuZ1EL+5CKUDxIwlcZOZfwbgUA==
+X-Google-Smtp-Source: ACHHUZ4cdsw81QW1v33VNg0aJW/gOJRLh3Om7Ri4RZN3YU0EcnjyMgtbK63mmeNO1NoQyYy5VBE89w==
+X-Received: by 2002:a05:6402:549:b0:50b:f70b:9928 with SMTP id i9-20020a056402054900b0050bf70b9928mr30691356edx.18.1684254266342;
+        Tue, 16 May 2023 09:24:26 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
+        by smtp.gmail.com with ESMTPSA id j20-20020aa7c0d4000000b00508804f3b1dsm8445867edp.57.2023.05.16.09.24.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 May 2023 09:24:25 -0700 (PDT)
+Message-ID: <a92b6a2e-fb73-e049-3e01-ab258f4a6820@linaro.org>
+Date:   Tue, 16 May 2023 18:24:24 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH] arm64: dts: ti: k3-j7200: correct num-lanes requested for
- PCIe
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq9574: add support for RDP449
+ variant
 Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Achal Verma <a-verma1@ti.com>
-References: <20230516062212.2635948-1-a-verma1@ti.com>
- <20230516131323.3empqp5btdzfarjx@curliness>
-From:   "Verma, Achal" <a-verma1@ti.com>
-In-Reply-To: <20230516131323.3empqp5btdzfarjx@curliness>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
+        quic_anusha@quicinc.com
+References: <20230516135013.3547-1-quic_devipriy@quicinc.com>
+ <20230516135013.3547-3-quic_devipriy@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230516135013.3547-3-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 16/05/2023 15:50, Devi Priya wrote:
+> Add the initial device tree support for the Reference Design Platform (RDP)
+> 449 based on IPQ9574 family of SoCs. This patch adds support for Console
+> UART, SPI NOR and SMPA1 regulator node.
+> 
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On 5/16/2023 6:43 PM, Nishanth Menon wrote:
-> On 11:52-20230516, Achal Verma wrote:
->> From: Matt Ranostay <mranostay@ti.com>
->>
->> J7200 has a limited 2x support for PCIe, and the properties should be
->> updated as such.
->>
-> 
-> What commit does this fix?
-This patch is a mistake.
-J7200 PCIe has 4 lanes, and this patch should be dropped.
+Best regards,
+Krzysztof
 
-Regards,
-Achal Verma
-> 
->> Signed-off-by: Matt Ranostay <mranostay@ti.com>
->> Signed-off-by: Achal Verma <a-verma1@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> index ef352e32f19d..5e62b431d6e8 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> @@ -729,7 +729,7 @@ pcie1_rc: pcie@2910000 {
->>   		device_type = "pci";
->>   		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
->>   		max-link-speed = <3>;
->> -		num-lanes = <4>;
->> +		num-lanes = <2>;
->>   		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
->>   		clocks = <&k3_clks 240 6>;
->>   		clock-names = "fck";
->> @@ -757,7 +757,7 @@ pcie1_ep: pcie-ep@2910000 {
->>   		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
->>   		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
->>   		max-link-speed = <3>;
->> -		num-lanes = <4>;
->> +		num-lanes = <2>;
->>   		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
->>   		clocks = <&k3_clks 240 6>;
->>   		clock-names = "fck";
->> -- 
->> 2.25.1
->>
-> 
-> 
