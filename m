@@ -2,80 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A1B9704F46
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:28:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0444704F1E
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:20:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231921AbjEPN2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:28:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42124 "EHLO
+        id S233114AbjEPNU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:20:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231624AbjEPN2F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:28:05 -0400
-X-Greylist: delayed 534 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 16 May 2023 06:28:03 PDT
-Received: from mail.bugwerft.de (mail.bugwerft.de [46.23.86.59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F09EF10DA
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:28:03 -0700 (PDT)
-Received: from [192.168.178.97] (p57bc99b5.dip0.t-ipconnect.de [87.188.153.181])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id 3DFEB2804E6;
-        Tue, 16 May 2023 13:18:57 +0000 (UTC)
-Message-ID: <314a54b4-cfe9-5870-a755-dd71909ea1c4@zonque.org>
-Date:   Tue, 16 May 2023 15:18:49 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] ARM: dts: pxa300-raumfeld: Replace deprecated spi-gpio
- properties
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     haojian.zhuang@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S233071AbjEPNU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:20:57 -0400
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A1730E8
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:20:56 -0700 (PDT)
+Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-19292e65c49so2970109fac.0
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:20:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684243256; x=1686835256;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=abWj1pj4HrmM/G81WEbKtkt9IYmjhT0rbt1Ag0l7o3U=;
+        b=LDuKrxKDMQzbVqKX1y5BPLLx2nPoYq9X/nzd1f1w8k3z8oC04msmJlt3aoSVv7px2o
+         EOzHiPfSaChMg3qtV4Z5tmZBPRX2lDAXAkgtwLXOPdlLsKcFr/BlJ9kGq/PxPebEJmXZ
+         cHYIUUq39yzPqNMswkqEiW7xlnq3M8RStXEGnRlRte7IZcy1ZDL8dyK+2fy+67gt0N6I
+         jPaFOhag9pAMyKCpgHZKaW0ES6e3PM5I2Ubjo5oQE2BjgbyEOLVQvlxLgY5JQmRbQ4a+
+         LvJg9tm+ozMqrsrePrQoCH9MvK/0lolq0lhTBOLHkJluGFITG426CQRyHH0o0dmaJu+I
+         pH9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684243256; x=1686835256;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=abWj1pj4HrmM/G81WEbKtkt9IYmjhT0rbt1Ag0l7o3U=;
+        b=JX3njYUtUcxFiQHSVo1BCHIxI91bwlPQD/IyucvgpzDsZ5QKbBxsgVGm8JubiU97Tp
+         pqDatvFsiB/MFr5WWQjmKEsiCGGqAc0sOeOgg9j6Wfp7bRG54xKQG5RysRE+XWiRgo33
+         oEou0e5pggAgchbrUHSmnSJ1cVDJpLGinK7ODt8szv2hy8bDi11eyxjZHQu5jPtpbtNG
+         MoWwgeqwg4aEhqdHD9fV/1wCb1YSf3WV47GuQOrz8EL7GGZc7yFiq9/lJIfbHZoio6eY
+         vhA6u2d4wIOig00pdbKcFB40dq181sBYB7KOIfu85j+xurnOCp+Y6E1hBG3iuh/t3pGN
+         KZ2Q==
+X-Gm-Message-State: AC+VfDyIueUnK5kbrgr/c7wIRqx+w6bD6mjwiRSc/83Yj1/N1qGg96qg
+        8+rX+5a0mWeyt5Qko0WQAaM=
+X-Google-Smtp-Source: ACHHUZ7wifugvCJfYiCBbN/OskRFbTKk2RYhcvQ8nORyAn2ZrfNPfTZROK6sfNZ2HZRT8lQOEXBihg==
+X-Received: by 2002:a05:6870:1c9:b0:192:beba:7bd with SMTP id n9-20020a05687001c900b00192beba07bdmr7040498oad.2.1684243256191;
+        Tue, 16 May 2023 06:20:56 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:12fe:baa9:ec21:f64b])
+        by smtp.gmail.com with ESMTPSA id g5-20020a05687085c500b00187e500e7b3sm13062779oal.49.2023.05.16.06.20.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 06:20:55 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     joel@jms.id.au
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@denx.de>
-References: <20230516131630.580213-1-festevam@gmail.com>
-Content-Language: en-US
-From:   Daniel Mack <daniel@zonque.org>
-In-Reply-To: <20230516131630.580213-1-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Subject: [PATCH] ARM: dts: ast2600-facebook-netbmc: Replace deprecated spi-gpio properties
+Date:   Tue, 16 May 2023 10:20:47 -0300
+Message-Id: <20230516132047.580750-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/16/23 15:16, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> As stated in Documentation/devicetree/bindings/spi/spi-gpio.yaml,
-> 'gpio-miso', 'gpio-mosi' and 'gpio-sck' are deprecated properties.
-> 
-> Use the recommeded 'miso-gpios', 'mosi-gpios' and 'sck-gpios' instead.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+From: Fabio Estevam <festevam@denx.de>
 
-Reviewed-by: Daniel Mack <daniel@zonque.org>
+As stated in Documentation/devicetree/bindings/spi/spi-gpio.yaml,
+'gpio-miso', 'gpio-mosi' and 'gpio-sck' are deprecated properties.
 
-> ---
->  arch/arm/boot/dts/pxa300-raumfeld-common.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/pxa300-raumfeld-common.dtsi b/arch/arm/boot/dts/pxa300-raumfeld-common.dtsi
-> index 147c99191dc2..5e93f315588a 100644
-> --- a/arch/arm/boot/dts/pxa300-raumfeld-common.dtsi
-> +++ b/arch/arm/boot/dts/pxa300-raumfeld-common.dtsi
-> @@ -74,9 +74,9 @@ spi: spi {
->  		#size-cells = <0>;
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&spi_pins>;
-> -		gpio-sck = <&gpio 95 GPIO_ACTIVE_HIGH>;
-> -		gpio-miso = <&gpio 98 GPIO_ACTIVE_HIGH>;
-> -		gpio-mosi = <&gpio 97 GPIO_ACTIVE_HIGH>;
-> +		sck-gpios = <&gpio 95 GPIO_ACTIVE_HIGH>;
-> +		miso-gpios = <&gpio 98 GPIO_ACTIVE_HIGH>;
-> +		mosi-gpios = <&gpio 97 GPIO_ACTIVE_HIGH>;
->  		cs-gpios = <
->  			&gpio 34 GPIO_ACTIVE_HIGH
->  			&gpio 125 GPIO_ACTIVE_HIGH
+Use the recommeded 'miso-gpios', 'mosi-gpios' and 'sck-gpios' instead.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi b/arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi
+index 31590d3186a2..0e2ba04a714d 100644
+--- a/arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi
++++ b/arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi
+@@ -31,9 +31,9 @@ spi_gpio: spi {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
+-		gpio-sck = <&gpio0 ASPEED_GPIO(X, 3) GPIO_ACTIVE_HIGH>;
+-		gpio-mosi = <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>;
+-		gpio-miso = <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>;
++		sck-gpios = <&gpio0 ASPEED_GPIO(X, 3) GPIO_ACTIVE_HIGH>;
++		mosi-gpios = <&gpio0 ASPEED_GPIO(X, 4) GPIO_ACTIVE_HIGH>;
++		miso-gpios = <&gpio0 ASPEED_GPIO(X, 5) GPIO_ACTIVE_HIGH>;
+ 
+ 		tpmdev@0 {
+ 			compatible = "tcg,tpm_tis-spi";
+-- 
+2.34.1
 
