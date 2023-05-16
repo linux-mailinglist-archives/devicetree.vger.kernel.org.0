@@ -2,139 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15CFB705415
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:39:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9999E705418
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:39:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229785AbjEPQj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 12:39:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42478 "EHLO
+        id S231430AbjEPQjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 12:39:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229587AbjEPQj0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:39:26 -0400
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 722A318C
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:39:25 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-55a2691637bso206053567b3.0
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:39:25 -0700 (PDT)
+        with ESMTP id S231172AbjEPQjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:39:32 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 293EC1FCC
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:39:31 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-510b56724caso1492684a12.1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:39:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684255164; x=1686847164;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1tlt94OaDFj/ZPE0ZO+qPKHDjqmrvLyTlpCpvY+Yp/8=;
-        b=KgRz9ZygaysakM45E2aeQy6Z2DT7UQhYmbkwTrDEtDRBwiRNJ35O4+ZI1T5c9yXorr
-         9uprslbLq3XDu+47l1yO7bS9LHQXU4dH+96CRjuY0F335XohNM4ZrWs4/DeOuapS9vQB
-         vIjR1eez9wbL35MXR5DbnGfQalTwyw0o+sIwSrsG6eNQjd3c+gi440d1awO7k3FbdgbG
-         f6RaYuGklMq/Hwy+8OZNG+orcKwe4I0xi52JFAUkTx4+9NL3VpQ4eav1ODh2Ez1/3bMR
-         KewsK9il5iiBYgMvOU75io3a0tHC9NLNe1bCIaY7e40wzIh3hnaXDg8KMLYmdCpEiPPF
-         v3/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684255164; x=1686847164;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1684255169; x=1686847169;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1tlt94OaDFj/ZPE0ZO+qPKHDjqmrvLyTlpCpvY+Yp/8=;
-        b=R4tANfSFQL3tgcHKV4JgGpzYLS4Hrw1mD2WSvPagoi7UBkZktQX+VEFIljyiBt3e0r
-         /7nvQKThKDofDj0R+1kyzBn5feIw6AXA8ffVQjmjty6ojgKGCRYDAaF/IA/ibkp0M9Ee
-         gHN3jgH8QIs2XNOJjlX9Wu7bmIb3F9ssjC7bk62l4Kp6ji9bLUlzlNlICgBD7olrzzdN
-         XDAv+v1JNcSbQ63hCXwUaNfcAuWTLmmOt2my46Cwvjitxg3O5lctwzTPtZPYZ+dVVASC
-         pt+ucGSGPSWsF6VeXKk0k5i2hdEUxUT1FFgPZnC3IEJUb6GTY1GPyYDk/nBnRFcMZL6U
-         IRCw==
-X-Gm-Message-State: AC+VfDyDyxs1ikNAiVsffBg7vQttI5F/C8fTOwW8YnHQeilz2ZPdj0yu
-        gP1jGhKLMjc5dkPsmsuHwtsiHcshNRXDtgMx98Xkmg==
-X-Google-Smtp-Source: ACHHUZ4mmJtwKkLjDQeoqGQG6jQ/Y1c9GvB1EOKt0pluOwZJgkSgm/apT/cIYLDsmH+PXxZbg6tthKN+REeqPnno1Qc=
-X-Received: by 2002:a81:48c6:0:b0:55a:3ce9:dc3d with SMTP id
- v189-20020a8148c6000000b0055a3ce9dc3dmr35407967ywa.13.1684255164629; Tue, 16
- May 2023 09:39:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230516133011.108093-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230516133011.108093-1-krzysztof.kozlowski@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 16 May 2023 19:39:13 +0300
-Message-ID: <CAA8EJpoTgseo3j_5Ab7cQs3ZZZymALpRqpuWGPyKpTEbXR-Cqw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8550-qrd: add PCIe0
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        bh=cdE6rQVwO6h2KNb8VdfjQ0+WIgss0cnwggom+xyvQHQ=;
+        b=dlRjaEnRnTVyeKmp0c/GNeCa4MdfzFN1mjULVO616k/lvjA31glSVPawlSLTUWOczA
+         JSMRrNXroYDKKV4YL3h3Feg6nuWiPFdsmEuD+LQ/YkVva0+8mYQO/ci6tbZpJwmSMUbH
+         Cbe8REmBTiNOkw+v0ybQFUiUSIoFLorx0hKj/mk8XN9LWdMHFWxYW+OlQdPpWC8a47jA
+         QZBSaqSdSpPyalDbzc5gEvPgo0C1Rc7tOWnbysc9Kh9kXF0KH9VgPZbHsGHD9bcJ4Afv
+         s1E0eosdT0jL7IYChzCfnC5tM2b/rpR3NAfPzm5+obaLTowN5jomdRc2OpaCBBJ4YN2K
+         E45Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684255169; x=1686847169;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cdE6rQVwO6h2KNb8VdfjQ0+WIgss0cnwggom+xyvQHQ=;
+        b=Jg7Yy9NbcS2lLYl9LQazFJMtpdixMONYd+966d5tk/iCTIgOqlvsLXl1IC8CO9FAn9
+         zQexBs66mhW9QwhpxkxZ+LWmJiCPbbK1hoX3kuYHzuTCGhw97qsOubPpsSPAfAfsiiAN
+         3hKYTK8DeMvX6RGimQGP5Hm6KAE001JTKzh4eh6MUAS+gHS9mtNk8m/9bZjhBu4g7Fe4
+         IGzLnan+/BDWH+Vz1RxP8mz0cPJz1iMotpAbBJ2JBZLfljhdzL3ClFn0ObCQ4edx/tEr
+         /ms3hRwbjckkCK4zXEn10QGor26BoPnHwdbggqOhhSvwzNb48WiPbb/K5JPuE++o1vfw
+         We3g==
+X-Gm-Message-State: AC+VfDzOhgBlhqoEKGnfDDKcWN32eeY3GToElgUDOsqTDy3Nf7fQT+02
+        kIl1ogeMefHhlm+mHw3r5O64Hw==
+X-Google-Smtp-Source: ACHHUZ5D/x8CQ1hyl5DzYWBTCdtlxBikcktVZkXe1wItsnn1SfqN/mK77HbHn+5BOxNE+lrYHRMmrA==
+X-Received: by 2002:a05:6402:2036:b0:50b:ca1b:addc with SMTP id ay22-20020a056402203600b0050bca1baddcmr38244775edb.13.1684255169639;
+        Tue, 16 May 2023 09:39:29 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
+        by smtp.gmail.com with ESMTPSA id d4-20020aa7c1c4000000b00504a356b149sm8278191edp.25.2023.05.16.09.39.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 09:39:29 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: add missing cache properties
+Date:   Tue, 16 May 2023 18:39:20 +0200
+Message-Id: <168425511043.243008.7280065132171806679.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230421223137.115015-1-krzysztof.kozlowski@linaro.org>
+References: <20230421223137.115015-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 May 2023 at 16:30, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Add PCIe0 nodes used with WCN7851 device.  The PCIe1 is not connected,
-> thus skip pcie_1_phy_aux_clk input clock to GCC.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 32 +++++++++++++++++++++++++
->  1 file changed, 32 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> index ccc58e6b45bd..e7a2bc5d788b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> @@ -385,6 +385,38 @@ vreg_l3g_1p2: ldo3 {
->         };
->  };
->
-> +&gcc {
-> +       clocks = <&bi_tcxo_div2>, <&sleep_clk>,
-> +                <&pcie0_phy>,
-> +                <&pcie1_phy>,
-> +                <0>,
-> +                <&ufs_mem_phy 0>,
-> +                <&ufs_mem_phy 1>,
-> +                <&ufs_mem_phy 2>,
-> +                <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
-> +};
 
-Is there any reason to disable the PCIe1 PHY AUX clock here? I mean,
-the PCIe1 is still enabled in the hardware.
+On Sat, 22 Apr 2023 00:31:37 +0200, Krzysztof Kozlowski wrote:
+> As all level 2 and level 3 caches are unified, add required
+> cache-unified property to fix warnings like:
+> 
+>   sun50i-a64-pine64-lts.dtb: l2-cache: 'cache-unified' is a required property
+> 
+> 
 
-> +
-> +&pcie_1_phy_aux_clk {
-> +       status = "disabled";
-> +};
-> +
-> +&pcie0 {
-> +       wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-> +       perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-> +
-> +       pinctrl-0 = <&pcie0_default_state>;
-> +       pinctrl-names = "default";
-> +
-> +       status = "okay";
-> +};
-> +
-> +&pcie0_phy {
-> +       vdda-phy-supply = <&vreg_l1e_0p88>;
-> +       vdda-pll-supply = <&vreg_l3e_1p2>;
-> +
-> +       status = "okay";
-> +};
-> +
->  &qupv3_id_0 {
->         status = "okay";
->  };
-> --
-> 2.34.1
->
+Applied, thanks!
 
+Please let me know if this should go through any other tree.
 
+[1/1] arm64: dts: allwinner: a64: add missing cache properties
+      https://git.kernel.org/krzk/linux-dt/c/4c84cced9304303ed1c73e35277891249e3cc2cd
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
