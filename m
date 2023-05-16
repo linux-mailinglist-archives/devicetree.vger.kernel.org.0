@@ -2,94 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D64387053AA
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:25:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FF817053B6
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:27:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229915AbjEPQZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 12:25:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51226 "EHLO
+        id S230080AbjEPQ1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 12:27:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbjEPQZT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:25:19 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F522448C
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:25:03 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50bcae898b2so25245797a12.0
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:25:03 -0700 (PDT)
+        with ESMTP id S230057AbjEPQ1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:27:15 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 151D97ABB
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:26:54 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2ac836f4447so147675061fa.2
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:26:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684254266; x=1686846266;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1684254409; x=1686846409;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=6PXu56U51tiuz+1OMnm6ufBCGFIJbizyW7wqsREp9Wo=;
-        b=Z5K4uSyOgZFCQqMHuaBOPqfc1oPYL0OMIYgoyVIwBeZr8I2yJPFLBcysS4WoyWN1Ib
-         RQOoYuU6d6kWYRDCoqxH11PPpgjppHGhuKGy1CvNGOrRNxObt8zKQZvMg85RFP1jrjI7
-         443ufNacw8nVj3wgdEsCJyYoI2PbHOv1kWY42ELhKnPa3ITal5BPzy+dnT0k8MDeFOPu
-         stiMLAM9Ujo8JTb/1TtLj0M+PbmW1va8zdH/EnzhOWsCUzetNv28tJzjqjIMdMilWhIa
-         u0KXvHU8fbpA4dzeGYc1x+hZSeJNcHtpWCUyPT7jpN4ktBUe1GD7LW/0awiepYB9Uh3z
-         q95w==
+        bh=0+aR8jzGP7NWseFp633dudw7mMACwrOnvnWtwOpTJLQ=;
+        b=mp7xIWiv4uZkFSiJf/tqZjWger3lA9gCuvDtOW7zKKCXq3ZHjdWOiD/9sQHahNURdL
+         td/FJSzj32bGdHheeOs0i7gS/FkpAMkJOZ1cFXGf0vHPckdWsEG/03EeIexl51NPVDL8
+         253GRfOkCvckt/V8k1oKh27B82SS3g9dhpHux5iojguQDirNKAyYN/vesZ+DAPlbcXSj
+         KbZu4hSmKhTbZmxJl88oo8D3Cbrt350pjvROB+U7mbJymUz+XTImDtM647lPlY7o+6Rl
+         8Nt3aNtFV7DzJBa1bOJTl7huN9HKt4oppaUue1T2txKcMBcJp7B2d0pTtVDreRtbGECh
+         W2tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684254266; x=1686846266;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1684254409; x=1686846409;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6PXu56U51tiuz+1OMnm6ufBCGFIJbizyW7wqsREp9Wo=;
-        b=XIvldG04OxCvdzD6vNmeSo/GSoyNEJZIstgScZ2HvIge/PvhPRoozCR4CRJNyZhggG
-         AD3Oxg/GdUtcBStf9I6yTg26NzK/oi69+o9weqxUWan4E2+/xPtBYVEBM5vFZL0DnqRX
-         fB2NJtzmjxJel/JP36OMxRILASzRVG3iywU0xP+Nq0863/x4gzxFuct11gqnOoSBHudE
-         kDpirb0COE7bpVPh5VQXdMC4rX+xs+4X6Ymnep9wgOTf2OCJ4Lb5fj9iIuEy3tW+m/Wr
-         tj00K6C+WpSOtzRxhAMAgMc8lNmYK5clLj8zJC6duZs+bvLQaC26L42rbXUkJCtmCLo2
-         b9bw==
-X-Gm-Message-State: AC+VfDwr5/PfFYtX2JSEUzOW551emWdFEgPRn9hWvxNjlchqf1PCO9HZ
-        GuZ1EL+5CKUDxIwlcZOZfwbgUA==
-X-Google-Smtp-Source: ACHHUZ4cdsw81QW1v33VNg0aJW/gOJRLh3Om7Ri4RZN3YU0EcnjyMgtbK63mmeNO1NoQyYy5VBE89w==
-X-Received: by 2002:a05:6402:549:b0:50b:f70b:9928 with SMTP id i9-20020a056402054900b0050bf70b9928mr30691356edx.18.1684254266342;
-        Tue, 16 May 2023 09:24:26 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
-        by smtp.gmail.com with ESMTPSA id j20-20020aa7c0d4000000b00508804f3b1dsm8445867edp.57.2023.05.16.09.24.25
+        bh=0+aR8jzGP7NWseFp633dudw7mMACwrOnvnWtwOpTJLQ=;
+        b=KeUNd/di7V/VNuCguBSB2HftzzS9mBzizyvYzBJkLTBXELq/ODf7iP0s4geDLMOZg0
+         AtDWhpWT/nre0CwxUTJkIiqob6EbGnVGmFuO5ftr3L9wbmbSiObUGSXv4X4yY1W7Z+4d
+         QqqIEW7z3ImN3wS05KooUFOkZ8sCkmJmpaIHeXctpTGCWqGjiu0Eb12hNTKK65m56Un6
+         PCjlNndMpOH2PsFzrJVqhj/SsdoPQe4xdfYViBE4g9HpAnJAezc/9jN6jdELw53p284N
+         2jFI8lz7kBllOiJa59hV2KnV89zPNYDUgsKE7XhVlVCkY9fZhMKZ9gK0UoLVdFjWmf0k
+         YPVA==
+X-Gm-Message-State: AC+VfDwYj0tV3MMd7uA0hH9QGi88Tte8qyJdq6VEkt6f0RIGBXXPyGo5
+        Y/ChgbfRUoxYxLbQaSosi0A15Q==
+X-Google-Smtp-Source: ACHHUZ6kwUt1thThZPgHJYaqHKLVmzIr/EagdHGQTB/rTXUynYMDLk5EKD1fB7KwxRLuQt3LFTQTQw==
+X-Received: by 2002:a2e:91cc:0:b0:2ac:7a39:9feb with SMTP id u12-20020a2e91cc000000b002ac7a399febmr9537168ljg.53.1684254409566;
+        Tue, 16 May 2023 09:26:49 -0700 (PDT)
+Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
+        by smtp.gmail.com with ESMTPSA id m23-20020a2e9357000000b002adf8d948dasm1370003ljh.35.2023.05.16.09.26.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 09:24:25 -0700 (PDT)
-Message-ID: <a92b6a2e-fb73-e049-3e01-ab258f4a6820@linaro.org>
-Date:   Tue, 16 May 2023 18:24:24 +0200
+        Tue, 16 May 2023 09:26:49 -0700 (PDT)
+Message-ID: <2e9c9836-3829-69ae-0c9c-ca625965498d@linaro.org>
+Date:   Tue, 16 May 2023 18:26:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq9574: add support for RDP449
- variant
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sm8550: enable DISPCC by default
 Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
-        quic_anusha@quicinc.com
-References: <20230516135013.3547-1-quic_devipriy@quicinc.com>
- <20230516135013.3547-3-quic_devipriy@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230516135013.3547-3-quic_devipriy@quicinc.com>
+References: <20230516154539.238655-1-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230516154539.238655-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 15:50, Devi Priya wrote:
-> Add the initial device tree support for the Reference Design Platform (RDP)
-> 449 based on IPQ9574 family of SoCs. This patch adds support for Console
-> UART, SPI NOR and SMPA1 regulator node.
+
+
+On 16.05.2023 17:45, Krzysztof Kozlowski wrote:
+> Enable the Display Clock Controller by default in SoC DTSI so unused
+> clocks can be turned off.  It does not require any external resources,
+> so as core SoC component should be always available to boards.
 > 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Konrad
+> 
+> Changes in v2:
+> 1. New patch
+> ---
+>  arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 4 ----
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi    | 1 -
+>  2 files changed, 5 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+> index 785889450e8a..f27d5c657f44 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+> @@ -419,10 +419,6 @@ vreg_l3g_1p2: ldo3 {
+>  	};
+>  };
+>  
+> -&dispcc {
+> -	status = "okay";
+> -};
+> -
+>  &mdss {
+>  	status = "okay";
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index 6e9bad8f6f33..0a3a08336b46 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -2684,7 +2684,6 @@ dispcc: clock-controller@af00000 {
+>  			#clock-cells = <1>;
+>  			#reset-cells = <1>;
+>  			#power-domain-cells = <1>;
+> -			status = "disabled";
+>  		};
+>  
+>  		usb_1_hsphy: phy@88e3000 {
