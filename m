@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DF01704BF6
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA9A7704BFC
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:11:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232860AbjEPLLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 07:11:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60810 "EHLO
+        id S232926AbjEPLLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 07:11:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233077AbjEPLKQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:10:16 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E521768B
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:09:33 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f423521b10so70779495e9.0
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:09:33 -0700 (PDT)
+        with ESMTP id S232902AbjEPLLL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:11:11 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C5255B9E
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:10:06 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f42711865eso64072975e9.0
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:10:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20221208.gappssmtp.com; s=20221208; t=1684235352; x=1686827352;
+        d=monstr-eu.20221208.gappssmtp.com; s=20221208; t=1684235369; x=1686827369;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3FNJszxzR3PXgaTxXmMTfcWtAHlHrlwtzwkzpwXZ8Uk=;
-        b=BaPg9oSWENth98+wPU9l3gHPGKPggMPbQmG79b7DKpukrTlN1XGzFTFtsC7FWNXp9I
-         D3CvgkTilHbgRA7zCaOrLQo/SIM1UF/JVK2PiyC3VSUJAD5F8v8PbvyGyoe75O2SoXtT
-         UGuOOWIEAlhWExeRxn+rgt5BUPWwK8hDMYbLDq6eTmeLm0Ha8g+R5MUzqtd0IMr87fxq
-         UYD/qnLCCjpX+hyc0g4NfJGW2mWJIF5bser4mkaHq7Hcp/5imfmXHcSUOEEPcnam3lIP
-         ICKJIMFwL+RJIK+fgFCJFGnPTHL/QVFHlk8oJFM7Y7766Cm/xhaRIqBlbBcRHMyORTGu
-         GW8g==
+        bh=I7ZR8UG+ieKj3JI8V/RnQW1dE0jfj0Fs0lyJslk94NI=;
+        b=j6OpFNI9o/QbyIczkVTX53Diwu88pxqxJWtDQEbl46cknBPbPkfGLTinPc5ovSvXYl
+         iKfG8TGWXPAyypdQDGk16eyjwy51sOkGOA/8vzNO0IW/500mW1xHIHi/+Tb4KvtK/DVS
+         f0VPJiUcI1mSNam5ZpNzX2Q43HAX1yDkpPlJMrjsVAsP/rj/Ft+cuI2kxqonMekC6pp2
+         0e60pcnPK/FNkTJXWTUITOg3PMGafbuiF6eodsYxqjhau40571O4lLxTrKKVKluNJqXc
+         w+1pfQKmaRYGFvFVU4Wf3yMgXeYGMH3kiSF2cZmxH4hA5S9qePHPh7FDhQ6zAAhBv0FF
+         Zwtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684235352; x=1686827352;
+        d=1e100.net; s=20221208; t=1684235369; x=1686827369;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3FNJszxzR3PXgaTxXmMTfcWtAHlHrlwtzwkzpwXZ8Uk=;
-        b=FZ/EpK4Kyk5erVmUp+xsIiL5Nzi1shoMmwINbqTS8dggtfrr0ckGVtZCOZ5ifRmh5f
-         Y50C8l6W5cYqsNqKK05C5l+5/weROPeqN9XlD+6t96MLonaqF28C+Y53QbCiCm9cVtZl
-         Tj70Y7oCxF4cMTOBoyITZPDyOyzvAtzsmF6JqVQ2/0qniiKkNHq4OjFA4YpIWoOF1t8r
-         iUzo4IXgDRREveRZ/koMqm3lbFPq0akA8yGLFNOjSjPV1zHBVCN+43lppuvVp76G42L7
-         IQHThbYfZ9zZB99LFmV1IL3P21ti55E/8NbL5jZ4nF98ZiezKEQuAcwfPlaeQfjvoeJR
-         LyGQ==
-X-Gm-Message-State: AC+VfDwCvAi1Dg2J6W2lIZsn9SlvjErcKsmXkChXMKvOfah9BAlUlCVH
-        D6/76ohNvWX7CQyVCqWZi+XwSg==
-X-Google-Smtp-Source: ACHHUZ4sdLHwqQN66Odl6tIfIJySedBTOX8PmE56db6XHBPLToK6D1c9Tsbpk23NjNgZnc12r4zRSw==
-X-Received: by 2002:a05:600c:220a:b0:3f4:ffaf:a862 with SMTP id z10-20020a05600c220a00b003f4ffafa862mr7216285wml.12.1684235351699;
-        Tue, 16 May 2023 04:09:11 -0700 (PDT)
+        bh=I7ZR8UG+ieKj3JI8V/RnQW1dE0jfj0Fs0lyJslk94NI=;
+        b=f4dkqCI60waAYT36yZ+IsD9ubR5xs/5U9BHLqZuFs7Qbb6d1EdHAq6WRjaqhDQI0gw
+         C8+zctPvF+Uw4URQyO4LPekitCdzYC6LyT6ZaQPgIjy4LNIuLDLiGTBTS+yYaEZaOYGh
+         bMhjtHKVmkN41NLyVAATFsCsZqAS3ID5rembkT4iPDH+C9thJAI6ypmKJNBWNYAT7M1l
+         DhC+/A6ZiTIyc8x8oM2+OiVUieH4ak8o5Qzu2evLLCAa5NGRfKfnCExQT5pkMlnaKWKX
+         e+/Pb+bNPQ7lDv+cQ1W1oIcA7n6kd8DfmTPf8It/4tQfJzoAkFbBOpQnuxk9NGt2yYk2
+         5n0g==
+X-Gm-Message-State: AC+VfDzC7AeaZyZy9RHU2lRkK6+NoenNN+7yhMLXLirCVbE/ppDVzZkw
+        jNRetHGEhwIRS9aydG61FDdChQ==
+X-Google-Smtp-Source: ACHHUZ4fC1HFypX/AruDUwpxcFLFCsG7Za5bjaArpiSk0P6YjSRfNNc8JWTulnzTpDy6MXGxQRiDVQ==
+X-Received: by 2002:a05:600c:3655:b0:3f4:2cc7:aac5 with SMTP id y21-20020a05600c365500b003f42cc7aac5mr16156446wmq.9.1684235369047;
+        Tue, 16 May 2023 04:09:29 -0700 (PDT)
 Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id u2-20020a05600c00c200b003f423f5b659sm1970348wmm.10.2023.05.16.04.09.10
+        by smtp.gmail.com with ESMTPSA id o16-20020a05600c379000b003f195d2f1a9sm1966436wmr.15.2023.05.16.04.09.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 04:09:11 -0700 (PDT)
-Message-ID: <ed357f07-c4b4-4bff-55ba-2c63374b21bc@monstr.eu>
-Date:   Tue, 16 May 2023 13:09:10 +0200
+        Tue, 16 May 2023 04:09:28 -0700 (PDT)
+Message-ID: <4a51d30f-7d20-b008-3d2f-1187fecbc4a5@monstr.eu>
+Date:   Tue, 16 May 2023 13:09:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 17/23] arm64: zynqmp: Switch to ethernet-phy-id in kv260
+Subject: Re: [PATCH 18/23] arm64: zynqmp: Setup clock for DP and DPDMA
 Content-Language: en-US
 To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
         michal.simek@xilinx.com, git@xilinx.com
@@ -62,12 +62,16 @@ Cc:     Andrew Davis <afd@ti.com>,
         Ashok Reddy Soma <ashok.reddy.soma@xilinx.com>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Parth Gajjar <parth.gajjar@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Vishal Sagar <vishal.sagar@amd.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <cover.1683034376.git.michal.simek@amd.com>
- <4b139e942c2a808eecbb30226b6ea5303348390a.1683034376.git.michal.simek@amd.com>
+ <807e22371394222f728ff7d6b190a96a12145439.1683034376.git.michal.simek@amd.com>
 From:   Michal Simek <monstr@monstr.eu>
-In-Reply-To: <4b139e942c2a808eecbb30226b6ea5303348390a.1683034376.git.michal.simek@amd.com>
+In-Reply-To: <807e22371394222f728ff7d6b190a96a12145439.1683034376.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,74 +87,73 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 5/2/23 15:35, Michal Simek wrote:
-> Use ethernet-phy-id compatible string to properly describe phy reset on
-> kv260 boards. Previous description wasn't correct because reset was done
-> for mdio bus to operate and it was in this case used for different purpose
-> which was eth phy reset. With ethernet-phy-id phy reset happens only for
-> the phy via phy framework.
+> Clocks are coming from shared HW design where these frequencies should be
+> aligned with PLL setup.
 > 
 > Signed-off-by: Michal Simek <michal.simek@amd.com>
 > ---
 > 
->   arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso | 6 ++++--
->   arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso | 6 ++++--
->   2 files changed, 8 insertions(+), 4 deletions(-)
+>   arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi       | 4 ++++
+>   arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso | 2 ++
+>   arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso | 2 ++
+>   3 files changed, 8 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+> index 681885c9bcbb..581221fdadf1 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+> @@ -248,10 +248,14 @@ &xilinx_ams {
+>   
+>   &zynqmp_dpdma {
+>   	clocks = <&zynqmp_clk DPDMA_REF>;
+> +	assigned-clocks = <&zynqmp_clk DPDMA_REF>; /* apll */
+>   };
+>   
+>   &zynqmp_dpsub {
+>   	clocks = <&zynqmp_clk TOPSW_LSBUS>,
+>   		 <&zynqmp_clk DP_AUDIO_REF>,
+>   		 <&zynqmp_clk DP_VIDEO_REF>;
+> +	assigned-clocks = <&zynqmp_clk DP_STC_REF>,
+> +			  <&zynqmp_clk DP_AUDIO_REF>,
+> +			  <&zynqmp_clk DP_VIDEO_REF>;  /* rpll, rpll, vpll */
+>   };
 > diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-> index cb4a5126c4ec..817d756142ab 100644
+> index 817d756142ab..4f18b3efcced 100644
 > --- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
 > +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-> @@ -146,16 +146,18 @@ &gem3 { /* required by spec */
->   	mdio: mdio {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
-> -		reset-gpios = <&gpio 38 GPIO_ACTIVE_LOW>;
-> -		reset-delay-us = <2>;
->   
->   		phy0: ethernet-phy@1 {
->   			#phy-cells = <1>;
->   			reg = <1>;
-> +			compatible = "ethernet-phy-id2000.a231";
->   			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
->   			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_75_NS>;
->   			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
->   			ti,dp83867-rxctrl-strap-quirk;
-> +			reset-assert-us = <100>;
-> +			reset-deassert-us = <280>;
-> +			reset-gpios = <&gpio 38 GPIO_ACTIVE_LOW>;
->   		};
->   	};
+> @@ -99,10 +99,12 @@ &zynqmp_dpsub {
+>   	status = "disabled";
+>   	phy-names = "dp-phy0", "dp-phy1";
+>   	phys = <&psgtr 1 PHY_TYPE_DP 0 0>, <&psgtr 0 PHY_TYPE_DP 1 0>;
+> +	assigned-clock-rates = <27000000>, <25000000>, <300000000>;
 >   };
+>   
+>   &zynqmp_dpdma {
+>   	status = "okay";
+> +	assigned-clock-rates = <600000000>;
+>   };
+>   
+>   &usb0 {
 > diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-> index 31bc120dee49..e07cec231ee0 100644
+> index e07cec231ee0..77bc806b15a1 100644
 > --- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
 > +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-> @@ -129,16 +129,18 @@ &gem3 { /* required by spec */
->   	mdio: mdio {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
-> -		reset-gpios = <&gpio 38 GPIO_ACTIVE_LOW>;
-> -		reset-delay-us = <2>;
->   
->   		phy0: ethernet-phy@1 {
->   			#phy-cells = <1>;
->   			reg = <1>;
-> +			compatible = "ethernet-phy-id2000.a231";
->   			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
->   			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_75_NS>;
->   			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
->   			ti,dp83867-rxctrl-strap-quirk;
-> +			reset-assert-us = <100>;
-> +			reset-deassert-us = <280>;
-> +			reset-gpios = <&gpio 38 GPIO_ACTIVE_LOW>;
->   		};
->   	};
+> @@ -80,10 +80,12 @@ &zynqmp_dpsub {
+>   	status = "disabled";
+>   	phy-names = "dp-phy0", "dp-phy1";
+>   	phys = <&psgtr 1 PHY_TYPE_DP 0 0>, <&psgtr 0 PHY_TYPE_DP 1 0>;
+> +	assigned-clock-rates = <27000000>, <25000000>, <300000000>;
 >   };
-
+>   
+>   &zynqmp_dpdma {
+>   	status = "okay";
+> +	assigned-clock-rates = <600000000>;
+>   };
+>   
+>   &usb0 {
 
 Applied.
 M
-
 
 -- 
 Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
