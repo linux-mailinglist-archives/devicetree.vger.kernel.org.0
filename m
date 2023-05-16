@@ -2,102 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1500704619
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 09:17:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 652EC70463C
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 09:23:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231147AbjEPHRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 03:17:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51796 "EHLO
+        id S231250AbjEPHXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 03:23:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231146AbjEPHRL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 03:17:11 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B449C1BCE
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:17:08 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50bcb229adaso24994651a12.2
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:17:08 -0700 (PDT)
+        with ESMTP id S231271AbjEPHXn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 03:23:43 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F5C33C39;
+        Tue, 16 May 2023 00:23:41 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-24e5d5782edso12779521a91.0;
+        Tue, 16 May 2023 00:23:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684221427; x=1686813427;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yirYTDxj7pduNeaDQeO+tWn+V6MyxXiA3DTVWIK3F40=;
-        b=KTm1TzjIjO8Hdxa5e/QaF0dS1/NXi4ucf7+Qy+EKJlpdpo3qiSJCzNoPoBqGSyDeHd
-         e49PQv0tGFELrA/1GsuKmjoarUpcD177+EIUUNeXhXLgmvuEhKkj1MLkXoA8FMU5Kpb7
-         H4eYO6Y86+KoZAr7AU+SCnSdMiHOGmvVdaChaZWwQdZhcJdHwwExhvw9lXGR+mQ1h2Zr
-         lcxJnWtqXbPU91IfvcosXovZgvoILPBr16i1XHfltKs5vCT8Kq4DJ1z5mA4ryV5D8Ok4
-         mPPw/cSL3UA6PMZlBKmdyjIJXkfmneLXMPlrFO6LWEX4qELc6jSTYSqP5SD6BGNb0iV4
-         WfjQ==
+        d=gmail.com; s=20221208; t=1684221821; x=1686813821;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=f2Ewl+pzg/EYDV9r41yW9nhxUrQsVL1ApvJ69sMnczM=;
+        b=VQkVb+02i1KNhzRkzyci+tox0yM++34UNlwgqEx8OxnHHIB684ZDNdWovTy5hFMJ/b
+         42oE6l5qGNqwcaWjs+hcKcY6vrROIuoiuLl3KN5dmULOYVFPkWuiv/DKL5+gzwdG7Ajc
+         3s8rEs2S65LHobPaciEXG4HgU+LMDCPI2kQU5AUQY3QEaGYjmPOKrVeGR68Vo+slZ1cn
+         wU80uJBr9kiONoRiT4m/bCaSMgkMip/tKkRIQ225fHy99civYxw3t8ZSKQCFzilA33lp
+         EEVi/mZvIFA6BIHel8L16Xf00chCPqgOeiuad91ItHrfCqMJ0y9eG0HEOkZmw7Y00HxQ
+         a4Eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684221427; x=1686813427;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yirYTDxj7pduNeaDQeO+tWn+V6MyxXiA3DTVWIK3F40=;
-        b=adsZ1u8pamYoArsK8maGZ/JvEnEeZfgk0B6EFzX+/3WWDvtz9RAAPJIq0CYm95U9Yx
-         3ffTJOZvSM4HrG+dC1w5CZShOVFUjMQ3JQg5N5aWaP49/X6SpKybqK9OKlkNDGaFXAFw
-         /5dvauMn8EVta5HaRWonZIOyIApQUN/72SwN8hlFaBN8ZiW3julSVHbQc8ADx/Q2r4jd
-         qG/zzjiiahxGVIGA0DT8DIi5VcKnxr7mQZNeEXjEIV57tdpvEGwDBcfUQnc4U4E2ob1t
-         qA7JbaR+SyTQ9t06PCirA4dKAUu9fvlNtI/HSwXlEZTApdQHT1SUil7nRHOEuMmuQmgQ
-         GHIQ==
-X-Gm-Message-State: AC+VfDwi67ODgLfSTKGs4bktLrSDhIpP4ZFPkHUCV17Qhm4fqMkq9+TG
-        /5nXpbC47JYEmXHjyBN0rK5DQA==
-X-Google-Smtp-Source: ACHHUZ76+vLbbpfzfL4GFJj/oifuoMKAqhcnfUEb2ky8VAlxUr6+v/sifoafnILiqT6GBYWJx0vhzg==
-X-Received: by 2002:a17:907:928e:b0:94e:8cdb:bcee with SMTP id bw14-20020a170907928e00b0094e8cdbbceemr31175165ejc.70.1684221427166;
-        Tue, 16 May 2023 00:17:07 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:4d4a:9b97:62e:1439? ([2a02:810d:15c0:828:4d4a:9b97:62e:1439])
-        by smtp.gmail.com with ESMTPSA id jl21-20020a17090775d500b00965b5540ad7sm10817697ejc.17.2023.05.16.00.17.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 00:17:06 -0700 (PDT)
-Message-ID: <cc3e80ab-9794-fd37-45e9-3b3d9cc761ae@linaro.org>
-Date:   Tue, 16 May 2023 09:17:04 +0200
+        d=1e100.net; s=20221208; t=1684221821; x=1686813821;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=f2Ewl+pzg/EYDV9r41yW9nhxUrQsVL1ApvJ69sMnczM=;
+        b=XnHAjco8JJIa4ORZAwFi55fSLftBKGOm7NaHVz5cqtw8Hp4TGHdxSeuuH5HHibf8Us
+         FVAjbdMQGxYSRc4vgLWaHyzs3lOMZWv0tCvsoxva/tRNP5cZ2CvwSNH8nY+N7+mDrEhL
+         EL/ZUAVwGfspgly/859IB9b0B+SvnSOvXBLGlHirL3eN3OBhqj7B/zUJ7eGoWyeIekNr
+         ULS4toBHfnm+imITPGeRea+JZisF4NgAFOexG7k1Wu8ysNxWaa3NTayI7zPLVPkRLRK7
+         3sPoQbJK8k0oMB7frF6pMgW/ZcKH6vf6Nqsef0FnvIYEW/uGOxll68NqR/PZueaIA73l
+         9K3g==
+X-Gm-Message-State: AC+VfDy8gdQzXLomZCccz+IDntpTOlbWIqBeCSFkxcMHbabLazWAhOTA
+        RYnse0ufGxany/oJ3/qodjo=
+X-Google-Smtp-Source: ACHHUZ4QF2JwPYLHFWHCVTLi2c0EzFmHWCbSSwBGXI/vFZK+Deo05KCNHg8C3rqdvl6/JlCBlnXrgw==
+X-Received: by 2002:a17:90b:1e4b:b0:24e:1f5:2e05 with SMTP id pi11-20020a17090b1e4b00b0024e01f52e05mr37999296pjb.13.1684221820806;
+        Tue, 16 May 2023 00:23:40 -0700 (PDT)
+Received: from Gentoo (n220246252240.netvigator.com. [220.246.252.240])
+        by smtp.gmail.com with ESMTPSA id fz5-20020a17090b024500b00252d960a8dfsm933923pjb.16.2023.05.16.00.23.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 00:23:40 -0700 (PDT)
+Date:   Tue, 16 May 2023 15:23:33 +0800
+From:   Jianhua Lu <lujianhua000@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [RESEND,PATCH 1/3] arm64: dts: qcom: sm8250-xiaomi-elish-boe:
+ fix panel compatible
+Message-ID: <ZGMvdfY28gNofo2C@Gentoo>
+References: <20230516062657.28616-1-lujianhua000@gmail.com>
+ <912d7db5-3bb2-cbc6-ed98-eb1dd40f9fbd@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v14 6/8] arm64: dts: Add AMD Pensando Elba SoC support
-Content-Language: en-US
-To:     Brad Larson <blarson@amd.com>, linux-arm-kernel@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-spi@vger.kernel.org, adrian.hunter@intel.com,
-        alcooperx@gmail.com, andy.shevchenko@gmail.com, arnd@arndb.de,
-        brendan.higgins@linux.dev, briannorris@chromium.org,
-        catalin.marinas@arm.com, conor+dt@kernel.org, davidgow@google.com,
-        gsomlo@gmail.com, gerg@linux-m68k.org, hal.feng@starfivetech.com,
-        hasegawa-hitomi@fujitsu.com, j.neuschaefer@gmx.net, joel@jms.id.au,
-        kernel@esmil.dk, krzk@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        lee.jones@linaro.org, broonie@kernel.org, p.zabel@pengutronix.de,
-        rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org,
-        fancer.lancer@gmail.com, skhan@linuxfoundation.org,
-        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
-        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
-        vaishnav.a@ti.com, walker.chen@starfivetech.com, will@kernel.org,
-        zhuyinbo@loongson.cn, devicetree@vger.kernel.org
-References: <20230515181606.65953-1-blarson@amd.com>
- <20230515181606.65953-7-blarson@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230515181606.65953-7-blarson@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <912d7db5-3bb2-cbc6-ed98-eb1dd40f9fbd@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 20:16, Brad Larson wrote:
-> Add AMD Pensando common and Elba SoC specific device nodes
+On Tue, May 16, 2023 at 09:01:35AM +0200, Krzysztof Kozlowski wrote:
+> On 16/05/2023 08:26, Jianhua Lu wrote:
+> > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > The bindings expect "novatek,nt36523" fallback in the panel compatible:
+> > 
+> >   sm8250-xiaomi-elish-boe.dtb: panel@0: compatible: ['xiaomi,elish-boe-nt36523'] is too shor
+> > 
+> > Fixes: 51c4c2bd6f31 ("arm64: dts: qcom: sm8250-xiaomi-elish-boe: Add mdss and dsi panel")
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 > 
-> Signed-off-by: Brad Larson <blarson@amd.com>
-> ---
+> I think there is no need to resend my patches. They are marked in
+> patchwork. Unless I am not responsive to something, please rather avoid
+> doing that.
+
+Acked
 > 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+> Best regards,
+> Krzysztof
+> 
