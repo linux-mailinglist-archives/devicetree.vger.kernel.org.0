@@ -2,141 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 810327049E4
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:58:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30CB97049E9
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:59:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232209AbjEPJ6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 05:58:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34880 "EHLO
+        id S231567AbjEPJ7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 05:59:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232198AbjEPJ6a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:58:30 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C77FC0;
-        Tue, 16 May 2023 02:58:29 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C71396374F;
-        Tue, 16 May 2023 09:58:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25618C433D2;
-        Tue, 16 May 2023 09:58:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684231108;
-        bh=0JLTG2Li8PG49+9IlKqTZkMJijzI0L6DUEsV5TZGNU0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=kNZzqvm2N+ME5VpzfirrvTTWqlFxeUsBqC1EZNijP2dNem8CSY75XJX7oy2UWoxPe
-         ldI7Ncnyz6Nwy38BrjpLpQGlT5tPvvXatHT4T5xZE+M75ATCjCryS7C+R6Me1fTHzj
-         Hm8AFU821OuXFKqN7fg95WSq/83veBUWJhmy06vdpqmlxeAcnNXB0D7t9RNgmqOGLk
-         SlNjAWF5XXz5eE0I8FnvIx381EoRJNrLayS3UqtWnJcERB2pr1quQkjNF+eSEwLdp5
-         C9pgXlQuqSqBTRyTJX9XU9Ft0fx8XXvBjWqOYe8wdYhusDfouKAf3RrxJ9Z5laWQx/
-         qJTmK8kMijSFg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1pyrRp-00FUTg-H6;
-        Tue, 16 May 2023 10:58:25 +0100
-Date:   Tue, 16 May 2023 10:58:24 +0100
-Message-ID: <86edngmwcf.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231907AbjEPJ7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:59:07 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD6DFCE;
+        Tue, 16 May 2023 02:58:56 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9659c5b14d8so2337620366b.3;
+        Tue, 16 May 2023 02:58:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684231135; x=1686823135;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jr3MXx57w4YpAO+hjBNpT5SRrLAOBG6WW73leQUyFhw=;
+        b=qn6NM7SGUu3WluUF2zVY2jas75t5AKK9rCaPDSq69XBafRxM3rWEjoBWZatXh2qBuf
+         fVaA5mzHG6B6Juumm/S8ZqNpgGTl9GNetFogdYzDpZ2EbXjd1rFeU64z7FG31OhRgbSH
+         aKWELHoQri3EZsgqxDUtN1IVE2Py8TN6Wjg8bIfL8Zbodzq44mukfFHjs8lC5ZYkooio
+         2YHOkeJbvGow8t6KtYj0ru/XHwLX1uiRLZPcPwj6Zw9C+RIviWGAVh8awlgHXZl1hWIB
+         1f9tisEegoLnC0E2S8lkI0VLbjRdBe4DA9lksFyQuqdmmy2sGDIFYTVEVCSbyZY3OcJX
+         ULmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684231135; x=1686823135;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jr3MXx57w4YpAO+hjBNpT5SRrLAOBG6WW73leQUyFhw=;
+        b=j33clAenQ9VY8CkNmKvKKaJOrzDlTAypN5VF9WLm6jHxf8jYrcQoP0SC87H4UkXqFT
+         IOurltfH4+yrAe8CjSESsErEu+A0lDuoKIIzryYqnHm736NbrswJxdZ6kspOPgt64rrz
+         rCRHifNVlaMaj9tW3E4XstD075Wi+0eR8pMLepxTv62AvUOXnJsdB4D6l3IQdjnsOBrZ
+         VjVKnGuuLONQPDlgiuEUmQZu2hT7q6wJMvxE7VbVXe+RXYpky8yMZwU6Bi0GWIPONgIp
+         wWXGgKc+SYL9KINyRpWDDJwZgvRpG5NjGBAiR8qycu542/TBeyfEXgxtoaUVse1aDrl1
+         jsHA==
+X-Gm-Message-State: AC+VfDx7MPFetIQF6gkuN9QsJyTFXSrT2IR/MOfD+5hXl0i2hZ0Mkkzg
+        1hmBijXVId9iK7K23ThSiBQ=
+X-Google-Smtp-Source: ACHHUZ7naI+7G3JO4RlGLEqCdIdN/s4kjjOozxUIBs7fNJvbKl7V/TPTAxPRTEgJ3HCoJoQagxHJRA==
+X-Received: by 2002:a17:906:974b:b0:965:ff38:2fb3 with SMTP id o11-20020a170906974b00b00965ff382fb3mr34469287ejy.74.1684231134948;
+        Tue, 16 May 2023 02:58:54 -0700 (PDT)
+Received: from localhost (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id jx6-20020a170907760600b00958434d4ecesm11009006ejc.13.2023.05.16.02.58.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 02:58:54 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, wenst@chromium.org,
-        yidilin@chromium.org, Tinghan Shen <tinghan.shen@mediatek.com>,
-        jwerner@chromium.org, Weiyi Lu <weiyi.lu@mediatek.com>,
-        Ben Ho <Ben.Ho@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Enric Balletbo i Serra <eballetbo@kernel.org>,
-        =?UTF-8?B?Ik7DrWNvbGFzIEYuIFIuIEEuIFByYWRvIg==?= 
-        <nfraprado@collabora.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/5] irqchip/gic-v3: Disable pseudo NMIs on Mediatek Chromebooks w/ bad FW
-In-Reply-To: <20230515131353.v2.cover@dianders>
-References: <20230515131353.v2.cover@dianders>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: dianders@chromium.org, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, allen-kh.cheng@mediatek.com, linux-mediatek@lists.infradead.org, eddie.huang@mediatek.com, hsin-hsiung.wang@mediatek.com, angelogioacchino.delregno@collabora.com, wenst@chromium.org, yidilin@chromium.org, tinghan.shen@mediatek.com, jwerner@chromium.org, weiyi.lu@mediatek.com, Ben.Ho@mediatek.com, seiya.wang@mediatek.com, conor+dt@kernel.org, eballetbo@kernel.org, nfraprado@collabora.com, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/3] arm64: tegra: Support Jetson Orin Nano Developer Kit
+Date:   Tue, 16 May 2023 11:58:47 +0200
+Message-Id: <20230516095850.2426604-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 May 2023 21:13:49 +0100,
-Douglas Anderson <dianders@chromium.org> wrote:
-> 
-> As talked about in the bindings patch included in this series
-> ("dt-bindings: interrupt-controller: arm,gic-v3: Add quirk for
-> Mediatek SoCs w/ broken FW"), many Mediatek-based Chromebooks shipped
-> with firmware that doesn't properly save/restore some GICR
-> registers. This causes the system to crash if "pseudo NMIs" are turned
-> on.
-> 
-> This series makes sure that we never allow turning on "pseudo NMIs" if
-> we are running with the problematic firmware.
-> 
-> The patches in this series can land in any order and can go through
-> entirely different trees. None of the patches are harmful on their
-> own, but to get things fixed we need all of them.
-> 
-> v2 fixes the quirk name and also moves the quirk out of the SoC.dtsi
-> file and into the Chromebook file. This, unfortunately, means that
-> mt8186-based Chromebooks are no longer handled since they don't appear
-> to be upstream yet. :(
-> 
-> Changes in v2:
-> - "when CPUs are powered" => "when the GIC redistributors are..."
-> - Changed "Fixes" tag.
-> - Moved from mt8183.dtsi to mt8183-kukui.dtsi
-> - Moved from mt8192.dtsi to mt8192-asurada.dtsi
-> - Moved from mt8195.dtsi to mt8195-cherry.dtsi
-> - mediatek,gicr-save-quirk => mediatek,broken-save-restore-fw
-> 
-> Douglas Anderson (5):
->   dt-bindings: interrupt-controller: arm,gic-v3: Add quirk for Mediatek
->     SoCs w/ broken FW
->   irqchip/gic-v3: Disable pseudo NMIs on Mediatek devices w/ firmware
->     issues
->   arm64: dts: mediatek: mt8183: Add mediatek,broken-save-restore-fw to
->     kukui
->   arm64: dts: mediatek: mt8192: Add mediatek,broken-save-restore-fw to
->     asurada
->   arm64: dts: mediatek: mt8195: Add mediatek,broken-save-restore-fw to
->     cherry
-> 
->  .../interrupt-controller/arm,gic-v3.yaml      |  6 ++++++
->  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  4 ++++
->  .../boot/dts/mediatek/mt8192-asurada.dtsi     |  4 ++++
->  .../boot/dts/mediatek/mt8195-cherry.dtsi      |  4 ++++
->  drivers/irqchip/irq-gic-common.c              |  8 ++++++--
->  drivers/irqchip/irq-gic-common.h              |  1 +
->  drivers/irqchip/irq-gic-v3.c                  | 20 +++++++++++++++++++
->  7 files changed, 45 insertions(+), 2 deletions(-)
+From: Thierry Reding <treding@nvidia.com>
 
-I'll take the first two patches as fixes. The rest can be merged via
-the soc tree as required.
+Hi,
 
-	M.
+this series documents the compatible strings for the Jetson Orin Nano
+module and the corresponding developer kit.
+
+Changes in v2:
+- drop patch that documents extra SKUs for Orin NX
+- drop compatible strings for extra Nano SKUs
+
+Thierry Reding (3):
+  dt-bindings: tegra: Document Jetson Orin Nano
+  dt-bindings: tegra: Document Jetson Orin Nano Developer Kit
+  arm64: tegra: Support Jetson Orin Nano Developer Kit
+
+ Documentation/devicetree/bindings/arm/tegra.yaml   |  9 +++++++++
+ arch/arm64/boot/dts/nvidia/Makefile                |  2 ++
+ .../arm64/boot/dts/nvidia/tegra234-p3767-0005.dtsi | 14 ++++++++++++++
+ .../dts/nvidia/tegra234-p3768-0000+p3767-0005.dts  | 13 +++++++++++++
+ 4 files changed, 38 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3767-0005.dtsi
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0005.dts
 
 -- 
-Without deviation from the norm, progress is not possible.
+2.40.1
+
