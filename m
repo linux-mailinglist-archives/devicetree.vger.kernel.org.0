@@ -2,65 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D8C2704F21
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:22:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADCD2704F29
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:23:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233500AbjEPNWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:22:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36672 "EHLO
+        id S233504AbjEPNX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:23:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233071AbjEPNWw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:22:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBF833A9D;
-        Tue, 16 May 2023 06:22:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S232619AbjEPNX6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:23:58 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 157553AA2;
+        Tue, 16 May 2023 06:23:57 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 57D7063A0E;
-        Tue, 16 May 2023 13:22:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAC46C4339C;
-        Tue, 16 May 2023 13:22:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684243370;
-        bh=+sPUthy7aIz73vxHLbcpB1b2jpbwC7HJrTOIMZMo2dE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uPYOuK4MsGdqbnn/xMDKkUnZ4yYcIuyBc3wmFOmWi0M1zulETSYFuwtqUCrDRWI5S
-         wVgIQoGalPhgXBR/I5WssTLKmq6aTcrsCJUtSooWl34gqA1lzOk4MpXdwpQp4uI1ix
-         UxdzERwnISLKF24Av3xmoQrl0qjZ57o4EfWErx8mzgrIZ5TrmzYI5ABlT5e+uuy5rl
-         m5ShpiTBT8U6M4bVGmzempnsCwRwUYC+UX8Dwlya7GJyyjdUslWoAv5UVFoYyEhMEI
-         2k0EvrnUPDzM8TriF9OikZq4XzzY8CwIj/Z+UQn841ylHadecHfO4QMMpUByPVPigy
-         Qi/cGvspkIySw==
-Date:   Tue, 16 May 2023 18:52:46 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linuxppc-dev@lists.ozlabs.org,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v14 06/15] clk: Add Lynx 10G SerDes PLL driver
-Message-ID: <ZGODpt7MARD47us7@matsya>
-References: <20230413160607.4128315-1-sean.anderson@seco.com>
- <20230413160607.4128315-7-sean.anderson@seco.com>
- <ZFi9t84UoIfUyHhi@matsya>
- <1012f955-180e-0013-cc13-1da10991b5f5@seco.com>
- <ZFpD4I2LK9YIQQat@matsya>
- <d230c641-7270-c768-fd48-9012c01621b2@seco.com>
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B97536603232;
+        Tue, 16 May 2023 14:23:54 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1684243435;
+        bh=foW1kt1JaJSONbMV/WAPg236KARkkf+HweAeVo7iH3E=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Fx2dxpK6g4uEwDVMTqdP1RirESsHS5dLWG1M9Cnmjks7UjrIugcMNC+bof40Zar8L
+         GuS1lxWx4mSF59WVNnaWk315b8G5+a1p0sltV7TnE0vQEBFfBVZsMSZyN7QilnV1E5
+         ukf8yX9w+wRoLeRGogBV8uFBNloM5rVu/r4aLX2yxj6uVAIdRUme1Du4Hubu5hMviq
+         WyqFClCkEyJ3WZrgrkTEUR3yTIIVkvyTJeMC+1MhrYYF2Sbyc+/wvcx4CcINFEEnBG
+         PH1ARNUUT8P62hXZ/1gHTf4O4h8uIrWiwjdWDcn1NXe89lbJ4FWRH0TanNjwpPikMZ
+         pFTe8dju68oMQ==
+Message-ID: <3cc683e7-28aa-7b6e-1499-3aca953294cc@collabora.com>
+Date:   Tue, 16 May 2023 15:23:52 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d230c641-7270-c768-fd48-9012c01621b2@seco.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v2 2/5] irqchip/gic-v3: Disable pseudo NMIs on Mediatek
+ devices w/ firmware issues
+Content-Language: en-US
+To:     Douglas Anderson <dianders@chromium.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        wenst@chromium.org, yidilin@chromium.org,
+        Tinghan Shen <tinghan.shen@mediatek.com>, jwerner@chromium.org,
+        Weiyi Lu <weiyi.lu@mediatek.com>, Ben Ho <Ben.Ho@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        linux-kernel@vger.kernel.org
+References: <20230515131353.v2.cover@dianders>
+ <20230515131353.v2.2.I88dc0a0eb1d9d537de61604cd8994ecc55c0cac1@changeid>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230515131353.v2.2.I88dc0a0eb1d9d537de61604cd8994ecc55c0cac1@changeid>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,48 +72,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09-05-23, 11:26, Sean Anderson wrote:
-> On 5/9/23 09:00, Vinod Koul wrote:
-> > On 08-05-23, 11:31, Sean Anderson wrote:
-> >> On 5/8/23 05:15, Vinod Koul wrote:
-> > 
-> >> >> +int lynx_clks_init(struct device *dev, struct regmap *regmap,
-> >> >> +		   struct clk *plls[2], struct clk *ex_dlys[2], bool compat);
-> >> > 
-> >> > so you have an exported symbol for clk driver init in phy driver header?
-> >> > can you please explain why..?
-> >> 
-> >> So that it can be called at the appropriate time during the phy's probe function.
-> >> 
-> >> This is really an integral part of the phy driver, but I was directed to split it
-> >> off and put it in another subsystem's directory.
-> > 
-> > That is right clock should be belong to clk driver. IIUC the hardware is
-> > phy along with clocks and you are doing the clk init. I think that may
-> > not be correct model, you should really have a device tree node to
-> > represent the clock and the phy node
-> > 
-> > 
-> > What stops this from being modelled as it is in the hardware?
+Il 15/05/23 22:13, Douglas Anderson ha scritto:
+> Some Chromebooks with Mediatek SoCs have a problem where the firmware
+> doesn't properly save/restore certain GICR registers. Newer
+> Chromebooks should fix this issue and we may be able to do firmware
+> updates for old Chromebooks. At the moment, the only known issue with
+> these Chromebooks is that we can't enable "pseudo NMIs" since the
+> priority register can be lost. Enabling "pseudo NMIs" on Chromebooks
+> with the problematic firmware causes crashes and freezes.
 > 
-> It *is* modeled as it is in hardware. With just the serdes compatible,
-> we have all the information we need to create the clocks. So we do so.
-> There's no need for a separate device just to create four clocks.
+> Let's detect devices with this problem and then disable "pseudo NMIs"
+> on them. We'll detect the problem by looking for the presence of the
+> "mediatek,broken-save-restore-fw" property in the GIC device tree
+> node. Any devices with fixed firmware will not have this property.
 > 
-> These clocks cannot be used by any other device (except possibly by
-> putting a lane into test mode). So there is no benefit from making them
-> a separate device, except an increase in complexity due to ordering and
-> dynamic lookup. By doing things this way we know that either there was
-> an error or the clocks all exist, and the lifetime of the clocks matches
-> the serdes.
+> Our detection plan works because we never bake a Chromebook's device
+> tree into firmware. Instead, device trees are always bundled with the
+> kernel. We'll update the device trees of all affected Chromebooks and
+> then we'll never enable "pseudo NMI" on a kernel that is bundled with
+> old device trees. When a firmware update is shipped that fixes this
+> issue it will know to patch the device tree to remove the property.
+> 
+> In order to make this work, the quick detection mechanism of the GICv3
+> code is extended to be able to look for properties in addition to
+> looking at "compatible".
+> 
+> Reviewed-by: Julius Werner <jwerner@chromium.org>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
-Okay that does makes sense.
+I don't like firmware removing properties from my devicetrees and I'd like this
+issue to get addressed in another way (use a scratch register? and check it in
+Linux drivers to determine if the issue is not present: if scratch contains BIT(x),
+do not parse the quirk) but that's a different discussion which is a bit out of
+context for this patch, so:
 
-In that case why should this not be in the phy driver itself. There are
-already few examples og phy drivers having inbuild clk where is makes
-sense. You register the clk_ops as part of phy driver
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Thanks
-
--- 
-~Vinod
