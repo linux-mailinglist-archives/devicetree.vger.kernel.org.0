@@ -2,56 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AE77704589
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 08:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF3D27045A2
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 08:57:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbjEPGvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 02:51:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57284 "EHLO
+        id S229967AbjEPG46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 02:56:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229809AbjEPGu7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 02:50:59 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A75746BB
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 23:50:32 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pyoVl-0000di-HX; Tue, 16 May 2023 08:50:17 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pyoVi-000XiK-M0; Tue, 16 May 2023 08:50:14 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1pyoVi-004v4C-3L; Tue, 16 May 2023 08:50:14 +0200
-Date:   Tue, 16 May 2023 08:50:13 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S230054AbjEPG45 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 02:56:57 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 876484C35
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 23:56:23 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50bc3a2d333so20587380a12.0
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 23:56:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1684220181; x=1686812181;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0t5l+WauKFuSjKN0DdhbFlPP/4Myn0FEo7zOmra1qKg=;
+        b=UXz/sN7MXVAuoYA7DL4FEkvX/rwkbYxW6271pyYaL7b3Qm4qlzvUMpt0zBef7KzXIN
+         Ya36IU4CWnHUrq7UzUHCsQk/BDyE9c7Vhcnet0/8PwM7xavEPl+FXfgnjjQfuNLnVHel
+         H3zBRHsAAsbrrLrGMtJHjkXWS4xQXe2lW6E4eIFrdBznJQF9D9Auqpxn7BMq+WnnBPuN
+         JJxAdIPdQ2uiQnVST5MgC7Wh0wHC+1yPR+5whoItEc2xf+X+F0zCo3vXhFRk6+jxUg5y
+         c9+WhYW1aR9vG0CffMQoAULgP82qfHp1givdTTE+MV3D8OPrhEm2Oz9AixfJVF5CsR9x
+         ZY3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684220181; x=1686812181;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0t5l+WauKFuSjKN0DdhbFlPP/4Myn0FEo7zOmra1qKg=;
+        b=i28yQMeR+zgqNx2gVUuLbcqyMdntY5rXN1cZpim+5Fk/ht9XurDIfjB6SteCCGO93/
+         RjasJWenS40tjcMLOpEoW58O83GZK+6MTRyjAH0Wabyuu+KmGyHJZnDVgL2BzWNy8y/q
+         WaVNLpNa1/0lf/qR8nr1xjWEYw7MBYKAQRu0BS5B+x0mbbLrxOUGLC2h3A0D6acbHIZT
+         lXLjRG3Da7+tAayCKKiArgdSPVDRTv45K2lj7WzPKfkSHju5BgE6+5+fhz4VGsskyQLg
+         y6AqT2iOWcBgKu/B8jjX+pttt2hfEBRJcg9IxsJk+8MW+X6pjra0nZjsVrf6bU6RnLrH
+         +v6g==
+X-Gm-Message-State: AC+VfDxfCXDHOB2XbU2SCJmhetauAWHopDk730wWkWpiFfnop99lM7PF
+        D8vAg9n5Z61nez506lSEshmcbQ==
+X-Google-Smtp-Source: ACHHUZ4P2axEyTdCQdOTVnti1mbrBL9eebGt4t6j0dr1R06YfzyRk5KLpVwOXX4YiQOcRjcejXKgdw==
+X-Received: by 2002:a17:907:788:b0:96a:19d8:f082 with SMTP id xd8-20020a170907078800b0096a19d8f082mr23591445ejb.25.1684220181246;
+        Mon, 15 May 2023 23:56:21 -0700 (PDT)
+Received: from [192.168.183.139] ([41.66.96.127])
+        by smtp.gmail.com with ESMTPSA id wi21-20020a170906fd5500b0094edbe5c7ddsm10651654ejb.38.2023.05.15.23.56.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 May 2023 23:56:20 -0700 (PDT)
+From:   Luca Weiss <luca.weiss@fairphone.com>
+Date:   Tue, 16 May 2023 08:56:14 +0200
+Subject: [PATCH] arm64: dts: qcom: sm6350: Move wifi node to correct place
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230516-sm6350-order-v1-1-5c3b7c4cd761@fairphone.com>
+X-B4-Tracking: v=1; b=H4sIAA0pY2QC/x2NQQ6CMBAAv0L27JLSQlG+YjyUdit7sJDdxGgIf
+ 7d4nEwms4OSMClMzQ5Cb1ZeS4Xu0kBcQnkScqoM1lhnhs6jvrwbDK6SSDDfwtX5FEfbj1CTOSj
+ hLKHE5Yzy1qNvXfs93SaU+fNf3R/H8QPHZ5zvegAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        John Crispin <john@phrozen.org>
-Subject: Re: [PATCH v3 0/2] Support PWM on MediaTek MT7981
-Message-ID: <20230516065013.u2oqdonovdckuvop@pengutronix.de>
-References: <cover.1682007088.git.daniel@makrotopia.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="so7atcmfgma6sw4o"
-Content-Disposition: inline
-In-Reply-To: <cover.1682007088.git.daniel@makrotopia.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,56 +78,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Somehow wifi was placed further up in the file than where it should be.
+Move it down so the nodes are sorted by reg again.
 
---so7atcmfgma6sw4o
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 44 ++++++++++++++++++------------------
+ 1 file changed, 22 insertions(+), 22 deletions(-)
 
-Hello,
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index 18c4616848ce..4dffd7974fa3 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -1891,28 +1891,6 @@ frame@17c2d000 {
+ 			};
+ 		};
+ 
+-		wifi: wifi@18800000 {
+-			compatible = "qcom,wcn3990-wifi";
+-			reg = <0 0x18800000 0 0x800000>;
+-			reg-names = "membase";
+-			memory-region = <&wlan_fw_mem>;
+-			interrupts = <GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>;
+-			iommus = <&apps_smmu 0x20 0x1>;
+-			qcom,msa-fixed-perm;
+-			status = "disabled";
+-		};
+-
+ 		apps_rsc: rsc@18200000 {
+ 			compatible = "qcom,rpmh-rsc";
+ 			label = "apps_rsc";
+@@ -2010,6 +1988,28 @@ cpufreq_hw: cpufreq@18323000 {
+ 			#freq-domain-cells = <1>;
+ 			#clock-cells = <1>;
+ 		};
++
++		wifi: wifi@18800000 {
++			compatible = "qcom,wcn3990-wifi";
++			reg = <0 0x18800000 0 0x800000>;
++			reg-names = "membase";
++			memory-region = <&wlan_fw_mem>;
++			interrupts = <GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>;
++			iommus = <&apps_smmu 0x20 0x1>;
++			qcom,msa-fixed-perm;
++			status = "disabled";
++		};
+ 	};
+ 
+ 	timer {
 
-On Fri, Apr 21, 2023 at 12:22:20AM +0100, Daniel Golle wrote:
-> Add support for PWM on the MediaTek MT7981 to pwm-mediatek.c as well
-> as new mediatek,mt7981-pwm compatible string to the existing bindings.
->=20
-> Changes since v2:
->  * improve commit message, adding that alphabetic order is restored
->=20
-> Changes since v1:
->  * use pointer to reg_offset instead of u8 reg_ver and if-else
->=20
-> Daniel Golle (2):
->   dt-bindings: pwm: mediatek: Add mediatek,mt7981 compatible
->   pwm: mediatek: Add support for MT7981
->=20
->  .../bindings/pwm/mediatek,mt2712-pwm.yaml     |  1 +
->  drivers/pwm/pwm-mediatek.c                    | 39 +++++++++++++++----
->  2 files changed, 32 insertions(+), 8 deletions(-)
+---
+base-commit: f1fcbaa18b28dec10281551dfe6ed3a3ed80e3d6
+change-id: 20230516-sm6350-order-f9a836dc7247
 
-whole series looks good to me,
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---so7atcmfgma6sw4o
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmRjJ6UACgkQj4D7WH0S
-/k6yuwf/ZduV3pWBQmvuxxeH3faEOg2E0ttlDDUG/4fkQeBgASYpDAQvapTJqj/o
-ZIOoIjdBS5X5WbYjl0wshrWc79B6bA/5TUrQxLjc8HRFfN4Q8+Ia+LQH10w/mBND
-ShHmmb5CrVwVUa2t6/zrkUoXRUAM1pU+UM0XDvGHBFxRruPcUb8yuU0oEmgFU0ZQ
-sJz9teGh1jhvxClHVso2erPoz+l64KNc7XSSyR6lwfMm9sMYnKQFvOyrW/LUOHeu
-lkacUxGWTphramLuhvcjatEHqpUrWrvhahwx2k4C0f3aOLZtRTROsZ58xtFtK4Pt
-i725zuKbzW6luWcTX+Ac3O8HlFME6Q==
-=o+7Q
------END PGP SIGNATURE-----
-
---so7atcmfgma6sw4o--
