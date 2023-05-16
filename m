@@ -2,126 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79DE2705090
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 16:25:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C53DF7050A0
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 16:26:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233455AbjEPOZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 10:25:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34564 "EHLO
+        id S229895AbjEPO0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 10:26:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233193AbjEPOZn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 10:25:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A823772BD;
-        Tue, 16 May 2023 07:25:39 -0700 (PDT)
+        with ESMTP id S233193AbjEPO0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 10:26:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D98D47ED9
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 07:25:59 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 09A7D63AB8;
-        Tue, 16 May 2023 14:25:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3223DC4339B;
-        Tue, 16 May 2023 14:25:37 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2AA0B63AC6
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 14:25:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3267BC433A4;
+        Tue, 16 May 2023 14:25:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684247138;
-        bh=56JVyKy+1Eo3iWQR1rFM2KRacIvVANlyt7QmXSsxXog=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Sw7ItSmQIbLslllD7oBOkdF9j/FlOj5dsXDqMdAVYTGXVePqgKGiqHLCWvHm2ORRr
-         6kGi23wPgbqtWH++GyKPDbfnOGJYRSItd42GnFFL9NiTCxbS5MlCYoaE7cja5CINAl
-         MBeAVXmYMLL0CaHOeAmMhwc3cfLmYm36VluT5zcF9NizSc+259zobJFUL5N3gEno4X
-         9u5F6216HG+frqCDI12sd/qoLpfPnHwDmm/KK8Xl+b3WsdT+JxGuGo+K5vAgHOJtRQ
-         LNksR965SsJyjo9psN0LiFLlQFkAsgnNiK5I91CtB8U03VZ1stI7eAzP3ggkislL7X
-         wgwUE3IVrbIFA==
-Date:   Tue, 16 May 2023 23:25:33 +0900
+        s=k20201202; t=1684247158;
+        bh=Gd1J584vmP39A3tV/FU9gv4hQNH+NXQWlWPp70Q5c6Q=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=WAgoEKhgI+kFK9TpvfCF/MtW15iIbx7X38x93AFMQkh1dmfeAQaAzJDBQZxHGyj98
+         zxdyKk+rxrDAuQ45wC+If3DpEY38UXAp4MqEqRclWJPIqH9YFyYRHgeQK6dvj3TBP3
+         Q6YDBPzhLULS+KUy4xOV3dO9GsoIRxMHxZnkpiBCKMVzoqz56OA5KYYgKCY9b9IL15
+         +1XgyvSeqxyIrcWU6dGSi9ryhYwv2YgwJXsKXbx52XNp8tTIfPWRgpnZeWl+X8ePhf
+         CdS2SlxmdjEfD+2BoXWBnj6pEOvwW2idox4yiPRDBjtYRADcz2KZREwlD3OIIFYM2A
+         nQomTo+lIqGUQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     Michal Simek <michal.simek@amd.com>
-Cc:     piyush.mehta@amd.com, nava.kishore.manne@amd.com,
-        sai.krishna.potthuri@amd.com, shubhrajyoti.datta@amd.com,
-        vishal.sagar@amd.com, kalyani.akula@amd.com,
-        bharat.kumar.gogada@amd.com, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Damien Le Moal <dlemoal@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Jolly Shah <jolly.shah@xilinx.com>,
+To:     devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Moritz Fischer <mdf@kernel.org>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Srinivas Neeli <srinivas.neeli@amd.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tom Rix <trix@redhat.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-fpga@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-ide@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: xilinx: Switch xilinx.com emails to amd.com
-Message-ID: <ZGOSXZs3H0wNxoOn@finisterre.sirena.org.uk>
-References: <f5b2bd1e78407e4128fc8f0b5874ba723e710a88.1684245058.git.michal.simek@amd.com>
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org
+In-Reply-To: <20230514225243.777504-1-marex@denx.de>
+References: <20230514225243.777504-1-marex@denx.de>
+Subject: Re: [PATCH] ASoC: dt-bindings: ssm2518: Convert to dtschema
+Message-Id: <168424715490.430742.6586457844648461597.b4-ty@kernel.org>
+Date:   Tue, 16 May 2023 23:25:54 +0900
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fdGB4dh9xyA/RRNs"
-Content-Disposition: inline
-In-Reply-To: <f5b2bd1e78407e4128fc8f0b5874ba723e710a88.1684245058.git.michal.simek@amd.com>
-X-Cookie: Avoid contact with eyes.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-bfdf5
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 15 May 2023 00:52:43 +0200, Marek Vasut wrote:
+> Convert the ADI SSM2518 audio CODEC bindings to DT schema.
+> 
+> 
 
---fdGB4dh9xyA/RRNs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Applied to
 
-On Tue, May 16, 2023 at 03:51:08PM +0200, Michal Simek wrote:
-> @xilinx.com is still working but better to switch to new amd.com after
-> AMD/Xilinx acquisition.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Acked-by: Mark Brown <broonie@kernel.org>
+Thanks!
 
---fdGB4dh9xyA/RRNs
-Content-Type: application/pgp-signature; name="signature.asc"
+[1/1] ASoC: dt-bindings: ssm2518: Convert to dtschema
+      commit: 20ef7f2139ab81c9163addb2da08f2630fdc34db
 
------BEGIN PGP SIGNATURE-----
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRjkl0ACgkQJNaLcl1U
-h9DxbAf+IuWAJWHJfAChVJ2LTNEpiPn0Mmuqlf3KjNCljNWlid6xXrK7PpDqYv57
-CudgrzknJ/lP9snwYZ91h2fY4sOq/WBLUY1lZlxH6sracfVVk3TkIUW5UKZXevF3
-PkB6wC87xozR2QVCGSUGz99xymbPuCE6GOiQ5fY9/vXNvXtKHCtQiUKukggj8Iaz
-jSMJB2YZutlpAIumPt4YIDaAbEQtw0Qq56CDc0/A3m9creP1/088rm2okN2cPGI5
-8Ubhinc4INz/rXmxXOo6HULZ9ym6Bq4Lc0uE9fpFVnY2dXIVou+bRC7ilmxrPMmU
-xecoraefCIfYW/zmw3mnSGKzXaf30A==
-=tMxy
------END PGP SIGNATURE-----
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
---fdGB4dh9xyA/RRNs--
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
