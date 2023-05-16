@@ -2,63 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0343F705406
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:36:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EC4D705407
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:36:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229831AbjEPQg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 12:36:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37760 "EHLO
+        id S230296AbjEPQga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 12:36:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229918AbjEPQgV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:36:21 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274A7AD2D
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:35:56 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-6438d95f447so9983652b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:35:56 -0700 (PDT)
+        with ESMTP id S229918AbjEPQg1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:36:27 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8970FD04B
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:36:00 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-52079a12451so10357311a12.3
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:36:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20221208.gappssmtp.com; s=20221208; t=1684254955; x=1686846955;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MtjTsM1mEuCx1mqdMrVR2DcjL7gurSFESB57j4R5kX8=;
-        b=rcgpt9POa2STf+Dn/QCe97IruTS7MNOkeO0RKWk0bqI80eCeU+e4YMmerDnE+6SGQR
-         Ijueii/irgmFTJjef5fObBPDuBd3TyRNu3pUGaq4v9DTlH15qECJFEt73NDudR6jpdad
-         gAg53LG4/SVOXc70Clec/K1lUhRZenoCO0GGmPnqezdhFG3n1THR/FhcRD0/u6KBobSv
-         XPk8HtF4WgAWykUzUaltyiT90gM9gplLSpV/vognvnSD/OjkxiRhmSXzh5ds5nq9Mrmv
-         9vKDyJKnddiMYhY1AjWcjMxSFJmXZm3lNsbEl1cYgWTf3IJNLb5wCwT6cSEOMCRwd9sf
-         isfA==
+        d=edgeble-ai.20221208.gappssmtp.com; s=20221208; t=1684254959; x=1686846959;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FL6w8myWjgtb/S1SAOMcs3r/GDgQ5wlYAe3BUk1YfiA=;
+        b=xo2Pq9Dm6YX6qO5b/3CxpSD12kZaq2lWSCY9+3BZuJ10elTQOYqHSNRFp9DSBUcz9f
+         0ZznACPcsw8VuISCw9aoV9QoDhIJNvsL3NZ560SvvYl9qLRHiZlYnENELIaCpiGzfpon
+         n4ue6OevuZDmPuoxeveSHjRFabsCUvAQ8W+v9w6vWX5/Dg71LxNYr0jA2MjI7waCFx21
+         Km+/sVKX377ajnW7/3rF7BBcx4Q1XPm8d9s5DiL4xylCb+vLvClwMDxbGnaThyi1yV9Y
+         ID1dnI8FFOOKs53mKkx2atGkomlEyXlVZl7hGUygINDfsO4hrlmNoqcWZnM1ddxnsDiy
+         Qz0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684254955; x=1686846955;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MtjTsM1mEuCx1mqdMrVR2DcjL7gurSFESB57j4R5kX8=;
-        b=EW1KfbEgGKhNHNdEiK9vE7pY1FdMwV5aCe2V2n9RYZHGsiBxeG2X2sMyYFemgYj5Vc
-         KHHoPoLXEifKkzgRyR4NuIBZx1DyhOlpDSgj/nI2CTFuByrywWDXwGIhYAG13Xxc51Y+
-         AlJV9hSFxKgRmb4KXT9rh/RhaFI2N/ereK18YyUgbY/YOYquHKsHEQYD+bG/ozNXdAL1
-         e8niJpFgweI/sjqauv6NWKMpj8HCLG4U2zEC//iDnsQdIQwh8DS7o28enJg18soI3B/N
-         Ep7Z0o/WABaJx3wzP3x81N8i/0vL1QkmArShmZqr2WUylI9PNbrfKhgt00zmsihHm+Kf
-         NIrw==
-X-Gm-Message-State: AC+VfDzZf6rYPv1CcUN6HuwEU/arG/wkE4vcHi4hIEtRQTu1Dd26kXuJ
-        kfhAzcra4D9cMxj+4lXuRI7IWw==
-X-Google-Smtp-Source: ACHHUZ7TRgRmCwRk/OxbjWskDkXi/JZIDxgcWdtaggzPh9w/3ugpcpcbsaDgvzJ3wViiEFtVGr5HJQ==
-X-Received: by 2002:a05:6a00:248c:b0:647:e6d9:88c2 with SMTP id c12-20020a056a00248c00b00647e6d988c2mr35018625pfv.0.1684254955163;
-        Tue, 16 May 2023 09:35:55 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684254959; x=1686846959;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FL6w8myWjgtb/S1SAOMcs3r/GDgQ5wlYAe3BUk1YfiA=;
+        b=E3xE/eY24qR+2y77ftTot+5wO4q31/X3rkpfDYtUud0NxbSNjoLp4EReYXPTZeJv7i
+         lzExsVr7pOsoEnsibIDMSCM33q629NgWlo2ALB+z29Iw05CpJbcCnL5DLGRhhmM5XCoP
+         FGic2fZcTLJsL+d0IAWdDUJq32RkvXYVCQ9stYj6OzXMXQeFETJPFLQlEswsMFspFAki
+         Lr169FxDco5LrX8zh+0ncoKbcubVGmtHkIYKUjqXa/5hZFB5USJzgKPxhObgY2xs7gip
+         L7/wxkJS0jtzNRzzcUZlmEDg+/K4iKRsQ2KIkXtoZ0taWAjAKlijKQrOtpbo6fIIa6PO
+         gzjA==
+X-Gm-Message-State: AC+VfDy3Bq4srBsSgmtCAo14LnvN+Va0ByD75+/u3mr7/Apyxv6s7/UN
+        22zlu36tWp3EjP8KkzZHz0Ltfw==
+X-Google-Smtp-Source: ACHHUZ50CQ0KnsPob+V8BU0toQR5qpD2NM0Wp0w0TtlQvoiLtQGIvMUuuh0spaA/rYLyvGVP14aegA==
+X-Received: by 2002:a05:6a20:3943:b0:106:5915:e888 with SMTP id r3-20020a056a20394300b001065915e888mr8161656pzg.43.1684254959242;
+        Tue, 16 May 2023 09:35:59 -0700 (PDT)
 Received: from localhost.localdomain ([2405:201:c00a:a181:890:d993:6673:2242])
-        by smtp.gmail.com with ESMTPSA id u19-20020aa78393000000b00642f527cd28sm13686983pfm.33.2023.05.16.09.35.52
+        by smtp.gmail.com with ESMTPSA id u19-20020aa78393000000b00642f527cd28sm13686983pfm.33.2023.05.16.09.35.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 09:35:54 -0700 (PDT)
+        Tue, 16 May 2023 09:35:59 -0700 (PDT)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-rockchip@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH 1/4] dt-bindings: arm: rockchip: Add Edgeble Neural Compute Module 6B
-Date:   Tue, 16 May 2023 22:04:51 +0530
-Message-Id: <20230516163454.997736-1-jagan@edgeble.ai>
+Subject: [PATCH 2/4] arm64: dts: rockchip: Add Rockchip RK3588J
+Date:   Tue, 16 May 2023 22:04:52 +0530
+Message-Id: <20230516163454.997736-2-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230516163454.997736-1-jagan@edgeble.ai>
+References: <20230516163454.997736-1-jagan@edgeble.ai>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
@@ -69,39 +73,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neural Compute Module 6B(Neu6B) is a 96boards SoM-CB compute module
-based on Rockchip RK3588J from Edgeble AI.
+Rockchip RK3588J is the industrial-grade version of RK3588 SoC and
+is operated with -40 °C to +85 °C temparature.
 
-Edgeble Neural Compute Module 6B(Neu6B) IO board is an industrial
-form factor evaluation board from Edgeble AI.
-
-Neu6B needs to mount on top of this IO board in order to create complete
-Edgeble Neural Compute Module 6B(Neu6B) IO platform.
-
-This patch add dt-bindings for Edgeble Neu6 Model B SoM based IO board.
+Add rk3588j specific dtsi for adding rk3588j specific operating points
+and other changes to be add in future.
 
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
- Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3588j.dtsi | 7 +++++++
+ 1 file changed, 7 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588j.dtsi
 
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index ec141c937b8b..8a7fbcac87e6 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -102,6 +102,12 @@ properties:
-           - const: edgeble,neural-compute-module-6a     # Edgeble Neural Compute Module 6A SoM
-           - const: rockchip,rk3588
- 
-+      - description: Edgeble Neural Compute Module 6(Neu6) Model B SoM based boards
-+        items:
-+          - const: edgeble,neural-compute-module-6b-io  # Edgeble Neural Compute Module 6B IO Board
-+          - const: edgeble,neural-compute-module-6b     # Edgeble Neural Compute Module 6B SoM
-+          - const: rockchip,rk3588
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588j.dtsi b/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
+new file mode 100644
+index 000000000000..38b9dbf38a21
+--- /dev/null
++++ b/arch/arm64/boot/dts/rockchip/rk3588j.dtsi
+@@ -0,0 +1,7 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2022 Rockchip Electronics Co., Ltd.
++ *
++ */
 +
-       - description: Elgin RV1108 R1
-         items:
-           - const: elgin,rv1108-r1
++#include "rk3588.dtsi"
 -- 
 2.25.1
 
