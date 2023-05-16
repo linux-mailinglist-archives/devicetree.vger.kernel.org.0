@@ -2,65 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9383270445B
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 06:40:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7823B704483
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 07:19:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229908AbjEPEk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 00:40:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36726 "EHLO
+        id S229493AbjEPFS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 01:18:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229907AbjEPEkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 00:40:25 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E4731B6;
-        Mon, 15 May 2023 21:40:23 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34G4eAtd036050;
-        Mon, 15 May 2023 23:40:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684212010;
-        bh=1LjmViiYg6fMc2TmCquGg4k6WkFzHUPn3MDKb2YK4kI=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=W0U+vIbKaY1UXaysDx8u/tpU5HhtKanjykHOV5P7LPCFUOQuiwRdVakScY+k6jjuj
-         GR2pyaXt6Bi7ys+DQqO3sXnvjU0FOl9qUJzagjWLZyqpETuDaq607rVuMUkE6QIp1S
-         2+1Jb2U4YwR3ZKOBGGVGMELvps0CL3YlexzjrxQo=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34G4eA5R016356
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 15 May 2023 23:40:10 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 15
- May 2023 23:40:10 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 15 May 2023 23:40:10 -0500
-Received: from [172.24.145.61] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34G4e7d1125751;
-        Mon, 15 May 2023 23:40:07 -0500
-Message-ID: <dec4dc37-7e4f-6fae-b288-e1433ba640e3@ti.com>
-Date:   Tue, 16 May 2023 10:10:06 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        with ESMTP id S229538AbjEPFS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 01:18:58 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F12122D58;
+        Mon, 15 May 2023 22:18:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684214336; x=1715750336;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=egqYyhVRS1L7lwDvV6GjFPly9GSKnoKhi0d9c+3Ui+M=;
+  b=DZ+mwhYII35FMDrhCYEezTI21/ZRGPPWpsWqw2Wuic1jPOiHWDDZ2XLw
+   z3jx1Ofi/HvUcVVlS+PVzUtoy6Kfb7BwEHZ+yeLFWBnmbOfJg011eHXok
+   un0NmAHqYALJAC9K2/AeQ1DzU4fnJZDQsvnq9ZCW2Xm7zKXieyO8kGPCB
+   g96ZaQIpjIQEIOsITamXj5gp13UrhgY3eLsvMTdJ61oJh1sb5b4xCMZNH
+   FMTKN+onabDXwI08uUxBJyt9nLZUDaKjmNAVtgik40sXrgjkrmx04PN6F
+   DCZv8P94TnGiYU5HJT2/Xz4HOIxTYbKXRlR3BYD6RDPAWBTvL84RhjsQa
+   A==;
+X-IronPort-AV: E=Sophos;i="5.99,277,1677567600"; 
+   d="scan'208";a="152243970"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 May 2023 22:18:54 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 15 May 2023 22:18:54 -0700
+Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Mon, 15 May 2023 22:18:50 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <conor.dooley@microchip.com>
+CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH v2] dt-bindings: ti-serdes-mux: Add defines for J784S4 SoC
-Content-Language: en-US
-To:     <peda@axentia.se>
-References: <20230310111630.743023-1-s-vadapalli@ti.com>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <20230310111630.743023-1-s-vadapalli@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v4 0/5] dt-bindings: clocks: at91: convert to yaml
+Date:   Tue, 16 May 2023 08:18:31 +0300
+Message-ID: <20230516051836.2511149-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,105 +65,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Peter,
+Hi,
 
-Can this patch please be merged in case of no issues? It applies cleanly on
-linux-next tagged next-20230516.
+This series converts atmel clocks bindings (PMC and slow clock
+controller) to YAML. Along with it updated device trees to cope
+with the dt-binding requirements.
 
-On 10/03/23 16:46, Siddharth Vadapalli wrote:
-> From: Matt Ranostay <mranostay@ti.com>
-> 
-> There are 4 lanes in the single instance of J784S4 SERDES. Each SERDES
-> lane mux can select up to 4 different IPs. Define all the possible
-> functions.
-> 
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
-> 
-> Changes from v1:
-> 1. Collect Acked-by tag from Krzysztof Kozlowski.
-> 2. Rebase on to linux-next tagged: next-20230310.
-> 
-> v1:
-> https://lore.kernel.org/r/20221015055024.191855-1-mranostay@ti.com/
-> 
->  include/dt-bindings/mux/ti-serdes.h | 62 +++++++++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
-> 
-> diff --git a/include/dt-bindings/mux/ti-serdes.h b/include/dt-bindings/mux/ti-serdes.h
-> index d3116c52ab72..669ca2d6abce 100644
-> --- a/include/dt-bindings/mux/ti-serdes.h
-> +++ b/include/dt-bindings/mux/ti-serdes.h
-> @@ -117,4 +117,66 @@
->  #define J721S2_SERDES0_LANE3_USB		0x2
->  #define J721S2_SERDES0_LANE3_IP4_UNUSED		0x3
->  
-> +/* J784S4 */
-> +
-> +#define J784S4_SERDES0_LANE0_IP1_UNUSED		0x0
-> +#define J784S4_SERDES0_LANE0_PCIE1_LANE0	0x1
-> +#define J784S4_SERDES0_LANE0_IP3_UNUSED		0x2
-> +#define J784S4_SERDES0_LANE0_IP4_UNUSED		0x3
-> +
-> +#define J784S4_SERDES0_LANE1_IP1_UNUSED		0x0
-> +#define J784S4_SERDES0_LANE1_PCIE1_LANE1	0x1
-> +#define J784S4_SERDES0_LANE1_IP3_UNUSED		0x2
-> +#define J784S4_SERDES0_LANE1_IP4_UNUSED		0x3
-> +
-> +#define J784S4_SERDES0_LANE2_PCIE3_LANE0	0x0
-> +#define J784S4_SERDES0_LANE2_PCIE1_LANE2	0x1
-> +#define J784S4_SERDES0_LANE2_IP3_UNUSED		0x2
-> +#define J784S4_SERDES0_LANE2_IP4_UNUSED		0x3
-> +
-> +#define J784S4_SERDES0_LANE3_PCIE3_LANE1	0x0
-> +#define J784S4_SERDES0_LANE3_PCIE1_LANE3	0x1
-> +#define J784S4_SERDES0_LANE3_USB		0x2
-> +#define J784S4_SERDES0_LANE3_IP4_UNUSED		0x3
-> +
-> +#define J784S4_SERDES1_LANE0_QSGMII_LANE3	0x0
-> +#define J784S4_SERDES1_LANE0_PCIE0_LANE0	0x1
-> +#define J784S4_SERDES1_LANE0_IP3_UNUSED		0x2
-> +#define J784S4_SERDES1_LANE0_IP4_UNUSED		0x3
-> +
-> +#define J784S4_SERDES1_LANE1_QSGMII_LANE4	0x0
-> +#define J784S4_SERDES1_LANE1_PCIE0_LANE1	0x1
-> +#define J784S4_SERDES1_LANE1_IP3_UNUSED		0x2
-> +#define J784S4_SERDES1_LANE1_IP4_UNUSED		0x3
-> +
-> +#define J784S4_SERDES1_LANE2_QSGMII_LANE1	0x0
-> +#define J784S4_SERDES1_LANE2_PCIE0_LANE2	0x1
-> +#define J784S4_SERDES1_LANE2_PCIE2_LANE0	0x2
-> +#define J784S4_SERDES1_LANE2_IP4_UNUSED		0x3
-> +
-> +#define J784S4_SERDES1_LANE3_QSGMII_LANE2	0x0
-> +#define J784S4_SERDES1_LANE3_PCIE0_LANE3	0x1
-> +#define J784S4_SERDES1_LANE3_PCIE2_LANE1	0x2
-> +#define J784S4_SERDES1_LANE3_IP4_UNUSED		0x3
-> +
-> +#define J784S4_SERDES2_LANE0_QSGMII_LANE5	0x0
-> +#define J784S4_SERDES2_LANE0_IP2_UNUSED		0x1
-> +#define J784S4_SERDES2_LANE0_IP3_UNUSED		0x2
-> +#define J784S4_SERDES2_LANE0_IP4_UNUSED		0x3
-> +
-> +#define J784S4_SERDES2_LANE1_QSGMII_LANE6	0x0
-> +#define J784S4_SERDES2_LANE1_IP2_UNUSED		0x1
-> +#define J784S4_SERDES2_LANE1_IP3_UNUSED		0x2
-> +#define J784S4_SERDES2_LANE1_IP4_UNUSED		0x3
-> +
-> +#define J784S4_SERDES2_LANE2_QSGMII_LANE7	0x0
-> +#define J784S4_SERDES2_LANE2_QSGMII_LANE1	0x1
-> +#define J784S4_SERDES2_LANE2_IP3_UNUSED		0x2
-> +#define J784S4_SERDES2_LANE2_IP4_UNUSED		0x3
-> +
-> +#define J784S4_SERDES2_LANE3_QSGMII_LANE8	0x0
-> +#define J784S4_SERDES2_LANE3_QSGMII_LANE2	0x1
-> +#define J784S4_SERDES2_LANE3_IP3_UNUSED		0x2
-> +#define J784S4_SERDES2_LANE3_IP4_UNUSED		0x3
-> +
->  #endif /* _DT_BINDINGS_MUX_TI_SERDES */
+Thank you,
+Claudiu Beznea
+
+Changes in v4:
+- changed the approach the compatibles are treated in patch 2/5 to avoid
+  having 2 enums on one items entry (thanks Conor for hint)
+  
+Changes in v3:
+- in patch 2/5:
+	- get rid of 1st "items" section and embedd it in the last compatible
+	  enum
+	- sort alphanumerically the compatibles in allOf
+- collected tags
+
+Changes in v2:
+- in patch 2/5:
+	- dropped quotes from $id and $schema
+	- get rid of 1st "items" sections corresponding to "atmel,at91sam9260-pmc",
+	  "syscon" compatible and move it to the proper enum
+	- ordered compatibles by name
+	- add description for #clock-cells
+	- remove blank lines
+	- keep order in required (same order that the properties were
+	  defined)
+	- dropped required from allOf
+
+- in patch 5/5:
+	- dropped quotes from $id and $schema
+	- drop first "items:" in compatible:oneOf section
+	- ordered compatibles by name
+	- moved additionalProperties after allOf
+	- dropped microchip,sama7g5-sckc from first allOf:if section
+	- moved "required" section from allOf to global "required" section
+	- dropped if:then from the last if:then:else in allOf
+
+Claudiu Beznea (5):
+  ARM: dts: at91: use clock-controller name for PMC nodes
+  dt-bindings: clocks: atmel,at91rm9200-pmc: convert to yaml
+  ARM: dts: at91: at91sam9n12: witch sckc to new clock bindings
+  ARM: dts: at91: use clock-controller name for sckc nodes
+  dt-bindings: clocks: at91sam9x5-sckc: convert to yaml
+
+ .../devicetree/bindings/clock/at91-clock.txt  |  58 -------
+ .../bindings/clock/atmel,at91rm9200-pmc.yaml  | 153 ++++++++++++++++++
+ .../bindings/clock/atmel,at91sam9x5-sckc.yaml |  70 ++++++++
+ arch/arm/boot/dts/at91rm9200.dtsi             |   2 +-
+ arch/arm/boot/dts/at91sam9260.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9261.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9263.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9g20.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9g25.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9g35.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9g45.dtsi            |   4 +-
+ arch/arm/boot/dts/at91sam9n12.dtsi            |  25 +--
+ arch/arm/boot/dts/at91sam9rl.dtsi             |   4 +-
+ arch/arm/boot/dts/at91sam9x25.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9x35.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9x5.dtsi             |   4 +-
+ arch/arm/boot/dts/sam9x60.dtsi                |   4 +-
+ arch/arm/boot/dts/sama5d2.dtsi                |   4 +-
+ arch/arm/boot/dts/sama5d3.dtsi                |   4 +-
+ arch/arm/boot/dts/sama5d3_emac.dtsi           |   2 +-
+ arch/arm/boot/dts/sama5d4.dtsi                |   4 +-
+ arch/arm/boot/dts/sama7g5.dtsi                |   2 +-
+ 22 files changed, 252 insertions(+), 104 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/at91-clock.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
 
 -- 
-Regards,
-Siddharth.
+2.34.1
+
