@@ -2,123 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E13E704741
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC2F170468C
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 09:38:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230416AbjEPIAk convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 16 May 2023 04:00:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58668 "EHLO
+        id S231373AbjEPHiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 03:38:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230372AbjEPIAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:00:39 -0400
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7975219B9;
-        Tue, 16 May 2023 01:00:38 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-55a214572e8so202590147b3.0;
-        Tue, 16 May 2023 01:00:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684224037; x=1686816037;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b0h6qVIfbUBDrUxA2PTLniEHIyTzUxs5niagrHQ6PpI=;
-        b=TEGx5VgLbAH3yRjcQM+deGbHuLavr/fHf5asGhwiT1TyDvrmXc/lh3ybhtejGjPa3S
-         4lobjLgBbhrSlUtGjfyxuw8gh5+bxa9/OllffOpvonZIN8zpFxTnUhnKqmOZ+p2HLhcD
-         WaY4/UMk4qvjcH59sR21aUWPJoL7acJmYkLks4zATp+Rsf5hu+M/KzmDJk2+LCJPZENp
-         DjGv0skV5k4oQUhQ6ekpbx6fwDtsfsS8ILVO7iFZ6E6lumxGydQ5BWRgckDX4KS9zQ94
-         J4Eldl0gOutZ84RaV/FDC8VAPkUk4jmISm3c39VXxisvWp4N5p0D9AqR+bHYD5fCi3nX
-         YCDQ==
-X-Gm-Message-State: AC+VfDx/tZPXS+GCXDWqsEyvIGJP30WLWEJUwce6n4Q2E6CpOTGimhuC
-        9OamEJkHBsI2KXpuj5qoMhJz7dZ9oTtAnw==
-X-Google-Smtp-Source: ACHHUZ7bmEuXo6vdwkvKjwTbNZhWlcKQ3iIasuAbqpk/DcqxkTsXsB2asJ5bOT7808jBtIfkjLVbhQ==
-X-Received: by 2002:a81:9486:0:b0:55a:f410:4ffe with SMTP id l128-20020a819486000000b0055af4104ffemr36744305ywg.19.1684224037291;
-        Tue, 16 May 2023 01:00:37 -0700 (PDT)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id w191-20020a0dd4c8000000b0054f56baf3f2sm420419ywd.122.2023.05.16.01.00.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 01:00:36 -0700 (PDT)
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-ba8253f635cso505097276.0;
-        Tue, 16 May 2023 01:00:36 -0700 (PDT)
-X-Received: by 2002:a81:4a0a:0:b0:55a:40d3:4d6f with SMTP id
- x10-20020a814a0a000000b0055a40d34d6fmr31853835ywa.26.1684224036141; Tue, 16
- May 2023 01:00:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230513165227.13117-1-biju.das.jz@bp.renesas.com> <20230513165227.13117-4-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230513165227.13117-4-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 16 May 2023 10:00:24 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXpHgU3p1OE5_Vea8feqdyFbiSuyporhw6gEUwn=HX73Q@mail.gmail.com>
-Message-ID: <CAMuHMdXpHgU3p1OE5_Vea8feqdyFbiSuyporhw6gEUwn=HX73Q@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] dt-bindings: mfd: Add Renesas RAA215300 PMIC bindings
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230388AbjEPHiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 03:38:08 -0400
+Received: from forward501b.mail.yandex.net (forward501b.mail.yandex.net [IPv6:2a02:6b8:c02:900:1:45:d181:d501])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9329C423C;
+        Tue, 16 May 2023 00:38:05 -0700 (PDT)
+Received: from mail-nwsmtp-smtp-production-main-91.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-91.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:2991:0:640:bb47:0])
+        by forward501b.mail.yandex.net (Yandex) with ESMTP id 6695D5F29E;
+        Tue, 16 May 2023 10:38:03 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-91.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id rbVsqF6Wo4Y0-UkaxrYJI;
+        Tue, 16 May 2023 10:38:01 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail; t=1684222681;
+        bh=R3NyR73k7IhF7nI84HX4UghfXKGpid2SwwTSfXwtO70=;
+        h=References:Date:In-Reply-To:Cc:To:From:Subject:Message-ID;
+        b=QotG58g6dFkLdzg/jCTCPqPNHWfIFJSnx9H8OHC12M2roLLuxVWKx6W2h25dkjVSe
+         HRwtXoqfClom0cLuEY16ejoh6MbeEy+uPI8UAhwOs+j0NQ/gw1AVexLnYUBpraFKDp
+         l0egQl1rEQANggrBncTSCi4j3ZinsQfxms2ylvX4=
+Authentication-Results: mail-nwsmtp-smtp-production-main-91.sas.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
+Message-ID: <4f81a96b826344f45d0994539e3b3fe94fe7eb50.camel@maquefel.me>
+Subject: Re: [PATCH 00/43] ep93xx device tree conversion
+From:   Nikita Shubin <nikita.shubin@maquefel.me>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jonathan =?ISO-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexander Gordeev <agordeev@linux.ibm.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Brian Norris <briannorris@chromium.org>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Damien Le Moal <dlemoal@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Eric Dumazet <edumazet@google.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Hitomi Hasegawa <hasegawa-hitomi@fujitsu.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jean Delvare <jdelvare@suse.de>, Joel Stanley <joel@jms.id.au>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+        Le Moal <damien.lemoal@opensource.wdc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Liang Yang <liang.yang@amlogic.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Lukasz Majewski <lukma@denx.de>, Lv Ruyi <lv.ruyi@zte.com.cn>,
+        Mark Brown <broonie@kernel.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Qin Jian <qinjian@cqplus1.com>,
+        Richard Weinberger <richard@nod.at>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Russell King <linux@armlinux.org.uk>,
+        Sebastian Reichel <sre@kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sumanth Korikkar <sumanthk@linux.ibm.com>,
+        Sven Peter <sven@svenpeter.dev>, Takashi Iwai <tiwai@suse.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Vasily Gorbik <gor@linux.ibm.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-ide@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        netdev@vger.kernel.org, soc@kernel.org
+Date:   Tue, 16 May 2023 13:37:54 +0300
+In-Reply-To: <1ff2333a-8f78-c066-0158-9c8a1a17684f@gmail.com>
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+         <1ff2333a-8f78-c066-0158-9c8a1a17684f@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.3 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Hello Florian!
 
-On Sat, May 13, 2023 at 6:52 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
->
-> Document Renesas RAA215300 PMIC bindings.
->
-> The RAA215300 is a high Performance 9-Channel PMIC supporting DDR
-> Memory, with Built-In Charger and RTC.
->
-> It supports DDR3, DDR3L, DDR4, and LPDDR4 memory power requirements.
-> The internally compensated regulators, built-in Real-Time Clock (RTC),
-> 32kHz crystal oscillator, and coin cell battery charger provide a
-> highly integrated, small footprint power solution ideal for
-> System-On-Module (SOM) applications. A spread spectrum feature
-> provides an ease-of-use solution for noise-sensitive audio or RF
-> applications.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v2->v3:
->  * Added more detailed description for renesas,rtc-enabled property.
+On Mon, 2023-05-15 at 20:47 -0700, Florian Fainelli wrote:
+>=20
+>=20
+> On 4/24/2023 5:34 AM, Nikita Shubin wrote:
+> > This series aims to convert ep93xx from platform to full device
+> > tree support.
+> >=20
+> > Tested on ts7250 64 RAM/128 MiB Nand flash, edb9302.
+> >=20
+> > Thank you Linus and Arnd for your support, review and comments,
+> > sorry if i missed something -
+> > these series are quite big for me.
+> >=20
+> > Big thanks to Alexander Sverdlin for his testing, support, review,
+> > fixes and patches.
+>=20
+> If anyone is interested I still have a TS-7300 board [1] that is
+> fully=20
+> functional and could be sent out to a new home.
 
-Thanks for your patch!
+Thank you kindly, i'll keep this in mind !
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
+>=20
+> https://www.embeddedts.com/products/TS-7300
 
-> +  renesas,rtc-enabled:
-> +    description:
-> +      To indicate RTC is enabled on the PMIC.
-> +      Enabling of the RTC is based on system design. System designers may
-> +      choose not to populate built-in RTC by grounding XIN and XOUT pins.
-> +    type: boolean
-
-Perhaps you should go full DT monty and replace this logic by a clocks
-property pointing to the external crystal?
-
-However, as I only have the Short-Form Datasheet, I am wondering what
-"Built-in 32kHz crystal oscillator (with bypass)" really means?
-Does this mean the RTC can work without an external crystal, using an
-on-chip oscillator?
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
