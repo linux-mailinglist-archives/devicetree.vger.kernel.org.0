@@ -2,118 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9826C704F59
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:31:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06B2C704F6F
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:36:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233142AbjEPNbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:31:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44764 "EHLO
+        id S233669AbjEPNgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:36:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232641AbjEPNba (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:31:30 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D7821981;
-        Tue, 16 May 2023 06:31:29 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34GDV1Px029662;
-        Tue, 16 May 2023 08:31:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684243861;
-        bh=KiJOZ7KFupaQDkC6vwpyzXkB38VvgH/7nK2KElIdK5Q=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=qmxDx+vKWF7bJ3554Yy0ba71FC9/2fR6vrCrPeeSZl3jvce7FcmFk6BJoWt7v1/JW
-         tfa1G+VAhjq/FEqTZDLrxRaX876MWicoUDOCAl35rq68ejM1UkvQ/MSoiiiNaF0HN9
-         Y7QIBDlSmepMghOqmqhD0zIF8Nrnw40ObNtxyrgc=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34GDV1jx020884
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 16 May 2023 08:31:01 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
- May 2023 08:31:01 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 16 May 2023 08:31:01 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34GDV1wZ031938;
-        Tue, 16 May 2023 08:31:01 -0500
-Date:   Tue, 16 May 2023 08:31:01 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Siddharth Vadapalli <s-vadapalli@ti.com>,
-        Peter Rosin <peda@axentia.se>, <tony@atomide.com>
-CC:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <kristo@kernel.org>,
-        <vigneshr@ti.com>, <rogerq@kernel.org>, <nsekhar@ti.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>
-Subject: Re: [PATCH net-next 4/5] arm64: dts: ti: k3-am62-main: Add timesync
- router node
-Message-ID: <20230516133101.ezt5jacp6i47nspa@oblivion>
-References: <20230111114429.1297557-1-s-vadapalli@ti.com>
- <20230111114429.1297557-5-s-vadapalli@ti.com>
+        with ESMTP id S233453AbjEPNgr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:36:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E212527B;
+        Tue, 16 May 2023 06:36:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2A476617FF;
+        Tue, 16 May 2023 13:36:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9985C433EF;
+        Tue, 16 May 2023 13:36:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684244203;
+        bh=y/yWoPs8Nlf4p3CTjaVQfoHaJvHxuvjvDqaUL6F6Phs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UjFmnmvm35D7Eoud6qOlQMYj0uS3SPPHJcIUVr0C9BDKoibiNK8iuxNXsMfN8dUcl
+         mVm73t4opsFn4yO0j6dumM+xej3qJCNa76TPN9pFSHIrzPk4gJY7dHx3ArwaUhJG1m
+         mRMvXSsr3sblzY1w38uCi8+ho8rBSWj6yui36whSEGEQVWI+NM8vEvEK5OL22MkFi3
+         FncsH9nsj40e6PPPzWlCBVz6ymCuBSDoD79oWbiprWq/5FEmdYM2tn2UwaLT5z5q1k
+         ZIMNJVjtmipsCnGvhlqqu+G63uKI6zGkdoKe4c6qBlY8PSExWjIhu9bTYaUozT7pua
+         0TiA4WuBanyaA==
+Date:   Tue, 16 May 2023 19:06:38 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v14 07/15] phy: fsl: Add Lynx 10G SerDes driver
+Message-ID: <ZGOG5iwINTcFABHB@matsya>
+References: <20230413160607.4128315-1-sean.anderson@seco.com>
+ <20230413160607.4128315-8-sean.anderson@seco.com>
+ <ZFi/Y7wcad4hrAMe@matsya>
+ <957a6bb4-f07b-f511-72c9-da4199dc8616@seco.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230111114429.1297557-5-s-vadapalli@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <957a6bb4-f07b-f511-72c9-da4199dc8616@seco.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:14-20230111, Siddharth Vadapalli wrote:
-> TI's AM62x SoC has a Time Sync Event Router, which enables routing a single
-> input signal to multiple recipients. This facilitates syncing all the
-> peripherals or processor cores to the input signal which acts as a master
-> clock.
+On 08-05-23, 11:28, Sean Anderson wrote:
+> On 5/8/23 05:22, Vinod Koul wrote:
+> > On 13-04-23, 12:05, Sean Anderson wrote:
+
+> >> +static const struct lynx_cfg ls1088a_cfg = {
+> >> +	.lanes = 4,
+> >> +	.endian = REGMAP_ENDIAN_LITTLE,
+> >> +	.mode_conflict = lynx_ls_mode_conflict,
+> >> +	.mode_apply = lynx_ls_mode_apply,
+> >> +	.mode_init = lynx_ls_mode_init,
+> > 
+> > So you have cfg with mode_xxx pointing to same functions for both of the
+> > versions you support... so question is why do this and not call the
+> > functions directly?
 > 
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> index 072903649d6e..4ce59170b6a7 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -649,6 +649,15 @@ cpts@3d000 {
->  		};
->  	};
->  
-> +	timesync_router: pinctrl@a40000 {
-> +		compatible = "pinctrl-single";
+> The intention is to make it easy to add support for T-series processors,
+> which have a different PCCR layout.
 
-While I understand that the timesync router is essentially a mux,
-pinctrl-single is a specific mux model that is used to model external
-facing pins to internal signals - pin mux sections of control module
-which is already in place is an example of the same.
+And when is that going to come. I would prefer this to be added when we
+have users being added
 
-Using the pinctrl-single scheme for timesync router is, IMHO, wrong
-and limiting to potential functions that timesync router could need
-enabling.
-
-Is there a reason for using pinctrl-single rather than writing a
-mux-controller / consumer model driver instead or rather simpler a
-reg-mux node?
-
-> +		reg = <0x0 0xa40000 0x0 0x800>;
-> +		#pinctrl-cells = <1>;
-> +		pinctrl-single,register-width = <32>;
-> +		pinctrl-single,function-mask = <0x000107ff>;
-> +		status = "disabled";
-> +	};
-> +
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+~Vinod
