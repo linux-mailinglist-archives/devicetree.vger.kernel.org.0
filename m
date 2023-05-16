@@ -2,72 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46236704D90
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 14:14:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46F7E704D99
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 14:17:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232278AbjEPMOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 08:14:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38320 "EHLO
+        id S232956AbjEPMRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 08:17:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231888AbjEPMOY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 08:14:24 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A27E6FA
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 05:14:23 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34G8lCVS014910;
-        Tue, 16 May 2023 14:13:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=4D/lBeJGIR3TfTKha5AOxBhf8+e1rumLjgteYtlOQI4=;
- b=lBtlxTQGLXdLlSqLfx6re7xIJcC5BepLejfHa+8RFCXv1QiBizsql+t8LlbD92C5zO+G
- 5afDbrWizphxCbWwuln0hRmmU5m2A5n/H0eVvYejl3XQWkQgzDT4wXQBfePKc9wHV0V4
- UpExudNWakPPTsVvK3VEO0tTw912Rt0dRiHAlHuQIJpUjzcYAAGBYBYjzn1ulta+SyU8
- pzO76/XmEXK36NTQwIjebtD8ehkD1ik99dtqL39sPLGkBYgd5JiBwZiuRXyLtmgGFzhQ
- 1DWbxj9PMC0hS54liNtBTId3Dt5fbsKeoecuKEAqc+I+pCSx+moNIbwPA3rKGsnR620M nw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qkhp0gh4y-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 16 May 2023 14:13:56 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A331410002A;
-        Tue, 16 May 2023 14:13:55 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9586A227896;
-        Tue, 16 May 2023 14:13:55 +0200 (CEST)
-Received: from [10.252.0.230] (10.252.0.230) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 16 May
- 2023 14:13:54 +0200
-Message-ID: <9e4126cb-99f7-76b5-a99f-8d607df03289@foss.st.com>
-Date:   Tue, 16 May 2023 14:13:41 +0200
+        with ESMTP id S231888AbjEPMRd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 08:17:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6438D4698;
+        Tue, 16 May 2023 05:17:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EAA5460F5A;
+        Tue, 16 May 2023 12:17:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BE48C433EF;
+        Tue, 16 May 2023 12:17:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684239451;
+        bh=FUya8l0e9W9RYjyU+HM+cs83+DOnaPciCuvV7VzRtTY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PC2dFqdc1Z/sdXZ5oYa4dBdtDdnVirjaldQ/c52s9XJSgc+dL6PzDhDqFcp2t3h8s
+         zYfoMkYN/25F07KizBYjudULLyvUqwGH4yudmVo1ypcJJouV1/5+Mg4MeS5B8lMkD0
+         hQFQoQIq+YgyjIykKOhLxfIocaQC41WOqBWGXbhiVLWe6fe28VCP3WdVWmpSQCjDGZ
+         4aUtJ+q5C2ZDupcuSwaDldLY/u4MQlQ0TzGZBRKjwKENXZiV02g38rH23LqSunEk2C
+         ZcPR/87t5GlnvCLL0uv1alI+o744JmEyXHD56IECx3oXhz5KtTzRNFnXlUcJFOS1/L
+         +dh0MXsyQXSYg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1pytcR-0008TQ-5q; Tue, 16 May 2023 14:17:31 +0200
+Date:   Tue, 16 May 2023 14:17:31 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
+        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
+        ahalaney@redhat.com
+Subject: Re: [PATCH v8 4/9] usb: dwc3: core: Skip setting event buffers for
+ host only controllers
+Message-ID: <ZGN0W0YbIjzmQnH1@hovoldconsulting.com>
+References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
+ <20230514054917.21318-5-quic_kriskura@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] ARM: dts: stm32: Replace deprecated st,hw-flow-ctrl with
- uart-has-rtscts
-Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <kernel@dh-electronics.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20230407210152.138549-1-marex@denx.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230407210152.138549-1-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.252.0.230]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-16_05,2023-05-16_01,2023-02-09_01
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230514054917.21318-5-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,82 +70,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek
-
-On 4/7/23 23:01, Marek Vasut wrote:
-> Replace deprecated st,hw-flow-ctrl with uart-has-rtscts .
-> No functional change.
+On Sun, May 14, 2023 at 11:19:12AM +0530, Krishna Kurapati wrote:
+> On some SoC's like SA8295P where the tertiary controller is host-only
+> capable, GEVTADDRHI/LO, GEVTSIZ, GEVTCOUNT registers are not accessible.
+> Trying to setup them up during core_init leads to a crash.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-
-
-Applied on stm32-next.
-
-Thanks.
-Alex
-
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> ---
->   arch/arm/boot/dts/stm32h750i-art-pi.dts            | 2 +-
->   arch/arm/boot/dts/stm32mp157a-stinger96.dtsi       | 4 ++--
->   arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi | 2 +-
->   3 files changed, 4 insertions(+), 4 deletions(-)
+> For DRD/Peripheral supported controllers, event buffer setup is done
+> again in gadget_pullup. Skip setup or cleanup of event buffers if
+> controller is host-only capable.
 > 
-> diff --git a/arch/arm/boot/dts/stm32h750i-art-pi.dts b/arch/arm/boot/dts/stm32h750i-art-pi.dts
-> index f3e70d3b65ac4..44c307f8b09cf 100644
-> --- a/arch/arm/boot/dts/stm32h750i-art-pi.dts
-> +++ b/arch/arm/boot/dts/stm32h750i-art-pi.dts
-> @@ -208,7 +208,7 @@ &usart3 {
->   	dmas = <&dmamux1 45 0x400 0x05>,
->   	       <&dmamux1 46 0x400 0x05>;
->   	dma-names = "rx", "tx";
-> -	st,hw-flow-ctrl;
-> +	uart-has-rtscts;
->   	status = "okay";
->   
->   	bluetooth {
-> diff --git a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-> index 3a36f7fe0a2c3..5f85598cc7c6b 100644
-> --- a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-> @@ -287,7 +287,7 @@ &usart2 {
->   	pinctrl-names = "default", "sleep";
->   	pinctrl-0 = <&usart2_pins_b>;
->   	pinctrl-1 = <&usart2_sleep_pins_b>;
-> -	st,hw-flow-ctrl;
-> +	uart-has-rtscts;
->   	/delete-property/dmas;
->   	/delete-property/dma-names;
->   	status = "okay";
-> @@ -297,7 +297,7 @@ &usart2 {
->   &uart4 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&uart4_pins_c>;
-> -	st,hw-flow-ctrl;
-> +	uart-has-rtscts;
->   	/delete-property/dmas;
->   	/delete-property/dma-names;
->   	status = "okay";
-> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-> index 50af4a27d6be4..8232bbbae379c 100644
-> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-> @@ -452,7 +452,7 @@ &usart2 {
->   	pinctrl-names = "default", "sleep";
->   	pinctrl-0 = <&usart2_pins_a>;
->   	pinctrl-1 = <&usart2_sleep_pins_a>;
-> -	st,hw-flow-ctrl;
-> +	uart-has-rtscts;
->   	/delete-property/dmas;
->   	/delete-property/dma-names;
->   	status = "okay";
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+>  drivers/usb/dwc3/core.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index e983aef1fb93..46192d08d1b6 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -505,6 +505,11 @@ static int dwc3_alloc_event_buffers(struct dwc3 *dwc, unsigned int length)
+>  int dwc3_event_buffers_setup(struct dwc3 *dwc)
+>  {
+>  	struct dwc3_event_buffer	*evt;
+> +	unsigned int			hw_mode;
+> +
+> +	hw_mode = DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
+> +	if (hw_mode == DWC3_GHWPARAMS0_MODE_HOST)
+> +		return 0;
+>  
+>  	evt = dwc->ev_buf;
 
+How about adding this check to dwc3_alloc_event_buffers() instead as
+there should be no need to allocate buffer that you never use?
+
+Then you can just check dwc->ev_buf here and elsewhere.
+
+Johan
