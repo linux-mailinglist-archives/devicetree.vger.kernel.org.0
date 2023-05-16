@@ -2,136 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40867704A1B
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:09:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2806704A25
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:10:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231847AbjEPKJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 06:09:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40784 "EHLO
+        id S232246AbjEPKKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 06:10:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232345AbjEPKI4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:08:56 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45BA340DD
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 03:08:43 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50bc3088b7aso25648137a12.3
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 03:08:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684231721; x=1686823721;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=m6yW3uiUU8worGAhCWTnKjolqfsTZfDHxQcGNaSZOHo=;
-        b=sYbwL8NbcnUYOCmm3ua2K3PkwzXy2DvCrp/FiM1YYTZHJnS8MZ9MycZXzvPIH52y8K
-         nx16349Gw5DCWd4wBnLWC5Y8MdO9Y4kq8gB8BJN4eEdU8Jr1HuHasO9Pbo9/wyo3JXnL
-         mRD7nI2xPMPT48q3tiLj9YPcWj74NRWeZ0ts/t9B6c+AJgsxc+uHTabZ57oDUr2t+5Pt
-         rkF2FYG4brCI76Yhjmkyumc1Ng8NtaLbtpeGolmcAcQwFQoi70V/TtQYoBdDBucgIqMM
-         hePl/rbvIfVEcFSGBDQckzVh9PMMsab89cJEQ0zng/U4CHMN/uWu2vzJ7nvqzKQRBPZZ
-         A2HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684231721; x=1686823721;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m6yW3uiUU8worGAhCWTnKjolqfsTZfDHxQcGNaSZOHo=;
-        b=RLtC/jKrr0f29A6IDG92tJNSyW4JEmFvRPOVllfeC9c+nBEMNmc67aoZY0E17WdpXJ
-         1cLBmRxtukwx4L6dAOW3M/MzSK0QCmKbE0p9UMWlmkhsJlZ1W+5XNh8xTxzsXz1de9Ji
-         25bFEY4+/xJwh3M4rCcq6YzYTIFsaDpo1oxN5/xueZPtD6pSW5yiLGDHX8T8lePQHyQv
-         E4QZhakM0LqSWa7dw3jeDo6+OlfWsK4iJlKKNdtYD3GAlEdB2XAPrtCRlyUgANrhJ7W9
-         S7ls6dG4N0E26F74BHUVbuh738uyXLkRJocri5Y1wRVg2QIr560e89y56wivkPLdJIz9
-         pYNA==
-X-Gm-Message-State: AC+VfDym1wdCVvU799qla13Z0h4rdTnxRMIIejnaFatadj5qNKjMebXi
-        GpzensVecWotd7rmPu/p242Dng==
-X-Google-Smtp-Source: ACHHUZ7RsURJ0g0lVoK+1AjWAF9OygwrFW8U+HKJt4w9B64uqLEs6dlJ9LWo64bJ/UesMm7TFHjspA==
-X-Received: by 2002:a17:906:db08:b0:965:fa80:bf1 with SMTP id xj8-20020a170906db0800b00965fa800bf1mr34845143ejb.32.1684231721143;
-        Tue, 16 May 2023 03:08:41 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
-        by smtp.gmail.com with ESMTPSA id jy17-20020a170907763100b00969dc13d0b1sm10311892ejc.43.2023.05.16.03.08.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 03:08:40 -0700 (PDT)
-Message-ID: <a3c625fc-2bc0-866f-bc60-f12e887fd900@linaro.org>
-Date:   Tue, 16 May 2023 12:08:39 +0200
+        with ESMTP id S232249AbjEPKJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:09:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 910D12719;
+        Tue, 16 May 2023 03:09:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F16C16374A;
+        Tue, 16 May 2023 10:09:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93DF8C4339E;
+        Tue, 16 May 2023 10:09:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684231784;
+        bh=UzWc5Lwm75FxyK+w8YmzHI/DvA777osEnR4l5zmjBh4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OaXk2JUlwNc9953eKu4k6Tz88/RHcSQ8rAN8NQIWm6MZ7UtyQPb+nTSAEsZhCXBVf
+         +XANWEmW4zXYMNZvFxACRsTpj47X29nqAcf9nIfyqGzYR3tsiiwqtLonq1fVvXFLwY
+         EaqnQpFCrX5dV0ZfIPMxoNV5xeYCcHKO5+xnaYQnjMmLtEiCoDYZMRML44IgvRNpXN
+         8ji3D//H6icA/jIND8ED/ofji+rWgN/sytWNwUR3Q0pRQi+0zQTOsE51S3fyJwOn8f
+         EcpwXoYvQBP9mBGIYa2llUd5CdqZ3WeOFo/1knvE6ImJ46qrJ7FHALZW92M/3m+xfW
+         a0TNvvur6xjTQ==
+Date:   Tue, 16 May 2023 11:09:36 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Charles Keepax <ckeepax@opensource.cirrus.com>, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, tglx@linutronix.de, linus.walleij@linaro.org,
+        vkoul@kernel.org, lgirdwood@gmail.com,
+        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
+        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
+        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 07/10] irqchip/cs42l43: Add support for the cs42l43 IRQs
+Message-ID: <20230516100936.GF10825@google.com>
+References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
+ <20230512122838.243002-8-ckeepax@opensource.cirrus.com>
+ <86o7mpmvqq.wl-maz@kernel.org>
+ <20230512153933.GH68926@ediswmail.ad.cirrus.com>
+ <86mt29mt2m.wl-maz@kernel.org>
+ <20230515112554.GA10825@google.com>
+ <86h6scmzf7.wl-maz@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v1] Documentation/process: add soc maintainer handbook
-Content-Language: en-US
-To:     Arnd Bergmann <arnd@arndb.de>,
-        "Conor.Dooley" <conor.dooley@microchip.com>
-Cc:     Conor Dooley <conor@kernel.org>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Olof Johansson <olof@lixom.net>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-riscv@lists.infradead.org
-References: <20230515-geometry-olympics-b0556ff8a5f7@spud>
- <cf1c6b8c-8a3f-eca1-948f-e41946d4c34c@linaro.org>
- <20230516-grader-dejected-df65cdc584b3@wendy>
- <ea4bc471-9cac-4ef1-97aa-9cf71b60c785@app.fastmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ea4bc471-9cac-4ef1-97aa-9cf71b60c785@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <86h6scmzf7.wl-maz@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 11:16, Arnd Bergmann wrote:
-> On Tue, May 16, 2023, at 10:57, Conor Dooley wrote:
->> On Tue, May 16, 2023 at 10:31:19AM +0200, Krzysztof Kozlowski wrote:
->>> On 15/05/2023 21:20, Conor Dooley wrote:
->>
->>>> + - Defer the devicetree changes to a release after the binding and driver have
->>>> +   already been merged
->>>> +
->>>> + - Change the bindings in a shared immutable branch that is used as the base for
->>>> +   both the driver change and the devicetree changes
->>>
->>> The policy told to me some time ago was that no merges from driver
->>> branch or tree are allowed towards DTS branch, even if they come only
->>> with binding header change. There are exceptions for this, e.g. [1], but
->>> that would mean we need to express here rules for cross-tree merges.
->>
->> I've got away with having an immutable branch for dt-binding headers!
->> That said, Arnd did actually have a look at this (and suggested some
->> changes) before I sent it & did not cry fowl about this section. IIRC,
->> this is actually his wording, not mine.
+On Tue, 16 May 2023, Marc Zyngier wrote:
+
+> On Mon, 15 May 2023 12:25:54 +0100,
+> Lee Jones <lee@kernel.org> wrote:
+> > 
+> > On Fri, 12 May 2023, Marc Zyngier wrote:
+> > 
+> > > On Fri, 12 May 2023 16:39:33 +0100,
+> > > Charles Keepax <ckeepax@opensource.cirrus.com> wrote:
+> > > > 
+> > > > On Fri, May 12, 2023 at 04:10:05PM +0100, Marc Zyngier wrote:
+> > > > > On Fri, 12 May 2023 13:28:35 +0100,
+> > > > > Charles Keepax <ckeepax@opensource.cirrus.com> wrote:
+> > > > > > 
+> > > > > > The CS42L43 is an audio CODEC with integrated MIPI SoundWire interface
+> > > > > > (Version 1.2.1 compliant), I2C, SPI, and I2S/TDM interfaces designed
+> > > > > > for portable applications. It provides a high dynamic range, stereo
+> > > > > > DAC for headphone output, two integrated Class D amplifiers for
+> > > > > > loudspeakers, and two ADCs for wired headset microphone input or
+> > > > > > stereo line input. PDM inputs are provided for digital microphones.
+> > > > > > 
+> > > > > > The IRQ chip provides IRQ functionality both to other parts of the
+> > > > > > cs42l43 device and to external devices that wish to use its IRQs.
+> > > > > 
+> > > > > Sorry, but this isn't much of an interrupt controller driver. A modern
+> > > > > interrupt controller driver is firmware-driven (DT or ACPI, pick your
+> > > > > poison), uses irq domains, and uses the irqchip API.
+> > > > > 
+> > > > 
+> > > > Apologies but I really need a little help clarifying the issues
+> > > > here. I am totally happy to fix things up but might need a couple
+> > > > pointers.
+> > > > 
+> > > > 1) uses the irqchip API / uses irq domains
+> > > > 
+> > > > The driver does use both the irqchip API and domains, what
+> > > > part of the IRQ API are we not using that we should be?
+> > > > 
+> > > > The driver registers an irq domain using
+> > > > irq_domain_create_linear.  It requests its parent IRQ using
+> > > > request_threaded_irq. It passes IRQs onto the devices requesting
+> > > > IRQs from it using handle_nested_irq and irq_find_mapping.
+> > > > 
+> > > > Is the objection here that regmap is making these calls for us,
+> > > > rather than them being hard coded into this driver?
+> > > 
+> > > That's one of the reasons. Look at the existing irqchip drivers: they
+> > > have nothing in common with yours. The regmap irqchip abstraction may
+> > > be convenient for what you are doing, but the result isn't really an
+> > > irqchip driver. It is something that is a small bit of a larger device
+> > > and not an interrupt controller driver on its own. The irqchip
+> > > subsystem is there for "first class" interrupt controllers.
+> > 
+> > I'm not aware of another subsystem that deals with !IRQChip level IRQ
+> > controllers.  Where do simple or "second class" interrupt controllers
+> > go?
 > 
-> Yes, I merge a lot of shared branches with dt-binding changes into the
-> soc/dt branch, and I wasn't aware of a policy against that, certainly did
-> not enforce it.
-
-Not as enforcement, but as your (or Olof's) preferred approach. See for
-example:
-
-https://lore.kernel.org/all/CAOesGMhfrWSvLtDtGRWBTJiAoeSwzGgsdUTm26j1mpoVu0ghDg@mail.gmail.com/
-
-https://lore.kernel.org/all/CAOesGMi98hJnUYVLkgcbBpXsi-Xe6QPh-gtLaPWPO-EW+KcGuQ@mail.gmail.com/
-
-I understand the "preferred approach" as part of discussions on the
-patches, when the entire patchset can still be re-arranged or changed.
-Not as strict policy applied on the actual git pull request from
-sub-arch maintainer.
-
-If we want to keep such recommendation, let's embed it into maintainer
-handbook, so we will not have to dig the emails.
-
+> This isn't an interrupt controller. This is internal signalling, local
+> to a single component that has been artificially broken into discrete
+> bits, including an interrupt controller. The only *real* interrupts
+> here are the GPIOs.
 > 
-> I generally object to changes touching drivers/* or anything else besides
-> arch/*/boot/dts, Documentation/devicetree/bindings/ and include/dt-bindings
-> in the dt branches, but I have made expections in the past when there
-> was a particular important reason.
+> I'm happy to see an interrupt controller for the GPIOs. But the rest
+> is just internal muck that doesn't really belong here. Where should it
 
-Best regards,
-Krzysztof
+You should have been a poet! =;-)
 
+> go? Together with the rest of the stuff that manages the block as a
+> whole. Which looks like the MFD subsystem to me.
+
+Very well.  Let's see this "muck" in a patch please!
+
+-- 
+Lee Jones [李琼斯]
