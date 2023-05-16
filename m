@@ -2,80 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99C76704671
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 09:32:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C573770467E
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 09:36:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231135AbjEPHci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 03:32:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35392 "EHLO
+        id S231187AbjEPHgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 03:36:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231342AbjEPHch (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 03:32:37 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8012D46B7
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:32:35 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-50bc0117683so24270773a12.1
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:32:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684222353; x=1686814353;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DWutDj9rFJfM0+oJ1Ly346rYAwyaNPk/pk4POJZSdsI=;
-        b=bzvM1sW0JmoVjw+AykUD0z+rxCejB9bI8j0PPHbUpxWJTi7uHHnqOZRiWETmluO2mh
-         XR0SDWHvQBBspVLseyru1AE4Nh5jqncFI4aoSJ5Ed0zuCqfxDwJu1BwMJZsWBOqlxls4
-         GkQV9Db61aB6OXTfQB+jW6MP/qVdKZ1oy8X2BgcXkk9+OTvBu0sfpwbTWI4dowlUIZWP
-         z/SYwxej5brfwBKO6nK9eQQdcLRaN7hxQztl2Bid12t/vKPrFMKMMuX2K8VIbQViLJ1E
-         3DeZuocbw/ebJDLiln92VTGqLqSB2vAifAoHL/TwtQJiQXr/kOR9f81D3XsMoA+4gxvs
-         EO7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684222353; x=1686814353;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DWutDj9rFJfM0+oJ1Ly346rYAwyaNPk/pk4POJZSdsI=;
-        b=fWbB04qr4pjO13UvOeOwNK2XQ4gF4u4OY/1eDwT3+tAussL44QoYy619muMDXSRswY
-         mr3V13OsxnZ4D+CcyIJNZXxFTWrR+kM+CvLIR69uFw7PDIbwft83a8DGAkPF+Avum2MA
-         8r5QaV+NKkLkmV24SqmhxnJv6REQ73wClorJP2wkx0vL1iMO+VWp7w87Qw3tKWYR2fI+
-         icb4dPOaOvf1GghtxmPSDybO1NWshmDD+i0TVVdrXASsutONfi4tee1KTcSUbF1nDf/X
-         E1QqS7DnW0TJVLKsh5q35xz9xUPqdxXBMyym/8KWvduhDJrJBPHcFPj+WKxinv4BtJpo
-         KHxA==
-X-Gm-Message-State: AC+VfDyj7NDMojcUkwlc9vM650qRwLoOT3eMoQemtTojbUgfSu6fNY3m
-        B0IO8MqdIp5fhR8dAowJwjc1ow==
-X-Google-Smtp-Source: ACHHUZ7m31GBThipErEZdbCQBKvFDt7rovo0tFIyowf02g8W/tBo1xEuU0aDTpXsBfEYbkdImm9+xQ==
-X-Received: by 2002:a17:907:72c7:b0:969:f677:11c8 with SMTP id du7-20020a17090772c700b00969f67711c8mr21848043ejc.45.1684222353628;
-        Tue, 16 May 2023 00:32:33 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:4d4a:9b97:62e:1439? ([2a02:810d:15c0:828:4d4a:9b97:62e:1439])
-        by smtp.gmail.com with ESMTPSA id ml17-20020a170906cc1100b009661484e84esm10642620ejb.191.2023.05.16.00.32.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 00:32:33 -0700 (PDT)
-Message-ID: <abadd2af-dbdc-4f0e-f128-4a361abb4fb4@linaro.org>
-Date:   Tue, 16 May 2023 09:32:31 +0200
+        with ESMTP id S230145AbjEPHgA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 03:36:00 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E9F444B6;
+        Tue, 16 May 2023 00:35:58 -0700 (PDT)
+Received: from kwepemm600004.china.huawei.com (unknown [172.30.72.53])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4QL7Fn2fNmzTkhh;
+        Tue, 16 May 2023 15:31:09 +0800 (CST)
+Received: from [10.67.103.231] (10.67.103.231) by
+ kwepemm600004.china.huawei.com (7.193.23.242) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Tue, 16 May 2023 15:35:55 +0800
+Message-ID: <aa5b1919-74c6-1f97-78af-ab5f0904c3ce@huawei.com>
+Date:   Tue, 16 May 2023 15:35:54 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: move noc node to correct position
-To:     Marek Vasut <marex@denx.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH] soc: hisilicon: Support HCCS driver on Kunpeng SoC
+To:     Sudeep Holla <sudeep.holla@arm.com>
+CC:     Arnd Bergmann <arnd@arndb.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
         Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230516055006.320488-1-alexander.stein@ew.tq-group.com>
- <6ad832ff-9ada-ef06-7d32-50da6148b92d@denx.de>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6ad832ff-9ada-ef06-7d32-50da6148b92d@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        <linux-kernel@vger.kernel.org>, <soc@kernel.org>,
+        <wanghuiqiang@huawei.com>, <tanxiaofei@huawei.com>,
+        <liuyonglong@huawei.com>, <huangdaode@huawei.com>,
+        <linux-acpi@vger.kernel.org>, Len Brown <lenb@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230424073020.4039-1-lihuisong@huawei.com>
+ <e0c4f4b5-8b34-4542-b676-f98ddb8ef586@app.fastmail.com>
+ <20230425103040.znv66k364ant6klq@bogus>
+ <c7d9c3c5-e400-c60a-52e0-0f267ec8c517@huawei.com>
+ <20230425131918.5tf5vot4h7jf54xk@bogus>
+ <db6c713c-f99c-fa3f-8d38-9a5d50889cc2@huawei.com>
+ <20230515130807.pdvx7bxwjkfdsmsr@bogus>
+From:   "lihuisong (C)" <lihuisong@huawei.com>
+In-Reply-To: <20230515130807.pdvx7bxwjkfdsmsr@bogus>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.67.103.231]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ kwepemm600004.china.huawei.com (7.193.23.242)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-8.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,19 +66,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 09:13, Marek Vasut wrote:
-> On 5/16/23 07:50, Alexander Stein wrote:
->> The base address of NOC is bigger than aips5, but smaller than aips4.
+
+在 2023/5/15 21:08, Sudeep Holla 写道:
+> On Thu, May 04, 2023 at 09:16:16PM +0800, lihuisong (C) wrote:
+>> I'm tring to use CRS with GAS to report PCC channel ID and get other
+>> informations driver need by address.
+> OK you had pcc-chan-id pcc-type and device-flags in the DSD style bindings
+> to begin with. I haven't understood device-flags here so can't comment on
+> that.
+
+We want to use the 'device-flags' to report some information by bit.
+Currently, this driver requests PCC channel and use type2 to communicate 
+with firmware.
+But, if some platform support type3 and PCC Operation Region, driver can 
+choice this method to communicate with firmware.
+So firmware and driver have to use this flag to make compatibility.
+
+>
+>> I found a way to obtain the generic register information according to
+>> "Referencing the PCC address space" in ACPI spec.
+>> And driver also get the PCC generic register information successfully.
 >>
->> Fixes: b86c3afabb4f ("arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX")
-> 
-> I don't mind this Fixes tag, since this will likely land in the same 
-> upcoming release anyway.
-> 
-> But in general, is this really Fixes: material ?
+> Can you elaborate ? I assume by that you must be able to get pcc-chan-id
 
-Order of nodes in DTS is not a bug...
+Yes，driver can get pcc-chan-id by below register.
 
-Best regards,
-Krzysztof
+Register (PCC, RegisterBitWidth, RegisterBitOffset, RegisterAddress, AccessSize)
 
+> right ? You must not need pcc-type as the pcc mailbox driver must handle
+> the type for you. If not, we may need to fix or add any missing support.
+Yes, PCC driver doesn't support it currently. And aother patch [1] we've 
+been talking about does it.
+If it is applied to kernel, we can drop this pcc-type here.
+
+[1] 
+https://patchwork.kernel.org/project/linux-acpi/patch/20230423110335.2679-2-lihuisong@huawei.com/
+>
+>> But I don't know how to set and use the address in PCC register.
+> It must be same as what you would have specified in you new bindings
+> under "pcc-chan-id". I am confused as you say you were able to get the
+> PCC generic register information successfully but you still claim you
+> don't know how to set or use the address.
+My confusion about this address is mentioned below.
+>> Where should this address come from?
+>> It seems that ACPI spec is not very detailed about this.
+>> Do you have any suggestions?
+>>
+> I am afraid, I don't have any as I am failing to understand the exact issue
+> you are facing.
+>
+> Let me try to ask the question explicity here:
+>
+> If you are just referring to just the <RegisterAddress,> in
+>
+> Register (PCC, RegisterBitWidth, RegisterBitOffset, RegisterAddress, AccessSize)
+Yeah, this is what I'm using.
+>
+> then,
+>
+> RegisterAddress is usually the offset in the comms address associated with
+Communication subspace in share memory of PCC subspace?
+> the PCC subspace ID specified in AccessSize. Yes the use of AccessSize for
+> the PCC subspace ID is bit confusing though.
+>
+> You can either list all the registers with _CRS individually or the driver
+List all the registers as following way?
+Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+{
+     QWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, 
+NonCacheable, ReadWrite,
+         0x0000000000000000, // Granularity
+         0x0000000098190000, // Range Minimum
+         0x000000009819FFFF, // Range Maximum
+         0x0000000000000000, // Translation Offset
+         0x0000000000010000, // Length
+         ,, , AddressRangeMemory, TypeStatic)
+})
+> can just use the PCC subspace ID in AccessSize and keep RegisterAddress = 0
+> but access individual offset based on its own knowledge. I haven't seen the
+Following words come from ACPI spec.
+-->
+As an example, the following resource template refers to the feld 
+occupying bits 8 through 15 at address 0x30 in PCC
+subspace 9:
+ResourceTemplate()
+{
+Register (
+     PCC, //AddressSpaceKeyword
+     8, //RegisterBitWidth
+     8, //RegisterBitOffset
+     0x30, //RegisterAddress
+     9 //AccessSize (subspace ID)
+     )
+}
+
+If the width of the address is 32bit, set RegisterAddress to 0, 
+RegisterBitOffset to 0 and set RegisterBitWidth to 64 here.
+Driver can access to the ((void __iomem *)pcc_comm_addr + 0x8 + 0) and 
+((void __iomem *)pcc_comm_addr + 0x8 + 4) address，right?
+(This virtual address = pcc mapped address + header size + offset within 
+PCC subspace.)
+> full driver yet but I assuming that's how you would have used if you went with
+> your DSD pcc-chan-id proposal.
+>
+>> On the other hand, we think that System Memory space + method can also
+>> achieve above goal. What do you think of that?
+> Again I don't understand what you mean by that.
+Sorry, here is what I want to say.
+-->
+OperationRegion (CCS0, SystemMemory, 0x00000002081000CC, 0x04)
+Field (CCS0, DWordAcc, NoLock, Preserve)
+{
+     HAU1,   32
+}
+OperationRegion (CCS1, SystemMemory, 0x0000000201070410, 0x04)
+Field (CCS1, DWordAcc, NoLock, Preserve)
+{
+     HCGE,   32
+}
+Method (_DSM, 2, Serialized)  // _DSM: Device-Specific Method
+{
+     If ((Arg0 == ToUUID ("b06b81ab-0134-4a45-9b0c-483447b95fa7")))
+     {
+         If ((Arg1 == One))
+         {
+             Return (HAU1)
+         }
+
+         Return (HCGE)
+     }
+}
+
+Driver can call _DSM method to get some information, such as pcc_chan_id 
+and device_flags.
+>
