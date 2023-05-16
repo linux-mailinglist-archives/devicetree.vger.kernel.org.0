@@ -2,130 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F1A7705158
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 16:57:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D51D9705162
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 17:02:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233848AbjEPO54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 10:57:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59792 "EHLO
+        id S233525AbjEPPCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 11:02:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233744AbjEPO5z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 10:57:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39E3F4487;
-        Tue, 16 May 2023 07:57:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7F1D2630E5;
-        Tue, 16 May 2023 14:57:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4065C433EF;
-        Tue, 16 May 2023 14:57:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684249070;
-        bh=i6M5/UI5gYYrcQo2Y00Z1kbdlK8gGZF19QqQZFugTaY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=YEhtFhZUuBANto1gfEjvX685M5ITtH5A8Hkf8vV39QSsHuzhU8vKYjUbZ8lCkLiN4
-         ud3NZe8HIg1njVTzWb1OlWZlpO+hM8Bgw3HpdOx0HrRYpM8c1WVipVSBh3gBBWCweQ
-         Ta+DgY/lKHPhxpAb+EbuPuOf7/NqnPO5bT2pwWx9g4IYDSDwHm/SUFO8P94SkM34el
-         izYq72jex2oZi+2qTV83qA1F6J1NTAZ1reh1Nj4JjVkqu5MoKziBRbyqXrbhfCJMN7
-         TNfZr7w+RhBN2SoCsaawo2yXgAND8CoWWhORmmqZ5NqMYDn0PziOEAi/+SUSTBBqSa
-         ufyG6pXKGgH9A==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1pyw7Y-00FZt0-H1;
-        Tue, 16 May 2023 15:57:48 +0100
-Date:   Tue, 16 May 2023 15:57:48 +0100
-Message-ID: <865y8smihf.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S233004AbjEPPCN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 11:02:13 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 288095B85
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:02:12 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50b8d2eed3dso21554370a12.0
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:02:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684249330; x=1686841330;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yd9g1khbA63JeBUJTf00ISRAL2mdUk5sQJrk9uiVOOE=;
+        b=RwN511gcQohD0AcIPWdg+7E1l1UXqnK/XEApmf284hgfHK+JGK7DbZSLINcA82520Z
+         ka3+p7mxnAv3m5APW/Fnyf+/UHlMY8aLLg3dnIOsIU+H6Cgcg81pLceAhozlvfuroveX
+         c6HuHlz/hXb3pEIjIDVONVApAasihfoagtEE8uVxxzTcieBROtWDO3PI0BqPDT8bRKs3
+         aDvbjUTR6wC5Ks92CI6FqYDZJ8yKynhjgCGzecrSer0LzjLrrA6oG3FGwhfLoQzlz3qA
+         C44agNaITbZshFc9Aej9zdP9UZdlBCWy4PfcieyF5ROpyT4Ita47vaxwvFJKunskPAKY
+         YNyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684249330; x=1686841330;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Yd9g1khbA63JeBUJTf00ISRAL2mdUk5sQJrk9uiVOOE=;
+        b=EaiiReXktidN2+AOdR+SeO4ywZGVSFVjXXt4UPMjNhzhPZ0658sdMBUJYME8EmjK3a
+         C1UaJ/7H7UejJ3hj/IaMvqmV/6DDn2QZ58l3YNZlctrt070hFeS+Itmq3QHRvukTPLo/
+         ipi9OU7bEmX/rwTAb4zDh5liHi3JSEXOxzRSxpSWqMnc0MjVZMh94zeXSp5uvdQ8blG4
+         sxmfOf5bIObbkaFqRi0ELysjyacx8//osOys5YA4Ab55TZrmWrQl2wnez8SK7Cgkt2pR
+         3bKwYfYKl183HBlRPnkCU1BIQycgkVTd3u2nPcRHxvvvhMq1nI2bpqPI+N5M4/bINqCZ
+         UX2w==
+X-Gm-Message-State: AC+VfDz7QKt5VezrvkAdXLdLXMb7lMAjlQVO3q5sEEmccGpfqcrwZKvQ
+        zlkveBb1ukxRfAv8M83rlcNNag==
+X-Google-Smtp-Source: ACHHUZ7ocapk0GLD9GklJXYUgtY5UVSIIIiUJMjeWYHUxD8QRZg1rciUFAf7o+F9mRFbrQ5FsnmdcA==
+X-Received: by 2002:a17:907:72d0:b0:96a:f688:db6e with SMTP id du16-20020a17090772d000b0096af688db6emr9492497ejc.74.1684249330615;
+        Tue, 16 May 2023 08:02:10 -0700 (PDT)
+Received: from krzk-bin.. ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
+        by smtp.gmail.com with ESMTPSA id q24-20020a170906541800b0096aa7d25a65sm6361810ejo.23.2023.05.16.08.02.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 08:02:09 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        wenst@chromium.org, yidilin@chromium.org,
-        Tinghan Shen <tinghan.shen@mediatek.com>, jwerner@chromium.org,
-        Weiyi Lu <weiyi.lu@mediatek.com>, Ben Ho <Ben.Ho@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] irqchip/gic-v3: Disable pseudo NMIs on Mediatek devices w/ firmware issues
-In-Reply-To: <3cc683e7-28aa-7b6e-1499-3aca953294cc@collabora.com>
-References: <20230515131353.v2.cover@dianders>
-        <20230515131353.v2.2.I88dc0a0eb1d9d537de61604cd8994ecc55c0cac1@changeid>
-        <3cc683e7-28aa-7b6e-1499-3aca953294cc@collabora.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: angelogioacchino.delregno@collabora.com, dianders@chromium.org, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, allen-kh.cheng@mediatek.com, linux-mediatek@lists.infradead.org, eddie.huang@mediatek.com, hsin-hsiung.wang@mediatek.com, wenst@chromium.org, yidilin@chromium.org, tinghan.shen@mediatek.com, jwerner@chromium.org, weiyi.lu@mediatek.com, Ben.Ho@mediatek.com, seiya.wang@mediatek.com, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Fenglin Wu <quic_fenglinw@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        "Signed-off-by : Abel Vesa" <abel.vesa@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] dt-bindings: leds: qcom,spmi-flash-led: add PM8550
+Date:   Tue, 16 May 2023 17:02:00 +0200
+Message-Id: <20230516150202.188655-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 May 2023 14:23:52 +0100,
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> wrote:
-> 
-> Il 15/05/23 22:13, Douglas Anderson ha scritto:
-> > Some Chromebooks with Mediatek SoCs have a problem where the firmware
-> > doesn't properly save/restore certain GICR registers. Newer
-> > Chromebooks should fix this issue and we may be able to do firmware
-> > updates for old Chromebooks. At the moment, the only known issue with
-> > these Chromebooks is that we can't enable "pseudo NMIs" since the
-> > priority register can be lost. Enabling "pseudo NMIs" on Chromebooks
-> > with the problematic firmware causes crashes and freezes.
-> > 
-> > Let's detect devices with this problem and then disable "pseudo NMIs"
-> > on them. We'll detect the problem by looking for the presence of the
-> > "mediatek,broken-save-restore-fw" property in the GIC device tree
-> > node. Any devices with fixed firmware will not have this property.
-> > 
-> > Our detection plan works because we never bake a Chromebook's device
-> > tree into firmware. Instead, device trees are always bundled with the
-> > kernel. We'll update the device trees of all affected Chromebooks and
-> > then we'll never enable "pseudo NMI" on a kernel that is bundled with
-> > old device trees. When a firmware update is shipped that fixes this
-> > issue it will know to patch the device tree to remove the property.
-> > 
-> > In order to make this work, the quick detection mechanism of the GICv3
-> > code is extended to be able to look for properties in addition to
-> > looking at "compatible".
-> > 
-> > Reviewed-by: Julius Werner <jwerner@chromium.org>
-> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> 
-> I don't like firmware removing properties from my devicetrees and I'd like this
-> issue to get addressed in another way (use a scratch register? and check it in
-> Linux drivers to determine if the issue is not present: if scratch contains BIT(x),
-> do not parse the quirk) but that's a different discussion which is a bit out of
-> context for this patch, so:
+Document compatible for PM8550 Torch and Flash LED controller.
 
-So what you're advocating for is that we have another flag somewhere
-that says the same thing. Stored where? Accessible how? On top of
-having to check for DT, ACPI, and SOC_ID interfaces, you want YAFM
-(Yet Another Fixing Method)?
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks, but no, thanks.
-
-	M.
-
+diff --git a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+index ffacf703d9f9..074ef7e63c49 100644
+--- a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
++++ b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
+@@ -26,6 +26,7 @@ properties:
+           - qcom,pm8150c-flash-led
+           - qcom,pm8150l-flash-led
+           - qcom,pm8350c-flash-led
++          - qcom,pm8550-flash-led
+       - const: qcom,spmi-flash-led
+ 
+   reg:
 -- 
-Without deviation from the norm, progress is not possible.
+2.34.1
+
