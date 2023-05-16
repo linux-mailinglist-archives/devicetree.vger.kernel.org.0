@@ -2,145 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09F75704ABC
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:34:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66B56704AE8
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:42:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231893AbjEPKei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 06:34:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33818 "EHLO
+        id S232095AbjEPKmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 06:42:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231470AbjEPKeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:34:36 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD7265B97
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 03:34:00 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50bceaf07b8so25350839a12.3
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 03:34:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684233231; x=1686825231;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/s/b8eaU43q5xbDT+IsLyN9R6gUY2onB35bWiqiQfVQ=;
-        b=FVMvEJiPqhOQXhjXOb99WFShalGrKAuerHvbyeTpR2Z4/BzvjQwkO24qDPKoKmbrQx
-         0r71drMY3DWM54icVAz8ygeowkiUqGp2ztytda6/chM9Jj7Rk4eNvojd6B6ZlJ+NY2eJ
-         +aZoKwBszbw1XcxpIYehiuWjrX4HVKlAPBr4mKYSRiZlJ9skj+V4NTwp9NAEoBTqiIy0
-         ujCexKgDeDCm9MRQTCHrK2m5lsknNwbnSHNeeT6dXVmUGQEhiVEEHdJhRKFFddmu/e9t
-         RTV4raAUnkEFd0ecqc7JdyyS8XOimQxxLSr1FNPHKultErO4MwnKis0eGOEhlm2a8FIe
-         /fyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684233231; x=1686825231;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/s/b8eaU43q5xbDT+IsLyN9R6gUY2onB35bWiqiQfVQ=;
-        b=NmpAooSWJ3OgQYovFjKpbIpyXvo1ALvC0FEfeEwhCS1GdasuBJW7lyg7dd/gzWxkEL
-         5CicDghIxSeYlFw8C3s5um97eM1QY/h1THEPG81gT04lwB3C91SbMtroaBs4XAf4gVcm
-         1kB9uppERhIBIAAMTy+OITE9wW0XgqzorVzqP5GK8MtUFFF8qd030aOETg8+C0XNINLv
-         jsWTIc/txCxa593BJwTzCV4kUKhyUN8s0y1TBJLIVb75J5EsCC30r539lZuaJosFFYQI
-         q4cM3T0ssGizJ97agWZjwAgCvTO5ZfaOf/oglKwTktK109nVqF1dOIxJDJsVmcPaogsX
-         cFNQ==
-X-Gm-Message-State: AC+VfDwe+K+5cfUqKvBuyRvA14sq9nOIS0vW0awKkV7HpamWYRxpkyyc
-        aOh4stcDUix1tcbvwRawKZirO+yeTxCeiNA4tH8=
-X-Google-Smtp-Source: ACHHUZ4E3loLNCVYpl/4ZNNE0tRB5XJnXmJHiqEn+7ptHeyKvrhzAdzam7JlqLZxnX2qqTeB7gnauA==
-X-Received: by 2002:a50:ed0b:0:b0:50b:d83b:9c61 with SMTP id j11-20020a50ed0b000000b0050bd83b9c61mr27778560eds.32.1684233230993;
-        Tue, 16 May 2023 03:33:50 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
-        by smtp.gmail.com with ESMTPSA id n21-20020aa7c695000000b0050bdd7fafd8sm8262403edq.29.2023.05.16.03.33.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 03:33:50 -0700 (PDT)
-Message-ID: <3af2f676-66fb-1c10-372f-4fcf6f7d733e@linaro.org>
-Date:   Tue, 16 May 2023 12:33:49 +0200
+        with ESMTP id S231913AbjEPKmA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:42:00 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C80DBE;
+        Tue, 16 May 2023 03:41:59 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34G8VOmT026320;
+        Tue, 16 May 2023 05:41:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=vAMh92l5h6Q7hcEh6WFWIgGftgCfxqWmMEVQrJ7Twmo=;
+ b=GLaW26NG5Cj9mCLHLw9+IpvJmezaDN8LtyneTOQ9fOY33z71QwCmX3APWVoL2xdasX1h
+ 9dJGd4etzg4pdAU2aM8oQqU0W3KpmL/yqoffLhmSBUCn6zANCtCyFzV+kvHTQwKtKeOT
+ 8IZ4rwiLO1URvD940rPXeSGlhkju4vEjWSDD5OuvWeWAVACUNqxsNzf/jlaU84L9FhEn
+ UllOpj0Jq12/6OZixxWy9B5Bt9JIyt6s9NC8saGsQTUCIXWGHPMydkynQFbk+H0vPZXq
+ DoE00yt1TXPBa+1zK0uTspqYQwq8Vti/x8epmnwcgw4cLNqTVKVYCK/80lDvJO+Z4QPk TA== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3qj6ymv753-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 May 2023 05:41:15 -0500
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Tue, 16 May
+ 2023 05:41:14 -0500
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Tue, 16 May 2023 05:41:14 -0500
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 2CC28B38;
+        Tue, 16 May 2023 10:41:14 +0000 (UTC)
+Date:   Tue, 16 May 2023 10:41:14 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Lee Jones <lee@kernel.org>
+CC:     Marc Zyngier <maz@kernel.org>, <broonie@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <tglx@linutronix.de>,
+        <linus.walleij@linaro.org>, <vkoul@kernel.org>,
+        <lgirdwood@gmail.com>, <yung-chuan.liao@linux.intel.com>,
+        <sanyog.r.kale@intel.com>, <pierre-louis.bossart@linux.intel.com>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 07/10] irqchip/cs42l43: Add support for the cs42l43 IRQs
+Message-ID: <20230516104114.GU68926@ediswmail.ad.cirrus.com>
+References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
+ <20230512122838.243002-8-ckeepax@opensource.cirrus.com>
+ <86o7mpmvqq.wl-maz@kernel.org>
+ <20230512153933.GH68926@ediswmail.ad.cirrus.com>
+ <86mt29mt2m.wl-maz@kernel.org>
+ <20230515112554.GA10825@google.com>
+ <86h6scmzf7.wl-maz@kernel.org>
+ <20230516100936.GF10825@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v4 4/5] dt-bindings: iommu: arm,smmu: enable clocks for
- sa8775p Adreno SMMU
-Content-Language: en-US
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20230417125844.400782-1-brgl@bgdev.pl>
- <20230417125844.400782-5-brgl@bgdev.pl>
- <CAMRc=MeWEs7AoZSNWS9bZO=_12U5944VBq0ixrY2rx2h2=OOfw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMRc=MeWEs7AoZSNWS9bZO=_12U5944VBq0ixrY2rx2h2=OOfw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230516100936.GF10825@google.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: gMHOED3BHFVkCy5V-NwvIXEY6a_cTz6p
+X-Proofpoint-ORIG-GUID: gMHOED3BHFVkCy5V-NwvIXEY6a_cTz6p
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 12:07, Bartosz Golaszewski wrote:
-> On Mon, Apr 17, 2023 at 2:58 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
->>
->> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>
->> The GPU SMMU will require the clocks property to be set so put the
->> relevant compatible into the adreno if-then block.
->>
->> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->> ---
->>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 6 ++++--
->>  1 file changed, 4 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> index ba677d401e24..53bed0160be8 100644
->> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
->> @@ -79,6 +79,7 @@ properties:
->>        - description: Qcom Adreno GPUs implementing "qcom,smmu-500" and "arm,mmu-500"
->>          items:
->>            - enum:
->> +              - qcom,sa8775p-smmu-500
->>                - qcom,sc7280-smmu-500
->>                - qcom,sm6115-smmu-500
->>                - qcom,sm6125-smmu-500
->> @@ -331,7 +332,9 @@ allOf:
->>        properties:
->>          compatible:
->>            contains:
->> -            const: qcom,sc7280-smmu-500
->> +            enum:
->> +              - qcom,sa8775p-smmu-500
->> +              - qcom,sc7280-smmu-500
->>      then:
->>        properties:
->>          clock-names:
->> @@ -413,7 +416,6 @@ allOf:
->>                - nvidia,smmu-500
->>                - qcom,qcm2290-smmu-500
->>                - qcom,qdu1000-smmu-500
->> -              - qcom,sa8775p-smmu-500
->>                - qcom,sc7180-smmu-500
->>                - qcom,sc8180x-smmu-500
->>                - qcom,sc8280xp-smmu-500
->> --
->> 2.37.2
->>
+On Tue, May 16, 2023 at 11:09:36AM +0100, Lee Jones wrote:
+> On Tue, 16 May 2023, Marc Zyngier wrote:
+> > On Mon, 15 May 2023 12:25:54 +0100,
+> > Lee Jones <lee@kernel.org> wrote:
+> > > On Fri, 12 May 2023, Marc Zyngier wrote:
+> > > > On Fri, 12 May 2023 16:39:33 +0100,
+> > > > Charles Keepax <ckeepax@opensource.cirrus.com> wrote:
+> > > I'm not aware of another subsystem that deals with !IRQChip level IRQ
+> > > controllers.  Where do simple or "second class" interrupt controllers
+> > > go?
+> > 
+> > This isn't an interrupt controller. This is internal signalling, local
+> > to a single component that has been artificially broken into discrete
+> > bits, including an interrupt controller. The only *real* interrupts
+> > here are the GPIOs.
+> > 
+
+I would question this statement a little, they are fixed function
+IRQs sure but they are still real interrupts. These are lines which
+receive a signal and on an edge they set a stick status bit, which
+causes another signal to generate an edge, they have registers
+which let you mask events, if it walks like a duck and all. The
+only difference between this and a "real" interrupt is whether the
+chip designer or the board designer was the person who decided
+where the wire was connected.
+
+> > I'm happy to see an interrupt controller for the GPIOs. But the rest
+> > is just internal muck that doesn't really belong here. Where should it
+
+Internal-ish, granted many of them are primarily useful to the
+device itself. But it is very easy to construct situations where
+say knowing the speaker thermals are high, or that a jack has
+been inserted are useful outside of the CODEC driver itself.
+
+> > go? Together with the rest of the stuff that manages the block as a
+> > whole. Which looks like the MFD subsystem to me.
 > 
-> Gentle ping for a review and a pick up. The DT patches that use this
-> schema are in next now so check_dtbs will now fail.
+> Very well.  Let's see this "muck" in a patch please!
 
-I assume this is not for me, as you got my tag in v2, which I repeated
-in v3.
+Groovy I will do a re-spin moving the IRQ stuff to the MFD and
+lets see where we get to.
 
-Best regards,
-Krzysztof
+Thank you all for your help in reviewing this so far.
 
+Thanks,
+Charles
