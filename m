@@ -2,156 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AF0170480E
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C326704812
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:45:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231631AbjEPImT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 04:42:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58610 "EHLO
+        id S231282AbjEPIpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 04:45:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231362AbjEPImS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:42:18 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1C0B421A
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:42:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1684226531; x=1715762531;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=piCBIyECUYi/crE4SdU4DKlw5L+SqcUVOLEGhipmWu0=;
-  b=ia2JRULbqInQiThudTndLnN1Gy/6nCKkPyp4JecVXvK8S1by5gl0PbMM
-   XmSz9/MwkQ2oeHx5gYVefZsoM7mQ45g8c+aZrTCq0DZP6HlsPMHOUsNd+
-   pDUp2sYgwM1f9ax2nXYFSKgbRXobBRIKj3rPJyIzYbcnat1OWZ78LVxsW
-   3DfN4RneykkSJtXXZ8qRS51H3mSf+iQK3WCnDr34NE2P2QmeyFhFuTUM/
-   ah3vCSy0fcwCUXh3chYGF74FIMRuRLHk818IzK6MqHUfZ8uwNN5BV8Dzu
-   5Q8bhWrL4vPFopEteJpuE49wq1KvUTmqsms8Z0+JVKIcbmZEhbrbbfMkF
-   g==;
-X-IronPort-AV: E=Sophos;i="5.99,278,1677538800"; 
-   d="scan'208";a="30928500"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 16 May 2023 10:42:10 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 16 May 2023 10:42:10 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 16 May 2023 10:42:10 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1684226530; x=1715762530;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=piCBIyECUYi/crE4SdU4DKlw5L+SqcUVOLEGhipmWu0=;
-  b=XDPIx1Ec2lTgfeC3/BJ9ddb2QCLzcC6A0V+v58PKw7xv7O5j2V22ckkx
-   fXNn+jZy95zkU0lzg8eCKvN8hhObynukWLNq8YAM5xc3k5dv3llCiXW4o
-   FEPvkpYrZIWdlkK56jw8arYdRR488NIfHhgukktv/nPpfMam5R75J4HCp
-   sJ07xpUhDvUD+MTRBsHcxv1B7SfEfW3a4up62RkgG5Sbn6NjUGI67hLIS
-   05EASs83S45+feOutYf3mJUB7byLPno1Pq0Ah8dzET2pk8J5P+stCP99N
-   CL9rPleBbayDyRnoKGAQhdUQJXkgOQ6DCWr/Au+cTAaKe1vlFWTvl8geW
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.99,278,1677538800"; 
-   d="scan'208";a="30928499"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 16 May 2023 10:42:09 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id BB1A6280085;
-        Tue, 16 May 2023 10:42:09 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx8mp: Add DeWarp Engine DT node
-Date:   Tue, 16 May 2023 10:42:09 +0200
-Message-ID: <3244460.5fSG56mABF@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230516081354.38868-2-marex@denx.de>
-References: <20230516081354.38868-1-marex@denx.de> <20230516081354.38868-2-marex@denx.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230385AbjEPIpM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:45:12 -0400
+Received: from new1-smtp.messagingengine.com (new1-smtp.messagingengine.com [66.111.4.221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87E4019BD;
+        Tue, 16 May 2023 01:45:11 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 522B65810AF;
+        Tue, 16 May 2023 04:45:08 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Tue, 16 May 2023 04:45:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1684226708; x=1684233908; bh=u/
+        Wz5MhNACKrizGF564GZclX7WtuKcDjHIIc2sgb46k=; b=LZwQORTPNRSuxtpmnd
+        ncA/M0GDtg3dh7wxSU7uqTrOJWQ0JudOtVmLMg6+XYJJN7JkkhOaqWr9JMUJ1LYN
+        qlsXhsVFZwKdFi7LcqNMpziHyx+mheLQlbmWNeBmG7grA0HCXVgHp5i5BFWTv7Zk
+        c6MbjEN04eqMeNz2WPg04ABVYJiNbL2d4kHKuk9xBc/be9SRSFSG3sdJ2P+YmXuM
+        sWJERm3eaXVLB70uKqLNxSMUjmQZH6ZZra9iVh2PASs3OS1MyTeDVJMwZ8sqRMtF
+        jVJTgCxreoiAubEYMI1cLq2h2/KsLcGqMlxUJTbEv7GhFoqyI5CridlFzwyCyASg
+        t9Aw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; t=1684226708; x=1684233908; bh=u/Wz5MhNACKri
+        zGF564GZclX7WtuKcDjHIIc2sgb46k=; b=dIM0d/rWDZRxe7l2yHA8Ys/6jAjJ1
+        jzn5PVRh0UI3hEhDGSbYeitApDeupBmoKf8Z9yRSFCrmvoM7bvYQ3l15E7isPivU
+        Cl+5R+XQQCgSYMG/DRxE/H01o6IhPDbLn9fEsKAlOzn2y4vEsgLxNVmB5WNNJZ9h
+        93ORydUw+VR3p9D5ITaAuZuQ7rIwHhvawr06BPgUH40iOl0/7UbJYdV7H0cNSn6U
+        sAliTsQlKy3hNA7w4PU7Rf87KgM8UDglyqB3tAmaTM+4RSnE+H/GmMrPd/buYSlM
+        w4deceGtaJ8L0m5z3S2tBm5Z7Pt35x0TcDCS+QcRR/N8CCnn3GO4dySDQ==
+X-ME-Sender: <xms:k0JjZHYINi_B2oYrUdT0aJgPICFzDz-f3r20UBg6F9qO6G1GhhxfXw>
+    <xme:k0JjZGa6WQ40P-MeUsiDH97ab1HHMRq3UjfkwX3sF4ds5FYVgY4rFUEwYEt861uJ2
+    WyKDPTJfKgrJkbVQkg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeehledgtdejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:k0JjZJ9ZFPvUQMdXbAcgS7dLsrFIbc8_NFycwgYtMqV52neATnsIkA>
+    <xmx:k0JjZNpupvUMEJJbur4eJj0b5lnHQ5_2TRz-gy8bZxP9efgBLd7hDw>
+    <xmx:k0JjZCrTsJg_ZlDnOiKui63PzKX-TM63SjAnwzZ8wbPJHvFGGygA7w>
+    <xmx:lEJjZKB3kWYt21PwpKFT5sM6_1Q5NhXKizj5u523ggsCHuQu0KNR9Q>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 8FDBDB60086; Tue, 16 May 2023 04:45:07 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-415-gf2b17fe6c3-fm-20230503.001-gf2b17fe6
+Mime-Version: 1.0
+Message-Id: <2fabe721-7434-43e7-bae5-088a42ba128d@app.fastmail.com>
+In-Reply-To: <9cba6384-123b-1cd1-ed02-08365a0ed529@linaro.org>
+References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
+ <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-1-2592c29ea263@linaro.org>
+ <5cb38be4-a27f-dc1a-cbb9-c195505a9e7c@linaro.org>
+ <9fa0662e-8854-05f9-da7f-ec8e08d2badf@linaro.org>
+ <d5c030f9-2f4d-25cc-b922-d00f5033ac37@linaro.org>
+ <6228670c-3e06-3061-f304-a2c641962ffa@linaro.org>
+ <9cba6384-123b-1cd1-ed02-08365a0ed529@linaro.org>
+Date:   Tue, 16 May 2023 10:44:44 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Neil Armstrong" <neil.armstrong@linaro.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        "Jerome Brunet" <jbrunet@baylibre.com>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Kevin Hilman" <khilman@baylibre.com>,
+        "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "Dave Airlie" <airlied@gmail.com>,
+        "Daniel Vetter" <daniel@ffwll.ch>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Vinod Koul" <vkoul@kernel.org>,
+        "Kishon Vijay Abraham I" <kishon@kernel.org>,
+        "Sam Ravnborg" <sam@ravnborg.org>
+Cc:     "Nicolas Belin" <nbelin@baylibre.com>,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH v4 01/13] dt-bindings: clk: g12a-clkc: export VCLK2_SEL and add
+ CTS_ENCL clock ids
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 16. Mai 2023, 10:13:54 CEST schrieb Marek Vasut:
-> Add DT node for the DeWarp Engine of the i.MX8MP.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
+On Mon, May 15, 2023, at 18:22, neil.armstrong@linaro.org wrote:
+> On 15/05/2023 18:15, Krzysztof Kozlowski wrote:
+>> On 15/05/2023 18:13, Krzysztof Kozlowski wrote:
+>> 
+>> Also one more argument maybe not relevant here but for other cases -
+>> this makes literally impossible to include the clock ID in DTS in the
+>> same kernel revision, because you must not merge driver branch to DTS
+>> branch. SoC folks were complaining about this many times.
+>
+> Actually we handle this very simply by having such patches merged in a immutable
+> branch merged in the clock and DT pull-requests, it worked perfectly so far
+> and neither Stephen or Arnd complained about that.
 
-Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+It's usually benign if you just add a new clk at the end of the binding
+header, as that doesn't touch the internal header file in the same
+commit. I'm certainly happier about drivers that just use numbers from
+a datasheet instead of having to come up with numbers to stick in a binding
+because the hardware is entirely irregular, but there is usually no point
+trying to complain about bad hardware to the driver authors -- I unsterstand
+you are just trying to make things work.
 
-Thanks,
-Alexander
+I agree with Krzysztof that using the same identifiers in the local
+header and in the binding is just making your life harder for no
+reason, and if you are the only ones doing it this way, it would
+help to change it. Maybe just add a namespace prefix to all the internal
+macros so the next time you move one into the documented bindings you
+can do it with the same immutable branch hack but not include the
+driver changes in the dt branch.
 
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
-> V2: Update on top of 1/2
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
-> a3ffd53a95357..cd64b39e7d4b8 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -1366,6 +1366,16 @@ isi_in_1: endpoint {
->  				};
->  			};
->=20
-> +			dewarp: dwe@32e30000 {
-> +				compatible =3D "nxp,imx8mp-dw100";
-> +				reg =3D <0x32e30000 0x10000>;
-> +				interrupts =3D <GIC_SPI 100=20
-IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks =3D <&clk=20
-IMX8MP_CLK_MEDIA_AXI_ROOT>,
-> +					 <&clk=20
-IMX8MP_CLK_MEDIA_APB_ROOT>;
-> +				clock-names =3D "axi", "ahb";
-> +				power-domains =3D <&media_blk_ctrl=20
-IMX8MP_MEDIABLK_PD_DWE>;
-> +			};
-> +
->  			mipi_csi_0: csi@32e40000 {
->  				compatible =3D "fsl,imx8mp-mipi-csi2",=20
-"fsl,imx8mm-mipi-csi2";
->  				reg =3D <0x32e40000 0x10000>;
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+    Arnd
