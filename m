@@ -2,77 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB8CF7046C8
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 09:45:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A3397046DB
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 09:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231446AbjEPHpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 03:45:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44286 "EHLO
+        id S231440AbjEPHsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 03:48:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231234AbjEPHpn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 03:45:43 -0400
+        with ESMTP id S231368AbjEPHsg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 03:48:36 -0400
 Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4990423C
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:45:41 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-24deb9c5ffcso9266998a91.1
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:45:41 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B3D91FCC
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:48:35 -0700 (PDT)
+Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-24e1d272b09so10149258a91.1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:48:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684223141; x=1686815141;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1684223314; x=1686815314;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zMgxFstA4dU27VYUmC/EUyRT+aFdHF1+K5zpsmTBgHI=;
-        b=eIHmYIJe70KWjBIIaFEi+nqfszwu0VfvZ1D0A/IWeIGuDFfDOnHkmv6fePL83K1RRd
-         UK5QPAERzamapBRmO+mE18Ft/2kAyhGV1OgsNPhY74VKp+o+DdeO5pZ9w186RpBohOQl
-         FvtOE3aVoG5QxrCOX3OALWID5aRckS6o8HCx3iJp8C7ZCE5699oR9Cw/FP934QyMLQKV
-         KPCDtmLIGYIYX/smZngajVrKYNbOF4GTMgeKG3NSgFMxsWqffD3Q2lxX/ZryKw12Djn8
-         ekw2cTR5px2SxGfhSnyDXIPE8W+K/rep/DU+Na7/mNXcVl9Y0jPLdDPBo0coBKlKQMeF
-         rRZQ==
+        bh=4KXsitg53ABiIejn2qRyy6XsTMO/gNpUFQEkxjwXTL8=;
+        b=jScC2f3+s5oc3GIlSAa2YdWcCe1Mr6NO4SYx8LSb2fWgnI+097+N+yjqyRUF9sGEB7
+         eimkA6naWxyx5M6KYBIF7O+nligTQNWrLxYhtL3L+DK1xlrbQf3KQSC4lReDbx9C0dZN
+         eppSIXtOvgUkUV5JLaf9BIOVMKtjiHF4gu2nqRs5itO0L3WH/0hiNBxbf1Mja4YblbyR
+         34oHnrbVvP0n6STYfJjR+fbRzqrLFVulAXvGLefUjLenUbePvvsl3x58b5E7L2a7cEW7
+         3lkuu/rbt2CxmlAGR4EV1NioLUDC48Vmnwhrpoo4B6Fv3jSiOsM/3TaQJp85LJuVG0tS
+         A2Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684223141; x=1686815141;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1684223314; x=1686815314;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zMgxFstA4dU27VYUmC/EUyRT+aFdHF1+K5zpsmTBgHI=;
-        b=PqzZiYX4i7LNiiTC7oThZE8xDeZcCn5BcDZRz2LYuXq6mNWqhGpPIBdNYJ6uzixr1V
-         EMOZBlkjsm0Z1pPyrHLqh3O8l9ytvIz8aQQ/RiohbTkgl14OX8aibK7+JByeLnYEiPXs
-         6+jWCEnUioe6MbxstRWiCWeaVukgDBsnAMdRfHK0cjJ8PIQvZH0yXNiGLDa0k8Ky62/e
-         429lZjFdXfxNOmsnejviA3Wovn8d8r/moddefSLw4HdFggeuv8pU366fIvIP8SgAwC2k
-         zjHXN7kUswqk2TwwRH/aRPOya4TCM9cZbvecFKeO+6jaiBEzk4FWCJhfseBtDbsN4vo+
-         pIgg==
-X-Gm-Message-State: AC+VfDwtxfhASvIPxB9XuX1zkr5fvZasvbGD0h3mSDqcFCcxmJ/UpuQT
-        N7p2d9qGc7pIIhMDZCOYPtJ7CQ==
-X-Google-Smtp-Source: ACHHUZ4pnY+fFo/94XKa/+R1YA7DYAOpobLPzohvxH/9sqnqIAoxYntMvYCKwss0q8v4hkr6qUReGA==
-X-Received: by 2002:a17:90b:4c8c:b0:252:8910:db42 with SMTP id my12-20020a17090b4c8c00b002528910db42mr18052102pjb.1.1684223140935;
-        Tue, 16 May 2023 00:45:40 -0700 (PDT)
+        bh=4KXsitg53ABiIejn2qRyy6XsTMO/gNpUFQEkxjwXTL8=;
+        b=ZPwvikbhmh79xJRyGb4Peo7OHtqY66VHkjL6VrIdA5gpmPDsjXwBpVG1BMWLGtaVY6
+         Jpvj0D4TpOE9xe+pCbEOGCn+rux14PKdBFrydf3dAGatfypsinPosXBglY3u3H+uHvgQ
+         8jD/QfH3kwbEa+v0fr5tzHI6wsGIaUC+0opr3389zLvHV7/UzZYjpUZlBL2gnAGFT2Qx
+         MkuezYKwh2DzjjfJd/gZjMZuOErba7XH3RbX/yLRXbICVX0V6vZ6etlTxzd09DognzDx
+         FRuBSGEfXDRzd2xyyvQ6AXDurAdh97oJ7Qx+R728HXUi+yd5ppxmT9/MlpGu1wRtDxp1
+         +/hA==
+X-Gm-Message-State: AC+VfDwDbn0dxoqzxZ4+W+RlUmLBe+ZD2NYV5wmOmmjrrtgdxWYzDn38
+        b5UuHzQZPEkruj9P/VdfBgvclMQwe/TkcI9CtOg=
+X-Google-Smtp-Source: ACHHUZ41uITNS8Zi9afvlrN54ZAfebg6XIkZMITS0qfTaLps5snRYqoKvanGP6EFDauW8OLpcIoGvw==
+X-Received: by 2002:a17:90a:d988:b0:24e:20d9:4e5b with SMTP id d8-20020a17090ad98800b0024e20d94e5bmr38295894pjv.9.1684223314579;
+        Tue, 16 May 2023 00:48:34 -0700 (PDT)
 Received: from ?IPV6:2401:4900:1c60:6bed:62ca:2e52:e0c5:d0cb? ([2401:4900:1c60:6bed:62ca:2e52:e0c5:d0cb])
-        by smtp.gmail.com with ESMTPSA id p15-20020a17090a2d8f00b0024df6bbf5d8sm973072pjd.30.2023.05.16.00.45.34
+        by smtp.gmail.com with ESMTPSA id t23-20020a634457000000b0051afa49e07asm12920492pgk.50.2023.05.16.00.48.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 00:45:40 -0700 (PDT)
-Message-ID: <4f68a71f-b9ea-7240-8d82-5578b9a94fbc@linaro.org>
-Date:   Tue, 16 May 2023 13:15:32 +0530
+        Tue, 16 May 2023 00:48:34 -0700 (PDT)
+Message-ID: <17931edb-e6c9-cacb-f3a2-fef85c156080@linaro.org>
+Date:   Tue, 16 May 2023 13:18:28 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH V2 1/4] dt-bindings: clock: Add crypto clock and reset
- definitions
-To:     Anusha Rao <quic_anusha@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        thara.gopinath@gmail.com, herbert@gondor.apana.org.au,
-        davem@davemloft.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_poovendh@quicinc.com
-References: <20230515150722.12196-1-quic_anusha@quicinc.com>
- <20230515150722.12196-2-quic_anusha@quicinc.com>
+Subject: Re: [PATCH 0/5] QTI RB2 features
 Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230515-topic-rb2-bits-v1-0-a52d154a639d@linaro.org>
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-In-Reply-To: <20230515150722.12196-2-quic_anusha@quicinc.com>
+In-Reply-To: <20230515-topic-rb2-bits-v1-0-a52d154a639d@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,47 +81,37 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 5/15/23 8:37 PM, Anusha Rao wrote:
-> Add crypto clock and reset ID definitions for ipq9574.
+
+On 5/15/23 6:34 PM, Konrad Dybcio wrote:
+> This short series brings a couple of fixes and features
+> (such as display out) for the QTI RB2 board. Similar patches
+> for the RB1 should be expected soon.
 > 
-> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> Depends on and based atop (in order):
+> 
+> 20230505075354.1634547-1-bhupesh.sharma@linaro.org
+> 20230502053534.1240553-1-bhupesh.sharma@linaro.org
+> 20230505064039.1630025-1-bhupesh.sharma@linaro.org
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->   Changes in V2:
-> 	- Separated out the clock/reset binding changes to a new patch.
+> Konrad Dybcio (5):
+>        arm64: dts: qcom: qrb4210-rb2: Describe fixed regulators
+>        arm64: dts: qcom: qrb4210-rb2: Enable display out
+>        arm64: dts: qcom: qrb4210-rb2: Add GPIO LEDs
+>        arm64: dts: qcom: qrb4210-rb2: Enable load setting on SDHCI VQMMC
+>        arm64: dts: qcom: qrb4210-rb2: Enable CAN bus controller
 > 
->   include/dt-bindings/clock/qcom,ipq9574-gcc.h | 4 ++++
->   include/dt-bindings/reset/qcom,ipq9574-gcc.h | 1 +
->   2 files changed, 5 insertions(+)
+>   arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 223 ++++++++++++++++++++++++++++++-
+>   1 file changed, 220 insertions(+), 3 deletions(-)
+> ---
+> base-commit: c768c054f1a722d4b973ddab81ee580b7e24a891
+> change-id: 20230515-topic-rb2-bits-22e685b4f48d
 > 
-> diff --git a/include/dt-bindings/clock/qcom,ipq9574-gcc.h b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
-> index 5a2961bfe893..86790efa10f0 100644
-> --- a/include/dt-bindings/clock/qcom,ipq9574-gcc.h
-> +++ b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
-> @@ -210,4 +210,8 @@
->   #define GCC_SNOC_PCIE1_1LANE_S_CLK			201
->   #define GCC_SNOC_PCIE2_2LANE_S_CLK			202
->   #define GCC_SNOC_PCIE3_2LANE_S_CLK			203
-> +#define CRYPTO_CLK_SRC					204
+> Best regards,
 
-For uniformity, please use GCC_ prefix int the above define as well.
-Also make the similar changes at the places where this CLOCK_SRC macro 
-is used.
+For the series:
 
-Thanks,
-Bhupesh
+Reviewed-and-Tested-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 
-> +#define GCC_CRYPTO_CLK					205
-> +#define GCC_CRYPTO_AXI_CLK				206
-> +#define GCC_CRYPTO_AHB_CLK				207
->   #endif
-> diff --git a/include/dt-bindings/reset/qcom,ipq9574-gcc.h b/include/dt-bindings/reset/qcom,ipq9574-gcc.h
-> index d01dc6a24cf1..c709d103673d 100644
-> --- a/include/dt-bindings/reset/qcom,ipq9574-gcc.h
-> +++ b/include/dt-bindings/reset/qcom,ipq9574-gcc.h
-> @@ -160,5 +160,6 @@
->   #define GCC_WCSS_Q6_BCR						151
->   #define GCC_WCSS_Q6_TBU_BCR					152
->   #define GCC_TCSR_BCR						153
-> +#define GCC_CRYPTO_BCR						154
->   
->   #endif
+Thanks.
