@@ -2,159 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99CED7056AB
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 21:04:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 133327056E9
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 21:17:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbjEPTEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 15:04:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40028 "EHLO
+        id S229665AbjEPTRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 15:17:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbjEPTE2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 15:04:28 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC1DD9EDC;
-        Tue, 16 May 2023 12:04:22 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id af79cd13be357-7576deacbd6so627639685a.3;
-        Tue, 16 May 2023 12:04:22 -0700 (PDT)
+        with ESMTP id S229477AbjEPTR3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 15:17:29 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77A3D7AB8
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 12:17:27 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-55a010774a5so212473057b3.3
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 12:17:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684263862; x=1686855862;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZX3aJGWh9j6fi4Zbxck+TdbVfuJLOzsnRuRtmwi0h5g=;
-        b=YCIgNOuRxAGICG9PO3E4TWClRO4dC2m/394gwLQCEMGSCGSS4Fnoeaw3K+gtklgHAg
-         MdrbkFj/7njcvYzyOUWGHe1FncyZ8sq1k7sX/eLBXRPeYSVFEHNLNt/Xma/Q0PYH5neW
-         gPimepduH6uaEniGwLeolbNIZGqj2ov/0L0Mzq0xwUsDQ1q0lhiFZSlUDE96O3qJMO+Z
-         g0sDwu5o68R0llVAr/YZibnTjl/qi8g6CnDNRA4M9d0t3wBJjSAP2Fk+7atKWiG4eokF
-         s1yhRCh9YfhruWLp2AoNq/KkzLaNtN0cbBTCR6CCgIVoCEelGe7WhJ8eaGpCkVKE6di4
-         fjJA==
+        d=linaro.org; s=google; t=1684264646; x=1686856646;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NznzujyOJyNbnjSaoz9CRaFsnChHQPszQ2ixGOczZrc=;
+        b=NwMpZ+r4QJ/cUpYDi0gsuyYSS0blzpn4/pHjC7ud/sM1GUt6nG4ke/JtOgCZKKMsBn
+         Qw9SlDRtgA+Jj9QXPYeNgmfot9rAgXeYa53Yi2QCO69sI6BAS1UOhccVAlg8dQ2NjfjH
+         2rXoN18JNZcaiAeHnyduMOTQ+aFdzBby7mAgHBdszpwtmRWi1IEbnq28UTQ0zYXrvIwr
+         rgNb3hejJXpwyCTgjaVuFHkPzsW1k/pplmbbiPTUeoi7Pp8KbjGEKVPU9Toti2s3T4f1
+         CjlUO/hi9Tu5zIVnhiqz5Z3keeJ9LZgviTE9u2YE5jYO7xfDiUODLEJaz/xQVPg8Lafh
+         xm7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684263862; x=1686855862;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZX3aJGWh9j6fi4Zbxck+TdbVfuJLOzsnRuRtmwi0h5g=;
-        b=d7gxWN9gSWNzZngevixOudlrKYfd2I9WFAmdQnyGBxzZw2cBZyyV9Y29irT1F3+CIh
-         auxuOnmsgDpIuPcLNqhCEdiMksMJ+ayjvjFmvFZK4bKQ9XWu4t/bsbSVOUFstl0dpIld
-         7Rs32rEA9G8kuwhfXlUG3OIM/bTXFvxRe+5gwEnQQhOebJnxKf2bVTsYeoZ+/qqS/mwz
-         XTwlAeVWIq0bjqq9vlnYUrwqYTyODoKtnXIstPD1QAPVhQB6Xg4gkXla8OE9xXYIwRY0
-         DKClHdrVn79zQClakgQvYrjaHBh7ZFXZdAyAc9HMMtYtDaC+ehEGPnM3D5wnW4X279cj
-         B1PA==
-X-Gm-Message-State: AC+VfDzs899MM9ZWpCAhty9PGeu2i8Xs9dQ/dTM93BlJT21xrjLdM3bg
-        YVcgfRoV8LA9nx+nA2bfjjwXheRCaU0yn8mDWVY=
-X-Google-Smtp-Source: ACHHUZ7o8SFUdFq9oKXTGUhKpKM024MomgycM5cRyraXgXMUY8hYYFWGvp2kmKAoXAMuXsr50mnQ+x3iKUkHuJVog/Q=
-X-Received: by 2002:ad4:5dc9:0:b0:623:557d:91a9 with SMTP id
- m9-20020ad45dc9000000b00623557d91a9mr17484711qvh.31.1684263861900; Tue, 16
- May 2023 12:04:21 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684264646; x=1686856646;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NznzujyOJyNbnjSaoz9CRaFsnChHQPszQ2ixGOczZrc=;
+        b=bM2AEWjAFtmwmXEFQj2sSZUAF5pbf23TrNPAdDt5HZn+TSiImCgkb9ZiHVX8IyIWQs
+         fP8qMKjLBuuN9BW3cJ5ww3fKQVO1qVGlpnqIBf6KZNHfzlGk7XluPtoREmXHZNAb298j
+         Pg8DdQupQ4p08/ksDmjuMN4EEgw6/ejmPdDcoiQ/5fcEn3QClmsIYvmYU8FyT5bJ13JJ
+         6CQDrCb1ApkSDiVLKJKzPqJ62/PXLzN7+qW5kta0SmbjUqgm/LXEy/SJRxE+08U7lxlN
+         vu2LJvXl0OId9klxNjHmV8zVp/CIzSULpHJNTCcb1WUOxX1UOaHX/QLVSLInuEY2/sQG
+         GDBA==
+X-Gm-Message-State: AC+VfDww2FE9Hc5WiIf9ft9hV0Z2l24OXicY3u3wflk9ng6G+rK+42DD
+        sMup/aSH4WP5Hae5qaZlITAtmjqgog9Ur5HrAvw3/w==
+X-Google-Smtp-Source: ACHHUZ4fN6ZvOHVMrjpM38dbrTF0vq9ndvGzrrcTvQuObM37IZqpp9d3swNrt6OnWc5xKOZXJLqNXPG/9NwnyDG/1d0=
+X-Received: by 2002:a81:c214:0:b0:561:8c2f:d050 with SMTP id
+ z20-20020a81c214000000b005618c2fd050mr2528895ywc.15.1684264646646; Tue, 16
+ May 2023 12:17:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
- <20230512122838.243002-9-ckeepax@opensource.cirrus.com> <ZF6RMqElYZVMpWRt@surfacebook>
- <20230515101350.GS68926@ediswmail.ad.cirrus.com>
-In-Reply-To: <20230515101350.GS68926@ediswmail.ad.cirrus.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 16 May 2023 22:03:45 +0300
-Message-ID: <CAHp75Vcizrucc-2KFdFNeHNrxCzz4GwX1OzZYyjPH7P9RgnKYQ@mail.gmail.com>
-Subject: Re: [PATCH 08/10] pinctrl: cs42l43: Add support for the cs42l43
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     broonie@kernel.org, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, linus.walleij@linaro.org,
-        vkoul@kernel.org, lgirdwood@gmail.com,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+References: <cover.1683628357.git.quic_schowdhu@quicinc.com>
+ <343182748e12b6a4ac57d336405c50e36fc5520c.1683628357.git.quic_schowdhu@quicinc.com>
+ <CAA8EJpp2x2OEB2sg+caKmjkDYJp_NJ9mXo85FxTZr-9zRXHNhw@mail.gmail.com> <7d397e67-5d56-4975-98af-1ac9746c07f4@app.fastmail.com>
+In-Reply-To: <7d397e67-5d56-4975-98af-1ac9746c07f4@app.fastmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 16 May 2023 22:17:15 +0300
+Message-ID: <CAA8EJpoMGyAJBTw1-=+NT=ysy+cpc4EpJSv1SABJVh2BscdJ+g@mail.gmail.com>
+Subject: Re: [PATCH V6 1/3] dt-bindings: sram: qcom,imem: Add Boot Stat region
+ within IMEM
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 15, 2023 at 1:13=E2=80=AFPM Charles Keepax
-<ckeepax@opensource.cirrus.com> wrote:
-> On Fri, May 12, 2023 at 10:19:14PM +0300, andy.shevchenko@gmail.com wrote=
-:
-> > Fri, May 12, 2023 at 01:28:36PM +0100, Charles Keepax kirjoitti:
-
-...
-
-> > > +   dev_dbg(priv->dev, "Setting gpio%d to %s\n",
-> > > +           offset + 1, input ? "input" : "output");
-> >
-> > How ' + 1' part won't be confusing?
+On Tue, 16 May 2023 at 11:16, Arnd Bergmann <arnd@arndb.de> wrote:
 >
-> Kinda an un-avoidable confusion somewhere, the GPIOs in the datasheet are
-> numbered from one. So this makes the debug print match the
-> datasheet name for the pin, which is used in the pinctrl strings
-> as well.
-
-The problem here is that the entire Linux pin control and GPIO cores
-in their debug/info/error messages will use offset + 0. With the above
-invention it will well make users confused a lot. I think you need a
-Linus W blessing for this.
-
-...
-
-> > > +   if (!of_property_read_bool(dev_of_node(cs42l43->dev), "gpio-range=
-s")) {
-> > > +           ret =3D gpiochip_add_pin_range(&priv->gpio_chip, priv->gp=
-io_chip.label,
-> > > +                                        0, 0, CS42L43_NUM_GPIOS);
-> > > +           if (ret) {
-> > > +                   dev_err(priv->dev, "Failed to add GPIO pin range:=
- %d\n", ret);
-> > > +                   goto err_pm;
-> > > +           }
-> > > +   }
+> On Tue, May 9, 2023, at 13:35, Dmitry Baryshkov wrote:
+> > On Tue, 9 May 2023 at 13:53, Souradeep Chowdhury
+> > <quic_schowdhu@quicinc.com> wrote:
+> >>
+> >> All Qualcomm bootloaders log useful timestamp information related
+> >> to bootloader stats in the IMEM region. Add the child node within
+> >> IMEM for the boot stat region containing register address and
+> >> compatible string.
 > >
-> > Besides the fact that we have a callback for this, why GPIO library can=
-'t
-> > handle this for you already?
+> > I might have a minor vote here. Is there any reason why you have to
+> > instantiate the device from DT?
+> > It looks like a software interface. Ideally software should not be
+> > described in DT (e.g. this can be instantiated from imem
+> > driver-to-be).
 >
-> Apologies but I am not quite sure I follow you, in the device
-> tree case this will be handled by the GPIO library. But for ACPI
-> this information does not exist so has to be called manually, the
-> library does not necessarily know which values to call with,
-> although admittedly our case is trivial but not all are.
-
-Why can't the firmware provide this information? _DSD() is a part of
-ACPI v5.1 IIRC.
-
-Although it might require moving some code from gpiolib-of.c to
-gpiolib.c with replacing OF APIs with agnostic ones.
-
-...
-
-> > > +static int cs42l43_pin_remove(struct platform_device *pdev)
-> > > +{
-> > > +   pm_runtime_disable(&pdev->dev);
-> >
-> > This is simply wrong order because it's a mix of non-devm_*() followed =
-by
-> > devm_*() calls in the probe.
-> >
+> There is nothing wrong with describing firmware in DT, if that
+> firmware is part of the platform, we do that for a lot of
+> other bits of firmware.
 >
-> I had missed there are now devm_pm_runtime calls, I will switch
-> to that. But I would like to understand the wrong order, remove
-> will be called before the devm bits are destroyed and it seems
-> reasonable to disable the pm_runtime before destroying the
-> pinctrl device. What exactly would run in the wrong order here?
+> However, in this specific case, many things are wrong with the
+> implementation, and neither the DT binding nor the driver
+> makes sense to me in its current state.
+>
+> >> +  "^stats@[0-9a-f]+$":
+> >> +    type: object
+> >> +    description:
+> >> +      Imem region dedicated for storing timestamps related
+> >> +      information regarding bootstats.
+> >> +
+> >> +    additionalProperties: false
+> >> +
+> >> +    properties:
+> >> +      compatible:
+> >> +        items:
+> >> +          - enum:
+> >> +              - qcom,sm8450-bootstats
+> >> +          - const: qcom,imem-bootstats
+> >> +
+> >> +      reg:
+> >> +        maxItems: 1
+>
+> If I understand this right, this "qcom,imem-bootstats"
+> device serves as an indirection to store additional
+> properties of the system in a memory area, but the description
+> of that area is more complex than its contents, which
+> makes no sense to me.
+>
+> Just create a binding for a firmware node in the devicetree
+> itself, and put the values in properties of that. The first
+> stage firmware can still use the same interface, but the
+> actual loader that assembles the DT can get it out of that
+> and store it in the properties. With that done, there is also
+> no need for a kernel driver, as userspace can just get the
+> values from /sys/firmware/devicetree/ directly.
 
-At the ->remove() stage after this call an IRQ can be fired (or on SMP
-systems any other APIs can be called), for example. So, would it be a
-problem to service it with PM disabled?
+This sounds good, except the always-present issue of the devices which
+have already been released. Usually we can not expect a bootloader
+update for these devices.
 
-But in any case the shuffling ordering like this is prone to subtle
-bugs. I prefer to have strict ordering if there is nothing preventing
-from doing that way.
-
---=20
-With Best Regards,
-Andy Shevchenko
+-- 
+With best wishes
+Dmitry
