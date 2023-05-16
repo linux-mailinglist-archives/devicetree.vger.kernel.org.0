@@ -2,179 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EB9370486C
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:06:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 677DC7048CA
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:15:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231462AbjEPJGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 05:06:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44582 "EHLO
+        id S232011AbjEPJPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 05:15:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230483AbjEPJGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:06:47 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27D47C2
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 02:06:45 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9659443fb56so2173412866b.2
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 02:06:45 -0700 (PDT)
+        with ESMTP id S232013AbjEPJPG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:15:06 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1A847299;
+        Tue, 16 May 2023 02:14:10 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-965ac4dd11bso2766976066b.2;
+        Tue, 16 May 2023 02:14:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684228003; x=1686820003;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WfR5x7lYlGZxQEhgIr7ehFRWybZSX2Ee6e6eJ8QySGY=;
-        b=hvOWGF/FhwNQBPa6krRzcpKhHdtUfi7ZJ5kDslFuENrTh00ATMGwvIrItcmF7b7+nT
-         z8UWvCIFVVnxs6C2l/7+ULaSKddSfYBWdl+kr3+n1DXe1hExwO4CpRDRgnw3miH32How
-         XbmP8kNjcbfK5uDg2yKOMMm9yvQUepl3otYxRJ8JBugbG3nnuupT/2LFLNbclAN4/Bn3
-         c+QRh8Gh19YGm+m6YMDI/GI2IuG4n5wwrOjNRRqk3IxwxaPlZjPUGbrdq3vHO9LyIfz4
-         SJxndrkwQ/g4hnQrJrH2aUXV2oytN7lBIA3mEhkfqUN32wEY7ys6gkUUc3va5EqwiALT
-         rmaw==
+        d=gmail.com; s=20221208; t=1684228373; x=1686820373;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3GOhU2oI+496DW24zv9Mv2MLzO4ODqcy9YDlBxdb2bU=;
+        b=gEe95t7pSd6sF1Fj9aFSD2yd98a/FITzJ5+28X9AifjVNeF18BVmD2Ylq34s1DISYn
+         CR0ttsoFyYdK36awA+ogNTrvXdoP7nVspV1bHNuJyYtvLnoB4VhGzWnTZDkfIRitBamw
+         mjfJD3YOswzBB+2Z0h08aHz5ZfJVcwdoGuLgq+kzvXr0vTTuKeGIWzlCnzyvk7eM1fOr
+         Knb/25SnaWcX+C00uSmPyAsJlkYg7GHfmcRwcO/WvPBFyUb21NK2xOlTM+5s5F9BJYGW
+         QF9PyaiixXNaaADN16nNkSfvAr2gj7pBdYpbb/z+SvPM8BeDol3akchscumFgmvtC3GE
+         Skcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684228003; x=1686820003;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WfR5x7lYlGZxQEhgIr7ehFRWybZSX2Ee6e6eJ8QySGY=;
-        b=iT4Mced5W9/4HAiO+ygE8rLNifJtAlWa6dyi8fPLJbVaoz6iJu0T8jRQUsrndAhkAX
-         BBRi0PGWQqBqEKzA6xyjhfYdA9n97c/8TzXtWunS37y4PyR4CKFtXCdfdg7hVjqbB6Is
-         FL7L//2QR+9AtR7RUaBU0w0eO4r4cBh4V/2E+FjpwoITv0O8Hz00oWaeDEULw9Ib8dNh
-         cjIbII/YMNHpGMNqkHv22YmayvPwbq3OYojUBnvBZExSdM8sxfc3lHDMatxWcQn9kjcX
-         kgEyHowOKbCO8Rp0guv3DtXVmd1nYgJpKxN+I1LSjq6HRI9xhp3bDEmPUxdEYqfoAFcd
-         CL9w==
-X-Gm-Message-State: AC+VfDwdGeRcSaaS4XVT7GhTBIQ9on/k/u8cSaME0iI+P7GjAMlLEUAi
-        C9ZdUnAx4irwF5iE8PnmSKHjhQ==
-X-Google-Smtp-Source: ACHHUZ7QHeXISFZJrF36Tge1qRT3h5Ie2KasB8KSTNRVYPo6emVX2nmGRkC2/597xXYyRrgbjxN4wQ==
-X-Received: by 2002:a17:907:846:b0:965:e5cf:bb35 with SMTP id ww6-20020a170907084600b00965e5cfbb35mr32739005ejb.22.1684228003549;
-        Tue, 16 May 2023 02:06:43 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
-        by smtp.gmail.com with ESMTPSA id my37-20020a1709065a6500b0094f44bdf7acsm10738310ejc.57.2023.05.16.02.06.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 02:06:43 -0700 (PDT)
-Message-ID: <cca446b3-9b92-3191-ae0d-1bd7e552c90f@linaro.org>
-Date:   Tue, 16 May 2023 11:06:41 +0200
+        d=1e100.net; s=20221208; t=1684228373; x=1686820373;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3GOhU2oI+496DW24zv9Mv2MLzO4ODqcy9YDlBxdb2bU=;
+        b=CVJH5iZfaweWyquEzgYfU0vXtKOkcB2opbZFEhCjY7LM5Kl/4aKXs4NI1mzGdmN7Xx
+         U0kDWS+Li/QimxUhjgHCExKPaDwyB5MCw5dNkJidol2vTLG2eA4Z+s7PVAjO2eL6YzVb
+         V2faiMj9M8iFoOC38Ilk7dQDfCDfjB0K1bel+RKFVd4N8mQlldGAiIU4F+RK2TDbpihW
+         y18Dz9+htoC3RIfhujGT/tdtDjQGn9Gkaav25U2lHfyWrEs5uL2Rp6z6c3N1uEuEmyJk
+         QhVW7IvRR1wpgLguJokMCcnkZqwZuB2RLytfiLyJZCYO12Z2e0EzjTnZqeMXf7q5CUiG
+         8ohA==
+X-Gm-Message-State: AC+VfDzpkmxVDO6HxSZevrypklwkEs7OcW5oL27Gl9lDnMMtQlkvSYQ6
+        wvu9tpHcmWtKozeSyfqSHThYP7EnAItl4Q==
+X-Google-Smtp-Source: ACHHUZ6iN8jRZYgIpg+X9X5ZlJ1oLB0hcu0YfBFv5YC+XCpUyc8MOD3OCDmtgwJ8iMjUEi7XEgn/UA==
+X-Received: by 2002:a17:907:360c:b0:94a:845c:3528 with SMTP id bk12-20020a170907360c00b0094a845c3528mr32474838ejc.45.1684228372446;
+        Tue, 16 May 2023 02:12:52 -0700 (PDT)
+Received: from orome (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ig13-20020a1709072e0d00b0096623c00727sm10751140ejc.136.2023.05.16.02.12.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 02:12:52 -0700 (PDT)
+Date:   Tue, 16 May 2023 11:12:50 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Peter De Schrijver <pdeschrijver@nvidia.com>, jonathanh@nvidia.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stefank@nvidia.com
+Subject: Re: [PATCH v4 4/6] dt-bindings: Add support for DRAM MRQ GSCs
+Message-ID: <ZGNJEoiFmtPiLC4p@orome>
+References: <20230511132048.1122075-1-pdeschrijver@nvidia.com>
+ <20230511132048.1122075-5-pdeschrijver@nvidia.com>
+ <20230511-carnivore-legend-17206803d713@spud>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v1] Documentation/process: add soc maintainer handbook
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Conor Dooley <conor@kernel.org>, soc@kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Olof Johansson <olof@lixom.net>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-riscv@lists.infradead.org
-References: <20230515-geometry-olympics-b0556ff8a5f7@spud>
- <cf1c6b8c-8a3f-eca1-948f-e41946d4c34c@linaro.org>
- <20230516-grader-dejected-df65cdc584b3@wendy>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230516-grader-dejected-df65cdc584b3@wendy>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="LUMos0kZAPiI9kG3"
+Content-Disposition: inline
+In-Reply-To: <20230511-carnivore-legend-17206803d713@spud>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 10:57, Conor Dooley wrote:
-> On Tue, May 16, 2023 at 10:31:19AM +0200, Krzysztof Kozlowski wrote:
->> On 15/05/2023 21:20, Conor Dooley wrote:
->>> From: Conor Dooley <conor.dooley@microchip.com>
->>>
->>> Arnd suggested that adding maintainer handbook for the SoC "subsystem"
->>> would be helpful in trying to bring on board maintainers for the various
->>> new platforms cropping up in RISC-V land.
->>>
->>> Add a document briefly describing the role of the SoC subsystem and some
->>> basic advice for (new) platform maintainers.
->>>
->>> Suggested-by: Arnd Bergmann <arnd@arndb.de>
->>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> 
->>> +devicetree ABI stability
->>> +~~~~~~~~~~~~~~~~~~~~~~~~
->>> +
->>> +Perhaps one of the most important things to highlight is that dt-bindings
->>> +document the ABI between the devicetree and the kernel.  Once dt-bindings have
->>> +been merged (and appear in a release of the kernel) they are set in stone, and
->>> +any changes made must be compatible with existing devicetrees.  This means that,
->>> +when changing properties, a "new" kernel must still be able to handle an old
->>> +devicetree.  For many systems the devicetree is provided by firmware, and
->>> +upgrading to a newer kernel cannot cause regressions.  Ideally, the inverse is
->>> +also true, and a new devicetree will also be compatible with an old kernel,
->>> +although this is often not possible.
->>
->> I would prefer to skip it and instead: enhance
->> Documentation/devicetree/bindings/ABI.rst and then reference it here.
-> 
-> Sure.
-> 
->>> +Driver branch dependencies
->>> +~~~~~~~~~~~~~~~~~~~~~~~~~~
->>> +
->>> +A common problem is synchronizing changes between device drivers and devicetree
->>> +files, even if a change is compatible in both directions, this may require
->>> +coordinating how the changes get merged through different maintainer trees.
->>> +
->>> +Usually the branch that includes a driver change will also include the
->>> +corresponding change to the devicetree binding description, to ensure they are
->>> +in fact compatible.  This means that the devicetree branch can end up causing
->>> +warnings in the "make dtbs_check" step.  If a devicetree change depends on
->>> +missing additions to a header file in include/dt-bindings/, it will fail the
->>> +"make dtbs" step and not get merged.
->>> +
->>> +There are multiple ways to deal with this:
->>> +
->>> + - Avoid defining custom macros in include/dt-bindings/ for hardware constants
->>> +   that can be derived from a datasheet -- binding macros in header file should
->>> +   only be used as a last resort if there is no natural way to define a binding
->>> +
->>> + - Use literal values in the devicetree file in place of macros even when a
->>> +   header is required, and change them to the named representation in a
->>> +   following release
->>
->> I actually prefer such solution:
->>
->>  - Duplicate defines in the devicetree file hidden by #ifndef section
->> and remove them later in a following release
->>
->> We can keep both, but mine above leads to cleaner changes in DTS file.
-> 
-> I think all of the options involved are either a bit ugly, or a bit of a
-> pain in the hole.
-> 
->>> + - Defer the devicetree changes to a release after the binding and driver have
->>> +   already been merged
->>> +
->>> + - Change the bindings in a shared immutable branch that is used as the base for
->>> +   both the driver change and the devicetree changes
->>
->> The policy told to me some time ago was that no merges from driver
->> branch or tree are allowed towards DTS branch, even if they come only
->> with binding header change. There are exceptions for this, e.g. [1], but
->> that would mean we need to express here rules for cross-tree merges.
-> 
-> I've got away with having an immutable branch for dt-binding headers!
 
-Of course, all is in an immutable branch, but in which tree?
+--LUMos0kZAPiI9kG3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I talk about a case when driver tree, e.g. different clock maintainer,
-takes the binding.
+On Thu, May 11, 2023 at 08:21:07PM +0100, Conor Dooley wrote:
+> On Thu, May 11, 2023 at 04:20:49PM +0300, Peter De Schrijver wrote:
+> > Add bindings for DRAM MRQ GSC support.
+> >=20
+> > Co-developed-by: Stefan Kristiansson <stefank@nvidia.com>
+> > Signed-off-by: Stefan Kristiansson <stefank@nvidia.com>
+> > Signed-off-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+>=20
+> Perhaps Krzysztof will disagree, but looks fine to me, with some minor
+> remarks below.
+> Just to note, I didn't get the cover letter & therefore didn't get the
+> changelog :/
+> I know you had a back and forth with him about that, *my* =E2=82=AC0.02 i=
+s that
+> either you put the changelog in the cover & send it to everyone, or you
+> put it in each patch.
+>=20
+> > ---
+> >  .../nvidia,tegra264-bpmp-shmem.yaml           | 47 +++++++++++++++++++
+> >  1 file changed, 47 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/reserved-memory/n=
+vidia,tegra264-bpmp-shmem.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/reserved-memory/nvidia,t=
+egra264-bpmp-shmem.yaml b/Documentation/devicetree/bindings/reserved-memory=
+/nvidia,tegra264-bpmp-shmem.yaml
+> > new file mode 100644
+> > index 000000000000..4087459c01db
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264=
+-bpmp-shmem.yaml
+> > @@ -0,0 +1,47 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/reserved-memory/nvidia,tegra264-bpm=
+p-shmem.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Tegra CPU-NS - BPMP IPC reserved memory
+> > +
+> > +maintainers:
+> > +  - Peter De Schrijver <pdeschrijver@nvidia.com>
+> > +
+> > +description: |
+>=20
+> You don't appear to have any formatting to preserve, so the | is not
+> needed.
+>=20
+> > +  Define a memory region used for communication between CPU-NS and BPM=
+P.
+> > +  Typically this node is created by the bootloader as the physical add=
+ress
+> > +  has to be known to both CPU-NS and BPMP for correct IPC operation.
+> > +  The memory region is defined using a child node under /reserved-memo=
+ry.
+> > +  The sub-node is named shmem@<address>.
+> > +
+> > +allOf:
+> > +  - $ref: reserved-memory.yaml
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: nvidia,tegra264-bpmp-shmem
+> > +
+> > +  reg:
+> > +    description: The physical address and size of the shared SDRAM reg=
+ion
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - no-map
+> > +
+> > +examples:
+> > +  - |
+> > +    reserved-memory {
+> > +       #address-cells =3D <2>;
+> > +       #size-cells =3D <2>;
+>=20
+> You also do not need these size/address-cells, because...
+>=20
+> > +       dram_cpu_bpmp_mail: shmem@f1be0000  {
+> (nit: double space                          ^^)
+>=20
+> > +           compatible =3D "nvidia,tegra264-bpmp-shmem";
+> > +           reg =3D <0x0 0xf1be0000 0x0 0x2000>;
+>=20
+> ...the 64-bit registers here are both 0x0.
 
-> That said, Arnd did actually have a look at this (and suggested some
-> changes) before I sent it & did not cry fowl about this section. IIRC,
-> this is actually his wording, not mine.
+I think Peter had to add these explicitly because the defaults are 2 and
+1, respectively, and DTC was warning about this. I suppose the "reg"
+property could be adjusted to use the defaults, but on the other hand I
+find that it's good if the examples match reality and we need size-cells
+to be 2 on Tegra.
 
+Either way is fine with me, though.
 
-Best regards,
-Krzysztof
+Thierry
 
+--LUMos0kZAPiI9kG3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmRjSRIACgkQ3SOs138+
+s6EfBxAAjyFZlouN7/tDexGyNQxSpkLcX5xD6D92vOBmgFZAXft989Ks584z6kiB
+TtJmyH0khLqruPZ2EPhK96AVnGupRf7fEPy7QJeQK4dXXBibOB99n1F+ipIvjSif
+uNNDz9DpahS+zHWTF6QgANXL6MgiR/K1NsSC4KBo1nsZFMzc2fgJ2djlTaDpyWNd
+J184WeXeh6qYSZdWy7sa7wNg/58u+Nkmg9p9g1Jy2ifastKdnFm4edaLgoevtMcg
+oS+NkgBaLpH8fT3yf1CyigWOfmx/tdkbM+60nZzhmGSK9gYs+MlJsOmWi4pRHe0u
+EwKrKQ0K8fOBT1Mi2GSywoEzTaQ91Bq94R5nGmD9czfQWXQsWIKhYwvnqfPiUzjr
+5xNQmtH3pMc4JG5L8MVQCByHkt8SOcuVhAQaFVXEUrafBH5hEVc9urGJ4gW7wUt5
+oQBgLcx9Mk1ltjcEfWHB+LGdVfMiYArKU6nQnFSt8x7mWF2+OPoAqUXo59IhUAKs
+I8InqNXUnUM8zKxg1uqnvzluDWpGsiY12xVV0Jg6eGyUMVcVCUOlvC3jaBfJ9FMv
+cvZ7jJuX4LK00FmqaoeTtHytDjjniEtYv71qnl6VJLqYo063ZK+eVIrBsH4dgZp5
+uLVphLq0P0NbO8pgWRbscN278kyGnB7mbOE4kyc616kKLnc2HoI=
+=1B8+
+-----END PGP SIGNATURE-----
+
+--LUMos0kZAPiI9kG3--
