@@ -2,79 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE61270500A
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7A6A705012
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:59:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233507AbjEPN52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:57:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40262 "EHLO
+        id S232529AbjEPN7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:59:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232324AbjEPN51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:57:27 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E987A524D;
-        Tue, 16 May 2023 06:57:25 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34G8ZC9c006803;
-        Tue, 16 May 2023 13:57:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=v61rcOi3KNj5WsTzaVTHYwKLSjF1cOcY4GOZ0UTMp4s=;
- b=njFgNDjzI+kk8fMHt5BBlJ3GXJ+VY/xlNg/eNwPI/ywCdCdQqlLNiEa41JLp/bJlOQmP
- MrnNiUMicrVvficB13hOkzQ1SEaSRT7YV33sNwTX+oMsnDUxwWCyIa2uZyGfShGNqhB8
- R8mEfuu4V9jGhrrijDUrWpx0b+VP43REG8XZUx0o6+NNVAmLgPc/YIFjn5axfpaA9JJt
- e3CrelGt67jVzjR29KrwsOEzHYU4BEJSsjJPoTrQOvPTayS+HZaMBXi6uX5ERu9kcydk
- +LqobzarBhaO1R6LA4naH70HJT4H0qOWg/IfXY3PGJ0/teUy/kPJJEsau9jlKm1Ghx+l lg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qkjscucqv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 16 May 2023 13:57:22 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34GDvLsZ020868
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 16 May 2023 13:57:21 GMT
-Received: from [10.50.13.62] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 16 May
- 2023 06:57:15 -0700
-Message-ID: <950096ec-5a2b-a07e-e604-f3f7bd3a0117@quicinc.com>
-Date:   Tue, 16 May 2023 19:27:12 +0530
+        with ESMTP id S232324AbjEPN7G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:59:06 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB30F1711;
+        Tue, 16 May 2023 06:59:04 -0700 (PDT)
+Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C38EC496;
+        Tue, 16 May 2023 15:58:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1684245531;
+        bh=gEsB0fM6tfxewDDdl3+BOaZexrT5+eQ7tC+wPa1JWRw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=djN2Trpe15eh46x7+13ZWImiBtHULSwhNVucLkofotQ0kvA7zZIzRc1Wpt2iGA2ey
+         PGUcOKEmw79drgPwMm7gG0kZ9tldicjQdvsUu0FriTt0qp4S9GUOyKB0Z8O3qEuzs+
+         qcw5gL9NN2Q39PbGiqNNOBFiXriY4TbhPE0ONv/I=
+Message-ID: <ed622265-326e-b150-1c18-c028c04da6e0@ideasonboard.com>
+Date:   Tue, 16 May 2023 16:58:57 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 0/2] Add initial support for RDP418 of IPQ9574 family
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v13 6/8] media: i2c: add DS90UB960 driver
 Content-Language: en-US
-From:   Devi Priya <quic_devipriy@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
-        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
-References: <20230510104359.16678-1-quic_devipriy@quicinc.com>
-In-Reply-To: <20230510104359.16678-1-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Ludwig Zenz <lzenz@dh-electronics.com>
+Cc:     "Matti.Vaittinen@fi.rohmeurope.com" 
+        <Matti.Vaittinen@fi.rohmeurope.com>,
+        "andriy.shevchenko@intel.com" <andriy.shevchenko@intel.com>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>,
+        "khalasa@piap.pl" <khalasa@piap.pl>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "luca.ceresoli@bootlin.com" <luca.ceresoli@bootlin.com>,
+        "m.tretter@pengutronix.de" <m.tretter@pengutronix.de>,
+        "marex@denx.de" <marex@denx.de>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "mpagano@gentoo.org" <mpagano@gentoo.org>,
+        "peda@axentia.se" <peda@axentia.se>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>,
+        "satish.nagireddy@getcruise.com" <satish.nagireddy@getcruise.com>,
+        "wsa@kernel.org" <wsa@kernel.org>
+References: <e13dade162f74a3e812f9331b83928f0@dh-electronics.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <e13dade162f74a3e812f9331b83928f0@dh-electronics.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: esb4lFbAjW5BuopSJ0jpOZbKyZsF6huz
-X-Proofpoint-ORIG-GUID: esb4lFbAjW5BuopSJ0jpOZbKyZsF6huz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-16_06,2023-05-16_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- mlxlogscore=817 clxscore=1015 priorityscore=1501 lowpriorityscore=0
- malwarescore=0 spamscore=0 impostorscore=0 suspectscore=0 phishscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305160117
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
         SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,29 +74,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/10/2023 4:13 PM, Devi Priya wrote:
-> Add the initial device tree support for the Reference Design
-> Platform(RDP) 418 based on IPQ9574 family of SoC. This patch series adds
-> support for Console UART, SPI NOR, eMMC and SMPA1 regulator node.
->
-This series depends on the below patch sets which adds support for
-SPI NOR and SMPA1 regulator nodes.
-https://lore.kernel.org/linux-arm-msm/20230329053726.14860-3-quic_kathirav@quicinc.com/
-https://lore.kernel.org/linux-arm-msm/20230407155727.20615-1-quic_devipriy@quicinc.com/
-
-Thanks,
-Devi Priya
-> Devi Priya (2):
->    dt-bindings: arm: qcom: document AL02-C2 board based on IPQ9574 family
->    arm64: dts: qcom: ipq9574: add support for RDP418 variant
+On 16/05/2023 16:32, Ludwig Zenz wrote:
+>> Hi,
+>>
+>> On 16/05/2023 15:35, Ludwig Zenz wrote:
+>>> On Wed, 26 Apr 2023 14:51:12 +0300, Tomi Valkeinen wrote:
+>>>
+>>> [...]
+>>>
+>>>>    +static int ub960_configure_ports_for_streaming(struct ub960_data *priv,
+>>>>    +                                         struct v4l2_subdev_state *state)
+>>>>    +{
+>>>>    +  u8 fwd_ctl;
+>>>>    +  struct {
+>>>>    +          u32 num_streams;
+>>>>    +          u8 pixel_dt;
+>>>>    +          u8 meta_dt;
+>>>>    +          u32 meta_lines;
+>>>>    +          u32 tx_port;
+>>>>    +  } rx_data[UB960_MAX_RX_NPORTS] = {};
+>>>>    +  u8 vc_map[UB960_MAX_RX_NPORTS] = {};
+>>>>    +  struct v4l2_subdev_route *route;
+>>>>    +  unsigned int nport;
+>>>>    +  int ret;
+>>>>    +
+>>>>    +  ret = ub960_validate_stream_vcs(priv);
+>>>>    +  if (ret)
+>>>>    +          return ret;
+>>>>    +
+>>>>    +  ub960_get_vc_maps(priv, state, vc_map);
+>>>>    +
+>>>>    +  for_each_active_route(&state->routing, route) {
+>>>>    +          struct ub960_rxport *rxport;
+>>>>    +          struct ub960_txport *txport;
+>>>>    +          struct v4l2_mbus_framefmt *fmt;
+>>>>    +          const struct ub960_format_info *ub960_fmt;
+>>>>    +          unsigned int nport;
+>>>>    +
+>>>>    +          nport = ub960_pad_to_port(priv, route->sink_pad);
+>>>>    +
+>>>>    +          rxport = priv->rxports[nport];
+>>>>    +          if (!rxport)
+>>>>    +                  return -EINVAL;
+>>>>    +
+>>>>    +          txport = priv->txports[ub960_pad_to_port(priv, route->source_pad)];
+>>>>    +          if (!txport)
+>>>>    +                  return -EINVAL;
+>>>>    +
+>>>>    +          rx_data[nport].tx_port = ub960_pad_to_port(priv, route->source_pad);
+>>>>    +
+>>>>    +          rx_data[nport].num_streams++;
+>>>>    +
+>>>>    +          /* For the rest, we are only interested in parallel busses */
+>>>>    +          if (rxport->rx_mode == RXPORT_MODE_CSI2_SYNC ||
+>>>>    +              rxport->rx_mode == RXPORT_MODE_CSI2_ASYNC)
+>>>>    +                  continue;
+>>>>    +
+>>>>    +          if (rx_data[nport].num_streams > 2)
+>>>>    +                  return -EPIPE;
+>>>>    +
+>>>>    +          fmt = v4l2_subdev_state_get_stream_format(state,
+>>>>    +                                                    route->sink_pad,
+>>>>    +                                                    route->sink_stream);
+>>>>    +          if (!fmt)
+>>>>    +                  return -EPIPE;
+>>>>    +
+>>>>    +          ub960_fmt = ub960_find_format(fmt->code);
+>>>>    +          if (!ub960_fmt)
+>>>>    +                  return -EPIPE;
+>>>>    +
+>>>>    +          if (ub960_fmt->meta) {
+>>>>    +                  if (fmt->height > 3) {
+>>>>    +                          dev_err(&priv->client->dev,
+>>>>    +                                  "rx%u: unsupported metadata height %u\n",
+>>>>    +                                  nport, fmt->height);
+>>>>    +                          return -EPIPE;
+>>>>    +                  }
+>>>>    +
+>>>>    +                  rx_data[nport].meta_dt = ub960_fmt->datatype;
+>>>>    +                  rx_data[nport].meta_lines = fmt->height;
+>>>>    +          } else {
+>>>>    +                  rx_data[nport].pixel_dt = ub960_fmt->datatype;
+>>>>    +          }
+>>>>    +  }
+>>>>    +
+>>>>    +  /* Configure RX ports */
+>>>>    +
+>>>>    +  fwd_ctl = 0;
+>>>
+>>> Hello, I have only used the first RX port in my setup (ds90ub933 to ds90ub964). The logic for activating/deactivating the Rx ports did not work for me. My suggestion is:
+>>
+>> Why doesn't it work? What happens?
+>>
+>>   Tomi
 > 
->   .../devicetree/bindings/arm/qcom.yaml         |   2 +
->   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->   arch/arm64/boot/dts/qcom/ipq9574-rdp418.dts   | 124 ++++++++++++++++++
->   3 files changed, 127 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp418.dts
+> Hello Tomi,
 > 
+> the port rx0 which I need was disabled and the other ports rx1 to rx3 were enabled. In other words, the exact inverse of the required selection.
 > 
-> base-commit: 52025ebbb518a2d876b8aba191b348ffb1cf368b
+>>>>   +		/* Forwarding */
+>>>>   +
+>>>>   +		fwd_ctl |= BIT(4 + nport); /* forward disable */
+> According to the data sheet, a set bit4-7 in fwd_ctl means that the channel is disabled. So the comment 'forward disable' is correct. While debugging, however, this code was only reached for the ports to be enabled but not for the ones which should be disabled.
+
+This is just a setup phase, where we initialize the registers for the 
+ports we want to use. The forwarding is then enabled later, in 
+ub960_enable_rx_port, and even later disabled in ub960_disable_rx_port.
+
+This assumes that the forwarding is disabled in the registers by default 
+(which it is in UB960).
+
+I need to try this on my HW to verify my understanding is correct, but 
+looking at the code, it is indeed a bit buggy.
+
+At this setup phase we disable the forwarding for ports we'll use, and 
+enable the forwarding for ports we don't use (which doesn't make sense). 
+Later, when the streaming is started for that port, we enable the 
+forwarding. So here we should just always disable the forwarding for all 
+ports.
+
+Saying "disable the forwarding" is perhaps a bit confusing here, as the 
+the forwarding should already be disabled in the HW here anyway. But as 
+we write the UB960_SR_FWD_CTL1, we need to set that bit.
+
+So. You should see the rx0 getting enabled (later, in 
+ub960_enable_rx_port), and I'm curious why you don't see that.
+
+  Tomi
+
