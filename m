@@ -2,210 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 072B8704BCD
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:07:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A408704BCE
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:08:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232598AbjEPLHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 07:07:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59878 "EHLO
+        id S232770AbjEPLH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 07:07:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232587AbjEPLHY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:07:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC0E57ED5
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:05:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F1E8C62D31
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 11:04:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0357C433D2;
-        Tue, 16 May 2023 11:04:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684235082;
-        bh=qlF2YnvuRTsoXVl0R8KA2/G/Oe6yD9FTJLXBqHH9TW4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=T/RabFK5kc+mggPSFtnpUhZA++RQvZqSZkWd2p5k9gUtFmUPsJPfbsQnEM92WvIBX
-         j2ktSyb5t3pM8/H5cx5jWpWBtFRj4aXp5bPZzjW+KcZ/7A3etAuJ/LnieMCaXURyXd
-         xMPDErmEE3VzEp+M5ArJdlkP8YOvDhiLwaUn25rPDd9IZlXbEcgGouML2fbWAONy+w
-         YGXw/iqMzODpzUpujeXxkne17YWv+Nnsc2hPcmBLNRSvljSr+zpMqyNYG1wegSYXX5
-         J+3V/GB+rgFAtScCUjb9qW3VeGG4SE/kMpbHyhX1qT+HfAypocOtNrKS/uyk6QL1ET
-         GvKIAwAH+DFDQ==
-Message-ID: <27d5081b-a251-5512-a077-a9905b29d7f2@kernel.org>
-Date:   Tue, 16 May 2023 13:04:37 +0200
+        with ESMTP id S232705AbjEPLHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:07:47 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9CCA4EC4
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:06:26 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3093a6311dcso120775f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:06:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20221208.gappssmtp.com; s=20221208; t=1684235109; x=1686827109;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UeLSDY0jT2hwYFwYp9RBnyLIEWvnNOUVcpWaWlulr0s=;
+        b=idZybBXSMf1HQxVALL/7Omz2i3bIR0jWYlvOHmvCJy4uq7rxDw5uAGkV9F/Qd9dTQb
+         ADR+XPJok/Bomg3QIbs+l+42Spbl69Trb7QXWoen2MELzcaNp3HgEW8kBC7AKKHamFsc
+         Lt/C5YbVzOx5R5gAySOEsawGkfFxG7Q7GgQWAb1XuM3Z19GaiL6mDUDbHs6cBntXivvz
+         E/KCFzONPGJT90w2Y0k6AfFHW1t7mbg/q2e36qzk5wvSnB0P3OOXhCUfSypg6DPA0yv2
+         tlF/T6kQLVl870fzOaHoXORlg9yOeSx9ZNXN/Rz8R8tnMzW43WNuujYFvEa9W14zveZg
+         Jl4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684235109; x=1686827109;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UeLSDY0jT2hwYFwYp9RBnyLIEWvnNOUVcpWaWlulr0s=;
+        b=cP1gn+L4Benwtbd1+vzKEEqKukiHJlZ2CIS9RtDWIvzmqUA9W9X3L1u2OyC9u77UJP
+         7o4PMh6XAoEw99E9JrR7M+i0vghtDa0hMviMotHynnEYm9wUk/cRNqROgC3MXMrmlGFc
+         vJlzx5HtS4HevE13LxOgyyLC9CqDKqtAxX1BYxExKdlCmuRoFcbXaI1paje4cE3phv0V
+         GY2fUh4vFh0XoJXy0mDwRfvQdg5ZTXb5MwmftCAp4obvQ43OjvPB6/b8g13qOf9HPplE
+         laNiqC+aUsDFX15JBt2+aMonRTfiyixybKErMT7wQRMkuTJmef2vjf36Fq/2AlR8qevr
+         9amA==
+X-Gm-Message-State: AC+VfDzLPp9jMhrJ3YmDZOEnpgh0YIfeb6/U4rB63+p35Rr6uxuuivgK
+        +bLUElaW3RioJaYgc1CNfS5P+g==
+X-Google-Smtp-Source: ACHHUZ5yhS+chG5GNUxvwq5Rd1sPkp1/5I2r7AEfJPNYOHTb2pFj4SFSnEexId7QEZx2/e6n1m5Yaw==
+X-Received: by 2002:a5d:51c4:0:b0:306:4031:63c5 with SMTP id n4-20020a5d51c4000000b00306403163c5mr26298511wrv.51.1684235109278;
+        Tue, 16 May 2023 04:05:09 -0700 (PDT)
+Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
+        by smtp.gmail.com with ESMTPSA id e1-20020a056000120100b003077a19cf75sm2229711wrx.60.2023.05.16.04.05.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 May 2023 04:05:08 -0700 (PDT)
+Message-ID: <f35fe326-fa72-eaf8-4168-73213a556fdd@monstr.eu>
+Date:   Tue, 16 May 2023 13:05:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH] dt-bindings: add panel-mipi-dsi-bringup DT schema
-To:     =?UTF-8?B?UGF1bG8gUGF2YcSNacSH?= <pavacic.p@gmail.com>,
-        neil.armstrong@linaro.org, sam@ravnborg.org, conor+dt@kernel.org
-Cc:     devicetree@vger.kernel.org
-References: <CAO9szn3t-giVipb5oH_3mzQZbnXbDqqz0WEg8uAmo-1W2uKzFg@mail.gmail.com>
+Subject: Re: [PATCH 04/23] arm64: zynqmp: Fix usb reset over bootmode pins on
+ zcu100
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <CAO9szn3t-giVipb5oH_3mzQZbnXbDqqz0WEg8uAmo-1W2uKzFg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Ashok Reddy Soma <ashok.reddy.soma@xilinx.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Parth Gajjar <parth.gajjar@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vishal Sagar <vishal.sagar@amd.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <cover.1683034376.git.michal.simek@amd.com>
+ <d117473da3bab39a82fe900cecd8ca78df9adeda.1683034376.git.michal.simek@amd.com>
+From:   Michal Simek <monstr@monstr.eu>
+In-Reply-To: <d117473da3bab39a82fe900cecd8ca78df9adeda.1683034376.git.michal.simek@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,NO_DNS_FOR_FROM,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 12:27, Paulo Pavačić wrote:
-> From 5a202ed7c7aa3433e348c5fed176defab1af1fae Mon Sep 17 00:00:00 2001
-> From: =?UTF-8?q?Paulo=20Pava=C4=8Di=C4=87?= <paulo.pavacic@zenitel.com>
-> Date: Tue, 16 May 2023 12:17:38 +0200
-> Subject: [PATCH] dt-bindings: add panel-mipi-dsi-bringup DT schema
-> MIME-Version: 1.0
-> Content-Type: text/plain; charset=UTF-8
-> Content-Transfer-Encoding: 8bit
 
-Your patch/email header looks corrupted. Please use standard tools like
-git format-patch or b4.
 
-Also:
-
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC.  It might happen, that command when run on an older
-kernel, gives you outdated entries.  Therefore please be sure you base
-your patches on recent Linux kernel.
-
-Due to above, limited review. Please fix everything and send v2 for full
-review.
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
-
-A nit, subject: drop second/last, redundant "DT schema". The
-"dt-bindings" prefix is already stating that these are bindings.
-
+On 5/2/23 15:35, Michal Simek wrote:
+> The commit 53ba1b2bdaf7 ("arm64: dts: zynqmp: Add mode-pin GPIO controller
+> DT node") added usb phy reset over bootmode pins by default on usb0 only.
+> zcu100 is using usb0 as peripheral and usb1 as host. Unfortunately reset
+> line is shared for both usb ulpi phys but usb_rst_b is connected to usb5744
+> hub which is used only in host mode. Especially this chip requires reset to
+> operate properly that's why better assign gpio reset to usb1 instead of
+> usb0.
 > 
-> Add dt-bindings documentation for panel-mipi-dsi-bringup which currently
-> supports fannal,C3004 panel. Also added fannal to vendor-prefixes.
-> 
-> Signed-off-by: Paulo Pavačić <pavacic.p@gmail.com>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 > ---
->  .../display/panel/panel-mipi-dsi-bringup.yaml | 65 +++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
->  2 files changed, 67 insertions(+)
->  create mode 100644
-> Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
-> b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
-> new file mode 100644
-> index 000000000000..a867f86fa984
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-mipi-dsi-bringup.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MIPI DSI Bringup driver
+>   arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+> index 2dd552cf51fb..c99abb99efcb 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+> @@ -552,6 +552,7 @@ &usb0 {
+>   	pinctrl-0 = <&pinctrl_usb0_default>;
+>   	phy-names = "usb3-phy";
+>   	phys = <&psgtr 2 PHY_TYPE_USB3 0 0>;
+> +	/delete-property/ reset-gpios;
+>   };
+>   
+>   &dwc3_0 {
+> @@ -567,6 +568,7 @@ &usb1 {
+>   	pinctrl-0 = <&pinctrl_usb1_default>;
+>   	phy-names = "usb3-phy";
+>   	phys = <&psgtr 3 PHY_TYPE_USB3 1 0>;
+> +	reset-gpios = <&modepin_gpio 1 GPIO_ACTIVE_LOW>;
+>   };
+>   
+>   &dwc3_1 {
 
-Drop driver. Explain what is "bringup". We describe hardware, not driver.
+Applied.
+M
 
-> +
-> +description: |
-> +  This document defines device tree for the MIPI DSI Bringup driver. And all
-
-Drop redundant pieces like "This document ..." and any references to driver.
-
-> +  the required parameters to get your panel to work. Driver was made to help
-> +  enabling MIPI DSI panels, to get those first pixels drawn on to the screen.
-> +  Since already you have to patch the driver with initialization sequences all
-> +  the settings such as DSI lanes, video mode, dsi formats are set in the
-> +  driver directly. SInce adding new panel can be overwhelming and to make
-
-Since?
-
-> +  porting easier, you can search for word `INTERACTION` in the driver
-> +  to check sections that you have to modify .
-
-Everything should be rephrased to describe hardware, not driver.
-
-> +
-> +
-> +maintainers:
-> +  - |
-> +      Paulo Pavačić
-> +      <paulo.pavacic@zenitel.com> <pavacic.p@gmail.com> <@ppavacic:matrix.org>
-
-That's not how we code it... Look at the files.
-
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: fannal,C3004
-
-OK, I am now confused. Bindings file name must match compatible. Why do
-you describe everything as some MIPI bringup driver and then add
-compatible for specific device?
-
-Also, only lowercase.
-
-
-> +
-> +  reg: true
-> +  reset-gpios: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reset-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    //example on IMX8MM where GPIO pin 9 is used as a reset pin
-
-Drop
-
-> +    &mipi_dsi {
-
-This should be regular node.
-
-> +        status = "okay";
-
-Drop
-
-> +        panel@0 {
-> +            status = "okay";
-
-Drop
-
-> +            reg = <0>;
-> +            compatible = "fannal,C3004";
-
-Compatible is first, reg is second.
-
-> +            pinctrl-0 = <&pinctrl_mipi_dsi_rst>;
-> +            pinctrl-names = "default";
-> +            reset-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
-> +        };
-> +    };
-> +    &iomuxc {
-> +         pinctrl_mipi_dsi_rst: pinctrl_mipi_dsi_rst {
-
-Drop entire node.
-
-This is so far away from any acceptable DTS... please look at existing
-bindings.
-
-Best regards,
-Krzysztof
-
+-- 
+Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
+w: www.monstr.eu p: +42-0-721842854
+Maintainer of Linux kernel - Xilinx Microblaze
+Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP/Versal ARM64 SoCs
+U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal/Versal NET SoCs
+TF-A maintainer - Xilinx ZynqMP/Versal/Versal NET SoCs
