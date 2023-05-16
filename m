@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D038E705985
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 23:33:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B241705989
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 23:33:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230486AbjEPVd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 17:33:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49730 "EHLO
+        id S231132AbjEPVdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 17:33:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbjEPVdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 17:33:25 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1501672B6
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 14:33:19 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1ae3c204e0aso1147235ad.2
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 14:33:19 -0700 (PDT)
+        with ESMTP id S230512AbjEPVd3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 17:33:29 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36CB6EB1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 14:33:22 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1ae4c5e12edso1123485ad.3
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 14:33:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684272798; x=1686864798;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LLMgIHPQmJu/1Np7gwEEcuFmiDPkCPkBr1mT4JM4rzo=;
-        b=Az5SOSmnGCHlhTw6JDTWUSNIDuggqumq6SA4lePlgV0raNwlHdt4P2UZKXDWNQIlEr
-         f3aHsNFvYjkWJcl44gvYnBkVW0CdBzGa9Vad1GC/hYs9LGBJs/6dRRdUDFgg007AXB2k
-         cszC2hrl5pG0t7EBgNvGihnGgzVzyvKtu9WG4D/9PpZOKYwcIxioXz51z2u9Amq3XcKy
-         fE5EFNDx3KviKMnantY4TokbwFvZSWCnP3hbza8AYvRwBMt5zEDRiScd9kUobOBbkX7o
-         abnovn1fcv9qgLk8f6cNNJLihfWAHD5MFPwmeW6cbFlpZ3Lsy7ufwn7kcoloXh6xyzi/
-         qLzw==
+        d=linaro.org; s=google; t=1684272802; x=1686864802;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Fcm7rdxyr0xQGgW24k3dhsiALIquYRobfBwbbRtNKtU=;
+        b=m3gRccPpzdD1H9i2KDuHDv8HqzdRasCUi6O3ztffhNI30urEr4XcoVyZhRJGDq1ljW
+         ARzXVfRYvvbGBKgQlD3ZQfybIChLBbsLVfrOYjaFH83gfRDXbJOa6+hAKBEmIAlj/GMX
+         IrXkQ1Povc0GNP9oJ9dS3m19xqak2dv/AyxqBkD1qcgke1ye0b8A0J3YecKjSFcMUGQn
+         yhZh57JWMMOs68RZF5t5AvXabd0/YfELc9gMmFPUtd86Rpn6LNKAeA+1Ad2AzIge2GPZ
+         SHZTaeA5wTBVGk05XG5spWhgk5MQBc8hh445ezBEhqBsxxhPGGJGlMn9SkhRjgnwd5UL
+         fQww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684272798; x=1686864798;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LLMgIHPQmJu/1Np7gwEEcuFmiDPkCPkBr1mT4JM4rzo=;
-        b=Yh9gLM7BQDtmCHWiYl+hKUBtu9S3oPf9LFesKXjp3Jhp9Jp1Q61dLyIY4pQ/AKDoY1
-         3JzNBWgcrqXC7DdVFfK3MqQygMaWXJU916U9qf08iJJ7ImQZtpAUnp766V9CAzGTTjGI
-         P750F+lq1ASOJJ3NvyBVnZcsiRwmVit5AqUBfk57jox9aA2iVV5pjzGt6+4uFflhe+zF
-         z4Kqi9+CNR41Ebl0mwK8zrPrBIZ1IzfSABFog3Ue+HlltcdHfPGlW8HIcSoiyQTcEf3S
-         lS5Wc9AccuoyPktmr9r/lTBL21Hh5W6U+hjin34j5zOXeNCyxznIJm4ANL3NuZxlHdFJ
-         TFQw==
-X-Gm-Message-State: AC+VfDxX3XmtxNoytYYIBW9rTMZiEEdUCUNXMOsdboyH3k0d9s12T09H
-        wk/06dY3+lO9eWR3R0sXSbl7dg==
-X-Google-Smtp-Source: ACHHUZ5zz3hRVPRyPe9s55BvxQJvCyVwE7M2uvP1Gh3v6P20qkv0aKgNqssHHzdhRsvxyCxQqzvutQ==
-X-Received: by 2002:a17:902:a503:b0:1ae:197f:dba9 with SMTP id s3-20020a170902a50300b001ae197fdba9mr9156244plq.2.1684272798302;
-        Tue, 16 May 2023 14:33:18 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684272802; x=1686864802;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Fcm7rdxyr0xQGgW24k3dhsiALIquYRobfBwbbRtNKtU=;
+        b=hTfyVJJ3ITX5XbJhv8vK75n5DNWhXRClipHZY9JZSPOftsZt6hd/ANl4htgfCscngZ
+         YS1wNOtU5LlhCBcXfV1fX9tNZEXOzv9nAO8rm7I0JSmBzrlCRd8CwjE+3bsYgCzRWMgn
+         RpjHww+pKPaL2wWLztYdXRZ1Z33h1+5N7U5SdHGhnBM8h9Cag3AO9dOfzow7YAiQkmK6
+         gPY+D0Bp8ptkA84EsNXG/mUWjHYj3nYAQCus/ToIHwMopEKuWyz4MN/jvAbYSYg5PuFa
+         CLQFJ7t9nJeEAhwXBF1/8jRp+iMGzjsfEqTeN/Nh1Jr9ix0ODiE7DJ1eMqdNkPVouh0G
+         bttA==
+X-Gm-Message-State: AC+VfDx0oyJTZsKOQOeCMgvkPDHJt/9kED6s5SMdHp0hjSc3O3t6Wj4U
+        /HRCtkmt55644o1aBSsoLqpwUw==
+X-Google-Smtp-Source: ACHHUZ6Tfq02iqowHYvw8wmwSAkE0dw4yL2jaThXrzO3sdK8Mx7Qmp8sW9eKaYI9qUeaq8RSGbFwgg==
+X-Received: by 2002:a17:902:b197:b0:1aa:f446:d518 with SMTP id s23-20020a170902b19700b001aaf446d518mr36579051plr.16.1684272802399;
+        Tue, 16 May 2023 14:33:22 -0700 (PDT)
 Received: from localhost.localdomain ([2401:4900:1c60:6bed:7a51:340a:a439:1b87])
-        by smtp.gmail.com with ESMTPSA id jh19-20020a170903329300b001ac7af57fd4sm16027676plb.86.2023.05.16.14.33.14
+        by smtp.gmail.com with ESMTPSA id jh19-20020a170903329300b001ac7af57fd4sm16027676plb.86.2023.05.16.14.33.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 14:33:17 -0700 (PDT)
+        Tue, 16 May 2023 14:33:22 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-usb@vger.kernel.org
@@ -55,10 +56,12 @@ Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
         linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
         bhupesh.sharma@linaro.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org
-Subject: [PATCH v5 0/5] Add Qualcomm SM6115 / SM4250 EUD dt-bindings & driver support
-Date:   Wed, 17 May 2023 03:03:03 +0530
-Message-Id: <20230516213308.2432018-1-bhupesh.sharma@linaro.org>
+Subject: [PATCH v5 1/5] usb: misc: eud: Fix eud sysfs path (use 'qcom_eud')
+Date:   Wed, 17 May 2023 03:03:04 +0530
+Message-Id: <20230516213308.2432018-2-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.38.1
+In-Reply-To: <20230516213308.2432018-1-bhupesh.sharma@linaro.org>
+References: <20230516213308.2432018-1-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -71,61 +74,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Changes since v4:
-----------------
-- v4 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230505064039.1630025-1-bhupesh.sharma@linaro.org/
-- Addressed Konrad's review comments regarding EUD driver code.
-- Also collected his R-B for [PATCH 4/5 and 5/5].
-- Fixed the dt-bindings as per Krzysztof's comments.
+The eud sysfs enablement path is currently mentioned in the
+Documentation as:
+  /sys/bus/platform/drivers/eud/.../enable
 
-Changes since v3:
-----------------
-- v3 can be viewed here: https://www.spinics.net/lists/linux-arm-msm/msg137025.html 
-- Addressed Konrad's review comments regarding mainly the driver code.
-  Also fixed the .dtsi as per his comments.
-- Also collected his R-B for [PATCH 1/5].
+Instead it should be:
+  /sys/bus/platform/drivers/qcom_eud/.../enable
 
-Changes since v2:
-----------------
-- v2 can be viewed here: https://www.spinics.net/lists/linux-arm-msm/msg137025.html 
-- Addressed Bjorn and Krzysztof's comments.
-- Added [PATCH 1/5] which fixes the 'qcom_eud' sysfs path. 
-- Added [PATCH 5/5] to enable EUD for Qualcomm QRB4210-RB2 boards.
+Fix the same.
 
-Changes since v1:
-----------------
-- v1 can be viewed here: https://lore.kernel.org/linux-arm-msm/20221231130743.3285664-1-bhupesh.sharma@linaro.org
-- Added Krzysztof in Cc list.
-- Fixed the following issue reported by kernel test bot:
-  >> ERROR: modpost: "qcom_scm_io_writel" [drivers/usb/misc/qcom_eud.ko] undefined!
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+ Documentation/ABI/testing/sysfs-driver-eud | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-This series adds the dt-binding and driver support for SM6115 / SM4250
-EUD (Embedded USB Debugger) block available on Qualcomm SoCs.
-
-It also enables the same for QRB4210-RB2 boards by default (the user
-still needs to enable the same via sysfs).
-
-The EUD is a mini-USB hub implemented on chip to support the USB-based debug
-and trace capabilities.
-
-EUD driver listens to events like USB attach or detach and then
-informs the USB about these events via ROLE-SWITCH.
-
-Bhupesh Sharma (5):
-  usb: misc: eud: Fix eud sysfs path (use 'qcom_eud')
-  dt-bindings: soc: qcom: eud: Add SM6115 / SM4250 support
-  usb: misc: eud: Add driver support for SM6115 / SM4250
-  arm64: dts: qcom: sm6115: Add EUD dt node and dwc3 connector
-  arm64: dts: qcom: qrb4210-rb2: Enable EUD debug peripheral
-
- Documentation/ABI/testing/sysfs-driver-eud    |  2 +-
- .../bindings/soc/qcom/qcom,eud.yaml           | 42 ++++++++++-
- arch/arm64/boot/dts/qcom/qrb4210-rb2.dts      | 27 +++++++-
- arch/arm64/boot/dts/qcom/sm6115.dtsi          | 50 ++++++++++++++
- drivers/usb/misc/Kconfig                      |  1 +
- drivers/usb/misc/qcom_eud.c                   | 69 +++++++++++++++++--
- 6 files changed, 179 insertions(+), 12 deletions(-)
-
+diff --git a/Documentation/ABI/testing/sysfs-driver-eud b/Documentation/ABI/testing/sysfs-driver-eud
+index 83f3872182a4..2bab0db2d2f0 100644
+--- a/Documentation/ABI/testing/sysfs-driver-eud
++++ b/Documentation/ABI/testing/sysfs-driver-eud
+@@ -1,4 +1,4 @@
+-What:		/sys/bus/platform/drivers/eud/.../enable
++What:		/sys/bus/platform/drivers/qcom_eud/.../enable
+ Date:           February 2022
+ Contact:        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+ Description:
 -- 
 2.38.1
 
