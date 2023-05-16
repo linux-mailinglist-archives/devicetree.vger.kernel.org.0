@@ -2,177 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89766705458
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:50:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 119F7705467
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:54:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231577AbjEPQt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 12:49:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54488 "EHLO
+        id S230401AbjEPQyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 12:54:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229880AbjEPQt6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:49:58 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE355FEB
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:49:53 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-965e93f915aso2580941966b.2
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:49:53 -0700 (PDT)
+        with ESMTP id S231255AbjEPQyb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:54:31 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 877DD72B6;
+        Tue, 16 May 2023 09:54:30 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id 6a1803df08f44-62382e9cb8dso1945996d6.2;
+        Tue, 16 May 2023 09:54:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684255792; x=1686847792;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=98jLZxl/wFD6yfWWHfXW+6rIWIRzQseh9ow23ZlMcPA=;
-        b=sysycK1uXzo8V3zJTYQk8eZ47oUgTL3F1OkHqo+tSrZYvlHKeb51g9hhjxXZzW6bLD
-         LPxA0z0NelQgHpvFyQEpK21qkwwKYYZWdQp/mVyfwuRlC5iLTMWQyN75MiVVSpOphBeg
-         fg4iwktIy5YcxWWSp+KmLSeEmIE57zPtmxq126RlUymvN0os8MDMwD9BcHWpMglq1S4m
-         Xktmc+r8Yx0q/08soQDNSMolDvw+zb3H14kjDQKVsToT63VqCJiHLevyebMK0RQqLTwB
-         UVoPP4edmmV1xW/+tCw3J2tl7eehYJUEBssdtgG9vLAfzUD2pAXDTDMKdRhnlk30Urev
-         J+SQ==
+        d=gmail.com; s=20221208; t=1684256069; x=1686848069;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=C+IKvHr+Qv/reK+iiMKXtFvdk8tZMUo94JX5PnpoJb8=;
+        b=q4qBiNGZgIJSY3urHsTTQA7J9yflOfJ9/ap1bVIBsrQoRtqK3oV4otSz0FYY0BvcTk
+         V+IjSGstVNieUTBxeuW1kcMOuIdIKHwGd+MWLEIcopt76I3hr691v8kLd9mxVJk/1BJc
+         3JVbiiIwggFbVqiSxqbKxKkNow3ImCA6siTZMGfUIknc1qVwS3WaWR6TYdIeUl6TtxNS
+         QuXCQO6o63h1TneclInQX49R4W0RurFChRJMYwL4mFSqVUI2jGqJ3E5Q+2Y5qGfM3YWz
+         oc/4Pn5pHUqaZOJcR2wxRrRXBF4OAoRKFAau7Wo/FYzuRGPiVyYNVnnGedkax4MCPod9
+         QA6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684255792; x=1686847792;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=98jLZxl/wFD6yfWWHfXW+6rIWIRzQseh9ow23ZlMcPA=;
-        b=CBLnh6F22InyYvAGzOqp/YEgzQ1mkNDoJhL8gWPgVDH+q0EoC0hcVkbIMbiESvGZYH
-         0vo1nIPUQJ3iXDknzXe0excz605vje4b/Dx1kp0CDPedYORFIpj3QQji5Kl48/Cwc8gc
-         US9+ompyNKTj8IKfu+uOuR4lRS1hM+ixZNe5a6xM5dxZ2UxcjoNF89EFQkkjAlnNCUrl
-         e0saYhEmb6xpawjJhnyhSgrJ3vHC6qXyhsv/6v/KwYpKTGJRgpPb1ip/VUsZYWrHGCcF
-         WS19XW8yP3H1D3EenCGE/fnKYnGfeMeSw723uuXugEjg/cVegsXNPDs20XMIeByvQv+5
-         liGQ==
-X-Gm-Message-State: AC+VfDwvA+6QYlFDxo0dGt/lJMSuGNpUYB02Z+YstAIiauQKoazb1LNj
-        iZelOcaBH8/0AHQh/MINRq/qAQ==
-X-Google-Smtp-Source: ACHHUZ4ErN4eI/lu4njr0LL5LOj72gRCNsNY1sqTAV2Hw850PpdLHswTuK3OU8/yaLKyE+7iwyPodQ==
-X-Received: by 2002:a17:907:31c9:b0:94f:6627:22b5 with SMTP id xf9-20020a17090731c900b0094f662722b5mr33246490ejb.47.1684255792093;
-        Tue, 16 May 2023 09:49:52 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
-        by smtp.gmail.com with ESMTPSA id z23-20020a17090674d700b0096ac911ecb8sm5750079ejl.55.2023.05.16.09.49.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 09:49:51 -0700 (PDT)
-Message-ID: <32dbdaa3-067b-c997-778f-4fc8dafbbd87@linaro.org>
-Date:   Tue, 16 May 2023 18:49:50 +0200
+        d=1e100.net; s=20221208; t=1684256069; x=1686848069;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=C+IKvHr+Qv/reK+iiMKXtFvdk8tZMUo94JX5PnpoJb8=;
+        b=NdAJR8ixJt6LZARoWRb40rLXwwCNq9VcFoTvhnqDIGudriUV/QVk2URSB3BHEBPLcH
+         aRzNCokFBpgI/hXCehxCDNzBM8p3K/MQJTKA/w0AFdGecym6SATsfV5OLhIFOUIjt4d4
+         cgIGnOl5Ik8NdlZPNbddiFVwY5AlbVJECS+5XBUF1aBqENuv7zW0lmEXkKhbtUibCg2O
+         LyWB1VGt7xmZMRBC7ImkWJySWelR0WDsprhnzVT1uZt23OlAyWej4iXh+VON7fa1HzrK
+         ZVSk5QRtlRSLfRAYFQhOF504uy8SBVvFJy/8lMeNQOBFbG7n7VoP//B3iVYIkCgYzg+R
+         D+6g==
+X-Gm-Message-State: AC+VfDwjvglQz8dJetxLUSCsNuCEqM2i5VfbCNoypVNsl9GUu2b/CNCG
+        63m7GsoMNHp4c9oj93UrSpe5ltqqZMeBAmom+j0=
+X-Google-Smtp-Source: ACHHUZ4L/H9GbFy84MmkYmOL6YCRHWnatpThEhzYtSHWWsd931XXmUJMNpAEB2uMhi69U0bfnIS5Nw0flC1l4j3Qmqg=
+X-Received: by 2002:a05:6214:21ae:b0:621:48be:bab5 with SMTP id
+ t14-20020a05621421ae00b0062148bebab5mr35804718qvc.8.1684256069595; Tue, 16
+ May 2023 09:54:29 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] mux: mmio: use reg property when parent device is not a
- syscon
-Content-Language: en-US
-To:     Andrew Davis <afd@ti.com>, Peter Rosin <peda@axentia.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230515191909.611241-1-afd@ti.com>
- <13c1f6ea-63b5-9667-18a2-705829c46437@axentia.se>
- <895c84f5-4a3c-fd2c-2b43-1a1996862e15@ti.com>
- <7d73a37f-80b7-b623-1b71-fa19bf379713@linaro.org>
- <558ebfaf-bd7e-1760-5799-8ed430acad7a@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <558ebfaf-bd7e-1760-5799-8ed430acad7a@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230516114523.3266419-1-quic_srichara@quicinc.com>
+ <20230516114523.3266419-5-quic_srichara@quicinc.com> <02d1f821-4b1f-e4f2-0732-026f9b0b7ed9@quicinc.com>
+In-Reply-To: <02d1f821-4b1f-e4f2-0732-026f9b0b7ed9@quicinc.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 16 May 2023 19:53:53 +0300
+Message-ID: <CAHp75VdLm7o83x9keZEUv9pDK2ZkWkQtMcLU148KyHZgf_6VUw@mail.gmail.com>
+Subject: Re: [PATCH V5 4/8] pinctrl: qcom: Add IPQ5018 pinctrl driver
+To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, ulf.hansson@linaro.org,
+        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
+        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robimarko@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 18:29, Andrew Davis wrote:
-> On 5/16/23 11:19 AM, Krzysztof Kozlowski wrote:
->> On 16/05/2023 17:18, Andrew Davis wrote:
->>> On 5/15/23 4:14 PM, Peter Rosin wrote:
->>>> Hi!
->>>>
->>>> 2023-05-15 at 21:19, Andrew Davis wrote:
->>>>> The DT binding for the reg-mux compatible states it can be used when the
->>>>> "parent device of mux controller is not syscon device". It also allows
->>>>> for a reg property. When the parent device is indeed not a syscon device,
->>>>> nor is it a regmap provider, we should fallback to using that reg
->>>>> property to identify the address space to use for this mux.
->>>>
->>>> We should? Says who?
->>>>
->>>> Don't get me wrong, I'm not saying the change is bad or wrong, I would just
->>>> like to see an example where it matters. Or, at least some rationale for why
->>>> the code needs to change other than covering some case that looks like it
->>>> could/should be possible based on the binding. I.e., why is it not better to
->>>> "close the hole" in the binding instead?
->>>>
->>>
->>> Sure, so this all stated when I was building a checker to make sure that drivers
->>> are not mapping overlapping register spaces. I noticed syscon nodes are a source
->>> of that so I'm trying to look into their usage.
->>>
->>> To start, IHMO there is only one valid use for syscon and that is when more than
->>> one driver needs to access shared bits in a single register. DT has no way to
->>
->> It has... what about all existing efuse/nvmem devices?
->>
->>> describe down to the bit granular level, so one must give that register to
->>> a "syscon node", then have the device node use a phandle to the syscon node:
->>>
->>> common_reg: syscon@10000 {
->>> 	compatible = "syscon";
->>> 	reg = <0x10000 0x4>;
->>> };
->>>
->>> consumer@1 {
->>> 	syscon-efuse = <&common_reg 0x1>;
->>> };
->>>
->>> consumer@2 {
->>> 	syscon-efuse = <&common_reg 0x2>;
->>> };
->>>
->>> Something like that, then regmap will take care of synchronizing access.
->>
->> Syscon is not for this.
->>
-> 
-> That is how it is used today, and in 5 other ways too and there is
-> no guidance on it. Let me know what syscon is for then.
+On Tue, May 16, 2023 at 2:58=E2=80=AFPM Sricharan Ramabadhran
+<quic_srichara@quicinc.com> wrote:
+> On 5/16/2023 5:15 PM, Sricharan Ramabadhran wrote:
 
-Like described in its bindings (syscon.yaml). The main case is: some
-part of address space (dedicated) for various purposes.
+...
 
-Secondary case is a device, with its address space, which has few
-registers from other domain, so it needs to expose these to the other
-devices.
+> >   [v5] Rebased patch on top of "Add pinctrl support for SDX75" series
+> >        and fixed other comments from andy.shevchenko@gmail.com
+> >
+>    I rebased this on top of [1] series. But if that takes time to merge,
+>    can i post this without that dependency and get this merged ?
+>
+> [1] https://lore.kernel.org/r/1683718725-14869-1-git-send-email-
+>     quic_rohiagar@quicinc.com
 
-efuse is not syscon, because it is not writeable. efuse has entirely
-different purpose with its own defined purpose/type - efuse/OTP etc.
+First of all, please remove so-o long context which is not related _at
+all_ in this conversation right now.
 
-> 
->>>
->>
->> ...
->>
->>>
->>> Ideally DT nodes all describe their register space in a "reg"
->>> property and all the "large collection of devices" spaces become
->>> "simple-bus" nodes. "syscon" nodes can then be limited to only the
->>> rare case when multiple devices share bits in a single register.
->>>
->>> If Rob and Krzysztof agree I can send a patch with the above
->>> guidance to the Devicetree Specification repo also.
->>
->> Agree on what?
->>
-> 
-> That we should provide the above guidance on when and how to use syscon
-> nodes. Right now it is a free for all and it is causing issues.
+Regarding your question, you need to talk to the respective
+maintainers how to proceed. The best is that all stakeholders pull an
+immutable branch/tag with that series applied from pin control
+maintainer (Linus W) and your series on top of that.
 
-Sure, providing more guidance seems good. We already provide guidance
-via review, but we can codify it more. Where? syscon.yaml? It's already
-describing everything needed to know...
-
-What particular problems do you see which need to be solved?
-
-Best regards,
-Krzysztof
-
+--=20
+With Best Regards,
+Andy Shevchenko
