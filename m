@@ -2,107 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17BB470473A
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 09:59:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E13E704741
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231486AbjEPH7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 03:59:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57270 "EHLO
+        id S230416AbjEPIAk convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 16 May 2023 04:00:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231530AbjEPH7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 03:59:30 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6C6149DC
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:59:27 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1aad5245571so94986725ad.1
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:59:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684223967; x=1686815967;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e/Vr1VrfFDgER7ZvfIYiWcEUpN45WoK7FIASNi3fnLM=;
-        b=CgvzS+P3X3MERJa9EOXCYLt0dg3TvlF7Gj4ZmvhC24UGgeeeeWdcTrsX2/isQOcW8T
-         mtbFe8hi+zJAGpcBTaJjWDC/x9nA/6EpTQUhc3F3fj+KMiAbXcjAtghcMHJCFAqropk8
-         rSGpXlTNmWEhnFM78pVAJXGEng/nCWfJHrxCW1XTkiD6V0/LbCjzNbR75dcITQZu7pkp
-         m++Z9vkkXlQOOJXu6vmLBkhok4B7bLgD944G8iVZ2RzQCmhvIQ/ZL4eJyYKD4XpQso4N
-         QtGm6f3hUq8+YvfU8D8Jb3JhRCAxRJhdRBDq+0bBNbt7HOD1UAxa/2lktd2n0tAiardt
-         /VHg==
+        with ESMTP id S230372AbjEPIAj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:00:39 -0400
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7975219B9;
+        Tue, 16 May 2023 01:00:38 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-55a214572e8so202590147b3.0;
+        Tue, 16 May 2023 01:00:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684223967; x=1686815967;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1684224037; x=1686816037;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=e/Vr1VrfFDgER7ZvfIYiWcEUpN45WoK7FIASNi3fnLM=;
-        b=a1DaHQWGzwb3hKvIWsDdpghCJRTaMksLTjj4mSTw8cHf42CCnt8Zht0sKhIvO5uxyT
-         bL3/RzZ/E77WZT1/WXk5UX/tqQZPf7RJANqxCnpoVsFMh3QP2019YXfFj3HlWwq4ir5P
-         1R3IjcfMMras3zSY/A0BbfLgGHGE4lVJ3SkMaeA4HJ0SJNJaBASlwixfzqo1lhlbD4Jf
-         jaNOQHjJ5qHydxqvdfDqyIq8EUoCnnDJha2NwFSmOCmdswUjDEOqT0qQslOHNQDDapEF
-         Ah89J4XBKq5DiQvAqo6G2nl1KdnqZZpGAEgZmBQS2fwM6c91Ig+leyM6MAD+eO2vFr45
-         CGPg==
-X-Gm-Message-State: AC+VfDyclcwcus9hoNyYhE6HhOhL65C4jukkXG9Zl2r1H477mr+YaTB7
-        zqkh5Hvc7zb6ZRiqH8AJ0BBYNw==
-X-Google-Smtp-Source: ACHHUZ5N8kiBkMolOzjgeBzPVizuVb2dadk8Fz6kf2vERXui0GySY3/b1R+jdQIIc3UuWqncFtdxdA==
-X-Received: by 2002:a17:902:a584:b0:1aa:f173:2892 with SMTP id az4-20020a170902a58400b001aaf1732892mr798873plb.57.1684223967317;
-        Tue, 16 May 2023 00:59:27 -0700 (PDT)
-Received: from localhost.localdomain ([2401:4900:1c60:6bed:62ca:2e52:e0c5:d0cb])
-        by smtp.gmail.com with ESMTPSA id cl16-20020a17090af69000b002532d74fb59sm469725pjb.22.2023.05.16.00.59.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 00:59:27 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        bhupesh.sharma@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org
-Subject: [PATCH v4 3/3] arm64: dts: qcom: qrb4210-rb2: Enable aDSP and cDSP remoteproc nodes
-Date:   Tue, 16 May 2023 13:29:08 +0530
-Message-Id: <20230516075908.2323372-4-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230516075908.2323372-1-bhupesh.sharma@linaro.org>
-References: <20230516075908.2323372-1-bhupesh.sharma@linaro.org>
+        bh=b0h6qVIfbUBDrUxA2PTLniEHIyTzUxs5niagrHQ6PpI=;
+        b=TEGx5VgLbAH3yRjcQM+deGbHuLavr/fHf5asGhwiT1TyDvrmXc/lh3ybhtejGjPa3S
+         4lobjLgBbhrSlUtGjfyxuw8gh5+bxa9/OllffOpvonZIN8zpFxTnUhnKqmOZ+p2HLhcD
+         WaY4/UMk4qvjcH59sR21aUWPJoL7acJmYkLks4zATp+Rsf5hu+M/KzmDJk2+LCJPZENp
+         DjGv0skV5k4oQUhQ6ekpbx6fwDtsfsS8ILVO7iFZ6E6lumxGydQ5BWRgckDX4KS9zQ94
+         J4Eldl0gOutZ84RaV/FDC8VAPkUk4jmISm3c39VXxisvWp4N5p0D9AqR+bHYD5fCi3nX
+         YCDQ==
+X-Gm-Message-State: AC+VfDx/tZPXS+GCXDWqsEyvIGJP30WLWEJUwce6n4Q2E6CpOTGimhuC
+        9OamEJkHBsI2KXpuj5qoMhJz7dZ9oTtAnw==
+X-Google-Smtp-Source: ACHHUZ7bmEuXo6vdwkvKjwTbNZhWlcKQ3iIasuAbqpk/DcqxkTsXsB2asJ5bOT7808jBtIfkjLVbhQ==
+X-Received: by 2002:a81:9486:0:b0:55a:f410:4ffe with SMTP id l128-20020a819486000000b0055af4104ffemr36744305ywg.19.1684224037291;
+        Tue, 16 May 2023 01:00:37 -0700 (PDT)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id w191-20020a0dd4c8000000b0054f56baf3f2sm420419ywd.122.2023.05.16.01.00.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 May 2023 01:00:36 -0700 (PDT)
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-ba8253f635cso505097276.0;
+        Tue, 16 May 2023 01:00:36 -0700 (PDT)
+X-Received: by 2002:a81:4a0a:0:b0:55a:40d3:4d6f with SMTP id
+ x10-20020a814a0a000000b0055a40d34d6fmr31853835ywa.26.1684224036141; Tue, 16
+ May 2023 01:00:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230513165227.13117-1-biju.das.jz@bp.renesas.com> <20230513165227.13117-4-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20230513165227.13117-4-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 16 May 2023 10:00:24 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXpHgU3p1OE5_Vea8feqdyFbiSuyporhw6gEUwn=HX73Q@mail.gmail.com>
+Message-ID: <CAMuHMdXpHgU3p1OE5_Vea8feqdyFbiSuyporhw6gEUwn=HX73Q@mail.gmail.com>
+Subject: Re: [PATCH v3 3/5] dt-bindings: mfd: Add Renesas RAA215300 PMIC bindings
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the aDSP and cDSP remoteproc nodes on Qualcomm QRB4210 RB2 board.
+Hi Biju,
 
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+On Sat, May 13, 2023 at 6:52 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+>
+> Document Renesas RAA215300 PMIC bindings.
+>
+> The RAA215300 is a high Performance 9-Channel PMIC supporting DDR
+> Memory, with Built-In Charger and RTC.
+>
+> It supports DDR3, DDR3L, DDR4, and LPDDR4 memory power requirements.
+> The internally compensated regulators, built-in Real-Time Clock (RTC),
+> 32kHz crystal oscillator, and coin cell battery charger provide a
+> highly integrated, small footprint power solution ideal for
+> System-On-Module (SOM) applications. A spread spectrum feature
+> provides an ease-of-use solution for noise-sensitive audio or RF
+> applications.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v2->v3:
+>  * Added more detailed description for renesas,rtc-enabled property.
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-index abea44fd369d..5cbca0e4ec90 100644
---- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-@@ -34,6 +34,18 @@ &qupv3_id_0 {
- 	status = "okay";
- };
- 
-+&remoteproc_adsp {
-+	firmware-name = "qcom/qrb4210/adsp.mbn";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/qrb4210/cdsp.mbn";
-+
-+	status = "okay";
-+};
-+
- &rpm_requests {
- 	regulators {
- 		compatible = "qcom,rpm-pm6125-regulators";
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/renesas,raa215300.yaml
+
+> +  renesas,rtc-enabled:
+> +    description:
+> +      To indicate RTC is enabled on the PMIC.
+> +      Enabling of the RTC is based on system design. System designers may
+> +      choose not to populate built-in RTC by grounding XIN and XOUT pins.
+> +    type: boolean
+
+Perhaps you should go full DT monty and replace this logic by a clocks
+property pointing to the external crystal?
+
+However, as I only have the Short-Form Datasheet, I am wondering what
+"Built-in 32kHz crystal oscillator (with bypass)" really means?
+Does this mean the RTC can work without an external crystal, using an
+on-chip oscillator?
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.38.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
