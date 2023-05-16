@@ -2,165 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87EA8705939
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 23:01:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 799EF70594C
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 23:10:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbjEPVBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 17:01:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36402 "EHLO
+        id S230272AbjEPVKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 17:10:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbjEPVBu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 17:01:50 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66D4630E0;
-        Tue, 16 May 2023 14:01:49 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34GKpQGe012395;
-        Tue, 16 May 2023 21:01:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=ttVoZ1MTEot2EPQSmKoMu+nXb5zpPDeIHDthXMvspNo=;
- b=FBcQfqeJBsI+MboplIbzkrfIBX1AejVskGWwzf7r17VRKGdeQYNIudS8mz1Bec/Ff0+r
- 0HkSv/hjOp6NZhw0VmiEPxS99y2FCFJp+QS/92z7OWCjga4MRWCiFczRyCDysfySYnM+
- IPJF346rK4fRRn/YcnsK8F+LXkObl7FiqDOrRfxAnZ+YLVhHIU2G6KLu8pMI4uHoTKd3
- dGOc3dSXxx0KNGbreL2Hcs4Xr8JbolaO8/hJMy27tJbd/jKFzxyATg9hGjLv/q0uudFY
- x926siKwiy1i5NIXSYVETKCx3qqzaOtxczOZWOdH9bk3otpwCyufxdDGIpqa5yqmD6I+ HA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qmcc60mvq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 16 May 2023 21:01:45 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34GL1jo5019058
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 16 May 2023 21:01:45 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Tue, 16 May 2023 14:01:44 -0700
-Date:   Tue, 16 May 2023 14:01:43 -0700
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Flush RSC sleep & wake votes
-Message-ID: <20230516210143.GB606695@hu-bjorande-lv.qualcomm.com>
-References: <20230512150425.3171122-1-quic_bjorande@quicinc.com>
- <f6ecd66b-e207-0ed9-0ff3-1febfdf5bce9@linaro.org>
- <20230515023828.jqrrqkit5ygovimp@ripper>
- <1ecd0cba-296e-b036-f59e-f679c771ae9f@linaro.org>
+        with ESMTP id S230222AbjEPVKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 17:10:38 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BA0B72A0;
+        Tue, 16 May 2023 14:10:32 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-965e4be7541so2568146866b.1;
+        Tue, 16 May 2023 14:10:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20221208; t=1684271430; x=1686863430;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n73A5ikyqINLnlDhqbTvCi+0kCGqHkJ94IeKapmahoE=;
+        b=LhJ8iLFLtcCAuCR6l9IHP15t2tujl1me7wzUyl/h2h7LaxKrnYgA/fP7z/ZChEWxKV
+         muDNAeYJLCcJUTWrEAdbD2N1cckJQYPGjbomLonDRrjLb6NM96Jete/RDYf9GTTuCHiS
+         dsl/R57+DKVsFpO9vEyYvLuqOqg5yWG+dWO6zo6szGMQHCMtAKSadHIolidfi0tsnqym
+         S1c0kRMJDMbTdc4FS0MnIM2kHgksv1XdXMQxFJKLo0h3zFGzbCChpkxYgMCNGtPwR4Sp
+         ZF+NrCw7aD1zrsB7KJfpe+l4QcB1yZ1BfCIAQ/NSSU6T+1HG7dyzSVdf8jQvKGVWkN56
+         dL1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684271430; x=1686863430;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=n73A5ikyqINLnlDhqbTvCi+0kCGqHkJ94IeKapmahoE=;
+        b=JfkkL0dWxOC2Pw9pvlMP3JLa2Q860NB3i1mVL49WH1zflB1guRveKK2zgN1V54UmKh
+         nM+d7QDbiZjhbZd6PtNqMDcj8QbtP3MJGdY1r2C1P7CY+ssDPTxH99vRxn9GwGpwd8uE
+         tpBWvil4qOXXYojMz8VUjcwdNLxCQd6FQTjfJydsBKERMcAESegdvTOpfvMpdulGUL7K
+         BPSJbhaq2sanvb/7/GrhIid8Z9EqkbdofUO/2tHy4fPr7lzF1wayc9f4Z+GChM5cmxBk
+         Qr9ZjOhU8DD6ZOFoS8CxGffCTZeAoeOKJZw+EuQtuV5PXlb/3en+3qT/K1FfBn+IQC1i
+         hV+w==
+X-Gm-Message-State: AC+VfDxJxVWdT+6dhXiD4XuY9f/Z9vUTKLiRiR1XVYXcEVtPewc28bud
+        4U0E7DCOnBdIPxwtI87pJVs9FYMe0fr5YMjMI8Q=
+X-Google-Smtp-Source: ACHHUZ7VwJQ7m6uMhLM8YPBx9yE/to5sr9FgMcI7tXUUErTzps4roK4BFliZIW0ptbv7CVPU+2WGGuadwAU5jqQGePs=
+X-Received: by 2002:a17:907:9694:b0:96a:1ec1:2c9f with SMTP id
+ hd20-20020a170907969400b0096a1ec12c9fmr23981423ejc.12.1684271430372; Tue, 16
+ May 2023 14:10:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1ecd0cba-296e-b036-f59e-f679c771ae9f@linaro.org>
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: FFoqmScspeWgJR1o5ov0jG0IZPJyt6jr
-X-Proofpoint-ORIG-GUID: FFoqmScspeWgJR1o5ov0jG0IZPJyt6jr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-16_12,2023-05-16_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- phishscore=0 suspectscore=0 mlxscore=0 bulkscore=0 adultscore=0
- mlxlogscore=999 malwarescore=0 lowpriorityscore=0 clxscore=1015
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305160178
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230426095805.15338-1-ddrokosov@sberdevices.ru>
+ <20230426095805.15338-7-ddrokosov@sberdevices.ru> <CAFBinCA2OhtVaCJDi8ZfAFLSE4oUgxYBDScaP_WW63curEK8Mg@mail.gmail.com>
+ <20230512140630.qd33rwzaalmadpmk@CAB-WSD-L081021>
+In-Reply-To: <20230512140630.qd33rwzaalmadpmk@CAB-WSD-L081021>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 16 May 2023 23:10:19 +0200
+Message-ID: <CAFBinCA8e9evk+9hTEgoNOD_+3DBst6vYDcradmr2c996jdUmw@mail.gmail.com>
+Subject: Re: [PATCH v14 6/6] clk: meson: a1: add Amlogic A1 Peripherals clock
+ controller driver
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     neil.armstrong@linaro.org, jbrunet@baylibre.com,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 15, 2023 at 11:34:45AM +0200, Konrad Dybcio wrote:
-> 
-> 
-> On 15.05.2023 04:38, Bjorn Andersson wrote:
-> > On Sat, May 13, 2023 at 11:09:07AM +0200, Konrad Dybcio wrote:
-> >>
-> >>
-> >> On 12.05.2023 17:04, Bjorn Andersson wrote:
-> >>> The rpmh driver will cache sleep and wake votes until the cluster
-> >>> power-domain is about to enter idle, to avoid unnecessary writes. So
-> >>> associate the apps_rsc with the cluster pd, so that it can be notified
-> >>> about this event.
-> >>>
-> >>> Without this, only AMC votes are being commited.
-> >> Ouch.
-> >>
-> >> Should we make this required: in bindings and add it to all
-> >> platforms?
-> >>
-> > 
-> > I though this was an optimization and in the absence of this callback
-> > the driver would just write out wake and sleep sets as well. But per the
-> > current implementation (and perhaps some underlying cause?) it is indeed
-> > required, if you care about power consumption.
-> Hm.. since it's not strictly required for operation, would something
-> like this be fitting?:
-> 
+Hello Dmitry,
 
-I don't think it's required for operation, but the current
-implementation does require it.
+On Fri, May 12, 2023 at 4:06=E2=80=AFPM Dmitry Rokosov <ddrokosov@sberdevic=
+es.ru> wrote:
+[...]
+> > > +static struct clk_regmap pwm_a_sel =3D {
+> > > +       .data =3D &(struct clk_regmap_mux_data){
+> > > +               .offset =3D PWM_CLK_AB_CTRL,
+> > > +               .mask =3D 0x1,
+> > > +               .shift =3D 9,
+> > > +       },
+> > > +       .hw.init =3D &(struct clk_init_data){
+> > > +               .name =3D "pwm_a_sel",
+> > > +               .ops =3D &clk_regmap_mux_ops,
+> > > +               .parent_data =3D pwm_abcd_parents,
+> > > +               .num_parents =3D ARRAY_SIZE(pwm_abcd_parents),
+> > > +               /* For more information, please refer to rtc clock */
+> > > +               .flags =3D CLK_SET_RATE_NO_REPARENT,
+> > Heiner is working on a series that adds common clock support to the
+> > PWM driver [0].
+> > I think his plans for a next step are adding support for SoCs where
+> > the PWM clocks are part of the peripheral clock controller (instead of
+> > being part of the PWM controller registers).
+> >
+>
+> Yes, I'm keeping up with this review and staying informed. It's worth
+> noting that the peripheral clock driver already includes PWM clocks,
+> with an important remark about reparenting being switched off. It's
+> described below.
+Indeed, this is why this question came to my mind
 
-So I think we should either require it in the binding to mimic the
-implementation, or the implementation should handle either case (only
-with a performance impact)
+> > Have you considered removing CLK_SET_RATE_PARENT from the &rtc clock
+> > so downstream clocks won't change the rtc clock rate by accident?
+> > Then we could drop the CLK_SET_RATE_NO_REPARENT flag from the PWM
+> > clocks to allow them to pick the best available parent (whether that's
+> > the rtc clock, xtal or sys_pll).
+> > That said, it would require managing the CLKID_RTC_32K_SEL clock (or
+> > it's parents) using assigned-clocks instead of doing so with the PWM
+> > (and other) clocks. Whether this would cause problems: I'm not sure,
+> > so I'm hoping that you can share some insights.
+> >
+> >
+>
+> Allow me to share my thoughts on this matter. From my understanding,
+> Amlogic provides an RTC clock that is both accurate and power-effective
+> in achieving a 32KHz signal from an internal xtal of 24MHz. However,
+> this requires a complex RTC divider with four parameters (m1, m2, n1,
+> n2), as it cannot be accomplished with a single divider. Our team has
+> measured the RTC clock using an oscilloscope on the GEN CLK pin and
+> found that it provides a stable 32KHz signal with acceptable jitter. On
+> the other hand, other approaches, such as the PWM way, yield less stable
+> and less accurate 32KHz signals with greater jitter.
+This part is clear to me (we may have even chatted on IRC how to use
+the GEN CLK output previously)
 
-> oneOf:
->   - required:
->       [...]
->       - power-domains
-> 
->   - required:
->       [...]
->     deprecated: true
-> 
-> (if it even works this way)
+> Additionally, the CCF determines the best ancestor based on how close
+> its rate is to the given one, based on arithmetic calculations. However,
+> we have independent knowledge that a certain clock would be better, with
+> less jitter and fewer intermediaries, which will likely improve energy
+> efficiency. Sadly, the CCF cannot take this into account.
+I agree that the implementation in CCF is fairly simple. There's ways
+to trick it though: IIRC if there are multiple equally suitable clocks
+it picks the first one. For me all of this has worked so far which is
+what makes me curious in this case (not saying that anything is wrong
+with your approach).
 
-I don't think it's worth supporting the combinations.
+Do you have a (real world) example where the RTC clock should be
+preferred over another clock?
 
-Regards,
-Bjorn
+I'm thinking about the following scenario.
+PWM parents:
+- XTAL: 24MHz
+- sys: not sure - let's say 166.67MHz
+- RTC: 32kHz
 
-> 
-> Konrad
-> > 
-> >>>
-> >>> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> >>> ---
-> >> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> >> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
-> >>
-> > 
-> > The Fixes sounds reasonable.
-> > 
-> > Thanks,
-> > Bjorn
-> > 
-> >> Konrad
-> >>>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 1 +
-> >>>  1 file changed, 1 insertion(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> >>> index 8fa9fbfe5d00..5c68f2182c2f 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> >>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> >>> @@ -3982,6 +3982,7 @@ apps_rsc: rsc@18200000 {
-> >>>  			qcom,tcs-config = <ACTIVE_TCS  2>, <SLEEP_TCS   3>,
-> >>>  					  <WAKE_TCS    3>, <CONTROL_TCS 1>;
-> >>>  			label = "apps_rsc";
-> >>> +			power-domains = <&CLUSTER_PD>;
-> >>>  
-> >>>  			apps_bcm_voter: bcm-voter {
-> >>>  				compatible = "qcom,bcm-voter";
+Then after that there's a divider and a gate.
+
+Let's say the PWM controller needs a 1MHz clock: it can take that from
+XTAL or sys. Since XTAL is evenly divisible to 1MHz CCF will pick that
+and use the divider.
+But let's say the PWM controller needs a 32kHz clock: CCF would
+automatically pick the RTC clock.
+So is your implementation there to cover let's say 1kHz where
+mathematically 24MHz can be divided evenly to 1kHz (and thus should
+not result in any jitter) but RTC gives better precision in the real
+world (even though it's off by 24Hz)?
+
+> Given the advantages of the RTC clock, we wish to be able to control the
+> RTC as a parent for specific leaf clocks. This is achievable with the
+> 'assigned-clocks' feature of CCF OF, but it poses a significant
+> architectural problem. The 'assigned-clocks' node does not lock/pin the
+> parent, and a simple clk_set_rate() call can change the parent during
+> rate propagation.
+Are you aware of clk_set_rate_exclusive() and clk_rate_exclusive_{get,put}(=
+)?
+It locks a clock and all of its parents to a certain rate. Other
+consumers are unable to change the rate unless the lock is released
+again.
+
+> In my opinion, an ideal solution to this problem would
+> be an additional patch to the CCF core that provides this locking
+> capability.As a board DTS developer, I know which clock I want to use
+> as the parent and have a strong reason for doing so, and I do not wish
+> to open up my parent muxing to other drivers. But until the behavior of
+> 'assigned-clocks' is not available, we will simply label all RTC
+> children with the CLK_SET_RATE_NO_REPARENT flag.
+
+PS: while writing this reply I found
+drivers/clk/sunxi-ng/ccu-sun6i-rtc.c which implements
+clk_ops.recalc_accuracy
+I'm not sure I understand this correctly but it seems that CCF is not
+using that information when making the decision which parent to use.
+
+
+Best regards,
+Martin
