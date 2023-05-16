@@ -2,78 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CDD57053C0
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:28:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84EF57053D3
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:30:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230172AbjEPQ2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 12:28:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55386 "EHLO
+        id S230258AbjEPQac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 12:30:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230171AbjEPQ2Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:28:16 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 461AA93D4
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:27:53 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2ac78bb48eeso150000801fa.1
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:27:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684254471; x=1686846471;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5oIDovYmdir1hRdagWnu4jSmI2T1nqPjTwi5YwOyxgA=;
-        b=ctlfHIfy/pnyBqKUcxnftaxk1UUJS2eFiOvHeGUtK07L7Tf1jD8ABLBEzvDeX93Dpy
-         +QFBrqCddN0S7YK+j/O6496/pv7sQTnprUsYgiybABwctrDzzmbEC3uhSzTJsr0Jfedh
-         5jbiXrUsw211upKE6NKNoAP+/km28mcGxUYBl8i0gPf5+25PwyuMR1jb0+UoynGK73Y9
-         GrmjUojicvodTCbuUyCcughzt6QajjyjM3O4BCiuXP+/FPVrAwhFSpel6sn2NFDyy95y
-         fuXtikpGWRkZAsbKXmNXB0lLG6O/aXLXXZK1bgP/9aF8pwtIC1/WYT8O6Hxx50cMKyaM
-         I94g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684254471; x=1686846471;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5oIDovYmdir1hRdagWnu4jSmI2T1nqPjTwi5YwOyxgA=;
-        b=ahxA/B8RMFPG+dzUsVO5o7oZtcVgCXsgiliOC5C6T8eUDBgIWppGDIB0QFnj6lRMi6
-         sIvVCmMK6Ru4u/jhlkZ7HQu+b1f4ha3wQ/fkK/45r8NjvVKKyKfS8OFAWHSxgQjheETo
-         uF4Iaq912CjuH+WSQtM43Lm16qUiBWOgFecH4U2Hk3VfV13CmsaT1zuIsmpzzm7v+6xC
-         iPjboROEHUaZXhB+2ogsXKZCfjJH7rSGmCXRopT3Kh97h8+CmNjhEuscOou/hMN24wTo
-         tQBDkkv9J+Yh9djDalHtFvVCKwuLivxRj2iEt5VCghs28mClhSETJ9tg1uFY2nUGUDC0
-         PT6A==
-X-Gm-Message-State: AC+VfDxyDfzDdlqb7AkjvtbgsRbzPKhJrI2ygYD3lKTtjjffV9Z+iLn6
-        ySEu5iMS+5Tx7hVC0Eug9GM3eQ==
-X-Google-Smtp-Source: ACHHUZ4AVD8Q+jW2q8EIFDC2FRD+P++kfUUF24+pF6SuIp8fyLiIRxpYisuG978FxEBZUtcaNm5JCA==
-X-Received: by 2002:a19:5214:0:b0:4f3:789a:b8a0 with SMTP id m20-20020a195214000000b004f3789ab8a0mr3194973lfb.18.1684254470866;
-        Tue, 16 May 2023 09:27:50 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id h18-20020a05651211d200b004f138c4de81sm3034974lfr.149.2023.05.16.09.27.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 09:27:50 -0700 (PDT)
-Message-ID: <67d1d171-d372-a11e-dc9a-73cc698e67a1@linaro.org>
-Date:   Tue, 16 May 2023 18:27:49 +0200
+        with ESMTP id S230385AbjEPQ3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:29:50 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1E8CB5259
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:29:33 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 896221FB;
+        Tue, 16 May 2023 09:30:17 -0700 (PDT)
+Received: from [10.1.196.177] (eglon.cambridge.arm.com [10.1.196.177])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 561003F7BD;
+        Tue, 16 May 2023 09:29:31 -0700 (PDT)
+Message-ID: <0510749e-b88b-11f1-76f8-3c71188f731e@arm.com>
+Date:   Tue, 16 May 2023 17:29:29 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sm8550-qrd: add display and
- panel
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 0/6] arm64: errata: Disable FWB on parts with non-ARM
+ interconnects
+Content-Language: en-GB
+To:     Catalin Marinas <catalin.marinas@arm.com>,
+        Marc Zyngier <maz@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Oliver Upton <oliver.upton@linux.dev>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230516154539.238655-1-krzysztof.kozlowski@linaro.org>
- <20230516154539.238655-3-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230516154539.238655-3-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230330165128.3237939-1-james.morse@arm.com>
+ <ZF0io4mDjRdm1AxN@arm.com> <86y1lun1zh.wl-maz@kernel.org>
+ <ZF1ai79ljnilIMoG@arm.com>
+From:   James Morse <james.morse@arm.com>
+In-Reply-To: <ZF1ai79ljnilIMoG@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,114 +54,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Catalin, Marc,
+
+On 11/05/2023 22:13, Catalin Marinas wrote:
+> On Thu, May 11, 2023 at 07:42:58PM +0100, Marc Zyngier wrote:
+>> On Thu, 11 May 2023 18:15:15 +0100,
+>> Catalin Marinas <catalin.marinas@arm.com> wrote:
+>>> On Thu, Mar 30, 2023 at 05:51:22PM +0100, James Morse wrote:
+>>>> When stage1 translation is disabled, the SCTRL_E1.I bit controls the
+>>>> attributes used for instruction fetch, one of the options results in a
+>>>> non-cacheable access. A whole host of CPUs missed the FWB override
+>>>> in this case, meaning a KVM guest could fetch stale/junk data instead of
+>>>> instructions.
+>>>>
+>>>> The workaround is to disable FWB, and do the required cache maintenance
+>>>> instead.
+
+>>> I think the workaround can be to only do the required cache maintenance
+>>> without disabling FWB. Having FWB on doesn't bring any performance
+>>> benefits if we do the cache maintenance anyway but keeping it around may
+>>> be useful for other reasons (e.g. KVM device pass-through using
+>>> cacheable mappings, though not something KVM supports currently).
+>>
+>> But you'd also rely on the guest doing its own cache maintenance for
+>> instructions it writes, right?
+> 
+> Ah, you are right. It looks like I only considered the host writing
+> instructions. If the guest disabled stage 1 and wrote some instructions
+> with FWB on, they'd not necessarily reach the PoC while the instructions
+> are fetched from PoC with this bug. Even with SCTLR_EL1.I==0, the guest
+> is supposed to do an IC IVAU if it wrote instructions but that's not
+> sufficient (hint to the micro-architects, add a chicken bit to upgrade
+> IC IVAU to also do a DC CVAC ;))
+> 
+>> Which probably means exposing a different CLIDR_EL1 so that
+>> LoC/LoUU/LoUIS are consistent with *not* having FWB... I also wonder
+>> if keeping FWB set has the potential to change the semantics of the
+>> CMOs (the spec seems silent on that front).
+> 
+> Not sure about CMOs, I'd expect them to behave in the same way. However,
+> I don't see how faking CLIDR_EL1 can trick the guest into doing DC CVAC
+> when its MMU is off.
+
+I think the request is to keep the FWB feature, but to disable it for all host memory
+the guest can execute from. I presume this 'device pass-through using cacheable mappings'
+would mark that address range as XN at stage2, ( ... it's special right?).
+
+If this is for something like CXL: it can't set XN, and the guest would still be exposed
+to the erratum if it executes from theses addresses with the MMU off.
+
+Does this need doing now? It wouldn't need backporting to older kernels...
 
 
-On 16.05.2023 17:45, Krzysztof Kozlowski wrote:
-> Enable Display Subsystem with Visionox VTDR6130 Panel (same as on
-> MTP8550).
+>>> That said, maybe we can reduce the risk further by doing the
+>>> vcpu_has_run_once() trick with !FWB and clean the D side to PoC on a
+>>> stage 2 exec fault (together with the I-cache invalidation). We can then
+>>> ignore any other cache maintenance on S2 faults until someone shouts (we
+>>> can maybe recommend forcing FWB off on the command line through the
+>>> cpuid override).
+>>
+>> You lost me here with your vcpu_has_run_once().
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Most likely I lost myself in the code. So the tricks we used in the past
+> tracking the guest MMU off/on was only for the D side. If (we hope that)
+> the guest only wrote instructions to a page once before executing them
+> (and never writing instructions again), we could trap a subsequent exec
+> fault and do the D-cache clean to PoC again.
 > 
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> Keeping the CMOs on exec fault is definitely manageable. But is that
+>> enough?
+> 
+> Yeah, not sure it's enough if the guest keeps writing instructions to
+> the same page with the MMU off.
 
-Konrad
-> 
-> Context in the patch depends on:
-> 1. https://lore.kernel.org/linux-arm-msm/20230516133011.108093-1-krzysztof.kozlowski@linaro.org/T/#t
-> 2. https://lore.kernel.org/linux-arm-msm/20230512160452.206585-1-krzysztof.kozlowski@linaro.org/
-> 
-> Changes in v2:
-> 1. dispcc is enabled in DTSI.
-> 2. Re-order pinctrl and regulators.
-> 3. Drop mdp.
-> ---
->  arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 68 +++++++++++++++++++++++++
->  1 file changed, 68 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> index 30b36a149125..ade6ba53ae6b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> @@ -431,6 +431,46 @@ &gcc {
->  		 <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
->  };
->  
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0 {
-> +	vdda-supply = <&vreg_l3e_1p2>;
-> +	status = "okay";
-> +
-> +	panel@0 {
-> +		compatible = "visionox,vtdr6130";
-> +		reg = <0>;
-> +
-> +		pinctrl-0 = <&sde_dsi_active>, <&sde_te_active>;
-> +		pinctrl-1 = <&sde_dsi_suspend>, <&sde_te_suspend>;
-> +		pinctrl-names = "default", "sleep";
-> +
-> +		vci-supply = <&vreg_l13b_3p0>;
-> +		vdd-supply = <&vreg_l11b_1p2>;
-> +		vddio-supply = <&vreg_l12b_1p8>;
-> +
-> +		reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
-> +
-> +		port {
-> +			panel0_in: endpoint {
-> +				remote-endpoint = <&mdss_dsi0_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss_dsi0_out {
-> +	remote-endpoint = <&panel0_in>;
-> +	data-lanes = <0 1 2 3>;
-> +};
-> +
-> +&mdss_dsi0_phy {
-> +	vdds-supply = <&vreg_l1e_0p88>;
-> +	status = "okay";
-> +};
-> +
->  &pcie_1_phy_aux_clk {
->  	status = "disabled";
->  };
-> @@ -532,6 +572,34 @@ wcd_tx: codec@0,3 {
->  &tlmm {
->  	gpio-reserved-ranges = <32 8>;
->  
-> +	sde_dsi_active: sde-dsi-active-state {
-> +		pins = "gpio133";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-disable;
-> +	};
-> +
-> +	sde_dsi_suspend: sde-dsi-suspend-state {
-> +		pins = "gpio133";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	sde_te_active: sde-te-active-state {
-> +		pins = "gpio86";
-> +		function = "mdp_vsync";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
-> +	sde_te_suspend: sde-te-suspend-state {
-> +		pins = "gpio86";
-> +		function = "mdp_vsync";
-> +		drive-strength = <2>;
-> +		bias-pull-down;
-> +	};
-> +
->  	wcd_default: wcd-reset-n-active-state {
->  		pins = "gpio108";
->  		function = "gpio";
+The difference between FWB and IDC/DIC still does my head in: My reading is FWB implies
+IDC, (but the CTR_EL0.IDC bit might not be set). This doesn't help if the wrong attributes
+are being used for instruction fetch.
+This is cache-maintenance that wasn't needed before, so there are no tricks with the id
+registers we can pull to make the guest do it.
+
+
+v2 of this will flip the polarity, and also detect based on an 'arm,interconnect'
+compatible, or the existing compatible the PMU driver uses.
+
+
+
+Thanks,
+
+James
