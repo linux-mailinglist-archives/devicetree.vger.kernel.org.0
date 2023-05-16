@@ -2,213 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 484C9704852
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:58:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F3470485B
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:00:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231728AbjEPI57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 04:57:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39868 "EHLO
+        id S231389AbjEPJAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 05:00:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231297AbjEPI55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:57:57 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E4C630C4;
-        Tue, 16 May 2023 01:57:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1684227474; x=1715763474;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CSTRf/cqcWQ463WIW8qgz8myBeaHEA91KTcTMocyp20=;
-  b=ZfpR8hQBS5Lb+wdRXDL6s6I7blIAdEN9BUpEGEBkZp8gTINnQBl4CGcm
-   UgLPxIOUKqytbn7gAvnk9dsUdsDGE7HEbKekLhAnLUsWXy79gYx1mCvLM
-   6BtFvfOWIWmBc8pkjeHV58r/yYvrUpO+TPm3+u2MKxn6WD71HJrWg1h1k
-   aHfXN3UYTWz6oYdKrm3jerQ+OvQdAjdo+qI3/ofF1IkmH1tAjn1Q4/3Dh
-   H+9SQsernM48G7CJf4589U2NpXKSy29iIOZnZRJQeatU0vQXcpw8h1ynZ
-   datBeZtz8biJ7/KPaLazKvjSlo1U9TSR5NNp8OjrgOwuXo6g7OvWe6PH/
-   A==;
-X-IronPort-AV: E=Sophos;i="5.99,278,1677567600"; 
-   d="asc'?scan'208";a="152279664"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 May 2023 01:57:52 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 16 May 2023 01:57:52 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Tue, 16 May 2023 01:57:50 -0700
-Date:   Tue, 16 May 2023 09:57:29 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Conor Dooley <conor@kernel.org>, <soc@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S230313AbjEPJAO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:00:14 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74C802707
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 02:00:13 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-307664010fdso13103820f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 02:00:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684227612; x=1686819612;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=wrFkte/bezt1PlNhFCGqqPcTWG4E53z6ADYV3K7fF3g=;
+        b=sjp+lL/oyBSGysWhOvH+HyKbaqlOkgM4gPDAx6wEodMzeHJ7CIwWV/D6Czgf7g5b4y
+         3pq0iP4PbZbdtl8nXHy5xEuKwlzOhXlby6wZroKbsZnYXMmr6DQMnSKyM9IHVwYeLosI
+         jzIxHuQExAJ6cdYicbzRPbpf7WMkkR2x9chwjgwmPU2lkF8Fu83tw5V6qQrDhhyB8kHF
+         IoWtbsPD1K3bFtjyChL9/r2atKzi9e9kn9FPjoT1lWrWrBBDbxYKieGQWaiyYI2fqkVv
+         om0/lULQwVmA5ddQZOJTYP0du+5eivl6xsSLSUcY8vxUUwHlPYdzqj3Py8lnvOcrE9jL
+         v2MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684227612; x=1686819612;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wrFkte/bezt1PlNhFCGqqPcTWG4E53z6ADYV3K7fF3g=;
+        b=aqK7G868PQ6vkn7ZKE1pn9rJz8R5zAZLRLMHsi7jzMEkfmPoMSol2IH7uSCyGVXb/o
+         DSOj9k2eeheK8+94iI0JMrVCuvRtYZ+WiXbNMPgXsWT3dNrHz/7hEBxuZinLio/b4MAy
+         xzQliwuQoiwjZwKgwG8DJPtmKQBTEAHbRRj7goUhl+Pa6TkOkaZ0r0B6scN4goLEzo8G
+         2RpFviL+pPk3htXLPPTp78jDAxvURhglPd04LijdNeG2Kkvw64Y6OH8sIjQWCLrDUrHK
+         y6WaQrJtd5HZ8U4IMrJM7mqVsP27LB9/AoSo4vd3+Pbkvo309lQql6HVuR2MYB/zoMUJ
+         V4PA==
+X-Gm-Message-State: AC+VfDyUMoZJk1m09VV5keDckvYfZlyYOAYiNRwPnPOFylZZUWmPnKkO
+        OxKhc/Xw8goVEa6ZhSbY0UNKbg==
+X-Google-Smtp-Source: ACHHUZ5bSlYDSBtrIk3ZZo2GUz0L3bCKdlDXlaw/wT8THT4atVNx1A2nmPcmuGErziRjmwMbrF+ZaQ==
+X-Received: by 2002:a5d:42ca:0:b0:306:3b78:fe31 with SMTP id t10-20020a5d42ca000000b003063b78fe31mr23654611wrr.69.1684227611789;
+        Tue, 16 May 2023 02:00:11 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:86be:97a:a043:77a8? ([2a01:e0a:982:cbb0:86be:97a:a043:77a8])
+        by smtp.gmail.com with ESMTPSA id s14-20020a1cf20e000000b003f4285629casm1532562wmc.42.2023.05.16.02.00.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 May 2023 02:00:11 -0700 (PDT)
+Message-ID: <aa22c05d-9db7-eff1-d203-cb795359252b@linaro.org>
+Date:   Tue, 16 May 2023 11:00:10 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v4 01/13] dt-bindings: clk: g12a-clkc: export VCLK2_SEL
+ and add CTS_ENCL clock ids
+Content-Language: en-US
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Olof Johansson <olof@lixom.net>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v1] Documentation/process: add soc maintainer handbook
-Message-ID: <20230516-grader-dejected-df65cdc584b3@wendy>
-References: <20230515-geometry-olympics-b0556ff8a5f7@spud>
- <cf1c6b8c-8a3f-eca1-948f-e41946d4c34c@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="4AsXPhTNlfzE8BRW"
-Content-Disposition: inline
-In-Reply-To: <cf1c6b8c-8a3f-eca1-948f-e41946d4c34c@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Dave Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     Nicolas Belin <nbelin@baylibre.com>,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-phy@lists.infradead.org
+References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org>
+ <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-1-2592c29ea263@linaro.org>
+ <5cb38be4-a27f-dc1a-cbb9-c195505a9e7c@linaro.org>
+ <9fa0662e-8854-05f9-da7f-ec8e08d2badf@linaro.org>
+ <d5c030f9-2f4d-25cc-b922-d00f5033ac37@linaro.org>
+ <6228670c-3e06-3061-f304-a2c641962ffa@linaro.org>
+ <9cba6384-123b-1cd1-ed02-08365a0ed529@linaro.org>
+ <2fabe721-7434-43e7-bae5-088a42ba128d@app.fastmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <2fabe721-7434-43e7-bae5-088a42ba128d@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---4AsXPhTNlfzE8BRW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 16/05/2023 10:44, Arnd Bergmann wrote:
+> On Mon, May 15, 2023, at 18:22, neil.armstrong@linaro.org wrote:
+>> On 15/05/2023 18:15, Krzysztof Kozlowski wrote:
+>>> On 15/05/2023 18:13, Krzysztof Kozlowski wrote:
+>>>
+>>> Also one more argument maybe not relevant here but for other cases -
+>>> this makes literally impossible to include the clock ID in DTS in the
+>>> same kernel revision, because you must not merge driver branch to DTS
+>>> branch. SoC folks were complaining about this many times.
+>>
+>> Actually we handle this very simply by having such patches merged in a immutable
+>> branch merged in the clock and DT pull-requests, it worked perfectly so far
+>> and neither Stephen or Arnd complained about that.
+> 
+> It's usually benign if you just add a new clk at the end of the binding
+> header, as that doesn't touch the internal header file in the same
+> commit. I'm certainly happier about drivers that just use numbers from
+> a datasheet instead of having to come up with numbers to stick in a binding
+> because the hardware is entirely irregular, but there is usually no point
+> trying to complain about bad hardware to the driver authors -- I unsterstand
+> you are just trying to make things work.
+> 
+> I agree with Krzysztof that using the same identifiers in the local
+> header and in the binding is just making your life harder for no
+> reason, and if you are the only ones doing it this way, it would
+> help to change it. Maybe just add a namespace prefix to all the internal
+> macros so the next time you move one into the documented bindings you
+> can do it with the same immutable branch hack but not include the
+> driver changes in the dt branch.
 
-On Tue, May 16, 2023 at 10:31:19AM +0200, Krzysztof Kozlowski wrote:
-> On 15/05/2023 21:20, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > Arnd suggested that adding maintainer handbook for the SoC "subsystem"
-> > would be helpful in trying to bring on board maintainers for the various
-> > new platforms cropping up in RISC-V land.
-> >=20
-> > Add a document briefly describing the role of the SoC subsystem and some
-> > basic advice for (new) platform maintainers.
-> >=20
-> > Suggested-by: Arnd Bergmann <arnd@arndb.de>
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-
-> > +devicetree ABI stability
-> > +~~~~~~~~~~~~~~~~~~~~~~~~
-> > +
-> > +Perhaps one of the most important things to highlight is that dt-bindi=
-ngs
-> > +document the ABI between the devicetree and the kernel.  Once dt-bindi=
-ngs have
-> > +been merged (and appear in a release of the kernel) they are set in st=
-one, and
-> > +any changes made must be compatible with existing devicetrees.  This m=
-eans that,
-> > +when changing properties, a "new" kernel must still be able to handle =
-an old
-> > +devicetree.  For many systems the devicetree is provided by firmware, =
-and
-> > +upgrading to a newer kernel cannot cause regressions.  Ideally, the in=
-verse is
-> > +also true, and a new devicetree will also be compatible with an old ke=
-rnel,
-> > +although this is often not possible.
->=20
-> I would prefer to skip it and instead: enhance
-> Documentation/devicetree/bindings/ABI.rst and then reference it here.
-
-Sure.
-
-> > +Driver branch dependencies
-> > +~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > +
-> > +A common problem is synchronizing changes between device drivers and d=
-evicetree
-> > +files, even if a change is compatible in both directions, this may req=
-uire
-> > +coordinating how the changes get merged through different maintainer t=
-rees.
-> > +
-> > +Usually the branch that includes a driver change will also include the
-> > +corresponding change to the devicetree binding description, to ensure =
-they are
-> > +in fact compatible.  This means that the devicetree branch can end up =
-causing
-> > +warnings in the "make dtbs_check" step.  If a devicetree change depend=
-s on
-> > +missing additions to a header file in include/dt-bindings/, it will fa=
-il the
-> > +"make dtbs" step and not get merged.
-> > +
-> > +There are multiple ways to deal with this:
-> > +
-> > + - Avoid defining custom macros in include/dt-bindings/ for hardware c=
-onstants
-> > +   that can be derived from a datasheet -- binding macros in header fi=
-le should
-> > +   only be used as a last resort if there is no natural way to define =
-a binding
-> > +
-> > + - Use literal values in the devicetree file in place of macros even w=
-hen a
-> > +   header is required, and change them to the named representation in a
-> > +   following release
->=20
-> I actually prefer such solution:
->=20
->  - Duplicate defines in the devicetree file hidden by #ifndef section
-> and remove them later in a following release
->=20
-> We can keep both, but mine above leads to cleaner changes in DTS file.
-
-I think all of the options involved are either a bit ugly, or a bit of a
-pain in the hole.
-
-> > + - Defer the devicetree changes to a release after the binding and dri=
-ver have
-> > +   already been merged
-> > +
-> > + - Change the bindings in a shared immutable branch that is used as th=
-e base for
-> > +   both the driver change and the devicetree changes
->=20
-> The policy told to me some time ago was that no merges from driver
-> branch or tree are allowed towards DTS branch, even if they come only
-> with binding header change. There are exceptions for this, e.g. [1], but
-> that would mean we need to express here rules for cross-tree merges.
-
-I've got away with having an immutable branch for dt-binding headers!
-That said, Arnd did actually have a look at this (and suggested some
-changes) before I sent it & did not cry fowl about this section. IIRC,
-this is actually his wording, not mine.
-
-> > +Branches and Pull Requests
-> > +~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-> > +The subject line of a pull request should begin with "[GIT PULL]" and =
-made using
-> > +a tag, rather than a branch.  This tag should contain a short descript=
-ion
->=20
-> a signed tag
-
-I initially had that explicit wording, but I dropped it when I added the
-ref to the pull requests doc since that talks about signing. It's
-probably better to be explicit & re-adding it is trivial.
+Ack, I'll try to find a simple intermediate solution to avoid this situation.
 
 Thanks,
-Conor.
+Neil
 
---4AsXPhTNlfzE8BRW
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+>      Arnd
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGNFeQAKCRB4tDGHoIJi
-0pVzAQDd5V7DgF90rg528xBUxStaRxmF6i407yxUeQeYhn6oLAEA3Y5P0rASKrya
-rg86ohacmT7OJLEcXa37wLmEIY0TnAI=
-=GTpg
------END PGP SIGNATURE-----
-
---4AsXPhTNlfzE8BRW--
