@@ -2,93 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B714670555A
+	by mail.lfdr.de (Postfix) with ESMTP id 0BBAC705559
 	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 19:48:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231854AbjEPRs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 13:48:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37808 "EHLO
+        id S231485AbjEPRs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 13:48:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231888AbjEPRsR (ORCPT
+        with ESMTP id S231387AbjEPRsR (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 13:48:17 -0400
-Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DF55A5FA;
-        Tue, 16 May 2023 10:48:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
-        s=the; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:
-        Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=NwKDN2wROXKQZ2KQl5DJ4omg17om01ewgOzriNwmhpQ=; b=o+eKAF4DKB2NXA4uiJKvdRv4++
-        Rhk2UnZpDCeIDcXdP+wEiy5AcER6TtBerveeVkIIR1OiDsycPHvIu3aWyITi6aLtW+M8LAaWr0YWy
-        UJU8MWqHXB7xKYFhijtrpDkyIgtAyDwOfbNoxk6xcaVrsGtJm0rUwjncKRcmClVz//zAZHHweN/Np
-        icdWOhYK0mogyr4MgscWYZTT1q3NzZsSY/0ya+nVeMlxzCzzQy5wxanxeWPBilJe44lyJtz8qnfL5
-        eeHiTS+WNBw3vpeN0djduxrE11+zVEENRY4i3sl8ETBjwBmV5GqKYJQX6ie1UGvfmjGyrqenq3NrT
-        jRnNIjlA==;
-Received: from [2001:4d48:ad59:1403::16a3] (helo=earth.li)
-        by the.earth.li with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <noodles@earth.li>)
-        id 1pyym9-00GMu0-L7; Tue, 16 May 2023 18:47:53 +0100
-Date:   Tue, 16 May 2023 18:47:47 +0100
-From:   Jonathan McDowell <noodles@earth.li>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-Subject: [PATCH v3 3/5] ARM: dts: sun5i: chip: Enable bluetooth
-Message-ID: <08eb325e3332441ea102da109acb22557d12de89.1684258957.git.noodles@earth.li>
-References: <cover.1683719613.git.noodles@earth.li>
- <cover.1684258957.git.noodles@earth.li>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2410FA5E6;
+        Tue, 16 May 2023 10:48:01 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34GHlrBE089040;
+        Tue, 16 May 2023 12:47:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684259273;
+        bh=IyTe1DfWxW9WT24Eoe1CQDijmHKeyOrI37ceuJ0mjY4=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=tU9fXSIgjCFQy8RNca3sZSKe55UBQ2khw4plLk6b/pJxTfPkpxjlgcYRs8XQLoEze
+         myCgozcLNdvErFiQNJHoSro6AWJ9a6NhNZiFmtf8Vk2iXJvLl1Je06WT7STO+bWFX4
+         HMNmobEZDTw0AqRRy4XBjWyaJpWH63TqLDUmyFIY=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34GHlrac048944
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 16 May 2023 12:47:53 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
+ May 2023 12:47:53 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 16 May 2023 12:47:53 -0500
+Received: from [10.250.35.184] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34GHlqKj062533;
+        Tue, 16 May 2023 12:47:52 -0500
+Message-ID: <1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com>
+Date:   Tue, 16 May 2023 12:47:52 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1684258957.git.noodles@earth.li>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH] mux: mmio: use reg property when parent device is not a
+ syscon
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Peter Rosin <peda@axentia.se>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230515191909.611241-1-afd@ti.com>
+ <13c1f6ea-63b5-9667-18a2-705829c46437@axentia.se>
+ <895c84f5-4a3c-fd2c-2b43-1a1996862e15@ti.com>
+ <7d73a37f-80b7-b623-1b71-fa19bf379713@linaro.org>
+ <558ebfaf-bd7e-1760-5799-8ed430acad7a@ti.com>
+ <32dbdaa3-067b-c997-778f-4fc8dafbbd87@linaro.org>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <32dbdaa3-067b-c997-778f-4fc8dafbbd87@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The C.H.I.P has an rtl8723bs device with the bluetooth interface hooked
-up on UART3. Support for this didn't exist in mainline when the DTS was
-initially added, but it does now, so enable it.
+On 5/16/23 11:49 AM, Krzysztof Kozlowski wrote:
+> On 16/05/2023 18:29, Andrew Davis wrote:
+>> On 5/16/23 11:19 AM, Krzysztof Kozlowski wrote:
+>>> On 16/05/2023 17:18, Andrew Davis wrote:
+>>>> On 5/15/23 4:14 PM, Peter Rosin wrote:
+>>>>> Hi!
+>>>>>
+>>>>> 2023-05-15 at 21:19, Andrew Davis wrote:
+>>>>>> The DT binding for the reg-mux compatible states it can be used when the
+>>>>>> "parent device of mux controller is not syscon device". It also allows
+>>>>>> for a reg property. When the parent device is indeed not a syscon device,
+>>>>>> nor is it a regmap provider, we should fallback to using that reg
+>>>>>> property to identify the address space to use for this mux.
+>>>>>
+>>>>> We should? Says who?
+>>>>>
+>>>>> Don't get me wrong, I'm not saying the change is bad or wrong, I would just
+>>>>> like to see an example where it matters. Or, at least some rationale for why
+>>>>> the code needs to change other than covering some case that looks like it
+>>>>> could/should be possible based on the binding. I.e., why is it not better to
+>>>>> "close the hole" in the binding instead?
+>>>>>
+>>>>
+>>>> Sure, so this all stated when I was building a checker to make sure that drivers
+>>>> are not mapping overlapping register spaces. I noticed syscon nodes are a source
+>>>> of that so I'm trying to look into their usage.
+>>>>
+>>>> To start, IHMO there is only one valid use for syscon and that is when more than
+>>>> one driver needs to access shared bits in a single register. DT has no way to
+>>>
+>>> It has... what about all existing efuse/nvmem devices?
+>>>
+>>>> describe down to the bit granular level, so one must give that register to
+>>>> a "syscon node", then have the device node use a phandle to the syscon node:
+>>>>
+>>>> common_reg: syscon@10000 {
+>>>> 	compatible = "syscon";
+>>>> 	reg = <0x10000 0x4>;
+>>>> };
+>>>>
+>>>> consumer@1 {
+>>>> 	syscon-efuse = <&common_reg 0x1>;
+>>>> };
+>>>>
+>>>> consumer@2 {
+>>>> 	syscon-efuse = <&common_reg 0x2>;
+>>>> };
+>>>>
+>>>> Something like that, then regmap will take care of synchronizing access.
+>>>
+>>> Syscon is not for this.
+>>>
+>>
+>> That is how it is used today, and in 5 other ways too and there is
+>> no guidance on it. Let me know what syscon is for then.
+> 
+> Like described in its bindings (syscon.yaml). The main case is: some
+> part of address space (dedicated) for various purposes.
+> 
 
-Signed-off-by: Jonathan McDowell <noodles@earth.li>
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- arch/arm/boot/dts/sun5i-r8-chip.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+That is a "simple-bus", you could use the same reasoning and make the
+whole address space one big "syscon" node instead then just poke
+registers from drivers all over.
 
-diff --git a/arch/arm/boot/dts/sun5i-r8-chip.dts b/arch/arm/boot/dts/sun5i-r8-chip.dts
-index fd37bd1f3920..4192c23848c3 100644
---- a/arch/arm/boot/dts/sun5i-r8-chip.dts
-+++ b/arch/arm/boot/dts/sun5i-r8-chip.dts
-@@ -255,6 +255,12 @@ &uart3 {
- 	pinctrl-0 = <&uart3_pg_pins>,
- 		    <&uart3_cts_rts_pg_pins>;
- 	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8723bs-bt";
-+		device-wake-gpios = <&axp_gpio 3 GPIO_ACTIVE_HIGH>;
-+		host-wake-gpios = <&pio 1 3 GPIO_ACTIVE_HIGH>; /* PB3 */
-+	};
- };
- 
- &usb_otg {
--- 
-2.39.2
+It is not clear where to draw the line, and for that reason I would
+like to discourage "syscon" as much as possible and use the normal DT
+scheme of node per device/register space.
 
+> Secondary case is a device, with its address space, which has few
+> registers from other domain, so it needs to expose these to the other
+> devices.
+> 
+
+That is not the case for "reg-mux"; neither case is. So you would
+agree that "reg-mux" nodes should not be syscon nodes nor should
+they force their parents to be one when they do not meet the above
+two cases?
+
+> efuse is not syscon, because it is not writeable. efuse has entirely
+> different purpose with its own defined purpose/type - efuse/OTP etc.
+> 
+
+That was just one example I found, I have not found a standard way
+to describe down to the bit level in DT, only to the word/register.
+Anything more granular needs non-standard ways of describing which
+bits belong to which nodes/devices and using syscon to fetch the
+common registers.
+
+>>
+>>>>
+>>>
+>>> ...
+>>>
+>>>>
+>>>> Ideally DT nodes all describe their register space in a "reg"
+>>>> property and all the "large collection of devices" spaces become
+>>>> "simple-bus" nodes. "syscon" nodes can then be limited to only the
+>>>> rare case when multiple devices share bits in a single register.
+>>>>
+>>>> If Rob and Krzysztof agree I can send a patch with the above
+>>>> guidance to the Devicetree Specification repo also.
+>>>
+>>> Agree on what?
+>>>
+>>
+>> That we should provide the above guidance on when and how to use syscon
+>> nodes. Right now it is a free for all and it is causing issues.
+> 
+> Sure, providing more guidance seems good. We already provide guidance
+> via review, but we can codify it more. Where? syscon.yaml? It's already
+> describing everything needed to know...
+> 
+> What particular problems do you see which need to be solved?
+> 
+
+My issue is the guidance is not clear, nor being followed. For instance
+this is listed as a requirement:
+
+"The registers are not cohesive enough to represent as any specific type of device."
+
+Take "ti,j721e-system-controller" for instance, today this region is modeled
+as a "syscon" node but it actually is a region of well defined register spaces
+and devices. Like PHYs, clock controllers, and our even our pinmux controller.
+Most of these devices use the normal "reg" property to claim their registers and
+so this space should be a "simple-bus" but we are forced to make it one big
+"syscon" node because a couple devices in this area have a Linux driver that
+requires their parent node to be a syscon node.
+
+That is the point of this patch, to relax that restriction in this driver.
+It doesn't even change the binding, it only makes the driver match what
+the binding allows.
+
+Andrew
+
+> Best regards,
+> Krzysztof
+> 
