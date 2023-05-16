@@ -2,119 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6D5F705251
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 17:36:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D62970525D
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 17:38:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233572AbjEPPgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 11:36:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57062 "EHLO
+        id S233785AbjEPPiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 11:38:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233536AbjEPPgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 11:36:12 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71AAB6182
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:36:10 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f00d41df22so5168059e87.1
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:36:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684251369; x=1686843369;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jeGWYG6Dtdk/56UIAauzf1NFw5Z+yaN/21LdqzRPh3A=;
-        b=S3y9fmwlqyUleXOpUfsedUsZw7ZUc0lW9RO/XwFoLzyH1yeVexSLZGkGYeK9q1WbXO
-         ddA15FcXQh7lvVaUCcYxMsSzPy/Br9ro//n2tHNMHP/2Ip7UsWXWmunol4zxZ7nHO7vQ
-         NWMj7wQ88/X98LBTGNEiYdkU+YPwCSf/dZGq7GDfGWQl2BjBig/Xz+OuwJO1MzDjDrwF
-         P6eCwx7JO70sN+FPPZAbKXSH47lKZrZd1Mu+KfcH6/crtKPjqjDnRJqJOkfzK/TZAst+
-         cOUS6cFRWbUPEedXnqxXTH+ueI0vWKjUreL1ZRus3IejwYg25Nsyb9ZW5LLQQjbb8QxB
-         tSSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684251369; x=1686843369;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jeGWYG6Dtdk/56UIAauzf1NFw5Z+yaN/21LdqzRPh3A=;
-        b=KdieBcy8XTva9603Z2IaUcXYppO+uLTT8JApq0n+/656r7xebonif5+6JHxmibtLlx
-         QGmLNB7bpA4Ra8DRcLx1vgtLG28ROZ7bwHryawxojteEWIWcwByFvsLcAu9cyg6yzH1W
-         7pGNWuwxTErKPaESr2lr8o0kZz5OrmCM87OjKlVsguyhXH5vLRGqn+2yOMruI5Ru1MfO
-         DpIEnSKIkwjLZJG8E6RoSUF7rfT7xXFdl3vHwYd8+pNp+HkpX+YarKc+/xDqSMSk4pKI
-         HrnswNdN5OvtH7D+b6k5VsciqKtyhzL2RCI5rRYn2/Zpl2/jVWhdnTKecekrvPkiAE7G
-         2MAQ==
-X-Gm-Message-State: AC+VfDzZsXz4Twk7q/jIdFu0WTmZXDiKdOLIZjvp/xWmhW4HgkRktGL3
-        DaTTmQVIN6AhO0B04F2y/gR5ZA==
-X-Google-Smtp-Source: ACHHUZ4iShN/KfWEFEAIQqX0yyX3N6jm6f7Dkj6ASCHv1lLRsy9K3VckSGQQchvMN17y6d0dB43J7Q==
-X-Received: by 2002:a05:6512:3c98:b0:4eb:46c2:e771 with SMTP id h24-20020a0565123c9800b004eb46c2e771mr7698357lfv.14.1684251368696;
-        Tue, 16 May 2023 08:36:08 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id k14-20020ac2456e000000b004f2ce4b0f2esm1440631lfm.168.2023.05.16.08.36.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 08:36:08 -0700 (PDT)
-Message-ID: <894282af-fdfa-d476-fe9a-677db6483501@linaro.org>
-Date:   Tue, 16 May 2023 17:36:06 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] arm64: dts: qcom: sm8550-qrd: add display and panel
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232890AbjEPPiT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 11:38:19 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 474DC6199;
+        Tue, 16 May 2023 08:38:17 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34GD50rY032459;
+        Tue, 16 May 2023 17:37:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : subject
+ : from : to : cc : date : in-reply-to : references : content-type :
+ content-transfer-encoding : mime-version; s=selector1;
+ bh=yaiXGJIEjJ0GT5upQDWDY3dTnGhq9SL8ZecEEkPwAWw=;
+ b=Qz6YrZHmAHrMLNKIB8RLTUdRTZtja2RPXr2UO5KBSFgP3f0jXfqfklBLoXdqHSnWo8Im
+ 7UyajHkn1ibeGJa8lQzc+KaSineJiC0jn6McZVqquknCA2FoNBzGt8Ou82HmKHguIxK0
+ AxyxOIra8lnbIPO5+jppENRRjRfRk7Vs6U6HeAlZV0j1di46YXtbXQ2TfrDwbwSYCT8w
+ pE7MxAk2k7rJHbwJ/Cyo8BpG8urKnr/1I3QiO/T7J+HYS0f8ep6ZnqC3GSsoVtc7YBPb
+ kOxN5jZ5eEt0BGIM4+5m0nreDfQmiHOK2aiJA2Z/T8SUHPppqjryb/jEqHUvgz1qD0kY zw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qhyyhav80-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 May 2023 17:37:39 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 953A010002A;
+        Tue, 16 May 2023 17:37:38 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 85E80233017;
+        Tue, 16 May 2023 17:37:38 +0200 (CEST)
+Received: from [192.168.8.15] (10.48.0.39) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 16 May
+ 2023 17:37:37 +0200
+Message-ID: <919aaa61015366e82b5a9ec918189c01031d3399.camel@foss.st.com>
+Subject: Re: [Linux-stm32] [PATCH 1/3] irqchip/stm32-exti: Add STM32MP15xx
+ IWDG2 EXTI to GIC map
+From:   Antonio Borneo <antonio.borneo@foss.st.com>
+To:     Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
+CC:     <devicetree@vger.kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        "Signed-off-by : Abel Vesa" <abel.vesa@linaro.org>
-References: <20230516151708.213744-1-krzysztof.kozlowski@linaro.org>
- <ecfe4f62-9c54-df5e-cd5d-e7a956510696@linaro.org>
- <8b670310-47b3-c301-99ae-84ccb704d733@linaro.org>
- <2bc16f9a-e150-b3d0-6d72-a2ff0a4d05ae@linaro.org>
- <f790b655-4192-bcad-07af-814a359a351a@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <f790b655-4192-bcad-07af-814a359a351a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Marc Zyngier <maz@kernel.org>,
+        "Richard Cochran" <richardcochran@gmail.com>,
+        <linux-kernel@vger.kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "Guenter Roeck" <linux@roeck-us.net>,
+        <linux-watchdog@vger.kernel.org>
+Date:   Tue, 16 May 2023 17:37:36 +0200
+In-Reply-To: <20230511001949.179521-1-marex@denx.de>
+References: <20230511001949.179521-1-marex@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1 
+MIME-Version: 1.0
+X-Originating-IP: [10.48.0.39]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-16_08,2023-05-16_01,2023-02-09_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 2023-05-11 at 02:19 +0200, Marek Vasut wrote:
+> The EXTI interrupt 46 is mapped to GIC interrupt 151. Add the
+> missing mapping, which is used for IWDG2 pretimeout interrupt
+> and wake up source.
+>=20
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> Cc: linux-watchdog@vger.kernel.org
+> ---
+> =C2=A0drivers/irqchip/irq-stm32-exti.c | 1 +
+> =C2=A01 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/irqchip/irq-stm32-exti.c b/drivers/irqchip/irq-stm32=
+-exti.c
+> index 6a3f7498ea8ea..f684be77ba378 100644
+> --- a/drivers/irqchip/irq-stm32-exti.c
+> +++ b/drivers/irqchip/irq-stm32-exti.c
+> @@ -208,6 +208,7 @@ static const u8 stm32mp1_desc_irq[] =3D {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0[31] =3D 53,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0[32] =3D 82,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0[33] =3D 83,
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0[46] =3D 151,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0[47] =3D 93,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0[48] =3D 138,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0[50] =3D 139,
 
+Hi Marek,
 
-On 16.05.2023 17:35, Krzysztof Kozlowski wrote:
-> On 16/05/2023 17:26, Konrad Dybcio wrote:
->>>>> +&mdss_mdp {
->>>>> +	status = "okay";
->>>>> +};
->>>> This should also be enabled by default, MDSS is useless when MDP is
->>>> disabled.
->>>
->>> But don't we want to disable both when display is not used (not connected)?
->> The MDSS bus device only has a 0x1000 slice of the 0x90000-long "full MDSS",
->> the rest is probed with MDP/DPU. It also calls of_something_populate that
->> make DSI, DSIPHY and DP/HDMI probe. But all of them ultimately need a graph
->> handle to MDP.
->>
->> If we have a display (of any kind), MDP has to be enabled (or the display
->> engine will not have a way to be programmed).
->>
->> If we don't, enabling MDSS makes no sense as all of the hardware will be
->> shut down right after probing.
->>
->> So I'd say either both or none.
-> 
-> Yes, so the current state - both disabled - is matching it.
-Right, but what i was trying to say is that if we leave MDP without
-any status properties, it will follow MDSS.
+thanks for the patch.
 
-Konrad
-> 
-> Best regards,
-> Krzysztof
-> 
+Reviewed-by: Antonio Borneo <antonio.borneo@foss.st.com>
