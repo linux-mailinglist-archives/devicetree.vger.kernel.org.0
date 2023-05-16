@@ -2,70 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBAE57051ED
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 17:18:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB8DD7051F7
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 17:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233144AbjEPPS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 11:18:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45826 "EHLO
+        id S233480AbjEPPVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 11:21:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234091AbjEPPSU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 11:18:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4BC46A79;
-        Tue, 16 May 2023 08:18:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BCFF160A77;
-        Tue, 16 May 2023 15:18:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86F79C433EF;
-        Tue, 16 May 2023 15:18:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684250295;
-        bh=TBIu8knwYZPtwYq1olJQ/VmcM7zPEFoYsoBU2zYDa9k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QL1F3AIIV8aF1WETsjV5gwGquwJAWUIc+/gt+vKX3e6p7q6LtR1mzbNDGD47tdZog
-         s9uWuTRNHHL7hkP6GqfQmPYdPfqOHKXAxgtpaJtcMWmLcNTm1PrpEY5nQ0Kt6Xsgak
-         Qe0vgvcDnoX2vbMKHjH7fSYJGQmp5NXINNPIEtN5xHwHcqNGr7SZe3EyH7FOfCSWyx
-         4cfE24ABzR9GjU3WNcTxQhaSFNYcfMa+Q7mmyjJGzlEsNZXH0HebhvWT74tN1bMbKu
-         ptzP7rsmLWULlYCOnAWO/JMG7hrVsa1aarifeRnIBepFjuOapv9XyLpcMghur/t8Vg
-         DzGrYiYxKPS4w==
-Date:   Wed, 17 May 2023 00:18:12 +0900
-From:   Mark Brown <broonie@kernel.org>
-To:     Brad Larson <blarson@amd.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
-        adrian.hunter@intel.com, alcooperx@gmail.com,
-        andy.shevchenko@gmail.com, arnd@arndb.de,
-        brendan.higgins@linux.dev, briannorris@chromium.org,
-        catalin.marinas@arm.com, conor+dt@kernel.org, davidgow@google.com,
-        gsomlo@gmail.com, gerg@linux-m68k.org, hal.feng@starfivetech.com,
-        hasegawa-hitomi@fujitsu.com, j.neuschaefer@gmx.net, joel@jms.id.au,
-        kernel@esmil.dk, krzk@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
-        lee.jones@linaro.org, p.zabel@pengutronix.de,
-        rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org,
-        fancer.lancer@gmail.com, skhan@linuxfoundation.org,
-        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
-        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
-        vaishnav.a@ti.com, walker.chen@starfivetech.com, will@kernel.org,
-        zhuyinbo@loongson.cn, devicetree@vger.kernel.org
-Subject: Re: [PATCH v14 2/8] dt-bindings: spi: cdns: Add compatible for AMD
- Pensando Elba SoC
-Message-ID: <ZGOetCW+MXAvFicv@finisterre.sirena.org.uk>
-References: <20230515181606.65953-1-blarson@amd.com>
- <20230515181606.65953-3-blarson@amd.com>
+        with ESMTP id S233937AbjEPPUv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 11:20:51 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05EE97D88
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:20:50 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f1fe1208a4so13514763e87.2
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:20:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684250448; x=1686842448;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8AWKpnwAVSZF0RZwgYNJ8KCTEC9gSaQ9TieU/3HHmrk=;
+        b=AnsdaeP4dmnBP43DGnvBvHTNFMtmfhFQFiLK/08atFTSAN+VloaXOkeBJc4bCM8qhP
+         V3Hr6A/9CyI37N7c2VZyW4Biz8gcVK8yDgkIl5W4NJbLTL3C8e7NrcBiAgw0tjRgMxrt
+         5VI+oM5HaItWJdAs7jk9E6oRMn8p9CVmVFgODj2oqR6ybB8AZMwmFfltQhNkC528Rol3
+         Krl+vv6/e3zVuoPB674IOboe6f8d8wcjlR/RjGq0H+PqU3UgjHfAGgUbZZArjN4J8Pv+
+         aa+ICsS/nYtBToxtxgnvbsITNxz4uaCK/bZNdKgAinydyAxU+fIMWgQI1wZUrxSgpndx
+         slyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684250448; x=1686842448;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8AWKpnwAVSZF0RZwgYNJ8KCTEC9gSaQ9TieU/3HHmrk=;
+        b=cR0Uyno4QmxtVWnug5gRMUth5T/+dwcXhNDiHMYyP5cDsIrEzvSxMDHju5PGhaQGdq
+         iLeHpiieMxoXiVUfpfHpiBMoWKdZXGEGhnc9KFw6z09TcNG4Ae3KAA31c+cvyW4H+PVB
+         ivk644PBamPktXzZ/5be1m4lnJLk7/cNkBGs3CoY+dlstB/yl1zOGtt9VBJ+NhoRrEXo
+         YLX2d6nr0rsweFNjba6d/dV/JNztxU2v1bquZRcVt0HKEa53cG8Tjg2PC/sKs66kIQji
+         DFAVic81BaaXfhcE3wtClE39pJ3C1YWbbxRyAXTPuijXVo1GM5oAkMGr42mXPNWtGI/I
+         DKLA==
+X-Gm-Message-State: AC+VfDya1R2zyTXZWNg/qi5XvyF2fBgEj9crTZ8P7/8d5O02M7aVnikC
+        +3+7ouaeKCdf3jdDRVCI56cgeQ==
+X-Google-Smtp-Source: ACHHUZ6G+XLqcLw33b1steb9Qp3niR/qMasK+d1jeR1V41r8rEkIjoPng8pZOKr/AFkIdQutysToLA==
+X-Received: by 2002:ac2:4d0b:0:b0:4f1:223c:dc83 with SMTP id r11-20020ac24d0b000000b004f1223cdc83mr6672497lfi.48.1684250448249;
+        Tue, 16 May 2023 08:20:48 -0700 (PDT)
+Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
+        by smtp.gmail.com with ESMTPSA id w17-20020a05651204d100b004f14898d18esm2959685lfq.85.2023.05.16.08.20.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 May 2023 08:20:47 -0700 (PDT)
+Message-ID: <ecfe4f62-9c54-df5e-cd5d-e7a956510696@linaro.org>
+Date:   Tue, 16 May 2023 17:20:46 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ItvP3zGlvQYoSZpX"
-Content-Disposition: inline
-In-Reply-To: <20230515181606.65953-3-blarson@amd.com>
-X-Cookie: Avoid contact with eyes.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] arm64: dts: qcom: sm8550-qrd: add display and panel
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        "Signed-off-by : Abel Vesa" <abel.vesa@linaro.org>
+References: <20230516151708.213744-1-krzysztof.kozlowski@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230516151708.213744-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -73,33 +82,134 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---ItvP3zGlvQYoSZpX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Mon, May 15, 2023 at 11:16:00AM -0700, Brad Larson wrote:
-> Document the cadence qspi controller compatible for AMD Pensando
-> Elba SoC boards.  The Elba qspi fifo size is 1024.
+On 16.05.2023 17:17, Krzysztof Kozlowski wrote:
+> Enable Display Subsystem with Visionox VTDR6130 Panel (same as on
+> MTP8550).
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Context in the patch depends on:
+> 1. https://lore.kernel.org/linux-arm-msm/20230516133011.108093-1-krzysztof.kozlowski@linaro.org/T/#t
+> 2. https://lore.kernel.org/linux-arm-msm/20230512160452.206585-1-krzysztof.kozlowski@linaro.org/
+> ---
+>  arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 76 +++++++++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> index 30b36a149125..03bf6bc2db4d 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> @@ -420,6 +420,10 @@ vreg_l3g_1p2: ldo3 {
+>  	};
+>  };
+>  
+> +&dispcc {
+> +	status = "okay";
+> +};
+Missed this in the bigpatchdrop review.. It makes no sense to keep
+dispcc disabled by default (other than for lazily "solving" UEFI
+framebuffer being shut down)
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+> +
+>  &gcc {
+>  	clocks = <&bi_tcxo_div2>, <&sleep_clk>,
+>  		 <&pcie0_phy>,
+> @@ -431,6 +435,50 @@ &gcc {
+>  		 <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+>  };
+>  
+> +&mdss {
+> +	status = "okay";
+> +};
+> +
+> +&mdss_dsi0 {
+> +	vdda-supply = <&vreg_l3e_1p2>;
+> +	status = "okay";
+> +
+> +	panel@0 {
+> +		compatible = "visionox,vtdr6130";
+> +		reg = <0>;
+> +
+> +		pinctrl-names = "default", "sleep";
+> +		pinctrl-0 = <&sde_dsi_active>, <&sde_te_active>;
+> +		pinctrl-1 = <&sde_dsi_suspend>, <&sde_te_suspend>;
+property-n
+property-names
 
---ItvP3zGlvQYoSZpX
-Content-Type: application/pgp-signature; name="signature.asc"
+> +
+> +		vddio-supply = <&vreg_l12b_1p8>;
+> +		vci-supply = <&vreg_l13b_3p0>;
+> +		vdd-supply = <&vreg_l11b_1p2>;
+> +
+> +		reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
+> +
+> +		port {
+> +			panel0_in: endpoint {
+> +				remote-endpoint = <&mdss_dsi0_out>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&mdss_dsi0_out {
+> +	remote-endpoint = <&panel0_in>;
+> +	data-lanes = <0 1 2 3>;
+> +};
+> +
+> +&mdss_dsi0_phy {
+> +	vdds-supply = <&vreg_l1e_0p88>;
+> +	status = "okay";
+> +};
+> +
+> +&mdss_mdp {
+> +	status = "okay";
+> +};
+This should also be enabled by default, MDSS is useless when MDP is
+disabled.
 
------BEGIN PGP SIGNATURE-----
+lgtm otherwise
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRjnrMACgkQJNaLcl1U
-h9AF6Qf/YaEvaRgyBh7zYDffA8qs3vZxt5laeIpAFhS6j+HAPvoVfT/PoBHe/Hnq
-a4P37guGmSwpB8ElH13fTWt16D7Wy0qTrN0dTEkakXbM73A4sOus0SxRRNbQER2J
-9K94W9Go0uOpHD23XXl2Ntdlz8urwb5mhYwzxH3PT+Z0CHznK5WCevCdMSOnk98G
-OY5hK8/R0opwnKglttC+/+IPthVME85bI1ER8zSMShL8gToVon0v2zvH8a3ngMfl
-ryQDdtRcHkJ9Bvf1VdVcdX+SrfRWowZS32pDOdCVQvWWcaV1KdQm9aWf9xVccYAJ
-+MYrObAGPLCyMuEfPOVqh2oiTpiBCw==
-=SZNl
------END PGP SIGNATURE-----
+Konrad
 
---ItvP3zGlvQYoSZpX--
+> +
+>  &pcie_1_phy_aux_clk {
+>  	status = "disabled";
+>  };
+> @@ -532,6 +580,34 @@ wcd_tx: codec@0,3 {
+>  &tlmm {
+>  	gpio-reserved-ranges = <32 8>;
+>  
+> +	sde_dsi_active: sde-dsi-active-state {
+> +		pins = "gpio133";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		bias-disable;
+> +	};
+> +
+> +	sde_dsi_suspend: sde-dsi-suspend-state {
+> +		pins = "gpio133";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+> +
+> +	sde_te_active: sde-te-active-state {
+> +		pins = "gpio86";
+> +		function = "mdp_vsync";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+> +
+> +	sde_te_suspend: sde-te-suspend-state {
+> +		pins = "gpio86";
+> +		function = "mdp_vsync";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+> +
+>  	wcd_default: wcd-reset-n-active-state {
+>  		pins = "gpio108";
+>  		function = "gpio";
