@@ -2,1055 +2,568 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69F4670567E
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 21:01:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D777705695
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 21:02:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230062AbjEPTBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 15:01:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36594 "EHLO
+        id S229565AbjEPTCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 15:02:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbjEPTBF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 15:01:05 -0400
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05DD2CC;
-        Tue, 16 May 2023 12:01:01 -0700 (PDT)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1pyzue-005SW3-Pr; Tue, 16 May 2023 19:00:44 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH V2 2/2] arm64: dts: freescale: Add imx8mp-venice-gw7905-2x
-Date:   Tue, 16 May 2023 12:00:41 -0700
-Message-Id: <20230516190041.476045-2-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230516190041.476045-1-tharvey@gateworks.com>
-References: <20230516190041.476045-1-tharvey@gateworks.com>
+        with ESMTP id S229456AbjEPTCm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 15:02:42 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEEDAA5D0;
+        Tue, 16 May 2023 12:02:25 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-ba76528fe31so5537082276.1;
+        Tue, 16 May 2023 12:02:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684263744; x=1686855744;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xgnz2OVjs0g1uraLqQ48WM/I6KNUlwjzfYn5LIVXBPs=;
+        b=Xkrwo/NQVhsOq9TTEilXWaJYtpvi0DH4BHI5BbKChCX7pNRDFBhAi/1HvvW0D0h3bQ
+         deEGXPxwfsgpVLjJ7vZUPS3wTDy1rXZd1aDEe6Sg/q7j7EhNZ9I071i82U6T60MDF2zq
+         o2VRWLgzvscil6KX9I/2sZh3UwN8TR5BFuGCyJm5KOL15emaQzWZQKyZErKEo79ddJ/m
+         94R6nrBBXNc5i5y1Rd2aMxmzn/yRPQMkTNrTqgLcheaHuN9C79tmtdksDYy2oPkWttaH
+         HVJavSJmUU/WYvFi+FQ/BDEiulGM/XZaMWvYhSAfiLHoejTtBft96/Qv7kbvHf0VKwmX
+         J6wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684263744; x=1686855744;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xgnz2OVjs0g1uraLqQ48WM/I6KNUlwjzfYn5LIVXBPs=;
+        b=WMcohaYHkSWj1yoozWfbBe3Q8qY2+kF5s8S2iXME54hOpKR1SDmR1fzQmDFNWJ0hFq
+         /xxLVpZjTS05f2VBoiW2J6g9bvmULkhagknybabZo4QR2OWswdWey+nvunJd9aRSVIxA
+         P3bKzwxq84ULbwmwDXSvgk4Mscrz6PuKzUDvZTFd1JefxnNteViRxBZz20mMjWCgq3y7
+         0VlKV7WzICZzffIIFcSo7s8o+lVngu9vo7MwqPhzw4ciiBOFLoxzkkj9fHBLPpKvPsAP
+         5xIhYDknxjCAz0kK7GdaVt3Bels0vMAvkzrQdI8TOxTRGJQq4exwLXUV8qhqNuiALli0
+         oEvQ==
+X-Gm-Message-State: AC+VfDzberCpSb5gf7rnnBHb4uE0mZKhBIXIM30gc28mwEAtqdLpnMu+
+        9BKYXd08//XQft581znEnImcy0kMDpPV/nemiwg=
+X-Google-Smtp-Source: ACHHUZ5gIJ2Do1UQhcWi1Ec47X9WiWQXvYe0BqoC2vrqVgYoyz9kD0Y11YQBGs7kBgKFeQoRl+oMm1gWan3oFwRZVew=
+X-Received: by 2002:a0d:ca16:0:b0:561:8c00:a644 with SMTP id
+ m22-20020a0dca16000000b005618c00a644mr2511629ywd.5.1684263744272; Tue, 16 May
+ 2023 12:02:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <CAAQoYRm3766SG7+VuwVzu_xH8aWihoKWMEp8xQGNgJ6oOtC9+g@mail.gmail.com>
+ <CAAQoYRmXdMp7b2r+yCRUtGrbfQH-Cb8gMAVo7YscuQEM5kgajw@mail.gmail.com>
+ <CAKR-sGdiLzZ7iVbLmz1uPwYoUXQZ2qGwmCBAq_-OKXfVT=Pj-A@mail.gmail.com> <d0543f48-6f0b-58e0-cc18-695a28c493fc@gmail.com>
+In-Reply-To: <d0543f48-6f0b-58e0-cc18-695a28c493fc@gmail.com>
+From:   =?UTF-8?B?w4FsdmFybyBGZXJuw6FuZGV6IFJvamFz?= <noltari@gmail.com>
+Date:   Tue, 16 May 2023 21:02:13 +0200
+Message-ID: <CAKR-sGer0r0FxyOQQu7TxT0d2D981_1fQWxa_XghfyWKWSJVfQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: nand: Macronix: document new binding
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     liao jaime <jaimeliao.tw@gmail.com>,
+        "William (Zhenghao) Zhang" <william.zhang@broadcom.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Gateworks imx8mp-venice-gw7905-2x consists of a SOM + baseboard.
+Sure,
 
-The GW702x SOM contains the following:
- - i.MX8M Plus SoC
- - LPDDR4 memory
- - eMMC Boot device
- - Gateworks System Controller (GSC) with integrated EEPROM, button
-   controller, and ADC's
- - PMIC
- - RGMII PHY (eQoS)
- - SOM connector providing:
-  - eQoS GbE MII
-  - 1x SPI
-  - 2x I2C
-  - 4x UART
-  - 2x USB 3.0
-  - 1x PCI
-  - 1x SDIO (4-bit 3.3V)
-  - 1x SDIO (4-bit 3.3V/1.8V)
-  - GPIO
+Here you go:
+[    0.000000] Linux version 5.15.111 (noltari@atlantis)
+(mips-openwrt-linux-musl-gcc (OpenWrt GCC 12.3.0 r0+22899-466be0612a)
+12.3.0, GNU ld (GNU Binutils) 2.40.0) #0 SMP Tue May 16 14:33:20 2023
+[    0.000000] CPU0 revision is: 0002a080 (Broadcom BMIPS4350)
+[    0.000000] MIPS: machine is Sercomm H500-s vfes
+[    0.000000] 128MB of RAM installed
+[    0.000000] earlycon: bcm63xx_uart0 at MMIO 0x10000180 (options '115200n=
+8')
+[    0.000000] printk: bootconsole [bcm63xx_uart0] enabled
+[    0.000000] Initrd not found or empty - disabling initrd
+[    0.000000] Reserving 0KB of memory at 4194303KB for kdump
+[    0.000000] Primary instruction cache 64kB, VIPT, 4-way, linesize 16 byt=
+es.
+[    0.000000] Primary data cache 32kB, 2-way, VIPT, cache aliases,
+linesize 16 bytes
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x0000000000000000-0x0000000007ffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000000000-0x0000000007ffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000000000-0x0000000007fff=
+fff]
+[    0.000000] percpu: Embedded 11 pages/cpu s13328 r8192 d23536 u45056
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 32480
+[    0.000000] Kernel command line: earlycon
+[    0.000000] Dentry cache hash table entries: 16384 (order: 4, 65536
+bytes, linear)
+[    0.000000] Inode-cache hash table entries: 8192 (order: 3, 32768
+bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 108656K/131072K available (6902K kernel code,
+613K rwdata, 1404K rodata, 11872K init, 215K bss, 22416K reserved, 0K
+cma-reserved)
+[    0.000000] SLUB: HWalign=3D64, Order=3D0-3, MinObjects=3D0, CPUs=3D2, N=
+odes=3D1
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000]  Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay
+is 10 jiffies.
+[    0.000000] NR_IRQS: 256
+[    0.000000] irq_bcm6345_l1: registered BCM6345 L1 intc (IRQs: 128)
+[    0.000000] irq_bcm6345_l1:   CPU0 (irq =3D 2)
+[    0.000000] irq_bcm6345_l1:   CPU1 (irq =3D 3)
+[    0.000000] brcm,bcm63268 detected @ 400 MHz
+[    0.000000] clocksource: MIPS: mask: 0xffffffff max_cycles:
+0xffffffff, max_idle_ns: 9556302233 ns
+[    0.000002] sched_clock: 32 bits at 200MHz, resolution 5ns, wraps
+every 10737418237ns
+[    0.008292] Calibrating delay loop... 398.13 BogoMIPS (lpj=3D1990656)
+[    0.074683] pid_max: default: 32768 minimum: 301
+[    0.081788] Mount-cache hash table entries: 1024 (order: 0, 4096
+bytes, linear)
+[    0.089319] Mountpoint-cache hash table entries: 1024 (order: 0,
+4096 bytes, linear)
+[    0.106094] rcu: Hierarchical SRCU implementation.
+[    0.112665] smp: Bringing up secondary CPUs ...
+[    0.119348] SMP: Booting CPU1...
+[    8.330979] Primary instruction cache 64kB, VIPT, 4-way, linesize 16 byt=
+es.
+[    8.331017] Primary data cache 32kB, 2-way, VIPT, cache aliases,
+linesize 16 bytes
+[    8.331294] CPU1 revision is: 0002a080 (Broadcom BMIPS4350)
+[    0.182819] Synchronize counters for CPU 1:
+[    0.203500] SMP: CPU1 is running
+[    0.203512] done.
+[    0.213401] smp: Brought up 1 node, 2 CPUs
+[    0.228870] clocksource: jiffies: mask: 0xffffffff max_cycles:
+0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.239058] futex hash table entries: 512 (order: 3, 32768 bytes, linear=
+)
+[    0.246439] pinctrl core: initialized pinctrl subsystem
+[    0.254917] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.312700] clocksource: Switched to clocksource MIPS
+[    0.321061] NET: Registered PF_INET protocol family
+[    0.326879] IP idents hash table entries: 2048 (order: 2, 16384
+bytes, linear)
+[    0.335972] tcp_listen_portaddr_hash hash table entries: 512
+(order: 0, 6144 bytes, linear)
+[    0.344721] Table-perturb hash table entries: 65536 (order: 6,
+262144 bytes, linear)
+[    0.352721] TCP established hash table entries: 1024 (order: 0,
+4096 bytes, linear)
+[    0.360622] TCP bind hash table entries: 1024 (order: 1, 8192 bytes, lin=
+ear)
+[    0.368005] TCP: Hash tables configured (established 1024 bind 1024)
+[    0.375074] UDP hash table entries: 256 (order: 1, 8192 bytes, linear)
+[    0.381862] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes, line=
+ar)
+[    0.389762] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.395748] PCI: CLS 0 bytes, default 16
+[    0.403410] workingset: timestamp_bits=3D14 max_order=3D15 bucket_order=
+=3D1
+[    0.426490] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.432492] jffs2: version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME)
+(CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    0.459472] bcm63xx-power-controller 1000184c.power-controller:
+registered 14 power domains
+[    0.470267] 10000180.serial: ttyS0 at MMIO 0x10000180 (irq =3D 8,
+base_baud =3D 1562500) is a bcm63xx_uart
+[    0.479996] printk: console [ttyS0] enabled
+[    0.479996] printk: console [ttyS0] enabled
+[    0.488651] printk: bootconsole [bcm63xx_uart0] disabled
+[    0.488651] printk: bootconsole [bcm63xx_uart0] disabled
+[    0.533435] bcm2835-rng 10002880.rng: hwrng registered
+[    0.606025] bcm6368_nand 10000200.nand: there is not valid maps for
+state default
+[    0.633977] nand: device found, Manufacturer ID: 0xc2, Chip ID: 0xf1
+[    0.640506] nand: Macronix MX30LF1G18AC
+[    0.644551] nand: 128 MiB, SLC, erase size: 128 KiB, page size:
+2048, OOB size: 64
+[    0.652359] bcm6368_nand 10000200.nand: detected 128MiB total,
+128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
+[    0.703373] Bad block table not found for chip 0
+[    0.732040] Bad block table not found for chip 0
+[    0.736842] Scanning device for bad blocks
+[    0.832678] CPU 0 Unable to handle kernel paging request at virtual
+address 00000014, epc =3D=3D 8009b300, ra =3D=3D 806cc650
+[    0.843628] Oops[#1]:
+[    0.845958] CPU: 0 PID: 88 Comm: hwrng Not tainted 5.15.111 #0
+[    0.851959] $ 0   : 00000000 00000001 00000008 00000000
+[    0.857358] $ 4   : 81808464 00000064 00000000 00000001
+[    0.862753] $ 8   : 81810000 00001ff0 00001c00 815b8880
+[    0.868146] $12   : 0000b79d 00000000 00000000 00009bb
 
-The GW7905 Baseboard contains the following:
- - GPS
- - microSD
- - off-board I/O connector with I2C, SPI, GPIO
- - EERPOM
- - PCIe clock generator
- - 1x full-length miniPCIe socket with PCI/USB3 (via mux) and USB2.0
- - 1x half-length miniPCIe socket with USB2.0 and USB3.0
- - USB 3.0 HUB
- - USB Type-C with USB PD Sink capability and peripheral support
- - USB Type-C with USB 3.0 host support
+Please, tell me if you want me to add any debugging to the log.
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
-v2:
- - add missing Makefile entry
- - remove pcie clock props that are now in imx8mp.dtsi
- - removed unnecessary blank line
- - remove address-cells/size-cells from fan-controller node as they are not
-   needed
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx8mp-venice-gw702x.dtsi   | 587 ++++++++++++++++++
- .../dts/freescale/imx8mp-venice-gw7905-2x.dts |  28 +
- .../dts/freescale/imx8mp-venice-gw7905.dtsi   | 309 +++++++++
- 4 files changed, 925 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
+Best regards,
+=C3=81lvaro.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index ef7d17aef58f..d94d464db03e 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -99,6 +99,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw7905-2x.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-nonwifi-yavia.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
-new file mode 100644
-index 000000000000..74b0fda235ed
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw702x.dtsi
-@@ -0,0 +1,587 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2023 Gateworks Corporation
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/net/ti-dp83867.h>
-+
-+/ {
-+	aliases {
-+		ethernet0 = &eqos;
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x40000000 0 0x80000000>;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		key-user-pb {
-+			label = "user_pb";
-+			gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
-+			linux,code = <BTN_0>;
-+		};
-+
-+		key-user-pb1x {
-+			label = "user_pb1x";
-+			linux,code = <BTN_1>;
-+			interrupt-parent = <&gsc>;
-+			interrupts = <0>;
-+		};
-+
-+		key-erased {
-+			label = "key_erased";
-+			linux,code = <BTN_2>;
-+			interrupt-parent = <&gsc>;
-+			interrupts = <1>;
-+		};
-+
-+		key-eeprom-wp {
-+			label = "eeprom_wp";
-+			linux,code = <BTN_3>;
-+			interrupt-parent = <&gsc>;
-+			interrupts = <2>;
-+		};
-+
-+		key-tamper {
-+			label = "tamper";
-+			linux,code = <BTN_4>;
-+			interrupt-parent = <&gsc>;
-+			interrupts = <5>;
-+		};
-+
-+		switch-hold {
-+			label = "switch_hold";
-+			linux,code = <BTN_5>;
-+			interrupt-parent = <&gsc>;
-+			interrupts = <7>;
-+		};
-+	};
-+};
-+
-+&A53_0 {
-+	cpu-supply = <&buck3_reg>;
-+};
-+
-+&A53_1 {
-+	cpu-supply = <&buck3_reg>;
-+};
-+
-+&A53_2 {
-+	cpu-supply = <&buck3_reg>;
-+};
-+
-+&A53_3 {
-+	cpu-supply = <&buck3_reg>;
-+};
-+
-+&eqos {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_eqos>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy0>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy0: ethernet-phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			pinctrl-0 = <&pinctrl_ethphy0>;
-+			pinctrl-names = "default";
-+			reg = <0x0>;
-+			interrupt-parent = <&gpio3>;
-+			interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
-+			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+			tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+			rx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	pinctrl-1 = <&pinctrl_i2c1_gpio>;
-+	scl-gpios = <&gpio5 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+
-+	gsc: gsc@20 {
-+		compatible = "gw,gsc";
-+		reg = <0x20>;
-+		pinctrl-0 = <&pinctrl_gsc>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-controller;
-+		#interrupt-cells = <1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		adc {
-+			compatible = "gw,gsc-adc";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			channel@6 {
-+				gw,mode = <0>;
-+				reg = <0x06>;
-+				label = "temp";
-+			};
-+
-+			channel@8 {
-+				gw,mode = <1>;
-+				reg = <0x08>;
-+				label = "vdd_bat";
-+			};
-+
-+			channel@16 {
-+				gw,mode = <4>;
-+				reg = <0x16>;
-+				label = "fan_tach";
-+			};
-+
-+			channel@82 {
-+				gw,mode = <2>;
-+				reg = <0x82>;
-+				label = "vdd_vin";
-+				gw,voltage-divider-ohms = <22100 1000>;
-+			};
-+
-+			channel@84 {
-+				gw,mode = <2>;
-+				reg = <0x84>;
-+				label = "vdd_adc1";
-+				gw,voltage-divider-ohms = <10000 10000>;
-+			};
-+
-+			channel@86 {
-+				gw,mode = <2>;
-+				reg = <0x86>;
-+				label = "vdd_adc2";
-+				gw,voltage-divider-ohms = <10000 10000>;
-+			};
-+
-+			channel@88 {
-+				gw,mode = <2>;
-+				reg = <0x88>;
-+				label = "vdd_1p0";
-+			};
-+
-+			channel@8c {
-+				gw,mode = <2>;
-+				reg = <0x8c>;
-+				label = "vdd_1p8";
-+			};
-+
-+			channel@8e {
-+				gw,mode = <2>;
-+				reg = <0x8e>;
-+				label = "vdd_2p5";
-+			};
-+
-+			channel@90 {
-+				gw,mode = <2>;
-+				reg = <0x90>;
-+				label = "vdd_3p3";
-+				gw,voltage-divider-ohms = <10000 10000>;
-+			};
-+
-+			channel@92 {
-+				gw,mode = <2>;
-+				reg = <0x92>;
-+				label = "vdd_dram";
-+			};
-+
-+			channel@98 {
-+				gw,mode = <2>;
-+				reg = <0x98>;
-+				label = "vdd_soc";
-+			};
-+
-+			channel@9a {
-+				gw,mode = <2>;
-+				reg = <0x9a>;
-+				label = "vdd_arm";
-+			};
-+
-+			channel@a2 {
-+				gw,mode = <2>;
-+				reg = <0xa2>;
-+				label = "vdd_gsc";
-+				gw,voltage-divider-ohms = <10000 10000>;
-+			};
-+		};
-+
-+		fan-controller@0 {
-+			compatible = "gw,gsc-fan";
-+			reg = <0x0a>;
-+		};
-+	};
-+
-+	gpio: gpio@23 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x23>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&gsc>;
-+		interrupts = <4>;
-+	};
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c02";
-+		reg = <0x50>;
-+		pagesize = <16>;
-+	};
-+
-+	eeprom@51 {
-+		compatible = "atmel,24c02";
-+		reg = <0x51>;
-+		pagesize = <16>;
-+	};
-+
-+	eeprom@52 {
-+		compatible = "atmel,24c02";
-+		reg = <0x52>;
-+		pagesize = <16>;
-+	};
-+
-+	eeprom@53 {
-+		compatible = "atmel,24c02";
-+		reg = <0x53>;
-+		pagesize = <16>;
-+	};
-+
-+	rtc@68 {
-+		compatible = "dallas,ds1672";
-+		reg = <0x68>;
-+	};
-+
-+	pmic@69 {
-+		compatible = "mps,mp5416";
-+		reg = <0x69>;
-+
-+		regulators {
-+			/* vdd_soc */
-+			buck1 {
-+				regulator-name = "buck1";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			/* vdd_dram */
-+			buck2 {
-+				regulator-name = "buck2";
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			/* vdd_arm */
-+			buck3_reg: buck3 {
-+				regulator-name = "buck3";
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			/* vdd_1p8 */
-+			buck4 {
-+				regulator-name = "buck4";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			/* OUT2: nvcc_snvs_1p8 */
-+			ldo1 {
-+				regulator-name = "ldo1";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			/* OUT3: vdd_1p0 */
-+			ldo2 {
-+				regulator-name = "ldo2";
-+				regulator-min-microvolt = <1000000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			/* OUT4: vdd_2p5 */
-+			ldo3 {
-+				regulator-name = "ldo3";
-+				regulator-min-microvolt = <2500000>;
-+				regulator-max-microvolt = <2500000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+
-+			/* OUT5: vdd_3p3 */
-+			ldo4 {
-+				regulator-name = "ldo4";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+				regulator-boot-on;
-+			};
-+		};
-+	};
-+};
-+
-+/* off-board header */
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	pinctrl-1 = <&pinctrl_i2c2_gpio>;
-+	scl-gpios = <&gpio5 16 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 17 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+
-+	eeprom@52 {
-+		compatible = "atmel,24c32";
-+		reg = <0x52>;
-+		pagesize = <32>;
-+	};
-+};
-+
-+/* off-board header */
-+&i2c3 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	pinctrl-1 = <&pinctrl_i2c3_gpio>;
-+	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+};
-+
-+/* off-board header */
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+/* console */
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+/* off-board header */
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	status = "okay";
-+};
-+
-+/* off-board */
-+&usdhc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	bus-width = <4>;
-+	non-removable;
-+	status = "okay";
-+	bus-width = <4>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+/* eMMC */
-+&usdhc3 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	pinctrl-1 = <&pinctrl_usdhc3_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc3_200mhz>;
-+	bus-width = <8>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_eqos: eqosgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC			0x2
-+			MX8MP_IOMUXC_ENET_MDIO__ENET_QOS_MDIO			0x2
-+			MX8MP_IOMUXC_ENET_RD0__ENET_QOS_RGMII_RD0		0x90
-+			MX8MP_IOMUXC_ENET_RD1__ENET_QOS_RGMII_RD1		0x90
-+			MX8MP_IOMUXC_ENET_RD2__ENET_QOS_RGMII_RD2		0x90
-+			MX8MP_IOMUXC_ENET_RD3__ENET_QOS_RGMII_RD3		0x90
-+			MX8MP_IOMUXC_ENET_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x90
-+			MX8MP_IOMUXC_ENET_RX_CTL__ENET_QOS_RGMII_RX_CTL		0x90
-+			MX8MP_IOMUXC_ENET_TD0__ENET_QOS_RGMII_TD0		0x16
-+			MX8MP_IOMUXC_ENET_TD1__ENET_QOS_RGMII_TD1		0x16
-+			MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2		0x16
-+			MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3		0x16
-+			MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL		0x16
-+			MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x16
-+		>;
-+	};
-+
-+	pinctrl_ethphy0: ethphy0grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_DQS__GPIO3_IO14	0x140 /* RST# */
-+			MX8MP_IOMUXC_NAND_READY_B__GPIO3_IO16	0x150 /* IRQ# */
-+		>;
-+	};
-+
-+	pinctrl_gsc: gscgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD1_DATA4__GPIO2_IO06	0x150 /* IRQ# */
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C1_SCL__I2C1_SCL		0x400001c2
-+			MX8MP_IOMUXC_I2C1_SDA__I2C1_SDA		0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_i2c1_gpio: i2c1gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C1_SCL__GPIO5_IO14	0x400001c2
-+			MX8MP_IOMUXC_I2C1_SDA__GPIO5_IO15	0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL		0x400001c2
-+			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA		0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_i2c2_gpio: i2c2gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C2_SCL__GPIO5_IO16	0x400001c2
-+			MX8MP_IOMUXC_I2C2_SDA__GPIO5_IO17	0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL		0x400001c2
-+			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA		0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_i2c3_gpio: i2c3gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C3_SCL__GPIO5_IO18	0x400001c2
-+			MX8MP_IOMUXC_I2C3_SDA__GPIO5_IO19	0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART1_RXD__UART1_DCE_RX	0x140
-+			MX8MP_IOMUXC_UART1_TXD__UART1_DCE_TX	0x140
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX	0x140
-+			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX	0x140
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART3_RXD__UART3_DCE_RX	0x140
-+			MX8MP_IOMUXC_UART3_TXD__UART3_DCE_TX	0x140
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD1_CLK__USDHC1_CLK	0x190
-+			MX8MP_IOMUXC_SD1_CMD__USDHC1_CMD	0x1d0
-+			MX8MP_IOMUXC_SD1_DATA0__USDHC1_DATA0	0x1d0
-+			MX8MP_IOMUXC_SD1_DATA1__USDHC1_DATA1	0x1d0
-+			MX8MP_IOMUXC_SD1_DATA2__USDHC1_DATA2	0x1d0
-+			MX8MP_IOMUXC_SD1_DATA3__USDHC1_DATA3	0x1d0
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x190
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d0
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d0
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d0
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d0
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d0
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d0
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d0
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d0
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d0
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x190
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x194
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d4
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d4
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d4
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d4
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d4
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d4
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d4
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d4
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d4
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x194
-+		>;
-+	};
-+
-+	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK	0x196
-+			MX8MP_IOMUXC_NAND_WP_B__USDHC3_CMD	0x1d6
-+			MX8MP_IOMUXC_NAND_DATA04__USDHC3_DATA0	0x1d6
-+			MX8MP_IOMUXC_NAND_DATA05__USDHC3_DATA1	0x1d6
-+			MX8MP_IOMUXC_NAND_DATA06__USDHC3_DATA2	0x1d6
-+			MX8MP_IOMUXC_NAND_DATA07__USDHC3_DATA3	0x1d6
-+			MX8MP_IOMUXC_NAND_RE_B__USDHC3_DATA4	0x1d6
-+			MX8MP_IOMUXC_NAND_CE2_B__USDHC3_DATA5	0x1d6
-+			MX8MP_IOMUXC_NAND_CE3_B__USDHC3_DATA6	0x1d6
-+			MX8MP_IOMUXC_NAND_CLE__USDHC3_DATA7	0x1d6
-+			MX8MP_IOMUXC_NAND_CE1_B__USDHC3_STROBE	0x196
-+		>;
-+	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO02__WDOG1_WDOG_B	0x166
-+		>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
-new file mode 100644
-index 000000000000..4a1bbbbe19e6
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905-2x.dts
-@@ -0,0 +1,28 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2023 Gateworks Corporation
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mp.dtsi"
-+#include "imx8mp-venice-gw702x.dtsi"
-+#include "imx8mp-venice-gw7905.dtsi"
-+
-+/ {
-+	model = "Gateworks Venice GW7905-2x i.MX8MP Development Kit";
-+	compatible = "gateworks,imx8mp-gw7905-2x", "fsl,imx8mp";
-+
-+	chosen {
-+		stdout-path = &uart2;
-+	};
-+};
-+
-+/* Disable SOM interfaces not used on baseboard */
-+&eqos {
-+	status = "disabled";
-+};
-+
-+&usdhc1 {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
-new file mode 100644
-index 000000000000..0d40cb0f05f6
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw7905.dtsi
-@@ -0,0 +1,309 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2023 Gateworks Corporation
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/phy/phy-imx8-pcie.h>
-+
-+/ {
-+	led-controller {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_leds>;
-+
-+		led-0 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			gpios = <&gpio4 22 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		led-1 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&gpio4 27 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+	};
-+
-+	pcie0_refclk: pcie0-refclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+	};
-+
-+	pps {
-+		compatible = "pps-gpio";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pps>;
-+		gpios = <&gpio4 21 GPIO_ACTIVE_HIGH>;
-+		status = "okay";
-+	};
-+
-+	reg_usb2_vbus: regulator-usb2-vbus {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usb2_en>;
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb2_vbus";
-+		gpio = <&gpio4 12 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-usdhc2 {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		compatible = "regulator-fixed";
-+		regulator-name = "SD2_3P3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+};
-+
-+/* off-board header */
-+&ecspi2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi2>;
-+	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&gpio4 {
-+	gpio-line-names =
-+		"", "", "", "",
-+		"", "", "", "",
-+		"", "", "", "",
-+		"", "gpioa", "", "",
-+		"", "", "", "",
-+		"", "", "", "",
-+		"", "", "", "",
-+		"", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names =
-+		"", "gpiod", "", "",
-+		"gpiob", "gpioc", "", "",
-+		"", "", "", "",
-+		"", "", "", "",
-+		"", "", "", "",
-+		"", "", "", "",
-+		"", "", "pci_usb_sel", "",
-+		"pci_wdis#", "", "", "";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+
-+	eeprom@52 {
-+		compatible = "atmel,24c32";
-+		reg = <0x52>;
-+		pagesize = <32>;
-+	};
-+};
-+
-+/* off-board header */
-+&i2c3 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+};
-+
-+&pcie_phy {
-+	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
-+	fsl,clkreq-unsupported;
-+	clocks = <&pcie0_refclk>;
-+	clock-names = "ref";
-+	status = "okay";
-+};
-+
-+&pcie {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcie0>;
-+	reset-gpio = <&gpio4 29 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+/* GPS */
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+/* USB1 - Type C front panel SINK port J14 */
-+&usb3_0 {
-+	status = "okay";
-+};
-+
-+&usb3_phy0 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3_0 {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+/* USB2 4-port USB3.0 HUB:
-+ *  P1 - USBC connector (host only)
-+ *  P2 - USB2 test connector
-+ *  P3 - miniPCIe full card
-+ *  P4 - miniPCIe half card
-+ */
-+&usb3_phy1 {
-+	vbus-supply = <&reg_usb2_vbus>;
-+	status = "okay";
-+};
-+
-+&usb3_1 {
-+	fsl,permanently-attached;
-+	fsl,disable-port-power-control;
-+	status = "okay";
-+};
-+
-+&usb_dwc3_1 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+/* microSD */
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO13__GPIO1_IO13	0x40000040 /* GPIOA */
-+			MX8MP_IOMUXC_SAI1_RXC__GPIO4_IO01	0x40000040 /* GPIOD */
-+			MX8MP_IOMUXC_SAI1_RXD2__GPIO4_IO04	0x40000040 /* GPIOB */
-+			MX8MP_IOMUXC_SAI1_RXD3__GPIO4_IO05	0x40000040 /* GPIOC */
-+			MX8MP_IOMUXC_SAI2_TXD0__GPIO4_IO26	0x40000106 /* PCI_USBSEL */
-+			MX8MP_IOMUXC_SAI3_RXFS__GPIO4_IO28	0x40000106 /* PCI_WDIS# */
-+		>;
-+	};
-+
-+	pinctrl_gpio_leds: gpioledgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI2_RXC__GPIO4_IO22	0x6	/* LEDG */
-+			MX8MP_IOMUXC_SAI2_MCLK__GPIO4_IO27	0x6	/* LEDR */
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C2_SCL__I2C2_SCL		0x400001c2
-+			MX8MP_IOMUXC_I2C2_SDA__I2C2_SDA		0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL		0x400001c2
-+			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA		0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_pcie0: pciegrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI3_RXC__GPIO4_IO29	0x106
-+		>;
-+	};
-+
-+	pinctrl_pps: ppsgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI2_RXFS__GPIO4_IO21	0x106
-+		>;
-+	};
-+
-+	pinctrl_reg_usb2_en: regusb2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI1_TXD0__GPIO4_IO12	0x6 /* USBHUB_RST# (ext p/u) */
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x40
-+		>;
-+	};
-+
-+	pinctrl_spi2: spi2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_ECSPI2_SCLK__ECSPI2_SCLK	0x140
-+			MX8MP_IOMUXC_ECSPI2_MOSI__ECSPI2_MOSI	0x140
-+			MX8MP_IOMUXC_ECSPI2_MISO__ECSPI2_MISO	0x140
-+			MX8MP_IOMUXC_ECSPI2_SS0__GPIO5_IO13	0x140
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART1_RXD__UART1_DCE_RX	0x140
-+			MX8MP_IOMUXC_UART1_TXD__UART1_DCE_TX	0x140
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x190
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d0
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d0
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d0
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d0
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d0
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x194
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d4
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d4
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d4
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d4
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d4
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x196
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d6
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d6
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d6
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d6
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d6
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12		0x1c4
-+		>;
-+	};
-+};
--- 
-2.25.1
-
+El mar, 16 may 2023 a las 20:58, Florian Fainelli
+(<f.fainelli@gmail.com>) escribi=C3=B3:
+>
+> +William,
+>
+> On 5/16/23 11:55, =C3=81lvaro Fern=C3=A1ndez Rojas wrote:
+> > Hi Jaime,
+> >
+> > I've reproduced the issue on a Comtrend VR-3032u (MX30LF1G08AA). After
+> > forcing it to check block protection (it's not supported on that
+> > device), the NAND controller stops reading/writing anything.
+> >
+> > @Florian is it possible that low level ops (GET_FEATURES/SET_FEATURES)
+> > aren't supported on BCM63268 NAND controllers and this is causing the
+> > issue?
+>
+> Yes, this looks like what we have seen as well even with newer NAND
+> controllers actually. Would it be possible to obtain a full log from
+> either of you?
+>
+> William, is this something you have seen before as well?
+>
+> >
+> > Best regards,
+> > =C3=81lvaro.
+> >
+> > El mi=C3=A9, 26 abr 2023 a las 9:24, liao jaime (<jaimeliao.tw@gmail.co=
+m>) escribi=C3=B3:
+> >>
+> >> Hi =C3=81lvaro
+> >>
+> >> In nand_scan_tail(), each manufacturer init function call will be exec=
+ute.
+> >> In macronix_nand_init(), block protect will be execute after flash det=
+ect.
+> >> I have validate MX30LF1G18AC in Linux kernel v5.15.
+> >> I didn't got situation "device hangs"  on my side.
+> >> BP is to prevent incorrect operations.
+> >> Please check the controller settings for tracing this issue.
+> >>
+> >> Thanks
+> >> Jaime
+> >>
+> >>>
+> >>> Hello YouChing and Jaime,
+> >>>
+> >>> I still didn't get any feedback from you (or Macronix) on this issue.
+> >>> Did you have time to look into it?
+> >>>
+> >>> Thanks,
+> >>> =C3=81lvaro.
+> >>>
+> >>> El vie, 24 mar 2023 a las 18:04, =C3=81lvaro Fern=C3=A1ndez Rojas
+> >>> (<noltari@gmail.com>) escribi=C3=B3:
+> >>>>
+> >>>> Hi Miqu=C3=A8l,
+> >>>>
+> >>>> 2023-03-24 15:36 GMT+01:00, Miquel Raynal <miquel.raynal@bootlin.com=
+>:
+> >>>>> Hi =C3=81lvaro,
+> >>>>>
+> >>>>> + YouChing and Jaime from Macronix
+> >>>>> TLDR for them: there is a misbehavior since Mason added block
+> >>>>> protection support. Just checking if the blocks are protected seems=
+ to
+> >>>>> misconfigure the chip entirely, see below. Any hints?
+> >>>>
+> >>>> Could it be that the NAND is stuck expecting a read 0x00 command whi=
+ch
+> >>>> isn=E2=80=99t sent after getting the features?
+> >>>>
+> >>>>>
+> >>>>> noltari@gmail.com wrote on Fri, 24 Mar 2023 15:15:47 +0100:
+> >>>>>
+> >>>>>> Hi Miqu=C3=A8l,
+> >>>>>>
+> >>>>>> 2023-03-24 14:45 GMT+01:00, Miquel Raynal <miquel.raynal@bootlin.c=
+om>:
+> >>>>>>> Hi =C3=81lvaro,
+> >>>>>>>
+> >>>>>>> noltari@gmail.com wrote on Fri, 24 Mar 2023 12:21:11 +0100:
+> >>>>>>>
+> >>>>>>>> El vie, 24 mar 2023 a las 11:49, Miquel Raynal
+> >>>>>>>> (<miquel.raynal@bootlin.com>) escribi=C3=B3:
+> >>>>>>>>>
+> >>>>>>>>> Hi =C3=81lvaro,
+> >>>>>>>>>
+> >>>>>>>>> noltari@gmail.com wrote on Fri, 24 Mar 2023 11:31:17 +0100:
+> >>>>>>>>>
+> >>>>>>>>>> Hi Miqu=C3=A8l,
+> >>>>>>>>>>
+> >>>>>>>>>> El vie, 24 mar 2023 a las 10:40, Miquel Raynal
+> >>>>>>>>>> (<miquel.raynal@bootlin.com>) escribi=C3=B3:
+> >>>>>>>>>>>
+> >>>>>>>>>>> Hi =C3=81lvaro,
+> >>>>>>>>>>>
+> >>>>>>>>>>> noltari@gmail.com wrote on Thu, 23 Mar 2023 13:45:09 +0100:
+> >>>>>>>>>>>
+> >>>>>>>>>>>> Add new "mxic,disable-block-protection" binding documentatio=
+n.
+> >>>>>>>>>>>> This binding allows disabling block protection support for
+> >>>>>>>>>>>> those
+> >>>>>>>>>>>> devices not
+> >>>>>>>>>>>> supporting it.
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> Signed-off-by: =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gma=
+il.com>
+> >>>>>>>>>>>> ---
+> >>>>>>>>>>>>   Documentation/devicetree/bindings/mtd/nand-macronix.txt | =
+3
+> >>>>>>>>>>>> +++
+> >>>>>>>>>>>>   1 file changed, 3 insertions(+)
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> diff --git
+> >>>>>>>>>>>> a/Documentation/devicetree/bindings/mtd/nand-macronix.txt
+> >>>>>>>>>>>> b/Documentation/devicetree/bindings/mtd/nand-macronix.txt
+> >>>>>>>>>>>> index ffab28a2c4d1..03f65ca32cd3 100644
+> >>>>>>>>>>>> --- a/Documentation/devicetree/bindings/mtd/nand-macronix.tx=
+t
+> >>>>>>>>>>>> +++ b/Documentation/devicetree/bindings/mtd/nand-macronix.tx=
+t
+> >>>>>>>>>>>> @@ -16,6 +16,9 @@ in children nodes.
+> >>>>>>>>>>>>   Required NAND chip properties in children mode:
+> >>>>>>>>>>>>   - randomizer enable: should be "mxic,enable-randomizer-otp=
+"
+> >>>>>>>>>>>>
+> >>>>>>>>>>>> +Optional NAND chip properties in children mode:
+> >>>>>>>>>>>> +- block protection disable: should be
+> >>>>>>>>>>>> "mxic,disable-block-protection"
+> >>>>>>>>>>>> +
+> >>>>>>>>>>>
+> >>>>>>>>>>> Besides the fact that nowadays we prefer to see binding
+> >>>>>>>>>>> conversions
+> >>>>>>>>>>> to
+> >>>>>>>>>>> yaml before adding anything, I don't think this will fly.
+> >>>>>>>>>>>
+> >>>>>>>>>>> I'm not sure exactly what "disable block protection" means, w=
+e
+> >>>>>>>>>>> already have similar properties like "lock" and
+> >>>>>>>>>>> "secure-regions",
+> >>>>>>>>>>> not
+> >>>>>>>>>>> sure they will fit but I think it's worth checking.
+> >>>>>>>>>>
+> >>>>>>>>>> As explained in 2/2, commit 03a539c7a118 introduced a regressi=
+on
+> >>>>>>>>>> on
+> >>>>>>>>>> Sercomm H500-s (BCM63268) OpenWrt devices with Macronix
+> >>>>>>>>>> MX30LF1G18AC
+> >>>>>>>>>> which hangs the device.
+> >>>>>>>>>>
+> >>>>>>>>>> This is the log with block protection disabled:
+> >>>>>>>>>> [    0.495831] bcm6368_nand 10000200.nand: there is not valid =
+maps
+> >>>>>>>>>> for
+> >>>>>>>>>> state default
+> >>>>>>>>>> [    0.504995] nand: device found, Manufacturer ID: 0xc2, Chip=
+ ID:
+> >>>>>>>>>> 0xf1
+> >>>>>>>>>> [    0.511526] nand: Macronix MX30LF1G18AC
+> >>>>>>>>>> [    0.515586] nand: 128 MiB, SLC, erase size: 128 KiB, page s=
+ize:
+> >>>>>>>>>> 2048, OOB size: 64
+> >>>>>>>>>> [    0.523516] bcm6368_nand 10000200.nand: detected 128MiB tot=
+al,
+> >>>>>>>>>> 128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
+> >>>>>>>>>> [    0.535912] Bad block table found at page 65472, version 0x=
+01
+> >>>>>>>>>> [    0.544268] Bad block table found at page 65408, version 0x=
+01
+> >>>>>>>>>> [    0.954329] 9 fixed-partitions partitions found on MTD devi=
+ce
+> >>>>>>>>>> brcmnand.0
+> >>>>>>>>>> ...
+> >>>>>>>>>>
+> >>>>>>>>>> This is the log with block protection enabled:
+> >>>>>>>>>> [    0.495095] bcm6368_nand 10000200.nand: there is not valid =
+maps
+> >>>>>>>>>> for
+> >>>>>>>>>> state default
+> >>>>>>>>>> [    0.504249] nand: device found, Manufacturer ID: 0xc2, Chip=
+ ID:
+> >>>>>>>>>> 0xf1
+> >>>>>>>>>> [    0.510772] nand: Macronix MX30LF1G18AC
+> >>>>>>>>>> [    0.514874] nand: 128 MiB, SLC, erase size: 128 KiB, page s=
+ize:
+> >>>>>>>>>> 2048, OOB size: 64
+> >>>>>>>>>> [    0.522780] bcm6368_nand 10000200.nand: detected 128MiB tot=
+al,
+> >>>>>>>>>> 128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
+> >>>>>>>>>> [    0.539687] Bad block table not found for chip 0
+> >>>>>>>>>> [    0.550153] Bad block table not found for chip 0
+> >>>>>>>>>> [    0.555069] Scanning device for bad blocks
+> >>>>>>>>>> [    0.601213] CPU 1 Unable to handle kernel paging request at
+> >>>>>>>>>> virtual
+> >>>>>>>>>> address 10277f00, epc =3D=3D 8039ce70, ra =3D=3D 8016ad50
+> >>>>>>>>>> *** Device hangs ***
+> >>>>>>>>>>
+> >>>>>>>>>> Enabling macronix_nand_block_protection_support() makes the de=
+vice
+> >>>>>>>>>> unable to detect the bad block table and hangs it when trying =
+to
+> >>>>>>>>>> scan
+> >>>>>>>>>> for bad blocks.
+> >>>>>>>>>
+> >>>>>>>>> Please trace nand_macronix.c and look:
+> >>>>>>>>> - are the get_features and set_features really supported by the
+> >>>>>>>>>    controller driver?
+> >>>>>>>>
+> >>>>>>>> This is what I could find by debugging:
+> >>>>>>>> [    0.494993] bcm6368_nand 10000200.nand: there is not valid ma=
+ps for
+> >>>>>>>> state default
+> >>>>>>>> [    0.505375] nand: device found, Manufacturer ID: 0xc2, Chip I=
+D:
+> >>>>>>>> 0xf1
+> >>>>>>>> [    0.512077] nand: Macronix MX30LF1G18AC
+> >>>>>>>> [    0.515994] nand: 128 MiB, SLC, erase size: 128 KiB, page siz=
+e:
+> >>>>>>>> 2048, OOB size: 64
+> >>>>>>>> [    0.523928] bcm6368_nand 10000200.nand: detected 128MiB total=
+,
+> >>>>>>>> 128KiB blocks, 2KiB pages, 16B OOB, 8-bit, BCH-4
+> >>>>>>>> [    0.534415] bcm6368_nand 10000200.nand: ll_op cmd 0xa00ee
+> >>>>>>>> [    0.539988] bcm6368_nand 10000200.nand: ll_op cmd 0x600a0
+> >>>>>>>> [    0.545659] bcm6368_nand 10000200.nand: ll_op cmd 0x10000
+> >>>>>>>> [    0.551214] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES=
+ =3D
+> >>>>>>>> 0x00
+> >>>>>>>> [    0.557843] bcm6368_nand 10000200.nand: ll_op cmd 0x10000
+> >>>>>>>> [    0.563475] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES=
+ =3D
+> >>>>>>>> 0x00
+> >>>>>>>> [    0.569998] bcm6368_nand 10000200.nand: ll_op cmd 0x10000
+> >>>>>>>> [    0.575653] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES=
+ =3D
+> >>>>>>>> 0x00
+> >>>>>>>> [    0.582246] bcm6368_nand 10000200.nand: ll_op cmd 0x80010000
+> >>>>>>>> [    0.588067] bcm6368_nand 10000200.nand: NAND_CMD_GET_FEATURES=
+ =3D
+> >>>>>>>> 0x00
+> >>>>>>>> [    0.594657] nand: nand_get_features: addr=3Da0 subfeature_par=
+am=3D[00
+> >>>>>>>> 00 00 00] -> 0
+> >>>>>>>> [    0.602341] macronix_nand_block_protection_support:
+> >>>>>>>> ONFI_FEATURE_ADDR_MXIC_PROTECTION=3D0
+> >>>>>>>> [    0.610548] macronix_nand_block_protection_support: !=3D
+> >>>>>>>> MXIC_BLOCK_PROTECTION_ALL_LOCK
+> >>>>>>>> [    0.624760] Bad block table not found for chip 0
+> >>>>>>>> [    0.635542] Bad block table not found for chip 0
+> >>>>>>>> [    0.640270] Scanning device for bad blocks
+> >>>>>>>>
+> >>>>>>>> I don't know how to tell if get_features / set_features is reall=
+y
+> >>>>>>>> supported...
+> >>>>>>>
+> >>>>>>> Looks like your driver does not support exec_op but the core prov=
+ides a
+> >>>>>>> get/set_feature implementation.
+> >>>>>>
+> >>>>>> According to Florian, low level should be supported on brcmnand
+> >>>>>> controllers >=3D 4.0
+> >>>>>> Also:
+> >>>>>> https://github.com/nomis/bcm963xx_4.12L.06B_consumer/blob/e2f23ddb=
+b20bf75689372b6e6a5a0dc613f6e313/shared/opensource/include/bcm963xx/63268_m=
+ap_part.h#L1597
+> >>>>>
+> >>>>> Just to be sure, you're using a mainline controller driver, not thi=
+s
+> >>>>> one?
+> >>>>
+> >>>> Yes, this was just to prove that the HW I=E2=80=99m using has get/se=
+t features support.
+> >>>> I=E2=80=99m using OpenWrt, so it=E2=80=99s linux v5.15 driver.
+> >>>>
+> >>>>>
+> >>>>>>>
+> >>>>>>>>
+> >>>>>>>>> - what is the state of the locking configuration in the chip wh=
+en
+> >>>>>>>>> you
+> >>>>>>>>>    boot?
+> >>>>>>>>
+> >>>>>>>> Unlocked, I guess...
+> >>>>>>>> How can I check that?
+> >>>>>>>
+> >>>>>>> It's in your dump, the chip returns 0, meaning it's all unlocked,
+> >>>>>>> apparently.
+> >>>>>>
+> >>>>>> Well, I can read/write the device if block protection isn=E2=80=99=
+t disabled,
+> >>>>>> so I guess we can confirm it=E2=80=99s unlocked=E2=80=A6
+> >>>>>>
+> >>>>>>>
+> >>>>>>>>> - is there anything that locks the device by calling mxic_nand_=
+lock()
+> >>>>>>>>> ?
+> >>>>>>>
+> >>>>>>> So nobody locks the device I guess? Did you add traces there?
+> >>>>>>
+> >>>>>> It doesn=E2=80=99t get to the point that it enabled the lock/unloc=
+k functions
+> >>>>>> since it fails when checking if feature is 0x38, so there=E2=80=99=
+s no point
+> >>>>>> in adding those traces=E2=80=A6
+> >>>>>
+> >>>>> Right, it returns before setting these I guess.
+> >>>>>
+> >>>>>>
+> >>>>>>>
+> >>>>>>>>> - finding no bbt is one thing, hanging is another, where is it
+> >>>>>>>>> hanging
+> >>>>>>>>>    exactly? (offset in nand/ and line in the code)
+> >>>>>>>>
+> >>>>>>>> I've got no idea...
+> >>>>>>>
+> >>>>>>> You can use ftrace or just add printks a bit everywhere and try t=
+o get
+> >>>>>>> closer and closer.
+> >>>>>>
+> >>>>>> I think that after trying to get the feature it just start reading
+> >>>>>> nonsense from the NAND and at some point it hangs due to that garb=
+age=E2=80=A6
+> >>>>>
+> >>>>> It should refuse to mount the device somehow, but in no case the ke=
+rnel
+> >>>>> should hang.
+> >>>>
+> >>>> Yes, I think that this is a side effect (maybe a different bug somew=
+here else).
+> >>>>
+> >>>>>
+> >>>>>> Is it posible that the NAND starts behaving like this after gettin=
+g
+> >>>>>> the feature due to some specific config of my device?
+> >>>>>>
+> >>>>>>>
+> >>>>>>> I looked at the patch, I don't see anything strange. Besides, I h=
+ave a
+> >>>>>>> close enough datasheet and I don't see what could confuse the dev=
+ice.
+> >>>>>>>
+> >>>>>>> Are you really sure this patch is the problem? Is the WP pin wire=
+d on
+> >>>>>>> your design?
+> >>>>>>
+> >>>>>> There=E2=80=99s no WP pin in brcmnand controllers < 7.0
+> >>>>>
+> >>>>> What about the chip?
+> >>>>
+> >>>> Maybe it has a GPIO controlling that, but I don=E2=80=99t have that =
+info=E2=80=A6
+> >>>>
+> >>>>>
+> >>>>> Thanks,
+> >>>>> Miqu=C3=A8l
+> >>>>>
+>
+> --
+> Florian
+>
