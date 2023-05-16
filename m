@@ -2,187 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E44ED70597D
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 23:31:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D038E705985
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 23:33:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230055AbjEPVbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 17:31:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48294 "EHLO
+        id S230486AbjEPVd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 17:33:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbjEPVbS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 17:31:18 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3043A6E88
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 14:31:17 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id d2e1a72fcca58-6434e263962so10799430b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 14:31:17 -0700 (PDT)
+        with ESMTP id S229550AbjEPVdZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 17:33:25 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1501672B6
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 14:33:19 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1ae3c204e0aso1147235ad.2
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 14:33:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684272676; x=1686864676;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=R5CRHn8zU2wZsvy0JRRZis0EWZY7YDhaSFOHEA4KdRg=;
-        b=o4uwt/CEsKOFVj4TSBd9vuegw2VIZM9zVBVMpcYfDe9/EKHD52bRQNnaFbjpbkHJ9p
-         YplJPVxC1QHPQx5yH/tZwo4tBQAj5EFxdqd9FxWnMi5sjpS4xui7FsgN2dpvILzib/Hk
-         faroGEqAEyUgMM0+717KknAxv3UII1KDhg0glpLXzpBYje/KSloSiAtGRvvIx3MkHjgi
-         VKD5e/ZjZAztMwm4+LWz2VWSjXW8kVp2htInaNA5jlDsrXioL+90VDshEbq3TdfNjSPc
-         Yleugl/EQgz52mrBRjAMGK9M7mauAmyGuptJxSEeCz6+OP4P7/Lm2HNTU4nOZz7xjcob
-         bawg==
+        d=linaro.org; s=google; t=1684272798; x=1686864798;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LLMgIHPQmJu/1Np7gwEEcuFmiDPkCPkBr1mT4JM4rzo=;
+        b=Az5SOSmnGCHlhTw6JDTWUSNIDuggqumq6SA4lePlgV0raNwlHdt4P2UZKXDWNQIlEr
+         f3aHsNFvYjkWJcl44gvYnBkVW0CdBzGa9Vad1GC/hYs9LGBJs/6dRRdUDFgg007AXB2k
+         cszC2hrl5pG0t7EBgNvGihnGgzVzyvKtu9WG4D/9PpZOKYwcIxioXz51z2u9Amq3XcKy
+         fE5EFNDx3KviKMnantY4TokbwFvZSWCnP3hbza8AYvRwBMt5zEDRiScd9kUobOBbkX7o
+         abnovn1fcv9qgLk8f6cNNJLihfWAHD5MFPwmeW6cbFlpZ3Lsy7ufwn7kcoloXh6xyzi/
+         qLzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684272676; x=1686864676;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R5CRHn8zU2wZsvy0JRRZis0EWZY7YDhaSFOHEA4KdRg=;
-        b=Ec9YjCpieceY38hyiyeP5p04tQxdEMzXmEwek2arOFPcIm1YiSyRzSO8HxDrMQQ43+
-         7a26GmfUCI7EbIuZbPCzTS4wPGq/48fboKGiGEeiG0qNp1hr0pdFri609HA8mfnGCHE2
-         bI87VvKS+oYVO4ttJqCna9yO4UFHIpTMARR9EcMeIc595E86WsBCbSEUp7eU7GLBsLeg
-         TTDZBgU+uIJxVQuj13SFYaFo0J3UJapazz/OJbNZrlnkopoOcAsDTlf5smCVOYP+/i8B
-         1xaw8kCUtYRNT3yb2WEOfUEMpfXmIOm8Lzcad+L/7Bsrp7amtBxR8FEyax5FpCApgCkp
-         5Mpw==
-X-Gm-Message-State: AC+VfDzqRoZlrcFSwyTOS5zbOIkwu3Vxa0WL3qtr7zH7s1HUO1DqIz+W
-        NeI0Rckb0HlxIi8Daf/89Eutpw==
-X-Google-Smtp-Source: ACHHUZ6+HwilpdkWKX7TFAFXPBYVyOINgkLVoqxcmDktQYsz1CYMpBHtUHdIF5XtrBA17/dhRUjXAg==
-X-Received: by 2002:a05:6a00:2d0e:b0:641:699:f353 with SMTP id fa14-20020a056a002d0e00b006410699f353mr52896229pfb.22.1684272676506;
-        Tue, 16 May 2023 14:31:16 -0700 (PDT)
-Received: from localhost (63-228-113-140.tukw.qwest.net. [63.228.113.140])
-        by smtp.gmail.com with ESMTPSA id e11-20020a62ee0b000000b00642ea56f06dsm13790697pfi.26.2023.05.16.14.31.14
+        d=1e100.net; s=20221208; t=1684272798; x=1686864798;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LLMgIHPQmJu/1Np7gwEEcuFmiDPkCPkBr1mT4JM4rzo=;
+        b=Yh9gLM7BQDtmCHWiYl+hKUBtu9S3oPf9LFesKXjp3Jhp9Jp1Q61dLyIY4pQ/AKDoY1
+         3JzNBWgcrqXC7DdVFfK3MqQygMaWXJU916U9qf08iJJ7ImQZtpAUnp766V9CAzGTTjGI
+         P750F+lq1ASOJJ3NvyBVnZcsiRwmVit5AqUBfk57jox9aA2iVV5pjzGt6+4uFflhe+zF
+         z4Kqi9+CNR41Ebl0mwK8zrPrBIZ1IzfSABFog3Ue+HlltcdHfPGlW8HIcSoiyQTcEf3S
+         lS5Wc9AccuoyPktmr9r/lTBL21Hh5W6U+hjin34j5zOXeNCyxznIJm4ANL3NuZxlHdFJ
+         TFQw==
+X-Gm-Message-State: AC+VfDxX3XmtxNoytYYIBW9rTMZiEEdUCUNXMOsdboyH3k0d9s12T09H
+        wk/06dY3+lO9eWR3R0sXSbl7dg==
+X-Google-Smtp-Source: ACHHUZ5zz3hRVPRyPe9s55BvxQJvCyVwE7M2uvP1Gh3v6P20qkv0aKgNqssHHzdhRsvxyCxQqzvutQ==
+X-Received: by 2002:a17:902:a503:b0:1ae:197f:dba9 with SMTP id s3-20020a170902a50300b001ae197fdba9mr9156244plq.2.1684272798302;
+        Tue, 16 May 2023 14:33:18 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c60:6bed:7a51:340a:a439:1b87])
+        by smtp.gmail.com with ESMTPSA id jh19-20020a170903329300b001ac7af57fd4sm16027676plb.86.2023.05.16.14.33.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 14:31:14 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Julien Stephan <jstephan@baylibre.com>
-Cc:     robh@kernel.org, chunkuang.hu@kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Florian Sylvestre <fsylvestre@baylibre.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Andy Hsieh <andy.hsieh@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: add mediatek mipi csi driver v
- 0.5
-In-Reply-To: <fbf1b0a6-f45d-69a0-5de6-8269567e15b3@linaro.org>
-References: <20230515090551.1251389-1-jstephan@baylibre.com>
- <20230515090551.1251389-2-jstephan@baylibre.com>
- <ab9aa30f-82d7-1d14-5561-e19ff10af0b0@linaro.org>
- <4yppinkucchwnwtnnpbqdn4bejmntjq3q6mx6es55f2pwyce3c@qdhdks47lpyt>
- <1853f049-4f00-b7f0-973a-2c4e7b0b2634@linaro.org>
- <7h353w2oug.fsf@baylibre.com>
- <fbf1b0a6-f45d-69a0-5de6-8269567e15b3@linaro.org>
-Date:   Tue, 16 May 2023 14:31:13 -0700
-Message-ID: <7hwn18yndq.fsf@baylibre.com>
+        Tue, 16 May 2023 14:33:17 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        bhupesh.sharma@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org
+Subject: [PATCH v5 0/5] Add Qualcomm SM6115 / SM4250 EUD dt-bindings & driver support
+Date:   Wed, 17 May 2023 03:03:03 +0530
+Message-Id: <20230516213308.2432018-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof, 
+Changes since v4:
+----------------
+- v4 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230505064039.1630025-1-bhupesh.sharma@linaro.org/
+- Addressed Konrad's review comments regarding EUD driver code.
+- Also collected his R-B for [PATCH 4/5 and 5/5].
+- Fixed the dt-bindings as per Krzysztof's comments.
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
+Changes since v3:
+----------------
+- v3 can be viewed here: https://www.spinics.net/lists/linux-arm-msm/msg137025.html 
+- Addressed Konrad's review comments regarding mainly the driver code.
+  Also fixed the .dtsi as per his comments.
+- Also collected his R-B for [PATCH 1/5].
 
-> On 16/05/2023 19:00, Kevin Hilman wrote:
->>>>>> +  compatible:
->>>>>> +    enum:
->>>>>> +      - mediatek,phy-mipi-csi-0-5
->>>>>
->>>>> SoC based compatibles. 0-5 is odd.
->>>>>
->>>>>> +
->>>>>> +  reg:
->>>>>> +    maxItems: 1
->>>>>> +
->>>>>> +  '#phy-cells':
->>>>>> +    const: 0
->>>>>> +
->>>>>> +  mediatek,is_cdphy:
->>>>>
->>>>> No underscores in node names.
->>>>>
->>>>>> +    description:
->>>>>> +      Specify if the current phy support CDPHY configuration
->>>>>
->>>>> Why this cannot be implied from compatible? Add specific compatibles.
->>>>>
->>>>>
->>>> This cannot be implied by compatible because the number of phys depends
->>>> on the soc and each phy can be either D-PHY only or CD-PHY capable.
->>>> For example mt8365 has 2 phy: CSI0 and CSI1. CSI1 is DPHY only and CSI0 is CD-PHY
->>>
->>> So it is SoC specific so why it cannot be implied by compatible? I don't
->>> understand. You will have SoC specific compatibles, right? or you just
->>> ignored my comments here?
->> 
->> Julien, I think you had SoC specific compatibles in an earlier version
->> but then changed it to be generic based on reviewer feedback.  However,
->> that earlier version of the driver was trying to do a bunch of SoC
->> specific logic internally and support multiple SoCs.  You've now greatly
->> simplified the driver, with only a few SoC specific decisions needed.
->> These can be implied by the driver based SoC specific compatible, as
->> Krzysztof suggests, so you should just go back to having SoC specific
->> compatibles.
->> 
->
-> Yes. If there is common part, e.g. several SoCs use the same device with
-> same programming model, then the generic recommendation is to have
-> SoC-based fallback (used also in the driver) and SoC-specific compatibles.
->
-> Second accepted solution is to have generic fallback which does not use
-> SoC in the compatible (and of course mandatory SoC-specific comaptibles).
->
-> Third is to use versioned IP blocks.
->
-> The second case also would work, if it is applicable to you (you really
-> have fallback matching all devices). Third solution depends on your
-> versioning and Rob expressed dislike about it many times.
->
-> We had many discussions on mailing lists, thus simplifying the review -
-> I recommend the first choice. For a better recommendation you should say
-> a bit more about the block in different SoCs.
+Changes since v2:
+----------------
+- v2 can be viewed here: https://www.spinics.net/lists/linux-arm-msm/msg137025.html 
+- Addressed Bjorn and Krzysztof's comments.
+- Added [PATCH 1/5] which fixes the 'qcom_eud' sysfs path. 
+- Added [PATCH 5/5] to enable EUD for Qualcomm QRB4210-RB2 boards.
 
-I'll try to say a bit more about the PHY block, but in fact, it's not
-just about differences between SoCs. On the same SoC, 2 different PHYs
-may have different features/capabilities.
+Changes since v1:
+----------------
+- v1 can be viewed here: https://lore.kernel.org/linux-arm-msm/20221231130743.3285664-1-bhupesh.sharma@linaro.org
+- Added Krzysztof in Cc list.
+- Fixed the following issue reported by kernel test bot:
+  >> ERROR: modpost: "qcom_scm_io_writel" [drivers/usb/misc/qcom_eud.ko] undefined!
 
-For example, on MT8365, There are 2 PHYs: CSI0 and CSI1.  CSI0 can
-function as a C-PHY or a D-PHY, but CSI1 can only function as D-PHY
-(used as the example in the binding patch[1].)  On another related SoC,
-there are 3 PHYs, where CSI0 is C-D but CSI1 & CSI2 are only D.
+This series adds the dt-binding and driver support for SM6115 / SM4250
+EUD (Embedded USB Debugger) block available on Qualcomm SoCs.
 
-So that's why it seems (at least to me) that while we need SoC
-compatible, it's not enough.  We also need properties to describe
-PHY-specific features (e.g. C-D PHY)
+It also enables the same for QRB4210-RB2 boards by default (the user
+still needs to enable the same via sysfs).
 
-Of course, we could rely only on SoC-specific compatibles describe this.
-But then driver will need an SoC-specific table with the number of PHYs
-and per-PHY features for each SoC encoded in the driver.  Since the
-driver otherwise doesn't (and shouldn't, IMHO) need to know how many
-PHYs are on each SoC, I suggested to Julien that perhaps the additional
-propery was the better solution.  
+The EUD is a mini-USB hub implemented on chip to support the USB-based debug
+and trace capabilities.
 
-To me it seems redundant to have the driver encode PHYs-per-SoC info,
-when the per-SoC DT is going to have the same info, so my suggestion was
-to simplify the driver and have this kind of hardware description in the
-DT, and keep the driver simple, but we are definitely open to learning
-the "right way" of doing this.
+EUD driver listens to events like USB attach or detach and then
+informs the USB about these events via ROLE-SWITCH.
 
-Thanks for your review and guidance,
+Bhupesh Sharma (5):
+  usb: misc: eud: Fix eud sysfs path (use 'qcom_eud')
+  dt-bindings: soc: qcom: eud: Add SM6115 / SM4250 support
+  usb: misc: eud: Add driver support for SM6115 / SM4250
+  arm64: dts: qcom: sm6115: Add EUD dt node and dwc3 connector
+  arm64: dts: qcom: qrb4210-rb2: Enable EUD debug peripheral
 
-Kevin
+ Documentation/ABI/testing/sysfs-driver-eud    |  2 +-
+ .../bindings/soc/qcom/qcom,eud.yaml           | 42 ++++++++++-
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts      | 27 +++++++-
+ arch/arm64/boot/dts/qcom/sm6115.dtsi          | 50 ++++++++++++++
+ drivers/usb/misc/Kconfig                      |  1 +
+ drivers/usb/misc/qcom_eud.c                   | 69 +++++++++++++++++--
+ 6 files changed, 179 insertions(+), 12 deletions(-)
 
-[1] https://lore.kernel.org/linux-mediatek/20230515090551.1251389-2-jstephan@baylibre.com/
+-- 
+2.38.1
+
