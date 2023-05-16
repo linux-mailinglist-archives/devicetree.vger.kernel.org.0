@@ -2,88 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D87B704F0F
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:18:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E7CB704F16
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:19:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233551AbjEPNSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:18:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33352 "EHLO
+        id S232874AbjEPNTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:19:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233545AbjEPNSg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:18:36 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 067C530E8;
-        Tue, 16 May 2023 06:18:35 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A6F8066058F2;
-        Tue, 16 May 2023 14:18:32 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1684243113;
-        bh=Z53vfnjM1pDRjRatK4NL7mBjKR6/M0ZYTm/lrMQj4Hg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=R1ZR5LXxd5+KzuDqg3hnNv8LbHRxcReXjHFdO70o87XKc/fbnO6u/2bME8nCFPNZ/
-         p7+/OqAIy7NtZJEu86xDV/m7i7G8rLrWvvNNstrjdDEKsvu6DnYfsk/hIGQw6pFSuY
-         iG9EV/8GE+xg2QLPZewnrt3R9I10uzX6srSp5lKwyLnDxy8zLGbCnf0Ywjij3Dw/KY
-         3P0qzIUjjsU8pRslTmaQdhBv+7JqaIlezAEPMLIwhkqOaHNqVGg1ud2CwIWd1cKixY
-         0zTur5a2NWBJou3dk883a8gjqYzRwJ06qynZi+ha0yyAOVGe7eeBWZR+0FNIbsfFSP
-         3ZSRDRdMAIkkQ==
-Message-ID: <3e5c9fd9-ee6b-d903-10d0-0fc663cedd40@collabora.com>
-Date:   Tue, 16 May 2023 15:18:30 +0200
+        with ESMTP id S233240AbjEPNTP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:19:15 -0400
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18D1B5FEB
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:18:57 -0700 (PDT)
+Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-6a603577a89so2193064a34.0
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:18:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684243137; x=1686835137;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zWCoYyc6KMpf4b+p57bQAtgyaIy8WwxCdNoHBbj8E+o=;
+        b=BgcC5KEFGseKN9ErbNho3kDUNDrqVvHQjIVOcNYZ7DIlez4dDqyMcyEAOa5GWevhfx
+         pjHZy7+sz4GEmVt0OmepYuAVX4N4pUbw22hni1/mGD+darfCGQM79gMUDX8A3AzCUsFw
+         H3PWr3AvKvHdJVccPC+x5+VecKyC0BLVlabDapPxpeNSlFY5CGiyFF+Tv/gjW8amNKbf
+         7JcuqdjyW4LrR4TqNqJQ0XKndQZOcU54B+3ysefycjVAA6UVZQ13MtwNpg0FwTr7iNMl
+         FsvLS9PhbxxM3LQ6LoA3YdPKzY7BGqvpLaqU++NA/daTWEV/Y4k0dc5xoI3jXk4cB8z4
+         BIDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684243137; x=1686835137;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zWCoYyc6KMpf4b+p57bQAtgyaIy8WwxCdNoHBbj8E+o=;
+        b=KO0ycUzNmxloUu9J0S8/EnIZy5woGLZ9oz6cqWPL92tLkIVEclaMeUoOPAryZeZA9/
+         tjeScbNxVBc85bpBjukzCjXKGrWckw8Hcvz7SFRmWlC4x1IEUMNUYbMxNHi2yqbjTBGC
+         9TVqY9MdWFUc0/eg1HHCu7pF18nIvH4fm7H6dtZIb3504QXGQlrY6CEiF/Celx01HcJa
+         hlxmQ8ZO9tvRB36EUl6y/bvwnBhpWrijYE7gMiengcP0JA4/M7N1j5vYif5kGukPre0x
+         RM+Hp6tgE3DdqV2oL3JL1DceKVNafmPsUHKLdqfvpIAqJp204d9JkQxY3EB3GrK2cJij
+         4H9g==
+X-Gm-Message-State: AC+VfDyJC+Yj/ApNReqGCkUerFi4+jRdOYTCRTij/XsB0+WxAKUHzwW9
+        kFe96uz2ieMnI9dNIGi1mK8=
+X-Google-Smtp-Source: ACHHUZ70p+9YkT0P1vLXAGzIwlJGPyi3xnAAAPhAzJcOtEgDWWKrADjv9tb/LwlXHWuQa+XVPcEx3w==
+X-Received: by 2002:a05:6830:459b:b0:6aa:f618:8103 with SMTP id az27-20020a056830459b00b006aaf6188103mr1009385otb.3.1684243137230;
+        Tue, 16 May 2023 06:18:57 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:12fe:baa9:ec21:f64b])
+        by smtp.gmail.com with ESMTPSA id l12-20020a056830154c00b006ab15b6f50esm7763917otp.59.2023.05.16.06.18.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 06:18:56 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     f.fainelli@gmail.com
+Cc:     hauke@hauke-m.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 2/2] ARM: dts: bcm947189acdbmr: Replace deprecated spi-gpio properties
+Date:   Tue, 16 May 2023 10:18:48 -0300
+Message-Id: <20230516131848.580507-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v2 3/5] arm64: dts: mediatek: mt8183: Add
- mediatek,broken-save-restore-fw to kukui
-To:     Douglas Anderson <dianders@chromium.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        wenst@chromium.org, yidilin@chromium.org,
-        Tinghan Shen <tinghan.shen@mediatek.com>, jwerner@chromium.org,
-        Weiyi Lu <weiyi.lu@mediatek.com>, Ben Ho <Ben.Ho@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Enric Balletbo i Serra <eballetbo@kernel.org>,
-        linux-kernel@vger.kernel.org
-References: <20230515131353.v2.cover@dianders>
- <20230515131353.v2.3.I525a2ed4260046d43c885ee1275e91707743df1c@changeid>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230515131353.v2.3.I525a2ed4260046d43c885ee1275e91707743df1c@changeid>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/05/23 22:13, Douglas Anderson ha scritto:
-> Firmware shipped on mt8183 Chromebooks is affected by the GICR
-> save/restore issue as described by the patch ("dt-bindings:
-> interrupt-controller: arm,gic-v3: Add quirk for Mediatek SoCs w/
-> broken FW"). Add the quirk property.
-> 
-> Fixes: cd894e274b74 ("arm64: dts: mt8183: Add krane-sku176 board")
-> Reviewed-by: Julius Werner <jwerner@chromium.org>
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+From: Fabio Estevam <festevam@denx.de>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+As stated in Documentation/devicetree/bindings/spi/spi-gpio.yaml,
+'gpio-miso', 'gpio-mosi' and 'gpio-sck' are deprecated properties.
 
+Use the recommeded 'miso-gpios', 'mosi-gpios' and 'sck-gpios' instead.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm/boot/dts/bcm947189acdbmr.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm/boot/dts/bcm947189acdbmr.dts b/arch/arm/boot/dts/bcm947189acdbmr.dts
+index 3709baa2376f..0b8727ae6f16 100644
+--- a/arch/arm/boot/dts/bcm947189acdbmr.dts
++++ b/arch/arm/boot/dts/bcm947189acdbmr.dts
+@@ -60,9 +60,9 @@ button-wps {
+ 	spi {
+ 		compatible = "spi-gpio";
+ 		num-chipselects = <1>;
+-		gpio-sck = <&chipcommon 21 0>;
+-		gpio-miso = <&chipcommon 22 0>;
+-		gpio-mosi = <&chipcommon 23 0>;
++		sck-gpios = <&chipcommon 21 0>;
++		miso-gpios = <&chipcommon 22 0>;
++		mosi-gpios = <&chipcommon 23 0>;
+ 		cs-gpios = <&chipcommon 24 0>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-- 
+2.34.1
 
