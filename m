@@ -2,162 +2,333 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C83705A5A
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 00:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49328705A70
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 00:13:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbjEPWBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 18:01:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43338 "EHLO
+        id S229486AbjEPWNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 18:13:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjEPWBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 18:01:33 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A9D1706;
-        Tue, 16 May 2023 15:01:31 -0700 (PDT)
-Received: from mercury (unknown [185.254.75.45])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 03C2E66058F7;
-        Tue, 16 May 2023 23:01:30 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1684274490;
-        bh=6VuzT6ae7G/wqb/mbM+/UZDAQjp/Is1WP9mWxQ5YyIo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TzwHnsUgq6M5aQDQ7BliujRzwfM+sKCjIweA7mkDMTVE76Lslbg4iU4+F+MGRG9kP
-         tvHeMh++vslPUk/x39l/R4op0k2zaIp0wV52A2tSkH2PUdR/5t7t0GzFHRC7AdBEZK
-         OLoMQ/vJH/RIvnjZwZBhITKeusFpWGXSZM6Zt6UDIAPHRsDnOxdOj7KHYx64nsSOGE
-         BavuGd84nu17CWUqcd9N3T0WFa+p5oh9V3BNERaR6kPG9Pcy1mLL9zbv937Bq0/Whn
-         RZvVp3eeL8zkxYALmjjPVNulIbJ9fnTV51LyLndbuWXkj/qvtcNRPChnzta8lDPKB6
-         bCUF/ohnOBS6Q==
-Received: by mercury (Postfix, from userid 1000)
-        id B264110620FE; Wed, 17 May 2023 00:01:27 +0200 (CEST)
-Date:   Wed, 17 May 2023 00:01:27 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Diederik de Haas <didi.debian@cknow.org>,
-        Vincent Legoll <vincent.legoll@gmail.com>
-Subject: Re: [PATCH v8 05/14] mfd: rk808: split into core and i2c
-Message-ID: <20230516220127.ohumwhchhzzmw7he@mercury.elektranox.org>
-References: <20230504173618.142075-1-sebastian.reichel@collabora.com>
- <20230504173618.142075-6-sebastian.reichel@collabora.com>
- <CGME20230516212700eucas1p1fbde1b6181c18d821e0796b6b6a4fa00@eucas1p1.samsung.com>
- <2d234cd8-f883-800b-af97-116a949b64af@samsung.com>
+        with ESMTP id S229456AbjEPWNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 18:13:21 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A65446B0;
+        Tue, 16 May 2023 15:13:19 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-24ded4b33d7so104696a91.3;
+        Tue, 16 May 2023 15:13:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684275199; x=1686867199;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=deLfvcQ8xa6CGUhVXRhGKunzIPsoCAcNdYd8Dsf32jM=;
+        b=cnRk6WTCmn7+02bJP06xojBUtFVAapIW8EBusy6jRtOAT6EtdBpWwOJR9b8slQU26J
+         u4Yl3zSl5LPNX/vA6TQzHKcc/tM4bvGcbV9rpX9voRSJg5Bxnzu5MJI5E2tRZ4mlV8jZ
+         qkV6PJETsXUiWE3ZcyAcKKhj99G/D/723PIUstPKQqT8RfuY9vaP7KecxQqG/DMQMoqY
+         Sc+p7lP19ygaZutb+W100Trgktn7r9ziYcwCliq5SQfLQW7pGj4uB3BO1VGbDePkterP
+         oTpTymNr/8vayPrlGXiQAKkZUNa+GqgeWwUk2UixHygCYFdpNRQ5K+fk1dQikQ7yR8nS
+         3Zuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684275199; x=1686867199;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=deLfvcQ8xa6CGUhVXRhGKunzIPsoCAcNdYd8Dsf32jM=;
+        b=Nk2y9jI0bhmjCiozdsbeU+rVWg4Y7MbW8tnHtb0545O1GsVTYtLKdTXivLr50gPy0O
+         0zT7SrKKifPLnW/JXCrvfGoG7oBWe9HQhasESpwGGi6b/4fTyTNL8NjVAv0qMOcsWVW6
+         XLHj9THnp3GZ023x1JTxb33GqlTrPTCD3jOCa2RvtLXWU6rNx+I8jZm2BJu5InKNyT6S
+         05KAngrxkGi43uxo2qtOo/eogVIWhYThT6s77njtTtUqFrFVwtMnnEGtMB+eAV3ciJX0
+         R+TGoW49foByTC83vFk/H1P6B/GKpaB94uKD6Uijd8HwF3F+digN2zdxSbQ6t0lT/TLt
+         MS5A==
+X-Gm-Message-State: AC+VfDw4icWABkuGmyzJi1Tpj0wEvtMZa0mFWR6FIf4CKrz/AcwHIZgq
+        ipAbVLHaJNy8scAAt5Ongk5UbGUjEa+TdQrF6qIGuEQytGb+K6qm
+X-Google-Smtp-Source: ACHHUZ7QHvqhBmf6DE62EnZvVmHwt/V7NlzlJIjAlLypBO6QGP0Uf8LSkmhLsqmTYyjEvvF0N8BPhjOVQ/rZKQqDVj4=
+X-Received: by 2002:a17:90a:b297:b0:24d:ff56:f8c1 with SMTP id
+ c23-20020a17090ab29700b0024dff56f8c1mr39160380pjr.13.1684275198705; Tue, 16
+ May 2023 15:13:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mutsuecdbukxiwro"
-Content-Disposition: inline
-In-Reply-To: <2d234cd8-f883-800b-af97-116a949b64af@samsung.com>
+References: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
+ <023f6cf9-0f08-f27e-d203-5ff78faf110f@linaro.org>
+In-Reply-To: <023f6cf9-0f08-f27e-d203-5ff78faf110f@linaro.org>
+From:   Paulo Pavacic <pavacic.p@gmail.com>
+Date:   Wed, 17 May 2023 00:13:06 +0200
+Message-ID: <CAO9szn1EsbuPSRrOW8CLqhp+QUcL=9NE93FAwsg2n3htd_aJTw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: display: panel: add panel-mipi-dsi-bringup
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        robh+dt@kernel.org, daniel@ffwll.ch,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello, thank you for your time to review this patch and sorry for not
+addressing all of the concerns, it was done unintentionally. This is
+my first contribution to the Linux kernel and it is quite a process.
+I have run those two scripts and haven't received any errors I have
+latest master cloned so I will check what I did wrong.
 
---mutsuecdbukxiwro
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The thing I would like to get approval on before I try anything else
+is the name 'panel-mipi-dsi-bringup':
 
-Hello Marek,
+> Still wrong filename. You did not respond to my previous comments, so I
+don't really understand what's this.
+>
+> Judging by compatible, this should be fannal,c3004.yaml
+>
+> If not, explain please.
+>
+> Missing user of the bindings - driver or DTS. Please sent patches togethe=
+r as patchset.
 
-On Tue, May 16, 2023 at 11:26:59PM +0200, Marek Szyprowski wrote:
-> Hi,
->=20
-> On 04.05.2023 19:36, Sebastian Reichel wrote:
-> > Split rk808 into a core and an i2c part in preparation for
-> > SPI support.
+
+I wasn't sure how to name it and this name seemed fit. I'm not sure
+how to be concise about this, but here is the full story as to why I
+have done that:
+
+I got a task to enable panel for which working driver wasn't
+available. I have started testing raydium driver and modifying parts
+of it until I got it working.
+Driver was modified quite a lot, new functions, macros and structures
+were added which resulted in a new driver.
+Therefore I have made a simple driver which I have submitted for a
+review which will probably be rejected now due tomany reasons I have
+noticed after sending it:
+https://lore.kernel.org/lkml/CAO9szn03msW6pu37Zws5EaFGL10rjp9ugPdCuDvOPuQRU=
+72gVQ@mail.gmail.com/T/
+
+While talking with manufacturers of the panel I have figured out that
+they aren't that familiar with the Linux kernel.
+They had previously only enabled  it on bare metal (PLA?) and provided
+me with the initialization sequences. Initialization sequences are hex
+values sent over MIPI DSI to initialize panel controller.
+Initialization sequences sometimes also require delays after certain
+commands and for different panels it can be very different.
+I believe I have simplified it so that someone can follow comments
+inside of the driver and try to enable mipi dsi panel by copy pasting
+initialization code from bare metal system and doing minor
+modifications.
+Since I have targeted this at people who need to enable their panels
+for the first time name seemed okay. I thought that since there is
+panel-simple.yml that panel-mipi-dsi-bringup.yml would be acceptable
+name.
+
+Best regards,
+Paulo
+
+
+uto, 16. svi 2023. u 17:57 Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> napisao je:
+>
+> On 16/05/2023 15:09, Paulo Pava=C4=8Di=C4=87 wrote:
+> > Add dt-bindings documentation for panel-mipi-dsi-bringup which currentl=
+y
+> > supports fannal,c3004 panel. Also added fannal to vendor-prefixes.
+>
+> Thank you for your patch. There is something to discuss/improve.
+>
 > >
-> > Acked-for-MFD-by: Lee Jones <lee@kernel.org>
-> > Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com> # for RTC
-> > Tested-by: Diederik de Haas <didi.debian@cknow.org> # Rock64, Quartz64 =
-Model A + B
-> > Tested-by: Vincent Legoll <vincent.legoll@gmail.com> # Pine64 QuartzPro=
-64
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
->=20
-> This patch landed in today's linux-next as commit c20e8c5b1203 ("mfd:=20
-> rk808: Split into core and i2c"). Unfortunately some boards (for example=
-=20
-> Hardkernel's Odroid-M1) stopped to boot after this change. This is=20
-> caused by the lack of updating the related defconfigs. Could you please=
-=20
-> add a patch that updates the MFD_RK808 entries to MFD_RK8XX_I2C in the=20
-> following files:
->=20
-> $ git grep MFD_RK808
-> arch/arm/configs/multi_v7_defconfig:CONFIG_MFD_RK808=3Dy
-> arch/arm64/configs/defconfig:CONFIG_MFD_RK808=3Dy
-
-Sure, I will prepare a patch for each of them. Thanks for the quick
-report and sorry for the inconvenience.
-
--- Sebastian
-
->=20
->=20
+> > v2 changelog:
+>
+> Please put changelog after ---
+>
+> Missing user of the bindings - driver or DTS. Please sent patches
+> together as patchset.
+>
+>
+>
+> >   - revised driver title, now describes purpose
+> >   - revised description, now describes hw
+> >   - revised maintainers, now has only 1 mail
+> >   - removed diacritics from commit/commit author
+> >   - properties/compatible is now enum
+> >   - compatible using only lowercase
+> >   - revised dts example
+> >   - modified MAINTAINERS in this commit (instead of driver commit)
+> >   - dt_bindings_check checked yml
+> >   - checkpatch warning fixed
+> >
+> > Signed-off-by: Paulo Pavacic <pavacic.p@gmail.com>
 > > ---
-> >   drivers/clk/Kconfig                   |   2 +-
-> >   drivers/input/misc/Kconfig            |   2 +-
-> >   drivers/mfd/Kconfig                   |   7 +-
-> >   drivers/mfd/Makefile                  |   3 +-
-> >   drivers/mfd/{rk808.c =3D> rk8xx-core.c} | 209 +++++------------------=
----
-> >   drivers/mfd/rk8xx-i2c.c               | 200 ++++++++++++++++++++++++
-> >   drivers/pinctrl/Kconfig               |   2 +-
-> >   drivers/power/supply/Kconfig          |   2 +-
-> >   drivers/regulator/Kconfig             |   2 +-
-> >   drivers/rtc/Kconfig                   |   2 +-
-> >   include/linux/mfd/rk808.h             |   6 +
-> >   sound/soc/codecs/Kconfig              |   2 +-
-> >   12 files changed, 256 insertions(+), 183 deletions(-)
-> >   rename drivers/mfd/{rk808.c =3D> rk8xx-core.c} (76%)
-> >   create mode 100644 drivers/mfd/rk8xx-i2c.c
+> >  .../display/panel/panel-mipi-dsi-bringup.yaml | 54 +++++++++++++++++++
+> >  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+> >  MAINTAINERS                                   |  6 +++
+> >  3 files changed, 62 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.=
+yaml
+>
+> Still wrong filename. You did not respond to my previous comments, so I
+> don't really understand what's this.
+>
+> Judging by compatible, this should be fannal,c3004.yaml
+>
+> If not, explain please.
+>
 > >
-> > ...
->=20
-> Best regards
-> --=20
-> Marek Szyprowski, PhD
-> Samsung R&D Institute Poland
->=20
+> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi=
+-dsi-bringup.yaml
+> > b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringu=
+p.yaml
+> > new file mode 100644
+> > index 000000000000..c9e2b545657e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-br=
+ingup.yaml
+> > @@ -0,0 +1,54 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/panel/panel-mipi-dsi-bringu=
+p.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MIPI DSI Bringup Panel Porting Bindings
+>
+> Drop Bindings. I don't understand what is "Porting" in the terms of
+> hardware. If it these are bindings for Panel, please write here proper
+> hardware.
+>
+> > +
+> > +description: |
+> > +  MIPI DSI Bringup Panel porting bindings to be used for a collection =
+of panels
+>
+> I have no clue what is "Bringup panel". Is it technical term for some
+> type of panels?
+>
+> > +  from different manufacturers which don't require backlight control f=
+rom the
+> > +  driver and have a single reset pin which is required to be passed as=
+ an
+> > +  argument.
+>
+> Drop "driver"
+>
+> > +
+> > +maintainers:
+> > +  - Paulo Pavacic <pavacic.p@gmail.com>
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +
+>
+> Drop blank line.
+>
+> > +  compatible:
+> > +    enum:
+> > +      # compatible must be listed in alphabetical order, ordered by co=
+mpatible.
+> > +      # The description in the comment is mandatory for each compatibl=
+e.
+>
+> Drop above comment.
+>
+> > +
+> > +        # Fannal 480x800 panel
+> > +      - fannal,c3004
+> > +
+> > +  reg: true
+> > +  reset-gpios: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reset-gpios
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    //example on IMX8MM where GPIO pin 9 is used as a reset pin
+>
+> This is a friendly reminder during the review process.
+>
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
+>
+> Thank you.
+>
+> I asked to drop the comment.
+>
+> > +    mipi_dsi@32e10000 {
+>
+> dsi {
+>
+> There is no way it was correct in current form.
+>
+> It does not look like you tested the bindings, at least after quick
+> look. Please run `make dt_binding_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> Maybe you need to update your dtschema and yamllint.
+>
+> > +        panel@0 {
+> > +            compatible =3D "fannal,c3004";
+> > +            reg =3D <0>;
+> > +            pinctrl-0 =3D <&pinctrl_mipi_dsi_rst>;
+> > +            pinctrl-names =3D "default";
+> > +            reset-gpios =3D <&gpio1 9 GPIO_ACTIVE_LOW>;
+> > +        };
+> > +    };
+> > +...
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > index 82d39ab0231b..f962750f630a 100644
+> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > @@ -462,6 +462,8 @@ patternProperties:
+> >      description: Facebook
+> >    "^fairphone,.*":
+> >      description: Fairphone B.V.
+> > +  "^fannal,.*":
+> > +    description: Fannal Electronics Co., Ltd
+> >    "^faraday,.*":
+> >      description: Faraday Technology Corporation
+> >    "^fastrax,.*":
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index e0ad886d3163..46f988ee60bd 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -6566,6 +6566,12 @@ T:    git git://anongit.freedesktop.org/drm/drm-=
+misc
+> >  F:    Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-s=
+pi.yaml
+> >  F:    drivers/gpu/drm/tiny/panel-mipi-dbi.c
+> >
+> > +DRM DRIVER FOR MIPI DSI BRINGUP
+> > +M:    Paulo Pavacic <pavacic.p@gmail.com>
+> > +S:    Maintained
+> > +C:    mipi-dsi-bringup:matrix.org
+>
+> Missing protocol. See explanation of C: entry at the beginning.
+>
+> > +F:    Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-b=
+ringup.yaml
+> > +
+> >  DRM DRIVER FOR MSM ADRENO GPU
+> >  M:    Rob Clark <robdclark@gmail.com>
+> >  M:    Abhinav Kumar <quic_abhinavk@quicinc.com>
+>
+> Best regards,
+> Krzysztof
+>
 
---mutsuecdbukxiwro
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmRj/TcACgkQ2O7X88g7
-+ppkcg//WH2Y+C6FPh41OdSO5Szxw3CQJ1Ku3dNvcQAt3BHSGl0ATOPFmYc1j2v8
-/DNrXu+6aPU46ko+iu0Jrtlng4zdkl50sLLbYfvoNZQvNtI7oDYVV9ej3NO7diCr
-+aN0krfeFW2MiaGcs6/U5B0/wgXCgeRf+2sCLCNxCfUji7xLT9HOQHUf34d6ZRAq
-rU8iIcB7K9Kg1UUDCjn8FSUgKduyy2YriowTgO1Q1Bx93jYZ/wka+qtA9lRJC+bC
-6g/9f2H7hs9IkfwVgGimp5iR++FF0G7wfY7XBZyuyVcsMLPZ9JIdCtl88oISGAFp
-A94yL7MYgxtAuu6gOpnIWQVSits/WgfmfMfs95twzPQ0Vngdxm24bn4wGR7mUrMK
-sd8krWaSfDPxahUkfN43p1WjDXY1WMMT6e0UPNR/MwhE+6fjI1PVc2BNSEsDQGdu
-wlCYwIoPhBBGBh7L1dCKXEThlSdZsUd1N6R1QYZ3qQmYnF0KWHgnp7GDEREabHiO
-RzWc0uHFa/Rnq7p1z/zZlBkUfryUqHRaLO7WIx4hzAj1w8CIMSkV08XA6Hb8X84u
-/7ijOEH/selxYiETdAnkuobE9lf4cbpzU2vN7O0P9rQT7j/QIp6Mm/VsSMQaL74C
-8mk7Q3O6xhh/f1/Y5M9lInSJ7hfkj5WrYCPF2Upb0a6hwfleQg0=
-=tOhN
------END PGP SIGNATURE-----
-
---mutsuecdbukxiwro--
+--=20
+Lijep pozdrav,
+Paulo
