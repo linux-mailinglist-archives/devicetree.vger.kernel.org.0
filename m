@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44CDA705434
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6FCD705440
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:43:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229521AbjEPQmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 12:42:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46450 "EHLO
+        id S230050AbjEPQnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 12:43:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbjEPQmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:42:03 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7BF610D8
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:41:37 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50bc456cc39so21094463a12.1
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:41:37 -0700 (PDT)
+        with ESMTP id S229959AbjEPQnb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:43:31 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBA726BA
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:43:20 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50c8d87c775so20075386a12.3
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:43:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684255294; x=1686847294;
+        d=linaro.org; s=google; t=1684255398; x=1686847398;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NwGIJwctsKEQ0OMbefG7QM/4SqoNCHnvRGiJA4BkDGc=;
-        b=qLBJDsG/MLNnFgim21/79ssJnuY77CXCyD9AZeu2dGPTaylw/hLoc3fAHIexiUxTIg
-         /yKuvkjlA8S84MgBc6OIrLOU7IIODcd/vdC9xgWjh24rrIx6jO1P+QjJf6pnUKUJOm4r
-         QgixJJAzLo1/zVfvK4I33RZiprmyY3Qs782Eay8VvMwl/ZeBnOTV7KBBlxfPglrnb2FL
-         HDTEOe/nqPIJ7CmMzKHGjkC/mpQvcjYkUghyMEm5SrUYjiPu7JTAU6/nfCenZl76U+UF
-         EbbC6ZcRX0K6cKEROV5Amo0IduQ3XgNNFdt2Rqu0k2155U8CxMtAa6L3Qt4eqZMiHRY5
-         bo0w==
+        bh=1ZOAvhyxA95RofjLlLR11FjDxcxYHAHrGMmYu61fUjs=;
+        b=Dv7an/6KD+W5Xd63hlfW3ttz36K6sbi1iFuNiQllmPTQhkNSy3iHOXepcGQ+d4DkOl
+         yNiK3PmNk7Z+1D3txCakt9lTdY/5DeUeO0hDyWPpf2d5UyzbwopoCi1aCA746lTuLrAC
+         HF+ozSckD75BDANBKyo/P9pg6RXKgI84SmHjSsym2Mf+UkRP4c+Ca3zXg9FrVz64fTgZ
+         5hizTDNK6umw4zZIIXsYiRIpmqXOcy7Wwwl2OmkUhvus3lHVFJZKFpQS14R7fwl96wiZ
+         F4V4a4ssE8PwKUwELTpWupkte1yFj+itZDMTYg1o8pKo+AKLWvY/AWvQharpESta/AY9
+         KqbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684255294; x=1686847294;
+        d=1e100.net; s=20221208; t=1684255398; x=1686847398;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NwGIJwctsKEQ0OMbefG7QM/4SqoNCHnvRGiJA4BkDGc=;
-        b=PPyuYQlmH2vegbM2LYTFFfHTVWXhnIdyc7yc8d2eNUu/vCaw4NAyCiIxz5Kj536kvg
-         iWeSevvqXQBSgDV+yRtBEsbUgPPpWVPNIZZMdruF53YbDwAKQQ0LPOQYDKzEdrhcVBUX
-         FuOUumKdb3xUz0RkdPNVnbF4MIEvSjrcunqt1/VG8XmE1jbUKtscpzNLIfyxPlqjZw60
-         JULDj8H4phRpsAXrm10AxnZj6yZ48drhdwWWndR9WZf5dkSJd28yIWTS5nOUFtgpksRd
-         G8KpNTTnFwpgDM4/LVgpEXjV/aGZZRC0+ZbU0TNT0kslt7EngArZtnk13Jcb1zPjXSe7
-         kp4A==
-X-Gm-Message-State: AC+VfDzfOLhGPoVdHI4HFDB2Bx7OUKRmIV4RVeA/W3nqocVN60HC98p/
-        Qayxwy2Vdx5jpv9uqwF6HIT5sw==
-X-Google-Smtp-Source: ACHHUZ4oOZegaoLXI59ZydBH2/bXY82LDcXZ3XmrYSg0x4k2YP4bqfDVsIGq2ikWN1qyRJRFwQC6rQ==
-X-Received: by 2002:a17:906:dc93:b0:965:d7c7:24cc with SMTP id cs19-20020a170906dc9300b00965d7c724ccmr38154415ejc.23.1684255294435;
-        Tue, 16 May 2023 09:41:34 -0700 (PDT)
+        bh=1ZOAvhyxA95RofjLlLR11FjDxcxYHAHrGMmYu61fUjs=;
+        b=HS/dyGn7PyrG8IRfu7/M6iMcmR4KbnQkG+jYIQOaY2M1s1B/LOXrZ8mseTx8yD0TdJ
+         wzW2flsA18duc/azorRK7oravB142nPnMKuWA4kIbCRSfKtpLuBw0VKXQDfnL83t1pF0
+         7Sf78vwSTw/KRJBPVHv3w8FCCe/QXdQFgaUUtVd/E+XFK4RORW6BTIT2BAn97JZ9+gZM
+         dOHRCf5t4cll4b5ykDrjuchjapsQh/qGL41xSbG43r9oJSMh0wWJauPYrIf0GyZH1Yp9
+         gci4FetlCaW1fsDfNFvbw8LzVKrdPTc+YKMB3KlUlAnW1tJug07WdjNvbQnmE/2iQWps
+         XCfA==
+X-Gm-Message-State: AC+VfDwzFw3Of3QvyPGCAtP/mMWxuLzBKHdd1gLvvB6wmYvEinDeMa7W
+        PwvvgE1HBFBM8WeOpj0ch8OzyA==
+X-Google-Smtp-Source: ACHHUZ5QBUhMbbYPJ3FFfVmL6YJJnFhhoYonM5rq6g9+g09lJZFNYofPfcq1AViw2emSGqbXUz96GA==
+X-Received: by 2002:a05:6402:1806:b0:50d:8979:5722 with SMTP id g6-20020a056402180600b0050d89795722mr28080735edy.39.1684255398040;
+        Tue, 16 May 2023 09:43:18 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
-        by smtp.gmail.com with ESMTPSA id hx16-20020a170906847000b0094e4eabb402sm11115129ejc.128.2023.05.16.09.41.33
+        by smtp.gmail.com with ESMTPSA id u24-20020a056402111800b0050bc4eb9846sm8354012edv.1.2023.05.16.09.43.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 09:41:34 -0700 (PDT)
-Message-ID: <542444b8-757e-75f0-0306-d810c7f065a5@linaro.org>
-Date:   Tue, 16 May 2023 18:41:33 +0200
+        Tue, 16 May 2023 09:43:17 -0700 (PDT)
+Message-ID: <2e6f282c-33d9-7f96-0338-c4fd457d04fa@linaro.org>
+Date:   Tue, 16 May 2023 18:43:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sm8550-qrd: add display and
- panel
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8550-qrd: add PCIe0
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -66,11 +65,10 @@ Cc:     Andy Gross <agross@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230516154539.238655-1-krzysztof.kozlowski@linaro.org>
- <20230516154539.238655-3-krzysztof.kozlowski@linaro.org>
- <CAA8EJpoTd4avVHK4kjJTpq91UvNLS1tdA_s4=nX_gtkWAY_Jvw@mail.gmail.com>
+References: <20230516133011.108093-1-krzysztof.kozlowski@linaro.org>
+ <CAA8EJpoTgseo3j_5Ab7cQs3ZZZymALpRqpuWGPyKpTEbXR-Cqw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJpoTd4avVHK4kjJTpq91UvNLS1tdA_s4=nX_gtkWAY_Jvw@mail.gmail.com>
+In-Reply-To: <CAA8EJpoTgseo3j_5Ab7cQs3ZZZymALpRqpuWGPyKpTEbXR-Cqw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,52 +81,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 18:35, Dmitry Baryshkov wrote:
-> On Tue, 16 May 2023 at 18:46, Krzysztof Kozlowski
+On 16/05/2023 18:39, Dmitry Baryshkov wrote:
+> On Tue, 16 May 2023 at 16:30, Krzysztof Kozlowski
 > <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> Enable Display Subsystem with Visionox VTDR6130 Panel (same as on
->> MTP8550).
+>> Add PCIe0 nodes used with WCN7851 device.  The PCIe1 is not connected,
+>> thus skip pcie_1_phy_aux_clk input clock to GCC.
 >>
 >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-...
-
+>> ---
+>>  arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 32 +++++++++++++++++++++++++
+>>  1 file changed, 32 insertions(+)
 >>
->> +       sde_dsi_active: sde-dsi-active-state {
->> +               pins = "gpio133";
->> +               function = "gpio";
->> +               drive-strength = <8>;
->> +               bias-disable;
->> +       };
->> +
->> +       sde_dsi_suspend: sde-dsi-suspend-state {
->> +               pins = "gpio133";
->> +               function = "gpio";
->> +               drive-strength = <2>;
->> +               bias-pull-down;
->> +       };
->> +
->> +       sde_te_active: sde-te-active-state {
->> +               pins = "gpio86";
->> +               function = "mdp_vsync";
->> +               drive-strength = <2>;
->> +               bias-pull-down;
->> +       };
->> +
->> +       sde_te_suspend: sde-te-suspend-state {
->> +               pins = "gpio86";
->> +               function = "mdp_vsync";
->> +               drive-strength = <2>;
->> +               bias-pull-down;
->> +       };
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+>> index ccc58e6b45bd..e7a2bc5d788b 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+>> @@ -385,6 +385,38 @@ vreg_l3g_1p2: ldo3 {
+>>         };
+>>  };
+>>
+>> +&gcc {
+>> +       clocks = <&bi_tcxo_div2>, <&sleep_clk>,
+>> +                <&pcie0_phy>,
+>> +                <&pcie1_phy>,
+>> +                <0>,
+>> +                <&ufs_mem_phy 0>,
+>> +                <&ufs_mem_phy 1>,
+>> +                <&ufs_mem_phy 2>,
+>> +                <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
+>> +};
 > 
-> Do we really need the suspend states for reset and TE pins? Especially
-> for the TE pin, where the only difference is the drive strength.
+> Is there any reason to disable the PCIe1 PHY AUX clock here? I mean,
+> the PCIe1 is still enabled in the hardware.
 
-I don't know. For DSI there is some different, for TE looks redundant. I
-admit, I copy-pasted it from MTP. :) I can fix it also there, if that's
-consensus.
+I was thinking about this. The AUX clock seems to be an external clock,
+although I could not find it in schematics. I assume that on QRD8550 it
+could be missing, if it is really external. OTOH, downstream DTS did not
+seem to care...
 
 Best regards,
 Krzysztof
