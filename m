@@ -2,78 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40ED57042D3
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 03:23:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AFFB7042DD
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 03:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbjEPBXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 21:23:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48420 "EHLO
+        id S229626AbjEPB02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 21:26:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbjEPBXs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 21:23:48 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D86A6581
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 18:23:40 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2ac7f53ae44so143940201fa.2
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 18:23:40 -0700 (PDT)
+        with ESMTP id S229514AbjEPB01 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 21:26:27 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7B921BF6
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 18:26:25 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2ac806f4fccso145455071fa.1
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 18:26:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684200218; x=1686792218;
+        d=linaro.org; s=google; t=1684200384; x=1686792384;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hFsdzrNUCB91yNriDm61THdPDwlSojJxD49b8QFiUmM=;
-        b=hZfzw1jWLGlfj8aOiW0+povajyBUAE80+Nt0QYyn45dJJMfs0gqgxKSxoRDOXWG4bQ
-         1ifplYkaZPR7ivNrnAMm8prJAz7Wzyi2ohvFRNSF07Nw5vVaRZvt8tB0xCvq+k8FPBQX
-         T3HSyMWnaUSMfXUUK9ueruIMYHm2mpQJUsdjEGxrNILNqrPo9M75WwnwisBl7GlNX31q
-         xytqmiy2rMbiTklYK2HKt2rXrBdKcr1Fk0hpNjeL8PuLYfmgEiLqGHNnkhoNBsXACELy
-         pTFM+v3bKjao9OWeNtJtAR5Nrc8hJyX6wAnWWpSSjX46AzZa4GxgMVJpOqdjxliuoX8p
-         CyRw==
+        bh=iCXuzrQVE7NqQDfgmpBc13d69ZLB2zjvkbjuCp0orcg=;
+        b=fo7JEKjFInLMQlPsQc9w3oWP9T2Aj3MwuPxcvyHykOb2kVt4FarGuSfCQP4XU4Xnn5
+         x5GH+EB4iUanMe7Bfr7LNvrgKn3WpFmIzLB0BdD7ArHp+OQKi244DylCU+iCmzRRyOvB
+         YUaC+Sve3s2lOHw85mHDkjdteeYJfIA3SYA2Vumbsg5KhYoXmqTEoDE8CuRZ6xsS54WD
+         s+v/0xEmG/HaXwivV50aKTUSU83U9wFHWwmdPQ1FEwYgtrlzAaWGeKImVizgwaxfRdDG
+         qEuPlIASiqDQquTEvvyuZneyvqtcnEODZ6i+p2UFNPdAMbXlyJxkzsz70wwLnYvfKwrz
+         IhmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684200218; x=1686792218;
+        d=1e100.net; s=20221208; t=1684200384; x=1686792384;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hFsdzrNUCB91yNriDm61THdPDwlSojJxD49b8QFiUmM=;
-        b=irX2FD794GOJ1dlgTK7TzKMAwCvNzoGzuxjBn58kDhIujxsLKeS4yujdNBUSdnw3A/
-         h1kce7QyJSXmDieo5kVKh3qR2d7HBrdr515u9w8rrOt4BhSvzGvUyV+D/D6NlRy4KQVF
-         OWWTjypsXkoCG7rtrpNW3Rc5KlrmlpirZ5wmK5gLHpG+mZdiCFTSmFcA4NSOPNoRO2BP
-         OHI0CGy3MNeiHhfOcJZwc4fLTq3pZRwiSGLkQMP/rUIpso7WBiuvqGEk1TewhnsWrUB8
-         ehzIxJpYOIe1Wi7f2cNhcj4hI0ZWxh+u7P4JLVd898XvmW5JOHmJYIy/O2fu4GnRs9Fe
-         zBYQ==
-X-Gm-Message-State: AC+VfDxv4o0h+VJsTW6mHF8nJvIIXTeVf+aQMhsH53SPOZ5lFTMxTEHg
-        7de/rI0xKT2JpilPaJcxdYQvfQ==
-X-Google-Smtp-Source: ACHHUZ4v7ANIpHd1PgWjbMlH9q/KP2hjU5YgkpFLPMRPmOhdHzM9lfAf1/Fv4mxIbS3a7C99nWveAw==
-X-Received: by 2002:ac2:532a:0:b0:4f3:84dd:a4e with SMTP id f10-20020ac2532a000000b004f384dd0a4emr992846lfh.37.1684200218653;
-        Mon, 15 May 2023 18:23:38 -0700 (PDT)
+        bh=iCXuzrQVE7NqQDfgmpBc13d69ZLB2zjvkbjuCp0orcg=;
+        b=ilenltCJL8BtcYrSZ89DtOJTGyqCL+HuDr5tDFFX0OZ5BY9XeEtFiYphYsRpEU8Qoi
+         Dm7M3Ld5JZTCD3JwHGMgBN6+mDK5pECFJ/o4N9kBnPI/wNEw4huGYvbVQtt4n47BKZqf
+         QfjO+xTODlGGvCebLSNtItkq2KsSRcbiCNiNWZ4sp9bRno1Q7TdvpfqzdDrN0zx2/cuq
+         ZWG5PVt9aL0bZIuzgHkSkJh2Vovp3Wro5ldJzbBVHUAXZp5scucqznXs6g2fchvQLZaL
+         ubkYHQCevVEnIRtOTXMlXLK6mFgtUMap+apguAf9ksrNMPobVE0h69O876HTIc1OLXJh
+         1wrg==
+X-Gm-Message-State: AC+VfDzFBW7DWZ2iKZJfXh8+t0rW2qZJlpVTfnlPrt0HKF4BEqyRgZ00
+        8v/tU94QudRirxWOWIoEEkGDyg==
+X-Google-Smtp-Source: ACHHUZ4v2kFHkHVE+gkX96V7S+QQVZsWTNBB9cJxYxR5LY8juK88Lz0HRrauXlwj+MM81B5kOulXgw==
+X-Received: by 2002:a2e:2c09:0:b0:2ad:bb53:8b9a with SMTP id s9-20020a2e2c09000000b002adbb538b9amr6041019ljs.20.1684200384228;
+        Mon, 15 May 2023 18:26:24 -0700 (PDT)
 Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id y27-20020ac2447b000000b004db3eff4b12sm2651977lfl.171.2023.05.15.18.23.37
+        by smtp.gmail.com with ESMTPSA id h4-20020a2e3a04000000b002adbe01cd69sm1912340lja.9.2023.05.15.18.26.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 18:23:38 -0700 (PDT)
-Message-ID: <5353e51c-46c5-5178-fa1b-65fb71072e7f@linaro.org>
-Date:   Tue, 16 May 2023 03:23:36 +0200
+        Mon, 15 May 2023 18:26:23 -0700 (PDT)
+Message-ID: <1801db13-aeb7-ba50-6939-d194a9029f18@linaro.org>
+Date:   Tue, 16 May 2023 03:26:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v4 5/5] arm64: dts: qcom: qrb4210-rb2: Enable EUD debug
- peripheral
+Subject: Re: [PATCH v3 05/12] dt-bindings: display/msm: Add SM6375 MDSS
 Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        krzysztof.kozlowski@linaro.org
-References: <20230505064039.1630025-1-bhupesh.sharma@linaro.org>
- <20230505064039.1630025-6-bhupesh.sharma@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev
+References: <20230411-topic-straitlagoon_mdss-v3-0-9837d6b3516d@linaro.org>
+ <20230411-topic-straitlagoon_mdss-v3-5-9837d6b3516d@linaro.org>
+ <4a563d96-ec59-7db3-d288-1ba3bb9d8eb7@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230505064039.1630025-6-bhupesh.sharma@linaro.org>
+In-Reply-To: <4a563d96-ec59-7db3-d288-1ba3bb9d8eb7@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,66 +92,75 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 5.05.2023 08:40, Bhupesh Sharma wrote:
-> Since the USB-C type port on the Qualcomm QRB4210-RB2 board
-> can be set primarily in a 'device' configuration (with the default
-> DIP switch settings), it makes sense to enable the EUD debug
-> peripheral on the board by default by setting the USB 'dr_mode' property
-> as 'otg'.
+On 7.05.2023 10:20, Krzysztof Kozlowski wrote:
+> On 05/05/2023 23:40, Konrad Dybcio wrote:
+>> Document the SM6375 MDSS.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  .../bindings/display/msm/qcom,sm6375-mdss.yaml     | 216 +++++++++++++++++++++
+>>  1 file changed, 216 insertions(+)
+>>
 > 
-> Now, the EUD debug peripheral can be enabled by executing:
->  $ echo 1 > /sys/bus/platform/drivers/qcom_eud/1610000.eud/enable
+> Thank you for your patch. There is something to discuss/improve.
 > 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/qcom,rpmcc.h>
+>> +    #include <dt-bindings/clock/qcom,sm6375-gcc.h>
+>> +    #include <dt-bindings/clock/qcom,sm6375-dispcc.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/power/qcom-rpmpd.h>
+>> +
+>> +    display-subsystem@5e00000 {
+>> +        compatible = "qcom,sm6375-mdss";
+>> +        reg = <0x05e00000 0x1000>;
+>> +        reg-names = "mdss";
+>> +
+>> +        power-domains = <&dispcc MDSS_GDSC>;
+>> +
+>> +        clocks = <&gcc GCC_DISP_AHB_CLK>,
+>> +                 <&dispcc DISP_CC_MDSS_AHB_CLK>,
+>> +                 <&dispcc DISP_CC_MDSS_MDP_CLK>;
+>> +        clock-names = "iface", "ahb", "core";
+>> +
+>> +        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+>> +        interrupt-controller;
+>> +        #interrupt-cells = <1>;
+>> +
+>> +        iommus = <&apps_smmu 0x820 0x2>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges;
+>> +
+>> +        display-controller@5e01000 {
+>> +            compatible = "qcom,sm6375-dpu";
+>> +            reg = <0x05e01000 0x8e030>,
+>> +                  <0x05eb0000 0x2008>;
+>> +            reg-names = "mdp", "vbif";
+>> +
+>> +            clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+>> +                     <&gcc GCC_DISP_HF_AXI_CLK>,
+>> +                     <&dispcc DISP_CC_MDSS_MDP_CLK>,
+>> +                     <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
+>> +                     <&dispcc DISP_CC_MDSS_ROT_CLK>,
+>> +                     <&dispcc DISP_CC_MDSS_VSYNC_CLK>,
+>> +                     <&gcc GCC_DISP_THROTTLE_CORE_CLK>;
+>> +            clock-names = "iface",
+>> +                          "bus",
+>> +                          "core",
+>> +                          "lut",
+>> +                          "rot",
+>> +                          "vsync",
+>> +                          "throttle";
+> 
+> Are you sure you have clocks in correct order? I see warnings...
+Right, testing *both* the DTs and bindings after making changes sounds
+like a good thing to stop forgetting..
 
 Konrad
->  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 27 +++++++++++++++++++++++-
->  1 file changed, 26 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> index 1a0776a0cfd0..0ce72f1ebc10 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> @@ -30,6 +30,10 @@ vph_pwr: vph-pwr-regulator {
->  	};
->  };
->  
-> +&eud {
-> +	status = "okay";
-> +};
-> +
->  &qupv3_id_0 {
->  	status = "okay";
->  };
-> @@ -253,7 +257,28 @@ &usb {
->  
->  &usb_dwc3 {
->  	maximum-speed = "super-speed";
-> -	dr_mode = "peripheral";
-> +
-> +	/*
-> +	 * There is only one USB DWC3 controller on QRB4210 board and it is connected
-> +	 * via a DIP Switch:
-> +	 * - to either an USB - C type connector or an USB - A type connector
-> +	 *   (via a GL3590-S hub), and
-> +	 * - to either an USB - A type connector (via a GL3590-S hub) or a connector
-> +	 *   for further connection with a mezzanine board.
-> +	 *
-> +	 * All of the above hardware muxes would allow us to hook things up in
-> +	 * different ways to some potential benefit for static configurations (for e.g.
-> +	 * on one hand we can have two USB - A type connectors and a USB - Ethernet
-> +	 * connection available and on the other we can use the USB - C type in
-> +	 * peripheral mode).
-> +	 *
-> +	 * Note that since the USB - C type can be used only in peripehral mode,
-> +	 * so hardcoding the mode to 'peripheral' here makes sense.
-> +	 *
-> +	 * However since we want to use the EUD debug device, we set the mode as
-> +	 * 'otg' here.
-> +	 */
-> +	dr_mode = "otg";
->  };
->  
->  &usb_hsphy {
+> Best regards,
+> Krzysztof
+> 
