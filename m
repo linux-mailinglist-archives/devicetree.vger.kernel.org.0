@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2139704F84
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:41:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 415C4704F87
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:41:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232637AbjEPNlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:41:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51640 "EHLO
+        id S233693AbjEPNlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:41:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233672AbjEPNlH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:41:07 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA2BF49DC
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:41:00 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-3093a7b71fbso261376f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:41:00 -0700 (PDT)
+        with ESMTP id S233687AbjEPNlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:41:10 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2CA4EED
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:41:03 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f509ec3196so27149815e9.1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:41:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684244459; x=1686836459;
+        d=linaro.org; s=google; t=1684244462; x=1686836462;
         h=content-transfer-encoding:in-reply-to:organization:from:references
          :to:content-language:subject:reply-to:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NRNEl/MqAqI2a0pkYYgoXHoSa3CJRStAtHPW4r96AW4=;
-        b=kTPnIKD+FObRRxgBNXWoWsBv634tqiKJNauxFYEh8LAqp9ECYA4oGYXIF3zGEyiaW5
-         0Iov+UlfwB5HtD6j7uG8smCY6DQ8py+AS7ZGwXLrVuQ6nwflU9Ogre3pgJ7X2UMMFqer
-         sOsIxUN4ji2rfY5W5YiOs7F/m9q+ysGcWN68tgrE08kCY7leSSr0OUGz3Am7YdNaI8gQ
-         yWwlXL7ZpKJag+DFCA+1fifCcShQ3sgpS50xFvjBynj5qTDpcIHWg3iny9j1X7KGna1f
-         ztUt+Xnk+7wzQpVF++w5ch/8KdAx3IcZpkB8XRJVo66qWdIvIQXfkbWl+aewPOz16yLL
-         IOsA==
+        bh=Pi52h4BwbyrvN/UFSfSTrTKE7cXA4CH95lTEYcAxXFI=;
+        b=giOtGLEEfJCagK7Rug5WXqi4WKzgSfeHJwKdHxs9AfpiffCA0F853lNyAIXbEkSNhC
+         oS90RbBPSF5JztJHvPO2Fz7Nfj8TmS2tEMfiGm2uvvtvJWsm9ewZBE0T0sal73G6K4U2
+         XdIFLhn11NzKWHU8L7OxgDsMTEx/fLra2AZchQc+NWFB8Dt3D/XSTooSf2DQ93Ux2gu6
+         3J3V2KrByG+tjW/eJ3OsU3qsNAVtIM5W7T+wacHntBr/rSkeHW6a9MPMOQgiDcuQR6bx
+         q/7yubfyReY+5FwCyvZ8+d06PPyaMFdT//BaWnzDdSwUVuBIW24AphARg06i81RhVCWr
+         RozQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684244459; x=1686836459;
+        d=1e100.net; s=20221208; t=1684244462; x=1686836462;
         h=content-transfer-encoding:in-reply-to:organization:from:references
          :to:content-language:subject:reply-to:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=NRNEl/MqAqI2a0pkYYgoXHoSa3CJRStAtHPW4r96AW4=;
-        b=iINP/h2k3VKKRTAgOZOyzL6XxLoOETpzoeTf6pwZcmNE1BwbbpAWdgPQYJcMg5gYid
-         KlxNr1XYjqraMr7BEUW8H2ejipiq7YD4/4iJ53bKU2T5KtExefHUaPD6FhJG94ZBf6iS
-         Pf71g+8IxWfElghkywbf+tvneR/2ompOUo02xV4+Q8wmfkEo6UE9omlh12+0WA3Up6Xh
-         6hhYL2IvTwh5CPhP/rObL21bLp95+pRuKci+W1WuArMrVI9ZFdEvVBpC8RcfJcIy41T4
-         Ica26TUzRQ2pudTX18ukcgDwcaNziE6uywwavm3sYzjovvhZIIF6Ac41V9ZsbPN/D4ja
-         8QIw==
-X-Gm-Message-State: AC+VfDzLKcbz2C7Ih5WTcAgtH2v9foQ+6Yid90zF8bynuJMEucHD2kPa
-        p4dk/iqeY/+u8V1G0Y4ijwvp6g==
-X-Google-Smtp-Source: ACHHUZ6Ra2ftdDR5wXJ58KjHyxYdCy/0gQISxSlOVsbtyGaRD0unxDoXq/7TShVwBISxQUowJzlEng==
-X-Received: by 2002:adf:f245:0:b0:306:2db9:cc26 with SMTP id b5-20020adff245000000b003062db9cc26mr25449400wrp.25.1684244459198;
-        Tue, 16 May 2023 06:40:59 -0700 (PDT)
+        bh=Pi52h4BwbyrvN/UFSfSTrTKE7cXA4CH95lTEYcAxXFI=;
+        b=VdExfyiVUrSTGPhPbj9oDi/Ri/2SrAVZcZQv0ZgCi411g7hnugozFej6MCNIbe4VoN
+         jDz/pzFfHsfZ3R4PXkoLMHWZGfPtV6uN7da4agujVhDD+7EPVX8qr1R189EJcBd/jb53
+         bxmu7lL64X1EJ1/MQluP645RsKgLHWd3lLgJasPZJFt7lV7Eu5mQHCQRmeAFl4KcRrvu
+         g4lBzly8tF2wt18ucUz+u4/Wkw4wtWhi9E4Elh+i/8isFR4JLKY5SezcJBwpWzNHXhFS
+         NRf8SCGrYmwbSmQCKvam+uKeWSIMX4MVAFv9I3OCLIQHOBs5zSuz+hj2TuOUnspbb2kL
+         kVGg==
+X-Gm-Message-State: AC+VfDxhacMFjVM2UJRAMC8MIUMzTGI44M55lxNXaFFRJP5iSizU+fy9
+        OK178mOD+Eb7hvs/gQ3E/EqQxQ==
+X-Google-Smtp-Source: ACHHUZ4sAY7KhOuQSLuY70WCNRujQd68fSqdKJsRuMmYQ9ieu+JhsUY9pR3vwmATgb0JkCiF9y/icw==
+X-Received: by 2002:a05:6000:114b:b0:307:8a39:555f with SMTP id d11-20020a056000114b00b003078a39555fmr24009097wrx.17.1684244462091;
+        Tue, 16 May 2023 06:41:02 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:86be:97a:a043:77a8? ([2a01:e0a:982:cbb0:86be:97a:a043:77a8])
-        by smtp.gmail.com with ESMTPSA id z5-20020a5d44c5000000b00309257ad16csm2696522wrr.29.2023.05.16.06.40.58
+        by smtp.gmail.com with ESMTPSA id u9-20020adfed49000000b0030647449730sm2672349wro.74.2023.05.16.06.41.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 06:40:58 -0700 (PDT)
-Message-ID: <5c2667ed-bcb6-3f05-a5c4-aec254f401b9@linaro.org>
-Date:   Tue, 16 May 2023 15:40:57 +0200
+        Tue, 16 May 2023 06:41:01 -0700 (PDT)
+Message-ID: <14b029a3-dffa-7d4f-688a-fdb9bad585b1@linaro.org>
+Date:   Tue, 16 May 2023 15:41:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8550-qrd: add PCIe0
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550-qrd: add USB OTG
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -68,9 +68,10 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230516133011.108093-1-krzysztof.kozlowski@linaro.org>
+ <20230516133011.108093-2-krzysztof.kozlowski@linaro.org>
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 Organization: Linaro Developer Services
-In-Reply-To: <20230516133011.108093-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230516133011.108093-2-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,14 +85,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 16/05/2023 15:30, Krzysztof Kozlowski wrote:
-> Add PCIe0 nodes used with WCN7851 device.  The PCIe1 is not connected,
-> thus skip pcie_1_phy_aux_clk input clock to GCC.
+> Add missing parts of USB stack to enable USB OTG mode.  The QRD8550
+> comes with one USB Type-C port.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 32 +++++++++++++++++++++++++
->   1 file changed, 32 insertions(+)
-> 
+>   arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 52 ++++++++++++++++++++++++-
+>   1 file changed, 51 insertions(+), 1 deletion(-)
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
