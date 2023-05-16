@@ -2,119 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 674F7704CDA
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:47:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2CA2704D11
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:54:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233161AbjEPLrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 07:47:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42348 "EHLO
+        id S232592AbjEPLyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 07:54:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232985AbjEPLrX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:47:23 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 331026EB5;
-        Tue, 16 May 2023 04:46:58 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34G8MmFe014488;
-        Tue, 16 May 2023 11:46:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=4sXNlRFfEYIg3g2wW+XdOecyhySORZ87PfGa+R3D5b0=;
- b=YainjyosbfKsmKAMN84gkKawb/Zf87sq+1uhGUhgs/ARFHaRVJQkcNvYwt0JcVgD2tt9
- SFZQtW7GN2qqQuCBgMWOnkIyIFsNOKseSRNvnCyS2GOuo3QM9Uv2qjrqpiNVYMBEQN0+
- mAOMnr2GpfHuaEsWva7k12VHvGl9ZvJQOsx3bRL0VKSXIMHycb/CdL2REnrsCu1zEZjH
- efBkA11DasTdtoJ2f4x62az4qOFKkgpU+Z7eWbA63Wh9c5SI5AZQbFfrq4N1B5OUdMnS
- UjPgptYRCd4E6BydZGfE0ah2xpXO6UqFk5gqPE6on10n5FYIxZxLbmv/Hf5iNSEE427N 7Q== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qm1x08v4k-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 16 May 2023 11:46:42 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34GBkfQO026400
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 16 May 2023 11:46:41 GMT
-Received: from win-platform-upstream01.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Tue, 16 May 2023 04:46:35 -0700
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <robimarko@gmail.com>,
-        <andy.shevchenko@gmail.com>, <quic_srichara@quicinc.com>
-Subject: [PATCH V5 8/8] arm64: defconfig: Enable IPQ5018 SoC base configs
-Date:   Tue, 16 May 2023 17:15:23 +0530
-Message-ID: <20230516114523.3266419-9-quic_srichara@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230516114523.3266419-1-quic_srichara@quicinc.com>
-References: <20230516114523.3266419-1-quic_srichara@quicinc.com>
+        with ESMTP id S229664AbjEPLyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:54:01 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED03E6A6A;
+        Tue, 16 May 2023 04:53:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684238019; x=1715774019;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7D3YaE5lYG3fnEdXFRAaVlDXMPi64yw97ieL1am27CI=;
+  b=LR/SpJ79H5BaVHb2CUkiotCuvV2Q8OglM9UiZGUuIKosGfu1NSPya3AH
+   2ZOpCoabNNGyAuYLQfyHEv4dqrVZCOulZpXSegSr7KE/6I9QUPYYbYHFn
+   eWeosypqvPTiHG9GVM5jcn/auda655mmzaw6zVzij5FhVy8N2lVQZzdrk
+   o8x2zo2YUv+2gp6Q+H6B4QvAyWNLHiJx3rxYJd/i0Lc2uMguj4isWxPYD
+   V4Wn8E4KIJB3F8vdwqEajJh7Hq8du+9f5CUXFEIjPrz/Oe/SQZhyO45wC
+   EPTfkpvw+KUm2J6k7aC1z2nt5b4IKHnerENoEYc66hNe7BuK2F8t2/Twq
+   w==;
+X-IronPort-AV: E=Sophos;i="5.99,278,1677567600"; 
+   d="asc'?scan'208";a="211506438"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 May 2023 04:53:36 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 16 May 2023 04:53:35 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 16 May 2023 04:53:33 -0700
+Date:   Tue, 16 May 2023 12:53:12 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     Conor Dooley <conor@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        <jonathanh@nvidia.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <stefank@nvidia.com>
+Subject: Re: [PATCH v4 4/6] dt-bindings: Add support for DRAM MRQ GSCs
+Message-ID: <20230516-cadet-enslave-208d91e66b32@wendy>
+References: <20230511132048.1122075-1-pdeschrijver@nvidia.com>
+ <20230511132048.1122075-5-pdeschrijver@nvidia.com>
+ <20230511-carnivore-legend-17206803d713@spud>
+ <ZGNJEoiFmtPiLC4p@orome>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: yEx9SKq_CxFhXixlXd36OFV9qB_poc97
-X-Proofpoint-GUID: yEx9SKq_CxFhXixlXd36OFV9qB_poc97
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-16_04,2023-05-16_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 mlxlogscore=885 bulkscore=0 mlxscore=0 impostorscore=0
- spamscore=0 adultscore=0 phishscore=0 clxscore=1015 malwarescore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305160100
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="QkN7dRCmSJ1GEE8S"
+Content-Disposition: inline
+In-Reply-To: <ZGNJEoiFmtPiLC4p@orome>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enables clk & pinctrl related configs
+--QkN7dRCmSJ1GEE8S
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
----
- [v5] Added Reviewed by
+On Tue, May 16, 2023 at 11:12:50AM +0200, Thierry Reding wrote:
+> I think Peter had to add these explicitly because the defaults are 2 and
+> 1, respectively, and DTC was warning about this. I suppose the "reg"
+> property could be adjusted to use the defaults, but on the other hand I
+> find that it's good if the examples match reality and we need size-cells
+> to be 2 on Tegra.
 
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+Huh, caught out by an abnormal example!
+If it avoids an error & matches the use-case it seems like a good idea to
+leave it as-is. Here's an unqualified
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+instead of the previous qualified one.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index a24609e14d50..8bf0ef77f375 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -553,6 +553,7 @@ CONFIG_PINCTRL_IMX8ULP=y
- CONFIG_PINCTRL_IMX93=y
- CONFIG_PINCTRL_MSM=y
- CONFIG_PINCTRL_IPQ8074=y
-+CONFIG_PINCTRL_IPQ5018=y
- CONFIG_PINCTRL_IPQ5332=y
- CONFIG_PINCTRL_IPQ6018=y
- CONFIG_PINCTRL_IPQ9574=y
-@@ -1154,6 +1155,8 @@ CONFIG_QCOM_CLK_APCC_MSM8996=y
- CONFIG_QCOM_CLK_SMD_RPM=y
- CONFIG_QCOM_CLK_RPMH=y
- CONFIG_IPQ_GCC_5332=y
-+CONFIG_IPQ_APSS_5018=y
-+CONFIG_IPQ_GCC_5018=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
- CONFIG_IPQ_GCC_9574=y
--- 
-2.34.1
+Thanks,
+Conor.
 
+--QkN7dRCmSJ1GEE8S
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGNuqAAKCRB4tDGHoIJi
+0ioQAP48UgZ1Wi699mzewpc4KOv1IsY/lRC+3goYNkTl3WgqfwEAnCJExTi8wZll
+rQgPKPiu0PhFv9OfeFZv4MGDWou76QA=
+=xTp2
+-----END PGP SIGNATURE-----
+
+--QkN7dRCmSJ1GEE8S--
