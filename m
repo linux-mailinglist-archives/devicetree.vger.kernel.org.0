@@ -2,158 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12D657044DF
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 07:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C74D7044F5
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 08:02:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229822AbjEPFuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 01:50:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56508 "EHLO
+        id S229761AbjEPGCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 02:02:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229915AbjEPFuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 01:50:15 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB5040D9
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 22:50:09 -0700 (PDT)
+        with ESMTP id S229741AbjEPGCm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 02:02:42 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BB0E189
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 23:02:41 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-96ab81aa68dso794413266b.3
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 23:02:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1684216209; x=1715752209;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=1p1ZzL9ijDN6kyEto+V5mQcqEqMI0qS4vAA7XzP8+Iw=;
-  b=kgCPA+tirA8p8yff3kBQVM2X5Ds0wCyB5pWqvdl34r+uNBuqUhR9I8c+
-   55mQMQe5Ao9Cs4UR4jC1igcnMJqXcMtvbhZ7biwaaJzWuPDJkfiUT3rju
-   iNNx58Dmu8DIQLNHHXfwntA28+cf2ysGBuYIQSUA9nni3csJEXdwskqrw
-   K/TXGPD2cgZIV82gOJBarMznzzJSJFGozVVbDMG/zbAz5X0Rsxhprdu5a
-   ipyCoqdWIamd3eRtC4fO7UTZvj+frJoAyRmCmPxDdMoibS/ceyeeOp36C
-   Uvf8q2y578W4SsDGK6FLcJCUQ9hHabmIvVkhxHQG8R2hfBXNJqWzWvZp3
-   A==;
-X-IronPort-AV: E=Sophos;i="5.99,277,1677538800"; 
-   d="scan'208";a="30921339"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 16 May 2023 07:50:07 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 16 May 2023 07:50:07 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 16 May 2023 07:50:07 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1684216207; x=1715752207;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=1p1ZzL9ijDN6kyEto+V5mQcqEqMI0qS4vAA7XzP8+Iw=;
-  b=e16y2YoHvIRYhA+0Pxk/VgyBn+GV9AQuhaxVgl23OBGGGpgYwAiPtWue
-   zVU1HkYnULBRPAElCa8VywY863ccRi4BQtknRal+3r3JYve11kHwaE4jU
-   dPQr2lCwQo4mzVB/ZpgRK8lYBFTaxr2eiTcq+3LCI4AFlLtE3+HHC3N8m
-   1nFl2YPElFeZeaRh2HwVLHMMbuHu66hna9Thqtf3JF813ThiCXspeFbLd
-   wee6JE/+4A10Ew8gtxyiqItJd+BlzxFe5Yb+xeEn00NFhm7VxJeowmmbr
-   TO5IpVmh896LEllArSPoFJJGwdgZx9h//pCjrrrUS9BMI9oVGrbrJfcSV
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.99,277,1677538800"; 
-   d="scan'208";a="30921338"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 16 May 2023 07:50:07 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7DCEA280056;
-        Tue, 16 May 2023 07:50:07 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: imx8mp: move noc node to correct position
-Date:   Tue, 16 May 2023 07:50:06 +0200
-Message-Id: <20230516055006.320488-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+        d=linaro.org; s=google; t=1684216960; x=1686808960;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=sfjhG+Ne7Y5TLnloHP6begQ4lwb2hq072sAiG6jl4gM=;
+        b=OQEsvb8JiGlepasDiNuylV4qnMPpUV8gqo2rMegkqs2o9I8OBWGGVrsnseIxbtrI8X
+         YF17D26RCQfBtupjcQ/eh0tP4e38mFDSAcIpI+q10t8DAhjoV1aiV75BBmFSEFIXIJt7
+         VtVofM4sLNh5bxUmSZbgJfANJl+qFagdEB5Ziq8Tv5rKNvDk9sDRICbGDdMgDwgphSdX
+         wVma5+QLSINTVrqzgiqtZtr0/UhZr1WIXDJecf1AytvmV2pz7NXfbNDjqBpcNNlgRcL2
+         ylXrJ+12OeWnxWN+u3s4PJrwmwktCA0NKyJ2ZSjJO3PICjQujVpCKpBKz19R4AYfWgZk
+         ICcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684216960; x=1686808960;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sfjhG+Ne7Y5TLnloHP6begQ4lwb2hq072sAiG6jl4gM=;
+        b=aChe8QBQUH9sV+uP9TDpjwJYN6u32I5mGm7oyIXh9HebxJfajw0qHAFYJN/iXme45g
+         uHqXmrOdnd8x9Jc8XwiWTPNr2cmJZXrJwI27ZFxNdIx4xoGz9U4xJnMGDf5LvTZcNm4u
+         U2W2pgdK7xK2e9mLCxvfTCsYeMWgrohCO4MtRTpLuf868cjx/0afGfxmN10aBhf6Vq2p
+         Mt8SpO8z0uWIt6SoMyxCX9elEFQho4vvkOe9110jvBEWslvr6WQoE8tiOHK9DnkgJUcB
+         w4MGVAYfOuU/1yOuBSUjCFnjzjknoW/JHSLBLUunckyzJIlepOvq2xlwJm7VWnngB4FI
+         3YGA==
+X-Gm-Message-State: AC+VfDylE3/hcQRp9JONgK32nzlRYJqp3Us7yc0bIG4abJjWfmoTU1kU
+        GOEBsGmE9T6aduIA+UpGDw8EZj7G4mshHd6M2KHH/g==
+X-Google-Smtp-Source: ACHHUZ5Q6xDdVHcpyb3P9WZksfe8mkak5mY3QWZFWD2eqsA2nsYV3lw4TEnUErqsWhEAIyAW6mL+ipdtjdYwAjka6QA=
+X-Received: by 2002:a17:906:ef0d:b0:94e:e9c1:1932 with SMTP id
+ f13-20020a170906ef0d00b0094ee9c11932mr36406209ejs.43.1684216959675; Mon, 15
+ May 2023 23:02:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <20230506073235.2770292-1-etienne.carriere@linaro.org>
+In-Reply-To: <20230506073235.2770292-1-etienne.carriere@linaro.org>
+From:   Etienne Carriere <etienne.carriere@linaro.org>
+Date:   Tue, 16 May 2023 08:02:28 +0200
+Message-ID: <CAN5uoS-U1h_Fx1K4PtnK3vHmyfUUS6wqCcSfhoaV=idgEOC04Q@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: arm: optee: add interrupt controller properties
+To:     linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, op-tee@lists.trustedfirmware.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Jens Wiklander <jens.wiklander@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        Pascal Paillet <p.paillet@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The base address of NOC is bigger than aips5, but smaller than aips4.
+Dear all,
 
-Fixes: b86c3afabb4f ("arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX")
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-This patch is to actually move aips5 before noc, but the diff for moving
-noc is smaller, so that's why it is this way around.
+On Sat, 6 May 2023 at 09:33, Etienne Carriere
+<etienne.carriere@linaro.org> wrote:
+>
+> Adds an optional interrupt controller property to optee firmware node
+> in the DT bindings. Optee driver may embeds an irqchip exposing
+> OP-TEE interrupt events notified by the TEE world. Optee registers up
+> to 1 interrupt controller and identifies each line with a line
+> number from 0 to UINT16_MAX.
+>
+> The identifiers and meaning of the interrupt line number are specific
+> to the platform and shall be found in the OP-TEE platform documentation.
+>
+> In the example shown in optee DT binding documentation, the platform SCMI
+> device controlled by Linux scmi driver uses optee interrupt irq 5 as
+> signal to trigger processing of an asynchronous incoming SCMI message
+> in the scope of a CPU DVFS control. A platform can have several SCMI
+> channels driven this way. Optee irqs also permit small embedded devices
+> to share e.g. a gpio expander, a group of wakeup sources, etc... between
+> OP-TEE world (for sensitive services) and Linux world (for non-sensitive
+> services). The physical controller is driven from the TEE which exposes
+> some controls to Linux kernel.
+>
+> Cc: Jens Wiklander <jens.wiklander@linaro.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sumit Garg <sumit.garg@linaro.org>
+> Co-developed-by: Pascal Paillet <p.paillet@foss.st.com>
+> Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
+> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+> ---
 
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 40 +++++++++++------------
- 1 file changed, 20 insertions(+), 20 deletions(-)
+Any feedback on this change proposal?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 005527ea6934..39aef5fbf77b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -1176,26 +1176,6 @@ eqos: ethernet@30bf0000 {
- 			};
- 		};
- 
--		noc: interconnect@32700000 {
--			compatible = "fsl,imx8mp-noc", "fsl,imx8m-noc";
--			reg = <0x32700000 0x100000>;
--			clocks = <&clk IMX8MP_CLK_NOC>;
--			#interconnect-cells = <1>;
--			operating-points-v2 = <&noc_opp_table>;
--
--			noc_opp_table: opp-table {
--				compatible = "operating-points-v2";
--
--				opp-200000000 {
--					opp-hz = /bits/ 64 <200000000>;
--				};
--
--				opp-1000000000 {
--					opp-hz = /bits/ 64 <1000000000>;
--				};
--			};
--		};
--
- 		aips5: bus@30c00000 {
- 			compatible = "fsl,aips-bus", "simple-bus";
- 			reg = <0x30c00000 0x400000>;
-@@ -1347,6 +1327,26 @@ audio_blk_ctrl: clock-controller@30e20000 {
- 			};
- 		};
- 
-+		noc: interconnect@32700000 {
-+			compatible = "fsl,imx8mp-noc", "fsl,imx8m-noc";
-+			reg = <0x32700000 0x100000>;
-+			clocks = <&clk IMX8MP_CLK_NOC>;
-+			#interconnect-cells = <1>;
-+			operating-points-v2 = <&noc_opp_table>;
-+
-+			noc_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-200000000 {
-+					opp-hz = /bits/ 64 <200000000>;
-+				};
-+
-+				opp-1000000000 {
-+					opp-hz = /bits/ 64 <1000000000>;
-+				};
-+			};
-+		};
-+
- 		aips4: bus@32c00000 {
- 			compatible = "fsl,aips-bus", "simple-bus";
- 			reg = <0x32c00000 0x400000>;
--- 
-2.34.1
+Regards,
+Etienne
 
+> Changes since v4:
+> - Removed empty line between Cc: tags and S-o-b tags.
+>
+> No changes since v3
+>
+> Changes since v2:
+> - Added a sentence on optee irq line number values and meaning, in
+>   DT binding doc and commit message.
+> - Updated example in DT binding doc from comment, fixed misplaced
+>   interrupt-parent property and removed gic and sram shm nodes.
+>
+> Changes since v1:
+> - Added a description to #interrupt-cells property.
+> - Changed of example. Linux wakeup event was subject to discussion and
+>   i don't know much about input events in Linux. So move to SCMI.
+>   In the example, an SCMI server in OP-TEE world raises optee irq 5
+>   so that Linux scmi optee channel &scmi_cpu_dvfs pushed in the incoming
+>   SCMI message in the scmi device for liekly later processing in threaded
+>   context. The example includes all parties: optee, scmi, sram, gic.
+> - Obviously rephrased the commit message.
+> ---
+>  .../arm/firmware/linaro,optee-tz.yaml         | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> index 5d033570b57b..9d9a797a6b2f 100644
+> --- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> +++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
+> @@ -41,6 +41,16 @@ properties:
+>        HVC #0, register assignments
+>        register assignments are specified in drivers/tee/optee/optee_smc.h
+>
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 1
+> +    description: |
+> +      OP-TEE exposes irq for irp chip controllers from OP-TEE world. Each
+> +      irq is assigned a single line number identifier used as first argument.
+> +      Line number identifiers and their meaning shall be found in the OP-TEE
+> +      firmware platform documentation.
+> +
+>  required:
+>    - compatible
+>    - method
+> @@ -65,3 +75,31 @@ examples:
+>              method = "hvc";
+>          };
+>      };
+> +
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    firmware  {
+> +        optee: optee {
+> +            compatible = "linaro,optee-tz";
+> +            method = "smc";
+> +            interrupt-parent = <&gic>;
+> +            interrupts = <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <1>;
+> +        };
+> +
+> +        scmi {
+> +            compatible = "linaro,scmi-optee";
+> +            linaro,optee-channel-id = <0>;
+> +            shmem = <&scmi_shm_tx>, <&scmi_shm_rx>;
+> +            interrupts-extended = <&optee 5>;
+> +            interrupt-names = "a2p";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            scmi_cpu_dvfs: protocol@13 {
+> +                reg = <0x13>;
+> +                #clock-cells = <1>;
+> +            };
+> +        };
+> +    };
+> --
+> 2.25.1
+>
