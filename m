@@ -2,143 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84EF57053D3
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:30:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C09487053D6
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:30:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230258AbjEPQac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 12:30:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57516 "EHLO
+        id S230337AbjEPQaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 12:30:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230385AbjEPQ3u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:29:50 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1E8CB5259
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:29:33 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 896221FB;
-        Tue, 16 May 2023 09:30:17 -0700 (PDT)
-Received: from [10.1.196.177] (eglon.cambridge.arm.com [10.1.196.177])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 561003F7BD;
-        Tue, 16 May 2023 09:29:31 -0700 (PDT)
-Message-ID: <0510749e-b88b-11f1-76f8-3c71188f731e@arm.com>
-Date:   Tue, 16 May 2023 17:29:29 +0100
+        with ESMTP id S231446AbjEPQaL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:30:11 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C9155A6;
+        Tue, 16 May 2023 09:30:07 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34GGTwMA064586;
+        Tue, 16 May 2023 11:29:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684254599;
+        bh=q4p/q6fKRi0HDifLb9cFkQsbiK2S5lYUgZu+peL5kcA=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=drCu5VTDWOTTHmhQRPnxHBrwDiod4y1OqHZDrbUBHwVozWmOCeyRqGQVSw/EIUNHG
+         paj4oY4b7fIlMq2VSfUaXKyqkVJPe1EkjPWJW0YuoKxDtzuzriXIuF2h5Y+5TXCPsq
+         TA4uAt8CSWcgP2TfozGFc3QjRE9P2rnGvZk37lF8=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34GGTwcM030637
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 16 May 2023 11:29:58 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
+ May 2023 11:29:58 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 16 May 2023 11:29:58 -0500
+Received: from [10.250.35.184] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34GGTwpO065903;
+        Tue, 16 May 2023 11:29:58 -0500
+Message-ID: <558ebfaf-bd7e-1760-5799-8ed430acad7a@ti.com>
+Date:   Tue, 16 May 2023 11:29:58 -0500
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 0/6] arm64: errata: Disable FWB on parts with non-ARM
- interconnects
-Content-Language: en-GB
-To:     Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Oliver Upton <oliver.upton@linux.dev>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH] mux: mmio: use reg property when parent device is not a
+ syscon
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Peter Rosin <peda@axentia.se>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230330165128.3237939-1-james.morse@arm.com>
- <ZF0io4mDjRdm1AxN@arm.com> <86y1lun1zh.wl-maz@kernel.org>
- <ZF1ai79ljnilIMoG@arm.com>
-From:   James Morse <james.morse@arm.com>
-In-Reply-To: <ZF1ai79ljnilIMoG@arm.com>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230515191909.611241-1-afd@ti.com>
+ <13c1f6ea-63b5-9667-18a2-705829c46437@axentia.se>
+ <895c84f5-4a3c-fd2c-2b43-1a1996862e15@ti.com>
+ <7d73a37f-80b7-b623-1b71-fa19bf379713@linaro.org>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <7d73a37f-80b7-b623-1b71-fa19bf379713@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Catalin, Marc,
-
-On 11/05/2023 22:13, Catalin Marinas wrote:
-> On Thu, May 11, 2023 at 07:42:58PM +0100, Marc Zyngier wrote:
->> On Thu, 11 May 2023 18:15:15 +0100,
->> Catalin Marinas <catalin.marinas@arm.com> wrote:
->>> On Thu, Mar 30, 2023 at 05:51:22PM +0100, James Morse wrote:
->>>> When stage1 translation is disabled, the SCTRL_E1.I bit controls the
->>>> attributes used for instruction fetch, one of the options results in a
->>>> non-cacheable access. A whole host of CPUs missed the FWB override
->>>> in this case, meaning a KVM guest could fetch stale/junk data instead of
->>>> instructions.
->>>>
->>>> The workaround is to disable FWB, and do the required cache maintenance
->>>> instead.
-
->>> I think the workaround can be to only do the required cache maintenance
->>> without disabling FWB. Having FWB on doesn't bring any performance
->>> benefits if we do the cache maintenance anyway but keeping it around may
->>> be useful for other reasons (e.g. KVM device pass-through using
->>> cacheable mappings, though not something KVM supports currently).
+On 5/16/23 11:19 AM, Krzysztof Kozlowski wrote:
+> On 16/05/2023 17:18, Andrew Davis wrote:
+>> On 5/15/23 4:14 PM, Peter Rosin wrote:
+>>> Hi!
+>>>
+>>> 2023-05-15 at 21:19, Andrew Davis wrote:
+>>>> The DT binding for the reg-mux compatible states it can be used when the
+>>>> "parent device of mux controller is not syscon device". It also allows
+>>>> for a reg property. When the parent device is indeed not a syscon device,
+>>>> nor is it a regmap provider, we should fallback to using that reg
+>>>> property to identify the address space to use for this mux.
+>>>
+>>> We should? Says who?
+>>>
+>>> Don't get me wrong, I'm not saying the change is bad or wrong, I would just
+>>> like to see an example where it matters. Or, at least some rationale for why
+>>> the code needs to change other than covering some case that looks like it
+>>> could/should be possible based on the binding. I.e., why is it not better to
+>>> "close the hole" in the binding instead?
+>>>
 >>
->> But you'd also rely on the guest doing its own cache maintenance for
->> instructions it writes, right?
-> 
-> Ah, you are right. It looks like I only considered the host writing
-> instructions. If the guest disabled stage 1 and wrote some instructions
-> with FWB on, they'd not necessarily reach the PoC while the instructions
-> are fetched from PoC with this bug. Even with SCTLR_EL1.I==0, the guest
-> is supposed to do an IC IVAU if it wrote instructions but that's not
-> sufficient (hint to the micro-architects, add a chicken bit to upgrade
-> IC IVAU to also do a DC CVAC ;))
-> 
->> Which probably means exposing a different CLIDR_EL1 so that
->> LoC/LoUU/LoUIS are consistent with *not* having FWB... I also wonder
->> if keeping FWB set has the potential to change the semantics of the
->> CMOs (the spec seems silent on that front).
-> 
-> Not sure about CMOs, I'd expect them to behave in the same way. However,
-> I don't see how faking CLIDR_EL1 can trick the guest into doing DC CVAC
-> when its MMU is off.
-
-I think the request is to keep the FWB feature, but to disable it for all host memory
-the guest can execute from. I presume this 'device pass-through using cacheable mappings'
-would mark that address range as XN at stage2, ( ... it's special right?).
-
-If this is for something like CXL: it can't set XN, and the guest would still be exposed
-to the erratum if it executes from theses addresses with the MMU off.
-
-Does this need doing now? It wouldn't need backporting to older kernels...
-
-
->>> That said, maybe we can reduce the risk further by doing the
->>> vcpu_has_run_once() trick with !FWB and clean the D side to PoC on a
->>> stage 2 exec fault (together with the I-cache invalidation). We can then
->>> ignore any other cache maintenance on S2 faults until someone shouts (we
->>> can maybe recommend forcing FWB off on the command line through the
->>> cpuid override).
+>> Sure, so this all stated when I was building a checker to make sure that drivers
+>> are not mapping overlapping register spaces. I noticed syscon nodes are a source
+>> of that so I'm trying to look into their usage.
 >>
->> You lost me here with your vcpu_has_run_once().
+>> To start, IHMO there is only one valid use for syscon and that is when more than
+>> one driver needs to access shared bits in a single register. DT has no way to
 > 
-> Most likely I lost myself in the code. So the tricks we used in the past
-> tracking the guest MMU off/on was only for the D side. If (we hope that)
-> the guest only wrote instructions to a page once before executing them
-> (and never writing instructions again), we could trap a subsequent exec
-> fault and do the D-cache clean to PoC again.
+> It has... what about all existing efuse/nvmem devices?
 > 
->> Keeping the CMOs on exec fault is definitely manageable. But is that
->> enough?
+>> describe down to the bit granular level, so one must give that register to
+>> a "syscon node", then have the device node use a phandle to the syscon node:
+>>
+>> common_reg: syscon@10000 {
+>> 	compatible = "syscon";
+>> 	reg = <0x10000 0x4>;
+>> };
+>>
+>> consumer@1 {
+>> 	syscon-efuse = <&common_reg 0x1>;
+>> };
+>>
+>> consumer@2 {
+>> 	syscon-efuse = <&common_reg 0x2>;
+>> };
+>>
+>> Something like that, then regmap will take care of synchronizing access.
 > 
-> Yeah, not sure it's enough if the guest keeps writing instructions to
-> the same page with the MMU off.
+> Syscon is not for this.
+> 
 
-The difference between FWB and IDC/DIC still does my head in: My reading is FWB implies
-IDC, (but the CTR_EL0.IDC bit might not be set). This doesn't help if the wrong attributes
-are being used for instruction fetch.
-This is cache-maintenance that wasn't needed before, so there are no tricks with the id
-registers we can pull to make the guest do it.
+That is how it is used today, and in 5 other ways too and there is
+no guidance on it. Let me know what syscon is for then.
 
+>>
+> 
+> ...
+> 
+>>
+>> Ideally DT nodes all describe their register space in a "reg"
+>> property and all the "large collection of devices" spaces become
+>> "simple-bus" nodes. "syscon" nodes can then be limited to only the
+>> rare case when multiple devices share bits in a single register.
+>>
+>> If Rob and Krzysztof agree I can send a patch with the above
+>> guidance to the Devicetree Specification repo also.
+> 
+> Agree on what?
+> 
 
-v2 of this will flip the polarity, and also detect based on an 'arm,interconnect'
-compatible, or the existing compatible the PMU driver uses.
+That we should provide the above guidance on when and how to use syscon
+nodes. Right now it is a free for all and it is causing issues.
 
+Andrew
 
-
-Thanks,
-
-James
+> 
+> Best regards,
+> Krzysztof
+> 
