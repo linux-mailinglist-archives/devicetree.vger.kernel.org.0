@@ -2,102 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9949704795
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79550704797
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230388AbjEPIR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 04:17:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40902 "EHLO
+        id S231410AbjEPITj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 04:19:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230379AbjEPIR4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:17:56 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC5B9188
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:17:55 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id B820F85D4E;
-        Tue, 16 May 2023 10:17:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684225074;
-        bh=BaNHDg9Vi02ldKi3Wyouc3wuEP9BxHidW+yZb2MFRgM=;
-        h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-        b=Fpux/XAhfxScg6bWeLp6qSSj6S9wTQRrDBvZf4vNbXhRdtBaIDTa+LjXrQOwWoFqW
-         4cHfBeTUonF9IhUSnLXCZBux1sDA9dkKsbQkHyZfzfdsfQW12JQHtd7shT3R3l5Gz6
-         6wIfw4ZaYmrCuiskQFPiL+2feLyAUnsYFhNUacCtGbKNF3PJexdSRJ7a8AZLXY9ZlH
-         EPvWoMNgBMuPA6HjdFlMSD+az4YKx8mezcDOtUAXZCvFGTTT5qpDr9Q8fJstazAskw
-         QW2rpDQvHnbDtrq480/qmGwgRIdOZTgDtMBy6ZoVUfcGy3drtBHtUaxDhArLjPG3ld
-         qZ2L0Zl/vQSeg==
-Message-ID: <f065592c-a273-1094-1f0f-1ada61c9e98a@denx.de>
-Date:   Tue, 16 May 2023 10:17:53 +0200
+        with ESMTP id S231496AbjEPITh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:19:37 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AEA9194
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:19:36 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-50bc22805d3so20834909a12.1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:19:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684225174; x=1686817174;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Oo2JdNQw3nm+s9q94jQpygK5WxCllVHRWTv0wG+9HNU=;
+        b=zVOfdIZi3XFfZsF3vzE5YO3ZRsDRLoy4SJL4De394IWu1au1l4EzI6afeXmA3DOYDr
+         IqHp09c7Ynlt1syBWJ1txySJSXHjOTxm1kkVEVl4LotyIWTBh2h9MEhGQIHK7+mApU1c
+         uJHW5tsOQUDVsholUr7YsE8H0AsF6qdIroo1trBf2OQumg9CZ4YUwS9OQp6L6L7eeaRR
+         6Rt3ZFN3ISjI82DYdCMcDPAUw9+CMqnWsW+RaDkMGzBSQ0PxZohlyqv4zctNgbg9XeF5
+         dEV8ueZdKbcAa2CV1qLr74i06vQ9YqwwQPZ6QlE4cbHV+kInvJFiToaXM7XhooRCUu2t
+         54Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684225174; x=1686817174;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Oo2JdNQw3nm+s9q94jQpygK5WxCllVHRWTv0wG+9HNU=;
+        b=MFE8qXL/wyFRF4WRTzpvwYv60qf4s7fDMKJysaXxUeTwFrsJM5I/nzL3zwCCjFL548
+         tFxQJWbiP54sTQO6Q+0VsN1+Yh2D5tl+dwtTTkmrwvRas19btPGGwBo/0lTl16RpymTs
+         3Nw4oS5cdzFlk+hPrdFCbA2UEze4DMcBTAFl9GkCBaMmpUf9S3qS+QxWmmaC40hwMGyn
+         T+P5rSICKtI92ao+ojBYkjCVoYqUBuVjATBu7yn0b9uISL3pCUmcrRXRhKiXjGr3sQdD
+         WgR1GKhimZeCH2LI8xctD0eee2o9MnYV9hArm6pcLx56oC0KADle5aMidUHscRaw0KWf
+         +vow==
+X-Gm-Message-State: AC+VfDy5PDjGRAl2BR0K4qrutjKTbpA8mJwZJEo++EvRj8FLnWMima6y
+        2YXUR+7CptU8tiZp1Gg43hw1Mg==
+X-Google-Smtp-Source: ACHHUZ5AU+l82Di42SmLWfIn7OnO3QXcKCr0DjoxwFXvbsfkrsG7YYNjWP8pCWbkUFnNKq1qWj1Yzw==
+X-Received: by 2002:a05:6402:160e:b0:50b:ca4a:8451 with SMTP id f14-20020a056402160e00b0050bca4a8451mr28528576edv.14.1684225174563;
+        Tue, 16 May 2023 01:19:34 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:4d4a:9b97:62e:1439? ([2a02:810d:15c0:828:4d4a:9b97:62e:1439])
+        by smtp.gmail.com with ESMTPSA id d5-20020a50fe85000000b004fbf6b35a56sm8254853edt.76.2023.05.16.01.19.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 May 2023 01:19:34 -0700 (PDT)
+Message-ID: <9ae25267-c4de-8f14-df62-d9d0d1f1420c@linaro.org>
+Date:   Tue, 16 May 2023 10:19:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH] arm64: dts: imx8mp: Add DeWarp Engine DT node
+Subject: Re: [PATCH] dt-bindings: usb: usb251xb: correct swap-dx-lanes type to
+ uint32
 Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
+To:     Marek Vasut <marex@denx.de>, mike.looijmans@topic.nl,
+        Richard Leitner <richard.leitner@linux.dev>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-References: <20230515163224.70300-1-marex@denx.de>
- <2306485.iZASKD2KPV@steina-w> <bd34dc17-8e6b-c8a2-4e9b-f043276e8682@denx.de>
-In-Reply-To: <bd34dc17-8e6b-c8a2-4e9b-f043276e8682@denx.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230515103337.130607-1-krzysztof.kozlowski@linaro.org>
+ <9b62a0db-1374-2c89-5ea3-286467bd1e4e@denx.de>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.ed9c8f5a-900b-42eb-a8c2-543ccf3145e3@emailsignatures365.codetwo.com>
+ <da66656e-ddd6-99cf-41ee-d6b2d318bdff@topic.nl>
+ <601bd136-ddae-2889-0e63-5f62484ec849@denx.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <601bd136-ddae-2889-0e63-5f62484ec849@denx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/16/23 10:06, Marek Vasut wrote:
-> On 5/16/23 08:38, Alexander Stein wrote:
->> Hi Marek,
-> 
-> Hi,
-> 
->> Am Montag, 15. Mai 2023, 18:32:24 CEST schrieb Marek Vasut:
->>> Add DT node for the DeWarp Engine of the i.MX8MP.
+On 15/05/2023 15:47, Marek Vasut wrote:
+>> Please consider the environment before printing this e-mail
+>> On 15-05-2023 14:55, Marek Vasut wrote:
+>>> On 5/15/23 12:33, Krzysztof Kozlowski wrote: diff --git 
+>>> a/Documentation/devicetree/bindings/usb/usb251xb.yaml 
+>>> b/Documentation/devicetree/bindings/usb/usb251xb.yaml
+>>>> index 4d1530816817..ac5b99710332 100644
+>>>> --- a/Documentation/devicetree/bindings/usb/usb251xb.yaml
+>>>> +++ b/Documentation/devicetree/bindings/usb/usb251xb.yaml
+>>>> @@ -231,7 +231,7 @@ properties:
+>>>>         power-on sequence to a port until the port has adequate power.
+>>>>       swap-dx-lanes:
+>>>> -    $ref: /schemas/types.yaml#/definitions/uint8-array
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>>       description: |
+>>>>         Specifies the ports which will swap the differential-pair 
+>>>> (D+/D-),
+>>>>         default is not-swapped.
 >>>
->>> Signed-off-by: Marek Vasut <marex@denx.de>
->>> ---
->>> Cc: Conor Dooley <conor+dt@kernel.org>
->>> Cc: Fabio Estevam <festevam@gmail.com>
->>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->>> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
->>> Cc: NXP Linux Team <linux-imx@nxp.com>
->>> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->>> Cc: Richard Cochran <richardcochran@gmail.com>
->>> Cc: Rob Herring <robh+dt@kernel.org>
->>> Cc: Sascha Hauer <s.hauer@pengutronix.de>
->>> Cc: Shawn Guo <shawnguo@kernel.org>
->>> Cc: devicetree@vger.kernel.org
->>> Cc: linux-arm-kernel@lists.infradead.org
+>>> Would it make more sense to update the driver instead ? I doubt you 
+>>> could have more than 256 ports on this device after all.
 >>
->> While the node itself is okay, could you please add a patch for 
->> reordering the
->> other nodes in aips4 before adding dewarp? dwe@32e30000 should be at 
->> the top
->> after ISI (ISP not yet added).
+>>
+>> I guess there's a bunch of devicetrees already out there using the 
+>> (misdocumented) 32-bit array binding, they'd break in a bad way...
 > 
-> The sorting of nodes does not conflict with this change, so I'll send a 
-> separate patch for that.
+> I think it is the other way around -- if the binding was documented as 
+> u8, then the existing DTs should use the u8 type if they are compliant 
+> to the binding document.
+> 
+> I see one board in next which uses this property and sets it to 0 , so 
+> this one is not affected either way:
+> arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dts: 
+> swap-dx-lanes = <0>;
 
-Well that wasn't as easy as I thought, but oh well, V2 is out.
+
+First of all, the original binding did not define it as u8. It actually
+skipped the type entirely but:
+ - Example shown u32,
+ - Driver used u32,
+ - In-tree user uses u32 (although as pointed - as 0 so not really
+relevant).
+
+Thus the ABI is rather defined by not-breaking users here, so I would
+stick to fixing it to u32.
+
+Best regards,
+Krzysztof
+
