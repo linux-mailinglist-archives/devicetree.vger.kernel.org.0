@@ -2,325 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FE1370530D
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 177C1705313
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:05:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234320AbjEPQFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 12:05:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56934 "EHLO
+        id S234386AbjEPQFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 12:05:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234383AbjEPQE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:04:57 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70026130;
-        Tue, 16 May 2023 09:04:55 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34GFQbm9012016;
-        Tue, 16 May 2023 18:04:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=8xiJXmMQrg/R+DCBB/6g1wBc/URk9jOvfWTvhK55bvA=;
- b=HT/ekd6jdJvEQTkHMNNZWVJZsHl5ZA+7dsgPYvhrRFYaRB+KywxnSfzU/ZXgSXXtAkpq
- 9V0k3B+HQH7f331Psix9mjpDJQi5xAYmfNQLgmAz46IrPOe0oSnSbABUbDVky1oTcH+g
- VKr4tkrCGJ70EN3Ct1jmIKw1bvCCNx0US5BMLtX98vf5hkSygYu9imM9aR5GmrTd/Ms0
- H/GYXA76arSCjxwjVvyPVnwT/Adj0Aq924He9K4C8OrNYSiJ6WpzM2nPhJW0H8fnsDhd
- Ha2rVCUGLfkOS1m1CCCjzeaFSfa0HaLMoWw37UCvaTl7qJOXNBcaSyBBypbC5nsW1Uft NQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qkgqx2a2m-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 16 May 2023 18:04:35 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2496E10002A;
-        Tue, 16 May 2023 18:04:34 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1654A23357C;
-        Tue, 16 May 2023 18:04:34 +0200 (CEST)
-Received: from [10.252.0.230] (10.252.0.230) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 16 May
- 2023 18:04:33 +0200
-Message-ID: <72c49b26-120a-64b1-60cf-bbafb2276660@foss.st.com>
-Date:   Tue, 16 May 2023 18:04:19 +0200
+        with ESMTP id S233042AbjEPQFi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:05:38 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1185949C9
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:05:36 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-96a2b6de3cbso1341284566b.1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:05:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684253134; x=1686845134;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8b9bU5+wXWEo/d9j4S9XaKF7bhriqhrqt+qVY4GBq+M=;
+        b=ZHf08m4Xjei6lY8zGs8JNweGqgrFLvBabe9WNLfAgmUe0Wxwmx7eoQuiVrnwGcdZ27
+         m9NZyYAs7hLzgpLLgWPndkCyCEUppBQ/KtxJkBV9+g2m1h5xUGMm2BKxhpKTPvMQuCSV
+         DPhzWLSjCvvDvmA5a6Y+ReeZ03AKfe/KgHGqWY4VSV9A3oOIQ8yhIFSzuFa5a7Go5Wvk
+         4k/EASRSKQ0IhSDF0go0H6GB1NFBIC9b5R7gRmO31HHca3TFuvm1oqT8U8Ui0u7aitlx
+         zOx5fkRG4TvcS69w84hb9XzdfV4gP5B7lHZZkMO8gaC6OFd5TYA/NUQ/gP8HbFqgsRo1
+         5uxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684253134; x=1686845134;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8b9bU5+wXWEo/d9j4S9XaKF7bhriqhrqt+qVY4GBq+M=;
+        b=kX5WPaQB76ZQoYWeX2NtZZzzX3KkuV4UnUZSTn8Z2LHY0a8KqQl+2PDV11Nx2VFwHA
+         TBjmHBMUpdK1keUC7DKAapgfjv/9ya8Y2PWhofZ0jdw9szN5JCAqdPsb/mkYpjmsA4PZ
+         FEyTTOAGhuY0pyzIxGHbMoBKcKlP01hSXsQZc5EjMQnr0WlMdWNSWXds+5TlzjSOWLh3
+         w4dSAX1p1c8WF3PS6lzDclwHk6tVFt0wpLCv6zD4i9IeCAFbnS2MR+5wG7uxNU2O5Z3i
+         Een+a6ygqQKP86oeAD0Bwls11y/wxOkKj/3r/exmLLQaDJzYuU/Df6kduVoVKtgP6mSV
+         Nxog==
+X-Gm-Message-State: AC+VfDzq/yCYSLKSzsQhF7JyjbdxDpne2HVR+dF8KyGqqmacVG2o04ZI
+        POHQqKTAfpECw4W1OMOHDtD7Aw==
+X-Google-Smtp-Source: ACHHUZ5APjzvcRC/zhwsH3scT9OxJ9I+vsSC32GTr6Ptp3S0i/BcySQ6GNwnkotWBPVcvxDCCPdLNA==
+X-Received: by 2002:a17:906:99c1:b0:947:ebd5:c798 with SMTP id s1-20020a17090699c100b00947ebd5c798mr38168194ejn.54.1684253134523;
+        Tue, 16 May 2023 09:05:34 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
+        by smtp.gmail.com with ESMTPSA id z13-20020a17090674cd00b0096ae152115bsm5206866ejl.175.2023.05.16.09.05.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 May 2023 09:05:33 -0700 (PDT)
+Message-ID: <bbb63fb9-69c3-9c86-c5aa-55b4beac0832@linaro.org>
+Date:   Tue, 16 May 2023 18:05:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] ARM: dts: stm32: fix several DT warnings on stm32mp15
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] arm64: zynqmp: Switch to amd.com emails
 Content-Language: en-US
-To:     Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
+Cc:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
+        Andrew Davis <afd@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Harini Katakam <harini.katakam@amd.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Marek Vasut <marex@denx.de>
-CC:     Philippe Cornu <philippe.cornu@foss.st.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@dh-electronics.com>
-References: <20230516132542.27298-1-raphael.gallais-pou@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230516132542.27298-1-raphael.gallais-pou@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Parth Gajjar <parth.gajjar@amd.com>,
+        Piyush Mehta <piyush.mehta@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        Tanmay Shah <tanmay.shah@amd.com>,
+        Vishal Sagar <vishal.sagar@amd.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <4c3426077075683b866f144b633cf5218a688c7c.1684244480.git.michal.simek@amd.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <4c3426077075683b866f144b633cf5218a688c7c.1684244480.git.michal.simek@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.252.0.230]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-16_08,2023-05-16_01,2023-02-09_01
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Raphael
-
-On 5/16/23 15:25, Raphael Gallais-Pou wrote:
-> Several warnings regarding LTDC and DSI on stm32mp15* device-trees remains.
+On 16/05/2023 15:41, Michal Simek wrote:
+> Update my and DPs email address to match current setup.
 > 
-> Those concern:
->    * "#size-cells" and "#address-cells" wrongly used
->    * residual "reg" property appearing on endpoints where it could be
->      avoided
-> 
-> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
 > ---
-
-Thanks to cleanup the last W=1 issues on stm32 MPU boards. It seems that 
-your patch introduces YAML validation regression for some boards. Can 
-you check this point please ?
-
-stm32mp157a-icore-stm32mp1-ctouch2-of10.dtb: dsi@5a000000: 
-'#address-cells' is a required property
-	From schema: 
-/local/home/frq08678/STLINUX/kernel/my-kernel/stm32/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
-
-stm32mp157a-icore-stm32mp1-edimm2.2.dtb: dsi@5a000000: '#address-cells' 
-is a required property
-	From schema: 
-/local/home/frq08678/STLINUX/kernel/my-kernel/stm32/Documentation/devicetree/bindings/display/st,stm32-dsi.yaml
-
-alex
-
-
->   arch/arm/boot/dts/stm32mp151.dtsi                         | 5 -----
->   arch/arm/boot/dts/stm32mp157.dtsi                         | 7 -------
->   .../boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts  | 6 ++++--
->   arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts | 6 ++++--
->   .../dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts | 3 +--
->   arch/arm/boot/dts/stm32mp157c-dk2.dts                     | 8 ++++++++
->   arch/arm/boot/dts/stm32mp157c-ev1.dts                     | 8 ++++++--
->   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts                 | 3 +--
->   arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi        | 6 +-----
->   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi                    | 3 +--
->   10 files changed, 26 insertions(+), 29 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-> index 664825418c32..0dc46fd9c269 100644
-> --- a/arch/arm/boot/dts/stm32mp151.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
-> @@ -1529,11 +1529,6 @@ ltdc: display-controller@5a001000 {
->   			clock-names = "lcd";
->   			resets = <&rcc LTDC_R>;
->   			status = "disabled";
-> -
-> -			port {
-> -				#address-cells = <1>;
-> -				#size-cells = <0>;
-> -			};
->   		};
->   
->   		iwdg2: watchdog@5a002000 {
-> diff --git a/arch/arm/boot/dts/stm32mp157.dtsi b/arch/arm/boot/dts/stm32mp157.dtsi
-> index 54e73ccea446..5e733cd16ff9 100644
-> --- a/arch/arm/boot/dts/stm32mp157.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp157.dtsi
-> @@ -24,14 +24,7 @@ dsi: dsi@5a000000 {
->   			clock-names = "pclk", "ref", "px_clk";
->   			resets = <&rcc DSI_R>;
->   			reset-names = "apb";
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
->   			status = "disabled";
-> -
-> -			ports {
-> -				#address-cells = <1>;
-> -				#size-cells = <0>;
-> -			};
->   		};
->   	};
->   };
-> diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-> index 9a2a4bc7d079..4279b26547df 100644
-> --- a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-> +++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-> @@ -49,6 +49,9 @@ &dsi {
->   	phy-dsi-supply = <&reg18>;
->   
->   	ports {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
->   		port@0 {
->   			reg = <0>;
->   			dsi_in: endpoint {
-> @@ -104,8 +107,7 @@ &ltdc {
->   	status = "okay";
->   
->   	port {
-> -		ltdc_ep0_out: endpoint@0 {
-> -			reg = <0>;
-> +		ltdc_ep0_out: endpoint {
->   			remote-endpoint = <&dsi_in>;
->   		};
->   	};
-> diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
-> index 390ee8c05754..efba54289820 100644
-> --- a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
-> +++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
-> @@ -49,6 +49,9 @@ &dsi {
->   	phy-dsi-supply = <&reg18>;
->   
->   	ports {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
->   		port@0 {
->   			reg = <0>;
->   			dsi_in_ltdc: endpoint {
-> @@ -104,8 +107,7 @@ &ltdc {
->   	status = "okay";
->   
->   	port {
-> -		ltdc_out_dsi: endpoint@0 {
-> -			reg = <0>;
-> +		ltdc_out_dsi: endpoint {
->   			remote-endpoint = <&dsi_in_ltdc>;
->   		};
->   	};
-> diff --git a/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts b/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts
-> index 0d7560ba2950..5116a7785201 100644
-> --- a/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts
-> +++ b/arch/arm/boot/dts/stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts
-> @@ -81,8 +81,7 @@ &ltdc {
->   	status = "okay";
->   
->   	port {
-> -		ltdc_ep0_out: endpoint@0 {
-> -			reg = <0>;
-> +		ltdc_ep0_out: endpoint {
->   			remote-endpoint = <&panel_in>;
->   		};
->   	};
-> diff --git a/arch/arm/boot/dts/stm32mp157c-dk2.dts b/arch/arm/boot/dts/stm32mp157c-dk2.dts
-> index ab13e340f4ef..4bef2300ed7c 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-dk2.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-dk2.dts
-> @@ -31,10 +31,15 @@ &cryp1 {
->   };
->   
->   &dsi {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
->   	status = "okay";
->   	phy-dsi-supply = <&reg18>;
->   
->   	ports {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
->   		port@0 {
->   			reg = <0>;
->   			dsi_in: endpoint {
-> @@ -82,6 +87,9 @@ &ltdc {
->   	status = "okay";
->   
->   	port {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
->   		ltdc_ep1_out: endpoint@1 {
->   			reg = <1>;
->   			remote-endpoint = <&dsi_in>;
-> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> index ba8e9d9a42fa..961e85b07a5e 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> @@ -101,9 +101,14 @@ dcmi_0: endpoint {
->   
->   &dsi {
->   	phy-dsi-supply = <&reg18>;
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
->   	status = "okay";
->   
->   	ports {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
->   		port@0 {
->   			reg = <0>;
->   			dsi_in: endpoint {
-> @@ -239,8 +244,7 @@ &ltdc {
->   	status = "okay";
->   
->   	port {
-> -		ltdc_ep0_out: endpoint@0 {
-> -			reg = <0>;
-> +		ltdc_ep0_out: endpoint {
->   			remote-endpoint = <&dsi_in>;
->   		};
->   	};
-> diff --git a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> index 407ed3952f75..eada9cf257be 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> @@ -161,8 +161,7 @@ &ltdc {
->   	status = "okay";
->   
->   	port {
-> -		ltdc_ep0_out: endpoint@0 {
-> -			reg = <0>;
-> +		ltdc_ep0_out: endpoint {
->   			remote-endpoint = <&panel_input>;
->   		};
->   	};
-> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-> index 50af4a27d6be..a564063b8f5a 100644
-> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-> @@ -330,11 +330,7 @@ &ltdc {
->   	status = "okay";
->   
->   	port {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		ltdc_ep0_out: endpoint@0 {
-> -			reg = <0>;
-> +		ltdc_ep0_out: endpoint {
->   			remote-endpoint = <&adv7513_in>;
->   		};
->   	};
-> diff --git a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-> index 0f1110e42c93..a6e2e20f12fa 100644
-> --- a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-> @@ -457,8 +457,7 @@ &ltdc {
->   	status = "okay";
->   
->   	port {
-> -		ltdc_ep0_out: endpoint@0 {
-> -			reg = <0>;
-> +		ltdc_ep0_out: endpoint {
->   			remote-endpoint = <&sii9022_in>;
->   		};
->   	};
+>  arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dts      | 5 +++--
+>  arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi         | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso   | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso   | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts      | 5 +++--
+>  arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dts     | 5 +++--
+>  arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts      | 5 +++--
+>  arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts      | 7 ++++---
+>  arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts | 5 +++--
+>  arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts | 5 +++--
+>  arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts | 7 ++++---
+>  arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts      | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts    | 5 +++--
+>  arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts    | 5 +++--
+>  arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts      | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts      | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts      | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts      | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts      | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts      | 2 +-
+>  arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts     | 7 ++++---
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi                 | 5 +++--
+>  24 files changed, 51 insertions(+), 39 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dts b/arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dts
+> index 88aa06fa78a8..1495272e5668 100644
+> --- a/arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dts
+> +++ b/arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dts
+> @@ -2,9 +2,10 @@
+>  /*
+>   * dts file for Avnet Ultra96 rev1
+>   *
+> - * (C) Copyright 2018, Xilinx, Inc.
+> + * (C) Copyright 2018 - 2022, Xilinx, Inc.
+> + * (C) Copyright 2022 - 2023, Advanced Micro Devices, Inc.
+
+I think these should be split. Your commit suggests only update to email
+but you add copyrights. While email change is trivial, the copyright
+change is not (at least not for everyone and for every legal system).
+
+What's more, there were no changes to this file after 2018. What
+copyrighted work did you add in 2019, 2020, 2021, 2022 and 2023? For
+this file clear: NAK
+
+Same concerns for most of other files.
+
+Best regards,
+Krzysztof
 
