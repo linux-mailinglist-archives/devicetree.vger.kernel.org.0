@@ -2,184 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B81B6704ED5
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:09:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F0B1704EE2
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:12:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231921AbjEPNJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:09:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55524 "EHLO
+        id S233070AbjEPNM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:12:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232660AbjEPNJ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:09:26 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4700BBD;
-        Tue, 16 May 2023 06:09:23 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-64a9335a8e7so5473158b3a.0;
-        Tue, 16 May 2023 06:09:23 -0700 (PDT)
+        with ESMTP id S233413AbjEPNMZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:12:25 -0400
+Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E71430C2
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:12:22 -0700 (PDT)
+Received: by mail-oo1-xc2e.google.com with SMTP id 006d021491bc7-54f8e5472a4so1224181eaf.1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:12:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684242563; x=1686834563;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JnI2mCTgjLo9sKDeUzzDpzJIwWSO6LoMJa5F9uksNBE=;
-        b=LSxpzNIphCX4pdKDAYRhRH09p5YyLtm9cdJSaSlo84MLRIqXWrTEFHI1F86TQye0V6
-         1ts0UmaJhmUZo2SNSqNjxMIDlJ2X48cecPF03fG0SQ0PAcaUAYmq3PLTUBqtZaOgkOTz
-         ot14jzU8Td/a+Mb7GYRqxcgncsVIWmTDRC0XfVsnyG3R8I2SCarQ28hLJUD7oBcuGmXn
-         Y8+YPKd8fEpJ4NoiQL/a0bjNrsf1z+9v9N2LaK9rNIbghD3PhKMV+3KKNkzMaDIjceRb
-         tOp/rF0KRDqyjGion2UzHUvuNJ7gWlsmsyWdAmpahQJ+XjKB/gt9/i15TuOXtA0tNzuV
-         XHwA==
+        d=gmail.com; s=20221208; t=1684242741; x=1686834741;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wPZqgabDRTDOvYUAH/txpv9GMllyEJqrs060gGGiwgg=;
+        b=XqifP41N3gPoOr1Rbfc+JOC1WNpu0lQGYf9qN9xSzVxuUfrLG9ZOOACGNnGndSe3K5
+         ZRrDewskwgbbqMZgf1OrrbcvHjt6lQKTRr1ESQL7lQZ7ac0utDIKVkxguX3v0T0GV6B0
+         DCC7sW6GLI0FlofK1j3p/r1tRYZn7OiqjyoGN7r2iPTykv7pFNqRcD218cBEEBN+m02A
+         zy2e1J6IVqJUxReC0UbBv0GP1Np6MvadnHTHJP7vPnG74AIXrK70KmMd20vdCH9rbi7h
+         W1DRkQ9Sz2BJRL5vXoHbOUNJF8ECedo/UQQLBs/C08Ce8gd+dgBLd2ORQlFddh8YrhB4
+         WS9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684242563; x=1686834563;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JnI2mCTgjLo9sKDeUzzDpzJIwWSO6LoMJa5F9uksNBE=;
-        b=fDiuJRxgxit5LXU2IBF9bhT1VPF9KS3J+av5lZvCMQ4fkceZcszSjsMvcCp3W6MXxU
-         xbQGWMH/3UC3NPyhVzoZcbSGHkfS/frZ/Sz+ELKxx/DNGOGOJD2pszExxM1Xi42HcUis
-         XuiBv2hxnuHKVK16ozGM1u3zNC2IkryGiDFmMfpoLzaoTZuhaQPpyn0YDc59IMZYFC+S
-         z9G9LY52s6v7LSxAQjGusYTsj5yckwQCY6m2I6HLaB2nYef/sJS58V/XONbkzuR1xGrO
-         Z0eeTzPstVy+gzN5cqnjBggIpcxrt9qKmqAvSz9LdxGs46l5361AKXdpZelnwcEgH7GF
-         kfFQ==
-X-Gm-Message-State: AC+VfDzjgsvPI6pwuLFvbOfK847sDLivtzq/lnJ/4ZTUeaJZ3zRdVnl1
-        miFRQpQzeZcWxbhjbSyPkARZdsMgYdvh6mulX/0=
-X-Google-Smtp-Source: ACHHUZ5+Nhs4AlA41VRX7XHReaGKnGgZl0brEkEPSTE8PDEC4sfbygO22G292BwjZGl/f+FmG+dJAgmuStgvDpfJwKU=
-X-Received: by 2002:a17:903:1ca:b0:1ad:bccc:af77 with SMTP id
- e10-20020a17090301ca00b001adbcccaf77mr25885743plh.18.1684242562600; Tue, 16
- May 2023 06:09:22 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684242741; x=1686834741;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wPZqgabDRTDOvYUAH/txpv9GMllyEJqrs060gGGiwgg=;
+        b=VvIBOKGrYfvRrlMROsitWZz/vhOmy4FJ9J4oePaxNNUExKrR+FmSehmKHiL/ZhbEdE
+         ACAxSUjcAhRQ71eekQHVSdWdSVG/BpINdo0mpuR7ssHzVL0hYWX7ECpRjWvCHj7PGKs1
+         s9uAyTfcNo4YKbji4/j5EY28bJEzz6s5wCjF42NSqYTnQO+kYpaP8+EHAZTRUZeZDl+B
+         jwNhawSF4jU+0fj0oreIhHJR6HQFeYYWUwzvUjD6cQI2LzE7c49qTOHCJkitE0UkUzwN
+         JdkbAWBKW2Jqm+qfXxeBuXUCitTmO3Eot6kDuWWA1hDUFvwsyinMWzEpD3uKJ3zaxtM/
+         bIcA==
+X-Gm-Message-State: AC+VfDxjeAAjO3IKUnCorhgxU0LWWC6rruKFdohr+RnN2ub8ses6oI5i
+        pqaCRatRsEBGIBO4fCXQcqPe+lp0mVOgLA==
+X-Google-Smtp-Source: ACHHUZ52tu3jkUt+feaNjhsq2Y2QZgxF8vhPLnrRZdz3a4Cmjolc/iEpQAKxyzBdW7zrvbKXxl8Yug==
+X-Received: by 2002:aca:3d41:0:b0:394:25b9:db19 with SMTP id k62-20020aca3d41000000b0039425b9db19mr1006831oia.2.1684242740984;
+        Tue, 16 May 2023 06:12:20 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:12fe:baa9:ec21:f64b])
+        by smtp.gmail.com with ESMTPSA id z83-20020aca3356000000b0039466db554dsm5395519oiz.18.2023.05.16.06.12.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 06:12:20 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     gregory.clement@bootlin.com
+Cc:     andrew@lunn.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] ARM: dts: armada-xp: Replace deprecated spi-gpio properties
+Date:   Tue, 16 May 2023 10:11:57 -0300
+Message-Id: <20230516131157.579676-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From:   =?UTF-8?B?UGF1bG8gUGF2YcSNacSH?= <pavacic.p@gmail.com>
-Date:   Tue, 16 May 2023 15:09:11 +0200
-Message-ID: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
-Subject: [PATCH v2] dt-bindings: display: panel: add panel-mipi-dsi-bringup
-To:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
-        robh+dt@kernel.org, daniel@ffwll.ch
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dt-bindings documentation for panel-mipi-dsi-bringup which currently
-supports fannal,c3004 panel. Also added fannal to vendor-prefixes.
+From: Fabio Estevam <festevam@denx.de>
 
-v2 changelog:
-  - revised driver title, now describes purpose
-  - revised description, now describes hw
-  - revised maintainers, now has only 1 mail
-  - removed diacritics from commit/commit author
-  - properties/compatible is now enum
-  - compatible using only lowercase
-  - revised dts example
-  - modified MAINTAINERS in this commit (instead of driver commit)
-  - dt_bindings_check checked yml
-  - checkpatch warning fixed
+As stated in Documentation/devicetree/bindings/spi/spi-gpio.yaml,
+'gpio-mosi' and 'gpio-sck' are deprecated properties.
 
-Signed-off-by: Paulo Pavacic <pavacic.p@gmail.com>
+Use the recommeded 'mosi-gpios' and 'sck-gpios' instead.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- .../display/panel/panel-mipi-dsi-bringup.yaml | 54 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- MAINTAINERS                                   |  6 +++
- 3 files changed, 62 insertions(+)
- create mode 100644
-Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
+ arch/arm/boot/dts/armada-xp-lenovo-ix4-300d.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
-b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
-new file mode 100644
-index 000000000000..c9e2b545657e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/panel-mipi-dsi-bringup.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MIPI DSI Bringup Panel Porting Bindings
-+
-+description: |
-+  MIPI DSI Bringup Panel porting bindings to be used for a collection of panels
-+  from different manufacturers which don't require backlight control from the
-+  driver and have a single reset pin which is required to be passed as an
-+  argument.
-+
-+maintainers:
-+  - Paulo Pavacic <pavacic.p@gmail.com>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+
-+  compatible:
-+    enum:
-+      # compatible must be listed in alphabetical order, ordered by compatible.
-+      # The description in the comment is mandatory for each compatible.
-+
-+        # Fannal 480x800 panel
-+      - fannal,c3004
-+
-+  reg: true
-+  reset-gpios: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - reset-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    //example on IMX8MM where GPIO pin 9 is used as a reset pin
-+    mipi_dsi@32e10000 {
-+        panel@0 {
-+            compatible = "fannal,c3004";
-+            reg = <0>;
-+            pinctrl-0 = <&pinctrl_mipi_dsi_rst>;
-+            pinctrl-names = "default";
-+            reset-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 82d39ab0231b..f962750f630a 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -462,6 +462,8 @@ patternProperties:
-     description: Facebook
-   "^fairphone,.*":
-     description: Fairphone B.V.
-+  "^fannal,.*":
-+    description: Fannal Electronics Co., Ltd
-   "^faraday,.*":
-     description: Faraday Technology Corporation
-   "^fastrax,.*":
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e0ad886d3163..46f988ee60bd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6566,6 +6566,12 @@ T:    git git://anongit.freedesktop.org/drm/drm-misc
- F:    Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
- F:    drivers/gpu/drm/tiny/panel-mipi-dbi.c
-
-+DRM DRIVER FOR MIPI DSI BRINGUP
-+M:    Paulo Pavacic <pavacic.p@gmail.com>
-+S:    Maintained
-+C:    mipi-dsi-bringup:matrix.org
-+F:    Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
-+
- DRM DRIVER FOR MSM ADRENO GPU
- M:    Rob Clark <robdclark@gmail.com>
- M:    Abhinav Kumar <quic_abhinavk@quicinc.com>
+diff --git a/arch/arm/boot/dts/armada-xp-lenovo-ix4-300d.dts b/arch/arm/boot/dts/armada-xp-lenovo-ix4-300d.dts
+index 0dad95ea26c2..21b95578fe95 100644
+--- a/arch/arm/boot/dts/armada-xp-lenovo-ix4-300d.dts
++++ b/arch/arm/boot/dts/armada-xp-lenovo-ix4-300d.dts
+@@ -167,8 +167,8 @@ scroll-button {
+ 	spi-3 {
+ 		compatible = "spi-gpio";
+ 		status = "okay";
+-		gpio-sck = <&gpio0 25 GPIO_ACTIVE_LOW>;
+-		gpio-mosi = <&gpio1 15 GPIO_ACTIVE_LOW>; /*gpio 47*/
++		sck-gpios  = <&gpio0 25 GPIO_ACTIVE_LOW>;
++		mosi-gpios = <&gpio1 15 GPIO_ACTIVE_LOW>; /*gpio 47*/
+ 		cs-gpios = <&gpio0 27 GPIO_ACTIVE_LOW>;
+ 		num-chipselects = <1>;
+ 		#address-cells = <1>;
 -- 
-2.40.1
+2.34.1
+
