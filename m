@@ -2,148 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EA467045AC
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 09:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CB987045B6
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 09:01:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbjEPHAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 03:00:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37762 "EHLO
+        id S230378AbjEPHB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 03:01:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230235AbjEPHAU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 03:00:20 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 237B9468F
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:00:17 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3075e802738so12571254f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:00:17 -0700 (PDT)
+        with ESMTP id S230418AbjEPHBp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 03:01:45 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 685DD1BD0
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:01:39 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50bd37ca954so4205193a12.0
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 00:01:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684220415; x=1686812415;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=5j2to6ZOPrMGHT/auJP2FZOL4Y7mEFb4FkOqP9dtJd8=;
-        b=kaiOsvXn/l53FZ5PR9bjiqBZcWOc2i39+z+fUZc++U/tHCDdjDoquPqFddCYyz/aNI
-         zYqK8DYS5HH9Htf5lCPYF8xMSq2xZmM3iC1fbHal6AWn6XSr88Ifkqt+EGvbbFh2QROT
-         D2Bo6bF+z05ne8VKLcSI5fQ6aQUIgMRVz9JGv5qETPREOo7RlZQp2T9c+d8Gdxt7Sotu
-         7dp/hOFu0GzYAOqkdP8OyaTQCpsVRmJTXDWbNE7jBApfaNq82BhSI51tUfDg2xVXM3tO
-         vRrFe4FLAK9SKZCpAz2/zAtawTqSDgVIEFn0OyOUDGXc3uODOabNl0BIiXRTWzuKF4Kf
-         /Pmw==
+        d=linaro.org; s=google; t=1684220498; x=1686812498;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oWSC2UwX8liE4S0vKrYK9T6F4NTqOvibNevIJEGFGVU=;
+        b=lqNpLr0pH5cDHUeoT8t79b8L6CLXiJrEOAI9bgIpLS4JEARMKp5NtFpTMhIYiwpfWh
+         r0Hmh6f4DlxiDSSgEd/6Q2+RO0VeBdom52lLHbgsLZvwFzrra5UsnZ+ob3eMlUKj0aYQ
+         T+wFlTrflz3h69KCdoTO8Jbj2RE009FlC2LSj0ygiXcIsdSm8jlpwjtHWJ1/dZLHNI4q
+         U1zP0wdTlr0tFS4xHBdYB5UQD6qiHTVzxyIkJ2ink2snFlGh4y4u4Xt1054hEoxVK6M1
+         3rmrHiR+847fSr4zRRUKudwCmOGdQNZyIRI0315oS428+90iW+dk9Y2cdPV3wrwWJXYf
+         +COA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684220415; x=1686812415;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5j2to6ZOPrMGHT/auJP2FZOL4Y7mEFb4FkOqP9dtJd8=;
-        b=JcogJlT1bbOgh/VSdch1oc7A3owZWwKjKPeWhjsTvgSMv1V9HV+7vMvDi9hIX7lHKP
-         0jfmvtlLuu0ZNDxSMqbatMb0JV5LqHqLhNQmrfbkI8rQKfCmdnpfHDJWkOMctBVzXz/f
-         SMpns6ZhDwiu3089jkxXNPB9TlRgdf1rARFgnD89u7JyeMvTppXXU9UoRvWVn8AbU1fw
-         R6vC8l8wNKV4U1VYhx2RrBmJEijjzYtJN00Cn0J6auS78aLjq2baoJ1VF9pspccNRGt7
-         ifohL8sIursuzmFlgv1GJv2gmLbh/NmDqzNRJLpsf+DE6MXQF5WsrAplDV07oTyDKxk7
-         +oqg==
-X-Gm-Message-State: AC+VfDxBx150nRUnfeyUb8+1YqVH27fL6lT8jOd4CDwUrFhMJLREv7LX
-        0i91o3XrdB3NNB77ZeoWOwr8yA==
-X-Google-Smtp-Source: ACHHUZ4YSjhKl8qZ+sZBe/WR6ExqM5d+PUUKyJ5e/JuR+cgf66isu2vmqgLezkLupAIhXYWPx7uMyw==
-X-Received: by 2002:adf:e34c:0:b0:309:22ba:dcdf with SMTP id n12-20020adfe34c000000b0030922badcdfmr4077061wrj.32.1684220415569;
-        Tue, 16 May 2023 00:00:15 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:86be:97a:a043:77a8? ([2a01:e0a:982:cbb0:86be:97a:a043:77a8])
-        by smtp.gmail.com with ESMTPSA id r14-20020a5d494e000000b003063a92bbf5sm1470296wrs.70.2023.05.16.00.00.14
+        d=1e100.net; s=20221208; t=1684220498; x=1686812498;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oWSC2UwX8liE4S0vKrYK9T6F4NTqOvibNevIJEGFGVU=;
+        b=S49m6KV3+Q/L1JBUpaPlwC4ERN5+84XxGxyThrbw9C8A6ekUWQ97ooE2loG22wDd0f
+         7nh/ukTdy1ivY8IZViXqYWbKfqwNal6+SZM6/ucfy6CWvLY6qRu+arOiNE1MfBuqWApa
+         gqQ4JyqiP8LfrGqOk0Mchl0BPA+8DMU/ZEBlk/+BaNWxb/vkjU8uQYZ2d5tIkjFHlSB8
+         wpora4BmB3esrozMZPRIuYyyjrne0DIdHLlCS5zShWCFJDWxXlls5Zm+6B8gWUHAU/q7
+         eakunegMlpBgU5IcFBtypb7r0oqX5qULIIrjT/nCqjcZQ3CLOoKpVDU06+lDKprQUaPH
+         6nZQ==
+X-Gm-Message-State: AC+VfDzIzhPNgHYO/yxlijXcbWpwMuHYSilU6i7+Z/dZQSZ8UMSKz1Li
+        tZ+vJmw5cLyEIxSqlmqIoIBlWg==
+X-Google-Smtp-Source: ACHHUZ5btIh6jnjGuaCYsGe/P9uwJa4VbSEI+T7Gyu/HTJbppRbPpkW7lefcQvgEl4DUufq+qRoWvw==
+X-Received: by 2002:a17:907:318a:b0:965:ddb1:99d3 with SMTP id xe10-20020a170907318a00b00965ddb199d3mr27954776ejb.14.1684220497865;
+        Tue, 16 May 2023 00:01:37 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:4d4a:9b97:62e:1439? ([2a02:810d:15c0:828:4d4a:9b97:62e:1439])
+        by smtp.gmail.com with ESMTPSA id hb38-20020a170907162600b009661cf921b4sm10315338ejc.202.2023.05.16.00.01.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 00:00:15 -0700 (PDT)
-Message-ID: <202dd8d6-363d-e73d-8c91-a0bba411de5b@linaro.org>
-Date:   Tue, 16 May 2023 09:00:13 +0200
+        Tue, 16 May 2023 00:01:37 -0700 (PDT)
+Message-ID: <912d7db5-3bb2-cbc6-ed98-eb1dd40f9fbd@linaro.org>
+Date:   Tue, 16 May 2023 09:01:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8450: Add missing RPMhPD OPP levels
+ Thunderbird/102.11.0
+Subject: Re: [RESEND,PATCH 1/3] arm64: dts: qcom: sm8250-xiaomi-elish-boe: fix
+ panel compatible
+To:     Jianhua Lu <lujianhua000@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230516062657.28616-1-lujianhua000@gmail.com>
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org,
-        agross@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     marijn.suijten@somainline.org, Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230516005306.952821-1-konrad.dybcio@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230516005306.952821-1-konrad.dybcio@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230516062657.28616-1-lujianhua000@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 02:53, Konrad Dybcio wrote:
-> We need more granularity for things like the GPU. Add the missing levels.
+On 16/05/2023 08:26, Jianhua Lu wrote:
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> This unfortunately requires some re-indexing, resulting in an ugly diff.
+> The bindings expect "novatek,nt36523" fallback in the panel compatible:
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8450.dtsi | 26 +++++++++++++++++++-------
->   1 file changed, 19 insertions(+), 7 deletions(-)
+>   sm8250-xiaomi-elish-boe.dtb: panel@0: compatible: ['xiaomi,elish-boe-nt36523'] is too shor
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index b4fc6abf8d8a..d3ac5644232b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -4195,31 +4195,43 @@ rpmhpd_opp_low_svs: opp4 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
->   					};
->   
-> -					rpmhpd_opp_svs: opp5 {
-> +					rpmhpd_opp_low_svs_l1: opp5 {
-> +						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_L1>;
-> +					};
-> +
-> +					rpmhpd_opp_svs: opp6 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
->   					};
->   
-> -					rpmhpd_opp_svs_l1: opp6 {
-> +					rpmhpd_opp_svs_l0: opp7 {
-> +						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L0>;
-> +					};
-> +
-> +					rpmhpd_opp_svs_l1: opp8 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
->   					};
->   
-> -					rpmhpd_opp_nom: opp7 {
-> +					rpmhpd_opp_svs_l2: opp9 {
-> +						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
-> +					};
-> +
-> +					rpmhpd_opp_nom: opp10 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
->   					};
->   
-> -					rpmhpd_opp_nom_l1: opp8 {
-> +					rpmhpd_opp_nom_l1: opp11 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
->   					};
->   
-> -					rpmhpd_opp_nom_l2: opp9 {
-> +					rpmhpd_opp_nom_l2: opp12 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L2>;
->   					};
->   
-> -					rpmhpd_opp_turbo: opp10 {
-> +					rpmhpd_opp_turbo: opp13 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
->   					};
->   
-> -					rpmhpd_opp_turbo_l1: opp11 {
-> +					rpmhpd_opp_turbo_l1: opp14 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
->   					};
->   				};
+> Fixes: 51c4c2bd6f31 ("arm64: dts: qcom: sm8250-xiaomi-elish-boe: Add mdss and dsi panel")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+I think there is no need to resend my patches. They are marked in
+patchwork. Unless I am not responsive to something, please rather avoid
+doing that.
+
+Best regards,
+Krzysztof
+
