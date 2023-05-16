@@ -2,78 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23E46704C04
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:12:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2C12704C09
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 13:12:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbjEPLMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 07:12:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60496 "EHLO
+        id S232909AbjEPLMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 07:12:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232635AbjEPLLo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:11:44 -0400
+        with ESMTP id S232904AbjEPLMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 07:12:30 -0400
 Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1202B6E85
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:10:29 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f50020e0f8so21987865e9.0
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:10:28 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E790E8A79
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:11:02 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f49bf0223cso69439455e9.1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 04:11:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20221208.gappssmtp.com; s=20221208; t=1684235385; x=1686827385;
+        d=monstr-eu.20221208.gappssmtp.com; s=20221208; t=1684235412; x=1686827412;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+/ou7+q1h4qYsTipeR3P2Ovh/unBzCshBsrmfTNo8J0=;
-        b=2MadX/2LoHKXZEoq9KTUNSmxv55NVXoIgGCRU1gQrRtbT5lsuz8VBFn8IC4hnlfV87
-         Lg6Pmc6afugLsELY7QL3fY2BIns7p5ze1pfYm/EoSxFGtgIShsdtIy1dDgrU7u4LQAF6
-         o7krXOJYTR22w+15zNzux/xvikx2296dezoS+gkM2pPUTppqbU1O93J6qZ8BLmbU3ERB
-         lKgNauFzc6z+rgm/iixO1TAAKy0/iZDJ+5WtXJjgXw7rhB7UAf8lJY1ryg7ZRZPU8bnw
-         wrSiXjdVnrrmBk/J+kWm55k7OK1zYIkBDlc5rSkX6CEbjJlZdvuXDfyLaWjXV40xyPI9
-         U0Kg==
+        bh=+QDbJK0mn7DubrzqluvREfFk7e2EK90hP2aDsHEEgRU=;
+        b=amodcCNODgCh+4Bzi24ukKAKMXmpv13v3wwGBwoDPCxbXXReeqske9wxoyET8VE0B2
+         gWB1NBn9kPp4hRwKc7SHzRpqLvTRutkIEcX6KVmcI3OoTtc4G+o9YMtjXUbnDjh5mM/2
+         CdUDBfM1BHes+2YIrmdjY9EPi5banbTbeTz9iwhU01TamjGi8SLnJVjz373J4GfASyad
+         mWkSpMtnNFYVjRqefnq3HRhWKZqQXKf+9nwYy/Nm5jB8wu+Q8XddemHKhzXKZnDD7aWV
+         A7ezmKFtZibCS9HI69X2NINAtqJBUz1vHYkkNFf25KSUoI55c+rraq1FvyNLeClPWz66
+         KNNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684235385; x=1686827385;
+        d=1e100.net; s=20221208; t=1684235412; x=1686827412;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+/ou7+q1h4qYsTipeR3P2Ovh/unBzCshBsrmfTNo8J0=;
-        b=Bkt+/ICSN2z4HGZMKcnPIcsf3Nr/emSrviZvRPemk4neobHmbYUx81XTbeRSYC1RK2
-         CB7yp9tsbYnSPoRu5a6qkVRPUl96nETp1mEVIdObE4vk08w7m/GKSAVrNhSUeTr7xhMH
-         5rbaXZ3GM8CXkK8kLZO9btDXcI5IKjkRhupwzqrIupuy5IDW3ldgyuFMinNDWkxModCN
-         GKclplj6nPTpkacjCBTJGSEQuyqiodhICLm5T+NTMbFReE+ln67VZ0s7Ak6/nz9vUQ0h
-         Igjozhd7I9If+2WyUPHJxf7YoTbKMiriTfG5+qmWiLYzuDt7P+W5uA8gv+z8WfzIajRI
-         gI+A==
-X-Gm-Message-State: AC+VfDw3Ns+IfTzHM/78uLynRpWkQI4jR/lJ4DuEe3fucvbgSMrAhnW3
-        r1aq9eJf9viTHLAA2/aLpi86Gg==
-X-Google-Smtp-Source: ACHHUZ4bPmgemaOQqkdewso76+d53+RouDUI1oitN9Hpb6Pm5xzRCKEXpUH7y5hn2YVLe6Bu8mT1pg==
-X-Received: by 2002:a5d:5689:0:b0:304:7bbf:7c1e with SMTP id f9-20020a5d5689000000b003047bbf7c1emr28182959wrv.4.1684235385061;
-        Tue, 16 May 2023 04:09:45 -0700 (PDT)
+        bh=+QDbJK0mn7DubrzqluvREfFk7e2EK90hP2aDsHEEgRU=;
+        b=A0ZDQYz9zVTFj2pJQbMJbH3qsts3WKvhLYlqINCVBbflAa2NePqeEWR/YPw6ScpbdW
+         uHLI/m/W2F8YTp6x/NS99f6LcBjhzg5+I9d9MtRJumBJinNJRZGj99SwMxQbwDcb8Has
+         XnieSXPPcAPA947zvBV1NuYSNYB3cEQmU/iZTrtpOhX9ioza9HLu8KrJCyNCW1lcHFQj
+         FZC9vqqDDZEqjgjfN417KozFXEatRcouoia4tPnX1qmWuCRgU4EhaxU/K++qmjngQr2W
+         pLRULVg1tKniOue+uREznfDTbyPLngFvLpgnwNnvm0PHyWQ2XzFUyP5v4QSWv+gMD+lh
+         QniA==
+X-Gm-Message-State: AC+VfDzPcy8nUh0rA5RTlJO6I0yw4TDBtepeiLYSjjFbdCytPRRACoWM
+        j+w5lonl8yBgZVkvQOC4bwy1pg==
+X-Google-Smtp-Source: ACHHUZ4EM9gTfx0MR1mjuYwNFE8DxzS+CitELUsIQwHC6lAyqhirl5hwO1M9+lkTBFocoG78cioU6g==
+X-Received: by 2002:a05:600c:2182:b0:3f4:2255:8608 with SMTP id e2-20020a05600c218200b003f422558608mr21806562wme.31.1684235412597;
+        Tue, 16 May 2023 04:10:12 -0700 (PDT)
 Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id p22-20020a7bcc96000000b003f1958eeadcsm1982014wma.17.2023.05.16.04.09.43
+        by smtp.gmail.com with ESMTPSA id k20-20020a7bc314000000b003f182cc55c4sm2000673wmj.12.2023.05.16.04.10.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 04:09:44 -0700 (PDT)
-Message-ID: <280758ce-cc39-e392-cc7e-4dc90eae095b@monstr.eu>
-Date:   Tue, 16 May 2023 13:09:43 +0200
+        Tue, 16 May 2023 04:10:12 -0700 (PDT)
+Message-ID: <0c3b4861-43d9-f1b6-68d8-f55943fdf1d4@monstr.eu>
+Date:   Tue, 16 May 2023 13:10:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 19/23] arm64: zynqmp: Enable DP driver for SOMs
+Subject: Re: [PATCH 21/23] arm64: zynqmp: Enable AMS on SOM and other zcu10x
+ boards
 Content-Language: en-US
 To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
         michal.simek@xilinx.com, git@xilinx.com
-Cc:     Andrew Davis <afd@ti.com>,
+Cc:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
         Ashok Reddy Soma <ashok.reddy.soma@xilinx.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+        Parth Gajjar <parth.gajjar@amd.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        Vishal Sagar <vishal.sagar@amd.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <cover.1683034376.git.michal.simek@amd.com>
- <15d16b4de933bfae108df6ca368eb2cdf916aa02.1683034376.git.michal.simek@amd.com>
+ <e1e1621ac1cee7f36ef20606bb3795e130de9609.1683034376.git.michal.simek@amd.com>
 From:   Michal Simek <monstr@monstr.eu>
-In-Reply-To: <15d16b4de933bfae108df6ca368eb2cdf916aa02.1683034376.git.michal.simek@amd.com>
+In-Reply-To: <e1e1621ac1cee7f36ef20606bb3795e130de9609.1683034376.git.michal.simek@amd.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,42 +86,168 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 5/2/23 15:35, Michal Simek wrote:
-> DP DMA is already enabled that's why there is no reason to keep DP
-> disabled.
+> AMS is used for monitoring system. Used for measuring voltages and
+> especially temperatures. Origin interface is IIO but via iio-hwmon it can
+> be moved to hwmon framework too (done for SOM and zcu100).
 > 
 > Signed-off-by: Michal Simek <michal.simek@amd.com>
 > ---
 > 
->   arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso | 2 +-
->   arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
+>   .../boot/dts/xilinx/zynqmp-sm-k26-revA.dts    | 26 +++++++++++++++++++
+>   .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    | 17 ++++++++++++
+>   .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 12 +++++++++
+>   .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 12 +++++++++
+>   .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 12 +++++++++
+>   5 files changed, 79 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-> index 4f18b3efcced..776444714fad 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-> @@ -96,7 +96,7 @@ &sata {
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+> index e284979fd7b1..78ff6a9b3144 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+> @@ -76,6 +76,20 @@ ds36-led {
+>   			default-state = "on";
+>   		};
+>   	};
+> +
+> +	ams {
+> +		compatible = "iio-hwmon";
+> +		io-channels = <&xilinx_ams 0>, <&xilinx_ams 1>, <&xilinx_ams 2>,
+> +			<&xilinx_ams 3>, <&xilinx_ams 4>, <&xilinx_ams 5>,
+> +			<&xilinx_ams 6>, <&xilinx_ams 7>, <&xilinx_ams 8>,
+> +			<&xilinx_ams 9>, <&xilinx_ams 10>, <&xilinx_ams 11>,
+> +			<&xilinx_ams 12>, <&xilinx_ams 13>, <&xilinx_ams 14>,
+> +			<&xilinx_ams 15>, <&xilinx_ams 16>, <&xilinx_ams 17>,
+> +			<&xilinx_ams 18>, <&xilinx_ams 19>, <&xilinx_ams 20>,
+> +			<&xilinx_ams 21>, <&xilinx_ams 22>, <&xilinx_ams 23>,
+> +			<&xilinx_ams 24>, <&xilinx_ams 25>, <&xilinx_ams 26>,
+> +			<&xilinx_ams 27>, <&xilinx_ams 28>, <&xilinx_ams 29>;
+> +	};
 >   };
 >   
->   &zynqmp_dpsub {
-> -	status = "disabled";
-> +	status = "okay";
->   	phy-names = "dp-phy0", "dp-phy1";
->   	phys = <&psgtr 1 PHY_TYPE_DP 0 0>, <&psgtr 0 PHY_TYPE_DP 1 0>;
->   	assigned-clock-rates = <27000000>, <25000000>, <300000000>;
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-> index 77bc806b15a1..78d082a11492 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-> @@ -77,7 +77,7 @@ &psgtr {
+>   &modepin_gpio {
+> @@ -327,6 +341,18 @@ &gpio {
+>   			  "", "", "", ""; /* 170 - 173 */
 >   };
 >   
->   &zynqmp_dpsub {
-> -	status = "disabled";
+> +&xilinx_ams {
 > +	status = "okay";
->   	phy-names = "dp-phy0", "dp-phy1";
->   	phys = <&psgtr 1 PHY_TYPE_DP 0 0>, <&psgtr 0 PHY_TYPE_DP 1 0>;
->   	assigned-clock-rates = <27000000>, <25000000>, <300000000>;
+> +};
+> +
+> +&ams_ps {
+> +	status = "okay";
+> +};
+> +
+> +&ams_pl {
+> +	status = "okay";
+> +};
+> +
+>   &zynqmp_dpsub {
+>   	status = "okay";
+>   };
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+> index c99abb99efcb..c8be41d77cb9 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+> @@ -59,6 +59,15 @@ switch-4 {
+>   		};
+>   	};
+>   
+> +	iio-hwmon {
+> +		compatible = "iio-hwmon";
+> +		io-channels = <&xilinx_ams 0>, <&xilinx_ams 1>, <&xilinx_ams 2>,
+> +			      <&xilinx_ams 3>, <&xilinx_ams 4>, <&xilinx_ams 5>,
+> +			      <&xilinx_ams 6>, <&xilinx_ams 7>, <&xilinx_ams 8>,
+> +			      <&xilinx_ams 9>, <&xilinx_ams 10>,
+> +			      <&xilinx_ams 11>, <&xilinx_ams 12>;
+> +	};
+> +
+>   	leds {
+>   		compatible = "gpio-leds";
+>   		led-ds2 {
+> @@ -581,6 +590,14 @@ &watchdog0 {
+>   	status = "okay";
+>   };
+>   
+> +&xilinx_ams {
+> +	status = "okay";
+> +};
+> +
+> +&ams_ps {
+> +	status = "okay";
+> +};
+> +
+>   &zynqmp_dpdma {
+>   	status = "okay";
+>   };
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> index 5b6403865541..b2e1f3581f6b 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+> @@ -1027,6 +1027,18 @@ &watchdog0 {
+>   	status = "okay";
+>   };
+>   
+> +&xilinx_ams {
+> +	status = "okay";
+> +};
+> +
+> +&ams_ps {
+> +	status = "okay";
+> +};
+> +
+> +&ams_pl {
+> +	status = "okay";
+> +};
+> +
+>   &zynqmp_dpdma {
+>   	status = "okay";
+>   };
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+> index a74a2061431a..1f30c37c2e03 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+> @@ -511,6 +511,18 @@ &watchdog0 {
+>   	status = "okay";
+>   };
+>   
+> +&xilinx_ams {
+> +	status = "okay";
+> +};
+> +
+> +&ams_ps {
+> +	status = "okay";
+> +};
+> +
+> +&ams_pl {
+> +	status = "okay";
+> +};
+> +
+>   &zynqmp_dpdma {
+>   	status = "okay";
+>   };
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+> index 73972d83ed4d..474744278b97 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+> @@ -523,6 +523,18 @@ &watchdog0 {
+>   	status = "okay";
+>   };
+>   
+> +&xilinx_ams {
+> +	status = "okay";
+> +};
+> +
+> +&ams_ps {
+> +	status = "okay";
+> +};
+> +
+> +&ams_pl {
+> +	status = "okay";
+> +};
+> +
+>   &zynqmp_dpdma {
+>   	status = "okay";
+>   };
 
 Applied.
 M
