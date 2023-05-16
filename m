@@ -2,122 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9DBD7055AC
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 20:09:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEE55705608
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 20:34:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232127AbjEPSJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 14:09:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53766 "EHLO
+        id S229959AbjEPSeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 14:34:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbjEPSJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 14:09:35 -0400
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE68A7
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 11:09:33 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-55a00da4e53so249045477b3.0
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 11:09:33 -0700 (PDT)
+        with ESMTP id S229894AbjEPSd7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 14:33:59 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 257C06A57
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 11:33:57 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-50db7ec8188so14164647a12.2
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 11:33:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684260572; x=1686852572;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HOOCBtnPBFwUcTzbyrJ0D+u8r9EEiyuqpPeng26UuJw=;
-        b=qmxo71Iu51dxFxvJUFwzFuvE5d4/yYabhhGeWleeEm4S88WH1eWl0ErD0jyC4E4Yw4
-         kTAlQonYg0MmNr6Lvn8vC+nHf2rA+KvFG+LWsMiS0LBHhEFghvMt8DKhK8ViUaFADlfy
-         LgUNrPAHtqz0J/rOZuJLs6YHWWXNsyH5TMAwK2hQG+K+7JuqIl6X4+iOmZri0mYKJrkS
-         vQfel+hfcdz3pLMvRD+0xBDdGTGaN9gCNPp4eRf3Yiy7WW9bTH+Nxd6snpjBwcr6/LXB
-         F2T46T91x4YRYJakVsZrBKMVK9YMbm7l+sLh1ogMnYSjVAI8XOFtNd3Ghx0Ot/yr84ca
-         nAaw==
+        d=linaro.org; s=google; t=1684262035; x=1686854035;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=UM5QhM60g6MRUI2fwaNDHDFdlzqdnsKU9vL4QdeC3fM=;
+        b=hif5xAcXjEMtR3qp/0pniuFc8yhgidxzrVRBGI8mS8yJT3iuw0oBPV2TUzbrM2PIvI
+         5vqEHD5/+O6MzZNSgejLzEzDfqdl963I91WqUm369iQbNFXarcHAodSnhUhH6lNmd0fi
+         Lica636EvHSCFWwfeDlmT1mDjZvDtxT+foiLUczkeffbruqOVR6zEF2xrYbAWZupLs0I
+         jWI5isYCxLM6g0rEZfYOMxfIKosajOKHfIvZx5ZgdqWXLnOylYGgR7Of9oYkUHOWWjw8
+         UBvD8NrMMNNptYODI0nu7H6sJIU8N4UZ75QoU/+SnCzY5rxolY1oaXWLC0nJQ0b5IoOH
+         1EPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684260572; x=1686852572;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HOOCBtnPBFwUcTzbyrJ0D+u8r9EEiyuqpPeng26UuJw=;
-        b=DA4nTQfrueWiUwR6lgMbgYCXOt5Okmczm0392m4cbH5co+Ke4IcgjZydtihT1QeX4B
-         v1UpPm1caA4+BkEDj60CcM6GObQcmc6h2tFzIiR6fqQ47NHCftrmR4jlW9ToBqIeplmi
-         wz04IRenolBV3oRlrg8zfvjZHjJXd5mb+0c1DpAyeDo8U2zE45UC4vPTJ2HSAWtpmwyk
-         6JDYN5+/2b4LZKCq2PxxaIr8mvl7ftGj4Z/38My0MMKI2ys0IPkNAu9iGPkyrOwcSgUX
-         cr4iAuCuv6vveQtG7HqpVElzFmp9sGDgiZ/NbjoB0jWv51EtHoVLpaPBLKfQP75wXdrY
-         Iz5A==
-X-Gm-Message-State: AC+VfDzCDYVcx8fLPvB6yk3YR41l09yRTZ5n+ivSa5TQLeLcG3Zq7s4g
-        bYYlS8qdYYMH2i3s4HxRKboLwhhMdOzWBt/4Zb9Apw==
-X-Google-Smtp-Source: ACHHUZ7XF6q2Bm1/49+wSfDCry1UkLwKzxIvfA8o0ztp9zAXasmfZmqYoLT5ce/cEdz0K4L4NDqNhKlG99yf44fNy44=
-X-Received: by 2002:a81:6c45:0:b0:561:bae4:c377 with SMTP id
- h66-20020a816c45000000b00561bae4c377mr255712ywc.14.1684260572560; Tue, 16 May
- 2023 11:09:32 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684262035; x=1686854035;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UM5QhM60g6MRUI2fwaNDHDFdlzqdnsKU9vL4QdeC3fM=;
+        b=QFI0rWHVcdiDWmFd0EmgUorIM7rdLMeUbRts9lpSKFrgtxqWzvX4jCfMMJ7bKeYDvn
+         mBmKaLNLw9vYxwxxLli/w2Xmnx78w3hxha/l8kYzeBxdaMuYtZnyDCq7XTyppdyXAzKH
+         6Rx5Ve5KSRNiedmPg7TrPncH7QCD+G1KrAwDRypsev9Dpu6V9zZUaI+kiV0ukf6vax7y
+         4lPwjg+ZERhiOv/SawmRVJyBfrj26IozRLqRUCD6Z+nUSOSy7qkWrLT3bxUIs9zLEgoV
+         sV01q25c0V+f0Hmsn0GNb7fsQkgt3bkOiGZmc6GjeQOAZcn5y2Jof4L5S9ubusVqBXPB
+         WeDw==
+X-Gm-Message-State: AC+VfDxkLppknioKbqjFEWJa18A4mIKbpgjY2gkgnk4xPlfxQ6VGsdHw
+        rOFkpSasA/v/2alc50/ngaER0A==
+X-Google-Smtp-Source: ACHHUZ5qknH76jgwfN5URsxgt3KIN0jVaSCObUcC8GPqVloC1zCIFVU0+dVSRUTPIXrDUqvf2iH0CA==
+X-Received: by 2002:a17:907:6d1f:b0:96a:6f35:d1a5 with SMTP id sa31-20020a1709076d1f00b0096a6f35d1a5mr20106630ejc.67.1684262035502;
+        Tue, 16 May 2023 11:33:55 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
+        by smtp.gmail.com with ESMTPSA id kz23-20020a17090777d700b009659fed3612sm11136765ejc.24.2023.05.16.11.33.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 May 2023 11:33:55 -0700 (PDT)
+Message-ID: <9a9b074e-d5c9-eca8-4c05-f60861629a2d@linaro.org>
+Date:   Tue, 16 May 2023 20:33:53 +0200
 MIME-Version: 1.0
-References: <20230426-stmpe-dt-bindings-v4-0-36fdd53d9919@linaro.org>
- <20230426-stmpe-dt-bindings-v4-1-36fdd53d9919@linaro.org> <CAMRc=MdsBiV3AvzSPtCuR58w0N9z7o+hUrBDtXUC4a++pECb8w@mail.gmail.com>
- <CACRpkdaJrB1f13LB4aHSWys63448a4NQZORgwdk8z=C8qe-BDA@mail.gmail.com> <CAMRc=Mf+RsU6PT7fwm=r9OLbmxNjiv9Ru8HEfpMEAqDN5-0Qig@mail.gmail.com>
-In-Reply-To: <CAMRc=Mf+RsU6PT7fwm=r9OLbmxNjiv9Ru8HEfpMEAqDN5-0Qig@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 16 May 2023 20:09:21 +0200
-Message-ID: <CACRpkdbCiEtiXkhaoUMCqeqcOaTYu0hSp0cDTy8NzzwitfQL+g@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: gpio: Convert STMPE GPIO to YAML schema
-To:     Bartosz Golaszewski <brgl@bgdev.pl>, Lee Jones <lee@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] mux: mmio: use reg property when parent device is not a
+ syscon
+To:     Andrew Davis <afd@ti.com>, Peter Rosin <peda@axentia.se>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Stefan Agner <stefan@agner.ch>, Marek Vasut <marex@denx.de>,
-        Steffen Trumtrar <s.trumtrar@pengutronix.de>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230515191909.611241-1-afd@ti.com>
+ <13c1f6ea-63b5-9667-18a2-705829c46437@axentia.se>
+ <895c84f5-4a3c-fd2c-2b43-1a1996862e15@ti.com>
+ <7d73a37f-80b7-b623-1b71-fa19bf379713@linaro.org>
+ <558ebfaf-bd7e-1760-5799-8ed430acad7a@ti.com>
+ <32dbdaa3-067b-c997-778f-4fc8dafbbd87@linaro.org>
+ <1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com>
+Content-Language: en-US
+In-Reply-To: <1c27d9d4-b1cc-c158-90f7-f7e47e02c424@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 16, 2023 at 5:34=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl>=
- wrote:
-> On Thu, May 11, 2023 at 10:39=E2=80=AFPM Linus Walleij <linus.walleij@lin=
-aro.org> wrote:
-> >
-> > On Thu, May 11, 2023 at 4:58=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev=
-.pl> wrote:
-> >
-> > > Applied, thanks!
-> >
-> > That works ... but patch 2/2 depends on this one. (uses $ref).
-> > You'd have to give Lee an immutable branch that he can pull
-> > before applying patch 2/2 so he has the dependency, or let him
-> > apply both.
-> >
-> > Yours,
-> > Linus Walleij
->
-> Sure:
->
-> The following changes since commit ac9a78681b921877518763ba0e89202254349d=
-1b:
->
->   Linux 6.4-rc1 (2023-05-07 13:34:35 -0700)
->
-> are available in the Git repository at:
->
->   git://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git
-> tags/v6.4-stmpe-gpio
->
-> for you to fetch changes up to 6c19974d1e83fba2cca1cbea2fbf250f093eb5ed:
->
->   dt-bindings: gpio: Convert STMPE GPIO to YAML schema (2023-05-11
-> 16:58:04 +0200)
+On 16/05/2023 19:47, Andrew Davis wrote:
+> On 5/16/23 11:49 AM, Krzysztof Kozlowski wrote:
+>> On 16/05/2023 18:29, Andrew Davis wrote:
+>>> On 5/16/23 11:19 AM, Krzysztof Kozlowski wrote:
+>>>> On 16/05/2023 17:18, Andrew Davis wrote:
+>>>>> On 5/15/23 4:14 PM, Peter Rosin wrote:
+>>>>>> Hi!
+>>>>>>
+>>>>>> 2023-05-15 at 21:19, Andrew Davis wrote:
+>>>>>>> The DT binding for the reg-mux compatible states it can be used when the
+>>>>>>> "parent device of mux controller is not syscon device". It also allows
+>>>>>>> for a reg property. When the parent device is indeed not a syscon device,
+>>>>>>> nor is it a regmap provider, we should fallback to using that reg
+>>>>>>> property to identify the address space to use for this mux.
+>>>>>>
+>>>>>> We should? Says who?
+>>>>>>
+>>>>>> Don't get me wrong, I'm not saying the change is bad or wrong, I would just
+>>>>>> like to see an example where it matters. Or, at least some rationale for why
+>>>>>> the code needs to change other than covering some case that looks like it
+>>>>>> could/should be possible based on the binding. I.e., why is it not better to
+>>>>>> "close the hole" in the binding instead?
+>>>>>>
+>>>>>
+>>>>> Sure, so this all stated when I was building a checker to make sure that drivers
+>>>>> are not mapping overlapping register spaces. I noticed syscon nodes are a source
+>>>>> of that so I'm trying to look into their usage.
+>>>>>
+>>>>> To start, IHMO there is only one valid use for syscon and that is when more than
+>>>>> one driver needs to access shared bits in a single register. DT has no way to
+>>>>
+>>>> It has... what about all existing efuse/nvmem devices?
+>>>>
+>>>>> describe down to the bit granular level, so one must give that register to
+>>>>> a "syscon node", then have the device node use a phandle to the syscon node:
+>>>>>
+>>>>> common_reg: syscon@10000 {
+>>>>> 	compatible = "syscon";
+>>>>> 	reg = <0x10000 0x4>;
+>>>>> };
+>>>>>
+>>>>> consumer@1 {
+>>>>> 	syscon-efuse = <&common_reg 0x1>;
+>>>>> };
+>>>>>
+>>>>> consumer@2 {
+>>>>> 	syscon-efuse = <&common_reg 0x2>;
+>>>>> };
+>>>>>
+>>>>> Something like that, then regmap will take care of synchronizing access.
+>>>>
+>>>> Syscon is not for this.
+>>>>
+>>>
+>>> That is how it is used today, and in 5 other ways too and there is
+>>> no guidance on it. Let me know what syscon is for then.
+>>
+>> Like described in its bindings (syscon.yaml). The main case is: some
+>> part of address space (dedicated) for various purposes.
+>>
+> 
+> That is a "simple-bus", you could use the same reasoning and make the
+> whole address space one big "syscon" node instead then just poke
+> registers from drivers all over.
 
-Hey cool :D
+Yes and both are discouraged.
 
-Lee if you pull this in you can apply 2/2 on top if it checks out.
+> 
+> It is not clear where to draw the line, and for that reason I would
+> like to discourage "syscon" as much as possible and use the normal DT
+> scheme of node per device/register space.
 
-Yours,
-Linus Walleij
+We all keep discouraging using syscon, so I agree. What exactly do you mean?
+
+> 
+>> Secondary case is a device, with its address space, which has few
+>> registers from other domain, so it needs to expose these to the other
+>> devices.
+>>
+> 
+> That is not the case for "reg-mux"; neither case is. So you would
+> agree that "reg-mux" nodes should not be syscon nodes 
+
+I don't understand. reg-mux is not a syscon. No syscon compatible in:
+Documentation/devicetree/bindings/mux/reg-mux.yaml
+
+
+> nor should
+> they force their parents to be one when they do not meet the above
+> two cases?
+
+reg-mux does not force the parent to be syscon. You are now mistaking it
+with mmio-mux, which apparently for our Linux implementation it expects
+parent to be syscon.
+
+>> efuse is not syscon, because it is not writeable. efuse has entirely
+>> different purpose with its own defined purpose/type - efuse/OTP etc.
+>>
+> 
+> That was just one example I found, I have not found a standard way
+> to describe down to the bit level in DT, only to the word/register.
+> Anything more granular needs non-standard ways of describing which
+> bits belong to which nodes/devices and using syscon to fetch the
+> common registers.
+> 
+>>>
+>>>>>
+>>>>
+>>>> ...
+>>>>
+>>>>>
+>>>>> Ideally DT nodes all describe their register space in a "reg"
+>>>>> property and all the "large collection of devices" spaces become
+>>>>> "simple-bus" nodes. "syscon" nodes can then be limited to only the
+>>>>> rare case when multiple devices share bits in a single register.
+>>>>>
+>>>>> If Rob and Krzysztof agree I can send a patch with the above
+>>>>> guidance to the Devicetree Specification repo also.
+>>>>
+>>>> Agree on what?
+>>>>
+>>>
+>>> That we should provide the above guidance on when and how to use syscon
+>>> nodes. Right now it is a free for all and it is causing issues.
+>>
+>> Sure, providing more guidance seems good. We already provide guidance
+>> via review, but we can codify it more. Where? syscon.yaml? It's already
+>> describing everything needed to know...
+>>
+>> What particular problems do you see which need to be solved?
+>>
+> 
+> My issue is the guidance is not clear, nor being followed. For instance
+> this is listed as a requirement:
+> 
+> "The registers are not cohesive enough to represent as any specific type of device."
+> 
+> Take "ti,j721e-system-controller" for instance, today this region is modeled
+> as a "syscon" node but it actually is a region of well defined register spaces
+> and devices. Like PHYs, clock controllers, and our even our pinmux controller.
+
+Then it should not be syscon. The platform maintainer should tell
+submitter: this is not syscon, please stop this nonsense.
+
+We do not have access to your datasheets and we do not have time to
+investigate each one of device, so we, DT maintainers, cannot really
+judge. Submitters want everything to be syscon because they can write
+code much faster and shove into kernel poor quality drivers which do not
+adhere to any design principles.
+
+> Most of these devices use the normal "reg" property to claim their registers and
+> so this space should be a "simple-bus" but we are forced to make it one big
+> "syscon" node because a couple devices in this area have a Linux driver that
+> requires their parent node to be a syscon node.
+
+I don't think it is requirement. You could have a device which has
+children, gives them regmap, but is not really syscon.
+
+> 
+> That is the point of this patch, to relax that restriction in this driver.
+> It doesn't even change the binding, it only makes the driver match what
+> the binding allows.
+
+Hm, we might be talking about different topics, I don't know. I did not
+look at the driver as it does not fall into category of bindings at all
+and is fully ignored by my filters.
+
+Best regards,
+Krzysztof
+
