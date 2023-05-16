@@ -2,91 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DCF6704A3B
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03F60704A71
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:24:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230292AbjEPKPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 06:15:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45884 "EHLO
+        id S232157AbjEPKYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 06:24:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231895AbjEPKPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:15:15 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70DB610DC
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 03:15:13 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f4ec041fc3so35968075e9.1
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 03:15:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684232112; x=1686824112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=u6hotZHN8F9GNcRVXqml63G6mGoDwzmzd1ogRplEl7A=;
-        b=SDhZGQz5V3SpYUUAG+uNAFNGhnNYPNqZAwiuBxZuB26G0qwLy9arpDWno5m+HEtaSd
-         viRZEzVSIoMJeRNV3JZT/flDlg7xAOdRRui4DCMyKJaMnN17VosKMzvqpN2XFSPSaqS5
-         EA9FClOtKW/q5SxCn1QNh6rUaSvk12dpOzdQCRzrtfZZTxcDtWr6AWoTtyLjy2m48r7S
-         drGc0xro/Txc9sqafClJooMRNPqPEjyJw61DvShlvObUAfkfu81FX52w6CfIWh1FqS7A
-         yXyF1K0uI7wG1kOe5F2TMEbeYL4NVzAk1CArA7BynVp7y6B61dAqRN9alIqgSZ8vZo2F
-         bhxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684232112; x=1686824112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u6hotZHN8F9GNcRVXqml63G6mGoDwzmzd1ogRplEl7A=;
-        b=QOIpuW2zVQEw8LhEN9Dsxrc0RPaSZT6ejMFY/vftcJd8wJDEN/o80J9J2LovMV1Bfs
-         qTsCyNQtKRNV8X1Z5FDriwDbXq17QDC4ZCxU3GeHiJC8ni54eX7oGmvOQvc7pp5/yjYL
-         LKPsvjgWlMlh/2MQVKIaKB6LlCGNTxXwPV8lDLI5wqACKLgs2ETqZtY6TXqrdrnG8BNr
-         CHYG33rZ0SESjb577MWUbDoYz/ZekQsUoyyKzsf6vEYKSAGN5C2/3CeB8LvXkM3YRTTM
-         ce8XA/cqaEdVx0srPOqDXuG1YKEL/FpElWHj/QQJ/UxDrCbaovNOEVNBqE/c3XQHbUk2
-         7/lQ==
-X-Gm-Message-State: AC+VfDxxGgYKdSJmo5aMnCoAM+esOkXN7AknN4kI3zhziGHAq3vgtQZ4
-        jQ7GhWJ1N/1jtVuZ7v5U5xDGSQ==
-X-Google-Smtp-Source: ACHHUZ65rv/dw7p0nohu7DByQygeobX+M09FaCDj6gFZbJEE3WkNFueyBIUJEXdBv1OGMUkYFyePZg==
-X-Received: by 2002:a1c:770e:0:b0:3f5:e88:ffc4 with SMTP id t14-20020a1c770e000000b003f50e88ffc4mr3507273wmi.33.1684232111893;
-        Tue, 16 May 2023 03:15:11 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id m7-20020a7bcb87000000b003f4290720d0sm1742351wmi.47.2023.05.16.03.15.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 03:15:11 -0700 (PDT)
-Message-ID: <f4b774a6-d739-2fae-cdbb-9554fb0db707@linaro.org>
-Date:   Tue, 16 May 2023 11:15:10 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v8 04/11] dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy:
- Add input and output ports
-Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, luca.weiss@fairphone.com,
-        lujianhua000@gmail.com, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        konrad.dybcio@linaro.org, caleb.connolly@linaro.org,
-        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230515133643.3621656-1-bryan.odonoghue@linaro.org>
- <20230515133643.3621656-5-bryan.odonoghue@linaro.org>
- <20230515195949.yemdw4n2pquive2r@ripper>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230515195949.yemdw4n2pquive2r@ripper>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S232097AbjEPKYY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:24:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F693AB5;
+        Tue, 16 May 2023 03:23:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BF2436376E;
+        Tue, 16 May 2023 10:23:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 162E0C433D2;
+        Tue, 16 May 2023 10:23:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684232628;
+        bh=UtT+cu3FXiZJ1Mr9HS235vPUOkZGm2Gs6P2exNmcd6c=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=aPbQcE8EkNLk39cKWelvpiORI+He4fat2OkVvsFm2co5WYNhH7vMSSNpjzrogqKOO
+         ZRAt+Wc9A2Nfgz9eXQ2mAkmCZIDZM/nlu0vf+41i6wVoYEI/q97FQB3iC2PU9Icxt/
+         ZSVIxcVNg74VX+z6zz8J94cLnW3vHqrOiWRgOwybM237OId/OAcYKTiB6qyQ1bElCN
+         S9nClummfY+xSX6sRhC3iarAus7ejGdYSXgMKzmxfhVKckq73WdxB71Qio+kyuAPKR
+         o4ZY9dU7S/BvSwz89F4vYr3h28+DCCQrGvbbO33Bjchp65k3b9TZRNoLBj3ZSP95xw
+         u12b/S09rOwrw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1pyrqL-00FUuf-N5;
+        Tue, 16 May 2023 11:23:45 +0100
+Date:   Tue, 16 May 2023 11:23:45 +0100
+Message-ID: <86a5y4mv66.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Lee Jones <lee@kernel.org>
+Cc:     Charles Keepax <ckeepax@opensource.cirrus.com>, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, tglx@linutronix.de, linus.walleij@linaro.org,
+        vkoul@kernel.org, lgirdwood@gmail.com,
+        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
+        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
+        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 07/10] irqchip/cs42l43: Add support for the cs42l43 IRQs
+In-Reply-To: <20230516100936.GF10825@google.com>
+References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
+        <20230512122838.243002-8-ckeepax@opensource.cirrus.com>
+        <86o7mpmvqq.wl-maz@kernel.org>
+        <20230512153933.GH68926@ediswmail.ad.cirrus.com>
+        <86mt29mt2m.wl-maz@kernel.org>
+        <20230515112554.GA10825@google.com>
+        <86h6scmzf7.wl-maz@kernel.org>
+        <20230516100936.GF10825@google.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: lee@kernel.org, ckeepax@opensource.cirrus.com, broonie@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, tglx@linutronix.de, linus.walleij@linaro.org, vkoul@kernel.org, lgirdwood@gmail.com, yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com, pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org, patches@opensource.cirrus.com, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 20:59, Bjorn Andersson wrote:
-> Perhaps we could put some of this in a separate yaml and include that?
+On Tue, 16 May 2023 11:09:36 +0100,
+Lee Jones <lee@kernel.org> wrote:
+> 
+> On Tue, 16 May 2023, Marc Zyngier wrote:
+> 
+> > I'm happy to see an interrupt controller for the GPIOs. But the rest
+> > is just internal muck that doesn't really belong here. Where should it
+> 
+> You should have been a poet! =;-)
 
-Ok sure.
+Who says I'm not?
 
----
-bod
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
