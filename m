@@ -2,136 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82E60704FE3
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:52:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE61270500A
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:57:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233809AbjEPNwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:52:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33934 "EHLO
+        id S233507AbjEPN52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:57:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232708AbjEPNvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:51:51 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04D041FCC;
-        Tue, 16 May 2023 06:51:47 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34GDpb9K026071;
-        Tue, 16 May 2023 08:51:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684245097;
-        bh=U2m0ShCmYC5zfXOGkHLuxLc+rB6GpSgduVVZuSLFpEg=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=wlOKkXAIUmTjaBKD9AlWWRjNUyjEJM9/iEDWEIVMXHhH/ycMkOPWAopSD4tYbTTz3
-         8J+UWRaTyD73lPrt9Lc1SOguRCib6lz0u8idHyPMNBuZ0UDsqZYARdObwQMe7c12HV
-         1Srcw+FQdjWk9mJCVINa3IMMjMHQyrK/b+1HE6Q0=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34GDpb3V049576
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 16 May 2023 08:51:37 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
- May 2023 08:51:37 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 16 May 2023 08:51:37 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34GDpbAN017579;
-        Tue, 16 May 2023 08:51:37 -0500
-Date:   Tue, 16 May 2023 08:51:37 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Andrew Davis <afd@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/5] arm64: dts: ti: k3-j721e-beagleboneai64: Fix mailbox
- node status
-Message-ID: <20230516135137.y2akvgeghe6xg446@earful>
-References: <20230515172137.474626-1-afd@ti.com>
+        with ESMTP id S232324AbjEPN51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:57:27 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E987A524D;
+        Tue, 16 May 2023 06:57:25 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34G8ZC9c006803;
+        Tue, 16 May 2023 13:57:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=v61rcOi3KNj5WsTzaVTHYwKLSjF1cOcY4GOZ0UTMp4s=;
+ b=njFgNDjzI+kk8fMHt5BBlJ3GXJ+VY/xlNg/eNwPI/ywCdCdQqlLNiEa41JLp/bJlOQmP
+ MrnNiUMicrVvficB13hOkzQ1SEaSRT7YV33sNwTX+oMsnDUxwWCyIa2uZyGfShGNqhB8
+ R8mEfuu4V9jGhrrijDUrWpx0b+VP43REG8XZUx0o6+NNVAmLgPc/YIFjn5axfpaA9JJt
+ e3CrelGt67jVzjR29KrwsOEzHYU4BEJSsjJPoTrQOvPTayS+HZaMBXi6uX5ERu9kcydk
+ +LqobzarBhaO1R6LA4naH70HJT4H0qOWg/IfXY3PGJ0/teUy/kPJJEsau9jlKm1Ghx+l lg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qkjscucqv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 May 2023 13:57:22 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34GDvLsZ020868
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 May 2023 13:57:21 GMT
+Received: from [10.50.13.62] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 16 May
+ 2023 06:57:15 -0700
+Message-ID: <950096ec-5a2b-a07e-e604-f3f7bd3a0117@quicinc.com>
+Date:   Tue, 16 May 2023 19:27:12 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230515172137.474626-1-afd@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 0/2] Add initial support for RDP418 of IPQ9574 family
+Content-Language: en-US
+From:   Devi Priya <quic_devipriy@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
+References: <20230510104359.16678-1-quic_devipriy@quicinc.com>
+In-Reply-To: <20230510104359.16678-1-quic_devipriy@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: esb4lFbAjW5BuopSJ0jpOZbKyZsF6huz
+X-Proofpoint-ORIG-GUID: esb4lFbAjW5BuopSJ0jpOZbKyZsF6huz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-16_06,2023-05-16_01,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
+ mlxlogscore=817 clxscore=1015 priorityscore=1501 lowpriorityscore=0
+ malwarescore=0 spamscore=0 impostorscore=0 suspectscore=0 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305160117
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12:21-20230515, Andrew Davis wrote:
-> Mailbox nodes are now disabled by default. The BeagleBoard AI64 DT
-> addition went in at around the same time and must have missed that
-> change so the mailboxes are not re-enabled. Do that here.
 
-Uggh. thanks.
 
-> 
-> Fixes: fae14a1cb8dd ("arm64: dts: ti: Add k3-j721e-beagleboneai64")
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> index 37c24b077b6a..8a62ac263b89 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> @@ -936,6 +936,7 @@ &ufs_wrapper {
->  };
->  
->  &mailbox0_cluster0 {
-> +	status = "okay";
->  	interrupts = <436>;
->  
->  	mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
-> @@ -950,6 +951,7 @@ mbox_mcu_r5fss0_core1: mbox-mcu-r5fss0-core1 {
->  };
->  
->  &mailbox0_cluster1 {
-> +	status = "okay";
->  	interrupts = <432>;
->  
->  	mbox_main_r5fss0_core0: mbox-main-r5fss0-core0 {
-> @@ -964,6 +966,7 @@ mbox_main_r5fss0_core1: mbox-main-r5fss0-core1 {
->  };
->  
->  &mailbox0_cluster2 {
-> +	status = "okay";
->  	interrupts = <428>;
->  
->  	mbox_main_r5fss1_core0: mbox-main-r5fss1-core0 {
-> @@ -978,6 +981,7 @@ mbox_main_r5fss1_core1: mbox-main-r5fss1-core1 {
->  };
->  
->  &mailbox0_cluster3 {
-> +	status = "okay";
->  	interrupts = <424>;
->  
->  	mbox_c66_0: mbox-c66-0 {
-> @@ -992,6 +996,7 @@ mbox_c66_1: mbox-c66-1 {
->  };
->  
->  &mailbox0_cluster4 {
-> +	status = "okay";
->  	interrupts = <420>;
->  
->  	mbox_c71_0: mbox-c71-0 {
-> -- 
-> 2.39.2
-> 
-Reviewed-by: Nishanth Menon <nm@ti.com>
+On 5/10/2023 4:13 PM, Devi Priya wrote:
+> Add the initial device tree support for the Reference Design
+> Platform(RDP) 418 based on IPQ9574 family of SoC. This patch series adds
+> support for Console UART, SPI NOR, eMMC and SMPA1 regulator node.
+>
+This series depends on the below patch sets which adds support for
+SPI NOR and SMPA1 regulator nodes.
+https://lore.kernel.org/linux-arm-msm/20230329053726.14860-3-quic_kathirav@quicinc.com/
+https://lore.kernel.org/linux-arm-msm/20230407155727.20615-1-quic_devipriy@quicinc.com/
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Thanks,
+Devi Priya
+> Devi Priya (2):
+>    dt-bindings: arm: qcom: document AL02-C2 board based on IPQ9574 family
+>    arm64: dts: qcom: ipq9574: add support for RDP418 variant
+> 
+>   .../devicetree/bindings/arm/qcom.yaml         |   2 +
+>   arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>   arch/arm64/boot/dts/qcom/ipq9574-rdp418.dts   | 124 ++++++++++++++++++
+>   3 files changed, 127 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp418.dts
+> 
+> 
+> base-commit: 52025ebbb518a2d876b8aba191b348ffb1cf368b
