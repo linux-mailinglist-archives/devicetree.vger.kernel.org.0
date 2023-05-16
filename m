@@ -2,73 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6FCD705440
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89766705458
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 18:50:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230050AbjEPQnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 12:43:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48538 "EHLO
+        id S231577AbjEPQt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 12:49:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229959AbjEPQnb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:43:31 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBA726BA
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:43:20 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-50c8d87c775so20075386a12.3
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:43:20 -0700 (PDT)
+        with ESMTP id S229880AbjEPQt6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 12:49:58 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE355FEB
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:49:53 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-965e93f915aso2580941966b.2
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 09:49:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684255398; x=1686847398;
+        d=linaro.org; s=google; t=1684255792; x=1686847792;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1ZOAvhyxA95RofjLlLR11FjDxcxYHAHrGMmYu61fUjs=;
-        b=Dv7an/6KD+W5Xd63hlfW3ttz36K6sbi1iFuNiQllmPTQhkNSy3iHOXepcGQ+d4DkOl
-         yNiK3PmNk7Z+1D3txCakt9lTdY/5DeUeO0hDyWPpf2d5UyzbwopoCi1aCA746lTuLrAC
-         HF+ozSckD75BDANBKyo/P9pg6RXKgI84SmHjSsym2Mf+UkRP4c+Ca3zXg9FrVz64fTgZ
-         5hizTDNK6umw4zZIIXsYiRIpmqXOcy7Wwwl2OmkUhvus3lHVFJZKFpQS14R7fwl96wiZ
-         F4V4a4ssE8PwKUwELTpWupkte1yFj+itZDMTYg1o8pKo+AKLWvY/AWvQharpESta/AY9
-         KqbA==
+        bh=98jLZxl/wFD6yfWWHfXW+6rIWIRzQseh9ow23ZlMcPA=;
+        b=sysycK1uXzo8V3zJTYQk8eZ47oUgTL3F1OkHqo+tSrZYvlHKeb51g9hhjxXZzW6bLD
+         LPxA0z0NelQgHpvFyQEpK21qkwwKYYZWdQp/mVyfwuRlC5iLTMWQyN75MiVVSpOphBeg
+         fg4iwktIy5YcxWWSp+KmLSeEmIE57zPtmxq126RlUymvN0os8MDMwD9BcHWpMglq1S4m
+         Xktmc+r8Yx0q/08soQDNSMolDvw+zb3H14kjDQKVsToT63VqCJiHLevyebMK0RQqLTwB
+         UVoPP4edmmV1xW/+tCw3J2tl7eehYJUEBssdtgG9vLAfzUD2pAXDTDMKdRhnlk30Urev
+         J+SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684255398; x=1686847398;
+        d=1e100.net; s=20221208; t=1684255792; x=1686847792;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1ZOAvhyxA95RofjLlLR11FjDxcxYHAHrGMmYu61fUjs=;
-        b=HS/dyGn7PyrG8IRfu7/M6iMcmR4KbnQkG+jYIQOaY2M1s1B/LOXrZ8mseTx8yD0TdJ
-         wzW2flsA18duc/azorRK7oravB142nPnMKuWA4kIbCRSfKtpLuBw0VKXQDfnL83t1pF0
-         7Sf78vwSTw/KRJBPVHv3w8FCCe/QXdQFgaUUtVd/E+XFK4RORW6BTIT2BAn97JZ9+gZM
-         dOHRCf5t4cll4b5ykDrjuchjapsQh/qGL41xSbG43r9oJSMh0wWJauPYrIf0GyZH1Yp9
-         gci4FetlCaW1fsDfNFvbw8LzVKrdPTc+YKMB3KlUlAnW1tJug07WdjNvbQnmE/2iQWps
-         XCfA==
-X-Gm-Message-State: AC+VfDwzFw3Of3QvyPGCAtP/mMWxuLzBKHdd1gLvvB6wmYvEinDeMa7W
-        PwvvgE1HBFBM8WeOpj0ch8OzyA==
-X-Google-Smtp-Source: ACHHUZ5QBUhMbbYPJ3FFfVmL6YJJnFhhoYonM5rq6g9+g09lJZFNYofPfcq1AViw2emSGqbXUz96GA==
-X-Received: by 2002:a05:6402:1806:b0:50d:8979:5722 with SMTP id g6-20020a056402180600b0050d89795722mr28080735edy.39.1684255398040;
-        Tue, 16 May 2023 09:43:18 -0700 (PDT)
+        bh=98jLZxl/wFD6yfWWHfXW+6rIWIRzQseh9ow23ZlMcPA=;
+        b=CBLnh6F22InyYvAGzOqp/YEgzQ1mkNDoJhL8gWPgVDH+q0EoC0hcVkbIMbiESvGZYH
+         0vo1nIPUQJ3iXDknzXe0excz605vje4b/Dx1kp0CDPedYORFIpj3QQji5Kl48/Cwc8gc
+         US9+ompyNKTj8IKfu+uOuR4lRS1hM+ixZNe5a6xM5dxZ2UxcjoNF89EFQkkjAlnNCUrl
+         e0saYhEmb6xpawjJhnyhSgrJ3vHC6qXyhsv/6v/KwYpKTGJRgpPb1ip/VUsZYWrHGCcF
+         WS19XW8yP3H1D3EenCGE/fnKYnGfeMeSw723uuXugEjg/cVegsXNPDs20XMIeByvQv+5
+         liGQ==
+X-Gm-Message-State: AC+VfDwvA+6QYlFDxo0dGt/lJMSuGNpUYB02Z+YstAIiauQKoazb1LNj
+        iZelOcaBH8/0AHQh/MINRq/qAQ==
+X-Google-Smtp-Source: ACHHUZ4ErN4eI/lu4njr0LL5LOj72gRCNsNY1sqTAV2Hw850PpdLHswTuK3OU8/yaLKyE+7iwyPodQ==
+X-Received: by 2002:a17:907:31c9:b0:94f:6627:22b5 with SMTP id xf9-20020a17090731c900b0094f662722b5mr33246490ejb.47.1684255792093;
+        Tue, 16 May 2023 09:49:52 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
-        by smtp.gmail.com with ESMTPSA id u24-20020a056402111800b0050bc4eb9846sm8354012edv.1.2023.05.16.09.43.17
+        by smtp.gmail.com with ESMTPSA id z23-20020a17090674d700b0096ac911ecb8sm5750079ejl.55.2023.05.16.09.49.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 09:43:17 -0700 (PDT)
-Message-ID: <2e6f282c-33d9-7f96-0338-c4fd457d04fa@linaro.org>
-Date:   Tue, 16 May 2023 18:43:16 +0200
+        Tue, 16 May 2023 09:49:51 -0700 (PDT)
+Message-ID: <32dbdaa3-067b-c997-778f-4fc8dafbbd87@linaro.org>
+Date:   Tue, 16 May 2023 18:49:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8550-qrd: add PCIe0
+Subject: Re: [PATCH] mux: mmio: use reg property when parent device is not a
+ syscon
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+To:     Andrew Davis <afd@ti.com>, Peter Rosin <peda@axentia.se>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230516133011.108093-1-krzysztof.kozlowski@linaro.org>
- <CAA8EJpoTgseo3j_5Ab7cQs3ZZZymALpRqpuWGPyKpTEbXR-Cqw@mail.gmail.com>
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230515191909.611241-1-afd@ti.com>
+ <13c1f6ea-63b5-9667-18a2-705829c46437@axentia.se>
+ <895c84f5-4a3c-fd2c-2b43-1a1996862e15@ti.com>
+ <7d73a37f-80b7-b623-1b71-fa19bf379713@linaro.org>
+ <558ebfaf-bd7e-1760-5799-8ed430acad7a@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJpoTgseo3j_5Ab7cQs3ZZZymALpRqpuWGPyKpTEbXR-Cqw@mail.gmail.com>
+In-Reply-To: <558ebfaf-bd7e-1760-5799-8ed430acad7a@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,44 +82,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 18:39, Dmitry Baryshkov wrote:
-> On Tue, 16 May 2023 at 16:30, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+On 16/05/2023 18:29, Andrew Davis wrote:
+> On 5/16/23 11:19 AM, Krzysztof Kozlowski wrote:
+>> On 16/05/2023 17:18, Andrew Davis wrote:
+>>> On 5/15/23 4:14 PM, Peter Rosin wrote:
+>>>> Hi!
+>>>>
+>>>> 2023-05-15 at 21:19, Andrew Davis wrote:
+>>>>> The DT binding for the reg-mux compatible states it can be used when the
+>>>>> "parent device of mux controller is not syscon device". It also allows
+>>>>> for a reg property. When the parent device is indeed not a syscon device,
+>>>>> nor is it a regmap provider, we should fallback to using that reg
+>>>>> property to identify the address space to use for this mux.
+>>>>
+>>>> We should? Says who?
+>>>>
+>>>> Don't get me wrong, I'm not saying the change is bad or wrong, I would just
+>>>> like to see an example where it matters. Or, at least some rationale for why
+>>>> the code needs to change other than covering some case that looks like it
+>>>> could/should be possible based on the binding. I.e., why is it not better to
+>>>> "close the hole" in the binding instead?
+>>>>
+>>>
+>>> Sure, so this all stated when I was building a checker to make sure that drivers
+>>> are not mapping overlapping register spaces. I noticed syscon nodes are a source
+>>> of that so I'm trying to look into their usage.
+>>>
+>>> To start, IHMO there is only one valid use for syscon and that is when more than
+>>> one driver needs to access shared bits in a single register. DT has no way to
 >>
->> Add PCIe0 nodes used with WCN7851 device.  The PCIe1 is not connected,
->> thus skip pcie_1_phy_aux_clk input clock to GCC.
+>> It has... what about all existing efuse/nvmem devices?
 >>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 32 +++++++++++++++++++++++++
->>  1 file changed, 32 insertions(+)
+>>> describe down to the bit granular level, so one must give that register to
+>>> a "syscon node", then have the device node use a phandle to the syscon node:
+>>>
+>>> common_reg: syscon@10000 {
+>>> 	compatible = "syscon";
+>>> 	reg = <0x10000 0x4>;
+>>> };
+>>>
+>>> consumer@1 {
+>>> 	syscon-efuse = <&common_reg 0x1>;
+>>> };
+>>>
+>>> consumer@2 {
+>>> 	syscon-efuse = <&common_reg 0x2>;
+>>> };
+>>>
+>>> Something like that, then regmap will take care of synchronizing access.
 >>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
->> index ccc58e6b45bd..e7a2bc5d788b 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
->> @@ -385,6 +385,38 @@ vreg_l3g_1p2: ldo3 {
->>         };
->>  };
+>> Syscon is not for this.
 >>
->> +&gcc {
->> +       clocks = <&bi_tcxo_div2>, <&sleep_clk>,
->> +                <&pcie0_phy>,
->> +                <&pcie1_phy>,
->> +                <0>,
->> +                <&ufs_mem_phy 0>,
->> +                <&ufs_mem_phy 1>,
->> +                <&ufs_mem_phy 2>,
->> +                <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
->> +};
 > 
-> Is there any reason to disable the PCIe1 PHY AUX clock here? I mean,
-> the PCIe1 is still enabled in the hardware.
+> That is how it is used today, and in 5 other ways too and there is
+> no guidance on it. Let me know what syscon is for then.
 
-I was thinking about this. The AUX clock seems to be an external clock,
-although I could not find it in schematics. I assume that on QRD8550 it
-could be missing, if it is really external. OTOH, downstream DTS did not
-seem to care...
+Like described in its bindings (syscon.yaml). The main case is: some
+part of address space (dedicated) for various purposes.
+
+Secondary case is a device, with its address space, which has few
+registers from other domain, so it needs to expose these to the other
+devices.
+
+efuse is not syscon, because it is not writeable. efuse has entirely
+different purpose with its own defined purpose/type - efuse/OTP etc.
+
+> 
+>>>
+>>
+>> ...
+>>
+>>>
+>>> Ideally DT nodes all describe their register space in a "reg"
+>>> property and all the "large collection of devices" spaces become
+>>> "simple-bus" nodes. "syscon" nodes can then be limited to only the
+>>> rare case when multiple devices share bits in a single register.
+>>>
+>>> If Rob and Krzysztof agree I can send a patch with the above
+>>> guidance to the Devicetree Specification repo also.
+>>
+>> Agree on what?
+>>
+> 
+> That we should provide the above guidance on when and how to use syscon
+> nodes. Right now it is a free for all and it is causing issues.
+
+Sure, providing more guidance seems good. We already provide guidance
+via review, but we can codify it more. Where? syscon.yaml? It's already
+describing everything needed to know...
+
+What particular problems do you see which need to be solved?
 
 Best regards,
 Krzysztof
