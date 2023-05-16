@@ -2,97 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E3E6704836
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:52:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2201770484C
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:57:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231282AbjEPIwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 04:52:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35318 "EHLO
+        id S231722AbjEPI5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 04:57:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231750AbjEPIwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:52:42 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8B9E4C0A
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:52:28 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id af79cd13be357-7577ef2fa31so179230185a.0
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:52:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1684227148; x=1686819148;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=3Fsp/r/3X/nR5Dw9Y1Zsp/W7/PyEi0YNOAlMQBXhdvU=;
-        b=IpHvYlsdGHRVrxdSldGKJOZaCDHvYa3054Jl2mOcEZkIz44x3oKuYk+VAZ+abkVCHZ
-         ryThXyKnU22y2lO87uWBgHjsmA7Y4yXjB1rq8PBl1o688QRwuYjGDJhG83VlUfZpCZxG
-         1X3Wv34o5BGtgOQW3TLfRUXLewQFbYKu23RfA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684227148; x=1686819148;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3Fsp/r/3X/nR5Dw9Y1Zsp/W7/PyEi0YNOAlMQBXhdvU=;
-        b=OBsM++VlTt/uKXfdVzFFdnMuASie57D9NTTGlBKtiw1Wdi2kYlV9BNiyZdkIwgT+vc
-         HlBdSqiJPRhDnsgpXkONQYBzsrQVR/mNdg4m8cmkU4OihZu4U5CDS4XnDi3qGZT5Jj8z
-         tmgNDczHUQKWu9goHwAcAvxjspQFMqrsZRHkTADUkokPdF3H0QRVtqNj/WRbQzoL4JQq
-         E10Y/daRGnHzb7lx2T9je3vyBQZQhv03oBQ5NFKNI8kiCCzqWSlPFVQZZPHCzfPQcn/i
-         XHN+EBoG6aYIujRz7Xf21uqdswTEQiXO6YbwOtm/QAUqALrqJj7PLVKksCa0uTE9DM79
-         9a2g==
-X-Gm-Message-State: AC+VfDyxfGhxYZe0YYHgJHEbVjX4a5LcbeC2nQgyQL/w9lPU9pDvF40/
-        lQ4wbT3Z7vgqUtKVCwiJmcqmsQ==
-X-Google-Smtp-Source: ACHHUZ58ENGBVYW2227e7XYFPh3fQ4T1J9FrMj5V0IlG55RxHnBgxuqmrqQC6uWuWy8Rx9ld0qpIlA==
-X-Received: by 2002:a05:6214:29c7:b0:56e:c066:3cd2 with SMTP id gh7-20020a05621429c700b0056ec0663cd2mr58463378qvb.2.1684227147882;
-        Tue, 16 May 2023 01:52:27 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.pdxnet.pdxeng.ch (mob-5-90-62-17.net.vodafone.it. [5.90.62.17])
-        by smtp.gmail.com with ESMTPSA id d10-20020a0ce44a000000b005ef54657ea0sm5480337qvm.126.2023.05.16.01.52.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 01:52:27 -0700 (PDT)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S230408AbjEPI5V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:57:21 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 146522707
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:57:20 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 44B8486065;
+        Tue, 16 May 2023 10:57:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1684227438;
+        bh=cFOj5bQqxYTB91msvhREKTX9lsohBAfvYP5ytmOZXeE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Tg7eXO1MoAA19IN3TDpFcsWHa6YEPyVOba1AnquXenqX8lAsS65FBLqB8KfVAIOTJ
+         ZChFGUrMDtIqlhhAd+kjmQkgoJoxxSMGFd6eeAh1mpBcpdnc+jxw2gwF0FEF5qsUJe
+         VUPYsBmXb0DvvOHNLJV95vEJiJ7XfqMpxvqTiiqw/x3VtnEF0JiR3/LMM7tt3QG426
+         DC7DFNAKKBVhU1imQPmSLMVa2St2lu0l2qcUJNhcNGPoHU5z2jg0qX7DKQpdCqUPV1
+         zJRPIc/MuhnDOhj0enT9J0aUi2WA6SwdPaL9n9pCaDfDyhrj9EX76Ur9HLAUt0oXxR
+         6Q611P4EHYLKw==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] ARM: dts: stm32: use RCC macro for CRC node on stm32f746
-Date:   Tue, 16 May 2023 10:52:19 +0200
-Message-Id: <20230516085219.3797677-1-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.32.0
+        Li Yang <leoyang.li@nxp.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Wahren <stefan.wahren@chargebyte.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: arm: fsl: Fix syntax error
+Date:   Tue, 16 May 2023 10:57:13 +0200
+Message-Id: <20230516085713.109309-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch replaces the number 12 with the appropriate numerical constant
-already defined in the file stm32f7-rcc.h.
+Fix the following error by replacing tab indent with spaces.
+"
+Documentation/devicetree/bindings/arm/fsl.yaml:930:46: [error] syntax error: found character '\t' that cannot start any token (syntax)
+"
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Fixes: d2bf7abfd235 ("dt-bindings: arm: fsl: Add Emtop SoM & Baseboard")
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@denx.de>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Li Yang <leoyang.li@nxp.com>
+Cc: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc: Marek Vasut <marex@denx.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Stefan Wahren <stefan.wahren@chargebyte.com>
+Cc: devicetree@vger.kernel.org
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
- arch/arm/boot/dts/stm32f746.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/stm32f746.dtsi b/arch/arm/boot/dts/stm32f746.dtsi
-index dc868e6da40e..e3564b74a779 100644
---- a/arch/arm/boot/dts/stm32f746.dtsi
-+++ b/arch/arm/boot/dts/stm32f746.dtsi
-@@ -515,7 +515,7 @@ pwrcfg: power-config@40007000 {
- 		crc: crc@40023000 {
- 			compatible = "st,stm32f7-crc";
- 			reg = <0x40023000 0x400>;
--			clocks = <&rcc 0 12>;
-+			clocks = <&rcc 0 STM32F7_AHB1_CLOCK(CRC)>;
- 			status = "disabled";
- 		};
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 63f8886dc69a5..b5fc884cfb668 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -927,8 +927,8 @@ properties:
  
+       - description: Emtop i.MX8MM based Boards
+         items:
+-          - const: ees,imx8mm-emtop-baseboard			# i.MX8MM Emtop SoM on i.MX8M Mini Baseboard V1
+-          - const: ees,imx8mm-emtop-som			# i.MX8MM Emtop SOM-IMX8MMLPD4 module
++          - const: ees,imx8mm-emtop-baseboard      # i.MX8MM Emtop SoM on i.MX8M Mini Baseboard V1
++          - const: ees,imx8mm-emtop-som            # i.MX8MM Emtop SOM-IMX8MMLPD4 module
+           - const: fsl,imx8mm
+ 
+       - description: Engicam i.Core MX8M Mini SoM based boards
 -- 
-2.32.0
+2.39.2
 
