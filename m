@@ -2,195 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F2BA7051E3
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 17:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1B747051EA
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 17:18:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229664AbjEPPRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 11:17:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44684 "EHLO
+        id S230079AbjEPPS1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 11:18:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233511AbjEPPRT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 11:17:19 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AA307A92
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:17:13 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-96652cb7673so1794577266b.0
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 08:17:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684250231; x=1686842231;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=s0lCm3iG0pXdFFf2LiZLAcS+oXB2fCjsEQx26FGefBo=;
-        b=Ock+dXRpE6ZvT5f3R/3I6ixw0WaylD6JfMxORJ/RZP9zRQVqcYMs2S0spKA7vG/r2I
-         nsed8ZaD6xNYInAV6H1xDGne2gG6CSAHzxx2l8b+moJ4qVFXWKZnbDkARwTFkhYvC03l
-         fqNwM0T9hrIzjZ0NjwS+Ct/lXWjX+ddNKLUCt/JNkqWZcOAxRvzF8AFiVYz0PN1T7HUf
-         kFCSyTFYm0qe1E3QkQpgGRnXamU6dw58u8be7yTDIs66KugMhWO/KrBzhkoog+h3/Tne
-         02ORlsCfUvvZZblGfDNRFmWjlkhHkUA/JlY9qCdCbsRIRjWMCcnvrQQSIB+uC+aaid01
-         0ijg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684250231; x=1686842231;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=s0lCm3iG0pXdFFf2LiZLAcS+oXB2fCjsEQx26FGefBo=;
-        b=CwDz+V7itJZC07QgVj8ui3wSo/d6R1PIrDWV7md9Jp4zdHCGkyTxM+xEDngAB2KXYp
-         inaC6G2GxCbyYwOjO5WmazaouDXdQ74+mpvoKR3idrcCAU7KFJtbRm4KSoBbWZte7Wwc
-         o+VLCH0fzzjFajU6zS3EOm5AkWrl9VUV3B0oVTWZEnyHPVV8bHSFtiiYpVyu2AyS5FgU
-         YAGkCLIXroXiV/3qgxhMLei8snTrtm6q6NrgkW6qowi8yhAEvDvc+92+eHQHdoAtHFdz
-         l9H783WyX8R3mYsx4UtaJX35/c7Yze+ji7/mePlQjmje+U5NDl2qL3wxhbdxNOLhr844
-         ltsA==
-X-Gm-Message-State: AC+VfDy4wtWYUKgnuxqkx6x4Z2Kl5uHpRF2FCWwe6Ar7WFEqYVTrJDao
-        +TMdJKqEj86vucdkB+s1OyyebA==
-X-Google-Smtp-Source: ACHHUZ7LuW59MV2maSsv4YGosQ/nSRc/ya6gIddFgArCauQXSfupdE/pYwXHIqR4afjo+Y7hLVWITw==
-X-Received: by 2002:a17:907:d06:b0:966:37b2:734a with SMTP id gn6-20020a1709070d0600b0096637b2734amr36602432ejc.22.1684250231573;
-        Tue, 16 May 2023 08:17:11 -0700 (PDT)
-Received: from krzk-bin.. ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
-        by smtp.gmail.com with ESMTPSA id jr18-20020a170906515200b00965f5d778e3sm11096028ejc.120.2023.05.16.08.17.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 08:17:11 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        "Signed-off-by : Abel Vesa" <abel.vesa@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: sm8550-qrd: add display and panel
-Date:   Tue, 16 May 2023 17:17:08 +0200
-Message-Id: <20230516151708.213744-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S234012AbjEPPSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 11:18:13 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D01FB40E8;
+        Tue, 16 May 2023 08:18:09 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34GFI3Sb033412;
+        Tue, 16 May 2023 10:18:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684250283;
+        bh=UbUu4epEpJqM+mgfcMP6uajWlBTsDzn2pXsdVgLPZb8=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=IB+qiRh689H0WN7a81On+d84dgLC2wkQnMcBoG5VjGUMCTgQpvUkjkiJ5dUNINiLE
+         WWfcNNfBHJ6+9hOrxHlQlIyuXXsEemhs+XCqRs8bZle/HuaqhaUzn+0uogBOrN8cS/
+         2fG8bE4iHXPn6GCR5pzM1h3kgF5AKHluJTppyIj0=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34GFI3Z1039485
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 16 May 2023 10:18:03 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
+ May 2023 10:18:02 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 16 May 2023 10:18:02 -0500
+Received: from [10.250.35.184] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34GFI252058644;
+        Tue, 16 May 2023 10:18:02 -0500
+Message-ID: <895c84f5-4a3c-fd2c-2b43-1a1996862e15@ti.com>
+Date:   Tue, 16 May 2023 10:18:02 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH] mux: mmio: use reg property when parent device is not a
+ syscon
+To:     Peter Rosin <peda@axentia.se>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230515191909.611241-1-afd@ti.com>
+ <13c1f6ea-63b5-9667-18a2-705829c46437@axentia.se>
+Content-Language: en-US
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <13c1f6ea-63b5-9667-18a2-705829c46437@axentia.se>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable Display Subsystem with Visionox VTDR6130 Panel (same as on
-MTP8550).
+On 5/15/23 4:14 PM, Peter Rosin wrote:
+> Hi!
+> 
+> 2023-05-15 at 21:19, Andrew Davis wrote:
+>> The DT binding for the reg-mux compatible states it can be used when the
+>> "parent device of mux controller is not syscon device". It also allows
+>> for a reg property. When the parent device is indeed not a syscon device,
+>> nor is it a regmap provider, we should fallback to using that reg
+>> property to identify the address space to use for this mux.
+> 
+> We should? Says who?
+> 
+> Don't get me wrong, I'm not saying the change is bad or wrong, I would just
+> like to see an example where it matters. Or, at least some rationale for why
+> the code needs to change other than covering some case that looks like it
+> could/should be possible based on the binding. I.e., why is it not better to
+> "close the hole" in the binding instead?
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Sure, so this all stated when I was building a checker to make sure that drivers
+are not mapping overlapping register spaces. I noticed syscon nodes are a source
+of that so I'm trying to look into their usage.
 
----
+To start, IHMO there is only one valid use for syscon and that is when more than
+one driver needs to access shared bits in a single register. DT has no way to
+describe down to the bit granular level, so one must give that register to
+a "syscon node", then have the device node use a phandle to the syscon node:
 
-Context in the patch depends on:
-1. https://lore.kernel.org/linux-arm-msm/20230516133011.108093-1-krzysztof.kozlowski@linaro.org/T/#t
-2. https://lore.kernel.org/linux-arm-msm/20230512160452.206585-1-krzysztof.kozlowski@linaro.org/
----
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 76 +++++++++++++++++++++++++
- 1 file changed, 76 insertions(+)
+common_reg: syscon@10000 {
+	compatible = "syscon";
+	reg = <0x10000 0x4>;
+};
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index 30b36a149125..03bf6bc2db4d 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -420,6 +420,10 @@ vreg_l3g_1p2: ldo3 {
- 	};
- };
- 
-+&dispcc {
-+	status = "okay";
-+};
-+
- &gcc {
- 	clocks = <&bi_tcxo_div2>, <&sleep_clk>,
- 		 <&pcie0_phy>,
-@@ -431,6 +435,50 @@ &gcc {
- 		 <&usb_dp_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
- };
- 
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dsi0 {
-+	vdda-supply = <&vreg_l3e_1p2>;
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "visionox,vtdr6130";
-+		reg = <0>;
-+
-+		pinctrl-names = "default", "sleep";
-+		pinctrl-0 = <&sde_dsi_active>, <&sde_te_active>;
-+		pinctrl-1 = <&sde_dsi_suspend>, <&sde_te_suspend>;
-+
-+		vddio-supply = <&vreg_l12b_1p8>;
-+		vci-supply = <&vreg_l13b_3p0>;
-+		vdd-supply = <&vreg_l11b_1p2>;
-+
-+		reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
-+
-+		port {
-+			panel0_in: endpoint {
-+				remote-endpoint = <&mdss_dsi0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss_dsi0_out {
-+	remote-endpoint = <&panel0_in>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&mdss_dsi0_phy {
-+	vdds-supply = <&vreg_l1e_0p88>;
-+	status = "okay";
-+};
-+
-+&mdss_mdp {
-+	status = "okay";
-+};
-+
- &pcie_1_phy_aux_clk {
- 	status = "disabled";
- };
-@@ -532,6 +580,34 @@ wcd_tx: codec@0,3 {
- &tlmm {
- 	gpio-reserved-ranges = <32 8>;
- 
-+	sde_dsi_active: sde-dsi-active-state {
-+		pins = "gpio133";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-disable;
-+	};
-+
-+	sde_dsi_suspend: sde-dsi-suspend-state {
-+		pins = "gpio133";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	sde_te_active: sde-te-active-state {
-+		pins = "gpio86";
-+		function = "mdp_vsync";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
-+	sde_te_suspend: sde-te-suspend-state {
-+		pins = "gpio86";
-+		function = "mdp_vsync";
-+		drive-strength = <2>;
-+		bias-pull-down;
-+	};
-+
- 	wcd_default: wcd-reset-n-active-state {
- 		pins = "gpio108";
- 		function = "gpio";
--- 
-2.34.1
+consumer@1 {
+	syscon-efuse = <&common_reg 0x1>;
+};
 
+consumer@2 {
+	syscon-efuse = <&common_reg 0x2>;
+};
+
+Something like that, then regmap will take care of synchronizing access.
+
+Unfortunately I see lots of syscon anti-patterns in use today. First
+type is mapping an entire multi-device space into one big syscon node,
+then having all the device nodes live on the top level and simply
+point into the syscon node. This does not follow the normal DT
+structure and hides the true memory map.
+
+large_collection_of_devices: syscon@10000 {
+	compatible = "syscon", "simple-mfd";
+	reg = <0x10000 0x4000000>;
+
+	some-device-inside@12000 {
+		reg = <0x12000 0x400>;
+	};
+};
+
+some-device-outside {
+	hacky_syscon_pointer = <&large_collection_of_devices 0x8000>;
+};
+
+An example of the inside-device would be "ti,am654-chipid", this
+is a simple device, sometimes placed as a child of syscon node
+and sometimes not. It does not use the syscon parent either
+way, and so when placed as a child there ends up two mappings to
+the same memory resources. Not a huge problem, but it could be
+avoided by removing the overuse of syscon.
+
+Another case is "ti,am654-phy-gmii-sel" which depends on the
+parent being a syscon node, but uses the "reg" property to
+only define the offset into that space. This isn't necessarily
+wrong, but it does contrast with the devices that make their
+own regmap, in which case one needs to have the parent syscon
+node contain "ranges" to do the translation, this is the more
+idiomatic way to use "reg" properies.
+
+"ti,am64-epwm-tbclk" is yet another type of use. It marks
+itself as a "syscon" node, just to make use of the helper
+syscon_node_to_regmap(). Using it on itself to get a regmap
+without all the otherwise required regmap setup (which I like
+the idea of having all the info needed to setup a regmap for
+a given node handled in DT, but again, inconsistent).
+
+For more examples feel free to scan for "ti,keystone-dsp-gpio"
+or  "pinctrl-single" in K3 devices for more syscon oddness.
+
+
+So what causes this and what is my solution? I believe the
+root cause is in devices that force the parent node to be
+a syscon node. This then forces that devices' parent to
+be a syscon node even when that doesn't make sense in that
+given case. "mmio-mux" is one such driver. Luckily we have
+"reg-mux" which is the same, but according to the binding,
+does not need the parent to be a syscon node, perfect,
+let's use that here, not "close the hole" in the binding :)
+
+The issue is that it still does require the parent to be a
+regmap provider, and that is what this patch fixes. With
+this we can start the cleanup, in fact we already have
+patches in-flight that require this patch[0].
+
+Ideally DT nodes all describe their register space in a "reg"
+property and all the "large collection of devices" spaces become
+"simple-bus" nodes. "syscon" nodes can then be limited to only the
+rare case when multiple devices share bits in a single register.
+
+If Rob and Krzysztof agree I can send a patch with the above
+guidance to the Devicetree Specification repo also.
+
+Andrew
+
+[0] https://lore.kernel.org/lkml/20230513123313.11462-4-vaishnav.a@ti.com/T/
+
+> Cheers,
+> Peter
+> 
+>> Signed-off-by: Andrew Davis <afd@ti.com>
+>> ---
+>>   drivers/mux/mmio.c | 9 ++++++---
+>>   1 file changed, 6 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/mux/mmio.c b/drivers/mux/mmio.c
+>> index 44a7a0e885b8..42e00b9fd0a9 100644
+>> --- a/drivers/mux/mmio.c
+>> +++ b/drivers/mux/mmio.c
+>> @@ -44,10 +44,13 @@ static int mux_mmio_probe(struct platform_device *pdev)
+>>   	int ret;
+>>   	int i;
+>>   
+>> -	if (of_device_is_compatible(np, "mmio-mux"))
+>> +	if (of_device_is_compatible(np, "mmio-mux")) {
+>>   		regmap = syscon_node_to_regmap(np->parent);
+>> -	else
+>> -		regmap = dev_get_regmap(dev->parent, NULL) ?: ERR_PTR(-ENODEV);
+>> +	} else {
+>> +		regmap = dev_get_regmap(dev->parent, NULL);
+>> +		if (!regmap)
+>> +			regmap = device_node_to_regmap(np) ?: ERR_PTR(-ENODEV);
+>> +	}
+>>   	if (IS_ERR(regmap)) {
+>>   		ret = PTR_ERR(regmap);
+>>   		dev_err(dev, "failed to get regmap: %d\n", ret);
