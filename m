@@ -2,139 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3BAD704E12
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 14:50:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FF4A704E3F
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 14:56:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232445AbjEPMuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 08:50:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59270 "EHLO
+        id S232548AbjEPM4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 08:56:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229664AbjEPMuB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 08:50:01 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7EE0A3
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 05:49:57 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f4449fa085so50060225e9.0
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 05:49:57 -0700 (PDT)
+        with ESMTP id S232206AbjEPM4K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 08:56:10 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CC596A49
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 05:55:44 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2ac806f4fccso152049921fa.1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 05:55:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20221208.gappssmtp.com; s=20221208; t=1684241396; x=1686833396;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cIrib6V4STu6mdlfD65GDnEnwcj31/2sVrUxJzgea2I=;
-        b=A5De8E5wWe1LILnOfv1MpSKj9g9vdN4ATjn+1gTJ0X8t+YFnl8RujR3roEaAaPHpd2
-         sNLiQKrLoFe4L8wf1egTCWKFj89VGnRWRNYp1EvbGnXFXzxY1fa10MBpkNDmFsC/zuvs
-         R0djkXifGiMl//apUYCSaL29QoW1YJLb6hGeIOB8AQRoMjU5DCCGBAxYgY+07D1y94gj
-         9hO1EjPg88/WX6TuqZJYdZsUhXixw68ohxOfdnXC5jyIi14D27KOquvr0N1ua1YwpYWB
-         4qXHhgtkEWWnwyGlToRIAcJTW5MgV4njbc2joXc8FTZG3oLafJA5ihqS+EnSAsjxifS9
-         8iIw==
+        d=linaro.org; s=google; t=1684241739; x=1686833739;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ySTH1isvoYm6bPo8CerpAG+A4TnY2jdotYQJPV96/VE=;
+        b=mDQUgzDbNyQGULqtfTRmDwXdZI64hyc5FDwTI0sSdZXeaRAwrWWRr/wcseR+fM/GXf
+         ZTHJQobW0izs6ISDcDyI4tJ2NwTh2pDbeDKYdPLuq5jyhwcEi70XNGPXkGyW3Evo1LPB
+         QHn/H77zwX7K7aWBISAD1Xa1UloaZwHSJ1h8ip5HXg3V8DCxjJxqiJ3Ki90wUC9AvqH9
+         9KVOyj7G7Muf0VR48pykZnti36NYwbSZKTQSJ7DKbnAtbsqCS2xMwKQnLY0lpGqGEWm5
+         cdHpGGLGSmGrpRI9aWWpOI3N8vB3XYKB+bpj94NFvw11Hx/BNRZSyFCQCHXnidXdAYy1
+         IKBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684241396; x=1686833396;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cIrib6V4STu6mdlfD65GDnEnwcj31/2sVrUxJzgea2I=;
-        b=afH4erP2FNYze0j48P39fZI81sNpa/1TfznMy1l/QyMoJS5gI8S+w7NLltPDLzmFEf
-         chH3rcswG9TLDC1kpjr1CteWbXhIJGI454MgL1FpnWFxJFUIDVphhxPCz90vtwju/CwC
-         2DMahy5R6e8qG81M1DZywhwPXVpdXJzLQOcmVFXCuYsjN1nBP6aNxNnIPmuwCDNnpZFh
-         Wj2/gLzm3PCDYGhwXPArSSkqCvnKjICEHfxBCfMBzVIdHB1k7wb9RyjCsnfvI61owsTI
-         imDwc6YX6PtbZ7Aq67mdMuH2sHIkcAdYN7A3eqBOwIEmLRBbsKFqMBBtkD8gudVhyDu3
-         AItQ==
-X-Gm-Message-State: AC+VfDxB8WQr0VzewsxA4QRi8kLKMLUeYVxBinsGrM/UOCvGflL7HRAU
-        YVmeto7MZ94HU9m92JdteHGxLA==
-X-Google-Smtp-Source: ACHHUZ4JAyMv1o9SVQRDgoi4JySBCScBr/Q5APkymzVa0NUpJJAtxMjv3fNWFkbOTqj0hnho2MU7ug==
-X-Received: by 2002:a7b:cb8a:0:b0:3f4:2174:b29c with SMTP id m10-20020a7bcb8a000000b003f42174b29cmr22294428wmi.20.1684241396327;
-        Tue, 16 May 2023 05:49:56 -0700 (PDT)
-Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id u9-20020adfed49000000b0030647449730sm2528218wro.74.2023.05.16.05.49.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 05:49:55 -0700 (PDT)
-Message-ID: <bd074e2b-9739-a5ba-d076-94a3ac04d9b2@monstr.eu>
-Date:   Tue, 16 May 2023 14:49:52 +0200
+        d=1e100.net; s=20221208; t=1684241739; x=1686833739;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ySTH1isvoYm6bPo8CerpAG+A4TnY2jdotYQJPV96/VE=;
+        b=UlEkcDc8i0DWHZv1ziAFmxPf8ECP9Z8zn+S2gzAZoWpxY7XgLJ0FcPXVOPgrZOwVKb
+         SgklOp2hCguSwbfuWOmpVnD1FZSNVNeE3AFkGMUDU3GeiWgnKyqj5nz4X4dVoe8BumYj
+         mkF6VB22HSSG8H6/QNsVAFw9ykPKAuOCd1eepQZKG+E+gAplZ0FzlmqYAW04gxFT/mfK
+         95TuZ7vqYUruyzzL3RvSKPwMRw/og0TjKwljfOZjz84zsMulEPif8usHcsDJWl33i5uq
+         eZJPAtzlHIznwkvl3Lx4ETh40mzG32HQvpgAYiQZBhxBDDwwIPMc0eGTrig3V9OmhM4A
+         OvbQ==
+X-Gm-Message-State: AC+VfDz2BieGgn85JqGUcOYrr638PNGpAwyAXSbwoLRgLckiR3VU7wLE
+        qNTIY74dVVddLy9ANKRnLcSEtw==
+X-Google-Smtp-Source: ACHHUZ6hUDE9Y4NbCWu1WSvCWcAoILmE+WZ2SbeKiA0SfB5vevizVoq/0xGHaW2oqQB7ybnXxlenvQ==
+X-Received: by 2002:a2e:9dca:0:b0:2ad:7943:4c15 with SMTP id x10-20020a2e9dca000000b002ad79434c15mr8235405ljj.14.1684241738790;
+        Tue, 16 May 2023 05:55:38 -0700 (PDT)
+Received: from [192.168.1.2] (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
+        by smtp.gmail.com with ESMTPSA id o23-20020a2e7317000000b002add1f4a92asm1647789ljc.113.2023.05.16.05.55.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 05:55:38 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v3 0/7] DMA40 SRAM refactoring and cleanup
+Date:   Tue, 16 May 2023 14:55:30 +0200
+Message-Id: <20230417-ux500-dma40-cleanup-v3-0-60bfa6785968@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 07/23] arm64: zynqmp: Add pmu interrupt-affinity
-Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-        Harini Katakam <harini.katakam@amd.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Parth Gajjar <parth.gajjar@amd.com>,
-        Piyush Mehta <piyush.mehta@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Hancock <robert.hancock@calian.com>,
-        Tanmay Shah <tanmay.shah@amd.com>,
-        Vishal Sagar <vishal.sagar@amd.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <cover.1683034376.git.michal.simek@amd.com>
- <4c6674bf7e048e7370248e50ed3d011d604d020e.1683034376.git.michal.simek@amd.com>
- <4e5fc3ff-5b70-20a9-101a-cba9d20fc961@monstr.eu>
-From:   Michal Simek <monstr@monstr.eu>
-In-Reply-To: <4e5fc3ff-5b70-20a9-101a-cba9d20fc961@monstr.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEJ9Y2QC/42NzQ6DIBAGX8VwLg0i/vXU92h6WGBVEgsG1NgY3
+ 73grZemx9nNN7OTgN5gILdsJx5XE4yzEYpLRtQAtkdqdGTCGS+YyGu6bCVjVL9AMKpGBLtMtEP
+ RNbqVeatKEpcSAlLpwaohbV8QZvTpMXnszHbmHs/Igwmz8++zvubp+ju05pRRyauCi7asUNT30
+ Vjw7up8T5Jw5X9IeJQoDVA1IGRTFV+S4zg+9Me/uxUBAAA=
+To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+I started out by augmenting the STE DMA40 driver to get
+its LCPA SRAM memory from a proper SRAM handle in the
+device tree instead of as a reg cell, and then I saw
+that the driver was in a bit of sad state so I did a bit
+of cleanups on top.
 
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Changes in v3:
+- Rebased on v6.4-rc1
+- Fixed a cast for a complaining print in probe()
+- Collected ACKs on the DT bindings.
+- Link to v2: https://lore.kernel.org/r/20230417-ux500-dma40-cleanup-v2-0-cdaa68a4b863@linaro.org
 
-On 5/16/23 13:05, Michal Simek wrote:
-> 
-> 
-> On 5/2/23 15:35, Michal Simek wrote:
->> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
->>
->> Explicitly specify interrupt affinity to avoid HW perfevents
->> need to guess. This avoids the following error upon linux boot:
->> armv8-pmu pmu: hw perfevents: no interrupt-affinity property,
->> guessing.
->>
->> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
->> Signed-off-by: Michal Simek <michal.simek@amd.com>
->> ---
->>
->>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi 
->> b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->> index 61c7045eb992..a117294dc890 100644
->> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
->> @@ -161,6 +161,10 @@ pmu {
->>                    <0 144 4>,
->>                    <0 145 4>,
->>                    <0 146 4>;
->> +        interrupt-affinity = <&cpu0>,
->> +                     <&cpu1>,
->> +                     <&cpu2>,
->> +                     <&cpu3>;
->>       };
->>       psci {
-> 
-> Applied.
-> M
+Changes in v2:
+- Amendments to the bindings after review.
+- Link to v1: https://lore.kernel.org/r/20230417-ux500-dma40-cleanup-v1-0-b26324956e47@linaro.org
 
-Actually remove this one from my queue because there were comment from Laurent.
+---
+Linus Walleij (7):
+      dt-bindings: dma: dma40: Prefer to pass sram through phandle
+      dmaengine: ste_dma40: Get LCPA SRAM from SRAM node
+      dmaengine: ste_dma40: Add dev helper variable
+      dmaengine: ste_dma40: Remove platform data
+      dmaengine: ste_dma40: Pass dev to OF function
+      dmaengine: ste_dma40: Use managed resources
+      dmaengine: ste_dma40: Return error codes properly
 
-M
+ .../devicetree/bindings/dma/stericsson,dma40.yaml  |  36 ++-
+ drivers/dma/Kconfig                                |   1 +
+ drivers/dma/ste_dma40.c                            | 336 +++++++++------------
+ .../dma-ste-dma40.h => drivers/dma/ste_dma40.h     | 101 +------
+ drivers/dma/ste_dma40_ll.c                         |   3 +-
+ 5 files changed, 183 insertions(+), 294 deletions(-)
+---
+base-commit: a2f15a1753d590f30c07d439a04ec7e839cd2305
+change-id: 20230417-ux500-dma40-cleanup-fe4f8d9b19c5
 
-
-
+Best regards,
 -- 
-Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
-w: www.monstr.eu p: +42-0-721842854
-Maintainer of Linux kernel - Xilinx Microblaze
-Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP/Versal ARM64 SoCs
-U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal/Versal NET SoCs
-TF-A maintainer - Xilinx ZynqMP/Versal/Versal NET SoCs
+Linus Walleij <linus.walleij@linaro.org>
+
