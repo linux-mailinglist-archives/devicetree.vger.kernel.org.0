@@ -2,71 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D72B470499F
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:46:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E1B77048F2
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:19:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231163AbjEPJqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 05:46:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53368 "EHLO
+        id S231804AbjEPJTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 05:19:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbjEPJqd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:46:33 -0400
-X-Greylist: delayed 902 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 16 May 2023 02:46:30 PDT
-Received: from mail.inventec.com (mail.inventec.com [218.32.67.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C570F2;
-        Tue, 16 May 2023 02:46:30 -0700 (PDT)
-Received: from IEC1-EX2016-03.iec.inventec (10.15.2.59) by
- IEC1-EX2016-03.iec.inventec (10.15.2.59) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 16 May 2023 17:15:47 +0800
-Received: from IEC1-MSE-FE2.inventec.com (10.1.254.204) by
- IEC1-EX2016-03.iec.inventec (10.15.2.59) with Microsoft SMTP Server id
- 15.1.2507.21 via Frontend Transport; Tue, 16 May 2023 17:15:47 +0800
-Received: from IEC1-EX2016-02.iec.inventec (IEC1-EX2016-02.iec.inventec [10.1.254.221])
-        by IEC1-MSE-FE2.inventec.com with ESMTP id 34G9FhJO052455;
-        Tue, 16 May 2023 17:15:43 +0800 (GMT-8)
-        (envelope-from Chen.PJ@inventec.com)
-Received: from IEC1-EX2016-01.iec.inventec (10.15.2.58) by
- IEC1-EX2016-02.iec.inventec (10.1.254.221) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 16 May 2023 17:15:43 +0800
-Received: from IEC1-EX2016-01.iec.inventec ([fe80::ad9c:c1af:d29:f80d]) by
- IEC1-EX2016-01.iec.inventec ([fe80::ad9c:c1af:d29:f80d%7]) with mapi id
- 15.01.2507.021; Tue, 16 May 2023 17:15:43 +0800
-From:   =?big5?B?Q2hlbi5QSiCzr6xmpfQgVEFP?= <Chen.PJ@inventec.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        "Andrew Jeffery" <andrew@aj.id.au>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     =?big5?B?WWUuVmljILitpnSyTSBUQU8=?= <ye.vic@inventec.com>,
-        =?big5?B?SHVhbmcuQWxhbmcgtsCtXq2mIFRBTw==?= 
-        <Huang.Alang@inventec.com>
-Subject: [PATCH] dt-bindings: arm: aspeed: add Inventec starscream-bmc
-Thread-Topic: [PATCH] dt-bindings: arm: aspeed: add Inventec starscream-bmc
-Thread-Index: AQHZh9b9H4korMyllESFK0bWK7oT/Q==
-Date:   Tue, 16 May 2023 09:15:43 +0000
-Message-ID: <c5dd9b64b4754da8b11efefd97527a4f@inventec.com>
-References: <28f0ce0a82464083ae24f9ef2f598425@inventec.com>
-In-Reply-To: <28f0ce0a82464083ae24f9ef2f598425@inventec.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-imapappendstamp: IEC1-EX2016-01.iec.inventec (15.01.2507.021)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [10.6.245.192]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-MAIL: IEC1-MSE-FE2.inventec.com 34G9FhJO052455
-X-TM-SNTS-SMTP: 3DB4FA82B12A3F874D9AD0E6CE5DB7C7CED8E01020EE1E34F6EC7C0C85E61F382000:8
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        with ESMTP id S231969AbjEPJTU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:19:20 -0400
+Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A01D271B;
+        Tue, 16 May 2023 02:18:51 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id AC3735C006E;
+        Tue, 16 May 2023 05:17:59 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Tue, 16 May 2023 05:17:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1684228679; x=1684315079; bh=ou
+        Abzm3pg12owJekmkI4OrHP4MIjaK5Cyk3ghNwnWvM=; b=Scv5gZLE73L16eV8qs
+        yx/YQjZHiBbdM50gEUuDGu5uoR2PsMrykaVDh88dmhyMAy9SxST6fTHHnj1of+j9
+        eCyKrWYleTM9X2nEMQx5kaZjgANR9ofard0jdkPqlezxFmT0N5Pwr0DPzUcid3GL
+        5r3+CngRPJSz/HBd1Vjxj52ZtzfYQKoi6YeL7JG4wXyNN7OO98Sa1r4/2tN2+ofl
+        LzIQnO1zAqdwDIjU/fgUD4GSRIQouKxv5tyM31Z9bQVR8WrzIoBRpzYHTIQnymmy
+        seENNmp2YnygS3Sb8PaaPYqd4PINdIPRS0/TdGIdlSTF6ZuFlGS9/T0G45Br0vzk
+        /Sow==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; t=1684228679; x=1684315079; bh=ouAbzm3pg12ow
+        JekmkI4OrHP4MIjaK5Cyk3ghNwnWvM=; b=QPdOfBO1nMitxg6xhrZw6OWidmLed
+        QsNrZ/vtesaQBZ0H0hTfQGh60POxdwRJXwRdnMu1YYSVUA+CIlCcgmpURuNKNx8J
+        cU9ek6OIZloN9dY40/AqRzD24LtlqINduUk/Sekf5QIt+XwQ9qiC0uZdfvsgoPWG
+        LXtl6OvWQkyyNVLdiDYc9rYAXTSGTfeFx6mOmTzdxSmsqyaw0dmr6E0EpZT4sT9F
+        bXs6ETUpYeWsGsu1OTI2Q96MhNkCHIPaxujujtwo9NqjjH4JhENRoeFIBDys+7qB
+        nx0jcefuHwibUCS4GDCtSbaGafEUkrj4GySOwgZnuVwgJ17P3R6fXKYwg==
+X-ME-Sender: <xms:R0pjZH33bkkqug3eGSCi8EyCoAng02eUp2yEB8arpKctlxfBIxvcAw>
+    <xme:R0pjZGHKy8s8sWQrIzw4Ker6W6JXmDWqRSz7_lbQAFK2Rzh22rU2V7YxOurxEQbrC
+    13I1thbgB9i3GCH4RE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeehledgudegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
+    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
+    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
+    hrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:R0pjZH6pZISv1MrimE_nX7LQIR-K-fiXyXiXVrKK8kMZ4aNvOhn5UA>
+    <xmx:R0pjZM3KLphSvZeikiYWlxUjKCyy3e7FDZku_TWocy_OhwMimMV0-A>
+    <xmx:R0pjZKFLYM3plpY8t4rF40e0EjadghAhwtlK0nj1Zld2sgUP4cIQkQ>
+    <xmx:R0pjZBfsKEfoMynmHkr1hT6RCRbnbPzA1iTvtsGnS5H04odF7zzGhg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 5CC98B60086; Tue, 16 May 2023 05:17:59 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-415-gf2b17fe6c3-fm-20230503.001-gf2b17fe6
+Mime-Version: 1.0
+Message-Id: <ea4bc471-9cac-4ef1-97aa-9cf71b60c785@app.fastmail.com>
+In-Reply-To: <20230516-grader-dejected-df65cdc584b3@wendy>
+References: <20230515-geometry-olympics-b0556ff8a5f7@spud>
+ <cf1c6b8c-8a3f-eca1-948f-e41946d4c34c@linaro.org>
+ <20230516-grader-dejected-df65cdc584b3@wendy>
+Date:   Tue, 16 May 2023 11:16:34 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Conor.Dooley" <conor.dooley@microchip.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+Cc:     "Conor Dooley" <conor@kernel.org>, soc@kernel.org,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "Jonathan Corbet" <corbet@lwn.net>,
+        "Olof Johansson" <olof@lixom.net>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v1] Documentation/process: add soc maintainer handbook
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,18 +95,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RG9jdW1lbnQgdGhlIG5ldyBjb21wYXRpYmxlcyB1c2VkIG9uIEludmVudGVjIHN0YXJzY3JlYW0t
-Ym1jDQoNClNpZ25lZC1vZmYtYnk6IENoZW4gUEogPENoZW4ucGpAaW52ZW50ZWMuY29tPg0KLS0t
-DQogRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9hc3BlZWQvYXNwZWVkLnlh
-bWwgfCAxICsNCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCg0KZGlmZiAtLWdpdCBh
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vYXNwZWVkL2FzcGVlZC55YW1s
-IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9hc3BlZWQvYXNwZWVkLnlh
-bWwNCmluZGV4IDFiNTg1ZTU1NDc5MS4uZmI0Y2U1ZGYyZmEwIDEwMDY0NA0KLS0tIGEvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9hc3BlZWQvYXNwZWVkLnlhbWwNCisrKyBi
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vYXNwZWVkL2FzcGVlZC55YW1s
-DQpAQCAtODIsNiArODIsNyBAQCBwcm9wZXJ0aWVzOg0KICAgICAgICAgICAgICAgLSBpYm0sZXZl
-cmVzdC1ibWMNCiAgICAgICAgICAgICAgIC0gaWJtLHJhaW5pZXItYm1jDQogICAgICAgICAgICAg
-ICAtIGlibSx0YWNvbWEtYm1jDQorICAgICAgICAgICAgICAtIGludmVudGVjLHN0YXJzY3JlYW0t
-Ym1jDQogICAgICAgICAgICAgICAtIGludmVudGVjLHRyYW5zZm9ybWVyLWJtYw0KICAgICAgICAg
-ICAgICAgLSBqYWJpbCxyYnAtYm1jDQogICAgICAgICAgICAgICAtIG51dmlhLGRjLXNjbS1ibWMN
-Ci0tIA0KMi4yNS4xDQoNCg==
+On Tue, May 16, 2023, at 10:57, Conor Dooley wrote:
+> On Tue, May 16, 2023 at 10:31:19AM +0200, Krzysztof Kozlowski wrote:
+>> On 15/05/2023 21:20, Conor Dooley wrote:
+>
+>> > + - Defer the devicetree changes to a release after the binding and driver have
+>> > +   already been merged
+>> > +
+>> > + - Change the bindings in a shared immutable branch that is used as the base for
+>> > +   both the driver change and the devicetree changes
+>> 
+>> The policy told to me some time ago was that no merges from driver
+>> branch or tree are allowed towards DTS branch, even if they come only
+>> with binding header change. There are exceptions for this, e.g. [1], but
+>> that would mean we need to express here rules for cross-tree merges.
+>
+> I've got away with having an immutable branch for dt-binding headers!
+> That said, Arnd did actually have a look at this (and suggested some
+> changes) before I sent it & did not cry fowl about this section. IIRC,
+> this is actually his wording, not mine.
+
+Yes, I merge a lot of shared branches with dt-binding changes into the
+soc/dt branch, and I wasn't aware of a policy against that, certainly did
+not enforce it.
+
+I generally object to changes touching drivers/* or anything else besides
+arch/*/boot/dts, Documentation/devicetree/bindings/ and include/dt-bindings
+in the dt branches, but I have made expections in the past when there
+was a particular important reason.
+
+    Arnd
