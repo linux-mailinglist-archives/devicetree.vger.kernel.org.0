@@ -2,200 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDE7370475D
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:07:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A88704767
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 10:08:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231196AbjEPIHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 04:07:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34372 "EHLO
+        id S230510AbjEPIIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 04:08:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbjEPIHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:07:52 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16AF63C2D
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:07:51 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-96622bca286so2226669566b.1
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:07:51 -0700 (PDT)
+        with ESMTP id S230522AbjEPIIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 04:08:44 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E92B1448D
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:08:41 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9659f452148so2523350966b.1
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 01:08:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684224469; x=1686816469;
+        d=linaro.org; s=google; t=1684224520; x=1686816520;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BGVHVtrJ1UKArOxL4QLZMf28fxPQFEoR2CUGleXHsCE=;
-        b=JYKeiv25q8zcMTfIUxyjYba4uvXfSoqkHDtJ77yG0ETwlKFEKJjqoelz9b636iC43q
-         NwEMGuL3OUF3SzHNkliudf9CiKYc6qoMpeWTKyembWNoR5IqXIwHlNiQI/Awpc3OhoJO
-         zCZW6yrcE+nJ9fRDAxpuiEHuKdTaSIFd2AV//rWLqyTKlckm1sCblj2Z1pSieKU3zPOD
-         iGT+3eB1+IgAlVjDXoSKiSeBb4xpMSUtOX/nWUY6QNb6u/8/0/UHnmQKMnon8fKW2sRl
-         f04iL/5jEudZbK48jxYkajqRY1IfgMD+bUg21v3KlV2XH4+TsSACN7BmBDahKz8ZRdW/
-         hKwg==
+        bh=9XW4XZAnemNwxZmDnCKO7GuXOkgFIvhJMeXABYP2D9k=;
+        b=uB9hFvEGL38+U9DWhxt7On6x2Ke+O1i2LdhWkl64bS4R4gDJNy/h//Uhn8RFxDUbY7
+         Xzia57KugNQPS9u0Do/hn0fORZYHQ4zqL7Hp+TpcfJkXEMdAvdHR9rlvn07I785pPvIo
+         fZMUGH/mg4KR9qL3QdQkI9Sxggg4M6MBZcWTFCik+BOYqK7GYJUOJMtK6pI9dc5glb2/
+         g/DJ/+rbOx4FywAmxoD/rug8gn42/9K54WdI2qZH72nqAmoy3uVcslvCod70ZDzAlNTz
+         bpMmExj7594E0Z41yC+UhEWp0AHL4X+5qmNd+nMiMCvjkPsdyrkqRvYyz5n8f6qyrX59
+         V/Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684224469; x=1686816469;
+        d=1e100.net; s=20221208; t=1684224520; x=1686816520;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BGVHVtrJ1UKArOxL4QLZMf28fxPQFEoR2CUGleXHsCE=;
-        b=cUlwASIduKdSOhmqcp+EwCashqh7hVIqtuvcdKxet7t3miRxWIlMViqac8iTGqlzxM
-         r0oiFryrExPAnPm2+OCpFHtRowM+kZUTMQeMDWtFYwSQYVXZ264PsiBudMUG4zcSLHA6
-         nW574Z+0UH9rM8GuWQtZadX3GkNQ8LwOBKk6fHQNOnnnTkWFEMBzK3c4y2k9ra61MU10
-         D2ECvtHIXc1qyQUH5vwy9w2gX3njrFbtM/w29nArEgpTBqE9p22v5BC/dYG5DpRAhQ9C
-         uDXl/q9Y53DTbzT4VveI1P2PwNKwUHVr3Tlz4bSOLtlLZ9l+kUtKPOHkZbk9gQKa3mqz
-         gXQg==
-X-Gm-Message-State: AC+VfDwLtgwMayWbZKpTRuH8KemFeHc1o+Ke6y19fcvg/7ezEqMFoQTF
-        niYpY4KgvS1rGWDHMptJhweMUA==
-X-Google-Smtp-Source: ACHHUZ4yMXV4Sz3Qo41nq8QUnvqctZ1ziGdHs/WBNjiVR1F3sVaDjIntrsJJsddU6GfMFbs1vxI0IQ==
-X-Received: by 2002:a17:907:360d:b0:94a:7979:41f5 with SMTP id bk13-20020a170907360d00b0094a797941f5mr30753341ejc.71.1684224469553;
-        Tue, 16 May 2023 01:07:49 -0700 (PDT)
+        bh=9XW4XZAnemNwxZmDnCKO7GuXOkgFIvhJMeXABYP2D9k=;
+        b=FD/80YYV9NSHf7wxC4tuwfyrqJmKiew6/1IU0stV24YBCA2ECN3UBCrdFViTkSzfPz
+         EPRgl8pdtwKL1k6tfFgv7NppBFRbvTG+twgNimw8R7x4wpM/R5Ufe7K2EuDOxIjKdfrq
+         Rs6EZw26Y5iu1fMNtzS5bug5OBsOFCxLQcN7Pv7yqQc6FvW1KYf1BpIyVjvqTlPEpsC9
+         xYxy1OzaIa0Mi1Q1rNxBi/RobF+HvWFmuoGny9i4kywEs2yjIxq5973SLtjhypL+R0Gz
+         +JATA55zpTdiHxoInRRQWtsVB+CiklsNYQCs1ij67/rrF5ONZt866qQzGzLJkoVLPw6S
+         MSmA==
+X-Gm-Message-State: AC+VfDwSSL3IjLVhtwyj89aOpdgL97yoVO+yBK8hhr/0CjjT3SCvRJBL
+        /+9jvZHRm/A3CPOL/+ejApX/vA==
+X-Google-Smtp-Source: ACHHUZ72d+H/5xaxXybFu5FAabyCtks0yuSgACMr71nuX82KUfSm4g+hd2pSdXEoSCNE9OHTlUOfEA==
+X-Received: by 2002:a17:907:6287:b0:94f:29f0:edc0 with SMTP id nd7-20020a170907628700b0094f29f0edc0mr35474416ejc.44.1684224520325;
+        Tue, 16 May 2023 01:08:40 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:4d4a:9b97:62e:1439? ([2a02:810d:15c0:828:4d4a:9b97:62e:1439])
-        by smtp.gmail.com with ESMTPSA id i8-20020a056402054800b0050bd59fd0efsm7767851edx.49.2023.05.16.01.07.48
+        by smtp.gmail.com with ESMTPSA id lv4-20020a170906bc8400b00966293c06e9sm10448443ejb.126.2023.05.16.01.08.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 01:07:49 -0700 (PDT)
-Message-ID: <ab9aa30f-82d7-1d14-5561-e19ff10af0b0@linaro.org>
-Date:   Tue, 16 May 2023 10:07:47 +0200
+        Tue, 16 May 2023 01:08:39 -0700 (PDT)
+Message-ID: <eb0e4ce0-f754-8381-49e5-97dcc4a980a7@linaro.org>
+Date:   Tue, 16 May 2023 10:08:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: add mediatek mipi csi driver v
- 0.5
+Subject: Re: [PATCH] dt-bindings: display: bridge: tc358867: Document
+ TC358867/TC9595 compatible
 Content-Language: en-US
-To:     Julien Stephan <jstephan@baylibre.com>
-Cc:     robh@kernel.org, chunkuang.hu@kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Florian Sylvestre <fsylvestre@baylibre.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Andy Hsieh <andy.hsieh@mediatek.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
+Cc:     Andrey Gusakov <andrey.gusakov@cogentembedded.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20230515090551.1251389-1-jstephan@baylibre.com>
- <20230515090551.1251389-2-jstephan@baylibre.com>
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Foss <rfoss@kernel.org>, dri-devel@lists.freedesktop.org
+References: <20230515162033.66986-1-marex@denx.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230515090551.1251389-2-jstephan@baylibre.com>
+In-Reply-To: <20230515162033.66986-1-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 11:05, Julien Stephan wrote:
-> From: Florian Sylvestre <fsylvestre@baylibre.com>
+On 15/05/2023 18:20, Marek Vasut wrote:
+> The TC358867/TC9595 devices are compatible with the predecessor TC358767.
+> Document compatible strings for the new devices, so they can be discerned
+> in board DTs. Update the title to match description in the process.
 > 
-> This adds the bindings, for the MIPI CD-PHY module v 0.5 embedded in
-> some Mediatek soc, such as the mt8365
-> 
-> Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-
-What are the changes? IOW: changelog here or in cover letter.
-
-Subject: you have some multiple spaces.
-
-Subject: drop driver. Bindings are not for drivers.
-
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  .../phy/mediatek,phy-mipi-csi-0-5.yaml        | 62 +++++++++++++++++++
->  MAINTAINERS                                   |  6 ++
->  2 files changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml b/Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml
-> new file mode 100644
-> index 000000000000..5aa8c0b41cdf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,phy-mipi-csi-0-5.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0-Only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/mediatek,phy-mipi-csi-0-5.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek Sensor Interface MIPI CSI CD-PHY
-> +
-> +maintainers:
-> +  - Julien Stephan <jstephan@baylibre.com>
-> +  - Andy Hsieh <andy.hsieh@mediatek.com>
-> +
-> +description:
-> +  The SENINF CD-PHY is a set of CD-PHY connected to the SENINF CSI-2
-> +  receivers. The number of PHYs depends on the SoC model.
-> +  Depending on the soc model, each PHYs can support CDPHY or DPHY only
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,phy-mipi-csi-0-5
 
-SoC based compatibles. 0-5 is odd.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#phy-cells':
-> +    const: 0
-> +
-> +  mediatek,is_cdphy:
-
-No underscores in node names.
-
-> +    description:
-> +      Specify if the current phy support CDPHY configuration
-
-Why this cannot be implied from compatible? Add specific compatibles.
-
-
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#phy-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      mipi_rx_csi0: mipi_rx_csi0@11c10000 {
-
-No underscores in node names. How this is v2?
-
-> +        compatible = "mediatek,phy-mipi-csi-0-5";
-> +        reg = <0 0x11C10000 0 0x2000>;
-> +        status = "okay";
-
-Drop
-
-> +        mediatek,is_cdphy;
-> +        #phy-cells = <0>;
-> +      };
-> +
-> +      mipi_rx_csi1: mipi-rx-csi1@11c12000 {
-> +        compatible = "mediatek,phy-mipi-csi-0-5";
-> +        reg = <0 0x11C12000 0 0x2000>;
-> +        status = "disabled";
-
-???
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
