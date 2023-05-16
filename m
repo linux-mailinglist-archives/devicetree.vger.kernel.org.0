@@ -2,208 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D61B9704EC6
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B81B6704ED5
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 15:09:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233482AbjEPNHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 09:07:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51232 "EHLO
+        id S231921AbjEPNJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 09:09:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232849AbjEPNHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:07:16 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF2C5125
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:06:45 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-96aae59bbd6so948911466b.3
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 06:06:45 -0700 (PDT)
+        with ESMTP id S232660AbjEPNJ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 09:09:26 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4700BBD;
+        Tue, 16 May 2023 06:09:23 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-64a9335a8e7so5473158b3a.0;
+        Tue, 16 May 2023 06:09:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684242403; x=1686834403;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=y5v71FLoqMz+RUxDIpAMnXyAxgkejquVbG/xCAcbJdU=;
-        b=M3FPgcFsAiM2X5YXNkTxJ2ewxrvUjaCL4p9om+mGfL2xhkjHLJjW/D8eoqyLBd4B1q
-         VKQNDqz1BqtmFk33x5ddKE/YkFg/ZmEJ83nEKDwfa8BQ6rQLHd+TZJhqbqHQcb/VonPQ
-         mmaRwInfCCyDulO9t3XuXwxQhuZwGV5l0rwuQz0+lpPFIPirRQ2N1iZ2S7dqd29GvcLQ
-         nEEziAPrxXY4ZXYjYEdZTxM56Ayh6UBG7+pvxs7UcHBMWzvERXkg9rApldZDCA9MSM4b
-         FO4GnMOwpJNV/Wd9IBsUAxQW5Q9OAxU6vZmMYLzzLT/dl0tFATkXvUK4rXU7qSYVH2HZ
-         HPKg==
+        d=gmail.com; s=20221208; t=1684242563; x=1686834563;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=JnI2mCTgjLo9sKDeUzzDpzJIwWSO6LoMJa5F9uksNBE=;
+        b=LSxpzNIphCX4pdKDAYRhRH09p5YyLtm9cdJSaSlo84MLRIqXWrTEFHI1F86TQye0V6
+         1ts0UmaJhmUZo2SNSqNjxMIDlJ2X48cecPF03fG0SQ0PAcaUAYmq3PLTUBqtZaOgkOTz
+         ot14jzU8Td/a+Mb7GYRqxcgncsVIWmTDRC0XfVsnyG3R8I2SCarQ28hLJUD7oBcuGmXn
+         Y8+YPKd8fEpJ4NoiQL/a0bjNrsf1z+9v9N2LaK9rNIbghD3PhKMV+3KKNkzMaDIjceRb
+         tOp/rF0KRDqyjGion2UzHUvuNJ7gWlsmsyWdAmpahQJ+XjKB/gt9/i15TuOXtA0tNzuV
+         XHwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684242403; x=1686834403;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y5v71FLoqMz+RUxDIpAMnXyAxgkejquVbG/xCAcbJdU=;
-        b=BrUzaMBJpKvOtPEDwBhrZGkqygObewCnikOqSvHqEt7HTRjHTMZc2X9lKAby3fEttf
-         L7qOmCTDsLwmTtV+rh/OAh7IghM5quAkfV0Ch+QNey6DMPXMFqrQ59teVLGSaTzovtkZ
-         DeIYzji6uHBqJX8Onot8IOfTpjyqGkuMtIP02aWdjCk3Qw8B9lVttr5vkFKQmHyi8Y/B
-         zrmHdvHyxGgmfgWwMek6wBICGZQ/pTAVUNsiCTviXWzgS5a7dyVtgQ61JwnruRzLAHRQ
-         yt12LoIQADG2ZJhsBeRu7bDShJIBVkkNnztGJ0Tij2DSmHjkyUCC8BPkQWfCuhng+6g9
-         PeiA==
-X-Gm-Message-State: AC+VfDyQayMi4DRtgF3FeidZTy3y+NRJKbRAx7lZbA0m4QT8Zzd10lY9
-        vs/2QDCzk5QY5RBQt26ngP6w8w==
-X-Google-Smtp-Source: ACHHUZ5go4YGvwMvuHkX/P2nKXUI6kO6rJj/HD94dK8KJ24a7KSOeuUBx0cQE4d1WftX21i+qsvZFg==
-X-Received: by 2002:a17:907:9444:b0:969:e304:7a22 with SMTP id dl4-20020a170907944400b00969e3047a22mr24064513ejc.18.1684242402864;
-        Tue, 16 May 2023 06:06:42 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:77d1:16a1:abe1:84fc? ([2a02:810d:15c0:828:77d1:16a1:abe1:84fc])
-        by smtp.gmail.com with ESMTPSA id bu2-20020a170906a14200b0096654fdbe34sm11074552ejb.142.2023.05.16.06.06.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 06:06:42 -0700 (PDT)
-Message-ID: <1999753b-ceee-d66c-9a48-cbcbb8e6236e@linaro.org>
-Date:   Tue, 16 May 2023 15:06:40 +0200
+        d=1e100.net; s=20221208; t=1684242563; x=1686834563;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JnI2mCTgjLo9sKDeUzzDpzJIwWSO6LoMJa5F9uksNBE=;
+        b=fDiuJRxgxit5LXU2IBF9bhT1VPF9KS3J+av5lZvCMQ4fkceZcszSjsMvcCp3W6MXxU
+         xbQGWMH/3UC3NPyhVzoZcbSGHkfS/frZ/Sz+ELKxx/DNGOGOJD2pszExxM1Xi42HcUis
+         XuiBv2hxnuHKVK16ozGM1u3zNC2IkryGiDFmMfpoLzaoTZuhaQPpyn0YDc59IMZYFC+S
+         z9G9LY52s6v7LSxAQjGusYTsj5yckwQCY6m2I6HLaB2nYef/sJS58V/XONbkzuR1xGrO
+         Z0eeTzPstVy+gzN5cqnjBggIpcxrt9qKmqAvSz9LdxGs46l5361AKXdpZelnwcEgH7GF
+         kfFQ==
+X-Gm-Message-State: AC+VfDzjgsvPI6pwuLFvbOfK847sDLivtzq/lnJ/4ZTUeaJZ3zRdVnl1
+        miFRQpQzeZcWxbhjbSyPkARZdsMgYdvh6mulX/0=
+X-Google-Smtp-Source: ACHHUZ5+Nhs4AlA41VRX7XHReaGKnGgZl0brEkEPSTE8PDEC4sfbygO22G292BwjZGl/f+FmG+dJAgmuStgvDpfJwKU=
+X-Received: by 2002:a17:903:1ca:b0:1ad:bccc:af77 with SMTP id
+ e10-20020a17090301ca00b001adbcccaf77mr25885743plh.18.1684242562600; Tue, 16
+ May 2023 06:09:22 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 2/4] dt-bindings: thermal: tsens: Add ipq9574
- compatible
-Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        amitk@kernel.org, thara.gopinath@gmail.com, rafael@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Praveenkumar I <quic_ipkumar@quicinc.com>
-References: <cover.1684140883.git.quic_varada@quicinc.com>
- <37adcf5d8d545a076e8ed971a4fb6c6c2833ef3c.1684140883.git.quic_varada@quicinc.com>
- <b7e749ff-f4f0-0e61-9aae-876db4278fbc@linaro.org>
- <20230516120426.GA1679@varda-linux.qualcomm.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230516120426.GA1679@varda-linux.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+From:   =?UTF-8?B?UGF1bG8gUGF2YcSNacSH?= <pavacic.p@gmail.com>
+Date:   Tue, 16 May 2023 15:09:11 +0200
+Message-ID: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
+Subject: [PATCH v2] dt-bindings: display: panel: add panel-mipi-dsi-bringup
+To:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        robh+dt@kernel.org, daniel@ffwll.ch
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 14:04, Varadarajan Narayanan wrote:
-> On Mon, May 15, 2023 at 06:10:29PM +0200, Krzysztof Kozlowski wrote:
->> On 15/05/2023 12:13, Varadarajan Narayanan wrote:
->>> From: Praveenkumar I <quic_ipkumar@quicinc.com>
->>>
->>> Qualcomm IPQ9574 has tsens v2.3.1 block, which is similar to IPQ8074 tsens.
->>>
->>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
->>> ---
->>> [v3]:
->>> 	Fix dt_binding_check & dtbs_check errors (Used
->>> 	Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
->>> 	as reference/example)
->>>
->>> 	Drop 'Acked-by: Rob Herring' as suggested in review
->>>
->>> [v2]:
->>> 	Thanks to Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> 	for the tip to make qcom,ipq8074-tsens as fallback.
->>> ---
->>>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 13 +++++++++++--
->>>  1 file changed, 11 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
->>> index d9aa54c..57e3908 100644
->>> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
->>> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
->>> @@ -19,6 +19,11 @@ description: |
->>>  properties:
->>>    compatible:
->>>      oneOf:
->>> +      - const: qcom,tsens-v0_1
->>> +      - const: qcom,tsens-v1
->>> +      - const: qcom,tsens-v2
->>
->> Nope, these are not correct.
->>
->>> +      - const: qcom,ipq8074-tsens
->>
->> Also nope, this is already there.
->>
->>> +
->>>        - description: msm8960 TSENS based
->>>          items:
->>>            - enum:
->>> @@ -66,8 +71,10 @@ properties:
->>>            - const: qcom,tsens-v2
->>>
->>>        - description: v2 of TSENS with combined interrupt
->>> -        enum:
->>> -          - qcom,ipq8074-tsens
->>
->> Why?
->>
->>> +        items:
->>> +          - enum:
->>> +              - qcom,ipq9574-tsens
->>> +          - const: qcom,ipq8074-tsens
-> 
-> Without changing it like this either dtbs_check or
-> dt_binding_check kept failing.
-> 
-> 	- description: v2 of TSENS with combined interrupt
-> 	  enum:
-> 	    - qcom,ipq8074-tsens
-> 	    - qcom,ipq9574-tsens
+Add dt-bindings documentation for panel-mipi-dsi-bringup which currently
+supports fannal,c3004 panel. Also added fannal to vendor-prefixes.
 
-But we do not talk about this... Look, I commented out under specific
-hunks which are not correct. Not under the hunk which is correct.
+v2 changelog:
+  - revised driver title, now describes purpose
+  - revised description, now describes hw
+  - revised maintainers, now has only 1 mail
+  - removed diacritics from commit/commit author
+  - properties/compatible is now enum
+  - compatible using only lowercase
+  - revised dts example
+  - modified MAINTAINERS in this commit (instead of driver commit)
+  - dt_bindings_check checked yml
+  - checkpatch warning fixed
 
-> 
-> dtbs_check gave this kind of error
-> 	['qcom,ipq9574-tsens', 'qcom,ipq8074-tsens'] is too long
-> 
-> After changing it like in https://elixir.bootlin.com/linux/v6.3-rc6/source/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml#L31
-> 
-> 	- description: v2 of TSENS with combined interrupt
-> 	  const: qcom,ipq8074-tsens
-> 	  - enum:
-> 	      - qcom,ipq9574-tsens
-> 	  - const: qcom,ipq8074-tsens
-> 
-> dt_binding_check gives the following error
-> 
-> 	Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:70:9: did not find expected key
+Signed-off-by: Paulo Pavacic <pavacic.p@gmail.com>
+---
+ .../display/panel/panel-mipi-dsi-bringup.yaml | 54 +++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ MAINTAINERS                                   |  6 +++
+ 3 files changed, 62 insertions(+)
+ create mode 100644
+Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
 
-Because it is not even valid syntax.
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
+b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
+new file mode 100644
+index 000000000000..c9e2b545657e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/panel-mipi-dsi-bringup.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MIPI DSI Bringup Panel Porting Bindings
++
++description: |
++  MIPI DSI Bringup Panel porting bindings to be used for a collection of panels
++  from different manufacturers which don't require backlight control from the
++  driver and have a single reset pin which is required to be passed as an
++  argument.
++
++maintainers:
++  - Paulo Pavacic <pavacic.p@gmail.com>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++
++  compatible:
++    enum:
++      # compatible must be listed in alphabetical order, ordered by compatible.
++      # The description in the comment is mandatory for each compatible.
++
++        # Fannal 480x800 panel
++      - fannal,c3004
++
++  reg: true
++  reset-gpios: true
++
++required:
++  - compatible
++  - reg
++  - reset-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    //example on IMX8MM where GPIO pin 9 is used as a reset pin
++    mipi_dsi@32e10000 {
++        panel@0 {
++            compatible = "fannal,c3004";
++            reg = <0>;
++            pinctrl-0 = <&pinctrl_mipi_dsi_rst>;
++            pinctrl-names = "default";
++            reset-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
++        };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 82d39ab0231b..f962750f630a 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -462,6 +462,8 @@ patternProperties:
+     description: Facebook
+   "^fairphone,.*":
+     description: Fairphone B.V.
++  "^fannal,.*":
++    description: Fannal Electronics Co., Ltd
+   "^faraday,.*":
+     description: Faraday Technology Corporation
+   "^fastrax,.*":
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e0ad886d3163..46f988ee60bd 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6566,6 +6566,12 @@ T:    git git://anongit.freedesktop.org/drm/drm-misc
+ F:    Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+ F:    drivers/gpu/drm/tiny/panel-mipi-dbi.c
 
-> 
-> and dtbs_check gives
-> 
-> 	./Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:70:9: [error] syntax error: expected <block end>, but found '-' (syntax)
-> 	  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-> 	./Documentation/devicetree/bindings/clock/qcom,gcc-ipq8064.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/thermal/qcom-tsens.yaml
-> 	./Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml: Unable to find schema file matching $id: http://devicetree.org/schemas/thermal/qcom-tsens.yaml
-> 	./Documentation/devicetree/bindings/thermal/qcom-tsens.yaml:70:9: did not find expected key
-> 	  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-> 	/local/mnt/workspace/varada/v3/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml: ignoring, error parsing file
-> 
-> If i change it like below,
-> 
-> 	- description: v2 of TSENS with combined interrupt
-> 	  enum:
-> 	    - qcom,ipq9574-tsens
-> 	  - const: qcom,ipq8074-tsens
-> 
-> dt_binding_check and dtbs_check gives same error as above.
-> 
-> Looked around and found Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-> which seemed to do something similar to what is wanted in this
-> case. Hence changed qcom-tsens.yaml similar to the allwinner yaml
-> file. After which dt_binding_check and dtbs_check passed. Please
-> let me know if there is a better way to solve this. Will go with
-
-Changing one valid syntax to another valid syntax is not related to the
-patch. If you think such change as reasonable, please split it, but to
-me it does not look justified. As for actual change, so adding new
-compatible, it's not really related to the others. Why you cannot add
-the proper list (so the only valid hunk) and that's it?
-
-Best regards,
-Krzysztof
-
++DRM DRIVER FOR MIPI DSI BRINGUP
++M:    Paulo Pavacic <pavacic.p@gmail.com>
++S:    Maintained
++C:    mipi-dsi-bringup:matrix.org
++F:    Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.yaml
++
+ DRM DRIVER FOR MSM ADRENO GPU
+ M:    Rob Clark <robdclark@gmail.com>
+ M:    Abhinav Kumar <quic_abhinavk@quicinc.com>
+-- 
+2.40.1
