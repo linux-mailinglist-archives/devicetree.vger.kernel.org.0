@@ -2,67 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44A14704D86
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 14:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46236704D90
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 14:14:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231878AbjEPMLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 08:11:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37126 "EHLO
+        id S232278AbjEPMOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 08:14:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232537AbjEPMLX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 08:11:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5637697;
-        Tue, 16 May 2023 05:11:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DFCB263284;
-        Tue, 16 May 2023 12:11:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27528C433D2;
-        Tue, 16 May 2023 12:11:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684239080;
-        bh=eU1IpGqrxHhp5RUe3ugeoJYfppRRUD3XtvW3Zo4t778=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YYA4KOTnQe1W9wGsAtrzHSFOjXyQiEULl5Tv57Y8mdSIB7E7XvhFAsdO1cnFpqPFN
-         30/nZz5LXTddtH2e50JbBVzO9C4VMGXBxk02KBZQlEWBleEYAlpQzK1vCrzMYCJnNr
-         oBvK3XdGKG1+a4pJ+QwiBiNhybYEzzFXXM2PJG6mKwXiWvQ2HjIIY7xEQ23gj73x2X
-         ep7z66xPN60RUGVO4jvR+kNE2jskK6tcQLRsEQeTp807NG3ts+hgM1yTL7w+NNUaOw
-         5NFAG5k6v4ekYnldKf88QLONBpblgfhXkSQsxM4G1C0rMk86sdsY6k1CMbloU+w43c
-         1ASIaOIqPc99w==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pytWS-0008PG-2k; Tue, 16 May 2023 14:11:20 +0200
-Date:   Tue, 16 May 2023 14:11:20 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
-        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
-        ahalaney@redhat.com
-Subject: Re: [PATCH v8 3/9] usb: dwc3: core: Access XHCI address space
- temporarily to read port info
-Message-ID: <ZGNy6FvVrBjYmorz@hovoldconsulting.com>
-References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
- <20230514054917.21318-4-quic_kriskura@quicinc.com>
+        with ESMTP id S231888AbjEPMOY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 08:14:24 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A27E6FA
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 05:14:23 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34G8lCVS014910;
+        Tue, 16 May 2023 14:13:56 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=4D/lBeJGIR3TfTKha5AOxBhf8+e1rumLjgteYtlOQI4=;
+ b=lBtlxTQGLXdLlSqLfx6re7xIJcC5BepLejfHa+8RFCXv1QiBizsql+t8LlbD92C5zO+G
+ 5afDbrWizphxCbWwuln0hRmmU5m2A5n/H0eVvYejl3XQWkQgzDT4wXQBfePKc9wHV0V4
+ UpExudNWakPPTsVvK3VEO0tTw912Rt0dRiHAlHuQIJpUjzcYAAGBYBYjzn1ulta+SyU8
+ pzO76/XmEXK36NTQwIjebtD8ehkD1ik99dtqL39sPLGkBYgd5JiBwZiuRXyLtmgGFzhQ
+ 1DWbxj9PMC0hS54liNtBTId3Dt5fbsKeoecuKEAqc+I+pCSx+moNIbwPA3rKGsnR620M nw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qkhp0gh4y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 May 2023 14:13:56 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A331410002A;
+        Tue, 16 May 2023 14:13:55 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9586A227896;
+        Tue, 16 May 2023 14:13:55 +0200 (CEST)
+Received: from [10.252.0.230] (10.252.0.230) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 16 May
+ 2023 14:13:54 +0200
+Message-ID: <9e4126cb-99f7-76b5-a99f-8d607df03289@foss.st.com>
+Date:   Tue, 16 May 2023 14:13:41 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230514054917.21318-4-quic_kriskura@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH] ARM: dts: stm32: Replace deprecated st,hw-flow-ctrl with
+ uart-has-rtscts
+Content-Language: en-US
+To:     Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <kernel@dh-electronics.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20230407210152.138549-1-marex@denx.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230407210152.138549-1-marex@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.252.0.230]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-16_05,2023-05-16_01,2023-02-09_01
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,283 +75,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 14, 2023 at 11:19:11AM +0530, Krishna Kurapati wrote:
-> Currently host-only capable DWC3 controllers support Multiport.
-> Temporarily map XHCI address space for host-only controllers and parse
-> XHCI Extended Capabilities registers to read number of usb2 ports and
-> usb3 ports present on multiport controller. Each USB Port is at least HS
-> capable.
+Hi Marek
+
+On 4/7/23 23:01, Marek Vasut wrote:
+> Replace deprecated st,hw-flow-ctrl with uart-has-rtscts .
+> No functional change.
 > 
-> The port info for usb2 and usb3 phy are identified as num_usb2_ports
-> and num_usb3_ports. The intention is as follows:
-> 
-> Wherever we need to perform phy operations like:
-> 
-> LOOP_OVER_NUMBER_OF_AVAILABLE_PORTS()
-> {
-> 	phy_set_mode(dwc->usb2_generic_phy[i], PHY_MODE_USB_HOST);
-> 	phy_set_mode(dwc->usb3_generic_phy[i], PHY_MODE_USB_HOST);
-> }
-> 
-> If number of usb2 ports is 3, loop can go from index 0-2 for
-> usb2_generic_phy. If number of usb3-ports is 2, we don't know for sure,
-> if the first 2 ports are SS capable or some other ports like (2 and 3)
-> are SS capable. So instead, num_usb2_ports is used to loop around all
-> phy's (both hs and ss) for performing phy operations. If any
-> usb3_generic_phy turns out to be NULL, phy operation just bails out.
-> 
-> num_usb3_ports is used to modify GUSB3PIPECTL registers while setting up
-> phy's as we need to know how many SS capable ports are there for this.
-> 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  drivers/usb/dwc3/core.c | 113 ++++++++++++++++++++++++++++++++++++++++
->  drivers/usb/dwc3/core.h |  17 +++++-
->  2 files changed, 129 insertions(+), 1 deletion(-)
+
+
+Applied on stm32-next.
+
+Thanks.
+Alex
+
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: kernel@dh-electronics.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> ---
+>   arch/arm/boot/dts/stm32h750i-art-pi.dts            | 2 +-
+>   arch/arm/boot/dts/stm32mp157a-stinger96.dtsi       | 4 ++--
+>   arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi | 2 +-
+>   3 files changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> index 0beaab932e7d..e983aef1fb93 100644
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -1767,6 +1767,104 @@ static int dwc3_get_clocks(struct dwc3 *dwc)
->  	return 0;
->  }
->  
-> +/**
-> + * dwc3_xhci_find_next_ext_cap - Find the offset of the extended capabilities
-> + *					with capability ID id.
-> + *
-> + * @base:	PCI MMIO registers base address.
-> + * @start:	address at which to start looking, (0 or HCC_PARAMS to start at
-> + *		beginning of list)
-> + * @id:		Extended capability ID to search for, or 0 for the next
-> + *		capability
-> + *
-> + * Returns the offset of the next matching extended capability structure.
-> + * Some capabilities can occur several times, e.g., the XHCI_EXT_CAPS_PROTOCOL,
-> + * and this provides a way to find them all.
-> + */
-> +static int dwc3_xhci_find_next_ext_cap(void __iomem *base, u32 start, int id)
-> +{
-> +	u32 val;
-> +	u32 next;
-> +	u32 offset;
-> +
-> +	offset = start;
-> +	if (!start || start == XHCI_HCC_PARAMS_OFFSET) {
-> +		val = readl(base + XHCI_HCC_PARAMS_OFFSET);
-> +		if (val == ~0)
-> +			return 0;
-> +		offset = XHCI_HCC_EXT_CAPS(val) << 2;
-> +		if (!offset)
-> +			return 0;
-> +	}
-> +	do {
-> +		val = readl(base + offset);
-> +		if (val == ~0)
-> +			return 0;
-> +		if (offset != start && (id == 0 || XHCI_EXT_CAPS_ID(val) == id))
-> +			return offset;
-> +
-> +		next = XHCI_EXT_CAPS_NEXT(val);
-> +		offset += next << 2;
-> +	} while (next);
-> +
-> +	return 0;
-> +}
+> diff --git a/arch/arm/boot/dts/stm32h750i-art-pi.dts b/arch/arm/boot/dts/stm32h750i-art-pi.dts
+> index f3e70d3b65ac4..44c307f8b09cf 100644
+> --- a/arch/arm/boot/dts/stm32h750i-art-pi.dts
+> +++ b/arch/arm/boot/dts/stm32h750i-art-pi.dts
+> @@ -208,7 +208,7 @@ &usart3 {
+>   	dmas = <&dmamux1 45 0x400 0x05>,
+>   	       <&dmamux1 46 0x400 0x05>;
+>   	dma-names = "rx", "tx";
+> -	st,hw-flow-ctrl;
+> +	uart-has-rtscts;
+>   	status = "okay";
+>   
+>   	bluetooth {
+> diff --git a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
+> index 3a36f7fe0a2c3..5f85598cc7c6b 100644
+> --- a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
+> @@ -287,7 +287,7 @@ &usart2 {
+>   	pinctrl-names = "default", "sleep";
+>   	pinctrl-0 = <&usart2_pins_b>;
+>   	pinctrl-1 = <&usart2_sleep_pins_b>;
+> -	st,hw-flow-ctrl;
+> +	uart-has-rtscts;
+>   	/delete-property/dmas;
+>   	/delete-property/dma-names;
+>   	status = "okay";
+> @@ -297,7 +297,7 @@ &usart2 {
+>   &uart4 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&uart4_pins_c>;
+> -	st,hw-flow-ctrl;
+> +	uart-has-rtscts;
+>   	/delete-property/dmas;
+>   	/delete-property/dma-names;
+>   	status = "okay";
+> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+> index 50af4a27d6be4..8232bbbae379c 100644
+> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+> @@ -452,7 +452,7 @@ &usart2 {
+>   	pinctrl-names = "default", "sleep";
+>   	pinctrl-0 = <&usart2_pins_a>;
+>   	pinctrl-1 = <&usart2_sleep_pins_a>;
+> -	st,hw-flow-ctrl;
+> +	uart-has-rtscts;
+>   	/delete-property/dmas;
+>   	/delete-property/dma-names;
+>   	status = "okay";
 
-You should not make another copy of xhci_find_next_ext_cap(), but rather
-use it directly.
-
-We already have drivers outside of usb/host using this function so it
-should be fine to do the same for now:
-
-	#include "../host/xhci-ext-caps.h"
-
-> +static int dwc3_read_port_info(struct dwc3 *dwc)
-> +{
-> +	void __iomem		*regs;
-
-Call this one 'base' instead.
-
-> +	u32			offset;
-> +	u32			temp;
-
-I see that the xhci driver use 'temp' for this, but I'd prefer 'val'.
-
-> +	u8			major_revision;
-> +	int			ret = 0;
-> +
-> +	/*
-> +	 * Remap xHCI address space to access XHCI ext cap regs,
-> +	 * since it is needed to get port info.
-> +	 */
-> +	regs = ioremap(dwc->xhci_resources[0].start,
-> +				resource_size(&dwc->xhci_resources[0]));
-> +	if (IS_ERR(regs))
-> +		return PTR_ERR(regs);
-> +
-> +	offset = dwc3_xhci_find_next_ext_cap(regs, 0,
-> +					XHCI_EXT_CAPS_PROTOCOL);
-> +	while (offset) {
-
-This would be better implemented as a do-while loop (cf.
-xdbc_reset_debug_port()).
-
-> +		temp = readl(regs + offset);
-> +		major_revision = XHCI_EXT_PORT_MAJOR(temp);
-> +
-> +		temp = readl(regs + offset + 0x08);
-
-We should try to avoid magic constants, but I see that we already have
-cases accessing these fields like this.
-
-> +		if (major_revision == 0x03) {
-> +			dwc->num_usb3_ports += XHCI_EXT_PORT_COUNT(temp);
-> +		} else if (major_revision <= 0x02) {
-> +			dwc->num_usb2_ports += XHCI_EXT_PORT_COUNT(temp);
-> +		} else {
-> +			dev_err(dwc->dev,
-> +				"Unrecognized port major revision %d\n", major_revision);
-
-Please add a line break after the string.
-
-Perhaps this should be handles as in xhci core by simply warning and
-continuing instead.
-
-> +			ret = -EINVAL;
-> +			goto unmap_reg;
-> +		}
-> +
-> +		offset = dwc3_xhci_find_next_ext_cap(regs, offset,
-> +						XHCI_EXT_CAPS_PROTOCOL);
-> +	}
-> +
-> +	temp = readl(regs + DWC3_XHCI_HCSPARAMS1);
-> +	if (HCS_MAX_PORTS(temp) != (dwc->num_usb3_ports + dwc->num_usb2_ports)) {
-> +		dev_err(dwc->dev,
-> +			"Mismatched reported MAXPORTS (%d)\n", HCS_MAX_PORTS(temp));
-> +		ret = -EINVAL;
-> +		goto unmap_reg;
-> +	}
-
-Not sure this is needed either.
-
-Could this risk regressing platforms which does not have currently have
-all PHYs described in DT?
-
-You do however need to make sure that both num_usb<n>_ports is no larger
-than MAX_PORTS_SUPPORTED to avoid memory corruption when you're adding
-fixed sized arrays for the PHYs later in the series.
-
-> +
-> +	dev_dbg(dwc->dev,
-> +		"hs-ports: %d ss-ports: %d\n", dwc->num_usb2_ports, dwc->num_usb3_ports);
-
-Use %u for unsigned values.
-
-And please try to stay within 80 columns.
-
-> +
-> +unmap_reg:
-> +	iounmap(regs);
-> +	return ret;
-> +}
-> +
->  static int dwc3_probe(struct platform_device *pdev)
->  {
->  	struct device		*dev = &pdev->dev;
-> @@ -1774,6 +1872,7 @@ static int dwc3_probe(struct platform_device *pdev)
->  	void __iomem		*regs;
->  	struct dwc3		*dwc;
->  	int			ret;
-> +	unsigned int		hw_mode;
->  
->  	dwc = devm_kzalloc(dev, sizeof(*dwc), GFP_KERNEL);
->  	if (!dwc)
-> @@ -1843,6 +1942,20 @@ static int dwc3_probe(struct platform_device *pdev)
->  			goto err_disable_clks;
->  	}
->  
-> +	/*
-> +	 * Currently DWC3 controllers that are host-only capable
-> +	 * support Multiport
-
-Are you missing an "only" after "Currently" above?
-
-Please add a full stop.
-
-> +	 */
-> +	hw_mode = DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
-> +	if (hw_mode == DWC3_GHWPARAMS0_MODE_HOST) {
-> +		ret = dwc3_read_port_info(dwc);
-> +		if (ret)
-> +			goto err_disable_clks;
-> +	} else {
-> +		dwc->num_usb2_ports = 1;
-> +		dwc->num_usb3_ports = 1;
-> +	}
-> +
->  	spin_lock_init(&dwc->lock);
->  	mutex_init(&dwc->mutex);
->  
-> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> index d56457c02996..d3401963bc27 100644
-> --- a/drivers/usb/dwc3/core.h
-> +++ b/drivers/usb/dwc3/core.h
-> @@ -35,6 +35,17 @@
->  
->  #define DWC3_MSG_MAX	500
->  
-> +/* Define XHCI Extcap register offsets for getting multiport info */
-> +#define XHCI_HCC_PARAMS_OFFSET	0x10
-> +#define DWC3_XHCI_HCSPARAMS1	0x04
-> +#define XHCI_EXT_CAPS_PROTOCOL	2
-> +#define XHCI_HCC_EXT_CAPS(x)    (((x) >> 16) & 0xffff)
-> +#define XHCI_EXT_CAPS_ID(x)     (((x) >> 0) & 0xff)
-> +#define XHCI_EXT_CAPS_NEXT(x)   (((x) >> 8) & 0xff)
-> +#define XHCI_EXT_PORT_MAJOR(x)  (((x) >> 24) & 0xff)
-> +#define XHCI_EXT_PORT_COUNT(x)  (((x) >> 8) & 0xff)
-> +#define HCS_MAX_PORTS(x)        (((x) >> 24) & 0x7f)
-> +
-
-You should use the xhci defines instead of these copies too.
-
->  /* Global constants */
->  #define DWC3_PULL_UP_TIMEOUT	500	/* ms */
->  #define DWC3_BOUNCE_SIZE	1024	/* size of a superspeed bulk */
-> @@ -1025,6 +1036,8 @@ struct dwc3_scratchpad_array {
->   * @usb_psy: pointer to power supply interface.
->   * @usb2_phy: pointer to USB2 PHY
->   * @usb3_phy: pointer to USB3 PHY
-> + * @num_usb2_ports: number of usb2 ports.
-> + * @num_usb3_ports: number of usb3 ports.
-
-Use upper case "USBn" and drop the full stops for consistency.
-
-Please move these after the PHY structures.
-
->   * @usb2_generic_phy: pointer to USB2 PHY
->   * @usb3_generic_phy: pointer to USB3 PHY
->   * @phys_ready: flag to indicate that PHYs are ready
-> @@ -1162,6 +1175,9 @@ struct dwc3 {
->  	struct usb_phy		*usb2_phy;
->  	struct usb_phy		*usb3_phy;
->  
-> +	u8			num_usb2_ports;
-> +	u8			num_usb3_ports;
-> +
->  	struct phy		*usb2_generic_phy;
->  	struct phy		*usb3_generic_phy;
->  
-> @@ -1649,5 +1665,4 @@ static inline int dwc3_ulpi_init(struct dwc3 *dwc)
->  static inline void dwc3_ulpi_exit(struct dwc3 *dwc)
->  { }
->  #endif
-> -
-
-This is an unrelated change that should be dropped.
-
->  #endif /* __DRIVERS_USB_DWC3_CORE_H */
-
-Johan
