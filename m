@@ -2,69 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB8F570455A
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 08:34:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 167E470455F
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 08:38:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230180AbjEPGd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 02:33:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48228 "EHLO
+        id S230101AbjEPGiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 02:38:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230054AbjEPGd6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 02:33:58 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FFA71FD4;
-        Mon, 15 May 2023 23:33:56 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34G6XhTC061465;
-        Tue, 16 May 2023 01:33:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684218823;
-        bh=kQRrE7NQZFThfXtU1mqcmhZYEzl2mdVQGQNER6/T2C0=;
-        h=Date:CC:Subject:To:References:From:In-Reply-To;
-        b=Sil2Z57zIaLO+SgeLTzPZaxtl3XHObFirJgsO7Lpx0evRCQK3xO0FQ958WeRRKe8J
-         myieRPQ33oWhT+d4qYPdIm4RBmByO7Xsj6++saNDI2bzJb3zvLwB/HQmGkrsz+C16y
-         /QIFLsz83hRme9bc3EJ4Vl80zbnU74t8cPx+gGF4=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34G6XhhE026382
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 16 May 2023 01:33:43 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
- May 2023 01:33:42 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 16 May 2023 01:33:42 -0500
-Received: from [172.24.145.61] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34G6XdN3016858;
-        Tue, 16 May 2023 01:33:39 -0500
-Message-ID: <728c0165-3caa-de09-2493-e7225a78b77a@ti.com>
-Date:   Tue, 16 May 2023 12:03:38 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230051AbjEPGiK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 02:38:10 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B441198B
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 23:38:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1684219088; x=1715755088;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=TCxpBENV+zqXSkcuLnWs6/rslnSwLFSs45WMSjLUzR0=;
+  b=hHQXwmQeoDfN202xWuXBfdgxxMC9REUbtjkEXC6tzzBq7HwCMuytA2cU
+   c+KH5EY8UjdfbLORuvpO7dgXEd3vIZZuccn+Jtxx7kX0FnUoC8Wfwbvmy
+   e1I+sv4dl60L8jLyWd/7fW8lF3V6bf1G1uFplygm3RGiiETtYqOY1qqnD
+   RBhBF642WRE1MhbgTnfqarZyorvzyylm2n+A2RJyndboslFTRYHqRWxCh
+   Mpzu1aHLXFsyYG6vXrGFxHs55Yi/D0o94AKDiWCiTOCqWBxx4uGRR+KlY
+   GkOUHo3KuucFRj/IGDf0Pnmk3LvSIKGUXeG6RjnBc50+LpJNkfbOp9Y7v
+   w==;
+X-IronPort-AV: E=Sophos;i="5.99,278,1677538800"; 
+   d="scan'208";a="30922863"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 16 May 2023 08:38:06 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 16 May 2023 08:38:06 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 16 May 2023 08:38:06 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1684219086; x=1715755086;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=TCxpBENV+zqXSkcuLnWs6/rslnSwLFSs45WMSjLUzR0=;
+  b=QejqqFb0GhmOxrWXEE5J8BRMGZVK5ijMtog/yptCGCN20Zdmd2N7z9wv
+   qkb/XEeTlU4LMtrtfEIGVKuw4Qt1TjyDuJ+EO0xlSDIOIEopoBZHe8AaY
+   W+nJdWLfpr8dt4j4Aevo470FtDMhUlTC4pT2TEiLngU8Zz7sjnPhvmMqe
+   T3PXLqBQC40f6V6bZnOzXl1J/5w0zsFCtpa3QACGgG62+GQ6Y3yiuATwE
+   49hQ/99a9OmJhjsZOeOnuyCNdg2r8aDxYTOQ84wzbRZLDy6kBrFOA5Cj7
+   ECsBOaux39qRC38X5AFBu7WTCSCW8gHKL7dRJLH+1cEPh4o59WqFINbaT
+   A==;
+X-IronPort-AV: E=Sophos;i="5.99,278,1677538800"; 
+   d="scan'208";a="30922862"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 16 May 2023 08:38:06 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 55CB5280056;
+        Tue, 16 May 2023 08:38:06 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <s-vadapalli@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j7200: correct num-lanes requested for
- PCIe
-Content-Language: en-US
-To:     Achal Verma <a-verma1@ti.com>
-References: <20230516062212.2635948-1-a-verma1@ti.com>
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-In-Reply-To: <20230516062212.2635948-1-a-verma1@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-8.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH] arm64: dts: imx8mp: Add DeWarp Engine DT node
+Date:   Tue, 16 May 2023 08:38:06 +0200
+Message-ID: <2306485.iZASKD2KPV@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230515163224.70300-1-marex@denx.de>
+References: <20230515163224.70300-1-marex@denx.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,49 +90,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Achal,
+Hi Marek,
 
-On 16/05/23 11:52, Achal Verma wrote:
-> From: Matt Ranostay <mranostay@ti.com>
-> 
-> J7200 has a limited 2x support for PCIe, and the properties should be
-> updated as such.
-
-According to J7200 Datasheet at [0], the SoC supports up to x4 PCIe lanes. Could
-you please clarify where the lanes are documented to be 2x?
-
-[0]: https://www.ti.com/lit/ds/symlink/dra821u-q1.pdf
-
-> 
-> Signed-off-by: Matt Ranostay <mranostay@ti.com>
-> Signed-off-by: Achal Verma <a-verma1@ti.com>
+Am Montag, 15. Mai 2023, 18:32:24 CEST schrieb Marek Vasut:
+> Add DT node for the DeWarp Engine of the i.MX8MP.
+>=20
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
->  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> index ef352e32f19d..5e62b431d6e8 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> @@ -729,7 +729,7 @@ pcie1_rc: pcie@2910000 {
->  		device_type = "pci";
->  		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
->  		max-link-speed = <3>;
-> -		num-lanes = <4>;
-> +		num-lanes = <2>;
->  		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
->  		clocks = <&k3_clks 240 6>;
->  		clock-names = "fck";
-> @@ -757,7 +757,7 @@ pcie1_ep: pcie-ep@2910000 {
->  		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
->  		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
->  		max-link-speed = <3>;
-> -		num-lanes = <4>;
-> +		num-lanes = <2>;
->  		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
->  		clocks = <&k3_clks 240 6>;
->  		clock-names = "fck";
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
 
--- 
-Regards,
-Siddharth.
+While the node itself is okay, could you please add a patch for reordering =
+the=20
+other nodes in aips4 before adding dewarp? dwe@32e30000 should be at the to=
+p=20
+after ISI (ISP not yet added).
+
+Best regards,
+Alexander
+
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
+> 245c560674de7..b64c944eecf82 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -1534,6 +1534,16 @@ isi_in_1: endpoint {
+>  				};
+>  			};
+>=20
+> +			dewarp: dwe@32e30000 {
+> +				compatible =3D "nxp,imx8mp-dw100";
+> +				reg =3D <0x32e30000 0x10000>;
+> +				interrupts =3D <GIC_SPI 100=20
+IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks =3D <&clk=20
+IMX8MP_CLK_MEDIA_AXI_ROOT>,
+> +					 <&clk=20
+IMX8MP_CLK_MEDIA_APB_ROOT>;
+> +				clock-names =3D "axi", "ahb";
+> +				power-domains =3D <&media_blk_ctrl=20
+IMX8MP_MEDIABLK_PD_DWE>;
+> +			};
+> +
+>  			mipi_csi_0: csi@32e40000 {
+>  				compatible =3D "fsl,imx8mp-mipi-csi2",=20
+"fsl,imx8mm-mipi-csi2";
+>  				reg =3D <0x32e40000 0x10000>;
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
