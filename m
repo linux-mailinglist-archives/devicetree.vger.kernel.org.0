@@ -2,129 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E9EF7049A8
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 810327049E4
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 11:58:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231907AbjEPJsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 05:48:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55090 "EHLO
+        id S232209AbjEPJ6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 05:58:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231422AbjEPJsx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:48:53 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3DAF2D55
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 02:48:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-        Content-Transfer-Encoding:MIME-Version:Subject:Cc:From:Reply-To:To:Content-ID
-        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
-        Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=BJm5LPgKRep+P4ajkokBOa3xwg3UuUxrhzXpnK5oIc8=; b=MzIuHuesxXzdxKZWzK0Te6xJqT
-        R96xAVOPuGzsYpzdeVRRjTbShbSACl/xijS8cdFBFKXzWmf6g5hB68+8UyrY784MY8Qt1Q6q4zmCQ
-        B4e7gG/tB+jyOMLJj11AtpsYkRy4wNjSPLY9wR/LpdsAXI6/Une1K1m1XzI6c93CAqg/5L+c4PEEQ
-        kWoCbJubCtJjINu4V/DM5csyHU8DPfmn0hrOeZfZO6FRrvSF8+jn9+MsIrgQElz+IqqsV6g9+vxt3
-        lYhvdyvVeAJa2RHjHOCSm2/1kaINRhQreRa8GK5GPaemhR/otr1x94Z1phstbY2bS2TrafiwIhkGo
-        cjZyj7iQ==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:50074 helo=rmk-PC.armlinux.org.uk)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1pyrIH-0005V5-Jb; Tue, 16 May 2023 10:48:33 +0100
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <rmk@rmk-PC.armlinux.org.uk>)
-        id 1pyrIG-005B4H-VG; Tue, 16 May 2023 10:48:33 +0100
-From:   "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        with ESMTP id S232198AbjEPJ6a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 05:58:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C77FC0;
+        Tue, 16 May 2023 02:58:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C71396374F;
+        Tue, 16 May 2023 09:58:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25618C433D2;
+        Tue, 16 May 2023 09:58:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684231108;
+        bh=0JLTG2Li8PG49+9IlKqTZkMJijzI0L6DUEsV5TZGNU0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=kNZzqvm2N+ME5VpzfirrvTTWqlFxeUsBqC1EZNijP2dNem8CSY75XJX7oy2UWoxPe
+         ldI7Ncnyz6Nwy38BrjpLpQGlT5tPvvXatHT4T5xZE+M75ATCjCryS7C+R6Me1fTHzj
+         Hm8AFU821OuXFKqN7fg95WSq/83veBUWJhmy06vdpqmlxeAcnNXB0D7t9RNgmqOGLk
+         SlNjAWF5XXz5eE0I8FnvIx381EoRJNrLayS3UqtWnJcERB2pr1quQkjNF+eSEwLdp5
+         C9pgXlQuqSqBTRyTJX9XU9Ft0fx8XXvBjWqOYe8wdYhusDfouKAf3RrxJ9Z5laWQx/
+         qJTmK8kMijSFg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1pyrRp-00FUTg-H6;
+        Tue, 16 May 2023 10:58:25 +0100
+Date:   Tue, 16 May 2023 10:58:24 +0100
+Message-ID: <86edngmwcf.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Douglas Anderson <dianders@chromium.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Stefan Agner <stefan@agner.ch>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH] arm: dts: update arm sfp bindings to use -gpios
-MIME-Version: 1.0
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1pyrIG-005B4H-VG@rmk-PC.armlinux.org.uk>
-Sender: Russell King <rmk@armlinux.org.uk>
-Date:   Tue, 16 May 2023 10:48:32 +0100
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,MISSING_HEADERS,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, wenst@chromium.org,
+        yidilin@chromium.org, Tinghan Shen <tinghan.shen@mediatek.com>,
+        jwerner@chromium.org, Weiyi Lu <weiyi.lu@mediatek.com>,
+        Ben Ho <Ben.Ho@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Enric Balletbo i Serra <eballetbo@kernel.org>,
+        =?UTF-8?B?Ik7DrWNvbGFzIEYuIFIuIEEuIFByYWRvIg==?= 
+        <nfraprado@collabora.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/5] irqchip/gic-v3: Disable pseudo NMIs on Mediatek Chromebooks w/ bad FW
+In-Reply-To: <20230515131353.v2.cover@dianders>
+References: <20230515131353.v2.cover@dianders>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: dianders@chromium.org, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, allen-kh.cheng@mediatek.com, linux-mediatek@lists.infradead.org, eddie.huang@mediatek.com, hsin-hsiung.wang@mediatek.com, angelogioacchino.delregno@collabora.com, wenst@chromium.org, yidilin@chromium.org, tinghan.shen@mediatek.com, jwerner@chromium.org, weiyi.lu@mediatek.com, Ben.Ho@mediatek.com, seiya.wang@mediatek.com, conor+dt@kernel.org, eballetbo@kernel.org, nfraprado@collabora.com, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It was decided that SFP should use the -gpios suffix rather than -gpio.
-Update various boards to follow this.
+On Mon, 15 May 2023 21:13:49 +0100,
+Douglas Anderson <dianders@chromium.org> wrote:
+> 
+> As talked about in the bindings patch included in this series
+> ("dt-bindings: interrupt-controller: arm,gic-v3: Add quirk for
+> Mediatek SoCs w/ broken FW"), many Mediatek-based Chromebooks shipped
+> with firmware that doesn't properly save/restore some GICR
+> registers. This causes the system to crash if "pseudo NMIs" are turned
+> on.
+> 
+> This series makes sure that we never allow turning on "pseudo NMIs" if
+> we are running with the problematic firmware.
+> 
+> The patches in this series can land in any order and can go through
+> entirely different trees. None of the patches are harmful on their
+> own, but to get things fixed we need all of them.
+> 
+> v2 fixes the quirk name and also moves the quirk out of the SoC.dtsi
+> file and into the Chromebook file. This, unfortunately, means that
+> mt8186-based Chromebooks are no longer handled since they don't appear
+> to be upstream yet. :(
+> 
+> Changes in v2:
+> - "when CPUs are powered" => "when the GIC redistributors are..."
+> - Changed "Fixes" tag.
+> - Moved from mt8183.dtsi to mt8183-kukui.dtsi
+> - Moved from mt8192.dtsi to mt8192-asurada.dtsi
+> - Moved from mt8195.dtsi to mt8195-cherry.dtsi
+> - mediatek,gicr-save-quirk => mediatek,broken-save-restore-fw
+> 
+> Douglas Anderson (5):
+>   dt-bindings: interrupt-controller: arm,gic-v3: Add quirk for Mediatek
+>     SoCs w/ broken FW
+>   irqchip/gic-v3: Disable pseudo NMIs on Mediatek devices w/ firmware
+>     issues
+>   arm64: dts: mediatek: mt8183: Add mediatek,broken-save-restore-fw to
+>     kukui
+>   arm64: dts: mediatek: mt8192: Add mediatek,broken-save-restore-fw to
+>     asurada
+>   arm64: dts: mediatek: mt8195: Add mediatek,broken-save-restore-fw to
+>     cherry
+> 
+>  .../interrupt-controller/arm,gic-v3.yaml      |  6 ++++++
+>  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  4 ++++
+>  .../boot/dts/mediatek/mt8192-asurada.dtsi     |  4 ++++
+>  .../boot/dts/mediatek/mt8195-cherry.dtsi      |  4 ++++
+>  drivers/irqchip/irq-gic-common.c              |  8 ++++++--
+>  drivers/irqchip/irq-gic-common.h              |  1 +
+>  drivers/irqchip/irq-gic-v3.c                  | 20 +++++++++++++++++++
+>  7 files changed, 45 insertions(+), 2 deletions(-)
 
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
----
- arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi | 6 +++---
- arch/arm/boot/dts/armada-388-clearfog.dtsi     | 8 ++++----
- arch/arm/boot/dts/vf610-zii-cfu1.dts           | 4 ++--
- 3 files changed, 9 insertions(+), 9 deletions(-)
+I'll take the first two patches as fixes. The rest can be merged via
+the soc tree as required.
 
-diff --git a/arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi b/arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi
-index d1452a04e904..dc625adb2979 100644
---- a/arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi
-+++ b/arch/arm/boot/dts/armada-385-clearfog-gtr.dtsi
-@@ -246,9 +246,9 @@ pcie@3,0 {
- 	sfp0: sfp {
- 		compatible = "sff,sfp";
- 		i2c-bus = <&i2c1>;
--		los-gpio = <&gpio1 22 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpio = <&gpio0 25 GPIO_ACTIVE_LOW>;
--		tx-disable-gpio = <&gpio1 14 GPIO_ACTIVE_HIGH>;
-+		los-gpios = <&gpio1 22 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&gpio0 25 GPIO_ACTIVE_LOW>;
-+		tx-disable-gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	gpio-keys {
-diff --git a/arch/arm/boot/dts/armada-388-clearfog.dtsi b/arch/arm/boot/dts/armada-388-clearfog.dtsi
-index 3c1771903191..093b7646d42e 100644
---- a/arch/arm/boot/dts/armada-388-clearfog.dtsi
-+++ b/arch/arm/boot/dts/armada-388-clearfog.dtsi
-@@ -80,10 +80,10 @@ pcie@2,0 {
- 	sfp: sfp {
- 		compatible = "sff,sfp";
- 		i2c-bus = <&i2c1>;
--		los-gpio = <&expander0 12 GPIO_ACTIVE_HIGH>;
--		mod-def0-gpio = <&expander0 15 GPIO_ACTIVE_LOW>;
--		tx-disable-gpio = <&expander0 14 GPIO_ACTIVE_HIGH>;
--		tx-fault-gpio = <&expander0 13 GPIO_ACTIVE_HIGH>;
-+		los-gpios = <&expander0 12 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&expander0 15 GPIO_ACTIVE_LOW>;
-+		tx-disable-gpios = <&expander0 14 GPIO_ACTIVE_HIGH>;
-+		tx-fault-gpios = <&expander0 13 GPIO_ACTIVE_HIGH>;
- 		maximum-power-milliwatt = <2000>;
- 	};
- };
-diff --git a/arch/arm/boot/dts/vf610-zii-cfu1.dts b/arch/arm/boot/dts/vf610-zii-cfu1.dts
-index 96495d965163..67f1f35a5e40 100644
---- a/arch/arm/boot/dts/vf610-zii-cfu1.dts
-+++ b/arch/arm/boot/dts/vf610-zii-cfu1.dts
-@@ -68,8 +68,8 @@ sff: sfp {
- 		pinctrl-0 = <&pinctrl_optical>;
- 		pinctrl-names = "default";
- 		i2c-bus = <&i2c0>;
--		los-gpio = <&gpio4 4 GPIO_ACTIVE_HIGH>;
--		tx-disable-gpio = <&gpio3 22 GPIO_ACTIVE_HIGH>;
-+		los-gpios = <&gpio4 4 GPIO_ACTIVE_HIGH>;
-+		tx-disable-gpios = <&gpio3 22 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	supply-voltage-monitor {
+	M.
+
 -- 
-2.30.2
-
+Without deviation from the norm, progress is not possible.
