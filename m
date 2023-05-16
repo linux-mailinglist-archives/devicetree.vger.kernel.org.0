@@ -2,81 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 227EC704A86
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:28:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 202E7704AC3
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 12:35:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231440AbjEPK2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 06:28:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56090 "EHLO
+        id S232146AbjEPKfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 06:35:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230292AbjEPK2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:28:36 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED8079D;
-        Tue, 16 May 2023 03:28:34 -0700 (PDT)
-Received: from localhost ([31.220.116.19]) by mrelayeu.kundenserver.de
- (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1N3Xvv-1q6wcL3nDH-010eR4; Tue, 16 May 2023 12:28:19 +0200
-Date:   Tue, 16 May 2023 12:28:18 +0200
-From:   Andreas Klinger <ak@it-klinger.de>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S232378AbjEPKez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 06:34:55 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58147524E;
+        Tue, 16 May 2023 03:34:24 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34G99nmZ028794;
+        Tue, 16 May 2023 12:33:17 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=aInR0qWWMaxv5JCy0f1J7YC2S/5iWJ3uWMcGklIZzA4=;
+ b=PnDMjDm1ARtMdaHYuv8lQfKn3Omw9n/1EvY9ZD+wTKFPn3krY74R3RtO7UEy1JYIATMQ
+ 8Y73T4wD5ay/j3nNMLQ4ku3drd7zIeKWC4mWcInqxKnhfG0IXsAE1McrDGDt9HGqD32R
+ tyI0MYkCD4rIG+EArfWiy0kXZgqHyBlUWMZ2SvH2JRH2EL+zyIywHy1GCY3xOxZojtyx
+ dS9VwX06Bbkouqrnde7J4YBtK7skWswaN/75qc+4MGFduK+YJxY60NoQNHbjg+/dV7yG
+ BeFeSG1G7DbGotN/ymwBGyeO16UGSF45gdqOayCHgtSNjHG9gYAxaP5hb3MJPu6BNLcP uA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qhyyh8wrb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 16 May 2023 12:33:17 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AAE9710002A;
+        Tue, 16 May 2023 12:33:16 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A44B021ED2E;
+        Tue, 16 May 2023 12:33:16 +0200 (CEST)
+Received: from [10.252.0.230] (10.252.0.230) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 16 May
+ 2023 12:33:16 +0200
+Message-ID: <85186963-64f4-385d-2cf2-6ac83ea5b355@foss.st.com>
+Date:   Tue, 16 May 2023 12:33:10 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2] ARM: dts: stm32: remove extra space in
+ stm32mp15xx-dkx.dtsi
+Content-Language: en-US
+To:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Angel Iglesias <ang.iglesiasg@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] iio: pressure: Honeywell mprls0025pa pressure
- sensor
-Message-ID: <ZGNawohZTDhPazil@arbad>
-References: <ZFUCf059+PSR+3Wb@arbad>
- <ZFUC/3zBFQRBsYUk@arbad>
- <20230506170420.71bead77@jic23-huawei>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230506170420.71bead77@jic23-huawei>
-X-Provags-ID: V03:K1:Bd0SdWuyGMZ0Xl9NCXajCiIF4veXtIMrhG4X94KnSmKcBVJV++x
- vXSEiId2lKnB+89CFB6ZRoJyVJnFcASUCGmnpxeWfLwdy0GksCYE1A4yNS4+GDDcz5+/wax
- okXAZMIv2RRTY6wxNouDUlMBM26u7vo3fyH5WjqsPte82BbISslolYleUr5zZqjHl3Hp1p0
- 9St9RP5IMRhOlY/y+gvPg==
-UI-OutboundReport: notjunk:1;M01:P0:xQDyem14oOc=;XddJOI4rFIaxukEi9U5MCloXRWW
- UoRH3UWxE6uqmX/zSOdGE/1hUL+AL5yqRiQGrfq6M+Rwo/yRWeD8vofIN8xF6y5A69in8PAFg
- LYjIO4nXGsztQFhElNDUGvtSrBNVNVhCGUXd8S/MWrAZrVUqY33xbmJTVaTvfd9NJ4t9PcfUe
- WCrVjzL2ERdkj0Sn0gumKjwFa2V0sxwQMg4n5LtCi5ppg4Sd0AvS9SPR0hRiELuBUYn2gytHz
- GFBXJuZdSCbthbxmnF7bpAZbCzzTYMeIDpiu+/KqH2LQEdxqShzJhDq6N1YrPStPGOL7DURDv
- epTwlgocm2HCixwx5jtBg+LxZjbD7JYnAkfLYGgFn3gRowa0j3ifQgGVXps4ZnMywTuQUlpP4
- v2yoYURCCf2ERYZss2rGs2eTzq3tIpqg1lBYklO47m72MiT3Td76nZ3Ebbi+3+DYe034bMhFN
- H52/al1mnZBEg9JHRmi+qY45VM4JV5RNaKgNd+L80Tk1d9IrnDJtSO3XjLj759ZZNpHM1qIr+
- 3QDFhOa+MY6wQXEgsfgNggbmiaB6qb4mnU5KywaAwnVw2CjjvT0JhF/7oWe8s9rBTc2L8l94N
- wHev/g0TD7rE8ny1+BMFirmp4+ctNcWbJZYruwEVN+LryDNd+vdEr++VKFw6Mhavk38qAJPWt
- /nG+s4IPFWI+w1EuCQh+sqzdxp1yYpOG88GrLhG33g==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20230417180757.v2.1.If11ffa6edfdfef0869478412ec3cec3169483cb9@changeid>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230417180757.v2.1.If11ffa6edfdfef0869478412ec3cec3169483cb9@changeid>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.252.0.230]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-16_04,2023-05-16_01,2023-02-09_01
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
-
-thanks for your review. I have one comment.
-
-Jonathan Cameron <jic23@kernel.org> schrieb am Sa, 06. Mai 17:04:
-> > +	int                     scale;          /* int part of scale */
-> > +	int                     scale2;         /* nano part of scale */
-> > +	int                     offset;         /* int part of offset */
-> > +	int                     offset2;        /* nano part of offset */
-> > +	struct gpio_desc	*gpiod_reset;	/* reset */
-> > +	int			irq;		/* end of conversion irq */
+On 4/17/23 18:08, Patrick Delaunay wrote:
+> Remove unnecessary space in device tree stm32mp15xx-dkx.dtsi.
 > 
-> Only needed in probe, no need for a copy in here.
+> Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
+> ---
+> 
+> Changes in v2:
+> - update commit title to reflect what the change is
+>    V1="ARM: dts: stm32: fix typo in stm32mp15xx-dkx.dtsi"
+> 
+>   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi | 10 +++++-----
+>   1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+> index 11370ae0d868..ccd6c4722bd3 100644
+> --- a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+> @@ -382,21 +382,21 @@ vref_ddr: vref_ddr {
+>   				regulator-always-on;
+>   			};
+>   
+> -			 bst_out: boost {
+> +			bst_out: boost {
+>   				regulator-name = "bst_out";
+>   				interrupts = <IT_OCP_BOOST 0>;
+> -			 };
+> +			};
+>   
+>   			vbus_otg: pwr_sw1 {
+>   				regulator-name = "vbus_otg";
+>   				interrupts = <IT_OCP_OTG 0>;
+> -			 };
+> +			};
+>   
+> -			 vbus_sw: pwr_sw2 {
+> +			vbus_sw: pwr_sw2 {
+>   				regulator-name = "vbus_sw";
+>   				interrupts = <IT_OCP_SWOUT 0>;
+>   				regulator-active-discharge = <1>;
+> -			 };
+> +			};
+>   		};
+>   
+>   		onkey {
 
-It's also used in mpr_read_pressure() to distinguish the two possible operation
-modes:
-- waiting for an interrupt
-- reading in a loop until status indicates data ready
+Applied on stm32-next.
 
-Andreas
+Thanks.
+Alex
