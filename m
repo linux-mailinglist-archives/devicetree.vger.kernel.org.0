@@ -2,88 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA33370429F
-	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 03:08:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F0DA7042AC
+	for <lists+devicetree@lfdr.de>; Tue, 16 May 2023 03:11:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343497AbjEPBI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 May 2023 21:08:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40314 "EHLO
+        id S229448AbjEPBLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 May 2023 21:11:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245593AbjEPBI3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 21:08:29 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85DAF59CB
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 18:08:23 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2ad819ab8a9so112891411fa.0
-        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 18:08:23 -0700 (PDT)
+        with ESMTP id S229461AbjEPBLI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 May 2023 21:11:08 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D792359E4
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 18:11:06 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4eff4ea8e39so15466034e87.1
+        for <devicetree@vger.kernel.org>; Mon, 15 May 2023 18:11:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684199302; x=1686791302;
+        d=linaro.org; s=google; t=1684199465; x=1686791465;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Lyzlb1knfLNloYB6AlxNxhOYp8O4rjeCw8TEVU/6wrs=;
-        b=K+xV7UkWFhHrH+cyZjQLTvXQRg8U+IYM2T2Ap2WI+gjyfg/BUTTzMHFYJ+9h4GZgHJ
-         0Z+bbAhqqeJNocTsBdAVJXVjBxevp1xRjF95LYKnHUoii0QqVrwPbKfxzK93ID1SfUSx
-         NdGZPaBPUyS40nCUOlD6u0vMsvI3ZFVfTzKqhD3e5Hwbeu11I0imt6AxpseuRC5VMVXm
-         nlbjvHP5h28Rkzo/bzg4UL+I95OnJ1G5iFVUB0IVqFUDQ73q1QvOq3Jt0al2cWxEoVAZ
-         0IuHA9+aSCWoZ2bYj2l6X1ae61CfKaswE68J8GNuarGO12ZO3e+q99iSFvNX7kau4Sde
-         gqrQ==
+        bh=IKmG1QiKCqrXxBXEc9OganUA2qNFdNKRSrBQxLkvPfw=;
+        b=CciJ8FalkHTd8ww4CuZKCRmQPCIXzNjv6zkaSoWMutqst1QdbpMfwCg7CwocPVzTp5
+         r+sJugMPs928D6yJ4IZXA87KWwnl7D730gv8xZoRCvsOKwPzUhyosr1RE73nNN88n1Ve
+         p4+FmDfAUPbkH0+gtK4Lfk0ZQ0E95pVvl51dQL9NzxVooTcaSH7wI1CYQp/LMv6FXQF2
+         I0vLi5tkaqo5nS35VflOFFjw/9tka79iw+mkHJ4+LAopSeubYoeKmnkXF8lPyGsmv+Rd
+         kEfeOnpKGp4xne+7YjjzIkfljRalkE+3JM6uGGyLjCdeOwwmAK0ZVpHYmg8MeHQL89ZZ
+         c7pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684199302; x=1686791302;
+        d=1e100.net; s=20221208; t=1684199465; x=1686791465;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lyzlb1knfLNloYB6AlxNxhOYp8O4rjeCw8TEVU/6wrs=;
-        b=O+FEu9If+DveZmpzG5Grlwju5EIVQd9MI3v72jacQeHvN7avWxbBBaEDVO9+R60iSy
-         siKWhlX/GS7+g5XPsTQl1vpFTlsfhfPURb9totDKUJCZEKo/b3zvEwiHyv2FRsPWfFqT
-         f32hCbSAjusZrQRU8NJyIrxjkDHYdomprs7f1gOt7vvJJ82kaedIsjcyX3tvE2H8J55f
-         JZlVLgC3z1iGButELxqnimsc30onkYb+SZHFfXtjLAhHpAFunWBvtyXQ9ANaO2ziM1mF
-         GtxwWkK0bMFzUwZfvP3upj/XwYUJJmCL777jge1LdptxSU2DSyw0XFJ4qYL/yRAljI38
-         Ls6Q==
-X-Gm-Message-State: AC+VfDwmGbq+XtLxUkdAPjJ+mTRMjfPFXPI0p+KAkS1Fq6TJdrEOiOe1
-        K7HFMRvV0o0Ds9yip2Kak+omcw==
-X-Google-Smtp-Source: ACHHUZ7Vbb5JZKPQUWR7eE/rFp0x8+WxhI3f0tbA8gkCNyc76Q2iwI2ZhTdlT/f0YKuX7mr9lQRPJw==
-X-Received: by 2002:a2e:9f47:0:b0:2ac:90db:2a3d with SMTP id v7-20020a2e9f47000000b002ac90db2a3dmr7807292ljk.8.1684199301811;
-        Mon, 15 May 2023 18:08:21 -0700 (PDT)
+        bh=IKmG1QiKCqrXxBXEc9OganUA2qNFdNKRSrBQxLkvPfw=;
+        b=ZzZJcHn7QAdaNO0AgH6imeKDnnb9Clmrsgg9ehTnvQm1MKfzNlFtIKVHzeigGTn1XC
+         8DoU8fHF4AdPI8CUzZd/cJbE2Ia0hRY5mF+OlPMB6MnAoGEchS23aj3/T+IwTfQIsKVG
+         FvTtKjtKopaD7834V8a8YhG72DqRbSRdf/ohESX0/rX+AZZHLgtkbl3pZiEPry9NI1Gl
+         gt7D+Rto579uuJXy1TM8WfsTcW+zsfU2keOfVMk6Rg2hXqSNQ+1GcH9OAptkknFEYiGP
+         aehTTolSNUymYGrXkiBUsTCSFDRoEC0gO1vC6CaFtPcn5mf70ie/r/+I7vDHt9TItdiz
+         j0TA==
+X-Gm-Message-State: AC+VfDygrsJb0kF+2GAlH7djpNLV1CBjE4hIFTDt76gB9SMD8JfdDj40
+        mdSX1BJooR9ViNTFREBF46ZCWQ==
+X-Google-Smtp-Source: ACHHUZ5QIJuTN1N6dvCLxwnOKW3RQkxO7D5pFgbIQmT3N3dSvLgqjefQQByQ41smL5HB6Y4EDgXTIg==
+X-Received: by 2002:a05:6512:78:b0:4f1:4862:9369 with SMTP id i24-20020a056512007800b004f148629369mr5942579lfo.4.1684199465075;
+        Mon, 15 May 2023 18:11:05 -0700 (PDT)
 Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id x15-20020a05651c104f00b002ada919a09asm2577682ljm.73.2023.05.15.18.08.19
+        by smtp.gmail.com with ESMTPSA id d10-20020ac241ca000000b004f24e797c55sm2788336lfi.25.2023.05.15.18.11.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 May 2023 18:08:21 -0700 (PDT)
-Message-ID: <8a5d13e2-b06a-417e-5d8b-1db749efb0cd@linaro.org>
-Date:   Tue, 16 May 2023 03:08:19 +0200
+        Mon, 15 May 2023 18:11:04 -0700 (PDT)
+Message-ID: <2991a4fe-2103-aa99-7750-6e017c51ab15@linaro.org>
+Date:   Tue, 16 May 2023 03:11:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 6/6] dt-bindings: thermal: tsens: Add QCM2290
+Subject: Re: [PATCH] arm64: dts: qcom: msm8916-longcheer-l8910: Add front
+ flash LED
 Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
+To:     =?UTF-8?Q?Andr=c3=a9_Apitzsch?= <git@apitzsch.eu>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20230314-topic-2290_compats-v1-0-47e26c3c0365@linaro.org>
- <20230314-topic-2290_compats-v1-6-47e26c3c0365@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
+References: <20230514-x5_front_flash-v1-1-3979c8498efa@apitzsch.eu>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230314-topic-2290_compats-v1-6-47e26c3c0365@linaro.org>
+In-Reply-To: <20230514-x5_front_flash-v1-1-3979c8498efa@apitzsch.eu>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -96,28 +82,68 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 14.03.2023 13:53, Konrad Dybcio wrote:
-> Add the TSENS v2.x controller found on QCM2290.
+On 14.05.2023 21:58, André Apitzsch wrote:
+> l8910 uses OCP8110 flash LED driver. Add it to the device tree.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Tested-by: Stephan Gerhold <stephan@gerhold.net>
+> Signed-off-by: André Apitzsch <git@apitzsch.eu>
 > ---
-<bump>
-This one got lost!
+>  .../boot/dts/qcom/msm8916-longcheer-l8910.dts      | 23 ++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
+> index b79e80913af9..81cebac117f1 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
+> @@ -20,6 +20,21 @@ chosen {
+>  		stdout-path = "serial0";
+>  	};
+>  
+> +	flash-led-controller {
+> +		compatible = "ocs,ocp8110";
+> +		enable-gpios = <&msmgpio 49 GPIO_ACTIVE_HIGH>;
+> +		flash-gpios = <&msmgpio 119 GPIO_ACTIVE_HIGH>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&camera_front_flash_default>;
+property-n
+property-names
+
+please!
+> +
+> +		flash_led: led {
+> +			function = LED_FUNCTION_FLASH;
+> +			color = <LED_COLOR_ID_WHITE>;
+> +			flash-max-timeout-us = <250000>;
+> +		};
+> +	};
+> +
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+>  
+> @@ -246,6 +261,14 @@ button_backlight_default: button-backlight-default-state {
+>  		bias-disable;
+>  	};
+>  
+> +	camera_front_flash_default: camera-front-flash-default-state {
+> +		pins = "gpio49", "gpio119";
+> +		function = "gpio";
+> +
+Unnecessary newline
+
+LGTM otherwise!
 
 Konrad
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+>  	gpio_keys_default: gpio-keys-default-state {
+>  		pins = "gpio107";
+>  		function = "gpio";
 > 
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> index 926e9c51c93c..1a6ffbf11bcc 100644
-> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -48,6 +48,7 @@ properties:
->                - qcom,msm8953-tsens
->                - qcom,msm8996-tsens
->                - qcom,msm8998-tsens
-> +              - qcom,qcm2290-tsens
->                - qcom,sc7180-tsens
->                - qcom,sc7280-tsens
->                - qcom,sc8180x-tsens
+> ---
+> base-commit: 533c54547153d46c0bf99ac0e396bed71f760c03
+> change-id: 20230514-x5_front_flash-c189e22b32fd
 > 
+> Best regards,
