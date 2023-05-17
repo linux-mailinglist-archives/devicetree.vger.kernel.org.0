@@ -2,147 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1342707678
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 01:34:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF79270768D
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 01:45:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbjEQXeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 19:34:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57712 "EHLO
+        id S229460AbjEQXpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 19:45:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbjEQXeE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 19:34:04 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4954F40EF;
-        Wed, 17 May 2023 16:34:00 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S229457AbjEQXpL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 19:45:11 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8C9149DC
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 16:45:10 -0700 (PDT)
+Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 1170D860F1;
-        Thu, 18 May 2023 01:33:58 +0200 (CEST)
+        (Authenticated sender: festevam@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 2074E84768;
+        Thu, 18 May 2023 01:45:09 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684366439;
-        bh=7cQ8MHnnkw+u4jPFTbH2QZwg15cKSVff/yxwNCVRTfw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=dMOrzvFm2psxlRz97auMZAlBgFKUPxr0qVAEAwL0I4CBChLUN3FZNjMd5xTXFGf9V
-         407aBtxtJOSZYzjQdTsWcPV+3YoNk/Tq0R1G1NNqTpehT1S/3/GtcBwX88w8ajV6Ey
-         bXGEm+RodWF1m32wYr1rOXSx7ExznKr+ZEWhGPp4JO2Fo3DBtPFGGHlH0m9C2knCea
-         xbYa4t/i5Z5XukvYQy9MFc3Gp9EmHJk210wOuzVGgg5clYiiMtWdx/rhmqL8FtRc8N
-         V2y5ll2MlozQCOJwg+o9qudMMXAWf2G8GU+rd1w0NIphJ3VZCvOtFKvpPShl+PPYTE
-         vUcw9SuDwEKiQ==
-Message-ID: <5f201903-17cb-5054-763c-f03b1066db1d@denx.de>
-Date:   Thu, 18 May 2023 01:33:57 +0200
+        s=phobos-20191101; t=1684367109;
+        bh=dL0+UeJibxu8mzGrndHBRMbTCz4acRDAzM78ya9TO88=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=B1IzQh0rG5rT6iXLxuG2LRuF0nH0FMdQrjSNrMKYkRKl13f7GS/mbksan+FvlYNO+
+         Pn//XYyKCmgWEHRUmqfXtotfXanK1iiKLipDyfu5n+vfsxxackZ5sCwGGhkSq88uDh
+         ExfQ9a0xxMKGT5CnTqg2K7ax7+oibOMzL9GjgRmiOxGKYuZgjY0QG/MyBSMjY67ETi
+         mpU65Mpk2AXrcXQeec/0QDKQmmPWEiuiV6QRXVQxhhUaS3HSIlN0a/CXfSGKyCJyfl
+         PmPq41C0KEqNG7jZpoar7zS/N/SS7pT/cSLHLr3LFMiM2Nq5b94Q6i+nurLZkJtEFz
+         WNF8sRz/cRbJw==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 3/3] ARM: dts: stm32: fix several DT warnings on
- stm32mp15
-Content-Language: en-US
-To:     Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@dh-electronics.com
-References: <20230517143542.284029-1-raphael.gallais-pou@foss.st.com>
- <20230517143542.284029-4-raphael.gallais-pou@foss.st.com>
- <f64de05b-8854-4345-80c2-f424968defdc@denx.de>
- <e963370c-7018-243a-712d-62ca8463bfd8@foss.st.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <e963370c-7018-243a-712d-62ca8463bfd8@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 17 May 2023 20:45:09 -0300
+From:   Fabio Estevam <festevam@denx.de>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: imx6sx: Add LDB support
+In-Reply-To: <16ecb29a-4d52-9464-ecb0-2e45262af105@denx.de>
+References: <20230517210210.12183-1-festevam@gmail.com>
+ <16ecb29a-4d52-9464-ecb0-2e45262af105@denx.de>
+Message-ID: <509c272d28cf3e6f642115fb424e51bc@denx.de>
+X-Sender: festevam@denx.de
+User-Agent: Roundcube Webmail/1.3.6
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
-X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/17/23 19:04, Raphael Gallais-Pou wrote:
-> Hi Marek
+Hi Marek,
 
-Hi,
+On 17/05/2023 20:15, Marek Vasut wrote:
 
-> On 5/17/23 17:41, Marek Vasut wrote:
->> On 5/17/23 16:35, Raphael Gallais-Pou wrote:
->>
->> Hi,
->>
->>> diff --git a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
->>> b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
->>> index 0f1110e42c93..a6e2e20f12fa 100644
->>> --- a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
->>> +++ b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
->>> @@ -457,8 +457,7 @@ &ltdc {
->>>        status = "okay";
->>>          port {
->>> -        ltdc_ep0_out: endpoint@0 {
->>> -            reg = <0>;
->>> +        ltdc_ep0_out: endpoint {
->>>                remote-endpoint = <&sii9022_in>;
->>>            };
->>>        };
->>
->> This LTDC port/endpoint stuff always scares me, because I always feel I get it
->> wrong.
->>
->> I believe the LTDC does have one "port" , correct.
->>
->> But I think (?) that the LTDC has two endpoints, endpoint@0 for DPI (parallel
->> output out of the SoC) and endpoint@1 for DSI (internal connection into the
->> DSI serializer) ?
+>> diff --git a/arch/arm/boot/dts/imx6sx.dtsi 
+>> b/arch/arm/boot/dts/imx6sx.dtsi
+>> index 4233943a1cca..7a8a00d81666 100644
+>> --- a/arch/arm/boot/dts/imx6sx.dtsi
+>> +++ b/arch/arm/boot/dts/imx6sx.dtsi
+>> @@ -843,8 +843,39 @@ iomuxc: pinctrl@20e0000 {
+>>     			gpr: iomuxc-gpr@20e4000 {
+>>   				compatible = "fsl,imx6sx-iomuxc-gpr",
+>> -					     "fsl,imx6q-iomuxc-gpr", "syscon";
+>> +					     "fsl,imx6q-iomuxc-gpr", "simple-bus", "syscon";
 > 
-> You are correct indeed, I rushed the patch and did not thought about this. I
-> agree that this can be confusing, as I also take some time to think through it.
-> 
->>
->> Only one of the endpoints can be connected at a time, but there are actually
->> two endpoints in the LTDC port {} node, aren't there ?
-> Yes, they are mutually exclusive.
->>
->> So the original description should be OK I think , maybe #address/#size-cells
->> are missing instead ?
-> 
-> Thing is: this file is only included in two device-trees : stm32mp157c-dk1.dts
-> and stm32mp157c-dk2.dts.
-> 
-> Among those two files there is only one which adds a second endpoint. Thus if
-> the fields are set higher in the hierarchy, a warning yields.
+> Can we really combine simple-bus and syscon or do we need something 
+> like
 
-I do not understand this one part, which warning are you trying to fix ?
-I just ran '$ make CHECK_DTBS=1 stm32mp157a-dk1.dtb stm32mp157c-dk2.dtb' 
-in latest linux-next and there was no warning related to LTDC .
+Thanks for your review.
 
-I think if you retain the stm32mp151.dtsi &ltdc { port { #address-cells 
-= <1>; #size-cells = <0>; }; }; part, then you wouldn't be getting any 
-warnings regarding LTDC , and you wouldn't have to remove the 
-unit-address from endpoint@0 .
+> 5a51e1f2b0834 ("arm64: dts: imx8mp: Drop simple-bus from
+> fsl,imx8mp-media-blk-ctrl")
 
-btw. I do use both endpoint@0/endpoint@1 in Avenger96 DTOs, but those 
-are not submitted yet, I have to clean them up a bit more first.
+As is, if simple-bus is dropped, the LDB bus is not probed.
 
-> One way to do it would be to make the endpoint@0 go down in the device-tree with
-> its dependencies, so that both endpoints are the same level without generating
-> noise.
+> 9cb6d1b39a8f5 ("soc: imx: imx8m-blk-ctrl: Scan subnodes and bind
+> drivers to them")
 
-I'm afraid I really don't quite understand which warning you're 
-referring to. Can you please share that warning and ideally how to 
-trigger it (the command-line incantation) ?
+On the i.MX6SX, I am not sure we can add devm_of_platform_populate() 
+like in the
+imx8m-blk-ctrl case.
 
--- 
-Best regards,
-Marek Vasut
+imx8m-blk-ctrl has a probe function, but imx6q-iomuxc-gpr does not.
+
+Thanks
