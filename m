@@ -2,173 +2,443 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B3A47064E8
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 12:11:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4C1A7064E9
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 12:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbjEQKLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 06:11:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40468 "EHLO
+        id S229963AbjEQKL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 06:11:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229810AbjEQKLS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 06:11:18 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC157449B
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 03:11:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1684318273; x=1715854273;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=vYpGVoqBurwiZdFF/2jilQZP7TtRncKvMxwvO6GnSiQ=;
-  b=q9ZwFsKwJm6Y7he77Zbn3ulofS++DsRyct49lHleQ/xzZP4O+Oz74MuO
-   uM6WBOZJblh18KhcTEEQuhZoKvMZfjfKuJrPeICx7+0q9V5p+LBAuSyCt
-   BFgqrgJydwNG7G+A3WqnxlHiHzM2dbzLz0h8eKpfWnLEHVtac0jxiBbPp
-   /xxOmkA8PmtByCAiF5frqUsb7/LUsLM5nwAD+OIKTyfGhHd9BxmzGl79l
-   eDYnauFrGlHYtQyFtazTWm12lpNEJMBr6fYDxoWatziuLpG2AW1rX8h1q
-   cIdLZNYzutut+JUos4UIvO8PcQr6ppiJA0lsnXIggPJ3BwO1cp+4wmjI6
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.99,281,1677538800"; 
-   d="scan'208";a="30957962"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 17 May 2023 12:11:11 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 17 May 2023 12:11:11 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 17 May 2023 12:11:11 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1684318271; x=1715854271;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=vYpGVoqBurwiZdFF/2jilQZP7TtRncKvMxwvO6GnSiQ=;
-  b=KDqSmJPQUTApj8MOS8dAxPkYekKpYG4ZEH9Veu49hi6S4MiDRhs1nOJ5
-   +v9ww23W0OejZ83up/bywWR/ZsGNbrP8Qujf6iciFu4RksYGTJk5fdVgn
-   j23aX5oAGGmGI1eosNiS/L3OLzgqr6y6lnXKHso08epcQsES6irNmLNZ/
-   o08mafCErCMrO+A52IjV6FenFUWVSGf0uh0+jYzdbUBeGxhJ/BLZvesOl
-   pSnQM7G4nBPIDxR0Htefsq1Tuhy5JRkRsZd3Gub9BtxFsVzW2x0i/oLjJ
-   JKPopAHdnkSC7xaSFzIwTJkArhd5Qyy852Ni7RjGAiefedubmSSjNVHSs
-   A==;
-X-IronPort-AV: E=Sophos;i="5.99,281,1677538800"; 
-   d="scan'208";a="30957961"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 17 May 2023 12:11:10 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
+        with ESMTP id S229545AbjEQKL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 06:11:28 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4AA45246;
+        Wed, 17 May 2023 03:11:19 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 97871280087;
-        Wed, 17 May 2023 12:11:10 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>, linux@ew.tq-group.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 1/1] ARM: dts: imx6qdl: Add HDMI to TQMa6x/MBa6
-Date:   Wed, 17 May 2023 12:11:07 +0200
-Message-Id: <20230517101107.1682625-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 921136603232;
+        Wed, 17 May 2023 11:11:17 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1684318278;
+        bh=QzbbpvgwCOlFi2txMshE0/SGr4XkdMo8sJlsfVtnC7Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=IqBJ176JSPvTw9BdvcRTtfNllFPKkZOf6NvqqcwADAfYh6Z7N9xC4HTJxOJkpptpu
+         sKMDb1oodnpdP215c+pRUhzNEjZ8OIr8K9e6+byDVQF/HG1p0cmQTJPM7gtYuCAP6g
+         CAo/fIUHVQGWsmEG6uMZbRS4jHxAbAv/k4fi6N2Li3jl+SsI9n/K6S4RBJvYVRBq9p
+         jqfRTEEW86x1K8CCNiUKFThTLZyG31HRigQDoAy9UhpdwmPMg0M4DbQVsvqJKfMxO9
+         3zs+qALTo8EqnbLTrkgux8yhf3DpI+u81jhjXr22wymtXiFxEr8Wag2+mk9+zS3dSV
+         fS2lBRd7hW9TQ==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     matthias.bgg@gmail.com
+Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        angelogioacchino.delregno@collabora.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: [PATCH] arm64: mediatek: Propagate chassis-type where possible
+Date:   Wed, 17 May 2023 12:11:08 +0200
+Message-Id: <20230517101108.205654-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds support for a COTS monitor connected to X17.
-4k monitors can be used, but are limited to 1080p.
+The chassis-type string identifies the form-factor of the system:
+add this property to all device trees of devices for which the form
+factor is known.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
-Changes in v2:
-* Fix typo for pinctrl-* property
 
- arch/arm/boot/dts/imx6qdl-mba6.dtsi | 41 +++++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+I had to ignore some devicetrees as I wasn't sure about the correct
+chassis-type of some devices; this raises an issue that we shall solve
+when reviewing new DTs, as we shall tell developers to add this
+property so that we don't lose track of "what was what".
 
-diff --git a/arch/arm/boot/dts/imx6qdl-mba6.dtsi b/arch/arm/boot/dts/imx6qdl-mba6.dtsi
-index 7b7e6c2ad190..3be003c72de9 100644
---- a/arch/arm/boot/dts/imx6qdl-mba6.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-mba6.dtsi
-@@ -192,6 +192,13 @@ ethphy: ethernet-phy@3 {
- 	};
+Even though this property is technically "Optional, Recommended", I
+think it's useful to have it as this may (or may not) be actively used
+in the future (think about "handset" form factor and thermal envelope).
+
+Cheers!
+
+ arch/arm64/boot/dts/mediatek/mt2712-evb.dts                      | 1 +
+ arch/arm64/boot/dts/mediatek/mt6755-evb.dts                      | 1 +
+ arch/arm64/boot/dts/mediatek/mt6779-evb.dts                      | 1 +
+ arch/arm64/boot/dts/mediatek/mt6795-evb.dts                      | 1 +
+ arch/arm64/boot/dts/mediatek/mt6797-evb.dts                      | 1 +
+ arch/arm64/boot/dts/mediatek/mt6797-x20-dev.dts                  | 1 +
+ arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts         | 1 +
+ arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts                     | 1 +
+ arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts         | 1 +
+ arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts                     | 1 +
+ arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts                     | 1 +
+ arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dts                  | 1 +
+ arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dts            | 1 +
+ arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts                 | 1 +
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dts                      | 1 +
+ arch/arm64/boot/dts/mediatek/mt8173-evb.dts                      | 1 +
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts                      | 1 +
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts     | 1 +
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts       | 1 +
+ .../boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts     | 1 +
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts       | 1 +
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts             | 1 +
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts       | 1 +
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts      | 1 +
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts      | 1 +
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts         | 1 +
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts       | 1 +
+ arch/arm64/boot/dts/mediatek/mt8186-evb.dts                      | 1 +
+ 28 files changed, 28 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+index d31a194124c9..fffdb7bbf889 100644
+--- a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+@@ -11,6 +11,7 @@
+ 
+ / {
+ 	model = "MediaTek MT2712 evaluation board";
++	chassis-type = "embedded";
+ 	compatible = "mediatek,mt2712-evb", "mediatek,mt2712";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt6755-evb.dts b/arch/arm64/boot/dts/mediatek/mt6755-evb.dts
+index e079b7932ba3..00b14f85c6a1 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6755-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt6755-evb.dts
+@@ -9,6 +9,7 @@
+ 
+ / {
+ 	model = "MediaTek MT6755 EVB";
++	chassis-type = "embedded";
+ 	compatible = "mediatek,mt6755-evb", "mediatek,mt6755";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt6779-evb.dts b/arch/arm64/boot/dts/mediatek/mt6779-evb.dts
+index 164f5cbb3821..56b1bf06e26b 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6779-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt6779-evb.dts
+@@ -10,6 +10,7 @@
+ 
+ / {
+ 	model = "MediaTek MT6779 EVB";
++	chassis-type = "embedded";
+ 	compatible = "mediatek,mt6779-evb", "mediatek,mt6779";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt6795-evb.dts b/arch/arm64/boot/dts/mediatek/mt6795-evb.dts
+index 1ed2f81edeff..e0d4d7a63139 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6795-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt6795-evb.dts
+@@ -9,6 +9,7 @@
+ 
+ / {
+ 	model = "MediaTek MT6795 Evaluation Board";
++	chassis-type = "embedded";
+ 	compatible = "mediatek,mt6795-evb", "mediatek,mt6795";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt6797-evb.dts b/arch/arm64/boot/dts/mediatek/mt6797-evb.dts
+index 2327e752d164..c927932afa0d 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6797-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt6797-evb.dts
+@@ -9,6 +9,7 @@
+ 
+ / {
+ 	model = "MediaTek MT6797 Evaluation Board";
++	chassis-type = "embedded";
+ 	compatible = "mediatek,mt6797-evb", "mediatek,mt6797";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt6797-x20-dev.dts b/arch/arm64/boot/dts/mediatek/mt6797-x20-dev.dts
+index eff9e8dbd076..9534cf3a09d0 100644
+--- a/arch/arm64/boot/dts/mediatek/mt6797-x20-dev.dts
++++ b/arch/arm64/boot/dts/mediatek/mt6797-x20-dev.dts
+@@ -12,6 +12,7 @@
+ 
+ / {
+ 	model = "Mediatek X20 Development Board";
++	chassis-type = "embedded";
+ 	compatible = "archermind,mt6797-x20-dev", "mediatek,mt6797";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+index af3fe61e4093..4848164e8e59 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+@@ -15,6 +15,7 @@
+ 
+ / {
+ 	model = "Bananapi BPI-R64";
++	chassis-type = "embedded";
+ 	compatible = "bananapi,bpi-r64", "mediatek,mt7622";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts b/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
+index b74e774c6eba..dad8e683aac5 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
+@@ -15,6 +15,7 @@
+ 
+ / {
+ 	model = "MediaTek MT7622 RFB1 board";
++	chassis-type = "embedded";
+ 	compatible = "mediatek,mt7622-rfb1", "mediatek,mt7622";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+index 33bd6febc160..7128f779c165 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+@@ -16,6 +16,7 @@
+ 
+ / {
+ 	model = "Bananapi BPI-R3";
++	chassis-type = "embedded";
+ 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+index 4f18b4a9a8c8..3ef371ca254e 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+@@ -11,6 +11,7 @@
+ 
+ / {
+ 	model = "MediaTek MT7986a RFB";
++	chassis-type = "embedded";
+ 	compatible = "mediatek,mt7986a-rfb", "mediatek,mt7986a";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+index 188ce82ae56c..dde190442e38 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+@@ -9,6 +9,7 @@
+ 
+ / {
+ 	model = "MediaTek MT7986b RFB";
++	chassis-type = "embedded";
+ 	compatible = "mediatek,mt7986b-rfb", "mediatek,mt7986b";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dts
+index 774a2f3fb4b2..ebf1a358f42a 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dts
+@@ -11,6 +11,7 @@
+ 
+ / {
+ 	model = "Pumpkin MT8167";
++	chassis-type = "embedded";
+ 	compatible = "mediatek,mt8167-pumpkin", "mediatek,mt8167";
+ 
+ 	memory@40000000 {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dts b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dts
+index 28433b94f7c7..256f245ac01d 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dts
+@@ -8,6 +8,7 @@
+ 
+ / {
+ 	model = "Google Hanawl";
++	chassis-type = "laptop";
+ 	compatible = "google,hana-rev7", "mediatek,mt8173";
  };
  
-+&hdmi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hdmi>;
-+	ddc-i2c-bus = <&i2c2>;
-+	status = "okay";
-+};
-+
- &i2c1 {
- 	tlv320aic32x4: audio-codec@18 {
- 		compatible = "ti,tlv320aic32x4";
-@@ -205,6 +212,17 @@ tlv320aic32x4: audio-codec@18 {
- 	};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts
+index c234296755e1..fcf0cb76a87c 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts
+@@ -8,6 +8,7 @@
+ 
+ / {
+ 	model = "Google Hana";
++	chassis-type = "laptop";
+ 	compatible = "google,hana-rev6", "google,hana-rev5",
+ 		     "google,hana-rev4", "google,hana-rev3",
+ 		     "google,hana", "mediatek,mt8173";
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dts b/arch/arm64/boot/dts/mediatek/mt8173-elm.dts
+index e9e4ac0b74b2..2390d04204e8 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dts
+@@ -8,6 +8,7 @@
+ 
+ / {
+ 	model = "Google Elm";
++	chassis-type = "laptop";
+ 	compatible = "google,elm-rev8", "google,elm-rev7", "google,elm-rev6",
+ 		     "google,elm-rev5", "google,elm-rev4", "google,elm-rev3",
+ 		     "google,elm", "mediatek,mt8173";
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
+index 755df5694234..5122963d8743 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
+@@ -10,6 +10,7 @@
+ 
+ / {
+ 	model = "MediaTek MT8173 evaluation board";
++	chassis-type = "embedded";
+ 	compatible = "mediatek,mt8173-evb", "mediatek,mt8173";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+index 3e3f4b1b00f0..d8bd51807683 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+@@ -11,6 +11,7 @@
+ 
+ / {
+ 	model = "MediaTek MT8183 evaluation board";
++	chassis-type = "embedded";
+ 	compatible = "mediatek,mt8183-evb", "mediatek,mt8183";
+ 
+ 	aliases {
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
+index 1a2ec0787d3c..19c1e2bee494 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
+@@ -9,6 +9,7 @@
+ 
+ / {
+ 	model = "Google burnet board";
++	chassis-type = "convertible";
+ 	compatible = "google,burnet", "mediatek,mt8183";
  };
  
-+/* DDC */
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	pinctrl-1 = <&pinctrl_i2c2_recovery>;
-+	scl-gpios = <&gpio4 12 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio4 13 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+};
-+
- &pcie {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pcie>;
-@@ -396,6 +414,15 @@ MX6QDL_PAD_EIM_BCLK__GPIO6_IO31 0xb099 /* LED V16 */
- 		>;
- 	};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+index 0eca3ff8672a..552bfc726999 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+@@ -9,6 +9,7 @@
  
-+	pinctrl_hdmi: hdmigrp {
-+		/* NOTE: DDC is done via I2C2, so DON'T
-+		 * configure DDC pins for HDMI!
-+		 */
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_A25__HDMI_TX_CEC_LINE 0x1f8b0
-+		>;
-+	};
-+
- 	pinctrl_hog: hoggrp {
- 		fsl,pins = <
- 			MX6QDL_PAD_DI0_PIN4__GPIO4_IO20 0x0001b099
-@@ -432,6 +459,20 @@ MX6QDL_PAD_NANDF_CS1__GPIO6_IO14 0x0001b099
- 		>;
- 	};
+ / {
+ 	model = "Google damu board";
++	chassis-type = "convertible";
+ 	compatible = "google,damu", "mediatek,mt8183";
+ };
  
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL3__I2C2_SCL 0x4001b899
-+			MX6QDL_PAD_KEY_ROW3__I2C2_SDA 0x4001b899
-+		>;
-+	};
-+
-+	pinctrl_i2c2_recovery: i2c2recoverygrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL3__GPIO4_IO12 0x4001b899
-+			MX6QDL_PAD_KEY_ROW3__GPIO4_IO13 0x4001b899
-+		>;
-+	};
-+
- 	pinctrl_pcie: pciegrp {
- 		fsl,pins = <
- 			/* HYS = 1, DSE = 110, 100k up, SPEED = HIGH (11)*/
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts
+index bc2c57f0a827..8ac6bf5b17f9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts
+@@ -9,6 +9,7 @@
+ 
+ / {
+ 	model = "Google juniper sku16 board";
++	chassis-type = "convertible";
+ 	compatible = "google,juniper-sku16", "google,juniper", "mediatek,mt8183";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts
+index 3a724e6f915c..fcce8ea1232e 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts
+@@ -9,6 +9,7 @@
+ 
+ / {
+ 	model = "MediaTek kakadu board sku22";
++	chassis-type = "tablet";
+ 	compatible = "google,kakadu-rev3-sku22", "google,kakadu-rev2-sku22",
+ 		     "google,kakadu", "mediatek,mt8183";
+ };
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts
+index 89a139a0ee44..ebfabba72507 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts
+@@ -9,6 +9,7 @@
+ 
+ / {
+ 	model = "MediaTek kakadu board";
++	chassis-type = "tablet";
+ 	compatible = "google,kakadu-rev3", "google,kakadu-rev2",
+ 			"google,kakadu", "mediatek,mt8183";
+ };
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts
+index e3dd75bdaea4..7213cdcca612 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts
+@@ -12,6 +12,7 @@
+ 
+ / {
+ 	model = "MediaTek kodama sku16 board";
++	chassis-type = "tablet";
+ 	compatible = "google,kodama-sku16", "google,kodama", "mediatek,mt8183";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts
+index d81935ae07bc..bbf0cd1aa66d 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts
+@@ -12,6 +12,7 @@
+ 
+ / {
+ 	model = "MediaTek kodama sku272 board";
++	chassis-type = "tablet";
+ 	compatible = "google,kodama-sku272", "google,kodama", "mediatek,mt8183";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts
+index f4082fbe0517..a429ffeac3bd 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts
+@@ -12,6 +12,7 @@
+ 
+ / {
+ 	model = "MediaTek kodama sku288 board";
++	chassis-type = "tablet";
+ 	compatible = "google,kodama-sku288", "google,kodama", "mediatek,mt8183";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts
+index fb5ee91b6fe0..4ac75806fa94 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts
+@@ -14,6 +14,7 @@
+ 
+ / {
+ 	model = "MediaTek krane sku0 board";
++	chassis-type = "tablet";
+ 	compatible = "google,krane-sku0", "google,krane", "mediatek,mt8183";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+index 721d16f9c3b4..095279e55d50 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+@@ -14,6 +14,7 @@
+ 
+ / {
+ 	model = "MediaTek krane sku176 board";
++	chassis-type = "tablet";
+ 	compatible = "google,krane-sku176", "google,krane", "mediatek,mt8183";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186-evb.dts b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
+index ed74a3617c13..2667a7424200 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
+@@ -7,6 +7,7 @@
+ 
+ / {
+ 	model = "MediaTek MT8186 evaluation board";
++	chassis-type = "embedded";
+ 	compatible = "mediatek,mt8186-evb", "mediatek,mt8186";
+ 
+ 	aliases {
 -- 
-2.34.1
+2.40.1
 
