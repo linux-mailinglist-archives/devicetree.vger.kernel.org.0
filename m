@@ -2,135 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBEDF706D1F
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 17:46:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4EC7706C44
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 17:10:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229756AbjEQPqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 11:46:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44836 "EHLO
+        id S231533AbjEQPKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 11:10:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbjEQPqd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 11:46:33 -0400
-X-Greylist: delayed 2218 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 17 May 2023 08:46:30 PDT
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07848558B;
-        Wed, 17 May 2023 08:46:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
-        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
-        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
-        List-Owner:List-Archive; bh=IDRJwtLsO/yeHBOhvU39bxW+bfvC/DJiGxuwhVpGSJI=; b=L
-        72JGwLZ0CrNmH62H4XitVMSAiKLvB3sUcq9nYXl1a5dZnNwCSf/oTYOWWZL2eGdDgNXtrLmCgyyHh
-        5q/7HgvpsAkUynIPxSStqmKtzbi7GVodVJDEIWY7jLyya5lEez0iOLOvKPsUn5he8gmCAstPhI3mq
-        Aogs2YJY4Tl4AmKE=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:45486 helo=pettiford.lan)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1pzIkw-0007IE-6L; Wed, 17 May 2023 11:07:59 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     hugo@hugovil.com, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Wed, 17 May 2023 11:07:46 -0400
-Message-Id: <20230517150746.3823249-1-hugo@hugovil.com>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S231542AbjEQPKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 11:10:31 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66C81987;
+        Wed, 17 May 2023 08:10:13 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 81954660588A;
+        Wed, 17 May 2023 16:10:11 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1684336212;
+        bh=BrW8utkPJOxoIND7izOm/XEslPXwZWFXJRck8b/4gfM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=FuRybqK3UvoHRJVoF0gtJq7kqiuCcsKekfjjhb5FSLWjBNJklmmij6wRSym/gTVSd
+         PeUmkXloGmT8DMC7ypKNSwpPCi7HwtIsTfb5dDltnzn7XyId5bDAHyBsuq99dbKbaO
+         qV2acIPdh7HYFcfPWTHkypsPGJEgiqHDkL/41RfQYK3JvWfyc3bM/eqAEChYLWPkUK
+         e3xuHQXJ9jR9m+sngBhcfi4FCD0PuoDq5/oqFLOmikXaNrbDjoHuuBLeYPTDFrkxOJ
+         0mRHrdJiPmYhd52jCx+gvylcbI/CezvomXKablFTISBJWRzIu6KZ9eO8GooGD38j+K
+         u5x+MqDbpHy1w==
+Message-ID: <aee5f540-4f8b-f087-57d4-bfdafa4a0568@collabora.com>
+Date:   Wed, 17 May 2023 17:10:08 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 2/5] ASoC: mediatek: mt8188-mt6359: register hdmi/dp jack
+ pins
+Content-Language: en-US
+To:     =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "perex@perex.cz" <perex@perex.cz>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20230517111534.32630-1-trevor.wu@mediatek.com>
+ <20230517111534.32630-3-trevor.wu@mediatek.com>
+ <154497b3-f5c7-45d6-edd5-729642b80be5@collabora.com>
+ <9685a64561fc90d592481ae5e95d1e849fe3c55b.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <9685a64561fc90d592481ae5e95d1e849fe3c55b.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
-Subject: [PATCH 1/2] dt-bindings: sc16is7xx: Add property to change GPIO function
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Il 17/05/23 14:10, Trevor Wu (吳文良) ha scritto:
+> On Wed, 2023-05-17 at 13:31 +0200, AngeloGioacchino Del Regno wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>
+>>
+>> Il 17/05/23 13:15, Trevor Wu ha scritto:
+>>> Some userspace applications need jack control events, so register
+>>> hdmi
+>>> and dp jack pins to activate jack control events.
+>>>
+>>> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+>>> ---
+>>>    sound/soc/mediatek/mt8188/mt8188-mt6359.c | 27
+>>> +++++++++++++++++++----
+>>>    1 file changed, 23 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/sound/soc/mediatek/mt8188/mt8188-mt6359.c
+>>> b/sound/soc/mediatek/mt8188/mt8188-mt6359.c
+>>> index 833bc362dad2..6c3f36e2fffd 100644
+>>> --- a/sound/soc/mediatek/mt8188/mt8188-mt6359.c
+>>> +++ b/sound/soc/mediatek/mt8188/mt8188-mt6359.c
+>>> @@ -151,6 +151,20 @@ struct mt8188_mt6359_priv {
+>>>        struct snd_soc_jack hdmi_jack;
+>>>    };
+>>>
+>>> +static struct snd_soc_jack_pin mt8188_hdmi_jack_pins[] = {
+>>> +     {
+>>> +             .pin = "HDMI",
+>>
+>> "HDMI Jack" is more consistent with the snd_soc_jack_new_pins() call
+>> performed
+>> later.
+> 
+> Hi Angelo,
+> 
+> I see jack_kctl_name_gen() will append "Jack" to the name if I don't
+> name the pin "HDMI Jack". Do you mean that I could directly use "HDMI
+> Jack" because ALSA uses the name finally?
+> 
 
-Some variants in this series of uart controllers have GPIO pins that
-are shared between GPIO and modem control lines.
+You're right and I just checked; the comment even says
+'remove redundant " Jack" from src_name'
 
-The pin mux mode (GPIO or modem control lines) can be set for each
-ports (channels) supported by the variant.
+So yes, the current names are fine. Sorry about that.
 
-This adds a property to the device tree to set the GPIO pin mux to
-modem control lines on selected ports if needed.
-
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
----
- .../bindings/serial/nxp,sc16is7xx.txt         | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-index 0fa8e3e43bf8..426b7285ad50 100644
---- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-+++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-@@ -23,6 +23,9 @@ Optional properties:
-     1 = active low.
- - irda-mode-ports: An array that lists the indices of the port that
- 		   should operate in IrDA mode.
-+- modem-control-line-ports: An array that lists the indices of the port that
-+			    should have shared GPIO lines configured as modem
-+			    control lines.
- 
- Example:
-         sc16is750: sc16is750@51 {
-@@ -35,6 +38,17 @@ Example:
-                 #gpio-cells = <2>;
-         };
- 
-+	sc16is752: sc16is752@54 {
-+		compatible = "nxp,sc16is752";
-+		reg = <0x54>;
-+		clocks = <&clk20m>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-+		modem-control-line-ports = <1>; /* Port 1 as modem control lines */
-+		gpio-controller; /* Port 0 as GPIOs */
-+		#gpio-cells = <2>;
-+	};
-+
- * spi as bus
- 
- Required properties:
-@@ -59,6 +73,9 @@ Optional properties:
-     1 = active low.
- - irda-mode-ports: An array that lists the indices of the port that
- 		   should operate in IrDA mode.
-+- modem-control-line-ports: An array that lists the indices of the port that
-+			    should have shared GPIO lines configured as modem
-+			    control lines.
- 
- Example:
- 	sc16is750: sc16is750@0 {
-@@ -70,3 +87,14 @@ Example:
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 	};
-+
-+	sc16is752: sc16is752@0 {
-+		compatible = "nxp,sc16is752";
-+		reg = <0>;
-+		clocks = <&clk20m>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-+		modem-control-line-ports = <1>; /* Port 1 as modem control lines */
-+		gpio-controller; /* Port 0 as GPIOs */
-+		#gpio-cells = <2>;
-+	};
--- 
-2.30.2
+Regards,
+Angelo
 
