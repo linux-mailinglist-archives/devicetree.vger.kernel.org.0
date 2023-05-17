@@ -2,61 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A89D706F25
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 19:15:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ADCE706F4F
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 19:25:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229521AbjEQRPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 13:15:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57722 "EHLO
+        id S229585AbjEQRZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 13:25:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbjEQRPo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 13:15:44 -0400
+        with ESMTP id S229505AbjEQRZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 13:25:27 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A5526B6;
-        Wed, 17 May 2023 10:15:43 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38ACD93F7;
+        Wed, 17 May 2023 10:25:14 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 001EC61B9A;
-        Wed, 17 May 2023 17:15:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D7B3C433EF;
-        Wed, 17 May 2023 17:15:39 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5FB1363E35;
+        Wed, 17 May 2023 17:25:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E9E6C433D2;
+        Wed, 17 May 2023 17:25:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684343742;
-        bh=9rs6w/Oob54rFS5h303MzKdArQ7keaKIcj9JQ+9rSPU=;
+        s=k20201202; t=1684344311;
+        bh=mjFoAWFzRrM9eTl/Zbmccy0cVg5yWUVZAjtxpZaRWyI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pQ8X8cQ+jDSM0y/hAfk+XLx+EKhh5nlULkV9js9gV8dXSfnh6raoHSjBZtnT9/Vng
-         QMsLzlkVvkSgjUBlQ+zfAy3qqtOc7NEN/Z+B56Y9fsjostzA6HMCAQmMv9g7nJ1T0K
-         OEK4IMLRwe4AJMCflVbrqqII7Z3bjf6ExuF52LtrZhkwb7GForYmzK2sMI6PKsBexl
-         Fs6PWcRsIH/PtG67c8aIaJsb1rMPdoWCQTuscfQsHqDwKG7Y3nRSHjE6hPSPQv4vyY
-         6ss1rUjVVSppV5TgJCSSDM4ZDJqgLaczx6ikh5dCy3vrYFAAUfae3XrI7VDCoISzBB
-         47V94KBVx3OeA==
-Date:   Wed, 17 May 2023 18:15:37 +0100
+        b=JJSAp3/DeICH3C9UGkhuNBJHDqlTc+oJYD3lah9UEjSbbpdIHvYVt4JKbJrnKpfq8
+         jGOB90ZzNGUrHIdwLsKVgnZZeJha/DjxWrpMMNkKQenM/5a3pr4oDcH6tm0RoB1OSv
+         TyFFVgNn198G+8R8noWEfYc/XgQ4fkTWHH1R8mo5MCCpwQIl4ZI1EYBX4jX3sNLuWX
+         nB7N1AzvlkCZ9eFoTVWSVlQTQl8WV62hJOsoU/+VR77WAywEPx3jeZ2kioD+F2uEhE
+         bgZb3B4QWO7VWT8KQJ0+Jo1reEbgfSETto+mmz5A5VKu/zBOVO47qqyNwcnaAhuVRe
+         keX2nmUYvMgVg==
+Date:   Wed, 17 May 2023 18:25:07 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Jai Luthra <j-luthra@ti.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Add binding documentation for TI
- Audio REFCLK
-Message-ID: <20230517-reprise-unroll-e2223cab3846@spud>
-References: <20230515-refclk-v1-0-5e89f01d6733@ti.com>
- <20230515-refclk-v1-1-5e89f01d6733@ti.com>
+        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: sc16is7xx: Add property to change GPIO
+ function
+Message-ID: <20230517-argue-unbeaten-b07405fdd313@spud>
+References: <20230517150746.3823249-1-hugo@hugovil.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="fpjkaEH5QgyScueG"
+        protocol="application/pgp-signature"; boundary="mpbHctzDX7UX2Sd6"
 Content-Disposition: inline
-In-Reply-To: <20230515-refclk-v1-1-5e89f01d6733@ti.com>
+In-Reply-To: <20230517150746.3823249-1-hugo@hugovil.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -64,70 +61,55 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---fpjkaEH5QgyScueG
+--mpbHctzDX7UX2Sd6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 17, 2023 at 01:04:05PM +0530, Jai Luthra wrote:
-> Add DT bindings for TI's audio reference clocks (REFCLK) present on AM62
-> SoC.
-
-This seems fine to me. Perhaps Krzysztof will differ...
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
+On Wed, May 17, 2023 at 11:07:46AM -0400, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 >=20
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> Some variants in this series of uart controllers have GPIO pins that
+> are shared between GPIO and modem control lines.
+>=20
+> The pin mux mode (GPIO or modem control lines) can be set for each
+> ports (channels) supported by the variant.
+>=20
+> This adds a property to the device tree to set the GPIO pin mux to
+> modem control lines on selected ports if needed.
+>=20
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > ---
->  .../bindings/clock/ti,am62-audio-refclk.yaml       | 44 ++++++++++++++++=
-++++++
->  1 file changed, 44 insertions(+)
+>  .../bindings/serial/nxp,sc16is7xx.txt         | 28 +++++++++++++++++++
+>  1 file changed, 28 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/clock/ti,am62-audio-refclk=
-=2Eyaml b/Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml
-> new file mode 100644
-> index 000000000000..7c4cf7abe007
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/ti,am62-audio-refclk.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI Audio Reference Clock
-> +
-> +maintainers:
-> +  - Jai Luthra <j-luthra@ti.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: ti,am62-audio-refclk
-> +      - const: syscon
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  reg:
-> +    maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt b=
+/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
+> index 0fa8e3e43bf8..426b7285ad50 100644
+> --- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
+> +++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
+> @@ -23,6 +23,9 @@ Optional properties:
+>      1 =3D active low.
+>  - irda-mode-ports: An array that lists the indices of the port that
+>  		   should operate in IrDA mode.
+> +- modem-control-line-ports: An array that lists the indices of the port =
+that
+> +			    should have shared GPIO lines configured as modem
+> +			    control lines.
 
-Just a minor comment, usually reg appears after compatible and before
-anything else.
+If this is an NXP specific property, should it not have an nxp, vendor
+prefix?
 
-Thanks,
-Conor.
 
---fpjkaEH5QgyScueG
+--mpbHctzDX7UX2Sd6
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGULuQAKCRB4tDGHoIJi
-0pN+AQCK25LofJxlOqk3RCnFS5ehEs5mn79haSqJQVsO1t/PQwEAw6Df6VhcCPPC
-1cgNG50q2gr3/+KpIJiKwbVSCPucNwM=
-=sQzT
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGUN8wAKCRB4tDGHoIJi
+0hp1AP9FdcuRN7IO7H2al/5we3uqXf0P4Jd54EhBY+MkzKRGxwD8DuYBxPPExott
+pQjz7PK7eIvyCdbZuUagAiV4Q8GrCAQ=
+=M+2F
 -----END PGP SIGNATURE-----
 
---fpjkaEH5QgyScueG--
+--mpbHctzDX7UX2Sd6--
