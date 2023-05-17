@@ -2,156 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31A13706639
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 13:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3252A706651
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 13:14:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbjEQLLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 07:11:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57624 "EHLO
+        id S229816AbjEQLO3 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 17 May 2023 07:14:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbjEQLLA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 07:11:00 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 105661B6;
-        Wed, 17 May 2023 04:10:58 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34H97Rgl032303;
-        Wed, 17 May 2023 11:10:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=mL3f2MJE/PUQ3GiBfA6zOVgtNjLXqq0M9yCh/XNWMhU=;
- b=ZUITHX00nE9X2XHKn5pdO/27p4TWYOhfWJMyAwo4w30+rkwgKbbkNfojKz1H5yv7yLi+
- xGdjPcAWy4Qd6dXC36/ItH34fPo326aL3Golb9uqeaoD9iCugpXpNgdyw69dTyrLilNs
- hvYPmBCYktfsXIYof9Szgve7pFqAT6bQtAlrcbuAjrfoDVUsJS8UVa5xmj87BzuIxFtn
- 5jRIRV/BXfYIPIzN+2CzMS/B1NaRYPYBTyiCFDoYT5rBKe/n5nYAMp8CC2D3HWXhi/a5
- rEV34XVI3meEWcTUvuYkdypo/wLhFMqkubjWQuw/0fdRZTMv7HYlVMPGUx4PfTGgIzjn 9w== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qmbk7a943-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 17 May 2023 11:10:47 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34HBAc2Y000601
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 17 May 2023 11:10:38 GMT
-Received: from [10.216.29.70] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 17 May
- 2023 04:10:14 -0700
-Message-ID: <f2f8c7bf-6d1d-7890-a8b1-0e27969e63f6@quicinc.com>
-Date:   Wed, 17 May 2023 16:40:11 +0530
+        with ESMTP id S229569AbjEQLO2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 07:14:28 -0400
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72A1F197;
+        Wed, 17 May 2023 04:14:27 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-ba8253f635cso807896276.0;
+        Wed, 17 May 2023 04:14:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684322066; x=1686914066;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oVBIz6rSwiHp26lFXXNQ629YWWG9GU5r7sKV57I7n4Q=;
+        b=AzGuKNthPYcqqKMl44MvO5s74gdNod1LPP3ckziOGqeQz+puSxGOGLidahOI6ZmU0g
+         DHIqRTKmFsQ8nOA9X9kl7EvcNng+vtq8xQ22TUirwfOAiYh7W/LC/TFCrL4K8we6PZ5v
+         gEjWs18lOL7pkIqhX+gbI1pu43kIgScKftFvVtJ5zkXOzykSiUmucPMtIIFZawiClNnK
+         8eng/ZEYamAjiNpmqoBcJ89HrfjqmdxzVpLhqS6E5weDkLlZbE2/Rj59anmQBNtXbsSP
+         Y5xHLYAPRzGhgC1rYHZVImG/PBx6c0s6LAKhy35h9JEzdr3QmqHiUHlo1n5X0apM1Pds
+         hufw==
+X-Gm-Message-State: AC+VfDyOd5jyengiJkA5yXgcaXPCcGVW2aY4JpJ0aolO4tjGlhn0uCuX
+        WG6anPO5btdoWfQB4JL20gdo7kDMvaaPyA==
+X-Google-Smtp-Source: ACHHUZ4RuvOCRc0A5+n0i/h8HuUD8evNweuEFJ3zZDqGmnRFAmQzoBBOlfj9D6X7mBd5gbc+OgnOkw==
+X-Received: by 2002:a25:ae05:0:b0:ba8:7da5:da46 with SMTP id a5-20020a25ae05000000b00ba87da5da46mr190924ybj.40.1684322066583;
+        Wed, 17 May 2023 04:14:26 -0700 (PDT)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id k13-20020a258c0d000000b00ba012dbdf0asm482494ybl.3.2023.05.17.04.14.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 May 2023 04:14:26 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-ba8253f635cso807881276.0;
+        Wed, 17 May 2023 04:14:26 -0700 (PDT)
+X-Received: by 2002:a25:558:0:b0:ba8:27ff:b2b5 with SMTP id
+ 85-20020a250558000000b00ba827ffb2b5mr4015501ybf.26.1684322066059; Wed, 17 May
+ 2023 04:14:26 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH v8 1/9] dt-bindings: usb: qcom,dwc3: Add bindings for
- SC8280 Multiport
-To:     Johan Hovold <johan@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Andy Gross" <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_wcheng@quicinc.com>,
-        <quic_jackp@quicinc.com>, <quic_harshq@quicinc.com>,
-        <ahalaney@redhat.com>
-References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
- <20230514054917.21318-2-quic_kriskura@quicinc.com>
- <ZGNiDVq1duvyZBUB@hovoldconsulting.com>
-Content-Language: en-US
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZGNiDVq1duvyZBUB@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 1mc-c92g0RVsIcGtcXrRUd0BbSg6wQQX
-X-Proofpoint-ORIG-GUID: 1mc-c92g0RVsIcGtcXrRUd0BbSg6wQQX
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-17_02,2023-05-16_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- adultscore=0 priorityscore=1501 mlxlogscore=988 bulkscore=0 suspectscore=0
- impostorscore=0 phishscore=0 lowpriorityscore=0 mlxscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
- definitions=main-2305170091
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230515181606.65953-1-blarson@amd.com> <20230515181606.65953-9-blarson@amd.com>
+ <BN7PR12MB2802CE1DBDB6ED8413AECD53DC799@BN7PR12MB2802.namprd12.prod.outlook.com>
+ <168e9039-feb0-0f4c-8aee-96a3bae7faca@amd.com>
+In-Reply-To: <168e9039-feb0-0f4c-8aee-96a3bae7faca@amd.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 17 May 2023 13:14:14 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVLOTn7HfoWR7mGrKXvZxiciGseOBYbV7bYqUuGJcr=yg@mail.gmail.com>
+Message-ID: <CAMuHMdVLOTn7HfoWR7mGrKXvZxiciGseOBYbV7bYqUuGJcr=yg@mail.gmail.com>
+Subject: Re: [PATCH v14 8/8] soc: amd: Add support for AMD Pensando SoC Controller
+To:     Michal Simek <michal.simek@amd.com>
+Cc:     "Mahapatra, Amit Kumar" <amit.kumar-mahapatra@amd.com>,
+        "Larson, Bradley" <Bradley.Larson@amd.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "alcooperx@gmail.com" <alcooperx@gmail.com>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "brendan.higgins@linux.dev" <brendan.higgins@linux.dev>,
+        "briannorris@chromium.org" <briannorris@chromium.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "davidgow@google.com" <davidgow@google.com>,
+        "gsomlo@gmail.com" <gsomlo@gmail.com>,
+        "gerg@linux-m68k.org" <gerg@linux-m68k.org>,
+        "hal.feng@starfivetech.com" <hal.feng@starfivetech.com>,
+        "hasegawa-hitomi@fujitsu.com" <hasegawa-hitomi@fujitsu.com>,
+        "j.neuschaefer@gmx.net" <j.neuschaefer@gmx.net>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "kernel@esmil.dk" <kernel@esmil.dk>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "lee@kernel.org" <lee@kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "rdunlap@infradead.org" <rdunlap@infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "samuel@sholland.org" <samuel@sholland.org>,
+        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
+        "skhan@linuxfoundation.org" <skhan@linuxfoundation.org>,
+        "Suthikulpanit, Suravee" <Suravee.Suthikulpanit@amd.com>,
+        "Lendacky, Thomas" <Thomas.Lendacky@amd.com>,
+        "tonyhuang.sunplus@gmail.com" <tonyhuang.sunplus@gmail.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "vaishnav.a@ti.com" <vaishnav.a@ti.com>,
+        "walker.chen@starfivetech.com" <walker.chen@starfivetech.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "zhuyinbo@loongson.cn" <zhuyinbo@loongson.cn>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "git (AMD-Xilinx)" <git@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Michal,
 
+On Tue, May 16, 2023 at 9:42 AM Michal Simek <michal.simek@amd.com> wrote:
+> Also in DT patches I have seen that you didn't switch to 2023 year yet.
 
-On 5/16/2023 4:29 PM, Johan Hovold wrote:
-> On Sun, May 14, 2023 at 11:19:09AM +0530, Krishna Kurapati wrote:
->> Add the compatible string for SC8280 Multiport USB controller from
->> Qualcomm.
->>
->> There are 4 power event irq interrupts supported by this controller
->> (one for each port of multiport). Added all the 4 as non-optional
->> interrupts for SC8280XP-MP
->>
->> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
->> ---
->>   .../devicetree/bindings/usb/qcom,dwc3.yaml    | 22 +++++++++++++++++++
->>   1 file changed, 22 insertions(+)
->   
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,sc8280xp-dwc3-mp
->> +    then:
->> +      properties:
->> +        interrupts:
->> +          maxItems: 7
->> +        interrupt-names:
->> +          items:
->> +            - const: dp_hs_phy_irq
->> +            - const: dm_hs_phy_irq
->> +            - const: ss_phy_irq
-> 
-> I assume that these are only for the first port, and that you need to
-> define these interrupts also for ports 2-4.
-> 
+If no substantial changes were made in 2023, there is no need nor
+desire to update the copyright year.
 
-Hi Johan,
+Gr{oetje,eeting}s,
 
-  I wanted to add them when wakeup-source is enabled but since you 
-mentioned that these must be added now and driver support can be added 
-later, I will make a patch separately for this in v9.
+                        Geert
 
-Hi Krzysztof,
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-  Can I use the following notation for the new interrupts ?
-
-dp_hs_port2_irq
-dm_hs_port2_irq
-dp_hs_port3_irq
-dm_hs_port3_irq
-dp_hs_port4_irq
-dm_hs_port4_irq
-
-
-That way the interrupt names for first port will be same as ones for 
-single port.
-
-Wanted to clarify this before I make a formal patch.
-
-Regards,
-Krishna,
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
