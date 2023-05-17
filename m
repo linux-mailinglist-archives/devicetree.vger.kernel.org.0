@@ -2,276 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45945706F94
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 19:37:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70224706FA4
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 19:39:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229512AbjEQRhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 13:37:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46438 "EHLO
+        id S229926AbjEQRjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 13:39:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbjEQRhK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 13:37:10 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90BC0869E
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 10:36:58 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1a516fb6523so10993215ad.3
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 10:36:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684345018; x=1686937018;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dC+WhwakdcOIZn4GauWplVKtCXgrq9G2TslZKCjOezM=;
-        b=A+q3f0JjFmDJZ+fUXVTUlYRHZ7ens+mv/aYBblUwv0RAngu3blV1FZrXFqjmdD2bCV
-         jjND6m6kZuhAH4RGmfokvYy/mvg6lDOU3M7S1imovIthmYHn1mfiWu5bo6oq6Rp6Z+0h
-         f0ssAVQDQCm3yshPaJ5PE/MrQplRazfRLw+nTKOoOOikzbwbAVwPcLAQJc8ii1FNFN3W
-         sof2nBX+BWw2kvdJ+U+i99hCx6PLTCXMVHa4C9IwEM5pgUSDLZWl3pCNcKDq7QIvrRkc
-         s3H2epoyazlTtRJ6cN+EfYQj0mQCwwZ5AueOZ25geBm+mXbqGsrpJCFcMOTegKOodTia
-         EnVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684345018; x=1686937018;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dC+WhwakdcOIZn4GauWplVKtCXgrq9G2TslZKCjOezM=;
-        b=h5RtAC+BTnS+PhUTZzVBb39750OYFjJjQtYg2U1S/acJFSjAkb41uEih9WJ0WLcgWa
-         /DJg9FjC65dZXVfQwjzuhrgM3yK9L5dQgkS3kDQTYwsuOHgQMAeJ61n8a+MdDTmV4gzK
-         +zHUP9vAppAtcLht7MDXrMjasjeCUgEsKOgb8AU/b4KdgQqNNX6Bjk+HPDHA3eV0VMgX
-         dgGsd+ZMP5ZjH0Bcs9l17og1fAMF1GyX6ZEVlHj5ASdkFmWRVhPrdvCEUOy8n2GS+AxH
-         5opvJ1wNpprZm0tzdlqUGnbqUskZQoPfX3iTv4HHrVABaGhyk/yDVLn4PfoPEcY7BPFX
-         vy9g==
-X-Gm-Message-State: AC+VfDwZwxWBWlDuQQYvY8ladwoZsGku3eSrlBY26wPJPEaXu09XZ3v7
-        nIlm4wDQtZMb1enX8GwhKE5cEQ==
-X-Google-Smtp-Source: ACHHUZ4LXfMM8a+bUsf49YRamvtKAdelst75eA7v19LjROK98TkKU4mvFK74tJ0oApIvk9MnnFZkZA==
-X-Received: by 2002:a17:902:d304:b0:1ad:de16:66d with SMTP id b4-20020a170902d30400b001adde16066dmr21980950plc.39.1684345017915;
-        Wed, 17 May 2023 10:36:57 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:fd0b:2592:d377:e4e3])
-        by smtp.gmail.com with ESMTPSA id j5-20020a170902c3c500b001a6ff7bd4d9sm17905163plj.15.2023.05.17.10.36.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 May 2023 10:36:57 -0700 (PDT)
-Date:   Wed, 17 May 2023 11:36:55 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v12 06/11] remoteproc: mediatek: Probe multi-core SCP
-Message-ID: <ZGUQt2EN59yDo8JA@p14s>
-References: <20230517043449.26352-1-tinghan.shen@mediatek.com>
- <20230517043449.26352-7-tinghan.shen@mediatek.com>
+        with ESMTP id S229942AbjEQRjD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 13:39:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A0FAAD15;
+        Wed, 17 May 2023 10:38:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B07E46499C;
+        Wed, 17 May 2023 17:38:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0978DC4339B;
+        Wed, 17 May 2023 17:38:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684345113;
+        bh=GOTkZbPkforXCIzWEdpo7am5du/j5nr8N+7mzoL0Zmc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kl3C95iruW7qNl8NfsMmB+NUtYvxQemdp3dXvg1/hKthWgpHqVk4u7n1AYETbf35G
+         RDftNzec9GoRcL3fSiFRZiSKsB2soe8omYAnqFmOxZv+6nsfcD0HJDt3O0zGhqEy6L
+         q6J6lFlIoTMnwWfAMO6huTtvX+GDgRIyc/fVRPIvE9ziWSA77NsrqcP0UxtvmvvBHW
+         /M0BYoY6ZCGTFSRQ73eLwETY6TTE+LbJDTAIsIlKCFNgpGsbIULRjNaoJjeuEJaNti
+         MPdEHibhjbTWMGbdnXNmdg8MXJX1/bsnxyfgblXsLu970Ekk/G4wnUWaQ5MfhwE8j1
+         K2F+fmnzkCDQw==
+Date:   Wed, 17 May 2023 18:38:28 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Ryan.Wanner@microchip.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        linus.walleij@linaro.org, ludovic.desroches@microchip.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: at91-pio4: Add push-pull
+ support
+Message-ID: <20230517-arrogance-unroll-5e6770618364@spud>
+References: <cover.1684313910.git.Ryan.Wanner@microchip.com>
+ <048a41d1dcb3da0e845986a73eaac61a54c69269.1684313910.git.Ryan.Wanner@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="+3SZHxIRozdmFSZb"
 Content-Disposition: inline
-In-Reply-To: <20230517043449.26352-7-tinghan.shen@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <048a41d1dcb3da0e845986a73eaac61a54c69269.1684313910.git.Ryan.Wanner@microchip.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 17, 2023 at 12:34:44PM +0800, Tinghan Shen wrote:
-> The difference of single-core SCP and multi-core SCP device tree is
-> the presence of child device nodes described SCP cores. The SCP
-> driver populates the platform device and checks the child nodes
-> to identify whether it's a single-core SCP or a multi-core SCP.
-> 
-> Add the remoteproc instances of multi-core SCP to the SCP cluster list.
-> When the SCP driver is removed, it cleanup resources by walking
-> through the cluster list.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->  drivers/remoteproc/mtk_scp.c | 115 +++++++++++++++++++++++++++++++++--
->  1 file changed, 111 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-> index c8fc6b46f82b..d644e232dfec 100644
-> --- a/drivers/remoteproc/mtk_scp.c
-> +++ b/drivers/remoteproc/mtk_scp.c
-> @@ -864,7 +864,8 @@ static void scp_remove_rpmsg_subdev(struct mtk_scp *scp)
->  }
->  
->  static struct mtk_scp *scp_rproc_init(struct platform_device *pdev,
-> -				      struct mtk_scp_of_cluster *scp_cluster)
-> +				      struct mtk_scp_of_cluster *scp_cluster,
-> +				      const struct mtk_scp_of_data *of_data)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct device_node *np = dev->of_node;
-> @@ -887,7 +888,7 @@ static struct mtk_scp *scp_rproc_init(struct platform_device *pdev,
->  	scp = rproc->priv;
->  	scp->rproc = rproc;
->  	scp->dev = dev;
-> -	scp->data = of_device_get_match_data(dev);
-> +	scp->data = of_data;
->  	platform_device_add_data(pdev, &scp, sizeof(scp));
->  
->  	scp->reg_base = scp_cluster->reg_base;
-> @@ -964,14 +965,15 @@ static void scp_free(struct mtk_scp *scp)
->  	mutex_destroy(&scp->send_lock);
->  }
->  
-> -static int scp_cluster_init(struct platform_device *pdev)
-> +static int scp_add_single_core(struct platform_device *pdev)
->  {
-> +	struct device *dev = &pdev->dev;
->  	struct mtk_scp_of_cluster *scp_cluster = platform_get_drvdata(pdev);
->  	struct list_head *cluster = &scp_cluster->mtk_scp_list;
->  	struct mtk_scp *scp;
->  	int ret;
->  
-> -	scp = scp_rproc_init(pdev, scp_cluster);
-> +	scp = scp_rproc_init(pdev, scp_cluster, of_device_get_match_data(dev));
->  	if (IS_ERR(scp))
->  		return PTR_ERR(scp);
->  
-> @@ -987,6 +989,100 @@ static int scp_cluster_init(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static int scp_add_multi_core(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev_of_node(dev);
-> +	struct platform_device *cpdev;
-> +	struct device_node *child;
-> +	struct mtk_scp_of_cluster *scp_cluster = platform_get_drvdata(pdev);
-> +	struct list_head *cluster = &scp_cluster->mtk_scp_list;
-> +	const struct mtk_scp_of_data **cluster_of_data;
-> +	struct mtk_scp *scp, *temp;
-> +	int core_id = 0;
-> +	int ret;
-> +
-> +	cluster_of_data = (const struct mtk_scp_of_data **)of_device_get_match_data(dev);
-> +
-> +	for_each_available_child_of_node(np, child) {
-> +		if (!cluster_of_data[core_id]) {
-> +			ret = -EINVAL;
-> +			dev_err(dev, "Not support core %d\n", core_id);
-> +			of_node_put(child);
-> +			goto init_fail;
-> +		}
-> +
-> +		cpdev = of_find_device_by_node(child);
-> +		if (!cpdev) {
-> +			ret = -ENODEV;
-> +			dev_err(dev, "Not found platform device for core %d\n", core_id);
-> +			of_node_put(child);
-> +			goto init_fail;
-> +		}
-> +
-> +		scp = scp_rproc_init(cpdev, scp_cluster, cluster_of_data[core_id]);
-> +		put_device(&cpdev->dev);
-> +		if (IS_ERR(scp)) {
-> +			ret = PTR_ERR(scp);
-> +			dev_err(dev, "Failed to initialize core %d rproc\n", core_id);
-> +			of_node_put(child);
-> +			goto init_fail;
-> +		}
-> +
-> +		ret = rproc_add(scp->rproc);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to add rproc of core %d\n", core_id);
-> +			of_node_put(child);
-> +			scp_free(scp);
-> +			goto init_fail;
-> +		}
-> +
-> +		list_add_tail(&scp->elem, cluster);
-> +		core_id++;
-> +	}
-> +
-> +	return 0;
-> +
-> +init_fail:
-> +	list_for_each_entry_safe_reverse(scp, temp, cluster, elem) {
-> +		list_del(&scp->elem);
-> +		rproc_del(scp->rproc);
-> +		scp_free(scp);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int scp_is_single_core(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev_of_node(dev);
-> +	struct device_node *child;
-> +
-> +	child = of_get_next_available_child(np, NULL);
-> +	if (!child)
-> +		return dev_err_probe(dev, -ENODEV, "No child node\n");
-> +
-> +	of_node_put(child);
-> +	return of_node_name_eq(child, "cros-ec-rpmsg");
-> +}
-> +
-> +static int scp_cluster_init(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +
-> +	ret = scp_is_single_core(pdev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (ret)
-> +		ret = scp_add_single_core(pdev);
-> +	else
-> +		ret = scp_add_multi_core(pdev);
-> +
-> +	return ret;
-> +}
-> +
->  static int scp_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -1021,6 +1117,10 @@ static int scp_probe(struct platform_device *pdev)
->  	INIT_LIST_HEAD(&scp_cluster->mtk_scp_list);
->  	platform_set_drvdata(pdev, scp_cluster);
->  
-> +	ret = devm_of_platform_populate(dev);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to populate platform devices\n");
-> +
->  	ret = scp_cluster_init(pdev);
->  	if (ret)
->  		return ret;
-> @@ -1114,12 +1214,19 @@ static const struct mtk_scp_of_data mt8195_of_data_c1 = {
->  	.host_to_scp_int_bit = MT8195_CORE1_HOST_IPC_INT_BIT,
->  };
->  
-> +static const struct mtk_scp_of_data *mt8195_of_data_cores[] = {
-> +	&mt8195_of_data,
-> +	&mt8195_of_data_c1,
-> +	NULL
-> +};
-> +
->  static const struct of_device_id mtk_scp_of_match[] = {
->  	{ .compatible = "mediatek,mt8183-scp", .data = &mt8183_of_data },
->  	{ .compatible = "mediatek,mt8186-scp", .data = &mt8186_of_data },
->  	{ .compatible = "mediatek,mt8188-scp", .data = &mt8188_of_data },
->  	{ .compatible = "mediatek,mt8192-scp", .data = &mt8192_of_data },
->  	{ .compatible = "mediatek,mt8195-scp", .data = &mt8195_of_data },
-> +	{ .compatible = "mediatek,mt8195-scp-dual", .data = &mt8195_of_data_cores },
 
-I am happy with the refactoring work.  Please do not change anything in patches
-05 and 06 unless I ask for it.
+--+3SZHxIRozdmFSZb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, mtk_scp_of_match);
-> -- 
-> 2.18.0
-> 
+On Wed, May 17, 2023 at 01:54:05PM +0200, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
+>=20
+> Add generic push-pull support for pio4 driver.
+>=20
+> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+--+3SZHxIRozdmFSZb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGURFAAKCRB4tDGHoIJi
+0te7AQDt8TKK6+zVXzAH08t+Tkji/Yh/hqx6L9JKrOlcW0ZpNAD+Jq+csic1yeFP
+ILADgL/Ov0YL7qBr8oRdJvBngPbPogk=
+=TyW4
+-----END PGP SIGNATURE-----
+
+--+3SZHxIRozdmFSZb--
