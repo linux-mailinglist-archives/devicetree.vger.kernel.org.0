@@ -2,147 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7475970642B
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 11:30:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3990C706436
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 11:34:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229937AbjEQJal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 05:30:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38694 "EHLO
+        id S230027AbjEQJek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 05:34:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229747AbjEQJak (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 05:30:40 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0658BE4E;
-        Wed, 17 May 2023 02:30:38 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 46C571FB;
-        Wed, 17 May 2023 02:31:23 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0E7443F663;
-        Wed, 17 May 2023 02:30:35 -0700 (PDT)
-Date:   Wed, 17 May 2023 10:30:33 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     "lihuisong (C)" <lihuisong@huawei.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S229746AbjEQJek (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 05:34:40 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1122738
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 02:34:37 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f4c6c4b425so3595375e9.2
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 02:34:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684316076; x=1686908076;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OUDDylEUMPQFAPrSz8VZ1I2suyRsN1Zbbv13ypc2rzA=;
+        b=XJSg314JjT5M+98dJS+VCddMEi8iYMXpPyn9zkjIGFyADWNkyxp7ryBtkVfS4Cd847
+         Lf48mYtXHWxAdR37oqQ0G6DJ2ismYf50up5N7NAFWfNKEyfAdokSiVpsnQLhPGW83h47
+         21D6C4OqYuNMollfIfXcv38/Z/u1EvEFleuDbYG2qLucJtxks4ngMKvuJtN8TPhlMxE4
+         mhskNVHTzvyf9d7zTcKLksGRRkEsGZC86Qn8Xv+7pDe78i5HKplZFQ62HbZTOry7HJ8i
+         nYDa3O6hEeyDtrwmAJO0FQzrGBnlICC2D7pwBW8C0Tb65VoXjz/1/H/502o/UslnVCAv
+         p6qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684316076; x=1686908076;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OUDDylEUMPQFAPrSz8VZ1I2suyRsN1Zbbv13ypc2rzA=;
+        b=IgZD0GnaKn3ulPZAqO1+lJX55AVZ0QZeVyoqAFI/sFBoc8WqCAZyINxa+j3MMkv/el
+         yN5wzRhsESt4xD5Mx+ephmZZS/XCq+hVCTW74AXrxGiIeETsOhWWV5Jx1rpyDFcqrXFn
+         i7XNakIMIfZwctrufgpsFJSs67zzTaMtS0GXMHugFSenNEh0yzh9HL+UltYcJxv4r9Wu
+         Q0yglBt9f07fqG3D0Ahqk2pQ92zKvMylf8LrNdnaIqRh810kUW7BNqiezgL5HLUXHzaj
+         MF/iSmXWklPcyFYHDjD7ZuIooKk/Y/Asgc5QkHjmzkqC2lwu7joke9oA4bcoeQWjzD7D
+         qXkA==
+X-Gm-Message-State: AC+VfDzKTCmtp2sM3GCRX57+iAwpPoIesoJR1hcFv0WEkdn20TlJhLCJ
+        vMX6wjjeQxrXFz2APXXiSQKjQw==
+X-Google-Smtp-Source: ACHHUZ4jNgQpFPdP+tvVxA3NtSIP3jJELzRJPLwuGEnKMoW8YHWa+nsihhXkJ5xOCHJj8CLdfns4gg==
+X-Received: by 2002:a05:600c:c6:b0:3f4:28db:f5ff with SMTP id u6-20020a05600c00c600b003f428dbf5ffmr21701922wmm.35.1684316076025;
+        Wed, 17 May 2023 02:34:36 -0700 (PDT)
+Received: from [10.1.3.59] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id n7-20020a05600c294700b003f4266965fbsm1655325wmd.5.2023.05.17.02.34.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 May 2023 02:34:35 -0700 (PDT)
+Message-ID: <62c51f2c-a620-a879-5659-faf3c4b77268@baylibre.com>
+Date:   Wed, 17 May 2023 11:34:32 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/2] clk: mediatek: mt8365: fix the clock indexes
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
-        soc@kernel.org, wanghuiqiang@huawei.com, tanxiaofei@huawei.com,
-        liuyonglong@huawei.com, huangdaode@huawei.com,
-        linux-acpi@vger.kernel.org, Len Brown <lenb@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        devicetree@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] soc: hisilicon: Support HCCS driver on Kunpeng SoC
-Message-ID: <20230517093033.4jvwjxuoeic46a24@bogus>
-References: <20230425103040.znv66k364ant6klq@bogus>
- <c7d9c3c5-e400-c60a-52e0-0f267ec8c517@huawei.com>
- <20230425131918.5tf5vot4h7jf54xk@bogus>
- <db6c713c-f99c-fa3f-8d38-9a5d50889cc2@huawei.com>
- <20230515130807.pdvx7bxwjkfdsmsr@bogus>
- <aa5b1919-74c6-1f97-78af-ab5f0904c3ce@huawei.com>
- <20230516122931.il4ai7fyxdo5gsff@bogus>
- <f0733521-2557-fdaf-e59b-b10d515c487c@huawei.com>
- <20230516143530.venhj4gax6stinah@bogus>
- <a98e3620-57da-000e-f5ee-2c2e47e97906@huawei.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a98e3620-57da-000e-f5ee-2c2e47e97906@huawei.com>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230517-fix-clk-index-v1-0-142077a1732b@baylibre.com>
+ <20230517-fix-clk-index-v1-1-142077a1732b@baylibre.com>
+ <9c7ff0f1-3d2c-b83a-a47d-544c76f29663@linaro.org>
+Content-Language: en-US
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <9c7ff0f1-3d2c-b83a-a47d-544c76f29663@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 17, 2023 at 03:16:12PM +0800, lihuisong (C) wrote:
+On 17/05/2023 10:40, Krzysztof Kozlowski wrote:
+> On 17/05/2023 10:28, Alexandre Mergnat wrote:
+>> Before the patch [1], the clock probe was done directly in the
+>> clk-mt8365 driver. In this probe function, the array which stores the
+>> data clocks is sized using the higher defined numbers (*_NR_CLOCK) in
+>> the clock lists [2]. Currently, with the patch [1], the specific
+>> clk-mt8365 probe function is replaced by the mtk generic one [3], which
+>> size the clock data array by adding all the clock descriptor array size
+>> provided by the clk-mt8365 driver.
+>>
+>> Actually, all clock indexes come from the header file [2], that mean, if
+>> there are more clock (then more index) in the header file [2] than the
+>> number of clock declared in the clock descriptor arrays (which is the
+>> case currently), the clock data array will be undersized and then the
+>> generic probe function will overflow when it will try to write in
+>> "clk_data[CLK_INDEX]". Actually, instead of crashing at boot, the probe
+>> function returns an error in the log which looks like:
+>> "of_clk_hw_onecell_get: invalid index 135", then this clock isn't
+>> enabled.
+> 
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching.
 
-[...]
-
-> No. I want to use this flag to make compability between different platforms.
-> This driver only use PCC OpRegion to access to the channel if platform
-> support use PCC OpRegion.
-
-What do you mean by that ? It is not correct. If there is a PCC Opregion,
-then you need to make it work with drivers/acpi/acpi_pcc.c
-
-You need to have all the other details in the firmware(ASL). By looking
-at the driver, it has no connection to PCC Opregion IMO unless I am missing
-something.
-
-> Driver must select one of them (PCC and PCC OpRegion) to communicate with
-> firmware on one platform.
-
-No for reasons mentioned above. PCC Opregion support in the kernel will
-be minimal and already there. Fix that if it is not working. If you are
-attempting to do something with PCC Opregion in this driver, it is just
-wrong and I will NACK it if I see anything around that.
-
-> > If so that may not work as the current implementation of PCC Opregion
-> > assumes the exclusive access to the channel. Since it is initialised
-> > quite early, Opregion must succeed to get the mbox channel acquired and
-> > this driver must fail if they are sharing the channel. Making the sharing
-> > across firmware and this driver may need changes in the PCC Opregion
-> Only using PCC OpRegion after requesting and releasing PCC channel shouldn't
-> change PCC OpRegion code?
-
-I don't understand what exactly that means. The spec states clearly that
-PCC subspaces that are used for PCC Operation Regions must not be used
-as PCC subspaces for other std ACPI features. I don't understand what
-really is going on, on this platform as I don't see what you are saying
-(which is wrong and I disagree with approach) in the code posted yet.
-
-> > support code. One possible way is to acquire and release the channel for
-> > each transaction which will be definitely overhead.
-> Yes, transaction will be definitely overhead.
-> The following method should be no such problem.
-> -->
-> If driver want to obtain other info by RegisterAddress and offset in PCC
-> Register(), driver generally needs to do it as follows:
-> 1> get channel ID and RegisterAddress and offset.
-> 2> call pcc_mbox_request_channel to acquire the channel.
-> 3> ioremap 'shmem_base_addr' to get 'pcc_comm_addr'
-> 4> obtain other info based on RegisterAddress, offset and 'pcc_comm_addr'.
-
-Above sound good but it is not PCC Opregion. Either you are not giving
-full context or you are confusing what PCC Opregion means. There is a
-section "Declaring PCC Operation Regions", please refer and see if that
-is what you have on your platform.
-
-> If driver selects PCC OpRegion method, driver may also need to release this
-> PCC channel by calling pcc_mbox_free_channel.
-
-As I mentioned, the driver must not do anything related to PCC Opregion.
-
-> Because this channel will be requested when PCC OpRegion method is executed
-> for the first time.
->
-
-drivers/acpi/acpi_pcc.c must take care of that. If not patch that and get
-it working. It must be generic and nothing to do with your platform.
+I will.
 
 > 
-> Overall, the above process is a bit cumbersome if this driver only use PCC
-> OpRegion.
+> This is huge ABI break and I don't understand why it is needed. Entire
+> description above did not explain me that.
 
-Yes and hence must not touch anything around PCC Opregion.
+Briefly, clocks with the higher index than the data clock array can't be 
+used. I've this issue:
+[    0.427054] of_clk_hw_onecell_get: invalid index 135
+[    0.429525] of_clk_hw_onecell_get: invalid index 69
+[    0.442998] of_clk_hw_onecell_get: invalid index 70
 
-> In addition, I have to dig one address from comm space in share memory,
-> which will cause the available size of comm space to decrease, right?
-> So it is better to use other way to do get channel ID and other info if it
-> is possible.
-> What do you think?
+That means CLK_TOP_SSUSB_PHY_CK_EN, CLK_IFR_SSUSB_REF and 
+CLK_IFR_SSUSB_XHCI aren't working when I need them. So my USB doesn't work.
 
-I am more confused about your platform than yesterday, so I don't have
-much valuable suggestions ATM.
+> 
+>>
+>> The simplest way to fix the regression is to remove from the header file
+>> [2] the unused clocks.
+> 
+> ??? The simples is to revert the patch, so you won't break the ABI.
+> 
+>>
+>> [1]: Commit ffe91cb28f6a ("clk: mediatek: mt8365: Convert to
+>>       mtk_clk_simple_{probe,remove}()")
+>> [2]: include/dt-bindings/clock/mediatek,mt8365-clk.h
+>> [3]: drivers/clk/mediatek/clk-mtk.c
+>>
+>> Fixes: ffe91cb28f6a ("clk: mediatek: mt8365: Convert to mtk_clk_simple_{probe,remove}()")
+>>
+>> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+>> ---
+>>   include/dt-bindings/clock/mediatek,mt8365-clk.h | 361 ++++++++++++------------
+>>   1 file changed, 177 insertions(+), 184 deletions(-)
+>>
+>> diff --git a/include/dt-bindings/clock/mediatek,mt8365-clk.h b/include/dt-bindings/clock/mediatek,mt8365-clk.h
+>> index f9aff1775810..fd59c8bdeb24 100644
+>> --- a/include/dt-bindings/clock/mediatek,mt8365-clk.h
+>> +++ b/include/dt-bindings/clock/mediatek,mt8365-clk.h
+>> @@ -7,147 +7,142 @@
+>>   #define _DT_BINDINGS_CLK_MT8365_H
+>>   
+>>   /* TOPCKGEN */
+>> -#define CLK_TOP_CLK_NULL		0> -#define CLK_TOP_I2S0_BCK		1
+> 
+> ...
+> 
+>> +#define CLK_TOP_I2S0_BCK		0
+> 
+> Why? This is really broken. You can remove the defines, but re-shuffling
+> everything?!?
+
+I've under-estimated the impact of modifying the defines, I will try to 
+find another way to fix the regression in the drivers directly.
+
+Thanks for your review.
+
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
 
 -- 
 Regards,
-Sudeep
+Alexandre
+
