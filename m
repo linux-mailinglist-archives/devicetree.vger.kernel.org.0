@@ -2,134 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0CD5706AFB
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:22:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8649C706B03
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:25:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230527AbjEQOWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 10:22:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47558 "EHLO
+        id S229815AbjEQOZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 10:25:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230120AbjEQOWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:22:02 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A2D940E5
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:22:01 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-510d967249aso717207a12.1
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:22:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684333320; x=1686925320;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ONuJY2KtI2KHJtsYCPsFhw7heZvdRq+s7WoctleT5QQ=;
-        b=mxoDAeCr+NxZwAyQdXIKhSX/7OYByY9p0AlLZp6EEQ/WLcZBbQjkLeIx1CW0kMhhd2
-         i5OeoqfV9vTiuN0Y6w4Ie1eGulLIO3uu8Cl/66c9O7Yi8VOfRty/V50nVSZSBjFG8I2b
-         nCSOgHMax5X6f7Gx8tQgmhFEvIDVzOUtfh2CdMXJk3oNZFrNPVGNWrIYO2dDeuv2TG79
-         XZjW76uj/jCOBLyeLqSqi+XLg8TNGa0Sm1mBoRR/kLMJdJqqBJRt5hhCg+8Wt9zqzppV
-         ai/0ait6TEoBeVPYcldyeTntoxu4a6oC9HEVbu2AWHmZojpQkf1I1DxY8ZjyQ0jcV1p7
-         aqcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684333320; x=1686925320;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ONuJY2KtI2KHJtsYCPsFhw7heZvdRq+s7WoctleT5QQ=;
-        b=TggJGyLRo1HRvt/pRvDIshdpi1yWybihn+FBrap5TZnppegUtLScnOP91PzLXX5PrF
-         yvAZUiM4XmkzH9kQaooMWxlHOlD3vRtZt8nWvO3zFCu7Qu9abaI6vpf7qjayiW+40zts
-         xteZBq/Ju9HP2qbT9hsUCtVyGHm3ASfvZL3hQcajxhdUP2UH6ThXqU7wM09q3104wwRV
-         dAWRNQpoWN4jAAjEnO94c4zJoblAM/380BFiJjEGmU4Avmj/gAbov1JqWiIT5zoO1XUT
-         XTgiWKjK1kJaweTF+2w0NHziKgAU6DbC6v/m9XPdq+4JGH//qxO71LLTjbj7KiPCmUhh
-         NSLQ==
-X-Gm-Message-State: AC+VfDw6ZFTTjCEj/+nzGJ3FXpBQF9yW5tX9cNPQJvUicdfjv0zngXdg
-        Xy2tBPmlsW+AvHSsf9umdQUn9w==
-X-Google-Smtp-Source: ACHHUZ5OJ/YLytKU3bCRqMPBudelHZ3QHoMBNuG0N9S8Ng5wRUmLHpOMp0yEFnGPVTQTRkijdezw5Q==
-X-Received: by 2002:a17:907:c1e:b0:94f:250b:2536 with SMTP id ga30-20020a1709070c1e00b0094f250b2536mr39106884ejc.28.1684333319732;
-        Wed, 17 May 2023 07:21:59 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
-        by smtp.gmail.com with ESMTPSA id ks16-20020a170906f85000b00947740a4373sm12136992ejb.81.2023.05.17.07.21.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 07:21:59 -0700 (PDT)
-Message-ID: <83f484ff-f170-6f32-f4b4-9743eb6d0b4c@linaro.org>
-Date:   Wed, 17 May 2023 16:21:58 +0200
+        with ESMTP id S229669AbjEQOZL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:25:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2866131
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:25:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8EFE763EDB
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 14:25:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92E1EC433D2;
+        Wed, 17 May 2023 14:25:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684333510;
+        bh=1Dhwlac21N7ey15bOhy39Z0+Sh+RslIFzrW1eG0d8Dc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=i0C4K8amXrs4WpK0bt4cyjr3Zoz1ySv2+y+FKIS8z/UKEcYSo+pbMGiGsIb6Hcru2
+         KZfYnis/IKZlbnXk8n8F1kTLDggJNXQjUC+IiFi4C/8+XLLCT3aqwZYNLthxUcaK/e
+         tFnj77Ht25StijnoYLVWd9ilTEywf7QThhbFvWTZj2jaXQydVNqFFkC5LvEC6G3byX
+         qL91uNa5lVPwPquhQHREw4Qe1yCYjBXwUl3kN13gEeeR9jEKNoVAlz8DM5WQIYGgbh
+         la2mPUWaWRAQc8Amz6P8kn4jMX6kH7dMwV3Mmdm7CebANznOtQ+oYliUFWeyY/kEIC
+         Mou9zngaVJJWw==
+Date:   Wed, 17 May 2023 23:25:06 +0900
+From:   Mark Brown <broonie@kernel.org>
+To:     AS50 CTLin0 <ctlin0@nuvoton.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, YHCHuang@nuvoton.com,
+        KCHSU0@nuvoton.com, WTLI@nuvoton.com, SJLIN0@nuvoton.com,
+        ctlin0.linux@gmail.com
+Subject: Re: [PATCH] ASoC: dt-bindings: nau8315: Convert to dtschema
+Message-ID: <ZGTjwpR4ZKKtXy4m@finisterre.sirena.org.uk>
+References: <20230516054944.1081808-1-CTLIN0@nuvoton.com>
+ <e2819075-c41f-716b-023f-fb1ad13a3466@linaro.org>
+ <cbeabc50-35f7-70ee-5165-8a785513b1fc@nuvoton.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v5 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc: convert
- to yaml
-Content-Language: en-US
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor.dooley@microchip.com,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230517094119.2894220-1-claudiu.beznea@microchip.com>
- <20230517094119.2894220-3-claudiu.beznea@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230517094119.2894220-3-claudiu.beznea@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="x2XVQy2HSnCc2cWo"
+Content-Disposition: inline
+In-Reply-To: <cbeabc50-35f7-70ee-5165-8a785513b1fc@nuvoton.com>
+X-Cookie: Avoid contact with eyes.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2023 11:41, Claudiu Beznea wrote:
-> Convert Atmel PMC documentation to yaml. Along with it clock names
-> were adapted according to the current available device trees as
-> different controller versions accept different clock (some of them
-> have 3 clocks as input, some has 2 clocks as inputs and some with 2
-> input clocks uses different clock names).
 
-Thank you for your patch. There is something to discuss/improve.
+--x2XVQy2HSnCc2cWo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Wed, May 17, 2023 at 11:28:46AM +0800, AS50 CTLin0 wrote:
+> On 5/17/2023 12:10 AM, Krzysztof Kozlowski wrote:
 
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - atmel,at91rm9200-pmc
-> +              - atmel,at91sam9260-pmc
-> +              - atmel,at91sam9g20-pmc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +          maxItems: 2
-> +        clock-names:
-> +          items:
-> +            - const: slow_xtal
-> +            - const: main_xtal
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - atmel,sama5d2-pmc
-> +              - atmel,sama5d3-pmc
-> +              - atmel,sama5d4-pmc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +          maxItems: 2
-> +        clock-names:
-> +          items:
-> +            - const: slow_clk
-> +            - const: main_xtal
+> > The only thing driver is doing is to toggle this pin. If it is missing
+> > the entire driver is noop, thus above comment is a bit funny. It
+> > probably should be mandatory pin. But I see it was there since beginning
+> > so ok.
 
-This and previous if, should be squashed. You have exactly the same then:.
+No, it's not just that - the driver also describes the supported formats
+and rates to the subsystem so we can constrain the DAI appropraitely.
 
+--x2XVQy2HSnCc2cWo
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-Best regards,
-Krzysztof
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRk478ACgkQJNaLcl1U
+h9CtjQf/U8+HjwzklTu3T4CIP10H9Oh9JrvIuqh5nk+6nXZxz75nPZg+2ugCBUoN
+6W2nhN0DRI6rPf88jFJ/OO0qS6d0Vvf2l3FeXKconU2I71gifGtQxt+hvCsODqkI
+00wulEv+2MNNAec1HyeDLYoF2ezD1s1ZjsKtryhbt3DAWVzXN8X2lExxWpzG2a9b
+6onuu0zVLGlGgYw0BeIE+KhpIzqaRuk9ogJnGxqUlhlnanJXvHfJR75dWEGOPW6m
+6Hf5TqeNZa8xn2d2El3o748/umwUxoimn5/qioGA2S02c7V2ExHW7YICu883ief5
+a0DjxBswhr/PJh5rPX9Hi34ZhZJliA==
+=594/
+-----END PGP SIGNATURE-----
 
+--x2XVQy2HSnCc2cWo--
