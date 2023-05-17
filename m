@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9384A70608F
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 09:00:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40E4D706095
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 09:01:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbjEQHA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 03:00:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37648 "EHLO
+        id S229724AbjEQHBu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 03:01:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbjEQHAz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 03:00:55 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5601919B3
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 00:00:53 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-510b56724caso6614098a12.1
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 00:00:53 -0700 (PDT)
+        with ESMTP id S229675AbjEQHBo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 03:01:44 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29EB6358B
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 00:01:42 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-50bc4bc2880so539330a12.2
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 00:01:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684306852; x=1686898852;
+        d=linaro.org; s=google; t=1684306900; x=1686898900;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JAjF1NXEM4zGYNUukISUAOQ2ax8auRzyW2rSkhWnq7Q=;
-        b=hdRkNFTlt7MrqcSUjSKPfU+olaNsYieuYS0HQkLfFKT5mhZcveQN8ic4Jt2GSaG6oJ
-         PF5liBhs0A1D97/MnvEFJLvkmaVF0rL4AvEU7NiBtKDVhto2H8jpZRlb1Vmg+cAddNm8
-         KESA/O5auVtRs3Yt0+aNA/zUT7NzWf3Zw4JhO+PBDpbFCmdqwWf0VQ4mGI/OkNz5vfYd
-         lk2s1bYCEZJXGh1/OYzNvQPzTgOwJFQi8V9qk3i2i3fQeOICBa/O5vve1bjy+eyj7qUr
-         t4XtJirJHyajJiOvfDzNrSmx9/3vcvmbhbOyWtVPBptzAOMFHXxlwTuJlwugdDt0Zucx
-         pykA==
+        bh=Eudh4inWklLfywh9TpEbNPnOHsTbUH6VKtKxjFTWxyU=;
+        b=Docejfk3kZ/UN4dmv+Anhivz5V45YpqS5q2HEi+RLT30w0P9o6IGlEbbouWrQBet/R
+         8yOuN5VW/AXWr+fHPn7mafafhdGW8llxs1fnxMo9kOgwnEzAlEkU4qLaLKD6MX1pSEgS
+         hKIE6MBGOtGxLo8bp0/xeN303djbakXfvqbZjBC76Xvt9O5r46fhZsiKQYIhtBLUbfPA
+         3Gol+80gBmHIkbiRpaazXeu4akqktexsIaz9di/ncO1rhInMmCFGV178lHNqQaEIb2g7
+         k0x7Hzkv9XxTjKZlzGeT+TjPbvGBrR5rtoBkI17qKSTGE3OEZWnnWJLMpu836Kg1IYdk
+         FUvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684306852; x=1686898852;
+        d=1e100.net; s=20221208; t=1684306900; x=1686898900;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JAjF1NXEM4zGYNUukISUAOQ2ax8auRzyW2rSkhWnq7Q=;
-        b=c1LO2/2XE3JTrG9hpDuzeGJF3/JDjULOm/kSAWaIQiaVpxZ96Y3QEmgabbaFafGMAt
-         8BZs2gtKxz3zxZ7H8VY4gSUrM7T0A9ThM4leHiUVWouGIrgyA2m+tdAhPE3UcGreAa7A
-         qcquZDTkD+r3kfcFUQgEU+LISAjY4qnn92Rr0zBKRMt8tWL8zks2s0aSy17qg0zFyPLY
-         4fBi8pYfJ++C2pRMMd4SGp2JIcg2BP4LvuvL3Jjpv4UAYwAlkHe+NsSvm7yGj88D+5tB
-         irFmfGl5ZS9pNEttA0tpOU72a3vQurptGnBshtVvmTt5rCUythiI99i+XkWOZxYjVQ2B
-         Vflw==
-X-Gm-Message-State: AC+VfDzyFlLwwkCz7SWmiF6cKvn9rUC94+Geke5FlX7TOOsZ69EOGnJJ
-        SnBg6UEDQAtKoFLTcLhVJD1/qQ==
-X-Google-Smtp-Source: ACHHUZ6BjmcvhdPU38ZrpUfAaHbkeuBu2xxSZvXzuVAHV3S1jyt12w+dX7YUyco99giSrFC0CW/q6A==
-X-Received: by 2002:a17:907:3f0e:b0:96a:316f:8aaa with SMTP id hq14-20020a1709073f0e00b0096a316f8aaamr920201ejc.37.1684306851695;
-        Wed, 17 May 2023 00:00:51 -0700 (PDT)
+        bh=Eudh4inWklLfywh9TpEbNPnOHsTbUH6VKtKxjFTWxyU=;
+        b=kIS7e4Tjmlq/qO/mx7Tgvnd5Hnnh1uCc7Ok/LosuvEPG8yZ6v+jHPBO4BXPmEKsJE/
+         fxVyxG81zsrwiOJGum1TF2xfjAj9fLCR7zUWTFsgjLxUzWIBeF1B8BH/Rt20B8fBJE2k
+         pK2ixiYX294/zICbrdWmUPeSEN2EAcPQMibGoLcxs9NKwXNdlsQsyvwWtaxJlLeJg3Hu
+         FGFw8gusv+8l4UqIcD7DwPpSporKiRz9tYFrGZHArd3OGiX2in8CnM8aZiBLeS5pOu6e
+         tjm0SjJz9cFyH597yQ4RqkXCrmVyG7Qbi9ADzTCJnYpMJWJqeBYYQYjgmsxIlD9KdmEm
+         zhhw==
+X-Gm-Message-State: AC+VfDwrcjVnv15KX3ZqGdHTWRL4vnfxqoYMvNr6zxNK8nF8pUsG/qCi
+        vsNXdPJ6Ne/rCUIJi9RwaZc/wA==
+X-Google-Smtp-Source: ACHHUZ6M/hgvmz5FYkFFbF8FjI6LYzfAb484NWf2CE9BH51n/xY7xJ7MX2+il0qYXyLhlnjnL+yC2g==
+X-Received: by 2002:a17:907:318b:b0:962:9ffa:be19 with SMTP id xe11-20020a170907318b00b009629ffabe19mr36669810ejb.5.1684306900651;
+        Wed, 17 May 2023 00:01:40 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
-        by smtp.gmail.com with ESMTPSA id mm10-20020a170906cc4a00b00960005e09a3sm11866796ejb.61.2023.05.17.00.00.50
+        by smtp.gmail.com with ESMTPSA id z23-20020a17090674d700b0096ac911ecb8sm6443334ejl.55.2023.05.17.00.01.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 00:00:51 -0700 (PDT)
-Message-ID: <cfba78d7-e563-4544-00f3-0991b91eb1f3@linaro.org>
-Date:   Wed, 17 May 2023 09:00:49 +0200
+        Wed, 17 May 2023 00:01:40 -0700 (PDT)
+Message-ID: <124a5697-9bcf-38ec-ca0e-5fbcae069646@linaro.org>
+Date:   Wed, 17 May 2023 09:01:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v3 2/4] dt-bindings: thermal: tsens: Add ipq9574
- compatible
+Subject: Re: [PATCH v5] dt-bindings: net: nxp,sja1105: document spi-cpol/cpha
 Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        amitk@kernel.org, thara.gopinath@gmail.com, rafael@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+To:     Jakub Kicinski <kuba@kernel.org>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Praveenkumar I <quic_ipkumar@quicinc.com>
-References: <cover.1684140883.git.quic_varada@quicinc.com>
- <37adcf5d8d545a076e8ed971a4fb6c6c2833ef3c.1684140883.git.quic_varada@quicinc.com>
- <b7e749ff-f4f0-0e61-9aae-876db4278fbc@linaro.org>
- <20230516120426.GA1679@varda-linux.qualcomm.com>
- <1999753b-ceee-d66c-9a48-cbcbb8e6236e@linaro.org>
- <20230517055726.GA3165@varda-linux.qualcomm.com>
+        Conor Dooley <conor.dooley@microchip.com>
+References: <20230515074525.53592-1-krzysztof.kozlowski@linaro.org>
+ <20230515074525.53592-1-krzysztof.kozlowski@linaro.org>
+ <20230515105035.kzmygf2ru2jhusek@skbuf> <20230516201000.49216ca0@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230517055726.GA3165@varda-linux.qualcomm.com>
+In-Reply-To: <20230516201000.49216ca0@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,31 +85,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2023 07:57, Varadarajan Narayanan wrote:
-> Part-1 is adding the 'const' entries at the beginning i.e.
+On 17/05/2023 05:10, Jakub Kicinski wrote:
+> On Mon, 15 May 2023 13:50:35 +0300 Vladimir Oltean wrote:
+>> On Mon, May 15, 2023 at 09:45:25AM +0200, Krzysztof Kozlowski wrote:
+>>> Some boards use SJA1105 Ethernet Switch with SPI CPHA, while ones with
+>>> SJA1110 use SPI CPOL, so document this to fix dtbs_check warnings:
+>>>
+>>>   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: ethernet-switch@0: Unevaluated properties are not allowed ('spi-cpol' was unexpected)
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>>
+>> Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 > 
-> 	+      - const: qcom,tsens-v0_1
-> 	+      - const: qcom,tsens-v1
-> 	+      - const: qcom,tsens-v2
-> 	+      - const: qcom,ipq8074-tsens
-> 
-> Part-2 is changing from one valid syntax to another i.e.
-> 
-> 	+        items:
-> 	+          - enum:
-> 	+              - qcom,ipq9574-tsens
-> 	+          - const: qcom,ipq8074-tsens
-> 
-> Without both of the above changes, either or both of dtbs_check
-> & dt_binding_check fails. So, it is not possible to just add the
-> "valid hunk" (part-2) alone.
+> Is my instinct that this should go to net-next correct?
 
-Of course it is. All schema files work like that...
-> 
-> If having both part-1 and part-2 in the same patch is not
-> acceptable, shall I split them into two patches? Please let me know.
+Yes, apologies, I usually forget the net-next tag.
 
-No, hunk one is not justified.
+Shall I resend?
 
 Best regards,
 Krzysztof
