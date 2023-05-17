@@ -2,161 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C479706378
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 11:00:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 603D5706393
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 11:05:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230016AbjEQJAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 05:00:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46110 "EHLO
+        id S229743AbjEQJF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 05:05:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229669AbjEQJA2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 05:00:28 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39BCB2D76
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 02:00:05 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-96b4ed40d97so73700266b.0
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 02:00:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684314001; x=1686906001;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5aP1Bwp5qtJwbT+wMpc6pfdKQuEptg+56ugwOAw4oCA=;
-        b=XrrUZh6f6LmSNquholGVqzn938gZHWYRTbCZkcVjUJ4Wf0nZycEjEZEt2+SY5Pu+/z
-         vXBnih3T1ywKel4QD7mW58KC/Z/zF925I369fzsy1dadd5fmxFd2JHWcw56afkzMYhV4
-         UDRc0Tcsd+r9Fwsq2qMqgEhUzH+DaDxZn0FPUyNoM+hqWClchWyrkWT8B/sXQUISsux8
-         LsoBTfhb8YL5weK3PyoH6God5xLPCE1cXXO1u/ylTcX+WKgodI8WknoCyqgCba4eizhq
-         Yq3vUyUyyAFAshubzmKJmB6oMei/iWtnB1ksiQpjlFlE2VAfTpa6JHws8je+76ISj5+j
-         k2hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684314001; x=1686906001;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5aP1Bwp5qtJwbT+wMpc6pfdKQuEptg+56ugwOAw4oCA=;
-        b=XjF2maWOfI6mRTPDaIfjO5qYVwOiu2kh7wfDgQBZt/sMnjEddDgHCiJOc/Q3500nC5
-         hW1uLi/eMnkxWBTjyFMXZ8ILLyKb8Wf8yUy2k0vIxolC87MC371F269/9EdjdqzaGmpu
-         qljlFHKZFBP+puKqdT4wqFuX0EO8dszlXZW6YFIW/WJhmbSceRIRV4Kmif33ZhuM8xk9
-         weSL9CQ46RYSJcHJI8GGybVSz3cS/u8bE+GlyMwjzlidylfTPZ1oB9jWxToGn23NgR4P
-         3tidx8u/BegWyzTjR12RmBqH3Y68oPJqREJ+VNzvU2khb3s7HBHYKmtjKyT8mzirv47Y
-         XM1w==
-X-Gm-Message-State: AC+VfDz33ovtAlkpLPv0dV47CR0jT8wOCRE2MN51epUHOlHFoybTJX/8
-        JUuVvz3jLOvjyZg7gPQqPPXt7g==
-X-Google-Smtp-Source: ACHHUZ728nsYzi+7djXn5Bst0NSuHUjAvX6KxFbPzVdbd8gv9WeH6uqMfQXGa6/NdvavuigyguQdcw==
-X-Received: by 2002:a17:907:2d1f:b0:968:db2f:383 with SMTP id gs31-20020a1709072d1f00b00968db2f0383mr29248733ejc.53.1684314001021;
-        Wed, 17 May 2023 02:00:01 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
-        by smtp.gmail.com with ESMTPSA id mc11-20020a170906eb4b00b00969f25b96basm11269272ejb.204.2023.05.17.01.59.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 02:00:00 -0700 (PDT)
-Message-ID: <ac6d8bcb-b16b-6c50-a9b6-975560059bdc@linaro.org>
-Date:   Wed, 17 May 2023 10:59:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/4] dt-bindings: touchscreen: add virtual-touchscreen
- and virtual-buttons properties
-Content-Language: en-US
-To:     Javier Carrasco <javier.carrasco@wolfvision.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        with ESMTP id S229529AbjEQJF0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 05:05:26 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD4F4EC9;
+        Wed, 17 May 2023 02:05:00 -0700 (PDT)
+Received: (Authenticated sender: gregory.clement@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id BFF40C000A;
+        Wed, 17 May 2023 09:04:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1684314299;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Gc/ykMJgF896xHb9tBmtxw9aKhzQAk9UOB5iv7nc/Dw=;
+        b=oJaV1qENwrA5SZsq1tDtT0AngyzBMxX7okvJgV7hVXIwY0Jbe3qzriXQhSA9C6HIHghw+w
+        zY+ULQbKbA5LzZmNi07DjZsc/EhgDyJc3n7nDE3SzyvjGhD7HHEENBHrgRBXvFkXI8hXpz
+        CX9orDg4gKJ3jIR28Hel6SY4VFiRCWs0g3GK6HTgnuKQ01hB1ywTpAysQAe6c/UlzXxUIL
+        ShF7zyMNVf5Jkbxi/CS047JRwB6/aOhYTa4QWFfDPiKScur814xBmXf8AyAnj5OJNp4Nme
+        LHvaXEL0y/H06C2Y7U2DYrhc0fEySGQv7rEzEjgjXPz5J5h0aWPivA+Hg63mGg==
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Bastian Hecht <hechtb@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230510-feature-ts_virtobj_patch-v2-0-f68a6bfe7a0f@wolfvision.net>
- <20230510-feature-ts_virtobj_patch-v2-2-f68a6bfe7a0f@wolfvision.net>
- <58c8b822-8b47-3269-3b78-334b53c20bff@linaro.org>
- <99e39fb6-26e0-eb9a-3c07-e07d1fa4122c@linaro.org>
- <d32e46aa-af50-ad60-7679-5c235487039e@wolfvision.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d32e46aa-af50-ad60-7679-5c235487039e@wolfvision.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: marvell: add missing cache properties
+In-Reply-To: <b2d8cb74-9675-d449-971d-016a1df66ba6@linaro.org>
+References: <20230421223159.115412-1-krzysztof.kozlowski@linaro.org>
+ <b2d8cb74-9675-d449-971d-016a1df66ba6@linaro.org>
+Date:   Wed, 17 May 2023 11:04:58 +0200
+Message-ID: <877ct7xr9h.fsf@BL-laptop>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-GND-Spam-Score: 200
+X-GND-Status: SPAM
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 11:03, Javier Carrasco wrote:
-> On 16.05.23 10:13, Krzysztof Kozlowski wrote:
->> On 16/05/2023 10:10, Krzysztof Kozlowski wrote:
->>> On 15/05/2023 17:00, Javier Carrasco wrote:
->>>> The virtual-touchscreen object defines an area within the touchscreen
->>>> where touch events are reported and their coordinates get converted to
->>>> the virtual origin. This object avoids getting events from areas that
->>>> are physically hidden by overlay frames.
->>>>
->>>> For touchscreens where overlay buttons on the touchscreen surface are
->>>> provided, the virtual-buttons object contains a node for every button
->>>> and the key event that should be reported when pressed.
->>>>
->>>> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
->>>> ---
->>>
->>>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> Apologies, second thoughts - why calling all this binding and properties
->> "virtual"? That's the word which immediately raises questions, because
->> bindings are only for real things, not virtual.
->>
->> Touchscreen is just clipped, not virtual, so maybe "clipped-area"
->> instead of virtual-touchscreen? Buttons are real, so maybe just "buttons"?
->>
->> Best regards,
->> Krzysztof
->>
-> I guess it is a matter of perspective. For a user the buttons and the
-> clipped area are 100% real, but for a driver developer they are virtual
-> in the sense that there is not an "active" hardware behind apart from
-> the original touchscreen.
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
+> On 22/04/2023 00:31, Krzysztof Kozlowski wrote:
+>> As all level 2 and level 3 caches are unified, add required
+>> cache-unified properties to fix warnings like:
+>> 
+>>   ac5-98dx35xx-rd.dtb: l2-cache: 'cache-unified' is a required property
+>> 
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> 
+>> ---
+>> 
+>> Please take the patch via sub-arch SoC tree.
+>
+> Hi Andrew and Gregory,
+>
+> Could you grab this one?
 
-The feature describes the hardware, not driver. To understand what does
-it mean, look from hardware point of view - does it have some virtual
-area or clipped area?
+Applied on mvebu/dt64
 
-> 
-> I just wanted to avoid misunderstandings when implementing this feature
-> for other drivers. One might wonder if the touchscreen now has
-> mechanical keys attached to it. With the "virtual-" prefix it is clear
-> that the objects are not additional pieces of hardware or extensions of
-> the touchscreen functionality.
+Thanks,
 
-But what if actual physical buttons are added there? You still would
-have clipped/virtual area, just without virtual buttons.
+Gregory
 
-> 
-> For the virtual-touchscreen your point is stronger because there is
-> indeed a real touchscreen hardware no matter the area you define, but my
-> approach was keeping homogeneous names for the different objects in case
-> some new ones might appear in the future: every object that gets on top
-> of the touchscreen area is virtual, so add a new object type and name it
-> virtual-xxx.
+>
+> Best regards,
+> Krzysztof
+>
 
-To me, word "virtual" suggests something which does not exist. Kind of
-something abstracted or symbolic. Opposite to "real". Here all this
-really exists. You have physical stickers on the touchscreen.
-
-Maybe this should be then "dedicated"? or "isolated"?
-
-Or just "overlay-area"?
-
-> 
-> I have nothing against about doing some renaming and I will do it if it
-> is required, but with the documentation I think it is now more clear
-> what everything means and in the end it might make more sense for the
-> drivers so they can differentiate between real and virtual devices.
-
-Best regards,
-Krzysztof
-
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
