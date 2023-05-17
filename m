@@ -2,95 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF79270768D
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 01:45:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCC7A707697
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 01:52:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229460AbjEQXpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 19:45:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60822 "EHLO
+        id S229549AbjEQXwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 19:52:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbjEQXpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 19:45:11 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8C9149DC
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 16:45:10 -0700 (PDT)
-Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: festevam@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 2074E84768;
-        Thu, 18 May 2023 01:45:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684367109;
-        bh=dL0+UeJibxu8mzGrndHBRMbTCz4acRDAzM78ya9TO88=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=B1IzQh0rG5rT6iXLxuG2LRuF0nH0FMdQrjSNrMKYkRKl13f7GS/mbksan+FvlYNO+
-         Pn//XYyKCmgWEHRUmqfXtotfXanK1iiKLipDyfu5n+vfsxxackZ5sCwGGhkSq88uDh
-         ExfQ9a0xxMKGT5CnTqg2K7ax7+oibOMzL9GjgRmiOxGKYuZgjY0QG/MyBSMjY67ETi
-         mpU65Mpk2AXrcXQeec/0QDKQmmPWEiuiV6QRXVQxhhUaS3HSIlN0a/CXfSGKyCJyfl
-         PmPq41C0KEqNG7jZpoar7zS/N/SS7pT/cSLHLr3LFMiM2Nq5b94Q6i+nurLZkJtEFz
-         WNF8sRz/cRbJw==
+        with ESMTP id S229518AbjEQXwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 19:52:30 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 942393AA2;
+        Wed, 17 May 2023 16:52:28 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34HNhWdd023511;
+        Wed, 17 May 2023 23:52:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=+YfXMZOV+Di1dlo3VxyeoiX3A94aQPiUQSHo2yDIK1o=;
+ b=hq4P+GemjSVPvJVIRYwVEXDbNdjYR8UMWv5oPOF9K6uE/CZpO6FXLPuFaiEmicMKnrb7
+ RoJc7vUp2rkRaJ9STCVqK5d81xxP1kpVquUJagYjHsNU2OkylsjRPxAEztdrdWkb4372
+ +3U6JZ5EVA5MNF+ePCM3CfVJZ+YVGzW01G5ynQFDOYGRoeSV6EpbcM32cHOCliL9DByZ
+ XPd9tOEIm2qLfVUMpMjhkHJcBwP9clh9JVFTweu0ESvQxtzc+njNYNkevojyNKzv0/re
+ rB7LTjSrSJz/q70XqYx6KoKxHp0Kfmnuh6sKE63wb0Fz/j7XxaLXwYbutr93gLtADnkF 3g== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qn73ur5qr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 17 May 2023 23:52:24 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34HNqNwE017108
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 17 May 2023 23:52:23 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 17 May 2023 16:52:23 -0700
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2] arm64: dts: qcom: sc8280xp: Add SDC2 and enable on CRD
+Date:   Wed, 17 May 2023 16:52:17 -0700
+Message-ID: <20230517235217.1728548-1-quic_bjorande@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 17 May 2023 20:45:09 -0300
-From:   Fabio Estevam <festevam@denx.de>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: imx6sx: Add LDB support
-In-Reply-To: <16ecb29a-4d52-9464-ecb0-2e45262af105@denx.de>
-References: <20230517210210.12183-1-festevam@gmail.com>
- <16ecb29a-4d52-9464-ecb0-2e45262af105@denx.de>
-Message-ID: <509c272d28cf3e6f642115fb424e51bc@denx.de>
-X-Sender: festevam@denx.de
-User-Agent: Roundcube Webmail/1.3.6
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 2OdYG0yZOb-JJrhr1-9Vyoe2mZ9n49aM
+X-Proofpoint-GUID: 2OdYG0yZOb-JJrhr1-9Vyoe2mZ9n49aM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-17_04,2023-05-17_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ lowpriorityscore=0 priorityscore=1501 mlxlogscore=999 malwarescore=0
+ impostorscore=0 bulkscore=0 mlxscore=0 clxscore=1015 adultscore=0
+ spamscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305170196
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+The CRD has Micro SD slot, introduce the necessary DeviceTree nodes for
+enabling this.
 
-On 17/05/2023 20:15, Marek Vasut wrote:
+Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+---
 
->> diff --git a/arch/arm/boot/dts/imx6sx.dtsi 
->> b/arch/arm/boot/dts/imx6sx.dtsi
->> index 4233943a1cca..7a8a00d81666 100644
->> --- a/arch/arm/boot/dts/imx6sx.dtsi
->> +++ b/arch/arm/boot/dts/imx6sx.dtsi
->> @@ -843,8 +843,39 @@ iomuxc: pinctrl@20e0000 {
->>     			gpr: iomuxc-gpr@20e4000 {
->>   				compatible = "fsl,imx6sx-iomuxc-gpr",
->> -					     "fsl,imx6q-iomuxc-gpr", "syscon";
->> +					     "fsl,imx6q-iomuxc-gpr", "simple-bus", "syscon";
-> 
-> Can we really combine simple-bus and syscon or do we need something 
-> like
+Changes since v1:
+- Order of pinctr-N and pinctrl-names
+- Reset GCC_SDCC2_BCR and not sdc4
 
-Thanks for your review.
+ arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 81 +++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi    | 43 ++++++++++++
+ 2 files changed, 124 insertions(+)
 
-> 5a51e1f2b0834 ("arm64: dts: imx8mp: Drop simple-bus from
-> fsl,imx8mp-media-blk-ctrl")
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+index 5b25d54b9591..ff9cebbccfcb 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+@@ -308,6 +308,13 @@ vreg_l1c: ldo1 {
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
++		vreg_l6c: ldo6 {
++			regulator-name = "vreg_l6c";
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <2960000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
+ 		vreg_l7c: ldo7 {
+ 			regulator-name = "vreg_l7c";
+ 			regulator-min-microvolt = <2504000>;
+@@ -318,6 +325,13 @@ vreg_l7c: ldo7 {
+ 						   RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
++		vreg_l9c: ldo9 {
++			regulator-name = "vreg_l9c";
++			regulator-min-microvolt = <2960000>;
++			regulator-max-microvolt = <2960000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
+ 		vreg_l13c: ldo13 {
+ 			regulator-name = "vreg_l13c";
+ 			regulator-min-microvolt = <3072000>;
+@@ -600,6 +614,19 @@ &remoteproc_nsp0 {
+ 	status = "okay";
+ };
+ 
++&sdc2 {
++	pinctrl-0 = <&sdc2_default_state>;
++	pinctrl-1 = <&sdc2_sleep_state>;
++	pinctrl-names = "default", "sleep";
++
++	vmmc-supply = <&vreg_l9c>;
++	vqmmc-supply = <&vreg_l6c>;
++
++	cd-gpios = <&tlmm 131 GPIO_ACTIVE_LOW>;
++
++	status = "okay";
++};
++
+ &uart17 {
+ 	compatible = "qcom,geni-debug-uart";
+ 
+@@ -842,6 +869,60 @@ wake-n-pins {
+ 		};
+ 	};
+ 
++	sdc2_default_state: sdc2-default-state {
++		clk-pins {
++			pins = "sdc2_clk";
++			drive-strength = <16>;
++			bias-disable;
++		};
++
++		cmd-pins {
++			pins = "sdc2_cmd";
++			drive-strength = <16>;
++			bias-pull-up;
++		};
++
++		data-pins {
++			pins = "sdc2_data";
++			drive-strength = <16>;
++			bias-pull-up;
++		};
++
++		card-detect-pins {
++			pins = "gpio131";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-disable;
++		};
++	};
++
++	sdc2_sleep_state: sdc2-sleep-state {
++		clk-pins {
++			pins = "sdc2_clk";
++			drive-strength = <2>;
++			bias-disable;
++		};
++
++		cmd-pins {
++			pins = "sdc2_cmd";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++
++		data-pins {
++			pins = "sdc2_data";
++			drive-strength = <2>;
++			bias-pull-up;
++		};
++
++		card-detect-pins {
++			pins = "gpio131";
++			function = "gpio";
++			drive-strength = <2>;
++			bias-disable;
++		};
++	};
++
+ 	tpad_default: tpad-default-state {
+ 		int-n-pins {
+ 			pins = "gpio182";
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+index 8fa9fbfe5d00..3711f109aeaf 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+@@ -2815,6 +2815,49 @@ data-pins {
+ 			};
+ 		};
+ 
++		sdc2: mmc@8804000 {
++			compatible = "qcom,sc8280xp-sdhci", "qcom,sdhci-msm-v5";
++			reg = <0 0x08804000 0 0x1000>;
++
++			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "hc_irq", "pwr_irq";
++
++			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
++				 <&gcc GCC_SDCC2_APPS_CLK>,
++				 <&rpmhcc RPMH_CXO_CLK>;
++			clock-names = "iface", "core", "xo";
++			resets = <&gcc GCC_SDCC2_BCR>;
++			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
++					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
++			interconnect-names = "sdhc-ddr","cpu-sdhc";
++			iommus = <&apps_smmu 0x4e0 0x0>;
++			power-domains = <&rpmhpd SC8280XP_CX>;
++			operating-points-v2 = <&sdc2_opp_table>;
++			bus-width = <4>;
++			dma-coherent;
++
++			status = "disabled";
++
++			sdc2_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-100000000 {
++					opp-hz = /bits/ 64 <100000000>;
++					required-opps = <&rpmhpd_opp_low_svs>;
++					opp-peak-kBps = <1800000 400000>;
++					opp-avg-kBps = <100000 0>;
++				};
++
++				opp-202000000 {
++					opp-hz = /bits/ 64 <202000000>;
++					required-opps = <&rpmhpd_opp_svs_l1>;
++					opp-peak-kBps = <5400000 1600000>;
++					opp-avg-kBps = <200000 0>;
++				};
++			};
++		};
++
+ 		usb_0_qmpphy: phy@88eb000 {
+ 			compatible = "qcom,sc8280xp-qmp-usb43dp-phy";
+ 			reg = <0 0x088eb000 0 0x4000>;
+-- 
+2.25.1
 
-As is, if simple-bus is dropped, the LDB bus is not probed.
-
-> 9cb6d1b39a8f5 ("soc: imx: imx8m-blk-ctrl: Scan subnodes and bind
-> drivers to them")
-
-On the i.MX6SX, I am not sure we can add devm_of_platform_populate() 
-like in the
-imx8m-blk-ctrl case.
-
-imx8m-blk-ctrl has a probe function, but imx6q-iomuxc-gpr does not.
-
-Thanks
