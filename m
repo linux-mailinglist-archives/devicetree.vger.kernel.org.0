@@ -2,94 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D4E70729C
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 21:54:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30CDD7070E8
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 20:38:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbjEQTyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 15:54:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39064 "EHLO
+        id S229454AbjEQSiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 14:38:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230199AbjEQTyM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 15:54:12 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5084D9EC1
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 12:53:52 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-965b8a969b3so83359666b.1
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 12:53:52 -0700 (PDT)
+        with ESMTP id S229533AbjEQSiH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 14:38:07 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CDFB524E;
+        Wed, 17 May 2023 11:38:05 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2ac89e6a5a1so11830611fa.0;
+        Wed, 17 May 2023 11:38:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684353231; x=1686945231;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S1CrqsM6REqqjoJg43OXDGuz7NrBfq2XBbMd1jfiYc8=;
-        b=nvFFiKYK8Inxz6gI7jNROeHfhT6g6NHZMY6a2hM/5cg9Sf84l/e8H0NbMLKIs47H+0
-         8VJUQzEyaVkXOB/ua7avOI/uAS+bfgVuMYkQH6ULHDWqaTHHdnxpTTvx5zLxIbDB9yX6
-         uUXe8WCWiaPDWdTIcxuAYYQXdXpYRgxP+BWGilbqkpk8k8fO6abnI0tzTv8mRdtDEg5T
-         Ux8gjXK+vWlMTwZlcGjIPnfyZ6uq+fR7cVZzKnpXo27aUnD+y5iuCjXHEPjHDw2G47Vj
-         Q+bg0DTGUYC7VBRn9krK3I8mtkpS4RIn/Q4A0BEZurur4dwUz6jcPrPk4lMFh+F+up3H
-         aszQ==
+        d=gmail.com; s=20221208; t=1684348684; x=1686940684;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=FuipT8N9AIZhPuetrFCf6nkInGjCzh1d3K2+VTwrcZI=;
+        b=gC+vtXyeAJ6dSdPO9ckA5gFbeFI6fhGGVE+IeeHLh/LIpDM3DveIKb2PnQypN3RyCI
+         GfrhzjmpK1KfNaTuYgFK0AiYvAeNAQM2tB05rFKDaNFtuS6HyjITY7bNHQkaczRUo10E
+         oSYee6FmENAWY0/rtA93xOVPTLBwIqbm+salh6EXh0oIQqRIlKIFNOrt/3F8+wRTF+9N
+         lyo7L7pIuyoLah1EDY3ZNBdRbOI2jnalHE6bCfmTMzXspCtMt9OkIXr3jERyGocoVZ6Z
+         NPj/L+zzFiprF7/Mq7m2YpzbTh+pRGQ1YAIGKDp1OnV+822undYgBeyjgdWWz2xL2L3r
+         nAXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684353231; x=1686945231;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S1CrqsM6REqqjoJg43OXDGuz7NrBfq2XBbMd1jfiYc8=;
-        b=Q5hwfvfye4o4LkMtnSQOXH+PZf6cQGyKAVEmH/gN7t3aiSWvR4eNk21TG8zzjUtoF1
-         8SMW2xaTbkuqtP6UXdX2PZULTj7Is8MRlLDF1WB36hk7PTT3cxb61CGIqKN0lAywzi1q
-         QdMKpiE96KuX0V8kjggOxqAhfQEAg//weLAHEO/Iu2MMpwHGONxfEFzAhWbo2vMFiPOE
-         Zn7dHQB22BQgggxcSmkZDwn2ny8iZxD2bR0MlsP7MeSdykd+lMHxn5QrGOohIzbTJ2BU
-         TCLGArnPBfARyrHBt4xWNsrzawRod1bN/NpWSKYvSHHjfAlQzNGDRcR0yX7rUGrD3ZIF
-         0AXA==
-X-Gm-Message-State: AC+VfDy9co8++oYZ3Eww5ZvKBn/FgpQ5yOILN+meN7I6G/UN4ddAgCRd
-        Iq6ZYod1dhFwMJZEeu0hrGnVyw==
-X-Google-Smtp-Source: ACHHUZ6seXg68qlaecH8kXGxgTC8MS1cd368+AF+wm8KhxoThOghaoWEMvs7Dt2XSDe4oDfE36cyfA==
-X-Received: by 2002:a17:907:d24:b0:94a:4e86:31bc with SMTP id gn36-20020a1709070d2400b0094a4e8631bcmr3716917ejc.13.1684353230888;
-        Wed, 17 May 2023 12:53:50 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d7a:e7cc:21b3:c435? ([2a02:810d:15c0:828:d7a:e7cc:21b3:c435])
-        by smtp.gmail.com with ESMTPSA id jj8-20020a170907984800b00965c7c93655sm12525855ejc.213.2023.05.17.12.53.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 12:53:50 -0700 (PDT)
-Message-ID: <8b2248e5-a89e-a296-8044-0dc552754f35@linaro.org>
-Date:   Wed, 17 May 2023 21:53:49 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/3] dt-bindings: power: qcom,rpmpd: Format RPMh levels
- better
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        d=1e100.net; s=20221208; t=1684348684; x=1686940684;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FuipT8N9AIZhPuetrFCf6nkInGjCzh1d3K2+VTwrcZI=;
+        b=mFa/sx9XQn8Yu2saLDBQ+o12+bfvlJ9fzUOkUBjn5tX9dX6vssqjdgmjkL6zHft1ZN
+         2ujyskQo16xFK+RBtX/EJ/Vi+xAgz5zTqdSeb0k653wmuRtE0S+Ua/7SrEQ5sH7pzBhY
+         l9I7UiQfJ+pXnFafQXzKCJrnt6ekKvH/Co9bUz/zbCndEZkJGcgOiNGeYOL4NnOWCDlP
+         PUSfLw5lkseztgwkFSKqkmmvUL6rBpZLlWe73dyY14K0p8bASqdaUDjlcn+fBeyAa60h
+         vPGQ/Kz57qs0xJiY0C3FtnfdoM8RYvkThn2gDA3jRyIlCXnZUkz/m3Eb4Z76fHPXMj0T
+         oNlQ==
+X-Gm-Message-State: AC+VfDz6AjiSMzdmiJfFGtqixz4j6fp5zHYzjDzpTg7ruDf6zyqE+hRy
+        bbGap5mUDYgt+WVzEFOL4Ag=
+X-Google-Smtp-Source: ACHHUZ6aSd8ko9LwiT1p/Y4sOJtZSnY3Z/munJAXGrvF4WuL83R/fb4/bH+qI5hWg4SkULozraJtkQ==
+X-Received: by 2002:a2e:800a:0:b0:2a7:96bd:9eb3 with SMTP id j10-20020a2e800a000000b002a796bd9eb3mr10581246ljg.3.1684348683477;
+        Wed, 17 May 2023 11:38:03 -0700 (PDT)
+Received: from [100.119.125.242] (95-31-187-187.broadband.corbina.ru. [95.31.187.187])
+        by smtp.gmail.com with ESMTPSA id t20-20020ac25494000000b004db0d26adb4sm3451405lfk.182.2023.05.17.11.38.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 May 2023 11:38:02 -0700 (PDT)
+Message-ID: <5d7421b6a419a9645f97e6240b1dfbf47ffcab4e.camel@gmail.com>
+Subject: Re: [PATCH v2 3/5] dt-bindings: net: add mac-address-increment
+ option
+From:   Ivan Mikhaylov <fr0st61te@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230517-topic-kailua-rpmhpd-v1-0-cd3013d051a6@linaro.org>
- <20230517-topic-kailua-rpmhpd-v1-2-cd3013d051a6@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230517-topic-kailua-rpmhpd-v1-2-cd3013d051a6@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Paul Fertser <fercerpav@gmail.com>
+Date:   Wed, 17 May 2023 21:38:02 +0000
+In-Reply-To: <38ae4ceb-da21-d73e-9625-1918b4ab4e16@linaro.org>
+References: <20230509143504.30382-1-fr0st61te@gmail.com>
+         <20230509143504.30382-4-fr0st61te@gmail.com>
+         <6b5be71e-141e-c02a-8cba-a528264b26c2@linaro.org>
+         <fc3dae42f2dfdf046664d964bae560ff6bb32f69.camel@gmail.com>
+         <8de01e81-43dc-71af-f56f-4fba957b0b0b@linaro.org>
+         <be85bef7e144ebe08f422bf53bb81b59a130cb29.camel@gmail.com>
+         <5b826dc7-2d02-d4ed-3b6a-63737abe732b@linaro.org>
+         <e6247cb39cc16a9328d9432e0595745b67c0aed5.camel@gmail.com>
+         <38ae4ceb-da21-d73e-9625-1918b4ab4e16@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2023 15:19, Konrad Dybcio wrote:
-> After adding the missing levels with a nice, easy-to-read diff,
-> reformat the defines to make them nice to look at..
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Wed, 2023-05-17 at 10:36 +0200, Krzysztof Kozlowski wrote:
+> On 16/05/2023 13:47, Ivan Mikhaylov wrote:
+> hy this is property of the hardware. I
+> > > > > understand
+> > > > > that this is something you want Linux to do, but DT is not
+> > > > > for
+> > > > > that
+> > > > > purpose. Do not encode system policies into DT and what above
+> > > > > commit
+> > > > > says is a policy.
+> > > > >=20
+> > > >=20
+> > > > Krzysztof, okay then to which DT subsystem it should belong? To
+> > > > ftgmac100 after conversion?
+> > >=20
+> > > To my understanding, decision to add some numbers to MAC address
+> > > does
+> > > not look like DT property at all. Otherwise please help me to
+> > > understand
+> > > - why different boards with same device should have different
+> > > offset/value?
+> > >=20
+> > > Anyway, commit msg also lacks any justification for this.
+> > >=20
+> > > Best regards,
+> > > Krzysztof
+> > >=20
+> >=20
+> > Krzysztof, essentially some PCIe network cards have like an
+> > additional
+> > *MII interface which connects directly to a BMC (separate SoC for
+> > managing a motherboard) and by sending special ethernet type frames
+> > over that connection (called NC-SI) the BMC can obtain MAC, get
+> > link
+> > parameters etc. So it's natural for a vendor to allocate two MACs
+> > per
+> > such a board with PCIe card intergrated, with one MAC "flashed
+> > into"
+> > the network card, under the assumption that the BMC should
+>=20
+> Who makes the assumption that next MAC should differ by 1 or 2?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof, in this above case BMC does, BMC should care about changing
+it and doing it with current codebase without any options just by some
+hardcoded numbers which is wrong.
 
-Best regards,
-Krzysztof
+>=20
+> > automatically use the next MAC. So it's the property of the
+> > hardware as
+> > the vendor designs it, not a matter of usage policy.
+> >=20
+> > Also at the nvmem binding tree is "nvmem-cell-cells" which is
+> > literally
+> > the same as what was proposed but on different level.
+> >=20
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/comm=
+it/Documentation/devicetree/bindings/nvmem?id=3D7e2805c203a6c8dc85c1cfda205=
+161ed39ae82d5
+>=20
+> How is this similar? This points the location of mac address on some
+> NV
+> storage. You add fixed value which should be added to the Ethernet.
+
+It's not the points the location, this particular option provides this
+increment for mac addresses to make use of them with multiple
+interfaces. Just part of above commit:
+"It's used as a base for calculating addresses for multiple interfaces.
+It's done by adding proper values. Actual offsets are picked by
+manufacturers and vary across devices."
+
+It is same as we talked before about mac-address-increment in openwrt
+project, if you want examples, you can look into their github. And same
+as we trying to achieve here.
+
+https://github.com/openwrt/openwrt/blob/master/target/linux/generic/pending=
+-5.15/682-of_net-add-mac-address-increment-support.patch
+
+"Lots of embedded devices use the mac-address of other interface
+extracted from nvmem cells and increments it by one or two. Add two
+bindings to integrate this and directly use the right mac-address for
+the interface. Some example are some routers that use the gmac
+mac-address stored in the art partition and increments it by one for
+the
+wifi. mac-address-increment-byte bindings is used to tell what byte of
+the mac-address has to be increased (if not defined the last byte is
+increased) and mac-address-increment tells how much the byte decided
+early has to be increased."
+
+Don't you see similarity with nvmem commit?
+
+>=20
+> I might be missing the context but there is no DTS example nor user
+> of
+> this property, so how can I get such?
+>=20
+
+I don't see it either in linux kernel DTS tree but it in DTS doc.
+
+Also, just a little bit history about older propositions
+https://lore.kernel.org/all/?q=3Dmac-address-increment
+https://lore.kernel.org/all/20200919214941.8038-5-ansuelsmth@gmail.com/
+
+
+Thanks.
+
 
