@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 613F7706C9B
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 17:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F013706C9D
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 17:25:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230301AbjEQPZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 11:25:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54198 "EHLO
+        id S232183AbjEQPZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 11:25:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232206AbjEQPZn (ORCPT
+        with ESMTP id S232225AbjEQPZn (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 11:25:43 -0400
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8966C212B
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF6BD2134
         for <devicetree@vger.kernel.org>; Wed, 17 May 2023 08:25:33 -0700 (PDT)
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 27740861BF;
+        by phobos.denx.de (Postfix) with ESMTPSA id B815486215;
         Wed, 17 May 2023 17:25:31 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684337131;
-        bh=+xQn6x8oUFrIA0o4ijehWZbii0Ux1WX6Npl6s6lpi9U=;
-        h=From:To:Cc:Subject:Date:From;
-        b=l6urBZ4SMcI4BejngZtJ0G5pO94CGdyveBtNnnl4HC63RkueHQNCEawW3NrNDhcot
-         tsJ/CKu6XzAPPjSrjdYwtva6GGFsCyB6ZPCwD/slA6AfPI7MdG5WPx7LnO15shB0QL
-         vspqKgXLqALxk+oulHbvhHXsw20eJ2Lr25oW30sEExqMSeKANzKsrpgkfu5NDUCtKD
-         NS8K6P6nftde6z+uAwJ7anvpkJW/dj5x98lAjJYe7v3TY0DpJMFAMB5Ho7U7KgDWoI
-         JUV5fo6/23NeR3P9/Go1WaLqfO8N11d77aqiMTtvkG4jM5HlzMYMD9FJ8ziT/IJJrq
-         cSQp4oP8aXsaQ==
+        s=phobos-20191101; t=1684337132;
+        bh=mBKgSqcaDPJHY/Ht41NbZ6ZqlpAt6dlamz8EHZBQHfI=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ugX9L8XEgFrcI10d1/oUWGprw5yNCtWeN3GpFvsiJHoNqhRL+J2Kn4odcwV6r6KDp
+         ia8vDcCWibrQPajzkDmiwsRmGNNQN7m4qVLYXg9BJoZNXUjKBWGOD1iH5DoJ6V1meX
+         VeOVlMz/TrsaG4+pV0748OZyuUlyJXJDH7DbcoSoplfG7OSCH3UMc96xQlGLa4qokV
+         EeghtAgs4dz4uVeV3YJOvTaMPJbLY9cMxi1GUEW4xsHWMVKZH9It+9BIdNLfvAJ/6c
+         dRnKs7ztszJ+4Xc+Vu7fT8YAIglszRcxxZXGTeMBqQTxnS0xfjupY12NVg3KG0xRtj
+         upDsIT88k7QQA==
 From:   Marek Vasut <marex@denx.de>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Marek Vasut <marex@denx.de>,
@@ -41,10 +41,12 @@ Cc:     Marek Vasut <marex@denx.de>,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         devicetree@vger.kernel.org, kernel@dh-electronics.com,
         linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v2 1/3] dt-bindings: nvmem: syscon: Add syscon backed nvmem bindings
-Date:   Wed, 17 May 2023 17:25:11 +0200
-Message-Id: <20230517152513.27922-1-marex@denx.de>
+Subject: [PATCH v2 2/3] nvmem: syscon: Add syscon backed nvmem driver
+Date:   Wed, 17 May 2023 17:25:12 +0200
+Message-Id: <20230517152513.27922-2-marex@denx.de>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230517152513.27922-1-marex@denx.de>
+References: <20230517152513.27922-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
@@ -59,10 +61,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add trivial bindings for driver which permits exposing syscon backed
-register to userspace. This is useful e.g. to expose U-Boot boot
-counter on various platforms where the boot counter is stored in
-random volatile register, like STM32MP15xx TAMP_BKPxR register.
+Add trivial driver which permits exposing syscon backed register
+to userspace. This is useful e.g. to expose U-Boot boot counter
+on various platforms where the boot counter is stored in random
+volatile register, like STM32MP15xx TAMP_BKPxR register.
 
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
@@ -78,57 +80,159 @@ Cc: kernel@dh-electronics.com
 Cc: linux-arm-kernel@lists.infradead.org
 Cc: linux-stm32@st-md-mailman.stormreply.com
 ---
-V2: Use generic syscon supernode
+V2: No change
 ---
- .../bindings/nvmem/nvmem-syscon.yaml          | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-syscon.yaml
+ drivers/nvmem/Kconfig        |  10 ++++
+ drivers/nvmem/Makefile       |   2 +
+ drivers/nvmem/nvmem-syscon.c | 105 +++++++++++++++++++++++++++++++++++
+ 3 files changed, 117 insertions(+)
+ create mode 100644 drivers/nvmem/nvmem-syscon.c
 
-diff --git a/Documentation/devicetree/bindings/nvmem/nvmem-syscon.yaml b/Documentation/devicetree/bindings/nvmem/nvmem-syscon.yaml
+diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+index b291b27048c76..4e4aecdd9c293 100644
+--- a/drivers/nvmem/Kconfig
++++ b/drivers/nvmem/Kconfig
+@@ -303,6 +303,16 @@ config NVMEM_STM32_BSEC_OPTEE_TA
+ 	  This library is a used by stm32-romem driver or included in the module
+ 	  called nvmem-stm32-romem.
+ 
++config NVMEM_SYSCON
++	tristate "Generic syscon backed nvmem"
++	help
++	  This is a driver for generic syscon backed nvmem. This can be
++	  used to expose arbitrary syscon backed register to user space
++	  via nvmem, like the U-Boot boot counter.
++
++	  This driver can also be built as a module. If so, the module
++	  will be called nvmem-syscon.
++
+ config NVMEM_STM32_ROMEM
+ 	tristate "STMicroelectronics STM32 factory-programmed memory support"
+ 	depends on ARCH_STM32 || COMPILE_TEST
+diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
+index f82431ec8aef0..d10e478e6a6c9 100644
+--- a/drivers/nvmem/Makefile
++++ b/drivers/nvmem/Makefile
+@@ -60,6 +60,8 @@ obj-$(CONFIG_NVMEM_SPMI_SDAM)		+= nvmem_qcom-spmi-sdam.o
+ nvmem_qcom-spmi-sdam-y			+= qcom-spmi-sdam.o
+ obj-$(CONFIG_NVMEM_SPRD_EFUSE)		+= nvmem_sprd_efuse.o
+ nvmem_sprd_efuse-y			:= sprd-efuse.o
++obj-$(CONFIG_NVMEM_SYSCON)		+= nvmem_syscon.o
++nvmem_syscon-y				:= nvmem-syscon.o
+ obj-$(CONFIG_NVMEM_STM32_ROMEM)		+= nvmem_stm32_romem.o
+ nvmem_stm32_romem-y 			:= stm32-romem.o
+ nvmem_stm32_romem-$(CONFIG_NVMEM_STM32_BSEC_OPTEE_TA) += stm32-bsec-optee-ta.o
+diff --git a/drivers/nvmem/nvmem-syscon.c b/drivers/nvmem/nvmem-syscon.c
 new file mode 100644
-index 0000000000000..7c1173a1a6218
+index 0000000000000..e0aa5af0300d3
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/nvmem-syscon.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/nvmem-syscon.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/nvmem/nvmem-syscon.c
+@@ -0,0 +1,105 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (C) 2022 Marek Vasut <marex@denx.de>
++ *
++ * Based on snvs_lpgpr.c .
++ */
 +
-+title: Generic syscon backed nvmem
++#include <linux/mfd/syscon.h>
++#include <linux/module.h>
++#include <linux/nvmem-provider.h>
++#include <linux/of_device.h>
++#include <linux/regmap.h>
 +
-+maintainers:
-+  - Marek Vasut <marex@denx.de>
++struct nvmem_syscon_priv {
++	struct device_d		*dev;
++	struct regmap		*regmap;
++	struct nvmem_config	cfg;
++	unsigned int		off;
++};
 +
-+allOf:
-+  - $ref: "nvmem.yaml#"
++static int nvmem_syscon_write(void *context, unsigned int offset, void *val,
++			      size_t bytes)
++{
++	struct nvmem_syscon_priv *priv = context;
 +
-+properties:
-+  compatible:
-+    enum:
-+      - nvmem-syscon
++	return regmap_bulk_write(priv->regmap, priv->off + offset,
++				 val, bytes / 4);
++}
 +
-+  reg:
-+    maxItems: 1
++static int nvmem_syscon_read(void *context, unsigned int offset, void *val,
++			     size_t bytes)
++{
++	struct nvmem_syscon_priv *priv = context;
 +
-+required:
-+  - compatible
-+  - reg
++	return regmap_bulk_read(priv->regmap, priv->off + offset,
++				val, bytes / 4);
++}
 +
-+additionalProperties: false
++static int nvmem_syscon_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct device_node *node = dev->of_node;
++	struct device_node *syscon_node;
++	struct nvmem_syscon_priv *priv;
++	struct nvmem_device *nvmem;
++	struct nvmem_config *cfg;
++	int ret;
 +
-+examples:
-+  - |
-+    syscon {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
++	if (!node)
++		return -ENOENT;
 +
-+        syscon@14c {
-+            compatible = "nvmem-syscon";
-+            reg = <0x14c 0x4>;
-+        };
-+    };
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	ret = of_property_read_u32_index(node, "reg", 0, &priv->off);
++	if (ret)
++		return ret;
++
++	ret = of_property_read_u32_index(node, "reg", 1, &priv->cfg.size);
++	if (ret)
++		return ret;
++
++	syscon_node = of_get_parent(node);
++	if (!syscon_node)
++		return -ENODEV;
++
++	priv->regmap = syscon_node_to_regmap(syscon_node);
++	of_node_put(syscon_node);
++	if (IS_ERR(priv->regmap))
++		return PTR_ERR(priv->regmap);
++
++	cfg = &priv->cfg;
++	cfg->priv = priv;
++	cfg->name = dev_name(dev);
++	cfg->dev = dev;
++	cfg->stride = 4;
++	cfg->word_size = 4;
++	cfg->owner = THIS_MODULE;
++	cfg->reg_read  = nvmem_syscon_read;
++	cfg->reg_write = nvmem_syscon_write;
++
++	nvmem = devm_nvmem_register(dev, cfg);
++
++	return PTR_ERR_OR_ZERO(nvmem);
++}
++
++static const struct of_device_id nvmem_syscon_dt_ids[] = {
++	{ .compatible = "nvmem-syscon" },
++	{ },
++};
++MODULE_DEVICE_TABLE(of, nvmem_syscon_dt_ids);
++
++static struct platform_driver nvmem_syscon_driver = {
++	.probe	= nvmem_syscon_probe,
++	.driver = {
++		.name	= "nvmem-syscon",
++		.of_match_table = nvmem_syscon_dt_ids,
++	},
++};
++module_platform_driver(nvmem_syscon_driver);
++
++MODULE_AUTHOR("Marek Vasut <marex@denx.de>");
++MODULE_DESCRIPTION("Generic syscon nvmem driver");
++MODULE_LICENSE("GPL");
 -- 
 2.39.2
 
