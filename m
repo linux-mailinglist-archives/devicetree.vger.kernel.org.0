@@ -2,93 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21A61706A00
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 15:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC076706A1B
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 15:43:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232050AbjEQNfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 09:35:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45260 "EHLO
+        id S231294AbjEQNnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 09:43:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232058AbjEQNfj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 09:35:39 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA88E7D89;
-        Wed, 17 May 2023 06:35:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
-        s=s31663417; t=1684330472; i=frank-w@public-files.de;
-        bh=H2eszAyur7OFqZ2pzsk7HhbR0lXfV8LZ3reUmipy0B4=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=VH0KENZht12vdsiyi3H/WBCPDDbvdNwgaQnr9jclo18R+LrKqoHEwDhfYi8OtywgJ
-         s4GAM9d5D/gx7bV7t0WEKgk9J1wMgGV7kcYb+NMf6HYl208qBWVb4LtemEa/JNwimd
-         5lZhqAFg3OPniht7zmyjq8ljuIs1ikegfrxIltLOJ2vk80l6alRSsTULeZlN2Pq8iH
-         x0jtJG3/vnn89625G1EE4Ba5TXdFF5ISf24Xt7rflJu2qZl6CvOeO+JCGKgRPp9k/b
-         nUSur1tB5dXQFhWHJ+78GhfFCjG28GvxGavXpLD7OE3b3bBvKV6Mp1xCyaAx/rRvkN
-         XH0TlqbCw1D3Q==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [80.245.72.243] ([80.245.72.243]) by web-mail.gmx.net
- (3c-app-gmx-bs48.server.lan [172.19.170.101]) (via HTTP); Wed, 17 May 2023
- 15:34:32 +0200
-MIME-Version: 1.0
-Message-ID: <trinity-cf0185d3-81d6-4dfe-a1a3-2b091350d724-1684330472806@3c-app-gmx-bs48>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     linux-mediatek@lists.infradead.org,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229959AbjEQNnC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 09:43:02 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A220C269A;
+        Wed, 17 May 2023 06:43:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 37C5F64403;
+        Wed, 17 May 2023 13:43:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20858C433EF;
+        Wed, 17 May 2023 13:42:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684330980;
+        bh=kJ4IaHDWaTOfQsuK204QfW/lAjzQ5F4JSArmUW3wBsk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aROdYL4Xz4Cyr270m0N14Li9g8Zfm6Ua+YuOyoV0oSO54/u3VROi7CB9dm48qxH/Y
+         XhdqWNsSrdb2lcallndCg77UbzraQvpSYenW0rK0AWVyyuBZUYhsP7vuVgQwszE1KA
+         EL8Dc56FamCYynQ13kLT2aivSH6SPxS1Atw0dpboVu9VxGcjCU1EveZmWutOUglRj+
+         qMERrYsVNcxsEANvjlC0GfUG36BVDftloGptoT/1jAVCezgsDmhCCJ4L2uyksAlPDF
+         CWFQIPDMYfvTuMFnyoC/zDma7EnzVcJj9ZMndnSnSL93TdUq58h+QUZU3lQlTSp002
+         e3tS0zimjyJyw==
+Date:   Wed, 17 May 2023 14:42:54 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Abel Vesa <abel.vesa@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        ob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        "Hui.Liu" <hui.liu@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Lala Lin <lala.lin@mediatek.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Golle <daniel@makrotopia.org>
-Subject: Aw: [PATCH v1 1/7] dt-bindings: nvmem: mediatek: efuse: add support
- for mt7986
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 17 May 2023 15:34:32 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20230421132047.42166-2-linux@fw-web.de>
-References: <20230421132047.42166-1-linux@fw-web.de>
- <20230421132047.42166-2-linux@fw-web.de>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:+PriwoFuQ9abIMZuLjXiUflCoFiizPjfCrYouiPIvkfEKwb8FeC3a3oGc0qOF0DGHXWXO
- PUsxuPO4DpTtMuUBWYXoPqjzUPNfjWcm3auHPZGfODybilSjmBZULSX3YfnEKD/hsG/HElg5m4g9
- ukCFtztoUlVk7uSplewtpy4CzSVq0kAgPxzJNNkmHRb+J0X35KLEascX7qFpp6u8K4mhYN1vwqUr
- 78AbCQf7ib1a3sAa+7zeXH0QMDQ+uDA3ecfFeMirKlqWQ8ku1UhjBmm/weaOxAUJ08UNcAgJc47N
- so=
-UI-OutboundReport: notjunk:1;M01:P0:dEZsTW6b7+Y=;5hLcd+GMclPrdW8q7trNgwhEwVY
- tpf7IGTVHcy6+k98XiI+ZUS7ST4eds6sI6ZgppahC4le+74rtOAGZCNL0g1HO4ZG+4NIr7OnR
- 5CLWXgCx6NCitDGKOkH+2tHqtcJh3BtC6c7EWrlCNRJXAMQmqtCNFOGNixtDGlvlotPTVpNX/
- v6gB8ZIjOH8MCmtfaozGR5pGevmC9CBvarDNVpy7+gN4QlJIJa+MngQyoop14rtBm8woOPHlb
- Ud6/LPbFerg6fwOmfuzhYb01w+fuRy008SV1BhLPmeW7KpW5lj4uRw4Ke/VIY11rQcRy2iZLk
- Hc+DFrQFDvWPXsMve+zZzzu+z7XtOKzDoWDCZKLTfH9hR1bONqkR9jwbSXTSAU1tLxHyRDqca
- h9+F3Y+yx/Sgty+NwooK/VnB9SF+PQkvx3tmey8bsVootCePGajTJub0KRuQTxGNkNlrVPdQ9
- xG2UlBoxOZTn3QKSQumb0LLUePU7EcHbNWJXRgXFJNdPWgySx2wGdfXv5mvXQ7imI0I21eb6F
- wlcKeYcSceNGYWeiRvuvuRwmrYwg8/BXEOB+y+DTwND7cKHQ3Dtkqiid4tNCpDOKNvnMwYsKK
- J6Zr1wIbSgbccYvCzw4/2zgdtKeV2zecNZo7766T4A6RBP9l20sauep3Zo7sCU6ldNW846yrD
- CtegCevAAaXIOPzmi4br6XjxvdvJ0qjdD6U2HZdk+5/8EkNl0/se0PyYBlqnfvZMshS9wBGsn
- 4yQIyNyHEXMDPvm7bOaix+N0lQVvtuN9e+oPWBg098soC4GcNJ6g2E/rznBmuJkYilDMqvErr
- s7hidyOM4d+J7NmfpnG7Nrjw==
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6] dt-bindings: mfd: qcom,spmi-pmic: Add pattern
+ property for phy
+Message-ID: <20230517134254.GA9658@google.com>
+References: <20230510082725.3612903-1-abel.vesa@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230510082725.3612903-1-abel.vesa@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, 10 May 2023, Abel Vesa wrote:
 
-just a ping, can this be picked up?
+> The phy pattern property will be used for providing eUSB2 repeater
+> functionality. This will be modelled as a Qualcomm PHY driver.
+> 
+> Acked-by: Lee Jones <lee@kernel.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+> 
+> The v5 (resend) is here:
+> https://lore.kernel.org/all/20230320150617.1824465-1-abel.vesa@linaro.org/
+> 
+> All other patches have been merged already. This is the only one left.
+> 
+> Changes since v5:
+>  * rebased on top of -next
+>  * added Krzysztof's R-b tag
+>  * added Lee's A-b tag
+> 
+> Changes since v4:
+>  * none
+> 
+> Changes since v3:
+>  * made this the second patch rather than the first in the series
+> 
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-regards Frank
+Applied, thanks
+
+-- 
+Lee Jones [李琼斯]
