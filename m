@@ -2,64 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EC76706872
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 14:43:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F309706885
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 14:46:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231631AbjEQMn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 08:43:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54648 "EHLO
+        id S231479AbjEQMqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 08:46:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231443AbjEQMnZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 08:43:25 -0400
+        with ESMTP id S230189AbjEQMqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 08:46:44 -0400
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3806B26A3;
-        Wed, 17 May 2023 05:43:01 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85A2C171A;
+        Wed, 17 May 2023 05:46:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1684327382; x=1715863382;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0wb+aIX7/letJ9Gm0YD6AnxqCsFTli+EhhB+a+U+28w=;
-  b=SslVsAW6FXxd6f+ZaTufH/c+hLAJ9l11/xgsByN612z5cC8s5s6XMelE
-   0sy30NWoZAs9c+YJoGC33M9VbTinrNftGu8unetDRJLA2yLXyTDBbhS6O
-   D0O6iL36mNXP+YPW/VvinXJz+VKs5FGlPNIKI+q2zEE8O74jiBwYeqFnk
-   7bgSlHookIZdbvFS/nnx4OASyoHhttO0VQnEMGJeccBtb0R4v5ijX23Yx
-   OTunpIyBfX5kgbcw73X0NDVe21psEPu8Ve8d6fdEjgF0h8ZxqQsuCwdt9
-   dFSuJh+/0pnt+XTVbjoFl/a+SLPQh8LISZmin/b7B4763T+jmKjtyheeR
-   g==;
+  t=1684327603; x=1715863603;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=KwRK9xF7Z2t2wsO9PZfO2viMcidcKuoWbd38SwZvKgQ=;
+  b=gHzT5/upQF2jGP9BUue29M/Sw+ig4axlEm4Z1lywc30zhrH1xDigjRRY
+   YN4Fwn9a7m+w06Lk5AaLj92tFMluWsyxDI7geqoY4TMaJX12uqow2GasJ
+   o30qLSzriT4bCwfTtqlkidnoC7VZVAHighicSSHJ2/5y663hRMQ6+HiPf
+   OBxqmnrX6PpsncSB7hDnCcKxEwKUSHXX/OkA342FU9V6BEMluDpK1TMbz
+   D6h1s9zmQxHk561fCAeUyYyl6NZrs9UH2DcLiMyoFMvZuDghsEznBYPRx
+   1Ysc2zFIX/ZMDmV5BFGFFyJurwiHYJAqtyNAVOSHJ5En7mNw64l5ILkXw
+   Q==;
 X-IronPort-AV: E=Sophos;i="5.99,282,1677567600"; 
-   d="asc'?scan'208";a="152529056"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+   d="scan'208";a="152530767"
+X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 May 2023 05:42:51 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 May 2023 05:46:42 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 17 May 2023 05:42:51 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 17 May 2023 05:42:49 -0700
-Date:   Wed, 17 May 2023 13:42:28 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-CC:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ 15.1.2507.21; Wed, 17 May 2023 05:46:42 -0700
+Received: from den-dk-m31857.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Wed, 17 May 2023 05:46:39 -0700
+Message-ID: <67bf21d4cf9573233fc8154ae73b966adba6df09.camel@microchip.com>
+Subject: Re: [PATCH] arm64: dts: microchip: add missing cache properties
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Daniel Machon <daniel.machon@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc:
- convert to yaml
-Message-ID: <20230517-degrading-stoppage-54f7769f1956@wendy>
-References: <20230517094119.2894220-1-claudiu.beznea@microchip.com>
- <20230517094119.2894220-3-claudiu.beznea@microchip.com>
+        <linux-kernel@vger.kernel.org>, <nicolas.ferre@microchip.com>
+Date:   Wed, 17 May 2023 14:46:38 +0200
+In-Reply-To: <20230517-crop-limeade-73369ac8594d@wendy>
+References: <20230421223155.115339-1-krzysztof.kozlowski@linaro.org>
+         <151169f7-dcdb-47f1-9616-67c3c388a233@linaro.org>
+         <7772a5981d9a3d46056a53997162d1d75d22a701.camel@microchip.com>
+         <41c72642-7d46-d7d1-d49a-6bef685f934c@linaro.org>
+         <20230517-crop-limeade-73369ac8594d@wendy>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.1 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ssdu9SzKEXVS/OPM"
-Content-Disposition: inline
-In-Reply-To: <20230517094119.2894220-3-claudiu.beznea@microchip.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
@@ -70,36 +72,138 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---ssdu9SzKEXVS/OPM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Conor and Krzysztof,
 
-On Wed, May 17, 2023 at 12:41:16PM +0300, Claudiu Beznea wrote:
-> Convert Atmel PMC documentation to yaml. Along with it clock names
-> were adapted according to the current available device trees as
-> different controller versions accept different clock (some of them
-> have 3 clocks as input, some has 2 clocks as inputs and some with 2
-> input clocks uses different clock names).
+On Wed, 2023-05-17 at 13:37 +0100, Conor Dooley wrote:
+> Hey,
 >=20
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> On Wed, May 17, 2023 at 02:10:53PM +0200, Krzysztof Kozlowski wrote:
+> > On 17/05/2023 13:38, Steen Hegelund wrote:
+> > > Hi Krzysztof,
+> > >=20
+> > > I would love to do that, but I am not familiar with the procedure, so
+> > > maybe you
+> > > could help me out?
+> >=20
+> > Hm, there is no dedicated maintainer for Microchip ARM64 platforms? I
+> > mean one which actually handles the patches?
+> >=20
+> > It looks like it, because my recent changes were going through me. This
+> > also means that maybe several other changes got ignored. For example:
+>=20
+> Aye and the branches etc in the repo itself are all a wee bit stale.
+>=20
+> > > This is my understanding of what I need to do:
+> > >=20
+> > > Clone the upstream repo listed in MAINTAINERS:
+> > >=20
+> > > git clone git@github.com:microchip-ung/linux-upstream.git
+> > > cd linux-upstream
+> > > git checkout sparx5-next
+> > >=20
+> > > Fetch the latest mainline tag from upstream:
+> > >=20
+> > > git fetch git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linu=
+x.git
+> > > tag\
+> > > =C2=A0v6.4-rc2 --no-tags
+> > >=20
+> > > Rebase the current branch on top of that tag:
+> > >=20
+> > > git rebase v6.4-rc2
+> > >=20
+> > > Use b4 to fetch and apply the mail thread patch series:
+> > >=20
+> > > b4 shazam -tsl 20230421223155.115339-1-krzysztof.kozlowski@linaro.org
+> >=20
+> > You should collect some more patches... For one patch it is probably to=
+o
+> > much effort. I can take it instead.
+> >=20
+> > > Tag the current work for inclusion in the next kernel version with a
+> > > decription:
+> > >=20
+> > > git tag -s sparx5-dt-6.5
+> >=20
+> > git tag -a -s sparx5-dt-6.5
+> >=20
+> > Because you need to provide some explanation. Take a look at examples
+> > from other sub-arch maintainers what to write in the tag:
+> >=20
+> > https://lore.kernel.org/soc/20230410170233.5931-1-andersson@kernel.org/=
+T/#u
+> >=20
+> > https://lore.kernel.org/soc/20230405080438.156805-1-krzysztof.kozlowski=
+@linaro.org/T/
+> >=20
+> > >=20
+> > > Push work that to the public repo:
+> > >=20
+> > > git push origin sparx5-dt-6.5
+> > >=20
+> > > Create a pull request (to stdout) to be included in an email to the
+> > > maintainers:
+> > >=20
+> > > git request-pull v6.4-rc2 origin sparx5-dt-6.5
+> > >=20
+> > > Send this PR to the maintainers and CC co-maintainers.
+> > >=20
+> > > Is this the correct procedure?
+> > > Who should I send the PR email to (is there a list somewhere)?
+> >=20
+> > Yes, it's correct with few nits I mentioned.
+> >=20
+> > You send it to arm@, soc@, Olof and Arnd. Addresses are in examples abo=
+ve.
+> >=20
+> > I will be preparing today the pull with various cleanups for arm-soc, s=
+o
+> > I will take the patch if you do not mind.
 
-Looks good to me now Claudiu, thanks!
+Absolutely - and I am glad that I at least got to a point where I understan=
+d the
+procedure, but as changes are far between, I was not aware that I had some
+responsibilities here.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Thanks for the clarification!
 
-Cheers,
-Conor.
+> >=20
+> > For future (and all previous patches), please think what do you
+> > (you=3DMicrochip) want to do with it. If you do not handle the patches,
+> > then someone should or the platform should be marked as "Odd fixes".
+>=20
+> If noone is set up to actually be the maintainer of the tree, and the
+> patch volume is low, it might be a good idea to combine its maintenance
+> with some of the other microchip trees.
+>=20
+> I've added Nicolas to CC here, since he is the main maintainer for the
+> 32-bit ARM Microchip stuff. For some context, I maintain the RISC-V
+> Microchip bits and a few other things like dt-bindings and some
+> non-microchip RISC-V platforms.
+>=20
+> If you like, I could easily pick up patches for
+> arch/arm64/boot/dts/microchip/* as I am already sending PRs to Arnd for
+> other trees and another branch would not be much overhead!
+>=20
+> Clearly I do not know the hardware at all, and reviewing the patches
+> would still be up to you, but I could handle the "administrative" side
+> of things (applying the patches & sending PRs) if that would be helpful?
+>=20
+> Otherwise, Nicolas & I could probably help you through setting things up
+> to send PRs without taking up Krzysztof's time?
+>=20
+> Either works for me!
 
---ssdu9SzKEXVS/OPM
-Content-Type: application/pgp-signature; name="signature.asc"
+It would be preferable for me if you (Conor) would handle the
+arch/arm64/boot/dts/microchip/* tree as you suggested.  It is not often we
+update it, so it will hopefully be low overhead for you.
 
------BEGIN PGP SIGNATURE-----
+>=20
+> Thanks,
+> Conor.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGTLtAAKCRB4tDGHoIJi
-0liRAQDsZjU9B15a9rnhIN17ei53YY8w3HzELiqszr4hvKfR1wEAjsnlJtzq5Z1w
-U3kVEcygfCm3gQJxqEJTxAHcJtr6IgI=
-=bdpZ
------END PGP SIGNATURE-----
+Thanks to both of you for the assistance.
 
---ssdu9SzKEXVS/OPM--
+Best Regards
+Steen
+
