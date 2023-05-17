@@ -2,113 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 198F67061C4
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 09:53:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03286706216
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 10:00:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230273AbjEQHxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 03:53:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49138 "EHLO
+        id S230156AbjEQIAl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 04:00:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230313AbjEQHxR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 03:53:17 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE9EC3A9D
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 00:53:14 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50bc5197d33so806471a12.1
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 00:53:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684309993; x=1686901993;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YxZmzXZkXDBaGgGWBd0FKqOvFO0QoVnqw9tUxsTvOAs=;
-        b=ooHuR6MkMk7X91Ce8AshfMTwcLvBEooZNPRz3QYxhe86Lp+rfo7jPEybaYeF/l7T4N
-         5ErDRsYbYm5CjMPC/m0Y/2bg2dJNQbbqhZXowFei6t0G3t9K+2xV9n6pXUfRgkyxtLLq
-         jRpSstSiT8ri3BHemZBHSL1/h+eKYYB+CeWORnv7n/CgBZR30X1e9vrZ1J3oIV2cSMTt
-         b+xetZhXjhV31DMdQs/e+IIgITXchKJbNgD6UcT/xMKaiH8100mbf6dAa+tFeUg4heSt
-         Zi94RLTwwdUtzjTcTyNYiTE+ZnZVFkaTjl/mRN6tlEtdyPiFmRl6X9B2tLAWUEJI4OI4
-         jA1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684309993; x=1686901993;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YxZmzXZkXDBaGgGWBd0FKqOvFO0QoVnqw9tUxsTvOAs=;
-        b=kWhGPjmnQHNLRfnKmIsb69ymv/FiITmoBmAvDBgtsMdmAS5FD1dXBEWPABS+jWIdc2
-         lUElBxYf1Y4b780LedIIUu+kccEHf1lGfcpdb6XGQqm6x13KXYrA/j2eC9yW1VfIt0xR
-         1iC4Y5VKmeBT0ihbh2V1t+4iZ5TjuGCfrEayBftmHb1HSYxK3Wu/gtSK9RSBKhbhTHik
-         OGLBXgzgGI8b2aZqH28aE7/WKbjRhfK6oyTamyAFaDUvkJwLdy6tydJrp8mKXZWSkeV8
-         WbrwRtgKcLE9Mm1zevnyCLvNHaq9GzeCvPM0aLllfbdVqs9wuG09xffmO1Y3js7PKDft
-         VomQ==
-X-Gm-Message-State: AC+VfDx+qClZ5SaJpw4T4+svapFa6LGjD2huCQQrAXEGMVw45bGm6A+X
-        55eTBghUZvr8vA9sFGNcRt+n7LRM9rPzG5neX/0=
-X-Google-Smtp-Source: ACHHUZ4d4FF1MqDNE/QWLvtFqwDL3H45IrtZ4O8CBJ3/OL1X7qUrMJSaS5NCwnE95sV4+LxlBVpd0Q==
-X-Received: by 2002:a17:906:7947:b0:94e:dd68:aba1 with SMTP id l7-20020a170906794700b0094edd68aba1mr36835117ejo.67.1684309993120;
-        Wed, 17 May 2023 00:53:13 -0700 (PDT)
-Received: from krzk-bin ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
-        by smtp.gmail.com with ESMTPSA id h15-20020a1709067ccf00b0094f23480619sm12056895ejp.172.2023.05.17.00.53.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 May 2023 00:53:12 -0700 (PDT)
-Date:   Wed, 17 May 2023 09:53:10 +0200
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andrew Davis <afd@ti.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        with ESMTP id S230113AbjEQIAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 04:00:17 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 13C6F3C32;
+        Wed, 17 May 2023 01:00:16 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 279A58117;
+        Wed, 17 May 2023 08:00:15 +0000 (UTC)
+Date:   Wed, 17 May 2023 11:00:13 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH 2/2] dt-bindings: clock: ehrpwm: Remove unneeded syscon
- compatible
-Message-ID: <20230517075310.iduc2eisw7a5bm45@krzk-bin>
-References: <20230516184626.154892-1-afd@ti.com>
- <20230516184626.154892-2-afd@ti.com>
+        Nishanth Menon <nm@ti.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] dt-bindings: pinctrl: Update pinctrl-single to
+ use yaml
+Message-ID: <20230517080013.GS14287@atomide.com>
+References: <20230510095330.30742-1-tony@atomide.com>
+ <20230510095330.30742-2-tony@atomide.com>
+ <20230510124836.thqtol6qac762ggx@krzk-bin>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230516184626.154892-2-afd@ti.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230510124836.thqtol6qac762ggx@krzk-bin>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 May 2023 13:46:26 -0500, Andrew Davis wrote:
-> This node's register space is not accessed by any other node, which
-> is the traditional use for the "syscon" hint. It looks to have been
-> added here to make use of a Linux kernel helper syscon_node_to_regmap().
-> The Linux driver now uses a more appropriate helper that does not
-> require the hint, so let's remove it from the binding.
+Hi,
+
+* Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> [230510 12:48]:
+> On Wed, 10 May 2023 12:53:29 +0300, Tony Lindgren wrote:
+> > Update binding for yaml and remove the old related txt bindings. Note that
+> > we are also adding the undocumented pinctrl-single,slew-rate property. And
+> > we only use the first example from the old binding.
+...
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->  .../devicetree/bindings/clock/ti,am654-ehrpwm-tbclk.yaml     | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
+> yamllint warnings/errors:
 > 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: #pinctrl-cells: [[2]] is not of type 'object'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: #pinctrl-cells: [[2]] is not of type 'object'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,register-width: [[16]] is not of type 'object'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,register-width: [[16]] is not of type 'object'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,function-mask: [[65535]] is not of type 'object'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,function-mask: [[65535]] is not of type 'object'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,gpio-range: [[1, 0, 3, 0]] is not of type 'object'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.example.dtb: pinmux@4a100040: pinctrl-single,gpio-range: [[1, 0, 3, 0]] is not of type 'object'
+> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/pinctrl-single.yaml
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Looks like these are happening because of the patternProperties match for
+pin, will need to add more patterns like like -pin|_pin instead.
 
-yamllint warnings/errors:
+Regards,
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.example.dtb: scm-conf@100000: clock-controller@4140:compatible: ['ti,am654-ehrpwm-tbclk', 'syscon'] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.example.dtb: clock-controller@4140: compatible: ['ti,am654-ehrpwm-tbclk', 'syscon'] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/ti,am654-ehrpwm-tbclk.yaml
-
-See https://patchwork.ozlabs.org/patch/1782200
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+Tony
