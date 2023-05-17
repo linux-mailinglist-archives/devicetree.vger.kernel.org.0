@@ -2,86 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC0CB706C33
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 17:07:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBEDF706D1F
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 17:46:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232050AbjEQPHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 11:07:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32830 "EHLO
+        id S229756AbjEQPqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 11:46:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232250AbjEQPHM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 11:07:12 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D50419028;
-        Wed, 17 May 2023 08:06:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 483FE64879;
-        Wed, 17 May 2023 15:06:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D895C433D2;
-        Wed, 17 May 2023 15:06:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684335985;
-        bh=uj3yY1AQxYZ5vT1NpUTbFozGPyly3ykjZNUb52/KP+M=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=TB0P7qc7sqyKrutmMUYIP9Aryjc6+VsVHC5s/C8RCzKNIma73U9n6kIJX6vn8Q/+D
-         13wWhU9FrBZBi/uq/FNfUJP5NKdDCp/a/YhyDCS39U8VVEFxOeird1HkAqAKfnnnv/
-         wKEmyocF4G19gelpmZAeSIrfdJAKKzXgmkJbtPiYjebeH1NH1guklKHoaj/XEhytet
-         v2xao5IngygO7BCpJqhDUDIe7TgCu0bf+9/wFbuPXPChWUf4RrQBftA96Z1mQSQDyV
-         yZU1ud73567zxvHRXP++zc9lU0BvkaQqw6sX6HxCHPF/4BJmedLoZnmPquDCMs5p54
-         uiop1DizSRCzQ==
-Date:   Wed, 17 May 2023 08:06:24 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229572AbjEQPqd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 11:46:33 -0400
+X-Greylist: delayed 2218 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 17 May 2023 08:46:30 PDT
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07848558B;
+        Wed, 17 May 2023 08:46:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
+        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+        List-Owner:List-Archive; bh=IDRJwtLsO/yeHBOhvU39bxW+bfvC/DJiGxuwhVpGSJI=; b=L
+        72JGwLZ0CrNmH62H4XitVMSAiKLvB3sUcq9nYXl1a5dZnNwCSf/oTYOWWZL2eGdDgNXtrLmCgyyHh
+        5q/7HgvpsAkUynIPxSStqmKtzbi7GVodVJDEIWY7jLyya5lEez0iOLOvKPsUn5he8gmCAstPhI3mq
+        Aogs2YJY4Tl4AmKE=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:45486 helo=pettiford.lan)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1pzIkw-0007IE-6L; Wed, 17 May 2023 11:07:59 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v5] dt-bindings: net: nxp,sja1105: document
- spi-cpol/cpha
-Message-ID: <20230517080624.672d52a2@kernel.org>
-In-Reply-To: <50cc1727-999f-9b7a-ef09-14461fa4ddfb@linaro.org>
-References: <20230515074525.53592-1-krzysztof.kozlowski@linaro.org>
-        <20230515074525.53592-1-krzysztof.kozlowski@linaro.org>
-        <20230515105035.kzmygf2ru2jhusek@skbuf>
-        <20230516201000.49216ca0@kernel.org>
-        <50cc1727-999f-9b7a-ef09-14461fa4ddfb@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     hugo@hugovil.com, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Wed, 17 May 2023 11:07:46 -0400
+Message-Id: <20230517150746.3823249-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
+Subject: [PATCH 1/2] dt-bindings: sc16is7xx: Add property to change GPIO function
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 17 May 2023 10:26:38 +0200 Krzysztof Kozlowski wrote:
-> On 17/05/2023 05:10, Jakub Kicinski wrote:
-> > On Mon, 15 May 2023 13:50:35 +0300 Vladimir Oltean wrote:  
-> >> On Mon, May 15, 2023 at 09:45:25AM +0200, Krzysztof Kozlowski wrote:  
->  [...]  
-> >>
-> >> Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>  
-> > 
-> > Is my instinct that this should go to net-next correct?  
-> 
-> It would be great missing net-next was pointed out by checkpatch.pl.
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-FWIW, I'd have taken the patch as is. There isn't much the current
-build tester can do for dt-bindings, anyway. But thanks for the resend
-:)
+Some variants in this series of uart controllers have GPIO pins that
+are shared between GPIO and modem control lines.
 
-I was wondering about checkpatch, too, but haven't come up with any
-great solution. The problem is kind of at an intersection of checkpatch
-and get_maintainer.
+The pin mux mode (GPIO or modem control lines) can be set for each
+ports (channels) supported by the variant.
+
+This adds a property to the device tree to set the GPIO pin mux to
+modem control lines on selected ports if needed.
+
+Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+---
+ .../bindings/serial/nxp,sc16is7xx.txt         | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
+index 0fa8e3e43bf8..426b7285ad50 100644
+--- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
++++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
+@@ -23,6 +23,9 @@ Optional properties:
+     1 = active low.
+ - irda-mode-ports: An array that lists the indices of the port that
+ 		   should operate in IrDA mode.
++- modem-control-line-ports: An array that lists the indices of the port that
++			    should have shared GPIO lines configured as modem
++			    control lines.
+ 
+ Example:
+         sc16is750: sc16is750@51 {
+@@ -35,6 +38,17 @@ Example:
+                 #gpio-cells = <2>;
+         };
+ 
++	sc16is752: sc16is752@54 {
++		compatible = "nxp,sc16is752";
++		reg = <0x54>;
++		clocks = <&clk20m>;
++		interrupt-parent = <&gpio3>;
++		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
++		modem-control-line-ports = <1>; /* Port 1 as modem control lines */
++		gpio-controller; /* Port 0 as GPIOs */
++		#gpio-cells = <2>;
++	};
++
+ * spi as bus
+ 
+ Required properties:
+@@ -59,6 +73,9 @@ Optional properties:
+     1 = active low.
+ - irda-mode-ports: An array that lists the indices of the port that
+ 		   should operate in IrDA mode.
++- modem-control-line-ports: An array that lists the indices of the port that
++			    should have shared GPIO lines configured as modem
++			    control lines.
+ 
+ Example:
+ 	sc16is750: sc16is750@0 {
+@@ -70,3 +87,14 @@ Example:
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 	};
++
++	sc16is752: sc16is752@0 {
++		compatible = "nxp,sc16is752";
++		reg = <0>;
++		clocks = <&clk20m>;
++		interrupt-parent = <&gpio3>;
++		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
++		modem-control-line-ports = <1>; /* Port 1 as modem control lines */
++		gpio-controller; /* Port 0 as GPIOs */
++		#gpio-cells = <2>;
++	};
+-- 
+2.30.2
+
