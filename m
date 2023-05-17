@@ -2,185 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56450706362
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 10:56:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C479706378
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 11:00:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229637AbjEQI4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 04:56:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43148 "EHLO
+        id S230016AbjEQJAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 05:00:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbjEQI4W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 04:56:22 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 471CA1738;
-        Wed, 17 May 2023 01:56:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1684313780; x=1715849780;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4S+mksSwEuy7jDabqK76rs9uXWBf27hYxYgzx1zFBEo=;
-  b=LxQdPAGcCb0SYoZoOrHbKgLHCEywoa7jD0sieONUOdi/A8+TW8ExY6c0
-   q01Fam72lNetFHOTmTeb2HMk9IQ/DJcwpZUeMu/ZYQl1WTKnaPGHlPUkV
-   U+c4qhueuR5IeXtfFNYDDRtoOrQmH3tTnMymCHyBneFWPRD6rqVJgRvpc
-   U3i4X68ZUyB59TUMfondm39Rhx3o7XzfF4+17uar7A1JV9H4O12w5Dwya
-   kb0h4RfZvHE0etc7pzR6VMlr7P8e7hPS3/pOL8GYUuOTtaXNUlSnYg71+
-   naVIWCuO5M701/zYXa+zBtrUr3rXETJ1bATGPhFQibIg2PNWTKIwhAHd7
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.99,281,1677567600"; 
-   d="asc'?scan'208";a="152498435"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 May 2023 01:56:19 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 17 May 2023 01:56:18 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 17 May 2023 01:56:16 -0700
-Date:   Wed, 17 May 2023 09:55:55 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     <Claudiu.Beznea@microchip.com>
-CC:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc:
- convert to yaml
-Message-ID: <20230517-railway-babble-df75495cd312@wendy>
-References: <20230516051836.2511149-1-claudiu.beznea@microchip.com>
- <20230516051836.2511149-3-claudiu.beznea@microchip.com>
- <20230516-modulator-reason-1d3a754c6dd7@wendy>
- <a42f5efd-0847-6a7d-5d2f-ad5772466664@microchip.com>
- <131f3527-8ad8-bdd2-036d-6c8c61f69142@microchip.com>
+        with ESMTP id S229669AbjEQJA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 05:00:28 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39BCB2D76
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 02:00:05 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-96b4ed40d97so73700266b.0
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 02:00:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684314001; x=1686906001;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5aP1Bwp5qtJwbT+wMpc6pfdKQuEptg+56ugwOAw4oCA=;
+        b=XrrUZh6f6LmSNquholGVqzn938gZHWYRTbCZkcVjUJ4Wf0nZycEjEZEt2+SY5Pu+/z
+         vXBnih3T1ywKel4QD7mW58KC/Z/zF925I369fzsy1dadd5fmxFd2JHWcw56afkzMYhV4
+         UDRc0Tcsd+r9Fwsq2qMqgEhUzH+DaDxZn0FPUyNoM+hqWClchWyrkWT8B/sXQUISsux8
+         LsoBTfhb8YL5weK3PyoH6God5xLPCE1cXXO1u/ylTcX+WKgodI8WknoCyqgCba4eizhq
+         Yq3vUyUyyAFAshubzmKJmB6oMei/iWtnB1ksiQpjlFlE2VAfTpa6JHws8je+76ISj5+j
+         k2hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684314001; x=1686906001;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5aP1Bwp5qtJwbT+wMpc6pfdKQuEptg+56ugwOAw4oCA=;
+        b=XjF2maWOfI6mRTPDaIfjO5qYVwOiu2kh7wfDgQBZt/sMnjEddDgHCiJOc/Q3500nC5
+         hW1uLi/eMnkxWBTjyFMXZ8ILLyKb8Wf8yUy2k0vIxolC87MC371F269/9EdjdqzaGmpu
+         qljlFHKZFBP+puKqdT4wqFuX0EO8dszlXZW6YFIW/WJhmbSceRIRV4Kmif33ZhuM8xk9
+         weSL9CQ46RYSJcHJI8GGybVSz3cS/u8bE+GlyMwjzlidylfTPZ1oB9jWxToGn23NgR4P
+         3tidx8u/BegWyzTjR12RmBqH3Y68oPJqREJ+VNzvU2khb3s7HBHYKmtjKyT8mzirv47Y
+         XM1w==
+X-Gm-Message-State: AC+VfDz33ovtAlkpLPv0dV47CR0jT8wOCRE2MN51epUHOlHFoybTJX/8
+        JUuVvz3jLOvjyZg7gPQqPPXt7g==
+X-Google-Smtp-Source: ACHHUZ728nsYzi+7djXn5Bst0NSuHUjAvX6KxFbPzVdbd8gv9WeH6uqMfQXGa6/NdvavuigyguQdcw==
+X-Received: by 2002:a17:907:2d1f:b0:968:db2f:383 with SMTP id gs31-20020a1709072d1f00b00968db2f0383mr29248733ejc.53.1684314001021;
+        Wed, 17 May 2023 02:00:01 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
+        by smtp.gmail.com with ESMTPSA id mc11-20020a170906eb4b00b00969f25b96basm11269272ejb.204.2023.05.17.01.59.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 May 2023 02:00:00 -0700 (PDT)
+Message-ID: <ac6d8bcb-b16b-6c50-a9b6-975560059bdc@linaro.org>
+Date:   Wed, 17 May 2023 10:59:59 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="cWROMdDqqGTQkPgl"
-Content-Disposition: inline
-In-Reply-To: <131f3527-8ad8-bdd2-036d-6c8c61f69142@microchip.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 2/4] dt-bindings: touchscreen: add virtual-touchscreen
+ and virtual-buttons properties
+Content-Language: en-US
+To:     Javier Carrasco <javier.carrasco@wolfvision.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Bastian Hecht <hechtb@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230510-feature-ts_virtobj_patch-v2-0-f68a6bfe7a0f@wolfvision.net>
+ <20230510-feature-ts_virtobj_patch-v2-2-f68a6bfe7a0f@wolfvision.net>
+ <58c8b822-8b47-3269-3b78-334b53c20bff@linaro.org>
+ <99e39fb6-26e0-eb9a-3c07-e07d1fa4122c@linaro.org>
+ <d32e46aa-af50-ad60-7679-5c235487039e@wolfvision.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d32e46aa-af50-ad60-7679-5c235487039e@wolfvision.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---cWROMdDqqGTQkPgl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 16/05/2023 11:03, Javier Carrasco wrote:
+> On 16.05.23 10:13, Krzysztof Kozlowski wrote:
+>> On 16/05/2023 10:10, Krzysztof Kozlowski wrote:
+>>> On 15/05/2023 17:00, Javier Carrasco wrote:
+>>>> The virtual-touchscreen object defines an area within the touchscreen
+>>>> where touch events are reported and their coordinates get converted to
+>>>> the virtual origin. This object avoids getting events from areas that
+>>>> are physically hidden by overlay frames.
+>>>>
+>>>> For touchscreens where overlay buttons on the touchscreen surface are
+>>>> provided, the virtual-buttons object contains a node for every button
+>>>> and the key event that should be reported when pressed.
+>>>>
+>>>> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+>>>> ---
+>>>
+>>>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Apologies, second thoughts - why calling all this binding and properties
+>> "virtual"? That's the word which immediately raises questions, because
+>> bindings are only for real things, not virtual.
+>>
+>> Touchscreen is just clipped, not virtual, so maybe "clipped-area"
+>> instead of virtual-touchscreen? Buttons are real, so maybe just "buttons"?
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> I guess it is a matter of perspective. For a user the buttons and the
+> clipped area are 100% real, but for a driver developer they are virtual
+> in the sense that there is not an "active" hardware behind apart from
+> the original touchscreen.
 
-On Wed, May 17, 2023 at 08:48:04AM +0000, Claudiu.Beznea@microchip.com wrot=
-e:
-> On 16.05.2023 15:58, Claudiu Beznea - M18063 wrote:
-> > Hi, Conor,
-> >=20
-> > On 16.05.2023 15:00, Conor Dooley wrote:
-> >> Hey Claudiu,
-> >>
-> >> On Tue, May 16, 2023 at 08:18:33AM +0300, Claudiu Beznea wrote:
-> >>> Convert Atmel PMC documentation to yaml. Along with it clock names
-> >>> were adapted according to the current available device trees as
-> >>> different controller versions accept different clock (some of them
-> >>> have 3 clocks as input, some has 2 clocks as inputs and some with 2
-> >>> input clocks uses different clock names).
-> >>> diff --git a/Documentation/devicetree/bindings/clock/atmel,at91rm9200=
--pmc.yaml b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.ya=
-ml
-> >>> new file mode 100644
-> >>> index 000000000000..e5f514bc4bf7
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.ya=
-ml
-> >>> @@ -0,0 +1,153 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/clock/atmel,at91rm9200-pmc.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Atmel Power Management Controller (PMC)
-> >>> +
-> >>> +maintainers:
-> >>> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
-> >>> +
-> >>> +description:
-> >>> +  The power management controller optimizes power consumption by con=
-trolling all
-> >>> +  system and user peripheral clocks. The PMC enables/disables the cl=
-ock inputs
-> >>> +  to many of the peripherals and to the processor.
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    oneOf:
-> >>> +      - items:
-> >>> +          - const: atmel,at91sam9g20-pmc
-> >>> +          - const: atmel,at91sam9260-pmc
-> >>> +          - const: syscon
-> >>> +      - items:
-> >>> +          - enum:
-> >>> +              - atmel,at91sam9g15-pmc
-> >>> +              - atmel,at91sam9g25-pmc
-> >>> +              - atmel,at91sam9g35-pmc
-> >>> +              - atmel,at91sam9x25-pmc
-> >>> +              - atmel,at91sam9x35-pmc
-> >>> +          - const: atmel,at91sam9x5-pmc
-> >> Yet another combinations question for you...
-> >> With this binding the following is not possible:
-> >>
-> >> "atmel,at91sam9x5-pmc", "syscon"
-> >>
-> >> Is that intended?
-> >=20
-> > No, I've just missed it. Same for the above. I'll have a new round and =
-fix it.
->=20
-> Though... shouldn't this have been detected by make dtbs_check?
 
-Only if there actually exists a dtb containing
-compatible =3D "atmel,at91sam9x5-pmc", "syscon";
-that is enabled by the config that you are building with.
+The feature describes the hardware, not driver. To understand what does
+it mean, look from hardware point of view - does it have some virtual
+area or clipped area?
 
-=46rom taking a quick look:
-git grep "\"atmel,at91sam9x5-pmc\", \"syscon\""
-arch/arm/boot/dts/at91sam9g15.dtsi:    compatible =3D "atmel,at91sam9g15-pm=
-c", "atmel,at91sam9x5-pmc", "syscon";
-arch/arm/boot/dts/at91sam9g25.dtsi:    compatible =3D "atmel,at91sam9g25-pm=
-c", "atmel,at91sam9x5-pmc", "syscon";
-arch/arm/boot/dts/at91sam9g35.dtsi:    compatible =3D "atmel,at91sam9g35-pm=
-c", "atmel,at91sam9x5-pmc", "syscon";
-arch/arm/boot/dts/at91sam9x25.dtsi:    compatible =3D "atmel,at91sam9x25-pm=
-c", "atmel,at91sam9x5-pmc", "syscon";
-arch/arm/boot/dts/at91sam9x35.dtsi:    compatible =3D "atmel,at91sam9x35-pm=
-c", "atmel,at91sam9x5-pmc", "syscon";
-arch/arm/boot/dts/at91sam9x5.dtsi:     compatible =3D "atmel,at91sam9x5-pmc=
-", "syscon";
+> 
+> I just wanted to avoid misunderstandings when implementing this feature
+> for other drivers. One might wonder if the touchscreen now has
+> mechanical keys attached to it. With the "virtual-" prefix it is clear
+> that the objects are not additional pieces of hardware or extensions of
+> the touchscreen functionality.
 
-There's only actually one place where you have this combination & it
-seems to get overridden by all of the more specific dtsi files that
-include at91sam9x5.dtsi.
+But what if actual physical buttons are added there? You still would
+have clipped/virtual area, just without virtual buttons.
 
-Hope that helps,
-Conor.
+> 
+> For the virtual-touchscreen your point is stronger because there is
+> indeed a real touchscreen hardware no matter the area you define, but my
+> approach was keeping homogeneous names for the different objects in case
+> some new ones might appear in the future: every object that gets on top
+> of the touchscreen area is virtual, so add a new object type and name it
+> virtual-xxx.
 
---cWROMdDqqGTQkPgl
-Content-Type: application/pgp-signature; name="signature.asc"
+To me, word "virtual" suggests something which does not exist. Kind of
+something abstracted or symbolic. Opposite to "real". Here all this
+really exists. You have physical stickers on the touchscreen.
 
------BEGIN PGP SIGNATURE-----
+Maybe this should be then "dedicated"? or "isolated"?
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGSWkAAKCRB4tDGHoIJi
-0n3gAQCe16U0H1kSoUhYYNlGxAarRvNm6f9LyymQm8xl7FL32wD+Nf5z5eXtVZvs
-axfaAB+pfK2KqjdQtG6ZEnfYKZ4c/wg=
-=gglf
------END PGP SIGNATURE-----
+Or just "overlay-area"?
 
---cWROMdDqqGTQkPgl--
+> 
+> I have nothing against about doing some renaming and I will do it if it
+> is required, but with the documentation I think it is now more clear
+> what everything means and in the end it might make more sense for the
+> drivers so they can differentiate between real and virtual devices.
+
+Best regards,
+Krzysztof
+
