@@ -2,99 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59FA6707053
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 20:01:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A864B7070A3
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 20:21:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbjEQSBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 14:01:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39788 "EHLO
+        id S229487AbjEQSVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 14:21:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbjEQSBS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 14:01:18 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F20F02726
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 11:01:10 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-96adcb66f37so203731566b.1
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 11:01:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684346469; x=1686938469;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VPjH+AyIlGHtcYsMCoD8SjkZqBgLcEDJmRre38IR4fs=;
-        b=m45d4S0F3TH37O+Gj63MF73tYqlxMelat9CME2f4e/lla5QOkzkmD+fq8tvAnDj1/f
-         5fIMbxuuygLE5OscAlgwVZbh7O8cWmg3d1j+40whh7jeEsLyPjX+X8E8gHc4EGczfnVk
-         3MLQmxr5+6nmnuEdbmgFu262RZcoGA1iaOtWpebAtB+0NakFNNCGw0IqGrHETxpAkRQm
-         gqgom7gHtbjw6TmjEmbWw+4cMR3SOrKD1c++tSZYivqmteixmS7LmevAFoP4HV9AZW6z
-         lb7+cOT+qV/+mbqDliGaKgo84Mh7lvja/WxWddTKcn2GVtp7B8DmazUjNQ8Z7cHRja+O
-         zAqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684346469; x=1686938469;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VPjH+AyIlGHtcYsMCoD8SjkZqBgLcEDJmRre38IR4fs=;
-        b=Hfq8JU15+9fbuPAwLEeFbuXcXZwoBVPFcq3ZRl6Km3oampPlyKQ/p8IN21VXNZZs67
-         GAcaeUkX8qYpiP98xZQcJqTuuPX1bLAecHUI/hLLUIOE1m8itlo1Ybc3p6q/B3IwZzU1
-         tAyJaGlfZ6wWp17+sgxmHcM413zokQxi6wniZMnppWTEbV0nOggdy4ODi5uQeCjgY8uH
-         8lxgPxT2icDUkmR7ZXGeX8GNOuOdYyMcG4YEzETc/TLQwN/UuLZwdJeenOURgUHZFgcY
-         xkEmm+z17E+znwBTSbRurJjSEeSjlk1aG98wwh4gF2bcG8cyptvSbJ6wD+SVwrfjgByF
-         GlMg==
-X-Gm-Message-State: AC+VfDzg0UMOCZaIoQIozKOEtw2aDgjR63sL0yN4fa4RNzs7AmgefOj1
-        slA8iFXwggsHcYAt5pMluv0vMw5QWwUlPRUXU1RtSA==
-X-Google-Smtp-Source: ACHHUZ4g2WtZ5hlvOmXPEF17atv8bVoLgjz7HOHZ3CGenXQf5HRVcvc35O4CYw6HgWqI7/aDgDBmYQ==
-X-Received: by 2002:a17:907:2da9:b0:94f:247d:44d2 with SMTP id gt41-20020a1709072da900b0094f247d44d2mr38652805ejc.5.1684346469404;
-        Wed, 17 May 2023 11:01:09 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
-        by smtp.gmail.com with ESMTPSA id d21-20020a170906c21500b00965fdb90801sm12672206ejz.153.2023.05.17.11.01.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 11:01:08 -0700 (PDT)
-Message-ID: <904b0fad-16ec-6633-fee9-60c24e9daf14@linaro.org>
-Date:   Wed, 17 May 2023 20:01:07 +0200
+        with ESMTP id S229457AbjEQSVw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 14:21:52 -0400
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [IPv6:2001:67c:2050:0:465::101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20691739;
+        Wed, 17 May 2023 11:21:48 -0700 (PDT)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4QM1dz0p6hz9sm8;
+        Wed, 17 May 2023 20:21:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dylanvanassche.be;
+        s=MBO0001; t=1684347703;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=JZFA1fokFB4103V8XqAdq7PRJrsJa9ZW4IaScwv4dpM=;
+        b=i5afpNj+4tAaMSY8vlNVHk+zeq6oDydbw0sned08JSk0QG2ULlRKKZJE2Lfw1Nc8hku5RW
+        QEHTWDL/cXPZstB7f8ffijGwCBi8oHdKaGhLc7yuukO/3YUT3xf9LcNqMab80kew57vjOM
+        Ng+q4WLNmZXazxiZ7gMaMsXFkcd3ZavPNT2NO8HOCj+VHbDRcE10Efhx0RsyqzC+5PNEbN
+        jQWyVA92TPb8aevE2DqqR86SkqFAz+f5AAbckMMWHPfZC9yken4oCxIhPRTj7ARrsm4YDy
+        nJtW6LwIh3sMuFP5j4aC+xSRYvaqdXYWdE/Kw/YoSYj0cj9/4+gPiO84qUDvlw==
+From:   Dylan Van Assche <me@dylanvanassche.be>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        amartinz@shiftphones.com, Dylan Van Assche <me@dylanvanassche.be>
+Subject: [PATCH 0/2] arm64: dts: qcom: pmi8998: add and enable flash LED
+Date:   Wed, 17 May 2023 20:21:31 +0200
+Message-Id: <20230517182133.72590-1-me@dylanvanassche.be>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v11 1/4] dt-bindings: phy: qcom,qmp-usb: Drop legacy
- bindings and move to newer one (SM6115 & QCM2290)
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        andersson@kernel.org, bhupesh.linux@gmail.com, robh+dt@kernel.org,
-        konrad.dybcio@linaro.org, kishon@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org
-References: <20230516150511.2346357-1-bhupesh.sharma@linaro.org>
- <20230516150511.2346357-2-bhupesh.sharma@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230516150511.2346357-2-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 17:05, Bhupesh Sharma wrote:
-> 'qcom,msm8996-qmp-usb3-phy.yaml' defines bindings for several PHYs
-> which predate USB -> USB+DP migration. Since SM6115 and QCM2290
-> nodes for USB QMP phy are being added to dtsi files by followup patches,
-> move these bindings instead to the newer style
-> 'qcom,sc8280xp-qmp-usb3-uni-phy.yaml' file.
-> 
-> Since no device trees use these bindings presently, so we have no ABI breakages
-> with this patch.
-> 
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Qualcomm PMI8998 has support for 3 flash LEDs which got support in [1].
+Add this driver to the PMI8998 DTS and enable 2 flash LEDs in the SHIFTPHONES SHIFT6mq 
+smartphone. This smartphone has a white and yellow flash LED.
 
+[1] https://lore.kernel.org/all/20230507172941.364852-1-me@dylanvanassche.be
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Kind regards,
+Dylan Van Assche
 
-Best regards,
-Krzysztof
+Dylan Van Assche (2):
+  arm64: dts: qcom: pmi8998: add flash LED
+  arm64: dts: qcom: sdm845-shift-axolotl: enable flash LED
+
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |  6 +++++
+ .../boot/dts/qcom/sdm845-shift-axolotl.dts    | 22 +++++++++++++++++++
+ 2 files changed, 28 insertions(+)
+
+-- 
+2.40.1
 
