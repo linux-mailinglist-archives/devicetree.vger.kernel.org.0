@@ -2,144 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52B38706C04
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 17:02:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C43D706C1C
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 17:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231977AbjEQPC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 11:02:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52432 "EHLO
+        id S229894AbjEQPFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 11:05:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232469AbjEQPBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 11:01:51 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C31A5C7
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 08:00:38 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-510bcd2d6b8so7061986a12.0
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 08:00:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684335627; x=1686927627;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=u1G2m3/V/8HwP4S0PilYqw+ntJ6wrr0IYdjxDwg97nI=;
-        b=KGGwf+TgQE3MnRRbh8F9ZWrd7mAnUM8CGnhjLSRzEP7eBdZtDzGG8r9cH15QPidrTY
-         yNGdaoRLij2m2vk4yF9wQ3wdwVDhXg4ZKccA5K6j9U3lRc/r/vfo+iflvGfjQCIfce0s
-         SpLcDsgxsiGJL1KfSZWdYCfPprlt0QjnmOVxFI6UAmoWosvoa6scXeFec1MUvbqFhhA2
-         QtoY0wUfTxjbVwxaZQ5TtE79S8Rbp+jvbwanrUIFKLrlpkjUwk3WshLMR+18gmvifTFs
-         kNhjU1v1QwAba8Umv1KoaJRvXo2IZUYVBC11kMyEb/TjWc+uzI6MYel0w8b3ANUkt4pR
-         foYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684335627; x=1686927627;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u1G2m3/V/8HwP4S0PilYqw+ntJ6wrr0IYdjxDwg97nI=;
-        b=JodqRZqDFU8v6uCw6/vp33loUt5r276JehKCkQRF9G638P6go2zuw2UlDh6Nd+VYW1
-         VrhZFc+ycY+yBssleQjdl11bjNiWX1z/eGKl97bymUgjLPaHjE7ldmb/Prxv+Fg8T/Rp
-         1+aocQByv6Farm8Wf9ccYnKFekYAX+iHG5189rUS5h891GSCdm7GlRGjxfCnB1TxZAZp
-         qod3tttLAG/4AA8ICzXLv1CqyxVguPYRf4hqFIBP4r3Orh2VCydMjZnsxmZxMQjFhSRN
-         uAyaECWbtmjIdbrzsOeK2WAwzk9Zrtrt+ItgiIdpENBkwOcFnrB/E1PLvicWddPrdNc4
-         9AdA==
-X-Gm-Message-State: AC+VfDxW7gHzU0DSmtptUU3jUZd54462zBH3WAsF7i1KOE6KYcvMls+m
-        rCLExNBDOM6RKd1C3FqNKMkB0A==
-X-Google-Smtp-Source: ACHHUZ6wgsqOiRJf4xmcSwbV6QggqmsGx/cjJKJNST88Bdd9lOPCs5cSMTYn0pICtw84HRJnXKbqFA==
-X-Received: by 2002:a17:907:d21:b0:94a:57d1:5539 with SMTP id gn33-20020a1709070d2100b0094a57d15539mr2566510ejc.5.1684335626891;
-        Wed, 17 May 2023 08:00:26 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
-        by smtp.gmail.com with ESMTPSA id bm11-20020a170906c04b00b00965ec1faf27sm12391114ejb.74.2023.05.17.08.00.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 08:00:26 -0700 (PDT)
-Message-ID: <d3791702-4d41-0208-1346-34738a2883b6@linaro.org>
-Date:   Wed, 17 May 2023 17:00:24 +0200
+        with ESMTP id S229907AbjEQPFK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 11:05:10 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6976F1FE3;
+        Wed, 17 May 2023 08:04:50 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 670CD660588A;
+        Wed, 17 May 2023 16:04:03 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1684335844;
+        bh=15/GPkh3GbUYvzSc+PhVVCS+jBcNyePbbCQd7vQAmVA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=oKXUwZG9/NNSqz2qObRQWaH8It+qDv2WRxyA1jEfwjltkbIPLkPXAWMzt9rlK4n6U
+         508s0+CEm0QAUFmbpUaJfba/+2WjZQkSIaSI0q+ZKhwDjxTbM3bnjpwTCnY970gNTW
+         M2x+b67vXcnj1n3FTh+1b5JyPjsKMfoK2uaFs3vALadtC/Np4dMXRMkADa8zE7+vK0
+         +KqbNVfPLFHwHOH3jWtaxDB8SrcrU27c11pSCx+eCyzl/ZTEl0c+ZU6YOYz56j4rad
+         hit+TkEHkn3KPk1c9uTpq+nllv/yuAXEmqVhI6CynmLCmcJAOYz8azGU3rkbosmCgQ
+         hMvQnoCCX+2tA==
+Message-ID: <c32f0c3f-b43a-7045-38cc-2c11c7bb571e@collabora.com>
+Date:   Wed, 17 May 2023 17:04:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v1 2/3] dt-bindings: soc: add loongson-2 pm
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 7/7] dt-bindings: Add bidings for mtk,apu-drm
 Content-Language: en-US
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Tiezhu Yang <yangtiezhu@loongson.cn>,
-        Marc Zyngier <maz@kernel.org>,
-        Youling Tang <tangyouling@loongson.cn>,
-        Baoqi Zhang <zhangbaoqi@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>, Yun Liu <liuyun@loongson.cn>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230517073149.31980-1-zhuyinbo@loongson.cn>
- <20230517073149.31980-3-zhuyinbo@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230517073149.31980-3-zhuyinbo@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
+To:     Alexandre Bailon <abailon@baylibre.com>, airlied@gmail.com,
+        daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+        mripard@kernel.org, tzimmermann@suse.de
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, matthias.bgg@gmail.com,
+        sumit.semwal@linaro.org, christian.koenig@amd.com,
+        jstephan@baylibre.com, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+        linaro-mm-sig@lists.linaro.org, khilman@baylibre.com,
+        nbelin@baylibre.com, bero@baylibre.com
+References: <20230517145237.295461-1-abailon@baylibre.com>
+ <20230517145237.295461-8-abailon@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230517145237.295461-8-abailon@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2023 09:31, Yinbo Zhu wrote:
-> Add the Loongson-2 SoC Power Management Controller binding with DT
-> schema format using json-schema.
+Il 17/05/23 16:52, Alexandre Bailon ha scritto:
+> This adds the device tree bindings for the APU DRM driver.
 > 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> Reviewed-by: Julien Stephan <jstephan@baylibre.com>
+> ---
+>   .../devicetree/bindings/gpu/mtk,apu-drm.yaml  | 38 +++++++++++++++++++
 
-...
+mediatek,mt(model)-apu.yaml
 
+>   1 file changed, 38 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml b/Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml
+> new file mode 100644
+> index 000000000000..6f432d3ea478
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml
+> @@ -0,0 +1,38 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpu/mediatek,apu-drm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: AI Processor Unit DRM
+> +
 > +properties:
 > +  compatible:
-> +    items:
-> +      - enum:
-> +          - loongson,ls2k-pmc
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  suspend-address:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      This option indicate this PM suspend address.
+> +    const: mediatek,apu-drm
 
-This tells me nothing. Drop "This option indicate this" and rephrase
-everything to actually describe this property. Why would the address
-differ on given, specific SoC? It looks like you just miss compatibles.
-Anyway this needs much more explanation so we can judge whether it fits DT.
+const: mediatek,mt8195-apu (or whatever else).
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    pmc: pm@1fe27000 {
-> +        compatible = "loongson,ls2k-pmc", "syscon";
-> +        reg = <0x1fe27000 0x58>;
-> +        interrupt-parent = <&liointc1>;
-> +        interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-> +        suspend-address = <0x1c000500>;
+...besides, I don't think that this patch even belongs to this series? :-)
+Spoiler alert! :-)
 
+Cheers,
+Angelo
 
-Best regards,
-Krzysztof
 
