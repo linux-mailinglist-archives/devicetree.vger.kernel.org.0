@@ -2,130 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD9D705D07
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 04:19:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5835C705DBE
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 05:10:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231888AbjEQCTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 22:19:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41906 "EHLO
+        id S231683AbjEQDKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 23:10:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231860AbjEQCTA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 22:19:00 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B22D171E
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 19:18:59 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2ac7f53ae44so1294371fa.2
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 19:18:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684289937; x=1686881937;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PiwfnxHpTyL1B4ayjglsH0C61007tFWAsNvE7dIFkrY=;
-        b=mu6X2ZUoQp+726STqGqjI0ZOiQpGbbIU7rq2AdIvry4lqNAzlMVFVmsEyYmwYITzp5
-         A7+LL3MbY6GXK3dQy00cdOUfJAWY4Ow6VX4Yf0RRFRSPnHvYvP0FG6E0FZNhX+HuZQ3d
-         goeTIrFpX0S2kYONiaFuqxMPkBIaJH8jHPRQDmTRXiuljr5tKgYCtoLnEKfiNd3es3XC
-         jxeYkG8i9MdO9Plrv2p54/ZgSVGcMLW/ApGkgeJDP4HwfRqJnc/ErPHOH8zE/eZs4Hp4
-         KK79O0IKAxXyrU2NozVLhlF4jai/eBTASoiqesubrA1SUcbt6IUh99oq6vOPhwD4cBvZ
-         v1aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684289937; x=1686881937;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PiwfnxHpTyL1B4ayjglsH0C61007tFWAsNvE7dIFkrY=;
-        b=lJiE+WqBf99X0lpCE7XSx1LiOuNENkDW79aZdSPK+aVgcSesk54TCLKk/jprp4MMEP
-         1DNJHn1DCrN//MCmeFOG5xp3kqGStQXoiWdz6QSs6zSv1i5gEft8rP5y54AxvLI3ta8T
-         wZtiTkPDRmJhUhRYrI7dgn7JsAosqToghlAU9Tdo2SaCzCJffxrzeycwjcTxXPPDoYI0
-         TAPt6JSE5DVa8B+jAzNtCIu4f+DpFlDmLv/3C1U0Xq+HaIC0fQAw0WQbUSHrKxBG2xXK
-         2u8yctikBybjd1sSqzPMMTiCiFVPSbRh9VQVyxLIbB3BOej4VoxEg1+YPKE1litcMfaT
-         g0ig==
-X-Gm-Message-State: AC+VfDyHd37ygCJVNwOtoc1HInH+ZAzdj+coP7FZgOEjEBlt6W2jH+Dv
-        sAqiXpd9rE2JJ+8p56fxrOrWzA==
-X-Google-Smtp-Source: ACHHUZ7D+LOuI/MHSp0j2cZk14xGuFren+3QxYP0Kp6IpsCXfPo+KsUQD4fBUk5Qb5FWBNmZiVW0jQ==
-X-Received: by 2002:a2e:90ca:0:b0:2a7:f1e8:b08 with SMTP id o10-20020a2e90ca000000b002a7f1e80b08mr8368282ljg.19.1684289937496;
-        Tue, 16 May 2023 19:18:57 -0700 (PDT)
-Received: from [10.167.154.1] (public-gprs529629.centertel.pl. [31.61.188.30])
-        by smtp.gmail.com with ESMTPSA id z22-20020a2e9656000000b002af01da6c67sm384232ljh.32.2023.05.16.19.18.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 19:18:57 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 17 May 2023 04:18:50 +0200
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8550: Use the correct LLCC
- register scheme
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230517-topic-kailua-llcc-v1-2-d57bd860c43e@linaro.org>
-References: <20230517-topic-kailua-llcc-v1-0-d57bd860c43e@linaro.org>
-In-Reply-To: <20230517-topic-kailua-llcc-v1-0-d57bd860c43e@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S231485AbjEQDKE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 23:10:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A612995;
+        Tue, 16 May 2023 20:10:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3B4AB636E3;
+        Wed, 17 May 2023 03:10:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06150C433D2;
+        Wed, 17 May 2023 03:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684293002;
+        bh=CvgKMPZQolVfURyUe01p1pbE6VTWA4kAeN43nJikG/4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=OHX/f4RBRpR3oy+7N7fFsxyvDaRurBylxoSDfwLuGU4hPIbBLCRvRWpzRKsbPUC98
+         5218G5vbpvK0Dn9rt61WJ8NlmcdgD9vjO1AnAcCcp88qbOUxSik6MFvAnJDBNs2nTU
+         NOGklEn1oqLpcVRBhF/vtPJOh4V9l+yBTLTjTxSGFkghoXT7E8jKiX1XVB++V+6JK5
+         w7u9t8uPdotDydWqRS23huvPMbcQLJ6NF+OsZdhacHXlWT1ubr0gl8QTqhwSHIGTzV
+         5zmSNa50rjkj/M42gWdRFr7HfVrKp16ameaTFLIXQR98OlzX2YkCYkfQPAo3eanpui
+         gDnEqEk1hl1Yw==
+Date:   Tue, 16 May 2023 20:10:00 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        "Borislav Petkov (AMD)" <bp@alien8.de>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1684289932; l=1384;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=9WupzzHlTXR6Yx1uELACzjwgFEN+yOqghs8q/dMHZUU=;
- b=rFjT625Yg2dYY1oD64UITRGGu/MBYdyR/8rF4bL7kaslFDWb1Tds8XtFi8cYWb3v0dYnaS8oc
- AOCfXsDEx+VCRfOIOvSGgSBuj87pLKKbwZ1dY8CRC0910fhCY8F1KXs
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5] dt-bindings: net: nxp,sja1105: document
+ spi-cpol/cpha
+Message-ID: <20230516201000.49216ca0@kernel.org>
+In-Reply-To: <20230515105035.kzmygf2ru2jhusek@skbuf>
+References: <20230515074525.53592-1-krzysztof.kozlowski@linaro.org>
+        <20230515074525.53592-1-krzysztof.kozlowski@linaro.org>
+        <20230515105035.kzmygf2ru2jhusek@skbuf>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-During the ABI-breaking (for good reasons) conversion of the LLCC
-register description, SM8550 was not taken into account, resulting
-in LLCC being broken on any kernel containing the patch referenced
-in the fixes tag.
+On Mon, 15 May 2023 13:50:35 +0300 Vladimir Oltean wrote:
+> On Mon, May 15, 2023 at 09:45:25AM +0200, Krzysztof Kozlowski wrote:
+> > Some boards use SJA1105 Ethernet Switch with SPI CPHA, while ones with
+> > SJA1110 use SPI CPOL, so document this to fix dtbs_check warnings:
+> > 
+> >   arch/arm64/boot/dts/freescale/fsl-lx2160a-bluebox3.dtb: ethernet-switch@0: Unevaluated properties are not allowed ('spi-cpol' was unexpected)
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>
+> Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-Fix it by describing the regions properly.
-
-Fixes: ee13b5008707 ("qcom: llcc/edac: Fix the base address used for accessing LLCC banks")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 6e9bad8f6f33..70ae7e2e900a 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -3762,9 +3762,16 @@ gem_noc: interconnect@24100000 {
- 
- 		system-cache-controller@25000000 {
- 			compatible = "qcom,sm8550-llcc";
--			reg = <0 0x25000000 0 0x800000>,
-+			reg = <0 0x25000000 0 0x200000>,
-+			      <0 0x25200000 0 0x200000>,
-+			      <0 0x25400000 0 0x200000>,
-+			      <0 0x25600000 0 0x200000>,
- 			      <0 0x25800000 0 0x200000>;
--			reg-names = "llcc_base", "llcc_broadcast_base";
-+			reg-names = "llcc0_base",
-+				    "llcc1_base",
-+				    "llcc2_base",
-+				    "llcc3_base",
-+				    "llcc_broadcast_base";
- 			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-
--- 
-2.40.1
-
+Is my instinct that this should go to net-next correct?
