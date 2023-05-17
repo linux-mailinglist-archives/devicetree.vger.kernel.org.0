@@ -2,215 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7957C706443
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 11:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D01FB70645A
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 11:42:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbjEQJix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 05:38:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43118 "EHLO
+        id S229879AbjEQJmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 05:42:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbjEQJix (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 05:38:53 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C51B93C3B;
-        Wed, 17 May 2023 02:38:50 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 434AD1FB;
-        Wed, 17 May 2023 02:39:35 -0700 (PDT)
-Received: from [10.57.73.125] (unknown [10.57.73.125])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 24B3D3F663;
-        Wed, 17 May 2023 02:38:48 -0700 (PDT)
-Message-ID: <420680f2-0d27-3174-532d-7f69760fc58d@arm.com>
-Date:   Wed, 17 May 2023 10:38:46 +0100
+        with ESMTP id S229920AbjEQJmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 05:42:19 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F2E540E6;
+        Wed, 17 May 2023 02:42:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684316537; x=1715852537;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=FeioifEDxdEGwYiM4iQLG5+TkZ9F3zFlGDG+wIqLuxE=;
+  b=0MR7kQaQd/1c76YvDpqyJMD8QU0JkKKKp1firltOxeQmpdmqk/yZALC3
+   Pr7ZeSRgScnTr5RJ70pTn1saSfq6AoQvXSMU+t9iIQdGmy23xRDpnxWtK
+   UgvtL78f67nMbR+Wy9fSnBbM/xNqwoizB2RqgjjSvWogQlcRJzsem2SNT
+   WQFmssDMO+bCsltiCXjUfxVm4uIXug64+zuY0sktMRZPF586SyiDRE7+Q
+   cP2NVsB6CeeZDxOxYXjkb+Tv0qjEcVi2Nqu2YqXqffUI3xTdil27mr6tp
+   kRPc/FlvA6l+0FzHRv+Kze1jIrwgZweubwr3jjTA7ky4XJS06adySLQrl
+   w==;
+X-IronPort-AV: E=Sophos;i="5.99,281,1677567600"; 
+   d="scan'208";a="211698232"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 May 2023 02:42:16 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 17 May 2023 02:42:15 -0700
+Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Wed, 17 May 2023 02:42:11 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor.dooley@microchip.com>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>
+CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v5 0/5] dt-bindings: clocks: at91: convert to yaml
+Date:   Wed, 17 May 2023 12:41:14 +0300
+Message-ID: <20230517094119.2894220-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.10.0
-Subject: Re: [PATCH V2 3/5] coresight: etm4x: Drop pid argument from
- etm4_probe()
-To:     Anshuman Khandual <anshuman.khandual@arm.com>,
-        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org
-Cc:     scclevenger@os.amperecomputing.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230327050537.30861-1-anshuman.khandual@arm.com>
- <20230327050537.30861-4-anshuman.khandual@arm.com>
- <d995fec6-1d3f-df37-724e-67d929e9e0db@arm.com>
- <28c7a088-bfdb-5172-c7c4-0a572ecda78a@arm.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <28c7a088-bfdb-5172-c7c4-0a572ecda78a@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2023 05:32, Anshuman Khandual wrote:
-> 
-> 
-> On 3/31/23 16:36, Suzuki K Poulose wrote:
->> On 27/03/2023 06:05, Anshuman Khandual wrote:
->>> Coresight device pid can be retrieved from its iomem base address, which is
->>> stored in 'struct etm4x_drvdata'. This drops pid argument from etm4_probe()
->>> and 'struct etm4_init_arg'. Instead etm4_check_arch_features() derives the
->>> coresight device pid with a new helper coresight_get_pid(), right before it
->>> is consumed in etm4_hisi_match_pid().
->>>
->>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->>> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
->>> Cc: Mike Leach <mike.leach@linaro.org>
->>> Cc: Leo Yan <leo.yan@linaro.org>
->>> Cc: coresight@lists.linaro.org
->>> Cc: linux-arm-kernel@lists.infradead.org
->>> Cc: linux-kernel@vger.kernel.org
->>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
->>> ---
->>>    .../coresight/coresight-etm4x-core.c          | 21 +++++++------------
->>>    include/linux/coresight.h                     | 12 +++++++++++
->>>    2 files changed, 20 insertions(+), 13 deletions(-)
->>>
->>> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>> index 5d77571a8df9..3521838ab4fb 100644
->>> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>> @@ -66,7 +66,6 @@ static u64 etm4_get_access_type(struct etmv4_config *config);
->>>    static enum cpuhp_state hp_online;
->>>      struct etm4_init_arg {
->>> -    unsigned int        pid;
->>>        struct device        *dev;
->>>        struct csdev_access    *csa;
->>>    };
->>> @@ -370,8 +369,10 @@ static void etm4_disable_arch_specific(struct etmv4_drvdata *drvdata)
->>>    }
->>>      static void etm4_check_arch_features(struct etmv4_drvdata *drvdata,
->>> -                      unsigned int id)
->>> +                     struct csdev_access *csa)
->>>    {
->>> +    unsigned int id = coresight_get_pid(csa);
->>> +
->>
->> This throws up the following error on an ETE.
->>
->> ete: trying to read unsupported register @fe0
->>
->> So, I guess this must be performed only for iomem based
->> devices. System instruction based device must be identified
->> by MIDR_EL1/REVIDR_EL1 if needed for specific erratum.
->> This is not required now. So, we could bail out early
->> if we are system instruction based device.
-> 
-> Will bail out on non iomem devices via drvdata->base address switch.
-> 
-> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
-> @@ -373,9 +373,10 @@ static void etm4_disable_arch_specific(struct etmv4_drvdata *drvdata)
->   static void etm4_check_arch_features(struct etmv4_drvdata *drvdata,
->                                       struct csdev_access *csa)
->   {
-> -       unsigned int id = coresight_get_pid(csa);
-> +       if (!drvdata->base)
-> +               return;
+Hi,
 
-I would use !csa->io_mem to be more readerf friendly.
+This series converts atmel clocks bindings (PMC and slow clock
+controller) to YAML. Along with it updated device trees to cope
+with the dt-binding requirements.
 
->   
-> -       if (etm4_hisi_match_pid(id))
-> +       if (etm4_hisi_match_pid(coresight_get_pid(csa)))
->                  set_bit(ETM4_IMPDEF_HISI_CORE_COMMIT, drvdata->arch_features);
->   }
->   #else
-> 
->>
->>
->>>        if (etm4_hisi_match_pid(id))
->>>            set_bit(ETM4_IMPDEF_HISI_CORE_COMMIT, drvdata->arch_features);
->>>    }
->>> @@ -385,7 +386,7 @@ static void etm4_disable_arch_specific(struct etmv4_drvdata *drvdata)
->>>    }
->>>      static void etm4_check_arch_features(struct etmv4_drvdata *drvdata,
->>> -                     unsigned int id)
->>> +                     struct csdev_access *csa)
->>>    {
->>>    }
->>>    #endif /* CONFIG_ETM4X_IMPDEF_FEATURE */
->>> @@ -1165,7 +1166,7 @@ static void etm4_init_arch_data(void *info)
->>>        etm4_os_unlock_csa(drvdata, csa);
->>>        etm4_cs_unlock(drvdata, csa);
->>>    -    etm4_check_arch_features(drvdata, init_arg->pid);
->>> +    etm4_check_arch_features(drvdata, csa);
->>>          /* find all capabilities of the tracing unit */
->>>        etmidr0 = etm4x_relaxed_read32(csa, TRCIDR0);
->>> @@ -2048,7 +2049,7 @@ static int etm4_add_coresight_dev(struct etm4_init_arg *init_arg)
->>>        return 0;
->>>    }
->>>    -static int etm4_probe(struct device *dev, u32 etm_pid)
->>> +static int etm4_probe(struct device *dev)
->>>    {
->>>        struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
->>>        struct csdev_access access = { 0 };
->>> @@ -2077,7 +2078,6 @@ static int etm4_probe(struct device *dev, u32 etm_pid)
->>>          init_arg.dev = dev;
->>>        init_arg.csa = &access;
->>> -    init_arg.pid = etm_pid;
->>>          /*
->>>         * Serialize against CPUHP callbacks to avoid race condition
->>> @@ -2124,7 +2124,7 @@ static int etm4_probe_amba(struct amba_device *adev, const struct amba_id *id)
->>>          drvdata->base = base;
->>>        dev_set_drvdata(dev, drvdata);
->>> -    ret = etm4_probe(dev, id->id);
->>> +    ret = etm4_probe(dev);
->>>        if (!ret)
->>>            pm_runtime_put(&adev->dev);
->>>    @@ -2146,12 +2146,7 @@ static int etm4_probe_platform_dev(struct platform_device *pdev)
->>>        pm_runtime_set_active(&pdev->dev);
->>>        pm_runtime_enable(&pdev->dev);
->>>    -    /*
->>> -     * System register based devices could match the
->>> -     * HW by reading appropriate registers on the HW
->>> -     * and thus we could skip the PID.
->>> -     */
->>> -    ret = etm4_probe(&pdev->dev, 0);
->>> +    ret = etm4_probe(&pdev->dev);
->>>          pm_runtime_put(&pdev->dev);
->>>        return ret;
->>> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
->>> index f19a47b9bb5a..f85b041ea475 100644
->>> --- a/include/linux/coresight.h
->>> +++ b/include/linux/coresight.h
->>> @@ -370,6 +370,18 @@ static inline u32 csdev_access_relaxed_read32(struct csdev_access *csa,
->>>        return csa->read(offset, true, false);
->>>    }
->>>    +#define CORESIGHT_PIDRn(i)    (0xFE0 + ((i) * 4))
->>> +
->>> +static inline u32 coresight_get_pid(struct csdev_access *csa)
->>> +{
->>> +    u32 i, pid = 0;
->>> +
->>> +    for (i = 0; i < 4; i++)
->>> +        pid |= csdev_access_relaxed_read32(csa, CORESIGHT_PIDRn(i)) << (i * 8);
->>
->> Given the above, we could make this iomem specific.
-> 
-> We could change coresight_get_pid() to take iomem base address instead
-> and fetch the pid. But is not the existing csdev_access based approach
-> better and more generic ?
+Thank you,
+Claudiu Beznea
 
-Yes, true, lets leave it with csdev_access, as it is coresight specific
-and not ETMv4.
+Changes in v4:
+- in patch 2/5: added "atmel,at91sam9x5-pmc", "syscon" to the list of
+  available compatibles
 
-Cheers
-Suzuki
+Changes in v4:
+- changed the approach the compatibles are treated in patch 2/5 to avoid
+  having 2 enums on one items entry (thanks Conor for hint)
+  
+Changes in v3:
+- in patch 2/5:
+	- get rid of 1st "items" section and embedd it in the last compatible
+	  enum
+	- sort alphanumerically the compatibles in allOf
+- collected tags
+
+Changes in v2:
+- in patch 2/5:
+	- dropped quotes from $id and $schema
+	- get rid of 1st "items" sections corresponding to "atmel,at91sam9260-pmc",
+	  "syscon" compatible and move it to the proper enum
+	- ordered compatibles by name
+	- add description for #clock-cells
+	- remove blank lines
+	- keep order in required (same order that the properties were
+	  defined)
+	- dropped required from allOf
+
+- in patch 5/5:
+	- dropped quotes from $id and $schema
+	- drop first "items:" in compatible:oneOf section
+	- ordered compatibles by name
+	- moved additionalProperties after allOf
+	- dropped microchip,sama7g5-sckc from first allOf:if section
+	- moved "required" section from allOf to global "required" section
+	- dropped if:then from the last if:then:else in allOf
+
+Claudiu Beznea (5):
+  ARM: dts: at91: use clock-controller name for PMC nodes
+  dt-bindings: clocks: atmel,at91rm9200-pmc: convert to yaml
+  ARM: dts: at91: at91sam9n12: witch sckc to new clock bindings
+  ARM: dts: at91: use clock-controller name for sckc nodes
+  dt-bindings: clocks: at91sam9x5-sckc: convert to yaml
+
+ .../devicetree/bindings/clock/at91-clock.txt  |  58 -------
+ .../bindings/clock/atmel,at91rm9200-pmc.yaml  | 154 ++++++++++++++++++
+ .../bindings/clock/atmel,at91sam9x5-sckc.yaml |  70 ++++++++
+ arch/arm/boot/dts/at91rm9200.dtsi             |   2 +-
+ arch/arm/boot/dts/at91sam9260.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9261.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9263.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9g20.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9g25.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9g35.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9g45.dtsi            |   4 +-
+ arch/arm/boot/dts/at91sam9n12.dtsi            |  25 +--
+ arch/arm/boot/dts/at91sam9rl.dtsi             |   4 +-
+ arch/arm/boot/dts/at91sam9x25.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9x35.dtsi            |   2 +-
+ arch/arm/boot/dts/at91sam9x5.dtsi             |   4 +-
+ arch/arm/boot/dts/sam9x60.dtsi                |   4 +-
+ arch/arm/boot/dts/sama5d2.dtsi                |   4 +-
+ arch/arm/boot/dts/sama5d3.dtsi                |   4 +-
+ arch/arm/boot/dts/sama5d3_emac.dtsi           |   2 +-
+ arch/arm/boot/dts/sama5d4.dtsi                |   4 +-
+ arch/arm/boot/dts/sama7g5.dtsi                |   2 +-
+ 22 files changed, 253 insertions(+), 104 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/at91-clock.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/atmel,at91sam9x5-sckc.yaml
+
+-- 
+2.34.1
+
