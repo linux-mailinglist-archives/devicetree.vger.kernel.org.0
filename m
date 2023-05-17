@@ -2,72 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4BDA70624C
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 10:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00E7E706274
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 10:13:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230164AbjEQIKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 04:10:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33196 "EHLO
+        id S229784AbjEQINB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 04:13:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230034AbjEQIKW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 04:10:22 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E64510C3;
-        Wed, 17 May 2023 01:10:20 -0700 (PDT)
-Received: from p5dcc3760.dip0.t-ipconnect.de ([93.204.55.96] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1pzCEg-00087e-BY; Wed, 17 May 2023 10:10:14 +0200
-Date:   Wed, 17 May 2023 10:10:10 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, afd@ti.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH v7 1/2] dt-bindings: omap: Partially convert omap.txt to
- yaml
-Message-ID: <20230517101010.31142e67@aktux>
-In-Reply-To: <20230517064031.GP14287@atomide.com>
-References: <20230515074512.66226-1-andreas@kemnade.info>
-        <20230515074512.66226-2-andreas@kemnade.info>
-        <20230517064031.GP14287@atomide.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.24; x86_64-pc-linux-gnu)
+        with ESMTP id S230151AbjEQIM6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 04:12:58 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77C1F10F5
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 01:12:55 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-510d6e1f1abso381445a12.2
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 01:12:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684311174; x=1686903174;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=a1tI4Mj0GuSStRExKQnt10Sk/TUm6zi642R3YYtuxTg=;
+        b=V8lPYAu5z6+U2gOqC3z7VJ6URsVOO59EBAapcvlyAJwMLkjWrr7Wo8CWmDGhwsYrsu
+         a2QuWAVSgLVcpflAjiee1DWUQ3QFYYWm4bs7QBkGaFGJ0e6X3kvIItt5WsDmPyMaDbv0
+         ECW7cs5cfAKHdX5/56inb70getKGq9ckpGPstIzT4dbHLvY83hCkguaYu4Er9bskuckq
+         yVBnUpbEdmrGwHP1R61bX7HXL+W5BvToV+0tCQAF8nw1o4bjRMbJGpVRVpGCiMon3YYq
+         CwGLNMl2Zk1brXQt53Iqh2/25aB7Vd6tAYJrjarZlSc3EZCU7eAaLoZl5TEb0z2PJAEB
+         kKQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684311174; x=1686903174;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a1tI4Mj0GuSStRExKQnt10Sk/TUm6zi642R3YYtuxTg=;
+        b=ZGfqZelVma40y8qlnoUvDNAGlUV+/wg9soUKNA90vMe0db/9Ulhk7hcny9SaaC5oKQ
+         0gGSCxjSXPC+6vETuzkpZumnVZ6hPU7kz8xon1aptHQvawzbZmQsKkg6/mCVaV0AohlS
+         FXhmqF6/IvEZEaGrbGdOzqD/ql/s6PnNyEsVlBYTLsRWVrZ6HrMiBxn6YK61eixkK5L9
+         0UXL8Bp6sCe6kJKcB2HnpqOxipqbwwqP8e3/kp/vqVU8Ye4Rdc1On/iIYPJTmouJ9Evy
+         PKyGhe/j2stdVU2vbB/7TlsYqdgUzXe3D21gDhT9dF4bMunXfYeXhznH3LM1lqRixMx8
+         OPWA==
+X-Gm-Message-State: AC+VfDx6BPMLnBylPPZPqpy/Rms3Rk4Nm6GJrMwyU9z6ApY1VvbCaW/c
+        CQ8LHEx/NnwU9GqvxrbGFwBY42LkBCzizmqz4v0=
+X-Google-Smtp-Source: ACHHUZ5K6XkIbwGR7BN6nwPpwg/ie+J/ruD+GqyEdrYyAZ5GpjgmN1Cyt5H5Q2dumD6Pk6xDfBnrBQ==
+X-Received: by 2002:aa7:d78f:0:b0:50d:8cde:a335 with SMTP id s15-20020aa7d78f000000b0050d8cdea335mr1615810edq.15.1684311173952;
+        Wed, 17 May 2023 01:12:53 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
+        by smtp.gmail.com with ESMTPSA id r9-20020aa7c149000000b00509d1c6dcefsm9033171edp.13.2023.05.17.01.12.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 May 2023 01:12:53 -0700 (PDT)
+Message-ID: <8be8cc8e-5580-0f4f-a00e-46f392356026@linaro.org>
+Date:   Wed, 17 May 2023 10:12:52 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add Visionox R66451
+ AMOLED DSI panel bindings
+Content-Language: en-US
+To:     Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230516-b4-r66451-panel-driver-v1-0-4210bcbb1649@quicinc.com>
+ <20230516-b4-r66451-panel-driver-v1-1-4210bcbb1649@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230516-b4-r66451-panel-driver-v1-1-4210bcbb1649@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tony,
+On 16/05/2023 22:20, Jessica Zhang wrote:
+> Document the 1080x2340 Visionox R66451 AMOLED DSI panel bindings
+> 
+> Signed-off-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+> ---
+>  .../bindings/display/panel/visionox,r66451.yaml    | 59 ++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
 
-On Wed, 17 May 2023 09:40:31 +0300
-Tony Lindgren <tony@atomide.com> wrote:
+If there is going to be new version:
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
 
-> * Andreas Kemnade <andreas@kemnade.info> [230515 07:45]:
-> > From: Andrew Davis <afd@ti.com>
-> > 
-> > Convert omap.txt to yaml.  
-> 
-> Looks good to me, thanks a lot for doing this:
-> 
-> Reviewed-by: Tony Lindgren <tony@atomide.com>
-> 
-> Anreas, for future patch reference, care to summarize what's still
-> blocking updating the rest of the TI SoCs for the binding? I think
-> it may have been discussed earlier here and there already so apologies
-> if I'm the only one who lost track :)
-> 
-The original patch by Andrew allows probably too many combinations of
-compatibles for the rest of the SoCs (e.g.  pattern: '^ti,dra7[12456][024568p]).
-I do not know the intention of that and nobody commented, so I would have to
-do a lot of research, so I decided to split the work.
 
-Regards,
-Andreas
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
