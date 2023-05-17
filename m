@@ -2,172 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44530707427
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 23:24:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10B91707652
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 01:15:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230167AbjEQVYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 17:24:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35974 "EHLO
+        id S229612AbjEQXPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 19:15:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230131AbjEQVX7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 17:23:59 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A456CE7C
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 14:23:33 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f13a72ff53so1561186e87.0
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 14:23:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684358609; x=1686950609;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EIEqKwPabef9WSSFqkvljMpDwhrfc8zvSY2jSb3gR3A=;
-        b=lQ9+fXGrNYb2F27NPBYOaleD8aX/AyoGQtt7Cdi7uALJmO1s4GWTd4IznmyWp7Mr2h
-         E4OROenI/eYJQVWvRL4a/ozz7gepNOnNnh2H2TAUcl5g6FSaxqe/Gt50mm1N4L3QeRAa
-         ho+YN8zbovYXr2fNpoCa3pQftVcCWhQ+zGD1Ei2nnmuZqZVMrwJAOvce/OWQ7jUL1Rgd
-         P26JhuqHkMJ/nCqrfC0ASpWr+yB9itUiaJkObjLDmOKujbEA2X8CFhdzjIhP2zUN1AlB
-         Hqyr0Noz0J2q//RSnaOsH4vBVOt/cjL8vz46iFMS3qFzc56/l7uxJ6aD05Me9ifWjh4Q
-         s2Eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684358609; x=1686950609;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EIEqKwPabef9WSSFqkvljMpDwhrfc8zvSY2jSb3gR3A=;
-        b=kkBx/ka5Qikd32US4uHYRKntkQF3Cf0UMUci4ibf5LD7yWfMDYXKEIgNr3wbcvFSZE
-         WpBY4dmC3bTyjym0almixr6Je5KCqqr8flK/uTIvEHEQNoT5y9s1nnUns4wlzPcXg4Jt
-         MWPXfN432QzhC3p4AtytMT0alPK/fz5429p85pvxTYAs+V9QM4jAlGVboQizU7+HW2f1
-         RQk575q0rLyomjNeesOJjtcOKCMgdD7+bXJ4By+xARvg+wtxoZMAD3LG/U+05Zily+aA
-         UjoOaUg6+aWHeIiwzpxO6qf5fPeSXGorGkzKCSU1g5JCePCl5NktCZ89UD1jXud1g02L
-         4EFQ==
-X-Gm-Message-State: AC+VfDzmAulzLrj7Vkq8sk2VMst2y8eRLV42zPYDwp4jbynWH6XmwNtc
-        YjaqeSpEfeo6erny/2RfZ0mmFA==
-X-Google-Smtp-Source: ACHHUZ4001udylTG7mZCZpg+TNsGeE/xtbXjzhS1B/zlUDocbhq/vo/xg/nQTpNYk0+21lTA3mBbVw==
-X-Received: by 2002:ac2:491c:0:b0:4f3:792c:289d with SMTP id n28-20020ac2491c000000b004f3792c289dmr556905lfi.20.1684358608722;
-        Wed, 17 May 2023 14:23:28 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id h9-20020ac25d69000000b004f00d3d9df9sm5405lft.188.2023.05.17.14.23.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 14:23:28 -0700 (PDT)
-Message-ID: <fc89ff77-08d4-851e-b209-df017285e86a@linaro.org>
-Date:   Wed, 17 May 2023 23:23:26 +0200
+        with ESMTP id S229458AbjEQXPr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 19:15:47 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FF4026B6
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 16:15:45 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 0565886124;
+        Thu, 18 May 2023 01:15:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1684365343;
+        bh=EVuFO1TPddO2l32tQefguqPU10FZpAuGqm287keLok4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=UZ+8WV4fCH3UBXnZIYK1AhpuL73RxvkK9EdEFRuWKsqBfaxssbdPWfHkyc7EJoy5m
+         kZcpIcJBr6iGxeZJnpDXSvXWGyJ+0DjWArgc5ABd7zO0EX+tRHCzHdYzH5WquPzHRz
+         iOeWQCIBHwBQvS5T9gw2GZ+UjImPhocITPEDSyIBTqXtZRgxqyiT4sK16IWkFUkJ8a
+         fAkHMRA8pBLv4PoDNc65xlfYOvSFx970FCl0kpHv4ObQeHQ01B4urnWZycPBX8BGkO
+         4Nb/hlzxD4CjQuhSUyo5xRvuffyBPGAhsp4a7qKf+GDRvYa2gIiFX1ZYgwlfPY6KXu
+         qi8ujrJ8wl7Tw==
+Message-ID: <16ecb29a-4d52-9464-ecb0-2e45262af105@denx.de>
+Date:   Thu, 18 May 2023 01:15:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: Flush RSC sleep & wake votes
+Subject: Re: [PATCH] ARM: dts: imx6sx: Add LDB support
+To:     Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>
+References: <20230517210210.12183-1-festevam@gmail.com>
 Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230512150425.3171122-1-quic_bjorande@quicinc.com>
- <f6ecd66b-e207-0ed9-0ff3-1febfdf5bce9@linaro.org>
- <20230515023828.jqrrqkit5ygovimp@ripper>
- <1ecd0cba-296e-b036-f59e-f679c771ae9f@linaro.org>
- <20230516210143.GB606695@hu-bjorande-lv.qualcomm.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230516210143.GB606695@hu-bjorande-lv.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230517210210.12183-1-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 5/17/23 23:02, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> i.MX6SX has an LVDS controller that is connected to the eLCDIF.
+> 
+> Add support for it.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>   arch/arm/boot/dts/imx6sx.dtsi | 41 ++++++++++++++++++++++++++++++++++-
+>   1 file changed, 40 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
+> index 4233943a1cca..7a8a00d81666 100644
+> --- a/arch/arm/boot/dts/imx6sx.dtsi
+> +++ b/arch/arm/boot/dts/imx6sx.dtsi
+> @@ -843,8 +843,39 @@ iomuxc: pinctrl@20e0000 {
+>   
+>   			gpr: iomuxc-gpr@20e4000 {
+>   				compatible = "fsl,imx6sx-iomuxc-gpr",
+> -					     "fsl,imx6q-iomuxc-gpr", "syscon";
+> +					     "fsl,imx6q-iomuxc-gpr", "simple-bus", "syscon";
 
+Can we really combine simple-bus and syscon or do we need something like
 
-On 16.05.2023 23:01, Bjorn Andersson wrote:
-> On Mon, May 15, 2023 at 11:34:45AM +0200, Konrad Dybcio wrote:
->>
->>
->> On 15.05.2023 04:38, Bjorn Andersson wrote:
->>> On Sat, May 13, 2023 at 11:09:07AM +0200, Konrad Dybcio wrote:
->>>>
->>>>
->>>> On 12.05.2023 17:04, Bjorn Andersson wrote:
->>>>> The rpmh driver will cache sleep and wake votes until the cluster
->>>>> power-domain is about to enter idle, to avoid unnecessary writes. So
->>>>> associate the apps_rsc with the cluster pd, so that it can be notified
->>>>> about this event.
->>>>>
->>>>> Without this, only AMC votes are being commited.
->>>> Ouch.
->>>>
->>>> Should we make this required: in bindings and add it to all
->>>> platforms?
->>>>
->>>
->>> I though this was an optimization and in the absence of this callback
->>> the driver would just write out wake and sleep sets as well. But per the
->>> current implementation (and perhaps some underlying cause?) it is indeed
->>> required, if you care about power consumption.
->> Hm.. since it's not strictly required for operation, would something
->> like this be fitting?:
->>
-> 
-> I don't think it's required for operation, but the current
-> implementation does require it.
-> 
-> So I think we should either require it in the binding to mimic the
-> implementation, or the implementation should handle either case (only
-> with a performance impact)
-Let's just require it then.
+5a51e1f2b0834 ("arm64: dts: imx8mp: Drop simple-bus from 
+fsl,imx8mp-media-blk-ctrl")
+9cb6d1b39a8f5 ("soc: imx: imx8m-blk-ctrl: Scan subnodes and bind drivers 
+to them")
 
-Konrad
-> 
->> oneOf:
->>   - required:
->>       [...]
->>       - power-domains
->>
->>   - required:
->>       [...]
->>     deprecated: true
->>
->> (if it even works this way)
-> 
-> I don't think it's worth supporting the combinations.
-> 
-> Regards,
-> Bjorn
-> 
->>
->> Konrad
->>>
->>>>>
->>>>> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
->>>>> ---
->>>> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>> Fixes: 152d1faf1e2f ("arm64: dts: qcom: add SC8280XP platform")
->>>>
->>>
->>> The Fixes sounds reasonable.
->>>
->>> Thanks,
->>> Bjorn
->>>
->>>> Konrad
->>>>>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 1 +
->>>>>  1 file changed, 1 insertion(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
->>>>> index 8fa9fbfe5d00..5c68f2182c2f 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
->>>>> @@ -3982,6 +3982,7 @@ apps_rsc: rsc@18200000 {
->>>>>  			qcom,tcs-config = <ACTIVE_TCS  2>, <SLEEP_TCS   3>,
->>>>>  					  <WAKE_TCS    3>, <CONTROL_TCS 1>;
->>>>>  			label = "apps_rsc";
->>>>> +			power-domains = <&CLUSTER_PD>;
->>>>>  
->>>>>  			apps_bcm_voter: bcm-voter {
->>>>>  				compatible = "qcom,bcm-voter";
+?
+
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+>   				reg = <0x020e4000 0x4000>;
+
+[...]
