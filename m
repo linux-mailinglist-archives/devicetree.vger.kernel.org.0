@@ -2,136 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E5217060AC
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 09:04:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97BAF7060AF
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 09:05:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229865AbjEQHER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 03:04:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38756 "EHLO
+        id S229566AbjEQHFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 03:05:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229562AbjEQHEE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 03:04:04 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6034EE49
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 00:03:48 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-510b4e488e4so705354a12.3
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 00:03:48 -0700 (PDT)
+        with ESMTP id S229617AbjEQHFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 03:05:04 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50D69272C;
+        Wed, 17 May 2023 00:04:43 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-966400ee79aso67832266b.0;
+        Wed, 17 May 2023 00:04:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684307027; x=1686899027;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=skuWGLhcahKcfpI9gv7EyAfzwDHEZGuI7n4LLTizb9I=;
-        b=xcgAb9uPdAdq0nlFzp3iDfOIwtyGfWnBk7u2+E71JkslkOFLtAD8fhA4D1h/k5gZsI
-         WvNeZoWUuFqtS2GIo8vRwKh5qoZqTDJ6KP5BrDGj+VXcEK6ZudfdBgeH6Yztu1GeAzOr
-         jIFb0Va1Kg9/B97T61jibpyEXt72R6RE7uo+qJYo+as8nb42gGtPc/4l8B6Loyv+qXT2
-         zjE0ftbDZGIAa2AulDsP67AumuvGQucK/et8shEU5UN0G1Po/YYUxz3vyLxxNCLy/qL+
-         4Tw4+o8uh1wk9ReW5FpREZFG/TWzY3vPJDBKDvj/9MatKtEMmwWJo1J8IdEi/6lwrOvW
-         4Ugg==
+        d=gmail.com; s=20221208; t=1684307081; x=1686899081;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9Z7Esw8IunM8cZhsfLcsY4KMd9PtL0pvZaKLywfblNc=;
+        b=iDJ0olQPPY0V9Gr0WWmfPlZLcYhXCyupu+V1f6SvEKR4xxA3pFlRAaaFd8lH/ISt34
+         pIY3JX2gGFlAuAJ4yEXx7VuRURf+deollo0fI5ypXV2VRDbbl36Jb+mMRQQdOoD/JPVg
+         mzERLa9r7VQY8EvWwzQhyciNnEY82G0FzG0S5ZBfrRan52DStw/PTDCZGEaJsUGsJBhf
+         s1PZ1WNndFXhq1qO45biB71bzfdY5P8OZ2fuWLdxk5PlO0q3JzvsmKX9jZu1LE3n3jSE
+         q3TlYRT3h0OBaccD3YU2SBbsa4WCZwrmk/P8CWPVkVFuH7DefPiMIrHaa5tXmjzWrnzP
+         7LwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684307027; x=1686899027;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=skuWGLhcahKcfpI9gv7EyAfzwDHEZGuI7n4LLTizb9I=;
-        b=i6QmvxRisYvHHBXWIhOlUsHWoTS9o7snhLelmIG3FWN3sD4NEhGCZZOElQGQsTT2Hz
-         d9jqCFDA3apfhRg+v/M/G3wbORx64RrE522AjgA840h2/EcJJU1u/CritPrm+OKgNmbP
-         L1yt8IsKxxQpvrJnQPAod3KUwYu1shCBGSZsLJ439CwkrcW3Q8pZ/qw7GiNkg5Vw5aVz
-         5vr4bYqahqF6joxP4mYM5fduMJlZmGy/SQh2nC/A6xezHRQ4MO+Y4lDPjh2RB1IqEn51
-         JRR5arrgElLn0kDykOgpH2aoXCE/Ynk64O97X1Fg6N+k2lTCYM6J8LXo3MmstUQ1hNZF
-         z1sA==
-X-Gm-Message-State: AC+VfDzocwXlGw6lD/w9PpI1mpr18kTJxgQ8lB6xcZGNtkW/CVDZsH35
-        GZQiPRdFe0RVxSuk7a/5yp5hbw==
-X-Google-Smtp-Source: ACHHUZ7PbnK+4EsSURGPM2BgTIgsWuRJr6EknCyxYT2iu2yURY/Jp855T0yFgP+syLZqbCRC0hNxLw==
-X-Received: by 2002:a17:907:3ea5:b0:96b:559e:7f2f with SMTP id hs37-20020a1709073ea500b0096b559e7f2fmr8394708ejc.38.1684307026625;
-        Wed, 17 May 2023 00:03:46 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
-        by smtp.gmail.com with ESMTPSA id hv7-20020a17090760c700b00965be665811sm11871346ejc.2.2023.05.17.00.03.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 00:03:46 -0700 (PDT)
-Message-ID: <97124cb1-4f45-22d5-418f-568f8a68deec@linaro.org>
-Date:   Wed, 17 May 2023 09:03:45 +0200
+        d=1e100.net; s=20221208; t=1684307081; x=1686899081;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9Z7Esw8IunM8cZhsfLcsY4KMd9PtL0pvZaKLywfblNc=;
+        b=aSvfKXEv9BDIa9z9afTrA4rZyvpS+sYZdHpZjwdkM4gVLa40kgv2TEJJHxKa5JHOCb
+         1kFEgbTvvpBS4KM39Cjnnjfd2Exo1A9e29g0zQczr1iu+bMXodPvMtjMdJAgwSYbwU3Q
+         425x2LLlr7ebMOP9jG74CQ9A43uQM/Q3EmprFA+1q5aUzqipjZnLmprw96ID6eB6isui
+         UXw/9PAB1Bbk/Vb8sE3Z7c2g6oLi26UWseooosptI7SET0MWUQu9hzO271fovtFOP88m
+         pw+G9awltxL0b0OElTmZxyWYxZadFz8//NBLOwhRfzc4WU7ZUyxcXQpUBN/vlU9uGcmr
+         SM4A==
+X-Gm-Message-State: AC+VfDx6iVPnLDnn6KrLA5a8ENFGK1xWgahtvsY3K9bcQ+VGkZDsD5iW
+        UuTvOnzzIK3bP9RxRuh3X4I=
+X-Google-Smtp-Source: ACHHUZ4GCKJ8NGzIEKgVU5XJpLyDXV+CjFOFnzJBOdPV80cbHn7UHnxDzIwplN6K1EFYfgv9qxoErw==
+X-Received: by 2002:a17:907:940c:b0:960:ddba:e5bb with SMTP id dk12-20020a170907940c00b00960ddbae5bbmr37886879ejc.43.1684307080624;
+        Wed, 17 May 2023 00:04:40 -0700 (PDT)
+Received: from skbuf ([188.27.184.189])
+        by smtp.gmail.com with ESMTPSA id l2-20020a1709066b8200b00966447c76f3sm11892600ejr.39.2023.05.17.00.04.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 May 2023 00:04:40 -0700 (PDT)
+Date:   Wed, 17 May 2023 10:04:37 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5] dt-bindings: net: nxp,sja1105: document spi-cpol/cpha
+Message-ID: <20230517070437.ixgvnru4a2wjgele@skbuf>
+References: <20230515074525.53592-1-krzysztof.kozlowski@linaro.org>
+ <20230515074525.53592-1-krzysztof.kozlowski@linaro.org>
+ <20230515105035.kzmygf2ru2jhusek@skbuf>
+ <20230516201000.49216ca0@kernel.org>
+ <124a5697-9bcf-38ec-ca0e-5fbcae069646@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2] dt-bindings: display: panel: add
- panel-mipi-dsi-bringup
-Content-Language: en-US
-To:     Paulo Pavacic <pavacic.p@gmail.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
-        robh+dt@kernel.org, daniel@ffwll.ch,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
- <023f6cf9-0f08-f27e-d203-5ff78faf110f@linaro.org>
- <CAO9szn1EsbuPSRrOW8CLqhp+QUcL=9NE93FAwsg2n3htd_aJTw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAO9szn1EsbuPSRrOW8CLqhp+QUcL=9NE93FAwsg2n3htd_aJTw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <124a5697-9bcf-38ec-ca0e-5fbcae069646@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2023 00:13, Paulo Pavacic wrote:
-> Hello, thank you for your time to review this patch and sorry for not
-> addressing all of the concerns, it was done unintentionally. This is
-> my first contribution to the Linux kernel and it is quite a process.
-> I have run those two scripts and haven't received any errors I have
-> latest master cloned so I will check what I did wrong.
+On Wed, May 17, 2023 at 09:01:38AM +0200, Krzysztof Kozlowski wrote:
+> Yes, apologies, I usually forget the net-next tag.
 > 
-> The thing I would like to get approval on before I try anything else
-> is the name 'panel-mipi-dsi-bringup':
-> 
->> Still wrong filename. You did not respond to my previous comments, so I
-> don't really understand what's this.
->>
->> Judging by compatible, this should be fannal,c3004.yaml
->>
->> If not, explain please.
->>
->> Missing user of the bindings - driver or DTS. Please sent patches together as patchset.
-> 
-> 
-> I wasn't sure how to name it and this name seemed fit. I'm not sure
-> how to be concise about this, but here is the full story as to why I
-> have done that:
-> 
-> I got a task to enable panel for which working driver wasn't
-> available. I have started testing raydium driver and modifying parts
-> of it until I got it working.
-> Driver was modified quite a lot, new functions, macros and structures
-> were added which resulted in a new driver.
-> Therefore I have made a simple driver which I have submitted for a
-> review which will probably be rejected now due tomany reasons I have
-> noticed after sending it:
-> https://lore.kernel.org/lkml/CAO9szn03msW6pu37Zws5EaFGL10rjp9ugPdCuDvOPuQRU72gVQ@mail.gmail.com/T/
-> 
-> While talking with manufacturers of the panel I have figured out that
-> they aren't that familiar with the Linux kernel.
-> They had previously only enabled  it on bare metal (PLA?) and provided
-> me with the initialization sequences. Initialization sequences are hex
-> values sent over MIPI DSI to initialize panel controller.
-> Initialization sequences sometimes also require delays after certain
-> commands and for different panels it can be very different.
-> I believe I have simplified it so that someone can follow comments
-> inside of the driver and try to enable mipi dsi panel by copy pasting
-> initialization code from bare metal system and doing minor
-> modifications.
-> Since I have targeted this at people who need to enable their panels
-> for the first time name seemed okay. I thought that since there is
-> panel-simple.yml that panel-mipi-dsi-bringup.yml would be acceptable
-> name.
+> Shall I resend?
 
-Bindings are for hardware, not driver, so they describe the hardware panel.
-
-Best regards,
-Krzysztof
-
+Probably not.
