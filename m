@@ -2,178 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3990C706436
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 11:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7957C706443
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 11:38:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230027AbjEQJek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 05:34:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41332 "EHLO
+        id S229772AbjEQJix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 05:38:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229746AbjEQJek (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 05:34:40 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1122738
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 02:34:37 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f4c6c4b425so3595375e9.2
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 02:34:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684316076; x=1686908076;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OUDDylEUMPQFAPrSz8VZ1I2suyRsN1Zbbv13ypc2rzA=;
-        b=XJSg314JjT5M+98dJS+VCddMEi8iYMXpPyn9zkjIGFyADWNkyxp7ryBtkVfS4Cd847
-         Lf48mYtXHWxAdR37oqQ0G6DJ2ismYf50up5N7NAFWfNKEyfAdokSiVpsnQLhPGW83h47
-         21D6C4OqYuNMollfIfXcv38/Z/u1EvEFleuDbYG2qLucJtxks4ngMKvuJtN8TPhlMxE4
-         mhskNVHTzvyf9d7zTcKLksGRRkEsGZC86Qn8Xv+7pDe78i5HKplZFQ62HbZTOry7HJ8i
-         nYDa3O6hEeyDtrwmAJO0FQzrGBnlICC2D7pwBW8C0Tb65VoXjz/1/H/502o/UslnVCAv
-         p6qQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684316076; x=1686908076;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OUDDylEUMPQFAPrSz8VZ1I2suyRsN1Zbbv13ypc2rzA=;
-        b=IgZD0GnaKn3ulPZAqO1+lJX55AVZ0QZeVyoqAFI/sFBoc8WqCAZyINxa+j3MMkv/el
-         yN5wzRhsESt4xD5Mx+ephmZZS/XCq+hVCTW74AXrxGiIeETsOhWWV5Jx1rpyDFcqrXFn
-         i7XNakIMIfZwctrufgpsFJSs67zzTaMtS0GXMHugFSenNEh0yzh9HL+UltYcJxv4r9Wu
-         Q0yglBt9f07fqG3D0Ahqk2pQ92zKvMylf8LrNdnaIqRh810kUW7BNqiezgL5HLUXHzaj
-         MF/iSmXWklPcyFYHDjD7ZuIooKk/Y/Asgc5QkHjmzkqC2lwu7joke9oA4bcoeQWjzD7D
-         qXkA==
-X-Gm-Message-State: AC+VfDzKTCmtp2sM3GCRX57+iAwpPoIesoJR1hcFv0WEkdn20TlJhLCJ
-        vMX6wjjeQxrXFz2APXXiSQKjQw==
-X-Google-Smtp-Source: ACHHUZ4jNgQpFPdP+tvVxA3NtSIP3jJELzRJPLwuGEnKMoW8YHWa+nsihhXkJ5xOCHJj8CLdfns4gg==
-X-Received: by 2002:a05:600c:c6:b0:3f4:28db:f5ff with SMTP id u6-20020a05600c00c600b003f428dbf5ffmr21701922wmm.35.1684316076025;
-        Wed, 17 May 2023 02:34:36 -0700 (PDT)
-Received: from [10.1.3.59] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id n7-20020a05600c294700b003f4266965fbsm1655325wmd.5.2023.05.17.02.34.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 02:34:35 -0700 (PDT)
-Message-ID: <62c51f2c-a620-a879-5659-faf3c4b77268@baylibre.com>
-Date:   Wed, 17 May 2023 11:34:32 +0200
+        with ESMTP id S229511AbjEQJix (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 05:38:53 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C51B93C3B;
+        Wed, 17 May 2023 02:38:50 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 434AD1FB;
+        Wed, 17 May 2023 02:39:35 -0700 (PDT)
+Received: from [10.57.73.125] (unknown [10.57.73.125])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 24B3D3F663;
+        Wed, 17 May 2023 02:38:48 -0700 (PDT)
+Message-ID: <420680f2-0d27-3174-532d-7f69760fc58d@arm.com>
+Date:   Wed, 17 May 2023 10:38:46 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] clk: mediatek: mt8365: fix the clock indexes
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.10.0
+Subject: Re: [PATCH V2 3/5] coresight: etm4x: Drop pid argument from
+ etm4_probe()
+To:     Anshuman Khandual <anshuman.khandual@arm.com>,
+        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org
+Cc:     scclevenger@os.amperecomputing.com,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230517-fix-clk-index-v1-0-142077a1732b@baylibre.com>
- <20230517-fix-clk-index-v1-1-142077a1732b@baylibre.com>
- <9c7ff0f1-3d2c-b83a-a47d-544c76f29663@linaro.org>
-Content-Language: en-US
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <9c7ff0f1-3d2c-b83a-a47d-544c76f29663@linaro.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230327050537.30861-1-anshuman.khandual@arm.com>
+ <20230327050537.30861-4-anshuman.khandual@arm.com>
+ <d995fec6-1d3f-df37-724e-67d929e9e0db@arm.com>
+ <28c7a088-bfdb-5172-c7c4-0a572ecda78a@arm.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <28c7a088-bfdb-5172-c7c4-0a572ecda78a@arm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2023 10:40, Krzysztof Kozlowski wrote:
-> On 17/05/2023 10:28, Alexandre Mergnat wrote:
->> Before the patch [1], the clock probe was done directly in the
->> clk-mt8365 driver. In this probe function, the array which stores the
->> data clocks is sized using the higher defined numbers (*_NR_CLOCK) in
->> the clock lists [2]. Currently, with the patch [1], the specific
->> clk-mt8365 probe function is replaced by the mtk generic one [3], which
->> size the clock data array by adding all the clock descriptor array size
->> provided by the clk-mt8365 driver.
+On 17/05/2023 05:32, Anshuman Khandual wrote:
+> 
+> 
+> On 3/31/23 16:36, Suzuki K Poulose wrote:
+>> On 27/03/2023 06:05, Anshuman Khandual wrote:
+>>> Coresight device pid can be retrieved from its iomem base address, which is
+>>> stored in 'struct etm4x_drvdata'. This drops pid argument from etm4_probe()
+>>> and 'struct etm4_init_arg'. Instead etm4_check_arch_features() derives the
+>>> coresight device pid with a new helper coresight_get_pid(), right before it
+>>> is consumed in etm4_hisi_match_pid().
+>>>
+>>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>>> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>> Cc: Mike Leach <mike.leach@linaro.org>
+>>> Cc: Leo Yan <leo.yan@linaro.org>
+>>> Cc: coresight@lists.linaro.org
+>>> Cc: linux-arm-kernel@lists.infradead.org
+>>> Cc: linux-kernel@vger.kernel.org
+>>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+>>> ---
+>>>    .../coresight/coresight-etm4x-core.c          | 21 +++++++------------
+>>>    include/linux/coresight.h                     | 12 +++++++++++
+>>>    2 files changed, 20 insertions(+), 13 deletions(-)
+>>>
+>>> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>>> index 5d77571a8df9..3521838ab4fb 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>>> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+>>> @@ -66,7 +66,6 @@ static u64 etm4_get_access_type(struct etmv4_config *config);
+>>>    static enum cpuhp_state hp_online;
+>>>      struct etm4_init_arg {
+>>> -    unsigned int        pid;
+>>>        struct device        *dev;
+>>>        struct csdev_access    *csa;
+>>>    };
+>>> @@ -370,8 +369,10 @@ static void etm4_disable_arch_specific(struct etmv4_drvdata *drvdata)
+>>>    }
+>>>      static void etm4_check_arch_features(struct etmv4_drvdata *drvdata,
+>>> -                      unsigned int id)
+>>> +                     struct csdev_access *csa)
+>>>    {
+>>> +    unsigned int id = coresight_get_pid(csa);
+>>> +
 >>
->> Actually, all clock indexes come from the header file [2], that mean, if
->> there are more clock (then more index) in the header file [2] than the
->> number of clock declared in the clock descriptor arrays (which is the
->> case currently), the clock data array will be undersized and then the
->> generic probe function will overflow when it will try to write in
->> "clk_data[CLK_INDEX]". Actually, instead of crashing at boot, the probe
->> function returns an error in the log which looks like:
->> "of_clk_hw_onecell_get: invalid index 135", then this clock isn't
->> enabled.
+>> This throws up the following error on an ETE.
+>>
+>> ete: trying to read unsupported register @fe0
+>>
+>> So, I guess this must be performed only for iomem based
+>> devices. System instruction based device must be identified
+>> by MIDR_EL1/REVIDR_EL1 if needed for specific erratum.
+>> This is not required now. So, we could bail out early
+>> if we are system instruction based device.
 > 
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching.
-
-I will.
-
+> Will bail out on non iomem devices via drvdata->base address switch.
 > 
-> This is huge ABI break and I don't understand why it is needed. Entire
-> description above did not explain me that.
+> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
+> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+> @@ -373,9 +373,10 @@ static void etm4_disable_arch_specific(struct etmv4_drvdata *drvdata)
+>   static void etm4_check_arch_features(struct etmv4_drvdata *drvdata,
+>                                       struct csdev_access *csa)
+>   {
+> -       unsigned int id = coresight_get_pid(csa);
+> +       if (!drvdata->base)
+> +               return;
 
-Briefly, clocks with the higher index than the data clock array can't be 
-used. I've this issue:
-[    0.427054] of_clk_hw_onecell_get: invalid index 135
-[    0.429525] of_clk_hw_onecell_get: invalid index 69
-[    0.442998] of_clk_hw_onecell_get: invalid index 70
+I would use !csa->io_mem to be more readerf friendly.
 
-That means CLK_TOP_SSUSB_PHY_CK_EN, CLK_IFR_SSUSB_REF and 
-CLK_IFR_SSUSB_XHCI aren't working when I need them. So my USB doesn't work.
-
+>   
+> -       if (etm4_hisi_match_pid(id))
+> +       if (etm4_hisi_match_pid(coresight_get_pid(csa)))
+>                  set_bit(ETM4_IMPDEF_HISI_CORE_COMMIT, drvdata->arch_features);
+>   }
+>   #else
 > 
 >>
->> The simplest way to fix the regression is to remove from the header file
->> [2] the unused clocks.
-> 
-> ??? The simples is to revert the patch, so you won't break the ABI.
-> 
 >>
->> [1]: Commit ffe91cb28f6a ("clk: mediatek: mt8365: Convert to
->>       mtk_clk_simple_{probe,remove}()")
->> [2]: include/dt-bindings/clock/mediatek,mt8365-clk.h
->> [3]: drivers/clk/mediatek/clk-mtk.c
+>>>        if (etm4_hisi_match_pid(id))
+>>>            set_bit(ETM4_IMPDEF_HISI_CORE_COMMIT, drvdata->arch_features);
+>>>    }
+>>> @@ -385,7 +386,7 @@ static void etm4_disable_arch_specific(struct etmv4_drvdata *drvdata)
+>>>    }
+>>>      static void etm4_check_arch_features(struct etmv4_drvdata *drvdata,
+>>> -                     unsigned int id)
+>>> +                     struct csdev_access *csa)
+>>>    {
+>>>    }
+>>>    #endif /* CONFIG_ETM4X_IMPDEF_FEATURE */
+>>> @@ -1165,7 +1166,7 @@ static void etm4_init_arch_data(void *info)
+>>>        etm4_os_unlock_csa(drvdata, csa);
+>>>        etm4_cs_unlock(drvdata, csa);
+>>>    -    etm4_check_arch_features(drvdata, init_arg->pid);
+>>> +    etm4_check_arch_features(drvdata, csa);
+>>>          /* find all capabilities of the tracing unit */
+>>>        etmidr0 = etm4x_relaxed_read32(csa, TRCIDR0);
+>>> @@ -2048,7 +2049,7 @@ static int etm4_add_coresight_dev(struct etm4_init_arg *init_arg)
+>>>        return 0;
+>>>    }
+>>>    -static int etm4_probe(struct device *dev, u32 etm_pid)
+>>> +static int etm4_probe(struct device *dev)
+>>>    {
+>>>        struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
+>>>        struct csdev_access access = { 0 };
+>>> @@ -2077,7 +2078,6 @@ static int etm4_probe(struct device *dev, u32 etm_pid)
+>>>          init_arg.dev = dev;
+>>>        init_arg.csa = &access;
+>>> -    init_arg.pid = etm_pid;
+>>>          /*
+>>>         * Serialize against CPUHP callbacks to avoid race condition
+>>> @@ -2124,7 +2124,7 @@ static int etm4_probe_amba(struct amba_device *adev, const struct amba_id *id)
+>>>          drvdata->base = base;
+>>>        dev_set_drvdata(dev, drvdata);
+>>> -    ret = etm4_probe(dev, id->id);
+>>> +    ret = etm4_probe(dev);
+>>>        if (!ret)
+>>>            pm_runtime_put(&adev->dev);
+>>>    @@ -2146,12 +2146,7 @@ static int etm4_probe_platform_dev(struct platform_device *pdev)
+>>>        pm_runtime_set_active(&pdev->dev);
+>>>        pm_runtime_enable(&pdev->dev);
+>>>    -    /*
+>>> -     * System register based devices could match the
+>>> -     * HW by reading appropriate registers on the HW
+>>> -     * and thus we could skip the PID.
+>>> -     */
+>>> -    ret = etm4_probe(&pdev->dev, 0);
+>>> +    ret = etm4_probe(&pdev->dev);
+>>>          pm_runtime_put(&pdev->dev);
+>>>        return ret;
+>>> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
+>>> index f19a47b9bb5a..f85b041ea475 100644
+>>> --- a/include/linux/coresight.h
+>>> +++ b/include/linux/coresight.h
+>>> @@ -370,6 +370,18 @@ static inline u32 csdev_access_relaxed_read32(struct csdev_access *csa,
+>>>        return csa->read(offset, true, false);
+>>>    }
+>>>    +#define CORESIGHT_PIDRn(i)    (0xFE0 + ((i) * 4))
+>>> +
+>>> +static inline u32 coresight_get_pid(struct csdev_access *csa)
+>>> +{
+>>> +    u32 i, pid = 0;
+>>> +
+>>> +    for (i = 0; i < 4; i++)
+>>> +        pid |= csdev_access_relaxed_read32(csa, CORESIGHT_PIDRn(i)) << (i * 8);
 >>
->> Fixes: ffe91cb28f6a ("clk: mediatek: mt8365: Convert to mtk_clk_simple_{probe,remove}()")
->>
->> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
->> ---
->>   include/dt-bindings/clock/mediatek,mt8365-clk.h | 361 ++++++++++++------------
->>   1 file changed, 177 insertions(+), 184 deletions(-)
->>
->> diff --git a/include/dt-bindings/clock/mediatek,mt8365-clk.h b/include/dt-bindings/clock/mediatek,mt8365-clk.h
->> index f9aff1775810..fd59c8bdeb24 100644
->> --- a/include/dt-bindings/clock/mediatek,mt8365-clk.h
->> +++ b/include/dt-bindings/clock/mediatek,mt8365-clk.h
->> @@ -7,147 +7,142 @@
->>   #define _DT_BINDINGS_CLK_MT8365_H
->>   
->>   /* TOPCKGEN */
->> -#define CLK_TOP_CLK_NULL		0> -#define CLK_TOP_I2S0_BCK		1
+>> Given the above, we could make this iomem specific.
 > 
-> ...
-> 
->> +#define CLK_TOP_I2S0_BCK		0
-> 
-> Why? This is really broken. You can remove the defines, but re-shuffling
-> everything?!?
+> We could change coresight_get_pid() to take iomem base address instead
+> and fetch the pid. But is not the existing csdev_access based approach
+> better and more generic ?
 
-I've under-estimated the impact of modifying the defines, I will try to 
-find another way to fix the regression in the drivers directly.
+Yes, true, lets leave it with csdev_access, as it is coresight specific
+and not ETMv4.
 
-Thanks for your review.
-
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
-
--- 
-Regards,
-Alexandre
-
+Cheers
+Suzuki
