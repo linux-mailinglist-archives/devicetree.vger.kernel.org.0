@@ -2,122 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0DB3705EEF
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 06:45:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 069AA705EF3
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 06:51:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231602AbjEQEpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 00:45:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56210 "EHLO
+        id S231440AbjEQEvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 00:51:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229437AbjEQEpm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 00:45:42 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A495B1AD;
-        Tue, 16 May 2023 21:45:40 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34H4a7D6098416;
-        Tue, 16 May 2023 23:36:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684298167;
-        bh=L+uLcF4G4LMy0Kfx7TjrrG/Ryb+vipj+y8j5OC7suEg=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=IqZLvZgm6XpN7LnsAgHVli0UN9pNjyup1cZWOJadkBp0eZBBc+4sUXir5/AOZpCjK
-         u/ZMMuaXct5MxTqFhAY5W4mfiP035CNxIPnZgNTgqQWIWMmK8L1ZviOQYi3DWBKAvN
-         ATgJ1m50Nhi1iq3KeqKSvz6YsTzP3gb1lrjZbcC8=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34H4a7lo005795
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 16 May 2023 23:36:07 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
- May 2023 23:36:07 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 16 May 2023 23:36:06 -0500
-Received: from [172.24.145.182] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34H4a4AL020314;
-        Tue, 16 May 2023 23:36:04 -0500
-Message-ID: <373ce50d-37ab-5c25-c50b-20e4f6ae6859@ti.com>
-Date:   Wed, 17 May 2023 10:06:03 +0530
+        with ESMTP id S231694AbjEQEvN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 00:51:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01DDC30D2;
+        Tue, 16 May 2023 21:51:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 92D8D64168;
+        Wed, 17 May 2023 04:51:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81669C433D2;
+        Wed, 17 May 2023 04:50:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1684299060;
+        bh=1A4N2cqACkxyyJfl2oSoqVFVLCI/m4E0p25SJpeFf2I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QSOHjdPa779g0yJZEwvB03PDRBr2erJQZ4vx7/pabYc16D1kgrh0ouKhtgd8dqI/e
+         Su9cvdGXifPwY8MCRElYh5DpdNNjBFDsREb3O71TiZMg4WAoiFFXTUyd1szn1IWhx+
+         xpzEhQyRarIBp7tBROziY7DpThOmbaG0fcEnWtao=
+Date:   Wed, 17 May 2023 06:50:57 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, linux-kernel@vger.kernel.org,
+        bhupesh.linux@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH v5 3/5] usb: misc: eud: Add driver support for SM6115 /
+ SM4250
+Message-ID: <2023051723-decibel-skiing-56ed@gregkh>
+References: <20230516213308.2432018-1-bhupesh.sharma@linaro.org>
+ <20230516213308.2432018-4-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 2/2] dt-bindings: clock: ehrpwm: Remove unneeded syscon
- compatible
-Content-Language: en-US
-To:     Andrew Davis <afd@ti.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230516184626.154892-1-afd@ti.com>
- <20230516184626.154892-2-afd@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20230516184626.154892-2-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230516213308.2432018-4-bhupesh.sharma@linaro.org>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, May 17, 2023 at 03:03:06AM +0530, Bhupesh Sharma wrote:
+> Add SM6115 / SM4250 SoC EUD support in qcom_eud driver.
 
+Why is the subject line duplicated here?
 
-On 17/05/23 00:16, Andrew Davis wrote:
-> This node's register space is not accessed by any other node, which
-> is the traditional use for the "syscon" hint. 
-
-Unfortunately that's not the case across SoCs. Eg AM65x See  TRM section
-Table 5-582. CTRLMMR_EPWM0_CTRL Register Field Descriptions
-
-TB_CLKEN is clubbed with SYNCIN_SEL and ePWM tripzone configuration
-signals which may require register to be shared with other drivers in future
-
-
-> It looks to have been
-> added here to make use of a Linux kernel helper syscon_node_to_regmap().
-> The Linux driver now uses a more appropriate helper that does not
-> require the hint, so let's remove it from the binding.
+> On some SoCs (like the SM6115 / SM4250 SoC), the mode manager
+> needs to be accessed only via the secure world (through 'scm'
+> calls).
 > 
-> Signed-off-by: Andrew Davis <afd@ti.com>
+> Also, the enable bit inside 'tcsr_check_reg' needs to be set
+> first to set the eud in 'enable' mode on these SoCs.
+> 
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > ---
->  .../devicetree/bindings/clock/ti,am654-ehrpwm-tbclk.yaml     | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/ti,am654-ehrpwm-tbclk.yaml b/Documentation/devicetree/bindings/clock/ti,am654-ehrpwm-tbclk.yaml
-> index 66765116aff5..64b8bce5962c 100644
-> --- a/Documentation/devicetree/bindings/clock/ti,am654-ehrpwm-tbclk.yaml
-> +++ b/Documentation/devicetree/bindings/clock/ti,am654-ehrpwm-tbclk.yaml
-> @@ -16,7 +16,6 @@ properties:
->            - ti,am654-ehrpwm-tbclk
->            - ti,am64-epwm-tbclk
->            - ti,am62-epwm-tbclk
-> -      - const: syscon
->  
->    "#clock-cells":
->      const: 1
-> @@ -33,8 +32,8 @@ additionalProperties: false
->  
->  examples:
->    - |
-> -    ehrpwm_tbclk: syscon@4140 {
-> -        compatible = "ti,am654-ehrpwm-tbclk", "syscon";
-> +    ehrpwm_tbclk: clock@4140 {
-> +        compatible = "ti,am654-ehrpwm-tbclk";
->          reg = <0x4140 0x18>;
->          #clock-cells = <1>;
->      };
+>  drivers/usb/misc/Kconfig    |  1 +
+>  drivers/usb/misc/qcom_eud.c | 69 +++++++++++++++++++++++++++++++++----
 
--- 
-Regards
-Vignesh
+Given that you didn't cc the usb maintainer, I'm guessing you don't want
+this patch applied?
+
+>  2 files changed, 63 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/usb/misc/Kconfig b/drivers/usb/misc/Kconfig
+> index 99b15b77dfd5..fe1b5fec1dfc 100644
+> --- a/drivers/usb/misc/Kconfig
+> +++ b/drivers/usb/misc/Kconfig
+> @@ -147,6 +147,7 @@ config USB_APPLEDISPLAY
+>  config USB_QCOM_EUD
+>  	tristate "QCOM Embedded USB Debugger(EUD) Driver"
+>  	depends on ARCH_QCOM || COMPILE_TEST
+> +	select QCOM_SCM
+
+How well is that going to work on building on non-QCOM systems?  Can
+QCOM_SCM build if COMPILE_TEST is enabled?  select is rough to get
+right, are you sure it's correct here?  If so, some documentation in the
+changelog would be appreciated.
+
+>  	select USB_ROLE_SWITCH
+>  	help
+>  	  This module enables support for Qualcomm Technologies, Inc.
+> diff --git a/drivers/usb/misc/qcom_eud.c b/drivers/usb/misc/qcom_eud.c
+> index b7f13df00764..10d194604d4c 100644
+> --- a/drivers/usb/misc/qcom_eud.c
+> +++ b/drivers/usb/misc/qcom_eud.c
+> @@ -5,12 +5,14 @@
+>  
+>  #include <linux/bitops.h>
+>  #include <linux/err.h>
+> +#include <linux/firmware/qcom/qcom_scm.h>
+
+There's no rule to keep these sorted, but it's your choice...
+
+>  #include <linux/interrupt.h>
+>  #include <linux/io.h>
+>  #include <linux/iopoll.h>
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/slab.h>
+>  #include <linux/sysfs.h>
+> @@ -22,23 +24,33 @@
+>  #define EUD_REG_VBUS_INT_CLR	0x0080
+>  #define EUD_REG_CSR_EUD_EN	0x1014
+>  #define EUD_REG_SW_ATTACH_DET	0x1018
+> -#define EUD_REG_EUD_EN2        0x0000
+> +#define EUD_REG_EUD_EN2		0x0000
+
+Why the coding style cleanup in the same patch?  Remember, changes only
+do one thing, and you have already listed 2 things in your commit
+message :(
+
+>  
+>  #define EUD_ENABLE		BIT(0)
+> -#define EUD_INT_PET_EUD	BIT(0)
+> +#define EUD_INT_PET_EUD		BIT(0)
+
+Again, why this change?
+
+thanks,
+
+greg k-h
