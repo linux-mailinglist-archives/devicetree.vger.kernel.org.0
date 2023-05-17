@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DEF4705D02
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 04:19:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97E82705D06
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 04:19:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231835AbjEQCS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 22:18:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41836 "EHLO
+        id S231830AbjEQCTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 22:19:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231264AbjEQCS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 22:18:57 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C2D2E4E
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 19:18:56 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f24ddf514eso335166e87.0
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 19:18:56 -0700 (PDT)
+        with ESMTP id S231878AbjEQCS7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 22:18:59 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB72510CF
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 19:18:57 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2ac82912a59so1336341fa.3
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 19:18:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684289934; x=1686881934;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mNuleyZz00TgZy2qn9synoHafBsS2EGKwJDZ0wTnRXM=;
-        b=wFt5R7uDlqCI5juBKjX+HKH9IfSSpOtP+J8cGttpl+kx1YOeolIo/0xujf9T2Lu9/z
-         UOHQHgNVtpDL0K1bD1bO9m7qhGojRCjzmhkWmt9vYXvYG1eNGv5GlCL48Bh41EKWEFz5
-         k7ykRUfIqNK68ZEH1kdgLGSJ7mCEui24q1BKZegkkubVFvG14N9DO13T98s7irDJp7hu
-         SO3m7MnSXvtWqMWPX8xHnkdcsrZuSCWhxlMvZ8/0NNu8JeiAFjMVYrma7P8VSEBKN6Bs
-         tznYeWjDF5GmDjH+kEyUOpv8Une0WYmzOdajRFlwsRbJJ9aALF/f7oX+MgMWByMiRHl2
-         UC9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684289934; x=1686881934;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1684289936; x=1686881936;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=mNuleyZz00TgZy2qn9synoHafBsS2EGKwJDZ0wTnRXM=;
-        b=GRXLsFgFpOvTX6kYpbrb1imAS7vjhZUsE3WN9Wg5o3ZTT1VlyKx6m3AA5F59vgMR+/
-         GrjU0keOzQXfKKHwGtHIvAOVPta4IkqKgPZG11Ks1RHdCz/ITwy2R3McJxJV4peuZ0Kr
-         5FUW0ukYc5vjlyiULmaUzuNkY4vHyaOlSGwd0xwQIpDceDIQeZxOytdTEFtAvG7FIVCv
-         wVPrZpER8fFRLvk/0GgEjLvrscdMqsYE/5tVfTB/dn7L8s2MhhfVdmXQM4RP/zspgCJ4
-         3fgJxPpQjewysoZzbaOX2xbFUz6C48O3NmO5Q5qqqhvdZqy68Nu5N5irdEfY1b3CiWpx
-         mS0Q==
-X-Gm-Message-State: AC+VfDy4CDWx3NqumFeRBi1EtDxXeP35wssM+XASzcNkXBrkXTeCk4LA
-        unfxeaNgF+OjlJR+anWrCAGiwmCyj/HMbjOCdNw=
-X-Google-Smtp-Source: ACHHUZ6cEKZjZPUZ/A7OWo1caIo/qBlIBx0j9UNQtzWqioi710Vj/oDKmPKMVJcUqZkxhQD12mvNug==
-X-Received: by 2002:ac2:4302:0:b0:4ec:7b87:931a with SMTP id l2-20020ac24302000000b004ec7b87931amr7146198lfh.13.1684289934402;
-        Tue, 16 May 2023 19:18:54 -0700 (PDT)
+        bh=Jz3z44BI7g+ZmvQgxzmcrsNHfKROiTCAupO35cRRnoc=;
+        b=kClaBUy5lYVkbTQ4Y1cUJwNbIfWweEZ9YpHHoXgU0YAabya48bWQJ40fOFY8occH7R
+         iUB537yrAKyH8y3/CZ35khah+4shCszE2vw8LGliDpoRT5ERpRRuqG9SpIX62FlqxasE
+         8AJkq8nNQfzYEihmiNM85u3oaaKAZy3FguBd13dlM3v+CIETv/2BvrvvzXrVeWhAzIKs
+         9lXsNIFCACfT69BlQ5jKdewnUKK/Q9u+2A2ny73nGHLR/l9zCOuO1L056nZgFbbuRc+Z
+         7akF67a/qZiybKXtnhzhAwFAzs8wmgMBmLMN5pLR64GRNeIUC2oxF6/zVOYSsB9FZgHe
+         YJiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684289936; x=1686881936;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Jz3z44BI7g+ZmvQgxzmcrsNHfKROiTCAupO35cRRnoc=;
+        b=Cig2SDo98PjX4F0f7CbP2W44DVLKnJ5FowZ2imvIxTuGvVr0BmHu/YcSm09Kfleo7p
+         OqQ8hAIF5WBhlMLSW+qP+6jhMcPU8YKtsLYippZIB5Cb0URx/9IxY1IJ28XSBcb2fajX
+         /2Daw+mfjc1Xoo2CDRuwN7dw6GvVpwdzjTvBN0UTikkxgT3Jv7Jx6GI4R277//IngWPX
+         8YkPrLDfeDnl1WY/PGpKT+1IVVQh+DazjDi4xkVS/nc8XrkT6UefBAWzuPt/j2GQlR0/
+         8y2kQEMJvtm3rwfHW3jNHgPfr3M+jefyxjZsUYPcbW1elpjrrNVSSoB1Q8jS5mpdND3s
+         W1CQ==
+X-Gm-Message-State: AC+VfDy3/jeXRMVjutNbslw2JekCoIzf4J+gFGfe6+wUGsGbSlq/Z2dA
+        +aEa2UCH4f2PZ1Xs/TCk8oNpFQ==
+X-Google-Smtp-Source: ACHHUZ66dOMCy0XMY0FXupx0/9rdyz37oDv9BaNAMlw1txb6SKgIFfXhT/CSzr6/Wir6weBJvgNNvQ==
+X-Received: by 2002:a2e:3e08:0:b0:2ac:767c:ae14 with SMTP id l8-20020a2e3e08000000b002ac767cae14mr8096551lja.19.1684289935902;
+        Tue, 16 May 2023 19:18:55 -0700 (PDT)
 Received: from [10.167.154.1] (public-gprs529629.centertel.pl. [31.61.188.30])
-        by smtp.gmail.com with ESMTPSA id z22-20020a2e9656000000b002af01da6c67sm384232ljh.32.2023.05.16.19.18.52
+        by smtp.gmail.com with ESMTPSA id z22-20020a2e9656000000b002af01da6c67sm384232ljh.32.2023.05.16.19.18.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 May 2023 19:18:53 -0700 (PDT)
+        Tue, 16 May 2023 19:18:55 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: [PATCH 0/2] Fix SM8550 LLCC
-Date:   Wed, 17 May 2023 04:18:48 +0200
-Message-Id: <20230517-topic-kailua-llcc-v1-0-d57bd860c43e@linaro.org>
+Date:   Wed, 17 May 2023 04:18:49 +0200
+Subject: [PATCH 1/2] dt-bindings: cache: qcom,llcc: Fix SM8550 description
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAIg5ZGQC/x2N0QqDMAwAf0XyvIDtmMJ+ZewhjamGhSrtHAPx3
- xf2eAfHHdCkqjS4dwdU+WjTtTiESwe8UJkFdXKG2MdrfwsjvtdNGV+kthOaMaPkMExjTIGzgHe
- JmmCqVHjxsuxmLrcqWb//0eN5nj+8SliMeAAAAA==
+Message-Id: <20230517-topic-kailua-llcc-v1-1-d57bd860c43e@linaro.org>
+References: <20230517-topic-kailua-llcc-v1-0-d57bd860c43e@linaro.org>
+In-Reply-To: <20230517-topic-kailua-llcc-v1-0-d57bd860c43e@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -71,42 +71,48 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1684289932; l=772;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1684289932; l=955;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=APGnRrrr5TbZrxKPg7ottygde1n4pWblpcQNvgATuUM=;
- b=QqJiuyxuIU2wwBiPeU0LPVL5yZhYWg10sWC/fxGSUrG8eTyLzdW8cI1aUqEGGcTbJfnJQ442h
- b773B2EGunpDDVuqB3ErDHeXQG8bbjTtcxQfZYnKDEWKtgjhmFkJnzV
+ bh=+mECFcNGWfDIiv+m+e4NFJpbpPzCAtKBP5iEoJkWFJE=;
+ b=t3vQgRkUriq5xl5T/CjwoBBUauqUfLsRKPULgh8X7ioEfzBYhNw0iUT5FNdZEQihgTiSD5Rva
+ OprF4TwyDHzB5BeGxYNfSuMznWbDpTY8gyrTP9HSDQCX2NRww3xkUPP
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LLCC was recently untangled as far as register regions go [1], but
-SM8550 was omitted. Fix it.
+SM8550 (LLCCv4.1) has 4 register regions, this was not described
+between its addition and the restructurization that happened in
+the commit referenced in the fixes tag.
 
-[1] https://lore.kernel.org/all/20230314080443.64635-1-manivannan.sadhasivam@linaro.org/
+Fix it.
 
+Fixes: 43aa006e074c ("dt-bindings: arm: msm: Fix register regions used for LLCC banks")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
-Konrad Dybcio (2):
-      dt-bindings: cache: qcom,llcc: Fix SM8550 description
-      arm64: dts: qcom: sm8550: Use the correct LLCC register scheme
+ Documentation/devicetree/bindings/cache/qcom,llcc.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
- Documentation/devicetree/bindings/cache/qcom,llcc.yaml |  1 +
- arch/arm64/boot/dts/qcom/sm8550.dtsi                   | 11 +++++++++--
- 2 files changed, 10 insertions(+), 2 deletions(-)
----
-base-commit: 885df05bf634d589fbf030c3751614eaa453fb5d
-change-id: 20230517-topic-kailua-llcc-ef16d72b1cfe
+diff --git a/Documentation/devicetree/bindings/cache/qcom,llcc.yaml b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
+index d8b91944180a..44892aa589fd 100644
+--- a/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
++++ b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
+@@ -129,6 +129,7 @@ allOf:
+               - qcom,sm8250-llcc
+               - qcom,sm8350-llcc
+               - qcom,sm8450-llcc
++              - qcom,sm8550-llcc
+     then:
+       properties:
+         reg:
 
-Best regards,
 -- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+2.40.1
 
