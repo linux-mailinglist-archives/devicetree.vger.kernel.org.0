@@ -2,73 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9E30707207
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 21:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D049E707223
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 21:27:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbjEQT0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 15:26:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45232 "EHLO
+        id S230125AbjEQT1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 15:27:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjEQT0I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 15:26:08 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 297CCA27C
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 12:25:41 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2acb6571922so11705621fa.0
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 12:25:41 -0700 (PDT)
+        with ESMTP id S229920AbjEQT1Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 15:27:16 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03315A5C5
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 12:26:41 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-965c3f9af2aso174882766b.0
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 12:26:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684351538; x=1686943538;
+        d=linaro.org; s=google; t=1684351597; x=1686943597;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8ITJQ6BvmC/gprSSWzEVWg1Y3AF8tHDZkXSoXVabNDY=;
-        b=BwI8NeIlYwTsmyAaTI9Z+PZIeJ/DkTmPHMHvfQlzEDIMMz0f0PDW8otXD8sMIBtMlA
-         E7b3XWB/mlN9eN8GVd7I8Mjqf08OT6D26sABVWTbGMI61jIl4xc1y2h9Hh/WPfwIDqG0
-         Mp/pj9+m34Yl/O+fbQ3Rj4mTnaa8Flo5KgEUo28+hvJfRVmdsxjhaFOHGkotVPB8TeHg
-         IPao9GVsUKlJf+IwgXoqF/38HsfyJYik8h4Nna5oAvmlrDgmWZqHePw4tz0dASe/Q2yo
-         80SXHRwZHIyc0AXkCty33fhXy/xP2fTohzUbyRuEbh8jPTc865XSSY3hL3BlbQ6P1suK
-         d46A==
+        bh=Mm1FTlLFksMfdpbiAMAJzUodVZBvDKUEnd/MrdiN4SE=;
+        b=ah3JKaxqw48Owmtqcin9G2kpFmSJG8xXLqbqJf/sbesavcjD11tzf/n+zkfbp7ZNPn
+         p5OcoclJk5sUAb3FirHxTvN25HKiL2dpTdlnZAVZeYsyhxOCjEhaaIN/VOGbF/ONXO6Z
+         8jBF0vNA9utft1oi4E/qCcQfVwz1n1x78kvuhzfsaoSJ6HtxXJbbqhHtTep5w9qn2mox
+         soooocVeS6hzk9nJRDiRSLt+WUA4tix/LOph4Ek6w6oTNSl2E4DShg68SmBb6jNXKM0N
+         hvLO1eTvrtcs4eGxtJFm5HpXsFV0NykSjc2PGiKGDDSSNaGNldRlFZvF2hhL4z5nvZlu
+         ncRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684351538; x=1686943538;
+        d=1e100.net; s=20221208; t=1684351597; x=1686943597;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8ITJQ6BvmC/gprSSWzEVWg1Y3AF8tHDZkXSoXVabNDY=;
-        b=MRo8cqMjWUnHI4LX+uazX1ylBP5wBP8bzHAgpYsZBGPsVEKBYSdbFaX/h8cORkXnub
-         uS4+95ZKNd9rQ95HBIJEk0JN4M/6s0DMhC/546TKuy5rc4CCWSPaKKKj0VogUITzNC0B
-         Y8rwveC9Sq9txc01VC2Y4AemdfLHB2ADbHueOE4jLsmisz9cZI5wMtBH3CkNNj7Qm7Xb
-         zLguz6DbV8G4K+FONylj0UuENkitfNDyHuRzlRE7i+KMmmEcNwwxAhoGI9dVEYE3AaPV
-         vl7gHZ+PJAmh2P6pKSYcpIv0Xwod8f6bnqQWIv//1Qiv4eUrn7yqR8jG2hg4TKpZ1+Ne
-         UX7w==
-X-Gm-Message-State: AC+VfDzAV3VyNNEbbsvB3kO2+d4guL57FTcS+OEjlQ/3CYPu9EuWpPSF
-        Cye2WVnW9Mj9Kr0B+ofg0BU3Ag==
-X-Google-Smtp-Source: ACHHUZ586XXdEcjn73/2Fn9e9ezVjMQlszHOct+frgJ//20J4gI30kuXVnRja4ZT5a+0l72TiASFlQ==
-X-Received: by 2002:ac2:5a09:0:b0:4ef:f64b:65a9 with SMTP id q9-20020ac25a09000000b004eff64b65a9mr627508lfn.36.1684351538556;
-        Wed, 17 May 2023 12:25:38 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id j11-20020ac2454b000000b004edc7f6ee44sm3456891lfm.234.2023.05.17.12.25.37
+        bh=Mm1FTlLFksMfdpbiAMAJzUodVZBvDKUEnd/MrdiN4SE=;
+        b=O/lowHehcuBbiAAOtPmM2/of0/MYwjU0mfWDUzCxNgJcuqL0PqfIYt2TmH0ITkdQ1z
+         5Cj/NXeCneeexLkdadMwjHTnCVirot9hRBGvr7gVpuKCtxf0F+5iZEVDRRCmMHROPkW9
+         d3qLG4TKe3hBcu+AwWBlZDb8D+4DD2OJHXRfvIK3OrmgDkpb8txHwT1hlY0SkRG2UNm6
+         fYh7vCj+uipc0ddyCJZ1r2pkhd3cnK3FGqxxvuUYSaGAXQJbr8IUG9SYTHiwsbRfKr12
+         LrAinn1r6PHa1dp05xwCwgX5kft/7HqQ72/wPx445n53WHqK/V0qPEMau7FtT0iXpCVh
+         MaYQ==
+X-Gm-Message-State: AC+VfDzv1INTm2BaLb2Gpv8GSj4yRnmNc2kwU9VlhhnHItI5VVxUSJP2
+        VMVIXjfCVAj4bXdUrjDDRLFBvA==
+X-Google-Smtp-Source: ACHHUZ6++WL2KoWrWr1kQFg7pgPeyB9wQttL5UxWx7+NYYB6bmuyDQFSgFA845peRuMllKux/N69yg==
+X-Received: by 2002:a17:907:3daa:b0:96a:1cbf:3dcc with SMTP id he42-20020a1709073daa00b0096a1cbf3dccmr32103920ejc.54.1684351597249;
+        Wed, 17 May 2023 12:26:37 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:d7a:e7cc:21b3:c435? ([2a02:810d:15c0:828:d7a:e7cc:21b3:c435])
+        by smtp.gmail.com with ESMTPSA id w12-20020aa7da4c000000b0050bc5727507sm9712685eds.73.2023.05.17.12.26.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 12:25:38 -0700 (PDT)
-Message-ID: <c28494ec-1eb3-239e-46d8-fe84c2f28e77@linaro.org>
-Date:   Wed, 17 May 2023 21:25:36 +0200
+        Wed, 17 May 2023 12:26:36 -0700 (PDT)
+Message-ID: <408ee74c-e6ed-d654-af04-58bd7d1e087b@linaro.org>
+Date:   Wed, 17 May 2023 21:26:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 0/5] of: reserved_mem: Provide more control about
- allocation behavior
+Subject: Re: [PATCH v2 3/5] dt-bindings: net: add mac-address-increment option
 Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>,
+To:     Ivan Mikhaylov <fr0st61te@gmail.com>,
+        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org, devicetree-spec@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20230510-dt-resv-bottom-up-v1-0-3bf68873dbed@gerhold.net>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230510-dt-resv-bottom-up-v1-0-3bf68873dbed@gerhold.net>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Paul Fertser <fercerpav@gmail.com>
+References: <20230509143504.30382-1-fr0st61te@gmail.com>
+ <20230509143504.30382-4-fr0st61te@gmail.com>
+ <6b5be71e-141e-c02a-8cba-a528264b26c2@linaro.org>
+ <fc3dae42f2dfdf046664d964bae560ff6bb32f69.camel@gmail.com>
+ <8de01e81-43dc-71af-f56f-4fba957b0b0b@linaro.org>
+ <be85bef7e144ebe08f422bf53bb81b59a130cb29.camel@gmail.com>
+ <5b826dc7-2d02-d4ed-3b6a-63737abe732b@linaro.org>
+ <e6247cb39cc16a9328d9432e0595745b67c0aed5.camel@gmail.com>
+ <38ae4ceb-da21-d73e-9625-1918b4ab4e16@linaro.org>
+ <5d7421b6a419a9645f97e6240b1dfbf47ffcab4e.camel@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5d7421b6a419a9645f97e6240b1dfbf47ffcab4e.camel@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,56 +91,166 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 17/05/2023 23:38, Ivan Mikhaylov wrote:
+> On Wed, 2023-05-17 at 10:36 +0200, Krzysztof Kozlowski wrote:
+>> On 16/05/2023 13:47, Ivan Mikhaylov wrote:
+>> hy this is property of the hardware. I
+>>>>>> understand
+>>>>>> that this is something you want Linux to do, but DT is not
+>>>>>> for
+>>>>>> that
+>>>>>> purpose. Do not encode system policies into DT and what above
+>>>>>> commit
+>>>>>> says is a policy.
+>>>>>>
+>>>>>
+>>>>> Krzysztof, okay then to which DT subsystem it should belong? To
+>>>>> ftgmac100 after conversion?
+>>>>
+>>>> To my understanding, decision to add some numbers to MAC address
+>>>> does
+>>>> not look like DT property at all. Otherwise please help me to
+>>>> understand
+>>>> - why different boards with same device should have different
+>>>> offset/value?
+
+I would like to remind this question.
+"why different boards with same device should have different offset/value?"
+
+It was literally ignored and you started explaining network cards and
+BMC. I don't understand why, but it does not help your case.
+
+Let me extend this question with one more:
+"Why for all your boards of one type, so using the same DTS, would you
+use one value of incrementing MAC address?"
+
+>>>>
+>>>> Anyway, commit msg also lacks any justification for this.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>>
+>>> Krzysztof, essentially some PCIe network cards have like an
+>>> additional
+>>> *MII interface which connects directly to a BMC (separate SoC for
+>>> managing a motherboard) and by sending special ethernet type frames
+>>> over that connection (called NC-SI) the BMC can obtain MAC, get
+>>> link
+>>> parameters etc. So it's natural for a vendor to allocate two MACs
+>>> per
+>>> such a board with PCIe card intergrated, with one MAC "flashed
+>>> into"
+>>> the network card, under the assumption that the BMC should
+>>
+>> Who makes the assumption that next MAC should differ by 1 or 2?
+> 
+> Krzysztof, in this above case BMC does, BMC should care about changing
+> it and doing it with current codebase without any options just by some
+> hardcoded numbers which is wrong.
+
+But you hard-code the number, just in BMC DTS. How does it differ from
+BMC hard-coding it differently?
+
+You encode policy - or software decisions - into Devicetree.
+
+> 
+>>
+>>> automatically use the next MAC. So it's the property of the
+>>> hardware as
+>>> the vendor designs it, not a matter of usage policy.
+>>>
+>>> Also at the nvmem binding tree is "nvmem-cell-cells" which is
+>>> literally
+>>> the same as what was proposed but on different level.
+>>>
+>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/Documentation/devicetree/bindings/nvmem?id=7e2805c203a6c8dc85c1cfda205161ed39ae82d5
+>>
+>> How is this similar? This points the location of mac address on some
+>> NV
+>> storage. You add fixed value which should be added to the Ethernet.
+> 
+> It's not the points the location, this particular option provides this
+> increment for mac addresses to make use of them with multiple
+> interfaces. Just part of above commit:
+> "It's used as a base for calculating addresses for multiple interfaces.
+> It's done by adding proper values. Actual offsets are picked by
+> manufacturers and vary across devices."
+> 
+> It is same as we talked before about mac-address-increment in openwrt
+> project, if you want examples, you can look into their github. And same
+> as we trying to achieve here.
+> 
+> https://github.com/openwrt/openwrt/blob/master/target/linux/generic/pending-5.15/682-of_net-add-mac-address-increment-support.patch
+
+Awesome... so if project added wrong property to bindings, e.g. SW
+property, you find it as an argument for anyone else.
+
+No, that's not how it works.
+
+> 
+> "Lots of embedded devices use the mac-address of other interface
+> extracted from nvmem cells and increments it by one or two. Add two
+> bindings to integrate this and directly use the right mac-address for
+> the interface. Some example are some routers that use the gmac
+> mac-address stored in the art partition and increments it by one for
+> the
+> wifi. mac-address-increment-byte bindings is used to tell what byte of
+> the mac-address has to be increased (if not defined the last byte is
+> increased) and mac-address-increment tells how much the byte decided
+> early has to be increased."
+> 
+> Don't you see similarity with nvmem commit?
+
+Explanation is similar, but you are using wrong argument to justify the
+property. The MAC address is stored in some NVMEM cell. There is such
+NVMEM cell. That's the hardware property, thus it is justified in DT.
+
+Now how MAC address will be modified - by 1, 2, 3, 252 - is not related
+to that commit, because it is a software decision.
+
+Again, we are back to the previous question to which you answered "BMC
+will do it". I understand this is property for the BMC DTS, thus:
+Why for all your boards of one type, so using one DTS, would you use one
+value of incrementing MAC address?
+Why devices with same board cannot use different values? One board "1"
+and second "2" for MAC increments? I am sure that one customer could
+have it different.
+
+The choice how much you increment some MAC address is not a hardware
+property. It does not even look like a firmware property. If playing
+with this property was done by firmware, like we do for all MAC address
+fields, then I would expect here some references to it. Which you did
+not provide, I believe.
 
 
-On 15.05.2023 12:12, Stephan Gerhold wrote:
-> Provide more control about the allocation behavior for dynamically 
-> allocated reserved memory by adding a "alloc-bottom-up" and 
-> "alloc-top-down" option and by making the allocation order 
-> deterministic.
-> 
-> The motivation for this patch series are the many different reserved 
-> firmware regions on Qualcomm platforms. Currently it is often necessary 
-> to duplicate them into each board DT, because minor differences for 
-> some of the firmware regions (e.g. the firmware size) requires shifting
-> the base address of all following firmware regions as well.
-> 
-> I propose describing the actual requirements (size, alignment, 
-> alloc-ranges) instead and allocating the reserved regions at runtime. 
-> This allows defining only the actual device-specific part in the board 
-> DT and having everything else shared in the SoC.dtsi.
-> 
-> The series starts with two minor additions to the of_reserved_mem code. 
-> The last two patches are examples that are meant to show the motivation
-> more clearly for the MSM8916 SoC. PATCH 4/5 shows the current (static) 
-> approach, then PATCH 5/5 switches to the dynamic allocation based on
-> the first 3 patches.
-> 
-> If the first 3 patches are accepted I would send the full MSM8916 DT
-> changes in a separate series.
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
-Sounds great!
 
-Konrad
-> Stephan Gerhold (5):
->       dt-bindings: reserved-memory: Add alloc-{bottom-up,top-down}
->       of: reserved_mem: Implement alloc-{bottom-up,top-down}
->       of: reserved_mem: Use stable allocation order
->       [RFC] arm64: dts: qcom: msm8916: Enable modem on two phones
->       [RFC] arm64: dts: qcom: msm8916: Reserve firmware memory dynamically
 > 
->  .../bindings/reserved-memory/reserved-memory.yaml  | 39 ++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/apq8016-sbc.dts           | 13 +++++++
->  .../boot/dts/qcom/msm8916-longcheer-l8150.dts      | 31 ++++++++++++++--
->  .../boot/dts/qcom/msm8916-samsung-serranove.dts    | 21 +++++++++++
->  arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi          | 29 ++++++++-------
->  arch/arm64/boot/dts/qcom/msm8916.dtsi              | 42 ++++++++++++++++------
->  drivers/of/of_reserved_mem.c                       | 14 +++++++-
->  7 files changed, 163 insertions(+), 26 deletions(-)
-> ---
-> base-commit: 715abedee4cd660ad390659aefa7482f05275bbd
-> change-id: 20230510-dt-resv-bottom-up-68d71ff6628f
+>>
+>> I might be missing the context but there is no DTS example nor user
+>> of
+>> this property, so how can I get such?
+>>
 > 
-> Best regards,
+> I don't see it either in linux kernel DTS tree but it in DTS doc.
+> 
+> Also, just a little bit history about older propositions
+> https://lore.kernel.org/all/?q=mac-address-increment
+> https://lore.kernel.org/all/20200919214941.8038-5-ansuelsmth@gmail.com/
+
+I don't see any user there, except the same rejected proposal:
+
+https://lore.kernel.org/all/CAL_JsqKhyeh2=pJcpBKkh+s3FM__DY+VoYSYJLRUErrujTLn9A@mail.gmail.com/
+
+If you want to convince us, please illustrate it in a real world
+upstreamed DTS (or explain why it cannot). Otherwise I don't see
+justification as it is not a hardware property.
+
+This is a NAK from me.
+
+Feel free to ping Rob in some later time, as he might have different
+opinion.
+
+Best regards,
+Krzysztof
+
