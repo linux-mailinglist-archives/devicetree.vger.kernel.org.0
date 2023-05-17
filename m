@@ -2,81 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6D0970630C
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 10:38:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 559B470631D
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 10:40:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229691AbjEQIiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 04:38:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52740 "EHLO
+        id S229999AbjEQIk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 04:40:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230310AbjEQIhv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 04:37:51 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C0DF35AE
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 01:36:45 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-50bcb00a4c2so678746a12.1
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 01:36:45 -0700 (PDT)
+        with ESMTP id S230166AbjEQIkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 04:40:17 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E31755B5
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 01:40:14 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-50be17a1eceso818358a12.2
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 01:40:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684312604; x=1686904604;
+        d=linaro.org; s=google; t=1684312813; x=1686904813;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=g7ruM67WgRDIXbVKb/F6e9gFEQIj+XoUWJErkIr/uRg=;
-        b=ItSaBxJTJ1tBihpooE/eT24WtPMlJ5sdTHYC9l471aIHQkuvYcRgVDLGm7zaeDx0Bc
-         a36OA5ogxSHq9sO1144MHXOcUG5Y3QLpR0e9Nik2MR31WkUIXZCe22sI2gI5wNCKz9kr
-         VZFFD4gmzMImzYaEayluE6x8Bj/dRjpcOwJJ0I2IaJyRb5IQlBbalaf975PvfR5UQzvO
-         QDftdV7RP/vABR+XhsI+BRLDSXSbgoK7J8NZfoBdlxRZV25GHkcooq7gvv7SUuZgHDrF
-         rGnC1nOr+QXN37dAKP6xpSljkn9O6VjZGEA2ymJpMtcTFUyxMhZkBFxEmJGsuFMnqlNx
-         P3cg==
+        bh=757JBJxgRWVinuPZFHNhDwrpQbzagkxwUnhVEdJlotA=;
+        b=Sm26zdi4yXWmd/d5jNfPI+ohb2rArHlvywdRT2QtSF9RdznkTFYFLJw5eixE0xpD2D
+         3DIuKF8aZGLtDWaN5Vz2s32vbMTLk+1rsQrL9DDe+rueBVKOJtq1bqPMHy3QU4u381wM
+         GX3cAIMXuyEG1WuPyAENLUJZeywDLLOz5bSJiti645EOHFNTKKf6WToE7UamrRM56gJT
+         DtypxiEf9FwRmPmnInm6WVJMLs+9k/FXppKdCoZckAWIZSgCIzIiBTrwBwB1D5dMlm12
+         ptVtQo+A6X5qP+n29tfqHa6cUyTbPPD4eCJqlDUm1AAQlvGc8z9vwAD2qqMYWYN/veje
+         ZknQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684312604; x=1686904604;
+        d=1e100.net; s=20221208; t=1684312813; x=1686904813;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g7ruM67WgRDIXbVKb/F6e9gFEQIj+XoUWJErkIr/uRg=;
-        b=XT4dxtevQsbGAV2H8BaN/+dXjNYMjzwaVquNqsvXq6QHooTFfI3Vr59fSeEHOCqtKJ
-         GpS2S1zuRqo4tDV/rGcgodPD31DNmiKfX4mmfH76y+zYBJUqrMs6az3XtYcN2L8vtVln
-         qHh6a03FoSiAJAGgA2r5y6wquA72MAbPudUXqVoksekLh7SbpgANmKyZY+x7XkuziwHn
-         u+xeDsN1m6mpx22ce82qDHFWIVkt4kq9ImFiNPXM4hPBc6tnBoPfhhQhGo0uWZmSI8tL
-         0RTmtU1RTWB0NrXiKC40rjwmnN0l9UjN6Ul9zbbTZd3KfRJ3DBAmS51F3fBLBG/1ot3h
-         JHBg==
-X-Gm-Message-State: AC+VfDz+iRhjAAuTIvb9g80B4cZmDo/qIBWusy79+U182II5xmd+k/5F
-        ipDeUfDgKGgJFRTcBsvIhUYDAQ==
-X-Google-Smtp-Source: ACHHUZ7mi58zcftzLkvCYSEZqALyJYLyJJAqnIEVZEYRSCl/2H4HV/w7hE9ZWWBQ9pRBw86G0ihu6Q==
-X-Received: by 2002:a17:907:8a14:b0:94f:6218:191f with SMTP id sc20-20020a1709078a1400b0094f6218191fmr39457018ejc.52.1684312603985;
-        Wed, 17 May 2023 01:36:43 -0700 (PDT)
+        bh=757JBJxgRWVinuPZFHNhDwrpQbzagkxwUnhVEdJlotA=;
+        b=ggd13+aVe94UeKo/4esi7IKk0CVM7eAjCec/smiBXN5v9gLmGF+crT5jYT3FwhaOxg
+         Bqd+AxNW4C7Kpzc3fXnXCB9xiBm7Ag59fPWZF6qiKMM3BaZeY2+HzLi7qATGeVkM/EPW
+         c0S6/dDNdu+CYEr7ibLWbviB4oq3LetGOnVp02q/6HRbaT0elJpb8GVjFmYFx8lYqksJ
+         i31ATYqNmSI7u+0EQ7qSpwo8W2kSqeXheXrtdaZ/3HMGUh/QT81wWE8rB0B12xGFsnaO
+         J47PHYKP+lvpfLst2WwFO/2lLhJw/yTUA9PblnjQxS8+qpRmUec3uel4slHlM6B69Q39
+         0anw==
+X-Gm-Message-State: AC+VfDx6Gef+3fngo8R/P1RV0lxD49u2zTa2W+qAclYsmvIkyOFHT9uw
+        Ws8lx34U4hEzKbMUBlOeW0/kYw==
+X-Google-Smtp-Source: ACHHUZ6MmcsQD6x7J6FNqyzT+Zg/rDHY0Azqiv9uIV7gCqHJk7KqXU7NawbLmhXBHUzQBiHfFpn3Lg==
+X-Received: by 2002:aa7:d1c6:0:b0:50d:975f:3729 with SMTP id g6-20020aa7d1c6000000b0050d975f3729mr1577173edp.11.1684312813416;
+        Wed, 17 May 2023 01:40:13 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
-        by smtp.gmail.com with ESMTPSA id ta26-20020a1709078c1a00b009663b1addb0sm11911626ejc.224.2023.05.17.01.36.42
+        by smtp.gmail.com with ESMTPSA id o22-20020aa7d3d6000000b0050696c2d2f6sm8771234edr.88.2023.05.17.01.40.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 01:36:43 -0700 (PDT)
-Message-ID: <38ae4ceb-da21-d73e-9625-1918b4ab4e16@linaro.org>
-Date:   Wed, 17 May 2023 10:36:42 +0200
+        Wed, 17 May 2023 01:40:12 -0700 (PDT)
+Message-ID: <9c7ff0f1-3d2c-b83a-a47d-544c76f29663@linaro.org>
+Date:   Wed, 17 May 2023 10:40:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 3/5] dt-bindings: net: add mac-address-increment option
+Subject: Re: [PATCH 1/2] clk: mediatek: mt8365: fix the clock indexes
 Content-Language: en-US
-To:     Ivan Mikhaylov <fr0st61te@gmail.com>,
-        Samuel Mendoza-Jonas <sam@mendozajonas.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Paul Fertser <fercerpav@gmail.com>
-References: <20230509143504.30382-1-fr0st61te@gmail.com>
- <20230509143504.30382-4-fr0st61te@gmail.com>
- <6b5be71e-141e-c02a-8cba-a528264b26c2@linaro.org>
- <fc3dae42f2dfdf046664d964bae560ff6bb32f69.camel@gmail.com>
- <8de01e81-43dc-71af-f56f-4fba957b0b0b@linaro.org>
- <be85bef7e144ebe08f422bf53bb81b59a130cb29.camel@gmail.com>
- <5b826dc7-2d02-d4ed-3b6a-63737abe732b@linaro.org>
- <e6247cb39cc16a9328d9432e0595745b67c0aed5.camel@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230517-fix-clk-index-v1-0-142077a1732b@baylibre.com>
+ <20230517-fix-clk-index-v1-1-142077a1732b@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e6247cb39cc16a9328d9432e0595745b67c0aed5.camel@gmail.com>
+In-Reply-To: <20230517-fix-clk-index-v1-1-142077a1732b@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,54 +86,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 13:47, Ivan Mikhaylov wrote:
-hy this is property of the hardware. I
->>>> understand
->>>> that this is something you want Linux to do, but DT is not for
->>>> that
->>>> purpose. Do not encode system policies into DT and what above
->>>> commit
->>>> says is a policy.
->>>>
->>>
->>> Krzysztof, okay then to which DT subsystem it should belong? To
->>> ftgmac100 after conversion?
->>
->> To my understanding, decision to add some numbers to MAC address does
->> not look like DT property at all. Otherwise please help me to
->> understand
->> - why different boards with same device should have different
->> offset/value?
->>
->> Anyway, commit msg also lacks any justification for this.
->>
->> Best regards,
->> Krzysztof
->>
+On 17/05/2023 10:28, Alexandre Mergnat wrote:
+> Before the patch [1], the clock probe was done directly in the
+> clk-mt8365 driver. In this probe function, the array which stores the
+> data clocks is sized using the higher defined numbers (*_NR_CLOCK) in
+> the clock lists [2]. Currently, with the patch [1], the specific
+> clk-mt8365 probe function is replaced by the mtk generic one [3], which
+> size the clock data array by adding all the clock descriptor array size
+> provided by the clk-mt8365 driver.
 > 
-> Krzysztof, essentially some PCIe network cards have like an additional
-> *MII interface which connects directly to a BMC (separate SoC for
-> managing a motherboard) and by sending special ethernet type frames
-> over that connection (called NC-SI) the BMC can obtain MAC, get link
-> parameters etc. So it's natural for a vendor to allocate two MACs per
-> such a board with PCIe card intergrated, with one MAC "flashed into"
-> the network card, under the assumption that the BMC should
+> Actually, all clock indexes come from the header file [2], that mean, if
+> there are more clock (then more index) in the header file [2] than the
+> number of clock declared in the clock descriptor arrays (which is the
+> case currently), the clock data array will be undersized and then the
+> generic probe function will overflow when it will try to write in
+> "clk_data[CLK_INDEX]". Actually, instead of crashing at boot, the probe
+> function returns an error in the log which looks like:
+> "of_clk_hw_onecell_get: invalid index 135", then this clock isn't
+> enabled.
 
-Who makes the assumption that next MAC should differ by 1 or 2?
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
 
-> automatically use the next MAC. So it's the property of the hardware as
-> the vendor designs it, not a matter of usage policy.
+This is huge ABI break and I don't understand why it is needed. Entire
+description above did not explain me that.
+
 > 
-> Also at the nvmem binding tree is "nvmem-cell-cells" which is literally
-> the same as what was proposed but on different level.
+> The simplest way to fix the regression is to remove from the header file
+> [2] the unused clocks.
+
+??? The simples is to revert the patch, so you won't break the ABI.
+
 > 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/Documentation/devicetree/bindings/nvmem?id=7e2805c203a6c8dc85c1cfda205161ed39ae82d5
+> [1]: Commit ffe91cb28f6a ("clk: mediatek: mt8365: Convert to
+>      mtk_clk_simple_{probe,remove}()")
+> [2]: include/dt-bindings/clock/mediatek,mt8365-clk.h
+> [3]: drivers/clk/mediatek/clk-mtk.c
+> 
+> Fixes: ffe91cb28f6a ("clk: mediatek: mt8365: Convert to mtk_clk_simple_{probe,remove}()")
+> 
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>  include/dt-bindings/clock/mediatek,mt8365-clk.h | 361 ++++++++++++------------
+>  1 file changed, 177 insertions(+), 184 deletions(-)
+> 
+> diff --git a/include/dt-bindings/clock/mediatek,mt8365-clk.h b/include/dt-bindings/clock/mediatek,mt8365-clk.h
+> index f9aff1775810..fd59c8bdeb24 100644
+> --- a/include/dt-bindings/clock/mediatek,mt8365-clk.h
+> +++ b/include/dt-bindings/clock/mediatek,mt8365-clk.h
+> @@ -7,147 +7,142 @@
+>  #define _DT_BINDINGS_CLK_MT8365_H
+>  
+>  /* TOPCKGEN */
+> -#define CLK_TOP_CLK_NULL		0> -#define CLK_TOP_I2S0_BCK		1
 
-How is this similar? This points the location of mac address on some NV
-storage. You add fixed value which should be added to the Ethernet.
+...
 
-I might be missing the context but there is no DTS example nor user of
-this property, so how can I get such?
+> +#define CLK_TOP_I2S0_BCK		0
+
+Why? This is really broken. You can remove the defines, but re-shuffling
+everything?!?
 
 Best regards,
 Krzysztof
