@@ -2,75 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A65CC7071DC
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 21:19:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9E30707207
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 21:26:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230077AbjEQTTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 15:19:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39420 "EHLO
+        id S229945AbjEQT0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 15:26:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230018AbjEQTTI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 15:19:08 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8499383C6
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 12:19:06 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2ac90178fdaso11686161fa.3
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 12:19:06 -0700 (PDT)
+        with ESMTP id S229483AbjEQT0I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 15:26:08 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 297CCA27C
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 12:25:41 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2acb6571922so11705621fa.0
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 12:25:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684351145; x=1686943145;
+        d=linaro.org; s=google; t=1684351538; x=1686943538;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ih5DlZFK0mk8q52UPHf2uO23Ixivj6XKrt6mWlpxJJM=;
-        b=wQj5WnVXEyxEuvJyYzdXcQ9KgIu5p+W06h5lLQbUb8c1vCO0xaQe7KF6O0uuWLSO8g
-         WWH8RLcJRjzw/j6FvjzZHiEv8PZ/2wBdXKNkybA1pFu+OMFUo5skNMfdyh1xNj/0tEkn
-         1I8SCNWA738PjWsT9NAWN6/ox5oo34mLYQ4CA3KnADU6BDI4k33QKzR/etl9XLrOqRlR
-         tSdRB5B+ajDx/dulZ+YIQc4oe9N0/F1u4y+44Da8XjQzQ8YMSrRVBYug32Lt/+avrqXM
-         gW8cV69omRP8oAqu8gNQcZQmHJjydnaJqCFGXfjk/gaxMfI+9mr2O31SVKsBGxf+u9qu
-         Oghw==
+        bh=8ITJQ6BvmC/gprSSWzEVWg1Y3AF8tHDZkXSoXVabNDY=;
+        b=BwI8NeIlYwTsmyAaTI9Z+PZIeJ/DkTmPHMHvfQlzEDIMMz0f0PDW8otXD8sMIBtMlA
+         E7b3XWB/mlN9eN8GVd7I8Mjqf08OT6D26sABVWTbGMI61jIl4xc1y2h9Hh/WPfwIDqG0
+         Mp/pj9+m34Yl/O+fbQ3Rj4mTnaa8Flo5KgEUo28+hvJfRVmdsxjhaFOHGkotVPB8TeHg
+         IPao9GVsUKlJf+IwgXoqF/38HsfyJYik8h4Nna5oAvmlrDgmWZqHePw4tz0dASe/Q2yo
+         80SXHRwZHIyc0AXkCty33fhXy/xP2fTohzUbyRuEbh8jPTc865XSSY3hL3BlbQ6P1suK
+         d46A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684351145; x=1686943145;
+        d=1e100.net; s=20221208; t=1684351538; x=1686943538;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ih5DlZFK0mk8q52UPHf2uO23Ixivj6XKrt6mWlpxJJM=;
-        b=TcS5BwEfnFdsJoya2MY0PF2osgedL3wmMuxTocUY/B4HjWf0CejrDzsvLVWCxKaIyR
-         SpSNbvEd0rHU34pI3ATfiG1XX8Sqncuof1t6j7oTUyWjVRn1SEYSUtqfvTpLMhczKIFU
-         IIrYSNa+f9nNF4KoR/if+TlQwd8wUyGjI1bWrp7JxVtZ0omew800xB0Vdqx1BvfI+962
-         sRCQSlQp+60vkgxFC6Sn2zb8DYXqhT1y+HZWjUH8lR6vTbf3hTO4W6e85Lb/eVvMzAOD
-         RLo/RCSGFQo1Q3xKbXsWdfD834qNWCPsPGm+29vPgo/H+p72hYVdCM8Rg1YE8fTa810n
-         SdsA==
-X-Gm-Message-State: AC+VfDyb66jzzD2MZbL2Ic5V3s2vS0rKe6h7hLrTnZ02ikcyrDeEW5u/
-        UfaGgwa9cEz+TItBZ/zf34gS6A==
-X-Google-Smtp-Source: ACHHUZ6VEAH0IbqXDUui7Xr7fXNha7EfIwXK2r35JiX2FEIHWITYKUz1mrU7v8MnUGAoO9UEfcmFYw==
-X-Received: by 2002:a2e:9b97:0:b0:2a7:853e:a43 with SMTP id z23-20020a2e9b97000000b002a7853e0a43mr8976235lji.40.1684351144800;
-        Wed, 17 May 2023 12:19:04 -0700 (PDT)
+        bh=8ITJQ6BvmC/gprSSWzEVWg1Y3AF8tHDZkXSoXVabNDY=;
+        b=MRo8cqMjWUnHI4LX+uazX1ylBP5wBP8bzHAgpYsZBGPsVEKBYSdbFaX/h8cORkXnub
+         uS4+95ZKNd9rQ95HBIJEk0JN4M/6s0DMhC/546TKuy5rc4CCWSPaKKKj0VogUITzNC0B
+         Y8rwveC9Sq9txc01VC2Y4AemdfLHB2ADbHueOE4jLsmisz9cZI5wMtBH3CkNNj7Qm7Xb
+         zLguz6DbV8G4K+FONylj0UuENkitfNDyHuRzlRE7i+KMmmEcNwwxAhoGI9dVEYE3AaPV
+         vl7gHZ+PJAmh2P6pKSYcpIv0Xwod8f6bnqQWIv//1Qiv4eUrn7yqR8jG2hg4TKpZ1+Ne
+         UX7w==
+X-Gm-Message-State: AC+VfDzAV3VyNNEbbsvB3kO2+d4guL57FTcS+OEjlQ/3CYPu9EuWpPSF
+        Cye2WVnW9Mj9Kr0B+ofg0BU3Ag==
+X-Google-Smtp-Source: ACHHUZ586XXdEcjn73/2Fn9e9ezVjMQlszHOct+frgJ//20J4gI30kuXVnRja4ZT5a+0l72TiASFlQ==
+X-Received: by 2002:ac2:5a09:0:b0:4ef:f64b:65a9 with SMTP id q9-20020ac25a09000000b004eff64b65a9mr627508lfn.36.1684351538556;
+        Wed, 17 May 2023 12:25:38 -0700 (PDT)
 Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id t13-20020a2e780d000000b002a8ae16ac8csm3964954ljc.18.2023.05.17.12.19.03
+        by smtp.gmail.com with ESMTPSA id j11-20020ac2454b000000b004edc7f6ee44sm3456891lfm.234.2023.05.17.12.25.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 12:19:04 -0700 (PDT)
-Message-ID: <4c11be9a-796f-79f1-2828-d3367f978785@linaro.org>
-Date:   Wed, 17 May 2023 21:19:02 +0200
+        Wed, 17 May 2023 12:25:38 -0700 (PDT)
+Message-ID: <c28494ec-1eb3-239e-46d8-fe84c2f28e77@linaro.org>
+Date:   Wed, 17 May 2023 21:25:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 1/3] dt-bindings: leds: qcom,spmi-flash-led: add PM8550
+Subject: Re: [PATCH 0/5] of: reserved_mem: Provide more control about
+ allocation behavior
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+To:     Stephan Gerhold <stephan@gerhold.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Fenglin Wu <quic_fenglinw@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        "Signed-off-by : Abel Vesa" <abel.vesa@linaro.org>
-References: <20230516150202.188655-1-krzysztof.kozlowski@linaro.org>
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        devicetree@vger.kernel.org, devicetree-spec@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20230510-dt-resv-bottom-up-v1-0-3bf68873dbed@gerhold.net>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230516150202.188655-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230510-dt-resv-bottom-up-v1-0-3bf68873dbed@gerhold.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,26 +83,54 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 16.05.2023 17:02, Krzysztof Kozlowski wrote:
-> Document compatible for PM8550 Torch and Flash LED controller.
+On 15.05.2023 12:12, Stephan Gerhold wrote:
+> Provide more control about the allocation behavior for dynamically 
+> allocated reserved memory by adding a "alloc-bottom-up" and 
+> "alloc-top-down" option and by making the allocation order 
+> deterministic.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The motivation for this patch series are the many different reserved 
+> firmware regions on Qualcomm platforms. Currently it is often necessary 
+> to duplicate them into each board DT, because minor differences for 
+> some of the firmware regions (e.g. the firmware size) requires shifting
+> the base address of all following firmware regions as well.
+> 
+> I propose describing the actual requirements (size, alignment, 
+> alloc-ranges) instead and allocating the reserved regions at runtime. 
+> This allows defining only the actual device-specific part in the board 
+> DT and having everything else shared in the SoC.dtsi.
+> 
+> The series starts with two minor additions to the of_reserved_mem code. 
+> The last two patches are examples that are meant to show the motivation
+> more clearly for the MSM8916 SoC. PATCH 4/5 shows the current (static) 
+> approach, then PATCH 5/5 switches to the dynamic allocation based on
+> the first 3 patches.
+> 
+> If the first 3 patches are accepted I would send the full MSM8916 DT
+> changes in a separate series.
+> 
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Sounds great!
 
 Konrad
->  Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Stephan Gerhold (5):
+>       dt-bindings: reserved-memory: Add alloc-{bottom-up,top-down}
+>       of: reserved_mem: Implement alloc-{bottom-up,top-down}
+>       of: reserved_mem: Use stable allocation order
+>       [RFC] arm64: dts: qcom: msm8916: Enable modem on two phones
+>       [RFC] arm64: dts: qcom: msm8916: Reserve firmware memory dynamically
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
-> index ffacf703d9f9..074ef7e63c49 100644
-> --- a/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
-> +++ b/Documentation/devicetree/bindings/leds/qcom,spmi-flash-led.yaml
-> @@ -26,6 +26,7 @@ properties:
->            - qcom,pm8150c-flash-led
->            - qcom,pm8150l-flash-led
->            - qcom,pm8350c-flash-led
-> +          - qcom,pm8550-flash-led
->        - const: qcom,spmi-flash-led
->  
->    reg:
+>  .../bindings/reserved-memory/reserved-memory.yaml  | 39 ++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/apq8016-sbc.dts           | 13 +++++++
+>  .../boot/dts/qcom/msm8916-longcheer-l8150.dts      | 31 ++++++++++++++--
+>  .../boot/dts/qcom/msm8916-samsung-serranove.dts    | 21 +++++++++++
+>  arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi          | 29 ++++++++-------
+>  arch/arm64/boot/dts/qcom/msm8916.dtsi              | 42 ++++++++++++++++------
+>  drivers/of/of_reserved_mem.c                       | 14 +++++++-
+>  7 files changed, 163 insertions(+), 26 deletions(-)
+> ---
+> base-commit: 715abedee4cd660ad390659aefa7482f05275bbd
+> change-id: 20230510-dt-resv-bottom-up-68d71ff6628f
+> 
+> Best regards,
