@@ -2,101 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8EBE706B69
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76959706B72
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:43:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232117AbjEQOlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 10:41:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35152 "EHLO
+        id S231995AbjEQOn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 10:43:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232101AbjEQOlx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:41:53 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5B81708;
-        Wed, 17 May 2023 07:41:52 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-307664010fdso886677f8f.0;
-        Wed, 17 May 2023 07:41:52 -0700 (PDT)
+        with ESMTP id S231264AbjEQOnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:43:22 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62CB31725
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:43:19 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-510c734fa2dso163691a12.0
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:43:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684334511; x=1686926511;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tfHgDGDyInqauASTk1yIDYU1/aT9MoRYa/mD4C6dxf8=;
-        b=OYIF8BeFGkjq2BS1FcZdV+wBNyytqwUtzfeIKOaPxK681tMhv6bfvVVDXaGTAtlVTm
-         5KOiHWXr2yj5LhkvEoZbPmCpsQX72ndoIjUla2KzWoGYhZ6YnPhlF6dT1WH3V1U5DVLO
-         VcXTHA/x37aHGgE5E3mKNds2RnOU8NKTwf3zLzGSgcA5XH+HkcFPtnaPfSUjxD5sd/Qj
-         iG3TAFqT4ghNB2pDcx2uKMoxulF+h6GdBuSEyUS9lLlKz4/VLvFJps7ngeC0ncVDn0yW
-         ZZ/XcdKWwC+gZLh1tvothNckaNuRj9sLUlghHWobyRpED0wPleXlBpa20OjloQa7yJdg
-         av9A==
+        d=linaro.org; s=google; t=1684334598; x=1686926598;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sZDD8upL/r+70rB2Afo4JoGPTnaEzVx0dEl4DiVOMWg=;
+        b=iNuaz3gEZr/wsvXC1ba0asKS7gklttvKStIfxh8Qs0kkWE3Xjo04RWBvjg6nqKnxum
+         6EJGM+jO4EYfehiDb2qqtu28a44G8ZeBvpm4tUWfcRSn3jz0LBbMbDfHfVT5H8fCEdgF
+         0D1HaKoNJH++dItJPrhVhXCFjDpK0KmoqYMseXiRJb87xTuvAkJJDLN79nts5Lv+0lmd
+         zCKooCbbXsLWVUal+iKWTLGxM170+hF6tYOTeDDSKR1M9Tz9IyYTHXkFaBuRp/3fSVfR
+         ex/6uvzXapEoaRnwSrtqW2tiL/rK04iFNHTDR5zQ7F+XkdawN39mbfDrYDG1IG29PtSy
+         jMTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684334511; x=1686926511;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tfHgDGDyInqauASTk1yIDYU1/aT9MoRYa/mD4C6dxf8=;
-        b=FcJbKz9C+vU+zmBYAfQH0WtFSH+itwihVl9zXHwr9Sxxz5ONRaJh1NCXlU6NU/UULE
-         /QjuZrVVoIsVGWlixnkqOlUBTJTWi0AcZrI++zqQW/PBkl0eQqsaBVEFY+xYEoaG9F1q
-         6RVL2fwNyVfKDisJ1zB3tU+NDk3p+qdGKrGKr+8Nab67clA2Pv2bRNrUWoZpYbUF3Ggn
-         pNZYQPv4JacmzIh360xLQDnXcUizE92c6fLNnlHVkDDRURlzuitLtYq6FHAYp6sknjcU
-         l/kP3/XcMAIvwy+cmLS+AE2X2A89wmuJoN9oNSKgzEffKUs1RELr74gDiH8NdVrs04vt
-         tEkA==
-X-Gm-Message-State: AC+VfDyxUhjEAouwxHGKr3WrTsrr9rEO5hNYKhSLAHVc+ksG8vxMxcxM
-        tgrZznUn0KXQHZpN9OEq0IQ=
-X-Google-Smtp-Source: ACHHUZ6j9O9puGfxT2vkLL5TGO0mk7k61Y0n5SGQ/Ke/hMA4k7jfH5TmCv7X6tTEfEW4oxv77T1oKQ==
-X-Received: by 2002:adf:f108:0:b0:306:45ff:b527 with SMTP id r8-20020adff108000000b0030645ffb527mr881672wro.45.1684334510951;
-        Wed, 17 May 2023 07:41:50 -0700 (PDT)
-Received: from debby ([2a01:e0a:a6d:a8d0:7ff4:8f61:5574:9f95])
-        by smtp.gmail.com with ESMTPSA id r4-20020a056000014400b002f103ca90cdsm2976974wrx.101.2023.05.17.07.41.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 May 2023 07:41:50 -0700 (PDT)
-From:   Romain Perier <romain.perier@gmail.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Romain Perier <romain.perier@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 3/3] ARM: dts: mstar: Enable rtc for SSD20xD
-Date:   Wed, 17 May 2023 16:41:44 +0200
-Message-Id: <20230517144144.365631-4-romain.perier@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230517144144.365631-1-romain.perier@gmail.com>
-References: <20230517144144.365631-1-romain.perier@gmail.com>
+        d=1e100.net; s=20221208; t=1684334598; x=1686926598;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sZDD8upL/r+70rB2Afo4JoGPTnaEzVx0dEl4DiVOMWg=;
+        b=IUhLV147kQShsL7R8JGtdlRqciqH8d3JCruUjmVay7B6st5Kr7p/r7CEPbDH1QGePD
+         LiqESn998sXQRQyemF18zqnjGZ9vY+FwVysKebWoX/2ABZOGTgMIroXPzs5uaMdsp0tf
+         L8u+CpHM8xCwy3I/ucQ8JaCRALQAPzASe4RvED0t3Cs90aRtCImYPIlWu7OcogWx9dKo
+         MbUoKk4o4Q5+Ds1jJxedeol0swwpqG45KXHvOAOHzd2evjlxB5iw+d0blDmw34Srp8G1
+         MTMTZ9mzQPJOGY95DVkIdpKQ0cKif2f6m0PhK+Gybm+lyja1zAYPHsYAZQzlFgiMj8Vh
+         26Jg==
+X-Gm-Message-State: AC+VfDzeqwHbO8CUn37U/Tx07DOTBWArTSA/RxCvkDuTSVuzLmW/3lYP
+        lTuUziEoYA2v1RlCxR/iC+8tIA==
+X-Google-Smtp-Source: ACHHUZ4pYGjUVHIDzMVTFst1m4oKVnYh+z4Oa96EfEfP7Ed4lZHoKUEAgAScE6sd3/3n9e6WGRNDjg==
+X-Received: by 2002:a05:6402:1e90:b0:506:72f8:eb10 with SMTP id f16-20020a0564021e9000b0050672f8eb10mr2673049edf.0.1684334597785;
+        Wed, 17 May 2023 07:43:17 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
+        by smtp.gmail.com with ESMTPSA id x14-20020aa7d38e000000b0050c0d651fb1sm9423734edq.75.2023.05.17.07.43.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 May 2023 07:43:17 -0700 (PDT)
+Message-ID: <9359c081-cd36-3e5b-a113-7600b4ba435e@linaro.org>
+Date:   Wed, 17 May 2023 16:43:15 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 5/5] ASoC: dt-bindings: mediatek,mt8188-mt6359: update
+ properties
+Content-Language: en-US
+To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com
+Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230517111534.32630-1-trevor.wu@mediatek.com>
+ <20230517111534.32630-6-trevor.wu@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230517111534.32630-6-trevor.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the definition of the rtc device node. It enables RTC block
-for SSD20xD SoCs and newer.
----
- arch/arm/boot/dts/mstar-infinity2m.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+On 17/05/2023 13:15, Trevor Wu wrote:
+> Add compatible string "mediatek,mt8188-nau8825" to support new board
+> with nau8825 codec.
 
-diff --git a/arch/arm/boot/dts/mstar-infinity2m.dtsi b/arch/arm/boot/dts/mstar-infinity2m.dtsi
-index 1b485efd7156..75f9173ca703 100644
---- a/arch/arm/boot/dts/mstar-infinity2m.dtsi
-+++ b/arch/arm/boot/dts/mstar-infinity2m.dtsi
-@@ -32,6 +32,11 @@ cpu1: cpu@1 {
- };
- 
- &riu {
-+	rtc@6800 {
-+		compatible = "mstar,ssd20xd-rtc";
-+		reg = <0x6800 0x200>;
-+	};
-+
- 	smpctrl: smpctrl@204000 {
- 		reg = <0x204000 0x200>;
- 		status = "disabled";
--- 
-2.39.2
+Subject: everything can be update of properties. Rephrase to focus on
+actual change, e.g. on adding NAU8825.
+
+> 
+> ADDA_BE is used to connect to mt6359. For the machine, it must be
+> fixed to the same codec and configured on the machine driver. Remove
+> ADDA_BE from items of link-name.
+
+I don't understand the justification for this. If this is not a correct
+link name for MT6359 setup, then it should be removed in its own patch.
+If this is removed because of adding NAU8825, then why does it affect
+MT6359?
+
+> 
+> Introduce two properties "dai-format" and "mediatek,clk-provider" under
+> dai-link subnode to configure dai-link parameters via dts.
+> 
+> "codec" property is removed from required property of dai-link subnode.
+> For co-clock case, it's possible two dai-links should be configured to
+> the same format, but only one dai-link builds link with codec.
+> 
+> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+> ---
+>  .../sound/mediatek,mt8188-mt6359.yaml         | 27 ++++++++++++++++---
+>  1 file changed, 23 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
+> index 6640272b3f4f..05e532b5d50a 100644
+> --- a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
+> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
+> @@ -11,7 +11,9 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: mediatek,mt8188-mt6359-evb
+> +    enum:
+> +      - mediatek,mt8188-mt6359-evb
+> +      - mediatek,mt8188-nau8825
+>  
+>    model:
+>      $ref: /schemas/types.yaml#/definitions/string
+> @@ -42,7 +44,6 @@ patternProperties:
+>            we are going to update parameters in this node.
+>          items:
+>            enum:
+> -            - ADDA_BE
+
+
+Best regards,
+Krzysztof
 
