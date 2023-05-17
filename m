@@ -2,222 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FDA07062D8
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 10:29:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFAAE7062E1
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 10:30:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230437AbjEQI32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 04:29:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47588 "EHLO
+        id S230464AbjEQIa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 04:30:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229901AbjEQI2r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 04:28:47 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B160E5269
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 01:28:41 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f41dceb9d4so4587155e9.1
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 01:28:41 -0700 (PDT)
+        with ESMTP id S231179AbjEQIaD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 04:30:03 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D0D5618E;
+        Wed, 17 May 2023 01:29:33 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2ac80ed7f26so3812971fa.1;
+        Wed, 17 May 2023 01:29:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684312120; x=1686904120;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Eu5wBdYDMhnKWI5ZxIuGItWy4vhuwotpURg9WclmXbc=;
-        b=zIEMmEp/p4baKiwPiWx4vvDG7lZye60jRK4898SytiBhtv9P8kFt940oGyM8ocD124
-         Y5HS30fPZgiK2xJbjH1akWcvDYdm63FHfsqnE7JG2NuyfyzWP/yvaGCGgSoIVLMMW2z2
-         4IOXGzvHbR5+NPqysE6mH8I8ChFvD/qX2su72c5YGXbFuVH1a0B+Ijsxes7gjWHFHFmM
-         xpL1yWC7T5N5+HlNhXdIjAPiqi++HCwih9qcCS3f7CKULcf5jXTJYJjubR98/HZEvncb
-         pfGmWkAJLzUsPeidPc/rvnCUPu0hpH1HMixPdVuj6s/i3xZEfp4AWDM6jF0aKxqI563u
-         2yjQ==
+        d=gmail.com; s=20221208; t=1684312171; x=1686904171;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=78En7bFX4DNtv99F1zZg+12j6HtDjxQe1ib/JrAoDvA=;
+        b=XRWVX2p7cTvMHloNSe+15Ataagn9cyJxaJbHcp1PHe5lusUhd++9+4KqN18L63WreI
+         LsKUM7V3TLcdcw1FFvPLFBso/oCe/gPHN7csTTO00yZwUSnF7OX7jFFtpG4oHZjgJeRC
+         PDenRervF0VNz/jig6R5/JNNjOZftfHDMdWqTMvl9KIXXwpE9BPhvStHYSGftav/Ig+B
+         eXMiE+IVmo6DAqWWdPsslhzMOK61hvsU3CU48ckIwE6DtkF0eGXewN23j7HoTa4HYJwN
+         G4ysNzjk0nclpG5rFafu8gnwwGGIRcNDhcbWuFnXV/s+10G7kAcE6zcMAtwE6I8bJFbA
+         Vumw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684312120; x=1686904120;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Eu5wBdYDMhnKWI5ZxIuGItWy4vhuwotpURg9WclmXbc=;
-        b=BugB0WYNlFY6Fn0AnL6nG5i/22TZoWjvTvpegAGFLIlTGYzyOIUnvM8I2Wlz97+U60
-         iSaODzvfuv/Eo71/HHP7KUkeqegz+hLwhg1uMHvzmGG+NK/NncjGW8idvEoXG9Q2f45Q
-         1M2vTqE8sE8zDRtOUyXqkl8pG8ZEyTyanaO4dS3gdxt4H7cHmTiJe42oEsp9WGlIGnv7
-         8rAhZJANofN6ACqx1udj4NkK1TDTwMhtMTmb1LvHNxKtW+TvPSkw4myuzE0QPZravEjn
-         Mzo3DsUjhOZ5EvUXmK3WhEYEmImnS7BAGxjn/jvweV2k1BRr+jgSlUczU7g49/k+Ao7U
-         k4MQ==
-X-Gm-Message-State: AC+VfDyTcFA/HqEoiPh56RqPXnk1jrhKNbCEPt/VwlnSy4npaiwz2wGs
-        PlNGgBj2MzWFPJhJyfo8Y9iqHA==
-X-Google-Smtp-Source: ACHHUZ7INZJPU8cqk0722h+0YqO59eQXTHphgYKZEse4d+7xGRQU1V77UbgdFuGbvNnU0EXfdpv9DQ==
-X-Received: by 2002:a05:6000:1184:b0:307:8a39:5568 with SMTP id g4-20020a056000118400b003078a395568mr12477wrx.7.1684312119941;
-        Wed, 17 May 2023 01:28:39 -0700 (PDT)
-Received: from [127.0.1.1] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id c4-20020a056000104400b0030922ba6d0csm2323066wrx.45.2023.05.17.01.28.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 May 2023 01:28:39 -0700 (PDT)
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Wed, 17 May 2023 10:28:20 +0200
-Subject: [PATCH 2/2] clk: mediatek: mt8365: remove the max clock number
- defines
+        d=1e100.net; s=20221208; t=1684312171; x=1686904171;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=78En7bFX4DNtv99F1zZg+12j6HtDjxQe1ib/JrAoDvA=;
+        b=XdgYYaWlIIIktEAbIqOQW47Tx5Tzm1l0ihzijpDukf3MI1Xo7i3Jb7xYk8IJBOB7ZA
+         ZCj84zcL3rjdJmK2XzE73TV+zMTuGmkKTpFNObRgo27XwHURdYxkZSwfbDdW6zEdsVJ4
+         RR8Mbe/EF2ZwjLl2D1VzaTye3xWAXZKoOPxp0/01vCQjM1gSFA/ig12SfEEpOVYF6svM
+         Wsm9C+I4DNj3kSej8XyBS1bYauGj6KR5bEVcOz5NqjCdjZDCWLhFu65nNjHsUMuH+hGS
+         nT1NVgtLvmETbkj7HnjMwVN8s2K40ZPpZUzOkuzfPd4YC/RNQIrWQVETPQyv5j74YaOs
+         lWdw==
+X-Gm-Message-State: AC+VfDw67Flu1BVv2aHXaImsz+H4i3fKlDWuiw1BTusXdZ2odzrP4ueU
+        DbPdG16qR0eavfzuecN2wCw=
+X-Google-Smtp-Source: ACHHUZ5oddWxcGwgp3BKJp1Lcs/+h6rsNvb+TshwjSOR4jrSPWEUTaWM1im/mPATuGuxQIyzaCF7Lg==
+X-Received: by 2002:a2e:8244:0:b0:2ad:814c:6ad5 with SMTP id j4-20020a2e8244000000b002ad814c6ad5mr8045673ljh.46.1684312170872;
+        Wed, 17 May 2023 01:29:30 -0700 (PDT)
+Received: from [10.8.28.198] ([89.201.166.50])
+        by smtp.gmail.com with ESMTPSA id h4-20020a2e9ec4000000b002a8c32fd2f3sm4515688ljk.89.2023.05.17.01.29.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 May 2023 01:29:30 -0700 (PDT)
+Message-ID: <356bfe96-75e6-1c6d-0049-d664e719a266@gmail.com>
+Date:   Wed, 17 May 2023 10:29:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2] dt-bindings: display: panel: add
+ panel-mipi-dsi-bringup
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        robh+dt@kernel.org, daniel@ffwll.ch,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
+ <023f6cf9-0f08-f27e-d203-5ff78faf110f@linaro.org>
+ <CAO9szn1EsbuPSRrOW8CLqhp+QUcL=9NE93FAwsg2n3htd_aJTw@mail.gmail.com>
+ <97124cb1-4f45-22d5-418f-568f8a68deec@linaro.org>
+From:   Paulo Pavacic <pavacic.p@gmail.com>
+In-Reply-To: <97124cb1-4f45-22d5-418f-568f8a68deec@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230517-fix-clk-index-v1-2-142077a1732b@baylibre.com>
-References: <20230517-fix-clk-index-v1-0-142077a1732b@baylibre.com>
-In-Reply-To: <20230517-fix-clk-index-v1-0-142077a1732b@baylibre.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Alexandre Mergnat <amergnat@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3076; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=PSoSzv1xmNtqCH3MpEopV6wHPK3FDL/LaVYm5PLJAXs=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkZJA0Um0n64a27LeuDv6FePlEhoVZS6flRLZoow6O
- +IcDoNCJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZGSQNAAKCRArRkmdfjHURc/nEA
- CTrShs0dbmr8P/p47L1ojpwfc7xJgpvhyvbBz+HyEevnxmcPbHujlP6oXbCaOpjf8d77Fyjko3SAem
- aGX7nSyFMz47BY+wen7kHvGW5zAKy1o227fXyIiOUdmz91RkJf4PqVuUGGg1V3cfcDuXEi4T381/3S
- 7zTX+E3LmEtuALIGvYbkXzO0FEj/ppXbyWFhKbu6+6G/JNKoL7nh9bSy5jQ8mx44jLp50EqS2ZvqB+
- pkT6ObvKwN8lvyfWEWWo8eYTdGFKKjjt5tMJ5WuKyuvFeglef2u/z+rzBRF+4ABPByqHgOHUvP5QUU
- KR9ug3rY1oEkQH7d9V2kjD5PaNZ+8r+ofHat5/afF3MoaQ311TtL2F/8aI3i30LfKr6U0kupwuLn/r
- OVosm8nVkv/LagdvEK2t8/v0ZicEH2yDheCCJ4pqJZzTm7QHIEN49KawaWh8Om3A/Zt7TnYibr9xnV
- X0hOmWH7mbOJ4/0lWeGEA8XZ/5/GXrQlixZe+8hw2K/VOxZhEqB4EfhqiYW7RLzjGsGuk2nUA6VrFW
- SP5CQN8vLVxudT1osnLRbRJBmNZ5Fyaz7dWaJql9kpMn9VlVEWXWaFqZDnMeHyMNyHCTorRmMbfL0y
- 9qUtu1dizs+9+q6IQf9MNrV/blPwJJniu7pZpBYtVqqLn5ul1eXrbw4MMaAQ==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since we swap to the generic MTK probe function [1], the *_NR_CLK
-defines used to know the number of defined clocks are no longer
-necessary. This patch remove all *_NR_CLK.
+Hello,
 
-[1]: Commit ffe91cb28f6a ("clk: mediatek: mt8365: Convert to
-     mtk_clk_simple_{probe,remove}()")
+If I understood you correctly you'd prefer it to be named 
+fannal,c3004.yaml? My logic is that if more panels were to be added that 
+means that each one would have yaml files that would look exactly the 
+same with the same user.
 
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
----
- include/dt-bindings/clock/mediatek,mt8365-clk.h | 18 ------------------
- 1 file changed, 18 deletions(-)
+Best regards,
 
-diff --git a/include/dt-bindings/clock/mediatek,mt8365-clk.h b/include/dt-bindings/clock/mediatek,mt8365-clk.h
-index fd59c8bdeb24..a1df91f73d73 100644
---- a/include/dt-bindings/clock/mediatek,mt8365-clk.h
-+++ b/include/dt-bindings/clock/mediatek,mt8365-clk.h
-@@ -142,7 +142,6 @@
- #define CLK_TOP_CONN_26M		132
- #define CLK_TOP_DSP_32K			133
- #define CLK_TOP_DSP_26M			134
--#define CLK_TOP_NR_CLK			135
- 
- /* INFRACFG */
- #define CLK_IFR_PMIC_TMR		0
-@@ -214,11 +213,9 @@
- #define CLK_IFR_SSUSB_SYS		66
- #define CLK_IFR_SSUSB_REF		67
- #define CLK_IFR_SSUSB_XHCI		68
--#define CLK_IFR_NR_CLK			69
- 
- /* PERICFG */
- #define CLK_PERIAXI			0
--#define CLK_PERI_NR_CLK			1
- 
- /* APMIXEDSYS */
- #define CLK_APMIXED_ARMPLL		0
-@@ -238,7 +235,6 @@
- 
- /* GCE */
- #define CLK_GCE_FAXI			0
--#define CLK_GCE_NR_CLK			1
- 
- /* AUDIOTOP */
- #define CLK_AUD_AFE			0
-@@ -259,40 +255,31 @@
- #define CLK_AUD_I2S2_BK			15
- #define CLK_AUD_I2S3_BK			16
- #define CLK_AUD_I2S4_BK			17
--#define CLK_AUD_NR_CLK			18
- 
- /* MIPI_CSI0A */
- #define CLK_MIPI0A_CSR_CSI_EN_0A	0
--#define CLK_MIPI_RX_ANA_CSI0A_NR_CLK	1
- 
- /* MIPI_CSI0B */
- #define CLK_MIPI0B_CSR_CSI_EN_0B	0
--#define CLK_MIPI_RX_ANA_CSI0B_NR_CLK	1
- 
- /* MIPI_CSI1A */
- #define CLK_MIPI1A_CSR_CSI_EN_1A	0
--#define CLK_MIPI_RX_ANA_CSI1A_NR_CLK	1
- 
- /* MIPI_CSI1B */
- #define CLK_MIPI1B_CSR_CSI_EN_1B	0
--#define CLK_MIPI_RX_ANA_CSI1B_NR_CLK	1
- 
- /* MIPI_CSI2A */
- #define CLK_MIPI2A_CSR_CSI_EN_2A	0
--#define CLK_MIPI_RX_ANA_CSI2A_NR_CLK	1
- 
- /* MIPI_CSI2B */
- #define CLK_MIPI2B_CSR_CSI_EN_2B	0
--#define CLK_MIPI_RX_ANA_CSI2B_NR_CLK	1
- 
- /* MCUCFG */
- #define CLK_MCU_BUS_SEL			0
--#define CLK_MCU_NR_CLK			1
- 
- /* MFGCFG */
- #define CLK_MFG_BG3D			0
- #define CLK_MFG_MBIST_DIAG		1
--#define CLK_MFG_NR_CLK			2
- 
- /* MMSYS */
- #define CLK_MM_MM_MDP_RDMA0		0
-@@ -331,7 +318,6 @@
- #define CLK_MM_MM_DPI0			33
- #define CLK_MM_LVDSTX_PXL		34
- #define CLK_MM_LVDSTX_CTS		35
--#define CLK_MM_NR_CLK			36
- 
- /* IMGSYS */
- #define CLK_CAM_LARB2			0
-@@ -342,17 +328,14 @@
- #define CLK_CAMSV1			5
- #define CLK_CAM_FDVT			6
- #define CLK_CAM_WPE			7
--#define CLK_CAM_NR_CLK			8
- 
- /* VDECSYS */
- #define CLK_VDEC_VDEC			0
- #define CLK_VDEC_LARB1			1
--#define CLK_VDEC_NR_CLK			2
- 
- /* VENCSYS */
- #define CLK_VENC			0
- #define CLK_VENC_JPGENC			1
--#define CLK_VENC_NR_CLK			2
- 
- /* APUSYS */
- #define CLK_APU_IPU_CK			0
-@@ -361,6 +344,5 @@
- #define CLK_APU_IF_CK			3
- #define CLK_APU_EDMA			4
- #define CLK_APU_AHB			5
--#define CLK_APU_NR_CLK			6
- 
- #endif /* _DT_BINDINGS_CLK_MT8365_H */
+Paulo
 
--- 
-2.25.1
-
+On 5/17/23 09:03, Krzysztof Kozlowski wrote:
+> On 17/05/2023 00:13, Paulo Pavacic wrote:
+>> Hello, thank you for your time to review this patch and sorry for not
+>> addressing all of the concerns, it was done unintentionally. This is
+>> my first contribution to the Linux kernel and it is quite a process.
+>> I have run those two scripts and haven't received any errors I have
+>> latest master cloned so I will check what I did wrong.
+>>
+>> The thing I would like to get approval on before I try anything else
+>> is the name 'panel-mipi-dsi-bringup':
+>>
+>>> Still wrong filename. You did not respond to my previous comments, so I
+>> don't really understand what's this.
+>>> Judging by compatible, this should be fannal,c3004.yaml
+>>>
+>>> If not, explain please.
+>>>
+>>> Missing user of the bindings - driver or DTS. Please sent patches together as patchset.
+>>
+>> I wasn't sure how to name it and this name seemed fit. I'm not sure
+>> how to be concise about this, but here is the full story as to why I
+>> have done that:
+>>
+>> I got a task to enable panel for which working driver wasn't
+>> available. I have started testing raydium driver and modifying parts
+>> of it until I got it working.
+>> Driver was modified quite a lot, new functions, macros and structures
+>> were added which resulted in a new driver.
+>> Therefore I have made a simple driver which I have submitted for a
+>> review which will probably be rejected now due tomany reasons I have
+>> noticed after sending it:
+>> https://lore.kernel.org/lkml/CAO9szn03msW6pu37Zws5EaFGL10rjp9ugPdCuDvOPuQRU72gVQ@mail.gmail.com/T/
+>>
+>> While talking with manufacturers of the panel I have figured out that
+>> they aren't that familiar with the Linux kernel.
+>> They had previously only enabled  it on bare metal (PLA?) and provided
+>> me with the initialization sequences. Initialization sequences are hex
+>> values sent over MIPI DSI to initialize panel controller.
+>> Initialization sequences sometimes also require delays after certain
+>> commands and for different panels it can be very different.
+>> I believe I have simplified it so that someone can follow comments
+>> inside of the driver and try to enable mipi dsi panel by copy pasting
+>> initialization code from bare metal system and doing minor
+>> modifications.
+>> Since I have targeted this at people who need to enable their panels
+>> for the first time name seemed okay. I thought that since there is
+>> panel-simple.yml that panel-mipi-dsi-bringup.yml would be acceptable
+>> name.
+> Bindings are for hardware, not driver, so they describe the hardware panel.
+>
+> Best regards,
+> Krzysztof
+>
