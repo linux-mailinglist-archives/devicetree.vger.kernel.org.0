@@ -2,127 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 224B97068DD
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 15:04:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5433970697B
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 15:16:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230269AbjEQNE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 09:04:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44104 "EHLO
+        id S231582AbjEQNQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 09:16:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231871AbjEQNEr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 09:04:47 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 062C910D4;
-        Wed, 17 May 2023 06:04:40 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f13a72ff53so967302e87.0;
-        Wed, 17 May 2023 06:04:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684328678; x=1686920678;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=RXTNzq4gj2DUSkJyMltIversR9A5IgG2YoQBaj5QOI4=;
-        b=F3mdyJ0H05m0mG6Ij3Gl3+HDT89YBI6PdRTY5+N7j3g62sivDD6f7o8AROyQXynSb4
-         kVy2pWUHXkhce2WlOaKVLjemkkiDEmM+/EJoY3tOGzC5PaFqmvjvoYZcpFWZcBUTpNCK
-         SJS2YN1mRy/AP8KlBZG9cSLU7ncmj0LlBZvzcxvVMmzzzZj9dz4hpGWKY7+jl0xfZcP1
-         gil+7EJT/tj07+4n09esOqDqKGwHkcrLgjXPD+Vfz/JEu+nCml32KQ9prR0mHHm0v2tT
-         vuf7LW+8wdmThpWBHh26vjXPpxY+kjcOkRbRdoPcfpN9wnh33jF8Pn3VD/uc6D1zoRPH
-         fw3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684328678; x=1686920678;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RXTNzq4gj2DUSkJyMltIversR9A5IgG2YoQBaj5QOI4=;
-        b=D/l8FbZi6q+mh6iB1jpLp3IN/FFI6oJymAvXSMHH2y5Fq96LO4/HpUOo2BAP4GdLmb
-         rd+WnJFvi2SU0UUbTml9hp1w6tWRcZ7EzQGPWzeY+U4+Y3s0l+GLZuhK72Kc7PfzIghY
-         oIKKOigRQp3eknUn3lzN37nYtVrNaHwtP0bzCo8l9XCRBFPfti1PDQx+x5DZ7P8e8BW+
-         wrznZogxhQAz1gZN/XjDcB3yO4LatbF25QdYrka2MzcrIfPbmhyycNNDYgLClOTXwyta
-         quW9WtQFNygqxWTHcbeafmmBJvkV97lAs0qfpTwp8wrIGhed4ELYNYqJksrnu0K+HeqK
-         IXNA==
-X-Gm-Message-State: AC+VfDxXbaetZ2o25et4bTj1dNmiZClAuqwpJXgWC12F9Oz+GnVvB8Q2
-        1bsQVcoRGR3uQbnWGnbGYVE=
-X-Google-Smtp-Source: ACHHUZ6gsVowCQgHci05MdbfSLlrwisfgvOTvW0R83NzJYmlUD0JwDW5Bhvdw2NzRR6rLa2bXBsp/w==
-X-Received: by 2002:ac2:538a:0:b0:4f3:983b:cc47 with SMTP id g10-20020ac2538a000000b004f3983bcc47mr164495lfh.66.1684328677916;
-        Wed, 17 May 2023 06:04:37 -0700 (PDT)
-Received: from [10.8.28.198] ([89.201.166.50])
-        by smtp.gmail.com with ESMTPSA id q29-20020ac2515d000000b004f392625952sm385402lfd.26.2023.05.17.06.04.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 May 2023 06:04:37 -0700 (PDT)
-Date:   Wed, 17 May 2023 15:04:29 +0200
-From:   Paulo <pavacic.p@gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: display: panel: add
- panel-mipi-dsi-bringup
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        neil.armstrong@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, sam@ravnborg.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Message-Id: <HB0TUR.1IPEEV2C5LMB1@gmail.com>
-In-Reply-To: <CAMty3ZCAP6CRsJWMUZZ6+hd5igX3NgyNfhdEv2FwuDtqj4iaaA@mail.gmail.com>
-References: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
-        <023f6cf9-0f08-f27e-d203-5ff78faf110f@linaro.org>
-        <CAO9szn1EsbuPSRrOW8CLqhp+QUcL=9NE93FAwsg2n3htd_aJTw@mail.gmail.com>
-        <CAMty3ZCAP6CRsJWMUZZ6+hd5igX3NgyNfhdEv2FwuDtqj4iaaA@mail.gmail.com>
-X-Mailer: geary/43.0
+        with ESMTP id S231622AbjEQNQa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 09:16:30 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0EECB7AAD;
+        Wed, 17 May 2023 06:16:19 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 36BB81FB;
+        Wed, 17 May 2023 06:17:04 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1D9BF3F7BD;
+        Wed, 17 May 2023 06:16:17 -0700 (PDT)
+Date:   Wed, 17 May 2023 14:16:14 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     "lihuisong (C)" <lihuisong@huawei.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
+        soc@kernel.org, wanghuiqiang@huawei.com, tanxiaofei@huawei.com,
+        liuyonglong@huawei.com, huangdaode@huawei.com,
+        linux-acpi@vger.kernel.org, Len Brown <lenb@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH] soc: hisilicon: Support HCCS driver on Kunpeng SoC
+Message-ID: <20230517131614.cwi2fcj2cngaq7dm@bogus>
+References: <20230425131918.5tf5vot4h7jf54xk@bogus>
+ <db6c713c-f99c-fa3f-8d38-9a5d50889cc2@huawei.com>
+ <20230515130807.pdvx7bxwjkfdsmsr@bogus>
+ <aa5b1919-74c6-1f97-78af-ab5f0904c3ce@huawei.com>
+ <20230516122931.il4ai7fyxdo5gsff@bogus>
+ <f0733521-2557-fdaf-e59b-b10d515c487c@huawei.com>
+ <20230516143530.venhj4gax6stinah@bogus>
+ <a98e3620-57da-000e-f5ee-2c2e47e97906@huawei.com>
+ <20230517093033.4jvwjxuoeic46a24@bogus>
+ <5ca49494-5a0c-4dc8-9cf5-fc4bc3b8e1b2@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5ca49494-5a0c-4dc8-9cf5-fc4bc3b8e1b2@huawei.com>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 17 2023 at 05:50:22 PM +0530, Jagan Teki
-<jagan@amarulasolutions.com> wrote:
- > Just to add a few pieces of information for you to understand better
- > on the context of dsi panels. DSI panels can be part of 
-panel-simple.c
- > or panel-<vendor-part>.c DSI panels whose init and exit sequence is
- > generic are suitable to add it in panel-simple and have bindings on
- > panel-simple.yml.
+On Wed, May 17, 2023 at 07:35:25PM +0800, lihuisong (C) wrote:
+> 
+> 在 2023/5/17 17:30, Sudeep Holla 写道:
+> > On Wed, May 17, 2023 at 03:16:12PM +0800, lihuisong (C) wrote:
+> > 
+> > [...]
+> > 
+> > > No. I want to use this flag to make compability between different platforms.
+> > > This driver only use PCC OpRegion to access to the channel if platform
+> > > support use PCC OpRegion.
+> > What do you mean by that ? It is not correct. If there is a PCC Opregion,
+> > then you need to make it work with drivers/acpi/acpi_pcc.c
+> > 
+> > You need to have all the other details in the firmware(ASL). By looking
+> > at the driver, it has no connection to PCC Opregion IMO unless I am missing
+> > something.
+> Driver just needs to call these APIs, such as acpi_evaluate_integer(), if
+> want to use PCC OpRegion.
 
-This panel doesn't fit that well into panel-simple.c since it has
-initialization sequence. For that reason it would fit more into
-panel-sortofsimple.c which didn't exist so I have created new driver
-and called it panel-mipi-dsi-bringup.c.
+OK, please provide examples. I am definitely lost as it doesn't match with
+my understanding of how PCC Opregions are/can be used.
 
- > Some DSI panels have specific init and exit
- > sequences in terms of power, reset and DCS then those have separate
- > drivers to handle and whose driver name must be panel-<vendor-part>.c
- > or similar and bindings also follow a similar naming convention.
+> I know that. I have tested PCC OpRegion before.
 
-I have made a driver exactly for that purpose. Driver that allows
-adding new panels which have specific init sequences (and of course 
-timings and other stuff). fannal,c3004 can be seen as a working example.
+Cool, examples please.
 
-Here is code snippet from the driver:
-```
-static const struct brup_panel_info brup_fannal_c3004_panel_info = {
- .display_mode = &brup_fannal_c3004_display_mode,
- .num_of_dsi_lanes = 2, //how many wires are connected to the panel
- .video_mode = BRUP_VIDEO_MODES[BRUP_SYNC_PULSE],
- .mipi_dsi_format = MIPI_DSI_FMT_RGB888,
- .mipi_dsi_mode_flags =
-  MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_VSYNC_FLUSH |
-  MIPI_DSI_MODE_VIDEO_HSE | MIPI_DSI_MODE_NO_EOT_PACKET,
- .bus_flags = DRM_BUS_FLAG_DE_LOW | DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE,
- .panel_enable_function = &brup_panel_fannal_c3004_enable_function
-};
-```
-where enable function is function with init sequence and other values 
-are values that might be different for different displays.
+> You've completely misunderstood what I said.😅
+>
 
-All the inputs are appreciated as this is my first time submitting 
-patch. If you see anything that is odd to you please reach out to me.
-All in all I believe I now understand how should device tree look and 
-the reasons/ideology behind it.
+Hmm, may be but I need examples.
 
-Best regards,
-Paulo
+> I mean that this driver plans to support both PCC and PCC OpRegion.
+> For example,
+> Platform A: this driver use PCC (as the current implementation)
 
+Good, then just keep what it needs in the implementation nothing more
+until you add support for something you have described below(not that
+I agree, just want you to make progress here based on what is actually
+required today)
 
+> Platform B: this driver use PCC OpRegion (Currently, this patch does not
+> implement it, but it may be available in the future.)
 
+Then let us discuss that in the future, don't add unnecessary complexity
+for some future use case today. You can always add it when you introduce
+that feature or support in the future.
+
+> Note:
+> This driver selects only one of them (PCC and PCC OpRegion) to communicate
+> with firmware on one platform.
+
+Let us keep it simple(KISS). The driver works just for PCC not PCC Opregion
+for now.
+
+> We use one bit in device-flags to know which one this driver will use.
+>
+
+NACK again just to re-iterate my point if you have not yet accepted that
+fact.
+
+> I'm not sure if you can understand what I mean by saing that.
+> If you're not confused about this now, can you reply to my last email
+> again?😁
+>
+
+The example you had IIRC is use of System Memory Opregion to demonstrate
+some _DSM. That has nothing to do with PCC Opregion.
+
+Commit 77e2a04745ff ("ACPI: PCC: Implement OperationRegion handler for
+the PCC Type 3 subtype") has the example in the commit message. IIRC,
+you have even fixed couple of bugs in that driver. That is the reason
+why I don't understand how you think this driver and that can or must
+work together. At least I fail to see how ATM(examples please, by that
+I mean ASL snippet for PCC vs PCC Opregion usage to work with this driver)
+
+-- 
+Regards,
+Sudeep
