@@ -2,108 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C43D706C1C
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 17:05:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91C71706C26
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 17:06:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229894AbjEQPFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 11:05:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60600 "EHLO
+        id S230332AbjEQPGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 11:06:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229907AbjEQPFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 11:05:10 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6976F1FE3;
-        Wed, 17 May 2023 08:04:50 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 670CD660588A;
-        Wed, 17 May 2023 16:04:03 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1684335844;
-        bh=15/GPkh3GbUYvzSc+PhVVCS+jBcNyePbbCQd7vQAmVA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=oKXUwZG9/NNSqz2qObRQWaH8It+qDv2WRxyA1jEfwjltkbIPLkPXAWMzt9rlK4n6U
-         508s0+CEm0QAUFmbpUaJfba/+2WjZQkSIaSI0q+ZKhwDjxTbM3bnjpwTCnY970gNTW
-         M2x+b67vXcnj1n3FTh+1b5JyPjsKMfoK2uaFs3vALadtC/Np4dMXRMkADa8zE7+vK0
-         +KqbNVfPLFHwHOH3jWtaxDB8SrcrU27c11pSCx+eCyzl/ZTEl0c+ZU6YOYz56j4rad
-         hit+TkEHkn3KPk1c9uTpq+nllv/yuAXEmqVhI6CynmLCmcJAOYz8azGU3rkbosmCgQ
-         hMvQnoCCX+2tA==
-Message-ID: <c32f0c3f-b43a-7045-38cc-2c11c7bb571e@collabora.com>
-Date:   Wed, 17 May 2023 17:04:00 +0200
+        with ESMTP id S231926AbjEQPGV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 11:06:21 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DA1CA260
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 08:05:48 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-965e93f915aso160739766b.2
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 08:05:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684335945; x=1686927945;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=x7BOy4FSGNqefaEpSBoTmIV0Oe+hDmf74/cix89skF8=;
+        b=BJZCX8+NQE8s8/ZcBGgtgef+UHaisFamgfUCi7Ak9j14S/duLsQcP+hyMrZMsjIlyB
+         bJgySOeof8QfTn5HvbKtc3d8t7KMD8C3YcsXyeJAISP5+54s+wobch4kWzZ86pTXQgcc
+         R5+rhxHT0GTkton0K7v3wpD+Rjjcb46LrOXDXETvtmtiZc/1QrD0JsqPP+Q+q8nSXSzG
+         JLFzl5bXaajnKGoQF6UxI8cOyZbt58kIcfZ+jqXCl33kTpxoE7jHRhU3iPpUc1FmBZV5
+         EW1TLzRtfD97AMMZyP3IM/0F6DjMKGc0BOl3WwolZLR/dpy2j/sn8egoKYg3rswzRji3
+         Ui4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684335945; x=1686927945;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=x7BOy4FSGNqefaEpSBoTmIV0Oe+hDmf74/cix89skF8=;
+        b=bse269g4HWzBgGlTfZ29r/DxDtlD9sJa5JUqE+79eTPRT+aw2dfQNKnj4j841o9KpV
+         mBuPost04F3/f2ef874Zv85rM+0/QpQHZgjwVCf5BFVK5Ww3sPDJIsZoN4Hipn5oLt5o
+         BO/ExpTgvQt3uuMM9rf0eB5Ft78fYMHW1SBlmF5bfjQAy5nPVhax/aRAOLGmQgm2kLj6
+         LwIUfePAHM3V6uSIoPaVbBlPgQonb3G7PoBpEEd3fuPOyII2yGzSn2g794T9QV0pMLkD
+         SKrQ8wKc9BhzGYhZr0nFx4iSbP1RGVKNVd/GsJfkwknY5uPmPJ8sj8Tk/8HTvTvJWoZf
+         cCew==
+X-Gm-Message-State: AC+VfDzADWPNWyIhDGzHTBMJG3RGIXhzWJItdWKfvbm2fZndYSRXSPie
+        REtoacgJ+MtcnZVly4srB2uWiw==
+X-Google-Smtp-Source: ACHHUZ4ykofwG6zQif9mweu8SLtYDXQ2+EtbWBnML7IrDjqNdvQtENrAs37ipaNaq1GCOTpc8m9u7w==
+X-Received: by 2002:a17:906:ee82:b0:94f:1a23:2f1c with SMTP id wt2-20020a170906ee8200b0094f1a232f1cmr34270045ejb.50.1684335944712;
+        Wed, 17 May 2023 08:05:44 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
+        by smtp.gmail.com with ESMTPSA id n17-20020a170906725100b0096a6bf89259sm8932962ejk.167.2023.05.17.08.05.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 May 2023 08:05:44 -0700 (PDT)
+Message-ID: <8de36fc1-51f9-9c34-63c0-18700d90b95e@linaro.org>
+Date:   Wed, 17 May 2023 17:05:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 7/7] dt-bindings: Add bidings for mtk,apu-drm
+ Thunderbird/102.11.0
+Subject: Re: [EXTERNAL] Re: [PATCH v2 2/5] ASoC: dt-bindings: Add tas2781
+ amplifier
 Content-Language: en-US
-To:     Alexandre Bailon <abailon@baylibre.com>, airlied@gmail.com,
-        daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
-        mripard@kernel.org, tzimmermann@suse.de
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, matthias.bgg@gmail.com,
-        sumit.semwal@linaro.org, christian.koenig@amd.com,
-        jstephan@baylibre.com, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
-        linaro-mm-sig@lists.linaro.org, khilman@baylibre.com,
-        nbelin@baylibre.com, bero@baylibre.com
-References: <20230517145237.295461-1-abailon@baylibre.com>
- <20230517145237.295461-8-abailon@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230517145237.295461-8-abailon@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     "Ding, Shenghao" <shenghao-ding@ti.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Shenghao Ding <13916275206@139.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "perex@perex.cz" <perex@perex.cz>,
+        "pierre-louis.bossart@linux.intel.com" 
+        <pierre-louis.bossart@linux.intel.com>,
+        "Lu, Kevin" <kevin-lu@ti.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Xu, Baojun" <x1077012@ti.com>, "Gupta, Peeyush" <peeyush@ti.com>,
+        "Navada Kanyana, Mukund" <navada@ti.com>,
+        "gentuser@gmail.com" <gentuser@gmail.com>,
+        "Ryan_Chu@wistron.com" <Ryan_Chu@wistron.com>,
+        "Sam_Wu@wistron.com" <Sam_Wu@wistron.com>
+References: <20230508054512.719-1-13916275206@139.com>
+ <ca9d45cf-8a84-4fbc-e1dd-c96eef36fe25@linaro.org>
+ <ZFyBzHWo3ORKAskX@finisterre.sirena.org.uk>
+ <ca2ed8e9-850a-56c5-e395-72e5861b9c71@linaro.org>
+ <3c48d5e47aff478b8ce8998d7efe001b@ti.com>
+ <3e62d34b-a439-ac42-83a1-deb26ade63ff@linaro.org>
+ <26c335994d91492eb9439483ac98f61c@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <26c335994d91492eb9439483ac98f61c@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/05/23 16:52, Alexandre Bailon ha scritto:
-> This adds the device tree bindings for the APU DRM driver.
+On 17/05/2023 14:24, Ding, Shenghao wrote:
 > 
-> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
-> Reviewed-by: Julien Stephan <jstephan@baylibre.com>
-> ---
->   .../devicetree/bindings/gpu/mtk,apu-drm.yaml  | 38 +++++++++++++++++++
-
-mediatek,mt(model)-apu.yaml
-
->   1 file changed, 38 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml b/Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml
-> new file mode 100644
-> index 000000000000..6f432d3ea478
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpu/mediatek,apu-drm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: AI Processor Unit DRM
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,apu-drm
+> On 11/05/2023 15:19, Ding, Shenghao wrote:
+>>
+>> On 11/05/2023 07:49, Mark Brown wrote:
+>>>> Missing minItems, but...
+>>>
+>>>>> +    items:
+>>>>> +      minimum: 0x38
+>>>>> +      maximum: 0x3f
+>>>
+>>>> ... So these are fixed? No need to encode them in such case...
+>>>
+>>> I'm not sure I understand your concern here, there's up to 4 possible 
+>>> values from 0x38-0x3f which has more than 4 possible values.
+>>
+>> Aren't the addresses going to be incremented by one (up to 8 of devices in total)?
+> 
+> With your style of replies, it looks like you wrote it...
+> 
+> All the addresses of tas2781 are in range from 0x38 to 0x 3f, the order of them in the audio-slots item are up to the hardware connections.
+> I have studied the reg item to save multiple i2c addresses for multiple pieces of tas2781 and found that "'#address-cells':     maximum: 3"
+> that means "reg" store not more than three addresses, this can't support the more than 3 pieces of tas2781, 
 
-const: mediatek,mt8195-apu (or whatever else).
+No entirely. This determines the size of each address, not the number of
+addresses.
 
-...besides, I don't think that this patch even belongs to this series? :-)
-Spoiler alert! :-)
+> such as 4-slot TDM case or multiple dual-membrane speakers case, in such a case, one speaker will use
+>  two pieces of tas2781 to boost, usually at least 6 pieces of tas2781 will be used in a laptop or other device.
+> 
+>>
+>> No, the i2c address order is not always monotonic increase or decrease, sometime it would be disorder, according to the application.
+>> Each device would have eight possible i2c address, the final address depends on the hardware connections.
+> 
+> OK, the question about the broadcast is still there - cannot it be deduced?
+> 
+> The reason to define this item and add it in dts is that tell tas2781 driver code to enable broadcast and its address. 
+> Removing this item means disabling broadcast. Do you want to hardcode the global address in the code?
+> And this item only used as a flag to enable or disable?
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Cheers,
-Angelo
+Hi Krzysztof, nice to talk with you!
 
+I really do not know what is here mine what's yours. I could guess, but
+we are all a bit busy, so I would appreciate if reading your email was
+easier for me.
+
+Best regards,
+Krzysztof
 
