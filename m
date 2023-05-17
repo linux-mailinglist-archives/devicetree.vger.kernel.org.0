@@ -2,91 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2818870634E
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 10:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56450706362
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 10:56:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbjEQItd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 04:49:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38478 "EHLO
+        id S229637AbjEQI4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 04:56:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230230AbjEQItc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 04:49:32 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8509649C5
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 01:49:30 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-510a59ead3fso743020a12.2
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 01:49:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684313369; x=1686905369;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OD0C3nZ8z9gjBYEFpqDfiRlm0u5lH5jK1nwISvRKjHg=;
-        b=prpHwMHSnMat6comn9Vx+sA5FKtmagSwuKgZu6LSSMrRKhJ64xUSG0tuf43aggqMqt
-         lh9AMJh3buWnAfEeVxUVKAYw7T6HoKhl4wlusfF39r3QjkDnh0muzFtkJ1Dg/wnent58
-         6U39JYG7isW4TmaBmuy2jKG2JqhQylmCTOEjYjNNLRRNHmVJt33Qat08lSMzz+JbAQ7t
-         +LUldVbshWYLbvRt8AdCJ4VvIyQO09oftz9rymeg96QrUa+5h+o3/loo9rytec4LNg66
-         VjOcFgbd1nBT4KxPAupgF6Zw4I4Jb5RrCRNbjBJw2G3P6lAkipQpn5zmxg35vwXqmvg5
-         OwEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684313369; x=1686905369;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OD0C3nZ8z9gjBYEFpqDfiRlm0u5lH5jK1nwISvRKjHg=;
-        b=apsNG4mjkZkCZ5snBzsDx3t8YEG+Es3b42AhiNvQgz4JkL3l0snksq4zBfc9n3aGWF
-         rEo6W82b+F0wcs93PdsDom+iowM5Xlp7rS0ofevHB5lNyTStgObqgtDcUs5csgQ2yhq7
-         hBoJ2CPeL31dTu9D1uh9xnImTN+E4meL+GGl5eIYnCob1ts3vi1dcUP+wnRV7nR4d3II
-         xUdZjs47kMG+dSftbau0UIU1H6ma9Nzyz96YoUXo5+UMlE6M6xtEmCLnnzInP3neOs7e
-         8E/wy2MSH85RX46cMnTkRpzOPYYYmMkDQ31697PPx06ePeDarZphpMw22XGtAijx3Ak+
-         pLcg==
-X-Gm-Message-State: AC+VfDwPj4zZ8gSXqNBOq6D7Tw24YDqpBN6XyNbR0B0LviEiVhAPyNsU
-        J8H4l3Pnr9mlD796+SblqExJfg==
-X-Google-Smtp-Source: ACHHUZ7SwpTS7cXnaJ0gkuk0w5mwCe4N04JDiT9fRauhtzbGSpHcBUU9I9UuCfAG4aWPbuEtczoCRg==
-X-Received: by 2002:a17:907:a0e:b0:94f:450e:6a76 with SMTP id bb14-20020a1709070a0e00b0094f450e6a76mr36434698ejc.61.1684313369061;
-        Wed, 17 May 2023 01:49:29 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
-        by smtp.gmail.com with ESMTPSA id gx1-20020a1709068a4100b00965a0f30fbfsm12011483ejc.186.2023.05.17.01.49.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 01:49:28 -0700 (PDT)
-Message-ID: <9c507258-70df-c11a-9fd8-8101e533f5a3@linaro.org>
-Date:   Wed, 17 May 2023 10:49:27 +0200
+        with ESMTP id S229552AbjEQI4W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 04:56:22 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 471CA1738;
+        Wed, 17 May 2023 01:56:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684313780; x=1715849780;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=4S+mksSwEuy7jDabqK76rs9uXWBf27hYxYgzx1zFBEo=;
+  b=LxQdPAGcCb0SYoZoOrHbKgLHCEywoa7jD0sieONUOdi/A8+TW8ExY6c0
+   q01Fam72lNetFHOTmTeb2HMk9IQ/DJcwpZUeMu/ZYQl1WTKnaPGHlPUkV
+   U+c4qhueuR5IeXtfFNYDDRtoOrQmH3tTnMymCHyBneFWPRD6rqVJgRvpc
+   U3i4X68ZUyB59TUMfondm39Rhx3o7XzfF4+17uar7A1JV9H4O12w5Dwya
+   kb0h4RfZvHE0etc7pzR6VMlr7P8e7hPS3/pOL8GYUuOTtaXNUlSnYg71+
+   naVIWCuO5M701/zYXa+zBtrUr3rXETJ1bATGPhFQibIg2PNWTKIwhAHd7
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.99,281,1677567600"; 
+   d="asc'?scan'208";a="152498435"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 May 2023 01:56:19 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 17 May 2023 01:56:18 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Wed, 17 May 2023 01:56:16 -0700
+Date:   Wed, 17 May 2023 09:55:55 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     <Claudiu.Beznea@microchip.com>
+CC:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc:
+ convert to yaml
+Message-ID: <20230517-railway-babble-df75495cd312@wendy>
+References: <20230516051836.2511149-1-claudiu.beznea@microchip.com>
+ <20230516051836.2511149-3-claudiu.beznea@microchip.com>
+ <20230516-modulator-reason-1d3a754c6dd7@wendy>
+ <a42f5efd-0847-6a7d-5d2f-ad5772466664@microchip.com>
+ <131f3527-8ad8-bdd2-036d-6c8c61f69142@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: tegra: Document Jetson Orin Nano
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230516095850.2426604-1-thierry.reding@gmail.com>
- <20230516095850.2426604-2-thierry.reding@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230516095850.2426604-2-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="cWROMdDqqGTQkPgl"
+Content-Disposition: inline
+In-Reply-To: <131f3527-8ad8-bdd2-036d-6c8c61f69142@microchip.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 11:58, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> The Jetson Orin Nano is the little sibling of the Jetson Orin NX.
-> Document the corresponding compatible strings for these devices.
-> 
+--cWROMdDqqGTQkPgl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, May 17, 2023 at 08:48:04AM +0000, Claudiu.Beznea@microchip.com wrot=
+e:
+> On 16.05.2023 15:58, Claudiu Beznea - M18063 wrote:
+> > Hi, Conor,
+> >=20
+> > On 16.05.2023 15:00, Conor Dooley wrote:
+> >> Hey Claudiu,
+> >>
+> >> On Tue, May 16, 2023 at 08:18:33AM +0300, Claudiu Beznea wrote:
+> >>> Convert Atmel PMC documentation to yaml. Along with it clock names
+> >>> were adapted according to the current available device trees as
+> >>> different controller versions accept different clock (some of them
+> >>> have 3 clocks as input, some has 2 clocks as inputs and some with 2
+> >>> input clocks uses different clock names).
+> >>> diff --git a/Documentation/devicetree/bindings/clock/atmel,at91rm9200=
+-pmc.yaml b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.ya=
+ml
+> >>> new file mode 100644
+> >>> index 000000000000..e5f514bc4bf7
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/clock/atmel,at91rm9200-pmc.ya=
+ml
+> >>> @@ -0,0 +1,153 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/clock/atmel,at91rm9200-pmc.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Atmel Power Management Controller (PMC)
+> >>> +
+> >>> +maintainers:
+> >>> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
+> >>> +
+> >>> +description:
+> >>> +  The power management controller optimizes power consumption by con=
+trolling all
+> >>> +  system and user peripheral clocks. The PMC enables/disables the cl=
+ock inputs
+> >>> +  to many of the peripherals and to the processor.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    oneOf:
+> >>> +      - items:
+> >>> +          - const: atmel,at91sam9g20-pmc
+> >>> +          - const: atmel,at91sam9260-pmc
+> >>> +          - const: syscon
+> >>> +      - items:
+> >>> +          - enum:
+> >>> +              - atmel,at91sam9g15-pmc
+> >>> +              - atmel,at91sam9g25-pmc
+> >>> +              - atmel,at91sam9g35-pmc
+> >>> +              - atmel,at91sam9x25-pmc
+> >>> +              - atmel,at91sam9x35-pmc
+> >>> +          - const: atmel,at91sam9x5-pmc
+> >> Yet another combinations question for you...
+> >> With this binding the following is not possible:
+> >>
+> >> "atmel,at91sam9x5-pmc", "syscon"
+> >>
+> >> Is that intended?
+> >=20
+> > No, I've just missed it. Same for the above. I'll have a new round and =
+fix it.
+>=20
+> Though... shouldn't this have been detected by make dtbs_check?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Only if there actually exists a dtb containing
+compatible =3D "atmel,at91sam9x5-pmc", "syscon";
+that is enabled by the config that you are building with.
 
-Best regards,
-Krzysztof
+=46rom taking a quick look:
+git grep "\"atmel,at91sam9x5-pmc\", \"syscon\""
+arch/arm/boot/dts/at91sam9g15.dtsi:    compatible =3D "atmel,at91sam9g15-pm=
+c", "atmel,at91sam9x5-pmc", "syscon";
+arch/arm/boot/dts/at91sam9g25.dtsi:    compatible =3D "atmel,at91sam9g25-pm=
+c", "atmel,at91sam9x5-pmc", "syscon";
+arch/arm/boot/dts/at91sam9g35.dtsi:    compatible =3D "atmel,at91sam9g35-pm=
+c", "atmel,at91sam9x5-pmc", "syscon";
+arch/arm/boot/dts/at91sam9x25.dtsi:    compatible =3D "atmel,at91sam9x25-pm=
+c", "atmel,at91sam9x5-pmc", "syscon";
+arch/arm/boot/dts/at91sam9x35.dtsi:    compatible =3D "atmel,at91sam9x35-pm=
+c", "atmel,at91sam9x5-pmc", "syscon";
+arch/arm/boot/dts/at91sam9x5.dtsi:     compatible =3D "atmel,at91sam9x5-pmc=
+", "syscon";
 
+There's only actually one place where you have this combination & it
+seems to get overridden by all of the more specific dtsi files that
+include at91sam9x5.dtsi.
+
+Hope that helps,
+Conor.
+
+--cWROMdDqqGTQkPgl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGSWkAAKCRB4tDGHoIJi
+0n3gAQCe16U0H1kSoUhYYNlGxAarRvNm6f9LyymQm8xl7FL32wD+Nf5z5eXtVZvs
+axfaAB+pfK2KqjdQtG6ZEnfYKZ4c/wg=
+=gglf
+-----END PGP SIGNATURE-----
+
+--cWROMdDqqGTQkPgl--
