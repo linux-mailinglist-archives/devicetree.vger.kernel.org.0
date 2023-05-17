@@ -2,136 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D628C706B5B
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:39:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D821E706B62
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:41:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231311AbjEQOjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 10:39:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33622 "EHLO
+        id S229695AbjEQOlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 10:41:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230402AbjEQOjR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:39:17 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D0E8F;
-        Wed, 17 May 2023 07:39:16 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34HEZPrH020544;
-        Wed, 17 May 2023 16:38:56 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=GThgjJ8WeVYu7amHQKF0EfhYQvmzeVDT7JNsz08BwJA=;
- b=WSk/ncL9iKDHCBnAkNIy9JluwTU+rEYbjwuCSvNXXM1Gf1TxwV1thX5/wNYYyjcm4Q0G
- T96uLtAeK32uGyR2mOfLsHa/ANTCSUpKGlnnIU2kWTwSsS8BMDC7OEUwPLLUhlvUKxJ2
- kuf7pXd2KCA85QdPR0IkvKSrfVXU01OpRV90pOWyHo0BeFyX1+xB4m08w/T9sTvjL0cg
- WZWjGNoT55c6PiOtD4rknnnSPUFrPGBh2HJUd1w21xJPFWNVVBIpvnRM3s63lfYhNrcs
- n7PbaWSHQnS6hArRmefyZfGkt4xO+ewg0DgA8OZZ6cxlXp/+AoEWAsY2U0h/8ppxHPPd 1g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qmtefk6u9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 17 May 2023 16:38:56 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E96A9100034;
-        Wed, 17 May 2023 16:38:55 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E0FA723357D;
-        Wed, 17 May 2023 16:38:55 +0200 (CEST)
-Received: from [10.129.178.187] (10.129.178.187) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 17 May
- 2023 16:38:55 +0200
-Message-ID: <c617bb64-e7fd-c3de-6e29-6dd7c5896d16@foss.st.com>
-Date:   Wed, 17 May 2023 16:38:55 +0200
+        with ESMTP id S231174AbjEQOlv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:41:51 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F18122;
+        Wed, 17 May 2023 07:41:49 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3f420618d5bso6228845e9.1;
+        Wed, 17 May 2023 07:41:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684334508; x=1686926508;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=H+KC9aWhk9Nue79yWDp+sL63hK9fCcCnZcN242M9Snc=;
+        b=Z7rx8NP8zxZZplHp9JQsq2SOrjhFUCJitdu6cYUYl/XuMw/gP2F8PdmUFww8IXUfN3
+         7sLXACqEfM48cfFpUGiQkUvCSEcGwjRhiv7Cjm4b9vTa8tuocSll8b3BAc0XPgWCMXsP
+         Lem7kRo0en6+L6oScQiUVFRBwxS53wtDucriSCEF5EymACkM0VM933RuOyLZSMKena7I
+         rwR7WRaBBvaSFMV0/0YOUUdg7qZT58/YKJtaPwvF3A/ww0IWz8t+7hzKtkDDICdTRrwo
+         z7ctu/OczDbLtrZGEy8vcrhACOJ6/Q86Jp75A0KKa3MDFwDLnPM66ZmEOI6Pu4XV9xwA
+         uinA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684334508; x=1686926508;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=H+KC9aWhk9Nue79yWDp+sL63hK9fCcCnZcN242M9Snc=;
+        b=VVydpwq9RYnKeLAb+ctoHpcelVOTOBtDmo6uDNQ+iXZ5BgP04+s9n3ucn6Lk5asSOb
+         FCzQD5Wdgo6HyQeWhsOgd3zl/29m0oKb7rgWDtlRTEB/r2r+qRnNUJbymq1zUIgTc/Bu
+         yjBVCedms7b+Swa2oxJ0kCD3Iv78a80j7yxsCrWwIAa0B9lPJpwG/l85p39Qv3E6CfPX
+         6Y+1A23xp2JhDLTL4H3utXjBryyYZ28Zhx6i3EDfQVucZfDZAZGSb1dkjbhvaqK7geCj
+         tXvvqPBXyzb+v88X0kG3YQfiiUvXNfUnFTZDojHUwOB5e3EEX1kDLoSjYtNkZqaqv5Mv
+         biEw==
+X-Gm-Message-State: AC+VfDxg+Pt9AXV6xxeHv430klgORX2QKwaOxGVpAjoruiIReLPpm/nO
+        gq0yMVQ37c1JWRnJ+AEgUDI=
+X-Google-Smtp-Source: ACHHUZ6r9JnZAqQ1Oxz0SzV4SQL/kRkz/ekqEeAXzPzAT7mGp3tOFwEX8x4W11EssaMrKUixYQ/2cQ==
+X-Received: by 2002:a7b:cd04:0:b0:3f5:d0ba:3c1a with SMTP id f4-20020a7bcd04000000b003f5d0ba3c1amr1387505wmj.4.1684334507898;
+        Wed, 17 May 2023 07:41:47 -0700 (PDT)
+Received: from debby ([2a01:e0a:a6d:a8d0:7ff4:8f61:5574:9f95])
+        by smtp.gmail.com with ESMTPSA id v18-20020a1cf712000000b003edc4788fa0sm2536739wmh.2.2023.05.17.07.41.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 May 2023 07:41:47 -0700 (PDT)
+From:   Romain Perier <romain.perier@gmail.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Romain Perier <romain.perier@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/3] Add RTC for MStar SSD20xD SoCs
+Date:   Wed, 17 May 2023 16:41:41 +0200
+Message-Id: <20230517144144.365631-1-romain.perier@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 0/3] STM32 warning cleanup
-Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>
-CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@dh-electronics.com>
-References: <20230517132214.254757-1-raphael.gallais-pou@foss.st.com>
- <56bcad63-a32e-63fc-1c20-15909f2788b5@denx.de>
-From:   Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-In-Reply-To: <56bcad63-a32e-63fc-1c20-15909f2788b5@denx.de>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.129.178.187]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-17_02,2023-05-17_02,2023-02-09_01
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patches series adds a new driver for the RTC found in the Mstar
+SSD20xD SoCs. It adds a basic rtc driver, the corresponding devicetree
+bindings and its documentation.
 
-On 5/17/23 16:06, Marek Vasut wrote:
-> On 5/17/23 15:22, Raphael Gallais-Pou wrote:
->> This serie aims to reduce the number of device-tree warnings of
->> following boards :
->>
->>    - STM32F429-DISCO
->>    - STM32MP15*
->>
->> Those warnings were appearing either during build or when checking
->> dt-bindings and concern mostly LTDC and DSI IPs and were due to the
->> following cases:
->>
->>    - panel-dsi@0 nodes that needed
->>    - unnecessary #address-cells and #size-cells properties
->>    - residual 'reg' field on single endpoints
->>
->> Raphael Gallais-Pou (3):
->>    ARM: dts: stm32: fix warnings on stm32f469-disco board
->>    dt-bindings: display: st,stm32-dsi: Remove unnecessary fields
->>    ARM: dts: stm32: fix several DT warnings on stm32mp15
->>
->>   .../devicetree/bindings/display/st,stm32-dsi.yaml      |  2 --
->>   arch/arm/boot/dts/stm32f469-disco.dts                  |  4 ++--
->>   arch/arm/boot/dts/stm32mp151.dtsi                      |  5 -----
->>   arch/arm/boot/dts/stm32mp157.dtsi                      |  7 -------
->>   .../dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts    |  6 ++++--
->>   .../boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts   |  6 ++++--
->>   .../stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts  |  3 +--
->>   arch/arm/boot/dts/stm32mp157c-dk2.dts                  |  8 ++++++++
->>   arch/arm/boot/dts/stm32mp157c-ev1.dts                  | 10 +++++++---
->>   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts              |  3 +--
->>   arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi     |  6 +-----
->>   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi                 |  3 +--
->>   12 files changed, 29 insertions(+), 34 deletions(-)
->>
->
-> Is this a V2 series ?
+The rtctest (from selftests) has been passed on this driver, with the
+following output:
 
-Hi Marek
+# rtctest 
+TAP version 13
+1..8
+# Starting 8 tests from 1 test cases.
+#  RUN           rtc.date_read ...
+# rtctest.c:52:date_read:Current RTC date/time is 17/05/2023 15:58:12.
+#            OK  rtc.date_read
+ok 1 rtc.date_read
+#  RUN           rtc.date_read_loop ...
+# rtctest.c:95:date_read_loop:Continuously reading RTC time for 30s (with 11ms breaks after every read).
+# rtctest.c:122:date_read_loop:Performed 888 RTC time reads.
+#            OK  rtc.date_read_loop
+ok 2 rtc.date_read_loop
+#  RUN           rtc.uie_read ...
+# rtctest.c:137:uie_read:skip update IRQs not supported.
+#            OK  rtc.uie_read
+ok 3 rtc.uie_read
+#  RUN           rtc.uie_select ...
+# rtctest.c:166:uie_select:skip update IRQs not supported.
+#            OK  rtc.uie_select
+ok 4 rtc.uie_select
+#  RUN           rtc.alarm_alm_set ...
+# rtctest.c:214:alarm_alm_set:skip alarms are not supported.
+#            OK  rtc.alarm_alm_set
+ok 5 rtc.alarm_alm_set
+#  RUN           rtc.alarm_wkalm_set ...
+# rtctest.c:274:alarm_wkalm_set:skip alarms are not supported.
+#            OK  rtc.alarm_wkalm_set
+ok 6 rtc.alarm_wkalm_set
+#  RUN           rtc.alarm_alm_set_minute ...
+# rtctest.c:324:alarm_alm_set_minute:skip alarms are not supported.
+#            OK  rtc.alarm_alm_set_minute
+ok 7 rtc.alarm_alm_set_minute
+#  RUN           rtc.alarm_wkalm_set_minute ...
+# rtctest.c:384:alarm_wkalm_set_minute:skip alarms are not supported.
+#            OK  rtc.alarm_wkalm_set_minute
+ok 8 rtc.alarm_wkalm_set_minute
+# PASSED: 8 / 8 tests passed.
+# Totals: pass:8 fail:0 xfail:0 xpass:0 skip:0 error:0
 
 
-yes it was,
+Romain Perier (3):
+  rtc: Add support for the SSD20xD RTC
+  dt-bindings: rtc: Add Mstar SSD20xD RTC devicetree bindings
+    documentation
+  ARM: dts: mstar: Enable rtc for SSD20xD
 
-Thanks for highlighting it to me.
+ .../bindings/rtc/mstar,ssd20xd-rtc.yaml       |  37 +++
+ arch/arm/boot/dts/mstar-infinity2m.dtsi       |   5 +
+ drivers/rtc/Kconfig                           |  11 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-ssd20xd.c                     | 249 ++++++++++++++++++
+ 5 files changed, 303 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/mstar,ssd20xd-rtc.yaml
+ create mode 100644 drivers/rtc/rtc-ssd20xd.c
 
-Raphaël
+-- 
+2.39.2
 
->
-> If so, please do include changelog .
->
-> Also, use "git send-email -v2" to mark those patches as v2 automatically when
-> sending .
