@@ -2,226 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B806B70650F
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 12:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7452870654C
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 12:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230303AbjEQKZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 06:25:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47506 "EHLO
+        id S229924AbjEQKc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 06:32:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230301AbjEQKZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 06:25:54 -0400
-Received: from mail-vk1-xa29.google.com (mail-vk1-xa29.google.com [IPv6:2607:f8b0:4864:20::a29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6660E3C33
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 03:25:50 -0700 (PDT)
-Received: by mail-vk1-xa29.google.com with SMTP id 71dfb90a1353d-4501f454581so442671e0c.3
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 03:25:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1684319149; x=1686911149;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QzxZD48PY2DhxBTB/AhhijJZHAkj7rHk4JQ272Q2X+s=;
-        b=hBGkseWpS5FW055SPb/V4102sqHaRDbGnnpBeApgHymo+Y0XxGQ5mW8x8bskNirjd1
-         1nqsdnLtz6jLDHxyR+B1h/CnASnQswbUYJIGQp6gLL/eH26u4/FcmiEp+oXajc8s43c3
-         GBP54xYmPceS8LxsdLdDOvLdX5IlK5sOKlgePhIYiR1t3IsHjwQ4TNBv+5a41rLbZSWW
-         lDgD1AUfb1LEYvzURXKmRZiBcUaaiEXip5jrYG6KaZ0e0BPdawcuCO1WIqQDhsda80Rr
-         m2VqmMq+mOnEfcjSk1WgQXHF34r33KXuUuzw/MtSmkAHmXpln1LSkRwQYpGQPPCM+onF
-         RmkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684319149; x=1686911149;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QzxZD48PY2DhxBTB/AhhijJZHAkj7rHk4JQ272Q2X+s=;
-        b=AW3rTxcRibqZRlnl4Q3TRg5JZ0JG47nDDfihmCoZHin+lF42EOWvEavotqQLoNRZSX
-         IfLZOM2tU1V2rz1N5A2xx/Xw+1kydE4G7l/emDpOc52uKJbLKKXyLfvoW+mYy0zDLiT3
-         aSYU6gsXgjO6/QbKeikY/jJhzGJ6Vx6e3Kjc5g8eAcuETFagW4eZAPBFR67DVN7W90bw
-         4i9BxF0NP5F8wguxq+zK0EsXdHg3RPTrvIHnPAfaB6Sc4JXlyCkgh9/lwMOpbCx+frdo
-         Hhb76yYac590JhUKTzbMxCs+5CiMBRBqosRp6Fu7eYl7ohG5lD6YGl37hRcr1sPzwdjR
-         imGQ==
-X-Gm-Message-State: AC+VfDy+bvxeUxGIEXyj7guVmVxA+qAssMwiuX4XGwWs1j0Y9j3OsGY1
-        mcc8I6zQPQIoqUUbrpifWohoVzQT1+UUxMP1KffPCw==
-X-Google-Smtp-Source: ACHHUZ44BqzmGxz3QHxrYPm16vIVE2NUwgPrK7cObMyOFiHcYfIUvs5KttvlZ6bXw8wpg58FmrjXdB681tQgnX4nUyw=
-X-Received: by 2002:a1f:4e02:0:b0:44f:ba05:46cf with SMTP id
- c2-20020a1f4e02000000b0044fba0546cfmr14335258vkb.3.1684319149248; Wed, 17 May
- 2023 03:25:49 -0700 (PDT)
+        with ESMTP id S229551AbjEQKc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 06:32:57 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A111359F;
+        Wed, 17 May 2023 03:32:56 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D1A7A6605877;
+        Wed, 17 May 2023 11:32:53 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1684319574;
+        bh=yiNihgP3IrNI3loR/8a+ht/13x21xzVRUN2RDyTYeg4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=SylBTcxfImZLgeZy1TmMJVYWvo1PI/aclIfEm7SGQAyttBoQapaytZ0swJcMwAvZh
+         bKfSaqLUB7e/bWNBbq6kjLMhK14dxPR4CLitPNZeNIcH9ppHS4EwwkNZM1AdOSupYH
+         OWiOQF+G4PrytuzEyPsbkUvSCV3RO/bjTTuFGSKgvlChe+xtpMgnRG+mTPr16D99t7
+         J7yW5TrrGcj9FUMWdikNzgmdA/WnF+U1LkcqnA6VqOAPPvMFU/Jp28qUBFSxWnIyCn
+         vZ4sOlggmFfKyiUuJKaO2Px7sfatKk652nV/RApQGUvCfpyw2rHDJFy51XkP0pYVAi
+         shjBqLWjhtCcA==
+Message-ID: <c5315454-a155-3842-00b7-08b6b8ff92e6@collabora.com>
+Date:   Wed, 17 May 2023 12:32:51 +0200
 MIME-Version: 1.0
-References: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
-In-Reply-To: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
-From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date:   Wed, 17 May 2023 11:25:34 +0100
-Message-ID: <CAPY8ntCkZB3K2LoLcBseDcg=qNrOvZbYaCdiyNcR4R2Oo3sLoA@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: display: panel: add panel-mipi-dsi-bringup
-To:     =?UTF-8?B?UGF1bG8gUGF2YcSNacSH?= <pavacic.p@gmail.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
-        robh+dt@kernel.org, daniel@ffwll.ch, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 1/7] iio: adc: rockchip_saradc: Add support for RK3588
+To:     Shreeya Patel <shreeya.patel@collabora.com>, jic23@kernel.org,
+        lars@metafoo.de, heiko@sntech.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sebastian.reichel@collabora.com
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, gustavo.padovan@collabora.com,
+        serge.broslavsky@collabora.com, Simon Xue <xxm@rock-chips.com>
+References: <20230516230051.14846-1-shreeya.patel@collabora.com>
+ <20230516230051.14846-2-shreeya.patel@collabora.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230516230051.14846-2-shreeya.patel@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paulo
-
-On Tue, 16 May 2023 at 14:09, Paulo Pava=C4=8Di=C4=87 <pavacic.p@gmail.com>=
- wrote:
->
-> Add dt-bindings documentation for panel-mipi-dsi-bringup which currently
-> supports fannal,c3004 panel. Also added fannal to vendor-prefixes.
->
-> v2 changelog:
->   - revised driver title, now describes purpose
->   - revised description, now describes hw
->   - revised maintainers, now has only 1 mail
->   - removed diacritics from commit/commit author
->   - properties/compatible is now enum
->   - compatible using only lowercase
->   - revised dts example
->   - modified MAINTAINERS in this commit (instead of driver commit)
->   - dt_bindings_check checked yml
->   - checkpatch warning fixed
->
-> Signed-off-by: Paulo Pavacic <pavacic.p@gmail.com>
+Il 17/05/23 01:00, Shreeya Patel ha scritto:
+> Refactor conversion operation to support rk3588 saradc and
+> add separate start, read, powerdown in respective hooks.
+> 
+> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
 > ---
->  .../display/panel/panel-mipi-dsi-bringup.yaml | 54 +++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
->  MAINTAINERS                                   |  6 +++
->  3 files changed, 62 insertions(+)
->  create mode 100644
-> Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.ya=
-ml
->
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-d=
-si-bringup.yaml
-> b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.=
-yaml
-> new file mode 100644
-> index 000000000000..c9e2b545657e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-brin=
-gup.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-mipi-dsi-bringup.=
-yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>   drivers/iio/adc/rockchip_saradc.c | 127 +++++++++++++++++++++++++++---
+>   1 file changed, 115 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
+> index 79448c5ffc2a..ac6fdf8e673b 100644
+> --- a/drivers/iio/adc/rockchip_saradc.c
+> +++ b/drivers/iio/adc/rockchip_saradc.c
+> @@ -38,10 +38,29 @@
+>   #define SARADC_TIMEOUT			msecs_to_jiffies(100)
+>   #define SARADC_MAX_CHANNELS		8
+>   
+> +/* v2 registers */
+> +#define SARADC2_CONV_CON		0x0
+> +#define SARADC_T_PD_SOC			0x4
+> +#define SARADC_T_DAS_SOC		0xc
+> +#define SARADC2_END_INT_EN		0x104
+> +#define SARADC2_ST_CON			0x108
+> +#define SARADC2_STATUS			0x10c
+> +#define SARADC2_END_INT_ST		0x110
+> +#define SARADC2_DATA_BASE		0x120
 > +
-> +title: MIPI DSI Bringup Panel Porting Bindings
+> +#define SARADC2_EN_END_INT		BIT(0)
+> +#define SARADC2_START			BIT(4)
+> +#define SARADC2_SINGLE_MODE		BIT(5)
 > +
-> +description: |
-> +  MIPI DSI Bringup Panel porting bindings to be used for a collection of=
- panels
-> +  from different manufacturers which don't require backlight control fro=
-m the
-> +  driver and have a single reset pin which is required to be passed as a=
-n
-> +  argument.
+> +struct rockchip_saradc;
+> +
+>   struct rockchip_saradc_data {
+>   	const struct iio_chan_spec	*channels;
+>   	int				num_channels;
+>   	unsigned long			clk_rate;
+> +	void (*start)(struct rockchip_saradc *info, int chn);
+> +	int (*read)(struct rockchip_saradc *info);
+> +	void (*power_down)(struct rockchip_saradc *info);
+>   };
+>   
+>   struct rockchip_saradc {
+> @@ -60,27 +79,77 @@ struct rockchip_saradc {
+>   	struct notifier_block nb;
+>   };
+>   
+> -static void rockchip_saradc_power_down(struct rockchip_saradc *info)
+> +static void rockchip_saradc_reset_controller(struct reset_control *reset);
+> +
+> +static void rockchip_saradc_start_v1(struct rockchip_saradc *info, int chn)
+> +{
+> +	/* 8 clock periods as delay between power up and start cmd */
+> +	writel_relaxed(8, info->regs + SARADC_DLY_PU_SOC);
+> +	/* Select the channel to be used and trigger conversion */
+> +	writel(SARADC_CTRL_POWER_CTRL | (chn & SARADC_CTRL_CHN_MASK) |
+> +	       SARADC_CTRL_IRQ_ENABLE, info->regs + SARADC_CTRL);
+> +}
+> +
+> +static void rockchip_saradc_start_v2(struct rockchip_saradc *info, int chn)
+> +{
+> +	int val;
+> +
+> +	if (info->reset)
+> +		rockchip_saradc_reset_controller(info->reset);
+> +
+> +	writel_relaxed(0xc, info->regs + SARADC_T_DAS_SOC);
+> +	writel_relaxed(0x20, info->regs + SARADC_T_PD_SOC);
+> +	val = SARADC2_EN_END_INT << 16 | SARADC2_EN_END_INT;
 
-Don't we already have support for DSI displays that only need a single
-reset pin via panel-simple? [1]
+What about using bitfield macros?
 
-The bit that confuses me is that the driver patch [2] is using DSI DCS
-commands to configure the panel - that differs from this dt binding
-description of the panel only needing a reset pin.
+/* "LO" and "HI" may get a better name, if there's any possible one! */
+#define SARADC2_EN_END_INT_LO BIT(0)
+#define SARADC2_EN_END_INT_HI BIT(16)
 
-Potentially there is gain in having a template DSI panel driver
-available for reference, but this driver/binding appears to be trying
-to act as a generic thing.
+val = FIELD_PREP(SARADC_EN_END_INT_LO, 1);
+val |= FIELD_PREP(SARADC_EN_END_INT_HI, 1);
+writel ....
 
-  Dave
+Otherwise, if it's about two really "specular" instances, you can probably
+keep the current definition as SARADC2_EN_END_INT and do
 
-[1] https://elixir.bootlin.com/linux/v6.3.2/source/drivers/gpu/drm/panel/pa=
-nel-simple.c#L4605
-[2] https://lists.freedesktop.org/archives/dri-devel/2023-May/404775.html
+val = FIELD_PREP(SARADC_EN_END_INT, 1);
+val |= val << 16;
+writel ...
+
+/* note: high, low bits are unknown to me, I assumed it's 16 bits :-) */
+#define SARADC2_CONV_CHANNELS GENMASK(15, 0)
+
+val = FIELD_PREP(SARADC2_START, 1);
+val |= FIELD_PREP(SARADC2_SINGLE_MODE, 1);
+val |= FIELD_PREP(SARADC2_CONV_CHANNELS, chn);
+val |= val << 16;
+writel ...
 
 
+> +	writel_relaxed(val, info->regs + SARADC2_END_INT_EN);
+> +	val = SARADC2_START | SARADC2_SINGLE_MODE | chn;
+> +	writel(val << 16 | val, info->regs + SARADC2_CONV_CON);
+> +}
 > +
-> +maintainers:
-> +  - Paulo Pavacic <pavacic.p@gmail.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +
-> +  compatible:
-> +    enum:
-> +      # compatible must be listed in alphabetical order, ordered by comp=
-atible.
-> +      # The description in the comment is mandatory for each compatible.
-> +
-> +        # Fannal 480x800 panel
-> +      - fannal,c3004
-> +
-> +  reg: true
-> +  reset-gpios: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reset-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    //example on IMX8MM where GPIO pin 9 is used as a reset pin
-> +    mipi_dsi@32e10000 {
-> +        panel@0 {
-> +            compatible =3D "fannal,c3004";
-> +            reg =3D <0>;
-> +            pinctrl-0 =3D <&pinctrl_mipi_dsi_rst>;
-> +            pinctrl-names =3D "default";
-> +            reset-gpios =3D <&gpio1 9 GPIO_ACTIVE_LOW>;
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 82d39ab0231b..f962750f630a 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -462,6 +462,8 @@ patternProperties:
->      description: Facebook
->    "^fairphone,.*":
->      description: Fairphone B.V.
-> +  "^fannal,.*":
-> +    description: Fannal Electronics Co., Ltd
->    "^faraday,.*":
->      description: Faraday Technology Corporation
->    "^fastrax,.*":
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e0ad886d3163..46f988ee60bd 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6566,6 +6566,12 @@ T:    git git://anongit.freedesktop.org/drm/drm-mi=
-sc
->  F:    Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi=
-.yaml
->  F:    drivers/gpu/drm/tiny/panel-mipi-dbi.c
->
-> +DRM DRIVER FOR MIPI DSI BRINGUP
-> +M:    Paulo Pavacic <pavacic.p@gmail.com>
-> +S:    Maintained
-> +C:    mipi-dsi-bringup:matrix.org
-> +F:    Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bri=
-ngup.yaml
-> +
->  DRM DRIVER FOR MSM ADRENO GPU
->  M:    Rob Clark <robdclark@gmail.com>
->  M:    Abhinav Kumar <quic_abhinavk@quicinc.com>
-> --
-> 2.40.1
->
+
+Cheers,
+Angelo
+
