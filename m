@@ -2,58 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DECB70731F
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 22:36:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A35D170732F
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 22:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229768AbjEQUgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 16:36:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60786 "EHLO
+        id S229508AbjEQUjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 16:39:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229665AbjEQUgD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 16:36:03 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5413BA1;
-        Wed, 17 May 2023 13:35:57 -0700 (PDT)
-Received: (Authenticated sender: alexis.lothore@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 233D240007;
-        Wed, 17 May 2023 20:35:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1684355755;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=RagYd6eCVPXftbaoMDiEGbDgJT7b4I7PTt7SjICCemQ=;
-        b=MVuaYei4Wfrlidypw0sqHOmlqYtDR9q5mvT49YVQUSWSAaeibBBI6BlFbuhy1RONbmfPJw
-        wokbeNzjFKWaDxi+DbbV4jcXIICTEZW86fpzh+y8o354o8hY58INBTRC3lCFBak7lF2OvF
-        JV12TQpgsK2fGILCLFn3vTter73nWqz+tXrL1pPcKpOR90vfOO0jlTZtoI888s+0iqQNo2
-        kPPixTA8fpedhKBEaZH4BGYhSe5vs/bt3J7XSWXk+c8P4uptEjIuY7BnQfOyEX8mru067Q
-        tlq2MtRKV5bPiI6UQRIPYguuCFILJwVCAWLeCJRypjX5fu1RsT/o1A5IIFW43Q==
-From:   alexis.lothore@bootlin.com
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
+        with ESMTP id S229445AbjEQUjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 16:39:41 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36FE6C0;
+        Wed, 17 May 2023 13:39:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=Mt3aB20cxB1M3U/YG/ZB3G0WgRWyy+pj0efMkcJEk8M=; b=4Z
+        A3KAEH9BIwV+s3VooFYIPWWpP62N0RG1xfdlZsRxA3cy0rBLzMLmMcR9ltQcDl9GQKhJG5v2aaMF0
+        5LhTY89m5uUW9eJ6FZ/vcNc5qbTsw0bHopYwfGVT48A/ntQbOMjifrbAAHogulfvidgBaO0DrTrVh
+        8mBcsF5vPYyaJFQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1pzNvo-00DAg2-16; Wed, 17 May 2023 22:39:32 +0200
+Date:   Wed, 17 May 2023 22:39:32 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     alexis.lothore@bootlin.com
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Vladimir Oltean <olteanv@gmail.com>,
         "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
-        Richard Cochran <richardcochran@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Richard Cochran <richardcochran@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        paul.arola@telus.com, scott.roberts@telus.com,
-        =?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>
-Subject: [PATCH net-next 2/2] net: dsa: mv88e6xxx: enable support for 88E6361 switch
-Date:   Wed, 17 May 2023 22:34:30 +0200
-Message-Id: <20230517203430.448705-3-alexis.lothore@bootlin.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230517203430.448705-1-alexis.lothore@bootlin.com>
+        paul.arola@telus.com, scott.roberts@telus.com
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: marvell: add
+ MV88E6361 switch to compatibility list
+Message-ID: <d5f6b115-155c-4768-b600-012bafb41b98@lunn.ch>
 References: <20230517203430.448705-1-alexis.lothore@bootlin.com>
+ <20230517203430.448705-2-alexis.lothore@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+In-Reply-To: <20230517203430.448705-2-alexis.lothore@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -62,92 +59,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexis LothorÃ© <alexis.lothore@bootlin.com>
+On Wed, May 17, 2023 at 10:34:29PM +0200, alexis.lothore@bootlin.com wrote:
+> From: Alexis Lothoré <alexis.lothore@bootlin.com>
+> 
+> Marvell MV88E6361 is an 8-port switch derived from the
+> 88E6393X/88E9193X/88E6191X switches family. Since its functional behavior
+> is very close to switches from this family, it can benefit from existing
+> drivers for this family, so add it to the list of compatible switches
+> 
+> Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
 
-Marvell 88E6361 is an 8-port switch derived from the
-88E6393X/88E9193X/88E6191X switches family. It can benefit from the
-existing mv88e6xxx driver by simply adding the proper switch description in
-the driver. Main differences with other switches from this
-family are:
-- 8 ports exposed (instead of 11): ports 1, 2 and 8 not available
-- No 5GBase-x nor SFI/USXGMII support
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Signed-off-by: Alexis LothorÃ© <alexis.lothore@bootlin.com>
----
- drivers/net/dsa/mv88e6xxx/chip.c | 25 +++++++++++++++++++++++++
- drivers/net/dsa/mv88e6xxx/chip.h |  3 ++-
- drivers/net/dsa/mv88e6xxx/port.h |  1 +
- 3 files changed, 28 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/dsa/mv88e6xxx/chip.c b/drivers/net/dsa/mv88e6xxx/chip.c
-index 64a2f2f83735..0be7135fa39d 100644
---- a/drivers/net/dsa/mv88e6xxx/chip.c
-+++ b/drivers/net/dsa/mv88e6xxx/chip.c
-@@ -6309,6 +6309,31 @@ static const struct mv88e6xxx_info mv88e6xxx_table[] = {
- 		.ptp_support = true,
- 		.ops = &mv88e6352_ops,
- 	},
-+	[MV88E6361] = {
-+		.prod_num = MV88E6XXX_PORT_SWITCH_ID_PROD_6361,
-+		.family = MV88E6XXX_FAMILY_6393,
-+		.name = "Marvell 88E6361",
-+		.num_databases = 4096,
-+		.num_macs = 16384,
-+		.num_ports = 11,
-+		/* Ports 1, 2 and 8 are not routed */
-+		.invalid_port_mask = BIT(1) | BIT(2) | BIT(8),
-+		.num_internal_phys = 5,
-+		.max_vid = 4095,
-+		.max_sid = 63,
-+		.port_base_addr = 0x0,
-+		.phy_base_addr = 0x0,
-+		.global1_addr = 0x1b,
-+		.global2_addr = 0x1c,
-+		.age_time_coeff = 3750,
-+		.g1_irqs = 10,
-+		.g2_irqs = 14,
-+		.atu_move_port_mask = 0x1f,
-+		.pvt = true,
-+		.multi_chip = true,
-+		.ptp_support = true,
-+		.ops = &mv88e6393x_ops,
-+	},
- 	[MV88E6390] = {
- 		.prod_num = MV88E6XXX_PORT_SWITCH_ID_PROD_6390,
- 		.family = MV88E6XXX_FAMILY_6390,
-diff --git a/drivers/net/dsa/mv88e6xxx/chip.h b/drivers/net/dsa/mv88e6xxx/chip.h
-index da6e1339f809..c88e52e355a5 100644
---- a/drivers/net/dsa/mv88e6xxx/chip.h
-+++ b/drivers/net/dsa/mv88e6xxx/chip.h
-@@ -82,6 +82,7 @@ enum mv88e6xxx_model {
- 	MV88E6350,
- 	MV88E6351,
- 	MV88E6352,
-+	MV88E6361,
- 	MV88E6390,
- 	MV88E6390X,
- 	MV88E6393X,
-@@ -100,7 +101,7 @@ enum mv88e6xxx_family {
- 	MV88E6XXX_FAMILY_6351,	/* 6171 6175 6350 6351 */
- 	MV88E6XXX_FAMILY_6352,	/* 6172 6176 6240 6352 */
- 	MV88E6XXX_FAMILY_6390,  /* 6190 6190X 6191 6290 6390 6390X */
--	MV88E6XXX_FAMILY_6393,	/* 6191X 6193X 6393X */
-+	MV88E6XXX_FAMILY_6393,	/* 6191X 6193X 6361 6393X */
- };
- 
- /**
-diff --git a/drivers/net/dsa/mv88e6xxx/port.h b/drivers/net/dsa/mv88e6xxx/port.h
-index aec9d4fd20e3..22e2147c29a7 100644
---- a/drivers/net/dsa/mv88e6xxx/port.h
-+++ b/drivers/net/dsa/mv88e6xxx/port.h
-@@ -138,6 +138,7 @@
- #define MV88E6XXX_PORT_SWITCH_ID_PROD_6141	0x3400
- #define MV88E6XXX_PORT_SWITCH_ID_PROD_6341	0x3410
- #define MV88E6XXX_PORT_SWITCH_ID_PROD_6352	0x3520
-+#define MV88E6XXX_PORT_SWITCH_ID_PROD_6361	0x2610
- #define MV88E6XXX_PORT_SWITCH_ID_PROD_6350	0x3710
- #define MV88E6XXX_PORT_SWITCH_ID_PROD_6351	0x3750
- #define MV88E6XXX_PORT_SWITCH_ID_PROD_6390	0x3900
--- 
-2.40.1
-
+    Andrew
