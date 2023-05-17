@@ -2,129 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69140706A7C
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:04:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95D69706A8B
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:07:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231215AbjEQOEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 10:04:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59842 "EHLO
+        id S230230AbjEQOHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 10:07:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbjEQOEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:04:12 -0400
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B922E58;
-        Wed, 17 May 2023 07:04:11 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S230213AbjEQOHC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:07:02 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CAE93C00;
+        Wed, 17 May 2023 07:07:00 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: sailus)
-        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4QLvwg1DH4z49Q47;
-        Wed, 17 May 2023 17:04:03 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-        t=1684332243;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=F9dB5jfPE0ZTFCjOnm24Lze21kK2ZvFO8Uv2gcQfgfY=;
-        b=K66yeZ1o6g42gX3bNGnxD3PL6onWkDhVcqbb4//yDM5OVbrJO6Mb9BmSKWqTG0av8GKmJ4
-        tvPrcE0kXyhjjeA+UaTYjZMvfv7a3Ds9aXYxbET00sc/WRg6uCUlIJljzNsmrZ/aj4P2Sg
-        6P95ebWDMpR73Vt/VFp7F5qBC+lqFWXzvdLehoY65cAIjxQ5RsyRiHFJDeyNg2fj0x8FOT
-        IsjLqqFsQO2zRvvsOnG+qAlG9/EaWV6a+UbLPgzGdUOBHq4uibpJOs01hxZ3jUmX/pI98X
-        AZwDMWMGRlW5lqgkfKkDKg3Cd/lt2WSL+bCRfX6ijjnzmqp/K2EAdMIRAagKpg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=lahtoruutu; t=1684332243;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=F9dB5jfPE0ZTFCjOnm24Lze21kK2ZvFO8Uv2gcQfgfY=;
-        b=v523sTRIXZpWFCe4PqZWhgSv4kTAQYjGRoxHaFQIzJZrKFvLLPTDLYl3Yb69zNftUvrQeg
-        Kwuhqo2Jcme4714QO/2gVY4i7i9iyzzH5iBOsPUchZB4wPzgFjzL+cWxSD5knYmtquL2ZE
-        oOU7pv2wPmU+LP6jOrbIP+gszp4JD+FGVhG3b8omdeRBCPBjMNbygY/j3yzvijswWfeIxg
-        EuxqSaojsoMIGgkL0AJIXjIy9au3KWoXSPb5YrCyJds136aE5ki+bzPZp/u4JW2Da6Fl35
-        xNHRbkQsoRsWoIuutbAr133aSs9pfVv2kPSQndJVFyuWKSUXwqWIAD6IBl+6DA==
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1684332243; a=rsa-sha256;
-        cv=none;
-        b=qQBl3cRVCUGD1iDNIfJPyhRAIO8xrdyQx3uEezI1IiygR1az9UeQCF6s1QXxAAjH79dDey
-        u3e6un9WVBfAw2285yjy2RLAne4/z/M5odAE4z2iQ3J440E4WLph05t1lULOTa5LIu0zOy
-        rz5EfovJqwieUIYnRfJXd6pw22WL9tVvGBGECRsHlAd/fa0mNx2zTwi2vbBbWZ7XAxsdDJ
-        JTGxKGnU2TvyhBdAkGiOH1FBw6W6zvpRNUh3gvAz/S61UZKgS4sVlPurtQXNNJ/7OEvmN+
-        iRGppv3k6vpTP1gFXcKQQ8e9xeYigpJXOEo+T7PXsdBl6hpo64qwJUcAu25/lg==
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 8C066634C94;
-        Wed, 17 May 2023 17:04:02 +0300 (EEST)
-Date:   Wed, 17 May 2023 17:04:02 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     shravan kumar <shravan.chippa@microchip.com>
-Cc:     paul.j.murphy@intel.com, daniele.alessandrelli@intel.com,
-        mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v13 1/1] media: i2c: imx334: update pixel, hblank and
- link frequency
-Message-ID: <ZGTe0ldLYb4QYZGp@valkosipuli.retiisi.eu>
-References: <20230414123311.23923-1-shravan.chippa@microchip.com>
- <20230414123311.23923-2-shravan.chippa@microchip.com>
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 59AEF8617D;
+        Wed, 17 May 2023 16:06:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1684332418;
+        bh=GqIpWImF/Da9B5+OchXkE+1kRkxiInfJ9V0+u3d2r3o=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=fn7VgGR8QgFGf5h6+N3DjnJvonAOoi8Q7r/7SNOJPPE8o+z0PKsGnyVMHF6IhhMm7
+         IRpbWN098NmKyBQhgFJBzD8T6AYhLLViQJu9OJ3iyJiOClya03MmJQ8b9qFM3b3fZK
+         mljTl5GHlIqijdhlRoltvLvC881OiGPOgTu+Ub2Vgozy9WkFWemj00c6HVvdqNIh/i
+         SjTCvY8qrqxUd73AqfLVMZwuQ+3ukB1pme/k+T46BL3yzq/G9lKqF6sPTimLB+tK3n
+         cz/J8YfpSC9AApmL52rmII046Ej6gufpv55BewSAoPnva/qHkD4MEqBek+RLdz/3m9
+         yml7tHAq9S3pw==
+Message-ID: <56bcad63-a32e-63fc-1c20-15909f2788b5@denx.de>
+Date:   Wed, 17 May 2023 16:06:56 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230414123311.23923-2-shravan.chippa@microchip.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 0/3] STM32 warning cleanup
+Content-Language: en-US
+To:     Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@dh-electronics.com
+References: <20230517132214.254757-1-raphael.gallais-pou@foss.st.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230517132214.254757-1-raphael.gallais-pou@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-5.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 14, 2023 at 06:03:11PM +0530, shravan kumar wrote:
-> From: Shravan Chippa <shravan.chippa@microchip.com>
+On 5/17/23 15:22, Raphael Gallais-Pou wrote:
+> This serie aims to reduce the number of device-tree warnings of
+> following boards :
 > 
-> Update pixel_rate and link frequency for 1920x1080@30
-> while changing mode.
+>    - STM32F429-DISCO
+>    - STM32MP15*
 > 
-> Update vblank value while changing mode
+> Those warnings were appearing either during build or when checking
+> dt-bindings and concern mostly LTDC and DSI IPs and were due to the
+> following cases:
 > 
-> Add support to handle multiple link frequencies.
+>    - panel-dsi@0 nodes that needed
+>    - unnecessary #address-cells and #size-cells properties
+>    - residual 'reg' field on single endpoints
 > 
-> Add dummy ctrl cases for pixel_rate and link frequency
-> to avoid error while changing the modes dynamically.
+> Raphael Gallais-Pou (3):
+>    ARM: dts: stm32: fix warnings on stm32f469-disco board
+>    dt-bindings: display: st,stm32-dsi: Remove unnecessary fields
+>    ARM: dts: stm32: fix several DT warnings on stm32mp15
 > 
-> Update default link frequency from device tree max link
-> frequency value.
+>   .../devicetree/bindings/display/st,stm32-dsi.yaml      |  2 --
+>   arch/arm/boot/dts/stm32f469-disco.dts                  |  4 ++--
+>   arch/arm/boot/dts/stm32mp151.dtsi                      |  5 -----
+>   arch/arm/boot/dts/stm32mp157.dtsi                      |  7 -------
+>   .../dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts    |  6 ++++--
+>   .../boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts   |  6 ++++--
+>   .../stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dts  |  3 +--
+>   arch/arm/boot/dts/stm32mp157c-dk2.dts                  |  8 ++++++++
+>   arch/arm/boot/dts/stm32mp157c-ev1.dts                  | 10 +++++++---
+>   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts              |  3 +--
+>   arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi     |  6 +-----
+>   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi                 |  3 +--
+>   12 files changed, 29 insertions(+), 34 deletions(-)
 > 
-> Update init_cfg() function to update the link frequency
-> menu_skip_mask value.
-> 
-> Suggested-by: Sakari Ailus <sakari.ailus@iki.fi>
-> Signed-off-by: Shravan Chippa <shravan.chippa@microchip.com>
 
-Applied with the following diff:
+Is this a V2 series ?
 
-diff --git a/drivers/media/i2c/imx334.c b/drivers/media/i2c/imx334.c
-index d4c9986aee597..93fc1716e00a1 100644
---- a/drivers/media/i2c/imx334.c
-+++ b/drivers/media/i2c/imx334.c
-@@ -118,6 +118,7 @@ struct imx334_mode {
-  * @vblank: Vertical blanking in lines
-  * @cur_mode: Pointer to current selected sensor mode
-  * @mutex: Mutex for serializing sensor controls
-+ * @menu_skip_mask: Menu skip mask for link_freq_ctrl
-  * @cur_code: current selected format code
-  * @streaming: Flag indicating streaming state
-  */
+If so, please do include changelog .
 
-
--- 
-Sakari Ailus
+Also, use "git send-email -v2" to mark those patches as v2 automatically 
+when sending .
