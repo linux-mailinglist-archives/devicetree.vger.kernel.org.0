@@ -2,71 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62D2B706BD0
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:55:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52B38706C04
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 17:02:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229907AbjEQOzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 10:55:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48232 "EHLO
+        id S231977AbjEQPC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 11:02:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230332AbjEQOzl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:55:41 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB0E7902D
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:55:12 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-96aae59bbd6so157717466b.3
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:55:12 -0700 (PDT)
+        with ESMTP id S232469AbjEQPBv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 11:01:51 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C31A5C7
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 08:00:38 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-510bcd2d6b8so7061986a12.0
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 08:00:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684335310; x=1686927310;
+        d=linaro.org; s=google; t=1684335627; x=1686927627;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wuaNZ4qT3VnOSKAHjsPxE9vvu/wKdQkttBJHmfbu46M=;
-        b=YLMSz5sCr/yKeJHAUxPSPb2tqXm+IZeIWiqfkhSTMOozshLHws0by/v1Kw9Vv7Jq70
-         IhkQvQUKHEDdv+MrPToptJnmeA+wbR3t7mft04XND43+PMHjblOr8oFPvbd5f3FG+FnW
-         4mBmN6WiaPqEZIlQaYjqWSKqMpX0c6tk4ySutPkgaxORQ0uygdC2dX+1bs60O0LjwUo8
-         y8NNuVuVbwE/4uuq/R9AXdjWGFYftW4uryXSYj1yBZ/cGnyLMUAzsPvheG2cXkv5ZmqQ
-         ZPO6RGrlTLip3EjkwXcWsfH2Bb7rHkCU0SivjsSTSjpZ5d9HCRSo/QwiToxIwOMGpKwM
-         5GLg==
+        bh=u1G2m3/V/8HwP4S0PilYqw+ntJ6wrr0IYdjxDwg97nI=;
+        b=KGGwf+TgQE3MnRRbh8F9ZWrd7mAnUM8CGnhjLSRzEP7eBdZtDzGG8r9cH15QPidrTY
+         yNGdaoRLij2m2vk4yF9wQ3wdwVDhXg4ZKccA5K6j9U3lRc/r/vfo+iflvGfjQCIfce0s
+         SpLcDsgxsiGJL1KfSZWdYCfPprlt0QjnmOVxFI6UAmoWosvoa6scXeFec1MUvbqFhhA2
+         QtoY0wUfTxjbVwxaZQ5TtE79S8Rbp+jvbwanrUIFKLrlpkjUwk3WshLMR+18gmvifTFs
+         kNhjU1v1QwAba8Umv1KoaJRvXo2IZUYVBC11kMyEb/TjWc+uzI6MYel0w8b3ANUkt4pR
+         foYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684335310; x=1686927310;
+        d=1e100.net; s=20221208; t=1684335627; x=1686927627;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wuaNZ4qT3VnOSKAHjsPxE9vvu/wKdQkttBJHmfbu46M=;
-        b=YaXYqegxyjLDwfyz6NR5Db1ZBQ+kD/51QgTur1Y4JDeBkdeKy6L+iQ7jz1UfY25lLN
-         c9uxlRQz0PDyxe0lY+GiUJvt44VO1NP5NQbhuMuS4mrkDEZwB3uGTLz7Kwzri3t2VrTK
-         8KPuuDQkQkCqu10fK3qSfxq0T4gORf8Y7i9ViO+wdnNQGp7S4ArUujjz2kqOwqecAXPy
-         rI5kvLSdcd+XPoy/DtokeB8GikwriaGwfrtNA2j87lxBLop94ZXJoSkc/pgs/OvTVpfC
-         skUs9NoXrS6cDhBZid6Eo7f5cTccr8mofb4E2zw2H5QC028IdddknSQrws9Yi+dzZPBK
-         g1iA==
-X-Gm-Message-State: AC+VfDxqkDG7BRwbnqJDhl+wa5RA2WLpCYHVKnB/A990Kwupz2NGNNMR
-        TprA7/3p09trox1PMiR/yBdo7A==
-X-Google-Smtp-Source: ACHHUZ7aBr3hTmUS/LPx8wWBXM9iju8dtYni/FIkn1fHA2UCheSCYCr+4Vq8hjAbA7eI7zTa6dqUEA==
-X-Received: by 2002:a17:907:9347:b0:94f:322d:909c with SMTP id bv7-20020a170907934700b0094f322d909cmr34154508ejc.34.1684335309988;
-        Wed, 17 May 2023 07:55:09 -0700 (PDT)
+        bh=u1G2m3/V/8HwP4S0PilYqw+ntJ6wrr0IYdjxDwg97nI=;
+        b=JodqRZqDFU8v6uCw6/vp33loUt5r276JehKCkQRF9G638P6go2zuw2UlDh6Nd+VYW1
+         VrhZFc+ycY+yBssleQjdl11bjNiWX1z/eGKl97bymUgjLPaHjE7ldmb/Prxv+Fg8T/Rp
+         1+aocQByv6Farm8Wf9ccYnKFekYAX+iHG5189rUS5h891GSCdm7GlRGjxfCnB1TxZAZp
+         qod3tttLAG/4AA8ICzXLv1CqyxVguPYRf4hqFIBP4r3Orh2VCydMjZnsxmZxMQjFhSRN
+         uAyaECWbtmjIdbrzsOeK2WAwzk9Zrtrt+ItgiIdpENBkwOcFnrB/E1PLvicWddPrdNc4
+         9AdA==
+X-Gm-Message-State: AC+VfDxW7gHzU0DSmtptUU3jUZd54462zBH3WAsF7i1KOE6KYcvMls+m
+        rCLExNBDOM6RKd1C3FqNKMkB0A==
+X-Google-Smtp-Source: ACHHUZ6wgsqOiRJf4xmcSwbV6QggqmsGx/cjJKJNST88Bdd9lOPCs5cSMTYn0pICtw84HRJnXKbqFA==
+X-Received: by 2002:a17:907:d21:b0:94a:57d1:5539 with SMTP id gn33-20020a1709070d2100b0094a57d15539mr2566510ejc.5.1684335626891;
+        Wed, 17 May 2023 08:00:26 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
-        by smtp.gmail.com with ESMTPSA id ta26-20020a1709078c1a00b009663b1addb0sm12334186ejc.224.2023.05.17.07.55.08
+        by smtp.gmail.com with ESMTPSA id bm11-20020a170906c04b00b00965ec1faf27sm12391114ejb.74.2023.05.17.08.00.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 07:55:09 -0700 (PDT)
-Message-ID: <a82e553b-c21d-0955-be77-77028806b314@linaro.org>
-Date:   Wed, 17 May 2023 16:55:08 +0200
+        Wed, 17 May 2023 08:00:26 -0700 (PDT)
+Message-ID: <d3791702-4d41-0208-1346-34738a2883b6@linaro.org>
+Date:   Wed, 17 May 2023 17:00:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v5 2/5] dt-bindings: soc: qcom: eud: Add SM6115 / SM4250
- support
+Subject: Re: [PATCH v1 2/3] dt-bindings: soc: add loongson-2 pm
 Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-References: <20230516213308.2432018-1-bhupesh.sharma@linaro.org>
- <20230516213308.2432018-3-bhupesh.sharma@linaro.org>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Tiezhu Yang <yangtiezhu@loongson.cn>,
+        Marc Zyngier <maz@kernel.org>,
+        Youling Tang <tangyouling@loongson.cn>,
+        Baoqi Zhang <zhangbaoqi@loongson.cn>,
+        Arnd Bergmann <arnd@arndb.de>, Yun Liu <liuyun@loongson.cn>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn
+References: <20230517073149.31980-1-zhuyinbo@loongson.cn>
+ <20230517073149.31980-3-zhuyinbo@loongson.cn>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230516213308.2432018-3-bhupesh.sharma@linaro.org>
+In-Reply-To: <20230517073149.31980-3-zhuyinbo@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,30 +89,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/05/2023 23:33, Bhupesh Sharma wrote:
-> Add dt-bindings for EUD found on Qualcomm SM6115 / SM4250 SoC.
+On 17/05/2023 09:31, Yinbo Zhu wrote:
+> Add the Loongson-2 SoC Power Management Controller binding with DT
+> schema format using json-schema.
 > 
-> On this SoC (and derivatives) the enable bit inside 'tcsr_check_reg'
-> needs to be set first to 'enable' the eud module.
-> 
-> So, update the dt-bindings to accommodate the third register
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
 
+...
 
-> +    maxItems: 3
->  
->    interrupts:
->      description: EUD interrupt
-> @@ -52,6 +56,38 @@ required:
->  
->  additionalProperties: false
->  
-> +allOf:
-> +  - if:
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - loongson,ls2k-pmc
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  suspend-address:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      This option indicate this PM suspend address.
 
-If there is going to be new version - put it before additionalProperties
-above, just like in example-schema.
+This tells me nothing. Drop "This option indicate this" and rephrase
+everything to actually describe this property. Why would the address
+differ on given, specific SoC? It looks like you just miss compatibles.
+Anyway this needs much more explanation so we can judge whether it fits DT.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    pmc: pm@1fe27000 {
+> +        compatible = "loongson,ls2k-pmc", "syscon";
+> +        reg = <0x1fe27000 0x58>;
+> +        interrupt-parent = <&liointc1>;
+> +        interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+> +        suspend-address = <0x1c000500>;
+
 
 Best regards,
 Krzysztof
