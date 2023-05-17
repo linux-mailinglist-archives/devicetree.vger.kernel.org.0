@@ -2,129 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3252A706651
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 13:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1C5E706674
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 13:17:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbjEQLO3 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 17 May 2023 07:14:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60414 "EHLO
+        id S229501AbjEQLRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 07:17:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229569AbjEQLO2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 07:14:28 -0400
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72A1F197;
-        Wed, 17 May 2023 04:14:27 -0700 (PDT)
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-ba8253f635cso807896276.0;
-        Wed, 17 May 2023 04:14:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684322066; x=1686914066;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oVBIz6rSwiHp26lFXXNQ629YWWG9GU5r7sKV57I7n4Q=;
-        b=AzGuKNthPYcqqKMl44MvO5s74gdNod1LPP3ckziOGqeQz+puSxGOGLidahOI6ZmU0g
-         DHIqRTKmFsQ8nOA9X9kl7EvcNng+vtq8xQ22TUirwfOAiYh7W/LC/TFCrL4K8we6PZ5v
-         gEjWs18lOL7pkIqhX+gbI1pu43kIgScKftFvVtJ5zkXOzykSiUmucPMtIIFZawiClNnK
-         8eng/ZEYamAjiNpmqoBcJ89HrfjqmdxzVpLhqS6E5weDkLlZbE2/Rj59anmQBNtXbsSP
-         Y5xHLYAPRzGhgC1rYHZVImG/PBx6c0s6LAKhy35h9JEzdr3QmqHiUHlo1n5X0apM1Pds
-         hufw==
-X-Gm-Message-State: AC+VfDyOd5jyengiJkA5yXgcaXPCcGVW2aY4JpJ0aolO4tjGlhn0uCuX
-        WG6anPO5btdoWfQB4JL20gdo7kDMvaaPyA==
-X-Google-Smtp-Source: ACHHUZ4RuvOCRc0A5+n0i/h8HuUD8evNweuEFJ3zZDqGmnRFAmQzoBBOlfj9D6X7mBd5gbc+OgnOkw==
-X-Received: by 2002:a25:ae05:0:b0:ba8:7da5:da46 with SMTP id a5-20020a25ae05000000b00ba87da5da46mr190924ybj.40.1684322066583;
-        Wed, 17 May 2023 04:14:26 -0700 (PDT)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id k13-20020a258c0d000000b00ba012dbdf0asm482494ybl.3.2023.05.17.04.14.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 04:14:26 -0700 (PDT)
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-ba8253f635cso807881276.0;
-        Wed, 17 May 2023 04:14:26 -0700 (PDT)
-X-Received: by 2002:a25:558:0:b0:ba8:27ff:b2b5 with SMTP id
- 85-20020a250558000000b00ba827ffb2b5mr4015501ybf.26.1684322066059; Wed, 17 May
- 2023 04:14:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230515181606.65953-1-blarson@amd.com> <20230515181606.65953-9-blarson@amd.com>
- <BN7PR12MB2802CE1DBDB6ED8413AECD53DC799@BN7PR12MB2802.namprd12.prod.outlook.com>
- <168e9039-feb0-0f4c-8aee-96a3bae7faca@amd.com>
-In-Reply-To: <168e9039-feb0-0f4c-8aee-96a3bae7faca@amd.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 17 May 2023 13:14:14 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVLOTn7HfoWR7mGrKXvZxiciGseOBYbV7bYqUuGJcr=yg@mail.gmail.com>
-Message-ID: <CAMuHMdVLOTn7HfoWR7mGrKXvZxiciGseOBYbV7bYqUuGJcr=yg@mail.gmail.com>
-Subject: Re: [PATCH v14 8/8] soc: amd: Add support for AMD Pensando SoC Controller
-To:     Michal Simek <michal.simek@amd.com>
-Cc:     "Mahapatra, Amit Kumar" <amit.kumar-mahapatra@amd.com>,
-        "Larson, Bradley" <Bradley.Larson@amd.com>,
-        "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S230286AbjEQLRJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 07:17:09 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A63A6596;
+        Wed, 17 May 2023 04:16:31 -0700 (PDT)
+X-UUID: 2613b2c2f4a411ed9cb5633481061a41-20230517
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=jF5GZyRGb/IcLuhzuqGakVFZy8gHEbuq61zX8J4vkh4=;
+        b=eW2hEbUjarZg20ZE9XYymgsHfi/Rv4/bwBcqG0LtyezuJZQtqClJSSB0xIdl8vJwy3yUvMm//vr3YBpKaN/RhdUEI/9u1JY6WUHkogixkcdpcwYhQapzlS42MLjlfAmtP2WQ4oWRn+jV9quH/0imHYc9jABACIe2wIeJG8TNgek=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.25,REQID:8f9fe578-8947-453b-bcd0-fc1cf8224d78,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:95
+X-CID-INFO: VERSION:1.1.25,REQID:8f9fe578-8947-453b-bcd0-fc1cf8224d78,IP:0,URL
+        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
+        :quarantine,TS:95
+X-CID-META: VersionHash:d5b0ae3,CLOUDID:df19793b-de1e-4348-bc35-c96f92f1dcbb,B
+        ulkID:230517191537PTNBPR4Q,BulkQuantity:0,Recheck:0,SF:17|19|48|38|29|28,T
+        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+        ,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-UUID: 2613b2c2f4a411ed9cb5633481061a41-20230517
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+        (envelope-from <trevor.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1436285328; Wed, 17 May 2023 19:15:36 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 17 May 2023 19:15:35 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 17 May 2023 19:15:35 +0800
+From:   Trevor Wu <trevor.wu@mediatek.com>
+To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <tiwai@suse.com>,
+        <perex@perex.cz>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <angelogioacchino.delregno@collabora.com>
+CC:     <trevor.wu@mediatek.com>, <alsa-devel@alsa-project.org>,
+        <linux-mediatek@lists.infradead.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
-        "alcooperx@gmail.com" <alcooperx@gmail.com>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "brendan.higgins@linux.dev" <brendan.higgins@linux.dev>,
-        "briannorris@chromium.org" <briannorris@chromium.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "davidgow@google.com" <davidgow@google.com>,
-        "gsomlo@gmail.com" <gsomlo@gmail.com>,
-        "gerg@linux-m68k.org" <gerg@linux-m68k.org>,
-        "hal.feng@starfivetech.com" <hal.feng@starfivetech.com>,
-        "hasegawa-hitomi@fujitsu.com" <hasegawa-hitomi@fujitsu.com>,
-        "j.neuschaefer@gmx.net" <j.neuschaefer@gmx.net>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "kernel@esmil.dk" <kernel@esmil.dk>,
-        "krzk@kernel.org" <krzk@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "rdunlap@infradead.org" <rdunlap@infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "samuel@sholland.org" <samuel@sholland.org>,
-        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
-        "skhan@linuxfoundation.org" <skhan@linuxfoundation.org>,
-        "Suthikulpanit, Suravee" <Suravee.Suthikulpanit@amd.com>,
-        "Lendacky, Thomas" <Thomas.Lendacky@amd.com>,
-        "tonyhuang.sunplus@gmail.com" <tonyhuang.sunplus@gmail.com>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "vaishnav.a@ti.com" <vaishnav.a@ti.com>,
-        "walker.chen@starfivetech.com" <walker.chen@starfivetech.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "zhuyinbo@loongson.cn" <zhuyinbo@loongson.cn>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH 0/5] ASoC: mt8188: add new board support
+Date:   Wed, 17 May 2023 19:15:29 +0800
+Message-ID: <20230517111534.32630-1-trevor.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michal,
+In the series, we extend the capability of mt8188-mt6359 driver.
 
-On Tue, May 16, 2023 at 9:42 AM Michal Simek <michal.simek@amd.com> wrote:
-> Also in DT patches I have seen that you didn't switch to 2023 year yet.
+The following changes are included.
+1. Divide ADDA BE dai into two dais for SOF.
+2. Register hdmi/dp jack pins.
+3. dai_fmt can be configured from device tree.
+4. Add some I2S codecs support.
 
-If no substantial changes were made in 2023, there is no need nor
-desire to update the copyright year.
+In addition, new compatible string "mediatek,mt8188-nau8825" is
+included for a new board support.
 
-Gr{oetje,eeting}s,
+Trevor Wu (5):
+  ASoC: mediatek: mt8188: separate ADDA playback dai from capture dai
+  ASoC: mediatek: mt8188-mt6359: register hdmi/dp jack pins
+  ASoC: mediatek: common: soundcard driver add dai_fmt support
+  ASoC: mediatek: mt8188-mt6359: support new board with nau88255
+  ASoC: dt-bindings: mediatek,mt8188-mt6359: update properties
 
-                        Geert
+ .../sound/mediatek,mt8188-mt6359.yaml         |  27 +-
+ sound/soc/mediatek/Kconfig                    |   4 +
+ .../mediatek/common/mtk-soundcard-driver.c    |  49 ++-
+ sound/soc/mediatek/mt8188/mt8188-afe-common.h |   3 +-
+ sound/soc/mediatek/mt8188/mt8188-dai-adda.c   |  76 ++--
+ sound/soc/mediatek/mt8188/mt8188-mt6359.c     | 326 +++++++++++++++++-
+ 6 files changed, 431 insertions(+), 54 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.18.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
