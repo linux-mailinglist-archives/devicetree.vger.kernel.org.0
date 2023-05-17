@@ -2,72 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 750E4705C17
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 02:47:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6AB3705C5C
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 03:23:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230283AbjEQAr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 20:47:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56064 "EHLO
+        id S230363AbjEQBXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 21:23:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbjEQArz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 20:47:55 -0400
-X-Greylist: delayed 1799 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 16 May 2023 17:47:50 PDT
-Received: from lgeamrelo11.lge.com (lgeamrelo12.lge.com [156.147.23.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 663CF44A5
-        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 17:47:50 -0700 (PDT)
-Received: from unknown (HELO lgeamrelo01.lge.com) (156.147.1.125)
-        by 156.147.23.52 with ESMTP; 17 May 2023 09:17:48 +0900
-X-Original-SENDERIP: 156.147.1.125
-X-Original-MAILFROM: chanho.min@lge.com
-Received: from unknown (HELO ?10.178.36.63?) (10.178.36.63)
-        by 156.147.1.125 with ESMTP; 17 May 2023 09:17:48 +0900
-X-Original-SENDERIP: 10.178.36.63
-X-Original-MAILFROM: chanho.min@lge.com
-Subject: Re: Re: [PATCH] arm64: dts: lg: add missing cache properties
+        with ESMTP id S231452AbjEQBXL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 21:23:11 -0400
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96DBA1B6;
+        Tue, 16 May 2023 18:22:54 -0700 (PDT)
+Received: from kwepemi500011.china.huawei.com (unknown [172.30.72.55])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4QLZxN1sYTzqSVW;
+        Wed, 17 May 2023 09:18:32 +0800 (CST)
+Received: from [10.67.103.39] (10.67.103.39) by kwepemi500011.china.huawei.com
+ (7.221.188.124) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Wed, 17 May
+ 2023 09:22:52 +0800
+Message-ID: <64642C6B.9020803@hisilicon.com>
+Date:   Wed, 17 May 2023 09:22:51 +0800
+From:   Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+MIME-Version: 1.0
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lee Gunho <gunho.lee@lge.com>
-References: <20230421223201.115439-1-krzysztof.kozlowski@linaro.org>
- <c9eda7f7-c397-4469-378d-de0d5ee379ad@linaro.org>
-From:   Chanho Min <chanho.min@lge.com>
-Cc:     Chanho Min <chanho.min@lge.com>
-Message-ID: <2e45a496-ff90-d048-29b5-fabdebaa35ce@lge.com>
-Date:   Wed, 17 May 2023 09:17:48 +0900
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <c9eda7f7-c397-4469-378d-de0d5ee379ad@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: hisilicon: add missing cache properties
+References: <20230421223215.115666-1-krzysztof.kozlowski@linaro.org> <168425511042.243008.1168317105384741574.b4-ty@linaro.org>
+In-Reply-To: <168425511042.243008.1168317105384741574.b4-ty@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.67.103.39]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ kwepemi500011.china.huawei.com (7.221.188.124)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-6.6 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2023 01:31, Krzysztof Kozlowski wrote:
-> On 22/04/2023 00:32, Krzysztof Kozlowski wrote:
->> As all level 2 and level 3 caches are unified, add required
->> cache-unified and cache-level properties to fix warnings like:
->>
->>    lg1312-ref.dtb: l2-cache0: 'cache-level' is a required property
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Please take the patch via sub-arch SoC tree.
+Hi Krzysztof,
+
+On 2023/5/17 0:39, Krzysztof Kozlowski wrote:
 > 
-> Ping?
+> On Sat, 22 Apr 2023 00:32:14 +0200, Krzysztof Kozlowski wrote:
+>> As all level 2 and level 3 caches are unified, add required
+>> cache-unified properties to fix warnings like:
+>>
+>>   hi3660-hikey960.dtb: l2-cache0: 'cache-unified' is a required property
+>>
+>>
+> 
+> Applied, thanks!
+> 
+> Please let me know if this should go through any other tree.
+> 
+> [1/1] arm64: dts: hisilicon: add missing cache properties
+>       https://git.kernel.org/krzk/linux-dt/c/a0936e9edf16750867b65c8f2017352f1ea3dea8
+> 
+> Best regards,
+> 
 
-Acked-by: Chanho Min <chanho.min@lge.com>
+Thanks!
 
-Thanks,
-Chanho
-
+Best Regards,
+Wei
