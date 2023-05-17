@@ -2,138 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB4CE706BC9
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62D2B706BD0
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:55:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232268AbjEQOxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 10:53:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44920 "EHLO
+        id S229907AbjEQOzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 10:55:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232238AbjEQOxL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:53:11 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B3A7EE8
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:52:53 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id 5b1f17b1804b1-3f435658d23so8793135e9.3
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:52:53 -0700 (PDT)
+        with ESMTP id S230332AbjEQOzl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:55:41 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB0E7902D
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:55:12 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-96aae59bbd6so157717466b.3
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:55:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684335171; x=1686927171;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9mr1L/m4ima+2h/NhXtcjqbHddpi6u41EWoGArxh1iQ=;
-        b=pdG2+3ODw0cGuNg/LORzvNsUqX1IiweDfrWioVGocQZDWZOWLRqkDaX4MTzyiQe1c7
-         pkyEeUQ7xqMrhFPqgtTXbdZp3T0rwW0l0BIMsILSnzXcX/Sd7NVDoMo/aiSxsYvHmvbE
-         9CFhqMy1vU2U8NqgvLhl8WgFol9WpTF6r6EFUqq/RKyHw1v7dAJHBpN4C35EGlhKFu2m
-         bv8X2zua8yim+q2TU1Nwjf+yYUMToKg1IrzAFE9ZZPxUgS9V2JJXJY3xZezoYKEGwVXh
-         5JUMdyDg8DXWWvuNp3X07uEX8GvfXlSZm2H1ourLwVfh0bfHuRQHtAUbRtnalP8rK24w
-         5aJA==
+        d=linaro.org; s=google; t=1684335310; x=1686927310;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wuaNZ4qT3VnOSKAHjsPxE9vvu/wKdQkttBJHmfbu46M=;
+        b=YLMSz5sCr/yKeJHAUxPSPb2tqXm+IZeIWiqfkhSTMOozshLHws0by/v1Kw9Vv7Jq70
+         IhkQvQUKHEDdv+MrPToptJnmeA+wbR3t7mft04XND43+PMHjblOr8oFPvbd5f3FG+FnW
+         4mBmN6WiaPqEZIlQaYjqWSKqMpX0c6tk4ySutPkgaxORQ0uygdC2dX+1bs60O0LjwUo8
+         y8NNuVuVbwE/4uuq/R9AXdjWGFYftW4uryXSYj1yBZ/cGnyLMUAzsPvheG2cXkv5ZmqQ
+         ZPO6RGrlTLip3EjkwXcWsfH2Bb7rHkCU0SivjsSTSjpZ5d9HCRSo/QwiToxIwOMGpKwM
+         5GLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684335171; x=1686927171;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9mr1L/m4ima+2h/NhXtcjqbHddpi6u41EWoGArxh1iQ=;
-        b=XNWMc5stRUw6Zcq6c2bawqqIa0ovJBSDz/hMW4tO6thvyYDc5p1Soy1G1mCcA8ReAJ
-         tBpRKZ/wHdWzo/TnN6P8FteFXnhnR/PKsZ7Yot8fW9I5PnsfBAC3khuVo3d0e8k85nJX
-         S35xP1RugeBB93el1Zzv9IkqscyvMKa9WmFF5rQug3w4sIiZvfWkHhIwn+EyUqHL6lHH
-         xME2kD0QEhoHOMj6NF6gf52SC9L+4ly81edFoFF7JHCU16QjqDPZWGzBagCruoOqNxFw
-         bGhZmnXAJs2CRD1nvtw8WbsVXAfIxb0yn6zvxcFfs7qqIDaNX6QfyL/9vofNyR8XdhMk
-         oxpw==
-X-Gm-Message-State: AC+VfDy8Xt7sB5ke5mY1OV4EgTjg7iD0hnEnAWj6Sos320VpEbFn0Kgr
-        5r1AMdjjgJM9rUTaK6iAAIVGuQ==
-X-Google-Smtp-Source: ACHHUZ7D+XIYOY7fwEt1VA+EKenIzVfyhPoXQPx4ACohe42JP1CZtzERdmroTv625PctD16NHx1kmg==
-X-Received: by 2002:adf:e450:0:b0:307:97dd:1de2 with SMTP id t16-20020adfe450000000b0030797dd1de2mr930581wrm.25.1684335171626;
-        Wed, 17 May 2023 07:52:51 -0700 (PDT)
-Received: from blaptop.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id v11-20020a5d678b000000b002f7780eee10sm2979098wru.59.2023.05.17.07.52.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 May 2023 07:52:51 -0700 (PDT)
-From:   Alexandre Bailon <abailon@baylibre.com>
-To:     airlied@gmail.com, daniel@ffwll.ch,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com, jstephan@baylibre.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
-        linaro-mm-sig@lists.linaro.org, khilman@baylibre.com,
-        nbelin@baylibre.com, bero@baylibre.com,
-        Alexandre Bailon <abailon@baylibre.com>
-Subject: [PATCH 7/7] dt-bindings: Add bidings for mtk,apu-drm
-Date:   Wed, 17 May 2023 16:52:37 +0200
-Message-Id: <20230517145237.295461-8-abailon@baylibre.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230517145237.295461-1-abailon@baylibre.com>
-References: <20230517145237.295461-1-abailon@baylibre.com>
+        d=1e100.net; s=20221208; t=1684335310; x=1686927310;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wuaNZ4qT3VnOSKAHjsPxE9vvu/wKdQkttBJHmfbu46M=;
+        b=YaXYqegxyjLDwfyz6NR5Db1ZBQ+kD/51QgTur1Y4JDeBkdeKy6L+iQ7jz1UfY25lLN
+         c9uxlRQz0PDyxe0lY+GiUJvt44VO1NP5NQbhuMuS4mrkDEZwB3uGTLz7Kwzri3t2VrTK
+         8KPuuDQkQkCqu10fK3qSfxq0T4gORf8Y7i9ViO+wdnNQGp7S4ArUujjz2kqOwqecAXPy
+         rI5kvLSdcd+XPoy/DtokeB8GikwriaGwfrtNA2j87lxBLop94ZXJoSkc/pgs/OvTVpfC
+         skUs9NoXrS6cDhBZid6Eo7f5cTccr8mofb4E2zw2H5QC028IdddknSQrws9Yi+dzZPBK
+         g1iA==
+X-Gm-Message-State: AC+VfDxqkDG7BRwbnqJDhl+wa5RA2WLpCYHVKnB/A990Kwupz2NGNNMR
+        TprA7/3p09trox1PMiR/yBdo7A==
+X-Google-Smtp-Source: ACHHUZ7aBr3hTmUS/LPx8wWBXM9iju8dtYni/FIkn1fHA2UCheSCYCr+4Vq8hjAbA7eI7zTa6dqUEA==
+X-Received: by 2002:a17:907:9347:b0:94f:322d:909c with SMTP id bv7-20020a170907934700b0094f322d909cmr34154508ejc.34.1684335309988;
+        Wed, 17 May 2023 07:55:09 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
+        by smtp.gmail.com with ESMTPSA id ta26-20020a1709078c1a00b009663b1addb0sm12334186ejc.224.2023.05.17.07.55.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 May 2023 07:55:09 -0700 (PDT)
+Message-ID: <a82e553b-c21d-0955-be77-77028806b314@linaro.org>
+Date:   Wed, 17 May 2023 16:55:08 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v5 2/5] dt-bindings: soc: qcom: eud: Add SM6115 / SM4250
+ support
+Content-Language: en-US
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+References: <20230516213308.2432018-1-bhupesh.sharma@linaro.org>
+ <20230516213308.2432018-3-bhupesh.sharma@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230516213308.2432018-3-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the device tree bindings for the APU DRM driver.
+On 16/05/2023 23:33, Bhupesh Sharma wrote:
+> Add dt-bindings for EUD found on Qualcomm SM6115 / SM4250 SoC.
+> 
+> On this SoC (and derivatives) the enable bit inside 'tcsr_check_reg'
+> needs to be set first to 'enable' the eud module.
+> 
+> So, update the dt-bindings to accommodate the third register
 
-Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
-Reviewed-by: Julien Stephan <jstephan@baylibre.com>
----
- .../devicetree/bindings/gpu/mtk,apu-drm.yaml  | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml
 
-diff --git a/Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml b/Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml
-new file mode 100644
-index 000000000000..6f432d3ea478
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpu/mediatek,apu-drm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: AI Processor Unit DRM
-+
-+properties:
-+  compatible:
-+    const: mediatek,apu-drm
-+
-+  remoteproc:
-+    maxItems: 2
-+    description:
-+      Handle to remoteproc devices controlling the APU
-+
-+  iova:
-+    maxItems: 1
-+    description:
-+      Address and size of virtual memory that could used by the APU
-+
-+required:
-+  - compatible
-+  - remoteproc
-+  - iova
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    apu@0 {
-+      compatible = "mediatek,apu-drm";
-+      remoteproc = <&vpu0>, <&vpu1>;
-+      iova = <0 0x60000000 0 0x10000000>;
-+    };
-+
-+...
--- 
-2.39.2
+> +    maxItems: 3
+>  
+>    interrupts:
+>      description: EUD interrupt
+> @@ -52,6 +56,38 @@ required:
+>  
+>  additionalProperties: false
+>  
+> +allOf:
+> +  - if:
+
+If there is going to be new version - put it before additionalProperties
+above, just like in example-schema.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
