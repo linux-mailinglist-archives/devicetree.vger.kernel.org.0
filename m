@@ -2,143 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 080647064F7
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 12:16:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B806B70650F
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 12:25:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230189AbjEQKQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 06:16:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43090 "EHLO
+        id S230303AbjEQKZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 06:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230086AbjEQKQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 06:16:15 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 403BDE52;
-        Wed, 17 May 2023 03:16:14 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34HA9usH020544;
-        Wed, 17 May 2023 12:16:01 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=Acu3VRk8URx4zhT9TEYTwcGNoSlssTXFMHvC8yppvWE=;
- b=1Zr2Ztfg4+QPSUcNDm5tMbPTpl0zUBFD7OHRPHin6oj3T7VT8w0nEzqX4M87gb+bBkpw
- vJ8BQRHneVGEHT7iDytVsdwOXrDp9tu4ZR8ffY0l1clk+GqC1/+4l/5Mm/NZaXqdhqUp
- FiQpbbafuW23po6XqZGRC8+tSfyDIDhfN2NxqXK//BbsykwEdE9NBZYWMf0mjpIGxhBU
- J/XCBDLBgmOP0YsbAO5IcLFCi929Vv+MnV3552K7e4CInALMBD0z6KTdPsRLlnBDeZ5G
- RpTCsusA24zmdsDeWaz2D1expySEX16egr+Uczi/4zw5yVf685IGlUUwBfq3VRD+pC2c Xg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qmtefher8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 17 May 2023 12:16:01 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3E2D810002A;
-        Wed, 17 May 2023 12:16:01 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 31416226FAE;
-        Wed, 17 May 2023 12:16:01 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 17 May
- 2023 12:16:00 +0200
-Message-ID: <56aafce0-039e-bc5e-37e4-10b7fb4e5fdd@foss.st.com>
-Date:   Wed, 17 May 2023 12:15:59 +0200
+        with ESMTP id S230301AbjEQKZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 06:25:54 -0400
+Received: from mail-vk1-xa29.google.com (mail-vk1-xa29.google.com [IPv6:2607:f8b0:4864:20::a29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6660E3C33
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 03:25:50 -0700 (PDT)
+Received: by mail-vk1-xa29.google.com with SMTP id 71dfb90a1353d-4501f454581so442671e0c.3
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 03:25:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1684319149; x=1686911149;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QzxZD48PY2DhxBTB/AhhijJZHAkj7rHk4JQ272Q2X+s=;
+        b=hBGkseWpS5FW055SPb/V4102sqHaRDbGnnpBeApgHymo+Y0XxGQ5mW8x8bskNirjd1
+         1nqsdnLtz6jLDHxyR+B1h/CnASnQswbUYJIGQp6gLL/eH26u4/FcmiEp+oXajc8s43c3
+         GBP54xYmPceS8LxsdLdDOvLdX5IlK5sOKlgePhIYiR1t3IsHjwQ4TNBv+5a41rLbZSWW
+         lDgD1AUfb1LEYvzURXKmRZiBcUaaiEXip5jrYG6KaZ0e0BPdawcuCO1WIqQDhsda80Rr
+         m2VqmMq+mOnEfcjSk1WgQXHF34r33KXuUuzw/MtSmkAHmXpln1LSkRwQYpGQPPCM+onF
+         RmkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684319149; x=1686911149;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QzxZD48PY2DhxBTB/AhhijJZHAkj7rHk4JQ272Q2X+s=;
+        b=AW3rTxcRibqZRlnl4Q3TRg5JZ0JG47nDDfihmCoZHin+lF42EOWvEavotqQLoNRZSX
+         IfLZOM2tU1V2rz1N5A2xx/Xw+1kydE4G7l/emDpOc52uKJbLKKXyLfvoW+mYy0zDLiT3
+         aSYU6gsXgjO6/QbKeikY/jJhzGJ6Vx6e3Kjc5g8eAcuETFagW4eZAPBFR67DVN7W90bw
+         4i9BxF0NP5F8wguxq+zK0EsXdHg3RPTrvIHnPAfaB6Sc4JXlyCkgh9/lwMOpbCx+frdo
+         Hhb76yYac590JhUKTzbMxCs+5CiMBRBqosRp6Fu7eYl7ohG5lD6YGl37hRcr1sPzwdjR
+         imGQ==
+X-Gm-Message-State: AC+VfDy+bvxeUxGIEXyj7guVmVxA+qAssMwiuX4XGwWs1j0Y9j3OsGY1
+        mcc8I6zQPQIoqUUbrpifWohoVzQT1+UUxMP1KffPCw==
+X-Google-Smtp-Source: ACHHUZ44BqzmGxz3QHxrYPm16vIVE2NUwgPrK7cObMyOFiHcYfIUvs5KttvlZ6bXw8wpg58FmrjXdB681tQgnX4nUyw=
+X-Received: by 2002:a1f:4e02:0:b0:44f:ba05:46cf with SMTP id
+ c2-20020a1f4e02000000b0044fba0546cfmr14335258vkb.3.1684319149248; Wed, 17 May
+ 2023 03:25:49 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v4 0/2] stm32mp15: update remoteproc to support SCMI
- Device tree
-Content-Language: en-US
-To:     Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230517074830.569398-1-arnaud.pouliquen@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230517074830.569398-1-arnaud.pouliquen@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-17_02,2023-05-16_01,2023-02-09_01
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
+In-Reply-To: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date:   Wed, 17 May 2023 11:25:34 +0100
+Message-ID: <CAPY8ntCkZB3K2LoLcBseDcg=qNrOvZbYaCdiyNcR4R2Oo3sLoA@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: display: panel: add panel-mipi-dsi-bringup
+To:     =?UTF-8?B?UGF1bG8gUGF2YcSNacSH?= <pavacic.p@gmail.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        robh+dt@kernel.org, daniel@ffwll.ch, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnaud
+Hi Paulo
 
-On 5/17/23 09:48, Arnaud Pouliquen wrote:
-> Update vs V3[1]:
-> ---------------
-> - remove from the V4 the commits already merged by Mathieu Poirier in the
->    remoteproc next branch:
->    - dt-bindings: remoteproc: st,stm32-rproc: Rework reset declarations
->    - remoteproc: stm32: Allow hold boot management by the SCMI reset
->      controller
-> - rename patch " ARM: dts: stm32: Update reset declarations" to
->    "ARM: dts: stm32: Update Cortex-M4 reset declarations on stm32mp15"
-> - Fix DTS error reported by "make dtbs_check"
-> 
-> [1]https://lore.kernel.org/lkml/20230512093926.661509-1-arnaud.pouliquen@foss.st.com/
-> 
-> 
-> Description:
-> -----------
-> This series updates the stm32_rproc driver and associated DT node to
-> support device tree configuration with and without SCMI server.
-> The impact is mainly on the MCU hold boot management.
-> 
-> Three configurations have to be supported:
-> 
-> 1) Configuration without OP-TEE SCMI (legacy): Trusted context not activated
-> - The MCU reset is controlled through the Linux RCC reset driver.
-> - The MCU HOLD BOOT is controlled through The RCC sysconf.
-> 
-> 2) Configuration with SCMI server: Trusted context activated
-> - The MCU reset is controlled through the SCMI reset service.
-> - The MCU HOLD BOOT is no more controlled through a SMC call service but
->    through the SCMI reset service.
-> 
-> 3) Configuration with OP-TEE SMC call (deprecated): Trusted context activated
-> - The MCU reset is controlled through the Linux RCC reset driver.
-> - The MCU HOLD BOOT is controlled through The SMC call.
-> 
-> In consequence this series:
-> - adds the use of the SCMI reset service to manage the MCU hold boot,
-> - determines the configuration to use depending on the presence of the
->    "reset-names" property
->    if ( "reset-names" property contains "hold_boot")
->    then use reset_control services
->    else use regmap access based on "st,syscfg-holdboot" property.
-> - set the DT st,syscfg-tz property as deprecated
-> 
-> 
-> Arnaud Pouliquen (2):
->    ARM: dts: stm32: Update Cortex-M4 reset declarations on stm32mp15
->    ARM: dts: stm32: fix m4_rproc references to use SCMI
-> 
->   arch/arm/boot/dts/stm32mp151.dtsi          | 2 +-
->   arch/arm/boot/dts/stm32mp157a-dk1-scmi.dts | 7 +++++--
->   arch/arm/boot/dts/stm32mp157c-dk2-scmi.dts | 7 +++++--
->   arch/arm/boot/dts/stm32mp157c-ed1-scmi.dts | 7 +++++--
->   arch/arm/boot/dts/stm32mp157c-ev1-scmi.dts | 7 +++++--
->   5 files changed, 21 insertions(+), 9 deletions(-)
-> 
+On Tue, 16 May 2023 at 14:09, Paulo Pava=C4=8Di=C4=87 <pavacic.p@gmail.com>=
+ wrote:
+>
+> Add dt-bindings documentation for panel-mipi-dsi-bringup which currently
+> supports fannal,c3004 panel. Also added fannal to vendor-prefixes.
+>
+> v2 changelog:
+>   - revised driver title, now describes purpose
+>   - revised description, now describes hw
+>   - revised maintainers, now has only 1 mail
+>   - removed diacritics from commit/commit author
+>   - properties/compatible is now enum
+>   - compatible using only lowercase
+>   - revised dts example
+>   - modified MAINTAINERS in this commit (instead of driver commit)
+>   - dt_bindings_check checked yml
+>   - checkpatch warning fixed
+>
+> Signed-off-by: Paulo Pavacic <pavacic.p@gmail.com>
+> ---
+>  .../display/panel/panel-mipi-dsi-bringup.yaml | 54 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  MAINTAINERS                                   |  6 +++
+>  3 files changed, 62 insertions(+)
+>  create mode 100644
+> Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.ya=
+ml
+>
+> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-d=
+si-bringup.yaml
+> b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bringup.=
+yaml
+> new file mode 100644
+> index 000000000000..c9e2b545657e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-brin=
+gup.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/panel-mipi-dsi-bringup.=
+yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MIPI DSI Bringup Panel Porting Bindings
+> +
+> +description: |
+> +  MIPI DSI Bringup Panel porting bindings to be used for a collection of=
+ panels
+> +  from different manufacturers which don't require backlight control fro=
+m the
+> +  driver and have a single reset pin which is required to be passed as a=
+n
+> +  argument.
 
-Series applied on stm32-next.
+Don't we already have support for DSI displays that only need a single
+reset pin via panel-simple? [1]
 
-Regards
-Alex
+The bit that confuses me is that the driver patch [2] is using DSI DCS
+commands to configure the panel - that differs from this dt binding
+description of the panel only needing a reset pin.
+
+Potentially there is gain in having a template DSI panel driver
+available for reference, but this driver/binding appears to be trying
+to act as a generic thing.
+
+  Dave
+
+[1] https://elixir.bootlin.com/linux/v6.3.2/source/drivers/gpu/drm/panel/pa=
+nel-simple.c#L4605
+[2] https://lists.freedesktop.org/archives/dri-devel/2023-May/404775.html
+
+
+> +
+> +maintainers:
+> +  - Paulo Pavacic <pavacic.p@gmail.com>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +
+> +  compatible:
+> +    enum:
+> +      # compatible must be listed in alphabetical order, ordered by comp=
+atible.
+> +      # The description in the comment is mandatory for each compatible.
+> +
+> +        # Fannal 480x800 panel
+> +      - fannal,c3004
+> +
+> +  reg: true
+> +  reset-gpios: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reset-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    //example on IMX8MM where GPIO pin 9 is used as a reset pin
+> +    mipi_dsi@32e10000 {
+> +        panel@0 {
+> +            compatible =3D "fannal,c3004";
+> +            reg =3D <0>;
+> +            pinctrl-0 =3D <&pinctrl_mipi_dsi_rst>;
+> +            pinctrl-names =3D "default";
+> +            reset-gpios =3D <&gpio1 9 GPIO_ACTIVE_LOW>;
+> +        };
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 82d39ab0231b..f962750f630a 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -462,6 +462,8 @@ patternProperties:
+>      description: Facebook
+>    "^fairphone,.*":
+>      description: Fairphone B.V.
+> +  "^fannal,.*":
+> +    description: Fannal Electronics Co., Ltd
+>    "^faraday,.*":
+>      description: Faraday Technology Corporation
+>    "^fastrax,.*":
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e0ad886d3163..46f988ee60bd 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6566,6 +6566,12 @@ T:    git git://anongit.freedesktop.org/drm/drm-mi=
+sc
+>  F:    Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi=
+.yaml
+>  F:    drivers/gpu/drm/tiny/panel-mipi-dbi.c
+>
+> +DRM DRIVER FOR MIPI DSI BRINGUP
+> +M:    Paulo Pavacic <pavacic.p@gmail.com>
+> +S:    Maintained
+> +C:    mipi-dsi-bringup:matrix.org
+> +F:    Documentation/devicetree/bindings/display/panel/panel-mipi-dsi-bri=
+ngup.yaml
+> +
+>  DRM DRIVER FOR MSM ADRENO GPU
+>  M:    Rob Clark <robdclark@gmail.com>
+>  M:    Abhinav Kumar <quic_abhinavk@quicinc.com>
+> --
+> 2.40.1
+>
