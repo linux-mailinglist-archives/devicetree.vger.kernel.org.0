@@ -2,77 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6AB3705C5C
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 03:23:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DEF4705D02
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 04:19:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230363AbjEQBXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 May 2023 21:23:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40166 "EHLO
+        id S231835AbjEQCS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 May 2023 22:18:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231452AbjEQBXL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 21:23:11 -0400
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96DBA1B6;
-        Tue, 16 May 2023 18:22:54 -0700 (PDT)
-Received: from kwepemi500011.china.huawei.com (unknown [172.30.72.55])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4QLZxN1sYTzqSVW;
-        Wed, 17 May 2023 09:18:32 +0800 (CST)
-Received: from [10.67.103.39] (10.67.103.39) by kwepemi500011.china.huawei.com
- (7.221.188.124) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Wed, 17 May
- 2023 09:22:52 +0800
-Message-ID: <64642C6B.9020803@hisilicon.com>
-Date:   Wed, 17 May 2023 09:22:51 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+        with ESMTP id S231264AbjEQCS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 May 2023 22:18:57 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C2D2E4E
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 19:18:56 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f24ddf514eso335166e87.0
+        for <devicetree@vger.kernel.org>; Tue, 16 May 2023 19:18:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684289934; x=1686881934;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mNuleyZz00TgZy2qn9synoHafBsS2EGKwJDZ0wTnRXM=;
+        b=wFt5R7uDlqCI5juBKjX+HKH9IfSSpOtP+J8cGttpl+kx1YOeolIo/0xujf9T2Lu9/z
+         UOHQHgNVtpDL0K1bD1bO9m7qhGojRCjzmhkWmt9vYXvYG1eNGv5GlCL48Bh41EKWEFz5
+         k7ykRUfIqNK68ZEH1kdgLGSJ7mCEui24q1BKZegkkubVFvG14N9DO13T98s7irDJp7hu
+         SO3m7MnSXvtWqMWPX8xHnkdcsrZuSCWhxlMvZ8/0NNu8JeiAFjMVYrma7P8VSEBKN6Bs
+         tznYeWjDF5GmDjH+kEyUOpv8Une0WYmzOdajRFlwsRbJJ9aALF/f7oX+MgMWByMiRHl2
+         UC9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684289934; x=1686881934;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mNuleyZz00TgZy2qn9synoHafBsS2EGKwJDZ0wTnRXM=;
+        b=GRXLsFgFpOvTX6kYpbrb1imAS7vjhZUsE3WN9Wg5o3ZTT1VlyKx6m3AA5F59vgMR+/
+         GrjU0keOzQXfKKHwGtHIvAOVPta4IkqKgPZG11Ks1RHdCz/ITwy2R3McJxJV4peuZ0Kr
+         5FUW0ukYc5vjlyiULmaUzuNkY4vHyaOlSGwd0xwQIpDceDIQeZxOytdTEFtAvG7FIVCv
+         wVPrZpER8fFRLvk/0GgEjLvrscdMqsYE/5tVfTB/dn7L8s2MhhfVdmXQM4RP/zspgCJ4
+         3fgJxPpQjewysoZzbaOX2xbFUz6C48O3NmO5Q5qqqhvdZqy68Nu5N5irdEfY1b3CiWpx
+         mS0Q==
+X-Gm-Message-State: AC+VfDy4CDWx3NqumFeRBi1EtDxXeP35wssM+XASzcNkXBrkXTeCk4LA
+        unfxeaNgF+OjlJR+anWrCAGiwmCyj/HMbjOCdNw=
+X-Google-Smtp-Source: ACHHUZ6cEKZjZPUZ/A7OWo1caIo/qBlIBx0j9UNQtzWqioi710Vj/oDKmPKMVJcUqZkxhQD12mvNug==
+X-Received: by 2002:ac2:4302:0:b0:4ec:7b87:931a with SMTP id l2-20020ac24302000000b004ec7b87931amr7146198lfh.13.1684289934402;
+        Tue, 16 May 2023 19:18:54 -0700 (PDT)
+Received: from [10.167.154.1] (public-gprs529629.centertel.pl. [31.61.188.30])
+        by smtp.gmail.com with ESMTPSA id z22-20020a2e9656000000b002af01da6c67sm384232ljh.32.2023.05.16.19.18.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 May 2023 19:18:53 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/2] Fix SM8550 LLCC
+Date:   Wed, 17 May 2023 04:18:48 +0200
+Message-Id: <20230517-topic-kailua-llcc-v1-0-d57bd860c43e@linaro.org>
 MIME-Version: 1.0
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIg5ZGQC/x2N0QqDMAwAf0XyvIDtmMJ+ZewhjamGhSrtHAPx3
+ xf2eAfHHdCkqjS4dwdU+WjTtTiESwe8UJkFdXKG2MdrfwsjvtdNGV+kthOaMaPkMExjTIGzgHe
+ JmmCqVHjxsuxmLrcqWb//0eN5nj+8SliMeAAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: hisilicon: add missing cache properties
-References: <20230421223215.115666-1-krzysztof.kozlowski@linaro.org> <168425511042.243008.1168317105384741574.b4-ty@linaro.org>
-In-Reply-To: <168425511042.243008.1168317105384741574.b4-ty@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.67.103.39]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- kwepemi500011.china.huawei.com (7.221.188.124)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-6.6 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        "Borislav Petkov (AMD)" <bp@alien8.de>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1684289932; l=772;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=APGnRrrr5TbZrxKPg7ottygde1n4pWblpcQNvgATuUM=;
+ b=QqJiuyxuIU2wwBiPeU0LPVL5yZhYWg10sWC/fxGSUrG8eTyLzdW8cI1aUqEGGcTbJfnJQ442h
+ b773B2EGunpDDVuqB3ErDHeXQG8bbjTtcxQfZYnKDEWKtgjhmFkJnzV
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+LLCC was recently untangled as far as register regions go [1], but
+SM8550 was omitted. Fix it.
 
-On 2023/5/17 0:39, Krzysztof Kozlowski wrote:
-> 
-> On Sat, 22 Apr 2023 00:32:14 +0200, Krzysztof Kozlowski wrote:
->> As all level 2 and level 3 caches are unified, add required
->> cache-unified properties to fix warnings like:
->>
->>   hi3660-hikey960.dtb: l2-cache0: 'cache-unified' is a required property
->>
->>
-> 
-> Applied, thanks!
-> 
-> Please let me know if this should go through any other tree.
-> 
-> [1/1] arm64: dts: hisilicon: add missing cache properties
->       https://git.kernel.org/krzk/linux-dt/c/a0936e9edf16750867b65c8f2017352f1ea3dea8
-> 
-> Best regards,
-> 
+[1] https://lore.kernel.org/all/20230314080443.64635-1-manivannan.sadhasivam@linaro.org/
 
-Thanks!
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (2):
+      dt-bindings: cache: qcom,llcc: Fix SM8550 description
+      arm64: dts: qcom: sm8550: Use the correct LLCC register scheme
 
-Best Regards,
-Wei
+ Documentation/devicetree/bindings/cache/qcom,llcc.yaml |  1 +
+ arch/arm64/boot/dts/qcom/sm8550.dtsi                   | 11 +++++++++--
+ 2 files changed, 10 insertions(+), 2 deletions(-)
+---
+base-commit: 885df05bf634d589fbf030c3751614eaa453fb5d
+change-id: 20230517-topic-kailua-llcc-ef16d72b1cfe
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
