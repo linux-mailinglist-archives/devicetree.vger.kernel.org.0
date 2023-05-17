@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1F0E70680F
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 14:26:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ABFC706811
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 14:26:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231615AbjEQM0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 08:26:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41188 "EHLO
+        id S231676AbjEQM0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 08:26:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231676AbjEQM0N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 08:26:13 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F03E9D9
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 05:26:11 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-965ab8ed1c0so103955966b.2
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 05:26:11 -0700 (PDT)
+        with ESMTP id S231674AbjEQM0m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 08:26:42 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 478E74C3D
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 05:26:41 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-965f7bdab6bso127336066b.3
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 05:26:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684326370; x=1686918370;
+        d=linaro.org; s=google; t=1684326400; x=1686918400;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1CP2l/NtswQ2liAsrw5zT1ZbU3pO/pwGbRQu355gbn8=;
-        b=VBtkYto9xGFEO1CppAuG0v1Dmewsn1R31kjzccCOn1eoLhpSL201qaN2H5EkllKhv/
-         gdobh3E5JfMtJObzPrdlZsD8k5P9kIxC2asxM/OpXrAO9AEn1wzo7Ndouk0zkjrKyEcK
-         gOYFst5lhtws9usJK18aSvJbXgq4jkpSG915tx+ayOZZYipa7QEkTbd3jf7FqVbD0csr
-         k9wAgYU8N0mHshLpW8TM2A0XAiw54YxR0CjDaCgQB6n4ODl09f7d6mF9J1OjbPjFfIIW
-         HUBxQ8uzuGIFZX7dz/FicH1sWwS6/MBSs9ymQtev8/9nudRH8aLPQGbTINFFccTJ++ye
-         T0Mw==
+        bh=USCAL9ci1L7Jzt1hbuawF3JoWW9gk40TXqU0TdQgN7A=;
+        b=rBxPOoatiE6lQtfsIe2prpdVTm4pN2hVFWYMbq7IbMBPgmTD9s1SOVfquSomV/TRtx
+         qhvmyjk/w5tTkagRJ+fjUqt5MB6VlHaaezKlXwb/FFgCXDjEVAwHvk+Xh/w7HxEecIdZ
+         SRK4w+AcrDA7NED7xbXay4hbP6al5WjyB5PhhQNqrkzOytqzX1py+XRUffWmFoJJqy54
+         kjNqTkLiD8j9lla3pGtUdnaz420SYdl9oPwGTC6lEYf10Nh9EwOromW+jzGhJgsIB1SU
+         5wwjy+C6x3xNOQR7u9A0rMzw6WemCuBeb0EC1W+bFfWBY2YwhVtJa2/RNqyuX7zt5Jiq
+         BhPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684326370; x=1686918370;
+        d=1e100.net; s=20221208; t=1684326400; x=1686918400;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1CP2l/NtswQ2liAsrw5zT1ZbU3pO/pwGbRQu355gbn8=;
-        b=N9kSYJ8oY021fwZ37cSQS+QDrBag3LSyrzK2bg1KOVtM4dDJNkxTKvSD8o5jkj1sVl
-         P1pnHfMBd2ryEoZcdkfih696MqLoRRDnXhBYIQrHUCaFrSt3HvXhh6p5rWdK3pjsBkDG
-         s+FuKTg1tV3jkOVedh3VQ4F2anJB3hDBcUFdMFs0HhDqmnZYHxHbCaKbSJPCMVm99i83
-         JZ8YKcKgrYSGq4+nHesnXT1b1hy7v4OdauE07HYhbv90jXkJRt/+Gn6op3OEgqRDXQMb
-         LYZYBWKDSyNheiy7J+/RLe5GJVDF//a3phHkcEPtWCgM2nTXYafZfrYb9+xBWYbJ8P2Y
-         t7aA==
-X-Gm-Message-State: AC+VfDzFj5APb837dWwTyqjDimWqEmnrc3pTYOnx2YN7m7bF3vT4nCDO
-        Yu2hQVKLx53DHXQRjHwQydupXQ==
-X-Google-Smtp-Source: ACHHUZ7nluM80mVezxfqHid7whylgXIMip3+ht6mCuSjzse0yWcDYgy8fyDnVvoJpQw/42+CyKz0PQ==
-X-Received: by 2002:a17:907:7207:b0:96a:937c:5608 with SMTP id dr7-20020a170907720700b0096a937c5608mr17479390ejc.53.1684326370372;
-        Wed, 17 May 2023 05:26:10 -0700 (PDT)
+        bh=USCAL9ci1L7Jzt1hbuawF3JoWW9gk40TXqU0TdQgN7A=;
+        b=h/tUPzpLYZA+A9tTYbTkmxoc8qtT5+Y5yxisJHbytdNM9m+aZ2Wad8+HhZubKpa6wG
+         cU3qaTUMK3+ICoeZYWRfy2zNtN2cXPMHuZh0fiRwJ0AagZ+CuQ10rNGbwdDQrX9rfQWR
+         YtThgJd/CkxzQ9DRV8dT+5vAUWMP/cKrvqnyQfsRkpaelk1CxgEBA37qhGxWsHIrBD/4
+         jUeo/gpTptHKhp5HFdadVJA4D9bnTbUwWusCiYwhob+DvPnNsXXHcO5sxPa0Eje+9jdF
+         zlgepblpIFe7oRRP/6V5hhfpzH6j80T/IMzonaAUZRrFcZgXBo4+NWl0l1qAfx6RgAWQ
+         tzrQ==
+X-Gm-Message-State: AC+VfDxKq1g+sYbGcsb8zkUMDNi8A9MxtP1N+NLj7BY8LOoca0FnLoFm
+        BEy8obJeO/pB0RjSfXH/3GiSttq7q2j/LY1W0iVS3Q==
+X-Google-Smtp-Source: ACHHUZ5g/ll5J8iQENU3Sb6MJRgdWLOVh5T/ZeijhjFZuoZw/kpBk1hE9MLzyKB6KLkCARBabAvQrw==
+X-Received: by 2002:a17:906:4fce:b0:965:a414:7cd6 with SMTP id i14-20020a1709064fce00b00965a4147cd6mr41653146ejw.17.1684326399729;
+        Wed, 17 May 2023 05:26:39 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
-        by smtp.gmail.com with ESMTPSA id ze11-20020a170906ef8b00b00965b439027csm12267891ejb.195.2023.05.17.05.26.09
+        by smtp.gmail.com with ESMTPSA id w5-20020a056402128500b0050c03520f68sm9403339edv.71.2023.05.17.05.26.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 05:26:09 -0700 (PDT)
-Message-ID: <f6d44478-c07f-92ff-b3fa-20cff6dcfd05@linaro.org>
-Date:   Wed, 17 May 2023 14:26:08 +0200
+        Wed, 17 May 2023 05:26:39 -0700 (PDT)
+Message-ID: <6c920568-4407-29d9-d7d9-3fd5c8d6e30b@linaro.org>
+Date:   Wed, 17 May 2023 14:26:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/3] arm64: dts: microchip: sparx5: correct CPU
- address-cells
+Subject: Re: [PATCH v2 3/3] arm64: dts: microchip: sparx5: add missing L1/L2
+ cache information
 Content-Language: en-US
 To:     Robert Marko <robert.marko@sartura.hr>, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, lars.povlsen@microchip.com,
@@ -66,15 +66,15 @@ To:     Robert Marko <robert.marko@sartura.hr>, robh+dt@kernel.org,
         Conor Dooley <conor@kernel.org>
 Cc:     luka.perkov@sartura.hr
 References: <20230221105039.316819-1-robert.marko@sartura.hr>
- <20230221105039.316819-2-robert.marko@sartura.hr>
+ <20230221105039.316819-3-robert.marko@sartura.hr>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230221105039.316819-2-robert.marko@sartura.hr>
+In-Reply-To: <20230221105039.316819-3-robert.marko@sartura.hr>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,17 +82,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 21/02/2023 11:50, Robert Marko wrote:
-> There is no reason for CPU node #address-cells to be set at 2, so lets
-> change them to 1 and update the reg property accordingly.
+> Currently, when booting on SparX-5 you will get the following error:
+> [    0.050132] Early cacheinfo failed, ret = -22
 > 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
->  arch/arm64/boot/dts/microchip/sparx5.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> This is due to L2 cache node missing cache-level property to indicate its
+> level, so populate it to let the kernel know its L2 cache.
+> 
+> However, that alone is enough to get rid of the error, but then the
+> following warnings appear:
+> [    0.050162] cacheinfo: Unable to detect cache hierarchy for CPU 0
+> [    0.093256] cacheinfo: Unable to detect cache hierarchy for CPU 1
 > 
 
-Patch seemed forgotten, so I applied it.
-https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git/log/?h=next/dt64
+This did not apply, skipped.
 
 Best regards,
 Krzysztof
