@@ -2,405 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09BCF706DF0
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 18:19:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 423A6706E35
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 18:33:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbjEQQTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 12:19:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46704 "EHLO
+        id S229741AbjEQQdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 12:33:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbjEQQTK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 12:19:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BDC0A5C5;
-        Wed, 17 May 2023 09:18:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5460F6494C;
-        Wed, 17 May 2023 16:17:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B059C433D2;
-        Wed, 17 May 2023 16:17:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684340266;
-        bh=AY5A1hYu1RLVk+v1p8YuhzNp4ErIpaq/MI2LxjMx3Z8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LZDsUKFBl/bU7TbW57eeE3wNn0+8FoGG4o0e6J8xVtMzti5t1/bOIREEgnOORSL9y
-         E4SQVJ6beTDQa1l95QoAsIUJNyEq+wsfxcRafPEuOmrJA18YRsuqAr+c0tJ/HaV8G0
-         vkkXl3sSHSIt5dI+m/2mB+0qkjeOQ99atDsFhXBl2MmyGHkJGT9XfVMYJ+frnzDAi9
-         Ls6tDPVPJomLKIyy0b3cD4CeZxT5dlePk2TO+1DJVm7wF1Igyl8CYR0ujrKTncnGTB
-         qRxQ1rNJvnwVms6i2Thko9ePhQBczpkmwXXKaYydcC06jCf/QV7IAhaTrwgvaRq2dP
-         jxDLVi1mn1WTg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1pzJqV-0006Ns-88; Wed, 17 May 2023 18:17:47 +0200
-Date:   Wed, 17 May 2023 18:17:47 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
-        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
-        ahalaney@redhat.com
-Subject: Re: [PATCH v8 5/9] usb: dwc3: core: Refactor PHY logic to support
- Multiport Controller
-Message-ID: <ZGT-K1PW66kEEYIJ@hovoldconsulting.com>
-References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
- <20230514054917.21318-6-quic_kriskura@quicinc.com>
+        with ESMTP id S229731AbjEQQdC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 12:33:02 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F346D2102
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 09:32:59 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-561d5b34e10so5356757b3.1
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 09:32:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1684341179; x=1686933179;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=seiQZ9YiOuM9ev2SDnncT8dHc6tNpiemL2yol+RQQmc=;
+        b=rARhUCmEST2pQfbq/THE9kQrsVUKD5cL8fz4mXj7808tMytYuZe7snXExsaIC0DinJ
+         r9gp+0RQBbC+st99eMXxz+oXJPzKNXaMQZohevPlt6IJR1f1ziqr22locJ6EsLGMVw/1
+         s+EMTIB0qyD6ZMGffR4ZeD2WQ0swHln2rxkCM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684341179; x=1686933179;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=seiQZ9YiOuM9ev2SDnncT8dHc6tNpiemL2yol+RQQmc=;
+        b=eoOAaxTJLEem65A+eEUIjA4M6AKk1/toUySuDvzpxbKUMxWoAM4Yurpk2FzpuIsScC
+         f3L8nIziVNIqmqzzOOzpQ5PsUYc1VMKvg6VBtJM4w2XbZKJv8fa8a2Z6KMT5DNlEak/L
+         mT/10jfM2gALzAdZ5eFDL1kWvOfT81ln593jOivz86TsnoXNAK9+MWvy+6fq9Ty7QCF4
+         xWtziKERKTrrbQR/oZXdrUQzTrGLp/raPtxKaoOg43b7tY4wcWt8Y1HARWdSFJBLS0PU
+         RUZc8kjQNxALrzMKUukGzXosGqWBDhTtuTMI6Dm/vfFqIwLLFoiB/WliUv0VaLc0NLdR
+         FKEg==
+X-Gm-Message-State: AC+VfDyynuntyT0RWD3qw1lf2Mt4ekAGSYpr8dlaCDsPb42oXHDc3nrr
+        rLm5P08TbmCK5gIvE3WWpnn90Q9ovOmIurXt+3pNrw==
+X-Google-Smtp-Source: ACHHUZ5G6ubA44duLT/TEAQihOcSC/J+UBoHnxsofv8biC5kLtL6cO4NiUzdIWWkBRLS62id8kmDPVQbLVllmNv99s8=
+X-Received: by 2002:a81:1b4c:0:b0:55a:776e:95f3 with SMTP id
+ b73-20020a811b4c000000b0055a776e95f3mr1957775ywb.25.1684341179202; Wed, 17
+ May 2023 09:32:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230514054917.21318-6-quic_kriskura@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
+ <023f6cf9-0f08-f27e-d203-5ff78faf110f@linaro.org> <CAO9szn1EsbuPSRrOW8CLqhp+QUcL=9NE93FAwsg2n3htd_aJTw@mail.gmail.com>
+ <CAMty3ZCAP6CRsJWMUZZ6+hd5igX3NgyNfhdEv2FwuDtqj4iaaA@mail.gmail.com> <HB0TUR.1IPEEV2C5LMB1@gmail.com>
+In-Reply-To: <HB0TUR.1IPEEV2C5LMB1@gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Wed, 17 May 2023 22:02:47 +0530
+Message-ID: <CAMty3ZCSUx-81m4SQcJZvUq3NyhzZbe8ow+LiV7iyUmVLCmNYQ@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: display: panel: add panel-mipi-dsi-bringup
+To:     Paulo <pavacic.p@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        neil.armstrong@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, sam@ravnborg.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 14, 2023 at 11:19:13AM +0530, Krishna Kurapati wrote:
-> Currently the DWC3 driver supports only single port controller
-> which requires at most one HS and one SS PHY.
-> 
-> But the DWC3 USB controller can be connected to multiple ports and
-> each port can have their own PHYs. Each port of the multiport
-> controller can either be HS+SS capable or HS only capable
-> Proper quantification of them is required to modify GUSB2PHYCFG
-> and GUSB3PIPECTL registers appropriately.
-> 
-> Add support for detecting, obtaining and configuring phy's supported
-> by a multiport controller and limit the max number of ports
-> supported to 4.
-> 
-> Co-developed-by: Harsh Agarwal <quic_harshq@quicinc.com>
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+Hi,
 
-If Harsh is the primary author you need to add a From: line at the
-beginning of the patch.
+Please don't post, use inline replies.
 
-Either way, you need his SoB as well as your Co-developed-by tag.
+On Wed, May 17, 2023 at 6:34=E2=80=AFPM Paulo <pavacic.p@gmail.com> wrote:
+>
+> On Wed, May 17 2023 at 05:50:22 PM +0530, Jagan Teki
+> <jagan@amarulasolutions.com> wrote:
+>  > Just to add a few pieces of information for you to understand better
+>  > on the context of dsi panels. DSI panels can be part of
+> panel-simple.c
+>  > or panel-<vendor-part>.c DSI panels whose init and exit sequence is
+>  > generic are suitable to add it in panel-simple and have bindings on
+>  > panel-simple.yml.
+>
+> This panel doesn't fit that well into panel-simple.c since it has
+> initialization sequence. For that reason it would fit more into
+> panel-sortofsimple.c which didn't exist so I have created new driver
+> and called it panel-mipi-dsi-bringup.c.
+>
+>  > Some DSI panels have specific init and exit
+>  > sequences in terms of power, reset and DCS then those have separate
+>  > drivers to handle and whose driver name must be panel-<vendor-part>.c
+>  > or similar and bindings also follow a similar naming convention.
+>
+> I have made a driver exactly for that purpose. Driver that allows
+> adding new panels which have specific init sequences (and of course
+> timings and other stuff). fannal,c3004 can be seen as a working example.
+>
+> Here is code snippet from the driver:
+> ```
+> static const struct brup_panel_info brup_fannal_c3004_panel_info =3D {
+>  .display_mode =3D &brup_fannal_c3004_display_mode,
+>  .num_of_dsi_lanes =3D 2, //how many wires are connected to the panel
+>  .video_mode =3D BRUP_VIDEO_MODES[BRUP_SYNC_PULSE],
+>  .mipi_dsi_format =3D MIPI_DSI_FMT_RGB888,
+>  .mipi_dsi_mode_flags =3D
+>   MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_VSYNC_FLUSH |
+>   MIPI_DSI_MODE_VIDEO_HSE | MIPI_DSI_MODE_NO_EOT_PACKET,
+>  .bus_flags =3D DRM_BUS_FLAG_DE_LOW | DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE=
+,
+>  .panel_enable_function =3D &brup_panel_fannal_c3004_enable_function
+> };
+> ```
+> where enable function is function with init sequence and other values
+> are values that might be different for different displays.
+>
+> All the inputs are appreciated as this is my first time submitting
+> patch. If you see anything that is odd to you please reach out to me.
+> All in all I believe I now understand how should device tree look and
+> the reasons/ideology behind it.
 
-All this is documented under Documentation/process/ somewhere.
+So, the driver has to be panel-fannal-c3004.c and binding to be
+fannal,c3004.yaml.
 
-> +/**
-> + * dwc3_phy_setup - Configure USB PHY Interface of DWC3 Core
-> + * @dwc: Pointer to our controller context structure
-> + *
-> + * Returns 0 on success. The USB PHY interfaces are configured but not
-> + * initialized. The PHY interfaces and the PHYs get initialized together with
-> + * the core in dwc3_core_init.
-> + */
-> +static int dwc3_phy_setup(struct dwc3 *dwc)
-> +{
-> +	int i;
-> +	int ret;
-
-Please try to use reverse xmas style for declaration throughout (i.e.
-place the longest declarations first).
-
-> +
-> +	for (i = 0; i < dwc->num_usb3_ports; i++) {
-> +		ret = dwc3_ss_phy_setup(dwc, i);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-> +		ret = dwc3_hs_phy_setup(dwc, i);
-> +		if (ret)
-> +			return ret;
-> +	}
->  
->  	return 0;
->  }
-> @@ -744,22 +777,38 @@ static int dwc3_phy_setup(struct dwc3 *dwc)
->  static int dwc3_phy_init(struct dwc3 *dwc)
->  {
->  	int ret;
-> +	int i;
-> +	int j;
->  
->  	usb_phy_init(dwc->usb2_phy);
->  	usb_phy_init(dwc->usb3_phy);
->  
-> -	ret = phy_init(dwc->usb2_generic_phy);
-> -	if (ret < 0)
-> -		goto err_shutdown_usb3_phy;
-> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-> +		ret = phy_init(dwc->usb2_generic_phy[i]);
-> +		if (ret < 0) {
-> +			/* clean up prior initialized HS PHYs */
-> +			for (j = 0; j < i; j++)
-> +				phy_exit(dwc->usb2_generic_phy[j]);
-> +			goto err_shutdown_usb3_phy;
-> +		}
-> +	}
->  
-> -	ret = phy_init(dwc->usb3_generic_phy);
-> -	if (ret < 0)
-> -		goto err_exit_usb2_phy;
-> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-> +		ret = phy_init(dwc->usb3_generic_phy[i]);
-> +		if (ret < 0) {
-> +			/* clean up prior initialized SS PHYs */
-> +			for (j = 0; j < i; j++)
-> +				phy_exit(dwc->usb3_generic_phy[j]);
-> +			goto err_exit_usb2_phy;
-> +		}
-> +	}
-
-The above is probably better implemented as a single loop over
-num_usb2_ports where you enable each USB2 and USB3 PHY. On errors you
-use the loop index to disable the already enabled PHYs in reverse
-order below (after disabling the USB2 PHY if USB3 phy init fails).
-
->  	return 0;
->  
->  err_exit_usb2_phy:
-> -	phy_exit(dwc->usb2_generic_phy);
-> +	for (i = 0; i < dwc->num_usb2_ports; i++)
-> +		phy_exit(dwc->usb2_generic_phy[i]);
-> +
-
-No need for a newline separator.
-
->  err_shutdown_usb3_phy:
->  	usb_phy_shutdown(dwc->usb3_phy);
->  	usb_phy_shutdown(dwc->usb2_phy);
-> @@ -769,8 +818,12 @@ static int dwc3_phy_init(struct dwc3 *dwc)
->  
->  static void dwc3_phy_exit(struct dwc3 *dwc)
->  {
-> -	phy_exit(dwc->usb3_generic_phy);
-> -	phy_exit(dwc->usb2_generic_phy);
-> +	int i;
-> +
-> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-> +		phy_exit(dwc->usb3_generic_phy[i]);
-> +		phy_exit(dwc->usb2_generic_phy[i]);
-> +	}
-
-For symmetry, I'd probably do this in reverse order to.
-
->  	usb_phy_shutdown(dwc->usb3_phy);
->  	usb_phy_shutdown(dwc->usb2_phy);
-> @@ -779,22 +832,38 @@ static void dwc3_phy_exit(struct dwc3 *dwc)
->  static int dwc3_phy_power_on(struct dwc3 *dwc)
->  {
->  	int ret;
-> +	int i;
-> +	int j;
->  
->  	usb_phy_set_suspend(dwc->usb2_phy, 0);
->  	usb_phy_set_suspend(dwc->usb3_phy, 0);
->  
-> -	ret = phy_power_on(dwc->usb2_generic_phy);
-> -	if (ret < 0)
-> -		goto err_suspend_usb3_phy;
-> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-> +		ret = phy_power_on(dwc->usb2_generic_phy[i]);
-> +		if (ret < 0) {
-> +			/* Turn off prior ON'ed HS Phy's */
-> +			for (j = 0; j < i; j++)
-> +				phy_power_off(dwc->usb2_generic_phy[j]);
-> +			goto err_suspend_usb3_phy;
-> +		}
-> +	}
->  
-> -	ret = phy_power_on(dwc->usb3_generic_phy);
-> -	if (ret < 0)
-> -		goto err_power_off_usb2_phy;
-> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-> +		ret = phy_power_on(dwc->usb3_generic_phy[i]);
-> +		if (ret < 0) {
-> +			/* Turn of prior ON'ed SS Phy's */
-> +			for (j = 0; j < i; j++)
-> +				phy_power_off(dwc->usb3_generic_phy[j]);
-> +			goto err_power_off_usb2_phy;
-> +		}
-> +	}
-
-These loops should be merged too as for phy_init.
-
->  	return 0;
->  
->  err_power_off_usb2_phy:
-> -	phy_power_off(dwc->usb2_generic_phy);
-> +	for (i = 0; i < dwc->num_usb2_ports; i++)
-> +		phy_power_off(dwc->usb2_generic_phy[i]);
-> +
->  err_suspend_usb3_phy:
->  	usb_phy_set_suspend(dwc->usb3_phy, 1);
->  	usb_phy_set_suspend(dwc->usb2_phy, 1);
-
-> +static int dwc3_get_multiport_phys(struct dwc3 *dwc)
-> +{
-> +	int ret;
-> +	struct device *dev = dwc->dev;
-> +	int i;
-> +	char phy_name[11];
-
-As an example, for reverse xmas style this should be
-
-	struct device *dev = dwc->dev;
-	char phy_name[11];
-	int ret;
-	int i;
-
-which tends to be more readable.
-
-> +
-> +	/*
-> +	 * Each port is at least HS capable. So loop over num_usb2_ports
-> +	 * to get available phy's.
-> +	 */
-> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-> +		sprintf(phy_name, "usb2-port%d", i);
-> +		dwc->usb2_generic_phy[i] = devm_phy_get(dev, phy_name);
-> +		if (IS_ERR(dwc->usb2_generic_phy[i])) {
-> +			ret = PTR_ERR(dwc->usb2_generic_phy[i]);
-> +			if (ret == -ENOSYS || ret == -ENODEV)
-> +				dwc->usb2_generic_phy[i] = NULL;
-> +			else
-> +				return dev_err_probe(dev, ret, "usb2 phy: %s not configured\n", phy_name);
-
-This can just be
-
-	"phy %s not configured"
-
-or perhaps better
-
-	"failed to lookup phy %s"
-
-> +		}
-> +
-> +		sprintf(phy_name, "usb3-port%d", i);
-> +		dwc->usb3_generic_phy[i] = devm_phy_get(dev, phy_name);
-> +		if (IS_ERR(dwc->usb3_generic_phy[i])) {
-> +			ret = PTR_ERR(dwc->usb3_generic_phy[i]);
-> +			if (ret == -ENOSYS || ret == -ENODEV)
-> +				dwc->usb3_generic_phy[i] = NULL;
-> +			else
-> +				return dev_err_probe(dev, ret, "usb3 phy: %s not configured\n", phy_name);
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-
-I think you should drop this helper and use the same loop for both
-single and multiport controllers below.
-
-Just use the old phy names if num_usb2_ports is 1, for example:
-
-	if (dwc->num_usb2_ports == 1)
-		sprintf(phy_name, "usb2-phy");
-	else
-		sprintf(phy_name, "usb2-port%d", i);
-
-> +
->  static int dwc3_core_get_phy(struct dwc3 *dwc)
->  {
->  	struct device		*dev = dwc->dev;
-> @@ -1314,20 +1428,23 @@ static int dwc3_core_get_phy(struct dwc3 *dwc)
->  			return dev_err_probe(dev, ret, "no usb3 phy configured\n");
->  	}
->  
-> -	dwc->usb2_generic_phy = devm_phy_get(dev, "usb2-phy");
-> -	if (IS_ERR(dwc->usb2_generic_phy)) {
-> -		ret = PTR_ERR(dwc->usb2_generic_phy);
-> +	if (dwc->num_usb2_ports > 1)
-> +		return dwc3_get_multiport_phys(dwc);
-> +
-> +	dwc->usb2_generic_phy[0] = devm_phy_get(dev, "usb2-phy");
-> +	if (IS_ERR(dwc->usb2_generic_phy[0])) {
-> +		ret = PTR_ERR(dwc->usb2_generic_phy[0]);
->  		if (ret == -ENOSYS || ret == -ENODEV)
-> -			dwc->usb2_generic_phy = NULL;
-> +			dwc->usb2_generic_phy[0] = NULL;
->  		else
->  			return dev_err_probe(dev, ret, "no usb2 phy configured\n");
->  	}
->  
-> -	dwc->usb3_generic_phy = devm_phy_get(dev, "usb3-phy");
-> -	if (IS_ERR(dwc->usb3_generic_phy)) {
-> -		ret = PTR_ERR(dwc->usb3_generic_phy);
-> +	dwc->usb3_generic_phy[0] = devm_phy_get(dev, "usb3-phy");
-> +	if (IS_ERR(dwc->usb3_generic_phy[0])) {
-> +		ret = PTR_ERR(dwc->usb3_generic_phy[0]);
->  		if (ret == -ENOSYS || ret == -ENODEV)
-> -			dwc->usb3_generic_phy = NULL;
-> +			dwc->usb3_generic_phy[0] = NULL;
->  		else
->  			return dev_err_probe(dev, ret, "no usb3 phy configured\n");
->  	}
- 
->  static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
->  {
-> +	int i;
-
-Add this declaration last instead (and similar throughout).
-
->  	unsigned long	flags;
->  	u32 reg;
-
-> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> index d3401963bc27..84f6303922aa 100644
-> --- a/drivers/usb/dwc3/core.h
-> +++ b/drivers/usb/dwc3/core.h
-> @@ -35,6 +35,9 @@
->  
->  #define DWC3_MSG_MAX	500
->  
-> +/* Number of ports supported by a multiport controller */
-> +#define MAX_PORTS_SUPPORTED	4
-
-This define should have a DWC3 prefix (e.g. DWC3_MAX_PORTS, "SUPPORTED"
-doesn't seem to add much).
-
-Is this just an arbitrary implementation limit?
-
-> +
->  /* Define XHCI Extcap register offsets for getting multiport info */
->  #define XHCI_HCC_PARAMS_OFFSET	0x10
->  #define DWC3_XHCI_HCSPARAMS1	0x04
-> @@ -1038,8 +1041,8 @@ struct dwc3_scratchpad_array {
->   * @usb3_phy: pointer to USB3 PHY
->   * @num_usb2_ports: number of usb2 ports.
->   * @num_usb3_ports: number of usb3 ports.
-> - * @usb2_generic_phy: pointer to USB2 PHY
-> - * @usb3_generic_phy: pointer to USB3 PHY
-> + * @usb2_generic_phy: pointer to array of USB2 PHY
-> + * @usb3_generic_phy: pointer to array of USB3 PHY
->   * @phys_ready: flag to indicate that PHYs are ready
->   * @ulpi: pointer to ulpi interface
->   * @ulpi_ready: flag to indicate that ULPI is initialized
-> @@ -1178,8 +1181,8 @@ struct dwc3 {
->  	u8			num_usb2_ports;
->  	u8			num_usb3_ports;
->  
-> -	struct phy		*usb2_generic_phy;
-> -	struct phy		*usb3_generic_phy;
-> +	struct phy		*usb2_generic_phy[MAX_PORTS_SUPPORTED];
-> +	struct phy		*usb3_generic_phy[MAX_PORTS_SUPPORTED];
-
-As I mentioned in a comment to one of the earlier patches, you need to
-add a sanity check when parsing the port counts to avoid accessing data
-beyond these arrays when looping over the PHYs.
-
->  
->  	bool			phys_ready;
-
-Johan
+Thanks,
+Jagan.
