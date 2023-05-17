@@ -2,108 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93D0F707282
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 21:45:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A880F707292
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 21:53:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229921AbjEQTp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 15:45:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35194 "EHLO
+        id S229959AbjEQTxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 15:53:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229943AbjEQTpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 15:45:25 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37764272B
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 12:45:24 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-96b4ed40d97so185792666b.0
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 12:45:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684352722; x=1686944722;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DE2bkq/ui14lTBLwtUifajE1EvCpc5Pz1BLS66HrLtI=;
-        b=pv0XlTzQm0AHDjnYWXA2DFOwY89iONL+pcihwOPnY2/55ELz63O65AuRo8sYRyVtfY
-         j4tyirV1rIXbj4sCHOWqTTlOuOSMW2jmK6+rtIOpV7Ka2tulKz/6eWhdbUWijx9Bu6Gb
-         ByIIf6pn51KS6teavMyaKat3eWK8I4nOHiWfDQvcdP/Uw0gfXBXnQIrIc/pz6cz6nVR5
-         Iy4x6JykOjawxDUZa1NyETS4srgGmwuaVLOaP/oJC0+uKgaPHr9cFO+fpRAAlIcMNtcy
-         nhs72woQacj+sq+ZLnu7DXHUJfQ74vtfFxKgtJUnmVCafSnNEWvepe5r3nD9pz3VWUP9
-         vy6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684352722; x=1686944722;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DE2bkq/ui14lTBLwtUifajE1EvCpc5Pz1BLS66HrLtI=;
-        b=C+3W1OI/2bPiKxm20XWIlLYl8J6jpw0bOqIZNk+z5OkelYUrd+CHR92qxJTB2rXPkb
-         IMwMmv0WRyNuKeZVOEt45vfwa1ActUwGljoqOLxwZ++TlJRW5cgF/A4NrwV5ZLMu1a/W
-         xcOIlqZG4MMhKiOmlrwMIbd3hfyb9VLex29nUNlihyCFNBWndz/j3LbTVOFxua3n+sn0
-         5rBZeRP+WaUX9SjEpcRl74V7nJgs0KVC8vpvhgt283pmjWpmfAceBXsChrRa7eZ5mLlc
-         uGTlf6YBVYhmMjSUmWYZFlOiFMA8uGbCzrHo6ILbEgbuiHsMbZePYc3NnL0h4m0ofrtT
-         GnJA==
-X-Gm-Message-State: AC+VfDwxA/6uoWceB2Ct8XEUUZKDJqdKyGXTaUSSQIASieTvn5GjwG0l
-        +1T8S7kAqs9ll6NBwLkXBHUxVg==
-X-Google-Smtp-Source: ACHHUZ6Tj8zelM2VZpR/AEzeGAQ8zj37niuO6NRBJvg0WI4NbhdxMvKTFTAAd3TJm0rHrq+VS/nWuA==
-X-Received: by 2002:a17:906:eec9:b0:94f:73db:b390 with SMTP id wu9-20020a170906eec900b0094f73dbb390mr34695874ejb.65.1684352722678;
-        Wed, 17 May 2023 12:45:22 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:d7a:e7cc:21b3:c435? ([2a02:810d:15c0:828:d7a:e7cc:21b3:c435])
-        by smtp.gmail.com with ESMTPSA id tf8-20020a1709078d8800b0096a2b6de3a4sm10504747ejc.122.2023.05.17.12.45.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 12:45:22 -0700 (PDT)
-Message-ID: <032699a0-9a43-953a-60e9-59a515a26cef@linaro.org>
-Date:   Wed, 17 May 2023 21:45:20 +0200
+        with ESMTP id S229449AbjEQTxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 15:53:00 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E78E759E1;
+        Wed, 17 May 2023 12:52:56 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 244BE5FD46;
+        Wed, 17 May 2023 22:52:54 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1684353174;
+        bh=+c1or6lx/0BL441qXDPsYyKqZz6WlSg7vowBaqLWfAQ=;
+        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
+        b=Z9XJXBRio82SW1XoyBQ8lC17AfugmYVIdqt8O52cehW5xd60P+u1Li4jDqBv+W8y7
+         5riHRJZdAqkmFdoj0ThfPYOg3NYZ2Ts3yKH9AWv7gESQlqEOqLdmt/FqLtJgrfcF3+
+         bq4xvddWmnyylxB1RurtUV25LeljzBTEDXhV/h5HtPdHFaFoVH6s5GesR6TovRj1CG
+         bBFnCPZarfbtq/aHb5TiQFvUmvbAt6shbVp4+uZB1y8VcjqvB9rYktUAaBRm2e4Oyi
+         99SmW0ofXknFPAgiEhdbalmSSFgHp7k/umO1wrvwWTSBdkKPP5wkKuT5uUjrd0BDhx
+         fsCZ/4vX0IaSQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Wed, 17 May 2023 22:52:53 +0300 (MSK)
+From:   Martin Kurbanov <mmkurbanov@sberdevices.ru>
+To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     <linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <kernel@sberdevices.ru>,
+        Martin Kurbanov <mmkurbanov@sberdevices.ru>
+Subject: [PATCH v4 0/2] leds: add aw20xx driver
+Date:   Wed, 17 May 2023 22:52:36 +0300
+Message-ID: <20230517195238.34069-1-mmkurbanov@sberdevices.ru>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 5/7] drm/apu: allow platform driver to implement their own
- mmap function
-Content-Language: en-US
-To:     Alexandre Bailon <abailon@baylibre.com>, airlied@gmail.com,
-        daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
-        mripard@kernel.org, tzimmermann@suse.de
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com, jstephan@baylibre.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
-        linaro-mm-sig@lists.linaro.org, khilman@baylibre.com,
-        nbelin@baylibre.com, bero@baylibre.com
-References: <20230517145237.295461-1-abailon@baylibre.com>
- <20230517145237.295461-6-abailon@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230517145237.295461-6-abailon@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/17 11:04:00 #21328336
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2023 16:52, Alexandre Bailon wrote:
-> From: Julien Stephan <jstephan@baylibre.com>
-> 
-> By default we will call drm_gem_mmap() unless the apu driver has
-> declared it's own mmap handler.
-> 
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> Reviewed-by: Julien Stephan <jstephan@baylibre.com>
+This patch series adds support for AWINIC AW20036/AW20054/AW20072 LED
+driver programmed via an I2C interface.
 
-One does not have to review own code. We all assume that we send good
-code which we do not have to review by ourselves (by the author). We
-also assume we make mistakes, which we cannot find, thus other person's
-review is important.
+This driver supports following AW200XX features:
+  - Individual 64-level DIM currents
 
-Adding own review tag suggests you added them mechanically, so I doubt
-that they really happened.
+Datasheet:
+  aw20036 - https://www.awinic.com/en/productDetail/AW20036QNR#tech-docs
+  aw20054 - https://www.awinic.com/en/productDetail/AW20054QNR#tech-docs
+  aw20072 - https://www.awinic.com/en/productDetail/AW20072QNR#tech-docs
 
-Anyway, your SoB is missing.
+Add YAML dt-binding schema for AW200XX.
 
-Best regards,
-Krzysztof
+Changelog:
+v3 -> v4:
+  - Calculate the value of imax instead of retrieving it from a table
+  - Cosmetic changes
+
+v2 -> v3:
+  - Update datasheet links
+  - Make cosmetic changes as Andy suggested at [1]
+
+v1 -> v2:
+  - Remove the hardware pattern support (I will send a separate patch)
+  - Support the 'led-max-microamp' property
+
+[1] https://lore.kernel.org/all/20230228211046.109693-1-mmkurbanov@sberdevices.ru/
+
+Martin Kurbanov (2):
+  dt-bindings: leds: add binding for aw200xx
+  leds: add aw20xx driver
+
+ .../testing/sysfs-class-led-driver-aw200xx    |   5 +
+ .../bindings/leds/awinic,aw200xx.yaml         | 126 ++++
+ drivers/leds/Kconfig                          |  13 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-aw200xx.c                   | 593 ++++++++++++++++++
+ 5 files changed, 738 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-led-driver-aw200xx
+ create mode 100644 Documentation/devicetree/bindings/leds/awinic,aw200xx.yaml
+ create mode 100644 drivers/leds/leds-aw200xx.c
+
+--
+2.40.0
 
