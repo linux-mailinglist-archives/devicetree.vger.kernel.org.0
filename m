@@ -2,104 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D8EC7070F2
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 20:39:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE973707128
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 20:49:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbjEQSj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 14:39:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36510 "EHLO
+        id S229868AbjEQStm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 14:49:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjEQSj2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 14:39:28 -0400
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D7767AA7;
-        Wed, 17 May 2023 11:39:16 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 4QM2246QrlzyWs;
-        Wed, 17 May 2023 21:39:08 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1684348752;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=8YcIUdxitzihe1t5/ZGI9wvkvaRoi0KQ1Kz7/8cndvM=;
-        b=BzxLMX11TUdNJlNteF/kvfYKG3TEVjtCurDgWBTYDdYZKDCEZ9YyAOIQR6+CrneeYyv4ib
-        tgv74KUKpnn+QmDxoO641Oxe/FYb5tOSr7fIUglT5RWliWV4/UILXig+2n/iCmGHKXo9LE
-        GT58Ldcjv8pgMzsZxNiOqU6hNkjJM6M=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1684348752;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=8YcIUdxitzihe1t5/ZGI9wvkvaRoi0KQ1Kz7/8cndvM=;
-        b=xIILG9xexUktDZ/49ewHgLVaOAmhxn3+MdP5YT7g2vanlcaMsSBCvUd4/izV7CSrkIdbxY
-        rXivjcUOCRvrevUoVJbC0+ZS4yKrRJxcdVzYyaof2P/42jINz8aEPGquPvx30Wez63EzRM
-        KxUQKX8pugKm2srcobeZs0s/+7zet+s=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1684348752; a=rsa-sha256; cv=none;
-        b=v3KzjL4T/vcd4IpVf0JO6WN6RbQfWLq+PzjJMPvg3pzKOjjB+tkwwgpeRe9ZPEzhG46TEF
-        FNxXniXOogtG6J0m/8OmE6uneLBkNV8Mfzf62y5Cv0WX4Enjzu1j5Tof0WM02WumLXW4Q/
-        ovc3DM5euPh/p36XrY/MZG/AewfLYeU=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 28A6F634C94;
-        Wed, 17 May 2023 21:39:08 +0300 (EEST)
-Date:   Wed, 17 May 2023 21:39:08 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     Jacob Chen <jacob-chen@iotwrt.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>, linux-media@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Subject: Re: [PATCH RESEND 2/2] arm64: dts: rockchip: Add RGA2 support to
- rk356x
-Message-ID: <ZGUfTP1EXtlJbtxJ@valkosipuli.retiisi.eu>
-References: <20230119-rk3568-rga-v1-0-43d4d14365e6@pengutronix.de>
- <20230119-rk3568-rga-v1-2-43d4d14365e6@pengutronix.de>
+        with ESMTP id S229875AbjEQStU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 14:49:20 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87F35FE;
+        Wed, 17 May 2023 11:49:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1684349338; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=SOvaP70EpeiiuJlzCSzsm5LozTmTSI4H3CrgpWGKAJ5xrXTr4CIxBEGbZ7S3Jw1jCI
+    suF06UFufdfBLWUEtKTRuNEdwqNW1yu2qUcQ2kVii4HL7QPc5mg6Dvc4wUdPiIG2BscA
+    rJUCEB6wYTdas69OCLwt5wyT0AXTfL4NV+dNiDTS6KGyS3hDbQTbcB34+mdHU0suAkbr
+    cgW/SXh1TQf3R/zLlNNTM3xAhP/3zgng5aybMv88nMGt9kVEiO5comH46NhAkg0FRXYM
+    qEsuP6KtZjlVPpv6t5BxBlXOXa92ft2EBgVAsIPCMRhyDY5v/VjHr7VQUuGWqtVAzjGu
+    TLFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1684349338;
+    s=strato-dkim-0002; d=strato.com;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=rkE8u4oZLTFlvJ+Zt4904j+4OJtDMcJqCcbkOZiB4ZI=;
+    b=l8W3DgW/Oy44vzO2xLsFj9qMkke55RK1R/VV3PxVMMIblGU5KCgrf5V7SQkptlJNDY
+    zn66ERxZ2xxhwo+gQfmnSn2dpL37bHZwQiXD0YHgKw+9e2YwtD/ZLr1D7b63tVdDMOg1
+    Crpv7S1nZDrDn5GZUanqesr5JC2wFjDC7uO8RlIRo38NpnQEstfS5Ij9B7vU2l86teUU
+    LvojZTY7al1B+mPDSgnzDFUChF8JpDcjiQ+VrqOasBOYzAMG4CnD/+3NxIeOTaMeNSyO
+    PN8BzuVFPvBKXZ1EMmHDlCQ+jhF8yZSmz26T938Q70MVevoZw4DQGMMBtgydX8nCd0rF
+    VcMg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1684349338;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=rkE8u4oZLTFlvJ+Zt4904j+4OJtDMcJqCcbkOZiB4ZI=;
+    b=A/5rOeqweqyklVWe2WutOH3RuZwDaE5UPFZyP/nEfZ91UQfEf/gj+eF20OYBX5LtFf
+    wb432uMo3qfxYJSuDzIBzBeFomJNJ/1rvRu0rC/Xt1bVkarokaM+nvfmCJ5DEUm9eLyz
+    tNmO77Jn3boRbXfhkdGdG0QaKd1xHlj3n4LZbjK7mVY3OE8YogkmG1cDugbn8vqDI/fp
+    p3Nl6dd7lF2hFQtc/Cx9kCl1xUdGxB9mdmJvSBgtc/0gGIA+hMckqVWIbmj0eHoKe1Hy
+    TpSZC1FYAu+dfC4EKjMIBwZl1OBUzcyqE4aGqHDlql2eMz46P4n3FjEiUWsRjfE0pCBO
+    8hIQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1684349338;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=Cc:To:Message-Id:Date:Subject:From:Cc:Date:From:Subject:Sender;
+    bh=rkE8u4oZLTFlvJ+Zt4904j+4OJtDMcJqCcbkOZiB4ZI=;
+    b=wxemYTJlhedpobpExgquKfr5ICn128VyQyxrOu8VwynAyFG6RH907hNcAwHDla1T0r
+    4lpnpYWtc//O21JjyCAQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQjVd4CteZ/7jYgS+mLFY+H0JAn8u4ly9TY="
+Received: from [192.168.244.3]
+    by smtp.strato.de (RZmta 49.4.0 DYNA|AUTH)
+    with ESMTPSA id j6420az4HImwBIF
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Wed, 17 May 2023 20:48:58 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH 0/8] arm64: dts: qcom: msm8916: Rework regulator
+ constraints
+Date:   Wed, 17 May 2023 20:48:39 +0200
+Message-Id: <20230510-msm8916-regulators-v1-0-54d4960a05fc@gerhold.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230119-rk3568-rga-v1-2-43d4d14365e6@pengutronix.de>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIchZWQC/x2N0QqDMAwAf0XyvEBrcc79ythD1FQDax2JGwPx3
+ 617PI7jNjBWYYN7tYHyV0yWXMBfKhhmyhOjjIWhdnVwjXeYLN06f0Xl6fOidVHDro0UQhsajgw
+ l7MkYe6U8zGeayFbWU7yVo/z+t8dz3w+dAOZafQAAAA==
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Stephan Gerhold <stephan@gerhold.net>
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi folks,
+Rework the regulator constraints for the MSM8916 device trees to be 
+closer to reality. There are several mistakes in there, some of them 
+taken over directly from Qualcomm's vendor kernel. Fortunately, none of 
+the mistakes is absolutely critical because it turns out that the RPM 
+firmware also validates the voltages and silently clamps the requests 
+to a proper range. Still, this behavior should be clearly represented 
+in the device tree rather than pretending to apply the wrong voltages.
 
-On Fri, Jan 20, 2023 at 10:14:22AM +0100, Michael Tretter wrote:
-> The rk3568 also features a RGA2 block. Add the necessary device tree
-> node.
-> 
-> Acked-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+To make the regulator constraints more easily maintainable with a large 
+number of similar MSM8916 boards I propose moving the voltages for the 
+standard components in the SoC to the shared msm8916-pm8916.dtsi 
+include. With this only the actual board-specific regulators are 
+described in the board DT.
 
-Can this patch be merged via the media tree? I don't expect merging the
-other one via a different tree being an issue either, so alternatively to
-the 1st patch:
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+---
+Stephan Gerhold (8):
+      arm64: dts: qcom: apq8016-sbc: Fix regulator constraints
+      arm64: dts: qcom: apq8016-sbc: Fix 1.8V power rail on LS expansion
+      arm64: dts: qcom: msm8916: Fix regulator constraints
+      arm64: dts: qcom: msm8916: Disable audio codecs by default
+      arm64: dts: qcom: pm8916: Move default regulator "-supply"s
+      arm64: dts: qcom: msm8916-pm8916: Clarify purpose
+      arm64: dts: qcom: msm8916: Define regulator constraints next to usage
+      arm64: dts: qcom: msm8916-pm8916: Mark always-on regulators
 
-Acked-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dts           | 145 +++++----------------
+ arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts   | 115 ++--------------
+ .../boot/dts/qcom/msm8916-alcatel-idol347.dts      | 110 +---------------
+ arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts     | 110 +---------------
+ arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts | 110 +---------------
+ arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts     | 125 ++++--------------
+ .../boot/dts/qcom/msm8916-longcheer-l8150.dts      | 110 +---------------
+ .../boot/dts/qcom/msm8916-longcheer-l8910.dts      | 110 +---------------
+ arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi       | 121 ++++++++++++++---
+ .../dts/qcom/msm8916-samsung-a2015-common.dtsi     | 110 +---------------
+ .../boot/dts/qcom/msm8916-samsung-gt5-common.dtsi  | 110 +---------------
+ .../boot/dts/qcom/msm8916-samsung-j5-common.dtsi   | 103 ---------------
+ .../boot/dts/qcom/msm8916-samsung-serranove.dts    | 103 ---------------
+ arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi          | 103 ---------------
+ .../boot/dts/qcom/msm8916-wingtech-wt88047.dts     | 119 +++--------------
+ arch/arm64/boot/dts/qcom/msm8916.dtsi              |   1 +
+ arch/arm64/boot/dts/qcom/pm8916.dtsi               |   4 +-
+ 17 files changed, 236 insertions(+), 1473 deletions(-)
+---
+base-commit: 4272e06e19f388ccfe1f04f19060ea84d2a19a8b
+change-id: 20230510-msm8916-regulators-97fa33735efe
 
+Best regards,
 -- 
-Regards,
+Stephan Gerhold <stephan@gerhold.net>
 
-Sakari Ailus
