@@ -2,114 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ADCE706F4F
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 19:25:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B72F1706F59
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 19:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229585AbjEQRZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 13:25:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35650 "EHLO
+        id S229789AbjEQR0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 13:26:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbjEQRZ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 13:25:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38ACD93F7;
-        Wed, 17 May 2023 10:25:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5FB1363E35;
-        Wed, 17 May 2023 17:25:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E9E6C433D2;
-        Wed, 17 May 2023 17:25:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684344311;
-        bh=mjFoAWFzRrM9eTl/Zbmccy0cVg5yWUVZAjtxpZaRWyI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JJSAp3/DeICH3C9UGkhuNBJHDqlTc+oJYD3lah9UEjSbbpdIHvYVt4JKbJrnKpfq8
-         jGOB90ZzNGUrHIdwLsKVgnZZeJha/DjxWrpMMNkKQenM/5a3pr4oDcH6tm0RoB1OSv
-         TyFFVgNn198G+8R8noWEfYc/XgQ4fkTWHH1R8mo5MCCpwQIl4ZI1EYBX4jX3sNLuWX
-         nB7N1AzvlkCZ9eFoTVWSVlQTQl8WV62hJOsoU/+VR77WAywEPx3jeZ2kioD+F2uEhE
-         bgZb3B4QWO7VWT8KQJ0+Jo1reEbgfSETto+mmz5A5VKu/zBOVO47qqyNwcnaAhuVRe
-         keX2nmUYvMgVg==
-Date:   Wed, 17 May 2023 18:25:07 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: sc16is7xx: Add property to change GPIO
- function
-Message-ID: <20230517-argue-unbeaten-b07405fdd313@spud>
-References: <20230517150746.3823249-1-hugo@hugovil.com>
+        with ESMTP id S229505AbjEQR0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 13:26:23 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79C74AD3A;
+        Wed, 17 May 2023 10:26:01 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34HCTY8L029308;
+        Wed, 17 May 2023 17:25:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=TSWWrlw7RAJA3TsQuX1ZICmW15vT9/5FlcTvKyFdusA=;
+ b=PvqQfmg9S0p623C/Ge06+qvmqgUyO33BNVqM1m2WVRaNWc0SJlczANQ9dDasi3n1Qml3
+ l17nSyn+cfB/4Jz6g1PS0fvp3YOnNohb/d+dKp8OtdrPLyZE59XE0JMLhXLnonukwaJW
+ 6dyRNBQdLDlIY20pGwHXOiq6dcX8bksYo9u4RqdQy6kzrmcWJCelDG6EmpAfsgou/vWP
+ Rva8Kzd4Keijyafho5RDDu8pHNniJTHv9YFropQZqO5Yp80Ny9zfrG48jcuGNzTY8WyX
+ dFMDAJBXKkpZaQdZA2m9d2C5XOaC1ovOlmyDAiGMEXPHwSwagGnjhbFI5dzLd0fbXhaX 1w== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qmxyp0q31-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 17 May 2023 17:25:50 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34HHPjFR006920
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 17 May 2023 17:25:45 GMT
+Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 17 May 2023 10:25:41 -0700
+From:   Devi Priya <quic_devipriy@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>
+Subject: [PATCH V5 0/3] Add regulator support for IPQ9574 SoC
+Date:   Wed, 17 May 2023 22:55:24 +0530
+Message-ID: <20230517172527.1968-1-quic_devipriy@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="mpbHctzDX7UX2Sd6"
-Content-Disposition: inline
-In-Reply-To: <20230517150746.3823249-1-hugo@hugovil.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 9OmuzeIj-fPsPcTKsvUMIdNrIkGWxqib
+X-Proofpoint-GUID: 9OmuzeIj-fPsPcTKsvUMIdNrIkGWxqib
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-17_02,2023-05-17_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=285
+ priorityscore=1501 impostorscore=0 suspectscore=0 mlxscore=0 bulkscore=0
+ adultscore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 malwarescore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305170143
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+IPQ9574 SoC uses the PMIC MP5496 and SMPA1 regulator for APSS voltage scaling.
+This patch series adds support for the same and also enables the RPM 
+communication over the RPMSG framework.
 
---mpbHctzDX7UX2Sd6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+DTS patch depends on the below series which applies cleanly on top of [1]
+https://lore.kernel.org/linux-arm-msm/20230406061314.10916-1-quic_devipriy@quicinc.com/
 
-On Wed, May 17, 2023 at 11:07:46AM -0400, Hugo Villeneuve wrote:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
->=20
-> Some variants in this series of uart controllers have GPIO pins that
-> are shared between GPIO and modem control lines.
->=20
-> The pin mux mode (GPIO or modem control lines) can be set for each
-> ports (channels) supported by the variant.
->=20
-> This adds a property to the device tree to set the GPIO pin mux to
-> modem control lines on selected ports if needed.
->=20
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> ---
->  .../bindings/serial/nxp,sc16is7xx.txt         | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt b=
-/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-> index 0fa8e3e43bf8..426b7285ad50 100644
-> --- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-> +++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
-> @@ -23,6 +23,9 @@ Optional properties:
->      1 =3D active low.
->  - irda-mode-ports: An array that lists the indices of the port that
->  		   should operate in IrDA mode.
-> +- modem-control-line-ports: An array that lists the indices of the port =
-that
-> +			    should have shared GPIO lines configured as modem
-> +			    control lines.
+[1] https://lore.kernel.org/linux-arm-msm/20230515150722.12196-1-quic_anusha@quicinc.com/
 
-If this is an NXP specific property, should it not have an nxp, vendor
-prefix?
+[V5]: 
+	- Dropped the below patches as they are already part of linux-next/master
+		[1/5] regulator: qcom_smd: Add s1 sub-node to mp5496 regulator
+		[2/5] regulator: qcom_smd: Add MP5496 S1 regulator
 
+	- Rebased on the below series
+	https://lore.kernel.org/linux-arm-msm/20230406061314.10916-1-quic_devipriy@quicinc.com/
 
---mpbHctzDX7UX2Sd6
-Content-Type: application/pgp-signature; name="signature.asc"
+[V4]:
+	https://lore.kernel.org/linux-arm-msm/20230407155727.20615-1-quic_devipriy@quicinc.com/
+	- Detailed change logs are added to the respective patches
+[V3]:
+	https://lore.kernel.org/linux-arm-msm/20230406070032.22243-1-quic_devipriy@quicinc.com/
+	- Dropped PATCH [1/6] dt-bindings: soc: qcom: smd-rpm: Add IPQ9574 compatible
+	  as it is available in linux-next/master
+	- Dropped PATCH [4/6] regulator: qcom_smd: Add support to define the bootup voltage
+	  and updated the nominal voltage in the Board DT as discussed
+	- Splitted the board DT changes to a separate patch as suggested
+	- Detailed change logs are added to the respective patches
+[V2]:
+	https://lore.kernel.org/linux-arm-msm/20230217142030.16012-1-quic_devipriy@quicinc.com/
+	- Reordered the patches to have the bindings and driver changes
+	  in place before the device tree support
+	- Dropped the 'soc: qcom: smd-rpm: Add IPQ9574 compatible' since
+	  it is already part of the linux-next/master
+	- Detailed change log is added to the respective patches
+[V1]:
+	https://lore.kernel.org/linux-arm-msm/20230113150310.29709-1-quic_devipriy@quicinc.com/
 
------BEGIN PGP SIGNATURE-----
+Devi Priya (3):
+  arm64: dts: qcom: ipq9574: Add RPM related nodes
+  arm64: dts: qcom: ipq9574: Add SMPA1 regulator node
+  arm64: dts: qcom: ipq9574: Add cpufreq support
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGUN8wAKCRB4tDGHoIJi
-0hp1AP9FdcuRN7IO7H2al/5we3uqXf0P4Jd54EhBY+MkzKRGxwD8DuYBxPPExott
-pQjz7PK7eIvyCdbZuUagAiV4Q8GrCAQ=
-=M+2F
------END PGP SIGNATURE-----
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 19 +++++
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi       | 77 ++++++++++++++++++++-
+ 2 files changed, 95 insertions(+), 1 deletion(-)
 
---mpbHctzDX7UX2Sd6--
+-- 
+2.17.1
+
