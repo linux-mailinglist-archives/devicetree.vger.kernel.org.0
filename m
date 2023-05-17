@@ -2,220 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A911706142
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 09:35:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB3B8706146
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 09:36:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230100AbjEQHfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 03:35:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59634 "EHLO
+        id S230141AbjEQHgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 03:36:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229964AbjEQHem (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 03:34:42 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D00D49C8;
-        Wed, 17 May 2023 00:34:30 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34H7YJFK012002;
-        Wed, 17 May 2023 02:34:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684308859;
-        bh=SurKxmYjN5Bv7FmjQikKSl/trg/4aPhCBp9rmv79JmI=;
-        h=From:Date:Subject:References:In-Reply-To:To:CC;
-        b=ViK5qqhfTo6ZKjTvWhw6dJoORtpi2xCh/7j6rZdL/cJxGamiXUDtnJAE51Y5Rd6m3
-         Lz+heXplxcyWMCpQY5JSSuXZuGqnUQshZX9LTkKCb8JFI6EYqhRJ6GPqs9GLFnmuLF
-         T+WUYpLiwwqFJtw8kMwo5DF47v8Q8O7U00ZvfD9I=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34H7YJAk022103
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 17 May 2023 02:34:19 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 17
- May 2023 02:34:19 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 17 May 2023 02:34:19 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34H7YIgY004132;
-        Wed, 17 May 2023 02:34:19 -0500
-From:   Jai Luthra <j-luthra@ti.com>
-Date:   Wed, 17 May 2023 13:04:06 +0530
-Subject: [PATCH 2/2] clk: keystone: syscon-clk: Add support for audio
- refclk
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20230515-refclk-v1-2-5e89f01d6733@ti.com>
-References: <20230515-refclk-v1-0-5e89f01d6733@ti.com>
-In-Reply-To: <20230515-refclk-v1-0-5e89f01d6733@ti.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S229988AbjEQHfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 03:35:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 461B3421A;
+        Wed, 17 May 2023 00:35:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B62F560AC0;
+        Wed, 17 May 2023 07:35:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A934C4339B;
+        Wed, 17 May 2023 07:35:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684308911;
+        bh=kQ+STROLZxpi6/xOup3AixMDQ+qLElZlsdCv2LR9o40=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eftgUgzVkEsog+Gvmi1NERj9IbBndaQUvhEgwGEK8ap7tubPEvuNOHRYi5mDjS+4O
+         XUsRoIMK/3rctOCbkqb0BdHFrDwENwkq4Qp1Dnu3Vv2IcVBUp76gxUAk3OjUhU6lYj
+         QUF96twgfa5y7gKG0XxEMXTeC0tOioZcyyx9H9nfbhhkky/QXkk42qgKHkqCIDgOWs
+         kZiW8nAiZcHh2PW/S13OoeXVbuOB1HW6Q8qC+COflpH03y92shVuDxDmiEAF664ah8
+         NKl2eGqODI7vh2TCJOLIEQfOTDG98ep6rhuvICgC4ZNQ12OCd+Dx2s1f9QWKPBj+tD
+         ZknRpRCTkrY0w==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1pzBgl-0002Ni-3w; Wed, 17 May 2023 09:35:11 +0200
+Date:   Wed, 17 May 2023 09:35:11 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Jai Luthra <j-luthra@ti.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4225; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=X8TcJviMlXnmqvG67lFDb/1YxmPAbeMa3ngfvAcRa4M=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBkZIN4jhDdYp7be+1izoE0oUrWI9LGpHFhn+e4H
- XfZVuDuWG6JAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZGSDeAAKCRBD3pH5JJpx
- RatlD/0d1olmmGG8RIQEyq4cYZGobCiJ9e+qReZzryBBQUL/hzNbUAGxISQZbn4btCNJ9UgFhut
- P11PO2ba2pDpg09cSybZiadP+pc8/24BVYg7GOgUPQOBnKNvOBQdzs56TdwV3tadtYMp+q1omNx
- vD2dbrdDq+c/prlzJECitBQbQrBRFWdg2qKpuiuyZEehVT+qyMfULW8Hkb9j8HIT8Pn79xGih4Z
- r5Omu8NL7W3TFtn9NzxpJ+kCI4XTWbPxqZp8c4R5Tfqx1agDRXiBhI9gd+8faaXClp+zD6NcXBY
- 7ZS8VsSG0Bc/Kufr4HmwXWNXX4OOHPbIxMUgvLziZHED8PUOm8RJst6FMeoizyVUyeqsk0E25OA
- mqH2z2jneWUQfVe4bACNIJhX6sNLVcxqMDjkK1UQ987F2utf0tFEeWISMGmK8fKNveNxeobmSCY
- DIBT/h25rj9IkPhFBi445roWt65dD0pkFPJweCVJkWPFjBogpaSHW4rVPKD1R/7yhm8rNyT3pyk
- MxWgLEqH4qtkyhNK8vw8TN2nTqZyvFg5Aj5p3g3zsD+OT0ZNixVHbgBv4KzS3dTCmJbl3rkXdRN
- PSPiChuWTFYSwGuxXF5KNyPVR+SHufm9GMVef8KqUj1EtgivhWObiSd+W5sYP9mQMlSOmVFhpEO
- cot0UpmyWxuSZrA==
-X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
+        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
+        ahalaney@redhat.com
+Subject: Re: [PATCH v8 3/9] usb: dwc3: core: Access XHCI address space
+ temporarily to read port info
+Message-ID: <ZGSDr08h3Go1Dk8C@hovoldconsulting.com>
+References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
+ <20230514054917.21318-4-quic_kriskura@quicinc.com>
+ <ZGNy6FvVrBjYmorz@hovoldconsulting.com>
+ <b2954b92-8b12-700a-af50-b914af7b0ace@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b2954b92-8b12-700a-af50-b914af7b0ace@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TI's AM62 SoC can optionally provide two audio reference clocks
-(AUDIO_REFCLKx) to external peripherals.
+Hi Krishna,
 
-By default this reference clock is looped-back inside the SoC to a mux
-that goes to McASP AHCLK, but can optionally be enabled as an output to
-peripherals outside the SoC by setting a bit through the syscon
-(CTRL_MMR) registers.
+Please try to remember to trim unneeded context when replying so that
+it's easier to find your replies and also to catch up on threads (e.g.
+when later reading the mail archives).
 
-This bit only controls the direction of the clock, while the parent
-is a muxed input from sci-clk [1] which may be a configurable PLL or a
-master clock from one of the McASP instances.
+On Tue, May 16, 2023 at 08:32:00PM +0530, Krishna Kurapati PSSNV wrote:
+> On 5/16/2023 5:41 PM, Johan Hovold wrote:
+> > On Sun, May 14, 2023 at 11:19:11AM +0530, Krishna Kurapati wrote:
 
-Link: http://downloads.ti.com/tisci/esd/latest/5_soc_doc/am62x/clocks.html#clocks-for-board0-device [1]
-Signed-off-by: Jai Luthra <j-luthra@ti.com>
----
- drivers/clk/keystone/syscon-clk.c | 43 ++++++++++++++++++++++++++++++++++-----
- 1 file changed, 38 insertions(+), 5 deletions(-)
+> > You should not make another copy of xhci_find_next_ext_cap(), but rather
+> > use it directly.
+> > 
+> > We already have drivers outside of usb/host using this function so it
+> > should be fine to do the same for now:
+> > 
+> > 	#include "../host/xhci-ext-caps.h"
 
-diff --git a/drivers/clk/keystone/syscon-clk.c b/drivers/clk/keystone/syscon-clk.c
-index 5d7cc83682da..9f9ba7420756 100644
---- a/drivers/clk/keystone/syscon-clk.c
-+++ b/drivers/clk/keystone/syscon-clk.c
-@@ -61,21 +61,31 @@ static const struct clk_ops ti_syscon_gate_clk_ops = {
- 
- static struct clk_hw
- *ti_syscon_gate_clk_register(struct device *dev, struct regmap *regmap,
-+			     const char *parent_name,
- 			     const struct ti_syscon_gate_clk_data *data)
- {
- 	struct ti_syscon_gate_clk_priv *priv;
- 	struct clk_init_data init;
-+	char *name = NULL;
- 	int ret;
- 
- 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
- 		return ERR_PTR(-ENOMEM);
- 
--	init.name = data->name;
- 	init.ops = &ti_syscon_gate_clk_ops;
--	init.parent_names = NULL;
--	init.num_parents = 0;
--	init.flags = 0;
-+	if (parent_name) {
-+		name = kasprintf(GFP_KERNEL, "%s:%s", data->name, parent_name);
-+		init.name = name;
-+		init.parent_names = &parent_name;
-+		init.num_parents = 1;
-+		init.flags = CLK_SET_RATE_PARENT;
-+	} else {
-+		init.name = data->name;
-+		init.parent_names = NULL;
-+		init.num_parents = 0;
-+		init.flags = 0;
-+	}
- 
- 	priv->regmap = regmap;
- 	priv->reg = data->offset;
-@@ -83,6 +93,10 @@ static struct clk_hw
- 	priv->hw.init = &init;
- 
- 	ret = devm_clk_hw_register(dev, &priv->hw);
-+
-+	if (name)
-+		kfree(init.name);
-+
- 	if (ret)
- 		return ERR_PTR(ret);
- 
-@@ -94,8 +108,9 @@ static int ti_syscon_gate_clk_probe(struct platform_device *pdev)
- 	const struct ti_syscon_gate_clk_data *data, *p;
- 	struct clk_hw_onecell_data *hw_data;
- 	struct device *dev = &pdev->dev;
-+	int num_clks, num_parents, i;
-+	const char *parent_name;
- 	struct regmap *regmap;
--	int num_clks, i;
- 
- 	data = device_get_match_data(dev);
- 	if (!data)
-@@ -110,6 +125,13 @@ static int ti_syscon_gate_clk_probe(struct platform_device *pdev)
- 	for (p = data; p->name; p++)
- 		num_clks++;
- 
-+	num_parents = of_clk_get_parent_count(dev->of_node);
-+	if (of_device_is_compatible(dev->of_node, "ti,am62-audio-refclk") &&
-+	    num_parents == 0) {
-+		return dev_err_probe(dev, -EINVAL,
-+				     "must specify a parent clock\n");
-+	}
-+
- 	hw_data = devm_kzalloc(dev, struct_size(hw_data, hws, num_clks),
- 			       GFP_KERNEL);
- 	if (!hw_data)
-@@ -117,8 +139,10 @@ static int ti_syscon_gate_clk_probe(struct platform_device *pdev)
- 
- 	hw_data->num = num_clks;
- 
-+	parent_name = of_clk_get_parent_name(dev->of_node, 0);
- 	for (i = 0; i < num_clks; i++) {
- 		hw_data->hws[i] = ti_syscon_gate_clk_register(dev, regmap,
-+							      parent_name,
- 							      &data[i]);
- 		if (IS_ERR(hw_data->hws[i]))
- 			dev_warn(dev, "failed to register %s\n",
-@@ -166,6 +190,11 @@ static const struct ti_syscon_gate_clk_data am62_clk_data[] = {
- 	{ /* Sentinel */ },
- };
- 
-+static const struct ti_syscon_gate_clk_data am62_audio_clk_data[] = {
-+	TI_SYSCON_CLK_GATE("audio_refclk", 0x0, 15),
-+	{ /* Sentinel */ },
-+};
-+
- static const struct of_device_id ti_syscon_gate_clk_ids[] = {
- 	{
- 		.compatible = "ti,am654-ehrpwm-tbclk",
-@@ -179,6 +208,10 @@ static const struct of_device_id ti_syscon_gate_clk_ids[] = {
- 		.compatible = "ti,am62-epwm-tbclk",
- 		.data = &am62_clk_data,
- 	},
-+	{
-+		.compatible = "ti,am62-audio-refclk",
-+		.data = &am62_audio_clk_data,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ti_syscon_gate_clk_ids);
+>    This was the approach which we followed when we first introduced the 
+> patch [1]. But Thinh suggested to duplicate code so that we can avoid 
+> any dependency on xhci (which seems to be right). So since its just one 
+> function, I duplicated it here.
 
--- 
-2.40.1
+Ok, fair enough. I still think we should not be duplicating the
+xhci definitions like this even if we were to copy the helper to avoid
+any future dependencies on xhci (it's currently an inline function,
+which is also not very nice).
 
+I'll take closer look at the rest of the series as there are a few more
+of these layering violations which we should try to avoid.
+
+> >> +	offset = dwc3_xhci_find_next_ext_cap(regs, 0,
+> >> +					XHCI_EXT_CAPS_PROTOCOL);
+> >> +	while (offset) {
+
+> >> +		temp = readl(regs + offset);
+> >> +		major_revision = XHCI_EXT_PORT_MAJOR(temp);
+> >> +
+> >> +		temp = readl(regs + offset + 0x08);
+
+> >> +		if (major_revision == 0x03) {
+> >> +			dwc->num_usb3_ports += XHCI_EXT_PORT_COUNT(temp);
+> >> +		} else if (major_revision <= 0x02) {
+> >> +			dwc->num_usb2_ports += XHCI_EXT_PORT_COUNT(temp);
+> >> +		} else {
+> >> +			dev_err(dwc->dev,
+> >> +				"Unrecognized port major revision %d\n", major_revision);
+
+> > Perhaps this should be handles as in xhci core by simply warning and
+> > continuing instead.
+> > 
+> I broke the loop and went to unmap as we are not sure what values would 
+> be read. Any use of continuing ?
+
+Mostly to align with xhci core which currently handles this case. It
+would not not work unless you get rid of the max-ports check below
+though.
+ 
+> >> +			ret = -EINVAL;
+> >> +			goto unmap_reg;
+> >> +		}
+> >> +
+> >> +		offset = dwc3_xhci_find_next_ext_cap(regs, offset,
+> >> +						XHCI_EXT_CAPS_PROTOCOL);
+> >> +	}
+> >> +
+> >> +	temp = readl(regs + DWC3_XHCI_HCSPARAMS1);
+> >> +	if (HCS_MAX_PORTS(temp) != (dwc->num_usb3_ports + dwc->num_usb2_ports)) {
+> >> +		dev_err(dwc->dev,
+> >> +			"Mismatched reported MAXPORTS (%d)\n", HCS_MAX_PORTS(temp));
+> >> +		ret = -EINVAL;
+> >> +		goto unmap_reg;
+> >> +	}
+> > 
+> > Not sure this is needed either.
+> > 
+> > Could this risk regressing platforms which does not have currently have
+> > all PHYs described in DT?
+> > 
+> No, it doesn't. AFAIK, this only tells how many ports are present as per 
+> the core consultant configuration of the device. I tried to explain what 
+> would happen incase phy's are not present in DT in [2] & [3].
+
+Right, whether the PHYs are described in DT is not directly related to
+this.
+
+As long as HCS_MAX_PORTS by definition (assumption) is always
+(dwc->num_usb3_ports + dwc->num_usb2_ports) any such machines would
+continue to work.
+
+But if you want to catch machines where this assumption does not hold,
+you could also end up regressing machines which have so far been working
+despite these numbers not adding up.
+
+That may be acceptable, but I'm still not sure what the value of this
+check is (e.g. as xhci core will handle basic sanity checks like usb2 +
+usb3 <= max_ports).
+
+Johan
