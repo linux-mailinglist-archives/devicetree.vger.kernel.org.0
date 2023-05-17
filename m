@@ -2,178 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39EA17072CC
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 22:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 121AA70731B
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 22:35:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229614AbjEQUNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 16:13:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46518 "EHLO
+        id S229572AbjEQUfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 16:35:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbjEQUNg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 16:13:36 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6087B619A
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 13:13:34 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4eff4ea8e39so1406477e87.1
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 13:13:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684354412; x=1686946412;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Fddr7vQfG7SJnVJn02S1O20K03Qt9GSXK3rEV8Cg+k0=;
-        b=EkLoRT+KFXel4yX8Uvo1ory38MSZ65Hov9IExlTPHSRF37JxC4DtRK795QyrQtsc1F
-         rgd/0WA5MbPn1skALE6HAdAUU5IVndpePxwtaWYyBtRmL4j5oqAMLhZ+B8EPu81D0TvF
-         n6qa1LuB4PuR+Obzs26YyZ8FUwegIq+4/jDGdpp7TN4Ku6fcnm+jajQQXuICyxtVQrmt
-         hK2ZLT3VnC9WaVfUtcsWj166PSyczngUoIDptWoDBTRyPs1eBvFV4W2k6y/FgZ64zHcD
-         ruE+yasm9wzXzjZpD06p6YimBUB3VGNKInuJV6YfG5k3CkSiyYH/fW9AS84NXmZ4seaY
-         scWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684354412; x=1686946412;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Fddr7vQfG7SJnVJn02S1O20K03Qt9GSXK3rEV8Cg+k0=;
-        b=lROmCyE8GC7rb7BNpijHvDZR5MW6RJPx0RDuwrJB9DJMchYaG1zPj55td+y//C4DtX
-         BL0OvzEU20nmhydM8Sv0wt8a1oOoD4WfoVwbUOmSdS/Lo0ckgCmshdhRkCYTjDu5HT4h
-         R4CV3PjwnrCyfuL+qdpMzh7JeC78659Y6N+LYbGakbgTZ/cKKDlOhM9+SUVdX0J/fpix
-         IYCcVM5TmJliwn1jcJB/KqbcYJtCh51srWV40zTqkoZzSkOsQZ9S+NQtn0OKxnJRZlKC
-         gjaonVnfjPjuszYHMMYKYma0WzfeF6EQgVldWAu3hkwoCaOAw6vNVpGLU0fGIPUWEkPh
-         tdqQ==
-X-Gm-Message-State: AC+VfDw7QR+V5tgIODh26l76uA+Wg2qEI/z5m/32i7lNXXmPy+4s17jt
-        pl9TZqS0lO+k4Gw9Ix7mxwPpeg==
-X-Google-Smtp-Source: ACHHUZ6o180I0fAigI/8A3iS92oiIiwqKrYDmoXe1xL+jRS4jMwv7wocDJ2W+aCgBqX7A0m8StHBkg==
-X-Received: by 2002:a19:f707:0:b0:4f2:7e3e:7d24 with SMTP id z7-20020a19f707000000b004f27e3e7d24mr545223lfe.46.1684354412582;
-        Wed, 17 May 2023 13:13:32 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id p27-20020ac246db000000b004f382ae9892sm1190899lfo.247.2023.05.17.13.13.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 May 2023 13:13:32 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 17 May 2023 22:12:52 +0200
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sm8550: Add missing RPMhPD OPP
- levels
+        with ESMTP id S229487AbjEQUfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 16:35:55 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 757B530DE;
+        Wed, 17 May 2023 13:35:52 -0700 (PDT)
+Received: (Authenticated sender: alexis.lothore@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 6A96440003;
+        Wed, 17 May 2023 20:35:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1684355750;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=SSGXfEp8iM8O02ghChWjaJmvwfOrma9CfJ6bauKgZKs=;
+        b=kkT74lxcnodSczi7YzH5G6aHSnG2xAbswZOFssIa8AKHqbPHU+ZRPXRpIIblqFqOMFo0tU
+        NvwhIpOc+FCJfzzLv5ESKvZvLQ5XP6QRJSwnNAw4LTYHfSjAMtg6FZL35oaKPrMdgDOvpg
+        TmAHZEXxsd6bKHPsXQkWFPrXMA+r3hVGtV99PHifhxq/eYsCGLZSjhA44Ft7KILiVE5Tnm
+        s9S1o3eAN4yM5rJRqsUB6UEUWRoUgt9jEAE9wT1hS2h+wYr+0ft25iHIX0+qc7JTf/XBEl
+        7zYYUll7a/OkTdU8A6ei+wFcobWsutxF7YllsaTNkh2AoFM9AmIk6gjBaN7+6A==
+From:   alexis.lothore@bootlin.com
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Richard Cochran <richardcochran@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        paul.arola@telus.com, scott.roberts@telus.com,
+        =?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+Subject: [PATCH net-next 0/2] net: dsa: mv88e6xxx: add 88E6361 support
+Date:   Wed, 17 May 2023 22:34:28 +0200
+Message-Id: <20230517203430.448705-1-alexis.lothore@bootlin.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230517-topic-kailua-rpmhpd-v2-3-3063ce19c491@linaro.org>
-References: <20230517-topic-kailua-rpmhpd-v2-0-3063ce19c491@linaro.org>
-In-Reply-To: <20230517-topic-kailua-rpmhpd-v2-0-3063ce19c491@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1684354400; l=2617;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=JJOo1yC89QKK0GjXF7VRcmrSi+n6mZDBrrstrn3foPM=;
- b=CpJVb5IAq0cXatsz5h3BLG1mi4TobFqZMAM/KIr0NgZShrr+JQ5Vz3+6wLTsj6rluYNpA1U2i
- 7hQ7+NHTG0DCQgJt/oNsOa9bZhyOUYCKinWV09G+CrWPDCRR8d6BLbj
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We need more granularity for things like the GPU. Add the missing levels.
+From: Alexis Lothoré <alexis.lothore@bootlin.com>
 
-This unfortunately requires some re-indexing, resulting in an ugly diff.
-Rename the nodes to prevent that in the future.
+This series brings initial support for Marvell 88E6361 switch.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 40 +++++++++++++++++++++++++++---------
- 1 file changed, 30 insertions(+), 10 deletions(-)
+MV88E6361 is a 8 ports switch with 5 integrated Gigabit PHYs and 3
+2.5Gigabit SerDes interfaces. It is in fact a new variant in the
+88E639X/88E6193X/88E6191X family with a subset of existing features (e.g.
+reduced ports count, lower maximal speed for MII interfaces).
+Since said family is already well supported in mv88e6xxx driver, adding
+initial support for this new switch mostly consists in finding the ID
+exposed in its identification register, and then add a proper description
+in switch description tables in mv88e6xxx driver.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 6e9bad8f6f33..1c9460dc3d44 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -3608,43 +3608,63 @@ rpmhpd: power-controller {
- 				rpmhpd_opp_table: opp-table {
- 					compatible = "operating-points-v2";
- 
--					rpmhpd_opp_ret: opp1 {
-+					rpmhpd_opp_ret: opp-16 {
- 						opp-level = <RPMH_REGULATOR_LEVEL_RETENTION>;
- 					};
- 
--					rpmhpd_opp_min_svs: opp2 {
-+					rpmhpd_opp_min_svs: opp-48 {
- 						opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
- 					};
- 
--					rpmhpd_opp_low_svs: opp3 {
-+					rpmhpd_opp_lov_svs_d2: opp-52 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D2>;
-+					};
-+
-+					rpmhpd_opp_lov_svs_d1: opp-56 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D1>;
-+					};
-+
-+					rpmhpd_opp_lov_svs_d0: opp-60 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D0>;
-+					};
-+
-+					rpmhpd_opp_low_svs: opp-64 {
- 						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
- 					};
- 
--					rpmhpd_opp_svs: opp4 {
-+					rpmhpd_opp_low_svs_l1: opp-80 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_L1>;
-+					};
-+
-+					rpmhpd_opp_svs: opp-128 {
- 						opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
- 					};
- 
--					rpmhpd_opp_svs_l1: opp5 {
-+					rpmhpd_opp_svs_l0: opp-144 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L0>;
-+					};
-+
-+					rpmhpd_opp_svs_l1: opp-192 {
- 						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
- 					};
- 
--					rpmhpd_opp_nom: opp6 {
-+					rpmhpd_opp_nom: opp-256 {
- 						opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
- 					};
- 
--					rpmhpd_opp_nom_l1: opp7 {
-+					rpmhpd_opp_nom_l1: opp-320 {
- 						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
- 					};
- 
--					rpmhpd_opp_nom_l2: opp8 {
-+					rpmhpd_opp_nom_l2: opp-336 {
- 						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L2>;
- 					};
- 
--					rpmhpd_opp_turbo: opp9 {
-+					rpmhpd_opp_turbo: opp-384 {
- 						opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
- 					};
- 
--					rpmhpd_opp_turbo_l1: opp10 {
-+					rpmhpd_opp_turbo_l1: opp-416 {
- 						opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
- 					};
- 				};
+This initial support has been tested with two samples of a custom board
+with the following hardware configuration:
+- a main CPU connected to MV88E6361 using port 0 as CPU port
+- port 9 wired to a SFP cage
+- port 10 wired to a G.Hn transceiver
+
+The following setup was used:
+PC <-ethernet-> (copper SFP) - Board 1 - (G.hn) <-phone line(RJ11)-> (G.hn) Board 2
+
+The unit 1 has been configured to bridge SFP port and G.hn port together,
+which allowed to successfully ping Board 2 from PC.
+
+Alexis Lothoré (2):
+  dt-bindings: net: dsa: marvell: add MV88E6361 switch to compatibility
+    list
+  net: dsa: mv88e6xxx: enable support for 88E6361 switch
+
+ .../devicetree/bindings/net/dsa/marvell.txt   |  2 +-
+ drivers/net/dsa/mv88e6xxx/chip.c              | 25 +++++++++++++++++++
+ drivers/net/dsa/mv88e6xxx/chip.h              |  3 ++-
+ drivers/net/dsa/mv88e6xxx/port.h              |  1 +
+ 4 files changed, 29 insertions(+), 2 deletions(-)
 
 -- 
 2.40.1
