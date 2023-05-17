@@ -2,94 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F220706FF4
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 19:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EBC370702D
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 19:57:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbjEQRu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 13:50:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59206 "EHLO
+        id S229471AbjEQR5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 13:57:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229739AbjEQRu6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 13:50:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB381BE;
-        Wed, 17 May 2023 10:50:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8384F649A4;
-        Wed, 17 May 2023 17:50:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41460C433D2;
-        Wed, 17 May 2023 17:50:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684345856;
-        bh=Nj3X4eb32bJvjIobk6DnVqeRKQCfep3jBPFcL9HRAGM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ekOGNtS+hKr/Lrs4H+eqixvbP8ce/1VXpcwsOX9IXwd9nOfh2FKX9LuOdX2+uZi2G
-         b6X2xMu3XGRFmST2C0ef/DgOsKAgvv5H5B8lqgMrqgceWj8vMeeCoCEwrIy2VMPdM2
-         Kqu91bCe99yvjJgrVZwFV/hqbejVPsj3akyi6SyU5uDue0QkHa0msQ1OzQXie30g9b
-         7NF4Bqq1R0EQPbCDPkrstaMRYM6a/OzSvYPw0aU2sjMQ8O/yxKO9e3DJOV84ESnJBJ
-         p3b/4LqRC4DHiuW0NDwQRsgysTpfZVPF8ft7O6oHea00u9mpEEAiJOhsge4ndO+Ng6
-         QrcFmi6LCUDfg==
-Date:   Wed, 17 May 2023 18:50:51 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Ryan.Wanner@microchip.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        linus.walleij@linaro.org, ludovic.desroches@microchip.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: at91-pio4: Add push-pull
- support
-Message-ID: <20230517-retaliate-sway-af7e15f8e80f@spud>
-References: <cover.1684313910.git.Ryan.Wanner@microchip.com>
- <048a41d1dcb3da0e845986a73eaac61a54c69269.1684313910.git.Ryan.Wanner@microchip.com>
- <20230517-arrogance-unroll-5e6770618364@spud>
+        with ESMTP id S229622AbjEQR5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 13:57:05 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 666BF19A;
+        Wed, 17 May 2023 10:57:04 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34HHunoe025410;
+        Wed, 17 May 2023 12:56:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684346209;
+        bh=Y5a7G0lQ4tGrkMUd9GogBnap1YhDDaj9ce2WHoIytzE=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=OHFEjeIr/5Xotn/BzJYhNRpLynn9wN2SIlCiS+SLdCME3gtsNY47L5imijBiCoXln
+         4JoYY11qcbyFbZEOl5Ep9wYPKU/T5XmP0HpfthiTow2r4MmN2YKWRv++/C9WL+31I7
+         PMy2ZamfQkTOIlgX8MJWE/KrmbiZDuJ/JI7rO8d4=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34HHunFw020022
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 17 May 2023 12:56:49 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 17
+ May 2023 12:56:49 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 17 May 2023 12:56:49 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34HHunJg106538;
+        Wed, 17 May 2023 12:56:49 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     "Andrew F. Davis" <afd@ti.com>, Suman Anna <s-anna@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <srk@ti.com>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>
+Subject: Re: [PATCH v9 0/4] Introduce PRU platform consumer API
+Date:   Wed, 17 May 2023 12:56:48 -0500
+Message-ID: <168434617580.1538524.11482827517408254591.b4-ty@ti.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20230414045542.3249939-1-danishanwar@ti.com>
+References: <20230414045542.3249939-1-danishanwar@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zCeDp95tAXyEvGVE"
-Content-Disposition: inline
-In-Reply-To: <20230517-arrogance-unroll-5e6770618364@spud>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi MD Danish Anwar,
 
---zCeDp95tAXyEvGVE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, 14 Apr 2023 10:25:38 +0530, MD Danish Anwar wrote:
+> The Programmable Real-Time Unit and Industrial Communication Subsystem (PRU-ICSS
+> or simply PRUSS) on various TI SoCs consists of dual 32-bit RISC cores
+> (Programmable Real-Time Units, or PRUs) for program execution.
+> 
+> There are 3 foundation components for TI PRUSS subsystem: the PRUSS platform
+> driver, the PRUSS INTC driver and the PRUSS remoteproc driver. All of them have
+> already been merged and can be found under:
+> 1) drivers/soc/ti/pruss.c
+>    Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+> 2) drivers/irqchip/irq-pruss-intc.c
+>    Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+> 3) drivers/remoteproc/pru_rproc.c
+>    Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+> 
+> [...]
 
-On Wed, May 17, 2023 at 06:38:28PM +0100, Conor Dooley wrote:
-> On Wed, May 17, 2023 at 01:54:05PM +0200, Ryan.Wanner@microchip.com wrote:
-> > From: Ryan Wanner <Ryan.Wanner@microchip.com>
-> >=20
-> > Add generic push-pull support for pio4 driver.
-> >=20
-> > Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
->=20
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+I have applied the following to branch ti-drivers-soc-next on [1].
+Thank you for your patience in following up and incorporating all the fixes
+and the multiple hand-overs!
 
-Whoops, incorrect vim macro, should have been:
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+[1/4] soc: ti: pruss: Add pruss_get()/put() API
+      commit: 67d1b0a1030fb20d54b720df6e976c06b893fb00
+[2/4] soc: ti: pruss: Add pruss_{request,release}_mem_region() API
+      commit: b789ca1e3380ab63b60c3356c026a7e8eb26ba01
+[3/4] soc: ti: pruss: Add pruss_cfg_read()/update(), pruss_cfg_get_gpmux()/set_gpmux() APIs
+      commit: 51b5760e56ef19106a3c4487a66d186d46ccc6f4
+[4/4] soc: ti: pruss: Add helper functions to set GPI mode, MII_RT_event and XFR
+      commit: 0211cc1e4fbbc81853227147bf0982c47362c567
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
---zCeDp95tAXyEvGVE
-Content-Type: application/pgp-signature; name="signature.asc"
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
------BEGIN PGP SIGNATURE-----
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGUT+wAKCRB4tDGHoIJi
-0iG6AQCYV9PvL5v/9KFf9yQnP4XLLrQuOsEwZn7ZL2HsmonBQgEAoBxWUxdrtXdj
-Ch1/FHMciUANAZbmgX6+cbSyEeDhzAY=
-=m2A7
------END PGP SIGNATURE-----
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
---zCeDp95tAXyEvGVE--
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
