@@ -2,204 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF5DD706F63
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 19:26:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64074706F6D
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 19:29:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229848AbjEQR0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 13:26:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36996 "EHLO
+        id S229717AbjEQR3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 13:29:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbjEQR0d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 13:26:33 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BFE67EE4;
-        Wed, 17 May 2023 10:26:15 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34H9Bw8b029498;
-        Wed, 17 May 2023 17:25:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=jGXX9lnReOzc9h/R39hgS5rI53YOA/sU83/rJyiiLyw=;
- b=HIbEsN3Uzj4hn16Qf2MbnhZdLkcf3cQeFII9uf/WBroDZuKCjr6fq2CzJu2AxGW/7IFK
- 5ds+P9GrLLf4pvAF5kpviJ4513iWffbcBjtIOXewxd8U3/49R9erSANWcu9QVOWzTDgq
- f1dbObaB3cG4Nx3745tXtMg40OzBMW5jd18fkvUF1c2e5opJZvbE3/MvGv3wmtsOfZy6
- HpgQ4s4KUeXs0IhXee9xKpIzylV7zAkSOMMRhbiAmZexyskRWzwd/7XDkWXW2IGsup2Y
- nMcuNJwjZuAcFKYyJ4zQN0outBwJ11c2dOJjg2PhswS+O0ShVn0LVFCdiGlF4AVZg42s 5A== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qmh32tbrx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 17 May 2023 17:25:59 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34HHPw4g007005
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 17 May 2023 17:25:58 GMT
-Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 17 May 2023 10:25:54 -0700
-From:   Devi Priya <quic_devipriy@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
-        <quic_anusha@quicinc.com>
-Subject: [PATCH V5 3/3] arm64: dts: qcom: ipq9574: Add cpufreq support
-Date:   Wed, 17 May 2023 22:55:27 +0530
-Message-ID: <20230517172527.1968-4-quic_devipriy@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230517172527.1968-1-quic_devipriy@quicinc.com>
-References: <20230517172527.1968-1-quic_devipriy@quicinc.com>
+        with ESMTP id S229475AbjEQR3I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 13:29:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81A8D9037;
+        Wed, 17 May 2023 10:28:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E2B7A6498B;
+        Wed, 17 May 2023 17:28:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3619C4339B;
+        Wed, 17 May 2023 17:28:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684344523;
+        bh=C3rhU6ql3cfx2nqHQAamUs5eDbPSPa+ws3rxF+aWa1s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RD5m7lY8p7R/XOcqyBVFFZfqAIWQot+4Wz9y1pVEPguZz2/zJZLnuJutREWwZWyNY
+         8dvbV1paGoF2P0cxi6Uhrp5PFkO1JcmumAbu0u+pR+SmGiC96WQYfYVph3FNqAyNJO
+         g8+KA1tA0og4KZkEz20nLQ6lUA4RKKJ6JKWYCuSSoKkLOb7jU/skUjv2Sq9R7JC12Y
+         k6wrrngs03G61v7aIAMQsOHNgQxLFr/Av1eu2qQt6F99nsjB89kk8KazKnTkI3+bzA
+         0ttHn01LOdkGQ/rvn9VobAo0bcVV9/GLcaQWQ0AhBh8CG/27P16Ji+ywYPDyAASVPX
+         W5hLvuK5Yeb2w==
+Date:   Wed, 17 May 2023 18:28:36 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Alexandre Bailon <abailon@baylibre.com>, airlied@gmail.com,
+        daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+        mripard@kernel.org, tzimmermann@suse.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        matthias.bgg@gmail.com, sumit.semwal@linaro.org,
+        christian.koenig@amd.com, jstephan@baylibre.com,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+        linaro-mm-sig@lists.linaro.org, khilman@baylibre.com,
+        nbelin@baylibre.com, bero@baylibre.com
+Subject: Re: [PATCH 7/7] dt-bindings: Add bidings for mtk,apu-drm
+Message-ID: <20230517-deceptive-filtrate-9acd07071371@spud>
+References: <20230517145237.295461-1-abailon@baylibre.com>
+ <20230517145237.295461-8-abailon@baylibre.com>
+ <c32f0c3f-b43a-7045-38cc-2c11c7bb571e@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 3pyZ05gX0U64LSeH_DJ78DxRuVY2h11p
-X-Proofpoint-GUID: 3pyZ05gX0U64LSeH_DJ78DxRuVY2h11p
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-17_02,2023-05-17_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 priorityscore=1501 spamscore=0 clxscore=1015
- lowpriorityscore=0 phishscore=0 mlxscore=0 mlxlogscore=760 adultscore=0
- bulkscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305170143
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="DPep3TX9ZmccIKnm"
+Content-Disposition: inline
+In-Reply-To: <c32f0c3f-b43a-7045-38cc-2c11c7bb571e@collabora.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add cpu freq nodes in the device tree to bump cpu frequency above 800MHz.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Co-developed-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
----
- Changes in V5:
-	- Sorted the includes alphabetically
+--DPep3TX9ZmccIKnm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 60 ++++++++++++++++++++++++++-
- 1 file changed, 59 insertions(+), 1 deletion(-)
+On Wed, May 17, 2023 at 05:04:00PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 17/05/23 16:52, Alexandre Bailon ha scritto:
+> > This adds the device tree bindings for the APU DRM driver.
+> >=20
+> > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> > Reviewed-by: Julien Stephan <jstephan@baylibre.com>
+> > ---
+> >   .../devicetree/bindings/gpu/mtk,apu-drm.yaml  | 38 +++++++++++++++++++
+>=20
+> mediatek,mt(model)-apu.yaml
+>=20
+> >   1 file changed, 38 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/gpu/mtk,apu-drm.=
+yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml b/D=
+ocumentation/devicetree/bindings/gpu/mtk,apu-drm.yaml
+> > new file mode 100644
+> > index 000000000000..6f432d3ea478
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/gpu/mtk,apu-drm.yaml
+> > @@ -0,0 +1,38 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/gpu/mediatek,apu-drm.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: AI Processor Unit DRM
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: mediatek,apu-drm
+>=20
+> const: mediatek,mt8195-apu (or whatever else).
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 31244b1d8c25..16edffe53c8b 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -6,8 +6,9 @@
-  * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
-  */
- 
--#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/clock/qcom,apss-ipq.h>
- #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
- 
- / {
-@@ -37,6 +38,10 @@
- 			reg = <0x0>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&ipq9574_s1>;
- 		};
- 
- 		CPU1: cpu@1 {
-@@ -45,6 +50,10 @@
- 			reg = <0x1>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&ipq9574_s1>;
- 		};
- 
- 		CPU2: cpu@2 {
-@@ -53,6 +62,10 @@
- 			reg = <0x2>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&ipq9574_s1>;
- 		};
- 
- 		CPU3: cpu@3 {
-@@ -61,6 +74,10 @@
- 			reg = <0x3>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
-+			clock-names = "cpu";
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&ipq9574_s1>;
- 		};
- 
- 		L2_0: l2-cache {
-@@ -82,6 +99,47 @@
- 		reg = <0x0 0x40000000 0x0 0x0>;
- 	};
- 
-+	cpu_opp_table: opp-table-cpu {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-936000000 {
-+			opp-hz = /bits/ 64 <936000000>;
-+			opp-microvolt = <725000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1104000000 {
-+			opp-hz = /bits/ 64 <1104000000>;
-+			opp-microvolt = <787500>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1416000000 {
-+			opp-hz = /bits/ 64 <1416000000>;
-+			opp-microvolt = <862500>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1488000000 {
-+			opp-hz = /bits/ 64 <1488000000>;
-+			opp-microvolt = <925000>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1800000000 {
-+			opp-hz = /bits/ 64 <1800000000>;
-+			opp-microvolt = <987500>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-2208000000 {
-+			opp-hz = /bits/ 64 <2208000000>;
-+			opp-microvolt = <1062500>;
-+			clock-latency-ns = <200000>;
-+		};
-+	};
-+
- 	pmu {
- 		compatible = "arm,cortex-a73-pmu";
- 		interrupts = <GIC_PPI 7 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
--- 
-2.17.1
+Aye, and drop the references to DRM in the title field too (and add the
+vendor name?).
 
+>=20
+> ...besides, I don't think that this patch even belongs to this series? :-)
+> Spoiler alert! :-)
+
+Well, I do not know what this means - but if it is being respun as part
+of some other work, a description field should be added to the binding.
+
+Cheers,
+Conor.
+
+
+--DPep3TX9ZmccIKnm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGUOxAAKCRB4tDGHoIJi
+0tq/AQCEx0ykFfDTB4Fn6jIhxnkBk2YlIWinWZykIWz+PlyIaQD7B+GkFiVdN1GH
+F6vvIFXtMcll02nyunl0Xx5gYXvbzAQ=
+=+2H9
+-----END PGP SIGNATURE-----
+
+--DPep3TX9ZmccIKnm--
