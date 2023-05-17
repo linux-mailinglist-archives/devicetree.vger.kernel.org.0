@@ -2,60 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75794706AE1
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:17:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0CD5706AFB
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 16:22:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231582AbjEQORT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 10:17:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42980 "EHLO
+        id S230527AbjEQOWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 10:22:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231953AbjEQORP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:17:15 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34AABE5C
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:17:09 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1pzHxX-0005eR-EI; Wed, 17 May 2023 16:16:55 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 4E94F1C72FC;
-        Wed, 17 May 2023 14:16:53 +0000 (UTC)
-Date:   Wed, 17 May 2023 16:16:52 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Lee Jones <lee@kernel.org>
-Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        linux-kernel@vger.kernel.org,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        michael@amarulasolutions.com,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-can@vger.kernel.org, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: stm32f7: add binding definition
- for CAN3
-Message-ID: <20230517-corset-pelvis-5b0c41f519c9-mkl@pengutronix.de>
-References: <20230423172528.1398158-1-dario.binacchi@amarulasolutions.com>
- <20230423172528.1398158-2-dario.binacchi@amarulasolutions.com>
- <20230424090229.GB8035@google.com>
+        with ESMTP id S230120AbjEQOWC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 10:22:02 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A2D940E5
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:22:01 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-510d967249aso717207a12.1
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 07:22:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684333320; x=1686925320;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ONuJY2KtI2KHJtsYCPsFhw7heZvdRq+s7WoctleT5QQ=;
+        b=mxoDAeCr+NxZwAyQdXIKhSX/7OYByY9p0AlLZp6EEQ/WLcZBbQjkLeIx1CW0kMhhd2
+         i5OeoqfV9vTiuN0Y6w4Ie1eGulLIO3uu8Cl/66c9O7Yi8VOfRty/V50nVSZSBjFG8I2b
+         nCSOgHMax5X6f7Gx8tQgmhFEvIDVzOUtfh2CdMXJk3oNZFrNPVGNWrIYO2dDeuv2TG79
+         XZjW76uj/jCOBLyeLqSqi+XLg8TNGa0Sm1mBoRR/kLMJdJqqBJRt5hhCg+8Wt9zqzppV
+         ai/0ait6TEoBeVPYcldyeTntoxu4a6oC9HEVbu2AWHmZojpQkf1I1DxY8ZjyQ0jcV1p7
+         aqcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684333320; x=1686925320;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ONuJY2KtI2KHJtsYCPsFhw7heZvdRq+s7WoctleT5QQ=;
+        b=TggJGyLRo1HRvt/pRvDIshdpi1yWybihn+FBrap5TZnppegUtLScnOP91PzLXX5PrF
+         yvAZUiM4XmkzH9kQaooMWxlHOlD3vRtZt8nWvO3zFCu7Qu9abaI6vpf7qjayiW+40zts
+         xteZBq/Ju9HP2qbT9hsUCtVyGHm3ASfvZL3hQcajxhdUP2UH6ThXqU7wM09q3104wwRV
+         dAWRNQpoWN4jAAjEnO94c4zJoblAM/380BFiJjEGmU4Avmj/gAbov1JqWiIT5zoO1XUT
+         XTgiWKjK1kJaweTF+2w0NHziKgAU6DbC6v/m9XPdq+4JGH//qxO71LLTjbj7KiPCmUhh
+         NSLQ==
+X-Gm-Message-State: AC+VfDw6ZFTTjCEj/+nzGJ3FXpBQF9yW5tX9cNPQJvUicdfjv0zngXdg
+        Xy2tBPmlsW+AvHSsf9umdQUn9w==
+X-Google-Smtp-Source: ACHHUZ5OJ/YLytKU3bCRqMPBudelHZ3QHoMBNuG0N9S8Ng5wRUmLHpOMp0yEFnGPVTQTRkijdezw5Q==
+X-Received: by 2002:a17:907:c1e:b0:94f:250b:2536 with SMTP id ga30-20020a1709070c1e00b0094f250b2536mr39106884ejc.28.1684333319732;
+        Wed, 17 May 2023 07:21:59 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:c9ff:4c84:dd21:568d? ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
+        by smtp.gmail.com with ESMTPSA id ks16-20020a170906f85000b00947740a4373sm12136992ejb.81.2023.05.17.07.21.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 May 2023 07:21:59 -0700 (PDT)
+Message-ID: <83f484ff-f170-6f32-f4b4-9743eb6d0b4c@linaro.org>
+Date:   Wed, 17 May 2023 16:21:58 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="q5imvd4u3okupx2w"
-Content-Disposition: inline
-In-Reply-To: <20230424090229.GB8035@google.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v5 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc: convert
+ to yaml
+Content-Language: en-US
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor.dooley@microchip.com,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230517094119.2894220-1-claudiu.beznea@microchip.com>
+ <20230517094119.2894220-3-claudiu.beznea@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230517094119.2894220-3-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,67 +79,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 17/05/2023 11:41, Claudiu Beznea wrote:
+> Convert Atmel PMC documentation to yaml. Along with it clock names
+> were adapted according to the current available device trees as
+> different controller versions accept different clock (some of them
+> have 3 clocks as input, some has 2 clocks as inputs and some with 2
+> input clocks uses different clock names).
 
---q5imvd4u3okupx2w
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for your patch. There is something to discuss/improve.
 
-Hey Lee Jones,
 
-On 24.04.2023 10:02:29, Lee Jones wrote:
-> On Sun, 23 Apr 2023, Dario Binacchi wrote:
->=20
-> > Add binding definition for CAN3 peripheral.
-> >=20
-> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> > ---
-> >=20
-> >  include/dt-bindings/mfd/stm32f7-rcc.h | 1 +
-> >  1 file changed, 1 insertion(+)
->=20
-> Applied, thanks
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - atmel,at91rm9200-pmc
+> +              - atmel,at91sam9260-pmc
+> +              - atmel,at91sam9g20-pmc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: slow_xtal
+> +            - const: main_xtal
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - atmel,sama5d2-pmc
+> +              - atmel,sama5d3-pmc
+> +              - atmel,sama5d4-pmc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: slow_clk
+> +            - const: main_xtal
 
-I upstreamed the v2 of this series
-(https://lore.kernel.org/all/20230427204540.3126234-1-dario.binacchi@amarul=
-asolutions.com/)
-that doesn't contain this change to net/main without noticing that the
-DT changes in that series depend on it.
+This and previous if, should be squashed. You have exactly the same then:.
 
-This broke the DT compilation of the stm32f746.dtsi in the net/main
-tree. I don't see the stm32f7-rcc.h changes in linus/master so I'm
-afraid this will break mainline too :/
 
-What are the possible solutions? I see:
-1) revert the stm32f746.dtsi changes via net/main
-2) upstream the stm32f7-rcc.h changes via net/main, too
-3) upstream the stm32f7-rcc.h changes via you tree, so that it hits
-   mainline in the v6.4 release cycle.
 
-I'm in favor of solution number 1. Thoughts?
+Best regards,
+Krzysztof
 
-Sorry for the mess,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---q5imvd4u3okupx2w
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEyBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRk4dAACgkQvlAcSiqK
-BOikxAf2M/Ykg/MJoF/7udP97hi5VrUGxB6DSWdGY2T6kl8FVmJbHgx+vib1h2X2
-/sj75GpkMhGNwdyysYP0KSFtzVnvI5bt/YHDwT/JnbljFw6xETEOllILKQbw5tat
-29kjQUDmlVwzC8+L3itlu//IEu0NpQzNDPc+H5sxxlqVOIm8//kp8EUAjlWnD4LN
-1fVKXi8UgK9paGixIiKbWYdvdLoYR5PcJFYFvWUEZEl0A7VtL0lXvZqdrnCo8ol5
-Iza8FIAN6dBUlxAIzw7u96gg7r4jo9Q+IjtVXbr4DrAQyA4eJ638VJKOU5fiHVzE
-qdyGlnD8b0opJO3QJPclwaQl3g/Q
-=epl8
------END PGP SIGNATURE-----
-
---q5imvd4u3okupx2w--
