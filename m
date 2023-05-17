@@ -2,118 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 456337061B9
-	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 09:52:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 198F67061C4
+	for <lists+devicetree@lfdr.de>; Wed, 17 May 2023 09:53:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbjEQHwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 03:52:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48358 "EHLO
+        id S230273AbjEQHxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 03:53:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbjEQHwP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 03:52:15 -0400
+        with ESMTP id S230313AbjEQHxR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 03:53:17 -0400
 Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8162F3A9E
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 00:52:12 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50be17a1eceso742787a12.2
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 00:52:12 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE9EC3A9D
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 00:53:14 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50bc5197d33so806471a12.1
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 00:53:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684309931; x=1686901931;
+        d=linaro.org; s=google; t=1684309993; x=1686901993;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xywzcWMXJ6fVrOF3nPW/4PclWe2qi/smTN8YvoKAJA4=;
-        b=vy0Jt/I5fwN4GLzB1zg7ceDB0CYpZf4by+TUQYDbTHA8u0/GXEkYvjcjaJAkIFCU5G
-         JeZuXb883bGD9ANX0YCo27fk/+xDBhlrMM2VygYWmuJQQS1I0V1InPdAL0rmtmPDnBe7
-         KR1K5fun6mO/82newmdgTHQbnO1bpPspnPpKAOzdDqJ3lgEgfy/U3cHisjUt6dRSuXku
-         imYenkL8uiaUiYN09QBQL4lRXQGZAE+996E1s0B5txdxX+77EWcwj39mK5m5FftARYVn
-         g2Qf4BlXO7NAh9IlbnqUUa+g3kbdj6rGmfPaPnOGVsNS6i5xjW4Izj4B/DqTpFiWVMn0
-         3Lsg==
+        bh=YxZmzXZkXDBaGgGWBd0FKqOvFO0QoVnqw9tUxsTvOAs=;
+        b=ooHuR6MkMk7X91Ce8AshfMTwcLvBEooZNPRz3QYxhe86Lp+rfo7jPEybaYeF/l7T4N
+         5ErDRsYbYm5CjMPC/m0Y/2bg2dJNQbbqhZXowFei6t0G3t9K+2xV9n6pXUfRgkyxtLLq
+         jRpSstSiT8ri3BHemZBHSL1/h+eKYYB+CeWORnv7n/CgBZR30X1e9vrZ1J3oIV2cSMTt
+         b+xetZhXjhV31DMdQs/e+IIgITXchKJbNgD6UcT/xMKaiH8100mbf6dAa+tFeUg4heSt
+         Zi94RLTwwdUtzjTcTyNYiTE+ZnZVFkaTjl/mRN6tlEtdyPiFmRl6X9B2tLAWUEJI4OI4
+         jA1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684309931; x=1686901931;
+        d=1e100.net; s=20221208; t=1684309993; x=1686901993;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xywzcWMXJ6fVrOF3nPW/4PclWe2qi/smTN8YvoKAJA4=;
-        b=RpUQGywRj75rFW38IrDfAbCQnnEx0kHQF6TlGNNpQ7T1FnjSP+SVaM1umx9DE2vH7C
-         mgO4imz+4AZkngSCUYMTiQe/k6q2nSFwBYdI3gan7nBvI/JKK2yMsvPd6nvNCy8l7irI
-         yAlCelCVOXIEdDa1Vvkzrkgped9J0CBptjxBYn4/beU0JKsO+dXvyxhVc31riGz0dunH
-         6wBDmqAAy3wdtn9f3r7lnpuWcSiufLfMheSYVNJhnvWAj0q0HnT4pgLqCzmsquNEGXqm
-         Osei/vCoGXGNqQ+HGzIOvMG1XbzIGFle30KGmYrwqXfw8M/7irIXE/SvgcB9ZXUq+trr
-         UhkA==
-X-Gm-Message-State: AC+VfDz+fUZtfIOsXLLcEULxeOjwifT3Bzao3KqdG7rSH/mxcZVBsJkZ
-        WwZL51QPpjeGuA9chIM1B+MYYA==
-X-Google-Smtp-Source: ACHHUZ7wuMXS45xKhuRUuJBC/7RfJyX9rNIqjM63B2vqZoVIpwAg416CLYHXF+qDfY0XgR79CPmu2w==
-X-Received: by 2002:aa7:d311:0:b0:50b:c689:8610 with SMTP id p17-20020aa7d311000000b0050bc6898610mr1394372edq.18.1684309930968;
-        Wed, 17 May 2023 00:52:10 -0700 (PDT)
+        bh=YxZmzXZkXDBaGgGWBd0FKqOvFO0QoVnqw9tUxsTvOAs=;
+        b=kWhGPjmnQHNLRfnKmIsb69ymv/FiITmoBmAvDBgtsMdmAS5FD1dXBEWPABS+jWIdc2
+         lUElBxYf1Y4b780LedIIUu+kccEHf1lGfcpdb6XGQqm6x13KXYrA/j2eC9yW1VfIt0xR
+         1iC4Y5VKmeBT0ihbh2V1t+4iZ5TjuGCfrEayBftmHb1HSYxK3Wu/gtSK9RSBKhbhTHik
+         OGLBXgzgGI8b2aZqH28aE7/WKbjRhfK6oyTamyAFaDUvkJwLdy6tydJrp8mKXZWSkeV8
+         WbrwRtgKcLE9Mm1zevnyCLvNHaq9GzeCvPM0aLllfbdVqs9wuG09xffmO1Y3js7PKDft
+         VomQ==
+X-Gm-Message-State: AC+VfDx+qClZ5SaJpw4T4+svapFa6LGjD2huCQQrAXEGMVw45bGm6A+X
+        55eTBghUZvr8vA9sFGNcRt+n7LRM9rPzG5neX/0=
+X-Google-Smtp-Source: ACHHUZ4d4FF1MqDNE/QWLvtFqwDL3H45IrtZ4O8CBJ3/OL1X7qUrMJSaS5NCwnE95sV4+LxlBVpd0Q==
+X-Received: by 2002:a17:906:7947:b0:94e:dd68:aba1 with SMTP id l7-20020a170906794700b0094edd68aba1mr36835117ejo.67.1684309993120;
+        Wed, 17 May 2023 00:53:13 -0700 (PDT)
 Received: from krzk-bin ([2a02:810d:15c0:828:c9ff:4c84:dd21:568d])
-        by smtp.gmail.com with ESMTPSA id d11-20020a05640208cb00b0050bd4b8ca8fsm8917257edz.14.2023.05.17.00.52.09
+        by smtp.gmail.com with ESMTPSA id h15-20020a1709067ccf00b0094f23480619sm12056895ejp.172.2023.05.17.00.53.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 May 2023 00:52:10 -0700 (PDT)
-Date:   Wed, 17 May 2023 09:52:08 +0200
+        Wed, 17 May 2023 00:53:12 -0700 (PDT)
+Date:   Wed, 17 May 2023 09:53:10 +0200
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     devicetree@vger.kernel.org, "Borislav Petkov (AMD)" <bp@alien8.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+To:     Andrew Davis <afd@ti.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Andy Gross <agross@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: cache: qcom,llcc: Fix SM8550 description
-Message-ID: <20230517075208.hng4howl3khourl3@krzk-bin>
-References: <20230517-topic-kailua-llcc-v1-0-d57bd860c43e@linaro.org>
- <20230517-topic-kailua-llcc-v1-1-d57bd860c43e@linaro.org>
+        Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 2/2] dt-bindings: clock: ehrpwm: Remove unneeded syscon
+ compatible
+Message-ID: <20230517075310.iduc2eisw7a5bm45@krzk-bin>
+References: <20230516184626.154892-1-afd@ti.com>
+ <20230516184626.154892-2-afd@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230517-topic-kailua-llcc-v1-1-d57bd860c43e@linaro.org>
+In-Reply-To: <20230516184626.154892-2-afd@ti.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 17 May 2023 04:18:49 +0200, Konrad Dybcio wrote:
-> SM8550 (LLCCv4.1) has 4 register regions, this was not described
-> between its addition and the restructurization that happened in
-> the commit referenced in the fixes tag.
+On Tue, 16 May 2023 13:46:26 -0500, Andrew Davis wrote:
+> This node's register space is not accessed by any other node, which
+> is the traditional use for the "syscon" hint. It looks to have been
+> added here to make use of a Linux kernel helper syscon_node_to_regmap().
+> The Linux driver now uses a more appropriate helper that does not
+> require the hint, so let's remove it from the binding.
 > 
-> Fix it.
-> 
-> Fixes: 43aa006e074c ("dt-bindings: arm: msm: Fix register regions used for LLCC banks")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Andrew Davis <afd@ti.com>
 > ---
->  Documentation/devicetree/bindings/cache/qcom,llcc.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/clock/ti,am654-ehrpwm-tbclk.yaml     | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1782401
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.example.dtb: scm-conf@100000: clock-controller@4140:compatible: ['ti,am654-ehrpwm-tbclk', 'syscon'] is too long
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.example.dtb: clock-controller@4140: compatible: ['ti,am654-ehrpwm-tbclk', 'syscon'] is too long
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/ti,am654-ehrpwm-tbclk.yaml
 
+See https://patchwork.ozlabs.org/patch/1782200
 
-system-cache-controller@25000000: reg: [[0, 620756992, 0, 8388608], [0, 629145600, 0, 2097152]] is too short
-	arch/arm64/boot/dts/qcom/sm8550-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8550-qrd.dtb
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-system-cache-controller@25000000: reg-names:0: 'llcc0_base' was expected
-	arch/arm64/boot/dts/qcom/sm8550-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8550-qrd.dtb
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-system-cache-controller@25000000: reg-names:1: 'llcc1_base' was expected
-	arch/arm64/boot/dts/qcom/sm8550-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8550-qrd.dtb
+pip3 install dtschema --upgrade
 
-system-cache-controller@25000000: reg-names: ['llcc_base', 'llcc_broadcast_base'] is too short
-	arch/arm64/boot/dts/qcom/sm8550-mtp.dtb
-	arch/arm64/boot/dts/qcom/sm8550-qrd.dtb
+Please check and re-submit.
