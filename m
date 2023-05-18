@@ -2,241 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2D54707F66
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 13:34:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D54C6707FAD
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 13:38:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231246AbjERLeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 07:34:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59132 "EHLO
+        id S231535AbjERLi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 07:38:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230526AbjERLen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 07:34:43 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73553F9
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 04:34:39 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3093eb8cd1fso1217100f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 04:34:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684409678; x=1687001678;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YkuQbiMNDwFYe9VzVh568KBO1jasckrWzr3nv18xHi8=;
-        b=h7dUTkfyI/3JOSqADmKmzX/Rf7E9LwSSKyFLmrBoKx69QYrRbf1po8Jq9/9Ef+DnDz
-         hWKq5O4LCDhgvdKJRZNXkLBhqKXD16dCYtpzZX+C4JhhLH46fA4c4PSU78Tjky6VY4XX
-         2a1jZ4f3V9kBssRguP3IRUJDl82NE1HtUH3hofoC35c+hnzKNN6OLDvoaC7ccFndi9IP
-         K8kqqTwJI70j0bQeDu9eK20gf2hf8trm2yYVPwjvqOVl0Agvf+B+JEe84NVNrSUeVUwz
-         hnBgC7NOt2z9OIQd/V7T78hC75YKNyc1QjGwZaslIcXOvfKHuhKJfOzmOzvXHp/e9VlP
-         lUJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684409678; x=1687001678;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YkuQbiMNDwFYe9VzVh568KBO1jasckrWzr3nv18xHi8=;
-        b=VIqY1RaS9pnsrfrkHfroTarOO7Uz+UvPeADP+v6a/q7xC2j0TI09ANJ2ul+r8WSOiO
-         5TqD7og/mH20LfgEXYXt5udIpk1nS+xO7dJVmmEhybn+urwVINZwVY6C1Tao2obDNFZz
-         GVIJnOWCttBto4RSy2h/NvZhBmBygV2U7+IVvkMBC1a3+icc643/c/e+6pMa2CCNiegm
-         FaELftf83T4Cdm4SptkMjxqWLAAgAmwwcfp+0sEgTlxJcXbe85jae5IGlknTGsSU7siT
-         bgN+DZzFmhLGkJx8jFnJi1anvwz3MuG/51ZrdE1lQU+bfLyydL1UN56fXfal5oO+YWpT
-         mojQ==
-X-Gm-Message-State: AC+VfDxVCzF/BnPN7Ts9hwIj/cU9rvEtvMAtoFLrdtbMlxnt/OtM82v5
-        dnvtdgI0CNhbALAd+x9tNAltvr+wuSM6bKMjxcTZvQ==
-X-Google-Smtp-Source: ACHHUZ5f+APY7SZ90OX7+4EzZCSu+EyMNN7YOUWstHMlB4zFGJP/EFaKakrHSpR21W07IdR0g/+w7flx5aBC47L/07o=
-X-Received: by 2002:a5d:6510:0:b0:309:46f5:cea7 with SMTP id
- x16-20020a5d6510000000b0030946f5cea7mr1446355wru.17.1684409677884; Thu, 18
- May 2023 04:34:37 -0700 (PDT)
+        with ESMTP id S231400AbjERLh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 07:37:57 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C94D62D55;
+        Thu, 18 May 2023 04:36:51 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.99,285,1677510000"; 
+   d="scan'208";a="163369194"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 18 May 2023 20:36:50 +0900
+Received: from localhost.localdomain (unknown [10.226.92.79])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 75DD74005B2A;
+        Thu, 18 May 2023 20:36:46 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Wolfram Sang <wsa@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: [PATCH v4 00/11] Add Renesas PMIC RAA215300 and built-in RTC support
+Date:   Thu, 18 May 2023 12:36:32 +0100
+Message-Id: <20230518113643.420806-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <1684409015-25196-1-git-send-email-quic_rohiagar@quicinc.com> <1684409015-25196-2-git-send-email-quic_rohiagar@quicinc.com>
-In-Reply-To: <1684409015-25196-2-git-send-email-quic_rohiagar@quicinc.com>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Thu, 18 May 2023 17:04:26 +0530
-Message-ID: <CAH=2NtwTP35iu+7AhKHMQdxw+UCV_Rj-SbO-OGhsPfgRpK6=cg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add SDX75 pinctrl
- devicetree compatible
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        richardcochran@gmail.com, manivannan.sadhasivam@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.0 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 18 May 2023 at 16:53, Rohit Agarwal <quic_rohiagar@quicinc.com> wrote:
->
-> Add device tree binding Documentation details for Qualcomm SDX75
-> pinctrl driver.
->
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../bindings/pinctrl/qcom,sdx75-tlmm.yaml          | 137 +++++++++++++++++++++
->  1 file changed, 137 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml
->
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml
-> new file mode 100644
-> index 0000000..7cb96aa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml
-> @@ -0,0 +1,137 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,sdx75-tlmm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. SDX75 TLMM block
-> +
-> +maintainers:
-> +  - Rohit Agarwal <quic_rohiagar@quicinc.com>
-> +
-> +description:
-> +  Top Level Mode Multiplexer pin controller in Qualcomm SDX75 SoC.
-> +
-> +allOf:
-> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sdx75-tlmm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts: true
-> +  interrupt-controller: true
-> +  "#interrupt-cells": true
-> +  gpio-controller: true
-> +
-> +  gpio-reserved-ranges:
-> +    minItems: 1
-> +    maxItems: 67
-> +
-> +  gpio-line-names:
-> +    maxItems: 133
-> +
-> +  "#gpio-cells": true
-> +  gpio-ranges: true
-> +  wakeup-parent: true
-> +
-> +patternProperties:
-> +  "-state$":
-> +    oneOf:
-> +      - $ref: "#/$defs/qcom-sdx75-tlmm-state"
-> +      - patternProperties:
-> +          "-pins$":
-> +            $ref: "#/$defs/qcom-sdx75-tlmm-state"
-> +        additionalProperties: false
-> +
-> +$defs:
-> +  qcom-sdx75-tlmm-state:
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this
-> +          subnode.
-> +        items:
-> +          oneOf:
-> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-2][0-9]|13[0-2])$"
-> +            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc1_rclk, sdc2_clk, sdc2_cmd, sdc2_data ]
-> +        minItems: 1
-> +        maxItems: 36
-> +
-> +      function:
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins.
-> +        enum: [ adsp_ext, atest_char, audio_ref_clk, bimc_dte, char_exec, coex_uart2,
-> +                coex_uart, cri_trng, cri_trng0, cri_trng1, dbg_out_clk, ddr_bist,
-> +                ddr_pxi0, ebi0_wrcdc, ebi2_a, ebi2_lcd, ebi2_lcd_te, emac0_mcg,
-> +                emac0_ptp, emac1_mcg, emac1_ptp, emac_cdc, emac_pps_in, eth0_mdc,
-> +                eth0_mdio, eth1_mdc, eth1_mdio, ext_dbg, gcc_125_clk, gcc_gp1_clk,
-> +                gcc_gp2_clk, gcc_gp3_clk, gcc_plltest, gpio, i2s_mclk, jitter_bist,
-> +                ldo_en, ldo_update, m_voc, mgpi_clk, native_char, native_tsens,
-> +                native_tsense, nav_dr_sync, nav_gpio, pa_indicator, pci_e,
-> +                pcie0_clkreq_n, pcie1_clkreq_n, pcie2_clkreq_n, pll_bist_sync,
-> +                pll_clk_aux, pll_ref_clk, pri_mi2s, prng_rosc, qdss_cti, qdss_gpio,
-> +                qlink0_b_en, qlink0_b_req, qlink0_l_en, qlink0_l_req, qlink0_wmss,
-> +                qlink1_l_en, qlink1_l_req, qlink1_wmss, qup_se0, qup_se1_l2_mira,
-> +                qup_se1_l2_mirb, qup_se1_l3_mira, qup_se1_l3_mirb, qup_se2, qup_se3,
-> +                qup_se4, qup_se5, qup_se6, qup_se7, qup_se8, rgmii_rx_ctl, rgmii_rxc,
-> +                rgmii_rxd, rgmii_tx_ctl, rgmii_txc, rgmii_txd, sd_card, sdc1_tb,
-> +                sdc2_tb_trig, sec_mi2s, sgmii_phy_intr0_n, sgmii_phy_intr1_n,
-> +                spmi_coex, spmi_vgi, tgu_ch0_trigout, tmess_prng0, tmess_prng1,
-> +                tmess_prng2, tmess_prng3, tri_mi2s, uim1_clk, uim1_data, uim1_present,
-> +                uim1_reset, uim2_clk, uim2_data, uim2_present, uim2_reset,
-> +                usb2phy_ac_en, vsense_trigger_mirnat]
-> +
-> +    required:
-> +      - pins
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    tlmm: pinctrl@f100000 {
-> +        compatible = "qcom,sdx75-tlmm";
-> +        reg = <0x0f100000 0x300000>;
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +        gpio-ranges = <&tlmm 0 0 133>;
-> +        interrupt-controller;
-> +        #interrupt-cells = <2>;
-> +        interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +        gpio-wo-state {
-> +            pins = "gpio1";
-> +            function = "gpio";
-> +        };
-> +
-> +        uart-w-state {
-> +            rx-pins {
-> +                pins = "gpio12";
-> +                function = "qup_se1_l2_mira";
-> +                bias-disable;
-> +            };
-> +
-> +            tx-pins {
-> +                pins = "gpio13";
-> +                function = "qup_se1_l3_mira";
-> +                bias-disable;
-> +            };
-> +        };
-> +    };
-> +...
-> --
-> 2.7.4
+This patch series aims to add support for Renesas PMIC RAA215300 and
+built-in RTC found on this PMIC device.
 
-While at it, please also send a separate patch to add pinctrl yaml
-file entries in MAINTAINERS, which currently contains:
+The details of PMIC can be found here[1].
 
-F:    Documentation/devicetree/bindings/pinctrl/qcom,*.txt
+Renesas PMIC RAA215300 exposes two separate i2c devices, one for the main
+device and another for rtc device.
 
-without which $ ./scripts/get_maintainer.pl would not indicate correct
-results for your yaml dt-binding addition.
+Enhance i2c_new_ancillary_device() to instantiate a real device.
+(eg: Instantiate rtc device from PMIC driver)
 
-Thanks,
-Bhupesh
+The built-in RTC found on PMIC RAA215300 is the same as ISL1208.
+However, the external oscillator bit is inverted on PMIC version
+0x11. The PMIC driver detects PMIC version and instantiate appropriate
+RTC device.
+
+[1]
+https://www.renesas.com/in/en/products/power-power-management/multi-channel-power-management-ics-pmics/ssdsoc-power-management-ics-pmic-and-pmus/raa215300-high-performance-9-channel-pmic-supporting-ddr-memory-built-charger-and-rtc
+
+Ref:
+ https://patchwork.kernel.org/project/linux-renesas-soc/patch/20230505091720.115675-1-biju.das.jz@bp.renesas.com/
+ https://patchwork.kernel.org/project/linux-renesas-soc/patch/20230505172530.357455-5-biju.das.jz@bp.renesas.com/
+
+v3->v4:
+ * Dropped Rb tag from Geert for patch#1 as there are new changes.
+ * Introduced __i2c_new_dummy_device() to share the code between
+   i2c_new_dummy_device and i2c_new_ancillary_device().
+ * Introduced __i2c_new_client_device() to pass parent dev
+   parameter, so that the ancillary device can assign its parent during
+   creation.
+ * Added minItems to interrupt-names in binding patch.
+ * Added interrupt-names in conditional schema check.
+ * Documented clock and clock-names properties.
+ * Dropped unused name variable from struct isl1208_config.
+ * Make similar I2C and DT-based matching.
+ * Drop enum isl1208_id and split the array isl1208_configs[].
+ * Introduced isl1208_set_xtoscb() to set XTOSCB bit.
+ * Added support for internal oscillator enable/disable.
+ * Moved PMIC bindings from mfd->regulator.
+ * Dropped minItems from reg.
+ * Dropped renesas,rtc-enabled property and instead used clock-names property
+   to find RTC is enabled or not.
+ * Added reg-names in required property.
+ * Updated the example.
+ * Moved from mfd->regulator as it doesn't use MFD APIs
+ * Dropped handling "renesas,rtc-enabled" property and instead used
+   clock-names to determine RTC is enabled or not and then instantiating
+   RTC device.
+ * Added clock nodes.
+v2->v3:
+ * Enhanced i2c_new_ancillary_device() to instantiate a real ancillary_device().
+ * RTC device is instantiated by PMIC driver and dropped isl1208_probe_helper().
+ * Added "TYPE_RAA215300_RTC_A0" to handle inverted oscillator bit case.
+ * Added more detailed description for renesas,rtc-enabled property.
+ * Added support for handling "renesas,rtc-enabled" property.
+ * Based on PMIC version, it instantiates rtc device by calling i2c_new_
+   ancillary_device().
+ * Updated the logs.
+RFC->v2:
+ * Dropped the cross-links from bindings and used a single compatible
+   with separate i2c addresses for pmic main and rtc device.
+ * Dropped patch#4 and split patch#3 from this series and send as
+   separate patch to ML [2].
+ * Added RTC platform driver and mfd cell entry to the PMIC driver.RTC
+   platform driver creates rtc device by using i2c_new_ancillary_device()
+   and register the rtc device by calling the helper function provided
+   by rtc-isl2108 driver.
+ * Updated reg property in bindings.
+ * Added optional reg-names, interrupts and renesas,rtc-enabled
+   properties.
+ * Fixed the node name in the binding example
+ * Dropped the cross link property renesas,raa215300-rtc.
+ * Updated the binding example
+ * Dropped MODULE_SOFTDEP from the driver as it is added in RTC platform
+   driver.
+ * Dropped compatible "renesas,raa215300-isl1208" and "renesas,raa215300-pmic" property.
+ * Updated the comment polarity->bit for External Oscillator.
+ * Added raa215300_rtc_probe_helper() for registering raa215300_rtc device and
+   added the helper function isl1208_probe_helper() to share the code.
+ * Updated pmic device node on the SoM dtsi based on the bindings.
+
+Logs:
+[   15.447305] rtc-isl1208 3-006f: registered as rtc0
+[   15.479493] rtc-isl1208 3-006f: setting system clock to 2023-04-27T19:31:02 UTC (1682623862)
+
+root@smarc-rzv2l:~# hwclock -r
+2023-04-27 19:33:05.499001+00:00
+root@smarc-rzv2l:~# hwclock -r
+2023-04-27 19:33:06.936688+00:00
+root@smarc-rzv2l:~#
+
+Biju Das (11):
+  i2c: Enhance i2c_new_ancillary_device API
+  dt-bindings: rtc: isl1208: Convert to json-schema
+  dt-bindings: rtc: isil,isl1208: Document clock and clock-names
+    properties
+  rtc: isl1208: Drop name variable
+  rtc: isl1208: Make similar I2C and DT-based matching table
+  rtc: isl1208: Drop enum isl1208_id and split isl1208_configs[]
+  rtc: isl1208: Add isl1208_set_xtoscb()
+  rtc: isl1208: Add support for the built-in RTC on the PMIC RAA215300
+  regulator: dt-bindings: Add Renesas RAA215300 PMIC bindings
+  regulator: Add Renesas PMIC RAA215300 driver
+  arm64: dts: renesas: rzg2l-smarc-som: Enable PMIC and built-in RTC
+
+ .../bindings/regulator/renesas,raa215300.yaml |  84 ++++++++++++
+ .../devicetree/bindings/rtc/isil,isl1208.txt  |  38 ------
+ .../devicetree/bindings/rtc/isil,isl1208.yaml | 102 ++++++++++++++
+ .../boot/dts/renesas/rzg2l-smarc-som.dtsi     |  18 +++
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c  |   6 +-
+ drivers/i2c/i2c-core-base.c                   |  90 ++++++++-----
+ drivers/media/i2c/adv748x/adv748x-core.c      |   2 +-
+ drivers/media/i2c/adv7604.c                   |   3 +-
+ drivers/regulator/Kconfig                     |   7 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/raa215300.c                 | 118 +++++++++++++++++
+ drivers/rtc/rtc-isl1208.c                     | 125 +++++++++++++-----
+ include/linux/i2c.h                           |   3 +-
+ 13 files changed, 491 insertions(+), 106 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/renesas,raa215300.yaml
+ delete mode 100644 Documentation/devicetree/bindings/rtc/isil,isl1208.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
+ create mode 100644 drivers/regulator/raa215300.c
+
+-- 
+2.25.1
+
