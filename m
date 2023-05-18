@@ -2,68 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC292708144
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 14:29:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86217708160
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 14:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230484AbjERM3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 08:29:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58122 "EHLO
+        id S230022AbjERMeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 08:34:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229920AbjERM3L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 08:29:11 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78CA510CF;
-        Thu, 18 May 2023 05:29:09 -0700 (PDT)
-Received: from kwepemm600004.china.huawei.com (unknown [172.30.72.55])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4QMTjJ3r0qzLppC;
-        Thu, 18 May 2023 20:26:12 +0800 (CST)
-Received: from [10.67.103.231] (10.67.103.231) by
- kwepemm600004.china.huawei.com (7.193.23.242) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 18 May 2023 20:29:05 +0800
-Message-ID: <f013d4c6-afbe-ebc8-cb2d-1a12b55cc1d4@huawei.com>
-Date:   Thu, 18 May 2023 20:29:04 +0800
+        with ESMTP id S229824AbjERMea (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 08:34:30 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAFC2AA;
+        Thu, 18 May 2023 05:34:29 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34I9jHZ7009941;
+        Thu, 18 May 2023 12:34:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=RKqTvj5Rjz5J/uXlekULcFzx0PDAaPn0J5DcQEz+clA=;
+ b=ft3f1KEC4pf042KQH2YZs9rAmILbeMvsHokCJNhc49OGruzqVgbZOdJcTcuMMkBNK63w
+ D61iO0Al++3xgtpYFjAzPW/Mk+rknuxgjI89ksVKoxZNtG370XB9AqJW6kr7CMq9T7wj
+ vOscId/9stzcvCvoSauvjvt6nhwK72QsAM4IMY/QVrWzEHYGmR3hdqQRhuh8TPhpGeBS
+ /UL0ANTVIRnwjk3oJy+py+xE6q5JU/ri3RcgkHpM5qr3pj28QAfmVUnUpKPd08yhFDoa
+ 4l0mrJEVZFOQCUE0kG0AyXo5coEFtkusWUp9OaaVmY3crzNt2Ali7tB0vjT9+AmLe6kK nw== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qned30qam-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 18 May 2023 12:34:20 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34ICYJ8Z024801
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 18 May 2023 12:34:19 GMT
+Received: from [10.216.51.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 18 May
+ 2023 05:34:14 -0700
+Message-ID: <55586754-9de9-679c-f8cd-1d1bd0f84d77@quicinc.com>
+Date:   Thu, 18 May 2023 18:04:09 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH] soc: hisilicon: Support HCCS driver on Kunpeng SoC
-To:     Sudeep Holla <sudeep.holla@arm.com>
-CC:     Arnd Bergmann <arnd@arndb.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <soc@kernel.org>,
-        <wanghuiqiang@huawei.com>, <tanxiaofei@huawei.com>,
-        <liuyonglong@huawei.com>, <huangdaode@huawei.com>,
-        <linux-acpi@vger.kernel.org>, Len Brown <lenb@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230515130807.pdvx7bxwjkfdsmsr@bogus>
- <aa5b1919-74c6-1f97-78af-ab5f0904c3ce@huawei.com>
- <20230516122931.il4ai7fyxdo5gsff@bogus>
- <f0733521-2557-fdaf-e59b-b10d515c487c@huawei.com>
- <20230516143530.venhj4gax6stinah@bogus>
- <a98e3620-57da-000e-f5ee-2c2e47e97906@huawei.com>
- <20230517093033.4jvwjxuoeic46a24@bogus>
- <5ca49494-5a0c-4dc8-9cf5-fc4bc3b8e1b2@huawei.com>
- <20230517131614.cwi2fcj2cngaq7dm@bogus>
- <aec13381-e9be-4f3d-1834-52f32f9f8418@huawei.com>
- <20230518083841.nqmjvqqxnea6qrbe@bogus>
-From:   "lihuisong (C)" <lihuisong@huawei.com>
-In-Reply-To: <20230518083841.nqmjvqqxnea6qrbe@bogus>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH V2 3/3] arm64: dts: qcom: ipq5332: add few more reserved
+ memory region
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+CC:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230518082934.24129-1-quic_kathirav@quicinc.com>
+ <20230518082934.24129-4-quic_kathirav@quicinc.com>
+ <CAH=2Ntz2MxM1rNeTULTWAotXWouEOj+uNHaWCjzW+ZMNZiT2hg@mail.gmail.com>
+Content-Language: en-US
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <CAH=2Ntz2MxM1rNeTULTWAotXWouEOj+uNHaWCjzW+ZMNZiT2hg@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.67.103.231]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- kwepemm600004.china.huawei.com (7.193.23.242)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: E8WHlzviNGxCzi2w2f9sgTzyRQpvRVSW
+X-Proofpoint-GUID: E8WHlzviNGxCzi2w2f9sgTzyRQpvRVSW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-18_09,2023-05-17_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 malwarescore=0 suspectscore=0 bulkscore=0 phishscore=0
+ mlxlogscore=734 priorityscore=1501 clxscore=1011 mlxscore=0 spamscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305180099
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,145 +85,95 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-在 2023/5/18 16:38, Sudeep Holla 写道:
-> On Thu, May 18, 2023 at 04:24:36PM +0800, lihuisong (C) wrote:
->> 在 2023/5/17 21:16, Sudeep Holla 写道:
->>> On Wed, May 17, 2023 at 07:35:25PM +0800, lihuisong (C) wrote:
->>>> 在 2023/5/17 17:30, Sudeep Holla 写道:
->>>>> On Wed, May 17, 2023 at 03:16:12PM +0800, lihuisong (C) wrote:
->>>>>
->>>>> [...]
->>>>>
->>>>>> No. I want to use this flag to make compability between different platforms.
->>>>>> This driver only use PCC OpRegion to access to the channel if platform
->>>>>> support use PCC OpRegion.
->>>>> What do you mean by that ? It is not correct. If there is a PCC Opregion,
->>>>> then you need to make it work with drivers/acpi/acpi_pcc.c
->>>>>
->>>>> You need to have all the other details in the firmware(ASL). By looking
->>>>> at the driver, it has no connection to PCC Opregion IMO unless I am missing
->>>>> something.
->>>> Driver just needs to call these APIs, such as acpi_evaluate_integer(), if
->>>> want to use PCC OpRegion.
->>> OK, please provide examples. I am definitely lost as it doesn't match with
->>> my understanding of how PCC Opregions are/can be used.
->>>
->>>> I know that. I have tested PCC OpRegion before.
->>> Cool, examples please.
->>>
->>>> You've completely misunderstood what I said.😅
->>>>
->>> Hmm, may be but I need examples.
->> As you said below, the driver works just for PCC not PCC Opregion for now.
->> not sure if we need to discuss how PCC Opregion is used here.
-> Good let us drop the idea of using PCC Opregion with this driver for now.
+On 5/18/2023 4:55 PM, Bhupesh Sharma wrote:
+> Hi,
 >
->>>> I mean that this driver plans to support both PCC and PCC OpRegion.
->>>> For example,
->>>> Platform A: this driver use PCC (as the current implementation)
->>> Good, then just keep what it needs in the implementation nothing more
->>> until you add support for something you have described below(not that
->>> I agree, just want you to make progress here based on what is actually
->>> required today)
->> Agreed.
->>>> Platform B: this driver use PCC OpRegion (Currently, this patch does not
->>>> implement it, but it may be available in the future.)
->>> Then let us discuss that in the future, don't add unnecessary complexity
->>> for some future use case today. You can always add it when you introduce
->>> that feature or support in the future.
->> Yes. We just need to focus on the current.
->> If there are any usage problems with PCC OpRegion in the future, we can
->> discuss that later.
+> On Thu, 18 May 2023 at 14:00, Kathiravan T <quic_kathirav@quicinc.com> wrote:
+>> In IPQ SoCs, U-boot will collect the system RAM contents upon crash for
+>> the post morterm analysis. If we don't reserve the memory region used by
+>> U-boot, obviously linux will consume it and upon next boot on crash, uboot
+>> will be loaded in the same region, which will lead to loose some of the
+>> data, sometimes we may miss out critical information. So lets reserve the
+>> region used by the U-boot.
 >>
-> Agreed.
->
->> My original full scheme is as follows:
->> -->
->> dev_flags = get_device_flags();  // to know if use PCC OpRegion
->> if (USE_PCC_OPREGION_B in dev_flags is 0) {
->>      chan_id = get_pcc_chan_id();
->>      init_mbox_client();
->>      pcc_mbox_request_channel(cl, chan_id)
->> } else {
->>      /* we need to return unsupport now because of no this feature in this
->> driver. */
->>      do_nothing();
->> }
+>> Similarly SBL copies some data into the reserved region and it will be
+>> used in the crash scenario. So reserve 1MB for SBL as well.
 >>
->> void get_some_info(...) {
->>      if (USE_PCC_OPREGION_B in dev_flags is 0)
->>          pcc_cmd_send();  // use PCC to communicate with Platform
->>      else
->>          acpi_evaluate_object(); // will be used in future.
->> }
+>> While at it, drop the size padding in the smem memory region.
 >>
->> As described in the pseudocode above,
->> it is necessary to put "dev_flags" in this current driver first in case of
->> the version driver runs on the platform which just use PCC Opregion.
-> No, you can't randomly define dev_flags just to assist your driver
-> implementation. If you need it, you need to get the spec updated. We
-> will not add anything unless that happens.
->
-> Note that I don't agree with the flags at all but if you convince and get
-> them added to spec, I won't object.
-Ok，let us drop it.
->>>> Note:
->>>> This driver selects only one of them (PCC and PCC OpRegion) to communicate
->>>> with firmware on one platform.
->>> Let us keep it simple(KISS). The driver works just for PCC not PCC Opregion
->>> for now.
->> ok.
-> Good
->
->>>> We use one bit in device-flags to know which one this driver will use.
->>>>
->>> NACK again just to re-iterate my point if you have not yet accepted that
->>> fact.
->> Above is our plan. Do you still think we shouldn't add this device-flags?
->> please let me know.
-> Correct, no device flags as I see no use for it with your PCC only use case
-> for now, right ?
-Yes, it can still work well.
-As for PCC Opregion way on other platform, I think of other way.
->
->>>> I'm not sure if you can understand what I mean by saing that.
->>>> If you're not confused about this now, can you reply to my last email
->>>> again?😁
->>>>
->>> The example you had IIRC is use of System Memory Opregion to demonstrate
->>> some _DSM. That has nothing to do with PCC Opregion.
->> Yes, it doesn't matter.
->> I just want to have a way to get device-flags which contains many bits(every
->> bits can be used to as one feature for expanding), rigtht?
-> Get it through the spec, we don't allow random additions for some
-> implementations like this.
-Get it.
->>> Commit 77e2a04745ff ("ACPI: PCC: Implement OperationRegion handler for
->>> the PCC Type 3 subtype") has the example in the commit message. IIRC,
->> Your example is very useful to the user.
->>> you have even fixed couple of bugs in that driver. That is the reason
->>> why I don't understand how you think this driver and that can or must
->> Understand you, Sudeep.
->> At that time, I tested it by a simple demo driver on the platform supported
->> type3.
+>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+>> ---
+>> Changes in V2:
+>>          - Dropped the size padding in smem memory region
 >>
-> OK
+>>   arch/arm64/boot/dts/qcom/ipq5332.dtsi | 12 +++++++++++-
+>>   1 file changed, 11 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>> index 753581e60604..7e0a2a674f09 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>> @@ -114,6 +114,16 @@
+>>                  #size-cells = <2>;
+>>                  ranges;
+>>
+>> +               uboot@4a100000 {
+> Shouldn't this be bootloader agnostic? AFAIK any bootloader ported on
+> IPQ SoCs and booting linux can access the system RAM.
 >
->> This driver will support multiple platforms.
->> On some platforms, we can only use PCC with polling way.
->> And we will add PCC Opregion way for others platforms.
-> Again when you do please post the patch with the ASL snippet as I am
-> very much interested in understanding how you would make that work.
-All right.
+> I mean s/uboot/bootloader here and in the commit log.
+
+
+Ack.
+
+
 >
->> What's more, every platform just use one of them(PCC and PCC Opregion).
-> OK
+> Also which entity collects the post-crash data, is it some linux driver?
+> If yes, can you add more details about it in the commit log.
+
+
+Bootloader is the one which collects the post-crash data. Below is the flow
+
+System crash -> TZ -> Reset the system -> PBL -> SBL -> Bootloader,
+
+During system boot, crashdump magic is set. Upon system reboot cases, 
+these magic values will be cleared. In the system crash scenarios like 
+panic,
+
+the crashdump magic will not be cleared. Bootloader checks this value 
+and collects the data and then reset the system.
+
+
+Thanks,
+
+Kathiravan T.
+
+
 >
->>> work together. At least I fail to see how ATM(examples please, by that
->>> I mean ASL snippet for PCC vs PCC Opregion usage to work with this driver)
->> ok!
->> For PCC, ASL snippet is little.
->> I will add ASL snippet when this driver addes PCC Opregion way.
+> Thanks,
+> Bhupesh
 >
-> Sounds like a plan to make progress at-least for now.
->
+>> +                       reg = <0x0 0x4a100000 0x0 0x400000>;
+>> +                       no-map;
+>> +               };
+>> +
+>> +               sbl@4a500000 {
+>> +                       reg = <0x0 0x4a500000 0x0 0x100000>;
+>> +                       no-map;
+>> +               };
+>> +
+>>                  tz_mem: tz@4a600000 {
+>>                          reg = <0x0 0x4a600000 0x0 0x200000>;
+>>                          no-map;
+>> @@ -121,7 +131,7 @@
+>>
+>>                  smem@4a800000 {
+>>                          compatible = "qcom,smem";
+>> -                       reg = <0x0 0x4a800000 0x0 0x00100000>;
+>> +                       reg = <0x0 0x4a800000 0x0 0x100000>;
+>>                          no-map;
+>>
+>>                          hwlocks = <&tcsr_mutex 0>;
+>> --
+>> 2.17.1
+>>
