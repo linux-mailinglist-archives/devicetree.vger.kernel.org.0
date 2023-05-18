@@ -2,112 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8468E708BED
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 00:56:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A845708BFB
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 00:59:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230141AbjERW4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 18:56:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55814 "EHLO
+        id S229502AbjERW7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 18:59:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbjERW4d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 18:56:33 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F86DE6E
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 15:56:31 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id d75a77b69052e-3f38b7ca98aso23270641cf.1
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 15:56:31 -0700 (PDT)
+        with ESMTP id S229485AbjERW7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 18:59:53 -0400
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1648103
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 15:59:52 -0700 (PDT)
+Received: by mail-qt1-x82c.google.com with SMTP id d75a77b69052e-3f38e1142d0so13574151cf.2
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 15:59:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1684450590; x=1687042590;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ERxnG4H7p/bEVfUZKXmJtwho76rZki1W/r7fZRLC0ow=;
-        b=V6WnSkZRRrD2U0ady/nVzoa9UUcQSGEuC0orAXgloOc4M27ruaXZNTffzBdOllYX/Q
-         1Iyk/kXnBMdb5+mOwYW2w5tPPhitVkCjLXnB+vgtsgwA6VCG8nblG9JSKys6byX1WMlQ
-         QiBoQggiAsnezvBAmOOto/7sjus0B80qA60Xk=
+        d=broadcom.com; s=google; t=1684450792; x=1687042792;
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xs7dLy/jkItqMYbgmRgGCVgrmRN753dxI5VawnUkM64=;
+        b=Vl4EY60vEB9I/OL5td928PvD0/NhXm6md5dtJiSnvoAMwBTgN2f12wS4TmXwvX6Ykh
+         Tg9pbrWxey9/3k7/I7NuMk1oxs1l+bJHRuHNf3RKNH1Gyb0d3hGNKRFuPAbu8kBxOHK9
+         vNsjJCihn3w7GAfSUvwwoF4TcS7AkylXP/2cI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684450590; x=1687042590;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ERxnG4H7p/bEVfUZKXmJtwho76rZki1W/r7fZRLC0ow=;
-        b=LAj/InS3LpJx9/A5nbPM3nFUg9YHdnSp2cjXtMFnVN+kW4KcjDTJjDeaQwe5yrJ6K/
-         38Tdcr0RdDRVZBM7aWgopIRcVfPGzVVSDYmcBJ7mI7QY7UzT8QNNFcF2nVaEaDVR0sdx
-         zVFTfoWaHiOXxmFoibL4aHckbPbG8gg5T4CPz29jwEyVa3hCznA9CXumuzMuvxq/H6PJ
-         1tK9UFigouRJaPMfxH3Ir2MjYM4ajx1dj2Li00wz/ISqEbVQKjkZUs51sY2A7/K8OvlD
-         RMUjb56s/bNpfbpI3S87rga1AUW+CIlPLY5xa7RpPPOVQCh46GybT6u4wNblCZ7ToUEf
-         HxKw==
-X-Gm-Message-State: AC+VfDw+ygsEjGViGwI11rq1H564V98I5hooZNQh9nEZllOcQcupzffG
-        /GoNpBWn8K1SMRjU6XnbZSchOw==
-X-Google-Smtp-Source: ACHHUZ6vb9q5wRGCmW1KdmN/F/LIE0ZsPi8Z6EUkEGEBJVuaw0qyC15XgmaEJ+LtMxEVET6Gj3qHkg==
-X-Received: by 2002:a05:622a:1d4:b0:3f5:3678:f4d8 with SMTP id t20-20020a05622a01d400b003f53678f4d8mr242683qtw.56.1684450590276;
-        Thu, 18 May 2023 15:56:30 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id i16-20020a05620a075000b0074ced3e0004sm713516qki.63.2023.05.18.15.56.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 May 2023 15:56:29 -0700 (PDT)
-Message-ID: <4adbffad-7b02-bed9-7168-cab0d9078d4b@broadcom.com>
-Date:   Thu, 18 May 2023 15:56:25 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] arm64: dts: Change pinconf controller node name to
- pinctrl
-To:     Tony Lindgren <tony@atomide.com>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
+        d=1e100.net; s=20221208; t=1684450792; x=1687042792;
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xs7dLy/jkItqMYbgmRgGCVgrmRN753dxI5VawnUkM64=;
+        b=fHgFVEwj9KOlT2J2BGqyrtRaeTtezqeFGMym4enAdIWzCBILO9qnD8OB91GZt3z3nH
+         StVx8GWdFz6Xesb58aKUCdqYOB8yCm21zU+yalwt7ZJPJYVkDApWw5SsE10N+Ml5MAqr
+         9HdD+O6OGrKAGV2aFFifCk/X2FQvrcz1PzZ3sW5yyBe8nshCxgW0218nnXO3PYA8GMH5
+         z7r5pCXRPUXdqQpjvg4L9+7OEWuWvrPqJKQnB09U4JVqBW3otnIgGzspzL6q54amldbV
+         yjBZdppZ+Uz70rAl/Putc1Ocj5YKd9xbyyO9hnVbvX7+u0kh341aTmS4T7JPkUMA3wOu
+         nBrg==
+X-Gm-Message-State: AC+VfDwjcuDfjhjQopC/P4VtjZTlozRDBK5ItFGAE6CWGSPthna6ar5q
+        0hzDAUAdDCWd7t65ip3foUr+uA==
+X-Google-Smtp-Source: ACHHUZ4F2W5g70heyrozq7QY/WlTtbw4mLJAd2SUV6ZB4FofYzvfJeAeLwQoLDCmgp6VPMLZMfPYSA==
+X-Received: by 2002:a05:622a:15ce:b0:3f5:80b:4725 with SMTP id d14-20020a05622a15ce00b003f5080b4725mr158879qty.66.1684450791804;
+        Thu, 18 May 2023 15:59:51 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id k16-20020ac81410000000b003e693d92781sm836119qtj.70.2023.05.18.15.59.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 May 2023 15:59:51 -0700 (PDT)
+From:   Florian Fainelli <florian.fainelli@broadcom.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Dinh Nguyen <dinguyen@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
-        devicetree@vger.kernel.org
-References: <20230510103816.39015-1-tony@atomide.com>
-From:   Florian Fainelli <florian.fainelli@broadcom.com>
-In-Reply-To: <20230510103816.39015-1-tony@atomide.com>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: Relicense AXI interrupts code to the GPL 2.0+ / MIT
+Date:   Thu, 18 May 2023 15:59:48 -0700
+Message-Id: <20230518225948.3044216-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230515151921.25021-2-zajec5@gmail.com>
+References: <20230515151921.25021-1-zajec5@gmail.com> <20230515151921.25021-2-zajec5@gmail.com>
+MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000019613805fbffb7d6"
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        boundary="0000000000001bdfcd05fbffc3a4"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000019613805fbffb7d6
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000001bdfcd05fbffc3a4
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 5/10/23 03:38, Tony Lindgren wrote:
-> According to the pinctrl binding pinmux and pinctrl are valid controller
-> names. Let's replace pinconf with pinctrl so we don't get new warnings
-> when pinctrl-singl yaml binding gets merged.
+From: Florian Fainelli <f.fainelli@gmail.com>
+
+On Mon, 15 May 2023 17:19:21 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Dinh Nguyen <dinguyen@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> Cc: Ray Jui <rjui@broadcom.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Scott Branden <sbranden@broadcom.com>
-> Cc: Wei Xu <xuwei5@hisilicon.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> Those entries were added by:
+> 1. Hauke in commits dec378827c4a ("ARM: BCM5301X: Add IRQs to Broadcom's
+>    bus-axi in DTS file") and 1f80de6863ca ("ARM: BCM5301X: add IRQ
+>    numbers for PCIe controller")
+> 2. Florian in the commit 2cd0c0202f13 ("ARM: dts: BCM5301X: Add SRAB
+>    interrupts")
+> 
+> Move them to the bcm-ns.dtsi which uses dual licensing. That syncs more
+> Northstar code to be based on the same licensing schema.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Cc: Hauke Mehrtens <hauke@hauke-m.de>
+> Cc: Florian Fainelli <f.fainelli@gmail.com>
+> ---
 
-Acked-by: Florian Fainelli <florian.fainelli@broadcom.com> 
-#stingray-pinctrl.dtsi
--- 
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
 Florian
 
-
---00000000000019613805fbffb7d6
+--0000000000001bdfcd05fbffc3a4
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -178,14 +172,14 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIBgDInHorT0onQBF
-wll8EowLAgarH5seZoxieiBZsvXOMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDUxODIyNTYzMFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEICQLwz9R+82f9TJ8
+T9fY89lLbWLIxutGJNTsQGX1XxmTMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDUxODIyNTk1MlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDO6BmI+5sI+mjd3ZdWoTv75wXeycST1k7u
-K4SzvTH1e64CyGQuWLXoTv6FN0jb3n7F58vq2vIUj/Jhhoj1DCq/N8dWe88hdhtLziaSRPZapphF
-GymyjZnsXL89bK1vKljlxr4u59LllFgKwafpLCGRJtj+LzDX6yRo5fDoeH9mZ2XX5ctxoD85fOEH
-pZvDLLsp7WQdyrXe2e0kXEyIJwpeh2HlTDZFUn4aL0fl+TrJKumHKZiYiabnLwkez09gVu43VmC8
-UE7XdnkZortipSNjP/Y/CxbxeiEJxz9z5BzTnT9RWLTlxI5LmehcJvNK3sVfdKaQtUfgtjE8EulD
-w5SG
---00000000000019613805fbffb7d6--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQA2PZx27b1RVWn8vreqhk2quuCaGi7B0dVQ
+eXvI5oDtAknPIyxoNRENu/dgO5yrdcMOgj/YOGNyDPG5CmTzWaQ3X5qbArlqFb8alEm9vmbS8sFt
+9EyxKjtPTFREceHNcV5ChZfGsGTHJqrCakIlIjav19O4UfcfhhK38E/gnXIjPjeKcAlG/3kNgcNh
++IsfgnrE/hRgvTDQzH0NTKeFsbdujY0x93l72bL/mioe84MxhMBijUvdjytERzaF1T3SMSZL/XKw
+Re9DTN1QbVIbllVpJTyHlp4xsbHCnz61ca4s47uQvI8R22QKikcg7Gg3Hv9CAmIjncwhOl1K8ZZe
+HskH
+--0000000000001bdfcd05fbffc3a4--
