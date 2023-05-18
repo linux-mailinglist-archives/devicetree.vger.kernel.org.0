@@ -2,77 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E62F370838B
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 16:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 337FC708393
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 16:09:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231593AbjEROG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 10:06:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43606 "EHLO
+        id S231162AbjEROJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 10:09:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231189AbjEROG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 10:06:26 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4144810D7
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 07:06:25 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3078c092056so1394749f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 07:06:25 -0700 (PDT)
+        with ESMTP id S230321AbjEROJG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 10:09:06 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E9431B5
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 07:09:05 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-95fde138693so251643666b.0
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 07:09:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684418784; x=1687010784;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=azqpCVnd/614+AfKRHDl6hN6ez5a51IoobwFr9W5qBQ=;
-        b=h+GRLvpVsV6qF+yhQyC+9b89tOnb+IO73WPsf/PENnlj/jBn9IHDnS3KG2cpxTAoSi
-         ix13lFUJ/6yah6rp5/iuHqJzworFHDCDRWlmVTJfPoIyi/b8ZQWsq7QGGwXxS3MgKR5b
-         lxVSwmnxQIbRUscKxLYp1u/pdm+ggnBOTSW6oFHFM6nnLsAoAL8a3GI8E3kjQK+xlHIo
-         eNomgcLsFD3Byhthgx2JOBp3d81/Qf2/lXHfkszJkGuHG0EovhpGJeXYXJ16T8GiKbaF
-         JTwccEgIFv27bd9bxEelXasc/qEmPjALXS/fhVMT625offvc0Gb7VwOivbAqiwudCXRu
-         7iYg==
+        d=linaro.org; s=google; t=1684418943; x=1687010943;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ynI1F9GRlorpTQ3//tjzRjm9oO2VDWxwaEiCp14cw+8=;
+        b=pAKrQJFMCFNeP6dYa2l49SPcMahh09/T5X3WvsOqY5O3KF9Wc0QwKxei3gznt/HubS
+         ZhPqq3SDSOfoL8afw7KzBD4US022YzR+LpCjw+6JgJfo5fy4L5ZXE2/g8eJ9J0ywatAe
+         phpWu2Bvp/f8O5TQC4uYNCljdFURNZMh4xc5DGDyAznBfrvnwYfZaW1qJpZn3yHmtfkH
+         lKrshxEhp4umA8e9q9wEJNwr3ky65A+rAEo0pxoSyoDEmvb7a74A4pGWnQ1iT4erfvht
+         zcwMHwMQ9Mo/Avnd4RGYSRjIfLWIBrPrnC8S12JRepFjP2mHAVv1Xo25x/AzNZglp2ul
+         RbMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684418784; x=1687010784;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=azqpCVnd/614+AfKRHDl6hN6ez5a51IoobwFr9W5qBQ=;
-        b=HD1v43p+IOFIn8fguuBtDCyil4nUIKh2c739fIaPCyZXreLJGpRstNsO0d91FRKaaU
-         h9UPqr9UU96mEigLOKarR3WH3dKJE/wWJDRX8JB8DauB21PUjAshTAc51MdPTlHn+kMA
-         DY9xb/jYcYO+g9Wq5S75fCNoLfSOeXQT1FMiJ9+67yZON+HohpFP175OD1aJI/c0AF4F
-         kC4Fp0XefjPHq0qc+9ciE+mdKyVTwggIlAMhAsx7K8mNh9r/8arYnTiS9KJX9kA324P7
-         qnCCXMh6g0X4KN1/E63eAeyhFEiasOpnUta/Z9VbDquAB0AgggBZBbCRtQlI628CH2rJ
-         iPbw==
-X-Gm-Message-State: AC+VfDyOv50bHRTSK00uDpF/S2Qb9nojZryhnpHoc4xYUjcmtrgpv7m/
-        1sIiteaC9FvYApeaf8yd56DrVQ==
-X-Google-Smtp-Source: ACHHUZ7G56jeX+RtKQ3jgdBRAl+/CNsoOO6ryL3IsYzeTnzcHLO0SRpVzbHO+rNNmTHmhy28FkvR+w==
-X-Received: by 2002:a05:6000:1245:b0:2ef:b19f:b24c with SMTP id j5-20020a056000124500b002efb19fb24cmr2059445wrx.0.1684418783660;
-        Thu, 18 May 2023 07:06:23 -0700 (PDT)
-Received: from localhost (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
-        by smtp.gmail.com with ESMTPSA id n16-20020a1c7210000000b003f19b3d89e9sm5389587wmc.33.2023.05.18.07.06.22
+        d=1e100.net; s=20221208; t=1684418944; x=1687010944;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ynI1F9GRlorpTQ3//tjzRjm9oO2VDWxwaEiCp14cw+8=;
+        b=DVgDSnXT33ka6OKiKd7Oji5ypBwTNWczjMbKxMEVd4yAmPaQcnYBV/ScRzRtWha6NB
+         BdQFdA4HRYJd36Ekn1T18M9bP8Aebe7HNfVdyEpva0b+WiG0KaRDcxSuWy+1i3Sjs/mF
+         Jta+FoNRSm5bki+EORT4lU0VgIC1EcCSwOXbixIwgIcZvmBNhqGHhDIGnf0UOExKx06P
+         lIdyUg+4L+8N40Y4D5CRPyC7nw/Ho6LnN08HIjn0guP1emYxEly6GL+lXqLMpd+HNosk
+         kfZ2TEpiaMmc33lCWlzKaF5GIz1DM2U+fXt8kotKScZMsmybdyevMmKNUEkzzSE3ckRV
+         HYAw==
+X-Gm-Message-State: AC+VfDyvJlH81OnoJD7y8uKh6MR00DE3b7LNZMbeGSmUvomQTKyv1B+P
+        wk9ykncrr0qI1qLZZgr3AfAiXg==
+X-Google-Smtp-Source: ACHHUZ7AWtaKIYmvs/UYoBsfo7y1w1zvObfFUtKx8gAePaPSKP9wKSev0O+652RoyHlDI7I/+hlO1w==
+X-Received: by 2002:a17:907:7f18:b0:96b:1606:f015 with SMTP id qf24-20020a1709077f1800b0096b1606f015mr5350697ejc.18.1684418943709;
+        Thu, 18 May 2023 07:09:03 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:7e24:6d1b:6bf:4249? ([2a02:810d:15c0:828:7e24:6d1b:6bf:4249])
+        by smtp.gmail.com with ESMTPSA id c7-20020a17090654c700b0096f4389714csm441423ejp.55.2023.05.18.07.09.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 May 2023 07:06:23 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        Thu, 18 May 2023 07:09:02 -0700 (PDT)
+Message-ID: <cd38d95f-95bd-056e-e3d0-d6c95e3fd80e@linaro.org>
+Date:   Thu, 18 May 2023 16:09:01 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add binding documentation for TI
+ Audio REFCLK
+Content-Language: en-US
+To:     Conor Dooley <conor@kernel.org>, Jai Luthra <j-luthra@ti.com>,
+        Andrew Davis <afd@ti.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230515-refclk-v1-0-5e89f01d6733@ti.com>
+ <20230515-refclk-v1-1-5e89f01d6733@ti.com>
+ <20230517-reprise-unroll-e2223cab3846@spud>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230517-reprise-unroll-e2223cab3846@spud>
 Content-Type: text/plain; charset=UTF-8
-Date:   Thu, 18 May 2023 15:06:22 +0100
-Message-Id: <CSPGMHY9BH1S.J16A0P4WUJ9V@lion>
-Cc:     <linux-arm-msm@vger.kernel.org>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <amartinz@shiftphones.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sdm845-shift-axolotl: enable
- flash LEDs
-From:   "Caleb Connolly" <caleb.connolly@linaro.org>
-To:     "Dylan Van Assche" <me@dylanvanassche.be>, <agross@kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <pavel@ucw.cz>,
-        <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <quic_fenglinw@quicinc.com>
-X-Mailer: aerc 0.15.1
-References: <20230518133113.273880-1-me@dylanvanassche.be>
- <20230518133113.273880-4-me@dylanvanassche.be>
-In-Reply-To: <20230518133113.273880-4-me@dylanvanassche.be>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,55 +85,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu May 18, 2023 at 2:31 PM BST, Dylan Van Assche wrote:
-> The SHIFT6mq (axolotl) is an SDM845-based smartphone with 2 flash LEDs.
-> One LED is white, the other one is yellow. Define both LEDs in the DTS
-> so they can be used as flash or torch and enable the flash LED
-> controller to control them in PMI8998.
->
-> Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On 17/05/2023 19:15, Conor Dooley wrote:
+> On Wed, May 17, 2023 at 01:04:05PM +0530, Jai Luthra wrote:
+>> Add DT bindings for TI's audio reference clocks (REFCLK) present on AM62
+>> SoC.
+> 
+> This seems fine to me. Perhaps Krzysztof will differ...
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+>>
+>> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+>> ---
+>>  .../bindings/clock/ti,am62-audio-refclk.yaml       | 44 ++++++++++++++++++++++
+>>  1 file changed, 44 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml b/Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml
+>> new file mode 100644
+>> index 000000000000..7c4cf7abe007
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml
+>> @@ -0,0 +1,44 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/ti,am62-audio-refclk.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: TI Audio Reference Clock
+>> +
+>> +maintainers:
+>> +  - Jai Luthra <j-luthra@ti.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - const: ti,am62-audio-refclk
+>> +      - const: syscon
 
-Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
+I just don't get why this is syscon? There are no references to it, no
+DTS change and nothing in the driver suggesting it has to be syscon
+(creating regmap for internal use does not count).
 
-// Caleb (they/them)
+Andrew,
+Is this the pattern we discussed and wanted to remove?
 
-> ---
->  .../boot/dts/qcom/sdm845-shift-axolotl.dts    | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm=
-64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> index 0ad891348e0c..1eaff964b202 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
-> @@ -554,6 +554,28 @@ led@5 {
->  	};
->  };
-> =20
-> +&pmi8998_flash {
-> +	status =3D "okay";
-> +
-> +	led-0 {
-> +		function =3D LED_FUNCTION_FLASH;
-> +		color =3D <LED_COLOR_ID_WHITE>;
-> +		led-sources =3D <1>;
-> +		led-max-microamp =3D <100000>;
-> +		flash-max-microamp =3D <1100000>;
-> +		flash-max-timeout-us =3D <1280000>;
-> +	};
-> +
-> +	led-1 {
-> +		function =3D LED_FUNCTION_FLASH;
-> +		color =3D <LED_COLOR_ID_YELLOW>;
-> +		led-sources =3D <2>;
-> +		led-max-microamp =3D <100000>;
-> +		flash-max-microamp =3D <1100000>;
-> +		flash-max-timeout-us =3D <1280000>;
-> +	};
-> +};
-> +
->  &qup_uart9_rx {
->  	drive-strength =3D <2>;
->  	bias-pull-up;
+Best regards,
+Krzysztof
 
