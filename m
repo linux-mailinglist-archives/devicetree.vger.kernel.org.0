@@ -2,236 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CC81707E5B
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 12:46:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B0C5707ECB
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 13:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230502AbjERKqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 06:46:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58448 "EHLO
+        id S230329AbjERLG4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 07:06:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230036AbjERKqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 06:46:03 -0400
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2041.outbound.protection.outlook.com [40.107.220.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D90410D8;
-        Thu, 18 May 2023 03:46:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ns9SK9wL30wTOCqtYqSkspI43Zt3BD8EmBGTJd3YKsCzNFgBSyeSjJ9Wrt6upy3ng4Qk6DtKykIA0243lUGM3QNwSHABSLl+PhkiHWlYEt/hmm4WO9Oj3Vcme9jOuYbFWQv/jWPW8x1bqKj3PYYFnwYccmG6LjfVBdNTuKSZSXFY5N6JhC1aFY/InChsRkQtkpGRWYFLN/ia9ASCCmBDaY4X3dR+wTlpD8LdA18Pzv/HVhlwbwH8pZBFvtHBLUlizZkZGDjFi+8zKigW0D9FjPoSQY88koQ2UmKlcICpM4ZedtA2isbI+7LapXWp979rE6w0B6QqZjgpKlhBgEF0LA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zgG52cfylsN99bm4Vj4x3TNKL1ezCzLg8m+LQg9FHFU=;
- b=I79Yotpw+EdyKryhgVKYxdTCoqq4S24QH88KdbdIXH5TYZ+o1eO3vxENEkr+X7tycKtE0j6IOyVRypIjMbz13UFPnw3qcV7x+0/9MI/6oAHnV5/83XQgBAX6TttOGSdQSWPF0CP9I1COHvLDQ9CQ+XJLy7fYaNxq6bgVXWbdLGTPXTOWDiTTmKjFYSwRlb2/WAu11AsHHCcLBUuhqvuxDPxo9vghjGKBveabegUrhklfPCSi5d0MZsFVD3hCR4VCmmVYGHt4to53KblMdG343srLzr+HoEIrQAL40BY7mgWcSCXm/RzwzA0eruuER07Oe6kSNsYlqx9QUKIlZoLO2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zgG52cfylsN99bm4Vj4x3TNKL1ezCzLg8m+LQg9FHFU=;
- b=Sg2mE75qykbR9+ZgDLRZee2+yups9B70qdAw9pcUZ6kdeEPsgWjGwCIMNf4DJJf26pXCZnL5D7zf/31Ubfumi2tu8XG3QN+TYshy7S1GDZFs5hRmL/E4p83G/yjUDS022iJVA3Xa885tvTrbKvQaGAYEo5ef+rskCd1Sva55HlA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com (2603:10b6:a03:a5::28)
- by DM6PR12MB4169.namprd12.prod.outlook.com (2603:10b6:5:215::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.19; Thu, 18 May
- 2023 10:45:57 +0000
-Received: from BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::e78e:b7da:7b9a:a578]) by BYAPR12MB4758.namprd12.prod.outlook.com
- ([fe80::e78e:b7da:7b9a:a578%4]) with mapi id 15.20.6411.019; Thu, 18 May 2023
- 10:45:56 +0000
-Message-ID: <fe90f121-3e7e-7071-f654-6d77a7a8102e@amd.com>
-Date:   Thu, 18 May 2023 12:45:15 +0200
+        with ESMTP id S230318AbjERLGz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 07:06:55 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1ACE10E6
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 04:06:53 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-965c3f9af2aso280294966b.0
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 04:06:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684408012; x=1687000012;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yeJXFRF7sbuSmGTwl5/y2NHZf03i5D97leo/Mm1jmPA=;
+        b=MjfqNjnPpIzx92qYzyVccFfBlsVJ8+9ROZDV6w+QVISVgL4MVL3AdF3Mh8FrK8cnOm
+         wHW6IB6uWI3uRraA3KtEA5TtALuzerEdegGTu0l7Vl/8dN76rFSPm7KcFkPCBs9YO1Md
+         thRZobFoifwp8/WHXagA42ih2WHxzXczGWkEXITjkYC0PdXzIRqkPSNXaNxFZURmxNva
+         SUqZROTPUozLgNYTgx6yiHS8MLuGLETlulPv9WLkJxcCtcffY3PG+xxVsIJgX+Khv+1F
+         Tm/u5v1fRrrsCylilQDaaBR0QLZV4+ryfeqdOu5Un4DFcaPrICGHy5rGXSYwjbyFWTZ6
+         8Gew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684408012; x=1687000012;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yeJXFRF7sbuSmGTwl5/y2NHZf03i5D97leo/Mm1jmPA=;
+        b=Er/Jo3AXOPisiWWZEeArPYV4CLnAat2mwai70l+LRrCsCxDO3Xe/1N6n/CUls7JSUG
+         e/fSGsknEXI0tQwBAIAzpHAe/UsZBnakWCo/ak1UKLhdIhN20kRxHHqD138V9SAI1WcK
+         O+ce7wLYF5jGzOz3BMXnNkbTI2DVSg/TLY8mARiPFvhr+oegDuWdnESt8tdUNxWr/Bjp
+         3PLMofRBKy/S1c0Thxi+nzzTUPd9nprZ/uSgnw03nbOP+ClLxmF9hm8cWkNoDGJVFIY4
+         N6VMFrBR17EZTh4ITrNdqnxteYnHVOAzMKADMJD9UiBN42B11bnu6VAEZmtd/1MGsjaZ
+         rswQ==
+X-Gm-Message-State: AC+VfDxja+yZjnVBE0vhtaPhtdyJpqWQdOjbPvRIqgXnDyGCPtwWmAdw
+        ew9LADIsSm5xOIInRkKEkIx+Cg==
+X-Google-Smtp-Source: ACHHUZ77B3+5K0JTlWbBlEvuo7J0nvSd9qNSA6L2iF+zlVo6gn+LFWwwVl6YZjX6L8F1UPtYxDep4w==
+X-Received: by 2002:a17:907:31ca:b0:960:d28d:3368 with SMTP id xf10-20020a17090731ca00b00960d28d3368mr38722660ejb.60.1684408012085;
+        Thu, 18 May 2023 04:06:52 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:a2b:c408:5834:f48e? ([2a02:810d:15c0:828:a2b:c408:5834:f48e])
+        by smtp.gmail.com with ESMTPSA id pv27-20020a170907209b00b00882f9130eafsm824286ejb.26.2023.05.18.04.06.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 May 2023 04:06:51 -0700 (PDT)
+Message-ID: <24b60ca3-b6b9-662f-03c8-df1536b52bc9@linaro.org>
+Date:   Thu, 18 May 2023 13:06:49 +0200
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH] dt-bindings: xilinx: Switch xilinx.com emails to amd.com
+Subject: Re: [PATCH v3 2/4] dt-bindings: thermal: tsens: Add ipq9574
+ compatible
 Content-Language: en-US
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     piyush.mehta@amd.com, nava.kishore.manne@amd.com,
-        sai.krishna.potthuri@amd.com, shubhrajyoti.datta@amd.com,
-        vishal.sagar@amd.com, kalyani.akula@amd.com,
-        bharat.kumar.gogada@amd.com, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Damien Le Moal <dlemoal@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Jolly Shah <jolly.shah@xilinx.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Mark Brown <broonie@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Moritz Fischer <mdf@kernel.org>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Srinivas Neeli <srinivas.neeli@amd.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tom Rix <trix@redhat.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-fpga@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-ide@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-References: <f5b2bd1e78407e4128fc8f0b5874ba723e710a88.1684245058.git.michal.simek@amd.com>
- <CABb+yY2JaC8b-HFEU_WnSBSCr2edgEezXJkfMUYqjeLBA1MvYw@mail.gmail.com>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <CABb+yY2JaC8b-HFEU_WnSBSCr2edgEezXJkfMUYqjeLBA1MvYw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR10CA0099.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:803:28::28) To BYAPR12MB4758.namprd12.prod.outlook.com
- (2603:10b6:a03:a5::28)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4758:EE_|DM6PR12MB4169:EE_
-X-MS-Office365-Filtering-Correlation-Id: 139c61e8-0e11-4501-c53b-08db578d0eb4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: nNxcxbO1ZyA8v3QXLrLu1RZCAhkAg5XTPt+/NpY2K9pd0a7iedl6t0bIWl2fAKhfpCdB6kXY3vy24R32C8mvSL5HWebPqi1fpxgrhZBtQ+tw6zY8TjYVvVi+jF0o/WE/FvGm5CgRILU/uE8jteJoQy2YXfhJmhs2Jus4A97zvGzXtK/CYJX47unLpMFH3BLDq6iAi1qdVcLGLEGpQZSK6EYSIW9DfhMrnw3+IGegRBthtPNJnjlLfY8e5+XxahA4j7eGtYMfOg7EikxA4VfJriXXPzX9lDAjFtM3/BlAyt8LwQrdgdGoFMgFDRCHbXpaeDpIGBrN7KKsNodPddc2abXvW6O6lNz7HjxOjjE8LeuT34jAHrbE5k8hxpmGvASUrmR2opIJqNQqeuzzztu2tEjDSF5GbZ7K0FeXzeMhFK0T/PDJq9uxcEokNOPZL+1A+vqcKXuoo6F71xwiCGJD7Ah90VS2BOPUgfaFwDdRHq1ouGh9nK2g9jb39k4NJSLrC1XQgHPdqpSqTp0rDAOZVqR1YsPgAJcCRfUlBbENAFMwU8AX9OVgk28DoXsfVFb9pEK4hmaoy7VlJ0yM2/FGtKvaljAnZavCwjtNJ4bWffQlKUVBgbc4ZlSpO/9ZPgr+vvo5tg3YTDP3AHmR0xGNsg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4758.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(346002)(366004)(396003)(39860400002)(136003)(451199021)(26005)(6506007)(6512007)(53546011)(36756003)(2616005)(83380400001)(31696002)(86362001)(38100700002)(186003)(6486002)(54906003)(44832011)(7416002)(7406005)(7366002)(478600001)(2906002)(316002)(31686004)(8936002)(4326008)(8676002)(6916009)(41300700001)(5660300002)(66476007)(66946007)(66556008)(6666004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NThMaTdpK0VaRjd6M3BWbkNPYVJocmo2OFJZdEMvVThBazZqR0sxN2tMeUxT?=
- =?utf-8?B?dk4rcG1SV0pmeWcxMlhVdUxRdEhFUFVuNzkwVTJwRVFJb2FGd0RpamtwWjZy?=
- =?utf-8?B?Y2dBQVc4NFMybmNBMmdRWGJ6QWZ2QkRydnN2anBCcDYwQ2dRY1VhSXBBZitW?=
- =?utf-8?B?aGN4d2FGejB1eFhRWHQ3V0QrSkl6Y2hrNFU2RFFOY0NUSDFRMzcvUURBbW9R?=
- =?utf-8?B?MkN4cWkvejRQL2JINXJia2pUOG1TQVVyS2dxSVZtVnVSMTBxcFcvTXpPTjZQ?=
- =?utf-8?B?dG5MWFpUOTh5aDFnaXdDc05Pd1lVcUxaZTZOU2s1TlhhWVdLUENDZ3gwSzY0?=
- =?utf-8?B?WE5GYXEreHhLMTNYdmRtOWIrU2JqVEs3S3JTcTRBUGxmam1XRjQ3Qjh2d0JH?=
- =?utf-8?B?NlEvdW92WE9hK2pxZGpLN1lRV1g2MG94WVpCMWhrcTJGd1IzamRXc0MyakZJ?=
- =?utf-8?B?dmlGOGhOWnJ6d2JkS2tKb3JvZnM2TGpnVEJWamxqcXV4RTFhVVY2MmVGY2wx?=
- =?utf-8?B?aW1FVk0wYkFySnIxeXEwcUl5UkdsU2JGWEhIdS9ISEhvWDFETUp2dklCcWN5?=
- =?utf-8?B?Z25jeFR4YktLUUp6Rm5oUnpPSndKSERmL2xTeTArTXd3K1pkWjE1RVlpSXNt?=
- =?utf-8?B?N0M3VFZNQTZFK0Q3Skd4YkhzSlJ4OWFUK1JNbFFmSGp3WC9XTTYrdVpMQ2lm?=
- =?utf-8?B?bmV1STZzUGNwSGVjUkcwbjU3NjdGZmRhYit2ajZjdHFIZ3BkS3BQRkY5WHRs?=
- =?utf-8?B?czYvZHJJbFBrNGZ0YTJPbHlMdTR4dUViMGdaSHZaVEZ2ODBIcllIK0Z5NGM3?=
- =?utf-8?B?NG5zdytRY3JydXRlVjhvVTd0QzZId1oxazZGOWhzR3ZCQ0pSaDBrblRRNTdU?=
- =?utf-8?B?Z3dMd0M3L1NsbzVuRnpQWUo1R09lMTZ1K0tSTzdmdi9BNG1nVTFza0p0cFJ6?=
- =?utf-8?B?QWxualNYS3VzNjFIY0c4QTd2VC9wV3Urb3R6NzIzUnFIU01wc1hJai85Q1Ir?=
- =?utf-8?B?RjRWY3pmTXUzazlWdm5sTUs2TlNtVUtURVdXT3JzdC9RalhzaW00MnpVcGg3?=
- =?utf-8?B?bGt1UTA2aDdFdGhFQlNKbnRHVmcxMm5KcHRUYmR2dDNGbUVZN1cwSE9xL1BI?=
- =?utf-8?B?LzVzaFY0UkFZMjdUWG1xRkpJd2RFS1JXN2F6WkhlNHhzWU9pM1llbkFCb2lk?=
- =?utf-8?B?TW9OTG8rN0hQT1lFTU8yN1pYemQxcC8xcmd1Z01aNFg0MkpET1U3Mk5WcTVB?=
- =?utf-8?B?aFJjSnNIcE5zRndSZklUa0J5Njd1WC8yZnAwa2dBT1FvSEhCNDRyc1VBYUpl?=
- =?utf-8?B?RGJxMTRGWnRhbjArbnc3d2ovc2dlb0Jpa2tXMDB1czdSVVE5eFBFWFpnSTdt?=
- =?utf-8?B?cW5rbHJ5STErcHYwOG8zalZ1d3V4SUdwazhUazZGTjE2anIxRzZQUjJMVFA2?=
- =?utf-8?B?Ymw4N2hOdk9hSnk5aHREQ3VWWER1UlJiQ0NrSkg1QlFiOEloZXdSMi9LTnFK?=
- =?utf-8?B?U0JmeVhDRkVJbGNlVlVqNk91UzJabnZMWHZjN0U0Q1RxK0V5c1VobWtUdHZB?=
- =?utf-8?B?WDNjaldtZ1F4UVJkZXIzcVk0TW1KbGp0V0QxbklBS1pEeldxV01aUnNUWVZw?=
- =?utf-8?B?Z3RSWFRGYWlDb0k1b1JOUjlxWks1Ykd5V21xTE5zdlNCc1gzelViTldsbHlB?=
- =?utf-8?B?K3JXRXE2V2NETWd2VXgzb05ySVo5Mi8reXljSXlGVjVWRENOY2tzOE5sUjVR?=
- =?utf-8?B?M2sxVFdKa05CSkRjUnFaMlkrYjNJSDk3Z2ZuU3I1QlJLRmVvcFJlM1psRWNZ?=
- =?utf-8?B?T1pxQ3A2aGNnUHFmMytUVHd5VjRtSWF6eThMK1dFYUtkY1hPeXduNEQ3eHhy?=
- =?utf-8?B?NHN5Q0h3RXQrMGljMnlTUjUwQ0g3MGpnbmNHbjRWcllUQklsMUNJVUN1ZmZj?=
- =?utf-8?B?Q1VLOGM5aGt4eFMzbFM3YkJZdTluZ0wvYzNiTExydFZib1lzY0t3TEk1SEFY?=
- =?utf-8?B?cmR2b2VmQUErSVlIOS96TnVVM2F6em1sUXpmTFp1NlBobFI0d21MTGNxZ3Aw?=
- =?utf-8?B?K3UwV2JnbEpOWHlpd1E5MmhpVmYxWTlsSnh2RU9LM3F2cnVLbDQyQlNVcG9k?=
- =?utf-8?Q?OAEqqTVcjKJxC4XXXeR2O6Ti3?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 139c61e8-0e11-4501-c53b-08db578d0eb4
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4758.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2023 10:45:55.7579
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6uZrmYD6r6sRW89Dt84pAx+OxwD6OlCnhivy0DFHHJjHbPhyEpwOrBfXE7lpxyRz
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4169
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        amitk@kernel.org, thara.gopinath@gmail.com, rafael@kernel.org,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Praveenkumar I <quic_ipkumar@quicinc.com>
+References: <cover.1684140883.git.quic_varada@quicinc.com>
+ <37adcf5d8d545a076e8ed971a4fb6c6c2833ef3c.1684140883.git.quic_varada@quicinc.com>
+ <b7e749ff-f4f0-0e61-9aae-876db4278fbc@linaro.org>
+ <20230516120426.GA1679@varda-linux.qualcomm.com>
+ <1999753b-ceee-d66c-9a48-cbcbb8e6236e@linaro.org>
+ <20230517055726.GA3165@varda-linux.qualcomm.com>
+ <cfba78d7-e563-4544-00f3-0991b91eb1f3@linaro.org>
+ <20230518054054.GA998@varda-linux.qualcomm.com>
+ <fe1d81d2-52e6-7d2d-8d6c-ffdcbb8ccc89@linaro.org>
+ <20230518090503.GA9173@varda-linux.qualcomm.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230518090503.GA9173@varda-linux.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/17/23 16:16, Jassi Brar wrote:
-> On Tue, May 16, 2023 at 8:51 AM Michal Simek <michal.simek@amd.com> wrote:
+On 18/05/2023 11:05, Varadarajan Narayanan wrote:
+> On Thu, May 18, 2023 at 09:09:12AM +0200, Krzysztof Kozlowski wrote:
+>> On 18/05/2023 07:40, Varadarajan Narayanan wrote:
+>>> On Wed, May 17, 2023 at 09:00:49AM +0200, Krzysztof Kozlowski wrote:
+>>>> On 17/05/2023 07:57, Varadarajan Narayanan wrote:
+>>>>> Part-1 is adding the 'const' entries at the beginning i.e.
+>>>>>
+>>>>> 	+      - const: qcom,tsens-v0_1
+>>>>> 	+      - const: qcom,tsens-v1
+>>>>> 	+      - const: qcom,tsens-v2
+>>>>> 	+      - const: qcom,ipq8074-tsens
+>>>>>
+>>>>> Part-2 is changing from one valid syntax to another i.e.
+>>>>>
+>>>>> 	+        items:
+>>>>> 	+          - enum:
+>>>>> 	+              - qcom,ipq9574-tsens
+>>>>> 	+          - const: qcom,ipq8074-tsens
+>>>>>
+>>>>> Without both of the above changes, either or both of dtbs_check
+>>>>> & dt_binding_check fails. So, it is not possible to just add the
+>>>>> "valid hunk" (part-2) alone.
+>>>>
+>>>> Of course it is. All schema files work like that...
+>>>>>
+>>>>> If having both part-1 and part-2 in the same patch is not
+>>>>> acceptable, shall I split them into two patches? Please let me know.
+>>>>
+>>>> No, hunk one is not justified.
+>>>
+>>> For the other compatibles, the enum entries and const/fallback
+>>> entries are different. For the 9574 & 8074 case, we want to have
+>>> qcom,ipq8074-tsens as both enum and const/fallback entry. Hence,
+>>> if we don't have the first hunk, dtbs_check fails for 8074
+>>> related dtbs
+>>>
+>>> 	ipq8074-hk01.dtb: thermal-sensor@4a9000: compatible: 'oneOf' condition
+>>> 		['qcom,ipq8074-tsens'] is too short
 >>
->> @xilinx.com is still working but better to switch to new amd.com after
->> AMD/Xilinx acquisition.
->>
->> Signed-off-by: Michal Simek <michal.simek@amd.com>
->> ---
->>
->>   Documentation/devicetree/bindings/arm/xilinx.yaml             | 2 +-
->>   Documentation/devicetree/bindings/ata/ceva,ahci-1v84.yaml     | 2 +-
->>   .../devicetree/bindings/clock/xlnx,clocking-wizard.yaml       | 2 +-
->>   Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml  | 2 +-
->>   Documentation/devicetree/bindings/crypto/xlnx,zynqmp-aes.yaml | 4 ++--
->>   .../bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml        | 2 +-
->>   .../devicetree/bindings/fpga/xilinx-zynq-fpga-mgr.yaml        | 2 +-
->>   Documentation/devicetree/bindings/fpga/xlnx,versal-fpga.yaml  | 2 +-
->>   .../devicetree/bindings/fpga/xlnx,zynqmp-pcap-fpga.yaml       | 2 +-
->>   Documentation/devicetree/bindings/gpio/gpio-zynq.yaml         | 2 +-
->>   Documentation/devicetree/bindings/gpio/xlnx,gpio-xilinx.yaml  | 2 +-
->>   .../devicetree/bindings/gpio/xlnx,zynqmp-gpio-modepin.yaml    | 2 +-
->>   Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml     | 2 +-
->>   .../devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml  | 2 +-
->>   .../devicetree/bindings/media/xilinx/xlnx,csi2rxss.yaml       | 2 +-
->>   .../bindings/memory-controllers/snps,dw-umctl2-ddrc.yaml      | 2 +-
->>   .../bindings/memory-controllers/xlnx,zynq-ddrc-a05.yaml       | 2 +-
->>   Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml  | 2 +-
->>   .../devicetree/bindings/pinctrl/xlnx,zynq-pinctrl.yaml        | 2 +-
->>   .../devicetree/bindings/pinctrl/xlnx,zynqmp-pinctrl.yaml      | 2 +-
->>   .../devicetree/bindings/power/reset/xlnx,zynqmp-power.yaml    | 2 +-
->>   Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml    | 2 +-
->>   Documentation/devicetree/bindings/serial/cdns,uart.yaml       | 2 +-
->>   Documentation/devicetree/bindings/spi/spi-cadence.yaml        | 2 +-
->>   Documentation/devicetree/bindings/spi/spi-xilinx.yaml         | 2 +-
->>   Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml    | 2 +-
->>   Documentation/devicetree/bindings/spi/xlnx,zynq-qspi.yaml     | 2 +-
->>   Documentation/devicetree/bindings/timer/cdns,ttc.yaml         | 2 +-
->>   .../devicetree/bindings/watchdog/xlnx,xps-timebase-wdt.yaml   | 4 ++--
->>   29 files changed, 31 insertions(+), 31 deletions(-)
->>
-> .....
->> diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
->> index 374ffe64016f..aeaddbf574b0 100644
->> --- a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
->> +++ b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
->> @@ -33,7 +33,7 @@ description: |
->>                 +------------------------------------------+
->>
->>   maintainers:
->> -  - Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
->> +  - Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
->>
->>   properties:
->>     compatible:
->>
-> Acked-by: Jassi Brar <jassisinghbrar@gmail.com>
+>> Why? It is already there. Open the file and you will see that this is
+>> already covered.
 > 
-> Just curious, some developers' ids are left unchanged, and not all
-> devs have S.O.B.
+> I guess dtbs_check doesn't like the same value being a const and
+> a oneof entry.
 
-I want to go over all xilinx.com emails and move that bindings to proper person 
-if that current person is no more active.
+I don't understand.
 
-Thanks,
-Michal
+>  Have attached the file, please see if something is
+> not in order.
+
+I don't know what changed there. Please work on patches.
+
+> 
+>> If you remove it, then yes, you will see errors and the answer is: do
+>> not remove it.
+> 
+> I haven't removed it. 
+
+You did. Look:
+
+       - description: v2 of TSENS with combined interrupt
+-        enum:
+-          - qcom,ipq8074-tsens
+
+The first character in the diff (-) means removal.
+
+> For this patch, ipq8074-tsens changed from
+> being an oneof enum entry to a const entry. Probably, that is why
+> dtbs_check is giving these errors.
+
+You removed the entry which you should not have touched.
+
+> 
+>>> 	ipq8074-hk10-c2.dtb: thermal-sensor@4a9000: compatible: 'oneOf' condition
+>>> 		['qcom,ipq8074-tsens'] is too short
+>>>
+>>> 	ipq8074-hk10-c1.dtb: thermal-sensor@4a9000: compatible: 'oneOf' condition
+>>> 		['qcom,ipq8074-tsens'] is too short
+>>>
+>>> I'm not sure of the correct solution. Having the first hunk
+>>> solves the above dtbs_check errors, so went with it. I'm able to
+>>> avoid dtbs_check errors with just one entry in the first hunk.
+>>
+>> You made multiple changes in one patch which is not correct. Your goal
+>> is to add only one change - ipq9574 followed by ipq8074. Add this one.
+>> Don't touch others.
+> 
+> But that breaks dtbs_check.
+
+All other cases, hundreds of other binding files, do not have problem.
+Only this one "breaks dtbs_check". No, it does not.
+
+Whatever is broken is result of your removal of unrelated pieces.
+
+> 
+>>>  	+      - const: qcom,ipq8074-tsens
+>>>
+>>> Please let me know if there is a better way to resolve this or we
+>>> can have just the 8074 entry in the first hunk.
+>>
+>> You only need to add new item on the oneOf list:
+>>  - enum
+>>      - ipq9574
+>>  - const: ipq8074
+> 
+> The "['qcom,ipq8074-tsens'] is too short" errors were generated
+> with the above snippet only. Please see the attachment
+
+It's not true. The error you see is result because you removed something
+you should not. I did not ask you to remove anything. So repeating -
+"add new item". Adding is not "removal and adding". Adding is just "adding".
+
+Best regards,
+Krzysztof
 
