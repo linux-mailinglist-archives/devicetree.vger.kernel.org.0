@@ -2,74 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C117C708630
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 18:47:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B37B70865F
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 19:06:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbjERQrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 12:47:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38106 "EHLO
+        id S229609AbjERRGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 13:06:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjERQrR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 12:47:17 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6401CF0;
-        Thu, 18 May 2023 09:47:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1684428436; x=1715964436;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=eZIiTyret7MDus74XojVEWyZ/KiqME39bi31YIWnNnw=;
-  b=FpD284i00jMAhHPpFqJE6HWk/5e/78BvJ4mL+gXbVgSgrYJDXSI5FDtA
-   AIOVl8sw3PDusym5vDaKJWLh73qhPXK1hCg/RNJ4f8+6i+838p5NqpBRy
-   xZbQgEef6jrylsFfwOUWtE6wgDv6ngg/Ypyj+jxyje8wGo5qDGYAA4QvF
-   Ig5b5bTixORgCvpU3Fi1oyPkzye9WNzvQ7ZCvUXgopfZzFwl2pUlP/hSA
-   DGBwduNKkoLgCNRPbIGlHLxrmDB6Ii+tLsQXI2EMVVW0kiz0AkasTJ41A
-   B8cOtlBX82I3kYEOj+1wNgOJmieU5qdiNlJugn9fGdslRozDQLFmhHgsC
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="354457514"
-X-IronPort-AV: E=Sophos;i="6.00,285,1681196400"; 
-   d="scan'208";a="354457514"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 May 2023 09:47:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="735164963"
-X-IronPort-AV: E=Sophos;i="6.00,285,1681196400"; 
-   d="scan'208";a="735164963"
-Received: from nithinks-mobl1.amr.corp.intel.com (HELO [10.209.80.104]) ([10.209.80.104])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 May 2023 09:47:13 -0700
-Message-ID: <3fd73def-4765-d43c-4c2c-e0fb0e2e0516@linux.intel.com>
-Date:   Thu, 18 May 2023 11:47:12 -0500
+        with ESMTP id S229506AbjERRGc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 13:06:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F9AE121;
+        Thu, 18 May 2023 10:06:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6AAFA64557;
+        Thu, 18 May 2023 17:06:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2548DC433D2;
+        Thu, 18 May 2023 17:06:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684429590;
+        bh=XL8Q8LxpeG+xUSW+d2Fhz16+YABT67r3plx3O+Y35ag=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SYDwNwjeRfNEkfoyIRyJq3Fohsc3ZIt3WbvX+OQ++ceTWjibgZ24NbiSU4vfGEufv
+         E7/MG8tjVbYn8mfTzAqH4bsSYhCAPy4wioXysSz9c9jyKzRIwkWR4YFCfxF+QkoWHa
+         SjilsAYEF5gzcKD+jg9x90stMTD6SLJsxPxhPjJZW0StGE3IfSLuaGFwHOy8eBK4OM
+         i59muo8WKsAEN4/0QTZOrGqA5Hx1JqDnrSJpknH+axhqo4xWAcFso0ezUz0FDXuSnL
+         xP1/Z3FypEnI8MGE/wgMHsOmzfJ6SUoZ43dLzibDtQNclaBobAMq0a6Jey31YekcNb
+         7Uu1mISU27XeQ==
+Date:   Thu, 18 May 2023 18:06:24 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>, anup@brainfault.org,
+        ajones@ventanamicro.com, Paul Walmsley <paul.walmsley@sifive.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        apatel@ventanamicro.com, atishp@atishpatra.org, jrtc27@jrtc27.com,
+        rick@andestech.com, ycliang@andestech.com,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: riscv: deprecate riscv,isa
+Message-ID: <20230518-elective-mossy-1bf147f5e9b8@spud>
+References: <20230518-hammock-doornail-478e8ea8e6a7@wendy>
+ <mhng-95b99ff5-9024-4672-bb84-7599f7a05129@palmer-ri-x1c9>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.11.0
-Subject: Re: [PATCH 06/10] mfd: cs42l43: Add support for cs42l43 core driver
-Content-Language: en-US
-To:     Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     broonie@kernel.org, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, linus.walleij@linaro.org,
-        vkoul@kernel.org, lgirdwood@gmail.com,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
- <20230512122838.243002-7-ckeepax@opensource.cirrus.com>
- <73438e58-bd96-818d-1f43-5681b0d1a1de@linaro.org>
- <20230518102442.GZ68926@ediswmail.ad.cirrus.com>
- <650012a3-b455-8be5-fd6d-d0775e718e6a@linux.intel.com>
- <049c2470-536a-1b1c-9828-7acb4d483309@opensource.cirrus.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <049c2470-536a-1b1c-9828-7acb4d483309@opensource.cirrus.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="TKxZvzqyNscVPD5H"
+Content-Disposition: inline
+In-Reply-To: <mhng-95b99ff5-9024-4672-bb84-7599f7a05129@palmer-ri-x1c9>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -77,54 +63,57 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--TKxZvzqyNscVPD5H
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 5/18/23 11:15, Richard Fitzgerald wrote:
-> 
-> 
-> On 18/05/2023 16:16, Pierre-Louis Bossart wrote:
->>
->>>>> +    ret = regmap_register_patch(cs42l43->regmap, cs42l43_reva_patch,
->>>>> +                    ARRAY_SIZE(cs42l43_reva_patch));
->>>>> +    if (ret) {
->>>>> +        dev_err(cs42l43->dev, "Failed to apply register patch:
->>>>> %d\n", ret);
->>>>> +        goto err;
->>>>> +    }
->>>>> +
->>>>> +    pm_runtime_mark_last_busy(cs42l43->dev);
->>>>> +    pm_runtime_put_autosuspend(cs42l43->dev);
->>>>> +
->>>>> +    ret = devm_mfd_add_devices(cs42l43->dev, PLATFORM_DEVID_NONE,
->>>>> +                   cs42l43_devs, ARRAY_SIZE(cs42l43_devs),
->>>>
->>>> I don't why adding devices is not in probe. They use the same regmap
->>>> right? So there will be no problem in probing them from MFD probe.
->>>
->>> Well except SoundWire is a bit of a special boy, the hardware is
->>> not necessarily available in probe, the hardware is only available
->>> at some point later when the device attaches. Doing it this way all
->>> of the attaching (and various detach/attach cycles the device needs
->>> during configuration) are over by the time the child drivers bind, so
->>> they don't all need special code to handle that.
->>
->> if the devices are added in the probe, then the regmap needs to be moved
->> to cache-only and another special API would be needed to tell the MFD
->> framework to turn the regmap cache-only off.
->>
->> But if it's the same regmap, the regmap cache is handled in the
->> SoundWire update_status callback so maybe  Krzysztof's proposal does
->> work?
-> 
-> But you still can't access the hardware in probe(). So you'd have all
-> the child drivers probing but not able to talk to the hardware. The
-> child drivers would have to hook into the update_status() somehow so
-> they know when the peripheral has enumerated.
-> It's simpler to add them after the hardware has enumerated - they will
-> be able to access the hardware in their probe().
+On Thu, May 18, 2023 at 07:41:17AM -0700, Palmer Dabbelt wrote:
+> On Thu, 18 May 2023 07:06:17 PDT (-0700), Conor Dooley wrote:
+> > On Thu, May 18, 2023 at 07:13:15PM +0530, Anup Patel wrote:
+> > > On Thu, May 18, 2023 at 4:02=E2=80=AFPM Andrew Jones <ajones@ventanam=
+icro.com> wrote:
+> > > > On Thu, May 18, 2023 at 09:58:30AM +0100, Conor Dooley wrote:
 
-It depends on what you mean by 'access the hardware'. If the only
-interface is regmap and regmap is in cache-only, then the child drivers
-could "access the hardware" without anything happening until after
-regmap is no longer cache-only.
+> > > One downside of this new approach is it will increase the size of DTB.
+> > > Imaging 50 such DT properties in 46 CPU DT nodes.
+> >=20
+> > I should do a comparison between 50 extensions in riscv,isa and doing
+> > this 50 times and see what the sizes are.
+>=20
+> I'm not sure how sensitive people are to DT size (presumably it'd be DTB
+> size)?
+>=20
+> It's also not clear what we can do about it: RISC-V has lots of extension=
+s,
+> that's going to take encoding space.  Sticking with an ambiguous encoding
+> because it's smaller seems like a way to get burned in the long run.
 
-But yeah, I realize it's a long shot.
+I did actually go an look at this. I cheated a little and renamed the
+properties to "riscv,isa-ext-foo", which is about as communicative IMO
+as the longer name I currently have, but may seem more agreeable to the
+size conscious.
+I added 30 cpu nodes to mpfs.dtsi, each with 100 extensions of 6 chars
+long. With just the string, containing "rv64imafdc_zabcde_...", it was
+unreadable, but "only" took up 46k.
+I then removed the multiletter extensions from riscv,isa & switched to
+riscv,isa-base & 100 booleans. IMO it was more readable (although still
+quite bad!), but took up 62k.
+Removing all of the boolean properties, leaving me with 30 addtional harts
+with "rv64imafdc" only, was 26k.
+
+I think the generic limit for dtb files is 2 MiB? To me the size
+increase doesn't sound like a bit problem.
+
+--TKxZvzqyNscVPD5H
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGZbEAAKCRB4tDGHoIJi
+0s2UAQC3dbtneTDqOvEpuMHz7vzTT/qCO/nEAhYVxRjH0MasoQD+IWeuh0pZj7Y/
+NPtfbaq3ryBkiGdWFoAC2ls1S9xcNAo=
+=0mwD
+-----END PGP SIGNATURE-----
+
+--TKxZvzqyNscVPD5H--
