@@ -2,78 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2341B707A8A
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 09:05:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8A5C707A9B
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 09:09:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbjERHF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 03:05:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50434 "EHLO
+        id S230040AbjERHJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 03:09:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbjERHFX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 03:05:23 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C8410D8
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 00:05:22 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96aadfb19d7so313538966b.2
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 00:05:22 -0700 (PDT)
+        with ESMTP id S230043AbjERHJS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 03:09:18 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D38C21BD2
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 00:09:15 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50c8d87c775so2422884a12.3
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 00:09:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684393521; x=1686985521;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1684393754; x=1686985754;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HB3cwJV0mSmYqqN+17Ku1gQOxvoolxHz8jVfs5CGGuY=;
-        b=Br4iCjwDzrKp05ZAWSLABuiOx30EM3t05C8aD/R+b3Gt8cMco6WYrPIUrZu7MZe2LX
-         gPPDa/BT9PCYVCekVhT1YVT2G5Rg/oEL6RLHEOhg+MCKLm/NhV4KZmmdTRg1qlex2oEX
-         PjoU811j6UlBAalG1Qo6GGNx1eEJnwi/tRekUB/DrqpelPMuyI4KPx0qjt93tlO2Et7o
-         qI1j6kK4bcaRzSEaw3NVP8b+28vN74iZ1WPb29O3PbTpmj6V51IjxB93v616prV+xo8i
-         wM5SJr0FTRHp5EeLhdIv8IB2QH7OyvnRHHmxxBHQ05EspTwvh9SBrQkWU5RuxPmGSn+a
-         CxbA==
+        bh=aaDmiGsy9nFlZUj/9Pg4tvEnC4K0/WQOgXIhBgkiyU0=;
+        b=R72HReIgiYADEeYmxfpQFpCU1UTit0oYnH6DFPeGVTPKxzAYdwvbmqgv0xCa6T4nOU
+         mLblWKNsTicxJPfQq3w5ZcaJ7CGRFf2DnBU0db3+G4S38gzMmiOggM0TV9og8nJTuqXK
+         yAO/0OgfaYNgbufKucg2K4hQ+uyH5969msY/sV0QEvF+67eIcJuTDuHl8w+lAZzTCdjA
+         0ZQFsiAj+H5vp0HaUgb8eyPj3gVyz+9wYK2k+PmPA44sajiREUyA2bdmJJpOClW3POIP
+         2P0BmIvSijO19a5xgErUe6S68mH57R9+8KFOF7rMcEBRXkXl9Jd3ce/VOobYrHwAHEP3
+         ybdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684393521; x=1686985521;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1684393754; x=1686985754;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HB3cwJV0mSmYqqN+17Ku1gQOxvoolxHz8jVfs5CGGuY=;
-        b=RyIY1xeAwf/2Abv+Fir7EcNBY5ql6L/Ge2UY7ojFDTY5XiW0xAQEfj9LwkhG1u34Bw
-         DeX5ULWwJJY9ESVW70bVU8PaJgriDVvb22ezzVsCrQIksmmexW6ok4sHUPhz245GpKDK
-         TDl8r8bWMXpTTWMky8lZTdfWBOxI3y+589u8utBGmkqg+Av28iCpdA+vXnBneoZOIk67
-         fjuMu6Qy0lpsjxhoZU7DLRcw7IHUL31/3QCs/JvRLUsqKzcrWSku0cwrTxzXG39uC8oE
-         b+T/fFkPuA8gGDzzon1TBD3kpdeuPz9HQKynxjid6GPVgSn+IUwmqQBRVZ4iGoTC/SRT
-         MspA==
-X-Gm-Message-State: AC+VfDw0hn0Hl7aO09C+BH/uQVmunhh5dMdThr0aPgxCe6hw613khWkz
-        vKA/OAACcp437SgzRxpSqR7/bQ==
-X-Google-Smtp-Source: ACHHUZ6YGHm2Ye48O/6ou6X1U2dvgx77S0q7J8MRBOF4Mz4C2w69aPtohxBn0ToX9DTg5Zgy77w+HA==
-X-Received: by 2002:a17:907:6287:b0:94f:29f0:edc0 with SMTP id nd7-20020a170907628700b0094f29f0edc0mr42034234ejc.44.1684393520981;
-        Thu, 18 May 2023 00:05:20 -0700 (PDT)
+        bh=aaDmiGsy9nFlZUj/9Pg4tvEnC4K0/WQOgXIhBgkiyU0=;
+        b=OennCqoTIGWFlHSZZskXehyrEw0DlpN/yWe7lanusLaOvJofmEuB9EgRwe9mcTJSjf
+         8IdLSyZWc/ls7AfwsJgWI/LxkVWah9I92DMQu/Prpr60z9vrkmw128X594bpZofYdV3r
+         GwrMTM1tzyIQLNGLX5FVqvngifpl6Bq88YrCLG0z4NYtQ4J0RR8WAkvTdpysZKRlVn1o
+         h/E4pE3wVAAZdTnI1tsfTcRiz/xqBtnVa944bZgWgam8VRpgaQOHxFyLC2vuVpCldi6b
+         /K/+RuzwsRH4OpWBEwraft9BPPO3h1ZUznFeQnvp9bfBoI0991IijdEOXT/F6Agm1SeW
+         jUBA==
+X-Gm-Message-State: AC+VfDzrNCSGHP3X2jBfqrACztxWL+8eM/1/ONSJEeERUazSQAGhWiCn
+        jO940YLigEIF1YqRGxKter6CSg==
+X-Google-Smtp-Source: ACHHUZ5Lw12WrXqhgxKK+FvUFNZ0gO6pcYiS1IjQ6lp/KSs9CGPZregunjo7am5TsJVwvzCCZC6hJQ==
+X-Received: by 2002:a17:906:fd8c:b0:94f:3cf5:6d7f with SMTP id xa12-20020a170906fd8c00b0094f3cf56d7fmr37246503ejb.46.1684393754126;
+        Thu, 18 May 2023 00:09:14 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:a2b:c408:5834:f48e? ([2a02:810d:15c0:828:a2b:c408:5834:f48e])
-        by smtp.gmail.com with ESMTPSA id l18-20020a170906a41200b00965a52d2bf6sm567990ejz.88.2023.05.18.00.05.19
+        by smtp.gmail.com with ESMTPSA id m14-20020a170906258e00b0096f272206b3sm560992ejb.125.2023.05.18.00.09.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 May 2023 00:05:20 -0700 (PDT)
-Message-ID: <c969276f-9e29-9337-44f5-aac445e061eb@linaro.org>
-Date:   Thu, 18 May 2023 09:05:19 +0200
+        Thu, 18 May 2023 00:09:13 -0700 (PDT)
+Message-ID: <fe1d81d2-52e6-7d2d-8d6c-ffdcbb8ccc89@linaro.org>
+Date:   Thu, 18 May 2023 09:09:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v5 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc: convert
- to yaml
-To:     Claudiu.Beznea@microchip.com, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Conor.Dooley@microchip.com,
-        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230517094119.2894220-1-claudiu.beznea@microchip.com>
- <20230517094119.2894220-3-claudiu.beznea@microchip.com>
- <83f484ff-f170-6f32-f4b4-9743eb6d0b4c@linaro.org>
- <d115cd4d-2a4f-552c-692c-c69ae49fe21e@microchip.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: thermal: tsens: Add ipq9574
+ compatible
 Content-Language: en-US
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        amitk@kernel.org, thara.gopinath@gmail.com, rafael@kernel.org,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Praveenkumar I <quic_ipkumar@quicinc.com>
+References: <cover.1684140883.git.quic_varada@quicinc.com>
+ <37adcf5d8d545a076e8ed971a4fb6c6c2833ef3c.1684140883.git.quic_varada@quicinc.com>
+ <b7e749ff-f4f0-0e61-9aae-876db4278fbc@linaro.org>
+ <20230516120426.GA1679@varda-linux.qualcomm.com>
+ <1999753b-ceee-d66c-9a48-cbcbb8e6236e@linaro.org>
+ <20230517055726.GA3165@varda-linux.qualcomm.com>
+ <cfba78d7-e563-4544-00f3-0991b91eb1f3@linaro.org>
+ <20230518054054.GA998@varda-linux.qualcomm.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d115cd4d-2a4f-552c-692c-c69ae49fe21e@microchip.com>
+In-Reply-To: <20230518054054.GA998@varda-linux.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,70 +87,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2023 08:03, Claudiu.Beznea@microchip.com wrote:
-> On 17.05.2023 17:21, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+On 18/05/2023 07:40, Varadarajan Narayanan wrote:
+> On Wed, May 17, 2023 at 09:00:49AM +0200, Krzysztof Kozlowski wrote:
+>> On 17/05/2023 07:57, Varadarajan Narayanan wrote:
+>>> Part-1 is adding the 'const' entries at the beginning i.e.
+>>>
+>>> 	+      - const: qcom,tsens-v0_1
+>>> 	+      - const: qcom,tsens-v1
+>>> 	+      - const: qcom,tsens-v2
+>>> 	+      - const: qcom,ipq8074-tsens
+>>>
+>>> Part-2 is changing from one valid syntax to another i.e.
+>>>
+>>> 	+        items:
+>>> 	+          - enum:
+>>> 	+              - qcom,ipq9574-tsens
+>>> 	+          - const: qcom,ipq8074-tsens
+>>>
+>>> Without both of the above changes, either or both of dtbs_check
+>>> & dt_binding_check fails. So, it is not possible to just add the
+>>> "valid hunk" (part-2) alone.
 >>
->> On 17/05/2023 11:41, Claudiu Beznea wrote:
->>> Convert Atmel PMC documentation to yaml. Along with it clock names
->>> were adapted according to the current available device trees as
->>> different controller versions accept different clock (some of them
->>> have 3 clocks as input, some has 2 clocks as inputs and some with 2
->>> input clocks uses different clock names).
+>> Of course it is. All schema files work like that...
+>>>
+>>> If having both part-1 and part-2 in the same patch is not
+>>> acceptable, shall I split them into two patches? Please let me know.
 >>
->> Thank you for your patch. There is something to discuss/improve.
->>
->>
->>> +
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - atmel,at91rm9200-pmc
->>> +              - atmel,at91sam9260-pmc
->>> +              - atmel,at91sam9g20-pmc
->>> +    then:
->>> +      properties:
->>> +        clocks:
->>> +          minItems: 2
->>> +          maxItems: 2
->>> +        clock-names:
->>> +          items:
->>> +            - const: slow_xtal
->>> +            - const: main_xtal
->>> +
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            enum:
->>> +              - atmel,sama5d2-pmc
->>> +              - atmel,sama5d3-pmc
->>> +              - atmel,sama5d4-pmc
->>> +    then:
->>> +      properties:
->>> +        clocks:
->>> +          minItems: 2
->>> +          maxItems: 2
->>> +        clock-names:
->>> +          items:
->>> +            - const: slow_clk
->>> +            - const: main_xtal
->>
->> This and previous if, should be squashed. You have exactly the same then:.
+>> No, hunk one is not justified.
 > 
-> Clock names are different. Or do you propose to have a if for
-> clocks:
->   minItems: 2
->   maxItems: 2
+> For the other compatibles, the enum entries and const/fallback
+> entries are different. For the 9574 & 8074 case, we want to have
+> qcom,ipq8074-tsens as both enum and const/fallback entry. Hence,
+> if we don't have the first hunk, dtbs_check fails for 8074
+> related dtbs
 > 
-> and 2 ifs for clock names?
+> 	ipq8074-hk01.dtb: thermal-sensor@4a9000: compatible: 'oneOf' condition
+> 		['qcom,ipq8074-tsens'] is too short
 
-Ah, I see, they have different names - xtal -> clk.
+Why? It is already there. Open the file and you will see that this is
+already covered.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If you remove it, then yes, you will see errors and the answer is: do
+not remove it.
 
+> 
+> 	ipq8074-hk10-c2.dtb: thermal-sensor@4a9000: compatible: 'oneOf' condition
+> 		['qcom,ipq8074-tsens'] is too short
+> 
+> 	ipq8074-hk10-c1.dtb: thermal-sensor@4a9000: compatible: 'oneOf' condition
+> 		['qcom,ipq8074-tsens'] is too short
+> 
+> I'm not sure of the correct solution. Having the first hunk
+> solves the above dtbs_check errors, so went with it. I'm able to
+> avoid dtbs_check errors with just one entry in the first hunk.
+
+You made multiple changes in one patch which is not correct. Your goal
+is to add only one change - ipq9574 followed by ipq8074. Add this one.
+Don't touch others.
+
+> 
+>  	+      - const: qcom,ipq8074-tsens
+> 
+> Please let me know if there is a better way to resolve this or we
+> can have just the 8074 entry in the first hunk.
+
+You only need to add new item on the oneOf list:
+ - enum
+     - ipq9574
+ - const: ipq8074
 
 Best regards,
 Krzysztof
