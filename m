@@ -2,91 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9BA4707B5C
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 09:50:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B60D707B84
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 10:00:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230094AbjERHux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 03:50:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40106 "EHLO
+        id S229816AbjERIAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 04:00:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230056AbjERHuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 03:50:52 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6036326A1
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 00:50:43 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-510d8d7f8eeso2440539a12.0
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 00:50:43 -0700 (PDT)
+        with ESMTP id S229826AbjERIAr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 04:00:47 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B71E26B5
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 01:00:41 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-643990c5373so1707626b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 01:00:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684396242; x=1686988242;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4/o9witGFEqB6mrKPmPyN7LxJga6zPVGzIsG+4CQnq8=;
-        b=w5bSqx5GpMEQCyeYAmlsIf6bauofXILA/X4zxIt4kAilYLBY+WaEsA0hieu2z8dfVj
-         rWzeJUfyeQzpa0roxxRvoAaqJyMw5DaKWMHEUwtmzfYLZhy7BxP+xWEHb/F1Cd+RSPZi
-         aQ6hIoOTdp+ZGUnMLfcrVLGlLpT6NC4k/UnD6j8I+G7jliWJRDRRdRQ/LI3BDLNV95NJ
-         qNh2ZBg/Vxrw+DxDzBXJUr1Julg7NWZsN+m7YRp26fvNLF2mHdTTn6KAZcCdvB1uPviG
-         ydUPWi0e/7n2419sZMRgWZ0Czr453YUGlSzJhcy9wpf7KWw/8mlzYBx+hMs6dRxwWrTx
-         M89g==
+        d=linaro.org; s=google; t=1684396840; x=1686988840;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TgYSnMvA6ezwyyP8eCZTJXYpJzBXYDRQ57YFla6122E=;
+        b=v1AjnKj/ROhgb72wjEOK4l0EkscR9zKahVAFiz7Eqzo3NBmIw/d75o/qY+GaAHMCx1
+         4CX6PPkTGRyWikgyJ/U5JQo7w3NjDwVe/LbvKpmsP3kiOwlqC/t0cS61Uv7tFjkrqgjH
+         A3NZxc4vUUlPe0HyiVZAzm7FdbyZv1s8s1RJbP9Pr+qwP34OLl7j3NZ0WdPBMcuXGlxU
+         9E2M2PoE/SKh5FW4DhzWTOY/s9tF4Aiv2LsKKEpZ5HOwRhHAOVeUGn3lkBgMvj3GQh6f
+         V5Uw5rQuy6PfFTveoZXc4Z2o0H6F29HwcUvOq7J1T98WRBkOQG8dbwPS21NR4+kFRsLI
+         yxxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684396242; x=1686988242;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4/o9witGFEqB6mrKPmPyN7LxJga6zPVGzIsG+4CQnq8=;
-        b=BgjNJ/nDNQuNMty6Xn7jI7eOz5FMPsn6jfvdUnrheyNwfY4VH8/VQywzi64X0wpGH0
-         NFSjyOFUtpC/qKxGD8LY4rQoAcnmCMvqAn8hoXaqUVBvQWwuX7ob69zNA8O7wyYweEuz
-         84cm51Yb+pvMALnT6nQ0lOx9JKo8JCgcO17wANOrlwCLdWmJlN730oUE2Sht/Ok+7j2D
-         EC2NGcmQZGqeBvWjFwxaFhDbIw4kAxTdgYOfj4hsTYgz5UWemysQa94Y+cKJUaF5soQm
-         Qtv8w33tfsCPpFf9/MeWyJDuSbAeHBwa7QeQJbE4vyGL40CtQyzj4tm+0fQu5w/qHDdM
-         3Eqg==
-X-Gm-Message-State: AC+VfDyckX3UHllVRRz38pyPXrGg+NTVEpExcwU1NUHk5zEB/9J/ZR2Y
-        KwTZN7GHP6UyIlNv2zRL1qq8PQ==
-X-Google-Smtp-Source: ACHHUZ70S2nHNNnVtr6DSBNU6UZgaGprBFguEp6nw+dtOz9VHeWMa2SFrshKGj2gvhyoMBReXjNAgw==
-X-Received: by 2002:a05:6402:544:b0:510:e790:48fe with SMTP id i4-20020a056402054400b00510e79048femr865646edx.6.1684396241721;
-        Thu, 18 May 2023 00:50:41 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:a2b:c408:5834:f48e? ([2a02:810d:15c0:828:a2b:c408:5834:f48e])
-        by smtp.gmail.com with ESMTPSA id t20-20020aa7d4d4000000b00510d7152dc7sm262996edr.30.2023.05.18.00.50.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 May 2023 00:50:41 -0700 (PDT)
-Message-ID: <2048ed2a-ae6f-b425-38e4-4ba973e04398@linaro.org>
-Date:   Thu, 18 May 2023 09:50:39 +0200
+        d=1e100.net; s=20221208; t=1684396840; x=1686988840;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TgYSnMvA6ezwyyP8eCZTJXYpJzBXYDRQ57YFla6122E=;
+        b=EGVMU4UP2BPFYBzepCfy2onPz6/5BwtJTJ2qIRHlEfH1qJNlOHCVKxS762H60zIxzV
+         bYrpOJecuTjl8KpSCYYL7h7jSqswXekb4O9AZQQj9B8YEDAxaANlP3UYxaGdMq6+iIbA
+         dQoULKsMiwtmVAqDpXZVD8WewiZg7rH3Vf3BvWS1pNwd33XVT6Sq0qQ/C3zes7Doc/9A
+         wPs0iqhQvPvpdC59OGt9q010RGPyBpr2996rrVAPCMK0in1VBYoZy827zJzreoUuspkz
+         UxsVnh8nZwyIH4+/vgDXGYk3y2uxd5HgsH5iPt2uSovl4ISnmmy8HFO+/XQVnfwe/+/n
+         GMOQ==
+X-Gm-Message-State: AC+VfDzGF5jzhI8wc/YNST4tAsAyGLVDU8a1kwTIr+8OzLLf67tdQxhV
+        f5u8ly7Gir6oFOweM6QGvdL8fw==
+X-Google-Smtp-Source: ACHHUZ4ZG2/MI8h24ZuyOpvIlhFgQbAxt+8I+M88Y/0QT+7HPVi8prftrMVpU7oHQ9VJeHaauwrnCA==
+X-Received: by 2002:a05:6a20:4409:b0:101:2ad0:134c with SMTP id ce9-20020a056a20440900b001012ad0134cmr1543687pzb.45.1684396840408;
+        Thu, 18 May 2023 01:00:40 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1c60:d309:883d:817e:8e91:be39])
+        by smtp.gmail.com with ESMTPSA id t14-20020a63444e000000b0051b36aee4f6sm659358pgk.83.2023.05.18.01.00.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 May 2023 01:00:40 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        bhupesh.sharma@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 1/1] arm64: dts: qcom: sm6115: Add CPU idle-states
+Date:   Thu, 18 May 2023 13:30:31 +0530
+Message-Id: <20230518080031.2509250-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH net-next v4 1/2] dt-bindings: arm: mediatek: add
- mediatek,boottrap binding
-Content-Language: en-US
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Qingfang Deng <dqfext@gmail.com>,
-        SkyLake Huang <SkyLake.Huang@mediatek.com>,
-        Simon Horman <simon.horman@corigine.com>
-References: <cover.1683813687.git.daniel@makrotopia.org>
- <f2d447d8b836cf9584762465a784185e8fcf651f.1683813687.git.daniel@makrotopia.org>
- <55f8ac31-d81d-43de-8877-6a7fac2d37b4@lunn.ch>
- <7e8d0945-dfa9-7f61-b075-679e8a89ded9@linaro.org>
- <ZGWRHeE3CXeAnQ-5@makrotopia.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZGWRHeE3CXeAnQ-5@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,81 +70,234 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2023 04:44, Daniel Golle wrote:
-> On Fri, May 12, 2023 at 08:54:36AM +0200, Krzysztof Kozlowski wrote:
->> On 11/05/2023 17:53, Andrew Lunn wrote:
->>> On Thu, May 11, 2023 at 04:10:20PM +0200, Daniel Golle wrote:
->>>> The boottrap is used to read implementation details from the SoC, such
->>>> as the polarity of LED pins. Add bindings for it as we are going to use
->>>> it for the LEDs connected to MediaTek built-in 1GE PHYs.
->>>
->>> What exactly is it? Fuses? Is it memory mapped, or does it need a
->>> driver to access it? How is it shared between its different users?
->>
->> Yes, looks like some efuse/OTP/nvmem, so it should probably use nvmem
->> bindings and do not look different than other in such class.
-> 
-> I've asked MediaTek and they have replied with an elaborate definition.
-> Summary:
-> The boottrap is a single 32-bit wide register at 0x1001f6f0 which can
-> be used to read back the bias of bootstrap pins from the SoC as follows:
+Add CPU idle-state nodes and power-domains in Qualcomm sm6115 SoC dtsi.
 
-Is it within some other address space? Register address suggests that.
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
 
-In such case you should not create a device in the middle of other
-device's address space. You punched a hole in uniform address space
-which prevents creating that other device for entire space.
+Changes since v2:
+- v2 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230330193303.612475-1-bhupesh.sharma@linaro.org/
+- v2 has no functional change, except I tested using debugfs/sysfs and
+  the idle states looked sane to me.
 
-> 
-> * bit[8]: Reference CLK source && gphy port0's LED
-> If bit[8] == 0:
-> - Reference clock source is XTRL && gphy port0's LED is pulled low on board side
-> If bit[8] == 1:
-> - Reference clock source is Oscillator && gphy port0's LED is pulled high on board side
-> 
-> * bit[9]: DDR type && gphy port1's LED
-> If bit[9] == 0:
-> - DDR type is DDRx16b x2 && gphy port1's LED is pulled low on board side
-> If bit[9] == 1:
-> - DDR type is DDRx16b x1 && gphy port1's LED is pulled high on board side
-> 
-> * bit[10]: gphy port2's LED
-> If bit[10] == 0:
-> - phy port2's LED is pulled low on board side
-> If bit[10] == 1:
-> - gphy port2's LED is pulled high on board side
-> 
-> * bit[11]: gphy port3's LED
-> If bit[11] == 0:
-> - phy port3's LED is pulled low on board side
-> If bit[11] == 1:
-> - gphy port3's LED is pulled high on board side
-> 
-> If bit[10] == 0 && bit[11] == 0:
-> - BROM will boot from SPIM-NOR
-> If bit[10] == 1 && bit[11] == 0:
-> - BROM will boot from SPIM-NAND
-> If bit[10] == 0 && bit[11] == 1:
-> - BROM will boot from eMMC
-> If bit[10] == 1 && bit[11] == 1:
-> - BROM will boot from SNFI-NAND
-> 
-> The boottrap is present in many MediaTek SoCs, however, support for
-> reading it is only really needed on MT7988 due to the dual-use of some
-> bootstrap pins as PHY LEDs.
-> 
-> We could say this is some kind of read-only 'syscon' node (and hence
-> use regmap driver to access it), that would make it easy but it's not
-> very accurate. Also efuse/OTP/nvmem doesn't seem accurate, though in
-> terms of software it could work just as well.
-> 
-> I will update DT bindings to contain the gained insights.
+Changes since v1:
+- v1 can be viewed here: https://lore.kernel.org/lkml/e5cda4cf-5c2a-a7ed-9e1d-1fe9f2cbef40@linaro.org
+- Addressed Konrad's comments on v1 and added GDHS and Power Collapse
+  cluster power states.
 
-If this is separate address space with one register, then boottrap
-sounds ok. If you have multiple read only registers with fused values,
-then this is efuse region, so something like nvidia,tegra20-efuse.
+ arch/arm64/boot/dts/qcom/sm6115.dtsi | 136 +++++++++++++++++++++++++++
+ 1 file changed, 136 insertions(+)
 
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+index 631ca327e064..0cfccde38f70 100644
+--- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+@@ -47,6 +47,8 @@ CPU0: cpu@0 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD0>;
++			power-domain-names = "psci";
+ 			L2_0: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -63,6 +65,8 @@ CPU1: cpu@1 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD1>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU2: cpu@2 {
+@@ -75,6 +79,8 @@ CPU2: cpu@2 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD2>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU3: cpu@3 {
+@@ -87,6 +93,8 @@ CPU3: cpu@3 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_0>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
++			power-domains = <&CPU_PD3>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU4: cpu@100 {
+@@ -99,6 +107,8 @@ CPU4: cpu@100 {
+ 			dynamic-power-coefficient = <282>;
+ 			next-level-cache = <&L2_1>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
++			power-domains = <&CPU_PD4>;
++			power-domain-names = "psci";
+ 			L2_1: l2-cache {
+ 				compatible = "cache";
+ 				cache-level = <2>;
+@@ -115,6 +125,8 @@ CPU5: cpu@101 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_1>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
++			power-domains = <&CPU_PD5>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU6: cpu@102 {
+@@ -127,6 +139,8 @@ CPU6: cpu@102 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_1>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
++			power-domains = <&CPU_PD6>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		CPU7: cpu@103 {
+@@ -139,6 +153,8 @@ CPU7: cpu@103 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&L2_1>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
++			power-domains = <&CPU_PD7>;
++			power-domain-names = "psci";
+ 		};
+ 
+ 		cpu-map {
+@@ -178,6 +194,68 @@ core3 {
+ 				};
+ 			};
+ 		};
++
++		idle-states {
++			entry-method = "psci";
++
++			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
++				compatible = "arm,idle-state";
++				idle-state-name = "silver-rail-power-collapse";
++				arm,psci-suspend-param = <0x40000003>;
++				entry-latency-us = <290>;
++				exit-latency-us = <376>;
++				min-residency-us = <1182>;
++				local-timer-stop;
++			};
++
++			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
++				compatible = "arm,idle-state";
++				idle-state-name = "gold-rail-power-collapse";
++				arm,psci-suspend-param = <0x40000003>;
++				entry-latency-us = <297>;
++				exit-latency-us = <324>;
++				min-residency-us = <1110>;
++				local-timer-stop;
++			};
++		};
++
++		domain-idle-states {
++			CLUSTER_0_SLEEP_0: cluster-sleep-0-0 {
++				/* GDHS */
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x40000022>;
++				entry-latency-us = <360>;
++				exit-latency-us = <421>;
++				min-residency-us = <782>;
++			};
++
++			CLUSTER_0_SLEEP_1: cluster-sleep-0-1 {
++				/* Power Collapse */
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x41000044>;
++				entry-latency-us = <800>;
++				exit-latency-us = <2118>;
++				min-residency-us = <7376>;
++			};
++
++			CLUSTER_1_SLEEP_0: cluster-sleep-1-0 {
++				/* GDHS */
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x40000042>;
++				entry-latency-us = <314>;
++				exit-latency-us = <345>;
++				min-residency-us = <660>;
++			};
++
++			CLUSTER_1_SLEEP_1: cluster-sleep-1-1 {
++				/* Power Collapse */
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x41000044>;
++				entry-latency-us = <640>;
++				exit-latency-us = <1654>;
++				min-residency-us = <8094>;
++			};
++		};
+ 	};
+ 
+ 	firmware {
+@@ -201,6 +279,64 @@ pmu {
+ 	psci {
+ 		compatible = "arm,psci-1.0";
+ 		method = "smc";
++
++		CPU_PD0: power-domain-cpu0 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_0_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD1: power-domain-cpu1 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_0_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD2: power-domain-cpu2 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_0_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD3: power-domain-cpu3 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_0_PD>;
++			domain-idle-states = <&LITTLE_CPU_SLEEP_0>;
++		};
++
++		CPU_PD4: power-domain-cpu4 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_1_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CPU_PD5: power-domain-cpu5 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_1_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CPU_PD6: power-domain-cpu6 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_1_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CPU_PD7: power-domain-cpu7 {
++			#power-domain-cells = <0>;
++			power-domains = <&CLUSTER_1_PD>;
++			domain-idle-states = <&BIG_CPU_SLEEP_0>;
++		};
++
++		CLUSTER_0_PD: power-domain-cpu-cluster0 {
++			#power-domain-cells = <0>;
++			domain-idle-states = <&CLUSTER_0_SLEEP_0>, <&CLUSTER_0_SLEEP_1>;
++		};
++
++		CLUSTER_1_PD: power-domain-cpu-cluster1 {
++			#power-domain-cells = <0>;
++			domain-idle-states = <&CLUSTER_1_SLEEP_0>, <&CLUSTER_1_SLEEP_1>;
++		};
+ 	};
+ 
+ 	reserved_memory: reserved-memory {
+-- 
+2.38.1
 
