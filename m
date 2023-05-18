@@ -2,205 +2,332 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B0C5707ECB
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 13:06:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F29B707F01
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 13:16:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbjERLG4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 07:06:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41602 "EHLO
+        id S230113AbjERLQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 07:16:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230318AbjERLGz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 07:06:55 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1ACE10E6
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 04:06:53 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-965c3f9af2aso280294966b.0
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 04:06:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684408012; x=1687000012;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yeJXFRF7sbuSmGTwl5/y2NHZf03i5D97leo/Mm1jmPA=;
-        b=MjfqNjnPpIzx92qYzyVccFfBlsVJ8+9ROZDV6w+QVISVgL4MVL3AdF3Mh8FrK8cnOm
-         wHW6IB6uWI3uRraA3KtEA5TtALuzerEdegGTu0l7Vl/8dN76rFSPm7KcFkPCBs9YO1Md
-         thRZobFoifwp8/WHXagA42ih2WHxzXczGWkEXITjkYC0PdXzIRqkPSNXaNxFZURmxNva
-         SUqZROTPUozLgNYTgx6yiHS8MLuGLETlulPv9WLkJxcCtcffY3PG+xxVsIJgX+Khv+1F
-         Tm/u5v1fRrrsCylilQDaaBR0QLZV4+ryfeqdOu5Un4DFcaPrICGHy5rGXSYwjbyFWTZ6
-         8Gew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684408012; x=1687000012;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yeJXFRF7sbuSmGTwl5/y2NHZf03i5D97leo/Mm1jmPA=;
-        b=Er/Jo3AXOPisiWWZEeArPYV4CLnAat2mwai70l+LRrCsCxDO3Xe/1N6n/CUls7JSUG
-         e/fSGsknEXI0tQwBAIAzpHAe/UsZBnakWCo/ak1UKLhdIhN20kRxHHqD138V9SAI1WcK
-         O+ce7wLYF5jGzOz3BMXnNkbTI2DVSg/TLY8mARiPFvhr+oegDuWdnESt8tdUNxWr/Bjp
-         3PLMofRBKy/S1c0Thxi+nzzTUPd9nprZ/uSgnw03nbOP+ClLxmF9hm8cWkNoDGJVFIY4
-         N6VMFrBR17EZTh4ITrNdqnxteYnHVOAzMKADMJD9UiBN42B11bnu6VAEZmtd/1MGsjaZ
-         rswQ==
-X-Gm-Message-State: AC+VfDxja+yZjnVBE0vhtaPhtdyJpqWQdOjbPvRIqgXnDyGCPtwWmAdw
-        ew9LADIsSm5xOIInRkKEkIx+Cg==
-X-Google-Smtp-Source: ACHHUZ77B3+5K0JTlWbBlEvuo7J0nvSd9qNSA6L2iF+zlVo6gn+LFWwwVl6YZjX6L8F1UPtYxDep4w==
-X-Received: by 2002:a17:907:31ca:b0:960:d28d:3368 with SMTP id xf10-20020a17090731ca00b00960d28d3368mr38722660ejb.60.1684408012085;
-        Thu, 18 May 2023 04:06:52 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:a2b:c408:5834:f48e? ([2a02:810d:15c0:828:a2b:c408:5834:f48e])
-        by smtp.gmail.com with ESMTPSA id pv27-20020a170907209b00b00882f9130eafsm824286ejb.26.2023.05.18.04.06.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 May 2023 04:06:51 -0700 (PDT)
-Message-ID: <24b60ca3-b6b9-662f-03c8-df1536b52bc9@linaro.org>
-Date:   Thu, 18 May 2023 13:06:49 +0200
+        with ESMTP id S230049AbjERLQW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 07:16:22 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E988B7;
+        Thu, 18 May 2023 04:16:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684408580; x=1715944580;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=U8LmIZlVy2m1W8v/wdJAsGtoo4fdsTtTHn7NXom6u4c=;
+  b=QYozv0ZcjVScECNlwyK5KmuBCpOGZKZ9dJYRhGlHDLezh0xnyNRwhMHH
+   Y7pomQgbN9BTxFI4Rds0RpSazhVCwuywmv2qfGhxjEeI+i/tveZggRaa0
+   bvpsu/eDERMJnpKxGBLkHPX22qQ+hZFNCvvnXGxCIccAALNXJn/Lt6Mk3
+   b059GW6phXFPrkvtk6EOJGyxzpSlZsstPr/a/VRtSgs2jxoHnWOsifm1s
+   iKM5OdgAgy3Uo30wEQUIFy8QxHhTSAwUp3htYGPdhDu4nD/bvr4pATh0Q
+   MgjpTbx+9Gz4t2fZ5FQpyMFcjXNm4HPGkUEt88NSsriGm2Jy3tM8fEZga
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.99,285,1677567600"; 
+   d="asc'?scan'208";a="211913064"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 May 2023 04:16:18 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 18 May 2023 04:16:16 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 18 May 2023 04:16:13 -0700
+Date:   Thu, 18 May 2023 12:15:52 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Andrew Jones <ajones@ventanamicro.com>
+CC:     <palmer@dabbelt.com>, <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
+        <linux-riscv@lists.infradead.org>, <qemu-riscv@nongnu.org>,
+        <u-boot@lists.denx.de>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1] dt-bindings: riscv: deprecate riscv,isa
+Message-ID: <20230518-retrial-remindful-ef21e3669c70@wendy>
+References: <20230518-thermos-sanitary-cf3fbc777ea1@wendy>
+ <20230518-4050231ca8dbe93c08cf9c9a@orel>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 2/4] dt-bindings: thermal: tsens: Add ipq9574
- compatible
-Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        amitk@kernel.org, thara.gopinath@gmail.com, rafael@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Praveenkumar I <quic_ipkumar@quicinc.com>
-References: <cover.1684140883.git.quic_varada@quicinc.com>
- <37adcf5d8d545a076e8ed971a4fb6c6c2833ef3c.1684140883.git.quic_varada@quicinc.com>
- <b7e749ff-f4f0-0e61-9aae-876db4278fbc@linaro.org>
- <20230516120426.GA1679@varda-linux.qualcomm.com>
- <1999753b-ceee-d66c-9a48-cbcbb8e6236e@linaro.org>
- <20230517055726.GA3165@varda-linux.qualcomm.com>
- <cfba78d7-e563-4544-00f3-0991b91eb1f3@linaro.org>
- <20230518054054.GA998@varda-linux.qualcomm.com>
- <fe1d81d2-52e6-7d2d-8d6c-ffdcbb8ccc89@linaro.org>
- <20230518090503.GA9173@varda-linux.qualcomm.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230518090503.GA9173@varda-linux.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="RruE147I17+bCjXc"
+Content-Disposition: inline
+In-Reply-To: <20230518-4050231ca8dbe93c08cf9c9a@orel>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2023 11:05, Varadarajan Narayanan wrote:
-> On Thu, May 18, 2023 at 09:09:12AM +0200, Krzysztof Kozlowski wrote:
->> On 18/05/2023 07:40, Varadarajan Narayanan wrote:
->>> On Wed, May 17, 2023 at 09:00:49AM +0200, Krzysztof Kozlowski wrote:
->>>> On 17/05/2023 07:57, Varadarajan Narayanan wrote:
->>>>> Part-1 is adding the 'const' entries at the beginning i.e.
->>>>>
->>>>> 	+      - const: qcom,tsens-v0_1
->>>>> 	+      - const: qcom,tsens-v1
->>>>> 	+      - const: qcom,tsens-v2
->>>>> 	+      - const: qcom,ipq8074-tsens
->>>>>
->>>>> Part-2 is changing from one valid syntax to another i.e.
->>>>>
->>>>> 	+        items:
->>>>> 	+          - enum:
->>>>> 	+              - qcom,ipq9574-tsens
->>>>> 	+          - const: qcom,ipq8074-tsens
->>>>>
->>>>> Without both of the above changes, either or both of dtbs_check
->>>>> & dt_binding_check fails. So, it is not possible to just add the
->>>>> "valid hunk" (part-2) alone.
->>>>
->>>> Of course it is. All schema files work like that...
->>>>>
->>>>> If having both part-1 and part-2 in the same patch is not
->>>>> acceptable, shall I split them into two patches? Please let me know.
->>>>
->>>> No, hunk one is not justified.
->>>
->>> For the other compatibles, the enum entries and const/fallback
->>> entries are different. For the 9574 & 8074 case, we want to have
->>> qcom,ipq8074-tsens as both enum and const/fallback entry. Hence,
->>> if we don't have the first hunk, dtbs_check fails for 8074
->>> related dtbs
->>>
->>> 	ipq8074-hk01.dtb: thermal-sensor@4a9000: compatible: 'oneOf' condition
->>> 		['qcom,ipq8074-tsens'] is too short
->>
->> Why? It is already there. Open the file and you will see that this is
->> already covered.
-> 
-> I guess dtbs_check doesn't like the same value being a const and
-> a oneof entry.
+--RruE147I17+bCjXc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I don't understand.
+Hey Drew,
 
->  Have attached the file, please see if something is
-> not in order.
+On Thu, May 18, 2023 at 12:31:51PM +0200, Andrew Jones wrote:
+> On Thu, May 18, 2023 at 09:58:30AM +0100, Conor Dooley wrote:
 
-I don't know what changed there. Please work on patches.
+> > -  riscv,isa:
+> > -    description:
+> > -      Identifies the specific RISC-V instruction set architecture
+> > -      supported by the hart.  These are documented in the RISC-V
+> > -      User-Level ISA document, available from
+> > -      https://riscv.org/specifications/
+> > -
+> > -      Due to revisions of the ISA specification, some deviations
+> > -      have arisen over time.
+> > -      Notably, riscv,isa was defined prior to the creation of the
+> > -      Zicsr and Zifencei extensions and thus "i" implies
+> > -      "zicsr_zifencei".
+> > -
+> > -      While the isa strings in ISA specification are case
+> > -      insensitive, letters in the riscv,isa string must be all
+> > -      lowercase to simplify parsing.
+> > -    $ref: "/schemas/types.yaml#/definitions/string"
+> > -    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?(=
+?:_[hsxz](?:[a-z])+)*$
+> > -
+> >    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
+> >    timebase-frequency: false
+> > =20
+> > @@ -133,8 +117,13 @@ properties:
+> >        DMIPS/MHz, relative to highest capacity-dmips-mhz
+> >        in the system.
+> > =20
+> > +oneOf:
+> > +  - required:
+> > +      - riscv,isa
+>=20
+> This is the part Anup keeps reminding me about. We can create better ways
+> to handle extensions in DT and ACPI, but we'll still need to parse ISA
+> strings to handle legacy DTs and holdouts that keep creating ISA strings,
+> at least during the deprecation period,
 
-> 
->> If you remove it, then yes, you will see errors and the answer is: do
->> not remove it.
-> 
-> I haven't removed it. 
+Yeah, we cannot remove the string parser from the kernel as we will
+break existing users.
+I don't see keeping it as a problem, we should be nice to people rather
+than intentionally trip them up. Let them trip themselves up when their
+implicit meaning doesn't match whatever bit of software they are
+running's.
 
-You did. Look:
+> since ISA strings are still "the
+> way to do it" according to the spec.
 
-       - description: v2 of TSENS with combined interrupt
--        enum:
--          - qcom,ipq8074-tsens
+I am not sure what this means, dt-bindings determine the DT ABI, not
+what RVI puts in specs.
 
-The first character in the diff (-) means removal.
+> Also, if we assume the wording in the spec does get shored up, then,
+> unless I'm missing something, the list of advantages for this boolean
+> proposal from your commit message would be
 
-> For this patch, ipq8074-tsens changed from
-> being an oneof enum entry to a const entry. Probably, that is why
-> dtbs_check is giving these errors.
+Well, shored up _AND_ adhered to. Actions speak far, far louder than
+words in that respect unfortunately!
 
-You removed the entry which you should not have touched.
+> * More character choices for name -- probably not a huge gain for ratified
+>   extensions, since the boolean properties will likely still use the same
+>   name as the ISA string (riscv,isa-extension-<name>). But, for vendor
+>   extensions, this is indeed a major improvement, since vendor extension
+>   boolean property names may need to be extended in unambiguous ways to
+>   handle changes in the extension.
+>=20
+> * Simpler, more complete DT validation (but we still need a best effort
+>   for legacy ISA strings)
 
-> 
->>> 	ipq8074-hk10-c2.dtb: thermal-sensor@4a9000: compatible: 'oneOf' condition
->>> 		['qcom,ipq8074-tsens'] is too short
->>>
->>> 	ipq8074-hk10-c1.dtb: thermal-sensor@4a9000: compatible: 'oneOf' condition
->>> 		['qcom,ipq8074-tsens'] is too short
->>>
->>> I'm not sure of the correct solution. Having the first hunk
->>> solves the above dtbs_check errors, so went with it. I'm able to
->>> avoid dtbs_check errors with just one entry in the first hunk.
->>
->> You made multiple changes in one patch which is not correct. Your goal
->> is to add only one change - ipq9574 followed by ipq8074. Add this one.
->> Don't touch others.
-> 
-> But that breaks dtbs_check.
+The "best effort" validation via dt-bindings is the current regex. I've
+intentionally marked it deprecated, rather than delete it partly for
+that reason & partly out of consideration for other users.
 
-All other cases, hundreds of other binding files, do not have problem.
-Only this one "breaks dtbs_check". No, it does not.
+> * Simpler DT parsing (but we still need the current parser for legacy ISA
+>   strings)
 
-Whatever is broken is result of your removal of unrelated pieces.
+Speaking only about Linux, we can use these meanings here for interpreting
+the strings and then apply the fixups that correspond to the difference
+between the defined meanings & those at the time of the dt-binding
+originally being merged - unconditionally setting zifencei, zicsr, zicntr,
+etc. If you don't implement those things, then expect to fall over.
+Other operating systems etc may have different implicit meanings and
+their own decisions to make!
+Oh, and if the "foo" bit of "riscv,isa-extension-foo" doesn't match what
+you put in riscv,isa then you keep the pieces. For example, if a vendor
+has a vendor extension Xconor where version 1.0.1 is incompatible with
+v1.0.0, the properties may be "riscv,isa-extension-xconor" and
+"riscv,isa-extension-xconor-no-insnx". In that case, for Linux, I would
+assert that there should/would be no way to get the later version of
+that extension via riscv,isa.
+There are no existing situations like this, so no backwards
+compatibility is broken here. If/when it happens, the property is
+deprecated and we can direct such cases to the new interface :)
+Basically the same as:
+https://lore.kernel.org/linux-riscv/20230504-oncoming-antihero-1ed69bb8f57d=
+@spud/
 
-> 
->>>  	+      - const: qcom,ipq8074-tsens
->>>
->>> Please let me know if there is a better way to resolve this or we
->>> can have just the 8074 entry in the first hunk.
->>
->> You only need to add new item on the oneOf list:
->>  - enum
->>      - ipq9574
->>  - const: ipq8074
-> 
-> The "['qcom,ipq8074-tsens'] is too short" errors were generated
-> with the above snippet only. Please see the attachment
+	That reminds me, I need to re-spin that with more extensions set
+	unconditionally.
 
-It's not true. The error you see is result because you removed something
-you should not. I did not ask you to remove anything. So repeating -
-"add new item". Adding is not "removal and adding". Adding is just "adding".
+If some new OS comes along, they don't need to implement riscv,isa at
+all as it's deprecated.
 
-Best regards,
-Krzysztof
+I'd like to add another one:
+* Unified meaning of extensions across bits of software. I actually have
+  no idea what versions of things other OSes map the characters to.
 
+> > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/=
+Documentation/devicetree/bindings/riscv/extensions.yaml
+> > new file mode 100644
+> > index 000000000000..1b4d726f7174
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > @@ -0,0 +1,259 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/riscv/extensions.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: RISC-V ISA extensions
+> > +
+> > +maintainers:
+> > +  - Paul Walmsley <paul.walmsley@sifive.com>
+> > +  - Palmer Dabbelt <palmer@sifive.com>
+> > +  - Conor Dooley <conor@kernel.org>
+> > +
+> > +description: |
+> > +  RISC-V has large number of extensions, some of which "standard" exte=
+nsions,
+>                ^ a                                       ^ are
+>=20
+> > +  meaning they are ratified by RISC-V International, and others are "v=
+endor"
+> > +  extensions.  This document defines properties that indicate whether =
+a hart
+> > +  supports a given extensions.
+>=20
+> drop 'a' or depluralize 'extensions'
+>=20
+> > +
+> > +  Once a standard extension has been ratified, no features can be adde=
+d or
+>=20
+> I'd change 'features' to 'changes in behavior', and then...
+>=20
+> > +  removed without the creation of a new extension for that sub- or sup=
+er-set.
+>=20
+> ...drop 'for that sub- or super-set'
+>=20
+> > +  The properties for standard extensions therefore map to their origin=
+ally
+> > +  ratified states, with the exception of the I, Zicntr & Zihpm extensi=
+ons.
+>=20
+> Can you elaborate on the exceptions? Or, if the exceptions are described
+> below, maybe a '(see below)' here would help ease the reader's
+> insecurities about their lack of knowledge about these exceptions, as
+> they'll see that the education is coming :-)
+
+Ah crap, I meant to note in the I section that timers were moved to
+their own home. Since we are defining this stuff now, I felt that it'd
+make sense to define riscv,isa-extension-i as meaning the ratified spec,
+sans the counters.
+
+> > +  riscv,isa-extension-f:
+> > +    type: boolean
+> > +    description:
+> > +      The standard M extension for single-precision floating point, as
+>                       ^ F
+
+Whoops. All of these are me realising this morning, after checking
+everything a few times last night, that there was a dt_binding_check
+complaint which prevented me implementing non-patterns as
+patternProperties. As a result, I split everything back out into single
+properties. It's always the last minute bits...
+
+I could have had a mix of properties and pattern properties, but I
+preferred to keep the ordering as something that people could more
+easily use to locate properties.
+
+> > +      20191213 version of the unprivileged ISA specification.
+> > +
+> > +  riscv,isa-extension-v:
+> > +    type: boolean
+> > +    description:
+> > +      The standard V extension for vector operations, as ratified in-a=
+nd-around
+> > +      commit 7a6c8ae ("Fix text that describes vfmv.v.f encoding") of =
+the
+> > +      riscv-v-spec.
+> > +
+> > +  riscv,isa-extension-h:
+> > +    type: boolean
+> > +    description:
+> > +      The standard h extension for hypervisors as ratified in the 2019=
+1213
+>                       ^ H (might as well keep the case consistent)
+>=20
+> > +      version of the privileged ISA specification.
+> > +
+> > +  # Additional Standard Extensions, sorted by category then alphabetic=
+ally
+>=20
+> Can we just do pure alphabetically? And the single-letter extensions above
+> don't have a "sorted by" comment above them. I guess they need one, or
+> maybe they can also be alphabetical?
+
+I don't really have a preference for ordering. I'm happy to do pure
+alphabetical.
+
+> > +  riscv,isa-extension-zicboz:
+> > +    type: boolean
+> > +    description:
+> > +      The standard  Zicbomz extension for cache-block zeroing as ratif=
+ied in
+>                      ^ ^Zicboz
+>                      ^ extra space
+>=20
+> (The repetition is making my vision blur, so I'm feeling like I should
+> write a script to compare $a and $b, where $a is riscv,isa-extension-$a
+> and $b is 'The standard $b' to make sure they match :-) But I probably
+> won't...
+
+Again, same excuse! Silly me and all that.
+
+> I'll take your word for it on the versions/dates/commit hashes referenced,
+> at least until we get closer to actually merging this.
+
+Aye & I am hoping that by the time that this could actually be
+considered for merging that perhaps some of the items will migrate to
+the riscv-isa-manual, instead of being flung to the four winds.
+
+Thanks,
+Conor.
+
+--RruE147I17+bCjXc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGYI6AAKCRB4tDGHoIJi
+0gxgAP4kRyDG+G2i5on5GPEELH9BcCre8agCOjmib4rv7ZW4UwEAhcmBRsFClMo5
+CixO0bNxyQgkd2rLb8MvtVn5FivN3gA=
+=01SI
+-----END PGP SIGNATURE-----
+
+--RruE147I17+bCjXc--
