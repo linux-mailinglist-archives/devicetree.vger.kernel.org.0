@@ -2,188 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0485707708
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 02:41:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFFD370770C
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 02:42:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbjERAly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 May 2023 20:41:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52162 "EHLO
+        id S229483AbjERAmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 May 2023 20:42:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbjERAlx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 20:41:53 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 254B126AF
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 17:41:51 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f122ff663eso1627546e87.2
-        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 17:41:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684370509; x=1686962509;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=C/SAOeYHBHul2YtsRmMbh4r4W4oFry5DWEF7i1RAXUI=;
-        b=L+NJzPKGz1MdczOWV22R6U54LlMY+bl0xrDcbHO0T28Qu3cOLwRGSU4nMc65129acN
-         vcAAhCyaGtX2hLgX0Ev/c5V1EA+p0Ao2U/5Se0MXOuFnW1rw0/eGfiv5dUDoeB0ScPtk
-         t7u3Yb0C3xZyU+bWfu9J3Y9pFn1cCNHW3WyT4X1kEKdKW8w3ozUwS+pd6pRWsNX2z1Hc
-         koW1ZK0Y49eIQvhpgM053vX+FB9PU4a/kUEpv+B519zi7czDkfXZumk7Vgez4xhHj10Y
-         7/BTJ5qqKzrsggCN+waRz9b8S0JQyn3r5z/nWipdCZrJEJlGZnLHHSCZrXQcT1dIOvz4
-         svvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684370509; x=1686962509;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C/SAOeYHBHul2YtsRmMbh4r4W4oFry5DWEF7i1RAXUI=;
-        b=gKzH/3BjaqXl/FsX0JiF1869YZcmjzqZjuUaHeNoKoD2O6BUSNne8ayzL/1nVYNViM
-         qWZ3cIbMRN8U782WltMxRjZ015L/fBsl05hu7ZrFYSNPuTIsziRQOTG7//3UX4vDNjtT
-         d4k3Ai/LhwGIhTcdBPZ24PMji53efL2qPt0+vw56DQsTqNXDk2tmVk2gyS5s6CKjlTZ/
-         /h6bW1Hzk02MMhNafG4QP2Qn33dFnX5yyRf1Hg9MSQ1sOH/Y6AhmIbH/wv5hgf5X3lsG
-         Ep+61qmFczAkjjXbR280mOutxMyRluDaCnXh2L3H9cxMHU9Cxk+0uDngtb3/VcI0QekJ
-         +1/g==
-X-Gm-Message-State: AC+VfDwuDUvxgtCm80YSQoEPZnKz5HwhEQ9MBTUpK3liAoG3bY/dSnAi
-        VV4//Dcq0oNs0YySG7RU8dSt6A==
-X-Google-Smtp-Source: ACHHUZ5aIzgk3m2o2IAObDgBGBCFuMq+3fPLj3I+rqm3HSPD1nGHTudoS5AbICudL3F6m64hdFKduw==
-X-Received: by 2002:ac2:44cc:0:b0:4f3:7a01:f0d6 with SMTP id d12-20020ac244cc000000b004f37a01f0d6mr708575lfm.67.1684370509364;
-        Wed, 17 May 2023 17:41:49 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id d7-20020ac244c7000000b004eb12850c40sm68157lfm.14.2023.05.17.17.41.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 17:41:49 -0700 (PDT)
-Message-ID: <5db3bc67-9ef2-b97e-0eab-77460bc2b5c0@linaro.org>
-Date:   Thu, 18 May 2023 03:41:48 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sm8550: Add missing RPMhPD OPP
- levels
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229520AbjERAmp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 May 2023 20:42:45 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28C9C3A9C
+        for <devicetree@vger.kernel.org>; Wed, 17 May 2023 17:42:44 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 4900382721;
+        Thu, 18 May 2023 02:42:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1684370562;
+        bh=ZVXtsEeNjjupFLQHL2Ucjd9O0erpO4iXq/iryKo+0Jo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=DiPL5qfTnxl78qV6lGd2sVYvawODn8xS/S005LrFHF56qABkZ6s0F3pandh8ZSqHq
+         Sa0mwH055U+sQME+SnCJuMGk5eC9fn1JmPOFbribziAe7ycHlKZAOCfu7/T5JpOFvQ
+         F95M//j5LYzKtU0YvN0m0BCKWrsnNtMTPHjt8S1vBT7KT7lXBlrFar2xefKytDS2B9
+         Oati3tQ/ijqE5et9DtlY1e3YprxstcxqbFxlVXQja6kp99VWfvtMxhmxMDOyCjDPqd
+         EHZ9vFuXpFxr5ANdDFNO8VXszf16+KfoCEpI7x4iE4sDo24Pn3yWHczglmEtgwRXyQ
+         r2FNTWGriroIg==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230517-topic-kailua-rpmhpd-v2-0-3063ce19c491@linaro.org>
- <20230517-topic-kailua-rpmhpd-v2-3-3063ce19c491@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230517-topic-kailua-rpmhpd-v2-3-3063ce19c491@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        kernel@dh-electronics.com, linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH] ARM: dts: stm32: Shorten the AV96 HDMI sound card name
+Date:   Thu, 18 May 2023 02:42:32 +0200
+Message-Id: <20230518004232.422893-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2023 23:12, Konrad Dybcio wrote:
-> We need more granularity for things like the GPU. Add the missing levels.
-> 
-> This unfortunately requires some re-indexing, resulting in an ugly diff.
-> Rename the nodes to prevent that in the future.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 40 +++++++++++++++++++++++++++---------
->   1 file changed, 30 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 6e9bad8f6f33..1c9460dc3d44 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -3608,43 +3608,63 @@ rpmhpd: power-controller {
->   				rpmhpd_opp_table: opp-table {
->   					compatible = "operating-points-v2";
->   
-> -					rpmhpd_opp_ret: opp1 {
-> +					rpmhpd_opp_ret: opp-16 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_RETENTION>;
->   					};
->   
-> -					rpmhpd_opp_min_svs: opp2 {
-> +					rpmhpd_opp_min_svs: opp-48 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
->   					};
+Fix the following error in kernel log due to too long sound card name:
+"
+asoc-audio-graph-card sound: ASoC: driver name too long 'STM32MP1-AV96-HDMI' -> 'STM32MP1-AV96-H'
+"
 
-It might have been better to split this into two patches (one to rename 
-existing opp, another one to add new opp nodes). Nevertheless:
+Fixes: e027da342772 ("ARM: dts: stm32: Add bindings for audio on AV96")
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Marek Vasut <marex@denx.de>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: kernel@dh-electronics.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+---
+ arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-(if for some reason you send another revision splitting this patch, feel 
-free to keep the RB tag).
-
-
->   
-> -					rpmhpd_opp_low_svs: opp3 {
-> +					rpmhpd_opp_lov_svs_d2: opp-52 {
-> +						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D2>;
-> +					};
-> +
-> +					rpmhpd_opp_lov_svs_d1: opp-56 {
-> +						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D1>;
-> +					};
-> +
-> +					rpmhpd_opp_lov_svs_d0: opp-60 {
-> +						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_D0>;
-> +					};
-> +
-> +					rpmhpd_opp_low_svs: opp-64 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
->   					};
->   
-> -					rpmhpd_opp_svs: opp4 {
-> +					rpmhpd_opp_low_svs_l1: opp-80 {
-> +						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS_L1>;
-> +					};
-> +
-> +					rpmhpd_opp_svs: opp-128 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
->   					};
->   
-> -					rpmhpd_opp_svs_l1: opp5 {
-> +					rpmhpd_opp_svs_l0: opp-144 {
-> +						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L0>;
-> +					};
-> +
-> +					rpmhpd_opp_svs_l1: opp-192 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
->   					};
->   
-> -					rpmhpd_opp_nom: opp6 {
-> +					rpmhpd_opp_nom: opp-256 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
->   					};
->   
-> -					rpmhpd_opp_nom_l1: opp7 {
-> +					rpmhpd_opp_nom_l1: opp-320 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
->   					};
->   
-> -					rpmhpd_opp_nom_l2: opp8 {
-> +					rpmhpd_opp_nom_l2: opp-336 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L2>;
->   					};
->   
-> -					rpmhpd_opp_turbo: opp9 {
-> +					rpmhpd_opp_turbo: opp-384 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
->   					};
->   
-> -					rpmhpd_opp_turbo_l1: opp10 {
-> +					rpmhpd_opp_turbo_l1: opp-416 {
->   						opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
->   					};
->   				};
-> 
-
+diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+index 302efac5d26f0..2b52515457e4b 100644
+--- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
++++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
+@@ -87,7 +87,7 @@ sd_switch: regulator-sd_switch {
+ 
+ 	sound {
+ 		compatible = "audio-graph-card";
+-		label = "STM32MP1-AV96-HDMI";
++		label = "STM32-AV96-HDMI";
+ 		dais = <&sai2a_port>;
+ 		status = "okay";
+ 	};
 -- 
-With best wishes
-Dmitry
+2.39.2
 
