@@ -2,152 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C09F707A5E
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 08:49:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2341B707A8A
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 09:05:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229833AbjERGtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 02:49:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46168 "EHLO
+        id S229749AbjERHF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 03:05:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229807AbjERGtO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 02:49:14 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 552AE2122;
-        Wed, 17 May 2023 23:49:13 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34I6a5vp009104;
-        Thu, 18 May 2023 06:48:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=GdRg7Y9j4xrW11AwJfAZpy43hBuEn4tHcz/Itw1Jsto=;
- b=C/3Hc9KooNQVYypd4dGPnoFzkfHYGQfxYozTGBt81F/OttJxFDyTYMl9J9TC8yeebT6J
- iMzoU2zCjhIEeF9T4moV2EXFPAqeCcbVBJD1AJWVu7eRbTIl/E0Gm8Tsv90uydi6NXLq
- KsFXdcQLMjD5+Ge2YhIEV/SMqmFSMSDoWBL8FpVwJjthGSdjQxjp79TJbL3MT3QUWyLP
- paTLU8u/3wvwhbFsRiOLRKU0CGjQL883HlnpW0JpBzvJb9truum8hbLzqcCqGHNE7cYM
- 4Qq3f58aS78LpjAGkO0AH+7rCGkJspL9PyhRPkHEjkr8F6z9Ym3710je9jeILeq8vpVl +Q== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qncbhr91a-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 18 May 2023 06:48:53 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34I6mpqZ028262
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 18 May 2023 06:48:51 GMT
-Received: from [10.216.51.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 17 May
- 2023 23:48:43 -0700
-Message-ID: <0374e88f-5b12-271a-41f0-32a31fbecbec@quicinc.com>
-Date:   Thu, 18 May 2023 12:18:39 +0530
+        with ESMTP id S229779AbjERHFX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 03:05:23 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C8410D8
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 00:05:22 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96aadfb19d7so313538966b.2
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 00:05:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684393521; x=1686985521;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HB3cwJV0mSmYqqN+17Ku1gQOxvoolxHz8jVfs5CGGuY=;
+        b=Br4iCjwDzrKp05ZAWSLABuiOx30EM3t05C8aD/R+b3Gt8cMco6WYrPIUrZu7MZe2LX
+         gPPDa/BT9PCYVCekVhT1YVT2G5Rg/oEL6RLHEOhg+MCKLm/NhV4KZmmdTRg1qlex2oEX
+         PjoU811j6UlBAalG1Qo6GGNx1eEJnwi/tRekUB/DrqpelPMuyI4KPx0qjt93tlO2Et7o
+         qI1j6kK4bcaRzSEaw3NVP8b+28vN74iZ1WPb29O3PbTpmj6V51IjxB93v616prV+xo8i
+         wM5SJr0FTRHp5EeLhdIv8IB2QH7OyvnRHHmxxBHQ05EspTwvh9SBrQkWU5RuxPmGSn+a
+         CxbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684393521; x=1686985521;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HB3cwJV0mSmYqqN+17Ku1gQOxvoolxHz8jVfs5CGGuY=;
+        b=RyIY1xeAwf/2Abv+Fir7EcNBY5ql6L/Ge2UY7ojFDTY5XiW0xAQEfj9LwkhG1u34Bw
+         DeX5ULWwJJY9ESVW70bVU8PaJgriDVvb22ezzVsCrQIksmmexW6ok4sHUPhz245GpKDK
+         TDl8r8bWMXpTTWMky8lZTdfWBOxI3y+589u8utBGmkqg+Av28iCpdA+vXnBneoZOIk67
+         fjuMu6Qy0lpsjxhoZU7DLRcw7IHUL31/3QCs/JvRLUsqKzcrWSku0cwrTxzXG39uC8oE
+         b+T/fFkPuA8gGDzzon1TBD3kpdeuPz9HQKynxjid6GPVgSn+IUwmqQBRVZ4iGoTC/SRT
+         MspA==
+X-Gm-Message-State: AC+VfDw0hn0Hl7aO09C+BH/uQVmunhh5dMdThr0aPgxCe6hw613khWkz
+        vKA/OAACcp437SgzRxpSqR7/bQ==
+X-Google-Smtp-Source: ACHHUZ6YGHm2Ye48O/6ou6X1U2dvgx77S0q7J8MRBOF4Mz4C2w69aPtohxBn0ToX9DTg5Zgy77w+HA==
+X-Received: by 2002:a17:907:6287:b0:94f:29f0:edc0 with SMTP id nd7-20020a170907628700b0094f29f0edc0mr42034234ejc.44.1684393520981;
+        Thu, 18 May 2023 00:05:20 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:15c0:828:a2b:c408:5834:f48e? ([2a02:810d:15c0:828:a2b:c408:5834:f48e])
+        by smtp.gmail.com with ESMTPSA id l18-20020a170906a41200b00965a52d2bf6sm567990ejz.88.2023.05.18.00.05.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 May 2023 00:05:20 -0700 (PDT)
+Message-ID: <c969276f-9e29-9337-44f5-aac445e061eb@linaro.org>
+Date:   Thu, 18 May 2023 09:05:19 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH V6 7/8] arm64: dts: Add ipq5018 SoC and rdp432-c2 board
- support
-To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <robimarko@gmail.com>,
-        <andy.shevchenko@gmail.com>
-References: <20230516165413.3361867-1-quic_srichara@quicinc.com>
- <20230516165413.3361867-8-quic_srichara@quicinc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v5 2/5] dt-bindings: clocks: atmel,at91rm9200-pmc: convert
+ to yaml
+To:     Claudiu.Beznea@microchip.com, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Conor.Dooley@microchip.com,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230517094119.2894220-1-claudiu.beznea@microchip.com>
+ <20230517094119.2894220-3-claudiu.beznea@microchip.com>
+ <83f484ff-f170-6f32-f4b4-9743eb6d0b4c@linaro.org>
+ <d115cd4d-2a4f-552c-692c-c69ae49fe21e@microchip.com>
 Content-Language: en-US
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-In-Reply-To: <20230516165413.3361867-8-quic_srichara@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d115cd4d-2a4f-552c-692c-c69ae49fe21e@microchip.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 3seELNgdxH5fZtduLxDlSRu1sBZ8GeU0
-X-Proofpoint-ORIG-GUID: 3seELNgdxH5fZtduLxDlSRu1sBZ8GeU0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-18_04,2023-05-17_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- lowpriorityscore=0 bulkscore=0 phishscore=0 adultscore=0
- priorityscore=1501 suspectscore=0 clxscore=1011 impostorscore=0 mlxscore=0
- malwarescore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2304280000 definitions=main-2305180050
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 18/05/2023 08:03, Claudiu.Beznea@microchip.com wrote:
+> On 17.05.2023 17:21, Krzysztof Kozlowski wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>
+>> On 17/05/2023 11:41, Claudiu Beznea wrote:
+>>> Convert Atmel PMC documentation to yaml. Along with it clock names
+>>> were adapted according to the current available device trees as
+>>> different controller versions accept different clock (some of them
+>>> have 3 clocks as input, some has 2 clocks as inputs and some with 2
+>>> input clocks uses different clock names).
+>>
+>> Thank you for your patch. There is something to discuss/improve.
+>>
+>>
+>>> +
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - atmel,at91rm9200-pmc
+>>> +              - atmel,at91sam9260-pmc
+>>> +              - atmel,at91sam9g20-pmc
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 2
+>>> +          maxItems: 2
+>>> +        clock-names:
+>>> +          items:
+>>> +            - const: slow_xtal
+>>> +            - const: main_xtal
+>>> +
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - atmel,sama5d2-pmc
+>>> +              - atmel,sama5d3-pmc
+>>> +              - atmel,sama5d4-pmc
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 2
+>>> +          maxItems: 2
+>>> +        clock-names:
+>>> +          items:
+>>> +            - const: slow_clk
+>>> +            - const: main_xtal
+>>
+>> This and previous if, should be squashed. You have exactly the same then:.
+> 
+> Clock names are different. Or do you propose to have a if for
+> clocks:
+>   minItems: 2
+>   maxItems: 2
+> 
+> and 2 ifs for clock names?
 
-On 5/16/2023 10:24 PM, Sricharan Ramabadhran wrote:
-> Add initial device tree support for the Qualcomm IPQ5018 SoC and
-> rdp432-c2 board.
->
-> Few things like 'reboot' does not work because, couple of more 'SCM'
-> APIS are needed to clear some TrustZone settings. Those will be
-> posted separately.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Co-developed-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> ---
->    [v6] Added Reviewed by and fixed commit log as per comments from
->         robimarko@gmail.com
->
->   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->   .../arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts |  72 +++++
->   arch/arm64/boot/dts/qcom/ipq5018.dtsi         | 250 ++++++++++++++++++
->   3 files changed, 323 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
->   create mode 100644 arch/arm64/boot/dts/qcom/ipq5018.dtsi
->
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index d42c59572ace..57858e7f2095 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c2.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-mi01.2.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp468.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= ipq6018-cp01-c1.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-> new file mode 100644
-> index 000000000000..e636a1cb9b77
-> --- /dev/null
+Ah, I see, they have different names - xtal -> clk.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
-<snip>
-
-
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		tz_region: tz@4ac00000 {
-> +			reg = <0x0 0x4ac00000 0x0 0x400000>;
-
-
-TZ size is 2MB not 4MB.
-
-<snip>...
-
-Thanks
+Best regards,
+Krzysztof
 
