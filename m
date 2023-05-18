@@ -2,155 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BE89707DBF
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 12:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0C01707DF8
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 12:25:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230400AbjERKMv convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 18 May 2023 06:12:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42988 "EHLO
+        id S230207AbjERKZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 06:25:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230372AbjERKMq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 06:12:46 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6115919B0;
-        Thu, 18 May 2023 03:12:45 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 2BCF024E201;
-        Thu, 18 May 2023 18:12:44 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 18 May
- 2023 18:12:44 +0800
-Received: from localhost.localdomain (113.72.146.100) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 18 May
- 2023 18:12:43 +0800
-From:   Xingyu Wu <xingyu.wu@starfivetech.com>
-To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
-Subject: [PATCH v6 11/11] riscv: dts: starfive: jh7110: Add STGCRG/ISPCRG/VOUTCRG nodes
-Date:   Thu, 18 May 2023 18:12:34 +0800
-Message-ID: <20230518101234.143748-12-xingyu.wu@starfivetech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230518101234.143748-1-xingyu.wu@starfivetech.com>
-References: <20230518101234.143748-1-xingyu.wu@starfivetech.com>
+        with ESMTP id S230167AbjERKZI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 06:25:08 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3D161BCA;
+        Thu, 18 May 2023 03:25:06 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34IAEK8L002605;
+        Thu, 18 May 2023 05:24:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=lrR7AD4kdjzP/JrB+dgSF3zDq0ke3uwqNOkUksFHFwU=;
+ b=oBZlbnrqQlqdIB+O3RTCGVGq23p1KhBI9v53NycD0xCHz64u7RjuTQZgIVNx3SHF8aFG
+ 5ma8TA4JQurVe8TwSfNc5689ek/gmvwmi7YlIUglV3RNm5iJ6dJo1vIKjanhdK0kPzD0
+ nKuYmIwnJ0QQQH41yMprOr9aEmra7BL4waoE32GFy25n2m2t8s6ByfNe6oqCdz5GZbfP
+ DodBgJuZumac6e8K5bqHxA2S3jtGll3J5X8k2lhXkEqSGAM4L9YJVp9FwUX98/ea1hc+
+ 5myL1TRvf5dR+Ab2tWoMYeROPAqXxMaXCqlf4HJpJn69UaRkTNDlyDgIA3tqG9oDakQb MA== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3qj7y16rye-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 18 May 2023 05:24:45 -0500
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Thu, 18 May
+ 2023 05:24:42 -0500
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Thu, 18 May 2023 05:24:42 -0500
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 3D11411AA;
+        Thu, 18 May 2023 10:24:42 +0000 (UTC)
+Date:   Thu, 18 May 2023 10:24:42 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <broonie@kernel.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <tglx@linutronix.de>, <maz@kernel.org>, <linus.walleij@linaro.org>,
+        <vkoul@kernel.org>, <lgirdwood@gmail.com>,
+        <yung-chuan.liao@linux.intel.com>, <sanyog.r.kale@intel.com>,
+        <pierre-louis.bossart@linux.intel.com>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 06/10] mfd: cs42l43: Add support for cs42l43 core driver
+Message-ID: <20230518102442.GZ68926@ediswmail.ad.cirrus.com>
+References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
+ <20230512122838.243002-7-ckeepax@opensource.cirrus.com>
+ <73438e58-bd96-818d-1f43-5681b0d1a1de@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [113.72.146.100]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <73438e58-bd96-818d-1f43-5681b0d1a1de@linaro.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: HL2reE85ez4JiS5HLok3m55m27gUTNMJ
+X-Proofpoint-ORIG-GUID: HL2reE85ez4JiS5HLok3m55m27gUTNMJ
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add STGCRG/ISPCRG/VOUTCRG new node to support JH7110
-System-Top-Group, Image-Signal-Process and Video-Output
-clock and reset drivers for the JH7110 RISC-V SoC.
+On Fri, May 12, 2023 at 05:16:42PM +0200, Krzysztof Kozlowski wrote:
+> On 12/05/2023 14:28, Charles Keepax wrote:
+> > +static int cs42l43_soft_reset(struct cs42l43 *cs42l43)
+> > +{
+> > +	static const struct reg_sequence reset[] = {
+> > +		{ CS42L43_SFT_RESET, 0x5A000000 },
+> > +	};
+> > +	unsigned long time;
+> > +
+> > +	dev_dbg(cs42l43->dev, "Soft resetting\n");
+> 
+> Drop simple debug statements for function entry/exit. There are other
+> tools in kernel to do such debugging.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/jh7110.dtsi | 55 ++++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
+I mean I guess I can begrudingly drop them, there sure are other
+tools but often just firing on debug is nice/simple/easy and
+they are not really marking function entry/exit as much as they
+are marking important events.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 336ee2b0ffb5..9acb5fb1716d 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -6,6 +6,7 @@
- 
- /dts-v1/;
- #include <dt-bindings/clock/starfive,jh7110-crg.h>
-+#include <dt-bindings/power/starfive,jh7110-pmu.h>
- #include <dt-bindings/reset/starfive,jh7110-crg.h>
- 
- / {
-@@ -365,6 +366,25 @@ i2c2: i2c@10050000 {
- 			status = "disabled";
- 		};
- 
-+		stgcrg: clock-controller@10230000 {
-+			compatible = "starfive,jh7110-stgcrg";
-+			reg = <0x0 0x10230000 0x0 0x10000>;
-+			clocks = <&osc>,
-+				 <&syscrg JH7110_SYSCLK_HIFI4_CORE>,
-+				 <&syscrg JH7110_SYSCLK_STG_AXIAHB>,
-+				 <&syscrg JH7110_SYSCLK_USB_125M>,
-+				 <&syscrg JH7110_SYSCLK_CPU_BUS>,
-+				 <&syscrg JH7110_SYSCLK_HIFI4_AXI>,
-+				 <&syscrg JH7110_SYSCLK_NOCSTG_BUS>,
-+				 <&syscrg JH7110_SYSCLK_APB_BUS>;
-+			clock-names = "osc", "hifi4_core",
-+				      "stg_axiahb", "usb_125m",
-+				      "cpu_bus", "hifi4_axi",
-+				      "nocstg_bus", "apb_bus";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+		};
-+
- 		uart3: serial@12000000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x0 0x12000000 0x0 0x10000>;
-@@ -515,5 +535,40 @@ pwrc: power-controller@17030000 {
- 			interrupts = <111>;
- 			#power-domain-cells = <1>;
- 		};
-+
-+		ispcrg: clock-controller@19810000 {
-+			compatible = "starfive,jh7110-ispcrg";
-+			reg = <0x0 0x19810000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_ISP_TOP_CORE>,
-+				 <&syscrg JH7110_SYSCLK_ISP_TOP_AXI>,
-+				 <&syscrg JH7110_SYSCLK_NOC_BUS_ISP_AXI>,
-+				 <&dvp_clk>;
-+			clock-names = "isp_top_core", "isp_top_axi",
-+				      "noc_bus_isp_axi", "dvp_clk";
-+			resets = <&syscrg JH7110_SYSRST_ISP_TOP>,
-+				 <&syscrg JH7110_SYSRST_ISP_TOP_AXI>,
-+				 <&syscrg JH7110_SYSRST_NOC_BUS_ISP_AXI>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			power-domains = <&pwrc JH7110_PD_ISP>;
-+		};
-+
-+		voutcrg: clock-controller@295c0000 {
-+			compatible = "starfive,jh7110-voutcrg";
-+			reg = <0x0 0x295c0000 0x0 0x10000>;
-+			clocks = <&syscrg JH7110_SYSCLK_VOUT_SRC>,
-+				 <&syscrg JH7110_SYSCLK_VOUT_TOP_AHB>,
-+				 <&syscrg JH7110_SYSCLK_VOUT_TOP_AXI>,
-+				 <&syscrg JH7110_SYSCLK_VOUT_TOP_HDMITX0_MCLK>,
-+				 <&syscrg JH7110_SYSCLK_I2STX0_BCLK>,
-+				 <&hdmitx0_pixelclk>;
-+			clock-names = "vout_src", "vout_top_ahb",
-+				      "vout_top_axi", "vout_top_hdmitx0_mclk",
-+				      "i2stx0_bclk", "hdmitx0_pixelclk";
-+			resets = <&syscrg JH7110_SYSRST_VOUT_TOP_SRC>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			power-domains = <&pwrc JH7110_PD_VOUT>;
-+		};
- 	};
- };
--- 
-2.25.1
+> > +struct cs42l43_patch_header {
+> > +	__le16 version;
+> > +	__le16 size;
+> > +	u8 reserved;
+> > +	u8 secure;
+> > +	__le16 bss_size;
+> > +	__le32 apply_addr;
+> > +	__le32 checksum;
+> > +	__le32 sha;
+> > +	__le16 swrev;
+> > +	__le16 patchid;
+> > +	__le16 ipxid;
+> > +	__le16 romver;
+> > +	__le32 load_addr;
+> > +} __packed;
+> 
+> Put all structs together at the top.
 
+Can do.
+
+> > +	hdr = (void *)&firmware->data[0];
+> 
+> Aren't you dropping here const? Why? That's not recommended programming.
+
+Yeah that is fair will fix that up.
+
+> > +	ret = regmap_register_patch(cs42l43->regmap, cs42l43_reva_patch,
+> > +				    ARRAY_SIZE(cs42l43_reva_patch));
+> > +	if (ret) {
+> > +		dev_err(cs42l43->dev, "Failed to apply register patch: %d\n", ret);
+> > +		goto err;
+> > +	}
+> > +
+> > +	pm_runtime_mark_last_busy(cs42l43->dev);
+> > +	pm_runtime_put_autosuspend(cs42l43->dev);
+> > +
+> > +	ret = devm_mfd_add_devices(cs42l43->dev, PLATFORM_DEVID_NONE,
+> > +				   cs42l43_devs, ARRAY_SIZE(cs42l43_devs),
+> 
+> I don't why adding devices is not in probe. They use the same regmap
+> right? So there will be no problem in probing them from MFD probe.
+
+Well except SoundWire is a bit of a special boy, the hardware is
+not necessarily available in probe, the hardware is only available
+at some point later when the device attaches. Doing it this way all
+of the attaching (and various detach/attach cycles the device needs
+during configuration) are over by the time the child drivers bind, so
+they don't all need special code to handle that.
+
+> > +	cs42l43->reset = devm_gpiod_get_optional(cs42l43->dev, "reset", GPIOD_OUT_LOW);
+> > +	if (IS_ERR(cs42l43->reset)) {
+> > +		ret = PTR_ERR(cs42l43->reset);
+> > +		dev_err(cs42l43->dev, "Failed to get reset: %d\n", ret);
+> 
+> return dev_err_probe
+
+Yeah will put those in.
+
+> > +	cs42l43->vdd_p = devm_regulator_get(cs42l43->dev, "VDD_P");
+> 
+> Why these are not part of bulk get?
+
+The comment right above explains this, VDD_P needs to be on for at
+least 50uS before any other supply.
+
+Thanks,
+Charles
