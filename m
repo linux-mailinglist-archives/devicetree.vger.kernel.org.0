@@ -2,65 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5694708BFD
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 01:01:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D431708C00
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 01:04:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230091AbjERXBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 19:01:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57042 "EHLO
+        id S229627AbjERXEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 19:04:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229676AbjERXBT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 19:01:19 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 621B0E69
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 16:01:18 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id 41be03b00d2f7-5144a9c11c7so2376408a12.2
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 16:01:18 -0700 (PDT)
+        with ESMTP id S229485AbjERXEp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 19:04:45 -0400
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 309E818D
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 16:04:44 -0700 (PDT)
+Received: by mail-qt1-x82f.google.com with SMTP id d75a77b69052e-3f507edcaaaso26353051cf.2
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 16:04:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1684450878; x=1687042878;
+        d=broadcom.com; s=google; t=1684451083; x=1687043083;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=hIMSyEqCH3256Ka0a0fWy/mZN48q9ymfXRgtMQF4L3s=;
-        b=PKjyumr90fHDJoFcDj5SYAkrHnLF+vg/vcqS70OGsoAr2bfQuEReWl8k+yyUrw0AWL
-         zR2bMc2NF7d7SMGbuTTpkuize2+B4HRGoUJaZRU7bAasDTCBRV0y48RJxzXN36p5JQNm
-         4ozJio8idK1xnbbut1vGaN2S9F7XdK9aOBwDg=
+        bh=YgP+Ohrb3yq0pg15eU8PqXDg96SWThXB/7wgtjTnojc=;
+        b=Zq5+pr1y5EfSaJXmqIsM66HUsZK3Kw7YcT1p04pPIW0TANuS0FYZM3jKo/TwiroJIH
+         mqLtcmQqoNvkg2RI6qx/sk9havAb2B3sYbW1//P1VSQ+Omwhk2PU3R8UEMivl8ccv0Iq
+         7hqU9eksv4AI+WZjoT+fvArJQNmheUQ7tuTKw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684450878; x=1687042878;
+        d=1e100.net; s=20221208; t=1684451083; x=1687043083;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hIMSyEqCH3256Ka0a0fWy/mZN48q9ymfXRgtMQF4L3s=;
-        b=L78TPoxVLZxNb6QfQ3nYk4HbGuQtUrQcZv6UgltBPVqW+SQBXag56zlD5ezWNbMle/
-         ufhZnfUf/l204EZwWEDfj3SUomCxJYqSH+qWcGbXOSVk9kBq9P2EGTFM0KFXExvA5ks+
-         LlKzbEsKFTWABaNzzTCA3apbPFvJ17KLgeH1l3u3pBwJLt8hemKrELQlsaj6BMeQKdh4
-         wbmvgjnr7HTJ7FVdqJYrlXAzz609925qhUTm/0uzfFEbWKboaOV5VcUwTNwh/1ooxaEP
-         mYVfIz0669+9kidJDAa4jH2HnAkkKpVoNx0Hz1aolasqWc9207oZuX3/IEmSmcdwPdv2
-         jfvg==
-X-Gm-Message-State: AC+VfDx3cu1kVp4f20yVckPZSUOryn9cazbJj+//nvLvmLhDE1FutK1i
-        +wFt9Ivm6vSM2QgCUte6ltA/1g==
-X-Google-Smtp-Source: ACHHUZ4D2eWsN1oNcvN3IdMFRS3O9f2Y+xA9ebD4wYXCoZGOYpl+s6f28MRvnR8ROB+9atFVQRv5uA==
-X-Received: by 2002:a17:903:2343:b0:1ac:a9c1:b61d with SMTP id c3-20020a170903234300b001aca9c1b61dmr781860plh.11.1684450877772;
-        Thu, 18 May 2023 16:01:17 -0700 (PDT)
+        bh=YgP+Ohrb3yq0pg15eU8PqXDg96SWThXB/7wgtjTnojc=;
+        b=czZe5kQgv+Jx/vlakHBSXBDvTSKq6eZjHraPx4JKhngZmi+M5yL7wcDc0ZEYAHQLM1
+         8Ws1gnidriNRA/c6fsUU9BZjBEUgXeLbu5hYtBRg9r3prEGi2VAeA2kvyNaV9j0Qx2Y+
+         x/22wmQFaKQC8skOgRej2tPh8AZ5CAnXqXoqUOD6MpxLbN6yv+MVYKEaLU5uWzCFy7yj
+         B7lkfG3qu32S5jky56iDxU0ICxyRggBx+h9F9vyvVYeICdeYRoQkYj8/8RCwp7P5X3WF
+         ZYi3n+PWY8pMEobJ7q6MeGBgeXFbYuqMZOSulpo7YgpVTVitYr+5yUwBqlCNEWVwWzSq
+         ccuw==
+X-Gm-Message-State: AC+VfDwzKsZCrbmB2rsaJqFu77RvQcEd49PdJZhX26zhSAYMxSCostpc
+        W6IZbOeWuwG8HxJZEnCyCp3CjQ==
+X-Google-Smtp-Source: ACHHUZ5dmC0jSKeYKRJ0m6YyjnGwAKelhWs163x5P7hUtwjrnrbwisv9ma00fLMe+ISkH6t8rhrcVQ==
+X-Received: by 2002:a05:622a:1752:b0:3ef:36d0:c06e with SMTP id l18-20020a05622a175200b003ef36d0c06emr483731qtk.33.1684451083280;
+        Thu, 18 May 2023 16:04:43 -0700 (PDT)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id i14-20020a170902c94e00b001ab01b909c9sm1996278pla.120.2023.05.18.16.01.16
+        by smtp.gmail.com with ESMTPSA id fc12-20020a05622a488c00b003f38f55e71asm855217qtb.47.2023.05.18.16.04.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 May 2023 16:01:17 -0700 (PDT)
+        Thu, 18 May 2023 16:04:42 -0700 (PDT)
 From:   Florian Fainelli <florian.fainelli@broadcom.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
-        Stanislav Jakubek <stano.jakubek@gmail.com>,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: soc: bcm: add missing dt-binding document for bcm23550-cdc
-Date:   Thu, 18 May 2023 16:01:15 -0700
-Message-Id: <20230518230115.3044460-1-florian.fainelli@broadcom.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Specify MAC addresses on Luxul devices
+Date:   Thu, 18 May 2023 16:04:40 -0700
+Message-Id: <20230518230440.3045235-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230508135930.GA27583@standask-GA-A55M-S2HP>
-References: <20230508135930.GA27583@standask-GA-A55M-S2HP>
+In-Reply-To: <20230515083308.7612-1-zajec5@gmail.com>
+References: <20230515083308.7612-1-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000003bc0ff05fbffc88b"
+        boundary="0000000000007a6fe205fbffd433"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -71,27 +73,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000003bc0ff05fbffc88b
+--0000000000007a6fe205fbffd433
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Mon, 8 May 2023 15:59:30 +0200, Stanislav Jakubek <stano.jakubek@gmail.com> wrote:
-> Broadcom BCM23550 has a Cluster Dormant Control block that keeps the CPU
-> in idle state. A command needs to be sent to this block to bring the CPU
-> into running state.
+On Mon, 15 May 2023 10:33:08 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> This has been in use in mainline Linux since ~2016, but was never
-> documented. Add a dt-binding document for it.
+> Use NRAM (NVMEM device) and its "et0macaddr" variable (NVMEM cell) to
+> point Ethernet devices to their MAC addresses.
 > 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
 
 Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
 --
 Florian
 
---0000000000003bc0ff05fbffc88b
+--0000000000007a6fe205fbffd433
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -162,14 +163,14 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEID5dQI17iy80vS54
-ZSIsAcKdQ4Qi3DMCyu+xBKEoA+0mMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDUxODIzMDExOFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIBmzZQJaYDWhzy7F
+rjgFUehh2i5Lr466ukwX8V0avjbrMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDUxODIzMDQ0M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAoqpP41lK7Uq4luAMQDnOOiByG2yVPuFNj
-EWXQc7znSzmm3iN9165n6g92zervi8xRFc/J29XTMrZggBlPh6uO8lmemqPWL8ogRqKkbBKbrgZP
-cGVq/JyX7WICB9O8XvQY5a54hpK0ttvyG1BHI0eSi9/kAIZ4+HwH/IRbYXOP1JBgat/FiI5CSQV+
-q+3T9n+wa8yirX7zmLme8RRTm+wJtmLvPbQoJ8C727kWLwZlrCZaXqcEQhIuwuXpb48jk1b1FKJZ
-vt0S2byaCkjUY+aNwItuh0rpYCITMw0syPn50KG0uIwpSqH3bbC6Xp6bJ7NIc7wqxZ1ZTKdvelab
-zTw3
---0000000000003bc0ff05fbffc88b--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBtQyMljIXMEfQwaTsSg9SuUQgvoXXgT6E7
+hzuOOHaLPC0KhZGF59UoRhA2QXqMNSn82is8Nw0m5eL21KwSIf2R1VEe0LWGxvNjvqO/U8LwmXxZ
+Dsg+n6uGc3JgWJPMDIMDprK+VE4CNmOMKRDwmL/dQTLjgeZu4fUXIlcPeKlXffJaaACiajZlk5Mf
+GERsuJ5IukN1KJgkwGeOtXy4xo6cPAKBDpl3f0IoHypgzBYn0JbQi7od2Ame8Qc9YvQn6gO7GY3f
+ntKBTT9pIXA5s0ob3rXy4fw9OzEk5HZlBDn2EsJMiPgd10++LzzboypyYR04hILLZ0Jk8N9CiQhJ
+FOvx
+--0000000000007a6fe205fbffd433--
