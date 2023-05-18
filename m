@@ -2,230 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8492708401
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 16:38:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2B53708417
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 16:41:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231347AbjEROiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 10:38:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57086 "EHLO
+        id S230492AbjEROla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 10:41:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230308AbjEROiL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 10:38:11 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77DD410F
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 07:38:09 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-965ddb2093bso335524166b.2
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 07:38:09 -0700 (PDT)
+        with ESMTP id S231603AbjEROl0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 10:41:26 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A61851704
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 07:41:18 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1ae51b07338so14063265ad.0
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 07:41:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684420688; x=1687012688;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TJB68kUgGSfkYFcpmVSEE26XJ5wmbNdGl8hf0140WyY=;
-        b=QXC24dYERdPj7w5IyHqJSOkP2OV+NyEoktJjOctGrN44M93oC8MV8N8ACJNDiZyw3g
-         4Rpt8ut143fHkcGwK6/P9gouJquw1mzjIi4xjmypiBvOc6DtUhhBHp/g3NbNNKoEX5Pv
-         vQKn7eyWZTRKxJDBPBjQQI8hW9w+Y61yedZX0BFUjnDs3xkUuUTKcgrXgfdnHbWo8g0t
-         vIGW9kSH1LFbX7kzWBfx0laEz88mqfQ80sqzakBCljLzp1Azu87Af8h6UVzxHA6o/6ot
-         vf+rams1FbTxZZIJQ3NzIRI4B4eYndEk27BtCTcdf/hpc3JopKjcKscr/G78W4/+yK5a
-         mPCg==
+        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1684420878; x=1687012878;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NW9LLhYTca2cJhIK8XTt/Nh6/suVOD01pOd44VESQ5c=;
+        b=GdQCfpRE0SGkqI8Vw1uWDvMc/zSC6F72zrNhKYOwqVqPZV/RZMos7OTMzDYss7hYL8
+         PfK5imLMaQkbv4WlOsl8BqmcScUPe2jfxZoms54uoW5xrOsXUPyG/zQbU/P90MQMaZOi
+         rGlatnT1iW1m5JZ6/Vfrho2i2n91eRAqkhgCQ/Uonr6wYA8mYiKOhfS4Y1O/2kr/mKto
+         YC+5Qz9hI+y9ZnYoo6/zqZPwqUEO9QYJcK+eBaXMb8ofHT4em+rF3f2SH0ARTkzeZ5B3
+         vIRIqX2OlKm/djkHqAGmllJmSLXy59VJokCfXyOdTOf4epv65yuSWuXHxmf4p4lzsAEl
+         P2XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684420688; x=1687012688;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TJB68kUgGSfkYFcpmVSEE26XJ5wmbNdGl8hf0140WyY=;
-        b=EvAA+9jIXF14bUKLo6Rv32jcf0Jab6D/7tnUiX76Y1qj/nWahsVqp9E/VN9CtrvYJV
-         VkOFjIle5uziwW7g1VSzB3dvHdPLj9bPLSwbqaFmuQfVEezYiiS5tiJVzssaZtuB0aIi
-         ANpe/e2eQXPIlg77InCEMZeisGLfaS0YrErucO04EgGcyT2TuEszuyMKaNjzWFt6KPJf
-         6WKu5v67hHh/N+fw56uXWar7KFIcwWh8okCkZXa2Ytm3YkYej3LpcBlCEnwyKvp29yoM
-         kZVOA0+ZPPt55kT8wewua2DdEkp4BwW35IWl62D3GxdmnmeZ/FWA79JLGe14NeejEIUI
-         ve/A==
-X-Gm-Message-State: AC+VfDxn5zuk+Cu8Ona4XgnEvjmSwZhl2aEgzBeMCxu25x6CO9sI/wFU
-        83GvH3//hxJ1qikByfyD79pygg==
-X-Google-Smtp-Source: ACHHUZ5OY62Jnuu4B35AUP+mSoCx9lsYdrzczRWwud1XT5I9W4/XGfvXHS9KlHBKFtC9FLytNd8tNw==
-X-Received: by 2002:a17:906:58d4:b0:96f:504b:4672 with SMTP id e20-20020a17090658d400b0096f504b4672mr416887ejs.13.1684420687886;
-        Thu, 18 May 2023 07:38:07 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:15c0:828:7e24:6d1b:6bf:4249? ([2a02:810d:15c0:828:7e24:6d1b:6bf:4249])
-        by smtp.gmail.com with ESMTPSA id f4-20020a05640214c400b0050e04125a46sm637734edx.10.2023.05.18.07.38.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 May 2023 07:38:07 -0700 (PDT)
-Message-ID: <9e84a332-4b31-6f90-8d06-78f49d4f1275@linaro.org>
-Date:   Thu, 18 May 2023 16:38:06 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH net-next V7] dt-bindings: net: xlnx,axi-ethernet: convert
- bindings document to yaml
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     "Gaddam, Sarath Babu Naidu" <sarath.babu.naidu.gaddam@amd.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "radhey.shyam.pandey@xilinx.com" <radhey.shyam.pandey@xilinx.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Sarangi, Anirudha" <anirudha.sarangi@amd.com>,
-        "Katakam, Harini" <harini.katakam@amd.com>,
-        "git (AMD-Xilinx)" <git@amd.com>
-References: <20230308061223.1358637-1-sarath.babu.naidu.gaddam@amd.com>
- <5d074e6b-7fe1-ab7f-8690-cfb1bead6927@linaro.org>
- <MW5PR12MB559880B0E220BDBD64E06D2487889@MW5PR12MB5598.namprd12.prod.outlook.com>
- <a5e18c4f-b906-5c9d-ec93-836401dcd3ea@linaro.org>
- <MW5PR12MB5598ED29E01601585963D5D0876C9@MW5PR12MB5598.namprd12.prod.outlook.com>
- <MW5PR12MB55984CA9A0C4E87E46C6029D877F9@MW5PR12MB5598.namprd12.prod.outlook.com>
- <e3d09e6a-4e34-30b5-7f6c-3ed275e1d8d1@linaro.org>
-In-Reply-To: <e3d09e6a-4e34-30b5-7f6c-3ed275e1d8d1@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        d=1e100.net; s=20221208; t=1684420878; x=1687012878;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NW9LLhYTca2cJhIK8XTt/Nh6/suVOD01pOd44VESQ5c=;
+        b=hTdhEaO5UWS72jYUprpVD8S7FwHMxzR0o+GJd04E6Nyxoys3oJp7V3uhnKjrAolmvE
+         B55gjGO9mklOm6U/OfAMuAvajLCECYQYTOAICr2ey5FPYErQ7OwEhU2oH9l0keOKwDw4
+         NwrrggJk057V+CHLQyE0TlMTTLMcri6EgM9OVUHz9nAigQW2hwaFKFJV/5tSs6E4z387
+         n6UOaJmmg7TyfGfpremkzNEKuEzcQPka1gEJ+5SoEJUr6aw0EZ+Iw5BrwsEcOnPyJVll
+         bWClwJvfNnH2tlygLS/Q3BoqFR+vtd4j2MIysGQCi3jciTpGk/cjM8qNUQr/xEX2nlix
+         vojw==
+X-Gm-Message-State: AC+VfDytoh5xQxC3z/gWzPzmq7p89FMaSr5Xp+49p2Pd1BD2mPzv4D7u
+        sDhlDNZtNTLsBBDiqKYnTKJurQ==
+X-Google-Smtp-Source: ACHHUZ6JxPhsiDataOovPdM7nE2IyeWvbCpA+HWBCPdSdabHeOsCxcgZRnCilCby2R6wCo4Qatxqpg==
+X-Received: by 2002:a17:903:41c6:b0:1ac:482e:ed4d with SMTP id u6-20020a17090341c600b001ac482eed4dmr3743263ple.18.1684420877838;
+        Thu, 18 May 2023 07:41:17 -0700 (PDT)
+Received: from localhost ([135.180.227.0])
+        by smtp.gmail.com with ESMTPSA id h5-20020a170902680500b001a245b49731sm1534690plk.128.2023.05.18.07.41.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 May 2023 07:41:17 -0700 (PDT)
+Date:   Thu, 18 May 2023 07:41:17 -0700 (PDT)
+X-Google-Original-Date: Thu, 18 May 2023 07:41:15 PDT (-0700)
+Subject:     Re: [PATCH v1] dt-bindings: riscv: deprecate riscv,isa
+In-Reply-To: <20230518-hammock-doornail-478e8ea8e6a7@wendy>
+CC:     anup@brainfault.org, ajones@ventanamicro.com,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        apatel@ventanamicro.com, atishp@atishpatra.org, jrtc27@jrtc27.com,
+        rick@andestech.com, ycliang@andestech.com,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Message-ID: <mhng-95b99ff5-9024-4672-bb84-7599f7a05129@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2023 16:34, Krzysztof Kozlowski wrote:
-> On 18/05/2023 08:17, Gaddam, Sarath Babu Naidu wrote:
->>
->>
->>> -----Original Message-----
->>> From: Gaddam, Sarath Babu Naidu
->>> Sent: Wednesday, May 3, 2023 3:01 PM
->>> To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>;
->>> davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
->>> pabeni@redhat.com; robh+dt@kernel.org;
->>> krzysztof.kozlowski+dt@linaro.org
->>> Cc: michal.simek@xilinx.com; radhey.shyam.pandey@xilinx.com;
->>> netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
->>> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; Sarangi,
->>> Anirudha <anirudha.sarangi@amd.com>; Katakam, Harini
->>> <harini.katakam@amd.com>; git (AMD-Xilinx) <git@amd.com>
->>> Subject: RE: [PATCH net-next V7] dt-bindings: net: xlnx,axi-ethernet:
->>> convert bindings document to yaml
->>>
->>>
->>>
->>>> -----Original Message-----
->>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Sent: Tuesday, May 2, 2023 3:56 PM
->>>> To: Gaddam, Sarath Babu Naidu
->>>> <sarath.babu.naidu.gaddam@amd.com>; davem@davemloft.net;
->>>> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
->>>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org
->>>> Cc: michal.simek@xilinx.com; radhey.shyam.pandey@xilinx.com;
->>>> netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
->>>> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; Sarangi,
->>>> Anirudha <anirudha.sarangi@amd.com>; Katakam, Harini
->>>> <harini.katakam@amd.com>; git (AMD-Xilinx) <git@amd.com>
->>>> Subject: Re: [PATCH net-next V7] dt-bindings: net: xlnx,axi-ethernet:
->>>> convert bindings document to yaml
->>>>
->>>> On 28/03/2023 14:52, Gaddam, Sarath Babu Naidu wrote:
->>>>>
->>>>>
->>>>>> -----Original Message-----
->>>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>> Sent: Tuesday, March 14, 2023 9:22 PM
->>>>>> To: Gaddam, Sarath Babu Naidu
->>>>>> <sarath.babu.naidu.gaddam@amd.com>; davem@davemloft.net;
->>>>>> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
->>>>>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org
->>>>>> Cc: michal.simek@xilinx.com; radhey.shyam.pandey@xilinx.com;
->>>>>> netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
->>>>>> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; Sarangi,
->>>>>> Anirudha <anirudha.sarangi@amd.com>; Katakam, Harini
->>>>>> <harini.katakam@amd.com>; git (AMD-Xilinx) <git@amd.com>
->>>>>> Subject: Re: [PATCH net-next V7] dt-bindings: net: xlnx,axi-ethernet:
->>>>>> convert bindings document to yaml
->>>>>>
->>>>>> On 08/03/2023 07:12, Sarath Babu Naidu Gaddam wrote:
->>>>>>> From: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
->>>>>>>
->>>>>>> Convert the bindings document for Xilinx AXI Ethernet Subsystem
->>>> from
->>>>>>> txt to yaml. No changes to existing binding description.
->>>>>>>
->>>>>>
->>>>>> (...)
->>>>>>
->>>>>>> +properties:
->>>>>>> +  compatible:
->>>>>>> +    enum:
->>>>>>> +      - xlnx,axi-ethernet-1.00.a
->>>>>>> +      - xlnx,axi-ethernet-1.01.a
->>>>>>> +      - xlnx,axi-ethernet-2.01.a
->>>>>>> +
->>>>>>> +  reg:
->>>>>>> +    description:
->>>>>>> +      Address and length of the IO space, as well as the address
->>>>>>> +      and length of the AXI DMA controller IO space, unless
->>>>>>> +      axistream-connected is specified, in which case the reg
->>>>>>> +      attribute of the node referenced by it is used.
->>>>>>
->>>>>> Did you test it with axistream-connected? The schema and
->>>>>> description feel contradictory and tests would point the issue.
->>>>>
->>>>> Thanks for review comments. We tested with axistream-connected
->>> and
->>>> did
->>>>> not observe any errors. Do you anticipate any issues/errors ?
->>>>
->>>> Yes, I anticipate errors. What you wrote here looks incorrect based on
->>>> the schema.
->>>>
->>>> Also, See also my further comments (or you ignored them?).
->>>>
->>>> You can come many months after my review to ask about details, to be
->>>> sure I will forget the topic.
->>>
->>>
->>> Hi Krzysztof, Apologies for miscommunication. I replied to this thread on
->>> March 28 and said that I would address remaining review comments in
->>> the next version.
->>>
->>> Lore link:
->>> https://lore.kernel.org/all/MW5PR12MB559880B0E220BDBD64E06D24
->>> 87889@MW5PR12MB5598.namprd12.prod.outlook.com/
->>> https://lore.kernel.org/all/MW5PR12MB5598678BB9AB6EC2FFC424F48
->>> 7889@MW5PR12MB5598.namprd12.prod.outlook.com/
->>>
->>> I planned to send next version with phy-mode and pcs-handle maxItems
->>> fixed.but I wanted to close on the axistream-connected discussion before
->>> doing so.
->>>
->>> Related to axistream-connected discussion:
->>> I already ran dt binding check for schema and dts node validation. I
->>> assume this should point any errors on it.
-> 
-> And how do we know that you tested correct DTS with it?
-> 
->>>
->>
->> Hi Krzysztof, Could you please comment on this ? Please let me if I missed
->> any changes or comments.
-> 
-> I don't think anything improved in this patchset. The binding has
-> incomplete and I believe incorrect constraints for axistream-connected.
-> You did not provide DTS to prove me otherwise. If you are not going to
-> fix the issue nor provide DTS, what I can say more? Looks wrong.
+On Thu, 18 May 2023 07:06:17 PDT (-0700), Conor Dooley wrote:
+> On Thu, May 18, 2023 at 07:13:15PM +0530, Anup Patel wrote:
+>> On Thu, May 18, 2023 at 4:02 PM Andrew Jones <ajones@ventanamicro.com> wrote:
+>> > On Thu, May 18, 2023 at 09:58:30AM +0100, Conor Dooley wrote:
+>
+>> > > -  riscv,isa:
+>> > > -    description:
+>> > > -      Identifies the specific RISC-V instruction set architecture
+>> > > -      supported by the hart.  These are documented in the RISC-V
+>> > > -      User-Level ISA document, available from
+>> > > -      https://riscv.org/specifications/
+>> > > -
+>> > > -      Due to revisions of the ISA specification, some deviations
+>> > > -      have arisen over time.
+>> > > -      Notably, riscv,isa was defined prior to the creation of the
+>> > > -      Zicsr and Zifencei extensions and thus "i" implies
+>> > > -      "zicsr_zifencei".
+>> > > -
+>> > > -      While the isa strings in ISA specification are case
+>> > > -      insensitive, letters in the riscv,isa string must be all
+>> > > -      lowercase to simplify parsing.
+>> > > -    $ref: "/schemas/types.yaml#/definitions/string"
+>> > > -    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
+>> > > -
+>> > >    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it here
+>> > >    timebase-frequency: false
+>> > >
+>> > > @@ -133,8 +117,13 @@ properties:
+>> > >        DMIPS/MHz, relative to highest capacity-dmips-mhz
+>> > >        in the system.
+>> > >
+>> > > +oneOf:
+>> > > +  - required:
+>> > > +      - riscv,isa
+>> >
+>> > This is the part Anup keeps reminding me about. We can create better ways
+>> > to handle extensions in DT and ACPI, but we'll still need to parse ISA
+>> > strings to handle legacy DTs and holdouts that keep creating ISA strings,
+>> > at least during the deprecation period, since ISA strings are still "the
+>> > way to do it" according to the spec.
+>> 
+>> Coming up with an alternate way in DT is fine but we can't deprecate
+>> ISA strings since ISA strings are widely used:
+>> 1) Various bootloaders
+>
+> Aye, for the reason, as I mentioned earlier and in the RFC thread,
+> removing existing parsers isn't a good idea.
 
-I think my concerns would be solved if you extend the example with a
-correct second possibility - device with axistream-connected. An
-example, which will match all your constraints and all your descriptions
-(we expect then not having any reg, right?).
+Removing and deprecating are different.  We can deprecate stuff.
 
-Best regards,
-Krzysztof
+>> 2) It is part of /proc/cpuinfo
+>
+> That is irrelevant.
+>
+>> 3) Hypervisors use it to communicate HW features to Guest/VM.
+>> Hypervisors can't get away from generating ISA strings because
+>> Hypervisors don't know what is running inside Guest/VM.
+>
+> Generate both :) As things stand, your guests could interpret what you
+> communicate to them via riscv,isa differently!
+>
+>> In the case of ACPI, it is a very different situation. Like Sunil mentioned,
+>> ACPI will always follow mechanisms defined by RVI (such as ISA string).
+>> Other ACPI approaches such as GUID for ISA extension are simply not
+>> scalable and will take a lot more memory for ACPI tables compared to
+>> ISA strings.
+>
+> My proposal should actually suit ACPI, at least for Linux, as it would
+> be a chance to align currently misaligned definitions. I won't speak to
+> GUIDs or whatever as that's someone else's problem :)
 
+We talked a bit in the patchwork meeting with Drew about ACPI.  Any 
+actual spec/encoding would need to be different, of course, but 
+conceptually it seems to fit fine.  It's also broadly similar to what 
+we've done with riscv_hwprobe() for userspace, which is nice.
+
+>> > Also, if we assume the wording in the spec does get shored up, then,
+>> > unless I'm missing something, the list of advantages for this boolean
+>> > proposal from your commit message would be
+>> 
+>> IMO, we should try our best to have the wordings changed in RVI spec.
+>
+> Yes, doing so is beneficial for all of us regardless of what happens
+> here. I do think that it is partially orthogonal - it allows us to not
+> design an interface that needs to be capable of communicating a wide
+> variety of versions, but I don't think it solves some of the issues
+> that riscv,isa has. If I thought it did, I would not have gone to the
+> trouble of respinning this patch out of the other approach.
+>
+>> > * More character choices for name -- probably not a huge gain for ratified
+>> >   extensions, since the boolean properties will likely still use the same
+>> >   name as the ISA string (riscv,isa-extension-<name>). But, for vendor
+>> >   extensions, this is indeed a major improvement, since vendor extension
+>> >   boolean property names may need to be extended in unambiguous ways to
+>> >   handle changes in the extension.
+>> >
+>> > * Simpler, more complete DT validation (but we still need a best effort
+>> >   for legacy ISA strings)
+>> >
+>> > * Simpler DT parsing (but we still need the current parser for legacy ISA
+>> >   strings)
+>> >
+>> > > +  - required:
+>> > > +      - riscv,isa-base
+>> > > +
+>> > >  required:
+>> > > -  - riscv,isa
+>> > >    - interrupt-controller
+>> > >
+>> > >  additionalProperties: true
+>> > > @@ -177,7 +166,13 @@ examples:
+>> > >                  i-tlb-size = <32>;
+>> > >                  mmu-type = "riscv,sv39";
+>> > >                  reg = <1>;
+>> > > -                riscv,isa = "rv64imafdc";
+>> > > +                riscv,isa-base = "rv64i";
+>> > > +                riscv,isa-extension-i;
+>> > > +                riscv,isa-extension-m;
+>> > > +                riscv,isa-extension-a;
+>> > > +                riscv,isa-extension-f;
+>> > > +                riscv,isa-extension-d;
+>> > > +                riscv,isa-extension-c;
+>> 
+>> One downside of this new approach is it will increase the size of DTB.
+>> Imaging 50 such DT properties in 46 CPU DT nodes.
+>
+> I should do a comparison between 50 extensions in riscv,isa and doing
+> this 50 times and see what the sizes are.
+
+I'm not sure how sensitive people are to DT size (presumably it'd be DTB 
+size)?
+
+It's also not clear what we can do about it: RISC-V has lots of 
+extensions, that's going to take encoding space.  Sticking with an 
+ambiguous encoding because it's smaller seems like a way to get 
+burned in the long run.
