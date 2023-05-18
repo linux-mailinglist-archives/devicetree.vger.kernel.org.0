@@ -2,71 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2248E708874
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 21:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4140670887B
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 21:41:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229461AbjERTji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 15:39:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57650 "EHLO
+        id S229916AbjERTlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 15:41:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229832AbjERTjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 15:39:37 -0400
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89B711A6;
-        Thu, 18 May 2023 12:39:31 -0700 (PDT)
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-54f8b7a4feeso705911eaf.2;
-        Thu, 18 May 2023 12:39:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684438771; x=1687030771;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MDn5p8Ib+y9CgNrg+FXBfqG/I7AiFjWJTabxe3lq0Yo=;
-        b=ddQyndsHKhnN9Qool3IakuTy/45mjOyoN3HA1C3RFyZFaO5e6t4ma5Opi33vCazFE8
-         lBIZUwux60FsPYYNVxBty46mHYI+zDbT5Z8sH3SJJTcOIQYloPFbd4aJSZui9Or3MW8H
-         rGz5DcwLSZrRk+3D2LQP+YomIlfWNVIdZr+neaXrsl+f8DGceEP7Dm9THnMcbpsPdljb
-         bIHr92FUuvZ47f/Q2YDPJfIVkqiM8N/8RzWWkaVjQ9Y2wKvaUAV1cnyajJeXoRR06jX4
-         qZm7MnHWFZwvUrD314jtoKPkNCm/wwpuvB1aaQ4/5AXxrMefY7d3wrgHxGK6UQPZnHJC
-         gdcg==
-X-Gm-Message-State: AC+VfDwx+mCMXYOE/sp5nI08YG5vDB8QHinRJRkL8n9L9iFzu/88lR+Z
-        Zek78e/XJDMxNLAfolQ+TsrC/ONhnA==
-X-Google-Smtp-Source: ACHHUZ6Z5ocjGCz/xPSu9pMLuSMlz+bPgbUY8RawLZcETmIHHgksQOd/VkJV/2yOqFSssJd7wa3JJg==
-X-Received: by 2002:a05:6808:308a:b0:395:df6e:a845 with SMTP id bl10-20020a056808308a00b00395df6ea845mr2002207oib.4.1684438770739;
-        Thu, 18 May 2023 12:39:30 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i4-20020aca3b04000000b0039208555951sm983744oia.29.2023.05.18.12.39.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 May 2023 12:39:30 -0700 (PDT)
-Received: (nullmailer pid 2547178 invoked by uid 1000);
-        Thu, 18 May 2023 19:39:29 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
+        with ESMTP id S229451AbjERTlE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 15:41:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40F3119F;
+        Thu, 18 May 2023 12:41:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 902BB651D8;
+        Thu, 18 May 2023 19:41:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBA29C4339B;
+        Thu, 18 May 2023 19:40:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684438861;
+        bh=NU4ywM5dgREugZ4a6r1tYhbRQe1nLEkwPJTVqUYXj/g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OiCdma3aE+CRL4/sUg38BiIizkEcRYHkYSx7QEPEIBxdt46LA7c3jUtVfj0XNoP8Q
+         q+0UplFyHN1f0goz+tWro61SCeclDHr4id3TH4yvkWCKM++RgovSeVMPuAD61pkiuE
+         KqD5pua1oo9K/WB1U7x/huAT6A37MSq4IEg+yRwYC6UWzcTKY5Ilwke90MXgtaHF6A
+         nGQxOEp9UP9YaGn6VfmcZ2UiL2DKf3+9xmWGrpwLoiZunoXn5v3CaPrCb5RqJibcuq
+         +lFC8LHUkZiscq0DonbwMutQNQ+lluvmj6HrdVLSg+j8W1xOjb+YdOUsf3yDVIOHbO
+         oiOsBN8uzIbXg==
+Date:   Thu, 18 May 2023 20:40:55 +0100
+From:   Conor Dooley <conor@kernel.org>
 To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     linux-riscv@lists.infradead.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yangtao Li <frank.li@vivo.com>,
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Icenowy Zheng <uwu@icenowy.me>, Wei Fu <wefu@redhat.com>,
-        Guo Ren <guoren@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>
-In-Reply-To: <20230518184541.2627-5-jszhang@kernel.org>
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Yangtao Li <frank.li@vivo.com>,
+        Wei Fu <wefu@redhat.com>, Icenowy Zheng <uwu@icenowy.me>
+Subject: Re: [PATCH v2 3/9] dt-bindings: riscv: Add T-HEAD TH1520 board
+ compatibles
+Message-ID: <20230518-estate-scoff-c009f19aad5a@spud>
 References: <20230518184541.2627-1-jszhang@kernel.org>
- <20230518184541.2627-5-jszhang@kernel.org>
-Message-Id: <168443876898.2547162.12784151548808128613.robh@kernel.org>
-Subject: Re: [PATCH v2 4/9] dt-binding: riscv: add T-HEAD CPU reset
-Date:   Thu, 18 May 2023 14:39:29 -0500
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+ <20230518184541.2627-4-jszhang@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="lwMnHdNs4FO0hshN"
+Content-Disposition: inline
+In-Reply-To: <20230518184541.2627-4-jszhang@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,45 +66,76 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 19 May 2023 02:45:36 +0800, Jisheng Zhang wrote:
-> The secondary CPUs in T-HEAD SMP capable platforms need some special
-> handling. The first one is to write the warm reset entry to entry
-> register. The second one is write a SoC specific control value to
-> a SoC specific control reg. The last one is to clone some CSRs for
-> secondary CPUs to ensure these CSRs' values are the same as the
-> main boot CPU. This DT node is mainly used by opensbi firmware.
-> 
+--lwMnHdNs4FO0hshN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, May 19, 2023 at 02:45:35AM +0800, Jisheng Zhang wrote:
+> Several SoMs and boards are available that feature the T-HEAD TH1520
+> SoC. Document the compatible strings.
+>=20
 > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 > ---
->  .../bindings/riscv/thead,cpu-reset.yaml       | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/riscv/thead,cpu-reset.yaml
-> 
+>  .../devicetree/bindings/riscv/thead.yaml      | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/riscv/thead.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/thead.yaml b/Documen=
+tation/devicetree/bindings/riscv/thead.yaml
+> new file mode 100644
+> index 000000000000..e62f6821372e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/riscv/thead.yaml
+> @@ -0,0 +1,29 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/riscv/thead.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: T-HEAD SoC-based boards
+> +
+> +maintainers:
+> +  - Jisheng Zhang <jszhang@kernel.org>
+> +
+> +description:
+> +  T-HEAD SoC-based boards
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - description: Sipeed Lichee Pi 4A board for the Sipeed Lichee Mod=
+ule 4A
+> +        items:
+> +          - enum:
+> +              - sipeed,lichee-pi-4a
+> +          - const: sipeed,lichee-module-4a
+> +          - const: thead,th1520
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Same here re: other SoMs I guess. Probably more interest in creating
+them here though!
 
-yamllint warnings/errors:
+I heard on the grapevine that the boards people have now are perhaps not
+the same as the design that they're going to ship in the main production
+run?
+Do you know if there is a more detailed part number for the boards, just
+in case there are some software-visible changes?
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/riscv/thead,cpu-reset.example.dts:18.35-25.11: Warning (unit_address_vs_reg): /example-0/cpurst@ffff019050: node has a unit name, but no reg or ranges property
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/thead,cpu-reset.example.dtb: cpurst@ffff019050: control-reg:0: [255, 4278276100] is too long
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/thead,cpu-reset.yaml
+Thanks,
+Conor.
 
-doc reference errors (make refcheckdocs):
+--lwMnHdNs4FO0hshN
+Content-Type: application/pgp-signature; name="signature.asc"
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230518184541.2627-5-jszhang@kernel.org
+-----BEGIN PGP SIGNATURE-----
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGZ/RwAKCRB4tDGHoIJi
+0jGSAQCY4kaOgHOoG9aRVof11tWusYqNws27HUKIe/mAvPbWQQD/eQDHmytrrfJ2
+CpIn9rLovTl/X8C4YidVVzmRuLVQuw0=
+=jiga
+-----END PGP SIGNATURE-----
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--lwMnHdNs4FO0hshN--
