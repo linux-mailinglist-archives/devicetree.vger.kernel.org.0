@@ -2,86 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E182708A5B
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 23:22:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6499C708AAE
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 23:42:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230133AbjERVWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 17:22:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44624 "EHLO
+        id S229599AbjERVmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 17:42:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229850AbjERVV7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 17:21:59 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2725E7F
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 14:21:55 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2ad89c7a84fso27542281fa.2
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 14:21:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684444914; x=1687036914;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JvGlU1AlBCLs7Sa1hxS2FwlR3rBXPmz4YrSNu10bABE=;
-        b=FqRdHEZDw8gDkRrjIx9HLyOzbhyZLpZkbcJn44fh60ONcZYO7buREAZM7nmXr8vxcM
-         ZajmKV0KRTzutVYqrheUMH+t80WOF1bfhAKb+idunX1taBvu3RUUnQcKA/l8VL+FFbVY
-         w8wWs6CTCTw7D7r6GRJeexs7Ptx9LglkyuLLk/kD1c8poj2qO0BKklly6LYXeJBh1K68
-         OfhmWQlikla8ZtPznd3CZD1fEckAGuIjsMC7p62c5VKzw4vfM4gZMip+Cw06Au1kV0pC
-         spCC8FoQv6Dy6lzeoJBbQsDi/Duw+R+8001+6nmNtPI+CEKyn68FDlq8NUbJVJXKi/Fe
-         3qmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684444914; x=1687036914;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JvGlU1AlBCLs7Sa1hxS2FwlR3rBXPmz4YrSNu10bABE=;
-        b=EMtTYG51To7vuLsG233FEKbyXwimPYvpUrtVuy0PDR5MDTkyRgowshWq1j4CuYY3Ca
-         d+YSH0eXeYkRyQ7zUoRBFbpmXDfLXUX7uzGUNVnhS6+nj4DZcOHQ+/aL8itiGe+PEwoj
-         ceMPHDyFLvqgGlXhMZpNST1itiUmgwLiDU+09XbNC7lGzt1xZEETGNdwUTwE4bbCJFf8
-         lhN7ERNwBlnenK0devdZjwAsisUG+0Zzaxa7wmDrAC9pLTF/yOS/SwkhLD5wc+Vrq9Rl
-         mHPyqiRkOz5F96LjfbOlTY0OvNCJ7LxN2VFk86gjjPybAuK4htKh8V39B8y0kHU+1HkH
-         sDig==
-X-Gm-Message-State: AC+VfDzUrUd/gPkc+j3CoFHIWGN6NQn93uzqR8TqKkTIbSwJ9ls3putl
-        6HRkVSQzfL8kkgIcTjsu4xk/rw==
-X-Google-Smtp-Source: ACHHUZ7ZKcWPEP3wOHdBHk593hNih4qKj0PK5X86ILNE1L5VSFwLtJPJ0cTH4fOjZ76D94IDiRILmw==
-X-Received: by 2002:a05:6512:147:b0:4f3:a7c7:8327 with SMTP id m7-20020a056512014700b004f3a7c78327mr90852lfo.39.1684444913643;
-        Thu, 18 May 2023 14:21:53 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id u16-20020a056512095000b004f26f437ad8sm367605lft.53.2023.05.18.14.21.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 May 2023 14:21:53 -0700 (PDT)
-Message-ID: <8ab24a13-2dad-028b-101e-0f4c4981553b@linaro.org>
-Date:   Fri, 19 May 2023 00:21:52 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v3 06/12] drm/msm/dpu: Add SM6350 support
-Content-Language: en-GB
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229533AbjERVmo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 17:42:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 760A0135;
+        Thu, 18 May 2023 14:42:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D71726160B;
+        Thu, 18 May 2023 21:42:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85CE6C433EF;
+        Thu, 18 May 2023 21:42:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684446160;
+        bh=x5I5mruh7zMCo5Zhys6Y0M8OdmsdgmVH1YsnbP5N0G4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cROkLAXx3D7DzisnvZXbe/RpC7p3ynWO5qtEVZnDCjlMCU8He9ikyvYowyWEEv26a
+         K4cdYAfilcdu5lak2CudEIf54yvGchTRFiBmj3sRaqkaHy7mE0nRQeIeAJ567ONzyb
+         6oL0iffTiSk9AnFGDcKl1+krpJrPIm2Fq71IfTMujh5KJRk8rCuN4tC5l2YKucAWox
+         ExGxWJLBmf3c6gcAPOQEA2rZ3tZxSRT5Pl7VJOzGVKFlw23cN+MgvVX6l7/+rY0HA/
+         9mRGiCSxndOnL1qhHTBCcITaadDSpdoAZDDyuyJBk/clylgU/Mkma6LuabyZ8kaHSs
+         Ci/0Wmk6nl9YA==
+Date:   Thu, 18 May 2023 22:42:34 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>,
+        Andrew Jones <ajones@ventanamicro.com>, palmer@dabbelt.com,
+        Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20230411-topic-straitlagoon_mdss-v3-0-9837d6b3516d@linaro.org>
- <20230411-topic-straitlagoon_mdss-v3-6-9837d6b3516d@linaro.org>
- <ahxy4jj56aeyorokzfuc7qmpuofml32amg5x4fgpthr6almhju@g5okcc6nsz6j>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <ahxy4jj56aeyorokzfuc7qmpuofml32amg5x4fgpthr6almhju@g5okcc6nsz6j>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Alistair Francis <alistair.francis@wdc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: riscv: deprecate riscv,isa
+Message-ID: <20230518-monkhood-dispersal-6749b1228b0d@spud>
+References: <20230518-thermos-sanitary-cf3fbc777ea1@wendy>
+ <20230518-4050231ca8dbe93c08cf9c9a@orel>
+ <CAAhSdy07Mg_JBF+4ucGFiWdBKh-Ass5G_aUWqBqTnDSFp7S=0A@mail.gmail.com>
+ <20230518-hammock-doornail-478e8ea8e6a7@wendy>
+ <f7c20090-220c-2805-86ba-b174a89f65b3@seco.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="TYryGqRDcYWpb9dy"
+Content-Disposition: inline
+In-Reply-To: <f7c20090-220c-2805-86ba-b174a89f65b3@seco.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,320 +70,185 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/05/2023 00:06, Marijn Suijten wrote:
-> On 2023-05-05 23:40:32, Konrad Dybcio wrote:
->> Add SM6350 support to the DPU1 driver to enable display output.
->>
->> It's worth noting that one entry dpu_qos_lut_entry was trimmed off:
->>
->> {.fl = 0, .lut = 0x0011223344556677 },
-> 
-> Is this macrotile-qseed?  Not really following where this is supposed to
-> sit.
 
-Yes, it is a qseed entry. We do not support this (yet).
+--TYryGqRDcYWpb9dy
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
->>
->> due to the fact that newer SoCs dropped the .fl (fill level)-based
->> logic and don't provide real values, resulting in all entries but
->> the last one being unused.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>   .../gpu/drm/msm/disp/dpu1/catalog/dpu_6_4_sm6350.h | 187 +++++++++++++++++++++
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   5 +
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   3 +
->>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
->>   4 files changed, 196 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_4_sm6350.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_4_sm6350.h
->> new file mode 100644
->> index 000000000000..e8bfbd468e0a
->> --- /dev/null
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_6_4_sm6350.h
->> @@ -0,0 +1,187 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * Copyright (c) 2022. Qualcomm Innovation Center, Inc. All rights reserved.
->> + * Copyright (c) 2015-2018, 2020 The Linux Foundation. All rights reserved.
->> + * Copyright (c) 2023, Linaro Limited
->> + */
->> +
->> +#ifndef _DPU_6_4_SM6350_H
->> +#define _DPU_6_4_SM6350_H
->> +
->> +static const struct dpu_caps sm6350_dpu_caps = {
->> +	.max_mixer_width = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
->> +	.max_mixer_blendstages = 0x7,
->> +	.qseed_type = DPU_SSPP_SCALER_QSEED4,
->> +	.has_src_split = true,
->> +	.has_dim_layer = true,
->> +	.has_idle_pc = true,
->> +	.max_linewidth = DEFAULT_DPU_OUTPUT_LINE_WIDTH,
->> +	.pixel_ram_size = DEFAULT_PIXEL_RAM_SIZE,
->> +};
->> +
->> +static const struct dpu_ubwc_cfg sm6350_ubwc_cfg = {
->> +	.ubwc_version = DPU_HW_UBWC_VER_20,
->> +	.ubwc_swizzle = 6,
->> +	.highest_bank_bit = 1,
->> +};
->> +
->> +static const struct dpu_mdp_cfg sm6350_mdp[] = {
->> +	{
->> +	.name = "top_0", .id = MDP_TOP,
->> +	.base = 0x0, .len = 0x494,
->> +	.features = 0,
->> +	.clk_ctrls[DPU_CLK_CTRL_VIG0] = { .reg_off = 0x2ac, .bit_off = 0 },
->> +	.clk_ctrls[DPU_CLK_CTRL_DMA0] = { .reg_off = 0x2ac, .bit_off = 8 },
->> +	.clk_ctrls[DPU_CLK_CTRL_DMA1] = { .reg_off = 0x2b4, .bit_off = 8 },
->> +	.clk_ctrls[DPU_CLK_CTRL_DMA2] = { .reg_off = 0x2c4, .bit_off = 8 },
->> +	.clk_ctrls[DPU_CLK_CTRL_REG_DMA] = { .reg_off = 0x2bc, .bit_off = 20 },
->> +	},
->> +};
->> +
->> +static const struct dpu_ctl_cfg sm6350_ctl[] = {
->> +	{
->> +	.name = "ctl_0", .id = CTL_0,
->> +	.base = 0x1000, .len = 0x1dc,
->> +	.features = BIT(DPU_CTL_ACTIVE_CFG),
->> +	.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 9),
->> +	},
->> +	{
->> +	.name = "ctl_1", .id = CTL_1,
->> +	.base = 0x1200, .len = 0x1dc,
->> +	.features = BIT(DPU_CTL_ACTIVE_CFG),
->> +	.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 10),
->> +	},
->> +	{
->> +	.name = "ctl_2", .id = CTL_2,
->> +	.base = 0x1400, .len = 0x1dc,
->> +	.features = BIT(DPU_CTL_ACTIVE_CFG),
->> +	.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 11),
->> +	},
->> +	{
->> +	.name = "ctl_3", .id = CTL_3,
->> +	.base = 0x1600, .len = 0x1dc,
->> +	.features = BIT(DPU_CTL_ACTIVE_CFG),
->> +	.intr_start = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR2, 12),
->> +	},
->> +};
->> +
->> +static const struct dpu_sspp_cfg sm6350_sspp[] = {
->> +	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, 0x1f8, VIG_SC7180_MASK,
->> +		sc7180_vig_sblk_0, 0,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0),
->> +	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000, 0x1f8, DMA_SDM845_MASK,
->> +		sdm845_dma_sblk_0, 1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0),
->> +	SSPP_BLK("sspp_9", SSPP_DMA1, 0x26000, 0x1f8, DMA_CURSOR_SDM845_MASK,
->> +		sdm845_dma_sblk_1, 5, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA1),
->> +	SSPP_BLK("sspp_10", SSPP_DMA2, 0x28000, 0x1f8, DMA_CURSOR_SDM845_MASK,
->> +		sdm845_dma_sblk_2, 9, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA2),
->> +};
->> +
->> +static const struct dpu_lm_cfg sm6350_lm[] = {
->> +	LM_BLK("lm_0", LM_0, 0x44000, MIXER_SDM845_MASK,
->> +		&sc7180_lm_sblk, PINGPONG_0, LM_1, DSPP_0),
->> +	LM_BLK("lm_1", LM_1, 0x45000, MIXER_SDM845_MASK,
->> +		&sc7180_lm_sblk, PINGPONG_1, LM_0, 0),
->> +};
->> +
->> +static const struct dpu_dspp_cfg sm6350_dspp[] = {
->> +	DSPP_BLK("dspp_0", DSPP_0, 0x54000, DSPP_SC7180_MASK,
->> +		&sm8150_dspp_sblk),
->> +};
->> +
->> +static struct dpu_pingpong_cfg sm6350_pp[] = {
->> +	PP_BLK("pingpong_0", PINGPONG_0, 0x70000, PINGPONG_SM8150_MASK, 0, sdm845_pp_sblk,
->> +		DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 8),
->> +		-1),
->> +	PP_BLK("pingpong_1", PINGPONG_1, 0x70800, PINGPONG_SM8150_MASK, 0, sdm845_pp_sblk,
->> +		DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 9),
->> +		-1),
->> +};
->> +
->> +static const struct dpu_intf_cfg sm6350_intf[] = {
->> +	INTF_BLK("intf_0", INTF_0, 0x6a000, 0x2c0, INTF_DP, 0, 35, INTF_SC7180_MASK,
->> +		DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 24),
->> +		DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 25)),
->> +	INTF_BLK_DSI_TE("intf_1", INTF_1, 0x6a800, 0x2c0, INTF_DSI, 0, 35, INTF_SC7180_MASK,
->> +		DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 26),
->> +		DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 27),
->> +		DPU_IRQ_IDX(MDP_INTF1_TEAR_INTR, 2)),
->> +};
->> +
->> +static const struct dpu_vbif_cfg sm6350_vbif[] = {
->> +	{
->> +	.name = "vbif_0", .id = VBIF_RT,
->> +	.base = 0, .len = 0x1044,
->> +	.features = BIT(DPU_VBIF_QOS_REMAP),
->> +	.xin_halt_timeout = 0x4000,
->> +	.qos_rt_tbl = {
->> +		.npriority_lvl = ARRAY_SIZE(sdm845_rt_pri_lvl),
->> +		.priority_lvl = sdm845_rt_pri_lvl,
->> +	},
->> +	.qos_nrt_tbl = {
->> +		.npriority_lvl = ARRAY_SIZE(sdm845_nrt_pri_lvl),
->> +		.priority_lvl = sdm845_nrt_pri_lvl,
->> +	},
->> +	.memtype_count = 14,
->> +	.memtype = {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
->> +	},
->> +};
->> +
->> +static const struct dpu_perf_cfg sm6350_perf_data = {
->> +	.max_bw_low = 4200000,
->> +	.max_bw_high = 5100000,
->> +	.min_core_ib = 2500000,
->> +	.min_llcc_ib = 0,
->> +	.min_dram_ib = 1600000,
->> +	.min_prefill_lines = 35,
->> +	/* TODO: confirm danger_lut_tbl */
->> +	.danger_lut_tbl = {0xffff, 0xffff, 0x0, 0x0, 0xffff},
+On Thu, May 18, 2023 at 02:30:53PM -0400, Sean Anderson wrote:
+> On 5/18/23 10:06, Conor Dooley wrote:
+> > On Thu, May 18, 2023 at 07:13:15PM +0530, Anup Patel wrote:
+> >> On Thu, May 18, 2023 at 4:02=E2=80=AFPM Andrew Jones <ajones@ventanami=
+cro.com> wrote:
+> >> > On Thu, May 18, 2023 at 09:58:30AM +0100, Conor Dooley wrote:
+> >=20
+> >> > > -  riscv,isa:
+> >> > > -    description:
+> >> > > -      Identifies the specific RISC-V instruction set architecture
+> >> > > -      supported by the hart.  These are documented in the RISC-V
+> >> > > -      User-Level ISA document, available from
+> >> > > -      https://riscv.org/specifications/
+> >> > > -
+> >> > > -      Due to revisions of the ISA specification, some deviations
+> >> > > -      have arisen over time.
+> >> > > -      Notably, riscv,isa was defined prior to the creation of the
+> >> > > -      Zicsr and Zifencei extensions and thus "i" implies
+> >> > > -      "zicsr_zifencei".
+> >> > > -
+> >> > > -      While the isa strings in ISA specification are case
+> >> > > -      insensitive, letters in the riscv,isa string must be all
+> >> > > -      lowercase to simplify parsing.
+> >> > > -    $ref: "/schemas/types.yaml#/definitions/string"
+> >> > > -    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z]=
+)+)?(?:_[hsxz](?:[a-z])+)*$
+> >> > > -
+> >> > >    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it=
+ here
+> >> > >    timebase-frequency: false
+> >> > >
+> >> > > @@ -133,8 +117,13 @@ properties:
+> >> > >        DMIPS/MHz, relative to highest capacity-dmips-mhz
+> >> > >        in the system.
+> >> > >
+> >> > > +oneOf:
+> >> > > +  - required:
+> >> > > +      - riscv,isa
+> >> >
+> >> > This is the part Anup keeps reminding me about. We can create better=
+ ways
+> >> > to handle extensions in DT and ACPI, but we'll still need to parse I=
+SA
+> >> > strings to handle legacy DTs and holdouts that keep creating ISA str=
+ings,
+> >> > at least during the deprecation period, since ISA strings are still =
+"the
+> >> > way to do it" according to the spec.
+> >>=20
+> >> Coming up with an alternate way in DT is fine but we can't deprecate
+> >> ISA strings since ISA strings are widely used:
+> >> 1) Various bootloaders
+> >=20
+> > Aye, for the reason, as I mentioned earlier and in the RFC thread,
+> > removing existing parsers isn't a good idea.
+> >=20
+> >> 2) It is part of /proc/cpuinfo
+> >=20
+> > That is irrelevant.
+> >=20
+> >> 3) Hypervisors use it to communicate HW features to Guest/VM.
+> >> Hypervisors can't get away from generating ISA strings because
+> >> Hypervisors don't know what is running inside Guest/VM.
+> >=20
+> > Generate both :) As things stand, your guests could interpret what you
+> > communicate to them via riscv,isa differently!
+> >=20
+> >> In the case of ACPI, it is a very different situation. Like Sunil ment=
+ioned,
+> >> ACPI will always follow mechanisms defined by RVI (such as ISA string).
+> >> Other ACPI approaches such as GUID for ISA extension are simply not
+> >> scalable and will take a lot more memory for ACPI tables compared to
+> >> ISA strings.
+> >=20
+> > My proposal should actually suit ACPI, at least for Linux, as it would
+> > be a chance to align currently misaligned definitions. I won't speak to
+> > GUIDs or whatever as that's someone else's problem :)
+> >=20
+> >> > Also, if we assume the wording in the spec does get shored up, then,
+> >> > unless I'm missing something, the list of advantages for this boolean
+> >> > proposal from your commit message would be
+> >>=20
+> >> IMO, we should try our best to have the wordings changed in RVI spec.
+> >=20
+> > Yes, doing so is beneficial for all of us regardless of what happens
+> > here. I do think that it is partially orthogonal - it allows us to not
+> > design an interface that needs to be capable of communicating a wide
+> > variety of versions, but I don't think it solves some of the issues
+> > that riscv,isa has. If I thought it did, I would not have gone to the
+> > trouble of respinning this patch out of the other approach.
+> >=20
+> >> > * More character choices for name -- probably not a huge gain for ra=
+tified
+> >> >   extensions, since the boolean properties will likely still use the=
+ same
+> >> >   name as the ISA string (riscv,isa-extension-<name>). But, for vend=
+or
+> >> >   extensions, this is indeed a major improvement, since vendor exten=
+sion
+> >> >   boolean property names may need to be extended in unambiguous ways=
+ to
+> >> >   handle changes in the extension.
+> >> >
+> >> > * Simpler, more complete DT validation (but we still need a best eff=
+ort
+> >> >   for legacy ISA strings)
+> >> >
+> >> > * Simpler DT parsing (but we still need the current parser for legac=
+y ISA
+> >> >   strings)
+> >> >
+> >> > > +  - required:
+> >> > > +      - riscv,isa-base
+> >> > > +
+> >> > >  required:
+> >> > > -  - riscv,isa
+> >> > >    - interrupt-controller
+> >> > >
+> >> > >  additionalProperties: true
+> >> > > @@ -177,7 +166,13 @@ examples:
+> >> > >                  i-tlb-size =3D <32>;
+> >> > >                  mmu-type =3D "riscv,sv39";
+> >> > >                  reg =3D <1>;
+> >> > > -                riscv,isa =3D "rv64imafdc";
+> >> > > +                riscv,isa-base =3D "rv64i";
+> >> > > +                riscv,isa-extension-i;
+> >> > > +                riscv,isa-extension-m;
+> >> > > +                riscv,isa-extension-a;
+> >> > > +                riscv,isa-extension-f;
+> >> > > +                riscv,isa-extension-d;
+> >> > > +                riscv,isa-extension-c;
+> >>=20
+> >> One downside of this new approach is it will increase the size of DTB.
+> >> Imaging 50 such DT properties in 46 CPU DT nodes.
+> >=20
+> > I should do a comparison between 50 extensions in riscv,isa and doing
+> > this 50 times and see what the sizes are.
+>=20
+> Why not just have something like
+>=20
+> mycpu {
+> 	...
+> 	riscv,isa {
+> 		i;
+> 		m;
+> 		a;
+> 		zicsr;
+> 		...
+> 	};
+> };
 
-safe_lut_tbl is missing.
+Naming of the node aside (perhaps that could be riscv,isa-extensions)
+there's not something hitting me immediately as to why that is a no-no.
+If the size is a concern, this would certainly be more efficient & not
+like the probing would be anything other than trivial more difficult
+what I have in my proposal.
 
->> +	.qos_lut_tbl = {
->> +		{.nentry = ARRAY_SIZE(sm6350_qos_linear_macrotile),
->> +		.entries = sm6350_qos_linear_macrotile
->> +		},
->> +		{.nentry = ARRAY_SIZE(sm6350_qos_linear_macrotile),
->> +		.entries = sm6350_qos_linear_macrotile
->> +		},
->> +		{.nentry = ARRAY_SIZE(sc7180_qos_nrt),
->> +		.entries = sc7180_qos_nrt
->> +		},
-> 
-> Strangely there are only 3 entries here, for LINEAR, MACROTILE and NRT.
-> Where's CWB and MACROTILE_QSEED?  Or was dpu_qos_lut_usage only extended
-> to account for more entries in danger_lut_tbl?  How about safe_lut_tbl?
+Rob's AFK at the moment, and I was hoping that he would take a look at
+the idea, so I won't respin til he is back, but I'll give this a go in
+the interim.
 
-This is a pending item on my plate, to sort out the LUT programming step 
-by step. Items currently missing:
+Cheers,
+Conor.
 
-- portrait vs landscape programming for danger and safe lut
-- missing qos_lut entries: inline rotation, inline_restricted fmt (for 
-sc8280xp+), some special WB modes
-- clean separation of qseed qos_lut_tbl. If you check the latest 
-display-drivers, it has matrix to select normal vs qseed for each of the 
-possible usecases.
+--TYryGqRDcYWpb9dy
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 
->> +	},
->> +	.cdp_cfg = {
->> +		{.rd_enable = 1, .wr_enable = 1},
->> +		{.rd_enable = 1, .wr_enable = 0}
->> +	},
->> +	.clk_inefficiency_factor = 105,
->> +	.bw_inefficiency_factor = 120,
->> +};
->> +
->> +const struct dpu_mdss_cfg dpu_sm6350_cfg = {
->> +	.caps = &sm6350_dpu_caps,
->> +	.ubwc = &sm6350_ubwc_cfg,
->> +	.mdp_count = ARRAY_SIZE(sm6350_mdp),
->> +	.mdp = sm6350_mdp,
->> +	.ctl_count = ARRAY_SIZE(sm6350_ctl),
->> +	.ctl = sm6350_ctl,
->> +	.sspp_count = ARRAY_SIZE(sm6350_sspp),
->> +	.sspp = sm6350_sspp,
->> +	.mixer_count = ARRAY_SIZE(sm6350_lm),
->> +	.mixer = sm6350_lm,
->> +	.dspp_count = ARRAY_SIZE(sm6350_dspp),
->> +	.dspp = sm6350_dspp,
->> +	.pingpong_count = ARRAY_SIZE(sm6350_pp),
->> +	.pingpong = sm6350_pp,
->> +	.intf_count = ARRAY_SIZE(sm6350_intf),
->> +	.intf = sm6350_intf,
->> +	.vbif_count = ARRAY_SIZE(sm6350_vbif),
->> +	.vbif = sm6350_vbif,
->> +	.reg_dma_count = 1,
->> +	.dma_cfg = &sm8250_regdma,
->> +	.perf = &sm6350_perf_data,
->> +	.mdss_irqs = BIT(MDP_SSPP_TOP0_INTR) | \
->> +		     BIT(MDP_SSPP_TOP0_INTR2) | \
->> +		     BIT(MDP_SSPP_TOP0_HIST_INTR) | \
->> +		     BIT(MDP_INTF0_INTR) | \
->> +		     BIT(MDP_INTF1_INTR) | \
->> +		     BIT(MDP_INTF1_TEAR_INTR),
->> +};
->> +
->> +#endif
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
->> index 9daeaccc4f52..5ef1dffc27dc 100644
->> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
->> @@ -748,6 +748,10 @@ static const struct dpu_qos_lut_entry sc7180_qos_linear[] = {
->>   	{.fl = 0, .lut = 0x0011222222335777},
->>   };
->>   
->> +static const struct dpu_qos_lut_entry sm6350_qos_linear_macrotile[] = {
->> +	{.fl = 0, .lut = 0x0011223445566777 },
->> +};
->> +
->>   static const struct dpu_qos_lut_entry sm8150_qos_linear[] = {
->>   	{.fl = 0, .lut = 0x0011222222223357 },
->>   };
->> @@ -803,6 +807,7 @@ static const struct dpu_qos_lut_entry sc7180_qos_nrt[] = {
->>   #include "catalog/dpu_6_0_sm8250.h"
->>   #include "catalog/dpu_6_2_sc7180.h"
->>   #include "catalog/dpu_6_3_sm6115.h"
->> +#include "catalog/dpu_6_4_sm6350.h"
->>   #include "catalog/dpu_6_5_qcm2290.h"
->>   
->>   #include "catalog/dpu_7_0_sm8350.h"
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
->> index e9237321df77..56af77353b1e 100644
->> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
->> @@ -320,6 +320,8 @@ enum dpu_qos_lut_usage {
->>   	DPU_QOS_LUT_USAGE_LINEAR,
->>   	DPU_QOS_LUT_USAGE_MACROTILE,
->>   	DPU_QOS_LUT_USAGE_NRT,
->> +	DPU_QOS_LUT_USAGE_CWB,
->> +	DPU_QOS_LUT_USAGE_MACROTILE_QSEED,
-> 
-> Because you allocated extra space for them here.  Either drop this, or
-> do it in a separate patch and provide the QOS and safe LUTs in the
-> catalog?
+-----BEGIN PGP SIGNATURE-----
 
-I asked them to be removed during v2 review, but I missed Konrad's 
-response at that time.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGabyQAKCRB4tDGHoIJi
+0tqeAQCpsTIUwavLKPVNiJd1cmmE4LJnnxMRlq2sxMTP8zSOpQD/arxRvhO4QzlJ
+1itR13j6MTL60roBmM//fn7DprVxnwI=
+=YkDr
+-----END PGP SIGNATURE-----
 
-> 
-> - Marijn
-> 
->>   	DPU_QOS_LUT_USAGE_MAX,
->>   };
->>   
->> @@ -880,6 +882,7 @@ extern const struct dpu_mdss_cfg dpu_sc8180x_cfg;
->>   extern const struct dpu_mdss_cfg dpu_sm8250_cfg;
->>   extern const struct dpu_mdss_cfg dpu_sc7180_cfg;
->>   extern const struct dpu_mdss_cfg dpu_sm6115_cfg;
->> +extern const struct dpu_mdss_cfg dpu_sm6350_cfg;
->>   extern const struct dpu_mdss_cfg dpu_qcm2290_cfg;
->>   extern const struct dpu_mdss_cfg dpu_sm8350_cfg;
->>   extern const struct dpu_mdss_cfg dpu_sc7280_cfg;
->> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->> index 0e7a68714e9e..46be7ad8d615 100644
->> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
->> @@ -1286,6 +1286,7 @@ static const struct of_device_id dpu_dt_match[] = {
->>   	{ .compatible = "qcom,sc8180x-dpu", .data = &dpu_sc8180x_cfg, },
->>   	{ .compatible = "qcom,sc8280xp-dpu", .data = &dpu_sc8280xp_cfg, },
->>   	{ .compatible = "qcom,sm6115-dpu", .data = &dpu_sm6115_cfg, },
->> +	{ .compatible = "qcom,sm6350-dpu", .data = &dpu_sm6350_cfg, },
->>   	{ .compatible = "qcom,sm8150-dpu", .data = &dpu_sm8150_cfg, },
->>   	{ .compatible = "qcom,sm8250-dpu", .data = &dpu_sm8250_cfg, },
->>   	{ .compatible = "qcom,sm8350-dpu", .data = &dpu_sm8350_cfg, },
->>
->> -- 
->> 2.40.1
->>
-
--- 
-With best wishes
-Dmitry
-
+--TYryGqRDcYWpb9dy--
