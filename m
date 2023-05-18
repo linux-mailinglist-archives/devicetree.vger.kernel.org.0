@@ -2,80 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C080A7080FC
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 14:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC292708144
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 14:29:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230264AbjERMP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 08:15:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54626 "EHLO
+        id S230484AbjERM3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 08:29:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbjERMPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 08:15:55 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5466210A;
-        Thu, 18 May 2023 05:15:52 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8Dxi+r3FmZkStkJAA--.17269S3;
-        Thu, 18 May 2023 20:15:51 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Axo8D2FmZkxNdnAA--.45800S3;
-        Thu, 18 May 2023 20:15:51 +0800 (CST)
-Subject: Re: [PATCH v1 2/3] dt-bindings: soc: add loongson-2 pm
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Tiezhu Yang <yangtiezhu@loongson.cn>,
-        Marc Zyngier <maz@kernel.org>,
-        Youling Tang <tangyouling@loongson.cn>,
-        Baoqi Zhang <zhangbaoqi@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>, Yun Liu <liuyun@loongson.cn>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230517073149.31980-1-zhuyinbo@loongson.cn>
- <20230517073149.31980-3-zhuyinbo@loongson.cn>
- <d3791702-4d41-0208-1346-34738a2883b6@linaro.org>
- <4521c591-6fcd-c96a-e2f6-f41f5c191036@loongson.cn>
- <1bbabe6d-b013-9837-8986-205a2b04de14@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <b4bc7385-3706-8aa3-0117-d106fd47a45e@loongson.cn>
-Date:   Thu, 18 May 2023 20:15:50 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S229920AbjERM3L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 08:29:11 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78CA510CF;
+        Thu, 18 May 2023 05:29:09 -0700 (PDT)
+Received: from kwepemm600004.china.huawei.com (unknown [172.30.72.55])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4QMTjJ3r0qzLppC;
+        Thu, 18 May 2023 20:26:12 +0800 (CST)
+Received: from [10.67.103.231] (10.67.103.231) by
+ kwepemm600004.china.huawei.com (7.193.23.242) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Thu, 18 May 2023 20:29:05 +0800
+Message-ID: <f013d4c6-afbe-ebc8-cb2d-1a12b55cc1d4@huawei.com>
+Date:   Thu, 18 May 2023 20:29:04 +0800
 MIME-Version: 1.0
-In-Reply-To: <1bbabe6d-b013-9837-8986-205a2b04de14@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH] soc: hisilicon: Support HCCS driver on Kunpeng SoC
+To:     Sudeep Holla <sudeep.holla@arm.com>
+CC:     Arnd Bergmann <arnd@arndb.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <soc@kernel.org>,
+        <wanghuiqiang@huawei.com>, <tanxiaofei@huawei.com>,
+        <liuyonglong@huawei.com>, <huangdaode@huawei.com>,
+        <linux-acpi@vger.kernel.org>, Len Brown <lenb@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20230515130807.pdvx7bxwjkfdsmsr@bogus>
+ <aa5b1919-74c6-1f97-78af-ab5f0904c3ce@huawei.com>
+ <20230516122931.il4ai7fyxdo5gsff@bogus>
+ <f0733521-2557-fdaf-e59b-b10d515c487c@huawei.com>
+ <20230516143530.venhj4gax6stinah@bogus>
+ <a98e3620-57da-000e-f5ee-2c2e47e97906@huawei.com>
+ <20230517093033.4jvwjxuoeic46a24@bogus>
+ <5ca49494-5a0c-4dc8-9cf5-fc4bc3b8e1b2@huawei.com>
+ <20230517131614.cwi2fcj2cngaq7dm@bogus>
+ <aec13381-e9be-4f3d-1834-52f32f9f8418@huawei.com>
+ <20230518083841.nqmjvqqxnea6qrbe@bogus>
+From:   "lihuisong (C)" <lihuisong@huawei.com>
+In-Reply-To: <20230518083841.nqmjvqqxnea6qrbe@bogus>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Axo8D2FmZkxNdnAA--.45800S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxGw4DuFy3tw45CFWrZF17trb_yoW5Zw13pa
-        yjgF4jy34DJr1Fyw48tw18CwsYy395KFWYgr1DW34I9wsrXw1SvFy7KF45u34Ikryxt3yI
-        vF1Ut398ZFs8AFJanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bDxFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM2
-        8EF7xvwVC2z280aVCY1x0267AKxVWxJr0_GcWln4kS14v26r126r1DM2AIxVAIcxkEcVAq
-        07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7
-        xfMcIj6xIIjxv20xvE14v26r126r1DMcIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Y
-        z7v_Jr0_Gr1lF7xvr2IY64vIr41lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxV
-        WUtVW8ZwCF04k20xvY0x0EwIxGrwCF04k20xvE74AGY7Cv6cx26rWl4I8I3I0E4IkC6x0Y
-        z7v_Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x
-        8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE
-        2Ix0cI8IcVAFwI0_JFI_Gr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42
-        xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF
-        7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU2mFADUUUU
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.67.103.231]
+X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
+ kwepemm600004.china.huawei.com (7.193.23.242)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,114 +71,145 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-在 2023/5/18 下午3:15, Krzysztof Kozlowski 写道:
-> On 18/05/2023 05:23, zhuyinbo wrote:
->>
->>
->> 在 2023/5/17 下午11:00, Krzysztof Kozlowski 写道:
->>> On 17/05/2023 09:31, Yinbo Zhu wrote:
->>>> Add the Loongson-2 SoC Power Management Controller binding with DT
->>>> schema format using json-schema.
+在 2023/5/18 16:38, Sudeep Holla 写道:
+> On Thu, May 18, 2023 at 04:24:36PM +0800, lihuisong (C) wrote:
+>> 在 2023/5/17 21:16, Sudeep Holla 写道:
+>>> On Wed, May 17, 2023 at 07:35:25PM +0800, lihuisong (C) wrote:
+>>>> 在 2023/5/17 17:30, Sudeep Holla 写道:
+>>>>> On Wed, May 17, 2023 at 03:16:12PM +0800, lihuisong (C) wrote:
+>>>>>
+>>>>> [...]
+>>>>>
+>>>>>> No. I want to use this flag to make compability between different platforms.
+>>>>>> This driver only use PCC OpRegion to access to the channel if platform
+>>>>>> support use PCC OpRegion.
+>>>>> What do you mean by that ? It is not correct. If there is a PCC Opregion,
+>>>>> then you need to make it work with drivers/acpi/acpi_pcc.c
+>>>>>
+>>>>> You need to have all the other details in the firmware(ASL). By looking
+>>>>> at the driver, it has no connection to PCC Opregion IMO unless I am missing
+>>>>> something.
+>>>> Driver just needs to call these APIs, such as acpi_evaluate_integer(), if
+>>>> want to use PCC OpRegion.
+>>> OK, please provide examples. I am definitely lost as it doesn't match with
+>>> my understanding of how PCC Opregions are/can be used.
+>>>
+>>>> I know that. I have tested PCC OpRegion before.
+>>> Cool, examples please.
+>>>
+>>>> You've completely misunderstood what I said.😅
 >>>>
->>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>>
->>> ...
->>>
->>>> +properties:
->>>> +  compatible:
->>>> +    items:
->>>> +      - enum:
->>>> +          - loongson,ls2k-pmc
->>>> +      - const: syscon
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  interrupts:
->>>> +    maxItems: 1
->>>> +
->>>> +  suspend-address:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    description:
->>>> +      This option indicate this PM suspend address.
->>>
->>> This tells me nothing. Drop "This option indicate this" and rephrase
->>> everything to actually describe this property. Why would the address
->>> differ on given, specific SoC? It looks like you just miss compatibles.
->>> Anyway this needs much more explanation so we can judge whether it fits DT.
+>>> Hmm, may be but I need examples.
+>> As you said below, the driver works just for PCC not PCC Opregion for now.
+>> not sure if we need to discuss how PCC Opregion is used here.
+> Good let us drop the idea of using PCC Opregion with this driver for now.
+>
+>>>> I mean that this driver plans to support both PCC and PCC OpRegion.
+>>>> For example,
+>>>> Platform A: this driver use PCC (as the current implementation)
+>>> Good, then just keep what it needs in the implementation nothing more
+>>> until you add support for something you have described below(not that
+>>> I agree, just want you to make progress here based on what is actually
+>>> required today)
+>> Agreed.
+>>>> Platform B: this driver use PCC OpRegion (Currently, this patch does not
+>>>> implement it, but it may be available in the future.)
+>>> Then let us discuss that in the future, don't add unnecessary complexity
+>>> for some future use case today. You can always add it when you introduce
+>>> that feature or support in the future.
+>> Yes. We just need to focus on the current.
+>> If there are any usage problems with PCC OpRegion in the future, we can
+>> discuss that later.
 >>
->> Hi Krzysztof,
+> Agreed.
+>
+>> My original full scheme is as follows:
+>> -->
+>> dev_flags = get_device_flags();  // to know if use PCC OpRegion
+>> if (USE_PCC_OPREGION_B in dev_flags is 0) {
+>>      chan_id = get_pcc_chan_id();
+>>      init_mbox_client();
+>>      pcc_mbox_request_channel(cl, chan_id)
+>> } else {
+>>      /* we need to return unsupport now because of no this feature in this
+>> driver. */
+>>      do_nothing();
+>> }
 >>
->> I will add following description about "suspend-address", please review.
-> 
-> Thanks.
-> 
+>> void get_some_info(...) {
+>>      if (USE_PCC_OPREGION_B in dev_flags is 0)
+>>          pcc_cmd_send();  // use PCC to communicate with Platform
+>>      else
+>>          acpi_evaluate_object(); // will be used in future.
+>> }
 >>
->> The "suspend-address" is a ACPI S3 (Suspend To RAM) firmware entry
-> 
-> Why do we add properties for ACPI? This does not seem right. 
-
-
-1.  The suspend-address value was dependent on specific platform
-     firmware code and it tends to be confiurable. if it is a fixed value
-     that seems not friendly or the ACPI S3 will not work.
-2. the PM driver need according to it to indicate that current SoC
-    whether support ACPI S3, because some Loongson-2 SoC doesn't support
-    ACPI S3 but support other ACPI mode, so the PM driver need has a
-    check. if no this check and other ACPI mode will not work.
-
-Base on the above two points, this property was necessary.
-Using this property "suspend-address" can make the firmware entry
-address configurable, and then the kernel can also indicate whether
-the current SoC supports S3
-
-In addition, from kernel code perspective, the property
-"suspend-address" was to initialize "loongarch_suspend_addr"
-
-S3 call flow:
-enter_state -> loongson_suspend_enter -> bios's loongarch_suspend_addr
-
-SYM_FUNC_START(loongson_suspend_enter)
-         SETUP_SLEEP
-         bl              __flush_cache_all
-
-         /* Pass RA and SP to BIOS */
-         addi.d          a1, sp, 0
-         la.pcrel        a0, loongson_wakeup_start
-         la.pcrel        t0, loongarch_suspend_addr
-         ld.d            t0, t0, 0
-         jirl            a0, t0, 0 /* Call BIOS's STR sleep routine */
-
-
-Please
-> reword to skip ACPI stuff, e.g. deep sleep states (Suspend to RAM).
-
-
-Sorry, I don't got your point.
-
-> 
-> 
->> address which was jumped from kernel and it's value was dependent on
->> specific platform firmware code.
-> 
-> "entry address which was jumped" <- the address cannot jump. Please
-> explain who is jumping here - boot CPU? each suspended CPU? I guess the
-> first as CPUs are offlined, right?
-
-The boot CPU was jumping to firmware and finish remaining process in
-firmware that was what ACPI S3 required and other CPUs (No-boot CPU)
-have been offline before entering firmware.
-
-> 
->> In addition, the PM driver need
->> according to it to indicate that current SoC whether support ACPI S3.
-> 
-> Skip references to driver.
-
-
-Sorry, I don't got your point.  Could you elaborate on it?
-
-Thanks
-Yinbo.
-
+>> As described in the pseudocode above,
+>> it is necessary to put "dev_flags" in this current driver first in case of
+>> the version driver runs on the platform which just use PCC Opregion.
+> No, you can't randomly define dev_flags just to assist your driver
+> implementation. If you need it, you need to get the spec updated. We
+> will not add anything unless that happens.
+>
+> Note that I don't agree with the flags at all but if you convince and get
+> them added to spec, I won't object.
+Ok，let us drop it.
+>>>> Note:
+>>>> This driver selects only one of them (PCC and PCC OpRegion) to communicate
+>>>> with firmware on one platform.
+>>> Let us keep it simple(KISS). The driver works just for PCC not PCC Opregion
+>>> for now.
+>> ok.
+> Good
+>
+>>>> We use one bit in device-flags to know which one this driver will use.
+>>>>
+>>> NACK again just to re-iterate my point if you have not yet accepted that
+>>> fact.
+>> Above is our plan. Do you still think we shouldn't add this device-flags?
+>> please let me know.
+> Correct, no device flags as I see no use for it with your PCC only use case
+> for now, right ?
+Yes, it can still work well.
+As for PCC Opregion way on other platform, I think of other way.
+>
+>>>> I'm not sure if you can understand what I mean by saing that.
+>>>> If you're not confused about this now, can you reply to my last email
+>>>> again?😁
+>>>>
+>>> The example you had IIRC is use of System Memory Opregion to demonstrate
+>>> some _DSM. That has nothing to do with PCC Opregion.
+>> Yes, it doesn't matter.
+>> I just want to have a way to get device-flags which contains many bits(every
+>> bits can be used to as one feature for expanding), rigtht?
+> Get it through the spec, we don't allow random additions for some
+> implementations like this.
+Get it.
+>>> Commit 77e2a04745ff ("ACPI: PCC: Implement OperationRegion handler for
+>>> the PCC Type 3 subtype") has the example in the commit message. IIRC,
+>> Your example is very useful to the user.
+>>> you have even fixed couple of bugs in that driver. That is the reason
+>>> why I don't understand how you think this driver and that can or must
+>> Understand you, Sudeep.
+>> At that time, I tested it by a simple demo driver on the platform supported
+>> type3.
+>>
+> OK
+>
+>> This driver will support multiple platforms.
+>> On some platforms, we can only use PCC with polling way.
+>> And we will add PCC Opregion way for others platforms.
+> Again when you do please post the patch with the ASL snippet as I am
+> very much interested in understanding how you would make that work.
+All right.
+>
+>> What's more, every platform just use one of them(PCC and PCC Opregion).
+> OK
+>
+>>> work together. At least I fail to see how ATM(examples please, by that
+>>> I mean ASL snippet for PCC vs PCC Opregion usage to work with this driver)
+>> ok!
+>> For PCC, ASL snippet is little.
+>> I will add ASL snippet when this driver addes PCC Opregion way.
+>
+> Sounds like a plan to make progress at-least for now.
+>
