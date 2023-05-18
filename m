@@ -2,88 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C716B707AAF
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 09:15:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0292707AB9
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 09:19:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230073AbjERHPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 03:15:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53384 "EHLO
+        id S229962AbjERHTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 03:19:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230077AbjERHPl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 03:15:41 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 294702D55
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 00:15:37 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f27977aed6so1917986e87.2
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 00:15:36 -0700 (PDT)
+        with ESMTP id S229997AbjERHTW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 03:19:22 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE71B2115
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 00:19:20 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-510e419d701so946741a12.1
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 00:19:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684394135; x=1686986135;
+        d=linaro.org; s=google; t=1684394359; x=1686986359;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KYKmQfTmh1bEYIv0MqpLWu88gw8N39vIF7/3HVXEtq0=;
-        b=Rh/fojwkalbjq0+9uWj9+OQ35gHQboxXNNSGtTDD47GISpAFuCVvveHBk6pWBLoPeP
-         E7Q/hBaWeJFc+hXKNVJdBKDjZ0lRHAK9LETBu4/q9s74wkiaXdGfl1EA45vbIiIRcRiR
-         RXKrFJP5cbCvcEPF9fmJDxHbQl12icgOuA0YTQhpJrYumyWFtU16sHuxhYlEAZZUG0pU
-         mV+Bn9EYzuGcJ37FyA4v6v+ivfE5iDuWFCJa2TuMAQsMSG9fbhnmJXR5QPHxgJIkNTgC
-         HvWHTx+zXCmDCJOVIBkgnNroQBNKbKG7njOaBF13gvRkWxUYK2ViyMm6YcW/WswwfFy1
-         Q7yA==
+        bh=F2R24sEC0W33Mf9qm1SpwZ1d3GiqGsY8ClHuqi0XUiA=;
+        b=z2WBa9j0C6X4og/mxGPlheLdRHsKgrt9kHamOwkAaWEJk5+mx+MEKBkTnXnsC+5av0
+         21kim62ZD+Ooiotdz7uwZloB7Ct8D2ahAYPFRjjTHxweq606k+5PDOocTYdsNppuIIc3
+         DLBqO5/IXWUVZCYydAcwFXBmh7HN7dSbSTfQ6x9mN6YXqGdRUeRVOV5QXDn6rWVKQOLo
+         7ie3vt+BNrXx3mbeWFrk5PP7zJOmP5+UU9knvZgDfnROrCUz13UjxmgS1JmxLeuVR8LH
+         +xJj53PBs36ZfOhMbfcK1yFqGSI851EASPvSxanzpjwvpazImoXZ0bxn3Lp55pJYdZ/g
+         GluQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684394135; x=1686986135;
+        d=1e100.net; s=20221208; t=1684394359; x=1686986359;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KYKmQfTmh1bEYIv0MqpLWu88gw8N39vIF7/3HVXEtq0=;
-        b=YSNxj43TOCuTz7V/HgkJIIQe1rB6H7OmuityvUBF3y2eBEKlv22jhULXPQTbct1LZI
-         2ATrhyPOuWoaV9biDfLcN2KSGTjlNCNlTY5yPz8wGgvO3nFU6tD3VD7w7CVYPwMsHDRF
-         T2K0CE//iFTbo/2kx0NefnhnKouaVTCdBJiTkOrv/UDthwHsZhrUJZBaIQo+KEPzDlPz
-         hQK6t7Xg9Lfli/0NOGmetxFQ3i2bQI9EHZuCZb9/nmt4XV1kk6W2q8N76m6hEj3gjsUy
-         /0D8biJhrRxCM4y6QAxuqsmPDAc47oIvFxRSsvIfj3dl8qiO1pPcPDbU4SD/fqR0rof8
-         boMA==
-X-Gm-Message-State: AC+VfDxTa3bEtdWnhwDCQG70HYsuQnGiI8CA0btRpXDJ41+5a7l+8ThV
-        3a+TcUXtoWYHK7T49NzBjAErl8IlwTZVveYZbpbwsQ==
-X-Google-Smtp-Source: ACHHUZ5w/WS18KRlT6zZx4TvcGzjRToUbnX6tn8AELoPIH92+lXRt2kQzNO52ptf7vSazWqiSv7+tA==
-X-Received: by 2002:ac2:4117:0:b0:4e9:cfd2:e2d with SMTP id b23-20020ac24117000000b004e9cfd20e2dmr819020lfi.65.1684394135207;
-        Thu, 18 May 2023 00:15:35 -0700 (PDT)
+        bh=F2R24sEC0W33Mf9qm1SpwZ1d3GiqGsY8ClHuqi0XUiA=;
+        b=EQ7Jr7GODnDveUThG2qAvWIzTl5wEIp+Haea/EETOc3VsK/uGrNm443DnIPXfWFCiR
+         LqmiP42o/tl+DZzHQRERsba6ZhPocPH/LOJ/vdaklVoC5S1bATL2Ibzng8F30WR0+iN7
+         hrZuG4qAqwBVkJdHQCj7mIeaoqE62aMecU0Iar/OLxDo09qRG7Y0GSqEHyCJSTB6q/5h
+         QKYWiZVg1jyROiOwFesNVfcUK8VkwGOriq+dn9QnygVseHESTSXiiCcTtT6j9616Q1AP
+         v7oZ0cQydhiHdCi36edgBv9BVsLKr1aSyFMOGUNa00SDovFMdrGWleA1kc6t6wr4DsVs
+         VD7g==
+X-Gm-Message-State: AC+VfDz88KEu/x9RIjeiQuCu4Lj1AKQCoiuxogESqqYW8znAWLOtfhiG
+        23+Bsy6k+JjEop2T+AsNNFa3nw==
+X-Google-Smtp-Source: ACHHUZ6/Gyx2keZVGcv8yEreT2Te6mSvWDCDXT1Y80tbsvnTAMhRQ9I/dziOJk7KJt1+GZDpDerY2A==
+X-Received: by 2002:a17:907:a408:b0:96a:90bb:a2fa with SMTP id sg8-20020a170907a40800b0096a90bba2famr21528556ejc.51.1684394359300;
+        Thu, 18 May 2023 00:19:19 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:a2b:c408:5834:f48e? ([2a02:810d:15c0:828:a2b:c408:5834:f48e])
-        by smtp.gmail.com with ESMTPSA id i13-20020a056512006d00b004ece331c830sm146808lfo.206.2023.05.18.00.15.32
+        by smtp.gmail.com with ESMTPSA id a25-20020a17090680d900b00966265be7adsm589435ejx.22.2023.05.18.00.19.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 May 2023 00:15:34 -0700 (PDT)
-Message-ID: <1bbabe6d-b013-9837-8986-205a2b04de14@linaro.org>
-Date:   Thu, 18 May 2023 09:15:31 +0200
+        Thu, 18 May 2023 00:19:18 -0700 (PDT)
+Message-ID: <8ba2ea99-01ca-5edb-c9ab-4f10a3983f24@linaro.org>
+Date:   Thu, 18 May 2023 09:19:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v1 2/3] dt-bindings: soc: add loongson-2 pm
+Subject: Re: [PATCH v2 1/3] dt-bindings: leds: qcom,spmi-flash-led: add
+ PMI8998
 Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Tiezhu Yang <yangtiezhu@loongson.cn>,
-        Marc Zyngier <maz@kernel.org>,
-        Youling Tang <tangyouling@loongson.cn>,
-        Baoqi Zhang <zhangbaoqi@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>, Yun Liu <liuyun@loongson.cn>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230517073149.31980-1-zhuyinbo@loongson.cn>
- <20230517073149.31980-3-zhuyinbo@loongson.cn>
- <d3791702-4d41-0208-1346-34738a2883b6@linaro.org>
- <4521c591-6fcd-c96a-e2f6-f41f5c191036@loongson.cn>
+To:     Dylan Van Assche <me@dylanvanassche.be>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        amartinz@shiftphones.com
+References: <20230518061328.146847-1-me@dylanvanassche.be>
+ <20230518061328.146847-2-me@dylanvanassche.be>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <4521c591-6fcd-c96a-e2f6-f41f5c191036@loongson.cn>
+In-Reply-To: <20230518061328.146847-2-me@dylanvanassche.be>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,67 +80,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2023 05:23, zhuyinbo wrote:
+On 18/05/2023 08:13, Dylan Van Assche wrote:
+> Document compatible for PMI8998 Torch and Flash LED controller.
 > 
-> 
-> 在 2023/5/17 下午11:00, Krzysztof Kozlowski 写道:
->> On 17/05/2023 09:31, Yinbo Zhu wrote:
->>> Add the Loongson-2 SoC Power Management Controller binding with DT
->>> schema format using json-schema.
->>>
->>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>
->> ...
->>
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - loongson,ls2k-pmc
->>> +      - const: syscon
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  suspend-address:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      This option indicate this PM suspend address.
->>
->> This tells me nothing. Drop "This option indicate this" and rephrase
->> everything to actually describe this property. Why would the address
->> differ on given, specific SoC? It looks like you just miss compatibles.
->> Anyway this needs much more explanation so we can judge whether it fits DT.
-> 
-> Hi Krzysztof,
-> 
-> I will add following description about "suspend-address", please review.
+> Signed-off-by: Dylan Van Assche <me@dylanvanassche.be>
+> ---
 
-Thanks.
-
-> 
-> The "suspend-address" is a ACPI S3 (Suspend To RAM) firmware entry
-
-Why do we add properties for ACPI? This does not seem right. Please
-reword to skip ACPI stuff, e.g. deep sleep states (Suspend to RAM).
-
-
-> address which was jumped from kernel and it's value was dependent on 
-> specific platform firmware code. 
-
-"entry address which was jumped" <- the address cannot jump. Please
-explain who is jumping here - boot CPU? each suspended CPU? I guess the
-first as CPUs are offlined, right?
-
-> In addition, the PM driver need 
-> according to it to indicate that current SoC whether support ACPI S3.
-
-Skip references to driver.
-
-> 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
