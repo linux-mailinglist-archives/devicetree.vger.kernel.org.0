@@ -2,61 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24D14708AB2
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 23:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF05B708AB5
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 23:46:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229533AbjERVns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 17:43:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53488 "EHLO
+        id S229622AbjERVqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 17:46:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230186AbjERVnr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 17:43:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928F310C6;
-        Thu, 18 May 2023 14:43:45 -0700 (PDT)
+        with ESMTP id S229456AbjERVqs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 17:46:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9868718C
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 14:46:47 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 22AB36116D;
-        Thu, 18 May 2023 21:43:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 893EFC433D2;
-        Thu, 18 May 2023 21:43:41 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F3D4965251
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 21:46:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2182C433D2;
+        Thu, 18 May 2023 21:46:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684446224;
-        bh=K5xEeU1mCoS/OcrSjPJzbDiJWn0dLzXGU8F7Uq+vaiM=;
+        s=k20201202; t=1684446406;
+        bh=1MwnOw+qgDbLBDN3iFRlRsgNFgIKQwLtfcnhoWwiYBQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Z8O9DHsXQ7ixpbmHAwzzZ2YY7NsU7T0laR+7Rw60X1rR66jZYjs1n8mzpc2a+bCof
-         Iihi1/FYLdZtmgRAB0K61CWx3p6JR1+Y5FoNhgaOYNCK7ZyGwB3tqOr3L15SJceHzv
-         NPGwAEsfg5hpGoLenhLr0qeLmm9X5ChldfLVDlU71tOPBa4G1C6ypJ4g6LAMRZODOG
-         PTeMzAm1hd2R1wcQcZbRinNjibK6Sb9XNPSPeVRy35cEOfgIvfwHTH0NP55sqQhs19
-         rzTnLdgCn+BO8ZcLXFM2dnanLgDfoZsDWJdfyBVcaecUsW7u4r2b+tyQdCW84/LNKG
-         f98g0Tw2Sl4KA==
-Date:   Thu, 18 May 2023 22:43:39 +0100
+        b=aevofiarMjwpx7ic/MUR73NprtWXAWTaU8bxeSHDI8a21txFNvockEIRuCErWltqy
+         C5HVl3RACBU+QOamF6HJGyXspuXSHMpyEgi+AZX0ANnRpjgJg29Ca8zPbipZ1DZkYV
+         w23pRzwKY7I1WL8jq72HIU86NnFmrRV6VM28WuutPkFXH372aN796th5ElmKM5ZRSB
+         HNKDs0b6ASYBm2w9QBsr8t9iIKpHU0ODranLmIMlWjONntBki+ZbIoXz/X1QZsAejB
+         sq6KJa2S5XRCgIQfFXZQ4P/q4MstK01pESQdcSTAHG3W1cQ/p6UcNZNZGOlKai4j3W
+         Wi1A7yW19pUtw==
+Date:   Thu, 18 May 2023 22:46:42 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     alexis.lothore@bootlin.com
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        paul.arola@telus.com, scott.roberts@telus.com
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: marvell: add
- MV88E6361 switch to compatibility list
-Message-ID: <20230518-sporting-tweezers-14cee98a4832@spud>
-References: <20230517203430.448705-1-alexis.lothore@bootlin.com>
- <20230517203430.448705-2-alexis.lothore@bootlin.com>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     shawnguo@kernel.org, marex@denx.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v2 2/2] soc: imx: imx6sx-gpr: Introduce a GPR driver
+Message-ID: <20230518-zone-carpentry-58725c59fd05@spud>
+References: <20230518192628.151462-1-festevam@gmail.com>
+ <20230518192628.151462-2-festevam@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="l0BAS8I4h0k//Wt/"
+        protocol="application/pgp-signature"; boundary="3pLUZw+RLgKPTfl5"
 Content-Disposition: inline
-In-Reply-To: <20230517203430.448705-2-alexis.lothore@bootlin.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230518192628.151462-2-festevam@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,35 +58,29 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---l0BAS8I4h0k//Wt/
-Content-Type: text/plain; charset=iso-8859-1
+--3pLUZw+RLgKPTfl5
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 17, 2023 at 10:34:29PM +0200, alexis.lothore@bootlin.com wrote:
-> From: Alexis Lothor=E9 <alexis.lothore@bootlin.com>
->=20
-> Marvell MV88E6361 is an 8-port switch derived from the
-> 88E6393X/88E9193X/88E6191X switches family. Since its functional behavior
-> is very close to switches from this family, it can benefit from existing
-> drivers for this family, so add it to the list of compatible switches
->=20
-> Signed-off-by: Alexis Lothor=E9 <alexis.lothore@bootlin.com>
+On Thu, May 18, 2023 at 04:26:28PM -0300, Fabio Estevam wrote:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> +static const struct of_device_id imx6sx_gpr_ids[] = {
+> +	{ .compatible = "fsl,imx6sx-iomuxc-gpr" },
 
-Thanks,
+Is this an undocumented compatible?
+
+Cheers,
 Conor.
 
---l0BAS8I4h0k//Wt/
+--3pLUZw+RLgKPTfl5
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGacCgAKCRB4tDGHoIJi
-0pNtAP9Z3CouQuLHG/+Yypu0zs/7meyJHceLCh6LCSAsRqLvNwEA2T8Kag0bW8kh
-8+SyrKFgL5BuNOiHglfhLmXHtOciagM=
-=IO47
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGacwgAKCRB4tDGHoIJi
+0kDXAQCw9jk6/w5A1YIuhBkz4sYf+BUzc9UdQVKkfLPiNnf8QAD9E5QUQyvqDgeM
+f4kZHFEMp1g2OiuGed3wyG5zUa4EKQo=
+=dlN4
 -----END PGP SIGNATURE-----
 
---l0BAS8I4h0k//Wt/--
+--3pLUZw+RLgKPTfl5--
