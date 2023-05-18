@@ -2,94 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AABE9708850
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 21:25:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70ECC708853
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 21:26:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229744AbjERTZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 15:25:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52182 "EHLO
+        id S229535AbjERT0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 15:26:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjERTZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 15:25:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DC0D18F;
-        Thu, 18 May 2023 12:25:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 32B3A65108;
-        Thu, 18 May 2023 19:25:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54358C433EF;
-        Thu, 18 May 2023 19:25:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684437939;
-        bh=Ey4oQzzAq2Xv5tRbfaLF7gcD0GoLd9dwY7x3rOsNRb8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hDCIEXIZSoz5QLJ9k7vqS3S3OSGN1ywQNRO66la1MxXr+zcWvWNXSWQ38pP9evaZo
-         93Fqt2mgHotEMBmYG2Uc5uxiot6mBFiVSzAyrrEp264qZwAuzZF4LZG8c6k19E6LPs
-         /gOHGzI75do6BeXh5QKYKhkdZmqAreDydYJ81acpGbinrWMgtQ2ki0IUiu0wEj51GC
-         2ARXgBf1EXYMAoCD3m0kqyOPpXPCGDNXznOw1qFanlaGwBl1yO4t0VXS01r8qDNamf
-         Vxc/PteKS1ERzZ01HKLuI8fZ0SwaNQ3+0weOWJv3UUJ1s4vAVq3Nxw7uMASaIMrQip
-         XQWoZzffUmnxg==
-Date:   Thu, 18 May 2023 20:25:34 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Paulo Pavacic <pavacic.p@gmail.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        neil.armstrong@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, sam@ravnborg.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Subject: Re: [PATCH v2] dt-bindings: display: panel: add
- panel-mipi-dsi-bringup
-Message-ID: <20230518-viewpoint-haven-d2e4c3b5f305@spud>
-References: <CAO9szn18KsR0c+U8EEY1=xnmsKMxy6SEArMUic0z=aYJDVwWCQ@mail.gmail.com>
- <023f6cf9-0f08-f27e-d203-5ff78faf110f@linaro.org>
- <CAO9szn1EsbuPSRrOW8CLqhp+QUcL=9NE93FAwsg2n3htd_aJTw@mail.gmail.com>
- <CAMty3ZCAP6CRsJWMUZZ6+hd5igX3NgyNfhdEv2FwuDtqj4iaaA@mail.gmail.com>
- <HB0TUR.1IPEEV2C5LMB1@gmail.com>
- <CAMty3ZCSUx-81m4SQcJZvUq3NyhzZbe8ow+LiV7iyUmVLCmNYQ@mail.gmail.com>
- <CAO9szn2A22KTzrCTX+24Y3goSberHpcGf-O-Czv3+_dX+pL+vQ@mail.gmail.com>
+        with ESMTP id S229493AbjERT0f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 15:26:35 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB7518F
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 12:26:35 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-19a0f511155so280180fac.1
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 12:26:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684437994; x=1687029994;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4/Z7FK8gXfOK/eLbI8J6uzD+8ahNn0HJ8uv1V8cuJ9g=;
+        b=O3Jx49kBYo71nczBSK1IXlSvGtNrdjlRQksE6kT0j0NavulS/mztg+x1qio51X7IKZ
+         +hlGTg21ZCTfqswXg+i4U/nldZGFvovihiYZ0NZYmwhUXHyqY2dctsjw29ADZ/QW0sWm
+         Ag6mEoUkUT27zzxHQOQGu76kGAxVClmxoB8ziEOp8TQZT1xEViGY5A9oi3wJUq0kYW14
+         lfvnp13qBsudGuyPBgW8lpoOTvrGT9Jng3X9zGai7M2RTpHuBJynDy2WpvGUaeO9jeTQ
+         a5TQp8ISQcOQK9hscnKgmE+1p4UFJw6VBbBSrUOM63HOueTrkIHA8/AVfxGizQ+fhQel
+         PMdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684437994; x=1687029994;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4/Z7FK8gXfOK/eLbI8J6uzD+8ahNn0HJ8uv1V8cuJ9g=;
+        b=jzm/nxugQhZx4rJ/NHJiPW4i6weIuFFq6bc7uxffG4DIlr78Ma8Y/cPiQhObCZMyUs
+         7/e0BcoDE0sU698NZQKyYJN7kbcIyjX4XhoHmYt05I99tj6O5Wh6OffWYJZiIU/JzB+w
+         gXdcH/QxmXXpAVUX5LIK+VGPnwK7Lhi+RRHnfN1sBSLJq3926IWYBC6ZKK1i1P5XkDsj
+         JkPV9TJfjVJTW+PVwrJilk66X+CjN+xJzhpOb7nsSHn1tK6vtlzu3hxFakeCYtELIjJZ
+         nI/ec6Epwzv5SnMAXK5hf53sDoYJjq7WtK9Um06UUUxjIYlCUh7qvolwG3WMR/JBwhZn
+         WPqw==
+X-Gm-Message-State: AC+VfDx3xfSA9QvRWSpAJee2eODcHEpOGTPPHckcm8QOD3TxZFTI6JP2
+        pvWdqSHbCM+gikTOaljSYFFkO7c76tE=
+X-Google-Smtp-Source: ACHHUZ6Ma0v70Cd77SrUB70pu+f5aZ/qv0YWBhUkUZ3/xODGk5A2PKms9kGkXuvW2tDlV8o8FPUL0g==
+X-Received: by 2002:a05:6870:9a14:b0:192:7328:d with SMTP id fo20-20020a0568709a1400b001927328000dmr4353456oab.4.1684437994258;
+        Thu, 18 May 2023 12:26:34 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:e366:77e8:4ae8:a240])
+        by smtp.gmail.com with ESMTPSA id q14-20020a9d654e000000b006ac87b54ca4sm956609otl.34.2023.05.18.12.26.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 May 2023 12:26:33 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     marex@denx.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2 1/2] ARM: dts: imx6sx: Add LDB support
+Date:   Thu, 18 May 2023 16:26:27 -0300
+Message-Id: <20230518192628.151462-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="A8Lg/r5jOWbk2+NT"
-Content-Disposition: inline
-In-Reply-To: <CAO9szn2A22KTzrCTX+24Y3goSberHpcGf-O-Czv3+_dX+pL+vQ@mail.gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Fabio Estevam <festevam@denx.de>
 
---A8Lg/r5jOWbk2+NT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+i.MX6SX has an LVDS controller that is connected to the eLCDIF.
 
-On Thu, May 18, 2023 at 04:47:08PM +0200, Paulo Pavacic wrote:
-> > So, the driver has to be panel-fannal-c3004.c and binding to be fannal,=
-c3004.yaml.
->=20
-> I believe I have covered this and all the other problems in following
-> patch which I will submit as a V3 of the conversation in a patchset
-> together with a driver:
+Add support for it.
 
-Please do, that'd be great.
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Changes since v1:
+- Do not use simple-bus for gpr (Marek and Krzysztof).
 
---A8Lg/r5jOWbk2+NT
-Content-Type: application/pgp-signature; name="signature.asc"
+ arch/arm/boot/dts/imx6sx.dtsi | 39 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
------BEGIN PGP SIGNATURE-----
+diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
+index 4233943a1cca..565b95b36b77 100644
+--- a/arch/arm/boot/dts/imx6sx.dtsi
++++ b/arch/arm/boot/dts/imx6sx.dtsi
+@@ -844,7 +844,38 @@ iomuxc: pinctrl@20e0000 {
+ 			gpr: iomuxc-gpr@20e4000 {
+ 				compatible = "fsl,imx6sx-iomuxc-gpr",
+ 					     "fsl,imx6q-iomuxc-gpr", "syscon";
++				#address-cells = <1>;
++				#size-cells = <1>;
+ 				reg = <0x020e4000 0x4000>;
++
++				lvds_bridge: bridge@18 {
++					compatible = "fsl,imx6sx-ldb";
++					clocks = <&clks IMX6SX_CLK_LDB_DI0>;
++					clock-names = "ldb";
++					reg = <0x18 0x4>;
++					reg-names = "ldb";
++					status = "disabled";
++
++					ports {
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						port@0 {
++							reg = <0>;
++
++							ldb_from_lcdif1: endpoint {
++								remote-endpoint = <&lcdif1_to_ldb>;
++							};
++						};
++
++						port@1 {
++							reg = <1>;
++
++							ldb_lvds_ch0: endpoint {
++							};
++						};
++					};
++				};
+ 			};
+ 
+ 			sdma: dma-controller@20ec000 {
+@@ -1278,6 +1309,14 @@ lcdif1: lcdif@2220000 {
+ 					clock-names = "pix", "axi", "disp_axi";
+ 					power-domains = <&pd_disp>;
+ 					status = "disabled";
++
++					ports {
++						port {
++							lcdif1_to_ldb: endpoint {
++								remote-endpoint = <&ldb_from_lcdif1>;
++							};
++						};
++					};
+ 				};
+ 
+ 				lcdif2: lcdif@2224000 {
+-- 
+2.34.1
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGZ7rgAKCRB4tDGHoIJi
-0nOIAQCTsXNhUb/HN3g3I+6LQLZaEACF0NvppF3NLbwC/Q4KqwD/Sh27dTJJsm6S
-uLadNbb0zc52FvN+PQmmFhSH4eFhRgw=
-=kXGS
------END PGP SIGNATURE-----
-
---A8Lg/r5jOWbk2+NT--
