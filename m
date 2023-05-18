@@ -2,150 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3F9E707D7C
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 12:01:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA769707D83
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 12:06:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230358AbjERKBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 06:01:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39894 "EHLO
+        id S230350AbjERKGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 06:06:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230323AbjERKBc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 06:01:32 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABB5610CA
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 03:01:30 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f380cd1019so2224771e87.1
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 03:01:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684404089; x=1686996089;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pj4weIGpudmyNlnO9uJ3E1FMhSIXf4L7qvix1QY0ZZk=;
-        b=GB579InNIIFWRmiIhrdlhHkDUbiM7L+cpzuzjT6xTrvcjfQDdX2r9q8CCOKjxxMR7k
-         E09SIZLQ93IdwUBC9qNDIIPU2gReGjlkfJXIqozEPpRNkjx63gvrKd94Bk4yM9C/URtb
-         psQcz4UPt8suQbTDQAPbgZSdoLa2WaCY/W8dYsDk/2/sfcDYlP3q4hEoJxpp+h23Gopf
-         xLqZUZCQOMM5CHVke8SZmZkv+pA5Dzz8IKcYqkkEba9LhGE16rTTmOXyajzjMumNSpix
-         28lgEpFHYEVCRCDmxZZgRyfOVREwyoexu8UejvGOkMsq+7qThMWE7Vt7WIZ5jvUaqjdh
-         NWaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684404089; x=1686996089;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pj4weIGpudmyNlnO9uJ3E1FMhSIXf4L7qvix1QY0ZZk=;
-        b=IbWJ8RUEURcipuHqLI0OVybk15cB6rQZcrsXf5405fL8LCCZdbwjkSmji4wtgsW4zb
-         hJt6frne0LF8CCxDaOd9AwIC0dJicEA63iEhuJ1uM6FN2yur7t5yg7Ft0wVIelUJG1pW
-         Li7scEQlTBTLnuyFCmH3jTkfDt7NLuuTCNP6+MtMkqmjBdax1eBmaTH0+iaO96Yui87X
-         nsD7nGEBJhg1zzgAwBxDFy/Mn3HB86Zv5L2cpAcSSV123BVa0qolQt8cNPG2LMK3FlAD
-         ywAkM3+q79amL3e07BMQUKQ3o0i1rVOqF5Hr+4bIXEcp02y/hlkfSPpuEOvurNM7FGbI
-         epTg==
-X-Gm-Message-State: AC+VfDy2GIGS0m8QtPMliIOE1Rhg4uj83/awgu/DdxpZsOV31kgc5Qug
-        BINIM+sOn6iKHd+3Y3Bu5EqihA==
-X-Google-Smtp-Source: ACHHUZ6vcruuErDembFyHezvNlJZxkYd1xQDCehRrXEG/lUXOgDps+48EZl+lSGZfc+c6aaQMEfiww==
-X-Received: by 2002:a19:7005:0:b0:4f1:4526:1d80 with SMTP id h5-20020a197005000000b004f145261d80mr980455lfc.50.1684404088926;
-        Thu, 18 May 2023 03:01:28 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id u25-20020ac243d9000000b004f26d63f823sm189462lfl.237.2023.05.18.03.01.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 May 2023 03:01:28 -0700 (PDT)
-Message-ID: <e73e6a7c-9d6f-9d4e-424d-445a003adb05@linaro.org>
-Date:   Thu, 18 May 2023 12:01:26 +0200
+        with ESMTP id S229906AbjERKGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 06:06:02 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03F49E54;
+        Thu, 18 May 2023 03:06:00 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34I8e9jF027959;
+        Thu, 18 May 2023 05:05:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=H6FDbp1npII27yTlAhF24XW68RkUa7dX7o8yv6tiCqc=;
+ b=rFZUlfipRPwbaM3Gb1MOlnJexT2Hp6JgRgs9R54rn4p1uYbs9vn1WXeFkYbvfL3VZy0l
+ prsdomk3BUHSQPlj2W8bdiSL2vTSAwhZf0AFbViZ9hxUNo2vf5Y3zTULdqTCKbhQl1+u
+ 7OOXSoP7XzyTNrDJ/klgMsOgp+xZCNJ8dGqsoOSAGZumvz87bkJU21KFsZ5dsdwJSkch
+ Py/UsEZ9mL46fomxwXkrB3fnJDuO3FR5KVf+piQ94g2AUPpfhAn89kn3BdwdFaUwogm9
+ B3bbUR3l8jIiU2lXH0EshPQzdlJm9FFi/FFFWE298ael1p03cydopKWtmaL0pP+m4kJm Pw== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3qngq1g37w-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 18 May 2023 05:05:35 -0500
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Thu, 18 May
+ 2023 05:05:34 -0500
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 18 May 2023 05:05:34 -0500
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id E56B711CA;
+        Thu, 18 May 2023 10:05:33 +0000 (UTC)
+Date:   Thu, 18 May 2023 10:05:33 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+CC:     <broonie@kernel.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <tglx@linutronix.de>, <maz@kernel.org>, <linus.walleij@linaro.org>,
+        <vkoul@kernel.org>, <lgirdwood@gmail.com>,
+        <yung-chuan.liao@linux.intel.com>, <sanyog.r.kale@intel.com>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 06/10] mfd: cs42l43: Add support for cs42l43 core driver
+Message-ID: <20230518100533.GY68926@ediswmail.ad.cirrus.com>
+References: <20230512122838.243002-1-ckeepax@opensource.cirrus.com>
+ <20230512122838.243002-7-ckeepax@opensource.cirrus.com>
+ <c79e354d-4d09-a04b-798b-e42bdc47d694@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v8 07/11] arm64: dts: qcom: pm8150b: Add a TCPM
- description
-Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, luca.weiss@fairphone.com,
-        lujianhua000@gmail.com, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     caleb.connolly@linaro.org, subbaram@quicinc.com, jackp@quicinc.com,
-        robertom@qti.qualcomm.com
-References: <20230515133643.3621656-1-bryan.odonoghue@linaro.org>
- <20230515133643.3621656-8-bryan.odonoghue@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230515133643.3621656-8-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <c79e354d-4d09-a04b-798b-e42bdc47d694@linux.intel.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: ZkIENuEU-gCo6RFU-Z0OcYxUupdNyKMS
+X-Proofpoint-ORIG-GUID: ZkIENuEU-gCo6RFU-Z0OcYxUupdNyKMS
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 15.05.2023 15:36, Bryan O'Donoghue wrote:
-> Type-C port management functionality lives inside of the PMIC block on
-> pm8150b.
+On Fri, May 12, 2023 at 09:52:21AM -0500, Pierre-Louis Bossart wrote:
+> > +static int cs42l43_sdw_interrupt(struct sdw_slave *sdw,
+> > +				 struct sdw_slave_intr_status *status)
+> > +{
+> > +	/*
+> > +	 * There is only a single bit in GEN_INT_STAT_1 and it doesn't clear if
+> > +	 * IRQs are still pending so doing a read/write here after handling the
+> > +	 * IRQ is fine.
+> > +	 */
+> > +	sdw_read_no_pm(sdw, CS42L43_GEN_INT_STAT_1);
+> > +	sdw_write_no_pm(sdw, CS42L43_GEN_INT_STAT_1, 1);
+> > +
+> > +	return 0;
+> > +}
 > 
-> The Type-C port management logic controls orientation detection, vbus/vconn
-> sense and to send/receive Type-C Power Domain messages.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> not really getting the comment and code above. Where is the IRQ handled?
+> In the 'other non-SoundWire part"?
 
-Konrad
->  arch/arm64/boot/dts/qcom/pm8150b.dtsi | 40 +++++++++++++++++++++++++++
->  1 file changed, 40 insertions(+)
+Yeah in the actual IRQ handler, I will update the comment to make
+this more clear.
+
+> > +	ret = regmap_register_patch(cs42l43->regmap, cs42l43_reva_patch,
+> > +				    ARRAY_SIZE(cs42l43_reva_patch));
+> > +	if (ret) {
+> > +		dev_err(cs42l43->dev, "Failed to apply register patch: %d\n", ret);
+> > +		goto err;
+> > +	}
+> > +
+> > +	pm_runtime_mark_last_busy(cs42l43->dev);
+> > +	pm_runtime_put_autosuspend(cs42l43->dev);
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> index 66752cc063d60..136e5f96a3d53 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
-> @@ -59,6 +59,46 @@ pm8150b_vbus: usb-vbus-regulator@1100 {
->  			reg = <0x1100>;
->  		};
->  
-> +		pm8150b_typec: typec@1500 {
-> +			compatible = "qcom,pm8150b-typec";
-> +			status = "disabled";
-> +			reg = <0x1500>,
-> +			      <0x1700>;
-> +			interrupts = <0x2 0x15 0x00 IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x15 0x01 IRQ_TYPE_EDGE_BOTH>,
-> +				     <0x2 0x15 0x02 IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x15 0x03 IRQ_TYPE_EDGE_BOTH>,
-> +				     <0x2 0x15 0x04 IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x15 0x05 IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x15 0x06 IRQ_TYPE_EDGE_BOTH>,
-> +				     <0x2 0x15 0x07 IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 0x00 IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 0x01 IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 0x02 IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 0x03 IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 0x04 IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 0x05 IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 0x06 IRQ_TYPE_EDGE_RISING>,
-> +				     <0x2 0x17 0x07 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "or-rid-detect-change",
-> +					  "vpd-detect",
-> +					  "cc-state-change",
-> +					  "vconn-oc",
-> +					  "vbus-change",
-> +					  "attach-detach",
-> +					  "legacy-cable-detect",
-> +					  "try-snk-src-detect",
-> +					  "sig-tx",
-> +					  "sig-rx",
-> +					  "msg-tx",
-> +					  "msg-rx",
-> +					  "msg-tx-failed",
-> +					  "msg-tx-discarded",
-> +					  "msg-rx-discarded",
-> +					  "fr-swap";
-> +			vdd-vbus-supply = <&pm8150b_vbus>;
-> +		};
-> +
->  		pm8150b_temp: temp-alarm@2400 {
->  			compatible = "qcom,spmi-temp-alarm";
->  			reg = <0x2400>;
+> any reason why the two pm_runtime routines are not placed last, just
+> before the return?
+
+Yeah that probably makes more sense I will update.
+
+> > +	ret = cs42l43_power_up(cs42l43);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	pm_runtime_set_autosuspend_delay(cs42l43->dev, 250);
+> > +	pm_runtime_use_autosuspend(cs42l43->dev);
+> > +	pm_runtime_set_active(cs42l43->dev);
+> > +	pm_runtime_get_noresume(cs42l43->dev);
+> 
+> you probably want a comment to explain that the get_noresume() is
+> intentional to prevent the device from suspending before the workqueue
+> is handled.
+
+Yeah will add one.
+
+> > +	/*
+> > +	 * Don't care about being resumed here, but we do want force_resume to
+> > +	 * always trigger an actual resume, so that register state for the
+> > +	 * MCU/GPIOs is returned as soon as possible after system resume
+> > +	 */
+> > +	pm_runtime_get_noresume(dev);
+> > +
+> > +	ret = pm_runtime_force_suspend(dev);
+> > +	if (ret) {
+> > +		dev_err(cs42l43->dev, "Failed to force suspend: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	pm_runtime_put_noidle(dev);
+> 
+> Is the get_noresume/put_noidle useful here? What does it do?
+
+The hope was the comment would explain this :-) Yeah it is a
+slightly surprising sequence. It is about ensuring force_resume
+runs a runtime resume, which it will only do if the reference
+count is resumed when we suspend.
+
+I will add a little more to the comment to hopefully clarify why
+we are doing this.
+
+> And it seems wrong anyways, if pm_runtime_force_suspend() fails then the
+> usage-count is not decreased.
+
+Yeah that is bug, thanks for the spot I will fix that up.
+
+> > +static int __maybe_unused cs42l43_runtime_resume(struct device *dev)
+> > +{
+> > +	struct cs42l43 *cs42l43 = dev_get_drvdata(dev);
+> > +	unsigned int reset_canary;
+> > +	int ret;
+> > +
+> > +	dev_dbg(cs42l43->dev, "Runtime resume\n");
+> > +
+> > +	ret = cs42l43_wait_for_attach(cs42l43);
+> 
+> is there a specific reason why the existing initialization_complete is
+> not used?
+
+Not massively, the driver does a fair amount of detaching and
+attaching during probe (has to soft reset a few times and they
+cause the device to fall off the bus). It was just slightly
+easier to keep track of all of them keeping the code internal to
+the driver and once we were doing it anyway it was less code to
+use the same mechanism on resume.
+
+Thanks,
+Charles
