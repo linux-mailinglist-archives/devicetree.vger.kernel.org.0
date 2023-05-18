@@ -2,102 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08750708BFC
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 01:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5694708BFD
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 01:01:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229527AbjERXAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 19:00:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56904 "EHLO
+        id S230091AbjERXBU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 19:01:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbjERXA3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 19:00:29 -0400
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56CB4103
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 16:00:28 -0700 (PDT)
-Received: by mail-qv1-xf2a.google.com with SMTP id 6a1803df08f44-623914a4bf0so6574096d6.3
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 16:00:28 -0700 (PDT)
+        with ESMTP id S229676AbjERXBT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 19:01:19 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 621B0E69
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 16:01:18 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id 41be03b00d2f7-5144a9c11c7so2376408a12.2
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 16:01:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1684450827; x=1687042827;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ECxBJApjcTH6Zwecu2R7yz/owhjDxn04sc5ekgnfugg=;
-        b=ZCXJaaLy6rxLGdseU1vzri+mCmVHUI3vvn8icjxIMmM/DnoUe3tIAG5gwWO3TxKLsF
-         9DwGhbrNTwOjf/+QT9kpbqfx3jeYDvQjSEGEOfTr6fFQw9NM+vFOO2165zd/Er7yuL08
-         nU/cbBIuQDjXoJZFu4RrYbEDa/j/PGIcDpaIU=
+        d=broadcom.com; s=google; t=1684450878; x=1687042878;
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hIMSyEqCH3256Ka0a0fWy/mZN48q9ymfXRgtMQF4L3s=;
+        b=PKjyumr90fHDJoFcDj5SYAkrHnLF+vg/vcqS70OGsoAr2bfQuEReWl8k+yyUrw0AWL
+         zR2bMc2NF7d7SMGbuTTpkuize2+B4HRGoUJaZRU7bAasDTCBRV0y48RJxzXN36p5JQNm
+         4ozJio8idK1xnbbut1vGaN2S9F7XdK9aOBwDg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684450827; x=1687042827;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ECxBJApjcTH6Zwecu2R7yz/owhjDxn04sc5ekgnfugg=;
-        b=MxZgv83hikEx82u8g2Txs0RfPn00BuD7Qs4VrEQL6j8HTpBGBFgBIdfFwpAyMapWxw
-         Q/ZNfWw39FDig9Hpt1k018zgwfOsyvA+Ettu2SiUpQXXbkXdqOdYuq3IlsCfal3RuTCa
-         75NwVkv+UjP0k+kdKEnLRKvFYK3XQGTO5IvIl6YaW/t76k2dg0Fu0vjLlb9ZanBneL/1
-         PsaMWmkvI23P8Zg+6XV0ojuB0Mk0ojq2pGqcm2XSBHsAsUmEHj3M/zYkL/Ph4qXbd3zg
-         vt4JZs8/g5HEkE9GHtWbwzNBO7jWg4Zvnq3mvCgszUG1AswqV5FmyKamkNXEESEt0Q80
-         vKLA==
-X-Gm-Message-State: AC+VfDzAYua/upFEYOmuV91CFV4CGX3k7iy++CvMLtJln6DcMdgWLnXY
-        E6vt64CLHemYo6uFmUvh3udojw==
-X-Google-Smtp-Source: ACHHUZ7v/0UixX/ayy17wzCDhf1GZCjnePhnzvwPxuW6on3bWMYrrQGyy1aRiDUWqGox8I9R1buoXw==
-X-Received: by 2002:a05:6214:2685:b0:5f1:5f73:aed8 with SMTP id gm5-20020a056214268500b005f15f73aed8mr1458921qvb.20.1684450827422;
-        Thu, 18 May 2023 16:00:27 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id n7-20020a0cbe87000000b0062075f40f61sm858493qvi.73.2023.05.18.16.00.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 May 2023 16:00:26 -0700 (PDT)
-Message-ID: <647ab902-a851-bd15-958f-8a25244c2dcf@broadcom.com>
-Date:   Thu, 18 May 2023 16:00:23 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 1/2] ARM: dts: BCM5301X: Relicense Hauke's code to the GPL
- 2.0+ / MIT
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        d=1e100.net; s=20221208; t=1684450878; x=1687042878;
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hIMSyEqCH3256Ka0a0fWy/mZN48q9ymfXRgtMQF4L3s=;
+        b=L78TPoxVLZxNb6QfQ3nYk4HbGuQtUrQcZv6UgltBPVqW+SQBXag56zlD5ezWNbMle/
+         ufhZnfUf/l204EZwWEDfj3SUomCxJYqSH+qWcGbXOSVk9kBq9P2EGTFM0KFXExvA5ks+
+         LlKzbEsKFTWABaNzzTCA3apbPFvJ17KLgeH1l3u3pBwJLt8hemKrELQlsaj6BMeQKdh4
+         wbmvgjnr7HTJ7FVdqJYrlXAzz609925qhUTm/0uzfFEbWKboaOV5VcUwTNwh/1ooxaEP
+         mYVfIz0669+9kidJDAa4jH2HnAkkKpVoNx0Hz1aolasqWc9207oZuX3/IEmSmcdwPdv2
+         jfvg==
+X-Gm-Message-State: AC+VfDx3cu1kVp4f20yVckPZSUOryn9cazbJj+//nvLvmLhDE1FutK1i
+        +wFt9Ivm6vSM2QgCUte6ltA/1g==
+X-Google-Smtp-Source: ACHHUZ4D2eWsN1oNcvN3IdMFRS3O9f2Y+xA9ebD4wYXCoZGOYpl+s6f28MRvnR8ROB+9atFVQRv5uA==
+X-Received: by 2002:a17:903:2343:b0:1ac:a9c1:b61d with SMTP id c3-20020a170903234300b001aca9c1b61dmr781860plh.11.1684450877772;
+        Thu, 18 May 2023 16:01:17 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id i14-20020a170902c94e00b001ab01b909c9sm1996278pla.120.2023.05.18.16.01.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 May 2023 16:01:17 -0700 (PDT)
+From:   Florian Fainelli <florian.fainelli@broadcom.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        Stanislav Jakubek <stano.jakubek@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20230515151921.25021-1-zajec5@gmail.com>
-From:   Florian Fainelli <florian.fainelli@broadcom.com>
-In-Reply-To: <20230515151921.25021-1-zajec5@gmail.com>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: soc: bcm: add missing dt-binding document for bcm23550-cdc
+Date:   Thu, 18 May 2023 16:01:15 -0700
+Message-Id: <20230518230115.3044460-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230508135930.GA27583@standask-GA-A55M-S2HP>
+References: <20230508135930.GA27583@standask-GA-A55M-S2HP>
+MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000003a6b1c05fbffc5ff"
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        boundary="0000000000003bc0ff05fbffc88b"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000003a6b1c05fbffc5ff
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--0000000000003bc0ff05fbffc88b
 Content-Transfer-Encoding: 8bit
 
-On 5/15/23 08:19, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+From: Florian Fainelli <f.fainelli@gmail.com>
+
+On Mon, 8 May 2023 15:59:30 +0200, Stanislav Jakubek <stano.jakubek@gmail.com> wrote:
+> Broadcom BCM23550 has a Cluster Dormant Control block that keeps the CPU
+> in idle state. A command needs to be sent to this block to bring the CPU
+> into running state.
 > 
-> Move code added by Hauke to the bcm-ns.dtsi which uses dual licensing.
-> That syncs more Northstar code to be based on the same licensing schema.
+> This has been in use in mainline Linux since ~2016, but was never
+> documented. Add a dt-binding document for it.
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> Cc: Hauke Mehrtens <hauke@hauke-m.de>
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 > ---
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, 
-thanks!
--- 
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
 Florian
 
-
---0000000000003a6b1c05fbffc5ff
+--0000000000003bc0ff05fbffc88b
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -168,14 +162,14 @@ kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
 NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
 AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
 LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIEXxgTUQcPGGNDwG
-Fp0p/9WVi5N8JsFr1UMK6lxUBouIMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDUxODIzMDAyN1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
+/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEID5dQI17iy80vS54
+ZSIsAcKdQ4Qi3DMCyu+xBKEoA+0mMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
+AQkFMQ8XDTIzMDUxODIzMDExOFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
 AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBzJha/wVHOvVJIQpu/bLwMYgKlgtyNDFJd
-6akjdZD3FMcyrtLjLTxVWlAxQx1oik4R/QHpPV807TkaxmeDMktSFybUSMWgOH2DgnoKqSvg0vhq
-1krLemP+bi0zqKjsdakS2IMHmxxkcSA40DW5dA1xLX4T+eshKiEJPltAn+1OCHmtKmJmCCR19BCv
-uQkVVXDfPyvk5Eca0jYKi+5LSljUd6CR1I5Vq17i8SrsMt2OtNVI/ac/wQfffmbgFxNvK7HiX0eS
-u/4L4aqXuBJed61IFL7XG4zeqJdmUpZYk9T4WBsl13VTWdYse/BPv60oWmI3W20EYovfemrbU/xH
-BlYr
---0000000000003a6b1c05fbffc5ff--
+MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAoqpP41lK7Uq4luAMQDnOOiByG2yVPuFNj
+EWXQc7znSzmm3iN9165n6g92zervi8xRFc/J29XTMrZggBlPh6uO8lmemqPWL8ogRqKkbBKbrgZP
+cGVq/JyX7WICB9O8XvQY5a54hpK0ttvyG1BHI0eSi9/kAIZ4+HwH/IRbYXOP1JBgat/FiI5CSQV+
+q+3T9n+wa8yirX7zmLme8RRTm+wJtmLvPbQoJ8C727kWLwZlrCZaXqcEQhIuwuXpb48jk1b1FKJZ
+vt0S2byaCkjUY+aNwItuh0rpYCITMw0syPn50KG0uIwpSqH3bbC6Xp6bJ7NIc7wqxZ1ZTKdvelab
+zTw3
+--0000000000003bc0ff05fbffc88b--
