@@ -2,64 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6499C708AAE
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 23:42:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24D14708AB2
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 23:43:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229599AbjERVmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 17:42:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53022 "EHLO
+        id S229533AbjERVns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 17:43:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjERVmo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 17:42:44 -0400
+        with ESMTP id S230186AbjERVnr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 17:43:47 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 760A0135;
-        Thu, 18 May 2023 14:42:42 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928F310C6;
+        Thu, 18 May 2023 14:43:45 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D71726160B;
-        Thu, 18 May 2023 21:42:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85CE6C433EF;
-        Thu, 18 May 2023 21:42:36 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 22AB36116D;
+        Thu, 18 May 2023 21:43:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 893EFC433D2;
+        Thu, 18 May 2023 21:43:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684446160;
-        bh=x5I5mruh7zMCo5Zhys6Y0M8OdmsdgmVH1YsnbP5N0G4=;
+        s=k20201202; t=1684446224;
+        bh=K5xEeU1mCoS/OcrSjPJzbDiJWn0dLzXGU8F7Uq+vaiM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cROkLAXx3D7DzisnvZXbe/RpC7p3ynWO5qtEVZnDCjlMCU8He9ikyvYowyWEEv26a
-         K4cdYAfilcdu5lak2CudEIf54yvGchTRFiBmj3sRaqkaHy7mE0nRQeIeAJ567ONzyb
-         6oL0iffTiSk9AnFGDcKl1+krpJrPIm2Fq71IfTMujh5KJRk8rCuN4tC5l2YKucAWox
-         ExGxWJLBmf3c6gcAPOQEA2rZ3tZxSRT5Pl7VJOzGVKFlw23cN+MgvVX6l7/+rY0HA/
-         9mRGiCSxndOnL1qhHTBCcITaadDSpdoAZDDyuyJBk/clylgU/Mkma6LuabyZ8kaHSs
-         Ci/0Wmk6nl9YA==
-Date:   Thu, 18 May 2023 22:42:34 +0100
+        b=Z8O9DHsXQ7ixpbmHAwzzZ2YY7NsU7T0laR+7Rw60X1rR66jZYjs1n8mzpc2a+bCof
+         Iihi1/FYLdZtmgRAB0K61CWx3p6JR1+Y5FoNhgaOYNCK7ZyGwB3tqOr3L15SJceHzv
+         NPGwAEsfg5hpGoLenhLr0qeLmm9X5ChldfLVDlU71tOPBa4G1C6ypJ4g6LAMRZODOG
+         PTeMzAm1hd2R1wcQcZbRinNjibK6Sb9XNPSPeVRy35cEOfgIvfwHTH0NP55sqQhs19
+         rzTnLdgCn+BO8ZcLXFM2dnanLgDfoZsDWJdfyBVcaecUsW7u4r2b+tyQdCW84/LNKG
+         f98g0Tw2Sl4KA==
+Date:   Thu, 18 May 2023 22:43:39 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Anup Patel <anup@brainfault.org>,
-        Andrew Jones <ajones@ventanamicro.com>, palmer@dabbelt.com,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
-        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
-        u-boot@lists.denx.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] dt-bindings: riscv: deprecate riscv,isa
-Message-ID: <20230518-monkhood-dispersal-6749b1228b0d@spud>
-References: <20230518-thermos-sanitary-cf3fbc777ea1@wendy>
- <20230518-4050231ca8dbe93c08cf9c9a@orel>
- <CAAhSdy07Mg_JBF+4ucGFiWdBKh-Ass5G_aUWqBqTnDSFp7S=0A@mail.gmail.com>
- <20230518-hammock-doornail-478e8ea8e6a7@wendy>
- <f7c20090-220c-2805-86ba-b174a89f65b3@seco.com>
+To:     alexis.lothore@bootlin.com
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        paul.arola@telus.com, scott.roberts@telus.com
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: marvell: add
+ MV88E6361 switch to compatibility list
+Message-ID: <20230518-sporting-tweezers-14cee98a4832@spud>
+References: <20230517203430.448705-1-alexis.lothore@bootlin.com>
+ <20230517203430.448705-2-alexis.lothore@bootlin.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="TYryGqRDcYWpb9dy"
+        protocol="application/pgp-signature"; boundary="l0BAS8I4h0k//Wt/"
 Content-Disposition: inline
-In-Reply-To: <f7c20090-220c-2805-86ba-b174a89f65b3@seco.com>
+In-Reply-To: <20230517203430.448705-2-alexis.lothore@bootlin.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -71,184 +66,35 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---TYryGqRDcYWpb9dy
-Content-Type: text/plain; charset=utf-8
+--l0BAS8I4h0k//Wt/
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 18, 2023 at 02:30:53PM -0400, Sean Anderson wrote:
-> On 5/18/23 10:06, Conor Dooley wrote:
-> > On Thu, May 18, 2023 at 07:13:15PM +0530, Anup Patel wrote:
-> >> On Thu, May 18, 2023 at 4:02=E2=80=AFPM Andrew Jones <ajones@ventanami=
-cro.com> wrote:
-> >> > On Thu, May 18, 2023 at 09:58:30AM +0100, Conor Dooley wrote:
-> >=20
-> >> > > -  riscv,isa:
-> >> > > -    description:
-> >> > > -      Identifies the specific RISC-V instruction set architecture
-> >> > > -      supported by the hart.  These are documented in the RISC-V
-> >> > > -      User-Level ISA document, available from
-> >> > > -      https://riscv.org/specifications/
-> >> > > -
-> >> > > -      Due to revisions of the ISA specification, some deviations
-> >> > > -      have arisen over time.
-> >> > > -      Notably, riscv,isa was defined prior to the creation of the
-> >> > > -      Zicsr and Zifencei extensions and thus "i" implies
-> >> > > -      "zicsr_zifencei".
-> >> > > -
-> >> > > -      While the isa strings in ISA specification are case
-> >> > > -      insensitive, letters in the riscv,isa string must be all
-> >> > > -      lowercase to simplify parsing.
-> >> > > -    $ref: "/schemas/types.yaml#/definitions/string"
-> >> > > -    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z]=
-)+)?(?:_[hsxz](?:[a-z])+)*$
-> >> > > -
-> >> > >    # RISC-V requires 'timebase-frequency' in /cpus, so disallow it=
- here
-> >> > >    timebase-frequency: false
-> >> > >
-> >> > > @@ -133,8 +117,13 @@ properties:
-> >> > >        DMIPS/MHz, relative to highest capacity-dmips-mhz
-> >> > >        in the system.
-> >> > >
-> >> > > +oneOf:
-> >> > > +  - required:
-> >> > > +      - riscv,isa
-> >> >
-> >> > This is the part Anup keeps reminding me about. We can create better=
- ways
-> >> > to handle extensions in DT and ACPI, but we'll still need to parse I=
-SA
-> >> > strings to handle legacy DTs and holdouts that keep creating ISA str=
-ings,
-> >> > at least during the deprecation period, since ISA strings are still =
-"the
-> >> > way to do it" according to the spec.
-> >>=20
-> >> Coming up with an alternate way in DT is fine but we can't deprecate
-> >> ISA strings since ISA strings are widely used:
-> >> 1) Various bootloaders
-> >=20
-> > Aye, for the reason, as I mentioned earlier and in the RFC thread,
-> > removing existing parsers isn't a good idea.
-> >=20
-> >> 2) It is part of /proc/cpuinfo
-> >=20
-> > That is irrelevant.
-> >=20
-> >> 3) Hypervisors use it to communicate HW features to Guest/VM.
-> >> Hypervisors can't get away from generating ISA strings because
-> >> Hypervisors don't know what is running inside Guest/VM.
-> >=20
-> > Generate both :) As things stand, your guests could interpret what you
-> > communicate to them via riscv,isa differently!
-> >=20
-> >> In the case of ACPI, it is a very different situation. Like Sunil ment=
-ioned,
-> >> ACPI will always follow mechanisms defined by RVI (such as ISA string).
-> >> Other ACPI approaches such as GUID for ISA extension are simply not
-> >> scalable and will take a lot more memory for ACPI tables compared to
-> >> ISA strings.
-> >=20
-> > My proposal should actually suit ACPI, at least for Linux, as it would
-> > be a chance to align currently misaligned definitions. I won't speak to
-> > GUIDs or whatever as that's someone else's problem :)
-> >=20
-> >> > Also, if we assume the wording in the spec does get shored up, then,
-> >> > unless I'm missing something, the list of advantages for this boolean
-> >> > proposal from your commit message would be
-> >>=20
-> >> IMO, we should try our best to have the wordings changed in RVI spec.
-> >=20
-> > Yes, doing so is beneficial for all of us regardless of what happens
-> > here. I do think that it is partially orthogonal - it allows us to not
-> > design an interface that needs to be capable of communicating a wide
-> > variety of versions, but I don't think it solves some of the issues
-> > that riscv,isa has. If I thought it did, I would not have gone to the
-> > trouble of respinning this patch out of the other approach.
-> >=20
-> >> > * More character choices for name -- probably not a huge gain for ra=
-tified
-> >> >   extensions, since the boolean properties will likely still use the=
- same
-> >> >   name as the ISA string (riscv,isa-extension-<name>). But, for vend=
-or
-> >> >   extensions, this is indeed a major improvement, since vendor exten=
-sion
-> >> >   boolean property names may need to be extended in unambiguous ways=
- to
-> >> >   handle changes in the extension.
-> >> >
-> >> > * Simpler, more complete DT validation (but we still need a best eff=
-ort
-> >> >   for legacy ISA strings)
-> >> >
-> >> > * Simpler DT parsing (but we still need the current parser for legac=
-y ISA
-> >> >   strings)
-> >> >
-> >> > > +  - required:
-> >> > > +      - riscv,isa-base
-> >> > > +
-> >> > >  required:
-> >> > > -  - riscv,isa
-> >> > >    - interrupt-controller
-> >> > >
-> >> > >  additionalProperties: true
-> >> > > @@ -177,7 +166,13 @@ examples:
-> >> > >                  i-tlb-size =3D <32>;
-> >> > >                  mmu-type =3D "riscv,sv39";
-> >> > >                  reg =3D <1>;
-> >> > > -                riscv,isa =3D "rv64imafdc";
-> >> > > +                riscv,isa-base =3D "rv64i";
-> >> > > +                riscv,isa-extension-i;
-> >> > > +                riscv,isa-extension-m;
-> >> > > +                riscv,isa-extension-a;
-> >> > > +                riscv,isa-extension-f;
-> >> > > +                riscv,isa-extension-d;
-> >> > > +                riscv,isa-extension-c;
-> >>=20
-> >> One downside of this new approach is it will increase the size of DTB.
-> >> Imaging 50 such DT properties in 46 CPU DT nodes.
-> >=20
-> > I should do a comparison between 50 extensions in riscv,isa and doing
-> > this 50 times and see what the sizes are.
+On Wed, May 17, 2023 at 10:34:29PM +0200, alexis.lothore@bootlin.com wrote:
+> From: Alexis Lothor=E9 <alexis.lothore@bootlin.com>
 >=20
-> Why not just have something like
+> Marvell MV88E6361 is an 8-port switch derived from the
+> 88E6393X/88E9193X/88E6191X switches family. Since its functional behavior
+> is very close to switches from this family, it can benefit from existing
+> drivers for this family, so add it to the list of compatible switches
 >=20
-> mycpu {
-> 	...
-> 	riscv,isa {
-> 		i;
-> 		m;
-> 		a;
-> 		zicsr;
-> 		...
-> 	};
-> };
+> Signed-off-by: Alexis Lothor=E9 <alexis.lothore@bootlin.com>
 
-Naming of the node aside (perhaps that could be riscv,isa-extensions)
-there's not something hitting me immediately as to why that is a no-no.
-If the size is a concern, this would certainly be more efficient & not
-like the probing would be anything other than trivial more difficult
-what I have in my proposal.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Rob's AFK at the moment, and I was hoping that he would take a look at
-the idea, so I won't respin til he is back, but I'll give this a go in
-the interim.
-
-Cheers,
+Thanks,
 Conor.
 
---TYryGqRDcYWpb9dy
+--l0BAS8I4h0k//Wt/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGabyQAKCRB4tDGHoIJi
-0tqeAQCpsTIUwavLKPVNiJd1cmmE4LJnnxMRlq2sxMTP8zSOpQD/arxRvhO4QzlJ
-1itR13j6MTL60roBmM//fn7DprVxnwI=
-=YkDr
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGacCgAKCRB4tDGHoIJi
+0pNtAP9Z3CouQuLHG/+Yypu0zs/7meyJHceLCh6LCSAsRqLvNwEA2T8Kag0bW8kh
+8+SyrKFgL5BuNOiHglfhLmXHtOciagM=
+=IO47
 -----END PGP SIGNATURE-----
 
---TYryGqRDcYWpb9dy--
+--l0BAS8I4h0k//Wt/--
