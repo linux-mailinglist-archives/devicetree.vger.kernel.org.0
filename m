@@ -2,186 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11342707BF2
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 10:25:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EF1C707BFC
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 10:28:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230090AbjERIZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 04:25:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55310 "EHLO
+        id S230133AbjERI2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 04:28:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229902AbjERIZS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 04:25:18 -0400
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EA27122;
-        Thu, 18 May 2023 01:25:04 -0700 (PDT)
-Received: from kwepemm600004.china.huawei.com (unknown [172.30.72.56])
-        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4QMNKQ4tGdzLmLP;
-        Thu, 18 May 2023 16:23:38 +0800 (CST)
-Received: from [10.67.103.231] (10.67.103.231) by
- kwepemm600004.china.huawei.com (7.193.23.242) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Thu, 18 May 2023 16:24:59 +0800
-Message-ID: <aec13381-e9be-4f3d-1834-52f32f9f8418@huawei.com>
-Date:   Thu, 18 May 2023 16:24:36 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH] soc: hisilicon: Support HCCS driver on Kunpeng SoC
-To:     Sudeep Holla <sudeep.holla@arm.com>
-CC:     Arnd Bergmann <arnd@arndb.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S230163AbjERI2F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 04:28:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B014B1BD0;
+        Thu, 18 May 2023 01:28:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 37CFD60BED;
+        Thu, 18 May 2023 08:28:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95FF8C433D2;
+        Thu, 18 May 2023 08:28:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684398482;
+        bh=onUdWwy/Zov/7JnIPbVsr3nMDNBR4bEgLPYL3et5tOs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=BbzWlF/Z7EepK+tkbIKX/var8RUWYppCL1zsoBgGC/M8R9Vtvt5aVB4gjT6k/ScTp
+         E8J2+cTwhq1UkxrvAGHr3/TPln+6V+rCSFp14yTEaa3/z0w2SoHJc5P/N/A9QITwpD
+         bh/CHNn2n442xFkSy3PwnnyAa1wJElwJup2q2Onr95Pvk85qw+Q8CIcIdhPcXRoJEi
+         jIVk5wpXIpQgk/eaFhSKKyhDMhLi3vEtYtOPK4zHBc7x0ke+WIFdR6h1gN3YVk+mpg
+         3ySN5R3ExTDkZlGyPiRLh9ztHTsZv5qHBPLU2O2tgYBqm/+UmnkPBY2lxQgwT711OX
+         X68a0U9uQnnug==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1pzYzQ-00G5Jx-CB;
+        Thu, 18 May 2023 09:28:00 +0100
+Date:   Thu, 18 May 2023 09:27:59 +0100
+Message-ID: <86h6sakprk.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Yi-De Wu <yi-de.wu@mediatek.com>
+Cc:     Yingshiuan Pan <yingshiuan.pan@mediatek.com>,
+        Ze-Yu Wang <ze-yu.wang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <soc@kernel.org>,
-        <wanghuiqiang@huawei.com>, <tanxiaofei@huawei.com>,
-        <liuyonglong@huawei.com>, <huangdaode@huawei.com>,
-        <linux-acpi@vger.kernel.org>, Len Brown <lenb@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230425131918.5tf5vot4h7jf54xk@bogus>
- <db6c713c-f99c-fa3f-8d38-9a5d50889cc2@huawei.com>
- <20230515130807.pdvx7bxwjkfdsmsr@bogus>
- <aa5b1919-74c6-1f97-78af-ab5f0904c3ce@huawei.com>
- <20230516122931.il4ai7fyxdo5gsff@bogus>
- <f0733521-2557-fdaf-e59b-b10d515c487c@huawei.com>
- <20230516143530.venhj4gax6stinah@bogus>
- <a98e3620-57da-000e-f5ee-2c2e47e97906@huawei.com>
- <20230517093033.4jvwjxuoeic46a24@bogus>
- <5ca49494-5a0c-4dc8-9cf5-fc4bc3b8e1b2@huawei.com>
- <20230517131614.cwi2fcj2cngaq7dm@bogus>
-From:   "lihuisong (C)" <lihuisong@huawei.com>
-In-Reply-To: <20230517131614.cwi2fcj2cngaq7dm@bogus>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.67.103.231]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- kwepemm600004.china.huawei.com (7.193.23.242)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-6.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arch@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        "Trilok Soni" <quic_tsoni@quicinc.com>,
+        David Bradil <dbrazdil@google.com>,
+        Jade Shih <jades.shih@mediatek.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        Ivan Tseng <ivan.tseng@mediatek.com>,
+        My Chuang <my.chuang@mediatek.com>,
+        Shawn Hsiao <shawn.hsiao@mediatek.com>,
+        PeiLun Suei <peilun.suei@mediatek.com>,
+        Liju Chen <liju-clr.chen@mediatek.com>
+Subject: Re: [PATCH v3 3/7] virt: geniezone: Introduce GenieZone hypervisor support
+In-Reply-To: <20230512080405.12043-4-yi-de.wu@mediatek.com>
+References: <20230512080405.12043-1-yi-de.wu@mediatek.com>
+        <20230512080405.12043-4-yi-de.wu@mediatek.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: yi-de.wu@mediatek.com, yingshiuan.pan@mediatek.com, ze-yu.wang@mediatek.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, corbet@lwn.net, catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-arch@vger.kernel.org, linux-mediatek@lists.infradead.org, quic_tsoni@quicinc.com, dbrazdil@google.com, jades.shih@mediatek.com, miles.chen@mediatek.com, ivan.tseng@mediatek.com, my.chuang@mediatek.com, shawn.hsiao@mediatek.com, peilun.suei@mediatek.com, liju-clr.chen@mediatek.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 12 May 2023 09:04:01 +0100,
+Yi-De Wu <yi-de.wu@mediatek.com> wrote:
+> 
+> From: "Yingshiuan Pan" <yingshiuan.pan@mediatek.com>
+> 
+> GenieZone is MediaTek hypervisor solution, and it is running in EL2
+> stand alone as a type-I hypervisor. This patch exports a set of ioctl
+> interfaces for userspace VMM (e.g., crosvm) to operate guest VMs
+> lifecycle (creation and destroy) on GenieZone.
+> 
+> Signed-off-by: Yingshiuan Pan <yingshiuan.pan@mediatek.com>
+> Signed-off-by: Yi-De Wu <yi-de.wu@mediatek.com>
 
-在 2023/5/17 21:16, Sudeep Holla 写道:
-> On Wed, May 17, 2023 at 07:35:25PM +0800, lihuisong (C) wrote:
->> 在 2023/5/17 17:30, Sudeep Holla 写道:
->>> On Wed, May 17, 2023 at 03:16:12PM +0800, lihuisong (C) wrote:
->>>
->>> [...]
->>>
->>>> No. I want to use this flag to make compability between different platforms.
->>>> This driver only use PCC OpRegion to access to the channel if platform
->>>> support use PCC OpRegion.
->>> What do you mean by that ? It is not correct. If there is a PCC Opregion,
->>> then you need to make it work with drivers/acpi/acpi_pcc.c
->>>
->>> You need to have all the other details in the firmware(ASL). By looking
->>> at the driver, it has no connection to PCC Opregion IMO unless I am missing
->>> something.
->> Driver just needs to call these APIs, such as acpi_evaluate_integer(), if
->> want to use PCC OpRegion.
-> OK, please provide examples. I am definitely lost as it doesn't match with
-> my understanding of how PCC Opregions are/can be used.
->
->> I know that. I have tested PCC OpRegion before.
-> Cool, examples please.
->
->> You've completely misunderstood what I said.😅
->>
-> Hmm, may be but I need examples.
-As you said below, the driver works just for PCC not PCC Opregion for now.
-not sure if we need to discuss how PCC Opregion is used here.
->
->> I mean that this driver plans to support both PCC and PCC OpRegion.
->> For example,
->> Platform A: this driver use PCC (as the current implementation)
-> Good, then just keep what it needs in the implementation nothing more
-> until you add support for something you have described below(not that
-> I agree, just want you to make progress here based on what is actually
-> required today)
-Agreed.
->
->> Platform B: this driver use PCC OpRegion (Currently, this patch does not
->> implement it, but it may be available in the future.)
-> Then let us discuss that in the future, don't add unnecessary complexity
-> for some future use case today. You can always add it when you introduce
-> that feature or support in the future.
-Yes. We just need to focus on the current.
-If there are any usage problems with PCC OpRegion in the future, we can 
-discuss that later.
+[...]
 
-My original full scheme is as follows:
--->
-dev_flags = get_device_flags();  // to know if use PCC OpRegion
-if (USE_PCC_OPREGION_B in dev_flags is 0) {
-     chan_id = get_pcc_chan_id();
-     init_mbox_client();
-     pcc_mbox_request_channel(cl, chan_id)
-} else {
-     /* we need to return unsupport now because of no this feature in 
-this driver. */
-     do_nothing();
-}
+> +/**
+> + * gzvm_gfn_to_pfn_memslot() - Translate gfn (guest ipa) to pfn (host pa),
+> + *			       result is in @pfn
+> + *
+> + * Leverage KVM's gfn_to_pfn_memslot(). Because gfn_to_pfn_memslot() needs
+> + * kvm_memory_slot as parameter, this function populates necessary fileds
+> + * for calling gfn_to_pfn_memslot().
+> + *
+> + * Return:
+> + * * 0			- Succeed
+> + * * -EFAULT		- Failed to convert
+> + */
+> +static int gzvm_gfn_to_pfn_memslot(struct gzvm_memslot *memslot, u64 gfn, u64 *pfn)
+> +{
+> +	hfn_t __pfn;
+> +	struct kvm_memory_slot kvm_slot = {0};
+> +
+> +	kvm_slot.base_gfn = memslot->base_gfn;
+> +	kvm_slot.npages = memslot->npages;
+> +	kvm_slot.dirty_bitmap = NULL;
+> +	kvm_slot.userspace_addr = memslot->userspace_addr;
+> +	kvm_slot.flags = memslot->flags;
+> +	kvm_slot.id = memslot->slot_id;
+> +	kvm_slot.as_id = 0;
+> +
+> +	__pfn = gfn_to_pfn_memslot(&kvm_slot, gfn);
+> +	if (is_error_noslot_pfn(__pfn)) {
+> +		*pfn = 0;
+> +		return -EFAULT;
+> +	}
 
-void get_some_info(...) {
-     if (USE_PCC_OPREGION_B in dev_flags is 0)
-         pcc_cmd_send();  // use PCC to communicate with Platform
-     else
-         acpi_evaluate_object(); // will be used in future.
-}
+I have commented on this before: there is absolutely *no way* that you
+can use KVM as the unwilling helper for your stuff. You are passing
+uninitialised data to the core KVM, completely ignoring the semantics
+of all the other fields.
 
-As described in the pseudocode above,
-it is necessary to put "dev_flags" in this current driver first in case of
-the version driver runs on the platform which just use PCC Opregion.
->
->> Note:
->> This driver selects only one of them (PCC and PCC OpRegion) to communicate
->> with firmware on one platform.
-> Let us keep it simple(KISS). The driver works just for PCC not PCC Opregion
-> for now.
-ok.
->
->> We use one bit in device-flags to know which one this driver will use.
->>
-> NACK again just to re-iterate my point if you have not yet accepted that
-> fact.
-Above is our plan. Do you still think we shouldn't add this device-flags?
-please let me know.
->> I'm not sure if you can understand what I mean by saing that.
->> If you're not confused about this now, can you reply to my last email
->> again?😁
->>
-> The example you had IIRC is use of System Memory Opregion to demonstrate
-> some _DSM. That has nothing to do with PCC Opregion.
-Yes, it doesn't matter.
-I just want to have a way to get device-flags which contains many 
-bits(every bits can be used to as one feature for expanding), rigtht?
->
-> Commit 77e2a04745ff ("ACPI: PCC: Implement OperationRegion handler for
-> the PCC Type 3 subtype") has the example in the commit message. IIRC,
-Your example is very useful to the user.
-> you have even fixed couple of bugs in that driver. That is the reason
-> why I don't understand how you think this driver and that can or must
-Understand you, Sudeep.
-At that time, I tested it by a simple demo driver on the platform 
-supported type3.
+More importantly, you are now holding us responsible for any breakage
+that would be caused to your code if we change the internals of this
+*PRIVATE FUNCTION*.
 
-This driver will support multiple platforms.
-On some platforms, we can only use PCC with polling way.
-And we will add PCC Opregion way for others platforms.
-What's more, every platform just use one of them(PCC and PCC Opregion).
-> work together. At least I fail to see how ATM(examples please, by that
-> I mean ASL snippet for PCC vs PCC Opregion usage to work with this driver)
-ok!
-For PCC, ASL snippet is little.
-I will add ASL snippet when this driver addes PCC Opregion way.
->
+Do you see Xen or Hyper-V using KVM's internals as some sort of
+backend to make their life easier? No, because they understand that
+this is off-limits, and creates an unhealthy dependency for both
+hypervisors.
+
+So this is a strong NAK. And you can trust me to keep voicing my
+opposition to this sort of horror, wherever I will see these patches.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
