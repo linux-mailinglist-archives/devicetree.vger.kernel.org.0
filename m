@@ -2,73 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15B80707D17
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 11:41:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 032EE707D5A
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 11:55:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230041AbjERJls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 05:41:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59378 "EHLO
+        id S230339AbjERJzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 05:55:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229905AbjERJlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 05:41:47 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9DF51726
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 02:41:44 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2ad819ab8a9so19915001fa.0
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 02:41:44 -0700 (PDT)
+        with ESMTP id S230223AbjERJzR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 05:55:17 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB4E19B2
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 02:55:13 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2ac89e6a5a1so19527331fa.0
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 02:55:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684402903; x=1686994903;
+        d=linaro.org; s=google; t=1684403712; x=1686995712;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=vjqQeuYRpvMsut/c1evBJHvsSn9+lFSN53c//wdZ/FQ=;
-        b=lxGL7xCqkfKsajfk0zq6AGTDZOJpoTin3Km9a2j2J7UCTAc/bm5lJlyD7dzpe7oVHw
-         VHdmYA9VzOIDbztMGfrqrYPBFzMg+c+3Z15vl8v4yXx8Uwu08ELlxU00Gtrcyfo9ogQv
-         2EkiZIACXYEcjBYBqD0OlyJZELInl7+SVqbJKHxD7ScYIvIujwiwCViNuOyeJTp5Fdyw
-         kdxGwMNoaYtE/K+VjO4t84AnuvsgMsskyUcBb5yGxddAHj0lrbap0Khy5b16y1mqdp45
-         8hDP4UZ4RMi4dtkYMrr4G9C6w4Iwk1kUVPtmnrvW4WcjCwwLAG43sFSCzf/Enot42haK
-         wMCQ==
+        bh=U4y39yQeXgfshTFx8LmSwMssJPh2RhRz9IxqW/7rapk=;
+        b=js8tUXvIUOpLgtCGl0gjJeo7q7Ptbvp9VUWF5RYmreXr0lBQRn0lJ6FfPrczx+njss
+         naQGYXPCVNmqgEg/lVmN9Kq3J3x+0tv88V/V9uzoedXHshbooWiY3uATOK+Idn8TG0Qu
+         4Uq4wRNyph/Sv9AQZDhfKUomUAZj/egf9D+ozic9g0K1oj+kQt5RkEDQiEIqiH+SRuGb
+         8lZLrsO93bEx7pZLHQG5NSJRmaDGGvSVanBw3iT35Mc4aZDd1ZmeNx1mE1t5GyS/DOc7
+         wvqbhfwJBz8kBDxG8gavbJlsQmRUjsKOZYarK7OCrpL7tP4XWIcrGVwVkZVjuarQVXJp
+         dA7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684402903; x=1686994903;
+        d=1e100.net; s=20221208; t=1684403712; x=1686995712;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vjqQeuYRpvMsut/c1evBJHvsSn9+lFSN53c//wdZ/FQ=;
-        b=XwxQAoEfmc+2kkO5SLjDmPBVk69EPmUYqA9YtDRh06Mssd1+SVMnd39gt8zYrx3U2H
-         dPpMCHoalhZJMSX2fVO1s9JSjFE/awO3x07e1bN2I3iUtDleYs1Z3Zh+DiuqsaF9LLcr
-         moBsNL2d9zLcqJAtfZ12Y+HvZxuIP1anI3hiqiWo+9euqAPGsRGHU8a4i768wYKvWFvM
-         BvzzEKbmDZ1OY8Xc8+RlSclEQwSM66T3hKzIDgD4ipE0WtqZv3KPK6qK4uClYlD7QMY6
-         YhptKeUVGDr7QfQXWlWiqy+1P4OwhCdmoDq46e7UqQAT7YzmMKYn9+KykL6n2/xzYEjG
-         +myw==
-X-Gm-Message-State: AC+VfDx4Rmp0S5Y1EIcYd65lujENf4PWcEaZctQAiiIkn8FI+1oNe0Rg
-        ZpTyPszy6j7bZVqqW9eihxJeXw==
-X-Google-Smtp-Source: ACHHUZ4UT5ZdWhf2s2u0WXN8DiysRHiC8lCqC2j57Z6hovVUBC2/syVJt56WBhEu8aTwXLHOQllPDw==
-X-Received: by 2002:a05:651c:1047:b0:2ad:c1ec:fa3 with SMTP id x7-20020a05651c104700b002adc1ec0fa3mr8305804ljm.20.1684402902982;
-        Thu, 18 May 2023 02:41:42 -0700 (PDT)
+        bh=U4y39yQeXgfshTFx8LmSwMssJPh2RhRz9IxqW/7rapk=;
+        b=XVhlBDekG8vNu/j9uolBe6JLi9GHS6+ARHUZZIOcJqAZ9Ir8ragTo4zdXXQTdZWSeo
+         va7tzul+mI5fi0515HZ8Y6rduHk0V5d3exyKJV49y6rjPUL8skLOv08t1Ym4utlikY4B
+         ZtqXDJJkTORpv03kk+1xMrTd6qPWn+E5gYauJ++M0pxXp8QbcYjfGstPnOPed99q7j17
+         vKYt2Z5aZzh5HHOaXlwXxoxWa/OMCLvyftIFiiuw4lCRbnfq3URbDV59ZVN9PdK3943F
+         Mo/ujTowR2owxuUCn2ZSJRa8XMpDJbgyaB8v7JRUvy0XCd9pi1Sv5Xnyl6blJL9VpXvQ
+         Mnag==
+X-Gm-Message-State: AC+VfDxJqf2WZ17vhS4DzCXYKijtLzKOsvVSyOjYU7jMG3QCGJ25txYP
+        uFr2/qf2yFnkxJAbMKPT7j2hMA==
+X-Google-Smtp-Source: ACHHUZ5n0ktk0pGSlf8ODuwS2HY5zZGV37C2wJ0GZgPIWg5BKM7dFIJcAX//tvNrRrreST+xVlo2yg==
+X-Received: by 2002:a2e:9091:0:b0:2ad:ac93:3c7d with SMTP id l17-20020a2e9091000000b002adac933c7dmr9481189ljg.38.1684403711998;
+        Thu, 18 May 2023 02:55:11 -0700 (PDT)
 Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id t16-20020a2e9d10000000b002aa3ad9014asm204808lji.54.2023.05.18.02.41.41
+        by smtp.gmail.com with ESMTPSA id c16-20020a2e9490000000b002a93e0605ebsm215873ljh.8.2023.05.18.02.55.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 May 2023 02:41:42 -0700 (PDT)
-Message-ID: <b050f3c4-6ff0-d687-73bf-0f98a2e74bed@linaro.org>
-Date:   Thu, 18 May 2023 11:41:41 +0200
+        Thu, 18 May 2023 02:55:11 -0700 (PDT)
+Message-ID: <f4854178-613c-5ace-5714-d77b7f71a914@linaro.org>
+Date:   Thu, 18 May 2023 11:55:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: qrb4210-rb2: Add GPIO LEDs
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc8280xp: Add SDC2 and enable on CRD
 Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230515-topic-rb2-bits-v1-0-a52d154a639d@linaro.org>
- <20230515-topic-rb2-bits-v1-3-a52d154a639d@linaro.org>
- <20230518021307.z63xrx5v2lhd3byf@ripper>
+References: <20230517235217.1728548-1-quic_bjorande@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230518021307.z63xrx5v2lhd3byf@ripper>
+In-Reply-To: <20230517235217.1728548-1-quic_bjorande@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,91 +81,196 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 18.05.2023 04:13, Bjorn Andersson wrote:
-> On Mon, May 15, 2023 at 03:04:14PM +0200, Konrad Dybcio wrote:
->> Add the three LEDs (blue/yellow/green) connected to TLMM GPIOs.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 36 ++++++++++++++++++++++++++++++--
->>  1 file changed, 34 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> index 9b539720f05d..eeee268ebfe2 100644
->> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> @@ -5,6 +5,7 @@
->>  
->>  /dts-v1/;
->>  
->> +#include <dt-bindings/leds/common.h>
->>  #include "sm4250.dtsi"
->>  
->>  / {
->> @@ -30,6 +31,38 @@ hdmi_con: endpoint {
->>  		};
->>  	};
->>  
->> +	leds {
->> +		compatible = "gpio-leds";
->> +
->> +		led-bt {
->> +			label = "blue:bt";
->> +			function = LED_FUNCTION_BLUETOOTH;
->> +			color = <LED_COLOR_ID_BLUE>;
->> +			gpios = <&tlmm 45 GPIO_ACTIVE_HIGH>;
->> +			linux,default-trigger = "bluetooth-power";
->> +			default-state = "off";
->> +		};
->> +
->> +		led-user0 {
->> +			label = "green:user0";
->> +			function = LED_FUNCTION_INDICATOR;
->> +			color = <LED_COLOR_ID_GREEN>;
->> +			gpios = <&tlmm 52 GPIO_ACTIVE_HIGH>;
->> +			linux,default-trigger = "none";
->> +			default-state = "off";
->> +			panic-indicator;
->> +		};
->> +
->> +		led-wlan {
->> +			label = "yellow:wlan";
->> +			function = LED_FUNCTION_WLAN;
->> +			color = <LED_COLOR_ID_YELLOW>;
->> +			gpios = <&tlmm 47 GPIO_ACTIVE_HIGH>;
->> +			linux,default-trigger = "phy0tx";
->> +			default-state = "off";
->> +		};
->> +	};
->> +
->>  	vreg_hdmi_out_1p2: regulator-hdmi-out-1p2 {
->>  		compatible = "regulator-fixed";
->>  		regulator-name = "VREG_HDMI_OUT_1P2";
->> @@ -385,8 +418,7 @@ &sleep_clk {
->>  };
->>  
->>  &tlmm {
->> -	gpio-reserved-ranges = <43 2>, <47 1>,
->> -			       <49 1>, <52 1>, <54 1>,
->> +	gpio-reserved-ranges = <43 2>, <49 1>, <54 1>,
+On 18.05.2023 01:52, Bjorn Andersson wrote:
+> The CRD has Micro SD slot, introduce the necessary DeviceTree nodes for
+> enabling this.
 > 
-> How come pin 49 becomes inaccessible here? Was this intended for the
-> previous patch?
-It doesn't, the "remove" part of the diff is 2-lines.
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+> 
+> Changes since v1:
+> - Order of pinctr-N and pinctrl-names
+> - Reset GCC_SDCC2_BCR and not sdc4
+b4 diff 20230517235217.1728548-1-quic_bjorande@quicinc.com also reveals:
 
-This reserved-ranges is totally bogus since introduction.. I can send
-a separate patch squaring it out.
+- move cd-gpios
+- add interconnect OPP properties
+
+nevertheless:
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
 
 > 
-> Regards,
-> Bjorn
+>  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 81 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi    | 43 ++++++++++++
+>  2 files changed, 124 insertions(+)
 > 
->>  			       <56 3>, <61 2>, <64 1>,
->>  			       <68 1>, <72 8>, <96 1>;
->>  
->>
->> -- 
->> 2.40.1
->>
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> index 5b25d54b9591..ff9cebbccfcb 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> @@ -308,6 +308,13 @@ vreg_l1c: ldo1 {
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+> +		vreg_l6c: ldo6 {
+> +			regulator-name = "vreg_l6c";
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2960000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+>  		vreg_l7c: ldo7 {
+>  			regulator-name = "vreg_l7c";
+>  			regulator-min-microvolt = <2504000>;
+> @@ -318,6 +325,13 @@ vreg_l7c: ldo7 {
+>  						   RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+> +		vreg_l9c: ldo9 {
+> +			regulator-name = "vreg_l9c";
+> +			regulator-min-microvolt = <2960000>;
+> +			regulator-max-microvolt = <2960000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> +		};
+> +
+>  		vreg_l13c: ldo13 {
+>  			regulator-name = "vreg_l13c";
+>  			regulator-min-microvolt = <3072000>;
+> @@ -600,6 +614,19 @@ &remoteproc_nsp0 {
+>  	status = "okay";
+>  };
+>  
+> +&sdc2 {
+> +	pinctrl-0 = <&sdc2_default_state>;
+> +	pinctrl-1 = <&sdc2_sleep_state>;
+> +	pinctrl-names = "default", "sleep";
+> +
+> +	vmmc-supply = <&vreg_l9c>;
+> +	vqmmc-supply = <&vreg_l6c>;
+> +
+> +	cd-gpios = <&tlmm 131 GPIO_ACTIVE_LOW>;
+> +
+> +	status = "okay";
+> +};
+> +
+>  &uart17 {
+>  	compatible = "qcom,geni-debug-uart";
+>  
+> @@ -842,6 +869,60 @@ wake-n-pins {
+>  		};
+>  	};
+>  
+> +	sdc2_default_state: sdc2-default-state {
+> +		clk-pins {
+> +			pins = "sdc2_clk";
+> +			drive-strength = <16>;
+> +			bias-disable;
+> +		};
+> +
+> +		cmd-pins {
+> +			pins = "sdc2_cmd";
+> +			drive-strength = <16>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		data-pins {
+> +			pins = "sdc2_data";
+> +			drive-strength = <16>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		card-detect-pins {
+> +			pins = "gpio131";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-disable;
+> +		};
+> +	};
+> +
+> +	sdc2_sleep_state: sdc2-sleep-state {
+> +		clk-pins {
+> +			pins = "sdc2_clk";
+> +			drive-strength = <2>;
+> +			bias-disable;
+> +		};
+> +
+> +		cmd-pins {
+> +			pins = "sdc2_cmd";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		data-pins {
+> +			pins = "sdc2_data";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		card-detect-pins {
+> +			pins = "gpio131";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-disable;
+> +		};
+> +	};
+> +
+>  	tpad_default: tpad-default-state {
+>  		int-n-pins {
+>  			pins = "gpio182";
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index 8fa9fbfe5d00..3711f109aeaf 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -2815,6 +2815,49 @@ data-pins {
+>  			};
+>  		};
+>  
+> +		sdc2: mmc@8804000 {
+> +			compatible = "qcom,sc8280xp-sdhci", "qcom,sdhci-msm-v5";
+> +			reg = <0 0x08804000 0 0x1000>;
+> +
+> +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "hc_irq", "pwr_irq";
+> +
+> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+> +				 <&gcc GCC_SDCC2_APPS_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "iface", "core", "xo";
+> +			resets = <&gcc GCC_SDCC2_BCR>;
+> +			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
+> +			interconnect-names = "sdhc-ddr","cpu-sdhc";
+> +			iommus = <&apps_smmu 0x4e0 0x0>;
+> +			power-domains = <&rpmhpd SC8280XP_CX>;
+> +			operating-points-v2 = <&sdc2_opp_table>;
+> +			bus-width = <4>;
+> +			dma-coherent;
+> +
+> +			status = "disabled";
+> +
+> +			sdc2_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-100000000 {
+> +					opp-hz = /bits/ 64 <100000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <1800000 400000>;
+> +					opp-avg-kBps = <100000 0>;
+> +				};
+> +
+> +				opp-202000000 {
+> +					opp-hz = /bits/ 64 <202000000>;
+> +					required-opps = <&rpmhpd_opp_svs_l1>;
+> +					opp-peak-kBps = <5400000 1600000>;
+> +					opp-avg-kBps = <200000 0>;
+> +				};
+> +			};
+> +		};
+> +
+>  		usb_0_qmpphy: phy@88eb000 {
+>  			compatible = "qcom,sc8280xp-qmp-usb43dp-phy";
+>  			reg = <0 0x088eb000 0 0x4000>;
