@@ -2,87 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6B1E7083C5
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 16:15:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EB057083DA
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 16:22:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231283AbjEROP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 10:15:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47878 "EHLO
+        id S231639AbjEROWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 10:22:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231687AbjEROPU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 10:15:20 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9DD01737
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 07:15:16 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-965ab8ed1fcso373486166b.2
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 07:15:16 -0700 (PDT)
+        with ESMTP id S229884AbjEROV7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 10:21:59 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00FF410A
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 07:21:56 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-50c8d87c775so3032833a12.3
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 07:21:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684419315; x=1687011315;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1684419715; x=1687011715;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8IhwvEpf+iZJb/gE6b3fJNEZ3XPbuQc9an/fybW+UgQ=;
-        b=xfOYp4aPqsOpItJx8cdc4w/ThTwXyWqgq/P4jGylRK8GV3Ieqp/dMUbYtUsygArWT4
-         aQ/brrc+usF19M6n8GhD+gN6bCEyUK/sUGAqHg02a3RhtMIqC6x+LXERj0T8ztPnVyAX
-         wGQdN6Ub0ScfWSq+x2HH3s7CSGLlumZrZ086SN0163jRkXj2wlx6efwWMGCwjmb6jGCh
-         KExaWToJrsw7h0P3hsrr0vUbDoOz5z+/rTP7GopljvFM4Fu/jzMwWGWET9MRwJ90cNKE
-         x4JhbcNtLgLc62l2GZNyu7P04Ie2ZLWDN2WDOULtI73q5OEIHazLgL2m+q4A7WBVHewu
-         oVvg==
+        bh=GoYD1HeZqxzJnofeUMnEjY7LdMkmo1HYZ+uW66yc8zI=;
+        b=HGV4jjmlsteYJElUtUefnS224Lr+OvMC9jCbexLICYShcmDpIgspCiSW9L3B4wcnqG
+         S14/K4bLbRvOJ0myk0FjPEDsZ+ahgME0WdXiPqDWR5e7OaomNpdfh8WAsQPKQsIPHrc8
+         +Mak7u6GkCmTK64G1EFj1x1QR25nhDgk8Swj8+tBxx3pN8fnKy8izlV2Brg2N+Qd+Znq
+         jGYAUDCwVzonuMxlYhKefH/PrjKztdOOtBBPaqNah5BtMcJ3on8RryvhspF4NckTyPtw
+         IYTHwgQHHMUGedJBIz9icwn1r59Y97Ppy2/8Ub14QbM4bJpUiVqe2H7zKtisfOu+/4qN
+         BV8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684419315; x=1687011315;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1684419715; x=1687011715;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8IhwvEpf+iZJb/gE6b3fJNEZ3XPbuQc9an/fybW+UgQ=;
-        b=Xrp73RPTQiuEn6oxWOVhSm7K2gA5NRIHPbkZ7IKKWHJXOWv09rqOHADGOmZtsemaND
-         XdVavYsAjkx5LDSlXmYjI17XrWgcOdfILKM94UpjYS0YVaxKcKRlgJQ/j/50gMjVqfTP
-         7aXcPREBhv++sjMY4AJq1oUl/FMNbunIBr/TfDfcDpA7km3RIgBgU8nsrXBPkpKkgE/Y
-         bqVq5CajscM+HMzXKsTmP2mkqYsyXBynbflOd67SKwoDRqFIzuWV3Ij3f+GOkPD2htA5
-         PA3YWx4jwTUgyjDXPObJNHCixGFTNHreUt18rvKqvFbwComHrqD/EmWSpt01LRxbwOwu
-         zrBQ==
-X-Gm-Message-State: AC+VfDyDLI/ZGIrlq/sgRB9jUwMH0LekbsTKY+3/+Wr6hyV+qL8AEQx8
-        NWHh9KGEtZPXomwIY2hjF3LrzQQ58bmn/KwpGto=
-X-Google-Smtp-Source: ACHHUZ5wOOK+/4Zdzkn8mKF6Qord3DGh5wFhoqa1tc+QlxDQBLIOmHdccwSwVCSJ9tggUv/ST2PGNw==
-X-Received: by 2002:a17:906:58d5:b0:969:9fd0:7cee with SMTP id e21-20020a17090658d500b009699fd07ceemr34329664ejs.10.1684419314959;
-        Thu, 18 May 2023 07:15:14 -0700 (PDT)
+        bh=GoYD1HeZqxzJnofeUMnEjY7LdMkmo1HYZ+uW66yc8zI=;
+        b=ULVpQQz7VID6HQ3VpRwoQcQaKXGJNL9aRgT3pEXW5QM39uMFo/2BIdA69V61CRy3za
+         MvhlwKfQPReYco1Tvn4ZKCnYwxCnJk+FpVXrRoxdvrrrx1rutkBAz+JHv4l/WAVC0Cnn
+         EsDMuFJoLTYr0HdZXv3FGnouG9Hs7Reb6x+RAiRTet3lDBcwI9xKr+tepmxBLcqZIO9Q
+         lkJMRK1RES0Ajv2pEu96YtdbY70YZr/8Af7kCVCKwUp3nu0f7G1U1tIWVoN1dk8930xX
+         9QDNcTkp+lyFbl0d+0nbk9oMcALVBiPlK+c2yrs/oJI4Fy+ywhy9WkCZV1JdYMChc23L
+         EBHg==
+X-Gm-Message-State: AC+VfDwnsfZ7OHst1moVTgCqD3XAM0vKW2qA9sFoDhSYtVpqP9KZvTKG
+        wJF2ioz7tOwtOZCnlY3u51V65A==
+X-Google-Smtp-Source: ACHHUZ6iHTnxiJx111Ry47T9aO/W4rthzy+KJgvfxS5NqxK/2UvO39aB1FU69KaBi5+TDxXx0wSDzQ==
+X-Received: by 2002:a05:6402:516d:b0:50b:c971:c14b with SMTP id d13-20020a056402516d00b0050bc971c14bmr5546801ede.11.1684419715413;
+        Thu, 18 May 2023 07:21:55 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:15c0:828:7e24:6d1b:6bf:4249? ([2a02:810d:15c0:828:7e24:6d1b:6bf:4249])
-        by smtp.gmail.com with ESMTPSA id ju4-20020a17090798a400b0094f698073e0sm1012419ejc.123.2023.05.18.07.15.13
+        by smtp.gmail.com with ESMTPSA id l16-20020aa7d950000000b0050bc9ffed66sm662448eds.53.2023.05.18.07.21.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 May 2023 07:15:14 -0700 (PDT)
-Message-ID: <3f81816a-b7a8-cc3a-0052-a2177bfb58c4@linaro.org>
-Date:   Thu, 18 May 2023 16:15:12 +0200
+        Thu, 18 May 2023 07:21:54 -0700 (PDT)
+Message-ID: <5e0276b7-2c16-13a1-29d3-1936ffc52d23@linaro.org>
+Date:   Thu, 18 May 2023 16:21:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v1 2/3] dt-bindings: soc: add loongson-2 pm
+Subject: Re: [PATCH net-next v4 1/2] dt-bindings: arm: mediatek: add
+ mediatek,boottrap binding
 Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Daniel Golle <daniel@makrotopia.org>, Marek Vasut <marex@denx.de>
+Cc:     Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Tiezhu Yang <yangtiezhu@loongson.cn>,
-        Marc Zyngier <maz@kernel.org>,
-        Youling Tang <tangyouling@loongson.cn>,
-        Baoqi Zhang <zhangbaoqi@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>, Yun Liu <liuyun@loongson.cn>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230517073149.31980-1-zhuyinbo@loongson.cn>
- <20230517073149.31980-3-zhuyinbo@loongson.cn>
- <d3791702-4d41-0208-1346-34738a2883b6@linaro.org>
- <4521c591-6fcd-c96a-e2f6-f41f5c191036@loongson.cn>
- <1bbabe6d-b013-9837-8986-205a2b04de14@linaro.org>
- <b4bc7385-3706-8aa3-0117-d106fd47a45e@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b4bc7385-3706-8aa3-0117-d106fd47a45e@loongson.cn>
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Qingfang Deng <dqfext@gmail.com>,
+        SkyLake Huang <SkyLake.Huang@mediatek.com>,
+        Simon Horman <simon.horman@corigine.com>
+References: <cover.1683813687.git.daniel@makrotopia.org>
+ <f2d447d8b836cf9584762465a784185e8fcf651f.1683813687.git.daniel@makrotopia.org>
+ <55f8ac31-d81d-43de-8877-6a7fac2d37b4@lunn.ch>
+ <7e8d0945-dfa9-7f61-b075-679e8a89ded9@linaro.org>
+ <ZGWRHeE3CXeAnQ-5@makrotopia.org>
+ <2048ed2a-ae6f-b425-38e4-4ba973e04398@linaro.org>
+In-Reply-To: <2048ed2a-ae6f-b425-38e4-4ba973e04398@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -93,147 +95,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/05/2023 14:15, zhuyinbo wrote:
-> 
-> 
-> 在 2023/5/18 下午3:15, Krzysztof Kozlowski 写道:
->> On 18/05/2023 05:23, zhuyinbo wrote:
->>>
->>>
->>> 在 2023/5/17 下午11:00, Krzysztof Kozlowski 写道:
->>>> On 17/05/2023 09:31, Yinbo Zhu wrote:
->>>>> Add the Loongson-2 SoC Power Management Controller binding with DT
->>>>> schema format using json-schema.
->>>>>
->>>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+On 18/05/2023 09:50, Krzysztof Kozlowski wrote:
+> On 18/05/2023 04:44, Daniel Golle wrote:
+>> On Fri, May 12, 2023 at 08:54:36AM +0200, Krzysztof Kozlowski wrote:
+>>> On 11/05/2023 17:53, Andrew Lunn wrote:
+>>>> On Thu, May 11, 2023 at 04:10:20PM +0200, Daniel Golle wrote:
+>>>>> The boottrap is used to read implementation details from the SoC, such
+>>>>> as the polarity of LED pins. Add bindings for it as we are going to use
+>>>>> it for the LEDs connected to MediaTek built-in 1GE PHYs.
 >>>>
->>>> ...
->>>>
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    items:
->>>>> +      - enum:
->>>>> +          - loongson,ls2k-pmc
->>>>> +      - const: syscon
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  interrupts:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  suspend-address:
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>> +    description:
->>>>> +      This option indicate this PM suspend address.
->>>>
->>>> This tells me nothing. Drop "This option indicate this" and rephrase
->>>> everything to actually describe this property. Why would the address
->>>> differ on given, specific SoC? It looks like you just miss compatibles.
->>>> Anyway this needs much more explanation so we can judge whether it fits DT.
+>>>> What exactly is it? Fuses? Is it memory mapped, or does it need a
+>>>> driver to access it? How is it shared between its different users?
 >>>
->>> Hi Krzysztof,
->>>
->>> I will add following description about "suspend-address", please review.
+>>> Yes, looks like some efuse/OTP/nvmem, so it should probably use nvmem
+>>> bindings and do not look different than other in such class.
 >>
->> Thanks.
->>
->>>
->>> The "suspend-address" is a ACPI S3 (Suspend To RAM) firmware entry
->>
->> Why do we add properties for ACPI? This does not seem right. 
+>> I've asked MediaTek and they have replied with an elaborate definition.
+>> Summary:
+>> The boottrap is a single 32-bit wide register at 0x1001f6f0 which can
+>> be used to read back the bias of bootstrap pins from the SoC as follows:
 > 
+> Is it within some other address space? Register address suggests that.
 > 
-> 1.  The suspend-address value was dependent on specific platform
->      firmware code and it tends to be confiurable. if it is a fixed value
->      that seems not friendly or the ACPI S3 will not work.
-
-> 2. the PM driver need according to it to indicate that current SoC
->     whether support ACPI S3, because some Loongson-2 SoC doesn't support
-
-For this you have dedicated compatibles. Which points to the fact that
-you missed them here.
-
->     ACPI S3 but support other ACPI mode, so the PM driver need has a
->     check. if no this check and other ACPI mode will not work.
-
-Sure, but it is not really relevant to the bindings... or rather: should
-not be relevant. Bindings are for hardware or in this case also for
-firmware, but not for driver.
-
-> 
-> Base on the above two points, this property was necessary.
-
-I did not object in my last response...
-
-> Using this property "suspend-address" can make the firmware entry
-> address configurable, and then the kernel can also indicate whether
-> the current SoC supports S3
-> 
-> In addition, from kernel code perspective, the property
-> "suspend-address" was to initialize "loongarch_suspend_addr"
-
-Again, how does it matter what kernel does?
-
-> 
-> S3 call flow:
-> enter_state -> loongson_suspend_enter -> bios's loongarch_suspend_addr
-> 
-> SYM_FUNC_START(loongson_suspend_enter)
->          SETUP_SLEEP
->          bl              __flush_cache_all
-> 
->          /* Pass RA and SP to BIOS */
->          addi.d          a1, sp, 0
->          la.pcrel        a0, loongson_wakeup_start
->          la.pcrel        t0, loongarch_suspend_addr
->          ld.d            t0, t0, 0
->          jirl            a0, t0, 0 /* Call BIOS's STR sleep routine */
-> 
-> 
-> Please
->> reword to skip ACPI stuff, e.g. deep sleep states (Suspend to RAM).
-> 
-> 
-> Sorry, I don't got your point.
-
-You have DT platform, so why do you use it with ACPI in the first place?
-If you have ACPI, then please drop all this and make your life easier.
-
-If this is booted without ACPI, which would justify DT, drop the
-references to ACPI. I gave you example what to use instead. If you don't
-like it, no problem, reword in different way.
-
+> In such case you should not create a device in the middle of other
+> device's address space. You punched a hole in uniform address space
+> which prevents creating that other device for entire space.
 > 
 >>
+>> * bit[8]: Reference CLK source && gphy port0's LED
+>> If bit[8] == 0:
+>> - Reference clock source is XTRL && gphy port0's LED is pulled low on board side
+>> If bit[8] == 1:
+>> - Reference clock source is Oscillator && gphy port0's LED is pulled high on board side
 >>
->>> address which was jumped from kernel and it's value was dependent on
->>> specific platform firmware code.
+>> * bit[9]: DDR type && gphy port1's LED
+>> If bit[9] == 0:
+>> - DDR type is DDRx16b x2 && gphy port1's LED is pulled low on board side
+>> If bit[9] == 1:
+>> - DDR type is DDRx16b x1 && gphy port1's LED is pulled high on board side
 >>
->> "entry address which was jumped" <- the address cannot jump. Please
->> explain who is jumping here - boot CPU? each suspended CPU? I guess the
->> first as CPUs are offlined, right?
-> 
-> The boot CPU was jumping to firmware and finish remaining process in
-> firmware that was what ACPI S3 required and other CPUs (No-boot CPU)
-> have been offline before entering firmware.
-
-Then fix the description.
-
-> 
+>> * bit[10]: gphy port2's LED
+>> If bit[10] == 0:
+>> - phy port2's LED is pulled low on board side
+>> If bit[10] == 1:
+>> - gphy port2's LED is pulled high on board side
 >>
->>> In addition, the PM driver need
->>> according to it to indicate that current SoC whether support ACPI S3.
+>> * bit[11]: gphy port3's LED
+>> If bit[11] == 0:
+>> - phy port3's LED is pulled low on board side
+>> If bit[11] == 1:
+>> - gphy port3's LED is pulled high on board side
 >>
->> Skip references to driver.
+>> If bit[10] == 0 && bit[11] == 0:
+>> - BROM will boot from SPIM-NOR
+>> If bit[10] == 1 && bit[11] == 0:
+>> - BROM will boot from SPIM-NAND
+>> If bit[10] == 0 && bit[11] == 1:
+>> - BROM will boot from eMMC
+>> If bit[10] == 1 && bit[11] == 1:
+>> - BROM will boot from SNFI-NAND
+>>
+>> The boottrap is present in many MediaTek SoCs, however, support for
+>> reading it is only really needed on MT7988 due to the dual-use of some
+>> bootstrap pins as PHY LEDs.
+>>
+>> We could say this is some kind of read-only 'syscon' node (and hence
+>> use regmap driver to access it), that would make it easy but it's not
+>> very accurate. Also efuse/OTP/nvmem doesn't seem accurate, though in
+>> terms of software it could work just as well.
+>>
+>> I will update DT bindings to contain the gained insights.
 > 
-> 
-> Sorry, I don't got your point.  Could you elaborate on it?
+> If this is separate address space with one register, then boottrap
+> sounds ok. If you have multiple read only registers with fused values,
+> then this is efuse region, so something like nvidia,tegra20-efuse.
 
-If you change driver, you change bindings? No.
+Please align together on some common solution. It looks like you are
+solving the same problem:
 
-Bindings are for hardware, not for driver. Whatever your driver is doing
-usually does not matter for the bindings and should not be included.
+https://lore.kernel.org/all/?q=%22nvmem%3A+syscon%3A+Add+syscon+backed+nvmem+driver%22
 
 Best regards,
 Krzysztof
