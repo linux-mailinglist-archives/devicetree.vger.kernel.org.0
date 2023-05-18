@@ -2,103 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 605FC707CC6
-	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 11:27:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15B80707D17
+	for <lists+devicetree@lfdr.de>; Thu, 18 May 2023 11:41:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230176AbjERJ1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 05:27:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50410 "EHLO
+        id S230041AbjERJls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 05:41:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230174AbjERJ1f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 05:27:35 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9869211E;
-        Thu, 18 May 2023 02:27:34 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34I5BRmE023462;
-        Thu, 18 May 2023 09:27:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=qcppdkim1;
- bh=J6ZRgZCTa3hC+H6Maw8K9aW1d2MfIdeGlfQUcJff9S4=;
- b=jjGwKYEspycv18WtvmUKKBtPj39h2SjqrecC/wWbwRoBlh9oZEEZdc8jBBdjV1OubakA
- nTGoji2nk9BowR+4YlSBt7EfSPrUZj4fe+oQcU7jiKzDzN47/t1BDwbYTCBhR51pQeNf
- tpDUJdn2yAU42bTUBvR9TsYtuFyW8yX6gtJ1SXPhWH13ZPjTYO8K7X6O8wo0b1fl1RmE
- ppoTqZ8Tfy68FxTI4SIKCSmUg9Kby/enBPH8BBzHOryv7S6ldzJ75km0V/HAcngEhWav
- GGhh4gBQBh3ddlcmR7GHa4fgMl99Jm1QHTCl51veM7szt4r/oaOpkAN2KNa+lvyhHZwu qg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qmxyp299j-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 18 May 2023 09:27:32 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34I9RUwU022600
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 18 May 2023 09:27:30 GMT
-Received: from tjiang-gv.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Thu, 18 May 2023 02:27:28 -0700
-From:   Tim Jiang <quic_tjiang@quicinc.com>
-To:     <krzk@kernel.org>
-CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_bgodavar@quicinc.com>,
-        <quic_hemantg@quicinc.com>, Tim Jiang <quic_tjiang@quicinc.com>
-Subject: [PATCH v2] dt-bindings: net: Add QCA2066 Bluetooth
-Date:   Thu, 18 May 2023 17:27:19 +0800
-Message-ID: <20230518092719.11308-1-quic_tjiang@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+        with ESMTP id S229905AbjERJlr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 05:41:47 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9DF51726
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 02:41:44 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2ad819ab8a9so19915001fa.0
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 02:41:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684402903; x=1686994903;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vjqQeuYRpvMsut/c1evBJHvsSn9+lFSN53c//wdZ/FQ=;
+        b=lxGL7xCqkfKsajfk0zq6AGTDZOJpoTin3Km9a2j2J7UCTAc/bm5lJlyD7dzpe7oVHw
+         VHdmYA9VzOIDbztMGfrqrYPBFzMg+c+3Z15vl8v4yXx8Uwu08ELlxU00Gtrcyfo9ogQv
+         2EkiZIACXYEcjBYBqD0OlyJZELInl7+SVqbJKHxD7ScYIvIujwiwCViNuOyeJTp5Fdyw
+         kdxGwMNoaYtE/K+VjO4t84AnuvsgMsskyUcBb5yGxddAHj0lrbap0Khy5b16y1mqdp45
+         8hDP4UZ4RMi4dtkYMrr4G9C6w4Iwk1kUVPtmnrvW4WcjCwwLAG43sFSCzf/Enot42haK
+         wMCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684402903; x=1686994903;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vjqQeuYRpvMsut/c1evBJHvsSn9+lFSN53c//wdZ/FQ=;
+        b=XwxQAoEfmc+2kkO5SLjDmPBVk69EPmUYqA9YtDRh06Mssd1+SVMnd39gt8zYrx3U2H
+         dPpMCHoalhZJMSX2fVO1s9JSjFE/awO3x07e1bN2I3iUtDleYs1Z3Zh+DiuqsaF9LLcr
+         moBsNL2d9zLcqJAtfZ12Y+HvZxuIP1anI3hiqiWo+9euqAPGsRGHU8a4i768wYKvWFvM
+         BvzzEKbmDZ1OY8Xc8+RlSclEQwSM66T3hKzIDgD4ipE0WtqZv3KPK6qK4uClYlD7QMY6
+         YhptKeUVGDr7QfQXWlWiqy+1P4OwhCdmoDq46e7UqQAT7YzmMKYn9+KykL6n2/xzYEjG
+         +myw==
+X-Gm-Message-State: AC+VfDx4Rmp0S5Y1EIcYd65lujENf4PWcEaZctQAiiIkn8FI+1oNe0Rg
+        ZpTyPszy6j7bZVqqW9eihxJeXw==
+X-Google-Smtp-Source: ACHHUZ4UT5ZdWhf2s2u0WXN8DiysRHiC8lCqC2j57Z6hovVUBC2/syVJt56WBhEu8aTwXLHOQllPDw==
+X-Received: by 2002:a05:651c:1047:b0:2ad:c1ec:fa3 with SMTP id x7-20020a05651c104700b002adc1ec0fa3mr8305804ljm.20.1684402902982;
+        Thu, 18 May 2023 02:41:42 -0700 (PDT)
+Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
+        by smtp.gmail.com with ESMTPSA id t16-20020a2e9d10000000b002aa3ad9014asm204808lji.54.2023.05.18.02.41.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 May 2023 02:41:42 -0700 (PDT)
+Message-ID: <b050f3c4-6ff0-d687-73bf-0f98a2e74bed@linaro.org>
+Date:   Thu, 18 May 2023 11:41:41 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: yWV2T3sjvq0Wc8bnS2Y50T-9gZ7SXS3o
-X-Proofpoint-GUID: yWV2T3sjvq0Wc8bnS2Y50T-9gZ7SXS3o
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-18_07,2023-05-17_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=876
- priorityscore=1501 impostorscore=0 suspectscore=0 mlxscore=0 bulkscore=0
- adultscore=0 lowpriorityscore=0 spamscore=0 clxscore=1011 malwarescore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305180071
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: qrb4210-rb2: Add GPIO LEDs
+Content-Language: en-US
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230515-topic-rb2-bits-v1-0-a52d154a639d@linaro.org>
+ <20230515-topic-rb2-bits-v1-3-a52d154a639d@linaro.org>
+ <20230518021307.z63xrx5v2lhd3byf@ripper>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230518021307.z63xrx5v2lhd3byf@ripper>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the QCA2066 chipset.
 
-Signed-off-by: Tim Jiang <quic_tjiang@quicinc.com>
----
- .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml   | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-index 68f78b90d23a..28296b6d35b2 100644
---- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-+++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-@@ -16,6 +16,7 @@ description:
- properties:
-   compatible:
-     enum:
-+      - qcom,qca2066-bt
-       - qcom,qca6174-bt
-       - qcom,qca9377-bt
-       - qcom,wcn3990-bt
-@@ -95,6 +96,7 @@ allOf:
-         compatible:
-           contains:
-             enum:
-+              - qcom,qca2066-bt
-               - qcom,qca6174-bt
-     then:
-       required:
--- 
-2.17.1
+On 18.05.2023 04:13, Bjorn Andersson wrote:
+> On Mon, May 15, 2023 at 03:04:14PM +0200, Konrad Dybcio wrote:
+>> Add the three LEDs (blue/yellow/green) connected to TLMM GPIOs.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 36 ++++++++++++++++++++++++++++++--
+>>  1 file changed, 34 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+>> index 9b539720f05d..eeee268ebfe2 100644
+>> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+>> @@ -5,6 +5,7 @@
+>>  
+>>  /dts-v1/;
+>>  
+>> +#include <dt-bindings/leds/common.h>
+>>  #include "sm4250.dtsi"
+>>  
+>>  / {
+>> @@ -30,6 +31,38 @@ hdmi_con: endpoint {
+>>  		};
+>>  	};
+>>  
+>> +	leds {
+>> +		compatible = "gpio-leds";
+>> +
+>> +		led-bt {
+>> +			label = "blue:bt";
+>> +			function = LED_FUNCTION_BLUETOOTH;
+>> +			color = <LED_COLOR_ID_BLUE>;
+>> +			gpios = <&tlmm 45 GPIO_ACTIVE_HIGH>;
+>> +			linux,default-trigger = "bluetooth-power";
+>> +			default-state = "off";
+>> +		};
+>> +
+>> +		led-user0 {
+>> +			label = "green:user0";
+>> +			function = LED_FUNCTION_INDICATOR;
+>> +			color = <LED_COLOR_ID_GREEN>;
+>> +			gpios = <&tlmm 52 GPIO_ACTIVE_HIGH>;
+>> +			linux,default-trigger = "none";
+>> +			default-state = "off";
+>> +			panic-indicator;
+>> +		};
+>> +
+>> +		led-wlan {
+>> +			label = "yellow:wlan";
+>> +			function = LED_FUNCTION_WLAN;
+>> +			color = <LED_COLOR_ID_YELLOW>;
+>> +			gpios = <&tlmm 47 GPIO_ACTIVE_HIGH>;
+>> +			linux,default-trigger = "phy0tx";
+>> +			default-state = "off";
+>> +		};
+>> +	};
+>> +
+>>  	vreg_hdmi_out_1p2: regulator-hdmi-out-1p2 {
+>>  		compatible = "regulator-fixed";
+>>  		regulator-name = "VREG_HDMI_OUT_1P2";
+>> @@ -385,8 +418,7 @@ &sleep_clk {
+>>  };
+>>  
+>>  &tlmm {
+>> -	gpio-reserved-ranges = <43 2>, <47 1>,
+>> -			       <49 1>, <52 1>, <54 1>,
+>> +	gpio-reserved-ranges = <43 2>, <49 1>, <54 1>,
+> 
+> How come pin 49 becomes inaccessible here? Was this intended for the
+> previous patch?
+It doesn't, the "remove" part of the diff is 2-lines.
 
+This reserved-ranges is totally bogus since introduction.. I can send
+a separate patch squaring it out.
+
+Konrad
+
+> 
+> Regards,
+> Bjorn
+> 
+>>  			       <56 3>, <61 2>, <64 1>,
+>>  			       <68 1>, <72 8>, <96 1>;
+>>  
+>>
+>> -- 
+>> 2.40.1
+>>
