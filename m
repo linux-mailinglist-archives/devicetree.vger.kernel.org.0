@@ -2,181 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D951708E15
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 05:01:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D73AB708E3E
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 05:23:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229720AbjESDA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 23:00:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53864 "EHLO
+        id S229576AbjESDXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 May 2023 23:23:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbjESDA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 23:00:56 -0400
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BB43E7F;
-        Thu, 18 May 2023 20:00:55 -0700 (PDT)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 854FC32002E8;
-        Thu, 18 May 2023 23:00:53 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Thu, 18 May 2023 23:00:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:content-type:date
-        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to; s=fm2; t=
-        1684465253; x=1684551653; bh=+qkxtfKU3Ynscb5yTikTTXCK9eZg6WEQh+t
-        MM6/33d8=; b=hNWz0p1gsuo5wONFgBckUAcIho7GfZrE5+H0IqTXKpkLXNmiXg/
-        fBQwxLLRH6UK9gslUDTcoZ60E9fm1OdwRa25dQpyoFX9o1gEhngWhhHI+ad27Gk4
-        4sWeYQBzKuLOweH6p/V+ccb+p/zzXPuQ3+uS6sutSXFVSaPFV78U6ICT+G5g5Z1E
-        LfZ5IJUENUzfJwX+fWANj6+gI3efJEmZ+QXEVuNTRSQXePsXbkIi9DJzRa9MmSMu
-        mup3UfXsSPQSN9R1nlc7Ucs6dZ8Iu+6SpiiS4ylPTggd8jIx8qgj6+Cn1u8G35zS
-        PPL6yZm1pZlR5aOpTcLi8v+ZqLY/zKelrGA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:content-type:date:date:feedback-id:feedback-id
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-        1684465253; x=1684551653; bh=+qkxtfKU3Ynscb5yTikTTXCK9eZg6WEQh+t
-        MM6/33d8=; b=y+wOYQT/ANu5AMZI7Fl7sytCChsbyLHXQZskBSHM+zPR31YTDAP
-        wITvMOv3uSzbrFZnBkrBw2Q3XNc24IU0pGzNY2tsNxBuYZ5oBoky2EX9P+m7362E
-        IqeHt7pfYsbIsHB9dOKDsRaseksKJflR/1CW2Lj+hzySt6NY0fOOjZ6FtCAXo26P
-        0AcGHJVLh9raTYsEobXB1kS4ppVZsBC7Zy5cPwWfsgrUzz37epGF8hbfZDXC9krg
-        ZuV4pctGXKK2yjPMk05QS168YGSLyxfI/TojIU9KCAvVoWvE/ggBxObIeyRShKX3
-        CYdqR9LnOGuts8W/dxAP46qq11tuF/Jhdcw==
-X-ME-Sender: <xms:ZOZmZP7okI05FPgBNxXSElrXSmzWnIzfB6J3_X0ASFryZ8KuVCvJcg>
-    <xme:ZOZmZE6EJc66H8piJOvZf61pIt8hLG_7B3Pt-nY73wm4AgJj48phpJntT4D0HqsFZ
-    norrXmOms0tTbb_-g>
-X-ME-Received: <xmr:ZOZmZGfBHw7C4zXn6g9n_7E17Pc_4pyg5aRqvoEznI5IUYWuc0YzK08dQhAsq1sGGHSl_hbKmwi00WwYed1ELMf8I0WQ83ctaKzaImhc_jsMjrDnlpgA_lfutw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeeigedgieeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepkfffgggfvfevfhfhufgjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpeegteekvefhgefhgfeigeejffejvdeihedvfefgtedvjeeiudet
-    teeihfffgfeugfenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluh
-    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehs
-    hhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:ZOZmZAJPH212OL9KuUHe8uBw8xWju1lsBQ-I-_q16E0UCK8YQys9NA>
-    <xmx:ZOZmZDI0bGVDsyfwER1gYIxWT5xzG04GIuI93_KbNqNAEpjMkeNerw>
-    <xmx:ZOZmZJzB9WCu14F4hnGLNBPBhf9vD6EocjdorOM-wTnnN-jK_rlFfw>
-    <xmx:ZeZmZFhKjwHAij4VV7saGI05qHbueuiZ4SsiWx94x4hOoWuhPatYtQ>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 18 May 2023 23:00:50 -0400 (EDT)
-Message-ID: <b5869cb0-1eab-4ab7-6dd7-16b06f91d93f@sholland.org>
-Date:   Thu, 18 May 2023 22:00:50 -0500
+        with ESMTP id S229563AbjESDXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 23:23:30 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27A6510CF
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 20:23:26 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1ae6b4c5a53so9525955ad.2
+        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 20:23:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1684466605; x=1687058605;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pNm5udqCbvnX4XXpVIQfqEI5NTUpbX2o76O+K2Dk0ZY=;
+        b=tdlPMz2XZvLEwfBIg0OM6UNf9B7DG9zBhIFqvHgjz/irqTjgZz5ea8w0zxTuT+PC4N
+         uPlzwCx3GfTx49yn371Or0Sb3OdtUUkBD8bAg3s53Oxv2iRPuE/LDTvbUej747cIDTHB
+         ag1o8FrGxItz7lafWVjB8lSaffh8FcATiFIKJ/q7Tv93oga2s4H/J/60FvkOyOEYUPNc
+         QZK36O/yfqlunyFTC6c5Rdn7crcv6ZkZNqK/xKVSVKkAVRefzFo7sZrU0JLscrjQrgnw
+         /6vZyg05ej/RlmQy6snEE5XqY9fs2jDo217VNBy0AZS25BgUbdTps9/ID8643SKB9erb
+         dCdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684466605; x=1687058605;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pNm5udqCbvnX4XXpVIQfqEI5NTUpbX2o76O+K2Dk0ZY=;
+        b=Z0rkGXI3Y4GX8oMeXgXuczEWADrc/fbVKRXMPt2EgQDYoxWekEqQCVrsBIljOR8CId
+         KL/ZDUNDx2xDzPyHLZ6oRxUCH/lPVlMQvHYGWvfOEkEyGO3XcXP6T8C3Xmq686z78aZW
+         JiCZzQoLM6gcq64qIoIo7RSLtG27JwMwicgHf/QMmRgOSxJPh0hw+oc9SLnnfGVaoOmE
+         WbOaVjbc3v5D8qxSFQQdKtutbSAXHHB0OdBfV0tB/TMWWJkq/HgtflKYwXYjCE6V217C
+         EKAQeO0tSG42rm8Osr3nHIGG3fTJ8TUzPkYBrAzzZPTDgWgQ+6INj6+01Gi8qDMX6TT7
+         fvmg==
+X-Gm-Message-State: AC+VfDxY3EkSn9Bb+OIj+TN9DY9WL5aYWjOke9xXhtO/zoBwTDtTv9Vb
+        tv7aCxQJ7P73w5qD+OfcZ+NgLg==
+X-Google-Smtp-Source: ACHHUZ40Y2EQt77CNzrMQHYqya32tovQxFScskIX1aU97lb182LFU0XTvrVGhJAz/3hP+raYApOFVA==
+X-Received: by 2002:a17:903:492:b0:1ad:ca0e:cf23 with SMTP id jj18-20020a170903049200b001adca0ecf23mr1234979plb.3.1684466605552;
+        Thu, 18 May 2023 20:23:25 -0700 (PDT)
+Received: from yc.huaqin.com ([101.78.151.214])
+        by smtp.gmail.com with ESMTPSA id jk21-20020a170903331500b0019cbe436b87sm2229666plb.81.2023.05.18.20.23.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 May 2023 20:23:25 -0700 (PDT)
+From:   Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+To:     sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
+        dianders@google.com, hsinyi@google.com
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Subject: [PATCH] drm/panel: Support for Starry-himax83102-j02 TDDI MIPI-DSI panel
+Date:   Fri, 19 May 2023 11:23:16 +0800
+Message-Id: <20230519032316.3464732-1-yangcong5@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Content-Language: en-US
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>
-References: <20230518152244.2178-1-jszhang@kernel.org>
- <20230518152244.2178-4-jszhang@kernel.org>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v4 03/10] dt-bindings: serial: add documentation for
- Bouffalolab UART Driver
-In-Reply-To: <20230518152244.2178-4-jszhang@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jisheng,
+The Starry-himax83102-j02 panel is a TDDI IC. From the datasheet[1],
+it seems that the touch can communicate successfully only when the RST
+signal is high. Since i2c_hid_core_probe comes after boe_panel_prepare
+let's set the default high for RST at boe_panel_add.
 
-On 5/18/23 10:22, Jisheng Zhang wrote:
-> Add bindings doc for Bouffalolab UART Driver
-> 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-> ---
->  .../serial/bouffalolab,bl808-uart.yaml        | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/serial/bouffalolab,bl808-uart.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/bouffalolab,bl808-uart.yaml b/Documentation/devicetree/bindings/serial/bouffalolab,bl808-uart.yaml
-> new file mode 100644
-> index 000000000000..0ef858e50efb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/bouffalolab,bl808-uart.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 Jisheng Zhang <jszhang@kernel.org>
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/serial/bouffalolab,bl808-uart.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bouffalolab UART Controller
-> +
-> +maintainers:
-> +  - Jisheng Zhang <jszhang@kernel.org>
-> +
-> +allOf:
-> +  - $ref: serial.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: bouffalolab,bl808-uart
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
+[1]: https://github.com/HimaxSoftware/Doc/tree/main/Himax_Chipset_Power_Sequence
 
-This is not complete. There are separate APB and module (baud) clocks,
-as well as a peripheral reset line. If we are going to keep the binding
-stable, these need to be described up front.
+Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+---
+ .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 103 +++++++++++++++++-
+ 1 file changed, 102 insertions(+), 1 deletion(-)
 
-(I still don't fully understand the clock tree, and so far that has been
-the main blocker for me sending a follow-up series with additional
-bindings for hardware that's otherwise already supported, like the
-Ethernet MAC.)
-
-Regards,
-Samuel
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    uart0: serial@30002000 {
-> +        compatible = "bouffalolab,bl808-uart";
-> +        reg = <0x30002000 0x1000>;
-> +        interrupts = <53 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&xtal>;
-> +    };
-> +...
+diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
+index 783234ae0f57..0d325fc42bc4 100644
+--- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
++++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
+@@ -36,6 +36,7 @@ struct panel_desc {
+ 	const struct panel_init_cmd *init_cmds;
+ 	unsigned int lanes;
+ 	bool discharge_on_disable;
++	int enable_gpio_init_value;
+ };
+ 
+ struct boe_panel {
+@@ -75,6 +76,75 @@ struct panel_init_cmd {
+ 	.len = sizeof((char[]){__VA_ARGS__}), \
+ 	.data = (char[]){__VA_ARGS__} }
+ 
++static const struct panel_init_cmd starry_himax83102_j02_init_cmd[] = {
++	_INIT_DCS_CMD(0xB9, 0x83, 0x10, 0x21, 0x55, 0x00),
++	_INIT_DCS_CMD(0xB1, 0x2C, 0xB5, 0xB5, 0x31, 0xF1, 0x31, 0xD7, 0x2F, 0x36, 0x36, 0x36, 0x36, 0x1A, 0x8B, 0x11,
++		0x65, 0x00, 0x88, 0xFA, 0xFF, 0xFF, 0x8F, 0xFF, 0x08, 0x74, 0x33),
++	_INIT_DCS_CMD(0xB2, 0x00, 0x47, 0xB0, 0x80, 0x00, 0x12, 0x72, 0x3C, 0xA3, 0x03, 0x03, 0x00, 0x00, 0x88, 0xF5),
++	_INIT_DCS_CMD(0xB4, 0x76, 0x76, 0x76, 0x76, 0x76, 0x76, 0x63, 0x5C, 0x63, 0x5C, 0x01, 0x9E),
++	_INIT_DCS_CMD(0xE9, 0xCD),
++	_INIT_DCS_CMD(0xBA, 0x84),
++	_INIT_DCS_CMD(0xE9, 0x3F),
++	_INIT_DCS_CMD(0xBC, 0x1B, 0x04),
++	_INIT_DCS_CMD(0xBE, 0x20),
++	_INIT_DCS_CMD(0xBF, 0xFC, 0xC4),
++	_INIT_DCS_CMD(0xC0, 0x36, 0x36, 0x22, 0x11, 0x22, 0xA0, 0x61, 0x08, 0xF5, 0x03),
++	_INIT_DCS_CMD(0xE9, 0xCC),
++	_INIT_DCS_CMD(0xC7, 0x80),
++	_INIT_DCS_CMD(0xE9, 0x3F),
++	_INIT_DCS_CMD(0xE9, 0xC6),
++	_INIT_DCS_CMD(0xC8, 0x97),
++	_INIT_DCS_CMD(0xE9, 0x3F),
++	_INIT_DCS_CMD(0xC9, 0x00, 0x1E, 0x13, 0x88, 0x01),
++	_INIT_DCS_CMD(0xCB, 0x08, 0x13, 0x07, 0x00, 0x0F, 0x33),
++	_INIT_DCS_CMD(0xCC, 0x02),
++	_INIT_DCS_CMD(0xE9, 0xC4),
++	_INIT_DCS_CMD(0xD0, 0x03),
++	_INIT_DCS_CMD(0xE9, 0x3F),
++	_INIT_DCS_CMD(0xD1, 0x37, 0x06, 0x00, 0x02, 0x04, 0x0C, 0xFF),
++	_INIT_DCS_CMD(0xD2, 0x1F, 0x11, 0x1F),
++	_INIT_DCS_CMD(0xD3, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x08, 0x37, 0x47, 0x34, 0x3B, 0x12, 0x12, 0x03,
++		0x03, 0x32, 0x10, 0x10, 0x00, 0x10, 0x32, 0x10, 0x08, 0x00, 0x08, 0x32, 0x17, 0x94, 0x07, 0x94, 0x00, 0x00),
++	_INIT_DCS_CMD(0xD5, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x19, 0x19, 0x40, 0x40, 0x1A, 0x1A,
++		0x1B, 0x1B, 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x20, 0x21, 0x28, 0x29, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18),
++	_INIT_DCS_CMD(0xD6, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x40, 0x40, 0x19, 0x19, 0x1A, 0x1A,
++		0x1B, 0x1B, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01, 0x00, 0x29, 0x28, 0x21, 0x20, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18),
++	_INIT_DCS_CMD(0xD8, 0xAA, 0xBA, 0xEA, 0xAA, 0xAA, 0xA0, 0xAA, 0xBA, 0xEA, 0xAA, 0xAA, 0xA0, 0xAA, 0xBA, 0xEA, 0xAA,
++		0xAA, 0xA0, 0xAA, 0xBA, 0xEA, 0xAA, 0xAA, 0xA0, 0xAA, 0xBA, 0xEA, 0xAA, 0xAA, 0xA0, 0xAA, 0xBA, 0xEA, 0xAA, 0xAA, 0xA0),
++	_INIT_DCS_CMD(0xE0, 0x00, 0x09, 0x14, 0x1E, 0x26, 0x48, 0x61, 0x67, 0x6C, 0x67, 0x7D, 0x7F, 0x80, 0x8B, 0x87, 0x8F, 0x98, 0xAB,
++		0xAB, 0x55, 0x5C, 0x68, 0x73, 0x00, 0x09, 0x14, 0x1E, 0x26, 0x48, 0x61, 0x67, 0x6C, 0x67, 0x7D, 0x7F, 0x80, 0x8B, 0x87, 0x8F, 0x98, 0xAB, 0xAB, 0x55, 0x5C, 0x68, 0x73),
++	_INIT_DCS_CMD(0xE7, 0x0E, 0x10, 0x10, 0x21, 0x2B, 0x9A, 0x02, 0x54, 0x9A, 0x14, 0x14, 0x00, 0x00, 0x00, 0x00, 0x12, 0x05, 0x02, 0x02, 0x10),
++	_INIT_DCS_CMD(0xBD, 0x01),
++	_INIT_DCS_CMD(0xB1, 0x01, 0xBF, 0x11),
++	_INIT_DCS_CMD(0xCB, 0x86),
++	_INIT_DCS_CMD(0xD2, 0x3C, 0xFA),
++	_INIT_DCS_CMD(0xE9, 0xC5),
++	_INIT_DCS_CMD(0xD3, 0x00, 0x00, 0x00, 0x00, 0x80, 0x0C, 0x01),
++	_INIT_DCS_CMD(0xE9, 0x3F),
++	_INIT_DCS_CMD(0xE7, 0x02, 0x00, 0x28, 0x01, 0x7E, 0x0F, 0x7E, 0x10, 0xA0, 0x00, 0x00, 0x20, 0x40, 0x50, 0x40),
++	_INIT_DCS_CMD(0xBD, 0x02),
++	_INIT_DCS_CMD(0xD8, 0xFF, 0xFF, 0xBF, 0xFE, 0xAA, 0xA0, 0xFF, 0xFF, 0xBF, 0xFE, 0xAA, 0xA0),
++	_INIT_DCS_CMD(0xE7, 0xFE, 0x04, 0xFE, 0x04, 0xFE, 0x04, 0x03, 0x03, 0x03, 0x26, 0x00, 0x26, 0x81, 0x02, 0x40, 0x00, 0x20, 0x9E, 0x04, 0x03, 0x02, 0x01, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00),
++	_INIT_DCS_CMD(0xBD, 0x03),
++	_INIT_DCS_CMD(0xE9, 0xC6),
++	_INIT_DCS_CMD(0xB4, 0x03, 0xFF, 0xF8),
++	_INIT_DCS_CMD(0xE9, 0x3F),
++	_INIT_DCS_CMD(0xD8, 0x00, 0x2A, 0xAA, 0xA8, 0x00, 0x00, 0x00, 0x2A, 0xAA, 0xA8, 0x00, 0x00, 0x00, 0x3F, 0xFF, 0xFC, 0x00, 0x00, 0x00, 0x3F, 0xFF, 0xFC, 0x00, 0x00, 0x00, 0x2A, 0xAA, 0xA8, 			0x00, 0x00, 0x00, 0x2A, 0xAA, 0xA8, 0x00, 0x00),
++	_INIT_DCS_CMD(0xBD, 0x00),
++	_INIT_DCS_CMD(0xE9, 0xC4),
++	_INIT_DCS_CMD(0xBA, 0x96),
++	_INIT_DCS_CMD(0xE9, 0x3F),
++	_INIT_DCS_CMD(0xBD, 0x01),
++	_INIT_DCS_CMD(0xE9, 0xC5),
++	_INIT_DCS_CMD(0xBA, 0x4F),
++	_INIT_DCS_CMD(0xE9, 0x3F),
++	_INIT_DCS_CMD(0xBD, 0x00),
++	_INIT_DCS_CMD(0x11),
++	_INIT_DELAY_CMD(120),
++	_INIT_DCS_CMD(0x29),
++	{},
++};
++
+ static const struct panel_init_cmd boe_tv110c9m_init_cmd[] = {
+ 	_INIT_DCS_CMD(0xFF, 0x20),
+ 	_INIT_DCS_CMD(0xFB, 0x01),
+@@ -1620,6 +1690,34 @@ static const struct panel_desc starry_qfh032011_53g_desc = {
+ 	.init_cmds = starry_qfh032011_53g_init_cmd,
+ };
+ 
++static const struct drm_display_mode starry_himax83102_j02_default_mode = {
++	.clock = 161600,
++	.hdisplay = 1200,
++	.hsync_start = 1200 + 40,
++	.hsync_end = 1200 + 40 + 20,
++	.htotal = 1200 + 40 + 20 + 40,
++	.vdisplay = 1920,
++	.vsync_start = 1920 + 116,
++	.vsync_end = 1920 + 116 + 8,
++	.vtotal = 1920 + 116 + 8 + 12,
++	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
++};
++
++static const struct panel_desc starry_himax83102_j02_desc = {
++	.modes = &starry_himax83102_j02_default_mode,
++	.bpc = 8,
++	.size = {
++		.width_mm = 141,
++		.height_mm = 226,
++	},
++	.lanes = 4,
++	.format = MIPI_DSI_FMT_RGB888,
++	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
++		      MIPI_DSI_MODE_LPM,
++	.init_cmds = starry_himax83102_j02_init_cmd,
++	.enable_gpio_init_value = 1,
++};
++
+ static int boe_panel_get_modes(struct drm_panel *panel,
+ 			       struct drm_connector *connector)
+ {
+@@ -1694,7 +1792,7 @@ static int boe_panel_add(struct boe_panel *boe)
+ 		return PTR_ERR(boe->enable_gpio);
+ 	}
+ 
+-	gpiod_set_value(boe->enable_gpio, 0);
++	gpiod_set_value(boe->enable_gpio, boe->desc->enable_gpio_init_value);
+ 
+ 	drm_panel_init(&boe->base, dev, &boe_panel_funcs,
+ 		       DRM_MODE_CONNECTOR_DSI);
+@@ -1793,6 +1891,9 @@ static const struct of_device_id boe_of_match[] = {
+ 	{ .compatible = "starry,2081101qfh032011-53g",
+ 	  .data = &starry_qfh032011_53g_desc
+ 	},
++	{ .compatible = "starry,himax83102-j02",
++	  .data = &starry_himax83102_j02_desc
++	},
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, boe_of_match);
+-- 
+2.25.1
 
