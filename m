@@ -2,89 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE13F709F47
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 20:43:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56C4A709F52
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 20:48:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbjESSnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 14:43:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42102 "EHLO
+        id S229732AbjESSsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 14:48:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230180AbjESSm6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 14:42:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F28A7E58;
-        Fri, 19 May 2023 11:42:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8E85A65A7B;
-        Fri, 19 May 2023 18:42:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 686C9C433D2;
-        Fri, 19 May 2023 18:42:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684521775;
-        bh=mlw58LfZETVkOjEGxc7UmG/44KBVI+gULotE6qPpqGc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FA75BAB2ZlcZAsReZOVR93HHw0nnb8z8ihDCr4KMvEXIAdBsVLLTsYS9+uogkQfOm
-         X96YagQxA1z6mAqR0CEA1a7Hp9F9zPt0GPgMxkWHgc/jTlwgGeqxM6UxhHV1VH3bGE
-         LG9vPNuxrYnSe3NWZhlsskYAcy+CM7jt0nVGou542MIAOGyIGqdm12EodHadiul/+u
-         nRtltc9c15EZY8mcQ21WpSIFx5b+7oLlp4GeteUof6rHrGdcEpUvKd4rwt/6NPLMvH
-         iVx+nRtlVrG3ND/ylytWPEAyRSEYK3GL+dhYUZ/oB5V4U1UudbskFBfbahpmTzaWUy
-         gmi2/JyURbu+A==
-Date:   Fri, 19 May 2023 19:42:50 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: power: Add power-domain header for
- JH7110
-Message-ID: <20230519-irk-dwelled-6a499c482e62@spud>
-References: <20230519060202.15296-1-changhuang.liang@starfivetech.com>
- <20230519060202.15296-2-changhuang.liang@starfivetech.com>
+        with ESMTP id S229611AbjESSsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 14:48:21 -0400
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46014E42;
+        Fri, 19 May 2023 11:48:20 -0700 (PDT)
+Received: by mail-qk1-x72a.google.com with SMTP id af79cd13be357-7576deacbd6so187162785a.3;
+        Fri, 19 May 2023 11:48:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684522099; x=1687114099;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aucr+tRVBv5cqs7JeI2aqwsV9gzMz1bgXQsJAhmbxW4=;
+        b=PpSo/arQcQKmS36tSxM9Cnt4Su55bOl6QLqfHFr3cRDLjGfBPmy/4LdOTXO1mTC7TU
+         +h6zNYzC7EURr15YYN8goMD7v6RznswhtOgMElup6wYbVfHbxs4a47ok/OnPFpqErvLJ
+         zLaA4m79xyLg2ZbRQvacUIUIGdNcGRVsuv4BMr5g5jVqiRGgmPy2C1ltdFKMTyDSPwDr
+         TzY5W2eEvjlhaVnkq6OWMLBvMkwaXjsWMRKPTsuv+cS4Lv2TEyumfsxR8ifdFTwUygA2
+         TqAVlL/I0+r7yr70jumVbnXlz1D0lm072YHwK8y+0ZpsG6toiGHIHLlnUAD9+x7topeH
+         I29g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684522099; x=1687114099;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aucr+tRVBv5cqs7JeI2aqwsV9gzMz1bgXQsJAhmbxW4=;
+        b=WsS3frwl6BrlGZw3hVnRQkfvKKky9sGIBG4exsYHGpLwlBbq0dzSD2XjHz2o7euCsm
+         OwRmciKbWrUwhY2qY8dV0G/f2BOk5nRCp2aKbJ78n75WErX/DPUH+t6wqedHMRt3CkjK
+         NYxCt32om2WEiAspa/0mbNMPFQpH0BzzppZE33wxg4E5n//5+zEqmUePnTaUGR2bG69F
+         1lSHzD+C3BlG0O6sEl4iMHYqBxex1ZftCniBkr3k8BYZBlL3v0rBBQ3CExlwgO7d2dKF
+         yZRCMzw8DaPGjxSznB8eRzR6NuM8wAkVWNwPEVYZ4D5IfNrPJUFzw4tCZ+dgygq4/4eO
+         Ob8A==
+X-Gm-Message-State: AC+VfDwWXZImWMKYUdBkidkgX2neRMP3xku21Xn9+N30KXXCUmpV2fpR
+        DrNnctpPgvqar58SQhb9l+rPaZPI9R7JebkUtiA=
+X-Google-Smtp-Source: ACHHUZ41R6QrVaDLtFOOxqfjtZx2wKBt6x1A/oKCkV4j8y+ooFPp2RkZgmmem/yzfaRC11jWvnhwBP5fxutURteEogo=
+X-Received: by 2002:ad4:5ec8:0:b0:621:48be:bab5 with SMTP id
+ jm8-20020ad45ec8000000b0062148bebab5mr6121486qvb.8.1684522099280; Fri, 19 May
+ 2023 11:48:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="gnSYCpl51AjwmCdQ"
-Content-Disposition: inline
-In-Reply-To: <20230519060202.15296-2-changhuang.liang@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230519125409.497439-1-quic_srichara@quicinc.com> <20230519125409.497439-5-quic_srichara@quicinc.com>
+In-Reply-To: <20230519125409.497439-5-quic_srichara@quicinc.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 19 May 2023 21:47:43 +0300
+Message-ID: <CAHp75VfVx+oGYKcija3h9-eWc6jggMx8p5SAQTEHTBEbjTaJKw@mail.gmail.com>
+Subject: Re: [PATCH V7 4/8] pinctrl: qcom: Add IPQ5018 pinctrl driver
+To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, ulf.hansson@linaro.org,
+        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
+        p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robimarko@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, May 19, 2023 at 3:55=E2=80=AFPM Sricharan Ramabadhran
+<quic_srichara@quicinc.com> wrote:
+>
+> Add pinctrl definitions for the TLMM of IPQ5018.
 
---gnSYCpl51AjwmCdQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+A couple of remarks either for the next version of the series or for
+the follow ups.
 
-On Thu, May 18, 2023 at 11:01:59PM -0700, Changhuang Liang wrote:
-> Add power-domain header for JH7110 SoC, it can use to operate dphy
-> power.
+...
 
-That is not an accurate description of what you are doing here!
-**IF** you resubmit for another reason, please change that wording
-to match what you are doing here. Otherwise, I will fix it up on
-application.
+> +config PINCTRL_IPQ5018
+> +       tristate "Qualcomm Technologies, Inc. IPQ5018 pin controller driv=
+er"
 
-Thanks,
-Conor
+> +       depends on GPIOLIB && OF
 
---gnSYCpl51AjwmCdQ
-Content-Type: application/pgp-signature; name="signature.asc"
+I'm wondering why OF.
+If it's a functional dependency (I do not see compile-time one) the
+compile test can be added, no?
 
------BEGIN PGP SIGNATURE-----
+  depends on GPIOLIB
+  depends on OF || COMPILE_TEST
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGfDKgAKCRB4tDGHoIJi
-0pu+AP9egx1tjjyQI9+8Xir3ZKULUhK/9wI0WOrT3Sc65ivI+QEAx2ydJ1njiPwX
-1Gbao6cA/nAxqQotyW/8etgslEbAOgQ=
-=msan
------END PGP SIGNATURE-----
+> +       select PINCTRL_MSM
+> +       help
+> +         This is the pinctrl, pinmux, pinconf and gpiolib driver for
+> +         the Qualcomm Technologies Inc. TLMM block found on the
+> +         Qualcomm Technologies Inc. IPQ5018 platform. Select this for
+> +         IPQ5018.
 
---gnSYCpl51AjwmCdQ--
+...
+
+> +#include <linux/module.h>
+
+> +#include <linux/of.h>
+
+There is a wrong header (the code doesn't use this one).
+You meant mod_devicetable.h
+
+> +#include <linux/platform_device.h>
+
+Besides that kernel.h for ARRAY_SIZE() init.h for arch_initcall() and
+others might be missing.
+
+--=20
+With Best Regards,
+Andy Shevchenko
