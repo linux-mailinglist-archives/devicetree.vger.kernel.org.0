@@ -2,75 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E939709DC4
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 19:20:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A19ED709DF7
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 19:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231268AbjESRUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 13:20:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59138 "EHLO
+        id S229456AbjESR0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 13:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230101AbjESRUt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 13:20:49 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 269E61A8
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 10:20:43 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f14468ef54so4028046e87.0
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 10:20:43 -0700 (PDT)
+        with ESMTP id S229680AbjESR0d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 13:26:33 -0400
+Received: from mail-vk1-xa34.google.com (mail-vk1-xa34.google.com [IPv6:2607:f8b0:4864:20::a34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC2F010FA
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 10:26:12 -0700 (PDT)
+Received: by mail-vk1-xa34.google.com with SMTP id 71dfb90a1353d-456fc2e1ccdso518441e0c.1
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 10:26:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684516841; x=1687108841;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aI4Ct9ZNbQ/SUl5JzXHU1ru0q3U69oZVlCThA9I8H3I=;
-        b=lBSmxER24QeX7xwpniQr4N70VZBB0FbHwfoJ1IdDtkGHPUnW/6jPw6qRbVa590f0cs
-         9RaAUk9JZOvoET83pb5t7t/QgZaQtKmsWNQWHeBtxkY+x3Sclu1C098f262ugb7UQ5WC
-         0tVCs+mMTOBdPBJA56fycgDyyoQyEeOnyPaPv1HcXuU1NHjJVdnfEJdtGfTcawzXv+wn
-         Z3QXMf19Z7mo8jhHJsBSwzZARvKANsjpu1KLCXexbascw+RUV37bNc7yS1kgfx0KV9LY
-         yY8f21Uv5yn/YSKfggdhGYWuil7v+hR4Z3ZE4ZwHPFzvpnf+r8tKSW94hpfC+4YU1OVm
-         Mc6w==
+        d=gmail.com; s=20221208; t=1684517171; x=1687109171;
+        h=content-transfer-encoding:to:subject:message-id:date:from:sender
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=CZzkG5UVtJRJgp58bN9WSf3/dsBZb9LrgBjsmARqQiU=;
+        b=L0yVvqc2HlKenCcP8vGCAxWvaDyxq1l9fgU/IgJMq53ocMIeyCUngnMAxB6XNIz1j2
+         Lb2FP/irLwDn3UFiw8WyOftqWpzpYz82/KtgkfZ/nckqVjrJv0OR4TEJDWy0UAoUe0/7
+         R7zkRdCfYEAoI9d8ICYelrfrS8guj+aoxkZ9X4wrXchveyWgjOqNb2isULMgWSxT0bCt
+         VH3qukWjiDAlu2lFurCegB56DsGEikblAwp9i89XIAZ/Ba3xoLYzfWQaxBx2y7rG3qaL
+         UQ1gCkXcr3tu8w7stvQzH46Tpu9nT5iTmGC96BvxgaXj/M/BbAsgKf0I/UfkYT5DNjaz
+         owxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684516841; x=1687108841;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aI4Ct9ZNbQ/SUl5JzXHU1ru0q3U69oZVlCThA9I8H3I=;
-        b=J35V2JqPfwt1NdTPQG1mIPARNo5BgTqM7Xj4n7f3KTU9lkmGn81kFFXb8a0v9osRt3
-         iNZdjBGgW5qBk7BPWMj7TPpFw0zqqSuaAXqrLdVacY4k90Jm9EwLJfdSCFNULzZJDUZD
-         c6t/8slul/OFet+0fC5wrdKSnYcny3nDP709aXjxZ8MhBz6j2BEKC97Y2PoYkxX+iYhT
-         j6+uMJxeZW6ELnkNY9pRDWRZd+KdxvBDYNGc6hVDedr/p0wOVsET+r2uf1lPkbOyvsqk
-         HKTN9IE0uCEUtIDNlI5FX2vssfOR0Dgq3zLOpR/4p6QDC+HXZOU/Oo4VnSRZBGRlvsKk
-         6o9g==
-X-Gm-Message-State: AC+VfDzMAUkOAHuH4xySh3F10OEDH8WgOQEipe3W+j5Jxng6KWnUAhKX
-        XHXLH2K5ugiA9vkQCMebpy3rXg==
-X-Google-Smtp-Source: ACHHUZ4ZtY87AlYLqMzZMI/H+YwCz8aUIUg1BGHjMQhVZ85fHr9UboDnwYj4WsgHwUHkUQsLv0exag==
-X-Received: by 2002:ac2:4182:0:b0:4f3:93d6:377b with SMTP id z2-20020ac24182000000b004f393d6377bmr843159lfh.37.1684516841069;
-        Fri, 19 May 2023 10:20:41 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id y19-20020ac24473000000b004eff0bcb276sm670552lfl.7.2023.05.19.10.20.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 May 2023 10:20:40 -0700 (PDT)
-Message-ID: <470651fb-e4d1-2576-df6c-ded60d0b1242@linaro.org>
-Date:   Fri, 19 May 2023 19:20:39 +0200
+        d=1e100.net; s=20221208; t=1684517171; x=1687109171;
+        h=content-transfer-encoding:to:subject:message-id:date:from:sender
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CZzkG5UVtJRJgp58bN9WSf3/dsBZb9LrgBjsmARqQiU=;
+        b=hn/uZ4h5WyFixgyMpFawWx3wWYA0iq5FkuSsSGUgiVH5hXOnXk9ijbu9t+1D2vfEHG
+         a6/9+OlHrvvUnRttNZ0SlpXUINuNzM6kUuKeuvIYfVH878OIyhNNJkW6YWSgavf6fMHK
+         UlwpZJgTPgTzyhd0CKOF7+9f2JE2Zl0896/Gu2JlZ9KfbMF9frbvbePydzOOH36sh8/y
+         UPjSQctSxrko0tvj118P5OObjJJe47N7fhbQvaGzFQpf9ec31Rv7eNr6GIsBnRSFLzMk
+         W/YM2qYpyxUauLPiAFPfH0PkAplk71sAY/m7iOK5Cng+6Qxbh78BE7QYjuGYt0ZiS68r
+         Rr6g==
+X-Gm-Message-State: AC+VfDz2LJXoxirDFYsFOhcTMkBu0EnhTZsgnmIa2Hkvn9O+LQ1mdIy/
+        oYyJrIwysZAg5T5oINBpuhGg7usIYJF1k1QUR38=
+X-Google-Smtp-Source: ACHHUZ6VZF2tmvUoZmNlXLu7gyWofm4Offid2kwqTJ3F3Dppy1rXDB7QONG5pkcNinC9+hg7I/Zca11UtiWcWDH0Vds=
+X-Received: by 2002:a1f:bd56:0:b0:456:d8da:caf5 with SMTP id
+ n83-20020a1fbd56000000b00456d8dacaf5mr1338647vkf.8.1684517170854; Fri, 19 May
+ 2023 10:26:10 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] scsi: ufs: ufs-qcom: add basic interconnect support
-Content-Language: en-US
-To:     Brian Masney <bmasney@redhat.com>, andersson@kernel.org
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jejb@linux.ibm.com,
-        martin.petersen@oracle.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-References: <20221117104957.254648-1-bmasney@redhat.com>
- <20221117104957.254648-2-bmasney@redhat.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20221117104957.254648-2-bmasney@redhat.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Sender: omarusandrina@gmail.com
+Received: by 2002:a59:b6b0:0:b0:3bd:3fac:2923 with HTTP; Fri, 19 May 2023
+ 10:26:09 -0700 (PDT)
+From:   Sandrina Omaru <sandrina.omaru2022@gmail.com>
+Date:   Fri, 19 May 2023 19:26:09 +0200
+X-Google-Sender-Auth: SwsMnEHVcRgZReza0Av_U6tMLC8
+Message-ID: <CAC0AYeYOkw2W553Dtr3yy7Q7LBy+K1gdS0OvFzRQNrzMD=WbBQ@mail.gmail.com>
+Subject: Naj te Bog blagoslovi
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,79 +67,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Naj te Bog blagoslovi
 
+Lep pozdrav,
 
-On 17.11.2022 11:49, Brian Masney wrote:
-> The firmware on the Qualcomm platforms expects the interconnect votes to
-> be present. Let's add very basic support where the maximum throughput is
-> requested to match what's done in a few other drivers.
-> 
-> This will not break boot on systems where the interconnects and
-> interconnect-names properties are not specified in device tree for UFS
-> since the interconnect framework will silently return.
-> 
-> Signed-off-by: Brian Masney <bmasney@redhat.com>
-> ---
-Hi everyone!
+Z globokim spo=C5=A1tovanjem in poni=C5=BEnostjo vas prosim, da navedem
+naslednjih nekaj vrstic v va=C5=A1o prijaznost, upam, da boste prihranili
+nekaj svojih dragocenih minut in s so=C4=8Dutjem prebrali naslednji poziv.
+Priznati moram, da vam pi=C5=A1em to e-po=C5=A1tno sporo=C4=8Dilo z velikim=
+ upanjem,
+veseljem in navdu=C5=A1enjem, za katerega vem in z vero verjamem, da vas
+mora zagotovo najti v dobrem zdravstvenem stanju.
 
-This was never merged, but it's actually strictly necessary!
+Sem gospodi=C4=8Dna Sandrina Omaru, h=C4=8Di pokojnega gospoda Williamsa
+Omaruja. Pred smrtjo mojega o=C4=8Deta me je poklical in me obvestil, da
+ima vsoto tri milijone =C5=A1eststo tiso=C4=8D evrov. (3.600.000,00 =E2=82=
+=AC), ki jih
+je polo=C5=BEil v zasebna banka tukaj v Abidjan Slonoko=C5=A1=C4=8Deni obal=
+i.
 
-For example UFS dies on SM8450 if we add sync_state to its interconnect
-driver, as there's no votes cast.
+Povedal mi je, da je denar polo=C5=BEil na moje ime, in mi dal tudi vse
+potrebne pravne dokumente v zvezi s tem depozitom pri banki, jaz sem
+dodiplomski =C5=A1tudij in res ne vem, kaj naj naredim. Zdaj =C5=BEelim
+po=C5=A1tenega in BOGA boje=C4=8Dega partnerja v tujini, ki mu lahko prenes=
+em ta
+denar z njegovo pomo=C4=8Djo, in po transakciji bom pri=C5=A1el in stalno
+prebival v va=C5=A1i dr=C5=BEavi do trenutka, ko bo primerno, da se vrnem d=
+omov,
+=C4=8De tako =C5=BEelja. To je zato, ker sem zaradi nenehne politi=C4=8Dne =
+krize
+tukaj na Slonoko=C5=A1=C4=8Deni obali utrpel veliko =C5=A1kode.
 
-Can we look into this again?
+Prosim, upo=C5=A1tevajte to in se =C4=8Dim prej oglasite pri meni. Takoj po=
+trdim
+va=C5=A1o pripravljenost, poslal vam bom svojo sliko in vas obvestil o ve=
+=C4=8D
+podrobnostih v zvezi s to zadevo.
 
-Konrad
->  drivers/ufs/host/ufs-qcom.c | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-> index 8ad1415e10b6..55bf8dd88985 100644
-> --- a/drivers/ufs/host/ufs-qcom.c
-> +++ b/drivers/ufs/host/ufs-qcom.c
-> @@ -7,6 +7,7 @@
->  #include <linux/time.h>
->  #include <linux/clk.h>
->  #include <linux/delay.h>
-> +#include <linux/interconnect.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/platform_device.h>
-> @@ -936,6 +937,22 @@ static const struct reset_control_ops ufs_qcom_reset_ops = {
->  	.deassert = ufs_qcom_reset_deassert,
->  };
->  
-> +static int ufs_qcom_icc_init(struct device *dev, char *pathname)
-> +{
-> +	struct icc_path *path;
-> +	int ret;
-> +
-> +	path = devm_of_icc_get(dev, pathname);
-> +	if (IS_ERR(path))
-> +		return dev_err_probe(dev, PTR_ERR(path), "failed to acquire interconnect path\n");
-> +
-> +	ret = icc_set_bw(path, 0, UINT_MAX);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "failed to set bandwidth request\n");
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * ufs_qcom_init - bind phy with controller
->   * @hba: host controller instance
-> @@ -991,6 +1008,14 @@ static int ufs_qcom_init(struct ufs_hba *hba)
->  			err = dev_err_probe(dev, PTR_ERR(host->generic_phy), "Failed to get PHY\n");
->  			goto out_variant_clear;
->  		}
-> +
-> +		err = ufs_qcom_icc_init(dev, "ufs-ddr");
-> +		if (err)
-> +			goto out_variant_clear;
-> +
-> +		err = ufs_qcom_icc_init(dev, "cpu-ufs");
-> +		if (err)
-> +			goto out_variant_clear;
->  	}
->  
->  	host->device_reset = devm_gpiod_get_optional(dev, "reset",
+Prijazni pozdravi,
+Gospa Sandrina Omaru
