@@ -2,111 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86757709825
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 15:24:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BB71709853
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 15:31:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230189AbjESNYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 09:24:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48170 "EHLO
+        id S230189AbjESNbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 09:31:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229605AbjESNYe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 09:24:34 -0400
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EF0BCE
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 06:24:33 -0700 (PDT)
-Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-19a08412722so2003731fac.3
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 06:24:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684502673; x=1687094673;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ddHXsfb4Hwby1ngDjPaQzK53iKMGtqMXXv3+a6M5AEc=;
-        b=i4B8dKcjj2QqiBsP17Kv8CniaHqXK+CiqU0JTGtBbBAhcujqp+kbWQpzHzQ8IWpP9t
-         SHqinV3R/U1H3Qk8IeC21WFBDR2DId3VtN4+wzgAFLD+/jbGH7JchQ3S1AELntpeJxl0
-         GU060VbTagu0veHjFfE8+jTz6FBg6FZVxIkTDcnreY7DUYkwpKM7qnQJyIuqheuRb28L
-         3lG1rX4LAVED78Ph4rwwj04vqUk38JYSBHAnVkreDPvI3KSgYyHohTWv10TV8fzLs7+1
-         u67NmyONcb/WIoWRjQVwbPT/xPATjBNiAaq/b5rGIm6uKnOvQcohgZdsarmfA5sbtn99
-         9Omw==
-X-Gm-Message-State: AC+VfDzq62oi0XbGkQPruFvyUrXKVRt0C59JuVEjYaYdNWtSWYEQvqif
-        NmEAh1HpFY84Q2xU6uiF1n9xfhEWdw==
-X-Google-Smtp-Source: ACHHUZ605d3f/TwUgXOlDyej/JMhK0v2T7GcPe223r3UiwIST5B6tCpAB41B7kUKIhjLlmK4Js2WLg==
-X-Received: by 2002:a05:6870:9185:b0:192:82bc:f84a with SMTP id b5-20020a056870918500b0019282bcf84amr1124130oaf.27.1684502672767;
-        Fri, 19 May 2023 06:24:32 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id m6-20020a056870194600b001931cb17a86sm1913248oak.27.2023.05.19.06.24.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 May 2023 06:24:32 -0700 (PDT)
-Received: (nullmailer pid 3446933 invoked by uid 1000);
-        Fri, 19 May 2023 13:24:31 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S231193AbjESNbT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 09:31:19 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D4A910F8;
+        Fri, 19 May 2023 06:30:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=fASWcQQZFu9vJAgQoBF8AHHKBRfu7PRMfFGfAqrEr2E=; b=I5lFAz6MfIdiaABPErD7w+7M2B
+        xwmf+C1bL/EsCujrpprezIWb4g2expSKqoYA+sR2iiGy0+FjLwEwtN36+37lNn29NOLBgZePp2mSI
+        uOoHihrDOiN+Re5ZG8FlY4h/eiFTECkaas28R9trMRDBxe3/e8Aiv9DdtE+ydN1n9r2U=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1q00Bg-00DKTX-DY; Fri, 19 May 2023 15:30:28 +0200
+Date:   Fri, 19 May 2023 15:30:28 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Alexis =?iso-8859-1?Q?Lothor=E9?= <alexis.lothore@bootlin.com>
+Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        paul.arola@telus.com, scott.roberts@telus.com
+Subject: Re: [PATCH net-next 2/2] net: dsa: mv88e6xxx: enable support for
+ 88E6361 switch
+Message-ID: <85c07e51-8a0b-4328-bab3-acad2ee104e1@lunn.ch>
+References: <20230517203430.448705-1-alexis.lothore@bootlin.com>
+ <20230517203430.448705-3-alexis.lothore@bootlin.com>
+ <9a836863-c279-490f-a49a-de4db5de9fd4@lunn.ch>
+ <ee281c0f-5e8b-8453-08bf-858c5503dc22@bootlin.com>
+ <6643e099-7b72-4da2-aba1-521e1a4c961b@lunn.ch>
+ <20230519143713.1ac9c7a1@thinkpad>
+ <7419ffc0-b292-97c4-fee6-610a1a841265@bootlin.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     conor+dt@kernel.org, Fabio Estevam <festevam@denx.de>,
-        linux-arm-kernel@lists.infradead.org, marex@denx.de,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-In-Reply-To: <20230519125236.352050-2-festevam@gmail.com>
-References: <20230519125236.352050-1-festevam@gmail.com>
- <20230519125236.352050-2-festevam@gmail.com>
-Message-Id: <168450267115.3446911.4219667976082310726.robh@kernel.org>
-Subject: Re: [PATCH v4 2/4] dt-bindings: soc: Add i.MX6SX General Purpose
- Register
-Date:   Fri, 19 May 2023 08:24:31 -0500
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7419ffc0-b292-97c4-fee6-610a1a841265@bootlin.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> >> Ports 1 and 2 should hopefully be protected by the
+> >> invalid_port_mask. It should not even be possible to create those
+> >> ports. port 0 is interesting, and possibly currently broken on
+> >> 6393. Please take a look at that.
+> > 
+> > Why would port 0 be broken on 6393x ?
+> By "broken", I guess Andrew means that if we feed port 0 to
+> mv88e6xxx_phy_is_internal, it will return true, which is wrong since there is no
+> internal phy for port 0 on 6393X ?
 
-On Fri, 19 May 2023 09:52:34 -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> The i.MX6SX General Purpose Registers is a set of register that serves
-> various different purposes and in particular, IOMUXC_GPR_GPR6, at
-> offset 0x18, can be used to configure the LDB block.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
-> Changes since v3:
-> - Fixed error reported by Rob's bot.
-> 
->  .../bindings/soc/imx/fsl,imx6sx-gpr.yaml      | 84 +++++++++++++++++++
->  1 file changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
-> 
+Yes, that is what i was thinking. But i did not spend the time to look
+at the code see if this is actually true. There might be a special
+case somewhere in the code.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+But in general, we try to avoid special cases, and add device specific
+ops.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.example.dtb: iomuxc-gpr@20e4000: bridge@18:compatible:0: 'fsl,imx6sx-ldb' is not one of ['fsl,imx8mp-ldb', 'fsl,imx93-ldb']
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230519125236.352050-2-festevam@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+	Andrew
