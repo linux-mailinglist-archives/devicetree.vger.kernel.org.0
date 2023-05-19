@@ -2,119 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C1807097CC
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 14:57:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70D7B7097DD
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 14:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231702AbjESM5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 08:57:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37164 "EHLO
+        id S231865AbjESM7a convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 19 May 2023 08:59:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231414AbjESM5k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 08:57:40 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E7B7E45;
-        Fri, 19 May 2023 05:56:56 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34JCGhFw013234;
-        Fri, 19 May 2023 12:56:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=T8XoqpXDyaET013xmrLDBkOm8cU8UuGqCHGSI8E8QUU=;
- b=AlvZK+mppsmRb7iA3+hqFSJMidqgpMlFikcgWFDRHS7TckDx/Duuk07fFSwi+IEIVuFj
- ey7DoY1ZMXj0CE0HX94jAgaEOANvFhsizTehnKvmWEfoJJI4K0nzLU9Y6RD2PxBxisxH
- UltqFFmSRvfDgwnJ6J2GuL6pp84hw6IVtoELAgLRpMyNSJz3h6EOhz2zcJI0Jq8MmRZQ
- M6p3Ub/jqzZXTQd9JHQSBOWp9CXR1kz9//8uJAtcogWi2wVtjUJsNQfaiuaO47r/MSak
- b91kK+xzZW35+7KGETDUSXNtsRAF3DgcHmhwW01z+0VJ0XCNgKe8E2Sfs2HPY3DRw/k8 Ow== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qp8fm04fp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 19 May 2023 12:56:12 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34JCto1n022073
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 19 May 2023 12:55:50 GMT
-Received: from win-platform-upstream01.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Fri, 19 May 2023 05:55:12 -0700
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <robimarko@gmail.com>,
-        <andy.shevchenko@gmail.com>, <quic_srichara@quicinc.com>
-Subject: [PATCH V7 8/8] arm64: defconfig: Enable IPQ5018 SoC base configs
-Date:   Fri, 19 May 2023 18:24:09 +0530
-Message-ID: <20230519125409.497439-9-quic_srichara@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230519125409.497439-1-quic_srichara@quicinc.com>
-References: <20230519125409.497439-1-quic_srichara@quicinc.com>
+        with ESMTP id S231826AbjESM73 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 08:59:29 -0400
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8EB6E7F;
+        Fri, 19 May 2023 05:58:56 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5648e904593so1640097b3.3;
+        Fri, 19 May 2023 05:58:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684501125; x=1687093125;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pLPr5UuUBNCVrV62IdjI3b1017A2XQE4lrIxbUuKJas=;
+        b=cVqLhOaIWBcrru4yfh/OO5NC3rAYt1LnvYUd6CwsfmnvlStZZDxa9WQSkPUbnbqu97
+         bjXSGaVx/u4OXO+GkNuQsH8KavTxqUJMUWZwlLo25ifBqAIJntFdkPx2bPDEkoACxtXd
+         LMvFkTakwVldi8Ue5RqpJLleVLzc3t662qXEXmas0oOP7YRHeuwWdkXHy702UWssZXPu
+         X2etRgolPZS56jzRO2SPLbB9dQQ5h6ipP4aGsWHxPfaj1qeoD2uwKTOk+6WOBbNjOXqk
+         w5Yi4IXK/PY2b4FtK0hkESs0MbIZUx4n5rHIYBAWLy8UoxeL+F/A4IhpEodJQ3rim0SO
+         rFcw==
+X-Gm-Message-State: AC+VfDwxrwIj9lyfPjztnC8e74qhQ1kYgXLwO2XpANo0X8MTCKFfZYVZ
+        CCiMBJrEeXo9o9nZy5b+40gHzjHhiYL5RQ==
+X-Google-Smtp-Source: ACHHUZ7mYudGyZxGxAW6PnSAsu18aKfyp3RqqQUd+reRLpKP7KDPMzAWBqr8lXDeoP60j9yMjMMA+A==
+X-Received: by 2002:a0d:fe85:0:b0:54f:adff:bd7a with SMTP id o127-20020a0dfe85000000b0054fadffbd7amr2308566ywf.8.1684501124666;
+        Fri, 19 May 2023 05:58:44 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id r125-20020a0dcf83000000b0054fa1fbda6fsm1139553ywd.25.2023.05.19.05.58.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 May 2023 05:58:43 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-561b65b34c4so44095807b3.1;
+        Fri, 19 May 2023 05:58:43 -0700 (PDT)
+X-Received: by 2002:a0d:c841:0:b0:559:e954:edf8 with SMTP id
+ k62-20020a0dc841000000b00559e954edf8mr1939413ywd.6.1684501123545; Fri, 19 May
+ 2023 05:58:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 6l7PAwVJcBwfMczpSgcK0NxfayXQIvz1
-X-Proofpoint-GUID: 6l7PAwVJcBwfMczpSgcK0NxfayXQIvz1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-19_08,2023-05-17_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- impostorscore=0 adultscore=0 mlxlogscore=887 bulkscore=0 spamscore=0
- priorityscore=1501 malwarescore=0 phishscore=0 clxscore=1015
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305190109
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230518113643.420806-1-biju.das.jz@bp.renesas.com> <20230518113643.420806-10-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20230518113643.420806-10-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 19 May 2023 14:58:32 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUsNYhD8VQWpwPqn_AV6cw85m+vg_DMXQP+ggGOz3RF0Q@mail.gmail.com>
+Message-ID: <CAMuHMdUsNYhD8VQWpwPqn_AV6cw85m+vg_DMXQP+ggGOz3RF0Q@mail.gmail.com>
+Subject: Re: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas RAA215300
+ PMIC bindings
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enables clk & pinctrl related configs
+Hi Biju,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
----
- [v6] Added Reviewed by
+On Thu, May 18, 2023 at 1:37 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Document Renesas RAA215300 PMIC bindings.
+>
+> The RAA215300 is a high Performance 9-Channel PMIC supporting DDR
+> Memory, with Built-In Charger and RTC.
+>
+> It supports DDR3, DDR3L, DDR4, and LPDDR4 memory power requirements.
+> The internally compensated regulators, built-in Real-Time Clock (RTC),
+> 32kHz crystal oscillator, and coin cell battery charger provide a
+> highly integrated, small footprint power solution ideal for
+> System-On-Module (SOM) applications. A spread spectrum feature
+> provides an ease-of-use solution for noise-sensitive audio or RF
+> applications.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v3->v4:
+>  * Moved bindings from mfd->regulator.
+>  * Dropped minItems from reg.
+>  * Dropped renesas,rtc-enabled property and instead used clock-names property
+>    to find RTC is enabled or not.
+>  * Added reg-names in required property.
+>  * Updated the example.
 
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+Thanks for your patch!
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index a24609e14d50..8bf0ef77f375 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -553,6 +553,7 @@ CONFIG_PINCTRL_IMX8ULP=y
- CONFIG_PINCTRL_IMX93=y
- CONFIG_PINCTRL_MSM=y
- CONFIG_PINCTRL_IPQ8074=y
-+CONFIG_PINCTRL_IPQ5018=y
- CONFIG_PINCTRL_IPQ5332=y
- CONFIG_PINCTRL_IPQ6018=y
- CONFIG_PINCTRL_IPQ9574=y
-@@ -1154,6 +1155,8 @@ CONFIG_QCOM_CLK_APCC_MSM8996=y
- CONFIG_QCOM_CLK_SMD_RPM=y
- CONFIG_QCOM_CLK_RPMH=y
- CONFIG_IPQ_GCC_5332=y
-+CONFIG_IPQ_APSS_5018=y
-+CONFIG_IPQ_GCC_5018=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
- CONFIG_IPQ_GCC_9574=y
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/renesas,raa215300.yaml
+> @@ -0,0 +1,84 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/renesas,raa215300.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RAA215300 Power Management Integrated Circuit (PMIC)
+> +
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +
+> +description: |
+> +  The RAA215300 is a high-performance, low-cost 9-channel PMIC designed for
+> +  32-bit and 64-bit MCU and MPU applications. It supports DDR3, DDR3L, DDR4,
+> +  and LPDDR4 memory power requirements. The internally compensated regulators,
+> +  built-in Real-Time Clock (RTC), 32kHz crystal oscillator, and coin cell
+> +  battery charger provide a highly integrated, small footprint power solution
+> +  ideal for System-On-Module (SOM) applications. A spread spectrum feature
+> +  provides an ease-of-use solution for noise-sensitive audio or RF applications.
+> +
+> +  This device exposes two devices via I2C. One for the integrated RTC IP, and
+> +  one for everything else.
+> +
+> +  Link to datasheet:
+> +  https://www.renesas.com/in/en/products/power-power-management/multi-channel-power-management-ics-pmics/ssdsoc-power-management-ics-pmic-and-pmus/raa215300-high-performance-9-channel-pmic-supporting-ddr-memory-built-charger-and-rtc
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - renesas,raa215300
+> +
+> +  reg:
+> +    maxItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: main
+> +      - const: rtc
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+
+Perhaps add a description to make it clear that not providing clocks
+is supported, and means the RTC is disabled?
+
+> +
+> +  clock-names:
+> +    description: |
+> +      Use xin, if connected to an external crystal.
+> +      Use clkin, if connected to an external clock signal.
+> +    oneOf:
+> +      - items:
+> +          - const: xin
+> +      - items:
+> +          - const: clkin
+
+Please replace oneOf+items by enum.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.34.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
