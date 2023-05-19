@@ -2,56 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0B72709B08
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 17:16:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37EF8709B26
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 17:21:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230514AbjESPQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 11:16:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48342 "EHLO
+        id S232065AbjESPVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 11:21:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbjESPQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 11:16:45 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 048E3CF;
-        Fri, 19 May 2023 08:16:43 -0700 (PDT)
-Received: from mercury (dyndsl-091-248-213-050.ewe-ip-backbone.de [91.248.213.50])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S230443AbjESPVA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 11:21:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C220106;
+        Fri, 19 May 2023 08:20:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 74826660298C;
-        Fri, 19 May 2023 16:16:42 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1684509402;
-        bh=gG0TdTUi5TP/4YlyrfonnMyAjHXDOX3bmS2Dy34e5O0=;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ADF3C6589C;
+        Fri, 19 May 2023 15:20:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8010EC433D2;
+        Fri, 19 May 2023 15:20:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684509658;
+        bh=+sp/ndddAwmlf9DWqKIi7xyEcvpuzEhQ/izOrZupQBk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=f+XzWG3jZXvr2vEEX7lzfx+9cOzVSWywgqCvOHoNGVMRLZtbtZtRpwsuXvGSvWnr5
-         b8odGKRK1MbIVBI1uowyvC3gs458wWG3oNjQ1OyazofhM5x07oY4k1a2BoDXIGhH72
-         ksbmFFlPYmB2a/IJn21E85kst5QyUU80Pr8si2FzYpASCMnoD6GDjP6++UFxouL66w
-         6t0QUQ157qlDwDEHjrHvl/xTk/685hTBQ1kJGm03jxfigvrpc7cGW3UCi8CYQmY3GH
-         tZkNQkpJGwpOueUBDP3tS//Azc3+craNpSY7cuEgOivTfafKWwMDfO5R0gjypgHV0z
-         Ms5q6Qj+0oiJA==
-Received: by mercury (Postfix, from userid 1000)
-        id 82E90106138C; Fri, 19 May 2023 17:16:39 +0200 (CEST)
-Date:   Fri, 19 May 2023 17:16:39 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        b=tI85oLMhhqyZ+sHiiL2LjTi9fn3cFnL3J+G6CQZIQR6SuNaqeoeRRvopjVt8WXmYn
+         LxE2Ih/PvNp1ALUNz53I8YOpxP8bWTZPlYd3F/taektr9gjROyCKT9W2YjUUnobeq+
+         nPMt42UM+adRpqdSPZY2muN53SN3px2X2VNfdWYrE2d31rO/RYeqpclcd8n1aWsXiZ
+         TAHfnRSx4MfYBSnnf3YtVYcIspWdtn8p4weHHRg545Ss9YBiiNNC7Sqk/xB6CVugYY
+         x9NWIcexVZGYOS7D1/ttKvIpzFIdKnE1BgWmZH0ESTAf7fhUNSZVW2yV9i8APmw0U6
+         /Q3zefZWdICTg==
+Date:   Fri, 19 May 2023 16:20:53 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: Mystery dtb check errors with ti,x-plate-ohms with txt only
- binding
-Message-ID: <20230519151639.67s2gapqplys7gva@mercury.elektranox.org>
-References: <20230519071359.GW14287@atomide.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: Re: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas RAA215300
+ PMIC bindings
+Message-ID: <20230519-giving-proven-1133875db395@spud>
+References: <20230518113643.420806-1-biju.das.jz@bp.renesas.com>
+ <20230518113643.420806-10-biju.das.jz@bp.renesas.com>
+ <20230518-prompter-helium-91d0139a61e2@spud>
+ <OS0PR01MB59226BDCD4D67430EC7377C6867C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <20230519-civic-idiocy-5ac6d95675f0@wendy>
+ <OS0PR01MB5922F379C4DF20124CBDEED3867C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CAMuHMdXQFQB7e7Pd1-CCerkwb4RDq7jJ_rv_kwf_Od+oGjMfUA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xs5semub2dxxej74"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="2EvJa2hO2K2Spwku"
 Content-Disposition: inline
-In-Reply-To: <20230519071359.GW14287@atomide.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <CAMuHMdXQFQB7e7Pd1-CCerkwb4RDq7jJ_rv_kwf_Od+oGjMfUA@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -59,54 +73,51 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---xs5semub2dxxej74
-Content-Type: text/plain; charset=us-ascii
+--2EvJa2hO2K2Spwku
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Fri, May 19, 2023 at 04:49:44PM +0200, Geert Uytterhoeven wrote:
+> On Fri, May 19, 2023 at 4:39=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.=
+com> wrote:
+> > > -----Original Message-----
+> > > From: Conor Dooley <conor.dooley@microchip.com>
+> > > On Fri, May 19, 2023 at 06:53:03AM +0000, Biju Das wrote:
+> > > > > Subject: Re: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas
 
-On Fri, May 19, 2023 at 10:13:59AM +0300, Tony Lindgren wrote:
-> Somehow the ti,x-plate-ohms property produces errors for nodes with the
-> compatible only in a txt binding that still uses /bits/ 16 value:
+> > > > > > +required:
+> > > > > > +  - compatible
+> > > > > > +  - reg
+> > > > > > +  - reg-names
+> > > > >
+> > > > > Out of curiosity as much as anything else, why do you need reg-na=
+mes
+> > > > > if the two registers are always required?
+
+> > OK, will drop reg-names from required property.
 >=20
-> ti,x-plate-ohms: size (2) error for type uint32-array
->=20
-> For the yaml bindings, we have ti,xplate-ohms so far only defined in
-> Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml.
->=20
-> So for example, compatible =3D "ti,tsc2046" that only has a txt binding in
-> Documentation/devicetree/bindings/input/touchscreen/ads7846.txt still
-> produces warnings somehow based on the ti,tsc2005.yaml?
->=20
-> Any ideas why this is happening?
+> Please don't, as i2c_new_ancillary_device() does rely on the name
+> to set the address when overriding from the default.
 
--ohms is a standard unit suffix and thus the property gets the type
-auto-assigned:
+That looks like my answer! Thanks Geert & sorry for the noise here.
+Modulo Geert's requested change, I think I owe you a
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Biju.
 
-https://github.com/robherring/dt-schema/blob/master/schemas/property-units.=
-yaml#L64
+Thanks,
+Conor.
 
--- Sebastian
 
---xs5semub2dxxej74
+--2EvJa2hO2K2Spwku
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmRnks8ACgkQ2O7X88g7
-+podIg/9EnB+CkNHLvckxinfza4wMPOk8aisgDoJtVQC4Rwnwxr5+nBQIr+d2vIc
-IXaA1R9sVyUD717OKv4FD8mWbBwW+kL0Ns93khDHL4ovQlHK3uc/vrHzrb+zZryC
-Wd0BM0aC/3k4FE7QNnsAuauJy1c8xVD1WN8BMT3qeEJt6eHASX2JunT+/EWbWICy
-0Aw52jIhxtkm9XjMz2gO6Fds3ePZqws/Nf2xPFl9nFQsUDSqbnllPj7SzUcKndVg
-gp/ZKAWrz1UB1A+CdKGoThbk1hE4qtRDzCHeXRl/ZiLy7PRmktaBcrtbhIM4Y3YD
-ieHwj0eWCWnmX2xMxa5GHiXfztgMIohkiUIGnko0POAeUyOycHzcMPoPneSWb998
-DLUfYNwgqxWOERXbMuKl8HFh8x3rCaiCKSGvhw0K9FRY6xcQOu5c2iFb6uaCMYbb
-H6RAFzTEZBO3Pfo1ZqRL82+sqladtk2COmNen2798yrFFKRzelBNwwLDMIDHzvil
-HoQ8xAmu7/mt8C5UDKpjkwJkKLvxSpjqQbBemyOg5bHDTOnpwGoaFRzi2zSL/P0d
-k8m7u+jBuA06qk2X4ouDRP7HMxY5Ld/6DYa1XLdXgxoz/U2Qoqz9xdCcSS9mdcNK
-rytb6d43iNq0I+n8Np0TqEbCvuRFX6GAviUVZ8g40rjovzxfZEQ=
-=QDkN
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGeT1AAKCRB4tDGHoIJi
+0iv1APwKw8DY6iGSq0dYCscL2F8wST//cz74mUwJrtHU9IXEGAEA0T+TAKWNc03n
+cN5TfV6iKpIw+NOw+EEKLNPktYSAGgU=
+=u/bs
 -----END PGP SIGNATURE-----
 
---xs5semub2dxxej74--
+--2EvJa2hO2K2Spwku--
