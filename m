@@ -2,97 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1C27709C50
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 18:22:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E53D0709C6B
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 18:29:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230286AbjESQWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 12:22:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49918 "EHLO
+        id S229489AbjESQ3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 12:29:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230144AbjESQWF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 12:22:05 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7BEF1BD;
-        Fri, 19 May 2023 09:21:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=F9VR5GWsmaIvh2GRlnTeCnpK7d8csC6dZRD/nCtAshA=; b=Al8kK3YwCDmJ1zMU0PPrh+98h8
-        xqSzwayDzUWNoLxxMXAB7v+uhAH/z0E2vIavco5dSEBhcQbK51En/1QsJzh7MiIvCVVjHo9brmfXn
-        AHiUCl3EMKHxr4QXmv/qSdITOMrOOS/jj7B7adrLp+7MhpTrR0huboKi2NtukFNiTrOY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1q02rL-00DLVY-Du; Fri, 19 May 2023 18:21:39 +0200
-Date:   Fri, 19 May 2023 18:21:39 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     alexis.lothore@bootlin.com
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        thomas.petazzoni@bootlin.com, paul.arola@telus.com,
-        scott.roberts@telus.com,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Subject: Re: [PATCH net-next v2 7/7] net: dsa: mv88e6xxx: enable support for
- 88E6361 switch
-Message-ID: <f8f60a03-b190-41ad-8b67-4c63fd43ae47@lunn.ch>
-References: <20230519141303.245235-1-alexis.lothore@bootlin.com>
- <20230519141303.245235-8-alexis.lothore@bootlin.com>
+        with ESMTP id S229480AbjESQ3j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 12:29:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A61D38F;
+        Fri, 19 May 2023 09:29:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3A3B765937;
+        Fri, 19 May 2023 16:29:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D044C433EF;
+        Fri, 19 May 2023 16:29:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684513777;
+        bh=cO6StIidaESxZ9kWWRmaxDEVVAfI+i5D8OvevReKs60=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QkTa8JVNDPha/XjnnDrGFHxlpapc5C6U7TQZFgETv+eZA6nN6nfdqiSpQT/psKEEz
+         tRW9pwSW148Zgx/L1Kc9+6rsBL3ztrT6wY+RC4ASnGfn/BwatLhVBYd0QrmBXtgkQd
+         nkgrFGN6mtqzhhfwGV8zVNQxa11LhxtfjfvGA3c5yl1BeP8mBIvPMT7mYAiYjvZOhq
+         m+3TRv2PBfBz6UhYrARsLysxqj4wsW6SAH5SdAEDSIdj0CUpWtAd/ppOM0b/VVjzxw
+         YtUWFL4X8RgoE6CLUX8Z1vTjyI0PVwWaRZSmjD5WoZtnzv7so11eKPZtov/QZNyEtY
+         AGsFJHtC+HKMw==
+Date:   Fri, 19 May 2023 17:29:33 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     David Rau <David.Rau.opensource@dm.renesas.com>
+Cc:     conor+dt@kernel.org, support.opensource@diasemi.com,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: dialog,da7219: convert to dtschema
+Message-ID: <20230519-tables-stoppage-51c998e0421c@spud>
+References: <20230519092321.26915-1-David.Rau.opensource@dm.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="17iPMXSczGXY/rl6"
 Content-Disposition: inline
-In-Reply-To: <20230519141303.245235-8-alexis.lothore@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230519092321.26915-1-David.Rau.opensource@dm.renesas.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> @@ -421,9 +421,14 @@ phy_interface_t mv88e6390x_port_max_speed_mode(struct mv88e6xxx_chip *chip,
->  int mv88e6393x_port_set_speed_duplex(struct mv88e6xxx_chip *chip, int port,
->  				     int speed, int duplex)
->  {
-> +	bool is_6361 =
-> +		chip->info->prod_num == MV88E6XXX_PORT_SWITCH_ID_PROD_6361;
->  	u16 reg, ctrl;
->  	int err;
->  
-> +	if (is_6361 && speed > 2500)
-> +		return -EOPNOTSUPP;
 
-I would move the comparison inside the if, so removing the ugly looking split is_6361 line.
+--17iPMXSczGXY/rl6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hey David,
+
+I think some wires got crossed here - what I meant was send 2 patches in
+a series, where one did the conversion and the other added the new
+property.
+
+On Fri, May 19, 2023 at 09:23:21AM +0000, David Rau wrote:
+> Convert Dialog DA7219 bindings to DT schema format.
+>=20
+> Signed-off-by: David Rau <David.Rau.opensource@dm.renesas.com>
+
+> +  interrupt-names:
+> +    oneOf:
+> +      - items:
+> +          - const: wakeup
+> +      - items:
+> +          - const: irq
+> +    description:
+> +      Name associated with interrupt line.
+> +      Should be "wakeup" if interrupt is to be used to wake system,
+> +      otherwise "irq" should be used.
+
+Hmm, that is not quite what I meant. I was thinking that you could
+add itemised descriptions for what the individual behaviours are.
+But on reflection, how about:
+  interrupt-names:
+    description:
+      Should be "wakeup" if interrupt is to be used to wake the system,
+      otherwise "irq" should be used.
+    enum:
+      - wakeup
+      - irq
 
 > +
->  	if (speed == 200 && port != 0)
->  		return -EOPNOTSUPP;
->  
-> @@ -506,8 +511,12 @@ int mv88e6393x_port_set_speed_duplex(struct mv88e6xxx_chip *chip, int port,
->  phy_interface_t mv88e6393x_port_max_speed_mode(struct mv88e6xxx_chip *chip,
->  					       int port)
->  {
-> +	bool is_6361 =
-> +		chip->info->prod_num == MV88E6XXX_PORT_SWITCH_ID_PROD_6361;
+> +  wakeup-source:
+> +    type: boolean
+> +    description:
+> +      Flag to indicate this device can wake system (suspend/resume).
 > +
->  	if (port == 0 || port == 9 || port == 10)
-> -		return PHY_INTERFACE_MODE_10GBASER;
-> +		return is_6361 ? PHY_INTERFACE_MODE_2500BASEX :
-> +			PHY_INTERFACE_MODE_10GBASER;
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  clock-output-names:
+> +    minItems: 2
+> +    maxItems: 2
 
-Please see if you can rearrange this code as well.
+I was thinking
+clock-output-names:
+  - items:
+      - const: WCLK
+      - const: BCLK
+(assuming I didn't misunderstand the text binding!)
 
-Thanks
-	Andrew
+> +    description:
+> +      Name given for DAI word clock and bit clock outputs.
+> +
+> +  clocks:
+
+    maxItems: 1
+
+> +    description:
+> +      phandle and clock specifier for codec MCLK.
+> +
+> +  clock-names:
+> +    const: mclk
+
+> +      dlg,jack-det-rate:
+> +        enum: ["32ms_64ms", "64ms_128ms", "128ms_256ms", "256ms_512ms"]
+
+The "s here are not needed btw, the other enums in the tree described
+like this (that use strings) avoid the "s.
+
+Thanks & apologies for the confusion,
+Conor.
+
+> +        description:
+> +          Jack type detection latency (3/4 pole).
+> +        $ref: /schemas/types.yaml#/definitions/string
+
+--17iPMXSczGXY/rl6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGej7QAKCRB4tDGHoIJi
+0qhMAP0UQUBLP3rRh9+fsSVNXLEsKmJvateo000gx8LaIls4xQD/bRjAsk0YVjbg
+j4Q26gB4g/gUmLVzrEmo3x2pCdAIzQs=
+=tJz2
+-----END PGP SIGNATURE-----
+
+--17iPMXSczGXY/rl6--
