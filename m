@@ -2,195 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D93070A19B
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 23:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1805D70A1D7
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 23:37:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231741AbjESVUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 17:20:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50182 "EHLO
+        id S230340AbjESVhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 17:37:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231474AbjESVUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 17:20:33 -0400
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 140E21720
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 14:20:09 -0700 (PDT)
-Received: by mail-qt1-x833.google.com with SMTP id d75a77b69052e-3f500dee3f6so37715051cf.3
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 14:20:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1684531208; x=1687123208;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gtDyydGQ12nNA9vDtJuiYKnYe+NC3xHSuY0yHevVoDc=;
-        b=TOksbyXvMdKy5jG4ro9MTBpbDoFiEhWE6tCibtAbOdeDN+3jmf6UdiWVxG5OWNb8Qv
-         XRPbpKn6TtQtCn/ZULMXnC4naOq9qElqXgHG1rCR44A6YBRi72N3iGkdF+nYkIkCgOhm
-         kFkmy0RpscWJPm+xmkQEn9cDaWOe+IU2oPwPA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684531208; x=1687123208;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gtDyydGQ12nNA9vDtJuiYKnYe+NC3xHSuY0yHevVoDc=;
-        b=hhhkUHmnu09CJgOpJAtr6VZI8NDqOgVaJd4EGuBOVPouU7ShLjq9qHpRvdnla35YvR
-         RoXZtspC+149lbPS9EhIh0q8btwI9tfPTanl3rcpOwERM0l2XqdzGsWikTrlEoWBdbGM
-         p4041TeEUUpQzsGjqhF2o3VH3oh3BZ2BD9hz2G0RU0e2A14gYInbH0fdOPtBnGYIzy5t
-         SFAUdGtbSA58ybOhTc+tcUFOhRK6FwUk5Xmktw8i6t+D5mjiKWcXUaBjqjmvtoqHXzG+
-         ltQVZ7+iedkb1BCxyqrGb1r4Jo98eKUihB0k7uQdL1z9jod+WZoxaT1u/i5ijnhh/41s
-         7kIA==
-X-Gm-Message-State: AC+VfDwj2dKnd8NnZnE7vJJSblbpGL8Q36NlDK3khGmaIZmHlPCrchLd
-        uTyA+DUycmdL1PsHayP6YDy0+A==
-X-Google-Smtp-Source: ACHHUZ5Ytd/wFiNJi8pOvXUzzKJJy8lgI/+6RxMWMP8gX3wlnzBjIs3z2FZxG0M2q9PUKqwDOEos6Q==
-X-Received: by 2002:ac8:4e44:0:b0:3f5:aa3:ace7 with SMTP id e4-20020ac84e44000000b003f50aa3ace7mr6128251qtw.61.1684531208718;
-        Fri, 19 May 2023 14:20:08 -0700 (PDT)
-Received: from stbirv-lnx-2.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id p11-20020ae9f30b000000b0074df8eefe2dsm1364585qkg.98.2023.05.19.14.20.06
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 19 May 2023 14:20:08 -0700 (PDT)
-From:   Justin Chen <justin.chen@broadcom.com>
-To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     justinpopo6@gmail.com, justin.chen@broadcom.com,
-        f.fainelli@gmail.com, davem@davemloft.net,
-        florian.fainelli@broadcom.com, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, opendmb@gmail.com,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        richardcochran@gmail.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com
-Subject: [PATCH net-next v3 6/6] MAINTAINERS: ASP 2.0 Ethernet driver maintainers
-Date:   Fri, 19 May 2023 14:19:44 -0700
-Message-Id: <1684531184-14009-7-git-send-email-justin.chen@broadcom.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1684531184-14009-1-git-send-email-justin.chen@broadcom.com>
-References: <1684531184-14009-1-git-send-email-justin.chen@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000052ad1805fc127cd3"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        MIME_HEADER_CTYPE_ONLY,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_TVD_MIME_NO_HEADERS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229877AbjESVhq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 17:37:46 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8621A1B0;
+        Fri, 19 May 2023 14:37:45 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34JLC3wr006345;
+        Fri, 19 May 2023 21:37:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=Acuo//OEBaHHc79dMa8wykfivPvrN1jyzUIJNRNq+rs=;
+ b=oT2squvbvbdJJeKESoYcUS+cfAm0Ai1KWtUeFqiToz+J3bdu8DVdIr6TwWrETO16nvHD
+ yJaQVZ2V97hfPOxGBpmkgpZqbyPCrX0fA3zYBOv2A573+ZA/epB4ldSoe4T8cQXpIBP8
+ c/tNtvs4N6rSm/Fq94s/Ez7HHsKIxRnXgIcGds7Ndl9yaWARr73L8M1EEr5mAMb8DH+I
+ G2IHgMSnh9JoWGJXJBCXqQCeqJfcXxlLGB8eX56DoIIs/qmEeEYbZk7Sl7ftkfqtq6oj
+ qCloN4F7AU7yiN8MsoLZODx3R3MwGGNwqdezpQIYnNXL1oBXOrPUF3/tgOR4omE+GqGP Xw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qp4nt9xhh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 May 2023 21:37:41 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34JLbeEs024058
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 May 2023 21:37:40 GMT
+Received: from hu-jkona-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Fri, 19 May 2023 14:37:35 -0700
+From:   Jagadeesh Kona <quic_jkona@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Jagadeesh Kona" <quic_jkona@quicinc.com>
+Subject: [PATCH 0/3] Add graphics clock controller support for SM8550
+Date:   Sat, 20 May 2023 03:06:53 +0530
+Message-ID: <20230519213656.26089-1-quic_jkona@quicinc.com>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: m6or0cwevYGrGhfeWG4Yg2VG7RSVT40i
+X-Proofpoint-GUID: m6or0cwevYGrGhfeWG4Yg2VG7RSVT40i
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-19_16,2023-05-17_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015 phishscore=0
+ spamscore=0 impostorscore=0 bulkscore=0 malwarescore=0 mlxscore=0
+ mlxlogscore=963 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305190187
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000052ad1805fc127cd3
+Add bindings, driver and devicetree node for graphics clock controller on SM8550.
 
-Add maintainers entry for ASP 2.0 Ethernet driver.
+Depends on [1] for lucid ole pll ops definition
+[1] https://patchwork.kernel.org/project/linux-clk/list/?series=746186&state=%2A&archive=both
 
-Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
-Signed-off-by: Justin Chen <justin.chen@broadcom.com>
----
-v3
-	Change from gmail to broadcom emails
+Jagadeesh Kona (3):
+  dt-bindings: clock: qcom: Add SM8550 graphics clock controller
+  clk: qcom: gpucc-sm8550: Add support for graphics clock controller
+  arm64: dts: qcom: sm8550: Add graphics clock controller
 
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ .../bindings/clock/qcom,sm8550-gpucc.yaml     |  67 ++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  12 +
+ drivers/clk/qcom/Kconfig                      |   8 +
+ drivers/clk/qcom/Makefile                     |   1 +
+ drivers/clk/qcom/gpucc-sm8550.c               | 609 ++++++++++++++++++
+ include/dt-bindings/clock/qcom,sm8550-gpucc.h |  48 ++
+ 6 files changed, 745 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm8550-gpucc.yaml
+ create mode 100644 drivers/clk/qcom/gpucc-sm8550.c
+ create mode 100644 include/dt-bindings/clock/qcom,sm8550-gpucc.h
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e2fd64c2ebdc..732a099f4a10 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4198,6 +4198,15 @@ F:	drivers/net/mdio/mdio-bcm-unimac.c
- F:	include/linux/platform_data/bcmgenet.h
- F:	include/linux/platform_data/mdio-bcm-unimac.h
- 
-+BROADCOM ASP 2.0 ETHERNET DRIVER
-+M:	Justin Chen <justin.chen@broadcom.com>
-+M:	Florian Fainelli <florian.fainelli@broadcom.com>
-+L:	bcm-kernel-feedback-list@broadcom.com
-+L:	netdev@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-+F:	drivers/net/ethernet/broadcom/asp2/
-+
- BROADCOM IPROC ARM ARCHITECTURE
- M:	Ray Jui <rjui@broadcom.com>
- M:	Scott Branden <sbranden@broadcom.com>
 -- 
-2.7.4
+2.40.1
 
-
---00000000000052ad1805fc127cd3
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-NhTY3E+cXCB11wty89QStajwXdhGJTYEvUgvsq1h8CwJj9w/38ldAQf5WjhPmApYeJR2ewFrBMCM
-4lHkdRJ6TDc9nXoEkypUfjJkJHe7Eal06tosh6JpAgMBAAGjggHZMIIB1TAOBgNVHQ8BAf8EBAMC
-BaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJlLmdsb2JhbHNp
-Z24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYIKwYBBQUHMAGG
-NWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwME0G
-A1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxz
-aWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqGOGh0dHA6Ly9j
-cmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3JsMCMGA1UdEQQc
-MBqBGGp1c3Rpbi5jaGVuQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSME
-GDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUIWGeYuaTsnIada5Xx8TR3cheUbgw
-DQYJKoZIhvcNAQELBQADggEBAHNQlMqQOFYPYFO71A+8t+qWMmtOdd2iGswSOvpSZ/pmGlfw8ZvY
-dRTkl27m37la84AxRkiVMes14JyOZJoMh/g7fbgPlU14eBc6WQWkIA6AmNkduFWTr1pRezkjpeo6
-xVmdBLM4VY1TFDYj7S8H2adPuypd62uHMY/MZi+BIUys4uAFA+N3NuUBNjcVZXYPplYxxKEuIFq6
-sDL+OV16G+F9CkNMN3txsym8Nnx5WAYZb6+rBUIhMGz70V05xsHQfzvo2s7f0J1tJ5BoRlPPhL0h
-VOnWA3h71u9TfSsv+PXVm3P21TfOS2uc1hbzEqyENCP4i5XQ0rv0TmPW42GZ0o4xggJtMIICaQIB
-ATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhH
-bG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwj8BKLXNpALfemdRAwDQYJ
-YIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIHjGWtU+lS3ojyHTawg3LMTM66ukw+MBs+J8
-vh8dgbRCMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIzMDUxOTIx
-MjAwOFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFl
-AwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATAN
-BgkqhkiG9w0BAQEFAASCAQAEPcY5BKHsQ979oDZDZr1SxZpkSOTycOB7lyHgSQIXRej/4itSyIv8
-a2WRBv7G84VHYLqT6Xow7KHUxS2fPntUWk5DJqW479xGy5ca9rhoO1JZE7YwJJ+g9tq/30S7OciT
-znKxa1AWle3mFGYtqGQOkhzWgXzI1C2uMrGNImFgTiJTEJnCVNGfEq4WWOS3fxBhRQOkgkuuPrA6
-wC8T6Tv0YvWBZ3ZWG/PE69vgCMcoXBNdS3JR9OqYVTjRFdIQokyVUBlD5GOk6erjj0baUzjU1SFX
-6H2XI9qGglhqmUoYkewR8M6vPgUIj1SqNOOLN/YWbFc0/Q/NKL+1wWmPaAq+
---00000000000052ad1805fc127cd3--
