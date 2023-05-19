@@ -2,374 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F2FD709E33
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 19:33:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11BCF709E61
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 19:40:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232017AbjESRdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 13:33:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41798 "EHLO
+        id S230309AbjESRkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 13:40:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbjESRdH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 13:33:07 -0400
-Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB279C
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 10:32:33 -0700 (PDT)
-Received: by mail-qk1-x734.google.com with SMTP id af79cd13be357-757942bd912so183892385a.2
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 10:32:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1684517552; x=1687109552;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=olbEzSqx/IH1TMQ25mCAKgCIHwNjsr/5MQNXRJjOzZ4=;
-        b=HrhpqN9gM/psWbxK3a76k6HsKCFyBjqJxbyuapYDmo/EhBTaMd/R6PDTqTyUTh9omd
-         uzZkCT77EDuWcm1xgTwQRC34nF51f7icAh5WGj49BA3WIl+TnIQ1TV2EoNKHQ+Ow9wWu
-         Pgl64mkeiBXqC7wbWrpGLGMI/Dp5AtqGWax/ctp3dXWNjOfjbbBOEcCtuj/J4iHNGTZC
-         nrdgkBMeI7fZnCmXru7uHYoZUqPYUDLeMVEk9JuaHgYkGTU75VyMVuI8mSD1bINFLkVy
-         cuuhwCEUIeysioN6m9TwfVyoJuOZbFShQmGbjV2LeGrc9zGmir15u2aOkEKb7y7pIEeR
-         1wyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684517552; x=1687109552;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=olbEzSqx/IH1TMQ25mCAKgCIHwNjsr/5MQNXRJjOzZ4=;
-        b=dAxwafKIrHIkn3nsMJ0W4iw/44su4b7ykcV4ZZNgDKeQ5y1nQp+wTTCE5rOL51Vg8b
-         mAwEJTj04yddeGnHVBbSqEnaMJsos0OxStsdbCFgmAuP2qQgupwn/I9b08TqbK1FnUGk
-         5EAZCTruY9sQrcIJcrZdtk8RtQps6Pt4QhzvBXBd3f/pyFl+5p/BouvgqwoxjLj5hv0O
-         N+wLHuSvPZckgUlgtgTUWwCWOLd55NmQ2VehwFLXbvacchnfVVNHwb/Kgc+TFT46p8mm
-         DZqbotf+xPcVcSIe8ettTQAIhCKJKgXposgywsmrxtCU/GAFNo21sF/B+/6wkZzsiv4n
-         1EEg==
-X-Gm-Message-State: AC+VfDykUBWLHiJKlDdZPmoHxEnjWyzkg/b/b8SpfWe7w1u47hLyDEp2
-        vFhUZ5Lj8zY5ufAoqRzh4BRF3LQ56kTbdcZmqRQJoQ==
-X-Google-Smtp-Source: ACHHUZ4Xl4kXNMwDTrQ8PsgJ7TyY9mUD5MkfEEWL4wSSJpPIPKsNjazEBZaVlU4VQpr5zXcyFWGP9tQ7MQO51qyZO4g=
-X-Received: by 2002:a05:6214:20e2:b0:622:7b7f:ed3a with SMTP id
- 2-20020a05621420e200b006227b7fed3amr4624386qvk.16.1684517551596; Fri, 19 May
- 2023 10:32:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230512001334.2983048-1-dmitry.baryshkov@linaro.org>
- <20230512001334.2983048-3-dmitry.baryshkov@linaro.org> <ZGeyO6MRBSPf7b1y@google.com>
-In-Reply-To: <ZGeyO6MRBSPf7b1y@google.com>
-From:   Nick Desaulniers <ndesaulniers@google.com>
-Date:   Fri, 19 May 2023 10:32:20 -0700
-Message-ID: <CAKwvOdn-w2QPmq9_CmpHFurWyo9DiAiMEf0wus6ufW5g+8LKGQ@mail.gmail.com>
-Subject: Re: [PATCH v6 2/4] interconnect: add clk-based icc provider support
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S231856AbjESRkW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 13:40:22 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D2E2F9;
+        Fri, 19 May 2023 10:40:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 313F6617CA;
+        Fri, 19 May 2023 17:40:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4EDEC433D2;
+        Fri, 19 May 2023 17:40:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684518020;
+        bh=UDkPTriVgF63ln4ZyrbQRph9MfKBLUZJt2i1hBGxbgI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Aqw8D6mpeQT4w0fcGePat4H8HZzBKIKWOeUIA8alAX2uA2qSAZBBelFH1hPRBkWB5
+         zCW7JnxXImPHDm1iFUam6V5xw63zRqh9PdXExsNYp081ytq/Tt16x0WpfMUCNOteX6
+         qBiUUORVTc5/nF6UChgQRNfB4VpikiTTxgof71VDpl6VjA3G0czOdDFRwvarH4XDND
+         pQlyZ9tx184IAxdcTRxFt2ul+EkdzLzzf+bYtdqnSAAjuEFWZA9OBQNYtxCjAw9P6N
+         D/Jgh9+OqviTJDwRB8ZudGMqBlFs6qx3Y0Pf4hWfzrXd6bpUg3KMCJ9IskzeXqQHQo
+         q94fvn1FHRRcQ==
+Date:   Fri, 19 May 2023 23:10:15 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Stanley Chang <stanley_chang@realtek.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Georgi Djakov <djakov@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-pm@vger.kernel.org, llvm@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Ray Chi <raychi@google.com>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Bhuvanesh Surachari <Bhuvanesh_Surachari@mentor.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+Subject: Re: [PATCH v1 2/3] usb: phy: Add driver for the Realtek SoC USB
+ 2.0/3.0 PHY
+Message-ID: <ZGe0f4OfaXzweSp3@matsya>
+References: <20230519045825.28369-1-stanley_chang@realtek.com>
+ <20230519045825.28369-2-stanley_chang@realtek.com>
+ <0d165c7efbb71a65803abddc364e1c5252b8b939.camel@crapouillou.net>
+ <0ee8a26205a041cab9a787ec29201a9f@realtek.com>
+ <f7edea0c-dbfe-4c16-8134-0656411a837d@app.fastmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f7edea0c-dbfe-4c16-8134-0656411a837d@app.fastmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 19, 2023 at 10:30=E2=80=AFAM Nick Desaulniers
-<ndesaulniers@google.com> wrote:
->
-> On Fri, May 12, 2023 at 03:13:32AM +0300, Dmitry Baryshkov wrote:
-> > For some devices it is useful to export clocks as interconnect provider=
-s,
-> > if the clock corresponds to bus bandwidth.
+On 19-05-23, 13:01, Arnd Bergmann wrote:
+> On Fri, May 19, 2023, at 12:58, Stanley Chang[昌育德] wrote:
+> >> 
+> >> I'm pretty sure that drivers/usb/phy/ is deprecated now...
+> >> 
+> >> New drivers should be written for the generic PHY subsystem in
+> >> drivers/phy/.
+> 
+> Indeed, I missed that in my review.
+> 
+> > Thanks for your reminder.
+> > Will drivers/usb/phy be removed?
+> > Is it not allowed to add new drivers?
 > >
-> > For example, on MSM8996 the cluster interconnect clock should be scaled
-> > according to the cluster frequencies. Exporting it as an interconnect
-> > allows one to properly describe this as the cluster bandwidth
-> > requirements.
-> >
-> > Tested-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->
-> Hi Dmitry,
-> Apologies if this has already been reported elsewhere, but our CI is red
-> for linux-next today for allmodconfig builds:
->
-> >> ERROR: modpost: missing MODULE_LICENSE() in drivers/interconnect/icc-c=
-lk.o
+> > In our application, driver/phy is not suitable.
+> > We need to notify the phy driver when the USB hub port status changes.
+> > However, generic PHY drivers are designed for various device's PHY.
+> > And it seems inappropriate to add this function. So we choose to use 
+> > driver/usb/phy. 
+> 
+> If you run into something that works in the old usbphy layer
+> but can't be done in drivers/phy, I think the better solution
+> would be to change the drivers/phy/ code to add this.
 
-I also suspect these 2 additional errors are related to this series?
->> Error: ERROR: modpost: "icc_clk_register" [drivers/clk/qcom/clk-cbf-8996=
-.ko] undefined!
->> Error: ERROR: modpost: "icc_clk_unregister" [drivers/clk/qcom/clk-cbf-89=
-96.ko] undefined!
+The is correct, phy interfaces can be improved upon and have been added
+upon as and when we have users.
 
->
-> https://github.com/ClangBuiltLinux/continuous-integration2/actions/runs/5=
-024096989/jobs/9011763868
->
-> Can you PTAL?
->
-> > ---
-> >  drivers/interconnect/Kconfig     |   6 ++
-> >  drivers/interconnect/Makefile    |   2 +
-> >  drivers/interconnect/icc-clk.c   | 168 +++++++++++++++++++++++++++++++
-> >  include/linux/interconnect-clk.h |  22 ++++
-> >  4 files changed, 198 insertions(+)
-> >  create mode 100644 drivers/interconnect/icc-clk.c
-> >  create mode 100644 include/linux/interconnect-clk.h
-> >
-> > diff --git a/drivers/interconnect/Kconfig b/drivers/interconnect/Kconfi=
-g
-> > index d637a89d4695..5faa8d2aecff 100644
-> > --- a/drivers/interconnect/Kconfig
-> > +++ b/drivers/interconnect/Kconfig
-> > @@ -15,4 +15,10 @@ source "drivers/interconnect/imx/Kconfig"
-> >  source "drivers/interconnect/qcom/Kconfig"
-> >  source "drivers/interconnect/samsung/Kconfig"
-> >
-> > +config INTERCONNECT_CLK
-> > +     tristate
-> > +     depends on COMMON_CLK
-> > +     help
-> > +       Support for wrapping clocks into the interconnect nodes.
-> > +
-> >  endif
-> > diff --git a/drivers/interconnect/Makefile b/drivers/interconnect/Makef=
-ile
-> > index 97d393fd638d..5604ce351a9f 100644
-> > --- a/drivers/interconnect/Makefile
-> > +++ b/drivers/interconnect/Makefile
-> > @@ -7,3 +7,5 @@ obj-$(CONFIG_INTERCONNECT)            +=3D icc-core.o
-> >  obj-$(CONFIG_INTERCONNECT_IMX)               +=3D imx/
-> >  obj-$(CONFIG_INTERCONNECT_QCOM)              +=3D qcom/
-> >  obj-$(CONFIG_INTERCONNECT_SAMSUNG)   +=3D samsung/
-> > +
-> > +obj-$(CONFIG_INTERCONNECT_CLK)               +=3D icc-clk.o
-> > diff --git a/drivers/interconnect/icc-clk.c b/drivers/interconnect/icc-=
-clk.c
-> > new file mode 100644
-> > index 000000000000..0db3b654548b
-> > --- /dev/null
-> > +++ b/drivers/interconnect/icc-clk.c
-> > @@ -0,0 +1,168 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +/*
-> > + * Copyright (c) 2023, Linaro Ltd.
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/device.h>
-> > +#include <linux/interconnect-clk.h>
-> > +#include <linux/interconnect-provider.h>
-> > +
-> > +struct icc_clk_node {
-> > +     struct clk *clk;
-> > +     bool enabled;
-> > +};
-> > +
-> > +struct icc_clk_provider {
-> > +     struct icc_provider provider;
-> > +     int num_clocks;
-> > +     struct icc_clk_node clocks[];
-> > +};
-> > +
-> > +#define to_icc_clk_provider(_provider) \
-> > +     container_of(_provider, struct icc_clk_provider, provider)
-> > +
-> > +static int icc_clk_set(struct icc_node *src, struct icc_node *dst)
-> > +{
-> > +     struct icc_clk_node *qn =3D src->data;
-> > +     int ret;
-> > +
-> > +     if (!qn || !qn->clk)
-> > +             return 0;
-> > +
-> > +     if (!src->peak_bw) {
-> > +             if (qn->enabled)
-> > +                     clk_disable_unprepare(qn->clk);
-> > +             qn->enabled =3D false;
-> > +
-> > +             return 0;
-> > +     }
-> > +
-> > +     if (!qn->enabled) {
-> > +             ret =3D clk_prepare_enable(qn->clk);
-> > +             if (ret)
-> > +                     return ret;
-> > +             qn->enabled =3D true;
-> > +     }
-> > +
-> > +     return clk_set_rate(qn->clk, icc_units_to_bps(src->peak_bw));
-> > +}
-> > +
-> > +static int icc_clk_get_bw(struct icc_node *node, u32 *avg, u32 *peak)
-> > +{
-> > +     struct icc_clk_node *qn =3D node->data;
-> > +
-> > +     if (!qn || !qn->clk)
-> > +             *peak =3D INT_MAX;
-> > +     else
-> > +             *peak =3D Bps_to_icc(clk_get_rate(qn->clk));
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +/**
-> > + * icc_clk_register() - register a new clk-based interconnect provider
-> > + * @dev: device supporting this provider
-> > + * @first_id: an ID of the first provider's node
-> > + * @num_clocks: number of instances of struct icc_clk_data
-> > + * @data: data for the provider
-> > + *
-> > + * Registers and returns a clk-based interconnect provider. It is a si=
-mple
-> > + * wrapper around COMMON_CLK framework, allowing other devices to vote=
- on the
-> > + * clock rate.
-> > + *
-> > + * Return: 0 on success, or an error code otherwise
-> > + */
-> > +struct icc_provider *icc_clk_register(struct device *dev,
-> > +                                   unsigned int first_id,
-> > +                                   unsigned int num_clocks,
-> > +                                   const struct icc_clk_data *data)
-> > +{
-> > +     struct icc_clk_provider *qp;
-> > +     struct icc_provider *provider;
-> > +     struct icc_onecell_data *onecell;
-> > +     struct icc_node *node;
-> > +     int ret, i, j;
-> > +
-> > +     onecell =3D devm_kzalloc(dev, struct_size(onecell, nodes, 2 * num=
-_clocks), GFP_KERNEL);
-> > +     if (!onecell)
-> > +             return ERR_PTR(-ENOMEM);
-> > +
-> > +     qp =3D devm_kzalloc(dev, struct_size(qp, clocks, num_clocks), GFP=
-_KERNEL);
-> > +     if (!qp)
-> > +             return ERR_PTR(-ENOMEM);
-> > +
-> > +     qp->num_clocks =3D num_clocks;
-> > +
-> > +     provider =3D &qp->provider;
-> > +     provider->dev =3D dev;
-> > +     provider->get_bw =3D icc_clk_get_bw;
-> > +     provider->set =3D icc_clk_set;
-> > +     provider->aggregate =3D icc_std_aggregate;
-> > +     provider->xlate =3D of_icc_xlate_onecell;
-> > +     INIT_LIST_HEAD(&provider->nodes);
-> > +     provider->data =3D onecell;
-> > +
-> > +     icc_provider_init(provider);
-> > +
-> > +     for (i =3D 0, j =3D 0; i < num_clocks; i++) {
-> > +             qp->clocks[i].clk =3D data[i].clk;
-> > +
-> > +             node =3D icc_node_create(first_id + j);
-> > +             if (IS_ERR(node)) {
-> > +                     ret =3D PTR_ERR(node);
-> > +                     goto err;
-> > +             }
-> > +
-> > +             node->name =3D devm_kasprintf(dev, GFP_KERNEL, "%s_master=
-", data[i].name);
-> > +             node->data =3D &qp->clocks[i];
-> > +             icc_node_add(node, provider);
-> > +             /* link to the next node, slave */
-> > +             icc_link_create(node, first_id + j + 1);
-> > +             onecell->nodes[j++] =3D node;
-> > +
-> > +             node =3D icc_node_create(first_id + j);
-> > +             if (IS_ERR(node)) {
-> > +                     ret =3D PTR_ERR(node);
-> > +                     goto err;
-> > +             }
-> > +
-> > +             node->name =3D devm_kasprintf(dev, GFP_KERNEL, "%s_slave"=
-, data[i].name);
-> > +             /* no data for slave node */
-> > +             icc_node_add(node, provider);
-> > +             onecell->nodes[j++] =3D node;
-> > +     }
-> > +
-> > +     onecell->num_nodes =3D j;
-> > +
-> > +     ret =3D icc_provider_register(provider);
-> > +     if (ret)
-> > +             goto err;
-> > +
-> > +     return provider;
-> > +
-> > +err:
-> > +     icc_nodes_remove(provider);
-> > +
-> > +     return ERR_PTR(ret);
-> > +}
-> > +
-> > +/**
-> > + * icc_clk_unregister() - unregister a previously registered clk inter=
-connect provider
-> > + * @provider: provider returned by icc_clk_register()
-> > + */
-> > +void icc_clk_unregister(struct icc_provider *provider)
-> > +{
-> > +     struct icc_clk_provider *qp =3D container_of(provider, struct icc=
-_clk_provider, provider);
-> > +     int i;
-> > +
-> > +     icc_provider_deregister(&qp->provider);
-> > +     icc_nodes_remove(&qp->provider);
-> > +
-> > +     for (i =3D 0; i < qp->num_clocks; i++) {
-> > +             struct icc_clk_node *qn =3D &qp->clocks[i];
-> > +
-> > +             if (qn->enabled)
-> > +                     clk_disable_unprepare(qn->clk);
-> > +     }
-> > +}
-> > diff --git a/include/linux/interconnect-clk.h b/include/linux/interconn=
-ect-clk.h
-> > new file mode 100644
-> > index 000000000000..0cd80112bea5
-> > --- /dev/null
-> > +++ b/include/linux/interconnect-clk.h
-> > @@ -0,0 +1,22 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +/*
-> > + * Copyright (c) 2023, Linaro Ltd.
-> > + */
-> > +
-> > +#ifndef __LINUX_INTERCONNECT_CLK_H
-> > +#define __LINUX_INTERCONNECT_CLK_H
-> > +
-> > +struct device;
-> > +
-> > +struct icc_clk_data {
-> > +     struct clk *clk;
-> > +     const char *name;
-> > +};
-> > +
-> > +struct icc_provider *icc_clk_register(struct device *dev,
-> > +                                   unsigned int first_id,
-> > +                                   unsigned int num_clocks,
-> > +                                   const struct icc_clk_data *data);
-> > +void icc_clk_unregister(struct icc_provider *provider);
-> > +
-> > +#endif
-> > --
-> > 2.39.2
-> >
+FWIW there are already usb phy drivers in Generic phy susbystem, so you
+need to really justify why you need a new interface?
 
-
-
---=20
-Thanks,
-~Nick Desaulniers
+-- 
+~Vinod
