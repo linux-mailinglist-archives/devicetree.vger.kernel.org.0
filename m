@@ -2,180 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A375370904F
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 09:22:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EA7B709055
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 09:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbjESHWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 03:22:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54824 "EHLO
+        id S229662AbjESHZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 03:25:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229970AbjESHV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 03:21:58 -0400
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8C79114;
-        Fri, 19 May 2023 00:21:56 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3945180bef1so1817261b6e.1;
-        Fri, 19 May 2023 00:21:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684480916; x=1687072916;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=2IOR7w7BSJsvirN+EhQ0URabvoF0Ui+FpLBmxQFZG4s=;
-        b=UOyCQLpcu3OPUmxAgv8HXSHDr0HAlUUUVwIpU+pNWNzE+SuqQL7Ip2D4DstOlS0WYU
-         fxQj0wXZEHvR9gd6RwK+EEkMlt31OxhGx3KkkAfLU6FGxpBxyQpCTjsB8c89jwv0+kIi
-         4DqjR4/YXyo7GWNETBn8qy7IRIb3p6fQn+tXUA8CGtWW0/Rt7VEqKfhF/RRAZKjlNpXY
-         JoKHApRtC1IKTSoXWlaq+RXpunJxjc+zvQz3wLmxxTvhpBcP67MDSSVRJnkG60XwEtlH
-         hpDqRcpBsM2PP5CjtrrPQgFSrCGzSzPw5/LCjsDlbQikXvGywwv2lc0B2EsMbiA0FIoj
-         JF+g==
-X-Gm-Message-State: AC+VfDygbdfIZHiYTYXvSlOz8/HX11YPV/IO9Pv1kY5LkMDmmKsIFlmP
-        zcJ/DurSpvrmoudxkx+PZrqHUuxctA==
-X-Google-Smtp-Source: ACHHUZ4Hx/ZbZtRBO65aGDwUX8MoiQLM3ifAOr1OlLqTwp8zpGcZ7hKvymgvutTpYkPcafPS7gkv8w==
-X-Received: by 2002:a05:6808:8c3:b0:392:5ce5:d20 with SMTP id k3-20020a05680808c300b003925ce50d20mr702787oij.48.1684480915978;
-        Fri, 19 May 2023 00:21:55 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id j24-20020a9d7698000000b006acfdbdf37csm1418756otl.31.2023.05.19.00.21.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 May 2023 00:21:55 -0700 (PDT)
-Received: (nullmailer pid 2968846 invoked by uid 1000);
-        Fri, 19 May 2023 07:21:54 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229436AbjESHZv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 03:25:51 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CD2EF109
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 00:25:50 -0700 (PDT)
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id D3E9F80F9;
+        Fri, 19 May 2023 07:25:48 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: Unify pinctrl-single pin group nodes for stingray
+Date:   Fri, 19 May 2023 10:25:21 +0300
+Message-Id: <20230519072522.52263-1-tony@atomide.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Piyush Mehta <piyush.mehta@amd.com>
-Cc:     balbi@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-        git@amd.com, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        linux-usb@vger.kernel.org, michal.simek@amd.com,
-        linux-kernel@vger.kernel.org, michal.simek@xilinx.com,
-        siva.durga.prasad.paladugu@amd.com
-In-Reply-To: <20230519065940.2190786-1-piyush.mehta@amd.com>
-References: <20230519065940.2190786-1-piyush.mehta@amd.com>
-Message-Id: <168448091422.2968830.10066003697035225886.robh@kernel.org>
-Subject: Re: [PATCH V3] dt-bindings: usb: dwc3: Add interrupt-names
- property support for wakeup interrupt
-Date:   Fri, 19 May 2023 02:21:54 -0500
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+We want to unify the pinctrl-single pin group nodes as these will add
+make dtbs checks errors when pinctrl-single yaml binding is merged.
 
-On Fri, 19 May 2023 12:29:40 +0530, Piyush Mehta wrote:
-> The hibernation feature enabled for Xilinx Versal NET SoC in DWC3 IP.
-> As the DWC3 IP supports the hibernation feature, to handle the wakeup
-> or hibernation interrupt, add host mode "wakeup" interrupt-names
-> optional property in the binding schema to capture remote-wakeup and
-> connect/ disconnect event in the hibernation state.
-> 
-> We have a dedicated IRQ line specifically for the hibernation feature.
-> When the "wakeup" IRQ line is triggered, it initiates a hibernation
-> interrupt, causing the system to wake up from the hibernation state.
-> 
-> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
-> ---
-> Change in V2:
-> -  Addressed ROB review comments
->  - Updated name of interrupt-names property with "wakeup"
->  - Move interrupt-names property from dwc3-xilinx core to dwc3 core.
-> 
-> Link: https://lore.kernel.org/all/CAL_JsqK6_7XD7+w+EQvPPmbmSOpfo3JDb0xDN4StuHUm1kgchw@mail.gmail.com/
-> 
-> Change in V3:
-> -  Addressed Krzysztof Kozlowski comments
->  - Update binding schema enum.
->  - Upadet commit message.
-> 
-> Link: https://lore.kernel.org/all/76dfbf27-8ad2-6e09-5354-b006b9e81af1@linaro.org/
-> ---
->  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ .../broadcom/stingray/stingray-pinctrl.dtsi   | 44 +++++++++----------
+ 1 file changed, 22 insertions(+), 22 deletions(-)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/dwc3-xilinx.example.dtb: usb@0: usb@fe200000:interrupt-names: More than one condition true in oneOf schema:
-	{'maxItems': 3,
-	 'minItems': 1,
-	 'oneOf': [{'items': [{'const': 'dwc_usb3'}],
-	            'maxItems': 1,
-	            'minItems': 1,
-	            'type': 'array'},
-	           {'items': {'enum': ['host', 'peripheral', 'otg']},
-	            'type': 'array'},
-	           {'items': {'enum': ['host', 'peripheral', 'otg', 'wakeup']},
-	            'type': 'array'}]}
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/dwc3-xilinx.example.dtb: usb@0: usb@fe200000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/dwc3-xilinx.example.dtb: usb@fe200000: interrupt-names: More than one condition true in oneOf schema:
-	{'maxItems': 3,
-	 'minItems': 1,
-	 'oneOf': [{'items': [{'const': 'dwc_usb3'}],
-	            'maxItems': 1,
-	            'minItems': 1,
-	            'type': 'array'},
-	           {'items': {'enum': ['host', 'peripheral', 'otg']},
-	            'type': 'array'},
-	           {'items': {'enum': ['host', 'peripheral', 'otg', 'wakeup']},
-	            'type': 'array'}]}
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/dwc3-xilinx.example.dtb: usb@fe200000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,am62-usb.example.dtb: usb@f910000: usb@31100000:interrupt-names: More than one condition true in oneOf schema:
-	{'maxItems': 3,
-	 'minItems': 1,
-	 'oneOf': [{'items': [{'const': 'dwc_usb3'}],
-	            'maxItems': 1,
-	            'minItems': 1,
-	            'type': 'array'},
-	           {'items': {'enum': ['host', 'peripheral', 'otg']},
-	            'type': 'array'},
-	           {'items': {'enum': ['host', 'peripheral', 'otg', 'wakeup']},
-	            'type': 'array'}]}
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,am62-usb.example.dtb: usb@f910000: usb@31100000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,am62-usb.example.dtb: usb@31100000: interrupt-names: More than one condition true in oneOf schema:
-	{'maxItems': 3,
-	 'minItems': 1,
-	 'oneOf': [{'items': [{'const': 'dwc_usb3'}],
-	            'maxItems': 1,
-	            'minItems': 1,
-	            'type': 'array'},
-	           {'items': {'enum': ['host', 'peripheral', 'otg']},
-	            'type': 'array'},
-	           {'items': {'enum': ['host', 'peripheral', 'otg', 'wakeup']},
-	            'type': 'array'}]}
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,am62-usb.example.dtb: usb@31100000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230519065940.2190786-1-piyush.mehta@amd.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
+--- a/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
++++ b/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
+@@ -56,14 +56,14 @@ range: gpio-range {
+ 			};
+ 
+ 			/* pinctrl functions */
+-			tsio_pins: pinmux_gpio_14 {
++			tsio_pins: gpio-14-pins {
+ 				pinctrl-single,pins = <
+ 					0x038 MODE_NITRO /* tsio_0 */
+ 					0x03c MODE_NITRO /* tsio_1 */
+ 				>;
+ 			};
+ 
+-			nor_pins: pinmux_pnor_adv_n {
++			nor_pins: pnor-adv-n-pins {
+ 				pinctrl-single,pins = <
+ 					0x0ac MODE_PNOR /* nand_ce1_n */
+ 					0x0b0 MODE_PNOR /* nand_ce0_n */
+@@ -119,7 +119,7 @@ nor_pins: pinmux_pnor_adv_n {
+ 				>;
+ 			};
+ 
+-			nand_pins: pinmux_nand_ce1_n {
++			nand_pins: nand-ce1-n-pins {
+ 				pinctrl-single,pins = <
+ 					0x0ac MODE_NAND /* nand_ce1_n */
+ 					0x0b0 MODE_NAND /* nand_ce0_n */
+@@ -148,59 +148,59 @@ nand_pins: pinmux_nand_ce1_n {
+ 				>;
+ 			};
+ 
+-			pwm0_pins: pinmux_pwm_0 {
++			pwm0_pins: pwm-0-pins {
+ 				pinctrl-single,pins = <
+ 					0x10c MODE_NITRO
+ 				>;
+ 			};
+ 
+-			pwm1_pins: pinmux_pwm_1 {
++			pwm1_pins: pwm-1-pins {
+ 				pinctrl-single,pins = <
+ 					0x110 MODE_NITRO
+ 				>;
+ 			};
+ 
+-			pwm2_pins: pinmux_pwm_2 {
++			pwm2_pins: pwm-2-pins {
+ 				pinctrl-single,pins = <
+ 					0x114 MODE_NITRO
+ 				>;
+ 			};
+ 
+-			pwm3_pins: pinmux_pwm_3 {
++			pwm3_pins: pwm-3-pins {
+ 				pinctrl-single,pins = <
+ 					0x118 MODE_NITRO
+ 				>;
+ 			};
+ 
+-			dbu_rxd_pins: pinmux_uart1_sin_nitro {
++			dbu_rxd_pins: uart1-sin-nitro-pins {
+ 				pinctrl-single,pins = <
+ 					0x11c MODE_NITRO /* dbu_rxd */
+ 					0x120 MODE_NITRO /* dbu_txd */
+ 				>;
+ 			};
+ 
+-			uart1_pins: pinmux_uart1_sin_nand {
++			uart1_pins: uart1-sin-nand-pins {
+ 				pinctrl-single,pins = <
+ 					0x11c MODE_NAND /* uart1_sin */
+ 					0x120 MODE_NAND /* uart1_out */
+ 				>;
+ 			};
+ 
+-			uart2_pins: pinmux_uart2_sin {
++			uart2_pins: uart2-sin-pins {
+ 				pinctrl-single,pins = <
+ 					0x124 MODE_NITRO /* uart2_sin */
+ 					0x128 MODE_NITRO /* uart2_out */
+ 				>;
+ 			};
+ 
+-			uart3_pins: pinmux_uart3_sin {
++			uart3_pins: uart3-sin-pins {
+ 				pinctrl-single,pins = <
+ 					0x12c MODE_NITRO /* uart3_sin */
+ 					0x130 MODE_NITRO /* uart3_out */
+ 				>;
+ 			};
+ 
+-			i2s_pins: pinmux_i2s_bitclk {
++			i2s_pins: i2s-bitclk-pins {
+ 				pinctrl-single,pins = <
+ 					0x134 MODE_NITRO /* i2s_bitclk */
+ 					0x138 MODE_NITRO /* i2s_sdout */
+@@ -229,21 +229,21 @@ mdio_pins: pinumx_ext_mdio {
+ 				>;
+ 			};
+ 
+-			i2c0_pins: pinmux_i2c0_sda {
++			i2c0_pins: i2c0-sda-pins {
+ 				pinctrl-single,pins = <
+ 					0x16c MODE_NITRO /* i2c0_sda */
+ 					0x170 MODE_NITRO /* i2c0_scl */
+ 				>;
+ 			};
+ 
+-			i2c1_pins: pinmux_i2c1_sda {
++			i2c1_pins: i2c1-sda-pins {
+ 				pinctrl-single,pins = <
+ 					0x174 MODE_NITRO /* i2c1_sda */
+ 					0x178 MODE_NITRO /* i2c1_scl */
+ 				>;
+ 			};
+ 
+-			sdio0_pins: pinmux_sdio0_cd_l {
++			sdio0_pins: sdio0-cd-l-pins {
+ 				pinctrl-single,pins = <
+ 					0x17c MODE_NITRO /* sdio0_cd_l */
+ 					0x180 MODE_NITRO /* sdio0_clk_sdcard */
+@@ -262,7 +262,7 @@ sdio0_pins: pinmux_sdio0_cd_l {
+ 				>;
+ 			};
+ 
+-			sdio1_pins: pinmux_sdio1_cd_l {
++			sdio1_pins: sdio1-cd-l-pins {
+ 				pinctrl-single,pins = <
+ 					0x1b4 MODE_NITRO /* sdio1_cd_l */
+ 					0x1b8 MODE_NITRO /* sdio1_clk_sdcard */
+@@ -281,7 +281,7 @@ sdio1_pins: pinmux_sdio1_cd_l {
+ 				>;
+ 			};
+ 
+-			spi0_pins: pinmux_spi0_sck_nand {
++			spi0_pins: spi0-sck-nand-pins {
+ 				pinctrl-single,pins = <
+ 					0x1ec MODE_NITRO /* spi0_sck */
+ 					0x1f0 MODE_NITRO /* spi0_rxd */
+@@ -290,7 +290,7 @@ spi0_pins: pinmux_spi0_sck_nand {
+ 				>;
+ 			};
+ 
+-			spi1_pins: pinmux_spi1_sck_nand {
++			spi1_pins: spi1-sck-nand-pins {
+ 				pinctrl-single,pins = <
+ 					0x1fc MODE_NITRO /* spi1_sck */
+ 					0x200 MODE_NITRO /* spi1_rxd */
+@@ -299,7 +299,7 @@ spi1_pins: pinmux_spi1_sck_nand {
+ 				>;
+ 			};
+ 
+-			nuart_pins: pinmux_uart0_sin_nitro {
++			nuart_pins: uart0-sin-nitro-pins {
+ 				pinctrl-single,pins = <
+ 					0x20c MODE_NITRO /* nuart_rxd */
+ 					0x210 MODE_NITRO /* nuart_txd */
+@@ -319,7 +319,7 @@ uart0_pins: pinumux_uart0_sin_nand {
+ 				>;
+ 			};
+ 
+-			drdu2_pins: pinmux_drdu2_overcurrent {
++			drdu2_pins: drdu2-overcurrent-pins {
+ 				pinctrl-single,pins = <
+ 					0x22c MODE_NITRO /* drdu2_overcurrent */
+ 					0x230 MODE_NITRO /* drdu2_vbus_ppc */
+@@ -328,7 +328,7 @@ drdu2_pins: pinmux_drdu2_overcurrent {
+ 				>;
+ 			};
+ 
+-			drdu3_pins: pinmux_drdu3_overcurrent {
++			drdu3_pins: drdu3-overcurrent-pins {
+ 				pinctrl-single,pins = <
+ 					0x23c MODE_NITRO /* drdu3_overcurrent */
+ 					0x240 MODE_NITRO /* drdu3_vbus_ppc */
+@@ -337,7 +337,7 @@ drdu3_pins: pinmux_drdu3_overcurrent {
+ 				>;
+ 			};
+ 
+-			usb3h_pins: pinmux_usb3h_overcurrent {
++			usb3h_pins: usb3h-overcurrent-pins {
+ 				pinctrl-single,pins = <
+ 					0x24c MODE_NITRO /* usb3h_overcurrent */
+ 					0x250 MODE_NITRO /* usb3h_vbus_ppc */
+-- 
+2.40.1
