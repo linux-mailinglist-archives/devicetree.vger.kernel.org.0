@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBF5B709044
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 09:17:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A375370904F
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 09:22:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230132AbjESHRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 03:17:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52992 "EHLO
+        id S229978AbjESHWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 03:22:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbjESHRK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 03:17:10 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6659C101
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 00:17:08 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1pzuM3-0007xp-KD; Fri, 19 May 2023 09:16:47 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 942241C837F;
-        Fri, 19 May 2023 07:16:43 +0000 (UTC)
-Date:   Fri, 19 May 2023 09:16:43 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Judith Mendez <jm@ti.com>
-Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        linux-can@vger.kernel.org, Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Schuyler Patton <spatton@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v6 2/2] can: m_can: Add hrtimer to generate software
- interrupt
-Message-ID: <20230519-morbidity-directory-dbe704584aa3-mkl@pengutronix.de>
-References: <20230518193613.15185-1-jm@ti.com>
- <20230518193613.15185-3-jm@ti.com>
+        with ESMTP id S229970AbjESHV6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 03:21:58 -0400
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8C79114;
+        Fri, 19 May 2023 00:21:56 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3945180bef1so1817261b6e.1;
+        Fri, 19 May 2023 00:21:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684480916; x=1687072916;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=2IOR7w7BSJsvirN+EhQ0URabvoF0Ui+FpLBmxQFZG4s=;
+        b=UOyCQLpcu3OPUmxAgv8HXSHDr0HAlUUUVwIpU+pNWNzE+SuqQL7Ip2D4DstOlS0WYU
+         fxQj0wXZEHvR9gd6RwK+EEkMlt31OxhGx3KkkAfLU6FGxpBxyQpCTjsB8c89jwv0+kIi
+         4DqjR4/YXyo7GWNETBn8qy7IRIb3p6fQn+tXUA8CGtWW0/Rt7VEqKfhF/RRAZKjlNpXY
+         JoKHApRtC1IKTSoXWlaq+RXpunJxjc+zvQz3wLmxxTvhpBcP67MDSSVRJnkG60XwEtlH
+         hpDqRcpBsM2PP5CjtrrPQgFSrCGzSzPw5/LCjsDlbQikXvGywwv2lc0B2EsMbiA0FIoj
+         JF+g==
+X-Gm-Message-State: AC+VfDygbdfIZHiYTYXvSlOz8/HX11YPV/IO9Pv1kY5LkMDmmKsIFlmP
+        zcJ/DurSpvrmoudxkx+PZrqHUuxctA==
+X-Google-Smtp-Source: ACHHUZ4Hx/ZbZtRBO65aGDwUX8MoiQLM3ifAOr1OlLqTwp8zpGcZ7hKvymgvutTpYkPcafPS7gkv8w==
+X-Received: by 2002:a05:6808:8c3:b0:392:5ce5:d20 with SMTP id k3-20020a05680808c300b003925ce50d20mr702787oij.48.1684480915978;
+        Fri, 19 May 2023 00:21:55 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id j24-20020a9d7698000000b006acfdbdf37csm1418756otl.31.2023.05.19.00.21.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 May 2023 00:21:55 -0700 (PDT)
+Received: (nullmailer pid 2968846 invoked by uid 1000);
+        Fri, 19 May 2023 07:21:54 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="iuo7eibl3agbzuu3"
-Content-Disposition: inline
-In-Reply-To: <20230518193613.15185-3-jm@ti.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Piyush Mehta <piyush.mehta@amd.com>
+Cc:     balbi@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+        git@amd.com, krzysztof.kozlowski+dt@linaro.org,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        linux-usb@vger.kernel.org, michal.simek@amd.com,
+        linux-kernel@vger.kernel.org, michal.simek@xilinx.com,
+        siva.durga.prasad.paladugu@amd.com
+In-Reply-To: <20230519065940.2190786-1-piyush.mehta@amd.com>
+References: <20230519065940.2190786-1-piyush.mehta@amd.com>
+Message-Id: <168448091422.2968830.10066003697035225886.robh@kernel.org>
+Subject: Re: [PATCH V3] dt-bindings: usb: dwc3: Add interrupt-names
+ property support for wakeup interrupt
+Date:   Fri, 19 May 2023 02:21:54 -0500
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -66,136 +68,114 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---iuo7eibl3agbzuu3
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, 19 May 2023 12:29:40 +0530, Piyush Mehta wrote:
+> The hibernation feature enabled for Xilinx Versal NET SoC in DWC3 IP.
+> As the DWC3 IP supports the hibernation feature, to handle the wakeup
+> or hibernation interrupt, add host mode "wakeup" interrupt-names
+> optional property in the binding schema to capture remote-wakeup and
+> connect/ disconnect event in the hibernation state.
+> 
+> We have a dedicated IRQ line specifically for the hibernation feature.
+> When the "wakeup" IRQ line is triggered, it initiates a hibernation
+> interrupt, causing the system to wake up from the hibernation state.
+> 
+> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+> ---
+> Change in V2:
+> -  Addressed ROB review comments
+>  - Updated name of interrupt-names property with "wakeup"
+>  - Move interrupt-names property from dwc3-xilinx core to dwc3 core.
+> 
+> Link: https://lore.kernel.org/all/CAL_JsqK6_7XD7+w+EQvPPmbmSOpfo3JDb0xDN4StuHUm1kgchw@mail.gmail.com/
+> 
+> Change in V3:
+> -  Addressed Krzysztof Kozlowski comments
+>  - Update binding schema enum.
+>  - Upadet commit message.
+> 
+> Link: https://lore.kernel.org/all/76dfbf27-8ad2-6e09-5354-b006b9e81af1@linaro.org/
+> ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-On 18.05.2023 14:36:13, Judith Mendez wrote:
-> Add an hrtimer to MCAN class device. Each MCAN will have its own
-> hrtimer instantiated if there is no hardware interrupt found and
-> poll-interval property is defined in device tree M_CAN node.
->=20
-> The hrtimer will generate a software interrupt every 1 ms. In
-> hrtimer callback, we check if there is a transaction pending by
-> reading a register, then process by calling the isr if there is.
->=20
-> Signed-off-by: Judith Mendez <jm@ti.com>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[...]
+yamllint warnings/errors:
 
-> diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_c=
-an/m_can_platform.c
-> index 94dc82644113..3e60cebd9d12 100644
-> --- a/drivers/net/can/m_can/m_can_platform.c
-> +++ b/drivers/net/can/m_can/m_can_platform.c
-> @@ -5,6 +5,7 @@
->  //
->  // Copyright (C) 2018-19 Texas Instruments Incorporated - http://www.ti.=
-com/
-> =20
-> +#include <linux/hrtimer.h>
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
-> =20
-> @@ -96,12 +97,40 @@ static int m_can_plat_probe(struct platform_device *p=
-dev)
->  		goto probe_fail;
-> =20
->  	addr =3D devm_platform_ioremap_resource_byname(pdev, "m_can");
-> -	irq =3D platform_get_irq_byname(pdev, "int0");
-> -	if (IS_ERR(addr) || irq < 0) {
-> -		ret =3D -EINVAL;
-> +	if (IS_ERR(addr)) {
-> +		ret =3D PTR_ERR(addr);
->  		goto probe_fail;
->  	}
-> =20
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/dwc3-xilinx.example.dtb: usb@0: usb@fe200000:interrupt-names: More than one condition true in oneOf schema:
+	{'maxItems': 3,
+	 'minItems': 1,
+	 'oneOf': [{'items': [{'const': 'dwc_usb3'}],
+	            'maxItems': 1,
+	            'minItems': 1,
+	            'type': 'array'},
+	           {'items': {'enum': ['host', 'peripheral', 'otg']},
+	            'type': 'array'},
+	           {'items': {'enum': ['host', 'peripheral', 'otg', 'wakeup']},
+	            'type': 'array'}]}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/dwc3-xilinx.example.dtb: usb@0: usb@fe200000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/dwc3-xilinx.example.dtb: usb@fe200000: interrupt-names: More than one condition true in oneOf schema:
+	{'maxItems': 3,
+	 'minItems': 1,
+	 'oneOf': [{'items': [{'const': 'dwc_usb3'}],
+	            'maxItems': 1,
+	            'minItems': 1,
+	            'type': 'array'},
+	           {'items': {'enum': ['host', 'peripheral', 'otg']},
+	            'type': 'array'},
+	           {'items': {'enum': ['host', 'peripheral', 'otg', 'wakeup']},
+	            'type': 'array'}]}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/dwc3-xilinx.example.dtb: usb@fe200000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,am62-usb.example.dtb: usb@f910000: usb@31100000:interrupt-names: More than one condition true in oneOf schema:
+	{'maxItems': 3,
+	 'minItems': 1,
+	 'oneOf': [{'items': [{'const': 'dwc_usb3'}],
+	            'maxItems': 1,
+	            'minItems': 1,
+	            'type': 'array'},
+	           {'items': {'enum': ['host', 'peripheral', 'otg']},
+	            'type': 'array'},
+	           {'items': {'enum': ['host', 'peripheral', 'otg', 'wakeup']},
+	            'type': 'array'}]}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,am62-usb.example.dtb: usb@f910000: usb@31100000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,am62-usb.example.dtb: usb@31100000: interrupt-names: More than one condition true in oneOf schema:
+	{'maxItems': 3,
+	 'minItems': 1,
+	 'oneOf': [{'items': [{'const': 'dwc_usb3'}],
+	            'maxItems': 1,
+	            'minItems': 1,
+	            'type': 'array'},
+	           {'items': {'enum': ['host', 'peripheral', 'otg']},
+	            'type': 'array'},
+	           {'items': {'enum': ['host', 'peripheral', 'otg', 'wakeup']},
+	            'type': 'array'}]}
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,am62-usb.example.dtb: usb@31100000: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
 
-As we don't use an explicit "poll-interval" anymore, this needs some
-cleanup. The flow should be (pseudo code, error handling omitted):
+doc reference errors (make refcheckdocs):
 
-if (device_property_present("interrupts") {
-        platform_get_irq_byname();
-        polling =3D false;
-} else {
-        hrtimer_init();
-        polling =3D true;
-}
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230519065940.2190786-1-piyush.mehta@amd.com
 
-> +	irq =3D platform_get_irq_byname_optional(pdev, "int0");
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Remove the "_optional" and....
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-> +	if (irq =3D=3D -EPROBE_DEFER) {
-> +		ret =3D -EPROBE_DEFER;
-> +		goto probe_fail;
-> +	}
-> +
-> +	if (device_property_present(mcan_class->dev, "interrupts") ||
-> +	    device_property_present(mcan_class->dev, "interrupt-names"))
-> +		mcan_class->polling =3D false;
+pip3 install dtschema --upgrade
 
-=2E..move the platform_get_irq_byname() here
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-> +	else
-> +		mcan_class->polling =3D true;
-> +
-> +	if (!mcan_class->polling && irq < 0) {
-> +		ret =3D -ENXIO;
-> +		dev_err_probe(mcan_class->dev, ret, "IRQ int0 not found, polling not a=
-ctivated\n");
-> +		goto probe_fail;
-> +	}
-
-Remove this check.
-
-> +
-> +	if (mcan_class->polling) {
-> +		if (irq > 0) {
-> +			mcan_class->polling =3D false;
-> +			dev_info(mcan_class->dev, "Polling enabled, using hardware IRQ\n");
-
-Remove this.
-
-> +		} else {
-> +			dev_dbg(mcan_class->dev, "Polling enabled, initialize hrtimer");
-> +			hrtimer_init(&mcan_class->hrtimer, CLOCK_MONOTONIC,
-> +				     HRTIMER_MODE_REL_PINNED);
-
-move this backwards, where you set "polling =3D true"
-
-> +		}
-> +	}
-> +
->  	/* message ram could be shared */
->  	res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "message_ram=
-");
->  	if (!res) {
-> --=20
-> 2.17.1
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---iuo7eibl3agbzuu3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmRnIlgACgkQvlAcSiqK
-BOgXywf/RpAXV/U1zHDPBijDrYbooi5qG+9apga4pa83AeVAmCSFEvc4HdppRD9a
-44eyG2UYRZER6Yotk3qLMev4Pawss2VbjbxAgxUvb7cTqkxEw7EppC8updsbneww
-4NsVsG0IJ+6J68R73+FZ0ero9kcKXbHWvqTz/xEWFfEGll+S89W5lRpybDzDUoa4
-f0ggPvpHbvKMSQWRwTh3EtTY59Ym9QYaQ/ZdEGKG1W/yPN4McVLFUwrcoi3xI/oV
-V9Qf5kf36sZ3z32MqMCtQaqKLaCiuL3LVsx98rkDH/k0Wb8JjSCt/3Y7KtU1tg5g
-NyKk4mhSR+pxCNUwBVWiGGhc4Asgsw==
-=W8BC
------END PGP SIGNATURE-----
-
---iuo7eibl3agbzuu3--
