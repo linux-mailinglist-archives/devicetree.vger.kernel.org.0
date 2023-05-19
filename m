@@ -2,345 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00644709E2B
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 19:31:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCAF2709E30
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 19:33:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232155AbjESRb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 13:31:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39952 "EHLO
+        id S231665AbjESRdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 13:33:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232065AbjESRbl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 13:31:41 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CFD81BEE
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 10:30:49 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-64d2e8a842cso926069b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 10:30:49 -0700 (PDT)
+        with ESMTP id S229885AbjESRc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 13:32:56 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8593F19A7
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 10:32:15 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2af15b5f726so29755041fa.1
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 10:32:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1684517442; x=1687109442;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UC+jI3/CK9+amjGlwgD2fjJeUO4RPUZ3xbU2aD/Wzuc=;
-        b=Btgcj/NqXDvRLxYdXKsksJ7KfJOVcTo2lby1gP+oiz1Ucfv0zDDAvdIKKg37PSwlDo
-         OSoGBPBdwZVwYzptVaE48/LZYEEGl1ox15uuzGDq0IX0TwnyzdmQQcNeFue7F03IVYl1
-         Yh77OG7Z42cRSrcFBVR8tn5GQEefyaHysNz3FQGtqjme7AweLw4CsTYvsvpeh3P6HP/i
-         wQMywIHdhDAI28aVHUOSAJJN09yhTSYULS74SVSEP2YYGLFyjD1FQLHT175Tz9Rz3Jha
-         JBZm+n5guQr4gwil+za9lyOumYOOW9HtzKQREKASdRLfHrFaXFQUm6iiVMIy/Ju14wp/
-         m96g==
+        d=linaro.org; s=google; t=1684517520; x=1687109520;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CRNkViIBcVngZF9w4Pz0rznZyK0rQOFGPWbrvdFSlBc=;
+        b=YfyphSIfy1w7G6XJaW5c5X2PuFN+tuOc5Rc8YeSKAetfqBO1rSyQhwLZISoAZvJlvz
+         bgn9WGskOXkNks8Ts1pEk0rZcPIVLkw9hrhK+jiFTIpe4bfUFFYaQNdb/4+2qV7YfAtV
+         fus494xU6ylpSEiSmbisnMNP0rXgD/8+wgPxv3dLcK2qGFEhcTHmd7Y8jdoQ8AxzgB42
+         dIdUBFTxQkqaAgx4upmg8wTU3WWETDMVLnkwsBbvalDlffmUbfkLoS7LNIRaohZqJsr/
+         KWRHeDqU/nswnGJTqeoBkPlDcy4o3Q2fLRu5FlWMLfwit/ZZ7O0ZyCkznCAjTCDiG+T4
+         afGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684517442; x=1687109442;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UC+jI3/CK9+amjGlwgD2fjJeUO4RPUZ3xbU2aD/Wzuc=;
-        b=VTcPfgiSaYkCjkmCEGQUYqLqcNbjI2vuuI12RsQ4LStykv8j8/uYH+htC2Uy2sj6yD
-         A1opR+PirHIDuUDVNVg5CRAT+ig2iBy3KtZ2I8FgeGBAK7iI7+Oqk1arorJp+uOYwFeY
-         +ouK0ws6fHZDt3K+gg+AjNdBqRVAt75/lSPJHhp1X2+cSS/bd0tEo8MHbFrTsnz6jxVM
-         9kt3OzKoxeyCaoaJUTdakBYmPGI5MUOKxuH9Y92sMKpntuO7i00RhGaPhm3fI9Qthmuy
-         v7EvGScOclCP+68tRHxA9HxcGkLeUkqBkXTiY0N5Va5T8luRa+so2WDY3ex/DR3kRR1S
-         FMYQ==
-X-Gm-Message-State: AC+VfDxHzgnefj65ayh2KOvEypUuTHEHCCejmEYSK/owmuCDQGKOA/Oz
-        C+s4Pi4kHaU4m8u3ej7FkSZv+Q==
-X-Google-Smtp-Source: ACHHUZ7F2QVS8EAefbNQl9H9vP8gSthVYMLuaEyNi4/cSt5b9RpnlAOTm1x8bx6UlG3DIwW/u1+rLw==
-X-Received: by 2002:a05:6a20:4285:b0:109:bd4c:3865 with SMTP id o5-20020a056a20428500b00109bd4c3865mr3169537pzj.24.1684517442075;
-        Fri, 19 May 2023 10:30:42 -0700 (PDT)
-Received: from google.com ([2620:15c:2d1:203:a93f:b5b1:61c5:a52a])
-        by smtp.gmail.com with ESMTPSA id v7-20020aa78087000000b0063d3fbf4783sm3263959pff.80.2023.05.19.10.30.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 May 2023 10:30:41 -0700 (PDT)
-Date:   Fri, 19 May 2023 10:30:35 -0700
-From:   Nick Desaulniers <ndesaulniers@google.com>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Georgi Djakov <djakov@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-pm@vger.kernel.org, llvm@lists.linux.dev
-Subject: Re: [PATCH v6 2/4] interconnect: add clk-based icc provider support
-Message-ID: <ZGeyO6MRBSPf7b1y@google.com>
-References: <20230512001334.2983048-1-dmitry.baryshkov@linaro.org>
- <20230512001334.2983048-3-dmitry.baryshkov@linaro.org>
+        d=1e100.net; s=20221208; t=1684517520; x=1687109520;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CRNkViIBcVngZF9w4Pz0rznZyK0rQOFGPWbrvdFSlBc=;
+        b=Li1C3G37SXI3H95UpEIn6iKGGxwijWT8saY5ITP+jUxCedgSY5zGNr62GgIV84TbgB
+         o16DiIvOc/Vk3kFbDd5FHACexoT5jeX0FBuXXVxK6EkKo4SrRuJEQwgV9aDPzmIJItOP
+         a+ExiDiwMrOhWTOGXx0aveixymISiYRI/ZSbgWEJXkHQMoeok/2KGrFBf6NKIf2+4WpP
+         POzBq+PkhRO8K+c8t55sg8uAOY0OYODchyevuohLbGxZaW/HmclGo8KOsvuKbSuR8l99
+         iYp7pE0K3kqYEMwEsbnV6EGjFXGYMxQy3BxS0Z8nzw4W9CAMCMDd5mWIF1nDp0F/Udzw
+         lcgw==
+X-Gm-Message-State: AC+VfDyeVlLa3TPK5FlNzVd9QRlHaDC8XEc8GgJnqQsNfcMcaQDmuMOp
+        r8M0uBkhvUHNQdDo3LyEq3lKZA==
+X-Google-Smtp-Source: ACHHUZ7KYzQnGYIEeP5HppjP6/x2/IWr7cIsDzgUkRWRsvigZ2yGOMl2V98pK3XFreWEVHAnnlOAjA==
+X-Received: by 2002:a05:6512:4d9:b0:4f3:b215:ef7c with SMTP id w25-20020a05651204d900b004f3b215ef7cmr476389lfq.23.1684517519934;
+        Fri, 19 May 2023 10:31:59 -0700 (PDT)
+Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
+        by smtp.gmail.com with ESMTPSA id z17-20020a19f711000000b004d4d7fb0e07sm658442lfe.216.2023.05.19.10.31.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 May 2023 10:31:59 -0700 (PDT)
+Message-ID: <8a5df35a-2429-3880-6a1e-795c13c3b3d1@linaro.org>
+Date:   Fri, 19 May 2023 19:31:57 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230512001334.2983048-3-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq9574: add support for RDP454
+ variant
+Content-Language: en-US
+To:     Poovendhan Selvaraj <quic_poovendh@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     quic_srichara@quicinc.com, quic_gokulsri@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
+        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
+        quic_devipriy@quicinc.com
+References: <20230519103128.30783-1-quic_poovendh@quicinc.com>
+ <20230519103128.30783-3-quic_poovendh@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230519103128.30783-3-quic_poovendh@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 12, 2023 at 03:13:32AM +0300, Dmitry Baryshkov wrote:
-> For some devices it is useful to export clocks as interconnect providers,
-> if the clock corresponds to bus bandwidth.
+
+
+On 19.05.2023 12:31, Poovendhan Selvaraj wrote:
+> From: POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>
 > 
-> For example, on MSM8996 the cluster interconnect clock should be scaled
-> according to the cluster frequencies. Exporting it as an interconnect
-> allows one to properly describe this as the cluster bandwidth
-> requirements.
+> Add the initial device tree support for the Reference Design Platform (RDP)
+> 454 based on IPQ9574 family of SoCs. This patch adds support for Console
+> UART, SPI NOR and SMPA1 regulator node.
 > 
-> Tested-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-Hi Dmitry,
-Apologies if this has already been reported elsewhere, but our CI is red
-for linux-next today for allmodconfig builds:
-
->> ERROR: modpost: missing MODULE_LICENSE() in drivers/interconnect/icc-clk.o
-
-https://github.com/ClangBuiltLinux/continuous-integration2/actions/runs/5024096989/jobs/9011763868
-
-Can you PTAL?
-
+> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
 > ---
->  drivers/interconnect/Kconfig     |   6 ++
->  drivers/interconnect/Makefile    |   2 +
->  drivers/interconnect/icc-clk.c   | 168 +++++++++++++++++++++++++++++++
->  include/linux/interconnect-clk.h |  22 ++++
->  4 files changed, 198 insertions(+)
->  create mode 100644 drivers/interconnect/icc-clk.c
->  create mode 100644 include/linux/interconnect-clk.h
+>  arch/arm64/boot/dts/qcom/Makefile           |  1 +
+>  arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts | 92 +++++++++++++++++++++
+>  2 files changed, 93 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts
 > 
-> diff --git a/drivers/interconnect/Kconfig b/drivers/interconnect/Kconfig
-> index d637a89d4695..5faa8d2aecff 100644
-> --- a/drivers/interconnect/Kconfig
-> +++ b/drivers/interconnect/Kconfig
-> @@ -15,4 +15,10 @@ source "drivers/interconnect/imx/Kconfig"
->  source "drivers/interconnect/qcom/Kconfig"
->  source "drivers/interconnect/samsung/Kconfig"
->  
-> +config INTERCONNECT_CLK
-> +	tristate
-> +	depends on COMMON_CLK
-> +	help
-> +	  Support for wrapping clocks into the interconnect nodes.
-> +
->  endif
-> diff --git a/drivers/interconnect/Makefile b/drivers/interconnect/Makefile
-> index 97d393fd638d..5604ce351a9f 100644
-> --- a/drivers/interconnect/Makefile
-> +++ b/drivers/interconnect/Makefile
-> @@ -7,3 +7,5 @@ obj-$(CONFIG_INTERCONNECT)		+= icc-core.o
->  obj-$(CONFIG_INTERCONNECT_IMX)		+= imx/
->  obj-$(CONFIG_INTERCONNECT_QCOM)		+= qcom/
->  obj-$(CONFIG_INTERCONNECT_SAMSUNG)	+= samsung/
-> +
-> +obj-$(CONFIG_INTERCONNECT_CLK)		+= icc-clk.o
-> diff --git a/drivers/interconnect/icc-clk.c b/drivers/interconnect/icc-clk.c
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 7b5466395f46..834e790bec90 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp418.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp433.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp449.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp454.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-acer-a1-724.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-asus-z00l.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts
 > new file mode 100644
-> index 000000000000..0db3b654548b
+> index 000000000000..b3e853a9cc94
 > --- /dev/null
-> +++ b/drivers/interconnect/icc-clk.c
-> @@ -0,0 +1,168 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts
+> @@ -0,0 +1,92 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
 > +/*
-> + * Copyright (c) 2023, Linaro Ltd.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/interconnect-clk.h>
-> +#include <linux/interconnect-provider.h>
-> +
-> +struct icc_clk_node {
-> +	struct clk *clk;
-> +	bool enabled;
-> +};
-> +
-> +struct icc_clk_provider {
-> +	struct icc_provider provider;
-> +	int num_clocks;
-> +	struct icc_clk_node clocks[];
-> +};
-> +
-> +#define to_icc_clk_provider(_provider) \
-> +	container_of(_provider, struct icc_clk_provider, provider)
-> +
-> +static int icc_clk_set(struct icc_node *src, struct icc_node *dst)
-> +{
-> +	struct icc_clk_node *qn = src->data;
-> +	int ret;
-> +
-> +	if (!qn || !qn->clk)
-> +		return 0;
-> +
-> +	if (!src->peak_bw) {
-> +		if (qn->enabled)
-> +			clk_disable_unprepare(qn->clk);
-> +		qn->enabled = false;
-> +
-> +		return 0;
-> +	}
-> +
-> +	if (!qn->enabled) {
-> +		ret = clk_prepare_enable(qn->clk);
-> +		if (ret)
-> +			return ret;
-> +		qn->enabled = true;
-> +	}
-> +
-> +	return clk_set_rate(qn->clk, icc_units_to_bps(src->peak_bw));
-> +}
-> +
-> +static int icc_clk_get_bw(struct icc_node *node, u32 *avg, u32 *peak)
-> +{
-> +	struct icc_clk_node *qn = node->data;
-> +
-> +	if (!qn || !qn->clk)
-> +		*peak = INT_MAX;
-> +	else
-> +		*peak = Bps_to_icc(clk_get_rate(qn->clk));
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * icc_clk_register() - register a new clk-based interconnect provider
-> + * @dev: device supporting this provider
-> + * @first_id: an ID of the first provider's node
-> + * @num_clocks: number of instances of struct icc_clk_data
-> + * @data: data for the provider
+> + * IPQ9574 RDP454 board device tree source
 > + *
-> + * Registers and returns a clk-based interconnect provider. It is a simple
-> + * wrapper around COMMON_CLK framework, allowing other devices to vote on the
-> + * clock rate.
-> + *
-> + * Return: 0 on success, or an error code otherwise
-> + */
-> +struct icc_provider *icc_clk_register(struct device *dev,
-> +				      unsigned int first_id,
-> +				      unsigned int num_clocks,
-> +				      const struct icc_clk_data *data)
-> +{
-> +	struct icc_clk_provider *qp;
-> +	struct icc_provider *provider;
-> +	struct icc_onecell_data *onecell;
-> +	struct icc_node *node;
-> +	int ret, i, j;
-> +
-> +	onecell = devm_kzalloc(dev, struct_size(onecell, nodes, 2 * num_clocks), GFP_KERNEL);
-> +	if (!onecell)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	qp = devm_kzalloc(dev, struct_size(qp, clocks, num_clocks), GFP_KERNEL);
-> +	if (!qp)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	qp->num_clocks = num_clocks;
-> +
-> +	provider = &qp->provider;
-> +	provider->dev = dev;
-> +	provider->get_bw = icc_clk_get_bw;
-> +	provider->set = icc_clk_set;
-> +	provider->aggregate = icc_std_aggregate;
-> +	provider->xlate = of_icc_xlate_onecell;
-> +	INIT_LIST_HEAD(&provider->nodes);
-> +	provider->data = onecell;
-> +
-> +	icc_provider_init(provider);
-> +
-> +	for (i = 0, j = 0; i < num_clocks; i++) {
-> +		qp->clocks[i].clk = data[i].clk;
-> +
-> +		node = icc_node_create(first_id + j);
-> +		if (IS_ERR(node)) {
-> +			ret = PTR_ERR(node);
-> +			goto err;
-> +		}
-> +
-> +		node->name = devm_kasprintf(dev, GFP_KERNEL, "%s_master", data[i].name);
-> +		node->data = &qp->clocks[i];
-> +		icc_node_add(node, provider);
-> +		/* link to the next node, slave */
-> +		icc_link_create(node, first_id + j + 1);
-> +		onecell->nodes[j++] = node;
-> +
-> +		node = icc_node_create(first_id + j);
-> +		if (IS_ERR(node)) {
-> +			ret = PTR_ERR(node);
-> +			goto err;
-> +		}
-> +
-> +		node->name = devm_kasprintf(dev, GFP_KERNEL, "%s_slave", data[i].name);
-> +		/* no data for slave node */
-> +		icc_node_add(node, provider);
-> +		onecell->nodes[j++] = node;
-> +	}
-> +
-> +	onecell->num_nodes = j;
-> +
-> +	ret = icc_provider_register(provider);
-> +	if (ret)
-> +		goto err;
-> +
-> +	return provider;
-> +
-> +err:
-> +	icc_nodes_remove(provider);
-> +
-> +	return ERR_PTR(ret);
-> +}
-> +
-> +/**
-> + * icc_clk_unregister() - unregister a previously registered clk interconnect provider
-> + * @provider: provider returned by icc_clk_register()
-> + */
-> +void icc_clk_unregister(struct icc_provider *provider)
-> +{
-> +	struct icc_clk_provider *qp = container_of(provider, struct icc_clk_provider, provider);
-> +	int i;
-> +
-> +	icc_provider_deregister(&qp->provider);
-> +	icc_nodes_remove(&qp->provider);
-> +
-> +	for (i = 0; i < qp->num_clocks; i++) {
-> +		struct icc_clk_node *qn = &qp->clocks[i];
-> +
-> +		if (qn->enabled)
-> +			clk_disable_unprepare(qn->clk);
-> +	}
-> +}
-> diff --git a/include/linux/interconnect-clk.h b/include/linux/interconnect-clk.h
-> new file mode 100644
-> index 000000000000..0cd80112bea5
-> --- /dev/null
-> +++ b/include/linux/interconnect-clk.h
-> @@ -0,0 +1,22 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2023, Linaro Ltd.
+> + * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
 > + */
 > +
-> +#ifndef __LINUX_INTERCONNECT_CLK_H
-> +#define __LINUX_INTERCONNECT_CLK_H
+> +/dts-v1/;
 > +
-> +struct device;
+> +#include "ipq9574.dtsi"
 > +
-> +struct icc_clk_data {
-> +	struct clk *clk;
-> +	const char *name;
+> +/ {
+> +	model = "Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C9";
+> +	compatible = "qcom,ipq9574-ap-al02-c9", "qcom,ipq9574";
+> +
+> +	aliases {
+> +		serial0 = &blsp1_uart2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
 > +};
 > +
-> +struct icc_provider *icc_clk_register(struct device *dev,
-> +				      unsigned int first_id,
-> +				      unsigned int num_clocks,
-> +				      const struct icc_clk_data *data);
-> +void icc_clk_unregister(struct icc_provider *provider);
+> +/* In AL02-C9, the max supported CPU Freq is 1.5 GHz. Disabling frequencies beyond 1.5GHz*/
+In -> On
+
+GHz*/ -> GHz */
+
+Disabling -> Disable
+
+Can this not be determined based on fuse values?
+
+> +&cpu_opp_table {
+> +	opp-1800000000 {
+> +		opp-supported-hw = <0>;
+> +	};
 > +
-> +#endif
-> -- 
-> 2.39.2
-> 
+> +	opp-2208000000 {
+> +		opp-supported-hw = <0>;
+> +	};
+> +};
+> +
+> +/* Disable IPQ9574 integrated radio's reserved memory */
+?
+
+Konrad
+> +&blsp1_spi0 {
+> +	pinctrl-0 = <&spi_0_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		compatible = "micron,n25q128a11", "jedec,spi-nor";
+> +		reg = <0>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		spi-max-frequency = <50000000>;
+> +	};
+> +};
+> +
+> +&blsp1_uart2 {
+> +	pinctrl-0 = <&uart2_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +};
+> +
+> +&rpm_requests {
+> +	regulators {
+> +		compatible = "qcom,rpm-mp5496-regulators";
+> +
+> +		ipq9574_s1: s1 {
+> +		/*
+> +		 * During kernel bootup, the SoC runs at 800MHz with 875mV set by the bootloaders.
+> +		 * During regulator registration, kernel not knowing the initial voltage,
+> +		 * considers it as zero and brings up the regulators with minimum supported voltage.
+> +		 * Update the regulator-min-microvolt with SVS voltage of 725mV so that
+> +		 * the regulators are brought up with 725mV which is sufficient for all the
+> +		 * corner parts to operate at 800MHz
+> +		 */
+> +			regulator-min-microvolt = <725000>;
+> +			regulator-max-microvolt = <1075000>;
+> +		};
+> +	};
+> +};
+> +
+> +&sleep_clk {
+> +	clock-frequency = <32000>;
+> +};
+> +
+> +&tlmm {
+> +	spi_0_pins: spi-0-state {
+> +		pins = "gpio11", "gpio12", "gpio13", "gpio14";
+> +		function = "blsp0_spi";
+> +		drive-strength = <8>;
+> +		bias-disable;
+> +	};
+> +};
+> +
+> +&xo_board_clk {
+> +	clock-frequency = <24000000>;
+> +};
