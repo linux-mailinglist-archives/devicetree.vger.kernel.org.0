@@ -2,149 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53FEF709236
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 10:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 452B0709251
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 10:57:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230396AbjESIyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 04:54:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43072 "EHLO
+        id S230321AbjESI5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 04:57:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229990AbjESIx7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 04:53:59 -0400
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on20726.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e8c::726])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 387C4180;
-        Fri, 19 May 2023 01:53:45 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=njbzyO482a8FOsWEgzGAFcMNKbMGXXwxKe/RbpF836YG6AwE1hawb1rkSN4AmX+xEO79zcrUUZWoX8Pc7SZH8qtbJHDIC19bP9zNaOGGLsknC8eLXTKmuS6aq1huWL/dFp7A3FDHdZCg/p9cpqpcxRT/8S+bjRWTZ/Ctzt2I9n4K2CNiayLi124KzZbDY9caVFDUv3aHSaFP4E5f9U1DZmvFlDb33CZV1uyVD9HpobhBxP0QbfPQYgfNPgcptCHkhgoaPzE9W2coryQc6/VXZlzponcGn7YjREbrPYdnuOUNiO8jzQmxpaA4a6V6Bwpi1MwlnDxcW6QGrxbtj8Ka4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bLfT7frowKwB6BkZ5vtaCejX3YozCFQccska+jJI/W4=;
- b=MUg31alnaWspkSbLWEUz+Qfg8OecLU/YFoV+qYeEBSUIKZVt21GiIn6qZNwb0FS7Ml7cy4uzaUwonat4Hg0qfDL+W5sREOu/VWZtIJ4dIQzhIACtUUzivzrd8zHppoxoFXP10yE+yT4lOGotELDQRk0VVHn76m8uL1yabAZJtmgX2W734cDSRF1Zrk9dQ1cIYEgfH/cqgUQsff1SdGwegqHVzL4ai7DlK0YsnE+DVni1QttuKrxD/m35UWg3h9E/JGqCTZLg75RtpZysb+kjnKRuC3ZDX3khr9Wf7jlS6m0qU2Zi1OUuZHqTG5uz3dTLe/AI15DzV35E5koGG4Q23w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bLfT7frowKwB6BkZ5vtaCejX3YozCFQccska+jJI/W4=;
- b=t5hTUGUsP5ssLcjYxrUYuLcI2h2UBPhSt1H5stwrLysyGZbADXOwXzP4QsdHIxs02OXz9IIWlyZ4NhKGbXkYRso8XJmbvwHhI0C9tlV1cXRSKwxb72RhG7bIDgp3LgQ9tmUl4sPMEHsXwsVP97nWtoEvr6vxYhnMmoUIUe1jz3w=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
-Received: from DS0PR01MB8010.prod.exchangelabs.com (2603:10b6:8:151::19) by
- BN6PR01MB2675.prod.exchangelabs.com (2603:10b6:404:ce::15) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6411.21; Fri, 19 May 2023 08:53:17 +0000
-Received: from DS0PR01MB8010.prod.exchangelabs.com
- ([fe80::e439:70c2:7d19:45e]) by DS0PR01MB8010.prod.exchangelabs.com
- ([fe80::e439:70c2:7d19:45e%6]) with mapi id 15.20.6411.019; Fri, 19 May 2023
- 08:53:17 +0000
-From:   Chanh Nguyen <chanh@os.amperecomputing.com>
-To:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc:     Chanh Nguyen <chanh@os.amperecomputing.com>
-Subject: [PATCH v2 3/3] ARM: dts: aspeed: mtmitchell: Add MCTP
-Date:   Fri, 19 May 2023 15:52:00 +0700
-Message-Id: <20230519085200.22020-4-chanh@os.amperecomputing.com>
+        with ESMTP id S229684AbjESI5y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 04:57:54 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 073331B8;
+        Fri, 19 May 2023 01:57:53 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34J8oTZA032753;
+        Fri, 19 May 2023 08:57:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=sKPZuWKItWiqjMUEVl/T/GGERSo5s6SN2n+IXHpcmQs=;
+ b=DXXnB11fl/NJcKhHI1dwz35xQKmPPAZheWnuMW6f3xFfQ96v2DGL3okFEoySGWzHVFAz
+ 4Hio66ynXEZiADDlHjd0PurEYAx3niiwV+2sXz6QpkoSXRFOO6spMSt96JgHtA2wIeW/
+ 7F8YOkbt1tTO866pFvITbIzmYq8pMVV85NTw7H+fEBbwhXNh0pS8a/IA1KU10PoHqg9X
+ BY8N5/Xi8HTSmkubvlAWBHmZYzviiQqV0PBRXGod6QAzAypSnsBJDrrujnrPqORDYGBu
+ qN1dRdyMMK4SxyrG5YrwckAWs/5k0aIKPYv+/PpQrovQihM6Qy+t7caR1BSEXl/Y5jA6 Sg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qnwk4gxnq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 May 2023 08:57:43 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34J8vgJR010662
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 May 2023 08:57:42 GMT
+Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Fri, 19 May 2023 01:57:37 -0700
+From:   Devi Priya <quic_devipriy@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_ipkumar@quicinc.com>
+Subject: [PATCH V2 0/2] Add support for PCIe PHY in IPQ9574
+Date:   Fri, 19 May 2023 14:27:21 +0530
+Message-ID: <20230519085723.15601-1-quic_devipriy@quicinc.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230519085200.22020-1-chanh@os.amperecomputing.com>
-References: <20230519085200.22020-1-chanh@os.amperecomputing.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SI2P153CA0004.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:140::23) To DS0PR01MB8010.prod.exchangelabs.com
- (2603:10b6:8:151::19)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR01MB8010:EE_|BN6PR01MB2675:EE_
-X-MS-Office365-Filtering-Correlation-Id: 424be050-e3e6-40cd-e7af-08db58467d25
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /3EMlyL5KP+0VpyIO4h/7d1F1GEEUfBUq+6+lOeug4oNUQLHtDh/4YsPTUG5llO6ljHkMOYG/VvO7NDjz10bEqf0rMxqsQgSaFmr9PfbKU0owk4f1TR1+Q1yRSvg0bxiP19dAvDkWKZfaq/hGIh3YiVaPd8lPUVSC2xHXsu3Nl6f3U7tXDqXy7UZqHVPQzmhyKKxGipXD3zbbFDXwKfJ5SlO+PdSJajXIxjjuQKXpYJfLgqvS4qkAhT35ceU9CpjPAYLXuDyKXaVD6nf2YDd7lBcb6M/9to1pI3sTuLNZmiSTIpIsquoKF15ib7fu4q16vAFy/fEmX3JFsK2i352AtGNfaCCQ0iVsKkFVtqtitYd8Jg/KF5WLo2Tlhwhv23QBvtPoC7QCwJBGHb2k44zzB8e/Lg5Es9kJU+gVAM7DaKE6Q2SAQCHbs9iXNGaRi/KwUU67q7RfYR0H/3zQmtgrVa9a1XF4B3HY+xCzUFuB+x3NwC97MTXXUWJyqY17ddMAluhIl0EnTTBDT8C1/PBy7SQN8ykVYQuXm1KbdVfNsa2Odghe3vLxQ9206JBbcuTpbDfNxSfWvORWF/gK7sjq14krBIPSJdsnp5K4T7E68fLI1FF2nsPocQANSQFAedc
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR01MB8010.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(396003)(39850400004)(136003)(346002)(376002)(451199021)(86362001)(110136005)(316002)(4326008)(66556008)(66476007)(66946007)(52116002)(478600001)(6666004)(6486002)(8936002)(8676002)(41300700001)(5660300002)(4744005)(2906002)(38100700002)(38350700002)(2616005)(26005)(107886003)(186003)(1076003)(6506007)(83380400001)(6512007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ZqFFElNDPbNpAxpJZeMOeE2zIB+AficPm/dCK2hPMyZgRY3ncD7EBJgUzMS4?=
- =?us-ascii?Q?X1W64OPBVpWE5zG6NgPmKirRJNdY6lMvt9x/phnnlkFDTVb4YZobu4zDIf67?=
- =?us-ascii?Q?2W+kldtahWWzrPBspOpBlX9U+y3RN6hj5iZhb/lbHdE8XpkqxxMRNy0sp+tK?=
- =?us-ascii?Q?kd1nG+kEI6a5WEj6r6NG28g5a7lgdkJ2ZbhmR7gHbD++JA3ipPud0RAdG28q?=
- =?us-ascii?Q?j/VPqR5PNHaKFW9V+hsOmZeDlEMj9r16J9I+XqcGh7yy4haBxUcRsp3mKMP2?=
- =?us-ascii?Q?LI8okGSldp/ug8hPCTun1ieqzMLM8GMhraU9D3GNoWADi0kzUIvHJvLocrtS?=
- =?us-ascii?Q?+EUY5h5d75uwOiiB3O2sfoCqQyGbjLwvNG7HvDWpv9RnRlRtKURGdNq+O4iH?=
- =?us-ascii?Q?iDAJ9ZDbiduFSY/5ZGul1ZKTSHiFbK7pWfCBV7OrtzwRDEK63MET/7XV0ok/?=
- =?us-ascii?Q?80POxkReZmIr3kiZo7znPUTAX/T43DJRZC5pT3cXIrgZPECQu3K3B9nNZvfy?=
- =?us-ascii?Q?I69qVozCOM5MxQGQEwuh03shlr4/0HI4VU05hodvzcrzGD9VQFkagk1zn03T?=
- =?us-ascii?Q?L4iEDmwe/TV4w93UOfFNql8ItQxaLURfksfGvc5PK1ObU1ALh/sG3rvPRa/T?=
- =?us-ascii?Q?HbV5nVYosN9WFW4wtzA99BebNqw8f/VC0/lgMAb2Eo1xnyu7z3SMaBA+kVZC?=
- =?us-ascii?Q?jdqQ1ra/ktqPaxpO+hs4UXsWiltXjysc7vuDvzCZUaFWTe0CvzNVj1mLXBCq?=
- =?us-ascii?Q?YQUaIQZC2mzeHWrwwmzrnTLYeXW2uOahFiiFc0T6M0ofaL4dNv6pbyNx0Ew3?=
- =?us-ascii?Q?0OWNPtsztUZcclrOPf2sLLgsBmI6XItu4tGFvayCKL8Ejags+NV0Niu68gbC?=
- =?us-ascii?Q?C6xfFs1DwuSVoeBcJu7DF095rJBFBliJBAGY9yWlDsIUh1CzjJIfhpZ2/VZI?=
- =?us-ascii?Q?BRtYs2f8TiJ+VlHLafGj3ODSEkhR2iUneG5UnlEx0DHatwHvBnXoalgvRYpx?=
- =?us-ascii?Q?sK+KTqnPRvxkNF5ngz4jlkCFz568pCBfb1zf8rz/FTRTEE8S1Mvn+tVBmDqt?=
- =?us-ascii?Q?5G5WosdyYzQ1RtpVIXAiGvLFJSh62soGDn4Uu6wl1ipcnNo68L5oyn9lyTfJ?=
- =?us-ascii?Q?aufDQWJDdjCAhvkWZjEIUQua65MJoz9KKCdr5ga5kNyqXrKmq5RCXIIzt+3z?=
- =?us-ascii?Q?AWz4/eNXixCBcJsAUIGA6zFXgvr1PC9adtF+ifSp4ctTJVLGyk95FTvqHw5d?=
- =?us-ascii?Q?0PC38t5cGDTP+t/ra9D5cxw8FS/VtNZl2BZJY1nKxXkoZBHvGf+za5EFXY0e?=
- =?us-ascii?Q?0Si/PJqAC1tZkNVDssn/8v+skPGOWKE0kmKlQDoFfGhIGWswT3/9qt67q0uV?=
- =?us-ascii?Q?Cr4/wYIudvM6qpJhp6iGH1Bg/7l3mFhzGZOvbIZ1yArdI59636fg+QDrqd6/?=
- =?us-ascii?Q?tWHBA5dvzLmbt8p3EHP33tXDM/EMxXcR3dbvRrYS2LjQZdXT/ruC1oBtHA8N?=
- =?us-ascii?Q?p0QgEhkVdMR2n27QXEFCAjPifRGeZo+sEtYdg9ih4q1d1wbdqWby19n8b3GF?=
- =?us-ascii?Q?zdhZhBG4VO+x+sxKj0HsIMkITPPgoc8cDgFOB/5tDYdLuKYQpbBcQWxHL+4b?=
- =?us-ascii?Q?sLBXdOCq+bgLDXX6frO2IJE=3D?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 424be050-e3e6-40cd-e7af-08db58467d25
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR01MB8010.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2023 08:53:17.7312
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VJr+6eaScBMOYxySfYL8t7/vDTRDz7RhXhrlf0mqcA1bQgQZvvPgVuD2aonp65potAAPyeFsIb2gEr2fSlJ8ERH2lhCeZFTA86w3ZPOIQCr8y3eXgJKB9qjGEmbtv0Ku
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR01MB2675
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: jhJiId41iBN7r4pUWOdpcefAoCM6syH1
+X-Proofpoint-ORIG-GUID: jhJiId41iBN7r4pUWOdpcefAoCM6syH1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-19_05,2023-05-17_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ clxscore=1011 impostorscore=0 mlxscore=0 phishscore=0 priorityscore=1501
+ malwarescore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=670 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
+ definitions=main-2305190075
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable MCTP driver on I2C3 bus for MCTP transaction
+This series adds support for a single-lane and two-lane PCIe PHYs
+found on Qualcomm IPQ9574 platform.
 
-Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
----
-Changes in v2:
-   - Update reg for mctp node.                       [Andrew]
----
- arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
+This series has been separated out from the below PCIe series as suggested
+by vinod
+https://lore.kernel.org/linux-arm-msm/20230404164828.8031-1-quic_devipriy@quicinc.com/
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
-index d3c7e7c0fd25..c0316c198a88 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtmitchell.dts
-@@ -366,6 +366,13 @@
- 
- &i2c3 {
- 	status = "okay";
-+	bus-frequency = <1000000>;
-+	multi-master;
-+	mctp-controller;
-+	mctp@10 {
-+		compatible = "mctp-i2c-controller";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+	};
- };
- 
- &i2c4 {
+[V2]
+	Change logs are added to the respective patches.
+[V1]
+	https://lore.kernel.org/linux-arm-msm/20230421124150.21190-1-quic_devipriy@quicinc.com/
+
+Devi Priya (2):
+  dt-bindings: phy: qcom,qmp-pcie: Add ipq9574 bindings
+  phy: qcom-qmp-pcie: Add support for IPQ9574 g3x1 and g3x2 PCIEs
+
+ .../phy/qcom,ipq9574-qmp-pcie-phy.yaml        |  90 +++++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 332 ++++++++++++++++++
+ .../phy/qualcomm/phy-qcom-qmp-pcs-pcie-v5.h   |  14 +
+ .../phy/qualcomm/phy-qcom-qmp-qserdes-pll.h   |   3 +
+ 4 files changed, 439 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq9574-qmp-pcie-phy.yaml
+
 -- 
 2.17.1
 
