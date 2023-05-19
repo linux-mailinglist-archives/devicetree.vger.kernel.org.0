@@ -2,733 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A68357097E9
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 15:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE93A7097FA
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 15:09:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231708AbjESNFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 09:05:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40776 "EHLO
+        id S230422AbjESNJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 09:09:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231925AbjESNEu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 09:04:50 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD97CD3;
-        Fri, 19 May 2023 06:04:46 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 7D0EE60123;
-        Fri, 19 May 2023 16:04:43 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1684501483;
-        bh=FZs2vnID/hhgq5R2VWdRl8kdtxa6YZ/51BGJw0DHqTY=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-        b=Cn6TDOS8JvikoZBOiHNpE3fvyF1sp+toLtoKqgq53WDpt99Syp+mB9cxt3iSZGKRO
-         kBI2b35DlNGo4btYEiNjQBaPQfhYZk8B2Se8CLE2HNWwmiBk2NqhZr4aV44+n2SqoX
-         x31wkyMJWnyeUu+QJPmJamIdaQ6Qqmqq/PN4F1h5hXsiUBXrK/hc/zp5liKa2UEwJy
-         fbJLaL6cILu44zuxn3hMzZDk5kJfF9SDLzq0V1u46HU57gRM5w3bwbouOx0jpnIOlF
-         vq6oP7/Br1vdUQn2p9ha5QfCiHo6/+AupBB2mL0QpAUWb7KqzxfHPmhhDF5XV1i3Ub
-         450/YJjw3EyFw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Fri, 19 May 2023 16:04:43 +0300 (MSK)
-From:   Martin Kurbanov <mmkurbanov@sberdevices.ru>
-To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        with ESMTP id S230220AbjESNJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 09:09:11 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1499A10E
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 06:09:09 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2af28303127so3687701fa.3
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 06:09:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684501747; x=1687093747;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/Zv1mah4N/HaBlq32OJrOUOQJENrx2Ay1ik5IJM6AVI=;
+        b=E1COi7fX2rR/FXALr7SUoo8vmNVfuubFb6T0kKFyjEycRTKBAFRDmAdnqRsiv96QI+
+         YuksjYw1TCI8YD7OL1HQrzgBRoCAIAFokNHTHkDVC1hU3qngsBeDaYnHcwPs5B3kG3Es
+         u00S6fMxCjT7Mb78GlmwZedLK69dZlMIFKBL02M+7Q+i2qcCqg0QAnEjTlwu+jqP61+t
+         XdH1jZt1ZsHLr3eQuYX9Uk+sJk8rDuB0PHuNDxu1ssWyB4KCdzOdVXgajCPByvWxCIDq
+         eFyq3BBwUZrDO/qwGY7btyI+X5TzriO5HGMlo/fA56RtJOJp3ByAog9e5a2LPgxKgf2g
+         5u5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684501747; x=1687093747;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/Zv1mah4N/HaBlq32OJrOUOQJENrx2Ay1ik5IJM6AVI=;
+        b=bOvc2Y6w1Bp30WF4Fd8HsDZRx2RBBxoMNWtm0x8wBFd0OOELu5tjDE2CciTDk6mqJn
+         BB2tPSaxUwbhy2y8q9VUGcEZW4ONaojkqSnoieNRFrFQXtiqYb6LN8jDD+ITdznd545L
+         qh4BXI2d7yOopjrkAh+u9vAF/h3mY4i8qDJZVPn/CXS3261uKp/Nj/5ESs66A8+MpXe/
+         lCKj5nPE3d0cWYlgJ8dikvya15oRTRVMAZ+3CtEFUGjVZ0Ajl+2Oy6ydgCBo4gt/Nkj3
+         gQz2Q7walgobMdDP1kIXtqnchkM3vw2ObiTqNIsHCV6p1EvREGxQgRS1/bwjiWHCo9VG
+         GKZA==
+X-Gm-Message-State: AC+VfDzQTTLLfOubgAtKikWJEQrJ/yFLkUGbA7aZEuioVU3LDo5Gh3rZ
+        VXLFEd4ISGAjsbHLSbSN9FPJew==
+X-Google-Smtp-Source: ACHHUZ7c/wlNtcqnvOYUHVFfllflTtq4Bc0T77kg8q0qZWMwJo/oVsLcE8qIc4ULCRXWHIkvU13COQ==
+X-Received: by 2002:ac2:5a4d:0:b0:4ed:cb37:7d8c with SMTP id r13-20020ac25a4d000000b004edcb377d8cmr716553lfn.67.1684501747257;
+        Fri, 19 May 2023 06:09:07 -0700 (PDT)
+Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
+        by smtp.gmail.com with ESMTPSA id q30-20020ac25a1e000000b004edc7f6ee44sm278767lfn.234.2023.05.19.06.09.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 May 2023 06:09:06 -0700 (PDT)
+Message-ID: <4a9248c0-96ec-1986-d874-1cb7d8aac0ac@linaro.org>
+Date:   Fri, 19 May 2023 15:09:05 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/4] clk: qcom: clk-alpha-pll: Add support for lucid ole
+ pll ops
+Content-Language: en-US
+To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     <linux-kernel@vger.kernel.org>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <kernel@sberdevices.ru>,
-        Martin Kurbanov <mmkurbanov@sberdevices.ru>
-Subject: [PATCH v5 2/2] leds: add aw20xx driver
-Date:   Fri, 19 May 2023 16:04:03 +0300
-Message-ID: <20230519130403.212479-3-mmkurbanov@sberdevices.ru>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230519130403.212479-1-mmkurbanov@sberdevices.ru>
-References: <20230519130403.212479-1-mmkurbanov@sberdevices.ru>
-MIME-Version: 1.0
+        Michael Turquette <mturquette@baylibre.com>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230509161218.11979-1-quic_jkona@quicinc.com>
+ <20230509161218.11979-2-quic_jkona@quicinc.com>
+ <019999fd-3c86-8c85-76c7-8d0206e60f4d@linaro.org>
+ <55fc32df-f01b-1ba3-3813-26a5f8c7f730@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <55fc32df-f01b-1ba3-3813-26a5f8c7f730@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH02.sberdevices.ru (172.16.1.5) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/19 06:43:00 #21342157
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds support for AWINIC AW20036/AW20054/AW20072 LED driver.
-This driver supports following AW200XX features:
-  - Individual 64-level DIM currents
 
-Signed-off-by: Martin Kurbanov <mmkurbanov@sberdevices.ru>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
----
- .../testing/sysfs-class-led-driver-aw200xx    |   5 +
- drivers/leds/Kconfig                          |  13 +
- drivers/leds/Makefile                         |   1 +
- drivers/leds/leds-aw200xx.c                   | 594 ++++++++++++++++++
- 4 files changed, 613 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-class-led-driver-aw200xx
- create mode 100644 drivers/leds/leds-aw200xx.c
 
-diff --git a/Documentation/ABI/testing/sysfs-class-led-driver-aw200xx b/Documentation/ABI/testing/sysfs-class-led-driver-aw200xx
-new file mode 100644
-index 000000000000..6d4449cf9d71
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-led-driver-aw200xx
-@@ -0,0 +1,5 @@
-+What:		/sys/class/leds/<led>/dim
-+Date:		May 2023
-+Description:	64-level DIM current. If you write a negative value or
-+		"auto", the dim will be calculated according to the
-+		brightness.
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index 499d0f215a8b..065aac96728b 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -94,6 +94,19 @@ config LEDS_ARIEL
- 
- 	  Say Y to if your machine is a Dell Wyse 3020 thin client.
- 
-+config LEDS_AW200XX
-+	tristate "LED support for Awinic AW20036/AW20054/AW20072"
-+	depends on LEDS_CLASS
-+	depends on I2C
-+	help
-+	  This option enables support for the AW20036/AW20054/AW20072 LED driver.
-+	  It is a 3x12/6x9/6x12 matrix LED driver programmed via
-+	  an I2C interface, up to 36/54/72 LEDs or 12/18/24 RGBs,
-+	  3 pattern controllers for auto breathing or group dimming control.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-aw200xx.
-+
- config LEDS_AW2013
- 	tristate "LED support for Awinic AW2013"
- 	depends on LEDS_CLASS && I2C && OF
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 4fd2f92cd198..f611e48cd3f5 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_LEDS_AN30259A)		+= leds-an30259a.o
- obj-$(CONFIG_LEDS_APU)			+= leds-apu.o
- obj-$(CONFIG_LEDS_ARIEL)		+= leds-ariel.o
- obj-$(CONFIG_LEDS_ASIC3)		+= leds-asic3.o
-+obj-$(CONFIG_LEDS_AW200XX)		+= leds-aw200xx.o
- obj-$(CONFIG_LEDS_AW2013)		+= leds-aw2013.o
- obj-$(CONFIG_LEDS_BCM6328)		+= leds-bcm6328.o
- obj-$(CONFIG_LEDS_BCM6358)		+= leds-bcm6358.o
-diff --git a/drivers/leds/leds-aw200xx.c b/drivers/leds/leds-aw200xx.c
-new file mode 100644
-index 000000000000..96979b8e09b7
---- /dev/null
-+++ b/drivers/leds/leds-aw200xx.c
-@@ -0,0 +1,594 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Awinic AW20036/AW20054/AW20072 LED driver
-+ *
-+ * Copyright (c) 2023, SberDevices. All Rights Reserved.
-+ *
-+ * Author: Martin Kurbanov <mmkurbanov@sberdevices.ru>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/container_of.h>
-+#include <linux/i2c.h>
-+#include <linux/leds.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/regmap.h>
-+#include <linux/time.h>
-+#include <linux/units.h>
-+
-+#define AW200XX_DIM_MAX                  (BIT(6) - 1)
-+#define AW200XX_FADE_MAX                 (BIT(8) - 1)
-+#define AW200XX_IMAX_DEFAULT_uA          60000
-+#define AW200XX_IMAX_MAX_uA              160000
-+#define AW200XX_IMAX_MIN_uA              3300
-+
-+/* Page 0 */
-+#define AW200XX_REG_PAGE0_BASE 0xc000
-+
-+/* Select page register */
-+#define AW200XX_REG_PAGE       0xF0
-+#define AW200XX_PAGE_MASK      (GENMASK(7, 6) | GENMASK(2, 0))
-+#define AW200XX_PAGE_SHIFT     0
-+#define AW200XX_NUM_PAGES      6
-+#define AW200XX_PAGE_SIZE      256
-+#define AW200XX_REG(page, reg) \
-+	(AW200XX_REG_PAGE0_BASE + (page) * AW200XX_PAGE_SIZE + (reg))
-+#define AW200XX_REG_MAX \
-+	AW200XX_REG(AW200XX_NUM_PAGES - 1, AW200XX_PAGE_SIZE - 1)
-+#define AW200XX_PAGE0 0
-+#define AW200XX_PAGE1 1
-+#define AW200XX_PAGE2 2
-+#define AW200XX_PAGE3 3
-+#define AW200XX_PAGE4 4
-+#define AW200XX_PAGE5 5
-+
-+/* Chip ID register */
-+#define AW200XX_REG_IDR       AW200XX_REG(AW200XX_PAGE0, 0x00)
-+#define AW200XX_IDR_CHIPID    0x18
-+
-+/* Sleep mode register */
-+#define AW200XX_REG_SLPCR     AW200XX_REG(AW200XX_PAGE0, 0x01)
-+#define AW200XX_SLPCR_ACTIVE  0x00
-+
-+/* Reset register */
-+#define AW200XX_REG_RSTR      AW200XX_REG(AW200XX_PAGE0, 0x02)
-+#define AW200XX_RSTR_RESET    0x01
-+
-+/* Global current configuration register */
-+#define AW200XX_REG_GCCR        AW200XX_REG(AW200XX_PAGE0, 0x03)
-+#define AW200XX_GCCR_IMAX_MASK  GENMASK(7, 4)
-+#define AW200XX_GCCR_IMAX(x)    ((x) << 4)
-+#define AW200XX_GCCR_ALLON      BIT(3)
-+
-+/* Fast clear display control register */
-+#define AW200XX_REG_FCD       AW200XX_REG(AW200XX_PAGE0, 0x04)
-+#define AW200XX_FCD_CLEAR     0x01
-+
-+/* Display size configuration */
-+#define AW200XX_REG_DSIZE          AW200XX_REG(AW200XX_PAGE0, 0x80)
-+#define AW200XX_DSIZE_COLUMNS_MAX  12
-+
-+#define AW200XX_LED2REG(x, columns) \
-+	((x) + (((x) / (columns)) * (AW200XX_DSIZE_COLUMNS_MAX - (columns))))
-+
-+/*
-+ * DIM current configuration register (page 4).
-+ * The even address for current DIM configuration.
-+ * The odd address for current FADE configuration
-+ */
-+#define AW200XX_REG_DIM(x, columns) \
-+	AW200XX_REG(AW200XX_PAGE4, AW200XX_LED2REG(x, columns) * 2)
-+#define AW200XX_REG_DIM2FADE(x) ((x) + 1)
-+
-+/*
-+ * Duty ratio of display scan (see p.15 of datasheet for formula):
-+ *   duty = (592us / 600.5us) * (1 / (display_rows + 1))
-+ *
-+ * Multiply to 1000 (MILLI) to improve the accuracy of calculations.
-+ */
-+#define AW200XX_DUTY_RATIO(rows) \
-+	(((592UL * USEC_PER_SEC) / 600500UL) * (MILLI / (rows)) / MILLI)
-+
-+struct aw200xx_chipdef {
-+	u32 channels;
-+	u32 display_size_rows_max;
-+	u32 display_size_columns;
-+};
-+
-+struct aw200xx_led {
-+	struct led_classdev cdev;
-+	struct aw200xx *chip;
-+	int dim;
-+	u32 num;
-+};
-+
-+struct aw200xx {
-+	const struct aw200xx_chipdef *cdef;
-+	struct i2c_client *client;
-+	struct regmap *regmap;
-+	struct mutex mutex;
-+	u32 num_leds;
-+	u32 display_rows;
-+	struct aw200xx_led leds[];
-+};
-+
-+static ssize_t dim_show(struct device *dev, struct device_attribute *devattr,
-+			char *buf)
-+{
-+	struct led_classdev *cdev = dev_get_drvdata(dev);
-+	struct aw200xx_led *led = container_of(cdev, struct aw200xx_led, cdev);
-+	int dim = led->dim;
-+
-+	if (dim < 0)
-+		return sysfs_emit(buf, "auto\n");
-+
-+	return sysfs_emit(buf, "%d\n", dim);
-+}
-+
-+static ssize_t dim_store(struct device *dev, struct device_attribute *devattr,
-+			 const char *buf, size_t count)
-+{
-+	struct led_classdev *cdev = dev_get_drvdata(dev);
-+	struct aw200xx_led *led = container_of(cdev, struct aw200xx_led, cdev);
-+	struct aw200xx *chip = led->chip;
-+	u32 columns = chip->cdef->display_size_columns;
-+	int dim;
-+	ssize_t ret;
-+
-+	if (sysfs_streq(buf, "auto")) {
-+		dim = -1;
-+	} else {
-+		ret = kstrtoint(buf, 0, &dim);
-+		if (ret)
-+			return ret;
-+
-+		if (dim > AW200XX_DIM_MAX)
-+			return -EINVAL;
-+	}
-+
-+	mutex_lock(&chip->mutex);
-+
-+	if (dim >= 0) {
-+		ret = regmap_write(chip->regmap,
-+				   AW200XX_REG_DIM(led->num, columns), dim);
-+		if (ret)
-+			goto out_unlock;
-+	}
-+
-+	led->dim = dim;
-+	ret = count;
-+
-+out_unlock:
-+	mutex_unlock(&chip->mutex);
-+	return ret;
-+}
-+static DEVICE_ATTR_RW(dim);
-+
-+static struct attribute *dim_attrs[] = {
-+	&dev_attr_dim.attr,
-+	NULL
-+};
-+ATTRIBUTE_GROUPS(dim);
-+
-+static int aw200xx_brightness_set(struct led_classdev *cdev,
-+				  enum led_brightness brightness)
-+{
-+	struct aw200xx_led *led = container_of(cdev, struct aw200xx_led, cdev);
-+	struct aw200xx *chip = led->chip;
-+	int dim;
-+	u32 reg;
-+	int ret;
-+
-+	mutex_lock(&chip->mutex);
-+
-+	reg = AW200XX_REG_DIM(led->num, chip->cdef->display_size_columns);
-+
-+	dim = led->dim;
-+	if (dim < 0)
-+		dim = max_t(int,
-+			    brightness / (AW200XX_FADE_MAX / AW200XX_DIM_MAX),
-+			    1);
-+
-+	ret = regmap_write(chip->regmap, reg, dim);
-+	if (ret)
-+		goto out_unlock;
-+
-+	ret = regmap_write(chip->regmap,
-+			   AW200XX_REG_DIM2FADE(reg), brightness);
-+
-+out_unlock:
-+	mutex_unlock(&chip->mutex);
-+
-+	return ret;
-+}
-+
-+static u32 aw200xx_imax_from_global(const struct aw200xx *const chip,
-+				    u32 global_imax_uA)
-+{
-+	u64 led_imax_uA;
-+
-+	/*
-+	 * The output current of each LED (see p.14 of datasheet for formula):
-+	 *   Iled = Imax * (dim / 63) * ((fade + 1) / 256) * duty
-+	 *
-+	 * The value of duty is determined by the following formula:
-+	 *   duty = (592us / 600.5us) * (1 / (display_rows + 1))
-+	 *
-+	 * Calculated for the maximum values of fade and dim.
-+	 * We divide by 1000 because we earlier multiplied by 1000 to improve
-+	 * accuracy when calculating the duty.
-+	 */
-+	led_imax_uA = global_imax_uA * AW200XX_DUTY_RATIO(chip->display_rows);
-+	do_div(led_imax_uA, MILLI);
-+
-+	return led_imax_uA;
-+}
-+
-+static u32 aw200xx_imax_to_global(const struct aw200xx *const chip,
-+				  u32 led_imax_uA)
-+{
-+	u32 duty = AW200XX_DUTY_RATIO(chip->display_rows);
-+
-+	/* The output current of each LED (see p.14 of datasheet for formula) */
-+	return (led_imax_uA * 1000U) / duty;
-+}
-+
-+#define AW200XX_IMAX_MULTIPLIER1    10000
-+#define AW200XX_IMAX_MULTIPLIER2    3333
-+#define AW200XX_IMAX_BASE_VAL1      0
-+#define AW200XX_IMAX_BASE_VAL2      8
-+
-+/*
-+ * The AW200XX has a 4-bit register (GCCR) to configure the global current,
-+ * which ranges from 3.3mA to 160mA. The following table indicates the values
-+ * of the global current, divided into two parts:
-+ *
-+ * +-----------+-----------------+-----------+-----------------+
-+ * | reg value | global max (mA) | reg value | global max (mA) |
-+ * +-----------+-----------------+-----------+-----------------+
-+ * | 0         | 10              | 8         | 3.3             |
-+ * | 1         | 20              | 9         | 6.7             |
-+ * | 2         | 30              | 10        | 10              |
-+ * | 3         | 40              | 11        | 13.3            |
-+ * | 4         | 60              | 12        | 20              |
-+ * | 5         | 80              | 13        | 26.7            |
-+ * | 6         | 120             | 14        | 40              |
-+ * | 7         | 160             | 15        | 53.3            |
-+ * +-----------+-----------------+-----------+-----------------+
-+ *
-+ * The left part  with a multiplier of 10, and the right part  with a multiplier
-+ * of 3.3.
-+ * So we have two formulas to calculate the global current:
-+ *   for the left part of the table:
-+ *     imax = coefficient * 10
-+ *
-+ *   for the right part of the table:
-+ *     imax = coefficient * 3.3
-+ *
-+ * The coefficient table consists of the following values:
-+ *   1, 2, 3, 4, 6, 8, 12, 16.
-+ */
-+static int aw200xx_set_imax(const struct aw200xx *const chip,
-+			    u32 led_imax_uA)
-+{
-+	u32 g_imax_uA = aw200xx_imax_to_global(chip, led_imax_uA);
-+	u32 coeff_table[] = {1, 2, 3, 4, 6, 8, 12, 16};
-+	u32 gccr_imax = UINT_MAX;
-+	u32 cur_imax = 0;
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(coeff_table); i++) {
-+		u32 imax;
-+
-+		/* select closest ones */
-+		imax = coeff_table[i] * AW200XX_IMAX_MULTIPLIER1;
-+		if (g_imax_uA >= imax && imax > cur_imax) {
-+			cur_imax = imax;
-+			gccr_imax = i + AW200XX_IMAX_BASE_VAL1;
-+		}
-+
-+		imax = coeff_table[i] * AW200XX_IMAX_MULTIPLIER2;
-+		imax = DIV_ROUND_CLOSEST(imax, 100) * 100;
-+		if (g_imax_uA >= imax && imax > cur_imax) {
-+			cur_imax = imax;
-+			gccr_imax = i + AW200XX_IMAX_BASE_VAL2;
-+		}
-+	}
-+
-+	if (gccr_imax == UINT_MAX)
-+		return -EINVAL;
-+
-+	return regmap_update_bits(chip->regmap, AW200XX_REG_GCCR,
-+				  AW200XX_GCCR_IMAX_MASK,
-+				  AW200XX_GCCR_IMAX(gccr_imax));
-+}
-+
-+static int aw200xx_chip_reset(const struct aw200xx *const chip)
-+{
-+	int ret;
-+
-+	ret = regmap_write(chip->regmap, AW200XX_REG_RSTR, AW200XX_RSTR_RESET);
-+	if (ret)
-+		return ret;
-+
-+	regcache_mark_dirty(chip->regmap);
-+	return regmap_write(chip->regmap, AW200XX_REG_FCD, AW200XX_FCD_CLEAR);
-+}
-+
-+static int aw200xx_chip_init(const struct aw200xx *const chip)
-+{
-+	int ret;
-+
-+	ret = regmap_write(chip->regmap, AW200XX_REG_DSIZE,
-+			   chip->display_rows - 1);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(chip->regmap, AW200XX_REG_SLPCR,
-+			   AW200XX_SLPCR_ACTIVE);
-+	if (ret)
-+		return ret;
-+
-+	return regmap_update_bits(chip->regmap, AW200XX_REG_GCCR,
-+				  AW200XX_GCCR_ALLON, AW200XX_GCCR_ALLON);
-+}
-+
-+static int aw200xx_chip_check(const struct aw200xx *const chip)
-+{
-+	struct device *dev = &chip->client->dev;
-+	u32 chipid;
-+	int ret;
-+
-+	ret = regmap_read(chip->regmap, AW200XX_REG_IDR, &chipid);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to read chip ID\n");
-+
-+	if (chipid != AW200XX_IDR_CHIPID)
-+		return dev_err_probe(dev, -ENODEV,
-+				     "Chip reported wrong ID: %x\n", chipid);
-+
-+	return 0;
-+}
-+
-+static int aw200xx_probe_fw(struct device *dev, struct aw200xx *chip)
-+{
-+	struct fwnode_handle *child;
-+	u32 current_min, current_max, min_uA;
-+	int ret;
-+	int i;
-+
-+	ret = device_property_read_u32(dev, "awinic,display-rows",
-+				       &chip->display_rows);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Failed to read 'display-rows' property\n");
-+
-+	if (!chip->display_rows ||
-+	    chip->display_rows > chip->cdef->display_size_rows_max) {
-+		return dev_err_probe(dev, ret,
-+				     "Invalid leds display size %u\n",
-+				     chip->display_rows);
-+	}
-+
-+	current_max = aw200xx_imax_from_global(chip, AW200XX_IMAX_MAX_uA);
-+	current_min = aw200xx_imax_from_global(chip, AW200XX_IMAX_MIN_uA);
-+	min_uA = UINT_MAX;
-+	i = 0;
-+
-+	device_for_each_child_node(dev, child) {
-+		struct led_init_data init_data = {};
-+		struct aw200xx_led *led;
-+		u32 source, imax;
-+
-+		ret = fwnode_property_read_u32(child, "reg", &source);
-+		if (ret) {
-+			dev_err(dev, "Missing reg property\n");
-+			chip->num_leds--;
-+			continue;
-+		}
-+
-+		if (source >= chip->cdef->channels) {
-+			dev_err(dev, "LED reg %u out of range (max %u)\n",
-+				source, chip->cdef->channels);
-+			chip->num_leds--;
-+			continue;
-+		}
-+
-+		ret = fwnode_property_read_u32(child, "led-max-microamp",
-+					       &imax);
-+		if (ret) {
-+			dev_info(&chip->client->dev,
-+				 "DT property led-max-microamp is missing\n");
-+		} else if (imax < current_min || imax > current_max) {
-+			dev_err(dev, "Invalid value %u for led-max-microamp\n",
-+				imax);
-+			chip->num_leds--;
-+			continue;
-+		} else {
-+			min_uA = min(min_uA, imax);
-+		}
-+
-+		led = &chip->leds[i];
-+		led->dim = -1;
-+		led->num = source;
-+		led->chip = chip;
-+		led->cdev.brightness_set_blocking = aw200xx_brightness_set;
-+		led->cdev.groups = dim_groups;
-+		init_data.fwnode = child;
-+
-+		ret = devm_led_classdev_register_ext(dev, &led->cdev,
-+						     &init_data);
-+		if (ret) {
-+			fwnode_handle_put(child);
-+			break;
-+		}
-+
-+		i++;
-+	}
-+
-+	if (!chip->num_leds)
-+		return -EINVAL;
-+
-+	if (min_uA == UINT_MAX) {
-+		min_uA = aw200xx_imax_from_global(chip,
-+						  AW200XX_IMAX_DEFAULT_uA);
-+	}
-+
-+	return aw200xx_set_imax(chip, min_uA);
-+}
-+
-+static const struct regmap_range_cfg aw200xx_ranges[] = {
-+	{
-+		.name = "aw200xx",
-+		.range_min = 0,
-+		.range_max = AW200XX_REG_MAX,
-+		.selector_reg = AW200XX_REG_PAGE,
-+		.selector_mask = AW200XX_PAGE_MASK,
-+		.selector_shift = AW200XX_PAGE_SHIFT,
-+		.window_start = 0,
-+		.window_len = AW200XX_PAGE_SIZE,
-+	},
-+};
-+
-+static const struct regmap_range aw200xx_writeonly_ranges[] = {
-+	regmap_reg_range(AW200XX_REG(AW200XX_PAGE1, 0x00), AW200XX_REG_MAX),
-+};
-+
-+static const struct regmap_access_table aw200xx_readable_table = {
-+	.no_ranges = aw200xx_writeonly_ranges,
-+	.n_no_ranges = ARRAY_SIZE(aw200xx_writeonly_ranges),
-+};
-+
-+static const struct regmap_range aw200xx_readonly_ranges[] = {
-+	regmap_reg_range(AW200XX_REG_IDR, AW200XX_REG_IDR),
-+};
-+
-+static const struct regmap_access_table aw200xx_writeable_table = {
-+	.no_ranges = aw200xx_readonly_ranges,
-+	.n_no_ranges = ARRAY_SIZE(aw200xx_readonly_ranges),
-+};
-+
-+static const struct regmap_config aw200xx_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = AW200XX_REG_MAX,
-+	.ranges = aw200xx_ranges,
-+	.num_ranges = ARRAY_SIZE(aw200xx_ranges),
-+	.rd_table = &aw200xx_readable_table,
-+	.wr_table = &aw200xx_writeable_table,
-+	.cache_type = REGCACHE_RBTREE,
-+};
-+
-+static int aw200xx_probe(struct i2c_client *client)
-+{
-+	const struct aw200xx_chipdef *cdef;
-+	struct aw200xx *chip;
-+	int count;
-+	int ret;
-+
-+	cdef = device_get_match_data(&client->dev);
-+	if (!cdef)
-+		return -ENODEV;
-+
-+	count = device_get_child_node_count(&client->dev);
-+	if (!count || count > cdef->channels)
-+		return dev_err_probe(&client->dev, -EINVAL,
-+				     "Incorrect number of leds (%d)", count);
-+
-+	chip = devm_kzalloc(&client->dev, struct_size(chip, leds, count),
-+			    GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	chip->cdef = cdef;
-+	chip->num_leds = count;
-+	chip->client = client;
-+	i2c_set_clientdata(client, chip);
-+
-+	chip->regmap = devm_regmap_init_i2c(client, &aw200xx_regmap_config);
-+	if (IS_ERR(chip->regmap))
-+		return PTR_ERR(chip->regmap);
-+
-+	ret = aw200xx_chip_check(chip);
-+	if (ret)
-+		return ret;
-+
-+	mutex_init(&chip->mutex);
-+
-+	/* Need a lock now since after call aw200xx_probe_fw, sysfs nodes created */
-+	mutex_lock(&chip->mutex);
-+
-+	ret = aw200xx_chip_reset(chip);
-+	if (ret)
-+		goto out_unlock;
-+
-+	ret = aw200xx_probe_fw(&client->dev, chip);
-+	if (ret)
-+		goto out_unlock;
-+
-+	ret = aw200xx_chip_init(chip);
-+
-+out_unlock:
-+	mutex_unlock(&chip->mutex);
-+	return ret;
-+}
-+
-+static void aw200xx_remove(struct i2c_client *client)
-+{
-+	struct aw200xx *chip = i2c_get_clientdata(client);
-+
-+	aw200xx_chip_reset(chip);
-+	mutex_destroy(&chip->mutex);
-+}
-+
-+static const struct aw200xx_chipdef aw20036_cdef = {
-+	.channels = 36,
-+	.display_size_rows_max = 3,
-+	.display_size_columns = 12,
-+};
-+
-+static const struct aw200xx_chipdef aw20054_cdef = {
-+	.channels = 54,
-+	.display_size_rows_max = 6,
-+	.display_size_columns = 9,
-+};
-+
-+static const struct aw200xx_chipdef aw20072_cdef = {
-+	.channels = 72,
-+	.display_size_rows_max = 6,
-+	.display_size_columns = 12,
-+};
-+
-+static const struct i2c_device_id aw200xx_id[] = {
-+	{ "aw20036" },
-+	{ "aw20054" },
-+	{ "aw20072" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, aw200xx_id);
-+
-+static const struct of_device_id aw200xx_match_table[] = {
-+	{ .compatible = "awinic,aw20036", .data = &aw20036_cdef, },
-+	{ .compatible = "awinic,aw20054", .data = &aw20054_cdef, },
-+	{ .compatible = "awinic,aw20072", .data = &aw20072_cdef, },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, aw200xx_match_table);
-+
-+static struct i2c_driver aw200xx_driver = {
-+	.driver = {
-+		.name = "aw200xx",
-+		.of_match_table = aw200xx_match_table,
-+	},
-+	.probe_new = aw200xx_probe,
-+	.remove = aw200xx_remove,
-+	.id_table = aw200xx_id,
-+};
-+module_i2c_driver(aw200xx_driver);
-+
-+MODULE_AUTHOR("Martin Kurbanov <mmkurbanov@sberdevices.ru>");
-+MODULE_DESCRIPTION("AW200XX LED driver");
-+MODULE_LICENSE("GPL");
--- 
-2.40.0
+On 19.05.2023 14:49, Jagadeesh Kona wrote:
+> Hi,
+> 
+> Thanks Konrad for your review!
+> 
+> On 5/10/2023 1:36 AM, Konrad Dybcio wrote:
+>>
+>>
+>> On 9.05.2023 18:12, Jagadeesh Kona wrote:
+>>> From: Taniya Das <quic_tdas@quicinc.com>
+>>>
+>>> Add support for lucid ole pll ops to configure and control the
+>>> lucid ole pll. The lucid ole pll has an additional test control
+>>> register which is required to be programmed, add support to
+>>> program the same.
+>>>
+>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>>> ---
+>> Isn't this commit "write to PLL_TEST_CTL_U2 on LUCID_EVO" instead?
+>>
+>> Meaninglessly duplicating ops does not seem useful.
+>>
+>> Konrad
+> 
+> Though we are reusing same ops for EVO and OLE, PLL_TEST_CTL_U2 register programming is applicable only to OLE PLL type.
+Well, your patch makes it unconditional (modulo programmer error) so
+I think that makes little sense.. A comment would be enough, imo.
 
+Konrad
+And PLL type is useful to properly refer respective hardware datasheets. Hence added separate ops for OLE PLL type.
+> 
+> 
+>>>   drivers/clk/qcom/clk-alpha-pll.c | 2 ++
+>>>   drivers/clk/qcom/clk-alpha-pll.h | 4 ++++
+>>>   2 files changed, 6 insertions(+)
+>>>
+>>> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+>>> index b9f6535a7ba7..f81c7c561352 100644
+>>> --- a/drivers/clk/qcom/clk-alpha-pll.c
+>>> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+>>> @@ -55,6 +55,7 @@
+>>>   #define PLL_TEST_CTL(p)        ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL])
+>>>   #define PLL_TEST_CTL_U(p)    ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U])
+>>>   #define PLL_TEST_CTL_U1(p)     ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U1])
+>>> +#define PLL_TEST_CTL_U2(p)     ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U2])
+>>>   #define PLL_STATUS(p)        ((p)->offset + (p)->regs[PLL_OFF_STATUS])
+>>>   #define PLL_OPMODE(p)        ((p)->offset + (p)->regs[PLL_OFF_OPMODE])
+>>>   #define PLL_FRAC(p)        ((p)->offset + (p)->regs[PLL_OFF_FRAC])
+>>> @@ -2096,6 +2097,7 @@ void clk_lucid_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regma
+>>>       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL(pll), config->test_ctl_val);
+>>>       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U(pll), config->test_ctl_hi_val);
+>>>       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U1(pll), config->test_ctl_hi1_val);
+>>> +    clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U2(pll), config->test_ctl_hi2_val);
+>>>         /* Disable PLL output */
+>>>       regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
+>>> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+>>> index d07b17186b90..4d9b6d5b7062 100644
+>>> --- a/drivers/clk/qcom/clk-alpha-pll.h
+>>> +++ b/drivers/clk/qcom/clk-alpha-pll.h
+>>> @@ -125,6 +125,7 @@ struct alpha_pll_config {
+>>>       u32 test_ctl_val;
+>>>       u32 test_ctl_hi_val;
+>>>       u32 test_ctl_hi1_val;
+>>> +    u32 test_ctl_hi2_val;
+>>>       u32 main_output_mask;
+>>>       u32 aux_output_mask;
+>>>       u32 aux2_output_mask;
+>>> @@ -171,6 +172,7 @@ extern const struct clk_ops clk_alpha_pll_zonda_ops;
+>>>   #define clk_alpha_pll_postdiv_zonda_ops clk_alpha_pll_postdiv_fabia_ops
+>>>     extern const struct clk_ops clk_alpha_pll_lucid_evo_ops;
+>>> +#define clk_alpha_pll_lucid_ole_ops clk_alpha_pll_lucid_evo_ops
+>>>   extern const struct clk_ops clk_alpha_pll_reset_lucid_evo_ops;
+>>>   #define clk_alpha_pll_reset_lucid_ole_ops clk_alpha_pll_reset_lucid_evo_ops
+>>>   extern const struct clk_ops clk_alpha_pll_fixed_lucid_evo_ops;
+>>> @@ -196,6 +198,8 @@ void clk_zonda_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>>>                    const struct alpha_pll_config *config);
+>>>   void clk_lucid_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>>>                    const struct alpha_pll_config *config);
+>>> +#define clk_lucid_ole_pll_configure(pll, regmap, config) \
+>>> +            clk_lucid_evo_pll_configure(pll, regmap, config)
+>>>   void clk_rivian_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>>>                     const struct alpha_pll_config *config);
+>>>   void clk_stromer_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+> 
+> Thanks & Regards,
+> Jagadeesh
