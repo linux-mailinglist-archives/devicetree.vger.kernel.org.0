@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02F9770A342
-	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 01:24:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B586070A347
+	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 01:25:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbjESXYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 19:24:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42006 "EHLO
+        id S229898AbjESXZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 19:25:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbjESXYS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 19:24:18 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B4D01B7
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 16:24:17 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f37b860173so4233742e87.2
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 16:24:17 -0700 (PDT)
+        with ESMTP id S229773AbjESXZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 19:25:27 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 218A7E7C
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 16:25:21 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2ac7462d9f1so44181501fa.2
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 16:25:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684538655; x=1687130655;
+        d=linaro.org; s=google; t=1684538719; x=1687130719;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VeXTcSjQ1u9WPirlSadWI4lW3NNlUgK10Dkih6okJFQ=;
-        b=OO5rgIA7Iqshr5cs3rSGJ4XHDshZUm9a6cv9xjXEJ2aUbkpJ1cq20PeJsNohsxISX/
-         4YLurx9dAH9Qmzw2i48VRcdF/GRRULUyD9W51Qnru5yw59zdVPv9eyPeaFCor7q0hYLI
-         eL1/g6CpL0ToHl3aQpP6NX0jBa3e6IA7XsJE/yb/RGVg607oPFTTV/Nfyia9dnDYBC8z
-         Qnw2BACEloMh9ujzM6MCoBIJ0bKf0Uk55rQTy1SYl747AVqTP7wWlCFoMIfinTxH9/Ca
-         VoRXpDWXOraoW6GBlhSZJrrBtXpI5LFoeIkJzWGUln/Lcb2xVQMcuoJsfV1atDmK2+6B
-         8MYg==
+        bh=VOvjqN8AVqDU+Adbzq8R5mSYYGxz+RyLYVuQ1pVdfBY=;
+        b=gKrVCbH6ooo39BHamSYxZz6HuvRVrXQVsJtkCWbh4jQeEI7sCxkC1DUoPJv2RNCPG7
+         T02BfXw3Lrqlz3dwzaSiM0TwitcOSWlZp+RcZ3DfQfVmCUXh+os8KYtfuqStyoS2fd52
+         xX4N8V5YnGsXRyY6+WTJFbkx6e6UVYOz92z1Tk8XSph/y2QXHs9Z304p3xgSa5nxmWnC
+         zsvFvCIA1yBppLLRNZG+hxBOeoDflCRUkDSfwUZfG/Iaq2Hdwdtm+k7sy910PwXb3dCI
+         xR+/U2MzIZCUPQzxjAKKZGUSMhLXRx2+j+XAMxLeRNjM/xowphXBEAlF/kpEf+a1BLUj
+         caJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684538655; x=1687130655;
+        d=1e100.net; s=20221208; t=1684538719; x=1687130719;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VeXTcSjQ1u9WPirlSadWI4lW3NNlUgK10Dkih6okJFQ=;
-        b=lGMaWywbWncmVRPz7jsaeKnpEeFpbyGNx998bu1iRMGMQofJ54eQrbLZDHPECgDfCv
-         HJnFnZULu2A8euLu9H0X6N2CPlz/nRo4Isc5H1D6Kac7yMMyc55IyKuJEHUyEquLt9j6
-         OC0rwTFCItc1yyaHgJnj0lOEOFMIX5X+kOG6qGyyHSC+U6PVOzCmiJMRt5tjDAujfcxa
-         xhmwsaDhiNFmOR/Lugn7CdZuElex7euxWgmvKdFLQwodeHXvtdo7o33uxCfJFGASMIwd
-         oy/cm990emZHrv7H8QfUG+1Syk9OkJSn7koHoL750apIJ9Rs9ZgIBgVJyL0Ya6Egmys1
-         jH/A==
-X-Gm-Message-State: AC+VfDyme1fjZwPwtNBpewzdSr5lyXOIDC8do+BhDLR1+EOqkXeW7swT
-        g4BiVPjtHxeZPiH8mUOdhL/07A==
-X-Google-Smtp-Source: ACHHUZ7DKkjO9fUHI9Nf4reCnLMCyIe5yBRYrCRS5Qj4H/L+Tf1xn/fenq+byrA4tAtTCDsbuCYqRQ==
-X-Received: by 2002:ac2:420b:0:b0:4ef:e895:cff2 with SMTP id y11-20020ac2420b000000b004efe895cff2mr885589lfh.64.1684538655282;
-        Fri, 19 May 2023 16:24:15 -0700 (PDT)
+        bh=VOvjqN8AVqDU+Adbzq8R5mSYYGxz+RyLYVuQ1pVdfBY=;
+        b=V793POdk9Q/YOFK59A37nmDwNYavIitQ6Ro8yqfx08FWWJG6R/uI0280blDVkZ9WLP
+         V5Coylj6QpeI58C3HFSErfaUldfaW8vgjvcf8ue3VpMb7OoRJFKpaeP2YK3/ZpnQjuPk
+         eP1qwO8A+1dzGuUytBwkoIXKVlTj4wMZ0CdWuxqg+1CZDTCFJEbZkjanX/H8So6tvHru
+         jWI4HVeVJPfE/yglOhMMGiPZHwcjqeiWYORdPS9rRVl/cazu3Cp0F8NiksWLq+WViANc
+         EqWhVXHHBhC7a5hXU6I5K8qMUQVou7RLL52M1dYCLm7ksFtUJpJCKR1LhhROyR7CAaFG
+         Fh9A==
+X-Gm-Message-State: AC+VfDxt9fRb98eOBpZsdJbMWq/7CYHDbqH4YHFVw5QpPzLCIKCmWqGS
+        1GN66HdGKxSzm8qfl78xyZtPfA==
+X-Google-Smtp-Source: ACHHUZ420IDbdaMgoPXwNeI7sLTtm8/VjDcIy3Q4qQuT2OHkdFB7TWfA1g9j1hTnqdFHEInpUQpC3w==
+X-Received: by 2002:a2e:2e0f:0:b0:2a8:e480:a3c8 with SMTP id u15-20020a2e2e0f000000b002a8e480a3c8mr1302991lju.44.1684538719272;
+        Fri, 19 May 2023 16:25:19 -0700 (PDT)
 Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id f2-20020ac25322000000b004d4d7fb0e07sm54480lfh.216.2023.05.19.16.24.14
+        by smtp.gmail.com with ESMTPSA id z7-20020a2e9b87000000b002af2a411655sm41597lji.41.2023.05.19.16.25.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 May 2023 16:24:14 -0700 (PDT)
-Message-ID: <eed1bfec-70f4-953e-ae9b-38b987edc3bd@linaro.org>
-Date:   Sat, 20 May 2023 01:24:13 +0200
+        Fri, 19 May 2023 16:25:18 -0700 (PDT)
+Message-ID: <7d8ff3f4-fa9f-109e-b255-329803532e9f@linaro.org>
+Date:   Sat, 20 May 2023 01:25:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 3/5] ARM: dts: qcom: msm8226: Add rpm-stats device node
+Subject: Re: [PATCH 4/5] ARM: dts: qcom: msm8226: Add IMEM node
 Content-Language: en-US
 To:     =?UTF-8?Q?Matti_Lehtim=c3=a4ki?= <matti.lehtimaki@gmail.com>,
         linux-arm-msm@vger.kernel.org
@@ -66,9 +66,9 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230519210903.117030-1-matti.lehtimaki@gmail.com>
- <20230519210903.117030-4-matti.lehtimaki@gmail.com>
+ <20230519210903.117030-5-matti.lehtimaki@gmail.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230519210903.117030-4-matti.lehtimaki@gmail.com>
+In-Reply-To: <20230519210903.117030-5-matti.lehtimaki@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,29 +84,37 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 19.05.2023 23:09, Matti Lehtimäki wrote:
-> Add device node for the rpm-stats pseudo device.
+> This is used for example for reboot-mode which enables userspace to
+> signal the bootloader to go into the bootloader or recovery mode.
 > 
 > Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm/boot/dts/qcom-msm8226.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
+>  arch/arm/boot/dts/qcom-msm8226.dtsi | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
 > diff --git a/arch/arm/boot/dts/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom-msm8226.dtsi
-> index e272a1e15b44..006263373348 100644
+> index 006263373348..3628e48c1ec1 100644
 > --- a/arch/arm/boot/dts/qcom-msm8226.dtsi
 > +++ b/arch/arm/boot/dts/qcom-msm8226.dtsi
-> @@ -597,6 +597,11 @@ frame@f9028000 {
+> @@ -646,6 +646,18 @@ smd-edge {
+>  				label = "lpass";
 >  			};
 >  		};
->  
-> +		sram@fc190000 {
-> +			compatible = "qcom,msm8226-rpm-stats";
-> +			reg = <0xfc190000 0x10000>;
-> +		};
 > +
->  		rpm_msg_ram: sram@fc428000 {
->  			compatible = "qcom,rpm-msg-ram";
->  			reg = <0xfc428000 0x4000>;
+> +		imem: sram@fe805000 {
+> +			compatible = "qcom,msm8226-imem", "syscon", "simple-mfd";
+> +			reg = <0xfe805000 0x1000>;
+> +
+> +			status = "disabled";
+> +
+> +			reboot-mode {
+> +				compatible = "syscon-reboot-mode";
+> +				offset = <0x65c>;
+> +			};
+> +		};
+>  	};
+>  
+>  	timer {
