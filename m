@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CF9D709488
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 12:13:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA75C709493
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 12:15:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229644AbjESKNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 06:13:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42682 "EHLO
+        id S231626AbjESKPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 06:15:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230331AbjESKNO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 06:13:14 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9188D1B8
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 03:13:12 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-64d3bc502ddso245577b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 03:13:12 -0700 (PDT)
+        with ESMTP id S231571AbjESKPp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 06:15:45 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41EB2E47
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 03:15:44 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1ae4c5e12edso24360875ad.3
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 03:15:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684491192; x=1687083192;
+        d=linaro.org; s=google; t=1684491344; x=1687083344;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=BSr7GdXWAJku5Kok/w8KozBJgW/7oVgHlXu4LnQYU4U=;
-        b=AMYwSYKjD74G4Sw9tPc/nRaoL17u7EvGnGODVSfNhloK/SPeeqRD/GT1KCyKJg2Omz
-         eGIQemeDf5Tp/uGNuMICegZqzEvI2IThIZt23UyHiXLNXV69Epl/EyfBbJ5fGMEgJxpe
-         fykU5WMP1StVgRHUrIxCeuIn5oCBg9YwwY7o4Du9FeZ39gRWPwa5HOVux9DCdi5GNv4F
-         WXQ29NIgBQ9H/ufW3/IzAYS/FLw8jbcxsgS+HYQJK6wt+CNNQQUjGu6kYBrwq1UVCig0
-         knv/dg9Ia25SXp88Ykh7NRtrRs3uKAwAyQM6R6ILcu8prQ3Q7mO3Il08Xh7dAF2g+GcN
-         B1Mw==
+        bh=ylo0BLiLHMimnGwbEKAmy5UwI760pNmz133+iY2EX80=;
+        b=jYRgD1LfOzdrMF1zi2cwWMk5xekUG2l2wjsnhAbGE3S8O3LqNTLGA/1eQFFBfDE9d1
+         fW/4MAB1GOb3BFoPtRfXm0ZGrmHnYbL46ozdL8q6Cv7zI9NamALOJ+U2o7fgsUElJlOt
+         iOPG4gzxGTVXPUU1CAggF1LvDgXCIW8WItWHSDP8T7RuDlQSyz47NuKdxzX3c8LEi0pb
+         NiCZLkoK9JQmz8VL7XewO/6vqbYADa6DLEG04TvwptaTxZqSKsnWCuj4KoFQmcVYMQx8
+         xyHsWu5A/waUMal0sAeTFGoBXBmqiIXKRADXJStS33vR2fYRcJQBK++caEmokiujLcHN
+         tJqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684491192; x=1687083192;
+        d=1e100.net; s=20221208; t=1684491344; x=1687083344;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BSr7GdXWAJku5Kok/w8KozBJgW/7oVgHlXu4LnQYU4U=;
-        b=DG5PB/PLaXB5YO5wakF7eosD8Pbr3hPuZbFnCFPHiXhH+AGHStNM8LpR+XWlpuZ0Sg
-         ZAtiSRk0pS2W93b3BoPyBroZDGG6dTKvA1ff7D9Jrs6WT9I/6rmkYD6ESkXySsu4rYuH
-         0XH4zAHh5RlRcuihlNp8Ihw8l79dRyKhZ0e9C+BydstTBK3NWmGVba/nK1yYqM/DeKyH
-         3G3pTTbZmydWFuzwQOoMz3nNCNb91lBWOTqFiTeyVBtvAmqVfn/N+rrmYKH2XJOuVLC2
-         1ZZjB/qbCleLT37yEQzFz+D+KG24xNrimAYuCbQwyBHVSv9rl+OBpXaiug43bKDEXmIA
-         Rvew==
-X-Gm-Message-State: AC+VfDxPOWRIfYoRBqYhtJsGXTtGvcu8iBylox7LFRNAWvXxL5/RFx7w
-        WtPED3YOmSY7jeJf02mZEtK1eg==
-X-Google-Smtp-Source: ACHHUZ5kIqy1tdfgOlJbIVGQKOPxbA7vVEAaQIQrUfkKpzzN8ZCX1hfQmxBOMBUcHovpjekE6/JZTg==
-X-Received: by 2002:a05:6a20:3d09:b0:104:a096:6ac7 with SMTP id y9-20020a056a203d0900b00104a0966ac7mr1962172pzi.34.1684491192074;
-        Fri, 19 May 2023 03:13:12 -0700 (PDT)
+        bh=ylo0BLiLHMimnGwbEKAmy5UwI760pNmz133+iY2EX80=;
+        b=XcOpiFGnsabh6v4GGKjhsAPU4dXKFxQt4rjLFReZrClEIUF8WhVK6d5KijRVd/DIqL
+         csFloDIc2jSGSQKKK6U4XYHKXeowLJZbzYCl+Ix1qxBfHDc04Qu59g1sW/iIQfbdd5ox
+         fSN457TojbQ1G1DVrNjeQqaTHUxPMXNGb4/eydXwpzXjwijDd8zoZo4Oo5thvz2KH0/i
+         Vu7NRMoJFUM2sxnw/LoIo3ZS0VvmwdqoSREdyqI4Y4LOh11psTUg+Ggb4MN0uDYA6S6C
+         wLDoivzdhv3Ge/JmWols/UR5JuKKclC1v51H4zvqCV/wfjO4vM7y6ED/m8qFN6a9ZQzn
+         ZfhA==
+X-Gm-Message-State: AC+VfDykP93PfuQm6LrpVNaJPUSGG2EN7Bv1NZmZcBCX2z1LmgzdjqB7
+        S94UwcnZWljcNjFRaEXTmGHg1g==
+X-Google-Smtp-Source: ACHHUZ512MKsw7qshc+IsaVgyWhGa8nzHkG4bOmOmgqecRqpTMd8iDObkkAmxyQ1XV1TFv80d5/aOQ==
+X-Received: by 2002:a17:902:ba8c:b0:1ae:6290:26d with SMTP id k12-20020a170902ba8c00b001ae6290026dmr2213537pls.7.1684491343711;
+        Fri, 19 May 2023 03:15:43 -0700 (PDT)
 Received: from ?IPV6:2401:4900:1c60:d309:883d:817e:8e91:be39? ([2401:4900:1c60:d309:883d:817e:8e91:be39])
-        by smtp.gmail.com with ESMTPSA id p15-20020aa7860f000000b0064d35776709sm732016pfn.78.2023.05.19.03.13.08
+        by smtp.gmail.com with ESMTPSA id w24-20020a170902a71800b001a80ad9c599sm3011525plq.294.2023.05.19.03.15.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 May 2023 03:13:11 -0700 (PDT)
-Message-ID: <8e3c745a-2e37-2927-7dbf-e23a777702f3@linaro.org>
-Date:   Fri, 19 May 2023 15:43:06 +0530
+        Fri, 19 May 2023 03:15:43 -0700 (PDT)
+Message-ID: <4419a3a5-f6b0-967b-7477-4c0b22c48204@linaro.org>
+Date:   Fri, 19 May 2023 15:45:38 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.3.1
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: qdu1000-idp: add SDHCI for emmc
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: qdu1000: Add SDHCI1 pin
+ configuration to DTSI
 Content-Language: en-US
 To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
         Ulf Hansson <ulf.hansson@linaro.org>,
@@ -67,9 +68,9 @@ To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
 Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 References: <20230519085122.15758-1-quic_kbajaj@quicinc.com>
- <20230519085122.15758-5-quic_kbajaj@quicinc.com>
+ <20230519085122.15758-4-quic_kbajaj@quicinc.com>
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-In-Reply-To: <20230519085122.15758-5-quic_kbajaj@quicinc.com>
+In-Reply-To: <20230519085122.15758-4-quic_kbajaj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,40 +83,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
 On 5/19/23 2:21 PM, Komal Bajaj wrote:
-> Add sdhci node for emmc in qdu1000-idp.
+> Add required pins for SDHCI1, so that the interface can work reliably.
 > 
 > Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 > ---
->   arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 11 +++++++++++
->   1 file changed, 11 insertions(+)
+>   arch/arm64/boot/dts/qcom/qdu1000.dtsi | 50 +++++++++++++++++++++++++++
+>   1 file changed, 50 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> index 9e9fd4b8023e..b2526e991548 100644
-> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> @@ -451,3 +451,14 @@
->   &uart7 {
->   	status = "okay";
->   };
+> diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+> index 6113def66a08..556942bfca5d 100644
+> --- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+> @@ -1160,6 +1160,56 @@
+>   				pins = "gpio31";
+>   				function = "gpio";
+>   			};
 > +
-> +&sdhc_1 {
-> +	status = "okay";
+> +			sdc1_on_state: sdc1-on-state {
+> +				clk-pins {
+> +					pins = "sdc1_clk";
+> +					drive-strength = <16>;
+> +					bias-disable;
+> +				};
 > +
-> +	pinctrl-0 = <&sdc1_on_state>;
-> +	pinctrl-1 = <&sdc1_off_state>;
-> +	pinctrl-names = "default", "sleep";
+> +				cmd-pins {
+> +					pins = "sdc1_cmd";
+> +					drive-strength = <10>;
+> +					bias-pull-up;
+> +				};
 > +
-> +	vmmc-supply = <&vreg_l10a_2p95>;
-> +	vqmmc-supply = <&vreg_l7a_1p8>;
-> +};
+> +				data-pins {
+> +					pins = "sdc1_data";
+> +					drive-strength = <10>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				rclk-pins {
+> +					pins = "sdc1_rclk";
+> +					bias-pull-down;
+> +				};
+> +			};
+> +
+> +			sdc1_off_state: sdc1-off-state {
+> +				clk-pins {
+> +					pins = "sdc1_clk";
+> +					drive-strength = <2>;
+> +					bias-disable;
+> +				};
+> +
+> +				cmd-pins {
+> +					pins = "sdc1_cmd";
+> +					drive-strength = <2>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				data-pins {
+> +					pins = "sdc1_data";
+> +					drive-strength = <2>;
+> +					bias-pull-up;
+> +				};
+> +
+> +				rclk-pins {
+> +					pins = "sdc1_rclk";
+> +					bias-pull-down;
+> +				};
+> +			};
+>   		};
+> 
+>   		apps_smmu: iommu@15000000 {
+> --
+> 2.17.1
 
-Again, please follow alphabetical order for adding new node entries.
+Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 
-Also, we have been placing 'status = .. ' entry at the end for new .dts 
-(or .dts entry), but if that is the format used across this board dts
-I am ok with the same.
-
-Thanks,
-Bhupesh
+Thanks.
