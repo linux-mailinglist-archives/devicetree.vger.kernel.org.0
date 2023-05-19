@@ -2,167 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A454709550
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 12:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DEB370955F
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 12:49:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230325AbjESKpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 06:45:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35514 "EHLO
+        id S230491AbjESKth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 06:49:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231824AbjESKpA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 06:45:00 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5D8EC;
-        Fri, 19 May 2023 03:44:57 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34JAigHW043525;
-        Fri, 19 May 2023 05:44:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684493082;
-        bh=pz9X5RVPYmUqGvU6zl4HiycPuT79cB7Xrh/xPmkS/Mk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=jv7DC0GpQk2ezyDOeRSRiD/+eB4Da++TCy9fJ7+L7jNFAh9cpNto12J9Fr3DF4Akm
-         XpgQ1ISCnduwNT7uuYCWjByFni0+2lWTeRtmh5yObQubjUbjjx0QdhxnbauUYBqi/d
-         AMfMMD5UsqmKlj8s76yi1p7C4fTBRdB2i27OL+BY=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34JAiggE021339
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 19 May 2023 05:44:42 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 19
- May 2023 05:44:42 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 19 May 2023 05:44:42 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34JAiffV030900;
-        Fri, 19 May 2023 05:44:41 -0500
-Date:   Fri, 19 May 2023 16:14:42 +0530
-From:   Jai Luthra <j-luthra@ti.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Conor Dooley <conor@kernel.org>, Andrew Davis <afd@ti.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Add binding documentation for TI
- Audio REFCLK
-Message-ID: <e3gfl2hqb5ac3lyj3ji7ncvdjdhkkrefwr2xqrjixavdhxcyil@avdo5ovc4bqv>
-References: <20230515-refclk-v1-0-5e89f01d6733@ti.com>
- <20230515-refclk-v1-1-5e89f01d6733@ti.com>
- <20230517-reprise-unroll-e2223cab3846@spud>
- <cd38d95f-95bd-056e-e3d0-d6c95e3fd80e@linaro.org>
+        with ESMTP id S231341AbjESKtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 06:49:33 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF252E5D
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 03:49:29 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f4c6c4b425so19558125e9.2
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 03:49:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684493368; x=1687085368;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=frnZejZtlcBkz8MuJjU1QiMoUPiymUDXTaMRj7RUn0c=;
+        b=QnzHVl2fZTJYZmbDka04syMJsNo3kQ29ci8v6N2h64mpn2gXEp1XlGkMApvPw419Bn
+         QUUEo1MRtBqcdFled/xc0MNK1w+dyz633PBl99OgaI5u55d+RKniUHOry/Dg3hHtyFnR
+         t9R1TksO6+GQTqpKYOnreUH9k/2ijcygNgnVTADD8JSmcWEt+It0rc8ETpj4Kb+oOi1Y
+         nnElQ0k4b7UzpciXD/vI6k5keHbbWC6uEnz6LIayzZQuxxt0rXIz5IqGyh1Vf0ot3tT/
+         c+a9MYJAsOzWKdzYbEy6YnRQpWNHMqXyQRajtpSSp6OZWRQdz/RV18GPZ/pE/T47xy2Z
+         S2ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684493368; x=1687085368;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=frnZejZtlcBkz8MuJjU1QiMoUPiymUDXTaMRj7RUn0c=;
+        b=JzdoH6sPocotiYMu3dOvDba49VpK4pyxGR/Y1gfejULfTdWUBdGKn3LVZ5DL1FsFaE
+         09UZ5kCmO3sNv2sEnjqW30IgHgDNjROkafMwGR5WWp1RTH5bVM6HMYsAs2uxV9XKcSy5
+         Zgv+V1YN8eAuITHSwYTV3SoCZpRj1b70tMLScswPNpJ2pMGT0+a+i+Ste69TV2rOQKNx
+         kwE/UJSBVIR6fBD6Dh9A3lKHEwqKqNlK+maVWRjHICxsU8qRN6zMko6rCMx8qCfbbtkl
+         p2WJaVXP3JirPXe0mEht6T7310dVpG+c/5X5M7aQY6YqiJpna12A5/aQO9eqqUOh9fWV
+         Ufnw==
+X-Gm-Message-State: AC+VfDzERpcVBenWtbZQ3oNYUWBInWKRjbt0xKw1XQIWQV5/Kg6kqUyV
+        +i+LdN8nKgh3bG1w6BRdLx56qHpcxh3xzXfh6f6YbQ==
+X-Google-Smtp-Source: ACHHUZ6Lxe/rWQ0fC0AGel3DnodQYHpv4BdY+wS1q90nJ9PW51oWqj5db5VaO1KDzFX0PB380dVLziguDoFu8Kxyjsg=
+X-Received: by 2002:a1c:7503:0:b0:3f4:fffc:cd74 with SMTP id
+ o3-20020a1c7503000000b003f4fffccd74mr1053421wmc.16.1684493368353; Fri, 19 May
+ 2023 03:49:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="uyc5revnwgqxyrfw"
-Content-Disposition: inline
-In-Reply-To: <cd38d95f-95bd-056e-e3d0-d6c95e3fd80e@linaro.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230405072836.1690248-1-bhupesh.sharma@linaro.org>
+ <20230405072836.1690248-8-bhupesh.sharma@linaro.org> <ZGdLCdSof027mk5u@gerhold.net>
+ <CAH=2Ntx4H+hOzYLWqiogdBGE+rQ2XayrweE_P8T8gVE0zbwzeg@mail.gmail.com> <8c754bc2-abb3-faaa-0ab5-2c1991dfc2a6@linaro.org>
+In-Reply-To: <8c754bc2-abb3-faaa-0ab5-2c1991dfc2a6@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Fri, 19 May 2023 16:19:17 +0530
+Message-ID: <CAH=2NtyUNJFMbrhvP9BjmzdsLj9kvSYUH_ueAPUan9GRKaq2Xw@mail.gmail.com>
+Subject: Re: [PATCH v6 07/11] arm64: dts: qcom: sm6115: Add Crypto Engine support
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Stephan Gerhold <stephan@gerhold.net>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, vladimir.zapolskiy@linaro.org,
+        rfoss@kernel.org, neil.armstrong@linaro.org, djakov@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---uyc5revnwgqxyrfw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Krzysztof,
-
-Thanks for the review,
-
-On May 18, 2023 at 16:09:01 +0200, Krzysztof Kozlowski wrote:
-> On 17/05/2023 19:15, Conor Dooley wrote:
-> > On Wed, May 17, 2023 at 01:04:05PM +0530, Jai Luthra wrote:
-> >> Add DT bindings for TI's audio reference clocks (REFCLK) present on AM=
-62
-> >> SoC.
-> >=20
-> > This seems fine to me. Perhaps Krzysztof will differ...
-> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> >=20
+On Fri, 19 May 2023 at 16:12, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> On 19.05.2023 12:22, Bhupesh Sharma wrote:
+> > Hi Stephan,
+> >
+> > On Fri, 19 May 2023 at 15:40, Stephan Gerhold <stephan@gerhold.net> wrote:
 > >>
-> >> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> >> ---
-> >>  .../bindings/clock/ti,am62-audio-refclk.yaml       | 44 +++++++++++++=
-+++++++++
-> >>  1 file changed, 44 insertions(+)
+> >> Hi Bhupesh,
 > >>
-> >> diff --git a/Documentation/devicetree/bindings/clock/ti,am62-audio-ref=
-clk.yaml b/Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml
-> >> new file mode 100644
-> >> index 000000000000..7c4cf7abe007
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml
-> >> @@ -0,0 +1,44 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/clock/ti,am62-audio-refclk.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: TI Audio Reference Clock
-> >> +
-> >> +maintainers:
-> >> +  - Jai Luthra <j-luthra@ti.com>
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    items:
-> >> +      - const: ti,am62-audio-refclk
-> >> +      - const: syscon
->=20
-> I just don't get why this is syscon? There are no references to it, no
-> DTS change and nothing in the driver suggesting it has to be syscon
-> (creating regmap for internal use does not count).
+> >> Not sure if this is the latest version of this series since it's pretty
+> >> old but I didn't find a new one. Just came here because you mentioned
+> >> RB1/RB2 [1] in my bam_dma patch and they don't have any BAM defined
+> >> upstream yet.
+> >>
+> >> [1]: https://lore.kernel.org/linux-arm-msm/CAH=2Ntw0BZH=RGp14mYLhX7D6jV5O5eDKRQbby=uCy85xMDU_g@mail.gmail.com/
+> >>
+> >> On Wed, Apr 05, 2023 at 12:58:32PM +0530, Bhupesh Sharma wrote:
+> >>> Add crypto engine (CE) and CE BAM related nodes and definitions to
+> >>> 'sm6115.dtsi'.
+> >>>
+> >>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> >>> ---
+> >>>  arch/arm64/boot/dts/qcom/sm6115.dtsi | 22 ++++++++++++++++++++++
+> >>>  1 file changed, 22 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> >>> index 2a51c938bbcb..ebac026b4cc7 100644
+> >>> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> >>> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> >>> @@ -650,6 +650,28 @@ usb_hsphy: phy@1613000 {
+> >>>                       status = "disabled";
+> >>>               };
+> >>>
+> >>> +             cryptobam: dma-controller@1b04000 {
+> >>> +                     compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
+> >>> +                     reg = <0x0 0x01b04000 0x0 0x24000>;
+> >>> +                     interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
+> >>> +                     #dma-cells = <1>;
+> >>> +                     qcom,ee = <0>;
+> >>> +                     qcom,controlled-remotely;
+> >>> +                     num-channels = <8>;
+> >>> +                     qcom,num-ees = <2>;
+> >>> +                     iommus = <&apps_smmu 0x94 0x11>,
+> >>> +                              <&apps_smmu 0x96 0x11>;
+> >>> +             };
+> >>> +
+> >>> +             crypto: crypto@1b3a000 {
+> >>> +                     compatible = "qcom,sm6115-qce", "qcom,sm8150-qce", "qcom,qce";
+> >>> +                     reg = <0x0 0x01b3a000 0x0 0x6000>;
+> >>> +                     dmas = <&cryptobam 6>, <&cryptobam 7>;
+> >>> +                     dma-names = "rx", "tx";
+> >>> +                     iommus = <&apps_smmu 0x94 0x11>,
+> >>> +                              <&apps_smmu 0x96 0x11>;
+> >>
+> >> Shouldn't you have clocks = <&rpmcc RPM_SMD_CE1_CLK> here to make sure
+> >> the clock for the crypto engine is on? Your binding patch (PATCH 06/11)
+> >> says "Crypto Engine block on Qualcomm SoCs SM6115 and QCM2290 do not
+> >> require clocks strictly" but doesn't say why.
+> >>
+> >> Make sure you don't rely on having rpmcc keep unused clocks on
+> >> permanently. This is the case at the moment, but we would like to change
+> >> this [2]. Adding new users that rely on this broken behavior would just
+> >> make this effort even more complicated.
+> >>
+> >> If you also add the clock to the cryptobam then you should be able to
+> >> see the advantage of my bam_dma patch [3]. It allows you to drop
+> >> "num-channels" and "qcom,num-ees" from the cryptobam in your changes
+> >> above because it can then be read directly from the BAM registers.
+> >
+> > Thanks for pointing this out. Actually that's why I was using your
+> > patch while testing with RB1/RB2 :)
+> >
+> > Yes, so the background is that I am preparing a new version of this
+> > crypto enablement patchset.
+> > Also your assumption about the clocks being turned on by the firmware
+> > is true for RB1/RB2 devices, so enabling them via Linux is optional as
+> > per Qualcomm enggs.
+> This is not necessarily true. Currently it's kept always-on on
+> by clk_smd_rpm_handoff, but that's a hack from 10 years ago when smd
+> was still new.
+>
+> >
+> > So, I am testing the new patchset right now with 'clock' entries
+> > provided in the .dtsi and see if that causes any issue / improvement
+> > (etc.)
+> It won't change since it's on anyway, but that won't be a given for long.
 
-Sorry you're right, I missed Andrew's series removing syscon:
-https://lore.kernel.org/linux-clk/20230516184626.154892-1-afd@ti.com/
+Right, so that's what I observe: RPM_SMD_CE1_CLK is always on by the
+time crypto _probe gets called.
+So, IMO let's not mix this patchset with the other fix which probably
+will fix the 10-year old clk_smd_rpm handoff keeping
+these clocks on.
 
-Will re-base my patches on top of it and send v2.
+Probably that should be a separate changeset - requiring very thorough
+checks to make sure that we don't break
+working platforms.
 
->=20
-> Andrew,
-> Is this the pattern we discussed and wanted to remove?
->=20
-> Best regards,
-> Krzysztof
->=20
-
-Thanks,
-Jai
-
---uyc5revnwgqxyrfw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmRnUxYACgkQQ96R+SSa
-cUWHeg//S9Bd9zlNj0Q8CIjTyzpLh1dChtqtqpJAPnt2JDm4O8/6CyaBF1up7G/2
-kHUhBukHhaoOvsX/e24axalKjMbLkPwgZnjSDNPoAyWUyAx4FNYP2QIbuuHCEcBl
-YUJ6D7RTnptcdbBek8zQ0TGC5nQFKBkjxQafi9aAlQ66zOuDGT9S0h4S1sVgp5u0
-2XcwyKppOgEN9m7nmSfjno5QwhwacH+7GKMwlD/NcBdmsOMVvZd/Fj8ay16akb7A
-cRJ0Vgsh+PYWzCFp5KvqIHilxHhDOPH8BiwHJ/YT8YCoTutIh1AZ3PCKvjnuGr+q
-UoA0cXwsCF31yKRUiGRigpXzNXHYDobovNiyA3A6CKyNXZC4TPOV82SBQ9TSZ/Bi
-4HnG5cM4X5BUu8uSZCNne79c7Vh2BQWrT93kBAw6+bkcPq/OjmVF23SVdsWdbWD9
-rmWxz7Bmyk5Cie13OvUpbz7Zn3VKxoSPpKU0NKGGkQYde28BJMMAf+9qIUK/8s54
-3set9qv3xXVl5EilLIwABF2qX36huiOdpxfEkHw9GrpqMTSn4lb2fvv44bILqptR
-xtF5xK5/BIT2yE6IQyasuv9Zc4NVARvmCMCQ6IOr4WJjqsyaEqJ4NuErRnsEoil1
-QnJytx6LCIwwLJ/UQpdMDRYw+Ap47OgaZMu5j/HFX2c++IAmiCQ=
-=B83k
------END PGP SIGNATURE-----
-
---uyc5revnwgqxyrfw--
+Thanks.
