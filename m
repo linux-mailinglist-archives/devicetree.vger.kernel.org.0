@@ -2,175 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE93A7097FA
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 15:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EAF770980A
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 15:16:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230422AbjESNJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 09:09:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42656 "EHLO
+        id S229524AbjESNQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 09:16:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230220AbjESNJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 09:09:11 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1499A10E
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 06:09:09 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2af28303127so3687701fa.3
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 06:09:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684501747; x=1687093747;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/Zv1mah4N/HaBlq32OJrOUOQJENrx2Ay1ik5IJM6AVI=;
-        b=E1COi7fX2rR/FXALr7SUoo8vmNVfuubFb6T0kKFyjEycRTKBAFRDmAdnqRsiv96QI+
-         YuksjYw1TCI8YD7OL1HQrzgBRoCAIAFokNHTHkDVC1hU3qngsBeDaYnHcwPs5B3kG3Es
-         u00S6fMxCjT7Mb78GlmwZedLK69dZlMIFKBL02M+7Q+i2qcCqg0QAnEjTlwu+jqP61+t
-         XdH1jZt1ZsHLr3eQuYX9Uk+sJk8rDuB0PHuNDxu1ssWyB4KCdzOdVXgajCPByvWxCIDq
-         eFyq3BBwUZrDO/qwGY7btyI+X5TzriO5HGMlo/fA56RtJOJp3ByAog9e5a2LPgxKgf2g
-         5u5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684501747; x=1687093747;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/Zv1mah4N/HaBlq32OJrOUOQJENrx2Ay1ik5IJM6AVI=;
-        b=bOvc2Y6w1Bp30WF4Fd8HsDZRx2RBBxoMNWtm0x8wBFd0OOELu5tjDE2CciTDk6mqJn
-         BB2tPSaxUwbhy2y8q9VUGcEZW4ONaojkqSnoieNRFrFQXtiqYb6LN8jDD+ITdznd545L
-         qh4BXI2d7yOopjrkAh+u9vAF/h3mY4i8qDJZVPn/CXS3261uKp/Nj/5ESs66A8+MpXe/
-         lCKj5nPE3d0cWYlgJ8dikvya15oRTRVMAZ+3CtEFUGjVZ0Ajl+2Oy6ydgCBo4gt/Nkj3
-         gQz2Q7walgobMdDP1kIXtqnchkM3vw2ObiTqNIsHCV6p1EvREGxQgRS1/bwjiWHCo9VG
-         GKZA==
-X-Gm-Message-State: AC+VfDzQTTLLfOubgAtKikWJEQrJ/yFLkUGbA7aZEuioVU3LDo5Gh3rZ
-        VXLFEd4ISGAjsbHLSbSN9FPJew==
-X-Google-Smtp-Source: ACHHUZ7c/wlNtcqnvOYUHVFfllflTtq4Bc0T77kg8q0qZWMwJo/oVsLcE8qIc4ULCRXWHIkvU13COQ==
-X-Received: by 2002:ac2:5a4d:0:b0:4ed:cb37:7d8c with SMTP id r13-20020ac25a4d000000b004edcb377d8cmr716553lfn.67.1684501747257;
-        Fri, 19 May 2023 06:09:07 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id q30-20020ac25a1e000000b004edc7f6ee44sm278767lfn.234.2023.05.19.06.09.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 May 2023 06:09:06 -0700 (PDT)
-Message-ID: <4a9248c0-96ec-1986-d874-1cb7d8aac0ac@linaro.org>
-Date:   Fri, 19 May 2023 15:09:05 +0200
+        with ESMTP id S229794AbjESNQq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 09:16:46 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5848BD8;
+        Fri, 19 May 2023 06:16:43 -0700 (PDT)
+Received: (Authenticated sender: alexis.lothore@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id EE0CE240003;
+        Fri, 19 May 2023 13:16:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1684502201;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=BMRHN6Y9kPqZOTRa6PWX6stTWQUsJnYXYUXm/l4rB2U=;
+        b=i6E1UvJwyBnGESykQGwUgVfdIzCHSc8nEk+PZxzWIqrfHM7XdbeYJ2oXsoFnflBQCUmFIe
+        kIiw69Y1pNuq0GnGM7kJovTQESmOI+R9M7swzDFfpn9mBTI1t2kwCqWRQyVRMCAcVFKN3D
+        5efkHEXc64VmpUda6WBRHl0bkzHcTGYUP68iF0QD789LsRTWpp+OroZWVaQuktDgeeRQbf
+        gQRfE17KFrKM/OfA5kDQFpcPMf+qz5UG0w4tQ1peAyRCmP4X0u5jeqdsMT+IiEWbYoHRNm
+        5RHntfpzSWPDn6iZVtma2/YkdSEYav31sLCatplDvXRWPzvCiYxzuQ6HDtPA+A==
+Message-ID: <7419ffc0-b292-97c4-fee6-610a1a841265@bootlin.com>
+Date:   Fri, 19 May 2023 15:16:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/4] clk: qcom: clk-alpha-pll: Add support for lucid ole
- pll ops
+ Thunderbird/102.10.1
+Subject: Re: [PATCH net-next 2/2] net: dsa: mv88e6xxx: enable support for
+ 88E6361 switch
 Content-Language: en-US
-To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230509161218.11979-1-quic_jkona@quicinc.com>
- <20230509161218.11979-2-quic_jkona@quicinc.com>
- <019999fd-3c86-8c85-76c7-8d0206e60f4d@linaro.org>
- <55fc32df-f01b-1ba3-3813-26a5f8c7f730@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <55fc32df-f01b-1ba3-3813-26a5f8c7f730@quicinc.com>
+To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        paul.arola@telus.com, scott.roberts@telus.com
+References: <20230517203430.448705-1-alexis.lothore@bootlin.com>
+ <20230517203430.448705-3-alexis.lothore@bootlin.com>
+ <9a836863-c279-490f-a49a-de4db5de9fd4@lunn.ch>
+ <ee281c0f-5e8b-8453-08bf-858c5503dc22@bootlin.com>
+ <6643e099-7b72-4da2-aba1-521e1a4c961b@lunn.ch>
+ <20230519143713.1ac9c7a1@thinkpad>
+From:   =?UTF-8?Q?Alexis_Lothor=c3=a9?= <alexis.lothore@bootlin.com>
+In-Reply-To: <20230519143713.1ac9c7a1@thinkpad>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 19.05.2023 14:49, Jagadeesh Kona wrote:
-> Hi,
+On 5/19/23 14:38, Marek Behún wrote:
+> On Thu, 18 May 2023 14:58:00 +0200
+> Andrew Lunn <andrew@lunn.ch> wrote:
 > 
-> Thanks Konrad for your review!
-> 
-> On 5/10/2023 1:36 AM, Konrad Dybcio wrote:
->>
->>
->> On 9.05.2023 18:12, Jagadeesh Kona wrote:
->>> From: Taniya Das <quic_tdas@quicinc.com>
+>>>>> +	[MV88E6361] = {
+>>>>> +		.prod_num = MV88E6XXX_PORT_SWITCH_ID_PROD_6361,
+>>>>> +		.family = MV88E6XXX_FAMILY_6393,
+>>>>> +		.name = "Marvell 88E6361",
+>>>>> +		.num_databases = 4096,
+>>>>> +		.num_macs = 16384,
+>>>>> +		.num_ports = 11,
+>>>>> +		/* Ports 1, 2 and 8 are not routed */
+>>>>> +		.invalid_port_mask = BIT(1) | BIT(2) | BIT(8),
+>>>>> +		.num_internal_phys = 5,  
+>>>>
+>>>> Which ports have internal PHYs? 2, 3, 4, 5, 6, 7 ?  What does
+>>>> mv88e6xxx_phy_is_internal() return for these ports, and
+>>>> mv88e6xxx_get_capsmv88e6xxx_get_caps()? I'm wondering if you actually
+>>>> need to list 8 here?  
 >>>
->>> Add support for lucid ole pll ops to configure and control the
->>> lucid ole pll. The lucid ole pll has an additional test control
->>> register which is required to be programmed, add support to
->>> program the same.
+>>> Indeed there is something wrong here too. I need to tune
+>>> mv88e6393x_phylink_get_caps to reflect 88E6361 differences.
 >>>
->>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
->>> ---
->> Isn't this commit "write to PLL_TEST_CTL_U2 on LUCID_EVO" instead?
+>>> As stated above, port 3 to 7 are the ones with internal PHY.
+>>> For mv88e6xxx_phy_is_internal, I see that it is merely comparing the port index
+>>> to the number of internal phys, so in this case it would advertise (wrongly)
+>>> that ports 0 to 4 have internal phys.  
 >>
->> Meaninglessly duplicating ops does not seem useful.
->>
->> Konrad
+>> Ports 1 and 2 should hopefully be protected by the
+>> invalid_port_mask. It should not even be possible to create those
+>> ports. port 0 is interesting, and possibly currently broken on
+>> 6393. Please take a look at that.
 > 
-> Though we are reusing same ops for EVO and OLE, PLL_TEST_CTL_U2 register programming is applicable only to OLE PLL type.
-Well, your patch makes it unconditional (modulo programmer error) so
-I think that makes little sense.. A comment would be enough, imo.
+> Why would port 0 be broken on 6393x ?
+By "broken", I guess Andrew means that if we feed port 0 to
+mv88e6xxx_phy_is_internal, it will return true, which is wrong since there is no
+internal phy for port 0 on 6393X ?
+> 
+> Marek
 
-Konrad
-And PLL type is useful to properly refer respective hardware datasheets. Hence added separate ops for OLE PLL type.
-> 
-> 
->>>   drivers/clk/qcom/clk-alpha-pll.c | 2 ++
->>>   drivers/clk/qcom/clk-alpha-pll.h | 4 ++++
->>>   2 files changed, 6 insertions(+)
->>>
->>> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
->>> index b9f6535a7ba7..f81c7c561352 100644
->>> --- a/drivers/clk/qcom/clk-alpha-pll.c
->>> +++ b/drivers/clk/qcom/clk-alpha-pll.c
->>> @@ -55,6 +55,7 @@
->>>   #define PLL_TEST_CTL(p)        ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL])
->>>   #define PLL_TEST_CTL_U(p)    ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U])
->>>   #define PLL_TEST_CTL_U1(p)     ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U1])
->>> +#define PLL_TEST_CTL_U2(p)     ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U2])
->>>   #define PLL_STATUS(p)        ((p)->offset + (p)->regs[PLL_OFF_STATUS])
->>>   #define PLL_OPMODE(p)        ((p)->offset + (p)->regs[PLL_OFF_OPMODE])
->>>   #define PLL_FRAC(p)        ((p)->offset + (p)->regs[PLL_OFF_FRAC])
->>> @@ -2096,6 +2097,7 @@ void clk_lucid_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regma
->>>       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL(pll), config->test_ctl_val);
->>>       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U(pll), config->test_ctl_hi_val);
->>>       clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U1(pll), config->test_ctl_hi1_val);
->>> +    clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U2(pll), config->test_ctl_hi2_val);
->>>         /* Disable PLL output */
->>>       regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
->>> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
->>> index d07b17186b90..4d9b6d5b7062 100644
->>> --- a/drivers/clk/qcom/clk-alpha-pll.h
->>> +++ b/drivers/clk/qcom/clk-alpha-pll.h
->>> @@ -125,6 +125,7 @@ struct alpha_pll_config {
->>>       u32 test_ctl_val;
->>>       u32 test_ctl_hi_val;
->>>       u32 test_ctl_hi1_val;
->>> +    u32 test_ctl_hi2_val;
->>>       u32 main_output_mask;
->>>       u32 aux_output_mask;
->>>       u32 aux2_output_mask;
->>> @@ -171,6 +172,7 @@ extern const struct clk_ops clk_alpha_pll_zonda_ops;
->>>   #define clk_alpha_pll_postdiv_zonda_ops clk_alpha_pll_postdiv_fabia_ops
->>>     extern const struct clk_ops clk_alpha_pll_lucid_evo_ops;
->>> +#define clk_alpha_pll_lucid_ole_ops clk_alpha_pll_lucid_evo_ops
->>>   extern const struct clk_ops clk_alpha_pll_reset_lucid_evo_ops;
->>>   #define clk_alpha_pll_reset_lucid_ole_ops clk_alpha_pll_reset_lucid_evo_ops
->>>   extern const struct clk_ops clk_alpha_pll_fixed_lucid_evo_ops;
->>> @@ -196,6 +198,8 @@ void clk_zonda_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
->>>                    const struct alpha_pll_config *config);
->>>   void clk_lucid_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
->>>                    const struct alpha_pll_config *config);
->>> +#define clk_lucid_ole_pll_configure(pll, regmap, config) \
->>> +            clk_lucid_evo_pll_configure(pll, regmap, config)
->>>   void clk_rivian_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
->>>                     const struct alpha_pll_config *config);
->>>   void clk_stromer_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
-> 
-> Thanks & Regards,
-> Jagadeesh
+-- 
+Alexis Lothoré, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
