@@ -2,61 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3596709F1F
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 20:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE13F709F47
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 20:43:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbjESSek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 14:34:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39238 "EHLO
+        id S229501AbjESSnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 14:43:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229673AbjESSei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 14:34:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 073DF1A6;
-        Fri, 19 May 2023 11:34:38 -0700 (PDT)
+        with ESMTP id S230180AbjESSm6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 14:42:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F28A7E58;
+        Fri, 19 May 2023 11:42:55 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 85FE165A5E;
-        Fri, 19 May 2023 18:34:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24FF6C433D2;
-        Fri, 19 May 2023 18:34:33 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8E85A65A7B;
+        Fri, 19 May 2023 18:42:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 686C9C433D2;
+        Fri, 19 May 2023 18:42:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684521276;
-        bh=eeko69CoO8ZrCLhtBQPdoKb6TrEQeWu0O7r9Z4y9WyI=;
+        s=k20201202; t=1684521775;
+        bh=mlw58LfZETVkOjEGxc7UmG/44KBVI+gULotE6qPpqGc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JlJEz5/fnfTeVT2F9T0JGJYwTG5ZOKk0uPVzkWYsehaV7usdCNAIu2Z2/r8v8s+rH
-         u8HYQSvGExfEQDNk26ID9aVGrlaAEU+ax0gjbdULERwkzpYY/wHz1XhhM73074LkRb
-         PGQGQGL+QXufYkxcwom4NzC4/OQwDL/kJOnVUpxF0fEtwneheu4roB5C++12c44qH2
-         Z2VVcTnO2ni7jAtcXuWBWBnZmzbsONKr9ikIFEBbBBE9LWrK2v9Nqpsh1OnclfukSM
-         pZwD3NCNzvarD3kereEo8SlKMybREFlwaFMkz8oLho7oYT3ot5sNTva9jwZfuXUhKQ
-         u4b1Onax2BMdQ==
-Date:   Fri, 19 May 2023 19:34:31 +0100
+        b=FA75BAB2ZlcZAsReZOVR93HHw0nnb8z8ihDCr4KMvEXIAdBsVLLTsYS9+uogkQfOm
+         X96YagQxA1z6mAqR0CEA1a7Hp9F9zPt0GPgMxkWHgc/jTlwgGeqxM6UxhHV1VH3bGE
+         LG9vPNuxrYnSe3NWZhlsskYAcy+CM7jt0nVGou542MIAOGyIGqdm12EodHadiul/+u
+         nRtltc9c15EZY8mcQ21WpSIFx5b+7oLlp4GeteUof6rHrGdcEpUvKd4rwt/6NPLMvH
+         iVx+nRtlVrG3ND/ylytWPEAyRSEYK3GL+dhYUZ/oB5V4U1UudbskFBfbahpmTzaWUy
+         gmi2/JyURbu+A==
+Date:   Fri, 19 May 2023 19:42:50 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Artur Weber <aweber.kernel@gmail.com>
-Cc:     thierry.reding@gmail.com, Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Nikita Travkin <nikita@trvn.ru>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v5 1/3] dt-bindings: display: panel: Add Samsung S6D7AA0
- LCD panel controller
-Message-ID: <20230519-catatonic-swimmer-80b086ae0586@spud>
-References: <20230519170354.29610-1-aweber.kernel@gmail.com>
- <20230519170354.29610-2-aweber.kernel@gmail.com>
+        Walker Chen <walker.chen@starfivetech.com>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: power: Add power-domain header for
+ JH7110
+Message-ID: <20230519-irk-dwelled-6a499c482e62@spud>
+References: <20230519060202.15296-1-changhuang.liang@starfivetech.com>
+ <20230519060202.15296-2-changhuang.liang@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ZbsHYCLMrj/q3z3Z"
+        protocol="application/pgp-signature"; boundary="gnSYCpl51AjwmCdQ"
 Content-Disposition: inline
-In-Reply-To: <20230519170354.29610-2-aweber.kernel@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230519060202.15296-2-changhuang.liang@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,49 +60,31 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---ZbsHYCLMrj/q3z3Z
+--gnSYCpl51AjwmCdQ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 19, 2023 at 07:03:52PM +0200, Artur Weber wrote:
-> Add bindings for the S6D7AA0 LCD panel controller, including the
-> S6D7AA0-LSL080AL02 panel used in the Samsung Galaxy Tab 3 8.0 family
-> of tablets, and the S6D7AA0-LSL080AL03 and S6D7AA0-LTL101AT01 panels
-> used in the Samsung Galaxy Tab A 8.0 and 9.7 2015.
->=20
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
-> Changed in v2:
->  - Updated commit message
->  - Added reg to required properties
->  - Reordered required properties
-> Changed in v3:
->  - Fixed patch that didn't apply
-> Changed in v4:
->  - Added LSL080AL03, LTL101AT01 compatibles
->  - Added description to reset-gpios
->  - Added vmipi-supply, renamed enable-supply to power-supply
-> Changed in v5:
->  - Changed compatibles to avoid concatenating multiple model numbers
->  - Removed '|' from multiline descriptions
->  - Fixed license
+On Thu, May 18, 2023 at 11:01:59PM -0700, Changhuang Liang wrote:
+> Add power-domain header for JH7110 SoC, it can use to operate dphy
+> power.
 
-Looks like you've resolved the things Krzysztof and Rob took issue with.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+That is not an accurate description of what you are doing here!
+**IF** you resubmit for another reason, please change that wording
+to match what you are doing here. Otherwise, I will fix it up on
+application.
 
 Thanks,
-Conor.
+Conor
 
---ZbsHYCLMrj/q3z3Z
+--gnSYCpl51AjwmCdQ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGfBNwAKCRB4tDGHoIJi
-0u0GAP9naF1Vwzu/CY4ARw7Njk+TP9o/o4hxhuUWXHEbiUuBlwEAoblSB3j14JWx
-NEOpn/W7lrzZa4Ggt66sk+s2FdulmwY=
-=/BPW
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGfDKgAKCRB4tDGHoIJi
+0pu+AP9egx1tjjyQI9+8Xir3ZKULUhK/9wI0WOrT3Sc65ivI+QEAx2ydJ1njiPwX
+1Gbao6cA/nAxqQotyW/8etgslEbAOgQ=
+=msan
 -----END PGP SIGNATURE-----
 
---ZbsHYCLMrj/q3z3Z--
+--gnSYCpl51AjwmCdQ--
