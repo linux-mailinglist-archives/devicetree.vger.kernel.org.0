@@ -2,117 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D74BD70951A
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 12:35:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62B3B709528
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 12:37:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232047AbjESKfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 06:35:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53974 "EHLO
+        id S230344AbjESKhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 06:37:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231537AbjESKf3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 06:35:29 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FCFD1BD7
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 03:35:07 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3063433fa66so1967399f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 03:35:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684492505; x=1687084505;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=kgtk9QjAFcm8bGOS+Euv76czaSdooZrFQsFvOBEa6w8=;
-        b=AsOgffUMUzEpsgw5DBeAgbvbHsLem6PXPnqIfe+Rh+tOi+kfnOksgYA1yjfJwxqAWD
-         hLIkLw75CNsNBshpgwr/UcstQO5mDE86in1tJXb+1DnjKRiJf24EqhQ57otgMZn6Fyyu
-         gDj9KVrbFxZZMkiQWQvxPdVBoj/gcxdxdSu8jUbMF61D9mtCVrgF2ZIHRCnJ7nyEVJzr
-         zSmDCJ2K1J+tAsG8shWdQSEedSO/AfFe15yp8l50gWPGYNXWL8iJp1PPtxC112jUX2Cc
-         kRIGjRsLtzAExQKXwVafT+QZL7vsXDiqgW2TkW4PEhtESEmj9sCCvbhTdtXwL8dO9bUZ
-         VjvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684492505; x=1687084505;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kgtk9QjAFcm8bGOS+Euv76czaSdooZrFQsFvOBEa6w8=;
-        b=WJoZeMYuGsJi7TWXd5P6ubxxS7mP0SspCv/TD3DiuUvc5wmPHuZpJWuWB+/AB8qhuz
-         pHzRW01WHFTRPu95ly74ABgkhgA6pevGxEcoa+ZjfjoTgyH2OCVSpiTcdr/IplHWD+2k
-         go0wnKNs9pUI4xrT1DUhGPcQy47QDQ14mRuAx6sDo/1DsOnPZcCWn7qE+PRvL6oPV/Q8
-         v+Yvg1CCuw6PL4RxPycyL+HIh35R0hnPkjj3v9DiRxX4BlHDkiGQgDFvzYwnqJIQJkQQ
-         tDJRzJNBM8+2QXy8wbyTQ0+NuJMqTFntszAdaVixNr3BUSOpJXrzcmM7lddcTHjpMDeu
-         aLmg==
-X-Gm-Message-State: AC+VfDzR64OfSoMT+ZnzXSIZli13TD83b81xSt8UL74qbo6llRZXYWy2
-        IH4ItitsQ/MIELH+LvPThnUNShVS7tanBtHVg/A24Bqg9cZ6OMBj
-X-Google-Smtp-Source: ACHHUZ5W3yDJ8lPgYu4QIOosFTi8qbzFRCKl8E+s0hkZ3PSKuO4Qjz8uZFNvx4I9sI7CuAIOAGLR11ZPmK72RwmgreI=
-X-Received: by 2002:adf:d0cc:0:b0:309:46a4:6378 with SMTP id
- z12-20020adfd0cc000000b0030946a46378mr1407237wrh.12.1684492505006; Fri, 19
- May 2023 03:35:05 -0700 (PDT)
+        with ESMTP id S231444AbjESKhf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 06:37:35 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D52B610C9;
+        Fri, 19 May 2023 03:37:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1684492626; x=1716028626;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=qfmmYRa86O3IofAbf9RtJNH6g7Li/YLiiKzZUrXltxs=;
+  b=X21NCP4yWMnDHc0IZDFFTJW40DivludynSwPvGZot55lu+QCvE07Ye1T
+   2UY0srljPOrlu2xOjIIBPssS2n0EmUjN5m50duwzvYgAYsVSSJRN2JmqQ
+   wbeEyHt+QRUxNTbl33KhDeuIrDPM6Bec8ZhJy+Ky/taURyExCLXlu3/+N
+   xJ3xfLTAgeIYd16FarHJc2tAc4ny6nWpzQuEiZpqpPVhI10GfDxBpfvkQ
+   xVABpsxzFSZXZuo6tetMw/ilANQNFbfWreBNJ51h8Dw1uWA8Nev6Q+OI+
+   M5D2/5Z1nQbIvZ5vQPYag2TtylaEjqSU5WfntxJkaHleqXPYCQ+SdBK83
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="438691414"
+X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; 
+   d="scan'208";a="438691414"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 May 2023 03:37:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10714"; a="949069562"
+X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; 
+   d="scan'208";a="949069562"
+Received: from ahunter6-mobl1.ger.corp.intel.com (HELO [10.0.2.15]) ([10.249.38.109])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 May 2023 03:36:57 -0700
+Message-ID: <249e1058-790d-8e5b-663a-5ae0ceef3fe8@intel.com>
+Date:   Fri, 19 May 2023 13:36:52 +0300
 MIME-Version: 1.0
-References: <20230405072836.1690248-1-bhupesh.sharma@linaro.org>
- <20230405072836.1690248-10-bhupesh.sharma@linaro.org> <af22628c-e54b-f7e1-16a6-6534f4526cd5@linaro.org>
-In-Reply-To: <af22628c-e54b-f7e1-16a6-6534f4526cd5@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Fri, 19 May 2023 16:04:53 +0530
-Message-ID: <CAH=2NtyiQ5C9zSgZcHnvvXK42+g4+Ua4h1pcBCPCAtZhnpkyNg@mail.gmail.com>
-Subject: Re: [PATCH v6 09/11] arm64: dts: qcom: sm8250: Add Crypto Engine support
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org, vladimir.zapolskiy@linaro.org,
-        rfoss@kernel.org, neil.armstrong@linaro.org, djakov@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.11.0
+Subject: Re: [PATCH v2 2/4] mmc: sdhci-esdhc-imx: remove redundant write
+ protect code
+Content-Language: en-US
+To:     haibo.chen@nxp.com, ulf.hansson@linaro.org,
+        linux-mmc@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
+        cniedermaier@dh-electronics.com, devicetree@vger.kernel.org,
+        kernel@dh-electronics.com
+References: <20230506074037.522961-1-haibo.chen@nxp.com>
+ <20230506074037.522961-3-haibo.chen@nxp.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+In-Reply-To: <20230506074037.522961-3-haibo.chen@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 6 Apr 2023 at 19:29, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> On 5.04.2023 09:28, Bhupesh Sharma wrote:
-> > Add crypto engine (CE) and CE BAM related nodes and definitions to
-> > 'sm8250.dtsi'.
-> >
-> > Co-developed-by and Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 22 ++++++++++++++++++++++
-> >  1 file changed, 22 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > index 7b78761f2041..2f6b8d4a2d41 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > @@ -2222,6 +2222,28 @@ ufs_mem_phy_lanes: phy@1d87400 {
-> >                       };
-> >               };
-> >
-> > +             cryptobam: dma-controller@1dc4000 {
-> > +                     compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
-> > +                     reg = <0 0x01dc4000 0 0x24000>;
-> > +                     interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-> > +                     #dma-cells = <1>;
-> > +                     qcom,ee = <0>;
-> > +                     qcom,controlled-remotely;
-> > +                     iommus = <&apps_smmu 0x594 0x0011>,
-> > +                              <&apps_smmu 0x596 0x0011>;
-> > +             };
-> > +
-> > +             crypto: crypto@1dfa000 {
-> > +                     compatible = "qcom,sm8250-qce", "qcom,sm8150-qce", "qcom,qce";
-> > +                     reg = <0 0x01dfa000 0 0x6000>;
-> > +                     dmas = <&cryptobam 4>, <&cryptobam 5>;
-> > +                     dma-names = "rx", "tx";
-> > +                     iommus = <&apps_smmu 0x594 0x0011>,
-> > +                              <&apps_smmu 0x596 0x0011>;
-> > +                     interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
-> > +                     interconnect-names = "memory";
-> Shouldn't we also attach the contexts from qcom_cedev_ns_cb{}?
+On 6/05/23 10:40, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
+> 
+> The logic of the esdhc_pltfm_get_ro() is just the same with common
+> code sdhci_check_ro(). So remove this redundant code, depends on
+> mmc_of_parse() and sdhci_check_ro() to cover the write protect
+> logic.
+> 
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  drivers/mmc/host/sdhci-esdhc-imx.c | 47 +-----------------------------
+>  1 file changed, 1 insertion(+), 46 deletions(-)
+> 
+> diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c b/drivers/mmc/host/sdhci-esdhc-imx.c
+> index c7db742f729c..54531aab70f0 100644
+> --- a/drivers/mmc/host/sdhci-esdhc-imx.c
+> +++ b/drivers/mmc/host/sdhci-esdhc-imx.c
+> @@ -201,22 +201,8 @@
+>  /* ERR004536 is not applicable for the IP  */
+>  #define ESDHC_FLAG_SKIP_ERR004536	BIT(17)
+>  
+> -enum wp_types {
+> -	ESDHC_WP_NONE,		/* no WP, neither controller nor gpio */
+> -	ESDHC_WP_CONTROLLER,	/* mmc controller internal WP */
+> -	ESDHC_WP_GPIO,		/* external gpio pin for WP */
+> -};
+> -
+> -/*
+> - * struct esdhc_platform_data - platform data for esdhc on i.MX
+> - *
+> - * ESDHC_WP(CD)_CONTROLLER type is not available on i.MX25/35.
+> - *
+> - * @wp_type:	type of write_protect method (see wp_types enum above)
+> - */
+> -
+> +/* struct esdhc_platform_data - platform data for esdhc on i.MX */
+>  struct esdhc_platform_data {
+> -	enum wp_types wp_type;
+>  	int max_bus_width;
+>  	unsigned int delay_line;
+>  	unsigned int tuning_step;       /* The delay cell steps in tuning procedure */
+> @@ -994,25 +980,6 @@ static inline void esdhc_pltfm_set_clock(struct sdhci_host *host,
+>  
+>  }
+>  
+> -static unsigned int esdhc_pltfm_get_ro(struct sdhci_host *host)
+> -{
+> -	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> -	struct pltfm_imx_data *imx_data = sdhci_pltfm_priv(pltfm_host);
+> -	struct esdhc_platform_data *boarddata = &imx_data->boarddata;
+> -
+> -	switch (boarddata->wp_type) {
+> -	case ESDHC_WP_GPIO:
+> -		return mmc_gpio_get_ro(host->mmc);
+> -	case ESDHC_WP_CONTROLLER:
+> -		return !(readl(host->ioaddr + SDHCI_PRESENT_STATE) &
+> -			       SDHCI_WRITE_PROTECT);
+> -	case ESDHC_WP_NONE:
+> -		break;
+> -	}
+> -
+> -	return -ENOSYS;
+> -}
+> -
+>  static void esdhc_pltfm_set_bus_width(struct sdhci_host *host, int width)
+>  {
+>  	u32 ctrl;
+> @@ -1380,7 +1347,6 @@ static struct sdhci_ops sdhci_esdhc_ops = {
+>  	.get_max_clock = esdhc_pltfm_get_max_clock,
+>  	.get_min_clock = esdhc_pltfm_get_min_clock,
+>  	.get_max_timeout_count = esdhc_get_max_timeout_count,
+> -	.get_ro = esdhc_pltfm_get_ro,
+>  	.set_timeout = esdhc_set_timeout,
+>  	.set_bus_width = esdhc_pltfm_set_bus_width,
+>  	.set_uhs_signaling = esdhc_set_uhs_signaling,
+> @@ -1588,17 +1554,6 @@ sdhci_esdhc_imx_probe_dt(struct platform_device *pdev,
+>  	struct esdhc_platform_data *boarddata = &imx_data->boarddata;
+>  	int ret;
+>  
+> -	if (of_property_read_bool(np, "fsl,wp-controller"))
+> -		boarddata->wp_type = ESDHC_WP_CONTROLLER;
 
-Sure, I have fixed this in v7. Will share it shortly.
+esdhc_pltfm_get_ro() differs from sdhci_check_ro() by defaulting
+to -ENOSYS if there is neither "fsl,wp-controller" nor "wp-gpios",
+which would result in write-protect off (not supported, e.g. microsd).
+So more explanation is needed for why removing "fsl,wp-controller"
+will give the same result.
 
-Thanks.
+> -
+> -	/*
+> -	 * If we have this property, then activate WP check.
+> -	 * Retrieveing and requesting the actual WP GPIO will happen
+> -	 * in the call to mmc_of_parse().
+> -	 */
+> -	if (of_property_read_bool(np, "wp-gpios"))
+> -		boarddata->wp_type = ESDHC_WP_GPIO;
+> -
+>  	of_property_read_u32(np, "fsl,tuning-step", &boarddata->tuning_step);
+>  	of_property_read_u32(np, "fsl,tuning-start-tap",
+>  			     &boarddata->tuning_start_tap);
+
