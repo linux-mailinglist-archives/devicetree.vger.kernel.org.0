@@ -2,87 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C21B7709FA8
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 21:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF3B3709FC7
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 21:14:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230351AbjESTHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 15:07:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52530 "EHLO
+        id S229945AbjESTOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 15:14:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230180AbjESTG5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 15:06:57 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E030BE4D
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 12:06:45 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f00d41df22so1475568e87.1
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 12:06:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684523204; x=1687115204;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Rui+ZWUFjt86muw9r1inOKrWuQmQAvAfmjQmisslnGc=;
-        b=rXItGa2oK4EId+ypJUigwh2I4n2aUm3LD0VPGd7JlVZCaPN/L88EcMPOP4jWOnPsQZ
-         CMm4ajybmaym87ABRc8V6w1o4kohcT+W1ohUypA9+EDCj73+q5y0nvyWbhDHobWdb6Wu
-         sIyjjd8bJ8+fnLS+pt1HFKqrBe9SO5gkmQyicwHfhc6LPGdryrcV1gAFOFPuRy+/V/vf
-         CEB4XZ2V6Bv9bm8AjqnJWsxwAw2BnFMIUlmk2zv186UF9J2mfuO7wgqfYg5tVieB6J6P
-         kLogJIvzdk6ert42EdAka5D9GXdWfHp+tod5qHax9lYYW06PeODCbhHf8lYLWQS8Oqlk
-         9n0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684523204; x=1687115204;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rui+ZWUFjt86muw9r1inOKrWuQmQAvAfmjQmisslnGc=;
-        b=lEb3B8q+QAEDhIpG33L+OLP7c8oQv+MFZJFRVQ0guP5s/E3AfU80eXtyln1614M19L
-         RUbUzTn+amPqY4mkjWj2Zgd45VUYcJrqyHVjIb45iTdfKMPZLSGknRjTK59S9ySySbhU
-         vCH9WNtSVfosiNBBJ9eOsMIhJpa/KXSDU8Dv0wHnNDg1xUH/Nk6+RvW+oIGIYQCzwqKN
-         uV8EfKEyAAIpasIAAPLBwIqsNn7s7pCgaVu1cDyky9PjeBoFWrEGquOMWCTahiXyFaye
-         cE5JRRjrGWClJDy3XggtHQNcYjohM6VhlRg25zpTDSlhcm5Vb9r+0y3WPuXSkCGXrb46
-         zPbA==
-X-Gm-Message-State: AC+VfDxkjTwPBV7ckBhRDBZs4Y/N10lTB6Jv9DaMVOsASKYCxG7XvkLt
-        cdMW8Y330Z54QvCt4YwjuJ28rw==
-X-Google-Smtp-Source: ACHHUZ67Ce2tA0cEGprwriJupZEEkiXqed5dpC+i0UuXp7d1PPnEunZUR84ZOoZKnBiZEonZaVqBdg==
-X-Received: by 2002:a05:6512:3d22:b0:4f3:aa26:1890 with SMTP id d34-20020a0565123d2200b004f3aa261890mr1294165lfv.22.1684523204153;
-        Fri, 19 May 2023 12:06:44 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id d30-20020ac25ede000000b004f019d3eab4sm2904lfq.23.2023.05.19.12.06.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 May 2023 12:06:43 -0700 (PDT)
-Message-ID: <0ccf9fdf-5604-d65d-6c7f-02c96f706a09@linaro.org>
-Date:   Fri, 19 May 2023 21:06:41 +0200
+        with ESMTP id S229709AbjESTOi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 15:14:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 831061700;
+        Fri, 19 May 2023 12:14:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3494D65979;
+        Fri, 19 May 2023 19:13:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26A17C433D2;
+        Fri, 19 May 2023 19:13:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684523629;
+        bh=aRtZRFDPNv2lrbP2lIfnc2TEqimUVJtOgDJ+yrSIzM8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ucfD65VKM5HSOr4GO3Gg4K2RHy6M3cnOZ1s8CQVP5XXQvHClZK11nkekfnaS4YIzO
+         o9plZkK1LRsPyjBm2JIr7ByxO/ek+XRNdYGzzRVxP+G8d+cxnqqpgXV9tmU+mTE9uH
+         IilcJYLL3WejjdXLofd5QpNe1b88MN8qST8yoK0+TR7VS4hzW/d66oDxND+LacqwuG
+         AImBQc3Hsa752WLn85yLBtyyh2p1ulsOnE0fsa8MYxhUqRXcfppiR11tYdn+FfDKev
+         ZdF+mKQjKmLEjcJEfqDRItazZqa+WrTFLw3++HQXyxTVw0/1EVWNGDZQuBS/oN4a7r
+         aCmXrzuAH9LQg==
+Date:   Fri, 19 May 2023 20:13:44 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc:     krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, bhelgaas@google.com, lorenzo.pieralisi@arm.com,
+        linux-arm-kernel@lists.infradead.org, bharat.kumar.gogada@amd.com,
+        michals@amd.com, nagaradhesh.yeleswarapu@amd.com
+Subject: Re: [PATCH v3 2/3] dt-bindings: PCI: xilinx-xdma: Add YAML schemas
+ for Xilinx XDMA PCIe Root Port Bridge
+Message-ID: <20230519-decidable-prelude-2f0d58041f02@spud>
+References: <20230519105901.2399452-1-thippeswamy.havalige@amd.com>
+ <20230519105901.2399452-3-thippeswamy.havalige@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v4 05/12] dt-bindings: display/msm: Add SM6375 MDSS
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        freedreno@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, Sean Paul <sean@poorly.run>,
-        Joerg Roedel <joro@8bytes.org>, linux-kernel@vger.kernel.org,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, iommu@lists.linux.dev,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        David Airlie <airlied@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-References: <20230411-topic-straitlagoon_mdss-v4-0-68e7e25d70e1@linaro.org>
- <20230411-topic-straitlagoon_mdss-v4-5-68e7e25d70e1@linaro.org>
- <168452313011.3852116.2187810600963716663.robh@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <168452313011.3852116.2187810600963716663.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="7bJMJIS2ploL3DA8"
+Content-Disposition: inline
+In-Reply-To: <20230519105901.2399452-3-thippeswamy.havalige@amd.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -90,50 +60,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--7bJMJIS2ploL3DA8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 19.05.2023 21:05, Rob Herring wrote:
-> 
-> On Fri, 19 May 2023 19:04:26 +0200, Konrad Dybcio wrote:
->> Document the SM6375 MDSS.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  .../bindings/display/msm/qcom,sm6375-mdss.yaml     | 216 +++++++++++++++++++++
->>  1 file changed, 216 insertions(+)
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.example.dtb: display-controller@5e01000: clock-names:0: 'bus' was expected
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.example.dtb: display-controller@5e01000: clock-names:1: 'iface' was expected
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.example.dtb: display-controller@5e01000: clock-names:2: 'rot' was expected
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.example.dtb: display-controller@5e01000: clock-names:4: 'core' was expected
-> 	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
-> 
-Whoops, forgot to fix the bindings.. there was going to be a v5 anyway.
+On Fri, May 19, 2023 at 04:29:00PM +0530, Thippeswamy Havalige wrote:
+> Add YAML dtschemas of Xilinx XDMA Soft IP PCIe Root Port Bridge
+> dt binding.
+>=20
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
 
-Konrad
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230411-topic-straitlagoon_mdss-v4-5-68e7e25d70e1@linaro.org
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+Looks like you might've forgotten a Co-developed-by?
+
+> diff --git a/Documentation/devicetree/bindings/pci/xlnx,xdma-host.yaml b/=
+Documentation/devicetree/bindings/pci/xlnx,xdma-host.yaml
+
+> +properties:
+> +  compatible:
+> +    const: xlnx,xdma-host-3.00
+
+Perhaps not a question for you Thippeswamy, but is there a reason for
+PCI root ports not having any soc-specific compatibles? Rob (if you see
+this when you're back)?
+
+> +                interrupt-controller ;
+
+Looks like you didn't see Michal's comment about the extra space.
+If you resubmit for some other reason, you should fix that in the
+process :)
+
+Cheers,
+Conor.
+
+--7bJMJIS2ploL3DA8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGfKaAAKCRB4tDGHoIJi
+0mh8AP4ydIHMh7sRSzRZ6kiE5FV0mOSkS2bEjL2NdWzUiw105QEAmv7RBaLYL3BM
+Zxji3IjueRdX8XSUwIHtseRmCnO7ZAg=
+=1KAV
+-----END PGP SIGNATURE-----
+
+--7bJMJIS2ploL3DA8--
