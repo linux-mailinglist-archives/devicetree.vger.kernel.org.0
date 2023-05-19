@@ -2,49 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89ED87096B4
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 13:43:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FCF8709608
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 13:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229571AbjESLnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 07:43:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36888 "EHLO
+        id S231371AbjESLQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 07:16:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231559AbjESLne (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 07:43:34 -0400
-X-Greylist: delayed 1198 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 19 May 2023 04:43:33 PDT
-Received: from smtp.missinglinkelectronics.com (smtp.missinglinkelectronics.com [162.55.135.183])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4ED5F7;
-        Fri, 19 May 2023 04:43:33 -0700 (PDT)
+        with ESMTP id S231293AbjESLQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 07:16:15 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2CD4E107
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 04:16:14 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-        by smtp.missinglinkelectronics.com (Postfix) with ESMTP id 4D929205F2;
-        Fri, 19 May 2023 13:05:58 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at missinglinkelectronics.com
-Received: from smtp.missinglinkelectronics.com ([127.0.0.1])
-        by localhost (mail.missinglinkelectronics.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Lx5TR1TCMWDu; Fri, 19 May 2023 13:05:58 +0200 (CEST)
-Received: from nucnuc.mle (p578c5bfe.dip0.t-ipconnect.de [87.140.91.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: david)
-        by smtp.missinglinkelectronics.com (Postfix) with ESMTPSA id EEB3520412;
-        Fri, 19 May 2023 13:05:57 +0200 (CEST)
-Date:   Fri, 19 May 2023 13:05:53 +0200
-From:   David Epping <david.epping@missinglinkelectronics.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        by muru.com (Postfix) with ESMTPS id 2A97F80F9;
+        Fri, 19 May 2023 11:16:13 +0000 (UTC)
+Date:   Fri, 19 May 2023 14:16:11 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: tlv320aic32x4: Fix supply names
-Message-ID: <20230519110545.GA18663@nucnuc.mle>
+        Conor Dooley <conor+dt@kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: Unify pinctrl-single pin group nodes for
+ stingray
+Message-ID: <20230519111611.GX14287@atomide.com>
+References: <20230519072522.52263-1-tony@atomide.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+In-Reply-To: <20230519072522.52263-1-tony@atomide.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,26 +45,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The term "-supply" is a suffix to regulator names.
+* Tony Lindgren <tony@atomide.com> [230519 07:27]:
+> We want to unify the pinctrl-single pin group nodes as these will add
+> make dtbs checks errors when pinctrl-single yaml binding is merged.
+...
+> --- a/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
+> +++ b/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
+> @@ -299,7 +299,7 @@ spi1_pins: pinmux_spi1_sck_nand {
+>  				>;
+>  			};
+>  
+> -			nuart_pins: pinmux_uart0_sin_nitro {
+> +			nuart_pins: uart0-sin-nitro-pins {
+>  				pinctrl-single,pins = <
+>  					0x20c MODE_NITRO /* nuart_rxd */
+>  					0x210 MODE_NITRO /* nuart_txd */
+> @@ -319,7 +319,7 @@ uart0_pins: pinumux_uart0_sin_nand {
 
-Signed-off-by: David Epping <david.epping@missinglinkelectronics.com>
----
- Documentation/devicetree/bindings/sound/tlv320aic32x4.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Looks like I missed the misspelled "pinumux" node, will send out v2
+version of the patch.
 
-diff --git a/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt b/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
-index f59125bc79d1..0b4e21bde5bc 100644
---- a/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
-+++ b/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
-@@ -8,7 +8,7 @@ Required properties:
- 	"ti,tlv320aic32x6" TLV320AIC3206, TLV320AIC3256
- 	"ti,tas2505" TAS2505, TAS2521
-  - reg: I2C slave address
-- - supply-*: Required supply regulators are:
-+ - *-supply: Required supply regulators are:
-     "iov" - digital IO power supply
-     "ldoin" - LDO power supply
-     "dv" - Digital core power supply
--- 
-2.17.1
+Regards,
 
+Tony
