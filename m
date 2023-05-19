@@ -2,116 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E57770A044
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 22:05:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3968270A090
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 22:27:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230062AbjESUFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 16:05:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48050 "EHLO
+        id S230043AbjESU06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 16:26:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbjESUFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 16:05:38 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E221B5
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 13:05:36 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-30626f4d74aso2463917f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 13:05:36 -0700 (PDT)
+        with ESMTP id S229761AbjESU05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 16:26:57 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24B65118
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 13:26:56 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3078a3f3b5fso3635863f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 13:26:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=shruggie-ro.20221208.gappssmtp.com; s=20221208; t=1684526735; x=1687118735;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Dhk36Zm9kcZS6s/7QkUBwDpZCpJODd1UkmAk+ko7ofs=;
-        b=lFddv1Xx7+aPZjnuJK/BNYdmR8nlXfjsnu2AfYrhh7BYshp1lzes5QgQmT8Nhc/gBL
-         KCc6xtnn/dDsF6gi7C6YIJROVs7pvOVZnvCZejZ7ey69pbvMzBs0EhpaXbM5AmCGUnb5
-         gGH8L5TA3JLdPqgiLlxcIegGfCFQaMOyh3YSCRjWpGi8bmeJ9J7C5rYazwbHsPAQMTtr
-         w7Qde26UkLiaeMT93GpPAhIOQ20R39oN+YLgF0h5UYtM/AOcigpxfR8LCo1xVORSNXKI
-         2GgcpH9pjx4n4PdWkfJoO8bs8I5D/YPUTpaXrVJRRGHV6ZZRLa1EL8ph1Yhfc9FLOvq0
-         w6rw==
+        d=linaro.org; s=google; t=1684528014; x=1687120014;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xAE6bKGD8uI4B1Ojm7oaDsntRbDY/p/o83Rm9HGs3vU=;
+        b=KhQh40O1foL2uAE4MXyDZfPQ5dBQPWBnpePjc4y7//CUqlwhXfNm71R7dYxmEJwWWG
+         rcaOqd+lIjIKiEE08whNoRF97O97YYF1vTCQS2xZ7QSSLDW5/OKkcyEGapsecuN9/to2
+         v2BNxDmrF1a3IEzJiwbJ7osQD4vwrNfvAKgQiMfw1I++7sILIG1YSGGVeWdJCEOROapP
+         wfLarCWDjHf6uPYYt0NeZ4pIgzO2tEoUuUMIFC/JxzpARfwOLfcGJz+utC+29Nof1tWj
+         726P5tfBTvxjVUdwixgi/sKT1pl+HCC3hmOg+yCSbfISpiLD0/Y+qWcyKGM1JmallZq0
+         dZkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684526735; x=1687118735;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Dhk36Zm9kcZS6s/7QkUBwDpZCpJODd1UkmAk+ko7ofs=;
-        b=Z7WZF+rpq43BHeai0/y4J+qfdYsvem+2ghaOARCwwjQ/1s5ht0aC4zwxpwUB+5Zv3Y
-         5ZNXxZv2lc63Dvm5+sjIj6llXRnp6Lp6r2/IKZ/Tn1jxMj95/HD7rVOew5iDB+HMmRIb
-         OV97fzaYfiFdaAFpQdKWyCmNn1tOd1DVABhH+Ku1FSwcmJyrrfBs4LOq5dOGpVj3pJ5v
-         cdDc2l9MWblibLMQ+LcRwo3HfUQeoi+4hSzwfAUhoXZ3QRuids8tdPEnYOa6eKLf3wm7
-         2Gf84nyppoYOXpMAJwgekhe4eKcLlP3yaXLLt3HcYqnqMZjCaZusIAOm8VJwGGHS7gom
-         CMcg==
-X-Gm-Message-State: AC+VfDx5u+FtH6egJY0DIlVwZ44G+22Y+xWJStpEEA9MOMdVsMYjlpHy
-        QmurcWCvX4HJjhtDQuevQ0+fyQ==
-X-Google-Smtp-Source: ACHHUZ7/5/41nm0I7TwCks1heDFNmOyLJILcAtVDJl+PWPTeQg8QiNNU9BXxnomI8I+UZzBMfl7Fcg==
-X-Received: by 2002:a05:6000:c3:b0:304:6762:2490 with SMTP id q3-20020a05600000c300b0030467622490mr2871230wrx.3.1684526735223;
-        Fri, 19 May 2023 13:05:35 -0700 (PDT)
-Received: from localhost.localdomain ([188.27.132.2])
-        by smtp.gmail.com with ESMTPSA id q3-20020adfea03000000b002fe96f0b3acsm6220329wrm.63.2023.05.19.13.05.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 May 2023 13:05:34 -0700 (PDT)
-From:   Alexandru Ardelean <alex@shruggie.ro>
-To:     dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fbdev@vger.kernel.org
-Cc:     lee@kernel.org, daniel.thompson@linaro.org, jingoohan1@gmail.com,
-        pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        deller@gmx.de, Yannick Fertre <yannick.fertre@foss.st.com>,
-        Philippe CORNU <philippe.cornu@foss.st.com>,
-        Alexandru Ardelean <alex@shruggie.ro>
-Subject: [PATCH 2/2] dt-bindings: backlight: document new property default-brightness-level
-Date:   Fri, 19 May 2023 23:05:20 +0300
-Message-Id: <20230519200520.10657-2-alex@shruggie.ro>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230519200520.10657-1-alex@shruggie.ro>
-References: <20230519200520.10657-1-alex@shruggie.ro>
+        d=1e100.net; s=20221208; t=1684528014; x=1687120014;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xAE6bKGD8uI4B1Ojm7oaDsntRbDY/p/o83Rm9HGs3vU=;
+        b=IoJTU3dvRzpGU6JcHptzdX0I3MVq4T7BVlzNkgxG6zux7pf3wTeZfcxcG/Ml3fUrv9
+         YifAUdj3h9W4PEzusxtm8Yhp3XBJ4yZYSYXjmwAIeWDextRLtBHV+fDrgG88bgbLmffq
+         EO6ylXl3a+UujFwGCovcyeGQcjEcSEx8gnvsnQ9rJpR9Ll6JrM72N0F+C31sm7NswON7
+         prpSt0NvuuS2Bfw/0ljEGqD/KjmYpNmksbnX59oZyFDYi2B8CPxSwFn+D0/mtDZnwSX8
+         /lyRtDHcydtahjzvGWU/w8z1G3nUDZE1w2nvnk6DOcr7poC1ExparRBrPgQ1/2JfewE+
+         lRpA==
+X-Gm-Message-State: AC+VfDzTlgIw6eKq5gONmE/T5lK8VkAcESLB3yaBbzAmyl7Lu7tDoQ2E
+        66x4LsqPRtc0nYtBxzCqCFKUnA==
+X-Google-Smtp-Source: ACHHUZ4uiJw3o5Q8DT0mgGSljrWF/EZLsfHVRRKzsHn/aWcqBrnB/38cAQiKQNUue0GSQcyZ6n1WNg==
+X-Received: by 2002:a5d:5188:0:b0:306:43a4:86b with SMTP id k8-20020a5d5188000000b0030643a4086bmr2636003wrv.4.1684528014184;
+        Fri, 19 May 2023 13:26:54 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id k17-20020a5d5251000000b003079693eff2sm6137050wrc.41.2023.05.19.13.26.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 May 2023 13:26:53 -0700 (PDT)
+Message-ID: <0d0a1985-a08b-29ed-4bc4-2eea560d7ac0@linaro.org>
+Date:   Fri, 19 May 2023 21:26:52 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 3/4] clk: qcom: camcc-sm8550: Add camera clock controller
+ driver for SM8550
+Content-Language: en-US
+To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+References: <20230519155602.6642-1-quic_jkona@quicinc.com>
+ <20230519155602.6642-4-quic_jkona@quicinc.com>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230519155602.6642-4-quic_jkona@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yannick Fertre <yannick.fertre@foss.st.com>
+On 19/05/2023 16:56, Jagadeesh Kona wrote:
+> +MODULE_DESCRIPTION("QTI CAM_CC SM8550 Driver");
 
-Add documentation for new default-brightness-level property.
+This pattern looks odd and inconsistent in our clock drivers. We mostly 
+have CAMCC or VIDEOCC but occasionally have CAM_CC and VIDEO_CC.
 
-Reviewed-by: Philippe CORNU <philippe.cornu@foss.st.com>
-Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
-Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
----
+I'd drop that underscore to, in addition to Konrad's comment on Ucase hex.
 
-Link to original patch:
-  https://github.com/STMicroelectronics/linux/commit/c4067d7bd883c6fa14ffd49892c4ce663cdafe98
+Other than that, LGTM.
 
- .../bindings/leds/backlight/gpio-backlight.yaml          | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-index 584030b6b0b9..b96c08cff0f0 100644
---- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-+++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-@@ -23,6 +23,15 @@ properties:
-     description: enable the backlight at boot.
-     type: boolean
- 
-+  default-brightness-level:
-+    description:
-+      The default brightness level (index into the array defined by the
-+      "brightness-levels" property).
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+dependencies:
-+  default-brightness-level: [ "brightness-levels" ]
-+
- required:
-   - compatible
-   - gpios
--- 
-2.40.1
-
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
