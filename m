@@ -2,182 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70D7B7097DD
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 14:59:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDF317097F0
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 15:05:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231865AbjESM7a convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 19 May 2023 08:59:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38442 "EHLO
+        id S231589AbjESNFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 09:05:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231826AbjESM73 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 08:59:29 -0400
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8EB6E7F;
-        Fri, 19 May 2023 05:58:56 -0700 (PDT)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-5648e904593so1640097b3.3;
-        Fri, 19 May 2023 05:58:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684501125; x=1687093125;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pLPr5UuUBNCVrV62IdjI3b1017A2XQE4lrIxbUuKJas=;
-        b=cVqLhOaIWBcrru4yfh/OO5NC3rAYt1LnvYUd6CwsfmnvlStZZDxa9WQSkPUbnbqu97
-         bjXSGaVx/u4OXO+GkNuQsH8KavTxqUJMUWZwlLo25ifBqAIJntFdkPx2bPDEkoACxtXd
-         LMvFkTakwVldi8Ue5RqpJLleVLzc3t662qXEXmas0oOP7YRHeuwWdkXHy702UWssZXPu
-         X2etRgolPZS56jzRO2SPLbB9dQQ5h6ipP4aGsWHxPfaj1qeoD2uwKTOk+6WOBbNjOXqk
-         w5Yi4IXK/PY2b4FtK0hkESs0MbIZUx4n5rHIYBAWLy8UoxeL+F/A4IhpEodJQ3rim0SO
-         rFcw==
-X-Gm-Message-State: AC+VfDwxrwIj9lyfPjztnC8e74qhQ1kYgXLwO2XpANo0X8MTCKFfZYVZ
-        CCiMBJrEeXo9o9nZy5b+40gHzjHhiYL5RQ==
-X-Google-Smtp-Source: ACHHUZ7mYudGyZxGxAW6PnSAsu18aKfyp3RqqQUd+reRLpKP7KDPMzAWBqr8lXDeoP60j9yMjMMA+A==
-X-Received: by 2002:a0d:fe85:0:b0:54f:adff:bd7a with SMTP id o127-20020a0dfe85000000b0054fadffbd7amr2308566ywf.8.1684501124666;
-        Fri, 19 May 2023 05:58:44 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id r125-20020a0dcf83000000b0054fa1fbda6fsm1139553ywd.25.2023.05.19.05.58.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 May 2023 05:58:43 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-561b65b34c4so44095807b3.1;
-        Fri, 19 May 2023 05:58:43 -0700 (PDT)
-X-Received: by 2002:a0d:c841:0:b0:559:e954:edf8 with SMTP id
- k62-20020a0dc841000000b00559e954edf8mr1939413ywd.6.1684501123545; Fri, 19 May
- 2023 05:58:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230518113643.420806-1-biju.das.jz@bp.renesas.com> <20230518113643.420806-10-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230518113643.420806-10-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 19 May 2023 14:58:32 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUsNYhD8VQWpwPqn_AV6cw85m+vg_DMXQP+ggGOz3RF0Q@mail.gmail.com>
-Message-ID: <CAMuHMdUsNYhD8VQWpwPqn_AV6cw85m+vg_DMXQP+ggGOz3RF0Q@mail.gmail.com>
-Subject: Re: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas RAA215300
- PMIC bindings
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229697AbjESNFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 09:05:08 -0400
+X-Greylist: delayed 76 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 19 May 2023 06:05:06 PDT
+Received: from eu-smtp-delivery-197.mimecast.com (eu-smtp-delivery-197.mimecast.com [185.58.85.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 085BCB6
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 06:05:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=camlingroup.com;
+        s=mimecast20210310; t=1684501505;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=qw4WHYbaSVESRX4XQDKLWmUmx8x0UqynYNI5g+INQZA=;
+        b=F8ISIkqnYaltWLD82m6EAYNiyu0Hdz3+7eR2ONtrwjZb7vmgKb/0MpLKSt2SS+YSVms490
+        HLMBO5sqrl8ltFx9SnVwUG8jxQ1awghCFgHJpd3uZuuF0jaxJaBKz9/pdb6G03sUQ3pKbm
+        ruaoBS/DJthHgEUKqlqBIfd9fUhr0Gg=
+Received: from GBR01-CWL-obe.outbound.protection.outlook.com
+ (mail-cwlgbr01lp2052.outbound.protection.outlook.com [104.47.20.52]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ uk-mta-122-EWaNQDRqNu6y0to4a7C6Wg-1; Fri, 19 May 2023 14:03:43 +0100
+X-MC-Unique: EWaNQDRqNu6y0to4a7C6Wg-1
+Received: from CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:142::9)
+ by CWXP123MB3416.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:7a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.21; Fri, 19 May
+ 2023 13:03:40 +0000
+Received: from CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::6c38:e856:880a:704f]) by CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::6c38:e856:880a:704f%7]) with mapi id 15.20.6411.021; Fri, 19 May 2023
+ 13:03:40 +0000
+Message-ID: <1e4e6886-70ed-2db3-23e1-b22bf2f39dc0@camlingroup.com>
+Date:   Fri, 19 May 2023 15:03:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [RFC PATCH v2 1/2] dt-bindings: sc16is7xx: Add property to change
+ GPIO function
+To:     Hugo Villeneuve <hugo@hugovil.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+CC:     linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230518132905.4182265-1-hugo@hugovil.com>
+From:   Lech Perczak <lech.perczak@camlingroup.com>
+In-Reply-To: <20230518132905.4182265-1-hugo@hugovil.com>
+X-ClientProxiedBy: FR0P281CA0199.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:ad::7) To CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:400:142::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CWXP123MB5267:EE_|CWXP123MB3416:EE_
+X-MS-Office365-Filtering-Correlation-Id: 454553fd-4739-441d-c2b4-08db5869774a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0
+X-Microsoft-Antispam-Message-Info: L0aVNyjJeYq8S74dojKK3T0rffjpF/AQ5my9aJqw28fDtwj2sa54KCO8cCyFPU4a0yCZeH5F35vlUA9SlM5vH8MPhT3bfRf4tOlSwoF16TZ0HNaQAvCLtlcpu7stYV1zAXUQsdDoAlzrPiOrlGriKEjkq2l0Fi4G+1LGWTszvhVesvKYI4Piq4REc9KyfTyPz3f9HfYJmQS3IRZFUbVte5O7y7pHGD/FPYJI7bnhBY2i5rPDy8kociClMMu8MtIAgOHJjXP6ZNXmJhoa2ge/9hhzLp7dVQFa74+vRrUtmp9vKWOwTNg4hTHH95pRLpTvEhExUO3RGnobRcvvSwic2O6N0810XHBSYl5l/5SETqGpsErvHwzEqs0osIxvxweJuixsZus6bjdidPnGtS6Z5OUGfde9EPUx+nmD0s/k11Qh1XPICFvgSbaWL8r26ZoSWn99b9o+Pd8fmUPZrKKQMZ1p6UU6qJalRX6Je6tNIOwpMrOr9QhtZhUzSCYp9Y956dZvQatjr8cjIUoliErJX5Q3UV2fM/DXCW86gcksIYZpYfYvBTJLSCvMmQKvOPeBrOX2MF86GCJBM2OW7+T0LFJMK8wMgJiISl12TsreVYyEp7wMzGQFJFEegIG9aaqIvlj8HNpyp6hryKZHFOm8DUgLkDUxcbYFlCGyLHz6KeM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(376002)(136003)(39850400004)(366004)(396003)(346002)(451199021)(31686004)(66556008)(966005)(66946007)(66476007)(478600001)(4326008)(316002)(110136005)(86362001)(31696002)(36756003)(83380400001)(26005)(2616005)(6506007)(186003)(6512007)(5660300002)(8936002)(44832011)(7416002)(8676002)(2906002)(6486002)(6666004)(38100700002)(41300700001)(45980500001)(43740500002)(18886065003);DIR:OUT;SFP:1101
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yFKRQpINTWYZ5Is2jjeGRx409tc49VD2ypDJutlkeHfenaQRqIYR6jFBrzOx?=
+ =?us-ascii?Q?qlR3nQ+lLIx6gNCY7bKcfVcqpFZvhHXRB7xvwWS1MpjwJiZV+05jim1lp+bH?=
+ =?us-ascii?Q?gXR8xDlFNObKFh5hUATttoCY8iXUqMiPwqUm1hsRVQTZytWP5APxeHTtfvSF?=
+ =?us-ascii?Q?xHRdUkOcNfXyKS2hEHQWbQuJsYfEWoQiqikrToV2Z79GbwGtnj2JDpeyyPbt?=
+ =?us-ascii?Q?S7QNCb4W7e3p0MFqhXrlU5qtpvGs6AvG49wtohgF7Zjvm83p7r4l92VqKyZm?=
+ =?us-ascii?Q?gokmq1h3ywkHSNZ24BCvjjB+RkTdkC2tgWVW1+CTvAIqEfJveuiWp2RAHDjx?=
+ =?us-ascii?Q?hhXQiB/Vsvnuhibq0SeOEb0VFLXSC0Ee+ffgUbyfJrIwn6gc9kCUQabOP8v/?=
+ =?us-ascii?Q?5NkRa8Xiz3HdHZ4yzU/cyWTckKn/3LvbGy90eyywZ7yPAMpj1mNoqwwdZ9eD?=
+ =?us-ascii?Q?I4CXiDmVLY8ChKIgKm87z2LngwBpNrReJzUWE0Ov9tNMtCO5cLGVOVJVLCBY?=
+ =?us-ascii?Q?EcPIPLxxerlncQhk+FberARdm/qkraIJgym6aQBhyhoeldBfQV2JUe5YI1ua?=
+ =?us-ascii?Q?N6ll0ptfwr77Fq2VnqqjHprXIF3zGbi3cdQ0aKPvNbR5uiJvxx/LFMfW9lxc?=
+ =?us-ascii?Q?3IjVdn18NQVGE7jeCU8TI2hoCsPER7gFMceDeDasqDZg4HW5i+RfXaNDAQ1t?=
+ =?us-ascii?Q?6BgEXWacug/1xJYa6h/llSzBYhpGRh19JpdHKtG8sPkdbWbYV6DY2B3LD/nX?=
+ =?us-ascii?Q?i+qXsMfTUWInHTmWTF+8fbJKer+TxWYAFvmS1FTZvA/x/iTDltNYOP0D8KWy?=
+ =?us-ascii?Q?OOt2Z39LFl9zv3abRBvzih98JkfnXfpNvNPfYpp6znMyidk2l2BFt8kTwgx4?=
+ =?us-ascii?Q?PnGQrqsLpe+WG/6nmVyIfMfp5DRTLBvlVhyPq0chEs9LQNuD67zebrZf8g48?=
+ =?us-ascii?Q?Xx8FCkdpwGlRlcAXBij+jpMg/xc1/qQJJYatjBNQCba5vsr5WlFiPQu/8e5+?=
+ =?us-ascii?Q?iD701RzVbK/T+o8OVLbwenfPJ7bZ9Un4KxP9Liv3DEzzokhcbKrqgCF3JN6a?=
+ =?us-ascii?Q?Ofc4AUnHlenkUI4aYvrmIljk47pZV6/pKq+6XWjr7N5Tztgy2+kFxokG2Wkw?=
+ =?us-ascii?Q?zbS15biMC8CEq8ikFqIRWrxx9Ex26EDXsObO0n5KtFHRTh3QV8OAhxayA9+D?=
+ =?us-ascii?Q?JZxIrIRZ3q74znXRO/UeO+0DgYD6r+5O+VqBmDTPEP2FWrTrzYDJcei2Q793?=
+ =?us-ascii?Q?9VC+T92LuKpUeojgXS2nXiN+AL/J6AbGyWdtLpGLMYt4jpk+xYnNj/n8ZvS1?=
+ =?us-ascii?Q?CeoBPH0MHQuKZQkneEFgk6i5ZA5q/ZWtqMLj4rGToeH8M25Q4pKJ3AqIw+B4?=
+ =?us-ascii?Q?FbFHB8Q2euFIKeTJ2UG3NGwalswd2PCYjRr+TrGmw/EUjbizIr4dQdl+ZqGr?=
+ =?us-ascii?Q?wjj79ewJnqC/xX5tJyNwAiM0e92cegjk56YkFIcDpvG9fHisXhxwezwNlCbE?=
+ =?us-ascii?Q?Mwy9Kh72gGpuh3vpsvCjFrUeZ0noBOBaE5X8kwa/dy5cmjt+ztN73B7UBcf7?=
+ =?us-ascii?Q?UCmahSVzCK+eQQRvwekMePt1+3ybsaNAqrAooHPuMwM4B+h1xBnqmCOd+JZI?=
+ =?us-ascii?Q?rA=3D=3D?=
+X-OriginatorOrg: camlingroup.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 454553fd-4739-441d-c2b4-08db5869774a
+X-MS-Exchange-CrossTenant-AuthSource: CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2023 13:03:40.2000
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fd4b1729-b18d-46d2-9ba0-2717b852b252
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: K6LNQ9qiTUqGRSb7+1c8yuVYgRZv8QhoL5QZM9+yCz9Bz3kzN0FXANf6xZezQ4uuUAhNq0/FfqOnXHB+xWAWpLSpFD2CDrH8ktC0XQxLuAg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP123MB3416
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: camlingroup.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Hello Hugo,
 
-On Thu, May 18, 2023 at 1:37 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Document Renesas RAA215300 PMIC bindings.
+W dniu 18.05.2023 o=C2=A015:29, Hugo Villeneuve pisze:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 >
-> The RAA215300 is a high Performance 9-Channel PMIC supporting DDR
-> Memory, with Built-In Charger and RTC.
+> Some variants in this series of uart controllers have GPIO pins that
+> are shared between GPIO and modem control lines.
 >
-> It supports DDR3, DDR3L, DDR4, and LPDDR4 memory power requirements.
-> The internally compensated regulators, built-in Real-Time Clock (RTC),
-> 32kHz crystal oscillator, and coin cell battery charger provide a
-> highly integrated, small footprint power solution ideal for
-> System-On-Module (SOM) applications. A spread spectrum feature
-> provides an ease-of-use solution for noise-sensitive audio or RF
-> applications.
+> The pin mux mode (GPIO or modem control lines) can be set for each
+> ports (channels) supported by the variant.
 >
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> This adds a property to the device tree to set the GPIO pin mux to
+> modem control lines on selected ports if needed.
+>
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > ---
-> v3->v4:
->  * Moved bindings from mfd->regulator.
->  * Dropped minItems from reg.
->  * Dropped renesas,rtc-enabled property and instead used clock-names property
->    to find RTC is enabled or not.
->  * Added reg-names in required property.
->  * Updated the example.
+> v1 -> v2: Add nxp vendor prefix
+>           Add git base-commit
+>
+>  .../bindings/serial/nxp,sc16is7xx.txt         | 28 +++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt b=
+/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
+> index 0fa8e3e43bf8..23a81c83f012 100644
+> --- a/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
+> +++ b/Documentation/devicetree/bindings/serial/nxp,sc16is7xx.txt
+> @@ -23,6 +23,9 @@ Optional properties:
+>      1 =3D active low.
+>  - irda-mode-ports: An array that lists the indices of the port that
+>                    should operate in IrDA mode.
+> +- nxp,modem-control-line-ports: An array that lists the indices of the p=
+ort that
+> +                               should have shared GPIO lines configured =
+as modem
+> +                               control lines.
+>
+>  Example:
+>          sc16is750: sc16is750@51 {
+> @@ -35,6 +38,17 @@ Example:
+>                  #gpio-cells =3D <2>;
+>          };
+>
+> +       sc16is752: sc16is752@54 {
+> +               compatible =3D "nxp,sc16is752";
+> +               reg =3D <0x54>;
+> +               clocks =3D <&clk20m>;
+> +               interrupt-parent =3D <&gpio3>;
+> +               interrupts =3D <7 IRQ_TYPE_EDGE_FALLING>;
+> +               nxp,modem-control-line-ports =3D <1>; /* Port 1 as modem =
+control lines */
+> +               gpio-controller; /* Port 0 as GPIOs */
+> +               #gpio-cells =3D <2>;
+> +       };
+> +
+>  * spi as bus
+>
+>  Required properties:
+> @@ -59,6 +73,9 @@ Optional properties:
+>      1 =3D active low.
+>  - irda-mode-ports: An array that lists the indices of the port that
+>                    should operate in IrDA mode.
+> +- nxp,modem-control-line-ports: An array that lists the indices of the p=
+ort that
+> +                               should have shared GPIO lines configured =
+as modem
+> +                               control lines.
+>
+>  Example:
+>         sc16is750: sc16is750@0 {
+> @@ -70,3 +87,14 @@ Example:
+>                 gpio-controller;
+>                 #gpio-cells =3D <2>;
+>         };
+> +
+> +       sc16is752: sc16is752@0 {
+> +               compatible =3D "nxp,sc16is752";
+> +               reg =3D <0>;
+> +               clocks =3D <&clk20m>;
+> +               interrupt-parent =3D <&gpio3>;
+> +               interrupts =3D <7 IRQ_TYPE_EDGE_FALLING>;
+> +               nxp,modem-control-line-ports =3D <1>; /* Port 1 as modem =
+control lines */
+Just a minor nitpick: an example showing syntax for both ports would be gre=
+at.
+This can be included here, leaving the previous example intact. Otherwise, =
+LGTM.
+> +               gpio-controller; /* Port 0 as GPIOs */
+> +               #gpio-cells =3D <2>;
+> +       };
+>
+> base-commit: 4d6d4c7f541d7027beed4fb86eb2c451bd8d6fff
+> --
+> 2.30.2
 
-Thanks for your patch!
+--=20
+Pozdrawiam/With kind regards,
+Lech Perczak
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/renesas,raa215300.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/renesas,raa215300.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RAA215300 Power Management Integrated Circuit (PMIC)
-> +
-> +maintainers:
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
-> +
-> +description: |
-> +  The RAA215300 is a high-performance, low-cost 9-channel PMIC designed for
-> +  32-bit and 64-bit MCU and MPU applications. It supports DDR3, DDR3L, DDR4,
-> +  and LPDDR4 memory power requirements. The internally compensated regulators,
-> +  built-in Real-Time Clock (RTC), 32kHz crystal oscillator, and coin cell
-> +  battery charger provide a highly integrated, small footprint power solution
-> +  ideal for System-On-Module (SOM) applications. A spread spectrum feature
-> +  provides an ease-of-use solution for noise-sensitive audio or RF applications.
-> +
-> +  This device exposes two devices via I2C. One for the integrated RTC IP, and
-> +  one for everything else.
-> +
-> +  Link to datasheet:
-> +  https://www.renesas.com/in/en/products/power-power-management/multi-channel-power-management-ics-pmics/ssdsoc-power-management-ics-pmic-and-pmus/raa215300-high-performance-9-channel-pmic-supporting-ddr-memory-built-charger-and-rtc
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - renesas,raa215300
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: main
-> +      - const: rtc
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
+Sr. Software Engineer
+Camlin Technologies Poland Limited Sp. z o.o.
+Strzegomska 54,
+53-611 Wroclaw
+Tel:     (+48) 71 75 000 16
+Email:   lech.perczak@camlingroup.com
+Website: http://www.camlingroup.com
 
-Perhaps add a description to make it clear that not providing clocks
-is supported, and means the RTC is disabled?
-
-> +
-> +  clock-names:
-> +    description: |
-> +      Use xin, if connected to an external crystal.
-> +      Use clkin, if connected to an external clock signal.
-> +    oneOf:
-> +      - items:
-> +          - const: xin
-> +      - items:
-> +          - const: clkin
-
-Please replace oneOf+items by enum.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
