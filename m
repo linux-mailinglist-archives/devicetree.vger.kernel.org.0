@@ -2,138 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7606A709902
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 16:09:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B79A709909
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 16:10:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232049AbjESOJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 10:09:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41152 "EHLO
+        id S231124AbjESOKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 10:10:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232041AbjESOJD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 10:09:03 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8BAAA3
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 07:09:02 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id 41be03b00d2f7-5304d0d1eddso1776789a12.2
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 07:09:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1684505340; x=1687097340;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nO2IMSaci1mLkURs2Rerjvjr6e18HL0QFWSpDQYnXvg=;
-        b=io31U5DiTl7Yf5meBOXHgvGATJ0C8WMwO3/j6YzWbHyJmsCJvAvVtiEciwjlLMwK7j
-         fo/d42SxJoijmLcH/FDEPShUhB+4NPRAsovlGQHY0G6ZHpcUMlWWjezfGur8YW2Hw/me
-         V6P6FQWJIrzGOL9dT69C1cbWFpOHS/DbJqAI4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684505340; x=1687097340;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nO2IMSaci1mLkURs2Rerjvjr6e18HL0QFWSpDQYnXvg=;
-        b=MQV89v2Sz14nSN8hI7Gf4mNkTn69gJUf2Sbgtrg83bstOkBZv1Sc+oy475Bigf8zYB
-         z32OixOHJ1/ukrGpbt+XeYR9oZFvy9ogFnl1sd6qnkNu7Y0suUG0tTvwld+bTHhjkGxd
-         s/seEsxyXzli/+yOk+aKwKA/Ygd4ykyuszjTL3JXsMJqwe5N8KiM46RxxT6xXGUDt09p
-         36XGUnI3OgE5O+SB2sSqgvCSFUTM5+XOqY6j97OsRYAy1KyexwIgRu0JpvHyfQYHqI7U
-         90cMlk0/65DmBb3smcxUAQeS3XLCS8ckQneJrxDnq1pm1doEOJj/5pGFlCi1Pfzn+F0/
-         VUQA==
-X-Gm-Message-State: AC+VfDy45TRILzyJBULxIH6/wbzXQJrAaRywUDJBoEk1ITZxtdruObUv
-        525O73+VoScEJ/7bqz9bJYKig6zuQRA1f7nVAZM=
-X-Google-Smtp-Source: ACHHUZ52ytMLKnejisfpX1eS39uliw5dMbMpXzwO/L7oouI0vb3XGquKiv9ZkcR7ex2auwrAgqsbRg==
-X-Received: by 2002:a17:903:2689:b0:1ac:8837:df8 with SMTP id jf9-20020a170903268900b001ac88370df8mr2587570plb.6.1684505340385;
-        Fri, 19 May 2023 07:09:00 -0700 (PDT)
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com. [209.85.214.173])
-        by smtp.gmail.com with ESMTPSA id jc7-20020a17090325c700b001acad86ebc5sm3509701plb.33.2023.05.19.07.08.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 May 2023 07:08:58 -0700 (PDT)
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-1ac65ab7432so153155ad.0
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 07:08:58 -0700 (PDT)
-X-Received: by 2002:a17:902:dad2:b0:198:af50:e4de with SMTP id
- q18-20020a170902dad200b00198af50e4demr206507plx.4.1684505337704; Fri, 19 May
- 2023 07:08:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230427035656.1962698-1-fshao@chromium.org>
-In-Reply-To: <20230427035656.1962698-1-fshao@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 19 May 2023 07:08:46 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XVubT-ozs7JssBPz+9UcsZb+q0My8Aq6HNs-nFiJnogg@mail.gmail.com>
-Message-ID: <CAD=FV=XVubT-ozs7JssBPz+9UcsZb+q0My8Aq6HNs-nFiJnogg@mail.gmail.com>
-Subject: Re: [PATCH v4 0/2] Fix Goodix touchscreen power leakage for MT8186 boards
-To:     Fei Shao <fshao@chromium.org>
-Cc:     Jeff LaBundy <jeff@labundy.com>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jiri Kosina <jikos@kernel.org>,
+        with ESMTP id S230116AbjESOKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 10:10:51 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE2D0A3;
+        Fri, 19 May 2023 07:10:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684505451; x=1716041451;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=mwsJ84MhCT5OW2OKKVvn60ujUdtFWwELlENzzS6Idqk=;
+  b=adTnV75NXxLn8fDw1MuX78wD60By5U8cfJhyB7cki3lzkFLFZpv37C/m
+   oEEGWkJRAKT9NwRH8ppRaHZ6eLczz2YdYSeUvryxqnrPI4ytGvKXW31tl
+   Tf1Xbhc4QXcjk1IbxEWL2LzmDOjqPdZm9fIskf+HlvuYtKV7erjLKCRkY
+   ClgztsXPXjCCayqR2KfN3I7knuJR8wUZbz941gCkrLmOtiUuN2lgrw/EF
+   ZgCWqMoWe8rCeBpz26Yja/z94EPRufyzus7gUkI9kfKOJT80XBqdJ+FbF
+   KU2+9R/8e7BCg2b0/yolweWdup9C58vUUN/3BOiBRwwzLC5yYKOz6rjuQ
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; 
+   d="asc'?scan'208";a="212138743"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 May 2023 07:10:50 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 19 May 2023 07:10:49 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 19 May 2023 07:10:47 -0700
+Date:   Fri, 19 May 2023 15:10:25 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+CC:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Kitt <steve@sk2.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: Re: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas RAA215300
+ PMIC bindings
+Message-ID: <20230519-civic-idiocy-5ac6d95675f0@wendy>
+References: <20230518113643.420806-1-biju.das.jz@bp.renesas.com>
+ <20230518113643.420806-10-biju.das.jz@bp.renesas.com>
+ <20230518-prompter-helium-91d0139a61e2@spud>
+ <OS0PR01MB59226BDCD4D67430EC7377C6867C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ENAtQeDKFe/ZkTiM"
+Content-Disposition: inline
+In-Reply-To: <OS0PR01MB59226BDCD4D67430EC7377C6867C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+--ENAtQeDKFe/ZkTiM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 26, 2023 at 8:57=E2=80=AFPM Fei Shao <fshao@chromium.org> wrote=
-:
->
-> These changes are based on the series in [1], which modified the
-> i2c-hid-of-goodix driver and removed the workaround for a power leakage
-> issue, so the issue revisits on Mediatek MT8186 boards (Steelix).
->
-> The root cause is that the touchscreen can be powered in different ways
-> depending on the hardware designs, and it's not as easy to come up with
-> a solution that is both simple and elegant for all the known designs.
->
-> To address the issue, I ended up adding a new boolean property for the
-> driver so that we can control the power up/down sequence depending on
-> that.
->
-> Adding a new property might not be the cleanest approach for this, but
-> at least the intention would be easy enough to understand, and it
-> introduces relatively small change to the code and fully preserves the
-> original control flow.
-> I hope this is something acceptable, and I'm open to any better
-> approaches.
->
-> [1] https://lore.kernel.org/all/20230207024816.525938-1-dianders@chromium=
-.org/
->
-> Changes in v4:
-> - Minor coding style improvement
->
-> Changes in v3:
-> - In power-down, only skip the GPIO but not the regulator calls if the
->   flag is set
->
-> Changes in v2:
-> - Use a more accurate property name and with "goodix," prefix.
-> - Do not change the regulator_enable logic during power-up.
->
-> Fei Shao (2):
->   dt-bindings: input: goodix: Add "goodix,no-reset-during-suspend"
->     property
->   HID: i2c-hid: goodix: Add support for "goodix,no-reset-during-suspend"
->     property
->
->  .../bindings/input/goodix,gt7375p.yaml           |  9 +++++++++
->  drivers/hid/i2c-hid/i2c-hid-of-goodix.c          | 16 +++++++++++++++-
->  2 files changed, 24 insertions(+), 1 deletion(-)
+On Fri, May 19, 2023 at 06:53:03AM +0000, Biju Das wrote:
+> > Subject: Re: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas
+> > RAA215300 PMIC bindings
+> >=20
+> > On Thu, May 18, 2023 at 12:36:41PM +0100, Biju Das wrote:
+> > > Document Renesas RAA215300 PMIC bindings.
+> > >
+> > > The RAA215300 is a high Performance 9-Channel PMIC supporting DDR
+> > > Memory, with Built-In Charger and RTC.
+> > >
+> > > It supports DDR3, DDR3L, DDR4, and LPDDR4 memory power requirements.
+> > > The internally compensated regulators, built-in Real-Time Clock (RTC),
+> > > 32kHz crystal oscillator, and coin cell battery charger provide a
+> > > highly integrated, small footprint power solution ideal for
+> > > System-On-Module (SOM) applications. A spread spectrum feature
+> > > provides an ease-of-use solution for noise-sensitive audio or RF
+> > > applications.
+> > > +  reg:
+> > > +    maxItems: 2
+> > > +
+> > > +  reg-names:
+> > > +    items:
+> > > +      - const: main
+> > > +      - const: rtc
+> >=20
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - reg-names
+> >=20
+> > Out of curiosity as much as anything else, why do you need reg-names if
+> > the two registers are always required?
+>=20
+> The device has always 2 address spaces and "reg-names" provides a means
+> of clear differentiation compared to indices.=20
+>=20
+> By enforcing "reg-names" as required property, dt can do some schema-vali=
+dation
+> forcing users to specify "reg-names" in device tree.
 
-Just double-checking if there is any work needed on this series. I
-think it's ready to land but I wanted to double-check.
+Is that not what we have the following for:
+  reg:
+   items:
+     - description: main register space...
+     - description: special sauce rtc stuff...
+?
 
-Thanks!
+The schema validation doesn't stop them putting in the wrong address
+either way!
 
--Doug
+> Implementation wise, we use "rtc" for getting resource details while
+> creating the second i2c device which overrides the default address.
+>=20
+> Strictly speaking reg-names is not required, but from a validation
+> perspective and since driver is using the same "resource-name" it is
+> better to have it??
+
+If the order is set by the descriptions, reg-names seem superfluous
+/shrug
+
+Cheers,
+Conor.
+
+
+--ENAtQeDKFe/ZkTiM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGeDUQAKCRB4tDGHoIJi
+0oDmAQDn7VnMhHGsOtJlAuYq5jOlTuVUCTQHOOvtwKR8LyJc4QEAk1+L4+Osiz2u
+F+pwqtfnYexqUSEjcP3vQ3f3FEqfQAo=
+=yZif
+-----END PGP SIGNATURE-----
+
+--ENAtQeDKFe/ZkTiM--
