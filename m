@@ -2,79 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0444C709E8C
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 19:50:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F40F6709EB9
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 20:04:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229747AbjESRur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 13:50:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51930 "EHLO
+        id S229519AbjESSEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 14:04:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbjESRuq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 13:50:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B212B107;
-        Fri, 19 May 2023 10:50:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4EC74659A4;
-        Fri, 19 May 2023 17:50:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0031C433D2;
-        Fri, 19 May 2023 17:50:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684518644;
-        bh=GPLFQUmxCW4bUicLJ/JTla9Va0nrQXI6jzLWU84kVj0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=P89LfOQ+XOErPOdtV8bhG9xzgiKXghm8H2q6uQNtYG650FHlc9HJg1PuIh1yXcqDg
-         4mwaae8YJ8l/VWyRWqjj3CjHaJq2aksXStKDsyn/bGcu1s2eh32TZg6AVUWHJLYLR4
-         hvRwpGWFVvH14yn5xg8M1LD4sub11XzJVjtPdbpkTcq2DMCP0+FfxnVfbKoKrokke+
-         Ce/I9dfisfgfn8NHOYtZUcK7jDqle+4r+sg4EcuYybeqjdFIZ8lSvSOaxOv+GbcJTt
-         0nlZutyavvq3k9GNG40adWPJzyKTq6t2Pf2L/e8chmdHt+TutZGmMeOGboJU17PtHD
-         2eo76Zzev4EiA==
-Date:   Fri, 19 May 2023 23:20:40 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Johannes Zink <j.zink@pengutronix.de>
-Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>, Li Jun <jun.li@nxp.com>,
-        patchwork-jzi@pengutronix.de, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Haibo Chen <haibo.chen@nxp.com>
-Subject: Re: [PATCH v2 0/2] Add phy tuning support for imx8mq-usb
-Message-ID: <ZGe28E0CXaJv3eKk@matsya>
-References: <20230516-lustige-usb-phy-dinge-v2-0-3383a0de34ac@pengutronix.de>
+        with ESMTP id S229456AbjESSET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 14:04:19 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2261E107;
+        Fri, 19 May 2023 11:04:18 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34JI41K9123753;
+        Fri, 19 May 2023 13:04:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684519441;
+        bh=pxyRvlFpeqDhcPQM1uiU4LwtUvwW6oBAb1Z/Y2aKWnI=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=M6NcYj20vRMklofcChadDLNy3CKli7JRlwfgsDVme8iM73W8qMs++Plkceatuslot
+         8GV5WlFq6k9A1w5cx5zFa3jVZhhS/kAZDqQ7J0aXTLK44P6Px7na1yds78c1mTRSlb
+         7BVzs000qmLnYeuUcZUXAZRxOkotXeCyEZilnsHo=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34JI41sA019183
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 19 May 2023 13:04:01 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 19
+ May 2023 13:04:01 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 19 May 2023 13:04:01 -0500
+Received: from [10.250.33.177] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34JI40ni127628;
+        Fri, 19 May 2023 13:04:00 -0500
+Message-ID: <8133a637-2295-6b1d-569a-381de692e330@ti.com>
+Date:   Fri, 19 May 2023 13:04:00 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230516-lustige-usb-phy-dinge-v2-0-3383a0de34ac@pengutronix.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am62-main: add sa3_secproxy in
+ cbass_main
+Content-Language: en-US
+To:     Nitin Yadav <n-yadav@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230519113434.1024206-1-n-yadav@ti.com>
+ <20230519113434.1024206-3-n-yadav@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230519113434.1024206-3-n-yadav@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-05-23, 18:20, Johannes Zink wrote:
-> This series adds support for USB phy tuning parameters, which are
-> required for meeting USB certification and EMI qualification.
-> 
-> Patch 1/2 adds the required properties to the fsl,imx8mq-usb-phy
-> devicetree binding.
-> 
-> Patch 2/2 adds the phy tuning parameters to the phy-fsl-imx8mp driver.
-> This patch is ported and cleaned up from the downstream Freescale vendor
-> tree.
+On 5/19/23 6:34 AM, Nitin Yadav wrote:
+> Add sa3_secproxy node in k3-am62-main.dtsi to keep device tree
+> nodes in sync with u-boot nodes.
 
-Applied, thanks
+That is not a good reason, nodes should be added because the device
+exists and should be described. Simply say that here.
 
--- 
-~Vinod
+> 
+> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 9 +++++++++
+>   1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index b3e4857bbbe4..7c2af5b0e022 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -42,6 +42,15 @@ gic_its: msi-controller@1820000 {
+>   		};
+>   	};
+>   
+> +	sa3_secproxy: secproxy@44880000 {
+> +		compatible = "ti,am654-secure-proxy";
+
+The "ti,am654-secure-proxy" binding has interrupts as a required
+property, so this will cause new binding check warnings.
+
+We also already have a Secure Proxy instance in this DT, why
+do we need this other one? Is this the instance that was added
+for for the R5 use? I guess that would explain why there are no
+interrupts to the big ARM core.. Can we actually use this
+node in Linux then? If not mark it disabled/reserved.
+
+Andrew
+
+> +		#mbox-cells = <1>;
+> +		reg-names = "rt", "scfg", "target_data";
+> +		reg = <0x00 0x44880000 0x00 0x20000>,
+> +		      <0x0 0x44860000 0x0 0x20000>,
+> +		      <0x0 0x43600000 0x0 0x10000>;
+> +	};
+> +
+>   	main_conf: syscon@100000 {
+>   		compatible = "syscon", "simple-mfd";
+>   		reg = <0x00 0x00100000 0x00 0x20000>;
