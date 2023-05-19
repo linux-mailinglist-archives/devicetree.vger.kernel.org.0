@@ -2,309 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CCD6708FE2
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 08:29:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3217709008
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 08:52:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229611AbjESG31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 02:29:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43096 "EHLO
+        id S230004AbjESGwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 02:52:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjESG30 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 02:29:26 -0400
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E69221AD;
-        Thu, 18 May 2023 23:29:24 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id B6C955C017D;
-        Fri, 19 May 2023 02:29:21 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Fri, 19 May 2023 02:29:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1684477761; x=1684564161; bh=i/
-        I47qKuqB4bMU6D9p4VPqhlV7pgkdTqCfilS1kyhrk=; b=cvQhoQ+6+7tyHLQX+f
-        OGY0l2YqyKen3c5oGftHNW1t9NnH6CVH/e9N7MJQMFCzRokvVu1B8GIR149GY9Bz
-        hKh7ayxfkFNP6je0N/MPetnp189QzqRt461h66qbXYuh8S5myoJfV60E3rNtV3Qa
-        XvCS4XzmrwB839XmiS5K4S8z2i4ViwqSAQI6gLtc/S6Ed05JqJ1kVHhFnqNYoctJ
-        4vsUikfelL/0Tb/Cdu/JEnMG0P08tnB2dGrA6k/BDoaNktfJitOExP5nAEG3FQVt
-        4dpDBGu0qdIUlHm19H0Disid5MlsPLDYxfG6qR84X9s5Ybf77oO+xD7IvLYElNud
-        ghVA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1684477761; x=1684564161; bh=i/I47qKuqB4bM
-        U6D9p4VPqhlV7pgkdTqCfilS1kyhrk=; b=EQBnp+xYFByLFoZ23C2+Yit24Oawm
-        21NupXM0wkTiv5lPNJ/jvcsdY6n1YzhhOBCQbfIOeMDW+rQ0Ma+zcQ34BMTzca0m
-        YlmfDHwydRbiqDT3MVjhZklIVKGh8LuXDQVkXj6TBog7Va9uS6tFsGE+FPDZb918
-        2rY/o5olqLLKmTvAR9XJnwjhBCne+G2TQUOP7S4uGHKrIRCIPPbmrhd2bQEjc//f
-        P5tR7Ecn5wgGqmW+/PkDe78Nyyt8ps6WhgXi7qp0u8kYe1Qj0FbwQlPIeai8JEaX
-        UsDouVvMsNUqDw6F6X38o00KNh6mhPZPbL4qe4UOHyZ1f96qwKmiongLQ==
-X-ME-Sender: <xms:QBdnZBvrlhL4t0XWh-nHfmnIYF3TNDlSS3fp_MP1aiPLlC_jakdNFg>
-    <xme:QBdnZKd4VvC8vOhh5fJhODHOCfNZ5Lfkk1XVk9dNIKEhMvx19xG2jRGyk9VLoA0d6
-    TB_TGxxJwzNv6bXVBA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeeigedguddtlecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
-    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:QBdnZEzBiwjQzoBhJBWoRDRMvEXQ3_mVRyfArBaVnV3Gbwyeu_qq9g>
-    <xmx:QBdnZIMBH5KcspvFPzoElf4y8gwzs3Q8wNGfR1JN6OOvTA56E39CkQ>
-    <xmx:QBdnZB8bl03HM0VghrSpjYgJiTD2-okPXDqTZZMed8rJFlczgz3F1g>
-    <xmx:QRdnZIg9y_xyUFUXTuVs55XzKaeMOJWbaV4XmFE0R3Qrkk3bF70fgA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id F0459B60086; Fri, 19 May 2023 02:29:19 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-431-g1d6a3ebb56-fm-20230511.001-g1d6a3ebb
-Mime-Version: 1.0
-Message-Id: <ed53d7d6-78e7-45af-a441-1c87fba4d420@app.fastmail.com>
-In-Reply-To: <20230519045825.28369-2-stanley_chang@realtek.com>
-References: <20230519045825.28369-1-stanley_chang@realtek.com>
- <20230519045825.28369-2-stanley_chang@realtek.com>
-Date:   Fri, 19 May 2023 08:28:59 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Stanley Chang" <stanley_chang@realtek.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
-Cc:     "Vinod Koul" <vkoul@kernel.org>,
-        "Kishon Vijay Abraham I" <kishon@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        "Alan Stern" <stern@rowland.harvard.edu>,
-        "Ray Chi" <raychi@google.com>,
-        "Bagas Sanjaya" <bagasdotme@gmail.com>,
-        "Eugeniu Rosca" <erosca@de.adit-jv.com>,
-        "Michael Grzeschik" <m.grzeschik@pengutronix.de>,
-        "Matthias Kaehlcke" <mka@chromium.org>,
-        "Flavio Suligoi" <f.suligoi@asem.it>,
-        "Mathias Nyman" <mathias.nyman@linux.intel.com>,
-        "Bhuvanesh Surachari" <Bhuvanesh_Surachari@mentor.com>,
-        "Paul Cercueil" <paul@crapouillou.net>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v1 2/3] usb: phy: Add driver for the Realtek SoC USB 2.0/3.0 PHY
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229999AbjESGww (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 02:52:52 -0400
+Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C7922E5C;
+        Thu, 18 May 2023 23:52:49 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8Cxd+nAHGdk_BcKAA--.17607S3;
+        Fri, 19 May 2023 14:52:48 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxoOS9HGdk73hpAA--.47775S3;
+        Fri, 19 May 2023 14:52:46 +0800 (CST)
+Subject: Re: [PATCH v1 2/3] dt-bindings: soc: add loongson-2 pm
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Tiezhu Yang <yangtiezhu@loongson.cn>,
+        Marc Zyngier <maz@kernel.org>,
+        Youling Tang <tangyouling@loongson.cn>,
+        Baoqi Zhang <zhangbaoqi@loongson.cn>,
+        Arnd Bergmann <arnd@arndb.de>, Yun Liu <liuyun@loongson.cn>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230517073149.31980-1-zhuyinbo@loongson.cn>
+ <20230517073149.31980-3-zhuyinbo@loongson.cn>
+ <d3791702-4d41-0208-1346-34738a2883b6@linaro.org>
+ <4521c591-6fcd-c96a-e2f6-f41f5c191036@loongson.cn>
+ <1bbabe6d-b013-9837-8986-205a2b04de14@linaro.org>
+ <b4bc7385-3706-8aa3-0117-d106fd47a45e@loongson.cn>
+ <3f81816a-b7a8-cc3a-0052-a2177bfb58c4@linaro.org>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <9c49fd36-2b87-b25a-c799-c5845718def6@loongson.cn>
+Date:   Fri, 19 May 2023 14:52:45 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <3f81816a-b7a8-cc3a-0052-a2177bfb58c4@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxoOS9HGdk73hpAA--.47775S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW3WrW7tFyxJF18Xr4DuFyfWFg_yoW7GFy8pa
+        yUKF4qyrWDJr1Syw48tw18C3yFvrWkKFW5Wrn8XryxCw4qvr1Iyr17KF15u342kr1xJw12
+        9Fyjy397CF45AFJanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bDAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
+        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY
+        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
+        C2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE
+        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
+        v26r1q6r43MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
+        7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I
+        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAI
+        cVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcV
+        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIE
+        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jUManUUUUU=
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 19, 2023, at 06:58, Stanley Chang wrote:
-> +struct rtk_usb_phy {
-> +	struct usb_phy phy;
-> +	struct device *dev;
-> +	struct regmap *usb_regs;
-> +	struct regmap *mac_regs;
-> +	struct regmap *usb_ctrl_regs;
-> +
-> +	int port_index;
-> +	int phyN;
-> +	void *reg_addr;
-> +	void *phy_data;
-> +
-> +#ifdef CONFIG_DEBUG_FS
-> +	struct dentry *debug_dir;
-> +#endif
-> +};
 
-I'd avoid the #ifdefs here and just leave the debugfs
-code in unconditionally in favor of readability. When
-debugfs is disabled, everything except for the one pointer
-value should get optimized out.
 
-> +#define phy_read(addr) __raw_readl(addr)
-> +#define phy_write(addr, val) do { \
-> +	/* Do smp_wmb */ \
-> +	smp_wmb(); __raw_writel(val, addr); \
-> +} while (0)
+在 2023/5/18 下午10:15, Krzysztof Kozlowski 写道:
+> On 18/05/2023 14:15, zhuyinbo wrote:
+>>
+>>
+>> 在 2023/5/18 下午3:15, Krzysztof Kozlowski 写道:
+>>> On 18/05/2023 05:23, zhuyinbo wrote:
+>>>>
+>>>>
+>>>> 在 2023/5/17 下午11:00, Krzysztof Kozlowski 写道:
+>>>>> On 17/05/2023 09:31, Yinbo Zhu wrote:
+>>>>>> Add the Loongson-2 SoC Power Management Controller binding with DT
+>>>>>> schema format using json-schema.
+>>>>>>
+>>>>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>>>>>
+>>>>> ...
+>>>>>
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    items:
+>>>>>> +      - enum:
+>>>>>> +          - loongson,ls2k-pmc
+>>>>>> +      - const: syscon
+>>>>>> +
+>>>>>> +  reg:
+>>>>>> +    maxItems: 1
+>>>>>> +
+>>>>>> +  interrupts:
+>>>>>> +    maxItems: 1
+>>>>>> +
+>>>>>> +  suspend-address:
+>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>> +    description:
+>>>>>> +      This option indicate this PM suspend address.
+>>>>>
+>>>>> This tells me nothing. Drop "This option indicate this" and rephrase
+>>>>> everything to actually describe this property. Why would the address
+>>>>> differ on given, specific SoC? It looks like you just miss compatibles.
+>>>>> Anyway this needs much more explanation so we can judge whether it fits DT.
+>>>>
+>>>> Hi Krzysztof,
+>>>>
+>>>> I will add following description about "suspend-address", please review.
+>>>
+>>> Thanks.
+>>>
+>>>>
+>>>> The "suspend-address" is a ACPI S3 (Suspend To RAM) firmware entry
+>>>
+>>> Why do we add properties for ACPI? This does not seem right.
+>>
+>>
+>> 1.  The suspend-address value was dependent on specific platform
+>>       firmware code and it tends to be confiurable. if it is a fixed value
+>>       that seems not friendly or the ACPI S3 will not work.
+> 
+>> 2. the PM driver need according to it to indicate that current SoC
+>>      whether support ACPI S3, because some Loongson-2 SoC doesn't support
+> 
+> For this you have dedicated compatibles. Which points to the fact that
+> you missed them here.
 
-Using __raw_readl()/__raw_writel() in a driver is almost never
-the right interface, it does not guarantee atomicity of the
-access, has the wrong byte-order on big-endian kernels and misses
-the barriers to serialize against DMA accesses. smp_wmb()
-should have no effect here since this only serializes access to
-memory against another CPU if it's paired with an smp_rmb(), but
-not on MMIO registers.
 
-> +#define PHY_IO_TIMEOUT_MSEC		(50)
-> +
-> +static inline int utmi_wait_register(void __iomem *reg, u32 mask, u32 
-> result)
-> +{
-> +	unsigned long timeout = jiffies + 
-> msecs_to_jiffies(PHY_IO_TIMEOUT_MSEC);
-> +
-> +	while (time_before(jiffies, timeout)) {
-> +		/* Do smp_rmb */
-> +		smp_rmb();
-> +		if ((phy_read(reg) & mask) == result)
-> +			return 0;
-> +		udelay(100);
-> +	}
-> +	pr_err("\033[0;32;31m can't program USB phy \033[m\n");
-> +
-> +	return -ETIMEDOUT;
-> +}
+Sorry, I may not have explained it clearly before. In fact, this is a
+consideration for the future, and currently all SoC supports s3.
+Add corresponding compatibles as needed in the future.
 
-This should just use read_poll_timeout() or possibly
-read_poll_timeout_atomic(), but not an open-coded version.
+> 
+>>      ACPI S3 but support other ACPI mode, so the PM driver need has a
+>>      check. if no this check and other ACPI mode will not work.
+> 
+> Sure, but it is not really relevant to the bindings... or rather: should
+> not be relevant. Bindings are for hardware or in this case also for
+> firmware, but not for driver.
 
-I don't think I've seen escape sequences in a printk
-in any other driver, so please don't start that now.
+okay, I got it.
 
-> +#define DEFAULT_CHIP_REVISION 0xA00
-> +#define MAX_CHIP_REVISION 0xC00
-> +
-> +static inline int __get_chip_revision(void)
-> +{
-> +	int chip_revision = 0xFFF;
-> +	char revision[] = "FFF";
-> +	struct soc_device_attribute soc_att[] = {{.revision = revision}, {}};
+> 
+>>
+>> Base on the above two points, this property was necessary.
+> 
+> I did not object in my last response...
 
-You should probably check that you are actually on the right
-SoC type here as well, not just the right revision of
-an arbitrary chip.
 
-Ideally I think the revision check should be based off a DT proporty
-if that's possible, so you can have this code in the boot loader.
+Yes, but I misunderstood your meaning before.
 
-> +#define RTK_USB2PHY_NAME "rtk-usb2phy"
+> 
+>> Using this property "suspend-address" can make the firmware entry
+>> address configurable, and then the kernel can also indicate whether
+>> the current SoC supports S3
+>>
+>> In addition, from kernel code perspective, the property
+>> "suspend-address" was to initialize "loongarch_suspend_addr"
+> 
+> Again, how does it matter what kernel does?
 
-Better avoid hiding the driver name like this, it makes it harder
-to grep the source tree for particular driver names.
 
-> +	/* rmb for reg read */
-> +	smp_rmb();
-> +	regVal = phy_read(reg_gusb2phyacc0);
+okay, I got it.
 
-I would expect that you don't need barriers like this, especially
-if you change the phy_read() helper to use the proper readl().
+> 
+>>
+>> S3 call flow:
+>> enter_state -> loongson_suspend_enter -> bios's loongarch_suspend_addr
+>>
+>> SYM_FUNC_START(loongson_suspend_enter)
+>>           SETUP_SLEEP
+>>           bl              __flush_cache_all
+>>
+>>           /* Pass RA and SP to BIOS */
+>>           addi.d          a1, sp, 0
+>>           la.pcrel        a0, loongson_wakeup_start
+>>           la.pcrel        t0, loongarch_suspend_addr
+>>           ld.d            t0, t0, 0
+>>           jirl            a0, t0, 0 /* Call BIOS's STR sleep routine */
+>>
+>>
+>> Please
+>>> reword to skip ACPI stuff, e.g. deep sleep states (Suspend to RAM).
+>>
+>>
+>> Sorry, I don't got your point.
+> 
+> You have DT platform, so why do you use it with ACPI in the first place?
+> If you have ACPI, then please drop all this and make your life easier.
 
-If you do need to serialize against other CPUs, still, there should
-be a longer explanation about that, since it's so unexpected.
 
-> +
-> +static void do_rtk_usb2_phy_toggle(struct rtk_usb_phy *rtk_phy,
-> +	    int index, bool isConnect);
+okay, I got it, I will reword to skip ACPI stuff in bindings for 
+"suspend-address" property description.
 
-It's best to sort your function definitions in a way that avoids
-forward declarations. This makes it easier to read and shows that
-there are no obvious recursions in the source. If you do have
-an intentional recursion, make sure that there is a way to
-prevent unbounded stack usage, and explain that in a comment.
+> 
+> If this is booted without ACPI, which would justify DT, drop the
+> references to ACPI. I gave you example what to use instead. If you don't
+> like it, no problem, reword in different way.
 
-> +static int do_rtk_usb_phy_init(struct rtk_usb_phy *rtk_phy, int index)
-> +{
-> +	struct reg_addr *regAddr;
-> +	struct phy_data *phy_data;
-> +	struct phy_parameter *phy_page_setting;
-> +	int i;
-> +
-> +	if (!rtk_phy) {
-> +		pr_err("%s, rtk_phy is NULL\n", __func__);
-> +		return -EINVAL;
-> +	}
-> +
-> +	dev_dbg(rtk_phy->dev, "%s: init phy#%d\n", __func__, index);
-...
-> +	if (!phy_data) {
-> +		pr_err("%s, phy_data is NULL\n", __func__);
-> +		return -EINVAL;
-> +	}
+okay, I got it.
 
-You can probably remove most of the debugging prints.
+> 
+>>
+>>>
+>>>
+>>>> address which was jumped from kernel and it's value was dependent on
+>>>> specific platform firmware code.
+>>>
+>>> "entry address which was jumped" <- the address cannot jump. Please
+>>> explain who is jumping here - boot CPU? each suspended CPU? I guess the
+>>> first as CPUs are offlined, right?
+>>
+>> The boot CPU was jumping to firmware and finish remaining process in
+>> firmware that was what ACPI S3 required and other CPUs (No-boot CPU)
+>> have been offline before entering firmware.
+> 
+> Then fix the description.
 
-> +	regAddr = &((struct reg_addr *)rtk_phy->reg_addr)[index];
-> +	phy_data = &((struct phy_data *)rtk_phy->phy_data)[index];
+okay, I got it.
 
-Why do you need the casts here? It looks like regAddr should
-be an __iomem pointer. Please build your driver with 'make C=1'
-to see if there are any incorrect address space annotations.
+> 
+>>
+>>>
+>>>> In addition, the PM driver need
+>>>> according to it to indicate that current SoC whether support ACPI S3.
+>>>
+>>> Skip references to driver.
+>>
+>>
+>> Sorry, I don't got your point.  Could you elaborate on it?
+> 
+> If you change driver, you change bindings? No.
+> 
+> Bindings are for hardware, not for driver. Whatever your driver is doing
+> usually does not matter for the bindings and should not be included.
 
-> +static int __get_phy_parameter_by_efuse(struct rtk_usb_phy *rtk_phy,
-> +	    struct phy_data *phy_data, int index)
-> +{
-> +	u8 value = 0;
-> +	struct nvmem_cell *cell;
-> +	struct soc_device_attribute rtk_soc_groot[] = {
-> +			{ .family = "Realtek Groot",},
-> +			{ /* empty */ }
-> +		};
-> +	struct soc_device_attribute rtk_soc_hank[] = {
-> +			{ .family = "Realtek Hank",},
-> +			{ /* empty */ }
-> +		};
-> +	struct soc_device_attribute rtk_soc_efuse_v1[] = {
-> +			{ .family = "Realtek Phoenix",},
-> +			{ .family = "Realtek Kylin",},
-> +			{ .family = "Realtek Hercules",},
-> +			{ .family = "Realtek Thor",},
-> +			{ .family = "Realtek Hank",},
-> +			{ .family = "Realtek Groot",},
-> +			{ .family = "Realtek Stark",},
-> +			{ .family = "Realtek Parker",},
-> +			{ /* empty */ }
-> +		};
-> +	struct soc_device_attribute rtk_soc_dis_level_at_page0[] = {
-> +			{ .family = "Realtek Phoenix",},
-> +			{ .family = "Realtek Kylin",},
-> +			{ .family = "Realtek Hercules",},
-> +			{ .family = "Realtek Thor",},
-> +			{ .family = "Realtek Hank",},
-> +			{ .family = "Realtek Groot",},
-> +			{ /* empty */ }
-> +		};
-> +
-> +	if (soc_device_match(rtk_soc_efuse_v1)) {
-> +		dev_dbg(rtk_phy->dev, "Use efuse v1 to updated phy parameter\n");
-> +		phy_data->check_efuse_version = CHECK_EFUSE_V1;
 
-I'm not entirely sure what you are trying to do here, but
-it looks the purpose is to tell the difference between implementations
-of the phy device by looking at which SoC it's in. You should
-only need that very rarely when this information cannot be
-passed through the DT, but you literally already have the
-per-SoC compatible strings below, so just use those, or add other
-DT properties in the binding for specific quirks or capabilities.
+okay, I got it. I will skip references to driver in bindings for 
+"suspend-address" property description.
 
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id usbphy_rtk_dt_match[] = {
-> +	{ .compatible = "realtek,usb3phy", },
-> +	{ .compatible = "realtek,rtd-usb3phy", },
-> +	{ .compatible = "realtek,rtd1295-usb3phy", },
-> +	{ .compatible = "realtek,rtd1619-usb3phy", },
-> +	{ .compatible = "realtek,rtd1319-usb3phy", },
-> +	{ .compatible = "realtek,rtd1619b-usb3phy", },
-> +	{ .compatible = "realtek,rtd1319d-usb3phy", },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, usbphy_rtk_dt_match);
-> +#endif
-> +
-> +static struct platform_driver rtk_usb3phy_driver = {
-> +	.probe		= rtk_usb3phy_probe,
-> +	.remove		= rtk_usb3phy_remove,
-> +	.driver		= {
-> +		.name	= RTK_USB3PHY_NAME,
-> +		.owner	= THIS_MODULE,
-> +		.of_match_table = of_match_ptr(usbphy_rtk_dt_match),
-> +	},
-> +};
+Thanks.
 
-Remove that of_match_ptr() and ifdef CONFIG_OF check here, new drivers
-should no longer use static platform device definitions and just assume
-that CONFIG_OF is used.
-
-     Arnd
