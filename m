@@ -2,159 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06000709CA4
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 18:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43446709CBF
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 18:46:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230288AbjESQmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 12:42:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33886 "EHLO
+        id S231308AbjESQq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 12:46:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230161AbjESQmg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 12:42:36 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C79F1116
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 09:42:34 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2af16426065so26272331fa.0
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 09:42:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684514553; x=1687106553;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=143EakvyOuVdHkumYHBraHpbTfkxgJP6S3+u9gTOH5w=;
-        b=H6i68wdNAUIf4PQUqwLssDsY3GknAmQxtXtb71tGZxPoWwlYnwRqr8auBnpdr1ktOm
-         9dBuw/oXX5ve66KfRi9b/9NAbhOgrtNe7xPpuWXNOnoUgzDZStfuCNo3L3MzZ8i3R67N
-         UtAtpvq2RUUreDOuy5FhTDT0bGgGBgWynt2GiadslacGJNXaVFgolXG9lakRzjMWLgm+
-         9ZiE87SjX2xi0dhJaqcEGBp7kn17U5hVlZblqBGVuNoVj7u4guslAG6HNZ+xvQb5nycM
-         DgoCNnBo6BqbBYJ5DV6lxEAstGCkCAwf9g6xDGxApWAeBWzUIg+BsjLxlLUssp12Lldx
-         H5dA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684514553; x=1687106553;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=143EakvyOuVdHkumYHBraHpbTfkxgJP6S3+u9gTOH5w=;
-        b=JXSWXPv3LRYyMxO/LcXxSkX52elHUtsv9/NWlfspdzT+ZVH3LP/18XZhiGuFDyCYFC
-         /CPlDoGxRVqqsZ1rJxoCjC3+wgNM53n62ueciriGiJfq6UWXEM/vytzLFaD9LNAElzMA
-         liuUSNn+A0nhRpeO5HMomBSokU8VaBfsc2KqSUDoUuEHnBLIaDBgL8gMM7S/2IcDnE7M
-         xMNvD0u3weYsHscsRBAN1EJbwG2SCjmZGUYPLIdhNn4OBETBnVTrtQCuotESZIYJ/Px+
-         zSQ1j6Q1ttYCYzGczRMNz4lZ9gasvdury6BCpauyJhIcQXwgtCSBZd1mS5d/mATo9fHj
-         74HA==
-X-Gm-Message-State: AC+VfDzsMfgY32SXIW8MlkmX3WXCLA6PBBFuAlG66VhRxB/Mqk/0k1Dl
-        Ltbcitis6/TsIn1FQPp3WmVeug==
-X-Google-Smtp-Source: ACHHUZ5CdyVB0/lT15XzwEt1IwNhkaSEWNdeA1DBJ6SV+PZd+UtKzg7gmtugTSK7682fQLSzo6Qxpw==
-X-Received: by 2002:a2e:9008:0:b0:2a8:e44e:c75a with SMTP id h8-20020a2e9008000000b002a8e44ec75amr896865ljg.32.1684514553045;
-        Fri, 19 May 2023 09:42:33 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id l11-20020a2e3e0b000000b002aa40d705a5sm895992lja.11.2023.05.19.09.42.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 May 2023 09:42:32 -0700 (PDT)
-Message-ID: <e4824511-1148-83ee-b6e9-4f819e655f32@linaro.org>
-Date:   Fri, 19 May 2023 19:42:31 +0300
+        with ESMTP id S230286AbjESQqZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 12:46:25 -0400
+Received: from ms.lwn.net (ms.lwn.net [IPv6:2600:3c01:e000:3a1::42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6115DDC;
+        Fri, 19 May 2023 09:46:24 -0700 (PDT)
+Received: from meer.lwn.net (unknown [IPv6:2601:281:8300:73::5f6])
+        by ms.lwn.net (Postfix) with ESMTPA id 30B901D45;
+        Fri, 19 May 2023 16:46:23 +0000 (UTC)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 30B901D45
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
+        t=1684514783; bh=+oNarqgzE8R9UGH9zl+wdRnodH87HuPqTGakGRBmcWU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=cvpTp8Enf6X11ZfvlNzzK03rQn1koW8H7F77AaYmANoHwi2cJTflwtVL7v9H8vpdk
+         FgoW5xGsS7/MTJtV33lsDsazxPTJW68qsLQoubl+Kk9lWxHCiRsvJ+Ub6dXe3KIxb0
+         e13ar6zLYLycO2FccnR2bEegf4Jeo4UxrwxaeUFG+v0f0naqLGB1ExAZ7tdFoTnT/U
+         NKgt2kkTKK1nV1UaEJfbI+LFqK3jd1niCG622jd9lk9lxjBNreWfNCwJYwysQ9RgfF
+         0xBu/licF+bTWHIonoNEL1P46GhGg/Ab/7frnX7rvP+hX2SOX40h4MiINX74HjitSE
+         RXyd0HMmDL9lA==
+From:   Jonathan Corbet <corbet@lwn.net>
+To:     linux-doc@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Jonathan Corbet <corbet@lwn.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 7/7] dt-bindings: Update Documentation/arm references
+Date:   Fri, 19 May 2023 10:46:07 -0600
+Message-Id: <20230519164607.38845-8-corbet@lwn.net>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230519164607.38845-1-corbet@lwn.net>
+References: <20230519164607.38845-1-corbet@lwn.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v1 3/3] msm: skip the atomic commit of self refresh while
- PSR running
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Vinod Polimera <vpolimer@qti.qualcomm.com>
-Cc:     "Kalyan Thota (QUIC)" <quic_kalyant@quicinc.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Sankeerth Billakanti (QUIC)" <quic_sbillaka@quicinc.com>,
-        "dianders@chromium.org" <dianders@chromium.org>,
-        "Bjorn Andersson (QUIC)" <quic_bjorande@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        "Vishnuvardhan Prodduturi (QUIC)" <quic_vproddut@quicinc.com>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "Vinod Polimera (QUIC)" <quic_vpolimer@quicinc.com>,
-        "swboyd@chromium.org" <swboyd@chromium.org>,
-        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>
-References: <1680271114-1534-1-git-send-email-quic_vpolimer@quicinc.com>
- <1680271114-1534-4-git-send-email-quic_vpolimer@quicinc.com>
- <CAA8EJppc3LDQy2RgVZbWki4Y-_FOTK67Y8RfK5Bm9gqdfqMjqQ@mail.gmail.com>
- <BN0PR02MB8173E9FF869F7EEFCE1F5410E4929@BN0PR02MB8173.namprd02.prod.outlook.com>
- <CAA8EJprj5cmB_STfv45NDCJ_e=aWfwMgaNmGkQBqFa8fQq6gQw@mail.gmail.com>
-In-Reply-To: <CAA8EJprj5cmB_STfv45NDCJ_e=aWfwMgaNmGkQBqFa8fQq6gQw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/04/2023 19:11, Dmitry Baryshkov wrote:
-> On Mon, 3 Apr 2023 at 15:01, Vinod Polimera <vpolimer@qti.qualcomm.com> wrote:
->>
->>> On Fri, 31 Mar 2023 at 16:59, Vinod Polimera <quic_vpolimer@quicinc.com>
->>> wrote:
->>>>
->>>> In certain CPU stress conditions, there can be a delay in scheduling commit
->>>> work and it was observed that PSR commit from a different work queue
->>> was
->>>> scheduled. Avoid these commits as display is already in PSR mode.
->>>>
->>>> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
->>>> ---
->>>>   drivers/gpu/drm/msm/msm_atomic.c | 3 +++
->>>>   1 file changed, 3 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/msm/msm_atomic.c
->>> b/drivers/gpu/drm/msm/msm_atomic.c
->>>> index 645fe53..f8141bb 100644
->>>> --- a/drivers/gpu/drm/msm/msm_atomic.c
->>>> +++ b/drivers/gpu/drm/msm/msm_atomic.c
->>>> @@ -192,6 +192,9 @@ int msm_atomic_check(struct drm_device *dev,
->>> struct drm_atomic_state *state)
->>>>                          new_crtc_state->mode_changed = true;
->>>>                          state->allow_modeset = true;
->>>>                  }
->>>> +
->>>> +               if (old_crtc_state->self_refresh_active && new_crtc_state-
->>>> self_refresh_active)
->>>> +                       return -EINVAL;
->>>
->>> EINVAL here means that atomic_check will fail if both old and new
->>> states are in SR mode. For example, there might be a mode set for
->>> another CRTC (while keeping this one in SR mode). I don't think this
->>> is correct. We should skip/shortcut the commit, that's true. But I
->>> doubt that returning an error here is a proper way to do this. Please
->>> correct me if I'm wrong.
->>
->> If there is a modeset on same crtc with a different connector. The new_crtc_state will not have self_refresh_active set.
->> Self_refresh_active is set from the helper library, which will duplicate the old_state and just adds self_refresh_active to true and active to false.
->> so we can be confident that if we are checking for self_refresh_active status then it should be coming from the library call.
->>
->> Also the EINVAL is returned to the self_refresh library API and the function will be retired.
-> 
-> Maybe I misunderstand you here. However, in this way EINVAL is
-> returned to drm_atomic_check_only() and not to the SR code.
+The Arm documentation has moved to Documentation/arch/arm; update
+references under arch/arm64 to match.
 
-Unless anybody objects, I'm going to drop this patch now. The issue 
-should be solved in the framework itself.
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Jonathan Corbet <corbet@lwn.net>
+---
+ Documentation/devicetree/bindings/arm/xen.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
->> And self_refresh_active is cleared on every commit : https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/gpu/drm/drm_atomic_state_helper.c#n158
-> 
-> And this means that this check will not trigger at all, if I'm not
-> mistaken. You've added code to msm_atomic_check(), so
-> drm_self_refresh_helper_alter_state() was not called (yet) and thus
-> new_crtc_state->self_refresh_active is set to false, fresh after
-> crtc's duplicate_state.
-> 
-> --
-> With best wishes
-> Dmitry
-
+diff --git a/Documentation/devicetree/bindings/arm/xen.txt b/Documentation/devicetree/bindings/arm/xen.txt
+index 61d77acbeb5e..f925290d4641 100644
+--- a/Documentation/devicetree/bindings/arm/xen.txt
++++ b/Documentation/devicetree/bindings/arm/xen.txt
+@@ -56,7 +56,7 @@ hypervisor {
+ };
+ 
+ The format and meaning of the "xen,uefi-*" parameters are similar to those in
+-Documentation/arm/uefi.rst, which are provided by the regular UEFI stub. However
++Documentation/arch/arm/uefi.rst, which are provided by the regular UEFI stub. However
+ they differ because they are provided by the Xen hypervisor, together with a set
+ of UEFI runtime services implemented via hypercalls, see
+ http://xenbits.xen.org/docs/unstable/hypercall/x86_64/include,public,platform.h.html.
 -- 
-With best wishes
-Dmitry
+2.40.1
 
