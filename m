@@ -2,98 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3968270A090
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 22:27:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6CD570A118
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 22:56:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230043AbjESU06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 16:26:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58412 "EHLO
+        id S229665AbjESU4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 16:56:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbjESU05 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 16:26:57 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24B65118
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 13:26:56 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3078a3f3b5fso3635863f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 13:26:55 -0700 (PDT)
+        with ESMTP id S229912AbjESU4a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 16:56:30 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3189E66
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 13:56:11 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-64384c6797eso2954813b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 13:56:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684528014; x=1687120014;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xAE6bKGD8uI4B1Ojm7oaDsntRbDY/p/o83Rm9HGs3vU=;
-        b=KhQh40O1foL2uAE4MXyDZfPQ5dBQPWBnpePjc4y7//CUqlwhXfNm71R7dYxmEJwWWG
-         rcaOqd+lIjIKiEE08whNoRF97O97YYF1vTCQS2xZ7QSSLDW5/OKkcyEGapsecuN9/to2
-         v2BNxDmrF1a3IEzJiwbJ7osQD4vwrNfvAKgQiMfw1I++7sILIG1YSGGVeWdJCEOROapP
-         wfLarCWDjHf6uPYYt0NeZ4pIgzO2tEoUuUMIFC/JxzpARfwOLfcGJz+utC+29Nof1tWj
-         726P5tfBTvxjVUdwixgi/sKT1pl+HCC3hmOg+yCSbfISpiLD0/Y+qWcyKGM1JmallZq0
-         dZkw==
+        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1684529771; x=1687121771;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GugnDVq0c7vfl3wxW3DkEvz8ZP8hJrKb81NPd+MbEgo=;
+        b=w4XaHbcaoTeHwMKK8tq7/hze9Atyb1f5/XPGa2VJSxjgf1JOybobmSZXftt8JH1faK
+         y+U3o7pUzV3LMpt+OI0BaTFQ9swX3VL4Aw4kija5c8VZh2y9uUua0MkAjfqpOTc5OvVW
+         UcfUtIv3k49fgxyUekiCsGwXnfKGGSJgXmeR8whqCUKLI1Isz6Fy4NywgnLzGHDENMfD
+         8FopzMsSrt4qH2Z8xA9F4YpBe0D/YiKCCfMkz8L5o61ICZdCyum6o+hoIeZbq4UyIN3I
+         sncMKcT6+g4f2BOhFzAQMXoZYzLjITJefkC2xQ8gJpmMz3ZXY75+zCss7YyO7JFDBOao
+         dgPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684528014; x=1687120014;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xAE6bKGD8uI4B1Ojm7oaDsntRbDY/p/o83Rm9HGs3vU=;
-        b=IoJTU3dvRzpGU6JcHptzdX0I3MVq4T7BVlzNkgxG6zux7pf3wTeZfcxcG/Ml3fUrv9
-         YifAUdj3h9W4PEzusxtm8Yhp3XBJ4yZYSYXjmwAIeWDextRLtBHV+fDrgG88bgbLmffq
-         EO6ylXl3a+UujFwGCovcyeGQcjEcSEx8gnvsnQ9rJpR9Ll6JrM72N0F+C31sm7NswON7
-         prpSt0NvuuS2Bfw/0ljEGqD/KjmYpNmksbnX59oZyFDYi2B8CPxSwFn+D0/mtDZnwSX8
-         /lyRtDHcydtahjzvGWU/w8z1G3nUDZE1w2nvnk6DOcr7poC1ExparRBrPgQ1/2JfewE+
-         lRpA==
-X-Gm-Message-State: AC+VfDzTlgIw6eKq5gONmE/T5lK8VkAcESLB3yaBbzAmyl7Lu7tDoQ2E
-        66x4LsqPRtc0nYtBxzCqCFKUnA==
-X-Google-Smtp-Source: ACHHUZ4uiJw3o5Q8DT0mgGSljrWF/EZLsfHVRRKzsHn/aWcqBrnB/38cAQiKQNUue0GSQcyZ6n1WNg==
-X-Received: by 2002:a5d:5188:0:b0:306:43a4:86b with SMTP id k8-20020a5d5188000000b0030643a4086bmr2636003wrv.4.1684528014184;
-        Fri, 19 May 2023 13:26:54 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id k17-20020a5d5251000000b003079693eff2sm6137050wrc.41.2023.05.19.13.26.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 May 2023 13:26:53 -0700 (PDT)
-Message-ID: <0d0a1985-a08b-29ed-4bc4-2eea560d7ac0@linaro.org>
-Date:   Fri, 19 May 2023 21:26:52 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 3/4] clk: qcom: camcc-sm8550: Add camera clock controller
- driver for SM8550
-Content-Language: en-US
-To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-References: <20230519155602.6642-1-quic_jkona@quicinc.com>
- <20230519155602.6642-4-quic_jkona@quicinc.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230519155602.6642-4-quic_jkona@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        d=1e100.net; s=20221208; t=1684529771; x=1687121771;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GugnDVq0c7vfl3wxW3DkEvz8ZP8hJrKb81NPd+MbEgo=;
+        b=XgjDWuHLy2el1WokyzzHXyKIYm6+Hgq/JTkq0RmPEpO//pdAUXwEeAxBbRfp8AF7rw
+         hJ/atQBYKw1FCiqD1OoXtop3kZiBbJkSG45NDM6znxxDt57ny+JShQeSdHC/UvVQh4du
+         BtWGhiJ22979YMzm/wpkKNUL5tU9B2ZohBs670+zg5ifoDtBBSBDR6etp8uYy93BBPzK
+         cnAtvn49b+C1PzhVN+I3B8yrItFky9BaRcxDeu2JUXocj8Ao/gLw+pW1Ncm3P0w1qF6g
+         v72jVIeaNSED17CoeFQmQpQE0L6OIWkLV+Cy6GKGfw1RbLI9Sc3wp/Xa8L1RXFzM2LBf
+         /LlQ==
+X-Gm-Message-State: AC+VfDxlLll/WDY1dBJAJP5M7yeHrFkyaDMT2K6/BU7fzOIOStnYhtJx
+        pYF0NvJ4jBBA1G4rXLfd8ABMMg==
+X-Google-Smtp-Source: ACHHUZ584jM3FqhNjul9su9bLGVwXpcyvsMFcD/0XYITdp4xBcWtq25UqUY3OaQPOuC57udHHaNAkA==
+X-Received: by 2002:a05:6a00:2188:b0:64d:fd0:dd1a with SMTP id h8-20020a056a00218800b0064d0fd0dd1amr4522909pfi.16.1684529770982;
+        Fri, 19 May 2023 13:56:10 -0700 (PDT)
+Received: from localhost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id y23-20020aa78557000000b0063b8f17768dsm103656pfn.129.2023.05.19.13.56.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 May 2023 13:56:10 -0700 (PDT)
+Date:   Fri, 19 May 2023 13:56:10 -0700 (PDT)
+X-Google-Original-Date: Fri, 19 May 2023 13:55:47 PDT (-0700)
+Subject:     Re: [PATCH v2 9/9] riscv: defconfig: enable T-HEAD SoC
+In-Reply-To: <20230518184541.2627-10-jszhang@kernel.org>
+CC:     tglx@linutronix.de, Marc Zyngier <maz@kernel.org>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, guoren@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, frank.li@vivo.com,
+        wefu@redhat.com, uwu@icenowy.me
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     jszhang@kernel.org
+Message-ID: <mhng-e1d500da-688e-49bf-a2d8-bef0e2df48f8@palmer-ri-x1c9a>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/05/2023 16:56, Jagadeesh Kona wrote:
-> +MODULE_DESCRIPTION("QTI CAM_CC SM8550 Driver");
+On Thu, 18 May 2023 11:45:41 PDT (-0700), jszhang@kernel.org wrote:
+> Enable T-HEAD SoC config in defconfig to allow the default
+> upstream kernel to boot on Sipeed Lichee Pi 4A board.
+>
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  arch/riscv/configs/defconfig | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
+> index d98d6e90b2b8..109e4b5b003c 100644
+> --- a/arch/riscv/configs/defconfig
+> +++ b/arch/riscv/configs/defconfig
+> @@ -27,6 +27,7 @@ CONFIG_EXPERT=y
+>  CONFIG_PROFILING=y
+>  CONFIG_SOC_MICROCHIP_POLARFIRE=y
+>  CONFIG_ARCH_RENESAS=y
+> +CONFIG_ARCH_THEAD=y
+>  CONFIG_SOC_SIFIVE=y
+>  CONFIG_SOC_STARFIVE=y
+>  CONFIG_ARCH_SUNXI=y
 
-This pattern looks odd and inconsistent in our clock drivers. We mostly 
-have CAMCC or VIDEOCC but occasionally have CAM_CC and VIDEO_CC.
-
-I'd drop that underscore to, in addition to Konrad's comment on Ucase hex.
-
-Other than that, LGTM.
-
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
