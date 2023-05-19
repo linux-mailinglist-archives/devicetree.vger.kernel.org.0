@@ -2,122 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37EF8709B26
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 17:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7660709B86
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 17:46:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232065AbjESPVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 11:21:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49938 "EHLO
+        id S232212AbjESPqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 11:46:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230443AbjESPVA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 11:21:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C220106;
-        Fri, 19 May 2023 08:20:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ADF3C6589C;
-        Fri, 19 May 2023 15:20:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8010EC433D2;
-        Fri, 19 May 2023 15:20:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684509658;
-        bh=+sp/ndddAwmlf9DWqKIi7xyEcvpuzEhQ/izOrZupQBk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tI85oLMhhqyZ+sHiiL2LjTi9fn3cFnL3J+G6CQZIQR6SuNaqeoeRRvopjVt8WXmYn
-         LxE2Ih/PvNp1ALUNz53I8YOpxP8bWTZPlYd3F/taektr9gjROyCKT9W2YjUUnobeq+
-         nPMt42UM+adRpqdSPZY2muN53SN3px2X2VNfdWYrE2d31rO/RYeqpclcd8n1aWsXiZ
-         TAHfnRSx4MfYBSnnf3YtVYcIspWdtn8p4weHHRg545Ss9YBiiNNC7Sqk/xB6CVugYY
-         x9NWIcexVZGYOS7D1/ttKvIpzFIdKnE1BgWmZH0ESTAf7fhUNSZVW2yV9i8APmw0U6
-         /Q3zefZWdICTg==
-Date:   Fri, 19 May 2023 16:20:53 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: Re: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas RAA215300
- PMIC bindings
-Message-ID: <20230519-giving-proven-1133875db395@spud>
-References: <20230518113643.420806-1-biju.das.jz@bp.renesas.com>
- <20230518113643.420806-10-biju.das.jz@bp.renesas.com>
- <20230518-prompter-helium-91d0139a61e2@spud>
- <OS0PR01MB59226BDCD4D67430EC7377C6867C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <20230519-civic-idiocy-5ac6d95675f0@wendy>
- <OS0PR01MB5922F379C4DF20124CBDEED3867C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CAMuHMdXQFQB7e7Pd1-CCerkwb4RDq7jJ_rv_kwf_Od+oGjMfUA@mail.gmail.com>
+        with ESMTP id S231438AbjESPqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 11:46:00 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54C0A1B3
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 08:45:56 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-2534fe570cdso475803a91.1
+        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 08:45:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684511156; x=1687103156;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dNLwU6QjsXvcntb+KwAtaQ7bcNz0ymT7Ul3Tq22egeE=;
+        b=DZa6faR8MQne0Yix58iHxw7HUL3nY2Klby0y8xcUYHAbDdyrIkLMCHTKtYi1cH1iqG
+         ldHAguiODuNb8QwDZsP8oImGkhmQghr4+PZawPpwM5Gs7YCkqP++zYM3xZdiz2zGo3Bx
+         6hymF04PckFHT3Ko0eBKp1QifaObBA3eI/gAG3yZOGvXGy2QZv+DtU1XklrEvkIyA8k8
+         1AqntKIb3w7Vy2TrpwciJbBaDbGhi2QoTZqL7p4AREy9IoxRlJPINUFSCsyKp21VV7u5
+         Bq39gScgnkrWyb83Jr7Nl/uI3qX01p+xgeSjJBJWv7N9bZ7/bMp/6WTEQu3FW7bFkiKc
+         TBNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684511156; x=1687103156;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dNLwU6QjsXvcntb+KwAtaQ7bcNz0ymT7Ul3Tq22egeE=;
+        b=iaqr/AP+tYenrxfAjosliv13DXztBSAMe6OL/8apwmR4ROW87LbwxtW3IgE7+5/ZpS
+         WpXceFz8tp438dGwd4nkutJLAgePXfB1cMDG8p5h6j59qclQSyeF85p7uRJntDXzK5E6
+         3c40yrpt1zZqMpcr8iRLvgbR8HWd0hccPHpPBGGab4PLmF9oov2w5BTonXOqmCADUZHM
+         4/9Pz2EeJ9tFb7prDgui/PJ8ZLqHEkmQISmJlXwnAkqWnf4fuexQ9HHkzsjH2PO8bo4i
+         amHVw+i+2UWMnbULpVdy3v8smzrwz/LBp4iuhaFWSKVdm36nQKKnPaJXxP5fTjz4zMqT
+         Joyw==
+X-Gm-Message-State: AC+VfDyLrvyne6lZsCm5EUU6zdmXenCH04lexYXCeCkWv4lwYHRTB54D
+        fnd2y2EVlnN5U6Ne9y8tMLAssMv3FlBzGus1NeCzbZbprfw=
+X-Google-Smtp-Source: ACHHUZ6gcUXoPHhyeAdjjMg42aanQJ9VDaeDxBHIPGxTB7eZA9IvVFEzyywDA2+Bo2ndt6rCxQCr+yUCm/dbPlTgX3Y=
+X-Received: by 2002:a17:90b:1e44:b0:253:407f:2506 with SMTP id
+ pi4-20020a17090b1e4400b00253407f2506mr2891161pjb.2.1684511155579; Fri, 19 May
+ 2023 08:45:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2EvJa2hO2K2Spwku"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdXQFQB7e7Pd1-CCerkwb4RDq7jJ_rv_kwf_Od+oGjMfUA@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230519125236.352050-1-festevam@gmail.com> <20230519125236.352050-2-festevam@gmail.com>
+ <168450267115.3446911.4219667976082310726.robh@kernel.org>
+In-Reply-To: <168450267115.3446911.4219667976082310726.robh@kernel.org>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Fri, 19 May 2023 12:45:44 -0300
+Message-ID: <CAOMZO5CM_MBF+_V1=9hL-UDB9nnxCckcMFLWwAv_FusuLuMcPg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: soc: Add i.MX6SX General Purpose Register
+To:     Rob Herring <robh@kernel.org>
+Cc:     conor+dt@kernel.org, Fabio Estevam <festevam@denx.de>,
+        linux-arm-kernel@lists.infradead.org, marex@denx.de,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
---2EvJa2hO2K2Spwku
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, May 19, 2023 at 10:24=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
+e:
 
-On Fri, May 19, 2023 at 04:49:44PM +0200, Geert Uytterhoeven wrote:
-> On Fri, May 19, 2023 at 4:39=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.=
-com> wrote:
-> > > -----Original Message-----
-> > > From: Conor Dooley <conor.dooley@microchip.com>
-> > > On Fri, May 19, 2023 at 06:53:03AM +0000, Biju Das wrote:
-> > > > > Subject: Re: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/s=
+oc/imx/fsl,imx6sx-gpr.example.dtb: iomuxc-gpr@20e4000: bridge@18:compatible=
+:0: 'fsl,imx6sx-ldb' is not one of ['fsl,imx8mp-ldb', 'fsl,imx93-ldb']
+>         From schema: /builds/robherring/dt-review-ci/linux/Documentation/=
+devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202305=
+19125236.352050-2-festevam@gmail.com
+>
+> The base for the series is generally the latest rc1. A different dependen=
+cy
+> should be noted in *this* patch.
 
-> > > > > > +required:
-> > > > > > +  - compatible
-> > > > > > +  - reg
-> > > > > > +  - reg-names
-> > > > >
-> > > > > Out of curiosity as much as anything else, why do you need reg-na=
-mes
-> > > > > if the two registers are always required?
+This patch is against linux-next.
 
-> > OK, will drop reg-names from required property.
->=20
-> Please don't, as i2c_new_ancillary_device() does rely on the name
-> to set the address when overriding from the default.
+6.4-rc1 does not contain f85f2ce57783 ("dt-bindings: display: bridge:
+ldb: Add an i.MX6SX entry"), which
+is a pre-requisite for this series.
 
-That looks like my answer! Thanks Geert & sorry for the noise here.
-Modulo Geert's requested change, I think I owe you a
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-Biju.
-
-Thanks,
-Conor.
-
-
---2EvJa2hO2K2Spwku
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGeT1AAKCRB4tDGHoIJi
-0iv1APwKw8DY6iGSq0dYCscL2F8wST//cz74mUwJrtHU9IXEGAEA0T+TAKWNc03n
-cN5TfV6iKpIw+NOw+EEKLNPktYSAGgU=
-=u/bs
------END PGP SIGNATURE-----
-
---2EvJa2hO2K2Spwku--
+'make DT_CHECKER_FLAGS=3D-m dt_binding_check' does not show errors for
+this patch series against linux-next.
