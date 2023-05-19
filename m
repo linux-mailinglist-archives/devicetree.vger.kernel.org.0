@@ -2,183 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6484170900C
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 08:53:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 283E9709017
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 09:00:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229559AbjESGxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 02:53:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47864 "EHLO
+        id S230076AbjESHAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 03:00:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbjESGxN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 02:53:13 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2115.outbound.protection.outlook.com [40.107.113.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB530E64;
-        Thu, 18 May 2023 23:53:09 -0700 (PDT)
+        with ESMTP id S229493AbjESHAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 03:00:20 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2055.outbound.protection.outlook.com [40.107.244.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AE27E64;
+        Fri, 19 May 2023 00:00:19 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Qvz8yjPJLpqOr4dINq1QG9Ir3UncbRU+WRhrSLwVzd1rWDKt087EBoVQEN8TD36AT1f6j0h6crskvsikNGcRvzXAoZsx3l9an+HGtnXvNv2addO42+mJ9kYN+GK55s4zzIppDPfoN1LOe3V+j37/DgxO0xBJoc+ngElZYkVWz0zNvHsPHc9AHIsBRejnJcM5mrDRW1GL2O+bfOPA9y76FQhXD9Jr46xpNonn5E87VNvR9USrsXfo6AzuCeFMWI1MlI4wH60O/Z6rlIwU+Buql3ebTxEqk3ZQLCb4f0v56c8uqI0Kz+Dro2d65Yid4O5eO398+NcAh0anJtfOUyD5FQ==
+ b=XqJzFxmTWdcSiqfMCmw/t48kWCG3BQCIpqiO8cZuJZg0bUpDz6cDqSREX5ouIut5BTsfKgAopNrLVsnqT5E9H/cdLyn00fyrPES1AHvihFEGdAyGPMqpJq8TOWXIdZKlZUA2okJufahQYVPvGK77mIsoJuewUhlubfQ3+B8cK/tm/4cOU5kgdSioOI1Tgfghj9K0/xOu5ANHPmrQX74FTJd+Ge8SKWv8V3B/haBiI7pDKDmpqoDnh8UyyQgr1Zy9bKtG8yi9OpVHdtW4D7l5g+PPH/6A18bJZBz5h3TLn6cnRCR20FycY7rf5+1cqcBJha6PTir/0pPVC6mxyRNVEA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DO/qofuUP8PNccituhPSHE3tkIY17FC+oQxTlY79bTg=;
- b=VlCvkbGCWqxcWD8Eq8cdRDhRe2G08HOx5ojqZF+srgXKDWCjmm11WloCmQQcHPUwMmpHwigIRZRLziAe5nOsnTSdGGu0OtX212NMv+86e8rZpVt7tY6v6KrHuMA2lXiZsvCjnZC3y/9kzVEoIP+I2KiUduQzdgcJ5OQyajlOrUT3K27cPtk/fkhXZRuqQwQ+EtGsVrtX0Je/WpWU3NeyZx0u3wzfVIw8+g1KSjII056Ke8dYpHWaw57pCLzdLP6dn1qzcZX02Q4UTGNZnB0n1VguFSeo9W6w/EikT7dYVvwahcg5yEgiUQ9b8yQ0M7TH9t0XbWDeiKweHhM4UGkpOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
+ bh=btToigA3Nyz+U6Ya7P+Za1Bey3pUvEFusDBPy6ZHFe4=;
+ b=cdrDAmvB14775dqrZ0mgryuz1B3/B2IpuOeHXFaB+v00AzFT5yOl89rQ+POVAV6HtTRSPzQBghZj8Pw81sjD+2GjU925PY4ZMsOICuhv8Vwh+Rc7mJUhbrsN4Kdr+elVqB8RO87n0kiKvAJMPY88XQeZ7tJSwfc7djTW2ecnjpV0coAsXYrXDLQ8WtMhEbyjTz2bZFr8RWIL1aP8E/x5mUyWwPLvMEZlsKoXGHenXYkceYIDhiba6+/Gaj50vkL4q/w1hdqeGgAsZ4ZDPpA+75IvNv90m/BTkV3C5Kf6D5MdGW2oRHp27Z6KgfO+H8AaB6Arh1onnD5rO00Xh4GQVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DO/qofuUP8PNccituhPSHE3tkIY17FC+oQxTlY79bTg=;
- b=gpUTlQnyukhTu5XI1DGbgCedJlVMw/7/CI35w8mYSjZKYJJjDbbFAbHGS1J0YjJrieBgBanTS2wZWRYB33sFKPxUmGkeS6TFOlCZ2FzHeD/3QymXZLZqUBw/wpcBRotfL5H4ZrvSFUc1vdK5frb33Srzx2gYbItCavIT6/ipYB4=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OS0PR01MB5668.jpnprd01.prod.outlook.com (2603:1096:604:b8::9) with
+ bh=btToigA3Nyz+U6Ya7P+Za1Bey3pUvEFusDBPy6ZHFe4=;
+ b=SL84Ch/MeAlfZQMMFiQgxfbhS2yWNGuX4LUuw2l8dITUC54wyHlqxIpXTkLdU5CWjA57/uz59REVgp0/s8E0A9Dp53fuaThNWaFdcM3AQ1w+2mb3HtQ90mFTen3yzBbVI/051fSDB0G4ebnxgMioBNLgetf9OsTGhDtmtVwSE1Q=
+Received: from MW4PR04CA0295.namprd04.prod.outlook.com (2603:10b6:303:89::30)
+ by PH7PR12MB5619.namprd12.prod.outlook.com (2603:10b6:510:136::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.21; Fri, 19 May
- 2023 06:53:07 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::bd0a:a38d:b4d2:5d2]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::bd0a:a38d:b4d2:5d2%6]) with mapi id 15.20.6411.021; Fri, 19 May 2023
- 06:53:03 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Conor Dooley <conor@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: RE: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas RAA215300
- PMIC bindings
-Thread-Topic: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas RAA215300
- PMIC bindings
-Thread-Index: AQHZiX0f8Q76HwTBKEKFLFKF5VU7o69gZsiAgAC5I9A=
-Date:   Fri, 19 May 2023 06:53:03 +0000
-Message-ID: <OS0PR01MB59226BDCD4D67430EC7377C6867C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20230518113643.420806-1-biju.das.jz@bp.renesas.com>
- <20230518113643.420806-10-biju.das.jz@bp.renesas.com>
- <20230518-prompter-helium-91d0139a61e2@spud>
-In-Reply-To: <20230518-prompter-helium-91d0139a61e2@spud>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|OS0PR01MB5668:EE_
-x-ms-office365-filtering-correlation-id: c565777e-08d9-4378-4366-08db5835b181
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2l0dx5K5beQL1lfwCzSwKGIYaA5VWociQ+VbQYdhpyMfKITTQRqinepWmIDvY3YJcyuUe11Q6FOlqZUd7v8AHjQRpIIYwT5iPEVpuJ0w1LaZJrOkPQ0hYWSP5k6gGTGmpVi+sHpQczOcoosUrtf5/SCsyU+gWFqeXOTjkLGQPg6f7g2W/YNpSXQ3uZ46WwHy/UGwWENApv20u8RgxydIZrX1IDMNWN9YJQgh/cNRRllWmyFcPqI8T7USYKFH7LRKwoC3Q61GpBVpqlxm415BLqY8Dit73FTKir3jVePXbWp7x94g2u8PvzLfPtVUIpiE8ypCyJv7VJ+pBIck5TjcYu3IyJuG24xJhq3YA2dl0DX4iJmzkbve4CJYQB+ioVrnEP8RZrFNBTKd6h/lQ1ICAGkGzHtPAkHSEloNUR33QXxYN9ldDSSs0Dpfj8YT7Jz/F7fT6jpsqeyCbZno0SBZCQc4ZSgUfeOMbwTRI7GBgppW8BksRTJCXGDNoFy8e1N0m6R7aAMloXTuyQtBlJR1G93YdEswFjhfH3t1p8R8rDuba3Fk4D+T44e9voPgfgND05uCLdn9NMm62lrWn0hhzfi4N7C0CCzSmdrOVv4ANBhxQmh9j0EZq9H38SS9rF4H
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(376002)(39860400002)(136003)(366004)(396003)(451199021)(8936002)(8676002)(7416002)(86362001)(76116006)(64756008)(2906002)(66446008)(66946007)(66476007)(66556008)(38070700005)(316002)(6916009)(4326008)(478600001)(66899021)(52536014)(5660300002)(41300700001)(54906003)(38100700002)(7696005)(122000001)(71200400001)(55016003)(107886003)(26005)(186003)(9686003)(6506007)(33656002)(83380400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GC6S2UNvZXD8JlsUhZG/c2Fq7FR/mi8dy6MpiRCpfeMNx9kjAD9Ve8nq6ugM?=
- =?us-ascii?Q?BIRVc1j1aNdz36cv9Ue5FFNUlYwQcI+g6mCkagapAZAfMbibM2sv0iULh2f1?=
- =?us-ascii?Q?DoYW3QEjxDzIvwr4WubeMIyaZACxX06svH+NQ5k2Xorf3tiRVljPlUrGY8g7?=
- =?us-ascii?Q?gEqI7GVlzyM1APrN3JDbbWNjnZyjeUypB2j/Bfvi6VNYtQyCkrRwglvVk9kY?=
- =?us-ascii?Q?KM64l+EGKDyntcSAh5EhIvUUvP2Z1twuTpInJZgrWY7Zb7rvmf6sImP4seOD?=
- =?us-ascii?Q?OkPgMesuSgTUmEeGPwflPkesbs2b2AfSbpkwKULqXELQ/zpjcGovCE3E2Vnv?=
- =?us-ascii?Q?6Ak/N3gXl3V7uZV9YqKyikTIRDpTNNSynIkbUF9dBzVXgceUqLbxmRySEuy8?=
- =?us-ascii?Q?6fuofHqEd/Pd0vfoPbNLpz8YwA1QboNQGrK9Bpuvz937cF+6JfX1IXN2W/qL?=
- =?us-ascii?Q?RY0kqMx7klH59J6/ka+7XgB4OGkfh2/LJTuWUhhkdw3e7uUOWSWimg4HMjGA?=
- =?us-ascii?Q?Ow+umeJLKdaxuGl58pXoHDkAgumAAFSbq9zXsizurveWdnY/7VPqzl0Z7v3Z?=
- =?us-ascii?Q?wsW2ErlOYH3jCOAhpTQu/O1nqGhGiuj2VAtoAzYQ/o88vOKlfSh8N6NExhCd?=
- =?us-ascii?Q?+0RYozt5gD+y8rXX4TS+bSps6y3r7rcBpLieHaIoG1r/b8F7V+ofKT2XsX5S?=
- =?us-ascii?Q?fUOHvXqoV2cauqu+uIKTI6CTLhjUtSjyZJaDAVzDhyv7vPhXvApCrcebdYbx?=
- =?us-ascii?Q?qnseD6cEl4EPMl3kbAmv8mYisqNNP/wTWK/CfEkpgJdh4VeKFYwP44LdFVpb?=
- =?us-ascii?Q?IhJHD1fmdMep481fS5uopU2tDPyifIBgbmnDqKpc7dNMydwNO7a8ZjaNa8Lj?=
- =?us-ascii?Q?OPmtGkOnPeSFdbn+LaIXYJa0EGU2y5ZqndJ9MFq9EjhN/sSDqYLdaMXR5urR?=
- =?us-ascii?Q?6c0e/LizCjO70pzA/Tb7sC7/AWw2BBWesfwzKdY/wjguEHklIVG/zFPgBBYu?=
- =?us-ascii?Q?K+8BdvzWjD0hyL7f4u2rR7j6ViViQVE5Mz0rKoIRmUlgItJ/DNwtoJKh8KAG?=
- =?us-ascii?Q?X1ia3ts4tAte0D+R93UgGTnwrSuuQHU3vvZj9j9uVCGWDS5WpJO+R9J5FX9Z?=
- =?us-ascii?Q?VB2RDh9OP5TZk5B1GvVPTFGgNh87CYYFhTxG0cjh6L8crVwW1XiF5g/06gbm?=
- =?us-ascii?Q?A9EJdQ8Qm6BP/4BO+p8y0SLaWjWxNVYID0U7nnEnLYXqb+7zKPAGft2d4Cgd?=
- =?us-ascii?Q?qfONukGTuhMnHfqHT8uk3UahBKhep1m2oOiHoyF6mVC4UNEGnSEuTYuEPhYM?=
- =?us-ascii?Q?DUNyYpYS9TI0R5Ek7YHV9Ukmy33n+IybQFAkhKIpTbFQo0x03qwFCxpGOFFi?=
- =?us-ascii?Q?RkY5hOvKDRTUawttsVpbbgbgUXm7r2FXvRzI4BUr7XEr313+CwNWyVVZO2jF?=
- =?us-ascii?Q?OOGyOM3rqTNpi9GYlCDgrfjy2Y09Ex1YD2C7mpoBD9UCi8WyPDPgHWuppbFB?=
- =?us-ascii?Q?shz8hpEb4og2TpGOoCnsIxBX3TTzQcO3eRJ5BBQflVpkrJ7w8VBvvAqTW9SF?=
- =?us-ascii?Q?FlnPQ0y3sokZSmZCaQwXXuL00L1DWa7+2sCFbgYx?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ 2023 07:00:15 +0000
+Received: from CO1NAM11FT098.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:89:cafe::67) by MW4PR04CA0295.outlook.office365.com
+ (2603:10b6:303:89::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.21 via Frontend
+ Transport; Fri, 19 May 2023 07:00:14 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1NAM11FT098.mail.protection.outlook.com (10.13.174.207) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6411.21 via Frontend Transport; Fri, 19 May 2023 07:00:14 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 19 May
+ 2023 02:00:13 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Fri, 19 May
+ 2023 00:00:13 -0700
+Received: from xhdnavam40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Fri, 19 May 2023 02:00:09 -0500
+From:   Piyush Mehta <piyush.mehta@amd.com>
+To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <balbi@kernel.org>, <michal.simek@xilinx.com>
+CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <michal.simek@amd.com>,
+        <siva.durga.prasad.paladugu@amd.com>, <git@amd.com>,
+        Piyush Mehta <piyush.mehta@amd.com>
+Subject: [PATCH V3] dt-bindings: usb: dwc3: Add interrupt-names property support for wakeup interrupt
+Date:   Fri, 19 May 2023 12:29:40 +0530
+Message-ID: <20230519065940.2190786-1-piyush.mehta@amd.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c565777e-08d9-4378-4366-08db5835b181
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 May 2023 06:53:03.7552
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT098:EE_|PH7PR12MB5619:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8b4d144a-bd18-4c6f-04a6-08db5836b259
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sbuONg+88SJjNSZBB9gwha6SRs+ENKcTj6lL3GyBbogF0eN8XLXFGPF1swl03a/0EZCIlnT96b1Pw6fsY4nTzz9wUJkpfdioZhnswn2A0yMkL6+MKuvn8Xpjf0x7X/phdEz0NKQXtokjoHb7SJKxiX3uEnL/rs3kOdGx3iY8VUsouyZuGXWv41kmK9XNPce/dh+dOwxmYO/Okb01X7CwkeWITLHt6eLYE7opVsMKz40WIMAVJ0/MClP+0W1UeLT0oD1dgh4hs4vkjnBTbjnrz8hbE/uJoYegre4dL0opJ6cfeJUZBDNKbzjo5GU8k/F6Nocv5VxvmmsPeKmF0jH2RkiWhlKH2YqRqxZUN3bVIvLdKhTeySHqtwcg/9UUY2UyCFapMxUB3JDVIn87dlne06U5BNhmw2ysGKhPXHjIczUCbpP7AhRRB/NrGdGDc5Tm/cRVDatnTcHikId88XR1KU9BF/aoWpQmdyBtMHwJpP6qDdrmBJCpiteZCayJydhmjD1vnVTO+AWtLVHSK9kYZemdmvnwtBmuYDzPOKaNx7ua4YBTqRSelUOCgePbnCk8CmqGN2Kmo/yhuq0uY3AzSPsuXd2rQu7sI1Ff/QX6OuCOcgfqjmiBY8VSvt0BVHfLW+5ZtCCbIb23Yj4OjYSopoigyGxzQ1gzC7DrgQo1Egr9uZmkAFQ6xO55pKKmK9iEA4dES17HA95WqvzaZ4RK0dBIeuZMRxUycAugjQJLQC6I+6Q0rwhUTK2rT9FedqlONpQt2Lfsa0FNj1p79BzTOg2JzaTQlMgBgzsussvAm3g=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(376002)(396003)(136003)(346002)(451199021)(36840700001)(46966006)(40470700004)(966005)(40460700003)(82740400003)(70206006)(70586007)(54906003)(110136005)(2906002)(5660300002)(44832011)(86362001)(41300700001)(356005)(36756003)(4326008)(81166007)(316002)(82310400005)(8676002)(8936002)(40480700001)(6666004)(478600001)(336012)(426003)(36860700001)(83380400001)(2616005)(186003)(47076005)(1076003)(26005)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2023 07:00:14.5307
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4UEJSUKmS4VrLtqJJwe2BrtoLn5yn/jy7am85IMdB1toi4Xb0VtCKbI1RBndkPc+d+NjhQoJIku1jEyHNXFL1aoe2kpeyzmi68kPPghcA7o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5668
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b4d144a-bd18-4c6f-04a6-08db5836b259
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT098.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5619
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+The hibernation feature enabled for Xilinx Versal NET SoC in DWC3 IP.
+As the DWC3 IP supports the hibernation feature, to handle the wakeup
+or hibernation interrupt, add host mode "wakeup" interrupt-names
+optional property in the binding schema to capture remote-wakeup and
+connect/ disconnect event in the hibernation state.
 
-Thanks for the feedback.
+We have a dedicated IRQ line specifically for the hibernation feature.
+When the "wakeup" IRQ line is triggered, it initiates a hibernation
+interrupt, causing the system to wake up from the hibernation state.
 
-> Subject: Re: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas
-> RAA215300 PMIC bindings
->=20
-> On Thu, May 18, 2023 at 12:36:41PM +0100, Biju Das wrote:
-> > Document Renesas RAA215300 PMIC bindings.
-> >
-> > The RAA215300 is a high Performance 9-Channel PMIC supporting DDR
-> > Memory, with Built-In Charger and RTC.
-> >
-> > It supports DDR3, DDR3L, DDR4, and LPDDR4 memory power requirements.
-> > The internally compensated regulators, built-in Real-Time Clock (RTC),
-> > 32kHz crystal oscillator, and coin cell battery charger provide a
-> > highly integrated, small footprint power solution ideal for
-> > System-On-Module (SOM) applications. A spread spectrum feature
-> > provides an ease-of-use solution for noise-sensitive audio or RF
-> > applications.
-> > +  reg:
-> > +    maxItems: 2
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: main
-> > +      - const: rtc
->=20
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
->=20
-> Out of curiosity as much as anything else, why do you need reg-names if
-> the two registers are always required?
+Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+---
+Change in V2:
+-  Addressed ROB review comments
+ - Updated name of interrupt-names property with "wakeup"
+ - Move interrupt-names property from dwc3-xilinx core to dwc3 core.
 
-The device has always 2 address spaces and "reg-names" provides a means
-of clear differentiation compared to indices.=20
+Link: https://lore.kernel.org/all/CAL_JsqK6_7XD7+w+EQvPPmbmSOpfo3JDb0xDN4StuHUm1kgchw@mail.gmail.com/
 
-By enforcing "reg-names" as required property, dt can do some schema-valida=
-tion
-forcing users to specify "reg-names" in device tree.
+Change in V3:
+-  Addressed Krzysztof Kozlowski comments
+ - Update binding schema enum.
+ - Upadet commit message.
 
-Implementation wise, we use "rtc" for getting resource details while
-creating the second i2c device which overrides the default address.
+Link: https://lore.kernel.org/all/76dfbf27-8ad2-6e09-5354-b006b9e81af1@linaro.org/
+---
+ Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Strictly speaking reg-names is not required, but from a validation
-perspective and since driver is using the same "resource-name" it is
-better to have it??
+diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+index 50edc4da780e..771bd9ab71d9 100644
+--- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+@@ -53,6 +53,8 @@ properties:
+       - const: dwc_usb3
+       - items:
+           enum: [host, peripheral, otg]
++      - items:
++          enum: [host, peripheral, otg, wakeup]
+ 
+   clocks:
+     description:
+-- 
+2.25.1
 
-Please share your thoughts.
-
-Cheers,
-Biju
