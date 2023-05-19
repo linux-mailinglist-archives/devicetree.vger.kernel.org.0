@@ -2,242 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EA7B709055
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 09:25:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32480709125
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 10:01:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229662AbjESHZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 03:25:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56254 "EHLO
+        id S229688AbjESIBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 04:01:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjESHZv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 03:25:51 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CD2EF109
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 00:25:50 -0700 (PDT)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id D3E9F80F9;
-        Fri, 19 May 2023 07:25:48 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: Unify pinctrl-single pin group nodes for stingray
-Date:   Fri, 19 May 2023 10:25:21 +0300
-Message-Id: <20230519072522.52263-1-tony@atomide.com>
-X-Mailer: git-send-email 2.40.1
+        with ESMTP id S229616AbjESIBY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 04:01:24 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2180D10F;
+        Fri, 19 May 2023 01:01:11 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id AEF6B24DB84;
+        Fri, 19 May 2023 16:01:03 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 19 May
+ 2023 16:01:03 +0800
+Received: from [192.168.125.131] (113.72.146.100) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 19 May
+ 2023 16:01:02 +0800
+Message-ID: <906cec55-e438-0eca-618c-4f29b2642fcb@starfivetech.com>
+Date:   Fri, 19 May 2023 15:59:19 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 3/7] dt-bindings: clock: jh7110-syscrg: Add PLL clock
+ inputs
+Content-Language: en-US
+To:     Conor Dooley <conor.dooley@microchip.com>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        "Emil Renner Berthing" <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20230512022036.97987-1-xingyu.wu@starfivetech.com>
+ <20230512022036.97987-4-xingyu.wu@starfivetech.com>
+ <20230512-uproar-external-49a9e793fbc4@wendy>
+ <91e4fd3c-20cb-724b-c9a8-e038600aabb7@starfivetech.com>
+ <20230512-backlit-radiated-ded0b38b4a94@wendy>
+ <be85aa2a-c72c-5272-ee40-f1265768e7b3@starfivetech.com>
+ <20230512-traffic-popsicle-5c3423b37fab@wendy>
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <20230512-traffic-popsicle-5c3423b37fab@wendy>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.146.100]
+X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We want to unify the pinctrl-single pin group nodes as these will add
-make dtbs checks errors when pinctrl-single yaml binding is merged.
+On 2023/5/12 21:49, Conor Dooley wrote:
+> On Fri, May 12, 2023 at 05:56:16PM +0800, Xingyu Wu wrote:
+>> On 2023/5/12 17:35, Conor Dooley wrote:
+>> > On Fri, May 12, 2023 at 04:07:47PM +0800, Xingyu Wu wrote:
+>> >> On 2023/5/12 14:47, Conor Dooley wrote:
+>> >> > On Fri, May 12, 2023 at 10:20:32AM +0800, Xingyu Wu wrote:
+>> >> >> Add PLL clock inputs from PLL clock generator.
+>> >> >> 
+>> >> >> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> >> >> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>> >> >> ---
+>> >> >>  .../clock/starfive,jh7110-syscrg.yaml         | 20 +++++++++++++++++--
+>> >> >>  1 file changed, 18 insertions(+), 2 deletions(-)
+>> >> > 
+>> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb: clock-controller@13020000: clocks: 'oneOf' conditional failed, one must be fixed:
+>> >> > 	[[19], [20], [21], [22], [23], [24], [25], [26], [27]] is too short
+>> >> > 	From schema: /Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.3b.dtb: clock-controller@13020000: clock-names: 'oneOf' conditional failed, one must be fixed:
+>> >> > 	['osc', 'gmac1_rmii_refin', 'gmac1_rgmii_rxin', 'i2stx_bclk_ext', 'i2stx_lrck_ext', 'i2srx_bclk_ext', 'i2srx_lrck_ext', 'tdm_ext', 'mclk_ext'] is too short
+>> >> > 	'i2stx_bclk_ext' was expected
+>> >> > 	'i2stx_lrck_ext' was expected
+>> >> > 	'i2srx_bclk_ext' was expected
+>> >> > 	'i2srx_lrck_ext' was expected
+>> >> > 	'tdm_ext' was expected
+>> >> > 	'mclk_ext' was expected
+>> >> > 	'pll0_out' was expected
+>> >> > 	From schema: /Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dtb: clock-controller@13020000: clocks: 'oneOf' conditional failed, one must be fixed:
+>> >> > 	[[19], [20], [21], [22], [23], [24], [25], [26], [27]] is too short
+>> >> > 	From schema: Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-v1.2a.dtb: clock-controller@13020000: clock-names: 'oneOf' conditional failed, one must be fixed:
+>> >> > 	['osc', 'gmac1_rmii_refin', 'gmac1_rgmii_rxin', 'i2stx_bclk_ext', 'i2stx_lrck_ext', 'i2srx_bclk_ext', 'i2srx_lrck_ext', 'tdm_ext', 'mclk_ext'] is too short
+>> >> > 	'i2stx_bclk_ext' was expected
+>> >> > 	'i2stx_lrck_ext' was expected
+>> >> > 	'i2srx_bclk_ext' was expected
+>> >> > 	'i2srx_lrck_ext' was expected
+>> >> > 	'tdm_ext' was expected
+>> >> > 	'mclk_ext' was expected
+>> >> > 	'pll0_out' was expected
+>> >> > 	Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.yaml
+>> >> > 
+>> >> > This binding change is incompatible with the existing devicetrees for
+>> >> > the visionfive 2.
+>> >> 
+>> >> This looks like less clocks about PLL in SYSCRG node. And I add this in patch 7.
+>> > 
+>> > The existing devicetree is a valid, albeit limited, description of the
+>> > hardware.
+>> > After your changes to the clock driver in this series, but *without* the
+>> > changes to the devicetrees, does the system still function?
+>> > From a quick check of 4/7, it looks like it will not?
+>> 
+>> I just tested it on the board and the system still worked without the changes
+>> about devicetree. But these clocks' rate were 0 because these could not get
+>> the PLL clocks from devicetree.
+> 
+> Hmm, that sounds like an issue to me. If all of the clock rates are
+> computed based off of parents that incorrectly report 0, are we not in
+> for trouble?
+> Should the fixed-factor clocks be retained as a fallback for the sake of
+> compatibility?
+> Emil, Stephen?
 
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- .../broadcom/stingray/stingray-pinctrl.dtsi   | 44 +++++++++----------
- 1 file changed, 22 insertions(+), 22 deletions(-)
+I got your concern. Actually, I can add a check in driver to see if the dts
+has pll clocks and then decide whether to use fixed-factor clocks or pll clocks
+from syscon. But eventually we have to use pll clocks and dts has to add it.
+Then the binding should add it synchronously, right?
 
-diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
---- a/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
-@@ -56,14 +56,14 @@ range: gpio-range {
- 			};
- 
- 			/* pinctrl functions */
--			tsio_pins: pinmux_gpio_14 {
-+			tsio_pins: gpio-14-pins {
- 				pinctrl-single,pins = <
- 					0x038 MODE_NITRO /* tsio_0 */
- 					0x03c MODE_NITRO /* tsio_1 */
- 				>;
- 			};
- 
--			nor_pins: pinmux_pnor_adv_n {
-+			nor_pins: pnor-adv-n-pins {
- 				pinctrl-single,pins = <
- 					0x0ac MODE_PNOR /* nand_ce1_n */
- 					0x0b0 MODE_PNOR /* nand_ce0_n */
-@@ -119,7 +119,7 @@ nor_pins: pinmux_pnor_adv_n {
- 				>;
- 			};
- 
--			nand_pins: pinmux_nand_ce1_n {
-+			nand_pins: nand-ce1-n-pins {
- 				pinctrl-single,pins = <
- 					0x0ac MODE_NAND /* nand_ce1_n */
- 					0x0b0 MODE_NAND /* nand_ce0_n */
-@@ -148,59 +148,59 @@ nand_pins: pinmux_nand_ce1_n {
- 				>;
- 			};
- 
--			pwm0_pins: pinmux_pwm_0 {
-+			pwm0_pins: pwm-0-pins {
- 				pinctrl-single,pins = <
- 					0x10c MODE_NITRO
- 				>;
- 			};
- 
--			pwm1_pins: pinmux_pwm_1 {
-+			pwm1_pins: pwm-1-pins {
- 				pinctrl-single,pins = <
- 					0x110 MODE_NITRO
- 				>;
- 			};
- 
--			pwm2_pins: pinmux_pwm_2 {
-+			pwm2_pins: pwm-2-pins {
- 				pinctrl-single,pins = <
- 					0x114 MODE_NITRO
- 				>;
- 			};
- 
--			pwm3_pins: pinmux_pwm_3 {
-+			pwm3_pins: pwm-3-pins {
- 				pinctrl-single,pins = <
- 					0x118 MODE_NITRO
- 				>;
- 			};
- 
--			dbu_rxd_pins: pinmux_uart1_sin_nitro {
-+			dbu_rxd_pins: uart1-sin-nitro-pins {
- 				pinctrl-single,pins = <
- 					0x11c MODE_NITRO /* dbu_rxd */
- 					0x120 MODE_NITRO /* dbu_txd */
- 				>;
- 			};
- 
--			uart1_pins: pinmux_uart1_sin_nand {
-+			uart1_pins: uart1-sin-nand-pins {
- 				pinctrl-single,pins = <
- 					0x11c MODE_NAND /* uart1_sin */
- 					0x120 MODE_NAND /* uart1_out */
- 				>;
- 			};
- 
--			uart2_pins: pinmux_uart2_sin {
-+			uart2_pins: uart2-sin-pins {
- 				pinctrl-single,pins = <
- 					0x124 MODE_NITRO /* uart2_sin */
- 					0x128 MODE_NITRO /* uart2_out */
- 				>;
- 			};
- 
--			uart3_pins: pinmux_uart3_sin {
-+			uart3_pins: uart3-sin-pins {
- 				pinctrl-single,pins = <
- 					0x12c MODE_NITRO /* uart3_sin */
- 					0x130 MODE_NITRO /* uart3_out */
- 				>;
- 			};
- 
--			i2s_pins: pinmux_i2s_bitclk {
-+			i2s_pins: i2s-bitclk-pins {
- 				pinctrl-single,pins = <
- 					0x134 MODE_NITRO /* i2s_bitclk */
- 					0x138 MODE_NITRO /* i2s_sdout */
-@@ -229,21 +229,21 @@ mdio_pins: pinumx_ext_mdio {
- 				>;
- 			};
- 
--			i2c0_pins: pinmux_i2c0_sda {
-+			i2c0_pins: i2c0-sda-pins {
- 				pinctrl-single,pins = <
- 					0x16c MODE_NITRO /* i2c0_sda */
- 					0x170 MODE_NITRO /* i2c0_scl */
- 				>;
- 			};
- 
--			i2c1_pins: pinmux_i2c1_sda {
-+			i2c1_pins: i2c1-sda-pins {
- 				pinctrl-single,pins = <
- 					0x174 MODE_NITRO /* i2c1_sda */
- 					0x178 MODE_NITRO /* i2c1_scl */
- 				>;
- 			};
- 
--			sdio0_pins: pinmux_sdio0_cd_l {
-+			sdio0_pins: sdio0-cd-l-pins {
- 				pinctrl-single,pins = <
- 					0x17c MODE_NITRO /* sdio0_cd_l */
- 					0x180 MODE_NITRO /* sdio0_clk_sdcard */
-@@ -262,7 +262,7 @@ sdio0_pins: pinmux_sdio0_cd_l {
- 				>;
- 			};
- 
--			sdio1_pins: pinmux_sdio1_cd_l {
-+			sdio1_pins: sdio1-cd-l-pins {
- 				pinctrl-single,pins = <
- 					0x1b4 MODE_NITRO /* sdio1_cd_l */
- 					0x1b8 MODE_NITRO /* sdio1_clk_sdcard */
-@@ -281,7 +281,7 @@ sdio1_pins: pinmux_sdio1_cd_l {
- 				>;
- 			};
- 
--			spi0_pins: pinmux_spi0_sck_nand {
-+			spi0_pins: spi0-sck-nand-pins {
- 				pinctrl-single,pins = <
- 					0x1ec MODE_NITRO /* spi0_sck */
- 					0x1f0 MODE_NITRO /* spi0_rxd */
-@@ -290,7 +290,7 @@ spi0_pins: pinmux_spi0_sck_nand {
- 				>;
- 			};
- 
--			spi1_pins: pinmux_spi1_sck_nand {
-+			spi1_pins: spi1-sck-nand-pins {
- 				pinctrl-single,pins = <
- 					0x1fc MODE_NITRO /* spi1_sck */
- 					0x200 MODE_NITRO /* spi1_rxd */
-@@ -299,7 +299,7 @@ spi1_pins: pinmux_spi1_sck_nand {
- 				>;
- 			};
- 
--			nuart_pins: pinmux_uart0_sin_nitro {
-+			nuart_pins: uart0-sin-nitro-pins {
- 				pinctrl-single,pins = <
- 					0x20c MODE_NITRO /* nuart_rxd */
- 					0x210 MODE_NITRO /* nuart_txd */
-@@ -319,7 +319,7 @@ uart0_pins: pinumux_uart0_sin_nand {
- 				>;
- 			};
- 
--			drdu2_pins: pinmux_drdu2_overcurrent {
-+			drdu2_pins: drdu2-overcurrent-pins {
- 				pinctrl-single,pins = <
- 					0x22c MODE_NITRO /* drdu2_overcurrent */
- 					0x230 MODE_NITRO /* drdu2_vbus_ppc */
-@@ -328,7 +328,7 @@ drdu2_pins: pinmux_drdu2_overcurrent {
- 				>;
- 			};
- 
--			drdu3_pins: pinmux_drdu3_overcurrent {
-+			drdu3_pins: drdu3-overcurrent-pins {
- 				pinctrl-single,pins = <
- 					0x23c MODE_NITRO /* drdu3_overcurrent */
- 					0x240 MODE_NITRO /* drdu3_vbus_ppc */
-@@ -337,7 +337,7 @@ drdu3_pins: pinmux_drdu3_overcurrent {
- 				>;
- 			};
- 
--			usb3h_pins: pinmux_usb3h_overcurrent {
-+			usb3h_pins: usb3h-overcurrent-pins {
- 				pinctrl-single,pins = <
- 					0x24c MODE_NITRO /* usb3h_overcurrent */
- 					0x250 MODE_NITRO /* usb3h_vbus_ppc */
--- 
-2.40.1
+Best regards,
+Xingyu Wu
