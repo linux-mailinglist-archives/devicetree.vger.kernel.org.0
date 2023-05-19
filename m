@@ -2,56 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5C96709772
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 14:45:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DB3F709783
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 14:49:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230328AbjESMpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 08:45:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57788 "EHLO
+        id S231169AbjESMtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 08:49:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbjESMpD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 08:45:03 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2FF9DED;
-        Fri, 19 May 2023 05:45:01 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C36211FB;
-        Fri, 19 May 2023 05:45:45 -0700 (PDT)
-Received: from [10.57.73.119] (unknown [10.57.73.119])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 757123F762;
-        Fri, 19 May 2023 05:44:58 -0700 (PDT)
-Message-ID: <ac98770b-ad94-1cce-ebe2-d21d5619be9b@arm.com>
-Date:   Fri, 19 May 2023 13:44:57 +0100
+        with ESMTP id S229965AbjESMtm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 08:49:42 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD64110D;
+        Fri, 19 May 2023 05:49:40 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34JCfMEd010937;
+        Fri, 19 May 2023 12:49:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=tW7XMojtMQEt6J2v4a7YF/Eq8TagwToKFnCh3vS4BH8=;
+ b=eBctXOCA1Uhu1uEGzjE+lau5pstP2LB/3pHxiOUQW+l8qDm13GT2AI351XRPyC9FfBn+
+ BlvwD313CIAqn7xVblfdrQIia8Jvq96iXTFrzWHj7Mxzus8ESNH3HRyAsvNLEv+g3UKy
+ 7GsayqXtvw+gzpVNzy3rAH4DxJIum1BltuVJxleOOIMOrocZLixfGXbDkX6qHXNdC60W
+ UZFuO6z4KK+v7qswvly46V4dlJ1KaxB3wmJoijw3iUmSu7RKY2DT0+sxZStn4nQPBDQ1
+ J2Z/kgOlFSMdWhSaXFmIp+MlhXtuRIssYbglRTjp8sT1XFOH/octV10SQjy0ajU9Piih Gg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qp2e98w4y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 May 2023 12:49:37 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34JCnUSu025704
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 May 2023 12:49:30 GMT
+Received: from [10.217.216.177] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 19 May
+ 2023 05:49:26 -0700
+Message-ID: <55fc32df-f01b-1ba3-3813-26a5f8c7f730@quicinc.com>
+Date:   Fri, 19 May 2023 18:19:23 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.10.0
-Subject: Re: [PATCH V3 4/6] coresight: etm4x: Change etm4_platform_driver
- driver for MMIO devices
-To:     Anshuman Khandual <anshuman.khandual@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        coresight@lists.linaro.org
-Cc:     Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
-        Steve Clevenger <scclevenger@os.amperecomputing.com>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 1/4] clk: qcom: clk-alpha-pll: Add support for lucid ole
+ pll ops
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-References: <20230519052149.1367814-1-anshuman.khandual@arm.com>
- <20230519052149.1367814-5-anshuman.khandual@arm.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20230519052149.1367814-5-anshuman.khandual@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     Bjorn Andersson <andersson@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230509161218.11979-1-quic_jkona@quicinc.com>
+ <20230509161218.11979-2-quic_jkona@quicinc.com>
+ <019999fd-3c86-8c85-76c7-8d0206e60f4d@linaro.org>
+From:   Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <019999fd-3c86-8c85-76c7-8d0206e60f4d@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Qt6FBufyzYh-ebuM7P0JDht_1Q3S74zD
+X-Proofpoint-ORIG-GUID: Qt6FBufyzYh-ebuM7P0JDht_1Q3S74zD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-19_08,2023-05-17_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ suspectscore=0 bulkscore=0 malwarescore=0 phishscore=0 spamscore=0
+ adultscore=0 priorityscore=1501 impostorscore=0 mlxlogscore=961
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305190108
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,156 +87,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/05/2023 06:21, Anshuman Khandual wrote:
-> Add support for handling MMIO based devices via platform driver. We need to
-> make sure that :
+Hi,
+
+Thanks Konrad for your review!
+
+On 5/10/2023 1:36 AM, Konrad Dybcio wrote:
 > 
-> 1) The APB clock, if present is enabled at probe and via runtime_pm ops
-> 2) Use the ETM4x architecture or CoreSight architecture registers to
->     identify a device as CoreSight ETM4x, instead of relying a white list of
->     "Peripheral IDs"
 > 
-> The driver doesn't get to handle the devices yet, until we wire the ACPI
-> changes to move the devices to be handled via platform driver than the
-> etm4_amba driver.
+> On 9.05.2023 18:12, Jagadeesh Kona wrote:
+>> From: Taniya Das <quic_tdas@quicinc.com>
+>>
+>> Add support for lucid ole pll ops to configure and control the
+>> lucid ole pll. The lucid ole pll has an additional test control
+>> register which is required to be programmed, add support to
+>> program the same.
+>>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>> ---
+> Isn't this commit "write to PLL_TEST_CTL_U2 on LUCID_EVO" instead?
 > 
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
-> Cc: Mike Leach <mike.leach@linaro.org>
-> Cc: Leo Yan <leo.yan@linaro.org>
-> Cc: coresight@lists.linaro.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
-> ---
->   .../coresight/coresight-etm4x-core.c          | 62 +++++++++++++++++--
->   drivers/hwtracing/coresight/coresight-etm4x.h |  4 ++
->   include/linux/coresight.h                     | 47 ++++++++++++++
->   3 files changed, 109 insertions(+), 4 deletions(-)
+> Meaninglessly duplicating ops does not seem useful.
 > 
-> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
-> index 914ef6eb85d1..807b3a5a0eda 100644
-> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
-> @@ -30,6 +30,7 @@
->   #include <linux/platform_device.h>
->   #include <linux/pm_runtime.h>
->   #include <linux/property.h>
-> +#include <linux/clk/clk-conf.h>
->   
->   #include <asm/barrier.h>
->   #include <asm/sections.h>
-> @@ -1073,11 +1074,21 @@ static bool etm4_init_sysreg_access(struct etmv4_drvdata *drvdata,
->   	return true;
->   }
->   
-> +static bool is_devtype_cpu_trace(void __iomem *base)
-> +{
-> +	u32 devtype = readl(base + TRCDEVTYPE);
-> +
-> +	return (devtype == CS_DEVTYPE_PE_TRACE);
-> +}
-> +
->   static bool etm4_init_iomem_access(struct etmv4_drvdata *drvdata,
->   				   struct csdev_access *csa)
->   {
->   	u32 devarch = readl_relaxed(drvdata->base + TRCDEVARCH);
->   
-> +	if (!is_coresight_device(drvdata->base) || !is_devtype_cpu_trace(drvdata->base))
-> +		return false;
-> +
->   	/*
->   	 * All ETMs must implement TRCDEVARCH to indicate that
->   	 * the component is an ETMv4. Even though TRCIDR1 also
-> @@ -2135,6 +2146,7 @@ static int etm4_probe_amba(struct amba_device *adev, const struct amba_id *id)
->   
->   static int etm4_probe_platform_dev(struct platform_device *pdev)
->   {
-> +	struct resource *res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->   	struct etmv4_drvdata *drvdata;
->   	int ret;
->   
-> @@ -2142,7 +2154,18 @@ static int etm4_probe_platform_dev(struct platform_device *pdev)
->   	if (!drvdata)
->   		return -ENOMEM;
->   
-> -	drvdata->base = NULL;
-> +	drvdata->pclk = coresight_get_enable_apb_pclk(&pdev->dev);
-> +	if (IS_ERR(drvdata->pclk))
-> +		return -ENODEV;
-> +
-> +	if (res) {
-> +		drvdata->base = devm_ioremap_resource(&pdev->dev, res);
-> +		if (IS_ERR(drvdata->base)) {
-> +			clk_put(drvdata->pclk);
-> +			return PTR_ERR(drvdata->base);
-> +		}
-> +	}
-> +
->   	dev_set_drvdata(&pdev->dev, drvdata);
->   	pm_runtime_get_noresume(&pdev->dev);
->   	pm_runtime_set_active(&pdev->dev);
-> @@ -2188,7 +2211,7 @@ static struct amba_cs_uci_id uci_id_etm4[] = {
->   		/*  ETMv4 UCI data */
->   		.devarch	= ETM_DEVARCH_ETMv4x_ARCH,
->   		.devarch_mask	= ETM_DEVARCH_ID_MASK,
-> -		.devtype	= 0x00000013,
-> +		.devtype	= CS_DEVTYPE_PE_TRACE,
->   	}
->   };
->   
-> @@ -2246,6 +2269,10 @@ static int __exit etm4_remove_platform_dev(struct platform_device *pdev)
->   
->   	if (drvdata)
->   		ret = etm4_remove_dev(drvdata);
-> +
-> +	if (drvdata->pclk)
-> +		clk_put(drvdata->pclk);
-> +
+> Konrad
 
-Shouldn't this be done *after* pm_runtime_disable() below ?
-
->   	pm_runtime_disable(&pdev->dev);
-
->   	return ret;
->   }
-> @@ -2286,7 +2313,33 @@ static struct amba_driver etm4x_amba_driver = {
->   	.id_table	= etm4_ids,
->   };
->   
-> -static const struct of_device_id etm4_sysreg_match[] = {
-> +#ifdef CONFIG_PM
-> +static int etm4_runtime_suspend(struct device *dev)
-> +{
-> +	struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
-> +
-> +	if (!IS_ERR(drvdata->pclk))
-> +		clk_disable_unprepare(drvdata->pclk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int etm4_runtime_resume(struct device *dev)
-> +{
-> +	struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
-> +
-> +	if (!IS_ERR(drvdata->pclk))
-> +		clk_prepare_enable(drvdata->pclk);
-> +
-> +	return 0;
-> +}
-> +#endif
-> +
-> +static const struct dev_pm_ops etm4_dev_pm_ops = {
-> +	SET_RUNTIME_PM_OPS(etm4_runtime_suspend, etm4_runtime_resume, NULL)
-> +};
-> +
-> +static const struct of_device_id etm4_match[] = {
-
-minor nit: This is still only for the system instruction based
-etms, so this renaming is going to confuse. Please leave it
-unchanged.
-
-Suzuki
+Though we are reusing same ops for EVO and OLE, PLL_TEST_CTL_U2 register 
+programming is applicable only to OLE PLL type. And PLL type is useful 
+to properly refer respective hardware datasheets. Hence added separate 
+ops for OLE PLL type.
 
 
+>>   drivers/clk/qcom/clk-alpha-pll.c | 2 ++
+>>   drivers/clk/qcom/clk-alpha-pll.h | 4 ++++
+>>   2 files changed, 6 insertions(+)
+>>
+>> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+>> index b9f6535a7ba7..f81c7c561352 100644
+>> --- a/drivers/clk/qcom/clk-alpha-pll.c
+>> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+>> @@ -55,6 +55,7 @@
+>>   #define PLL_TEST_CTL(p)		((p)->offset + (p)->regs[PLL_OFF_TEST_CTL])
+>>   #define PLL_TEST_CTL_U(p)	((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U])
+>>   #define PLL_TEST_CTL_U1(p)     ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U1])
+>> +#define PLL_TEST_CTL_U2(p)     ((p)->offset + (p)->regs[PLL_OFF_TEST_CTL_U2])
+>>   #define PLL_STATUS(p)		((p)->offset + (p)->regs[PLL_OFF_STATUS])
+>>   #define PLL_OPMODE(p)		((p)->offset + (p)->regs[PLL_OFF_OPMODE])
+>>   #define PLL_FRAC(p)		((p)->offset + (p)->regs[PLL_OFF_FRAC])
+>> @@ -2096,6 +2097,7 @@ void clk_lucid_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regma
+>>   	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL(pll), config->test_ctl_val);
+>>   	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U(pll), config->test_ctl_hi_val);
+>>   	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U1(pll), config->test_ctl_hi1_val);
+>> +	clk_alpha_pll_write_config(regmap, PLL_TEST_CTL_U2(pll), config->test_ctl_hi2_val);
+>>   
+>>   	/* Disable PLL output */
+>>   	regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
+>> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+>> index d07b17186b90..4d9b6d5b7062 100644
+>> --- a/drivers/clk/qcom/clk-alpha-pll.h
+>> +++ b/drivers/clk/qcom/clk-alpha-pll.h
+>> @@ -125,6 +125,7 @@ struct alpha_pll_config {
+>>   	u32 test_ctl_val;
+>>   	u32 test_ctl_hi_val;
+>>   	u32 test_ctl_hi1_val;
+>> +	u32 test_ctl_hi2_val;
+>>   	u32 main_output_mask;
+>>   	u32 aux_output_mask;
+>>   	u32 aux2_output_mask;
+>> @@ -171,6 +172,7 @@ extern const struct clk_ops clk_alpha_pll_zonda_ops;
+>>   #define clk_alpha_pll_postdiv_zonda_ops clk_alpha_pll_postdiv_fabia_ops
+>>   
+>>   extern const struct clk_ops clk_alpha_pll_lucid_evo_ops;
+>> +#define clk_alpha_pll_lucid_ole_ops clk_alpha_pll_lucid_evo_ops
+>>   extern const struct clk_ops clk_alpha_pll_reset_lucid_evo_ops;
+>>   #define clk_alpha_pll_reset_lucid_ole_ops clk_alpha_pll_reset_lucid_evo_ops
+>>   extern const struct clk_ops clk_alpha_pll_fixed_lucid_evo_ops;
+>> @@ -196,6 +198,8 @@ void clk_zonda_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>>   			     const struct alpha_pll_config *config);
+>>   void clk_lucid_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>>   				 const struct alpha_pll_config *config);
+>> +#define clk_lucid_ole_pll_configure(pll, regmap, config) \
+>> +			clk_lucid_evo_pll_configure(pll, regmap, config)
+>>   void clk_rivian_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>>   				  const struct alpha_pll_config *config);
+>>   void clk_stromer_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+
+Thanks & Regards,
+Jagadeesh
