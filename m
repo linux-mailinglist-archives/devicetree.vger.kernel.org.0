@@ -2,109 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C5E2708FDC
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 08:24:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CCD6708FE2
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 08:29:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbjESGYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 02:24:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42742 "EHLO
+        id S229611AbjESG31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 02:29:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjESGYr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 02:24:47 -0400
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2065.outbound.protection.outlook.com [40.107.249.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A56571AD
-        for <devicetree@vger.kernel.org>; Thu, 18 May 2023 23:24:46 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cR7ihs1OLvb77+XGfsIzzqgQ5rlRcWn53lRS2A/8Yu3h7pfsSvWUIyU//pQJba7jxErbbnGT/WLShDARjEIV8B3Z6yRUf5R+R9LKVuFRQXQjilo+pumirDefn4cm0ume0sCs28BOwH+BnXhCP2vg1HkbcZ7d8bER0myJwFuHO2+SSNDNi0yUr2rzfP17G3c0F04yDpceHcJnapTW2cmcQQyDI//8t0bggpGPXoH6ai/fdjPHxld8xrqT9DL3406k+1euUoY/XUme+wROkmW0qGCS7mGdEjYinBkwj5VwroxIe8NWdkzW2r2Trr6HnUWjVKFXFKB13SV4TCUNuRtfjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JlOf2GoJ94q19yp/NI33svASy68v3gsshG13p7PnOYg=;
- b=i9M7Q9agvKmB32u4RwC9F1mGOe9rGvBtm6F8gD87uZ9DTEuYNmkBNHqqM4pQ+5ebwxXbWIzOQal6so9wX8jCPAupefZesxEpE9EY5o9mDVme4klX1gYmg+CIprT3tsS/HdZyMac6mrMq0UIp314m9p1WTA/RKK/LXBLVPKuB6PK5k7lCLvo3Y+JehVHrFuXlbFsGYWKDa+D2leWHq9k59Y7v8eaPYJUqbNu04JjP+ZaBqHfXY5mqMyHl0knZchBYhjXofSJvtVgBnC/V/yAYAE1qspNKvYJA/oyGQ7td/jjbJVY15Md8yS7aXKB/aOpycCd/FvCcjLcnxTuLMz+I5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JlOf2GoJ94q19yp/NI33svASy68v3gsshG13p7PnOYg=;
- b=s14TrZPDqWfsvKyna2xG1WaQLheAU6h3SNsg1NjCqOwb//KrxT27nd0bUhNVDBmtuQIWehTxIuhJpyw6tky01XXx1mwEGr7h7iEkcwb27ezp3HB1LEjXqaU5SWrz+KqDvn9k+BRFaf9nsNaAl20qijlhrNIf59ezI5FnBloR1eU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB7PR04MB4010.eurprd04.prod.outlook.com (2603:10a6:5:21::30) by
- VI1PR04MB7054.eurprd04.prod.outlook.com (2603:10a6:800:12d::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.21; Fri, 19 May
- 2023 06:24:44 +0000
-Received: from DB7PR04MB4010.eurprd04.prod.outlook.com
- ([fe80::60f8:95d:fce9:16cc]) by DB7PR04MB4010.eurprd04.prod.outlook.com
- ([fe80::60f8:95d:fce9:16cc%6]) with mapi id 15.20.6411.021; Fri, 19 May 2023
- 06:24:44 +0000
-From:   haibo.chen@nxp.com
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, haibo.chen@nxp.com
-Subject: [PATCH v2 2/2] arm: dts: imx6sll-evk: avoid underscores in node name
-Date:   Fri, 19 May 2023 14:27:31 +0800
-Message-Id: <20230519062731.504082-2-haibo.chen@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230519062731.504082-1-haibo.chen@nxp.com>
-References: <20230519062731.504082-1-haibo.chen@nxp.com>
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229436AbjESG30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 02:29:26 -0400
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E69221AD;
+        Thu, 18 May 2023 23:29:24 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id B6C955C017D;
+        Fri, 19 May 2023 02:29:21 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Fri, 19 May 2023 02:29:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1684477761; x=1684564161; bh=i/
+        I47qKuqB4bMU6D9p4VPqhlV7pgkdTqCfilS1kyhrk=; b=cvQhoQ+6+7tyHLQX+f
+        OGY0l2YqyKen3c5oGftHNW1t9NnH6CVH/e9N7MJQMFCzRokvVu1B8GIR149GY9Bz
+        hKh7ayxfkFNP6je0N/MPetnp189QzqRt461h66qbXYuh8S5myoJfV60E3rNtV3Qa
+        XvCS4XzmrwB839XmiS5K4S8z2i4ViwqSAQI6gLtc/S6Ed05JqJ1kVHhFnqNYoctJ
+        4vsUikfelL/0Tb/Cdu/JEnMG0P08tnB2dGrA6k/BDoaNktfJitOExP5nAEG3FQVt
+        4dpDBGu0qdIUlHm19H0Disid5MlsPLDYxfG6qR84X9s5Ybf77oO+xD7IvLYElNud
+        ghVA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; t=1684477761; x=1684564161; bh=i/I47qKuqB4bM
+        U6D9p4VPqhlV7pgkdTqCfilS1kyhrk=; b=EQBnp+xYFByLFoZ23C2+Yit24Oawm
+        21NupXM0wkTiv5lPNJ/jvcsdY6n1YzhhOBCQbfIOeMDW+rQ0Ma+zcQ34BMTzca0m
+        YlmfDHwydRbiqDT3MVjhZklIVKGh8LuXDQVkXj6TBog7Va9uS6tFsGE+FPDZb918
+        2rY/o5olqLLKmTvAR9XJnwjhBCne+G2TQUOP7S4uGHKrIRCIPPbmrhd2bQEjc//f
+        P5tR7Ecn5wgGqmW+/PkDe78Nyyt8ps6WhgXi7qp0u8kYe1Qj0FbwQlPIeai8JEaX
+        UsDouVvMsNUqDw6F6X38o00KNh6mhPZPbL4qe4UOHyZ1f96qwKmiongLQ==
+X-ME-Sender: <xms:QBdnZBvrlhL4t0XWh-nHfmnIYF3TNDlSS3fp_MP1aiPLlC_jakdNFg>
+    <xme:QBdnZKd4VvC8vOhh5fJhODHOCfNZ5Lfkk1XVk9dNIKEhMvx19xG2jRGyk9VLoA0d6
+    TB_TGxxJwzNv6bXVBA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeeigedguddtlecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedt
+    keetffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:QBdnZEzBiwjQzoBhJBWoRDRMvEXQ3_mVRyfArBaVnV3Gbwyeu_qq9g>
+    <xmx:QBdnZIMBH5KcspvFPzoElf4y8gwzs3Q8wNGfR1JN6OOvTA56E39CkQ>
+    <xmx:QBdnZB8bl03HM0VghrSpjYgJiTD2-okPXDqTZZMed8rJFlczgz3F1g>
+    <xmx:QRdnZIg9y_xyUFUXTuVs55XzKaeMOJWbaV4XmFE0R3Qrkk3bF70fgA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id F0459B60086; Fri, 19 May 2023 02:29:19 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-431-g1d6a3ebb56-fm-20230511.001-g1d6a3ebb
+Mime-Version: 1.0
+Message-Id: <ed53d7d6-78e7-45af-a441-1c87fba4d420@app.fastmail.com>
+In-Reply-To: <20230519045825.28369-2-stanley_chang@realtek.com>
+References: <20230519045825.28369-1-stanley_chang@realtek.com>
+ <20230519045825.28369-2-stanley_chang@realtek.com>
+Date:   Fri, 19 May 2023 08:28:59 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Stanley Chang" <stanley_chang@realtek.com>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
+Cc:     "Vinod Koul" <vkoul@kernel.org>,
+        "Kishon Vijay Abraham I" <kishon@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "Alan Stern" <stern@rowland.harvard.edu>,
+        "Ray Chi" <raychi@google.com>,
+        "Bagas Sanjaya" <bagasdotme@gmail.com>,
+        "Eugeniu Rosca" <erosca@de.adit-jv.com>,
+        "Michael Grzeschik" <m.grzeschik@pengutronix.de>,
+        "Matthias Kaehlcke" <mka@chromium.org>,
+        "Flavio Suligoi" <f.suligoi@asem.it>,
+        "Mathias Nyman" <mathias.nyman@linux.intel.com>,
+        "Bhuvanesh Surachari" <Bhuvanesh_Surachari@mentor.com>,
+        "Paul Cercueil" <paul@crapouillou.net>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] usb: phy: Add driver for the Realtek SoC USB 2.0/3.0 PHY
 Content-Type: text/plain
-X-ClientProxiedBy: SI2PR02CA0038.apcprd02.prod.outlook.com
- (2603:1096:4:196::22) To DB7PR04MB4010.eurprd04.prod.outlook.com
- (2603:10a6:5:21::30)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB7PR04MB4010:EE_|VI1PR04MB7054:EE_
-X-MS-Office365-Filtering-Correlation-Id: eaca3fda-883f-4f56-d512-08db5831bc94
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i9kJlWx8+mI7GWRnObEca6dDKppnYuP5Upjwl8OaZkGVrYD+Hnw4aUeEwHdGdxhh0nYYdLeoRi2GHlHj1VAxXwqR/NUbL+k9fHbN3mNGflSPIgNFdL/HTtdLg7CSBZY5HIjMg5TC6+YP5g3OZUK7OGOoTu++mVv+067PSifnHdKR1+33n3LagYb57L5ahaL0ra51Fkc98EaCHAlzDceTytgI53zleg3bCtOY4l7U2+KV1PnIgEeAAtO3bRIwG1hyPOJJ0cvtHV7rXPI3eqP4XaEOa5KwLnj+oWEKppoMXjEtlBe+hDux14+7pUGrt98qfxOac8MnkVgIoOWMI8ieEqXVCfHGQP6sx6wjIKLz2KIgKiZxfK0PhiadsgdRPnjXsk5RmdY7U+4ZPP2CslQv23Ykmb21jPUEnoHSttzbAKBFTgYq6LE/7GtgdY3sYsTRcO9S6uQUfni0VE7c2TmNm1TxTQCGzll/GEnY4YcjlqTKr3bVux4bhgCCOkBZCEwq1Uf5AWVUU8zNjp9ejIZRpujO3ttfyxtuCUlANhR+OCvUDDVKWFcdwGMSkcKdp4fMyZM3zNXhYMIukwdADXZXct5Zp4U1wM4xs4BeoUOCXnZoTYGwNSeNOnd5pNrui7jrCt3bmtPORDF0dicAD7S1yA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4010.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(396003)(376002)(346002)(366004)(136003)(451199021)(66946007)(66556008)(66476007)(478600001)(52116002)(4326008)(316002)(86362001)(36756003)(83380400001)(1076003)(26005)(9686003)(6506007)(6512007)(2616005)(186003)(41300700001)(5660300002)(8676002)(8936002)(2906002)(6486002)(6666004)(38350700002)(38100700002)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?T360kXzoqXpbnDbaGupSniNvU8pFeARaL1cJwD2UdsLhp5d7H+4ESqvamFgF?=
- =?us-ascii?Q?P6vreoS4GAGjvZu/KlxS0RpDjMPuiGad3w+79+50z8XzRRUP+NJm+S+Bs+K3?=
- =?us-ascii?Q?Ui0mYikmGVq34kDErMEHVNINSwUgsE8phAsAOMFDbcu9edHte9uH8bcdYRYj?=
- =?us-ascii?Q?eOX1E8r8j7CIw35LfIjFdwiP34rbLpi2hRLrEMz4bEiokyHJxX7vOOLtHsAR?=
- =?us-ascii?Q?HYh1J9CG4dNK+dDZBIruk/KjY1lGDZfabbpMJgpZ5SlSXHKoE5jHX7y8K/Jo?=
- =?us-ascii?Q?/UGpka8Y1zRxQiR1NuzDc99tQ2MRPTmesB24zHqxFH8EfMojjOgYnv/X2c9a?=
- =?us-ascii?Q?PbjO307Ja5lPMhpLOt2Ugfaqlou4g3OEILI8G0DPy/MrqkMx5BvuREaX8Orn?=
- =?us-ascii?Q?KdB6ppJu2L/DM+rcpH8JWaLocE2mmftt9Zd/1ef6f8fazIdTdj5sd9xGE5Yf?=
- =?us-ascii?Q?gREmVfT96ESmmy1nxa4Ws8x75fHwyET/kz4LR0X8d9v/WdAqm7DoUP7zqXhr?=
- =?us-ascii?Q?fr1MvxaXUiHaRX510JuAVEzzDWtpoAtPLR96FWfak09bcmaa1l+vVpkUDEpp?=
- =?us-ascii?Q?HwN9lfZhdoVnp1uUO1tuM2sFX5XqwnVNWS8kxFNhgTovZ0cQX9NmtIYEijvp?=
- =?us-ascii?Q?l3AenI7Bv3Ej38nNsGZQSJQQCt/CseckVfRDwioLo/6Mp7DypyvPvpAlwt1a?=
- =?us-ascii?Q?vyIE+U5XGQMVcNlYLS+0IIewA3AJTmC1YpCqsSnxI5ql2bpHsUUQRmu9Ya0A?=
- =?us-ascii?Q?kNEe7QTZrCJxO6LLov7rjeaagq3tSRgZS9ytKQFTZ1+SBNvRBB+4tJ2HwfYy?=
- =?us-ascii?Q?GLaRqT+DplysXU5MYOjl4eCIVEItfHKMpncvgn39+mOTMMU/+LWn38A6ALE+?=
- =?us-ascii?Q?FJj8KIoKz9fEbWhT67DUhMUIdpBogqDAgVmuAccTgJa0pB71Wn/UKkTO/TGY?=
- =?us-ascii?Q?E34bSdNCGmdYPpnpHOfeHSkwoNTT9eDSSTPVliX+fUKRR7CsELUrw56K7njm?=
- =?us-ascii?Q?Fw0/dNwhI40WXs5buzWf0r4veSSy5A37JuBSEtYYG0dGieafWr4LmwkpFggE?=
- =?us-ascii?Q?G9GB01UT/8WbOVa6BxZInljAm4TAvx+fHfHeNtoD60+ISDV251szkHp2XQyv?=
- =?us-ascii?Q?fb6xwisDgGlSqMmBhVkPTjXfGaZYJmyriEZmXkk8ntpbpc3OjYjMk8sURk8S?=
- =?us-ascii?Q?4TUyA7K4qvdJcOwVmDyWt0CjdRmbEecJpaznd9RUjzJUC4OaJBqdTNx/PxUJ?=
- =?us-ascii?Q?FutHhZDrVgB/Q2UyRvjnyRfhCPRzTwQyeCWvSCucb1wmvytyxxYSoyJamiUF?=
- =?us-ascii?Q?FpazPuttqnGpxihAZgF4S0sDpDJJNPjOnBcoSWDWRrm2nSiFyt1d0GLjdk2+?=
- =?us-ascii?Q?U/A4fB9s/OX4TiQU3WeVU7I69gsOCvjk01MQz5ugj9EdrKpMnoD8An9R8N+N?=
- =?us-ascii?Q?9NBsYvHE0uYgjWSxc8eLgsrHcNbKjNqHCfQp3prCbR2VvNaYEAOiKJ7/Rf7P?=
- =?us-ascii?Q?hCs52bT1fXSN2LwIuPTcTScyPHDi3oSoU9OHgxoAVDNzNouYlLq9apcd9ytk?=
- =?us-ascii?Q?4xUetoZQcuw5fmHNQjvC8qoYJhpyLupOrpgAJlmg?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eaca3fda-883f-4f56-d512-08db5831bc94
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4010.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 May 2023 06:24:44.6344
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: l1eJMtsHkwpxyh9jRvKNwHPHpUwapXlTAcK/T1LgdCiO8yYwP/r5Vf87iuTGb42AFAYBdO58fO+9B00kRqsN5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7054
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
         URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -113,56 +101,210 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Haibo Chen <haibo.chen@nxp.com>
+On Fri, May 19, 2023, at 06:58, Stanley Chang wrote:
+> +struct rtk_usb_phy {
+> +	struct usb_phy phy;
+> +	struct device *dev;
+> +	struct regmap *usb_regs;
+> +	struct regmap *mac_regs;
+> +	struct regmap *usb_ctrl_regs;
+> +
+> +	int port_index;
+> +	int phyN;
+> +	void *reg_addr;
+> +	void *phy_data;
+> +
+> +#ifdef CONFIG_DEBUG_FS
+> +	struct dentry *debug_dir;
+> +#endif
+> +};
 
-usdhc1 and usdhc3 node name contain underscores, so replace the
-'_' by '-'.
+I'd avoid the #ifdefs here and just leave the debugfs
+code in unconditionally in favor of readability. When
+debugfs is disabled, everything except for the one pointer
+value should get optimized out.
 
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
----
- arch/arm/boot/dts/imx6sll-evk.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+> +#define phy_read(addr) __raw_readl(addr)
+> +#define phy_write(addr, val) do { \
+> +	/* Do smp_wmb */ \
+> +	smp_wmb(); __raw_writel(val, addr); \
+> +} while (0)
 
-diff --git a/arch/arm/boot/dts/imx6sll-evk.dts b/arch/arm/boot/dts/imx6sll-evk.dts
-index ad219a647d9c..e3e9b0ec4f73 100644
---- a/arch/arm/boot/dts/imx6sll-evk.dts
-+++ b/arch/arm/boot/dts/imx6sll-evk.dts
-@@ -463,7 +463,7 @@ MX6SLL_PAD_SD1_DATA3__SD1_DATA3	0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc1_100mhz: usdhc1grp_100mhz {
-+	pinctrl_usdhc1_100mhz: usdhc1grp-100mhz {
- 		fsl,pins = <
- 			MX6SLL_PAD_SD1_CMD__SD1_CMD	0x170b9
- 			MX6SLL_PAD_SD1_CLK__SD1_CLK	0x130b9
-@@ -474,7 +474,7 @@ MX6SLL_PAD_SD1_DATA3__SD1_DATA3	0x170b9
- 		>;
- 	};
- 
--	pinctrl_usdhc1_200mhz: usdhc1grp_200mhz {
-+	pinctrl_usdhc1_200mhz: usdhc1grp-200mhz {
- 		fsl,pins = <
- 			MX6SLL_PAD_SD1_CMD__SD1_CMD	0x170f9
- 			MX6SLL_PAD_SD1_CLK__SD1_CLK	0x130f9
-@@ -551,7 +551,7 @@ MX6SLL_PAD_REF_CLK_32K__GPIO3_IO22	0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc3_100mhz: usdhc3grp_100mhz {
-+	pinctrl_usdhc3_100mhz: usdhc3grp-100mhz {
- 		fsl,pins = <
- 			MX6SLL_PAD_SD3_CMD__SD3_CMD		0x170a1
- 			MX6SLL_PAD_SD3_CLK__SD3_CLK		0x130a1
-@@ -563,7 +563,7 @@ MX6SLL_PAD_REF_CLK_32K__GPIO3_IO22	0x17059
- 		>;
- 	};
- 
--	pinctrl_usdhc3_200mhz: usdhc3grp_200mhz {
-+	pinctrl_usdhc3_200mhz: usdhc3grp-200mhz {
- 		fsl,pins = <
- 			MX6SLL_PAD_SD3_CMD__SD3_CMD		0x170e9
- 			MX6SLL_PAD_SD3_CLK__SD3_CLK		0x130f9
--- 
-2.34.1
+Using __raw_readl()/__raw_writel() in a driver is almost never
+the right interface, it does not guarantee atomicity of the
+access, has the wrong byte-order on big-endian kernels and misses
+the barriers to serialize against DMA accesses. smp_wmb()
+should have no effect here since this only serializes access to
+memory against another CPU if it's paired with an smp_rmb(), but
+not on MMIO registers.
 
+> +#define PHY_IO_TIMEOUT_MSEC		(50)
+> +
+> +static inline int utmi_wait_register(void __iomem *reg, u32 mask, u32 
+> result)
+> +{
+> +	unsigned long timeout = jiffies + 
+> msecs_to_jiffies(PHY_IO_TIMEOUT_MSEC);
+> +
+> +	while (time_before(jiffies, timeout)) {
+> +		/* Do smp_rmb */
+> +		smp_rmb();
+> +		if ((phy_read(reg) & mask) == result)
+> +			return 0;
+> +		udelay(100);
+> +	}
+> +	pr_err("\033[0;32;31m can't program USB phy \033[m\n");
+> +
+> +	return -ETIMEDOUT;
+> +}
+
+This should just use read_poll_timeout() or possibly
+read_poll_timeout_atomic(), but not an open-coded version.
+
+I don't think I've seen escape sequences in a printk
+in any other driver, so please don't start that now.
+
+> +#define DEFAULT_CHIP_REVISION 0xA00
+> +#define MAX_CHIP_REVISION 0xC00
+> +
+> +static inline int __get_chip_revision(void)
+> +{
+> +	int chip_revision = 0xFFF;
+> +	char revision[] = "FFF";
+> +	struct soc_device_attribute soc_att[] = {{.revision = revision}, {}};
+
+You should probably check that you are actually on the right
+SoC type here as well, not just the right revision of
+an arbitrary chip.
+
+Ideally I think the revision check should be based off a DT proporty
+if that's possible, so you can have this code in the boot loader.
+
+> +#define RTK_USB2PHY_NAME "rtk-usb2phy"
+
+Better avoid hiding the driver name like this, it makes it harder
+to grep the source tree for particular driver names.
+
+> +	/* rmb for reg read */
+> +	smp_rmb();
+> +	regVal = phy_read(reg_gusb2phyacc0);
+
+I would expect that you don't need barriers like this, especially
+if you change the phy_read() helper to use the proper readl().
+
+If you do need to serialize against other CPUs, still, there should
+be a longer explanation about that, since it's so unexpected.
+
+> +
+> +static void do_rtk_usb2_phy_toggle(struct rtk_usb_phy *rtk_phy,
+> +	    int index, bool isConnect);
+
+It's best to sort your function definitions in a way that avoids
+forward declarations. This makes it easier to read and shows that
+there are no obvious recursions in the source. If you do have
+an intentional recursion, make sure that there is a way to
+prevent unbounded stack usage, and explain that in a comment.
+
+> +static int do_rtk_usb_phy_init(struct rtk_usb_phy *rtk_phy, int index)
+> +{
+> +	struct reg_addr *regAddr;
+> +	struct phy_data *phy_data;
+> +	struct phy_parameter *phy_page_setting;
+> +	int i;
+> +
+> +	if (!rtk_phy) {
+> +		pr_err("%s, rtk_phy is NULL\n", __func__);
+> +		return -EINVAL;
+> +	}
+> +
+> +	dev_dbg(rtk_phy->dev, "%s: init phy#%d\n", __func__, index);
+...
+> +	if (!phy_data) {
+> +		pr_err("%s, phy_data is NULL\n", __func__);
+> +		return -EINVAL;
+> +	}
+
+You can probably remove most of the debugging prints.
+
+> +	regAddr = &((struct reg_addr *)rtk_phy->reg_addr)[index];
+> +	phy_data = &((struct phy_data *)rtk_phy->phy_data)[index];
+
+Why do you need the casts here? It looks like regAddr should
+be an __iomem pointer. Please build your driver with 'make C=1'
+to see if there are any incorrect address space annotations.
+
+> +static int __get_phy_parameter_by_efuse(struct rtk_usb_phy *rtk_phy,
+> +	    struct phy_data *phy_data, int index)
+> +{
+> +	u8 value = 0;
+> +	struct nvmem_cell *cell;
+> +	struct soc_device_attribute rtk_soc_groot[] = {
+> +			{ .family = "Realtek Groot",},
+> +			{ /* empty */ }
+> +		};
+> +	struct soc_device_attribute rtk_soc_hank[] = {
+> +			{ .family = "Realtek Hank",},
+> +			{ /* empty */ }
+> +		};
+> +	struct soc_device_attribute rtk_soc_efuse_v1[] = {
+> +			{ .family = "Realtek Phoenix",},
+> +			{ .family = "Realtek Kylin",},
+> +			{ .family = "Realtek Hercules",},
+> +			{ .family = "Realtek Thor",},
+> +			{ .family = "Realtek Hank",},
+> +			{ .family = "Realtek Groot",},
+> +			{ .family = "Realtek Stark",},
+> +			{ .family = "Realtek Parker",},
+> +			{ /* empty */ }
+> +		};
+> +	struct soc_device_attribute rtk_soc_dis_level_at_page0[] = {
+> +			{ .family = "Realtek Phoenix",},
+> +			{ .family = "Realtek Kylin",},
+> +			{ .family = "Realtek Hercules",},
+> +			{ .family = "Realtek Thor",},
+> +			{ .family = "Realtek Hank",},
+> +			{ .family = "Realtek Groot",},
+> +			{ /* empty */ }
+> +		};
+> +
+> +	if (soc_device_match(rtk_soc_efuse_v1)) {
+> +		dev_dbg(rtk_phy->dev, "Use efuse v1 to updated phy parameter\n");
+> +		phy_data->check_efuse_version = CHECK_EFUSE_V1;
+
+I'm not entirely sure what you are trying to do here, but
+it looks the purpose is to tell the difference between implementations
+of the phy device by looking at which SoC it's in. You should
+only need that very rarely when this information cannot be
+passed through the DT, but you literally already have the
+per-SoC compatible strings below, so just use those, or add other
+DT properties in the binding for specific quirks or capabilities.
+
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id usbphy_rtk_dt_match[] = {
+> +	{ .compatible = "realtek,usb3phy", },
+> +	{ .compatible = "realtek,rtd-usb3phy", },
+> +	{ .compatible = "realtek,rtd1295-usb3phy", },
+> +	{ .compatible = "realtek,rtd1619-usb3phy", },
+> +	{ .compatible = "realtek,rtd1319-usb3phy", },
+> +	{ .compatible = "realtek,rtd1619b-usb3phy", },
+> +	{ .compatible = "realtek,rtd1319d-usb3phy", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, usbphy_rtk_dt_match);
+> +#endif
+> +
+> +static struct platform_driver rtk_usb3phy_driver = {
+> +	.probe		= rtk_usb3phy_probe,
+> +	.remove		= rtk_usb3phy_remove,
+> +	.driver		= {
+> +		.name	= RTK_USB3PHY_NAME,
+> +		.owner	= THIS_MODULE,
+> +		.of_match_table = of_match_ptr(usbphy_rtk_dt_match),
+> +	},
+> +};
+
+Remove that of_match_ptr() and ifdef CONFIG_OF check here, new drivers
+should no longer use static platform device definitions and just assume
+that CONFIG_OF is used.
+
+     Arnd
