@@ -2,264 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3217709008
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 08:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6484170900C
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 08:53:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230004AbjESGwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 02:52:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47624 "EHLO
+        id S229559AbjESGxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 02:53:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229999AbjESGww (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 02:52:52 -0400
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C7922E5C;
-        Thu, 18 May 2023 23:52:49 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8Cxd+nAHGdk_BcKAA--.17607S3;
-        Fri, 19 May 2023 14:52:48 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxoOS9HGdk73hpAA--.47775S3;
-        Fri, 19 May 2023 14:52:46 +0800 (CST)
-Subject: Re: [PATCH v1 2/3] dt-bindings: soc: add loongson-2 pm
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230048AbjESGxN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 02:53:13 -0400
+Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2115.outbound.protection.outlook.com [40.107.113.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB530E64;
+        Thu, 18 May 2023 23:53:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Qvz8yjPJLpqOr4dINq1QG9Ir3UncbRU+WRhrSLwVzd1rWDKt087EBoVQEN8TD36AT1f6j0h6crskvsikNGcRvzXAoZsx3l9an+HGtnXvNv2addO42+mJ9kYN+GK55s4zzIppDPfoN1LOe3V+j37/DgxO0xBJoc+ngElZYkVWz0zNvHsPHc9AHIsBRejnJcM5mrDRW1GL2O+bfOPA9y76FQhXD9Jr46xpNonn5E87VNvR9USrsXfo6AzuCeFMWI1MlI4wH60O/Z6rlIwU+Buql3ebTxEqk3ZQLCb4f0v56c8uqI0Kz+Dro2d65Yid4O5eO398+NcAh0anJtfOUyD5FQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DO/qofuUP8PNccituhPSHE3tkIY17FC+oQxTlY79bTg=;
+ b=VlCvkbGCWqxcWD8Eq8cdRDhRe2G08HOx5ojqZF+srgXKDWCjmm11WloCmQQcHPUwMmpHwigIRZRLziAe5nOsnTSdGGu0OtX212NMv+86e8rZpVt7tY6v6KrHuMA2lXiZsvCjnZC3y/9kzVEoIP+I2KiUduQzdgcJ5OQyajlOrUT3K27cPtk/fkhXZRuqQwQ+EtGsVrtX0Je/WpWU3NeyZx0u3wzfVIw8+g1KSjII056Ke8dYpHWaw57pCLzdLP6dn1qzcZX02Q4UTGNZnB0n1VguFSeo9W6w/EikT7dYVvwahcg5yEgiUQ9b8yQ0M7TH9t0XbWDeiKweHhM4UGkpOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DO/qofuUP8PNccituhPSHE3tkIY17FC+oQxTlY79bTg=;
+ b=gpUTlQnyukhTu5XI1DGbgCedJlVMw/7/CI35w8mYSjZKYJJjDbbFAbHGS1J0YjJrieBgBanTS2wZWRYB33sFKPxUmGkeS6TFOlCZ2FzHeD/3QymXZLZqUBw/wpcBRotfL5H4ZrvSFUc1vdK5frb33Srzx2gYbItCavIT6/ipYB4=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by OS0PR01MB5668.jpnprd01.prod.outlook.com (2603:1096:604:b8::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.21; Fri, 19 May
+ 2023 06:53:07 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::bd0a:a38d:b4d2:5d2]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::bd0a:a38d:b4d2:5d2%6]) with mapi id 15.20.6411.021; Fri, 19 May 2023
+ 06:53:03 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Conor Dooley <conor@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Tiezhu Yang <yangtiezhu@loongson.cn>,
-        Marc Zyngier <maz@kernel.org>,
-        Youling Tang <tangyouling@loongson.cn>,
-        Baoqi Zhang <zhangbaoqi@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>, Yun Liu <liuyun@loongson.cn>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230517073149.31980-1-zhuyinbo@loongson.cn>
- <20230517073149.31980-3-zhuyinbo@loongson.cn>
- <d3791702-4d41-0208-1346-34738a2883b6@linaro.org>
- <4521c591-6fcd-c96a-e2f6-f41f5c191036@loongson.cn>
- <1bbabe6d-b013-9837-8986-205a2b04de14@linaro.org>
- <b4bc7385-3706-8aa3-0117-d106fd47a45e@loongson.cn>
- <3f81816a-b7a8-cc3a-0052-a2177bfb58c4@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <9c49fd36-2b87-b25a-c799-c5845718def6@loongson.cn>
-Date:   Fri, 19 May 2023 14:52:45 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
-MIME-Version: 1.0
-In-Reply-To: <3f81816a-b7a8-cc3a-0052-a2177bfb58c4@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: RE: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas RAA215300
+ PMIC bindings
+Thread-Topic: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas RAA215300
+ PMIC bindings
+Thread-Index: AQHZiX0f8Q76HwTBKEKFLFKF5VU7o69gZsiAgAC5I9A=
+Date:   Fri, 19 May 2023 06:53:03 +0000
+Message-ID: <OS0PR01MB59226BDCD4D67430EC7377C6867C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20230518113643.420806-1-biju.das.jz@bp.renesas.com>
+ <20230518113643.420806-10-biju.das.jz@bp.renesas.com>
+ <20230518-prompter-helium-91d0139a61e2@spud>
+In-Reply-To: <20230518-prompter-helium-91d0139a61e2@spud>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxoOS9HGdk73hpAA--.47775S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW3WrW7tFyxJF18Xr4DuFyfWFg_yoW7GFy8pa
-        yUKF4qyrWDJr1Syw48tw18C3yFvrWkKFW5Wrn8XryxCw4qvr1Iyr17KF15u342kr1xJw12
-        9Fyjy397CF45AFJanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bDAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
-        v26r1q6r43MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
-        7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I
-        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAI
-        cVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcV
-        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIE
-        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jUManUUUUU=
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|OS0PR01MB5668:EE_
+x-ms-office365-filtering-correlation-id: c565777e-08d9-4378-4366-08db5835b181
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 2l0dx5K5beQL1lfwCzSwKGIYaA5VWociQ+VbQYdhpyMfKITTQRqinepWmIDvY3YJcyuUe11Q6FOlqZUd7v8AHjQRpIIYwT5iPEVpuJ0w1LaZJrOkPQ0hYWSP5k6gGTGmpVi+sHpQczOcoosUrtf5/SCsyU+gWFqeXOTjkLGQPg6f7g2W/YNpSXQ3uZ46WwHy/UGwWENApv20u8RgxydIZrX1IDMNWN9YJQgh/cNRRllWmyFcPqI8T7USYKFH7LRKwoC3Q61GpBVpqlxm415BLqY8Dit73FTKir3jVePXbWp7x94g2u8PvzLfPtVUIpiE8ypCyJv7VJ+pBIck5TjcYu3IyJuG24xJhq3YA2dl0DX4iJmzkbve4CJYQB+ioVrnEP8RZrFNBTKd6h/lQ1ICAGkGzHtPAkHSEloNUR33QXxYN9ldDSSs0Dpfj8YT7Jz/F7fT6jpsqeyCbZno0SBZCQc4ZSgUfeOMbwTRI7GBgppW8BksRTJCXGDNoFy8e1N0m6R7aAMloXTuyQtBlJR1G93YdEswFjhfH3t1p8R8rDuba3Fk4D+T44e9voPgfgND05uCLdn9NMm62lrWn0hhzfi4N7C0CCzSmdrOVv4ANBhxQmh9j0EZq9H38SS9rF4H
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(376002)(39860400002)(136003)(366004)(396003)(451199021)(8936002)(8676002)(7416002)(86362001)(76116006)(64756008)(2906002)(66446008)(66946007)(66476007)(66556008)(38070700005)(316002)(6916009)(4326008)(478600001)(66899021)(52536014)(5660300002)(41300700001)(54906003)(38100700002)(7696005)(122000001)(71200400001)(55016003)(107886003)(26005)(186003)(9686003)(6506007)(33656002)(83380400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GC6S2UNvZXD8JlsUhZG/c2Fq7FR/mi8dy6MpiRCpfeMNx9kjAD9Ve8nq6ugM?=
+ =?us-ascii?Q?BIRVc1j1aNdz36cv9Ue5FFNUlYwQcI+g6mCkagapAZAfMbibM2sv0iULh2f1?=
+ =?us-ascii?Q?DoYW3QEjxDzIvwr4WubeMIyaZACxX06svH+NQ5k2Xorf3tiRVljPlUrGY8g7?=
+ =?us-ascii?Q?gEqI7GVlzyM1APrN3JDbbWNjnZyjeUypB2j/Bfvi6VNYtQyCkrRwglvVk9kY?=
+ =?us-ascii?Q?KM64l+EGKDyntcSAh5EhIvUUvP2Z1twuTpInJZgrWY7Zb7rvmf6sImP4seOD?=
+ =?us-ascii?Q?OkPgMesuSgTUmEeGPwflPkesbs2b2AfSbpkwKULqXELQ/zpjcGovCE3E2Vnv?=
+ =?us-ascii?Q?6Ak/N3gXl3V7uZV9YqKyikTIRDpTNNSynIkbUF9dBzVXgceUqLbxmRySEuy8?=
+ =?us-ascii?Q?6fuofHqEd/Pd0vfoPbNLpz8YwA1QboNQGrK9Bpuvz937cF+6JfX1IXN2W/qL?=
+ =?us-ascii?Q?RY0kqMx7klH59J6/ka+7XgB4OGkfh2/LJTuWUhhkdw3e7uUOWSWimg4HMjGA?=
+ =?us-ascii?Q?Ow+umeJLKdaxuGl58pXoHDkAgumAAFSbq9zXsizurveWdnY/7VPqzl0Z7v3Z?=
+ =?us-ascii?Q?wsW2ErlOYH3jCOAhpTQu/O1nqGhGiuj2VAtoAzYQ/o88vOKlfSh8N6NExhCd?=
+ =?us-ascii?Q?+0RYozt5gD+y8rXX4TS+bSps6y3r7rcBpLieHaIoG1r/b8F7V+ofKT2XsX5S?=
+ =?us-ascii?Q?fUOHvXqoV2cauqu+uIKTI6CTLhjUtSjyZJaDAVzDhyv7vPhXvApCrcebdYbx?=
+ =?us-ascii?Q?qnseD6cEl4EPMl3kbAmv8mYisqNNP/wTWK/CfEkpgJdh4VeKFYwP44LdFVpb?=
+ =?us-ascii?Q?IhJHD1fmdMep481fS5uopU2tDPyifIBgbmnDqKpc7dNMydwNO7a8ZjaNa8Lj?=
+ =?us-ascii?Q?OPmtGkOnPeSFdbn+LaIXYJa0EGU2y5ZqndJ9MFq9EjhN/sSDqYLdaMXR5urR?=
+ =?us-ascii?Q?6c0e/LizCjO70pzA/Tb7sC7/AWw2BBWesfwzKdY/wjguEHklIVG/zFPgBBYu?=
+ =?us-ascii?Q?K+8BdvzWjD0hyL7f4u2rR7j6ViViQVE5Mz0rKoIRmUlgItJ/DNwtoJKh8KAG?=
+ =?us-ascii?Q?X1ia3ts4tAte0D+R93UgGTnwrSuuQHU3vvZj9j9uVCGWDS5WpJO+R9J5FX9Z?=
+ =?us-ascii?Q?VB2RDh9OP5TZk5B1GvVPTFGgNh87CYYFhTxG0cjh6L8crVwW1XiF5g/06gbm?=
+ =?us-ascii?Q?A9EJdQ8Qm6BP/4BO+p8y0SLaWjWxNVYID0U7nnEnLYXqb+7zKPAGft2d4Cgd?=
+ =?us-ascii?Q?qfONukGTuhMnHfqHT8uk3UahBKhep1m2oOiHoyF6mVC4UNEGnSEuTYuEPhYM?=
+ =?us-ascii?Q?DUNyYpYS9TI0R5Ek7YHV9Ukmy33n+IybQFAkhKIpTbFQo0x03qwFCxpGOFFi?=
+ =?us-ascii?Q?RkY5hOvKDRTUawttsVpbbgbgUXm7r2FXvRzI4BUr7XEr313+CwNWyVVZO2jF?=
+ =?us-ascii?Q?OOGyOM3rqTNpi9GYlCDgrfjy2Y09Ex1YD2C7mpoBD9UCi8WyPDPgHWuppbFB?=
+ =?us-ascii?Q?shz8hpEb4og2TpGOoCnsIxBX3TTzQcO3eRJ5BBQflVpkrJ7w8VBvvAqTW9SF?=
+ =?us-ascii?Q?FlnPQ0y3sokZSmZCaQwXXuL00L1DWa7+2sCFbgYx?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c565777e-08d9-4378-4366-08db5835b181
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 May 2023 06:53:03.7552
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4UEJSUKmS4VrLtqJJwe2BrtoLn5yn/jy7am85IMdB1toi4Xb0VtCKbI1RBndkPc+d+NjhQoJIku1jEyHNXFL1aoe2kpeyzmi68kPPghcA7o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS0PR01MB5668
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Conor,
 
+Thanks for the feedback.
 
-在 2023/5/18 下午10:15, Krzysztof Kozlowski 写道:
-> On 18/05/2023 14:15, zhuyinbo wrote:
->>
->>
->> 在 2023/5/18 下午3:15, Krzysztof Kozlowski 写道:
->>> On 18/05/2023 05:23, zhuyinbo wrote:
->>>>
->>>>
->>>> 在 2023/5/17 下午11:00, Krzysztof Kozlowski 写道:
->>>>> On 17/05/2023 09:31, Yinbo Zhu wrote:
->>>>>> Add the Loongson-2 SoC Power Management Controller binding with DT
->>>>>> schema format using json-schema.
->>>>>>
->>>>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>>>>
->>>>> ...
->>>>>
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    items:
->>>>>> +      - enum:
->>>>>> +          - loongson,ls2k-pmc
->>>>>> +      - const: syscon
->>>>>> +
->>>>>> +  reg:
->>>>>> +    maxItems: 1
->>>>>> +
->>>>>> +  interrupts:
->>>>>> +    maxItems: 1
->>>>>> +
->>>>>> +  suspend-address:
->>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>>> +    description:
->>>>>> +      This option indicate this PM suspend address.
->>>>>
->>>>> This tells me nothing. Drop "This option indicate this" and rephrase
->>>>> everything to actually describe this property. Why would the address
->>>>> differ on given, specific SoC? It looks like you just miss compatibles.
->>>>> Anyway this needs much more explanation so we can judge whether it fits DT.
->>>>
->>>> Hi Krzysztof,
->>>>
->>>> I will add following description about "suspend-address", please review.
->>>
->>> Thanks.
->>>
->>>>
->>>> The "suspend-address" is a ACPI S3 (Suspend To RAM) firmware entry
->>>
->>> Why do we add properties for ACPI? This does not seem right.
->>
->>
->> 1.  The suspend-address value was dependent on specific platform
->>       firmware code and it tends to be confiurable. if it is a fixed value
->>       that seems not friendly or the ACPI S3 will not work.
-> 
->> 2. the PM driver need according to it to indicate that current SoC
->>      whether support ACPI S3, because some Loongson-2 SoC doesn't support
-> 
-> For this you have dedicated compatibles. Which points to the fact that
-> you missed them here.
+> Subject: Re: [PATCH v4 09/11] regulator: dt-bindings: Add Renesas
+> RAA215300 PMIC bindings
+>=20
+> On Thu, May 18, 2023 at 12:36:41PM +0100, Biju Das wrote:
+> > Document Renesas RAA215300 PMIC bindings.
+> >
+> > The RAA215300 is a high Performance 9-Channel PMIC supporting DDR
+> > Memory, with Built-In Charger and RTC.
+> >
+> > It supports DDR3, DDR3L, DDR4, and LPDDR4 memory power requirements.
+> > The internally compensated regulators, built-in Real-Time Clock (RTC),
+> > 32kHz crystal oscillator, and coin cell battery charger provide a
+> > highly integrated, small footprint power solution ideal for
+> > System-On-Module (SOM) applications. A spread spectrum feature
+> > provides an ease-of-use solution for noise-sensitive audio or RF
+> > applications.
+> > +  reg:
+> > +    maxItems: 2
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: main
+> > +      - const: rtc
+>=20
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+>=20
+> Out of curiosity as much as anything else, why do you need reg-names if
+> the two registers are always required?
 
+The device has always 2 address spaces and "reg-names" provides a means
+of clear differentiation compared to indices.=20
 
-Sorry, I may not have explained it clearly before. In fact, this is a
-consideration for the future, and currently all SoC supports s3.
-Add corresponding compatibles as needed in the future.
+By enforcing "reg-names" as required property, dt can do some schema-valida=
+tion
+forcing users to specify "reg-names" in device tree.
 
-> 
->>      ACPI S3 but support other ACPI mode, so the PM driver need has a
->>      check. if no this check and other ACPI mode will not work.
-> 
-> Sure, but it is not really relevant to the bindings... or rather: should
-> not be relevant. Bindings are for hardware or in this case also for
-> firmware, but not for driver.
+Implementation wise, we use "rtc" for getting resource details while
+creating the second i2c device which overrides the default address.
 
-okay, I got it.
+Strictly speaking reg-names is not required, but from a validation
+perspective and since driver is using the same "resource-name" it is
+better to have it??
 
-> 
->>
->> Base on the above two points, this property was necessary.
-> 
-> I did not object in my last response...
+Please share your thoughts.
 
-
-Yes, but I misunderstood your meaning before.
-
-> 
->> Using this property "suspend-address" can make the firmware entry
->> address configurable, and then the kernel can also indicate whether
->> the current SoC supports S3
->>
->> In addition, from kernel code perspective, the property
->> "suspend-address" was to initialize "loongarch_suspend_addr"
-> 
-> Again, how does it matter what kernel does?
-
-
-okay, I got it.
-
-> 
->>
->> S3 call flow:
->> enter_state -> loongson_suspend_enter -> bios's loongarch_suspend_addr
->>
->> SYM_FUNC_START(loongson_suspend_enter)
->>           SETUP_SLEEP
->>           bl              __flush_cache_all
->>
->>           /* Pass RA and SP to BIOS */
->>           addi.d          a1, sp, 0
->>           la.pcrel        a0, loongson_wakeup_start
->>           la.pcrel        t0, loongarch_suspend_addr
->>           ld.d            t0, t0, 0
->>           jirl            a0, t0, 0 /* Call BIOS's STR sleep routine */
->>
->>
->> Please
->>> reword to skip ACPI stuff, e.g. deep sleep states (Suspend to RAM).
->>
->>
->> Sorry, I don't got your point.
-> 
-> You have DT platform, so why do you use it with ACPI in the first place?
-> If you have ACPI, then please drop all this and make your life easier.
-
-
-okay, I got it, I will reword to skip ACPI stuff in bindings for 
-"suspend-address" property description.
-
-> 
-> If this is booted without ACPI, which would justify DT, drop the
-> references to ACPI. I gave you example what to use instead. If you don't
-> like it, no problem, reword in different way.
-
-okay, I got it.
-
-> 
->>
->>>
->>>
->>>> address which was jumped from kernel and it's value was dependent on
->>>> specific platform firmware code.
->>>
->>> "entry address which was jumped" <- the address cannot jump. Please
->>> explain who is jumping here - boot CPU? each suspended CPU? I guess the
->>> first as CPUs are offlined, right?
->>
->> The boot CPU was jumping to firmware and finish remaining process in
->> firmware that was what ACPI S3 required and other CPUs (No-boot CPU)
->> have been offline before entering firmware.
-> 
-> Then fix the description.
-
-okay, I got it.
-
-> 
->>
->>>
->>>> In addition, the PM driver need
->>>> according to it to indicate that current SoC whether support ACPI S3.
->>>
->>> Skip references to driver.
->>
->>
->> Sorry, I don't got your point.  Could you elaborate on it?
-> 
-> If you change driver, you change bindings? No.
-> 
-> Bindings are for hardware, not for driver. Whatever your driver is doing
-> usually does not matter for the bindings and should not be included.
-
-
-okay, I got it. I will skip references to driver in bindings for 
-"suspend-address" property description.
-
-Thanks.
-
+Cheers,
+Biju
