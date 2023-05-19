@@ -2,121 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A65FD7092A9
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 11:10:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 292707092E8
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 11:23:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231336AbjESJKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 05:10:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54020 "EHLO
+        id S231423AbjESJXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 05:23:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231349AbjESJJu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 05:09:50 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47965FB;
-        Fri, 19 May 2023 02:09:49 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34J6FFWd027051;
-        Fri, 19 May 2023 09:09:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=37fjXykXHh2BbT0SJTt8kyFq6d+NifX3IBh5wK3P9H8=;
- b=owUPAu2dvKUERGMO093T4bXogCmpzp1gD8tCvId7Q5D4Twi2HOFJcHE+UAVjRWLs96dj
- 8wWIMxf7r4AhjJqjKzGN2fbF9XyRLPRNh9FrNkZPzA3mZQhWWUo5Gw/PtU2TrHQJGrZ7
- IVRatiH2yKGyZB5JekfwCb1+FvkB2rfnII1ttyDbVp7Ib+wMpocqykkDCu6mvLnPzbNs
- XkM2dGDe89EU9tnBWgj+Ik/VPGdCRXAa2k0b8/hVjzJl4sLPEMXvB8tWpaxWRZ0Yy0us
- N74jJREGaqqXZZahuK60AYmdOWC3x709utrVeOXMN0piHCzpRKFBxFCLkHDXOAtAe84g kQ== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qnwk4gy90-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 19 May 2023 09:09:18 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 34J98CEE030916;
-        Fri, 19 May 2023 09:09:15 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3qj3mm5591-1;
-        Fri, 19 May 2023 09:09:15 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 34J99C9Q031608;
-        Fri, 19 May 2023 09:09:14 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 34J99D8d031636;
-        Fri, 19 May 2023 09:09:14 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
-        id 2B7DC5EB5; Fri, 19 May 2023 14:39:14 +0530 (+0530)
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, tglx@linutronix.de, maz@kernel.org,
-        will@kernel.org, robin.murphy@arm.com, joro@8bytes.org,
-        robimarko@gmail.com, quic_gurus@quicinc.com
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: [PATCH 8/8] arm64: dts: qcom: Enable the QUPv3 UART console for SDX75
-Date:   Fri, 19 May 2023 14:39:10 +0530
-Message-Id: <1684487350-30476-9-git-send-email-quic_rohiagar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1684487350-30476-1-git-send-email-quic_rohiagar@quicinc.com>
-References: <1684487350-30476-1-git-send-email-quic_rohiagar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: pn2fq1MDc9yTIGJ2w2XxFJG8uQGwdy91
-X-Proofpoint-ORIG-GUID: pn2fq1MDc9yTIGJ2w2XxFJG8uQGwdy91
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-19_05,2023-05-17_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- clxscore=1015 impostorscore=0 mlxscore=0 phishscore=0 priorityscore=1501
- malwarescore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=717 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
- definitions=main-2305190076
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229451AbjESJXF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 05:23:05 -0400
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DC38192;
+        Fri, 19 May 2023 02:23:05 -0700 (PDT)
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3944816b579so1674572b6e.1;
+        Fri, 19 May 2023 02:23:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684488184; x=1687080184;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3UraE6X1bGQBbaM/niZUO5TV7tVH+NhZ8DOXB03Zfqk=;
+        b=TvweDTsrVCLbEdiehhd0t/5+03yyUL3NCPKkhype+YywgpHavEBR0hg8qX1mK61kLI
+         Ga2OijuXQefKNjVmFaya/08IoNcJUDZNFmW1HELlWW253ixubJ/1K+Ra8ygryE0rp53V
+         5fCGYDotLX3t0UFzrSGSBXdewmu2MBtPrgFV7G3+5L4vW5VmcWWBwcGUXrYZFahk8ndC
+         odQOuJtHSKaVV2MWYb3YvP+EXbYhqUjW/dPnNYEweghqgHBSNXxbJQRll0W+VwK7MWyk
+         kFgZ91lSje173PmblZa2ApVjIvSLLWFnbUcP+knO2nZR/RTD3AnnCTbnWqOjvHYoUYI2
+         U7fA==
+X-Gm-Message-State: AC+VfDzi3O9FUq4sPamsdBC0/YDjQ6Qq0moCk0+PDxEF+WVczydocArA
+        uRQNh9iak/tR+HpljNBX1w==
+X-Google-Smtp-Source: ACHHUZ7mE/rmaqPh2pkd3JAot4Zv0jCYiATZb5CADq/aILvohgmA9artxd1r9SoE5HpO3+ucAQ8JAw==
+X-Received: by 2002:a54:408a:0:b0:38e:8d7f:c07e with SMTP id i10-20020a54408a000000b0038e8d7fc07emr676449oii.52.1684488184181;
+        Fri, 19 May 2023 02:23:04 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id c24-20020aca1c18000000b00397c03854edsm837927oic.17.2023.05.19.02.23.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 May 2023 02:23:03 -0700 (PDT)
+Received: (nullmailer pid 3014363 invoked by uid 1000);
+        Fri, 19 May 2023 09:23:02 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     Shenghao Ding <13916275206@139.com>
+Cc:     x1077012@ti.com, Ryan_Chu@wistron.com, broonie@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, peeyush@ti.com,
+        devicetree@vger.kernel.org, pierre-louis.bossart@linux.intel.com,
+        Sam_Wu@wistron.com, linux-kernel@vger.kernel.org,
+        shenghao-ding@ti.com, robh+dt@kernel.org, navada@ti.com,
+        kevin-lu@ti.com, gentuser@gmail.com, alsa-devel@alsa-project.org,
+        lgirdwood@gmail.com, perex@perex.cz
+In-Reply-To: <20230519080245.20243-1-13916275206@139.com>
+References: <20230519080245.20243-1-13916275206@139.com>
+Message-Id: <168448818168.3014319.8544192762874121053.robh@kernel.org>
+Subject: Re: [PATCH v3 5/5] ASoC: dt-bindings: Add tas2781 amplifier
+Date:   Fri, 19 May 2023 04:23:02 -0500
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the debug uart console for the SDX75 IDP board.
 
-Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sdx75-idp.dts | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+On Fri, 19 May 2023 16:02:45 +0800, Shenghao Ding wrote:
+> Create tas2781.yaml for tas2781 driver.
+> 
+> Signed-off-by: Shenghao Ding <13916275206@139.com>
+> 
+> ---
+> Changes in v3:
+>  - Add allOf with ref to saound-dai-common
+>  - remove audio-slots, put all the i2c address into <reg>
+>  - Add more description on broadcast-addr item
+>  Changes to be committed:
+> 	new file:   Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> ---
+>  .../devicetree/bindings/sound/ti,tas2781.yaml | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-index e2e803b..e07c9e0 100644
---- a/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-@@ -12,8 +12,23 @@
- 	compatible = "qcom,sdx75-idp", "qcom,sdx75";
- 	qcom,board-id = <0x2010022 0x302>;
- 
-+	aliases {
-+		serial0 = &uart1;
-+	};
-+};
-+
-+&chosen {
-+	stdout-path = "serial0:115200n8";
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
- };
- 
- &tlmm {
- 	gpio-reserved-ranges = <110 6>;
- };
-+
-+&uart1 {
-+	status = "okay";
-+};
--- 
-2.7.4
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/sound/ti,tas2781.yaml:71:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
+
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/sound/ti,tas2781.example.dts'
+Documentation/devicetree/bindings/sound/ti,tas2781.yaml:71:1: found character '\t' that cannot start any token
+make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/sound/ti,tas2781.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/sound/ti,tas2781.yaml:71:1: found character '\t' that cannot start any token
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/ti,tas2781.yaml: ignoring, error parsing file
+make: *** [Makefile:1512: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230519080245.20243-1-13916275206@139.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
