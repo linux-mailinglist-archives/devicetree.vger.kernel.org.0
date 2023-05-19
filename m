@@ -2,95 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4352470914B
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 10:04:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B4E6709171
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 10:12:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbjESIEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 04:04:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46926 "EHLO
+        id S229682AbjESIMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 04:12:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbjESIEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 04:04:30 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1F9D1716;
-        Fri, 19 May 2023 01:03:52 -0700 (PDT)
-Received: from [192.168.1.141] ([37.4.248.58]) by mrelayeu.kundenserver.de
- (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1N8GEY-1qDJBS1EiO-014Ene; Fri, 19 May 2023 10:03:06 +0200
-Message-ID: <47df90f9-0348-6333-757e-ddfeb6b8fbad@i2se.com>
-Date:   Fri, 19 May 2023 10:03:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V3 0/6] ARM: dts: imx6ull: Fix dtbs_check warnings
-To:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229681AbjESIMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 04:12:48 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40DA410F;
+        Fri, 19 May 2023 01:12:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684483967; x=1716019967;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AICApxT69uepygya0AreeAzqrDtA69Jyg+g0w/dzNrA=;
+  b=zQUcfBlhTyJdXmWQdOqu+PRucXvITiT9RcFwrV4k2Ef6JtWu2v3CCo7Q
+   mgUPHnWopMv1fAlE5cw7qcMTCx57/Pxn/OHcY3f9H6v0f98aYvt/Bi0NG
+   UAL1JNyWEupiYgbEl/W5DUKsp07LImYs5M4bv0H6a2OVJ4tLmpYkFLQG2
+   PLPdprsDz35UK/x4C12qSufOT2GUZDnCZfgoZfcObwki78YfZf5KiSuY6
+   LOmbplxIi63m63K3m72TB492RTNC6eALIP60rxtgB50vC0DO/QMUXIjLq
+   NXoWe+GvsaiLOF4b1ECmSMkWzAWXc88D8+8SXTSvj8R3TJn22AWqAG80K
+   g==;
+X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; 
+   d="asc'?scan'208";a="152919385"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 May 2023 01:12:45 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 19 May 2023 01:12:40 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 19 May 2023 01:12:37 -0700
+Date:   Fri, 19 May 2023 09:12:16 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>,
-        linux-imx@nxp.com, "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org
-References: <20230414091947.7831-1-stefan.wahren@i2se.com>
-Content-Language: en-US
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-In-Reply-To: <20230414091947.7831-1-stefan.wahren@i2se.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:o50LvgBs3SXoordAvhv+x1aO0U3G28hVUe8aqojg5w5tK7KhXtv
- mpB4Dy+8i1KKdQGAU6+aziMNlZV9e5ZXvm73FD/3yzmCiq4c9ZX8NXbRYKqsOYQbugoqAXd
- ols6QeeZ5lr6tlqVAeKtNF5v9kvCgsCtDQPT6FUt3IWw2jTBjwiaRgB0LeCJSHLSbYwqlum
- x9br5GUoK5g13+DDhXaeQ==
-UI-OutboundReport: notjunk:1;M01:P0:9tNi0MwuB1k=;dPML9IMKGd20U4dSjP9SPuVIi3h
- 9ScdMdp4KMiWhozhbzxUmG0PkdOdPlixH2yUKYLbKUbEM4jNFD8hqg+60GApmnr8w8POfOn9a
- YtpAZ13gha8PKCD4ZY0S7LgSdl+R4jyRySCKwhqF6B+TBw5hKh6CcIxLznyqQErNSxfDiBZZi
- ZHsJFVdRtjefVjLYEURXmOzQBkrvVqE3AtO/bAvugZOxs+QgPMNUFzuOwbLsSfDN7Uj2019dD
- Wk3fdvoWrxlqcV+MWQ1aYSxUzr60YkapFWlmFfnvZ5/2KK+KcHM5Wl/vvyJbenHTttGSnfmEi
- C7WhmJ17mEalJ6ci27arr2dKwUKpZRaRDaGt5I7ZeE4BC8/W+wkJdFZ23Bvjh2qNR8XAtSyzn
- Z9yaj2Ta9Qt4GgeHQ7wljUx8yYZW9IcvrNS9PCeBE7viVc9yxXY3Mi3/d8DQD9jUS5jFT1LRL
- zjGp04cemydApzFHWf1UUCjYKdnKaR6fkxRjOD1b5NB4mvpTW8ORUYiw9x8FY9D5xCEYWPjWO
- 5yd1tyHZm42tZYa0IM8ZjcFnDb22UW3oTWpLd0RWaucrF/WwjAaWFUULkhcLrmfNP+SKAhQPM
- QKca0ZlhF8PQOsilbJR1MGFEYhIqKkvNe8ntlo0rb3YdCJeusKylauh9bxSHyOUTHWcXzoDdR
- DpCkvL+dzMJSKwG2VD4rpeiinQs4VVGaxElRfdxo9A==
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v4 3/7] dt-bindings: clock: jh7110-syscrg: Add PLL clock
+ inputs
+Message-ID: <20230519-gosling-rewrap-bfd03dc549ae@wendy>
+References: <20230512022036.97987-1-xingyu.wu@starfivetech.com>
+ <20230512022036.97987-4-xingyu.wu@starfivetech.com>
+ <20230512-uproar-external-49a9e793fbc4@wendy>
+ <91e4fd3c-20cb-724b-c9a8-e038600aabb7@starfivetech.com>
+ <20230512-backlit-radiated-ded0b38b4a94@wendy>
+ <be85aa2a-c72c-5272-ee40-f1265768e7b3@starfivetech.com>
+ <20230512-traffic-popsicle-5c3423b37fab@wendy>
+ <906cec55-e438-0eca-618c-4f29b2642fcb@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="fmR9wFkfHIZNBkc5"
+Content-Disposition: inline
+In-Reply-To: <906cec55-e438-0eca-618c-4f29b2642fcb@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+--fmR9wFkfHIZNBkc5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Am 14.04.23 um 11:19 schrieb Stefan Wahren:
-> This series tries to address some dtbs_check warnings on i.MX6ULL.
-> 
-> Changes in V3:
-> - add Krzysztof's Reviewed-Bys
-> - fix indentation in Patch 6 found by Krzysztof Kozlowski
-> 
-> Changes in V2:
-> - new patch to fix fsl-imx-uart warnings
-> - fixed GPC typo found by Fabio Estevam
-> - keep enum in bindings as suggested by Krzysztof Kozlowski
-> - make imx6ul GPT compatible to imx6sx
-> 
-> Stefan Wahren (6):
->    dt-bindings: serial: fsl-imx-uart: add missing properties
->    dt-bindings: crypto: fsl-dcp: add imx6sl and imx6ull compatible
->    dt-bindings: imx-thermal: add imx6sll and imx6ul compatible
->    dt-bindings: imxgpt: add imx6ul compatible
->    ARM: dts: imx: Adjust dma-apbh node name
->    ARM: dts: imx6ul: Add clock and PGC node to GPC
-> 
+On Fri, May 19, 2023 at 03:59:19PM +0800, Xingyu Wu wrote:
+> On 2023/5/12 21:49, Conor Dooley wrote:
+> > On Fri, May 12, 2023 at 05:56:16PM +0800, Xingyu Wu wrote:
+> >> On 2023/5/12 17:35, Conor Dooley wrote:
+> >> > On Fri, May 12, 2023 at 04:07:47PM +0800, Xingyu Wu wrote:
+> >> >> On 2023/5/12 14:47, Conor Dooley wrote:
+> >> >> > On Fri, May 12, 2023 at 10:20:32AM +0800, Xingyu Wu wrote:
+> >> >> >> Add PLL clock inputs from PLL clock generator.
+> >> >> >>=20
+> >> >> >> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> >> >> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> >> >> >> ---
+> >> >> >>  .../clock/starfive,jh7110-syscrg.yaml         | 20 ++++++++++++=
++++++--
+> >> >> >>  1 file changed, 18 insertions(+), 2 deletions(-)
+> >> >> >=20
+> >> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-=
+visionfive-2-v1.3b.dtb: clock-controller@13020000: clocks: 'oneOf' conditio=
+nal failed, one must be fixed:
+> >> >> > 	[[19], [20], [21], [22], [23], [24], [25], [26], [27]] is too sh=
+ort
+> >> >> > 	From schema: /Documentation/devicetree/bindings/clock/starfive,j=
+h7110-syscrg.yaml
+> >> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-=
+visionfive-2-v1.3b.dtb: clock-controller@13020000: clock-names: 'oneOf' con=
+ditional failed, one must be fixed:
+> >> >> > 	['osc', 'gmac1_rmii_refin', 'gmac1_rgmii_rxin', 'i2stx_bclk_ext'=
+, 'i2stx_lrck_ext', 'i2srx_bclk_ext', 'i2srx_lrck_ext', 'tdm_ext', 'mclk_ex=
+t'] is too short
+> >> >> > 	'i2stx_bclk_ext' was expected
+> >> >> > 	'i2stx_lrck_ext' was expected
+> >> >> > 	'i2srx_bclk_ext' was expected
+> >> >> > 	'i2srx_lrck_ext' was expected
+> >> >> > 	'tdm_ext' was expected
+> >> >> > 	'mclk_ext' was expected
+> >> >> > 	'pll0_out' was expected
+> >> >> > 	From schema: /Documentation/devicetree/bindings/clock/starfive,j=
+h7110-syscrg.yaml
+> >> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-=
+visionfive-2-v1.2a.dtb: clock-controller@13020000: clocks: 'oneOf' conditio=
+nal failed, one must be fixed:
+> >> >> > 	[[19], [20], [21], [22], [23], [24], [25], [26], [27]] is too sh=
+ort
+> >> >> > 	From schema: Documentation/devicetree/bindings/clock/starfive,jh=
+7110-syscrg.yaml
+> >> >> > /tmp/tmp.KDlzwQM5ma/arch/riscv/boot/dts/starfive/jh7110-starfive-=
+visionfive-2-v1.2a.dtb: clock-controller@13020000: clock-names: 'oneOf' con=
+ditional failed, one must be fixed:
+> >> >> > 	['osc', 'gmac1_rmii_refin', 'gmac1_rgmii_rxin', 'i2stx_bclk_ext'=
+, 'i2stx_lrck_ext', 'i2srx_bclk_ext', 'i2srx_lrck_ext', 'tdm_ext', 'mclk_ex=
+t'] is too short
+> >> >> > 	'i2stx_bclk_ext' was expected
+> >> >> > 	'i2stx_lrck_ext' was expected
+> >> >> > 	'i2srx_bclk_ext' was expected
+> >> >> > 	'i2srx_lrck_ext' was expected
+> >> >> > 	'tdm_ext' was expected
+> >> >> > 	'mclk_ext' was expected
+> >> >> > 	'pll0_out' was expected
+> >> >> > 	Documentation/devicetree/bindings/clock/starfive,jh7110-syscrg.y=
+aml
+> >> >> >=20
+> >> >> > This binding change is incompatible with the existing devicetrees=
+ for
+> >> >> > the visionfive 2.
+> >> >>=20
+> >> >> This looks like less clocks about PLL in SYSCRG node. And I add thi=
+s in patch 7.
+> >> >=20
+> >> > The existing devicetree is a valid, albeit limited, description of t=
+he
+> >> > hardware.
+> >> > After your changes to the clock driver in this series, but *without*=
+ the
+> >> > changes to the devicetrees, does the system still function?
+> >> > From a quick check of 4/7, it looks like it will not?
+> >>=20
+> >> I just tested it on the board and the system still worked without the =
+changes
+> >> about devicetree. But these clocks' rate were 0 because these could no=
+t get
+> >> the PLL clocks from devicetree.
+> >=20
+> > Hmm, that sounds like an issue to me. If all of the clock rates are
+> > computed based off of parents that incorrectly report 0, are we not in
+> > for trouble?
+> > Should the fixed-factor clocks be retained as a fallback for the sake of
+> > compatibility?
+> > Emil, Stephen?
+>=20
+> I got your concern. Actually, I can add a check in driver to see if the d=
+ts
+> has pll clocks and then decide whether to use fixed-factor clocks or pll =
+clocks
+> from syscon. But eventually we have to use pll clocks and dts has to add =
+it.
+> Then the binding should add it synchronously, right?
 
-currently patch 3, 5 and 6 has been applied. Should i resend the rest of 
-the series?
+IMO, it is okay to change the bindings to only allow the "correct"
+representation of the clock tree, but the driver should fall back to the
+fixed factor clocks if it detects the old/limited configuration.
+
+Cheers,
+Conor.
+
+--fmR9wFkfHIZNBkc5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGcvYAAKCRB4tDGHoIJi
+0qjtAQCnxoHjat9m2l+ZRA6gRaDH14KVQN8ui70BNMgDp3RP1gD/W8KYmQpQPelR
+QL0Lv3BwxzncwLIkFHzlyTIptDazoQs=
+=IH/w
+-----END PGP SIGNATURE-----
+
+--fmR9wFkfHIZNBkc5--
