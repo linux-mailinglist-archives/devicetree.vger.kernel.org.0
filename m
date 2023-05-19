@@ -2,183 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97B35709541
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 12:42:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A454709550
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 12:45:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231329AbjESKma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 06:42:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33534 "EHLO
+        id S230325AbjESKpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 06:45:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229929AbjESKm3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 06:42:29 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79B48192
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 03:42:27 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2af2696fd1cso3851431fa.2
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 03:42:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684492946; x=1687084946;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nilYh4tuNonfXNPLqfyrtTtVqM6ehrvF3FhppFCK2n4=;
-        b=ThhaOP767aviQwtWl4g5ZoJjbNr5+5uY809XowpnTqPeJ5u8hl+bRXCqxSo9ws0B9a
-         AFNuKDJGfz/uRSp+yIuACwqvJu86lCa8vS4LLyCjc18lMOx6UznLGg8JKvawiKNS7KD8
-         zGddNPx2NC4XPpR/Wh1tOYxVDK/faGlVYhwC7K65dKoN2/Rr9B0++4+k6xdtzR33vJrD
-         xVWDbmNmh+eEv5SgvVqYTo1YOWokTH65VM/07l/X3PTJCY4krIfui41PM3A67A+PVmEe
-         E99AjSAe2Gu8Cx5C8rk2Er2PVjdir1XrYX8joAz4xtFxQIzHc179/SsWzyO3ofQzx7YP
-         lm1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684492946; x=1687084946;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nilYh4tuNonfXNPLqfyrtTtVqM6ehrvF3FhppFCK2n4=;
-        b=ilKxbMMdlpTtBuFCUL62g9e0GHCq7JA6ugk7dCzt5NGhrBkocLWzy1AESOoh4+XTdR
-         aJR3V1PdGvryNkbcCFOgc2jDqJBWGYeQIOUHJBhNvWPkClYs1BEiBSDC5HffYNREctd0
-         KYS5K3S/fZMwXFYI5EZyAgZq4fBXvyWj25w7tgOm0P7AT1YtQAmqBYDr45HucJFcQwW+
-         tAV8f5M/ahVIqPEud1cV/5Ck/ApnL4drWCsS1Pr7XkNS/1Tuk0iXVCLDhjs0Y92MjG3r
-         Hp5Ly6OL++yTJ8E+TtxlpXrYr1y4U7sGuiIMtGqeomdB1kjPJPbm0JaTnxkBrRbYmlP9
-         exKw==
-X-Gm-Message-State: AC+VfDzS9h/0GnCqY/VO7LK4vJW86HQ2HrtnM3iWfhfaiKvJwmTZ3chi
-        lKD1TMyxiOtRhQTZsu7NBF8V1A==
-X-Google-Smtp-Source: ACHHUZ60+I6PmnYTGWuao+AMQoNizBNTuJw504xjp9UCZE+dbov6l6wgJSxLph167q3vnzWqyAzrXQ==
-X-Received: by 2002:a05:6512:146:b0:4f3:b2ce:7a15 with SMTP id m6-20020a056512014600b004f3b2ce7a15mr36549lfo.29.1684492945741;
-        Fri, 19 May 2023 03:42:25 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id m18-20020ac24292000000b004cb14fa604csm552098lfh.262.2023.05.19.03.42.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 May 2023 03:42:25 -0700 (PDT)
-Message-ID: <8c754bc2-abb3-faaa-0ab5-2c1991dfc2a6@linaro.org>
-Date:   Fri, 19 May 2023 12:42:23 +0200
+        with ESMTP id S231824AbjESKpA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 06:45:00 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5D8EC;
+        Fri, 19 May 2023 03:44:57 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34JAigHW043525;
+        Fri, 19 May 2023 05:44:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684493082;
+        bh=pz9X5RVPYmUqGvU6zl4HiycPuT79cB7Xrh/xPmkS/Mk=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=jv7DC0GpQk2ezyDOeRSRiD/+eB4Da++TCy9fJ7+L7jNFAh9cpNto12J9Fr3DF4Akm
+         XpgQ1ISCnduwNT7uuYCWjByFni0+2lWTeRtmh5yObQubjUbjjx0QdhxnbauUYBqi/d
+         AMfMMD5UsqmKlj8s76yi1p7C4fTBRdB2i27OL+BY=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34JAiggE021339
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 19 May 2023 05:44:42 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 19
+ May 2023 05:44:42 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 19 May 2023 05:44:42 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34JAiffV030900;
+        Fri, 19 May 2023 05:44:41 -0500
+Date:   Fri, 19 May 2023 16:14:42 +0530
+From:   Jai Luthra <j-luthra@ti.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Conor Dooley <conor@kernel.org>, Andrew Davis <afd@ti.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/2] dt-bindings: clock: Add binding documentation for TI
+ Audio REFCLK
+Message-ID: <e3gfl2hqb5ac3lyj3ji7ncvdjdhkkrefwr2xqrjixavdhxcyil@avdo5ovc4bqv>
+References: <20230515-refclk-v1-0-5e89f01d6733@ti.com>
+ <20230515-refclk-v1-1-5e89f01d6733@ti.com>
+ <20230517-reprise-unroll-e2223cab3846@spud>
+ <cd38d95f-95bd-056e-e3d0-d6c95e3fd80e@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v6 07/11] arm64: dts: qcom: sm6115: Add Crypto Engine
- support
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org, vladimir.zapolskiy@linaro.org,
-        rfoss@kernel.org, neil.armstrong@linaro.org, djakov@kernel.org
-References: <20230405072836.1690248-1-bhupesh.sharma@linaro.org>
- <20230405072836.1690248-8-bhupesh.sharma@linaro.org>
- <ZGdLCdSof027mk5u@gerhold.net>
- <CAH=2Ntx4H+hOzYLWqiogdBGE+rQ2XayrweE_P8T8gVE0zbwzeg@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAH=2Ntx4H+hOzYLWqiogdBGE+rQ2XayrweE_P8T8gVE0zbwzeg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="uyc5revnwgqxyrfw"
+Content-Disposition: inline
+In-Reply-To: <cd38d95f-95bd-056e-e3d0-d6c95e3fd80e@linaro.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--uyc5revnwgqxyrfw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hi Krzysztof,
 
-On 19.05.2023 12:22, Bhupesh Sharma wrote:
-> Hi Stephan,
-> 
-> On Fri, 19 May 2023 at 15:40, Stephan Gerhold <stephan@gerhold.net> wrote:
->>
->> Hi Bhupesh,
->>
->> Not sure if this is the latest version of this series since it's pretty
->> old but I didn't find a new one. Just came here because you mentioned
->> RB1/RB2 [1] in my bam_dma patch and they don't have any BAM defined
->> upstream yet.
->>
->> [1]: https://lore.kernel.org/linux-arm-msm/CAH=2Ntw0BZH=RGp14mYLhX7D6jV5O5eDKRQbby=uCy85xMDU_g@mail.gmail.com/
->>
->> On Wed, Apr 05, 2023 at 12:58:32PM +0530, Bhupesh Sharma wrote:
->>> Add crypto engine (CE) and CE BAM related nodes and definitions to
->>> 'sm6115.dtsi'.
->>>
->>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sm6115.dtsi | 22 ++++++++++++++++++++++
->>>  1 file changed, 22 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
->>> index 2a51c938bbcb..ebac026b4cc7 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
->>> @@ -650,6 +650,28 @@ usb_hsphy: phy@1613000 {
->>>                       status = "disabled";
->>>               };
->>>
->>> +             cryptobam: dma-controller@1b04000 {
->>> +                     compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
->>> +                     reg = <0x0 0x01b04000 0x0 0x24000>;
->>> +                     interrupts = <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>;
->>> +                     #dma-cells = <1>;
->>> +                     qcom,ee = <0>;
->>> +                     qcom,controlled-remotely;
->>> +                     num-channels = <8>;
->>> +                     qcom,num-ees = <2>;
->>> +                     iommus = <&apps_smmu 0x94 0x11>,
->>> +                              <&apps_smmu 0x96 0x11>;
->>> +             };
->>> +
->>> +             crypto: crypto@1b3a000 {
->>> +                     compatible = "qcom,sm6115-qce", "qcom,sm8150-qce", "qcom,qce";
->>> +                     reg = <0x0 0x01b3a000 0x0 0x6000>;
->>> +                     dmas = <&cryptobam 6>, <&cryptobam 7>;
->>> +                     dma-names = "rx", "tx";
->>> +                     iommus = <&apps_smmu 0x94 0x11>,
->>> +                              <&apps_smmu 0x96 0x11>;
->>
->> Shouldn't you have clocks = <&rpmcc RPM_SMD_CE1_CLK> here to make sure
->> the clock for the crypto engine is on? Your binding patch (PATCH 06/11)
->> says "Crypto Engine block on Qualcomm SoCs SM6115 and QCM2290 do not
->> require clocks strictly" but doesn't say why.
->>
->> Make sure you don't rely on having rpmcc keep unused clocks on
->> permanently. This is the case at the moment, but we would like to change
->> this [2]. Adding new users that rely on this broken behavior would just
->> make this effort even more complicated.
->>
->> If you also add the clock to the cryptobam then you should be able to
->> see the advantage of my bam_dma patch [3]. It allows you to drop
->> "num-channels" and "qcom,num-ees" from the cryptobam in your changes
->> above because it can then be read directly from the BAM registers.
-> 
-> Thanks for pointing this out. Actually that's why I was using your
-> patch while testing with RB1/RB2 :)
-> 
-> Yes, so the background is that I am preparing a new version of this
-> crypto enablement patchset.
-> Also your assumption about the clocks being turned on by the firmware
-> is true for RB1/RB2 devices, so enabling them via Linux is optional as
-> per Qualcomm enggs.
-This is not necessarily true. Currently it's kept always-on on
-by clk_smd_rpm_handoff, but that's a hack from 10 years ago when smd
-was still new.
+Thanks for the review,
 
-> 
-> So, I am testing the new patchset right now with 'clock' entries
-> provided in the .dtsi and see if that causes any issue / improvement
-> (etc.)
-It won't change since it's on anyway, but that won't be a given for long.
+On May 18, 2023 at 16:09:01 +0200, Krzysztof Kozlowski wrote:
+> On 17/05/2023 19:15, Conor Dooley wrote:
+> > On Wed, May 17, 2023 at 01:04:05PM +0530, Jai Luthra wrote:
+> >> Add DT bindings for TI's audio reference clocks (REFCLK) present on AM=
+62
+> >> SoC.
+> >=20
+> > This seems fine to me. Perhaps Krzysztof will differ...
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> >>
+> >> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> >> ---
+> >>  .../bindings/clock/ti,am62-audio-refclk.yaml       | 44 +++++++++++++=
++++++++++
+> >>  1 file changed, 44 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/clock/ti,am62-audio-ref=
+clk.yaml b/Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml
+> >> new file mode 100644
+> >> index 000000000000..7c4cf7abe007
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml
+> >> @@ -0,0 +1,44 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/clock/ti,am62-audio-refclk.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: TI Audio Reference Clock
+> >> +
+> >> +maintainers:
+> >> +  - Jai Luthra <j-luthra@ti.com>
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    items:
+> >> +      - const: ti,am62-audio-refclk
+> >> +      - const: syscon
+>=20
+> I just don't get why this is syscon? There are no references to it, no
+> DTS change and nothing in the driver suggesting it has to be syscon
+> (creating regmap for internal use does not count).
 
-Konrad
-> 
-> Will come back with updates (and a new version of this patchset) soon.
-> 
-> Regards,
-> Bhupesh
-> 
->> Thanks,
->> Stephan
->>
->> [2]: https://lore.kernel.org/linux-arm-msm/20230303-topic-rpmcc_sleep-v2-0-ae80a325fe94@linaro.org/
->> [3]: https://lore.kernel.org/linux-arm-msm/20230518-bamclk-dt-v1-1-82f738c897d9@gerhold.net/
+Sorry you're right, I missed Andrew's series removing syscon:
+https://lore.kernel.org/linux-clk/20230516184626.154892-1-afd@ti.com/
+
+Will re-base my patches on top of it and send v2.
+
+>=20
+> Andrew,
+> Is this the pattern we discussed and wanted to remove?
+>=20
+> Best regards,
+> Krzysztof
+>=20
+
+Thanks,
+Jai
+
+--uyc5revnwgqxyrfw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmRnUxYACgkQQ96R+SSa
+cUWHeg//S9Bd9zlNj0Q8CIjTyzpLh1dChtqtqpJAPnt2JDm4O8/6CyaBF1up7G/2
+kHUhBukHhaoOvsX/e24axalKjMbLkPwgZnjSDNPoAyWUyAx4FNYP2QIbuuHCEcBl
+YUJ6D7RTnptcdbBek8zQ0TGC5nQFKBkjxQafi9aAlQ66zOuDGT9S0h4S1sVgp5u0
+2XcwyKppOgEN9m7nmSfjno5QwhwacH+7GKMwlD/NcBdmsOMVvZd/Fj8ay16akb7A
+cRJ0Vgsh+PYWzCFp5KvqIHilxHhDOPH8BiwHJ/YT8YCoTutIh1AZ3PCKvjnuGr+q
+UoA0cXwsCF31yKRUiGRigpXzNXHYDobovNiyA3A6CKyNXZC4TPOV82SBQ9TSZ/Bi
+4HnG5cM4X5BUu8uSZCNne79c7Vh2BQWrT93kBAw6+bkcPq/OjmVF23SVdsWdbWD9
+rmWxz7Bmyk5Cie13OvUpbz7Zn3VKxoSPpKU0NKGGkQYde28BJMMAf+9qIUK/8s54
+3set9qv3xXVl5EilLIwABF2qX36huiOdpxfEkHw9GrpqMTSn4lb2fvv44bILqptR
+xtF5xK5/BIT2yE6IQyasuv9Zc4NVARvmCMCQ6IOr4WJjqsyaEqJ4NuErRnsEoil1
+QnJytx6LCIwwLJ/UQpdMDRYw+Ap47OgaZMu5j/HFX2c++IAmiCQ=
+=B83k
+-----END PGP SIGNATURE-----
+
+--uyc5revnwgqxyrfw--
