@@ -2,97 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E63E70969B
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 13:34:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF8027096A7
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 13:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231372AbjESLes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 07:34:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33460 "EHLO
+        id S231435AbjESLjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 07:39:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230515AbjESLer (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 07:34:47 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18FD71B0;
-        Fri, 19 May 2023 04:34:46 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34JBYe3c013686;
-        Fri, 19 May 2023 06:34:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684496080;
-        bh=0zvvZEHkm43gIFcoIqh9+DsFglNnTVurBewGEC2HdI4=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=GhFzmuX64mFcqBmAyEyXCcg1JIhKXyS7vWHKxr7Z02CW2Gpza8WAuSOHuermPqNq8
-         OkM3YnmhqWGCt8ou1sBkD3BeHsWxjpS+hrjys87GcHuFn07doLNc9G9Zg7AzIMTimZ
-         67BeoWzg6NSrdC3kZtFXFXPx55vx3Kd0FSXy+q6c=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34JBYeXv025024
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 19 May 2023 06:34:40 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 19
- May 2023 06:34:40 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 19 May 2023 06:34:40 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34JBYd4U032941;
-        Fri, 19 May 2023 06:34:39 -0500
-From:   Nitin Yadav <n-yadav@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-am62-main: add sa3_secproxy in cbass_main
-Date:   Fri, 19 May 2023 17:04:34 +0530
-Message-ID: <20230519113434.1024206-3-n-yadav@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230519113434.1024206-1-n-yadav@ti.com>
-References: <20230519113434.1024206-1-n-yadav@ti.com>
+        with ESMTP id S230313AbjESLjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 07:39:41 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B58C1B0;
+        Fri, 19 May 2023 04:39:40 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34J9DQFZ007174;
+        Fri, 19 May 2023 11:39:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=eeQWFoNUG3iVp0gKDbp6/d9ic7+cwuVI2OVMfXfYih4=;
+ b=c5rOljuS0WHCfdwNShVHzDwZNyGKQQbPWeCSS/lNm1Fden8Nli8ZihbcH/czfFsIJENf
+ SposCV8Gx8NT0dhvhqVl8CGbAd17Tso8wzQz3m5CiJhzlssw4G3nwG1SecMbvUMwNLA5
+ gQvppKR8+I7NrKwgcar6wI3Fv84kp/ywtsyFDpuv0oudgLHudmBbk4RDJxNxGVXMcmvK
+ l2yolkNh8dvVJv6FtHaJENU/lbk797B0e02plUz2CxBPFZT6duv/2FyvWr7opIV96a5d
+ 9yZiRZtMyWxhv7SNFGXlo8uVk0zUqyYn6oaonRrhITrdEw+89TgxF3saWrLPpV+7b50A fA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qp69u07u4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 May 2023 11:39:31 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34JBdUXr010051
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 May 2023 11:39:30 GMT
+Received: from [10.214.67.128] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 19 May
+ 2023 04:39:26 -0700
+Message-ID: <94a7a26d-ddb6-81ba-d44a-da23cfb60b2f@quicinc.com>
+Date:   Fri, 19 May 2023 17:09:16 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH 1/4] dt-bindings: mmc: sdhci-msm: Document the
+ QDU1000/QRU1000 compatible
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+CC:     <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20230519085122.15758-1-quic_kbajaj@quicinc.com>
+ <20230519085122.15758-2-quic_kbajaj@quicinc.com>
+ <94e1e91d-e36a-215e-2395-6212c1694dd3@linaro.org>
+Content-Language: en-US
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+In-Reply-To: <94e1e91d-e36a-215e-2395-6212c1694dd3@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: HJ7tC3e_M_k9t-0PP2SD3itSP9DeV6Sj
+X-Proofpoint-GUID: HJ7tC3e_M_k9t-0PP2SD3itSP9DeV6Sj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-19_07,2023-05-17_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
+ bulkscore=0 adultscore=0 mlxlogscore=999 spamscore=0 suspectscore=0
+ impostorscore=0 priorityscore=1501 clxscore=1015 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305190097
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add sa3_secproxy node in k3-am62-main.dtsi to keep device tree
-nodes in sync with u-boot nodes.
 
-Signed-off-by: Nitin Yadav <n-yadav@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index b3e4857bbbe4..7c2af5b0e022 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -42,6 +42,15 @@ gic_its: msi-controller@1820000 {
- 		};
- 	};
- 
-+	sa3_secproxy: secproxy@44880000 {
-+		compatible = "ti,am654-secure-proxy";
-+		#mbox-cells = <1>;
-+		reg-names = "rt", "scfg", "target_data";
-+		reg = <0x00 0x44880000 0x00 0x20000>,
-+		      <0x0 0x44860000 0x0 0x20000>,
-+		      <0x0 0x43600000 0x0 0x10000>;
-+	};
-+
- 	main_conf: syscon@100000 {
- 		compatible = "syscon", "simple-mfd";
- 		reg = <0x00 0x00100000 0x00 0x20000>;
--- 
-2.25.1
+On 5/19/2023 3:37 PM, Bhupesh Sharma wrote:
+>
+> On 5/19/23 2:21 PM, Komal Bajaj wrote:
+>> Document the compatible for SDHCI on QDU1000 and QRU1000 SoCs.
+>>
+>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+>> ---
+>>   Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml 
+>> b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>> index 4f2d9e8127dd..f51a38b12d6f 100644
+>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+>> @@ -55,6 +55,7 @@ properties:
+>>                 - qcom,sm8350-sdhci
+>>                 - qcom,sm8450-sdhci
+>>                 - qcom,sm8550-sdhci
+>> +              - qcom,qdu1000-sdhci
+>
+> Please add new entries in alphabetical order.
+Noted.
+>
+> Thanks,
+> Bhupesh
+>
+>>             - const: qcom,sdhci-msm-v5 # for sdcc version 5.0
+>>
+>>     reg:
+>> -- 
+>> 2.17.1
+>>
 
