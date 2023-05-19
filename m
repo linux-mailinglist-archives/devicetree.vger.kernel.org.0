@@ -2,207 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0B65708E78
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 05:55:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 485FB708F0D
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 07:00:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229460AbjESDz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 May 2023 23:55:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39422 "EHLO
+        id S229709AbjESFAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 01:00:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbjESDz0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 May 2023 23:55:26 -0400
-Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C5B0E75;
-        Thu, 18 May 2023 20:55:25 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 89A183200939;
-        Thu, 18 May 2023 23:55:23 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Thu, 18 May 2023 23:55:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:content-type:date
-        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to; s=fm2; t=
-        1684468523; x=1684554923; bh=byztbFA48B3KxHPg1sNTP78K/kX6ebZPCxC
-        FL17BNsI=; b=VeubOW9IoaUT+cfDj52XkwOHqR2mMFzs3B5FSpvVha0jhVxP975
-        Sc4ypiXOaoz2JlTDehwz3nWv7jfbNU2K6j2I98yAHzZs6S0AO4+eB9MSL8oWWahi
-        IwQgDJRNcaspN5I2E15Psm0DBHK/pJeHMGQlhUk2Y5YFxbU1/rZuZuh8qSLXTE5A
-        yEWLy2f7l50VOVWQt2/1Kwt36c34Z2lwgbMswOQlVo9sUoBdsfEym+YlYDr2nu+O
-        /gi8z98ex0mVDbh30y3M47FU0F/uejT4G4VK/J/L9mHVzEH/SmjcxOplfi3HqvFu
-        /uywWlqUB19P9TkkMwJDlU8qekPc6nIpW9w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:content-type:date:date:feedback-id:feedback-id
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-        1684468523; x=1684554923; bh=byztbFA48B3KxHPg1sNTP78K/kX6ebZPCxC
-        FL17BNsI=; b=OsGunvFkz89A3yayg/F6UZXWa7cZffMH9zAs4O+3UB/cGhaVo6t
-        f8y1uwFmWUdbgUDj06+P6EjYnHLOE51FSaL5wBrxBSkSrEoMX2k3EPfOVvMzZZzQ
-        CEYA53qW8Y3lEPFupEZ/DgDsqmKcUpB2KsLqRwJxmOfNIQHYfpCA4/DpRbN1mN3G
-        AbK8DKcfMqY7G+Cbg4g0UxNCk7A1YjOA8jzpyrsYPvhb85wKfQTDrNZHvmYJ0Blw
-        kQaF8Z1cM2TmVDR4wMddlvvA+KIHjUuCceQ+YFsTvVWBqy5Iydna3pXEHLFCG69r
-        1SZ5GUOHblDe0Qc0QBhMpvwJ46Y9jz0RxoQ==
-X-ME-Sender: <xms:KvNmZAFcYMHe6CHXlxP1f_tEJNKvoSyWQoES9cJBT5Fl1dm8ztIO8g>
-    <xme:KvNmZJUukt-K07EMi5APzmOLOtC_INf4bkdRlG_vg9hrQip8I-MjlE1ExZ_o2QhA4
-    Xy2Q-zK7CARx5SoHw>
-X-ME-Received: <xmr:KvNmZKIL1KWEOGvW1ky3Tae8ruTdfp6h4BYwwafQMpJXc0ebOS1G9H41snbhSrhqRojATz4fQAw21BqwxagXIWTgjUOIoGStJdxvTPNqOBtgEFvq4e4m0AzICA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeeigedgjeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepkfffgggfuffvvehfhfgjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpeekjeelleefiedthfdtgfekgeehudefudeugeffvdfhudekleel
-    fedtteejhedutdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:KvNmZCHs95dhuqt0_oAbHXu74cPxXtHRZL9yhOqC4sy6eb8Cco0jJQ>
-    <xmx:KvNmZGX0ZPsLDmtYhQ-_ENDuRj3mhEE2N4QVvoXuaBjRBi9uVGclmg>
-    <xmx:KvNmZFNpkSFSaOymGQn6O956MtZ3T7nsY5zgIJt2qD9pygVJp-8TTg>
-    <xmx:K_NmZHvZU-94xKXJVSPZ5rcSoeaxN0JqgIHKGFLJ3JrVLkwSqWihgg>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 18 May 2023 23:55:21 -0400 (EDT)
-Message-ID: <dfa99943-3bca-ec6d-7152-fc6465181a08@sholland.org>
-Date:   Thu, 18 May 2023 22:55:21 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux ppc64le; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-Subject: Re: [PATCH v4 08/10] riscv: dts: bouffalolab: add Sipeed M1s SoM and
- Dock devicetree
-Content-Language: en-US
-To:     Jisheng Zhang <jszhang@kernel.org>,
+        with ESMTP id S229497AbjESFAO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 01:00:14 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2467A10CE;
+        Thu, 18 May 2023 22:00:09 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 34J4wHaZ5009950, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 34J4wHaZ5009950
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Fri, 19 May 2023 12:58:17 +0800
+Received: from RTEXMBS05.realtek.com.tw (172.21.6.98) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Fri, 19 May 2023 12:58:26 +0800
+Received: from RTEXH36506.realtek.com.tw (172.21.6.27) by
+ RTEXMBS05.realtek.com.tw (172.21.6.98) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Fri, 19 May 2023 12:58:26 +0800
+Received: from localhost.localdomain (172.21.252.101) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server id
+ 15.1.2507.17 via Frontend Transport; Fri, 19 May 2023 12:58:26 +0800
+From:   Stanley Chang <stanley_chang@realtek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Stanley Chang <stanley_chang@realtek.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>
-References: <20230518152244.2178-1-jszhang@kernel.org>
- <20230518152244.2178-9-jszhang@kernel.org>
-From:   Samuel Holland <samuel@sholland.org>
-In-Reply-To: <20230518152244.2178-9-jszhang@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        "Douglas Anderson" <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Ray Chi <raychi@google.com>,
+        "Michael Grzeschik" <m.grzeschik@pengutronix.de>,
+        Bhuvanesh Surachari <Bhuvanesh_Surachari@mentor.com>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>
+Subject: [PATCH v1 1/3] usb: phy: add usb phy notify port status API
+Date:   Fri, 19 May 2023 12:58:01 +0800
+Message-ID: <20230519045825.28369-1-stanley_chang@realtek.com>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-KSE-ServerInfo: RTEXMBS05.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jisheng,
+In Realtek SoC, the parameter of usb phy is designed to can dynamic
+tuning base on port status. Therefore, add a notify callback of phy
+driver when usb port status change.
 
-On 5/18/23 10:22, Jisheng Zhang wrote:
-> Sipeed manufactures a M1s system-on-module and dock board, add basic
-> support for them.
-> 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-> ---
->  arch/riscv/boot/dts/Makefile                  |  1 +
->  arch/riscv/boot/dts/bouffalolab/Makefile      |  2 ++
->  .../dts/bouffalolab/bl808-sipeed-m1s-dock.dts | 25 +++++++++++++++++++
->  .../dts/bouffalolab/bl808-sipeed-m1s.dtsi     | 21 ++++++++++++++++
->  4 files changed, 49 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/bouffalolab/Makefile
->  create mode 100644 arch/riscv/boot/dts/bouffalolab/bl808-sipeed-m1s-dock.dts
->  create mode 100644 arch/riscv/boot/dts/bouffalolab/bl808-sipeed-m1s.dtsi
-> 
-> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-> index f0d9f89054f8..133e6c38c9b0 100644
-> --- a/arch/riscv/boot/dts/Makefile
-> +++ b/arch/riscv/boot/dts/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
->  subdir-y += allwinner
-> +subdir-y += bouffalolab
->  subdir-y += sifive
->  subdir-y += starfive
->  subdir-y += canaan
-> diff --git a/arch/riscv/boot/dts/bouffalolab/Makefile b/arch/riscv/boot/dts/bouffalolab/Makefile
-> new file mode 100644
-> index 000000000000..5419964e892d
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/bouffalolab/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_SOC_BOUFFALOLAB) += bl808-sipeed-m1s-dock.dtb
-> diff --git a/arch/riscv/boot/dts/bouffalolab/bl808-sipeed-m1s-dock.dts b/arch/riscv/boot/dts/bouffalolab/bl808-sipeed-m1s-dock.dts
-> new file mode 100644
-> index 000000000000..aa6cf909cd4d
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/bouffalolab/bl808-sipeed-m1s-dock.dts
-> @@ -0,0 +1,25 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> +/*
-> + * Copyright (C) 2022 Jisheng Zhang <jszhang@kernel.org>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "bl808-sipeed-m1s.dtsi"
-> +
-> +/ {
-> +	model = "Sipeed M1s Dock";
-> +	compatible = "sipeed,m1s-dock", "sipeed,m1s", "bouffalolab,bl808";
-> +
-> +	aliases {
-> +		serial3 = &uart3;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial3:2000000n8";
-> +	};
-> +};
-> +
-> +&uart3 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/riscv/boot/dts/bouffalolab/bl808-sipeed-m1s.dtsi b/arch/riscv/boot/dts/bouffalolab/bl808-sipeed-m1s.dtsi
-> new file mode 100644
-> index 000000000000..5026de768534
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/bouffalolab/bl808-sipeed-m1s.dtsi
-> @@ -0,0 +1,21 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> +/*
-> + * Copyright (C) 2022 Jisheng Zhang <jszhang@kernel.org>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "bl808.dtsi"
-> +
-> +/ {
-> +	compatible = "sipeed,m1s", "bouffalolab,bl808";
-> +
-> +	memory@50000000 {
-> +		device_type = "memory";
-> +		reg = <0x50000000 0x04000000>;
-> +	};
+Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+---
+ drivers/usb/core/hub.c  | 13 +++++++++++++
+ include/linux/usb/phy.h | 14 ++++++++++++++
+ 2 files changed, 27 insertions(+)
 
-Especially since the SoC contains three heterogeneous CPUs, the firmware
-may want to divide the PSRAM among them, so I do not think it is a good
-idea to define this statically. (Or would all of the DTs contain this
-same node, and then use reserved-memory nodes to cover the other CPUs'
-allocations?)
-
-Regards,
-Samuel
-
-> +};
-> +
-> +&xtal {
-> +	clock-frequency = <40000000>;
-> +};
+diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
+index 97a0f8faea6e..b4fbbeae1927 100644
+--- a/drivers/usb/core/hub.c
++++ b/drivers/usb/core/hub.c
+@@ -614,6 +614,19 @@ static int hub_ext_port_status(struct usb_hub *hub, int port1, int type,
+ 		ret = 0;
+ 	}
+ 	mutex_unlock(&hub->status_mutex);
++
++	if (!ret) {
++		struct usb_device *hdev = hub->hdev;
++
++		if (hdev && !hdev->parent) {
++			struct usb_hcd *hcd = bus_to_hcd(hdev->bus);
++
++			if (hcd->usb_phy)
++				usb_phy_notify_port_status(hcd->usb_phy,
++					    port1 - 1, *status, *change);
++		}
++	}
++
+ 	return ret;
+ }
+ 
+diff --git a/include/linux/usb/phy.h b/include/linux/usb/phy.h
+index e4de6bc1f69b..53bf3540098f 100644
+--- a/include/linux/usb/phy.h
++++ b/include/linux/usb/phy.h
+@@ -144,6 +144,10 @@ struct usb_phy {
+ 	 */
+ 	int	(*set_wakeup)(struct usb_phy *x, bool enabled);
+ 
++	/* notify phy port status change */
++	int	(*notify_port_status)(struct usb_phy *x,
++		int port, u16 portstatus, u16 portchange);
++
+ 	/* notify phy connect status change */
+ 	int	(*notify_connect)(struct usb_phy *x,
+ 			enum usb_device_speed speed);
+@@ -316,6 +320,16 @@ usb_phy_set_wakeup(struct usb_phy *x, bool enabled)
+ 		return 0;
+ }
+ 
++static inline int
++usb_phy_notify_port_status(struct usb_phy *x, int port, u16 portstatus,
++	    u16 portchange)
++{
++	if (x && x->notify_port_status)
++		return x->notify_port_status(x, port, portstatus, portchange);
++	else
++		return 0;
++}
++
+ static inline int
+ usb_phy_notify_connect(struct usb_phy *x, enum usb_device_speed speed)
+ {
+-- 
+2.34.1
 
