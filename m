@@ -2,104 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FE53709753
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 14:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFE9B709758
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 14:40:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230328AbjESMiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 08:38:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53950 "EHLO
+        id S230135AbjESMkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 08:40:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbjESMix (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 08:38:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56B5BF4;
-        Fri, 19 May 2023 05:38:52 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E0519656F6;
-        Fri, 19 May 2023 12:38:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48AE3C433EF;
-        Fri, 19 May 2023 12:38:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684499931;
-        bh=tuw/mKj0P6fjqCWthB3GTMhCdp5EZdmQ+EdF4Yb0yf0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=PVU9nfoaNQpms40ciIXHs6s2YzKHm/o+vE9Qux9gyKAvKGN0rOxq3Aa6YkEkEMJbs
-         h3k6ALD71V8hYPkmNZH2h+KvRz2WmY1ft0bsBud/P3rudL7eYSSnxiAA8Nnlo1vvAH
-         vzaFChbcEez+EaFkSkdy4oYxrRr6Gi5rM+pzcyO4H54sMp3srERmnYj6bSHA1+I5/J
-         PBt9FNEILY1jnARUzqB2qBsXTkiS9NoXwzXY9Bw1TwkWeCZAR+1E4BT7efq7Fkshvn
-         njoksnTG+nuxS1zlEvjYZ5+/ARSk5gPDWIbYookCDhttaZu30KfZPjtfKo7GMsd4JR
-         2aPRbLx4E+xaA==
-Date:   Fri, 19 May 2023 14:38:36 +0200
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Alexis =?UTF-8?B?TG90aG9yw6k=?= <alexis.lothore@bootlin.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        paul.arola@telus.com, scott.roberts@telus.com
-Subject: Re: [PATCH net-next 2/2] net: dsa: mv88e6xxx: enable support for
- 88E6361 switch
-Message-ID: <20230519143713.1ac9c7a1@thinkpad>
-In-Reply-To: <6643e099-7b72-4da2-aba1-521e1a4c961b@lunn.ch>
-References: <20230517203430.448705-1-alexis.lothore@bootlin.com>
-        <20230517203430.448705-3-alexis.lothore@bootlin.com>
-        <9a836863-c279-490f-a49a-de4db5de9fd4@lunn.ch>
-        <ee281c0f-5e8b-8453-08bf-858c5503dc22@bootlin.com>
-        <6643e099-7b72-4da2-aba1-521e1a4c961b@lunn.ch>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        with ESMTP id S229586AbjESMkJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 08:40:09 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 59EB2106;
+        Fri, 19 May 2023 05:40:08 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E83171FB;
+        Fri, 19 May 2023 05:40:52 -0700 (PDT)
+Received: from [10.57.73.119] (unknown [10.57.73.119])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 990F13F762;
+        Fri, 19 May 2023 05:40:05 -0700 (PDT)
+Message-ID: <c498eb81-7b3f-a32c-02d7-572c17876a2d@arm.com>
+Date:   Fri, 19 May 2023 13:40:04 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.10.0
+Subject: Re: [PATCH V3 6/6] coresight: platform: acpi: Ignore the absence of
+ graph
+To:     Anshuman Khandual <anshuman.khandual@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        coresight@lists.linaro.org
+Cc:     Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+        Steve Clevenger <scclevenger@os.amperecomputing.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+References: <20230519052149.1367814-1-anshuman.khandual@arm.com>
+ <20230519052149.1367814-7-anshuman.khandual@arm.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20230519052149.1367814-7-anshuman.khandual@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 18 May 2023 14:58:00 +0200
-Andrew Lunn <andrew@lunn.ch> wrote:
-
-> > >> +	[MV88E6361] = {
-> > >> +		.prod_num = MV88E6XXX_PORT_SWITCH_ID_PROD_6361,
-> > >> +		.family = MV88E6XXX_FAMILY_6393,
-> > >> +		.name = "Marvell 88E6361",
-> > >> +		.num_databases = 4096,
-> > >> +		.num_macs = 16384,
-> > >> +		.num_ports = 11,
-> > >> +		/* Ports 1, 2 and 8 are not routed */
-> > >> +		.invalid_port_mask = BIT(1) | BIT(2) | BIT(8),
-> > >> +		.num_internal_phys = 5,  
-> > > 
-> > > Which ports have internal PHYs? 2, 3, 4, 5, 6, 7 ?  What does
-> > > mv88e6xxx_phy_is_internal() return for these ports, and
-> > > mv88e6xxx_get_capsmv88e6xxx_get_caps()? I'm wondering if you actually
-> > > need to list 8 here?  
-> > 
-> > Indeed there is something wrong here too. I need to tune
-> > mv88e6393x_phylink_get_caps to reflect 88E6361 differences.
-> > 
-> > As stated above, port 3 to 7 are the ones with internal PHY.
-> > For mv88e6xxx_phy_is_internal, I see that it is merely comparing the port index
-> > to the number of internal phys, so in this case it would advertise (wrongly)
-> > that ports 0 to 4 have internal phys.  
+On 19/05/2023 06:21, Anshuman Khandual wrote:
+> From: Suzuki K Poulose <suzuki.poulose@arm.com>
 > 
-> Ports 1 and 2 should hopefully be protected by the
-> invalid_port_mask. It should not even be possible to create those
-> ports. port 0 is interesting, and possibly currently broken on
-> 6393. Please take a look at that.
+> Some components may not have graph connections for describing
+> the trace path. e.g., ETE, where it could directly use the per
+> CPU TRBE. Ignore the absence of graph connections
+> 
+> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
 
-Why would port 0 be broken on 6393x ?
+Please could you move this before the Patch 5, where we add
+ACPI support for etm4x with system instructions ? That way
+the support is up with that patch, without an error that
+is fixed by this patch.
 
-Marek
+Suzuki
+
+
+> ---
+>   drivers/hwtracing/coresight/coresight-platform.c | 6 +++++-
+>   1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-platform.c b/drivers/hwtracing/coresight/coresight-platform.c
+> index 475899714104..c4b4fbde8550 100644
+> --- a/drivers/hwtracing/coresight/coresight-platform.c
+> +++ b/drivers/hwtracing/coresight/coresight-platform.c
+> @@ -692,8 +692,12 @@ static int acpi_coresight_parse_graph(struct acpi_device *adev,
+>   
+>   	pdata->nr_inport = pdata->nr_outport = 0;
+>   	graph = acpi_get_coresight_graph(adev);
+> +	/*
+> +	 * There are no graph connections, which is fine for some components.
+> +	 * e.g., ETE
+> +	 */
+>   	if (!graph)
+> -		return -ENOENT;
+> +		return 0;
+>   
+>   	nlinks = graph->package.elements[2].integer.value;
+>   	if (!nlinks)
+
