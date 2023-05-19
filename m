@@ -2,150 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62AA070A12D
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 23:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7468370A13E
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 23:09:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbjESVEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 17:04:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41316 "EHLO
+        id S229807AbjESVJM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 17:09:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbjESVEI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 17:04:08 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC561A6;
-        Fri, 19 May 2023 14:04:07 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-96f50e26b8bso331178866b.2;
-        Fri, 19 May 2023 14:04:06 -0700 (PDT)
+        with ESMTP id S229628AbjESVJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 17:09:11 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D301B3;
+        Fri, 19 May 2023 14:09:10 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f13bfe257aso4109115e87.3;
+        Fri, 19 May 2023 14:09:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20221208; t=1684530245; x=1687122245;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BkFYXyw6E6pRYTnNx+J/HE05WAp42aJlf5/0x0V1JCs=;
-        b=rkRtv4x5WBfjnsuw2tXqLklYYFCadX+a4fTsoPj5ATokjuxnDYf4rwcGcDTp8hO1iG
-         jfUNr8Xrfn7KNAf5WXvhdjHDQUF+tsTzHerKfs3pQbaCMyZ+djRZhan6J0JTbfl5sr51
-         zMa1wCqHO9jjvkx0BGEVagVyL8xLifC9PEL8M3q2R2uUNPXshj0PgRdkQdtQvS6dulpW
-         TftRKlnCNANMIegInpEDA3mb+axeIfmq/7FRfVKZkf18Fl5mZ2MVFfQDZyYeF3BzwSkY
-         FkVP9EoYaktsb/0z3jufmXu+IuOu8+FlF51lhIWMC5UJnxgnoClWFwiBLm2PHiVAQjxA
-         terQ==
+        d=gmail.com; s=20221208; t=1684530549; x=1687122549;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s5NRxZLxubgldjF9VZV7rtaGRK/0FvxR2s2/hGhwZtM=;
+        b=dMgzzdYBObJj3NA6JG3Xxf+SaFVXojGG0qTcVbCtm+o8RGNUWP6eX1RFcjynPopq2Y
+         g3ihKV6p/2qrptd8qqGNYKtLH3Cf8sVp0w2XsKQpXVEuyQ56qknnm01geyRiiPE1jXLE
+         vnzXhm8A58XFM6o4iGAIeDbL8hxdY1tuze0ED2Q4v5Bey2LQ/c526xTlqK3c9ui+q93l
+         L/MFPmlnttWrAwuYT5XvTRDJKmCbj/NCxYZ9b8u59nv7Fp/cWJsaeKO0ik32RpOPeCwj
+         6XOGjeRpWeH5ieSorTkrzzNrfrs64RjQmyySjqT8QsjxaE32saak6lDdS6MS6gmyiSCp
+         dJsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684530245; x=1687122245;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BkFYXyw6E6pRYTnNx+J/HE05WAp42aJlf5/0x0V1JCs=;
-        b=f7qKXJnY5Q9+YwfRfJI5bIBPMFEcYtUWpnxsjEODfYYAZwTPAR/FtAgtK7l1HCW3I8
-         PRzFbWPpFyJpUl3nII2dPmojObaFNBBWLCf/C4RzthPETBYg8x6HRvIDN+uZ249fh74n
-         7WYmSp+mjiLphPJ1y3EaXEzOuc2YogHO4wtt52Rwwi+bLn25aAdb2a5iHtk/bF2FWfoL
-         vzV5QVEB5x4+MviSG9O0NUaFh9bagY5Jng/Jbptm8+rIgNuOcsaMWkcQjf4JofzacBpI
-         /Or2d4C5c0VvhBH0OIxOxAQn8PClhLXXXVNrrBGGLyvZupj62DPKJ7ZXLV0tyrE/9sQ8
-         gtnw==
-X-Gm-Message-State: AC+VfDzVllbAZzoF0gspiau/FS/4jBRA5ivMlMdven/LyNLQFQBBOCvF
-        wuzqamN6DKgs1KkXUhM9sMO7Bb93gI7j8DXgm1ZZ4huqEnk=
-X-Google-Smtp-Source: ACHHUZ4c1gf0Sah0Blf/COARZBm2a1CGAAUrMBuEcAMrXckhdoCEp5PwqVEXLbfiq/huUY/m0gEr44qJf4A+Df/VnbY=
-X-Received: by 2002:a17:907:1c8b:b0:94e:48ac:9a51 with SMTP id
- nb11-20020a1709071c8b00b0094e48ac9a51mr3825374ejc.4.1684530245293; Fri, 19
- May 2023 14:04:05 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684530549; x=1687122549;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=s5NRxZLxubgldjF9VZV7rtaGRK/0FvxR2s2/hGhwZtM=;
+        b=UgVqB5k7iiiBG3WSW2KPlou0PTgmPiXLT2ViFvSDGOLFJ2amPRdYFnoDkyBkdYalK3
+         FkRHfnNVC7TupeCU3MxEJXKSF6GwCC25FO0O7SLmzxucO/4/GBXCostsq8WQ08dd0R8d
+         3sVhTM3PHG0Z7tRoeYEsSFBp7JdMd4Vpy471P2ktI4F+f6qtbv81WnhEX5n8n5deWmfT
+         vCWpeAFyQHuC7wq1s7O/RBp4warvitw8Uv/LkugGYZgPwtOwvL/3pzWp3bdjRjYp711+
+         e6B7ky77GH8S+mtEPGtqX6YopGpMaKpqgoWqSbcOZFDLnWReF4CB2x3UCtu0FU9hexof
+         Oq1Q==
+X-Gm-Message-State: AC+VfDzrGGQJikIy5KPniKJnwyTA79YnhNF1UmLJsrP/37qr8Xr56+74
+        fWhmRfFHgYslnW/8jrGo0Rh7spdAMGU=
+X-Google-Smtp-Source: ACHHUZ41m6/ioxf6xqImWeCkaRh8eejimbGFcOgS1wGGne0XmSipk6HusphMaJhRNT/XrvLvyKBjsA==
+X-Received: by 2002:ac2:5506:0:b0:4dd:a73f:aede with SMTP id j6-20020ac25506000000b004dda73faedemr1279448lfk.10.1684530548582;
+        Fri, 19 May 2023 14:09:08 -0700 (PDT)
+Received: from i-vetokaappi.home.lan (dsl-hkibng42-56733b-36.dhcp.inet.fi. [86.115.59.36])
+        by smtp.gmail.com with ESMTPSA id i14-20020ac2522e000000b004f3945751b2sm30043lfl.43.2023.05.19.14.09.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 May 2023 14:09:08 -0700 (PDT)
+From:   =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        =?UTF-8?q?Matti=20Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] PMU, rpm-stats and IMEM for MSM8226
+Date:   Sat, 20 May 2023 00:08:57 +0300
+Message-Id: <20230519210903.117030-1-matti.lehtimaki@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230517133309.9874-1-ddrokosov@sberdevices.ru> <20230517133309.9874-7-ddrokosov@sberdevices.ru>
-In-Reply-To: <20230517133309.9874-7-ddrokosov@sberdevices.ru>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Fri, 19 May 2023 23:03:54 +0200
-Message-ID: <CAFBinCBs7-9CvfQLxLoG5=FjmSK+S5eGsLXOAyQN9kNOg2q-2g@mail.gmail.com>
-Subject: Re: [PATCH v15 6/6] clk: meson: a1: add Amlogic A1 Peripherals clock
- controller driver
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     neil.armstrong@linaro.org, jbrunet@baylibre.com,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
-        jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+This series adds PMU, rpm-stats and IMEM nodes for MSM8226.
+It also defines and enables reboot modes for samsung,matisse-wifi.
 
-On Wed, May 17, 2023 at 3:33=E2=80=AFPM Dmitry Rokosov <ddrokosov@sberdevic=
-es.ru> wrote:
-[...]
-> +static struct clk_regmap sys_b_sel =3D {
-> +       .data =3D &(struct clk_regmap_mux_data){
-> +               .offset =3D SYS_CLK_CTRL0,
-> +               .mask =3D 0x7,
-> +               .shift =3D 26,
-> +               .table =3D mux_table_sys,
-> +       },
-> +       .hw.init =3D &(struct clk_init_data){
-> +               .name =3D "sys_b_sel",
-> +               .ops =3D &clk_regmap_mux_ro_ops,
-the sys_*_sel muxes and sys_*_gate are _ro...
+Matti Lehtimäki (5):
+  dt-bindings: sram: qcom,imem: Document MSM8226
+  ARM: dts: qcom: msm8226: Add PMU node
+  ARM: dts: qcom: msm8226: Add rpm-stats device node
+  ARM: dts: qcom: msm8226: Add IMEM node
+  ARM: dts: qcom: apq8026-samsung-matisse-wifi: Add reboot-mode node
 
-> +               .parent_data =3D sys_parents,
-> +               .num_parents =3D ARRAY_SIZE(sys_parents),
-> +       },
-> +};
-> +
-> +static struct clk_regmap sys_b_div =3D {
-> +       .data =3D &(struct clk_regmap_div_data){
-> +               .offset =3D SYS_CLK_CTRL0,
-> +               .shift =3D 16,
-> +               .width =3D 10,
-> +       },
-> +       .hw.init =3D &(struct clk_init_data){
-> +               .name =3D "sys_b_div",
-> +               .ops =3D &clk_regmap_divider_ops,
-...but the sys_*_div aren't
-Is this on purpose? If it is: why can the divider be changed at
-runtime but the mux can't?
+ .../devicetree/bindings/sram/qcom,imem.yaml   |  1 +
+ .../dts/qcom-apq8026-samsung-matisse-wifi.dts | 10 +++++++++
+ arch/arm/boot/dts/qcom-msm8226.dtsi           | 22 +++++++++++++++++++
+ 3 files changed, 33 insertions(+)
 
-[...]
-> +/*
-> + * the index 2 is sys_pll_div16, it will be implemented in the CPU clock=
- driver,
-We need to add the "sys_pll_div16" input to the dt-bindings since they
-should always describe the hardware (regardless of what the driver
-implements currently).
-I'm not sure how to manage this while we don't have the CPU clock
-driver ready yet but I'm sure Rob or Krzysztof will be able to help us
-here.
+-- 
+2.34.1
 
-> + * the index 4 is the clock measurement source, it's not supported yet
-I suspect that this comes from the clock measurer IP block and if so
-the dt-bindings should probably describe this input. But again, we'd
-need to keep it optional for now since our clock measurer driver
-doesn't even implement a clock controller.
-
-[...]
-> +static struct clk_regmap pwm_a_sel =3D {
-> +       .data =3D &(struct clk_regmap_mux_data){
-> +               .offset =3D PWM_CLK_AB_CTRL,
-> +               .mask =3D 0x1,
-> +               .shift =3D 9,
-> +       },
-> +       .hw.init =3D &(struct clk_init_data){
-> +               .name =3D "pwm_a_sel",
-> +               .ops =3D &clk_regmap_mux_ops,
-> +               .parent_data =3D pwm_abcd_parents,
-> +               .num_parents =3D ARRAY_SIZE(pwm_abcd_parents),
-> +               /* For more information, please refer to rtc clock */
-> +               .flags =3D CLK_SET_RATE_NO_REPARENT,
-As mentioned in [0] we'll work with Heiner to see if we can improve
-the decision making process of the PWM controller driver so that we
-can just have .flags =3D 0 here.
-This applies to all other occurrences of the same comment about the rtc clo=
-ck.
-
-
-Best regards,
-Martin
