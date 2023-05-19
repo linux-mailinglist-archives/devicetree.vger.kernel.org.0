@@ -2,231 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A717A70992E
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 16:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0949470994E
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 16:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232114AbjESON3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 10:13:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42134 "EHLO
+        id S230305AbjESORU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 10:17:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232088AbjESONP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 10:13:15 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6039312C;
-        Fri, 19 May 2023 07:13:13 -0700 (PDT)
-Received: (Authenticated sender: alexis.lothore@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 7C022E0004;
-        Fri, 19 May 2023 14:13:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1684505592;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=+pTZBh4+ZRBlZb4kygGnhcmsOQohHM/7lyy4o5VBhtc=;
-        b=VMGIdgCi44uU+239PmKYr3hORa6blm2Sw0Jfh58S3ybM2XtaCYH2LcWaKdiocMO9iv0PrG
-        c47UrQC4zi1D7b22yRPaveCOwSGl7d8GI6OP39pzKa+PHE5t4K+O81oQsDXD7Tj4rIYOko
-        Q8R7mYKMjPFISfWn77kUDVO2CkV/zmTCmcaJN9ZU8AdblWuScJ4UhQv31rgI34J64nfIrd
-        gm7/IPYQCNXHjRteibT71pJIYxtFHuY21pTWTxS8wnyL2phD67vJRH8vI4xPoIDVejWINk
-        tO4ovUl6uVkeDAHJ014SetNThJWq1MJT+YMUakikoGJoc/8rZfxB/dgYweZGRg==
-From:   alexis.lothore@bootlin.com
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229546AbjESORT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 10:17:19 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 183CAD3;
+        Fri, 19 May 2023 07:17:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684505837; x=1716041837;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Sd2VkJX17zpiW/S4Qia53jgvQaRUOiUOyM2LVozEYUc=;
+  b=Pl/L3pHaS6SX7mqzkGckGzxeTL3AOZUBNfFXbwsKlmFNC44TewMUPMqq
+   x4/s/OhAr2ewR/yU8lWeKqLybP+O8lUmczxR1B6tPuQCf1VuHDYWLhB/E
+   sOHR53XkqQ9rrEK2v2uymdF5TL0YxGa09XaZpr+xvAFTmqIfMN6YuEpxK
+   pEfjAIMvsIGNsz9B7YJoyuBVYfkzZzjUOmQwGBomtTC80tW7BJiIoyQaE
+   Z+v9voQmAYfhRtTObZQO7993CSUzdAqPSdWcPUa9pP8F4LaHyyaeFg6Bt
+   34aw6A6V5pFTPKx0sHAPRSkk7OWzsJu2ZvNlNNYXvUsa8BUpJulnZ9G6i
+   g==;
+X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; 
+   d="asc'?scan'208";a="214610741"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 May 2023 07:17:16 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 19 May 2023 07:17:13 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 19 May 2023 07:17:10 -0700
+Date:   Fri, 19 May 2023 15:16:49 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Torsten Duwe <duwe@lst.de>
+CC:     Xingyu Wu <xingyu.wu@starfivetech.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <yanhong.wang@starfivetech.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        paul.arola@telus.com, scott.roberts@telus.com,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-        =?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>
-Subject: [PATCH net-next v2 7/7] net: dsa: mv88e6xxx: enable support for 88E6361 switch
-Date:   Fri, 19 May 2023 16:13:03 +0200
-Message-Id: <20230519141303.245235-8-alexis.lothore@bootlin.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230519141303.245235-1-alexis.lothore@bootlin.com>
-References: <20230519141303.245235-1-alexis.lothore@bootlin.com>
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v4 1/7] dt-bindings: clock: Add StarFive JH7110 PLL clock
+ generator
+Message-ID: <20230519-smokeless-guileless-2a71cae06509@wendy>
+References: <20230512022036.97987-1-xingyu.wu@starfivetech.com>
+ <20230512022036.97987-2-xingyu.wu@starfivetech.com>
+ <20230519135733.GA10188@lst.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="R4Qg/wX5CgaesNEQ"
+Content-Disposition: inline
+In-Reply-To: <20230519135733.GA10188@lst.de>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexis Lothoré <alexis.lothore@bootlin.com>
+--R4Qg/wX5CgaesNEQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Marvell 88E6361 is an 8-port switch derived from the
-88E6393X/88E9193X/88E6191X switches family. It can benefit from the
-existing mv88e6xxx driver by simply adding the proper switch description in
-the driver. Main differences with other switches from this
-family are:
-- 8 ports exposed (instead of 11): ports 1, 2 and 8 not available
-- No 5GBase-x nor SFI/USXGMII support
+On Fri, May 19, 2023 at 03:57:33PM +0200, Torsten Duwe wrote:
+> On Fri, May 12, 2023 at 10:20:30AM +0800, Xingyu Wu wrote:
+> [...]
+> >  #ifndef __DT_BINDINGS_CLOCK_STARFIVE_JH7110_CRG_H__
+> >  #define __DT_BINDINGS_CLOCK_STARFIVE_JH7110_CRG_H__
+> > =20
+> > +/* PLL clocks */
+> > +#define JH7110_CLK_PLL0_OUT			0
+> > +#define JH7110_CLK_PLL1_OUT			1
+> > +#define JH7110_CLK_PLL2_OUT			2
+>=20
+> In U-Boot commit 58c9c60b Yanhong Wang added:
+>=20
+> +
+> +#define JH7110_SYSCLK_PLL0_OUT                       190
+> +#define JH7110_SYSCLK_PLL1_OUT                       191
+> +#define JH7110_SYSCLK_PLL2_OUT                       192
+> +
+> +#define JH7110_SYSCLK_END                    193
+>=20
+> in that respective file.
+>=20
+> > +#define JH7110_PLLCLK_END			3
+> > +
+> >  /* SYSCRG clocks */
+> >  #define JH7110_SYSCLK_CPU_ROOT			0
+>=20
+> If the symbolic names referred to the same items, would it be possible
+> to keep the two files in sync somehow?
 
----
-Changes since v1:
-- define internal phys offset
-- enforce 88e6361 features in mv88e6393x_phylink_get_caps
-- enforce 88e6361 features in mv88e6393x_port_set_speed_duplex
-- enforce 88e6361 features in mv88e6393x_port_max_speed_mode
+Ohh, that's not good.. If you pass the U-Boot dtb to Linux it won't
+understand the numbering. The headers are part of the dt-binding :/
 
-Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
----
- drivers/net/dsa/mv88e6xxx/chip.c | 42 ++++++++++++++++++++++++++++----
- drivers/net/dsa/mv88e6xxx/chip.h |  3 ++-
- drivers/net/dsa/mv88e6xxx/port.c | 11 ++++++++-
- drivers/net/dsa/mv88e6xxx/port.h |  1 +
- 4 files changed, 50 insertions(+), 7 deletions(-)
+--R4Qg/wX5CgaesNEQ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/drivers/net/dsa/mv88e6xxx/chip.c b/drivers/net/dsa/mv88e6xxx/chip.c
-index 0e6267193ac1..7c77b4b634f9 100644
---- a/drivers/net/dsa/mv88e6xxx/chip.c
-+++ b/drivers/net/dsa/mv88e6xxx/chip.c
-@@ -790,6 +790,8 @@ static void mv88e6393x_phylink_get_caps(struct mv88e6xxx_chip *chip, int port,
- 	unsigned long *supported = config->supported_interfaces;
- 	bool is_6191x =
- 		chip->info->prod_num == MV88E6XXX_PORT_SWITCH_ID_PROD_6191X;
-+	bool is_6361 =
-+		chip->info->prod_num == MV88E6XXX_PORT_SWITCH_ID_PROD_6361;
- 
- 	mv88e6xxx_translate_cmode(chip->ports[port].cmode, supported);
- 
-@@ -804,13 +806,17 @@ static void mv88e6393x_phylink_get_caps(struct mv88e6xxx_chip *chip, int port,
- 		/* 6191X supports >1G modes only on port 10 */
- 		if (!is_6191x || port == 10) {
- 			__set_bit(PHY_INTERFACE_MODE_2500BASEX, supported);
--			__set_bit(PHY_INTERFACE_MODE_5GBASER, supported);
--			__set_bit(PHY_INTERFACE_MODE_10GBASER, supported);
-+			config->mac_capabilities |= MAC_2500FD;
-+
-+			/* 6361 only supports up to 2500BaseX */
-+			if (!is_6361) {
-+				__set_bit(PHY_INTERFACE_MODE_5GBASER, supported);
-+				__set_bit(PHY_INTERFACE_MODE_10GBASER, supported);
-+				config->mac_capabilities |= MAC_5000FD |
-+					MAC_10000FD;
-+			}
- 			/* FIXME: USXGMII is not supported yet */
- 			/* __set_bit(PHY_INTERFACE_MODE_USXGMII, supported); */
--
--			config->mac_capabilities |= MAC_2500FD | MAC_5000FD |
--				MAC_10000FD;
- 		}
- 	}
- 
-@@ -6311,6 +6317,32 @@ static const struct mv88e6xxx_info mv88e6xxx_table[] = {
- 		.ptp_support = true,
- 		.ops = &mv88e6352_ops,
- 	},
-+	[MV88E6361] = {
-+		.prod_num = MV88E6XXX_PORT_SWITCH_ID_PROD_6361,
-+		.family = MV88E6XXX_FAMILY_6393,
-+		.name = "Marvell 88E6361",
-+		.num_databases = 4096,
-+		.num_macs = 16384,
-+		.num_ports = 11,
-+		/* Ports 1, 2 and 8 are not routed */
-+		.invalid_port_mask = BIT(1) | BIT(2) | BIT(8),
-+		.num_internal_phys = 5,
-+		.internal_phys_offset = 3,
-+		.max_vid = 4095,
-+		.max_sid = 63,
-+		.port_base_addr = 0x0,
-+		.phy_base_addr = 0x0,
-+		.global1_addr = 0x1b,
-+		.global2_addr = 0x1c,
-+		.age_time_coeff = 3750,
-+		.g1_irqs = 10,
-+		.g2_irqs = 14,
-+		.atu_move_port_mask = 0x1f,
-+		.pvt = true,
-+		.multi_chip = true,
-+		.ptp_support = true,
-+		.ops = &mv88e6393x_ops,
-+	},
- 	[MV88E6390] = {
- 		.prod_num = MV88E6XXX_PORT_SWITCH_ID_PROD_6390,
- 		.family = MV88E6XXX_FAMILY_6390,
-diff --git a/drivers/net/dsa/mv88e6xxx/chip.h b/drivers/net/dsa/mv88e6xxx/chip.h
-index dd7c8880e987..79c06ba42c54 100644
---- a/drivers/net/dsa/mv88e6xxx/chip.h
-+++ b/drivers/net/dsa/mv88e6xxx/chip.h
-@@ -82,6 +82,7 @@ enum mv88e6xxx_model {
- 	MV88E6350,
- 	MV88E6351,
- 	MV88E6352,
-+	MV88E6361,
- 	MV88E6390,
- 	MV88E6390X,
- 	MV88E6393X,
-@@ -100,7 +101,7 @@ enum mv88e6xxx_family {
- 	MV88E6XXX_FAMILY_6351,	/* 6171 6175 6350 6351 */
- 	MV88E6XXX_FAMILY_6352,	/* 6172 6176 6240 6352 */
- 	MV88E6XXX_FAMILY_6390,  /* 6190 6190X 6191 6290 6390 6390X */
--	MV88E6XXX_FAMILY_6393,	/* 6191X 6193X 6393X */
-+	MV88E6XXX_FAMILY_6393,	/* 6191X 6193X 6361 6393X */
- };
- 
- /**
-diff --git a/drivers/net/dsa/mv88e6xxx/port.c b/drivers/net/dsa/mv88e6xxx/port.c
-index 66f1b40b4e96..e72ea3c8092f 100644
---- a/drivers/net/dsa/mv88e6xxx/port.c
-+++ b/drivers/net/dsa/mv88e6xxx/port.c
-@@ -421,9 +421,14 @@ phy_interface_t mv88e6390x_port_max_speed_mode(struct mv88e6xxx_chip *chip,
- int mv88e6393x_port_set_speed_duplex(struct mv88e6xxx_chip *chip, int port,
- 				     int speed, int duplex)
- {
-+	bool is_6361 =
-+		chip->info->prod_num == MV88E6XXX_PORT_SWITCH_ID_PROD_6361;
- 	u16 reg, ctrl;
- 	int err;
- 
-+	if (is_6361 && speed > 2500)
-+		return -EOPNOTSUPP;
-+
- 	if (speed == 200 && port != 0)
- 		return -EOPNOTSUPP;
- 
-@@ -506,8 +511,12 @@ int mv88e6393x_port_set_speed_duplex(struct mv88e6xxx_chip *chip, int port,
- phy_interface_t mv88e6393x_port_max_speed_mode(struct mv88e6xxx_chip *chip,
- 					       int port)
- {
-+	bool is_6361 =
-+		chip->info->prod_num == MV88E6XXX_PORT_SWITCH_ID_PROD_6361;
-+
- 	if (port == 0 || port == 9 || port == 10)
--		return PHY_INTERFACE_MODE_10GBASER;
-+		return is_6361 ? PHY_INTERFACE_MODE_2500BASEX :
-+			PHY_INTERFACE_MODE_10GBASER;
- 
- 	return PHY_INTERFACE_MODE_NA;
- }
-diff --git a/drivers/net/dsa/mv88e6xxx/port.h b/drivers/net/dsa/mv88e6xxx/port.h
-index 3c9fc17abdd2..56dfa9d3d4e0 100644
---- a/drivers/net/dsa/mv88e6xxx/port.h
-+++ b/drivers/net/dsa/mv88e6xxx/port.h
-@@ -138,6 +138,7 @@
- #define MV88E6XXX_PORT_SWITCH_ID_PROD_6141	0x3400
- #define MV88E6XXX_PORT_SWITCH_ID_PROD_6341	0x3410
- #define MV88E6XXX_PORT_SWITCH_ID_PROD_6352	0x3520
-+#define MV88E6XXX_PORT_SWITCH_ID_PROD_6361	0x2610
- #define MV88E6XXX_PORT_SWITCH_ID_PROD_6350	0x3710
- #define MV88E6XXX_PORT_SWITCH_ID_PROD_6351	0x3750
- #define MV88E6XXX_PORT_SWITCH_ID_PROD_6390	0x3900
--- 
-2.40.1
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGeE0QAKCRB4tDGHoIJi
+0j9qAP43YVrZEKNRod6kOuBIre1NM1sSrB1fIk55f7+4mLNEYwEAlTvK/m1TazZN
+R+GITt0fWp/eotW4VJ7EN6IC8v3C3QE=
+=BbP3
+-----END PGP SIGNATURE-----
+
+--R4Qg/wX5CgaesNEQ--
