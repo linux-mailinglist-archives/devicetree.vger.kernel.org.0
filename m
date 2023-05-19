@@ -2,134 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D02D7095D1
-	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 13:03:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3C237095D6
+	for <lists+devicetree@lfdr.de>; Fri, 19 May 2023 13:04:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231934AbjESLDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 07:03:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45214 "EHLO
+        id S231968AbjESLEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 07:04:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231340AbjESLDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 07:03:38 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB9FF19A2;
-        Fri, 19 May 2023 04:03:12 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id D343A5C00E3;
-        Fri, 19 May 2023 07:02:56 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Fri, 19 May 2023 07:02:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-transfer-encoding:content-type:content-type:date
-        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
-        1684494176; x=1684580576; bh=gV73rdtQgxipqFYPyr3Q/D+7HTlx1vCuwWY
-        Zk9rvHV0=; b=cHyg654mmAsroWePFnZ4kSZFalqsGFUxLofrdI2FilESWopT1gF
-        9WDo3dFq+m1KF0E8Cn9aitPx9WUpDVN81x9kAXAKqKyVz2Mbx0mBxDd1uAJlGNWN
-        X1exX1FSeo3eqYNWnw/VYtsUi/hYXApTZjKMTelAdYPxoldKg97AD3OMexQO+CX/
-        ovxURSu7yXoPeQmh6zvxmuE2YUcK+enznzzjudTOpe+zWEOwc2F7CsnUDTpvqeJa
-        MW7+wSbFZ0IoWm6ALbf33tJQYpd/sDhs9Zwe+lCXLF3wI5BHxRQLaUhrB2v5KyL/
-        2++FHFYrxtWY173DXSPXEOJoUk/kkrxLdSw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:content-type:date:date:feedback-id:feedback-id
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-        1684494176; x=1684580576; bh=gV73rdtQgxipqFYPyr3Q/D+7HTlx1vCuwWY
-        Zk9rvHV0=; b=ar8m4LrRthd6WGP71fd/XRn6S0kUGl+1IKGZ9kFDGlbl+IJpExg
-        w51qsJwcarK2nosxYsFe1r2W1BprUsvUftc8bB4PNuvpChqCUpvjI/9bUp3A2J9K
-        8SRi7xXoRPhaBuxqmcVh8A9rYIq9TnYnHDconSLB8Sys/zwbGDIyT7gNA9rqTVpd
-        HSwUHJNQsTgBO/kH9cWyvt2GvvVyYB6kc+zoHlC8w8gUl6ytpK95+rsZjtdsSm0c
-        etUPqLda/TS7Js9NCFce8Cv+VX3TD7Vh0LHIzX+/LYCWT3A/D7IZTAqbVdbtYru+
-        YndQqJECqnX5TYrLU4iEGQ6rgLGqjNOZxrA==
-X-ME-Sender: <xms:XldnZGmSsdjYFrdAmDUF_egWsB5Ix4xTX2zZNbPMxYdje0KfgI2NJA>
-    <xme:XldnZN3I5xtCZ5Z7W8MHJX_QkGFstAGSJazP94JUB1fSCb0BDr5fNnnMoY3aS7iAG
-    _g2WEpa9CkrGdJKylc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeeihedgfeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
-    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grrhhnugesrghrnhgusgdruggv
-X-ME-Proxy: <xmx:XldnZEpsQ-lwiW8sq8jV0ndfTGWpQTavssQ8RIj6aTQRdsOd7SBmjQ>
-    <xmx:XldnZKkDGyrajy25oCrceVR0m0gL9mXTv9btSFFVMD_NA9qZ9FheWg>
-    <xmx:XldnZE0p2ly206V0K_-_EfCtc5SStU6s_ty6kSyDLz0utv9DhHtODg>
-    <xmx:YFdnZF65EvsJldBBS3b8yrM0B-ENKp_u5YodP-WIbzSvz6Fs921SCQ>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 66707B60086; Fri, 19 May 2023 07:02:54 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-431-g1d6a3ebb56-fm-20230511.001-g1d6a3ebb
-Mime-Version: 1.0
-Message-Id: <f7edea0c-dbfe-4c16-8134-0656411a837d@app.fastmail.com>
-In-Reply-To: <0ee8a26205a041cab9a787ec29201a9f@realtek.com>
-References: <20230519045825.28369-1-stanley_chang@realtek.com>
- <20230519045825.28369-2-stanley_chang@realtek.com>
- <0d165c7efbb71a65803abddc364e1c5252b8b939.camel@crapouillou.net>
- <0ee8a26205a041cab9a787ec29201a9f@realtek.com>
-Date:   Fri, 19 May 2023 13:01:34 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Stanley Chang" <stanley_chang@realtek.com>,
-        "Paul Cercueil" <paul@crapouillou.net>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
-Cc:     "Vinod Koul" <vkoul@kernel.org>,
-        "Kishon Vijay Abraham I" <kishon@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        "Alan Stern" <stern@rowland.harvard.edu>,
-        "Ray Chi" <raychi@google.com>,
-        "Bagas Sanjaya" <bagasdotme@gmail.com>,
-        "Eugeniu Rosca" <erosca@de.adit-jv.com>,
-        "Michael Grzeschik" <m.grzeschik@pengutronix.de>,
-        "Matthias Kaehlcke" <mka@chromium.org>,
-        "Flavio Suligoi" <f.suligoi@asem.it>,
-        "Mathias Nyman" <mathias.nyman@linux.intel.com>,
-        "Bhuvanesh Surachari" <Bhuvanesh_Surachari@mentor.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-Subject: Re: [PATCH v1 2/3] usb: phy: Add driver for the Realtek SoC USB 2.0/3.0 PHY
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S231970AbjESLD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 07:03:56 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EE631BE3;
+        Fri, 19 May 2023 04:03:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684494210; x=1716030210;
+  h=date:from:to:cc:subject:message-id:mime-version;
+  bh=070GsWUlchrSnGGLy4XXwdGMLjuXVQ6M8kOzuNip+lg=;
+  b=Bx9tZLNuSQhho6zCwYJkbCz8T9t0o6NZaxeB+sM4lckDgnhmP6HBnJMC
+   JIghJ6VkJ9NS7tTOyHZMpbTvMZF/Lg4aSisuyBmbEEW3k6gWgzfNSy615
+   XSN8Fq2qrKJZushN2jqBxbwb5W1+YBTv5XQqT58OYh5GRZxmn9HRlki+V
+   lRoaKqFKLng2Yq+OkhIaCSm1+l5lioWBUfut3jaGHcklOFvsVzbXlJ0+j
+   cxl2j/k54uEp3CNSrPsDyP9AfHEOwy8+qtfkV1E17FaeeHvhdq96XZm3C
+   fPJD64vQGQr6L/exAtvI9bMaqj7GKYWOFTHiiDwl5aQ3+SFI+DpuHBAT9
+   g==;
+X-IronPort-AV: E=Sophos;i="6.00,176,1681196400"; 
+   d="asc'?scan'208";a="212109504"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 May 2023 04:03:13 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 19 May 2023 04:03:10 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 19 May 2023 04:03:09 -0700
+Date:   Fri, 19 May 2023 12:02:47 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <conor@kernel.org>, <daire.mcnamara@microchip.com>
+Subject: Potential issue with (or misunderstanding of) of_irq_get()
+Message-ID: <20230519-unkempt-cartel-48efb4d8f0b4@wendy>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="00T+oOMGxgbKK3n9"
+Content-Disposition: inline
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 19, 2023, at 12:58, Stanley Chang[=E6=98=8C=E8=82=B2=E5=BE=B7=
-] wrote:
->>=20
->> I'm pretty sure that drivers/usb/phy/ is deprecated now...
->>=20
->> New drivers should be written for the generic PHY subsystem in
->> drivers/phy/.
+--00T+oOMGxgbKK3n9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Indeed, I missed that in my review.
+Hey!
 
-> Thanks for your reminder.
-> Will drivers/usb/phy be removed?
-> Is it not allowed to add new drivers?
->
-> In our application, driver/phy is not suitable.
-> We need to notify the phy driver when the USB hub port status changes.
-> However, generic PHY drivers are designed for various device's PHY.
-> And it seems inappropriate to add this function. So we choose to use=20
-> driver/usb/phy.=20
+I've run into an issue with of_irq_get() while writing an irqchip driver
+and I was hoping that by posting about it I might get some guidance as
+to whether I just doing something fundamentally wrong in my code, or
+if the specific case was just an oversight.
 
-If you run into something that works in the old usbphy layer
-but can't be done in drivers/phy, I think the better solution
-would be to change the drivers/phy/ code to add this.
+I've been trying to solve the issue that I pointed out here:
+https://lore.kernel.org/linux-gpio/23a69be6-96d3-1c28-f1aa-555e38ff991e@mic=
+rochip.com/
 
-      Arnd
+To spare reading that, the TL;DR is that the SoC has 3 GPIO controllers,
+with 14, 24 and 32 GPIOs each. All 68 can be used for interrupts.
+The PLIC only has 41 interrupts for GPIOs, so there's a bit of extra RTL
+sitting between the GPIO controllers and the PLIC, that is runtime
+configurable, deciding whether an GPIO gets a PLIC interrupt of its
+own or shares an interrupt with other GPIOs from the same GPIO controller.
+
+Since the interrupt router/mux is not part of the GPIO controller blocks,
+I have written a driver for the it & changed the representation in the DT
+to the below. For each of the 41 interrupts "consumed" by the driver
+bound to the irqmux node, I have created a domain.
+
+	irqmux: interrupt-controller@20002054 {
+		interrupt-parent =3D <&plic>;
+		interrupts =3D <13>, <14>, <15>, <16>,
+			     <17>, <18>, <19>, <20>,
+			     <21>, <22>, <23>, <24>,
+			     <25>, <26>, <27>, <28>,
+			     <29>, <30>, <31>, <32>,
+			     <33>, <34>, <35>, <36>,
+			     <37>, <38>, <39>, <40>,
+			     <41>, <42>, <43>, <44>,
+			     <45>, <46>, <47>, <48>,
+			     <49>, <50>, <51>, <52>,
+			     <53>;
+	};
+
+	gpio0: gpio@20120000 {
+		interrupt-parent =3D <&irqmux>;
+		npios =3D <14>;
+		interrupts =3D <0>, <1>, <2>, <3>,
+			     <4>, <5>, <6>, <7>,
+			     <8>, <9>, <10>, <11>,
+			     <12>, <13>;
+	};
+
+	gpio1: gpio@20121000 {
+		interrupt-parent =3D <&irqmux>;
+		npios =3D <24>;
+		interrupts =3D <32>, <33>, <34>, <35>,
+			     <36>, <37>, <38>, <39>,
+			     <40>, <41>, <42>, <43>,
+			     <44>, <45>, <46>, <47>,
+			     <48>, <49>, <50>, <51>,
+			     <52>, <53>, <54>, <55>;
+	};
+
+	gpio2: gpio@20122000 {
+		interrupt-parent =3D <&irqmux>;
+		npios =3D <32>;
+		interrupts =3D <64>, <65>, <66>, <67>,
+			     <68>, <69>, <70>, <71>,
+			     <72>, <73>, <74>, <75>,
+			     <76>, <77>, <78>, <79>,
+			     <80>, <81>, <82>, <83>,
+			     <84>, <85>, <86>, <87>,
+			     <88>, <89>, <90>, <91>,
+			     <92>, <93>, <94>, <95>;
+	};
+
+This approach in DT allows the GPIO controller driver to not care about
+the router/mux configuration, which makes sense to me as it is not part
+of those IP blocks.
+
+My irqchip driver was adding domains like so:
+
+	for (; i < MPFS_MUX_NUM_IRQS; i++) {
+		priv->irqchip_data[i].output_hwirq =3D i;
+
+		priv->irqchip_data[i].irq =3D irq_of_parse_and_map(node, i);
+
+		domain =3D irq_domain_add_linear(node, MPFS_MAX_IRQS_PER_GPIO,
+					       &mpfs_irq_mux_nondirect_domain_ops,
+					       &priv->irqchip_data[i]);
+
+		irq_set_chained_handler_and_data(priv->irqchip_data[i].irq,
+						 mpfs_irq_mux_nondirect_handler,
+						 &priv->irqchip_data[i]);
+	}
+
+In my irqchip's select callback I check the struct irq_fwspec's param[0]
+to determine which domain is actually responsible for it.
+
+That's all working nicely & I was doing some cleanup before submitting,
+when I noticed that debugfs complained about the fact that I had several
+domains hanging off the same of device_node:
+debugfs: File ':soc:interrupt-controller@20002054' in directory 'domains' a=
+lready present!
+debugfs: File ':soc:interrupt-controller@20002054' in directory 'domains' a=
+lready present!
+
+To get around that, I tried to switch to creating fwnodes instead,
+one for each domain:
+
+	for (; i < MPFS_MUX_NUM_IRQS; i++) {
+		priv->irqchip_data[i].output_hwirq =3D i;
+
+		priv->irqchip_data[i].irq =3D irq_of_parse_and_map(node, i);
+
+		fwnode =3D irq_domain_alloc_named_id_fwnode("mpfs-irq-mux", i);
+
+		domain =3D irq_domain_create_linear(fwnode, MPFS_MAX_IRQS_PER_GPIO,
+						  &mpfs_irq_mux_nondirect_domain_ops,
+						  &priv->irqchip_data[i]);
+
+		irq_set_chained_handler_and_data(priv->irqchip_data[i].irq,
+						 mpfs_irq_mux_nondirect_handler,
+						 &priv->irqchip_data[i]);
+	}
+
+That's grand for debugfs, but I then ran into a problem that made me feel
+I had designed myself into an incorrect corner.
+
+The GPIO driver requests interrupts using:
+
+	nirqs =3D of_irq_count(node);
+	for (i =3D 0; i < nirqs; i++)
+		ret =3D platform_get_irq(pdev, i);
+
+producing the following call trace:
+
+	mpfs_gpio_probe()
+	 platform_get_irq()
+	  platform_get_irq_optional()
+	   of_irq_get()
+	    irq_find_host()
+	     irq_find_matching_host()
+	      irq_find_matching_fwnode()
+	       irq_find_matching_fwspec()
+
+of_irq_find_host() is problematic for me, because it calls into
+irq_find_matching_fwspec() having created a struct irq_fwspec where it
+only populated the fwnode.
+
+In irq_find_matching_fwspec(), the check for fwspec->param_count will
+always be false & my select callback is never invoked.
+
+Since irq_find_matching_fwspec() falls back to the match callback if
+param_count is zero, I have added a match callback:
+
+	static int mpfs_irq_mux_nondirect_match(struct irq_domain *d, struct devic=
+e_node *node,
+						enum irq_domain_bus_token bus_token)
+	{
+		if(!of_device_is_compatible(node, "microchip,mpfs-gpio-irq-mux"))
+			return false;
+=09
+		return true;
+	}
+
+But this is a hack, since I have 41 domains using the same match callback,
+and will return true as long as just one of them has been created.
+It is sufficient though to get me as far along irq_create_of_mapping()
+which is called using a struct of_phandle_args, containing the params
+array that I rely on.
+
+I appear to have run into a fundamental assumption in of_irq_get(), which
+makes me think that I have gone pretty badly wrong here somewhere.
+Is this a bug/oversight/omission, or am I just doing something broken in
+my code?
+Given how long that code seems to be there, I am leading towards the fault
+being mine (it usually is!).
+
+The code for this (likely aberration of an) irqchip driver is here [1]
+but hopefully the snippets/description is sufficient.
+
+Thanks,
+Conor.
+
+1 - https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/=
+?h=3Dgpio-irq&id=3Dd1d654bd3de925a6dc48d6e2222adb3d310b8f9d
+
+--00T+oOMGxgbKK3n9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGdXVwAKCRB4tDGHoIJi
+0j1+AP9lBiTAZoMtzNZ+dwUOytHAI9hfyaJL8c82T6W/dOfsNwD/Zv4y4zpQXnH7
+rIUz5OkIRe602KTdQkO5IPHy0tkF9As=
+=AWth
+-----END PGP SIGNATURE-----
+
+--00T+oOMGxgbKK3n9--
