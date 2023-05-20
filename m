@@ -2,125 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FCE370A352
-	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 01:27:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3DFF70A435
+	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 03:16:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229965AbjESX1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 19:27:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43992 "EHLO
+        id S229654AbjETBQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 21:16:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229602AbjESX1K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 19:27:10 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0E821BD
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 16:27:08 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f00d41df22so1722960e87.1
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 16:27:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684538827; x=1687130827;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5QsFRFDPv+w7LZXZOw0WA98ik9DN1mQO3qx3JO5B1H0=;
-        b=uI81i88i4vLJSz57S9e4aavEnPgPe8LEhscoxsdJHS8rI14Kpk3cINhNwm5LNan95E
-         KGil51GWfiZl8vHVIajj5QPGFH/D632STPHGU12u39WIdFD+P0HI+Ql/QCaMX52IfHpW
-         +u1wLZu+cjmmp8OZoJj3ZVCpxRxIMCC7vxzmjUVqxVnBS2RChsmk1/ySmEtZ+ykRdcsi
-         nJCuIxDB3HsHRY2YqWAX2sUI5VagVp7LfywKJSJWmdwf49zpadHNk0vhRgalgYg7O2ne
-         oqc6Zz0A+ZoX9sPzccRWBKKdDw8pjqICsL0hFeYmE8PM3EfpTCrE6p1vt9uZmeJYKnmr
-         bcsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684538827; x=1687130827;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5QsFRFDPv+w7LZXZOw0WA98ik9DN1mQO3qx3JO5B1H0=;
-        b=kf8fbHSfsYdlqj0G8JExSOdlfDZFSfpWWA7GZAmTz4Uk0yeq7pxXtAhBAdBOCRuO+M
-         0n4EDSwuFsYt7vFZ70cgNHuBzbWG478q5OIe607NEKj49OkA5pXVlTHD9YlwZfjmyYkA
-         89h4dPuTQvktPrzCZ7N11v6EnqKU62qUE1b0sxFZ+3C2iZDUXj4oh9lYeL3redylKq19
-         Pe7Y4Gu+X0kL0Wht6oOnvTn7YtkbXSOayRrA0fvPpOm1ut5cvstK5aDPmeefU594Ca8C
-         Yu9fPuTJ/tqfXrWhGK12AYyUkGb7qsjSP73QO+kb/MJTuPnqvK+iX/nYOfpIqED+gqvH
-         aSiQ==
-X-Gm-Message-State: AC+VfDyjNxBtXVuKc+mF+nC/fRaGZmPMamLGd7cpc8vzIcC+X6seNhRC
-        9WRKNP1iUxtmsmVkYrBAQ3xrLw==
-X-Google-Smtp-Source: ACHHUZ7VnkPD1ndqaR5abX1TbBBXiGwzOUrBy9MaQnF4clOVweenoPwAMoB73Q3jwaB6Er+KN7+O0g==
-X-Received: by 2002:a05:6512:90d:b0:4f1:4898:d183 with SMTP id e13-20020a056512090d00b004f14898d183mr1203512lft.25.1684538826864;
-        Fri, 19 May 2023 16:27:06 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id g6-20020ac25386000000b004eb2ac90f36sm55315lfh.207.2023.05.19.16.27.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 May 2023 16:27:06 -0700 (PDT)
-Message-ID: <3cfacc54-6cc5-1a11-d7db-96409097f290@linaro.org>
-Date:   Sat, 20 May 2023 01:27:04 +0200
+        with ESMTP id S229577AbjETBQj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 21:16:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8374C1AC;
+        Fri, 19 May 2023 18:16:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 02700644DC;
+        Sat, 20 May 2023 01:16:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 608A5C433A7;
+        Sat, 20 May 2023 01:16:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684545397;
+        bh=cmPyGCDj3qYpYiJY3BxliTqaHfvx5UhxPrQyG6kxeS4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=lXQGijUOEm+xkhPEy7uN3Yw9xNiuxFfHKXog5I2f2KPdVq6ruBtfNJP5I/KFJk+IR
+         gqcCw58L69rFicAeGpMZiDATP6ljYaZS6ozhxB81pknfM1O7umGsNk8BuqM1RPbdix
+         ZW4XU8iAicsoPwGpnGPqcjDUUIOfsWaTipNUj44htuOS9hqr0vPjn3di83e2kN8qbX
+         DaY7QZKYf0hrp0zPbDjkZxN3Xz6vN0oJ1q1IoPCWlVewjwQKW4cQkArfQErf5ZNtHJ
+         v+CzvoYHrPDdEfn42PnXi23bwP7QEC4zRtraE8/MMCFb6Of4Row0Z521cGGzDaG65Y
+         0ZlgRfy5WD0ug==
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-96aadfb19d7so738735966b.2;
+        Fri, 19 May 2023 18:16:37 -0700 (PDT)
+X-Gm-Message-State: AC+VfDyc0RzRvRK04RpqQECRiliB5mltyFPrSAqqiS2e4X5bDnxH+wsf
+        YxVsaPI12z9/zYPCqoPgtHh+sqx1Al8aBWWnndo=
+X-Google-Smtp-Source: ACHHUZ5BJxethRchVhvqgx4k+CmNvVMLwKMqXE8ThR/0TeGuD/7A9IKk1GVtu6KMRelWQhhuu+wSq2pSNp/02QFmE9M=
+X-Received: by 2002:a17:907:8a10:b0:96a:d916:cb2f with SMTP id
+ sc16-20020a1709078a1000b0096ad916cb2fmr4107322ejc.36.1684545395510; Fri, 19
+ May 2023 18:16:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 5/5] ARM: dts: qcom: apq8026-samsung-matisse-wifi: Add
- reboot-mode node
-Content-Language: en-US
-To:     =?UTF-8?Q?Matti_Lehtim=c3=a4ki?= <matti.lehtimaki@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230519210903.117030-1-matti.lehtimaki@gmail.com>
- <20230519210903.117030-6-matti.lehtimaki@gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230519210903.117030-6-matti.lehtimaki@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230518184541.2627-10-jszhang@kernel.org> <mhng-e1d500da-688e-49bf-a2d8-bef0e2df48f8@palmer-ri-x1c9a>
+In-Reply-To: <mhng-e1d500da-688e-49bf-a2d8-bef0e2df48f8@palmer-ri-x1c9a>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Sat, 20 May 2023 09:16:24 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTQrfGyitzi7yhcs1dedG9NH2wnieoLu78SUNSaRiyL9dg@mail.gmail.com>
+Message-ID: <CAJF2gTQrfGyitzi7yhcs1dedG9NH2wnieoLu78SUNSaRiyL9dg@mail.gmail.com>
+Subject: Re: [PATCH v2 9/9] riscv: defconfig: enable T-HEAD SoC
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     jszhang@kernel.org, tglx@linutronix.de,
+        Marc Zyngier <maz@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        frank.li@vivo.com, wefu@redhat.com, uwu@icenowy.me
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Acked-by: Guo Ren <guoren@kernel.org>
+
+On Sat, May 20, 2023 at 4:56=E2=80=AFAM Palmer Dabbelt <palmer@dabbelt.com>=
+ wrote:
+>
+> On Thu, 18 May 2023 11:45:41 PDT (-0700), jszhang@kernel.org wrote:
+> > Enable T-HEAD SoC config in defconfig to allow the default
+> > upstream kernel to boot on Sipeed Lichee Pi 4A board.
+> >
+> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > ---
+> >  arch/riscv/configs/defconfig | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfi=
+g
+> > index d98d6e90b2b8..109e4b5b003c 100644
+> > --- a/arch/riscv/configs/defconfig
+> > +++ b/arch/riscv/configs/defconfig
+> > @@ -27,6 +27,7 @@ CONFIG_EXPERT=3Dy
+> >  CONFIG_PROFILING=3Dy
+> >  CONFIG_SOC_MICROCHIP_POLARFIRE=3Dy
+> >  CONFIG_ARCH_RENESAS=3Dy
+> > +CONFIG_ARCH_THEAD=3Dy
+> >  CONFIG_SOC_SIFIVE=3Dy
+> >  CONFIG_SOC_STARFIVE=3Dy
+> >  CONFIG_ARCH_SUNXI=3Dy
+>
+> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
 
-On 19.05.2023 23:09, Matti Lehtimäki wrote:
-> This enables userspace to signal the bootloader to go into the
-> bootloader or recovery mode.
-> 
-> The magic values can be found in both the downstream kernel and the LK
-> kernel (bootloader).
-> 
-> Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
-> ---
->  .../arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
-> index 91b860e24681..a05c41191efd 100644
-> --- a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
-> +++ b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
-> @@ -279,6 +279,16 @@ touchscreen@4a {
->  	};
->  };
->  
-> +&imem {
-> +	status = "okay";
-Drop, undisable in dtsi
 
-> +
-> +	reboot-mode {
-You can add a label like imem_reboot_mode and refer to just this
-thing from the device dt. Though I'm fairly sure the modes should
-be common.
-
-Konrad
-> +		mode-bootloader = <0x77665500>;
-> +		mode-normal     = <0x77665501>;
-> +		mode-recovery   = <0x77665502>;
-> +	};
-> +};
-> +
->  &rpm_requests {
->  	regulators {
->  		compatible = "qcom,rpm-pm8226-regulators";
+--=20
+Best Regards
+ Guo Ren
