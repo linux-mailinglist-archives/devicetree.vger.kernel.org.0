@@ -2,80 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3B3270A782
-	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 13:23:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13E3370A784
+	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 13:25:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231368AbjETLXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 May 2023 07:23:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42554 "EHLO
+        id S231201AbjETLY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 May 2023 07:24:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230344AbjETLXi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 07:23:38 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 442C5E49
-        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 04:23:36 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f13ef4ad91so4833353e87.3
-        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 04:23:36 -0700 (PDT)
+        with ESMTP id S229511AbjETLY5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 07:24:57 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15818E42
+        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 04:24:56 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2af2696fd1cso17457941fa.2
+        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 04:24:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684581814; x=1687173814;
+        d=linaro.org; s=google; t=1684581894; x=1687173894;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=e2s7Gtyl29+R6k7SctHO7yEqHfmFi4DMefy46IEQT4k=;
-        b=H/xkobiJcOs43wwpkwse2e/2yfRa0aPZPjpeaNChqHMVuaMAA0yEfa7aqsQG38niB6
-         B1ekT5rfDMIr4fPQmoh7P6RJtgZzz4tPDUsgtWowMGJBh1rLpb9rPXLyLG0bWZNk7Jcz
-         omT9kg7xLH/9kjq+SsNkMPMuPMGlhvG+DLMv+CE6Ied4kAuBs4SA3FsdYaKVDS9O5LrK
-         Gxr1BlF1IOykE1Nq+mzwbVaUORUDwTEuTmRrqDbrjkSrCiT6KZC2XhnQTb66VNGygSBa
-         f1swgFxQhOb8k+GCyphvn6OO46TTtlkR9zwPIGjhd3v0sOSsLL/+0kdy2jUuuf/TFpk8
-         GTOA==
+        bh=0lrNs85kAq9XhckWf1UT0NKaqZUc8tJA22A6j/dwyNw=;
+        b=lXwBsnALCk92bZuUepZPseNyV09F7cHI5BTJY8v6ERpBK85TmX/jDuRGAIrBAeCjj8
+         vs8NvLrdyngI/HOLk5WYZ8wMthiO73TXB8qb2HcUdjJ+BGV9cBk+N9YYGZPwDXIeIQJX
+         eauC1ksgtlms2EyXrgv0wGmqWS0B/E/x71IMVd48jtwxt8dFLS0QOztjN6lKsRtsi+5B
+         +Tg0xJ9TAgbwWOnn/ZdaY/yjCBfRXNvNWAzhKGuebJwkn7MLdY0awf7Ria72I3X05ZN6
+         9la3DGCPO23cNtqZlAQfh4u/vCsKGwqFRh+wMl+C3GjCxG1rSGj40IVSJqWUkxAEjovI
+         h6fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684581814; x=1687173814;
+        d=1e100.net; s=20221208; t=1684581894; x=1687173894;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e2s7Gtyl29+R6k7SctHO7yEqHfmFi4DMefy46IEQT4k=;
-        b=TtrRgiVjuG2ULURMxzvNRQnbM6JU/foyBTnqottS2bf3v8YE14v646rBVi32Pg/XWt
-         QMXU8fGxGpYe8UnegsG1utUP3nQN+Cuwr+gNfqTi1iuGdfJmJ+2xIdwk455ohcvilxDe
-         Ptw5d5UVRQMBt0lkYB7bIBz3hjR+3ATu71eUF/BPKwuf1tlgjNgwPSeezivCpGLB5z3l
-         Tp/zEsk7Tkqzq3UxVhnLLo169LnoVcBoWhGFSpGLuxZ51/ca/Qp81sVPrcOg9y6fNRlP
-         ppH81iX4ZAhy9Y3YuuiMbWit8F8QDXiGt5YXr7WM+eoGkWhOOMKtDpZj0kZ43RkY1oAj
-         xR2A==
-X-Gm-Message-State: AC+VfDw/EandbBoZUQtHl+8WFKjQKv6eFEkXAuB45GP38duHwrtpk8nw
-        T7iMP7ElnMKMtyHwoyS/8Xl6zQ==
-X-Google-Smtp-Source: ACHHUZ5u6AMNr/IITwEXJbQ6TENUVIXCoq8My3iT1hp+OjnGJ/xafuBlQp3h+MtmqbjYQF3mv2HooA==
-X-Received: by 2002:ac2:4197:0:b0:4f2:4f26:3e5a with SMTP id z23-20020ac24197000000b004f24f263e5amr1764449lfh.41.1684581814480;
-        Sat, 20 May 2023 04:23:34 -0700 (PDT)
+        bh=0lrNs85kAq9XhckWf1UT0NKaqZUc8tJA22A6j/dwyNw=;
+        b=a1zPZv963yueeIILr/WrtBmHUUfnqiR3U5PmfV+3f8KZ7rRNufSSK2MCPxOKFo+NQH
+         7gbPMugogYYf3BYnlvgxpMj/pW4bMZIXttmWDj5u+Skh3tZQnxy/xLvJGkIxIZPmzP+I
+         WSIraxEAojwZy8rlT/hmhPIbBmZUdjIeBhiOGRXLrg7l7Irzynk/KqErOLMedK9hp1cx
+         DYXj8Q3IJrIBV7re4BROh+7wY7MhORH6krWcj3yCMGC6cB3JYEcHBdqTr8Gp71OkD/OQ
+         VRXTSJebGpBsNNjCZON9XWgspAa6vwdmd/H4zyDdYeFY3ypD7Z6HQJpgi9gUA630UDeb
+         9h4w==
+X-Gm-Message-State: AC+VfDw1J0FK4fazZNkcFi9EkvtEBcBiZLn4OrUPmN4B/9BNd0YkkWr3
+        YHtgJ5U2NVVO74aHH/BdVqgVWQ==
+X-Google-Smtp-Source: ACHHUZ5xAT9cKC2kVy+ZvHQ13nooWPvhxXZDUzKf7XNuFBm5q6et9yq3g6mTQoPEWTyjZyRYI8lX+Q==
+X-Received: by 2002:a2e:7811:0:b0:2ac:85d7:342b with SMTP id t17-20020a2e7811000000b002ac85d7342bmr1861429ljc.29.1684581894318;
+        Sat, 20 May 2023 04:24:54 -0700 (PDT)
 Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id q10-20020a19a40a000000b004edd2dc9a09sm231449lfc.258.2023.05.20.04.23.32
+        by smtp.gmail.com with ESMTPSA id u11-20020a2e9f0b000000b002a8ec99e0e0sm258638ljk.70.2023.05.20.04.24.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 20 May 2023 04:23:33 -0700 (PDT)
-Message-ID: <d606960d-8e0a-611b-579c-c49b5b970462@linaro.org>
-Date:   Sat, 20 May 2023 13:23:32 +0200
+        Sat, 20 May 2023 04:24:53 -0700 (PDT)
+Message-ID: <ed4c33d3-ae5d-d695-eda0-0b09a4a26644@linaro.org>
+Date:   Sat, 20 May 2023 13:24:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 2/4] arm: dts: qcom: qdu1000: Add SDHCI node
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: qdu1000-idp: add SDHCI for emmc
 Content-Language: en-US
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Komal Bajaj <quic_kbajaj@quicinc.com>,
         Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
+        Bjorn Andersson <andersson@kernel.org>
 Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
 References: <20230519085122.15758-1-quic_kbajaj@quicinc.com>
- <20230519085122.15758-3-quic_kbajaj@quicinc.com>
+ <20230519085122.15758-5-quic_kbajaj@quicinc.com>
+ <8e3c745a-2e37-2927-7dbf-e23a777702f3@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230519085122.15758-3-quic_kbajaj@quicinc.com>
+In-Reply-To: <8e3c745a-2e37-2927-7dbf-e23a777702f3@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,115 +85,46 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 19.05.2023 10:51, Komal Bajaj wrote:
-> Add sdhc node for eMMC on QDU1000 and QRU1000 SoCs.
+On 19.05.2023 12:13, Bhupesh Sharma wrote:
 > 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qdu1000.dtsi | 60 +++++++++++++++++++++++++++
->  1 file changed, 60 insertions(+)
+> On 5/19/23 2:21 PM, Komal Bajaj wrote:
+>> Add sdhci node for emmc in qdu1000-idp.
+>>
+>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 11 +++++++++++
+>>   1 file changed, 11 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>> index 9e9fd4b8023e..b2526e991548 100644
+>> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+>> @@ -451,3 +451,14 @@
+>>   &uart7 {
+>>       status = "okay";
+>>   };
+>> +
+>> +&sdhc_1 {
+>> +    status = "okay";
+>> +
+>> +    pinctrl-0 = <&sdc1_on_state>;
+>> +    pinctrl-1 = <&sdc1_off_state>;
+>> +    pinctrl-names = "default", "sleep";
+>> +
+>> +    vmmc-supply = <&vreg_l10a_2p95>;
+>> +    vqmmc-supply = <&vreg_l7a_1p8>;
+>> +};
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> index 734438113bba..6113def66a08 100644
-> --- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> @@ -19,6 +19,10 @@
+> Again, please follow alphabetical order for adding new node entries.
 > 
->  	chosen: chosen { };
-> 
-> +	aliases {
-> +		mmc0 = &sdhc_1; /*SDC1 eMMC slot*/
-> +	};
-> +
->  	cpus {
->  		#address-cells = <2>;
->  		#size-cells = <0>;
-> @@ -842,6 +846,62 @@
->  			#hwlock-cells = <1>;
->  		};
-> 
-> +		sdhc_1: mmc@8804000 {
-> +			compatible = "qcom,qdu1000-sdhci", "qcom,sdhci-msm-v5";
-> +			reg = <0x0 0x08804000 0x0 0x1000>,
-> +			      <0x0 0x08805000 0x0 0x1000>;
-> +
-confusing newline
-> +			reg-names = "hc", "cqhci";
-> +
-> +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "hc_irq", "pwr_irq";
-> +
-> +			clocks = <&gcc GCC_SDCC5_AHB_CLK>,
-> +				 <&gcc GCC_SDCC5_APPS_CLK>,
-SDCC>5<?
+> Also, we have been placing 'status = .. ' entry at the end for new .dts (or .dts entry), but if that is the format used across this board dts
+> I am ok with the same.
+Komal,
 
-> +				 <&rpmhcc RPMH_CXO_CLK>;
-> +			clock-names = "iface", "core", "xo";
-Please keep one per line
-
-> +
-> +			/* Add dt entry for gcc hw reset */
-> +			resets = <&gcc GCC_SDCC5_BCR>;
-5?
-
-> +
-> +			interconnects = <&system_noc MASTER_SDCC_1 0 &mc_virt SLAVE_EBI1 0>,
-> +					<&gem_noc MASTER_APPSS_PROC 0 &system_noc SLAVE_SDCC_2 0>;
-> +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
-> +			power-domains = <&rpmhpd QDU1000_CX>;
-> +			operating-points-v2 = <&sdhc1_opp_table>;
-> +
-> +			iommus = <&apps_smmu 0x0080 0x0>;
-Please remove the leading zeroes from the stream id
-
-
-> +			dma-coherent;
-> +
-> +			bus-width = <8>;
-
-
-----
-> +			non-removable;
-> +			supports-cqe;
-> +
-> +			no-sd;
-> +			no-sdio;
-> +
-> +			mmc-ddr-1_8v;
-> +			mmc-hs200-1_8v;
-> +			mmc-hs400-1_8v;
-> +			mmc-hs400-enhanced-strobe;
-> +			cap-mmc-hw-reset;
-----
-This bit is board-specific
-
-> +
-> +			qcom,dll-config = <0x0007642c>;
-> +			qcom,ddr-config = <0x80040868>;
-> +
-> +			status = "disabled";
-> +
-> +			sdhc1_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-384000000 {
-> +					opp-hz = /bits/ 64 <384000000>;
-> +					required-opps = <&rpmhpd_opp_min_svs>;
-You added interconnects, but not any opp-peak-kBps / opp-avg-kBps,
-presumably mistakengly?
-
-Also, 384Mhz + min_svs sounds a bit weird? Is that the correct
-level for this SoC?
+since you're already touching this file, would you mind making a
+separate commit moving status last for all nodes?
 
 Konrad
-> +				};
-> +			};
-> +		};
-> +
->  		pdc: interrupt-controller@b220000 {
->  			compatible = "qcom,qdu1000-pdc", "qcom,pdc";
->  			reg = <0x0 0xb220000 0x0 0x30000>, <0x0 0x174000f0 0x0 0x64>;
-> --
-> 2.17.1
 > 
+> Thanks,
+> Bhupesh
