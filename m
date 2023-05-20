@@ -2,87 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54CE670AABF
-	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 21:44:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E75270AB23
+	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 23:38:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbjETToE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 May 2023 15:44:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41310 "EHLO
+        id S229600AbjETViv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 May 2023 17:38:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229589AbjETToE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 15:44:04 -0400
-X-Greylist: delayed 401 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 20 May 2023 12:44:02 PDT
-Received: from devico.uberspace.de (devico.uberspace.de [185.26.156.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9536E119
-        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 12:44:02 -0700 (PDT)
-Received: (qmail 22232 invoked by uid 990); 20 May 2023 19:37:19 -0000
-Authentication-Results: devico.uberspace.de;
-        auth=pass (plain)
+        with ESMTP id S229511AbjETViu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 17:38:50 -0400
+Received: from mx.kolabnow.com (mx.kolabnow.com [212.103.80.153])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A86AE9;
+        Sat, 20 May 2023 14:38:49 -0700 (PDT)
+Received: from localhost (unknown [127.0.0.1])
+        by mx.kolabnow.com (Postfix) with ESMTP id 6F4229DA;
+        Sat, 20 May 2023 23:38:46 +0200 (CEST)
+Authentication-Results: ext-mx-out001.mykolab.com (amavisd-new);
+        dkim=pass (4096-bit key) reason="pass (just generated, assumed good)"
+        header.d=kolabnow.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kolabnow.com; h=
+        content-transfer-encoding:organization:mime-version:message-id
+        :date:date:subject:subject:from:from:received:received:received;
+         s=dkim20160331; t=1684618723; x=1686433124; bh=eMERf6lDNoGOVdkb
+        nyJmSR/kvIhnXnEspto8AHz1L+o=; b=MfQbWgh2WJz7Li8+JwiQfJlVbMs+6pab
+        9hIVZgmFWHSbHPB8xEtMUSm38teYBW50FYLxVF1M6zBzJ7a1XADHkkO5rGSJD+pC
+        dHAQaA833yF4xWMh1U/hviLK4bTXUzm9U6H9DxmSQjpbMM7adirnHOWSMDnclXjT
+        uXZeVP3NERSrDc4H7mERh6XjXr73+M641vWM9sbo5sTstHTGzk9nGm7JDPh3R12p
+        Ae3NNWHiSekCtNQxwduGpQZOcp1vTzUaSUeCVkuCvks4YUR//3VyMenIc4Trd7YM
+        gmwZW+ZGC1Yp42ZPs2d7eSsEbh2fKFCaQOUsq3AuRl9t1YSlepdRUaOYMR78Ee9o
+        SArUPFfFIq1E47L1BYZsePX33kfHhjNkzMeFKy80VEv/EwekHZf8eYIW/1Nik/tl
+        GKgxZTY9aGAAosEZ/AeuwXUOJdZ/KpSnS3mTqc5UaRgYsJAZMiZLWwlx60PdgZbU
+        7wVcojbMmirGJUA+2dBEiI9F5Bf9aXJiHkQfpQgZmF8mLZSozkx3BUZvC4ygbK6p
+        Hbtnw/g1RofmFwiFAF6F6HZ4do4uq1J1BA1fy1f1HdmylUB0s38LCNBKnX6NDEpZ
+        KHALzg6AU2Gal9/+4MwJgGln078umRiyxXDJFA6VSqhYI7AP/dxq+uhRJsjBS1P2
+        Y+IO/WCDTH8=
+X-Virus-Scanned: amavisd-new at mykolab.com
+X-Spam-Score: -1.9
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
+Received: from mx.kolabnow.com ([127.0.0.1])
+        by localhost (ext-mx-out001.mykolab.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id t5UvcI6BUA5F; Sat, 20 May 2023 23:38:43 +0200 (CEST)
+Received: from int-mx002.mykolab.com (unknown [10.9.13.2])
+        by mx.kolabnow.com (Postfix) with ESMTPS id 07EDC579;
+        Sat, 20 May 2023 23:38:42 +0200 (CEST)
+Received: from ext-subm002.mykolab.com (unknown [10.9.6.2])
+        by int-mx002.mykolab.com (Postfix) with ESMTPS id 3AE1B2991;
+        Sat, 20 May 2023 23:38:42 +0200 (CEST)
+From:   alison@she-devel.com
+To:     johan@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alison@she-devel.com,
+        achaiken@aurora.tech
+Subject: [PATCH v7 0/2]   support config of U-Blox Zed-F9P GNSS
+Date:   Sat, 20 May 2023 14:38:33 -0700
+Message-Id: <20230520213835.1932087-1-alison@she-devel.com>
 MIME-Version: 1.0
-Date:   Sat, 20 May 2023 19:37:18 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-From:   "Leonard Lausen" <leonard@lausen.nl>
-Message-ID: <776024ddf6bcf0b8774253964678fe2f16c8c6bd@lausen.nl>
-TLS-Required: No
-Subject: Hexagon 692 DSP & FastRPC declarations in sc7180 Device Tree Files
-To:     "Bjorn Andersson" <andersson@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        cros-qcom-dts-watchers@chromium.org,
-        srinivas.kandagatla@linaro.org, amahesh@qti.qualcomm.com
-X-Rspamd-Bar: /
-X-Rspamd-Report: BAYES_HAM(-0.317062) MIME_GOOD(-0.1)
-X-Rspamd-Score: -0.417062
-Received: from unknown (HELO unkown) (::1)
-        by devico.uberspace.de (Haraka/3.0.1) with ESMTPSA; Sat, 20 May 2023 21:37:18 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-        d=lausen.nl; s=uberspace;
-        h=from;
-        bh=KAN0KsjOE0JQNRluGzQKMt7qUIyIYtQacjFB2T1gHnc=;
-        b=rOIixYwUf4e/MAv6BFkjEQKDzsH8tOhpURYrsox3i7A7BGZPD4rLVYyGp9O/QmFyxRqw8Tuuhh
-        50K5YCwVU2HcXP6FpRvFCDeSAkeqbBoF2pVNwdOgjhkkVRo7NEEO6G4Cw1cotTTNuaZMljBncU3b
-        oQ2T0HwyuZ2VcCovC9csjy5f4PETJIJYx6IJz0Uw13KNatAK53DyIb1Y9hqD132r6gOHnLsrRW2R
-        pndPTWDjvghZDZIS+OlmxzlqJNoiiMW4cKiJmEJlL7uUQacHkeoXo9xBd2TfB6EPul35EuGK4h4j
-        yCAtJPMeJNEMeNyvNazYn0Mn4VwvoUGHEkKgNs+fps/ig6JOFrs4gYfWbpQd6ytHJE6tGvveKN5Q
-        Wh4N5+3EDw+gN+3YQRdJMPXNxPAUOQNaV/1R25LvuCk3pQ6qYk45158lZ6N7pDKrajTA98FsEYsw
-        TBFJxHtkyd5jT/oJCiduszZ44EoT5IV9Pzf9If16wrXGQH1vM71jNANl7/YAITCy0CjPsT8gyLkd
-        7RAvadj8OWIq5F7HLWt52xQmUNjJU08unVh0sI6Odxa8OCcOups1JY2poOJS9YUGr4zqxsGLZOZL
-        5N1aD8yruc69DB7K/jg7FFqsLluMFB34Nrowa68nGO6tZIY1uI2Q/BdceSNnDR6vfDF4Q4HvsYux
-        U=
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,MSGID_FROM_MTA_HEADER,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Organization: Aurora Innovation
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Arm64 Linux Community,
+From: Alison Chaiken <alison@she-devel.com>
 
-the sc7180 device tree files are missing the declaration of the Hexagon
-692 DSP that's providing the Qualcomm AI Engine on this SoC [1] based on
-the FastRPC driver. In contrast, the sc8280xp device tree files do
-include the corresponding declarations [2] and the cDSP does show up as
-/dev/fastrpc-cdsp{,-secure} on sc8280xp based devices.
+Add generalized support for setting arbitrary configuration of the
+U-Blox Zed-F9P GNSS.  Employ the new functionality to set the baud rate
+of the Zed-F9P if the devicetree specifies a non-default value.
 
-Is there anyone in the community, perhaps folks at Linaro or QuIC that
-might have access to the hardware documentation and could help provide
-the information required to declare the DSP in the device tree? This
-should require the cDSP base address, the number of compute-cb nodes
-as well as their correct iommu and reg values.
+Tested with 6.1.22, only on a U-Blox Zed-F9P GNSS.
 
-Hexagon 692 DSP supports 5 TOPS, so declaring support in the device tree
-can unlock simple, but non-trivial and interactive use-cases with, for
-example, GPT-2-Large style models compiled for Hexagon with Apache TVM.
+V7 -> V6 Fixed tag and version.
+V6 -> V5 Change #ifdef to _maybe_unused and fix warnings.
+V5 -> V4 Wrap all new code in a CONFIG_OF=y check and fixes
+V4 -> V3 Lookup device-specific properties by matching driver data.
+V2 -> V3 Add email recipients whom I foolishly missed the first two times.
+V1 -> V2 Fixes error identified by kernel test robot:
 
-Best regards,
-Leonard Lausen
 
-[1]: https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documen=
-ts/prod_brief_qcom_sd7c_2.pdf
-[2]: https://github.com/torvalds/linux/blob/v6.3/arch/arm64/boot/dts/qcom=
-/sc8280xp.dtsi#L4045-L4174
+Alison Chaiken (2):
+  gnss: ubx: customize serial device open to set U-Blox Zed-F9P baud
+  dt-bindings: gnss: Add U-Blox Zed-F9
+
+ .../bindings/gnss/u-blox,neo-6m.yaml          |   1 +
+ drivers/gnss/ubx.c                            | 243 +++++++++++++++++-
+ 2 files changed, 233 insertions(+), 11 deletions(-)
+
+
+base-commit: f1fcbaa18b28dec10281551dfe6ed3a3ed80e3d6
+-- 
+2.39.2
+
