@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2E4170A788
-	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 13:26:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D918A70A789
+	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 13:26:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229654AbjETL0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 May 2023 07:26:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43368 "EHLO
+        id S231430AbjETL0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 May 2023 07:26:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230344AbjETL0O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 07:26:14 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 054C5186
-        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 04:26:13 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2ab3e8f4efeso21480861fa.0
-        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 04:26:12 -0700 (PDT)
+        with ESMTP id S230344AbjETL0Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 07:26:16 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 178BC186
+        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 04:26:15 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2af30d10d8fso1379811fa.0
+        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 04:26:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684581971; x=1687173971;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yhy6NdrRMFc4r1W5W9OpOcWFvDgKi7GNMY28PISUPrE=;
-        b=R0kf8rxaT1qyO+JVzayWX+QmaN2ulkBSvX6yqlBW3IYGCWZOJAOIO04s0CFywTmwCY
-         F5CD7r6Ynt+JnDMkd60P/yq71Vq5jduFiJtmuFqZqQ1bNEHONGNPjPVS+TW6RHIa7pU5
-         mWHVvc0URtVQNP261fA1I6UzYKt9I+j3Ihdf7vq5bz9Tg4AqPJoZhpqMjfWCUfSebeOa
-         kZ8F61oBerT1bQVP6tLTtan/nDdJXTkYGO7xRCI9OgJxmhDCVA/ZoWzgtekbMmIhoJo4
-         /HINd2PIvdpeAQk18jJHNJQr4jI75ILawUGtdNNRQH4g7eUTibh4DRZpj5IhS3PaFt3W
-         nLIA==
+        d=gmail.com; s=20221208; t=1684581973; x=1687173973;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zWIC+u4e4qOpJG4nDZ5cvkyposRvtCNiaHf7Hv/AfUU=;
+        b=H0ueNXaouw/MpwFAdrJGZlmJ5SR4QCEdGAXtsxVGUJ+QphIZelgn6eL+boyfTTX9yy
+         nrNyTucr+xBgMfzlH1kG4OsfpbNGFKCG9w/Copsw76TMkSHhT8MAZHSlD/O9uhVbBkMs
+         vy1XZ7ALA/cXtnla50GdiRRUUSTH81p+HONB9vGuRLnUuHOu8714ae42kuu5tUEGWz2t
+         u+bOP1vtxipeNdlqHFtG4kyt6/xJNHpy5zltrfVsegy3a33D8qdZByOy/n9XkC2DGkkm
+         xjb/N2AqE/MD2ubZ9SmnrLIrxdYZt+zyVEjf0FoVA0VUQ81kogMnnjbXaausuYiTSFuZ
+         DIow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684581971; x=1687173971;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yhy6NdrRMFc4r1W5W9OpOcWFvDgKi7GNMY28PISUPrE=;
-        b=ID4tDDBO6dSlZqCgA3uzJbwjHrssXaGxvKf+htEXei9k8bWhMaj4sOUqiJTJtxmfY/
-         uN0JWESJ0gjDmA+5gGzkeSvRYNq6OxPrvjNmiv58duM+PxS8mPzXHv9aPW+7pXLEX1eb
-         QBovHPnuoM8pbvd2VsZBTOGdRvDPEMs1qeqs+uyiloxF1qwf5Hysepw30i5iJI6FTBoe
-         d+fZztSzsqYB/KUlXWGB7HUMDdrHy9+ioK+T1upwSRzjlhR1nRk5pRMB4Z7BqO4RAgUh
-         wx4aIn5hCk1cTDzo0b86HD1aLvvqHcMy00lnWIJSdZKG+ZzuK9S3zah2dlRwMhRjqF0E
-         TBkA==
-X-Gm-Message-State: AC+VfDxydRwEDF5WpA5D2wksHdxcGf9qxr9U0824o/EuPEhJv/4MSDw0
-        iczCSm+PJfmc3d9gJhK7ctw=
-X-Google-Smtp-Source: ACHHUZ5UN+qzjzXVsEOHnAwfMnnyHqqndWx8mo+mSsS5krDY+rsSggAkB3ifefAn8sBSg6xE1NDKUg==
-X-Received: by 2002:a05:651c:231:b0:293:4b91:d03e with SMTP id z17-20020a05651c023100b002934b91d03emr2004226ljn.1.1684581970760;
-        Sat, 20 May 2023 04:26:10 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684581973; x=1687173973;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zWIC+u4e4qOpJG4nDZ5cvkyposRvtCNiaHf7Hv/AfUU=;
+        b=b2ykEDXopnreCq98bcU7B/ugSM5bsCo5OSMYLAcoAF9DOu21wpnNaOT0BsL8bAKjTA
+         Dy2Li4wtyN4eEAmATHT/4KKB9wrALJpbQF/EGRH0/XOJjx4n3CGBGNX+b7k02OWPCWVO
+         bwbjwT5eIIU5oTDkw0wtQ62HlCc+nvDUNsK0LVo3AajVLF3UQ0kaHOR+Txfl8htPNgwC
+         K5Xw5f7RO94ZBJ9giXoDIf3z5o3KifT9B2NhI+dvb7yGwgOha3BrhX+l+kv5Efipr/hs
+         mqyAFVRCyocTzna0P9Y+BQVzW2SM+GUNzw94xFWk//UTylcMiPx+a7d10QCsrl7dotzF
+         1XZg==
+X-Gm-Message-State: AC+VfDwaCAB/yhgYYXQcuShx75sHGkLUU0+zFpUUfdsYo7UwOVJchIkd
+        VDHNeKPIOXAhnNpdMy7vn9U=
+X-Google-Smtp-Source: ACHHUZ4qpL3qxXvIcflT61LRVO7OX58WbssvWFGSzwNB1GQm8+MFqluHmmHcTQWMmw+GZd1rbCZEFQ==
+X-Received: by 2002:a2e:a16e:0:b0:2ac:98be:fa55 with SMTP id u14-20020a2ea16e000000b002ac98befa55mr2131362ljl.27.1684581973151;
+        Sat, 20 May 2023 04:26:13 -0700 (PDT)
 Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id j21-20020a2e8015000000b002aeee2a093csm258949ljg.59.2023.05.20.04.26.09
+        by smtp.gmail.com with ESMTPSA id j21-20020a2e8015000000b002aeee2a093csm258949ljg.59.2023.05.20.04.26.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 May 2023 04:26:10 -0700 (PDT)
+        Sat, 20 May 2023 04:26:12 -0700 (PDT)
 From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -61,10 +62,12 @@ Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
         Christian Lamparter <chunkeey@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 1/2] dt-bindings: arm: bcm: unify version notation of Northstar devices
-Date:   Sat, 20 May 2023 13:26:00 +0200
-Message-Id: <20230520112601.11821-1-zajec5@gmail.com>
+Subject: [PATCH 2/2] ARM: dts: BCM5301X: Use updated device "compatible" strings
+Date:   Sat, 20 May 2023 13:26:01 +0200
+Message-Id: <20230520112601.11821-2-zajec5@gmail.com>
 X-Mailer: git-send-email 2.35.3
+In-Reply-To: <20230520112601.11821-1-zajec5@gmail.com>
+References: <20230520112601.11821-1-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -80,52 +83,97 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-Always use a minus/hyphen char to separate model from version. This
-unifies binding's "compatible" strings.
+Northstar binding was updated to use minus/hyphen char between model and
+version for all devices.
 
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- .../devicetree/bindings/arm/bcm/brcm,bcm4708.yaml    | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts   | 2 +-
+ arch/arm/boot/dts/bcm4708-netgear-r6250.dts    | 2 +-
+ arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts | 2 +-
+ arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts  | 2 +-
+ arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts  | 2 +-
+ arch/arm/boot/dts/bcm47094-luxul-xwr-3100.dts  | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
-index 454b0e93245d..cc34025fdc78 100644
---- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
-+++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
-@@ -28,10 +28,10 @@ properties:
-               - buffalo,wzr-1750dhp
-               - linksys,ea6300-v1
-               - linksys,ea6500-v2
--              - luxul,xap-1510v1
-+              - luxul,xap-1510-v1
-               - luxul,xwc-1000
--              - netgear,r6250v1
--              - netgear,r6300v2
-+              - netgear,r6250-v1
-+              - netgear,r6300-v2
-               - smartrg,sr400ac
-               - brcm,bcm94708
-           - const: brcm,bcm4708
-@@ -42,8 +42,8 @@ properties:
-               - asus,rt-n18u
-               - buffalo,wzr-600dhp2
-               - buffalo,wzr-900dhp
--              - luxul,xap-1410v1
--              - luxul,xwr-1200v1
-+              - luxul,xap-1410-v1
-+              - luxul,xwr-1200-v1
-               - tplink,archer-c5-v2
-           - const: brcm,bcm47081
-           - const: brcm,bcm4708
-@@ -72,7 +72,7 @@ properties:
-               - luxul,xap-1610-v1
-               - luxul,xbr-4500-v1
-               - luxul,xwc-2000-v1
--              - luxul,xwr-3100v1
-+              - luxul,xwr-3100-v1
-               - luxul,xwr-3150-v1
-               - netgear,r8500
-               - phicomm,k3
+diff --git a/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts b/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts
+index 9b98a0179f05..5d0549855978 100644
+--- a/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts
++++ b/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts
+@@ -8,7 +8,7 @@
+ #include "bcm4708.dtsi"
+ 
+ / {
+-	compatible = "luxul,xap-1510v1", "brcm,bcm4708";
++	compatible = "luxul,xap-1510-v1", "brcm,bcm4708";
+ 	model = "Luxul XAP-1510 V1";
+ 
+ 	chosen {
+diff --git a/arch/arm/boot/dts/bcm4708-netgear-r6250.dts b/arch/arm/boot/dts/bcm4708-netgear-r6250.dts
+index 89155caf50be..8661ec94ca67 100644
+--- a/arch/arm/boot/dts/bcm4708-netgear-r6250.dts
++++ b/arch/arm/boot/dts/bcm4708-netgear-r6250.dts
+@@ -13,7 +13,7 @@
+ #include "bcm5301x-nand-cs0-bch8.dtsi"
+ 
+ / {
+-	compatible = "netgear,r6250v1", "brcm,bcm4708";
++	compatible = "netgear,r6250-v1", "brcm,bcm4708";
+ 	model = "Netgear R6250 V1 (BCM4708)";
+ 
+ 	chosen {
+diff --git a/arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts b/arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts
+index 57d00a0b4765..77396730bdd3 100644
+--- a/arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts
++++ b/arch/arm/boot/dts/bcm4708-netgear-r6300-v2.dts
+@@ -12,7 +12,7 @@
+ #include "bcm5301x-nand-cs0-bch8.dtsi"
+ 
+ / {
+-	compatible = "netgear,r6300v2", "brcm,bcm4708";
++	compatible = "netgear,r6300-v2", "brcm,bcm4708";
+ 	model = "Netgear R6300 V2 (BCM4708)";
+ 
+ 	chosen {
+diff --git a/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts b/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts
+index edc194085995..7e042928fd40 100644
+--- a/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts
++++ b/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts
+@@ -8,7 +8,7 @@
+ #include "bcm47081.dtsi"
+ 
+ / {
+-	compatible = "luxul,xap-1410v1", "brcm,bcm47081", "brcm,bcm4708";
++	compatible = "luxul,xap-1410-v1", "brcm,bcm47081", "brcm,bcm4708";
+ 	model = "Luxul XAP-1410 V1";
+ 
+ 	chosen {
+diff --git a/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts b/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts
+index 97b61d9d4be9..231d437408d8 100644
+--- a/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts
++++ b/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts
+@@ -9,7 +9,7 @@
+ #include "bcm5301x-nand-cs0-bch4.dtsi"
+ 
+ / {
+-	compatible = "luxul,xwr-1200v1", "brcm,bcm47081", "brcm,bcm4708";
++	compatible = "luxul,xwr-1200-v1", "brcm,bcm47081", "brcm,bcm4708";
+ 	model = "Luxul XWR-1200 V1";
+ 
+ 	chosen {
+diff --git a/arch/arm/boot/dts/bcm47094-luxul-xwr-3100.dts b/arch/arm/boot/dts/bcm47094-luxul-xwr-3100.dts
+index ebea188bd2d7..52783a4b6f99 100644
+--- a/arch/arm/boot/dts/bcm47094-luxul-xwr-3100.dts
++++ b/arch/arm/boot/dts/bcm47094-luxul-xwr-3100.dts
+@@ -9,7 +9,7 @@
+ #include "bcm5301x-nand-cs0-bch4.dtsi"
+ 
+ / {
+-	compatible = "luxul,xwr-3100v1", "brcm,bcm47094", "brcm,bcm4708";
++	compatible = "luxul,xwr-3100-v1", "brcm,bcm47094", "brcm,bcm4708";
+ 	model = "Luxul XWR-3100 V1";
+ 
+ 	chosen {
 -- 
 2.35.3
 
