@@ -2,1764 +2,2049 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CA6770A867
-	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 15:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E267D70A89E
+	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 16:59:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbjETN65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 May 2023 09:58:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45392 "EHLO
+        id S230040AbjETO7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 May 2023 10:59:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbjETN64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 09:58:56 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8442810F;
-        Sat, 20 May 2023 06:58:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1684591132; x=1716127132;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=onkKz4PPvLH7Tqt2zAbU2gRZ2OsFj2ytBUCN+bpZJg0=;
-  b=dgPOrwCHULqk0PjVs/6N1g37pFt4W68yIZSgF0Hm0y/X+YNpX0f3SWAR
-   YOwn5Vt/TBT2EqAyTgzhpiDdsGDw+/7rmT1nTdxeRl+04wMxS1a26GSvZ
-   e9KbNKU9n4zKVnosJemqW8lPHOEFnDhxm42Jp5IhnrWhqBQbsV1j3rOFK
-   3quPhLopt/07ivhY8QUNuEYrcwPyqC6AEgvLWEq+7ltaF5GqM1VVKv13Q
-   kRms6C9mKtHLnAOGorT9BcCmI1zQ2Ff2jOXWDwGgdlTfQbvxXMkeWJIj7
-   /Y7UXz51Pxvp+80tv9W5fMkj2z8gi5PAtu/iAFFLkGDPYN7mcJzygXfxg
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10716"; a="351430590"
-X-IronPort-AV: E=Sophos;i="6.00,180,1681196400"; 
-   d="scan'208";a="351430590"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 May 2023 06:58:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10716"; a="680367257"
-X-IronPort-AV: E=Sophos;i="6.00,180,1681196400"; 
-   d="scan'208";a="680367257"
-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 20 May 2023 06:58:48 -0700
-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1q0N6d-000BZm-14;
-        Sat, 20 May 2023 13:58:47 +0000
-Date:   Sat, 20 May 2023 21:58:01 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Paulo Pavacic <pavacic.p@gmail.com>, neil.armstrong@linaro.org,
-        sam@ravnborg.org, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Paulo Pavacic <pavacic.p@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: add fannal,c3004
-Message-ID: <202305202129.6nESZs8s-lkp@intel.com>
-References: <20230519142456.2588145-2-pavacic.p@gmail.com>
+        with ESMTP id S230014AbjETO7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 10:59:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71E74115;
+        Sat, 20 May 2023 07:59:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E0EF3616CF;
+        Sat, 20 May 2023 14:59:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA479C4339B;
+        Sat, 20 May 2023 14:58:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684594740;
+        bh=3sNi5b+mHb0DNbUYZFndRTENzCDFeYGvixf9ehMCp2I=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=rjKIa6oC2cUvdaQC1esIJOeFmqo/10Z5IbPdB2RhjTHXlO0QaP+KMnSPIBlSJHrwg
+         vNQbNnl9/qEYR8n4/+8z+riZ6r+RrgD4lLLFEZr+hXHJa0uODlZdRpuQUMZxCWEtic
+         m9UGUpzCzvTee21PjYPdMXTz3BxfhP+YKPXwHy+NPqaWwT6657tuGhNtHqQnkAS2ck
+         4hjej5htitcoPo41bLcGn6aYTv5JxLAXLIfuSwNMwUlMWgZpXzAqe7mkFwKbOSzQyR
+         5bXYYnPjkmTWceOBZY2TNreJlABNHkRgPnaACn94vJGKGTfyP07PMpTXFqF/7Rrs3N
+         TE7aJeLKyAwAw==
+Date:   Sat, 20 May 2023 16:15:09 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     <marius.cristea@microchip.com>
+Cc:     <lars@metafoo.de>, <robh+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] iio: adc: adding support for MCP3564 ADC
+Message-ID: <20230520161509.4c704656@jic23-huawei>
+In-Reply-To: <20230519160145.44208-3-marius.cristea@microchip.com>
+References: <20230519160145.44208-1-marius.cristea@microchip.com>
+        <20230519160145.44208-3-marius.cristea@microchip.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="yyZfpIjDKNKWf97V"
-Content-Disposition: inline
-In-Reply-To: <20230519142456.2588145-2-pavacic.p@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 19 May 2023 19:01:45 +0300
+<marius.cristea@microchip.com> wrote:
+
+> From: Marius Cristea <marius.cristea@microchip.com>
+>=20
+> This is the iio driver for Microchip family of 153.6 ksps,
+> Low-Noise 16/24-Bit Delta-Sigma ADCs with an SPI interface.
+>=20
+> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
+Hi Marius,
+
+Comments inline,
+
+Thanks,
+
+Jonathan
+
+> ---
+>  .../ABI/testing/sysfs-bus-iio-mcp3564         |  143 ++
+>  MAINTAINERS                                   |    7 +
+>  drivers/iio/adc/Kconfig                       |   13 +
+>  drivers/iio/adc/Makefile                      |    1 +
+>  drivers/iio/adc/mcp3564.c                     | 1395 +++++++++++++++++
+>  5 files changed, 1559 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-mcp3564
+>  create mode 100644 drivers/iio/adc/mcp3564.c
+>=20
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-mcp3564 b/Documentat=
+ion/ABI/testing/sysfs-bus-iio-mcp3564
+> new file mode 100644
+> index 000000000000..fd65995e2245
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio-mcp3564
+
+Don't provide documentation for anything that is standard ABI.
+We can't have more than one instance of any given path + file in the
+documentation without breaking it.
+
+> @@ -0,0 +1,143 @@
+> +What:		/sys/bus/iio/devices/iio:deviceX/calibbias
+> +KernelVersion:	6.4
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Offset Error Digital Calibration Code (two=E2=80=99s complement,
+> +		MSb first coding). The device includes a digital calibration
+> +		feature for offset and gain errors. The calibration
+> +		scheme for offset error consists of the addition of a
+> +		fixed offset value to the ADC output code
+> +
+> +		This attribute is used to set the offset error digital
+> +		calibration code (two=E2=80=99s complement, MSb first coding).
+> +		The ADC includes a digital calibration feature for offset
+> +		errors. The calibration scheme for offset error consists of the
+> +		addition of a fixed offset value to the ADC output code.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/calibbias_available
+> +KernelVersion:	6.4
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Reading returns a range with the possible values for the offset
+> +		error digital calibration register.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/calibscale
+> +KernelVersion:	6.4
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		This attribute is used to set the gain error digital calibration
+> +		code (unsigned, MSb first coding). The default value is 800000,
+> +		which provides a gain of 1x.
+> +		The ADC includes a digital calibration feature for gain errors.
+> +		The calibration scheme for gain error consists of the
+> +		multiplication of a fixed gain value to the ADC data code.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/calibscale_available
+> +KernelVersion:	6.4
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Reading returns a range with the possible values for the gain
+> +		error digital calibration register.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/boost_current
+> +KernelVersion:	6.4
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		This attribute is used to set the biasing circuit of the
+> +		Delta-Sigma modulator. The different BOOST settings are applied
+> +		to the entire modulator circuit, including the voltage reference
+> +		buffers.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/boost_current_available
+> +KernelVersion:	6.4
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Reading returns a list with the possible values for
+> +		the current biasing circuit of the Delta-Sigma modulator.
+> +
+> +		"x0.5",   - ADC channel has current x 0.5
+
+Keep just numbers in the attr.  It should be named in a fashion that
+makes it apparent that it's a multiplier, not an absolute current.
+
+New ABI like this is best avoided if we can. I see from a quick glance at t=
+he
+datasheet that there is advice on controlling this to allow for different
+clock settings, but I'm not sure if that's a simple relationship or not.
+From=20
+https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocu=
+ments/DataSheets/MCP3461-2-4-Two-Four-Eight-Channel-153.6-ksps-Low-Noise-16=
+-Bit-Delta-Sigma-ADC-Data-Sheet-20006180D.pdf
+figures 2-20 onwards, it looks like this effectively trades off power consu=
+mption
+against max frequency, so maybe we could set it automatically?
+
+
+> +
+> +		"x0.66",  - ADC channel has current x 0.66
+> +
+> +		"x1",     - ADC channel has current x 1 (default)
+> +
+> +		"x2"      - ADC channel has current x 2
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/current_bias
+
+Another bit of custom ABI with the normal problems of it being unknown
+to standard userspace software.  You could perhaps use an output channel for
+this and just treat it like a current DAC, with a label that makes it's rel=
+ationship
+to the inputs obvious.
+
+> +KernelVersion:	6.4
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		This attribute is used to set the current Source/Sink
+> +		values for sensor bias. The ADC inputs, VIN-/VIN+, feature a
+> +		selectable burnout current source, which enables open or
+> +		short-circuit detection, as well as biasing very low-current
+> +		external sensors. The bias current is sourced on the VIN+ pin of
+> +		the ADC (noninverting output of the analog multiplexer)
+> +		and sunk on the VIN- pin of the ADC (inverting output of
+> +		the analog multiplexer). Since the same current flows
+> +		at the VIN-/VIN+ pins of the ADC, it can sense the
+> +		impedance of an externally connected sensor that
+> +		would be connected between the selected inputs of the
+> +		multiplexer.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/current_bias_available
+> +KernelVersion:	6.4
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Reading returns a list with the possible values for
+> +		the current source/sink selection values for sensor bias.
+> +
+> +		"15_uA"        - 15 uA is applied to the ADC inputs.
+Match to standard IIO units for a current then drop the postfix.
+> +
+> +		"3.7_uA"       - 3.7 uA is applied to the ADC inputs.
+> +
+> +		"0.9_uA"       - 0.9 uA is applied to the ADC inputs.
+> +
+> +		"no_current"   - "No current source is applied to the ADC
+> +		inputs (default)"
+
+0 would seem self explanatory for this an is easier for userspace software
+to deal with.  Also, this doc should not include the values, merely that
+there is a list.
+
+
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/enable_auto_zeroing_mux
+> +KernelVersion:	6.4
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		This attribute is used to enable the analog input multiplexer
+> +		auto-zeroing algorithm. Write '1' to enable it, write '0' to
+> +		disable it.
+If you can explain what auto zeroing is that would be great. It's not somet=
+hing
+I recall seeing in other drivers.=20
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/enable_auto_zeroing_ref
+> +KernelVersion:	6.4
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		This attribute is used to enable the chopping algorithm for the=20
+> +		internal voltage reference buffer.  Write '1' to enable it,
+> +		write '0' to disable it.
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/hardwaregain
+> +KernelVersion:	6.4
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		This attribute is used to set the hardware applied gain factor.
+> +		It is shared across all channels.
+This attr is pretty much only used when the gain is not directly related to=
+ the
+value being used.  An example being a time of flight sensor where the ampli=
+tude
+of the measured signal doesn't directly matter as we are looking for the ti=
+ming of the
+peak, we just need it to be big enough to measure. Otherwise scale is what =
+you want.
+
+> +
+> +What:		/sys/bus/iio/devices/iio:deviceX/hardwaregain_available
+> +KernelVersion:	6.4
+> +Contact:	linux-iio@vger.kernel.org
+> +Description:
+> +		Reading this attribute will list all available hardware applied gain f=
+actors.
+> +		Shared across all channels.
+
+Docs shouldn't included this level of detail  - they should say what the fi=
+le
+information means, not what the exact values are.
+
+> +	=09
+> +		"0.33"      - Gain is x1/3  ( x0.33 analog)
+> +
+> +		"1"         - Gain is x1    ( x8 analog) (default)
+x8?
+
+> +
+> +		"2"         - Gain is x2    ( x2 analog)
+> +
+> +		"4"         - Gain is x4    ( x4 analog)
+> +
+> +		"8"         - Gain is x8    ( x8 analog)
+> +
+> +		"16"        - Gain is x16   (x16 analog)
+> +
+> +		"32"        - Gain is x32   (x16 analog, x2 digital)
+> +
+> +		"64"        - Gain is x64   (x16 analog, x4 digital)
+> \ No newline at end of file
+add one ;)
+
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7e0b87d5aa2e..2fd2d06fb87f 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -13786,6 +13786,13 @@ S:	Supported
+>  F:	Documentation/devicetree/bindings/regulator/mcp16502-regulator.txt
+>  F:	drivers/regulator/mcp16502.c
+> =20
+> +MICROCHIP MCP3564 ADC DRIVER
+> +M:      Marius Cristea <marius.cristea@microchip.com>
+> +L:      linux-iio@vger.kernel.org
+> +S:      Supported
+> +F:      Documentation/devicetree/bindings/iio/adc/microchip,mcp3564.yaml
+> +F:      drivers/iio/adc/mcp3564.c
+> +
+>  MICROCHIP MCP3911 ADC DRIVER
+>  M:	Marcus Folkesson <marcus.folkesson@gmail.com>
+>  M:	Kent Gustavsson <kent@minoris.se>
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index eb2b09ef5d5b..9ee85764b985 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -768,6 +768,19 @@ config MCP3422
+>  	  This driver can also be built as a module. If so, the module will be
+>  	  called mcp3422.
+> =20
+> +config MCP3564
+> +        tristate "Microchip Technology MCP3461/2/4/R, MCP3561/2/4/R driv=
+er"
+> +        depends on SPI
+> +        depends on IIO
+> +        help
+> +          Say yes here to build support for Microchip Technology's MCP34=
+61,
+> +          MCP3462, MCP3464, MCP3461R, MCP3462R, MCP3464R, MCP3561, MCP35=
+62,
+> +          MCP3564, MCP3561R, MCP3562R and MCP3564R analog to digital
+> +          converters.
+> +
+> +          This driver can also be built as a module. If so, the module w=
+ill be
+> +          called mcp3564.
+> +
+>  config MCP3911
+>  	tristate "Microchip Technology MCP3911 driver"
+>  	depends on SPI
+> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> index e07e4a3e6237..78aed4878e86 100644
+> --- a/drivers/iio/adc/Makefile
+> +++ b/drivers/iio/adc/Makefile
+> @@ -70,6 +70,7 @@ obj-$(CONFIG_MAX1363) +=3D max1363.o
+>  obj-$(CONFIG_MAX9611) +=3D max9611.o
+>  obj-$(CONFIG_MCP320X) +=3D mcp320x.o
+>  obj-$(CONFIG_MCP3422) +=3D mcp3422.o
+> +obj-$(CONFIG_MCP356X) +=3D mcp3564.o
+
+That won't work as config variable is MCP3564
+Which is good given wildcards always go wrong in the end!
+
+>  obj-$(CONFIG_MCP3911) +=3D mcp3911.o
+>  obj-$(CONFIG_MEDIATEK_MT6360_ADC) +=3D mt6360-adc.o
+>  obj-$(CONFIG_MEDIATEK_MT6370_ADC) +=3D mt6370-adc.o
+> diff --git a/drivers/iio/adc/mcp3564.c b/drivers/iio/adc/mcp3564.c
+> new file mode 100644
+> index 000000000000..dfdbe4e37cd4
+> --- /dev/null
+> +++ b/drivers/iio/adc/mcp3564.c
+> @@ -0,0 +1,1395 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * IIO driver for MCP356X/MCP356XR and MCP346X/MCP346XR series ADC chip =
+family
+> + *
+> + * Copyright (C) 2022-2023 Microchip Technology Inc. and its subsidiaries
+> + *
+> + * Author: Marius Cristea <marius.cristea@microchip.com>
+> + *
+> + * Datasheet for MCP3561, MCP3562, MCP3564 can be found here:
+> + * https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/Produ=
+ctDocuments/DataSheets/MCP3561-2-4-Family-Data-Sheet-DS20006181C.pdf
+> + * Datasheet for MCP3561R, MCP3562R, MCP3564R can be found here:
+> + * https://ww1.microchip.com/downloads/aemDocuments/documents/APID/Produ=
+ctDocuments/DataSheets/MCP3561_2_4R-Data-Sheet-DS200006391C.pdf
+> + * Datasheet for MCP3461, MCP3462, MCP3464 can be found here:
+> + * https://ww1.microchip.com/downloads/aemDocuments/documents/APID/Produ=
+ctDocuments/DataSheets/MCP3461-2-4-Two-Four-Eight-Channel-153.6-ksps-Low-No=
+ise-16-Bit-Delta-Sigma-ADC-Data-Sheet-20006180D.pdf
+> + * Datasheet for MCP3461R, MCP3462R, MCP3464R can be found here:
+> + * https://ww1.microchip.com/downloads/aemDocuments/documents/APID/Produ=
+ctDocuments/DataSheets/MCP3461-2-4R-Family-Data-Sheet-DS20006404C.pdf
+> + *
+> + */
+> +
+> +#include <linux/acpi.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/util_macros.h>
+> +
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +
+> +#define MCP356X_ADCDATA		0x00
+I'd rather not see wildcards as it implies these apply to other MCP356x dev=
+ices
+e.g. the mcp3565 (actually they may well do for that particular part, but t=
+hat's not always the case :)
+
+> +#define MCP356X_CONFIG0		0x01
+> +#define MCP356X_CONFIG1		0x02
+> +#define MCP356X_CONFIG2		0x03
+> +#define MCP356X_CONFIG3		0x04
+> +#define MCP356X_IRQ		0x05
+> +#define MCP356X_MUX		0x06
+> +#define MCP356X_SCAN		0x07
+> +#define MCP356X_TIMER		0x08
+> +#define MCP356X_OFFSETCAL	0x09
+> +#define MCP356X_GAINCAL		0x0A
+> +#define MCP356X_RESERVED_B	0x0B
+> +#define MCP356X_RESERVED_C	0x0C
+> +#define MCP356X_LOCK		0x0D
+> +#define MCP356X_RESERVED_E	0x0E
+> +#define MCP356X_CRCCFG		0x0F
+> +
+> +#define MCP356X_FAST_CMD_CTRL	0
+> +#define MCP356X_RD_CTRL		BIT(0)
+> +#define MCP356X_WRT_CTRL	BIT(1)
+> +
+> +#define MCP356X_FULL_RESET_CMD	GENMASK(3, 1)
+> +
+> +#define MCP3461_HW_ID		BIT(3)
+> +#define MCP3462_HW_ID		0x0009
+> +#define MCP3464_HW_ID		0x000B
+> +
+> +#define MCP3561_HW_ID		GENMASK(3, 2)
+> +#define MCP3562_HW_ID		0x000D
+> +#define MCP3564_HW_ID		GENMASK(3, 0)
+As below. This isn't a mask, it's a numebr so GENMASK not appropriate.
+> +#define MCP356X_HW_ID_MASK	GENMASK(3, 0)
+This is a mask, so here GENMASK is the right choice.
+
+> +
+> +#define MCP356XR_INT_VREF_MV	2400
+> +
+> +/* MUX_VIN Input Selection
+> + */
+> +#define MCP356X_INTERNAL_VCM	GENMASK(3, 0)
+Only use GENMASK if it's actually a mask, not just because it
+happens to be some bits in a row.  Just use values in that case.
+Same for BIT.  These are just the numbers 0 to 15 with some gaps.
+
+> +#define MCP356X_TEMP_DIODE_M	GENMASK(3, 1)
+> +#define MCP356X_TEMP_DIODE_P	0b1101
+> +#define MCP356X_REFIN_NEG	GENMASK(3, 2)
+> +#define MCP356X_REFIN_POZ	0b1011
+> +#define MCP356X_RESERVED	0b1010 /* do not use */
+> +#define MCP356X_AVDD		0b1001
+> +#define MCP356X_AGND		BIT(3)
+> +#define MCP356X_CH7		GENMASK(2, 0)
+> +#define MCP356X_CH6		GENMASK(2, 1)
+> +#define MCP356X_CH5		0b0101
+> +#define MCP356X_CH4		BIT(2)
+> +#define MCP356X_CH3		GENMASK(1, 0)
+> +#define MCP356X_CH2		BIT(1)
+> +#define MCP356X_CH1		BIT(0)
+> +#define MCP356X_CH0		0
+> +
+> +#define MCP356X_ADC_MODE_MASK			GENMASK(1, 0)
+> +
+> +#define MCP356X_ADC_DEFAULT_MODE		0
+> +#define MCP356X_ADC_SHUTDOWN_MODE		BIT(0)
+> +#define MCP356X_ADC_STANDBY			BIT(1)
+> +#define MCP356X_ADC_CONVERSION_MODE		GENMASK(1, 0)
+> +
+> +#define MCP356X_DATA_READY_MASK			BIT(6)
+> +
+> +#define MCP356X_OVERSAMPLING_RATIO_32		0
+> +#define MCP356X_OVERSAMPLING_RATIO_64		BIT(0)
+> +#define MCP356X_OVERSAMPLING_RATIO_128		BIT(1)
+> +#define MCP356X_OVERSAMPLING_RATIO_256		GENMASK(1, 0)
+> +#define MCP356X_OVERSAMPLING_RATIO_512		BIT(2)
+> +#define MCP356X_OVERSAMPLING_RATIO_1024		0x05
+> +#define MCP356X_OVERSAMPLING_RATIO_2048		GENMASK(2, 1)
+> +#define MCP356X_OVERSAMPLING_RATIO_4096		GENMASK(2, 0)
+> +#define MCP356X_OVERSAMPLING_RATIO_8192		BIT(3)
+> +#define MCP356X_OVERSAMPLING_RATIO_16384	0x09
+> +#define MCP356X_OVERSAMPLING_RATIO_20480	0x0A
+> +#define MCP356X_OVERSAMPLING_RATIO_24576	0x0B
+> +#define MCP356X_OVERSAMPLING_RATIO_40960	0x0C
+> +#define MCP356X_OVERSAMPLING_RATIO_49152	0x0D
+> +#define MCP356X_OVERSAMPLING_RATIO_81920	GENMASK(3, 1)
+> +#define MCP356X_OVERSAMPLING_RATIO_98304	GENMASK(3, 0)
+> +
+> +#define MCP356X_OVERSAMPLING_RATIO_MASK		GENMASK(5, 2)
+> +#define MCP356X_OVERSAMPLING_RATIO_SHIFT	0x02
+> +
+> +#define MCP356X_HARDWARE_GAIN_MASK		GENMASK(5, 3)
+> +#define MCP356X_HARDWARE_GAIN_SHIFT		0x03
+> +#define MCP356X_DEFAULT_HARDWARE_GAIN		BIT(1)
+> +
+> +#define MCP356X_CS_SEL_0_0_uA			0x0
+> +#define MCP356X_CS_SEL_0_9_uA			BIT(0)
+> +#define MCP356X_CS_SEL_3_7_uA			BIT(1)
+> +#define MCP356X_CS_SEL_15_uA			GENMASK(1, 0)
+> +
+> +#define MCP356X_CS_SEL_MASK			GENMASK(3, 2)
+> +
+> +#define MCP356X_BOOST_CURRENT_x0_50		0
+> +#define MCP356X_BOOST_CURRENT_x0_66		BIT(0)
+> +#define MCP356X_BOOST_CURRENT_x1_00		BIT(1)
+> +#define MCP356X_BOOST_CURRENT_x2_00		GENMASK(1, 0)
+> +
+> +#define MCP356X_BOOST_CURRENT_MASK		GENMASK(7, 6)
+> +
+> +/* Auto-Zeroing MUX Setting */
+> +#define MCP356X_AZ_MUX_MASK			BIT(2)
+> +/* Auto-Zeroing REF Setting */
+> +#define MCP356X_AZ_REF_MASK			BIT(1)
+> +
+> +#define MCP356X_SHARED_DEVATTRS_COUNT		1
+> +#define MCP356X_PARTICULAR_DEVATTRS_COUNT	1
+> +
+> +#define MAX_HWGAIN				64000
+
+Event his wants to be prefixed because we may end up with a similar
+define in a generic header at somepoint which would be confusing.
+
+> +
+> +#define MCP356X_DATA_READY_TIMEOUT_MS		2000
+> +
+> +enum mcp356x_ids {
+> +	mcp3461,
+> +	mcp3462,
+> +	mcp3464,
+> +	mcp3461r,
+> +	mcp3462r,
+> +	mcp3464r,
+> +	mcp3561,
+> +	mcp3562,
+> +	mcp3564,
+> +	mcp3561r,
+> +	mcp3562r,
+> +	mcp3564r,
+> +};
+> +
+> +static const unsigned int mcp356x_oversampling_avail[16] =3D {
+> +	[MCP356X_OVERSAMPLING_RATIO_32] =3D 32,
+> +	[MCP356X_OVERSAMPLING_RATIO_64] =3D 64,
+> +	[MCP356X_OVERSAMPLING_RATIO_128] =3D 128,
+> +	[MCP356X_OVERSAMPLING_RATIO_256] =3D 256,
+> +	[MCP356X_OVERSAMPLING_RATIO_512] =3D 512,
+> +	[MCP356X_OVERSAMPLING_RATIO_1024] =3D 1024,
+> +	[MCP356X_OVERSAMPLING_RATIO_2048] =3D 2048,
+> +	[MCP356X_OVERSAMPLING_RATIO_4096] =3D 4096,
+> +	[MCP356X_OVERSAMPLING_RATIO_8192] =3D 8192,
+> +	[MCP356X_OVERSAMPLING_RATIO_16384] =3D 16384,
+> +	[MCP356X_OVERSAMPLING_RATIO_20480] =3D 20480,
+> +	[MCP356X_OVERSAMPLING_RATIO_24576] =3D 24576,
+> +	[MCP356X_OVERSAMPLING_RATIO_40960] =3D 40960,
+> +	[MCP356X_OVERSAMPLING_RATIO_49152] =3D 49152,
+> +	[MCP356X_OVERSAMPLING_RATIO_81920] =3D 81920,
+> +	[MCP356X_OVERSAMPLING_RATIO_98304] =3D 98304
+> +};
+> +
+> +/*
+> + * Current Source/Sink Selection Bits for Sensor Bias (source on VIN+/si=
+nk on VIN-)
+> + */
+> +static const char * const mcp356x_current_bias_avail[] =3D {
+> +	[MCP356X_CS_SEL_0_0_uA] =3D "no_current(default)",
+> +	[MCP356X_CS_SEL_0_9_uA] =3D "0.9_uA",
+> +	[MCP356X_CS_SEL_3_7_uA] =3D "3.7_uA",
+> +	[MCP356X_CS_SEL_15_uA] =3D "15_uA",
+> +};
+> +
+> +/*
+> + * BOOST[1:0]: ADC Bias Current Selection
+> + */
+> +static const char * const mcp356x_boost_current_avail[] =3D {
+> +	[MCP356X_BOOST_CURRENT_x0_50] =3D "x0.5",
+> +	[MCP356X_BOOST_CURRENT_x0_66] =3D "x0.66",
+> +	[MCP356X_BOOST_CURRENT_x1_00] =3D "x1_(default)",
+> +	[MCP356X_BOOST_CURRENT_x2_00] =3D "x2",
+See comments above. These should be IIO_VAL_INT_PLUS_MICRO pairs, not xX
+> +};
+> +
+> +/*
+> + * Calibration bias values
+> + */
+> +static const int mcp356x_calib_bias[] =3D {
+> +	-8388608,	/* min: -2^23		*/
+> +	 1,		/* step: 1		*/
+> +	 8388607	/* max:  2^23 - 1	*/
+> +};
+> +
+> +/*
+> + * Calibration scale values
+> + * The Gain Error Calibration register (GAINCAL) is an
+> + * unsigned 24-bit register that holds the digital gain error
+> + * calibration value, GAINCAL which could be calculated by
+> + * GAINCAL (V/V) =3D (GAINCAL[23:0])/8388608
+> + * The gain error calibration value range in equivalent voltage is [0; 2=
+-2^(-23)]
+> + */
+> +static const unsigned int mcp356x_calib_scale[] =3D {
+> +		0,	/* min:  0		*/
+> +		1,	/* step: 1/8388608	*/
+> +	 16777215	/* max:  2 - 2^(-23)	*/
+> +};
+> +
+> +/* Programmable hardware gain x1/3, x1, x2, x4, x8, x16, x32, x64 */
+> +static const int mcp356x_hwgain_frac[] =3D {
+> +	3,
+> +	10,
+
+I think these are pairs so
+	3, 10,
+	1, 1,
+	1, 2,
+	1, 4,
+etc.
+
+> +	1,
+> +	1,
+> +	2,
+> +	1,
+> +	4,
+> +	1,
+> +	8,
+> +	1,
+> +	16,
+> +	1,
+> +	32,
+> +	1,
+> +	64,
+> +	1
+> +};
+> +
+> +static const int mcp356x_hwgain[] =3D {
+> +	300,
+> +	1000,
+> +	2000,
+> +	4000,
+> +	8000,
+> +	16000,
+> +	32000,
+> +	64000
+> +};
+> +
+> +/**
+> + * struct mcp356x_chip_info - chip specific data
+> + * @channels:		struct iio_chan_spec matching the device's capabilities
+> + * @num_channels:	number of channels
+> + * @int_vref_uv:	internal voltage reference value in microVolts
+> + * @has_vref:		Does the ADC has an internal voltage reference?
+> + */
+> +struct mcp356x_chip_info {
+> +	const struct	iio_chan_spec *channels;
+> +	unsigned int	num_channels;
+> +	unsigned int	int_vref_uv;
+> +	bool		has_vref;
+> +};
+> +
+> +/**
+> + * struct mcp356x_state - working data for a ADC device
+> + * @chip_info:		chip specific data
+> + * @mcp356x_info:	information about iio device
+> + * @spi:		SPI device structure
+> + * @vref:		The regulator device used as a voltage reference in case
+> + *			external voltage reference is used
+> + * @vref_mv:		voltage reference value in miliVolts
+> + * @lock:		mutex to prevent concurrent reads/writes
+> + * @dev_addr:		hardware device address
+> + * @oversampling:	the index inside oversampling list of the ADC
+> + * @hwgain:		the index inside hardware gain list of the ADC
+> + * @calib_bias:		calibration bias value
+> + * @calib_scale:	calibration scale value
+> + * @current_boost_mode:	the index inside current boost list of the ADC
+> + * @current_bias_mode:	the index inside current bias list of the ADC
+> + * @auto_zeroing_mux:	set if ADC auto-zeroing algorithm is enabled
+> + * @auto_zeroing_ref:	set if ADC auto-Zeroing Reference Buffer Setting i=
+s enabled
+> + */
+> +struct mcp356x_state {
+> +	const struct mcp356x_chip_info *chip_info;
+> +	struct iio_info		mcp356x_info;
+
+Shouldn't need a copy of this.  The real one in iio_dev should always be av=
+ailable
+any where you need it.
+
+> +	struct spi_device	*spi;
+> +	struct regulator	*vref;
+> +	unsigned short		vref_mv;
+> +	struct mutex		lock; /*lock to prevent concurrent reads/writes */
+
+The spi core bus locks prevent that. Please add more specific dos. Also fin=
+e to just
+have docs in the kernel-doc block above, don't need this here as well.
+
+> +	u8			dev_addr;
+> +	unsigned int		oversampling;
+> +	unsigned int		hwgain;
+> +	int			calib_bias;
+> +	int			calib_scale;
+> +	unsigned int		current_boost_mode;
+
+Modes tend to be better represented as enums. Can that work here?
+Means the compiler can see what values are possible and complain if others
+are used.
+
+> +	unsigned int		current_bias_mode;
+> +	bool			auto_zeroing_mux;
+> +	bool			auto_zeroing_ref;
+> +};
+> +
+> +static inline u8 mcp356x_reg_write(u8 chip_addr, u8 reg)
+> +{
+> +	return ((chip_addr << 6) | (reg << 2) | MCP356X_WRT_CTRL);
+> +}
+> +
+> +static inline u8 mcp356x_reg_read(u8 chip_addr, u8 reg)
+> +{
+> +	return ((chip_addr << 6) | (reg << 2) | MCP356X_RD_CTRL);
+> +}
+> +
+> +static inline u8 mcp356x_reg_fast_cmd(u8 chip_addr, u8 cmd)
+> +{
+> +	return ((chip_addr << 6) | (cmd << 2));
+FIELD_PREP() + masks  =20
+
+Also drop the extra outer brackets.
+
+> +}
+> +
+> +static int mcp356x_read(struct mcp356x_state *adc, u8 reg, u32 *val, u8 =
+len)
+I'm in two minds about these read functions as they are more complex
+than say just having
+	mcp356x_read_8bits()
+	mcp356x_read_16bits()
+	mcp356x_read_24bits()
+As then you a only do an endian conversion if it matters (not the 8 bit one=
+s)
+and it's obvious what is going on + you can use get_unaligned_be24 for exam=
+ple
+to make it even clearer.
+
+> +{
+> +	int ret;
+> +	u8 tmp_reg;
+> +
+> +	tmp_reg =3D mcp356x_reg_read(adc->dev_addr, reg);
+> +
+> +	ret =3D spi_write_then_read(adc->spi, &tmp_reg, 1, val, len);
+> +
+> +	be32_to_cpus(val);
+
+As below, better to enforce type as __be32
+
+> +	*val >>=3D ((4 - len) * 8);
+> +
+> +	return ret;
+> +}
+> +
+> +static int mcp356x_write(struct mcp356x_state *adc, u8 reg, u32 val, u8 =
+len)
+> +{
+> +	val |=3D (mcp356x_reg_write(adc->dev_addr, reg) << (len * 8));
+> +	val <<=3D (3 - len) * 8;
+> +	cpu_to_be32s(&val);
+
+Use a __be32 to store the temporary so that we can track the endian type cl=
+eanly.
+
+> +
+> +	return spi_write(adc->spi, &val, len + 1);
+
+spi_write needs a dma safe buffer.  Either allocate it on the stack, or emb=
+ed
+it in iio_priv() taking care to mark it appropriately aligned (lots of exam=
+ples
+of this in IIO). Or just use spi_write_then_read() with a 0 size read as th=
+at
+uses bounce buffers to achieve DMA safety.
+
+As above, I'd be tempted to do sized versions as there are only a few diffe=
+rent
+options and they will be more readable + use unaligned puts to make it obvi=
+ous
+what is going on.
+
+
+> +}
+> +
+> +static int mcp356x_fast_cmd(struct mcp356x_state *adc, u8 fast_cmd)
+> +{
+> +	u8 val;
+> +
+> +	val =3D mcp356x_reg_fast_cmd(adc->dev_addr, fast_cmd);
+> +
+> +	return spi_write(adc->spi, &val, 1);
+> +}
+> +
+> +static int mcp356x_update(struct mcp356x_state *adc, u8 reg, u32 mask, u=
+32 val,
+> +			  u8 len)
+> +{
+> +	u32 tmp;
+> +	int ret;
+> +
+> +	ret =3D mcp356x_read(adc, reg, &tmp, len);
+	if (ret < 0)
+		return ret;
+
+	val &=3D mask
+	...
+	return mc356x_write();
+
+
+
+
+> +
+> +	if (ret =3D=3D 0) {
+> +		val &=3D mask;
+> +		val |=3D tmp & ~mask;
+> +		ret =3D mcp356x_write(adc, reg, val, len);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +/* Custom IIO Device Attributes */
+
+Obvious comment, drop it. This sort of 'section' title frequently gets brok=
+en
+as code gets moved around.
+
+> +static int mcp356x_set_current_boost_mode(struct iio_dev *indio_dev,
+> +					  const struct iio_chan_spec *chan,
+> +					  unsigned int mode)
+> +{
+> +	struct mcp356x_state *adc =3D iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	dev_dbg(&indio_dev->dev, "%s: %d\n", __func__, mode);
+> +
+> +	mutex_lock(&adc->lock);
+> +	ret =3D mcp356x_update(adc, MCP356X_CONFIG2, MCP356X_BOOST_CURRENT_MASK,
+> +			     mode, 1);
+> +
+> +	if (ret)
+> +		dev_err(&indio_dev->dev, "Failed to configure CONFIG2 register\n");
+> +	else
+> +		adc->current_boost_mode =3D mode;
+> +
+> +	mutex_unlock(&adc->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int mcp356x_get_current_boost_mode(struct iio_dev *indio_dev,
+> +					  const struct iio_chan_spec *chan)
+> +{
+> +	struct mcp356x_state *adc =3D iio_priv(indio_dev);
+> +
+> +	return adc->current_boost_mode;
+> +}
+> +
+> +static int mcp356x_set_current_bias_mode(struct iio_dev *indio_dev,
+> +					 const struct iio_chan_spec *chan,
+> +					 unsigned int mode)
+> +{
+> +	struct mcp356x_state *adc =3D iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	dev_dbg(&indio_dev->dev, "%s: %d\n", __func__, mode);
+> +
+> +	mutex_lock(&adc->lock);
+> +	ret =3D mcp356x_update(adc, MCP356X_CONFIG0, MCP356X_CS_SEL_MASK, mode,=
+ 1);
+> +
+> +	if (ret)
+> +		dev_err(&indio_dev->dev, "Failed to configure CONFIG0 register\n");
+> +	else
+> +		adc->current_bias_mode =3D mode;
+> +
+> +	mutex_unlock(&adc->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int mcp356x_get_current_bias_mode(struct iio_dev *indio_dev,
+> +					 const struct iio_chan_spec *chan)
+> +{
+> +	struct mcp356x_state *adc =3D iio_priv(indio_dev);
+> +
+> +	return adc->current_bias_mode;
+> +}
+> +
+> +static const struct iio_enum mcp356x_current_boost_mode_enum =3D {
+> +	.items =3D mcp356x_boost_current_avail,
+> +	.num_items =3D ARRAY_SIZE(mcp356x_boost_current_avail),
+> +	.set =3D mcp356x_set_current_boost_mode,
+> +	.get =3D mcp356x_get_current_boost_mode,
+
+Not going to comment again on these. Before we focus on implementation need
+to deal with question of whether we want them / how useful they are to expo=
+se.
+
+> +};
+> +
+> +static const struct iio_enum mcp356x_current_bias_mode_enum =3D {
+> +	.items =3D mcp356x_current_bias_avail,
+> +	.num_items =3D ARRAY_SIZE(mcp356x_current_bias_avail),
+> +	.set =3D mcp356x_set_current_bias_mode,
+> +	.get =3D mcp356x_get_current_bias_mode,
+> +};
+> +
+> +static const struct iio_chan_spec_ext_info mcp356x_ext_info[] =3D {
+> +	IIO_ENUM("boost_current", IIO_SHARED_BY_ALL, &mcp356x_current_boost_mod=
+e_enum),
+> +	{
+> +		.name =3D "boost_current_available",
+> +		.shared =3D IIO_SHARED_BY_ALL,
+> +		.read =3D iio_enum_available_read,
+> +		.private =3D (uintptr_t)&mcp356x_current_boost_mode_enum,
+> +	},
+> +	IIO_ENUM("current_bias", IIO_SHARED_BY_ALL, &mcp356x_current_bias_mode_=
+enum),
+> +	{
+> +		.name =3D "current_bias_available",
+> +		.shared =3D IIO_SHARED_BY_ALL,
+> +		.read =3D iio_enum_available_read,
+> +		.private =3D (uintptr_t)&mcp356x_current_bias_mode_enum,
+> +	},
+> +	{}
+> +};
+> +
+> +static ssize_t mcp356x_auto_zeroing_mux_show(struct device *dev,
+> +					     struct device_attribute *attr,
+> +					     char *buf)
+> +{
+> +	struct iio_dev *indio_dev =3D dev_to_iio_dev(dev);
+> +	struct mcp356x_state *adc =3D iio_priv(indio_dev);
+> +
+> +	return sysfs_emit(buf, "%d\n", adc->auto_zeroing_mux);
+> +}
+> +
+> +static ssize_t mcp356x_auto_zeroing_mux_store(struct device *dev,
+> +					      struct device_attribute *attr,
+> +					      const char *buf, size_t len)
+> +{
+> +	struct iio_dev *indio_dev =3D dev_to_iio_dev(dev);
+> +	struct mcp356x_state *adc =3D iio_priv(indio_dev);
+> +	bool auto_zero;
+> +	int ret;
+> +
+> +	ret =3D kstrtobool(buf, &auto_zero);
+> +	if (ret)
+> +		return ret;
+> +
+> +	mutex_lock(&adc->lock);
+> +	ret =3D mcp356x_update(adc, MCP356X_CONFIG2, MCP356X_AZ_MUX_MASK,
+> +			     (u32)auto_zero, 1);
+> +
+> +	if (ret)
+> +		dev_err(&indio_dev->dev, "Failed to update CONFIG2 register\n");
+> +	else
+> +		adc->auto_zeroing_mux =3D auto_zero;
+> +
+> +	mutex_unlock(&adc->lock);
+> +
+> +	return ret ? ret : len;
+> +}
+> +
+> +static ssize_t mcp356x_auto_zeroing_ref_show(struct device *dev,
+> +					     struct device_attribute *attr,
+> +					     char *buf)
+> +{
+> +	struct iio_dev *indio_dev =3D dev_to_iio_dev(dev);
+> +	struct mcp356x_state *adc =3D iio_priv(indio_dev);
+> +
+> +	return sysfs_emit(buf, "%d\n", adc->auto_zeroing_ref);
+> +}
+> +
+> +static ssize_t mcp356x_auto_zeroing_ref_store(struct device *dev,
+> +					      struct device_attribute *attr,
+> +					      const char *buf, size_t len)
+> +{
+> +	struct iio_dev *indio_dev =3D dev_to_iio_dev(dev);
+> +	struct mcp356x_state *adc =3D iio_priv(indio_dev);
+> +	bool auto_zero;
+> +	int ret;
+> +
+> +	ret =3D kstrtobool(buf, &auto_zero);
+> +	if (ret)
+> +		return ret;
+> +
+> +	mutex_lock(&adc->lock);
+> +	ret =3D mcp356x_update(adc, MCP356X_CONFIG2, MCP356X_AZ_REF_MASK,
+> +			     (u32)auto_zero, 1);
+> +
+> +	if (ret)
+> +		dev_err(&indio_dev->dev, "Failed to update CONFIG2 register\n");
+> +	else
+> +		adc->auto_zeroing_ref =3D auto_zero;
+> +
+> +	mutex_unlock(&adc->lock);
+> +
+> +	return ret ? ret : len;
+> +}
+> +
+> +#define MCP356X_DEV_ATTR(name) (&iio_dev_attr_##name.dev_attr.attr)
+> +
+> +static IIO_DEVICE_ATTR(enable_auto_zeroing_ref, 0644,
+> +		       mcp356x_auto_zeroing_ref_show,
+> +		       mcp356x_auto_zeroing_ref_store, 0);
+> +
+> +static struct attribute *mcp356x_particular_attributes[] =3D {
+> +	MCP356X_DEV_ATTR(enable_auto_zeroing_ref),
+> +	NULL
+> +};
+> +
+> +static IIO_DEVICE_ATTR(enable_auto_zeroing_mux, 0644,
+> +		       mcp356x_auto_zeroing_mux_show,
+> +		       mcp356x_auto_zeroing_mux_store, 0);
+> +
+> +static struct attribute *mcp356x_shared_attributes[] =3D {
+> +	MCP356X_DEV_ATTR(enable_auto_zeroing_mux),
+> +	NULL,
+No trailing comma needed on a NULL terminating element as we can't
+stick anything after it.
+> +};
+> +
+> +static int mcp356x_prep_custom_attributes(struct mcp356x_state *adc,
+> +					  struct iio_dev *indio_dev)
+> +{
+> +	int i;
+> +	struct attribute **mcp356x_custom_attr;
+> +	struct attribute_group *mcp356x_group;
+> +
+> +	mcp356x_group =3D devm_kzalloc(&adc->spi->dev, sizeof(*mcp356x_group), =
+GFP_KERNEL);
+> +
+> +	if (!mcp356x_group)
+> +		return (-ENOMEM);
+		return -ENOMEM;
+same elsewhere.
+> +
+> +	mcp356x_custom_attr =3D devm_kzalloc(&adc->spi->dev, (MCP356X_SHARED_DE=
+VATTRS_COUNT +
+> +		MCP356X_PARTICULAR_DEVATTRS_COUNT + 1) * sizeof(struct attribute *),
+> +		GFP_KERNEL);
+> +
+> +	if (!mcp356x_custom_attr)
+> +		return (-ENOMEM);
+> +
+> +	for (i =3D 0; i < MCP356X_SHARED_DEVATTRS_COUNT; i++)
+> +		mcp356x_custom_attr[i] =3D mcp356x_shared_attributes[i];
+> +
+> +	if (adc->chip_info->has_vref) {
+> +		dev_dbg(&indio_dev->dev, "Setup custom attr for R variant\n");
+> +		for (i =3D 0; i < MCP356X_PARTICULAR_DEVATTRS_COUNT; i++)
+> +			mcp356x_custom_attr[MCP356X_SHARED_DEVATTRS_COUNT + i] =3D
+> +				mcp356x_particular_attributes[i];
+> +	}
+> +
+> +	mcp356x_group->attrs =3D mcp356x_custom_attr;
+> +	adc->mcp356x_info.attrs =3D mcp356x_group;
+This looks to me like you are picking between two fixed sets. Just define b=
+oth sets
+as static const and pick between dpending on has_vref.
+
+return attrs and set them in the caller so you don't need the mcp356x_info =
+element
+in the adc struct.
+
+> +
+> +	return 0;
+> +}
+> +
+> +#define MCP356X_V_CHANNEL(index, addr, depth) {					\
+> +	.type =3D IIO_VOLTAGE,							\
+> +	.indexed =3D 1,								\
+> +	.channel =3D (index),							\
+> +	.address =3D (((addr) << 4) | MCP356X_AGND),				\
+> +	.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),				\
+> +	.info_mask_shared_by_type =3D BIT(IIO_CHAN_INFO_SCALE),			\
+> +	.info_mask_shared_by_all  =3D BIT(IIO_CHAN_INFO_HARDWAREGAIN)	|	\
+> +				BIT(IIO_CHAN_INFO_CALIBBIAS)		|	\
+> +				BIT(IIO_CHAN_INFO_CALIBSCALE)		|	\
+> +				BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),		\
+> +	.info_mask_shared_by_all_available =3D BIT(IIO_CHAN_INFO_CALIBSCALE) |	\
+> +				BIT(IIO_CHAN_INFO_HARDWAREGAIN)		|	\
+> +				BIT(IIO_CHAN_INFO_CALIBBIAS)		|	\
+> +				BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),		\
+> +	.ext_info =3D mcp356x_ext_info,						\
+> +	.scan_index =3D 0,							\
+> +	.scan_type =3D {								\
+> +		.sign =3D 's',							\
+> +		.realbits =3D depth,						\
+> +		.storagebits =3D 32,						\
+> +		.endianness =3D IIO_BE,						\
+> +	},									\
+> +}
+> +
+> +#define MCP356X_T_CHAN(depth) {							\
+> +	.type =3D IIO_TEMP,							\
+> +	.channel =3D 0,								\
+> +	.address =3D ((MCP356X_TEMP_DIODE_P << 4) | MCP356X_TEMP_DIODE_M),	\
+> +	.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),				\
+> +	.info_mask_shared_by_type =3D BIT(IIO_CHAN_INFO_SCALE),			\
+> +	.info_mask_shared_by_all  =3D BIT(IIO_CHAN_INFO_HARDWAREGAIN)	|	\
+> +			BIT(IIO_CHAN_INFO_CALIBBIAS)			|	\
+> +			BIT(IIO_CHAN_INFO_CALIBSCALE)			|	\
+> +			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),			\
+> +	.info_mask_shared_by_all_available =3D BIT(IIO_CHAN_INFO_CALIBSCALE) |	\
+> +			BIT(IIO_CHAN_INFO_CALIBBIAS)			|	\
+> +			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),			\
+> +	.ext_info =3D mcp356x_ext_info,						\
+> +	.scan_index =3D 0,							\
+> +	.scan_type =3D {								\
+> +		.sign =3D 'u',							\
+> +		.realbits =3D depth,						\
+> +		.storagebits =3D 32,						\
+> +		.endianness =3D IIO_BE,						\
+> +	},									\
+> +}
+> +
+> +#define MCP356X_V_CHANNEL_DIFF(chan1, chan2, addr, depth) {			\
+> +	.type =3D IIO_VOLTAGE,							\
+> +	.indexed =3D 1,								\
+> +	.channel =3D (chan1),							\
+> +	.channel2 =3D (chan2),							\
+> +	.address =3D (addr),							\
+> +	.differential =3D 1,							\
+> +	.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW),				\
+> +	.info_mask_shared_by_type =3D BIT(IIO_CHAN_INFO_SCALE),			\
+> +	.info_mask_shared_by_all  =3D BIT(IIO_CHAN_INFO_HARDWAREGAIN)	|	\
+> +			BIT(IIO_CHAN_INFO_CALIBBIAS)			|	\
+> +			BIT(IIO_CHAN_INFO_CALIBSCALE)			|	\
+> +			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),			\
+> +	.info_mask_shared_by_all_available =3D BIT(IIO_CHAN_INFO_CALIBSCALE) |	\
+> +			BIT(IIO_CHAN_INFO_CALIBBIAS)			|	\
+> +			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),			\
+> +	.ext_info =3D mcp356x_ext_info,						\
+> +	.scan_index =3D 0,							\
+> +	.scan_type =3D {								\
+
+Don't set any values you don't use - they can be misleading. For instance i=
+f you
+had implemented buffered capture (the chrdev route) then you could not have
+scan_index =3D 0 for all the instances of this.
+Also, you probably don't use any/all of the scan_type fields - so don't set=
+ them.
+
+> +		.sign =3D 's',							\
+> +		.realbits =3D depth,						 \
+> +		.storagebits =3D 32,						\
+> +		.endianness =3D IIO_BE,						\
+> +	},									\
+> +}
+> +
+> +#define MCP3561_CHANNELS(depth) {			\
+> +	MCP356X_V_CHANNEL(0, 0, depth),			\
+> +	MCP356X_V_CHANNEL(1, 1, depth),			\
+> +	MCP356X_V_CHANNEL_DIFF(0, 1, 0x01, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(1, 0, 0x10, depth),	\
+> +	MCP356X_T_CHAN(depth)				\
+> +}
+> +
+> +#define MCP3562_CHANNELS(depth) {			\
+> +	MCP356X_V_CHANNEL(0, 0, depth),			\
+> +	MCP356X_V_CHANNEL(1, 1, depth),			\
+> +	MCP356X_V_CHANNEL(2, 2, depth),			\
+> +	MCP356X_V_CHANNEL(3, 3, depth),			\
+> +	MCP356X_T_CHAN(depth),				\
+> +	MCP356X_V_CHANNEL_DIFF(0, 1, 0x01, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(1, 0, 0x10, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(0, 2, 0x02, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(0, 3, 0x03, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(1, 2, 0x12, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(1, 3, 0x13, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(2, 3, 0x23, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(2, 0, 0x20, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(3, 0, 0x30, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(2, 1, 0x21, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(3, 1, 0x31, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(3, 2, 0x32, depth),	\
+> +}
+> +
+> +#define MCP3564_CHANNELS(depth) {			\
+> +	MCP356X_V_CHANNEL(0, 0, depth),			\
+> +	MCP356X_V_CHANNEL(1, 1, depth),			\
+> +	MCP356X_V_CHANNEL(2, 2, depth),			\
+> +	MCP356X_V_CHANNEL(3, 3, depth),			\
+> +	MCP356X_V_CHANNEL(4, 4, depth),			\
+> +	MCP356X_V_CHANNEL(5, 5, depth),			\
+> +	MCP356X_V_CHANNEL(6, 6, depth),			\
+> +	MCP356X_V_CHANNEL(7, 7, depth),			\
+> +	MCP356X_T_CHAN(depth),				\
+> +	MCP356X_V_CHANNEL_DIFF(0, 1, 0x01, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(1, 0, 0x10, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(0, 2, 0x02, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(0, 3, 0x03, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(1, 2, 0x12, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(1, 3, 0x13, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(2, 3, 0x23, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(2, 0, 0x20, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(3, 0, 0x30, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(2, 1, 0x21, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(3, 1, 0x31, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(3, 2, 0x32, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(0, 4, 0x04, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(0, 5, 0x05, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(0, 6, 0x06, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(0, 7, 0x07, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(1, 4, 0x14, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(1, 5, 0x15, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(1, 6, 0x16, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(1, 7, 0x17, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(2, 4, 0x24, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(2, 5, 0x25, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(2, 6, 0x26, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(2, 7, 0x27, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(3, 4, 0x34, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(3, 5, 0x35, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(3, 6, 0x36, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(3, 7, 0x37, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(4, 5, 0x45, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(4, 6, 0x46, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(4, 7, 0x47, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(5, 6, 0x56, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(5, 7, 0x57, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(6, 7, 0x67, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(4, 0, 0x40, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(5, 0, 0x50, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(6, 0, 0x60, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(7, 0, 0x70, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(4, 1, 0x41, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(5, 1, 0x51, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(6, 1, 0x61, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(7, 1, 0x71, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(4, 2, 0x42, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(5, 2, 0x52, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(6, 2, 0x62, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(7, 2, 0x72, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(4, 3, 0x43, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(5, 3, 0x53, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(6, 3, 0x63, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(7, 3, 0x73, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(5, 4, 0x54, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(6, 4, 0x64, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(7, 4, 0x74, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(6, 5, 0x65, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(7, 5, 0x75, depth),	\
+> +	MCP356X_V_CHANNEL_DIFF(7, 6, 0x76, depth)	\
+> +}
+> +
+> +static const struct iio_chan_spec mcp3461_channels[] =3D MCP3561_CHANNEL=
+S(16);
+> +static const struct iio_chan_spec mcp3462_channels[] =3D MCP3562_CHANNEL=
+S(16);
+> +static const struct iio_chan_spec mcp3464_channels[] =3D MCP3564_CHANNEL=
+S(16);
+> +static const struct iio_chan_spec mcp3561_channels[] =3D MCP3561_CHANNEL=
+S(24);
+> +static const struct iio_chan_spec mcp3562_channels[] =3D MCP3562_CHANNEL=
+S(24);
+> +static const struct iio_chan_spec mcp3564_channels[] =3D MCP3564_CHANNEL=
+S(24);
+> +
+> +static const struct mcp356x_chip_info mcp356x_chip_infos_tbl[] =3D {
+> +	[mcp3461] =3D {
+> +		.channels =3D mcp3461_channels,
+
+Put the name in each of these as well as it avoids trying to extract it from
+the id tables which tends to be error prone as a driver evolves over time.
+
+> +		.num_channels =3D ARRAY_SIZE(mcp3461_channels),
+> +		.int_vref_uv =3D 0,
+> +		.has_vref =3D false
+This is enough to decide whether the vref is optional. So use it for that.
+> +	},
+> +	[mcp3462] =3D {
+> +		.channels =3D mcp3462_channels,
+> +		.num_channels =3D ARRAY_SIZE(mcp3462_channels),
+> +		.int_vref_uv =3D 0,
+> +		.has_vref =3D false
+> +	},
+> +	[mcp3464] =3D {
+> +		.channels =3D mcp3464_channels,
+> +		.num_channels =3D ARRAY_SIZE(mcp3464_channels),
+> +		.int_vref_uv =3D 0,
+> +		.has_vref =3D false
+> +	},
+> +	[mcp3461r] =3D {
+> +		.channels =3D mcp3461_channels,
+> +		.num_channels =3D ARRAY_SIZE(mcp3461_channels),
+> +		.int_vref_uv =3D MCP356XR_INT_VREF_MV,
+> +		.has_vref =3D true
+> +	},
+> +	[mcp3462r] =3D {
+> +		.channels =3D mcp3462_channels,
+> +		.num_channels =3D ARRAY_SIZE(mcp3462_channels),
+> +		.int_vref_uv =3D MCP356XR_INT_VREF_MV,
+> +		.has_vref =3D true
+> +	},
+> +	[mcp3464r] =3D {
+> +		.channels =3D mcp3464_channels,
+> +		.num_channels =3D ARRAY_SIZE(mcp3464_channels),
+> +		.int_vref_uv =3D MCP356XR_INT_VREF_MV,
+> +		.has_vref =3D true
+> +	},
+> +	[mcp3561] =3D {
+> +		.channels =3D mcp3561_channels,
+> +		.num_channels =3D ARRAY_SIZE(mcp3561_channels),
+> +		.int_vref_uv =3D 0,
+> +		.has_vref =3D false
+> +	},
+> +	[mcp3562] =3D {
+> +		.channels =3D mcp3562_channels,
+> +		.num_channels =3D ARRAY_SIZE(mcp3562_channels),
+> +		.int_vref_uv =3D 0,
+> +		.has_vref =3D false
+> +	},
+> +	[mcp3564] =3D {
+> +		.channels =3D mcp3564_channels,
+> +		.num_channels =3D ARRAY_SIZE(mcp3564_channels),
+> +		.int_vref_uv =3D 0,
+> +		.has_vref =3D false
+> +	},
+> +	[mcp3561r] =3D {
+> +		.channels =3D mcp3561_channels,
+> +		.num_channels =3D ARRAY_SIZE(mcp3561_channels),
+> +		.int_vref_uv =3D MCP356XR_INT_VREF_MV,
+> +		.has_vref =3D true
+> +	},
+> +	[mcp3562r] =3D {
+> +		.channels =3D mcp3562_channels,
+> +		.num_channels =3D ARRAY_SIZE(mcp3562_channels),
+> +		.int_vref_uv =3D MCP356XR_INT_VREF_MV,
+> +		.has_vref =3D true
+> +	},
+> +	[mcp3564r] =3D {
+> +		.channels =3D mcp3564_channels,
+> +		.num_channels =3D ARRAY_SIZE(mcp3564_channels),
+> +		.int_vref_uv =3D MCP356XR_INT_VREF_MV,
+> +		.has_vref =3D true
+> +	},
+> +};
+> +
+> +static int mcp356x_read_single_value(struct iio_dev *indio_dev,
+> +				     struct iio_chan_spec const *channel,
+> +				     int *val)
+> +{
+> +	struct mcp356x_state *adc =3D iio_priv(indio_dev);
+> +	int ret, tmp, ret_read =3D 0;
+
+	int ret, tmp;
+	int reg_read =3D 0;
+That is keep the cases that set a value on separate lines from ones that do=
+n't
+for readability.
+
+> +
+> +	/* Configure MUX register with the requested channel */
+Obvious from code - so drop the comment.
+
+> +	ret =3D mcp356x_write(adc, MCP356X_MUX, channel->address, 1);
+> +	if (ret) {
+> +		dev_err(&indio_dev->dev, "Failed to configure MUX register\n");
+> +		return ret;
+> +	}
+> +
+> +	/* ADC Conversion starts by writing ADC_MODE[1:0] =3D 11 to CONFIG0[1:0=
+] =3D  */
+> +	ret =3D mcp356x_update(adc, MCP356X_CONFIG0, MCP356X_ADC_MODE_MASK,
+> +			     MCP356X_ADC_CONVERSION_MODE, 1);
+> +	if (ret) {
+> +		dev_err(&indio_dev->dev,
+> +			"Failed to configure CONFIG0 register\n");
+> +		return ret;
+> +	}
+> +
+> +	/*
+> +	 * Check if the conversion is ready. If not, wait a little bit, and
+> +	 * in case of timeout exit with an error.
+> +	 */
+> +
+> +	ret =3D read_poll_timeout(mcp356x_read, ret_read,
+> +				ret_read || !(tmp & MCP356X_DATA_READY_MASK),
+> +				1000, MCP356X_DATA_READY_TIMEOUT_MS * 1000, true,
+> +				adc, MCP356X_IRQ, &tmp, 1);
+> +
+> +	/* failed to read status register */
+> +	if (ret_read)
+> +		return ret;
+> +
+> +	if (ret)
+> +		return -ETIMEDOUT;
+> +
+> +	if (tmp & MCP356X_DATA_READY_MASK)
+> +		/* failing to finish conversion */
+> +		return -EBUSY;
+> +
+> +	ret =3D mcp356x_read(adc, MCP356X_ADCDATA, &tmp, 4);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*val =3D tmp;
+> +
+> +	return ret;
+> +}
+> +
+> +static int mcp356x_read_avail(struct iio_dev *indio_dev,
+> +			      struct iio_chan_spec const *channel,
+> +			      const int **vals, int *type,
+> +			      int *length, long mask)
+> +{
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> +		*type =3D IIO_VAL_INT;
+> +		*vals =3D mcp356x_oversampling_avail;
+> +		*length =3D ARRAY_SIZE(mcp356x_oversampling_avail);
+> +		return IIO_AVAIL_LIST;
+> +	case IIO_CHAN_INFO_HARDWAREGAIN:
+> +		*type =3D IIO_VAL_FRACTIONAL;
+> +		*length =3D ARRAY_SIZE(mcp356x_hwgain_frac);
+> +		*vals =3D mcp356x_hwgain_frac;
+> +		return IIO_AVAIL_LIST;
+> +	case IIO_CHAN_INFO_CALIBBIAS:
+> +		*vals =3D mcp356x_calib_bias;
+> +		*type =3D IIO_VAL_INT;
+> +		return IIO_AVAIL_RANGE;
+> +	case IIO_CHAN_INFO_CALIBSCALE:
+> +		*vals =3D mcp356x_calib_scale;
+> +		*type =3D IIO_VAL_INT;
+> +		return IIO_AVAIL_RANGE;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int mcp356x_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *channel,
+> +			    int *val, int *val2, long mask)
+> +{
+> +	struct mcp356x_state *adc =3D iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	mutex_lock(&adc->lock);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret =3D mcp356x_read_single_value(indio_dev, channel, val);
+> +		if (ret)
+> +			ret =3D -EINVAL;
+> +		else
+> +			ret =3D IIO_VAL_INT;
+> +		break;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*val =3D adc->vref_mv;
+> +		*val2 =3D channel->scan_type.realbits - 1;
+> +		ret =3D IIO_VAL_FRACTIONAL_LOG2;
+> +		break;
+> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> +		*val =3D mcp356x_oversampling_avail[adc->oversampling];
+> +		ret =3D IIO_VAL_INT;
+> +		break;
+> +	case IIO_CHAN_INFO_HARDWAREGAIN:
+> +		*val =3D mcp356x_hwgain_frac[2 * adc->hwgain];
+> +		*val2 =3D mcp356x_hwgain_frac[(2 * adc->hwgain) + 1];
+> +		ret =3D IIO_VAL_FRACTIONAL;
+> +		break;
+> +	case IIO_CHAN_INFO_CALIBBIAS:
+> +		*val =3D adc->calib_bias;
+> +		ret =3D IIO_VAL_INT;
+> +		break;
+> +	case IIO_CHAN_INFO_CALIBSCALE:
+> +		*val =3D adc->calib_scale;
+> +		ret =3D IIO_VAL_INT;
+> +		break;
+> +	default:
+> +		ret =3D -EINVAL;
+> +	}
+> +
+> +	mutex_unlock(&adc->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int mcp356x_write_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *channel, int val,
+> +			     int val2, long mask)
+> +{
+> +	struct mcp356x_state *adc =3D iio_priv(indio_dev);
+> +	int tmp;
+> +	int ret =3D -EINVAL;
+> +
+> +	mutex_lock(&adc->lock);
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_CALIBBIAS:
+> +		if (val < mcp356x_calib_bias[0] && val > mcp356x_calib_bias[2])
+> +			goto out;
+> +
+> +		adc->calib_bias =3D val;
+> +		ret =3D mcp356x_write(adc, MCP356X_OFFSETCAL, val, 3);
+> +		break;
+> +	case IIO_CHAN_INFO_CALIBSCALE:
+> +		if (val < mcp356x_calib_bias[0] && val > mcp356x_calib_bias[2])
+> +			goto out;
+> +
+> +		adc->calib_scale =3D val;
+> +		ret =3D mcp356x_write(adc, MCP356X_GAINCAL, val, 3);
+> +		break;
+> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> +		if (val < 0)
+> +			goto out;
+> +
+> +		adc->oversampling =3D find_closest(val, mcp356x_oversampling_avail,
+> +						 ARRAY_SIZE(mcp356x_oversampling_avail));
+> +
+> +		dev_dbg(&adc->spi->dev,
+> +			"IIO_CHAN_INFO_OVERSAMPLING_RATIO index %d\n",
+> +			adc->oversampling);
+> +
+> +		ret =3D mcp356x_update(adc, MCP356X_CONFIG1, MCP356X_OVERSAMPLING_RATI=
+O_MASK,
+> +				     (adc->oversampling << MCP356X_OVERSAMPLING_RATIO_SHIFT),
+
+FIELD_PREP() and no need to define the shift
+
+> +				     1);
+> +		if (ret)
+> +			dev_err(&indio_dev->dev,
+> +				"Failed to configure CONFIG1 register\n");
+> +
+> +		break;
+> +	case IIO_CHAN_INFO_HARDWAREGAIN:
+As per comments above, I'd imagine that the raw value needs to be multiplied
+by a factor related to the gain.  Thus control this with _SCALE not _HARDWA=
+REGAIN.
+
+> +		/*
+> +		 * calculate gain from read values.
+> +		 * avoid using fractional numbers so
+> +		 * multiply the value with 1000. In case of x1/3 gain
+> +		 * the tmp will be 300
+> +		 */
+> +		tmp =3D ((val * 1000000) + val2) / 1000;
+> +		if (tmp < 1 || tmp > MAX_HWGAIN)
+> +			goto out;
+> +
+> +		adc->hwgain =3D find_closest(tmp, mcp356x_hwgain,
+> +					   ARRAY_SIZE(mcp356x_hwgain));
+> +
+> +		dev_dbg(&adc->spi->dev,
+> +			"IIO_CHAN_INFO_HARDWAREGAIN Gain:%d; index %d\n",
+> +			tmp, adc->hwgain);
+> +
+> +		/* Update GAIN in CONFIG2[5:3] -> GAIN[2:0]*/
+> +		ret =3D mcp356x_update(adc, MCP356X_CONFIG2, MCP356X_HARDWARE_GAIN_MAS=
+K,
+> +				     (adc->hwgain << MCP356X_HARDWARE_GAIN_SHIFT), 1);
+FIELD_PREP()
+
+> +		if (ret)
+> +			dev_err(&indio_dev->dev,
+> +				"Failed to configure CONFIG0 register\n");
+> +		break;
+> +	}
+> +
+> +out:
+> +	mutex_unlock(&adc->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int mcp356x_config(struct mcp356x_state *adc)
+> +{
+> +	int ret =3D 0;
+> +	unsigned int tmp;
+> +
+> +	dev_dbg(&adc->spi->dev, "%s: Start config...\n", __func__);
+A lot of debug prints. They are only wort keeping in a production driver if=
+ you
+can't get the same info from ftrace and similar.  This one you can, so dro =
+it.
+> +
+> +	/*
+> +	 * The address is set on a per-device basis by fuses in the factory,
+> +	 * configured on request. If not requested, the fuses are set for 0x1.
+> +	 * The device address is part of the device markings to avoid
+> +	 * potential confusion. This address is coded on two bits, so four poss=
+ible
+> +	 * addresses are available when multiple devices are present on the same
+> +	 * SPI bus with only one Chip Select line for all devices.
+> +	 */
+> +	device_property_read_u32(&adc->spi->dev, "microchip,hw-device-address",=
+ &tmp);
+> +
+> +	if (tmp > 3) {
+> +		dev_err_probe(&adc->spi->dev, tmp,
+> +			      "invalid device address. Must be in range 0-3.\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	adc->dev_addr =3D 0xff & tmp;
+> +
+> +	dev_dbg(&adc->spi->dev, "use device address %i\n", adc->dev_addr);
+> +
+> +	ret =3D mcp356x_read(adc, MCP356X_RESERVED_E, &tmp, 2);
+> +
+	if (ret < 0)
+		return ret;
+
+Then no need for if (ret =3D=3D 0)
+
+
+> +	if (ret =3D=3D 0) {
+> +		switch (tmp & MCP356X_HW_ID_MASK) {
+> +		case MCP3461_HW_ID:
+> +			dev_dbg(&adc->spi->dev, "Found MCP3461 chip\n");
+
+If detectable, then you don't need (or indeed want) to have the device
+specific data selected from the dt compatible.  Select it based on what
+is actually present. However, you can warn about a missmatch if you like.
+
+> +			break;
+> +		case MCP3462_HW_ID:
+> +			dev_dbg(&adc->spi->dev, "Found MCP3462 chip\n");
+> +			break;
+> +		case MCP3464_HW_ID:
+> +			dev_dbg(&adc->spi->dev, "Found MCP3464 chip\n");
+> +			break;
+> +		case MCP3561_HW_ID:
+> +			dev_dbg(&adc->spi->dev, "Found MCP3561 chip\n");
+> +			break;
+> +		case MCP3562_HW_ID:
+> +			dev_dbg(&adc->spi->dev, "Found MCP3562 chip\n");
+> +			break;
+> +		case MCP3564_HW_ID:
+> +			dev_dbg(&adc->spi->dev, "Found MCP3564 chip\n");
+> +			break;
+> +		default:
+> +			dev_err_probe(&adc->spi->dev, tmp,
+> +				      "Unknown chip found\n");
+> +			return -EINVAL;
+> +		}
+> +	} else {
+> +		return ret;
+> +	}
+> +
+> +	/* Command sequence that ensures a recovery with
+
+Multi line comment syntax wrong (see below).
+
+> +	 * the desired settings in any cases of loss-of-power scenario.
+> +	 */
+> +
+> +	/* Write LOCK register to 0xA5 (Write Access Password)
+> +	 * Write access is allowed on the full register map.
+> +	 */
+> +	ret =3D mcp356x_write(adc, MCP356X_LOCK, 0x000000A5, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Write IRQ register to 0x03 */
+
+Two comments next to each other need combining into a single multi line
+comment.
+
+> +	/* IRQ --> IRQ Mode =3D Hi-Z IRQ Output  --> (0b00000011).
+
+Feels like this should be controlled from device tree as the pull up may
+not be present on some boards.  Why set this, then reset device?
+
+
+> +	 * IRQ =3D 0x00000003
+> +	 */
+> +	ret =3D mcp356x_write(adc, MCP356X_IRQ, 0x00000003, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Device Full Reset Fast Command */
+Naming is self explanatory so drop the comment.
+> +	ret =3D mcp356x_fast_cmd(adc, MCP356X_FULL_RESET_CMD);
+> +
+Check ret
+
+> +	/* wait 1ms for the chip to restart after a full reset */
+Another obvious comment that isn't needed.
+> +	mdelay(1);
+> +
+> +	/* Reconfigure the ADC chip  */
+Also not needed.
+
+> +
+> +	/* GAINCAL --> Disabled.
+> +	 * Default value is GAINCAL =3D 0x00800000; which provides a gain of 1x
+> +	 */
+
+Use a define to make the magic value 0x00800000 meaning obvious. I assume i=
+t's
+some field of a larger register?  If so FIELD_PREP() appropriate mask etc.
+
+> +	ret =3D mcp356x_write(adc, MCP356X_GAINCAL, 0x00800000, 3);
+> +	if (ret)
+> +		return ret;
+> +
+> +	adc->calib_scale =3D 0x00800000;
+Again, use a FIELD_PREP() to set it (bits 23-8 I think).
+> +
+> +	/* OFFSETCAL --> 0 Counts of Offset Cancellation
+> +	 * (Measured offset is negative).
+> +	 * OFFSETCAL =3D 0x0
+
+Value obvious from code (or should be anyway).
+
+> +	 */
+> +	ret =3D mcp356x_write(adc, MCP356X_OFFSETCAL, 0x00000000, 3);
+
+FIELD_PREP and appropriately defined mask.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* TIMER --> Disabled.
+> +	 * TIMER =3D 0x00000000
+> +	 */
+> +	ret =3D mcp356x_write(adc, MCP356X_TIMER, 0x00000000, 3);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* SCAN --> Disabled.
+> +	 * SCAN =3D 0x00000000
+> +	 */
+> +	ret =3D mcp356x_write(adc, MCP356X_SCAN, 0x00000000, 3);
+
+A bunch of different things in here. I'd expect to see this built from all =
+the
+different fields you aren't enabling so it's easy to see the state.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* MUX --> VIN+ =3D CH0, VIN- =3D CH1 --> (0b00000001).
+> +	 * MUX =3D 0x00000001
+
+Defines and field masks should make this obvious in the code - thus not
+needing the comment.
+Same for the similar register writes that follow.
+There should need to be almost no comments in here because the
+code should make it obvious what is being set and to what value.
+
+> +	 */
+> +	ret =3D mcp356x_write(adc, MCP356X_MUX, 0x00000001, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* IRQ --> IRQ Mode =3D Hi-Z IRQ Output  --> (0b00000011).
+> +	 * IRQ =3D 0x00000003
+> +	 */
+> +	ret =3D mcp356x_write(adc, MCP356X_IRQ, 0x00000003, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* CONFIG3
+> +	 * Conv. Mod =3D One-Shot/Standby,
+> +	 * FORMAT =3D 32-bit (right justified data): SGN extension + ADC data,
+> +	 * CRC_FORMAT =3D 16b, CRC-COM =3D Disabled,
+> +	 * OFFSETCAL =3D Enabled, GAINCAL =3D Enabled --> (10100011).
+> +	 * CONFIG3 =3D 0x000000A3
+> +	 *
+> +	 */
+> +	ret =3D mcp356x_write(adc, MCP356X_CONFIG3, 0x000000A3, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* CONFIG2 --> BOOST =3D 1x, GAIN =3D 1x, AZ_MUX =3D 1 --> (0b10001101).
+> +	 * CONFIG2 =3D 0x0000008D
+> +	 */
+> +	ret =3D mcp356x_write(adc, MCP356X_CONFIG2, 0x0000008D, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	adc->hwgain =3D 0x01;
+> +	adc->auto_zeroing_mux =3D true;
+> +	adc->auto_zeroing_ref =3D false;
+> +	adc->current_boost_mode =3D MCP356X_BOOST_CURRENT_x1_00;
+> +
+> +	/* CONFIG1 --> AMCLK =3D MCLK, OSR =3D 98304 --> (0b00111100).
+> +	 * CONFIG1 =3D 0x0000003C
+> +	 */
+> +	ret =3D mcp356x_write(adc, MCP356X_CONFIG1, 0x0000003C, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	adc->oversampling =3D 0x0F;
+> +
+> +	if (!adc->vref) {
+> +		/* CONFIG0 --> VREF_SEL =3D Internal Voltage Reference 2.4v
+> +		 * CLK_SEL =3D INTOSC w/o CLKOUT, CS_SEL =3D No Bias,
+> +		 * ADC_MODE =3D Standby Mode --> (0b11100010).
+> +		 * CONFIG0 =3D 0x000000E2
+> +		 */
+> +		ret =3D mcp356x_write(adc, MCP356X_CONFIG0, 0x000000E2, 1);
+
+Build the value into a local variable, then have the write after the
+if/else using that variable.
+
+> +
+> +		dev_dbg(&adc->spi->dev, "%s: Using internal Vref\n",
+> +			__func__);
+> +		adc->vref_mv =3D MCP356XR_INT_VREF_MV;
+> +
+> +	} else {
+> +		/* CONFIG0 --> CLK_SEL =3D INTOSC w/o CLKOUT, CS_SEL =3D No Bias,
+> +		 * ADC_MODE =3D Standby Mode --> (0b01100010).
+> +		 * CONFIG0 =3D 0x000000E2
+> +		 */
+> +		ret =3D mcp356x_write(adc, MCP356X_CONFIG0, 0x00000062, 1);
+> +	}
+> +	adc->current_bias_mode =3D MCP356X_CS_SEL_0_0_uA;
+> +
+> +	return ret;
+> +}
+> +
+> +static int mcp356x_probe(struct spi_device *spi)
+> +{
+> +	int ret, device_index;
+> +	struct iio_dev *indio_dev;
+> +	struct mcp356x_state *adc;
+> +
+> +	indio_dev =3D devm_iio_device_alloc(&spi->dev, sizeof(*adc));
+> +	if (!indio_dev) {
+> +		dev_err_probe(&indio_dev->dev, PTR_ERR(indio_dev),
+> +			      "Can't allocate iio device\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	adc =3D iio_priv(indio_dev);
+> +	adc->spi =3D spi;
+> +
+> +	dev_dbg(&adc->spi->dev, "%s: probe(spi =3D 0x%p)\n", __func__, spi);
+> +
+> +	adc->vref =3D devm_regulator_get_optional(&adc->spi->dev, "vref");
+
+Is it always optional? If it's only for some parts, then enforce that by
+first using spi_get_device_match_data() to get appropriate pointer to
+a chip type specific structure, then have a flag in there that says if
+is optional or not.  Adjust how it is retrieved to take that
+into account.
+
+
+> +	if (IS_ERR(adc->vref)) {
+> +		if (PTR_ERR(adc->vref) =3D=3D -ENODEV) {
+> +			adc->vref =3D NULL;
+> +			dev_dbg(&adc->spi->dev, "%s: Using internal Vref\n",
+> +				__func__);
+
+In binding docs you mention that not all devices have an internal reference.
+If the device doesn't have one we need to error out here.
+
+> +		} else {
+> +			dev_err_probe(&adc->spi->dev, PTR_ERR(adc->vref),
+> +				      "failed to get regulator\n");
+> +			return PTR_ERR(adc->vref);
+> +		}
+> +	} else {
+> +		ret =3D regulator_enable(adc->vref);
+> +		if (ret)
+> +			return ret;
+
+Add a devm_add_action_or_reset() fall here with appropriate callback to
+turn off the regulator.=20
+
+> +
+> +		dev_dbg(&adc->spi->dev, "%s: Using External Vref\n",
+> +			__func__);
+> +
+> +		ret =3D regulator_get_voltage(adc->vref);
+> +		if (ret < 0) {
+> +			dev_err_probe(&adc->spi->dev, ret,
+> +				      "Failed to read vref regulator\n");
+> +			goto error_disable_reg;
+> +		}
+> +
+> +		adc->vref_mv =3D ret / 1000;
+> +	}
+> +
+> +	spi_set_drvdata(spi, indio_dev);
+
+This probably won't be needed after you take the devm_add_action_or_reset()
+route to getting rid of remove() as suggested below.
+
+> +	device_index =3D spi_get_device_id(spi)->driver_data;
+
+	spi_get_device_match_data() and add the data as pointers to where
+you currently have the enum values + to the spi_device_id table.
+This avoids need to be careful that entries align perfectly between those
+two tables.
+
+However you show above that the chip type is detectable. Better
+to just detect it than rely on firmware telling you which one you have.
+
+> +	adc->chip_info =3D &mcp356x_chip_infos_tbl[device_index];
+> +
+> +	adc->mcp356x_info.read_raw =3D mcp356x_read_raw;
+> +	adc->mcp356x_info.write_raw =3D mcp356x_write_raw;
+> +	adc->mcp356x_info.read_avail =3D mcp356x_read_avail;
+> +
+> +	ret =3D mcp356x_prep_custom_attributes(adc, indio_dev);
+> +	if (ret) {
+> +		dev_err_probe(&adc->spi->dev, ret,
+> +			      "Can't configure custom attributes for MCP356X device\n");
+> +		goto error_disable_reg;
+> +	}
+> +
+> +	indio_dev->name =3D spi_get_device_id(spi)->name;
+
+This requires careful matching between the entries in the of and spi
+ID tables. I'd rather the name was stored in part specific data so
+your chip_infos_tbl[] entries.
+
+> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
+> +	indio_dev->info =3D &adc->mcp356x_info;
+> +
+> +	indio_dev->channels =3D adc->chip_info->channels;
+> +	indio_dev->num_channels =3D adc->chip_info->num_channels;
+> +	indio_dev->masklength =3D adc->chip_info->num_channels - 1;
+
+You should not be setting that directly. Leave it to the IIO core.
+
+> +
+> +	/* initialize the chip access mutex */
+
+Don't have any comments that state the obvious.  The mutex scope
+is defined above and doesn't need repeating here.
+
+> +	mutex_init(&adc->lock);
+> +
+> +	/* Do any chip specific initialization, e.g:
+
+IIO multi-line comments are
+	/*
+	 * Do any ...
+
+> +	 * read/write some registers
+> +	 * enable/disable certain channels
+> +	 * change the sampling rate to the requested value
+> +	 */
+> +	ret =3D mcp356x_config(adc);
+> +	if (ret) {
+> +		dev_err_probe(&adc->spi->dev, ret,
+> +			      "Can't configure MCP356X device\n");
+> +		goto error_disable_reg;
+> +	}
+> +
+> +	dev_dbg(&adc->spi->dev, "%s: Vref (mV): %d\n", __func__, adc->vref_mv);
+> +
+> +	ret =3D devm_iio_device_register(&spi->dev, indio_dev);
+> +	if (ret) {
+> +		dev_err_probe(&adc->spi->dev, ret,
+> +			      "Can't register IIO device\n");
+> +		goto error_disable_reg;
+> +	}
+> +
+> +	return 0;
+> +
+> +error_disable_reg:
+> +	if (adc->vref)
+
+Use devm_add_action_or_reset() and this goes away as all error caused
+unwinding automatically handled.
+
+> +		regulator_disable(adc->vref);
+> +
+> +	return ret;
+> +}
+> +
+> +static void mcp356x_remove(struct spi_device *spi)
+> +{
+> +	struct iio_dev *indio_dev =3D spi_get_drvdata(spi);
+> +	struct mcp356x_state *adc =3D iio_priv(indio_dev);
+> +
+> +	if (adc->vref)
+> +		regulator_disable(adc->vref);
+Use a devm_add_action_or_reset() in probe() to ensure this is turned off at
+the right point in the right point in the sequence.  Right now you turn it
+off before the userspace interfaces are removed leaving a race where a read=
+ing
+might be taken despite the reference being off.
+
+> +}
+> +
+> +static const struct of_device_id mcp356x_dt_ids[] =3D {
+> +	{ .compatible =3D "microchip,mcp3461" },
+> +	{ .compatible =3D "microchip,mcp3462" },
+> +	{ .compatible =3D "microchip,mcp3464" },
+> +	{ .compatible =3D "microchip,mcp3461r" },
+> +	{ .compatible =3D "microchip,mcp3462r" },
+> +	{ .compatible =3D "microchip,mcp3464r" },
+> +	{ .compatible =3D "microchip,mcp3561" },
+> +	{ .compatible =3D "microchip,mcp3562" },
+> +	{ .compatible =3D "microchip,mcp3564" },
+> +	{ .compatible =3D "microchip,mcp3561r" },
+> +	{ .compatible =3D "microchip,mcp3562r" },
+> +	{ .compatible =3D "microchip,mcp3564r" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, mcp356x_dt_ids);
+> +
+> +static const struct spi_device_id mcp356x_id[] =3D {
+> +	{ "mcp3461",  mcp3461 },
+
+Much prefer the data here to both be replicated in the above
+of_device_id table and to be a pointer to a device type specific
+structure with information about what a particular device supports.
+
+> +	{ "mcp3462",  mcp3462 },
+> +	{ "mcp3464",  mcp3464 },
+> +	{ "mcp3461r", mcp3461r },
+> +	{ "mcp3462r", mcp3462r },
+> +	{ "mcp3464r", mcp3464r },
+> +	{ "mcp3561",  mcp3561 },
+> +	{ "mcp3562",  mcp3562 },
+> +	{ "mcp3564",  mcp3564 },
+> +	{ "mcp3561r", mcp3561r },
+> +	{ "mcp3562r", mcp3562r },
+> +	{ "mcp3564r", mcp3564r },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(spi, mcp356x_id);
+> +
+> +static struct spi_driver mcp356x_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "mcp3564",
+> +		.of_match_table =3D mcp356x_dt_ids,
+> +	},
+> +	.probe =3D mcp356x_probe,
+> +	.remove =3D mcp356x_remove,
+> +	.id_table =3D mcp356x_id,
+> +};
+> +
+> +module_spi_driver(mcp356x_driver);
+> +
+> +MODULE_AUTHOR("Marius Cristea <marius.cristea@microchip.com>");
+> +MODULE_DESCRIPTION("Microchip MCP346x/MCP346xR and MCP356x/MCP346xR ADCs=
+");
+> +MODULE_LICENSE("GPL v2");
 
---yyZfpIjDKNKWf97V
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi Paulo,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on robh/for-next linus/master v6.4-rc2 next-20230519]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Paulo-Pavacic/dt-bindings-display-panel-add-fannal-c3004/20230519-230337
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20230519142456.2588145-2-pavacic.p%40gmail.com
-patch subject: [PATCH 1/2] dt-bindings: display: panel: add fannal,c3004
-reproduce:
-        # https://github.com/intel-lab-lkp/linux/commit/bb04b236f1d090bd2f7c5780db6ce4f64d83e3b4
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Paulo-Pavacic/dt-bindings-display-panel-add-fannal-c3004/20230519-230337
-        git checkout bb04b236f1d090bd2f7c5780db6ce4f64d83e3b4
-        make menuconfig
-        # enable CONFIG_COMPILE_TEST, CONFIG_WARN_MISSING_DOCUMENTS, CONFIG_WARN_ABI_ERRORS
-        make htmldocs
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202305202129.6nESZs8s-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/display/panel/panel-fannal,c3004.yaml
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
---yyZfpIjDKNKWf97V
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: attachment; filename=config
-
-#
-# Automatically generated file; DO NOT EDIT.
-# Linux/x86_64 6.4.0-rc1 Kernel Configuration
-#
-CONFIG_CC_VERSION_TEXT="gcc-11 (Debian 11.3.0-12) 11.3.0"
-CONFIG_CC_IS_GCC=y
-CONFIG_GCC_VERSION=110300
-CONFIG_CLANG_VERSION=0
-CONFIG_AS_IS_GNU=y
-CONFIG_AS_VERSION=24000
-CONFIG_LD_IS_BFD=y
-CONFIG_LD_VERSION=24000
-CONFIG_LLD_VERSION=0
-CONFIG_CC_CAN_LINK=y
-CONFIG_CC_CAN_LINK_STATIC=y
-CONFIG_CC_HAS_ASM_GOTO_OUTPUT=y
-CONFIG_CC_HAS_ASM_GOTO_TIED_OUTPUT=y
-CONFIG_TOOLS_SUPPORT_RELR=y
-CONFIG_CC_HAS_ASM_INLINE=y
-CONFIG_CC_HAS_NO_PROFILE_FN_ATTR=y
-CONFIG_PAHOLE_VERSION=125
-CONFIG_IRQ_WORK=y
-CONFIG_BUILDTIME_TABLE_SORT=y
-CONFIG_THREAD_INFO_IN_TASK=y
-
-#
-# General setup
-#
-CONFIG_BROKEN_ON_SMP=y
-CONFIG_INIT_ENV_ARG_LIMIT=32
-CONFIG_COMPILE_TEST=y
-# CONFIG_WERROR is not set
-CONFIG_LOCALVERSION=""
-CONFIG_BUILD_SALT=""
-CONFIG_HAVE_KERNEL_GZIP=y
-CONFIG_HAVE_KERNEL_BZIP2=y
-CONFIG_HAVE_KERNEL_LZMA=y
-CONFIG_HAVE_KERNEL_XZ=y
-CONFIG_HAVE_KERNEL_LZO=y
-CONFIG_HAVE_KERNEL_LZ4=y
-CONFIG_HAVE_KERNEL_ZSTD=y
-CONFIG_KERNEL_GZIP=y
-# CONFIG_KERNEL_BZIP2 is not set
-# CONFIG_KERNEL_LZMA is not set
-# CONFIG_KERNEL_XZ is not set
-# CONFIG_KERNEL_LZO is not set
-# CONFIG_KERNEL_LZ4 is not set
-# CONFIG_KERNEL_ZSTD is not set
-CONFIG_DEFAULT_INIT=""
-CONFIG_DEFAULT_HOSTNAME="(none)"
-# CONFIG_SYSVIPC is not set
-# CONFIG_WATCH_QUEUE is not set
-# CONFIG_CROSS_MEMORY_ATTACH is not set
-# CONFIG_USELIB is not set
-CONFIG_HAVE_ARCH_AUDITSYSCALL=y
-
-#
-# IRQ subsystem
-#
-CONFIG_GENERIC_IRQ_PROBE=y
-CONFIG_GENERIC_IRQ_SHOW=y
-CONFIG_HARDIRQS_SW_RESEND=y
-CONFIG_IRQ_DOMAIN=y
-CONFIG_IRQ_DOMAIN_HIERARCHY=y
-CONFIG_GENERIC_IRQ_MATRIX_ALLOCATOR=y
-CONFIG_GENERIC_IRQ_RESERVATION_MODE=y
-CONFIG_IRQ_FORCED_THREADING=y
-CONFIG_SPARSE_IRQ=y
-# end of IRQ subsystem
-
-CONFIG_CLOCKSOURCE_WATCHDOG=y
-CONFIG_ARCH_CLOCKSOURCE_INIT=y
-CONFIG_CLOCKSOURCE_VALIDATE_LAST_CYCLE=y
-CONFIG_GENERIC_TIME_VSYSCALL=y
-CONFIG_GENERIC_CLOCKEVENTS=y
-CONFIG_GENERIC_CLOCKEVENTS_BROADCAST=y
-CONFIG_GENERIC_CLOCKEVENTS_MIN_ADJUST=y
-CONFIG_GENERIC_CMOS_UPDATE=y
-CONFIG_HAVE_POSIX_CPU_TIMERS_TASK_WORK=y
-CONFIG_POSIX_CPU_TIMERS_TASK_WORK=y
-
-#
-# Timers subsystem
-#
-CONFIG_HZ_PERIODIC=y
-# CONFIG_NO_HZ_IDLE is not set
-# CONFIG_NO_HZ is not set
-# CONFIG_HIGH_RES_TIMERS is not set
-CONFIG_CLOCKSOURCE_WATCHDOG_MAX_SKEW_US=125
-# end of Timers subsystem
-
-CONFIG_HAVE_EBPF_JIT=y
-CONFIG_ARCH_WANT_DEFAULT_BPF_JIT=y
-
-#
-# BPF subsystem
-#
-# CONFIG_BPF_SYSCALL is not set
-# end of BPF subsystem
-
-CONFIG_PREEMPT_NONE_BUILD=y
-CONFIG_PREEMPT_NONE=y
-# CONFIG_PREEMPT_VOLUNTARY is not set
-# CONFIG_PREEMPT is not set
-# CONFIG_PREEMPT_DYNAMIC is not set
-
-#
-# CPU/Task time and stats accounting
-#
-CONFIG_TICK_CPU_ACCOUNTING=y
-# CONFIG_VIRT_CPU_ACCOUNTING_GEN is not set
-# CONFIG_IRQ_TIME_ACCOUNTING is not set
-# CONFIG_BSD_PROCESS_ACCT is not set
-# CONFIG_PSI is not set
-# end of CPU/Task time and stats accounting
-
-CONFIG_CPU_ISOLATION=y
-
-#
-# RCU Subsystem
-#
-CONFIG_TINY_RCU=y
-# CONFIG_RCU_EXPERT is not set
-CONFIG_TINY_SRCU=y
-# end of RCU Subsystem
-
-# CONFIG_IKCONFIG is not set
-# CONFIG_IKHEADERS is not set
-CONFIG_LOG_BUF_SHIFT=17
-CONFIG_HAVE_UNSTABLE_SCHED_CLOCK=y
-
-#
-# Scheduler features
-#
-# end of Scheduler features
-
-CONFIG_ARCH_SUPPORTS_NUMA_BALANCING=y
-CONFIG_ARCH_WANT_BATCHED_UNMAP_TLB_FLUSH=y
-CONFIG_CC_HAS_INT128=y
-CONFIG_CC_IMPLICIT_FALLTHROUGH="-Wimplicit-fallthrough=5"
-CONFIG_GCC11_NO_ARRAY_BOUNDS=y
-CONFIG_CC_NO_ARRAY_BOUNDS=y
-CONFIG_ARCH_SUPPORTS_INT128=y
-# CONFIG_CGROUPS is not set
-CONFIG_NAMESPACES=y
-# CONFIG_UTS_NS is not set
-# CONFIG_TIME_NS is not set
-# CONFIG_USER_NS is not set
-# CONFIG_PID_NS is not set
-# CONFIG_CHECKPOINT_RESTORE is not set
-# CONFIG_SCHED_AUTOGROUP is not set
-# CONFIG_RELAY is not set
-# CONFIG_BLK_DEV_INITRD is not set
-# CONFIG_BOOT_CONFIG is not set
-# CONFIG_INITRAMFS_PRESERVE_MTIME is not set
-CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE=y
-# CONFIG_CC_OPTIMIZE_FOR_SIZE is not set
-CONFIG_LD_ORPHAN_WARN=y
-CONFIG_LD_ORPHAN_WARN_LEVEL="warn"
-CONFIG_SYSCTL=y
-CONFIG_SYSCTL_EXCEPTION_TRACE=y
-CONFIG_HAVE_PCSPKR_PLATFORM=y
-# CONFIG_EXPERT is not set
-CONFIG_MULTIUSER=y
-CONFIG_SGETMASK_SYSCALL=y
-CONFIG_SYSFS_SYSCALL=y
-CONFIG_FHANDLE=y
-CONFIG_POSIX_TIMERS=y
-CONFIG_PRINTK=y
-CONFIG_BUG=y
-CONFIG_ELF_CORE=y
-CONFIG_PCSPKR_PLATFORM=y
-CONFIG_BASE_FULL=y
-CONFIG_FUTEX=y
-CONFIG_FUTEX_PI=y
-CONFIG_EPOLL=y
-CONFIG_SIGNALFD=y
-CONFIG_TIMERFD=y
-CONFIG_EVENTFD=y
-CONFIG_SHMEM=y
-CONFIG_AIO=y
-CONFIG_IO_URING=y
-CONFIG_ADVISE_SYSCALLS=y
-CONFIG_MEMBARRIER=y
-CONFIG_KALLSYMS=y
-# CONFIG_KALLSYMS_SELFTEST is not set
-CONFIG_KALLSYMS_BASE_RELATIVE=y
-CONFIG_ARCH_HAS_MEMBARRIER_SYNC_CORE=y
-CONFIG_RSEQ=y
-# CONFIG_EMBEDDED is not set
-CONFIG_HAVE_PERF_EVENTS=y
-
-#
-# Kernel Performance Events And Counters
-#
-CONFIG_PERF_EVENTS=y
-# end of Kernel Performance Events And Counters
-
-# CONFIG_PROFILING is not set
-# end of General setup
-
-CONFIG_64BIT=y
-CONFIG_X86_64=y
-CONFIG_X86=y
-CONFIG_INSTRUCTION_DECODER=y
-CONFIG_OUTPUT_FORMAT="elf64-x86-64"
-CONFIG_LOCKDEP_SUPPORT=y
-CONFIG_STACKTRACE_SUPPORT=y
-CONFIG_MMU=y
-CONFIG_ARCH_MMAP_RND_BITS_MIN=28
-CONFIG_ARCH_MMAP_RND_BITS_MAX=32
-CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MIN=8
-CONFIG_ARCH_MMAP_RND_COMPAT_BITS_MAX=16
-CONFIG_GENERIC_ISA_DMA=y
-CONFIG_GENERIC_BUG=y
-CONFIG_GENERIC_BUG_RELATIVE_POINTERS=y
-CONFIG_ARCH_MAY_HAVE_PC_FDC=y
-CONFIG_GENERIC_CALIBRATE_DELAY=y
-CONFIG_ARCH_HAS_CPU_RELAX=y
-CONFIG_ARCH_HIBERNATION_POSSIBLE=y
-CONFIG_ARCH_SUSPEND_POSSIBLE=y
-CONFIG_AUDIT_ARCH=y
-CONFIG_ARCH_SUPPORTS_UPROBES=y
-CONFIG_FIX_EARLYCON_MEM=y
-CONFIG_PGTABLE_LEVELS=4
-CONFIG_CC_HAS_SANE_STACKPROTECTOR=y
-
-#
-# Processor type and features
-#
-# CONFIG_SMP is not set
-CONFIG_X86_FEATURE_NAMES=y
-CONFIG_X86_MPPARSE=y
-# CONFIG_GOLDFISH is not set
-# CONFIG_X86_CPU_RESCTRL is not set
-# CONFIG_X86_EXTENDED_PLATFORM is not set
-# CONFIG_SCHED_OMIT_FRAME_POINTER is not set
-# CONFIG_HYPERVISOR_GUEST is not set
-# CONFIG_MK8 is not set
-# CONFIG_MPSC is not set
-# CONFIG_MCORE2 is not set
-# CONFIG_MATOM is not set
-CONFIG_GENERIC_CPU=y
-CONFIG_X86_INTERNODE_CACHE_SHIFT=6
-CONFIG_X86_L1_CACHE_SHIFT=6
-CONFIG_X86_TSC=y
-CONFIG_X86_CMPXCHG64=y
-CONFIG_X86_CMOV=y
-CONFIG_X86_MINIMUM_CPU_FAMILY=64
-CONFIG_X86_DEBUGCTLMSR=y
-CONFIG_IA32_FEAT_CTL=y
-CONFIG_X86_VMX_FEATURE_NAMES=y
-CONFIG_CPU_SUP_INTEL=y
-CONFIG_CPU_SUP_AMD=y
-CONFIG_CPU_SUP_HYGON=y
-CONFIG_CPU_SUP_CENTAUR=y
-CONFIG_CPU_SUP_ZHAOXIN=y
-CONFIG_HPET_TIMER=y
-CONFIG_DMI=y
-CONFIG_NR_CPUS_RANGE_BEGIN=1
-CONFIG_NR_CPUS_RANGE_END=1
-CONFIG_NR_CPUS_DEFAULT=1
-CONFIG_NR_CPUS=1
-CONFIG_UP_LATE_INIT=y
-CONFIG_X86_LOCAL_APIC=y
-CONFIG_X86_IO_APIC=y
-# CONFIG_X86_REROUTE_FOR_BROKEN_BOOT_IRQS is not set
-# CONFIG_X86_MCE is not set
-
-#
-# Performance monitoring
-#
-# CONFIG_PERF_EVENTS_AMD_POWER is not set
-# CONFIG_PERF_EVENTS_AMD_UNCORE is not set
-# CONFIG_PERF_EVENTS_AMD_BRS is not set
-# end of Performance monitoring
-
-CONFIG_X86_16BIT=y
-CONFIG_X86_ESPFIX64=y
-CONFIG_X86_VSYSCALL_EMULATION=y
-# CONFIG_X86_IOPL_IOPERM is not set
-# CONFIG_MICROCODE is not set
-# CONFIG_X86_MSR is not set
-# CONFIG_X86_CPUID is not set
-# CONFIG_X86_5LEVEL is not set
-CONFIG_X86_DIRECT_GBPAGES=y
-# CONFIG_AMD_MEM_ENCRYPT is not set
-CONFIG_ARCH_SPARSEMEM_ENABLE=y
-CONFIG_ARCH_SPARSEMEM_DEFAULT=y
-CONFIG_ILLEGAL_POINTER_VALUE=0xdead000000000000
-# CONFIG_X86_CHECK_BIOS_CORRUPTION is not set
-CONFIG_MTRR=y
-# CONFIG_MTRR_SANITIZER is not set
-CONFIG_X86_PAT=y
-CONFIG_ARCH_USES_PG_UNCACHED=y
-CONFIG_X86_UMIP=y
-CONFIG_CC_HAS_IBT=y
-# CONFIG_X86_KERNEL_IBT is not set
-# CONFIG_X86_INTEL_MEMORY_PROTECTION_KEYS is not set
-CONFIG_X86_INTEL_TSX_MODE_OFF=y
-# CONFIG_X86_INTEL_TSX_MODE_ON is not set
-# CONFIG_X86_INTEL_TSX_MODE_AUTO is not set
-# CONFIG_HZ_100 is not set
-CONFIG_HZ_250=y
-# CONFIG_HZ_300 is not set
-# CONFIG_HZ_1000 is not set
-CONFIG_HZ=250
-# CONFIG_KEXEC is not set
-# CONFIG_CRASH_DUMP is not set
-CONFIG_PHYSICAL_START=0x1000000
-# CONFIG_RELOCATABLE is not set
-CONFIG_PHYSICAL_ALIGN=0x200000
-# CONFIG_ADDRESS_MASKING is not set
-CONFIG_LEGACY_VSYSCALL_XONLY=y
-# CONFIG_LEGACY_VSYSCALL_NONE is not set
-# CONFIG_CMDLINE_BOOL is not set
-CONFIG_MODIFY_LDT_SYSCALL=y
-# CONFIG_STRICT_SIGALTSTACK_SIZE is not set
-CONFIG_HAVE_LIVEPATCH=y
-# end of Processor type and features
-
-CONFIG_CC_HAS_SLS=y
-CONFIG_CC_HAS_RETURN_THUNK=y
-CONFIG_CC_HAS_ENTRY_PADDING=y
-CONFIG_FUNCTION_PADDING_CFI=11
-CONFIG_FUNCTION_PADDING_BYTES=16
-# CONFIG_SPECULATION_MITIGATIONS is not set
-CONFIG_ARCH_HAS_ADD_PAGES=y
-CONFIG_ARCH_MHP_MEMMAP_ON_MEMORY_ENABLE=y
-
-#
-# Power management and ACPI options
-#
-# CONFIG_SUSPEND is not set
-# CONFIG_PM is not set
-CONFIG_ARCH_SUPPORTS_ACPI=y
-# CONFIG_ACPI is not set
-
-#
-# CPU Frequency scaling
-#
-# CONFIG_CPU_FREQ is not set
-# end of CPU Frequency scaling
-
-#
-# CPU Idle
-#
-# CONFIG_CPU_IDLE is not set
-# end of CPU Idle
-# end of Power management and ACPI options
-
-#
-# Bus options (PCI etc.)
-#
-CONFIG_ISA_DMA_API=y
-# end of Bus options (PCI etc.)
-
-#
-# Binary Emulations
-#
-# CONFIG_IA32_EMULATION is not set
-# CONFIG_X86_X32_ABI is not set
-# end of Binary Emulations
-
-CONFIG_HAVE_KVM=y
-# CONFIG_VIRTUALIZATION is not set
-CONFIG_AS_AVX512=y
-CONFIG_AS_SHA1_NI=y
-CONFIG_AS_SHA256_NI=y
-CONFIG_AS_TPAUSE=y
-CONFIG_AS_GFNI=y
-
-#
-# General architecture-dependent options
-#
-CONFIG_GENERIC_ENTRY=y
-# CONFIG_JUMP_LABEL is not set
-# CONFIG_STATIC_CALL_SELFTEST is not set
-CONFIG_HAVE_EFFICIENT_UNALIGNED_ACCESS=y
-CONFIG_ARCH_USE_BUILTIN_BSWAP=y
-CONFIG_HAVE_IOREMAP_PROT=y
-CONFIG_HAVE_KPROBES=y
-CONFIG_HAVE_KRETPROBES=y
-CONFIG_HAVE_OPTPROBES=y
-CONFIG_HAVE_KPROBES_ON_FTRACE=y
-CONFIG_ARCH_CORRECT_STACKTRACE_ON_KRETPROBE=y
-CONFIG_HAVE_FUNCTION_ERROR_INJECTION=y
-CONFIG_HAVE_NMI=y
-CONFIG_TRACE_IRQFLAGS_SUPPORT=y
-CONFIG_TRACE_IRQFLAGS_NMI_SUPPORT=y
-CONFIG_HAVE_ARCH_TRACEHOOK=y
-CONFIG_HAVE_DMA_CONTIGUOUS=y
-CONFIG_GENERIC_SMP_IDLE_THREAD=y
-CONFIG_ARCH_HAS_FORTIFY_SOURCE=y
-CONFIG_ARCH_HAS_SET_MEMORY=y
-CONFIG_ARCH_HAS_SET_DIRECT_MAP=y
-CONFIG_HAVE_ARCH_THREAD_STRUCT_WHITELIST=y
-CONFIG_ARCH_WANTS_DYNAMIC_TASK_STRUCT=y
-CONFIG_ARCH_WANTS_NO_INSTR=y
-CONFIG_HAVE_ASM_MODVERSIONS=y
-CONFIG_HAVE_REGS_AND_STACK_ACCESS_API=y
-CONFIG_HAVE_RSEQ=y
-CONFIG_HAVE_RUST=y
-CONFIG_HAVE_FUNCTION_ARG_ACCESS_API=y
-CONFIG_HAVE_HW_BREAKPOINT=y
-CONFIG_HAVE_MIXED_BREAKPOINTS_REGS=y
-CONFIG_HAVE_USER_RETURN_NOTIFIER=y
-CONFIG_HAVE_PERF_EVENTS_NMI=y
-CONFIG_HAVE_HARDLOCKUP_DETECTOR_PERF=y
-CONFIG_HAVE_PERF_REGS=y
-CONFIG_HAVE_PERF_USER_STACK_DUMP=y
-CONFIG_HAVE_ARCH_JUMP_LABEL=y
-CONFIG_HAVE_ARCH_JUMP_LABEL_RELATIVE=y
-CONFIG_MMU_GATHER_MERGE_VMAS=y
-CONFIG_MMU_LAZY_TLB_REFCOUNT=y
-CONFIG_ARCH_HAVE_NMI_SAFE_CMPXCHG=y
-CONFIG_ARCH_HAS_NMI_SAFE_THIS_CPU_OPS=y
-CONFIG_HAVE_ALIGNED_STRUCT_PAGE=y
-CONFIG_HAVE_CMPXCHG_LOCAL=y
-CONFIG_HAVE_CMPXCHG_DOUBLE=y
-CONFIG_HAVE_ARCH_SECCOMP=y
-CONFIG_HAVE_ARCH_SECCOMP_FILTER=y
-# CONFIG_SECCOMP is not set
-CONFIG_HAVE_ARCH_STACKLEAK=y
-CONFIG_HAVE_STACKPROTECTOR=y
-# CONFIG_STACKPROTECTOR is not set
-CONFIG_ARCH_SUPPORTS_LTO_CLANG=y
-CONFIG_ARCH_SUPPORTS_LTO_CLANG_THIN=y
-CONFIG_LTO_NONE=y
-CONFIG_ARCH_SUPPORTS_CFI_CLANG=y
-CONFIG_HAVE_ARCH_WITHIN_STACK_FRAMES=y
-CONFIG_HAVE_CONTEXT_TRACKING_USER=y
-CONFIG_HAVE_CONTEXT_TRACKING_USER_OFFSTACK=y
-CONFIG_HAVE_VIRT_CPU_ACCOUNTING_GEN=y
-CONFIG_HAVE_IRQ_TIME_ACCOUNTING=y
-CONFIG_HAVE_MOVE_PUD=y
-CONFIG_HAVE_MOVE_PMD=y
-CONFIG_HAVE_ARCH_TRANSPARENT_HUGEPAGE=y
-CONFIG_HAVE_ARCH_TRANSPARENT_HUGEPAGE_PUD=y
-CONFIG_HAVE_ARCH_HUGE_VMAP=y
-CONFIG_HAVE_ARCH_HUGE_VMALLOC=y
-CONFIG_ARCH_WANT_HUGE_PMD_SHARE=y
-CONFIG_HAVE_ARCH_SOFT_DIRTY=y
-CONFIG_HAVE_MOD_ARCH_SPECIFIC=y
-CONFIG_MODULES_USE_ELF_RELA=y
-CONFIG_HAVE_IRQ_EXIT_ON_IRQ_STACK=y
-CONFIG_HAVE_SOFTIRQ_ON_OWN_STACK=y
-CONFIG_SOFTIRQ_ON_OWN_STACK=y
-CONFIG_ARCH_HAS_ELF_RANDOMIZE=y
-CONFIG_HAVE_ARCH_MMAP_RND_BITS=y
-CONFIG_HAVE_EXIT_THREAD=y
-CONFIG_ARCH_MMAP_RND_BITS=28
-CONFIG_PAGE_SIZE_LESS_THAN_64KB=y
-CONFIG_PAGE_SIZE_LESS_THAN_256KB=y
-CONFIG_HAVE_OBJTOOL=y
-CONFIG_HAVE_JUMP_LABEL_HACK=y
-CONFIG_HAVE_NOINSTR_HACK=y
-CONFIG_HAVE_NOINSTR_VALIDATION=y
-CONFIG_HAVE_UACCESS_VALIDATION=y
-CONFIG_HAVE_STACK_VALIDATION=y
-CONFIG_HAVE_RELIABLE_STACKTRACE=y
-# CONFIG_COMPAT_32BIT_TIME is not set
-CONFIG_HAVE_ARCH_VMAP_STACK=y
-# CONFIG_VMAP_STACK is not set
-CONFIG_HAVE_ARCH_RANDOMIZE_KSTACK_OFFSET=y
-CONFIG_RANDOMIZE_KSTACK_OFFSET=y
-# CONFIG_RANDOMIZE_KSTACK_OFFSET_DEFAULT is not set
-CONFIG_ARCH_HAS_STRICT_KERNEL_RWX=y
-CONFIG_STRICT_KERNEL_RWX=y
-CONFIG_ARCH_HAS_STRICT_MODULE_RWX=y
-CONFIG_HAVE_ARCH_PREL32_RELOCATIONS=y
-CONFIG_ARCH_HAS_MEM_ENCRYPT=y
-CONFIG_HAVE_STATIC_CALL=y
-CONFIG_HAVE_STATIC_CALL_INLINE=y
-CONFIG_HAVE_PREEMPT_DYNAMIC=y
-CONFIG_HAVE_PREEMPT_DYNAMIC_CALL=y
-CONFIG_ARCH_WANT_LD_ORPHAN_WARN=y
-CONFIG_ARCH_SUPPORTS_DEBUG_PAGEALLOC=y
-CONFIG_ARCH_SUPPORTS_PAGE_TABLE_CHECK=y
-CONFIG_ARCH_HAS_ELFCORE_COMPAT=y
-CONFIG_ARCH_HAS_PARANOID_L1D_FLUSH=y
-CONFIG_DYNAMIC_SIGFRAME=y
-CONFIG_ARCH_HAS_NONLEAF_PMD_YOUNG=y
-
-#
-# GCOV-based kernel profiling
-#
-CONFIG_ARCH_HAS_GCOV_PROFILE_ALL=y
-# end of GCOV-based kernel profiling
-
-CONFIG_HAVE_GCC_PLUGINS=y
-# CONFIG_GCC_PLUGINS is not set
-CONFIG_FUNCTION_ALIGNMENT_4B=y
-CONFIG_FUNCTION_ALIGNMENT_16B=y
-CONFIG_FUNCTION_ALIGNMENT=16
-# end of General architecture-dependent options
-
-CONFIG_RT_MUTEXES=y
-CONFIG_BASE_SMALL=0
-# CONFIG_MODULES is not set
-CONFIG_BLOCK=y
-# CONFIG_BLOCK_LEGACY_AUTOLOAD is not set
-# CONFIG_BLK_DEV_BSGLIB is not set
-# CONFIG_BLK_DEV_INTEGRITY is not set
-# CONFIG_BLK_DEV_ZONED is not set
-# CONFIG_BLK_WBT is not set
-# CONFIG_BLK_SED_OPAL is not set
-# CONFIG_BLK_INLINE_ENCRYPTION is not set
-
-#
-# Partition Types
-#
-# CONFIG_PARTITION_ADVANCED is not set
-CONFIG_MSDOS_PARTITION=y
-CONFIG_EFI_PARTITION=y
-# end of Partition Types
-
-#
-# IO Schedulers
-#
-# CONFIG_MQ_IOSCHED_DEADLINE is not set
-# CONFIG_MQ_IOSCHED_KYBER is not set
-# CONFIG_IOSCHED_BFQ is not set
-# end of IO Schedulers
-
-CONFIG_INLINE_SPIN_UNLOCK_IRQ=y
-CONFIG_INLINE_READ_UNLOCK=y
-CONFIG_INLINE_READ_UNLOCK_IRQ=y
-CONFIG_INLINE_WRITE_UNLOCK=y
-CONFIG_INLINE_WRITE_UNLOCK_IRQ=y
-CONFIG_ARCH_SUPPORTS_ATOMIC_RMW=y
-CONFIG_ARCH_USE_QUEUED_SPINLOCKS=y
-CONFIG_ARCH_USE_QUEUED_RWLOCKS=y
-CONFIG_ARCH_HAS_NON_OVERLAPPING_ADDRESS_SPACE=y
-CONFIG_ARCH_HAS_SYNC_CORE_BEFORE_USERMODE=y
-CONFIG_ARCH_HAS_SYSCALL_WRAPPER=y
-
-#
-# Executable file formats
-#
-# CONFIG_BINFMT_ELF is not set
-# CONFIG_BINFMT_SCRIPT is not set
-# CONFIG_BINFMT_MISC is not set
-CONFIG_COREDUMP=y
-# end of Executable file formats
-
-#
-# Memory Management options
-#
-# CONFIG_SWAP is not set
-
-#
-# SLAB allocator options
-#
-# CONFIG_SLAB is not set
-CONFIG_SLUB=y
-# CONFIG_SLAB_MERGE_DEFAULT is not set
-# CONFIG_SLAB_FREELIST_RANDOM is not set
-# CONFIG_SLAB_FREELIST_HARDENED is not set
-# CONFIG_SLUB_STATS is not set
-# end of SLAB allocator options
-
-# CONFIG_SHUFFLE_PAGE_ALLOCATOR is not set
-# CONFIG_COMPAT_BRK is not set
-CONFIG_SPARSEMEM=y
-CONFIG_SPARSEMEM_EXTREME=y
-CONFIG_SPARSEMEM_VMEMMAP_ENABLE=y
-# CONFIG_SPARSEMEM_VMEMMAP is not set
-CONFIG_ARCH_WANT_OPTIMIZE_VMEMMAP=y
-CONFIG_HAVE_FAST_GUP=y
-CONFIG_EXCLUSIVE_SYSTEM_RAM=y
-CONFIG_ARCH_ENABLE_MEMORY_HOTPLUG=y
-# CONFIG_MEMORY_HOTPLUG is not set
-CONFIG_SPLIT_PTLOCK_CPUS=4
-CONFIG_ARCH_ENABLE_SPLIT_PMD_PTLOCK=y
-# CONFIG_COMPACTION is not set
-# CONFIG_PAGE_REPORTING is not set
-CONFIG_PHYS_ADDR_T_64BIT=y
-# CONFIG_KSM is not set
-CONFIG_DEFAULT_MMAP_MIN_ADDR=4096
-CONFIG_ARCH_WANT_GENERAL_HUGETLB=y
-CONFIG_ARCH_WANTS_THP_SWAP=y
-# CONFIG_TRANSPARENT_HUGEPAGE is not set
-CONFIG_NEED_PER_CPU_KM=y
-CONFIG_NEED_PER_CPU_EMBED_FIRST_CHUNK=y
-CONFIG_NEED_PER_CPU_PAGE_FIRST_CHUNK=y
-CONFIG_HAVE_SETUP_PER_CPU_AREA=y
-# CONFIG_CMA is not set
-CONFIG_GENERIC_EARLY_IOREMAP=y
-# CONFIG_IDLE_PAGE_TRACKING is not set
-CONFIG_ARCH_HAS_CACHE_LINE_SIZE=y
-CONFIG_ARCH_HAS_CURRENT_STACK_POINTER=y
-CONFIG_ARCH_HAS_PTE_DEVMAP=y
-CONFIG_ZONE_DMA=y
-CONFIG_ZONE_DMA32=y
-CONFIG_VM_EVENT_COUNTERS=y
-# CONFIG_PERCPU_STATS is not set
-
-#
-# GUP_TEST needs to have DEBUG_FS enabled
-#
-# CONFIG_DMAPOOL_TEST is not set
-CONFIG_ARCH_HAS_PTE_SPECIAL=y
-CONFIG_SECRETMEM=y
-# CONFIG_ANON_VMA_NAME is not set
-# CONFIG_USERFAULTFD is not set
-# CONFIG_LRU_GEN is not set
-CONFIG_ARCH_SUPPORTS_PER_VMA_LOCK=y
-
-#
-# Data Access Monitoring
-#
-# CONFIG_DAMON is not set
-# end of Data Access Monitoring
-# end of Memory Management options
-
-# CONFIG_NET is not set
-
-#
-# Device Drivers
-#
-CONFIG_HAVE_EISA=y
-# CONFIG_EISA is not set
-CONFIG_HAVE_PCI=y
-# CONFIG_PCI is not set
-# CONFIG_PCCARD is not set
-
-#
-# Generic Driver Options
-#
-# CONFIG_UEVENT_HELPER is not set
-# CONFIG_DEVTMPFS is not set
-# CONFIG_STANDALONE is not set
-# CONFIG_PREVENT_FIRMWARE_BUILD is not set
-
-#
-# Firmware loader
-#
-CONFIG_FW_LOADER=y
-CONFIG_EXTRA_FIRMWARE=""
-# CONFIG_FW_LOADER_USER_HELPER is not set
-# CONFIG_FW_LOADER_COMPRESS is not set
-# CONFIG_FW_UPLOAD is not set
-# end of Firmware loader
-
-CONFIG_ALLOW_DEV_COREDUMP=y
-CONFIG_GENERIC_CPU_AUTOPROBE=y
-CONFIG_GENERIC_CPU_VULNERABILITIES=y
-# CONFIG_FW_DEVLINK_SYNC_STATE_TIMEOUT is not set
-# end of Generic Driver Options
-
-#
-# Bus devices
-#
-# CONFIG_ARM_INTEGRATOR_LM is not set
-# CONFIG_BT1_APB is not set
-# CONFIG_BT1_AXI is not set
-# CONFIG_HISILICON_LPC is not set
-# CONFIG_INTEL_IXP4XX_EB is not set
-# CONFIG_QCOM_EBI2 is not set
-# CONFIG_MHI_BUS is not set
-# CONFIG_MHI_BUS_EP is not set
-# end of Bus devices
-
-#
-# Firmware Drivers
-#
-
-#
-# ARM System Control and Management Interface Protocol
-#
-# CONFIG_ARM_SCMI_PROTOCOL is not set
-# end of ARM System Control and Management Interface Protocol
-
-# CONFIG_EDD is not set
-CONFIG_FIRMWARE_MEMMAP=y
-# CONFIG_DMIID is not set
-# CONFIG_DMI_SYSFS is not set
-CONFIG_DMI_SCAN_MACHINE_NON_EFI_FALLBACK=y
-# CONFIG_FW_CFG_SYSFS is not set
-# CONFIG_SYSFB_SIMPLEFB is not set
-# CONFIG_BCM47XX_NVRAM is not set
-# CONFIG_GOOGLE_FIRMWARE is not set
-
-#
-# Tegra firmware driver
-#
-# end of Tegra firmware driver
-# end of Firmware Drivers
-
-# CONFIG_GNSS is not set
-# CONFIG_MTD is not set
-# CONFIG_OF is not set
-CONFIG_ARCH_MIGHT_HAVE_PC_PARPORT=y
-# CONFIG_PARPORT is not set
-# CONFIG_BLK_DEV is not set
-
-#
-# NVME Support
-#
-# CONFIG_NVME_FC is not set
-# end of NVME Support
-
-#
-# Misc devices
-#
-# CONFIG_DUMMY_IRQ is not set
-# CONFIG_ATMEL_SSC is not set
-# CONFIG_ENCLOSURE_SERVICES is not set
-# CONFIG_SMPRO_ERRMON is not set
-# CONFIG_SMPRO_MISC is not set
-# CONFIG_QCOM_COINCELL is not set
-# CONFIG_SRAM is not set
-# CONFIG_XILINX_SDFEC is not set
-# CONFIG_C2PORT is not set
-
-#
-# EEPROM support
-#
-# CONFIG_EEPROM_93CX6 is not set
-# end of EEPROM support
-
-#
-# Texas Instruments shared transport line discipline
-#
-# end of Texas Instruments shared transport line discipline
-
-#
-# Altera FPGA firmware download module (requires I2C)
-#
-# CONFIG_ECHO is not set
-# CONFIG_PVPANIC is not set
-# end of Misc devices
-
-#
-# SCSI device support
-#
-CONFIG_SCSI_MOD=y
-# CONFIG_RAID_ATTRS is not set
-# CONFIG_SCSI is not set
-# end of SCSI device support
-
-# CONFIG_ATA is not set
-# CONFIG_MD is not set
-# CONFIG_TARGET_CORE is not set
-
-#
-# IEEE 1394 (FireWire) support
-#
-# CONFIG_FIREWIRE is not set
-# end of IEEE 1394 (FireWire) support
-
-# CONFIG_MACINTOSH_DRIVERS is not set
-
-#
-# Input device support
-#
-CONFIG_INPUT=y
-# CONFIG_INPUT_FF_MEMLESS is not set
-# CONFIG_INPUT_SPARSEKMAP is not set
-# CONFIG_INPUT_MATRIXKMAP is not set
-
-#
-# Userland interfaces
-#
-# CONFIG_INPUT_MOUSEDEV is not set
-# CONFIG_INPUT_JOYDEV is not set
-# CONFIG_INPUT_EVDEV is not set
-# CONFIG_INPUT_EVBUG is not set
-
-#
-# Input Device Drivers
-#
-# CONFIG_INPUT_KEYBOARD is not set
-# CONFIG_INPUT_MOUSE is not set
-# CONFIG_INPUT_JOYSTICK is not set
-# CONFIG_INPUT_TABLET is not set
-# CONFIG_INPUT_TOUCHSCREEN is not set
-# CONFIG_INPUT_MISC is not set
-# CONFIG_RMI4_CORE is not set
-
-#
-# Hardware I/O ports
-#
-# CONFIG_SERIO is not set
-CONFIG_ARCH_MIGHT_HAVE_PC_SERIO=y
-# CONFIG_GAMEPORT is not set
-# end of Hardware I/O ports
-# end of Input device support
-
-#
-# Character devices
-#
-CONFIG_TTY=y
-CONFIG_VT=y
-CONFIG_CONSOLE_TRANSLATIONS=y
-CONFIG_VT_CONSOLE=y
-CONFIG_HW_CONSOLE=y
-# CONFIG_VT_HW_CONSOLE_BINDING is not set
-CONFIG_UNIX98_PTYS=y
-# CONFIG_LEGACY_PTYS is not set
-# CONFIG_LEGACY_TIOCSTI is not set
-# CONFIG_LDISC_AUTOLOAD is not set
-
-#
-# Serial drivers
-#
-# CONFIG_SERIAL_8250 is not set
-
-#
-# Non-8250 serial port support
-#
-# CONFIG_SERIAL_AMBA_PL010 is not set
-# CONFIG_SERIAL_MESON is not set
-# CONFIG_SERIAL_CLPS711X is not set
-# CONFIG_SERIAL_SAMSUNG is not set
-# CONFIG_SERIAL_TEGRA is not set
-# CONFIG_SERIAL_IMX is not set
-# CONFIG_SERIAL_UARTLITE is not set
-# CONFIG_SERIAL_SH_SCI is not set
-# CONFIG_SERIAL_MSM is not set
-# CONFIG_SERIAL_VT8500 is not set
-# CONFIG_SERIAL_OMAP is not set
-# CONFIG_SERIAL_LANTIQ is not set
-# CONFIG_SERIAL_SCCNXP is not set
-# CONFIG_SERIAL_TIMBERDALE is not set
-# CONFIG_SERIAL_BCM63XX is not set
-# CONFIG_SERIAL_ALTERA_JTAGUART is not set
-# CONFIG_SERIAL_ALTERA_UART is not set
-# CONFIG_SERIAL_MXS_AUART is not set
-# CONFIG_SERIAL_MPS2_UART is not set
-# CONFIG_SERIAL_ARC is not set
-# CONFIG_SERIAL_FSL_LPUART is not set
-# CONFIG_SERIAL_FSL_LINFLEXUART is not set
-# CONFIG_SERIAL_ST_ASC is not set
-# CONFIG_SERIAL_STM32 is not set
-# CONFIG_SERIAL_OWL is not set
-# CONFIG_SERIAL_RDA is not set
-# CONFIG_SERIAL_SUNPLUS is not set
-# end of Serial drivers
-
-# CONFIG_SERIAL_NONSTANDARD is not set
-# CONFIG_NULL_TTY is not set
-# CONFIG_SERIAL_DEV_BUS is not set
-# CONFIG_VIRTIO_CONSOLE is not set
-# CONFIG_IPMI_HANDLER is not set
-# CONFIG_ASPEED_KCS_IPMI_BMC is not set
-# CONFIG_NPCM7XX_KCS_IPMI_BMC is not set
-# CONFIG_HW_RANDOM is not set
-# CONFIG_MWAVE is not set
-# CONFIG_DEVMEM is not set
-# CONFIG_NVRAM is not set
-# CONFIG_HANGCHECK_TIMER is not set
-# CONFIG_TCG_TPM is not set
-# CONFIG_TELCLOCK is not set
-# end of Character devices
-
-#
-# I2C support
-#
-# CONFIG_I2C is not set
-# end of I2C support
-
-# CONFIG_I3C is not set
-# CONFIG_SPI is not set
-# CONFIG_SPMI is not set
-# CONFIG_HSI is not set
-# CONFIG_PPS is not set
-
-#
-# PTP clock support
-#
-CONFIG_PTP_1588_CLOCK_OPTIONAL=y
-
-#
-# Enable PHYLIB and NETWORK_PHY_TIMESTAMPING to see the additional clocks.
-#
-# end of PTP clock support
-
-# CONFIG_PINCTRL is not set
-# CONFIG_GPIOLIB is not set
-# CONFIG_W1 is not set
-# CONFIG_POWER_RESET is not set
-# CONFIG_POWER_SUPPLY is not set
-# CONFIG_HWMON is not set
-# CONFIG_THERMAL is not set
-# CONFIG_WATCHDOG is not set
-CONFIG_SSB_POSSIBLE=y
-# CONFIG_SSB is not set
-CONFIG_BCMA_POSSIBLE=y
-# CONFIG_BCMA is not set
-
-#
-# Multifunction device drivers
-#
-# CONFIG_MFD_SUN4I_GPADC is not set
-# CONFIG_MFD_AT91_USART is not set
-# CONFIG_MFD_MADERA is not set
-# CONFIG_MFD_EXYNOS_LPASS is not set
-# CONFIG_MFD_MXS_LRADC is not set
-# CONFIG_MFD_MX25_TSADC is not set
-# CONFIG_MFD_KEMPLD is not set
-# CONFIG_MFD_MT6397 is not set
-# CONFIG_MFD_PM8XXX is not set
-# CONFIG_MFD_SM501 is not set
-# CONFIG_RZ_MTU3 is not set
-# CONFIG_ABX500_CORE is not set
-# CONFIG_MFD_SUN6I_PRCM is not set
-# CONFIG_MFD_SYSCON is not set
-# CONFIG_MFD_TI_AM335X_TSCADC is not set
-# CONFIG_MFD_TQMX86 is not set
-# CONFIG_MFD_STM32_LPTIMER is not set
-# CONFIG_MFD_STM32_TIMERS is not set
-# end of Multifunction device drivers
-
-# CONFIG_REGULATOR is not set
-# CONFIG_RC_CORE is not set
-
-#
-# CEC support
-#
-# CONFIG_MEDIA_CEC_SUPPORT is not set
-# end of CEC support
-
-# CONFIG_MEDIA_SUPPORT is not set
-
-#
-# Graphics support
-#
-# CONFIG_TEGRA_HOST1X is not set
-# CONFIG_IMX_IPUV3_CORE is not set
-# CONFIG_DRM is not set
-
-#
-# ARM devices
-#
-# end of ARM devices
-
-#
-# Frame buffer Devices
-#
-# CONFIG_FB is not set
-# CONFIG_MMP_DISP is not set
-# end of Frame buffer Devices
-
-#
-# Backlight & LCD device support
-#
-# CONFIG_LCD_CLASS_DEVICE is not set
-# CONFIG_BACKLIGHT_CLASS_DEVICE is not set
-# end of Backlight & LCD device support
-
-#
-# Console display driver support
-#
-CONFIG_VGA_CONSOLE=y
-CONFIG_DUMMY_CONSOLE=y
-CONFIG_DUMMY_CONSOLE_COLUMNS=80
-CONFIG_DUMMY_CONSOLE_ROWS=25
-# end of Console display driver support
-# end of Graphics support
-
-# CONFIG_SOUND is not set
-# CONFIG_HID_SUPPORT is not set
-CONFIG_USB_OHCI_LITTLE_ENDIAN=y
-# CONFIG_USB_SUPPORT is not set
-# CONFIG_MMC is not set
-# CONFIG_MEMSTICK is not set
-# CONFIG_NEW_LEDS is not set
-# CONFIG_ACCESSIBILITY is not set
-CONFIG_EDAC_ATOMIC_SCRUB=y
-CONFIG_EDAC_SUPPORT=y
-CONFIG_RTC_LIB=y
-CONFIG_RTC_MC146818_LIB=y
-# CONFIG_RTC_CLASS is not set
-# CONFIG_DMADEVICES is not set
-
-#
-# DMABUF options
-#
-# CONFIG_SYNC_FILE is not set
-# CONFIG_DMABUF_HEAPS is not set
-# end of DMABUF options
-
-# CONFIG_AUXDISPLAY is not set
-# CONFIG_UIO is not set
-# CONFIG_VFIO is not set
-# CONFIG_VIRT_DRIVERS is not set
-# CONFIG_VIRTIO_MENU is not set
-# CONFIG_VHOST_MENU is not set
-
-#
-# Microsoft Hyper-V guest support
-#
-# end of Microsoft Hyper-V guest support
-
-# CONFIG_GREYBUS is not set
-# CONFIG_COMEDI is not set
-# CONFIG_STAGING is not set
-# CONFIG_CHROME_PLATFORMS is not set
-# CONFIG_MELLANOX_PLATFORM is not set
-# CONFIG_OLPC_XO175 is not set
-# CONFIG_SURFACE_PLATFORMS is not set
-# CONFIG_X86_PLATFORM_DEVICES is not set
-# CONFIG_COMMON_CLK is not set
-# CONFIG_HWSPINLOCK is not set
-
-#
-# Clock Source drivers
-#
-CONFIG_CLKEVT_I8253=y
-CONFIG_I8253_LOCK=y
-CONFIG_CLKBLD_I8253=y
-# CONFIG_BCM2835_TIMER is not set
-# CONFIG_BCM_KONA_TIMER is not set
-# CONFIG_DAVINCI_TIMER is not set
-# CONFIG_DIGICOLOR_TIMER is not set
-# CONFIG_OMAP_DM_TIMER is not set
-# CONFIG_DW_APB_TIMER is not set
-# CONFIG_FTTMR010_TIMER is not set
-# CONFIG_IXP4XX_TIMER is not set
-# CONFIG_MESON6_TIMER is not set
-# CONFIG_OWL_TIMER is not set
-# CONFIG_RDA_TIMER is not set
-# CONFIG_SUN4I_TIMER is not set
-# CONFIG_TEGRA_TIMER is not set
-# CONFIG_VT8500_TIMER is not set
-# CONFIG_NPCM7XX_TIMER is not set
-# CONFIG_ASM9260_TIMER is not set
-# CONFIG_CLKSRC_DBX500_PRCMU is not set
-# CONFIG_CLPS711X_TIMER is not set
-# CONFIG_MXS_TIMER is not set
-# CONFIG_NSPIRE_TIMER is not set
-# CONFIG_INTEGRATOR_AP_TIMER is not set
-# CONFIG_CLKSRC_PISTACHIO is not set
-# CONFIG_CLKSRC_STM32_LP is not set
-# CONFIG_ARMV7M_SYSTICK is not set
-# CONFIG_ATMEL_PIT is not set
-# CONFIG_ATMEL_ST is not set
-# CONFIG_CLKSRC_SAMSUNG_PWM is not set
-# CONFIG_FSL_FTM_TIMER is not set
-# CONFIG_OXNAS_RPS_TIMER is not set
-# CONFIG_MTK_TIMER is not set
-# CONFIG_MTK_CPUX_TIMER is not set
-# CONFIG_SH_TIMER_CMT is not set
-# CONFIG_SH_TIMER_MTU2 is not set
-# CONFIG_RENESAS_OSTM is not set
-# CONFIG_SH_TIMER_TMU is not set
-# CONFIG_EM_TIMER_STI is not set
-# CONFIG_CLKSRC_PXA is not set
-# CONFIG_TIMER_IMX_SYS_CTR is not set
-# CONFIG_CLKSRC_ST_LPC is not set
-# CONFIG_GXP_TIMER is not set
-# CONFIG_MSC313E_TIMER is not set
-# end of Clock Source drivers
-
-# CONFIG_MAILBOX is not set
-# CONFIG_IOMMU_SUPPORT is not set
-
-#
-# Remoteproc drivers
-#
-# CONFIG_REMOTEPROC is not set
-# end of Remoteproc drivers
-
-#
-# Rpmsg drivers
-#
-# CONFIG_RPMSG_VIRTIO is not set
-# end of Rpmsg drivers
-
-#
-# SOC (System On Chip) specific Drivers
-#
-
-#
-# Amlogic SoC drivers
-#
-# CONFIG_MESON_CANVAS is not set
-# CONFIG_MESON_CLK_MEASURE is not set
-# CONFIG_MESON_GX_SOCINFO is not set
-# CONFIG_MESON_MX_SOCINFO is not set
-# end of Amlogic SoC drivers
-
-#
-# Apple SoC drivers
-#
-# CONFIG_APPLE_SART is not set
-# end of Apple SoC drivers
-
-#
-# ASPEED SoC drivers
-#
-# CONFIG_ASPEED_LPC_CTRL is not set
-# CONFIG_ASPEED_LPC_SNOOP is not set
-# CONFIG_ASPEED_UART_ROUTING is not set
-# CONFIG_ASPEED_P2A_CTRL is not set
-# CONFIG_ASPEED_SOCINFO is not set
-# end of ASPEED SoC drivers
-
-# CONFIG_AT91_SOC_ID is not set
-# CONFIG_AT91_SOC_SFR is not set
-
-#
-# Broadcom SoC drivers
-#
-# CONFIG_SOC_BCM63XX is not set
-# CONFIG_SOC_BRCMSTB is not set
-# end of Broadcom SoC drivers
-
-#
-# NXP/Freescale QorIQ SoC drivers
-#
-# end of NXP/Freescale QorIQ SoC drivers
-
-#
-# fujitsu SoC drivers
-#
-# end of fujitsu SoC drivers
-
-#
-# i.MX SoC drivers
-#
-# CONFIG_SOC_IMX8M is not set
-# CONFIG_SOC_IMX9 is not set
-# end of i.MX SoC drivers
-
-#
-# IXP4xx SoC drivers
-#
-# CONFIG_IXP4XX_QMGR is not set
-# CONFIG_IXP4XX_NPE is not set
-# end of IXP4xx SoC drivers
-
-#
-# Enable LiteX SoC Builder specific drivers
-#
-# CONFIG_LITEX_SOC_CONTROLLER is not set
-# end of Enable LiteX SoC Builder specific drivers
-
-# CONFIG_LOONGSON2_GUTS is not set
-
-#
-# MediaTek SoC drivers
-#
-# CONFIG_MTK_CMDQ is not set
-# CONFIG_MTK_DEVAPC is not set
-# CONFIG_MTK_INFRACFG is not set
-# CONFIG_MTK_MMSYS is not set
-# end of MediaTek SoC drivers
-
-# CONFIG_WPCM450_SOC is not set
-
-#
-# Qualcomm SoC drivers
-#
-# CONFIG_QCOM_GENI_SE is not set
-# CONFIG_QCOM_GSBI is not set
-# CONFIG_QCOM_LLCC is not set
-# CONFIG_QCOM_RAMP_CTRL is not set
-# CONFIG_QCOM_RPMH is not set
-# CONFIG_QCOM_SPM is not set
-# CONFIG_QCOM_ICC_BWMON is not set
-# end of Qualcomm SoC drivers
-
-# CONFIG_SOC_RENESAS is not set
-# CONFIG_ROCKCHIP_GRF is not set
-# CONFIG_SOC_SAMSUNG is not set
-# CONFIG_SOC_TI is not set
-# CONFIG_UX500_SOC_ID is not set
-
-#
-# Xilinx SoC drivers
-#
-# end of Xilinx SoC drivers
-# end of SOC (System On Chip) specific Drivers
-
-# CONFIG_PM_DEVFREQ is not set
-# CONFIG_EXTCON is not set
-# CONFIG_MEMORY is not set
-# CONFIG_IIO is not set
-# CONFIG_PWM is not set
-
-#
-# IRQ chip support
-#
-# CONFIG_RENESAS_INTC_IRQPIN is not set
-# CONFIG_RENESAS_IRQC is not set
-# CONFIG_RENESAS_RZA1_IRQC is not set
-# CONFIG_RENESAS_RZG2L_IRQC is not set
-# CONFIG_SL28CPLD_INTC is not set
-# CONFIG_TS4800_IRQ is not set
-# CONFIG_INGENIC_TCU_IRQ is not set
-# CONFIG_IRQ_UNIPHIER_AIDET is not set
-# CONFIG_MESON_IRQ_GPIO is not set
-# CONFIG_IMX_IRQSTEER is not set
-# CONFIG_IMX_INTMUX is not set
-# CONFIG_EXYNOS_IRQ_COMBINER is not set
-# CONFIG_MST_IRQ is not set
-# CONFIG_MCHP_EIC is not set
-# CONFIG_SUNPLUS_SP7021_INTC is not set
-# end of IRQ chip support
-
-# CONFIG_IPACK_BUS is not set
-# CONFIG_RESET_CONTROLLER is not set
-
-#
-# PHY Subsystem
-#
-# CONFIG_GENERIC_PHY is not set
-# CONFIG_PHY_PISTACHIO_USB is not set
-# CONFIG_PHY_CAN_TRANSCEIVER is not set
-
-#
-# PHY drivers for Broadcom platforms
-#
-# CONFIG_PHY_BCM63XX_USBH is not set
-# CONFIG_BCM_KONA_USB2_PHY is not set
-# end of PHY drivers for Broadcom platforms
-
-# CONFIG_PHY_HI6220_USB is not set
-# CONFIG_PHY_HI3660_USB is not set
-# CONFIG_PHY_HI3670_USB is not set
-# CONFIG_PHY_HI3670_PCIE is not set
-# CONFIG_PHY_HISTB_COMBPHY is not set
-# CONFIG_PHY_HISI_INNO_USB2 is not set
-# CONFIG_PHY_PXA_28NM_HSIC is not set
-# CONFIG_PHY_PXA_28NM_USB2 is not set
-# CONFIG_PHY_PXA_USB is not set
-# CONFIG_PHY_MMP3_USB is not set
-# CONFIG_PHY_MMP3_HSIC is not set
-# CONFIG_PHY_MT7621_PCI is not set
-# CONFIG_PHY_RALINK_USB is not set
-# CONFIG_PHY_R8A779F0_ETHERNET_SERDES is not set
-# CONFIG_PHY_RCAR_GEN3_USB3 is not set
-# CONFIG_PHY_ROCKCHIP_DPHY_RX0 is not set
-# CONFIG_PHY_ROCKCHIP_PCIE is not set
-# CONFIG_PHY_ROCKCHIP_SNPS_PCIE3 is not set
-# CONFIG_PHY_EXYNOS_MIPI_VIDEO is not set
-# CONFIG_PHY_SAMSUNG_USB2 is not set
-# CONFIG_PHY_ST_SPEAR1310_MIPHY is not set
-# CONFIG_PHY_ST_SPEAR1340_MIPHY is not set
-# CONFIG_PHY_TEGRA194_P2U is not set
-# CONFIG_PHY_DA8XX_USB is not set
-# CONFIG_OMAP_CONTROL_PHY is not set
-# CONFIG_TI_PIPE3 is not set
-# CONFIG_PHY_INTEL_KEEMBAY_EMMC is not set
-# CONFIG_PHY_INTEL_KEEMBAY_USB is not set
-# CONFIG_PHY_INTEL_LGM_EMMC is not set
-# CONFIG_PHY_XILINX_ZYNQMP is not set
-# end of PHY Subsystem
-
-# CONFIG_POWERCAP is not set
-# CONFIG_MCB is not set
-
-#
-# Performance monitor support
-#
-# CONFIG_ARM_CCN is not set
-# CONFIG_ARM_CMN is not set
-# CONFIG_FSL_IMX8_DDR_PMU is not set
-# CONFIG_XGENE_PMU is not set
-# CONFIG_ARM_DMC620_PMU is not set
-# CONFIG_MARVELL_CN10K_TAD_PMU is not set
-# CONFIG_ALIBABA_UNCORE_DRW_PMU is not set
-# CONFIG_MARVELL_CN10K_DDR_PMU is not set
-# CONFIG_MESON_DDR_PMU is not set
-# end of Performance monitor support
-
-# CONFIG_RAS is not set
-
-#
-# Android
-#
-# CONFIG_ANDROID_BINDER_IPC is not set
-# end of Android
-
-# CONFIG_DAX is not set
-# CONFIG_NVMEM is not set
-
-#
-# HW tracing support
-#
-# CONFIG_STM is not set
-# CONFIG_INTEL_TH is not set
-# end of HW tracing support
-
-# CONFIG_FPGA is not set
-# CONFIG_TEE is not set
-# CONFIG_SIOX is not set
-# CONFIG_SLIMBUS is not set
-# CONFIG_INTERCONNECT is not set
-# CONFIG_COUNTER is not set
-# CONFIG_PECI is not set
-# CONFIG_HTE is not set
-# end of Device Drivers
-
-#
-# File systems
-#
-CONFIG_DCACHE_WORD_ACCESS=y
-# CONFIG_VALIDATE_FS_PARSER is not set
-# CONFIG_EXT2_FS is not set
-# CONFIG_EXT3_FS is not set
-# CONFIG_EXT4_FS is not set
-# CONFIG_REISERFS_FS is not set
-# CONFIG_JFS_FS is not set
-# CONFIG_XFS_FS is not set
-# CONFIG_GFS2_FS is not set
-# CONFIG_BTRFS_FS is not set
-# CONFIG_NILFS2_FS is not set
-# CONFIG_F2FS_FS is not set
-CONFIG_EXPORTFS=y
-# CONFIG_EXPORTFS_BLOCK_OPS is not set
-CONFIG_FILE_LOCKING=y
-# CONFIG_FS_ENCRYPTION is not set
-# CONFIG_FS_VERITY is not set
-# CONFIG_DNOTIFY is not set
-# CONFIG_INOTIFY_USER is not set
-# CONFIG_FANOTIFY is not set
-# CONFIG_QUOTA is not set
-# CONFIG_AUTOFS4_FS is not set
-# CONFIG_AUTOFS_FS is not set
-# CONFIG_FUSE_FS is not set
-# CONFIG_OVERLAY_FS is not set
-
-#
-# Caches
-#
-# CONFIG_FSCACHE is not set
-# end of Caches
-
-#
-# CD-ROM/DVD Filesystems
-#
-# CONFIG_ISO9660_FS is not set
-# CONFIG_UDF_FS is not set
-# end of CD-ROM/DVD Filesystems
-
-#
-# DOS/FAT/EXFAT/NT Filesystems
-#
-# CONFIG_MSDOS_FS is not set
-# CONFIG_VFAT_FS is not set
-# CONFIG_EXFAT_FS is not set
-# CONFIG_NTFS_FS is not set
-# CONFIG_NTFS3_FS is not set
-# end of DOS/FAT/EXFAT/NT Filesystems
-
-#
-# Pseudo filesystems
-#
-CONFIG_PROC_FS=y
-# CONFIG_PROC_KCORE is not set
-CONFIG_PROC_SYSCTL=y
-CONFIG_PROC_PAGE_MONITOR=y
-# CONFIG_PROC_CHILDREN is not set
-CONFIG_PROC_PID_ARCH_STATUS=y
-CONFIG_KERNFS=y
-CONFIG_SYSFS=y
-# CONFIG_TMPFS is not set
-# CONFIG_HUGETLBFS is not set
-CONFIG_ARCH_HAS_GIGANTIC_PAGE=y
-# CONFIG_CONFIGFS_FS is not set
-# end of Pseudo filesystems
-
-# CONFIG_MISC_FILESYSTEMS is not set
-# CONFIG_NLS is not set
-# CONFIG_UNICODE is not set
-CONFIG_IO_WQ=y
-# end of File systems
-
-#
-# Security options
-#
-# CONFIG_KEYS is not set
-# CONFIG_SECURITY_DMESG_RESTRICT is not set
-# CONFIG_SECURITY is not set
-# CONFIG_SECURITYFS is not set
-CONFIG_HAVE_HARDENED_USERCOPY_ALLOCATOR=y
-# CONFIG_HARDENED_USERCOPY is not set
-# CONFIG_FORTIFY_SOURCE is not set
-# CONFIG_STATIC_USERMODEHELPER is not set
-CONFIG_DEFAULT_SECURITY_DAC=y
-CONFIG_LSM="landlock,lockdown,yama,loadpin,safesetid,bpf"
-
-#
-# Kernel hardening options
-#
-
-#
-# Memory initialization
-#
-CONFIG_INIT_STACK_NONE=y
-# CONFIG_INIT_ON_ALLOC_DEFAULT_ON is not set
-# CONFIG_INIT_ON_FREE_DEFAULT_ON is not set
-CONFIG_CC_HAS_ZERO_CALL_USED_REGS=y
-# CONFIG_ZERO_CALL_USED_REGS is not set
-# end of Memory initialization
-
-CONFIG_RANDSTRUCT_NONE=y
-# end of Kernel hardening options
-# end of Security options
-
-# CONFIG_CRYPTO is not set
-
-#
-# Library routines
-#
-# CONFIG_PACKING is not set
-CONFIG_BITREVERSE=y
-CONFIG_GENERIC_STRNCPY_FROM_USER=y
-CONFIG_GENERIC_STRNLEN_USER=y
-# CONFIG_CORDIC is not set
-# CONFIG_PRIME_NUMBERS is not set
-CONFIG_GENERIC_PCI_IOMAP=y
-CONFIG_GENERIC_IOMAP=y
-CONFIG_ARCH_USE_CMPXCHG_LOCKREF=y
-CONFIG_ARCH_HAS_FAST_MULTIPLIER=y
-CONFIG_ARCH_USE_SYM_ANNOTATIONS=y
-
-#
-# Crypto library routines
-#
-CONFIG_CRYPTO_LIB_BLAKE2S_GENERIC=y
-# CONFIG_CRYPTO_LIB_CHACHA is not set
-# CONFIG_CRYPTO_LIB_CURVE25519 is not set
-CONFIG_CRYPTO_LIB_POLY1305_RSIZE=11
-# CONFIG_CRYPTO_LIB_POLY1305 is not set
-# end of Crypto library routines
-
-# CONFIG_CRC_CCITT is not set
-# CONFIG_CRC16 is not set
-# CONFIG_CRC_T10DIF is not set
-# CONFIG_CRC64_ROCKSOFT is not set
-# CONFIG_CRC_ITU_T is not set
-CONFIG_CRC32=y
-# CONFIG_CRC32_SELFTEST is not set
-CONFIG_CRC32_SLICEBY8=y
-# CONFIG_CRC32_SLICEBY4 is not set
-# CONFIG_CRC32_SARWATE is not set
-# CONFIG_CRC32_BIT is not set
-# CONFIG_CRC64 is not set
-# CONFIG_CRC4 is not set
-# CONFIG_CRC7 is not set
-# CONFIG_LIBCRC32C is not set
-# CONFIG_CRC8 is not set
-# CONFIG_RANDOM32_SELFTEST is not set
-# CONFIG_XZ_DEC is not set
-CONFIG_HAS_IOMEM=y
-CONFIG_HAS_IOPORT=y
-CONFIG_HAS_IOPORT_MAP=y
-CONFIG_HAS_DMA=y
-CONFIG_NEED_SG_DMA_LENGTH=y
-CONFIG_NEED_DMA_MAP_STATE=y
-CONFIG_ARCH_DMA_ADDR_T_64BIT=y
-CONFIG_SWIOTLB=y
-# CONFIG_DMA_API_DEBUG is not set
-# CONFIG_IRQ_POLL is not set
-CONFIG_HAVE_GENERIC_VDSO=y
-CONFIG_GENERIC_GETTIMEOFDAY=y
-CONFIG_GENERIC_VDSO_TIME_NS=y
-CONFIG_ARCH_HAS_PMEM_API=y
-CONFIG_ARCH_HAS_CPU_CACHE_INVALIDATE_MEMREGION=y
-CONFIG_ARCH_HAS_UACCESS_FLUSHCACHE=y
-CONFIG_ARCH_HAS_COPY_MC=y
-CONFIG_ARCH_STACKWALK=y
-CONFIG_STACKDEPOT=y
-CONFIG_SBITMAP=y
-# CONFIG_PARMAN is not set
-# CONFIG_OBJAGG is not set
-# end of Library routines
-
-#
-# Kernel hacking
-#
-
-#
-# printk and dmesg options
-#
-# CONFIG_PRINTK_TIME is not set
-# CONFIG_PRINTK_CALLER is not set
-# CONFIG_STACKTRACE_BUILD_ID is not set
-CONFIG_CONSOLE_LOGLEVEL_DEFAULT=7
-CONFIG_CONSOLE_LOGLEVEL_QUIET=4
-CONFIG_MESSAGE_LOGLEVEL_DEFAULT=4
-# CONFIG_DYNAMIC_DEBUG is not set
-# CONFIG_DYNAMIC_DEBUG_CORE is not set
-# CONFIG_SYMBOLIC_ERRNAME is not set
-CONFIG_DEBUG_BUGVERBOSE=y
-# end of printk and dmesg options
-
-# CONFIG_DEBUG_KERNEL is not set
-
-#
-# Compile-time checks and compiler options
-#
-CONFIG_AS_HAS_NON_CONST_LEB128=y
-CONFIG_FRAME_WARN=2048
-# CONFIG_STRIP_ASM_SYMS is not set
-# CONFIG_HEADERS_INSTALL is not set
-CONFIG_DEBUG_SECTION_MISMATCH=y
-CONFIG_SECTION_MISMATCH_WARN_ONLY=y
-CONFIG_OBJTOOL=y
-# end of Compile-time checks and compiler options
-
-#
-# Generic Kernel Debugging Instruments
-#
-# CONFIG_MAGIC_SYSRQ is not set
-# CONFIG_DEBUG_FS is not set
-CONFIG_HAVE_ARCH_KGDB=y
-CONFIG_ARCH_HAS_UBSAN_SANITIZE_ALL=y
-# CONFIG_UBSAN is not set
-CONFIG_HAVE_ARCH_KCSAN=y
-CONFIG_HAVE_KCSAN_COMPILER=y
-# end of Generic Kernel Debugging Instruments
-
-#
-# Networking Debugging
-#
-# end of Networking Debugging
-
-#
-# Memory Debugging
-#
-# CONFIG_PAGE_EXTENSION is not set
-CONFIG_SLUB_DEBUG=y
-# CONFIG_SLUB_DEBUG_ON is not set
-# CONFIG_PAGE_TABLE_CHECK is not set
-# CONFIG_PAGE_POISONING is not set
-# CONFIG_DEBUG_RODATA_TEST is not set
-CONFIG_ARCH_HAS_DEBUG_WX=y
-# CONFIG_DEBUG_WX is not set
-CONFIG_GENERIC_PTDUMP=y
-CONFIG_HAVE_DEBUG_KMEMLEAK=y
-CONFIG_ARCH_HAS_DEBUG_VM_PGTABLE=y
-# CONFIG_DEBUG_VM_PGTABLE is not set
-CONFIG_ARCH_HAS_DEBUG_VIRTUAL=y
-CONFIG_DEBUG_MEMORY_INIT=y
-CONFIG_ARCH_SUPPORTS_KMAP_LOCAL_FORCE_MAP=y
-CONFIG_HAVE_ARCH_KASAN=y
-CONFIG_HAVE_ARCH_KASAN_VMALLOC=y
-CONFIG_CC_HAS_KASAN_GENERIC=y
-CONFIG_CC_HAS_WORKING_NOSANITIZE_ADDRESS=y
-# CONFIG_KASAN is not set
-CONFIG_HAVE_ARCH_KFENCE=y
-# CONFIG_KFENCE is not set
-CONFIG_HAVE_ARCH_KMSAN=y
-# end of Memory Debugging
-
-#
-# Debug Oops, Lockups and Hangs
-#
-# CONFIG_PANIC_ON_OOPS is not set
-CONFIG_PANIC_ON_OOPS_VALUE=0
-CONFIG_PANIC_TIMEOUT=0
-CONFIG_HARDLOCKUP_CHECK_TIMESTAMP=y
-# end of Debug Oops, Lockups and Hangs
-
-#
-# Scheduler Debugging
-#
-# end of Scheduler Debugging
-
-# CONFIG_DEBUG_TIMEKEEPING is not set
-
-#
-# Lock Debugging (spinlocks, mutexes, etc...)
-#
-CONFIG_LOCK_DEBUGGING_SUPPORT=y
-# CONFIG_WW_MUTEX_SELFTEST is not set
-# end of Lock Debugging (spinlocks, mutexes, etc...)
-
-# CONFIG_DEBUG_IRQFLAGS is not set
-CONFIG_STACKTRACE=y
-# CONFIG_WARN_ALL_UNSEEDED_RANDOM is not set
-
-#
-# Debug kernel data structures
-#
-# CONFIG_BUG_ON_DATA_CORRUPTION is not set
-# end of Debug kernel data structures
-
-#
-# RCU Debugging
-#
-# end of RCU Debugging
-
-CONFIG_USER_STACKTRACE_SUPPORT=y
-CONFIG_HAVE_RETHOOK=y
-CONFIG_HAVE_FUNCTION_TRACER=y
-CONFIG_HAVE_DYNAMIC_FTRACE=y
-CONFIG_HAVE_DYNAMIC_FTRACE_WITH_REGS=y
-CONFIG_HAVE_DYNAMIC_FTRACE_WITH_DIRECT_CALLS=y
-CONFIG_HAVE_DYNAMIC_FTRACE_WITH_ARGS=y
-CONFIG_HAVE_DYNAMIC_FTRACE_NO_PATCHABLE=y
-CONFIG_HAVE_FTRACE_MCOUNT_RECORD=y
-CONFIG_HAVE_SYSCALL_TRACEPOINTS=y
-CONFIG_HAVE_FENTRY=y
-CONFIG_HAVE_OBJTOOL_MCOUNT=y
-CONFIG_HAVE_OBJTOOL_NOP_MCOUNT=y
-CONFIG_HAVE_C_RECORDMCOUNT=y
-CONFIG_HAVE_BUILDTIME_MCOUNT_SORT=y
-CONFIG_TRACING_SUPPORT=y
-# CONFIG_FTRACE is not set
-# CONFIG_SAMPLES is not set
-CONFIG_HAVE_SAMPLE_FTRACE_DIRECT=y
-CONFIG_HAVE_SAMPLE_FTRACE_DIRECT_MULTI=y
-CONFIG_ARCH_HAS_DEVMEM_IS_ALLOWED=y
-
-#
-# x86 Debugging
-#
-# CONFIG_X86_VERBOSE_BOOTUP is not set
-CONFIG_EARLY_PRINTK=y
-CONFIG_HAVE_MMIOTRACE_SUPPORT=y
-CONFIG_IO_DELAY_0X80=y
-# CONFIG_IO_DELAY_0XED is not set
-# CONFIG_IO_DELAY_UDELAY is not set
-# CONFIG_IO_DELAY_NONE is not set
-CONFIG_UNWINDER_ORC=y
-# CONFIG_UNWINDER_FRAME_POINTER is not set
-# end of x86 Debugging
-
-#
-# Kernel Testing and Coverage
-#
-# CONFIG_KUNIT is not set
-CONFIG_ARCH_HAS_KCOV=y
-CONFIG_CC_HAS_SANCOV_TRACE_PC=y
-# CONFIG_KCOV is not set
-# CONFIG_RUNTIME_TESTING_MENU is not set
-CONFIG_ARCH_USE_MEMTEST=y
-# CONFIG_MEMTEST is not set
-# end of Kernel Testing and Coverage
-
-#
-# Rust hacking
-#
-# end of Rust hacking
-# end of Kernel hacking
-
-#
-# Documentation
-#
-CONFIG_WARN_MISSING_DOCUMENTS=y
-CONFIG_WARN_ABI_ERRORS=y
-# end of Documentation
-
---yyZfpIjDKNKWf97V--
