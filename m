@@ -2,84 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3F3C70A47F
-	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 03:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B54C70A4AA
+	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 04:54:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231822AbjETB5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 May 2023 21:57:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52392 "EHLO
+        id S229951AbjETCyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 May 2023 22:54:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231735AbjETB5p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 21:57:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24CE718C;
-        Fri, 19 May 2023 18:57:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AD03A6163B;
-        Sat, 20 May 2023 01:57:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7EB8C433A0;
-        Sat, 20 May 2023 01:57:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684547863;
-        bh=nro0QPNP0dZ5T4kKuyRM2tszHlYNpG3EVWO0M9ORTo4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FQVtjJkkC6uBeOrdgdxaf88s8Ido+DY6UtNk1vh8nzZUuUr4nILFB6bIn7sqj0rNH
-         HS4Nc51ezIMIP7ZEJs9xDjywEd4rn9HAaf9qiwENIWpN+eytf0E4p/iIX3Q3ak3KVC
-         bW/xV9JZGZW1bpiN3uMsnghzG+fZ/WFA/PTD1L3DpYUlvLDZR1sMEZYLZugd9+pVq6
-         LLChfKjw57Ut1K6YpKoNW9zE/3BSNVZ4V9vxyAEucq4qzQSug9a7MyvRREO2XQ1YPq
-         a4zmtlv2C1T8Kd+Qf58ErA9mJXI0lxdWpZPoBvc+3YQ5t6S0TLtkiDuHSmtdeu6i4o
-         FlID+mwtYfkbw==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     agross@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Devi Priya <quic_devipriy@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        sboyd@kernel.org, mturquette@baylibre.com
-Cc:     quic_arajkuma@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_poovendh@quicinc.com, quic_srichara@quicinc.com,
-        quic_anusha@quicinc.com, quic_kathirav@quicinc.com
-Subject: Re: (subset) [PATCH V3 0/6] Incremental patches on minimal boot support
-Date:   Fri, 19 May 2023 19:01:25 -0700
-Message-Id: <168454808161.2842337.17993685425906614863.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230425084010.15581-1-quic_devipriy@quicinc.com>
-References: <20230425084010.15581-1-quic_devipriy@quicinc.com>
+        with ESMTP id S229497AbjETCyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 May 2023 22:54:19 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C85E45;
+        Fri, 19 May 2023 19:54:15 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-64384c6797eso3134154b3a.2;
+        Fri, 19 May 2023 19:54:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684551255; x=1687143255;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mG6nPHHvLhCRp6hw5zssT3HnTGNDFbEKlVUElYpacVI=;
+        b=BzEQpqpkv05j9izGvRa/Kc6/0CzpEmOjqOmytho8xWjqmfoXL9HPpPBoopKHhbLPBn
+         feHiKzY6LDs/C+mujSkZUixPEtU9+kXbQUCXm3zUzuIXtF8LR3h2WZo2J/nSzqu4TF7+
+         kjen2D4ctrhIzFYIUAIjCfKffh3U/whcpNu3atQaE35YFMo9B2vBqdlkzPkaXoSASQwA
+         /vLIWZKXBblbS4iTK/S8Gglkk/j0Dwnuu+M1nNvTfsSUzGkYuc5RW1htrka6efswyXyM
+         oyqUq7w4MfzQpj/uXepKL2RFqJYev8EsR8N9Cuy6rE3yViy5ZfmUsPMELowy/U4Zm3mE
+         yxzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684551255; x=1687143255;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mG6nPHHvLhCRp6hw5zssT3HnTGNDFbEKlVUElYpacVI=;
+        b=WFtF3S0jt1pgxYt5mEqWoTdHjlde9DSXklQSAGRjEfJMKxofpYnWkQI/Gpt3IfSJJY
+         cH1OkBMigRrdak3oLgyeqSE5QnQU9K+sBC315CS7BSQkSfxqrnyRadmeu+JL+OqudEIj
+         MXSIL4HuLYWxezQiIm9gDh02Lti4tybcomIL4yipn1W2DcT3TrmL/+8/4qfATHrJE+lA
+         wOYpIPr2OVPLTCFFCo+H7VdzNIgXUMM17IdZ/y4PbuRpWPd9q1YYW2l9oXnQGOGIdBPZ
+         S6rc0+8o7Ip0yJOtKpgQUeMT1dw4vS+bBulvIUcDHAjCXPZxrclrO7bxQD9YcJJKCOcZ
+         jrpw==
+X-Gm-Message-State: AC+VfDx1XVQUc+t+NBwf/1Wn0Mr2A1+Rj5F10pr5W7kurYxUp7bZw+MH
+        8Wk2dXD9uKQMV+DmpjU1Zfb1nlzP5v9hJw==
+X-Google-Smtp-Source: ACHHUZ5QH6UDSzYl15L1x3E8eyRI07vL0kKu7EQmM+p2K22pj44/x03QEJVH9p38i5qIT5DhO/cvHA==
+X-Received: by 2002:a05:6a20:6f01:b0:100:5082:611d with SMTP id gt1-20020a056a206f0100b001005082611dmr3428675pzb.32.1684551255051;
+        Fri, 19 May 2023 19:54:15 -0700 (PDT)
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id a21-20020a62bd15000000b0064389eab4c8sm314729pff.126.2023.05.19.19.54.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 May 2023 19:54:14 -0700 (PDT)
+Message-ID: <7a1d4bf8-7ad2-daac-4822-9e1cdac35c89@gmail.com>
+Date:   Fri, 19 May 2023 19:54:12 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH net-next v2 2/7] net: dsa: mv88e6xxx: pass directly chip
+ structure to mv88e6xxx_phy_is_internal
+Content-Language: en-US
+To:     alexis.lothore@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        paul.arola@telus.com, scott.roberts@telus.com,
+        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
+References: <20230519141303.245235-1-alexis.lothore@bootlin.com>
+ <20230519141303.245235-3-alexis.lothore@bootlin.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20230519141303.245235-3-alexis.lothore@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Apr 2023 14:10:04 +0530, Devi Priya wrote:
-> Patchset V9 of the series: Add minimal boot support for IPQ9574 has been
-> merged and is available in linux-next/master.
-> V12 being the latest revision posted in the series, the delta between
-> revisions V9 and V12 is posted as a separate series as suggested by
-> Bjorn to avoid possible confusions.
+
+
+On 5/19/2023 7:12 AM, alexis.lothore@bootlin.com wrote:
+> From: Alexis Lothoré <alexis.lothore@bootlin.com>
 > 
-> This series adds the delta changes between revisions V9 and V12.
+> Since this function is a simple helper, we do not need to pass a full
+> dsa_switch structure, we can directly pass the mv88e6xxx_chip structure.
+> Doing so will allow to share this function with any other function
+> not manipulating dsa_switch structure but needing info about number of
+> internal phys
 > 
-> [...]
+> Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
 
-Applied, thanks!
-
-[1/6] arm64: dts: qcom: ipq9574: Update the size of GICC & GICV regions
-      commit: 6fb45762691d12d9812c41d20b2f5db1412047ae
-[5/6] arm64: dts: qcom: ipq9574: Drop bias_pll_ubi_nc_clk input
-      commit: 4fc6a939aba4c0aa723b9da8363d262d3d60e57e
-[6/6] arm64: dts: qcom: ipq9574: rename al02-c7 dts to rdp433
-      (no commit info)
-
-Best regards,
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Florian
