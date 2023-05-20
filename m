@@ -2,144 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5529070A8FC
-	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 18:08:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F15F870A8FF
+	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 18:12:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230454AbjETQI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 May 2023 12:08:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42246 "EHLO
+        id S231263AbjETQMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 May 2023 12:12:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231626AbjETQI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 12:08:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C26BF189;
-        Sat, 20 May 2023 09:08:01 -0700 (PDT)
+        with ESMTP id S229662AbjETQMI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 12:12:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6065AC4;
+        Sat, 20 May 2023 09:12:07 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BFCDD6132C;
-        Sat, 20 May 2023 16:07:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8D1EC433EF;
-        Sat, 20 May 2023 16:07:54 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E4697614CF;
+        Sat, 20 May 2023 16:12:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABE10C433D2;
+        Sat, 20 May 2023 16:12:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684598876;
-        bh=V4usJZqRAFqQRrB2t/cEprnBUvtDDffV3Y2qt9ee9NM=;
+        s=k20201202; t=1684599126;
+        bh=kdacPFn14rPvw7YtMOZjZ5VztGWuqedD+DJfzX98O90=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=D2e1vkPiu+Au/fOv8dpSaECuWvpg5sz/3KlYc6+XVZEMKqmifqR1LZoIBQcBcNwnS
-         N19K5hWcRI3O9L+48G7hglwvVKVUeY5oKNk50B40tIATkeLNebsVaW4FuRl5/KtNAM
-         XiY169Oq8wFU7ofjcxfGQS9ORDdX4I3Gir+/Zf98nbcWhY4IPEjenmgSNP79tdp8b3
-         gma7bdaPPEaBp5Xu0Ka6RB77KkgArzBAwlrRC2kfyNpo2IN2uQSRMBTuLqsZUB41yC
-         QXzdikdZyvoN4yMaJ6YRvJeuf3rjB0ta8xuSoQrbzN3m48sDkv3GP6+tO7P3C2/Pfd
-         nVufObl4xmFSw==
-Date:   Sat, 20 May 2023 17:24:05 +0100
+        b=dSDZvsMBY7KWvOR1Frf2wX5VfTIQXOigJN2U9v4LWQHV5J7NIYnuJ4WKJBcOnnqK9
+         2VDStILUhYUCGXlrMlB7SwFE10yfzor1qM+3tHLMC/3I2e2BMkl5UcBGRNCJEopctX
+         myL1N15hCMLkPh8I4PRLjZKRLJ9BIgQWniD6yXiYahrLxJFSzY0diPnRIF+vur+g5S
+         /V7k6/sSdu1fYViqXfcNY1lihTNwKvIMC2ZWxr4PT93ibGfrAZBVixZjQ/YWua90Ip
+         TT21lYXtEtit+y1qADlIv1uxtJtveb35C9nbGKatbupEbBXzgvhGO+tAW2IKATbtcO
+         HmB5ASn48+7Jw==
+Date:   Sat, 20 May 2023 17:28:15 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andreas Klinger <ak@it-klinger.de>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-iio@vger.kernel.org, Crt Mori <cmo@melexis.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Angel Iglesias <ang.iglesiasg@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/3] Support Honeywell mprls0025pa pressure sensor
-Message-ID: <20230520172405.0e1a3ff8@jic23-huawei>
-In-Reply-To: <ZGNpZM137jF5yzie@arbad>
-References: <ZGNpZM137jF5yzie@arbad>
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/6] dt-bindings: iio: temperature: melexis,mlx90614:
+ Document MLX90615 support
+Message-ID: <20230520172815.7475418b@jic23-huawei>
+In-Reply-To: <20230510102251.10118-1-marex@denx.de>
+References: <20230510102251.10118-1-marex@denx.de>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 May 2023 13:30:44 +0200
-Andreas Klinger <ak@it-klinger.de> wrote:
+On Wed, 10 May 2023 12:22:46 +0200
+Marek Vasut <marex@denx.de> wrote:
 
-> Support Honeywell mprls0025pa pressure sensor.
-Series applied to the togreg branch of iio.git and initially pushed out
-as testing for 0-day to see if it can find anything we missed.
+> Document support for MLX90615 Infra Red Thermometer, which seems to
+> be the predecesor of MLX90614 . There are significant differences in
+> the register layout compared to MLX90614, but the functionality of
+> the device is virtually identical.
+> 
+> Acked-by: Crt Mori <cmo@melexis.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+Series applied to the togreg branch of iio.git and pushed out initially
+as testing for 0-day to give it a whirl.
 
-Thanks,
+Thanks
 
 Jonathan
 
+> ---
+> Cc: Crt Mori <cmo@melexis.com>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Peter Meerwald <pmeerw@pmeerw.net>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-iio@vger.kernel.org
+> ---
+> V2: - Add spaces to subject tags
+>     - Add AB from Krzysztof
+> V3: Add AB from Crt
+> ---
+>  .../bindings/iio/temperature/melexis,mlx90614.yaml          | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> This patch series adds support for Honeywell mprls0025pa pressure sensor series.
-> There are a variety of sensors with different pressure ranges supported.
-> 
-> Changes in v5:
-> - Patch 1: "dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor"
->   - add Reviewd-by tag
->   - preserve formating in description
-> - Patch 2: "iio: pressure: Honeywell mprls0025pa pressure sensor"
->   - make use of div_s64_rem()
->   - document calculation
->   - reorder includes
->   - use NANO from units.h
-> - Patch 3: "MAINTAINERS: Add Honeywell mprls0025pa sensor"
->   - no changes
-> 
-> Changes in v4:
-> - Patch 1: "dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor"
->   - change line length to 80 characters
->   - make vdd-supply mandatory
-> - Patch 2: "iio: pressure: Honeywell mprls0025pa pressure sensor"
->   - change line length to 80 characters
->   - change regulator vcc to devm_regulator_get_enable()
->   - switch to probe_new
->   - many changes from the review
-> - Patch 3: "MAINTAINERS: Add Honeywell mprls0025pa sensor"
->   - no changes
-> 
-> Changes in v3:
-> - Patch 1: "dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor"
->   - fix errors while doing dt_binding_check
->   - add vdd-supply
-> - Patch 2: "iio: pressure: Honeywell mpr pressure sensor"
->   - change to _RAW interface
->   - add transfer function
->   - add regulator
->   - move to device_property_xxx functions
->   - many more changes from the feedbacks
-> - Patch 3: "MAINTAINERS: Add Honeywell mpr sensor"
->   - change file names
-> 
-> Changes in v2:
-> - Patch 1: "dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor"
->   - change the global sensor decription of mpr to the specific sensor
->     mprls0025pa
->   - change compatible string
->   - rename the file to honeywell,mprls0025pa.yaml
->   - honeywell,pmin-pascal and honeywell,pmax-pascal: add unit pascal to property
->     names 
->   - add new property honeywell,transfer-function
-> - Patch 2: "iio: pressure: Honeywell mpr pressure sensor"
->   - no change so far
->   - will be changed and send out as new version when the dt definition is
->     settled down
-> - Patch 3: "MAINTAINERS: Add Honeywell mpr sensor"
->   - no change so far
-> 
-> Andreas Klinger (3):
->   dt-bindings: iio: pressure: Support Honeywell mprls0025pa sensor
->   iio: pressure: Honeywell mprls0025pa pressure sensor
->   MAINTAINERS: Add Honeywell mprls0025pa sensor
-> 
->  .../iio/pressure/honeywell,mprls0025pa.yaml   | 104 ++++
->  MAINTAINERS                                   |   7 +
->  drivers/iio/pressure/Kconfig                  |  13 +
->  drivers/iio/pressure/Makefile                 |   1 +
->  drivers/iio/pressure/mprls0025pa.c            | 450 ++++++++++++++++++
->  5 files changed, 575 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/pressure/honeywell,mprls0025pa.yaml
->  create mode 100644 drivers/iio/pressure/mprls0025pa.c
-> 
-> 
-> base-commit: 457391b0380335d5e9a5babdec90ac53928b23b4
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
+> index d6965a0c1cf30..654d31f65d360 100644
+> --- a/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
+> +++ b/Documentation/devicetree/bindings/iio/temperature/melexis,mlx90614.yaml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/iio/temperature/melexis,mlx90614.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Melexis MLX90614 contactless IR temperature sensor
+> +title: Melexis MLX90614/MLX90615 contactless IR temperature sensor
+>  
+>  maintainers:
+>    - Peter Meerwald <pmeerw@pmeerw.net>
+> @@ -15,7 +15,9 @@ description: |
+>  
+>  properties:
+>    compatible:
+> -    const: melexis,mlx90614
+> +    enum:
+> +      - melexis,mlx90614
+> +      - melexis,mlx90615
+>  
+>    reg:
+>      maxItems: 1
 
