@@ -2,71 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FDA070A57F
-	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 07:07:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BFCB70A59A
+	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 07:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230193AbjETFHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 May 2023 01:07:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59838 "EHLO
+        id S229951AbjETFNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 May 2023 01:13:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230131AbjETFHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 01:07:49 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0793AE46
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 22:07:44 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1ae79528d4dso19308165ad.2
-        for <devicetree@vger.kernel.org>; Fri, 19 May 2023 22:07:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1684559263; x=1687151263;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zr3+BQp3+2PjwyI+d5nRt/2xB87GampH66jS3gUBxOw=;
-        b=tQq8QqCjFnJXUkndLkdBDdM88GCy5IZKOOlXkaOaIr8MBB9T1cEo0bNgo+YhRpvxId
-         GKjfaaAnS7PS9YjGBCtDsgIfZDYvs8t2CujkKCKQADpGZutumj3mTZzdyXUD0sUq6ZPa
-         I4PWQ8N71cgI97NLd/QVANZOuv53UJFEZuH8WYSbFWvBEyAgsltLNPEY1ErUm0CQ7Irz
-         GGk6HANnSbbVhpLPFwuw1cAn/h2+YBgp41soSIulUdFzLysHKNdIuyjnm+9CKhiBzQXX
-         BsqQWQzf19VmVWqgzI/A9t6P2+WR3SxZvdferiiLZ0cC8gcu4LP5wE+ujmEfAUKvLtGz
-         pUkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684559263; x=1687151263;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Zr3+BQp3+2PjwyI+d5nRt/2xB87GampH66jS3gUBxOw=;
-        b=IGBXFNDl+nwQAdpVRSeLtZgN6LB5YC6Y2nc3/e/bbhjOmsla2aND0fhgg7Yvk8TE7X
-         rzm6oa8MYpO08mgoG4HaQVZruSFPrNcItVEoABOVpUKEGBPwZtyyutrM36AOtRUf8v5z
-         7eha1/CNuZ7LpD7opQfDmp4M9gqULZRVVU8W/LBTCALDLm+Mdq6qUCsUEoHob/08RIrC
-         51AGdejhP+w43FCRxY3y9yDlRSHcBybi3Dr4SwWJKgU8vDGziarbFvvxRWg7zXOH6+GY
-         wjjH21ckSfJgvwY+E+AVLVcqm9DQGC4yjW1E/6Y6/1s/8Co4BiUTwEntWrurnFqDG37+
-         XlNA==
-X-Gm-Message-State: AC+VfDx4HYyj12woBCiWyJ6JNdQJNYmb0+kH8f4EkuMOfwDK6yg2g+J7
-        lZM7gp80Y7TMkBewt9sLtAhEXg==
-X-Google-Smtp-Source: ACHHUZ7l/uiLFw7b+1H9hfC4+7wi76DzEWM6L9/k2ZR6jjCTwESstBl79wynT9r2LhOfVl+959hYEg==
-X-Received: by 2002:a17:902:db03:b0:1ae:6135:a050 with SMTP id m3-20020a170902db0300b001ae6135a050mr6091997plx.19.1684559263554;
-        Fri, 19 May 2023 22:07:43 -0700 (PDT)
-Received: from yc.huaqin.com ([101.78.151.214])
-        by smtp.gmail.com with ESMTPSA id jf9-20020a170903268900b0019e60c645b1sm476725plb.305.2023.05.19.22.07.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 May 2023 22:07:43 -0700 (PDT)
-From:   Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-To:     dianders@chromium.org
-Cc:     benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
-        dmitry.torokhov@gmail.com, hsinyi@google.com, jikos@kernel.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mka@chromium.org, yangcong5@huaqin.corp-partner.google.com
-Subject: [v2 2/2] dt-bindings: input: touchscreen: Add ilitek 9882T touchscreen chip
-Date:   Sat, 20 May 2023 13:06:49 +0800
-Message-Id: <20230520050649.2494497-3-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230520050649.2494497-1-yangcong5@huaqin.corp-partner.google.com>
-References: <CAD=FV=VYfPSwar2AXBxB3vX0dV1kjQ5bZMxsEBFhUnMNRXbBCw@mail.gmail.com>
- <20230520050649.2494497-1-yangcong5@huaqin.corp-partner.google.com>
+        with ESMTP id S229522AbjETFNy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 01:13:54 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F84711F;
+        Fri, 19 May 2023 22:13:51 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 34K5Ae7A2003673, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 34K5Ae7A2003673
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Sat, 20 May 2023 13:10:40 +0800
+Received: from RTEXMBS05.realtek.com.tw (172.21.6.98) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.32; Sat, 20 May 2023 13:10:50 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXMBS05.realtek.com.tw (172.21.6.98) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Sat, 20 May 2023 13:10:49 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
+ RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
+ 15.01.2375.007; Sat, 20 May 2023 13:10:49 +0800
+From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
+        <stanley_chang@realtek.com>
+To:     Arnd Bergmann <arnd@arndb.de>,
+        Paul Cercueil <paul@crapouillou.net>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>
+CC:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Ray Chi <raychi@google.com>,
+        "Bagas Sanjaya" <bagasdotme@gmail.com>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Bhuvanesh Surachari <Bhuvanesh_Surachari@mentor.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+Subject: RE: [PATCH v1 2/3] usb: phy: Add driver for the Realtek SoC USB 2.0/3.0 PHY
+Thread-Topic: [PATCH v1 2/3] usb: phy: Add driver for the Realtek SoC USB
+ 2.0/3.0 PHY
+Thread-Index: AQHZig6UEIendKXQakm8Ocfv4iAbD69gulMAgACuYvD//3+eAIABtHCQ
+Date:   Sat, 20 May 2023 05:10:49 +0000
+Message-ID: <520a2595716d47359812dab8ad110f21@realtek.com>
+References: <20230519045825.28369-1-stanley_chang@realtek.com>
+ <20230519045825.28369-2-stanley_chang@realtek.com>
+ <0d165c7efbb71a65803abddc364e1c5252b8b939.camel@crapouillou.net>
+ <0ee8a26205a041cab9a787ec29201a9f@realtek.com>
+ <f7edea0c-dbfe-4c16-8134-0656411a837d@app.fastmail.com>
+In-Reply-To: <f7edea0c-dbfe-4c16-8134-0656411a837d@app.fastmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.159]
+x-kse-serverinfo: RTEXMBS05.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,36 +92,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an ilitek touch screen chip ili9882t.
-
-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
----
- .../devicetree/bindings/input/elan,ekth6915.yaml         | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-index 05e6f2df604c..29eb63b2360b 100644
---- a/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-+++ b/Documentation/devicetree/bindings/input/elan,ekth6915.yaml
-@@ -15,11 +15,16 @@ description:
- 
- properties:
-   compatible:
--    items:
-+    oneOf:
-       - const: elan,ekth6915
-+      - items:
-+          - const: elan,ekth6915
-+          - const: ilitek,ili9882t
- 
-   reg:
--    const: 0x10
-+    enum:
-+      - 0x10
-+      - 0x41
- 
-   interrupts:
-     maxItems: 1
--- 
-2.25.1
-
+SGkgQXJuZCwNCg0KPiA+PiBJJ20gcHJldHR5IHN1cmUgdGhhdCBkcml2ZXJzL3VzYi9waHkvIGlz
+IGRlcHJlY2F0ZWQgbm93Li4uDQo+ID4+DQo+ID4+IE5ldyBkcml2ZXJzIHNob3VsZCBiZSB3cml0
+dGVuIGZvciB0aGUgZ2VuZXJpYyBQSFkgc3Vic3lzdGVtIGluDQo+ID4+IGRyaXZlcnMvcGh5Ly4N
+Cj4gDQo+IEluZGVlZCwgSSBtaXNzZWQgdGhhdCBpbiBteSByZXZpZXcuDQo+IA0KPiA+IFRoYW5r
+cyBmb3IgeW91ciByZW1pbmRlci4NCj4gPiBXaWxsIGRyaXZlcnMvdXNiL3BoeSBiZSByZW1vdmVk
+Pw0KPiA+IElzIGl0IG5vdCBhbGxvd2VkIHRvIGFkZCBuZXcgZHJpdmVycz8NCj4gPg0KPiA+IElu
+IG91ciBhcHBsaWNhdGlvbiwgZHJpdmVyL3BoeSBpcyBub3Qgc3VpdGFibGUuDQo+ID4gV2UgbmVl
+ZCB0byBub3RpZnkgdGhlIHBoeSBkcml2ZXIgd2hlbiB0aGUgVVNCIGh1YiBwb3J0IHN0YXR1cyBj
+aGFuZ2VzLg0KPiA+IEhvd2V2ZXIsIGdlbmVyaWMgUEhZIGRyaXZlcnMgYXJlIGRlc2lnbmVkIGZv
+ciB2YXJpb3VzIGRldmljZSdzIFBIWS4NCj4gPiBBbmQgaXQgc2VlbXMgaW5hcHByb3ByaWF0ZSB0
+byBhZGQgdGhpcyBmdW5jdGlvbi4gU28gd2UgY2hvb3NlIHRvIHVzZQ0KPiA+IGRyaXZlci91c2Iv
+cGh5Lg0KPiANCj4gSWYgeW91IHJ1biBpbnRvIHNvbWV0aGluZyB0aGF0IHdvcmtzIGluIHRoZSBv
+bGQgdXNicGh5IGxheWVyIGJ1dCBjYW4ndCBiZSBkb25lDQo+IGluIGRyaXZlcnMvcGh5LCBJIHRo
+aW5rIHRoZSBiZXR0ZXIgc29sdXRpb24gd291bGQgYmUgdG8gY2hhbmdlIHRoZSBkcml2ZXJzL3Bo
+eS8NCj4gY29kZSB0byBhZGQgdGhpcy4NCj4gDQo+ICAgICAgIEFybmQNCj4gDQoNCkkgd291bGQg
+bW92ZSB0aGUgY29kZSB0byBkcml2ZXJzL3BoeS4NCkNhbiBJIHVzZSB0aGUgInN0cnVjdCB1c2Jf
+cGh5IiBpbnRlcmZhY2UgYWZ0ZXIgYWRkaW5nIHRoZSBjb2RlIHRvIHRoZSBkcml2ZXIvcGh5Pw0K
+DQpJIGZvdW5kIHRoYXQgc29tZSBkcml2ZXJzIHVzZSAidXNiX3BoeSIgaW4gZGVpdmVycy9waHkv
+Lg0KQ2FuIEkgZm9sbG93IHRoZXNlIGRyaXZlcnM/DQoNClRoYW5rcywNClN0YW5sZXkNCg==
