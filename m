@@ -2,141 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59E5B70A71F
-	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 12:15:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF0C270A74E
+	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 12:52:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231290AbjETKPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 May 2023 06:15:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56618 "EHLO
+        id S229762AbjETKwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 May 2023 06:52:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229779AbjETKPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 06:15:15 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 898B0189
-        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 03:15:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 28FC160F60
-        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 10:15:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3128C433EF;
-        Sat, 20 May 2023 10:15:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684577713;
-        bh=1UyIWQbHOjjifaKW/wUJ5oCv3edwmlXJyp5rWIZCdoY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jO1yoL5bi8d5nD77WswNtJkR1D1REN/MPbJLydBQcE3jbNeRezp2sbnsoENET5KfH
-         B+VQgnUydvJoFW/KXC8fP1BI12qxiE8T0b+i6iNoCW3+MCA51a9zfLPY3VOkTcmhYb
-         U1Ru27TcevIBZY8kamZVK24T/Yw5r1ipOBAYtZo6Q8fnTXgc2tUs+TfhyLrcD3xdpO
-         Zz21v1OGG99dv4zGRMBi1HV+cLMFtcuEpa8ZUNrCiksL77gzYubmtf/9P0FwNn4/sZ
-         f0S//CzKnINPwFGJo+Jd6SXZPaGqTBXoIdhtRX5rc2oLFc9ubCHcp0m6B5YvB3+XD8
-         +ZXWSZq4H+ewg==
-Date:   Sat, 20 May 2023 11:15:09 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     shawnguo@kernel.org, marex@denx.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH v4 1/4] dt-bindings: display: bridge: ldb: Adjust imx6sx
- entries
-Message-ID: <20230520-iphone-outreach-14f46c57b7cd@spud>
-References: <20230519125236.352050-1-festevam@gmail.com>
+        with ESMTP id S229763AbjETKwU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 06:52:20 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C544E49;
+        Sat, 20 May 2023 03:52:00 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1ae40dcdc18so30529405ad.2;
+        Sat, 20 May 2023 03:52:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684579919; x=1687171919;
+        h=content-disposition:mime-version:message-id:subject:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5gaWMjg/j3jT1ogB4fxogwoRNw1EsJdomhb6ARkAoWY=;
+        b=EqLz8JXSxaupUNwVl2OJFbMf1kqYhBJjNq4hXit/CtTQ94WvH4CWnzuF6dNK1CZODg
+         ZLwm2myaaWkLGcuEMfcC5OwBr5RnM5UFmeQTNQtt9jUCeJwYLos6oDBsA/WTnY1+cvm3
+         fEyWAegnO3XTnYWcrjBiHGZVIdUPCeo7WjsXzj5bLQM1eRScKAR6kXO2sN2ZkDdZhrTH
+         VEEkIuM6AAcg1nZWBHcmTDgvDC7WsUa4fFFLEmSVZkhAbNNYFJbvLIuPohz/maE7IrHM
+         JDP2LR0RnJlFWVI/BMrSu/hedkmD9Nae2wcr1MpjKUaapVxxUfzzpDSF+HHvm1TjCVWR
+         h7IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684579919; x=1687171919;
+        h=content-disposition:mime-version:message-id:subject:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5gaWMjg/j3jT1ogB4fxogwoRNw1EsJdomhb6ARkAoWY=;
+        b=dapSj9NKhATSRmBvu3bZ0vTfoW5Hbqjj/oGb69IhUFvTLFes9Mp6pKT/aMD95lUTHa
+         2KkKaEudxkWeXCm/RjbOSLpRdhFf5TI86BA0dUT7TmvMiCvuJ9+GoRZwswfWnhA4p8U7
+         hpRehklwfwqs2XB2A8mKCaQ+m2hV420BgarnAmIbWOFVdDW3OGb82mKb67tjMw0j00Ut
+         We5jog5IrP997jag6pC8mIOgmenJmUkiUYNoWfP9A0q+vCCPbYz3himTZiamOqyIfc/u
+         q4HFWFojG0b7pEnaWe9EwyDIXl2wEs+8RtM0y0OB3HWafVI1BXi4fgyg5WO985Ir1PLw
+         djtg==
+X-Gm-Message-State: AC+VfDxlHIR9/YUzK+kIk1xS+Wfu9EDG8B6YkdaujBlU2mIbnIL7Py8l
+        XriZfvdqZCy8DajvBV1gsio=
+X-Google-Smtp-Source: ACHHUZ5t+ejrSUhP49O/2UwEVJpqATJqrMYdl5+y2ftHzQrNJ42YLOPdbOvBG2LV10QO0FyH/vqGQQ==
+X-Received: by 2002:a17:902:d4c2:b0:1ac:6c46:8c80 with SMTP id o2-20020a170902d4c200b001ac6c468c80mr6981466plg.53.1684579919475;
+        Sat, 20 May 2023 03:51:59 -0700 (PDT)
+Received: from yoga ([2400:1f00:13:245c:9b1a:1a9d:79c2:5b3b])
+        by smtp.gmail.com with ESMTPSA id q7-20020a170902dac700b001a2104d706fsm1205996plx.225.2023.05.20.03.51.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 May 2023 03:51:58 -0700 (PDT)
+Date:   Sat, 20 May 2023 16:21:50 +0530
+From:   Anup Sharma <anupnewsmail@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Anup Sharma <anupnewsmail@gmail.com>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        u.kleine-koenig@pengutronix.de, andriy.shevchenko@linux.intel.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Add dt-binding support for ti tmp006
+Message-ID: <cover.1684579603.git.anupnewsmail@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2hAHGAC7SPIHZrqZ"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230519125236.352050-1-festevam@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+These patches introduce device tree binding support and
+add an of_device_id table entry to the driver.
 
---2hAHGAC7SPIHZrqZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in v2:
+	- Keep the exsisting MODULE_DEVICE_TABLE entry.
+	- Removed the inner comma in of_device_id.
+	- Order the included header to improve code organization.
+	- Adding missing semicolon to fix syntax error detected
+	  using dt_binding_check.
+	
+Anup Sharma (2):
+  dt-bindings: iio: temperature: Add support for tmp006
+  iio: temperature: tmp006: Add OF device matching support
 
-On Fri, May 19, 2023 at 09:52:33AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
->=20
-> On the i.MX6SX there is a single entry for 'reg' and 'reg-names', so add
-> some logic to reflect that.
->=20
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+ .../bindings/iio/temperature/ti,tmp006.yaml   | 42 +++++++++++++++++++
+ drivers/iio/temperature/tmp006.c              |  8 ++++
+ 2 files changed, 50 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/ti,tmp006.yaml
 
-Whoops, didn't see this patch yesterday..
+-- 
+2.34.1
 
-> ---
-> Changes since v3:
-> - None.
->=20
->  .../bindings/display/bridge/fsl,ldb.yaml      | 28 +++++++++++++++++--
->  1 file changed, 25 insertions(+), 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yam=
-l b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
-> index 07388bf2b90d..cd63f9ef9484 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
-> @@ -28,12 +28,12 @@ properties:
->      const: ldb
-> =20
->    reg:
-> +    minItems: 1
->      maxItems: 2
-> =20
->    reg-names:
-> -    items:
-> -      - const: ldb
-> -      - const: lvds
-> +    minItems: 1
-> +    maxItems: 2
-> =20
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
-> @@ -74,6 +74,28 @@ allOf:
->            properties:
->              port@2: false
-> =20
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx6sx-ldb
-
-Why not const: for the single item?
-Trying to avoid churn when you add your next one?
-
-> +    then:
-> +      properties:
-> +        reg:
-> +          maxItems: 1
-> +        reg-names:
-> +          items:
-> +            - const: ldb
-
-Again, can drop the items: for const: for the single item, no?
-
-Thanks,
-Conor.
-
---2hAHGAC7SPIHZrqZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGidrQAKCRB4tDGHoIJi
-0odmAP95ZzVecxynXaUYOB6Og+zWPzH4Te9jVQR2kWPmJUJlCAEAvqI5ikywLztJ
-f18x/dT9xWppzV0XCmIJJXEjhqdYjwI=
-=NLRi
------END PGP SIGNATURE-----
-
---2hAHGAC7SPIHZrqZ--
