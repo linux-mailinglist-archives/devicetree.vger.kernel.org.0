@@ -2,153 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5FA670A81A
-	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 14:21:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DBB770A839
+	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 14:58:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231933AbjETMVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 May 2023 08:21:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51204 "EHLO
+        id S229609AbjETM6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 May 2023 08:58:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231750AbjETMVE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 08:21:04 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49DEE173E
-        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 05:20:23 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4eed764a10cso4755671e87.0
-        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 05:20:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684585216; x=1687177216;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6euEkRodrQgx7ZE9t7r7K+NeHv1LqldRFjOFTB8bWyY=;
-        b=BmrH/ZJTnlOU8B8MsGcUTxSs3ldt6wbdkha5Pku8nW8wiesMbU9mNfyY7MrN4V2Gqr
-         RLM9scxRukJ/ONiVl2FsY6eDoLKRgfHlIFHVnW3yGkZxHqsyzkcOxFzg8TIpGA3BT8c9
-         nXHtqqFpJohjbQNeLqbPPGwTBeK/TU/btYx1zkZFbakqExv6o0z5JGy6ZhPC3MkoQRIr
-         CZsWcSPBsbGhnU8JpbytXaPNh2weDBplzjO1VgucrO8AcidNHtppBnIsBiW2L/gbckAN
-         dcFefXS2aEZ6Kq53K1na7IRRmYLvYbZohlo99vP8mSpdLLltZHx6ugzO+AwL6Mk6CKg+
-         AN4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684585216; x=1687177216;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6euEkRodrQgx7ZE9t7r7K+NeHv1LqldRFjOFTB8bWyY=;
-        b=BE551FQo3Jj+5GhQeklZa8/AL3QvuHnSQgpBl48O6KbWzHizH3PjGn1SowCKR8HW0h
-         dseU8L2B1gbyOH+etZcbVQhS7ZIFJVoxD7/ctEaC3ST3A6t6yD+7xoercsUFJ13XFR8W
-         AIF0GED6r+dchejkH0raXcvIkW7b2SJKU79ySikzZRQF2+8ToOggP3pJiOag5erQXH7Y
-         QBSb1jSmLejgFT7LPpp2IKr5RfFjN8bS3HSbt4l1AbsKflCPRV/GufSOZ/8Mvc9kQS0u
-         ObrEbshHLZbEcrJZ2D6L2jd6GZFRtHhiHlBlMo3TERNZIaF2Efh8JweTuAnxhUUq2sln
-         aBYw==
-X-Gm-Message-State: AC+VfDx6eoo5SqdVUor6olGWu/uJwhXUR5xbdGTrqMzNIaWAiBFRFRhp
-        oShChe5dfGsH7bKaM6fq1Gw6WTBBSglIPs/N4vw=
-X-Google-Smtp-Source: ACHHUZ58TljU+iUDLDIpGnb1GNrV3kCrtVuNbUTxPr6r/DQkrOHnuSQRaoImSSkim8bcpU5KKyUiNg==
-X-Received: by 2002:ac2:539a:0:b0:4cc:96f8:f9c6 with SMTP id g26-20020ac2539a000000b004cc96f8f9c6mr1835216lfh.5.1684585216004;
-        Sat, 20 May 2023 05:20:16 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id y6-20020ac24466000000b004f37bd02a89sm244766lfl.287.2023.05.20.05.20.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 May 2023 05:20:15 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Sat, 20 May 2023 14:19:58 +0200
-Subject: [PATCH v7 18/18] drm/msm/a6xx: Add A610 speedbin support
+        with ESMTP id S229523AbjETM6R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 08:58:17 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13682116;
+        Sat, 20 May 2023 05:58:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9FC3760AFF;
+        Sat, 20 May 2023 12:58:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB432C433EF;
+        Sat, 20 May 2023 12:58:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684587496;
+        bh=WzLOnS8kzGIbprSfZlyNNfBG8QnbzdeZRhoxDyMoyrI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mf2dfG3VsMC1BsJB1sEqHWWCtB10GCwOHoOSVHXJ292fbuU5Kyca+wdtI/bOfoiON
+         cp+Po2AmQ4XYhaSjtLDDQIQg1Xw9aWhden/JXJ0GC74U5UP6UXPxyfpelNNgsC9jau
+         uVPMXhhnA7pObFVj9S0g1K4q+EZnM3qElYuHPlkBFWypl0qLYDLn5+Sa9l0rs8oiMa
+         QBHCs0VqEJmsjwMxrCIz94XlG2IOfnhefks9jVjeVFqcecKtPKchPyYaZY+zU+EuCv
+         JpM0xdCUa1h09imlYDaXrh1LpVYcPH+HPnMYVJza9/5i7VOEmoDolPhJKiejTMqPQb
+         1itPcuuC9EjFw==
+Date:   Sat, 20 May 2023 13:58:10 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Ayan Kumar Halder <ayan.kumar.halder@amd.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+        geert+renesas@glider.be, mazziesaccount@gmail.com,
+        conor.dooley@microchip.com, j@jannau.net, mailingradian@gmail.com,
+        me@iskren.info, lpieralisi@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: arm: Add Cortex-R52 to the list of enum
+Message-ID: <20230520-apple-hamstring-2118e172cd71@spud>
+References: <20230518152730.82954-1-ayan.kumar.halder@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230223-topic-gmuwrapper-v7-18-ecc7aab83556@linaro.org>
-References: <20230223-topic-gmuwrapper-v7-0-ecc7aab83556@linaro.org>
-In-Reply-To: <20230223-topic-gmuwrapper-v7-0-ecc7aab83556@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Clark <robdclark@chromium.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1684585186; l=1852;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=aYEnG9+HCzURuVCpcLpZTVlrArU+CPMAgc+RtQYPTAw=;
- b=cBGb71GEz6m+55DZbw5+CIlpa9bA2JR7ff/H/b1bxB27zpReX2GOg7AWcYOzBnWEkZtbP6mJc
- HaVYS9xm5/JBf1ihgp+IOvYeg1spOGFEwJmV78VNSn9B2Aj+MtEE37L
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CdlCP2MJ8bAkn4CQ"
+Content-Disposition: inline
+In-Reply-To: <20230518152730.82954-1-ayan.kumar.halder@amd.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A610 is implemented on at least three SoCs: SM6115 (bengal), SM6125
-(trinket) and SM6225 (khaje). Trinket does not support speed binning
-(only a single SKU exists) and we don't yet support khaje upstream.
-Hence, add a fuse mapping table for bengal to allow for per-chip
-frequency limiting.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+--CdlCP2MJ8bAkn4CQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index c07b25fc2bd9..d004458ca783 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -2102,6 +2102,30 @@ static bool a6xx_progress(struct msm_gpu *gpu, struct msm_ringbuffer *ring)
- 	return progress;
- }
- 
-+static u32 a610_get_speed_bin(u32 fuse)
-+{
-+	/*
-+	 * There are (at least) three SoCs implementing A610: SM6125 (trinket),
-+	 * SM6115 (bengal) and SM6225 (khaje). Trinket does not have speedbinning,
-+	 * as only a single SKU exists and we don't support khaje upstream yet.
-+	 * Hence, this matching table is only valid for bengal and can be easily
-+	 * expanded if need be.
-+	 */
-+
-+	if (fuse == 0)
-+		return 0;
-+	else if (fuse == 206)
-+		return 1;
-+	else if (fuse == 200)
-+		return 2;
-+	else if (fuse == 157)
-+		return 3;
-+	else if (fuse == 127)
-+		return 4;
-+
-+	return UINT_MAX;
-+}
-+
- static u32 a618_get_speed_bin(u32 fuse)
- {
- 	if (fuse == 0)
-@@ -2199,6 +2223,9 @@ static u32 fuse_to_supp_hw(struct device *dev, struct adreno_gpu *adreno_gpu, u3
- {
- 	u32 val = UINT_MAX;
- 
-+	if (adreno_is_a610(adreno_gpu))
-+		val = a610_get_speed_bin(fuse);
-+
- 	if (adreno_is_a618(adreno_gpu))
- 		val = a618_get_speed_bin(fuse);
- 
+On Thu, May 18, 2023 at 04:27:30PM +0100, Ayan Kumar Halder wrote:
+> As a pre-requisite for porting Xen on a Cortex-R52 based System-on-chip, =
+we
+> need to add "cortex-r52" to the list of enum.
+>=20
+> Signed-off-by: Ayan Kumar Halder <ayan.kumar.halder@amd.com>
 
--- 
-2.40.1
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+Thanks,
+Conor.
+
+--CdlCP2MJ8bAkn4CQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGjD3gAKCRB4tDGHoIJi
+0rjPAQCXFLPt8nqDKNxhLc4OHCKpGilLHIsGf9pazW0V6WETfAEAn5HPPzB8bsOn
+KnyAv7J5eKStm1VkRXJQIFGwpDAvAQQ=
+=n1vn
+-----END PGP SIGNATURE-----
+
+--CdlCP2MJ8bAkn4CQ--
