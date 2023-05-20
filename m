@@ -2,129 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13E3370A784
-	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 13:25:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2E4170A788
+	for <lists+devicetree@lfdr.de>; Sat, 20 May 2023 13:26:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231201AbjETLY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 May 2023 07:24:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42940 "EHLO
+        id S229654AbjETL0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 May 2023 07:26:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbjETLY5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 07:24:57 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15818E42
-        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 04:24:56 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2af2696fd1cso17457941fa.2
-        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 04:24:55 -0700 (PDT)
+        with ESMTP id S230344AbjETL0O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 07:26:14 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 054C5186
+        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 04:26:13 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2ab3e8f4efeso21480861fa.0
+        for <devicetree@vger.kernel.org>; Sat, 20 May 2023 04:26:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684581894; x=1687173894;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0lrNs85kAq9XhckWf1UT0NKaqZUc8tJA22A6j/dwyNw=;
-        b=lXwBsnALCk92bZuUepZPseNyV09F7cHI5BTJY8v6ERpBK85TmX/jDuRGAIrBAeCjj8
-         vs8NvLrdyngI/HOLk5WYZ8wMthiO73TXB8qb2HcUdjJ+BGV9cBk+N9YYGZPwDXIeIQJX
-         eauC1ksgtlms2EyXrgv0wGmqWS0B/E/x71IMVd48jtwxt8dFLS0QOztjN6lKsRtsi+5B
-         +Tg0xJ9TAgbwWOnn/ZdaY/yjCBfRXNvNWAzhKGuebJwkn7MLdY0awf7Ria72I3X05ZN6
-         9la3DGCPO23cNtqZlAQfh4u/vCsKGwqFRh+wMl+C3GjCxG1rSGj40IVSJqWUkxAEjovI
-         h6fw==
+        d=gmail.com; s=20221208; t=1684581971; x=1687173971;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yhy6NdrRMFc4r1W5W9OpOcWFvDgKi7GNMY28PISUPrE=;
+        b=R0kf8rxaT1qyO+JVzayWX+QmaN2ulkBSvX6yqlBW3IYGCWZOJAOIO04s0CFywTmwCY
+         F5CD7r6Ynt+JnDMkd60P/yq71Vq5jduFiJtmuFqZqQ1bNEHONGNPjPVS+TW6RHIa7pU5
+         mWHVvc0URtVQNP261fA1I6UzYKt9I+j3Ihdf7vq5bz9Tg4AqPJoZhpqMjfWCUfSebeOa
+         kZ8F61oBerT1bQVP6tLTtan/nDdJXTkYGO7xRCI9OgJxmhDCVA/ZoWzgtekbMmIhoJo4
+         /HINd2PIvdpeAQk18jJHNJQr4jI75ILawUGtdNNRQH4g7eUTibh4DRZpj5IhS3PaFt3W
+         nLIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684581894; x=1687173894;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0lrNs85kAq9XhckWf1UT0NKaqZUc8tJA22A6j/dwyNw=;
-        b=a1zPZv963yueeIILr/WrtBmHUUfnqiR3U5PmfV+3f8KZ7rRNufSSK2MCPxOKFo+NQH
-         7gbPMugogYYf3BYnlvgxpMj/pW4bMZIXttmWDj5u+Skh3tZQnxy/xLvJGkIxIZPmzP+I
-         WSIraxEAojwZy8rlT/hmhPIbBmZUdjIeBhiOGRXLrg7l7Irzynk/KqErOLMedK9hp1cx
-         DYXj8Q3IJrIBV7re4BROh+7wY7MhORH6krWcj3yCMGC6cB3JYEcHBdqTr8Gp71OkD/OQ
-         VRXTSJebGpBsNNjCZON9XWgspAa6vwdmd/H4zyDdYeFY3ypD7Z6HQJpgi9gUA630UDeb
-         9h4w==
-X-Gm-Message-State: AC+VfDw1J0FK4fazZNkcFi9EkvtEBcBiZLn4OrUPmN4B/9BNd0YkkWr3
-        YHtgJ5U2NVVO74aHH/BdVqgVWQ==
-X-Google-Smtp-Source: ACHHUZ5xAT9cKC2kVy+ZvHQ13nooWPvhxXZDUzKf7XNuFBm5q6et9yq3g6mTQoPEWTyjZyRYI8lX+Q==
-X-Received: by 2002:a2e:7811:0:b0:2ac:85d7:342b with SMTP id t17-20020a2e7811000000b002ac85d7342bmr1861429ljc.29.1684581894318;
-        Sat, 20 May 2023 04:24:54 -0700 (PDT)
-Received: from [192.168.1.101] (abxi58.neoplus.adsl.tpnet.pl. [83.9.2.58])
-        by smtp.gmail.com with ESMTPSA id u11-20020a2e9f0b000000b002a8ec99e0e0sm258638ljk.70.2023.05.20.04.24.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 20 May 2023 04:24:53 -0700 (PDT)
-Message-ID: <ed4c33d3-ae5d-d695-eda0-0b09a4a26644@linaro.org>
-Date:   Sat, 20 May 2023 13:24:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: qdu1000-idp: add SDHCI for emmc
-Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Komal Bajaj <quic_kbajaj@quicinc.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        d=1e100.net; s=20221208; t=1684581971; x=1687173971;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yhy6NdrRMFc4r1W5W9OpOcWFvDgKi7GNMY28PISUPrE=;
+        b=ID4tDDBO6dSlZqCgA3uzJbwjHrssXaGxvKf+htEXei9k8bWhMaj4sOUqiJTJtxmfY/
+         uN0JWESJ0gjDmA+5gGzkeSvRYNq6OxPrvjNmiv58duM+PxS8mPzXHv9aPW+7pXLEX1eb
+         QBovHPnuoM8pbvd2VsZBTOGdRvDPEMs1qeqs+uyiloxF1qwf5Hysepw30i5iJI6FTBoe
+         d+fZztSzsqYB/KUlXWGB7HUMDdrHy9+ioK+T1upwSRzjlhR1nRk5pRMB4Z7BqO4RAgUh
+         wx4aIn5hCk1cTDzo0b86HD1aLvvqHcMy00lnWIJSdZKG+ZzuK9S3zah2dlRwMhRjqF0E
+         TBkA==
+X-Gm-Message-State: AC+VfDxydRwEDF5WpA5D2wksHdxcGf9qxr9U0824o/EuPEhJv/4MSDw0
+        iczCSm+PJfmc3d9gJhK7ctw=
+X-Google-Smtp-Source: ACHHUZ5UN+qzjzXVsEOHnAwfMnnyHqqndWx8mo+mSsS5krDY+rsSggAkB3ifefAn8sBSg6xE1NDKUg==
+X-Received: by 2002:a05:651c:231:b0:293:4b91:d03e with SMTP id z17-20020a05651c023100b002934b91d03emr2004226ljn.1.1684581970760;
+        Sat, 20 May 2023 04:26:10 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id j21-20020a2e8015000000b002aeee2a093csm258949ljg.59.2023.05.20.04.26.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 May 2023 04:26:10 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20230519085122.15758-1-quic_kbajaj@quicinc.com>
- <20230519085122.15758-5-quic_kbajaj@quicinc.com>
- <8e3c745a-2e37-2927-7dbf-e23a777702f3@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <8e3c745a-2e37-2927-7dbf-e23a777702f3@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Christian Lamparter <chunkeey@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/2] dt-bindings: arm: bcm: unify version notation of Northstar devices
+Date:   Sat, 20 May 2023 13:26:00 +0200
+Message-Id: <20230520112601.11821-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
+Always use a minus/hyphen char to separate model from version. This
+unifies binding's "compatible" strings.
 
-On 19.05.2023 12:13, Bhupesh Sharma wrote:
-> 
-> On 5/19/23 2:21 PM, Komal Bajaj wrote:
->> Add sdhci node for emmc in qdu1000-idp.
->>
->> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 11 +++++++++++
->>   1 file changed, 11 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
->> index 9e9fd4b8023e..b2526e991548 100644
->> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
->> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
->> @@ -451,3 +451,14 @@
->>   &uart7 {
->>       status = "okay";
->>   };
->> +
->> +&sdhc_1 {
->> +    status = "okay";
->> +
->> +    pinctrl-0 = <&sdc1_on_state>;
->> +    pinctrl-1 = <&sdc1_off_state>;
->> +    pinctrl-names = "default", "sleep";
->> +
->> +    vmmc-supply = <&vreg_l10a_2p95>;
->> +    vqmmc-supply = <&vreg_l7a_1p8>;
->> +};
-> 
-> Again, please follow alphabetical order for adding new node entries.
-> 
-> Also, we have been placing 'status = .. ' entry at the end for new .dts (or .dts entry), but if that is the format used across this board dts
-> I am ok with the same.
-Komal,
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../devicetree/bindings/arm/bcm/brcm,bcm4708.yaml    | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-since you're already touching this file, would you mind making a
-separate commit moving status last for all nodes?
+diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
+index 454b0e93245d..cc34025fdc78 100644
+--- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
++++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4708.yaml
+@@ -28,10 +28,10 @@ properties:
+               - buffalo,wzr-1750dhp
+               - linksys,ea6300-v1
+               - linksys,ea6500-v2
+-              - luxul,xap-1510v1
++              - luxul,xap-1510-v1
+               - luxul,xwc-1000
+-              - netgear,r6250v1
+-              - netgear,r6300v2
++              - netgear,r6250-v1
++              - netgear,r6300-v2
+               - smartrg,sr400ac
+               - brcm,bcm94708
+           - const: brcm,bcm4708
+@@ -42,8 +42,8 @@ properties:
+               - asus,rt-n18u
+               - buffalo,wzr-600dhp2
+               - buffalo,wzr-900dhp
+-              - luxul,xap-1410v1
+-              - luxul,xwr-1200v1
++              - luxul,xap-1410-v1
++              - luxul,xwr-1200-v1
+               - tplink,archer-c5-v2
+           - const: brcm,bcm47081
+           - const: brcm,bcm4708
+@@ -72,7 +72,7 @@ properties:
+               - luxul,xap-1610-v1
+               - luxul,xbr-4500-v1
+               - luxul,xwc-2000-v1
+-              - luxul,xwr-3100v1
++              - luxul,xwr-3100-v1
+               - luxul,xwr-3150-v1
+               - netgear,r8500
+               - phicomm,k3
+-- 
+2.35.3
 
-Konrad
-> 
-> Thanks,
-> Bhupesh
