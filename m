@@ -2,56 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33C7E70AB91
-	for <lists+devicetree@lfdr.de>; Sun, 21 May 2023 00:32:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98A4070AC49
+	for <lists+devicetree@lfdr.de>; Sun, 21 May 2023 06:04:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229570AbjETWcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 May 2023 18:32:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56356 "EHLO
+        id S229648AbjEUEDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 May 2023 00:03:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbjETWcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 May 2023 18:32:10 -0400
+        with ESMTP id S230187AbjEUEDf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 00:03:35 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0912DAF;
-        Sat, 20 May 2023 15:32:10 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65A59E4B;
+        Sat, 20 May 2023 21:03:03 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8E17060C3C;
-        Sat, 20 May 2023 22:32:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 712C5C433D2;
-        Sat, 20 May 2023 22:32:06 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EBF7160C54;
+        Sun, 21 May 2023 04:03:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FDBAC433EF;
+        Sun, 21 May 2023 04:03:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684621928;
-        bh=bVa6uK9/K3yB1y0WkBxJn5O5ITWcDwsD2jSOfJ5DXeg=;
+        s=k20201202; t=1684641782;
+        bh=tAL1e1CrhZKFhxrzTAaRdTpX97DGjoMXvtlZ/Guyg3E=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MOZyfAVsfRE/tRxD6FIoGxo1SwTnayLPoDwX7xgcCophTulGA0kaOHOa0DQvRCR0l
-         zPKl+0qoIWbHiyHorkzRbNR+pR9rt4vSBI1QWwYsvZijWXyktjBNi91eYjk2al1SMF
-         zMfFDALDFu80Q5UzPXOi1SSX/AoU+j4KU4y7+3qCuqCDF970hhMyM+wjqREUZ7u2sQ
-         JnOv8p0/JFP1dzglUdToCkfF4KR3nJYn49xBR7hwIU6By02kPyXTjsLSXSFoj5cAXh
-         ZbopQ6uiziub7jQ14CA9fz5C8vm1j6ixtYny5eRs3OEeiuAJS5O26trJpRCHPuMcqh
-         Cp8++IU4rp6yg==
-Date:   Sat, 20 May 2023 23:32:03 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Anup Sharma <anupnewsmail@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        u.kleine-koenig@pengutronix.de, andriy.shevchenko@linux.intel.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] Add dt-binding support for ti tmp006
-Message-ID: <20230520-context-emblaze-2456dbeb2414@spud>
-References: <cover.1684579603.git.anupnewsmail@gmail.com>
- <20230520162002.7aba7c04@jic23-huawei>
+        b=qOmd4822YlstRkGzmOQeiQ6MujYbRy6GTSeaJm0vJuGIjwwfsAFPN7fcm7nB3w9Tr
+         2PZ7MZrpm0KiaGQ/pYdYNZxjJU1vbHLSbTowJJxyvKTNyQfWKYU3iOTHYM4072mZDv
+         bj4Wg/1wBXbGZgrvbGYfPyjxGDHUkrXFvBXOZWj8JvPMef380QKRcUFNCsEXi+OSb7
+         FfpHeVvguvXVPCrKhae2AHSWQiUMTMTlJH9SkKBB0EG5+2CsfoRZa50Y+OyaDRnW43
+         50+Yh/+vNOpx0ok9b5x75ez4NkvANWZTApj7P7Ic4z08YIXshyHtbtAB1bK+QDYjSM
+         ugwGA4TcJ05gg==
+Date:   Sat, 20 May 2023 23:02:59 -0500
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
+Cc:     agross@kernel.org, konrad.dybcio@linaro.org,
+        linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        richardcochran@gmail.com, manivannan.sadhasivam@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] Add pinctrl support for SDX75
+Message-ID: <7khdd4o2h2nwhopsziqdsjmbdfiehiax5mywbkrjr2fkzhcymz@4tastcouroqv>
+References: <1684425432-10072-1-git-send-email-quic_rohiagar@quicinc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="I9PpOQQ+2tdQwxLR"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230520162002.7aba7c04@jic23-huawei>
+In-Reply-To: <1684425432-10072-1-git-send-email-quic_rohiagar@quicinc.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -62,46 +58,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, May 18, 2023 at 09:27:09PM +0530, Rohit Agarwal wrote:
+> Hi,
+> 
+> Changes in v3:
+>  - Addressing minor comments from Bhupesh related to reusing variable.
+> 
+> Changes in v2:
+>  - Added a patch for updating the maintainers entry for pinctrl bindings.
+>  - Some formatting issue at the end of the driver change.
+> 
+> This patch series adds pinctrl bindings and tlmm support for SDX75.
+> 
+> The series is rebased on linux-next and based on all the review and
+> comments from different versions of [1].
+> 
+> [1] https://lore.kernel.org/linux-arm-msm/1681966915-15720-1-git-send-email-quic_rohiagar@quicinc.com/
+> 
 
---I9PpOQQ+2tdQwxLR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-On Sat, May 20, 2023 at 04:20:02PM +0100, Jonathan Cameron wrote:
-> On Sat, 20 May 2023 16:21:50 +0530
-> Anup Sharma <anupnewsmail@gmail.com> wrote:
->=20
-> > These patches introduce device tree binding support and
-> > add an of_device_id table entry to the driver.
-> >=20
-> > Changes in v2:
-> > 	- Keep the exsisting MODULE_DEVICE_TABLE entry.
-> > 	- Removed the inner comma in of_device_id.
-> > 	- Order the included header to improve code organization.
-> > 	- Adding missing semicolon to fix syntax error detected
-> > 	  using dt_binding_check.
-> > =09
-> LGTM - I'll leave them a little while though for others to comment before
-> picking them up.
+Regards,
+Bjorn
 
-It may be a wee bit before you here from Krzysztof, but the binding
-check issues have been fixed, as have the things he pointed out in the
-original submission AFAICT.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---I9PpOQQ+2tdQwxLR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGlKYwAKCRB4tDGHoIJi
-0s2WAP0YKDkVZiFEQncIkp8rNF6D0YtaXGgmGUBr6sK8Ho01mwD/T0giA2lzH8jV
-khnOtuvsMJkPMCqrjzZiDqciw8I2AQs=
-=ZnA+
------END PGP SIGNATURE-----
-
---I9PpOQQ+2tdQwxLR--
+> Thanks,
+> Rohit.
+> 
+> Rohit Agarwal (3):
+>   dt-bindings: pinctrl: qcom: Add SDX75 pinctrl devicetree compatible
+>   MAINTAINERS: Update the entry for pinctrl maintainers
+>   pinctrl: qcom: Add SDX75 pincontrol driver
+> 
+>  .../bindings/pinctrl/qcom,sdx75-tlmm.yaml          |  137 +++
+>  MAINTAINERS                                        |    2 +-
+>  drivers/pinctrl/qcom/Kconfig                       |   30 +-
+>  drivers/pinctrl/qcom/Makefile                      |    3 +-
+>  drivers/pinctrl/qcom/pinctrl-sdx75.c               | 1144 ++++++++++++++++++++
+>  5 files changed, 1304 insertions(+), 12 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdx75-tlmm.yaml
+>  create mode 100644 drivers/pinctrl/qcom/pinctrl-sdx75.c
+> 
+> -- 
+> 2.7.4
+> 
