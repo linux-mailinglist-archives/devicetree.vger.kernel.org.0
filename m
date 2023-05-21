@@ -2,60 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0247A70AE74
-	for <lists+devicetree@lfdr.de>; Sun, 21 May 2023 17:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A5D870AE9B
+	for <lists+devicetree@lfdr.de>; Sun, 21 May 2023 17:38:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229511AbjEUPNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 May 2023 11:13:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47726 "EHLO
+        id S229497AbjEUPiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 May 2023 11:38:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230378AbjEUPM7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 11:12:59 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC14E1;
-        Sun, 21 May 2023 08:10:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1684681842; x=1716217842;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MQFK43OnzuPwcmRa8kbMKCTdWnWcoVZv3AtoiXcB18k=;
-  b=Kpq/mWQPkE7jbRka7CBEdC0psx4wVDwrOxrUzQbuanlHm6DnIcrB8Ndz
-   RFLM4MON0qlkSejdb4HWr3jF6xKs/2U2OqfjGm1787WUi91DWeIabdT7h
-   8RsCaGJry4vwywfXSnNu2e03Uf5pvFTPR0C4Pt6FtdUGD8HqpmIxmSYum
-   FvYBBedENofxldgAw3fZ5oiw3fO35TvI8zPwjy21CfsyITxbfoFD6owGB
-   Eui4MOn7pM/830QHka8Ln8Z5FPtDCkU+ijSCUf6H+gt0pXskw7+Sui9Dx
-   5fNwFoJxLZ2EiRfUFgk1U/Z2ClCUQunWZzKvNFoWMgTi7S0q8dpFqoONu
-   w==;
-X-IronPort-AV: E=Sophos;i="6.00,182,1681196400"; 
-   d="scan'208";a="214216229"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 May 2023 08:10:41 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Sun, 21 May 2023 08:10:41 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Sun, 21 May 2023 08:10:40 -0700
-Date:   Sun, 21 May 2023 17:10:40 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <richardcochran@gmail.com>, <nicolas.ferre@microchip.com>,
-        <claudiu.beznea@microchip.com>
-Subject: Re: [PATCH] ARM: dts: lan966x: Add support for SMA connectors
-Message-ID: <20230521151040.nvurjgukigiqohhx@soft-dev3-1>
-References: <20230421113758.3465678-1-horatiu.vultur@microchip.com>
+        with ESMTP id S229481AbjEUPiO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 11:38:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1291FE4;
+        Sun, 21 May 2023 08:38:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8B8B560F15;
+        Sun, 21 May 2023 15:38:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D32B6C433EF;
+        Sun, 21 May 2023 15:38:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684683491;
+        bh=rsSKWKgzrdYi2+QrzmaBdQMUeBWsskCgLQSydAupoTA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Qwf0/ZmwhQxctn5etWjGtdfBtb/GIBXYMstyBmUVcWUeuK97EZ9JtBxCOg6P6JGFP
+         16PgRDFIPKLJuGMutO6bTM+dG5HsRzlCTRLvZ2owrreWQoZYYq3ZW2PcJMOiYEtJ6+
+         ts1y5yoiiy3k9zYJ3X2Zop7FRhEjwfRotnH1Azlq6IYVacEr0NLfi6jFiUfPYbvC+F
+         0AJXjTSyg+sm0GhjLhwXO9aIKfzms+4vSrNnreCzacw5AsmUeRlz+UqO/hAj9HSURD
+         QpK7ojClyvqWNL5mBqVzOT6ettQeyT3azhbX3dg4n7dRVJy032xdUjV52KJTgoiram
+         3ZxtzDuKIwQHQ==
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-96fb45a5258so166601566b.2;
+        Sun, 21 May 2023 08:38:11 -0700 (PDT)
+X-Gm-Message-State: AC+VfDw5WLlOjo2Qe3gg3+bIPby9M0hxM9VrDIqsunHoj/9AlSp9G89/
+        mAOu/Xh1KWhoxMpdMDdytp66pj/h1zk91yG2ZO8=
+X-Google-Smtp-Source: ACHHUZ5CViNXL356WnB7eKprukgeq44eBPyn5myooMQtHmUvgxxC0NILsR5aCx0KAsnQjkJfL90u7zWhy3vKUUMJml8=
+X-Received: by 2002:a17:907:26c3:b0:94f:2a13:4e01 with SMTP id
+ bp3-20020a17090726c300b0094f2a134e01mr7498092ejc.74.1684683490097; Sun, 21
+ May 2023 08:38:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20230421113758.3465678-1-horatiu.vultur@microchip.com>
+References: <20230507182304.2934-1-jszhang@kernel.org> <20230507182304.2934-4-jszhang@kernel.org>
+ <20230507-calamari-gentleman-bbe62af06f92@spud> <ZFkiotPacIMUghDP@xhacker> <20230508-unmoved-unvocal-9a6c5fc0c629@spud>
+In-Reply-To: <20230508-unmoved-unvocal-9a6c5fc0c629@spud>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Sun, 21 May 2023 23:37:58 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTSFm32ozEDy_3zvrf05USJ8FxCsaGK-2FbkJQsPUDQXmA@mail.gmail.com>
+Message-ID: <CAJF2gTSFm32ozEDy_3zvrf05USJ8FxCsaGK-2FbkJQsPUDQXmA@mail.gmail.com>
+Subject: Re: [PATCH 3/5] riscv: dts: add initial T-HEAD light SoC device tree
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Jisheng Zhang <jszhang@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, heiko@sntech.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,56 +72,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 04/21/2023 13:37, Horatiu Vultur wrote:
+On Tue, May 9, 2023 at 12:44=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Tue, May 09, 2023 at 12:26:10AM +0800, Jisheng Zhang wrote:
+> > On Sun, May 07, 2023 at 10:35:12PM +0100, Conor Dooley wrote:
+> > > On Mon, May 08, 2023 at 02:23:02AM +0800, Jisheng Zhang wrote:
+> > >
+> > > > +         c910_0: cpu@0 {
+> > > > +                 compatible =3D "thead,c910", "riscv";
+> > > > +                 device_type =3D "cpu";
+> > > > +                 riscv,isa =3D "rv64imafdc";
+> > >
+> > > Does this support more than "rv64imafdc"?
+> > > I assume there's some _xtheadfoo extensions that it does support,
+> > > although I am not sure how we are proceeding with those - Heiko might
+> > > have a more nuanced take.
+> > >
+> > > > +         reset: reset-sample {
+> > > > +                 compatible =3D "thead,reset-sample";
+> > >
+> > > What is a "reset-sample"?
+> >
+> > This node is only for opensbi. The compatible string is already in
+> > opensbi. Do we also need to add dt-binding for it in linux?
+>
+> If it's to be included in the kernel's dts, then yes, you do need a
+> dt-binding. If you remove it, then you don't :)
+>
+> That said, "thead,reset-sample" is a strangely named compatible, so if
+> you do keep it it may end up needing a rename!
+How about compatible =3D "thead,reset-th1520" ?
 
-Hi,
+>
+> Cheers,
+> Conor.
+>
 
-> The pcb8309 has 2 SMA connectors which are connected to the lan966x
-> chip. The lan966x can generate 1PPS output on one of them and it can
-> receive 1PPS input on the other one.
 
-Just a gentle ping. Thanks.
-
-> 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> ---
->  arch/arm/boot/dts/lan966x-pcb8309.dts | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/lan966x-pcb8309.dts b/arch/arm/boot/dts/lan966x-pcb8309.dts
-> index c436cd20d4b4c..0cb505f79ba1a 100644
-> --- a/arch/arm/boot/dts/lan966x-pcb8309.dts
-> +++ b/arch/arm/boot/dts/lan966x-pcb8309.dts
-> @@ -144,6 +144,18 @@ fc4_b_pins: fc4-b-pins {
->  		function = "fc4_b";
->  	};
->  
-> +	pps_out_pins: pps-out-pins {
-> +		/* 1pps output */
-> +		pins = "GPIO_38";
-> +		function = "ptpsync_3";
-> +	};
-> +
-> +	ptp_ext_pins: ptp-ext-pins {
-> +		/* 1pps input */
-> +		pins = "GPIO_39";
-> +		function = "ptpsync_4";
-> +	};
-> +
->  	sgpio_a_pins: sgpio-a-pins {
->  		/* SCK, D0, D1, LD */
->  		pins = "GPIO_32", "GPIO_33", "GPIO_34", "GPIO_35";
-> @@ -212,5 +224,7 @@ gpio@1 {
->  };
->  
->  &switch {
-> +	pinctrl-0 = <&pps_out_pins>, <&ptp_ext_pins>;
-> +	pinctrl-names = "default";
->  	status = "okay";
->  };
-> -- 
-> 2.38.0
-> 
-
--- 
-/Horatiu
+--=20
+Best Regards
+ Guo Ren
