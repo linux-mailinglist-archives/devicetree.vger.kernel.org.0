@@ -2,532 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EA2B70B0CD
-	for <lists+devicetree@lfdr.de>; Sun, 21 May 2023 23:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBE0170B15B
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 00:07:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231190AbjEUVXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 May 2023 17:23:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57344 "EHLO
+        id S229993AbjEUWHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 May 2023 18:07:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231186AbjEUVXW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 17:23:22 -0400
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [5.144.164.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30DB8129
-        for <devicetree@vger.kernel.org>; Sun, 21 May 2023 14:23:19 -0700 (PDT)
-Received: from Marijn-Arch-PC.localdomain (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 9316D3F36C;
-        Sun, 21 May 2023 23:23:17 +0200 (CEST)
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-Date:   Sun, 21 May 2023 23:23:12 +0200
-Subject: [PATCH RFC 10/10] drm/panel/sony-griffin-samsung: Add panel driver
- for Sony Xperia 1
+        with ESMTP id S229528AbjEUWHg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 18:07:36 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80E8FDC;
+        Sun, 21 May 2023 15:07:35 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34LM08BE003381;
+        Sun, 21 May 2023 22:07:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=+63/G/Tv/MrcI5FFFsDFDEW053aArl4gLPbcVipYQ/I=;
+ b=ZjssRMTFpesSGNTyncoKjKunNIuZOaWsNoYAPnF0i5Kvf17qPPlbbX5ra5xYz5HIttGZ
+ 7J5lrWFWsgIvqzsMFly2EZj1Pt+Nqy8fdTe9IGfomX1jtBGgnDZh1Lp+uBgsHvLi2mwQ
+ 3GzCkOXmDnwi1FCVa0nbxG4JnTBdrfpvAU82WOQjvz6WVZ17bd24ax0mdu9bZT4UWVRV
+ Yzc6964KvVAGApYq7UIXYLvve590DjKszl32dCh/NTMqSB1huJeL+g3rnKQ382GkpwS5
+ P/su2SIcL29aXSV9fe0NGvqKztsUgqjhhE1CNDl0YUfVZ/s55OHE61W7FBjlBHDTnViO +w== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qppa1a98t-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sun, 21 May 2023 22:07:24 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34LM7NgP023683
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sun, 21 May 2023 22:07:23 GMT
+Received: from [10.216.45.27] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Sun, 21 May
+ 2023 15:07:16 -0700
+Message-ID: <24826ca7-a9fa-9602-39ba-870021150c8d@quicinc.com>
+Date:   Mon, 22 May 2023 03:37:12 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.2
+Subject: Re: [PATCH 08/11] remoteproc: qcom: Add Hexagon based multipd rproc
+ driver
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <jassisinghbrar@gmail.com>,
+        <mathieu.poirier@linaro.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <quic_gurus@quicinc.com>,
+        <loic.poulain@linaro.org>, <quic_eberman@quicinc.com>,
+        <robimarko@gmail.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <quic_gokulsri@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_poovendh@quicinc.com>
+References: <1678164097-13247-1-git-send-email-quic_mmanikan@quicinc.com>
+ <1678164097-13247-9-git-send-email-quic_mmanikan@quicinc.com>
+ <366ed962-dedb-0e88-036d-a1a806d0b589@quicinc.com>
+ <f63c86fd-4c39-7523-1971-6d8df91afcf4@quicinc.com>
+ <CAA8EJpoH51ajGvSdb1VBmtkKdLUnVGNhoBay93whz+hJh4ApXA@mail.gmail.com>
+From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <CAA8EJpoH51ajGvSdb1VBmtkKdLUnVGNhoBay93whz+hJh4ApXA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230521-drm-panels-sony-v1-10-541c341d6bee@somainline.org>
-References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
-In-Reply-To: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: H7Ecfu0LluM_zm-IRWNWOOtdyxEJw1xS
+X-Proofpoint-ORIG-GUID: H7Ecfu0LluM_zm-IRWNWOOtdyxEJw1xS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
+ definitions=2023-05-21_16,2023-05-17_02,2023-02-09_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ lowpriorityscore=0 bulkscore=0 adultscore=0 suspectscore=0
+ priorityscore=1501 spamscore=0 mlxlogscore=943 phishscore=0
+ impostorscore=0 mlxscore=0 malwarescore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.12.0-2304280000
+ definitions=main-2305210199
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Sony Xperia 1 (codename kumano griffin) features an unnamed 4k OLED
-DSI cmd mode panel produced by Samsung.  It can be driven in a
-1644x3840@60 or 1096x2560@60 mode, and always has Display Stream
-Compression 1.1 enabled.
 
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
----
- drivers/gpu/drm/panel/Kconfig                      |  13 +
- drivers/gpu/drm/panel/Makefile                     |   1 +
- drivers/gpu/drm/panel/panel-sony-griffin-samsung.c | 410 +++++++++++++++++++++
- 3 files changed, 424 insertions(+)
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 8e2668153bce2..888b5152ca55e 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -743,6 +743,19 @@ config DRM_PANEL_SONY_AKATSUKI_LGD
- 
- 	  This panel uses Display Stream Compression 1.1.
- 
-+config DRM_PANEL_SONY_GRIFFIN_SAMSUNG
-+	tristate "Sony Xperia 1 4k OLED panel"
-+	depends on GPIOLIB && OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y here if you want to enable support for the Sony Xperia 1 4k
-+	  6.5" OLED DSI cmd mode panel produced by Samsung.
-+
-+	  This panel uses Display Stream Compression 1.1.
-+
-+	  The panel features a 1644x3840@60 and 1096x2560@60 mode.
-+
- config DRM_PANEL_SONY_TD4353_JDI
- 	tristate "Sony TD4353 JDI panel"
- 	depends on GPIOLIB && OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 52dcd82e33120..734d32987330d 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -74,6 +74,7 @@ obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) += panel-sitronix-st7703.o
- obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += panel-sitronix-st7789v.o
- obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) += panel-sony-acx565akm.o
- obj-$(CONFIG_DRM_PANEL_SONY_AKATSUKI_LGD) += panel-sony-akatsuki-lgd.o
-+obj-$(CONFIG_DRM_PANEL_SONY_GRIFFIN_SAMSUNG) += panel-sony-griffin-samsung.o
- obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) += panel-sony-td4353-jdi.o
- obj-$(CONFIG_DRM_PANEL_SONY_TULIP_TRULY_NT35521) += panel-sony-tulip-truly-nt35521.o
- obj-$(CONFIG_DRM_PANEL_TDO_TL070WSH30) += panel-tdo-tl070wsh30.o
-diff --git a/drivers/gpu/drm/panel/panel-sony-griffin-samsung.c b/drivers/gpu/drm/panel/panel-sony-griffin-samsung.c
-new file mode 100644
-index 0000000000000..755cec7f9119b
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-sony-griffin-samsung.c
-@@ -0,0 +1,410 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (c) 2023 Marijn Suijten <marijn.suijten@somainline.org>
-+
-+#include <linux/backlight.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <drm/drm_probe_helper.h>
-+#include <drm/display/drm_dsc.h>
-+#include <drm/display/drm_dsc_helper.h>
-+
-+static const bool enable_4k = true;
-+
-+struct sony_griffin_samsung {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct gpio_desc *reset_gpio;
-+	struct regulator *vddio, *vci;
-+	bool prepared;
-+};
-+
-+static inline
-+struct sony_griffin_samsung *to_sony_griffin_samsung(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct sony_griffin_samsung, panel);
-+}
-+
-+static void sony_griffin_samsung_reset(struct sony_griffin_samsung *ctx)
-+{
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+}
-+
-+static int sony_griffin_samsung_on(struct sony_griffin_samsung *ctx)
-+{
-+	const u16 hdisplay = enable_4k ? 1644 : 1096;
-+	const u16 vdisplay = enable_4k ? 3840 : 2560;
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	usleep_range(10000, 11000);
-+
-+	ret = mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set tear on: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x05);
-+	mipi_dsi_dcs_write_seq(dsi, 0xd7, 0x07);
-+	mipi_dsi_dcs_write_seq(dsi, 0xf0, 0xa5, 0xa5);
-+	/* Enable backlight control */
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, BIT(5));
-+	msleep(110);
-+	mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
-+	mipi_dsi_dcs_write_seq(dsi, 0xe2, enable_4k ? 0 : 1);
-+	mipi_dsi_dcs_write_seq(dsi, 0xf0, 0xa5, 0xa5);
-+
-+	ret = mipi_dsi_dcs_set_column_address(dsi, 0, hdisplay - 1);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set column address: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = mipi_dsi_dcs_set_page_address(dsi, 0, vdisplay - 1);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set page address: %d\n", ret);
-+		return ret;
-+	}
-+
-+	mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x70);
-+	mipi_dsi_dcs_write_seq(dsi, 0xb9, 0x00, 0x60);
-+	mipi_dsi_dcs_write_seq(dsi, 0xf0, 0xa5, 0xa5);
-+	mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
-+	mipi_dsi_dcs_write_seq(dsi, 0xc5, 0x2e, 0x21);
-+	mipi_dsi_dcs_write_seq(dsi, 0xf0, 0xa5, 0xa5);
-+
-+	ret = mipi_dsi_dcs_set_display_on(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to turn display on: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int sony_griffin_samsung_off(struct sony_griffin_samsung *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	ret = mipi_dsi_dcs_set_display_off(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to turn display off: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(20);
-+
-+	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, BIT(5));
-+	usleep_range(17000, 18000);
-+
-+	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(100);
-+
-+	return 0;
-+}
-+
-+static int sony_griffin_samsung_prepare(struct drm_panel *panel)
-+{
-+	struct sony_griffin_samsung *ctx = to_sony_griffin_samsung(panel);
-+	struct drm_dsc_picture_parameter_set pps;
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	if (ctx->prepared)
-+		return 0;
-+
-+	ret = regulator_enable(ctx->vddio);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enable vddio regulator: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = regulator_enable(ctx->vci);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enable vci regulator: %d\n", ret);
-+		regulator_disable(ctx->vddio);
-+		return ret;
-+	}
-+
-+	sony_griffin_samsung_reset(ctx);
-+
-+	ret = sony_griffin_samsung_on(ctx);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-+		goto fail;
-+	}
-+
-+	if (ctx->dsi->dsc) {
-+		drm_dsc_pps_payload_pack(&pps, ctx->dsi->dsc);
-+
-+		ret = mipi_dsi_picture_parameter_set(ctx->dsi, &pps);
-+		if (ret < 0) {
-+			dev_err(dev, "failed to transmit PPS: %d\n", ret);
-+			goto fail;
-+		}
-+
-+		ret = mipi_dsi_compression_mode(ctx->dsi, true);
-+		if (ret < 0) {
-+			dev_err(dev, "failed to enable compression mode: %d\n", ret);
-+			goto fail;
-+		}
-+
-+		msleep(28);
-+	}
-+
-+	ctx->prepared = true;
-+	return 0;
-+
-+fail:
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	regulator_disable(ctx->vci);
-+	regulator_disable(ctx->vddio);
-+	return ret;
-+}
-+
-+static int sony_griffin_samsung_unprepare(struct drm_panel *panel)
-+{
-+	struct sony_griffin_samsung *ctx = to_sony_griffin_samsung(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	if (!ctx->prepared)
-+		return 0;
-+
-+	ret = sony_griffin_samsung_off(ctx);
-+	if (ret < 0)
-+		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	regulator_disable(ctx->vddio);
-+	regulator_disable(ctx->vci);
-+
-+	ctx->prepared = false;
-+	return 0;
-+}
-+
-+static const struct drm_display_mode sony_griffin_samsung_2_5k_mode = {
-+	.clock = (1096 + 56 + 8 + 8) * (2560 + 8 + 8 + 8) * 60 / 1000,
-+	.hdisplay = 1096,
-+	.hsync_start = 1096 + 56,
-+	.hsync_end = 1096 + 56 + 8,
-+	.htotal = 1096 + 56 + 8 + 8,
-+	.vdisplay = 2560,
-+	.vsync_start = 2560 + 8,
-+	.vsync_end = 2560 + 8 + 8,
-+	.vtotal = 2560 + 8 + 8 + 8,
-+	.width_mm = 65,
-+	.height_mm = 152,
-+};
-+
-+static const struct drm_display_mode sony_griffin_samsung_4k_mode = {
-+	.clock = (1644 + 60 + 8 + 8) * (3840 + 8 + 8 + 8) * 60 / 1000,
-+	.hdisplay = 1644,
-+	.hsync_start = 1644 + 60,
-+	.hsync_end = 1644 + 60 + 8,
-+	.htotal = 1644 + 60 + 8 + 8,
-+	.vdisplay = 3840,
-+	.vsync_start = 3840 + 8,
-+	.vsync_end = 3840 + 8 + 8,
-+	.vtotal = 3840 + 8 + 8 + 8,
-+	.width_mm = 65,
-+	.height_mm = 152,
-+};
-+
-+static int sony_griffin_samsung_get_modes(struct drm_panel *panel,
-+						  struct drm_connector *connector)
-+{
-+	if (enable_4k)
-+		return drm_connector_helper_get_modes_fixed(connector,
-+							    &sony_griffin_samsung_4k_mode);
-+	else
-+		return drm_connector_helper_get_modes_fixed(connector,
-+							    &sony_griffin_samsung_2_5k_mode);
-+}
-+
-+static const struct drm_panel_funcs sony_griffin_samsung_panel_funcs = {
-+	.prepare = sony_griffin_samsung_prepare,
-+	.unprepare = sony_griffin_samsung_unprepare,
-+	.get_modes = sony_griffin_samsung_get_modes,
-+};
-+
-+static int sony_griffin_samsung_bl_update_status(struct backlight_device *bl)
-+{
-+	struct mipi_dsi_device *dsi = bl_get_data(bl);
-+	u16 brightness = backlight_get_brightness(bl);
-+	int ret;
-+
-+	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	ret = mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
-+
-+	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	return ret;
-+}
-+
-+static int sony_griffin_samsung_bl_get_brightness(struct backlight_device *bl)
-+{
-+	struct mipi_dsi_device *dsi = bl_get_data(bl);
-+	u16 brightness;
-+	int ret;
-+
-+	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
-+
-+	ret = mipi_dsi_dcs_get_display_brightness_large(dsi, &brightness);
-+
-+	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	if (ret < 0)
-+		return ret;
-+
-+	return brightness;
-+}
-+
-+static const struct backlight_ops sony_griffin_samsung_bl_ops = {
-+	.update_status = sony_griffin_samsung_bl_update_status,
-+	.get_brightness = sony_griffin_samsung_bl_get_brightness,
-+};
-+
-+static struct backlight_device *
-+sony_griffin_samsung_create_backlight(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	const struct backlight_properties props = {
-+		.type = BACKLIGHT_RAW,
-+		.brightness = 400,
-+		.max_brightness = 4095,
-+	};
-+
-+	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
-+					      &sony_griffin_samsung_bl_ops, &props);
-+}
-+
-+static int sony_griffin_samsung_probe(struct mipi_dsi_device *dsi)
-+{
-+	const u16 hdisplay = enable_4k ? 1644 : 1096;
-+	struct device *dev = &dsi->dev;
-+	struct sony_griffin_samsung *ctx;
-+	struct drm_dsc_config *dsc;
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	ctx->vddio = devm_regulator_get(dev, "vddio");
-+	if (IS_ERR(ctx->vddio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->vddio),
-+					"Failed to get vddio regulator\n");
-+
-+	ctx->vci = devm_regulator_get(dev, "vci");
-+	if (IS_ERR(ctx->vci))
-+		return dev_err_probe(dev, PTR_ERR(ctx->vci),
-+					"Failed to get vci regulator\n");
-+
-+	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	ctx->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_CLOCK_NON_CONTINUOUS;
-+
-+	drm_panel_init(&ctx->panel, dev, &sony_griffin_samsung_panel_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+
-+	ctx->panel.backlight = sony_griffin_samsung_create_backlight(dsi);
-+	if (IS_ERR(ctx->panel.backlight))
-+		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
-+				     "Failed to create backlight\n");
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	/* This panel only supports DSC; unconditionally enable it */
-+	dsi->dsc = dsc = devm_kzalloc(&dsi->dev, sizeof(*dsc), GFP_KERNEL);
-+	if (!dsc)
-+		return -ENOMEM;
-+
-+	dsc->dsc_version_major = 1;
-+	dsc->dsc_version_minor = 1;
-+
-+	dsc->slice_height = 32;
-+	dsc->slice_count = 2;
-+	WARN_ON(hdisplay % dsc->slice_count);
-+	dsc->slice_width = hdisplay / dsc->slice_count;
-+	dsc->bits_per_component = 8;
-+	dsc->bits_per_pixel = 8 << 4; /* 4 fractional bits */
-+	dsc->block_pred_enable = true;
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
-+		drm_panel_remove(&ctx->panel);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void sony_griffin_samsung_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct sony_griffin_samsung *ctx = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-+
-+	drm_panel_remove(&ctx->panel);
-+}
-+
-+static const struct of_device_id sony_griffin_samsung_of_match[] = {
-+	{ .compatible = "sony,griffin-samsung-4k-oled" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, sony_griffin_samsung_of_match);
-+
-+static struct mipi_dsi_driver sony_griffin_samsung_driver = {
-+	.probe = sony_griffin_samsung_probe,
-+	.remove = sony_griffin_samsung_remove,
-+	.driver = {
-+		.name = "panel-sony-griffin-samsung-4k-oled",
-+		.of_match_table = sony_griffin_samsung_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(sony_griffin_samsung_driver);
-+
-+MODULE_AUTHOR("Marijn Suijten <marijn.suijten@somainline.org>");
-+MODULE_DESCRIPTION("DRM panel driver for an unnamed Samsung 4k OLED panel found in the Sony Xperia 1");
-+MODULE_LICENSE("GPL");
+On 5/21/2023 11:40 PM, Dmitry Baryshkov wrote:
+> On Sun, 21 May 2023 at 18:48, Manikanta Mylavarapu
+> <quic_mmanikan@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 3/7/2023 6:47 PM, Sricharan Ramabadhran wrote:
+>>>
+>>>
+>>> On 3/7/2023 10:11 AM, Manikanta Mylavarapu wrote:
+>>>> APSS brings Q6 out of reset and then Q6 brings
+>>>> WCSS block (wifi radio's) out of reset.
+>>>>
+>>>>                     ---------------
+>>>>                    -->  |WiFi 2G radio|
+>>>>                    |       --------------
+>>>>                    |
+>>>> --------    -------          |
+>>>> | APSS | --->   |QDSP6|  -----|
+>>>> ---------    -------       |
+>>>>                                 |
+>>>>                           |
+>>>>                    |   --------------
+>>>>                    --> |WiFi 5G radio|
+>>>>                    --------------
+>>>>
+>>>> Problem here is if any radio crashes, subsequently other
+>>>> radio also should crash because Q6 crashed. Let's say
+>>>> 2G radio crashed, Q6 should pass this info to APSS. Only
+>>>> Q6 processor interrupts registered with APSS. Obviously
+>>>> Q6 should crash and raise fatal interrupt to APSS. Due
+>>>> to this 5G radio also crashed. But no issue in 5G radio,
+>>>> because of 2G radio crash 5G radio also impacted.
+>>>>
+>>>> In multi pd model, this problem is resolved. Here WCSS
+>>>> functionality (WiFi radio's) moved out from Q6 root pd
+>>>> to a separate user pd. Due to this, radio's independently
+>>>> pass their status info to APPS with out crashing Q6. So
+>>>> other radio's won't be impacted.
+>>>>
+>>>>                          ---------
+>>>>                              |WiFi    |
+>>>>                          --> |2G radio|
+>>>>                          |     ---------
+>>>> ------    Start Q6             -------     |
+>>>> |    |    ------------------>     |     |     |
+>>>> |    |  Start WCSS PD1 (2G)       |     |        |
+>>>> |APSS|    ----------------------->|QDSP6|-----|
+>>>> |    |    Start WCSS PD1 (5G)    |     |
+>>>> |    |    ----------------------->|     |-----|
+>>>> ------                     -------     |
+>>>>                          |
+>>>>                          |    -----------
+>>>>                          |-->|WiFi      |
+>>>>                          |5G radio |
+>>>>                          -----------
+>>>> According to linux terminology, here consider Q6 as root
+>>>> i.e it provide all services, WCSS (wifi radio's) as user
+>>>> i.e it uses services provided by root.
+>>>>
+>>>> Since Q6 root & WCSS user pd's able to communicate with
+>>>> APSS individually, multipd remoteproc driver registers
+>>>> each PD with rproc framework. Here clients (Wifi host drivers)
+>>>> intrested on WCSS PD rproc, so multipd driver start's root
+>>>> pd in the context of WCSS user pd rproc start. Similarly
+>>>> on down path, root pd will be stopped after wcss user pd
+>>>> stopped.
+>>>>
+>>>> Here WCSS(user) PD is dependent on Q6(root) PD, so first
+>>>> q6 pd should be up before wcss pd. After wcss pd goes down,
+>>>> q6 pd should be turned off.
+>>>>
+>>>> rproc->ops->start(userpd_rproc) {
+>>>>      /* Boot root pd rproc */
+>>>>      rproc_boot(upd_dev->parent);
+>>>>      ---
+>>>>      /* user pd rproc start sequence */
+>>>>      ---
+>>>>      ---
+>>>> }
+>>>> With this way we ensure that root pd brought up before userpd.
+>>>>
+>>>> rproc->ops->stop(userpd_rproc) {
+>>>>      ---
+>>>>      ---
+>>>>      /* user pd rproc stop sequence */
+>>>>      ---
+>>>>      ---
+>>>>      /* Shutdown root pd rproc */
+>>>>      rproc_shutdown(upd_dev->parent);
+>>>> }
+>>>> After userpd rproc stops, root pd rproc will be stopped.
+>>>> IPQ5018, IPQ9574 supports multipd remoteproc driver.
+>>>>
+>>>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>>>> ---
+>>>>    drivers/firmware/qcom_scm.c            | 114 +++++
+>>>>    drivers/firmware/qcom_scm.h            |   6 +
+>>>>    drivers/remoteproc/Kconfig             |  20 +
+>>>>    drivers/remoteproc/Makefile            |   1 +
+>>>>    drivers/remoteproc/qcom_common.c       |  23 +
+>>>>    drivers/remoteproc/qcom_common.h       |   1 +
+>>>>    drivers/remoteproc/qcom_q6v5.c         |  41 +-
+>>>>    drivers/remoteproc/qcom_q6v5.h         |  15 +-
+>>>>    drivers/remoteproc/qcom_q6v5_adsp.c    |   5 +-
+>>>>    drivers/remoteproc/qcom_q6v5_mpd.c     | 668 +++++++++++++++++++++++++
+>>>>    drivers/remoteproc/qcom_q6v5_mss.c     |   4 +-
+>>>>    drivers/remoteproc/qcom_q6v5_pas.c     |   3 +-
+>>>>    drivers/soc/qcom/mdt_loader.c          | 314 ++++++++++++
+>>>>    include/linux/firmware/qcom/qcom_scm.h |   3 +
+>>>>    include/linux/soc/qcom/mdt_loader.h    |  19 +
+>>>>    15 files changed, 1228 insertions(+), 9 deletions(-)
+>>>>    create mode 100644 drivers/remoteproc/qcom_q6v5_mpd.c
+>>>>
+>>>> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+>>>> index d88c5f14bd54..d69560963353 100644
+>>>> --- a/drivers/firmware/qcom_scm.c
+>>>> +++ b/drivers/firmware/qcom_scm.c
+>>>> @@ -654,6 +654,120 @@ int qcom_scm_pas_shutdown(u32 peripheral)
+>>>>    }
+>>>>    EXPORT_SYMBOL(qcom_scm_pas_shutdown);
+>>>> +/**
+>>>> + * qti_scm_int_radio_powerup - Bring up internal radio userpd
+>>>> + *
+>>>> + * @peripheral:    peripheral id
+>>>> + *
+>>>> + * Return 0 on success.
+>>>> + */
+>>>> +int qti_scm_int_radio_powerup(u32 peripheral)
+>>>> +{
+>>>
+>>> qcom instead and in other places too.
+>>>
+>> Internal open source team suggested to use qti.
+> 
+> All existing drivers use qcom_ prefix. Other functions in qcom_scm.c
+> use qcom_ prefix. Please stick to it.
+> 
 
--- 
-2.40.1
+I will discuss with internal team and update in V3 series.
 
+Thanks & Regards,
+Manikanta.
