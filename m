@@ -2,83 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D48FF70B1BC
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 00:31:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AFA870B1FD
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 01:09:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231463AbjEUWbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 May 2023 18:31:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41488 "EHLO
+        id S229563AbjEUXJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 May 2023 19:09:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231489AbjEUWbg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 18:31:36 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 085351B4;
-        Sun, 21 May 2023 15:31:17 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34LMTsta026563;
-        Sun, 21 May 2023 22:30:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=su4pLfaYpFjRQckjSvgDjsewZEZbx868uHmkpyjso4s=;
- b=SDVRfjCrACNcg6LJi4tTo65n2Yg4GkY/dVr3flASoMXqmfaGaMAsamyQj8NFyS6GWPB7
- sN2PeRdKbUiM453rWFu2k1URqOydZyHyjvc8DzMdimuAuj2mJtzlcfQ5ZGxsPpQI+J0O
- R6Y6naD7Bc/rMrz1Zae+3sYMlO8E5BOt7ynSDm14fghE+bNKr1eKlb/5ZsB3qvpL6Tcu
- 26DYdT3ZKvA+IDG3W/Jc7gxrBxYr/VOxmApYCLCjI6S8ZrphZMMMkdyiJFQ1sQVKwEW5
- N0tFj1lhcYYi2kkxKOUO+I/03Q68UWhlTYVZQZyAAwBQfEYrMxcv6qkJhslPvxol263h 1w== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qppa1a9uy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 21 May 2023 22:30:53 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34LMUp36011891
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sun, 21 May 2023 22:30:52 GMT
-Received: from mmanikan-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Sun, 21 May 2023 15:30:44 -0700
-From:   Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <jassisinghbrar@gmail.com>, <mathieu.poirier@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <quic_eberman@quicinc.com>, <quic_mojha@quicinc.com>,
-        <kvalo@kernel.org>, <quic_mmanikan@quicinc.com>,
-        <loic.poulain@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-clk@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_poovendh@quicinc.com>, <quic_varada@quicinc.com>,
-        <quic_devipriy@quicinc.com>
-Subject: [PATCH V2 13/13] arm64: dtsi: qcom: ipq9574: Add nodes to bring up multipd
-Date:   Mon, 22 May 2023 03:58:52 +0530
-Message-ID: <20230521222852.5740-14-quic_mmanikan@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230521222852.5740-1-quic_mmanikan@quicinc.com>
-References: <20230521222852.5740-1-quic_mmanikan@quicinc.com>
+        with ESMTP id S229481AbjEUXJK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 19:09:10 -0400
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E749C3;
+        Sun, 21 May 2023 16:09:09 -0700 (PDT)
+Received: by mail-io1-xd36.google.com with SMTP id ca18e2360f4ac-76fe17da95fso54027339f.2;
+        Sun, 21 May 2023 16:09:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684710549; x=1687302549;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qjwrZuMDrC6WFZ1mTk1to2SpSffKYMQEgBxEDnlWdIc=;
+        b=cCVsXoU7POSFFTR4m3QBPhNyoH8d0VaAPkenpPWIXMj/J1RVi8lhAeuKM9ojWv6b1/
+         jWKhedJfZH3iUmWHyyb1acZArRe5oNIoECrVU0X/mbHoqvAfuaVaCqJ13I0SDZClwgze
+         vxAdrjWc0O1r92yhAnhBiKGzGrPOr4UnWN3XLeE6uwLp/Pf9DaRtKWZud3AxREia1P79
+         XJKI9rOKGQLAqf+oefhq3CIpO8Y4zOMW8mlLJjY8xfruX1HYqrCaBszsJUGWUfWgtXD9
+         5ovVRunirhpql9NQmBG8zXxIcqjYzDsEpm+MyGqQXQYJfg6SIX62WAYNWL8Ya30iy+Um
+         j9kQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684710549; x=1687302549;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qjwrZuMDrC6WFZ1mTk1to2SpSffKYMQEgBxEDnlWdIc=;
+        b=OsXUoN2a9IEPI17MNRZHZ6Yvrk6Ipm0TmeNW2I4bIRSlcluED/xTEQ0aVzv5gG0oJR
+         DaznBZY1pJXTIr0jSpQz0rI3X9UA8XB28mjWQXSqc5/yKeUfCIkvO+CpUWKNBLzJahU7
+         5NHpnQAb8Bs229F2zY6w57ANdaAf+XX8UFF3tA+llsLl956/5toNpO/0KT0h/78RWqIs
+         Hs/qUhHyXss1AW0L5sK/UbHdyFqrgIWMCi/lW+iKSz4Y74BotgtHdVbdidm6uH+7I4DI
+         r2IYzj5/X+9WnStTBqjjhe0vBUafpCHvuD1OatJvHkluLgwSUR9Y1VI+UTzwGXldCxOW
+         /5Tw==
+X-Gm-Message-State: AC+VfDzPtXs2K1DweAhbgDymdPLMMR3DCxvzT3DtrdeyFFpOCDdWD/Wq
+        54/PQHr6CuwXbG09o9fverM=
+X-Google-Smtp-Source: ACHHUZ6hEymCyAO8qSLMHwmYiE18Mn8T3gY0/U+0sUgdPdOk3YVkkentS0EH8TEIsuj1kGkDW7pCsg==
+X-Received: by 2002:a5d:8e17:0:b0:76c:7b40:9b66 with SMTP id e23-20020a5d8e17000000b0076c7b409b66mr4886742iod.1.1684710548652;
+        Sun, 21 May 2023 16:09:08 -0700 (PDT)
+Received: from aford-B741.lan ([2601:447:d001:897f:84e4:c2f6:44bb:b929])
+        by smtp.gmail.com with ESMTPSA id dl9-20020a056638278900b0040f91082a4fsm1288409jab.75.2023.05.21.16.09.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 May 2023 16:09:08 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mp-beacon-kit: Enable WM8962 Audio CODEC
+Date:   Sun, 21 May 2023 18:09:02 -0500
+Message-Id: <20230521230902.167280-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: uYe28ZOXgSwTAqI5FOeRAdDepM7YcXwg
-X-Proofpoint-ORIG-GUID: uYe28ZOXgSwTAqI5FOeRAdDepM7YcXwg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-21_17,2023-05-17_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 bulkscore=0 adultscore=0 suspectscore=0
- priorityscore=1501 spamscore=0 mlxlogscore=760 phishscore=0
- impostorscore=0 mlxscore=0 malwarescore=0 classifier=spam adjust=0
- reason=mlx scancount=1 engine=8.12.0-2304280000
- definitions=main-2305210202
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,158 +76,144 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable nodes required for multipd remoteproc bring up.
+The baseboard has an WM8962 Audio CODEC connected to the SAI3
+peripheral.  The CODEC supports stereo in and out
+and a microphone input connected to the headphone jack.
+Route this CODEC through the simple-audio-card driver.
 
-Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
----
-Changes in V2:
-	- Corrected syntax like alignmnet and kept nodes in sorted order.
-	- Added 'firmware-name' property.
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 118 ++++++++++++++++++++++++++
- 1 file changed, 118 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 0e04549c69a5..ff0da53ba05f 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -160,6 +160,11 @@
- 			no-map;
- 		};
-
-+		q6_region: wcnss@4ab00000 {
-+			reg = <0x0 0x4ab00000 0x0 0x2b00000>;
-+			no-map;
-+		};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+index cdae45a48c2c..3480fb522230 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+@@ -118,6 +118,15 @@ pcie0_refclk: clock-pcie {
+ 		clock-frequency = <100000000>;
+ 	};
+ 
++	reg_audio: regulator-wm8962 {
++		compatible = "regulator-fixed";
++		regulator-name = "3v3_aud";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&pca6416_1 11 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
 +
- 		smem@4aa00000 {
- 			compatible = "qcom,smem";
- 			reg = <0x0 0x4aa00000 0x0 0x00100000>;
-@@ -697,6 +702,95 @@
- 			};
- 		};
-
-+		q6v5_wcss: remoteproc@cd00000 {
-+			compatible = "qcom,ipq9574-q6-mpd";
-+			reg = <0x0cd00000 0x4040>;
-+			firmware-name = "IPQ9574/q6_fw.mdt",
-+					"IPQ9574/m3_fw.mdt";
-+			interrupts-extended = <&intc GIC_SPI 325 IRQ_TYPE_EDGE_RISING>,
-+					      <&wcss_smp2p_in 0 0>,
-+					      <&wcss_smp2p_in 1 0>,
-+					      <&wcss_smp2p_in 2 0>,
-+					      <&wcss_smp2p_in 3 0>;
-+			interrupt-names = "wdog",
-+					  "fatal",
-+					  "ready",
-+					  "handover",
-+					  "stop-ack";
-+
-+			qcom,smem-states = <&wcss_smp2p_out 0>,
-+					   <&wcss_smp2p_out 1>;
-+			qcom,smem-state-names = "shutdown",
-+						"stop";
-+			memory-region = <&q6_region>;
-+
-+			glink-edge {
-+				interrupts = <GIC_SPI 321 IRQ_TYPE_EDGE_RISING>;
-+				label = "rtr";
-+				qcom,remote-pid = <1>;
-+				mboxes = <&apcs_glb 8>;
-+			};
-+
-+			pd-1 {
-+				compatible = "qcom,ipq9574-wcss-ahb-mpd";
-+				firmware-name = "IPQ9574/q6_fw.mdt";
-+				interrupts-extended = <&wcss_smp2p_in 8 0>,
-+						      <&wcss_smp2p_in 9 0>,
-+						      <&wcss_smp2p_in 12 0>,
-+						      <&wcss_smp2p_in 11 0>;
-+				interrupt-names = "fatal",
-+						  "ready",
-+						  "spawn-ack",
-+						  "stop-ack";
-+				qcom,smem-states = <&wcss_smp2p_out 8>,
-+						   <&wcss_smp2p_out 9>,
-+						   <&wcss_smp2p_out 10>;
-+				qcom,smem-state-names = "shutdown",
-+							"stop",
-+							"spawn";
-+			};
-+
-+			pd-2 {
-+				compatible = "qcom,ipq5018-wcss-pcie-mpd";
-+				interrupts-extended = <&wcss_smp2p_in 16 0>,
-+						      <&wcss_smp2p_in 17 0>,
-+						      <&wcss_smp2p_in 20 0>,
-+						      <&wcss_smp2p_in 19 0>;
-+				interrupt-names = "fatal",
-+						  "ready",
-+						  "spawn-ack",
-+						  "stop-ack";
-+
-+				qcom,smem-states = <&wcss_smp2p_out 16>,
-+						   <&wcss_smp2p_out 17>,
-+						   <&wcss_smp2p_out 18>;
-+				qcom,smem-state-names = "shutdown",
-+							"stop",
-+							"spawn";
-+				status = "disabled";
-+			};
-+
-+			pd-3 {
-+				compatible = "qcom,ipq5018-wcss-pcie-mpd";
-+				interrupts-extended = <&wcss_smp2p_in 24 0>,
-+						      <&wcss_smp2p_in 25 0>,
-+						      <&wcss_smp2p_in 28 0>,
-+						      <&wcss_smp2p_in 27 0>;
-+				interrupt-names = "fatal",
-+						  "ready",
-+						  "spawn-ack",
-+						  "stop-ack";
-+
-+				qcom,smem-states = <&wcss_smp2p_out 24>,
-+						   <&wcss_smp2p_out 25>,
-+						   <&wcss_smp2p_out 26>;
-+				qcom,smem-state-names = "shutdown",
-+							"stop",
-+							"spawn";
-+				status = "disabled";
-+			};
-+		};
-+
- 		pcie1: pci@10000000 {
- 			compatible = "qcom,pcie-ipq9574";
- 			reg =  <0x10000000 0xf1d>,
-@@ -966,4 +1060,28 @@
- 			     <GIC_PPI 4 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
- 			     <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+ 	reg_usdhc2_vmmc: regulator-usdhc2 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VSD_3V3";
+@@ -137,6 +146,30 @@ reg_usb1_host_vbus: regulator-usb1-vbus {
+ 		gpio = <&pca6416_1 0 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
  	};
 +
-+	wcss: wcss-smp2p {
-+		compatible = "qcom,smp2p";
-+		qcom,smem = <435>, <428>;
-+
-+		interrupt-parent = <&intc>;
-+		interrupts = <GIC_SPI 322 IRQ_TYPE_EDGE_RISING>;
-+
-+		mboxes = <&apcs_glb 9>;
-+
-+		qcom,local-pid = <0>;
-+		qcom,remote-pid = <1>;
-+
-+		wcss_smp2p_out: master-kernel {
-+			qcom,entry-name = "master-kernel";
-+			#qcom,smem-state-cells = <1>;
++	sound-wm8962 {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "wm8962";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,widgets = "Headphone", "Headphones",
++					    "Microphone", "Headset Mic",
++					    "Speaker", "Speaker";
++		simple-audio-card,routing = "Headphones", "HPOUTL",
++					    "Headphones", "HPOUTR",
++					    "Speaker", "SPKOUTL",
++					    "Speaker", "SPKOUTR",
++					    "Headset Mic", "MICBIAS",
++					    "IN3R", "Headset Mic";
++		simple-audio-card,cpu {
++			sound-dai = <&sai3>;
 +		};
-+
-+		wcss_smp2p_in: slave-kernel {
-+			qcom,entry-name = "slave-kernel";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
++		simple-audio-card,codec {
++			sound-dai = <&wm8962>;
++			clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO1>;
++			frame-master;
++			bitclock-master;
 +		};
 +	};
  };
---
-2.17.1
+ 
+ &ecspi2 {
+@@ -239,6 +272,34 @@ &i2c4 {
+ 	clock-frequency = <384000>;
+ 	status = "okay";
+ 
++	wm8962: audio-codec@1a {
++		compatible = "wlf,wm8962";
++		reg = <0x1a>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_wm8962>;
++		clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO1>;
++		assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO1>;
++		assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL2_OUT>;
++		assigned-clock-rates = <22576000>;
++		DCVDD-supply = <&reg_audio>;
++		DBVDD-supply = <&reg_audio>;
++		AVDD-supply = <&reg_audio>;
++		CPVDD-supply = <&reg_audio>;
++		MICVDD-supply = <&reg_audio>;
++		PLLVDD-supply = <&reg_audio>;
++		SPKVDD1-supply = <&reg_audio>;
++		SPKVDD2-supply = <&reg_audio>;
++		gpio-cfg = <
++			0x0000 /* 0:Default */
++			0x0000 /* 1:Default */
++			0x0000 /* 2:FN_DMICCLK */
++			0x0000 /* 3:Default */
++			0x0000 /* 4:FN_DMICCDAT */
++			0x0000 /* 5:Default */
++		>;
++		#sound-dai-cells = <0>;
++	};
++
+ 	pca6416: gpio@20 {
+ 		compatible = "nxp,pcal6416";
+ 		reg = <0x20>;
+@@ -315,6 +376,16 @@ &pcie_phy {
+ 	status = "okay";
+ };
+ 
++&sai3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_sai3>;
++	assigned-clocks = <&clk IMX8MP_CLK_SAI3>;
++	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL2_OUT>;
++	assigned-clock-rates = <12288000>;
++	fsl,sai-mclk-direction-output;
++	status = "okay";
++};
++
+ &snvs_pwrkey {
+ 	status = "okay";
+ };
+@@ -477,6 +548,16 @@ MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x40
+ 		>;
+ 	};
+ 
++	pinctrl_sai3: sai3grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI3_TXFS__AUDIOMIX_SAI3_TX_SYNC	0xd6
++			MX8MP_IOMUXC_SAI3_TXC__AUDIOMIX_SAI3_TX_BCLK	0xd6
++			MX8MP_IOMUXC_SAI3_RXD__AUDIOMIX_SAI3_RX_DATA00	0xd6
++			MX8MP_IOMUXC_SAI3_TXD__AUDIOMIX_SAI3_TX_DATA00	0xd6
++			MX8MP_IOMUXC_SAI3_MCLK__AUDIOMIX_SAI3_MCLK	0xd6
++		>;
++	};
++
+ 	pinctrl_tpm: tpmgrp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_SAI1_RXFS__GPIO4_IO00	0x19 /* Reset */
+@@ -547,4 +628,10 @@ pinctrl_usdhc2_gpio: usdhc2gpiogrp {
+ 			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12	0x1c4
+ 		>;
+ 	};
++
++	pinctrl_wm8962: wm8962grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_GPIO1_IO14__CCM_CLKO1	0x59
++		>;
++	};
+ };
+-- 
+2.39.2
 
