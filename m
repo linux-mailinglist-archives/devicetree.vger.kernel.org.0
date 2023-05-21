@@ -2,65 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C888F70AE1B
-	for <lists+devicetree@lfdr.de>; Sun, 21 May 2023 14:38:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6DC170AE33
+	for <lists+devicetree@lfdr.de>; Sun, 21 May 2023 15:29:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230376AbjEUMiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 May 2023 08:38:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59802 "EHLO
+        id S230317AbjEUN2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 May 2023 09:28:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230333AbjEUMiS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 08:38:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 137BCCA;
-        Sun, 21 May 2023 05:38:16 -0700 (PDT)
+        with ESMTP id S230522AbjEUN1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 09:27:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A250E72;
+        Sun, 21 May 2023 06:14:35 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8C49E60DDB;
-        Sun, 21 May 2023 12:38:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBD0FC433EF;
-        Sun, 21 May 2023 12:38:14 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F2B5661128;
+        Sun, 21 May 2023 13:14:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54E29C433A0;
+        Sun, 21 May 2023 13:14:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684672695;
-        bh=Jll+2wLKZKNWexh6GXg4tih2KocZ6TFm2zI/zSaHAYo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=OP6JmtvsjPPHb3vSIHejSVrNNCIDyo/cAMKbjodHWyGK+t7OBZjKHXRQ9VsPzg6W/
-         VQQu7wY6npTY56xqKhmP9SQFbIHCn467PFxMVMgFxEygyD6Be7yyrVp/2RtCtK8UUF
-         dl2HsikqQ1uSuU4NN0FP5wWM1ut+HJqsjrbDyJq81qRjPXHVV6qc1j+rPHNk3x4grz
-         tt0QmJXxFORZo11pxp32QvmblMX7usT3KPLV4R76DqCdoVfv/nvBYEBxvWzLmAqii/
-         mfm5BibjM/0/Zz8b9EXf7CETZVcl6P2JJIZwLeEjIfJGwYonbaWe7SKFGwCrHxASBH
-         6aQQ24f4bR45A==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1q0iKC-00GqhP-9k;
-        Sun, 21 May 2023 13:38:12 +0100
-Date:   Sun, 21 May 2023 13:38:11 +0100
-Message-ID: <87wn11oo5o.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Conor Dooley <conor.dooley@microchip.com>
+        s=k20201202; t=1684674874;
+        bh=E2d+33UYaa4xhZVYOHR7/gpjS6xOhkMZIKR/3QOHYq0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=MXydhgeK9yZJQWwOWNqU/hDiQD2uy+yRHB6jrRlkO39M+qURKbz6yzagC/tj4Hz9Y
+         CTqhWmqXc/3nc9xbNrYlO0IlaC3b0K5wh6GvkWn9EEZodoRZdXw+4HLqT1IylOS9nU
+         IsEm0tA+uD5kSA7oN0l9XhmrN8dgjxk1rjTJ9SQ8FINLvTrdH0ixOB/qInNTZhnfiW
+         kKDDm2PdzYx9dKFHUnV7mVw/aT7nYdvJEw1VeUY9Ahilp+wfeFkgaE+XV0xtENCzIg
+         oKFrgE9eNZb2IQeWPQ/RkBAnFNBwZq8/DieTomnCwXnVVg2p/W1ODhl5bx6LwODqZr
+         24FXAnIomip6w==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-50db91640d3so7814861a12.0;
+        Sun, 21 May 2023 06:14:34 -0700 (PDT)
+X-Gm-Message-State: AC+VfDxV1fPpxkIg4XWT07cf2F3tCsa0NgzDyKKCnsXflNNiTZHX1iiU
+        E5bYXe7VFWpbIOv8qjO5tSKvDt2IgDP/7Y/a+bA=
+X-Google-Smtp-Source: ACHHUZ6F4bq7gnmXgk4DHliM3eXPYZGZMQeX8BHBoK09/HSSiyrFHatVn1p041ERnshQyyBbeA/rylT/aOEaT2CKw3o=
+X-Received: by 2002:a05:6402:148d:b0:504:80d8:a034 with SMTP id
+ e13-20020a056402148d00b0050480d8a034mr5465085edv.40.1684674872443; Sun, 21
+ May 2023 06:14:32 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230518184541.2627-1-jszhang@kernel.org> <20230518184541.2627-2-jszhang@kernel.org>
+In-Reply-To: <20230518184541.2627-2-jszhang@kernel.org>
+From:   Guo Ren <guoren@kernel.org>
+Date:   Sun, 21 May 2023 21:14:20 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTx4q1x7rhzWNO6Frw+7ggFGAKzTRpd+TcCv67AoA+xGw@mail.gmail.com>
+Message-ID: <CAJF2gTTx4q1x7rhzWNO6Frw+7ggFGAKzTRpd+TcCv67AoA+xGw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/9] dt-bindings: interrupt-controller: Add T-HEAD's
+ TH1520 PLIC
+To:     Jisheng Zhang <jszhang@kernel.org>
 Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <conor@kernel.org>, <daire.mcnamara@microchip.com>
-Subject: Re: Potential issue with (or misunderstanding of) of_irq_get()
-In-Reply-To: <20230519-unkempt-cartel-48efb4d8f0b4@wendy>
-References: <20230519-unkempt-cartel-48efb4d8f0b4@wendy>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Yangtao Li <frank.li@vivo.com>,
+        Wei Fu <wefu@redhat.com>, Icenowy Zheng <uwu@icenowy.me>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: conor.dooley@microchip.com, tglx@linutronix.de, robh+dt@kernel.org, frowand.list@gmail.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, conor@kernel.org, daire.mcnamara@microchip.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,143 +72,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 May 2023 12:02:47 +0100,
-Conor Dooley <conor.dooley@microchip.com> wrote:
->=20
-> [1  <text/plain; us-ascii (quoted-printable)>]
-> Hey!
->=20
-> I've run into an issue with of_irq_get() while writing an irqchip driver
-> and I was hoping that by posting about it I might get some guidance as
-> to whether I just doing something fundamentally wrong in my code, or
-> if the specific case was just an oversight.
->=20
-> I've been trying to solve the issue that I pointed out here:
-> https://lore.kernel.org/linux-gpio/23a69be6-96d3-1c28-f1aa-555e38ff991e@m=
-icrochip.com/
->=20
-> To spare reading that, the TL;DR is that the SoC has 3 GPIO controllers,
-> with 14, 24 and 32 GPIOs each. All 68 can be used for interrupts.
-> The PLIC only has 41 interrupts for GPIOs, so there's a bit of extra RTL
-> sitting between the GPIO controllers and the PLIC, that is runtime
-> configurable, deciding whether an GPIO gets a PLIC interrupt of its
-> own or shares an interrupt with other GPIOs from the same GPIO controller.
->=20
-> Since the interrupt router/mux is not part of the GPIO controller blocks,
-> I have written a driver for the it & changed the representation in the DT
-> to the below. For each of the 41 interrupts "consumed" by the driver
-> bound to the irqmux node, I have created a domain.
+Reviewed-by: Guo Ren <guoren@kernel.org>
 
-In general, this feels a wee bit wrong.
+On Fri, May 19, 2023 at 2:56=E2=80=AFAM Jisheng Zhang <jszhang@kernel.org> =
+wrote:
+>
+> Add compatible string for T-HEAD TH1520 plic.
+>
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifiv=
+e,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/=
+sifive,plic-1.0.0.yaml
+> index f75736a061af..0fa9b862e4a5 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-=
+1.0.0.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-=
+1.0.0.yaml
+> @@ -65,6 +65,7 @@ properties:
+>        - items:
+>            - enum:
+>                - allwinner,sun20i-d1-plic
+> +              - thead,th1520-plic
+>            - const: thead,c900-plic
+>        - items:
+>            - const: sifive,plic-1.0.0
+> --
+> 2.40.0
+>
 
-=46rom what I understand of the HW, it is expected that most of the GPIO
-interrupt will be directly associated with a PLIC interrupt in an 1:1
-fashion (only 68 - 41 + 1 =3D 28 interrupts will be muxed). So 40 GPIOs
-could have a chance of being directly assigned to a PLIC input without
-any muxing.
-
-If you start allocating a domain per interrupt, you end-up actively
-preventing the use of hierarchical domains, and you don't really
-benefit from what the mux HW can do for you.
-
-[...]
-
-> This approach in DT allows the GPIO controller driver to not care about
-> the router/mux configuration, which makes sense to me as it is not part
-> of those IP blocks.
->=20
-> My irqchip driver was adding domains like so:
->=20
-> 	for (; i < MPFS_MUX_NUM_IRQS; i++) {
-> 		priv->irqchip_data[i].output_hwirq =3D i;
->=20
-> 		priv->irqchip_data[i].irq =3D irq_of_parse_and_map(node, i);
->=20
-> 		domain =3D irq_domain_add_linear(node, MPFS_MAX_IRQS_PER_GPIO,
-> 					       &mpfs_irq_mux_nondirect_domain_ops,
-> 					       &priv->irqchip_data[i]);
->=20
-> 		irq_set_chained_handler_and_data(priv->irqchip_data[i].irq,
-> 						 mpfs_irq_mux_nondirect_handler,
-> 						 &priv->irqchip_data[i]);
-> 	}
->=20
-> In my irqchip's select callback I check the struct irq_fwspec's param[0]
-> to determine which domain is actually responsible for it.
-
-Huh. In general, if you want to resort to 'select', you're doing
-something that is a bit iffy.
-
->=20
-> That's all working nicely & I was doing some cleanup before submitting,
-> when I noticed that debugfs complained about the fact that I had several
-> domains hanging off the same of device_node:
-> debugfs: File ':soc:interrupt-controller@20002054' in directory 'domains'=
- already present!
-> debugfs: File ':soc:interrupt-controller@20002054' in directory 'domains'=
- already present!
-
-Of course. You get 41 domains with all the same node...
-
-You really should only have one hierarchical domain that represents
-all inputs. How you deal with the difference in handling probably
-shouldn't be directly reflected at that level of the hierarchy, but
-below the mux.
-
-> To get around that, I tried to switch to creating fwnodes instead,
-> one for each domain:
->=20
-> 	for (; i < MPFS_MUX_NUM_IRQS; i++) {
-> 		priv->irqchip_data[i].output_hwirq =3D i;
->=20
-> 		priv->irqchip_data[i].irq =3D irq_of_parse_and_map(node, i);
->=20
-> 		fwnode =3D irq_domain_alloc_named_id_fwnode("mpfs-irq-mux", i);
->=20
-> 		domain =3D irq_domain_create_linear(fwnode, MPFS_MAX_IRQS_PER_GPIO,
-> 						  &mpfs_irq_mux_nondirect_domain_ops,
-> 						  &priv->irqchip_data[i]);
->=20
-> 		irq_set_chained_handler_and_data(priv->irqchip_data[i].irq,
-> 						 mpfs_irq_mux_nondirect_handler,
-> 						 &priv->irqchip_data[i]);
-> 	}
->=20
-> That's grand for debugfs, but I then ran into a problem that made me feel
-> I had designed myself into an incorrect corner.
-
-Yup. Now that you have disassociated yourself from the firmware-based
-naming, you cannot use it to drive the mapping and sh*t happens. The
-thing is, named fwnode are only there as a band-aid to be able to
-designate objects that have no fwnode representation.
-
-And it goes downhill from there. My gut felling for this is that you
-should try and build something that looks like this:
-
-- the mux exposes a single hierarchical domain that is directly
-  connected to the PLIC.
-
-- the first 40 interrupt allocations are serviced by simply allocating
-  a corresponding PLIC interrupt and configuring the mux to do its
-  job.
-
-- all the 28 other interrupts must be muxed onto a single PLIC. For
-  these interrupts, you must make sure that the domain hierarchy gets
-  truncated at the MUX level (see irq_domain_disconnect_hierarchy()
-  for the gory details). They all get to be placed behind a chained
-  interrupt handler, with their own irqchip ops.
-
-That way, no repainting of fwnodes, no select/match complexity, and
-must of the interrupts get to benefit from the hierarchical setup
-(such as being able to set their affinity).
-
-Of course, all of this is assuming that the HW is able to deal with a
-large number of interrupts muxed to a single one. If not, you may have
-to use more that one of these, but the idea is the same.
-
-Thoughts?
-
-	M.
 
 --=20
-Without deviation from the norm, progress is not possible.
+Best Regards
+ Guo Ren
