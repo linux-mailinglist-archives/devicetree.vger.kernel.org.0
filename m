@@ -2,67 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3474370AD61
-	for <lists+devicetree@lfdr.de>; Sun, 21 May 2023 12:08:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8988D70ADBF
+	for <lists+devicetree@lfdr.de>; Sun, 21 May 2023 13:47:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229485AbjEUKIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 May 2023 06:08:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34030 "EHLO
+        id S231295AbjEULrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 May 2023 07:47:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230440AbjEUKGc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 06:06:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ECABE76;
-        Sun, 21 May 2023 02:56:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231556AbjEUKiV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 06:38:21 -0400
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [5.144.164.167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 691D8E76
+        for <devicetree@vger.kernel.org>; Sun, 21 May 2023 03:28:13 -0700 (PDT)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DFD3860C73;
-        Sun, 21 May 2023 09:56:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB7DFC433D2;
-        Sun, 21 May 2023 09:56:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684662984;
-        bh=ZI8ncAeJoNssp3pUmQAmF0Tdngr2Bh5l0sRrrnkwfZw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MFFhtQcS8pDT1l0qTeOdj+l2KQ32o6XnuHlkB0I8vTxzFuBT/eYhlqqtdhcnqXu7L
-         FzxL5JHIE7OgVS8NZYu9mP40kZum2MTcDZJdx/nkyXRAvRbQHr3FW24BFRu7CGuJ65
-         bRa3/Opk7i5PviasnG7qfwczdeeGiEXYRp5X49HaGI8e6AGDyudYiK6ivRhHvZzkb4
-         PNM3CFewhgF+SC+Sqqgvddw+vtVEZVvX55RRmq5EoIPH1G7K66Ax1doMYY7R+P/+Tz
-         +xuR3ETw1tnw9Sy673XJBedsHDVkw45PfV9bCktcfats3f4mD0EFu85wRQUYKSjFdg
-         lsOEMbCgemmMg==
-Date:   Sun, 21 May 2023 17:45:11 +0800
-From:   Jisheng Zhang <jszhang@kernel.org>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Samuel Holland <samuel@sholland.org>,
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 7734C3F270;
+        Sun, 21 May 2023 12:28:09 +0200 (CEST)
+Date:   Sun, 21 May 2023 12:28:06 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v4 06/10] dt-bindings: riscv: Add bouffalolab bl808 board
- compatibles
-Message-ID: <ZGnoJ6OrC1XvjglJ@xhacker>
-References: <20230518152244.2178-1-jszhang@kernel.org>
- <20230518152244.2178-7-jszhang@kernel.org>
- <c6e44e14-35b2-da09-5e8c-4d47e7a7a055@sholland.org>
- <20230519-squad-undermine-6124aafebafa@wendy>
- <ZGnkhSlk8NaPELxh@xhacker>
+        devicetree@vger.kernel.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] drm/panel: Add driver for Visionox r66451 panel
+Message-ID: <kc65fjf5xibvszx4afomzbmfrlld4vcnwfxqxefrupkaxw74fa@j2op4bj2recm>
+References: <20230516-b4-r66451-panel-driver-v1-0-4210bcbb1649@quicinc.com>
+ <20230516-b4-r66451-panel-driver-v1-2-4210bcbb1649@quicinc.com>
+ <3cca2809-fa26-f0cf-2ccc-6737d150b43d@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZGnkhSlk8NaPELxh@xhacker>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <3cca2809-fa26-f0cf-2ccc-6737d150b43d@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,159 +51,518 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 21, 2023 at 05:29:47PM +0800, Jisheng Zhang wrote:
-> On Fri, May 19, 2023 at 12:55:02PM +0100, Conor Dooley wrote:
-> > On Thu, May 18, 2023 at 10:31:35PM -0500, Samuel Holland wrote:
-> > > Hi Jisheng, DT maintainers,
+On 2023-05-18 03:19:49, Dmitry Baryshkov wrote:
+> On 16/05/2023 23:20, Jessica Zhang wrote:
+> > Add support for the 1080x2340 Visionox R66451 AMOLED DSI panel that
+> > comes with the Qualcomm HDK8350 display expansion pack.
 > > 
-> > Sick, thanks for piping up Samuel!
-> > Both Rob and Krzysztof are not around at the moment, so that probably
-> > leaves it up to me.. I'm adding Arnd in case he has a take here too.
+> > The panel enables display compression (DSC v1.2) by default.
 > > 
-> > > On 5/18/23 10:22, Jisheng Zhang wrote:
-> > > > Several SoMs and boards are available that feature the Bouffalolab
-> > > > bl808 SoC. Document the compatible strings.
-> > > > 
-> > > > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > > > Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-> > > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > ---
-> > > >  .../bindings/riscv/bouffalolab.yaml           | 29 +++++++++++++++++++
-> > > >  1 file changed, 29 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/riscv/bouffalolab.yaml
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/riscv/bouffalolab.yaml b/Documentation/devicetree/bindings/riscv/bouffalolab.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..3b25d1a5d04a
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/riscv/bouffalolab.yaml
-> > > > @@ -0,0 +1,29 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/riscv/bouffalolab.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Bouffalo Lab Technology SoC-based boards
-> > > > +
-> > > > +maintainers:
-> > > > +  - Jisheng Zhang <jszhang@kernel.org>
-> > > > +
-> > > > +description:
-> > > > +  Bouffalo Lab Technology SoC-based boards
-> > > > +
-> > > > +properties:
-> > > > +  $nodename:
-> > > > +    const: '/'
-> > > > +  compatible:
-> > > > +    oneOf:
-> > > > +      - description: Carrier boards for the Sipeed M1s SoM
-> > > > +        items:
-> > > > +          - enum:
-> > > > +              - sipeed,m1s-dock
-> > > > +          - const: sipeed,m1s
-> > > > +          - const: bouffalolab,bl808
-> > > 
-> > > As mentioned in the message for patch 5, "The Bouffalolab bl808 SoC
-> > > contains three riscv CPUs, namely M0, D0 and LP. The D0 is 64bit RISC-V
-> > > GC compatible, so can run linux."
-> > > 
-> > > I have also been running U-Boot and NOMMU Linux on the less powerful,
-> > > but still quite fast, "M0" core. However, this core needs a different
+> > Signed-off-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+> > ---
+> >   drivers/gpu/drm/panel/Kconfig                 |   8 +
+> >   drivers/gpu/drm/panel/Makefile                |   1 +
+> >   drivers/gpu/drm/panel/panel-visionox-r66451.c | 395 ++++++++++++++++++++++++++
+> >   3 files changed, 404 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> > index 29cf5fa39ff2..9c2c36dbddf3 100644
+> > --- a/drivers/gpu/drm/panel/Kconfig
+> > +++ b/drivers/gpu/drm/panel/Kconfig
+> > @@ -766,6 +766,14 @@ config DRM_PANEL_VISIONOX_VTDR6130
+> >   	  Say Y here if you want to enable support for Visionox
+> >   	  VTDR6130 1080x2400 AMOLED DSI panel.
+> >   
+> > +config DRM_PANEL_VISIONOX_R66451
+> > +	tristate "Visionox R66451"
+> > +	depends on OF
+> > +	depends on DRM_MIPI_DSI
+> > +	help
+> > +	  Say Y here if you want to enable support for Visionox
+> > +	  R66451 1080x2340 AMOLED DSI panel.
+> > +
+> >   config DRM_PANEL_WIDECHIPS_WS2401
+> >   	tristate "Widechips WS2401 DPI panel driver"
+> >   	depends on SPI && GPIOLIB
+> > diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> > index b3e8ba29edd3..e043a92ee676 100644
+> > --- a/drivers/gpu/drm/panel/Makefile
+> > +++ b/drivers/gpu/drm/panel/Makefile
+> > @@ -78,5 +78,6 @@ obj-$(CONFIG_DRM_PANEL_TPO_TPG110) += panel-tpo-tpg110.o
+> >   obj-$(CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA) += panel-truly-nt35597.o
+> >   obj-$(CONFIG_DRM_PANEL_VISIONOX_RM69299) += panel-visionox-rm69299.o
+> >   obj-$(CONFIG_DRM_PANEL_VISIONOX_VTDR6130) += panel-visionox-vtdr6130.o
+> > +obj-$(CONFIG_DRM_PANEL_VISIONOX_R66451) += panel-visionox-r66451.o
+> >   obj-$(CONFIG_DRM_PANEL_WIDECHIPS_WS2401) += panel-widechips-ws2401.o
+> >   obj-$(CONFIG_DRM_PANEL_XINPENG_XPP055C272) += panel-xinpeng-xpp055c272.o
+> > diff --git a/drivers/gpu/drm/panel/panel-visionox-r66451.c b/drivers/gpu/drm/panel/panel-visionox-r66451.c
+> > new file mode 100644
+> > index 000000000000..e3648ead3e84
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/panel/panel-visionox-r66451.c
+> > @@ -0,0 +1,395 @@
+> > +//SPDX-License-Identifier: GPL-2.0-only
+> > +//Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> > +
+> > +#include <linux/backlight.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/regulator/consumer.h>
+> > +
+> > +#include <drm/drm_mipi_dsi.h>
+> > +#include <drm/drm_modes.h>
+> > +#include <drm/drm_panel.h>
+> > +#include <drm/display/drm_dsc.h>
+> > +#include <drm/display/drm_dsc_helper.h>
+> > +
+> > +#include <video/mipi_display.h>
+> > +
+> > +struct visionox_r66451 {
+> > +	struct drm_panel panel;
+> > +	struct mipi_dsi_device *dsi;
+> > +	struct gpio_desc *reset_gpio;
+> > +	struct regulator_bulk_data supplies[2];
+> > +	bool prepared, enabled;
+> > +};
+> > +
+> > +static inline struct visionox_r66451 *to_visionox_r66451(struct drm_panel *panel)
+> > +{
+> > +	return container_of(panel, struct visionox_r66451, panel);
+> > +}
+> > +
+> > +static void visionox_r66451_reset(struct visionox_r66451 *ctx)
+> > +{
+> > +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> > +	usleep_range(10000, 10100);
+> > +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> > +	usleep_range(10000, 10100);
+> > +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> > +	usleep_range(10000, 10100);
+> > +}
+> > +
+> > +static int visionox_r66451_on(struct visionox_r66451 *ctx)
+> > +{
+> > +	struct mipi_dsi_device *dsi = ctx->dsi;
+> > +	struct device *dev = &dsi->dev;
+> > +	int ret;
+> > +
+> > +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> > +
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x00);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xc2,
+> > +			       0x09, 0x24, 0x0c, 0x00, 0x00, 0x0c, 0x00, 0x00, 0x00,
+> > +			       0x09, 0x3c);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xd7,
+> > +			       0x00, 0xb9, 0x3c, 0x00, 0x40, 0x04, 0x00, 0xa0, 0x0a,
+> > +			       0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
+> > +			       0x3c, 0x00, 0x40, 0x04, 0x00, 0xa0, 0x0a);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x80);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xde,
+> > +			       0x40, 0x00, 0x18, 0x00, 0x18, 0x00, 0x18, 0x00, 0x18,
+> > +			       0x10, 0x00, 0x18, 0x00, 0x18, 0x00, 0x18, 0x02, 0x00, 0x00);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x04);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xe8, 0x00, 0x02);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xe4, 0x00, 0x08);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x00);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xc4,
+> > +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> > +			       0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x32);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xcf,
+> > +			       0x64, 0x0b, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08,
+> > +			       0x00, 0x0b, 0x77, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
+> > +			       0x02, 0x02, 0x02, 0x02, 0x02, 0x03);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xd3,
+> > +			       0x45, 0x00, 0x00, 0x01, 0x13, 0x15, 0x00, 0x15, 0x07,
+> > +			       0x0f, 0x77, 0x77, 0x77, 0x37, 0xb2, 0x11, 0x00, 0xa0,
+> > +			       0x3c, 0x9c);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xd7,
+> > +			       0x00, 0xb9, 0x34, 0x00, 0x40, 0x04, 0x00, 0xa0, 0x0a,
+> > +			       0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
+> > +			       0x34, 0x00, 0x40, 0x04, 0x00, 0xa0, 0x0a);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xd8,
+> > +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> > +			       0x3a, 0x00, 0x3a, 0x00, 0x3a, 0x00, 0x3a, 0x00, 0x3a,
+> > +			       0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> > +			       0x00, 0x0a, 0x00, 0x0a, 0x00, 0x00, 0x00, 0x00, 0x00,
+> > +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0a,
+> > +			       0x00, 0x32, 0x00, 0x0a, 0x00, 0x22);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xdf,
+> > +			       0x50, 0x42, 0x58, 0x81, 0x2d, 0x00, 0x00, 0x00, 0x00,
+> > +			       0x00, 0x00, 0x6b, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> > +			       0x00, 0x00, 0x01, 0x0f, 0xff, 0xd4, 0x0e, 0x00, 0x00,
+> > +			       0x00, 0x00, 0x00, 0x00, 0x0f, 0x53, 0xf1, 0x00, 0x00,
+> > +			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xf7, 0x01);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x80);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xe4, 0x34, 0xb4, 0x00, 0x00, 0x00, 0x39, 0x04, 0x09, 0x34);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xe6, 0x00);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x04);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xdf, 0x50, 0x40);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xf3, 0x50, 0x00, 0x00, 0x00, 0x00);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x11);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xf3, 0x01, 0x00, 0x00, 0x00, 0x01);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xf4, 0x00, 0x02);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x19);
+> > +	mipi_dsi_dcs_write_seq(dsi, 0xdf, 0x50, 0x42);
+> > +	mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+> > +	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_COLUMN_ADDRESS, 0x00, 0x00, 0x04, 0x37);
 > 
-> Just FYI, I successfully ran nommu rv32 linux kernel on the "M0" core
-> with some patches to the riscv head and irqchip driver.
+> Please use mipi_dsi_dcs_set_column_address(dsi, 0, 1080 - 1);
 > 
-> > > DTB because:
-> > >  1) The CPU is different (T-HEAD E907 instead of C906).
-> > >  2) The interrupt routing is completely different.
-> > >     a. The M0 core contains a CLIC instead of a PLIC.
-> > >     b. The peripherals in the SoC are split between two buses. Those
-> > >        on one bus have their IRQs directly connected to M0, and share
-> > >        a multiplexed IRQ connection to D0; and vice versa for the
-> > >        other bus. So each bus's interrupt-parent needs to be swapped.
-> > > 
-> > > Using some preprocessor magic like we did for Allwinner and Renesas, I
-> > > was able to share most of the SoC and board DTs between the cores[1].
-> > > However, this still ends up with two DTs for each board. So here are my
-> > > questions:
-> > >  - Is this acceptable?
-> > 
-> > I expected it to look worse than it actually turned out to be.
-> > I don't think Krzysztof in particular is a fan of having conditional
-> > bits in dts files, but for the shared arm/riscv stuff there was not
-> > really another sensible option.
-> > 
-> > >  - Is there precedent for how we should name the two board DTs?
-> > 
-> > Arnd might have some idea about precedent here, but I like your naming
-> > well enough.
-> > 
-> > >  - How does this affect the board and SoC compatible strings?
-> > >    - Should there be a separate "bouffalolab,bl808-d0" in addition to
-> > >      "bouffalolab,bl808"?
-> > 
-> > What ordering were you intending here?
-> > "pine64,0x64" "bouffalolab,bl808" "bouffalolab,bl808-d0"?
-> > 
-> > That doesn't really seem correct though, as it does not get less specific
-> > as you move right.
-> > 
-> > "pine64,0x64" "bouffalolab,bl808-d0" "bouffalolab,bl808" doesn't seem
-> > right either though, for the same sort of reason.
-> > 
-> > >    - Is it acceptable to use the same board compatible string for both,
-> > >      since the _board_ part of the DT does not change, only things
-> > >      inside the SoC?
+> > +	mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_PAGE_ADDRESS, 0x00, 0x00, 0x09, 0x23);
 > 
-> what about describing the DT as the SoC is, e.g
-> lp: cpu@0 {
-> 	...
-> 	status = disabled;
-> };
-> 
-> m0: cpu@1 {
-> 	...
-> 	status = disabled;
-> };
-> 
-> d0: cpu@2 {
-> 	...
-> 	status = disabled;
-> };
-> 
-> Then in m0 dts:
-> &m0 {
-> 	status = okay;
-> };
-> 
-> in d0 dts:
-> &m0 {
+> mipi_dsi_dcs_set_page_address(dsi, 0, 2340 - 1);
 
-typo: 
+Yes please, thanks for already pointing these two out.
 
-&d0 {
+> 
+> > +
+> > +	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
+> > +	if (ret < 0) {
+> > +		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +	msleep(120);
+> > +
+> > +	ret = mipi_dsi_dcs_set_display_on(dsi);
+> 
+> Should the mipi_dsi_dcs_set_display_on() (and maybe exit sleep mode) be 
+> a a part of _enable()? Correspondingly _off should IMO be a part of 
+> _disable callback().
+> 
+> > +	if (ret < 0) {
+> > +		dev_err(dev, "Failed on set display on: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +	msleep(20);
+> 
+> 
+> Do we need to add here the following line?
+> 
+> dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> 
+> 
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int visionox_r66451_off(struct visionox_r66451 *ctx)
+> > +{
+> > +	struct mipi_dsi_device *dsi = ctx->dsi;
+> > +	struct device *dev = &dsi->dev;
+> > +	int ret;
+> > +
+> > +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> > +
+> > +	ret = mipi_dsi_dcs_set_display_off(dsi);
+> > +	if (ret < 0) {
+> > +		dev_err(dev, "Failed to set display off: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +	msleep(20);
+> > +
+> > +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
+> > +	if (ret < 0) {
+> > +		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +	msleep(120);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int visionox_r66451_prepare(struct drm_panel *panel)
+> > +{
+> > +	struct visionox_r66451 *ctx = to_visionox_r66451(panel);
+> > +	struct device *dev = &ctx->dsi->dev;
+> > +	int ret;
+> > +
+> > +	if (ctx->prepared)
+> > +		return 0;
+> > +
+> > +	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies),
+> > +				    ctx->supplies);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	visionox_r66451_reset(ctx);
+> > +
+> > +	ret = visionox_r66451_on(ctx);
+> > +	if (ret < 0) {
+> > +		dev_err(dev, "Failed to initialize panel: %d\n", ret);
+> > +		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> > +		regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ctx->prepared = true;
+> > +	return 0;
+> > +}
+> > +
+> > +static int visionox_r66451_unprepare(struct drm_panel *panel)
+> > +{
+> > +	struct visionox_r66451 *ctx = to_visionox_r66451(panel);
+> > +	struct device *dev = &ctx->dsi->dev;
+> > +	int ret;
+> > +
+> > +	if (!ctx->prepared)
+> > +		return 0;
+> > +
+> > +	ret = visionox_r66451_off(ctx);
+> > +	if (ret < 0)
+> > +		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
+> > +
+> > +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> > +	regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+> > +
+> > +	ctx->prepared = false;
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct drm_display_mode visionox_r66451_mode = {
+> > +	.clock = (1080 + 95 + 1 + 40) * (2340 + 25 + 1 + 4) * 120 / 1000,
+> > +	.hdisplay = 1080,
+> > +	.hsync_start = 1080 + 95,
+> > +	.hsync_end = 1080 + 95 + 1,
+> > +	.htotal = 1080 + 95 + 1 + 40,
+> > +	.vdisplay = 2340,
+> > +	.vsync_start = 2340 + 25,
+> > +	.vsync_end = 2340 + 25 + 1,
+> > +	.vtotal = 2340 + 25 + 1 + 4,
+> > +	.width_mm = 0,
+> > +	.height_mm = 0,
+> 
+> Please provide real values here.
+> 
+> > +};
+> > +
+> > +static int visionox_r66451_enable(struct drm_panel *panel)
+> > +{
+> > +	struct visionox_r66451 *ctx = to_visionox_r66451(panel);
+> > +	struct mipi_dsi_device *dsi = ctx->dsi;
+> > +	struct drm_dsc_picture_parameter_set pps;
+> > +	int ret;
+> > +
+> > +	if (ctx->enabled)
+> > +		return 0;
+> > +
+> > +	if (!dsi->dsc) {
+> > +		dev_err(&dsi->dev, "DSC not attached to DSI\n");
+> > +		return -ENODEV;
+> > +	}
+> > +
+> > +	drm_dsc_pps_payload_pack(&pps, dsi->dsc);
+> > +	ret = mipi_dsi_picture_parameter_set(dsi, &pps);
 
-> 	status = okay;
-> };
+This `ret` value is unused.
+
+Do we also need to call mipi_dsi_compression_mode() to enable
+compression?  This also selects PPS table 1 (which is supposedly the
+default reset value, and the PPS that is uploaded by
+mipi_dsi_picture_parameter_set()).  Note that it does set the algorithm
+to "VESA DSC Standard 1.1" but i am unsure if it makes a difference
+(docs for mipi_dsi_picture_parameter_set() say that it is "1.1" as well)
+
+> > +
+> > +	ctx->enabled = true;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int visionox_r66451_disable(struct drm_panel *panel)
+> > +{
+> > +	struct visionox_r66451 *ctx = to_visionox_r66451(panel);
+> > +
+> > +	ctx->enabled = false;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int visionox_r66451_get_modes(struct drm_panel *panel,
+> > +				    struct drm_connector *connector)
+> > +{
+> > +	struct drm_display_mode *mode;
+> > +
+> > +	mode = drm_mode_duplicate(connector->dev, &visionox_r66451_mode);
+> > +	if (!mode)
+> > +		return -ENOMEM;
+> > +
+> > +	drm_mode_set_name(mode);
+> > +
+> > +	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
+> > +	connector->display_info.width_mm = mode->width_mm;
+> > +	connector->display_info.height_mm = mode->height_mm;
+> > +	drm_mode_probed_add(connector, mode);
 > 
+> Can we use drm_connector_helper_get_modes_fixed() instead?
+
+This does not set DRM_MODE_TYPE_DRIVER though; is that preferred?
+
+> > +
+> > +	return 1;
+> > +}
+> > +
+> > +static const struct drm_panel_funcs visionox_r66451_funcs = {
+> > +	.prepare = visionox_r66451_prepare,
+> > +	.unprepare = visionox_r66451_unprepare,
+> > +	.get_modes = visionox_r66451_get_modes,
+> > +	.enable = visionox_r66451_enable,
+> > +	.disable = visionox_r66451_disable,
+> > +};
+> > +
+> > +static int visionox_r66451_bl_update_status(struct backlight_device *bl)
+> > +{
+> > +	struct mipi_dsi_device *dsi = bl_get_data(bl);
+> > +	u16 brightness = backlight_get_brightness(bl);
+> > +
+> > +	return mipi_dsi_dcs_set_display_brightness(dsi, cpu_to_le16(brightness));
 > 
+> mipi_dsi_dcs_set_display_brightness() already converts the brightness, 
+> so you don't need cpu_to_le16 here.
+
+Tread carefully here: we've had the same issue and conversation on our
+Sony panels where this extra inversion is required.
+set_display_brightness() sends the bytes as little-endian to the panel
+(and it even assumes little-endian in get_display_brightness()) but the
+spec for 16-bit brightness values states that they have to be sent in
+big-endian.  This is why c9d27c6be518b ("drm/mipi-dsi: Fix byte order of
+16-bit DCS set/get brightness") added
+mipi_dsi_dcs_set_display_brightness_large().
+
+Jessica, if you need to have the endian swap here (should be very easy
+to test with a real panel, but it should be given the max_brightness
+value being over 8 bits) please switch to the _large() variant.
+
+> > +}
+> > +
+> > +static const struct backlight_ops visionox_r66451_bl_ops = {
+> > +	.update_status = visionox_r66451_bl_update_status,
+
+Should this implement get_brightness?
+
+> > +};
+> > +
+> > +static struct backlight_device *
+> > +visionox_r66451_create_backlight(struct mipi_dsi_device *dsi)
+> > +{
+> > +	struct device *dev = &dsi->dev;
+> > +	const struct backlight_properties props = {
+> > +		.type = BACKLIGHT_RAW,
+> > +		.brightness = 255,
+> > +		.max_brightness = 4095,
+> > +	};
+> > +
+> > +	return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
+> > +					      &visionox_r66451_bl_ops, &props);
+> > +}
+> > +
+> > +static int visionox_r66451_probe(struct mipi_dsi_device *dsi)
+> > +{
+> > +	struct device *dev = &dsi->dev;
+> > +	struct visionox_r66451 *ctx;
+> > +	struct drm_dsc_config *dsc;
+> > +	int ret = 0;
+> > +
+> > +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> > +	if (!ctx)
+> > +		return -ENOMEM;
+> > +
+> > +	dsc = devm_kzalloc(dev, sizeof(*dsc), GFP_KERNEL);
+> > +	if (!dsc)
+> > +		return -ENOMEM;
+> > +
+> > +	/* Set DSC params */
+> > +	dsc->dsc_version_major = 0x1;
+> > +	dsc->dsc_version_minor = 0x2;
+> > +
+> > +	dsc->slice_height = 20;
+> > +	dsc->slice_width = 540;
+> > +	dsc->slice_count = 2;
+> > +	dsc->bits_per_component = 8;
+> > +	dsc->bits_per_pixel = 0x8 << 4;
+
+What's the 0x for?  bpc is also just "8" and not 0x8.
+
+- Marijn
+
+> > +	dsc->block_pred_enable = true;
+> > +
+> > +	dsi->dsc = dsc;
+> > +
+> > +	ctx->supplies[0].supply = "vddio";
+> > +	ctx->supplies[1].supply = "vdd";
+> > +
+> > +	ret = devm_regulator_bulk_get(&dsi->dev, ARRAY_SIZE(ctx->supplies),
+> > +			ctx->supplies);
+> > +
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> > +	if (IS_ERR(ctx->reset_gpio))
+> > +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio), "Failed to get reset-gpios\n");
+> > +
+> > +	ctx->dsi = dsi;
+> > +	mipi_dsi_set_drvdata(dsi, ctx);
+> > +
+> > +	dsi->lanes = 4;
+> > +	dsi->format = MIPI_DSI_FMT_RGB888;
+> > +	dsi->mode_flags = MIPI_DSI_MODE_LPM | MIPI_DSI_CLOCK_NON_CONTINUOUS;
+> > +
+> > +	drm_panel_init(&ctx->panel, dev, &visionox_r66451_funcs, DRM_MODE_CONNECTOR_DSI);
+> > +	ctx->panel.backlight = visionox_r66451_create_backlight(dsi);
+> > +	if (IS_ERR(ctx->panel.backlight))
+> > +		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
+> > +				"Failed to create backlight\n");
+> > +
+> > +	drm_panel_add(&ctx->panel);
+> > +
+> > +	ret = mipi_dsi_attach(dsi);
+> > +	if (ret < 0) {
+> > +		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
+> > +		drm_panel_remove(&ctx->panel);
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static void visionox_r66451_remove(struct mipi_dsi_device *dsi)
+> > +{
+> > +	struct visionox_r66451 *ctx = mipi_dsi_get_drvdata(dsi);
+> > +	int ret;
+> > +
+> > +	ret = mipi_dsi_detach(dsi);
+> > +	if (ret < 0)
+> > +		dev_err(&dsi->dev, "Failed to detach DSI host: %d\n", ret);
+> > +
+> > +	drm_panel_remove(&ctx->panel);
+> > +}
+> > +
+> > +static const struct of_device_id visionox_r66451_of_match[] = {
+> > +	{.compatible = "visionox,r66451"},
+> > +	{ /*sentinel*/ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, visionox_r66451_of_match);
+> > +
+> > +static struct mipi_dsi_driver visionox_r66451_driver = {
+> > +	.probe = visionox_r66451_probe,
+> > +	.remove = visionox_r66451_remove,
+> > +	.driver = {
+> > +		.name = "panel-visionox-r66451",
+> > +		.of_match_table = visionox_r66451_of_match,
+> > +	},
+> > +};
+> > +
+> > +module_mipi_dsi_driver(visionox_r66451_driver);
+> > +
+> > +MODULE_AUTHOR("Jessica Zhang <quic_jesszhan@quicinc.com>");
+> > +MODULE_DESCRIPTION("Panel driver for the Visionox R66451 AMOLED DSI panel");
+> > +MODULE_LICENSE("GPL");
 > > 
-> > I think you may need to have 2 compatibles per board, depending on which
-> > cpu. Perhaps even as verbose as:
-> > "pine61,0x64-d0" "pine64,0x64" "bouffalolab,bl808-d0" "bouffalolab,bl808"
-> > 
-> > Not exactly straightforward though, is it!
-> > 
-> > > It would be possible to avoid having two DTs per board by guarding all
-> > > of the differences behind "#ifdef CONFIG_64BIT", but that seems wrong
-> > > because you would end up with two totally incompatible DTBs named the
-> > > same thing, depending on how the DTB was built.
-> > 
-> > I think having 2 dtbs is fine, and as I mentioned, I've seen Krzysztof
-> > complain previously about conditional bits like that.
-> > 
-> > Cheers,
-> > Conor.
 > 
+> -- 
+> With best wishes
+> Dmitry
 > 
