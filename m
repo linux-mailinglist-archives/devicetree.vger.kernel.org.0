@@ -2,55 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D96970C194
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 16:57:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B94B70C1D5
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 17:02:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230015AbjEVO5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 10:57:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38042 "EHLO
+        id S234287AbjEVPC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 11:02:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233883AbjEVO5N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 10:57:13 -0400
+        with ESMTP id S234209AbjEVPCt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 11:02:49 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43124BB;
-        Mon, 22 May 2023 07:57:12 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C94C1B0;
+        Mon, 22 May 2023 08:02:19 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C169961AFE;
-        Mon, 22 May 2023 14:57:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 514ADC433D2;
-        Mon, 22 May 2023 14:57:10 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D060061ACC;
+        Mon, 22 May 2023 15:01:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A20F6C4339C;
+        Mon, 22 May 2023 15:01:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684767431;
-        bh=ThXECPaDh9Oj7V7+VzqTXFJWN8ADA2MjHyWE9rB8dPA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pIpKE/DgQZtCWf7SiEQ+irFRq6pTLepH9Tg10WqNGBz7VesKSG/uV9y3p5g3bfcsl
-         FQE2Nao9jS3bgj8oJasHdsqWDLmHAMJQ84p7Dxak2W8M7eVpGJYwom3Ey/sg8GM+Ei
-         P/K13ZTA6wBGlLTaGwRkgGL4rzfl/RhpI8hR7BamUDmxtnwjcw4quYf2PaXH1TIHuI
-         fczfPBWI1gjAEkpYhsWDI74z50as3+CLy/A45h8FX1GCjUzkdywtRixdvkq+gKNQoQ
-         /zVx6QajqY7afz7EaR4d5o4QUSVE8h1gaRD2902iU+IKrenHGqPA/4zQMr1Ae37D0W
-         XYga9WMhrEU+g==
-Date:   Mon, 22 May 2023 08:01:05 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        s=k20201202; t=1684767717;
+        bh=hlZb/BcL2ZGEAgC342RcyW00zLOd6SfQlB7LY02Pazc=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=fBYDK/VPEZYhjWLSZPqkAqfOdR+jeTQ71/52z1/kLFXbdegenn3u/pHS83nbqrIfy
+         TKkeJIoRizqKQ5PuZy5/QOJutJwP8bJ3+2T6+mREQvdHgoi5T2MLTTlRRc8pmilO/L
+         nPuAoytudjsvm2Uys1tza03C1RbYD9NDLovH0+m2GEWJoCgIhZTo40MGTmLOJVeVtJ
+         7oH7KsXZmf9oYBIfaInnOxxdVGiMnh5rcl1WNhmkofyYxMzfvPtKRBOC3qcc5xknZ+
+         wXu4zm9JVejw7/dneR4iT6GGtZ5lGUw87TZFstJdtOaMcaz+oNailAX5qep161S/bd
+         EU/BD463hKvWg==
+From:   Mark Brown <broonie@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] arm: dts: qcom: qdu1000: Add SDHCI node
-Message-ID: <20230522150105.3i7zeucna7kh5waz@ripper>
-References: <20230522093620.3568-1-quic_kbajaj@quicinc.com>
- <20230522093620.3568-3-quic_kbajaj@quicinc.com>
+        David Epping <david.epping@missinglinkelectronics.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230519110545.GA18663@nucnuc.mle>
+References: <20230519110545.GA18663@nucnuc.mle>
+Subject: Re: [PATCH] ASoC: dt-bindings: tlv320aic32x4: Fix supply names
+Message-Id: <168476771538.849172.7248234647913395680.b4-ty@kernel.org>
+Date:   Mon, 22 May 2023 16:01:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230522093620.3568-3-quic_kbajaj@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-bfdf5
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -61,96 +58,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 22, 2023 at 03:06:18PM +0530, Komal Bajaj wrote:
-
-Path says arch/arm64/, so $subject should start "arm64: dts: qcom: ..."
-
-> Add sdhc node for eMMC on QDU1000 and QRU1000 SoCs.
+On Fri, 19 May 2023 13:05:53 +0200, David Epping wrote:
+> The term "-supply" is a suffix to regulator names.
 > 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qdu1000.dtsi | 51 +++++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> index 734438113bba..38ee7115a35f 100644
-> --- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-> @@ -19,6 +19,10 @@
->  
->  	chosen: chosen { };
->  
-> +	aliases {
-> +		mmc0 = &sdhc_1; /* eMMC */
 
-Don't we just have a single SDC instance on this platform? If so you
-don't need aliases.
+Applied to
 
-> +	};
-> +
->  	cpus {
->  		#address-cells = <2>;
->  		#size-cells = <0>;
-> @@ -842,6 +846,53 @@
->  			#hwlock-cells = <1>;
->  		};
->  
-> +		sdhc_1: mmc@8804000 {
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-And you can skip the "_1" suffix...
+Thanks!
 
-Regards,
-Bjorn
+[1/1] ASoC: dt-bindings: tlv320aic32x4: Fix supply names
+      commit: 3a2e3fa795052b42da013931bc2e451bcecf4f0c
 
-> +			compatible = "qcom,qdu1000-sdhci", "qcom,sdhci-msm-v5";
-> +			reg = <0x0 0x08804000 0x0 0x1000>,
-> +			      <0x0 0x08805000 0x0 0x1000>;
-> +			reg-names = "hc", "cqhci";
-> +
-> +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "hc_irq", "pwr_irq";
-> +
-> +			clocks = <&gcc GCC_SDCC5_AHB_CLK>,
-> +				 <&gcc GCC_SDCC5_APPS_CLK>,
-> +				 <&rpmhcc RPMH_CXO_CLK>;
-> +			clock-names = "iface",
-> +				      "core",
-> +				      "xo";
-> +
-> +			resets = <&gcc GCC_SDCC5_BCR>;
-> +
-> +			interconnects = <&system_noc MASTER_SDCC_1 0 &mc_virt SLAVE_EBI1 0>,
-> +					<&gem_noc MASTER_APPSS_PROC 0 &system_noc SLAVE_SDCC_2 0>;
-> +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
-> +			power-domains = <&rpmhpd QDU1000_CX>;
-> +			operating-points-v2 = <&sdhc1_opp_table>;
-> +
-> +			iommus = <&apps_smmu 0x80 0x0>;
-> +			dma-coherent;
-> +
-> +			bus-width = <8>;
-> +
-> +			qcom,dll-config = <0x0007642c>;
-> +			qcom,ddr-config = <0x80040868>;
-> +
-> +			status = "disabled";
-> +
-> +			sdhc1_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-384000000 {
-> +					opp-hz = /bits/ 64 <384000000>;
-> +					required-opps = <&rpmhpd_opp_nom>;
-> +					opp-peak-kBps = <6528000 1652800>;
-> +					opp-avg-kBps = <400000 0>;
-> +				};
-> +			};
-> +		};
-> +
->  		pdc: interrupt-controller@b220000 {
->  			compatible = "qcom,qdu1000-pdc", "qcom,pdc";
->  			reg = <0x0 0xb220000 0x0 0x30000>, <0x0 0x174000f0 0x0 0x64>;
-> -- 
-> 2.17.1
-> 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
