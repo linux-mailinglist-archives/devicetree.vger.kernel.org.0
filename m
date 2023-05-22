@@ -2,174 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B14F70BFFC
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 15:47:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D324F70C0CD
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 16:18:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232966AbjEVNrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 09:47:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56620 "EHLO
+        id S233686AbjEVOST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 10:18:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbjEVNrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 09:47:22 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DCE0ED
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 06:47:20 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4eed764a10cso6695716e87.0
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 06:47:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684763238; x=1687355238;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BEm06L/7RszwTIxy7pZPEut/9V9YOp9nD/0czZj6vfg=;
-        b=qspBx3gPki+B/6OIlBL+/7rh81kgid9ZjuEPUTdGBfHWkhsgiYeag/dvITBGiPSh1e
-         CtHpklW80UGUb+vB9V86s3hKhhoJNxDxud2VmrA5IE88VG8UnnwzAX3kgoF7kkWBv9Jz
-         8pLxhBA0imSQOkFB+FaM28GXUAqHo1KN9YY2C+fFsyJagKWtyU6uC/t1oPLjdyldwN3+
-         h2WnRYyuExTMMhRhbmqMYkAORscjl6KXw0N5yaT+gDb2Lzx8NKVFeFv39ofDf7MaH//a
-         zIHPG/1YnrNz1cz1QYsKp0PvTZ+hXwlJ+VGmmm6mFzIdmHQ75tNWr/8FQXKHGEeMWl0E
-         gszg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684763238; x=1687355238;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BEm06L/7RszwTIxy7pZPEut/9V9YOp9nD/0czZj6vfg=;
-        b=Wyp1QKGP8kkWlTU/hesiuMiyf2Y2bLREF8mBiPkY3voa4z8jAcJ3QRBQzcvuq4hzQj
-         RM0JdL/iBxCil4p2p2PF1z0BFRU/KEmu5nIoMwBHRecSATn3HMKv/CjMHAmkzyt76cTj
-         II6mCVpOxh9K1Bx8riPG8cjMy2btKPJxv0njSyojO4z2B8Ko0s7ACHUa8KxWwUDym/nR
-         PD0jdGlHzO4KbvBOSM3gk0reXTuV49pYb9rSgDRgaNvSMYIdukF390YctU3ht6QPEfQx
-         d2EJkHrzmfGtIKemzoMcynVyrXY83aFotkDn2cwcEGFuiAICvh347TLpF6NlBGoywIFk
-         tASA==
-X-Gm-Message-State: AC+VfDxcH+Dm74drFY1rb9y4EfvpIuuolWCJAZdNZXMBtp/E+9GrpKcK
-        EL14SDmdFxXMrjFN+dsQ75lunA==
-X-Google-Smtp-Source: ACHHUZ554G38stoHAuoE6L5jFwpgLt44bq7oflbiqDD8iP07EyugQUr3QL7/ePqCIUhz7TIxfRodCA==
-X-Received: by 2002:ac2:539a:0:b0:4cc:96f8:f9c6 with SMTP id g26-20020ac2539a000000b004cc96f8f9c6mr3451737lfh.5.1684763238295;
-        Mon, 22 May 2023 06:47:18 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id x14-20020ac259ce000000b004f13bd73419sm996412lfn.38.2023.05.22.06.47.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 May 2023 06:47:17 -0700 (PDT)
-Message-ID: <2e17e84d-aced-1f28-990f-689c8c56ce45@linaro.org>
-Date:   Mon, 22 May 2023 16:47:17 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 2/2] drm/panel: Add driver for Visionox r66451 panel
-Content-Language: en-GB
-To:     neil.armstrong@linaro.org,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S233481AbjEVOSI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 10:18:08 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BC51C1;
+        Mon, 22 May 2023 07:18:06 -0700 (PDT)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id E542D1BF20A;
+        Mon, 22 May 2023 14:18:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1684765085;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=PeTVrsjUDAtWE8pXMg3vBOwvIgnFQmi76IvB7+G2Xhk=;
+        b=onPSy8lKC6/e4Rt5ekprsPsbNZQvE5Sg4kOVrnAc9zqf0jESk2HESEGtxOvHwE40Ya0qvT
+        I4t1NdiTLWOUNHm5Wyu89KR7GWDYkwdZGj4KhuYSbRikzySwaI4cfD2Y7UjsfkjhP0MGlk
+        NjYOftn4OWnkCW54Fz9VdenuPbT1DdC+U08J7n+g2M50Q8XFRO6V5HOXt0sGuM7vA6v7nI
+        MrQCmvXfM73HwwGm7YPoydk5AqYP/miwORTuqjL5jZj4y7W2sYmzRXuKe7/J8U3Y330n5y
+        B+gVx2yiI2Czr8LNAdwvnRz2NvOVt/PAHEvS2Sq1gVjoEX2+n17DQIFAgnWCrQ==
+Date:   Mon, 22 May 2023 16:18:03 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Nikita Shubin <nikita.shubin@maquefel.me>
+Cc:     Arnd Bergmann <arnd@kernel.org>, Linus Walleij <linusw@kernel.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230516-b4-r66451-panel-driver-v1-0-4210bcbb1649@quicinc.com>
- <20230516-b4-r66451-panel-driver-v1-2-4210bcbb1649@quicinc.com>
- <3cca2809-fa26-f0cf-2ccc-6737d150b43d@linaro.org>
- <69c6f4fe-4610-8301-b90b-03bcea7587b9@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <69c6f4fe-4610-8301-b90b-03bcea7587b9@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lukasz Majewski <lukma@denx.de>, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 22/43] dt-bindings: mtd: add DT bindings for ts7250 nand
+Message-ID: <20230522161803.4f13d35a@xps-13>
+In-Reply-To: <783af132a3eab7c79c95de5113c6bdb0adce19b5.camel@maquefel.me>
+References: <20230424123522.18302-1-nikita.shubin@maquefel.me>
+        <20230424123522.18302-23-nikita.shubin@maquefel.me>
+        <20230502114858.7152572a@xps-13>
+        <783af132a3eab7c79c95de5113c6bdb0adce19b5.camel@maquefel.me>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/05/2023 12:10, Neil Armstrong wrote:
-> On 18/05/2023 02:19, Dmitry Baryshkov wrote:
->> On 16/05/2023 23:20, Jessica Zhang wrote:
->>> Add support for the 1080x2340 Visionox R66451 AMOLED DSI panel that
->>> comes with the Qualcomm HDK8350 display expansion pack.
->>>
->>> The panel enables display compression (DSC v1.2) by default.
->>>
->>> Signed-off-by: Jessica Zhang <quic_jesszhan@quicinc.com>
->>> ---
->>>   drivers/gpu/drm/panel/Kconfig                 |   8 +
->>>   drivers/gpu/drm/panel/Makefile                |   1 +
->>>   drivers/gpu/drm/panel/panel-visionox-r66451.c | 395 
->>> ++++++++++++++++++++++++++
->>>   3 files changed, 404 insertions(+)
+Hi Nikita,
 
-[skipped]
+nikita.shubin@maquefel.me wrote on Mon, 15 May 2023 18:48:31 +0300:
 
->>> +
->>> +    ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
->>> +    if (ret < 0) {
->>> +        dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
->>> +        return ret;
->>> +    }
->>> +    msleep(120);
->>> +
->>> +    ret = mipi_dsi_dcs_set_display_on(dsi);
->>
->> Should the mipi_dsi_dcs_set_display_on() (and maybe exit sleep mode) 
->> be a a part of _enable()? Correspondingly _off should IMO be a part of 
->> _disable callback().
-> 
-> Nop, mipi_dsi_dcs_set_display_on() should be part of prepare, to be 
-> called *before* the video stream starts, enable is called after in the 
-> atomic modeset chain,
+> Hello Miquel!
+>=20
+> Thank you for looking into it.
+>=20
+> On Tue, 2023-05-02 at 11:48 +0200, Miquel Raynal wrote:
+> > Hi Nikita,
+> >=20
+> > nikita.shubin@maquefel.me=C2=A0wrote on Mon, 24 Apr 2023 15:34:38 +0300:
+> >  =20
+> > > Add YAML bindings for ts7250 NAND.
+> > >=20
+> > > Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+> > > ---
+> > > =C2=A0.../bindings/mtd/technologic,nand.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 56
+> > > +++++++++++++++++++
+> > > =C2=A01 file changed, 56 insertions(+)
+> > > =C2=A0create mode 100644
+> > > Documentation/devicetree/bindings/mtd/technologic,nand.yaml
+> > >=20
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
+> > > b/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
+> > > new file mode 100644
+> > > index 000000000000..3234d93a1c21
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mtd/technologic,nand.yaml
+> > > @@ -0,0 +1,56 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/mtd/technologic,nand.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Technologic Systems NAND controller
+> > > +
+> > > +maintainers:
+> > > +=C2=A0 - Lukasz Majewski <lukma@denx.de>
+> > > +
+> > > +properties:
+> > > +=C2=A0 compatible:
+> > > +=C2=A0=C2=A0=C2=A0 items:
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: technologic,ts7200-nand =20
+> >=20
+> > would -nand-controller instead of -nand work as a suffix here?
+> >=20
+> > You mention ts7250 in the title, should we have a more specific
+> > compatible than ts7200 as well?
+> >=20
+> > I see by looking at the mtd patch that you actually try to match
+> > both,
+> > so they should both be defined in the bindings.
+> >  =20
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: gen_nand =20
+> >=20
+> > This is a old hack for very simple controllers (converted to DT
+> > probing
+> > 12 years ago). The logic used by this driver has been deprecated for
+> > like 10 years and does not really apply to modern APIs. I would
+> > really
+> > like to keep this driver contained with platform data coming from
+> > arch/
+> > data only.
+> >=20
+> > I suggest you create a real NAND controller driver based on the
+> > generic one (should not be very complex, just duplicate the code so
+> > the
+> > migration to the up-to-date API is eased) and you flag it as "must be
+> > updated to ->exec_op() somehow. This way if someone starts the
+> > conversion, it does not need to cope with the 5 other users of the
+> > generic driver which anyway share nothing in common besides the
+> > deprecated ->cmd_ctrl() backbone.
+> >=20
+> > I read the comments on the cover letter, people are kind of pushing
+> > on
+> > having this merged quickly. I am fine accepting a legacy controller
+> > driver and migrating it to ->exec_op() later, but the current driver
+> > conversion does not fit the approach taken years ago towards a
+> > cleaner
+> > mtd tree. =20
+>=20
+> Did you mean that i should at least implement legacy nand controller,
+> like, for example, Xway (xway_nand.c) ?:
+>=20
+>         data->chip.legacy.cmd_ctrl =3D xway_cmd_ctrl;
+>         data->chip.legacy.dev_ready =3D xway_dev_ready;
+>         data->chip.legacy.select_chip =3D xway_select_chip;
+>         data->chip.legacy.write_buf =3D xway_write_buf;
+>         data->chip.legacy.read_buf =3D xway_read_buf;
+>         data->chip.legacy.read_byte =3D xway_read_byte;
+>         data->chip.legacy.chip_delay =3D 30;
 
-To summarize our discussion: some controllers do not support sending 
-commands in non-LPM mode. Thus the panel driver should send all commands 
-before the DSI host switches from LPM to VIDEO mode.
+I don't know how urgent this conversion is, this is really the minimal
+step...
 
-Is this corret?
+> And the best solution would be switching to exec_op completely ?
 
-> 
->>
->>> +    if (ret < 0) {
->>> +        dev_err(dev, "Failed on set display on: %d\n", ret);
->>> +        return ret;
->>> +    }
->>> +    msleep(20);
->>
->>
->> Do we need to add here the following line?
->>
->> dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
->>
-> 
-> No, it will be changed by the DSI core.
+...and this is what I would really prefer, yes. I don't think it's
+huge, the controller being very simple and straightforward.
 
-Hmm, where?
+>=20
+> >  =20
+> > > +
+> > > +=C2=A0 reg:
+> > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > +
+> > > +=C2=A0 '#address-cells': true
+> > > +=C2=A0 '#size-cells': true
+> > > +
+> > > +required:
+> > > +=C2=A0 - compatible
+> > > +=C2=A0 - reg
+> > > +
+> > > +unevaluatedProperties: true
+> > > +
+> > > +examples:
+> > > +=C2=A0 - |
+> > > +=C2=A0=C2=A0=C2=A0 nand-parts@0 {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "technologic,ts7200-na=
+nd", "gen_nand";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x60000000 0x8000000>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <1>;
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 partition@0 {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 label =3D "TS-BOOTROM";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x00000000 0x000=
+20000>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 read-only;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }; =20
+> >=20
+> > Partitions are not useful here, but if you want them, use the
+> > partitions container instead, please.
+> >  =20
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 partition@20000 {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 label =3D "Linux";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x00020000 0x07d=
+00000>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 partition@7d20000 {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 label =3D "RedBoot";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x07d20000 0x002=
+e0000>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 read-only;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > > +=C2=A0=C2=A0=C2=A0 };
+> > > +
+> > > +... =20
+> >=20
+> >=20
+> > Thanks,
+> > Miqu=C3=A8l =20
+>=20
 
-> 
->>
->>> +
->>> +    return 0;
->>> +}
 
-[skipped]
-
->>> +static int visionox_r66451_bl_update_status(struct backlight_device 
->>> *bl)
->>> +{
->>> +    struct mipi_dsi_device *dsi = bl_get_data(bl);
->>> +    u16 brightness = backlight_get_brightness(bl);
->>> +
->>> +    return mipi_dsi_dcs_set_display_brightness(dsi, 
->>> cpu_to_le16(brightness));
->>
->> mipi_dsi_dcs_set_display_brightness() already converts the brightness, 
->> so you don't need cpu_to_le16 here.
-> 
-> 
-> The _large variant must be used instead.
-
-But cpu_to_le16 is NOP, isn't it?
-
--- 
-With best wishes
-Dmitry
-
+Thanks,
+Miqu=C3=A8l
