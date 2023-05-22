@@ -2,99 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DF8D70C0EC
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 16:22:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 628C670C0F0
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 16:23:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231683AbjEVOWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 10:22:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49876 "EHLO
+        id S233680AbjEVOXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 10:23:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229586AbjEVOWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 10:22:33 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2C33A9
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 07:22:32 -0700 (PDT)
-Received: from [127.0.0.1] (unknown [62.91.23.180])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 3048984667;
-        Mon, 22 May 2023 16:22:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684765351;
-        bh=cOz7O0M3lpcBrbgwihb3ClbRpSYnSrV+YjkEcZzdpmY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=YBvpojqXwRHnez3mbTV7EZD6QllQRGYZvJt6No+UayQvjqM18r+r82llG9CQD4hB3
-         UecSt+7aXsFJGj6wdBY1AlgGYITEIulT86GyLFxKEvmX1KUOswM1DCPaJng/hqB5Ff
-         C9wGKKEopFNiAIG0jV+HLi+PwhtfkSscP4416DZMn8+CVk/1m1agpj8cOY7SJy/ycl
-         0DCD0l0kQ+MqxhG/WN3672SsfSCv3FJ78WHjppyAZZSk9ezE9Top8DeAxhYh+iHS6c
-         DSjzon4kf7QshDj9qLpuvb7sT9EaqadVqgf7+4SzhWk16l1PhO4WVjFloC7tNpDB0+
-         2DI+g+jSn90Lg==
-Message-ID: <38ef2894-13a7-aa5c-b53c-95bf01247385@denx.de>
-Date:   Mon, 22 May 2023 16:22:30 +0200
+        with ESMTP id S232836AbjEVOXs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 10:23:48 -0400
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6BABAF
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 07:23:46 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-561b7729a12so52885747b3.1
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 07:23:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684765426; x=1687357426;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B2hQTPUfuJNacgMvbympUA555bAfKHNIBxMHLi2LZdc=;
+        b=rOTajVneBQhIGoLRDiTAKs06aV0ZOoGSH5biVYGbjl78Iz8FzehO/v0hZ/VJ7knTJR
+         zAgSOWXa3du18HrxOP/0JFGEhvlkVJun16BMBLcSwY5r6JJRnno3YOrFrqjwutsqqvxw
+         F8hPiSH0KeouQivgMEkMM2EfcooGzUqekyu0zsMoEVsjyzjtBz59lEWNrvOVZBAQw43Y
+         9ZgQk1K64FCzfPlyx6YleOwJ9kI/Ze9iRZONxG8mlc/OO3BxV95UuTz4UyREfmCfg6rC
+         RRnK6gTVuwL9/1CfYHD+7uw/6Z8+rlsPO+U1JXXGdGU8mPG5FW6lubwQtztoi9HBXECA
+         hTXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684765426; x=1687357426;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=B2hQTPUfuJNacgMvbympUA555bAfKHNIBxMHLi2LZdc=;
+        b=Wjkl5Z3QVQSK4dPcG/ktxJr8mQsVmUf6avfEYEJHY8A7He+g31F2Z35vrbio2RNQn2
+         W90gzN+hEenZxECAE4PmK9/mfwIvoWFhSQ/GTYMadb2nVoLrl4p3rGCg5h5rbHhiAEi6
+         ESOzPF+MS/vwcwrIqLK5RRQzlpGdetJOYSbIZ28OvVTgGEinClou2snJ0DQCNX4JeX8w
+         Ffzp0W4ssux3mMUuHgo+CsSDmiBmNfVGma1mQWxwHr/gk9juaf7Fx1rlBse5SKfW6trL
+         NubBSTMYcfy7t/7BrUHBFVZH4r8iq7ZKECTR8OsuXHVhIZmuUIlFY5Irmm+/Hputq28z
+         ObWQ==
+X-Gm-Message-State: AC+VfDw1yGiNPFUkYDs3/jD661eIBKk//ELo672Wf2h7+ywnDH3ihvCV
+        OZRbniW/1ywuZggsokI8UrQw7BU2VLDLo4LdnQBPQQ==
+X-Google-Smtp-Source: ACHHUZ53/p5WrRGTADHz/P1eg0TzLqwPuexyukJwKo6PBD3Z5NBokuPlVMNwrk3h+57YFEC2ij05Mwx6SuXzhaAtnHs=
+X-Received: by 2002:a81:9ac4:0:b0:55a:5323:2801 with SMTP id
+ r187-20020a819ac4000000b0055a53232801mr11209388ywg.23.1684765426003; Mon, 22
+ May 2023 07:23:46 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v5 3/4] ARM: dts: imx6sx: Add LDB support
-Content-Language: en-US
-To:     Fabio Estevam <festevam@denx.de>
-Cc:     Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        conor+dt@kernel.org
-References: <20230522125129.526604-1-festevam@gmail.com>
- <20230522125129.526604-3-festevam@gmail.com>
- <a5edfa01-3471-2cb2-c827-064f4386b076@denx.de>
- <b0a6529587fe0f723126e3d6f74a3379@denx.de>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <b0a6529587fe0f723126e3d6f74a3379@denx.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230203-evk-board-support-v7-0-98cbdfac656e@baylibre.com>
+ <20230203-evk-board-support-v7-8-98cbdfac656e@baylibre.com> <c6ea1360-9ca7-783e-0d0f-f5100fd8d024@collabora.com>
+In-Reply-To: <c6ea1360-9ca7-783e-0d0f-f5100fd8d024@collabora.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+Date:   Mon, 22 May 2023 16:23:34 +0200
+Message-ID: <CAFGrd9qiYV2ct-z56Mu_4di1Rd0_u+u_WwyYYin6oJotq=2xpw@mail.gmail.com>
+Subject: Re: [PATCH v7 08/11] arm64: dts: mediatek: add ethernet support for mt8365-evk
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/22/23 16:19, Fabio Estevam wrote:
-> On 22/05/2023 10:20, Marek Vasut wrote:
-> 
->>> diff --git a/arch/arm/boot/dts/imx6sx.dtsi 
->>> b/arch/arm/boot/dts/imx6sx.dtsi
->>> index 4233943a1cca..442106565025 100644
->>> --- a/arch/arm/boot/dts/imx6sx.dtsi
->>> +++ b/arch/arm/boot/dts/imx6sx.dtsi
->>> @@ -844,7 +844,38 @@ iomuxc: pinctrl@20e0000 {
->>>               gpr: iomuxc-gpr@20e4000 {
->>>                   compatible = "fsl,imx6sx-iomuxc-gpr",
->>>                            "fsl,imx6q-iomuxc-gpr", "syscon";
->>
->> Maybe this "fsl,imx6q-iomuxc-gpr" should be dropped here.
-> 
-> Cannot remove it as it breaks PCI:
-> 
-> imx6q-pcie 8ffc000.pcie: unable to find iomuxc registers
+Hi Angelo,
 
-This might help?
+Le lun. 15 mai 2023 =C3=A0 13:47, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> a =C3=A9crit :
+>
+> Il 11/05/23 18:29, Alexandre Mergnat ha scritto:
+> > - Enable "vibr" and "vsim2" regulators to power the ethernet chip.
+> >
+> > Tested-by: Kevin Hilman <khilman@baylibre.com>
+> > Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> > ---
+> >   arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 57 ++++++++++++++++++++=
++++++++++
+> >   1 file changed, 57 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/b=
+oot/dts/mediatek/mt8365-evk.dts
+> > index 3a472f620ac0..cf81dace466a 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+> > @@ -88,6 +88,28 @@ optee_reserved: optee@43200000 {
+> >       };
+> >   };
+> >
+> > +&ethernet {
+> > +     pinctrl-0 =3D <&ethernet_pins>;
+> > +     pinctrl-names =3D "default";
+> > +     phy-handle =3D <&eth_phy>;
+> > +     phy-mode =3D "rmii";
+> > +     /*
+> > +      * Ethernet and HDMI (DSI0) are sharing pins.
+> > +      * Only one can be enabled at a time and require the physical swi=
+tch
+> > +      * SW2101 to be set on LAN position
+> > +      */
+> > +     status =3D "disabled";
+> > +
+> > +     mdio {
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <0>;
+> > +
+> > +             eth_phy: ethernet-phy@0 {
+> > +                     reg =3D <0>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> >   &i2c0 {
+> >       clock-frequency =3D <100000>;
+> >       pinctrl-0 =3D <&i2c0_pins>;
+> > @@ -137,12 +159,47 @@ &mt6357_pmic {
+> >       #interrupt-cells =3D <2>;
+> >   };
+> >
+> > +/* Needed by analog switch (multiplexer), HDMI and ethernet */
+>
+> What part of the ethernet HW needs this regulator?
+>
+> > +&mt6357_vibr_reg {
+> > +     regulator-always-on;
+> > +};
+> > +
+> >   /* Needed by MSDC IP */
+> >   &mt6357_vmc_reg {
+> >       regulator-always-on;
+> >   };
+> >
+> > +/* Needed by ethernet */
+>
+> Same question for this one. If a device needs us to turn on a regulator i=
+n
+> order for it to be powered (read: if the supply is not fixed-on), setting
+> that supply as always-on is not beneficial for anyone, as eventually in a
+> power-off sleep/idle/whatever-pm state, this device (whole chip or IP) *w=
+ill*
+> leak some amount of power.
+>
+> If hardware engineers decided to connect a device to a supply that *can b=
+e*
+> shut down entirely there must be a reason, right? :-)
 
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c 
-b/drivers/pci/controller/dwc/pci-imx6.c
-index 52906f999f2bb..4803e3c9ee37c 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -1460,7 +1460,7 @@ static const struct imx6_pcie_drvdata drvdata[] = {
-                 .flags = IMX6_PCIE_FLAG_IMX6_PHY |
-                          IMX6_PCIE_FLAG_IMX6_SPEED_CHANGE |
-                          IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
--               .gpr = "fsl,imx6q-iomuxc-gpr",
-+               .gpr = "fsl,imx6sx-iomuxc-gpr",
-         },
-         [IMX6QP] = {
-                 .variant = IMX6QP,
+In theory yes, but mistakes happen. For MT8195, ethernet is supplied by VSY=
+S.
+Curiously, all other SoC except one haven't the regulator drived by
+the mdio driver.
+Why is it powered by a regulator which can be turned off here, whereas
+the ethernet
+chip is able to Wake-on-Lan ? Maybe the vibrator regulator has been chosen
+to supply enough current for all analog switches (to share pins between eth=
+ernet
+and HDMI), I don't know.
 
+Should I create a new mdio binding/driver/node related to the ethernet chip=
+ to
+enable/disable power ? Currently I found only one who does that: "mdio-sun4=
+i",
+so I'm not really confident.
+OR
+Should I introduce the regulator management directly into mtk_star_emac
+binding/drive, even if it's more related to mdio ?
+OR
+Should I put a comment in the DTS which warns that vibr & vmc must be on
+to have ethernet working ?
+
+Do you have a better suggestion?
+
+Finally, we are speaking about power optimization where the feature isn't
+already supported for this SoC. Can we do this step by step ? Because setti=
+ng
+the regulators always-on doesn't look bad when ethernet is enabled (for WoL=
+).
+
+Do you have a better suggestion?
+
+Regards,
+Alex
