@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23B5470B8EA
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 11:30:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2DAE70B8E9
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 11:30:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231962AbjEVJaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 05:30:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58826 "EHLO
+        id S231983AbjEVJaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 05:30:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231409AbjEVJaN (ORCPT
+        with ESMTP id S230365AbjEVJaN (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 05:30:13 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 581779D;
-        Mon, 22 May 2023 02:30:11 -0700 (PDT)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 066E5B3;
+        Mon, 22 May 2023 02:30:12 -0700 (PDT)
 Received: from IcarusMOD.eternityproject.eu (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E658166058F2;
-        Mon, 22 May 2023 10:30:08 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id F32196606D84;
+        Mon, 22 May 2023 10:30:09 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1684747809;
-        bh=8THYe79i65UdHa2AS5CAUyFodTMPPnYlaLqy/e9sDbY=;
+        s=mail; t=1684747810;
+        bh=b/HUQkVvh1ObQj0af7V3E7UOobAnX8Hp2s1B+6cZnCs=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=AcDyWd4R9EBwLOnEZezjmVfSgRSLA2+plkuc7SNL0Bwl1urZ2d/QO4tAiqHYNfkLk
-         iWuIB8mOVV7oO7hL0X66aiRBP97hM9uJSmjGQCFnewMqIS2+M2ACKrhWfqihUvnEkB
-         6wH5W1HglBuqxomb3ajCfrNo4HwQ5H5sQVX65uudy0qXV2J8vTAeu3M+sisYN3+Um8
-         DEDrv28AVCs14mRDrMU8iopM7v6618t+wMYUjytO9D/f1n+5NwxhtP8PRb2Qwm5pDB
-         MpkAWXhzbM/RDLyRRppMqfhGoTkKD1NFX3IUYL4fLhfD5J/dJu7eY6dpTZet5dxnQG
-         thtJRIMst2x0g==
+        b=mWPLKhLnT8ZRtNCYMsRSGKpXXd4FG9CWuKO5XD4ito0twnfgpufEcC+bmlyIjuTvJ
+         i2PDB4j54Y9YxKu6ksvKq8jd4Oa1MzgbEWIlcQV7g1rPBCWOeVmAev36Do3g6VAidb
+         h0dX0d7sI2kN2i1vetcw0nvQ7+0WoJJKGc63RgRIZn7iKhImONyj4rdH0TIItekmYp
+         nW4B4fvTST8l6tIrtP+ypCG7ba0BpEQIWry4NC8EhSh5ojUKgu8eGAN6jSkCXVjvDL
+         g450f4/s7Tdsust1LrkuEvI0fz/qe2pL3/G4zG7EzCMdxixRtm0RarMn3UWk3GCbd6
+         zQkYa2JvytBQw==
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 To:     matthias.bgg@gmail.com
@@ -42,9 +42,9 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         linux-mediatek@lists.infradead.org, kernel@collabora.com,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH 1/2] arm64: dts: mediatek: mt8192: Make sure MSDCPLL's rate is 400MHz
-Date:   Mon, 22 May 2023 11:30:01 +0200
-Message-Id: <20230522093002.75137-2-angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 2/2] arm64: dts: mediatek: mt8195: Make sure MSDCPLL's rate is 400MHz
+Date:   Mon, 22 May 2023 11:30:02 +0200
+Message-Id: <20230522093002.75137-3-angelogioacchino.delregno@collabora.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230522093002.75137-1-angelogioacchino.delregno@collabora.com>
 References: <20230522093002.75137-1-angelogioacchino.delregno@collabora.com>
@@ -69,18 +69,18 @@ in the expected mmc/sd device's timings.
 Make sure that the MSDCPLL frequency is always set to 400MHz to both
 improve performance and reliability of the sd/mmc storage.
 
-Fixes: 5d2b897bc6f5 ("arm64: dts: mediatek: Add mt8192 clock controllers")
+Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation board")
 Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 2 ++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 5c30caf74026..6fc14004f6fd 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -677,6 +677,8 @@ apmixedsys: syscon@1000c000 {
- 			compatible = "mediatek,mt8192-apmixedsys", "syscon";
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index a44aae4ab953..daac8e050ce7 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -852,6 +852,8 @@ apmixedsys: syscon@1000c000 {
+ 			compatible = "mediatek,mt8195-apmixedsys", "syscon";
  			reg = <0 0x1000c000 0 0x1000>;
  			#clock-cells = <1>;
 +			assigned-clocks = <&apmixedsys CLK_APMIXED_MSDCPLL>;
