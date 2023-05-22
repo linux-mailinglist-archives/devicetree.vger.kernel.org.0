@@ -2,211 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 849A770C228
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 17:18:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3BB770C258
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 17:27:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233970AbjEVPSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 11:18:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54560 "EHLO
+        id S234507AbjEVP15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 11:27:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234055AbjEVPSV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 11:18:21 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42543BB;
-        Mon, 22 May 2023 08:18:17 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34MFHc9K072745;
-        Mon, 22 May 2023 10:17:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684768658;
-        bh=VulXzECh78KJhnSArOUyVchGW3xPms9BERDoN3K5Ls0=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=Tq+e/pYjfFxmlsRY7LpcwjdcVduvSYvgtGBvti5HeFjy7Fbk+lbdsx0becACnaA8H
-         ts13cqcDCli+aesM3rAwS8vRvexMiz955p4UGG6TOuKZ+iQfaAj0GBD/beVMa5zn82
-         3kx55JseS2PCKmg5Am6/z6eLFCpvrCg85cKBe3bg=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34MFHcfY123686
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 22 May 2023 10:17:38 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
- May 2023 10:17:38 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 22 May 2023 10:17:38 -0500
-Received: from [128.247.81.105] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34MFHcgD013731;
-        Mon, 22 May 2023 10:17:38 -0500
-Message-ID: <3859166d-fc78-f42d-1553-282e4140325a@ti.com>
-Date:   Mon, 22 May 2023 10:17:38 -0500
+        with ESMTP id S234436AbjEVP14 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 11:27:56 -0400
+Received: from mail-il1-x136.google.com (mail-il1-x136.google.com [IPv6:2607:f8b0:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3DFD10D
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 08:27:53 -0700 (PDT)
+Received: by mail-il1-x136.google.com with SMTP id e9e14a558f8ab-335394455ecso45567685ab.1
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 08:27:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1684769271; x=1687361271;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=STtYLVHbrxls9+TET2taw4/CcCJWytrlGIrbAGYi3j8=;
+        b=nEOMLUpL3wZMWld/o04Gj+KH6QUZxbYsw3cQ5GsPg9QGbB8mLXRuwslmpRDo84OW2Q
+         RbUP9FzhBCPyhTrW605ee3vYg4USmV6dEE6B9LEX27Blvf4oXwdi410AXxDXXsocZFhJ
+         7TxVFazBiKMOLXMhTmWdNhBmi8AghUpmtD/IU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684769271; x=1687361271;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=STtYLVHbrxls9+TET2taw4/CcCJWytrlGIrbAGYi3j8=;
+        b=cI8RoDJ221rkjTuJBNupCGK+pEoklhcc2QJ6QpxspukhOhrMOR4AIYl8uFzd2XJr/u
+         CNYzNKu/ZulVys5g1qPdEQKpiLb16wTREeIM8KDBgyCBXcGWC5+f/EqghkZu5hL8LzR6
+         xXI82Y21orN7DwCopSY6+tVrqWU2/w4aux40Rl1OUaKmvQ7uabwg5puFgv8xGt2NDMvO
+         YKerJ73sJGJbmygmAD+eSsV774+uF0lzM3QxCowZ6gUAMePtBLA/gj8wTyS8GEV+/PCR
+         O1SriI88gazgZe4tIsAoP6aCCJxz/riUB7YMeQptgRnLdz67wLaiiS4wylqyk6OB/WeU
+         w15A==
+X-Gm-Message-State: AC+VfDwOl0EHIwvmfPPeGR7/ynyYIPyMVoi2pHJLB7Uf1fKI0zFFpzq3
+        Rgaf2GfyDxiL9q+aE+r/D4VPk/MRpLuXvSccV9c=
+X-Google-Smtp-Source: ACHHUZ5zC+KUVM6T/VqJWRFVeKm0q7i1MFoQ8G6A/fkgzgsi94ov1P0OmpJ3zXv/U7o35p+iL8mw2A==
+X-Received: by 2002:a92:ce8d:0:b0:331:55d1:92e with SMTP id r13-20020a92ce8d000000b0033155d1092emr7668932ilo.17.1684769270849;
+        Mon, 22 May 2023 08:27:50 -0700 (PDT)
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com. [209.85.166.175])
+        by smtp.gmail.com with ESMTPSA id m11-20020a92cacb000000b0031796c6d735sm1815477ilq.41.2023.05.22.08.27.49
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 May 2023 08:27:50 -0700 (PDT)
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-338458a9304so266765ab.1
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 08:27:49 -0700 (PDT)
+X-Received: by 2002:a05:6e02:2189:b0:337:c9ec:4ca with SMTP id
+ j9-20020a056e02218900b00337c9ec04camr449049ila.2.1684769269411; Mon, 22 May
+ 2023 08:27:49 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v6 2/2] can: m_can: Add hrtimer to generate software
- interrupt
-Content-Language: en-US
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-CC:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        <linux-can@vger.kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Schuyler Patton <spatton@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20230518193613.15185-1-jm@ti.com>
- <20230518193613.15185-3-jm@ti.com>
- <20230519-morbidity-directory-dbe704584aa3-mkl@pengutronix.de>
-From:   Judith Mendez <jm@ti.com>
-In-Reply-To: <20230519-morbidity-directory-dbe704584aa3-mkl@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <CAD=FV=VYfPSwar2AXBxB3vX0dV1kjQ5bZMxsEBFhUnMNRXbBCw@mail.gmail.com>
+ <20230520050649.2494497-1-yangcong5@huaqin.corp-partner.google.com> <20230520050649.2494497-2-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20230520050649.2494497-2-yangcong5@huaqin.corp-partner.google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 22 May 2023 08:27:38 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Xpe=zOeq2pG17Q0n_SZZHAFmaE+6C=SnuHqnHN6uObog@mail.gmail.com>
+Message-ID: <CAD=FV=Xpe=zOeq2pG17Q0n_SZZHAFmaE+6C=SnuHqnHN6uObog@mail.gmail.com>
+Subject: Re: [v2 1/2] HID: i2c-hid: elan: Add ili9882t timing
+To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc:     benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
+        dmitry.torokhov@gmail.com, hsinyi@google.com, jikos@kernel.org,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mka@chromium.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marc,
+Hi,
 
-On 5/19/23 2:16 AM, Marc Kleine-Budde wrote:
-> On 18.05.2023 14:36:13, Judith Mendez wrote:
->> Add an hrtimer to MCAN class device. Each MCAN will have its own
->> hrtimer instantiated if there is no hardware interrupt found and
->> poll-interval property is defined in device tree M_CAN node.
->>
->> The hrtimer will generate a software interrupt every 1 ms. In
->> hrtimer callback, we check if there is a transaction pending by
->> reading a register, then process by calling the isr if there is.
->>
->> Signed-off-by: Judith Mendez <jm@ti.com>
-> 
-> [...]
+On Fri, May 19, 2023 at 10:07=E2=80=AFPM Cong Yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> The ili9882t is a TDDI IC ((Touch with Display Driver)). It requires the
+> panel reset gpio to be high before i2c commands. Use a longer delay in
+> post_power_delay_ms to ensure the poweron sequence.
+>
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> ---
+>  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
 
-Missed this poll-interval, thanks.
+This seems OK to me. The one thing I'd also do is to update the
+Kconfig description to say that this driver is also used for Ilitek. I
+think it's fine to keep the symbol name as I2C_HID_OF_ELAN but just
+change the description.
 
-> 
->> diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_can/m_can_platform.c
->> index 94dc82644113..3e60cebd9d12 100644
->> --- a/drivers/net/can/m_can/m_can_platform.c
->> +++ b/drivers/net/can/m_can/m_can_platform.c
->> @@ -5,6 +5,7 @@
->>   //
->>   // Copyright (C) 2018-19 Texas Instruments Incorporated - http://www.ti.com/
->>   
->> +#include <linux/hrtimer.h>
->>   #include <linux/phy/phy.h>
->>   #include <linux/platform_device.h>
->>   
->> @@ -96,12 +97,40 @@ static int m_can_plat_probe(struct platform_device *pdev)
->>   		goto probe_fail;
->>   
->>   	addr = devm_platform_ioremap_resource_byname(pdev, "m_can");
->> -	irq = platform_get_irq_byname(pdev, "int0");
->> -	if (IS_ERR(addr) || irq < 0) {
->> -		ret = -EINVAL;
->> +	if (IS_ERR(addr)) {
->> +		ret = PTR_ERR(addr);
->>   		goto probe_fail;
->>   	}
->>   
-> 
-> As we don't use an explicit "poll-interval" anymore, this needs some
-> cleanup. The flow should be (pseudo code, error handling omitted):
-> 
-> if (device_property_present("interrupts") {
->          platform_get_irq_byname();
->          polling = false;
-> } else {
->          hrtimer_init();
->          polling = true;
-> }
-
-Ok.
-
-> 
->> +	irq = platform_get_irq_byname_optional(pdev, "int0");
-> 
-> Remove the "_optional" and....
-
-On V2, you asked to add the _optional?.....
-
- >  	irq = platform_get_irq_byname(pdev, "int0");
-
-use platform_get_irq_byname_optional(), it doesn't print an error
-message.
-
-> 
->> +	if (irq == -EPROBE_DEFER) {
->> +		ret = -EPROBE_DEFER;
->> +		goto probe_fail;
->> +	}
->> +
->> +	if (device_property_present(mcan_class->dev, "interrupts") ||
->> +	    device_property_present(mcan_class->dev, "interrupt-names"))
->> +		mcan_class->polling = false;
-> 
-> ...move the platform_get_irq_byname() here
-
-ok,
-
-> 
->> +	else
->> +		mcan_class->polling = true;
->> +
->> +	if (!mcan_class->polling && irq < 0) {
->> +		ret = -ENXIO;
->> +		dev_err_probe(mcan_class->dev, ret, "IRQ int0 not found, polling not activated\n");
->> +		goto probe_fail;
->> +	}
-> 
-> Remove this check.
-
-Should we not go to 'probe fail' if polling is not activated and irq is 
-not found?
-
-> 
->> +
->> +	if (mcan_class->polling) {
->> +		if (irq > 0) {
->> +			mcan_class->polling = false;
->> +			dev_info(mcan_class->dev, "Polling enabled, using hardware IRQ\n");
-> 
-> Remove this.
-
-Remove the dev_info?
-
-> 
->> +		} else {
->> +			dev_dbg(mcan_class->dev, "Polling enabled, initialize hrtimer");
->> +			hrtimer_init(&mcan_class->hrtimer, CLOCK_MONOTONIC,
->> +				     HRTIMER_MODE_REL_PINNED);
-> 
-> move this backwards, where you set "polling = true"
-
-ok,
-> 
->> +		}
->> +	}
->> +
->>   	/* message ram could be shared */
->>   	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "message_ram");
->>   	if (!res) {
->> -- 
->> 2.17.1
-
-- judith
+-Doug
