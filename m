@@ -2,210 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 321D770C59A
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 21:00:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41E4670C62B
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 21:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229931AbjEVTAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 15:00:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58794 "EHLO
+        id S234025AbjEVTQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 15:16:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229864AbjEVTAr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 15:00:47 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF1D8FE;
-        Mon, 22 May 2023 12:00:45 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34MJ062m122270;
-        Mon, 22 May 2023 14:00:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684782006;
-        bh=u0kzNDOOGbGz18201uqKyKCn8aM34jRLRTzxtQalNhA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=rcqg8sD/AXsQbbITTBfWVQRSoXotFNmdekksmpeHKcwyOWWm/sWzF9iVeKk8RoYoK
-         0B1VgMAusETjmNUwOgYt7MaP//na8mNxdeFZltbU4owLwdPfuXIxDmICDYfi17J96i
-         56P3imKEaXBJ/c5VStki+WaC7fVriRhZNd0F70TE=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34MJ036R028442
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 22 May 2023 14:00:06 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
- May 2023 14:00:04 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 22 May 2023 14:00:04 -0500
-Received: from [128.247.81.105] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34MJ04lW119935;
-        Mon, 22 May 2023 14:00:04 -0500
-Message-ID: <31925752-8028-98fc-b6a4-9b8fe8a3ce0b@ti.com>
-Date:   Mon, 22 May 2023 14:00:04 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v6 2/2] can: m_can: Add hrtimer to generate software
- interrupt
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-CC:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        <linux-can@vger.kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Schuyler Patton <spatton@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S234047AbjEVTPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 15:15:48 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842EB1A4
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 12:15:33 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-64d15660784so3569654b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 12:15:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684782933; x=1687374933;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+yOtfK1pFQtCc71cFzgVKT6xOp98rRtV2rALJqQa+Fg=;
+        b=tzCG7+bIvrimmh9A79/cNNYbpqnrTvZ9KS7MzHN8Wwp9N/VNwyNHiWm9sfXmiJN+FZ
+         2NAYs3kITqf86jDQ3tpi3vVo9R3izNAYncChMT8VoVmi6HPAkDIemARWEjqJubVudaVB
+         1atrGX3hl/iXBUubxEcRJXz0FdWG1FKy510pwp3Xpz800d6nlmEUq405nJvUPJafdCLb
+         /Re6eMA2CPNO3M6CKiek6H7kiLzIBPVhu0jT/VtcH4URW2lTu6qP2wWPpBwCM7yxB0nc
+         7iIFFjrTuI1aN9UfKYRt4g6d8659Mn/ft8lHutS63ZrazzQpjQsxrgPANbJl/a3l5cVX
+         5GBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684782933; x=1687374933;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+yOtfK1pFQtCc71cFzgVKT6xOp98rRtV2rALJqQa+Fg=;
+        b=EIVFDpc0Z9eLSn7HGUbqxPl1r5slWteilLbc7ik+csDSfecE6MhSM0QhDHuc8foK+s
+         /u6KjRIQTD/PlHePlT+njXCDRkebx/AmxEirOkbdWWXubPN5l5MC/wue1emsG3Gv3ZLw
+         thfZBSfkL1oHzfkiiub3SAQmhFmLASyM64K14HrMAQodL8zHbf8JGE62JLBnej9Bkt9K
+         fXSSu/TlQUDnr17XR8N1wUQbfF3hymOMjwRgw3wdg6Q5ui/DvWMetHYORzmeylQiN9q9
+         IMmNDgImEc6lQUvqeuat7nf/fdND747F3uNpzwqeOB4fYmqJJJbJZceL+j+m1cGKdlUs
+         yU3g==
+X-Gm-Message-State: AC+VfDxMjpBkZ4XfKC6x7l+W36vh4MjTpfBFyakLZxHEAOP9alXQDwPh
+        auM0ui0QIgAKDzJgrCge+0wqpQ==
+X-Google-Smtp-Source: ACHHUZ52ZEECneLAS9tm/UNsmG0ECpBajQruy+F2ybktcTEo240DF7Ky6kbzndheezdG3NztN857vw==
+X-Received: by 2002:a17:902:c407:b0:1ac:451d:34b with SMTP id k7-20020a170902c40700b001ac451d034bmr16613997plk.9.1684782932841;
+        Mon, 22 May 2023 12:15:32 -0700 (PDT)
+Received: from localhost ([75.172.135.98])
+        by smtp.gmail.com with ESMTPSA id bj6-20020a170902850600b001a183ade911sm5205732plb.56.2023.05.22.12.15.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 May 2023 12:15:32 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Julien Stephan <jstephan@baylibre.com>
+Cc:     robh@kernel.org, chunkuang.hu@kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Florian Sylvestre <fsylvestre@baylibre.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Andy Hsieh <andy.hsieh@mediatek.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "moderated list:ARM/Mediatek USB3 PHY DRIVER" 
         <linux-arm-kernel@lists.infradead.org>,
+        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20230518193613.15185-1-jm@ti.com>
- <20230518193613.15185-3-jm@ti.com>
- <20230519-morbidity-directory-dbe704584aa3-mkl@pengutronix.de>
- <3859166d-fc78-f42d-1553-282e4140325a@ti.com>
- <20230522-manhunt-smooth-442d9d864f04-mkl@pengutronix.de>
-Content-Language: en-US
-From:   Judith Mendez <jm@ti.com>
-In-Reply-To: <20230522-manhunt-smooth-442d9d864f04-mkl@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: add mediatek mipi csi driver v
+ 0.5
+In-Reply-To: <c63ebd7e-8658-9cdd-4fc4-ade9c94dfa64@linaro.org>
+References: <20230515090551.1251389-1-jstephan@baylibre.com>
+ <20230515090551.1251389-2-jstephan@baylibre.com>
+ <ab9aa30f-82d7-1d14-5561-e19ff10af0b0@linaro.org>
+ <4yppinkucchwnwtnnpbqdn4bejmntjq3q6mx6es55f2pwyce3c@qdhdks47lpyt>
+ <1853f049-4f00-b7f0-973a-2c4e7b0b2634@linaro.org>
+ <7h353w2oug.fsf@baylibre.com>
+ <fbf1b0a6-f45d-69a0-5de6-8269567e15b3@linaro.org>
+ <7hwn18yndq.fsf@baylibre.com>
+ <c63ebd7e-8658-9cdd-4fc4-ade9c94dfa64@linaro.org>
+Date:   Mon, 22 May 2023 12:15:31 -0700
+Message-ID: <7hcz2snpnw.fsf@baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
 
-On 5/22/23 1:37 PM, Marc Kleine-Budde wrote:
-> On 22.05.2023 10:17:38, Judith Mendez wrote:
->>>> diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_can/m_can_platform.c
->>>> index 94dc82644113..3e60cebd9d12 100644
->>>> --- a/drivers/net/can/m_can/m_can_platform.c
->>>> +++ b/drivers/net/can/m_can/m_can_platform.c
->>>> @@ -5,6 +5,7 @@
->>>>    //
->>>>    // Copyright (C) 2018-19 Texas Instruments Incorporated - http://www.ti.com/
->>>> +#include <linux/hrtimer.h>
->>>>    #include <linux/phy/phy.h>
->>>>    #include <linux/platform_device.h>
->>>> @@ -96,12 +97,40 @@ static int m_can_plat_probe(struct platform_device *pdev)
->>>>    		goto probe_fail;
->>>>    	addr = devm_platform_ioremap_resource_byname(pdev, "m_can");
->>>> -	irq = platform_get_irq_byname(pdev, "int0");
->>>> -	if (IS_ERR(addr) || irq < 0) {
->>>> -		ret = -EINVAL;
->>>> +	if (IS_ERR(addr)) {
->>>> +		ret = PTR_ERR(addr);
->>>>    		goto probe_fail;
->>>>    	}
+> On 16/05/2023 23:31, Kevin Hilman wrote:
+>
+>>> Third is to use versioned IP blocks.
 >>>
->>> As we don't use an explicit "poll-interval" anymore, this needs some
->>> cleanup. The flow should be (pseudo code, error handling omitted):
+>>> The second case also would work, if it is applicable to you (you really
+>>> have fallback matching all devices). Third solution depends on your
+>>> versioning and Rob expressed dislike about it many times.
 >>>
->>> if (device_property_present("interrupts") {
->>>           platform_get_irq_byname();
->>>           polling = false;
->>> } else {
->>>           hrtimer_init();
->>>           polling = true;
->>> }
->>
->> Ok.
->>
->>>
->>>> +	irq = platform_get_irq_byname_optional(pdev, "int0");
->>>
->>> Remove the "_optional" and....
->>
->> On V2, you asked to add the _optional?.....
->>
->>>   	irq = platform_get_irq_byname(pdev, "int0");
->>
->> use platform_get_irq_byname_optional(), it doesn't print an error
->> message.
-> 
-> ACK - I said that back in v2, when there was "poll-interval". But now we
-> don't use "poll-interval" anymore, but test if interrupt properties are
-> present.
-> 
-> See again pseudo-code I posted in my last mail:
-> 
-> | if (device_property_present("interrupts") {
-> |          platform_get_irq_byname();
-> 
-> If this throws an error, it's fatal, bail out.
-> 
-> |          polling = false;
-> | } else {
-> |          hrtimer_init();
-> |          polling = true;
-> | }
-> 
+>>> We had many discussions on mailing lists, thus simplifying the review -
+>>> I recommend the first choice. For a better recommendation you should say
+>>> a bit more about the block in different SoCs.
+>> 
+>> I'll try to say a bit more about the PHY block, but in fact, it's not
+>> just about differences between SoCs. On the same SoC, 2 different PHYs
+>> may have different features/capabilities.
+>> 
+>> For example, on MT8365, There are 2 PHYs: CSI0 and CSI1.  CSI0 can
+>> function as a C-PHY or a D-PHY, but CSI1 can only function as D-PHY
+>> (used as the example in the binding patch[1].)  On another related SoC,
+>> there are 3 PHYs, where CSI0 is C-D but CSI1 & CSI2 are only D.
+>> 
+>> So that's why it seems (at least to me) that while we need SoC
+>> compatible, it's not enough.  We also need properties to describe
+>> PHY-specific features (e.g. C-D PHY)
+>
+> I recall the same or very similar case... It bugs me now, but
+> unfortunately I cannot find it.
+>
+>> 
+>> Of course, we could rely only on SoC-specific compatibles describe this.
+>> But then driver will need an SoC-specific table with the number of PHYs
+>> and per-PHY features for each SoC encoded in the driver.  Since the
+>> driver otherwise doesn't (and shouldn't, IMHO) need to know how many
+>> PHYs are on each SoC, I suggested to Julien that perhaps the additional
+>> propery was the better solution.
+>
+> Phys were modeled as separate device instances, so you would need
+> difference in compatible to figure out which phy is it.
+>
+> Other way could be to create device for all phys and use phy-cells=1.
+> Whether it makes sense, depends on the actual datasheet - maybe the
+> split phy per device is artificial? There is one PHY block with two
+> address ranges for each PHY - CSI0 and CSI1 - but it is actually one
+> block? You should carefully check this because once design is chosen,
+> you won't be able to go back to other and it might be a problem (e.g.
+> there is some top-level block for powering on all CSI instances).
 
-Ok, will add this then..
+We're pretty sure these are multiple instances of the IP block as they
+can operate completely independently. 
 
+>> 
+>> To me it seems redundant to have the driver encode PHYs-per-SoC info,
+>> when the per-SoC DT is going to have the same info, so my suggestion was
+>> to simplify the driver and have this kind of hardware description in the
+>> DT, and keep the driver simple, but we are definitely open to learning
+>> the "right way" of doing this.
+>
+> The property then is reasonable. It should not be bool, though, because
+> it does not scale. There can be next block which supports only D-PHY on
+> CSI0 and C-PHY on CSI1? Maybe some enum or list, depending on possible
+> configurations.
 
->>
->>>
->>>> +	if (irq == -EPROBE_DEFER) {
->>>> +		ret = -EPROBE_DEFER;
->>>> +		goto probe_fail;
->>>> +	}
->>>> +
->>>> +	if (device_property_present(mcan_class->dev, "interrupts") ||
->>>> +	    device_property_present(mcan_class->dev, "interrupt-names"))
->>>> +		mcan_class->polling = false;
->>>
->>> ...move the platform_get_irq_byname() here
->>
->> ok,
->>
->>>
->>>> +	else
->>>> +		mcan_class->polling = true;
->>>> +
->>>> +	if (!mcan_class->polling && irq < 0) {
->>>> +		ret = -ENXIO;
->>>> +		dev_err_probe(mcan_class->dev, ret, "IRQ int0 not found, polling not activated\n");
->>>> +		goto probe_fail;
->>>> +	}
->>>
->>> Remove this check.
->>
->> Should we not go to 'probe fail' if polling is not activated and irq is not
->> found?
-> 
-> If an interrupt property is present in the DT, we use it - if request
-> IRQ fails, something is broken and we've already bailed out. See above.
-> If there is no interrupt property we use polling.
+OK, looks like include/dt-bindings/phy/phy.y already has
 
-Got it, thanks.
+  #define PHY_TYPE_DPHY		10
+  #define PHY_TYPE_CPHY		11
 
->>
->>>
->>>> +
->>>> +	if (mcan_class->polling) {
->>>> +		if (irq > 0) {
->>>> +			mcan_class->polling = false;
->>>> +			dev_info(mcan_class->dev, "Polling enabled, using hardware IRQ\n");
->>>
->>> Remove this.
->>
->> Remove the dev_info?
-> 
-> ACK, this is not possible anymore - we cannot have polling enabled and
-> HW IRQs configured.
+we'll add a PHY_TYPE_CDPHY and use that.   Sound reasonable?
 
-Sounds good, will submit a v7 with these cleanup changes.
-
-regards,
-Judith
+Kevin
