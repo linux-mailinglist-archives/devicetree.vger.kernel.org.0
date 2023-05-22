@@ -2,253 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86E2770BEE8
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 14:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6520570BEEE
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 15:00:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233386AbjEVM7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 08:59:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57910 "EHLO
+        id S232106AbjEVNAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 09:00:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230434AbjEVM7J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 08:59:09 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18EA3C6
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 05:59:08 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-ba81031424dso9129822276.2
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 05:59:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684760347; x=1687352347;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tCjgaIBg1413+ZAECALmVtqZ0DPPflZA/0F3xjG6XnA=;
-        b=yYKMTbxYVK5vRAtLSrpyvIV5n49h3TOGLPgHoNJUv4Kik5xPQ4GIqCZ/YCshKUzyjW
-         Yb4ccgR6KfkRMmam+HARFZrksrhBsBRXoWruGLARLFMKq4dXIS6lsY3eUKbL7xBCnZgj
-         +/0NQtbhLOU8ycD/ZJrAVhR/4pq6mc32Ixzn7BTSku1UpegwBZl/raBcDpWeFbpS4ZzQ
-         x8XmWPZdFrzxdG6FX+Ac7Ua79KnPf+VbY1cZPCixOvziz+qd81geKYuBtkm1rupZsU+p
-         zu6rr1pEjjkERmH0cgewbDfuR1KxqU7K31B7QmMzRkuJraG0Xzi04o51vprsVgF6x3Mh
-         dEOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684760347; x=1687352347;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tCjgaIBg1413+ZAECALmVtqZ0DPPflZA/0F3xjG6XnA=;
-        b=iFlqC1eLKF/05HsDzdx2/yDstk0wnCGfCMZGMkKoSGAARhAeimix1Ik9jL5ol7/PHZ
-         z/QX/Py0jZXFiak+M3i+BI1PSkZYU747oZIKzdYDf6IL9134qfBR/a8blDkXxBB1vmno
-         HG9FKlu2WT5o3dU3olEQkE/re/+bZ3QPsbu7mea9dyewW7o2EOB8a9IqeNJwuDHzaXZb
-         iZzyjZqLpE8Dt4JRBCu6GpZdTPi9zsP9rhKhzAglWHe7tOpRfhL74+vZJWMILdgsUQSu
-         ESkKBi7gcCiWSgLiLQ4izv/5ypx6hFv9/rDGWp+FLNQUw+8F1qUbAPLX0Pa6XXBv/v41
-         CcHw==
-X-Gm-Message-State: AC+VfDyESi3FmjDXMhqdC9gu4QFEQ02FQotrrRFi9aObCTO+KHp+2Dlx
-        aa1vmJkupXTsDIeAsZQdo05aefll6ye98f1aT0t8wQ==
-X-Google-Smtp-Source: ACHHUZ6cWxlY3y77MvSqyblAVtFUTXlIh6df32iAVJm+u3VEWjzbbKn2z/2n4pkLhV51v/peB0tFOfaRK/VQ6yzT3o0=
-X-Received: by 2002:a25:fc28:0:b0:ba8:37bd:59db with SMTP id
- v40-20020a25fc28000000b00ba837bd59dbmr9143905ybd.34.1684760347027; Mon, 22
- May 2023 05:59:07 -0700 (PDT)
+        with ESMTP id S231236AbjEVNAV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 09:00:21 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EFDEA9;
+        Mon, 22 May 2023 06:00:19 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 206EB80B2;
+        Mon, 22 May 2023 21:00:06 +0800 (CST)
+Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 22 May
+ 2023 21:00:06 +0800
+Received: from [192.168.125.107] (113.72.146.100) by EXMBX062.cuchost.com
+ (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 22 May
+ 2023 21:00:04 +0800
+Message-ID: <93d39956-25c9-971b-e73b-09c69e803341@starfivetech.com>
+Date:   Mon, 22 May 2023 21:00:04 +0800
 MIME-Version: 1.0
-References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
- <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
- <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org> <71675a02-0801-62dc-2673-4a0907636b21@linaro.org>
-In-Reply-To: <71675a02-0801-62dc-2673-4a0907636b21@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 22 May 2023 15:58:56 +0300
-Message-ID: <CAA8EJpq=HZqiBZ6bpUNH47VmASuH+Mi5OD5BHmg0TPwtsKHf8w@mail.gmail.com>
-Subject: Re: [PATCH RFC 03/10] drm/panel: Add LGD panel driver for Sony Xperia XZ3
-To:     neil.armstrong@linaro.org
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Caleb Connolly <caleb@connolly.tech>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 0/3] Add JH7110 MIPI DPHY RX support
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     Jack Zhu <jack.zhu@starfivetech.com>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230412084540.295411-1-changhuang.liang@starfivetech.com>
+Content-Language: en-US
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <20230412084540.295411-1-changhuang.liang@starfivetech.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.146.100]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX062.cuchost.com
+ (172.16.6.62)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 May 2023 at 12:04, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->
-> On 22/05/2023 03:16, Dmitry Baryshkov wrote:
-> > On 22/05/2023 00:23, Marijn Suijten wrote:
-> >> Sony provides an unlabeled LGD + Atmel maXTouch assembly in its Xperia
-> >> XZ3 (tama akatsuki) phone, with custom DCS commands to match.
-> >>
-> >> This panel features Display Stream Compression 1.1.
-> >>
-> >> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> >> ---
-> >>   drivers/gpu/drm/panel/Kconfig                   |  11 +
-> >>   drivers/gpu/drm/panel/Makefile                  |   1 +
-> >>   drivers/gpu/drm/panel/panel-sony-akatsuki-lgd.c | 362 ++++++++++++++++++++++++
-> >>   3 files changed, 374 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> >> index 67ef898d133f2..18bd116e78a71 100644
-> >> --- a/drivers/gpu/drm/panel/Kconfig
-> >> +++ b/drivers/gpu/drm/panel/Kconfig
-> >> @@ -706,6 +706,17 @@ config DRM_PANEL_SONY_ACX565AKM
-> >>         Say Y here if you want to enable support for the Sony ACX565AKM
-> >>         800x600 3.5" panel (found on the Nokia N900).
-> >> +config DRM_PANEL_SONY_AKATSUKI_LGD
-> >> +    tristate "Sony Xperia XZ3 LGD panel"
-> >> +    depends on GPIOLIB && OF
-> >> +    depends on DRM_MIPI_DSI
-> >> +    depends on BACKLIGHT_CLASS_DEVICE
-> >> +    help
-> >> +      Say Y here if you want to enable support for the Sony Xperia XZ3
-> >> +      1440x2880@60 6.0" OLED DSI cmd mode panel produced by LG Display.
-> >> +
-> >> +      This panel uses Display Stream Compression 1.1.
-> >> +
-> >>   config DRM_PANEL_SONY_TD4353_JDI
-> >>       tristate "Sony TD4353 JDI panel"
-> >>       depends on GPIOLIB && OF
-> >> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-> >> index ff169781e82d7..85133f73558f3 100644
-> >> --- a/drivers/gpu/drm/panel/Makefile
-> >> +++ b/drivers/gpu/drm/panel/Makefile
-> >> @@ -71,6 +71,7 @@ obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) += panel-sitronix-st7701.o
-> >>   obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) += panel-sitronix-st7703.o
-> >>   obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += panel-sitronix-st7789v.o
-> >>   obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) += panel-sony-acx565akm.o
-> >> +obj-$(CONFIG_DRM_PANEL_SONY_AKATSUKI_LGD) += panel-sony-akatsuki-lgd.o
-> >>   obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) += panel-sony-td4353-jdi.o
-> >>   obj-$(CONFIG_DRM_PANEL_SONY_TULIP_TRULY_NT35521) += panel-sony-tulip-truly-nt35521.o
-> >>   obj-$(CONFIG_DRM_PANEL_TDO_TL070WSH30) += panel-tdo-tl070wsh30.o
-> >> diff --git a/drivers/gpu/drm/panel/panel-sony-akatsuki-lgd.c b/drivers/gpu/drm/panel/panel-sony-akatsuki-lgd.c
-> >> new file mode 100644
-> >> index 0000000000000..f55788f963dab
-> >> --- /dev/null
-> >> +++ b/drivers/gpu/drm/panel/panel-sony-akatsuki-lgd.c
-> >> @@ -0,0 +1,362 @@
-> >> +// SPDX-License-Identifier: GPL-2.0-only
-> >> +/*
-> >> + * Copyright (c) 2023 Marijn Suijten <marijn.suijten@somainline.org>
-> >> + *
-> >> + * Based on Sony Downstream's "Atmel LGD ID5" Akatsuki panel dtsi.
-> >> + */
-> >> +
-> >> +#include <linux/backlight.h>
-> >> +#include <linux/delay.h>
-> >> +#include <linux/gpio/consumer.h>
-> >> +#include <linux/module.h>
-> >> +#include <linux/of.h>
-> >> +#include <linux/of_device.h>
-> >> +#include <linux/regulator/consumer.h>
-> >> +
-> >> +#include <video/mipi_display.h>
-> >> +
-> >> +#include <drm/drm_mipi_dsi.h>
-> >> +#include <drm/drm_modes.h>
-> >> +#include <drm/drm_panel.h>
-> >> +#include <drm/drm_probe_helper.h>
-> >> +#include <drm/display/drm_dsc.h>
-> >> +#include <drm/display/drm_dsc_helper.h>
-> >> +
-> >> +struct sony_akatsuki_lgd {
-> >> +    struct drm_panel panel;
-> >> +    struct mipi_dsi_device *dsi;
-> >> +    struct regulator *vddio;
-> >> +    struct gpio_desc *reset_gpio;
-> >> +    bool prepared;
-> >> +};
-> >> +
-> >> +static inline struct sony_akatsuki_lgd *to_sony_akatsuki_lgd(struct drm_panel *panel)
-> >> +{
-> >> +    return container_of(panel, struct sony_akatsuki_lgd, panel);
-> >> +}
-> >> +
-> >> +static int sony_akatsuki_lgd_on(struct sony_akatsuki_lgd *ctx)
-> >> +{
-> >> +    struct mipi_dsi_device *dsi = ctx->dsi;
-> >> +    struct device *dev = &dsi->dev;
-> >> +    int ret;
-> >> +
-> >> +    dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-> >> +
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0x7f, 0x5a, 0x5a);
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0xf1, 0x5a, 0x5a);
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x5a, 0x5a);
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0x02, 0x01);
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0x59, 0x01);
-> >> +    /* Enable backlight control */
-> >> +    mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, BIT(5));
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0x57, 0x20, 0x80, 0xde, 0x60, 0x00);
-> >> +
-> >> +    ret = mipi_dsi_dcs_set_column_address(dsi, 0, 1440 - 1);
-> >> +    if (ret < 0) {
-> >> +        dev_err(dev, "Failed to set column address: %d\n", ret);
-> >> +        return ret;
-> >> +    }
-> >> +
-> >> +    ret = mipi_dsi_dcs_set_page_address(dsi, 0, 2880 - 1);
-> >> +    if (ret < 0) {
-> >> +        dev_err(dev, "Failed to set page address: %d\n", ret);
-> >> +        return ret;
-> >> +    }
-> >> +
-> >> +    mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_POWER_SAVE, 0x00);
-> >> +
-> >> +    ret = mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
-> >> +    if (ret < 0) {
-> >> +        dev_err(dev, "Failed to set tear on: %d\n", ret);
-> >> +        return ret;
-> >> +    }
-> >> +
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0x7f, 0x5a, 0x5a);
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0xf1, 0x5a, 0x5a);
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x5a, 0x5a);
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x03);
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0xf6, 0x04);
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x05);
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0xf6, 0x01, 0x7f, 0x00);
-> >> +
-> >> +    ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-> >> +    if (ret < 0) {
-> >> +        dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
-> >> +        return ret;
-> >> +    }
-> >> +    msleep(120);
-> >> +
-> >> +    mipi_dsi_dcs_write_seq(dsi, 0xe3, 0xac, 0x19, 0x34, 0x14, 0x7d);
-> >> +
-> >> +    ret = mipi_dsi_dcs_set_display_on(dsi);
-> >> +    if (ret < 0) {
-> >> +        dev_err(dev, "Failed to turn display on: %d\n", ret);
-> >> +        return ret;
-> >> +    }
-> >
-> > My usual question: should the mipi_dsi_dcs_exit_sleep_mode() / mipi_dsi_dcs_set_display_on() be moved from prepare() to enable() part?
->
->
-> No, prepare is called before the video stream is started and when display is still in LPM mode and the mode hasn't been set.
->
 
-Yes, that's my point. Shouldn't we enable the panel _after_ starting the stream?
 
--- 
-With best wishes
-Dmitry
+On 2023/4/12 16:45, Changhuang Liang wrote:
+> This patchset adds mipi dphy rx driver for the StarFive JH7110 SoC.
+> It is used to transfer CSI camera data. The series has been tested on
+> the VisionFive 2 board.
+> 
+
+Hi, Conor
+
+Can you help to find the Vinod reviewed this patchset?
+
+Thanks,
+Changhuang
