@@ -2,78 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E7AA70B669
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 09:24:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAB6070B692
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 09:32:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232421AbjEVHYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 03:24:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50544 "EHLO
+        id S232533AbjEVHcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 03:32:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230412AbjEVHYE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 03:24:04 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3969294
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 00:24:03 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f41dceb9d1so56037605e9.1
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 00:24:03 -0700 (PDT)
+        with ESMTP id S232476AbjEVHcb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 03:32:31 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DB26B5
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 00:32:29 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id 3f1490d57ef6-ba841216e92so8296803276.1
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 00:32:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684740241; x=1687332241;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=DP8vc4lqhrsQ7DMlA5RHt36AfG1aqpkYdAb6gvy80+A=;
-        b=bY4GxMrMwaalbkKP5sS71k32QpVTWBOkl+IWQ22b7K+xJNLFWeWRVqWOirEDukY78H
-         dSq094Q/I2tCZmT/H81QKwM0IV1vpy+78FmXMGCqEjdRg8Ilgi7R8K3FhDIXvOD/knDe
-         Po7SGfjhXgf6EVGp7/7+WUPsLl3MNQZVfTb/QyFWFdswigcTCIt80BY1as3e+sWoWEuL
-         cfDLTdRIlELuELTqk3xNl5zpt2M1pVuk+wik+qmKYh7gpqJ3121x4I8R6NZISrtaUA/K
-         ci+bD1RNsPXtPod4D1SlUbx2URkRgvuvMLQAkDTyxvYId8skmNGW3Joxxq9AlHzTFCes
-         lT2g==
+        d=linaro.org; s=google; t=1684740748; x=1687332748;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l3nKRFXxsoHjfjdv323ChY4z/ZbZPhs8kEfFA/b0p14=;
+        b=ZQBKBNbhyGusoEZNZncEPEovCz9ZtzvSsUhyhSUHyzXTHxM4pTaAFa4m9WSjXG3JtY
+         Cpp4VN1YENR0DDoAf99GIkp0+KSSIAUV1PwqgbOIsE9KP7QESHwE7bijzkNwtxOt8/jn
+         SRTJr71ARxr7S7iyMsJ3cjvugn0Cz9iFXxkA3+AHQ3tea9YqTKuKM1srZu4dZuuH81d8
+         +x9dVC95WW8NMbrLtdS5OzsQAQmLeaHPPYQe5WZ7mtTE3QqkdIlUDVHfXjPa53ZHk7iw
+         HFOT6bsAmfR1jYA1L3yy1st3FFa8IuXPvy9PeMAo1IzzdUKSAE1R6PFef1EYITbTHGpO
+         Ka/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684740241; x=1687332241;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DP8vc4lqhrsQ7DMlA5RHt36AfG1aqpkYdAb6gvy80+A=;
-        b=dCnIqfbuy3FPkjxXwc9i7uA0izRZjElhSJY0PLBkXzHdosWDR+DLDFoS/dYEFsVVNB
-         CV6i5MmEf+XBiDF00sKAT/Kmr02MYtH4EpcXio+H2j1EHAwDRcg2+5O4feobspZJL9Pb
-         RWaZaE7Z/5UJIeZEI/4RbpFiFWOCFGxmEn5qEmO7hryWxAeedJTuUFwDHze2khxU3e6/
-         uN4epfZX8xx/G6XTT40YOTARHZ0UIKmqMQzfioN6vF/DXklP2mAJq12gfC86dY1UjIYQ
-         hXOzC2NlU8ckpItPptlW3EV4NZ0XbuyBTXxNCAwEJhjQTQgybXerT6L3VFPx8B9XL7y6
-         ybkw==
-X-Gm-Message-State: AC+VfDxbZVOcyj4JJEfmxN3hjWH9uIBHK/TFAryCpyzRxRTgLlUik7on
-        Ojt6U5iL8fK7NbL1oaw2IBhgeg==
-X-Google-Smtp-Source: ACHHUZ7yVBS628L12BOKyRlxAwNcCRJj3WJkt+J+IZCzDwMzw7fDFJdG1r9DF3W0NDLJprNMiR6OpQ==
-X-Received: by 2002:a05:600c:2104:b0:3f6:53a:6665 with SMTP id u4-20020a05600c210400b003f6053a6665mr989148wml.19.1684740241626;
-        Mon, 22 May 2023 00:24:01 -0700 (PDT)
-Received: from [192.168.7.188] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id i7-20020a05600c290700b003f506e6ff83sm7353434wmd.22.2023.05.22.00.24.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 May 2023 00:24:01 -0700 (PDT)
-Message-ID: <ed8fc8f2-e5d8-8e08-dc29-e1197c911571@linaro.org>
-Date:   Mon, 22 May 2023 09:24:03 +0200
+        d=1e100.net; s=20221208; t=1684740748; x=1687332748;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l3nKRFXxsoHjfjdv323ChY4z/ZbZPhs8kEfFA/b0p14=;
+        b=MeN47Em1dQQL9D8btI0S3sg/DPCvgLyRaIO4WVJpbK9C8K2V1yucZTPfLT7LK2/TU6
+         jYU4fqtu3CSenq/+6SPGVKe65VNGNrefWfgWz3M0x989tBtRNTvznAaNuGXOUZJAtAYk
+         WDr/S14uz6gbNs8GABJUjMOZrwv5heVbvyzTYriFePvVlfMRN+wucw0Z0ZJHIPks6UOi
+         Intd8AMLjJbFx40PdO9G1cObZvZLWsIjztoQRAIPHCcoy91+zct4Csde2ZpOos2ZhIbF
+         8qKvgbwdXKbSCjZWSNvEUvo9+71AEBDlAN3Pqwn4BDwtGha/n6mt9xIuRqHl33PCDZxU
+         Lq6g==
+X-Gm-Message-State: AC+VfDxXhIxos5wR/MjqCovanrtMtECzmRuaG5Kz255nWtMQQ2xbSxZN
+        sMzaXb2BZzVpkxTWUVqhBwtqsfWZ0eoyPPfER8Wi4w==
+X-Google-Smtp-Source: ACHHUZ4FkKkNnOjIqxj6cR6guYodDfCoBUf70rR+UN4AF9syzuN5i3kPXu5WUGJ7anEuu333nuhHkKPkvWZV8hR5tx8=
+X-Received: by 2002:a0d:d595:0:b0:561:e910:52f5 with SMTP id
+ x143-20020a0dd595000000b00561e91052f5mr12470156ywd.27.1684740748447; Mon, 22
+ May 2023 00:32:28 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [v1 0/2] *** Support Starry-himax83102-j02 and Starry-ili9882t
- TDDI MIPI-DSI panel ***
-Content-Language: en-US
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        sam@ravnborg.org, daniel@ffwll.ch, dianders@google.com,
-        hsinyi@google.com
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230519032316.3464732-1-yangcong5@huaqin.corp-partner.google.com>
- <20230519080136.4058243-1-yangcong5@huaqin.corp-partner.google.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230519080136.4058243-1-yangcong5@huaqin.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20230519125409.497439-1-quic_srichara@quicinc.com> <20230519125409.497439-5-quic_srichara@quicinc.com>
+In-Reply-To: <20230519125409.497439-5-quic_srichara@quicinc.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 22 May 2023 09:32:17 +0200
+Message-ID: <CACRpkdaX3i-O3=8XbLYJ1hXT8dOE7WJUUT6JxOKmWTJwru_24Q@mail.gmail.com>
+Subject: Re: [PATCH V7 4/8] pinctrl: qcom: Add IPQ5018 pinctrl driver
+To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, ulf.hansson@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robimarko@gmail.com, andy.shevchenko@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,29 +74,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, May 19, 2023 at 2:55=E2=80=AFPM Sricharan Ramabadhran
+<quic_srichara@quicinc.com> wrote:
 
+> Add pinctrl definitions for the TLMM of IPQ5018.
+>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Co-developed-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> ---
+>  [v7] No change
 
-On 19/05/2023 10:01, Cong Yang wrote:
-> The previous patch is not based on drm-misc-next, resend this series.
-> Support Starry-himax83102-j02 and Starry-ili9882t TDDI MIPI-DSI panel,
-> set the default high for RST at boe_panel_add and add lp11_before_reset flag.
+This looks mostly fine, but I want you to consider Andy's remarks.
+With those addressed:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-If the reset gpio polarity is different, please change it in the DT by using
-a different gpio flag instead of changing the driver.
+Can this file and the bindings be applied independently of the rest
+of the patches? In that case I can apply v8 bindings+this patch to
+the pinctrl tree.
 
-However if the logic is different and reset must never be asserted to low,
-the the bindings + driver to make the reset line optional and set a gpio-hog
-in DT to keep it at a safe level.
-
-Neil
-
-
-> Cong Yang (2):
->    drm/panel: Support for Starry-himax83102-j02 TDDI MIPI-DSI panel
->    drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI panel
-> 
->   .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 474 +++++++++++++++++-
->   1 file changed, 473 insertions(+), 1 deletion(-)
-> 
-
+Yours,
+Linus Walleij
