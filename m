@@ -2,111 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CBBA70CC7B
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 23:32:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AEC870CCED
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 23:53:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233664AbjEVVc0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 17:32:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44656 "EHLO
+        id S230345AbjEVVxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 17:53:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234451AbjEVVcZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 17:32:25 -0400
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67D78C6
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 14:32:20 -0700 (PDT)
-Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-6af6df840ffso1554076a34.1
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 14:32:20 -0700 (PDT)
+        with ESMTP id S229723AbjEVVxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 17:53:24 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99B10DB
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 14:53:22 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id 41be03b00d2f7-51f64817809so256438a12.1
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 14:53:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684792402; x=1687384402;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wtDFKFxXn81rIkATtnxiRVVyqU/ttR6hoyrX7x4LYL8=;
+        b=Qp9hvdaf5IJIU0ZrU0tnHtDIbx3h8oVtTk0Azixj/oFxOV7O9trk7+ii4fFFDna/5V
+         SgGX9b1EtWJoMT9jDDQ8I7AHBkmSiEtJxU2qOVwuvNs+1Q9dgG4TCYz8DOhdoYYk8CVJ
+         iI/ER31kVIrNHg/0BEeG7RY9twlvl/ULpsUXcTpG7HxG89TjlHatd14mKjeMSuFyg+iR
+         cCLUBJfRscBQz5t5PzZZ9SsW2QTZo8qQA5WtS6nxqz3J+Sb4TvYKfil5S4hGINzO4ML2
+         Vyd3BYbYIpovRuwtu2WH92Fyp7dwnZNhV6YKO5yYrEDZUSe4S/KBevY9FNI+UFevyoH6
+         9u4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684791139; x=1687383139;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=7JcTyY4coWlkkQ03p6WxiiQF8JSCtgPR8V4VQJJ0ZeQ=;
-        b=ZAKr6NWViubdyB1D1WnzzFaDkKI1ZFDG9sXl4aRtA/CNq6MtbnRM74eMCRLZT0bCxK
-         yHcRskwHett2K8YxOZKXNQgr1B7+EM//HYkVm08FoZfRHZq6fafIqBAcdEZsrczS3kFX
-         TvHQb0FB6r70krEbQLML76sZspXiROYejKBAOAnro68C2OgMIlf5+6SVjrv7FjLwoqhS
-         jWbsA6VgVKIHgAdbsamZjSrwLG4vJQ3oeThFx4IxrJ1eian+q5fB5I0SSwJJTQOlK634
-         yi9AQ6PMyRvajM1K9y9sC503KQOhTH++DjVqfBoiLOWHMatqIwOGIN7QwPfSidu4pZQH
-         vLOg==
-X-Gm-Message-State: AC+VfDyERt6BxKcbApTui61JMkJ6b5X20b906y5LsPUpt4eu8NqM+VNS
-        RwgXeKwsLs7Dv4IqIFtLIg==
-X-Google-Smtp-Source: ACHHUZ7nMZCKyDwuDZMA0SDZR3TrCirpvLQLK2+Sl4utBtlLkHjQSW1m5rNBHgmhqDDRK1ZOCvwLCw==
-X-Received: by 2002:a9d:7cd5:0:b0:6ac:16fc:e6c9 with SMTP id r21-20020a9d7cd5000000b006ac16fce6c9mr5681453otn.11.1684791139554;
-        Mon, 22 May 2023 14:32:19 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c3-20020a9d6c83000000b006af731d100fsm1820936otr.75.2023.05.22.14.32.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 May 2023 14:32:18 -0700 (PDT)
-Received: (nullmailer pid 3061874 invoked by uid 1000);
-        Mon, 22 May 2023 21:32:17 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20221208; t=1684792402; x=1687384402;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wtDFKFxXn81rIkATtnxiRVVyqU/ttR6hoyrX7x4LYL8=;
+        b=Wa/ATLpCY9lxIoc7mtaz9WNxj/D++k6q7rezM/jwOjo6AyBq4aZoJ3ZcMgAH9inCNv
+         HvAuJeUhHOKxcpfG+IIx9cOax2yZgsPS8vqWET+4wEkPxujEftiryULJuhohTbETzGf7
+         PiUsipzIGIxEe4CoJ5Q30O2wS6r9gZROpJGGhnkJ5I9pnB2rjtvA8QAljDQLgRcyxUnI
+         QtkmxvnVOyS4wEblw4brDypo/+BKCurjXlTSB/ct6wGrz+AvOVtFeNi6h1pMTSlJaaF/
+         L68LgU07xcry424DHK/oJSGmFRPcTEhlue5HpbJh+xBONj3wcFG4daJNDgCPRqxMjlyq
+         0DtA==
+X-Gm-Message-State: AC+VfDwpdzvL4sGOgQKbiRykWQDM7aAqLnILrWco7Cas9Yj/G2gtxEIL
+        f0AJm+6mNnGNK3XRRKNFA8DGihCNmQKwxB3skkG2jyc+x0k=
+X-Google-Smtp-Source: ACHHUZ4+igf9QwARJkcH2EoDp2P5pSoAuRTOcgXun2DpcDiuuLKxFCdXx6CxonLAGpNGiaYv3SBJuHdAs95DkCnXFYM=
+X-Received: by 2002:a17:90a:e7c4:b0:255:3c7c:6767 with SMTP id
+ kb4-20020a17090ae7c400b002553c7c6767mr8852359pjb.1.1684792401917; Mon, 22 May
+ 2023 14:53:21 -0700 (PDT)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
+References: <20230522201404.660242-1-festevam@gmail.com> <20230522201404.660242-3-festevam@gmail.com>
+ <168479113748.3061858.13208114678317716697.robh@kernel.org>
+In-Reply-To: <168479113748.3061858.13208114678317716697.robh@kernel.org>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 22 May 2023 18:53:10 -0300
+Message-ID: <CAOMZO5BAoT=Mi_Ac_qD-eu37nJkBMpF5HJ54MbrAtPakw-BZCQ@mail.gmail.com>
+Subject: Re: [PATCH v6 3/5] dt-bindings: soc: Add i.MX6SX General Purpose Register
+To:     Rob Herring <robh@kernel.org>
 Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org, bhelgaas@google.com, marex@denx.de,
         shawnguo@kernel.org, Fabio Estevam <festevam@denx.de>,
         linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org
-In-Reply-To: <20230522201404.660242-3-festevam@gmail.com>
-References: <20230522201404.660242-1-festevam@gmail.com>
- <20230522201404.660242-3-festevam@gmail.com>
-Message-Id: <168479113748.3061858.13208114678317716697.robh@kernel.org>
-Subject: Re: [PATCH v6 3/5] dt-bindings: soc: Add i.MX6SX General Purpose
- Register
-Date:   Mon, 22 May 2023 16:32:17 -0500
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, May 22, 2023 at 6:32=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 
-On Mon, 22 May 2023 17:14:02 -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> The i.MX6SX General Purpose Registers is a set of register that serves
-> various different purposes and in particular, IOMUXC_GPR_GPR6, at
-> offset 0x18, can be used to configure the LDB block.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
-> Changes since v5:
-> - Dropped "fsl,imx6q-iomuxc-gpr" and "reg-names" (Marek).
-> 
->  .../bindings/soc/imx/fsl,imx6sx-gpr.yaml      | 82 +++++++++++++++++++
->  1 file changed, 82 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
-> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/s=
+oc/imx/fsl,imx6sx-gpr.example.dtb: syscon@20e4000: bridge@18:compatible:0: =
+'fsl,imx6sx-ldb' is not one of ['fsl,imx8mp-ldb', 'fsl,imx93-ldb']
+>         From schema: /builds/robherring/dt-review-ci/linux/Documentation/=
+devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Same comment as in 2/5 applies here too:
 
-yamllint warnings/errors:
+Dependency: This depends on bd60d98a11da ("dt-bindings: display:
+bridge: ldb: Adjust imx6sx entries"),
+which is available on linux-next.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.example.dtb: syscon@20e4000: bridge@18:compatible:0: 'fsl,imx6sx-ldb' is not one of ['fsl,imx8mp-ldb', 'fsl,imx93-ldb']
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230522201404.660242-3-festevam@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+I missed adding such a comment here.
