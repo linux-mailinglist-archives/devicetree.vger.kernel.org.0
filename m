@@ -2,194 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 996C770BBC4
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 13:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1EF770BBF4
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 13:35:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233260AbjEVL20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 07:28:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38368 "EHLO
+        id S233120AbjEVLfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 07:35:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230448AbjEVL2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 07:28:10 -0400
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFCA110E2;
-        Mon, 22 May 2023 04:27:33 -0700 (PDT)
-Received: by mail-vs1-xe31.google.com with SMTP id ada2fe7eead31-4394a8f26d5so201710137.0;
-        Mon, 22 May 2023 04:27:33 -0700 (PDT)
+        with ESMTP id S232786AbjEVLfb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 07:35:31 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2117.outbound.protection.outlook.com [40.107.223.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACDE4100;
+        Mon, 22 May 2023 04:35:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YJC0tQBvXfHhvAVCPE6UhbU68Tu4edX1bmg6A1wFUzA2kgGra15N5McpGEhdCUJDLlQWm+fZm4EqD6zOVzlNahLmspL90UJmGq0gfSUOk+04zW3jr09cpIx+HItNKhReP05vIl77nW2w+5510qU1BQ1rgXOMF31c/a0uSU8mZ1g1X7DFinYvyRX0dJ+/wZr+Kg8vtao0p75yZh5of6CNPSlHzDm0tVJS3UcrzNQTzT0wRazL17fXHrnJaNdhUDwUkGkb/5XhWKDxPwruXaawA7WgMw+aUyuzfS0myCeMa+nZxlKqUZTCUYN6rQHjVY4EIHQtusiTmxTNueqWoGBdCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=df0e4ZTtmOsJVOfjKP/4uYCo4vovDtqHAcDNnmrBpyk=;
+ b=MF/DUYKT8E9doimEq2elILM/r0x8nVjf91RDGRAjThL0yGoFyqBLR9ak7KvJlXRqWdPGZNSDOA5Y6p4VY+zuTyFAelUNYQdGlUYUU/TUC+g61hhK4b9u5/SohiHKPMAKSL9N3p24KQ2yODD72HCrsp+ImWJnKVv9PdBsPh6EvyDLlIAIJLXuzwLFIAmMTCKS0D11ZF1cSgDfYl8593rOR7e8bE+GO2gZmEfKd/8DCPUTSAIIqCsjlQkUKMhUtCHFqwwL/UQbkL18NfSJTr/oSiPFsoBGVOPRiGtDByiZiG+4Rj3Z2T3NI91R8nIUP+6z7aILGZfRtuWHk34tPZByPQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=corigine.com; dmarc=pass action=none header.from=corigine.com;
+ dkim=pass header.d=corigine.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684754853; x=1687346853;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FzQoV7Wn/u+jSz7wS4+l8UNnhbuTTevU/GeKVF6hC4w=;
-        b=h7hUkfRkIT8d1TL8VKcpL2xEoZtrzD3E7/5higkXyOtTPMqXCNN4fsw12MpHn3+pII
-         wTvcGOW3TgzJPTWgFxDbosDQO803p7POb0VHGQF3B9WpPHB2rE/Ym6OQsURR/z71Gg2v
-         kRdxwTC7rVH7kAsrh733d+GD8a8uRYIx6QgWiOJYbmKKVOSj7+KzuT6sl0AYuXtke6iz
-         0BcpImAQiUWzsCG24/zRQy+7d+OiJcfSo5flb7mlllOBKZOoJaYOtG9kwDc7mHOaLqs3
-         cWvr2GK3zuTqKRRz3O58kKzBQsQIUBF2nLIm5uXnilHkmdYRq0avSBiSziyHxp5cyik3
-         kF0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684754853; x=1687346853;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FzQoV7Wn/u+jSz7wS4+l8UNnhbuTTevU/GeKVF6hC4w=;
-        b=AynkQq0OEG8TnvC8RHGNUIxFts3hYrehvWUt0tLDll0pl2eAG80YQaIB5e8qt33Ss8
-         tFbxXqmdYCfueSAVNDiY3hXQyIDhHD6/j9itXcn1QEvQstRxtroGC9I7YlfC4alDRs+z
-         R9f7Hc/Zf3NeVHwEIYzHN2ooGsofdfhIyEHnuBg09pHH2mISuSqMUS0dMh1eVmANeQTy
-         xB5yzO6d78DKoGs8ts4AfLuNdkt4BtHKqUzgYBdWnxrFJouRCBtT/A+2cfBdViWKJoIs
-         VLANtrJ1aCwE5P528kr4w52+A0O0Ab+jYOW/intMuhVvWrdKlVVu8lgAv7QaYjXvtYXh
-         fAow==
-X-Gm-Message-State: AC+VfDykE+O5P7gb3xOZxOQJ7VaSjnlNYjvHQzZ66Fp2PzIDiuPCDF8p
-        IlmSluigBdd8tH2zp3xhalLpiqUvd4pqVTXhMDY0/lFG
-X-Google-Smtp-Source: ACHHUZ4TPDqwfF/yCxuDCTXZZCpG6InrjMEmVffSb/3qOxXl5IC+8Z7O85xhEWQCLGY5ogtoZVqfOgacvB6qu5SgiTA=
-X-Received: by 2002:a05:6102:3c1:b0:430:3aec:efb8 with SMTP id
- n1-20020a05610203c100b004303aecefb8mr2093110vsq.28.1684754852768; Mon, 22 May
- 2023 04:27:32 -0700 (PDT)
+ d=corigine.onmicrosoft.com; s=selector2-corigine-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=df0e4ZTtmOsJVOfjKP/4uYCo4vovDtqHAcDNnmrBpyk=;
+ b=Ef/O3QuhKPKLSo2qnKE9/9l7rwuW8FRa7iiWo39my7/KfLrm2IP6fVx9oGYNYkH/nA6zXo/jzz/xd72eyXP/AJo8GHXErSK3kPrpJ/5/m27eP+lShvHI4cEeXGdawkez1864+STq4YFnMXAWMWCXFDK4KocduYycig8faNmX2+Y=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=corigine.com;
+Received: from PH0PR13MB4842.namprd13.prod.outlook.com (2603:10b6:510:78::6)
+ by DM8PR13MB5176.namprd13.prod.outlook.com (2603:10b6:8:6::20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6411.28; Mon, 22 May 2023 11:35:01 +0000
+Received: from PH0PR13MB4842.namprd13.prod.outlook.com
+ ([fe80::f416:544d:18b7:bb34]) by PH0PR13MB4842.namprd13.prod.outlook.com
+ ([fe80::f416:544d:18b7:bb34%5]) with mapi id 15.20.6411.028; Mon, 22 May 2023
+ 11:35:01 +0000
+Date:   Mon, 22 May 2023 13:34:51 +0200
+From:   Simon Horman <simon.horman@corigine.com>
+To:     Justin Chen <justin.chen@broadcom.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        bcm-kernel-feedback-list@broadcom.com, justinpopo6@gmail.com,
+        f.fainelli@gmail.com, davem@davemloft.net,
+        florian.fainelli@broadcom.com, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, opendmb@gmail.com,
+        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        richardcochran@gmail.com, sumit.semwal@linaro.org,
+        christian.koenig@amd.com
+Subject: Re: [PATCH net-next v3 3/6] net: bcmasp: Add support for ASP2.0
+ Ethernet controller
+Message-ID: <ZGtTW1sNDT8si9/r@corigine.com>
+References: <1684531184-14009-1-git-send-email-justin.chen@broadcom.com>
+ <1684531184-14009-4-git-send-email-justin.chen@broadcom.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1684531184-14009-4-git-send-email-justin.chen@broadcom.com>
+X-ClientProxiedBy: AS4PR09CA0019.eurprd09.prod.outlook.com
+ (2603:10a6:20b:5d4::10) To PH0PR13MB4842.namprd13.prod.outlook.com
+ (2603:10b6:510:78::6)
 MIME-Version: 1.0
-References: <20230517144144.365631-1-romain.perier@gmail.com>
- <20230517144144.365631-3-romain.perier@gmail.com> <669d7b79-71a6-e1f9-8d7a-71c4b64de28d@kernel.org>
-In-Reply-To: <669d7b79-71a6-e1f9-8d7a-71c4b64de28d@kernel.org>
-From:   Romain Perier <romain.perier@gmail.com>
-Date:   Mon, 22 May 2023 13:27:21 +0200
-Message-ID: <CABgxDoKaVip=T5=s2Gd8qpX15cLD=_0TZtQoNodK1CCf+GTYZw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: rtc: Add Mstar SSD20xD RTC devicetree
- bindings documentation
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH0PR13MB4842:EE_|DM8PR13MB5176:EE_
+X-MS-Office365-Filtering-Correlation-Id: d166d279-0e37-4591-ccf4-08db5ab8940e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: QBLiH2YzfNex/7A0qWYgcUeGPbH9rLbGjr56HSAsSRhorj1VagbGavcNQoHZEn3vpWyrFQFcPuA8xqmp3NZK0LoNEExa6K+Jzn2EhO1KSFOaGAvOBiPxh8TRel4Qfcu2fJokwv8QLzgF0MuXTe7RyRctugiE5ZYCKhDzBMBjnII3KBwmj6p1TitHJg0vTX9Cabbc/iefMzd9eUVvXk2DVwbm3ol33yA1itrSB6NsNCyPelGBAdN3xAcbbk2WemYYOT4DNIfxso96s53zZ5AJ2VyL8jNMY4dyJFbUZ2LiGUhmLNGwkCVEnHStYkMeKAHDbaPriKrlxSgYoQYgT2M8yRvmfICKx5ycGtA9adPjh5Kz+yW8srhcDPTaDZppT7sGQShSpCQiplklNoo5jv1xWqIvNZPVPfQGIPfKzf8MXEXiDZTF+YYyIC5ymryEdT5ZPPchMfNFrJAQGZW8V6yKPPjkVj20I62n+Ri1Ua5dSTq5OPMcBNJgn0i+Eix/vYT8AlivgFNTGXuPw67nX406HrWsTXBGEYpiB2Geoc+4D6ezq3AeW+STJsfudrA3HZZrNffL4BeOdtFGn3NM4Z+dLOpzj7OrS5PQ480rCrUJWEU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR13MB4842.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(376002)(39840400004)(396003)(366004)(346002)(451199021)(2906002)(5660300002)(44832011)(7416002)(8676002)(8936002)(41300700001)(316002)(66476007)(66556008)(66946007)(478600001)(6916009)(4326008)(36756003)(6666004)(6486002)(6506007)(6512007)(38100700002)(86362001)(2616005)(186003)(83380400001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RvJ4BDMYilDy+dKJRBfGWo4/cq29YG31ogOJRJbfIJ5wHUQOSt8WX8nAlK0H?=
+ =?us-ascii?Q?aUPXP4/rOWO3nvS6RUCrnRk+XD7QZhiNIR76TTEMzZR7IugqNQF1MBLM/gVL?=
+ =?us-ascii?Q?WTOKAo/0M5Nwn866SQVMK9wo0LF1foUVwJbvj9YVyFvUbSnDKqsINprng4f8?=
+ =?us-ascii?Q?jAd5iO46toMmbN3f2+5EgRSOiYE/AT5ZW0By8U1qucFkY+HYn4CpQzXywdQY?=
+ =?us-ascii?Q?HuXxSV2JesKFUhRynl3+2kEJ8FyCyTXx/RiQB+j5LVr5e3/93MVd8XrM/Fo7?=
+ =?us-ascii?Q?UTg6KVftuuwA/Pjz2FoHXkXMilGvnFR1ig8chvpPrUHBu4jrvXJGLN4PSwHn?=
+ =?us-ascii?Q?p6PvIp5DPRRs1cMlvEadprhAj71i4jk5Jn4T+lOQIvylF7iMU6QCrMT6cIE7?=
+ =?us-ascii?Q?TQq5MeDyUFwlOf+t+sH5Zjyje5IcMzgecuxsSXrF5gJRjroX6vvfWnNzlo0x?=
+ =?us-ascii?Q?p0N6PX7nACqBa/FrtO2x2LhtiA/l+hb8Wiz1GO1e8nQWzspaBE8kdwifMgZt?=
+ =?us-ascii?Q?O1IvE6Uupy+wReztTQX47+4HtZx7KKOQYNc3+a+MRYcJdao5ds7cFZAZNk/4?=
+ =?us-ascii?Q?WlrBOiQGgs5M0/A10wtc9VhkmwlaSQI0gX9D7rBsQfsWJBF94FAVATlwz+ct?=
+ =?us-ascii?Q?zImGdZ65MhN/lb5cnggM6xePB21tvzm9/tua3tIqQXJOkK5upi2u40k1Bgnt?=
+ =?us-ascii?Q?3ValUyV6ZaH1wELG5GpYecETFtjt9hnuIDRrKpmDELxPdRI9DSzfifTPiXeV?=
+ =?us-ascii?Q?MGf+xTk13bVcCsRyjkMXJbEaTmptV59UWaou2aucyMy/kkg5D3DUnwCg2QqM?=
+ =?us-ascii?Q?wPl1EBLEAydoGIQER/vzMA9pcJaYHwtoqYR+LE3eNFOY2sGge8B2lDJcuUhq?=
+ =?us-ascii?Q?EhGgCEJjfnuKGPJgEjSO6XuT+KKaHGWo1hf86MtcuzlzIYdD350DlvkTd7rI?=
+ =?us-ascii?Q?UB81A+RMJSNVC2Xk4MnocjgspxZf9LCBqooGeQjnTgLQOCiu3I/IURFqwALG?=
+ =?us-ascii?Q?1FNtwkTfFFe4Mp93wIExLfj9pSkA77bzqT87ejErqHgCkt0rh0qBa2D+4CR4?=
+ =?us-ascii?Q?C8O9FI6S3xVIpTTdeDpffxjIWjaGAK1kYfFPxbVvzSQ3LM0XRKnvb4rcxVNU?=
+ =?us-ascii?Q?xrG/k0JmN/B70Pq6QQPoiv+AsStZpLbzFxnUnJqwjTwBeiyjT6CnrB0l+Oi3?=
+ =?us-ascii?Q?rCB8JCktJFo1MZAeGiCBkCezCleuMfd2qAviREFVtu/Zp+NHDdgq2sgLBZF2?=
+ =?us-ascii?Q?0tRecPQa3VrF34iDH9zyIMIt69lXYGou0/gEglRn/pTMsN7ksfQc6BJ4mx0v?=
+ =?us-ascii?Q?XjyMtrMD8HrpEgC+JoJYW/bRKA31uS1M7FTZa3GSbz2GMcWZO+rEee5VQ4PD?=
+ =?us-ascii?Q?eo22o1hi2PYIs8xQNVWZi7fQsNR9tS1yqZotvfLliBL+upNQMPbO52zRW0Sw?=
+ =?us-ascii?Q?mDai3zZKcS7f8r9fJ+uxMNHuWQFCG7Kw8c8w0RCimbkfEqaO5qKHC4thFczW?=
+ =?us-ascii?Q?TzZeAe1sW5p6G2qB2Ah39cOqPvVLRXDSeQFfNpVhKtMsP02ZEakAgdgNimvW?=
+ =?us-ascii?Q?hqCkXD3Yrq8wYOprftK3lOqRJ6dzq013s+t+TvOsJQd9HfE8lJ9la2GhpLlm?=
+ =?us-ascii?Q?VTQlLvdUawrpq208u6mj8SZaSiUkasMeA9iMyU1z8+jQhoDIcIkSOFm4uKvD?=
+ =?us-ascii?Q?+soO1A=3D=3D?=
+X-OriginatorOrg: corigine.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d166d279-0e37-4591-ccf4-08db5ab8940e
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR13MB4842.namprd13.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2023 11:35:00.9243
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fe128f2c-073b-4c20-818e-7246a585940c
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: v1aAzN53XF683NTOmyymWa7C6e3F87HOeHb5GzzTuzJ1LZsVnQUB+ALxNTfq2IeIVMfhHZML2eGNIGSX3cpaRid2xTFSdAyhW5CsYPHMXrk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR13MB5176
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le jeu. 18 mai 2023 =C3=A0 10:24, Krzysztof Kozlowski <krzk@kernel.org> a =
-=C3=A9crit :
->
-> On 17/05/2023 16:41, Romain Perier wrote:
-> > This adds the documentation for the devicetree bindings of the Mstar
-> > SSD20xD RTC driver.
-> >
->
-> Please use scripts/get_maintainers.pl to get a list of necessary people
-> and lists to CC.  It might happen, that command when run on an older
-> kernel, gives you outdated entries.  Therefore please be sure you base
-> your patches on recent Linux kernel.
+On Fri, May 19, 2023 at 02:19:41PM -0700, Justin Chen wrote:
+> Add support for the Broadcom ASP 2.0 Ethernet controller which is first
+> introduced with 72165. This controller features two distinct Ethernet
+> ports that can be independently operated.
+> 
+> This patch supports:
+> 
+> - Wake-on-LAN using magic packets
+> - basic ethtool operations (link, counters, message level)
+> - MAC destination address filtering (promiscuous, ALL_MULTI, etc.)
+> 
+> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
 
-Hi,
+...
 
-This is usually what I do for all patches series, but possible I have
-missed some person
+> +static netdev_tx_t bcmasp_xmit(struct sk_buff *skb, struct net_device *dev)
+> +{
+> +	struct bcmasp_intf *intf = netdev_priv(dev);
+> +	struct device *kdev = &intf->parent->pdev->dev;
+> +	int spb_index, nr_frags, ret, i, j;
+> +	unsigned int total_bytes, size;
+> +	struct bcmasp_tx_cb *txcb;
+> +	dma_addr_t mapping, valid;
+> +	struct bcmasp_desc *desc;
+> +	bool csum_hw = false;
+> +	skb_frag_t *frag;
 
->
-> A nit, subject: drop second/last, redundant "devicetree bindings
-> documentation". The "dt-bindings" prefix is already stating that these
-> are bindings. You actually repeated everything...
+Hi Justin,
 
-Originally, it was just to write a simple sentence with words... it
-gives context, you know...
+Please use reverse xmas tree order - lognest line to shortest - for local
+variables, even in cases of assignment such as this one.
 
-Like here:   https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-nex=
-t.git/commit/?id=3D7647204c2e81b28b4a7c4eec7d539f998d48eaf0
-or here:  https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.g=
-it/commit/?id=3Ddd49cbedde8a0f1e0d09698f9cad791d37a8e03e
+In this case I would suggest splitting the declarations and assignment
+of kdev. Something line this:
 
-But honestly, I don't want to debate about this, yes I can remove
-redundant "devicetree bindings documentation" ^^
+	struct bcmasp_intf *intf = netdev_priv(dev);
+	int spb_index, nr_frags, ret, i, j;
+	unsigned int total_bytes, size;
+	struct bcmasp_tx_cb *txcb;
+	dma_addr_t mapping, valid;
+	struct bcmasp_desc *desc;
+	bool csum_hw = false;
+	struct device *kdev;
+	skb_frag_t *frag;
 
+	kdev = &intf->parent->pdev->dev;
 
->
-> > Signed-off-by: Romain Perier <romain.perier@gmail.com>
-> > ---
-> >  .../bindings/rtc/mstar,ssd20xd-rtc.yaml       | 37 +++++++++++++++++++
-> >  1 file changed, 37 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/rtc/mstar,ssd20xd=
--rtc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/rtc/mstar,ssd20xd-rtc.ya=
-ml b/Documentation/devicetree/bindings/rtc/mstar,ssd20xd-rtc.yaml
-> > new file mode 100644
-> > index 000000000000..2acd86cce69f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/rtc/mstar,ssd20xd-rtc.yaml
-> > @@ -0,0 +1,37 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/rtc/mstar,ssd20xd-rtc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Mstar SSD20xD RTC
-> > +
-> > +allOf:
-> > +  - $ref: rtc.yaml#
->
-> This goes just above properties:
->
+...
 
-ack
-
-> > +
-> > +maintainers:
-> > +  - Daniel Palmer <daniel@0x0f.com>
-> > +  - Romain Perier <romain.perier@gmail.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - mstar,ssd20xd-rtc
->
-> Why rtc suffix? Can it be anything else?
-
-Well, it is the dt-bindings for an RTC block ? suppose tomorrow we
-have an ethernet block specific to the SoC SSD202D, it should be
-"mstar,ssd202d-ethernet" , how do you make
-the difference if you just put "mstar,sd202d" ? Plus a lot of rtc
-dt-bindings have this suffix (when it is not an IP name). This is
-exactly the case for rtc-msc313e and it was not an issue.
-
->
-> Missing blank line
-
-ack
-
->
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  start-year: true
->
-> Drop
->
-> What about interrupt line?
-
-There is currently no interrupt right now, we have not yet the irqchip
-code for handling the alarm irq of this rtc block.
-
-
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
->
-> instead
-> unevaluatedProperties: false
-
-ack
-
-Thanks,
-Romain
