@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EF9570CA8B
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 22:14:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41E7070CA8C
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 22:14:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230497AbjEVUOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 16:14:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56908 "EHLO
+        id S230131AbjEVUOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 16:14:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232345AbjEVUO3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 16:14:29 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6DCDB9
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 13:14:27 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id 46e09a7af769-6af8ccb491cso18592a34.0
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 13:14:27 -0700 (PDT)
+        with ESMTP id S231966AbjEVUOf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 16:14:35 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D913CB6
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 13:14:31 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id 5614622812f47-39648122ce8so207016b6e.0
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 13:14:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684786467; x=1687378467;
+        d=gmail.com; s=20221208; t=1684786471; x=1687378471;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qnNkxpreDgq26CG57fd0M0OJM5UJkONUnE3UR9s1bqM=;
-        b=VYAmIGbOqs7k5HbHxThot+Ykl3Gm8VTVHflv+WQl41OQL48dR1VMdTx8R6keOZqmxX
-         XduIaY9g228ZAm3zAYD4ptoRRQ2AKFJDehvAJ+OOZBlEBXf6UkkDWXu8RAQ74I7QQRsR
-         nilXICPsNAiDiLK1HtgnhiZJ6lHca3/j4AQWQOgQHuSN/X1ztkL+IUDEDiNmJeNKWf0i
-         zLCcwN8gAceytpW6xWUfpUSoEdW6SQf9O2uCZ7vepbMeyHN+qW6m/cDNInG+ssqlSWse
-         urwcbjVJJnRReqhc8VgXXGgq+QGPo4/GYOts5ASo2zEPkrLLvcxKlAZv6IMRylJxX0x8
-         PHrA==
+        bh=KDL6epUgkKJx7rvu5gMZxlCPvG4of9UKWOBLjJQ86uk=;
+        b=Y3RqbkU3/7pjyxqgAVuZrcGeY4msbKhPqiOayRvFU0guGL29/WkkkJBowsKnLmGo5O
+         uFcAK0hUlsbPqhtM5fUWsj7NXH8vuBUf2XteC0qXl3Ir5MsHSDCF5uaRXulTVVRqEV6J
+         VtXYw1N9ENKO42AIOMRMMU5flZWBpdndATC6i8EP8ZdaAB5a022DQdf0OOQGUfo3RtSy
+         /Yx+EkVf4hTytshfFCqomdyXv8MhNBqyBSpZH8xRb+z4On7D0sVwQ93qj/o7RPAWAset
+         xAwa0y2fP4acRpc0fUFr0QaM9mkT3S8XJM3ZQgYR5jtPR3YF9ZlaAYwFVp1TVMc3QE1w
+         B15A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684786467; x=1687378467;
+        d=1e100.net; s=20221208; t=1684786471; x=1687378471;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qnNkxpreDgq26CG57fd0M0OJM5UJkONUnE3UR9s1bqM=;
-        b=XYgmFIu2DSyp+/z+Sfvmegk+TnJAa9TcoBv/OaqfH9xsmxvpSfechD4AqSXZIjWzUh
-         Zod4sq9LcdJdw6J31St+SpS2ScpL4pWefMlFNELF0o5VZdlQBehMtpukCA1zQQ5MJWWV
-         jwCB3mnhTcVBW8LrRfPjeWl8J4oJDnz+hIjvWOfsuqi2Xi0AXBGLmVR60Hr/yz2vYiVd
-         THVDC3yP/0R+V8P+fNIgk3rGpXJquFJrdzQ85GcSI9DrOBZQWRyOpZtNkPsbPgayi8L3
-         1tSr5ByqlwxP6zfgm9Ak+4RPW3CuLVKCaJJruQaRK6/j5QGDEviGLisvE+KiogdWiwua
-         kloA==
-X-Gm-Message-State: AC+VfDw+u3DcScMfY0PMx3zQ2EyU2FDgt4xk/+4sau/9UKt08pRZ2ibV
-        QKScfkv4hDf0hoxyY8WhzKI=
-X-Google-Smtp-Source: ACHHUZ43QBPidqOZayheIayd4E1WwxeTeDcjnXlor6tlDw7hDy8ua2hgxxFXIKK5CGTrIrKaUwJPLA==
-X-Received: by 2002:a05:6830:3886:b0:6ad:23c2:e0ab with SMTP id bq6-20020a056830388600b006ad23c2e0abmr5756147otb.2.1684786467032;
-        Mon, 22 May 2023 13:14:27 -0700 (PDT)
+        bh=KDL6epUgkKJx7rvu5gMZxlCPvG4of9UKWOBLjJQ86uk=;
+        b=NLRjsSev2K1BL5lsYqxCfTvYrCZ4APMZVF4SbT95/q20u7BgZHpd1TV7HuUcpX1fsV
+         WmTFBOvmPhSfzP+1efwGOwm9/Zcg20AW0NssSq3x4RIeQaetELSF7tLJr6htBTQneVIG
+         44Lkv6360EdyY+CiiHt0uuEQJXLlz3CmIZOLq5PYl3zyl7aphnwrd8R+Veu6PQ+vhEyj
+         8uhtBhwcaQAzK0JeDDh1ywuKCqaAIHcTKrsGqgoXSY67qHUCGmHlIxB3AWeNeMDqzCV6
+         2aTCMUKbDpOA6XzxysmNAFJw74RY7bpP7gBqe74utH3wOhV4/qwzGgh+O1JzqnxE923s
+         uUDA==
+X-Gm-Message-State: AC+VfDyH6Md4+CMPfWVRpSa+l7LBAjNB3hskK7gnrWCKAWrQ8L0AopB2
+        QNRwNPT1qNQSZX1BtyYNsPyAAb3GHwQ=
+X-Google-Smtp-Source: ACHHUZ7DuWubwFlqB94Sc3EVBs9sMXO2WLcGDIojdAdSs64uPgecVAN1z/5lpA+FoXjF6QJE53gTwQ==
+X-Received: by 2002:a05:6830:6013:b0:6a5:e455:fa03 with SMTP id bx19-20020a056830601300b006a5e455fa03mr6500751otb.2.1684786471167;
+        Mon, 22 May 2023 13:14:31 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:9a57:1c6:1c2e:4047])
-        by smtp.gmail.com with ESMTPSA id q11-20020a056830018b00b006aaff32ac36sm2692857ota.66.2023.05.22.13.14.23
+        by smtp.gmail.com with ESMTPSA id q11-20020a056830018b00b006aaff32ac36sm2692857ota.66.2023.05.22.13.14.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 May 2023 13:14:26 -0700 (PDT)
+        Mon, 22 May 2023 13:14:30 -0700 (PDT)
 From:   Fabio Estevam <festevam@gmail.com>
 To:     shawnguo@kernel.org
 Cc:     marex@denx.de, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
         bhelgaas@google.com, Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v6 2/5] dt-bindings: display: bridge: ldb: Adjust imx6sx entries
-Date:   Mon, 22 May 2023 17:14:01 -0300
-Message-Id: <20230522201404.660242-2-festevam@gmail.com>
+Subject: [PATCH v6 3/5] dt-bindings: soc: Add i.MX6SX General Purpose Register
+Date:   Mon, 22 May 2023 17:14:02 -0300
+Message-Id: <20230522201404.660242-3-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230522201404.660242-1-festevam@gmail.com>
 References: <20230522201404.660242-1-festevam@gmail.com>
@@ -75,73 +75,107 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Fabio Estevam <festevam@denx.de>
 
-On the i.MX6SX there is a single entry for 'reg', so add some logic to
-reflect that.
+The i.MX6SX General Purpose Registers is a set of register that serves
+various different purposes and in particular, IOMUXC_GPR_GPR6, at
+offset 0x18, can be used to configure the LDB block.
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
-Dependency: This depends on bd60d98a11da ("dt-bindings: display: bridge: ldb: Adjust imx6sx entries"),
-which is available on linux-next.
-
 Changes since v5:
-- Dropped reg-names for imx6sx (Marek).
-- Indicated the dependency to avoid error when Rob's robot runs.
+- Dropped "fsl,imx6q-iomuxc-gpr" and "reg-names" (Marek).
 
- .../bindings/display/bridge/fsl,ldb.yaml      | 24 ++++++++++++++++---
- 1 file changed, 21 insertions(+), 3 deletions(-)
+ .../bindings/soc/imx/fsl,imx6sx-gpr.yaml      | 82 +++++++++++++++++++
+ 1 file changed, 82 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
-index 07388bf2b90d..7ff45e3d4929 100644
---- a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
-@@ -28,12 +28,11 @@ properties:
-     const: ldb
- 
-   reg:
-+    minItems: 1
-     maxItems: 2
- 
-   reg-names:
--    items:
--      - const: ldb
--      - const: lvds
-+    maxItems: 2
- 
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
-@@ -57,6 +56,7 @@ properties:
- 
- required:
-   - compatible
-+  - reg
-   - clocks
-   - ports
- 
-@@ -74,6 +74,24 @@ allOf:
-           properties:
-             port@2: false
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: fsl,imx6sx-ldb
-+    then:
-+      properties:
-+        reg:
-+          maxItems: 1
-+    else:
-+      properties:
-+        reg:
-+          minItems: 2
-+        reg-names:
-+          items:
-+            - const: ldb
-+            - const: lvds
+diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
+new file mode 100644
+index 000000000000..b9752b4c45ab
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
+@@ -0,0 +1,82 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/imx/fsl,imx6sx-gpr.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- additionalProperties: false
- 
- examples:
++title: NXP i.MX6SX General Purpose Register
++
++maintainers:
++  - Fabio Estevam <festevam@denx.de>
++
++description:
++  The i.MX6SX General Purpose Registers is a set of register that serves
++  for various purposes and in particular, IOMUXC_GPR_GPR6, at offset 0x18,
++  can be used to configure the LDB block.
++
++properties:
++  compatible:
++    items:
++      - const: fsl,imx6sx-iomuxc-gpr
++      - const: syscon
++
++  reg:
++    maxItems: 1
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 1
++
++  bridge@18:
++    type: object
++    $ref: /schemas/display/bridge/fsl,ldb.yaml#
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - '#address-cells'
++  - '#size-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/imx6sx-clock.h>
++
++    syscon@20e4000 {
++        compatible = "fsl,imx6sx-iomuxc-gpr", "syscon";
++        reg = <0x020e4000 0x4000>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        bridge@18 {
++            compatible = "fsl,imx6sx-ldb";
++            reg = <0x18 0x4>;
++            clocks = <&clks IMX6SX_CLK_LDB_DI0>;
++            clock-names = "ldb";
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++
++                    ldb_from_lcdif1: endpoint {
++                        remote-endpoint = <&lcdif1_to_ldb>;
++                    };
++                };
++
++               port@1 {
++                   reg = <1>;
++
++                   ldb_lvds_ch0: endpoint {
++                   };
++               };
++            };
++        };
++    };
++...
 -- 
 2.34.1
 
