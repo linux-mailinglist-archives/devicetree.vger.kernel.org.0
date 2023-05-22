@@ -2,75 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DCC670B838
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 10:59:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A742C70B847
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 11:02:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232210AbjEVI7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 04:59:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40966 "EHLO
+        id S232644AbjEVJCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 05:02:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232345AbjEVI7V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 04:59:21 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 109EC1713
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 01:58:37 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1ae54b623c2so53422655ad.3
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 01:58:37 -0700 (PDT)
+        with ESMTP id S232647AbjEVJCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 05:02:25 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F03A9E76
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 02:01:30 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-307a8386946so3663948f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 02:01:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684745916; x=1687337916;
-        h=content-transfer-encoding:in-reply-to:references:subject:to:from
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WVVEKPnXkSILTss/P2zaQmuQ5vs6PfUPsMsOFGsk8/M=;
-        b=Ql0qKVg8nKHPlO3LwnQK70xhH1YY18RDJ/jp8+QbdPUKQj/xMBIjs8YdP+RbTdGy8o
-         un7B0gd92OPgrULN/uskxekvP2KHntPf5K3teVTAow68P6BKUw7JOGc36akTxJXxTaTO
-         1Oz/EGCd2/FIJeE0UVTRnPqM4pllTdRzyzRDaK8DYLvT0UDQ53v2KPHA9bPS3umni37i
-         ojXwupNlP2JzASRvNu8BJHpk9LaqJwgVXFcjMU5/9gTxXAvZpQClz72/h730jFisC480
-         cRUwPmZQnoSEw4wQ0ATbD6NC33eu53YxhJM59qKi060tlSs5e0GhfD80QlJEZ/bRSXSJ
-         TsJA==
+        d=linaro.org; s=google; t=1684746088; x=1687338088;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=oh7mdsuOL7H7gOrXFRel5Jq/6EKWLVhMC8a5/8h8WZo=;
+        b=HLp85cy8rppc/poFiFPivVgWVSJETEatbW3RUzyalnjapNdcR1TZLQWG6nmqWras1a
+         WziaQA/t0fQEQzUeZANlXUzGtKHqJQv54xHTcD5Lj1FirkzjbhMD7zQl9G5zzNmXEyaJ
+         QAi4egNtZw6NbhUXLFR7hHFpYhC4DyMnEH0ZEPKJJ/9djnyrHb+h/KOxz4Us9GgjzOxe
+         C6TF5ouSZDy/0hBfkZrjfhVz0xmBRAwDyabdprfcnw34gdxSIt5db0ChSW/hJlS0g6Qh
+         AjZhqPWWRYVL0mcvTvtizvwbVvJ7n02sGWu6TJxHtPfBzqMIJCoYb9izmSPIMFyO3dQX
+         liCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684745916; x=1687337916;
-        h=content-transfer-encoding:in-reply-to:references:subject:to:from
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WVVEKPnXkSILTss/P2zaQmuQ5vs6PfUPsMsOFGsk8/M=;
-        b=JrS2Dy9DBQ3iROKMUDri+Jx/QUWbad8OBzEM0EBR39TMtOWWv+PtbOoBCUW3RpmKJB
-         fhTBUnDAdx4I5+A6PGtXY4Yy5MYAc+e846EqIOCU+fIqjFDUInZ/WLglKNXQBd7neKME
-         31tr3JL54+Ldo1rBD6gczJlWbAmwS8nWOYp/mGh9JnpFdxhscCmNhsVEfxQQF2CZc7ad
-         iFhHUsDMp9VOIsNII/acgmrHAb/V9kRXix+dTwSzJ/JLJPj2jlM8SXDl23Z7yiEEs9fh
-         fSjXJjVI9ctQ8XdXKvOYYVT9FXaNYUT3K7fVBpXvEsQTdAl2um/Z8C3yV8bZZxdwsZHt
-         1L8w==
-X-Gm-Message-State: AC+VfDzPe/iKMZuW0DGHboV4ZRGIar1z1QosoCt+dyDlSttu2JxhQ18e
-        ue5ju4gOkwaLUePYcTCLBsQnwg==
-X-Google-Smtp-Source: ACHHUZ4uhzrBezRPGNp3O4yAik4A3kP5KYKhP29A86ySFHnLnzIEoz/7dLeytbx4+onNWQEISTP78w==
-X-Received: by 2002:a17:902:f2cc:b0:1aa:fbaa:ee09 with SMTP id h12-20020a170902f2cc00b001aafbaaee09mr7905892plc.49.1684745916446;
-        Mon, 22 May 2023 01:58:36 -0700 (PDT)
-Received: from ?IPV6:2401:4900:1c60:d309:883d:817e:8e91:be39? ([2401:4900:1c60:d309:883d:817e:8e91:be39])
-        by smtp.gmail.com with ESMTPSA id y3-20020a17090322c300b001a1d553de0fsm4308539plg.271.2023.05.22.01.58.29
+        d=1e100.net; s=20221208; t=1684746088; x=1687338088;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oh7mdsuOL7H7gOrXFRel5Jq/6EKWLVhMC8a5/8h8WZo=;
+        b=TasyKJs3+67dnyb2WwqRrG/rRdc/smbrxp4/+vL3NFBw/X2+7TVb/wjKrw/ohLq4pX
+         hKkw43OgEw7G5p7D3ViFkxJTZGSatsLWnIuexomd7UmLaieaX8c9g1LIXLwmhIWSF+qD
+         PiE/sgS4OlF/PaUNV63FUu0FxwjVu5HmRgGUFd1WdqeocL2Y/SOUMZrNRpxrQdlZHWg+
+         xtq6Np6PXvGsTs9HBrO8wDP7WwglQchUrUjq0uF4iXxV/Hfj1G0wqHvih8NpiJ2J8pCO
+         Hp+Og1DrzV70A0Y++ODRgA6O4BTb2f6u9II3ir+BgDb2FWSLRnKfJHdmENAHyiv2wvfq
+         UuFw==
+X-Gm-Message-State: AC+VfDyGStggLoWNYnlgyVScAkB4U07WP3Zr2CgQolNcTUTOXz72URmy
+        FTHtnuGVOtF/0kbZwW+qsoo8tw==
+X-Google-Smtp-Source: ACHHUZ4tSDVVpYCjEIBTjilRMO6W9tA8i/VqvF0ipfGxgq2yBbZSmlHIEMyxKj2YJMU2g29qmHcmPQ==
+X-Received: by 2002:adf:fc43:0:b0:307:839a:335e with SMTP id e3-20020adffc43000000b00307839a335emr6254283wrs.44.1684746088328;
+        Mon, 22 May 2023 02:01:28 -0700 (PDT)
+Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
+        by smtp.gmail.com with ESMTPSA id i10-20020adfe48a000000b002fed865c55esm6993892wrm.56.2023.05.22.02.01.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 May 2023 01:58:36 -0700 (PDT)
-Message-ID: <c451dc43-b5a2-df42-c4a5-0db4c6641b1c@linaro.org>
-Date:   Mon, 22 May 2023 14:28:28 +0530
+        Mon, 22 May 2023 02:01:27 -0700 (PDT)
+Message-ID: <7c1a7897-48ee-f991-314e-3a88c51bbcc9@linaro.org>
+Date:   Mon, 22 May 2023 11:01:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-From:   bhupesh.sharma@linaro.org
-To:     Anusha Rao <quic_anusha@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        thara.gopinath@gmail.com, herbert@gondor.apana.org.au,
-        davem@davemloft.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, quic_srichara@quicinc.com,
-        quic_gokulsri@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
-        quic_poovendh@quicinc.com
-Subject: Re: [PATCH V3 2/4] clk: qcom: gcc-ipq9574: Enable crypto clocks
-References: <20230518141105.24741-1-quic_anusha@quicinc.com>
- <20230518141105.24741-3-quic_anusha@quicinc.com>
-In-Reply-To: <20230518141105.24741-3-quic_anusha@quicinc.com>
+ Thunderbird/102.10.1
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH RFC 01/10] drm/panel: Clean up SOFEF00 config dependencies
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-1-541c341d6bee@somainline.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230521-drm-panels-sony-v1-1-541c341d6bee@somainline.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,131 +97,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/18/23 7:41 PM, Anusha Rao <quic_anusha@quicinc.com> wrote:
-> Enable the clocks required for crypto operation.
+On 21/05/2023 23:23, Marijn Suijten wrote:
+> As per the config name this Display IC features a DSI command-mode
+> interface (or the command to switch to video mode is not
+> known/documented) and does not use any of the video-mode helper
+> utilities, hence should not select VIDEOMODE_HELPERS.  In addition it
+> uses devm_gpiod_get() and related functions from GPIOLIB.
 > 
-> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> Fixes: 5933baa36e26 ("drm/panel/samsung-sofef00: Add panel for OnePlus 6/T devices")
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 > ---
->   Changes in V3:
-> 	- Added GCC prefix to CRYPTO_CLK_SRC.
+>   drivers/gpu/drm/panel/Kconfig | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->   drivers/clk/qcom/gcc-ipq9574.c | 72 ++++++++++++++++++++++++++++++++++
->   1 file changed, 72 insertions(+)
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 2b9d6db7860ba..67ef898d133f2 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -608,10 +608,10 @@ config DRM_PANEL_SAMSUNG_S6E8AA0
+>   
+>   config DRM_PANEL_SAMSUNG_SOFEF00
+>   	tristate "Samsung sofef00/s6e3fc2x01 OnePlus 6/6T DSI cmd mode panels"
+> +	depends on GPIOLIB
+>   	depends on OF
+>   	depends on DRM_MIPI_DSI
+>   	depends on BACKLIGHT_CLASS_DEVICE
+> -	select VIDEOMODE_HELPERS
+>   	help
+>   	  Say Y or M here if you want to enable support for the Samsung AMOLED
+>   	  command mode panels found in the OnePlus 6/6T smartphones.
 > 
-> diff --git a/drivers/clk/qcom/gcc-ipq9574.c b/drivers/clk/qcom/gcc-ipq9574.c
-> index 7b0505f5c255..73663168d72a 100644
-> --- a/drivers/clk/qcom/gcc-ipq9574.c
-> +++ b/drivers/clk/qcom/gcc-ipq9574.c
-> @@ -728,6 +728,41 @@ static struct clk_rcg2 blsp1_uart6_apps_clk_src = {
->   	},
->   };
->   
-> +static const struct freq_tbl ftbl_gcc_crypto_clk_src[] = {
-> +	F(160000000, P_GPLL0, 5, 0, 0),
-> +	{ }
-> +};
-> +
-> +static struct clk_rcg2 gcc_crypto_clk_src = {
-> +	.cmd_rcgr = 0x16004,
-> +	.freq_tbl = ftbl_gcc_crypto_clk_src,
-> +	.hid_width = 5,
-> +	.parent_map = gcc_xo_gpll0_gpll0_out_main_div2_map,
-> +	.clkr.hw.init = &(const struct clk_init_data) {
-> +		.name = "gcc_crypto_clk_src",
-> +		.parent_data = gcc_xo_gpll0_gpll0_out_main_div2,
-> +		.num_parents = ARRAY_SIZE(gcc_xo_gpll0_gpll0_out_main_div2),
-> +		.ops = &clk_rcg2_ops,
-> +	},
-> +};
-> +
-> +static struct clk_branch gcc_crypto_clk = {
-> +	.halt_reg = 0x1600c,
-> +	.halt_check = BRANCH_HALT_VOTED,
-> +	.clkr = {
-> +		.enable_reg = 0x0b004,
-> +		.enable_mask = BIT(14),
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gcc_crypto_clk",
-> +			.parent_hws = (const struct clk_hw *[]) {
-> +				&gcc_crypto_clk_src.clkr.hw },
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
->   static struct clk_branch gcc_apss_ahb_clk = {
->   	.halt_reg = 0x24018,
->   	.halt_check = BRANCH_HALT_VOTED,
-> @@ -2071,6 +2106,38 @@ static struct clk_rcg2 pcnoc_bfdcd_clk_src = {
->   	},
->   };
->   
-> +static struct clk_branch gcc_crypto_axi_clk = {
-> +	.halt_reg = 0x16010,
-> +	.clkr = {
-> +		.enable_reg = 0x16010,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gcc_crypto_axi_clk",
-> +			.parent_hws = (const struct clk_hw *[]) {
-> +				&pcnoc_bfdcd_clk_src.clkr.hw },
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gcc_crypto_ahb_clk = {
-> +	.halt_reg = 0x16014,
-> +	.clkr = {
-> +		.enable_reg = 0x16014,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(const struct clk_init_data) {
-> +			.name = "gcc_crypto_ahb_clk",
-> +			.parent_hws = (const struct clk_hw *[]) {
-> +				&pcnoc_bfdcd_clk_src.clkr.hw },
-> +			.num_parents = 1,
-> +			.flags = CLK_SET_RATE_PARENT,
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
->   static struct clk_branch gcc_nsscfg_clk = {
->   	.halt_reg = 0x1702c,
->   	.clkr = {
-> @@ -4036,6 +4103,10 @@ static struct clk_regmap *gcc_ipq9574_clks[] = {
->   	[GCC_SNOC_PCIE1_1LANE_S_CLK] = &gcc_snoc_pcie1_1lane_s_clk.clkr,
->   	[GCC_SNOC_PCIE2_2LANE_S_CLK] = &gcc_snoc_pcie2_2lane_s_clk.clkr,
->   	[GCC_SNOC_PCIE3_2LANE_S_CLK] = &gcc_snoc_pcie3_2lane_s_clk.clkr,
-> +	[GCC_CRYPTO_CLK_SRC] = &gcc_crypto_clk_src.clkr,
-> +	[GCC_CRYPTO_CLK] = &gcc_crypto_clk.clkr,
-> +	[GCC_CRYPTO_AXI_CLK] = &gcc_crypto_axi_clk.clkr,
-> +	[GCC_CRYPTO_AHB_CLK] = &gcc_crypto_ahb_clk.clkr,
->   };
 
-Can we please add these in alphabetical order. For e.g. here these entries would follow those for '[GCC_CMN_BLK_APU_ARES] = { 0x3a010, 2 },'
-
->   static const struct qcom_reset_map gcc_ipq9574_resets[] = {
-> @@ -4193,6 +4264,7 @@ static const struct qcom_reset_map gcc_ipq9574_resets[] = {
->   	[GCC_WCSS_ECAHB_ARES] = { 0x25070, 0 },
->   	[GCC_WCSS_Q6_BCR] = { 0x18000, 0 },
->   	[GCC_WCSS_Q6_TBU_BCR] = { 0x12054, 0 },
-> +	[GCC_CRYPTO_BCR] = { 0x16000, 0 },
-
-Same as above.
-
-With the above addressed:
-Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-
-Thanks.
-
->   };
->   
->   static const struct of_device_id gcc_ipq9574_match_table[] = {
-> 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
