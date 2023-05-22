@@ -2,85 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3F9370B50C
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 08:32:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5F7B70B513
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 08:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229627AbjEVGcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 02:32:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47008 "EHLO
+        id S231641AbjEVGcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 02:32:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbjEVGcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 02:32:07 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92FA39B;
-        Sun, 21 May 2023 23:32:06 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34M4R3FZ016327;
-        Mon, 22 May 2023 06:32:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=DQa30vKRm5JaFVF5epmievdfUoju+vGys7fNeVT8iEE=;
- b=JZEoz6xtZ76hqA77bVxRXHLH5644PG4PDyV50qc7fp2iC+UvaN3pHKuadNEnKOVfjSSw
- q+HHHzHYEv/gAPPOnj4bqAhZfCIXirepj03Y0wj32zagIzkG6ay7VTp4LA47+wn8RinG
- rSsTJ9FdmIz9v99wfEvqJVe+gRrJJvgJTkkAUqRQeLyhr7ZZgubB4nkR6MeSWPpLXFIW
- xAQb7j+E9JApnUypVQ8YQOPYIuxmqfLAOcu+c3gecDHNTgo8OO2VkQk5AAlOv5kOX5u/
- UdZUoncQcda1GBeQTvVN2QGSlgurmX1v9M+nP7NdBY1d2Z4Hw8QqyJb5M1fPdvpo6wL/ /A== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qpkwmu0rc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 22 May 2023 06:32:03 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34M6W23X012783
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 22 May 2023 06:32:02 GMT
-Received: from [10.214.67.128] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Sun, 21 May
- 2023 23:31:58 -0700
-Message-ID: <478462f6-379f-afa8-dc44-11233e18460a@quicinc.com>
+        with ESMTP id S229621AbjEVGcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 02:32:22 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9982CF;
+        Sun, 21 May 2023 23:32:17 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34M6Vwcl087174;
+        Mon, 22 May 2023 01:31:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684737118;
+        bh=Y1PgBFAW58oQQelrLWGs2ihl4Rz/2sGaWxADqzqTSGU=;
+        h=From:Subject:Date:To:CC;
+        b=L1TV4L3zw4Bs6wZFDIPS/7eC0hB/RaviAvzD0mI3pAThPQpwnRrAujSLbbLdHvsit
+         YcXhFPLIOu9MGeq72RN3L7dTLQL1frC8CcHbzvvLDhTiyrpabXn3iiuBrkvOi7S0cs
+         R9AfnGGRB/xVMgn6os/SvglgrpwNagXB23FebX7g=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34M6VweZ027528
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 22 May 2023 01:31:58 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
+ May 2023 01:31:58 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 22 May 2023 01:31:58 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34M6VvXb086761;
+        Mon, 22 May 2023 01:31:58 -0500
+From:   Jai Luthra <j-luthra@ti.com>
+Subject: [PATCH v2 0/2] clk: keystone: syscon-clk: Enable audio reference
+ clock
 Date:   Mon, 22 May 2023 12:01:54 +0530
+Message-ID: <20230515-refclk-v2-0-fc9ff08826f5@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: qdu1000-idp: add SDHCI for emmc
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFoMa2QC/2WNyw6CMBBFf4XM2po+fbDyPwwLaAeZqK1pCcGQ/
+ rstW5fn5uTcDRJGwgRts0HEhRIFX0AeGrBT7x/IyBUGyaXiRhgWcbSvJzOD0dopoa1UUOShT8i
+ G2Hs7Vd3jOtf5U3Ra9/69KzxRmkP87neLqOtfeRGMM4OX68iFO52Vus10tOENXc75BypTDkuwA
+ AAA
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-CC:     <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20230519085122.15758-1-quic_kbajaj@quicinc.com>
- <20230519085122.15758-5-quic_kbajaj@quicinc.com>
- <8e3c745a-2e37-2927-7dbf-e23a777702f3@linaro.org>
- <ed4c33d3-ae5d-d695-eda0-0b09a4a26644@linaro.org>
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
-In-Reply-To: <ed4c33d3-ae5d-d695-eda0-0b09a4a26644@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: E5Tv7PCb8DHnIz5AvLsdiyecr4EtfRBC
-X-Proofpoint-ORIG-GUID: E5Tv7PCb8DHnIz5AvLsdiyecr4EtfRBC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-22_04,2023-05-17_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- spamscore=0 impostorscore=0 mlxscore=0 adultscore=0 suspectscore=0
- priorityscore=1501 phishscore=0 mlxlogscore=830 lowpriorityscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305220054
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Santosh Shilimkar <ssantosh@kernel.org>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, Andrew Davis <afd@ti.com>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Jai Luthra <j-luthra@ti.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2633; i=j-luthra@ti.com;
+ h=from:subject:message-id; bh=00+PDpG4Jh6Ip7rfWxUl0DcfQvjrKR/hkRa7/qnO7QY=;
+ b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBkawxbG16yp1rV4j7+lfvIbmXvUHA3Kg9cA3QcM
+ SsXiQhv+hCJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZGsMWwAKCRBD3pH5JJpx
+ Rf5REAC5+mNi8dliL12u8XTdPamsw72iVxGm2JblwiDvBw5acWQnWZnHnkE9IkwMrQd8ClSlgBI
+ zWPXCstQqylbVElX2llbgs8I9KuXjkb2mHvTXsiFaQSlKJJCabsy7A0qVlsk6mf/09DMb6AKVCv
+ T6OwTGIOFta74gzsHEu7wOFDzGVQXynVbXa5HPYwogx/CNwBdl/k/h1qbbpw8LVunW5wXz5qRxs
+ 6jsXMAn02mABr+jmS38Unk6TSeFB9+rL2ySl1TNK+Ak/Pgh4zRrDe8NZ72Vdt0waQgys+SBhWuj
+ 1QlYs2/EJaQGZJFIqImj82yj6QwyBOJ1EAb8ec2Kd5tcxUTjmKDJUz0SwGuK98rOHg/x5cbOeOn
+ mS/BOUVVRMnf57TzS8bcXUZTTtjVM1/ffz/ADMeXYcDlaxaIPRa3RfAi5ilTKENu0mFtLJ8MMG4
+ 9EtpsT7NRf6L3ozFeVJJJU5+Szuu7g/FW7JyvJbcr9P7u7j1bgurRvvDTS/q3unzUdYQXrVXRcz
+ 2ELTuSGZ/oDSIIT9qT4ptdxQRxLkrh9HTe9mDQmCqHDdO9Vf2IhPsObs+T8AmZIITC5TtMImNQR
+ xPl5Gb2ltbYPxGgd1IDRGnkEtouUXaQfMILWU36ba6CrGzqLao9HedNU04/k9npqjQdlcnaywDM
+ GhXAGk2vT5oK0QQ==
+X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,56 +89,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+TI's AM62 SoC can optionally provide two audio reference clocks
+(AUDIO_REFCLKx) to external peripherals. By default the reference clock
+is looped-back inside the SoC to a mux that goes to McASP AHCLK, but can
+optionally be enabled as an output to peripherals outside the SoC by
+setting a bit through CTRL_MMR registers.
 
+This patch series extends the existing syscon-clk driver to support
+the audio reference clock, and also adds new device tree bindings
+documentation.
 
-On 5/20/2023 4:54 PM, Konrad Dybcio wrote:
->
-> On 19.05.2023 12:13, Bhupesh Sharma wrote:
->> On 5/19/23 2:21 PM, Komal Bajaj wrote:
->>> Add sdhci node for emmc in qdu1000-idp.
->>>
->>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->>> ---
->>>    arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 11 +++++++++++
->>>    1 file changed, 11 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
->>> index 9e9fd4b8023e..b2526e991548 100644
->>> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
->>> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
->>> @@ -451,3 +451,14 @@
->>>    &uart7 {
->>>        status = "okay";
->>>    };
->>> +
->>> +&sdhc_1 {
->>> +    status = "okay";
->>> +
->>> +    pinctrl-0 = <&sdc1_on_state>;
->>> +    pinctrl-1 = <&sdc1_off_state>;
->>> +    pinctrl-names = "default", "sleep";
->>> +
->>> +    vmmc-supply = <&vreg_l10a_2p95>;
->>> +    vqmmc-supply = <&vreg_l7a_1p8>;
->>> +};
->> Again, please follow alphabetical order for adding new node entries.
-Noted.
->>
->> Also, we have been placing 'status = .. ' entry at the end for new .dts (or .dts entry), but if that is the format used across this board dts
->> I am ok with the same.
-Sure, will move status to end.
-> Komal,
->
-> since you're already touching this file, would you mind making a
-> separate commit moving status last for all nodes?
-Hi Konrad,
-I don't notice any other nodes whose state is maintained at the 
-beginning of the node.
+Please apply this on-top-of Andrew's series [1] removing the unnecessary
+dependency on syscon compatible.
 
-Thanks
-Komal
->
-> Konrad
->> Thanks,
->> Bhupesh
+Signed-off-by: Jai Luthra <j-luthra@ti.com>
+---
+Changes in v2:
+- Removed "syscon" compatible and rebased on top of [1]
+- Moved reg above other properties in bindings yaml
+- Link to v1: https://lore.kernel.org/r/20230515-refclk-v1-0-5e89f01d6733@ti.com
+
+[1]: https://lore.kernel.org/linux-clk/20230516184626.154892-1-afd@ti.com/#t
+
+Range-diff from v1:
+1:  8107cb140f7d ! 1:  a690c2044971 dt-bindings: clock: Add binding documentation for TI Audio REFCLK
+    @@ Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml (new)
+     +  compatible:
+     +    items:
+     +      - const: ti,am62-audio-refclk
+    -+      - const: syscon
+    -+
+    -+  "#clock-cells":
+    -+    const: 0
+     +
+     +  reg:
+     +    maxItems: 1
+     +
+    ++  "#clock-cells":
+    ++    const: 0
+    ++
+     +  clocks:
+     +    maxItems: 1
+     +
+     +required:
+     +  - compatible
+    -+  - "#clock-cells"
+     +  - reg
+    ++  - "#clock-cells"
+     +  - clocks
+     +
+     +additionalProperties: false
+    @@ Documentation/devicetree/bindings/clock/ti,am62-audio-refclk.yaml (new)
+     +examples:
+     +  - |
+     +    audio_refclk0: clock@82e0 {
+    -+        compatible = "ti,am62-audio-refclk", "syscon";
+    ++        compatible = "ti,am62-audio-refclk";
+     +        reg = <0x82e0 0x4>;
+     +        clocks = <&k3_clks 157 0>;
+     +        assigned-clocks = <&k3_clks 157 0>;
+2:  5a555757fe42 = 2:  854166d4305f clk: keystone: syscon-clk: Add support for audio refclk
+
+---
+Jai Luthra (2):
+      dt-bindings: clock: Add binding documentation for TI Audio REFCLK
+      clk: keystone: syscon-clk: Add support for audio refclk
+
+ .../bindings/clock/ti,am62-audio-refclk.yaml       | 43 ++++++++++++++++++++++
+ drivers/clk/keystone/syscon-clk.c                  | 43 +++++++++++++++++++---
+ 2 files changed, 81 insertions(+), 5 deletions(-)
+---
+base-commit: 62f117ff3cbc8ea2bf9be36f019eba60369b6a81
+change-id: 20230515-refclk-5b544d314c23
+
+Best regards,
+-- 
+Jai Luthra <j-luthra@ti.com>
 
