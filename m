@@ -2,70 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF13070BFF4
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 15:44:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D039A70BFF5
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 15:45:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230356AbjEVNo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 09:44:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55600 "EHLO
+        id S231409AbjEVNpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 09:45:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233723AbjEVNov (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 09:44:51 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC4CFCD
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 06:44:48 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f60410106cso8518215e9.1
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 06:44:48 -0700 (PDT)
+        with ESMTP id S233104AbjEVNpA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 09:45:00 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94A2ACD
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 06:44:59 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-309382efe13so3774840f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 06:44:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684763087; x=1687355087;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nBQBw6CfCpS2jHpwl66vgP+oxhK9iCxnR3a/pdGsx/s=;
-        b=brpNwEFiTifCMI+2z3PPBypnlqFrU58HCyUjV1YwdYBjfst/B7BzHLu0niSYffYlH0
-         NcHRNZxRoou7nTstHnyXeU88r4m4knbn6g5HewxB/9XedQrkhNKEzcaDfenDXpT5TO9X
-         /mW5n+sqiWm8UcAh/z6JR2V9FV2Xj87uBdk8YctsC/l1bj4T97SenBpxFTPaev/kGcrB
-         9XLPc64e6Kj9QRphARazyXSanLg29OJYMXCsFnKPo0ccbyrrnw3nkOxBz4x8k715rdIO
-         gezXBrPDI+L/DMJP8ZGtO9wIRBhrvkILCLSJi06vT7qa2bnOOP217ftT4tMABHAwWiGV
-         5y8w==
+        d=linaro.org; s=google; t=1684763098; x=1687355098;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wrxc82AX1iOJYtOkrdSiHbyYQwIiUqCRSy56LKL+7RQ=;
+        b=PeRP7D2tNTmANHFr+RJZi+8482L4g+VoNZb8isZOSSRiNHWIpd4EIAZByraLFeP9Bs
+         oVvdhQGl5pTvMj3s6iWdS29mUC9xigEI2suSLuYRko2fja7H0c9Y4Mif9vSH82MZ/JQX
+         aMDPNIegPITPbK5WaOkDoP0Sv0Pb/HXtT7QGMSOddM2auxgFk+1T41ULnvXFNBz/+pLh
+         MSzTLJbvLWlS6xn2NKnwTVUI+MK11TLZKryDxQr8slQtiBier9fqQTPQlWKDyIqXnwK9
+         NAe+NUyTCOfSDzc+zOFjV1Y41aHO3wBVgJI7aM7gRmHuDqISYe6mabJL1dFHjuiyRfSZ
+         M9Uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684763087; x=1687355087;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nBQBw6CfCpS2jHpwl66vgP+oxhK9iCxnR3a/pdGsx/s=;
-        b=TrGZvOsPH16Jmtvt9oXOah0s62J32umOZPE0p/o92K0GHsBq48lVeDl4+J5d8s+XJQ
-         ENaE+RYsPpaTp9GEV8OIruGS6IER2sQTSwIIMT5zXU6821LwzSjPDcPGCd3DZ7dfNkR7
-         hEcZmbvB+iDdvcry4Gc/axRt+RmqQcPYoSBFbRkJ/3VzKgqeWxu4Mv5lkfRUtAIUl3u8
-         DyeW8jYBZN7vJzd9DMojTthXkHJge0GAwGwlcsvv0K6pf3vISipGl+RbZW2QiyMp6yRW
-         gIed54u7iPkLf+j0eDC/TQYNeVVH5GDYeufl/lihT0nByC/5tcS29wymXeAPev6kyanL
-         kmWA==
-X-Gm-Message-State: AC+VfDzKG7vhXRHSaCSLr/UilElDEqry4xfFURe9gSZI10MTj175679w
-        lcukc2o2Ybfq4wpOtnA7T4+XQg==
-X-Google-Smtp-Source: ACHHUZ50cNgmQvAobdIojXR4NTBQqipchc4EVGUHOzc8b0LtHCN9e+gzJm2x7j4KdDXzu4Zm50sWyw==
-X-Received: by 2002:a05:600c:2049:b0:3f6:289:b769 with SMTP id p9-20020a05600c204900b003f60289b769mr3300930wmg.14.1684763087342;
-        Mon, 22 May 2023 06:44:47 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id q20-20020a1ce914000000b003f18b942338sm8421342wmc.3.2023.05.22.06.44.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 May 2023 06:44:47 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
+        d=1e100.net; s=20221208; t=1684763098; x=1687355098;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Wrxc82AX1iOJYtOkrdSiHbyYQwIiUqCRSy56LKL+7RQ=;
+        b=BhwGwhTL0AWLDo5cNVhfyU8xlCImPD16BSQsJor/zqNyEQYLRVFosGHDsyEVaU/4Me
+         TSxngAAOJOi3E8OSl8HUaBik54FlJoXanG46V0/bXkqy751XqhFj0gVtFzlJdADQObic
+         jsHBqnqA6jA/Hnc1Kb2O4IwNyqJieKB0u3/8rjtoh3CeDyDpmPY51bFMRDUcOyWaTbug
+         NhbEGsFpOTLd5CVFDoE79Jx1F/fNCyhEtd/ukFzc18e3p3vJBgzV9ttz8wNjAESjE0dk
+         M1vTiZZm47JwhoSJ0tavsY77iDLMcok/JYYU8TrmDuAOMvmegdD2gc/jTIYLZ2uVM8yV
+         wv0w==
+X-Gm-Message-State: AC+VfDydNnvC0P718fYHk94F8FomBoedxR+OBgnE883K7HEVrgHfAjwl
+        go20gOA1QgwZ9ai+2TQAb9drSA==
+X-Google-Smtp-Source: ACHHUZ66W79JRymYpqr+33Apra3p6DHzxWUXT7NFKG4LKxRr1ITkSaUc3PVwIig3EefGmxnv9imgRA==
+X-Received: by 2002:adf:fc08:0:b0:309:3c0c:b2c1 with SMTP id i8-20020adffc08000000b003093c0cb2c1mr7102196wrr.23.1684763098165;
+        Mon, 22 May 2023 06:44:58 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:a478:d61d:5bb5:7df? ([2a01:e0a:982:cbb0:a478:d61d:5bb5:7df])
+        by smtp.gmail.com with ESMTPSA id c6-20020a5d4f06000000b002e5f6f8fc4fsm7829465wru.100.2023.05.22.06.44.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 May 2023 06:44:57 -0700 (PDT)
+Message-ID: <88e30362-d21d-62db-cbc0-85c7f9a286db@linaro.org>
+Date:   Mon, 22 May 2023 15:44:57 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: samsung,mipi-dsim: Add
+ 'lane-polarities'
+Content-Language: en-US
 To:     Fabio Estevam <festevam@gmail.com>
 Cc:     marex@denx.de, dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        jagan@amarulasolutions.com, Fabio Estevam <festevam@denx.de>
-In-Reply-To: <20230514114625.98372-1-festevam@gmail.com>
+        jagan@amarulasolutions.com, Fabio Estevam <festevam@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 References: <20230514114625.98372-1-festevam@gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: samsung,mipi-dsim: Add
- 'lane-polarities'
-Message-Id: <168476308664.3841130.12910064753273358784.b4-ty@linaro.org>
-Date:   Mon, 22 May 2023 15:44:46 +0200
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+ <a6e549e3-a898-c7b2-1c72-4c6fa2866388@linaro.org>
+ <CAOMZO5BTAPPs+KsW7+GnBTJf1dLMKuAzZa-HRXtQ+ZTWz+EOxw@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CAOMZO5BTAPPs+KsW7+GnBTJf1dLMKuAzZa-HRXtQ+ZTWz+EOxw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,28 +82,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Sun, 14 May 2023 08:46:24 -0300, Fabio Estevam wrote:
-> The Samsung DSIM IP block allows the inversion of the clock and
-> data lanes.
+On 22/05/2023 14:53, Fabio Estevam wrote:
+> Hi Neil,
 > 
-> Add an optional property called 'lane-polarities' that describes the
-> polarities of the MIPI DSI clock and data lanes.
+> On Sun, May 14, 2023 at 9:29 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 14/05/2023 13:46, Fabio Estevam wrote:
+>>> From: Fabio Estevam <festevam@denx.de>
+>>>
+>>> The Samsung DSIM IP block allows the inversion of the clock and
+>>> data lanes.
+>>>
+>>> Add an optional property called 'lane-polarities' that describes the
+>>> polarities of the MIPI DSI clock and data lanes.
+>>
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> This property is useful for properly describing the hardware when the
-> board designer decided to switch the polarities of the MIPI DSI
-> clock and/or data lanes.
-> 
-> [...]
+> Could you please apply this series?
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+Done !
 
-[1/2] dt-bindings: samsung,mipi-dsim: Add 'lane-polarities'
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=ec7743c9c48a14aa884d27f2feee1da30810ce0a
-[2/2] drm: bridge: samsung-dsim: Implement support for clock/data polarity swap
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=74629c49e66cc6d36c46ac4e3f059780873ceedf
-
--- 
+Thanks,
 Neil
+
+> 
+> Thanks
 
