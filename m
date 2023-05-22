@@ -2,41 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56C5A70B9DB
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 12:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAC4A70B9E7
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 12:19:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230313AbjEVKTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 06:19:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54094 "EHLO
+        id S232797AbjEVKTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 06:19:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232758AbjEVKTZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 06:19:25 -0400
+        with ESMTP id S232748AbjEVKTe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 06:19:34 -0400
 Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C942F1A1;
-        Mon, 22 May 2023 03:19:16 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DEF3C100;
+        Mon, 22 May 2023 03:19:32 -0700 (PDT)
 X-IronPort-AV: E=Sophos;i="6.00,184,1681138800"; 
-   d="scan'208";a="163778330"
+   d="scan'208";a="163778384"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 22 May 2023 19:19:14 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 22 May 2023 19:19:32 +0900
 Received: from localhost.localdomain (unknown [10.226.93.9])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id BE8084000AAA;
-        Mon, 22 May 2023 19:19:10 +0900 (JST)
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 1DB894000AAA;
+        Mon, 22 May 2023 19:19:28 +0900 (JST)
 From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Trent Piepho <tpiepho@gmail.com>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
         Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
         Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v5 03/11] dt-bindings: rtc: isil,isl1208: Document clock and clock-names properties
-Date:   Mon, 22 May 2023 11:18:41 +0100
-Message-Id: <20230522101849.297499-4-biju.das.jz@bp.renesas.com>
+Subject: [PATCH v5 09/11] regulator: dt-bindings: Add Renesas RAA215300 PMIC bindings
+Date:   Mon, 22 May 2023 11:18:47 +0100
+Message-Id: <20230522101849.297499-10-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230522101849.297499-1-biju.das.jz@bp.renesas.com>
 References: <20230522101849.297499-1-biju.das.jz@bp.renesas.com>
@@ -51,37 +50,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As per the HW manual, XTOSCB bit setting is as follows
+Document Renesas RAA215300 PMIC bindings.
 
-If using an external clock signal, set the XTOSCB bit as 1 to
-disable the crystal oscillator.
+The RAA215300 is a high Performance 9-Channel PMIC supporting DDR
+Memory, with Built-In Charger and RTC.
 
-If using an external crystal, the XTOSCB bit needs to be set at 0
-to enable the crystal oscillator.
-
-Document clock and clock-names properties.
+It supports DDR3, DDR3L, DDR4, and LPDDR4 memory power requirements.
+The internally compensated regulators, built-in Real-Time Clock (RTC),
+32kHz crystal oscillator, and coin cell battery charger provide a
+highly integrated, small footprint power solution ideal for
+System-On-Module (SOM) applications. A spread spectrum feature
+provides an ease-of-use solution for noise-sensitive audio or RF
+applications.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 ---
 v4->v5:
- * Replaced oneOf->enum for clock-names as it is simpler.
+ * Added description for clocks.
+ * Replaced Oneof->enum in clock-names as it is simpler.
  * Added Rb tag from Conor.
-v4:
- * New patch
+v3->v4:
+ * Moved bindings from mfd->regulator.
+ * Dropped minItems from reg.
+ * Dropped renesas,rtc-enabled property and instead used clock-names property
+   to find RTC is enabled or not.
+ * Added reg-names in required property.
+ * Updated the example.
+v2->v3:
+ * Added more detailed description for renesas,rtc-enabled property.
+RFC->v2:
+ * Updated reg property
+ * Added optional reg-names, interrupts and renesas,rtc-enabled
+   properties.
+ * Fixed the node name in the example
+ * Dropped the cross link property renesas,raa215300-rtc.
+ * Updated the example
 ---
- .../devicetree/bindings/rtc/isil,isl1208.yaml         | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ .../bindings/regulator/renesas,raa215300.yaml | 85 +++++++++++++++++++
+ 1 file changed, 85 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/renesas,raa215300.yaml
 
-diff --git a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-index 565965147ce6..11f7378d4997 100644
---- a/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-+++ b/Documentation/devicetree/bindings/rtc/isil,isl1208.yaml
-@@ -25,6 +25,17 @@ properties:
-   reg:
-     maxItems: 1
- 
+diff --git a/Documentation/devicetree/bindings/regulator/renesas,raa215300.yaml b/Documentation/devicetree/bindings/regulator/renesas,raa215300.yaml
+new file mode 100644
+index 000000000000..a57676e3d5da
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/renesas,raa215300.yaml
+@@ -0,0 +1,85 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/renesas,raa215300.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas RAA215300 Power Management Integrated Circuit (PMIC)
++
++maintainers:
++  - Biju Das <biju.das.jz@bp.renesas.com>
++
++description: |
++  The RAA215300 is a high-performance, low-cost 9-channel PMIC designed for
++  32-bit and 64-bit MCU and MPU applications. It supports DDR3, DDR3L, DDR4,
++  and LPDDR4 memory power requirements. The internally compensated regulators,
++  built-in Real-Time Clock (RTC), 32kHz crystal oscillator, and coin cell
++  battery charger provide a highly integrated, small footprint power solution
++  ideal for System-On-Module (SOM) applications. A spread spectrum feature
++  provides an ease-of-use solution for noise-sensitive audio or RF applications.
++
++  This device exposes two devices via I2C. One for the integrated RTC IP, and
++  one for everything else.
++
++  Link to datasheet:
++  https://www.renesas.com/in/en/products/power-power-management/multi-channel-power-management-ics-pmics/ssdsoc-power-management-ics-pmic-and-pmus/raa215300-high-performance-9-channel-pmic-supporting-ddr-memory-built-charger-and-rtc
++
++properties:
++  compatible:
++    enum:
++      - renesas,raa215300
++
++  reg:
++    maxItems: 2
++
++  reg-names:
++    items:
++      - const: main
++      - const: rtc
++
++  interrupts:
++    maxItems: 1
++
 +  clocks:
++    description: |
++      The clocks are optional. The RTC is disabled, if no clocks are
++      provided(either xin or clkin).
 +    maxItems: 1
 +
 +  clock-names:
@@ -92,9 +153,35 @@ index 565965147ce6..11f7378d4997 100644
 +      - xin
 +      - clkin
 +
-   interrupts:
-     minItems: 1
-     maxItems: 2
++required:
++  - compatible
++  - reg
++  - reg-names
++
++additionalProperties: false
++
++examples:
++  - |
++    /* 32.768kHz crystal */
++    x2: clock-xtal {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <32768>;
++    };
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        raa215300: pmic@12 {
++            compatible = "renesas,raa215300";
++            reg = <0x12>, <0x6f>;
++            reg-names = "main", "rtc";
++
++            clocks = <&x2>;
++            clock-names = "xin";
++        };
++    };
 -- 
 2.25.1
 
