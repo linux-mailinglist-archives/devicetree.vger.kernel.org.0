@@ -2,90 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74DEE70C443
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 19:29:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7499370C461
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 19:34:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229555AbjEVR3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 13:29:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41116 "EHLO
+        id S233147AbjEVRei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 13:34:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230497AbjEVR3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 13:29:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12AFBE9;
-        Mon, 22 May 2023 10:29:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S233022AbjEVRef (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 13:34:35 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 542B0109;
+        Mon, 22 May 2023 10:34:33 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-091-248-208-162.ewe-ip-backbone.de [91.248.208.162])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9BF3B62591;
-        Mon, 22 May 2023 17:29:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1955C433D2;
-        Mon, 22 May 2023 17:29:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684776576;
-        bh=ks8uAhTxwDrri+4R3o61RYM+zPyG+kZZPeVkAE5LwfM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UZdyyTt7BSyRvWWKDGAPTnQq24inkKN7HRfLrjkyv78d0uauwyDkRNxzm64VZwD0d
-         PVQCcbJnWHCs7zH/DNDPe6p32iab1zm2HIgElAX3odmhcjAW4v4p1cAos5KvbssEiO
-         IFuN0LlI2v32sfQoLme16MMBS+/tG8fS8yTyC6QoHHVbCgE9Fcv19SyLmvLIUIt3HN
-         EWAMGiF0Zqz8gJiwXz4+wnX9ze+piWrViPkXVJ0qiem0igNfRiXGu8TS4NK9BWaKkP
-         lzKeBxnfEB0XBYvfKSEM9bQavWLfcGn9Oq8jXuzfpZCYIpUflUjkQIJxu25NfQnIHL
-         yVcin3zy5Apvg==
-Date:   Mon, 22 May 2023 18:29:31 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1A51266058F2;
+        Mon, 22 May 2023 18:34:31 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1684776871;
+        bh=2crkjF5hGrNF5+uW+vKBwvLEXML84W1Sv3l++t7Q9ZA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=FredDntETk0AslrVHCX+RH6xREF10lt453u7qYeN4hyQLhYZJw4JMZx0VVkHzdndQ
+         OnrnnyGJu1TFLUTjoYP7nmih2gIzpkZodMYwAaXkEZMpUtwwzKvlmWqglhxh7Rv65J
+         zsXEHrvGl6U3+a/kGpoRjn3Jdgd1rbPAcm28WzKHsx7xzUitbnWmSkmf+1FR2YH9VF
+         ZysJ7OrbLg1Tvnji5swHCthwiKBHYH6ovufwOqbHu0AmUbyALT+IawhGawIUk6Q1s5
+         xPfkNs1fTgk31iaSpbJyErXTFQxtOgzv8Qk6gBqOlrm5KQeueqCb0DdOWEmPa58e1H
+         XBeDgviuGmdlg==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 8950E4805CC; Mon, 22 May 2023 19:34:29 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: sram: qcom,imem: document qdu1000
-Message-ID: <20230522-easily-upheaval-6b157fb75da9@spud>
-References: <20230522151206.22654-1-quic_kbajaj@quicinc.com>
- <20230522151206.22654-2-quic_kbajaj@quicinc.com>
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCH v2 0/6] Add RK3588 SATA support
+Date:   Mon, 22 May 2023 19:34:17 +0200
+Message-Id: <20230522173423.64691-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="YRD6KCz0QyXVrEcR"
-Content-Disposition: inline
-In-Reply-To: <20230522151206.22654-2-quic_kbajaj@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---YRD6KCz0QyXVrEcR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This enables SATA support for RK3588.
 
-On Mon, May 22, 2023 at 08:42:05PM +0530, Komal Bajaj wrote:
-> Add compatible for QDU1000 and QRU1000 SoCs IMEM.
->=20
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20230413182345.92557-1-sebastian.reichel@collabora.com/
+ * Rebase to v6.4-rc1
+ * Collect Acked-by for syscon DT binding update
+ * Use ASIC clock description suggested by Serge Semin
+ * Also add RBC clock (not used by RK3588)
+ * Add extra patch narrowing down the allowed clocks for RK356x and RK3588
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+-- Sebastian
 
-Thanks,
-Conor.
+Sebastian Reichel (6):
+  dt-bindings: soc: rockchip: add rk3588 pipe-phy syscon
+  dt-bindings: ata: ahci: add RK3588 AHCI controller
+  dt-bindings: ata: ahci: dwc: enforce rockchip clocks
+  dt-bindings: phy: rockchip: rk3588 has two reset lines
+  arm64: dts: rockchip: rk3588: add combo PHYs
+  arm64: dts: rockchip: rk3588: add SATA support
 
---YRD6KCz0QyXVrEcR
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/ata/snps,dwc-ahci-common.yaml    |  8 +-
+ .../bindings/ata/snps,dwc-ahci.yaml           | 40 +++++++--
+ .../phy/phy-rockchip-naneng-combphy.yaml      |  8 +-
+ .../devicetree/bindings/soc/rockchip/grf.yaml |  1 +
+ arch/arm64/boot/dts/rockchip/rk3588.dtsi      | 44 +++++++++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 90 +++++++++++++++++++
+ 6 files changed, 183 insertions(+), 8 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.39.2
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGumewAKCRB4tDGHoIJi
-0p7pAQCcKAD0LMghKUuUnSu91j7/tuZFtY/814DMwTmbonVSjwD/b6BAHgnsArTH
-xKl6NVwfPZJ2Pkcn6TPIBl1xtzT0YAU=
-=VRtR
------END PGP SIGNATURE-----
-
---YRD6KCz0QyXVrEcR--
