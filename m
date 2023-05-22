@@ -2,219 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6121B70B515
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 08:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F19870B55C
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 08:51:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231657AbjEVGcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 02:32:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47240 "EHLO
+        id S232046AbjEVGvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 02:51:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229649AbjEVGcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 02:32:22 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11EABDB;
-        Sun, 21 May 2023 23:32:16 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34M6W1jO087189;
-        Mon, 22 May 2023 01:32:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684737121;
-        bh=ogPbVDCU54/sxqzMwna8jLDsQGKPOdbkB99e+HaBCQ8=;
-        h=From:Date:Subject:References:In-Reply-To:To:CC;
-        b=rZuRqLUQ29HStom512qOF1e4EuF0Ll9yIEbWvY8R3rdecptjeWXbAJuqSbO8jPPCG
-         iQ+OOKOt//32nm+o+VtryHJXuOyL2Wv8otVYpGJk1xv/ThTVaiDTHoCb3xJX3iCtsj
-         7Q6xvX5aCZXKhSBckC5Yz6TG7vr4mZCV6GbUdluY=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34M6W1L1112686
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 22 May 2023 01:32:01 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
- May 2023 01:32:01 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 22 May 2023 01:32:01 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34M6W05T014378;
-        Mon, 22 May 2023 01:32:01 -0500
-From:   Jai Luthra <j-luthra@ti.com>
-Date:   Mon, 22 May 2023 12:01:56 +0530
-Subject: [PATCH v2 2/2] clk: keystone: syscon-clk: Add support for audio
- refclk
+        with ESMTP id S232039AbjEVGui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 02:50:38 -0400
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3753C1BC1;
+        Sun, 21 May 2023 23:47:57 -0700 (PDT)
+Received: by mail-ua1-x92e.google.com with SMTP id a1e0cc1a2514c-783e4666739so3605355241.0;
+        Sun, 21 May 2023 23:47:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684738040; x=1687330040;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EGmi/jDl6N+ceVHPXb+IkYJ9LmU2GS/nBnndIEuJhr8=;
+        b=R9pM/8HHhMXOiArHema5Co9HH3a3iYljfOA8ryhh0msg0rcjr3lhezG1PT07xQAule
+         7atZA1/J8ZBPjhzI0CxOYOjssMBycVSRpthDPdouYRH84Pv1k/bWcvLqX//1jvyUxy05
+         J813brbKmPyB8k1Ib8AxSMeeaNnP+bKrwpoVBEJksqyPuw0R3pXTmacuLmvt+IIVt4ao
+         9AFmBC3nfRVdOfsPazIbyfuUgR7m+A0mHJztAkxpykWisT8f+GzWx7YJqfXYb4udnL1U
+         UbfQIsVBWuS+k4rkLc4mR56Nw4SngKv+Nv2Mdh1hA4xFV7+CKrQFzIKGiiLbJK0fqTpj
+         jtuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684738040; x=1687330040;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EGmi/jDl6N+ceVHPXb+IkYJ9LmU2GS/nBnndIEuJhr8=;
+        b=ceLN7ao/vT+AiSCTBvHLpyd++IB3zCpHANjPLDoJ9K5FW7W6G4ABUgEeLZNYG8nRy1
+         ZbrhdbXi1uuxOaePee/MW+PDterLfzkaOpj/hovlz5eP+Z/SAqImm1PnO1YfS+II7Gkz
+         bVKhUe7XNeiXYlszLSVMVrkYTsIh4Ks9lsLXpMw6v5w5QT29XBkGZ0v/K4yXTtQe8vg1
+         jFwlMDnlm9Fzd5mjhtLuRxM44eFuh6MDebGHtV/ZSBvgENu7c5BKt5yNWSMDav8qOZtM
+         s4jlG4EjdIYvRerQGV9o9tgsx6uaQZ+aqekZEgsndTv7qAdoYeZSHS163z6F2NbNhQDk
+         9d5A==
+X-Gm-Message-State: AC+VfDw/DP9DXxqFquazau8PczxDLO5N5mq3mhzUG13UFu+bLTm5Z3fx
+        rh/3lUnGIfNnThAsw3Q91pQPj8pcDYly9Z3jeeuxUnZH
+X-Google-Smtp-Source: ACHHUZ47bOxq1yEC62nOtfWx784t+ss0xhsM5J8PcrJlP1n2xCKdS6mlaq2iy0++UQy2/ofFXDcxwzkomdOUcDlGdZM=
+X-Received: by 2002:a67:fe4b:0:b0:437:dfec:c654 with SMTP id
+ m11-20020a67fe4b000000b00437dfecc654mr2517435vsr.12.1684738039943; Sun, 21
+ May 2023 23:47:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20230515-refclk-v2-2-fc9ff08826f5@ti.com>
-References: <20230515-refclk-v2-0-fc9ff08826f5@ti.com>
-In-Reply-To: <20230515-refclk-v2-0-fc9ff08826f5@ti.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, Andrew Davis <afd@ti.com>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Jai Luthra <j-luthra@ti.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4211; i=j-luthra@ti.com;
- h=from:subject:message-id; bh=1OzTfUSpjR4REarTZh76zHNZ7RzUS4w0+ba0D9vqK7s=;
- b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBkawxfQnHmMzLFiY78JW5j1v1AX7PO7magNPFId
- Js5a0KWrAmJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZGsMXwAKCRBD3pH5JJpx
- RVUWD/9rUv52D/C/WSBmzCrn3o3TtU7wabRaGg62QL9M5tP4DgOkhKMCM1wKYxSI8TiNi5UC+Ri
- 0K3h17r53i5yW90bJ7/mp47+PpL2VNm3Ag/VKQx7YwiUkUIj28xhySmg9yFH93PJmcSHh5fSLD/
- tPzfAGY/6VvzHk6KB4v8XNh6kjs7hXbDG5FxQbW/gqxcbSro7Jlg0n9ZPImc/qXHHt7k5tjkh/t
- mhZ6LSOA90szKELTbUaqjhGJ1zO3HypQZ1Mpw08Y0twBsdJS/qEcAzDrhSUFYcCRa3pctEddg+z
- Fvo05WuQ0UUFuH0KZZTKOR2qyWvLG2vnhf66z/3eoSxtQ50PPUtKvAoHLvz51NBmpro2Vkm5mjt
- cE8a0GaoZccX2yUxJE9iPLtRPiORHkkhyUPwVxfX5fbBQTWUFZmGx0hY7sgfw2QDstKT6KHxn5E
- dGmBORWKymb1NNk/pntzpsoU1f/Mn4nMcYhaTY101FU5CUIi1ritqYiFFJEDaMJ6Enl47f7g3MK
- Y+jLCstgVCftzoxE2VDLQmLtL617LiUvmeyo4YFCnIbL/VT/rPqeUOd+nF0o4BmvjnWotPSCQqy
- jz297uHYGBVp3pmnpwx4uHVna8mzsIP1/JIb5d8cYG9GfoZje3+RCENfXh1xyx9mJU4zjUcbyiU
- Z5+/YqdjUXKCCIw==
-X-Developer-Key: i=j-luthra@ti.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230517144144.365631-1-romain.perier@gmail.com>
+ <20230517144144.365631-3-romain.perier@gmail.com> <20230517-undertone-revolver-26b42b888b12@spud>
+In-Reply-To: <20230517-undertone-revolver-26b42b888b12@spud>
+From:   Romain Perier <romain.perier@gmail.com>
+Date:   Mon, 22 May 2023 08:47:08 +0200
+Message-ID: <CABgxDoJa_yPmAGt6myOWNjQ6eXQ9YgL1H2HjTjza3oD7j4H=RQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: rtc: Add Mstar SSD20xD RTC devicetree
+ bindings documentation
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TI's AM62 SoC can optionally provide two audio reference clocks
-(AUDIO_REFCLKx) to external peripherals.
+Le mer. 17 mai 2023 =C3=A0 19:44, Conor Dooley <conor@kernel.org> a =C3=A9c=
+rit :
+>
+> Hey Romain,
+>
+> On Wed, May 17, 2023 at 04:41:43PM +0200, Romain Perier wrote:
+> > This adds the documentation for the devicetree bindings of the Mstar
+> > SSD20xD RTC driver.
+>
+> Bindings describe hardware, not the driver ;)
 
-By default this reference clock is looped-back inside the SoC to a mux
-that goes to McASP AHCLK, but can optionally be enabled as an output to
-peripherals outside the SoC by setting a bit through CTRL_MMR registers.
+Hi,
 
-This bit only controls the direction of the clock, while the parent
-is a muxed input from sci-clk [1] which may be a configurable PLL or a
-master clock from one of the McASP instances.
+Yep, I just copied and pasted the message of a previous merged-commit,
+I will fix it.
 
-Link: http://downloads.ti.com/tisci/esd/latest/5_soc_doc/am62x/clocks.html#clocks-for-board0-device [1]
-Signed-off-by: Jai Luthra <j-luthra@ti.com>
----
- drivers/clk/keystone/syscon-clk.c | 43 ++++++++++++++++++++++++++++++++++-----
- 1 file changed, 38 insertions(+), 5 deletions(-)
+>
+> >
+> > Signed-off-by: Romain Perier <romain.perier@gmail.com>
+> > ---
+> >  .../bindings/rtc/mstar,ssd20xd-rtc.yaml       | 37 +++++++++++++++++++
+> >  1 file changed, 37 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/rtc/mstar,ssd20xd=
+-rtc.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/rtc/mstar,ssd20xd-rtc.ya=
+ml b/Documentation/devicetree/bindings/rtc/mstar,ssd20xd-rtc.yaml
+> > new file mode 100644
+> > index 000000000000..2acd86cce69f
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/rtc/mstar,ssd20xd-rtc.yaml
+> > @@ -0,0 +1,37 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/rtc/mstar,ssd20xd-rtc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Mstar SSD20xD RTC
+> > +
+> > +allOf:
+> > +  - $ref: rtc.yaml#
+> > +
+> > +maintainers:
+> > +  - Daniel Palmer <daniel@0x0f.com>
+> > +  - Romain Perier <romain.perier@gmail.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mstar,ssd20xd-rtc
+>
+> Is this x a wildcard?
+> In general, having a specific compatible is preferred, and if there are
+> other models that are compatible we can list several "fall back" to the
+> most specific one implemented in a driver.
 
-diff --git a/drivers/clk/keystone/syscon-clk.c b/drivers/clk/keystone/syscon-clk.c
-index bd5cec0bd12d..7f686c12a109 100644
---- a/drivers/clk/keystone/syscon-clk.c
-+++ b/drivers/clk/keystone/syscon-clk.c
-@@ -61,21 +61,31 @@ static const struct clk_ops ti_syscon_gate_clk_ops = {
- 
- static struct clk_hw
- *ti_syscon_gate_clk_register(struct device *dev, struct regmap *regmap,
-+			     const char *parent_name,
- 			     const struct ti_syscon_gate_clk_data *data)
- {
- 	struct ti_syscon_gate_clk_priv *priv;
- 	struct clk_init_data init;
-+	char *name = NULL;
- 	int ret;
- 
- 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
- 		return ERR_PTR(-ENOMEM);
- 
--	init.name = data->name;
- 	init.ops = &ti_syscon_gate_clk_ops;
--	init.parent_names = NULL;
--	init.num_parents = 0;
--	init.flags = 0;
-+	if (parent_name) {
-+		name = kasprintf(GFP_KERNEL, "%s:%s", data->name, parent_name);
-+		init.name = name;
-+		init.parent_names = &parent_name;
-+		init.num_parents = 1;
-+		init.flags = CLK_SET_RATE_PARENT;
-+	} else {
-+		init.name = data->name;
-+		init.parent_names = NULL;
-+		init.num_parents = 0;
-+		init.flags = 0;
-+	}
- 
- 	priv->regmap = regmap;
- 	priv->reg = data->offset;
-@@ -83,6 +93,10 @@ static struct clk_hw
- 	priv->hw.init = &init;
- 
- 	ret = devm_clk_hw_register(dev, &priv->hw);
-+
-+	if (name)
-+		kfree(init.name);
-+
- 	if (ret)
- 		return ERR_PTR(ret);
- 
-@@ -94,8 +108,9 @@ static int ti_syscon_gate_clk_probe(struct platform_device *pdev)
- 	const struct ti_syscon_gate_clk_data *data, *p;
- 	struct clk_hw_onecell_data *hw_data;
- 	struct device *dev = &pdev->dev;
-+	int num_clks, num_parents, i;
-+	const char *parent_name;
- 	struct regmap *regmap;
--	int num_clks, i;
- 
- 	data = device_get_match_data(dev);
- 	if (!data)
-@@ -110,6 +125,13 @@ static int ti_syscon_gate_clk_probe(struct platform_device *pdev)
- 	for (p = data; p->name; p++)
- 		num_clks++;
- 
-+	num_parents = of_clk_get_parent_count(dev->of_node);
-+	if (of_device_is_compatible(dev->of_node, "ti,am62-audio-refclk") &&
-+	    num_parents == 0) {
-+		return dev_err_probe(dev, -EINVAL,
-+				     "must specify a parent clock\n");
-+	}
-+
- 	hw_data = devm_kzalloc(dev, struct_size(hw_data, hws, num_clks),
- 			       GFP_KERNEL);
- 	if (!hw_data)
-@@ -117,8 +139,10 @@ static int ti_syscon_gate_clk_probe(struct platform_device *pdev)
- 
- 	hw_data->num = num_clks;
- 
-+	parent_name = of_clk_get_parent_name(dev->of_node, 0);
- 	for (i = 0; i < num_clks; i++) {
- 		hw_data->hws[i] = ti_syscon_gate_clk_register(dev, regmap,
-+							      parent_name,
- 							      &data[i]);
- 		if (IS_ERR(hw_data->hws[i]))
- 			dev_warn(dev, "failed to register %s\n",
-@@ -166,6 +190,11 @@ static const struct ti_syscon_gate_clk_data am62_clk_data[] = {
- 	{ /* Sentinel */ },
- };
- 
-+static const struct ti_syscon_gate_clk_data am62_audio_clk_data[] = {
-+	TI_SYSCON_CLK_GATE("audio_refclk", 0x0, 15),
-+	{ /* Sentinel */ },
-+};
-+
- static const struct of_device_id ti_syscon_gate_clk_ids[] = {
- 	{
- 		.compatible = "ti,am654-ehrpwm-tbclk",
-@@ -179,6 +208,10 @@ static const struct of_device_id ti_syscon_gate_clk_ids[] = {
- 		.compatible = "ti,am62-epwm-tbclk",
- 		.data = &am62_clk_data,
- 	},
-+	{
-+		.compatible = "ti,am62-audio-refclk",
-+		.data = &am62_audio_clk_data,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ti_syscon_gate_clk_ids);
 
--- 
-2.40.1
+The first SoC being concerned is SSD202D, so  "mstar,ssd202d-rtc" ?
 
+Thanks,
+Romain
