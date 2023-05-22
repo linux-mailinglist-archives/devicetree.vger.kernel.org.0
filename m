@@ -2,83 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D8F470B91D
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 11:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78F3E70B92F
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 11:38:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232316AbjEVJgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 05:36:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34542 "EHLO
+        id S232364AbjEVJiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 05:38:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232271AbjEVJgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 05:36:40 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 818A0102;
-        Mon, 22 May 2023 02:36:35 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34M8C6vR015569;
-        Mon, 22 May 2023 09:36:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=bbs9PbHLbX6NgmkHPlMIeAa/LwFPGSAqnUkjU3wZYts=;
- b=FR2hA4CrKIlH2g7+BZWRzBW+NORLji/AEbCkGZRXWUfo4XZkThY3JEMS7cBMpAiwIJsv
- ekje6ZZVnoRdNUKaxAvh6KHD4dFr0fHIPNxjyFGHNhJQbq6Wy8I7UfM5bpgJJtLpkHR4
- UwUWJpPJ8kdmjCGjwGiWO78B5nALJCBYMNwi00JI8RTUdsVNJ5v+oEdy62562cw6uyGv
- aOm/S6vAKNzMGyjdSGxHjAyct5S6ugK7OARhFm5L16Fc9jeqOLp/OIgqySDFcYp/LMTD
- ZKjxRtZUwEaIWwJCgDI8+x/JUWrO/Yf0qpVWuNu6DtkLRnKY4g7IvZCHvR+tdoap6T1T Ig== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qppypb702-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 22 May 2023 09:36:32 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 34M9aT9u026286;
-        Mon, 22 May 2023 09:36:29 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 3qpq9kn8fy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Mon, 22 May 2023 09:36:29 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 34M9aN9S026210;
-        Mon, 22 May 2023 09:36:29 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-kbajaj-hyd.qualcomm.com [10.147.247.189])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 34M9aTgl026277;
-        Mon, 22 May 2023 09:36:29 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2340697)
-        id 4BB935001C2; Mon, 22 May 2023 15:06:28 +0530 (+0530)
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Komal Bajaj <quic_kbajaj@quicinc.com>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: qcom: qdu1000-idp: add SDHCI for emmc
-Date:   Mon, 22 May 2023 15:06:20 +0530
-Message-Id: <20230522093620.3568-5-quic_kbajaj@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230522093620.3568-1-quic_kbajaj@quicinc.com>
-References: <20230522093620.3568-1-quic_kbajaj@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: RdWInpg6GSLjYcB3B-kfJK2gJqPlOAyx
-X-Proofpoint-GUID: RdWInpg6GSLjYcB3B-kfJK2gJqPlOAyx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-05-22_06,2023-05-17_02,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- clxscore=1015 mlxlogscore=749 phishscore=0 impostorscore=0
- lowpriorityscore=0 bulkscore=0 suspectscore=0 malwarescore=0 spamscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305220081
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        with ESMTP id S232386AbjEVJiQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 05:38:16 -0400
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de [80.237.130.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 857271AD;
+        Mon, 22 May 2023 02:37:48 -0700 (PDT)
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+        by wp530.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        id 1q11yt-0007Y3-RF; Mon, 22 May 2023 11:37:31 +0200
+Message-ID: <d1aee7d3-05f6-0920-b8e1-4ed5cf3f9f70@leemhuis.info>
+Date:   Mon, 22 May 2023 11:37:31 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Reply-To: Linux regressions mailing list <regressions@lists.linux.dev>
+Subject: Re: [PATCH 2/2] drm/ofdrm: Update expected device name
+Content-Language: en-US, de-DE
+To:     Helge Deller <deller@gmx.de>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Cyril Brulebois <cyril@debamax.com>
+Cc:     linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Rob Herring <robh@kernel.org>,
+        Michal Suchanek <msuchanek@suse.de>,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux kernel regressions list <regressions@lists.linux.dev>
+References: <20230412095509.2196162-1-cyril@debamax.com>
+ <20230412095509.2196162-3-cyril@debamax.com>
+ <CAMuHMdW4rZn4p=gQZRWQQSEbQPmzZUd5eN+kP_Yr7bLgTHyvig@mail.gmail.com>
+ <5694a9ab-d474-c101-9398-eea55aab29df@suse.de>
+ <10077a22-3055-75dd-2168-310468618f99@gmx.de>
+From:   "Linux regression tracking (Thorsten Leemhuis)" 
+        <regressions@leemhuis.info>
+In-Reply-To: <10077a22-3055-75dd-2168-310468618f99@gmx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;regressions@leemhuis.info;1684748268;4b478383;
+X-HE-SMSGID: 1q11yt-0007Y3-RF
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,44 +57,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add sdhci node for emmc in qdu1000-idp.
+Hi, Thorsten here, the Linux kernel's regression tracker. Top-posting
+for once, to make this easily accessible to everyone.
 
-Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Was a proper solution for the regression the initial mail in this thread
+is about ever found? Doesn't look like it for here, but maybe I'm
+missing something.
 
-diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-index 9e9fd4b8023e..61d8446a2d55 100644
---- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-@@ -451,3 +451,26 @@
- &uart7 {
- 	status = "okay";
- };
-+
-+&sdhc_1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&sdc1_on_state>;
-+	pinctrl-1 = <&sdc1_off_state>;
-+
-+	cap-mmc-hw-reset;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	mmc-hs400-1_8v;
-+	mmc-hs400-enhanced-strobe;
-+
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+
-+	supports-cqe;
-+
-+	vmmc-supply = <&vreg_l10a_2p95>;
-+	vqmmc-supply = <&vreg_l7a_1p8>;
-+
-+	status = "okay";
-+};
--- 
-2.17.1
+Reminder, the problem afaik is caused by 241d2fb56a ("of: Make OF
+framebuffer device names unique") [merged for v6.2-rc8, authored by
+Michal Suchanek; committed by Rob Herring].
 
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+If I did something stupid, please tell me, as explained on that page.
+
+#regzbot poke
+
+On 24.04.23 11:35, Helge Deller wrote:
+> On 4/24/23 11:07, Thomas Zimmermann wrote:
+>> Am 24.04.23 um 09:33 schrieb Geert Uytterhoeven:
+>>> On Wed, Apr 12, 2023 at 12:05 PM Cyril Brulebois <cyril@debamax.com>
+>>> wrote:
+>>>> Since commit 241d2fb56a18 ("of: Make OF framebuffer device names
+>>>> unique"),
+>>>> as spotted by Frédéric Bonnard, the historical "of-display" device is
+>>>> gone: the updated logic creates "of-display.0" instead, then as many
+>>>> "of-display.N" as required.
+>>>>
+>>>> This means that offb no longer finds the expected device, which
+>>>> prevents
+>>>> the Debian Installer from setting up its interface, at least on
+>>>> ppc64el.
+>>>>
+>>>> Given the code similarity it is likely to affect ofdrm in the same way.
+>>>>
+>>>> It might be better to iterate on all possible nodes, but updating the
+>>>> hardcoded device from "of-display" to "of-display.0" is likely to help
+>>>> as a first step.
+>>>>
+>>>> Link: https://bugzilla.kernel.org/show_bug.cgi?id=217328
+>>>> Link: https://bugs.debian.org/1033058
+>>>> Fixes: 241d2fb56a18 ("of: Make OF framebuffer device names unique")
+>>>> Cc: stable@vger.kernel.org # v6.2+
+>>>> Signed-off-by: Cyril Brulebois <cyril@debamax.com>
+>>>
+>>> Thanks for your patch, which is now commit 3a9d8ea2539ebebd
+>>> ("drm/ofdrm: Update expected device name") in fbdev/for-next.
+>>>
+>>>> --- a/drivers/gpu/drm/tiny/ofdrm.c
+>>>> +++ b/drivers/gpu/drm/tiny/ofdrm.c
+>>>> @@ -1390,7 +1390,7 @@ MODULE_DEVICE_TABLE(of, ofdrm_of_match_display);
+>>>>
+>>>>   static struct platform_driver ofdrm_platform_driver = {
+>>>>          .driver = {
+>>>> -               .name = "of-display",
+>>>> +               .name = "of-display.0",
+>>>>                  .of_match_table = ofdrm_of_match_display,
+>>>>          },
+>>>>          .probe = ofdrm_probe,
+>>>
+>>> Same comment as for "[PATCH 1/2] fbdev/offb: Update expected device
+>>> name".
+>>>
+>>> https://lore.kernel.org/r/CAMuHMdVGEeAsmb4tAuuqqGJ-4+BBETwEwYJA+M9NyJv0BJ_hNg@mail.gmail.com
+>>
+>> Sorry that I missed this patch. I agree that it's probably not
+>> correct. At least in ofdrm, we want to be able to use multiple
+>> framebuffers at the same time; a feature that has been broken by this
+>> change.
+> 
+> Geert & Thomas, thanks for the review!
+> 
+> I've dropped both patches from fbdev tree for now.
+> Would be great to find another good solution though, as it breaks the
+> debian
+> installer.
+> 
+> Helge
