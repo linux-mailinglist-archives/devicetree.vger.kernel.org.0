@@ -2,142 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B475B70B791
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 10:26:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BF7E70B794
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 10:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230153AbjEVI0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 04:26:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55452 "EHLO
+        id S232050AbjEVI2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 04:28:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbjEVI0u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 04:26:50 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC94DB6;
-        Mon, 22 May 2023 01:26:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
-        s=s31663417; t=1684743994; i=frank-w@public-files.de;
-        bh=iJE87Et1+i7od+AUi+yEibwB8gDZBBZCoiwY+GJCKSY=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=em9IA7mS7pr2vumrK+0oMJMvK07ADhacGr30BSJsNtI+fDq25r1mJK5LxI6efwajq
-         0WoOTa+p+JA8IWNJnr4b+OqSDImMLjQkiG6aju6NHcmP9vE+GZRorBupJxY2rBouEm
-         OjLz+kJIf0M1ZxYOZF66ylFjV/8kqzTbdCUL9uCIKwlP3ojg+ZFZbRbSm8tXBNhxgk
-         4uvx8LjCirBN0GwUbhaWhwTCOyG5l3FdPFN+k1TpF1jg4uqvZVp9wgW1yGx8I9s0KW
-         HtdtzBZD3OmRQnIZjQxOjems8QI4bI+z7R2A0eo2BuxsklQkqc4cZRBv7hI/mxeBft
-         hQj68PagPeeDg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.155.92] ([217.61.155.92]) by web-mail.gmx.net
- (3c-app-gmx-bs66.server.lan [172.19.170.210]) (via HTTP); Mon, 22 May 2023
- 10:26:34 +0200
+        with ESMTP id S229621AbjEVI2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 04:28:08 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B8CCB6;
+        Mon, 22 May 2023 01:28:07 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-19a16355c51so4133124fac.0;
+        Mon, 22 May 2023 01:28:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684744086; x=1687336086;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=c1HKBQ+akoQdCTF/i+voPCUWtqT/79Q6B4nL7xrEPqw=;
+        b=TFUvpVxRi+PYNDjM+UFoJFYgAp9Om8nNMq9gMdhESOBrVHxFCRboONo0gXIN2Ai2SU
+         8YKySjOcxhajTY+FqKZcB8ToFvxoPd/92vlB7+w7UpEAbQdr5vqgM0wUrk1egFR1BKyq
+         AP/S7GUYPQpQ98cJAv+PC32MnjLlu3egcU1/MfSOKCBBAsSNjNxIIqthdfLudiUcolPY
+         aWstTr9xb/oEP8DGi/Kxo+Q6Fv/ajqS3XF14EQyl22MBIJQTcqoBa/iQs/wsAHzu1hso
+         ZnBjz7TER8Sln+lZougo9tpSykdS6+dabmty9v5az/0lvuHv8pm6TrQlls4aaepPGVPn
+         0Kkg==
+X-Gm-Message-State: AC+VfDwz1wexO04vZurKe+Gx5plM/qvSGyHhbzS9sinIFzN6PlX39uKY
+        zhujB8NkXBe8/vQCICsQVg==
+X-Google-Smtp-Source: ACHHUZ60bBEcwPBbD5uFzJBYz9S2d873YR3ZWPYkaNtRV5mF4vlNlVr8VPzjFAF+HZEQL9I+3sYvxQ==
+X-Received: by 2002:a05:6870:a501:b0:17e:cb7:29a3 with SMTP id o1-20020a056870a50100b0017e0cb729a3mr5766837oal.15.1684744086150;
+        Mon, 22 May 2023 01:28:06 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b2-20020a056870918200b0019e59515a0bsm683327oaf.33.2023.05.22.01.28.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 May 2023 01:28:05 -0700 (PDT)
+Received: (nullmailer pid 1935868 invoked by uid 1000);
+        Mon, 22 May 2023 08:28:04 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Message-ID: <trinity-8c109262-658a-4a4e-a807-1cd8f640fdc4-1684743994291@3c-app-gmx-bs66>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Mike Looijmans <mike.looijmans@topic.nl>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: Aw: Re: [PATCH] arm64: dts: mt7986: set Wifi Leds low-active for
- BPI-R3
-Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 22 May 2023 10:26:34 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <3a43ce55-ff6a-0cd2-b020-d5fefe8aca0a@collabora.com>
-References: <20230205174833.107050-1-linux@fw-web.de>
- <8f04f2b5-320e-50d4-9517-6dac989f63b3@gmail.com>
- <3a43ce55-ff6a-0cd2-b020-d5fefe8aca0a@collabora.com>
-Content-Transfer-Encoding: quoted-printable
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:9HKDyGxPRL9Yhd/YC7Z3n+yXLC68nN9emK2ktuC8U6wz6JHq56A8NcXUWqIQtzljYirmE
- gke/KKu6xKmuIy327JL63asHMmvpMEO4fWrg02un03Uc60bWUWEI5bjAK1np8wIsqNfqhKVE1AVG
- haO2zutpvCHnfRBh3vMCtmd8ZMw7cjPkXcUGn8YbRrzV3kAbyMHDcw4NjhoIAmx/Tytb9xV+jNId
- L6vivZs5VbqUEvWRfCZI4QNAMfrbE+55bauLGtR6Q1Tf35Tlqjn9hyOOL1MnmXwfX0sa9Zr73tPN
- Hw=
-UI-OutboundReport: notjunk:1;M01:P0:nkS8x8yAfKQ=;kSUXqTCb3/4/ThFRC1fkJbE5Lj0
- JqlFM5l+gGaUOCIzXJFAzpsLXYE9n+6G61AncanneZVhTXBtBXMY5+giQzBn+lZ3wTC7NAtc/
- aEoX/iMnavtG2vN0Uz0wffiXHVpYS14osm1YzhKqJ2lFDCGoBecVjyEcquA/MftA2PyvF6+Wj
- gWAd7dJEQjX1hXTl9DGx49FAIYf4oRZ8Q97LasaQPMYoGKYgD3UGyxYkE3GdES1qFvNRdfK2M
- Q7xIyEsc6+pn/XPV44K4pw6k7jNMBkdIEyQza3S6Ik7SYnqvxDya2MYn/B034VeLxrEuFTkc4
- zz0q55gIl7tABo4LSDLdg0W0VlZjez+htY3uKnnMjvCVzn5krGhu1kfwtIFlN3tJSgb/++CQo
- JvpG8gV3ygRU0ERo4Nh8H+JUnMuc8WNzt95ePbmBMj2NuhDXYoAZS4WrgGUPkVdiY97OUeXVg
- TZTtkBZFfsGRaoH6w0g0CRu3xN46xHVAqzyHu0Ijk0TkRGfD5RSd7ASBt07RkkTi7hmAK7eeA
- IXluMp+xFxlODO4Zmi4m8U0ROd5aE8qPZpMkVrAr+tyQrqMAzc6vqUodcK+pnYW6tppMMAMuF
- RIPNBtmlxwfjGApcmOSPFRHYTl+m4rrUitrr7Y+1cdElAeRNNE5nwH1VoHN2FruhKwBDG/ZEM
- QN5ajdXtlG0XqLtNiuobJKYgK4ekM7T022s4y0q5ofZ+35waxijEiMt/HY79lbQWIGZN2WESZ
- fZxT9tAZABj13wcFbVQTBCgcKg0Mxq+a4GCE+yu6vxbxX+rBJ+01ml3di5KUwk7d6zFPQTiuo
- /TPCo3uqpygDqyXJt830RbFg==
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20230522074510.16367-1-mike.looijmans@topic.nl>
+References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.656f2a13-85bf-42a3-8490-f97f2538d8c3@emailsignatures365.codetwo.com>
+ <20230522074510.16367-1-mike.looijmans@topic.nl>
+Message-Id: <168474408440.1935852.10036260685386476051.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: usb: Add microchip USB5807 HUB
+Date:   Mon, 22 May 2023 03:28:04 -0500
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Dienstag, 07=2E Februar 2023 um 17:17 Uhr
-> Von: "AngeloGioacchino Del Regno" <angelogioacchino=2Edelregno@collabora=
-=2Ecom>
-> Il 06/02/23 21:20, Matthias Brugger ha scritto:
-> >=20
-> >=20
-> > On 05/02/2023 18:48, Frank Wunderlich wrote:
-> >> From: Frank Wunderlich <frank-w@public-files=2Ede>
-> >>
-> >> Leds for Wifi are low-active, so add property to devicetree=2E
-> >>
-> >> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
-> >> ---
-> >> =C2=A0 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3=2Edts | 4=
- ++++
-> >> =C2=A0 1 file changed, 4 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3=2Ed=
-ts=20
-> >> b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3=2Edts
-> >> index 33bd6febc160=2E=2E2b028141f1f7 100644
-> >> --- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3=2Edts
-> >> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3=2Edts
-> >> @@ -446,5 +446,9 @@ &wifi {
-> >> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pinctrl-names =3D "default", "dbdc";
-> >> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pinctrl-0 =3D <&wf_2g_5g_pins>, <&wf_l=
-ed_pins>;
-> >> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pinctrl-1 =3D <&wf_dbdc_pins>, <&wf_le=
-d_pins>;
-> >> +
-> >> +=C2=A0=C2=A0=C2=A0 led {
-> >> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 led-active-low;
-> >> +=C2=A0=C2=A0=C2=A0 };
-> >=20
-> > The binding is missing this property also the driver implements it=2E =
-Could you=20
-> > please update the bindind description properly?
-> > Thanks
-> > Matthias
->=20
->=20
-> After and only after [1] is picked,
->=20
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino=2Edelregno@col=
-labora=2Ecom>
->=20
-> [1]:=20
-> https://patchwork=2Ekernel=2Eorg/project/linux-mediatek/patch/2023020713=
-3504=2E21826-1-linux@fw-web=2Ede/
 
-Hi Matthias,
+On Mon, 22 May 2023 09:45:09 +0200, Mike Looijmans wrote:
+> The USB5807 is a 7-port USB 3.1 hub that can be configured by I2C.
+> This driver resets the chip, optionally allows D+/D- lines to be
+> swapped in the devicetree config, and then sends an ATTACH command to
+> put the device in operational mode.
+> 
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> 
+> ---
+> 
+> Changes in v3:
+> Add minItems
+> 
+> Changes in v2:
+> Rename to microchip,usb5807.yaml
+> Remove reset-gpios description
+> Add maxItems
+> Add vddXX-supply properties
+> 
+>  .../bindings/usb/microchip,usb5807.yaml       | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/microchip,usb5807.yaml
+> 
 
-Can you take this patch into your tree? binding is already merged
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-https://git=2Ekernel=2Eorg/pub/scm/linux/kernel/git/torvalds/linux=2Egit/t=
-ree/Documentation/devicetree/bindings/net/wireless/mediatek,mt76=2Eyaml#n11=
-4
+yamllint warnings/errors:
 
-regards Frank
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb251xb.example.dtb: usb-hub@2d: swap-dx-lanes: size is 32, expected 8
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/usb251xb.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230522074510.16367-1-mike.looijmans@topic.nl
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
