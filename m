@@ -2,118 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D2CB70BFCE
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 15:30:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7700470BFD7
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 15:32:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233640AbjEVN3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 09:29:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50002 "EHLO
+        id S233565AbjEVNca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 09:32:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233513AbjEVN33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 09:29:29 -0400
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B14CD11A
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 06:29:06 -0700 (PDT)
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-55254414406so1636801eaf.0
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 06:29:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684762138; x=1687354138;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=VJiaVLTSlboWEYomNUwnYRoth6BI6kdLl4i1K6LqIXQ=;
-        b=C+kjgpNRz7a8WZW4khU3em9JmtzLqcO1ylzCgDlqQFg5mgJYzNmFsWBikW1upqSD7/
-         +vKMoH5CtU1l0XJMWwBTAKUiF7s7eBkVHZqCuY3lrabQic78DGZKBIIvHHtWti7zhCap
-         iSBAazx7Dx1lQ2zc+TAg9UlE1ZBjAWaGjJVgoyksG/HG4QnIbGM60GiO0bPmKj2yWjmr
-         oE5/jOd4Z+EAI3IJGMxkQiXnIXFHM/X+HWjXMAENS9/Gx+bKaJHDsp1X5COjfJCtss1N
-         gEFpNlJzXpM/qda6+S3SNPabxsiiH7IKiL83OkuXnDUM0AGTGmWYASvvNB6EUUYjbJzp
-         PuPw==
-X-Gm-Message-State: AC+VfDyVbPz9ueYWueXjFIME1HmRdY6BupeKsqvTIFQMOBL+CSgXseM+
-        xN+ES/D4G/a5Ii8Bn1NCBw==
-X-Google-Smtp-Source: ACHHUZ7XkrbNbKqN+bB6IEWFb8ucIHaillHDHtN1vXt9wrOx75ZktUEnuOygvkn8zFMFFTGtJTHDUQ==
-X-Received: by 2002:a4a:6208:0:b0:555:5006:4eca with SMTP id x8-20020a4a6208000000b0055550064ecamr1012328ooc.0.1684762137995;
-        Mon, 22 May 2023 06:28:57 -0700 (PDT)
-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id by24-20020a056820201800b0054fd51435efsm2330942oob.8.2023.05.22.06.28.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 May 2023 06:28:57 -0700 (PDT)
-Received: (nullmailer pid 2286365 invoked by uid 1000);
-        Mon, 22 May 2023 13:28:53 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S233083AbjEVNcX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 09:32:23 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91843CD;
+        Mon, 22 May 2023 06:32:16 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 8BF6B5FD53;
+        Mon, 22 May 2023 16:32:13 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1684762333;
+        bh=6u9V8vHtTafBR0YnVPjYmlnDi14L5422DGaJYz+Dxq8=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=NmIgAjKRuI5WAoj2t1m+b4UA9fcDT9PtSDg76v2enOK5vghDOPI/uzUVntbCerZyv
+         FvJE/fokfX2PP7bRgR6VqqnI8xbxgR4MkJl34imEQYv1sbzqiqPzdPF0wmDFTrpuMJ
+         zo1qxQ8KqDqkbOyceIP3SKiyJbh4f1Z1CM3jlIJOVMv1ufPTqqird9raJPgFOAU8+N
+         x/NUEkzEUdfOszk3c1ZdCZQmadT44YBTdjxJNh3PiXU+EtTn7zD9hbdpbVSpuVI2du
+         rgeVrNvpM/wPxUSt95Cg3Aklp+V9nqbkBtN0SqscGKpbLPVZCNHLNP/Rwm1/crFXlO
+         Gpuyw3RsqrIJg==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Mon, 22 May 2023 16:32:13 +0300 (MSK)
+Date:   Mon, 22 May 2023 16:32:12 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <khilman@baylibre.com>, <jian.hu@amlogic.com>,
+        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v15 6/6] clk: meson: a1: add Amlogic A1 Peripherals clock
+ controller driver
+Message-ID: <20230522133212.fcxgsml4hmvj65bb@CAB-WSD-L081021>
+References: <20230517133309.9874-1-ddrokosov@sberdevices.ru>
+ <20230517133309.9874-7-ddrokosov@sberdevices.ru>
+ <CAFBinCBs7-9CvfQLxLoG5=FjmSK+S5eGsLXOAyQN9kNOg2q-2g@mail.gmail.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, marex@denx.de,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        shawnguo@kernel.org, Fabio Estevam <festevam@denx.de>,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org
-In-Reply-To: <20230522125129.526604-2-festevam@gmail.com>
-References: <20230522125129.526604-1-festevam@gmail.com>
- <20230522125129.526604-2-festevam@gmail.com>
-Message-Id: <168476213385.2286345.415916491097414808.robh@kernel.org>
-Subject: Re: [PATCH v5 2/4] dt-bindings: soc: Add i.MX6SX General Purpose
- Register
-Date:   Mon, 22 May 2023 08:28:53 -0500
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAFBinCBs7-9CvfQLxLoG5=FjmSK+S5eGsLXOAyQN9kNOg2q-2g@mail.gmail.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/22 08:14:00 #21365129
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Martin,
 
-On Mon, 22 May 2023 09:51:27 -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+Thank you so much for the review, I really appreciate it!
+Please find my comments below.
+
+On Fri, May 19, 2023 at 11:03:54PM +0200, Martin Blumenstingl wrote:
+> Hi Dmitry,
 > 
-> The i.MX6SX General Purpose Registers is a set of register that serves
-> various different purposes and in particular, IOMUXC_GPR_GPR6, at
-> offset 0x18, can be used to configure the LDB block.
+> On Wed, May 17, 2023 at 3:33 PM Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+> [...]
+> > +static struct clk_regmap sys_b_sel = {
+> > +       .data = &(struct clk_regmap_mux_data){
+> > +               .offset = SYS_CLK_CTRL0,
+> > +               .mask = 0x7,
+> > +               .shift = 26,
+> > +               .table = mux_table_sys,
+> > +       },
+> > +       .hw.init = &(struct clk_init_data){
+> > +               .name = "sys_b_sel",
+> > +               .ops = &clk_regmap_mux_ro_ops,
+> the sys_*_sel muxes and sys_*_gate are _ro...
 > 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
-> Changes since v4:
-> - Renamed to syscon@20e4000 (Conor).
+> > +               .parent_data = sys_parents,
+> > +               .num_parents = ARRAY_SIZE(sys_parents),
+> > +       },
+> > +};
+> > +
+> > +static struct clk_regmap sys_b_div = {
+> > +       .data = &(struct clk_regmap_div_data){
+> > +               .offset = SYS_CLK_CTRL0,
+> > +               .shift = 16,
+> > +               .width = 10,
+> > +       },
+> > +       .hw.init = &(struct clk_init_data){
+> > +               .name = "sys_b_div",
+> > +               .ops = &clk_regmap_divider_ops,
+> ...but the sys_*_div aren't
+> Is this on purpose? If it is: why can the divider be changed at
+> runtime but the mux can't?
 > 
->  .../bindings/soc/imx/fsl,imx6sx-gpr.yaml      | 84 +++++++++++++++++++
->  1 file changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
+
+Ah, that's a good catch. Since the system clock is set up by the BootROM
+code, all sys_* dividers and gates should be read-only. I'll make sure
+to change that in the next version.
+
+> [...]
+> > +/*
+> > + * the index 2 is sys_pll_div16, it will be implemented in the CPU clock driver,
+> We need to add the "sys_pll_div16" input to the dt-bindings since they
+> should always describe the hardware (regardless of what the driver
+> implements currently).
+> I'm not sure how to manage this while we don't have the CPU clock
+> driver ready yet but I'm sure Rob or Krzysztof will be able to help us
+> here.
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I've shared my thoughts about it in the bindings thread. Please take a
+look.
 
-yamllint warnings/errors:
+> > + * the index 4 is the clock measurement source, it's not supported yet
+> I suspect that this comes from the clock measurer IP block and if so
+> the dt-bindings should probably describe this input. But again, we'd
+> need to keep it optional for now since our clock measurer driver
+> doesn't even implement a clock controller.
+> 
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.example.dtb: syscon@20e4000: bridge@18:compatible:0: 'fsl,imx6sx-ldb' is not one of ['fsl,imx8mp-ldb', 'fsl,imx93-ldb']
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.example.dtb: syscon@20e4000: bridge@18:reg: [[24, 4]] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.example.dtb: syscon@20e4000: bridge@18:reg-names: ['ldb'] is too short
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.example.dtb: syscon@20e4000: bridge@18: Unevaluated properties are not allowed ('compatible', 'reg', 'reg-names' were unexpected)
-	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.yaml
-Documentation/devicetree/bindings/soc/imx/fsl,imx6sx-gpr.example.dtb: /example-0/syscon@20e4000/bridge@18: failed to match any schema with compatible: ['fsl,imx6sx-ldb']
+Indeed, this is a similar situation to what we have with the inputs and
+clocks of the CPU and Audio clock controllers. It seems like there is
+only one option here: we should mark it with a TODO tag...
 
-doc reference errors (make refcheckdocs):
+> [...]
+> > +static struct clk_regmap pwm_a_sel = {
+> > +       .data = &(struct clk_regmap_mux_data){
+> > +               .offset = PWM_CLK_AB_CTRL,
+> > +               .mask = 0x1,
+> > +               .shift = 9,
+> > +       },
+> > +       .hw.init = &(struct clk_init_data){
+> > +               .name = "pwm_a_sel",
+> > +               .ops = &clk_regmap_mux_ops,
+> > +               .parent_data = pwm_abcd_parents,
+> > +               .num_parents = ARRAY_SIZE(pwm_abcd_parents),
+> > +               /* For more information, please refer to rtc clock */
+> > +               .flags = CLK_SET_RATE_NO_REPARENT,
+> As mentioned in [0] we'll work with Heiner to see if we can improve
+> the decision making process of the PWM controller driver so that we
+> can just have .flags = 0 here.
+> This applies to all other occurrences of the same comment about the rtc clock.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230522125129.526604-2-festevam@gmail.com
+Sure, I'll make the change in v16. In my opinion, we should remove the
+CLK_SET_RATE_NO_REPARENT flag from all RTC related clock objects,
+including PWM, regardless of the outcome of the Heiner discussion. Based
+on our IRC talk, the decision has more pros than cons -
+https://libera.irclog.whitequark.org/linux-amlogic/2023-05-18
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+Thank you,
+Dmitry
