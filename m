@@ -2,144 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F36C470CDF1
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 00:29:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77F0770CDF9
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 00:32:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234810AbjEVW3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 18:29:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40882 "EHLO
+        id S232276AbjEVWcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 18:32:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234788AbjEVW2u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 18:28:50 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC57811F;
-        Mon, 22 May 2023 15:28:43 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-64d5f65a2f7so1447349b3a.1;
-        Mon, 22 May 2023 15:28:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684794523; x=1687386523;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wLjCDw3QwK9X5eTbsYsJ0QqtTyYuhQZWy+R2beHbthE=;
-        b=PZy+kdNXMQxFNGCmHbcndS3xPaLJOAO0NvYKwzyJKcZlLiOZSLe+MgL4nsWIUXrXLk
-         vJjqHpxziV8NuwDMvLTkjSxasSNf2xGNaJZFMM/idDpLW5gi7vM9s8v7ozonxcFMK5MC
-         TQZ0FNPqZZTMi9ypGpmoLNxIEzpuAK0QKtQywoufBUFmcaUwH4uCs1hRRzlhdn5HTL+y
-         G1n/JlIm5XwEnofLuHR6DODjgP6d8dG8sXQAOCE/4hpltR13kqNC1wsNlSm+hou5UWw1
-         4/Nc9IsOcSLZzt+hxgrWch+5+6AO4Z5O+658DlCjNq865BIV/Mljf5Tf1xaAr3UBsOwP
-         YlIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684794523; x=1687386523;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wLjCDw3QwK9X5eTbsYsJ0QqtTyYuhQZWy+R2beHbthE=;
-        b=ET0AjcFNtyyEF/qemOYSwHjAbg8IdH5dmN84e7susSECjv7ETLDexlmB3vE/U1pAFJ
-         nX1WxjyWcc7VIUdHci69sXV3IpZ4uAfeNQZQjLIX6t8FIk38oD1KY3IxjwOMdrczgHl3
-         Ku/SVz59yel9fdHRaNX2UoT8k9rpuVl0nI8J+OLQThk7bpXxzFnLrhbYm0/ZsvzoYL8e
-         xkqNwkrLYdfh39tIIpWQnoD4mSQFYqgt5OGjANkLxg2jLESUrYYPcEqUgksseFjVsz4V
-         1loH6Dh8pd4WDv3KQVqbnJR0s4iUZosBL86Tm3lrLN0bA7kQxtsJRDCNEJE4PJN0NXNZ
-         CMJg==
-X-Gm-Message-State: AC+VfDzjBedUVlxNDguZ7ou3dMr7u2jqGxlgU8uEEu0XMkGO2cWIA8H4
-        J+3yMuybOn3T5xSfI6tM1wI=
-X-Google-Smtp-Source: ACHHUZ7v2PTJU0KvDHJOwX01olVWqIu3tu+p5wahEbZ80AQTsXX3c0e0YsJO26QecsFA43RxTZ8jqQ==
-X-Received: by 2002:a05:6a00:893:b0:647:e45f:1a4c with SMTP id q19-20020a056a00089300b00647e45f1a4cmr14615874pfj.11.1684794523236;
-        Mon, 22 May 2023 15:28:43 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id i24-20020aa787d8000000b0064d3e4c7658sm4695697pfo.96.2023.05.22.15.28.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 May 2023 15:28:42 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Mon, 22 May 2023 15:28:41 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     "Matyas, Daniel" <Daniel.Matyas@analog.com>
-Cc:     kernel test robot <lkp@intel.com>,
-        Jean Delvare <jdelvare@suse.com>,
+        with ESMTP id S229477AbjEVWce (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 18:32:34 -0400
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 471219C
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 15:32:33 -0700 (PDT)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 36B2C3F20F;
+        Tue, 23 May 2023 00:32:31 +0200 (CEST)
+Date:   Tue, 23 May 2023 00:32:30 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Caleb Connolly <caleb@connolly.tech>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v9 2/2] hwmon: max31827: add MAX31827 driver
-Message-ID: <297d03ac-4fc3-4163-bac5-7abb74e1fa9e@roeck-us.net>
-References: <20230516104609.7095-1-daniel.matyas@analog.com>
- <20230516104609.7095-2-daniel.matyas@analog.com>
- <0e49e860-6f2c-48cb-9ef7-af7891b95237@roeck-us.net>
- <PH0PR03MB6771D471E1AF58B0B50FE4D489439@PH0PR03MB6771.namprd03.prod.outlook.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>
+Subject: Re: [PATCH RFC 06/10] drm/panel/samsung-sofef01: Add panel driver
+ for Sony Xperia 5 / 10 II
+Message-ID: <gzhxxdh235nsbjbns37thi33rpk546ynkihihjiam46pkngkud@opwtr2swvdau>
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-6-541c341d6bee@somainline.org>
+ <f34cd6a8-6d6d-9dcf-b681-56439416c4b4@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <PH0PR03MB6771D471E1AF58B0B50FE4D489439@PH0PR03MB6771.namprd03.prod.outlook.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <f34cd6a8-6d6d-9dcf-b681-56439416c4b4@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 22, 2023 at 02:18:11PM +0000, Matyas, Daniel wrote:
-> 
-> 
-> -----Original Message-----
-> From: Guenter Roeck <groeck7@gmail.com> On Behalf Of Guenter Roeck
-> Sent: Monday, May 22, 2023 4:25 PM
-> To: Matyas, Daniel <Daniel.Matyas@analog.com>
-> Cc: kernel test robot <lkp@intel.com>; Jean Delvare <jdelvare@suse.com>; Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>; Jonathan Corbet <corbet@lwn.net>; linux-hwmon@vger.kernel.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-doc@vger.kernel.org
-> Subject: Re: [PATCH v9 2/2] hwmon: max31827: add MAX31827 driver
-> 
-> [External]
-> 
-> On Tue, May 16, 2023 at 01:46:07PM +0300, Daniel Matyas wrote:
-> > MAX31827 is a low-power temperature switch with I2C interface.
+On 2023-05-22 04:19:45, Dmitry Baryshkov wrote:
+> On 22/05/2023 00:23, Marijn Suijten wrote:
+> > This SOFEF01-M Display-IC driver supports two modes with different
+> > compatibles to differentiate between slightly different physical sizes
+> > (panels) found on the Xperia 5 (6.1") and 10 II (6.0").
 > > 
-> > The device is a ±1°C accuracy from -40°C to +125°C
-> > (12 bits) local temperature switch and sensor with I2C/SM- Bus 
-> > interface. The combination of small 6-bump wafer-lev- el package (WLP) 
-> > and high accuracy makes this temper- ature sensor/switch ideal for a 
-> > wide range of applications.
-> > 
-> > Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
-> > Reported-by: kernel test robot <lkp@intel.com>
-> > Link: 
-> > https://urldefense.com/v3/__https://lore.kernel.org/oe-kbuild-all/2023
-> > 05112351.DBkFfs76-lkp@intel.com/__;!!A3Ni8CS0y2Y!5SeqSdRyCHcgA6Se6U-EN
-> > I_MJfRPgB-FEVkuwWyb944DQypaZ5XQAS6N3aZiVDd1LZDGK45xp7KJHH8RSzw$
-> > ---
-> 
-> Change log goes here. Without it, I'll have to manually re-review and compare against previous versions and look up comments to ensure that all feedback has been addressed. That will take time, which is always
-> scarce.   don't have right now. My apologies, but that means that
-> review and acceptance of your driver will be delayed.
-> 
-> Guenter
-> 
-> 
-> Dear Guenter,
-> 
-> I didn't write a changelog, because I changed literally nothing in the code. I sent a new patch, because in the previous Krzysztof Kozlowski asked me to remove the '--base' when using 'git format-patch'. I wrote this to commit 1/2, but consider it necessary to write the same thing again in patch 2/2.
-> 
+> > It is currently also used to hardcode significantly higher fake porches
+> > for the Xperia 5, which are unused in transfers due to this being a
+> > command-mode panel but do have an effect on the clock rates set by
+> > dsi_host.c.  Without higher clock rates this panel fails to achieve
+> > 60fps and has significant tearing artifacts, while the same calculated
+> > clock rate works perfectly fine on the Xperia 10 II.
 
-In that case the appropriate change log would have been "no change
-against v8", or "unchanged". Also, the change log should really include
-all changes since v1, separated for each version.
+<snip>
 
-v9: No change
-v8: xxx
-v7: yyy
-...
-
-Guenter
-
-> I have the Reported-by flag, because I forgot to add it in patch v8.
+> > +/* Sony Xperia 5 (kumano bahamut) */
+> > +static const struct drm_display_mode samsung_sofef01_m_bahamut_mode = {
+> > +	/*
+> > +	 * WARNING: These massive porches are wrong/useless for CMDmode
+> > +	 * (and not defined in downstream DTS) but necessary to bump dsi
+> > +	 * clocks higher, so that we can achieve proper 60fps without tearing.
+> > +	 */
+> > +	.clock = (1080 + 156 + 8 + 8) * (2520 + 2393 + 8 + 8) * 60 / 1000,
+> > +	.hdisplay = 1080,
+> > +	.hsync_start = 1080 + 156,
+> > +	.hsync_end = 1080 + 156 + 8,
+> > +	.htotal = 1080 + 156 + 8 + 8,
+> > +	.vdisplay = 2520,
+> > +	.vsync_start = 2520 + 2393,
+> > +	.vsync_end = 2520 + 2393 + 8,
+> > +	.vtotal = 2520 + 2393 + 8 + 8,
+> > +	.width_mm = 61,
+> > +	.height_mm = 142,
+> > +};
+> > +
+> > +/* Sony Xperia 10 II (seine pdx201) */
+> > +static const struct drm_display_mode samsung_sofef01_m_pdx201_mode = {
+> > +	.clock = (1080 + 8 + 8 + 8) * (2520 + 8 + 8 + 8) * 60 / 1000,
+> > +	.hdisplay = 1080,
+> > +	.hsync_start = 1080 + 8,
+> > +	.hsync_end = 1080 + 8 + 8,
+> > +	.htotal = 1080 + 8 + 8 + 8,
+> > +	.vdisplay = 2520,
+> > +	.vsync_start = 2520 + 8,
+> > +	.vsync_end = 2520 + 8 + 8,
+> > +	.vtotal = 2520 + 8 + 8 + 8,
+> > +	.width_mm = 60,
+> > +	.height_mm = 139,
+> > +};
+> > +
+> > +static const struct of_device_id samsung_sofef01_m_of_match[] = {
+> > +	{ .compatible = "samsung,sofef01-m-bahamut", .data = &samsung_sofef01_m_bahamut_mode },
+> > +	{ .compatible = "samsung,sofef01-m-pdx201", .data = &samsung_sofef01_m_pdx201_mode },
 > 
-> I am sorry for the confusion!
-> 
-> Best regards,
-> Daniel Matyas
+> Are there really two panels? Can we use one mode for both usecases?
+
+See the commit description where I explained exactly this: the panels
+have different dimensions (6.1" vs 6.0", hence different DPI) and I also
+abuse this to hack in higher clock rates via fake porches.
+
+I just ended up on a scary website that supposedly contains the panel
+names:
+
+- Xperia 5 (bahamut, 6.1"): AMB609TC01
+- Xperia 10 II (pdx201, 6.0"): AMS597UT01
+
+- Marijn
