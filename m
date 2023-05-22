@@ -2,117 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38ED770B833
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 10:59:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DCC670B838
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 10:59:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbjEVI7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 04:59:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41334 "EHLO
+        id S232210AbjEVI7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 04:59:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230042AbjEVI7S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 04:59:18 -0400
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3BBA1BE;
-        Mon, 22 May 2023 01:58:35 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (82-181-192-243.bb.dnainternet.fi [82.181.192.243])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 4QPrvc5zc2zyTW;
-        Mon, 22 May 2023 11:58:20 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1684745905;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ctT1nifoev3hHlgWE8Eu+txWc48x8uyKSST1/8B9WGc=;
-        b=w7PZ86zyjH3fSidq7rCaEGcLKr+Eu9zcIobfhozFkU6pOpRuepM8640+Im/apSP91WTtok
-        13aq/IGEzHHcoJHwVJsshcMdQZwpmy8Xk3omNtfYsWFbUCOpPA5JB1jG3/0b21cttppQLC
-        MbLTWcxXr1agKN5GM9vIG6lraDOFIKg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1684745905;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ctT1nifoev3hHlgWE8Eu+txWc48x8uyKSST1/8B9WGc=;
-        b=VecV+KnmzrrkwGGIz93aqacUUcZ3ehs9+IsNUtsxRmguOBXjxqH1dLp0+iHBqXUuPD2Hcs
-        lxCA3URSu3rDZofUIXxqduDDLde6x1gk/+oAcd7oFCc01Z9cW2xwEgl6DyJRcjQIP7hIUU
-        rAZ75F2VWzh0te6RqE7iojaOMAOKd/s=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1684745905; a=rsa-sha256; cv=none;
-        b=bufxwxn4WKn1MJyZ7FovEvpFcGtfhxM7RrI0GEzzwPy+gOsWGK5NACUJqi+9fd8dr+HsTl
-        1uR3jWIcIxwR2fMrkG3lY1F2xA6bsG0FxwFrA7lN1/fd3c6N7T0ck7fa8CQIrUn4lImbOi
-        b7dcY5QU8QZ0VvHFLDgKCIPi6JY/5IU=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 35939634C91;
-        Mon, 22 May 2023 11:58:20 +0300 (EEST)
-Date:   Mon, 22 May 2023 11:58:20 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc:     Michael Tretter <m.tretter@pengutronix.de>,
-        Jacob Chen <jacob-chen@iotwrt.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Subject: Re: [PATCH RESEND 2/2] arm64: dts: rockchip: Add RGA2 support to
- rk356x
-Message-ID: <ZGsurJERE9uZfMs0@valkosipuli.retiisi.eu>
-References: <20230119-rk3568-rga-v1-0-43d4d14365e6@pengutronix.de>
- <20230119-rk3568-rga-v1-2-43d4d14365e6@pengutronix.de>
- <ZGUfTP1EXtlJbtxJ@valkosipuli.retiisi.eu>
- <2290673.ElGaqSPkdT@diego>
+        with ESMTP id S232345AbjEVI7V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 04:59:21 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 109EC1713
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 01:58:37 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id d9443c01a7336-1ae54b623c2so53422655ad.3
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 01:58:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684745916; x=1687337916;
+        h=content-transfer-encoding:in-reply-to:references:subject:to:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WVVEKPnXkSILTss/P2zaQmuQ5vs6PfUPsMsOFGsk8/M=;
+        b=Ql0qKVg8nKHPlO3LwnQK70xhH1YY18RDJ/jp8+QbdPUKQj/xMBIjs8YdP+RbTdGy8o
+         un7B0gd92OPgrULN/uskxekvP2KHntPf5K3teVTAow68P6BKUw7JOGc36akTxJXxTaTO
+         1Oz/EGCd2/FIJeE0UVTRnPqM4pllTdRzyzRDaK8DYLvT0UDQ53v2KPHA9bPS3umni37i
+         ojXwupNlP2JzASRvNu8BJHpk9LaqJwgVXFcjMU5/9gTxXAvZpQClz72/h730jFisC480
+         cRUwPmZQnoSEw4wQ0ATbD6NC33eu53YxhJM59qKi060tlSs5e0GhfD80QlJEZ/bRSXSJ
+         TsJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684745916; x=1687337916;
+        h=content-transfer-encoding:in-reply-to:references:subject:to:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=WVVEKPnXkSILTss/P2zaQmuQ5vs6PfUPsMsOFGsk8/M=;
+        b=JrS2Dy9DBQ3iROKMUDri+Jx/QUWbad8OBzEM0EBR39TMtOWWv+PtbOoBCUW3RpmKJB
+         fhTBUnDAdx4I5+A6PGtXY4Yy5MYAc+e846EqIOCU+fIqjFDUInZ/WLglKNXQBd7neKME
+         31tr3JL54+Ldo1rBD6gczJlWbAmwS8nWOYp/mGh9JnpFdxhscCmNhsVEfxQQF2CZc7ad
+         iFhHUsDMp9VOIsNII/acgmrHAb/V9kRXix+dTwSzJ/JLJPj2jlM8SXDl23Z7yiEEs9fh
+         fSjXJjVI9ctQ8XdXKvOYYVT9FXaNYUT3K7fVBpXvEsQTdAl2um/Z8C3yV8bZZxdwsZHt
+         1L8w==
+X-Gm-Message-State: AC+VfDzPe/iKMZuW0DGHboV4ZRGIar1z1QosoCt+dyDlSttu2JxhQ18e
+        ue5ju4gOkwaLUePYcTCLBsQnwg==
+X-Google-Smtp-Source: ACHHUZ4uhzrBezRPGNp3O4yAik4A3kP5KYKhP29A86ySFHnLnzIEoz/7dLeytbx4+onNWQEISTP78w==
+X-Received: by 2002:a17:902:f2cc:b0:1aa:fbaa:ee09 with SMTP id h12-20020a170902f2cc00b001aafbaaee09mr7905892plc.49.1684745916446;
+        Mon, 22 May 2023 01:58:36 -0700 (PDT)
+Received: from ?IPV6:2401:4900:1c60:d309:883d:817e:8e91:be39? ([2401:4900:1c60:d309:883d:817e:8e91:be39])
+        by smtp.gmail.com with ESMTPSA id y3-20020a17090322c300b001a1d553de0fsm4308539plg.271.2023.05.22.01.58.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 May 2023 01:58:36 -0700 (PDT)
+Message-ID: <c451dc43-b5a2-df42-c4a5-0db4c6641b1c@linaro.org>
+Date:   Mon, 22 May 2023 14:28:28 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2290673.ElGaqSPkdT@diego>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+From:   bhupesh.sharma@linaro.org
+To:     Anusha Rao <quic_anusha@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        thara.gopinath@gmail.com, herbert@gondor.apana.org.au,
+        davem@davemloft.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, quic_srichara@quicinc.com,
+        quic_gokulsri@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
+        quic_poovendh@quicinc.com
+Subject: Re: [PATCH V3 2/4] clk: qcom: gcc-ipq9574: Enable crypto clocks
+References: <20230518141105.24741-1-quic_anusha@quicinc.com>
+ <20230518141105.24741-3-quic_anusha@quicinc.com>
+In-Reply-To: <20230518141105.24741-3-quic_anusha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 21, 2023 at 12:46:11PM +0200, Heiko Stübner wrote:
-> Hi,
-> 
-> Am Mittwoch, 17. Mai 2023, 20:39:08 CEST schrieb Sakari Ailus:
-> > Hi folks,
-> > 
-> > On Fri, Jan 20, 2023 at 10:14:22AM +0100, Michael Tretter wrote:
-> > > The rk3568 also features a RGA2 block. Add the necessary device tree
-> > > node.
-> > > 
-> > > Acked-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> > > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> > 
-> > Can this patch be merged via the media tree? I don't expect merging the
-> > other one via a different tree being an issue either, so alternatively to
-> > the 1st patch:
-> > 
-> > Acked-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> 
-> thanks for the Ack. To prevent conflicts with other additions to the
-> rk356x.dtsi file, I've picked now both patches for the rockchip tree.
 
-Thank you!
 
--- 
-Sakari Ailus
+On 5/18/23 7:41 PM, Anusha Rao <quic_anusha@quicinc.com> wrote:
+> Enable the clocks required for crypto operation.
+> 
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> ---
+>   Changes in V3:
+> 	- Added GCC prefix to CRYPTO_CLK_SRC.
+> 
+>   drivers/clk/qcom/gcc-ipq9574.c | 72 ++++++++++++++++++++++++++++++++++
+>   1 file changed, 72 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/gcc-ipq9574.c b/drivers/clk/qcom/gcc-ipq9574.c
+> index 7b0505f5c255..73663168d72a 100644
+> --- a/drivers/clk/qcom/gcc-ipq9574.c
+> +++ b/drivers/clk/qcom/gcc-ipq9574.c
+> @@ -728,6 +728,41 @@ static struct clk_rcg2 blsp1_uart6_apps_clk_src = {
+>   	},
+>   };
+>   
+> +static const struct freq_tbl ftbl_gcc_crypto_clk_src[] = {
+> +	F(160000000, P_GPLL0, 5, 0, 0),
+> +	{ }
+> +};
+> +
+> +static struct clk_rcg2 gcc_crypto_clk_src = {
+> +	.cmd_rcgr = 0x16004,
+> +	.freq_tbl = ftbl_gcc_crypto_clk_src,
+> +	.hid_width = 5,
+> +	.parent_map = gcc_xo_gpll0_gpll0_out_main_div2_map,
+> +	.clkr.hw.init = &(const struct clk_init_data) {
+> +		.name = "gcc_crypto_clk_src",
+> +		.parent_data = gcc_xo_gpll0_gpll0_out_main_div2,
+> +		.num_parents = ARRAY_SIZE(gcc_xo_gpll0_gpll0_out_main_div2),
+> +		.ops = &clk_rcg2_ops,
+> +	},
+> +};
+> +
+> +static struct clk_branch gcc_crypto_clk = {
+> +	.halt_reg = 0x1600c,
+> +	.halt_check = BRANCH_HALT_VOTED,
+> +	.clkr = {
+> +		.enable_reg = 0x0b004,
+> +		.enable_mask = BIT(14),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "gcc_crypto_clk",
+> +			.parent_hws = (const struct clk_hw *[]) {
+> +				&gcc_crypto_clk_src.clkr.hw },
+> +			.num_parents = 1,
+> +			.flags = CLK_SET_RATE_PARENT,
+> +			.ops = &clk_branch2_ops,
+> +		},
+> +	},
+> +};
+> +
+>   static struct clk_branch gcc_apss_ahb_clk = {
+>   	.halt_reg = 0x24018,
+>   	.halt_check = BRANCH_HALT_VOTED,
+> @@ -2071,6 +2106,38 @@ static struct clk_rcg2 pcnoc_bfdcd_clk_src = {
+>   	},
+>   };
+>   
+> +static struct clk_branch gcc_crypto_axi_clk = {
+> +	.halt_reg = 0x16010,
+> +	.clkr = {
+> +		.enable_reg = 0x16010,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "gcc_crypto_axi_clk",
+> +			.parent_hws = (const struct clk_hw *[]) {
+> +				&pcnoc_bfdcd_clk_src.clkr.hw },
+> +			.num_parents = 1,
+> +			.flags = CLK_SET_RATE_PARENT,
+> +			.ops = &clk_branch2_ops,
+> +		},
+> +	},
+> +};
+> +
+> +static struct clk_branch gcc_crypto_ahb_clk = {
+> +	.halt_reg = 0x16014,
+> +	.clkr = {
+> +		.enable_reg = 0x16014,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(const struct clk_init_data) {
+> +			.name = "gcc_crypto_ahb_clk",
+> +			.parent_hws = (const struct clk_hw *[]) {
+> +				&pcnoc_bfdcd_clk_src.clkr.hw },
+> +			.num_parents = 1,
+> +			.flags = CLK_SET_RATE_PARENT,
+> +			.ops = &clk_branch2_ops,
+> +		},
+> +	},
+> +};
+> +
+>   static struct clk_branch gcc_nsscfg_clk = {
+>   	.halt_reg = 0x1702c,
+>   	.clkr = {
+> @@ -4036,6 +4103,10 @@ static struct clk_regmap *gcc_ipq9574_clks[] = {
+>   	[GCC_SNOC_PCIE1_1LANE_S_CLK] = &gcc_snoc_pcie1_1lane_s_clk.clkr,
+>   	[GCC_SNOC_PCIE2_2LANE_S_CLK] = &gcc_snoc_pcie2_2lane_s_clk.clkr,
+>   	[GCC_SNOC_PCIE3_2LANE_S_CLK] = &gcc_snoc_pcie3_2lane_s_clk.clkr,
+> +	[GCC_CRYPTO_CLK_SRC] = &gcc_crypto_clk_src.clkr,
+> +	[GCC_CRYPTO_CLK] = &gcc_crypto_clk.clkr,
+> +	[GCC_CRYPTO_AXI_CLK] = &gcc_crypto_axi_clk.clkr,
+> +	[GCC_CRYPTO_AHB_CLK] = &gcc_crypto_ahb_clk.clkr,
+>   };
+
+Can we please add these in alphabetical order. For e.g. here these entries would follow those for '[GCC_CMN_BLK_APU_ARES] = { 0x3a010, 2 },'
+
+>   static const struct qcom_reset_map gcc_ipq9574_resets[] = {
+> @@ -4193,6 +4264,7 @@ static const struct qcom_reset_map gcc_ipq9574_resets[] = {
+>   	[GCC_WCSS_ECAHB_ARES] = { 0x25070, 0 },
+>   	[GCC_WCSS_Q6_BCR] = { 0x18000, 0 },
+>   	[GCC_WCSS_Q6_TBU_BCR] = { 0x12054, 0 },
+> +	[GCC_CRYPTO_BCR] = { 0x16000, 0 },
+
+Same as above.
+
+With the above addressed:
+Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+
+Thanks.
+
+>   };
+>   
+>   static const struct of_device_id gcc_ipq9574_match_table[] = {
+> 
