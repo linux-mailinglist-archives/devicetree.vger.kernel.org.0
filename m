@@ -2,80 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C4D070B7BC
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 10:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12A3D70B7C0
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 10:36:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232304AbjEVIf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 04:35:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60396 "EHLO
+        id S232349AbjEVIgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 04:36:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232310AbjEVIfU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 04:35:20 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88D67F4
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 01:35:16 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f42c865535so58231125e9.1
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 01:35:16 -0700 (PDT)
+        with ESMTP id S232362AbjEVIfu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 04:35:50 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C0FEF4
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 01:35:47 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-64d2e8a842cso2429894b3a.3
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 01:35:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684744515; x=1687336515;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=e3tVOFl92w/Aats7SUyqS11ecUZr32zKmXoR5aDU0FQ=;
-        b=LcCTXXQT6z7OaTVvtdcWd+gdStz/McjofcWAae7bXagbzGa3mK588td7XZSooWk+Ky
-         UL6sMrvgLyKZv9Lgt+2/9DJMf+VVcRRnSoIWDNN2O6aL4Asgz20FFWTcPFgl+i1yTn2m
-         BpdSt7o4rwM+9OX7XiJF28arZSrcN5qivZkITDHAW69yTazpw/QaLqFCKB45I1rxJwbM
-         MOSXCwd5aZBuP/J6mtmKK44nEXkAFm12RMOe+ylVzGCSyH5wl9LY9PdLx4SGLWqY3Km3
-         fxx4R0dZaXOxh3M1Pi/wl2dnHDSEVV3wMlIcNbKv186yeocSerUcYqne0yl6rvfZpjpb
-         YWlw==
+        d=linaro.org; s=google; t=1684744546; x=1687336546;
+        h=content-transfer-encoding:in-reply-to:references:subject:to:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8u81+gNqpoMK774yWwCBHKk+pd5Ao3K0ld1AoX7VQD8=;
+        b=NLNaXASyCE30Cfo/nFeN62e7oRbOpQAk3mNc5Vux+PxdODqbeBzx/fyJj5pK8jB0wJ
+         9fAZQynq/nhXzFv34mcmJFWS+ksIFnkkQl1gdnBcg2aavyP8+tQUAjlZ490n2JYYcNvN
+         t4pjqqFUbhb5WwMjjttyQVR9n8z3Im9KFDrGyOfOZM56jDBtjA4xETSHPMogK0MPUcKg
+         LsXn+e+kpHBYg5UeYseQLbdjjRg7F1AOtg0hIWopk7UiGRRIrmC/rGBPNCvq4BQOA0gp
+         Q87GNmF39jjQkKYVASoHe7jKxKyuJ071ITUFXKzS76SIIDDIMoZ/o6hQ5KjJoL6aa9cJ
+         f4RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684744515; x=1687336515;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e3tVOFl92w/Aats7SUyqS11ecUZr32zKmXoR5aDU0FQ=;
-        b=lG5yjCFXTwESm5ujDDthoKIo4zoSp8KzhRFrpYU8j0pxA5abk7e6tTSE6mptnLBcHG
-         bhAAhQahplwPLK9c6K5Y7g1JHeM9oh5vmUoV02ezQW6eeTX0bHvrSZUueouE+H0T0yZ3
-         H3Q5ZcA/kXelNDTH49aUIEtSrTlW0NHGY1v2g2AE9q4N2yFqdIx/eOrw3OE9Dbnf6GKG
-         vqaiAH8MRnuErIAlJDZvUdMXLABwppJtny/et2lWjQr2FE9ZBFkdXsvjeF3Wzu3fWx9/
-         WYom1BkS4eh+XhmCxrD1AMKcooHwraU0k4HZbq86jtFrCPPP69JQikm419EdlmK4S9le
-         f7hA==
-X-Gm-Message-State: AC+VfDzByt58UiS8Xsst6toHxlaazh4hldvY3JxYsygM6DIC74jAGxY/
-        RppPVpMm7Llf5kq53oTgXXnDpQ==
-X-Google-Smtp-Source: ACHHUZ55BP+E57nsrIAO7O5I8JSLhwoBLbZLECluHO0SzLv1LozWrfuMfgkyET3w+FSHt26IgvMr/g==
-X-Received: by 2002:a1c:7415:0:b0:3f6:244:55df with SMTP id p21-20020a1c7415000000b003f6024455dfmr2723806wmc.29.1684744514921;
-        Mon, 22 May 2023 01:35:14 -0700 (PDT)
-Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
-        by smtp.gmail.com with ESMTPSA id j5-20020adfea45000000b0030629536e64sm6949188wrn.30.2023.05.22.01.35.13
+        d=1e100.net; s=20221208; t=1684744546; x=1687336546;
+        h=content-transfer-encoding:in-reply-to:references:subject:to:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8u81+gNqpoMK774yWwCBHKk+pd5Ao3K0ld1AoX7VQD8=;
+        b=jpOHGLiS+I1DRA8IGYU3RY6RS0rYaQiyHHkuVeNt1VU/VkhPJ5RTI+n2AYhncxiHPT
+         vEUkEht5mXdN3KmA1vGF+I7C4NNMk4NTFfbItTO6e2j4GzEvf6wr1hj8Y3I49SCNkkWx
+         kvQ042pgwPFQkkCI15v4co9dTccL+1TkYmLmAzvdp/EDcupSruNG6l4tylI7lTwxGTbg
+         HNHUXyoReS4S/xgGrphH7C27DWWyR7u19W6mhhVcYjf5JwMp/LoST2HTcfY9b81gl3sT
+         YMjbJAOPdzBYzluMIrQDRVzQv3BJ0U0iUtthxtLfPcTvr7rIOJrNpcjVl0kz9S/EaISY
+         3Srg==
+X-Gm-Message-State: AC+VfDw2rwsc18gzzwOqWag/UE8f0qGmtzkMQRrgA0u7Z7x1qonay5eM
+        9AKcTG2wb4GIdnwB+Yj+KsQ2Eg==
+X-Google-Smtp-Source: ACHHUZ6MSwGF1WZDtb2DuJRHLwLiWl/saCrKgyrPeuZgMnchUsoJ34hpcutGb5dfceyxYajJ++kA7Q==
+X-Received: by 2002:a05:6a21:6d88:b0:104:923b:4d00 with SMTP id wl8-20020a056a216d8800b00104923b4d00mr11247917pzb.36.1684744546529;
+        Mon, 22 May 2023 01:35:46 -0700 (PDT)
+Received: from ?IPV6:2401:4900:1c60:d309:883d:817e:8e91:be39? ([2401:4900:1c60:d309:883d:817e:8e91:be39])
+        by smtp.gmail.com with ESMTPSA id a22-20020a62bd16000000b0063afb08afeesm707621pff.67.2023.05.22.01.35.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 May 2023 01:35:14 -0700 (PDT)
-Message-ID: <a16f99b2-15dc-81ad-fc9c-d919689dce30@linaro.org>
-Date:   Mon, 22 May 2023 10:35:12 +0200
+        Mon, 22 May 2023 01:35:46 -0700 (PDT)
+Message-ID: <b2009411-1822-b16e-6da4-44d399c52a19@linaro.org>
+Date:   Mon, 22 May 2023 14:05:37 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v5 3/3] MAINTAINERS: Add entry for Samsung S6D7AA0 LCD
- panel controller driver
-Content-Language: en-US
-To:     Artur Weber <aweber.kernel@gmail.com>, thierry.reding@gmail.com
-Cc:     Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Nikita Travkin <nikita@trvn.ru>
-References: <20230519170354.29610-1-aweber.kernel@gmail.com>
- <20230519170354.29610-4-aweber.kernel@gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230519170354.29610-4-aweber.kernel@gmail.com>
+ Thunderbird/102.3.1
+From:   bhupesh.sharma@linaro.org
+To:     Anusha Rao <quic_anusha@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        thara.gopinath@gmail.com, herbert@gondor.apana.org.au,
+        davem@davemloft.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, quic_srichara@quicinc.com,
+        quic_gokulsri@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_arajkuma@quicinc.com,
+        quic_poovendh@quicinc.com
+Subject: Re: [PATCH V3 1/4] dt-bindings: clock: Add crypto clock and reset
+ definitions
+References: <20230518141105.24741-1-quic_anusha@quicinc.com>
+ <20230518141105.24741-2-quic_anusha@quicinc.com>
+In-Reply-To: <20230518141105.24741-2-quic_anusha@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -86,30 +84,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/05/2023 19:03, Artur Weber wrote:
-> Add myself as maintainer of the Samsung S6D7AA0 panel driver.
-> 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
->   MAINTAINERS | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 402e26d0cdbc..7cc2bfa4af6f 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6663,6 +6663,12 @@ S:	Maintained
->   F:	Documentation/devicetree/bindings/display/panel/samsung,s6d27a1.yaml
->   F:	drivers/gpu/drm/panel/panel-samsung-s6d27a1.c
->   
-> +DRM DRIVER FOR SAMSUNG S6D7AA0 PANELS
-> +M:	Artur Weber <aweber.kernel@gmail.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/display/panel/samsung,s6d7aa0.yaml
-> +F:	drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c
-> +
->   DRM DRIVER FOR SITRONIX ST7703 PANELS
->   M:	Guido Günther <agx@sigxcpu.org>
->   R:	Purism Kernel Team <kernel@puri.sm>
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+On 5/18/23 7:41 PM, Anusha Rao <quic_anusha@quicinc.com> wrote:
+> Add crypto clock and reset ID definitions for ipq9574.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
+> ---
+>   Changes in V3:
+> 	- Added GCC prefix to CRYPTO_CLK_SRC.
+> 	- Picked up Acked-by tag.
+> 
+>   include/dt-bindings/clock/qcom,ipq9574-gcc.h | 4 ++++
+>   include/dt-bindings/reset/qcom,ipq9574-gcc.h | 1 +
+>   2 files changed, 5 insertions(+)
+> 
+> diff --git a/include/dt-bindings/clock/qcom,ipq9574-gcc.h b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
+> index 5a2961bfe893..b32a7aa65349 100644
+> --- a/include/dt-bindings/clock/qcom,ipq9574-gcc.h
+> +++ b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
+> @@ -210,4 +210,8 @@
+>   #define GCC_SNOC_PCIE1_1LANE_S_CLK			201
+>   #define GCC_SNOC_PCIE2_2LANE_S_CLK			202
+>   #define GCC_SNOC_PCIE3_2LANE_S_CLK			203
+> +#define GCC_CRYPTO_CLK_SRC				204
+> +#define GCC_CRYPTO_CLK					205
+> +#define GCC_CRYPTO_AXI_CLK				206
+> +#define GCC_CRYPTO_AHB_CLK				207
+>   #endif
+> diff --git a/include/dt-bindings/reset/qcom,ipq9574-gcc.h b/include/dt-bindings/reset/qcom,ipq9574-gcc.h
+> index d01dc6a24cf1..c709d103673d 100644
+> --- a/include/dt-bindings/reset/qcom,ipq9574-gcc.h
+> +++ b/include/dt-bindings/reset/qcom,ipq9574-gcc.h
+> @@ -160,5 +160,6 @@
+>   #define GCC_WCSS_Q6_BCR						151
+>   #define GCC_WCSS_Q6_TBU_BCR					152
+>   #define GCC_TCSR_BCR						153
+> +#define GCC_CRYPTO_BCR						154
+>   
+>   #endif
+
+Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+
+Thanks.
