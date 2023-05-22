@@ -2,73 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1699070C4D6
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 20:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1ACD70C503
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 20:18:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233010AbjEVSCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 14:02:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58698 "EHLO
+        id S233127AbjEVSSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 14:18:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232528AbjEVSCe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 14:02:34 -0400
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 774EAFD
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 11:02:32 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-561c1ae21e7so83257097b3.0
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 11:02:32 -0700 (PDT)
+        with ESMTP id S229723AbjEVSR7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 14:17:59 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D431EE0
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 11:17:57 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-307d58b3efbso4196985f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 11:17:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684778551; x=1687370551;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=aVJBY/8knzMSVZs/V5x+SxD32eOlg+FbYuKoI3xgu5k=;
-        b=IiaPqvUFy2+EUG1ROFc6gGPSTDqB+lvZrShUlA59d6U8FYt/+HOiHCfnpsFiTIftXQ
-         Q9A3skQlwcdqBzrTwhRn44a2nDlDjB9jJ6u1HC+0Pk7qB7QvsIrHsBbdrwAl1duQYAIa
-         JrLcXjAnqtXAywZp5HTN/r7dIHpxCNjCw8it3mJLVin5F23vlrZEJ2GAu4NFDsDOWvbf
-         g8gaI7XHdEoU1ykNMnNCx9ulX0ZzwIH/1S4kJtVRhbCqdz3fRU8+5FUsWVvXbJtAYv1m
-         MAhsXR/xFUfYOPehmPurjRam44Lm7EnvxmMTVYFAfy7/st3Rt2r1SOZN442KnBYLIrrU
-         38fA==
+        d=conchuod.ie; s=google; t=1684779476; x=1687371476;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=q7P+DBBi+Cpf56qPunfuWd9Z9zfzbOV/OEECAbDuPS8=;
+        b=Ee4VTVCP4jy7R9WxX+j5tVAlpJhGMDBcv3CT1skxCdyzrPx62chpLscHjIMwYGAJB3
+         wrwqvGxMJxaiPopuXUboolfovc0wzwa9hIbBATh/w0XiFbWT80cyGwNdtz6kHMUgwrB3
+         UCxYnUsrsMHDDh7w2nU0SViJ6AqMwoDptIpKL4tlqOt7dFHCT91TMgbe9pVqmWWbAnkR
+         zPxUf05MRoTgoiuF29tk1G25LCaUWGTqIDPoqCNywD9HjyvnJGwxzczqodsYkEx9iETM
+         NZXvj0d+vAjDz+Uun5iNHtViO4mQimTebuoca2g+rr+7YXdIm3nkCKke7or0VHuxRgxx
+         7JfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684778551; x=1687370551;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aVJBY/8knzMSVZs/V5x+SxD32eOlg+FbYuKoI3xgu5k=;
-        b=TvyCztr6oev45gA0XL3GnFrdPFoHQQN8zM6X0qaGFmSM0KzPUHWjKhsC0rhoAhnt4y
-         ptDBzricfx9zOr5NkJfblNk4adHDyKmJg1z8drIa+UznVH/JAb8RZ8uhIqso9FJuEpAM
-         o4TPM+WGN3qBOb9DPnLN0vsD86l4FhN3CzGamfQ4x+maoA/Q8DoZdxY9qosn19M417YJ
-         hqn/nNXTsm5IbiRAs9ABVnLvgwkz5A4auCX81B5RbfEQMKsXe4njTHx6WysMV1qbYSZ6
-         6U6PBPCKA/Qql2okvg1QRKkXb5IVxXBe6GXAFvrv6v5+Yg6SMthX8VVj9HfYwhTw54eC
-         McpQ==
-X-Gm-Message-State: AC+VfDzct8SroojsstCMYVobYqd0Sv/GjfhJDOYByeJ/KYVFn+vnfkm9
-        xTeojAjUICx6ky/YLHDentzRsfLXcYY6crBP6mjKyw==
-X-Google-Smtp-Source: ACHHUZ5A0/pll2fL/dhzKjSv92cbxqoh0Y0r8v4Nv91Amd9dUVpr+L1YyCF04nMS1kzjLTSw5bsXDQHt/W8MX/vU+kU=
-X-Received: by 2002:a81:5289:0:b0:55a:4840:68d with SMTP id
- g131-20020a815289000000b0055a4840068dmr11841891ywb.20.1684778551387; Mon, 22
- May 2023 11:02:31 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684779476; x=1687371476;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=q7P+DBBi+Cpf56qPunfuWd9Z9zfzbOV/OEECAbDuPS8=;
+        b=R4JgQVXxcmILQiF1tE7uQwDYcV+W3Of5aafSY62FWCYWEDY0PkQ6D4yQ5E/Fcndhj4
+         VAHaHBNNQvCiUMo0ui69Zsc3KiZJLdMVXd8ZN++RCrGykXM351ybLbwJBnmfyldRdbkp
+         JcXgK/ck9fHnQvVZMhVDDFJqVpIYTZCUKcVqg2HtUssQVsjvyZ31jyy7CgWALspWpB/c
+         muR8trUcTSanAhVgO/TXUzPxs+krSTMyWgW/KTGZdgU5pNJ4cAS8lI2ILwnzWx22QUlM
+         txHPG2y2sfBjFHLOzT0c7abSKhLAoQXCa3oWO0udKeYSpxLX2T6hs4fCKkFqaWUqDRjV
+         rQZQ==
+X-Gm-Message-State: AC+VfDx59WcGlgVD5sv9zpOLHC6UWq2SFyZBzd8Wxdw9Vw9P0PSTgN69
+        BX19tqpjGgxjJJDUSkGmSEyvdw==
+X-Google-Smtp-Source: ACHHUZ5b3fcaOykV0SCUoXoLnAw7b7jZX2zv8R6gkhGbukcjSahYAvAxwwOdzoAPXg6RYwfEJecFKw==
+X-Received: by 2002:adf:e409:0:b0:2d5:39d:514f with SMTP id g9-20020adfe409000000b002d5039d514fmr9646442wrm.65.1684779476291;
+        Mon, 22 May 2023 11:17:56 -0700 (PDT)
+Received: from [192.168.2.9] ([51.37.135.152])
+        by smtp.gmail.com with ESMTPSA id j18-20020adff012000000b00304adbeeabbsm8470252wro.99.2023.05.22.11.17.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 May 2023 11:17:55 -0700 (PDT)
+Message-ID: <2be2af5e-d117-fa2c-f960-e7f0c3ca3d0b@conchuod.ie>
+Date:   Mon, 22 May 2023 19:17:54 +0100
 MIME-Version: 1.0
-References: <20230503130051.144708-1-y.oudjana@protonmail.com>
- <20230503130051.144708-4-y.oudjana@protonmail.com> <CAA8EJpokUqHRQz=RJnJpvFzCzz+=5TepPraQGvCvjqFL9+GX7w@mail.gmail.com>
- <5UM2VR.7LLGW1RDW4G2@gmail.com>
-In-Reply-To: <5UM2VR.7LLGW1RDW4G2@gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 22 May 2023 21:02:20 +0300
-Message-ID: <CAA8EJpqh7Me9p1oPRZ88KQD4WRqYCswZ-2njYX6tTa6z0o6cGg@mail.gmail.com>
-Subject: Re: [PATCH RESEND 3/3] clk: qcom: cbf-msm8996: Add support for
- MSM8996 Pro
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH net-next v3 1/6] dt-bindings: net: brcm,unimac-mdio: Add
+ asp-v2.0
+Content-Language: en-US
+To:     Justin Chen <justin.chen@broadcom.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        bcm-kernel-feedback-list@broadcom.com
+Cc:     justinpopo6@gmail.com, f.fainelli@gmail.com, davem@davemloft.net,
+        florian.fainelli@broadcom.com, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, opendmb@gmail.com,
+        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        richardcochran@gmail.com, sumit.semwal@linaro.org,
+        christian.koenig@amd.com
+References: <1684531184-14009-1-git-send-email-justin.chen@broadcom.com>
+ <1684531184-14009-2-git-send-email-justin.chen@broadcom.com>
+From:   Conor Dooley <mail@conchuod.ie>
+In-Reply-To: <1684531184-14009-2-git-send-email-justin.chen@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,59 +84,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 May 2023 at 20:49, Yassine Oudjana <yassine.oudjana@gmail.com> wrote:
->
->
-> On Wed, May 3 2023 at 04:20:00 PM +03:00:00, Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> > On Wed, 3 May 2023 at 16:02, Yassine Oudjana
-> > <yassine.oudjana@gmail.com> wrote:
-> >>
-> >>  From: Yassine Oudjana <y.oudjana@protonmail.com>
-> >>
-> >>  The CBF PLL on MSM8996 Pro has a /4 post divisor instead of /2.
-> >> Handle the
-> >>  difference accordingly.
-> >>
-> >>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> >>  ---
-> >>   drivers/clk/qcom/clk-cbf-8996.c | 121
-> >> ++++++++++++++++++++++++++++----
-> >>   1 file changed, 106 insertions(+), 15 deletions(-)
-> >>
-> >>  diff --git a/drivers/clk/qcom/clk-cbf-8996.c
-> >> b/drivers/clk/qcom/clk-cbf-8996.c
-> >>  index 1bb2cd956d68..a3e96578ddd9 100644
-> >>  --- a/drivers/clk/qcom/clk-cbf-8996.c
-> >>  +++ b/drivers/clk/qcom/clk-cbf-8996.c
-> >>  @@ -65,6 +65,19 @@ static const struct alpha_pll_config
-> >> cbfpll_config = {
-> >>          .early_output_mask = BIT(3),
-> >>   };
-> >>
-> >>  +static const struct alpha_pll_config cbfpll_pro_config = {
-> >>  +       .l = 72,
-> >>  +       .config_ctl_val = 0x200d4828,
-> >>  +       .config_ctl_hi_val = 0x006,
-> >>  +       .test_ctl_val = 0x1c000000,
-> >>  +       .test_ctl_hi_val = 0x00004000,
-> >>  +       .pre_div_mask = BIT(12),
-> >>  +       .post_div_mask = 0x3 << 8,
-> >>  +       .post_div_val = 0x3 << 8,
-> >>  +       .main_output_mask = BIT(0),
-> >>  +       .early_output_mask = BIT(3),
-> >>  +};
-> >
-> > Granted that the difference between this and the non-pro is just the
-> > post_div_val, would it be easier to just patch it in the probe()?
->
-> I wasn't sure if that approach would've been accepted since it relies
-> on the special case that only one instance of the CBF device will exist
-> in normal conditions, but if you say it's fine then sure, I can do that.
+On Fri, May 19, 2023 at 02:19:39PM -0700, Justin Chen wrote:
+ > The ASP 2.0 Ethernet controller uses a brcm unimac.
+ >
+ > Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
+ > Signed-off-by: Justin Chen <justin.chen@broadcom.com>
+ > ---
+ >  Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml | 2 ++
+ >  1 file changed, 2 insertions(+)
+ >
+ > diff --git 
+a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml 
+b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+ > index 0be426ee1e44..6684810fcbf0 100644
+ > --- a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+ > +++ b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+ > @@ -22,6 +22,8 @@ properties:
+ >        - brcm,genet-mdio-v3
+ >        - brcm,genet-mdio-v4
+ >        - brcm,genet-mdio-v5
+ > +      - brcm,asp-v2.0-mdio
+ > +      - brcm,asp-v2.1-mdio
+ >        - brcm,unimac-mdio
 
-We do this for other clock controllers, which we know to be singleton.
-So this should be fine too.
 
---
-With best wishes
-Dmitry
+ From V(N-1), there was some discussion between Rob & Florian:
+ > > How many SoCs does each of these correspond to? SoC specific 
+compatibles
+ > > are preferred to version numbers (because few vendors are disciplined
+ > > at versioning and also not changing versions with every Soc).
+ >
+ > So far there is a 1:1 mapping between the number of versions and the
+ > number of SoCs, and the older SoC uses v2.0, while the newer one uses 
+v2.1.
+
+Rob's not around right now, but I don't really get why if there is a 1:1
+mapping you don't just name these things after the SoCs?
+
+Also, my mailer **refused** to let me reply to you because of something
+to do with a garbage S/MIME signature? Dunno wtf is happening there.
+
+Cheers,
+Conor.
