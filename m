@@ -2,159 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4373970C3DF
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 19:02:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F273E70C3E3
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 19:03:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232905AbjEVRCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 13:02:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55762 "EHLO
+        id S233348AbjEVRDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 13:03:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229723AbjEVRCF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 13:02:05 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233B7E9
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 10:02:03 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f3b5881734so3142948e87.0
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 10:02:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684774921; x=1687366921;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TjF21XFkX4tecG71XyzArS3homg2K5jds2rmtDGL+jY=;
-        b=qbX7I8vdATrZajUyLDCa+F03EsA8WQAR8BA1uAU4S0C/u/hIvXaC1Z96tlHEvgycEU
-         mimF7K3w7LNKqGcMKDFOb1uaRmdXp6BkHHwkOXwOcakPWf5fAVInPDSlS9IZkPav6b4Y
-         94SRNscAW8m9MQHrRTBgqBXw4PLylR6anIE7sAOxptW6UpObE78NLPmsfRQMCddrIwjY
-         aphrY3m7FE0lu4bZDOd5IwJaDMFIl0PDTzHAPm4vRM4wKyQs1+xo10E7k2ltrb6kZ5kb
-         YL08epLzzkqPczPHtRgbZiR0fwO66dYMqlZOPChx3kuH8weRznsgpcsuNzT/lgQTEhgJ
-         3pJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684774921; x=1687366921;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TjF21XFkX4tecG71XyzArS3homg2K5jds2rmtDGL+jY=;
-        b=Ier90vW0H2le1mwLq1NtfQwEvBje6MshzAFRN62Kvib02L5azYYMboCLaQtnuxBUfe
-         iNl9wjcEIj483ax9fLdcs7SzQsAY2I3TmGYqFpDkxOkA/gTqN+ldI78IY7zo4kClTeC/
-         mDlgjnAW2dwUrcVMk/8yhBpe1lUWHeCT4hTBU5mnyb3qvzUScS1k+dBvcpZVeRkqJt2X
-         cXw3ftQpT7yhLblhlurDG65dsAaX7MlLT6zqUlD7Ql9JEqeFImZFhhdoH9Q3txt2GWCY
-         hqCxxOsHQ1hV8hYz8O5+3Zg40EmbywKdARsPJe8DWmYLvPowqkAVomlElOsFb5x6U7Pc
-         fkJQ==
-X-Gm-Message-State: AC+VfDz8HUN0ZMQ3fAfCjhbBZwnYjGeW8puXvuUk2DPa5qPw3QRDjEh5
-        41uryg6QrMFcx5wTGWvW6NoXwA==
-X-Google-Smtp-Source: ACHHUZ6WtJqnwD7Ap4TH54jGz15B6zaga4+g/pph1EF0jcJF8t6MfvB+Wl8+vo13Jv/ukTp31DylsQ==
-X-Received: by 2002:a05:6512:972:b0:4eb:3b4c:50ac with SMTP id v18-20020a056512097200b004eb3b4c50acmr2929429lft.65.1684774921383;
-        Mon, 22 May 2023 10:02:01 -0700 (PDT)
-Received: from [192.168.1.101] (abyk97.neoplus.adsl.tpnet.pl. [83.9.30.97])
-        by smtp.gmail.com with ESMTPSA id w7-20020ac254a7000000b004edc6067affsm1044046lfk.8.2023.05.22.10.02.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 May 2023 10:02:01 -0700 (PDT)
-Message-ID: <8d968904-d4a2-0dbd-52a2-55c6d123f7ac@linaro.org>
-Date:   Mon, 22 May 2023 19:01:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 11/11] arm64: dts: qcom: sm8450: switch UFS QMP PHY to
- new style of bindings
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        with ESMTP id S229974AbjEVRDp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 13:03:45 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EC57FA;
+        Mon, 22 May 2023 10:03:44 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-091-248-208-162.ewe-ip-backbone.de [91.248.208.162])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id CC430660574E;
+        Mon, 22 May 2023 18:03:42 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1684775022;
+        bh=P4c4yqe0e18spr+hpAbUp22X4HYV0KWO766Aol9DUW4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=EBmJWqi/ZLk9ozgXn3Uk8niKTpQ9V6r1b5yUvuAEHIZfVcgBR9MLUw621uHTb7kqR
+         Jt91M7bpXMWa+ony0ysg/jxABWQYuEXogIRo6nxlXMwSIK0Wv2ocAxWzCHCWZ4X2pA
+         9ZkhzKbjiSLv6R8hazEJCng+YDQ2FyGf1E//l/UYJzj9kLS9ESQLRO6wWUBpVzlq/H
+         bYPQh7NHywsvdXULZda6ROIVjTREsOP7Mq5kfp6UWYU6+Ba/6Y3+VvJfD+D5UFgOT8
+         cGoE+dBQ+pbVzcYyRnog/O9nQVnOZNVgIZOzd0p1qvOdE2hbZCCgklgoT1aUirNmNV
+         QVXXOIlgmK7rg==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 77AAB4805CC; Mon, 22 May 2023 19:03:40 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Vinod Koul <vkoul@kernel.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, Johan Hovold <johan@kernel.org>
-References: <20230521203834.22566-1-dmitry.baryshkov@linaro.org>
- <20230521203834.22566-12-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230521203834.22566-12-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Cc:     Heiko Stuebner <heiko@sntech.de>, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCH v3 0/7] phy-rockchip-inno-usb2: add RK3588 support
+Date:   Mon, 22 May 2023 19:03:17 +0200
+Message-Id: <20230522170324.61349-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+This adds RK3588 to the Rockchip Inno USB2 PHY driver. The RK3588 has four of
+them. Two are used for USB2 and two are used by USB3 controllers (for USB2
+fallback mode). All of them can be used with this patchset.
 
-On 21.05.2023 22:38, Dmitry Baryshkov wrote:
-> Change the UFS QMP PHY to use newer style of QMP PHY bindings (single
-> resource region, no per-PHY subnodes).
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Changes since PATCHv2:
+ * https://lore.kernel.org/linux-phy/20230403202307.120562-1-sebastian.reichel@collabora.com/
+ * Dropped patch adding the syscon compatible to the DT binding (applied by Heiko)
+ * Collected Reviewed-by from Rob Herring for DT binding patch (DT binding)
+ * Rebased to v6.4-rc1
+ * Removed superfluous init found by Vinod Koul
+ * Added one additional patch improving the error message for missing phy-config
+ * Fixed address_cells=2 code to not break the PHY at offset 0. I didn't notice it with the
+   previous versions, since that PHY is used for USB3 on Rockchip evaluation board and I
+   only started working on that recently.
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm8450.dtsi | 28 ++++++++++------------------
->  1 file changed, 10 insertions(+), 18 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 595533aeafc4..44a67c9274bd 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -741,9 +741,9 @@ gcc: clock-controller@100000 {
->  				 <&pcie0_lane>,
->  				 <&pcie1_lane>,
->  				 <0>,
-> -				 <&ufs_mem_phy_lanes 0>,
-> -				 <&ufs_mem_phy_lanes 1>,
-> -				 <&ufs_mem_phy_lanes 2>,
-> +				 <&ufs_mem_phy 0>,
-> +				 <&ufs_mem_phy 1>,
-> +				 <&ufs_mem_phy 2>,
->  				 <&usb_1_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
->  			clock-names = "bi_tcxo",
->  				      "sleep_clk",
-> @@ -4064,7 +4064,7 @@ ufs_mem_hc: ufshc@1d84000 {
->  			      <0 0x01d88000 0 0x8000>;
->  			reg-names = "std", "ice";
->  			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-> -			phys = <&ufs_mem_phy_lanes>;
-> +			phys = <&ufs_mem_phy>;
->  			phy-names = "ufsphy";
->  			lanes-per-direction = <2>;
->  			#reset-cells = <1>;
-> @@ -4114,10 +4114,8 @@ ufs_mem_hc: ufshc@1d84000 {
->  
->  		ufs_mem_phy: phy@1d87000 {
->  			compatible = "qcom,sm8450-qmp-ufs-phy";
-> -			reg = <0 0x01d87000 0 0x1c4>;
-> -			#address-cells = <2>;
-> -			#size-cells = <2>;
-> -			ranges;
-> +			reg = <0 0x01d87000 0 0x1000>;
-> +
->  			clock-names = "ref", "ref_aux", "qref";
->  			clocks = <&rpmhcc RPMH_CXO_CLK>,
->  				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
-> @@ -4125,17 +4123,11 @@ ufs_mem_phy: phy@1d87000 {
->  
->  			resets = <&ufs_mem_hc 0>;
->  			reset-names = "ufsphy";
-> -			status = "disabled";
->  
-> -			ufs_mem_phy_lanes: phy@1d87400 {
-> -				reg = <0 0x01d87400 0 0x188>,
-> -				      <0 0x01d87600 0 0x200>,
-> -				      <0 0x01d87c00 0 0x200>,
-> -				      <0 0x01d87800 0 0x188>,
-> -				      <0 0x01d87a00 0 0x200>;
-> -				#clock-cells = <1>;
-> -				#phy-cells = <0>;
-> -			};
-> +			#clock-cells = <1>;
-> +			#phy-cells = <0>;
-> +
-> +			status = "disabled";
->  		};
->  
->  		sdhc_2: mmc@8804000 {
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20230331163812.6124-1-sebastian.reichel@collabora.com/
+ * Added patch simplifying phyclk handling
+ * Added patch simplifying matchdata handling
+ * Added patches for reset handling and PHY tuning; after doing more
+   testing I noticed my previous patchset does not support hotplug and
+   USB devices need to be plugged in at boot time (more specifically
+   in PATCHv1 it had to be plugged before the PHY is suspended). This
+   fixes the issue.
+
+-- Sebastian
+
+Sebastian Reichel (7):
+  dt-bindings: phy: rockchip,inno-usb2phy: add rk3588
+  phy: phy-rockchip-inno-usb2: add rk3588 support
+  phy: phy-rockchip-inno-usb2: add reset support
+  phy: phy-rockchip-inno-usb2: add rk3588 phy tuning support
+  phy: phy-rockchip-inno-usb2: simplify phy clock handling
+  phy: phy-rockchip-inno-usb2: simplify getting match data
+  phy: phy-rockchip-inno-usb2: improve error message
+
+ .../bindings/phy/rockchip,inno-usb2phy.yaml   |  21 +-
+ drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 357 ++++++++++++++++--
+ 2 files changed, 339 insertions(+), 39 deletions(-)
+
+-- 
+2.39.2
+
