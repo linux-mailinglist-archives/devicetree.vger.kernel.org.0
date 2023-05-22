@@ -2,84 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D39AF70BE85
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 14:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4477F70BDFB
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 14:26:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230184AbjEVMjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 08:39:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42332 "EHLO
+        id S234033AbjEVM0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 08:26:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233979AbjEVMiz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 08:38:55 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A58CE41;
-        Mon, 22 May 2023 05:38:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=hPu/AazTv/w0F2gJ1g4NuU0UDYvLNu6oyiHlrR50Mkk=; b=qe6mf5vUlwVjFJV9D5vtSUnTk1
-        nca5JvSV1SUqZ18V0lTp3xbqGrmpElOUrzTJZ2ypwc+n0BKpF0PWI9/MV/lvm22Aed5w0sHpYiAgV
-        u68YGunI90U+Oyjr5S94dnx5a7WSzNSG3jygwcqanIs4Mqb7g7yCo1f4looQ8cu/n5h8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1q14Vm-00DXQ1-MQ; Mon, 22 May 2023 14:19:38 +0200
-Date:   Mon, 22 May 2023 14:19:38 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Alexis =?iso-8859-1?Q?Lothor=E9?= <alexis.lothore@bootlin.com>
-Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Richard Cochran <richardcochran@gmail.com>,
+        with ESMTP id S233424AbjEVM03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 08:26:29 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C82CF2683;
+        Mon, 22 May 2023 05:24:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684758276; x=1716294276;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xn6Sbd2vOZ1d1aJBz+nBV1P/3DRv4zUBXdD9oXRheJU=;
+  b=uK/pmxRAC7y8JyYslzbsQbjmPeIpm6dGvhzdXd8V5HGw2YfDGRZZFZrI
+   Z9kLfVXPMdlSit1kMpZH7QKiQ7B0fN1HF3eCefkqiMOfEtwaintiKYcNu
+   VSMxSvYvbO26JGZRjQa+iYh6CHcIVulAd5wYMgdjZBZ38bdz7VSJtLjNO
+   m+ibFdSk7ZCVRzA7IOerMc+l093V/n+VYqrX4URuVfOU7d0/DyGQtELrn
+   BifHURvR7ETMeP9HnyqpigSiD0LywXfs5xyW5VrikMyjozSaxeglTQuY0
+   tYZYNyHbYbFmKu5F6zL9NqDK2MwlA1YB1zt1bmqRNY0KKrMYx2NtMXlvx
+   g==;
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; 
+   d="asc'?scan'208";a="216636251"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 May 2023 05:24:13 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 22 May 2023 05:24:13 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Mon, 22 May 2023 05:24:11 -0700
+Date:   Mon, 22 May 2023 13:23:49 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Jai Luthra <j-luthra@ti.com>
+CC:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        thomas.petazzoni@bootlin.com, paul.arola@telus.com,
-        scott.roberts@telus.com,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Subject: Re: [PATCH net-next v2 7/7] net: dsa: mv88e6xxx: enable support for
- 88E6361 switch
-Message-ID: <237dbb7f-8979-4435-a099-95bb5d093910@lunn.ch>
-References: <20230519141303.245235-1-alexis.lothore@bootlin.com>
- <20230519141303.245235-8-alexis.lothore@bootlin.com>
- <ZGeLEbcCHzOASasC@shell.armlinux.org.uk>
- <1c104034-b61f-5242-40fa-339de59ac9c9@bootlin.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Davis <afd@ti.com>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: Add binding documentation for
+ TI Audio REFCLK
+Message-ID: <20230522-preaching-thieving-d0a983a5a058@wendy>
+References: <20230515-refclk-v2-0-fc9ff08826f5@ti.com>
+ <20230515-refclk-v2-1-fc9ff08826f5@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="0HT54K5oO9Sb0rsX"
 Content-Disposition: inline
-In-Reply-To: <1c104034-b61f-5242-40fa-339de59ac9c9@bootlin.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230515-refclk-v2-1-fc9ff08826f5@ti.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > Not exactly related to this patch, but please do not rely on this "max
-> > speed mode" - please always ensure that you specify the phy-mode and
-> > fixed-link settings for CPU and DSA ports in firmware. Thanks.
-> 
-> I would like to make sure to fully understand your point:
-> - when telling so specify phy-mode and fixed-link in firmware, you mean
-> device-tree, right ?
-> - when checking for code and execution flow, I observe that port_max_speed is
-> always called and its output is always used to configure shared ports mode in
-> mv88e6xxx driver. Are you telling that eventually, the whole mv88e6xxx driver
-> should stop relying on port_max_speed_mode for shared ports ?
+--0HT54K5oO9Sb0rsX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yes, the concept of port_max_speed_mode causes problems for PHYLINK,
-and we want to remove it. Russell and i have been updating DT
-descriptions adding fixed-link and phy-mode properties to all
-mv88e6xxx systems so that it is not needed. Either at the end of this
-cycle, or the beginning of the next we will change the code to
-actually enforce this.
+On Mon, May 22, 2023 at 12:01:55PM +0530, Jai Luthra wrote:
+> Add DT bindings for TI's audio reference clocks (REFCLK) present on AM62
+> SoC.
+>=20
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
 
-	 Andrew
+Well since I was happy with the old, wrong patch:
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+--0HT54K5oO9Sb0rsX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGte1QAKCRB4tDGHoIJi
+0mSsAQC/7GtBW+66cZg+ZPxgaarqrI+Jztz+RIMxk70nhIIdowD9FXPLpWowhg1B
+b9B1kbtSprJ2Ddas88ynkWtksM8xhgA=
+=N1Sl
+-----END PGP SIGNATURE-----
+
+--0HT54K5oO9Sb0rsX--
