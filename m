@@ -2,162 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4800470B204
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 01:11:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49FB470B259
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 02:10:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbjEUXLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 May 2023 19:11:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53070 "EHLO
+        id S229688AbjEVAKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 May 2023 20:10:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230083AbjEUXLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 19:11:14 -0400
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95AFEC5;
-        Sun, 21 May 2023 16:11:05 -0700 (PDT)
-Received: by mail-io1-xd2d.google.com with SMTP id ca18e2360f4ac-76c636b6306so192558739f.3;
-        Sun, 21 May 2023 16:11:05 -0700 (PDT)
+        with ESMTP id S229723AbjEVAKR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 20:10:17 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A59B1D1
+        for <devicetree@vger.kernel.org>; Sun, 21 May 2023 17:10:15 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f13d8f74abso5992785e87.0
+        for <devicetree@vger.kernel.org>; Sun, 21 May 2023 17:10:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684710665; x=1687302665;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2nVhPh+AVbdoZqcTB31R1u6P0E7hg2Z9UmsS+z7GZjc=;
-        b=NpZD+Rw2xmxMS3KJtKOf1YPhJq34lmSxa4BrvR2K+RQRPMFJUkfBbX9nISTibYRYUs
-         D1bnu7UAPRohuOBjKLPg+No/CIM83GO+xHuhUAEZtpdV2qqgLeP3+mpJWkCB5e9bTWrf
-         GUOGR/2I9ufyVS3I+obr5MICVHly25OFNC2qtHaxwrtCL06QRqjdrmM8xJzBowJEZIS7
-         Ms6mjs3tW81wE7VQfrpDfxUYoQtZn4wWPqtO0NC2ibODI3EnhAcJ10mHnA7TiGGTnj5J
-         bf7aDytD/QgA2yU6tE/XBxmvDf9MyRJDcZ55duCnifqUfBBO1VwodRENjZfXqdt67mHP
-         RKdg==
+        d=linaro.org; s=google; t=1684714214; x=1687306214;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pPS5fFkqpvMee14hrF/ikA2TPC8pX3LGfU7DUbhIJaE=;
+        b=RRq0kg+dVq0QFsR0lMDQ6lhbr7Je1zV4BxIzbCLuQmhkrOyqwCc0CZMVHvClD4l7f4
+         RVVnEUWAEnOW/v/4IWYs1VYqVzzCrqAi0wPvNSVUu4IAVsZC41zro2qIey1BQm4iMJUO
+         7AdGizqL1+HNGAqgzEWerh6onZ8M2XjiQ4GadTD6dG9ktqD6JU/Ek7Xz20TAG2ZaqcBr
+         4EG9LrXx5/l/jbFic45fKr8VBhbQzTxiW+tuhoFiDIwg9x3ja20pcUDfI1l2o5kv2jaI
+         EMfus+3IWkCmnDWjEYCuXg415TIJnpZAZJHkmYM97XmmGiDiHrVISQxCRjIQt1nUeFzJ
+         kYiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684710665; x=1687302665;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2nVhPh+AVbdoZqcTB31R1u6P0E7hg2Z9UmsS+z7GZjc=;
-        b=jHkDUuohF0VPChWt75zFlbuhUyAYf2HSwCEdy7mRUN1KPOZSEGOL1RECdVFD+tvsGl
-         K7Edjdn4p/sGg9bK12vhWSDC9/fR9wngrhiNmSFrDg2xdbTQSkNtcRhDAzhHFhlguzNK
-         Vywp/HRGTgyeU813ri6ySw/ZGcUYFvfeHbikdBs9ayhBntrGdkh6wgPqpxXHoN+eDiAh
-         AMnXDDbFGX46Wj2BeHGTyOgWPbmwUXtmXxAHgnTHbeEi7cyN2MG/MPVSzoNExb8ny+JL
-         NR+uDJsAwvYgflJkC62+R5i89jYPidOE4gVoGgfzmJAI2FK6QDCFxWEuWFIDPcczB+Fm
-         ErsA==
-X-Gm-Message-State: AC+VfDy6aW+1BT2rUkJ/CHAgtRnwFrCqNz8Tyw70nXiIws+CNXJODidt
-        qZrqH1z4MmmRR5HIrdP8mxk=
-X-Google-Smtp-Source: ACHHUZ7lLqLkvJq6ql1iQtOZi5AZfrE9vfPzmk6OBw3VqXXA/4Nnssmw4jp3QCJsW/XVQytKGDDzFw==
-X-Received: by 2002:a05:6602:201a:b0:760:f856:18b7 with SMTP id y26-20020a056602201a00b00760f85618b7mr5569243iod.16.1684710664711;
-        Sun, 21 May 2023 16:11:04 -0700 (PDT)
-Received: from aford-B741.lan ([2601:447:d001:897f:84e4:c2f6:44bb:b929])
-        by smtp.gmail.com with ESMTPSA id a93-20020a029466000000b00416789bfd70sm1367468jai.1.2023.05.21.16.11.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 May 2023 16:11:04 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        d=1e100.net; s=20221208; t=1684714214; x=1687306214;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pPS5fFkqpvMee14hrF/ikA2TPC8pX3LGfU7DUbhIJaE=;
+        b=Z32eEniN0XMHiQNdW9rwl6+blU0MxhBhibVXXwyXiAz7AnWDHQkMbWiD6HeNxhZSN7
+         3T4P9H8L1gJppXhATDM2NgceBw4MRTYoNWpW0A91vAjqYN1WmDG3FBYNgMc4NHzp/wQL
+         05FyeZas7v77RlrrR0JyqMEpQKwSWFHmZ3pWxYlQTOrirNcT7fLWPWe8SCM/5HIBrRGl
+         D48mzwSoWhmzLaJAU6Er1gv1hAK35uenq4MVF5m4ixhBX6LKUu72AOXNfxIdoomX11D+
+         YXPa/4ked1Ffv2CdEAmNJbNVTfb3+U4ETu2mhB3tagyx28v7+av769kBuo62cfJDozjq
+         cnPw==
+X-Gm-Message-State: AC+VfDy15Z7q+IJ7QsWP2rZIzO3Xr0mQBIn9GRcUt6FMl35ywl3xQd4W
+        wMzMnthJbP9HFGzbgIjK6jWF9Q==
+X-Google-Smtp-Source: ACHHUZ6mN4N4LRHuUJJtMSitJvgcoIgwFaOiovO3hUvVPxYCIHTdas6PwiLuCVdlTx6+16LFUpYesA==
+X-Received: by 2002:a05:6512:11e7:b0:4dd:af29:92c1 with SMTP id p7-20020a05651211e700b004ddaf2992c1mr2656182lfs.44.1684714213909;
+        Sun, 21 May 2023 17:10:13 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id d30-20020ac25ede000000b004f26f437ad8sm769258lfq.53.2023.05.21.17.10.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 21 May 2023 17:10:13 -0700 (PDT)
+Message-ID: <43d9d6f4-0780-5605-211d-87cc2b2e2688@linaro.org>
+Date:   Mon, 22 May 2023 03:10:12 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH RFC 02/10] dt-bindings: display: panel: Describe Sony
+ Xperia XZ3's LGD panel
+Content-Language: en-GB
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Caleb Connolly <caleb@connolly.tech>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: imx8mn-beacon: Fix SPI CS pinmux
-Date:   Sun, 21 May 2023 18:10:55 -0500
-Message-Id: <20230521231055.167351-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230521231055.167351-1-aford173@gmail.com>
-References: <20230521231055.167351-1-aford173@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-2-541c341d6bee@somainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230521-drm-panels-sony-v1-2-541c341d6bee@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The final production baseboard had a different chip select than
-earlier prototype boards.  When the newer board was released,
-the SPI stopped working because the wrong pin was used in the device
-tree and conflicted with the UART RTS. Fix the pinmux for
-production boards.
+On 22/05/2023 00:23, Marijn Suijten wrote:
+> Document the LG-Display OLED panel found in the Sony Xperia XZ3.
 
-Fixes: 36ca3c8ccb53 ("arm64: dts: imx: Add Beacon i.MX8M Nano development kit")
-Signed-off-by: Adam Ford <aford173@gmail.com>
+According to find chineese market this is LG LH599QH3-EDB1
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-index 9e82069c941f..d38745237d3c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-@@ -63,25 +63,35 @@ reg_usb_otg_vbus: regulator-usb {
- 		enable-active-high;
- 	};
- 
--	sound {
--		compatible = "fsl,imx-audio-wm8962";
--		model = "wm8962-audio";
--		audio-cpu = <&sai3>;
--		audio-codec = <&wm8962>;
--		audio-routing =
--			"Headphone Jack", "HPOUTL",
--			"Headphone Jack", "HPOUTR",
--			"Ext Spk", "SPKOUTL",
--			"Ext Spk", "SPKOUTR",
--			"AMIC", "MICBIAS",
--			"IN3R", "AMIC";
-+	sound-wm8962 {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "wm8962";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,widgets = "Headphone", "Headphones",
-+					    "Microphone", "Headset Mic",
-+					    "Speaker", "Speaker";
-+		simple-audio-card,routing = "Headphones", "HPOUTL",
-+					    "Headphones", "HPOUTR",
-+					    "Speaker", "SPKOUTL",
-+					    "Speaker", "SPKOUTR",
-+					    "Headset Mic", "MICBIAS",
-+					    "IN3R", "Headset Mic";
-+		simple-audio-card,cpu {
-+			sound-dai = <&sai3>;
-+		};
-+		simple-audio-card,codec {
-+			sound-dai = <&wm8962>;
-+			clocks = <&clk IMX8MN_CLK_SAI3_ROOT>;
-+			frame-master;
-+			bitclock-master;
-+		};
- 	};
- };
- 
- &ecspi2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_espi2>;
--	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-+	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- 
- 	eeprom@0 {
-@@ -142,6 +152,7 @@ wm8962: audio-codec@1a {
- 			0x0000 /* 4:FN_DMICCDAT */
- 			0x0000 /* 5:Default */
- 		>;
-+		#sound-dai-cells = <0>;
- 	};
- };
- 
-@@ -202,7 +213,7 @@ pinctrl_espi2: espi2grp {
- 			MX8MN_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK		0x82
- 			MX8MN_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI		0x82
- 			MX8MN_IOMUXC_ECSPI2_MISO_ECSPI2_MISO		0x82
--			MX8MN_IOMUXC_ECSPI1_SS0_GPIO5_IO9		0x41
-+			MX8MN_IOMUXC_ECSPI2_SS0_GPIO5_IO13		0x41
- 		>;
- 	};
- 
+> 
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+>   .../bindings/display/panel/sony,akatsuki-lgd.yaml  | 71 ++++++++++++++++++++++
+>   1 file changed, 71 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/sony,akatsuki-lgd.yaml b/Documentation/devicetree/bindings/display/panel/sony,akatsuki-lgd.yaml
+> new file mode 100644
+> index 0000000000000..523e580b70c7d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/sony,akatsuki-lgd.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/sony,akatsuki-lgd.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sony Xperia XZ3 LG Display 1440x2880 6.0" OLED DSI panel
+> +
+> +maintainers:
+> +  - Marijn Suijten <marijn.suijten@somainline.org>
+> +
+> +description: |
+> +  This is an unnamed 6.0" 1440x2880 (9:18 aspect ratio) 60 hz panel
+> +  produced by LG Display, found in the Sony Xperia XZ3 smartphone.
+> +  It is always programmed with DSI 1.1. enabled.
+> +
+> +  The assembly features an Atmel maXTouch digitizer, described separately
+> +  as atmel,maxtouch.
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: sony,akatsuki-lgd
+> +
+> +  port: true
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: DSI virtual channel
+> +
+> +  reset-gpios: true
+> +
+> +  vddio-supply:
+> +    description: I/O voltage supply (1.8V)
+> +
+> +required:
+> +  - compatible
+> +  - port
+> +  - reg
+> +  - reset-gpios
+> +  - vddio-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        panel@0 {
+> +            compatible = "sony,akatsuki-lgd";
+> +            reg = <0>;
+> +
+> +            vddio-supply = <&vreg_l14a_1p8>;
+> +
+> +            reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+> +
+> +            port {
+> +                panel_in: endpoint {
+> +                    remote-endpoint = <&dsi0_out>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> +
+> 
+
 -- 
-2.39.2
+With best wishes
+Dmitry
 
