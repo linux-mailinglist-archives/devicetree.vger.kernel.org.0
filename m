@@ -2,304 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5972170C1C0
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 17:01:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 195AD70C1B2
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 17:00:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234236AbjEVPBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 11:01:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41810 "EHLO
+        id S231898AbjEVPAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 11:00:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234209AbjEVPBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 11:01:24 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2066.outbound.protection.outlook.com [40.107.237.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95054115;
-        Mon, 22 May 2023 08:01:13 -0700 (PDT)
+        with ESMTP id S234133AbjEVPAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 11:00:19 -0400
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2040.outbound.protection.outlook.com [40.107.241.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDD54100;
+        Mon, 22 May 2023 08:00:17 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ERVaeSr+Kld2wEgZv4pBjYa6gxusTbfZ0kJ8syQNcqj83S4TtqvlL97OqooktrtrUq7Tc7O1qK5PPuzf9w2NmsKaLsiHjQvFxwMek1EBISkQKjgxsGsM047A1Vr/BGJigtZVP1OgmLjdte/L+Cwr0xhriKT4XEQBda4QYUslxEW7Agqgv+dSQwzM5vlmbcgIN4Y5RHBzCVjQlcRzVM6lG6TZ1yj7CldUPBSSVY39Hh2XMPuf5k6Th3xEyEVXvdS1q1bpaFaGqU24dtD+UYjzKNJMSTASVxvRHB4XHDegmr3w3wpF4pcHc4p0sVBtXVKS72bykQuqUXt+qko0L2ZFjA==
+ b=hsIXfpFc22j9LApHjHpOwcNpZkmGG6sUWn7G6Iwyayp+ves8003hr58N7WgMDqCSsHkn/inJ/3A9FbjfUWSmUNzkzpq0fEls8f7L/CwHrWbxGMyP5pyammwvnctwo8MceJ+5yNUEb4/Ooqi1js0QB1LjOUTrL1VeMVVCVMyfy7MGu/SJnZpqUO5cV2O6MqmGkap5daULVqrnANgDB6domWKhMPEiVCoxN1XOk3/dGvde0GQD/k2e0ugexeYnG8S43eD8vOxxYaSnRb9OQ/xt0m4EJPhzU2FMTsukAoAVxpDNYCVqki16M68s1lS8bntfvT8970Ivfx19aDpbdzLa/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MHVx9hiAS4QeT8dNB0+8kNSaa2YUmaI91h4i76spYJw=;
- b=UXqkjEFhcpxgiaoE8vtMRlnWGHNwCUdwe0KID/vlofIm2CoOdKwvFRTJhvR4nis9mNjlXcfB68OWc58NKYIXXdMVRuCx4I93/aNcAgKxUCdx8q2gSYUwN1GRPy0GQnxu9Xfgcx3dGmfqBPlWoXJNYHzWnjzM+Bw5WzEtW8duFENNGV8/B56Q1nVaQYBtnGn4oO4O73SoLcG3NzBMHdIkWVlD3GxyJ5syIU0lutYYjuBMWsLLiwLO5cV9k6cnq0FAIF+1AYsuLkQLQT1+3+80LFgEoyzuqQ9/M5rr0C3e2m8qtjkukUmPR48lLsxmmOOKsZBsDdEpoBKa7H/dqrp8Kw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ bh=EB71iksn3qiV/RSIqRzeMbEh4hotab3QdoJm2tor1yA=;
+ b=HjA39FFkAi1JT/adn9RoRPZ9OKYAviEybiFAHB+7L+58qxlb2ZFxQ0zE19wFouhzImjiz34izgsL5GUKQ8+Ot8h1G76Y6+HyohpWwjj8UkgmCDEP603TcUy9LJ2Ta2YvS9Y/0dwQS7koksfHncpfNcpCzGVIJdagN643ZHMx9fIyOIi6YRB3P9dhFL0KNDYZH0wyY4yWe0b4PZXHEXt1QyMdocAHrJaOaeOgc7TOhY4QA8lvQsvcae5XH9AT7UNXcj2iiwCN1i3f9w3w6rQD/5afiv99WsHV1e7ZTytVNI7hIS2qvMbXptcoKcWMMpwX0aaEyiHM7CgMQGHPCCtpxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MHVx9hiAS4QeT8dNB0+8kNSaa2YUmaI91h4i76spYJw=;
- b=KVDBUcD78Y09BEasUBpMtSrIULMaHdMoT+7qzVESucEYPMsXO6+g3V1TCRH15J7NRAo47MHBBeUB4PZ8isfdNU+hS4GwygVcNZCAFDWi2yXdgZP7Ks2OYDAT3/vpaPZYtnz6YRQqqBlEqZjOmttG7cnl73XGJ1dm7lcEc66Mj5o=
-Received: from DS7PR03CA0285.namprd03.prod.outlook.com (2603:10b6:5:3ad::20)
- by CH2PR12MB4971.namprd12.prod.outlook.com (2603:10b6:610:6b::7) with
+ bh=EB71iksn3qiV/RSIqRzeMbEh4hotab3QdoJm2tor1yA=;
+ b=fxK+MF7VuVOPdBXBcRHPvAfaegNKmjhDLa5FG/Xw+9Cz9IXZXfKO6zsWfhePQqAseUNRl9u7SF0fYgIGgyMRfpNIpGpYLIpZH8G9GWHpahpR3SjgmMTDNigiVSLla3QwDlUMz79tsx8H0Pv/Zw5761gI67VdxtywCLN6zPYcFn8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
+ by AS8PR04MB7670.eurprd04.prod.outlook.com (2603:10a6:20b:297::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Mon, 22 May
- 2023 15:01:11 +0000
-Received: from DM6NAM11FT088.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3ad:cafe::1f) by DS7PR03CA0285.outlook.office365.com
- (2603:10b6:5:3ad::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28 via Frontend
- Transport; Mon, 22 May 2023 15:01:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT088.mail.protection.outlook.com (10.13.172.147) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6411.28 via Frontend Transport; Mon, 22 May 2023 15:01:10 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 22 May
- 2023 10:00:56 -0500
-From:   Michal Simek <michal.simek@amd.com>
-To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-        <michal.simek@xilinx.com>, <git@xilinx.com>
-CC:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.27; Mon, 22 May
+ 2023 15:00:14 +0000
+Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::b027:17aa:e5f5:4fea]) by AM0PR04MB6452.eurprd04.prod.outlook.com
+ ([fe80::b027:17aa:e5f5:4fea%6]) with mapi id 15.20.6411.028; Mon, 22 May 2023
+ 15:00:14 +0000
+Date:   Mon, 22 May 2023 18:00:10 +0300
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linuxppc-dev@lists.ozlabs.org,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Parth Gajjar <parth.gajjar@amd.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Srinivas Neeli <srinivas.neeli@xilinx.com>,
-        Vishal Sagar <vishal.sagar@amd.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v2 6/6] arm64: zynqmp: Used fixed-partitions for QSPI in k26
-Date:   Mon, 22 May 2023 16:59:53 +0200
-Message-ID: <7368dc772d8dc29477a880ac2065e2ecb98cf3f5.1684767562.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <cover.1684767562.git.michal.simek@amd.com>
-References: <cover.1684767562.git.michal.simek@amd.com>
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?utf-8?B?RmVybuKUnMOtbmRleg==?= Rojas <noltari@gmail.com>,
+        Jonas Gorski <jonas.gorski@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v14 00/15] phy: Add support for Lynx 10G SerDes
+Message-ID: <20230522150010.q5zndfwcuvrb6pg2@skbuf>
+References: <b7779674-c3ac-e0ab-3ca8-db1ec5953a97@seco.com>
+ <20230426105140.t4yqv6irtjcwptm5@skbuf>
+ <20230425195002.fls5cmwolyrslpad@skbuf>
+ <b7779674-c3ac-e0ab-3ca8-db1ec5953a97@seco.com>
+ <20230426105140.t4yqv6irtjcwptm5@skbuf>
+ <7c7ab84b-3c4a-4e44-b5b5-4acf733a0246@seco.com>
+ <7c7ab84b-3c4a-4e44-b5b5-4acf733a0246@seco.com>
+ <20230429172422.vc35tnwkekfieoru@skbuf>
+ <c81d23b6-ed22-0b37-d71b-ddce9d5d58eb@seco.com>
+ <c2f928d2-25f6-0e31-9ab3-9d585968df1b@seco.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c2f928d2-25f6-0e31-9ab3-9d585968df1b@seco.com>
+X-ClientProxiedBy: AS4P189CA0015.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5d7::19) To AM0PR04MB6452.eurprd04.prod.outlook.com
+ (2603:10a6:208:16d::21)
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5127; i=michal.simek@amd.com; h=from:subject:message-id; bh=4BxoH5GEkO+P7RNlBSyEwz59lTNpi7uO/qUt2btiaRc=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhpTs5vi5QdfrP/5edJ/R+/SkD4b+ZVv16rPe9C9Z+VmvJ PX19q37OmJZGASZGGTFFFmkba6c2Vs5Y4rwxcNyMHNYmUCGMHBxCsBE9n5nmB+xKF5F9aBaXm9K brFsk7YPS1O9PMM8Ux2TiRlhL01u8r79uCNdd8enj5cLAA==
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT088:EE_|CH2PR12MB4971:EE_
-X-MS-Office365-Filtering-Correlation-Id: 663ec5f3-2e28-468d-f983-08db5ad56156
+X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|AS8PR04MB7670:EE_
+X-MS-Office365-Filtering-Correlation-Id: cd6f4d8b-8da7-4396-2012-08db5ad53fb5
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JT6NfnfGNx9qyPEGZGeIU+5p9PuiC2TV2uxRnFisCINRWEy4mLG1ecNI2VAHnPI/yepSsYlCaTcpfM6J/17JkkO2ZUbXDDfy/J93l4w8Qi7AXFEtuzPoG+6xxuk7hUDZ8e9xnNKIecIqNGfX+6X0GnvNkIEn0Tbg72aQR4voM2OPjOJeFilkWoYECVGgv+WlHpKUdF9lR1KaOjabiHSr0llFzRklDlV8wkypxsODUGjbkTen8QILg1hyP3gPw68v1y8s82wW5id2iuq8hv9rYoxF2gFScdws7LexB0Q9jfwbJxAICZ1PhyY/I4Bi8eCfol2nbbATp6aQZYt6W6+fzUUFkkOOQ7QyWlt8E7biNofb4pc89tALSlxhPhVMQskMGK871bKk+tP5Q5X5D8d9hJQyHGMZBVgmmz2nczxC91rNQjJC755/hfSTuG8aUtHEFDL9H6wOw2p9WxAuz/NwRguz4Eq6rDtbQRRR9ylEpMKj+89b0Y4x8+tSxr+e0E7mfSoCUfiveeGhAluS0yWRXuJRdYH1edkuPsZIx7iy8NBr0+RPFOaaF69tvBVgfHYJeMHW2DRbFZy+Varcks+QTAuWQF1VRrYF7zEa72PjP+5lzuNSpJ1ImMR7Lp7m9F2mZTG3d9nQ+VWzZCpDQY1Hb1sy+IH/IiXPTyzBnhIMkLAe/+Tn7lZa6qqAWTWAPIfCD+Byn8regxubvY1fPRytsc8kbml5dr3heNgM5CsYapBe/OB5myoOEZCGGoLDOBtMQDS7b8BeN8H4v0s8+m12HXr5haUorKh3fWsPxxm4VIU=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(396003)(136003)(346002)(376002)(451199021)(36840700001)(40470700004)(46966006)(81166007)(356005)(82740400003)(40480700001)(40460700003)(86362001)(82310400005)(36756003)(426003)(16526019)(44832011)(8936002)(8676002)(336012)(7416002)(47076005)(2616005)(2906002)(186003)(54906003)(478600001)(41300700001)(316002)(4326008)(110136005)(26005)(5660300002)(6666004)(70206006)(70586007)(83380400001)(36860700001)(36900700001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2023 15:01:10.9899
+X-Microsoft-Antispam-Message-Info: foszXlwfKuk2yurSmEzFeqnhdf9iE9hDoUOPBTEUp7CyzZ7VzZXHartFN/cO0opz57sIui8oUkSY12zIFsi7TqWaAvBv2Vo0NllKnvun6I/mI38SAKtV0ValsV5UoFp8Lfkyt+NKAQoK9ZdoUNmxyjFIHYHfBCBiZVNL7pg7Li3Si56mtG0OpmoRNd58nSKj3w6lEyQOwyxnpMokouAS2bdjRG0589RMfhESEsEtXN1IGhViToApaexoVo3J4OfX5/1+8bBmFNy6Lgp1QLpYf/D7l1JoAwHJrNSImCSfElBY8afd+wA5L+M8j/aEIdcjsWXITLG6dtABSvSmuiygWx8We8YeBv1v5RZj6+ESEUmCcYIvE+SCmqQab3y/rxPw5M4VOCs+0jAORGGk2yRq0DL2nt/zFL5Z5Y52Iy4uDAmHLNedLkYYmzv+8NK2x0H3MgainWRtdrNqBtrbBrmngSBTaFf8bm7AVPyO5akVOoLTWMzyDFXydRJCQUkp61hktW43uJODJNfnhYx7bsOCkyH4UUpAmTkYVJ4EVcqhvEM11J0CQ+h1a63bqoyLyBRB
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6452.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(4636009)(136003)(376002)(346002)(396003)(366004)(39860400002)(451199021)(8676002)(8936002)(7416002)(44832011)(5660300002)(186003)(6512007)(6506007)(33716001)(26005)(1076003)(9686003)(86362001)(38100700002)(41300700001)(6666004)(558084003)(6486002)(478600001)(6916009)(4326008)(66946007)(66476007)(66556008)(54906003)(316002)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?s3v7KPkWB2B4nMS7Q2RVIg6K2MnDBWFfW13xRM3q4gyhnAZz1q4mNQ7P+tp3?=
+ =?us-ascii?Q?GewXD2JCbyBidPxTTwJUuwkDDdoGDBG73KFRhFGMXbACNDvYVS89ueUuZMUx?=
+ =?us-ascii?Q?ogwwwDYRUwRnEF3vKeZy1CqPkpokfPAeqgOM8QqLbN0FX370VvIf/UR8Kxpr?=
+ =?us-ascii?Q?R67hPqsYo16XAq6jfm1WK2OvfJFIEi5kUFP07MJ+qwvuSVi0cIFsTFim02UK?=
+ =?us-ascii?Q?OvbR4Ng1QNtrlF+cNxjfPTqXgQM6W3MfgATUFHvQoXvaXhuVnJcyuVMvPESi?=
+ =?us-ascii?Q?tHOyR36jA9Vn5s0QykSIqmvLWLBPcSVNoO9bC5A5Sob2UQ6cCvwaWUX6kuPJ?=
+ =?us-ascii?Q?dBGM5eyHXNfWcI1CsVKsbS1FTOFqlZNlx6ZWk6YluFuV3sNFf/xvdw5gR9XN?=
+ =?us-ascii?Q?pqxIMpcbjmt/ZFeDPstwxA04Vk9EzGyqQZbApEw7VAcRSkp7fQvcmNbbju7t?=
+ =?us-ascii?Q?y2ADfEYBJ/wfrV5Ls2hpCckc0egAIDgHwNkmEDIdlaqGPqllZBFhEtKC1f3O?=
+ =?us-ascii?Q?dL02yvTVwBIAC5ulVS1Ye0fEYqbCpf11uueWH5Mvb+FNAlrs4KY/PHU78QeY?=
+ =?us-ascii?Q?/39xTfhtC/whrzQx9w3xcb/rgwTnSL13V1Xl05QF0jmLGW129W3g5dV2tZH1?=
+ =?us-ascii?Q?9JpFTLrAQxPDnR3SJHlb+ORB168pP1DspCmuBtWpais7bD7aJXH+i/WtXUZI?=
+ =?us-ascii?Q?LevTokE3ciHSxKTE5HWNFSJlG6QeM07MfUPD98zFv7dZqRUzeWnZ+9iS4USz?=
+ =?us-ascii?Q?7ei8VVXuqbQrg0ebaiRi2SJTNwfwY6/Jn8LhTP6TpnlXWjm4RSsX1KIXF0yE?=
+ =?us-ascii?Q?COAlsNM6iDNoPuJELJD14UjxGjrXBVu3Me04Yi1YRt9VZcpmOUY0T848C3Ra?=
+ =?us-ascii?Q?TORYhnRnG2R20UyKm4AtBf3xpHDbQoNZyhHAc7QgXe2ZREhQpsvlrMphb+W2?=
+ =?us-ascii?Q?AVPzMFuGVVB27ePFJucRdBD53l3sa5ItKeADnDDZFrKW3/lDoK5Ip8ifH2hu?=
+ =?us-ascii?Q?2zVchP0/PvTVWeBDvwneY3B0caYzEo9/8tfOK67F+ThYKzIHBVRXDjGTBRyO?=
+ =?us-ascii?Q?LANn2JPttnRrYpUWcU1KDxsH6VOt6GCyoeWf5pE6tK/GFbFFlhHk11nGlVse?=
+ =?us-ascii?Q?dfOirQg5LkA/cNXcRRn8CHeHU68Fe5/fy63QTnQYmeC8vBCCwatWw5y4LASl?=
+ =?us-ascii?Q?5rAQEyvxJP7LpxudixxrFjiaKzML3wBYymsMOEADXnEySTVDEE/CVGsQn/4g?=
+ =?us-ascii?Q?RuyCcRVAoYlvoZNz0sZooyYDO8eBiREvX8BPBoy5YEJDfOgS/jgEOVn0NWuQ?=
+ =?us-ascii?Q?qdIOrOBoSyiUD2kG66e/DOXvzmIwqWyADPRXgbCtL4tZlm0Bqf5Mazb7vlAN?=
+ =?us-ascii?Q?LVcP61n+TZLIADhQIXBQPFvMrK3/J2YDyAFejANwET378bdoTGg5rYQrBlZg?=
+ =?us-ascii?Q?dLtgRo4DvbqCPBVL6w1IhmmyqktrJQr+/V2fptIob4TEtI+Ubr2MpoMKe7qn?=
+ =?us-ascii?Q?pjf2BL99L7laWhw3IyevDLZb7IcNXKs7xFM+Yy2Vxk3kLs2A/6A+GiVohOmD?=
+ =?us-ascii?Q?u6PUaB1Mcm+Tu0URfMfstiyhgdXEfiUd3UJX35xz30oObFwKdVLGprzov9gl?=
+ =?us-ascii?Q?xA=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd6f4d8b-8da7-4396-2012-08db5ad53fb5
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2023 15:00:14.8215
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 663ec5f3-2e28-468d-f983-08db5ad56156
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT088.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4971
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AJ205IlLv9ZHXAEkkXMBhX32pGbzWUQQ81URgVJENksORwKoO3+t3pfoUq4q8VYgHFwZVQjkOqYDAH0pmWlHnQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7670
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Using fixed partitions is recommended way how to describe QSPI. Also add
-label for qspi flash memory to be able to reference it in future.
+On Mon, May 22, 2023 at 10:42:04AM -0400, Sean Anderson wrote:
+> Have you had a chance to review this driver?
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
-
-(no changes since v1)
-
----
- .../boot/dts/xilinx/zynqmp-sm-k26-revA.dts    | 169 +++++++++---------
- 1 file changed, 88 insertions(+), 81 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-index 84e18fdce775..dfd1a18f5a10 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-@@ -127,87 +127,94 @@ spi_flash: flash@0 { /* MT25QU512A */
- 		spi-tx-bus-width = <4>;
- 		spi-rx-bus-width = <4>;
- 		spi-max-frequency = <40000000>; /* 40MHz */
--		partition@0 {
--			label = "Image Selector";
--			reg = <0x0 0x80000>; /* 512KB */
--			read-only;
--			lock;
--		};
--		partition@80000 {
--			label = "Image Selector Golden";
--			reg = <0x80000 0x80000>; /* 512KB */
--			read-only;
--			lock;
--		};
--		partition@100000 {
--			label = "Persistent Register";
--			reg = <0x100000 0x20000>; /* 128KB */
--		};
--		partition@120000 {
--			label = "Persistent Register Backup";
--			reg = <0x120000 0x20000>; /* 128KB */
--		};
--		partition@140000 {
--			label = "Open_1";
--			reg = <0x140000 0xC0000>; /* 768KB */
--		};
--		partition@200000 {
--			label = "Image A (FSBL, PMU, ATF, U-Boot)";
--			reg = <0x200000 0xD00000>; /* 13MB */
--		};
--		partition@f00000 {
--			label = "ImgSel Image A Catch";
--			reg = <0xF00000 0x80000>; /* 512KB */
--			read-only;
--			lock;
--		};
--		partition@f80000 {
--			label = "Image B (FSBL, PMU, ATF, U-Boot)";
--			reg = <0xF80000 0xD00000>; /* 13MB */
--		};
--		partition@1c80000 {
--			label = "ImgSel Image B Catch";
--			reg = <0x1C80000 0x80000>; /* 512KB */
--			read-only;
--			lock;
--		};
--		partition@1d00000 {
--			label = "Open_2";
--			reg = <0x1D00000 0x100000>; /* 1MB */
--		};
--		partition@1e00000 {
--			label = "Recovery Image";
--			reg = <0x1E00000 0x200000>; /* 2MB */
--			read-only;
--			lock;
--		};
--		partition@2000000 {
--			label = "Recovery Image Backup";
--			reg = <0x2000000 0x200000>; /* 2MB */
--			read-only;
--			lock;
--		};
--		partition@2200000 {
--			label = "U-Boot storage variables";
--			reg = <0x2200000 0x20000>; /* 128KB */
--		};
--		partition@2220000 {
--			label = "U-Boot storage variables backup";
--			reg = <0x2220000 0x20000>; /* 128KB */
--		};
--		partition@2240000 {
--			label = "SHA256";
--			reg = <0x2240000 0x40000>; /* 256B but 256KB sector */
--			read-only;
--			lock;
--		};
--		partition@2280000 {
--			label = "Secure OS Storage";
--			reg = <0x2280000 0x20000>; /* 128KB */
--		};
--		partition@22A0000 {
--			label = "User";
--			reg = <0x22A0000 0x1d60000>; /* 29.375 MB */
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "Image Selector";
-+				reg = <0x0 0x80000>; /* 512KB */
-+				read-only;
-+				lock;
-+			};
-+			partition@80000 {
-+				label = "Image Selector Golden";
-+				reg = <0x80000 0x80000>; /* 512KB */
-+				read-only;
-+				lock;
-+			};
-+			partition@100000 {
-+				label = "Persistent Register";
-+				reg = <0x100000 0x20000>; /* 128KB */
-+			};
-+			partition@120000 {
-+				label = "Persistent Register Backup";
-+				reg = <0x120000 0x20000>; /* 128KB */
-+			};
-+			partition@140000 {
-+				label = "Open_1";
-+				reg = <0x140000 0xC0000>; /* 768KB */
-+			};
-+			partition@200000 {
-+				label = "Image A (FSBL, PMU, ATF, U-Boot)";
-+				reg = <0x200000 0xD00000>; /* 13MB */
-+			};
-+			partition@f00000 {
-+				label = "ImgSel Image A Catch";
-+				reg = <0xF00000 0x80000>; /* 512KB */
-+				read-only;
-+				lock;
-+			};
-+			partition@f80000 {
-+				label = "Image B (FSBL, PMU, ATF, U-Boot)";
-+				reg = <0xF80000 0xD00000>; /* 13MB */
-+			};
-+			partition@1c80000 {
-+				label = "ImgSel Image B Catch";
-+				reg = <0x1C80000 0x80000>; /* 512KB */
-+				read-only;
-+				lock;
-+			};
-+			partition@1d00000 {
-+				label = "Open_2";
-+				reg = <0x1D00000 0x100000>; /* 1MB */
-+			};
-+			partition@1e00000 {
-+				label = "Recovery Image";
-+				reg = <0x1E00000 0x200000>; /* 2MB */
-+				read-only;
-+				lock;
-+			};
-+			partition@2000000 {
-+				label = "Recovery Image Backup";
-+				reg = <0x2000000 0x200000>; /* 2MB */
-+				read-only;
-+				lock;
-+			};
-+			partition@2200000 {
-+				label = "U-Boot storage variables";
-+				reg = <0x2200000 0x20000>; /* 128KB */
-+			};
-+			partition@2220000 {
-+				label = "U-Boot storage variables backup";
-+				reg = <0x2220000 0x20000>; /* 128KB */
-+			};
-+			partition@2240000 {
-+				label = "SHA256";
-+				reg = <0x2240000 0x40000>; /* 256B but 256KB sector */
-+				read-only;
-+				lock;
-+			};
-+			partition@2280000 {
-+				label = "Secure OS Storage";
-+				reg = <0x2280000 0x20000>; /* 128KB */
-+			};
-+			partition@22A0000 {
-+				label = "User";
-+				reg = <0x22A0000 0x1d60000>; /* 29.375 MB */
-+			};
- 		};
- 	};
- };
--- 
-2.36.1
-
+Partially / too little (and no, I don't have an answer yet). I am
+debugging a SERDES protocol change procedure from XFI to SGMII.
