@@ -2,92 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B94B70C1D5
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 17:02:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 303CE70C20C
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 17:12:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234287AbjEVPC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 11:02:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42322 "EHLO
+        id S234369AbjEVPMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 11:12:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234209AbjEVPCt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 11:02:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C94C1B0;
-        Mon, 22 May 2023 08:02:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D060061ACC;
-        Mon, 22 May 2023 15:01:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A20F6C4339C;
-        Mon, 22 May 2023 15:01:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684767717;
-        bh=hlZb/BcL2ZGEAgC342RcyW00zLOd6SfQlB7LY02Pazc=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=fBYDK/VPEZYhjWLSZPqkAqfOdR+jeTQ71/52z1/kLFXbdegenn3u/pHS83nbqrIfy
-         TKkeJIoRizqKQ5PuZy5/QOJutJwP8bJ3+2T6+mREQvdHgoi5T2MLTTlRRc8pmilO/L
-         nPuAoytudjsvm2Uys1tza03C1RbYD9NDLovH0+m2GEWJoCgIhZTo40MGTmLOJVeVtJ
-         7oH7KsXZmf9oYBIfaInnOxxdVGiMnh5rcl1WNhmkofyYxMzfvPtKRBOC3qcc5xknZ+
-         wXu4zm9JVejw7/dneR4iT6GGtZ5lGUw87TZFstJdtOaMcaz+oNailAX5qep161S/bd
-         EU/BD463hKvWg==
-From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S233894AbjEVPMU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 11:12:20 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94609BB;
+        Mon, 22 May 2023 08:12:19 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34MDrLhw003378;
+        Mon, 22 May 2023 15:12:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=97r4Q0EyNuirNJzWAVVdWotxvvNun0l3fubqls5DQXM=;
+ b=g7WUhvlJIPnKDAoa7qXObTrAjveLqML+YG7UFT1uWqNT3YjmKAy+CkE1ERoGBt9F9o8p
+ 4k738wvGUl/hlZrargjtkaL0qUD3znVl6XYGHnlABSulcncBXdj3BH5rYFpFWS9D3FH4
+ 8gvvAQnt1MxCjy1jh3/JUryirnucec/TQ7xrpNFgT862rOMtP8MM1lGp5aDcvw0U+N78
+ qRcUMQe2VriBf67bm48QEsW45GS5osAGSaHsQWK5wprmMMj3OZjx0ymt8FXiPBzraaXj
+ oIByBelrM5/yfZGUsW7rnvmgf8D2i0XeXka3HYplpRpoCP3BmAFgE+C3J5vjmyjYopdq ig== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qr6h0rngv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 22 May 2023 15:12:13 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 34MFC9em028911;
+        Mon, 22 May 2023 15:12:09 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 3qpq9kppmn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Mon, 22 May 2023 15:12:09 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 34MFC8Fl028906;
+        Mon, 22 May 2023 15:12:08 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-kbajaj-hyd.qualcomm.com [10.147.247.189])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 34MFC86h028904;
+        Mon, 22 May 2023 15:12:08 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2340697)
+        id BB8495001C2; Mon, 22 May 2023 20:42:07 +0530 (+0530)
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        David Epping <david.epping@missinglinkelectronics.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Komal Bajaj <quic_kbajaj@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-In-Reply-To: <20230519110545.GA18663@nucnuc.mle>
-References: <20230519110545.GA18663@nucnuc.mle>
-Subject: Re: [PATCH] ASoC: dt-bindings: tlv320aic32x4: Fix supply names
-Message-Id: <168476771538.849172.7248234647913395680.b4-ty@kernel.org>
-Date:   Mon, 22 May 2023 16:01:55 +0100
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-bfdf5
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Subject: [PATCH 0/2] arm64: dts: qcom: qdu1000: add IMEM
+Date:   Mon, 22 May 2023 20:42:04 +0530
+Message-Id: <20230522151206.22654-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PPHR5EilTl6XYuSTEmccl9Gnog4hJ_-Y
+X-Proofpoint-ORIG-GUID: PPHR5EilTl6XYuSTEmccl9Gnog4hJ_-Y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-22_10,2023-05-22_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ spamscore=0 suspectscore=0 clxscore=1015 adultscore=0 phishscore=0
+ mlxscore=0 lowpriorityscore=0 mlxlogscore=560 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305220126
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 May 2023 13:05:53 +0200, David Epping wrote:
-> The term "-supply" is a suffix to regulator names.
-> 
-> 
+Add IMEM on QDU1000 and QRU1000 SoCs.
 
-Applied to
+Komal Bajaj (2):
+  dt-bindings: sram: qcom,imem: document qdu1000
+  arm64: dts: qcom: qdu1000: Add IMEM and PIL info region
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+ .../devicetree/bindings/sram/qcom,imem.yaml         |  1 +
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi               | 13 +++++++++++++
+ 2 files changed, 14 insertions(+)
 
-Thanks!
-
-[1/1] ASoC: dt-bindings: tlv320aic32x4: Fix supply names
-      commit: 3a2e3fa795052b42da013931bc2e451bcecf4f0c
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.17.1
 
