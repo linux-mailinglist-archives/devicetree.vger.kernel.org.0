@@ -2,54 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 212B470B2D3
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 03:37:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9EB170B316
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 04:16:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230484AbjEVBhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 May 2023 21:37:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46818 "EHLO
+        id S229922AbjEVCQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 May 2023 22:16:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230527AbjEVBhD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 21:37:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 709ECDE;
-        Sun, 21 May 2023 18:37:02 -0700 (PDT)
+        with ESMTP id S229825AbjEVCQg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 May 2023 22:16:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BE1FB7;
+        Sun, 21 May 2023 19:16:35 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DEB0F618FA;
-        Mon, 22 May 2023 01:37:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F6E5C433A8;
-        Mon, 22 May 2023 01:37:01 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AC7EF61946;
+        Mon, 22 May 2023 02:16:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1892BC4339C;
+        Mon, 22 May 2023 02:16:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684719421;
-        bh=lv6wouIBbbs+ZUnfY6iszC49L7vXimaT8vWL2XojXUI=;
+        s=k20201202; t=1684721794;
+        bh=n2uaZ9rV4gw+Dcgfo0DSk4CEyQozD7dCVzjmhdw+dyA=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FCmviC3wl9npZoyPR9/+xP/t2umpo7tSwAklN5q4WZD+YwBWs4UPFLUyfsOLWs3ye
-         t7oJdiEnEaiCwdkgoKtffidLtwNE/oRIXag03eVnT3JEvnYGJ32WPFszueN+ytzOXA
-         3kBDlLNkEBbjmM00A7bn0PBlrTSSebh0MH49H18d6ac3snWaSngprGiq16L6OWjxRf
-         wMp/bo5dT7sLCjp9Nznq/HrgMzwn0dBLDOPJqbvOdlhSguDnIlnkWD1EmhaRze8cey
-         mI2Ni8rm3V6NBQgTr2rhx0AMX0aUoo97CULhJdOvWTe5ENW7aMfdSu+3QZeeD63lVB
-         1xw2meoBa0JHA==
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-510c734fa2dso6230363a12.0;
-        Sun, 21 May 2023 18:37:01 -0700 (PDT)
-X-Gm-Message-State: AC+VfDwdCtgmxUN+5dkJMd6HPqIqlJ7yinNje/uE3YkK+b+lnERz2P5e
-        9unC7RbcDpiscZuyDVj37PsXFZYwtYElQUhmk9k=
-X-Google-Smtp-Source: ACHHUZ6CO1iiQGsq6FLHKPtTopDUygqukzZyE+vzpTFrZB3aFb7iQCtAfVLKr/WwESBwjwhnp8zhJbdCNmBWQiBlpY4=
-X-Received: by 2002:aa7:c452:0:b0:504:81d4:118d with SMTP id
- n18-20020aa7c452000000b0050481d4118dmr8659697edr.3.1684719419571; Sun, 21 May
- 2023 18:36:59 -0700 (PDT)
+        b=McmCYlHhVDzHL5kc9dRRAsAuH8eHQrfIKjNgAFmIHR8b+WsIXqluaqokvmVoA6Urs
+         JVtb2sic/Hw0Eoyx77hO8ZWA6mkz6GAttMvZ98b8AWpbUad4BoBgxnM4pkk5lk8FNF
+         zPoL0UVJsRcBYHvytdIxHWfxHaYqgB9x7IzKEd2mvQ3AAeKsx3NnqZVKB1gIDU9WP6
+         mddSrh6Fne00SjCxscAZAwtQGkq+TyqXBvAPl3OL32VhytWhp9CrsXxSqew0hGb6n6
+         74I4xgNt88bx9RdzIcBgN3yf1C4IDDsNXa0Q8Lo9x4V2b0kj02T8fAm4LREMZurWhv
+         8d6GoeQYA7Gcw==
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-510eb980ce2so6007775a12.2;
+        Sun, 21 May 2023 19:16:33 -0700 (PDT)
+X-Gm-Message-State: AC+VfDwZwAtvnFsYF4fta7MI4yQEoTT8JxbaiogcapTKS1lWU7sixyD6
+        yb8IIwpe3vfXTcxk5s9TH8h7ruGpwl2jYbJd4nI=
+X-Google-Smtp-Source: ACHHUZ5xwayM/aFmbQ7NrqIngfedoekz46hxMtF2WEz5MLCZ/hk7/GMyHcg22kmLw3lIgY9iSEEtMBhb3acllwZ12M4=
+X-Received: by 2002:aa7:c6c8:0:b0:50b:c397:bbac with SMTP id
+ b8-20020aa7c6c8000000b0050bc397bbacmr7184287eds.29.1684721792303; Sun, 21 May
+ 2023 19:16:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230507182304.2934-1-jszhang@kernel.org> <20230507182304.2934-4-jszhang@kernel.org>
- <20230507-calamari-gentleman-bbe62af06f92@spud> <ZFkiotPacIMUghDP@xhacker>
- <20230508-unmoved-unvocal-9a6c5fc0c629@spud> <CAJF2gTSFm32ozEDy_3zvrf05USJ8FxCsaGK-2FbkJQsPUDQXmA@mail.gmail.com>
- <20230521-licorice-follicle-2f83e82f8bce@spud>
-In-Reply-To: <20230521-licorice-follicle-2f83e82f8bce@spud>
+References: <20230518184541.2627-1-jszhang@kernel.org> <20230518184541.2627-5-jszhang@kernel.org>
+ <20230518-driving-secluding-793b3192776e@spud>
+In-Reply-To: <20230518-driving-secluding-793b3192776e@spud>
 From:   Guo Ren <guoren@kernel.org>
-Date:   Mon, 22 May 2023 09:36:47 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTReEW3onRyAXvasX748JuyXJeLU3nQpmQMZRrkS2=ANjg@mail.gmail.com>
-Message-ID: <CAJF2gTReEW3onRyAXvasX748JuyXJeLU3nQpmQMZRrkS2=ANjg@mail.gmail.com>
-Subject: Re: [PATCH 3/5] riscv: dts: add initial T-HEAD light SoC device tree
+Date:   Mon, 22 May 2023 10:16:19 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTTGgLJ3SNcmhRGpAAw7jhOfYA5j=G9ZibwA8wUmeQN3UQ@mail.gmail.com>
+Message-ID: <CAJF2gTTGgLJ3SNcmhRGpAAw7jhOfYA5j=G9ZibwA8wUmeQN3UQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/9] dt-binding: riscv: add T-HEAD CPU reset
 To:     Conor Dooley <conor@kernel.org>
 Cc:     Jisheng Zhang <jszhang@kernel.org>,
         Thomas Gleixner <tglx@linutronix.de>,
@@ -61,11 +59,12 @@ Cc:     Jisheng Zhang <jszhang@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, heiko@sntech.de
+        linux-riscv@lists.infradead.org, Yangtao Li <frank.li@vivo.com>,
+        Wei Fu <wefu@redhat.com>, Icenowy Zheng <uwu@icenowy.me>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,58 +73,153 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 22, 2023 at 1:08=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+On Fri, May 19, 2023 at 3:53=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
 te:
 >
-> On Sun, May 21, 2023 at 11:37:58PM +0800, Guo Ren wrote:
-> > On Tue, May 9, 2023 at 12:44=E2=80=AFAM Conor Dooley <conor@kernel.org>=
- wrote:
-> > >
-> > > On Tue, May 09, 2023 at 12:26:10AM +0800, Jisheng Zhang wrote:
-> > > > On Sun, May 07, 2023 at 10:35:12PM +0100, Conor Dooley wrote:
-> > > > > On Mon, May 08, 2023 at 02:23:02AM +0800, Jisheng Zhang wrote:
-> > > > >
-> > > > > > +         c910_0: cpu@0 {
-> > > > > > +                 compatible =3D "thead,c910", "riscv";
-> > > > > > +                 device_type =3D "cpu";
-> > > > > > +                 riscv,isa =3D "rv64imafdc";
-> > > > >
-> > > > > Does this support more than "rv64imafdc"?
-> > > > > I assume there's some _xtheadfoo extensions that it does support,
-> > > > > although I am not sure how we are proceeding with those - Heiko m=
-ight
-> > > > > have a more nuanced take.
-> > > > >
-> > > > > > +         reset: reset-sample {
-> > > > > > +                 compatible =3D "thead,reset-sample";
-> > > > >
-> > > > > What is a "reset-sample"?
-> > > >
-> > > > This node is only for opensbi. The compatible string is already in
-> > > > opensbi. Do we also need to add dt-binding for it in linux?
-> > >
-> > > If it's to be included in the kernel's dts, then yes, you do need a
-> > > dt-binding. If you remove it, then you don't :)
-> > >
-> > > That said, "thead,reset-sample" is a strangely named compatible, so i=
-f
-> > > you do keep it it may end up needing a rename!
+> Hey Jisheng,
 >
-> > How about compatible =3D "thead,reset-th1520" ?
+> On Fri, May 19, 2023 at 02:45:36AM +0800, Jisheng Zhang wrote:
+> > The secondary CPUs in T-HEAD SMP capable platforms need some special
+> > handling. The first one is to write the warm reset entry to entry
+> > register. The second one is write a SoC specific control value to
+> > a SoC specific control reg. The last one is to clone some CSRs for
+> > secondary CPUs to ensure these CSRs' values are the same as the
+> > main boot CPU. This DT node is mainly used by opensbi firmware.
+> >
+> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > ---
+> >  .../bindings/riscv/thead,cpu-reset.yaml       | 69 +++++++++++++++++++
+> >  1 file changed, 69 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/riscv/thead,cpu-r=
+eset.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/riscv/thead,cpu-reset.ya=
+ml b/Documentation/devicetree/bindings/riscv/thead,cpu-reset.yaml
+> > new file mode 100644
+> > index 000000000000..ba8c87583b6b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/riscv/thead,cpu-reset.yaml
+> > @@ -0,0 +1,69 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/riscv/thead,cpu-reset.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: T-HEAD cpu reset controller
+> > +
+> > +maintainers:
+> > +  - Jisheng Zhang <jszhang@kernel.org>
+> > +
+> > +description: |
+> > +  The secondary CPUs in T-HEAD SMP capable platforms need some special
+> > +  handling. The first one is to write the warm reset entry to entry
+> > +  register. The second one is write a SoC specific control value to
+> > +  a SoC specific control reg. The last one is to clone some CSRs for
+> > +  secondary CPUs to ensure these CSRs' values are the same as the
+> > +  main boot CPU.
 >
-> "vendor,soc-function" is more typical, but "reset" is usually used for
-> reset controllers of which this isn't as far as I can tell.
-> I commented on the v2, hoping that you might actually know what the IP
-> block' full/proper name is:
-> https://lore.kernel.org/all/20230518-driving-secluding-793b3192776e@spud/
-Oh, sorry, I focused on s64ilp32 these days and missed that. I would
-reply to that thread.
+> Okay..
+>
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^cpurst"
+>
+> Firstly, why the nodename enforcement? We have a compatible, so we
+> should be okay, no?
+Yes, it needn't.
 
 >
-> Do you?
+> > +
+> > +  compatible:
+> > +    oneOf:
+> > +      - description: CPU reset on T-HEAD TH1520 SoC
+> > +        items:
+> > +          - const: thead,reset-th1520
 >
-> Cheers,
-> Conor.
+> You've only got one thing here, you don't need the oneOf.
+> Also, s/reset-th1520/th1520-reset/ please - although I do not know if
+> "reset" is the right word here. Do we know what the IP block is called
+> in the TRM/T-Head docs? Perhaps Guo Ren does if not.
+It's called CPU reset controller; every core has reset_ctrl &
+reset_entry signals; Soc just gathers them into some regs.
+For th1520, we have 4 reset_entries registers and 1 reset_ctrl
+register. Fu Wei would give out more details about it.
+
+>
+> > +  entry-reg:
+> > +    $ref: /schemas/types.yaml#/definitions/uint64
+> > +    description: |
+> > +      The entry reg address.
+> > +
+> > +  entry-cn
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: |
+> > +      The entry reg count.
+> > +
+> > +  control-reg:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+It should be uint64.
+
+> > +    description: |
+> > +      The control reg address.
+> > +
+> > +  control-val:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: |
+> > +      The value to be set into the control reg.
+> > +
+> > +  csr-copy:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    description: |
+> > +      The CSR registers to be cloned during CPU warm reset.
+>
+> All of these values set on a per-soc basis, right?
+Yes
+> If so, I don't think they should be in here at all since you should be
+> able to figure out the offsets from the base & the values to write based
+> on the compatible string alone, no?
+The driver works with all T-HEAD CPUs, not only for th1520. Some
+vendors may have their own custom CSRs, so the csr-copy feature is
+flexible enough to adjust in dts. As far as I can tell, hardware teams
+typically prefer to focus on the firmware binary rather than setting
+up the software compiling environment.
+
+>
+> Putting register values into the DT is always "suspect"!
+It's not register values, it's register offset/ CSR number.
+
+>
+> > +required:
+> > +  - compatible
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    cpurst: cpurst@ffff019050 {
+>                ^^^^^^^^^^^^^^^^^
+> This is also "suspect" and implies that "entry reg" should just be a
+> normal "reg" property.
+Yes, but we needn't reg, here. It should be:
+
+cpurst {
+
+Thx for debugging.
+
+>
+>
+> > +      compatible =3D "thead,reset-th1520";
+> > +      entry-reg =3D <0xff 0xff019050>;
+> > +      entry-cnt =3D <4>;
+> > +      control-reg =3D <0xff 0xff015004>;
+> > +      control-val =3D <0x1c>;
+> > +      csr-copy =3D <0x7f3 0x7c0 0x7c1 0x7c2 0x7c3 0x7c5 0x7cc>;
+> > +    };
+> > --
+> > 2.40.0
+> >
 
 
 
