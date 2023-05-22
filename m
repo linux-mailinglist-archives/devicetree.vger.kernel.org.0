@@ -2,81 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F165D70C54A
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 20:38:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D02AD70C555
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 20:38:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232748AbjEVSiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 14:38:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48022 "EHLO
+        id S233725AbjEVSi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 14:38:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230093AbjEVSiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 14:38:16 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F9F4B7
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 11:38:15 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f24cfb8539so7352231e87.3
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 11:38:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684780694; x=1687372694;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7g+eBWdXPpClWzwgE+9KC8dMIxNBnrOJ+PBoFojXwDU=;
-        b=iMrFsTnQvHs2azUIRBShLKj+1/m+uYiDEh3lFC7fKyfiQ2Si0y6/yONmK9yEX2mKfY
-         PESZWrg2BSbmqL2t5n/TUPv/nHj1BV/mhGm03cOU3GLrkTYQoGKYmgHpm8er2Oh+LISe
-         ra9jNmrH4JEu0D2KDhgDq0f1ajkSYlyjmyD9sxeEm9wvsr8/WTiGMW7ilouBHDTWG8J1
-         77D1uNOA8kls3K/LttvhXoSRJeFzbq50w+mQuVW+9GGCe5cLmhJ15uyGWCXQDM4LIvNn
-         ADc1qUzb24fy7LAWvPF9shMtZHy6QUfekjwcdfcn6lNXxwOsOFtWoBDbhQOF6WdoaMl4
-         Fjpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684780694; x=1687372694;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7g+eBWdXPpClWzwgE+9KC8dMIxNBnrOJ+PBoFojXwDU=;
-        b=FDgE6MfPm0/d22Wc5zilEtLPZMIdCzuyVXmEDFrpkgEX2v+JU83IQ4d5G4E5yl/Ry+
-         uof3uMViy39xfflTkfVA6ch7lpca1T6WPKzOWCqHzs4n1PrZAvUFWJMIzt8xcI1V1/Fy
-         jxN9fBnPm4aEvo70Zg8SyMwnF3OYc2pQB7BOx/2w1whVdAS2thdQocZsc4gDKeP2id/v
-         7B5BWZN43tRvUkGHa84V/1uPIXWYitgT+HMriO63//4Zz4sO2WKdC6c2fbDlgElX1CcZ
-         YvMn3Icv2hve3dfDDCriwzq7GxUfgvBVOyE1fw9DMUr9T+beMcFENglh4tvBCk9qaOBj
-         svdg==
-X-Gm-Message-State: AC+VfDyRuxq/CfagcDAylGJNo35Xnhj1gT4wLsPty1DfwirY2iIbuwin
-        COWO3fMzvU/v+/tIKVy9T4Vtvg==
-X-Google-Smtp-Source: ACHHUZ6I1qjJZwN+hTVMveXFNPlk35jCWxEx22+V+5Br2s5Gi2M7p+E667aAD+xd2QTCwVeIvuXyng==
-X-Received: by 2002:a05:6512:49e:b0:4f1:4d66:ac96 with SMTP id v30-20020a056512049e00b004f14d66ac96mr3283290lfq.19.1684780693706;
-        Mon, 22 May 2023 11:38:13 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id r11-20020a19ac4b000000b004f252f48e5fsm1079378lfc.40.2023.05.22.11.38.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 May 2023 11:38:13 -0700 (PDT)
-Message-ID: <844191d4-9a6b-605a-5d1a-cd4ad5dc98c9@linaro.org>
-Date:   Mon, 22 May 2023 21:38:12 +0300
+        with ESMTP id S231610AbjEVSiz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 14:38:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FA81107;
+        Mon, 22 May 2023 11:38:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D1B76618A0;
+        Mon, 22 May 2023 18:38:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1846C4339B;
+        Mon, 22 May 2023 18:38:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684780726;
+        bh=k+ztUyrowKth864y9ceYmAWMGnjd0ateRI2+IBMBGTg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=G6zapAYinGWGAXCgi9YCLSqCkeZnvJoOD5d8xvy4wRW6jNl2ohF6pVQ8u56HA5CQU
+         8Za7fHKyr84PXQCmNRIYldR3q/LuumWnYUU+P+c01FQIg2UcLFQRuOE4UdTlSUBoEK
+         EpCcqYgAtTPftXzLuCb3kw1HUH4PoXDzk58p1FgYwp+yvR4QYioOn0fqCbJUzZ5dsq
+         +YrJ0D8Wlo3UIp0UcgrDkr3H4lx1uQOIkyDFRlOADYWQE66ktZjDb7hCCxU3+OeX+f
+         51gB3iRedQvPG6uMfsJsvNOMkMq9hxwlseWSW48z1BF2ycigUX8oMUut5BHNsxnNV0
+         HiIW8YJY3DECg==
+Date:   Mon, 22 May 2023 19:38:39 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Florian Fainelli <florian.fainelli@broadcom.com>
+Cc:     Conor Dooley <mail@conchuod.ie>,
+        Justin Chen <justin.chen@broadcom.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        bcm-kernel-feedback-list@broadcom.com, justinpopo6@gmail.com,
+        f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, opendmb@gmail.com,
+        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        richardcochran@gmail.com, sumit.semwal@linaro.org,
+        christian.koenig@amd.com
+Subject: Re: [PATCH net-next v3 1/6] dt-bindings: net: brcm,unimac-mdio: Add
+ asp-v2.0
+Message-ID: <20230522-outshine-resample-f0c96c9345ca@spud>
+References: <1684531184-14009-1-git-send-email-justin.chen@broadcom.com>
+ <1684531184-14009-2-git-send-email-justin.chen@broadcom.com>
+ <2be2af5e-d117-fa2c-f960-e7f0c3ca3d0b@conchuod.ie>
+ <ce4a0153-1a6b-92d5-b760-489b09bbec73@broadcom.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 04/11] arm64: dts: qcom: msm8998: switch UFS QMP PHY to
- new style of bindings
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, Johan Hovold <johan@kernel.org>
-References: <20230521203834.22566-1-dmitry.baryshkov@linaro.org>
- <20230521203834.22566-5-dmitry.baryshkov@linaro.org>
- <37f97ffc-01c1-797c-f50c-1680f666d79d@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <37f97ffc-01c1-797c-f50c-1680f666d79d@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ce4a0153-1a6b-92d5-b760-489b09bbec73@broadcom.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,68 +67,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/05/2023 19:59, Konrad Dybcio wrote:
+On Mon, May 22, 2023 at 11:25:54AM -0700, Florian Fainelli wrote:
+> On 5/22/23 11:17, Conor Dooley wrote:
+> > On Fri, May 19, 2023 at 02:19:39PM -0700, Justin Chen wrote:
+> >  > The ASP 2.0 Ethernet controller uses a brcm unimac.
+> >  >
+> >  > Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> >  > Signed-off-by: Justin Chen <justin.chen@broadcom.com>
+> >  > ---
+> >  >  Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml | 2 ++
+> >  >  1 file changed, 2 insertions(+)
+> >  >
+> >  > diff --git
+> > a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+> > b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+> >  > index 0be426ee1e44..6684810fcbf0 100644
+> >  > --- a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+> >  > +++ b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+> >  > @@ -22,6 +22,8 @@ properties:
+> >  >        - brcm,genet-mdio-v3
+> >  >        - brcm,genet-mdio-v4
+> >  >        - brcm,genet-mdio-v5
+> >  > +      - brcm,asp-v2.0-mdio
+> >  > +      - brcm,asp-v2.1-mdio
+> >  >        - brcm,unimac-mdio
+> > 
+> > 
+> >  From V(N-1), there was some discussion between Rob & Florian:
+> >  > > How many SoCs does each of these correspond to? SoC specific
+> > compatibles
+> >  > > are preferred to version numbers (because few vendors are disciplined
+> >  > > at versioning and also not changing versions with every Soc).
+> >  >
+> >  > So far there is a 1:1 mapping between the number of versions and the
+> >  > number of SoCs, and the older SoC uses v2.0, while the newer one uses
+> > v2.1.
+> > 
+> > Rob's not around right now, but I don't really get why if there is a 1:1
+> > mapping you don't just name these things after the SoCs?
 > 
+> There is a 1:1 mapping now, but in the future there may be more SoCs with a
+> given implemented version. This is especially true for the MDIO controller
+> which has been largely unchanged since it was introduced.
+
+Figured that'd be it, but what was written in the previous thread made
+the opposite appear true!
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+> > Also, my mailer **refused** to let me reply to you because of something
+> > to do with a garbage S/MIME signature? Dunno wtf is happening there.
 > 
-> On 21.05.2023 22:38, Dmitry Baryshkov wrote:
->> Change the UFS QMP PHY to use newer style of QMP PHY bindings (single
->> resource region, no per-PHY subnodes).
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/msm8998.dtsi | 16 +++-------------
->>   1 file changed, 3 insertions(+), 13 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
->> index b150437a8355..848fbd2cb3f8 100644
->> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
->> @@ -980,7 +980,7 @@ ufshc: ufshc@1da4000 {
->>   			compatible = "qcom,msm8998-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
->>   			reg = <0x01da4000 0x2500>;
->>   			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
->> -			phys = <&ufsphy_lanes>;
->> +			phys = <&ufsphy>;
->>   			phy-names = "ufsphy";
->>   			lanes-per-direction = <2>;
->>   			power-domains = <&gcc UFS_GDSC>;
->> @@ -1021,11 +1021,8 @@ ufshc: ufshc@1da4000 {
->>   
->>   		ufsphy: phy@1da7000 {
->>   			compatible = "qcom,msm8998-qmp-ufs-phy";
->> -			reg = <0x01da7000 0x18c>;
->> -			#address-cells = <1>;
->> -			#size-cells = <1>;
->> +			reg = <0x01da7000 0x1000>;
->>   			status = "disabled";
->> -			ranges;
->>   
->>   			clock-names =
->>   				"ref",
->> @@ -1037,14 +1034,7 @@ ufsphy: phy@1da7000 {
->>   			reset-names = "ufsphy";
->>   			resets = <&ufshc 0>;
->>   
->> -			ufsphy_lanes: phy@1da7400 {
->> -				reg = <0x01da7400 0x128>,
->> -				      <0x01da7600 0x1fc>,
->> -				      <0x01da7c00 0x1dc>,
->> -				      <0x01da7800 0x128>,
->> -				      <0x01da7a00 0x1fc>;
->> -				#phy-cells = <0>;
->> -			};
->> +			#phy-cells = <0>;
-> Looks like that will make status not-last?
+> Our SMTP server is configured to automatically wrap the message in a S/MIME
+> envelope, nothing invalid though AFAICT. What's your email client?
 
-It was not the last one beforehand, so I hesitated to move it. Let's fix it.
-
-> 
-> Konrad
->>   		};
->>   
->>   		tcsr_mutex: hwlock@1f40000 {
-
--- 
-With best wishes
-Dmitry
-
+Mutt - I guess it was user-error because getting S/MIME stuff
+auto-populated the security field on my end. Annoying but w/e...
