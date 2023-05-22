@@ -2,154 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F92E70BCD6
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 14:02:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 981B370BCF0
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 14:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233675AbjEVMCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 08:02:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40420 "EHLO
+        id S233155AbjEVMID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 08:08:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233516AbjEVMCK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 08:02:10 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0444AE6D;
-        Mon, 22 May 2023 05:01:44 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-6ab094a7c04so2304903a34.3;
-        Mon, 22 May 2023 05:01:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684756903; x=1687348903;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Moy/ony+EdvX1jz/+oyrc2kgrzZqbM469cSFPKr3hEA=;
-        b=VvAfmXGG4LCS2blRvuSOMomTO9QVwnC5r8y27s4kEIYsxT3JDc8iWUcx658Aaw15fz
-         VeQQA+E0iefer7hNm+uuY6YRGYNOYGaH72MtVOZ0TDxL5HA57I2sA/p8nIFpt+Ke1rWX
-         gbBaM+YcJM+Mc/aGgvSyF86S3FBOUkRjxuG9nCDebNMuruPtLG0QT6/BhqLvnzu0fJDM
-         cbJ9bw8ZGYn8l0Ce3HDAPOqRYr6yx+qWaxvXJO3LwSKLjv8Gylw9pgopLkC+hLjRqeg1
-         /ieqOBLAonZnu5477xPpllgMaHhpndNL1hcSogtDPqDhywZF1DimaTGcKD6mMrGkou5X
-         aAuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684756903; x=1687348903;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Moy/ony+EdvX1jz/+oyrc2kgrzZqbM469cSFPKr3hEA=;
-        b=VZr85FaTEGcu/+bliabUV3Jw0TKWJUHYUGWCC3KrCgGqefiiDGjQ4hVurd2X+cT8mL
-         3RzzEtXyrw718fN+FXELUmlJcyXXb0hcnTL8t50Fyp7NIRmDivhqPd88lr/6H+/q/DS0
-         zxy9l3ybfrkMKRUjjoi42UtbJhG2olnVbaAQYDEhJmG9LFyrBPwCn+MRjZ4Bqhhasdxx
-         tbyKg/Vi6JVlEDLTKpiafzpER77FDLjmWcNJ2Rmnx0WO/1FQMQMfzQ6AsQ+Vaj24kpsO
-         DffthDe9Ci35n821cloQjUITBNLxbCSwmqa5+ywF9axQfYRZNhPIRZoIjpfIpDxHhxAZ
-         rCIg==
-X-Gm-Message-State: AC+VfDz6In7AQQ5xTPUg/HT6bqWs/VeLmynoTzuYghfClZBMTW8kvCIS
-        41bZV+ogih1VfgDev5gehyZixZm4aIIXQGEHpgD2tTpE
-X-Google-Smtp-Source: ACHHUZ7m/P2pSYKi3l1YeYP1uJEyK84GWpko5Gc1wppzDZ2LUrEyupnGeX/KdrijLb20qeoNIT8WZMODgMFvhAg/7pE=
-X-Received: by 2002:a05:6871:543:b0:17f:7388:4c69 with SMTP id
- t3-20020a056871054300b0017f73884c69mr4956438oal.30.1684756902233; Mon, 22 May
- 2023 05:01:42 -0700 (PDT)
+        with ESMTP id S233141AbjEVMIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 08:08:02 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A14BCA
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 05:07:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684757278; x=1716293278;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=cds4ledsHAK2/w9AwuoI+8UzupeRMd8dRiUzVMetZDs=;
+  b=OfOoczHZ8/QgzBV3g0MWtvORb3E5RDekUEtxK6M1FPmaWD1bIg2v+WM4
+   Rr7U8J7PigUWFFc4We3CNIj7Vht8Uj8yfGcQsjhcgvm+azZ952JCuRokZ
+   zJFsAyWwKsffKh7bcWnjfBoCUilgv0QlXUhm0ctKef0dkbXtY6Ve6ILPN
+   LbjzSXng2cb7GWIiKpB2i1VAOD8GZgfiL5t5S7fqM2KGfuYhApLRooOLH
+   iepg3dYW5lgfFcXI7xQGH8nibzEISlbGe+qAFTJpM3KoJ3O9P7v9BiNoK
+   5u1bi59KwfG2/FsRKetBAAEt/Fa0OQlQxi6BekuZlxtd0dX5RJZdu0vJo
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; 
+   d="asc'?scan'208";a="226388335"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 May 2023 05:07:58 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 22 May 2023 05:07:41 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Mon, 22 May 2023 05:07:39 -0700
+Date:   Mon, 22 May 2023 13:07:17 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Fabio Estevam <festevam@denx.de>
+CC:     Conor Dooley <conor@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>, <shawnguo@kernel.org>,
+        <marex@denx.de>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>
+Subject: Re: [PATCH v4 2/4] dt-bindings: soc: Add i.MX6SX General Purpose
+ Register
+Message-ID: <20230522-fraying-swear-3438ac24a2b7@wendy>
+References: <20230519125236.352050-1-festevam@gmail.com>
+ <20230519125236.352050-2-festevam@gmail.com>
+ <20230519-floral-diagram-894858b940c1@spud>
+ <e5ec645a717b13cf9b0e11aa59ea5a81@denx.de>
 MIME-Version: 1.0
-References: <20230405215328.3755561-1-bb@ti.com>
-In-Reply-To: <20230405215328.3755561-1-bb@ti.com>
-From:   Christian Gmeiner <christian.gmeiner@gmail.com>
-Date:   Mon, 22 May 2023 14:01:30 +0200
-Message-ID: <CAH9NwWcCyApw2Qp3bd_1uBJQ0gEXewmSg9oY4QQUg_X_+5+m-Q@mail.gmail.com>
-Subject: Re: [PATCH v3 0/7] add VTM nodes to TI's K3 SoCs
-To:     Bryan Brattlof <bb@ti.com>
-Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Keerthy <j-keerthy@ti.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        ARM Linux Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="GasPvtGPCBk96Uou"
+Content-Disposition: inline
+In-Reply-To: <e5ec645a717b13cf9b0e11aa59ea5a81@denx.de>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+--GasPvtGPCBk96Uou
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Am Do., 6. Apr. 2023 um 00:01 Uhr schrieb Bryan Brattlof <bb@ti.com>:
->
-> Hello again everyone!
->
-> This patch series adds in basic VTM nodes for all of TI's K3 SoCs. As of
-> right now these do not do much other than add thermal entries into the
-> sysfs directory and power down the device once it exceeds a critical
-> temperature.
->
-> Changes from v1: [0]
-> - Fixed indexing of thermal nodes[0]
->
-> Changes from v2: [1]
-> - Updated unit address for am62x's &cbass_wakeup
-> - Dropped my j7* patches and cherry-picked Keerthy's
->
-> [0] https://lore.kernel.org/all/20230119221322.12563-1-bb@ti.com/
-> [1] https://lore.kernel.org/all/20230120003051.9100-1-bb@ti.com/
->
+On Mon, May 22, 2023 at 08:49:35AM -0300, Fabio Estevam wrote:
+> On 19/05/2023 16:23, Conor Dooley wrote:
+>=20
+> > > +  bridge@18:
+> > > +    type: object
+> > > +    $ref: /schemas/display/bridge/fsl,ldb.yaml#
+> > > +    unevaluatedProperties: false
+> >=20
+> > How come you need to upgrade the additionaProperties: false, and the
+> > "plain old" $ref is not sufficient?
+>=20
+> I am passing unevaluatedProperties: false, not additionaProperties: false
+> here,
+> so I am not sure I understood your comment.
 
-What is missing to get this series landed?
+I was referring to the additionalProperties: false in the schema in the
+$ref:, but I had myself confused and doing s/unevaluated/additional/
+here would cause complaints about the properties being undefined.
 
-> Thanks for reviewing!
-> ~Bryan
->
-> Bryan Brattlof (3):
->   arm64: dts: ti: k3-am64-main: add VTM node
->   arm64: dts: ti: k3-am62-wakeup: add VTM node
->   arm64: dts: ti: k3-am62a-wakeup: add VTM node
->
-> Keerthy (4):
->   arm64: dts: ti: j784s4: Add VTM node
->   arm64: dts: ti: j721e: Add VTM node
->   arm64: dts: ti: j7200: Add VTM node
->   arm64: dts: ti: j721s2: Add VTM node
->
->  arch/arm64/boot/dts/ti/k3-am62-thermal.dtsi   |  33 ++++++
->  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi    |   8 ++
->  arch/arm64/boot/dts/ti/k3-am62.dtsi           |   8 +-
->  arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi  |  47 ++++++++
->  arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi   |   8 ++
->  arch/arm64/boot/dts/ti/k3-am62a.dtsi          |   2 +
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |   8 ++
->  arch/arm64/boot/dts/ti/k3-am64-thermal.dtsi   |  33 ++++++
->  arch/arm64/boot/dts/ti/k3-am64.dtsi           |   3 +
->  .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      |   9 ++
->  arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi  |  47 ++++++++
->  arch/arm64/boot/dts/ti/k3-j7200.dtsi          |   2 +
->  .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |   9 ++
->  arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi  |  75 +++++++++++++
->  arch/arm64/boot/dts/ti/k3-j721e.dtsi          |   2 +
->  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |   9 ++
->  arch/arm64/boot/dts/ti/k3-j721s2-thermal.dtsi | 101 ++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j721s2.dtsi         |   4 +
->  .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     |   9 ++
->  arch/arm64/boot/dts/ti/k3-j784s4-thermal.dtsi | 101 ++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j784s4.dtsi         |   4 +
->  21 files changed, 520 insertions(+), 2 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-thermal.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am64-thermal.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-thermal.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-thermal.dtsi
->
->
-> base-commit: 891db0c48efb48c3af334006f9d7ea6a0aa49cb9
-> --
-> 2.40.0
->
+> So I will keep it like this.
 
+Yeah, sorry for the confusion!
 
--- 
-greets
---
-Christian Gmeiner, MSc
+--GasPvtGPCBk96Uou
+Content-Type: application/pgp-signature; name="signature.asc"
 
-https://christian-gmeiner.info/privacypolicy
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGta9QAKCRB4tDGHoIJi
+0o7YAPoDXWfR1ZZq3j9UJ0Z5ph06erA56cYtJbLKBz8/NiTEXAEAo4aDCSQUjGb1
+CH4K2FweiTBnuZU1UZvWOFKlnY/VHg8=
+=nTT2
+-----END PGP SIGNATURE-----
+
+--GasPvtGPCBk96Uou--
