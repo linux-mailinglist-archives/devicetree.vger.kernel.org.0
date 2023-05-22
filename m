@@ -2,101 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6E1170BC8A
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 13:58:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F92E70BCD6
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 14:02:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233532AbjEVL6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 07:58:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35650 "EHLO
+        id S233675AbjEVMCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 08:02:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232479AbjEVL56 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 07:57:58 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498C5CA
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 04:57:49 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3093eb8cd1fso3682396f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 04:57:49 -0700 (PDT)
+        with ESMTP id S233516AbjEVMCK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 08:02:10 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0444AE6D;
+        Mon, 22 May 2023 05:01:44 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-6ab094a7c04so2304903a34.3;
+        Mon, 22 May 2023 05:01:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684756668; x=1687348668;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HHcEkVfjNMCd/aY73HBYifBSkk0ncK1u/s9ksPVcuck=;
-        b=IgdPlVt4nG7px9jXOf01WXuTWGrW5wyMvYnQWzsr/MDfWomkoWKDe9TB0Bs9NfHL6f
-         Yabxv3nQ4nOc+PbkjEOD0/NAD4n6blCWkbWHiLpZRqIKmQ8rzuf8u5MB5Kp5eD2WUKXm
-         vBTWCKBgUmIm3aEY0xT1+XF5IHZoh1IZGaPJ5EMJcmUe6+NGnDXy5fNLZJwFJgozaKnT
-         8K7PxG5N+lcwXRb7lXWEICcATFmnDzrp2Oe/cACn8TFJH0uxuK7XVG2RhiYZobd5KrVV
-         /8OBX/9jTnfCcmtBcwV+LtqciKdo83ZQhrSuFwa7dLl7zK+gRfQZ71f4egFpinGUcdn0
-         ROew==
+        d=gmail.com; s=20221208; t=1684756903; x=1687348903;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Moy/ony+EdvX1jz/+oyrc2kgrzZqbM469cSFPKr3hEA=;
+        b=VvAfmXGG4LCS2blRvuSOMomTO9QVwnC5r8y27s4kEIYsxT3JDc8iWUcx658Aaw15fz
+         VeQQA+E0iefer7hNm+uuY6YRGYNOYGaH72MtVOZ0TDxL5HA57I2sA/p8nIFpt+Ke1rWX
+         gbBaM+YcJM+Mc/aGgvSyF86S3FBOUkRjxuG9nCDebNMuruPtLG0QT6/BhqLvnzu0fJDM
+         cbJ9bw8ZGYn8l0Ce3HDAPOqRYr6yx+qWaxvXJO3LwSKLjv8Gylw9pgopLkC+hLjRqeg1
+         /ieqOBLAonZnu5477xPpllgMaHhpndNL1hcSogtDPqDhywZF1DimaTGcKD6mMrGkou5X
+         aAuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684756668; x=1687348668;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HHcEkVfjNMCd/aY73HBYifBSkk0ncK1u/s9ksPVcuck=;
-        b=SAZ6wz9dPYlEf5jDgxTfkydwir3k7eIzyVO7MxRNIjJLJd9rv/92Qoz+X6zWXA7SYh
-         w+T5FlDpFC2pGDta1vnHXNISq3naYhT0/J2UwMchOcVM2cH4SEMkiSj3IuVH0EucbdxJ
-         7lxfXRFa6FZIhx89zWAKLjGBu6cXV8bOvoaXmvjQAviw0SVSd2cKpfk1V8M6png1WL+j
-         nyuhW5vJbaaLcbz8AmVmvWrkyNP5h/aUBAZRKTVSDU0KuzAVsPr5TnkHBpJcrm1cXquf
-         Z5aDjBi+txqk1mpbJjp/CIilkDm9apqoJAyuxBx3nXSoaKnrMNXL291A2cxRpoF4enWM
-         P0Hw==
-X-Gm-Message-State: AC+VfDxCP48/HWWP0eiC5P9gOkc1uKuH4AFspQAb3Ls2Pl95LrFyNlDA
-        Um1LFK0F/cd+PW29UNlMDAVDAA==
-X-Google-Smtp-Source: ACHHUZ7f7u7OOpOaDCL+ah3IE7mbWLEGk6YsW0KHmPmbBuQ7fO1vU4CdZ+K6Z5hilhw9Ri2/snKboQ==
-X-Received: by 2002:adf:f64c:0:b0:309:43cd:484d with SMTP id x12-20020adff64c000000b0030943cd484dmr7232040wrp.27.1684756667764;
-        Mon, 22 May 2023 04:57:47 -0700 (PDT)
-Received: from [192.168.1.91] (192.201.68.85.rev.sfr.net. [85.68.201.192])
-        by smtp.gmail.com with ESMTPSA id w4-20020adfee44000000b0030785b864f1sm7507400wro.65.2023.05.22.04.57.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 May 2023 04:57:47 -0700 (PDT)
-Message-ID: <e8989a1a-97e0-3964-e588-a5e8115a1076@baylibre.com>
-Date:   Mon, 22 May 2023 13:57:46 +0200
+        d=1e100.net; s=20221208; t=1684756903; x=1687348903;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Moy/ony+EdvX1jz/+oyrc2kgrzZqbM469cSFPKr3hEA=;
+        b=VZr85FaTEGcu/+bliabUV3Jw0TKWJUHYUGWCC3KrCgGqefiiDGjQ4hVurd2X+cT8mL
+         3RzzEtXyrw718fN+FXELUmlJcyXXb0hcnTL8t50Fyp7NIRmDivhqPd88lr/6H+/q/DS0
+         zxy9l3ybfrkMKRUjjoi42UtbJhG2olnVbaAQYDEhJmG9LFyrBPwCn+MRjZ4Bqhhasdxx
+         tbyKg/Vi6JVlEDLTKpiafzpER77FDLjmWcNJ2Rmnx0WO/1FQMQMfzQ6AsQ+Vaj24kpsO
+         DffthDe9Ci35n821cloQjUITBNLxbCSwmqa5+ywF9axQfYRZNhPIRZoIjpfIpDxHhxAZ
+         rCIg==
+X-Gm-Message-State: AC+VfDz6In7AQQ5xTPUg/HT6bqWs/VeLmynoTzuYghfClZBMTW8kvCIS
+        41bZV+ogih1VfgDev5gehyZixZm4aIIXQGEHpgD2tTpE
+X-Google-Smtp-Source: ACHHUZ7m/P2pSYKi3l1YeYP1uJEyK84GWpko5Gc1wppzDZ2LUrEyupnGeX/KdrijLb20qeoNIT8WZMODgMFvhAg/7pE=
+X-Received: by 2002:a05:6871:543:b0:17f:7388:4c69 with SMTP id
+ t3-20020a056871054300b0017f73884c69mr4956438oal.30.1684756902233; Mon, 22 May
+ 2023 05:01:42 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v7 0/6] Add support for TI TPS65219 PMIC.
-Content-Language: en-US
-From:   jerome Neanne <jneanne@baylibre.com>
-To:     Francesco Dolcini <francesco@dolcini.it>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        nm@ti.com, kristo@kernel.org, dmitry.torokhov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, catalin.marinas@arm.com,
-        will@kernel.org, lee@kernel.org, tony@atomide.com, vigneshr@ti.com,
-        shawnguo@kernel.org, geert+renesas@glider.be,
-        dmitry.baryshkov@linaro.org, marcel.ziswiler@toradex.com,
-        vkoul@kernel.org, biju.das.jz@bp.renesas.com, arnd@arndb.de,
-        jeff@labundy.com, afd@ti.com, khilman@baylibre.com,
-        narmstrong@baylibre.com, msp@baylibre.com, j-keerthy@ti.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-omap@vger.kernel.org
-References: <20221104152311.1098603-1-jneanne@baylibre.com>
- <Y44ztV+2j4krM8mp@francesco-nb.int.toradex.com>
- <753775e9-33f6-031f-8da5-2f65894f44fe@baylibre.com>
-In-Reply-To: <753775e9-33f6-031f-8da5-2f65894f44fe@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230405215328.3755561-1-bb@ti.com>
+In-Reply-To: <20230405215328.3755561-1-bb@ti.com>
+From:   Christian Gmeiner <christian.gmeiner@gmail.com>
+Date:   Mon, 22 May 2023 14:01:30 +0200
+Message-ID: <CAH9NwWcCyApw2Qp3bd_1uBJQ0gEXewmSg9oY4QQUg_X_+5+m-Q@mail.gmail.com>
+Subject: Re: [PATCH v3 0/7] add VTM nodes to TI's K3 SoCs
+To:     Bryan Brattlof <bb@ti.com>
+Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Keerthy <j-keerthy@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        ARM Linux Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi!
+
+Am Do., 6. Apr. 2023 um 00:01 Uhr schrieb Bryan Brattlof <bb@ti.com>:
+>
+> Hello again everyone!
+>
+> This patch series adds in basic VTM nodes for all of TI's K3 SoCs. As of
+> right now these do not do much other than add thermal entries into the
+> sysfs directory and power down the device once it exceeds a critical
+> temperature.
+>
+> Changes from v1: [0]
+> - Fixed indexing of thermal nodes[0]
+>
+> Changes from v2: [1]
+> - Updated unit address for am62x's &cbass_wakeup
+> - Dropped my j7* patches and cherry-picked Keerthy's
+>
+> [0] https://lore.kernel.org/all/20230119221322.12563-1-bb@ti.com/
+> [1] https://lore.kernel.org/all/20230120003051.9100-1-bb@ti.com/
+>
+
+What is missing to get this series landed?
+
+> Thanks for reviewing!
+> ~Bryan
+>
+> Bryan Brattlof (3):
+>   arm64: dts: ti: k3-am64-main: add VTM node
+>   arm64: dts: ti: k3-am62-wakeup: add VTM node
+>   arm64: dts: ti: k3-am62a-wakeup: add VTM node
+>
+> Keerthy (4):
+>   arm64: dts: ti: j784s4: Add VTM node
+>   arm64: dts: ti: j721e: Add VTM node
+>   arm64: dts: ti: j7200: Add VTM node
+>   arm64: dts: ti: j721s2: Add VTM node
+>
+>  arch/arm64/boot/dts/ti/k3-am62-thermal.dtsi   |  33 ++++++
+>  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi    |   8 ++
+>  arch/arm64/boot/dts/ti/k3-am62.dtsi           |   8 +-
+>  arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi  |  47 ++++++++
+>  arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi   |   8 ++
+>  arch/arm64/boot/dts/ti/k3-am62a.dtsi          |   2 +
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |   8 ++
+>  arch/arm64/boot/dts/ti/k3-am64-thermal.dtsi   |  33 ++++++
+>  arch/arm64/boot/dts/ti/k3-am64.dtsi           |   3 +
+>  .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      |   9 ++
+>  arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi  |  47 ++++++++
+>  arch/arm64/boot/dts/ti/k3-j7200.dtsi          |   2 +
+>  .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |   9 ++
+>  arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi  |  75 +++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j721e.dtsi          |   2 +
+>  .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |   9 ++
+>  arch/arm64/boot/dts/ti/k3-j721s2-thermal.dtsi | 101 ++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j721s2.dtsi         |   4 +
+>  .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     |   9 ++
+>  arch/arm64/boot/dts/ti/k3-j784s4-thermal.dtsi | 101 ++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j784s4.dtsi         |   4 +
+>  21 files changed, 520 insertions(+), 2 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62-thermal.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am62a-thermal.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am64-thermal.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-thermal.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-thermal.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-thermal.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-thermal.dtsi
+>
+>
+> base-commit: 891db0c48efb48c3af334006f9d7ea6a0aa49cb9
+> --
+> 2.40.0
+>
 
 
-On 06/12/2022 20:22, jerome Neanne wrote:
-> 
-> 
-> On 05/12/2022 19:08, Francesco Dolcini wrote:
->> On Fri, Nov 04, 2022 at 04:23:05PM +0100, Jerome Neanne wrote:
->>> Hi everyone,
->> Hello Jerome,
->>
->> are you planning to have also gpio support added to the driver?
+-- 
+greets
+--
+Christian Gmeiner, MSc
 
-FYI, this is under review:
-https://lore.kernel.org/lkml/20230511-tps65219-add-gpio-support-v2-0-60feb64d649a@baylibre.com/
+https://christian-gmeiner.info/privacypolicy
