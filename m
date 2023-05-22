@@ -2,79 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02A0270C0E3
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 16:20:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10FA470C0E7
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 16:21:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233697AbjEVOUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 10:20:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47956 "EHLO
+        id S233199AbjEVOVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 10:21:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233783AbjEVOT5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 10:19:57 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F954CA
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 07:19:55 -0700 (PDT)
-Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: festevam@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 9B19682790;
-        Mon, 22 May 2023 16:19:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684765193;
-        bh=BiA6ngLjNQMzI0IypKpbluUauwYsIez277R5ouw0YJI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=WV4ZlEABFd5cGEHZjEGdg+Ygd/8xtKIW4R8uxAt1s46MbZPWb0fLn7X4YOpxo1qRz
-         FtDhIQEFkFXEfX9uELCeuyfIHc42u7fyV3/TEXESjNhep4chy+D2laOJw8hA3p5anm
-         Ey67A9NgCzfmt4ixDcDEg2smBH/jRCwkJM6HGaF22zHSCM2n/Mt+ixrdQYC399wcrt
-         heKNw0dpGRReztCLuwgKugs8/S4+UkkVe/a/8edJYxHrBzBqWXomC3QvAeBuJ23+sQ
-         vcKIe4laM7oFI0IwdJhhavMZ9Ym3h0JI3zMC6s+XCLdj8UHzrYJnlByDNXgcUHAnzR
-         pmkVuNTtFO9Yg==
+        with ESMTP id S233113AbjEVOVQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 10:21:16 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A7C2A3;
+        Mon, 22 May 2023 07:21:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684765275; x=1716301275;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6B3vXaIvsSyFL8WRgXEifU405baar89aaaU3DZ4ZCOI=;
+  b=mGvWkExU3V9X5YXgrwcg55GUliJbIRwAmVPVlPLVEB6wE4CiIFuON4xP
+   9ddGNgwu/QIZt5XAlwNSDN+OLFl62wrciMia9Y7VhjhZY6SVFS8MWPwdH
+   l31eKr5NB3AVJt5vkCrMDx9ucVHLyDzhh3nIe7PXfHxfFDWx/P7tjJupm
+   6lMrrOC8GWnMO4e2/OA0zMPlXR4ncyZQH+/jh0Q69CvKX/ANxne712XpE
+   IYbn90Y2ddt00/1fJWMeLQp4yJzPz6QFtBflleWXtD6LMF+mGHVDlg5nY
+   HJRVEQ66jphxVA0njyazL+WGOMYtSOr2bZhj1daoWwaUTQXiiNjnsUg8N
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,184,1681196400"; 
+   d="asc'?scan'208";a="212478960"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 May 2023 07:21:14 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Mon, 22 May 2023 07:21:09 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Mon, 22 May 2023 07:21:07 -0700
+Date:   Mon, 22 May 2023 15:20:45 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Jia Jie Ho <jiajie.ho@starfivetech.com>
+CC:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v8 2/4] crypto: starfive - Add crypto engine support
+Message-ID: <20230522-darkish-undaunted-9e184932d93f@wendy>
+References: <20230515125355.624250-1-jiajie.ho@starfivetech.com>
+ <20230515125355.624250-3-jiajie.ho@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 22 May 2023 11:19:53 -0300
-From:   Fabio Estevam <festevam@denx.de>
-To:     Marek Vasut <marex@denx.de>
-Cc:     Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        conor+dt@kernel.org
-Subject: Re: [PATCH v5 3/4] ARM: dts: imx6sx: Add LDB support
-In-Reply-To: <a5edfa01-3471-2cb2-c827-064f4386b076@denx.de>
-References: <20230522125129.526604-1-festevam@gmail.com>
- <20230522125129.526604-3-festevam@gmail.com>
- <a5edfa01-3471-2cb2-c827-064f4386b076@denx.de>
-Message-ID: <b0a6529587fe0f723126e3d6f74a3379@denx.de>
-X-Sender: festevam@denx.de
-User-Agent: Roundcube Webmail/1.3.6
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="dVy3OAxHoIQI9VdR"
+Content-Disposition: inline
+In-Reply-To: <20230515125355.624250-3-jiajie.ho@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/05/2023 10:20, Marek Vasut wrote:
+--dVy3OAxHoIQI9VdR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
->> diff --git a/arch/arm/boot/dts/imx6sx.dtsi 
->> b/arch/arm/boot/dts/imx6sx.dtsi
->> index 4233943a1cca..442106565025 100644
->> --- a/arch/arm/boot/dts/imx6sx.dtsi
->> +++ b/arch/arm/boot/dts/imx6sx.dtsi
->> @@ -844,7 +844,38 @@ iomuxc: pinctrl@20e0000 {
->>   			gpr: iomuxc-gpr@20e4000 {
->>   				compatible = "fsl,imx6sx-iomuxc-gpr",
->>   					     "fsl,imx6q-iomuxc-gpr", "syscon";
-> 
-> Maybe this "fsl,imx6q-iomuxc-gpr" should be dropped here.
+On Mon, May 15, 2023 at 08:53:53PM +0800, Jia Jie Ho wrote:
+> +config CRYPTO_DEV_JH7110
+> +	tristate "StarFive JH7110 cryptographic engine driver"
+> +	depends on SOC_STARFIVE || COMPILE_TEST
+> +	select CRYPTO_ENGINE
+> +	select ARM_AMBA
 
-Cannot remove it as it breaks PCI:
+I have yet to bisect, but I think this has broken the build on RISC-V:
+drivers/dma/pl330.c:1053:13: error: redefinition of '_start' as different kind of symbol
+static bool _start(struct pl330_thread *thrd)
+            ^
+arch/riscv/include/asm/sections.h:11:13: note: previous definition is here
+extern char _start[];
+            ^
+drivers/dma/pl330.c:1705:10: error: called object type 'char[]' is not a function or function pointer
+                        _start(thrd);
+                        ~~~~~~^
+drivers/dma/pl330.c:2092:9: error: called object type 'char[]' is not a function or function pointer
+                _start(pch->thread);
+                ~~~~~~^
+drivers/dma/pl330.c:2110:11: error: called object type 'char[]' is not a function or function pointer
+                                _start(pch->thread);
+                                ~~~~~~^
+4 errors generated.
 
-imx6q-pcie 8ffc000.pcie: unable to find iomuxc registers
+The pl330 dma driver depends on ARM_AMBA.
+
+Cheers,
+Conor.
+
+
+--dVy3OAxHoIQI9VdR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGt6PQAKCRB4tDGHoIJi
+0mpoAP9RDzkFAWWLnCRZfm4XNQ+rF1nl5k6lvaz5slDTFQKPAgD9HeBaio8Z6lrR
+D2oRKJK24+1MMfPI4S824JdtjnZOIw0=
+=Y2QR
+-----END PGP SIGNATURE-----
+
+--dVy3OAxHoIQI9VdR--
