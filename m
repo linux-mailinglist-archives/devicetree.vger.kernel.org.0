@@ -2,80 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EB1670C4C1
-	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 20:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1699070C4D6
+	for <lists+devicetree@lfdr.de>; Mon, 22 May 2023 20:02:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230244AbjEVSAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 14:00:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57498 "EHLO
+        id S233010AbjEVSCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 14:02:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbjEVSAX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 14:00:23 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85DB294
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 11:00:21 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-30796c0cbcaso6395726f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 11:00:21 -0700 (PDT)
+        with ESMTP id S232528AbjEVSCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 14:02:34 -0400
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 774EAFD
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 11:02:32 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-561c1ae21e7so83257097b3.0
+        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 11:02:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684778420; x=1687370420;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=vocPlTf+ndsafl6F5PjhtF9Wtlm84gCaZwk1AEvD+Ss=;
-        b=H4c1FwkLdAp3OmJc5rPt8/ZqW05C27palNnKEG0y2m2GKxeUVA3qY8m2fNUgjXCDe4
-         NpcgfoLkCCD5RFUfDPrQgymfaR51wB663CutVLjI93lND/Mr0tJSYSnWUrG+F4KmcRzr
-         lAOZve54WQ88cJZSn1eRC6K5QBNwcxYr6k9jfz2206lEOmivqClzjEisBiQZAHq4gejj
-         e2Igtp60U4rLLIeaH2AaJ89DUmy2WirhG5sF4v3NlHq03lUJlwbZakUXZBR8pvOBne7c
-         mtddh2KLOdMO347tJhgKIMgUZKGKLQGXxhaPDAa3l2cqW1I4k9Nq4gSPeltQ4fwX5FGc
-         ZaiQ==
+        d=linaro.org; s=google; t=1684778551; x=1687370551;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=aVJBY/8knzMSVZs/V5x+SxD32eOlg+FbYuKoI3xgu5k=;
+        b=IiaPqvUFy2+EUG1ROFc6gGPSTDqB+lvZrShUlA59d6U8FYt/+HOiHCfnpsFiTIftXQ
+         Q9A3skQlwcdqBzrTwhRn44a2nDlDjB9jJ6u1HC+0Pk7qB7QvsIrHsBbdrwAl1duQYAIa
+         JrLcXjAnqtXAywZp5HTN/r7dIHpxCNjCw8it3mJLVin5F23vlrZEJ2GAu4NFDsDOWvbf
+         g8gaI7XHdEoU1ykNMnNCx9ulX0ZzwIH/1S4kJtVRhbCqdz3fRU8+5FUsWVvXbJtAYv1m
+         MAhsXR/xFUfYOPehmPurjRam44Lm7EnvxmMTVYFAfy7/st3Rt2r1SOZN442KnBYLIrrU
+         38fA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684778420; x=1687370420;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1684778551; x=1687370551;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vocPlTf+ndsafl6F5PjhtF9Wtlm84gCaZwk1AEvD+Ss=;
-        b=WZxgK5Bl0yePvbfjDanbpYFBwLzUgMaFpr6GZxAP9y1L9uGqIB8mbtaokQiYGSyPeO
-         nWWLqdh7YSJnkYrkTS4KgZZVydsj6Dyx8m/Ni+uGuSroMrlfJci6S6JCh6BcBAST/cA/
-         CXf2feA0BtWws5YvoMWkBuJZO1/LGLC2XS0cJYoO1+Agod00HyuQCvA3dDR36R4Y+lXh
-         NoQVFFH6G3W60objGnIMWcJm6ZjbowSKA1ixNh6SlSOmqmDIdfGSS2ZdlARF415XpTU6
-         P/RUuIjCP8s7zmeXBLQgNkhYmxg4aBseh1rhFuRuIlbaz94S3pI64DxuaukQuiOtnNI1
-         muOg==
-X-Gm-Message-State: AC+VfDxe4TKjdRWJQrSWFPRysfwAf0U3QtEauESsUZno+/HOg3zYCC53
-        rJ9QGXo9NN1kE4CdBdPCnXrQdA==
-X-Google-Smtp-Source: ACHHUZ4I1Dq9nv0jiPs69KxQAtlwWmqlxEDOYy4D5O2HgeUQXRiBPn3opMwLJOxY25ymE2D+Lpwq+g==
-X-Received: by 2002:a5d:4cd1:0:b0:2f6:bf04:c8cc with SMTP id c17-20020a5d4cd1000000b002f6bf04c8ccmr7525738wrt.55.1684778419889;
-        Mon, 22 May 2023 11:00:19 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:a478:d61d:5bb5:7df? ([2a01:e0a:982:cbb0:a478:d61d:5bb5:7df])
-        by smtp.gmail.com with ESMTPSA id 16-20020a05600c021000b003f50d6ee334sm9035660wmi.47.2023.05.22.11.00.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 May 2023 11:00:19 -0700 (PDT)
-Message-ID: <e98e39e3-c10d-65d1-3093-2d54888b1829@linaro.org>
-Date:   Mon, 22 May 2023 20:00:18 +0200
+        bh=aVJBY/8knzMSVZs/V5x+SxD32eOlg+FbYuKoI3xgu5k=;
+        b=TvyCztr6oev45gA0XL3GnFrdPFoHQQN8zM6X0qaGFmSM0KzPUHWjKhsC0rhoAhnt4y
+         ptDBzricfx9zOr5NkJfblNk4adHDyKmJg1z8drIa+UznVH/JAb8RZ8uhIqso9FJuEpAM
+         o4TPM+WGN3qBOb9DPnLN0vsD86l4FhN3CzGamfQ4x+maoA/Q8DoZdxY9qosn19M417YJ
+         hqn/nNXTsm5IbiRAs9ABVnLvgwkz5A4auCX81B5RbfEQMKsXe4njTHx6WysMV1qbYSZ6
+         6U6PBPCKA/Qql2okvg1QRKkXb5IVxXBe6GXAFvrv6v5+Yg6SMthX8VVj9HfYwhTw54eC
+         McpQ==
+X-Gm-Message-State: AC+VfDzct8SroojsstCMYVobYqd0Sv/GjfhJDOYByeJ/KYVFn+vnfkm9
+        xTeojAjUICx6ky/YLHDentzRsfLXcYY6crBP6mjKyw==
+X-Google-Smtp-Source: ACHHUZ5A0/pll2fL/dhzKjSv92cbxqoh0Y0r8v4Nv91Amd9dUVpr+L1YyCF04nMS1kzjLTSw5bsXDQHt/W8MX/vU+kU=
+X-Received: by 2002:a81:5289:0:b0:55a:4840:68d with SMTP id
+ g131-20020a815289000000b0055a4840068dmr11841891ywb.20.1684778551387; Mon, 22
+ May 2023 11:02:31 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] dt-bindings: leds: qcom-lpg: document PM8550 compatible
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+References: <20230503130051.144708-1-y.oudjana@protonmail.com>
+ <20230503130051.144708-4-y.oudjana@protonmail.com> <CAA8EJpokUqHRQz=RJnJpvFzCzz+=5TepPraQGvCvjqFL9+GX7w@mail.gmail.com>
+ <5UM2VR.7LLGW1RDW4G2@gmail.com>
+In-Reply-To: <5UM2VR.7LLGW1RDW4G2@gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 22 May 2023 21:02:20 +0300
+Message-ID: <CAA8EJpqh7Me9p1oPRZ88KQD4WRqYCswZ-2njYX6tTa6z0o6cGg@mail.gmail.com>
+Subject: Re: [PATCH RESEND 3/3] clk: qcom: cbf-msm8996: Add support for
+ MSM8996 Pro
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230522-topic-sm8550-upstream-pm8550-lpg-v1-1-f016578d9e63@linaro.org>
- <20230522-childhood-eastbound-06a5f02f1f4a@spud>
-Organization: Linaro Developer Services
-In-Reply-To: <20230522-childhood-eastbound-06a5f02f1f4a@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,78 +77,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/05/2023 19:39, Conor Dooley wrote:
-> On Mon, May 22, 2023 at 06:26:01PM +0200, Neil Armstrong wrote:
->> The PM8550 PWM modules are compatible with the PM8350c PWM modules,
->> document the PM8350c PWM compatible as fallback for the PM8550 PWM.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> 
-> I suppose you picked "items/enum", rather than "items/const" to reduce
-> future churn?
+On Mon, 22 May 2023 at 20:49, Yassine Oudjana <yassine.oudjana@gmail.com> wrote:
+>
+>
+> On Wed, May 3 2023 at 04:20:00 PM +03:00:00, Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> > On Wed, 3 May 2023 at 16:02, Yassine Oudjana
+> > <yassine.oudjana@gmail.com> wrote:
+> >>
+> >>  From: Yassine Oudjana <y.oudjana@protonmail.com>
+> >>
+> >>  The CBF PLL on MSM8996 Pro has a /4 post divisor instead of /2.
+> >> Handle the
+> >>  difference accordingly.
+> >>
+> >>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> >>  ---
+> >>   drivers/clk/qcom/clk-cbf-8996.c | 121
+> >> ++++++++++++++++++++++++++++----
+> >>   1 file changed, 106 insertions(+), 15 deletions(-)
+> >>
+> >>  diff --git a/drivers/clk/qcom/clk-cbf-8996.c
+> >> b/drivers/clk/qcom/clk-cbf-8996.c
+> >>  index 1bb2cd956d68..a3e96578ddd9 100644
+> >>  --- a/drivers/clk/qcom/clk-cbf-8996.c
+> >>  +++ b/drivers/clk/qcom/clk-cbf-8996.c
+> >>  @@ -65,6 +65,19 @@ static const struct alpha_pll_config
+> >> cbfpll_config = {
+> >>          .early_output_mask = BIT(3),
+> >>   };
+> >>
+> >>  +static const struct alpha_pll_config cbfpll_pro_config = {
+> >>  +       .l = 72,
+> >>  +       .config_ctl_val = 0x200d4828,
+> >>  +       .config_ctl_hi_val = 0x006,
+> >>  +       .test_ctl_val = 0x1c000000,
+> >>  +       .test_ctl_hi_val = 0x00004000,
+> >>  +       .pre_div_mask = BIT(12),
+> >>  +       .post_div_mask = 0x3 << 8,
+> >>  +       .post_div_val = 0x3 << 8,
+> >>  +       .main_output_mask = BIT(0),
+> >>  +       .early_output_mask = BIT(3),
+> >>  +};
+> >
+> > Granted that the difference between this and the non-pro is just the
+> > post_div_val, would it be easier to just patch it in the probe()?
+>
+> I wasn't sure if that approach would've been accepted since it relies
+> on the special case that only one instance of the CBF device will exist
+> in normal conditions, but if you say it's fine then sure, I can do that.
 
-Yes indeed.
+We do this for other clock controllers, which we know to be singleton.
+So this should be fine too.
 
-Thanks,
-Neil
-
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Thanks,
-> Conor.
-> 
->> ---
->>   .../devicetree/bindings/leds/leds-qcom-lpg.yaml    | 30 +++++++++++++---------
->>   1 file changed, 18 insertions(+), 12 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
->> index 6295c91f43e8..fa378ee05c16 100644
->> --- a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
->> +++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
->> @@ -16,18 +16,24 @@ description: >
->>   
->>   properties:
->>     compatible:
->> -    enum:
->> -      - qcom,pm660l-lpg
->> -      - qcom,pm8150b-lpg
->> -      - qcom,pm8150l-lpg
->> -      - qcom,pm8350c-pwm
->> -      - qcom,pm8916-pwm
->> -      - qcom,pm8941-lpg
->> -      - qcom,pm8994-lpg
->> -      - qcom,pmc8180c-lpg
->> -      - qcom,pmi8994-lpg
->> -      - qcom,pmi8998-lpg
->> -      - qcom,pmk8550-pwm
->> +    oneOf:
->> +      - enum:
->> +          - qcom,pm660l-lpg
->> +          - qcom,pm8150b-lpg
->> +          - qcom,pm8150l-lpg
->> +          - qcom,pm8350c-pwm
->> +          - qcom,pm8916-pwm
->> +          - qcom,pm8941-lpg
->> +          - qcom,pm8994-lpg
->> +          - qcom,pmc8180c-lpg
->> +          - qcom,pmi8994-lpg
->> +          - qcom,pmi8998-lpg
->> +          - qcom,pmk8550-pwm
->> +      - items:
->> +          - enum:
->> +              - qcom,pm8550-pwm
->> +          - const: qcom,pm8350c-pwm
->> +
->>   
->>     "#pwm-cells":
->>       const: 2
->>
->> ---
->> base-commit: 44c026a73be8038f03dbdeef028b642880cf1511
->> change-id: 20230522-topic-sm8550-upstream-pm8550-lpg-5bf409842c3d
->>
->> Best regards,
->> -- 
->> Neil Armstrong <neil.armstrong@linaro.org>
->>
-
+--
+With best wishes
+Dmitry
