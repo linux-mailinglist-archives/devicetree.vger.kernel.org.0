@@ -2,345 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C03E170D601
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 09:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A3FB70D611
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 09:54:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230146AbjEWHux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 03:50:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45386 "EHLO
+        id S235795AbjEWHyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 03:54:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232773AbjEWHul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 03:50:41 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AE5E110D4
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 00:50:10 -0700 (PDT)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id BE7FA80B5;
-        Tue, 23 May 2023 07:48:48 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232925AbjEWHyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 03:54:10 -0400
+Received: from outbound.mail.protection.outlook.com (mail-dm6nam10on2067.outbound.protection.outlook.com [40.107.93.67])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DD77E52;
+        Tue, 23 May 2023 00:53:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oKvyAC5/fw3AQhRu+q/z4QUO6B88ysbnLlMIIWP+S3xjPSkR3yAHpXxz1A2x1yskhOKpff59WKKXn5uMwno0K7SXEnoatTvzTQW6wfywrpsRnbzXYmKtSt5Yq28HpSvkxb+09mkBx0uow6DfHgRCRjs0YkalwWqulHLJUIhc5X0OW3j3ASZKcPcE3JJ6OILNUukbKhANOS3tNU5KMHG3gs3r1O3ZNSqFWYaYYisOJbpnTfQ0xBP4pAjd/hYEV0nQRWZIJvIah/kdHqhHBCtUH+UAiLXMm2T/r05OwOf3ViG9F8R1+X8eJdNGcXOu+tXXtxsqZyBaHZpHl+Mcf3V1kQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WmXiPM65kN0mePAa5xphMwCBHTgA03OWFUC2BvrF67A=;
+ b=JprFIdQZ+OmwUXemiLXQd1UK2ZydwzBDBKkj35W0EXiwEJaev4rhiogYcYsbCHzA8lWCFgscVfhNyxgE3sSh1EytYWW3uk3TNe+JkpRIOSgYIctNWtBPnaCruzhaB3FCBvlphOLqdinlu3abVg2AmkBg61UGcPEJ9t5gneatk4yo3kHydTOUuAxG6LqRFr3nVnmWlYNfX/LBp71sZ2sXs5SLYun2XDUMrEAC1QJBIbZLw7hQ9GgdPV2s7vCdjkEER0JGhbSQ91pEfF0Fy90Y/Fyd88JAkTDS+hswMUfaCbh91uJ2nHlER0eNXjVdyOpUKF5dTxPVxibU4AjMQuB5HQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WmXiPM65kN0mePAa5xphMwCBHTgA03OWFUC2BvrF67A=;
+ b=4TAbENFoh7GRL3W0Hosit1LoSTN5kGwpi4TW9TeY6kAlUTVfXZfb4vlXEHX/ATbaM3KBGQEpkxZ5+RJ5dMIXiyXVxNw0wNBZmGGh6PhFPj+1ZJo0eCeODRWj+KME5IYQjnDOL9PffBVk0SJLKjTE8kLsqWsYQMdoahw/OXxGpZI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SN6PR12MB4765.namprd12.prod.outlook.com (2603:10b6:805:e4::24)
+ by PH0PR12MB5607.namprd12.prod.outlook.com (2603:10b6:510:142::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Tue, 23 May
+ 2023 07:49:06 +0000
+Received: from SN6PR12MB4765.namprd12.prod.outlook.com
+ ([fe80::6588:a783:89c2:1d8b]) by SN6PR12MB4765.namprd12.prod.outlook.com
+ ([fe80::6588:a783:89c2:1d8b%6]) with mapi id 15.20.6411.027; Tue, 23 May 2023
+ 07:49:06 +0000
+Message-ID: <20816baf-cc07-d2b2-d665-3d6b73dd4cdf@amd.com>
+Date:   Tue, 23 May 2023 09:48:49 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 4/6] arm64: zynqmp: Add L2 cache nodes
+Content-Language: en-US
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Harini Katakam <harini.katakam@amd.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH] ARM: dts: Unify pinctrl-single pin group nodes for keystone
-Date:   Tue, 23 May 2023 10:48:43 +0300
-Message-Id: <20230523074845.59433-1-tony@atomide.com>
-X-Mailer: git-send-email 2.40.1
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Piyush Mehta <piyush.mehta@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
+        Tanmay Shah <tanmay.shah@amd.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <cover.1684767562.git.michal.simek@amd.com>
+ <d962547cd72286821714b45f52b0126f9c438919.1684767562.git.michal.simek@amd.com>
+From:   Michal Simek <michal.simek@amd.com>
+In-Reply-To: <d962547cd72286821714b45f52b0126f9c438919.1684767562.git.michal.simek@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR0502CA0012.eurprd05.prod.outlook.com
+ (2603:10a6:803:1::25) To SN6PR12MB4765.namprd12.prod.outlook.com
+ (2603:10b6:805:e4::24)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR12MB4765:EE_|PH0PR12MB5607:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e200ab8-3d76-42d8-3f9d-08db5b622f6d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Xk6MSdvSweAaiKXjPMM2PaMzeCkEpJhFeHWZKozUAy0CsbafTBh6IcBhW0NcpA6sc0h5WX/jw7iW1NBKme9A4Wm0O2ldAtIe4gcHKafTPAgy59uah98U/WZU4MvvoOxap9WoqttHygyz54yjvTWeL4JhDX03ozLDpDs7SaQQ306X4m/lcARlqCyOm117fvwSCBSQoo5L8Su+HQJsNhV6Ctrv6w2GJa3Dgt3dXlylOWYtDZB4wfxDzAEOH+Ck7wydOBxF6W+E3O5w1svV3pYOLjs2nexw312SoqYac10bliaO0BR3LnaVj42ze3FYtGBbo5YyAFhxiGfjcmCJDPFGGO5p3L+3NK0uSEiTWndQu36oGpkTsKMGuaEEzTZfLc4Saed0aIKUn8h2aX0CIA/yzwC0W4gf+XMydEiTE9hzEoxi5apWq96RG0cEgwycSr6pAbTPK7hKPxVsergg8wdGjz8EGyMuot39aZZ2yyBFxK235Pzyhk0+gGVUtGUN+gvqRIupVLETciSLPMMbMyOfoVXQMWaMJ4d4p7CZZ80d3LYmXpx2+3lhGUV8NDtXSfpUr/+u5VUmmXOSG9rnW7eYE7EI95g3iSAhyTSl0nERcLIgA5x40tnRDYEh0/W9Vswp6FWZtFEbUVbkqX1c9ubrrw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR12MB4765.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(396003)(346002)(136003)(366004)(39860400002)(451199021)(478600001)(66946007)(66556008)(66476007)(4326008)(31696002)(31686004)(6486002)(41300700001)(6666004)(316002)(54906003)(5660300002)(8936002)(8676002)(86362001)(38100700002)(44832011)(6506007)(6512007)(7416002)(26005)(186003)(53546011)(83380400001)(2906002)(2616005)(36756003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b1dvbW5uYnlManJidFRHbTgwQUo0S1hiTklLQTRqeEk1bHJqUjJXdTNoYURO?=
+ =?utf-8?B?bjEwbnViaHk1RE9YdFMvemUwdGdjeVIrUW1GVUt3VENTVFRIdGFiV24zUnJU?=
+ =?utf-8?B?dTUwOGtPU1l2Uk5uVXM3ZXpMdy9leHh4UXN6NU92ck9BS1k5bWowRVBnVXhx?=
+ =?utf-8?B?cS84cGxhc3MrTXlVYjJhUm16ZHNjaGNZMmZoTFM4S1p2U2t3UG5oRnB2d2dl?=
+ =?utf-8?B?N0ZON1QwbFYzcXZYbHpKeEVJN2RBNXhYVTZXalJsR2xRSWRHcWpCcjJGZ1Ba?=
+ =?utf-8?B?akhWNmFHZjRxSmVPVExGNCtrWDI3cmxJanJONTE1Ny9mRUhaejNvekdmRzcw?=
+ =?utf-8?B?TGVsUklVVm1IZzQrVUtXcFhpV0dSZmptUGl0MG5XbTJKTmZiTWkrR1ZrUFVx?=
+ =?utf-8?B?R2NGR1hDMkpDcUFCaTFOMTF0bkovNUl0RDRwNjRPTHI2UHNFTDhTL3orK3Ur?=
+ =?utf-8?B?bXA1MDI0dUw5Z2E1b044a3hveDRjZXh1a1ZlVkxqOWNndVJyVTMvbFJMdnNK?=
+ =?utf-8?B?bm9EMjVoaGc5YzNkUWdkeDZ3eEdkbUFERmFBRG5rNG9xOTRialY3NGdORkhw?=
+ =?utf-8?B?TWhPbytpZXo1QjgveUkvemNMc09CNE9wSWZwSUVzVGxCM2haTVE5anloc3hk?=
+ =?utf-8?B?Y3d6MXVpMWlsMGtPUVZLUzFWdjNPTHVQdkRPZG9ocUZBdVdDMEZuRERXVUFY?=
+ =?utf-8?B?RlZQT01keWp2RUFmemhPZXRFa0xlYnBCbFpnYnc0Qzc0QllHNVBkYm02N3h5?=
+ =?utf-8?B?NmhsT3E4U2loQ0VGN3V2cXNMUjd0MXh4QkZTTGc2R0FCcWpwVWNHbnBrTFBr?=
+ =?utf-8?B?KzFyNU50UG9OYXhJcU1hN09JTmIwMEZEQjl1MHRqcGxkZzNTOSsrVmZxWkFU?=
+ =?utf-8?B?MlNlNm42WmdmcjZqeHpwTGMxV05mU25XNm03anN6UStSOUluMU1kT2Z3Uy9Z?=
+ =?utf-8?B?Rld2dG9xNXpXMXJkTk53M0JRTHdGbHRpWXBGaGVoU0tvd0NENWt5Q21UcFB4?=
+ =?utf-8?B?ZnltSDQxaEZERmwrbW1NdVJGUTZ4em9tQ29DbXpMNFlOUlZkL0lET3k0TmZJ?=
+ =?utf-8?B?UTNrbitqQXpYQ0wyaGdVL3ZjSUJTWWVFK085VmMyZE1lUTJyNU14TEFqdi9M?=
+ =?utf-8?B?blRsVHVEK3VWYU4zM3FlMHJEalRwMVQ1emZHUUJWMlJtTEFUSGR0WFhQUFFm?=
+ =?utf-8?B?Q0ZGK3FTRStBc0xzank5ZGVpaEVvT2JVNU9LMUxObWJlNk16QzhWakpsVkdV?=
+ =?utf-8?B?NFBxcXhFbGRrTko5YTJOM2MzVlUvMWg4K0RZV0YvOUtzWjJhOTl6Nm1zQm92?=
+ =?utf-8?B?ZUNTSzlud01EaVhBYkNWSlJZVmtkTlpKc085Z1ZPOEw0M004STRXQUdnbmhZ?=
+ =?utf-8?B?bEVLdjFQYnNyTkg5Q1pOR1BkMVpkRGtoMzM1WE9JVWVWM3U2UElTeGs1MEtT?=
+ =?utf-8?B?d1U3cERxa3UxRytFMDFldGM3Y2U2OW5INU1xWWowM05pak42ODNQY2dnT3ha?=
+ =?utf-8?B?OWhtUCtoazJKRXJBVHBJWGRyTVl1QXJvSGxrU3duWExvcG9mcC91NHZ0V3Fk?=
+ =?utf-8?B?WWEyMGduNGQ5S2ZDQS8vRCtBSklaakhRK0JEdzVkeWFvWVg5MWVLT2x6Nlkx?=
+ =?utf-8?B?ZTRSY1RtVWZhdUFCVS9ZaVFoNGx6NnpVZmtnaTkwa09HOEpCbEdpUkV0akxY?=
+ =?utf-8?B?L1RjcGpwbWJxNU0wN2Zxak5Zd2djNzE4YzF3bDNsWk9KSERHdGtnMFprUS9i?=
+ =?utf-8?B?b2tBK1pScjlWK2hWd09SdW0vUGY4VVVNOGlJekxOMnBEdTRaUjFqRXgySkJp?=
+ =?utf-8?B?S1lSUFAwdlJxQ0NONlVxNXM0MnUzcERPeVpZTkdhMEM3NnJ6ZnAzQXJqQzhD?=
+ =?utf-8?B?djhqUTc4NENoUUVWT1Jwb2xlWjhGcUQ5V0VlSXg3ZTlpdXVyTlBHcURqenRU?=
+ =?utf-8?B?VnBmc2ZjaFJHM2ZXcWR3ZlVQejIzejNldXZlcEM3cEpPblloYjJaQkxBZW1N?=
+ =?utf-8?B?SXd0emxXWnB0OEFaMGZ4UjJBM2QwZjNUL1owbWxPdVl2TUJ5MFVqdXVXTVh0?=
+ =?utf-8?B?aTkxanhPYVBFUjR1d2FkcEFBWHB5WHZ6NzlaTDVjQnkvMFhMbUxLUW1lWFhj?=
+ =?utf-8?Q?CTQ3XdI3Lto4v9oDmVcisUaFC?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e200ab8-3d76-42d8-3f9d-08db5b622f6d
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR12MB4765.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2023 07:49:06.5316
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ju7f92NvqWVytRL3WisgaTV3Pn1ryAD7VU493nXFygP+o5GI32vEn0mG9Ekmms1F
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5607
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We want to unify the pinctrl-single pin group nodes to use naming "pins".
-Otherwise non-standad pin group names will add make dtbs checks errors
-when the pinctrl-single yaml binding gets merged.
 
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/boot/dts/keystone-k2g-evm.dts | 30 +++++++++++++-------------
- arch/arm/boot/dts/keystone-k2g-ice.dts | 16 +++++++-------
- arch/arm/boot/dts/keystone-k2l.dtsi    | 20 ++++++++---------
- 3 files changed, 33 insertions(+), 33 deletions(-)
 
-diff --git a/arch/arm/boot/dts/keystone-k2g-evm.dts b/arch/arm/boot/dts/keystone-k2g-evm.dts
---- a/arch/arm/boot/dts/keystone-k2g-evm.dts
-+++ b/arch/arm/boot/dts/keystone-k2g-evm.dts
-@@ -120,14 +120,14 @@ codec {
- };
- 
- &k2g_pinctrl {
--	uart0_pins: pinmux_uart0_pins {
-+	uart0_pins: uart0-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x11cc) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* uart0_rxd.uart0_rxd */
- 			K2G_CORE_IOPAD(0x11d0) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE0)	/* uart0_txd.uart0_txd */
- 		>;
- 	};
- 
--	mmc0_pins: pinmux_mmc0_pins {
-+	mmc0_pins: mmc0-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x1300) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE2)	/* mmc0_dat3.mmc0_dat3 */
- 			K2G_CORE_IOPAD(0x1304) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE2)	/* mmc0_dat2.mmc0_dat2 */
-@@ -139,7 +139,7 @@ K2G_CORE_IOPAD(0x12ec) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE3)	/* mmc0_sdcd.gp
- 		>;
- 	};
- 
--	mmc1_pins: pinmux_mmc1_pins {
-+	mmc1_pins: mmc1-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x10ec) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* mmc1_dat7.mmc1_dat7 */
- 			K2G_CORE_IOPAD(0x10f0) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* mmc1_dat6.mmc1_dat6 */
-@@ -154,27 +154,27 @@ K2G_CORE_IOPAD(0x1110) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* mmc1_cmd.mmc
- 		>;
- 	};
- 
--	i2c0_pins: pinmux_i2c0_pins {
-+	i2c0_pins: i2c0-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x137c) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c0_scl.i2c0_scl */
- 			K2G_CORE_IOPAD(0x1380) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c0_sda.i2c0_sda */
- 		>;
- 	};
- 
--	i2c1_pins: pinmux_i2c1_pins {
-+	i2c1_pins: i2c1-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x1384) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c1_scl.i2c1_scl */
- 			K2G_CORE_IOPAD(0x1388) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c1_sda.i2c1_sda */
- 		>;
- 	};
- 
--	ecap0_pins: ecap0_pins {
-+	ecap0_pins: ecap0-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x1374) (BUFFER_CLASS_B | MUX_MODE4)	/* pr1_mdio_data.ecap0_in_apwm0_out */
- 		>;
- 	};
- 
--	spi1_pins: pinmux_spi1_pins {
-+	spi1_pins: spi1-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x11a4) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* spi1_scs0.spi1_scs0 */
- 			K2G_CORE_IOPAD(0x11ac) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* spi1_clk.spi1_clk */
-@@ -183,7 +183,7 @@ K2G_CORE_IOPAD(0x11b4) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* spi1_mosi.
- 		>;
- 	};
- 
--	qspi_pins: pinmux_qspi_pins {
-+	qspi_pins: qspi-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x1204) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* qspi_clk.qspi_clk */
- 			K2G_CORE_IOPAD(0x1208) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* qspi_rclk.qspi_rclk */
-@@ -195,28 +195,28 @@ K2G_CORE_IOPAD(0x121c) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* qspi_csn0.
- 		>;
- 	};
- 
--	uart2_pins: pinmux_uart2_pins {
-+	uart2_pins: uart2-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x11ec) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)      /* uart2_rxd.uart2_rxd */
- 			K2G_CORE_IOPAD(0x11f0) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE0)      /* uart2_txd.uart2_txd */
- 		>;
- 	};
- 
--	dcan0_pins: pinmux_dcan0_pins {
-+	dcan0_pins: dcan0-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x11fc) (BUFFER_CLASS_B | PULL_DISABLE  | MUX_MODE0)	/* dcan0tx.dcan0tx */
- 			K2G_CORE_IOPAD(0x1200) (BUFFER_CLASS_B | PIN_PULLDOWN  | MUX_MODE0)	/* dcan0rx.dcan0rx */
- 		>;
- 	};
- 
--	dcan1_pins: pinmux_dcan1_pins {
-+	dcan1_pins: dcan1-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x1224) (BUFFER_CLASS_B | PULL_DISABLE  | MUX_MODE1)	/* qspicsn2.dcan1tx */
- 			K2G_CORE_IOPAD(0x1228) (BUFFER_CLASS_B | PIN_PULLDOWN  | MUX_MODE1)	/* qspicsn3.dcan1rx */
- 		>;
- 	};
- 
--	emac_pins: pinmux_emac_pins {
-+	emac_pins: emac-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x113C) (BUFFER_CLASS_D | PULL_DISABLE | MUX_MODE1)	/* MII_RXD1.RGMII_RXD1 */
- 			K2G_CORE_IOPAD(0x1138) (BUFFER_CLASS_D | PULL_DISABLE | MUX_MODE1)	/* MII_RXD2.RGMII_RXD2 */
-@@ -233,14 +233,14 @@ K2G_CORE_IOPAD(0x1144) (BUFFER_CLASS_D | PULL_DISABLE | MUX_MODE1)	/* MII_RXDV.R
- 		>;
- 	};
- 
--	mdio_pins: pinmux_mdio_pins {
-+	mdio_pins: mdio-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x118C) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* MDIO_CLK.MDIO_CLK */
- 			K2G_CORE_IOPAD(0x1188) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* MDIO_DATA.MDIO_DATA */
- 		>;
- 	};
- 
--	vout_pins: pinmux_vout_pins {
-+	vout_pins: vout-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x1078) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* dssdata23.dssdata23 */
- 			K2G_CORE_IOPAD(0x107c) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* dssdata22.dssdata22 */
-@@ -274,7 +274,7 @@ K2G_CORE_IOPAD(0x10e8) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* dssfid.dss
- 		>;
- 	};
- 
--	mcasp2_pins: pinmux_mcasp2_pins {
-+	mcasp2_pins: mcasp2-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x1234) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE4) /* pr0_pru_gpo2.mcasp2_axr2 */
- 			K2G_CORE_IOPAD(0x1238) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE4) /* pr0_pru_gpo3.mcasp2_axr3 */
-diff --git a/arch/arm/boot/dts/keystone-k2g-ice.dts b/arch/arm/boot/dts/keystone-k2g-ice.dts
---- a/arch/arm/boot/dts/keystone-k2g-ice.dts
-+++ b/arch/arm/boot/dts/keystone-k2g-ice.dts
-@@ -218,14 +218,14 @@ led12 {
- };
- 
- &k2g_pinctrl {
--	uart0_pins: pinmux_uart0_pins {
-+	uart0_pins: uart0-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x11cc) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* uart0_rxd.uart0_rxd */
- 			K2G_CORE_IOPAD(0x11d0) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE0)	/* uart0_txd.uart0_txd */
- 		>;
- 	};
- 
--	qspi_pins: pinmux_qspi_pins {
-+	qspi_pins: qspi-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x1204) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* qspi_clk.qspi_clk */
- 			K2G_CORE_IOPAD(0x1208) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* qspi_rclk.qspi_rclk */
-@@ -237,7 +237,7 @@ K2G_CORE_IOPAD(0x121c) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* qspi_csn0.
- 		>;
- 	};
- 
--	mmc1_pins: pinmux_mmc1_pins {
-+	mmc1_pins: mmc1-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x10FC) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* mmc1_dat3.mmc1_dat3 */
- 			K2G_CORE_IOPAD(0x1100) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* mmc1_dat2.mmc1_dat2 */
-@@ -251,21 +251,21 @@ K2G_CORE_IOPAD(0x111C) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* mmc1_pow.mmc
- 		>;
- 	};
- 
--	i2c0_pins: pinmux_i2c0_pins {
-+	i2c0_pins: i2c0-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x137c) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c0_scl.i2c0_scl */
- 			K2G_CORE_IOPAD(0x1380) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c0_sda.i2c0_sda */
- 		>;
- 	};
- 
--	i2c1_pins: pinmux_i2c1_pins {
-+	i2c1_pins: i2c1-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x1384) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c1_scl.i2c1_scl */
- 			K2G_CORE_IOPAD(0x1388) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c1_sda.i2c1_sda */
- 		>;
- 	};
- 
--	user_leds: pinmux_user_leds {
-+	user_leds: user-leds-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x102c) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE3)	/* gpmc_ad11.gpio0_11 */
- 			K2G_CORE_IOPAD(0x1030) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE3)	/* gpmc_ad12.gpio0_12 */
-@@ -283,7 +283,7 @@ K2G_CORE_IOPAD(0x11bc) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE3)	/* spi2_scsn1.g
- 		>;
- 	};
- 
--	emac_pins: pinmux_emac_pins {
-+	emac_pins: emac-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x113C) (BUFFER_CLASS_D | PULL_DISABLE | MUX_MODE1)	/* MII_RXD1.RGMII_RXD1 */
- 			K2G_CORE_IOPAD(0x1138) (BUFFER_CLASS_D | PULL_DISABLE | MUX_MODE1)	/* MII_RXD2.RGMII_RXD2 */
-@@ -300,7 +300,7 @@ K2G_CORE_IOPAD(0x1144) (BUFFER_CLASS_D | PULL_DISABLE | MUX_MODE1)	/* MII_RXDV.R
- 		>;
- 	};
- 
--	mdio_pins: pinmux_mdio_pins {
-+	mdio_pins: mdio-pins {
- 		pinctrl-single,pins = <
- 			K2G_CORE_IOPAD(0x118C) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* MDIO_CLK.MDIO_CLK */
- 			K2G_CORE_IOPAD(0x1188) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* MDIO_DATA.MDIO_DATA */
-diff --git a/arch/arm/boot/dts/keystone-k2l.dtsi b/arch/arm/boot/dts/keystone-k2l.dtsi
---- a/arch/arm/boot/dts/keystone-k2l.dtsi
-+++ b/arch/arm/boot/dts/keystone-k2l.dtsi
-@@ -116,42 +116,42 @@ k2l_pmx: pinmux@2620690 {
- 			pinctrl-single,function-mask = <0x1>;
- 			status = "disabled";
- 
--			uart3_emifa_pins: pinmux_uart3_emifa_pins {
-+			uart3_emifa_pins: uart3-emifa-pins {
- 				pinctrl-single,bits = <
- 					/* UART3_EMIFA_SEL */
- 					0x0 0x0  0xc0
- 				>;
- 			};
- 
--			uart2_emifa_pins: pinmux_uart2_emifa_pins {
-+			uart2_emifa_pins: uart2-emifa-pins {
- 			pinctrl-single,bits = <
- 					/* UART2_EMIFA_SEL */
- 					0x0 0x0  0x30
- 				>;
- 			};
- 
--			uart01_spi2_pins: pinmux_uart01_spi2_pins {
-+			uart01_spi2_pins: uart01-spi2-pins {
- 				pinctrl-single,bits = <
- 					/* UART01_SPI2_SEL */
- 					0x0 0x0 0x4
- 				>;
- 			};
- 
--			dfesync_rp1_pins: pinmux_dfesync_rp1_pins{
-+			dfesync_rp1_pins: dfesync-rp1-pins{
- 				pinctrl-single,bits = <
- 					/* DFESYNC_RP1_SEL */
- 					0x0 0x0 0x2
- 				>;
- 			};
- 
--			avsif_pins: pinmux_avsif_pins {
-+			avsif_pins: avsif-pins {
- 				pinctrl-single,bits = <
- 					/* AVSIF_SEL */
- 					0x0 0x0 0x1
- 				>;
- 			};
- 
--			gpio_emu_pins: pinmux_gpio_emu_pins {
-+			gpio_emu_pins: gpio-emu-pins {
- 				pinctrl-single,bits = <
- 				/*
- 				 * GPIO_EMU_SEL[31]: 0-GPIO31, 1-EMU33
-@@ -174,7 +174,7 @@ gpio_emu_pins: pinmux_gpio_emu_pins {
- 				>;
- 			};
- 
--			gpio_timio_pins: pinmux_gpio_timio_pins {
-+			gpio_timio_pins: gpio-timio-pins {
- 				pinctrl-single,bits = <
- 				/*
- 				 * GPIO_TIMIO_SEL[15]: 0-GPIO15, 1-TIMO7
-@@ -194,7 +194,7 @@ gpio_timio_pins: pinmux_gpio_timio_pins {
- 				>;
- 			};
- 
--			gpio_spi2cs_pins: pinmux_gpio_spi2cs_pins {
-+			gpio_spi2cs_pins: gpio-spi2cs-pins {
- 				pinctrl-single,bits = <
- 				/*
- 				 * GPIO_SPI2CS_SEL[3]: 0-GPIO3, 1-SPI2CS4
-@@ -206,7 +206,7 @@ gpio_spi2cs_pins: pinmux_gpio_spi2cs_pins {
- 				>;
- 			};
- 
--			gpio_dfeio_pins: pinmux_gpio_dfeio_pins {
-+			gpio_dfeio_pins: gpio-dfeio-pins {
- 				pinctrl-single,bits = <
- 				/*
- 				 * GPIO_DFEIO_SEL[31]: 0-DFEIO17, 1-GPIO63
-@@ -230,7 +230,7 @@ gpio_dfeio_pins: pinmux_gpio_dfeio_pins {
- 				>;
- 			};
- 
--			gpio_emifa_pins: pinmux_gpio_emifa_pins {
-+			gpio_emifa_pins: gpio-emifa-pins {
- 				pinctrl-single,bits = <
- 				/*
- 				 * GPIO_EMIFA_SEL[15]: 0-EMIFA17, 1-GPIO47
--- 
-2.40.1
+On 5/22/23 16:59, Michal Simek wrote:
+> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> 
+> Describe SoC L2 cache hierarchy.
+> 
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+> 
+> Changes in v2:
+> - Update commit message to remove Linux part - reported by Laurent
+> 
+> Linux kernel throws "cacheinfo: Unable to detect cache hierarchy for
+> CPU 0" warning when booting on zu+ Soc. To fix it add the L2 cache
+> node and let each CPU point to it.
+> 
+> ---
+>   arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 9 +++++++++
+>   1 file changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> index a961bb6f31ff..02bd75900238 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -33,6 +33,7 @@ cpu0: cpu@0 {
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			reg = <0x0>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			next-level-cache = <&L2>;
+>   		};
+>   
+>   		cpu1: cpu@1 {
+> @@ -42,6 +43,7 @@ cpu1: cpu@1 {
+>   			reg = <0x1>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			next-level-cache = <&L2>;
+>   		};
+>   
+>   		cpu2: cpu@2 {
+> @@ -51,6 +53,7 @@ cpu2: cpu@2 {
+>   			reg = <0x2>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			next-level-cache = <&L2>;
+>   		};
+>   
+>   		cpu3: cpu@3 {
+> @@ -60,6 +63,12 @@ cpu3: cpu@3 {
+>   			reg = <0x3>;
+>   			operating-points-v2 = <&cpu_opp_table>;
+>   			cpu-idle-states = <&CPU_SLEEP_0>;
+> +			next-level-cache = <&L2>;
+> +		};
+> +
+> +		L2: l2-cache {
+> +			compatible = "cache";
+> +			cache-level = <2>;
+
+Here should be also cache-unified;
+
+Thanks,
+Michal
