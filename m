@@ -2,60 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16BA270E433
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 20:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4F7970E4A7
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 20:27:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237693AbjEWSCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 14:02:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55784 "EHLO
+        id S237342AbjEWS1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 14:27:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237368AbjEWSCQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 14:02:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C659B97;
-        Tue, 23 May 2023 11:02:15 -0700 (PDT)
+        with ESMTP id S230164AbjEWS1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 14:27:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 513588F;
+        Tue, 23 May 2023 11:27:44 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5BF9061AB0;
-        Tue, 23 May 2023 18:02:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03F8DC433EF;
-        Tue, 23 May 2023 18:02:13 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DE7AA63129;
+        Tue, 23 May 2023 18:27:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09CE4C433D2;
+        Tue, 23 May 2023 18:27:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684864934;
-        bh=qhsH/fvB8p49rkMVi7cfrbf3uTOQ6EWGZa9IXoxfqqY=;
+        s=k20201202; t=1684866463;
+        bh=XV1di+GuMw6Q1zA3mSrPZ/CUWvlb3FRyCbsgPWVNna0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=r8QxvmvasWRHb1+/aud0hTWkuqqlSv58IqB9166sUDBf8xPG11Q9UUWFv+oxL3wRg
-         IITuZ2Rx+2sfHiekfq56Ic0x5dM+CNY8zVoXeigVGNHSqx7PhHhqyyh7DxYmYGXdBt
-         O7siB6Z2yLPcdEfpFkh+WoQ/4Uff2QZi0MFUyVy11M6IKQlIBR3Z91kD599ehovYuf
-         NTZj4shIGit3sAovWETCbwmiYmJcL592FZD0AuaL6Fed3t433zvF9jQHu2fdNhTiYu
-         elC0pOxCb5Oean+VvGtFGjMns5fpmyug9ohght1n9rbfwp4rP8indYxmAVBE/nBDFW
-         xCIA3QdHRZBRQ==
-Date:   Tue, 23 May 2023 11:02:12 -0700
-From:   Nathan Chancellor <nathan@kernel.org>
-To:     Artur Weber <aweber.kernel@gmail.com>
-Cc:     thierry.reding@gmail.com, Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Nikita Travkin <nikita@trvn.ru>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v5 2/3] drm/panel: Add Samsung S6D7AA0 panel controller
- driver
-Message-ID: <20230523180212.GA1401867@dev-arch.thelio-3990X>
-References: <20230519170354.29610-1-aweber.kernel@gmail.com>
- <20230519170354.29610-3-aweber.kernel@gmail.com>
+        b=YPRehp6m7et84NL7upNyUgSgsV0Otf/IW4DYgi+uj86CCGHKSh9N1ag1GDWBZKe69
+         exMmwtptERAaVcSoz6SmZct4GjjU8Sb4FpWgb6aybfHjub21yq/YUw2G+QW6sEusd3
+         xMIejEOfewleK5nFmXdrru6GGc6IJWNLrIznndHFDiY1/Rr4HxqOeSTykw/VVqFuJE
+         e8fpmKGhos7AP3Qpwx6JxOyA7bui0MvTLAFfmsTw5PT9yYRCBVdPh1urLomtCxmCgY
+         VgbmOQVQJ8lR5xJULK/qnjWyFUwojMok/hWzmFhcnKjGO1nd39Qw1wZsTW4ypGd1gt
+         SuPOUEuXzUnhg==
+Date:   Tue, 23 May 2023 19:27:38 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor.dooley@microchip.com, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, sre@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 2/4] dt-bindings: power: reset: atmel,at91sam9260-shdwc:
+ convert to yaml
+Message-ID: <20230523-depletion-petty-978775d05b22@spud>
+References: <20230523061512.195271-1-claudiu.beznea@microchip.com>
+ <20230523061512.195271-3-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="4QfNIu1KVbjjpExj"
 Content-Disposition: inline
-In-Reply-To: <20230519170354.29610-3-aweber.kernel@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230523061512.195271-3-claudiu.beznea@microchip.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,119 +59,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Artur,
 
-On Fri, May 19, 2023 at 07:03:53PM +0200, Artur Weber wrote:
-> Initial driver for S6D7AA0-controlled panels. Currently, the following
-> panels are supported:
-> 
->  - S6D7AA0-LSL080AL02 (Samsung Galaxy Tab 3 8.0)
->  - S6D7AA0-LSL080AL03 (Samsung Galaxy Tab A 8.0 2015)
->  - S6D7AA0-LTL101AT01 (Samsung Galaxy Tab A 9.7 2015)
-> 
-> It should be possible to extend this driver to work with other panels
-> using this IC.
-> 
-> Tested-by: Nikita Travkin <nikita@trvn.ru> #ltl101at01
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+--4QfNIu1KVbjjpExj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-<snip>
+Hey Claudiu,
 
-This change as commit 6810bb390282 ("drm/panel: Add Samsung S6D7AA0
-panel controller driver") in -next causes the following build errors
-with clang and GCC older than 8.x (the kernel supports back to GCC 5.1).
+On Tue, May 23, 2023 at 09:15:10AM +0300, Claudiu Beznea wrote:
+> Convert Atmel shutdown controller to YAML.
+>=20
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 
-With clang:
+> diff --git a/Documentation/devicetree/bindings/power/reset/atmel,at91sam9=
+260-shdwc.yaml b/Documentation/devicetree/bindings/power/reset/atmel,at91sa=
+m9260-shdwc.yaml
+> new file mode 100644
+> index 000000000000..3b3162677db3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/reset/atmel,at91sam9260-shd=
+wc.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 
-  drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c:312:14: error: initializer element is not a compile-time constant
-          .drm_mode = s6d7aa0_lsl080al02_mode,
-                      ^~~~~~~~~~~~~~~~~~~~~~~
-  drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c:415:14: error: initializer element is not a compile-time constant
-          .drm_mode = s6d7aa0_lsl080al03_mode,
-                      ^~~~~~~~~~~~~~~~~~~~~~~
-  drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c:443:14: error: initializer element is not a compile-time constant
-          .drm_mode = s6d7aa0_ltl101at01_mode,
-                      ^~~~~~~~~~~~~~~~~~~~~~~
-  3 errors generated.
+I think you'll need an explict Ack from Rob as the text binding has no
+licence text.
 
-With GCC:
-
-  drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c:312:14: error: initializer element is not constant
-    .drm_mode = s6d7aa0_lsl080al02_mode,
-                ^~~~~~~~~~~~~~~~~~~~~~~
-  drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c:312:14: note: (near initialization for 's6d7aa0_lsl080al02_desc.drm_mode')
-  drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c:415:14: error: initializer element is not constant
-    .drm_mode = s6d7aa0_lsl080al03_mode,
-                ^~~~~~~~~~~~~~~~~~~~~~~
-  drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c:415:14: note: (near initialization for 's6d7aa0_lsl080al03_desc.drm_mode')
-  drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c:443:14: error: initializer element is not constant
-    .drm_mode = s6d7aa0_ltl101at01_mode,
-                ^~~~~~~~~~~~~~~~~~~~~~~
-  drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c:443:14: note: (near initialization for 's6d7aa0_ltl101at01_desc.drm_mode')
-
-You can find these toolchains at
-https://mirrors.edge.kernel.org/pub/tools/crosstool/ and
-https://mirrors.edge.kernel.org/pub/tools/llvm/ if you need help
-testing.
-
-clang may eventually match GCC's newer behavior but there appears to be
-some unresolved concerns around the proposed implementation and we have
-not been able to double back to it:
-https://reviews.llvm.org/D76096
-
-> +static const struct drm_display_mode s6d7aa0_lsl080al03_mode = {
-> +	.clock = (768 + 18 + 16 + 126) * (1024 + 8 + 2 + 6) * 60 / 1000,
-> +	.hdisplay = 768,
-> +	.hsync_start = 768 + 18,
-> +	.hsync_end = 768 + 18 + 16,
-> +	.htotal = 768 + 18 + 16 + 126,
-> +	.vdisplay = 1024,
-> +	.vsync_start = 1024 + 8,
-> +	.vsync_end = 1024 + 8 + 2,
-> +	.vtotal = 1024 + 8 + 2 + 6,
-> +	.width_mm = 122,
-> +	.height_mm = 163,
-> +};
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/reset/atmel,at91sam9260-shdwc.y=
+aml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +static const struct s6d7aa0_panel_desc s6d7aa0_lsl080al03_desc = {
-> +	.panel_type = S6D7AA0_PANEL_LSL080AL03,
-> +	.init_func = s6d7aa0_lsl080al03_init,
-> +	.off_func = s6d7aa0_lsl080al03_off,
-> +	.drm_mode = s6d7aa0_lsl080al03_mode,
-> +	.mode_flags = MIPI_DSI_MODE_NO_EOT_PACKET,
-> +	.bus_flags = 0,
+> +title: Atmel SHDWC Shutdown Controller
 > +
-> +	.has_backlight = true,
-> +	.use_passwd3 = true,
-> +};
+> +maintainers:
+> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
 > +
-> +/* Initialization structures for LTL101AT01 panel */
+> +description: |
+> +  Atmel SHDWC shutdown controller controls the power supplies VDDIO and =
+VDDCORE
+> +  and the wake-up detection on debounced input lines.
 > +
-> +static const struct drm_display_mode s6d7aa0_ltl101at01_mode = {
-> +	.clock = (768 + 96 + 16 + 184) * (1024 + 8 + 2 + 6) * 60 / 1000,
-> +	.hdisplay = 768,
-> +	.hsync_start = 768 + 96,
-> +	.hsync_end = 768 + 96 + 16,
-> +	.htotal = 768 + 96 + 16 + 184,
-> +	.vdisplay = 1024,
-> +	.vsync_start = 1024 + 8,
-> +	.vsync_end = 1024 + 8 + 2,
-> +	.vtotal = 1024 + 8 + 2 + 6,
-> +	.width_mm = 148,
-> +	.height_mm = 197,
-> +};
-> +
-> +static const struct s6d7aa0_panel_desc s6d7aa0_ltl101at01_desc = {
-> +	.panel_type = S6D7AA0_PANEL_LTL101AT01,
-> +	.init_func = s6d7aa0_lsl080al03_init, /* Similar init to LSL080AL03 */
-> +	.off_func = s6d7aa0_lsl080al03_off,
-> +	.drm_mode = s6d7aa0_ltl101at01_mode,
-> +	.mode_flags = MIPI_DSI_MODE_NO_EOT_PACKET,
-> +	.bus_flags = 0,
-> +
-> +	.has_backlight = true,
-> +	.use_passwd3 = true,
-> +};
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - atmel,at91sam9260-shdwc
+> +      - atmel,at91sam9rl-shdwc
+> +      - atmel,at91sam9x5-shdwc
 
-Cheers,
-Nathan
+For my own curiosity, is this x a wildcard or part of the product name?
+Quick google was slightly confusing.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  atmel,wakeup-mode:
+> +    description: operation mode of the wakeup mode
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [ none, high, low, any ]
+> +
+> +  atmel,wakeup-counter:
+> +    description: counter on wake-up 0
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+
+This can just be
+minimum: 0
+maximum: 15
+I think.
+
+Otherwise, looks good to me.
+
+Thanks,
+Conor.
+
+--4QfNIu1KVbjjpExj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG0FmgAKCRB4tDGHoIJi
+0inzAQCWkwG07Dt5F/OF9pU6MN9adj6hqLi8AuPEL69yois7BgEAgUyZ4xlAfRoK
+YwYAEd3JvLpw9MU9HQPwhBmOSGXHRgw=
+=+W2q
+-----END PGP SIGNATURE-----
+
+--4QfNIu1KVbjjpExj--
