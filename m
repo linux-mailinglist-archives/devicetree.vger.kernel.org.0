@@ -2,96 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE48570DB89
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 13:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4EA070DBA0
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 13:42:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235329AbjEWLfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 07:35:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56210 "EHLO
+        id S233832AbjEWLmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 07:42:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236651AbjEWLfK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 07:35:10 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23813133
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 04:35:05 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-64d28c9696cso1211455b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 04:35:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684841704; x=1687433704;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O99/xMB8qFN9UOBPXbKlbAWE5L6pykzwrQt3F5j2OWI=;
-        b=qsRFM+7dAUKsDvBqFnJpNNNXA5FTgDJqvHm0z1vVALtoN0WyWm2tx+FVXH4e6jSwUL
-         fd3OoR0iRZ27DfaHAvfz9c6zGBxFwPkgBHxjfvYH7DO6WZ/rcDC+r80rimxPpptCkwZz
-         bF648Wib1XmqCi6SzUxapWy9SWaPGzfA9yk8InbQ7sHloAzz3gpk5AxBTouzNZTfoh3f
-         0yluC3LfxYJjU0K4gZR5CbDu22HWatVzKNNzZNDc4xCbhYpmm+szpWRk+nB/zd1H1C6G
-         0QVf+1HOB4CQypbFOCtYeRLsUgVQ4IG8hgVrZfdHuj8T7AQWSTNnZV0CboUizkG10yUX
-         B9MA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684841704; x=1687433704;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=O99/xMB8qFN9UOBPXbKlbAWE5L6pykzwrQt3F5j2OWI=;
-        b=hDVn0QJ3xrA5Qe1AfLy0cUs5gzMPsUq/VyTwwI5FEEdKn8r1hGswnc/gqnzWO4V6qJ
-         AWgc16GAd+rba3oi3GBT9VZKLw+4Oe3qScVD7hWnpB4W2SHcvfoWmz8EZzINwSya4Vnq
-         dFDxb0LSpvi3tsEow/XTQsT068sc1doJPAPvzb/Ib9zWZf7KhP1htx9XTLLemrSw+ORT
-         JqcoQB5fgX0NQV97RgS864MOZJXa5keuE+xEJVsZqdf4r9iB3LRyuEBmmkx4XkjUHapr
-         +3LImQ7Yq6vnovBR5+KyHeVDnHOfCXWUwHBNkZPSFYEeq99J7mG3jlRGq5HmVghcckXQ
-         FU7A==
-X-Gm-Message-State: AC+VfDx/s/AOKwiup8v5jU3IQQq4H6wttg607KsWwJNWpeXJR48AjYnt
-        rpNuhqejradEkIXiOJNwNegO3r+SHkiOuawhZwU=
-X-Google-Smtp-Source: ACHHUZ5eyLuDVmPQIh0PAQ4RWzGnnHSCSAYLLvlDy9PyWXwh6oBP3wxrDjBjLzOCnb24LIEOWPqjQVSSS57/U4bW4lI=
-X-Received: by 2002:a17:90b:384b:b0:252:b875:6a57 with SMTP id
- nl11-20020a17090b384b00b00252b8756a57mr15872751pjb.3.1684841704494; Tue, 23
- May 2023 04:35:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230522201404.660242-1-festevam@gmail.com> <20230522201404.660242-4-festevam@gmail.com>
- <d8c34831-c89a-0c09-d874-9f7778c7aa33@denx.de>
-In-Reply-To: <d8c34831-c89a-0c09-d874-9f7778c7aa33@denx.de>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 23 May 2023 08:34:51 -0300
-Message-ID: <CAOMZO5CMox7r40cSf7mwqJp3bReN+4VBZ4CMXVpsxYH2g8XqzA@mail.gmail.com>
-Subject: Re: [PATCH v6 4/5] ARM: dts: imx6sx: Add LDB support
-To:     Marek Vasut <marex@denx.de>
-Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
-        bhelgaas@google.com, Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230197AbjEWLmi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 07:42:38 -0400
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0E4FFE;
+        Tue, 23 May 2023 04:42:36 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out1.suse.de (Postfix) with ESMTPS id 8197B229AD;
+        Tue, 23 May 2023 11:42:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1684842155; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Y5OsFTJQlT1HP4PZ2CxU3TzCtEIcI+DtJ1ZvdSvwdV8=;
+        b=woqqhvTEeKGw14U0e+mSdFr7+Xm5nkc7Vq/PMqB96PXoXs4riCpEY7i21rIyCnQ9kYIN83
+        U/lUQTWG6RvI0W+6tzfFu/eZ256WR+J8/oexJpyhj8HvYtwigCFxCcDgD8NPQH1kTEEKkb
+        YOLS2pRDXw8cTZJObz7BWypBem4aDho=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1684842155;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Y5OsFTJQlT1HP4PZ2CxU3TzCtEIcI+DtJ1ZvdSvwdV8=;
+        b=ZkvCZau2Mms91EZ20b1cE7FhxReUJxXFJtR6iJagHk/Bjm4ALKeBdRluxvKqdxtfnUDHvL
+        hWmso+f7JNUs6nDQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 0435213588;
+        Tue, 23 May 2023 11:42:35 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id YT0YAKumbGTJFAAAMHmgww
+        (envelope-from <tiwai@suse.de>); Tue, 23 May 2023 11:42:34 +0000
+Date:   Tue, 23 May 2023 13:42:34 +0200
+Message-ID: <87353ngtp1.wl-tiwai@suse.de>
+From:   Takashi Iwai <tiwai@suse.de>
+To:     "Ding, Shenghao" <shenghao-ding@ti.com>
+Cc:     Shenghao Ding <13916275206@139.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "perex@perex.cz" <perex@perex.cz>,
+        "pierre-louis.bossart@linux.intel.com" 
+        <pierre-louis.bossart@linux.intel.com>,
+        "Lu, Kevin" <kevin-lu@ti.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Xu, Baojun" <x1077012@ti.com>, "Gupta, Peeyush" <peeyush@ti.com>,
+        "Navada Kanyana, Mukund" <navada@ti.com>,
+        "gentuser@gmail.com" <gentuser@gmail.com>,
+        "Ryan_Chu@wistron.com" <Ryan_Chu@wistron.com>,
+        "Sam_Wu@wistron.com" <Sam_Wu@wistron.com>
+Subject: Re: [EXTERNAL] Re: [PATCH v3 4/5] ALSA: hda/tas2781: Add tas2781 HDA driver
+In-Reply-To: <9daf95da47b540329aa9fbbd2df5e504@ti.com>
+References: <20230519080227.20224-1-13916275206@139.com>
+        <871qjayuvv.wl-tiwai@suse.de>
+        <9daf95da47b540329aa9fbbd2df5e504@ti.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+On Tue, 23 May 2023 13:22:03 +0200,
+Ding, Shenghao wrote:
+> 
+> > +	[ALC287_FIXUP_TAS2781_I2C_2] = {
+> > +		.type = HDA_FIXUP_FUNC,
+> > +		.v.func = tas2781_fixup_i2c,
+> > +		.chained = true,
+> > +		.chain_id = ALC269_FIXUP_THINKPAD_ACPI,
+> > +	},
+> > +	[ALC287_FIXUP_TAS2781_I2C_4] = {
+> > +		.type = HDA_FIXUP_FUNC,
+> > +		.v.func = tas2781_fixup_i2c,
+> > +		.chained = true,
+> > +		.chain_id = ALC269_FIXUP_THINKPAD_ACPI,
+> > +	},
+> 
+> What's a difference between *_2 and *_4?
+> Combine them into ALC287_FIXUP_TAS2781_I2C
 
-On Mon, May 22, 2023 at 11:57=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+Hm, so there is no difference in stereo and quad speakers?
 
-> > +                             lvds_bridge: bridge@18 {
-> > +                                     compatible =3D "fsl,imx6sx-ldb";
-> > +                                     reg =3D <0x18 0x4>;
-> > +                                     clocks =3D <&clks IMX6SX_CLK_LDB_=
-DI0>;
-> > +                                     clock-names =3D "ldb";
->
-> Since there is only once clock, is this clock-names even needed ?
+> > +static int tas2781_save_calibration(struct tasdevice_priv *tas_priv) 
+> > +{
+> > +	efi_guid_t efi_guid = EFI_GUID(0x02f9af02, 0x7734, 0x4233, 0xb4, 0x3d,
+> > +		0x93, 0xfe, 0x5a, 0xa3, 0x5d, 0xb3);
+> > +	static efi_char16_t efi_name[] = L"CALI_DATA";
+> > +	struct hda_codec *codec = tas_priv->codec;
+> > +	unsigned int subid = codec->core.subsystem_id & 0xFFFF;
+> > +	struct tm *tm = &tas_priv->tm;
+> > +	unsigned int attr, crc;
+> > +	unsigned int *tmp_val;
+> > +	efi_status_t status;
+> > +	int ret = 0;
+> > +
+> > +	//Lenovo devices
+> > +	if ((subid == 0x387d) || (subid == 0x387e) || (subid == 0x3881)
+> > +		|| (subid == 0x3884) || (subid == 0x3886) || (subid == 0x38a7)
+> > +		|| (subid == 0x38a8) || (subid == 0x38ba) || (subid == 0x38bb)
+> > +		|| (subid == 0x38be) || (subid == 0x38bf) || (subid == 0x38c3)
+> > +		|| (subid == 0x38cb) || (subid == 0x38cd))
+> > +		efi_guid = EFI_GUID(0x1f52d2a1, 0xbb3a, 0x457d, 0xbc, 0x09,
+> > +			0x43, 0xa3, 0xf4, 0x31, 0x0a, 0x92);
+> 
+> Here can be a problem: the device ID is embedded here, and it's hard to find out.  You'd better to make it some quirk flag that is set in a common place and check the flag here instead of checking ID at each place.
+> 
+> Do you have example of the solution? I found some quirk flag is static in the patch_realtek.c, can't be accessed outside that file.
 
-As of today, clock-names is needed because
-drivers/gpu/drm/bridge/fsl-ldb.c retrieves the ldb clock like this:
+You may store some values in struct hda_component, I suppose?
 
-fsl_ldb->clk =3D devm_clk_get(dev, "ldb")
+BTW, please try to fix your mailer to do citation more correctly...
 
-If you want, I can change it to fsl_ldb->clk =3D devm_clk_get(dev, NULL)
-and also remove clock-names from
-fsl,ldb.yaml and from imx8mp.dtsi.
 
-Or this cleanup can also be a follow-up patch. Just let me know what you pr=
-efer.
+thanks,
+
+Takashi
