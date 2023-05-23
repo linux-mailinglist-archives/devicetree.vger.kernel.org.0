@@ -2,30 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 085F870D5FC
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 09:49:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C03E170D601
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 09:50:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235863AbjEWHtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 03:49:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43512 "EHLO
+        id S230146AbjEWHux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 03:50:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235874AbjEWHtL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 03:49:11 -0400
+        with ESMTP id S232773AbjEWHul (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 03:50:41 -0400
 Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A73DC19AA;
-        Tue, 23 May 2023 00:47:34 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AE5E110D4
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 00:50:10 -0700 (PDT)
 Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 1019B80B5;
-        Tue, 23 May 2023 07:47:28 +0000 (UTC)
+        by muru.com (Postfix) with ESMTP id BE7FA80B5;
+        Tue, 23 May 2023 07:48:48 +0000 (UTC)
 From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+To:     Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH] ARM: dts: Unify pinctrl-single pin group nodes for dra7
-Date:   Tue, 23 May 2023 10:47:26 +0300
-Message-Id: <20230523074726.21013-1-tony@atomide.com>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: Unify pinctrl-single pin group nodes for keystone
+Date:   Tue, 23 May 2023 10:48:43 +0300
+Message-Id: <20230523074845.59433-1-tony@atomide.com>
 X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -47,671 +48,299 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc: Rob Herring <robh+dt@kernel.org>
 Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
- arch/arm/boot/dts/am57xx-cl-som-am57x.dts | 28 +++++++--------
- arch/arm/boot/dts/am57xx-idk-common.dtsi  |  4 +--
- arch/arm/boot/dts/am57xx-sbc-am57x.dts    | 14 ++++----
- arch/arm/boot/dts/dra7-evm.dts            |  4 +--
- arch/arm/boot/dts/dra7-mmc-iodelay.dtsi   |  2 +-
- arch/arm/boot/dts/dra72-evm-common.dtsi   |  4 +--
- arch/arm/boot/dts/dra72x-mmc-iodelay.dtsi | 28 +++++++--------
- arch/arm/boot/dts/dra74x-mmc-iodelay.dtsi | 44 +++++++++++------------
- arch/arm/boot/dts/dra76x-mmc-iodelay.dtsi | 16 ++++-----
- 9 files changed, 72 insertions(+), 72 deletions(-)
+ arch/arm/boot/dts/keystone-k2g-evm.dts | 30 +++++++++++++-------------
+ arch/arm/boot/dts/keystone-k2g-ice.dts | 16 +++++++-------
+ arch/arm/boot/dts/keystone-k2l.dtsi    | 20 ++++++++---------
+ 3 files changed, 33 insertions(+), 33 deletions(-)
 
-diff --git a/arch/arm/boot/dts/am57xx-cl-som-am57x.dts b/arch/arm/boot/dts/am57xx-cl-som-am57x.dts
---- a/arch/arm/boot/dts/am57xx-cl-som-am57x.dts
-+++ b/arch/arm/boot/dts/am57xx-cl-som-am57x.dts
-@@ -77,40 +77,40 @@ simple-audio-card,codec {
+diff --git a/arch/arm/boot/dts/keystone-k2g-evm.dts b/arch/arm/boot/dts/keystone-k2g-evm.dts
+--- a/arch/arm/boot/dts/keystone-k2g-evm.dts
++++ b/arch/arm/boot/dts/keystone-k2g-evm.dts
+@@ -120,14 +120,14 @@ codec {
  };
  
- &dra7_pmx_core {
--	leds_pins_default: leds_pins_default {
-+	leds_pins_default: leds-default-pins {
+ &k2g_pinctrl {
+-	uart0_pins: pinmux_uart0_pins {
++	uart0_pins: uart0-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x347c, PIN_OUTPUT | MUX_MODE14)	/* gpmc_a15.gpio2_5 */
+ 			K2G_CORE_IOPAD(0x11cc) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* uart0_rxd.uart0_rxd */
+ 			K2G_CORE_IOPAD(0x11d0) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE0)	/* uart0_txd.uart0_txd */
  		>;
  	};
  
--	i2c1_pins_default: i2c1_pins_default {
-+	i2c1_pins_default: i2c1-default-pins {
+-	mmc0_pins: pinmux_mmc0_pins {
++	mmc0_pins: mmc0-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3800, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c1_sda.sda */
- 			DRA7XX_CORE_IOPAD(0x3804, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c1_scl.scl */
+ 			K2G_CORE_IOPAD(0x1300) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE2)	/* mmc0_dat3.mmc0_dat3 */
+ 			K2G_CORE_IOPAD(0x1304) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE2)	/* mmc0_dat2.mmc0_dat2 */
+@@ -139,7 +139,7 @@ K2G_CORE_IOPAD(0x12ec) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE3)	/* mmc0_sdcd.gp
  		>;
  	};
  
--	i2c3_pins_default: i2c3_pins_default {
-+	i2c3_pins_default: i2c3-default-pins {
+-	mmc1_pins: pinmux_mmc1_pins {
++	mmc1_pins: mmc1-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x36a4, PIN_INPUT| MUX_MODE10)	/* mcasp1_aclkx.i2c3_sda */
- 			DRA7XX_CORE_IOPAD(0x36a8, PIN_INPUT| MUX_MODE10)	/* mcasp1_fsx.i2c3_scl */
+ 			K2G_CORE_IOPAD(0x10ec) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* mmc1_dat7.mmc1_dat7 */
+ 			K2G_CORE_IOPAD(0x10f0) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* mmc1_dat6.mmc1_dat6 */
+@@ -154,27 +154,27 @@ K2G_CORE_IOPAD(0x1110) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* mmc1_cmd.mmc
  		>;
  	};
  
--	i2c4_pins_default: i2c4_pins_default {
-+	i2c4_pins_default: i2c4-default-pins {
+-	i2c0_pins: pinmux_i2c0_pins {
++	i2c0_pins: i2c0-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x36ac, PIN_INPUT| MUX_MODE10)	/* mcasp1_acl.i2c4_sda */
- 			DRA7XX_CORE_IOPAD(0x36b0, PIN_INPUT| MUX_MODE10)	/* mcasp1_fsr.i2c4_scl */
+ 			K2G_CORE_IOPAD(0x137c) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c0_scl.i2c0_scl */
+ 			K2G_CORE_IOPAD(0x1380) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c0_sda.i2c0_sda */
  		>;
  	};
  
--	tps659038_pins_default: tps659038_pins_default {
-+	tps659038_pins_default: tps659038-default-pins {
+-	i2c1_pins: pinmux_i2c1_pins {
++	i2c1_pins: i2c1-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3818, PIN_INPUT_PULLUP | MUX_MODE14) /* wakeup0.gpio1_0 */
+ 			K2G_CORE_IOPAD(0x1384) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c1_scl.i2c1_scl */
+ 			K2G_CORE_IOPAD(0x1388) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c1_sda.i2c1_sda */
  		>;
  	};
  
--	mmc2_pins_default: mmc2_pins_default {
-+	mmc2_pins_default: mmc2-default-pins {
+-	ecap0_pins: ecap0_pins {
++	ecap0_pins: ecap0-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -125,7 +125,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a22.mmc2_dat7 */
+ 			K2G_CORE_IOPAD(0x1374) (BUFFER_CLASS_B | MUX_MODE4)	/* pr1_mdio_data.ecap0_in_apwm0_out */
  		>;
  	};
  
--	qspi1_pins: pinmux_qspi1_pins {
-+	qspi1_pins: qspi1-pins {
+-	spi1_pins: pinmux_spi1_pins {
++	spi1_pins: spi1-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3474, PIN_INPUT | MUX_MODE1)	/* gpmc_a13.qspi1_rtclk */
- 			DRA7XX_CORE_IOPAD(0x3480, PIN_INPUT | MUX_MODE1)	/* gpmc_a16.qspi1_d0 */
-@@ -136,7 +136,7 @@ DRA7XX_CORE_IOPAD(0x34bc, PIN_INPUT_PULLUP | MUX_MODE1)	/* gpmc_cs3.qspi1_cs1 */
+ 			K2G_CORE_IOPAD(0x11a4) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* spi1_scs0.spi1_scs0 */
+ 			K2G_CORE_IOPAD(0x11ac) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* spi1_clk.spi1_clk */
+@@ -183,7 +183,7 @@ K2G_CORE_IOPAD(0x11b4) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* spi1_mosi.
  		>;
  	};
  
--	cpsw_pins_default: cpsw_pins_default {
-+	cpsw_pins_default: cpsw-default-pins {
+-	qspi_pins: pinmux_qspi_pins {
++	qspi_pins: qspi-pins {
  		pinctrl-single,pins = <
- 			/* Slave at addr 0x0 */
- 			DRA7XX_CORE_IOPAD(0x3650, PIN_OUTPUT | MUX_MODE0)	/* rgmii0_tclk */
-@@ -168,7 +168,7 @@ DRA7XX_CORE_IOPAD(0x35c4, PIN_INPUT_PULLDOWN | MUX_MODE3) /* vin2a_d23.rgmii1_rd
+ 			K2G_CORE_IOPAD(0x1204) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* qspi_clk.qspi_clk */
+ 			K2G_CORE_IOPAD(0x1208) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* qspi_rclk.qspi_rclk */
+@@ -195,28 +195,28 @@ K2G_CORE_IOPAD(0x121c) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* qspi_csn0.
  		>;
  	};
  
--	cpsw_pins_sleep: cpsw_pins_sleep {
-+	cpsw_pins_sleep: cpsw-sleep-pins {
+-	uart2_pins: pinmux_uart2_pins {
++	uart2_pins: uart2-pins {
  		pinctrl-single,pins = <
- 			/* Slave 1 */
- 			DRA7XX_CORE_IOPAD(0x3650, PIN_INPUT | MUX_MODE15)
-@@ -200,7 +200,7 @@ DRA7XX_CORE_IOPAD(0x35c4, PIN_INPUT | MUX_MODE15)
+ 			K2G_CORE_IOPAD(0x11ec) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)      /* uart2_rxd.uart2_rxd */
+ 			K2G_CORE_IOPAD(0x11f0) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE0)      /* uart2_txd.uart2_txd */
  		>;
  	};
  
--	davinci_mdio_pins_default: davinci_mdio_pins_default {
-+	davinci_mdio_pins_default: davinci-mdio-default-pins {
+-	dcan0_pins: pinmux_dcan0_pins {
++	dcan0_pins: dcan0-pins {
  		pinctrl-single,pins = <
- 			/* MDIO */
- 			DRA7XX_CORE_IOPAD(0x3590, PIN_OUTPUT_PULLUP | MUX_MODE3)/* vin2a_d10.mdio_mclk */
-@@ -208,20 +208,20 @@ DRA7XX_CORE_IOPAD(0x3594, PIN_INPUT_PULLUP | MUX_MODE3)	/* vin2a_d11.mdio_d */
+ 			K2G_CORE_IOPAD(0x11fc) (BUFFER_CLASS_B | PULL_DISABLE  | MUX_MODE0)	/* dcan0tx.dcan0tx */
+ 			K2G_CORE_IOPAD(0x1200) (BUFFER_CLASS_B | PIN_PULLDOWN  | MUX_MODE0)	/* dcan0rx.dcan0rx */
  		>;
  	};
  
--	davinci_mdio_pins_sleep: davinci_mdio_pins_sleep {
-+	davinci_mdio_pins_sleep: davinci-mdio-sleep-pins {
+-	dcan1_pins: pinmux_dcan1_pins {
++	dcan1_pins: dcan1-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3590, PIN_INPUT | MUX_MODE15)
- 			DRA7XX_CORE_IOPAD(0x3594, PIN_INPUT | MUX_MODE15)
+ 			K2G_CORE_IOPAD(0x1224) (BUFFER_CLASS_B | PULL_DISABLE  | MUX_MODE1)	/* qspicsn2.dcan1tx */
+ 			K2G_CORE_IOPAD(0x1228) (BUFFER_CLASS_B | PIN_PULLDOWN  | MUX_MODE1)	/* qspicsn3.dcan1rx */
  		>;
  	};
  
--	ads7846_pins: pinmux_ads7846_pins {
-+	ads7846_pins: ads7846-pins {
+-	emac_pins: pinmux_emac_pins {
++	emac_pins: emac-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3464, PIN_INPUT_PULLDOWN | MUX_MODE14) /* gpmc_a9.gpio1_31 */
+ 			K2G_CORE_IOPAD(0x113C) (BUFFER_CLASS_D | PULL_DISABLE | MUX_MODE1)	/* MII_RXD1.RGMII_RXD1 */
+ 			K2G_CORE_IOPAD(0x1138) (BUFFER_CLASS_D | PULL_DISABLE | MUX_MODE1)	/* MII_RXD2.RGMII_RXD2 */
+@@ -233,14 +233,14 @@ K2G_CORE_IOPAD(0x1144) (BUFFER_CLASS_D | PULL_DISABLE | MUX_MODE1)	/* MII_RXDV.R
  		>;
  	};
  
--	mcasp3_pins_default: mcasp3_pins_default {
-+	mcasp3_pins_default: mcasp3-default-pins {
+-	mdio_pins: pinmux_mdio_pins {
++	mdio_pins: mdio-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3724, PIN_INPUT_PULLDOWN | MUX_MODE0) /* mcasp3_aclkx.mcasp3_aclkx */
- 			DRA7XX_CORE_IOPAD(0x3728, PIN_INPUT_PULLDOWN | MUX_MODE0) /* mcasp3_fsx.mcasp3_fsx */
-@@ -230,7 +230,7 @@ DRA7XX_CORE_IOPAD(0x3730, PIN_INPUT_PULLDOWN | MUX_MODE0) /* mcasp3_axr1.mcasp3_
+ 			K2G_CORE_IOPAD(0x118C) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* MDIO_CLK.MDIO_CLK */
+ 			K2G_CORE_IOPAD(0x1188) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* MDIO_DATA.MDIO_DATA */
  		>;
  	};
  
--	mcasp3_pins_sleep: mcasp3_pins_sleep {
-+	mcasp3_pins_sleep: mcasp3-sleep-pins {
+-	vout_pins: pinmux_vout_pins {
++	vout_pins: vout-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3724, PIN_INPUT | MUX_MODE15)
- 			DRA7XX_CORE_IOPAD(0x3728, PIN_INPUT | MUX_MODE15)
-diff --git a/arch/arm/boot/dts/am57xx-idk-common.dtsi b/arch/arm/boot/dts/am57xx-idk-common.dtsi
---- a/arch/arm/boot/dts/am57xx-idk-common.dtsi
-+++ b/arch/arm/boot/dts/am57xx-idk-common.dtsi
-@@ -158,14 +158,14 @@ src_clk_x1: src_clk_x1 {
+ 			K2G_CORE_IOPAD(0x1078) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* dssdata23.dssdata23 */
+ 			K2G_CORE_IOPAD(0x107c) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* dssdata22.dssdata22 */
+@@ -274,7 +274,7 @@ K2G_CORE_IOPAD(0x10e8) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* dssfid.dss
+ 		>;
+ 	};
+ 
+-	mcasp2_pins: pinmux_mcasp2_pins {
++	mcasp2_pins: mcasp2-pins {
+ 		pinctrl-single,pins = <
+ 			K2G_CORE_IOPAD(0x1234) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE4) /* pr0_pru_gpo2.mcasp2_axr2 */
+ 			K2G_CORE_IOPAD(0x1238) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE4) /* pr0_pru_gpo3.mcasp2_axr3 */
+diff --git a/arch/arm/boot/dts/keystone-k2g-ice.dts b/arch/arm/boot/dts/keystone-k2g-ice.dts
+--- a/arch/arm/boot/dts/keystone-k2g-ice.dts
++++ b/arch/arm/boot/dts/keystone-k2g-ice.dts
+@@ -218,14 +218,14 @@ led12 {
  };
  
- &dra7_pmx_core {
--	dcan1_pins_default: dcan1_pins_default {
-+	dcan1_pins_default: dcan1-default-pins {
+ &k2g_pinctrl {
+-	uart0_pins: pinmux_uart0_pins {
++	uart0_pins: uart0-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37d0, PIN_OUTPUT_PULLUP | MUX_MODE0)	/* dcan1_tx */
- 			DRA7XX_CORE_IOPAD(0x37d4, PIN_INPUT_PULLUP | MUX_MODE0)		/* dcan1_rx */
+ 			K2G_CORE_IOPAD(0x11cc) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* uart0_rxd.uart0_rxd */
+ 			K2G_CORE_IOPAD(0x11d0) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE0)	/* uart0_txd.uart0_txd */
  		>;
  	};
  
--	dcan1_pins_sleep: dcan1_pins_sleep {
-+	dcan1_pins_sleep: dcan1-sleep-pins {
+-	qspi_pins: pinmux_qspi_pins {
++	qspi_pins: qspi-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37d0, MUX_MODE15 | PULL_UP)	/* dcan1_tx.off */
- 			DRA7XX_CORE_IOPAD(0x37d4, MUX_MODE15 | PULL_UP)	/* dcan1_rx.off */
-diff --git a/arch/arm/boot/dts/am57xx-sbc-am57x.dts b/arch/arm/boot/dts/am57xx-sbc-am57x.dts
---- a/arch/arm/boot/dts/am57xx-sbc-am57x.dts
-+++ b/arch/arm/boot/dts/am57xx-sbc-am57x.dts
-@@ -20,14 +20,14 @@ aliases {
- };
- 
- &dra7_pmx_core {
--	uart3_pins_default: uart3_pins_default {
-+	uart3_pins_default: uart3-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3648, PIN_INPUT_SLEW | MUX_MODE0)	/* uart3_rxd */
- 			DRA7XX_CORE_IOPAD(0x364c, PIN_INPUT_SLEW | MUX_MODE0)	/* uart3_txd */
+ 			K2G_CORE_IOPAD(0x1204) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* qspi_clk.qspi_clk */
+ 			K2G_CORE_IOPAD(0x1208) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* qspi_rclk.qspi_rclk */
+@@ -237,7 +237,7 @@ K2G_CORE_IOPAD(0x121c) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* qspi_csn0.
  		>;
  	};
  
--	mmc1_pins_default: mmc1_pins_default {
-+	mmc1_pins_default: mmc1-default-pins {
+-	mmc1_pins: pinmux_mmc1_pins {
++	mmc1_pins: mmc1-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -40,33 +40,33 @@ DRA7XX_CORE_IOPAD(0x377c, PIN_INPUT | MUX_MODE14)	/* mmc1_sdwp.gpio6_28 */
+ 			K2G_CORE_IOPAD(0x10FC) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* mmc1_dat3.mmc1_dat3 */
+ 			K2G_CORE_IOPAD(0x1100) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* mmc1_dat2.mmc1_dat2 */
+@@ -251,21 +251,21 @@ K2G_CORE_IOPAD(0x111C) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* mmc1_pow.mmc
  		>;
  	};
  
--	usb1_pins: pinmux_usb1_pins {
-+	usb1_pins: usb1-pins {
+-	i2c0_pins: pinmux_i2c0_pins {
++	i2c0_pins: i2c0-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3680, PIN_INPUT_SLEW | MUX_MODE0) /* usb1_drvvbus */
+ 			K2G_CORE_IOPAD(0x137c) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c0_scl.i2c0_scl */
+ 			K2G_CORE_IOPAD(0x1380) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c0_sda.i2c0_sda */
  		>;
  	};
  
--	i2c5_pins_default: i2c5_pins_default {
-+	i2c5_pins_default: i2c5-default-pins {
+-	i2c1_pins: pinmux_i2c1_pins {
++	i2c1_pins: i2c1-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x36b4, PIN_INPUT| MUX_MODE10)	/* mcasp1_axr0.i2c5_sda */
- 			DRA7XX_CORE_IOPAD(0x36b8, PIN_INPUT| MUX_MODE10)	/* mcasp1_axr1.i2c5_scl */
+ 			K2G_CORE_IOPAD(0x1384) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c1_scl.i2c1_scl */
+ 			K2G_CORE_IOPAD(0x1388) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE0)	/* i2c1_sda.i2c1_sda */
  		>;
  	};
  
--	lcd_pins_default: lcd_pins_default {
-+	lcd_pins_default: lcd-default-pins {
+-	user_leds: pinmux_user_leds {
++	user_leds: user-leds-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3564, PIN_OUTPUT | MUX_MODE14)      /* vin2a_vsync0.gpio4_0 */
+ 			K2G_CORE_IOPAD(0x102c) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE3)	/* gpmc_ad11.gpio0_11 */
+ 			K2G_CORE_IOPAD(0x1030) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE3)	/* gpmc_ad12.gpio0_12 */
+@@ -283,7 +283,7 @@ K2G_CORE_IOPAD(0x11bc) (BUFFER_CLASS_B | PIN_PULLUP | MUX_MODE3)	/* spi2_scsn1.g
  		>;
  	};
  
--	hdmi_pins: pinmux_hdmi_pins {
-+	hdmi_pins: hdmi-pins {
+-	emac_pins: pinmux_emac_pins {
++	emac_pins: emac-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3808, PIN_INPUT | MUX_MODE1)	/* i2c2_sda.hdmi1_ddc_scl */
- 			DRA7XX_CORE_IOPAD(0x380c, PIN_INPUT | MUX_MODE1)	/* i2c2_scl.hdmi1_ddc_sda */
+ 			K2G_CORE_IOPAD(0x113C) (BUFFER_CLASS_D | PULL_DISABLE | MUX_MODE1)	/* MII_RXD1.RGMII_RXD1 */
+ 			K2G_CORE_IOPAD(0x1138) (BUFFER_CLASS_D | PULL_DISABLE | MUX_MODE1)	/* MII_RXD2.RGMII_RXD2 */
+@@ -300,7 +300,7 @@ K2G_CORE_IOPAD(0x1144) (BUFFER_CLASS_D | PULL_DISABLE | MUX_MODE1)	/* MII_RXDV.R
  		>;
  	};
  
--	hdmi_conn_pins: pinmux_hdmi_conn_pins {
-+	hdmi_conn_pins: hdmi-conn-pins {
+-	mdio_pins: pinmux_mdio_pins {
++	mdio_pins: mdio-pins {
  		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37b8, PIN_INPUT | MUX_MODE14)	/* spi1_cs2.gpio7_12 */
- 		>;
-diff --git a/arch/arm/boot/dts/dra7-evm.dts b/arch/arm/boot/dts/dra7-evm.dts
---- a/arch/arm/boot/dts/dra7-evm.dts
-+++ b/arch/arm/boot/dts/dra7-evm.dts
-@@ -152,14 +152,14 @@ vtt_fixed: fixedregulator-vtt {
- };
+ 			K2G_CORE_IOPAD(0x118C) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* MDIO_CLK.MDIO_CLK */
+ 			K2G_CORE_IOPAD(0x1188) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0)	/* MDIO_DATA.MDIO_DATA */
+diff --git a/arch/arm/boot/dts/keystone-k2l.dtsi b/arch/arm/boot/dts/keystone-k2l.dtsi
+--- a/arch/arm/boot/dts/keystone-k2l.dtsi
++++ b/arch/arm/boot/dts/keystone-k2l.dtsi
+@@ -116,42 +116,42 @@ k2l_pmx: pinmux@2620690 {
+ 			pinctrl-single,function-mask = <0x1>;
+ 			status = "disabled";
  
- &dra7_pmx_core {
--	dcan1_pins_default: dcan1_pins_default {
-+	dcan1_pins_default: dcan1-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37d0, PIN_OUTPUT_PULLUP | MUX_MODE0) /* dcan1_tx */
- 			DRA7XX_CORE_IOPAD(0x3818, PULL_UP | MUX_MODE1) /* wakeup0.dcan1_rx */
- 		>;
- 	};
+-			uart3_emifa_pins: pinmux_uart3_emifa_pins {
++			uart3_emifa_pins: uart3-emifa-pins {
+ 				pinctrl-single,bits = <
+ 					/* UART3_EMIFA_SEL */
+ 					0x0 0x0  0xc0
+ 				>;
+ 			};
  
--	dcan1_pins_sleep: dcan1_pins_sleep {
-+	dcan1_pins_sleep: dcan1-sleep-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37d0, MUX_MODE15 | PULL_UP)	/* dcan1_tx.off */
- 			DRA7XX_CORE_IOPAD(0x3818, MUX_MODE15 | PULL_UP)	/* wakeup0.off */
-diff --git a/arch/arm/boot/dts/dra7-mmc-iodelay.dtsi b/arch/arm/boot/dts/dra7-mmc-iodelay.dtsi
---- a/arch/arm/boot/dts/dra7-mmc-iodelay.dtsi
-+++ b/arch/arm/boot/dts/dra7-mmc-iodelay.dtsi
-@@ -6,7 +6,7 @@
-  */
+-			uart2_emifa_pins: pinmux_uart2_emifa_pins {
++			uart2_emifa_pins: uart2-emifa-pins {
+ 			pinctrl-single,bits = <
+ 					/* UART2_EMIFA_SEL */
+ 					0x0 0x0  0x30
+ 				>;
+ 			};
  
- &dra7_pmx_core {
--	mmc1_pins_default_no_clk_pu: mmc1_pins_default_no_clk_pu {
-+	mmc1_pins_default_no_clk_pu: mmc1-default-no-clk-pu-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLDOWN | MUX_MODE0) /* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_cmd.cmd */
-diff --git a/arch/arm/boot/dts/dra72-evm-common.dtsi b/arch/arm/boot/dts/dra72-evm-common.dtsi
---- a/arch/arm/boot/dts/dra72-evm-common.dtsi
-+++ b/arch/arm/boot/dts/dra72-evm-common.dtsi
-@@ -197,14 +197,14 @@ clk_ov5640_fixed: clock {
- };
+-			uart01_spi2_pins: pinmux_uart01_spi2_pins {
++			uart01_spi2_pins: uart01-spi2-pins {
+ 				pinctrl-single,bits = <
+ 					/* UART01_SPI2_SEL */
+ 					0x0 0x0 0x4
+ 				>;
+ 			};
  
- &dra7_pmx_core {
--	dcan1_pins_default: dcan1_pins_default {
-+	dcan1_pins_default: dcan1-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37d0, PIN_OUTPUT_PULLUP | MUX_MODE0) /* dcan1_tx */
- 			DRA7XX_CORE_IOPAD(0x3818, PULL_UP | MUX_MODE1)	/* wakeup0.dcan1_rx */
- 		>;
- 	};
+-			dfesync_rp1_pins: pinmux_dfesync_rp1_pins{
++			dfesync_rp1_pins: dfesync-rp1-pins{
+ 				pinctrl-single,bits = <
+ 					/* DFESYNC_RP1_SEL */
+ 					0x0 0x0 0x2
+ 				>;
+ 			};
  
--	dcan1_pins_sleep: dcan1_pins_sleep {
-+	dcan1_pins_sleep: dcan1-sleep-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37d0, MUX_MODE15 | PULL_UP)	/* dcan1_tx.off */
- 			DRA7XX_CORE_IOPAD(0x3818, MUX_MODE15 | PULL_UP)	/* wakeup0.off */
-diff --git a/arch/arm/boot/dts/dra72x-mmc-iodelay.dtsi b/arch/arm/boot/dts/dra72x-mmc-iodelay.dtsi
---- a/arch/arm/boot/dts/dra72x-mmc-iodelay.dtsi
-+++ b/arch/arm/boot/dts/dra72x-mmc-iodelay.dtsi
-@@ -32,7 +32,7 @@
-  */
+-			avsif_pins: pinmux_avsif_pins {
++			avsif_pins: avsif-pins {
+ 				pinctrl-single,bits = <
+ 					/* AVSIF_SEL */
+ 					0x0 0x0 0x1
+ 				>;
+ 			};
  
- &dra7_pmx_core {
--	mmc1_pins_default: mmc1_pins_default {
-+	mmc1_pins_default: mmc1-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_cmd.cmd */
-@@ -43,7 +43,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_dat3.dat3 */
- 		>;
- 	};
+-			gpio_emu_pins: pinmux_gpio_emu_pins {
++			gpio_emu_pins: gpio-emu-pins {
+ 				pinctrl-single,bits = <
+ 				/*
+ 				 * GPIO_EMU_SEL[31]: 0-GPIO31, 1-EMU33
+@@ -174,7 +174,7 @@ gpio_emu_pins: pinmux_gpio_emu_pins {
+ 				>;
+ 			};
  
--	mmc1_pins_sdr12: mmc1_pins_sdr12 {
-+	mmc1_pins_sdr12: mmc1-sdr12-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_MODE0)	/* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -54,7 +54,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_MODE0)	/* mmc1_dat3.dat3 */
- 		>;
- 	};
+-			gpio_timio_pins: pinmux_gpio_timio_pins {
++			gpio_timio_pins: gpio-timio-pins {
+ 				pinctrl-single,bits = <
+ 				/*
+ 				 * GPIO_TIMIO_SEL[15]: 0-GPIO15, 1-TIMO7
+@@ -194,7 +194,7 @@ gpio_timio_pins: pinmux_gpio_timio_pins {
+ 				>;
+ 			};
  
--	mmc1_pins_hs: mmc1_pins_hs {
-+	mmc1_pins_hs: mmc1-hs-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_cmd.cmd */
-@@ -65,7 +65,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_dat3.dat3 */
- 		>;
- 	};
+-			gpio_spi2cs_pins: pinmux_gpio_spi2cs_pins {
++			gpio_spi2cs_pins: gpio-spi2cs-pins {
+ 				pinctrl-single,bits = <
+ 				/*
+ 				 * GPIO_SPI2CS_SEL[3]: 0-GPIO3, 1-SPI2CS4
+@@ -206,7 +206,7 @@ gpio_spi2cs_pins: pinmux_gpio_spi2cs_pins {
+ 				>;
+ 			};
  
--	mmc1_pins_sdr25: mmc1_pins_sdr25 {
-+	mmc1_pins_sdr25: mmc1-sdr25-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_MODE0)	/* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -76,7 +76,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_MODE0)	/* mmc1_dat3.dat3 */
- 		>;
- 	};
+-			gpio_dfeio_pins: pinmux_gpio_dfeio_pins {
++			gpio_dfeio_pins: gpio-dfeio-pins {
+ 				pinctrl-single,bits = <
+ 				/*
+ 				 * GPIO_DFEIO_SEL[31]: 0-DFEIO17, 1-GPIO63
+@@ -230,7 +230,7 @@ gpio_dfeio_pins: pinmux_gpio_dfeio_pins {
+ 				>;
+ 			};
  
--	mmc1_pins_sdr50: mmc1_pins_sdr50 {
-+	mmc1_pins_sdr50: mmc1-sdr50-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE15 | MUX_MODE0)	/* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE15 | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -87,7 +87,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE15 | MUX_MODE0)	/*
- 		>;
- 	};
- 
--	mmc1_pins_ddr50_rev10: mmc1_pins_ddr50_rev10 {
-+	mmc1_pins_ddr50_rev10: mmc1-ddr50-rev10-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE14 | MUX_MODE0)	/* mmc1_clk.mmc1_clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE14 | MUX_MODE0)	/* mmc1_cmd.mmc1_cmd */
-@@ -98,7 +98,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE14 | MUX_MODE0)	/*
- 		>;
- 	};
- 
--	mmc1_pins_ddr50_rev20: mmc1_pins_ddr50_rev20 {
-+	mmc1_pins_ddr50_rev20: mmc1-ddr50-rev20-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -109,7 +109,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_da
- 		>;
- 	};
- 
--	mmc1_pins_sdr104: mmc1_pins_sdr104 {
-+	mmc1_pins_sdr104: mmc1-sdr104-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -120,7 +120,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_da
- 		>;
- 	};
- 
--	mmc2_pins_default: mmc2_pins_default {
-+	mmc2_pins_default: mmc2-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -135,7 +135,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a22.mmc2_dat7 */
- 		>;
- 	};
- 
--	mmc2_pins_hs: mmc2_pins_hs {
-+	mmc2_pins_hs: mmc2-hs-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -150,7 +150,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a22.mmc2_dat7 */
- 		>;
- 	};
- 
--	mmc2_pins_ddr_rev10: mmc2_pins_ddr_rev10 {
-+	mmc2_pins_ddr_rev10: mmc2-ddr-rev10-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x348c, PIN_INPUT_PULLUP | MUX_MODE1)	/* gpmc_a19.mmc2_dat4 */
- 			DRA7XX_CORE_IOPAD(0x3490, PIN_INPUT_PULLUP | MUX_MODE1)	/* gpmc_a20.mmc2_dat5 */
-@@ -165,7 +165,7 @@ DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MUX_MODE1)	/* gpmc_cs1.mmc2_cmd */
- 		>;
- 	};
- 
--	mmc2_pins_ddr_rev20: mmc2_pins_ddr_rev20 {
-+	mmc2_pins_ddr_rev20: mmc2-ddr-rev20-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -180,7 +180,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_a2
- 		>;
- 	};
- 
--	mmc2_pins_hs200: mmc2_pins_hs200 {
-+	mmc2_pins_hs200: mmc2-hs200-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -195,7 +195,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_a2
- 		>;
- 	};
- 
--	mmc4_pins_default: mmc4_pins_default {
-+	mmc4_pins_default: mmc4-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37e8, PIN_INPUT_PULLUP | MUX_MODE3) /* uart1_ctsn.mmc4_clk */
- 			DRA7XX_CORE_IOPAD(0x37ec, PIN_INPUT_PULLUP | MUX_MODE3) /* uart1_rtsn.mmc4_cmd */
-diff --git a/arch/arm/boot/dts/dra74x-mmc-iodelay.dtsi b/arch/arm/boot/dts/dra74x-mmc-iodelay.dtsi
---- a/arch/arm/boot/dts/dra74x-mmc-iodelay.dtsi
-+++ b/arch/arm/boot/dts/dra74x-mmc-iodelay.dtsi
-@@ -30,7 +30,7 @@
-  */
- 
- &dra7_pmx_core {
--	mmc1_pins_default: mmc1_pins_default {
-+	mmc1_pins_default: mmc1-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_cmd.cmd */
-@@ -41,7 +41,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_dat3.dat3 */
- 		>;
- 	};
- 
--	mmc1_pins_sdr12: mmc1_pins_sdr12 {
-+	mmc1_pins_sdr12: mmc1-sdr12-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_MODE0)	/* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -52,7 +52,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_MODE0)	/* mmc1_dat3.dat3 */
- 		>;
- 	};
- 
--	mmc1_pins_hs: mmc1_pins_hs {
-+	mmc1_pins_hs: mmc1-hs-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE11 | MUX_MODE0) /* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE11 | MUX_MODE0) /* mmc1_cmd.cmd */
-@@ -63,7 +63,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE11 | MUX_MODE0) /*
- 		>;
- 	};
- 
--	mmc1_pins_sdr25: mmc1_pins_sdr25 {
-+	mmc1_pins_sdr25: mmc1-sdr25-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE11 | MUX_MODE0)	/* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE11 | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -74,7 +74,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE11 | MUX_MODE0)	/*
- 		>;
- 	};
- 
--	mmc1_pins_sdr50: mmc1_pins_sdr50 {
-+	mmc1_pins_sdr50: mmc1-sdr50-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE10 | MUX_MODE0)	/* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE10 | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -85,7 +85,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE10 | MUX_MODE0)	/*
- 		>;
- 	};
- 
--	mmc1_pins_ddr50: mmc1_pins_ddr50 {
-+	mmc1_pins_ddr50: mmc1-ddr50-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -96,7 +96,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_da
- 		>;
- 	};
- 
--	mmc1_pins_sdr104: mmc1_pins_sdr104 {
-+	mmc1_pins_sdr104: mmc1-sdr104-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -107,7 +107,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_da
- 		>;
- 	};
- 
--	mmc2_pins_default: mmc2_pins_default {
-+	mmc2_pins_default: mmc2-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -122,7 +122,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a22.mmc2_dat7 */
- 		>;
- 	};
- 
--	mmc2_pins_hs: mmc2_pins_hs {
-+	mmc2_pins_hs: mmc2-hs-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -137,7 +137,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a22.mmc2_dat7 */
- 		>;
- 	};
- 
--	mmc2_pins_ddr_3_3v_rev11: mmc2_pins_ddr_3_3v_rev11 {
-+	mmc2_pins_ddr_3_3v_rev11: mmc2-ddr-3-3v-rev11-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -152,7 +152,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_a2
- 		>;
- 	};
- 
--	mmc2_pins_ddr_1_8v_rev11: mmc2_pins_ddr_1_8v_rev11 {
-+	mmc2_pins_ddr_1_8v_rev11: mmc2-ddr-1-8v-rev11-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -167,7 +167,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_a2
- 		>;
- 	};
- 
--	mmc2_pins_ddr_rev20: mmc2_pins_ddr_rev20 {
-+	mmc2_pins_ddr_rev20: mmc2-ddr-rev20-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -182,7 +182,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a22.mmc2_dat7 */
- 		>;
- 	};
- 
--	mmc2_pins_hs200: mmc2_pins_hs200 {
-+	mmc2_pins_hs200: mmc2-hs200-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -197,7 +197,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_a2
- 		>;
- 	};
- 
--	mmc4_pins_default: mmc4_pins_default {
-+	mmc4_pins_default: mmc4-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37e8, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart1_ctsn.mmc4_clk */
- 			DRA7XX_CORE_IOPAD(0x37ec, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart1_rtsn.mmc4_cmd */
-@@ -208,7 +208,7 @@ DRA7XX_CORE_IOPAD(0x37fc, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart2_r
- 		>;
- 	};
- 
--	mmc4_pins_hs: mmc4_pins_hs {
-+	mmc4_pins_hs: mmc4-hs-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37e8, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart1_ctsn.mmc4_clk */
- 			DRA7XX_CORE_IOPAD(0x37ec, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart1_rtsn.mmc4_cmd */
-@@ -219,7 +219,7 @@ DRA7XX_CORE_IOPAD(0x37fc, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart2_r
- 		>;
- 	};
- 
--	mmc3_pins_default: mmc3_pins_default {
-+	mmc3_pins_default: mmc3-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x377c, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_clk.mmc3_clk */
- 			DRA7XX_CORE_IOPAD(0x3780, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_cmd.mmc3_cmd */
-@@ -230,7 +230,7 @@ DRA7XX_CORE_IOPAD(0x3790, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_
- 		>;
- 	};
- 
--	mmc3_pins_hs: mmc3_pins_hs {
-+	mmc3_pins_hs: mmc3-hs-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x377c, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_clk.mmc3_clk */
- 			DRA7XX_CORE_IOPAD(0x3780, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_cmd.mmc3_cmd */
-@@ -241,7 +241,7 @@ DRA7XX_CORE_IOPAD(0x3790, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_
- 		>;
- 	};
- 
--	mmc3_pins_sdr12: mmc3_pins_sdr12 {
-+	mmc3_pins_sdr12: mmc3-sdr12-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x377c, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_clk.mmc3_clk */
- 			DRA7XX_CORE_IOPAD(0x3780, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_cmd.mmc3_cmd */
-@@ -252,7 +252,7 @@ DRA7XX_CORE_IOPAD(0x3790, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_
- 		>;
- 	};
- 
--	mmc3_pins_sdr25: mmc3_pins_sdr25 {
-+	mmc3_pins_sdr25: mmc3-sdr25-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x377c, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_clk.mmc3_clk */
- 			DRA7XX_CORE_IOPAD(0x3780, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_cmd.mmc3_cmd */
-@@ -263,7 +263,7 @@ DRA7XX_CORE_IOPAD(0x3790, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_
- 		>;
- 	};
- 
--	mmc3_pins_sdr50: mmc3_pins_sdr50 {
-+	mmc3_pins_sdr50: mmc3-sdr50-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x377c, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_clk.mmc3_clk */
- 			DRA7XX_CORE_IOPAD(0x3780, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_cmd.mmc3_cmd */
-@@ -274,7 +274,7 @@ DRA7XX_CORE_IOPAD(0x3790, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_
- 		>;
- 	};
- 
--	mmc4_pins_sdr12: mmc4_pins_sdr12 {
-+	mmc4_pins_sdr12: mmc4-sdr12-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37e8, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart1_ctsn.mmc4_clk */
- 			DRA7XX_CORE_IOPAD(0x37ec, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart1_rtsn.mmc4_cmd */
-@@ -285,7 +285,7 @@ DRA7XX_CORE_IOPAD(0x37fc, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart2_r
- 		>;
- 	};
- 
--	mmc4_pins_sdr25: mmc4_pins_sdr25 {
-+	mmc4_pins_sdr25: mmc4-sdr25-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37e8, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart1_ctsn.mmc4_clk */
- 			DRA7XX_CORE_IOPAD(0x37ec, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart1_rtsn.mmc4_cmd */
-diff --git a/arch/arm/boot/dts/dra76x-mmc-iodelay.dtsi b/arch/arm/boot/dts/dra76x-mmc-iodelay.dtsi
---- a/arch/arm/boot/dts/dra76x-mmc-iodelay.dtsi
-+++ b/arch/arm/boot/dts/dra76x-mmc-iodelay.dtsi
-@@ -27,7 +27,7 @@
-  */
- 
- &dra7_pmx_core {
--	mmc1_pins_default: mmc1_pins_default {
-+	mmc1_pins_default: mmc1-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_cmd.cmd */
-@@ -38,7 +38,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_MODE0) /* mmc1_dat3.dat3 */
- 		>;
- 	};
- 
--	mmc1_pins_hs: mmc1_pins_hs {
-+	mmc1_pins_hs: mmc1-hs-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE11 | MUX_MODE0) /* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE11 | MUX_MODE0) /* mmc1_cmd.cmd */
-@@ -49,7 +49,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE11 | MUX_MODE0) /*
- 		>;
- 	};
- 
--	mmc1_pins_sdr50: mmc1_pins_sdr50 {
-+	mmc1_pins_sdr50: mmc1-sdr50-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE10 | MUX_MODE0)	/* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE10 | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -60,7 +60,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MUX_VIRTUAL_MODE10 | MUX_MODE0)	/*
- 		>;
- 	};
- 
--	mmc1_pins_ddr50: mmc1_pins_ddr50 {
-+	mmc1_pins_ddr50: mmc1-ddr50-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x3754, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_clk.clk */
- 			DRA7XX_CORE_IOPAD(0x3758, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_cmd.cmd */
-@@ -71,7 +71,7 @@ DRA7XX_CORE_IOPAD(0x3768, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)	/* mmc1_da
- 		>;
- 	};
- 
--	mmc2_pins_default: mmc2_pins_default {
-+	mmc2_pins_default: mmc2-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -86,7 +86,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MUX_MODE1) /* gpmc_a22.mmc2_dat7 */
- 		>;
- 	};
- 
--	mmc2_pins_hs200: mmc2_pins_hs200 {
-+	mmc2_pins_hs200: mmc2-hs200-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x349c, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_a23.mmc2_clk */
- 			DRA7XX_CORE_IOPAD(0x34b0, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_cs1.mmc2_cmd */
-@@ -101,7 +101,7 @@ DRA7XX_CORE_IOPAD(0x3498, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE1) /* gpmc_a2
- 		>;
- 	};
- 
--	mmc3_pins_default: mmc3_pins_default {
-+	mmc3_pins_default: mmc3-default-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x377c, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_clk.mmc3_clk */
- 			DRA7XX_CORE_IOPAD(0x3780, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_cmd.mmc3_cmd */
-@@ -112,7 +112,7 @@ DRA7XX_CORE_IOPAD(0x3790, (PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE0)) /* mmc3_
- 		>;
- 	};
- 
--	mmc4_pins_hs: mmc4_pins_hs {
-+	mmc4_pins_hs: mmc4-hs-pins {
- 		pinctrl-single,pins = <
- 			DRA7XX_CORE_IOPAD(0x37e8, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart1_ctsn.mmc4_clk */
- 			DRA7XX_CORE_IOPAD(0x37ec, PIN_INPUT_PULLUP | MODE_SELECT | MUX_MODE3) /* uart1_rtsn.mmc4_cmd */
+-			gpio_emifa_pins: pinmux_gpio_emifa_pins {
++			gpio_emifa_pins: gpio-emifa-pins {
+ 				pinctrl-single,bits = <
+ 				/*
+ 				 * GPIO_EMIFA_SEL[15]: 0-EMIFA17, 1-GPIO47
 -- 
 2.40.1
