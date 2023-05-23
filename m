@@ -2,217 +2,419 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7EEF70DB58
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 13:17:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08AF870DB67
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 13:22:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235288AbjEWLRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 07:17:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49026 "EHLO
+        id S234924AbjEWLW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 07:22:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbjEWLRm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 07:17:42 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 741C5FF
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 04:17:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1684840658; x=1716376658;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=mzrgwDtBMRPABCx8Q3NOOg2pacgX8DKWBcqrXhShyDc=;
-  b=G/WAM4FGAnvzfjrHTJELzOAqJu+cXu09peg03TzCvPZWBpq8557NNnYi
-   n20fhExowu6g8nK9X0JrEEhkG2OoPDqBkSzmJWfJ0XUAvI3AJtqNSG3fw
-   T6IDqnPuo0/CFjzC6WK5n7cVUgNK3miyra1oZASPjXdI8D+ObKYwDIzaD
-   FNV4lf4Qhxl0KsV+y1yR8i8mCC9ypHZhSERRMaVBea/79hh5M7tgEPtiY
-   xt3nujWAiJl0JxNGmUw8Fwv1M2bWfwKI1AvbjvTyoOZkwmCDyA9oqeHRz
-   J6+RWKUBQ8OvL2MIykK92s89E+v4dvaCPfyDBSh6zBPH3YXw3eT8lZDdh
-   g==;
-X-IronPort-AV: E=Sophos;i="6.00,186,1681164000"; 
-   d="scan'208";a="31045277"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 23 May 2023 13:17:35 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 23 May 2023 13:17:35 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 23 May 2023 13:17:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1684840655; x=1716376655;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=mzrgwDtBMRPABCx8Q3NOOg2pacgX8DKWBcqrXhShyDc=;
-  b=cEzeK0Ubnsj0oZL4fsRqPHBjQNYJJAUjIIl3sFjODYDcs68d44X+lRQX
-   iS3CcKeZpoZhoYOQV3qT5aQaJ8vUr5VJGw3YT3hBHcGJ7lFHy4sLXt5o+
-   I/i+E3Oa3/bdN1L7x4zZ+fdDuBXCaTfMGBLA3RHV1xIXztPs3ohtblkAn
-   GpsltqHxLXjIVk4IO8l8Cxof0x8yWgKBX3V7is2LP1mVCQPF/G+xhAQfo
-   O4kVb6E7oTCZh7vMlmzQx1y+5lnwWLeDpHkkV0WF/QrtbM/3N/ShwpH2H
-   G7iZN0qiYDEFDVcZEqVSQqT2x7phsw1n5hNRFlyWfkQzsqjGNE05r15RP
-   w==;
-X-IronPort-AV: E=Sophos;i="6.00,186,1681164000"; 
-   d="scan'208";a="31045276"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 23 May 2023 13:17:35 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 137D5280082;
-        Tue, 23 May 2023 13:17:35 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH] arm64: dts: imx8mp: Add TC9595 bridge on DH electronics i.MX8M Plus DHCOM
-Date:   Tue, 23 May 2023 13:17:34 +0200
-Message-ID: <2684415.mvXUDI8C0e@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230515162424.67597-1-marex@denx.de>
-References: <20230515162424.67597-1-marex@denx.de>
-MIME-Version: 1.0
+        with ESMTP id S229889AbjEWLWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 07:22:55 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C40BCF;
+        Tue, 23 May 2023 04:22:54 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34NBM4tX078568;
+        Tue, 23 May 2023 06:22:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684840924;
+        bh=xuKQvXHJklOgkcPjezOZZ60CSNAUUih10lDCrfMjZ6k=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=gldnpfReGii3TR627fFtPNi0e3FxdVbeb52FWHMhMw6smcL41pvaxoe8KmzL23kLm
+         Njjx3yFaMruV4oShTzSKWqUFC3LAPynmzvv9b9+ekc42YxvbW3T2dscEmlDlsFfyza
+         C5fVMtuQyXyrtBuFC+KcEcid0YqTLwcOeuIbMgcI=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34NBM4eG064268
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 23 May 2023 06:22:04 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 23
+ May 2023 06:22:04 -0500
+Received: from DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c]) by
+ DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c%18]) with mapi id
+ 15.01.2507.023; Tue, 23 May 2023 06:22:03 -0500
+From:   "Ding, Shenghao" <shenghao-ding@ti.com>
+To:     Takashi Iwai <tiwai@suse.de>, Shenghao Ding <13916275206@139.com>
+CC:     "broonie@kernel.org" <broonie@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "perex@perex.cz" <perex@perex.cz>,
+        "pierre-louis.bossart@linux.intel.com" 
+        <pierre-louis.bossart@linux.intel.com>,
+        "Lu, Kevin" <kevin-lu@ti.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Xu, Baojun" <x1077012@ti.com>, "Gupta, Peeyush" <peeyush@ti.com>,
+        "Navada Kanyana, Mukund" <navada@ti.com>,
+        "gentuser@gmail.com" <gentuser@gmail.com>,
+        "Ryan_Chu@wistron.com" <Ryan_Chu@wistron.com>,
+        "Sam_Wu@wistron.com" <Sam_Wu@wistron.com>
+Subject: RE: [EXTERNAL] Re: [PATCH v3 4/5] ALSA: hda/tas2781: Add tas2781 HDA
+ driver
+Thread-Topic: [EXTERNAL] Re: [PATCH v3 4/5] ALSA: hda/tas2781: Add tas2781 HDA
+ driver
+Thread-Index: AQHZi7qiFX/KEOnLRkSXJDizgQHnya9nuCRg
+Date:   Tue, 23 May 2023 11:22:03 +0000
+Message-ID: <9daf95da47b540329aa9fbbd2df5e504@ti.com>
+References: <20230519080227.20224-1-13916275206@139.com>
+ <871qjayuvv.wl-tiwai@suse.de>
+In-Reply-To: <871qjayuvv.wl-tiwai@suse.de>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.85.15.102]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marek,
 
-Am Montag, 15. Mai 2023, 18:24:24 CEST schrieb Marek Vasut:
-> Add TC9595 DSI-to-DPI and DSI-to-(e)DP bridge to
-> DH electronics i.MX8M Plus DHCOM SoM . The bridge
-> is populated on the SoM, but disabled by default
-> unless used for display output.
+-----Original Message-----
+From: Takashi Iwai <tiwai@suse.de>=20
+Sent: Sunday, May 21, 2023 4:03 PM
+To: Shenghao Ding <13916275206@139.com>
+Cc: broonie@kernel.org; devicetree@vger.kernel.org; krzysztof.kozlowski+dt@=
+linaro.org; robh+dt@kernel.org; lgirdwood@gmail.com; perex@perex.cz; pierre=
+-louis.bossart@linux.intel.com; Lu, Kevin <kevin-lu@ti.com>; Ding, Shenghao=
+ <shenghao-ding@ti.com>; alsa-devel@alsa-project.org; linux-kernel@vger.ker=
+nel.org; Xu, Baojun <x1077012@ti.com>; Gupta, Peeyush <peeyush@ti.com>; Nav=
+ada Kanyana, Mukund <navada@ti.com>; gentuser@gmail.com; Ryan_Chu@wistron.c=
+om; Sam_Wu@wistron.com
+Subject: [EXTERNAL] Re: [PATCH v3 4/5] ALSA: hda/tas2781: Add tas2781 HDA d=
+river
+
+On Fri, 19 May 2023 10:02:27 +0200,
+Shenghao Ding wrote:
 >=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-
-Were you actually able to access the display? E.g. reading DPCD via AUX=20
-channel?
-
-Best regards,
-Alexander
-
-> ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> ---
->  .../boot/dts/freescale/imx8mp-dhcom-som.dtsi  | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
+> Create tas2781 HDA driver.
 >=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi index
-> 98a11c31d7d45..9c0cb75386e36 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-> @@ -240,6 +240,36 @@ &i2c3 {
->  	sda-gpios =3D <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->  	status =3D "okay";
->=20
-> +	tc_bridge: bridge@f {
-> +		compatible =3D "toshiba,tc9595", "toshiba,tc358767";
-> +		pinctrl-names =3D "default";
-> +		pinctrl-0 =3D <&pinctrl_tc9595>;
-> +		reg =3D <0xf>;
-> +		clock-names =3D "ref";
-> +		clocks =3D <&clk IMX8MP_CLK_CLKOUT2>;
-> +		assigned-clocks =3D <&clk IMX8MP_CLK_CLKOUT2_SEL>,
-> +				  <&clk IMX8MP_CLK_CLKOUT2>,
-> +				  <&clk IMX8MP_AUDIO_PLL2_OUT>;
-> +		assigned-clock-parents =3D <&clk IMX8MP_AUDIO_PLL2_OUT>;
-> +		assigned-clock-rates =3D <13000000>, <13000000>,=20
-<156000000>;
-> +		reset-gpios =3D <&gpio3 21 GPIO_ACTIVE_HIGH>;
-> +		status =3D "disabled";
+> Signed-off-by: Shenghao Ding <13916275206@139.com>
+
+First of all, please give more description.  It's far more changes than wri=
+tten in four words.
+
+Also, don't forget to put me on Cc.  I almost overlooked this one.
+
+> diff --git a/sound/pci/hda/patch_realtek.c=20
+> b/sound/pci/hda/patch_realtek.c index 172ffc2c332b..f5b912f90018=20
+> 100644
+> --- a/sound/pci/hda/patch_realtek.c
+> +++ b/sound/pci/hda/patch_realtek.c
+> +static int comp_match_tas2781_dev_name(struct device *dev, void=20
+> +*data) {
+> +	struct scodec_dev_name *p =3D data;
+> +	const char *d =3D dev_name(dev);
+> +	int n =3D strlen(p->bus);
+> +	char tmp[32];
 > +
-> +		ports {
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
+> +	/* check the bus name */
+> +	if (strncmp(d, p->bus, n))
+> +		return 0;
+> +	/* skip the bus number */
+> +	if (isdigit(d[n]))
+> +		n++;
+> +	/* the rest must be exact matching */
+> +	snprintf(tmp, sizeof(tmp), "-%s:00", p->hid);
 > +
-> +			port@0 {
-> +				reg =3D <0>;
+> +	return !strcmp(d + n, tmp);
+> +}
+
+You don't use the index here...
+Accepted
+> +static void tas2781_generic_fixup(struct hda_codec *cdc, int action,
+> +	const char *bus, const char *hid, int count) {
+> +	struct device *dev =3D hda_codec_dev(cdc);
+> +	struct alc_spec *spec =3D cdc->spec;
+> +	struct scodec_dev_name *rec;
+> +	int ret, i;
 > +
-> +				tc_bridge_in: endpoint {
-> +					data-lanes =3D <1 2 3 4>;
-> +					remote-endpoint =3D=20
-<&dsi_out>;
-> +				};
-> +			};
-> +		};
-> +	};
+> +	switch (action) {
+> +	case HDA_FIXUP_ACT_PRE_PROBE:
+> +		for (i =3D 0; i < count; i++) {
+> +			rec =3D devm_kmalloc(dev, sizeof(*rec), GFP_KERNEL);
+> +			if (!rec)
+> +				return;
+> +			rec->bus =3D bus;
+> +			rec->hid =3D hid;
+> +			rec->index =3D i;
+
+... and assigning here.  It means that the multiple instances would silentl=
+y break.  It's better to catch here instead.
+Accepted
+> +static void tas2781_fixup_i2c(struct hda_codec *cdc,
+> +	const struct hda_fixup *fix, int action) {
+> +	 tas2781_generic_fixup(cdc, action, "i2c", "TIAS2781", 1); }
 > +
->  	pmic: pmic@25 {
->  		compatible =3D "nxp,pca9450c";
->  		reg =3D <0x25>;
-> @@ -406,6 +436,22 @@ &i2c5 {	/* HDMI EDID bus */
->  	status =3D "okay";
+>  /* for alc295_fixup_hp_top_speakers */  #include "hp_x360_helper.c"
+> =20
+> @@ -7201,6 +7260,8 @@ enum {
+>  	ALC287_FIXUP_YOGA9_14IAP7_BASS_SPK_PIN,
+>  	ALC295_FIXUP_DELL_INSPIRON_TOP_SPEAKERS,
+>  	ALC236_FIXUP_DELL_DUAL_CODECS,
+> +	ALC287_FIXUP_TAS2781_I2C_2,
+> +	ALC287_FIXUP_TAS2781_I2C_4
 >  };
->=20
-> +&mipi_dsi {
-> +	samsung,burst-clock-frequency =3D <160000000>;
-> +	samsung,esc-clock-frequency =3D <10000000>;
+> =20
+>  /* A special fixup for Lenovo C940 and Yoga Duet 7; @@ -9189,6=20
+> +9250,18 @@ static const struct hda_fixup alc269_fixups[] =3D {
+>  		.chained =3D true,
+>  		.chain_id =3D ALC255_FIXUP_DELL1_MIC_NO_PRESENCE,
+>  	},
+> +	[ALC287_FIXUP_TAS2781_I2C_2] =3D {
+> +		.type =3D HDA_FIXUP_FUNC,
+> +		.v.func =3D tas2781_fixup_i2c,
+> +		.chained =3D true,
+> +		.chain_id =3D ALC269_FIXUP_THINKPAD_ACPI,
+> +	},
+> +	[ALC287_FIXUP_TAS2781_I2C_4] =3D {
+> +		.type =3D HDA_FIXUP_FUNC,
+> +		.v.func =3D tas2781_fixup_i2c,
+> +		.chained =3D true,
+> +		.chain_id =3D ALC269_FIXUP_THINKPAD_ACPI,
+> +	},
+
+What's a difference between *_2 and *_4?
+Combine them into ALC287_FIXUP_TAS2781_I2C
+> --- /dev/null
+> +++ b/sound/pci/hda/tas2781_hda_i2c.c
+> +static int tas2781_acpi_get_i2c_resource(struct acpi_resource
+> +	*ares, void *data)
+> +{
+> +	struct tasdevice_priv *tas_priv =3D (struct tasdevice_priv *)data;
+> +	struct acpi_resource_i2c_serialbus *sb;
 > +
-> +	ports {
-> +		port@1 {
-> +			reg =3D <1>;
+> +	if (i2c_acpi_get_i2c_resource(ares, &sb)) {
+> +		if (sb->slave_address !=3D TAS2781_GLOBAL_ADDR) {
+> +			tas_priv->tasdevice[tas_priv->ndev].dev_addr =3D
+> +				(unsigned int) sb->slave_address;
+> +			tas_priv->ndev++;
+> +		} else
+> +			tas_priv->glb_addr.dev_addr =3D TAS2781_GLOBAL_ADDR;
 > +
-> +			dsi_out: endpoint {
-> +				data-lanes =3D <1 2 3 4>;
-> +				remote-endpoint =3D <&tc_bridge_in>;
-> +			};
-> +		};
+
+Did you run checkpatch.pl?  I thought it would complain.
+Accept.
+> +static void tas2781_hda_playback_hook(struct device *dev, int action)=20
+> +{
+> +	struct tasdevice_priv *tas_priv =3D dev_get_drvdata(dev);
+> +	int ret =3D 0;
+> +
+> +	dev_info(tas_priv->dev, "%s: action =3D %d\n", __func__, action);
+
+Don't use dev_info().  It'd be dev_dbg() at most.
+Accept.
+> +	switch (action) {
+> +	case HDA_GEN_PCM_ACT_OPEN:
+> +		pm_runtime_get_sync(dev);
+> +		mutex_lock(&tas_priv->codec_lock);
+> +		tas_priv->cur_conf =3D 0;
+> +		tas_priv->rcabin.profile_cfg_id =3D 1;
+> +		tasdevice_tuning_switch(tas_priv, 0);
+> +		mutex_unlock(&tas_priv->codec_lock);
+> +		break;
+> +	case HDA_GEN_PCM_ACT_CLOSE:
+> +		mutex_lock(&tas_priv->codec_lock);
+> +		tasdevice_tuning_switch(tas_priv, 1);
+> +		mutex_unlock(&tas_priv->codec_lock);
+> +
+> +		pm_runtime_mark_last_busy(dev);
+> +		pm_runtime_put_autosuspend(dev);
+> +		break;
+> +	default:
+> +		dev_warn(tas_priv->dev, "Playback action not supported: %d\n",
+> +			action);
+> +		break;
+> +	}
+> +
+> +	if (ret)
+> +		dev_err(tas_priv->dev, "Regmap access fail: %d\n", ret);
+
+The ret is never used.
+Accept.
+> +static int tasdevice_set_profile_id(struct snd_kcontrol *kcontrol,
+> +		struct snd_ctl_elem_value *ucontrol) {
+> +	struct tasdevice_priv *tas_priv =3D snd_kcontrol_chip(kcontrol);
+> +
+> +	tas_priv->rcabin.profile_cfg_id =3D ucontrol->value.integer.value[0];
+> +
+> +	return 1;
+
+It should return 0 if the value is unchanged.
+(Ditto for other *_put functions)
+Accept.
+> +static int tasdevice_create_control(struct tasdevice_priv *tas_priv)=20
+> +{
+> +	char prof_ctrl_name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN];
+> +	struct hda_codec *codec =3D tas_priv->codec;
+> +	struct snd_kcontrol_new prof_ctrl =3D {
+> +		.name =3D prof_ctrl_name,
+> +		.iface =3D SNDRV_CTL_ELEM_IFACE_CARD,
+> +		.info =3D tasdevice_info_profile,
+> +		.get =3D tasdevice_get_profile_id,
+> +		.put =3D tasdevice_set_profile_id,
 > +	};
-> +};
+> +	int ret;
 > +
->  &pwm1 {
->  	pinctrl-0 =3D <&pinctrl_pwm1>;
->  	pinctrl-names =3D "default";
-> @@ -880,6 +926,15 @@ MX8MP_IOMUXC_SAI3_TXD__AUDIOMIX_SAI3_TX_DATA00	0xd6
->=20
->  		>;
->=20
->  	};
->=20
-> +	pinctrl_tc9595: dhcom-tc9595-grp {
-> +		fsl,pins =3D <
-> +			/* RESET_DSIBRIDGE */
-> +			MX8MP_IOMUXC_SAI1_RXC__GPIO4_IO01	=09
-0x40000146
-> +			/* DSI-CONV_INT Interrupt */
-> +			MX8MP_IOMUXC_SAI5_RXD0__GPIO3_IO21	=09
-0x141
-> +		>;
+> +	/* Create a mixer item for selecting the active profile */
+> +	scnprintf(prof_ctrl_name, SNDRV_CTL_ELEM_ID_NAME_MAXLEN,
+> +		"tasdev-profile-id");
+
+A too bad name as a control element.  Use a more readable one.
+Accept.
+> +static int tasdevice_info_programs(struct snd_kcontrol *kcontrol,
+> +			struct snd_ctl_elem_info *uinfo)
+> +{
+> +	struct tasdevice_priv *tas_priv =3D snd_kcontrol_chip(kcontrol);
+> +	struct tasdevice_fw *tas_fw =3D tas_priv->fmw;
+> +
+> +	uinfo->type =3D SNDRV_CTL_ELEM_TYPE_INTEGER;
+> +	uinfo->count =3D 1;
+> +	uinfo->value.integer.min =3D 0;
+> +	uinfo->value.integer.max =3D (int)tas_fw->nr_programs;
+
+The cast is superfluous.
+Accept.
+> +static int tasdevice_info_configurations(
+> +	struct snd_kcontrol *kcontrol, struct snd_ctl_elem_info *uinfo) {
+> +	struct tasdevice_priv *tas_priv =3D snd_kcontrol_chip(kcontrol);
+> +	struct tasdevice_fw *tas_fw =3D tas_priv->fmw;
+> +
+> +	uinfo->type =3D SNDRV_CTL_ELEM_TYPE_INTEGER;
+> +	uinfo->count =3D 1;
+> +	uinfo->value.integer.min =3D 0;
+> +	uinfo->value.integer.max =3D (int)tas_fw->nr_configurations - 1;
+
+Ditto.
+Accept.
+> +/**
+> + * tas2781_digital_getvol - get the volum control
+> + * @kcontrol: control pointer
+> + * @ucontrol: User data
+> + * Customer Kcontrol for tas2781 is primarily for regmap booking,=20
+> +paging
+> + * depends on internal regmap mechanism.
+> + * tas2781 contains book and page two-level register map, especially
+> + * book switching will set the register BXXP00R7F, after switching to=20
+> +the
+> + * correct book, then leverage the mechanism for paging to access the
+> + * register.
+> + */
+
+You shouldn't use the kerneldoc marker "/**" for local static functions.  I=
+t's not a part of API.
+Accept.
+> +static int tasdevice_dsp_create_ctrls(struct tasdevice_priv
+> +	*tas_priv)
+> +{
+> +	char prog_name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN];
+> +	char conf_name[SNDRV_CTL_ELEM_ID_NAME_MAXLEN];
+> +	struct hda_codec *codec =3D tas_priv->codec;
+> +	struct snd_kcontrol_new prog_ctl =3D {
+> +		.name =3D prog_name,
+> +		.iface =3D SNDRV_CTL_ELEM_IFACE_CARD,
+> +		.info =3D tasdevice_info_programs,
+> +		.get =3D tasdevice_program_get,
+> +		.put =3D tasdevice_program_put,
 > +	};
+> +	struct snd_kcontrol_new conf_ctl =3D {
+> +		.name =3D conf_name,
+> +		.iface =3D SNDRV_CTL_ELEM_IFACE_CARD,
+> +		.info =3D tasdevice_info_configurations,
+> +		.get =3D tasdevice_config_get,
+> +		.put =3D tasdevice_config_put,
+> +	};
+> +	int ret;
 > +
->  	pinctrl_touch: dhcom-touch-grp {
->  		fsl,pins =3D <
->  			/* #TOUCH_INT */
+> +	scnprintf(prog_name, SNDRV_CTL_ELEM_ID_NAME_MAXLEN, "tasdev-prog-id");
+> +	scnprintf(conf_name, SNDRV_CTL_ELEM_ID_NAME_MAXLEN,=20
+> +"tasdev-conf-id");
+
+Please use better names.
+Accept.
+> +static void tas2781_apply_calib(struct tasdevice_priv *tas_priv) {
+> +	unsigned char page_array[CALIB_MAX] =3D {0x17, 0x18, 0x18, 0x0d, 0x18};
+> +	unsigned char rgno_array[CALIB_MAX] =3D {0x74, 0x0c, 0x14, 0x3c,=20
+> +0x7c};
+
+Should be static const arrays.
+Accept.
+> +static int tas2781_save_calibration(struct tasdevice_priv *tas_priv)=20
+> +{
+> +	efi_guid_t efi_guid =3D EFI_GUID(0x02f9af02, 0x7734, 0x4233, 0xb4, 0x3d=
+,
+> +		0x93, 0xfe, 0x5a, 0xa3, 0x5d, 0xb3);
+> +	static efi_char16_t efi_name[] =3D L"CALI_DATA";
+> +	struct hda_codec *codec =3D tas_priv->codec;
+> +	unsigned int subid =3D codec->core.subsystem_id & 0xFFFF;
+> +	struct tm *tm =3D &tas_priv->tm;
+> +	unsigned int attr, crc;
+> +	unsigned int *tmp_val;
+> +	efi_status_t status;
+> +	int ret =3D 0;
+> +
+> +	//Lenovo devices
+> +	if ((subid =3D=3D 0x387d) || (subid =3D=3D 0x387e) || (subid =3D=3D 0x3=
+881)
+> +		|| (subid =3D=3D 0x3884) || (subid =3D=3D 0x3886) || (subid =3D=3D 0x3=
+8a7)
+> +		|| (subid =3D=3D 0x38a8) || (subid =3D=3D 0x38ba) || (subid =3D=3D 0x3=
+8bb)
+> +		|| (subid =3D=3D 0x38be) || (subid =3D=3D 0x38bf) || (subid =3D=3D 0x3=
+8c3)
+> +		|| (subid =3D=3D 0x38cb) || (subid =3D=3D 0x38cd))
+> +		efi_guid =3D EFI_GUID(0x1f52d2a1, 0xbb3a, 0x457d, 0xbc, 0x09,
+> +			0x43, 0xa3, 0xf4, 0x31, 0x0a, 0x92);
+
+Here can be a problem: the device ID is embedded here, and it's hard to fin=
+d out.  You'd better to make it some quirk flag that is set in a common pla=
+ce and check the flag here instead of checking ID at each place.
+
+Do you have example of the solution? I found some quirk flag is static in t=
+he patch_realtek.c, can't be accessed outside that file.
+
+> +	crc =3D crc32(~0, tas_priv->cali_data.data, 84) ^ ~0;
+> +	dev_info(tas_priv->dev, "cali crc 0x%08x PK tmp_val 0x%08x\n",
+> +		crc, tmp_val[21]);
+
+If it's a dev_info() output, make it more understandable.
+I'll fix it
+> +	if (crc =3D=3D tmp_val[21]) {
+> +		time64_to_tm(tmp_val[20], 0, tm);
+> +		dev_info(tas_priv->dev, "%4ld-%2d-%2d, %2d:%2d:%2d\n",
+> +			tm->tm_year, tm->tm_mon, tm->tm_mday,
+> +			tm->tm_hour, tm->tm_min, tm->tm_sec);
+
+Ditto.  Or, make them a debug print instead.
+Accepted
+> +static int tas2781_runtime_suspend(struct device *dev) {
+> +	struct tasdevice_priv *tas_priv =3D dev_get_drvdata(dev);
+> +	int i, ret =3D 0;
+> +
+> +	dev_info(tas_priv->dev, "Runtime Suspend\n");
+
+It must be a debug print.  Otherwise it'll be too annoying.
+Accepted
+Also, as a minor nitpicking, there are many functions that set ret =3D 0 at=
+ the beginning but never used.  The unconditional 0 initialization is often=
+ a bad sign indicating that the author doesn't think fully of the code flow=
+.  Please revisit those.
 
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+thanks,
 
-
+Takashi
