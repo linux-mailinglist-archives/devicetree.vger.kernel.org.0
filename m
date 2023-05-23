@@ -2,145 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B6B870E9AA
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 01:34:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A98370E9AD
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 01:35:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238655AbjEWXeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 19:34:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52608 "EHLO
+        id S234317AbjEWXfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 19:35:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238579AbjEWXeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 19:34:36 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A3551B4
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:34:11 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id 98e67ed59e1d1-25332b3915bso230239a91.2
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:34:11 -0700 (PDT)
+        with ESMTP id S238712AbjEWXfS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 19:35:18 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6BFE130
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:34:41 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4f3bb61f860so122817e87.3
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:34:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684884850; x=1687476850;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MNA57LFsEAjv0YnO7XAE11SZw6Ds4IrSm19nvlVJk98=;
-        b=wF+aug1ydohk/cr8Rfez98IIlwqb13f0RxZ6y479XbKidTrvL03zg77sxMin+zGFGx
-         l5eXByrl4nPZWQWmqQncYvX9EBJ2jhKSQOmxQvgaHwbuXn34nx47cTnpfrrrJzj+8zQw
-         4pNfP+xtaTEDb3tmNzMbZ9lq1FvB1h3Y/9o0b9L7TTlVcKFXDAGLKRDd9xXEgp7O259E
-         JEOObHH4XNk6aUQOdhlo/FfoEEjn3MqFmkmu5jjMJ2GV+T7Gsu/kuTOHMZ3neHBb56qU
-         VtYRMrOu288bwsGXUhDF1P0SpaYg4k2ai2BHS88fM94NGHU7+411tXSKeuvtY4mY+E9V
-         VdhQ==
+        d=linaro.org; s=google; t=1684884878; x=1687476878;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uZg4v0RTyzNREljAm+hWtlmx8oK1tgGcQi54orgW1ds=;
+        b=OstWqeJ8EBmWlFGue4DAaM6ZZhqrbhVBiHBeqwEkfBiE7hUwN6EVNxk44rPHYYdjLx
+         ouN7tkRmfck3Ej5JJQklzLGP92BrvTcGGDW4hja4smz2EhINxCFPlTkaiaOiaDU/Wk+W
+         mYgEbHiM211S4AGUPMcQXwc7dK853YjrtHjfdLYnT3NIjW3R+vgewHmI6kkDkYpLekIA
+         pLP/cE6iTnzsf6gFCB4EMkvCHF+k6ish4fvk3T5CT6o/pulNQIidz5bi/Y0lOBj/lvuz
+         Me7nnL4FEqfYoUPIwyR8YMVMqKK4I5ztKCertmHEi9Om4kVA68ten7F8tT59p6Vyfr8W
+         EAfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684884850; x=1687476850;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MNA57LFsEAjv0YnO7XAE11SZw6Ds4IrSm19nvlVJk98=;
-        b=BkDnOD3yCVImmit5HQ5s9+8J/44R2PXVdzSeAadroMmeRDZCcEQkPUdgLHzn1atkCl
-         2UQuGQcrybnIT+WEDpUOejQhLTaBmwQ8W6YF9Wx6Zte3ZKs+NO6zeymKIJZ54+/6xO2k
-         dB/5P/GTskBW7KVeSp0WO2O3dBwZ5knYtrxHfy5r5d6LR8SQNhPSidmqM84mE2ozmsa6
-         v1uYNvuGENAeoOIiTVYzGVcUy/olCTVWpeeBJbRObcNcqRuCMoXFeTRKPLDMYNdoyIrX
-         EhP693JSE8Oq6+S9TOoRyxzn6oC2tVlema1YcTJi5g295GuBtEm3XpXbdmg+fbO3rfB6
-         QLyA==
-X-Gm-Message-State: AC+VfDzKyG9fbCIM2UV2KmF66KYfq/kMIId/u7Pg/rzaGvygiK9b9gHx
-        7tvKxMxROPAsUH6pQ3HjmreQIQ==
-X-Google-Smtp-Source: ACHHUZ4/S/KRgTtfzWmFTkvHxw3NShbPiyY6ElSBnhSbSlY2KYV0gjG/Ka+9HzWGVYgXMdo2hQhd0g==
-X-Received: by 2002:a17:90b:a45:b0:253:947f:af51 with SMTP id gw5-20020a17090b0a4500b00253947faf51mr13745197pjb.5.1684884849781;
-        Tue, 23 May 2023 16:34:09 -0700 (PDT)
-Received: from localhost ([75.172.135.98])
-        by smtp.gmail.com with ESMTPSA id gl21-20020a17090b121500b00253305f36c4sm100944pjb.18.2023.05.23.16.34.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 May 2023 16:34:09 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jeffrey Hugo <quic_jhugo@quicinc.com>,
-        Alexandre Bailon <abailon@baylibre.com>, airlied@gmail.com,
-        daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
-        mripard@kernel.org, tzimmermann@suse.de
-Cc:     devicetree@vger.kernel.org, conor+dt@kernel.org, bero@baylibre.com,
-        jstephan@baylibre.com, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
-        linaro-mm-sig@lists.linaro.org, robh+dt@kernel.org,
-        linux-mediatek@lists.infradead.org, nbelin@baylibre.com,
-        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
-        linux-media@vger.kernel.org, sumit.semwal@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH 0/7] Add a DRM driver to support AI Processing Unit (APU)
-In-Reply-To: <d0807fe4-dba2-8244-f655-d04e80973572@quicinc.com>
-References: <20230517145237.295461-1-abailon@baylibre.com>
- <d0807fe4-dba2-8244-f655-d04e80973572@quicinc.com>
-Date:   Tue, 23 May 2023 16:34:08 -0700
-Message-ID: <7ha5xud3m7.fsf@baylibre.com>
+        d=1e100.net; s=20221208; t=1684884878; x=1687476878;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uZg4v0RTyzNREljAm+hWtlmx8oK1tgGcQi54orgW1ds=;
+        b=Ce+U666xCXv5l7bvfTsaChOEMkDgJwGb3Gx3Xmb0CbNXZYBb2DomJnBgIaFOD5e8f0
+         Ij0y5pcq3zmvur0buc66yR2ezTKel//mVREx+BTcJAzWUmaeJx7PtbtZG7ydrVGBQrJf
+         hJttezhsjtXzdWHj0xgYlTYGypKZYdAV70mOiW8XsW1NIHF5IQNnzk+uVta9onGtDiBR
+         v1yI0p4vsBQufLJfyO4VeRZZSeV2SDT5spnMRsX7YKzTchZ7GC1gs/5yBNPrKdyH3rZj
+         bv0ANIv2bDi3vxdoo+V5oNpyvYq2SiwVglgz1cvs5qyt5wIBIGfRLZiUQsU1VLhmEntg
+         PUdQ==
+X-Gm-Message-State: AC+VfDzp0JG2kmF3ztC48vK52iJhrnqxX7JPvIQqA6us0nX/zfAUarD1
+        LLi9SDoR2U8tSmdOKU7YFjjEog==
+X-Google-Smtp-Source: ACHHUZ5VDMwnlQ1kaA9DshgcAwp1SpRlIsOFRsbkhg4YoGBxLfOqCiRKUEVf4TbW3N9bzRfshL/0vw==
+X-Received: by 2002:ac2:4556:0:b0:4f3:a8f2:2138 with SMTP id j22-20020ac24556000000b004f3a8f22138mr4811916lfm.58.1684884878607;
+        Tue, 23 May 2023 16:34:38 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id g10-20020a19ac0a000000b004f3af454556sm1490213lfc.246.2023.05.23.16.34.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 May 2023 16:34:38 -0700 (PDT)
+Message-ID: <2ef03df1-00ec-4e93-ecca-5cc4a4ef3b23@linaro.org>
+Date:   Wed, 24 May 2023 02:34:37 +0300
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v2 6/6] ARM: dts: qcom: apq8074-dragonboard: enable
+ coincell charger
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230508160446.2374438-1-dmitry.baryshkov@linaro.org>
+ <20230508160446.2374438-7-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230508160446.2374438-7-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jeffrey Hugo <quic_jhugo@quicinc.com> writes:
+On 08/05/2023 19:04, Dmitry Baryshkov wrote:
+> Enable coincell charger for the coin battery which can be installed on
+> the APQ8074 dragonboard.
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   arch/arm/boot/dts/qcom-apq8074-dragonboard.dts | 6 ++++++
+>   1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
+> index 07db6451f273..93a059641957 100644
+> --- a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
+> +++ b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
+> @@ -58,6 +58,12 @@ eeprom: eeprom@52 {
+>   	};
+>   };
+>   
+> +&pm8941_coincell {
+> +	qcom,rset-ohms = <2100>;
+> +	qcom,vset-millivolts = <3000>;
+> +	status = "okay";
+> +};
 
-> On 5/17/2023 8:52 AM, Alexandre Bailon wrote:
->> This adds a DRM driver that implements communication between the CPU and an
->> APU. The driver target embedded device that usually run inference using some
->> prebuilt models. The goal is to provide common infrastructure that could be
->> re-used to support many accelerators. Both kernel, userspace and firmware tries
->> to use standard and existing to leverage the development and maintenance effort.
->> The series implements two platform drivers, one for simulation and another one for
->> the mt8183 (compatible with mt8365).
->
-> This looks like the 3 existing Accel drivers.  Why is this in DRM?
+Ok, this one might need reconsideration. I still didn't find the lithium 
+accumulator of this size and granted that it might be the battery 
+instead of the accumulator, it is safer not to enable the charger, at 
+least by default.
 
-Yes, this belongs in accel.  I think Alex had some issues around the
-infra in accel with device nodes not appearing/opening properly, but
-I'll let him comment there.  But either way, the right approach should
-be to fix any issues in accel and move it there.
+> +
+>   &pm8941_gpios {
+>           msm_keys_default: pm8941-gpio-keys-state {
+>   		pins = "gpio5", "gpio23";
 
-[...]
-
->>   .../devicetree/bindings/gpu/mtk,apu-drm.yaml  |  38 ++
->>   drivers/gpu/drm/Kconfig                       |   2 +
->>   drivers/gpu/drm/Makefile                      |   1 +
->>   drivers/gpu/drm/apu/Kconfig                   |  22 +
->>   drivers/gpu/drm/apu/Makefile                  |  10 +
->>   drivers/gpu/drm/apu/apu_drv.c                 | 282 +++++++++
->>   drivers/gpu/drm/apu/apu_gem.c                 | 230 +++++++
->>   drivers/gpu/drm/apu/apu_internal.h            | 205 ++++++
->>   drivers/gpu/drm/apu/apu_sched.c               | 592 ++++++++++++++++++
->>   drivers/gpu/drm/apu/simu_apu.c                | 313 +++++++++
->>   include/uapi/drm/apu_drm.h                    |  81 +++
->
-> "apu" seems too generic.  We already have 3 "AI processing units" over 
-> in drivers/accel already...
-
-Indeed, it is generic, but that's kind of the point for this driver
-since it's targetted at generalizing the interface with "AI processing
-units" on a growing number of embedded SoCs (ARM, RISC-V, etc.)  In
-addition, the generic naming is intentional because the goal is bigger
-than the kernel and is working towards a generic, shared "libAPU"
-userspace[1], but also common firmware for DSP-style inference engines
-(e.g. analgous Sound Open Firmware for audio DSPs.)
-
-As usual, the various SoC vendors use different names (APU, NPU, NN
-unit, etc.)  but we'd like a generic name for the class of devices
-targetted by this driver.  And unfortunately, it looks like the equally
-generic "Versatile processing unit" is already taken Intel's
-drivers/accel/ivpu. :)
-
-Maybe since this is more about generalizing the interface between the
-CPU running linux and the APU, what about the name apu_if?  But I guess
-that applies to the other 3 drivers in drivers/accell also.  Hmmm...
-
-Naming things is hard[2], so we're definitly open to other ideas.  Any
-suggestions?
-
-Kevin
-
-[1] https://gitlab.baylibre.com/baylibre/libapu/libapu
-
-[2]
-"There are 2 hard problems in computer science: cache invalidation,
- naming things and off-by-1 errors."
- -- https://twitter.com/secretGeek/status/7269997868
+-- 
+With best wishes
+Dmitry
 
