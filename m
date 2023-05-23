@@ -2,300 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 831C470DD0C
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 14:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0420270DD16
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 14:57:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236143AbjEWMyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 08:54:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40650 "EHLO
+        id S233519AbjEWM5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 08:57:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229952AbjEWMyP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 08:54:15 -0400
-Received: from fgw21-7.mail.saunalahti.fi (fgw21-7.mail.saunalahti.fi [62.142.5.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B14DCDD
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 05:54:13 -0700 (PDT)
-Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
-        by fgw21.mail.saunalahti.fi (Halon) with ESMTP
-        id e796b66c-f968-11ed-abf4-005056bdd08f;
-        Tue, 23 May 2023 15:54:11 +0300 (EEST)
-From:   andy.shevchenko@gmail.com
-Date:   Tue, 23 May 2023 15:54:07 +0300
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH v11 2/2] spi: loongson: add bus driver for the loongson
- spi controller
-Message-ID: <ZGy3b7ZfNwWoGDTu@surfacebook>
-References: <20230522071030.5193-1-zhuyinbo@loongson.cn>
- <20230522071030.5193-3-zhuyinbo@loongson.cn>
+        with ESMTP id S231856AbjEWM5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 08:57:31 -0400
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E17D4DD
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 05:57:29 -0700 (PDT)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2af2f4e719eso39959731fa.2
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 05:57:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684846588; x=1687438588;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YpPwKZ/pHSK5WOwFpXpf+dWli/bJbY6VBZD/E/hAP6M=;
+        b=b3DIamYxTi/v51EdZ7SDh+hBPqRnIDi2rx+vibVvM23RP7rzyneyxLRB/Axlc5MBzO
+         utZ0ym+QKi6LRKwRFLZYT8kMmOsYe7sNQSOdPupxujrdTkT5+ZtDJuXI0VxaI9ncg4/b
+         uwRF+nGfeB+kjW6kraUREcEDLqyR5WP476SDCyqVXEHpSUBmhotJySJ7QCSqJe35hCgh
+         urAll0vklxPAr1SBcoP9YhVG9VUv8SAFXYePLOpCKrIsG4r/+X/NYx13/EH668fJo+eo
+         NL1NZvXZJUO7+EssMt5Pi+VZfbFtHMgoTYSLvrTR71YMvYnH0srbD/ZyIzqWgZBaj6d8
+         8O4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684846588; x=1687438588;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YpPwKZ/pHSK5WOwFpXpf+dWli/bJbY6VBZD/E/hAP6M=;
+        b=eXgUu7OjACpIHcxwlNFKdFvbnbqcVaGzlFlDI9iO8XoBdt+zewS+SRKxWn5Kgiuh5W
+         gg6+Y/nNIKGIOrNX0K4iGOWQH/VxIJVH2okXouXvf4AWK+Zb9sV5q0Myta1p2PELMgT7
+         3PORN0jURs7lznlmL9ZY+NpNdyF0j5vKbLL3tlo4X+dJliC61dNDGnq7EPXuY4cwZiG8
+         et1+REvzt7+jl1M8nkbtYz2dN27kh4PAai8/xJ42hMc25YQg37sq8NUT9vW/ykUacwTa
+         KM1aTFhA7LVnOdzG6jdf5Jpao0BlNu8XYewo2kZgODr7lYELFzM/7hRCiek/QDoHjFJ7
+         ohXA==
+X-Gm-Message-State: AC+VfDwNWJ8nae1V8S0dTtP7hjbZf9qT/1HI9lrOIvXR4nokAMrv62aI
+        hjeXxmukhiZelZQy77EHSH+5tg==
+X-Google-Smtp-Source: ACHHUZ6c/kauyo/sRXK7gC6gSHRvq37cCYQro1FP0DCL+bzRiQxIwgpFpYqew7cK1BFsw+yt12lPGQ==
+X-Received: by 2002:a2e:b1c4:0:b0:2af:22a0:81fd with SMTP id e4-20020a2eb1c4000000b002af22a081fdmr4691128lja.11.1684846588241;
+        Tue, 23 May 2023 05:56:28 -0700 (PDT)
+Received: from [192.168.1.101] (abyk138.neoplus.adsl.tpnet.pl. [83.9.30.138])
+        by smtp.gmail.com with ESMTPSA id a19-20020a2e9813000000b002a7746800d0sm1605159ljj.130.2023.05.23.05.56.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 May 2023 05:56:27 -0700 (PDT)
+Message-ID: <19f30d4c-d879-ce2f-1cd7-ebcb941bbcec@linaro.org>
+Date:   Tue, 23 May 2023 14:56:25 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230522071030.5193-3-zhuyinbo@loongson.cn>
-X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
-        SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc8280xp: Enable GPU related
+ nodes
+Content-Language: en-US
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, johan@kernel.org, mani@kernel.org
+References: <20230523011522.65351-1-quic_bjorande@quicinc.com>
+ <20230523011522.65351-4-quic_bjorande@quicinc.com>
+ <1669ecc5-1845-e671-83f4-19ee14d37ce5@linaro.org>
+ <20230523122842.cueyeovuzpx63def@ripper>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230523122842.cueyeovuzpx63def@ripper>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mon, May 22, 2023 at 03:10:30PM +0800, Yinbo Zhu kirjoitti:
-> This bus driver supports the Loongson SPI hardware controller in the
-> Loongson platforms and supports to use DTS and PCI framework to
-> register SPI device resources.
 
-It's polite to add reviewers of the previous versions to the Cc list.
 
-...
-
-> +static void loongson_spi_set_clk(struct loongson_spi *loongson_spi, unsigned int hz)
-> +{
-> +	unsigned char val;
-> +	unsigned int div, div_tmp;
-
-> +	const char rdiv[12] = {0, 1, 4, 2, 3, 5, 6, 7, 8, 9, 10, 11};
-
-static?
-
-> +
-> +	div = clamp_val(DIV_ROUND_UP_ULL(loongson_spi->clk_rate, hz), 2, 4096);
-> +	div_tmp = rdiv[fls(div - 1)];
-> +	loongson_spi->spcr = (div_tmp & GENMASK(1, 0)) >> 0;
-> +	loongson_spi->sper = (div_tmp & GENMASK(3, 2)) >> 2;
-> +	val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPCR_REG);
-> +	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPCR_REG, (val & ~3) |
-> +			       loongson_spi->spcr);
-> +	val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPER_REG);
-> +	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPER_REG, (val & ~3) |
-> +			       loongson_spi->sper);
-> +	loongson_spi->hz = hz;
-> +}
-
-...
-
-> +static int loongson_spi_update_state(struct loongson_spi *loongson_spi,
-> +				struct spi_device *spi, struct spi_transfer *t)
-> +{
-> +	unsigned int hz;
-> +
-> +	if (t)
-> +		hz = t->speed_hz;
-
-And if t is NULL? hz will be uninitialized. Don't you get a compiler warning?
-(Always test your code with `make W=1 ...`)
-
-> +	if (hz && loongson_spi->hz != hz)
-> +		loongson_spi_set_clk(loongson_spi, hz);
-> +
-> +	if ((spi->mode ^ loongson_spi->mode) & SPI_MODE_X_MASK)
-> +		loongson_spi_set_mode(loongson_spi, spi);
-> +
-> +	return 0;
-> +}
-
-...
-
-> +	readb_poll_timeout(loongson_spi->base + LOONGSON_SPI_SPSR_REG, loongson_spi->spsr,
-> +			   (loongson_spi->spsr & 0x1) != 1, 1, MSEC_PER_SEC);
-
-Wouldn't be better to use ' == 0' in the conditional? Or if you think your
-approach is better (to show the exact expectation) the definition of the bit 0
-might help
-
-#define LOONGSON_... BIT(0)
-
-
-	readb_poll_timeout(loongson_spi->base + LOONGSON_SPI_SPSR_REG, loongson_spi->spsr,
-			   (loongson_spi->spsr & LOONGSON_...) != LOONGSON_...,
-			   1, MSEC_PER_SEC);
-
-...
-
-> +	do {
-> +		if (loongson_spi_write_read_8bit(spi, &tx, &rx, count) < 0)
-
-> +			goto out;
-
-		break;
-
-> +		count--;
-> +	} while (count);
-
-	} while (--count);
-
-?
-
-> +out:
-> +	return xfer->len - count;
-
-Shouldn't you return an error code if the write failed?
-
-...
-
-> +	master = devm_spi_alloc_master(dev, sizeof(struct loongson_spi));
-
-> +	if (master == NULL)
-
-	if (!master)
-
-> +		return -ENOMEM;
-
-Why do you use deprecated naming? Can you use spi_controller* instead of
-spi_master* in all cases?
-
-...
-
-> +	master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_CS_HIGH;
-
-	= SPI_MODE_X_MASK | SPI_CS_HIGH;
-
-...
-
-> +	clk = devm_clk_get_optional(dev, NULL);
-> +	if (!IS_ERR(clk))
-> +		spi->clk_rate = clk_get_rate(clk);
-
-> +	else
-
-Redundant. Just check for the error first as it's very usual pattern in the
-Linux kernel.
-
-> +		return dev_err_probe(dev, PTR_ERR(clk), "unable to get clock\n");
-
-...
-
-> +static void loongson_spi_pci_unregister(struct pci_dev *pdev)
-> +{
-
-> +	pcim_iounmap_regions(pdev, BIT(0));
-
-Not needed due to 'm' in the API name, which means "managed".
-
-> +	pci_disable_device(pdev);
-
-This is simply wrong. We don't do explicit clean up for managed resources.
-
-> +}
-
-That said, drop the ->remove() completely.
-
-...
-
-> +static struct pci_device_id loongson_spi_devices[] = {
-> +	{ PCI_DEVICE(PCI_VENDOR_ID_LOONGSON, 0x7a0b) },
-> +	{ PCI_DEVICE(PCI_VENDOR_ID_LOONGSON, 0x7a1b) },
-> +	{ },
-
-No comma for the terminator entry. It's by definition "terminating" something.
-
-> +};
-
-...
-
-> +#include <linux/of.h>
-
-There is no user of this header. Please, replace with what actually is being
-used (presumably mod_devicetable.h and maybe others).
-
-> +#include <linux/platform_device.h>
-> +
-> +#include "spi-loongson.h"
-> +
-> +static int loongson_spi_platform_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +	void __iomem *reg_base;
-> +	struct device *dev = &pdev->dev;
-> +
-> +	reg_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(reg_base))
-> +		return PTR_ERR(reg_base);
-> +
-> +	ret = loongson_spi_init_master(dev, reg_base);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to initialize master\n");
-> +
-> +	return ret;
-
-	return 0;
-
-> +}
-
-...
-
-> +#ifndef __LINUX_SPI_LOONGSON_H
-> +#define __LINUX_SPI_LOONGSON_H
-> +
-> +#include <linux/bits.h>
-
-> +#include <linux/device.h>
-
-This header is not used.
-
-> +#include <linux/pm.h>
-
-> +#include <linux/spi/spi.h>
-
-This neither.
-
-> +#include <linux/types.h>
-
-
-For them use forward declarations
-
-struct device;
-struct spi_controller;
-
-The rest of the inclusions is correct.
-
-...
-
-> +#define	LOONGSON_SPI_SPCR_REG	0x00
-> +#define	LOONGSON_SPI_SPSR_REG	0x01
-> +#define	LOONGSON_SPI_FIFO_REG	0x02
-> +#define	LOONGSON_SPI_SPER_REG	0x03
-> +#define	LOONGSON_SPI_PARA_REG	0x04
-> +#define	LOONGSON_SPI_SFCS_REG	0x05
-> +#define	LOONGSON_SPI_TIMI_REG	0x06
-
-Where is this used outside of the main driver?
-
-> +/* Bits definition for Loongson SPI register */
-> +#define	LOONGSON_SPI_PARA_MEM_EN	BIT(0)
-> +#define	LOONGSON_SPI_SPCR_CPHA	BIT(2)
-> +#define	LOONGSON_SPI_SPCR_CPOL	BIT(3)
-> +#define	LOONGSON_SPI_SPCR_SPE	BIT(6)
-> +#define	LOONGSON_SPI_SPSR_WCOL	BIT(6)
-> +#define	LOONGSON_SPI_SPSR_SPIF	BIT(7)
-> +
-> +struct loongson_spi {
-> +	struct	spi_master	*master;
-> +	void __iomem		*base;
-> +	int			cs_active;
-> +	unsigned int		hz;
-> +	unsigned char		spcr;
-> +	unsigned char		sper;
-> +	unsigned char		spsr;
-> +	unsigned char		para;
-> +	unsigned char		sfcs;
-> +	unsigned char		timi;
-> +	unsigned int		mode;
-> +	u64			clk_rate;
-> +};
-> +
-> +int loongson_spi_init_master(struct device *dev, void __iomem *reg);
-> +extern const struct dev_pm_ops loongson_spi_dev_pm_ops;
-> +#endif /* __LINUX_SPI_LOONGSON_H */
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+On 23.05.2023 14:28, Bjorn Andersson wrote:
+> On Tue, May 23, 2023 at 10:04:40AM +0200, Konrad Dybcio wrote:
+>>
+>>
+>> On 23.05.2023 03:15, Bjorn Andersson wrote:
+>>> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>>
+>>> Add memory reservation for the zap-shader and enable the Adreno SMMU,
+>>> GPU clock controller, GMU and the GPU nodes for the SC8280XP CRD and the
+>>> Lenovo ThinkPad X13s.
+>>>
+>>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+>>> ---
+>>>
+>>> Changes since v1:
+>>> - None
+>>>
+>>>  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 26 +++++++++++++++++++
+>>>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 26 +++++++++++++++++++
+>>>  2 files changed, 52 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+>>> index 5b25d54b9591..547277924ea3 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+>>> @@ -210,6 +210,11 @@ vreg_wwan: regulator-wwan {
+>>>  	};
+>>>  
+>>>  	reserved-memory {
+>>> +		gpu_mem: gpu-mem@8bf00000 {
+>> The ZAP region is very seldom moved around, and I wouldn't expect it
+>> to be uncommon among the very usecase-specific 8280 machines.
+>>
+>>> +			reg = <0 0x8bf00000 0 0x2000>;
+>>> +			no-map;
+>>> +		};
+>>> +
+>>>  		linux,cma {
+>>>  			compatible = "shared-dma-pool";
+>>>  			size = <0x0 0x8000000>;
+>>> @@ -259,6 +264,10 @@ usb1_sbu_mux: endpoint {
+>>>  	};
+>>>  };
+>>>  
+>>> +&adreno_smmu {
+>>> +	status = "okay";
+>>> +};
+>> Ugh. Should definitely be enabled by default.
+>>
+>>> +
+>>>  &apps_rsc {
+>>>  	regulators-0 {
+>>>  		compatible = "qcom,pm8350-rpmh-regulators";
+>>> @@ -376,6 +385,23 @@ &dispcc0 {
+>>>  	status = "okay";
+>>>  };
+>>>  
+>>> +&gmu {
+>>> +	status = "okay";
+>>> +};
+>> You can keep the GMU enabled by default as well, it won't "probe" on
+>> its own (the GPU's hw_init calls its registration)
+>>
+>>> +
+>>> +&gpu {
+>>> +	status = "okay";
+>>> +
+>>> +	zap-shader {
+>>> +		memory-region = <&gpu_mem>;
+>>> +		firmware-name = "qcom/sc8280xp/qcdxkmsuc8280.mbn";
+>>> +	};
+>>> +};
+>>> +
+>>> +&gpucc {
+>>> +	status = "okay";
+>>> +};
+>> Clock controllers have no reason to be off by default.
+>>
+> 
+> On sa8295p/sa8540p the GPU is powered differently, so if I leave it
+> enabled by default I need to disable it (or configure it) for those, or
+> they won't boot.
+Another "messed up automotive forks" situation, eh..
+Would it take a lot of new code to configure these platforms correctly?
+
+Konrad
+> 
+> Regards,
+> Bjorn
+> 
+>> Konrad
+>>> +
+>>>  &mdss0 {
+>>>  	status = "okay";
+>>>  };
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+>>> index bdcba719fc38..5ef3f4c07d75 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+>>> @@ -264,6 +264,11 @@ vreg_wwan: regulator-wwan {
+>>>  	};
+>>>  
+>>>  	reserved-memory {
+>>> +		gpu_mem: gpu-mem@8bf00000 {
+>>> +			reg = <0 0x8bf00000 0 0x2000>;
+>>> +			no-map;
+>>> +		};
+>>> +
+>>>  		linux,cma {
+>>>  			compatible = "shared-dma-pool";
+>>>  			size = <0x0 0x8000000>;
+>>> @@ -359,6 +364,10 @@ usb1_sbu_mux: endpoint {
+>>>  	};
+>>>  };
+>>>  
+>>> +&adreno_smmu {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>>  &apps_rsc {
+>>>  	regulators-0 {
+>>>  		compatible = "qcom,pm8350-rpmh-regulators";
+>>> @@ -518,6 +527,23 @@ &dispcc0 {
+>>>  	status = "okay";
+>>>  };
+>>>  
+>>> +&gmu {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&gpu {
+>>> +	status = "okay";
+>>> +
+>>> +	zap-shader {
+>>> +		memory-region = <&gpu_mem>;
+>>> +		firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcdxkmsuc8280.mbn";
+>>> +	};
+>>> +};
+>>> +
+>>> +&gpucc {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>>  &mdss0 {
+>>>  	status = "okay";
+>>>  };
