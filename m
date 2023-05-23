@@ -2,81 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E1AE70E3C6
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 19:47:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B71970E3B6
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 19:47:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237988AbjEWRfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 13:35:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37532 "EHLO
+        id S238231AbjEWRgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 13:36:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238318AbjEWRfA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 13:35:00 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0661BBF
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 10:34:37 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so156570e87.2
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 10:34:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684863275; x=1687455275;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=wXYu+n3wOzx5mnc23vQbudrU14khD7dWQ2iCC1H/1X0=;
-        b=xKGjbhNzzoHJ+Kv7/aGEdrer0zvedup4VYpkIinbULPQ1BMAg+CIuOP9voh+U6Wh1Z
-         p6kjeDVpYTdhyYi7Ol+ngLsA+JnPWZ1KV1jeC5TEdQYm0n4IS7FJEpRRrY+y5ZSpPPpc
-         VUAnBs+bHDmEMTqIZ2odgVv4CTAPMWyx8oUk/qdTDA81wTDkNahfIbDZc4QzsWWSIAZD
-         9MEvh8YIiYgdmbW9TDSb/+oMHk9r3SJK7e4icidiQPMvRo8LFkasSe5auhihrZrjaGJ+
-         vEChcqngmGL+mQrPRN8cZgolmyaovo1hMdB1qRf37BzY9GlIMqsI7MkcQM133DsZyzAV
-         Em4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684863275; x=1687455275;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wXYu+n3wOzx5mnc23vQbudrU14khD7dWQ2iCC1H/1X0=;
-        b=CC8zTw7t263rtB7rH93kh8+4PsC9WJZ1C+Jt9+c9sTt94KSrEsDibG5p5iLltV98rE
-         EcC2Tp1P9ZyKeLsIi44wrbaWLVAN450iA9ufbvY/YWgk9DW79QgUd/uJ9w8afEykvR7E
-         CnHcDoej+WftMRekO4rnRU7igGANqux4ZtSaxaA2G6aT6xiQZs08slCDHbMymmkOsPP+
-         tjkSRCDZB6RlEl0AmwFC8sRl+KSV3kuGRHDelWEO+l7EyDCTallGEhVU8plPlUsiSUUr
-         sGLclBHlszl7fuwTTsVSajhcGX8Jqj0QhfdLyutNpd0pEWMkBKdTJIiSzhYU+f5+huKV
-         0Fbg==
-X-Gm-Message-State: AC+VfDzQk4gvlhP93uSGW96JPCqv6YKcCEt2lPWPNYKtlqaG27zZAI0p
-        jANcPGSL8fgMhU2NHLwc98bzpQ==
-X-Google-Smtp-Source: ACHHUZ7HQfYbICMPQ73nraI6xxhfDAQvR17E3iGhtjz+pQ6BPGOT2xgSpaXddbgUODIHDtZb314s6A==
-X-Received: by 2002:ac2:491a:0:b0:4f3:a55a:bad6 with SMTP id n26-20020ac2491a000000b004f3a55abad6mr4999914lfi.20.1684863275060;
-        Tue, 23 May 2023 10:34:35 -0700 (PDT)
-Received: from [192.168.1.101] (abyk138.neoplus.adsl.tpnet.pl. [83.9.30.138])
-        by smtp.gmail.com with ESMTPSA id d27-20020ac24c9b000000b004f00d3d9df9sm1408152lfl.188.2023.05.23.10.34.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 May 2023 10:34:34 -0700 (PDT)
-Message-ID: <dbdec4af-8c28-5ddb-c382-3e3515fb0358@linaro.org>
-Date:   Tue, 23 May 2023 19:34:25 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 05/11] arm64: dts: qcom: sdm845: switch UFS QMP PHY to
- new style of bindings
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S238239AbjEWRgE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 13:36:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2835E41;
+        Tue, 23 May 2023 10:35:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E54D63547;
+        Tue, 23 May 2023 17:35:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E9C8C433D2;
+        Tue, 23 May 2023 17:35:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684863349;
+        bh=V6La7xHuyVytMAyfQCoW1fs5fxMyIO2p76AI2SCUOEA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GtPdzUJqCnuCdbrKHnn6ERa4f+5zTE+NOlHT2B2jd36yEoOXyZEbzZGuHV6/xr73A
+         FXH4S5r69z3TpvH5ecaYAKiR9+zuR4vRRQy2LmCkz/cGZt3LNgpnQ+VdFufEwgc+aZ
+         y+8dhTUguas7Ej+7mZ3fCjz+I4XOtDxm3kysvSLUl8bib7rwnOO961Gh14b5OslPA2
+         jnZQTEnr176dhlZWml11cjIcPJ0CDW6KM203OioUtuzMuv3HkJ6qmMRtFYvHZ3s6/c
+         CLRezJz/AoZ6jI9uEi9DTSItUODShygq9vv5BEwMW4JFGG+R9DEjOz79RWSUHSXO1i
+         3Vn6LiKRGOa/A==
+Date:   Tue, 23 May 2023 18:35:44 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Lee Jones <lee@kernel.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
-References: <20230523140622.265692-1-dmitry.baryshkov@linaro.org>
- <20230523140622.265692-6-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230523140622.265692-6-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: backlight: pwm: Make power-supply not
+ required
+Message-ID: <20230523-outlying-repulsive-efc0f9e1435e@spud>
+References: <29943059c80c8db0db437f9548f084a67326647b.1684856131.git.geert+renesas@glider.be>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nG5CKQOdzr5W/qlH"
+Content-Disposition: inline
+In-Reply-To: <29943059c80c8db0db437f9548f084a67326647b.1684856131.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,61 +65,76 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--nG5CKQOdzr5W/qlH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 23.05.2023 16:06, Dmitry Baryshkov wrote:
-> Change the UFS QMP PHY to use newer style of QMP PHY bindings (single
-> resource region, no per-PHY subnodes).
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Tue, May 23, 2023 at 05:38:37PM +0200, Geert Uytterhoeven wrote:
+> make dtbs_check:
+>=20
+>     arch/arm/boot/dts/renesas/r8a7742-iwg21d-q7.dtb: backlight: 'power-su=
+pply' is a required property
+> 	    From schema: Documentation/devicetree/bindings/leds/backlight/pwm-ba=
+cklight.yaml
+>=20
+> As that backlight device node already has an "enable-gpios" property to
+> control the power supplied to the backlight, it sounds a bit silly to
+> have to add a "power-supply" property just to silence this warning.  In
+> addition, as of commit deaeeda2051fa280 ("backlight: pwm_bl: Don't rely
+> on a disabled PWM emiting inactive state"), the Linux driver considers
+> the power supply optional.
+>=20
+> Fix this by synchronizing the bindings with actual driver behavior by
+> making the "power-supply" optional.
+
+That seems to follow from reading the aforementioned commit.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+>=20
+> Fixes: deaeeda2051fa280 ("backlight: pwm_bl: Don't rely on a disabled PWM=
+ emiting inactive state")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> As commit deaeeda2051fa280 was only upstreamed in v6.3, I'm wondering if
+> the backlight on the iWave Systems RainboW-G20D/G21D Qseven and
+> RainboW-G22D-SODIMM boards worked before?  I don't have the hardware.
+>=20
+> Thanks!
+> ---
+>  .../devicetree/bindings/leds/backlight/pwm-backlight.yaml        | 1 -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/pwm-backlig=
+ht.yaml b/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.ya=
+ml
+> index 5ec47a8c6568b60e..53569028899020d6 100644
+> --- a/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
+> +++ b/Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
+> @@ -68,7 +68,6 @@ dependencies:
+>  required:
+>    - compatible
+>    - pwms
+> -  - power-supply
+> =20
+>  additionalProperties: false
+> =20
+> --=20
+> 2.34.1
+>=20
 
-Konrad
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 19 +++++--------------
->  1 file changed, 5 insertions(+), 14 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 90424442bb4a..68660d532afa 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -2565,7 +2565,7 @@ ufs_mem_hc: ufshc@1d84000 {
->  			      <0 0x01d90000 0 0x8000>;
->  			reg-names = "std", "ice";
->  			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-> -			phys = <&ufs_mem_phy_lanes>;
-> +			phys = <&ufs_mem_phy>;
->  			phy-names = "ufsphy";
->  			lanes-per-direction = <2>;
->  			power-domains = <&gcc UFS_PHY_GDSC>;
-> @@ -2611,10 +2611,8 @@ ufs_mem_hc: ufshc@1d84000 {
->  
->  		ufs_mem_phy: phy@1d87000 {
->  			compatible = "qcom,sdm845-qmp-ufs-phy";
-> -			reg = <0 0x01d87000 0 0x18c>;
-> -			#address-cells = <2>;
-> -			#size-cells = <2>;
-> -			ranges;
-> +			reg = <0 0x01d87000 0 0x1000>;
-> +
->  			clock-names = "ref",
->  				      "ref_aux";
->  			clocks = <&gcc GCC_UFS_MEM_CLKREF_CLK>,
-> @@ -2622,16 +2620,9 @@ ufs_mem_phy: phy@1d87000 {
->  
->  			resets = <&ufs_mem_hc 0>;
->  			reset-names = "ufsphy";
-> -			status = "disabled";
->  
-> -			ufs_mem_phy_lanes: phy@1d87400 {
-> -				reg = <0 0x01d87400 0 0x108>,
-> -				      <0 0x01d87600 0 0x1e0>,
-> -				      <0 0x01d87c00 0 0x1dc>,
-> -				      <0 0x01d87800 0 0x108>,
-> -				      <0 0x01d87a00 0 0x1e0>;
-> -				#phy-cells = <0>;
-> -			};
-> +			#phy-cells = <0>;
-> +			status = "disabled";
->  		};
->  
->  		cryptobam: dma-controller@1dc4000 {
+--nG5CKQOdzr5W/qlH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGz5cAAKCRB4tDGHoIJi
+0mDPAQDCdFT25r3FjLLlJyhgTRdLJpa3ifbcKQxOZ20+M4dpXQD/dsHStncq/F4X
+8OY2cqOzQwlc8EIm4K1E801mM1/RQwA=
+=HU1s
+-----END PGP SIGNATURE-----
+
+--nG5CKQOdzr5W/qlH--
