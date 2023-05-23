@@ -2,184 +2,360 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0C3070E597
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 21:32:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 771AE70E55B
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 21:29:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238405AbjEWTcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 15:32:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37674 "EHLO
+        id S238298AbjEWT3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 15:29:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238413AbjEWTcA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 15:32:00 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12AB31A1
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 12:31:37 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1ae6b4c5a53so240545ad.2
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 12:31:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1684870290; x=1687462290;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tpsS8VkinDsLSpsgSW7KF2muDpJUwIny3CFZoqp4G90=;
-        b=hWqq0Swswmd8lErnPiovBkcfxgY5fW5GYwu2zeT/+9HsYv9Eu/590YhsjkuNU9jXPj
-         bnipsucMcvVDl6qyTBS/HmZh6aI87qQP4CRgijYcWWavqMcRbFDx/cCy1/wdYqJHTcoL
-         sbjOQ0xEnE6uB5b/431ug5s/rTWOCZWGTZrvE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684870290; x=1687462290;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tpsS8VkinDsLSpsgSW7KF2muDpJUwIny3CFZoqp4G90=;
-        b=Lf8wteAqh4CKDtq+yis/fn1VA3kjFYNvvGY6yuRAo6uM0z12OvQRY3n9ob2k83HxC9
-         w/6y9NohIQwqBw64DzSzUCGv8QGrlhhd6PQF+81HpJA6/86jRSPu0GF4Do/PZLH67ePf
-         LNCVd+MbqEJCPAIY6YQY6Zw9qFhBXOCHXFPKBQ3TmsO5BduUTNKNgndVc1pK9KzNQvtq
-         kij1Q9Nfnd/nglL6o7JfLBZ92Zzs/VvJylbASKhJHx3Yez04e/R3BFrSFuc9VXUkC14m
-         0Af9ZJ3Q3TJFU78nitbKJcaYRcBy59ODmK0mKXv96bF47h63cHgMloDoba7ghalZmCg6
-         19gA==
-X-Gm-Message-State: AC+VfDxmcTkPjAK9SVY2jSyrqGlYXJ35eZjxVn1Trf2V0O5s0ABmz63I
-        jKXt7sbav+kY/F9/7WPZ+29Dbg==
-X-Google-Smtp-Source: ACHHUZ4rktXX4DoIg0CPYD2PQ1xh+dmDzZ8tM/1YWsUwkTPU9OT6oPlM+OtWgc/sN0M65KgYmS5dHg==
-X-Received: by 2002:a17:903:32c8:b0:1aa:e938:3ddf with SMTP id i8-20020a17090332c800b001aae9383ddfmr20632405plr.7.1684870290410;
-        Tue, 23 May 2023 12:31:30 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:9d:2:af98:af9d:ed15:f8b3])
-        by smtp.gmail.com with ESMTPSA id y18-20020a170902b49200b001aaef9d0102sm7109947plr.197.2023.05.23.12.31.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 May 2023 12:31:29 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     dri-devel@lists.freedesktop.org, linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>, hsinyi@google.com,
-        devicetree@vger.kernel.org,
-        yangcong5@huaqin.corp-partner.google.com,
-        linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, cros-qcom-dts-watchers@chromium.org,
-        Douglas Anderson <dianders@chromium.org>
-Subject: [PATCH 9/9] arm64: dts: qcom: sc7180: Link trogdor touchscreens to the panels
-Date:   Tue, 23 May 2023 12:28:03 -0700
-Message-ID: <20230523122802.9.Ia06c340e3482563e6bfd3106ecd0d3139f173ca4@changeid>
-X-Mailer: git-send-email 2.40.1.698.g37aff9b760-goog
-In-Reply-To: <20230523193017.4109557-1-dianders@chromium.org>
-References: <20230523193017.4109557-1-dianders@chromium.org>
+        with ESMTP id S238301AbjEWT3R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 15:29:17 -0400
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2080.outbound.protection.outlook.com [40.107.95.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29806126;
+        Tue, 23 May 2023 12:29:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RqvLf7hHkdUOqd9NeRlrX5eo0Bk0ykapi7liiXBFz7MdilLDQRqFNECEG6KhZgtvcGeMbuaWhvAuutcdkGx9leLDfYWRnkAd63TSkmkMWuvkRP6lCztKuOQFjZKSjXjDsnrrP4JM9LMnCSauUcU4+qHRweH/neOeeJAiuUnzN0KLO/twwn/yaujA4kqhkRAetP/60pYAav4wzBUv29LZFnnp+grR9HRJNSr9BTchHXD4GkRBVttBUeVL2X7p+21SUa+decgG+J9HCMpOBJjP2tiyJ48Z05HEDOoNAABoPk+MLSyOIfMm6YniywXUJnA/cR84N7kKBiHavQHA4u+Bbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZX/9XDoo0YbDXURDbVwMHkKb4pAE0c5n5ThHdtyEICk=;
+ b=J0N0K+LrlQOrmZHaFKwoMJLqS2Q5aX36adakSaHDXizEip66rdUVOrLG7GS4p1JQILp47mUQr2LNytyy2WBKy7ubxsSHh6/qKQfUpURRZRDqC8quwwhgTvBhY+j6I8p35nyEadAaehuGEiG93vQeI8luTTVKqtjfdiJSwYYo+A8/XexKYEnPZTRtDvMmV1xYx0JasoLVeRVqVO2fUTMzYEqOyONYbAddj8ZjSPR6w5QNZyb997ishEP/phnJGsO00gpzWXJn3xz6lHRV7xeZKF3gcpUzviib3NNhPimp1DLmyfH1Proz4+Tg6QAu05wUq+1aKW03k0W+K39abc9OUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZX/9XDoo0YbDXURDbVwMHkKb4pAE0c5n5ThHdtyEICk=;
+ b=iB8kAq+wdGfmM3NfFZwbGHOfeo1+LvssWHs5heotT1nz+J7iAg9AAjIs3skCxs8okqdPEKsROHpBURlco6tHK7lQbBEwiGbr+YlIq+gBFuoyeE9RT4hDodMRSlirOBdgeY/cRuOxLGU1k4VnLnYr2UKxZw+8GqGaLlc6FWCHgvU=
+Received: from BN9PR03CA0484.namprd03.prod.outlook.com (2603:10b6:408:130::9)
+ by CYYPR12MB8989.namprd12.prod.outlook.com (2603:10b6:930:c2::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Tue, 23 May
+ 2023 19:29:12 +0000
+Received: from BN8NAM11FT085.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:130:cafe::c2) by BN9PR03CA0484.outlook.office365.com
+ (2603:10b6:408:130::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.29 via Frontend
+ Transport; Tue, 23 May 2023 19:29:12 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT085.mail.protection.outlook.com (10.13.176.100) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6411.30 via Frontend Transport; Tue, 23 May 2023 19:29:11 +0000
+Received: from platform-dev1.pensando.io (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Tue, 23 May 2023 14:29:05 -0500
+From:   Brad Larson <blarson@amd.com>
+To:     <michal.simek@amd.com>
+CC:     <adrian.hunter@intel.com>, <alcooperx@gmail.com>,
+        <andy.shevchenko@gmail.com>, <arnd@arndb.de>, <blarson@amd.com>,
+        <brendan.higgins@linux.dev>, <briannorris@chromium.org>,
+        <broonie@kernel.org>, <catalin.marinas@arm.com>,
+        <conor+dt@kernel.org>, <davidgow@google.com>,
+        <devicetree@vger.kernel.org>, <fancer.lancer@gmail.com>,
+        <gerg@linux-m68k.org>, <gsomlo@gmail.com>,
+        <hal.feng@starfivetech.com>, <hasegawa-hitomi@fujitsu.com>,
+        <j.neuschaefer@gmx.net>, <joel@jms.id.au>, <kernel@esmil.dk>,
+        <krzk@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <lee.jones@linaro.org>, <lee@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <p.zabel@pengutronix.de>,
+        <rdunlap@infradead.org>, <robh+dt@kernel.org>,
+        <samuel@sholland.org>, <skhan@linuxfoundation.org>,
+        <suravee.suthikulpanit@amd.com>, <thomas.lendacky@amd.com>,
+        <tonyhuang.sunplus@gmail.com>, <ulf.hansson@linaro.org>,
+        <vaishnav.a@ti.com>, <walker.chen@starfivetech.com>,
+        <will@kernel.org>, <zhuyinbo@loongson.cn>
+Subject: Re: [PATCH v14 6/8] arm64: dts: Add AMD Pensando Elba SoC support
+Date:   Tue, 23 May 2023 12:28:58 -0700
+Message-ID: <20230523192858.31924-1-blarson@amd.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <e4227418-151d-7222-b439-4ce53bf0fb81@amd.com>
+References: <e4227418-151d-7222-b439-4ce53bf0fb81@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT085:EE_|CYYPR12MB8989:EE_
+X-MS-Office365-Filtering-Correlation-Id: 86fc750c-6000-4906-b8b2-08db5bc3fcbd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 2RVM3gv+CWiMhkH11GcPCtKl/M2Gt0CUt+M27fFpRBAgYD5xb4a2iwPhWZywfdxXl1c/sUrJDcrbtrp4CkrP0mtDE1EBr+Prfnq13Ac3IMKu4Zi+jaRsbf/Gl9qLAV5RXzl6y4Wg/wae9YyiPOQrf2LgLHb5eeeADTmXiO/KTcy2E8p8euThFQXKqpWz2Ub5zxeVRzMKzy+D7BWKEsx5vroDIT3BWFeMl7iCsEW7mZmeCio1LvGLTtqkcnQhS9Nv6ZGZzZkGN5EScw/WNKMqRJ5zIx4QlXP+jaaXe0YGS/pRgzD8LLUusEEWNBeTpn5Jmp2bAckC/xa7QElZfSsHFDixOizZmB2oQ49YZdzrISZ8cDVsxBWNlJtriR88Eq7H9S/RNfOLMmJ9DRqQ4ImkNyZCzbAy/2CAx/4IdhfDqF8CddXTa5actnSRTVlLGpJLIlHyBUQYVc4BR63zY0q6jijEOfW9xEZR8HbYR9qWchbpaC2GvyAFrvkrhFXfJXfLHbHPiWsgY7uFPLs+8F/XHRMl4e5bqLknYZXzm1UIlVbPd1d8+3p4WwB9qN2Vx0tVH7A4oZ/UYgkz0bW/F1LrIq3Hs4XGnbQfwury4p9k4Gpz+HHgTzwjRUcnxdJ4R9KkKhN6R8n4NFRHUvWe0T1WPdlqOBz1tw458eDTGXUkFJ6U8pOUZjP2QjTzoaTzrIBZsQ3sTNjDmvheufA4J+2Pbre7aLO64uQgzoKPpnjOAJihmiopG94lAIbMpPruLqa2JcCQfoszc9lTV/mOdLVG0g==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(136003)(396003)(376002)(346002)(451199021)(40470700004)(36840700001)(46966006)(53546011)(356005)(81166007)(1076003)(186003)(26005)(40460700003)(7406005)(82740400003)(7416002)(2616005)(47076005)(36756003)(36860700001)(83380400001)(336012)(426003)(16526019)(2906002)(40480700001)(54906003)(37006003)(316002)(41300700001)(6666004)(82310400005)(478600001)(6636002)(4326008)(70586007)(70206006)(8676002)(8936002)(6862004)(5660300002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2023 19:29:11.9474
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86fc750c-6000-4906-b8b2-08db5bc3fcbd
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT085.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8989
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Let's provide the proper link from the touchscreen to the panel on
-trogdor devices where the touchscreen support it. This allows the OS
-to power sequence the touchscreen more properly.
+Hi Michal,
 
-For the most part, this is just expected to marginally improve power
-consumption while the screen is off. However, in at least one trogdor
-model (wormdingler) it's suspected that this will fix some behavorial
-corner cases when the panel power cycles (like for a modeset) without
-the touchscreen power cycling.
+Thanks for reviewing the patch.
 
-NOTE: some trogdor variants use touchscreens that don't (yet) support
-linking the touchscreen and the panel. Those variants are left alone.
+On 5/16/23 09:54, Michal Simek wrote:
+> On 5/15/23 20:16, Brad Larson wrote:
+>> Add AMD Pensando common and Elba SoC specific device nodes
+>> 
+>> Signed-off-by: Brad Larson <blarson@amd.com>
+>> ---
+>> 
+>> v14 changes:
+>> - Fix dtbs_check l2-cache* property issue by adding required
+>>    cache-level and cache-unified properties
+>> - Observed the issue after updating dtschema from 2023.1 to 2023.4
+>>    and yamllint from 1.26.3 to 1.30.0
+>> 
+>> v11 changes:
+>> - Delete reset-names
+>> - Fix spi0 compatible to be specific 'amd,pensando-elba-ctrl'
+>> 
+>> v9 changes:
+>> - Single node for spi0 system-controller and squash
+>>    the reset-controller child into parent
+>> 
+>> ---
+>>   arch/arm64/boot/dts/amd/Makefile              |   1 +
+>>   arch/arm64/boot/dts/amd/elba-16core.dtsi      | 197 ++++++++++++++++++
+>>   arch/arm64/boot/dts/amd/elba-asic-common.dtsi |  80 +++++++
+>>   arch/arm64/boot/dts/amd/elba-asic.dts         |  28 +++
+>>   arch/arm64/boot/dts/amd/elba-flash-parts.dtsi | 106 ++++++++++
+>>   arch/arm64/boot/dts/amd/elba.dtsi             | 191 +++++++++++++++++
+>>   6 files changed, 603 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/amd/elba-16core.dtsi
+>>   create mode 100644 arch/arm64/boot/dts/amd/elba-asic-common.dtsi
+>>   create mode 100644 arch/arm64/boot/dts/amd/elba-asic.dts
+>>   create mode 100644 arch/arm64/boot/dts/amd/elba-flash-parts.dtsi
+>>   create mode 100644 arch/arm64/boot/dts/amd/elba.dtsi
+>> 
+>> diff --git a/arch/arm64/boot/dts/amd/Makefile b/arch/arm64/boot/dts/amd/Makefile
+>> index 68103a8b0ef5..8502cc2afbc5 100644
+>> --- a/arch/arm64/boot/dts/amd/Makefile
+>> +++ b/arch/arm64/boot/dts/amd/Makefile
+>> @@ -1,2 +1,3 @@
+>>   # SPDX-License-Identifier: GPL-2.0
+>> +dtb-$(CONFIG_ARCH_PENSANDO) += elba-asic.dtb
+>>   dtb-$(CONFIG_ARCH_SEATTLE) += amd-overdrive-rev-b0.dtb amd-overdrive-rev-b1.dtb
+>> diff --git a/arch/arm64/boot/dts/amd/elba-16core.dtsi b/arch/arm64/boot/dts/amd/elba-16core.dtsi
+>> new file mode 100644
+>> index 000000000000..f9f9f5fd5f69
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/amd/elba-16core.dtsi
+>> @@ -0,0 +1,197 @@
+>> +// SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+>> +/*
+>> + * Copyright 2020-2022 Advanced Micro Devices, Inc.
+>
+> 2023 and the same below.
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+I'll update the copyright in the next submit
 
- arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi        | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi      | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi         | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi        | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi | 1 +
- arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi   | 1 +
- 6 files changed, 6 insertions(+)
+>> + */
+>> +
+>> +/ {
+>> +	cpus {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <0>;
+>> +
+>> +		cpu-map {
+>> +			cluster0 {
+>> +				core0 { cpu = <&cpu0>; };
+>> +				core1 { cpu = <&cpu1>; };
+>> +				core2 { cpu = <&cpu2>; };
+>> +				core3 { cpu = <&cpu3>; };
+>> +			};
+>> +
+>> +			cluster1 {
+>> +				core0 { cpu = <&cpu4>; };
+>> +				core1 { cpu = <&cpu5>; };
+>> +				core2 { cpu = <&cpu6>; };
+>> +				core3 { cpu = <&cpu7>; };
+>> +			};
+>> +
+>> +			cluster2 {
+>> +				core0 { cpu = <&cpu8>; };
+>> +				core1 { cpu = <&cpu9>; };
+>> +				core2 { cpu = <&cpu10>; };
+>> +				core3 { cpu = <&cpu11>; };
+>> +			};
+>> +
+>> +			cluster3 {
+>> +				core0 { cpu = <&cpu12>; };
+>> +				core1 { cpu = <&cpu13>; };
+>> +				core2 { cpu = <&cpu14>; };
+>> +				core3 { cpu = <&cpu15>; };
+>> +			};
+>> +		};
+>> +
+>> +		/* CLUSTER 0 */
+>> +		cpu0: cpu@0 {
+>> +			device_type = "cpu";
+>> +			compatible = "arm,cortex-a72";
+>> +			reg = <0 0x0>;
+>
+> Do you really need 2/0 split here. The first cell is 0 anyway.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-index 8b8ea8af165d..b4f328d3e1f6 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi
-@@ -104,6 +104,7 @@ ap_ts: touchscreen@5d {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
- 
-+		panel = <&panel>;
- 		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
- 
- 		vdd-supply = <&pp3300_ts>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-index b3ba23a88a0b..88aeb415bd5b 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-@@ -116,6 +116,7 @@ ap_ts: touchscreen@14 {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
- 
-+		panel = <&panel>;
- 		reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
- 
- 		vdd-supply = <&pp3300_touch>;
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-index 269007d73162..c65f18ea3e5c 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-@@ -43,6 +43,7 @@ ap_ts: touchscreen@10 {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
- 
-+		panel = <&panel>;
- 		post-power-on-delay-ms = <20>;
- 		hid-descr-addr = <0x0001>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-index 6c5287bd27d6..d2aafd1ea672 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi
-@@ -102,6 +102,7 @@ ap_ts: touchscreen@10 {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
- 
-+		panel = <&panel>;
- 		post-power-on-delay-ms = <20>;
- 		hid-descr-addr = <0x0001>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
-index 8e7b42f843d4..0785873d1345 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-quackingstick.dtsi
-@@ -99,6 +99,7 @@ ap_ts: touchscreen@10 {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
- 
-+		panel = <&panel>;
- 		post-power-on-delay-ms = <20>;
- 		hid-descr-addr = <0x0001>;
- 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
-index 262d6691abd9..f70f5b42c845 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-wormdingler.dtsi
-@@ -154,6 +154,7 @@ ap_ts: touchscreen@1 {
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
- 
-+		panel = <&panel>;
- 		post-power-on-delay-ms = <70>;
- 		hid-descr-addr = <0x0001>;
- 
--- 
-2.40.1.698.g37aff9b760-goog
+Yes following 64-bit system definition
 
+...
+
+>> diff --git a/arch/arm64/boot/dts/amd/elba-flash-parts.dtsi b/arch/arm64/boot/dts/amd/elba-flash-parts.dtsi
+>> new file mode 100644
+>> index 000000000000..734893fef2c3
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/amd/elba-flash-parts.dtsi
+>> @@ -0,0 +1,106 @@
+>> +// SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
+>> +/*
+>> + * Copyright 2020-2022 Advanced Micro Devices, Inc.
+>> + */
+>> +
+>> +&flash0 {
+0xf0000>> +	partitions {
+>> +		compatible = "fixed-partitions";
+>> +		#address-cells = <1>;
+>> +		#size-cells = <1>;
+>> +		partition@0 {
+>> +			label = "flash";
+>> +			reg = <0x10000 0xfff0000>;
+>
+> This doesn't fit with partition@0 above.
+> Also size is weird.
+
+This is intended to not expose sector 0.
+
+>> +		};
+>> +
+>> +		partition@f0000 {
+>> +			label = "golduenv";
+>> +			reg = <0xf0000 0x10000>;
+>> +		};
+>> +
+>> +		partition@100000 {
+>> +			label = "boot0";
+>> +			reg = <0x100000 0x80000>;
+>> +		};
+>> +
+>> +		partition@180000 {
+>> +			label = "golduboot";
+>> +			reg = <0x180000 0x200000>;
+>> +		};
+>> +
+>> +		partition@380000 {
+>> +			label = "brdcfg0";
+>> +			reg = <0x380000 0x10000>;
+>> +		};
+>> +
+>> +		partition@390000 {
+>> +			label = "brdcfg1";
+>> +			reg = <0x390000 0x10000>;
+>> +		};
+>> +
+>> +		partition@400000 {
+>> +			label = "goldfw";
+>> +			reg = <0x400000 0x3c00000>;
+>
+> This size looks weird.
+
+It's the allocated size for this firmware component.
+
+>> +		};
+>> +
+>> +		partition@4010000 {
+>> +			label = "fwmap";
+>> +			reg = <0x4010000 0x20000>;
+>> +		};
+>> +
+>> +		partition@4030000 {
+>> +			label = "fwsel";
+>> +			reg = <0x4030000 0x20000>;
+>> +		};
+>> +
+>> +		partition@4090000 {
+>> +			label = "bootlog";
+>> +			reg = <0x4090000 0x20000>;
+>> +		};
+>> +
+>> +		partition@40b0000 {
+>> +			label = "panicbuf";
+>> +			reg = <0x40b0000 0x20000>;
+>> +		};
+>> +
+>> +		partition@40d0000 {
+>> +			label = "uservars";
+>> +			reg = <0x40d0000 0x20000>;
+>> +		};
+>> +
+>> +		partition@4200000 {
+>> +			label = "uboota";
+>> +			reg = <0x4200000 0x400000>;
+>> +		};
+>> +
+>> +		partition@4600000 {
+>> +			label = "ubootb";
+>> +			reg = <0x4600000 0x400000>;
+>> +		};
+>> +
+>> +		partition@4a00000 {
+>> +			label = "mainfwa";
+>> +			reg = <0x4a00000 0x1000000>;
+>> +		};
+>> +
+>> +		partition@5a00000 {
+>> +			label = "mainfwb";
+>> +			reg = <0x5a00000 0x1000000>;
+>> +		};
+>> +
+>> +		partition@6a00000 {
+>> +			label = "diaguboot";
+>> +			reg = <0x6a00000 0x400000>;
+>> +		};
+>> +
+>
+> here is gap
+
+This is intentional for unallocated space.  I'll put in a 'spare' partition.
+
+>> +		partition@8000000 {
+>> +			label = "diagfw";
+>> +			reg = <0x8000000 0x7fe0000>;
+>> +		};
+>> +
+>> +		partition@ffe0000 {
+>> +			label = "ubootenv";
+>> +			reg = <0xffe0000 0x10000>;
+>> +		};
+>
+> And this is missing space description.
+
+space description?
+
+Regards,
+Brad
