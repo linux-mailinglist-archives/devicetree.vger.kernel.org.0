@@ -2,150 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2127C70E019
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 17:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C27770DFF1
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 17:12:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235867AbjEWPOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 11:14:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53600 "EHLO
+        id S232856AbjEWPMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 11:12:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236806AbjEWPNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 11:13:41 -0400
-X-Greylist: delayed 902 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 23 May 2023 08:13:20 PDT
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E988AE4D
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 08:13:20 -0700 (PDT)
-X-AuditID: ac14000a-923ff70000007ecb-d9-646cd488ae38
-Received: from Diagnostix.phytec.de (Diagnostix.phytec.de [172.25.0.14])
-        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (Client did not present a certificate)
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id A6.8F.32459.884DC646; Tue, 23 May 2023 16:58:16 +0200 (CEST)
-Received: from Berlix.phytec.de (172.25.0.12) by Diagnostix.phytec.de
- (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 23 May
- 2023 16:58:15 +0200
-Received: from Berlix.phytec.de ([fe80::61cc:ebf0:7375:8768]) by
- berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2375.018;
- Tue, 23 May 2023 16:58:15 +0200
-From:   Christophe Parant <C.Parant@phytec.fr>
-To:     "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "s.trumtrar@pengutronix.de" <s.trumtrar@pengutronix.de>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "upstream@lists.phytec.de" <upstream@lists.phytec.de>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
-        "alexandre.torgue@foss.st.com" <alexandre.torgue@foss.st.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v9 10/10] ARM: dts: stm32: add STM32MP1-based Phytec board
-Thread-Topic: [PATCH v9 10/10] ARM: dts: stm32: add STM32MP1-based Phytec
- board
-Thread-Index: AQHZjYZ7ReKcSf+hNU6XArRy/wB/9q9n0WyA
-Date:   Tue, 23 May 2023 14:58:15 +0000
-Message-ID: <e5b4ef445160ac0ddbaa25f12118a253ad21542a.camel@phytec.fr>
-References: <20230505060158.16516-1-s.trumtrar@pengutronix.de>
-         <20230505060158.16516-11-s.trumtrar@pengutronix.de>
-In-Reply-To: <20230505060158.16516-11-s.trumtrar@pengutronix.de>
-Accept-Language: fr-FR, de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.0.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <55F2E19B66CA58468FE3935C4908944D@phytec.de>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229889AbjEWPMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 11:12:34 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D87FD11A;
+        Tue, 23 May 2023 08:12:30 -0700 (PDT)
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPA id 6D690C000C;
+        Tue, 23 May 2023 15:12:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1684854749;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=44LW4D+dEQ4642r5zsLapFoXq9b1JcRYCd7i3HkCKYM=;
+        b=TSmhYRr+lsHjhiKF/pnRF7qFR3c7YLwMNGErcOAdJzgvH65cnroU6fGyh0hzPo2ZdfE7GJ
+        a9Vxf9vSpCPRBXGZ3tVcWomX++WuAl3nWH2mlbzQkWwpAFDucsO6MdvD6mmTHSVIH6d6G+
+        +af87BadCTLNfjxOVFgIOuAZgZaW1o/58W3oAFaTrXIf44iHdcF+KfoD8pEpeUfP3fqDTs
+        9O5aoRFqE5I3MsxGhM4LF7k/aKCWyLuDWjXr61zR546f5Lww8WaHpWrL0TRfhjmXBWyGG3
+        4zLenMx4cSwu7xhw3zyD4KErAPRtf7NSjpwtb04vjHBhO6mOA7H4skh+JpDWfw==
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v2 0/9] Add support for IIO devices in ASoC
+Date:   Tue, 23 May 2023 17:12:14 +0200
+Message-Id: <20230523151223.109551-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrOIsWRmVeSWpSXmKPExsWyRpKBT7fjSk6KwdLNXBY/X05jtJh/5Byr
-        Rd+Lh8wWmx5fY7XouvaE1WLe37WsFp8+LmSx6H6n7sDh8bR/K7vHzll32T3uXNvD5rF5Sb1H
-        f3cLq0f/XwOPg/sMPT5vkgvgiOKySUnNySxLLdK3S+DK+Nc4h7Vgj1bFiq0rWBoYN2h2MXJy
-        SAiYSFxdv4a1i5GLQ0hgHZPE9Fl3GSGcJ4wS2959hcpsZJSYdWU7O0gLm4COxJ3jF5hBEiIC
-        0xgllrYuYAJJMAtMYJaYMdsJxBYW8JP4OXsrC4gtIhAo0X9+ByOEbSRx+clSMJtFQFXiyuHr
-        YDW8Am4SL2asZQOxhQRKJa78uAc2k1PAQWJP1yWwekYBFYnrL3exQOwSl9j07DsrxA8CEkv2
-        nGeGsEUlXj7+BxWXlzhxaxrQHA6gek2J9bv0IVotJH696WaGsBUlpnQ/ZIc4QVDi5MwnLBMY
-        xWch2TALoXsWku5ZSLpnIelewMi6ilEoNzM5O7UoM1uvIKOyJDVZLyV1EyMoskUYuHYw9s3x
-        OMTIxMF4iFGCg1lJhPdEeXaKEG9KYmVValF+fFFpTmrxIUZpDhYlcd77PUyJQgLpiSWp2amp
-        BalFMFkmDk6pBka1d26aZ5LXfnrxr2LT6VDu13xuLK16OzWEXZsP1d4+K7ZlG5uc6aOLJW9q
-        u/+uOscf0fH2r+NF9Tf512+tvyb15UBxRYHa9C3fNTnfO55R6bBcGHFONP+3bFneRfNf36e8
-        LtEqPHpL89UnSaG3Hgo5hw9/3fxYN1X6WKDx4f++V57XZbxf1x2mxFKckWioxVxUnAgANa+n
-        StoCAAA=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgU3RlZmZlbiwNCg0KVGhhbmsgeW91IGZvciB1cHN0cmVhbWluZyBvdXIgcGh5Qk9BUkQtU2Fy
-Z2FzIGRldmljZSB0cmVlLiBXZSB3ZXJlIGFsc28NCnBsYW5pbmcgdG8gd29yayBvbiB0aGF0IHRv
-by4NCklmIHRoaXMgcGF0Y2ggaXMgbm90IGFwcGxpZWQgdXBzdHJlYW0geWV0LCB3b3VsZCBpdCBi
-ZSBwb3NzaWJsZSB0bw0KcmVuYW1lIHRoZSAuZHRzIGZpbGUgPw0KDQpJbiB0aGUgYmVnaW5uaW5n
-LCB3ZSBuYW1lZCB0aGUgZHRzIGZpbGVzIGFmdGVyIG91ciBZb2N0byBtYWNoaW5lcywNCndoaWNo
-IGlzIHByb2JhYmx5IHRoZSB2ZXJzaW9uIHlvdSBnb3QuIEJ1dCBub3cgd2UgcmVuYW1lZCB0aGVt
-IGFmdGVyDQpvdXIgYmFzZWJvYXJkIG5hbWVzLCBsaWtlIHdpdGggb3VyIG90aGVyIHBsYXRmb3Jt
-cy4NClNvIGl0IHdvdWxkIG1ha2Ugc2Vuc2UgdG8gaGF2ZSB0aGUgc3RtMzIgYmFzZWJvYXJkIG5h
-bWVkIHRoZSBzYW1lIHdheSwNCmNoYW5naW5nICJzdG0zMm1wMTU3Yy1waHljb3JlLXN0bTMybXAx
-LTMuZHRzIiB0byAic3RtMzJtcDE1N2MtcGh5Ym9hcmQtDQpzYXJnYXMtcmRrLWVtbWMuZHRzIi4N
-Cg0KIm1vZGVsIiBhbmQgImNvbXBhdGlibGUiIGNhbiBhbHNvIGJlIG1vZGlmaWVkIHRoaXMgd2F5
-IHdpdGggdGhpcyBuYW1pbmcNCmNvbnZlbnRpb24gOg0KDQovIHsNCiAgICBtb2RlbCA9ICJQSFlU
-RUMgcGh5Qk9BUkQtU2FyZ2FzIFNUTTMyTVAxNTdDIHdpdGggZU1NQyI7DQogICAgY29tcGF0aWJs
-ZSA9ICJwaHl0ZWMsc3RtMzJtcDE1N2MtcGh5Ym9hcmQtc2FyZ2FzLXJkay1lbW1jIiwNCiAgICAg
-ICAgICAgICAicGh5dGVjLHN0bTMybXAxNTdjLXBoeWNvcmUtc29tIiwgInN0LHN0bTMybXAxNTci
-Ow0KfTsNCg0KVGhhbmtzLg0KDQpCZXN0IHJlZ2FyZHMsDQpDaHJpc3RvcGhlIFBhcmFudA0KDQpM
-ZSB2ZW5kcmVkaSAwNSBtYWkgMjAyMyDDoCAwODowMSArMDIwMCwgU3RlZmZlbiBUcnVtdHJhciBh
-IMOpY3JpdMKgOg0KPiBBZGQgdGhlIFBoeXRlYyBTVE0zMk1QMS0zIERldiBib2FyZC4gVGhlIGRl
-dmJvYXJkIHVzZXMgYSBQaHl0ZWMNCj4gc3RtMzJtMTU3Yy1zb20uDQo+IA0KPiBTaWduZWQtb2Zm
-LWJ5OiBTdGVmZmVuIFRydW10cmFyIDxzLnRydW10cmFyQHBlbmd1dHJvbml4LmRlPg0KPiAtLS0N
-Cj4gDQo+IE5vdGVzOg0KPiDCoMKgwqAgQ2hhbmdlcyBzaW5jZSB2NzoNCj4gwqDCoMKgwqDCoMKg
-IC0gcmVtb3ZlIHNlY3VyZS1zdGF0dXMgZm9yIHNkbW1jDQo+IA0KPiDCoGFyY2gvYXJtL2Jvb3Qv
-ZHRzL01ha2VmaWxlwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDMg
-Ky0NCj4gwqAuLi4vZHRzL3N0bTMybXAxNTdjLXBoeWNvcmUtc3RtMzJtcDEtMy5kdHPCoMKgwqAg
-fCA2MA0KPiArKysrKysrKysrKysrKysrKysrDQo+IMKgMiBmaWxlcyBjaGFuZ2VkLCA2MiBpbnNl
-cnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+IMKgY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJt
-L2Jvb3QvZHRzL3N0bTMybXAxNTdjLXBoeWNvcmUtc3RtMzJtcDEtDQo+IDMuZHRzDQo+IA0KPiBk
-aWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUgYi9hcmNoL2FybS9ib290L2R0
-cy9NYWtlZmlsZQ0KPiBpbmRleCBlZmU0MTUyZTU4NDYuLmRmYTlhNzQ3N2M4MiAxMDA2NDQNCj4g
-LS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUNCj4gKysrIGIvYXJjaC9hcm0vYm9vdC9k
-dHMvTWFrZWZpbGUNCj4gQEAgLTEyNTIsNyArMTI1Miw4IEBAIGR0Yi0kKENPTkZJR19BUkNIX1NU
-TTMyKSArPSBcDQo+IMKgwqDCoMKgwqDCoMKgwqBzdG0zMm1wMTU3Yy1ldjEuZHRiIFwNCj4gwqDC
-oMKgwqDCoMKgwqDCoHN0bTMybXAxNTdjLWV2MS1zY21pLmR0YiBcDQo+IMKgwqDCoMKgwqDCoMKg
-wqBzdG0zMm1wMTU3Yy1seGEtbWMxLmR0YiBcDQo+IC3CoMKgwqDCoMKgwqDCoHN0bTMybXAxNTdj
-LW9keXNzZXkuZHRiDQo+ICvCoMKgwqDCoMKgwqDCoHN0bTMybXAxNTdjLW9keXNzZXkuZHRiIFwN
-Cj4gK8KgwqDCoMKgwqDCoMKgc3RtMzJtcDE1N2MtcGh5Y29yZS1zdG0zMm1wMS0zLmR0Yg0KPiDC
-oGR0Yi0kKENPTkZJR19NQUNIX1NVTjRJKSArPSBcDQo+IMKgwqDCoMKgwqDCoMKgwqBzdW40aS1h
-MTAtYTEwMDAuZHRiIFwNCj4gwqDCoMKgwqDCoMKgwqDCoHN1bjRpLWExMC1iYTEwLXR2Ym94LmR0
-YiBcDQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9zdG0zMm1wMTU3Yy1waHljb3Jl
-LXN0bTMybXAxLTMuZHRzDQo+IGIvYXJjaC9hcm0vYm9vdC9kdHMvc3RtMzJtcDE1N2MtcGh5Y29y
-ZS1zdG0zMm1wMS0zLmR0cw0KPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiBpbmRleCAwMDAwMDAw
-MDAwMDAuLjI4ZDcyMDMyNjRjZQ0KPiAtLS0gL2Rldi9udWxsDQo+ICsrKyBiL2FyY2gvYXJtL2Jv
-b3QvZHRzL3N0bTMybXAxNTdjLXBoeWNvcmUtc3RtMzJtcDEtMy5kdHMNCj4gQEAgLTAsMCArMSw2
-MCBAQA0KPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wKyBPUiBCU0QtMy1D
-bGF1c2UpDQo+ICsvKg0KPiArICogQ29weXJpZ2h0IChDKSBQaHl0ZWMgR21iSCAyMDE5LTIwMjAg
-LSBBbGwgUmlnaHRzIFJlc2VydmVkDQo+ICsgKiBBdXRob3I6IERvbSBWT1ZBUkQgPGRvbS52b3Zh
-cmRAbGlucnQuY29tPi4NCj4gKyAqLw0KPiArDQo+ICsvZHRzLXYxLzsNCj4gKw0KPiArI2luY2x1
-ZGUgPGR0LWJpbmRpbmdzL3BpbmN0cmwvc3RtMzItcGluZnVuYy5oPg0KPiArI2luY2x1ZGUgInN0
-bTMybXAxNTcuZHRzaSINCj4gKyNpbmNsdWRlICJzdG0zMm1wMTV4Yy5kdHNpIg0KPiArI2luY2x1
-ZGUgInN0bTMybXAxNXh4YWMtcGluY3RybC5kdHNpIg0KPiArI2luY2x1ZGUgInN0bTMybXAxNTdj
-LXBoeWNvcmUtc3RtMzJtcDE1LXNvbS5kdHNpIg0KPiArDQo+ICsvIHsNCj4gK8KgwqDCoMKgwqDC
-oMKgbW9kZWwgPSAiUEhZVEVDIHBoeUNPUkUtU1RNMzJNUDEtMyBEZXYgQm9hcmQiOw0KPiArwqDC
-oMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInBoeXRlYyxwaHljb3JlLXN0bTMybXAxLTMiLA0KPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgInBoeXRlYyxwaHljb3JlLXN0
-bTMybXAxNTdjLXNvbSIsDQo+ICJzdCxzdG0zMm1wMTU3IjsNCj4gKw0KPiArwqDCoMKgwqDCoMKg
-wqBhbGlhc2VzIHsNCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG1tYzAgPSAmc2Rt
-bWMxOw0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbW1jMSA9ICZzZG1tYzI7DQo+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBtbWMyID0gJnNkbW1jMzsNCj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHNlcmlhbDAgPSAmdWFydDQ7DQo+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBzZXJpYWwxID0gJnVzYXJ0MzsNCj4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoHNlcmlhbDIgPSAmdXNhcnQxOw0KPiArwqDCoMKgwqDCoMKgwqB9Ow0K
-PiArfTsNCj4gKw0KPiArJmNyeXAxIHsNCj4gK8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXki
-Ow0KPiArfTsNCj4gKw0KPiArJmR0cyB7DQo+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5
-IjsNCj4gK307DQo+ICsNCj4gKyZmbWMgew0KPiArwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAiZGlz
-YWJsZWQiOw0KPiArfTsNCj4gKw0KPiArJmdwdSB7DQo+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9
-ICJva2F5IjsNCj4gK307DQo+ICsNCj4gKyZpMmM0X2VlcHJvbSB7DQo+ICvCoMKgwqDCoMKgwqDC
-oHN0YXR1cyA9ICJva2F5IjsNCj4gK307DQo+ICsNCj4gKyZpMmM0X3J0YyB7DQo+ICvCoMKgwqDC
-oMKgwqDCoHN0YXR1cyA9ICJva2F5IjsNCj4gK307DQo+ICsNCj4gKyZxc3BpIHsNCj4gK8KgwqDC
-oMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOw0KPiArfTsNCj4gKw0KPiArJnNkbW1jMiB7DQo+ICvC
-oMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsNCj4gK307DQo=
+Several weeks ago, I sent a series [1] for adding a potentiometer as an
+auxiliary device in ASoC. The feedback was that the potentiometer should
+be directly handled in IIO (as other potentiometers) and something more
+generic should be present in ASoC in order to have a binding to import
+some IIO devices into sound cards.
+
+The series related to the IIO potentiometer device is already under
+review [2].
+
+This series introduces audio-iio-aux. Its goal is to offer the binding
+between IIO and ASoC.
+It exposes attached IIO devices as ASoC auxiliary devices and allows to
+control them through mixer controls.
+
+On my system, the IIO device is a potentiometer and it is present in an
+amplifier design present in the audio path.
+
+Compare to the previous iteration
+  https://lore.kernel.org/linux-kernel/20230421124122.324820-1-herve.codina@bootlin.com/
+This v2 series mainly:
+ - updates the binding using a simple-card subnode and handles this new
+   subnode in the simple-card driver.
+ - Improves existing IIO code and documentation.
+ - Renames simple-iio-aux to audio-iio-aux and fixes the driver itself.
+
+Best regards,
+Hervé
+
+[1] https://lore.kernel.org/linux-kernel/20230203111422.142479-1-herve.codina@bootlin.com/
+[2] https://lore.kernel.org/linux-kernel/20230421085245.302169-1-herve.codina@bootlin.com/
+
+Changes v1 -> v2
+  - Patch 1
+    Rename simple-iio-aux to audio-iio-aux
+    Rename invert to snd-control-invert-range
+    Remove the /schemas/iio/iio-consumer.yaml reference
+    Remove the unneeded '|' after description
+
+  - Patch 2 (new in v2)
+    Introduce the simple-audio-card additional-devs subnode
+
+  - Patch 3 (new in v2)
+    Check err before switch() in iio_channel_read_max()
+
+  - Patch 4 (new in v2)
+    Fix raw reads and raw writes documentation
+
+  - Patch 5 (patch 2 in v1)
+    Check err before switch() in iio_channel_read_min()
+    Fix documentation
+
+  - Patch 6 (path 3 in v1)
+    No changes
+
+  - Patch 7 (patch 4 in v1)
+    Rename simple-iio-aux to audio-iio-aux
+    Rename invert to snd-control-invert-range
+    Remove the mask usage from audio_iio_aux_{get,put}_volsw helpers
+    Use directly PTR_ERR() in dev_err_probe() parameter
+    Remove the '!!' construction
+    Remove of_match_ptr()
+
+  - Patch 8 (new in v2)
+    Add a missing of_node_put() in the simple-card driver
+
+  - Patch 9 (new in v2)
+    Handle additional-devs in the simple-card driver
+
+Herve Codina (9):
+  ASoC: dt-bindings: Add audio-iio-aux
+  ASoC: dt-bindings: simple-card: Add additional-devs subnode
+  iio: inkern: Check error explicitly in iio_channel_read_max()
+  iio: consumer.h: Fix raw values documentation notes
+  iio: inkern: Add a helper to query an available minimum raw value
+  ASoC: soc-dapm.h: Add a helper to build a DAPM widget dynamically
+  ASoC: codecs: Add support for the generic IIO auxiliary devices
+  ASoC: simple-card: Add missing of_node_put() in case of error
+  ASoC: simple-card: Handle additional devices
+
+ .../bindings/sound/audio-iio-aux.yaml         |  64 ++++
+ .../bindings/sound/simple-card.yaml           |  53 +++
+ drivers/iio/inkern.c                          |  75 ++++-
+ include/linux/iio/consumer.h                  |  37 ++-
+ include/sound/soc-dapm.h                      |  12 +-
+ sound/soc/codecs/Kconfig                      |  12 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/audio-iio-aux.c              | 302 ++++++++++++++++++
+ sound/soc/generic/simple-card.c               |  53 ++-
+ 9 files changed, 596 insertions(+), 14 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/audio-iio-aux.yaml
+ create mode 100644 sound/soc/codecs/audio-iio-aux.c
+
+-- 
+2.40.1
+
