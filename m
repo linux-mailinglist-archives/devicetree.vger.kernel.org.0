@@ -2,98 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D07C70E104
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 17:52:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3257D70E113
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 17:55:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237641AbjEWPwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 11:52:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51814 "EHLO
+        id S233067AbjEWPzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 11:55:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235682AbjEWPwG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 11:52:06 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3412A91;
-        Tue, 23 May 2023 08:52:04 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3BE94139F;
-        Tue, 23 May 2023 08:52:49 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C4AC13F840;
-        Tue, 23 May 2023 08:52:01 -0700 (PDT)
-Date:   Tue, 23 May 2023 16:51:59 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Anshuman Khandual <anshuman.khandual@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        coresight@lists.linaro.org, suzuki.poulose@arm.com,
-        Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
-        Steve Clevenger <scclevenger@os.amperecomputing.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+        with ESMTP id S230117AbjEWPza (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 11:55:30 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06F2897
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 08:55:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=kJo+8t324vC2q+a67aB2rGxPmkpBQCHm7SDevzOyS8Q=; b=qK
+        0XEM+V9xNABsdaZICn9eTS5JgfdpfmMoXWm2ReGg31BgI1CxZ0FA+v6Fl1ZOECz9aapsot0JC79+W
+        dMs1vfWFDWFXVlNosDttpt2u2CkxhurriMIfsgQ7lmnUPXDEW+pe9Bho+Rfb79OZA5747+wqnyD6j
+        LHilN7kTD+o7lmg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1q1ULw-00Dhmh-4f; Tue, 23 May 2023 17:55:12 +0200
+Date:   Tue, 23 May 2023 17:55:12 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
         Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Subject: Re: [PATCH V4 0/6] coresight: etm4x: Migrate ACPI AMBA devices to
- platform driver
-Message-ID: <20230523155159.na2wfhuhb7fqr3cy@bogus>
-References: <20230523044553.1525048-1-anshuman.khandual@arm.com>
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org,
+        Philippe =?iso-8859-1?Q?Mathieu-Daud=E9?= <philmd@linaro.org>
+Subject: Re: [PATCH v2 3/3] arm64: dts: marvell: Fix pca954x i2c-mux node
+ names
+Message-ID: <685e7539-0a2b-4bf3-9725-a7a4780c82cb@lunn.ch>
+References: <cover.1684856632.git.geert+renesas@glider.be>
+ <fed5b15691283ce72ceb9fb074f953c5da0f6852.1684856632.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230523044553.1525048-1-anshuman.khandual@arm.com>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <fed5b15691283ce72ceb9fb074f953c5da0f6852.1684856632.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 23, 2023 at 10:15:47AM +0530, Anshuman Khandual wrote:
-> CoreSight ETM4x devices could be accessed either via MMIO (handled via
-> amba_driver) or CPU system instructions (handled via platform driver). But
-> this has the following issues :
+On Tue, May 23, 2023 at 05:50:21PM +0200, Geert Uytterhoeven wrote:
+> "make dtbs_check":
 > 
->   - Each new CPU comes up with its own PID and thus we need to keep on
->     adding the "known" PIDs to get it working with AMBA driver. While
->     the ETM4 architecture (and CoreSight architecture) defines way to
->     identify a device as ETM4. Thus older kernels  won't be able to
->     "discover" a newer CPU, unless we add the PIDs.
+>     arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb: i2c-switch@70: $nodename:0: 'i2c-switch@70' does not match '^(i2c-?)?mux'
+> 	    From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+>     arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtb: i2c-switch@70: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'i2c@0', 'i2c@1', 'i2c@2' were unexpected)
+> 	    From schema: Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+>     ...
 > 
->   - With ACPI, the ETM4x devices have the same HID to identify the device
->     irrespective of the mode of access. This creates a problem where two
->     different drivers (both AMBA based driver and platform driver) would
->     hook into the "HID" and could conflict. e.g., if AMBA driver gets
->     hold of a non-MMIO device, the probe fails. If we have single driver
->     hooked into the given "HID", we could handle them seamlessly,
->     irrespective of the mode of access.
+> Fix this by renaming PCA954x nodes to "i2c-mux", to match the I2C bus
+> multiplexer/switch DT bindings and the Generic Names Recommendation in
+> the Devicetree Specification.
 > 
->   - CoreSight is heavily dependent on the runtime power management. With
->     ACPI, amba_driver doesn't get us anywhere with handling the power
->     and thus one need to always turn the power ON to use them. Moving to
->     platform driver gives us the power management for free.
-> 
-> Due to all of the above, we are moving ACPI MMIO based etm4x devices to be
-> supported via tha platform driver. The series makes the existing platform
-> driver generic to handle both type of the access modes. Although existing
-> AMBA driver would still continue to support DT based etm4x MMIO devices.
-> Although some problems still remain, such as manually adding PIDs for all
-> new AMBA DT based devices.
-> 
-> The series applies on 6.4-rc3.
-> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Philippe Mathieu-Daudé <philmd@linaro.org>
 
-Tested on Juno with some hacked up UEFI f/w.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Tested-by: Sudeep Holla <sudeep.holla@arm.com>
-
--- 
-Regards,
-Sudeep
+    Andrew
