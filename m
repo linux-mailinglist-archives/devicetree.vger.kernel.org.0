@@ -2,233 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B10970DCAA
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 14:34:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FB1770DCD0
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 14:44:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236295AbjEWMer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 08:34:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58422 "EHLO
+        id S230421AbjEWMoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 08:44:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbjEWMeq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 08:34:46 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F478DD;
-        Tue, 23 May 2023 05:34:42 -0700 (PDT)
-Received: (Authenticated sender: maxime.chevallier@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id D8216C000E;
-        Tue, 23 May 2023 12:34:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1684845281;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=MjjLHA4piWXe9Nt5jWQ61wpym3DoXg/n2DnHKkoOboc=;
-        b=lXAq1/cPGZX+AQhroWjiTrX4TMT4vEs/P2cWLMwEHX96c16hq9L0iIPVvpNN9V8FbZlE+C
-        ELclEIu8h9/Yxx+z06pHxwbZwZpCEe3Li8eGVadS55Zje0/clR3ZeSlbme9BqpqZwVn9HX
-        nqyB2rI/YPDtirz5MReY1HOTnxJoTC+hzp+lFRN5xIZyWqEuK3UWJ6bREkknzwSOvJm+5j
-        pxEo8eAUnCih1zQRYbtKf6u2MrHZ1WF7GJjQIT8lzqVd+uP3kr/4q73Vfvxyvo1QQt4WJl
-        lBennWDv2VUMpbEafrYe5vRPy9WzyDFB8kxsaf8VMxPJrONbqysTOfdKCrFlqA==
-Date:   Tue, 23 May 2023 14:34:33 +0200
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Felix Fietkau <nbd@nbd.name>, Jakub Kicinski <kuba@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236689AbjEWMoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 08:44:22 -0400
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2040.outbound.protection.outlook.com [40.107.15.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE867109;
+        Tue, 23 May 2023 05:44:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JWBXE5eXsn4c22lXOUjfAhAKgi3sYvoXID+aypHVB2I=;
+ b=hiogkd1Lrm13wFBbVDMSASiS81KDUZJbsz+TqA+1gDcmKqJkmyR5GSYOJqe1oCvOGPqW08qnVhegX9Tp3kDWUhP/Cu4k2fnS4hdba+7HI4xQGcV3K3mV+aBnFQ4RvziH9TnUv7ZTW1yrHVJeeyi0Bb/qrKa0SFgzl0mw8Jc5Qd9x2qyoAp/QLVRSY8O4Il1QNBQ6mxvp4E1m9hVu2lJLbOLUuePgNlWb3fxi2GS6vuq4ZooD+3wbzF2akvbyDZaqVzcYqv3Rcr0FqRduTU7UOKOX3DTmq2r1SmqwPyur/yXUiiJD3tiSmH0i0D0V51Jk7Wq/HDCWxdPIsJ5AbneKEg==
+Received: from FR0P281CA0210.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:ad::14)
+ by GVXPR04MB9830.eurprd04.prod.outlook.com (2603:10a6:150:113::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Tue, 23 May
+ 2023 12:44:08 +0000
+Received: from VE1EUR01FT025.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:d10:ad:cafe::a4) by FR0P281CA0210.outlook.office365.com
+ (2603:10a6:d10:ad::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.13 via Frontend
+ Transport; Tue, 23 May 2023 12:44:08 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 13.93.42.39)
+ smtp.mailfrom=topicproducts.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
+ designates 13.93.42.39 as permitted sender) receiver=protection.outlook.com;
+ client-ip=13.93.42.39; helo=westeu12-emailsignatures-cloud.codetwo.com; pr=C
+Received: from westeu12-emailsignatures-cloud.codetwo.com (13.93.42.39) by
+ VE1EUR01FT025.mail.protection.outlook.com (10.152.2.232) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6433.14 via Frontend Transport; Tue, 23 May 2023 12:44:07 +0000
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (104.47.51.173) by westeu12-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Tue, 23 May 2023 12:44:06 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Mqjc1W93Qq8f8J/G42HTrH0dQmPnZWkWUm8LsZs7Di7zq60PVuLb2OT/OScXKs7RssUduvFy0sIZtCzGm4UY/8vL9POywx1GEttHPQR1uuZrrWH5RN2XLvPXeB3YP4/xLOM7dcyx546qoFa23CQwm5Us32zSXv+3ZJf0pO/w8zE2D4j+5TkFxz0S1kreRjVAcz3WySPD5xqPWUQaUj/JeK9MDPbYmB24XFwtzfSIDjQjM6lWmeWvoVo1eKKy3JGp5a0Gx0E8TQ3/XKDtG52cOa8caz9Dob+3Win7WUdLTp10CZQvnfibdKHfuA8Bkbj3+0LSubLFfcKXt6wrLPyl/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KLN9hm+TWL+hJ3jn9NhOtyBlAFlIf5R5oAH1YODsA4A=;
+ b=AxZ5ftyk997Pa5iO2LwxLrOOzAPEUkGMH8/A0oejhFwxcN5anyMnBuuQu8WX60ulzwuJaxzXE0FMw+69U6qvlvlzIVpQpuqoRHarGXXbal1nSrJLCNHiAV/k7euxJCNRpT/blxnBS3pnROyxfFifI5AzEWC7C6ukZxWKpBDEV1Z5YGMblD3gurYmgHsMPncKSBzd1txFjDxYeBsh2dLMR4gZeKpHhr+gMCIlcgbhjsUzbL8HoI4z6ozW3yhmdBnmRvSrTkdULXdAmoUOuUVCK3p6Q9+Xybz1O76fOzO/Qwg+BMKA3fHQ3nXxqnqsdHMzc6d1E6O3m52idn6T78eVGg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
+ dkim=pass header.d=topic.nl; arc=none
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
+ by AM0PR04MB7172.eurprd04.prod.outlook.com (2603:10a6:208:192::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.29; Tue, 23 May
+ 2023 12:44:01 +0000
+Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::4cd1:3e90:54e5:9696]) by DB8PR04MB6523.eurprd04.prod.outlook.com
+ ([fe80::4cd1:3e90:54e5:9696%5]) with mapi id 15.20.6411.028; Tue, 23 May 2023
+ 12:44:01 +0000
+From:   Mike Looijmans <mike.looijmans@topic.nl>
+To:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+CC:     Mike Looijmans <mike.looijmans@topic.nl>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        romain.gantois@bootlin.com
-Subject: Re: [PATCH net-next v8 3/5] net: dsa: add out-of-band tagging
- protocol
-Message-ID: <20230523143433.28947c34@pc-7.home>
-In-Reply-To: <20221115115023.hgc4ynrx3kylf6p3@skbuf>
-References: <20221104174151.439008-1-maxime.chevallier@bootlin.com>
-        <20221104174151.439008-4-maxime.chevallier@bootlin.com>
-        <20221104200530.3bbe18c6@kernel.org>
-        <20221107093950.74de3fa1@pc-8.home>
-        <6b38ec27-65a3-c973-c5e1-a25bbe4f6104@nbd.name>
-        <20221115102924.1329b49f@pc-7.home>
-        <20221115115023.hgc4ynrx3kylf6p3@skbuf>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Puranjay Mohan <puranjay12@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: iio: adc: Add microchip MCP3561/2/4R devices
+Date:   Tue, 23 May 2023 14:43:53 +0200
+Message-ID: <20230523124354.24294-1-mike.looijmans@topic.nl>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: AM0PR01CA0119.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:168::24) To DB8PR04MB6523.eurprd04.prod.outlook.com
+ (2603:10a6:10:10f::26)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-MS-TrafficTypeDiagnostic: DB8PR04MB6523:EE_|AM0PR04MB7172:EE_|VE1EUR01FT025:EE_|GVXPR04MB9830:EE_
+X-MS-Office365-Filtering-Correlation-Id: 95675ff1-6b72-4602-54c5-08db5b8b6686
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: em7b2e/WuM2Zr1Sh+I5WRyAb5ID21IRgwilS5TimOfllrrdMLSJ5s5U4b9ZXpwEHX1yCRfeRBkf02bqD/E6CiVSkqy28sldePa4IhfuFGtaMCHT9W/o5T1FjWN/98t7Kg6CwYUTD18nPXomfXkwcGM0Z7D3gayUz+gBO/uz9wue8dOkq8WqbF2oE4qFk54BZTvM0tocBxV/+qNjpZUtTi2qu0fs0eQnRQUH6u7QZdnTtJ1KiK0GMksHsne1a7onG9Ha/7HCVsJblhd2o1AvJeN3kDx1fVPX5WVoGLnLiSearPh7FLDURW5XvJgKh1qk4Jdmf1rIySFFSX1nrBCU6L0/rqRkSXHhpQzHndSLA/qW58MWNXavFRPqFMnbCq7Gbkz2PAodxlg7VZyxSh4ekRkFlk2FMJNqJyaW8oGeXdjagTUohH+rq8A13KkEHES66hOCT1AntGXuxEjEgkdf3kXmuXN3KRI4Qq/8hil99puQvb+YAn7b/Bzbwo3Ca5WuaTHHXGAeHi7+OKJ8VF0fHkWTqw6UdKrwd+nqrFLqhFNyJaH9TRvc+jUrKUbZDN2IT666bRxayz/E6TsT+QpvMuZLOC0Yf1EIrhuUzQn0A3/s=
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39840400004)(376002)(396003)(366004)(346002)(136003)(451199021)(52116002)(41300700001)(66946007)(66556008)(66476007)(2906002)(186003)(1076003)(44832011)(478600001)(26005)(6486002)(316002)(6666004)(4326008)(966005)(5660300002)(54906003)(6512007)(7416002)(8936002)(8676002)(36756003)(42882007)(2616005)(6506007)(83380400001)(83170400001)(38100700002)(38350700002);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7172
+X-CodeTwo-MessageID: 71ec28f6-9d44-4220-bfdf-3c1ccc38b7cf.20230523124406@westeu12-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+References: <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.5ebab164-53fc-4492-bb76-5cc2d7b3f4f0@emailsignatures365.codetwo.com>
+Content-Transfer-Encoding: quoted-printable
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: VE1EUR01FT025.eop-EUR01.prod.protection.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: acaf5fcf-7bba-4a1a-b80f-08db5b8b628d
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ngAlLyIKBCAwiGdvve/rEm36PKlyt9dpcOMqeMYoqIjtcUxpjfYT58XMvrG/qWA95gEHlkN1gjEU4Phc3zfQWgqIpF3ViTi7p062yPrtvwozioWTwgewUaFR22fmBKevGp2QA9uiVmFlgZIZCvKQssH5b25j/SVuQGSBXmdl6A/HWArpkVbCI/p0NNfuoHRGEP/yn8VRvJrljuEBNwNEXXl7Gqui+9CnVrNwhzMz3ryz/pfmu8xGT9jAubcDJyzvjwwVdHvWzHM2bTCMD4m8ExbfbGQbVN1iu3m/33JC9VulqZfXxpV+36dA3CJhlIpxRAIeZciDT0waN5vneQAqdAGw/wjwPQxfV9fj0Hgvi1SSAnlrKvbpeuGKnQXDrtIpFg70oq5SyoPE/kx08PRga1ReKKdljt4MpCPgSxcBFeLT0R82GChxC3um/cG5RnaJXUuDQZc7iSJDkYs9F8/D6KZySCv30balaJ4tEL9CPDxa8eKhQl7jem6FZeqWDHEdsz7PXVjMKNAR00l+x/PJoTCRNLSD0cqsU0oNACoWEUZgtQ1pwsUQWLHjL1vLrbF6948nL2EsYEh1UrVSTa0hVEQiR4ECTkF1RMgAGRtKnByReIy41Gvj19WA1ZmXt94F/da/hz3yTLgM0b6r/DXQRSOBhyoOHkIiODWShfkg7fhwXfTdXa5fBsRI3G4b4qgp
+X-Forefront-Antispam-Report: CIP:13.93.42.39;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu12-emailsignatures-cloud.codetwo.com;PTR:westeu12-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230028)(4636009)(346002)(136003)(396003)(376002)(39840400004)(451199021)(46966006)(36840700001)(2616005)(336012)(47076005)(6486002)(186003)(83380400001)(42882007)(2906002)(36860700001)(4326008)(70586007)(41300700001)(70206006)(316002)(6666004)(54906003)(478600001)(44832011)(5660300002)(26005)(1076003)(6512007)(6506007)(966005)(7416002)(8676002)(8936002)(40480700001)(82310400005)(7596003)(356005)(83170400001)(7636003)(36756003)(15974865002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2023 12:44:07.8593
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 95675ff1-6b72-4602-54c5-08db5b8b6686
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[13.93.42.39];Helo=[westeu12-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource: VE1EUR01FT025.eop-EUR01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB9830
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello everyone,
+The MCP3564R is a 24-bit ADC with 8 multiplexed inputs. The MCP3561R is
+the same device with 2 inputs, the MCP3562R has 4 inputs. The device
+contains one ADC and a multiplexer to select the inputs to the ADC.
 
-I'm digging this topic up, it has we'd like to move forward with the
-upstreaming of this, and before trying any new approach, I'd like to
-see if we can settle on one of the two choices that were expressed so
-far.
+Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 
-To summarize the issue, this hardware platform (IPQ4019 from Qualcomm)
-uses an internal switch that's a modified QCA8K, for which there
-already is a DSA driver. On that platform, there's a MAC (ipqess)
-connected to the switch, that passes the dst/src port id through the
-DMA descriptor, whereas a typical DSA switch would pass that
-information in the frame itself.
+---
 
-There has been a few approaches to try and reuse DSA as-is with a
-custom tagger, but all of them eventually got rejected, for a good
-reason.
+ .../bindings/iio/adc/microchip,mcp356xr.yaml  | 84 +++++++++++++++++++
+ 1 file changed, 84 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/microchip,mcp=
+356xr.yaml
 
-Two solutions are proposed, as discussed in that thread (hence the
-top-posting, sorry about that).
+diff --git a/Documentation/devicetree/bindings/iio/adc/microchip,mcp356xr.y=
+aml b/Documentation/devicetree/bindings/iio/adc/microchip,mcp356xr.yaml
+new file mode 100644
+index 000000000000..4aef166894c8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/microchip,mcp356xr.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
++# Copyright 2023 Topic Embedded Systems
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/microchip,mcp356xr.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip MCP3561R/MCP3562R/MCP3564R ADC
++
++maintainers:
++  - Mike Looijmans <mike.looijmans@topic.nl>
++
++description: |
++  Bindings for the Microchip MCP356xR 8-channel ADC devices. Datasheet and=
+ info
++  can be found at: https://www.microchip.com/en-us/product/MCP3564R
++
++properties:
++  compatible:
++    enum:
++      - microchip,mcp3561r
++      - microchip,mcp3562r
++      - microchip,mcp3564r
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 20000000
++
++  clocks:
++    description:
++      Phandle and clock identifier for external sampling clock.
++      If not specified, the internal crystal oscillator will be used.
++    maxItems: 1
++
++  interrupts:
++    description: IRQ line of the ADC
++    maxItems: 1
++
++  drive-open-drain:
++    description:
++      Whether to drive the IRQ signal as push-pull (default) or open-drain=
+. Note
++      that the device requires this pin to become "high", otherwise it wil=
+l stop
++      converting.
++    type: boolean
++
++  microchip,device-addr:
++    description: Device address when multiple chips are present on the sam=
+e bus.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++    default: 1
++
++  vref-supply:
++    description:
++      Phandle to the external reference voltage supply.
++      If not specified, the internal voltage reference (2.4V) will be used=
+.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi {
++      #address-cells =3D <1>;
++      #size-cells =3D <0>;
++
++      adc@0 {
++        compatible =3D "microchip,mcp3564r";
++        reg =3D <0>;
++        interrupt-parent =3D <&gpio5>;
++        interrupts =3D <15 2>;
++        spi-max-frequency =3D <20000000>;
++        microchip,device-addr =3D <1>;
++        vref-supply =3D <&vref_reg>;
++        clocks =3D <&xtal>;
++      };
++    };
+--=20
+2.17.1
 
-There are two approaches remaining, either implementing DSA tagging
-offload support in RX/TX, or having a DSA frontend for the switch (the
-current QCA8K driver) and a switchdev frontend, using the qca8k logic
-with the ESS driver handling transfers for the CPU port.
 
-As both approaches make sense but are quite opposed, I'd like to make
-sure we go in the right direction. The switchdev approach definitely
-makes a lot of sense, but the DSA tagging offloading has been in
-discussion for quite a while, starting with Florian's series, followed
-by Felix's, and this could also be a good occasion to move forward with
-this, and it would also involve a minimal rework of the current ipqess
-driver.
-
-Any pointer would help,
-
-Thanks everyone,
-
-Maxime
-
-On Tue, 15 Nov 2022 11:50:23 +0000
-Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
-
-> On Tue, Nov 15, 2022 at 10:29:24AM +0100, Maxime Chevallier wrote:
-> > Hello everyone,
-> > 
-> > Felix, thanks for the feedback !
-> > 
-> > On Tue, 8 Nov 2022 13:22:17 +0100
-> > Felix Fietkau <nbd@nbd.name> wrote:
-> > 
-> > [...]
-> >   
-> > > FYI, I'm currently working on hardware DSA untagging on the
-> > > mediatek mtk_eth_soc driver. On this hardware, I definitely need
-> > > to keep the custom DSA tag driver, as hardware untagging is not
-> > > always available. For the receive side, I came up with this patch
-> > > (still untested) for using METADATA_HW_PORT_MUX.
-> > > It has the advantage of being able to skip the tag protocol rcv
-> > > ops call for offload-enabled packets.
-> > > 
-> > > Maybe for the transmit side we could have some kind of netdev
-> > > feature or capability that indicates offload support and allows
-> > > skipping the tag xmit function as well.
-> > > In that case, ipqess could simply use a no-op tag driver.  
-> > 
-> > If I'm not mistaken, Florian also proposed a while ago an offload
-> > mechanism for taggin/untagging :
-> > 
-> > https://lore.kernel.org/lkml/1438322920.20182.144.camel@edumazet-glaptop2.roam.corp.google.com/T/
-> > 
-> > It uses some of the points you're mentionning, such as the netdev
-> > feature :)
-> > 
-> > All in all, I'm still a bit confused about the next steps. If I can
-> > summarize a bit, we have a lot of approaches, all with advantages
-> > and inconvenients, I'll try to summarize the state :
-> > 
-> >  - We could simply use the skb extensions as-is, rename the tagger
-> >    something like "DSA_TAG_IPQDMA" and consider this a way to
-> > perform tagging on this specific class of hardware, without trying
-> > too hard to make it generic.  
-> 
-> For Felix, using skb extensions would be inconvenient, since it would
-> involve per packet allocations which are now avoided with the metadata
-> dsts.
-> 
-> >  - We could try to move forward with this mechanism of offloading
-> >    tagging and untagging from the MAC driver, this would address
-> >    Florian's first try at this, Felix's use-case and would fit well
-> > the IPQESS case  
-> 
-> Someone would need to take things from where Felix left them:
-> https://patchwork.kernel.org/project/netdevbpf/patch/20221114124214.58199-2-nbd@nbd.name/
-> and add TX tag offloading support as well. Here there would need to be
-> a mechanism through which DSA asks "hey, this is my tagging protocol,
-> can the master offload it in the TX direction or am I just going to
-> push the tag into the packet?". I tried to sketch here something
-> along those lines:
-> https://patchwork.kernel.org/project/netdevbpf/patch/20221109163426.76164-10-nbd@nbd.name/#25084481
-> 
-> >  - There's the option discussed by Vlad and Jakub to add several
-> >    frontends, one being a switchev driver, here I'm a bit lost TBH,
-> > if we go this way I could definitely use a few pointers from Vlad
-> > :)  
-> 
-> The assumption being here that there is more functionality to cover by
-> the metadata dst than a port mux. I'm really not clear what is the
-> hardware design truly, hopefully you could give more details about
-> that.
-
-TBH the documentation I have is pretty limited, I don't actually know
-what else can go in the metadata attached to the descriptor :(
-
-> The mechanism is quite simple, it's not rocket science. Take something
-> like a bridge join operation, the proposal is to do something like
-> this:
-> 
->     dsa_slave_netdevice_event
->         (net/dsa/slave.c)
->                |
->                v
->       dsa_slave_changeupper
->        (net/dsa/slave.c)
->                |
->                v
->        dsa_port_bridge_join
-> ocelot_netdevice_event (net/dsa/port.c)
-> (drivers/net/ethernet/mscc/ocelot_net.c) |
->                | v                                           v
->      dsa_switch_bridge_join
-> ocelot_netdevice_changeupper (net/dsa/switch.c)
-> (drivers/net/ethernet/mscc/ocelot_net.c) |
->                | v                                           v
->        felix_bridge_join
-> ocelot_netdevice_bridge_join (drivers/net/dsa/ocelot/felix.c)
->  (drivers/net/ethernet/mscc/ocelot_net.c) |
->                 | |                                           |
->                +---------------------+---------------------+
->                                      |
->                                      v
->                            ocelot_port_bridge_join
->                       (drivers/net/ethernet/mscc/ocelot.c)
-> 
-> with you maintaining the entire right branch that represents the
-> switchdev frontend, and more or less duplicates part of DSA.
-> 
-> The advantage of this approach is that you can register your own NAPI
-> handler where you can treat packets in whichever way you like, and
-> have your own ndo_start_xmit. This driver would treat the aggregate
-> of the ess DMA engine and the ipq switch as a single device, and
-> expose it as a switch with DMA, basically.
+Met vriendelijke groet / kind regards,=0A=
+=0A=
+Mike Looijmans=0A=
+System Expert=0A=
+=0A=
+=0A=
+TOPIC Embedded Products B.V.=0A=
+Materiaalweg 4, 5681 RJ Best=0A=
+The Netherlands=0A=
+=0A=
+T: +31 (0) 499 33 69 69=0A=
+E: mike.looijmans@topicproducts.com=0A=
+W: www.topic.nl=0A=
+=0A=
+Please consider the environment before printing this e-mail=0A=
