@@ -2,161 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C07F070DD7E
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 15:32:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B592B70DDBB
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 15:42:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236746AbjEWNcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 09:32:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55578 "EHLO
+        id S236064AbjEWNmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 09:42:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229628AbjEWNcr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 09:32:47 -0400
-Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1DEE9
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 06:32:46 -0700 (PDT)
-Received: by mail-il1-x12d.google.com with SMTP id e9e14a558f8ab-3383025b9c6so1875795ab.2
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 06:32:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1684848764; x=1687440764;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qO7uVfTZIwTK5eWidHNY3IE4aDCiaYIaf7Mtd0r6B0Y=;
-        b=FLPOij7jG/FqckT/mOqWND/Ff99C971pRtQyCW2FhGa2a3UqeC8i+kkVmJQY2xULji
-         ErFLtEo+5DUNpqKMpqMhh/avmSXY8ZfifqS01qT1KmxJTbmbyPdJUZcloDwTsQcovQXh
-         a7nC0HOWVMo1lhW14UZC3v+DqKURcnsKcu75c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684848764; x=1687440764;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qO7uVfTZIwTK5eWidHNY3IE4aDCiaYIaf7Mtd0r6B0Y=;
-        b=DMYAcNY93yqzVCkNUCpFn9SqlGtVbIaUxas7bHHOSh0Gp8n4oz/J0xz/KyopaWAzEh
-         q6Xmeft76tLlLF9xnNdV4VScVW9kDTOnZzR/4gcVJWxVNkUoTHzd+Wr4tVOV8/auD4Fe
-         Mydi/cs4AxmNoRv5SaWCnuVpXufnYPK17FzK+vdC7uBdg1z/nF8Seyt3Adw0PV4pSEQm
-         WNr/OruqQFBEcc9qyurhlYxS1YXs06eCygtFsRQ81wUn5/KbyE2CkOlE4gOaSWtcP2h1
-         JS8f0bOx3potjkJyTqaQUkzFrULfqkp5f0kv9M3W+V9G7xAHcCctlx4OF3P1xgj91DF0
-         6q7Q==
-X-Gm-Message-State: AC+VfDxk4OExtDXx1tV0ZJAjp9D+rvW+fa7b6yTzehKtFS1if5JRLZZX
-        3glT/UVDC62Z7Cv4OQOYMEj2qdUn2rgGrkxxNd0=
-X-Google-Smtp-Source: ACHHUZ6tqWBSjlhx4qGofZVcnT3MFBJXPc+okygXQZLmMZEQzmunGqCGmk355/+eUPu5swd+oRZ83w==
-X-Received: by 2002:a92:cb84:0:b0:335:56cb:a3a with SMTP id z4-20020a92cb84000000b0033556cb0a3amr9139541ilo.16.1684848763812;
-        Tue, 23 May 2023 06:32:43 -0700 (PDT)
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com. [209.85.166.170])
-        by smtp.gmail.com with ESMTPSA id o8-20020a92dac8000000b003312915e615sm2433299ilq.28.2023.05.23.06.32.42
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 May 2023 06:32:42 -0700 (PDT)
-Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-33828a86ee2so168335ab.0
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 06:32:42 -0700 (PDT)
-X-Received: by 2002:a05:6e02:1d0f:b0:329:333e:4e79 with SMTP id
- i15-20020a056e021d0f00b00329333e4e79mr252495ila.1.1684848762023; Tue, 23 May
- 2023 06:32:42 -0700 (PDT)
+        with ESMTP id S236760AbjEWNmf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 09:42:35 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0BA04121;
+        Tue, 23 May 2023 06:42:16 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D5433139F;
+        Tue, 23 May 2023 06:42:54 -0700 (PDT)
+Received: from [10.57.73.71] (unknown [10.57.73.71])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 43E273F840;
+        Tue, 23 May 2023 06:42:07 -0700 (PDT)
+Message-ID: <db575b8f-12e9-dab5-c7f6-b524cbce64d9@arm.com>
+Date:   Tue, 23 May 2023 14:42:05 +0100
 MIME-Version: 1.0
-References: <20230427035656.1962698-1-fshao@chromium.org> <CAD=FV=XVubT-ozs7JssBPz+9UcsZb+q0My8Aq6HNs-nFiJnogg@mail.gmail.com>
- <nycvar.YFH.7.76.2305231510270.29760@cbobk.fhfr.pm>
-In-Reply-To: <nycvar.YFH.7.76.2305231510270.29760@cbobk.fhfr.pm>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 23 May 2023 06:32:30 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UyEw5xViGreQb6+cLNLrMcT27ts5P87aR=FEYWNOBM_w@mail.gmail.com>
-Message-ID: <CAD=FV=UyEw5xViGreQb6+cLNLrMcT27ts5P87aR=FEYWNOBM_w@mail.gmail.com>
-Subject: Re: [PATCH v4 0/2] Fix Goodix touchscreen power leakage for MT8186 boards
-To:     Jiri Kosina <jikos@kernel.org>
-Cc:     Fei Shao <fshao@chromium.org>, Jeff LaBundy <jeff@labundy.com>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.11.0
+Subject: Re: [PATCH v4 03/11] coresight-tpdm: Initialize DSB subunit
+ configuration
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek <linux-mediatek@lists.infradead.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Kitt <steve@sk2.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
+ <1682586037-25973-4-git-send-email-quic_taozha@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <1682586037-25973-4-git-send-email-quic_taozha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 27/04/2023 10:00, Tao Zhang wrote:
+> DSB is used for monitoring “events”. Events are something that
+> occurs at some point in time. It could be a state decode, the
+> act of writing/reading a particular address, a FIFO being empty,
+> etc. This decoding of the event desired is done outside TPDM.
+> DSB subunit need to be configured in enablement and disablement.
+> A struct that specifics associated to dsb dataset is needed. It
+> saves the configuration and parameters of the dsb datasets. This
+> change is to add this struct and initialize the configuration of
+> DSB subunit.
+> 
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> ---
+>   drivers/hwtracing/coresight/coresight-tpdm.c | 60 +++++++++++++++++++++++++---
+>   drivers/hwtracing/coresight/coresight-tpdm.h | 17 ++++++++
+>   2 files changed, 72 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
+> index ba1867f..6f8a8ab 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+> @@ -20,17 +20,51 @@
+>   
+>   DEFINE_CORESIGHT_DEVLIST(tpdm_devs, "tpdm");
+>   
+> +static void tpdm_reset_datasets(struct tpdm_drvdata *drvdata)
+> +{
+> +	if (drvdata->datasets & TPDM_PIDR0_DS_DSB) {
+> +		memset(drvdata->dsb, 0, sizeof(struct dsb_dataset));
+> +
+> +		drvdata->dsb->trig_ts = true;
+> +		drvdata->dsb->trig_type = false;
+> +	}
+> +}
+> +
+> +static void set_trigger_type(struct tpdm_drvdata *drvdata, u32 *val)
+> +{
+> +	if (drvdata->dsb->trig_type)
+> +		*val |= TPDM_DSB_CR_TRIG_TYPE;
+> +	else
+> +		*val &= ~TPDM_DSB_CR_TRIG_TYPE;
+> +}
+> +
 
-On Tue, May 23, 2023 at 6:11=E2=80=AFAM Jiri Kosina <jikos@kernel.org> wrot=
-e:
->
-> On Fri, 19 May 2023, Doug Anderson wrote:
->
-> > > These changes are based on the series in [1], which modified the
-> > > i2c-hid-of-goodix driver and removed the workaround for a power leaka=
-ge
-> > > issue, so the issue revisits on Mediatek MT8186 boards (Steelix).
-> > >
-> > > The root cause is that the touchscreen can be powered in different wa=
-ys
-> > > depending on the hardware designs, and it's not as easy to come up wi=
-th
-> > > a solution that is both simple and elegant for all the known designs.
-> > >
-> > > To address the issue, I ended up adding a new boolean property for th=
-e
-> > > driver so that we can control the power up/down sequence depending on
-> > > that.
-> > >
-> > > Adding a new property might not be the cleanest approach for this, bu=
-t
-> > > at least the intention would be easy enough to understand, and it
-> > > introduces relatively small change to the code and fully preserves th=
-e
-> > > original control flow.
-> > > I hope this is something acceptable, and I'm open to any better
-> > > approaches.
-> > >
-> > > [1] https://lore.kernel.org/all/20230207024816.525938-1-dianders@chro=
-mium.org/
-> > >
-> > > Changes in v4:
-> > > - Minor coding style improvement
-> > >
-> > > Changes in v3:
-> > > - In power-down, only skip the GPIO but not the regulator calls if th=
-e
-> > >   flag is set
-> > >
-> > > Changes in v2:
-> > > - Use a more accurate property name and with "goodix," prefix.
-> > > - Do not change the regulator_enable logic during power-up.
-> > >
-> > > Fei Shao (2):
-> > >   dt-bindings: input: goodix: Add "goodix,no-reset-during-suspend"
-> > >     property
-> > >   HID: i2c-hid: goodix: Add support for "goodix,no-reset-during-suspe=
-nd"
-> > >     property
-> > >
-> > >  .../bindings/input/goodix,gt7375p.yaml           |  9 +++++++++
-> > >  drivers/hid/i2c-hid/i2c-hid-of-goodix.c          | 16 ++++++++++++++=
-+-
-> > >  2 files changed, 24 insertions(+), 1 deletion(-)
-> >
-> > Just double-checking if there is any work needed on this series. I
-> > think it's ready to land but I wanted to double-check.
->
-> I don't think I've been CCed on the dt-binding part (patch 1/2 I guess).
-> Has it been Acked? If so, I will happily take it through hid.git, but
-> please send it my way.
+Given this is not reused, we could simply inline it in the caller
+to avoid creating a confusion, like other operations ?
 
-Yeah, Rob Acked it:
+>   static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
+>   {
+>   	u32 val;
+>   
+> -	/* Set the enable bit of DSB control register to 1 */
+> +	val = readl_relaxed(drvdata->base + TPDM_DSB_TIER);
+> +	/* Set trigger timestamp */
+> +	if (drvdata->dsb->trig_ts)
+> +		val |= TPDM_DSB_TIER_XTRIG_TSENAB;
+> +	else
+> +		val &= ~TPDM_DSB_TIER_XTRIG_TSENAB;,
+> +	writel_relaxed(val, drvdata->base + TPDM_DSB_TIER);
+> +
+>   	val = readl_relaxed(drvdata->base + TPDM_DSB_CR);
+> +	/* Set trigger type */
+> +	set_trigger_type(drvdata, &val);
+> +	/* Set the enable bit of DSB control register to 1 */
+>   	val |= TPDM_DSB_CR_ENA;
+>   	writel_relaxed(val, drvdata->base + TPDM_DSB_CR);
+>   }
+>   
+>   /* TPDM enable operations */
+> +/* The TPDM or Monitor serves as data collection component for various
 
-https://lore.kernel.org/r/168261692866.3205353.5077242811275926416.robh@ker=
-nel.org/
+minor nit: Please could you extend the existing comment than adding a
+new multi-line comment ?
 
-Fei: can you repost the series with collected tags and make sure to CC Jiri=
-?
+> + * dataset types. It covers Basic Counts(BC), Tenure Counts(TC),
+> + * Continuous Multi-Bit(CMB), Multi-lane CMB(MCMB) and Discrete Single
+> + * Bit(DSB). This function will initialize the configuration according
+> + * to the dataset type supported by the TPDM.
+> + */
+>   static void __tpdm_enable(struct tpdm_drvdata *drvdata)
+>   {
+>   	CS_UNLOCK(drvdata->base);
+> @@ -110,15 +144,24 @@ static const struct coresight_ops tpdm_cs_ops = {
+>   	.source_ops	= &tpdm_source_ops,
+>   };
+>   
+> -static void tpdm_init_default_data(struct tpdm_drvdata *drvdata)
+> +static int tpdm_datasets_setup(struct tpdm_drvdata *drvdata)
+>   {
+>   	u32 pidr;
+>   
+> -	CS_UNLOCK(drvdata->base);
+>   	/*  Get the datasets present on the TPDM. */
+>   	pidr = readl_relaxed(drvdata->base + CORESIGHT_PERIPHIDR0);
+>   	drvdata->datasets |= pidr & GENMASK(TPDM_DATASETS - 1, 0);
+> -	CS_LOCK(drvdata->base);
 
-Thanks!
+Why are we removing the CS_{UN,}LOCK here ?
 
--Doug
+Rest looks OK to me.
+
+Suzuki
+
+> +
+> +	if (drvdata->datasets & TPDM_PIDR0_DS_DSB) {
+> +		if (!drvdata->dsb) {
+> +			drvdata->dsb = devm_kzalloc(drvdata->dev,
+> +						    sizeof(*drvdata->dsb), GFP_KERNEL);
+> +			if (!drvdata->dsb)
+> +				return -ENOMEM;
+> +		}
+> +	}
+> +
+> +	return 0;
+>   }
+>   
+>   /*
+> @@ -181,6 +224,7 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
+>   	struct coresight_platform_data *pdata;
+>   	struct tpdm_drvdata *drvdata;
+>   	struct coresight_desc desc = { 0 };
+> +	int ret;
+>   
+>   	pdata = coresight_get_platform_data(dev);
+>   	if (IS_ERR(pdata))
+> @@ -200,6 +244,12 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
+>   
+>   	drvdata->base = base;
+>   
+> +	ret = tpdm_datasets_setup(drvdata);
+> +	if (ret)
+> +		return ret;
+> +
+> +	tpdm_reset_datasets(drvdata);
+> +
+>   	/* Set up coresight component description */
+>   	desc.name = coresight_alloc_device_name(&tpdm_devs, dev);
+>   	if (!desc.name)
+> @@ -216,7 +266,7 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
+>   		return PTR_ERR(drvdata->csdev);
+>   
+>   	spin_lock_init(&drvdata->spinlock);
+> -	tpdm_init_default_data(drvdata);
+> +
+>   	/* Decrease pm refcount when probe is done.*/
+>   	pm_runtime_put(&adev->dev);
+>   
+> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h b/drivers/hwtracing/coresight/coresight-tpdm.h
+> index 5438540..68f33bd 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
+> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
+> @@ -11,8 +11,14 @@
+>   
+>   /* DSB Subunit Registers */
+>   #define TPDM_DSB_CR		(0x780)
+> +#define TPDM_DSB_TIER		(0x784)
+> +
+>   /* Enable bit for DSB subunit */
+>   #define TPDM_DSB_CR_ENA		BIT(0)
+> +/* Enable bit for DSB subunit trigger type */
+> +#define TPDM_DSB_CR_TRIG_TYPE		BIT(12)
+> +/* Enable bit for DSB subunit trigger timestamp */
+> +#define TPDM_DSB_TIER_XTRIG_TSENAB		BIT(1)
+>   
+>   /* TPDM integration test registers */
+>   #define TPDM_ITATBCNTRL		(0xEF0)
+> @@ -41,6 +47,16 @@
+>   #define TPDM_PIDR0_DS_DSB	BIT(1)
+>   
+>   /**
+> + * struct dsb_dataset - specifics associated to dsb dataset
+> + * @trig_ts:          Enable/Disable trigger timestamp.
+> + * @trig_type:        Enable/Disable trigger type.
+> + */
+> +struct dsb_dataset {
+> +	bool			trig_ts;
+> +	bool			trig_type;
+> +};
+> +
+> +/**
+>    * struct tpdm_drvdata - specifics associated to an TPDM component
+>    * @base:       memory mapped base address for this component.
+>    * @dev:        The device entity associated to this component.
+> @@ -57,6 +73,7 @@ struct tpdm_drvdata {
+>   	spinlock_t		spinlock;
+>   	bool			enable;
+>   	unsigned long		datasets;
+> +	struct dsb_dataset	*dsb;
+>   };
+>   
+>   #endif  /* _CORESIGHT_CORESIGHT_TPDM_H */
+
