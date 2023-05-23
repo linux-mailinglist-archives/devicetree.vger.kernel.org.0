@@ -2,152 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E692A70DEC6
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 16:09:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54BBB70DF1E
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 16:22:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237196AbjEWOJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 10:09:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48060 "EHLO
+        id S237153AbjEWOWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 10:22:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237229AbjEWOJR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 10:09:17 -0400
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7E65171F
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 07:07:33 -0700 (PDT)
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2af30a12e84so38657501fa.0
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 07:07:33 -0700 (PDT)
+        with ESMTP id S231433AbjEWOWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 10:22:34 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05829E9
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 07:22:33 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-30a1fdde3d6so3590572f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 07:22:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684850792; x=1687442792;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3/m36s1I5lLQu5ZfF2EQK7PHYdhhLUzc5VcckZizUzo=;
-        b=mJJFj4KKfK5O/1msuEyWitYgeaDaB1H7Zs90/dckpZxPxYuztJHVq+vnyvZCFllpdG
-         34o7+tjCwYPvFs/03VQu+Ca74aLQ+yFb04ws0M3HKq+vywg0dMgfXIpwv4SbVEvcByFf
-         hTnk3lKNIxvgN8MyifzrzgF/F8IQQ/GStiqlfYbVYFidQguAqIDcnzKySjO/63llzINk
-         obdrKIjS3MFPTQNWGzwCxePDQ+PP0v3uL1IGq1+tuVXYdKJ3ATuDSTX2G+Mfo6rY2mgL
-         p+Dn+hrpSNcZAZe+qKlEXKS8oONcpJYKHvO5e0ieh47WLn4xVvvuV+Y5W2W8SO0NdQgi
-         q0vw==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684851751; x=1687443751;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EranyCDg/9rde0AKk+TrYZhj6TXyu+KiL6HFMU6m/Vc=;
+        b=lXbZ/4cY6bh3L0O0vsZya24TPX5PgkE3gNjG7MnLWafEXib47/oB4qvLn8NJ3Cvy9O
+         65gp5VUR4VVO6Rb0xlq2zRNsqII4bD43n70CHWLWCANEMe9NEko3ozAjAvl+ZMTVCivi
+         vPB3nRNrXEQKWin+2CNqHRyZTqmocNsH56DN7czvai7Gcv4zzNNhzMlwwDul6rXI4NcS
+         UhaZn8CBqR7iUbyoSXuNxRnYRnep4ylMm+9cBuPcwAx7S3QBuyIFmw7CbsuU/iCeg4mk
+         a42rjwNgz9owQe47UF31HD8u8a/8lxNXrj4GS7S9qijb1i2fo9ph//NRGaG+4lK0xKxI
+         IJ4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684850792; x=1687442792;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3/m36s1I5lLQu5ZfF2EQK7PHYdhhLUzc5VcckZizUzo=;
-        b=YFRILqPe2A4xvlWxI5OBsTo3trlFPbAXLlZJjUmdzBuW2MOkVRAhyxo+bhGx4e+QQZ
-         Bfj6xdIgNwgRmPnh8lS58lajS8yseoT9W/WEOZCof68T6AePF7OFGNVYQ3OSWJnSQwvE
-         3VCEbba79UgaNM0Zr+lgip8cZ+FdmJlMvdM4EUmfNaW8ngfqCi+viY+H9eeLGPGuaolW
-         EKbP/iBs3O/gMoQrwQLMhc2nvASkw677wu8dLTgrMMhq6DfaYmmLxtRShLHGkb3Clk5u
-         NUtm1aRUC3ulUHr0m3GHFq2OHnN7aToxTToPWuCy9HXoRZN4atMFwb7bkJGiwKxTySOR
-         vNGA==
-X-Gm-Message-State: AC+VfDxKa4eR4xW8F1gJvzDvFbmsLZH5IpnbyEdypWLrev+pv1ccM2by
-        LVywsmYXXHAEaVfNsGQoQty+2Q==
-X-Google-Smtp-Source: ACHHUZ5j8540mbF8AM+pJcRIA5egcAFfY/aeplJNYrDYh9hj0t3OOL1TtsFpB4ravHgVegvwiIsxuQ==
-X-Received: by 2002:a2e:9117:0:b0:2ac:78b0:8aef with SMTP id m23-20020a2e9117000000b002ac78b08aefmr5444810ljg.16.1684850792068;
-        Tue, 23 May 2023 07:06:32 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id l1-20020a2e9081000000b002adbe01cd69sm1633536ljg.9.2023.05.23.07.06.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 May 2023 07:06:31 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 11/11] arm64: dts: qcom: sm8450: switch UFS QMP PHY to new style of bindings
-Date:   Tue, 23 May 2023 17:06:22 +0300
-Message-Id: <20230523140622.265692-12-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230523140622.265692-1-dmitry.baryshkov@linaro.org>
-References: <20230523140622.265692-1-dmitry.baryshkov@linaro.org>
+        d=1e100.net; s=20221208; t=1684851751; x=1687443751;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EranyCDg/9rde0AKk+TrYZhj6TXyu+KiL6HFMU6m/Vc=;
+        b=VA6Qom+XozV886YzEUjiIC8lOY7uiHkNxUsmTSDr798tm0OzWMvciDRVDJN3EVzvbR
+         cmtKz2OfGqyvho9tQkQ/TTiW9/J+lFvnIFUSeDuLRLTJRP6vvlLl+oU5S9NbqW428nI8
+         1ir8eoQj+Y7CX6uf2BSTCp7siYU8t2oyGmAmbUkGMbQUdglD0hqVemzC6DrvFWMLmew8
+         HdwNrJOkWjEG17vBpSPLgmvz0WV4OTE+iN5H1LwuEdUvc0ddiOzwh2zzKGIaYl4al5NX
+         +v8eVt/s9PbeVVYvof358rpcAE7QyYw7Bp/cRUnRwdD3kt0dxwIT0iBGhecmqEFasP+l
+         5RVA==
+X-Gm-Message-State: AC+VfDz0/YF+XTYaW335/YR1iP0WJoU5Xv/PR8L0wwIHYB++MSA0sRPP
+        zCOabJghNZ1Ho/LOS8Zkecr96w==
+X-Google-Smtp-Source: ACHHUZ4CeNjN6dEni8tyfgYEbyM8ejjEVm8OHV/gr0I9cOmBWMG6V5ywEC801CZKE/maISgSoiHhrQ==
+X-Received: by 2002:adf:ee49:0:b0:306:3b78:fe33 with SMTP id w9-20020adfee49000000b003063b78fe33mr11199720wro.32.1684851751343;
+        Tue, 23 May 2023 07:22:31 -0700 (PDT)
+Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id 10-20020a05600c024a00b003f423dfc686sm10083928wmj.45.2023.05.23.07.22.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 May 2023 07:22:30 -0700 (PDT)
+Message-ID: <1d3ba1d6-ff91-eedf-90e1-4ef5b16354c2@baylibre.com>
+Date:   Tue, 23 May 2023 16:22:29 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 1/7] ASoC: mediatek: mt8188: separate ADDA playback dai
+ from capture dai
+Content-Language: en-US
+To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com
+Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230523021933.3422-1-trevor.wu@mediatek.com>
+ <20230523021933.3422-2-trevor.wu@mediatek.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230523021933.3422-2-trevor.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change the UFS QMP PHY to use newer style of QMP PHY bindings (single
-resource region, no per-PHY subnodes).
+On 23/05/2023 04:19, Trevor Wu wrote:
+> MT8188 will support SOF. In SOF, be_hw_params_fixup callback are used to
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 28 ++++++++++------------------
- 1 file changed, 10 insertions(+), 18 deletions(-)
+Can you write what is SOF please ? (Sound Open Firmware I guess ?)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 595533aeafc4..44a67c9274bd 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -741,9 +741,9 @@ gcc: clock-controller@100000 {
- 				 <&pcie0_lane>,
- 				 <&pcie1_lane>,
- 				 <0>,
--				 <&ufs_mem_phy_lanes 0>,
--				 <&ufs_mem_phy_lanes 1>,
--				 <&ufs_mem_phy_lanes 2>,
-+				 <&ufs_mem_phy 0>,
-+				 <&ufs_mem_phy 1>,
-+				 <&ufs_mem_phy 2>,
- 				 <&usb_1_qmpphy QMP_USB43DP_USB3_PIPE_CLK>;
- 			clock-names = "bi_tcxo",
- 				      "sleep_clk",
-@@ -4064,7 +4064,7 @@ ufs_mem_hc: ufshc@1d84000 {
- 			      <0 0x01d88000 0 0x8000>;
- 			reg-names = "std", "ice";
- 			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
--			phys = <&ufs_mem_phy_lanes>;
-+			phys = <&ufs_mem_phy>;
- 			phy-names = "ufsphy";
- 			lanes-per-direction = <2>;
- 			#reset-cells = <1>;
-@@ -4114,10 +4114,8 @@ ufs_mem_hc: ufshc@1d84000 {
- 
- 		ufs_mem_phy: phy@1d87000 {
- 			compatible = "qcom,sm8450-qmp-ufs-phy";
--			reg = <0 0x01d87000 0 0x1c4>;
--			#address-cells = <2>;
--			#size-cells = <2>;
--			ranges;
-+			reg = <0 0x01d87000 0 0x1000>;
-+
- 			clock-names = "ref", "ref_aux", "qref";
- 			clocks = <&rpmhcc RPMH_CXO_CLK>,
- 				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
-@@ -4125,17 +4123,11 @@ ufs_mem_phy: phy@1d87000 {
- 
- 			resets = <&ufs_mem_hc 0>;
- 			reset-names = "ufsphy";
--			status = "disabled";
- 
--			ufs_mem_phy_lanes: phy@1d87400 {
--				reg = <0 0x01d87400 0 0x188>,
--				      <0 0x01d87600 0 0x200>,
--				      <0 0x01d87c00 0 0x200>,
--				      <0 0x01d87800 0 0x188>,
--				      <0 0x01d87a00 0 0x200>;
--				#clock-cells = <1>;
--				#phy-cells = <0>;
--			};
-+			#clock-cells = <1>;
-+			#phy-cells = <0>;
-+
-+			status = "disabled";
- 		};
- 
- 		sdhc_2: mmc@8804000 {
+> configure BE hardware parameters. However, playback and capture stream
+> share the same callback function in which it can't know the stream type.
+> 
+> It's possible to require different paremters for playback and capture
+
+paremters => parameters
+
+Code looks good, after the commit messages fixes:
+
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+
 -- 
-2.39.2
+Regards,
+Alexandre
 
