@@ -2,192 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0047C70E82E
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 23:55:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A35770E8A5
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 00:11:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238800AbjEWVye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 17:54:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44966 "EHLO
+        id S233495AbjEWWLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 18:11:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238778AbjEWVyS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 17:54:18 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E3CE43
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 14:54:10 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1ae4e49727eso1955015ad.1
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 14:54:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1684878849; x=1687470849;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=P7ddBFNbe2jN9JB1U65KBiWnZDMYZyq2ldWY4vi+b5o=;
-        b=TbrwKuREDBWc2vjGm24Y3BUBFk7NvxNH+SKOdG1EzL3cbgaUbE5c0RzfG5u6cy4Z97
-         J+3xRG4Yj4e7LfDZ+s9vThSlEYJ6Sydp2buggevkok6VzgV+zUniooZiSAXgdkT/eJWc
-         0e9TVbgCwyMgludJf/CLzsP802zXVvLQTNkzc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684878849; x=1687470849;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P7ddBFNbe2jN9JB1U65KBiWnZDMYZyq2ldWY4vi+b5o=;
-        b=CX+UY+t1C7P63wywWOb4CXQJjwuC2Nfl7S4qMlQFGBH+cCyzqhbeKAs7ClBxIEIiAM
-         tIUbLJBDkHrA04MiOhRzO5TssXVEoy08TbaqRlVseVRRntFfcfU8M7pTMPxtatrMAM6s
-         yu9tPXQdGYsBASa75YtC9PcvfhOuwufnbfgCPDlQYPdgSVBlsc5qJbVRb12ZIcG5Jgwb
-         gl7t/aGfFcgMz1xer1g7J4CJkrCAmJzcDLO57HO8xRigSR77l37LZMIcTXvM/cWP+xM4
-         mukmnKKlSDBoIh18ghctIoPc4TFEfKLThGeEtMmxqwBFSO5pZCaco8FbJMpnnpDzWKMa
-         xaXA==
-X-Gm-Message-State: AC+VfDxcaK+u2RvW7ItgwphYBurIR3noS+ppgJ96lO64nO1W/cCvbVhz
-        p0tufiBfSEaj0LuzO/tABbn7eg==
-X-Google-Smtp-Source: ACHHUZ4LwnKOEXbbLexkXlgsmBxIRToEzY9tbvRVTG9MXJu1BoRFEN4WYmFb7BO2bnjqo32Io9XxHg==
-X-Received: by 2002:a17:902:ced0:b0:1af:b47e:7892 with SMTP id d16-20020a170902ced000b001afb47e7892mr8537422plg.67.1684878849312;
-        Tue, 23 May 2023 14:54:09 -0700 (PDT)
-Received: from stbirv-lnx-2.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id e4-20020a170902744400b001ae62d7cb2bsm7189820plt.199.2023.05.23.14.54.07
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 23 May 2023 14:54:08 -0700 (PDT)
-From:   Justin Chen <justin.chen@broadcom.com>
-To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     justinpopo6@gmail.com, justin.chen@broadcom.com,
-        f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, opendmb@gmail.com,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        richardcochran@gmail.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com, conor@kernel.org,
-        simon.horman@corigine.com,
-        Florian Fainelli <florian.fainelli@broadcom.com>
-Subject: [PATCH net-next v4 6/6] MAINTAINERS: ASP 2.0 Ethernet driver maintainers
-Date:   Tue, 23 May 2023 14:53:47 -0700
-Message-Id: <1684878827-40672-7-git-send-email-justin.chen@broadcom.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1684878827-40672-1-git-send-email-justin.chen@broadcom.com>
-References: <1684878827-40672-1-git-send-email-justin.chen@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000052598f05fc636d8b"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        MIME_HEADER_CTYPE_ONLY,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_TVD_MIME_NO_HEADERS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S232854AbjEWWLr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 18:11:47 -0400
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2055.outbound.protection.outlook.com [40.107.100.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8098BF;
+        Tue, 23 May 2023 15:11:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=W0GubgZjd3q2Xenn1ouGIZQvqjSAxytJPu/08kqV4CS0sNJgeSlEJ82hIRIFetC0OBn6VmtRxQCaeBPZcOdfdWBgzEs4+z5A4ieOUrH5SMuPMxXp/dO0wsK6ZG/Dop+KbyoT3m25L5AusHVvfmmOCxvsmXN85K2EOQ8YjNEqYbaD5FciDzPN2pD1ul7F8w+oB9prC2+PJNaK945SrGroR4S0ejcQZYlK9YGwWg/3PJpxseLRRaZB6+SdYZAXHhUeUOudmzwOyyUiv+tHM62m1YdvCp6TVxtDaiPGXgXnQY4Knin3FsaNXEuPVGA0ph5KE7NFB24RMbDcnJjL/JjsQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DubgyKDjyaE5/LDn6Dxn2l3TRpa344eUrqtil+luAqA=;
+ b=KQMvGWYVgS39B3SNBbLx34V57orJy/OEo0NcutJeIMyUWBgsTz/W6mvACJ/8o3utv4l7/taABAFKfzqtIjbVBK1CQ4K8QyyQSf+8qEU+4bBHvMOAUi7B788gzkYWQ2815wYJ8HL6mkFiHfepyV0IDqcpVWn3RHTgBKIdIvIj9JwIp/DX+Ic/MCsNu/0iryaOQ27VNdBq6GKDCAXNNIjW6jTX5e7pWlW0tw93wcKfgeumyAgsVsgN8+2SL1An3XiL+R6XWUE/gJ1cLQ+8orTX8QoH046qf92xP8KhHaaFSLK3U+Kdo58WQHJTFyiRR2iAiRPk9XXWXqSJVJwkYsC9zA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=arndb.de smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DubgyKDjyaE5/LDn6Dxn2l3TRpa344eUrqtil+luAqA=;
+ b=RpcHV03cAMnwSTJmW6h/HTO3iGYkFm1Tut1RtOCCwBGIC/p94oiJB6fLkltN9BOHvJRsng5fooNNonJMluWd0wcV5kj8wATgT3PQKYjBCU5tN4ka+Az8HiZykI2PaVIWcpi4oXutcdup84z7S9RweBSZtcE4J7awG3H/k67cL+8=
+Received: from BN1PR10CA0002.namprd10.prod.outlook.com (2603:10b6:408:e0::7)
+ by DS7PR12MB9044.namprd12.prod.outlook.com (2603:10b6:8:e3::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Tue, 23 May
+ 2023 22:11:43 +0000
+Received: from BN8NAM11FT003.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:e0:cafe::9d) by BN1PR10CA0002.outlook.office365.com
+ (2603:10b6:408:e0::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.29 via Frontend
+ Transport; Tue, 23 May 2023 22:11:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT003.mail.protection.outlook.com (10.13.177.90) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6411.30 via Frontend Transport; Tue, 23 May 2023 22:11:42 +0000
+Received: from platform-dev1.pensando.io (10.180.168.240) by
+ SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Tue, 23 May 2023 17:11:39 -0500
+From:   Brad Larson <blarson@amd.com>
+To:     <arnd@arndb.de>
+CC:     <adrian.hunter@intel.com>, <alcooperx@gmail.com>,
+        <andy.shevchenko@gmail.com>, <blarson@amd.com>,
+        <brendan.higgins@linux.dev>, <briannorris@chromium.org>,
+        <broonie@kernel.org>, <catalin.marinas@arm.com>,
+        <conor+dt@kernel.org>, <davidgow@google.com>,
+        <devicetree@vger.kernel.org>, <fancer.lancer@gmail.com>,
+        <gerg@linux-m68k.org>, <gsomlo@gmail.com>,
+        <hal.feng@starfivetech.com>, <hasegawa-hitomi@fujitsu.com>,
+        <j.neuschaefer@gmx.net>, <joel@jms.id.au>, <kernel@esmil.dk>,
+        <krzk@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <lee.jones@linaro.org>, <lee@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <p.zabel@pengutronix.de>,
+        <rdunlap@infradead.org>, <robh+dt@kernel.org>,
+        <samuel@sholland.org>, <skhan@linuxfoundation.org>,
+        <suravee.suthikulpanit@amd.com>, <thomas.lendacky@amd.com>,
+        <tonyhuang.sunplus@gmail.com>, <ulf.hansson@linaro.org>,
+        <vaishnav.a@ti.com>, <walker.chen@starfivetech.com>,
+        <will@kernel.org>, <zhuyinbo@loongson.cn>
+Subject: Re: [PATCH v14 8/8] soc: amd: Add support for AMD Pensando SoC Controller
+Date:   Tue, 23 May 2023 15:11:32 -0700
+Message-ID: <20230523221132.64464-1-blarson@amd.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <bc5118f2-8982-46ff-bc75-d0c71475e909@app.fastmail.com>
+References: <bc5118f2-8982-46ff-bc75-d0c71475e909@app.fastmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT003:EE_|DS7PR12MB9044:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7df8807b-7b7e-4b73-a9c0-08db5bdab0a4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: it3++5qtjJuMEyKi4xjTI65zd9l1imYAPVhfse9VlqACEjL1M48m80jR78N5UQRFhJpODnMqvJke7eemoMxsA0fHoJ56/d8CaG200adLtmlFh3Vs8jT9lS90uKSRCC6IXVYglpjFabXo+HX6yo51oDaU3mVAiGyma7mcxxClcLeUKyzgwUrHVBOWiWFwH1qAQ9BvgJH2S+VY8ho4JiPS04p4sj+Qf/wpJ9zpVnb/x+sMs30VgnKoFeFz5Bt7vAYz1Ex7UQgEcRgQNA5d4bJkUJ3ZLeeikn4Mhx14rfZ/gUqJm/cYdhFGOpNV4L5BdkuTodNhyWD+pPVcKbi1U7Ko+XY/oKpHgdTYAdFHMyIGPZcWv/eEkloMdsxYOLRhVMw0ze+b/1Hs8OUSkzdn66yOMD7J/zuzkQK6tCNJBQ89z5raFtBtbagpqeNWW7hocuHIBXU10NJJ1szRnrG3wpNjE/UzR8nKr6S2hPTejRJyEVlSUZZDXRMyBV0fTyggzOow/vhXpBufbeos9plegApltef5+UwCxjTQmf5AkMipExUByHMLY0jBQqD0OXyScYv3HuSXH/W1NhGSWqK2Fs6XVegeOpifG9yTp8Vn8e093PAB2JSXuczjivazuEPUpeyN506QV32IcqC+6kDza7ZQPjZQ4sue2+8Df9v4tz8KldXRIR29I12nv1RslD2qtLgCAQd8DZarh7fCKOoVS/2KdMKgkdh70eCidY4V+n8miG2kE5MfTtUP0CXRxGV16f/+Y4Bdhb2AULO/HUuUsey82g==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(376002)(136003)(39860400002)(346002)(396003)(451199021)(40470700004)(46966006)(36840700001)(478600001)(6666004)(316002)(41300700001)(26005)(1076003)(70586007)(54906003)(6916009)(70206006)(4326008)(5660300002)(8936002)(8676002)(7406005)(40460700003)(7416002)(40480700001)(82310400005)(36756003)(186003)(47076005)(36860700001)(81166007)(82740400003)(356005)(2906002)(426003)(16526019)(336012)(83380400001)(2616005)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2023 22:11:42.7167
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7df8807b-7b7e-4b73-a9c0-08db5bdab0a4
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT003.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB9044
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000052598f05fc636d8b
+Hi Arnd,
 
-Add maintainers entry for ASP 2.0 Ethernet driver.
+> On Mon, May 15, 2023, at 20:16, Brad Larson wrote:
+>> The Pensando SoC controller is a SPI connected companion device
+>> that is present in all Pensando SoC board designs.  The essential
+>> board management registers are accessed on chip select 0 with
+>> board mgmt IO support accessed using additional chip selects.
+>>
+>> Signed-off-by: Brad Larson <blarson@amd.com>
+>
+> Hi Brad,
+>
+> I'm sorry I wasn't paying enough attention to this driver as the
+> past 13 revisions went by.
+>
+No worries, bit of a saga.  See explanation below.
 
-Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
-Signed-off-by: Justin Chen <justin.chen@broadcom.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+>> v10 changes:
+>> - Different driver implementation specific to this Pensando controller device.
+>> - Moved to soc/amd directory under new name based on guidance.  This driver is
+>>   of no use to any design other than all Pensando SoC based cards.
+>> - Removed use of builtin_driver, can be built as a module.
+>
+> it looks like this was a fundamental change that I failed to see.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e2fd64c2ebdc..732a099f4a10 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4198,6 +4198,15 @@ F:	drivers/net/mdio/mdio-bcm-unimac.c
- F:	include/linux/platform_data/bcmgenet.h
- F:	include/linux/platform_data/mdio-bcm-unimac.h
- 
-+BROADCOM ASP 2.0 ETHERNET DRIVER
-+M:	Justin Chen <justin.chen@broadcom.com>
-+M:	Florian Fainelli <florian.fainelli@broadcom.com>
-+L:	bcm-kernel-feedback-list@broadcom.com
-+L:	netdev@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-+F:	drivers/net/ethernet/broadcom/asp2/
-+
- BROADCOM IPROC ARM ARCHITECTURE
- M:	Ray Jui <rjui@broadcom.com>
- M:	Scott Branden <sbranden@broadcom.com>
--- 
-2.7.4
+See explanation below.
 
+>> +# SPDX-License-Identifier: GPL-2.0-only
+>> +menu "AMD Pensando SoC drivers"
+>> +
+>> +config AMD_PENSANDO_CTRL
+>> +	tristate "AMD Pensando SoC Controller"
+>> +	depends on SPI_MASTER=y
+>> +	depends on (ARCH_PENSANDO && OF) || COMPILE_TEST
+>> +	default ARCH_PENSANDO
+>> +	select REGMAP_SPI
+>> +	select MFD_SYSCON
+>> +	help
+>> +	  Enables AMD Pensando SoC controller device support.  This is a SPI
+>> +	  attached companion device in all Pensando SoC board designs which
+>> +	  provides essential board control/status registers and management IO
+>> +	  support.
+>
+> So generally speaking, I don't want custom user interfaces in
+> drivers/soc. It looks like this one has internal interfaces for
+> a reset controller and the regmap, so those parts are fine, but
+> I'm confused about the purpose of the ioctl interface:
+>
+>> +static long
+>> +penctrl_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
+>> +{
+>
+>> +	if (num_msgs > 1) {
+>> +		msg++;
+>> +		if (msg->len > PENCTRL_MAX_MSG_LEN) {
+>> +			ret = -EINVAL;
+>> +			goto out_unlock;
+>> +		}
+>> +		t[1].rx_buf = rx_buf;
+>> +		t[1].len = msg->len;
+>> +	}
+>> +	spi_message_init_with_transfers(&m, t, num_msgs);
+>
+> This seems to be just a passthrough of user space messages, which
+> is what the spidev driver already provides, but using a different
+> ioctl interface. I don't really want any user-level interfaces
+> in drivers/soc as a rule, but having one that duplicates existing
+> functionality seems particularly wrong.
+>
+> Can you explain what the purpose is? Is this about serializing
+> access between the in-kernel reset control and the user-side
+> access?
+>
+> Also, can you explain why this needs a low-lever user interface
+> in the first place, rather than something that can be expressed
+> using high-level abstractions as you already do with the reset
+> control?
+>
+> All of the above should be part of the changelog text to get a
+> driver like this merged. I don't think we can get a quick
+> solution here though, so maybe you can start by removing the
+> ioctl side and having the rest of the driver in drivers/reset?
 
---00000000000052598f05fc636d8b
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+In the original patchset I added a pensando compatible to spidev and that
+was nacked in review and reusing some random compatible that made it into 
+spidev was just wrong.  Further it was recommended this should be a system 
+specific driver and don't rely on a debug driver like spidev.  I changed 
+over to a platform specific driver and at that time I also needed to include 
+a reset controller (emmc reset only).  I put these in drivers/mfd and 
+drivers/reset.  Review of the device tree for this approach went back and 
+forth to _not_ have four child nodes on the spi device each with the same 
+compatible. Decision was to squash the child nodes into the parent and put 
+the reset-controller there also.  One driver and since its pensando
+specific its currently in drivers/soc/amd.
 
-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
-NhTY3E+cXCB11wty89QStajwXdhGJTYEvUgvsq1h8CwJj9w/38ldAQf5WjhPmApYeJR2ewFrBMCM
-4lHkdRJ6TDc9nXoEkypUfjJkJHe7Eal06tosh6JpAgMBAAGjggHZMIIB1TAOBgNVHQ8BAf8EBAMC
-BaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJlLmdsb2JhbHNp
-Z24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYIKwYBBQUHMAGG
-NWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwME0G
-A1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxz
-aWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqGOGh0dHA6Ly9j
-cmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3JsMCMGA1UdEQQc
-MBqBGGp1c3Rpbi5jaGVuQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSME
-GDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUIWGeYuaTsnIada5Xx8TR3cheUbgw
-DQYJKoZIhvcNAQELBQADggEBAHNQlMqQOFYPYFO71A+8t+qWMmtOdd2iGswSOvpSZ/pmGlfw8ZvY
-dRTkl27m37la84AxRkiVMes14JyOZJoMh/g7fbgPlU14eBc6WQWkIA6AmNkduFWTr1pRezkjpeo6
-xVmdBLM4VY1TFDYj7S8H2adPuypd62uHMY/MZi+BIUys4uAFA+N3NuUBNjcVZXYPplYxxKEuIFq6
-sDL+OV16G+F9CkNMN3txsym8Nnx5WAYZb6+rBUIhMGz70V05xsHQfzvo2s7f0J1tJ5BoRlPPhL0h
-VOnWA3h71u9TfSsv+PXVm3P21TfOS2uc1hbzEqyENCP4i5XQ0rv0TmPW42GZ0o4xggJtMIICaQIB
-ATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhH
-bG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwj8BKLXNpALfemdRAwDQYJ
-YIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIGIxbn3fKlDxiJ8nfOTkVNNDRuQqQG0C6gDZ
-niVepttoMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIzMDUyMzIx
-NTQwOVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFl
-AwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATAN
-BgkqhkiG9w0BAQEFAASCAQBUnbUrvqYP/iXfysEf+jbW+TZh+MYGXEmWLtKRGZR+moDbS7Xpk2Ic
-Ivs14hQIRjd1NEAQ04pcF4vAyd3ybmwNKPenlQI454xTEPD0FlqQUGccg/9VuG9BabDy5cmwIQ55
-O4Y+Kspf2Li06H7VocqmCGG4cCzc8RqK8+Ihw53Pz2LxDTsOQ3TgB1z1tAT/0b4m+ZM+l3WZIpGi
-NGz0fXf70AFrJcLHYJq1udTlgo8pWgwprHXrebzGIYXsPgz08BnLnab7T1GuMn004G04pm0uyd60
-L7R6RjPZi+8XNbfy4KfA6sfKY9LG4FQFwaC/mGguNZELsD8/IG0kZOdPlNy3
---00000000000052598f05fc636d8b--
+There are five different user processes and some utilities that access the 
+functionality in the cpld/fpga.  You're correct, its passing messages that 
+are specific to the IP accessed via chip-select.  No Elba system will boot 
+without this driver providing ioctl access.
+
+Regards,
+Brad
