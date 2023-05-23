@@ -2,248 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E33D470D6A5
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 10:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0ED070D6C8
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 10:11:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234648AbjEWIGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 04:06:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59962 "EHLO
+        id S230487AbjEWIKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 04:10:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235592AbjEWIGX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 04:06:23 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2DFACE5C;
-        Tue, 23 May 2023 01:05:39 -0700 (PDT)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 92AED81B7;
-        Tue, 23 May 2023 07:58:14 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH] ARM: dts: Unify pinctrl-single pin group nodes for ti81xx
-Date:   Tue, 23 May 2023 10:58:12 +0300
-Message-Id: <20230523075812.58808-1-tony@atomide.com>
-X-Mailer: git-send-email 2.40.1
+        with ESMTP id S236212AbjEWIKB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 04:10:01 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F4F170A
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:09:18 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-50bcb229adaso1004767a12.2
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:09:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684829348; x=1687421348;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=h/aoipumKtjIgmVBCWgRH2IIEC1OCL6rlPm9b4d5hh0=;
+        b=FPB3vccv0MbejywaqKBaLLrCmXWBfPSBcEc6wfvA2oPtlHmEek4Zm0mLhNtXaMcUpd
+         mVU7WJXZYwYsHahkbadZtk0SkyjDmHN9toDMzECABaMA9iCqeLjCw53+xlhAaLWUlPjV
+         AzZ/0O01z5OH4kXdUG1Y1f5x9mxOOddB+6sv9OTP0rXvLXMxvr0E+hkUM9Z4eyXLwjL/
+         XtqsCTCjDo84nFlJSfpFKX7M+YZF+IoqsN/Nz8KXzEdP3iMj+u37DucEpiwdIBv4k3Px
+         6FPH7vEdYldebvvDZqzrZcjotXMOzYpiYGrxO1HAplTVnWKFTa8TN4ZsysMqcQzZ+nLq
+         4wQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684829348; x=1687421348;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=h/aoipumKtjIgmVBCWgRH2IIEC1OCL6rlPm9b4d5hh0=;
+        b=GgGUKZ121pm4Qsoe9RNcSDtytAox+gFztKv2J91dQTZiIJ7azdUynJy7WABTnO8/eT
+         rBHxZQKRT+vwAyfkCeXI0HjGMgWY/uCtT7Z3CiVZVvFXSQ4r75fQlGzCPPKVQzv2wyJF
+         w2uuKsbmxNQqBI0K7ocM0mONhH2uf0RVpnMU8qk7TX9oeFqRkfK8ht6UXhNJQBx3tDkA
+         iC/UcAKDy9px1+19d4DADZ5DCbTSL/4IqPVQzV8N3WuifVgzpKzBy7CoXiE9ZR5sna64
+         sDwlyO10GflIwgERHsE0XO4IEBYhhNTsSVRgUD1OhyerbK53M+xx1OAaezjFyg4PfAH8
+         TBmA==
+X-Gm-Message-State: AC+VfDzlXCifRl+vt2czU9ser3kumBSnYR/vHUJpIWLBVyA3cjB4hZHd
+        ZGwseoC1TGvksppdcMvEqTCbplFmIxf1Nm0hWRs=
+X-Google-Smtp-Source: ACHHUZ4hBzBfGUkzVb30MbKl54siE4/TDVUICuxRJ347mzFww1b7qcAvP1rxrghl9gmrYfd6X7qPlQ==
+X-Received: by 2002:a05:6512:510:b0:4f3:8196:80c8 with SMTP id o16-20020a056512051000b004f3819680c8mr3993040lfb.1.1684828794784;
+        Tue, 23 May 2023 00:59:54 -0700 (PDT)
+Received: from [192.168.1.101] (abyk138.neoplus.adsl.tpnet.pl. [83.9.30.138])
+        by smtp.gmail.com with ESMTPSA id p4-20020a2e9ac4000000b002a774fb7923sm1522807ljj.45.2023.05.23.00.59.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 May 2023 00:59:54 -0700 (PDT)
+Message-ID: <097944b0-fa7a-ad4d-1c3d-e74ab2b977de@linaro.org>
+Date:   Tue, 23 May 2023 09:59:53 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, johan@kernel.org, mani@kernel.org
+References: <20230523011522.65351-1-quic_bjorande@quicinc.com>
+ <20230523011522.65351-3-quic_bjorande@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sc8280xp: Add GPU related nodes
+In-Reply-To: <20230523011522.65351-3-quic_bjorande@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We want to unify the pinctrl-single pin group nodes to use naming "pins".
-Otherwise non-standad pin group names will add make dtbs checks errors
-when the pinctrl-single yaml binding gets merged.
 
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/boot/dts/am3874-iceboard.dts  | 16 ++++++++--------
- arch/arm/boot/dts/dm8148-evm.dts       |  6 +++---
- arch/arm/boot/dts/dm8148-t410.dts      |  6 +++---
- arch/arm/boot/dts/dm8168-evm.dts       | 10 +++++-----
- arch/arm/boot/dts/dra62x-j5eco-evm.dts |  4 ++--
- 5 files changed, 21 insertions(+), 21 deletions(-)
 
-diff --git a/arch/arm/boot/dts/am3874-iceboard.dts b/arch/arm/boot/dts/am3874-iceboard.dts
---- a/arch/arm/boot/dts/am3874-iceboard.dts
-+++ b/arch/arm/boot/dts/am3874-iceboard.dts
-@@ -285,7 +285,7 @@ i2c@6 {
- };
- 
- &pincntl {
--	mmc2_pins: pinmux_mmc2_pins {
-+	mmc2_pins: mmc2-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x0800, PIN_INPUT | 0x1)	/* SD1_CLK */
- 			DM814X_IOPAD(0x0804, PIN_INPUT_PULLUP | 0x1)	/* SD1_CMD */
-@@ -299,19 +299,19 @@ DM814X_IOPAD(0x093C, PIN_INPUT | 0x2)	/* SD1_SDCD */
- 			>;
- 	};
- 
--	usb0_pins: pinmux_usb0_pins {
-+	usb0_pins: usb0-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x0c34, PIN_OUTPUT | 0x1)	/* USB0_DRVVBUS */
- 			>;
- 	};
- 
--	usb1_pins: pinmux_usb1_pins {
-+	usb1_pins: usb1-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x0834, PIN_OUTPUT | 0x80)	/* USB1_DRVVBUS */
- 			>;
- 	};
- 
--	gpio1_pins: pinmux_gpio1_pins {
-+	gpio1_pins: gpio1-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x081c, PIN_OUTPUT | 0x80)	/* PROGRAM_B */
- 			DM814X_IOPAD(0x0820, PIN_INPUT | 0x80)	/* INIT_B */
-@@ -336,7 +336,7 @@ DM814X_IOPAD(0x0ab0, PIN_INPUT_PULLUP | 0x80) /* FPGA_TDI */
- 			>;
- 	};
- 
--	gpio2_pins: pinmux_gpio2_pins {
-+	gpio2_pins: gpio2-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x090c, PIN_INPUT_PULLUP | 0x80) /* PHY A IRQ */
- 			DM814X_IOPAD(0x0910, PIN_INPUT_PULLUP | 0x80) /* PHY A RESET */
-@@ -349,7 +349,7 @@ DM814X_IOPAD(0x0a2c, PIN_INPUT_PULLUP | 0x80) /* GPIO RESET */
- 		>;
- 	};
- 
--	gpio4_pins: pinmux_gpio4_pins {
-+	gpio4_pins: gpio4-pins {
- 		pinctrl-single,pins = <
- 			/* The PLL doesn't react well to the SPI controller reset, so
- 			 * we force the CS lines to pull up as GPIOs until we're ready.
-@@ -364,14 +364,14 @@ DM814X_IOPAD(0x0b50, PIN_INPUT_PULLUP | 0x80) /* BP_ARM_GPIO5 */
- 		>;
- 	};
- 
--	spi2_pins: pinmux_spi2_pins {
-+	spi2_pins: spi2-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x0950, PIN_INPUT_PULLUP | 0x80) /* PLL SPI CS1 as GPIO */
- 			DM814X_IOPAD(0x0818, PIN_INPUT_PULLUP | 0x80) /* PLL SPI CS2 as GPIO */
- 		>;
- 	};
- 
--	spi4_pins: pinmux_spi4_pins {
-+	spi4_pins: spi4-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x0a7c, 0x20)
- 			DM814X_IOPAD(0x0b74, 0x20)
-diff --git a/arch/arm/boot/dts/dm8148-evm.dts b/arch/arm/boot/dts/dm8148-evm.dts
---- a/arch/arm/boot/dts/dm8148-evm.dts
-+++ b/arch/arm/boot/dts/dm8148-evm.dts
-@@ -116,7 +116,7 @@ &mmc3 {
- };
- 
- &pincntl {
--	sd1_pins: pinmux_sd1_pins {
-+	sd1_pins: sd1-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x0800, PIN_INPUT | 0x1)	/* SD1_CLK */
- 			DM814X_IOPAD(0x0804, PIN_INPUT_PULLUP |  0x1)	/* SD1_CMD */
-@@ -129,13 +129,13 @@ DM814X_IOPAD(0x093C, PIN_INPUT_PULLUP |  0x80)	/* GP1[6] */
- 			>;
- 	};
- 
--	usb0_pins: pinmux_usb0_pins {
-+	usb0_pins: usb0-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x0c34, PIN_OUTPUT | 0x1)	/* USB0_DRVVBUS */
- 			>;
- 	};
- 
--	usb1_pins: pinmux_usb1_pins {
-+	usb1_pins: usb1-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x0834, PIN_OUTPUT | 0x80)	/* USB1_DRVVBUS */
- 			>;
-diff --git a/arch/arm/boot/dts/dm8148-t410.dts b/arch/arm/boot/dts/dm8148-t410.dts
---- a/arch/arm/boot/dts/dm8148-t410.dts
-+++ b/arch/arm/boot/dts/dm8148-t410.dts
-@@ -71,7 +71,7 @@ &mmc3 {
- };
- 
- &pincntl {
--	sd2_pins: pinmux_sd2_pins {
-+	sd2_pins: sd2-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x09c0, PIN_INPUT_PULLUP | 0x1)	/* SD2_DAT[7] */
- 			DM814X_IOPAD(0x09c4, PIN_INPUT_PULLUP | 0x1)	/* SD2_DAT[6] */
-@@ -87,13 +87,13 @@ DM814X_IOPAD(0x0920, PIN_INPUT | 0x40)	/* SD2_SDCD */
- 			>;
- 	};
- 
--	usb0_pins: pinmux_usb0_pins {
-+	usb0_pins: usb0-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x0c34, PIN_OUTPUT | 0x1)	/* USB0_DRVVBUS */
- 			>;
- 	};
- 
--	usb1_pins: pinmux_usb1_pins {
-+	usb1_pins: usb1-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x0834, PIN_OUTPUT | 0x80)	/* USB1_DRVVBUS */
- 			>;
-diff --git a/arch/arm/boot/dts/dm8168-evm.dts b/arch/arm/boot/dts/dm8168-evm.dts
---- a/arch/arm/boot/dts/dm8168-evm.dts
-+++ b/arch/arm/boot/dts/dm8168-evm.dts
-@@ -30,7 +30,7 @@ sata_refclk: fixedclock0 {
- };
- 
- &dm816x_pinmux {
--	mcspi1_pins: pinmux_mcspi1_pins {
-+	mcspi1_pins: mcspi1-pins {
- 		pinctrl-single,pins = <
- 			DM816X_IOPAD(0x0a94, MUX_MODE0)			/* SPI_SCLK */
- 			DM816X_IOPAD(0x0a98, MUX_MODE0)			/* SPI_SCS0 */
-@@ -39,7 +39,7 @@ DM816X_IOPAD(0x0aac, MUX_MODE0)			/* SPI_D1 */
- 		>;
- 	};
- 
--	mmc_pins: pinmux_mmc_pins {
-+	mmc_pins: mmc-pins {
- 		pinctrl-single,pins = <
- 			DM816X_IOPAD(0x0a70, MUX_MODE0)			/* SD_POW */
- 			DM816X_IOPAD(0x0a74, MUX_MODE0)			/* SD_CLK */
-@@ -53,19 +53,19 @@ DM816X_IOPAD(0x0a90, MUX_MODE2)			/* GP1[8] */
- 		>;
- 	};
- 
--	usb0_pins: pinmux_usb0_pins {
-+	usb0_pins: usb0-pins {
- 		pinctrl-single,pins = <
- 			DM816X_IOPAD(0x0d04, MUX_MODE0)			/* USB0_DRVVBUS */
- 		>;
- 	};
- 
--	usb1_pins: pinmux_usb1_pins {
-+	usb1_pins: usb1-pins {
- 		pinctrl-single,pins = <
- 			DM816X_IOPAD(0x0d08, MUX_MODE0)			/* USB1_DRVVBUS */
- 		>;
- 	};
- 
--	nandflash_pins: nandflash_pins {
-+	nandflash_pins: nandflash-pins {
- 		pinctrl-single,pins = <
- 			DM816X_IOPAD(0x0b38, PULL_UP | MUX_MODE0)		/* PINCTRL207 GPMC_CS0*/
- 			DM816X_IOPAD(0x0b60, PULL_ENA | MUX_MODE0)		/* PINCTRL217 GPMC_ADV_ALE */
-diff --git a/arch/arm/boot/dts/dra62x-j5eco-evm.dts b/arch/arm/boot/dts/dra62x-j5eco-evm.dts
---- a/arch/arm/boot/dts/dra62x-j5eco-evm.dts
-+++ b/arch/arm/boot/dts/dra62x-j5eco-evm.dts
-@@ -108,7 +108,7 @@ &mmc2 {
- };
- 
- &pincntl {
--	sd1_pins: pinmux_sd1_pins {
-+	sd1_pins: sd1-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x0800, PIN_INPUT | 0x1)	/* SD1_CLK */
- 			DM814X_IOPAD(0x0804, PIN_INPUT_PULLUP |  0x1)	/* SD1_CMD */
-@@ -121,7 +121,7 @@ DM814X_IOPAD(0x093C, PIN_INPUT_PULLUP |  0x80)	/* GP1[6] */
- 			>;
- 	};
- 
--	usb0_pins: pinmux_usb0_pins {
-+	usb0_pins: usb0-pins {
- 		pinctrl-single,pins = <
- 			DM814X_IOPAD(0x0c34, PIN_OUTPUT | 0x1)	/* USB0_DRVVBUS */
- 			>;
--- 
-2.40.1
+On 23.05.2023 03:15, Bjorn Andersson wrote:
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> 
+> Add Adreno SMMU, GPU clock controller, GMU and GPU nodes for the
+> SC8280XP.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+> 
+> Changes since v1:
+> - Dropped gmu_pdc_seq region from &gmu, as it shouldn't have been used.
+> - Added missing compatible to &adreno_smmu.
+> - Dropped aoss_qmp clock in &gmu and &adreno_smmu.
+>  
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 169 +++++++++++++++++++++++++
+>  1 file changed, 169 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> index d2a2224d138a..329ec2119ecf 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+> @@ -6,6 +6,7 @@
+>  
+>  #include <dt-bindings/clock/qcom,dispcc-sc8280xp.h>
+>  #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
+> +#include <dt-bindings/clock/qcom,gpucc-sc8280xp.h>
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+>  #include <dt-bindings/interconnect/qcom,osm-l3.h>
+>  #include <dt-bindings/interconnect/qcom,sc8280xp.h>
+> @@ -2331,6 +2332,174 @@ tcsr: syscon@1fc0000 {
+>  			reg = <0x0 0x01fc0000 0x0 0x30000>;
+>  		};
+>  
+> +		gpu: gpu@3d00000 {
+> +			compatible = "qcom,adreno-690.0", "qcom,adreno";
+> +
+> +			reg = <0 0x03d00000 0 0x40000>,
+> +			      <0 0x03d9e000 0 0x1000>,
+> +			      <0 0x03d61000 0 0x800>;
+> +			reg-names = "kgsl_3d0_reg_memory",
+> +				    "cx_mem",
+> +				    "cx_dbgc";
+> +			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
+> +			iommus = <&adreno_smmu 0 0xc00>, <&adreno_smmu 1 0xc00>;
+> +			operating-points-v2 = <&gpu_opp_table>;
+> +
+> +			qcom,gmu = <&gmu>;
+> +			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
+> +			interconnect-names = "gfx-mem";
+> +			#cooling-cells = <2>;
+> +
+> +			status = "disabled";
+> +
+> +			gpu_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-270000000 {
+> +					opp-hz = /bits/ 64 <270000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
+> +					opp-peak-kBps = <451000>;
+> +				};
+> +
+> +				opp-410000000 {
+> +					opp-hz = /bits/ 64 <410000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
+> +					opp-peak-kBps = <1555000>;
+> +				};
+> +
+> +				opp-500000000 {
+> +					opp-hz = /bits/ 64 <500000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
+> +					opp-peak-kBps = <1555000>;
+> +				};
+> +
+> +				opp-547000000 {
+> +					opp-hz = /bits/ 64 <547000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
+> +					opp-peak-kBps = <1555000>;
+> +				};
+> +
+> +				opp-606000000 {
+> +					opp-hz = /bits/ 64 <606000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
+> +					opp-peak-kBps = <2736000>;
+> +				};
+> +
+> +				opp-640000000 {
+> +					opp-hz = /bits/ 64 <640000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
+> +					opp-peak-kBps = <2736000>;
+> +				};
+> +
+> +				opp-690000000 {
+> +					opp-hz = /bits/ 64 <690000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
+> +					opp-peak-kBps = <2736000>;
+> +				};
+> +			};
+> +		};
+> +
+> +		gmu: gmu@3d6a000 {
+> +			compatible = "qcom,adreno-gmu-690.0", "qcom,adreno-gmu";
+> +			reg = <0 0x03d6a000 0 0x34000>,
+> +			      <0 0x03de0000 0 0x10000>,
+> +			      <0 0x0b290000 0 0x10000>;
+> +			reg-names = "gmu", "rscc", "gmu_pdc";
+> +			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "hfi", "gmu";
+> +			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
+> +				 <&gpucc GPU_CC_CXO_CLK>,
+> +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
+> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+> +				 <&gpucc GPU_CC_AHB_CLK>,
+> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
+> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
+> +			clock-names = "gmu",
+> +				      "cxo",
+> +				      "axi",
+> +				      "memnoc",
+> +				      "ahb",
+> +				      "hub",
+> +				      "smmu_vote";
+> +			power-domains = <&gpucc GPU_CC_CX_GDSC>,
+> +					<&gpucc GPU_CC_GX_GDSC>;
+> +			power-domain-names = "cx",
+> +					     "gx";
+> +			iommus = <&adreno_smmu 5 0xc00>;
+> +			operating-points-v2 = <&gmu_opp_table>;
+> +
+> +			status = "disabled";
+I've recently discovered that - and I am not 100% sure - all GMUs are
+cache-coherent. Could you please ask somebody at qc about this?
+
+> +
+> +			gmu_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-200000000 {
+> +					opp-hz = /bits/ 64 <200000000>;
+> +					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
+> +				};
+Missing 500MHz + RPMH_REGULATOR_LEVEL_SVS
+
+(that may be used in the future for hw scheduling)
+> +			};
+> +		};
+> +
+> +		gpucc: clock-controller@3d90000 {
+> +			compatible = "qcom,sc8280xp-gpucc";
+> +			reg = <0 0x03d90000 0 0x9000>;
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
+> +				 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
+> +			clock-names = "bi_tcxo",
+> +				      "gcc_gpu_gpll0_clk_src",
+> +				      "gcc_gpu_gpll0_div_clk_src";
+FWIW the driver doesn't use clock-names, but the binding defines it,
+so I suppose it's fine
+
+> +
+> +			power-domains = <&rpmhpd SC8280XP_GFX>;
+> +			#clock-cells = <1>;
+> +			#reset-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		adreno_smmu: iommu@3da0000 {
+> +			compatible = "qcom,sc8280xp-smmu-500", "qcom,adreno-smmu",
+> +				     "qcom,smmu-500", "arm,mmu-500";
+> +			reg = <0 0x03da0000 0 0x20000>;
+> +			#iommu-cells = <2>;
+> +			#global-interrupts = <2>;
+> +			interrupts = <GIC_SPI 672 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 688 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 689 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
+> +				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
+> +				 <&gpucc GPU_CC_AHB_CLK>,
+> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
+> +				 <&gpucc GPU_CC_CX_GMU_CLK>,
+> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
+> +				 <&gpucc GPU_CC_HUB_AON_CLK>;
+> +			clock-names = "gcc_gpu_memnoc_gfx_clk",
+> +				      "gcc_gpu_snoc_dvm_gfx_clk",
+> +				      "gpu_cc_ahb_clk",
+> +				      "gpu_cc_hlos1_vote_gpu_smmu_clk",
+> +				      "gpu_cc_cx_gmu_clk",
+> +				      "gpu_cc_hub_cx_int_clk",
+> +				      "gpu_cc_hub_aon_clk";
+> +
+> +			power-domains = <&gpucc GPU_CC_CX_GDSC>;
+> +
+> +			status = "disabled";
+This one should be dma-coherent (per downstream, plus 8350's mmu is for sure)
+
+Konrad
+> +		};
+> +
+>  		usb_0_hsphy: phy@88e5000 {
+>  			compatible = "qcom,sc8280xp-usb-hs-phy",
+>  				     "qcom,usb-snps-hs-5nm-phy";
