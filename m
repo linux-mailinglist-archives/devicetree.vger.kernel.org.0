@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83E8470D705
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 10:16:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 089A670D76A
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 10:27:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236102AbjEWIQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 04:16:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38874 "EHLO
+        id S235795AbjEWI1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 04:27:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235753AbjEWIQB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 04:16:01 -0400
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12831FE2
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:14:10 -0700 (PDT)
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2af278ca45eso47892471fa.1
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:14:10 -0700 (PDT)
+        with ESMTP id S235869AbjEWI1b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 04:27:31 -0400
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 330FD1B0
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:24:39 -0700 (PDT)
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2af2f4e719eso36615151fa.2
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:24:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684829589; x=1687421589;
+        d=linaro.org; s=google; t=1684830217; x=1687422217;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=uz91t5CPsz6QMWtRIYuzaeaGaQUSJIZo7OKNOwA96Nw=;
-        b=dK9CImZl0kj+maw+OaLSIz3FN6ITdhlzK1d0UmAF15h2x2PwNijEmsKsLlO1oAh5fb
-         oNuKPLwPGqla963rn8a3HkWXZPKaVJscWg6mKapx6QHxFiF4A3JE/ClDDaGaGJ0MoGoy
-         jIQDeMDlG9QnTb8wXxnXrihiN+TyvtJyBblq49Q8wuietciFpG9pG36oEdckfbTm6Gzl
-         2765N3nYxtAQjQnvkqqW2agyYMOBlx1iwP8SiONAmb38SdyaOIv0uE2jziOdzyb+xJL7
-         A56yMlBtkKGe39Sp9UH7VL6l2uSip8c0s87Fp2kQpHkxT0CsupuvXfDEVs8rKaNtrLGe
-         h6hg==
+        bh=Uw6zfBHO0opEqODFwIHcb35ENxPJxB7I1/UM0FjZOR4=;
+        b=P4ptYS4YOYpbzsu3FvH1TCwKBBIDOOp1/gQyRIfKRpT+ZrDzxlEQhJyfhpdppzRobc
+         viThdpmSc1Kv1hnJ3ICtbiCq4JBeEgf18/LeymWMzKOuK6CutisySIzNEyxewDZtIFb/
+         BcZBEkrGDvpvXgT1NAZtwQYrS5oqhnAKuuRziqLmbwLqWn7v80vDuXdqdjjJodwrZyBH
+         PLDhA5MicECt6UDzaiIWUEoFA5NsY9IpYjpx2NmSVTwke9xtyihl6LLtno0ofoRCVU0d
+         JbCmnCJ6SbTpaUsUhrbmYxhTNBnGinnE9GsrJ7qadJjbhexVO2KiuDMHqMZYq40dYmHE
+         hXOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684829589; x=1687421589;
+        d=1e100.net; s=20221208; t=1684830217; x=1687422217;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=uz91t5CPsz6QMWtRIYuzaeaGaQUSJIZo7OKNOwA96Nw=;
-        b=H+RbOxLq752lE9EJ2smUWDBbISev8QfhVV75qFzOxyqTXvPLhSf/oEyImAy54alIgn
-         uih3ZyuT4/YsvsrXwTO6OjzKLJe/03Z85Ta29b8+mcwi3qK/TSYvdUup1ySFC4Stb0wJ
-         wOPBENEBJHgHhx1/wLoLko07tlniY1aXtRRQ0p2PYcrSL1fpMRofpqmvf+j7rNPhbTRi
-         uQbRZJAGyxk1I2WwnnGf0K9KsMdN2setN+Np3e1mUAkLg1jzAQVzu70EKhDQoHvoOfsF
-         7U8D44WWhWeF4195uvVpPkUwRtEU+EKbLDp0FKIaJp12I0PBa5ATLYSgyn+XhrD/f7aD
-         ne6g==
-X-Gm-Message-State: AC+VfDwEWIJkrLzwRXMOKxbrPdKK96/rom9JLrVz+NSQU+wienr/+xyq
-        CKsqwG2t+zZOz0V8VycptOdr/28dh3UmFry5FQM=
-X-Google-Smtp-Source: ACHHUZ5kAF5uQSeuXgAPRImGMQR5VzZ/7OSgGpdEbGRQ+peABQ0DXcoD5LeeMzy346x6Cn0v/DN4vQ==
-X-Received: by 2002:ac2:4c09:0:b0:4f2:74d3:8996 with SMTP id t9-20020ac24c09000000b004f274d38996mr4455935lfq.8.1684828020519;
-        Tue, 23 May 2023 00:47:00 -0700 (PDT)
+        bh=Uw6zfBHO0opEqODFwIHcb35ENxPJxB7I1/UM0FjZOR4=;
+        b=Nv+TwrAMRGOKDNjkcSQMn101R8d7MHKIiLubI923zYPjpIRCKKMUjxLftlNlkg7bUO
+         Z1gDH+2diYClzdIo74gVDBDMJDR5y89zptTiN5iP73jnFby1VpSqid0difftIqUIbLPi
+         yecwaUT43EKO8OMQ1caB2kkFjaVP6Jqy/7+MBQ1R4swpsEVmz/pvfC+6ZC2jwUCw5kbj
+         4vaXuC9Bj0SgM0GL7K+4m7VN0H/Tq2UG/GljZx2ajaoSXOxqkguMyO6exQ9sk00R/W8t
+         fy9fQLC7USG/+vgxSfQTOqBZff0ryLsvOCuxUKsFI+hCdGagTHCImHmL/Isu2KMwyDcb
+         uFtQ==
+X-Gm-Message-State: AC+VfDzg0wnBcr2mF6XQwvjuoonVGtUkWM25pFcwjmQwoP6ESzNlJVZ2
+        09GBOz66umcVI0NhDWaM3NUFMKUdftm2ZRZvfT4=
+X-Google-Smtp-Source: ACHHUZ5je+tCABEpT59rWVo/4tlBAhiBSx3eWKuptU/vYCax7CwZgnwKQkwyRKrX/EuvKpPExSEdGg==
+X-Received: by 2002:ac2:5d72:0:b0:4f3:bbfe:db4e with SMTP id h18-20020ac25d72000000b004f3bbfedb4emr2136125lft.56.1684828022062;
+        Tue, 23 May 2023 00:47:02 -0700 (PDT)
 Received: from [192.168.1.101] (abyk138.neoplus.adsl.tpnet.pl. [83.9.30.138])
-        by smtp.gmail.com with ESMTPSA id t9-20020ac25489000000b004eb0c51780bsm1257070lfk.29.2023.05.23.00.46.59
+        by smtp.gmail.com with ESMTPSA id t9-20020ac25489000000b004eb0c51780bsm1257070lfk.29.2023.05.23.00.47.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 May 2023 00:47:00 -0700 (PDT)
+        Tue, 23 May 2023 00:47:01 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 23 May 2023 09:46:20 +0200
-Subject: [PATCH v5 09/12] drm/msm: mdss: Add SM6375 support
+Date:   Tue, 23 May 2023 09:46:21 +0200
+Subject: [PATCH v5 10/12] iommu/arm-smmu-qcom: Sort the compatible list
+ alphabetically
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230411-topic-straitlagoon_mdss-v5-9-998b4d2f7dd1@linaro.org>
+Message-Id: <20230411-topic-straitlagoon_mdss-v5-10-998b4d2f7dd1@linaro.org>
 References: <20230411-topic-straitlagoon_mdss-v5-0-998b4d2f7dd1@linaro.org>
 In-Reply-To: <20230411-topic-straitlagoon_mdss-v5-0-998b4d2f7dd1@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -76,11 +77,11 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         iommu@lists.linux.dev, Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1684828003; l=1022;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1684828003; l=1026;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=Nh6zuYJI8gb14gxje6MmS/hbQSaIA3Eeoi75EfztoC0=;
- b=mwOMTHZtQczidymOKPTKW1hJ3k0Sfycwrop+S9790DYqps1onxdXRPHNXVFw+jMyTBbN68XRh
- O+ZzxbdzSd9AdFBeZSqcdaG2O5vRco+Dkni81Bj96yukCZc4ScXw/yr
+ bh=Rc5Y2oI69X8xvGgWy74AqbUqZBcFJifSW/Zzw/OwQv0=;
+ b=AxD88SslQYlSx+jDzVZY7fDCrbjY+DxcqY2OWDXBPIglsPSrTy+5sbTPXxbrAqbDZono0TRFx
+ 8kqS2MfeoXfAzSUSXNSdhEehNfc1/lMYFLm6PLksmE0XSCcxYw8tQoV
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,27 +94,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for MDSS on SM6375.
+It got broken at some point, fix it up.
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/gpu/drm/msm/msm_mdss.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/msm_mdss.c b/drivers/gpu/drm/msm/msm_mdss.c
-index 4e3a5f0c303c..05648c910c68 100644
---- a/drivers/gpu/drm/msm/msm_mdss.c
-+++ b/drivers/gpu/drm/msm/msm_mdss.c
-@@ -580,6 +580,7 @@ static const struct of_device_id mdss_dt_match[] = {
- 	{ .compatible = "qcom,sc8280xp-mdss", .data = &sc8280xp_data },
- 	{ .compatible = "qcom,sm6115-mdss", .data = &sm6115_data },
- 	{ .compatible = "qcom,sm6350-mdss", .data = &sm6350_data },
-+	{ .compatible = "qcom,sm6375-mdss", .data = &sm6350_data },
- 	{ .compatible = "qcom,sm8150-mdss", .data = &sm8150_data },
- 	{ .compatible = "qcom,sm8250-mdss", .data = &sm8250_data },
- 	{ .compatible = "qcom,sm8350-mdss", .data = &sm8250_data },
+diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+index c71afda79d64..3800ab478216 100644
+--- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
++++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+@@ -251,10 +251,10 @@ static const struct of_device_id qcom_smmu_client_of_match[] __maybe_unused = {
+ 	{ .compatible = "qcom,sc7280-mss-pil" },
+ 	{ .compatible = "qcom,sc8180x-mdss" },
+ 	{ .compatible = "qcom,sc8280xp-mdss" },
+-	{ .compatible = "qcom,sm8150-mdss" },
+-	{ .compatible = "qcom,sm8250-mdss" },
+ 	{ .compatible = "qcom,sdm845-mdss" },
+ 	{ .compatible = "qcom,sdm845-mss-pil" },
++	{ .compatible = "qcom,sm8150-mdss" },
++	{ .compatible = "qcom,sm8250-mdss" },
+ 	{ }
+ };
+ 
 
 -- 
 2.40.1
