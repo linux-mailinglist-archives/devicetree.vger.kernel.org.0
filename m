@@ -2,30 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91E5E70D46C
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 08:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B2BA70D476
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 09:00:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235297AbjEWG6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 02:58:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48486 "EHLO
+        id S235296AbjEWHAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 03:00:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235226AbjEWG6X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 02:58:23 -0400
+        with ESMTP id S235306AbjEWHAX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 03:00:23 -0400
 Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4C2CD188
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 23:58:20 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0DB4CE62;
+        Tue, 23 May 2023 00:00:10 -0700 (PDT)
 Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id F34A180B5;
-        Tue, 23 May 2023 06:58:18 +0000 (UTC)
+        by muru.com (Postfix) with ESMTP id 0CC4980B5;
+        Tue, 23 May 2023 07:00:07 +0000 (UTC)
 From:   Tony Lindgren <tony@atomide.com>
-To:     Dinh Nguyen <dinguyen@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: Unify pinctrl-single pin group nodes for altera
-Date:   Tue, 23 May 2023 09:58:07 +0300
-Message-Id: <20230523065808.15417-1-tony@atomide.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH] mips: dts: ralink: mt7628a: Unify pinctrl-single pin group nodes
+Date:   Tue, 23 May 2023 09:59:58 +0300
+Message-Id: <20230523065959.15831-1-tony@atomide.com>
 X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -47,28 +52,117 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc: Rob Herring <robh+dt@kernel.org>
 Signed-off-by: Tony Lindgren <tony@atomide.com>
 ---
- arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/mips/boot/dts/ralink/mt7628a.dtsi | 40 +++++++++++++-------------
+ 1 file changed, 20 insertions(+), 20 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-@@ -66,14 +66,14 @@ sdmmca-ecc@ff8c8c00 {
- };
+diff --git a/arch/mips/boot/dts/ralink/mt7628a.dtsi b/arch/mips/boot/dts/ralink/mt7628a.dtsi
+--- a/arch/mips/boot/dts/ralink/mt7628a.dtsi
++++ b/arch/mips/boot/dts/ralink/mt7628a.dtsi
+@@ -51,85 +51,85 @@ pinmux: pinmux@60 {
+ 			pinctrl-single,register-width = <32>;
+ 			pinctrl-single,function-mask = <0x1>;
  
- &pinctrl0 {
--	i2c1_pmx_func: i2c1-pmx-func {
-+	i2c1_pmx_func: i2c1-pins {
- 		pinctrl-single,pins = <
- 			0x78   0x4   /* I2C1_SDA (IO6-B) PIN30SEL) */
- 			0x7c   0x4   /* I2C1_SCL (IO7-B) PIN31SEL */
- 		>;
- 	};
+-			pinmux_gpio_gpio: pinmux_gpio_gpio {
++			pinmux_gpio_gpio: gpio-gpio-pins {
+ 				pinctrl-single,bits = <0x0 0x0 0x3>;
+ 			};
  
--	i2c1_pmx_func_gpio: i2c1-pmx-func-gpio {
-+	i2c1_pmx_func_gpio: i2c1-gpio-pins {
- 		pinctrl-single,pins = <
- 			0x78   0x8   /* I2C1_SDA (IO6-B) PIN30SEL) */
- 			0x7c   0x8   /* I2C1_SCL (IO7-B) PIN31SEL */
+-			pinmux_spi_cs1_cs: pinmux_spi_cs1_cs {
++			pinmux_spi_cs1_cs: spi-cs1-cs-pins {
+ 				pinctrl-single,bits = <0x0 0x0 0x30>;
+ 			};
+ 
+-			pinmux_i2s_gpio: pinmux_i2s_gpio {
++			pinmux_i2s_gpio: i2s-gpio-pins {
+ 				pinctrl-single,bits = <0x0 0x40 0xc0>;
+ 			};
+ 
+-			pinmux_uart0_uart: pinmux_uart0_uart0 {
++			pinmux_uart0_uart: uart0-uart0-pins {
+ 				pinctrl-single,bits = <0x0 0x0 0x300>;
+ 			};
+ 
+-			pinmux_sdmode_sdxc: pinmux_sdmode_sdxc {
++			pinmux_sdmode_sdxc: sdmode-sdxc-pins {
+ 				pinctrl-single,bits = <0x0 0x0 0xc00>;
+ 			};
+ 
+-			pinmux_sdmode_gpio: pinmux_sdmode_gpio {
++			pinmux_sdmode_gpio: sdmode-gpio-pins {
+ 				pinctrl-single,bits = <0x0 0x400 0xc00>;
+ 			};
+ 
+-			pinmux_spi_spi: pinmux_spi_spi {
++			pinmux_spi_spi: spi-spi-pins {
+ 				pinctrl-single,bits = <0x0 0x0 0x1000>;
+ 			};
+ 
+-			pinmux_refclk_gpio: pinmux_refclk_gpio {
++			pinmux_refclk_gpio: refclk-gpio-pins {
+ 				pinctrl-single,bits = <0x0 0x40000 0x40000>;
+ 			};
+ 
+-			pinmux_i2c_i2c: pinmux_i2c_i2c {
++			pinmux_i2c_i2c: i2c-i2c-pins {
+ 				pinctrl-single,bits = <0x0 0x0 0x300000>;
+ 			};
+ 
+-			pinmux_uart1_uart: pinmux_uart1_uart1 {
++			pinmux_uart1_uart: uart1-uart1-pins {
+ 				pinctrl-single,bits = <0x0 0x0 0x3000000>;
+ 			};
+ 
+-			pinmux_uart2_uart: pinmux_uart2_uart {
++			pinmux_uart2_uart: uart2-uart-pins {
+ 				pinctrl-single,bits = <0x0 0x0 0xc000000>;
+ 			};
+ 
+-			pinmux_pwm0_pwm: pinmux_pwm0_pwm {
++			pinmux_pwm0_pwm: pwm0-pwm-pins {
+ 				pinctrl-single,bits = <0x0 0x0 0x30000000>;
+ 			};
+ 
+-			pinmux_pwm0_gpio: pinmux_pwm0_gpio {
++			pinmux_pwm0_gpio: pwm0-gpio-pins {
+ 				pinctrl-single,bits = <0x0 0x10000000
+ 						       0x30000000>;
+ 			};
+ 
+-			pinmux_pwm1_pwm: pinmux_pwm1_pwm {
++			pinmux_pwm1_pwm: pwm1-pwm-pins {
+ 				pinctrl-single,bits = <0x0 0x0 0xc0000000>;
+ 			};
+ 
+-			pinmux_pwm1_gpio: pinmux_pwm1_gpio {
++			pinmux_pwm1_gpio: pwm1-gpio-pins {
+ 				pinctrl-single,bits = <0x0 0x40000000
+ 						       0xc0000000>;
+ 			};
+ 
+-			pinmux_p0led_an_gpio: pinmux_p0led_an_gpio {
++			pinmux_p0led_an_gpio: p0led-an-gpio-pins {
+ 				pinctrl-single,bits = <0x4 0x4 0xc>;
+ 			};
+ 
+-			pinmux_p1led_an_gpio: pinmux_p1led_an_gpio {
++			pinmux_p1led_an_gpio: p1led-an-gpio-pins {
+ 				pinctrl-single,bits = <0x4 0x10 0x30>;
+ 			};
+ 
+-			pinmux_p2led_an_gpio: pinmux_p2led_an_gpio {
++			pinmux_p2led_an_gpio: p2led-an-gpio-pins {
+ 				pinctrl-single,bits = <0x4 0x40 0xc0>;
+ 			};
+ 
+-			pinmux_p3led_an_gpio: pinmux_p3led_an_gpio {
++			pinmux_p3led_an_gpio: p3led-an-gpio-pins {
+ 				pinctrl-single,bits = <0x4 0x100 0x300>;
+ 			};
+ 
+-			pinmux_p4led_an_gpio: pinmux_p4led_an_gpio {
++			pinmux_p4led_an_gpio: p4led-an-gpio-pins {
+ 				pinctrl-single,bits = <0x4 0x400 0xc00>;
+ 			};
+ 		};
 -- 
 2.40.1
