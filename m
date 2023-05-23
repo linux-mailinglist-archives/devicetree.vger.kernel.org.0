@@ -2,67 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A610170E9B6
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 01:41:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A48A70E9C6
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 01:52:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231687AbjEWXln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 19:41:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55172 "EHLO
+        id S229539AbjEWXwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 19:52:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjEWXln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 19:41:43 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF8DDA
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:41:42 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-253310a0df7so67012a91.1
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:41:42 -0700 (PDT)
+        with ESMTP id S238797AbjEWXwl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 19:52:41 -0400
+Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76004E9
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:52:40 -0700 (PDT)
+Received: by mail-oo1-xc2d.google.com with SMTP id 006d021491bc7-55555562288so51156eaf.0
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:52:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684885301; x=1687477301;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0qcN4qpn6euVd7cpQS5agPXb6rrZj0n8++htZCbIkVo=;
-        b=BP3xxEWBFZDbZ3hLN+ToXsQApTNSJGPTRwylEs9yZ2ECgjMPHlif4fWI6JterdQVRS
-         uuW5DYu0B8q8WPqmFkg/pG5r3RC8zJRdtuE4NxmMLAeU4aQN+BgNJXdTKH/MaRsWZKqY
-         u5VRq1jC72VRBypFrDSlC+VFY838Deat5QdrQaZGZ4h6iJpXAMaUY9dlvKJ0jILTybMH
-         NngWTzvw+mQOqRQdwhbPtXmGqdKBWTRbzSuI/IHpzmTN3baICO7MdjJQbHjcIh71Vm6v
-         2MbmnUtCanpuj/ojmc1pVz3OUHHfcS0Zvvk2pjNkGLTwoLmoM9yjfjOQYGXcGjycuU4M
-         kTNQ==
+        d=gmail.com; s=20221208; t=1684885960; x=1687477960;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ojbBjUwlKVt2/9+CCAjrur00lN7Lj3Zr989tamB+iNU=;
+        b=K0gAhgeXV1dkUECCcaHC14wWadNNulIDBxTqK20yYytGpisoG4F25S6rG0tnzeposs
+         3KKxj1C4+4vlX5DcvvzHrqOjVgDjr71MNkBCLpwB6iVERNRxRCLSZM5v3pqqqyHJdsJU
+         kXq2LCdObuP7NWbhiA9eGFEWBbEsekdVQ4+8fAT0aGOxpp64LnlHDd99Yh3STfOxdQzJ
+         a2sWkr1rlaPl+FsyfVYPvtTuUcx9Fv61zihOFhfl8t1Su0Hza4aXr+W80CGe+wHnDrPI
+         68FMmLVPIkS49XrHkIy7KwZgDV29UwqVYOXiUU38kYSOHmwxSw6Q445w9xiUy/HT5dn9
+         8LIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684885301; x=1687477301;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0qcN4qpn6euVd7cpQS5agPXb6rrZj0n8++htZCbIkVo=;
-        b=j5a1mJ5XfeR3b0N4UJoWsaetvtyzd5GYQmvBxLVnepUQ9/UcByB7fC0L7BGSEhPY+E
-         CTPuGrneUuCKbUda4S6u2hU2XBI0Ric9Pqsy/qYFKy2R9CVFF4k4JvGiisrVjpx2weSA
-         YmnMZB5jNNkS+W9ouY4JduIi6ceD5TXxpNWCiGMdziImkOkydt70+svQH8Nu9BZm2FYK
-         WBRLAk2J1WfcNTs/grI/XhEOlRR+Quv2s9e7pjiCrCQu+HSVYd+Mz5hxNVlbrMiT0IFa
-         nJD99jJIBhx1LuOE3XxLBLQiYQrKclYLH14NF8zcqX+SEtvzjDwU2fO/TgbEN4Oomq+R
-         3vEg==
-X-Gm-Message-State: AC+VfDwmeVyL592tWgPkcsIxRQYjhq8wKDO5CFGW1yJnxWnm6nV/tIu3
-        mS2XfTv92pDk8GFfnpf0WuYXHhATJazaoOpnGRs=
-X-Google-Smtp-Source: ACHHUZ6W1tAoOXnd0kBTIAF/4o3EY7yozKoBLYms3h/sz8j4K7RdAPFDLDUzntamfk0cXLgGfDl3MMxH8M9UcKOXRbE=
-X-Received: by 2002:a17:90b:1e0e:b0:252:b150:6ce with SMTP id
- pg14-20020a17090b1e0e00b00252b15006cemr878469pjb.1.1684885301547; Tue, 23 May
- 2023 16:41:41 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230522201404.660242-1-festevam@gmail.com> <20230522201404.660242-5-festevam@gmail.com>
- <b479bae2-1d0a-8cd1-0f80-74ecb483605c@denx.de> <CAOMZO5BtPUu9CfxJO-mScB4OYeN3g7HxKF=D636wFSUJ5HMsoQ@mail.gmail.com>
- <a9e2e19f-e9df-81e3-4608-71beed85852f@denx.de> <CAOMZO5Bujbynq5CSbWQu+aEsiaTP686OW44MujDFuE1k5EMeMA@mail.gmail.com>
- <b0ad67bd-c37a-67c5-f167-37b5cb8a54d1@denx.de>
-In-Reply-To: <b0ad67bd-c37a-67c5-f167-37b5cb8a54d1@denx.de>
+        d=1e100.net; s=20221208; t=1684885960; x=1687477960;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ojbBjUwlKVt2/9+CCAjrur00lN7Lj3Zr989tamB+iNU=;
+        b=avyiI8TVUXVdXIAPucGReP9Q0V3HC7JeBTzOw2vQVozbuCyLS3ByU16VLd0olm60GA
+         f6Ij8vOgwlQ6w5pE4zV0u7pBMEhmqr/K8Zf9Dw3ZtnQ4shM7bkPaKJOCtONm+/amWeTb
+         uS481zF8y88/WU6/ZWZs9QKf+awFeyyPgq02z5pEKtrOFF1qKuIj4fNXR/y/ds6c6CEF
+         7tnnW2qevKJ9NVCQQc1qWGe0XRNNpemoD4Q4pXvOkp+i6ZpNZAX8IGiTmR7BDWNZcFA6
+         AVWVyduqnsrwxSTu+/ra1/YF1+ShIwHOQpvWSsMg47w6uuNd1rp2xA+YTSgRITzySENM
+         q3Hg==
+X-Gm-Message-State: AC+VfDx6HXwCk8NvIYcOoAf92tXRvyoFIIGtqJlMvjmPohfSoTwl+Cat
+        E5oQ5mNKSEgccWBuxBlV+Bo=
+X-Google-Smtp-Source: ACHHUZ5HUpsZrYYzlMKEfrFF9m4L4u1G2QABAgS1N668H1gkoyCXbhN3v8RaKE5Apwjg7TqAl2D7Xg==
+X-Received: by 2002:aca:efc6:0:b0:385:d91:ee30 with SMTP id n189-20020acaefc6000000b003850d91ee30mr7413882oih.3.1684885959682;
+        Tue, 23 May 2023 16:52:39 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:14ab:657f:c6e7:b30b])
+        by smtp.gmail.com with ESMTPSA id h13-20020a4ad74d000000b00552502f3ae1sm2454559oot.39.2023.05.23.16.52.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 May 2023 16:52:39 -0700 (PDT)
 From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 23 May 2023 20:41:29 -0300
-Message-ID: <CAOMZO5BjiHR7XWodBa=MkEa+N4E9ZXYD9hoBFqn5LJkMZ6YtaA@mail.gmail.com>
-Subject: Re: [PATCH v6 5/5] soc: imx: imx6sx-gpr: Introduce a GPR driver
-To:     Marek Vasut <marex@denx.de>
-Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
+To:     shawnguo@kernel.org
+Cc:     marex@denx.de, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
-        bhelgaas@google.com, Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Fabio Estevam <festevam@denx.de>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v7 1/2] dt-bindings: display: bridge: ldb: Adjust imx6sx entries
+Date:   Tue, 23 May 2023 20:52:31 -0300
+Message-Id: <20230523235232.7358-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -73,8 +71,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 23, 2023 at 8:36=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+From: Fabio Estevam <festevam@denx.de>
 
-> Wasn't this already rejected by Krzysztof ?
+On the i.MX6SX there is a single entry for 'reg', so add some logic to
+reflect that.
 
-No, it was 'simple-bus' that was rejected.
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Marek Vasut <marex@denx.de>
+---
+Dependency: This depends on bd60d98a11da ("dt-bindings: display: bridge: ldb: Adjust imx6sx entries"),
+which is available on linux-next.
+
+Changes since v6:
+- None
+
+ .../bindings/display/bridge/fsl,ldb.yaml      | 24 ++++++++++++++++---
+ 1 file changed, 21 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+index 07388bf2b90d..7ff45e3d4929 100644
+--- a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
+@@ -28,12 +28,11 @@ properties:
+     const: ldb
+ 
+   reg:
++    minItems: 1
+     maxItems: 2
+ 
+   reg-names:
+-    items:
+-      - const: ldb
+-      - const: lvds
++    maxItems: 2
+ 
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+@@ -57,6 +56,7 @@ properties:
+ 
+ required:
+   - compatible
++  - reg
+   - clocks
+   - ports
+ 
+@@ -74,6 +74,24 @@ allOf:
+           properties:
+             port@2: false
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: fsl,imx6sx-ldb
++    then:
++      properties:
++        reg:
++          maxItems: 1
++    else:
++      properties:
++        reg:
++          minItems: 2
++        reg-names:
++          items:
++            - const: ldb
++            - const: lvds
++
+ additionalProperties: false
+ 
+ examples:
+-- 
+2.34.1
+
