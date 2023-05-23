@@ -2,185 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5602570D24D
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 05:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B715370D2DF
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 06:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232409AbjEWDWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 23:22:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40036 "EHLO
+        id S232530AbjEWEqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 00:46:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232318AbjEWDWb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 23:22:31 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 51EE8B6;
-        Mon, 22 May 2023 20:22:29 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8DxI_B0MWxkficLAA--.18907S3;
-        Tue, 23 May 2023 11:22:28 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxHuRwMWxkvdtvAA--.57042S3;
-        Tue, 23 May 2023 11:22:25 +0800 (CST)
-Subject: Re: [PATCH v2 2/3] dt-bindings: soc: add loongson-2 pm
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Tiezhu Yang <yangtiezhu@loongson.cn>,
-        Marc Zyngier <maz@kernel.org>,
-        Youling Tang <tangyouling@loongson.cn>,
-        Baoqi Zhang <zhangbaoqi@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>, Yun Liu <liuyun@loongson.cn>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, loongarch@lists.linux.dev,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230522093156.7108-1-zhuyinbo@loongson.cn>
- <20230522093156.7108-3-zhuyinbo@loongson.cn>
- <20230522-kooky-outbid-82662b45d305@wendy>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <d88c0965-8f72-7be1-b67f-1bcf3be60da3@loongson.cn>
-Date:   Tue, 23 May 2023 11:22:24 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S232474AbjEWEqL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 00:46:11 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1489FFA;
+        Mon, 22 May 2023 21:46:09 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 612CA139F;
+        Mon, 22 May 2023 21:46:54 -0700 (PDT)
+Received: from a077893.blr.arm.com (unknown [10.162.42.7])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id F2E483F6C4;
+        Mon, 22 May 2023 21:46:02 -0700 (PDT)
+From:   Anshuman Khandual <anshuman.khandual@arm.com>
+To:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        coresight@lists.linaro.org, suzuki.poulose@arm.com
+Cc:     Anshuman Khandual <anshuman.khandual@arm.com>,
+        Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+        Steve Clevenger <scclevenger@os.amperecomputing.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Subject: [PATCH V4 0/6] coresight: etm4x: Migrate ACPI AMBA devices to platform driver
+Date:   Tue, 23 May 2023 10:15:47 +0530
+Message-Id: <20230523044553.1525048-1-anshuman.khandual@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20230522-kooky-outbid-82662b45d305@wendy>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxHuRwMWxkvdtvAA--.57042S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoWxAr45tr1fWw1xZF17WrWkXrb_yoW5tr1fpa
-        n7Ca1Ykr48ZF13uws5JFy8Aw1Y9rZakFsrXFZrJry0kr98u3WFq3y7KF98ZFW3ArykGFW2
-        vFyIgw4jgF4DCFJanT9S1TB71UUUUjDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bDAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY
-        6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrV
-        C2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE
-        7xkEbVWUJVW8JwACjcxG0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxkF7I0En4kS14
-        v26r126r1DMxAIw28IcxkI7VAKI48JMxAIw28IcVCjz48v1sIEY20_WwCFx2IqxVCFs4IE
-        7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I
-        0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAI
-        cVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcV
-        CF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIE
-        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jYnmiUUUUU=
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+CoreSight ETM4x devices could be accessed either via MMIO (handled via
+amba_driver) or CPU system instructions (handled via platform driver). But
+this has the following issues :
 
+  - Each new CPU comes up with its own PID and thus we need to keep on
+    adding the "known" PIDs to get it working with AMBA driver. While
+    the ETM4 architecture (and CoreSight architecture) defines way to
+    identify a device as ETM4. Thus older kernels  won't be able to
+    "discover" a newer CPU, unless we add the PIDs.
 
-在 2023/5/22 下午8:47, Conor Dooley 写道:
-> Hey!
-> 
-> On Mon, May 22, 2023 at 05:31:55PM +0800, Yinbo Zhu wrote:
->> Add the Loongson-2 SoC Power Management Controller binding with DT
->> schema format using json-schema.
-> 
-> Grabbing thread from lore.kernel.org/all/20230522093156.7108-3-zhuyinbo%40loongson.cn/t.mbox.gz
-> Checking for newer revisions
-> Grabbing search results from lore.kernel.org
-> Analyzing 3 messages in the thread
-> Checking attestation on all messages, may take a moment...
-> ---
->    [PATCH v2 1/3] loongarch: export loongarch pm interface
->      + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->    [PATCH v2 2/3] dt-bindings: soc: add loongson-2 pm
->      + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->    ERROR: missing [3/3]!
-> ---
-> Total patches: 2
-> ---
-> WARNING: Thread incomplete!
-> Applying: loongarch: export loongarch pm interface
-> Applying: dt-bindings: soc: add loongson-2 pm
-> 
-> Looks like the user for these bindings got lost somewhere along the way?
-> Please make sure to keep a series threaded.
+  - With ACPI, the ETM4x devices have the same HID to identify the device
+    irrespective of the mode of access. This creates a problem where two
+    different drivers (both AMBA based driver and platform driver) would
+    hook into the "HID" and could conflict. e.g., if AMBA driver gets
+    hold of a non-MMIO device, the probe fails. If we have single driver
+    hooked into the given "HID", we could handle them seamlessly,
+    irrespective of the mode of access.
 
-okay, I got it.  I will use a thread to send a series patch.
+  - CoreSight is heavily dependent on the runtime power management. With
+    ACPI, amba_driver doesn't get us anywhere with handling the power
+    and thus one need to always turn the power ON to use them. Moving to
+    platform driver gives us the power management for free.
 
-> 
->>
->> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->> ---
->>   .../soc/loongson/loongson,ls2k-pmc.yaml       | 51 +++++++++++++++++++
->>   MAINTAINERS                                   |  6 +++
->>   2 files changed, 57 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
->> new file mode 100644
->> index 000000000000..ddad62889c60
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
->> @@ -0,0 +1,51 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/soc/loongson/loongson,ls2k-pmc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Loongson-2 Power Manager controller
->> +
->> +maintainers:
->> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - loongson,ls2k-pmc
->> +      - const: syscon
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  suspend-address:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      The "suspend-address" is a deep sleep state (Suspend To RAM)
->> +      firmware entry address which was jumped from kernel and it's
->> +      value was dependent on specific platform firmware code. In
->> +      addition, the PM need according to it to indicate that current
->> +      SoC whether support Suspend To RAM.
-> 
-> I (still) think this property is rather odd, maybe I am just not really
-> understanding the property as it seems to be described partly in terms
-> of operating system behaviour rather than its actual function. "was
-> jumped from kernel" I don't get.
+Due to all of the above, we are moving ACPI MMIO based etm4x devices to be
+supported via tha platform driver. The series makes the existing platform
+driver generic to handle both type of the access modes. Although existing
+AMBA driver would still continue to support DT based etm4x MMIO devices.
+Although some problems still remain, such as manually adding PIDs for all
+new AMBA DT based devices.
 
-The function Suspend-To-RAM include kernel logic and firmware logic and
-if no define "suspend-address" that kernel will can't into firmware 
-after suspend to ram and the Suspend-To-RAM function will not be 
-finished in LoongArch.
+The series applies on 6.4-rc3.
 
+Changes in V4:
 
-> 
-> The whole setup here seems a bit odd, but that's for the loongson arch
-> folks reviewing the actual code to comment on!
+- Changed in-code comment in etm4_check_arch_features()
+- Re-ordered pm_runtime_disable() in etm4_remove_platform_dev()
+- Renamed back etm4_match as etm4_sysreg_match
+- Moved back [PATCH 6/6] as [PATCH 5/6]
 
-okay, I got it.
+Changes in V3:
 
-Thanks
-Yinbo.
-> 
-> Thanks,
-> Conor.
-> 
+https://lore.kernel.org/all/20230519052149.1367814-1-anshuman.khandual@arm.com/
+
+- Returned from etm4_check_arch_features() for non iomem devices 
+- Renamed ETM_DEVTYPE_ETMv4x_ARCH as CS_DEVTYPE_PE_TRACE
+- Renamed is_etm4x_devtype() as is_devtype_cpu_trace()
+- Added a patch to ignore the absence of graph connections
+
+Changes in V2:
+
+https://lore.kernel.org/all/20230327050537.30861-1-anshuman.khandual@arm.com/
+
+- Enables ACPI etm4x device support in the existing platform driver
+- Dropped last two patches from the series
+- Dropped redundant 'devarch' checking from is_etm4x_device()
+- Renamed updated is_etm4x_device() as is_etm4x_devtype()
+- Fixed arguments in fallback stub for etm4_check_arch_features()
+- Tagged etm4_dev_pm_ops with etm4_platform_driver
+- Updated the comment for coresight_get_enable_apb_pclk() helper
+- Updated the comment for new 'pclk' element in struct etm4_drvdata
+- Dropped the clock when devm_ioremap_resource() fails
+- Convert IS_ERR() into a direct pointer check in etm4_remove_platform_dev()
+- Dropped "arm,coresight-etm4x" compatible property from etm4_match[]
+
+Changes in V1:
+
+https://lore.kernel.org/all/20230317030501.1811905-1-anshuman.khandual@arm.com/
+
+Cc: Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>
+Cc: Steve Clevenger <scclevenger@os.amperecomputing.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: Russell King (Oracle) <linux@armlinux.org.uk>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Len Brown <lenb@kernel.org>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: Mike Leach <mike.leach@linaro.org>
+Cc: Leo Yan <leo.yan@linaro.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-acpi@vger.kernel.org
+Cc: coresight@lists.linaro.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+
+Anshuman Khandual (4):
+  coresight: etm4x: Allocate and device assign 'struct etmv4_drvdata' earlier
+  coresight: etm4x: Drop iomem 'base' argument from etm4_probe()
+  coresight: etm4x: Drop pid argument from etm4_probe()
+  coresight: etm4x: Change etm4_platform_driver driver for MMIO devices
+
+Suzuki K Poulose (2):
+  coresight: platform: acpi: Ignore the absence of graph
+  coresight: etm4x: Add ACPI support in platform driver
+
+ drivers/acpi/acpi_amba.c                      |   1 -
+ .../coresight/coresight-etm4x-core.c          | 117 ++++++++++++++----
+ drivers/hwtracing/coresight/coresight-etm4x.h |   4 +
+ .../hwtracing/coresight/coresight-platform.c  |   6 +-
+ include/linux/coresight.h                     |  59 +++++++++
+ 5 files changed, 163 insertions(+), 24 deletions(-)
+
+-- 
+2.25.1
 
