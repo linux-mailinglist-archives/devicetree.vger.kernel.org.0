@@ -2,252 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B592B70DDBB
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 15:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 157EC70DE08
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 15:54:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236064AbjEWNmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 09:42:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60974 "EHLO
+        id S236795AbjEWNyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 09:54:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236760AbjEWNmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 09:42:35 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0BA04121;
-        Tue, 23 May 2023 06:42:16 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D5433139F;
-        Tue, 23 May 2023 06:42:54 -0700 (PDT)
-Received: from [10.57.73.71] (unknown [10.57.73.71])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 43E273F840;
-        Tue, 23 May 2023 06:42:07 -0700 (PDT)
-Message-ID: <db575b8f-12e9-dab5-c7f6-b524cbce64d9@arm.com>
-Date:   Tue, 23 May 2023 14:42:05 +0100
+        with ESMTP id S234409AbjEWNyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 09:54:01 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1618C4;
+        Tue, 23 May 2023 06:53:59 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34NDra7S023638;
+        Tue, 23 May 2023 13:53:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=6Bf6Nab4P0ZIFTKoqEbVsOz1YX/KfvGrMuZiQWpcNZI=;
+ b=Le/vmLSGhclJyNQkTpxKcpsVmrQ2csLPWkaSv0lXpIX0z9ii+DsI2jQDJBhkeY9VGCR3
+ f9jf8YAOGu2gZXntSJIiZItnlZ5vdcKBaUh3f5QBHPPknajltv8JGXz31yxHMvJQeT8F
+ /01JpwwVu5iPXMDcXY+NbQWeZqH+itVkFe83gcoWEbVa04QYmR6juUD2toK14UcRoORf
+ H5iEuRPVAFxP/wiYT9vJGbrke6FnDKZMgymiNHlLhWQfEbtPtZuLWgAn4XbkAH39IRHZ
+ icLoU4FY9yzukMYE8JkdQStgZnfGs7vN0Ejqkgk4hseRdeVJfDOz4wccBCOfr0K7vnsv DA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qrc38ab1c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 23 May 2023 13:53:54 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34NDrr1S018460
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 23 May 2023 13:53:53 GMT
+Received: from [10.216.34.130] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 23 May
+ 2023 06:53:47 -0700
+Message-ID: <751606e3-99e0-9384-d749-605281922f94@quicinc.com>
+Date:   Tue, 23 May 2023 19:23:41 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.11.0
-Subject: Re: [PATCH v4 03/11] coresight-tpdm: Initialize DSB subunit
- configuration
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v2 2/4] arm: dts: qcom: qdu1000: Add SDHCI node
+Content-Language: en-US
+To:     Bjorn Andersson <andersson@kernel.org>
+CC:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
- <1682586037-25973-4-git-send-email-quic_taozha@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <1682586037-25973-4-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20230522093620.3568-1-quic_kbajaj@quicinc.com>
+ <20230522093620.3568-3-quic_kbajaj@quicinc.com>
+ <20230522150105.3i7zeucna7kh5waz@ripper>
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+In-Reply-To: <20230522150105.3i7zeucna7kh5waz@ripper>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: FwMmEkTCTLcmp3t6soYrlNWyI-HAuFT3
+X-Proofpoint-ORIG-GUID: FwMmEkTCTLcmp3t6soYrlNWyI-HAuFT3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-23_09,2023-05-23_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ spamscore=0 malwarescore=0 clxscore=1015 mlxscore=0 mlxlogscore=999
+ priorityscore=1501 lowpriorityscore=0 adultscore=0 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305230108
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2023 10:00, Tao Zhang wrote:
-> DSB is used for monitoring “events”. Events are something that
-> occurs at some point in time. It could be a state decode, the
-> act of writing/reading a particular address, a FIFO being empty,
-> etc. This decoding of the event desired is done outside TPDM.
-> DSB subunit need to be configured in enablement and disablement.
-> A struct that specifics associated to dsb dataset is needed. It
-> saves the configuration and parameters of the dsb datasets. This
-> change is to add this struct and initialize the configuration of
-> DSB subunit.
-> 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> ---
->   drivers/hwtracing/coresight/coresight-tpdm.c | 60 +++++++++++++++++++++++++---
->   drivers/hwtracing/coresight/coresight-tpdm.h | 17 ++++++++
->   2 files changed, 72 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-> index ba1867f..6f8a8ab 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-> @@ -20,17 +20,51 @@
->   
->   DEFINE_CORESIGHT_DEVLIST(tpdm_devs, "tpdm");
->   
-> +static void tpdm_reset_datasets(struct tpdm_drvdata *drvdata)
-> +{
-> +	if (drvdata->datasets & TPDM_PIDR0_DS_DSB) {
-> +		memset(drvdata->dsb, 0, sizeof(struct dsb_dataset));
-> +
-> +		drvdata->dsb->trig_ts = true;
-> +		drvdata->dsb->trig_type = false;
-> +	}
-> +}
-> +
-> +static void set_trigger_type(struct tpdm_drvdata *drvdata, u32 *val)
-> +{
-> +	if (drvdata->dsb->trig_type)
-> +		*val |= TPDM_DSB_CR_TRIG_TYPE;
-> +	else
-> +		*val &= ~TPDM_DSB_CR_TRIG_TYPE;
-> +}
-> +
 
-Given this is not reused, we could simply inline it in the caller
-to avoid creating a confusion, like other operations ?
 
->   static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
->   {
->   	u32 val;
->   
-> -	/* Set the enable bit of DSB control register to 1 */
-> +	val = readl_relaxed(drvdata->base + TPDM_DSB_TIER);
-> +	/* Set trigger timestamp */
-> +	if (drvdata->dsb->trig_ts)
-> +		val |= TPDM_DSB_TIER_XTRIG_TSENAB;
-> +	else
-> +		val &= ~TPDM_DSB_TIER_XTRIG_TSENAB;,
-> +	writel_relaxed(val, drvdata->base + TPDM_DSB_TIER);
-> +
->   	val = readl_relaxed(drvdata->base + TPDM_DSB_CR);
-> +	/* Set trigger type */
-> +	set_trigger_type(drvdata, &val);
-> +	/* Set the enable bit of DSB control register to 1 */
->   	val |= TPDM_DSB_CR_ENA;
->   	writel_relaxed(val, drvdata->base + TPDM_DSB_CR);
->   }
->   
->   /* TPDM enable operations */
-> +/* The TPDM or Monitor serves as data collection component for various
+On 5/22/2023 8:31 PM, Bjorn Andersson wrote:
+> On Mon, May 22, 2023 at 03:06:18PM +0530, Komal Bajaj wrote:
+>
+> Path says arch/arm64/, so $subject should start "arm64: dts: qcom: ..."
+>
+>> Add sdhc node for eMMC on QDU1000 and QRU1000 SoCs.
+>>
+>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qdu1000.dtsi | 51 +++++++++++++++++++++++++++
+>>   1 file changed, 51 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+>> index 734438113bba..38ee7115a35f 100644
+>> --- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+>> @@ -19,6 +19,10 @@
+>>   
+>>   	chosen: chosen { };
+>>   
+>> +	aliases {
+>> +		mmc0 = &sdhc_1; /* eMMC */
+> Don't we just have a single SDC instance on this platform? If so you
+> don't need aliases.
+Sure, will remove aliases.
+>
+>> +	};
+>> +
+>>   	cpus {
+>>   		#address-cells = <2>;
+>>   		#size-cells = <0>;
+>> @@ -842,6 +846,53 @@
+>>   			#hwlock-cells = <1>;
+>>   		};
+>>   
+>> +		sdhc_1: mmc@8804000 {
+> And you can skip the "_1" suffix...
+Sure
 
-minor nit: Please could you extend the existing comment than adding a
-new multi-line comment ?
-
-> + * dataset types. It covers Basic Counts(BC), Tenure Counts(TC),
-> + * Continuous Multi-Bit(CMB), Multi-lane CMB(MCMB) and Discrete Single
-> + * Bit(DSB). This function will initialize the configuration according
-> + * to the dataset type supported by the TPDM.
-> + */
->   static void __tpdm_enable(struct tpdm_drvdata *drvdata)
->   {
->   	CS_UNLOCK(drvdata->base);
-> @@ -110,15 +144,24 @@ static const struct coresight_ops tpdm_cs_ops = {
->   	.source_ops	= &tpdm_source_ops,
->   };
->   
-> -static void tpdm_init_default_data(struct tpdm_drvdata *drvdata)
-> +static int tpdm_datasets_setup(struct tpdm_drvdata *drvdata)
->   {
->   	u32 pidr;
->   
-> -	CS_UNLOCK(drvdata->base);
->   	/*  Get the datasets present on the TPDM. */
->   	pidr = readl_relaxed(drvdata->base + CORESIGHT_PERIPHIDR0);
->   	drvdata->datasets |= pidr & GENMASK(TPDM_DATASETS - 1, 0);
-> -	CS_LOCK(drvdata->base);
-
-Why are we removing the CS_{UN,}LOCK here ?
-
-Rest looks OK to me.
-
-Suzuki
-
-> +
-> +	if (drvdata->datasets & TPDM_PIDR0_DS_DSB) {
-> +		if (!drvdata->dsb) {
-> +			drvdata->dsb = devm_kzalloc(drvdata->dev,
-> +						    sizeof(*drvdata->dsb), GFP_KERNEL);
-> +			if (!drvdata->dsb)
-> +				return -ENOMEM;
-> +		}
-> +	}
-> +
-> +	return 0;
->   }
->   
->   /*
-> @@ -181,6 +224,7 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
->   	struct coresight_platform_data *pdata;
->   	struct tpdm_drvdata *drvdata;
->   	struct coresight_desc desc = { 0 };
-> +	int ret;
->   
->   	pdata = coresight_get_platform_data(dev);
->   	if (IS_ERR(pdata))
-> @@ -200,6 +244,12 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
->   
->   	drvdata->base = base;
->   
-> +	ret = tpdm_datasets_setup(drvdata);
-> +	if (ret)
-> +		return ret;
-> +
-> +	tpdm_reset_datasets(drvdata);
-> +
->   	/* Set up coresight component description */
->   	desc.name = coresight_alloc_device_name(&tpdm_devs, dev);
->   	if (!desc.name)
-> @@ -216,7 +266,7 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
->   		return PTR_ERR(drvdata->csdev);
->   
->   	spin_lock_init(&drvdata->spinlock);
-> -	tpdm_init_default_data(drvdata);
-> +
->   	/* Decrease pm refcount when probe is done.*/
->   	pm_runtime_put(&adev->dev);
->   
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h b/drivers/hwtracing/coresight/coresight-tpdm.h
-> index 5438540..68f33bd 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
-> @@ -11,8 +11,14 @@
->   
->   /* DSB Subunit Registers */
->   #define TPDM_DSB_CR		(0x780)
-> +#define TPDM_DSB_TIER		(0x784)
-> +
->   /* Enable bit for DSB subunit */
->   #define TPDM_DSB_CR_ENA		BIT(0)
-> +/* Enable bit for DSB subunit trigger type */
-> +#define TPDM_DSB_CR_TRIG_TYPE		BIT(12)
-> +/* Enable bit for DSB subunit trigger timestamp */
-> +#define TPDM_DSB_TIER_XTRIG_TSENAB		BIT(1)
->   
->   /* TPDM integration test registers */
->   #define TPDM_ITATBCNTRL		(0xEF0)
-> @@ -41,6 +47,16 @@
->   #define TPDM_PIDR0_DS_DSB	BIT(1)
->   
->   /**
-> + * struct dsb_dataset - specifics associated to dsb dataset
-> + * @trig_ts:          Enable/Disable trigger timestamp.
-> + * @trig_type:        Enable/Disable trigger type.
-> + */
-> +struct dsb_dataset {
-> +	bool			trig_ts;
-> +	bool			trig_type;
-> +};
-> +
-> +/**
->    * struct tpdm_drvdata - specifics associated to an TPDM component
->    * @base:       memory mapped base address for this component.
->    * @dev:        The device entity associated to this component.
-> @@ -57,6 +73,7 @@ struct tpdm_drvdata {
->   	spinlock_t		spinlock;
->   	bool			enable;
->   	unsigned long		datasets;
-> +	struct dsb_dataset	*dsb;
->   };
->   
->   #endif  /* _CORESIGHT_CORESIGHT_TPDM_H */
+Thanks
+Komal
+>
+> Regards,
+> Bjorn
+>
+>> +			compatible = "qcom,qdu1000-sdhci", "qcom,sdhci-msm-v5";
+>> +			reg = <0x0 0x08804000 0x0 0x1000>,
+>> +			      <0x0 0x08805000 0x0 0x1000>;
+>> +			reg-names = "hc", "cqhci";
+>> +
+>> +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-names = "hc_irq", "pwr_irq";
+>> +
+>> +			clocks = <&gcc GCC_SDCC5_AHB_CLK>,
+>> +				 <&gcc GCC_SDCC5_APPS_CLK>,
+>> +				 <&rpmhcc RPMH_CXO_CLK>;
+>> +			clock-names = "iface",
+>> +				      "core",
+>> +				      "xo";
+>> +
+>> +			resets = <&gcc GCC_SDCC5_BCR>;
+>> +
+>> +			interconnects = <&system_noc MASTER_SDCC_1 0 &mc_virt SLAVE_EBI1 0>,
+>> +					<&gem_noc MASTER_APPSS_PROC 0 &system_noc SLAVE_SDCC_2 0>;
+>> +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
+>> +			power-domains = <&rpmhpd QDU1000_CX>;
+>> +			operating-points-v2 = <&sdhc1_opp_table>;
+>> +
+>> +			iommus = <&apps_smmu 0x80 0x0>;
+>> +			dma-coherent;
+>> +
+>> +			bus-width = <8>;
+>> +
+>> +			qcom,dll-config = <0x0007642c>;
+>> +			qcom,ddr-config = <0x80040868>;
+>> +
+>> +			status = "disabled";
+>> +
+>> +			sdhc1_opp_table: opp-table {
+>> +				compatible = "operating-points-v2";
+>> +
+>> +				opp-384000000 {
+>> +					opp-hz = /bits/ 64 <384000000>;
+>> +					required-opps = <&rpmhpd_opp_nom>;
+>> +					opp-peak-kBps = <6528000 1652800>;
+>> +					opp-avg-kBps = <400000 0>;
+>> +				};
+>> +			};
+>> +		};
+>> +
+>>   		pdc: interrupt-controller@b220000 {
+>>   			compatible = "qcom,qdu1000-pdc", "qcom,pdc";
+>>   			reg = <0x0 0xb220000 0x0 0x30000>, <0x0 0x174000f0 0x0 0x64>;
+>> -- 
+>> 2.17.1
+>>
 
