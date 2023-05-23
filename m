@@ -2,167 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B2BA70D476
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 09:00:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0231370D483
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 09:07:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235296AbjEWHAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 03:00:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49520 "EHLO
+        id S232706AbjEWHHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 03:07:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235306AbjEWHAX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 03:00:23 -0400
-Received: from muru.com (muru.com [72.249.23.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0DB4CE62;
-        Tue, 23 May 2023 00:00:10 -0700 (PDT)
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 0CC4980B5;
-        Tue, 23 May 2023 07:00:07 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH] mips: dts: ralink: mt7628a: Unify pinctrl-single pin group nodes
-Date:   Tue, 23 May 2023 09:59:58 +0300
-Message-Id: <20230523065959.15831-1-tony@atomide.com>
-X-Mailer: git-send-email 2.40.1
+        with ESMTP id S235269AbjEWHHk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 03:07:40 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 039991B1;
+        Tue, 23 May 2023 00:07:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684825630; x=1716361630;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=P5aD8T4OPWO3H/B7LgZ9I5LK6FmSItXjie0o4e9PMFA=;
+  b=RxQKP6sqm+eabWOsCWZ8OtritO9oSig+UKwPs01D1HrR2ZwZ0nciRb1t
+   Fu/08pJjYDOJULi4i3wooPfoAFSwvPX1yjxRbB9MTeFQ5VlnQLxCefT1g
+   PlYRWhZ8PsqjM66HmMlbHMDEpAx+QVMlqQZTAl9Sw0LBxF4VaMgNt98AY
+   tLGQDniKJ4gp77NP+eIF75UCg0ehUmF2ZC7hWLwpgqy3vnhsVD/cGI6ww
+   at4zsbJ3PVF4cT8qRvK1j5XZHZAHz9OKUNaeZlf9+/f4JvhiKwCod3wP7
+   YPtjoPNR7wHiab3/bwVbaP6F2GpZhHD3k6KrOpWBVZVW0WNbSqG2tqt4s
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; 
+   d="scan'208";a="153442760"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 May 2023 00:07:09 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 23 May 2023 00:07:08 -0700
+Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Tue, 23 May 2023 00:07:05 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH 0/2] dt-bindings: interrupt-controller: microchip,sama7g5-eic: use right naming syntax
+Date:   Tue, 23 May 2023 10:06:35 +0300
+Message-ID: <20230523070637.224476-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We want to unify the pinctrl-single pin group nodes to use naming "pins".
-Otherwise non-standad pin group names will add make dtbs checks errors
-when the pinctrl-single yaml binding gets merged.
+Hi,
 
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/mips/boot/dts/ralink/mt7628a.dtsi | 40 +++++++++++++-------------
- 1 file changed, 20 insertions(+), 20 deletions(-)
+Series updates the documentation file for Microchip SAMA7G5 EIC to use
+proper naming syntax. It also updates MAINTAINERS EIC section with
+documentation file.
 
-diff --git a/arch/mips/boot/dts/ralink/mt7628a.dtsi b/arch/mips/boot/dts/ralink/mt7628a.dtsi
---- a/arch/mips/boot/dts/ralink/mt7628a.dtsi
-+++ b/arch/mips/boot/dts/ralink/mt7628a.dtsi
-@@ -51,85 +51,85 @@ pinmux: pinmux@60 {
- 			pinctrl-single,register-width = <32>;
- 			pinctrl-single,function-mask = <0x1>;
- 
--			pinmux_gpio_gpio: pinmux_gpio_gpio {
-+			pinmux_gpio_gpio: gpio-gpio-pins {
- 				pinctrl-single,bits = <0x0 0x0 0x3>;
- 			};
- 
--			pinmux_spi_cs1_cs: pinmux_spi_cs1_cs {
-+			pinmux_spi_cs1_cs: spi-cs1-cs-pins {
- 				pinctrl-single,bits = <0x0 0x0 0x30>;
- 			};
- 
--			pinmux_i2s_gpio: pinmux_i2s_gpio {
-+			pinmux_i2s_gpio: i2s-gpio-pins {
- 				pinctrl-single,bits = <0x0 0x40 0xc0>;
- 			};
- 
--			pinmux_uart0_uart: pinmux_uart0_uart0 {
-+			pinmux_uart0_uart: uart0-uart0-pins {
- 				pinctrl-single,bits = <0x0 0x0 0x300>;
- 			};
- 
--			pinmux_sdmode_sdxc: pinmux_sdmode_sdxc {
-+			pinmux_sdmode_sdxc: sdmode-sdxc-pins {
- 				pinctrl-single,bits = <0x0 0x0 0xc00>;
- 			};
- 
--			pinmux_sdmode_gpio: pinmux_sdmode_gpio {
-+			pinmux_sdmode_gpio: sdmode-gpio-pins {
- 				pinctrl-single,bits = <0x0 0x400 0xc00>;
- 			};
- 
--			pinmux_spi_spi: pinmux_spi_spi {
-+			pinmux_spi_spi: spi-spi-pins {
- 				pinctrl-single,bits = <0x0 0x0 0x1000>;
- 			};
- 
--			pinmux_refclk_gpio: pinmux_refclk_gpio {
-+			pinmux_refclk_gpio: refclk-gpio-pins {
- 				pinctrl-single,bits = <0x0 0x40000 0x40000>;
- 			};
- 
--			pinmux_i2c_i2c: pinmux_i2c_i2c {
-+			pinmux_i2c_i2c: i2c-i2c-pins {
- 				pinctrl-single,bits = <0x0 0x0 0x300000>;
- 			};
- 
--			pinmux_uart1_uart: pinmux_uart1_uart1 {
-+			pinmux_uart1_uart: uart1-uart1-pins {
- 				pinctrl-single,bits = <0x0 0x0 0x3000000>;
- 			};
- 
--			pinmux_uart2_uart: pinmux_uart2_uart {
-+			pinmux_uart2_uart: uart2-uart-pins {
- 				pinctrl-single,bits = <0x0 0x0 0xc000000>;
- 			};
- 
--			pinmux_pwm0_pwm: pinmux_pwm0_pwm {
-+			pinmux_pwm0_pwm: pwm0-pwm-pins {
- 				pinctrl-single,bits = <0x0 0x0 0x30000000>;
- 			};
- 
--			pinmux_pwm0_gpio: pinmux_pwm0_gpio {
-+			pinmux_pwm0_gpio: pwm0-gpio-pins {
- 				pinctrl-single,bits = <0x0 0x10000000
- 						       0x30000000>;
- 			};
- 
--			pinmux_pwm1_pwm: pinmux_pwm1_pwm {
-+			pinmux_pwm1_pwm: pwm1-pwm-pins {
- 				pinctrl-single,bits = <0x0 0x0 0xc0000000>;
- 			};
- 
--			pinmux_pwm1_gpio: pinmux_pwm1_gpio {
-+			pinmux_pwm1_gpio: pwm1-gpio-pins {
- 				pinctrl-single,bits = <0x0 0x40000000
- 						       0xc0000000>;
- 			};
- 
--			pinmux_p0led_an_gpio: pinmux_p0led_an_gpio {
-+			pinmux_p0led_an_gpio: p0led-an-gpio-pins {
- 				pinctrl-single,bits = <0x4 0x4 0xc>;
- 			};
- 
--			pinmux_p1led_an_gpio: pinmux_p1led_an_gpio {
-+			pinmux_p1led_an_gpio: p1led-an-gpio-pins {
- 				pinctrl-single,bits = <0x4 0x10 0x30>;
- 			};
- 
--			pinmux_p2led_an_gpio: pinmux_p2led_an_gpio {
-+			pinmux_p2led_an_gpio: p2led-an-gpio-pins {
- 				pinctrl-single,bits = <0x4 0x40 0xc0>;
- 			};
- 
--			pinmux_p3led_an_gpio: pinmux_p3led_an_gpio {
-+			pinmux_p3led_an_gpio: p3led-an-gpio-pins {
- 				pinctrl-single,bits = <0x4 0x100 0x300>;
- 			};
- 
--			pinmux_p4led_an_gpio: pinmux_p4led_an_gpio {
-+			pinmux_p4led_an_gpio: p4led-an-gpio-pins {
- 				pinctrl-single,bits = <0x4 0x400 0xc00>;
- 			};
- 		};
+Thank you,
+Claudiu Beznea
+
+Claudiu Beznea (2):
+  dt-bindings: interrupt-controller: microchip,sama7g5-eic: use proper
+    naming syntax
+  MAINTAINERS: add documentation file for Microchip EIC section
+
+ .../{microchip,eic.yaml => microchip,sama7g5-eic.yaml}          | 2 +-
+ MAINTAINERS                                                     | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+ rename Documentation/devicetree/bindings/interrupt-controller/{microchip,eic.yaml => microchip,sama7g5-eic.yaml} (98%)
+
 -- 
-2.40.1
+2.34.1
+
