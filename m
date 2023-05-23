@@ -2,87 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25E9270D488
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 09:08:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 966DA70D4A7
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 09:16:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235332AbjEWHHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 03:07:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51884 "EHLO
+        id S235386AbjEWHQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 03:16:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235326AbjEWHHz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 03:07:55 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4B4518D;
-        Tue, 23 May 2023 00:07:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1684825638; x=1716361638;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=JgTtNMcClI5dAT03BIji/nYurmxTifPyeP6G3QoG1WU=;
-  b=Qm4rivTFUAB7F16GLI8u/vbwEq7RmdTfs+TcJdqadiSeYbdYuJQzBwjX
-   OQJgnyYzvK6x9L1AGyVHkr2ADbQkAutJN63UP48hSvsPf2FILkipZNsGA
-   BnTBgQ02tVmK/VdProrM3D01iMr8twFo6wHCg32rENW2yFdMnJDPos1xo
-   xRnDBDTghlYgE7NjyyFe3oqdblBcsS9+F0nJEcRf44tPeeIdB09RAinNo
-   3AogSdNwDafah1kFGGhUl8IFnwJQ5G/LGGT9DV/H7ldPj5pVsAw2OFb3Q
-   P/BQ1dpOY+VarwbGb+y2UZdqQ203Lpe8giC+vFu6mHWzeZWx2DusooCN9
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,185,1681196400"; 
-   d="scan'208";a="215042704"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 May 2023 00:07:18 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 23 May 2023 00:07:16 -0700
-Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.21 via Frontend Transport; Tue, 23 May 2023 00:07:11 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <tglx@linutronix.de>, <maz@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH 2/2] MAINTAINERS: add documentation file for Microchip EIC section
-Date:   Tue, 23 May 2023 10:06:37 +0300
-Message-ID: <20230523070637.224476-3-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230523070637.224476-1-claudiu.beznea@microchip.com>
-References: <20230523070637.224476-1-claudiu.beznea@microchip.com>
+        with ESMTP id S235263AbjEWHP7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 03:15:59 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AD55189
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 00:15:53 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f603d4bc5bso22509235e9.3
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 00:15:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684826152; x=1687418152;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eMCIjm0EWJ59bjTrTKGOEsB89wmLq+xJYAhJre88DaU=;
+        b=QHMHfWV6KAgZW1LWIipqkPKRbVV/zFLdRDK1vLJfS7sMJn1+vEEgv3f43CiDov+RbB
+         JiZ8HS8V0Qz9iVwf6F0H2dw7xi1efZXs9EoDI9rVrqWpW4vWiOjVky0ataJzJ8JaFo/B
+         QS7VyJQuUWfG1hOLbeoNodHMnSjLAqaIebGU5Z/lRXxqQRfsAxGvEYMtp4T3bWo6XnHW
+         BpiJXXT5o2ZEiGlO+1FEfcE0jjPPZAlD7Qjgn6U/EMTNjARl8vc8zDHU3C/bWvB8cL1Q
+         uMXBw2TWdPncjfBOK6EqeNtPmsGolP2ZsB8auZlpUVWwsnrX7+h6o+CgJpAx2uFrSIHz
+         D+qQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684826152; x=1687418152;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eMCIjm0EWJ59bjTrTKGOEsB89wmLq+xJYAhJre88DaU=;
+        b=Ut1tdZnUfC7Hej/BFTIqvqhE4iSaomHOSdj7BqT9JEHvyfevEjtPxNOZjiIwip8oco
+         hmGjf0Af67eUxWt7l9GsfoZzo6b702A+lAkPXfaJP1OGXcLlu0T/pqPQHmpu8KFvMHYa
+         olBjlF9n4N3RuODvZPsYlsGFi1f6OTI08caxITZHX6KZU59YaWksCDAm41AFIXtF63Qs
+         i7wM+WQk0qqivGDSHURIXiE9HM4mmdKduquAOROpCIgXq30bAWwGyMQ/ZBkNHJ1BPkfF
+         t4m5wy/0F8cWm2sr0BM4vHsTsKzodJM9b9pt8clgTp7mbmYPibXgKwz++YXA6Z7FJ0px
+         5uLw==
+X-Gm-Message-State: AC+VfDw4EInyO9oKAHThohak+u3kSzZ5GKRR2DDFPfmXOuyBIkeRYH3U
+        wqOQ2SZnt/QDfWuEAuC+akdDpQ==
+X-Google-Smtp-Source: ACHHUZ6csuTfuCIx7D22LUAAHZ1wwbvaanW0tdyD510g2Pq6Y0BVg8/CWbycVKRYc3u8V5+ycC3AWw==
+X-Received: by 2002:a05:600c:245:b0:3f6:7d2:9859 with SMTP id 5-20020a05600c024500b003f607d29859mr2771125wmj.6.1684826151946;
+        Tue, 23 May 2023 00:15:51 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id x15-20020a5d490f000000b00306299be5a2sm10096239wrq.72.2023.05.23.00.15.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 May 2023 00:15:51 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v3 0/6] arm64: qcom: sm8[34]50: enable DP altmode on USB-C
+ Connector
+Date:   Tue, 23 May 2023 09:15:44 +0200
+Message-Id: <20230503-topic-sm8450-graphics-dp-next-v3-0-6c43d293995f@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACBobGQC/5XOOw7CMBAE0Ksg1yyyHciHinsgirW9JCsFO7JDF
+ IRyd5x0dFDOFG/mLRJFpiTOu7eINHHi4HMo9jthO/QtAbuchZa6kCdZwBgGtpAe9fEkoY04dGw
+ TuAE8zSMoh6YpNVJZOZENg4nARPS2y4p/9n0uh0h3nrfR6y3njtMY4mv7MKm1/XVuUiDBKaKma
+ Kq7xvLSs8cYDiG2YqUn/RenM1ejNYYUNU4dv7hlWT4nnNQ4LwEAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2486;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=hEXbIPaHVHV3s0TjgnFmct0gcpyj2Uw1ZgBBgoDcF1k=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkbGgkQ/iiUtQbfcUKjnJznKYgNcICkN96EXCrkkBH
+ yMpvQe2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZGxoJAAKCRB33NvayMhJ0YQdD/
+ 4ot8VHy04OWst4DTTRmrGJFDcQGsaUIRQK3AIXJsLJzAp3+pWaQmvHQETH443g1eqkbRK6YS3XRtJy
+ yNvWSvukRos8Z41P2XHkWWn3ql29N4a6ouGfzeQtVYnWKDhlaG2ouZSVwGhNo9oat+j5GKEsYyseil
+ WFAn/wj6Rw3djUkAduDEn71D9ptjRpO0aGmLe7/V9WtpDeMpr6zX+xObx0jMpKSi14zizrK1g9KhwP
+ MLVfHM9uOi5Iz7kMSSGtUndEu/GoiYhHjt1bgbWcQUdQXYhQvzjJ8kWM6wz2aquJZbBBifE8CO10oa
+ Nlt/rqN1Ksmgpv+kIipnYvks/6lTJvDLXG2Uuwiemc3BRl7FiyuP7gfFsTetyArm9RtmbkDq83F3z3
+ D1LqoUO1lOSusWgpPdt5hEjWwcSWxcj3FhOk25jtQdL9HaiSMDSF3XU7usnKkc4g8WJlfwO1LSMiom
+ X0sw4xV1x5nKawrz07ZihPCnnuVWpewFlFsaOd8VPM6CQjUf/twUKIXy/0VBzVWhQRUXfUP89+dILs
+ dvKRVNUVZH33n9Kp+6sZ9fDtfZL1oV4s7GZ6OfQd8ChhxxUb3gIxaGVxHbL20uA3Z32u5m4gWVf7zJ
+ t0sJLMsGtsIHusjbgFeoqTXkymkAu+HFH6zAdWVCPNO/Z7HucymzWez9cfmQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation file to Microchip EIC section.
+This is the final step to achieve USB-C Altmode on the HDK8350
+and HDK8450 now DP controller support, USB3+DP Combo PHY and
+pmic glink support have been merged for those platforms.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+This patchset depends on the QMP Combo USB3+DP PHY orientation
+support at [1].
+
+The following has been successfully tested:
+- USB-C PD Power Role, reported status are coherent
+- USB-C dual-role data
+  - USB2.0 only (no-PD) as DFP or UFP
+  - USB2.0 + USB SuperSpeed as DFP or UFP & in both orientations
+  - USB2.0 + USB SuperSpeed + DisplayPort Altmode in both orientations
+  - DisplayPort-only Altmode in both orientations
+
+Data role and SuperSpeed lanes were correctly switched on the PHY
+side after USB-C removal/insertion.
+
+[1] https://lore.kernel.org/all/20230510031930.1996020-1-quic_bjorande@quicinc.com
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v3:
+- Rebased on next-230523 now PHY patches were applied
+- Link to v2: https://lore.kernel.org/r/20230503-topic-sm8450-graphics-dp-next-v2-0-8acbbe1e9d14@linaro.org
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cdf4b41cf62b..59e727244750 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13674,6 +13674,7 @@ MICROCHIP EIC DRIVER
- M:	Claudiu Beznea <claudiu.beznea@microchip.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Supported
-+F:	Documentation/devicetree/bindings/interrupt-controller/microchip,sama7g5-eic.yaml
- F:	drivers/irqchip/irq-mchp-eic.c
- 
- MICROCHIP I2C DRIVER
+Changes in v2:
+- rebased on next-230510 + orientation patchset v2
+- define port@2 in patches 1 & 2
+- Add reviewed tags
+- Renamed fsa4480 node name
+- Added missing blank line
+- Moved status at last position
+- Re-ordered node ref
+- Fixed commit message of last patch
+- Link to v1: https://lore.kernel.org/r/20230503-topic-sm8450-graphics-dp-next-v1-0-d1ee9397f2a6@linaro.org
+
+---
+Neil Armstrong (6):
+      arm64: dts: qcom: sm8350: add ports subnodes in usb1 qmpphy node
+      arm64: dts: qcom: sm8450: add ports subnodes in usb1 qmpphy node
+      arm64: dts: qcom: sm8350-hdk: Add QMP & DP to SuperSpeed graph
+      arm64: dts: qcom: sm8450-hdk: Add QMP & DP to SuperSpeed graph
+      arm64: defconfig: enable FSA4480 driver as module
+      qcom: pmic_glink: enable altmode for SM8450
+
+ arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 76 ++++++++++++++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sm8350.dtsi    | 26 +++++++++++
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 73 ++++++++++++++++++++++++++++++-
+ arch/arm64/boot/dts/qcom/sm8450.dtsi    | 26 +++++++++++
+ arch/arm64/configs/defconfig            |  1 +
+ drivers/soc/qcom/pmic_glink.c           |  8 +++-
+ 6 files changed, 204 insertions(+), 6 deletions(-)
+---
+base-commit: 8e7eb170057ce57f049f7b6749741d7b23d09af2
+change-id: 20230503-topic-sm8450-graphics-dp-next-1dab962ae67d
+
+Best regards,
 -- 
-2.34.1
+Neil Armstrong <neil.armstrong@linaro.org>
 
