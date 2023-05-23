@@ -2,58 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D797F70E79A
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 23:44:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 404A370E806
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 23:52:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238660AbjEWVo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 17:44:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38174 "EHLO
+        id S238735AbjEWVwL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 17:52:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238643AbjEWVoV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 17:44:21 -0400
+        with ESMTP id S238509AbjEWVwK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 17:52:10 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3490FA;
-        Tue, 23 May 2023 14:44:17 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0B26184
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 14:52:06 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 125936368D;
-        Tue, 23 May 2023 21:44:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EF41C433EF;
-        Tue, 23 May 2023 21:44:13 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 32F5E636C2
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 21:52:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 524C3C433EF;
+        Tue, 23 May 2023 21:52:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684878256;
-        bh=Pcy27QxV2VSyKZ0c9gBpRqx5QQlOlbBSFETWOV2+EdI=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=ohrWebOdofNkYKggD8+jvJ3xc7Yb5SROIdSTiZbdW1jiRh+RKMNsakq11Fa5VAQqx
-         zsfTW3+wtLfKBmArxSLLjet7u/dP1Hxuf3DVrNU4AJUSXS3keDPZIYo5gAKAV6+e0Y
-         CtPzsbo4pMQxIGQX2TW4esVgn2i6xWrDHBP+4cQlSGXb24n5LD5SDFK5AEZaQ/5iwV
-         4+IZWvHaTee0QzKnAKp5j1U7D0fqicGThMKXGV1e3Ml367FxM9EnMPYEoAUS8fO82f
-         nfkj/lkTPsQT+zKGSpSn6R/q97fGP51kucSwu3WRye3Ob4h4W56c0av6pQMmhFZdb9
-         runop5qF1Euag==
+        s=k20201202; t=1684878725;
+        bh=Q7Cfr0P4JrgFbeW6Lss/x27KCWc3NQnkwpmV1bMsJko=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BhgpD96fUG6XX5nLgvCkOJqbrtkEXkh9ZWfhRo6SaGPraqQ4um5v/iQJ9cigo9D71
+         LMFq1CH09FvTqUpbRdjWer1gOveDipuZ+KciU7Se9VKTCyw3MwmoV2xkhqKIpKLsVv
+         3NJa0sZ7Ra0CiJMsg6C2i2RUNWKVRsuxPHwXwWZXgJOH+tTvvnAFAVIyw8MKZCKg8d
+         nl74Q+CFewYespiRJyLQfJJvxT8879v/zogt9/N5juU2gRlemaDSx+zERHT1g+2MCh
+         azlcDBLIVAbucxT9skYHlqDiVOlGRbHK4Iwm3zpDKzxe17dZO2ZaHxEm+zKYwLIkfI
+         yQ2KOXJvwmUDQ==
+Date:   Tue, 23 May 2023 22:51:59 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-In-Reply-To: <20230504173618.142075-1-sebastian.reichel@collabora.com>
-References: <20230504173618.142075-1-sebastian.reichel@collabora.com>
-Subject: Re: (subset) [PATCH v8 00/14] mfd/pinctrl/regulator: Add RK806
- Support
-Message-Id: <168487825330.297228.86399112771503926.b4-ty@kernel.org>
-Date:   Tue, 23 May 2023 22:44:13 +0100
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, zyw@rock-chips.com,
+        sebastian.reichel@collabora.com, andyshrk@163.com,
+        jagan@amarulasolutions.com, perex@perex.cz, tiwai@suse.com,
+        lgirdwood@gmail.com, heiko@sntech.de, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 1/6] ASoC: es8328: Enabling support for 12Mhz sysclk
+Message-ID: <b64c91e0-1dab-4ae1-8fcc-512da08856bc@sirena.org.uk>
+References: <20230523213825.120077-1-macroalpha82@gmail.com>
+ <20230523213825.120077-2-macroalpha82@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-bfdf5
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="MEioEb2XHIcEnWAi"
+Content-Disposition: inline
+In-Reply-To: <20230523213825.120077-2-macroalpha82@gmail.com>
+X-Cookie: Beware of low-flying butterflies.
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -64,53 +61,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 04 May 2023 19:36:04 +0200, Sebastian Reichel wrote:
-> All existing boards using RK3588/RK3588s use RK806 PMICs. This series is now
-> the main blocker for full upstream support of those boards and it would be good
-> to have it merged for 6.5 :) The patches have been tested on multiple different
-> platforms and are mainly missing an Ack from Mark or Liam for the rk808-regulator
-> changes.
-> 
-> Merging must happen through a single tree, since the pinctrl and regulator
-> drivers rely on the register definitions from the include file added by the MFD
-> patch. My suggested merge strategy is that Lee creates an immutable branch for
-> the regulator/pinctrl tree once all Acks have been collected.
-> 
-> [...]
 
-Applied to
+--MEioEb2XHIcEnWAi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+On Tue, May 23, 2023 at 04:38:20PM -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> Enable support for 12Mhz sysclk on es8328. This sysclk value is used on
+> the Indiedroid Nova rk3588s based single board computer.
+>=20
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Chris Zhong <zyw@rock-chips.com>
 
-Thanks!
+If you're sending the patch your signoff should be last in the list.
 
-[10/14] regulator: expose regulator_find_closest_bigger
-        commit: 431cb97b763133fba8b1c68c1ed089315f25e4dd
-[11/14] regulator: rk808: fix asynchronous probing
-        commit: 1b9e86d445a0f5c6d8dcbaf11508cb5dfb5848a8
-[12/14] regulator: rk808: cleanup parent device usage
-        commit: 5111c931f36cebe77d4ce66964c348e6eb4afca0
-[13/14] regulator: rk808: revert to synchronous probing
-        commit: 22a94021e7d2b456c6abb59ad0a7ce4e94933d4a
-[14/14] regulator: rk808: add rk806 support
-        commit: f991a220a44726c54c2332569a2a80bf074aa775
+--MEioEb2XHIcEnWAi
+Content-Type: application/pgp-signature; name="signature.asc"
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+-----BEGIN PGP SIGNATURE-----
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRtNX4ACgkQJNaLcl1U
+h9DKXAf+PmCPuedgkWKSejXYwuSyAr/YT9+cJ/FMkwbGhCdYTQkQGbX//jFXuj4r
+fajuP100UTTCcpLlkb0QiIaIC0rNeLTvxgxKErj0W/PN3GGnzQXWCiOmADPhUwqS
+pgmOnVv7DDojIAHgC2eWC3dItIl8tDDhhHunyoTJhQU46ghg8X6ewltUfwwwaJER
+J+kESa5vrYFY+1FMHSARmoIiT1iXNC4b0zX3Ahtmf1i2u8dgI3pJHC+R7r41Ohpx
+J+XydzeMne5mle8InUeIR3VIyY8sjxwyuA8sNekXtzsEj8YUix0PEbGb4ScxroT3
+QIx0zUt71BJZhow4qXkmRS0jnKSA0Q==
+=zOUN
+-----END PGP SIGNATURE-----
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+--MEioEb2XHIcEnWAi--
