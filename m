@@ -2,210 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 903FC70D7C4
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 10:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B05A870D7D8
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 10:50:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232860AbjEWImc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 04:42:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53048 "EHLO
+        id S232374AbjEWIun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 04:50:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235768AbjEWImO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 04:42:14 -0400
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DC5CD
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:42:13 -0700 (PDT)
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-4f3a99b9177so5922700e87.1
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:42:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684831271; x=1687423271;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mq0OsCPMU5Vo6tNW2wEnQJFjDwC7c5GtRXgcuxXmz8g=;
-        b=YTQgpwbjdimEfN7EQMD0MCj66DvIGcvOUcAYPYtVN2m3rbuW51HaB88o0vIMZOH9U1
-         8hZxsSuwEFyIxSJU4AC4RP187cfQeFG3C/bSTk+xx6YrZt9RIFB4FidH1rsCGWbHcoPo
-         E3vJ5rnmKe2zx9SxIMFv6WKV34xuthSsgBV6k2yzCPKK3o2UqiQSUNvvfG7QzXaxw5yt
-         Qzd0FqZR5utVptHfD4n9uR81G0VSt/AyTC9jbIwsoKSqUV3vE2H5maFpO8t06MBV/GKD
-         MV1ReKB6gMinpjjDyxPw37Uvn2XcbeUJtAQZkS520StalLp9b8ODT/ZQkTntJIXT6vD1
-         y4dA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684831271; x=1687423271;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mq0OsCPMU5Vo6tNW2wEnQJFjDwC7c5GtRXgcuxXmz8g=;
-        b=d6Mz81eTPfvnwFQLtURAMF/1JzLsa+4rgTZbn6gvmVD86+J9AycbpzSBemtnMl+QOy
-         5B/FsXv23RJzEgGLvHfZ2HgwWC6QJ3EH7xyEd/dQZBbAFmgrF6Fy1m3j3ERxFGYdTzrn
-         cvTtz6QmH+cm14M7FZpRC52iPAqZN2/Jp2I3NQ5TAMvnaWKHMQxwGw2COfj/JvnDmXEa
-         sqrlDyyVWzgEzCD74HUF15kz0MG0U5jVBg/Ro5dwQ/t90IF6VzMfQi4l7hA/IjeNRNOG
-         mGUJTdL0rnB2WU+PT4AktbS6/50ciAEdNQbGbWqIjTgdXf8CIuF6w8q4uI0C3297gl1S
-         wICg==
-X-Gm-Message-State: AC+VfDz/oU9+JSa2TO6r/rJgFtPrfSAxfUKBplMkS2hdIjT4R5FpMMSh
-        64ucJlfv7oTq/rugMXtr/p5oHQ==
-X-Google-Smtp-Source: ACHHUZ6mu5c54nkC3e1haaXh8hXhzAlko6vafPXaQqAEpS1kUghA9tz8uJGsl/soeweM5iHHYS4SfA==
-X-Received: by 2002:ac2:4c39:0:b0:4f1:2986:3920 with SMTP id u25-20020ac24c39000000b004f129863920mr4011584lfq.41.1684831271196;
-        Tue, 23 May 2023 01:41:11 -0700 (PDT)
-Received: from [192.168.1.101] (abyk138.neoplus.adsl.tpnet.pl. [83.9.30.138])
-        by smtp.gmail.com with ESMTPSA id x12-20020a19f60c000000b004f142edb3bcsm1240878lfe.199.2023.05.23.01.41.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 May 2023 01:41:10 -0700 (PDT)
-Message-ID: <2d5b28d3-83f9-15c4-84e0-e6edb3f3333d@linaro.org>
-Date:   Tue, 23 May 2023 10:41:09 +0200
+        with ESMTP id S229604AbjEWIun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 04:50:43 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ACDF95;
+        Tue, 23 May 2023 01:50:41 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34N8oNYT047116;
+        Tue, 23 May 2023 03:50:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684831823;
+        bh=pGNhxnHYMKdEp7LCgpudevP6jkF3wR2W62IcO5JqcFA=;
+        h=From:To:CC:Subject:Date;
+        b=NOg9CiAr6uodWTXZYeEsxmhnn27V6pBPPwKrUvnnV2lkVc4rddCKGdYQqTkvOVm2T
+         T+KvGEdj7osmrWHgq4VcegsFbOHcdI2OR02bJb5WIkPjvYTFz/LpL+lQqP0qOiaRtO
+         ClKx6HufrfSPxGyz9Rf8hMVKvEX7Ije1zk8WtIuo=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34N8oNNB100542
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 23 May 2023 03:50:23 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 23
+ May 2023 03:50:23 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 23 May 2023 03:50:23 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34N8oLtS123581;
+        Tue, 23 May 2023 03:50:22 -0500
+From:   Bhavya Kapoor <b-kapoor@ti.com>
+To:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <u-kumar1@ti.com>, <jm@ti.com>, <b-kapoor@ti.com>
+Subject: [tiL6.1 PATCH v2] arm64: dts: ti: k3-j721s2: Add support for CAN instances 3 and 5 in main domain
+Date:   Tue, 23 May 2023 14:20:21 +0530
+Message-ID: <20230523085021.22524-1-b-kapoor@ti.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 05/10] arm64: dts: qcom: sc7180: switch USB+DP QMP PHY
- to new style of bindings
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20230521202321.19778-1-dmitry.baryshkov@linaro.org>
- <20230521202321.19778-6-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230521202321.19778-6-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+CAN instances 3 and 5 in the main domain are brought on the common
+processor board through header J27 and J28. The CAN High and Low lines
+from the SoC are routed through a mux on the SoM. The select lines need
+to be set for the CAN signals to get connected to the transceivers on
+the common processor board. Threfore, add respective mux, transceiver
+dt nodes to add support for these CAN instances.
 
+Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+---
 
-On 21.05.2023 22:23, Dmitry Baryshkov wrote:
-> Change the USB QMP PHY to use newer style of QMP PHY bindings (single
-> resource region, no per-PHY subnodes).
-> 
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 57 ++++++++++------------------
->  1 file changed, 19 insertions(+), 38 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index ea1ffade1aa1..b07a49e6829a 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -14,6 +14,7 @@
->  #include <dt-bindings/interconnect/qcom,osm-l3.h>
->  #include <dt-bindings/interconnect/qcom,sc7180.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/phy/phy-qcom-qmp.h>
->  #include <dt-bindings/phy/phy-qcom-qusb2.h>
->  #include <dt-bindings/power/qcom-rpmpd.h>
->  #include <dt-bindings/reset/qcom,sdm845-aoss.h>
-> @@ -2718,49 +2719,28 @@ usb_1_hsphy: phy@88e3000 {
->  			nvmem-cells = <&qusb2p_hstx_trim>;
->  		};
->  
-> -		usb_1_qmpphy: phy-wrapper@88e9000 {
-> +		usb_1_qmpphy: phy@88e8000 {
->  			compatible = "qcom,sc7180-qmp-usb3-dp-phy";
-> -			reg = <0 0x088e9000 0 0x18c>,
-> -			      <0 0x088e8000 0 0x3c>,
-> -			      <0 0x088ea000 0 0x18c>;
-> +			reg = <0 0x088e8000 0 0x3000>;
->  			status = "disabled";
-> -			#address-cells = <2>;
-> -			#size-cells = <2>;
-> -			ranges;
->  
->  			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-> -				 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
->  				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-> -				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
-> -			clock-names = "aux", "cfg_ahb", "ref", "com_aux";
-> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>,
-> +				 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>;
-These are unaligned
+Changelog v1->v2: Modified indentation according to comments
 
-Other than that:
+Link to v1 : https://lore.kernel.org/all/20230412084935.699791-1-b-kapoor@ti.com/
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+ .../dts/ti/k3-j721s2-common-proc-board.dts    | 46 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 12 +++++
+ 2 files changed, 58 insertions(+)
 
-Konrad
-> +			clock-names = "aux",
-> +				      "ref",
-> +				      "com_aux",
-> +				      "usb3_pipe",
-> +				      "cfg_ahb";
->  
->  			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
->  				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
->  			reset-names = "phy", "common";
->  
-> -			usb_1_ssphy: usb3-phy@88e9200 {
-> -				reg = <0 0x088e9200 0 0x128>,
-> -				      <0 0x088e9400 0 0x200>,
-> -				      <0 0x088e9c00 0 0x218>,
-> -				      <0 0x088e9600 0 0x128>,
-> -				      <0 0x088e9800 0 0x200>,
-> -				      <0 0x088e9a00 0 0x18>;
-> -				#clock-cells = <0>;
-> -				#phy-cells = <0>;
-> -				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> -				clock-names = "pipe0";
-> -				clock-output-names = "usb3_phy_pipe_clk_src";
-> -			};
-> -
-> -			dp_phy: dp-phy@88ea200 {
-> -				reg = <0 0x088ea200 0 0x200>,
-> -				      <0 0x088ea400 0 0x200>,
-> -				      <0 0x088eaa00 0 0x200>,
-> -				      <0 0x088ea600 0 0x200>,
-> -				      <0 0x088ea800 0 0x200>;
-> -				#clock-cells = <1>;
-> -				#phy-cells = <0>;
-> -			};
-> +			#clock-cells = <1>;
-> +			#phy-cells = <1>;
->  		};
->  
->  		dc_noc: interconnect@9160000 {
-> @@ -2840,7 +2820,7 @@ usb_1_dwc3: usb@a600000 {
->  				iommus = <&apps_smmu 0x540 0>;
->  				snps,dis_u2_susphy_quirk;
->  				snps,dis_enblslpm_quirk;
-> -				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
-> +				phys = <&usb_1_hsphy>, <&usb_1_qmpphy QMP_USB43DP_USB3_PHY>;
->  				phy-names = "usb2-phy", "usb3-phy";
->  				maximum-speed = "super-speed";
->  			};
-> @@ -3148,8 +3128,9 @@ mdss_dp: displayport-controller@ae90000 {
->  					      "ctrl_link_iface", "stream_pixel";
->  				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
->  						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
-> -				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
-> -				phys = <&dp_phy>;
-> +				assigned-clock-parents = <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-> +							 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
-> +				phys = <&usb_1_qmpphy QMP_USB43DP_DP_PHY>;
->  				phy-names = "dp";
->  
->  				operating-points-v2 = <&dp_opp_table>;
-> @@ -3206,8 +3187,8 @@ dispcc: clock-controller@af00000 {
->  				 <&gcc GCC_DISP_GPLL0_CLK_SRC>,
->  				 <&dsi_phy 0>,
->  				 <&dsi_phy 1>,
-> -				 <&dp_phy 0>,
-> -				 <&dp_phy 1>;
-> +				 <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>,
-> +				 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
->  			clock-names = "bi_tcxo",
->  				      "gcc_disp_gpll0_clk_src",
->  				      "dsi0_phy_pll_out_byteclk",
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+index a7aa6cf08acd..f07663bbea16 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+@@ -27,6 +27,8 @@ aliases {
+ 		can0 = &main_mcan16;
+ 		can1 = &mcu_mcan0;
+ 		can2 = &mcu_mcan1;
++		can3 = &main_mcan3;
++		can4 = &main_mcan5;
+ 	};
+ 
+ 	evm_12v0: fixedregulator-evm12v0 {
+@@ -107,6 +109,22 @@ transceiver2: can-phy2 {
+ 		standby-gpios = <&wkup_gpio0 2 GPIO_ACTIVE_HIGH>;
+ 	};
+ 
++	transceiver3: can-phy3 {
++		compatible = "ti,tcan1043";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		standby-gpios = <&exp2 7 GPIO_ACTIVE_LOW>;
++		enable-gpios = <&exp2 6 GPIO_ACTIVE_HIGH>;
++		mux-states = <&mux0 1>;
++	};
++
++	transceiver4: can-phy4 {
++		compatible = "ti,tcan1042";
++		#phy-cells = <0>;
++		max-bitrate = <5000000>;
++		standby-gpios = <&exp_som 7 GPIO_ACTIVE_HIGH>;
++		mux-states = <&mux1 1>;
++	};
+ };
+ 
+ &main_pmx0 {
+@@ -144,6 +162,20 @@ vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
+ 			J721S2_IOPAD(0x020, PIN_INPUT, 7) /* (AA23) MCAN15_RX.GPIO0_8 */
+ 		>;
+ 	};
++
++	main_mcan3_pins_default: main-mcan3-pins-default {
++		pinctrl-single,pins = <
++			J721S2_IOPAD(0x080, PIN_INPUT, 0) /* (U26) MCASP0_AXR4.MCAN3_RX */
++			J721S2_IOPAD(0x07c, PIN_OUTPUT, 0) /* (T27) MCASP0_AXR3.MCAN3_TX */
++		>;
++	};
++
++	main_mcan5_pins_default: main-mcan5-pins-default {
++		pinctrl-single,pins = <
++			J721S2_IOPAD(0x03c, PIN_INPUT, 0) /* (U27) MCASP0_AFSX.MCAN5_RX */
++			J721S2_IOPAD(0x038, PIN_OUTPUT, 0) /* (AB28) MCASP0_ACLKX.MCAN5_TX */
++		>;
++	};
+ };
+ 
+ &wkup_pmx0 {
+@@ -309,3 +341,17 @@ &mcu_mcan1 {
+ 	pinctrl-0 = <&mcu_mcan1_pins_default>;
+ 	phys = <&transceiver2>;
+ };
++
++&main_mcan3 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan3_pins_default>;
++	phys = <&transceiver3>;
++};
++
++&main_mcan5 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_mcan5_pins_default>;
++	phys = <&transceiver4>;
++};
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+index 6930efff8a5a..e74bc5141903 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+@@ -31,6 +31,18 @@ secure_ddr: optee@9e800000 {
+ 		};
+ 	};
+ 
++	mux0: mux-controller0 {
++		compatible = "gpio-mux";
++		#mux-state-cells = <1>;
++		mux-gpios = <&exp_som 1 GPIO_ACTIVE_HIGH>;
++	};
++
++	mux1: mux-controller1 {
++		compatible = "gpio-mux";
++		#mux-state-cells = <1>;
++		mux-gpios = <&exp_som 2 GPIO_ACTIVE_HIGH>;
++	};
++
+ 	transceiver0: can-phy0 {
+ 		/* standby pin has been grounded by default */
+ 		compatible = "ti,tcan1042";
+-- 
+2.39.2
+
