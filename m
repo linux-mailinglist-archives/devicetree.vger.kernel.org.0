@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4F7970E4A7
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 20:27:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEEEF70E4E3
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 20:49:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237342AbjEWS1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 14:27:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38002 "EHLO
+        id S236371AbjEWStM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 14:49:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230164AbjEWS1p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 14:27:45 -0400
+        with ESMTP id S234984AbjEWStL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 14:49:11 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 513588F;
-        Tue, 23 May 2023 11:27:44 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D23E591;
+        Tue, 23 May 2023 11:49:10 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DE7AA63129;
-        Tue, 23 May 2023 18:27:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09CE4C433D2;
-        Tue, 23 May 2023 18:27:40 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6DF1F61D46;
+        Tue, 23 May 2023 18:49:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77566C433D2;
+        Tue, 23 May 2023 18:49:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684866463;
-        bh=XV1di+GuMw6Q1zA3mSrPZ/CUWvlb3FRyCbsgPWVNna0=;
+        s=k20201202; t=1684867749;
+        bh=iKyVdrNdupf6FLPN38zfHmfs/Nd6a0SWOFcdapufsBw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YPRehp6m7et84NL7upNyUgSgsV0Otf/IW4DYgi+uj86CCGHKSh9N1ag1GDWBZKe69
-         exMmwtptERAaVcSoz6SmZct4GjjU8Sb4FpWgb6aybfHjub21yq/YUw2G+QW6sEusd3
-         xMIejEOfewleK5nFmXdrru6GGc6IJWNLrIznndHFDiY1/Rr4HxqOeSTykw/VVqFuJE
-         e8fpmKGhos7AP3Qpwx6JxOyA7bui0MvTLAFfmsTw5PT9yYRCBVdPh1urLomtCxmCgY
-         VgbmOQVQJ8lR5xJULK/qnjWyFUwojMok/hWzmFhcnKjGO1nd39Qw1wZsTW4ypGd1gt
-         SuPOUEuXzUnhg==
-Date:   Tue, 23 May 2023 19:27:38 +0100
+        b=mhGWyFqAUIiIiIEpykYA95zO4MY9L61Oq6pg8Y7hxTBcJJri5cml0pw55QB3duh2i
+         dfpVTdmg6UqqQPTkuFyxRdPoZCRsXQDzgPwEdodP4AcZJVnR/m9abkpHwT3sIfppTd
+         HRPIvcW7z05HZa+SmBu9zqJRkpphUr0DPiilbxK2JKy25CZgD4LJuDRJ9GSMRJxZts
+         tudUfwoWs/DFroseSdgeHbi2/pFC4hKtT9IMjrs16E8L8MFSryUKuKChW9XHe+mP7k
+         osPPBjyzC9Zlac4gM0wCs0hfG+wTxc7J0p0VWFer+3rLsRLHKJDKshY1A1wXZOW0qS
+         ZNfW9nD4Rs7og==
+Date:   Tue, 23 May 2023 19:49:05 +0100
 From:   Conor Dooley <conor@kernel.org>
 To:     Claudiu Beznea <claudiu.beznea@microchip.com>
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -39,16 +39,16 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         alexandre.belloni@bootlin.com, sre@kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: power: reset: atmel,at91sam9260-shdwc:
+Subject: Re: [PATCH 3/4] dt-bindings: power: reset: atmel,sama5d2-shdwc:
  convert to yaml
-Message-ID: <20230523-depletion-petty-978775d05b22@spud>
+Message-ID: <20230523-remission-ageless-0880ed49765d@spud>
 References: <20230523061512.195271-1-claudiu.beznea@microchip.com>
- <20230523061512.195271-3-claudiu.beznea@microchip.com>
+ <20230523061512.195271-4-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="4QfNIu1KVbjjpExj"
+        protocol="application/pgp-signature"; boundary="WWGOvCNCU6jCwAEm"
 Content-Disposition: inline
-In-Reply-To: <20230523061512.195271-3-claudiu.beznea@microchip.com>
+In-Reply-To: <20230523061512.195271-4-claudiu.beznea@microchip.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -60,58 +60,69 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---4QfNIu1KVbjjpExj
+--WWGOvCNCU6jCwAEm
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
 Hey Claudiu,
 
-On Tue, May 23, 2023 at 09:15:10AM +0300, Claudiu Beznea wrote:
-> Convert Atmel shutdown controller to YAML.
+On Tue, May 23, 2023 at 09:15:11AM +0300, Claudiu Beznea wrote:
+> Convert Atmel SAMA5D2 shutdown controller to YAML.
 >=20
 > Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-
-> diff --git a/Documentation/devicetree/bindings/power/reset/atmel,at91sam9=
-260-shdwc.yaml b/Documentation/devicetree/bindings/power/reset/atmel,at91sa=
-m9260-shdwc.yaml
+> ---
+>  .../devicetree/bindings/arm/atmel-sysregs.txt |  63 ----------
+>  .../power/reset/atmel,sama5d2-shdwc.yaml      | 114 ++++++++++++++++++
+>  2 files changed, 114 insertions(+), 63 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/power/reset/atmel,s=
+ama5d2-shdwc.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/reset/atmel,sama5d2-=
+shdwc.yaml b/Documentation/devicetree/bindings/power/reset/atmel,sama5d2-sh=
+dwc.yaml
 > new file mode 100644
-> index 000000000000..3b3162677db3
+> index 000000000000..613668d6099b
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/reset/atmel,at91sam9260-shd=
-wc.yaml
-> @@ -0,0 +1,81 @@
+> +++ b/Documentation/devicetree/bindings/power/reset/atmel,sama5d2-shdwc.y=
+aml
+> @@ -0,0 +1,114 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 
-I think you'll need an explict Ack from Rob as the text binding has no
-licence text.
+Same comment on the license here. Figure you need a Rob Ack.
 
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/power/reset/atmel,at91sam9260-shdwc.y=
-aml#
+> +$id: http://devicetree.org/schemas/power/reset/atmel,sama5d2-shdwc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Atmel SHDWC Shutdown Controller
+> +title: Atmel SAMA5D2 SHDWC Shutdown Controller
 > +
 > +maintainers:
 > +  - Claudiu Beznea <claudiu.beznea@microchip.com>
 > +
 > +description: |
+
+Also, you don't need the | if you do not need to preserve formatting.
+
 > +  Atmel SHDWC shutdown controller controls the power supplies VDDIO and =
 VDDCORE
 > +  and the wake-up detection on debounced input lines.
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - atmel,at91sam9260-shdwc
-> +      - atmel,at91sam9rl-shdwc
-> +      - atmel,at91sam9x5-shdwc
+> +    oneOf:
+> +      - items:
+> +          - const: microchip,sama7g5-shdwc
+> +          - const: syscon
 
-For my own curiosity, is this x a wildcard or part of the product name?
-Quick google was slightly confusing.
+^ you should probably mention in the commit message where the syscon
+came from, as it doesn't appear in the txt binding AFAICT.
 
+> +      - items:
+> +          enum:
+> +            - atmel,sama5d2-shdwc
+> +            - microchip,sam9x60-shdwc
 > +
 > +  reg:
 > +    maxItems: 1
@@ -119,35 +130,53 @@ Quick google was slightly confusing.
 > +  clocks:
 > +    maxItems: 1
 > +
-> +  atmel,wakeup-mode:
-> +    description: operation mode of the wakeup mode
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [ none, high, low, any ]
+> +  "#address-cells":
+> +    const: 1
 > +
-> +  atmel,wakeup-counter:
-> +    description: counter on wake-up 0
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  debounce-delay-us:
+> +    description: |
+> +      Minimum wake-up inputs debouncer period in microseconds. It is usu=
+ally a
+> +      board-related property.
+> +
+> +  atmel,wakeup-rtc-timer:
+> +    description: enable real-time clock wake-up
+> +    type: boolean
+> +
+> +patternProperties:
+> +  "^input@[0-15]$":
+> +    description: |
+> +      Wake-up input nodes. These are usually described in the "board" pa=
+rt of
+> +      the Device Tree. Note also that input 0 is linked to the wake-up p=
+in and
+> +      is frequently used.
+> +    type: object
+> +    properties:
+> +      reg:
+> +        description: contains the wake-up input index
+> +        enum: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
 
-This can just be
-minimum: 0
-maximum: 15
-I think.
+Same here with minimum & maximum, no?
 
-Otherwise, looks good to me.
+Otherwise, this seems fine to me...
 
-Thanks,
+Cheers,
 Conor.
 
---4QfNIu1KVbjjpExj
+
+--WWGOvCNCU6jCwAEm
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG0FmgAKCRB4tDGHoIJi
-0inzAQCWkwG07Dt5F/OF9pU6MN9adj6hqLi8AuPEL69yois7BgEAgUyZ4xlAfRoK
-YwYAEd3JvLpw9MU9HQPwhBmOSGXHRgw=
-=+W2q
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG0KoAAKCRB4tDGHoIJi
+0kdhAQCskLgP2mlO/lNxcX/CGR6mGvWUEPUc12bU7z8iCSk3TQEAiudITCr1jawD
+4NCyoquvEKgbjWtwsLyE6VyjqrF5Sgc=
+=4RFH
 -----END PGP SIGNATURE-----
 
---4QfNIu1KVbjjpExj--
+--WWGOvCNCU6jCwAEm--
