@@ -2,235 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0420270DD16
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 14:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D273C70DD82
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 15:33:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233519AbjEWM5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 08:57:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41748 "EHLO
+        id S236863AbjEWNdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 09:33:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231856AbjEWM5b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 08:57:31 -0400
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E17D4DD
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 05:57:29 -0700 (PDT)
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2af2f4e719eso39959731fa.2
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 05:57:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684846588; x=1687438588;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YpPwKZ/pHSK5WOwFpXpf+dWli/bJbY6VBZD/E/hAP6M=;
-        b=b3DIamYxTi/v51EdZ7SDh+hBPqRnIDi2rx+vibVvM23RP7rzyneyxLRB/Axlc5MBzO
-         utZ0ym+QKi6LRKwRFLZYT8kMmOsYe7sNQSOdPupxujrdTkT5+ZtDJuXI0VxaI9ncg4/b
-         uwRF+nGfeB+kjW6kraUREcEDLqyR5WP476SDCyqVXEHpSUBmhotJySJ7QCSqJe35hCgh
-         urAll0vklxPAr1SBcoP9YhVG9VUv8SAFXYePLOpCKrIsG4r/+X/NYx13/EH668fJo+eo
-         NL1NZvXZJUO7+EssMt5Pi+VZfbFtHMgoTYSLvrTR71YMvYnH0srbD/ZyIzqWgZBaj6d8
-         8O4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684846588; x=1687438588;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YpPwKZ/pHSK5WOwFpXpf+dWli/bJbY6VBZD/E/hAP6M=;
-        b=eXgUu7OjACpIHcxwlNFKdFvbnbqcVaGzlFlDI9iO8XoBdt+zewS+SRKxWn5Kgiuh5W
-         gg6+Y/nNIKGIOrNX0K4iGOWQH/VxIJVH2okXouXvf4AWK+Zb9sV5q0Myta1p2PELMgT7
-         3PORN0jURs7lznlmL9ZY+NpNdyF0j5vKbLL3tlo4X+dJliC61dNDGnq7EPXuY4cwZiG8
-         et1+REvzt7+jl1M8nkbtYz2dN27kh4PAai8/xJ42hMc25YQg37sq8NUT9vW/ykUacwTa
-         KM1aTFhA7LVnOdzG6jdf5Jpao0BlNu8XYewo2kZgODr7lYELFzM/7hRCiek/QDoHjFJ7
-         ohXA==
-X-Gm-Message-State: AC+VfDwNWJ8nae1V8S0dTtP7hjbZf9qT/1HI9lrOIvXR4nokAMrv62aI
-        hjeXxmukhiZelZQy77EHSH+5tg==
-X-Google-Smtp-Source: ACHHUZ6c/kauyo/sRXK7gC6gSHRvq37cCYQro1FP0DCL+bzRiQxIwgpFpYqew7cK1BFsw+yt12lPGQ==
-X-Received: by 2002:a2e:b1c4:0:b0:2af:22a0:81fd with SMTP id e4-20020a2eb1c4000000b002af22a081fdmr4691128lja.11.1684846588241;
-        Tue, 23 May 2023 05:56:28 -0700 (PDT)
-Received: from [192.168.1.101] (abyk138.neoplus.adsl.tpnet.pl. [83.9.30.138])
-        by smtp.gmail.com with ESMTPSA id a19-20020a2e9813000000b002a7746800d0sm1605159ljj.130.2023.05.23.05.56.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 May 2023 05:56:27 -0700 (PDT)
-Message-ID: <19f30d4c-d879-ce2f-1cd7-ebcb941bbcec@linaro.org>
-Date:   Tue, 23 May 2023 14:56:25 +0200
+        with ESMTP id S236815AbjEWNdA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 09:33:00 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C07DA132
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 06:32:56 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 4156085FE8;
+        Tue, 23 May 2023 15:32:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1684848772;
+        bh=Q238KMbMcGKjhY9eUa561BHjB3L5hf71hFmEtxi4TJ0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=NrkigyYOjHLPVZyO//v0d13G7XhVR7Qj1FIenrD9FMmclJWfbP3peUz0s92V+4n35
+         kUzDd8pxWUc4nTEhUH2xGFeSvhVrxvfl/2NHHCiYNRBbOt3+Vc4c/TJJF4eXx02cw4
+         GzrO5tanARYPAE/1G1+Aeo8mpJ4oLtLGso9YhEDJP2FShB8ezLgsmu9ykd1wmaUM9O
+         A2dTwRpHLzjYgCEpAbJ9NkGdb1JANlkW5Szux7cu1ys8cy9usVsaaRjwfPUVGU/GI2
+         Ik2Jxwl+u0MH05HbViAV+n/nonG5IIL6Pl9Q8Ztsvj6pWXMJULqP8u+ZoNe3LDorcF
+         /+aeG4jM2JQJA==
+Message-ID: <36d63b72-68ef-022a-99b1-375e5eba702a@denx.de>
+Date:   Tue, 23 May 2023 14:56:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc8280xp: Enable GPU related
- nodes
+Subject: Re: [PATCH v6 4/5] ARM: dts: imx6sx: Add LDB support
 Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, johan@kernel.org, mani@kernel.org
-References: <20230523011522.65351-1-quic_bjorande@quicinc.com>
- <20230523011522.65351-4-quic_bjorande@quicinc.com>
- <1669ecc5-1845-e671-83f4-19ee14d37ce5@linaro.org>
- <20230523122842.cueyeovuzpx63def@ripper>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230523122842.cueyeovuzpx63def@ripper>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
+        bhelgaas@google.com, Fabio Estevam <festevam@denx.de>
+References: <20230522201404.660242-1-festevam@gmail.com>
+ <20230522201404.660242-4-festevam@gmail.com>
+ <d8c34831-c89a-0c09-d874-9f7778c7aa33@denx.de>
+ <CAOMZO5CMox7r40cSf7mwqJp3bReN+4VBZ4CMXVpsxYH2g8XqzA@mail.gmail.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <CAOMZO5CMox7r40cSf7mwqJp3bReN+4VBZ4CMXVpsxYH2g8XqzA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 23.05.2023 14:28, Bjorn Andersson wrote:
-> On Tue, May 23, 2023 at 10:04:40AM +0200, Konrad Dybcio wrote:
->>
->>
->> On 23.05.2023 03:15, Bjorn Andersson wrote:
->>> From: Bjorn Andersson <bjorn.andersson@linaro.org>
->>>
->>> Add memory reservation for the zap-shader and enable the Adreno SMMU,
->>> GPU clock controller, GMU and the GPU nodes for the SC8280XP CRD and the
->>> Lenovo ThinkPad X13s.
->>>
->>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->>> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
->>> ---
->>>
->>> Changes since v1:
->>> - None
->>>
->>>  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 26 +++++++++++++++++++
->>>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 26 +++++++++++++++++++
->>>  2 files changed, 52 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
->>> index 5b25d54b9591..547277924ea3 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
->>> @@ -210,6 +210,11 @@ vreg_wwan: regulator-wwan {
->>>  	};
->>>  
->>>  	reserved-memory {
->>> +		gpu_mem: gpu-mem@8bf00000 {
->> The ZAP region is very seldom moved around, and I wouldn't expect it
->> to be uncommon among the very usecase-specific 8280 machines.
->>
->>> +			reg = <0 0x8bf00000 0 0x2000>;
->>> +			no-map;
->>> +		};
->>> +
->>>  		linux,cma {
->>>  			compatible = "shared-dma-pool";
->>>  			size = <0x0 0x8000000>;
->>> @@ -259,6 +264,10 @@ usb1_sbu_mux: endpoint {
->>>  	};
->>>  };
->>>  
->>> +&adreno_smmu {
->>> +	status = "okay";
->>> +};
->> Ugh. Should definitely be enabled by default.
->>
->>> +
->>>  &apps_rsc {
->>>  	regulators-0 {
->>>  		compatible = "qcom,pm8350-rpmh-regulators";
->>> @@ -376,6 +385,23 @@ &dispcc0 {
->>>  	status = "okay";
->>>  };
->>>  
->>> +&gmu {
->>> +	status = "okay";
->>> +};
->> You can keep the GMU enabled by default as well, it won't "probe" on
->> its own (the GPU's hw_init calls its registration)
->>
->>> +
->>> +&gpu {
->>> +	status = "okay";
->>> +
->>> +	zap-shader {
->>> +		memory-region = <&gpu_mem>;
->>> +		firmware-name = "qcom/sc8280xp/qcdxkmsuc8280.mbn";
->>> +	};
->>> +};
->>> +
->>> +&gpucc {
->>> +	status = "okay";
->>> +};
->> Clock controllers have no reason to be off by default.
->>
+On 5/23/23 13:34, Fabio Estevam wrote:
+> Hi Marek,
 > 
-> On sa8295p/sa8540p the GPU is powered differently, so if I leave it
-> enabled by default I need to disable it (or configure it) for those, or
-> they won't boot.
-Another "messed up automotive forks" situation, eh..
-Would it take a lot of new code to configure these platforms correctly?
+> On Mon, May 22, 2023 at 11:57 PM Marek Vasut <marex@denx.de> wrote:
+> 
+>>> +                             lvds_bridge: bridge@18 {
+>>> +                                     compatible = "fsl,imx6sx-ldb";
+>>> +                                     reg = <0x18 0x4>;
+>>> +                                     clocks = <&clks IMX6SX_CLK_LDB_DI0>;
+>>> +                                     clock-names = "ldb";
+>>
+>> Since there is only once clock, is this clock-names even needed ?
+> 
+> As of today, clock-names is needed because
+> drivers/gpu/drm/bridge/fsl-ldb.c retrieves the ldb clock like this:
+> 
+> fsl_ldb->clk = devm_clk_get(dev, "ldb")
+> 
+> If you want, I can change it to fsl_ldb->clk = devm_clk_get(dev, NULL)
+> and also remove clock-names from
+> fsl,ldb.yaml and from imx8mp.dtsi.
+> 
+> Or this cleanup can also be a follow-up patch. Just let me know what you prefer.
 
-Konrad
-> 
-> Regards,
-> Bjorn
-> 
->> Konrad
->>> +
->>>  &mdss0 {
->>>  	status = "okay";
->>>  };
->>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
->>> index bdcba719fc38..5ef3f4c07d75 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
->>> @@ -264,6 +264,11 @@ vreg_wwan: regulator-wwan {
->>>  	};
->>>  
->>>  	reserved-memory {
->>> +		gpu_mem: gpu-mem@8bf00000 {
->>> +			reg = <0 0x8bf00000 0 0x2000>;
->>> +			no-map;
->>> +		};
->>> +
->>>  		linux,cma {
->>>  			compatible = "shared-dma-pool";
->>>  			size = <0x0 0x8000000>;
->>> @@ -359,6 +364,10 @@ usb1_sbu_mux: endpoint {
->>>  	};
->>>  };
->>>  
->>> +&adreno_smmu {
->>> +	status = "okay";
->>> +};
->>> +
->>>  &apps_rsc {
->>>  	regulators-0 {
->>>  		compatible = "qcom,pm8350-rpmh-regulators";
->>> @@ -518,6 +527,23 @@ &dispcc0 {
->>>  	status = "okay";
->>>  };
->>>  
->>> +&gmu {
->>> +	status = "okay";
->>> +};
->>> +
->>> +&gpu {
->>> +	status = "okay";
->>> +
->>> +	zap-shader {
->>> +		memory-region = <&gpu_mem>;
->>> +		firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcdxkmsuc8280.mbn";
->>> +	};
->>> +};
->>> +
->>> +&gpucc {
->>> +	status = "okay";
->>> +};
->>> +
->>>  &mdss0 {
->>>  	status = "okay";
->>>  };
+I think a follow up patch would be perfectly fine , let's not grow the 
+series unnecessarily .
