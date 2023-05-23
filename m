@@ -2,81 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 324D970D04F
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 03:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13D2470D0C9
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 04:03:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234575AbjEWBPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 21:15:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42024 "EHLO
+        id S232394AbjEWCDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 22:03:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234018AbjEWBPf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 21:15:35 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E4CE90;
-        Mon, 22 May 2023 18:15:34 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34N0sMdU001141;
-        Tue, 23 May 2023 01:15:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=UO1s0M03wTvIPHQ9cNLsV67P1G2h+uyQqJfOCg5+Al0=;
- b=C9/2v1FiRZLgSgnPPejoym+f75lnI0oaCErFFnUuDjkrhSEdzIzplBwk6+ReerB490Hm
- mxYS3rnyW2aPPPTnH+Sbbu4sIOh6vh6Eyxs4mi6kAunvWQ0KdRQ1fVWvH7VhJAcpC0q+
- 4Mtt17qEfFxU/xQ5nJpYQiY8Mq1wROuKcR2YqovZOc6G/l+JKuLvnQW3RyCldsXiD46P
- Cw99jpaWmd0VmUCWrHoV6nkuNthl/li+ah34tdAuwLJ1tPEzJe24aCAkFszqNhxqMDVO
- 2XwVIyW3lX3HMVf+Z51J317emCF7VHrPt1jHaRE4CJABYHK41CUntB5Rwmui4fhEAfhe Lg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qpkwmw6ra-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 23 May 2023 01:15:29 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34N1FSK1014500
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 23 May 2023 01:15:28 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Mon, 22 May 2023 18:15:28 -0700
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <johan@kernel.org>,
-        <mani@kernel.org>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sc8280xp: Enable GPU related nodes
-Date:   Mon, 22 May 2023 18:15:22 -0700
-Message-ID: <20230523011522.65351-4-quic_bjorande@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230523011522.65351-1-quic_bjorande@quicinc.com>
-References: <20230523011522.65351-1-quic_bjorande@quicinc.com>
+        with ESMTP id S229695AbjEWCDd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 22:03:33 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2074.outbound.protection.outlook.com [40.107.8.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A197CA;
+        Mon, 22 May 2023 19:03:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Di0H1//rtEI3iljK1JGAoohIGFQugpZa5Tf+AbWubYr7iAMOFAZvNZqTDf74bMfM2Lk4a6RKavfaTNFL4pXJf3bDmA2DqD6UsyjPRTewOGjenqPyrlyomUNLbTdZPyCYvXJQ737yhmesja86CJWPTbpqRewTUWoS6U8FFV69HxAzhJLxSuJ7Cg/wVJbposE7omRb2RaD+YTr6ld6lp+pPzMtxIQdvaiSvXC6UzkBds8J0uQxYEeoIS3Iytar3Pb5sIZXyhYmkMbrs93+3m05SEgnhE3Lhb8Trz5WyTN20RA8sJ0nyB7dS6tRv/I+2d0YiAWvfpM98JqnHwqCp6BF/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TUh82mQc6HD6g9smvltykSrtbePfzFc8GGItJRzDG44=;
+ b=kguCD/YmoPN4woVzBOhisjsl4M9JbVnhtCroFzMXmpECiNjAaHkbBY7Gj2aMkUmjxq/ydRaJVp+lKmcNjpFTbGkGBkdBrRhbdRYSvONWlsMK79iq43OQbjRLT8NgEfBu4B0IsWsGczPo5TDr9Up+63X6ysUEiNezoQnCfvkcj3uCpK5lOE8s+ezVGsWK9D+6dbbqTfT0cknMjIpPLxBrqkxco28i22i6MiMn035FNX1SCV+IUBBVn5QwtiPrlj3mkZUMACDDmWTUj6fPwiEPqfyQereoBTKcBYLpoE6RrPwoxkynDSZpYvDL/6XEE8znEVGAgmCkorsPxn6zOhdjVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TUh82mQc6HD6g9smvltykSrtbePfzFc8GGItJRzDG44=;
+ b=Dtgs+iG5U0jA2Ede9F67UDDexYnJiYJ4kujuPeDvrAXOBTMxthwNkUGE6nWSqYwxNrHrptZBwFJOwQbYWf0j5VxAoYAq8dpcxMyIaayo0FpIohxI8e29v5MEbfFmRQ4oxSUyYU21DLdTIqLkPGQgyWLoYh6XxZQ0fl1tuFzXndY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM0PR04MB6900.eurprd04.prod.outlook.com (2603:10a6:208:17d::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.29; Tue, 23 May
+ 2023 02:03:25 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::b999:f2c6:a8cc:7b4]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::b999:f2c6:a8cc:7b4%7]) with mapi id 15.20.6411.029; Tue, 23 May 2023
+ 02:03:25 +0000
+Message-ID: <9ef80685-3ef7-ac59-05a6-0c46e0ecf57e@oss.nxp.com>
+Date:   Tue, 23 May 2023 10:03:08 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 3/4] dt-bindings: mmc: fsl-imx-esdhc: remove property
+ "fsl,wp-controller"
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        haibo.chen@nxp.com, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
+        cniedermaier@dh-electronics.com, devicetree@vger.kernel.org,
+        kernel@dh-electronics.com
+References: <20230506074037.522961-1-haibo.chen@nxp.com>
+ <20230506074037.522961-4-haibo.chen@nxp.com>
+ <d0329227-b579-5557-b449-7961ec0a1463@linaro.org>
+From:   Peng Fan <peng.fan@oss.nxp.com>
+In-Reply-To: <d0329227-b579-5557-b449-7961ec0a1463@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI1PR02CA0005.apcprd02.prod.outlook.com
+ (2603:1096:4:1f7::13) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: HOn7VQ6-RgtxjRw-NzPAZI1R5lCXk_SR
-X-Proofpoint-ORIG-GUID: HOn7VQ6-RgtxjRw-NzPAZI1R5lCXk_SR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-22_18,2023-05-22_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
- spamscore=0 impostorscore=0 mlxscore=0 adultscore=0 suspectscore=0
- priorityscore=1501 phishscore=0 mlxlogscore=999 lowpriorityscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305230008
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|AM0PR04MB6900:EE_
+X-MS-Office365-Filtering-Correlation-Id: b5ae4132-59df-4b38-108f-08db5b31e463
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gr6QOcEvTe8IiiQmMsMvgfhYMWZiVeAR1Gej8GKTPHxSvU45QXo0KyX1KlgP0tKEBpRxTtwSZSG/z7GOu1/+yxMxia6RhBKv0Ym9+MAB6SRbg6mB+15NR4oNw6nuanNm+6H+72uv4+cxAADstSuqs7SYN94TB/YdxvL++zQd3jXaSYBSDRdmsp70NGg8d1y9YPCz2xDDdo424C5f/bJb1ljBILZXIbkmM+Tt2gJdUAHmvdQAcKtX6zRzfgeM2aJwTinWyMdLjfOeJshHirvbTd0M6AbLV6De5i/x12VXGNjRRt4JAxfR7RruJBWfWn79RALnzEjdXG8J02f+mvDGrDrgzGdSw1c4wnzY6DM2RUAhoeDfTlleqtY1FR6wS3o0yzMV8ZnN329hxqMfkZbIfDigkVbosQAWLDhCyGO5or+FtLktPa2vRcqAW/iOEzd87R2SDJK8leaprHAfeJTG21hGPJwAPa6jFa91D0Vv9UKcVPwnreLCCyOGq4GvaZe7HzpRYq9fVHCKoR2rxxZ4s+Diks3B/FTMtsaql6ITEiqGxbpIeTwYowlLZxMxllcDr3y9z9G52Id+luLnyf+MExA8VXzq771uwiX3YkIs9eM54O8aEFsc39ewXfCoraX9MvQnoKi77GJ0hUC9iAfN7Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(39860400002)(366004)(396003)(136003)(346002)(451199021)(2616005)(186003)(2906002)(44832011)(7416002)(8676002)(8936002)(6512007)(6506007)(26005)(53546011)(5660300002)(478600001)(66946007)(66556008)(66476007)(4326008)(31696002)(86362001)(38100700002)(31686004)(83380400001)(41300700001)(6486002)(316002)(6666004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dThRTHdqQWVPU3pZcXB4QTFpT1pVZGZRVjFleS9GRytySzNrSEN1MXlLZnRC?=
+ =?utf-8?B?aGRXQ1RFSFhzZ21MU2xvRWs3L0tGYktlaHFGOUhsUCtteTYwMWNnenBPUEtG?=
+ =?utf-8?B?Mnh3ZDBxaHNlbUlENmR1UUZDc3lJaHlndkw5bUNXSWcwUnVndldxc0pzN0po?=
+ =?utf-8?B?Qkx0Nmc0a01jTklzMG5XeG9uMUU0ME1MNmMzWnduYTFFQldsMWkzdU5RODN3?=
+ =?utf-8?B?SDFCbjVrZ1BlWGkxZkFkSjJiQURrNW9NZXRDNTdIbmEyTVcraUYwWXZXOS9Z?=
+ =?utf-8?B?bHFuaHF5eHNQKzljZ2pobC9PWXR4aFgzblJsRTVxakZycDZnSUtvRmIySGwx?=
+ =?utf-8?B?RnRWOXhyS3lpdkptWTQ4NWVwN3NINFFBRTd3ZUx5T0E3RmM5Yi9mRXNLTlV0?=
+ =?utf-8?B?NGh0WjJIOEczQUgxd213ZGoyYTRqNFlORXdaQXVpbjdETDZLS0Vac0dEK1RZ?=
+ =?utf-8?B?cU5JMVRRcDRIQVlrZWhqWkJkNGVyTE5VL2ZVQ2c3SEk5M3U4M0dJbGFOS0lw?=
+ =?utf-8?B?QWZxNTQ2Y2x4T2doTUs4QXJXc3dTUHREaVBmcm9VamgwK3FPYWlXV2hvL25u?=
+ =?utf-8?B?Y3FFSHJrOU9zWTg0YWV6VGlwbElHUnF4dHFQMUIyRGRBS3hidE00RVBDazBZ?=
+ =?utf-8?B?QU5ta3BBKzNiRmZxSno1T0RSZzI3bW5oNXFTelFSemJNa2x2b1VRcFE4dCtQ?=
+ =?utf-8?B?MHBpMFFGdXlYNlRJWXJLMnJ5M2Fsb0s0QzkyNkhacVliejlpRTVZUGx3SnVW?=
+ =?utf-8?B?YmpaclQ5d3JWRDdBNGlVWkVyYnRna2RsYk5odHFFYjZjNTk0NVVtT01VbFY2?=
+ =?utf-8?B?TE1VRHF5THdzM0RPdHZ1dWpvbDZJK3Fnc0w3c2gwaXFpUzFTNWsvTUcxMXpR?=
+ =?utf-8?B?amVHeFNKVkRyQngveFFEUnVYQU9kL1ZPYVBWYk1DLzY1YSttVkFpTFYwSVdi?=
+ =?utf-8?B?WDZCRWZSN3A5cVExN0hWQU1OWTRsendQOExkQ3V2NWdnL0FrL2EvWVA2V09X?=
+ =?utf-8?B?UDZWZjVxS0dKUm0weVEwOE1ZLzR6Nzh4R0tOdU94aVFiSHYyYjBDYS9GL3k3?=
+ =?utf-8?B?NU9oNUdVVjA1UFF5dU9mOWxqM3RpVldaUitQVXh1WEdaVzlNYTJLOHdOUUEy?=
+ =?utf-8?B?bEZPelE2eGRlUkk0cXd5M05xTVV6M2xneEJuNXNXL3FDY2MzVVpxQzZoT2Jn?=
+ =?utf-8?B?alZGaHVwcUhnQlRhT0RGYmh5aktreTIwTXY0aSszZWh2cTd3T0FxaXdZNUlP?=
+ =?utf-8?B?bXNyZUE3c2dQQndoenh6blFyV2l6S3ZLV0NmM082TWRGODd2Q0NXZ2hSTTky?=
+ =?utf-8?B?UjVSeGpudTI0QmZEOFlEc0x4aWEzMHNSSXFkekhndnliYmxQWEhBM29aMzgr?=
+ =?utf-8?B?L3VHa1QveWl2L0RLN1RFVkZrdEliM01LdE5DMWlXOHZCUkt2OThLZmJacS9u?=
+ =?utf-8?B?SzA5NkRhZjJvTG04RW1JaVZycjVUTzc0elM3V3A0aTJsWnVaTGdSNkkyVS82?=
+ =?utf-8?B?UGN5ZU9SOGRUMDVLMEZzL3FHOHRjRUZYZ2tSczdjMDdLTEVLSjRFMUxReWZz?=
+ =?utf-8?B?eWh5ak5SSDA5Mko5eE9LUEI3VHE3eXB6ZWNkQWZjVS9RS3lvQ1kxczZZdEZL?=
+ =?utf-8?B?NzNWOG9DMnI3Z2ltdnZEUXg0UkVPai9rWmZwNlVmQXp2TDVDZ1IrUmh0dnM3?=
+ =?utf-8?B?YVZiWGhLcmxkZWtqTkUwN1RHbjZDQWI0Y3BPOUdxcHhyNlZOcHhQcmxYdC9w?=
+ =?utf-8?B?aFpPbFNHTWtrcDhtSmhNY0d6UTZhWDI4TmZiZmZlUHI1dnEvREV5T0xoTW5m?=
+ =?utf-8?B?TXM0em9MWkMzbENHMjJWUG1obkltSjUrQnhHeE9aOXJ1bTRTUndhbDc0WHpt?=
+ =?utf-8?B?ZW1DOVphc2hGN0ZJdlJPN044UnorUzYwS3J3Nm1odU9IQloyMitvamlxcTFw?=
+ =?utf-8?B?RzRSakQ4M0FqUWJldkszS0tQVnJEY2EwYllsajR3MU5uejlyUTBWcXF6Z1FE?=
+ =?utf-8?B?K1BrUkZMYzVGL3JKM3ZNbXFtZFNoVUFUd0prM2dSUURFakZyTHFpWktoTGNM?=
+ =?utf-8?B?VWs1amVNWnkrTnBtU0g2QVhReVdZSlNkRlM2ZXgvQ3RVZ2RUaHh1MHpzYTNL?=
+ =?utf-8?Q?d/837Lec1LB9T76K3ODM8ZMNx?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5ae4132-59df-4b38-108f-08db5b31e463
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 May 2023 02:03:25.0588
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: b/402VL2x7a2utgazw8RTKmb7bklRAHIhLV+XHPB2bfozW11YZ4moOW+6Cpyi3ZD5RIPGRxADDYmnOvyAAOmDA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6900
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,125 +133,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Add memory reservation for the zap-shader and enable the Adreno SMMU,
-GPU clock controller, GMU and the GPU nodes for the SC8280XP CRD and the
-Lenovo ThinkPad X13s.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
+On 5/6/2023 6:59 PM, Krzysztof Kozlowski wrote:
+> Caution: This is an external email. Please take care when clicking links or opening attachments. When in doubt, report the message using the 'Report this email' button
+> 
+> 
+> On 06/05/2023 09:40, haibo.chen@nxp.com wrote:
+>> From: Haibo Chen <haibo.chen@nxp.com>
+>>
+>> Driver do not use this property, so remove it here.
+> 
+> You still need to expand the commit msg and justify why this property is
+> being removed. "Driver" is vague, as it can be BSD driver which also
+> might use this binding. Instead describe why this property should be
+> removed, so we can understand also ABI implications.
 
-Changes since v1:
-- None
+The better approach would be mark it as deprecated.
 
- arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 26 +++++++++++++++++++
- .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 26 +++++++++++++++++++
- 2 files changed, 52 insertions(+)
+Regards,
+Peng.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-index 5b25d54b9591..547277924ea3 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-@@ -210,6 +210,11 @@ vreg_wwan: regulator-wwan {
- 	};
- 
- 	reserved-memory {
-+		gpu_mem: gpu-mem@8bf00000 {
-+			reg = <0 0x8bf00000 0 0x2000>;
-+			no-map;
-+		};
-+
- 		linux,cma {
- 			compatible = "shared-dma-pool";
- 			size = <0x0 0x8000000>;
-@@ -259,6 +264,10 @@ usb1_sbu_mux: endpoint {
- 	};
- };
- 
-+&adreno_smmu {
-+	status = "okay";
-+};
-+
- &apps_rsc {
- 	regulators-0 {
- 		compatible = "qcom,pm8350-rpmh-regulators";
-@@ -376,6 +385,23 @@ &dispcc0 {
- 	status = "okay";
- };
- 
-+&gmu {
-+	status = "okay";
-+};
-+
-+&gpu {
-+	status = "okay";
-+
-+	zap-shader {
-+		memory-region = <&gpu_mem>;
-+		firmware-name = "qcom/sc8280xp/qcdxkmsuc8280.mbn";
-+	};
-+};
-+
-+&gpucc {
-+	status = "okay";
-+};
-+
- &mdss0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index bdcba719fc38..5ef3f4c07d75 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -264,6 +264,11 @@ vreg_wwan: regulator-wwan {
- 	};
- 
- 	reserved-memory {
-+		gpu_mem: gpu-mem@8bf00000 {
-+			reg = <0 0x8bf00000 0 0x2000>;
-+			no-map;
-+		};
-+
- 		linux,cma {
- 			compatible = "shared-dma-pool";
- 			size = <0x0 0x8000000>;
-@@ -359,6 +364,10 @@ usb1_sbu_mux: endpoint {
- 	};
- };
- 
-+&adreno_smmu {
-+	status = "okay";
-+};
-+
- &apps_rsc {
- 	regulators-0 {
- 		compatible = "qcom,pm8350-rpmh-regulators";
-@@ -518,6 +527,23 @@ &dispcc0 {
- 	status = "okay";
- };
- 
-+&gmu {
-+	status = "okay";
-+};
-+
-+&gpu {
-+	status = "okay";
-+
-+	zap-shader {
-+		memory-region = <&gpu_mem>;
-+		firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcdxkmsuc8280.mbn";
-+	};
-+};
-+
-+&gpucc {
-+	status = "okay";
-+};
-+
- &mdss0 {
- 	status = "okay";
- };
--- 
-2.39.2
-
+> 
+>>
+>> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+>>
+>> ---
+>> v2:
+>> -fix dt-binding-check issue, also remove "fsl,wp-controller" in examples.
+>> ---
+>>   Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 6 ------
+>>   1 file changed, 6 deletions(-)
+> 
+> Best regards,
+> Krzysztof
+> 
