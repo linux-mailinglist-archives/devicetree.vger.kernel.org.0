@@ -2,146 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0708270DFB2
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 16:53:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2127C70E019
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 17:14:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbjEWOxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 10:53:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44900 "EHLO
+        id S235867AbjEWPOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 11:14:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236276AbjEWOxM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 10:53:12 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8C36DE9;
-        Tue, 23 May 2023 07:53:10 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3925A139F;
-        Tue, 23 May 2023 07:53:55 -0700 (PDT)
-Received: from [10.57.73.71] (unknown [10.57.73.71])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8FB673F840;
-        Tue, 23 May 2023 07:53:07 -0700 (PDT)
-Message-ID: <0947825d-5c2f-0e75-cfe8-ef4c6fa8d502@arm.com>
-Date:   Tue, 23 May 2023 15:53:06 +0100
+        with ESMTP id S236806AbjEWPNl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 11:13:41 -0400
+X-Greylist: delayed 902 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 23 May 2023 08:13:20 PDT
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E988AE4D
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 08:13:20 -0700 (PDT)
+X-AuditID: ac14000a-923ff70000007ecb-d9-646cd488ae38
+Received: from Diagnostix.phytec.de (Diagnostix.phytec.de [172.25.0.14])
+        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id A6.8F.32459.884DC646; Tue, 23 May 2023 16:58:16 +0200 (CEST)
+Received: from Berlix.phytec.de (172.25.0.12) by Diagnostix.phytec.de
+ (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 23 May
+ 2023 16:58:15 +0200
+Received: from Berlix.phytec.de ([fe80::61cc:ebf0:7375:8768]) by
+ berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2375.018;
+ Tue, 23 May 2023 16:58:15 +0200
+From:   Christophe Parant <C.Parant@phytec.fr>
+To:     "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "s.trumtrar@pengutronix.de" <s.trumtrar@pengutronix.de>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "upstream@lists.phytec.de" <upstream@lists.phytec.de>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
+        "alexandre.torgue@foss.st.com" <alexandre.torgue@foss.st.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v9 10/10] ARM: dts: stm32: add STM32MP1-based Phytec board
+Thread-Topic: [PATCH v9 10/10] ARM: dts: stm32: add STM32MP1-based Phytec
+ board
+Thread-Index: AQHZjYZ7ReKcSf+hNU6XArRy/wB/9q9n0WyA
+Date:   Tue, 23 May 2023 14:58:15 +0000
+Message-ID: <e5b4ef445160ac0ddbaa25f12118a253ad21542a.camel@phytec.fr>
+References: <20230505060158.16516-1-s.trumtrar@pengutronix.de>
+         <20230505060158.16516-11-s.trumtrar@pengutronix.de>
+In-Reply-To: <20230505060158.16516-11-s.trumtrar@pengutronix.de>
+Accept-Language: fr-FR, de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.0.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <55F2E19B66CA58468FE3935C4908944D@phytec.de>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.11.0
-Subject: Re: [PATCH v4 04/11] coresight-tpdm: Add reset node to TPDM node
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
- <1682586037-25973-5-git-send-email-quic_taozha@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <1682586037-25973-5-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrOIsWRmVeSWpSXmKPExsWyRpKBT7fjSk6KwdLNXBY/X05jtJh/5Byr
+        Rd+Lh8wWmx5fY7XouvaE1WLe37WsFp8+LmSx6H6n7sDh8bR/K7vHzll32T3uXNvD5rF5Sb1H
+        f3cLq0f/XwOPg/sMPT5vkgvgiOKySUnNySxLLdK3S+DK+Nc4h7Vgj1bFiq0rWBoYN2h2MXJy
+        SAiYSFxdv4a1i5GLQ0hgHZPE9Fl3GSGcJ4wS2959hcpsZJSYdWU7O0gLm4COxJ3jF5hBEiIC
+        0xgllrYuYAJJMAtMYJaYMdsJxBYW8JP4OXsrC4gtIhAo0X9+ByOEbSRx+clSMJtFQFXiyuHr
+        YDW8Am4SL2asZQOxhQRKJa78uAc2k1PAQWJP1yWwekYBFYnrL3exQOwSl9j07DsrxA8CEkv2
+        nGeGsEUlXj7+BxWXlzhxaxrQHA6gek2J9bv0IVotJH696WaGsBUlpnQ/ZIc4QVDi5MwnLBMY
+        xWch2TALoXsWku5ZSLpnIelewMi6ilEoNzM5O7UoM1uvIKOyJDVZLyV1EyMoskUYuHYw9s3x
+        OMTIxMF4iFGCg1lJhPdEeXaKEG9KYmVValF+fFFpTmrxIUZpDhYlcd77PUyJQgLpiSWp2amp
+        BalFMFkmDk6pBka1d26aZ5LXfnrxr2LT6VDu13xuLK16OzWEXZsP1d4+K7ZlG5uc6aOLJW9q
+        u/+uOscf0fH2r+NF9Tf512+tvyb15UBxRYHa9C3fNTnfO55R6bBcGHFONP+3bFneRfNf36e8
+        LtEqPHpL89UnSaG3Hgo5hw9/3fxYN1X6WKDx4f++V57XZbxf1x2mxFKckWioxVxUnAgANa+n
+        StoCAAA=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/04/2023 10:00, Tao Zhang wrote:
-> TPDM device need a node to reset the configurations and status of
-> it. This change provides a node to reset the configurations and
-> disable the TPDM if it has been enabled.
-> 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> ---
->   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   | 10 ++++++++
->   drivers/hwtracing/coresight/coresight-tpdm.c       | 27 ++++++++++++++++++++++
->   2 files changed, 37 insertions(+)
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> index 4a58e64..686bdde 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> @@ -11,3 +11,13 @@ Description:
->   		Accepts only one of the 2 values -  1 or 2.
->   		1 : Generate 64 bits data
->   		2 : Generate 32 bits data
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/reset
-> +Date:		March 2023
-> +KernelVersion	6.3
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(Write) Reset the dataset of the tpdm, and disable the tpdm.
-> +
-> +		Accepts only one value -  1.
-> +		1 : Reset the dataset of the tpdm
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-> index 6f8a8ab..2e64cfd 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-> @@ -164,6 +164,32 @@ static int tpdm_datasets_setup(struct tpdm_drvdata *drvdata)
->   	return 0;
->   }
->   
-> +static ssize_t reset_store(struct device *dev,
-> +					  struct device_attribute *attr,
-> +					  const char *buf,
-> +					  size_t size)
-> +{
-> +	int ret = 0;
-> +	unsigned long val;
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +
-> +	ret = kstrtoul(buf, 10, &val);
-> +	if (ret || val != 1)
-> +		return -EINVAL;
-> +
-> +	spin_lock(&drvdata->spinlock);
-> +	tpdm_reset_datasets(drvdata);
-> +
-> +	spin_unlock(&drvdata->spinlock);
-> +
-> +	/* Disable tpdm if enabled */
-> +	if (drvdata->enable)
-> +		coresight_disable_source(drvdata->csdev, NULL);
-
-I am not really keen on doing this behind the back. What about the path 
-of components ? We could simply reject the request when the TPDA is 
-enabled and let the user alway follow :
-	1) Disable the TPDM manually via sysfs
-   	2) Reset the TPDM.
-
-So, please remove the disable step here.
-
-Suzuki
-
-
-> +
-> +	return size;
-> +}
-> +static DEVICE_ATTR_WO(reset);
-> +
->   /*
->    * value 1: 64 bits test data
->    * value 2: 32 bits test data
-> @@ -204,6 +230,7 @@ static ssize_t integration_test_store(struct device *dev,
->   static DEVICE_ATTR_WO(integration_test);
->   
->   static struct attribute *tpdm_attrs[] = {
-> +	&dev_attr_reset.attr,
->   	&dev_attr_integration_test.attr,
->   	NULL,
->   };
-
+SGkgU3RlZmZlbiwNCg0KVGhhbmsgeW91IGZvciB1cHN0cmVhbWluZyBvdXIgcGh5Qk9BUkQtU2Fy
+Z2FzIGRldmljZSB0cmVlLiBXZSB3ZXJlIGFsc28NCnBsYW5pbmcgdG8gd29yayBvbiB0aGF0IHRv
+by4NCklmIHRoaXMgcGF0Y2ggaXMgbm90IGFwcGxpZWQgdXBzdHJlYW0geWV0LCB3b3VsZCBpdCBi
+ZSBwb3NzaWJsZSB0bw0KcmVuYW1lIHRoZSAuZHRzIGZpbGUgPw0KDQpJbiB0aGUgYmVnaW5uaW5n
+LCB3ZSBuYW1lZCB0aGUgZHRzIGZpbGVzIGFmdGVyIG91ciBZb2N0byBtYWNoaW5lcywNCndoaWNo
+IGlzIHByb2JhYmx5IHRoZSB2ZXJzaW9uIHlvdSBnb3QuIEJ1dCBub3cgd2UgcmVuYW1lZCB0aGVt
+IGFmdGVyDQpvdXIgYmFzZWJvYXJkIG5hbWVzLCBsaWtlIHdpdGggb3VyIG90aGVyIHBsYXRmb3Jt
+cy4NClNvIGl0IHdvdWxkIG1ha2Ugc2Vuc2UgdG8gaGF2ZSB0aGUgc3RtMzIgYmFzZWJvYXJkIG5h
+bWVkIHRoZSBzYW1lIHdheSwNCmNoYW5naW5nICJzdG0zMm1wMTU3Yy1waHljb3JlLXN0bTMybXAx
+LTMuZHRzIiB0byAic3RtMzJtcDE1N2MtcGh5Ym9hcmQtDQpzYXJnYXMtcmRrLWVtbWMuZHRzIi4N
+Cg0KIm1vZGVsIiBhbmQgImNvbXBhdGlibGUiIGNhbiBhbHNvIGJlIG1vZGlmaWVkIHRoaXMgd2F5
+IHdpdGggdGhpcyBuYW1pbmcNCmNvbnZlbnRpb24gOg0KDQovIHsNCiAgICBtb2RlbCA9ICJQSFlU
+RUMgcGh5Qk9BUkQtU2FyZ2FzIFNUTTMyTVAxNTdDIHdpdGggZU1NQyI7DQogICAgY29tcGF0aWJs
+ZSA9ICJwaHl0ZWMsc3RtMzJtcDE1N2MtcGh5Ym9hcmQtc2FyZ2FzLXJkay1lbW1jIiwNCiAgICAg
+ICAgICAgICAicGh5dGVjLHN0bTMybXAxNTdjLXBoeWNvcmUtc29tIiwgInN0LHN0bTMybXAxNTci
+Ow0KfTsNCg0KVGhhbmtzLg0KDQpCZXN0IHJlZ2FyZHMsDQpDaHJpc3RvcGhlIFBhcmFudA0KDQpM
+ZSB2ZW5kcmVkaSAwNSBtYWkgMjAyMyDDoCAwODowMSArMDIwMCwgU3RlZmZlbiBUcnVtdHJhciBh
+IMOpY3JpdMKgOg0KPiBBZGQgdGhlIFBoeXRlYyBTVE0zMk1QMS0zIERldiBib2FyZC4gVGhlIGRl
+dmJvYXJkIHVzZXMgYSBQaHl0ZWMNCj4gc3RtMzJtMTU3Yy1zb20uDQo+IA0KPiBTaWduZWQtb2Zm
+LWJ5OiBTdGVmZmVuIFRydW10cmFyIDxzLnRydW10cmFyQHBlbmd1dHJvbml4LmRlPg0KPiAtLS0N
+Cj4gDQo+IE5vdGVzOg0KPiDCoMKgwqAgQ2hhbmdlcyBzaW5jZSB2NzoNCj4gwqDCoMKgwqDCoMKg
+IC0gcmVtb3ZlIHNlY3VyZS1zdGF0dXMgZm9yIHNkbW1jDQo+IA0KPiDCoGFyY2gvYXJtL2Jvb3Qv
+ZHRzL01ha2VmaWxlwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDMg
+Ky0NCj4gwqAuLi4vZHRzL3N0bTMybXAxNTdjLXBoeWNvcmUtc3RtMzJtcDEtMy5kdHPCoMKgwqAg
+fCA2MA0KPiArKysrKysrKysrKysrKysrKysrDQo+IMKgMiBmaWxlcyBjaGFuZ2VkLCA2MiBpbnNl
+cnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+IMKgY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJt
+L2Jvb3QvZHRzL3N0bTMybXAxNTdjLXBoeWNvcmUtc3RtMzJtcDEtDQo+IDMuZHRzDQo+IA0KPiBk
+aWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUgYi9hcmNoL2FybS9ib290L2R0
+cy9NYWtlZmlsZQ0KPiBpbmRleCBlZmU0MTUyZTU4NDYuLmRmYTlhNzQ3N2M4MiAxMDA2NDQNCj4g
+LS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUNCj4gKysrIGIvYXJjaC9hcm0vYm9vdC9k
+dHMvTWFrZWZpbGUNCj4gQEAgLTEyNTIsNyArMTI1Miw4IEBAIGR0Yi0kKENPTkZJR19BUkNIX1NU
+TTMyKSArPSBcDQo+IMKgwqDCoMKgwqDCoMKgwqBzdG0zMm1wMTU3Yy1ldjEuZHRiIFwNCj4gwqDC
+oMKgwqDCoMKgwqDCoHN0bTMybXAxNTdjLWV2MS1zY21pLmR0YiBcDQo+IMKgwqDCoMKgwqDCoMKg
+wqBzdG0zMm1wMTU3Yy1seGEtbWMxLmR0YiBcDQo+IC3CoMKgwqDCoMKgwqDCoHN0bTMybXAxNTdj
+LW9keXNzZXkuZHRiDQo+ICvCoMKgwqDCoMKgwqDCoHN0bTMybXAxNTdjLW9keXNzZXkuZHRiIFwN
+Cj4gK8KgwqDCoMKgwqDCoMKgc3RtMzJtcDE1N2MtcGh5Y29yZS1zdG0zMm1wMS0zLmR0Yg0KPiDC
+oGR0Yi0kKENPTkZJR19NQUNIX1NVTjRJKSArPSBcDQo+IMKgwqDCoMKgwqDCoMKgwqBzdW40aS1h
+MTAtYTEwMDAuZHRiIFwNCj4gwqDCoMKgwqDCoMKgwqDCoHN1bjRpLWExMC1iYTEwLXR2Ym94LmR0
+YiBcDQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9zdG0zMm1wMTU3Yy1waHljb3Jl
+LXN0bTMybXAxLTMuZHRzDQo+IGIvYXJjaC9hcm0vYm9vdC9kdHMvc3RtMzJtcDE1N2MtcGh5Y29y
+ZS1zdG0zMm1wMS0zLmR0cw0KPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiBpbmRleCAwMDAwMDAw
+MDAwMDAuLjI4ZDcyMDMyNjRjZQ0KPiAtLS0gL2Rldi9udWxsDQo+ICsrKyBiL2FyY2gvYXJtL2Jv
+b3QvZHRzL3N0bTMybXAxNTdjLXBoeWNvcmUtc3RtMzJtcDEtMy5kdHMNCj4gQEAgLTAsMCArMSw2
+MCBAQA0KPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wKyBPUiBCU0QtMy1D
+bGF1c2UpDQo+ICsvKg0KPiArICogQ29weXJpZ2h0IChDKSBQaHl0ZWMgR21iSCAyMDE5LTIwMjAg
+LSBBbGwgUmlnaHRzIFJlc2VydmVkDQo+ICsgKiBBdXRob3I6IERvbSBWT1ZBUkQgPGRvbS52b3Zh
+cmRAbGlucnQuY29tPi4NCj4gKyAqLw0KPiArDQo+ICsvZHRzLXYxLzsNCj4gKw0KPiArI2luY2x1
+ZGUgPGR0LWJpbmRpbmdzL3BpbmN0cmwvc3RtMzItcGluZnVuYy5oPg0KPiArI2luY2x1ZGUgInN0
+bTMybXAxNTcuZHRzaSINCj4gKyNpbmNsdWRlICJzdG0zMm1wMTV4Yy5kdHNpIg0KPiArI2luY2x1
+ZGUgInN0bTMybXAxNXh4YWMtcGluY3RybC5kdHNpIg0KPiArI2luY2x1ZGUgInN0bTMybXAxNTdj
+LXBoeWNvcmUtc3RtMzJtcDE1LXNvbS5kdHNpIg0KPiArDQo+ICsvIHsNCj4gK8KgwqDCoMKgwqDC
+oMKgbW9kZWwgPSAiUEhZVEVDIHBoeUNPUkUtU1RNMzJNUDEtMyBEZXYgQm9hcmQiOw0KPiArwqDC
+oMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInBoeXRlYyxwaHljb3JlLXN0bTMybXAxLTMiLA0KPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgInBoeXRlYyxwaHljb3JlLXN0
+bTMybXAxNTdjLXNvbSIsDQo+ICJzdCxzdG0zMm1wMTU3IjsNCj4gKw0KPiArwqDCoMKgwqDCoMKg
+wqBhbGlhc2VzIHsNCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG1tYzAgPSAmc2Rt
+bWMxOw0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbW1jMSA9ICZzZG1tYzI7DQo+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBtbWMyID0gJnNkbW1jMzsNCj4gK8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHNlcmlhbDAgPSAmdWFydDQ7DQo+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqBzZXJpYWwxID0gJnVzYXJ0MzsNCj4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoHNlcmlhbDIgPSAmdXNhcnQxOw0KPiArwqDCoMKgwqDCoMKgwqB9Ow0K
+PiArfTsNCj4gKw0KPiArJmNyeXAxIHsNCj4gK8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXki
+Ow0KPiArfTsNCj4gKw0KPiArJmR0cyB7DQo+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5
+IjsNCj4gK307DQo+ICsNCj4gKyZmbWMgew0KPiArwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAiZGlz
+YWJsZWQiOw0KPiArfTsNCj4gKw0KPiArJmdwdSB7DQo+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9
+ICJva2F5IjsNCj4gK307DQo+ICsNCj4gKyZpMmM0X2VlcHJvbSB7DQo+ICvCoMKgwqDCoMKgwqDC
+oHN0YXR1cyA9ICJva2F5IjsNCj4gK307DQo+ICsNCj4gKyZpMmM0X3J0YyB7DQo+ICvCoMKgwqDC
+oMKgwqDCoHN0YXR1cyA9ICJva2F5IjsNCj4gK307DQo+ICsNCj4gKyZxc3BpIHsNCj4gK8KgwqDC
+oMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOw0KPiArfTsNCj4gKw0KPiArJnNkbW1jMiB7DQo+ICvC
+oMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsNCj4gK307DQo=
