@@ -2,80 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85AE570D783
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 10:34:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CDFB70D7A3
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 10:37:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235364AbjEWIeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 04:34:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48632 "EHLO
+        id S236222AbjEWIhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 04:37:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235594AbjEWIdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 04:33:25 -0400
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EDA42697
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:30:02 -0700 (PDT)
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2af2696fd1cso50350351fa.2
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:30:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684830541; x=1687422541;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ru8/Ayqf4dTtmxHSBTZW4Z/WyG04tjjI1uvhJ1HwfeI=;
-        b=abJjwkmDgJj5c2H3Ph/PaFWs5c3ixfxVuxTVw6cdn0Sl5+HIwtdFR0r2wAmVtzNdTN
-         AazJsKfhIiipws0rgDYu5IZ8lN/amDTcBOIwQHOREIkh+o9OmnEt4x+I7LEow3bxxTcq
-         3k5PYk7/e2VEDw+dBu8ynUPX6FkwfvS724LdiRKYHBgHyY+Ng6P75dP/eufPhOXJUJCj
-         v4Huuvj6qOxVJ28ntsfINKdAy/7XFwqgvblBZsOr/apNa/CBOBGkOw8Qy//fqF4lU9Os
-         k7ZqeeO9wl4UiKV0Gb3fjqwoR2+ia/oZH6S00HacjPDlAYG7GsSVeTbNz9BKdQRvbgFV
-         5DTw==
+        with ESMTP id S235930AbjEWIg6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 04:36:58 -0400
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CA141FED;
+        Tue, 23 May 2023 01:34:55 -0700 (PDT)
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-6af6df7f93aso2232498a34.0;
+        Tue, 23 May 2023 01:34:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684830541; x=1687422541;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ru8/Ayqf4dTtmxHSBTZW4Z/WyG04tjjI1uvhJ1HwfeI=;
-        b=c+hZVaanSOwXANDwXlK1ib/mbXrXMK/rwAe+lwuNYjlH9iWREjxMZnw7gZAim2mteO
-         SwmqNqnxb8wv96ct9yUbYA1JS3Doo56XtebIRrBp6XVIS68zvjyEi/By0S4RrHeRfQe0
-         ojUpkZcAjFj6bJMXh/U1dNOkoIlMYyoN5Rms52b4ogAl8I+ZyK7Gt/kViq465V8ZQhV0
-         WbtfOR5/yZ2oRiDUKVGtY926RgTx4k8X8F4mpw7nTBUInF7Ft9p9bTQnd6IQvxUhk+DY
-         2ccIanPDYtkaymjtGEw4OmHQ56IVOqQEzcj3S4xzLcOXlRbfVvmuzzXVr+ePWxrc4MpK
-         Rong==
-X-Gm-Message-State: AC+VfDz7CzVY132iMR3cbGeXlwbdcdE2pYlPLF1OajJbyPgNsIpYvybH
-        E8QwZwFUYg/bsOFeuT2rtxqeYw==
-X-Google-Smtp-Source: ACHHUZ7Z6KxAfOGRGBcH8la8DINFLT/esIUVa3YUF9vwrpNYh17uiO2t/tJt2bcDRLkVCG33/nVWUw==
-X-Received: by 2002:a2e:3809:0:b0:2ad:94cd:3cb7 with SMTP id f9-20020a2e3809000000b002ad94cd3cb7mr4535421lja.51.1684830540807;
-        Tue, 23 May 2023 01:29:00 -0700 (PDT)
-Received: from [192.168.1.101] (abyk138.neoplus.adsl.tpnet.pl. [83.9.30.138])
-        by smtp.gmail.com with ESMTPSA id y14-20020a2eb00e000000b002af0464353bsm1465866ljk.106.2023.05.23.01.28.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 May 2023 01:29:00 -0700 (PDT)
-Message-ID: <df1b3440-d007-0658-0739-9a939b143a32@linaro.org>
-Date:   Tue, 23 May 2023 10:28:58 +0200
+        d=1e100.net; s=20221208; t=1684830895; x=1687422895;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Fbuuelze6oX5JYOQ10a+DjnQCHnZU9fuAvZCu9bIt5c=;
+        b=ZaRdzWERWur1bBUgPfNoY188xkhwUY3rPwaO0s32lUeTMs1LDsTmgn6uZoZ2k7W8Rg
+         ZW3azk+sJ/SBStFpqKcIsLbRA844wx+rxdNoL8RjIw0WFbVuI3I6jaVMJRBas8IfuODI
+         O8ThxJ8lXU4+26nsKZsA9K/PmfZIzw1fes7aT+r0gqmoWa9J5gZd/2zv3Oqd2JlAtKWC
+         phP7tge7IP9fDjdH8MLbTMyAoV3uxxxG3o/eGpGgBShUVAS3CgeJjK7FcI4tRx1VfrBq
+         I7aBtFzU1L/WUD/iKOuFIm1/BP/NAPk1uaFtXIkIKoNfuD7SmSS+hbpdO7/X6itxQE1f
+         iYkA==
+X-Gm-Message-State: AC+VfDz5O5S4yRWb9LB8AkJhWo85ke3T7xhfhdyugfASC/7eyFygKg+2
+        jq+2485YubwDUB3ErxNhNw==
+X-Google-Smtp-Source: ACHHUZ7/tT2ff11MVD89mp0Uq6HgcF9rMmy1Is5kbzuJKiVecR9PIqUjz5MCk5++W0yN001aVxjPUQ==
+X-Received: by 2002:a9d:6b11:0:b0:6af:85fd:ffff with SMTP id g17-20020a9d6b11000000b006af85fdffffmr2136294otp.25.1684830894792;
+        Tue, 23 May 2023 01:34:54 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q25-20020a9d7c99000000b006aaf82bd5a2sm3258395otn.43.2023.05.23.01.34.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 May 2023 01:34:54 -0700 (PDT)
+Received: (nullmailer pid 140433 invoked by uid 1000);
+        Tue, 23 May 2023 08:34:52 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sc8280xp: Add GPU related nodes
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
+From:   Rob Herring <robh@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        David Airlie <airlied@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Rob Clark <robdclark@gmail.com>,
+        freedreno@lists.freedesktop.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
         Sean Paul <sean@poorly.run>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, johan@kernel.org, mani@kernel.org
-References: <20230523011522.65351-1-quic_bjorande@quicinc.com>
- <20230523011522.65351-3-quic_bjorande@quicinc.com>
- <097944b0-fa7a-ad4d-1c3d-e74ab2b977de@linaro.org>
-In-Reply-To: <097944b0-fa7a-ad4d-1c3d-e74ab2b977de@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Robin Murphy <robin.murphy@arm.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Marijn Suijten <marijn.suijten@somainline.org>
+In-Reply-To: <20230411-topic-straitlagoon_mdss-v5-4-998b4d2f7dd1@linaro.org>
+References: <20230411-topic-straitlagoon_mdss-v5-0-998b4d2f7dd1@linaro.org>
+ <20230411-topic-straitlagoon_mdss-v5-4-998b4d2f7dd1@linaro.org>
+Message-Id: <168483089214.140382.17835176497108911988.robh@kernel.org>
+Subject: Re: [PATCH v5 04/12] dt-bindings: display/msm: Add SM6350 MDSS
+Date:   Tue, 23 May 2023 03:34:52 -0500
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,232 +79,43 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+On Tue, 23 May 2023 09:46:15 +0200, Konrad Dybcio wrote:
+> Document the SM6350 MDSS.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  .../bindings/display/msm/qcom,sm6350-mdss.yaml     | 214 +++++++++++++++++++++
+>  1 file changed, 214 insertions(+)
+> 
 
-On 23.05.2023 09:59, Konrad Dybcio wrote:
-> 
-> 
-> On 23.05.2023 03:15, Bjorn Andersson wrote:
->> From: Bjorn Andersson <bjorn.andersson@linaro.org>
->>
->> Add Adreno SMMU, GPU clock controller, GMU and GPU nodes for the
->> SC8280XP.
->>
->> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
->> ---
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> 
->>
->> Changes since v1:
->> - Dropped gmu_pdc_seq region from &gmu, as it shouldn't have been used.
->> - Added missing compatible to &adreno_smmu.
->> - Dropped aoss_qmp clock in &gmu and &adreno_smmu.
->>  
->>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 169 +++++++++++++++++++++++++
->>  1 file changed, 169 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
->> index d2a2224d138a..329ec2119ecf 100644
->> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
->> @@ -6,6 +6,7 @@
->>  
->>  #include <dt-bindings/clock/qcom,dispcc-sc8280xp.h>
->>  #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
->> +#include <dt-bindings/clock/qcom,gpucc-sc8280xp.h>
->>  #include <dt-bindings/clock/qcom,rpmh.h>
->>  #include <dt-bindings/interconnect/qcom,osm-l3.h>
->>  #include <dt-bindings/interconnect/qcom,sc8280xp.h>
->> @@ -2331,6 +2332,174 @@ tcsr: syscon@1fc0000 {
->>  			reg = <0x0 0x01fc0000 0x0 0x30000>;
->>  		};
->>  
->> +		gpu: gpu@3d00000 {
->> +			compatible = "qcom,adreno-690.0", "qcom,adreno";
->> +
->> +			reg = <0 0x03d00000 0 0x40000>,
->> +			      <0 0x03d9e000 0 0x1000>,
->> +			      <0 0x03d61000 0 0x800>;
->> +			reg-names = "kgsl_3d0_reg_memory",
->> +				    "cx_mem",
->> +				    "cx_dbgc";
->> +			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
->> +			iommus = <&adreno_smmu 0 0xc00>, <&adreno_smmu 1 0xc00>;
->> +			operating-points-v2 = <&gpu_opp_table>;
->> +
->> +			qcom,gmu = <&gmu>;
->> +			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
->> +			interconnect-names = "gfx-mem";
-I also noticed downstream adds additional votes for L3 (*not* LLCC), should
-we explore that?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Konrad
->> +			#cooling-cells = <2>;
->> +
->> +			status = "disabled";
->> +
->> +			gpu_opp_table: opp-table {
->> +				compatible = "operating-points-v2";
->> +
->> +				opp-270000000 {
->> +					opp-hz = /bits/ 64 <270000000>;
->> +					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
->> +					opp-peak-kBps = <451000>;
->> +				};
->> +
->> +				opp-410000000 {
->> +					opp-hz = /bits/ 64 <410000000>;
->> +					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
->> +					opp-peak-kBps = <1555000>;
->> +				};
->> +
->> +				opp-500000000 {
->> +					opp-hz = /bits/ 64 <500000000>;
->> +					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
->> +					opp-peak-kBps = <1555000>;
->> +				};
->> +
->> +				opp-547000000 {
->> +					opp-hz = /bits/ 64 <547000000>;
->> +					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
->> +					opp-peak-kBps = <1555000>;
->> +				};
->> +
->> +				opp-606000000 {
->> +					opp-hz = /bits/ 64 <606000000>;
->> +					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
->> +					opp-peak-kBps = <2736000>;
->> +				};
->> +
->> +				opp-640000000 {
->> +					opp-hz = /bits/ 64 <640000000>;
->> +					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
->> +					opp-peak-kBps = <2736000>;
->> +				};
->> +
->> +				opp-690000000 {
->> +					opp-hz = /bits/ 64 <690000000>;
->> +					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
->> +					opp-peak-kBps = <2736000>;
->> +				};
->> +			};
->> +		};
->> +
->> +		gmu: gmu@3d6a000 {
->> +			compatible = "qcom,adreno-gmu-690.0", "qcom,adreno-gmu";
->> +			reg = <0 0x03d6a000 0 0x34000>,
->> +			      <0 0x03de0000 0 0x10000>,
->> +			      <0 0x0b290000 0 0x10000>;
->> +			reg-names = "gmu", "rscc", "gmu_pdc";
->> +			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "hfi", "gmu";
->> +			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
->> +				 <&gpucc GPU_CC_CXO_CLK>,
->> +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
->> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
->> +				 <&gpucc GPU_CC_AHB_CLK>,
->> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
->> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
->> +			clock-names = "gmu",
->> +				      "cxo",
->> +				      "axi",
->> +				      "memnoc",
->> +				      "ahb",
->> +				      "hub",
->> +				      "smmu_vote";
->> +			power-domains = <&gpucc GPU_CC_CX_GDSC>,
->> +					<&gpucc GPU_CC_GX_GDSC>;
->> +			power-domain-names = "cx",
->> +					     "gx";
->> +			iommus = <&adreno_smmu 5 0xc00>;
->> +			operating-points-v2 = <&gmu_opp_table>;
->> +
->> +			status = "disabled";
-> I've recently discovered that - and I am not 100% sure - all GMUs are
-> cache-coherent. Could you please ask somebody at qc about this?
-> 
->> +
->> +			gmu_opp_table: opp-table {
->> +				compatible = "operating-points-v2";
->> +
->> +				opp-200000000 {
->> +					opp-hz = /bits/ 64 <200000000>;
->> +					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
->> +				};
-> Missing 500MHz + RPMH_REGULATOR_LEVEL_SVS
-> 
-> (that may be used in the future for hw scheduling)
->> +			};
->> +		};
->> +
->> +		gpucc: clock-controller@3d90000 {
->> +			compatible = "qcom,sc8280xp-gpucc";
->> +			reg = <0 0x03d90000 0 0x9000>;
->> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
->> +				 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
->> +				 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
->> +			clock-names = "bi_tcxo",
->> +				      "gcc_gpu_gpll0_clk_src",
->> +				      "gcc_gpu_gpll0_div_clk_src";
-> FWIW the driver doesn't use clock-names, but the binding defines it,
-> so I suppose it's fine
-> 
->> +
->> +			power-domains = <&rpmhpd SC8280XP_GFX>;
->> +			#clock-cells = <1>;
->> +			#reset-cells = <1>;
->> +			#power-domain-cells = <1>;
->> +
->> +			status = "disabled";
->> +		};
->> +
->> +		adreno_smmu: iommu@3da0000 {
->> +			compatible = "qcom,sc8280xp-smmu-500", "qcom,adreno-smmu",
->> +				     "qcom,smmu-500", "arm,mmu-500";
->> +			reg = <0 0x03da0000 0 0x20000>;
->> +			#iommu-cells = <2>;
->> +			#global-interrupts = <2>;
->> +			interrupts = <GIC_SPI 672 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 688 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 689 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
->> +				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
->> +				 <&gpucc GPU_CC_AHB_CLK>,
->> +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
->> +				 <&gpucc GPU_CC_CX_GMU_CLK>,
->> +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
->> +				 <&gpucc GPU_CC_HUB_AON_CLK>;
->> +			clock-names = "gcc_gpu_memnoc_gfx_clk",
->> +				      "gcc_gpu_snoc_dvm_gfx_clk",
->> +				      "gpu_cc_ahb_clk",
->> +				      "gpu_cc_hlos1_vote_gpu_smmu_clk",
->> +				      "gpu_cc_cx_gmu_clk",
->> +				      "gpu_cc_hub_cx_int_clk",
->> +				      "gpu_cc_hub_aon_clk";
->> +
->> +			power-domains = <&gpucc GPU_CC_CX_GDSC>;
->> +
->> +			status = "disabled";
-> This one should be dma-coherent (per downstream, plus 8350's mmu is for sure)
-> 
-> Konrad
->> +		};
->> +
->>  		usb_0_hsphy: phy@88e5000 {
->>  			compatible = "qcom,sc8280xp-usb-hs-phy",
->>  				     "qcom,usb-snps-hs-5nm-phy";
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6350-mdss.example.dtb: dsi@ae94000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['qcom,sm6350-dsi-ctrl', 'qcom,mdss-dsi-ctrl'] is too long
+	'qcom,sm6350-dsi-ctrl' is not one of ['qcom,apq8064-dsi-ctrl', 'qcom,msm8916-dsi-ctrl', 'qcom,msm8953-dsi-ctrl', 'qcom,msm8974-dsi-ctrl', 'qcom,msm8996-dsi-ctrl', 'qcom,msm8998-dsi-ctrl', 'qcom,qcm2290-dsi-ctrl', 'qcom,sc7180-dsi-ctrl', 'qcom,sc7280-dsi-ctrl', 'qcom,sdm660-dsi-ctrl', 'qcom,sdm845-dsi-ctrl', 'qcom,sm6115-dsi-ctrl', 'qcom,sm8150-dsi-ctrl', 'qcom,sm8250-dsi-ctrl', 'qcom,sm8350-dsi-ctrl', 'qcom,sm8450-dsi-ctrl', 'qcom,sm8550-dsi-ctrl']
+	'qcom,sm6350-dsi-ctrl' is not one of ['qcom,dsi-ctrl-6g-qcm2290', 'qcom,mdss-dsi-ctrl']
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/qcom,sm6350-mdss.example.dtb: dsi@ae94000: Unevaluated properties are not allowed ('compatible' was unexpected)
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230411-topic-straitlagoon_mdss-v5-4-998b4d2f7dd1@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
