@@ -2,79 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A98370E9AD
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 01:35:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A610170E9B6
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 01:41:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234317AbjEWXfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 19:35:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53114 "EHLO
+        id S231687AbjEWXln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 19:41:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238712AbjEWXfS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 19:35:18 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6BFE130
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:34:41 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4f3bb61f860so122817e87.3
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:34:41 -0700 (PDT)
+        with ESMTP id S229539AbjEWXln (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 19:41:43 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF8DDA
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:41:42 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-253310a0df7so67012a91.1
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:41:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684884878; x=1687476878;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uZg4v0RTyzNREljAm+hWtlmx8oK1tgGcQi54orgW1ds=;
-        b=OstWqeJ8EBmWlFGue4DAaM6ZZhqrbhVBiHBeqwEkfBiE7hUwN6EVNxk44rPHYYdjLx
-         ouN7tkRmfck3Ej5JJQklzLGP92BrvTcGGDW4hja4smz2EhINxCFPlTkaiaOiaDU/Wk+W
-         mYgEbHiM211S4AGUPMcQXwc7dK853YjrtHjfdLYnT3NIjW3R+vgewHmI6kkDkYpLekIA
-         pLP/cE6iTnzsf6gFCB4EMkvCHF+k6ish4fvk3T5CT6o/pulNQIidz5bi/Y0lOBj/lvuz
-         Me7nnL4FEqfYoUPIwyR8YMVMqKK4I5ztKCertmHEi9Om4kVA68ten7F8tT59p6Vyfr8W
-         EAfA==
+        d=gmail.com; s=20221208; t=1684885301; x=1687477301;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0qcN4qpn6euVd7cpQS5agPXb6rrZj0n8++htZCbIkVo=;
+        b=BP3xxEWBFZDbZ3hLN+ToXsQApTNSJGPTRwylEs9yZ2ECgjMPHlif4fWI6JterdQVRS
+         uuW5DYu0B8q8WPqmFkg/pG5r3RC8zJRdtuE4NxmMLAeU4aQN+BgNJXdTKH/MaRsWZKqY
+         u5VRq1jC72VRBypFrDSlC+VFY838Deat5QdrQaZGZ4h6iJpXAMaUY9dlvKJ0jILTybMH
+         NngWTzvw+mQOqRQdwhbPtXmGqdKBWTRbzSuI/IHpzmTN3baICO7MdjJQbHjcIh71Vm6v
+         2MbmnUtCanpuj/ojmc1pVz3OUHHfcS0Zvvk2pjNkGLTwoLmoM9yjfjOQYGXcGjycuU4M
+         kTNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684884878; x=1687476878;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uZg4v0RTyzNREljAm+hWtlmx8oK1tgGcQi54orgW1ds=;
-        b=Ce+U666xCXv5l7bvfTsaChOEMkDgJwGb3Gx3Xmb0CbNXZYBb2DomJnBgIaFOD5e8f0
-         Ij0y5pcq3zmvur0buc66yR2ezTKel//mVREx+BTcJAzWUmaeJx7PtbtZG7ydrVGBQrJf
-         hJttezhsjtXzdWHj0xgYlTYGypKZYdAV70mOiW8XsW1NIHF5IQNnzk+uVta9onGtDiBR
-         v1yI0p4vsBQufLJfyO4VeRZZSeV2SDT5spnMRsX7YKzTchZ7GC1gs/5yBNPrKdyH3rZj
-         bv0ANIv2bDi3vxdoo+V5oNpyvYq2SiwVglgz1cvs5qyt5wIBIGfRLZiUQsU1VLhmEntg
-         PUdQ==
-X-Gm-Message-State: AC+VfDzp0JG2kmF3ztC48vK52iJhrnqxX7JPvIQqA6us0nX/zfAUarD1
-        LLi9SDoR2U8tSmdOKU7YFjjEog==
-X-Google-Smtp-Source: ACHHUZ5VDMwnlQ1kaA9DshgcAwp1SpRlIsOFRsbkhg4YoGBxLfOqCiRKUEVf4TbW3N9bzRfshL/0vw==
-X-Received: by 2002:ac2:4556:0:b0:4f3:a8f2:2138 with SMTP id j22-20020ac24556000000b004f3a8f22138mr4811916lfm.58.1684884878607;
-        Tue, 23 May 2023 16:34:38 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id g10-20020a19ac0a000000b004f3af454556sm1490213lfc.246.2023.05.23.16.34.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 May 2023 16:34:38 -0700 (PDT)
-Message-ID: <2ef03df1-00ec-4e93-ecca-5cc4a4ef3b23@linaro.org>
-Date:   Wed, 24 May 2023 02:34:37 +0300
+        d=1e100.net; s=20221208; t=1684885301; x=1687477301;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0qcN4qpn6euVd7cpQS5agPXb6rrZj0n8++htZCbIkVo=;
+        b=j5a1mJ5XfeR3b0N4UJoWsaetvtyzd5GYQmvBxLVnepUQ9/UcByB7fC0L7BGSEhPY+E
+         CTPuGrneUuCKbUda4S6u2hU2XBI0Ric9Pqsy/qYFKy2R9CVFF4k4JvGiisrVjpx2weSA
+         YmnMZB5jNNkS+W9ouY4JduIi6ceD5TXxpNWCiGMdziImkOkydt70+svQH8Nu9BZm2FYK
+         WBRLAk2J1WfcNTs/grI/XhEOlRR+Quv2s9e7pjiCrCQu+HSVYd+Mz5hxNVlbrMiT0IFa
+         nJD99jJIBhx1LuOE3XxLBLQiYQrKclYLH14NF8zcqX+SEtvzjDwU2fO/TgbEN4Oomq+R
+         3vEg==
+X-Gm-Message-State: AC+VfDwmeVyL592tWgPkcsIxRQYjhq8wKDO5CFGW1yJnxWnm6nV/tIu3
+        mS2XfTv92pDk8GFfnpf0WuYXHhATJazaoOpnGRs=
+X-Google-Smtp-Source: ACHHUZ6W1tAoOXnd0kBTIAF/4o3EY7yozKoBLYms3h/sz8j4K7RdAPFDLDUzntamfk0cXLgGfDl3MMxH8M9UcKOXRbE=
+X-Received: by 2002:a17:90b:1e0e:b0:252:b150:6ce with SMTP id
+ pg14-20020a17090b1e0e00b00252b15006cemr878469pjb.1.1684885301547; Tue, 23 May
+ 2023 16:41:41 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v2 6/6] ARM: dts: qcom: apq8074-dragonboard: enable
- coincell charger
-Content-Language: en-GB
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20230508160446.2374438-1-dmitry.baryshkov@linaro.org>
- <20230508160446.2374438-7-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230508160446.2374438-7-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+References: <20230522201404.660242-1-festevam@gmail.com> <20230522201404.660242-5-festevam@gmail.com>
+ <b479bae2-1d0a-8cd1-0f80-74ecb483605c@denx.de> <CAOMZO5BtPUu9CfxJO-mScB4OYeN3g7HxKF=D636wFSUJ5HMsoQ@mail.gmail.com>
+ <a9e2e19f-e9df-81e3-4608-71beed85852f@denx.de> <CAOMZO5Bujbynq5CSbWQu+aEsiaTP686OW44MujDFuE1k5EMeMA@mail.gmail.com>
+ <b0ad67bd-c37a-67c5-f167-37b5cb8a54d1@denx.de>
+In-Reply-To: <b0ad67bd-c37a-67c5-f167-37b5cb8a54d1@denx.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 23 May 2023 20:41:29 -0300
+Message-ID: <CAOMZO5BjiHR7XWodBa=MkEa+N4E9ZXYD9hoBFqn5LJkMZ6YtaA@mail.gmail.com>
+Subject: Re: [PATCH v6 5/5] soc: imx: imx6sx-gpr: Introduce a GPR driver
+To:     Marek Vasut <marex@denx.de>
+Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
+        bhelgaas@google.com, Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,41 +73,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/05/2023 19:04, Dmitry Baryshkov wrote:
-> Enable coincell charger for the coin battery which can be installed on
-> the APQ8074 dragonboard.
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->   arch/arm/boot/dts/qcom-apq8074-dragonboard.dts | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-> index 07db6451f273..93a059641957 100644
-> --- a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-> +++ b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
-> @@ -58,6 +58,12 @@ eeprom: eeprom@52 {
->   	};
->   };
->   
-> +&pm8941_coincell {
-> +	qcom,rset-ohms = <2100>;
-> +	qcom,vset-millivolts = <3000>;
-> +	status = "okay";
-> +};
+On Tue, May 23, 2023 at 8:36=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
 
-Ok, this one might need reconsideration. I still didn't find the lithium 
-accumulator of this size and granted that it might be the battery 
-instead of the accumulator, it is safer not to enable the charger, at 
-least by default.
+> Wasn't this already rejected by Krzysztof ?
 
-> +
->   &pm8941_gpios {
->           msm_keys_default: pm8941-gpio-keys-state {
->   		pins = "gpio5", "gpio23";
-
--- 
-With best wishes
-Dmitry
-
+No, it was 'simple-bus' that was rejected.
