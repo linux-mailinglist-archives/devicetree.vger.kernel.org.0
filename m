@@ -2,96 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8685470D9AD
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 11:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9BC970D9F1
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 12:07:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236241AbjEWJ55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 05:57:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40080 "EHLO
+        id S232951AbjEWKHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 06:07:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230294AbjEWJ54 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 05:57:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00EF2E6;
-        Tue, 23 May 2023 02:57:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 88AF262F6B;
-        Tue, 23 May 2023 09:57:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA3D4C433D2;
-        Tue, 23 May 2023 09:57:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684835875;
-        bh=Lo5iC0IBKszoRhVHalozzYt7yMV352ePXrHUk7RuLkY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tCEDJ2Yef9wgjbGlDXXmOVigYGxMK1+atTQEqCdQHYU27mGwJHhOh1e0P/mPtPNuL
-         O4TgqsVsoQVRNNdwHY9/y52oNE+ETCkkm423ZwlVdIKDgWVbEQaaBvIOLy+iWu6PUy
-         dfVdbza/BqgluAKa5zarlPgRQIRW8fuZRMkfc+ecMG0QBtD+7KFQsPVZy9XpICpqt6
-         5F3pZtVuYichIEj6vmtv0aBP1NT7oZG0jjSRd3s37LAPet3eSJUQcZU1GXXfl4vrF6
-         NPakRBwbGaUb2lzw7WLaxb5JuNbIKXm9ZPTG34DpFxTzS3IGww4CmB26liqi715iYq
-         O2KAR6Sb6M/Rw==
-Date:   Tue, 23 May 2023 10:57:49 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     zhuyinbo <zhuyinbo@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH v11 0/2] spi: loongson: add bus driver for the loongson
- spi
-Message-ID: <8405acaa-4684-4b81-9839-b24d35d61013@sirena.org.uk>
-References: <20230522071030.5193-1-zhuyinbo@loongson.cn>
- <3c15d22f-4f94-4cc5-96a8-f565e58c66b9@sirena.org.uk>
- <4dfa5245-d330-f432-e81e-163053687d42@loongson.cn>
- <a4afd330-6ffd-432e-a868-f8a19fddb47d@sirena.org.uk>
- <1e8c3e92-4043-11f2-e7a7-0bf4273c65d8@loongson.cn>
- <9f6672a2-4a39-4a34-9c2a-0257b05c9699@sirena.org.uk>
- <5bbc1f55-1e1c-8c74-f9df-2ec950091ba4@loongson.cn>
+        with ESMTP id S236192AbjEWKHI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 06:07:08 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3034A94;
+        Tue, 23 May 2023 03:07:06 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DA057139F;
+        Tue, 23 May 2023 03:07:50 -0700 (PDT)
+Received: from [10.57.74.49] (unknown [10.57.74.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 47F213F6C4;
+        Tue, 23 May 2023 03:07:03 -0700 (PDT)
+Message-ID: <444bc278-a3e3-7d99-6020-7c3337371f66@arm.com>
+Date:   Tue, 23 May 2023 11:07:01 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="rL8/Sd4Ohh6l6kLJ"
-Content-Disposition: inline
-In-Reply-To: <5bbc1f55-1e1c-8c74-f9df-2ec950091ba4@loongson.cn>
-X-Cookie: Beware of low-flying butterflies.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.11.0
+Subject: Re: [PATCH v4 02/11] coresight-tpda: Add DSB dataset support
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
+ <1682586037-25973-3-git-send-email-quic_taozha@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <1682586037-25973-3-git-send-email-quic_taozha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 27/04/2023 10:00, Tao Zhang wrote:
+> Read the DSB element size from the device tree. Set the register
+> bit that controls the DSB element size of the corresponding port.
+> 
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> ---
+>   drivers/hwtracing/coresight/coresight-core.c |  1 +
+>   drivers/hwtracing/coresight/coresight-tpda.c | 92 +++++++++++++++++++++++++---
+>   drivers/hwtracing/coresight/coresight-tpda.h |  4 ++
+>   drivers/hwtracing/coresight/coresight-tpdm.c |  2 +-
+>   include/linux/coresight.h                    |  1 +
+>   5 files changed, 90 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
+> index 2af416b..f1eacbb 100644
+> --- a/drivers/hwtracing/coresight/coresight-core.c
+> +++ b/drivers/hwtracing/coresight/coresight-core.c
+> @@ -1092,6 +1092,7 @@ static int coresight_validate_source(struct coresight_device *csdev,
+>   
+>   	if (subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_PROC &&
+>   	    subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_SOFTWARE &&
+> +		subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM &&
+>   	    subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS) {
+>   		dev_err(&csdev->dev, "wrong device subtype in %s\n", function);
+>   		return -EINVAL;
 
---rL8/Sd4Ohh6l6kLJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Please see the comment at the bottom.
 
-On Tue, May 23, 2023 at 10:08:25AM +0800, zhuyinbo wrote:
+> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/hwtracing/coresight/coresight-tpda.c
+> index 8d2b9d2..af9c72f 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpda.c
+> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
+> @@ -21,6 +21,56 @@
+>   
+>   DEFINE_CORESIGHT_DEVLIST(tpda_devs, "tpda");
+>   
+> +/* Search and read element data size from the TPDM node in
+> + * the devicetree. Each input port of TPDA is connected to
+> + * a TPDM. Different TPDM supports different types of dataset,
+> + * and some may support more than one type of dataset.
+> + * Parameter "inport" is used to pass in the input port number
+> + * of TPDA, and it is set to 0 in the recursize call.
+> + * Parameter "parent" is used to pass in the original call.
+> + */
+> +static int tpda_set_element_size(struct tpda_drvdata *drvdata,
+> +			   struct coresight_device *csdev, int inport, bool parent)
+> +{
+> +	static int nr_inport;
+> +	int i;
+> +	static bool tpdm_found;
+> +	struct coresight_device *in_csdev;
+> +
+> +	if (inport > (TPDA_MAX_INPORTS - 1))
+> +		return -EINVAL;
+> +
+> +	if (parent) {
+> +		nr_inport = inport;
+> +		tpdm_found = false;
+> +	}
+> +
+> +	for (i = 0; i < csdev->pdata->nr_inconns; i++) {
+> +		in_csdev = csdev->pdata->in_conns[i]->src_dev;
+> +		if (!in_csdev)
+> +			break;
+> +
+> +		if (parent)
+> +			if (csdev->pdata->in_conns[i]->dest_port != inport)
+> +				continue;
+> +
+> +		if (in_csdev->subtype.source_subtype
 
-> okay, I got it.  thanks!  and I noticed my v11 patch already exists in
-> your ci tree that contain the title change and I whether need send the
-> v12 that for fix the binding patch title ?
+We must match the in_csdev->type to be SOURCE && the subtype.
 
-No, it's fine.
+> +				   == CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM) {
+> +			of_property_read_u8(in_csdev->dev.parent->of_node,
+> +					"qcom,dsb-element-size", &drvdata->dsb_esize[nr_inport]);
+> +			if (!tpdm_found)
+> +				tpdm_found = true;
+> +			else
+> +				dev_warn(drvdata->dev,
+> +					"More than one TPDM is mapped to the TPDA input port %d.\n",
+> +					nr_inport);
 
---rL8/Sd4Ohh6l6kLJ
-Content-Type: application/pgp-signature; name="signature.asc"
+When we know, we have found a source device, we don't need to recurse
+down and could simply 'continue' to the next one in the list and skip
+the call below.
 
------BEGIN PGP SIGNATURE-----
+> +		}
+> +		tpda_set_element_size(drvdata, in_csdev, 0, false);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   /* Settings pre enabling port control register */
+>   static void tpda_enable_pre_port(struct tpda_drvdata *drvdata)
+>   {
+> @@ -32,26 +82,43 @@ static void tpda_enable_pre_port(struct tpda_drvdata *drvdata)
+>   	writel_relaxed(val, drvdata->base + TPDA_CR);
+>   }
+>   
+> -static void tpda_enable_port(struct tpda_drvdata *drvdata, int port)
+> +static int tpda_enable_port(struct tpda_drvdata *drvdata, int port)
+>   {
+>   	u32 val;
+>   
+>   	val = readl_relaxed(drvdata->base + TPDA_Pn_CR(port));
+> +	/*
+> +	 * Configure aggregator port n DSB data set element size
+> +	 * Set the bit to 0 if the size is 32
+> +	 * Set the bit to 1 if the size is 64
+> +	 */
+> +	if (drvdata->dsb_esize[port] == 32)
+> +		val &= ~TPDA_Pn_CR_DSBSIZE;
+> +	else if (drvdata->dsb_esize[port] == 64)
+> +		val |= TPDA_Pn_CR_DSBSIZE;
+> +	else
+> +		return -EINVAL;
+> +
+>   	/* Enable the port */
+>   	val |= TPDA_Pn_CR_ENA;
+>   	writel_relaxed(val, drvdata->base + TPDA_Pn_CR(port));
+> +
+> +	return 0;
+>   }
+>   
+> -static void __tpda_enable(struct tpda_drvdata *drvdata, int port)
+> +static int __tpda_enable(struct tpda_drvdata *drvdata, int port)
+>   {
+> +	int ret;
+> +
+>   	CS_UNLOCK(drvdata->base);
+>   
+>   	if (!drvdata->csdev->enable)
+>   		tpda_enable_pre_port(drvdata);
+>   
+> -	tpda_enable_port(drvdata, port);
+> -
+> +	ret = tpda_enable_port(drvdata, port);
+>   	CS_LOCK(drvdata->base);
+> +
+> +	return ret;
+>   }
+>   
+>   static int tpda_enable(struct coresight_device *csdev,
+> @@ -59,16 +126,23 @@ static int tpda_enable(struct coresight_device *csdev,
+>   		       struct coresight_connection *out)
+>   {
+>   	struct tpda_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
+> +	int ret;
+> +
+> +	ret = tpda_set_element_size(drvdata, csdev, in->dest_port, true);
+> +	if (ret)
+> +		return ret;
+>   
+>   	spin_lock(&drvdata->spinlock);
+> -	if (atomic_read(&in->dest_refcnt) == 0)
+> +	if (atomic_read(&in->dest_refcnt) == 0) {
+>   		__tpda_enable(drvdata, in->dest_port);
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRsjhwACgkQJNaLcl1U
-h9AG6wf/ei9O002a1IBwIiaUxrHjJIvWYtoI+Y6hfvK10jxNALl9VbncSk89oClS
-mTRqYSNNGeOE9XxehNerydK3LvjS+nBqt+QeIbqsmbnhTcJJuintFcp6NVqP62A2
-TIw6Pj1qXTifVOFHeobsVIcywB0H2XYCi6FPF7RhfuMZj61ToQ/M/KFzsU47Vq2s
-xDQ2LM4fJ3HyQ6SvpQ7AYtX/dbsY1XSI582GodZjNV3dacGBNo32j0aJH3HzLtam
-mklx+1guw3Nwa+6XRGxsiBdPUJQexjvfLIrIKg3osp3cNqI4rPxgFds4348wb1dw
-4h7j3IeL9RyVexYCHNKGmWNPspfJcA==
-=6HnO
------END PGP SIGNATURE-----
+ret = ... ?
 
---rL8/Sd4Ohh6l6kLJ--
+> +		if (!ret) {
+
+
+
+> +			atomic_inc(&in->dest_refcnt);
+> +			dev_dbg(drvdata->dev, "TPDA inport %d enabled.\n", in->dest_port);
+> +		}
+> +	}
+
+>   
+> -	atomic_inc(&in->dest_refcnt);
+
+This seems wrong, as we may fail to hold additional refcounts for the
+additional sessions ?
+
+>   	spin_unlock(&drvdata->spinlock);
+> -
+> -	dev_dbg(drvdata->dev, "TPDA inport %d enabled.\n", in->dest_port);
+> -	return 0;
+> +	return ret;
+>   }
+>   
+>   static void __tpda_disable(struct tpda_drvdata *drvdata, int port)
+> diff --git a/drivers/hwtracing/coresight/coresight-tpda.h b/drivers/hwtracing/coresight/coresight-tpda.h
+> index 0399678..7332e9c 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpda.h
+> +++ b/drivers/hwtracing/coresight/coresight-tpda.h
+> @@ -10,6 +10,8 @@
+>   #define TPDA_Pn_CR(n)		(0x004 + (n * 4))
+>   /* Aggregator port enable bit */
+>   #define TPDA_Pn_CR_ENA		BIT(0)
+> +/* Aggregator port DSB data set element size bit */
+> +#define TPDA_Pn_CR_DSBSIZE		BIT(8)
+>   
+>   #define TPDA_MAX_INPORTS	32
+>   
+> @@ -23,6 +25,7 @@
+>    * @csdev:      component vitals needed by the framework.
+>    * @spinlock:   lock for the drvdata value.
+>    * @enable:     enable status of the component.
+> + * @dsb_esize:  DSB element size, it must be 32 or 64.
+
+minor nit:
+
+DSB element size for each inport, it must be 32 or 64
+
+>    */
+>   struct tpda_drvdata {
+>   	void __iomem		*base;
+> @@ -30,6 +33,7 @@ struct tpda_drvdata {
+>   	struct coresight_device	*csdev;
+>   	spinlock_t		spinlock;
+>   	u8			atid;
+> +	u8			dsb_esize[TPDA_MAX_INPORTS];
+>   };
+>   
+>   #endif  /* _CORESIGHT_CORESIGHT_TPDA_H */
+> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
+> index f4854af..ba1867f 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+> @@ -205,7 +205,7 @@ static int tpdm_probe(struct amba_device *adev, const struct amba_id *id)
+>   	if (!desc.name)
+>   		return -ENOMEM;
+>   	desc.type = CORESIGHT_DEV_TYPE_SOURCE;
+> -	desc.subtype.source_subtype = CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS;
+> +	desc.subtype.source_subtype = CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM;
+>   	desc.ops = &tpdm_cs_ops;
+>   	desc.pdata = adev->dev.platform_data;
+>   	desc.dev = &adev->dev;
+
+Please could you split this change, i.e., introduction of
+SUBTYPE_SOURCE_TPDM and using this in TPDM driver,
+  in a separate patch before this change.
+
+> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
+> index 225a5fa..6563896 100644
+> --- a/include/linux/coresight.h
+> +++ b/include/linux/coresight.h
+> @@ -60,6 +60,7 @@ enum coresight_dev_subtype_source {
+>   	CORESIGHT_DEV_SUBTYPE_SOURCE_PROC,
+>   	CORESIGHT_DEV_SUBTYPE_SOURCE_BUS,
+>   	CORESIGHT_DEV_SUBTYPE_SOURCE_SOFTWARE,
+> +	CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM,
+>   	CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS,
+>   };
+>   
+
