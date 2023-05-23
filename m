@@ -2,40 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D273C70DD82
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 15:33:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4855F70DD83
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 15:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236863AbjEWNdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 09:33:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55762 "EHLO
+        id S236815AbjEWNdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 09:33:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236815AbjEWNdA (ORCPT
+        with ESMTP id S236864AbjEWNdA (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 09:33:00 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C07DA132
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B3D6121
         for <devicetree@vger.kernel.org>; Tue, 23 May 2023 06:32:56 -0700 (PDT)
 Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 4156085FE8;
-        Tue, 23 May 2023 15:32:52 +0200 (CEST)
+        by phobos.denx.de (Postfix) with ESMTPSA id 8008886005;
+        Tue, 23 May 2023 15:32:53 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684848772;
-        bh=Q238KMbMcGKjhY9eUa561BHjB3L5hf71hFmEtxi4TJ0=;
+        s=phobos-20191101; t=1684848774;
+        bh=az4DhEYpqXyE0iQnJgH18ExeA7N1MMg9+CwkYlMMVYQ=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=NrkigyYOjHLPVZyO//v0d13G7XhVR7Qj1FIenrD9FMmclJWfbP3peUz0s92V+4n35
-         kUzDd8pxWUc4nTEhUH2xGFeSvhVrxvfl/2NHHCiYNRBbOt3+Vc4c/TJJF4eXx02cw4
-         GzrO5tanARYPAE/1G1+Aeo8mpJ4oLtLGso9YhEDJP2FShB8ezLgsmu9ykd1wmaUM9O
-         A2dTwRpHLzjYgCEpAbJ9NkGdb1JANlkW5Szux7cu1ys8cy9usVsaaRjwfPUVGU/GI2
-         Ik2Jxwl+u0MH05HbViAV+n/nonG5IIL6Pl9Q8Ztsvj6pWXMJULqP8u+ZoNe3LDorcF
-         /+aeG4jM2JQJA==
-Message-ID: <36d63b72-68ef-022a-99b1-375e5eba702a@denx.de>
-Date:   Tue, 23 May 2023 14:56:33 +0200
+        b=bF6mLbURaBRKEANaQSA21a34oo6v6gfleyWCf+FaNv9w+dog/AODEYyntD/F6w1/C
+         HX5aisxwdsAPcdCqsfVvSzTjo0FJjFnV/6Lt1zufe1MOlB0TZiH9RjLsr4rj+1VjB0
+         NLT/ahinle4QBHs8/v21zmtO/TMDnezz4RkF92MnvqD41Lw74QrcI6KzLmTzLxTcYB
+         8pBQhvpca6dKx8SJkxaznHTJt4glz23X+MK38vOBTZPpLbnbA8mdW0EMkRdM0mBrzy
+         a3LalmbF4GhYp14wPZKYCtZ4+DaDgIYJcbbXJfJkJcYTNxs4quc0nh3SZ1SFo2kWTQ
+         qDL1rXpOP+DFA==
+Message-ID: <a9e2e19f-e9df-81e3-4608-71beed85852f@denx.de>
+Date:   Tue, 23 May 2023 14:57:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v6 4/5] ARM: dts: imx6sx: Add LDB support
+Subject: Re: [PATCH v6 5/5] soc: imx: imx6sx-gpr: Introduce a GPR driver
 Content-Language: en-US
 To:     Fabio Estevam <festevam@gmail.com>
 Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
@@ -43,11 +43,11 @@ Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
         linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
         bhelgaas@google.com, Fabio Estevam <festevam@denx.de>
 References: <20230522201404.660242-1-festevam@gmail.com>
- <20230522201404.660242-4-festevam@gmail.com>
- <d8c34831-c89a-0c09-d874-9f7778c7aa33@denx.de>
- <CAOMZO5CMox7r40cSf7mwqJp3bReN+4VBZ4CMXVpsxYH2g8XqzA@mail.gmail.com>
+ <20230522201404.660242-5-festevam@gmail.com>
+ <b479bae2-1d0a-8cd1-0f80-74ecb483605c@denx.de>
+ <CAOMZO5BtPUu9CfxJO-mScB4OYeN3g7HxKF=D636wFSUJ5HMsoQ@mail.gmail.com>
 From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAOMZO5CMox7r40cSf7mwqJp3bReN+4VBZ4CMXVpsxYH2g8XqzA@mail.gmail.com>
+In-Reply-To: <CAOMZO5BtPUu9CfxJO-mScB4OYeN3g7HxKF=D636wFSUJ5HMsoQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
@@ -62,29 +62,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/23/23 13:34, Fabio Estevam wrote:
-> Hi Marek,
-> 
+On 5/23/23 13:44, Fabio Estevam wrote:
 > On Mon, May 22, 2023 at 11:57 PM Marek Vasut <marex@denx.de> wrote:
 > 
->>> +                             lvds_bridge: bridge@18 {
->>> +                                     compatible = "fsl,imx6sx-ldb";
->>> +                                     reg = <0x18 0x4>;
->>> +                                     clocks = <&clks IMX6SX_CLK_LDB_DI0>;
->>> +                                     clock-names = "ldb";
+>> I feel inclined to ask -- do you think this could be something which
+>> could be added to core code ? It seems very generic.
 >>
->> Since there is only once clock, is this clock-names even needed ?
+>> Thoughts ?
 > 
-> As of today, clock-names is needed because
-> drivers/gpu/drm/bridge/fsl-ldb.c retrieves the ldb clock like this:
+> Yes, I think I can work on a more generic solution after this series gets in.
 > 
-> fsl_ldb->clk = devm_clk_get(dev, "ldb")
-> 
-> If you want, I can change it to fsl_ldb->clk = devm_clk_get(dev, NULL)
-> and also remove clock-names from
-> fsl,ldb.yaml and from imx8mp.dtsi.
-> 
-> Or this cleanup can also be a follow-up patch. Just let me know what you prefer.
+> Just wanted to avoid it as a hard requirement right now, if you agree.
 
-I think a follow up patch would be perfectly fine , let's not grow the 
-series unnecessarily .
+It might be simple to add this functionality to the core, could you 
+please take a quick look ?
+
+Also, I might be wrong, so let's see what others think too.
