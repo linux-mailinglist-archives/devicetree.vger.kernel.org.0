@@ -2,217 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C47B570D714
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 10:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F48C70D741
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 10:23:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236132AbjEWIS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 04:18:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38922 "EHLO
+        id S235596AbjEWIXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 04:23:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235675AbjEWIRm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 04:17:42 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBCD395
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:15:49 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-96fb45a5258so538452466b.2
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:15:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684829748; x=1687421748;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jlLi+ycwQXT/s4WU1mgXfkcIcnCNUrHoMrkamB93Vuw=;
-        b=FPVPaqX+oa1fQ9/3LHYJ7y5MLimAJGXy9VyJ/3SKeYxtJ2XIcGNkVTBEoaXgdOyySI
-         qdFVXHX/7/wpklLZRFac3Tfa6AiNMbEuEDQ4a3r4Inx451BuIOHtF1ibzTMezB6U1dEa
-         /nrwNE6Jnw+HKzzQHgupBPTUH82yHM4O6MNxi4b2cTcQkSBR0uZxzdbS1L89zRqOk/b2
-         VK4Ivn7ohQCUIPdLPUjjthTIjLZp7I/hNjmBWQgQUvsdf1ZhllWbpGpda52Ap2R8xMSj
-         74qni+Mx0wXW5rfugeYb2cgOQaiMpuJLkp0V3vHx0LAOonvnSFq/doT7LMT1lmxSaJaL
-         EuZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684829748; x=1687421748;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jlLi+ycwQXT/s4WU1mgXfkcIcnCNUrHoMrkamB93Vuw=;
-        b=KnJDkU5FdeRoDyfyvkX/oVpj1oRmLh+IY+w1vlm0J7vuumC/X5Ie7Yj5qMdjgX70Fr
-         Fcgvc4+AHBJht9wy7he84L+WiOKUwJCnoXSwsoLCn4Dect/ZjRo97+HmL7eKBuU6n4uB
-         z7Oc1tVH8mzE7l8RpvZkuortI3mvYVxqRvWAgs35rLUp61DA2q1Yy43GieE1j1JXa++/
-         cfoNM/f3jxpOpZ4DYMGagUMKrD+PbQdIsvmkEiKO8RoP6R1A5LwU5W+r0exLRywxvA9V
-         wh846wlmRdPIZ8wOYZ4GfDRiC4QpqrPxWLomdcmxXGu1kS2fndswFivBNlci8Xv5/c8x
-         UB/A==
-X-Gm-Message-State: AC+VfDyAFfdcpFm/zO83YG/FD/uxLaiRWJIUoV9WXGddHrDH6H+V2s3k
-        Uj0b2NN9vIlqSq/TYgtO6OI/sE+VtCFC2crWBF0=
-X-Google-Smtp-Source: ACHHUZ5q1rbkyTP3VBE77IeCogBVNMojIQwKmhDiZgShpgGhFEFrKHs6LoV4mjCuEeutALVhZt49Cw==
-X-Received: by 2002:ac2:5298:0:b0:4ef:eb50:4d3d with SMTP id q24-20020ac25298000000b004efeb504d3dmr4022870lfm.18.1684829082167;
-        Tue, 23 May 2023 01:04:42 -0700 (PDT)
-Received: from [192.168.1.101] (abyk138.neoplus.adsl.tpnet.pl. [83.9.30.138])
-        by smtp.gmail.com with ESMTPSA id h13-20020ac2596d000000b004f11eb32f20sm1266058lfp.13.2023.05.23.01.04.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 May 2023 01:04:41 -0700 (PDT)
-Message-ID: <1669ecc5-1845-e671-83f4-19ee14d37ce5@linaro.org>
-Date:   Tue, 23 May 2023 10:04:40 +0200
+        with ESMTP id S235772AbjEWIWh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 04:22:37 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5A58269A
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 01:19:50 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1q1NFB-00042k-Vn; Tue, 23 May 2023 10:19:46 +0200
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1q1NFA-002CaN-MA; Tue, 23 May 2023 10:19:44 +0200
+Received: from localhost ([::1] helo=dude03.red.stw.pengutronix.de)
+        by dude03.red.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <j.zink@pengutronix.de>)
+        id 1q1NF9-006uEf-M8; Tue, 23 May 2023 10:19:43 +0200
+From:   Johannes Zink <j.zink@pengutronix.de>
+Subject: [PATCH v2 0/3] Support non-default LVDS data mapping for simple
+ panel
+Date:   Tue, 23 May 2023 10:19:40 +0200
+Message-Id: <20230523-simplepanel_support_nondefault_datamapping-v2-0-87196f0d0b64@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc8280xp: Enable GPU related
- nodes
-Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, johan@kernel.org, mani@kernel.org
-References: <20230523011522.65351-1-quic_bjorande@quicinc.com>
- <20230523011522.65351-4-quic_bjorande@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230523011522.65351-4-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
+X-B4-Tracking: v=1; b=H4sIABx3bGQC/03OQQqDMBCF4atI1k21CS3Sq5QSxjjRAU2GTJSCe
+ PdqV13+i/fxNiWYCUU9q01lXEkoxSPMpVJ+hDigpv5oZRpjm7uxWmjmCRkiTk4W5pSLiyn2GGC
+ ZiuuhwAzMFAd9s94Gg2Da0KoD7EBQdxmiH09yfVxtXRKTr/9Q3S2iQ8ozlHPDGQN9fgdf733/A
+ uWrwz+wAAAA
+To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     kernel test robot <lkp@intel.com>,
+        Dan Carpenter <error27@gmail.com>,
+        patchwork-jzi@pengutronix.de, kernel@pengutronix.de,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Johannes Zink <j.zink@pengutronix.de>
+X-Mailer: b4 0.12.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: j.zink@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Some LVDS panels, such as the innolux,g101ice-l01 support multiple LVDS
+data mapping modes, which can be configured by strapping a dataformat
+pin on the display to a specific voltage.
 
+This can be particularly useful for using the jeida-18 format, which
+requires only 3 instead of 4 LVDS lanes.
 
-On 23.05.2023 03:15, Bjorn Andersson wrote:
-> From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> 
-> Add memory reservation for the zap-shader and enable the Adreno SMMU,
-> GPU clock controller, GMU and the GPU nodes for the SC8280XP CRD and the
-> Lenovo ThinkPad X13s.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
-> 
-> Changes since v1:
-> - None
-> 
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 26 +++++++++++++++++++
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 26 +++++++++++++++++++
->  2 files changed, 52 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> index 5b25d54b9591..547277924ea3 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> @@ -210,6 +210,11 @@ vreg_wwan: regulator-wwan {
->  	};
->  
->  	reserved-memory {
-> +		gpu_mem: gpu-mem@8bf00000 {
-The ZAP region is very seldom moved around, and I wouldn't expect it
-to be uncommon among the very usecase-specific 8280 machines.
+This series moves the data-mapping property for LVDS panels in a
+separate file and optionally adds it to simple-panel when matching to
+the innolux,g101ice-l01 compatible. This property allows to override
+the default data mapping set in the panel description in simple-panel.
 
-> +			reg = <0 0x8bf00000 0 0x2000>;
-> +			no-map;
-> +		};
-> +
->  		linux,cma {
->  			compatible = "shared-dma-pool";
->  			size = <0x0 0x8000000>;
-> @@ -259,6 +264,10 @@ usb1_sbu_mux: endpoint {
->  	};
->  };
->  
-> +&adreno_smmu {
-> +	status = "okay";
-> +};
-Ugh. Should definitely be enabled by default.
+The last patch in this series actually adds the driver support for
+parsing the data format override device tree property and modifying the
+corresponding values for bit per color and media bus format in the panel
+descriptor.
 
-> +
->  &apps_rsc {
->  	regulators-0 {
->  		compatible = "qcom,pm8350-rpmh-regulators";
-> @@ -376,6 +385,23 @@ &dispcc0 {
->  	status = "okay";
->  };
->  
-> +&gmu {
-> +	status = "okay";
-> +};
-You can keep the GMU enabled by default as well, it won't "probe" on
-its own (the GPU's hw_init calls its registration)
+Best regards
+Johannes
 
-> +
-> +&gpu {
-> +	status = "okay";
-> +
-> +	zap-shader {
-> +		memory-region = <&gpu_mem>;
-> +		firmware-name = "qcom/sc8280xp/qcdxkmsuc8280.mbn";
-> +	};
-> +};
-> +
-> +&gpucc {
-> +	status = "okay";
-> +};
-Clock controllers have no reason to be off by default.
+---
 
-Konrad
-> +
->  &mdss0 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index bdcba719fc38..5ef3f4c07d75 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -264,6 +264,11 @@ vreg_wwan: regulator-wwan {
->  	};
->  
->  	reserved-memory {
-> +		gpu_mem: gpu-mem@8bf00000 {
-> +			reg = <0 0x8bf00000 0 0x2000>;
-> +			no-map;
-> +		};
-> +
->  		linux,cma {
->  			compatible = "shared-dma-pool";
->  			size = <0x0 0x8000000>;
-> @@ -359,6 +364,10 @@ usb1_sbu_mux: endpoint {
->  	};
->  };
->  
-> +&adreno_smmu {
-> +	status = "okay";
-> +};
-> +
->  &apps_rsc {
->  	regulators-0 {
->  		compatible = "qcom,pm8350-rpmh-regulators";
-> @@ -518,6 +527,23 @@ &dispcc0 {
->  	status = "okay";
->  };
->  
-> +&gmu {
-> +	status = "okay";
-> +};
-> +
-> +&gpu {
-> +	status = "okay";
-> +
-> +	zap-shader {
-> +		memory-region = <&gpu_mem>;
-> +		firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcdxkmsuc8280.mbn";
-> +	};
-> +};
-> +
-> +&gpucc {
-> +	status = "okay";
-> +};
-> +
->  &mdss0 {
->  	status = "okay";
->  };
+Changelog:
+
+v1 -> v2:  - dt bindings: Worked in Rob's review findings (thanks for your
+             review), refactored to use common include instead of duplication
+           - driver: added missing error unwinding goto, as found by Dan
+             Carpenter's test robot:
+             Reported-by: kernel test robot <lkp@intel.com>
+             Reported-by: Dan Carpenter <error27@gmail.com>
+             Link: https://lore.kernel.org/r/202304160359.4LHmFOlU-lkp@intel.com/
+
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Thierry Reding <thierry.reding@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Sam Ravnborg <sam@ravnborg.org>
+Cc: patchwork-jzi@pengutronix.de
+Cc: kernel@pengutronix.de
+Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
+
+---
+Johannes Zink (3):
+      dt-bindings: display: move LVDS data-mapping definition to separate file
+      dt-bindings: display: simple: support non-default data-mapping
+      drm/panel-simple: allow LVDS format override
+
+ .../bindings/display/lvds-data-mapping.yaml        | 84 ++++++++++++++++++++++
+ .../devicetree/bindings/display/lvds.yaml          | 75 +++----------------
+ .../bindings/display/panel/panel-simple.yaml       | 26 ++++++-
+ drivers/gpu/drm/panel/panel-simple.c               | 39 +++++++++-
+ 4 files changed, 155 insertions(+), 69 deletions(-)
+---
+base-commit: 33a86170888b7e4aa0cea94ebb9c67180139cea9
+change-id: 20230523-simplepanel_support_nondefault_datamapping-13c3f2ea28f8
+
+Best regards,
+-- 
+Johannes Zink <j.zink@pengutronix.de>
+
