@@ -2,57 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FA9270D1E0
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 04:57:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EB5A70D157
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 04:38:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234019AbjEWC5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 May 2023 22:57:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59560 "EHLO
+        id S234710AbjEWCiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 May 2023 22:38:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbjEWC5R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 22:57:17 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF3C2CD
-        for <devicetree@vger.kernel.org>; Mon, 22 May 2023 19:57:16 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 0564D847CC;
-        Tue, 23 May 2023 04:57:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684810635;
-        bh=Zbqm9TSETTyPER81To7NhiuFGmNPzlkqiSndObUmGxk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=SEOglEDsL8gW3vFtT7hzpsMIYXypyxxXe1ZxpFRVaknpHLwsmvlhISuiSF+WZHC65
-         NjUzHdp1TVeiJIMBSYG94qItqVje+Oy/bOy1hhDS6hHtxzbf4uzh+v8rbqKPQpP9Sj
-         cV0AT3TWx+WP0DoWjgmksh0KAsgh1fHhlVHBx3oAs/kOtlGk2uLsFwtfHrMheZCCB8
-         7sOVPtLQriVEMKpapeexqNJfFUdXTZCoX1tWzVhm7NREJDSS5FWZZp4DDcVW1IU+Ba
-         g32+LPdKCAQUTbrZyKD6QHxaYt0R5R9TkOJo0WAsWBExNKDOt6H0UC7rXDPN7VUaUy
-         8Jb00XM9Tkt9Q==
-Message-ID: <b479bae2-1d0a-8cd1-0f80-74ecb483605c@denx.de>
-Date:   Tue, 23 May 2023 04:30:43 +0200
+        with ESMTP id S232332AbjEWCiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 May 2023 22:38:18 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8F16CA;
+        Mon, 22 May 2023 19:38:16 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34N2bpBK020737;
+        Mon, 22 May 2023 21:37:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684809471;
+        bh=hkhGcEhPR6UPrPlDGiGXc7Ka/ldbgk7SCCgn8nIuQ/w=;
+        h=From:To:CC:Subject:Date;
+        b=dO3Y73RSaVoMXz/rqUArHKOiuaKYOCbU+Y5ciJxtAdcrC1V0yFh/4Wq8QfQi0rUoF
+         Y7JuBIedqMDOiwXSdcF5tuhZFyXnBmVjf2oJWuRRLcV51cEILu7AMcR028EAvEaCG8
+         kiU5/zqzXcxkhu9+vmWh09cuMVhhmu8FUnUIJ/IE=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34N2bpMc032579
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 22 May 2023 21:37:51 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
+ May 2023 21:37:50 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 22 May 2023 21:37:50 -0500
+Received: from a0498204.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34N2bnsW031957;
+        Mon, 22 May 2023 21:37:50 -0500
+From:   Judith Mendez <jm@ti.com>
+To:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        <linux-can@vger.kernel.org>
+CC:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Schuyler Patton <spatton@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        Tony Lindgren <tony@atomide.com>
+Subject: [PATCH v7 0/2] Enable multiple MCAN on AM62x
+Date:   Mon, 22 May 2023 21:37:47 -0500
+Message-ID: <20230523023749.4526-1-jm@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v6 5/5] soc: imx: imx6sx-gpr: Introduce a GPR driver
-Content-Language: en-US
-To:     Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        conor+dt@kernel.org, bhelgaas@google.com,
-        Fabio Estevam <festevam@denx.de>
-References: <20230522201404.660242-1-festevam@gmail.com>
- <20230522201404.660242-5-festevam@gmail.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20230522201404.660242-5-festevam@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,67 +73,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/22/23 22:14, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> The motivation for this imx6sx-gpr driver is to allow describing
-> the LVDS LDB bridge as a GPR subnode.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
-> Changes since v5:
-> - None.
-> 
->   drivers/soc/imx/Makefile     |  1 +
->   drivers/soc/imx/imx6sx-gpr.c | 29 +++++++++++++++++++++++++++++
->   2 files changed, 30 insertions(+)
->   create mode 100644 drivers/soc/imx/imx6sx-gpr.c
-> 
-> diff --git a/drivers/soc/imx/Makefile b/drivers/soc/imx/Makefile
-> index a28c44a1f16a..9840d4c41015 100644
-> --- a/drivers/soc/imx/Makefile
-> +++ b/drivers/soc/imx/Makefile
-> @@ -4,6 +4,7 @@ obj-$(CONFIG_ARCH_MXC) += soc-imx.o
->   endif
->   obj-$(CONFIG_HAVE_IMX_GPC) += gpc.o
->   obj-$(CONFIG_IMX_GPCV2_PM_DOMAINS) += gpcv2.o
-> +obj-$(CONFIG_SOC_IMX6SX) += imx6sx-gpr.o
->   obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o
->   obj-$(CONFIG_IMX8M_BLK_CTRL) += imx8m-blk-ctrl.o
->   obj-$(CONFIG_IMX8M_BLK_CTRL) += imx8mp-blk-ctrl.o
-> diff --git a/drivers/soc/imx/imx6sx-gpr.c b/drivers/soc/imx/imx6sx-gpr.c
-> new file mode 100644
-> index 000000000000..7684acbe43ff
-> --- /dev/null
-> +++ b/drivers/soc/imx/imx6sx-gpr.c
-> @@ -0,0 +1,29 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <linux/module.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +
-> +static int imx6sx_gpr_probe(struct platform_device *pdev)
-> +{
-> +	return devm_of_platform_populate(&pdev->dev);
-> +}
-> +
-> +static const struct of_device_id imx6sx_gpr_ids[] = {
-> +	{ .compatible = "fsl,imx6sx-iomuxc-gpr" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx6sx_gpr_ids);
-> +
-> +static struct platform_driver imx6sx_gpr_driver = {
-> +	.driver = {
-> +		.name	= "imx6sx_gpr",
-> +		.of_match_table = imx6sx_gpr_ids,
-> +	},
-> +	.probe = imx6sx_gpr_probe,
-> +};
-> +module_platform_driver(imx6sx_gpr_driver);
+On AM62x there are two MCANs in MCU domain. The MCANs in MCU domain
+were not enabled since there is no hardware interrupt routed to A53
+GIC interrupt controller. Therefore A53 Linux cannot be interrupted
+by MCU MCANs.
 
-I feel inclined to ask -- do you think this could be something which 
-could be added to core code ? It seems very generic.
+This solution instantiates a hrtimer with 1 ms polling interval
+for MCAN device when there is no hardware interrupt property in
+DTB MCAN node. The hrtimer generates a recurring software interrupt
+which allows to call the isr. The isr will check if there is pending
+transaction by reading a register and proceed normally if there is.
+MCANs with hardware interrupt routed to A53 Linux will continue to
+use the hardware interrupt as expected.
 
-Thoughts ?
+Timer polling method was tested on both classic CAN and CAN-FD
+at 125 KBPS, 250 KBPS, 1 MBPS and 2.5 MBPS with 4 MBPS bitrate
+switching.
+
+Letency and CPU load benchmarks were tested on 3x MCAN on AM62x.
+1 MBPS timer polling interval is the better timer polling interval
+since it has comparable latency to hardware interrupt with the worse
+case being 1ms + CAN frame propagation time and CPU load is not
+substantial. Latency can be improved further with less than 1 ms
+polling intervals, howerver it is at the cost of CPU usage since CPU
+load increases at 0.5 ms.
+
+Note that in terms of power, enabling MCU MCANs with timer-polling
+implementation might have negative impact since we will have to wake
+up every 1 ms whether there are CAN packets pending in the RX FIFO or
+not. This might prevent the CPU from entering into deeper idle states
+for extended periods of time.
+
+v6:
+Link: https://lore.kernel.org/linux-can/20230518193613.15185-1-jm@ti.com/T/#t
+
+v5:
+Link: https://lore.kernel.org/linux-can/20230510202952.27111-1-jm@ti.com/T/#t
+
+v4:
+Link: https://lore.kernel.org/linux-can/c3395692-7dbf-19b2-bd3f-31ba86fa4ac9@linaro.org/T/#t
+
+v2:
+Link: https://lore.kernel.org/linux-can/20230424195402.516-1-jm@ti.com/T/#t
+
+V1:
+Link: https://lore.kernel.org/linux-can/19d8ae7f-7b74-a869-a818-93b74d106709@ti.com/T/#t
+
+RFC:
+Link: https://lore.kernel.org/linux-can/52a37e51-4143-9017-42ee-8d17c67028e3@ti.com/T/#t
+
+v6:
+- Clean up m_can_platform.c after removing poll-interval
+
+v6:
+- Move hrtimer stop/start function calls to m_can_open and m_can_close to
+support power suspend/resume
+
+v5:
+- Remove poll-interval in bindings
+- Change dev_dbg to dev_info if hardware int exists and polling
+is enabled
+
+v4:
+- Wrong patches sent
+
+v3:
+- Update binding poll-interval description
+- Add oneOf to select either interrupts/interrupt-names or poll-interval
+- Create a define for 1 ms polling interval
+- Change plarform_get_irq to optional to not print error msg
+
+v2:
+- Add poll-interval property to bindings and MCAN DTB node
+- Add functionality to check for 'poll-interval' property in MCAN node 
+- Bindings: add an example using poll-interval
+- Add 'polling' flag in driver to check if device is using polling method
+- Check for timer polling and hardware interrupt cases, default to
+hardware interrupt method
+- Change ns_to_ktime() to ms_to_ktime()
+
+Judith Mendez (2):
+  dt-bindings: net: can: Remove interrupt properties for MCAN
+  can: m_can: Add hrtimer to generate software interrupt
+
+ .../bindings/net/can/bosch,m_can.yaml         | 20 +++++++++--
+ drivers/net/can/m_can/m_can.c                 | 33 +++++++++++++++++--
+ drivers/net/can/m_can/m_can.h                 |  4 +++
+ drivers/net/can/m_can/m_can_platform.c        | 25 ++++++++++++--
+ 4 files changed, 75 insertions(+), 7 deletions(-)
+
+
+base-commit: 9f258af06b6268be8e960f63c3f66e88bdbbbdb0
+-- 
+2.17.1
+
