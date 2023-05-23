@@ -2,66 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8654E70E3D0
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 19:47:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85A1770E3C0
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 19:47:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237431AbjEWRVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 13:21:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52400 "EHLO
+        id S238156AbjEWR3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 13:29:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238009AbjEWRVw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 13:21:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87DD11A4;
-        Tue, 23 May 2023 10:21:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1D4E463504;
-        Tue, 23 May 2023 17:21:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 261E7C4339B;
-        Tue, 23 May 2023 17:21:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684862491;
-        bh=aT2ocotPlA/nSBH/8PduunTauw9vMBYGyMKMNVT/r+s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pRnLh7k/CzU1h0jLRsDO67VJxc8vSBtPTmUdaqBNSCE6g7J91jL35JLulOx9C9JYR
-         TMQ6Pdk6XSiAAgEgZWIvCVKX8r6uo7WnelJKRjJXopuh4RdfXIdMlUkGQhOolw8xTN
-         XcrZV3vZD1uLRNUAwXkfv5ZKpWri+ivpYG5HZDCZPeKk4CaFVGi7HO1G5eUJnSIe1W
-         kOvX1qTiJ0TuCBd6rezaZxrEtAwSMr5dDrTprv//m8FUxOmMIZzFCZBnJmmR8gBirF
-         iK3pr5wbqwUaDsYcENJl+WOoI3UgfN6nmtHz+aQlRGmuKRpoxdZXhfk6u2sOkVG4ba
-         5iq4vCdEoIUqA==
-Date:   Tue, 23 May 2023 18:21:25 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Johannes Zink <j.zink@pengutronix.de>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        kernel test robot <lkp@intel.com>,
-        Dan Carpenter <error27@gmail.com>,
-        patchwork-jzi@pengutronix.de, kernel@pengutronix.de,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: display: simple: support non-default
- data-mapping
-Message-ID: <20230523-jaywalker-modify-500ec1d79223@spud>
-References: <20230523-simplepanel_support_nondefault_datamapping-v2-0-87196f0d0b64@pengutronix.de>
- <20230523-simplepanel_support_nondefault_datamapping-v2-2-87196f0d0b64@pengutronix.de>
+        with ESMTP id S238178AbjEWR33 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 13:29:29 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 425BFDA;
+        Tue, 23 May 2023 10:29:28 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34NHHwCa026436;
+        Tue, 23 May 2023 17:29:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=/foVFqL/eWRHOc5ZWHk40oDqUDdvWafwcxSESP77iS0=;
+ b=HXcZG8NL4dc7wbv+ux//ogph8/nwnfbj2cVunxDj+AXeerBXRgZHGjJlaUXQJkTSdhoD
+ eS0yDu91GSd82ZRO1stmJdxdE/y5B1i0yEZQACRHsKflFwSUorH47GjXFwKiOdkpZon+
+ A2Yg0Ax9CcrHJOwh72BWydPTwrm/jyLgiQMuhI9m4RQ81ZtWUsDUNojJ4XUUHLLA03Ls
+ UqGOsaRjVS7biXdpU0jvq+NHtcGVJn+aYt/kC1JZKHxvDekGjkxpp2O1zlsyCxA3PBDQ
+ GowMpCKTQfC8a9GJirNRkE8tUU+9NHoGRNckBFXXYqTPoNL5ctHmcWY5Hx9RjVSv4z9U Gw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qrpmm207x-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 23 May 2023 17:29:24 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34NHTO1Z020819
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 23 May 2023 17:29:24 GMT
+Received: from [10.71.110.156] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 23 May
+ 2023 10:29:23 -0700
+Message-ID: <07beafde-19b6-2c25-6451-4c5871cb0012@quicinc.com>
+Date:   Tue, 23 May 2023 10:28:54 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="mkHOJIwDJ1jryFTv"
-Content-Disposition: inline
-In-Reply-To: <20230523-simplepanel_support_nondefault_datamapping-v2-2-87196f0d0b64@pengutronix.de>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v6 1/1] soc: qcom: mdt_loader: Enhance split binary
+ detection
+To:     <linux-arm-msm@vger.kernel.org>
+CC:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        "Satya Durga Srinivasu Prabhala" <quic_satyap@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Elliot Berman <quic_eberman@quicinc.com>,
+        "Guru Das Srinagesh" <quic_gurus@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>
+References: <20230509001821.24010-1-quic_gokukris@quicinc.com>
+Content-Language: en-US
+From:   Gokul Krishna Krishnakumar <quic_gokukris@quicinc.com>
+In-Reply-To: <20230509001821.24010-1-quic_gokukris@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 6AgNUu0ogTcA08z7W9q-gS7zctNvZMnI
+X-Proofpoint-GUID: 6AgNUu0ogTcA08z7W9q-gS7zctNvZMnI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-23_10,2023-05-23_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1011
+ mlxscore=0 lowpriorityscore=0 impostorscore=0 suspectscore=0 bulkscore=0
+ adultscore=0 mlxlogscore=999 spamscore=0 malwarescore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
+ definitions=main-2305230140
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -69,111 +89,98 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---mkHOJIwDJ1jryFTv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 23, 2023 at 10:19:42AM +0200, Johannes Zink wrote:
-> Some Displays support more than just a single default lvds data mapping,
-> which can be used to run displays on only 3 LVDS lanes in the jeida-18
-> data-mapping mode.
->=20
-> Add an optional data-mapping property to allow overriding the default
-> data mapping. As it does not generally apply to any display and bus: use
-> it selectively on the innolux,g101ice-l01, which supports changing the
-> data mapping via a strapping pin.
->=20
-> Signed-off-by: Johannes Zink <j.zink@pengutronix.de>
->=20
+On 5/8/2023 5:18 PM, Gokul krishna Krishnakumar wrote:
+> It may be that the offset of the first program header lies inside the mdt's
+> filesize, in this case the loader would incorrectly assume that the bins
+> were not split and in this scenario the firmware authentication fails.
+> This change updates the logic used by the mdt loader to understand whether
+> the firmware images are split or not. It figures this out by checking if
+> each programs header's segment lies within the file or not.
+> 
+> Co-developed-by: Melody Olvera <quic_molvera@quicinc.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> Signed-off-by: Gokul krishna Krishnakumar <quic_gokukris@quicinc.com>
+> 
 > ---
->=20
-> Changes:
->=20
-> v1 -> v2: - worked in Rob's review findings (thanks for reviewing my
->             work): use extracted common property instead of duplicating
-> 	    the property
-
-That looks to be true (and Rob's AFK at the moment, hence unable to reply
-to your ping) so,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> V6: Fixed format error in qcom_mdt_bins_are_split function definition and
+> Correcting the s-o-b by keeping Melody as the co-developer.
+> 
+> V5: Removes extra empty lines from V4 and fixed the S-o-b by keeping Melody's
+> name first.
+> 
+> V4: Change the commit text to include the scenario in which we see the problem.
+> 
+> V3: separated out from [1] and includes changes addressing comments
+> from that patch set:
+> 	1. Change the checking condition for non-split firmwares to
+> 	(phr->p_filesz && !issplit) on line #352 for better readability.
+> 	2. Removes an unncecessary check for split bins in qcom_mdt_read_metadata()/
+> 
+> [1] https://lore.kernel.org/all/20230306231202.12223-5-quic_molvera@quicinc.com/
+> ---
+>   drivers/soc/qcom/mdt_loader.c | 25 +++++++++++++++++++++++--
+>   1 file changed, 23 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/mdt_loader.c b/drivers/soc/qcom/mdt_loader.c
+> index 3f11554df2f3..0e35d29b4438 100644
+> --- a/drivers/soc/qcom/mdt_loader.c
+> +++ b/drivers/soc/qcom/mdt_loader.c
+> @@ -258,6 +258,26 @@ int qcom_mdt_pas_init(struct device *dev, const struct firmware *fw,
+>   }
+>   EXPORT_SYMBOL_GPL(qcom_mdt_pas_init);
+>   
+> +static bool qcom_mdt_bins_are_split(const struct firmware *fw, const char *fw_name)
+> +{
+> +	const struct elf32_phdr *phdrs;
+> +	const struct elf32_hdr *ehdr;
+> +	uint64_t seg_start, seg_end;
+> +	int i;
+> +
+> +	ehdr = (struct elf32_hdr *)fw->data;
+> +	phdrs = (struct elf32_phdr *)(ehdr + 1);
+> +
+> +	for (i = 0; i < ehdr->e_phnum; i++) {
+> +		seg_start = phdrs[i].p_offset;
+> +		seg_end = phdrs[i].p_offset + phdrs[i].p_filesz;
+> +		if (seg_start > fw->size || seg_end > fw->size)
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+>   static int __qcom_mdt_load(struct device *dev, const struct firmware *fw,
+>   			   const char *fw_name, int pas_id, void *mem_region,
+>   			   phys_addr_t mem_phys, size_t mem_size,
+> @@ -270,6 +290,7 @@ static int __qcom_mdt_load(struct device *dev, const struct firmware *fw,
+>   	phys_addr_t min_addr = PHYS_ADDR_MAX;
+>   	ssize_t offset;
+>   	bool relocate = false;
+> +	bool is_split;
+>   	void *ptr;
+>   	int ret = 0;
+>   	int i;
+> @@ -277,6 +298,7 @@ static int __qcom_mdt_load(struct device *dev, const struct firmware *fw,
+>   	if (!fw || !mem_region || !mem_phys || !mem_size)
+>   		return -EINVAL;
+>   
+> +	is_split = qcom_mdt_bins_are_split(fw, fw_name);
+>   	ehdr = (struct elf32_hdr *)fw->data;
+>   	phdrs = (struct elf32_phdr *)(ehdr + 1);
+>   
+> @@ -330,8 +352,7 @@ static int __qcom_mdt_load(struct device *dev, const struct firmware *fw,
+>   
+>   		ptr = mem_region + offset;
+>   
+> -		if (phdr->p_filesz && phdr->p_offset < fw->size &&
+> -		    phdr->p_offset + phdr->p_filesz <= fw->size) {
+> +		if (phdr->p_filesz && !is_split) {
+>   			/* Firmware is large enough to be non-split */
+>   			if (phdr->p_offset + phdr->p_filesz > fw->size) {
+>   				dev_err(dev, "file %s segment %d would be truncated\n",
+Hi reviewers,
+Could you please review this patch.
 
 Thanks,
-Conor.
-
-> 	  - refined commit message
-> 	  - add an example dts for automated checking
-> ---
->  .../bindings/display/panel/panel-simple.yaml       | 26 ++++++++++++++++=
-+++++-
->  1 file changed, 25 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple=
-=2Eyaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> index ec50dd268314..698301c8c920 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> @@ -21,9 +21,9 @@ description: |
-> =20
->  allOf:
->    - $ref: panel-common.yaml#
-> +  - $ref: ../lvds-data-mapping.yaml#
-> =20
->  properties:
-> -
->    compatible:
->      enum:
->      # compatible must be listed in alphabetical order, ordered by compat=
-ible.
-> @@ -353,6 +353,17 @@ properties:
->    power-supply: true
->    no-hpd: true
->    hpd-gpios: true
-> +  data-mapping: true
-> +
-> +if:
-> +  not:
-> +    properties:
-> +      compatible:
-> +        contains:
-> +          const: innolux,g101ice-l01
-> +then:
-> +  properties:
-> +    data-mapping: false
-> =20
->  additionalProperties: false
-> =20
-> @@ -372,3 +383,16 @@ examples:
->          };
->        };
->      };
-> +  - |
-> +    panel_lvds: panel-lvds {
-> +      compatible =3D "innolux,g101ice-l01";
-> +      power-supply =3D <&vcc_lcd_reg>;
-> +
-> +      data-mapping =3D "jeida-24";
-> +
-> +      port {
-> +        panel_in_lvds: endpoint {
-> +          remote-endpoint =3D <&ltdc_out_lvds>;
-> +        };
-> +      };
-> +    };
->=20
-> --=20
-> 2.39.2
->=20
-
---mkHOJIwDJ1jryFTv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZGz2FQAKCRB4tDGHoIJi
-0kGeAPwK0hvRgZEe5yCs6X2BQm57H3xiCRVe4/ILNn2rSwIImwD+JohV+vtU8PcX
-KBG/Gdo4LQ0y4cn44UJBX4oDxTQc9QY=
-=EQAo
------END PGP SIGNATURE-----
-
---mkHOJIwDJ1jryFTv--
+Gokul
