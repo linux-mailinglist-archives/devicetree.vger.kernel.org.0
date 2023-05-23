@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D42270E6AF
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 22:41:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE96970E6E8
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 22:55:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238552AbjEWUlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 16:41:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39356 "EHLO
+        id S234054AbjEWUz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 16:55:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238523AbjEWUlp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 16:41:45 -0400
+        with ESMTP id S230215AbjEWUzV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 16:55:21 -0400
 Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DF22BB;
-        Tue, 23 May 2023 13:41:44 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03FD98E;
+        Tue, 23 May 2023 13:55:20 -0700 (PDT)
 Received: from [192.168.122.1] (84-115-214-73.cable.dynamic.surfer.at [84.115.214.73])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id D1B0ACFBBD;
-        Tue, 23 May 2023 20:41:41 +0000 (UTC)
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id CE959CFB2A;
+        Tue, 23 May 2023 20:55:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1684874502; bh=giXrBVzuUN5UXjtoXlCOzbSist2F7n3Yj2uo5JvGp+4=;
-        h=From:Date:Subject:References:In-Reply-To:To:Cc;
-        b=UN9gyzpp2uIHzA5h6eRrMwn7Nko9BO3Y+tD2JujsIvH/1rPzIRAp+gV1zpgWdmQTi
-         tQeEyjD6m7QIRDQ8l+YRozY+5lprp0YSoG2PPepqnh2nG8F9dNcivStZ2CIroARg8H
-         Av1bIY7Q9x4SREkm3qs5QPs8eQGRWqbs6q4ZSjuM=
+        t=1684875318; bh=uQFqe5iVdN9eN/p5L3w9/rrS5p9PnWq9XPTlLZU9wdQ=;
+        h=From:Subject:Date:To:Cc;
+        b=NVgKbTcYbsH90zxHKbMvTCrS0WZLOSoqHBsMvtDNHpfGp+5xuOs8gtow7KZE706jv
+         Cz08E5jgb4d5/a/L+Vzn7yFOMf3WSoJvTLfBZN8PPmoM5p8GtAtB5t+82n8lVFz12i
+         tLi/WiXGXPIWGYs5s1SY42ftNswu3sjdPYdUqfFA=
 From:   Luca Weiss <luca@z3ntu.xyz>
-Date:   Tue, 23 May 2023 22:41:30 +0200
-Subject: [PATCH v3 3/3] Documentation: leds: Add "rgb:status" path
+Subject: [PATCH v2 0/6] Add MSM8226 OCMEM support plus some extra OCMEM
+ driver fixes
+Date:   Tue, 23 May 2023 22:55:07 +0200
+Message-Id: <20230506-msm8226-ocmem-v2-0-177d697e43a9@z3ntu.xyz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230414-pmi632-v3-3-079d2cada699@z3ntu.xyz>
-References: <20230414-pmi632-v3-0-079d2cada699@z3ntu.xyz>
-In-Reply-To: <20230414-pmi632-v3-0-079d2cada699@z3ntu.xyz>
+X-B4-Tracking: v=1; b=H4sIACsobWQC/3WNOw6DMBAFr4K2zkb28lWq3COiwGQJlrBBNlh8x
+ N3j0Keckd6bAzw7zR4eyQGOg/Z6tBHolkDbN/bDqN+RgQSlIhcFGm8qogLH1rBBxSzLvJRcsYK
+ 4UY1nVK6xbR9XdhmGKCfHnV6vyKuO3Gs/j267mkH+7L/7IFFgypQxlZR1Qj731M7Lfd12qM/z/
+ AJ/CN7mvwAAAA==
 To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Brian Masney <masneyb@onstation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
         Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-doc@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>,
+        Caleb Connolly <caleb.connolly@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=728; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=giXrBVzuUN5UXjtoXlCOzbSist2F7n3Yj2uo5JvGp+4=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBkbSUBVFFH0z26jiRmoUzAK7tvmUyNshtKdDPIi
- M5BNeQdU9+JAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZG0lAQAKCRBy2EO4nU3X
- VnrVD/9XFPcG2lQPkn6K14Fu1Wa6cjR5XeJSk33Njgomt8vMe4xTwRE2/HN2CHXn4zrGeMZDk54
- F8y8GWcY2sV/oE8m6dpJNReJbS+QjW4MP+mPgr1FdaPrmzMa3GmEmfwylJAfKTlOjdG2Qd2uhUi
- oqG/FD57rT3U7DeAizDCJt4qiunIh4+zA+x3zdrjZ2gngRGLe1YMcOyW9vjojULNlwCGJJntoqK
- iwbzsn6IfVXqQ+9sDcqMNH6XJDLRsToFx+tfRWT5TYOvqnFk1dUOGUXE/HKhP1t1D6ojYkb3+kx
- viz0rlHPK8YThGeKaVE5EwNTvVY+vcE0bxSLeDcBmjzTxOy1PFxFoIW0EkOR/zvEIE96tN2xj96
- voUuj5vkQvdEc6lIqQi5N9sRfMnCNyjdkwORBvIOj+vbIIg4l/z29wIIE6bAwBBW0WN4AYj/ZZO
- YlbIiqvQv5iHBrWmtDHzOKXP2KQcuW12PrS/4j2aATVmroV8Ri5YVu87ih9Rvh3fJ4Xk9JqYAi4
- j0ggJVW8H9lFn2VdaKPlYIuQ5R/nzFidgkO0IvvIC5bMstQbBvvQcDQX2udJ7RQL9OW0gbX5hO7
- YpuZfc22vXkoiZ/ZUdxQvxv9Sgc3+kuk/VvncDQ3tEMSn0QtozQ1obmDObIm6gTOcZgxkiBL3lv
- 09xCJhywpLHGr5Q==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1360; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=uQFqe5iVdN9eN/p5L3w9/rrS5p9PnWq9XPTlLZU9wdQ=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBkbSgt7sUiKz4ME5XGxcVEPS6FyEdN4zJb9wYLV
+ nbImeMc17OJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZG0oLQAKCRBy2EO4nU3X
+ VtWZD/9Scy+RTRdb0GgGgkI/rmfcu8Lujfpk5jK4NZFApFtgTuBlCAeemp2DyB/IuPvLH3mjeaS
+ Z6HV407kOafUPf6crxSfTiH/0DlaWvO0HKBt3ea+BSGLAbmsuLm9WkSRRyxAlqQlFBPd1niUmum
+ fBT2Yky4Livacu8kvtjcQkCtSpOQsAnJPtuRYVhFxGirdSDCNEt73RqGnynYnq5bmoet0a4CIac
+ IK01tPVlbeqjlasThw3KWYLtODUM5R9tKjHwhDj6+r+fFjzQbGLikFP626AW+0KQeLSV7Fu+hru
+ GbLc2hijSN78b16tfqbTHYjENmdY+aAqaJ0QKbiKwWZw5AwnwWRnc9i/1Y3IAray7xiePkhcCiD
+ rwfBGow7SYxwBw481fvxlHJX9I1zwz+LzsLM2vN+Si6LsMMkJKkrql18R+oy5rPxPFHMy1brN1k
+ wPPr1ddDVTB5MWHjo4kuN23Vr6hJNWOXeyn7epHJC/jsPtafrxc3tiUGakeFfuzKoM7cVdTEEBN
+ y09Kr517jW4QAmdLXqjbXeBY4jpw6V6q2p7zqv8LAHphKOPe4E3Bjcmb4Az7Fh9iER1L1etoFhH
+ ps2v3rJpYBl2+HyQLVB3gYKTdIGKeCOesNV1dIz/WHSHt2RmUbZ7MhyCbP6g4HKyMTzs4kCAH14
+ BT377SRU1Sfljtg==
 X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
  fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,27 +74,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The path /sys/class/leds/rgb:status is already widely used with the
-qcom-lpg driver and others. Document it.
+Like MSM8974 the MSM8226 SoC also contains some OCMEM but it has just
+one region for graphics compared to 8974.
+
+While adding support I found a bug in the existing driver that is being
+fixed in this series also and the rest of the matches are mostly
+preparations for MSM8226 support.
 
 Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 ---
- Documentation/leds/well-known-leds.txt | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v2:
+- dt-bindings: add hw version hint to msm8974 & msm8226 variant (Konrad)
+- dt-bindings: add constraints for clock (Konrad)
+- Pick up tags
+- Link to v1: https://lore.kernel.org/r/20230506-msm8226-ocmem-v1-0-3e24e2724f01@z3ntu.xyz
 
-diff --git a/Documentation/leds/well-known-leds.txt b/Documentation/leds/well-known-leds.txt
-index e9c30dc75884..bfbb5892154d 100644
---- a/Documentation/leds/well-known-leds.txt
-+++ b/Documentation/leds/well-known-leds.txt
-@@ -58,6 +58,7 @@ LEDs on notebook body, indicating that sound input / output is muted.
- 
- * System notification
- 
-+Good: "rgb:status"
- Legacy: "status-led:{red,green,blue}" (Motorola Droid 4)
- Legacy: "lp5523:{r,g,b}" (Nokia N900)
- 
+---
+Luca Weiss (6):
+      soc: qcom: ocmem: Fix NUM_PORTS & NUM_MACROS macros
+      soc: qcom: ocmem: Use dev_err_probe where appropriate
+      soc: qcom: ocmem: make iface clock optional
+      dt-bindings: sram: qcom,ocmem: Add msm8226 support
+      soc: qcom: ocmem: Add support for msm8226
+      ARM: dts: qcom: msm8226: Add ocmem
 
+ .../devicetree/bindings/sram/qcom,ocmem.yaml       | 20 ++++++-
+ arch/arm/boot/dts/qcom-msm8226.dtsi                | 17 ++++++
+ drivers/soc/qcom/ocmem.c                           | 67 ++++++++++++----------
+ 3 files changed, 72 insertions(+), 32 deletions(-)
+---
+base-commit: 8a80314554f679bc440e2affd842ece2048031ea
+change-id: 20230506-msm8226-ocmem-bee17571e8eb
+
+Best regards,
 -- 
-2.40.1
+Luca Weiss <luca@z3ntu.xyz>
 
