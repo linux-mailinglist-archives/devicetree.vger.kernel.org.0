@@ -2,67 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D866B70E6F7
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 22:56:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4219870E71A
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 23:05:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237960AbjEWU42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 16:56:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46594 "EHLO
+        id S235436AbjEWVFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 17:05:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238377AbjEWU40 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 16:56:26 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64741E4F;
-        Tue, 23 May 2023 13:55:57 -0700 (PDT)
-Received: from [192.168.122.1] (84-115-214-73.cable.dynamic.surfer.at [84.115.214.73])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 225CDCFBC0;
-        Tue, 23 May 2023 20:55:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1684875322; bh=/f9dqg9L6IlOJuDdcS8mZ2hEPNfzmqpNeoG6GKRuzBk=;
-        h=From:Date:Subject:References:In-Reply-To:To:Cc;
-        b=kTU+SPIoooPWjW1kd9VLXHp2SOo1A9Fkoq6bV45jjH8L8FtkiaVwX58XAU6lCdYYb
-         4ACwAbEKWm2AvdNVwYadHMO8M+BDV/H71yFbMllYBTS6BlXgpzcQaWQJBcc+hBFxQE
-         bQ3eSv6Nv/TEm/+uIJ7a15qSzyF7NGwCh/cPCp6M=
-From:   Luca Weiss <luca@z3ntu.xyz>
-Date:   Tue, 23 May 2023 22:55:13 +0200
-Subject: [PATCH v2 6/6] ARM: dts: qcom: msm8226: Add ocmem
+        with ESMTP id S238423AbjEWVFT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 17:05:19 -0400
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3F0FE4F
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 14:05:12 -0700 (PDT)
+Received: by mail-il1-x12c.google.com with SMTP id e9e14a558f8ab-33828a86ee2so42055ab.0
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 14:05:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1684875911; x=1687467911;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j2Nz3y3qoiTuBk9TgDabiliDyiqWiXu5FrWlJdz9mKE=;
+        b=ONgWeoapPdsXjtVlfZgOTY0YX7WN84kwZ+lxvIZ+Z4JgI0d0KEejBZHFG14bnlJ8Q+
+         LZeXd5pYKxQT6vTp4kKHY+jHAhAZi8/eoyCBQRuqWVxLQJoqe3fxhEpjMLOmJ0t4EV5O
+         C113c5SM7jQNkt7uGolh64LfDpkgaTWEJgX1opjbWVEySvF3wUojSBVnrGtP/tEFCq4p
+         m4LMDyEPLJwS7ZciKAWcb9dX5wnFmi6JjZfCCScrpUDy2m0JOawJU844QlTAVLEcMsck
+         FxZKf03dsMlrbic8t+xD8NpLBtvkNXlX85QjS/kETmPvBM88UyGkRopycXAYOQ0k4qtV
+         w6HQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684875911; x=1687467911;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=j2Nz3y3qoiTuBk9TgDabiliDyiqWiXu5FrWlJdz9mKE=;
+        b=ccLyCa4Ynul7p2hRfydg+DYfMZwZ8TI4uGo0IQsDe0mSL23VnunsNBEKcbD4oYVqR3
+         GE+JfEqD4zqY1Q9GVnZN/5k1Vxb1/y7e5arDDBg53XoJuUqokv+uua9xeBvfN5CH/2RW
+         xyBLkWnQimjNs8HRvCYOWK1h8Plvhxa/KDssUI5FbKAgxM7qZTy2CLwv6/DEiU09Q/7d
+         fV++wXnqqukiGui/W2T5kt3vDc13y2PnRksR5QUtQr+B/osqTsNMO/LWwaoA4eF21yko
+         S6UTe0glsEm10pCBMdYjOJbDXqMHE8snawzIkqroI1CH8PWjR4I/l/1Uwxy3tbWES7qB
+         hLqA==
+X-Gm-Message-State: AC+VfDz3vhqMNFK7YdEdZICNDrDRk08fE97GdMsUCpl/+uzz+ukxHsqx
+        ivUYjcW3+cPM/nEKQm2YazHMv7K/9LosjWH23mQn8A==
+X-Google-Smtp-Source: ACHHUZ7Txm8nqQaZy6MgeGTbwmpy46SQwfW06R6g1Du+QW7rpPJydUuYPp9gS6UClgiky4qhjuFMErdp4zPAfwqP4vc=
+X-Received: by 2002:a92:cda9:0:b0:335:62cc:3972 with SMTP id
+ g9-20020a92cda9000000b0033562cc3972mr41564ild.19.1684875911458; Tue, 23 May
+ 2023 14:05:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230506-msm8226-ocmem-v2-6-177d697e43a9@z3ntu.xyz>
-References: <20230506-msm8226-ocmem-v2-0-177d697e43a9@z3ntu.xyz>
-In-Reply-To: <20230506-msm8226-ocmem-v2-0-177d697e43a9@z3ntu.xyz>
-To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Brian Masney <masneyb@onstation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1007; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=/f9dqg9L6IlOJuDdcS8mZ2hEPNfzmqpNeoG6GKRuzBk=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBkbSg0MIzSV935ZDPSAxyzVLovGYyPf1a9yrySF
- zmowdqy7OiJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZG0oNAAKCRBy2EO4nU3X
- VhwfEACYCNM7mdJN4oOSZxaoDgx+xQTsWllDrNHV57pSzIortFI7G3syWNStMvYjrXm9j+/jTTD
- U0lCK522IX/UAbpVNT7rUrbg/5tacpsi7oS35D9oqdksTpDlJ4K8pXxT3tmuXQJ3FJilVJQpVow
- cG8IGvDBFejF7kbcSa2wBJvzSbJZUBzhawmZjHdDHShaVTMEUuApy7q+fhLruMMlR6VJ6aNVdZ9
- 36chQ+IM8gJd4YBaFbGopL/Gw8QptWNR1WsgCH7xiMONvFW4Q/3mumc636CWE4zEid0kbv6zHqt
- V+bRwo+PhwV3qYX4NNcmgTtBmFBV/I1r0dwD+ls786ogbEBBfXsiFkzhl68b9Tjza700R0ro3Lm
- qO0IYT4Y25SHs+YF8jcwhn3PdOpDMdmaJRatn5F69+lzgltzMU3Y+6/3md7uiAtErVRYgmBruIh
- Cnyualdp8zXCosACUuhgatRTrSGjIps6Rk9yAT9QpGTDhkVhW4N/ulE2FM+lEf+bLRCtsM6CYJM
- D7rl4Cpmx8ScugJDRA56XwJbcfDY9GGMid5woeYBy4M13ciR+lwyp4/unWz1Sf1G0gwKXtjsyZ4
- 3eJzqlNP6IrF8pDgfdGX+h3t6qQX7B7MyLNiuAv4XQS6axh266gtHr2CM+7s/ECKHbhowhN32Uv
- 6q+G4xkJu1GoDUw==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+References: <20230519032316.3464732-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230519080136.4058243-1-yangcong5@huaqin.corp-partner.google.com>
+ <ed8fc8f2-e5d8-8e08-dc29-e1197c911571@linaro.org> <CAHwB_NK8wKaXw6Gy9CFnsZB0XrqokiHGXoMNAzd0R+myYg4gxQ@mail.gmail.com>
+In-Reply-To: <CAHwB_NK8wKaXw6Gy9CFnsZB0XrqokiHGXoMNAzd0R+myYg4gxQ@mail.gmail.com>
+From:   Doug Anderson <dianders@google.com>
+Date:   Tue, 23 May 2023 14:04:56 -0700
+Message-ID: <CAD=FV=WRecTWsFM96k81YAx1=jJT0vpS4EPP0ZfWFUGHNFx9Tw@mail.gmail.com>
+Subject: Re: [v1 0/2] *** Support Starry-himax83102-j02 and Starry-ili9882t
+ TDDI MIPI-DSI panel ***
+To:     cong yang <yangcong5@huaqin.corp-partner.google.com>
+Cc:     neil.armstrong@linaro.org, sam@ravnborg.org, daniel@ffwll.ch,
+        hsinyi@google.com, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED,USER_IN_DEF_DKIM_WL,
+        USER_IN_DEF_SPF_WL autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,44 +74,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a node for the ocmem found on msm8226. It contains one region, used
-as gmu_ram.
+Hi,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- arch/arm/boot/dts/qcom-msm8226.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+On Mon, May 22, 2023 at 1:01=E2=80=AFAM cong yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> Hi,neil:
+>  Thank you for your reply, it's not that the polarity of reset is differe=
+nt. The state of this rst needs to be high during a certain period of time =
+(when hid touch communicate,). I have tried to set the default property to =
+high in DT, but from the log and waveform, the rseet single  is set to low =
+by boe_panel_add before hid touch communication.As shown in the picture, rs=
+t needs to be high before hid ready. Datasheet: https://github.com/HimaxSof=
+tware/Doc/tree/main/Himax_Chipset_Power_Sequence
 
-diff --git a/arch/arm/boot/dts/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom-msm8226.dtsi
-index 42acb9ddb8cc..7ad073eb85c8 100644
---- a/arch/arm/boot/dts/qcom-msm8226.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8226.dtsi
-@@ -636,6 +636,23 @@ smd-edge {
- 				label = "lpass";
- 			};
- 		};
-+
-+		sram@fdd00000 {
-+			compatible = "qcom,msm8226-ocmem";
-+			reg = <0xfdd00000 0x2000>,
-+			      <0xfec00000 0x20000>;
-+			reg-names = "ctrl", "mem";
-+			ranges = <0 0xfec00000 0x20000>;
-+			clocks = <&rpmcc RPM_SMD_OCMEMGX_CLK>;
-+			clock-names = "core";
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			gmu_sram: gmu-sram@0 {
-+				reg = <0x0 0x20000>;
-+			};
-+		};
- 	};
- 
- 	timer {
+To add some breadcrumbs, I think the issues is that panel/touchscreeen
+are intertwined and really need a solution like the one proposed in my
+series:
 
--- 
-2.40.1
+https://lore.kernel.org/r/20230523193017.4109557-1-dianders@chromium.org
 
+Cong Yang tested an early version of my series and indicated that it
+helped solve his problem. Presumably if that series (or something like
+it) can land then we'll unblock the ability to support this hardware.
+
+-Doug
