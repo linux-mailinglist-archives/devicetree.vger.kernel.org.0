@@ -2,95 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8040E70E9B1
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 01:36:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B6B870E9AA
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 01:34:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236261AbjEWXgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 19:36:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54282 "EHLO
+        id S238655AbjEWXeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 19:34:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbjEWXgz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 19:36:55 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AD00DA
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:36:53 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 28B5B8467E;
-        Wed, 24 May 2023 01:36:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1684885010;
-        bh=WtzXgRfMPs63hUuZj5sbini9jdY+DLtYedtwtEd4unU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=yJ2l7XOXBR68RFVO5eyBS/lXAev1AtPqkeyplM2aS7Um6xUe8ZeuUBPI64GvcjM3s
-         hmn1ryHvxoTs3zi8XjkYJK9BdGjz8YZM9C3GfLUNuLQ6OdFIsc0wP+H2pAxB3OOGlD
-         TvmZVdqGua3k0QAg1YOhCtiubzyCK7rEhuPBfb1n1ys52yD1y+CstnzkVvcoFDny2X
-         Sxf8nFypn9/sM8+SHKQqFQg1T5KKPRkoOU9hl8k4JKnZ2TjGlVyqfEVKB1CPDu5r/y
-         mbR1fQqj1yUY4dRTqmHVwPprHDdVgnNwv4cp9i84Hu5rKZtJUjGejzTMMvNCNO1ZCt
-         yLzvIhmDgboIA==
-Message-ID: <b0ad67bd-c37a-67c5-f167-37b5cb8a54d1@denx.de>
-Date:   Wed, 24 May 2023 01:30:24 +0200
+        with ESMTP id S238579AbjEWXeg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 19:34:36 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A3551B4
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:34:11 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id 98e67ed59e1d1-25332b3915bso230239a91.2
+        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:34:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684884850; x=1687476850;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MNA57LFsEAjv0YnO7XAE11SZw6Ds4IrSm19nvlVJk98=;
+        b=wF+aug1ydohk/cr8Rfez98IIlwqb13f0RxZ6y479XbKidTrvL03zg77sxMin+zGFGx
+         l5eXByrl4nPZWQWmqQncYvX9EBJ2jhKSQOmxQvgaHwbuXn34nx47cTnpfrrrJzj+8zQw
+         4pNfP+xtaTEDb3tmNzMbZ9lq1FvB1h3Y/9o0b9L7TTlVcKFXDAGLKRDd9xXEgp7O259E
+         JEOObHH4XNk6aUQOdhlo/FfoEEjn3MqFmkmu5jjMJ2GV+T7Gsu/kuTOHMZ3neHBb56qU
+         VtYRMrOu288bwsGXUhDF1P0SpaYg4k2ai2BHS88fM94NGHU7+411tXSKeuvtY4mY+E9V
+         VdhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684884850; x=1687476850;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MNA57LFsEAjv0YnO7XAE11SZw6Ds4IrSm19nvlVJk98=;
+        b=BkDnOD3yCVImmit5HQ5s9+8J/44R2PXVdzSeAadroMmeRDZCcEQkPUdgLHzn1atkCl
+         2UQuGQcrybnIT+WEDpUOejQhLTaBmwQ8W6YF9Wx6Zte3ZKs+NO6zeymKIJZ54+/6xO2k
+         dB/5P/GTskBW7KVeSp0WO2O3dBwZ5knYtrxHfy5r5d6LR8SQNhPSidmqM84mE2ozmsa6
+         v1uYNvuGENAeoOIiTVYzGVcUy/olCTVWpeeBJbRObcNcqRuCMoXFeTRKPLDMYNdoyIrX
+         EhP693JSE8Oq6+S9TOoRyxzn6oC2tVlema1YcTJi5g295GuBtEm3XpXbdmg+fbO3rfB6
+         QLyA==
+X-Gm-Message-State: AC+VfDzKyG9fbCIM2UV2KmF66KYfq/kMIId/u7Pg/rzaGvygiK9b9gHx
+        7tvKxMxROPAsUH6pQ3HjmreQIQ==
+X-Google-Smtp-Source: ACHHUZ4/S/KRgTtfzWmFTkvHxw3NShbPiyY6ElSBnhSbSlY2KYV0gjG/Ka+9HzWGVYgXMdo2hQhd0g==
+X-Received: by 2002:a17:90b:a45:b0:253:947f:af51 with SMTP id gw5-20020a17090b0a4500b00253947faf51mr13745197pjb.5.1684884849781;
+        Tue, 23 May 2023 16:34:09 -0700 (PDT)
+Received: from localhost ([75.172.135.98])
+        by smtp.gmail.com with ESMTPSA id gl21-20020a17090b121500b00253305f36c4sm100944pjb.18.2023.05.23.16.34.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 May 2023 16:34:09 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Jeffrey Hugo <quic_jhugo@quicinc.com>,
+        Alexandre Bailon <abailon@baylibre.com>, airlied@gmail.com,
+        daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+        mripard@kernel.org, tzimmermann@suse.de
+Cc:     devicetree@vger.kernel.org, conor+dt@kernel.org, bero@baylibre.com,
+        jstephan@baylibre.com, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
+        linaro-mm-sig@lists.linaro.org, robh+dt@kernel.org,
+        linux-mediatek@lists.infradead.org, nbelin@baylibre.com,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        linux-media@vger.kernel.org, sumit.semwal@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH 0/7] Add a DRM driver to support AI Processing Unit (APU)
+In-Reply-To: <d0807fe4-dba2-8244-f655-d04e80973572@quicinc.com>
+References: <20230517145237.295461-1-abailon@baylibre.com>
+ <d0807fe4-dba2-8244-f655-d04e80973572@quicinc.com>
+Date:   Tue, 23 May 2023 16:34:08 -0700
+Message-ID: <7ha5xud3m7.fsf@baylibre.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v6 5/5] soc: imx: imx6sx-gpr: Introduce a GPR driver
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
-        bhelgaas@google.com, Fabio Estevam <festevam@denx.de>
-References: <20230522201404.660242-1-festevam@gmail.com>
- <20230522201404.660242-5-festevam@gmail.com>
- <b479bae2-1d0a-8cd1-0f80-74ecb483605c@denx.de>
- <CAOMZO5BtPUu9CfxJO-mScB4OYeN3g7HxKF=D636wFSUJ5HMsoQ@mail.gmail.com>
- <a9e2e19f-e9df-81e3-4608-71beed85852f@denx.de>
- <CAOMZO5Bujbynq5CSbWQu+aEsiaTP686OW44MujDFuE1k5EMeMA@mail.gmail.com>
-Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAOMZO5Bujbynq5CSbWQu+aEsiaTP686OW44MujDFuE1k5EMeMA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/23/23 23:13, Fabio Estevam wrote:
-> Hi Marek,
+Jeffrey Hugo <quic_jhugo@quicinc.com> writes:
 
-Hi,
+> On 5/17/2023 8:52 AM, Alexandre Bailon wrote:
+>> This adds a DRM driver that implements communication between the CPU and an
+>> APU. The driver target embedded device that usually run inference using some
+>> prebuilt models. The goal is to provide common infrastructure that could be
+>> re-used to support many accelerators. Both kernel, userspace and firmware tries
+>> to use standard and existing to leverage the development and maintenance effort.
+>> The series implements two platform drivers, one for simulation and another one for
+>> the mt8183 (compatible with mt8365).
+>
+> This looks like the 3 existing Accel drivers.  Why is this in DRM?
 
-> On Tue, May 23, 2023 at 10:32 AM Marek Vasut <marex@denx.de> wrote:
-> 
->> It might be simple to add this functionality to the core, could you
->> please take a quick look ?
-> 
-> If I do the following change:
-> 
-> --- a/arch/arm/boot/dts/imx6sx.dtsi
-> +++ b/arch/arm/boot/dts/imx6sx.dtsi
-> @@ -842,7 +842,7 @@ iomuxc: pinctrl@20e0000 {
->                          };
-> 
->                          gpr: syscon@20e4000 {
-> -                               compatible = "fsl,imx6sx-iomuxc-gpr", "syscon";
-> +                               compatible = "fsl,imx6sx-iomuxc-gpr",
-> "syscon", "simple-mfd";
->                                  #address-cells = <1>;
->                                  #size-cells = <1>;
->                                  reg = <0x020e4000 0x4000>;
-> 
-> Then I can get rid of this drivers/soc/imx/imx6sx-gpr.c completely.
-> 
-> Would you agree with this approach?
+Yes, this belongs in accel.  I think Alex had some issues around the
+infra in accel with device nodes not appearing/opening properly, but
+I'll let him comment there.  But either way, the right approach should
+be to fix any issues in accel and move it there.
 
-Wasn't this already rejected by Krzysztof ?
+[...]
+
+>>   .../devicetree/bindings/gpu/mtk,apu-drm.yaml  |  38 ++
+>>   drivers/gpu/drm/Kconfig                       |   2 +
+>>   drivers/gpu/drm/Makefile                      |   1 +
+>>   drivers/gpu/drm/apu/Kconfig                   |  22 +
+>>   drivers/gpu/drm/apu/Makefile                  |  10 +
+>>   drivers/gpu/drm/apu/apu_drv.c                 | 282 +++++++++
+>>   drivers/gpu/drm/apu/apu_gem.c                 | 230 +++++++
+>>   drivers/gpu/drm/apu/apu_internal.h            | 205 ++++++
+>>   drivers/gpu/drm/apu/apu_sched.c               | 592 ++++++++++++++++++
+>>   drivers/gpu/drm/apu/simu_apu.c                | 313 +++++++++
+>>   include/uapi/drm/apu_drm.h                    |  81 +++
+>
+> "apu" seems too generic.  We already have 3 "AI processing units" over 
+> in drivers/accel already...
+
+Indeed, it is generic, but that's kind of the point for this driver
+since it's targetted at generalizing the interface with "AI processing
+units" on a growing number of embedded SoCs (ARM, RISC-V, etc.)  In
+addition, the generic naming is intentional because the goal is bigger
+than the kernel and is working towards a generic, shared "libAPU"
+userspace[1], but also common firmware for DSP-style inference engines
+(e.g. analgous Sound Open Firmware for audio DSPs.)
+
+As usual, the various SoC vendors use different names (APU, NPU, NN
+unit, etc.)  but we'd like a generic name for the class of devices
+targetted by this driver.  And unfortunately, it looks like the equally
+generic "Versatile processing unit" is already taken Intel's
+drivers/accel/ivpu. :)
+
+Maybe since this is more about generalizing the interface between the
+CPU running linux and the APU, what about the name apu_if?  But I guess
+that applies to the other 3 drivers in drivers/accell also.  Hmmm...
+
+Naming things is hard[2], so we're definitly open to other ideas.  Any
+suggestions?
+
+Kevin
+
+[1] https://gitlab.baylibre.com/baylibre/libapu/libapu
+
+[2]
+"There are 2 hard problems in computer science: cache invalidation,
+ naming things and off-by-1 errors."
+ -- https://twitter.com/secretGeek/status/7269997868
+
