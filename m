@@ -2,149 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8A2370DC8B
-	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 14:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E43870DC88
+	for <lists+devicetree@lfdr.de>; Tue, 23 May 2023 14:25:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236839AbjEWMZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 08:25:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53402 "EHLO
+        id S236438AbjEWMZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 08:25:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236809AbjEWMZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 08:25:39 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AE15C1B0
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 05:25:11 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 37FFC139F;
-        Tue, 23 May 2023 05:25:43 -0700 (PDT)
-Received: from [10.57.84.70] (unknown [10.57.84.70])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 624B53F6C4;
-        Tue, 23 May 2023 05:24:56 -0700 (PDT)
-Message-ID: <be69a222-096f-1e6c-837f-c7c76e643fa7@arm.com>
-Date:   Tue, 23 May 2023 13:24:52 +0100
+        with ESMTP id S231139AbjEWMZh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 08:25:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08809E79;
+        Tue, 23 May 2023 05:25:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D3B1624E0;
+        Tue, 23 May 2023 12:24:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF27FC433D2;
+        Tue, 23 May 2023 12:24:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684844689;
+        bh=gj5qIIuM/4Kg3jC5/WRQLFgOl7Twqxvxi08WIIuci8U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KgWNdxltwGQqe77/yXQP1OUs5hUYMlAa7cWzRlcniVlKNMKSR2Fu4pf9sJ1z5+O9J
+         JemQW2C7EWNrKRljOPe/LVd7yWtEzsnv1g+mPi2m3oM4LOfartq8L3cHNSGbMQTv5i
+         YNoHXYpTrSPo9wOlwmkoaxfEkrBR8vjJ1SD2/BfjvaB2QixOWH3m0YNWVDmtzN+gl2
+         3y4GmJe0BBepLjBPw92WBqLDkfYLBz4locVt+GEP0QZXrtVhDR6U/Vg/l3dWTkehDw
+         TtQlgcR+5lBvSHHq6APpu5allzmRN7iRgDWFtSoSQIqgXu7oPGv8Fi5Zwoy8NQKsXg
+         kWIjjqfBrLKLA==
+Date:   Tue, 23 May 2023 05:28:42 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, johan@kernel.org, mani@kernel.org
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sc8280xp: Enable GPU related
+ nodes
+Message-ID: <20230523122842.cueyeovuzpx63def@ripper>
+References: <20230523011522.65351-1-quic_bjorande@quicinc.com>
+ <20230523011522.65351-4-quic_bjorande@quicinc.com>
+ <1669ecc5-1845-e671-83f4-19ee14d37ce5@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 0/6] arm64: errata: Disable FWB on parts with non-ARM
- interconnects
-Content-Language: en-GB
-To:     James Morse <james.morse@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Oliver Upton <oliver.upton@linux.dev>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20230330165128.3237939-1-james.morse@arm.com>
- <ZF0io4mDjRdm1AxN@arm.com> <86y1lun1zh.wl-maz@kernel.org>
- <ZF1ai79ljnilIMoG@arm.com> <0510749e-b88b-11f1-76f8-3c71188f731e@arm.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <0510749e-b88b-11f1-76f8-3c71188f731e@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1669ecc5-1845-e671-83f4-19ee14d37ce5@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-05-16 17:29, James Morse wrote:
-> Hi Catalin, Marc,
-> 
-> On 11/05/2023 22:13, Catalin Marinas wrote:
->> On Thu, May 11, 2023 at 07:42:58PM +0100, Marc Zyngier wrote:
->>> On Thu, 11 May 2023 18:15:15 +0100,
->>> Catalin Marinas <catalin.marinas@arm.com> wrote:
->>>> On Thu, Mar 30, 2023 at 05:51:22PM +0100, James Morse wrote:
->>>>> When stage1 translation is disabled, the SCTRL_E1.I bit controls the
->>>>> attributes used for instruction fetch, one of the options results in a
->>>>> non-cacheable access. A whole host of CPUs missed the FWB override
->>>>> in this case, meaning a KVM guest could fetch stale/junk data instead of
->>>>> instructions.
->>>>>
->>>>> The workaround is to disable FWB, and do the required cache maintenance
->>>>> instead.
-> 
->>>> I think the workaround can be to only do the required cache maintenance
->>>> without disabling FWB. Having FWB on doesn't bring any performance
->>>> benefits if we do the cache maintenance anyway but keeping it around may
->>>> be useful for other reasons (e.g. KVM device pass-through using
->>>> cacheable mappings, though not something KVM supports currently).
->>>
->>> But you'd also rely on the guest doing its own cache maintenance for
->>> instructions it writes, right?
->>
->> Ah, you are right. It looks like I only considered the host writing
->> instructions. If the guest disabled stage 1 and wrote some instructions
->> with FWB on, they'd not necessarily reach the PoC while the instructions
->> are fetched from PoC with this bug. Even with SCTLR_EL1.I==0, the guest
->> is supposed to do an IC IVAU if it wrote instructions but that's not
->> sufficient (hint to the micro-architects, add a chicken bit to upgrade
->> IC IVAU to also do a DC CVAC ;))
->>
->>> Which probably means exposing a different CLIDR_EL1 so that
->>> LoC/LoUU/LoUIS are consistent with *not* having FWB... I also wonder
->>> if keeping FWB set has the potential to change the semantics of the
->>> CMOs (the spec seems silent on that front).
->>
->> Not sure about CMOs, I'd expect them to behave in the same way. However,
->> I don't see how faking CLIDR_EL1 can trick the guest into doing DC CVAC
->> when its MMU is off.
-> 
-> I think the request is to keep the FWB feature, but to disable it for all host memory
-> the guest can execute from. I presume this 'device pass-through using cacheable mappings'
-> would mark that address range as XN at stage2, ( ... it's special right?).
-> 
-> If this is for something like CXL: it can't set XN, and the guest would still be exposed
-> to the erratum if it executes from theses addresses with the MMU off.
-> 
-> Does this need doing now? It wouldn't need backporting to older kernels...
+On Tue, May 23, 2023 at 10:04:40AM +0200, Konrad Dybcio wrote:
 > 
 > 
->>>> That said, maybe we can reduce the risk further by doing the
->>>> vcpu_has_run_once() trick with !FWB and clean the D side to PoC on a
->>>> stage 2 exec fault (together with the I-cache invalidation). We can then
->>>> ignore any other cache maintenance on S2 faults until someone shouts (we
->>>> can maybe recommend forcing FWB off on the command line through the
->>>> cpuid override).
->>>
->>> You lost me here with your vcpu_has_run_once().
->>
->> Most likely I lost myself in the code. So the tricks we used in the past
->> tracking the guest MMU off/on was only for the D side. If (we hope that)
->> the guest only wrote instructions to a page once before executing them
->> (and never writing instructions again), we could trap a subsequent exec
->> fault and do the D-cache clean to PoC again.
->>
->>> Keeping the CMOs on exec fault is definitely manageable. But is that
->>> enough?
->>
->> Yeah, not sure it's enough if the guest keeps writing instructions to
->> the same page with the MMU off.
+> On 23.05.2023 03:15, Bjorn Andersson wrote:
+> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > 
+> > Add memory reservation for the zap-shader and enable the Adreno SMMU,
+> > GPU clock controller, GMU and the GPU nodes for the SC8280XP CRD and the
+> > Lenovo ThinkPad X13s.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> > ---
+> > 
+> > Changes since v1:
+> > - None
+> > 
+> >  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     | 26 +++++++++++++++++++
+> >  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 26 +++++++++++++++++++
+> >  2 files changed, 52 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> > index 5b25d54b9591..547277924ea3 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> > @@ -210,6 +210,11 @@ vreg_wwan: regulator-wwan {
+> >  	};
+> >  
+> >  	reserved-memory {
+> > +		gpu_mem: gpu-mem@8bf00000 {
+> The ZAP region is very seldom moved around, and I wouldn't expect it
+> to be uncommon among the very usecase-specific 8280 machines.
 > 
-> The difference between FWB and IDC/DIC still does my head in: My reading is FWB implies
-> IDC, (but the CTR_EL0.IDC bit might not be set). This doesn't help if the wrong attributes
-> are being used for instruction fetch.
-> This is cache-maintenance that wasn't needed before, so there are no tricks with the id
-> registers we can pull to make the guest do it.
+> > +			reg = <0 0x8bf00000 0 0x2000>;
+> > +			no-map;
+> > +		};
+> > +
+> >  		linux,cma {
+> >  			compatible = "shared-dma-pool";
+> >  			size = <0x0 0x8000000>;
+> > @@ -259,6 +264,10 @@ usb1_sbu_mux: endpoint {
+> >  	};
+> >  };
+> >  
+> > +&adreno_smmu {
+> > +	status = "okay";
+> > +};
+> Ugh. Should definitely be enabled by default.
 > 
+> > +
+> >  &apps_rsc {
+> >  	regulators-0 {
+> >  		compatible = "qcom,pm8350-rpmh-regulators";
+> > @@ -376,6 +385,23 @@ &dispcc0 {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&gmu {
+> > +	status = "okay";
+> > +};
+> You can keep the GMU enabled by default as well, it won't "probe" on
+> its own (the GPU's hw_init calls its registration)
 > 
-> v2 of this will flip the polarity, and also detect based on an 'arm,interconnect'
-> compatible, or the existing compatible the PMU driver uses.
+> > +
+> > +&gpu {
+> > +	status = "okay";
+> > +
+> > +	zap-shader {
+> > +		memory-region = <&gpu_mem>;
+> > +		firmware-name = "qcom/sc8280xp/qcdxkmsuc8280.mbn";
+> > +	};
+> > +};
+> > +
+> > +&gpucc {
+> > +	status = "okay";
+> > +};
+> Clock controllers have no reason to be off by default.
+> 
 
-Unfortunately I don't think PMUs are going to be a meaningful indicator 
-in general since they don't imply anything about topology - you may 
-infer that, say, an Arm CMN exists *somewhere* in the system, but it 
-could conceivably be on some I/O chiplet connected via CCIX/CXL to a 
-different interconnect on the CPU die which *does* still need the 
-mitigation.
+On sa8295p/sa8540p the GPU is powered differently, so if I leave it
+enabled by default I need to disable it (or configure it) for those, or
+they won't boot.
 
-Thanks,
-Robin.
+Regards,
+Bjorn
+
+> Konrad
+> > +
+> >  &mdss0 {
+> >  	status = "okay";
+> >  };
+> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > index bdcba719fc38..5ef3f4c07d75 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> > @@ -264,6 +264,11 @@ vreg_wwan: regulator-wwan {
+> >  	};
+> >  
+> >  	reserved-memory {
+> > +		gpu_mem: gpu-mem@8bf00000 {
+> > +			reg = <0 0x8bf00000 0 0x2000>;
+> > +			no-map;
+> > +		};
+> > +
+> >  		linux,cma {
+> >  			compatible = "shared-dma-pool";
+> >  			size = <0x0 0x8000000>;
+> > @@ -359,6 +364,10 @@ usb1_sbu_mux: endpoint {
+> >  	};
+> >  };
+> >  
+> > +&adreno_smmu {
+> > +	status = "okay";
+> > +};
+> > +
+> >  &apps_rsc {
+> >  	regulators-0 {
+> >  		compatible = "qcom,pm8350-rpmh-regulators";
+> > @@ -518,6 +527,23 @@ &dispcc0 {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&gmu {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&gpu {
+> > +	status = "okay";
+> > +
+> > +	zap-shader {
+> > +		memory-region = <&gpu_mem>;
+> > +		firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcdxkmsuc8280.mbn";
+> > +	};
+> > +};
+> > +
+> > +&gpucc {
+> > +	status = "okay";
+> > +};
+> > +
+> >  &mdss0 {
+> >  	status = "okay";
+> >  };
