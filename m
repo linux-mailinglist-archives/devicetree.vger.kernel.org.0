@@ -2,109 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76C9970F6BA
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 14:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B98C470F70D
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 15:01:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234195AbjEXMmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 08:42:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58918 "EHLO
+        id S232079AbjEXNBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 09:01:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230316AbjEXMmY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 08:42:24 -0400
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 626499E;
-        Wed, 24 May 2023 05:42:22 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id 953615C0115;
-        Wed, 24 May 2023 08:42:19 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Wed, 24 May 2023 08:42:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm3; t=1684932139; x=1685018539; bh=SF
-        9JtV1APOsCbo27SIShQg4r+s7H+woBcWqX/y1Cbdo=; b=MPX0qIkeYUH3javcr4
-        0T277eOhoLBvj5MGKRxXJIC40iN498Ia5AEtM3WBjzb1WA//1gxTFLvbdzApnw7d
-        mRmcww6BJ2kmp/5HJfmi5V4VysoKZQOQkduOe+RT0ZKgAdsPnVCxGzDjaXcltVRP
-        Iv+J8G/pSOpZTBJQ09PZE4pJTOw3Nh5GEPZrwK/x/Ji10UYampQOuumbfogMXTUH
-        BbjRfAhyCvPbyU4JjPuLGMyu3OPs1L/XS7wah/8I1MneV0Xihice76gYF3MHnj17
-        kEbKC9cjnMLJOI4wYLRWJ1K09hbY+kD4RR0+VStyUxM9S84S9sTGxPguFxt9+Gbq
-        qMNg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1684932139; x=1685018539; bh=SF9JtV1APOsCb
-        o27SIShQg4r+s7H+woBcWqX/y1Cbdo=; b=GEkYChRQYQjJZWyxPqzR0Gap0m3Ek
-        P7uW5ACiQUPHjYZDN4BpnBHUTrx7LYVvnG/j/LnSMLu+n0cyjxlE9l3SWzyVmo0G
-        cOO/pu0PAK7dFF1oluUJf7om+KUHjXFA1RwMFBLO/987q4+KdSdTVh+zXLAaGnnL
-        iJjjqbG/EdcW3dosu6RlHPFvhjGLP5CGyYZRL2IA6idCHY62WLZeSbh4Iecm2svE
-        bREMasYi5OCbVTZVDm2tFhj3YN6fA6zJ8wrJXzDXBXZ9iehzwyFpeaP6IPzR3EB8
-        FOy3nRGEsEivNdxP2t+t3c5ya8XNnfKkJd9UlJssaPkyl6EnEcYi8WmqA==
-X-ME-Sender: <xms:KQZuZGMDoRzsCX5aXsO-r725SY22BCoE8ATFudZ5DaJl7wynb3wZug>
-    <xme:KQZuZE9_0xo0I4cJQiDdiw7TV9eLSIZnClXcQc-2S0YyZ1Bij6-jPvsGXyaCAKCe4
-    5gv8zmxl2ZL5lVcuSk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeejhedgheegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:KQZuZNSGokaxVGygwsbDOfBz_Bd3L9-Y3iQ4XDMxmb0N4YD9pmee2A>
-    <xmx:KQZuZGtMqYDh5AwRAR7d7K03DN2KXEekKnKZMl4ThXvdwkiSH52fNg>
-    <xmx:KQZuZOdvpVskFAY9an0bL1TPZKC9C3k13ZZDda7j9dBcyhc5qY_6aQ>
-    <xmx:KwZuZOAXpeVP7LyUAtIRRQ1eqAR8Cew46tqPn6kSCUE2DV6S9PP5uA>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 64F50B60086; Wed, 24 May 2023 08:42:17 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-441-ga3ab13cd6d-fm-20230517.001-ga3ab13cd
-Mime-Version: 1.0
-Message-Id: <787582a3-51a1-494e-bfd0-b51d1117432e@app.fastmail.com>
-In-Reply-To: <20230523221132.64464-1-blarson@amd.com>
-References: <bc5118f2-8982-46ff-bc75-d0c71475e909@app.fastmail.com>
- <20230523221132.64464-1-blarson@amd.com>
-Date:   Wed, 24 May 2023 14:41:57 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Brad Larson" <blarson@amd.com>
-Cc:     "Adrian Hunter" <adrian.hunter@intel.com>, alcooperx@gmail.com,
-        "Andy Shevchenko" <andy.shevchenko@gmail.com>,
-        brendan.higgins@linux.dev,
-        "Brian Norris" <briannorris@chromium.org>,
-        "Mark Brown" <broonie@kernel.org>,
-        "Catalin Marinas" <catalin.marinas@arm.com>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        "David Gow" <davidgow@google.com>, devicetree@vger.kernel.org,
-        "Serge Semin" <fancer.lancer@gmail.com>,
-        "Greg Ungerer" <gerg@linux-m68k.org>, gsomlo@gmail.com,
-        "Hal Feng" <hal.feng@starfivetech.com>,
-        "Hitomi Hasegawa" <hasegawa-hitomi@fujitsu.com>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        "Lee Jones" <lee.jones@linaro.org>, "Lee Jones" <lee@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
-        linux-spi@vger.kernel.org,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        "Randy Dunlap" <rdunlap@infradead.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Samuel Holland" <samuel@sholland.org>, skhan@linuxfoundation.org,
-        suravee.suthikulpanit@amd.com,
-        "Tom Lendacky" <thomas.lendacky@amd.com>,
-        "Tony Huang" <tonyhuang.sunplus@gmail.com>,
-        "Ulf Hansson" <ulf.hansson@linaro.org>, vaishnav.a@ti.com,
-        "Walker Chen" <walker.chen@starfivetech.com>,
-        "Will Deacon" <will@kernel.org>, "Yinbo Zhu" <zhuyinbo@loongson.cn>
-Subject: Re: [PATCH v14 8/8] soc: amd: Add support for AMD Pensando SoC Controller
-Content-Type: text/plain
+        with ESMTP id S229588AbjEXNBS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 09:01:18 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 085E699;
+        Wed, 24 May 2023 06:01:13 -0700 (PDT)
+Received: (Authenticated sender: alexis.lothore@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 57DF56000F;
+        Wed, 24 May 2023 13:01:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1684933272;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=OMEX7EeIbeQcBJX8PAIK5KbOxg0Lv8Wk2X1l3ikoIiw=;
+        b=a9vrG/SKv93eJ0gFSpdGL/IsE3MIJeT5XdyfH9NU+C8RebTABfj+FPUQPHzm4FnVr9OLJR
+        WNCIAAzbK/MmrVLkqelfWyG6DfbemeKTKgcSL4uE2zArogthBKDtlaJEFTTYCOTPJQsJvZ
+        99eQTVLzXYdKH81yMpZBrqthmDUh0Z/aErOVQKnBEIeYqOdH6H74wfoubFsBdgmLu9RFI1
+        bjjfgv9IvzB995bAm4XYmJ17RBCVaWAh/jvhlKOl0vtjs4ADxmqpgB+9oC1IV9KSZ5H12f
+        SrTmet1d7v2xPniVlckaevNluXUMpAJgVXr34Do2qEYOxIuf5kPwojNZHjxDNw==
+From:   =?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        paul.arola@telus.com, scott.roberts@telus.com,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+        =?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>
+Subject: [PATCH net-next v3 0/7] net: dsa: mv88e6xxx: add 88E6361 support
+Date:   Wed, 24 May 2023 15:01:20 +0200
+Message-Id: <20230524130127.268201-1-alexis.lothore@bootlin.com>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -113,52 +64,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 24, 2023, at 00:11, Brad Larson wrote:
->> On Mon, May 15, 2023, at 20:16, Brad Larson wrote:
->
->> Also, can you explain why this needs a low-lever user interface
->> in the first place, rather than something that can be expressed
->> using high-level abstractions as you already do with the reset
->> control?
->>
->> All of the above should be part of the changelog text to get a
->> driver like this merged. I don't think we can get a quick
->> solution here though, so maybe you can start by removing the
->> ioctl side and having the rest of the driver in drivers/reset?
->
-> In the original patchset I added a pensando compatible to spidev and that
-> was nacked in review and reusing some random compatible that made it into 
-> spidev was just wrong.  Further it was recommended this should be a system 
-> specific driver and don't rely on a debug driver like spidev.  I changed 
-> over to a platform specific driver and at that time I also needed to include 
-> a reset controller (emmc reset only).  I put these in drivers/mfd and 
-> drivers/reset.  Review of the device tree for this approach went back and 
-> forth to _not_ have four child nodes on the spi device each with the same 
-> compatible. Decision was to squash the child nodes into the parent and put 
-> the reset-controller there also.  One driver and since its pensando
-> specific its currently in drivers/soc/amd.
->
-> There are five different user processes and some utilities that access the 
-> functionality in the cpld/fpga.  You're correct, its passing messages that 
-> are specific to the IP accessed via chip-select.  No Elba system will boot 
-> without this driver providing ioctl access.
+This series brings initial support for Marvell 88E6361 switch.
 
-Thank you for the detailed summary. Moving away from spidev and
-from mfd seems all reasonable here. I'm still a bit confused by
-why you have multiple chipselects here that are for different
-subdevices but ended with a single user interface for all of them,
-but that's not a big deal.
+MV88E6361 is a 8 ports switch with 5 integrated Gigabit PHYs and 3
+2.5Gigabit SerDes interfaces. It is in fact a new variant in the
+88E639X/88E6193X/88E6191X family with a subset of existing features:
+- port 0: MII, RMII, RGMII, 1000BaseX, 2500BaseX
+- port 3 to 7: triple speed internal phys
+- port 9 and 10: 1000BaseX, 25000BaseX
 
-The main bit that sticks out about this high-level design is how
-it relies on user space utilities at all to understand the message
-format. From what I understand about the actual functionality of
-this device, it most closely resembles an embedded controller that
-you might find in a laptop or server machine, and those usually
-have kernel drivers in drivers/platform/ to interact with the
-device.
+Since said family is already well supported in mv88e6xxx driver, adding
+initial support for this new switch mostly consists in finding the ID
+exposed in its identification register, adding a proper description
+in switch description tables in mv88e6xxx driver, and enforcing 88E6361
+specificities in mv88e6393x_XXX methods.
 
-Has anyone tried to do it like that? Maybe it would help
-to see what the full protocol and the user space side looks
-like, in order to move some or all of it into the kernel.
+- first 4 commits introduce an internal phy offset field for switches which
+  have internal phys but not starting from port 0
+- 5th commit is a fix on existing switches based on first commits
+- 6th commit is a slight modification to prepare 886361 support
+- last commit introduces 88E6361 support in 88E6393X family
 
-     Arnd
+This initial support has been tested with two samples of a custom board
+with the following hardware configuration:
+- a main CPU connected to MV88E6361 using port 0 as CPU port
+- port 9 wired to a SFP cage
+- port 10 wired to a G.Hn transceiver
+
+The following setup was used:
+PC <-ethernet-> (copper SFP) - Board 1 - (G.hn) <-phone line(RJ11)-> (G.hn) Board 2
+
+The unit 1 has been configured to bridge SFP port and G.hn port together,
+which allowed to successfully ping Board 2 from PC.
+
+Changes since v2:
+- add Reviewed-By tags for untouched patches
+- remove whitespace
+- reorganized some conditions to avoid weird line split
+
+Changes since v1:
+- rework mv88e6xxx_port_ppu_updates to use internal helper
+- add internal phys offset field to manage switches which do not have
+  internal PHYs right on first ports
+- fix 88E639X/88E6193X/88E6191X internal phy layout
+- enforce 88E6361 features in mv88e6393x_port_set_speed_duplex
+- enforce 88E6361 features in mv88e6393x_port_max_speed_mode
+- enforce 88E6361 features in mv88e6393x_phylink_get_caps
+- add Reviewed-By and Acked-By on untouched patch
+
+Alexis Lothoré (7):
+  dt-bindings: net: dsa: marvell: add MV88E6361 switch to compatibility
+    list
+  net: dsa: mv88e6xxx: pass directly chip structure to
+    mv88e6xxx_phy_is_internal
+  net: dsa: mv88e6xxx: use mv88e6xxx_phy_is_internal in
+    mv88e6xxx_port_ppu_updates
+  net: dsa: mv88e6xxx: add field to specify internal phys layout
+  net: dsa: mv88e6xxx: fix 88E6393X family internal phys layout
+  net: dsa: mv88e6xxx: pass mv88e6xxx_chip structure to
+    port_max_speed_mode
+  net: dsa: mv88e6xxx: enable support for 88E6361 switch
+
+ .../devicetree/bindings/net/dsa/marvell.txt   |  2 +-
+ drivers/net/dsa/mv88e6xxx/chip.c              | 69 ++++++++++++++-----
+ drivers/net/dsa/mv88e6xxx/chip.h              | 11 ++-
+ drivers/net/dsa/mv88e6xxx/global2.c           |  5 +-
+ drivers/net/dsa/mv88e6xxx/port.c              | 26 +++++--
+ drivers/net/dsa/mv88e6xxx/port.h              | 13 ++--
+ 6 files changed, 94 insertions(+), 32 deletions(-)
+
+-- 
+2.40.1
+
