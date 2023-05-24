@@ -2,165 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32B3C70F600
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 14:15:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A361870F620
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 14:21:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230316AbjEXMPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 08:15:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43638 "EHLO
+        id S229987AbjEXMVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 08:21:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbjEXMPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 08:15:16 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B60D130;
-        Wed, 24 May 2023 05:15:15 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-96f9cfa7eddso152484766b.2;
-        Wed, 24 May 2023 05:15:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684930513; x=1687522513;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sUEzEX3IxY8Nj/uA0tEcwms+OAaTSJtcQdltzfG1TQM=;
-        b=X/G1NRsS65NS3/nroiKeHVMFrgfmO06b1WCf9NBEt/zESPE47jw43hqRGOAShFpJE1
-         m3xTu1TjLQMjTgoqDmVUZDyyzU+a73NtinuXY5ckIzQysyIOpXo1M0SM0qStrdIeekUi
-         R3/tDDkULOtYtQ3A+VMR4+u88WPvDgZlz4jmSvCrI6Rw6mVnE8R5UT+HiB0mvhHS943V
-         CznrLkLGsxNCrfXDWJUd4jL+UP2LUKr3KtZm3nuiTtkGOvoh+OVqIikKR3QINUszw30m
-         YV1e62+euP4Zvn4f7sRunatEnf80HQsWQYwxtUvjyelOFbKOSyWcQ9aHnRUcTDX1apva
-         RRHw==
+        with ESMTP id S229521AbjEXMVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 08:21:31 -0400
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF9B139;
+        Wed, 24 May 2023 05:21:30 -0700 (PDT)
+Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-54fb0fce238so335182eaf.1;
+        Wed, 24 May 2023 05:21:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684930513; x=1687522513;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sUEzEX3IxY8Nj/uA0tEcwms+OAaTSJtcQdltzfG1TQM=;
-        b=ecKzj4DxxtOFTLd8cxJoymIzFDOERoYSTPr9gEkVVEcjIue2SeYCMZIxbs4pEdoFkI
-         ezwK7A9F5goUdgSMkSgnv/dTukKwSxUt5Oj4bvhP4eSNflNX95/JH8BbMOOTFfgMkJnT
-         jNwbXaMD9y9p52Qa8F0mqP2taOLvwVvo0SsYW/KDx2k0rWJ0I8qR67YiljM00R2LuaXH
-         o6v4TKhpJOhiTNvOBglrsCk6Dqbiu8Au/dXqdqwVbYouQEVFsEYX/AumevIwfedPpCXN
-         fmiOB6KDE5lhyqEt1l3xNBbLuyzohX30Uhu9y0RNXDdNNerQOS+mR9iGjsFPTmcVZNXa
-         2zxA==
-X-Gm-Message-State: AC+VfDzp3zn4CepPkesjngbC7CXliMkV0C8PAGFsH6y7rwjIeHng4ePY
-        C7ygFWpR4t2aAhHsqQ5+72l2z/oMDVS+zuLtQcI=
-X-Google-Smtp-Source: ACHHUZ51AUAOCcHb4T/Z3x9qqA2jZVV2HPi2un7zsMK9HeI68/1biA1xYkNAn9I+KTD2GDPMckgYEPnNIWHEvtCefbA=
-X-Received: by 2002:a17:907:72d2:b0:973:8198:bbf6 with SMTP id
- du18-20020a17090772d200b009738198bbf6mr2018665ejc.3.1684930513259; Wed, 24
- May 2023 05:15:13 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684930890; x=1687522890;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=yOUV3NHIV/iK6R+sZSedSwk/RX0eGbK5K3EGZstC8H0=;
+        b=Fy6MKbiLWRBv19EuOTb4U7jU/2TFWgfzIbFoSdJWFwnWnM+rkomYDpuZr2gm/4IVyJ
+         18FMjnB5nNaHKx8cro57r/of9+G5S2/+rrHTrOMmIHJDxZULXLIJ0ximNcJ3bWN2/Vct
+         0wwQsdZo51LyvNc6KlBosNf5R016dPAdQbdvIxYzOavhXsKMvgThrsETuhqpqNZuWe4G
+         IZvNBypyX0b/qu/aCnQiNCH83hmuHAgGmhDZ1ibOz6JxQQ/kWOlvbtOD5K/3DItLa5NP
+         RWd0IS0G138y19IstYj7OP+AWsPdTna+c0ooCV7iWKHido/EFJRdvT7/hQ+ZyK1JZ6FV
+         rJaw==
+X-Gm-Message-State: AC+VfDw/M+IeCLzOw29a3PxE9cpW9YFm/BkOxLvBBdt9w2E3lX8TpEVP
+        vO5jvlrzTwBIsS2n5C62lOqOL4fQ9g==
+X-Google-Smtp-Source: ACHHUZ66O66EuFjQbNWR3pl96eJfkG4L7dl3KrN6aJ/WSlwBvmiYkyuqf+RUzqZi+hUYIdOmA6CD8Q==
+X-Received: by 2002:a4a:3c4b:0:b0:555:53ce:4164 with SMTP id p11-20020a4a3c4b000000b0055553ce4164mr3183730oof.9.1684930889639;
+        Wed, 24 May 2023 05:21:29 -0700 (PDT)
+Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s9-20020a9d7589000000b006abb3b660a9sm4460678otk.54.2023.05.24.05.21.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 May 2023 05:21:28 -0700 (PDT)
+Received: (nullmailer pid 3462753 invoked by uid 1000);
+        Wed, 24 May 2023 12:21:27 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20230524082744.3215427-1-bigunclemax@gmail.com>
- <20230524082744.3215427-2-bigunclemax@gmail.com> <20230524110105.4928906c@donnerap.cambridge.arm.com>
- <ZG3vzxWicUgndMqv@smile.fi.intel.com>
-In-Reply-To: <ZG3vzxWicUgndMqv@smile.fi.intel.com>
-From:   Maxim Kiselev <bigunclemax@gmail.com>
-Date:   Wed, 24 May 2023 15:14:54 +0300
-Message-ID: <CALHCpMhhUnkko7COzg6W9AqLUfwzKA+EAmcZ+Vwmy_7KB=UdWg@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 1/4] iio: adc: Add Allwinner D1/T113s/R329 SoCs GPADC
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Andre Przywara <andre.przywara@arm.com>, linux-iio@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     Vladimir Barinov <v.barinov@yadro.com>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        linux@yadro.com, linux-leds@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20230524114056.196518-1-v.barinov@yadro.com>
+References: <20230524113910.196321-1-v.barinov@yadro.com>
+ <20230524114056.196518-1-v.barinov@yadro.com>
+Message-Id: <168493088788.3462735.2834416618033227181.robh@kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: leds: Document Awinic AW2016 bindings
+Date:   Wed, 24 May 2023 07:21:27 -0500
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Andre Przywara <andre.przywara@arm.com> wrote:
-> Or we follow the other idea of reading the number of channels from a DT
-> property, which means we would already support every IP with up to 16
-> channels, without further driver changes in the future.
 
-I like this idea. This will rid us from duplicating code, and we could also
-use a common DT node for D1 and T113.
+On Wed, 24 May 2023 14:40:56 +0300, Vladimir Barinov wrote:
+> Add Awinic AW2026 binding documentation
+> 
+> Signed-off-by: Vladimir Barinov <v.barinov@yadro.com>
+> ---
+>  .../bindings/leds/awinic,aw2026.yaml          | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/awinic,aw2026.yaml
+> 
 
-> Is there any particular reason you chose a regmap to model this here?
-> Isn't that just straight-forward MMIO, which we could just drive using
-> readl()/writel()?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Actually there is no special reason. I just made it in the same way as
-in the sun4i-gpadc-iio driver.
+yamllint warnings/errors:
 
-> I wonder if this should be either moved out to some multiplexer: the DT
-> bindings suggest that such a thing could be independent.
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/leds/awinic,aw2026.example.dts:52.3-53.1 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/leds/awinic,aw2026.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1512: dt_binding_check] Error 2
 
-Sorry I didn't quite get it :)
+doc reference errors (make refcheckdocs):
 
-> But at least we could cater for the possibility that this channel is
-> already selected, and skip this part then?
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230524114056.196518-1-v.barinov@yadro.com
 
-Thanks for that suggestion.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-> Couldn't taking the lock go into the function? It seems to be only one
-> caller,
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Yes, we could. Thanks for the remark.
+pip3 install dtschema --upgrade
 
-> and we need the lock in any case, it seems?
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-This lock is used in others ADC drivers to protects a read access from
-ocurring before another one has finished.
-
-
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> Even though regmap adds a few nice features that might be used.
-> For example, locking. But I dunno if this driver actually uses it
-> OR uses it correctly.
-
-Just I wrote above, I made it in the same way as in the
-sun4i-gpadc-iio driver
-
-> > > + config = of_device_get_match_data(&pdev->dev);
->
-> Please, avoid using OF-centric APIs in the new IIO drivers.
->
-> config = device_get_match_data(&pdev->dev);
->
-> should suffice.
-
-> > + irq = platform_get_irq(pdev, 0);
-> > + if (irq < 0)
-> > + return dev_err_probe(&pdev->dev, irq, "failed to get irq\n");
->
-> > > We should not repeat the message that printed by platform core.
-
-> > > + ret = devm_request_irq(&pdev->dev, irq, sun20i_gpadc_irq_handler,
-> > > + 0, dev_name(&pdev->dev), info);
->
-> You can simplify your life with
->
-> struct device *dev = &pdev->dev;
->
-> at the definition block of the function.
-> > > + .data = &sun20i_d1_gpadc_channels[1]
->
-> Also, leave comma here.
-
-Thanks for the remarks, I'll fix this in the next version.
