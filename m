@@ -2,69 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C75DC70F439
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 12:30:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4417E70F43D
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 12:31:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbjEXK36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 06:29:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49954 "EHLO
+        id S231709AbjEXKbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 06:31:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232907AbjEXK3z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 06:29:55 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8769A8F;
-        Wed, 24 May 2023 03:29:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1684924194; x=1716460194;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gwuUuZ5cSF78REHUiHPXnq4Vyh/npUSjZrkX4R0VIcE=;
-  b=m+ZauJ6fdJoInkRXDDeQyVLiiTTteYK6bUrYs6taxmIqZiWXx7tUQr3q
-   HyA43EwMoOVnFV+Cqmixb/n8m1KrKq9Ii3p0G8olUWxeWrvRVUO1bbqlq
-   V1Wdqjxi8K/hpahciz/EBhafn7hE0wznSu4Xo/KzGlPFQ2/H0P9Lgp+Qv
-   MViocoaA9TNqmsVidjNl4G3V5luNP9JA8mkeIla5rtPn+erJbutAU17Kq
-   IW0ruPteuUwPwF2PL6m9ywYD0mYuwtjbSuyPKv0uSvkL5u8EN/3l8I0h/
-   eyqq9jtSqWz25LXVMEIjHIsSosDd3FKhkva7l7Q0C3vJt+awlKkhlF1gX
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.00,188,1681196400"; 
-   d="asc'?scan'208";a="214671058"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 May 2023 03:29:53 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 24 May 2023 03:29:52 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 24 May 2023 03:29:50 -0700
-Date:   Wed, 24 May 2023 11:29:28 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     zhuyinbo <zhuyinbo@loongson.cn>
-CC:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232318AbjEXKaw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 06:30:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F02F131;
+        Wed, 24 May 2023 03:30:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EE5BA63292;
+        Wed, 24 May 2023 10:30:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D7ADC4339B;
+        Wed, 24 May 2023 10:30:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684924250;
+        bh=WEZcHPlDfYf7TtWz9LXQxs+qNwVnCMerNu5/zi8CBAM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=D4L9oGHJHghir4insEGgFs9ibzZsVUeZ4vEQf53PekPNNs28AkELJW9lm2CEVyYux
+         HNJiR3cfNgbsRsCm2P+NwQXfT4dlrca3PEHVdVkBo8uyPmjA4qJAPzrYLVVTwDrPlL
+         BGGa43VwuK8rWKRiFgwn95CKqMi4ursGstH/HwN/o9CKuUSNwO5FT0qZ7DgjEhw3GA
+         s0OAZ9iPsT2nBC9kRRRdG0KG8QrFYu7JQ84Pxu5XAX0DPQ8mgLsiqziLUPCtoQJ0re
+         ZDt8xoKyubueuy0YQyc3e6huSH1yESvim1PUOuYbKEShY4S08D22Mx51Nbs9j/8bvp
+         uY0k/F08iShvw==
+Date:   Wed, 24 May 2023 11:30:43 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jianmin Lv <lvjianmin@loongson.cn>,
-        <wanghongliang@loongson.cn>, Liu Peibao <liupeibao@loongson.cn>,
-        <loongson-kernel@lists.loongnix.cn>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v11 1/2] dt-bindings: spi: add loongson spi
-Message-ID: <20230524-relative-trimmer-046fb26a7764@wendy>
-References: <20230522071030.5193-1-zhuyinbo@loongson.cn>
- <20230522071030.5193-2-zhuyinbo@loongson.cn>
- <20230524-pouncing-variable-c520e85f8db8@wendy>
- <b1e3d199-de5a-f8d5-9159-4965e9e1f5ef@loongson.cn>
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Zhu Ning <zhuning0077@gmail.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        David Yang <yangxiaohua@everest-semi.com>,
+        Daniel Drake <drake@endlessm.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, kernel@collabora.com
+Subject: Re: [PATCH 1/3] ASoC: es8316: Increment max value for ALC Capture
+ Target Volume control
+Message-ID: <5dbcbf84-602a-44de-ad99-268d4d5b4b2f@sirena.org.uk>
+References: <20230524074156.147387-1-cristian.ciocaltea@collabora.com>
+ <20230524074156.147387-2-cristian.ciocaltea@collabora.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pFaQaHu3/olulfLs"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="4CLZw5f0knrgRlGR"
 Content-Disposition: inline
-In-Reply-To: <b1e3d199-de5a-f8d5-9159-4965e9e1f5ef@loongson.cn>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20230524074156.147387-2-cristian.ciocaltea@collabora.com>
+X-Cookie: You will be divorced within a year.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,81 +72,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---pFaQaHu3/olulfLs
-Content-Type: text/plain; charset=utf-8
+
+--4CLZw5f0knrgRlGR
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 24, 2023 at 05:44:38PM +0800, zhuyinbo wrote:
->=20
->=20
-> =E5=9C=A8 2023/5/24 =E4=B8=8B=E5=8D=884:56, Conor Dooley =E5=86=99=E9=81=
-=93:
-> > On Mon, May 22, 2023 at 03:10:29PM +0800, Yinbo Zhu wrote:
-> > > Add the Loongson platform spi binding with DT schema format using
-> > > json-schema.
-> > >=20
-> > > Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > ---
-> > >   .../bindings/spi/loongson,ls2k-spi.yaml       | 41 ++++++++++++++++=
-+++
-> > >   MAINTAINERS                                   |  6 +++
-> > >   2 files changed, 47 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/spi/loongson,l=
-s2k-spi.yaml
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.=
-yaml b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
-> > > new file mode 100644
-> > > index 000000000000..d0be6e5378d7
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
-> > > @@ -0,0 +1,41 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/spi/loongson,ls2k-spi.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Loongson SPI controller
-> > > +
-> > > +maintainers:
-> > > +  - Yinbo Zhu <zhuyinbo@loongson.cn>
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/spi/spi-controller.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - loongson,ls2k-spi
-> >=20
-> > I am sorry to jump in here at such a late stage with a (potentially)
-> > trivial question. "ls2k" is the SoC family rather than a specific model
-> > as far as I understand.
-> > The answer is probably yes, but do all SoCs in the family have an
-> > identical version of the IP?
->=20
->=20
-> No, but the spi supported by this loongson spi driver are all the same
-> identical version, and other type or verion spi will be supported as
-> needed in the future.
+On Wed, May 24, 2023 at 10:41:54AM +0300, Cristian Ciocaltea wrote:
 
-Does having a catch-all compatible make sense then when not all SoCs in
-the ls2k family will actually be able to use this driver?
-Or am I misunderstanding and all ls2k SoCs do work with this driver and
-you were talking about other, future products?
+> This means that either the hardware default is wrongly set to 0xB
+> instead of 0xA, or the specs are incorrect and instead of having the
+> range 0xA-0xF mapped to -1.5 dB, the single value 0xA should have been
+> mapped to -1.5 dB and the remaining range 0xB-0xF to 0 dB.
 
---pFaQaHu3/olulfLs
+> Increment the max value allowed for ALC Capture Target Volume control,
+> so that it matches the hardware default.
+
+> -	SOC_SINGLE_TLV("ALC Capture Target Volume", ES8316_ADC_ALC3, 4, 10, 0,
+> +	SOC_SINGLE_TLV("ALC Capture Target Volume", ES8316_ADC_ALC3, 4, 11, 0,
+>  		       alc_target_tlv),
+
+The description above of what the control does doesn't seem to match
+what alc_target_tlv specifies - it is:
+
+  static const SNDRV_CTL_TLVD_DECLARE_DB_SCALE(alc_target_tlv, -1650, 150, 0);
+
+which is saying that the value goes from -16.5dB up in steps of 1.5dB
+but your description above says that 0-10 map to -1.5dB and other values
+are 0dB.
+
+Presumably you can check the effects of changing the value?  It seems
+plausible that what's written in the code might be accurate and the
+higher values might actually change the gain but it'd be better to
+check.
+
+--4CLZw5f0knrgRlGR
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG3nCAAKCRB4tDGHoIJi
-0lR6AQCPA3ic4UvRm1328KZoL51qPlPWTTYRJxmuXZ0y2gB0hQEA7oBZjGgPzFSy
-QjkEJA5dPiSEZcAqddQ30sdPQzebbgY=
-=O8HN
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRt51IACgkQJNaLcl1U
+h9BBFAf+K91gpv3OOpIomfDxOtcWJQeELJ8c/CLvL/L7u9SR7wrJxAXP+x0I6m8V
+M/Soju79ZHj9rtO8/vf1Qlawdk7CUvthUzBwUEnIal57dR1m1B/CrPWl0gVtY2t+
+r8O/SrCF4LVeIazbzm3hEtwnE+d7oKJV6f1R6r08DfB/Yh3pXoMO7CaqaHIMXYZK
+OahYu0IBVvCb4KGrNHTOusU22LoPS2A1N+rTiXhtHM3BY4mt0PKH4PcDsgU8izx2
+Hc6IZjLTbatLFHGzyUJbCw1gXreoHIkjEmVO1V+TovEBeu/sSabTiIIILOAJUzj4
+OL+XGPHyh9TISGyaSPgSt6f8HcnDQA==
+=UXce
 -----END PGP SIGNATURE-----
 
---pFaQaHu3/olulfLs--
+--4CLZw5f0knrgRlGR--
