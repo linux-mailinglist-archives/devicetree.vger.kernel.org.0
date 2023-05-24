@@ -2,188 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 129B670F113
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 10:35:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F62D70F0FC
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 10:33:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240326AbjEXIff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 04:35:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44574 "EHLO
+        id S240344AbjEXIdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 04:33:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240573AbjEXIfT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 04:35:19 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D16AE72;
-        Wed, 24 May 2023 01:33:53 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34O8VFMu028574;
-        Wed, 24 May 2023 03:31:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1684917075;
-        bh=jHthovuPdP58ZxVQD1DHnAXXxKts5UI/scwBC0JNmBA=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=l8taJNsq6TueBkWhRhSvaXcUshKtEhOPSb2qVt1QzGUV4O1l1vlRejMIaddvui4RN
-         62JeQuJ6nP+fJ8PDHVCDovtRSHwx2rhnjF5x9raJPTda2Rfwu0V5IYdBkV5+MkVYOJ
-         KvChhUWPK9EfAxMpxhXd1phMTzbDQZHN/QRPxyjA=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34O8VFEs027051
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 24 May 2023 03:31:15 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 24
- May 2023 03:31:14 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 24 May 2023 03:31:14 -0500
-Received: from [10.249.133.19] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34O8VAdg073868;
-        Wed, 24 May 2023 03:31:11 -0500
-Message-ID: <774c53d6-9727-25cb-c09e-8c23721e7774@ti.com>
-Date:   Wed, 24 May 2023 14:01:09 +0530
+        with ESMTP id S240280AbjEXIdK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 04:33:10 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18A64E51
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 01:32:45 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1q1juY-0002l6-Rb; Wed, 24 May 2023 10:31:58 +0200
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1q1juW-002RZ7-Io; Wed, 24 May 2023 10:31:56 +0200
+Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1q1juV-009izp-MD; Wed, 24 May 2023 10:31:55 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     linux-rockchip@lists.infradead.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Vincent Legoll <vincent.legoll@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v5 00/25] Add perf support to the rockchip-dfi driver
+Date:   Wed, 24 May 2023 10:31:28 +0200
+Message-Id: <20230524083153.2046084-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [tiL6.1 PATCH v2] arm64: dts: ti: k3-j721s2: Add support for CAN
- instances 3 and 5 in main domain
-Content-Language: en-US
-To:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <u-kumar1@ti.com>, <jm@ti.com>
-References: <20230523085021.22524-1-b-kapoor@ti.com>
-From:   Bhavya Kapoor <b-kapoor@ti.com>
-In-Reply-To: <20230523085021.22524-1-b-kapoor@ti.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi , request you to  ignore this patch .
+This is v5 of the series adding perf support to the rockchip DFI driver.
 
-On 23/05/23 14:20, Bhavya Kapoor wrote:
-> CAN instances 3 and 5 in the main domain are brought on the common
-> processor board through header J27 and J28. The CAN High and Low lines
-> from the SoC are routed through a mux on the SoM. The select lines need
-> to be set for the CAN signals to get connected to the transceivers on
-> the common processor board. Threfore, add respective mux, transceiver
-> dt nodes to add support for these CAN instances.
->
-> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
-> ---
->
-> Changelog v1->v2: Modified indentation according to comments
->
-> Link to v1 : https://lore.kernel.org/all/20230412084935.699791-1-b-kapoor@ti.com/
->
->  .../dts/ti/k3-j721s2-common-proc-board.dts    | 46 +++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 12 +++++
->  2 files changed, 58 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> index a7aa6cf08acd..f07663bbea16 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
-> @@ -27,6 +27,8 @@ aliases {
->  		can0 = &main_mcan16;
->  		can1 = &mcu_mcan0;
->  		can2 = &mcu_mcan1;
-> +		can3 = &main_mcan3;
-> +		can4 = &main_mcan5;
->  	};
->  
->  	evm_12v0: fixedregulator-evm12v0 {
-> @@ -107,6 +109,22 @@ transceiver2: can-phy2 {
->  		standby-gpios = <&wkup_gpio0 2 GPIO_ACTIVE_HIGH>;
->  	};
->  
-> +	transceiver3: can-phy3 {
-> +		compatible = "ti,tcan1043";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +		standby-gpios = <&exp2 7 GPIO_ACTIVE_LOW>;
-> +		enable-gpios = <&exp2 6 GPIO_ACTIVE_HIGH>;
-> +		mux-states = <&mux0 1>;
-> +	};
-> +
-> +	transceiver4: can-phy4 {
-> +		compatible = "ti,tcan1042";
-> +		#phy-cells = <0>;
-> +		max-bitrate = <5000000>;
-> +		standby-gpios = <&exp_som 7 GPIO_ACTIVE_HIGH>;
-> +		mux-states = <&mux1 1>;
-> +	};
->  };
->  
->  &main_pmx0 {
-> @@ -144,6 +162,20 @@ vdd_sd_dv_pins_default: vdd-sd-dv-pins-default {
->  			J721S2_IOPAD(0x020, PIN_INPUT, 7) /* (AA23) MCAN15_RX.GPIO0_8 */
->  		>;
->  	};
-> +
-> +	main_mcan3_pins_default: main-mcan3-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x080, PIN_INPUT, 0) /* (U26) MCASP0_AXR4.MCAN3_RX */
-> +			J721S2_IOPAD(0x07c, PIN_OUTPUT, 0) /* (T27) MCASP0_AXR3.MCAN3_TX */
-> +		>;
-> +	};
-> +
-> +	main_mcan5_pins_default: main-mcan5-pins-default {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x03c, PIN_INPUT, 0) /* (U27) MCASP0_AFSX.MCAN5_RX */
-> +			J721S2_IOPAD(0x038, PIN_OUTPUT, 0) /* (AB28) MCASP0_ACLKX.MCAN5_TX */
-> +		>;
-> +	};
->  };
->  
->  &wkup_pmx0 {
-> @@ -309,3 +341,17 @@ &mcu_mcan1 {
->  	pinctrl-0 = <&mcu_mcan1_pins_default>;
->  	phys = <&transceiver2>;
->  };
-> +
-> +&main_mcan3 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mcan3_pins_default>;
-> +	phys = <&transceiver3>;
-> +};
-> +
-> +&main_mcan5 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mcan5_pins_default>;
-> +	phys = <&transceiver4>;
-> +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-> index 6930efff8a5a..e74bc5141903 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
-> @@ -31,6 +31,18 @@ secure_ddr: optee@9e800000 {
->  		};
->  	};
->  
-> +	mux0: mux-controller0 {
-> +		compatible = "gpio-mux";
-> +		#mux-state-cells = <1>;
-> +		mux-gpios = <&exp_som 1 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	mux1: mux-controller1 {
-> +		compatible = "gpio-mux";
-> +		#mux-state-cells = <1>;
-> +		mux-gpios = <&exp_som 2 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
->  	transceiver0: can-phy0 {
->  		/* standby pin has been grounded by default */
->  		compatible = "ti,tcan1042";
+A lot has changed in the perf driver since v4. First of all the review
+feedback from Robin and Jonathan has been integrated. The perf driver
+now not only supports monitoring the total DDR utilization, but also the
+individual channels. I also reworked the way the raw 32bit counter
+values are summed up to 64bit perf values, so hopefully the code is
+easier to follow now.
+
+lockdep found out that that locking in the perf driver was broken, so I
+reworked that as well. None of the perf hooks allows locking with
+mutexes or spinlocks, so in perf it's not possible to enable the DFI
+controller when needed. Instead I now unconditionally enable the DFI
+controller during probe when perf is enabled.
+
+Furthermore the hrtimer I use for reading out the hardware counter
+values before they overflow race with perf. Now a seqlock is used to
+prevent that.
+
+The RK3588 device tree changes for the DFI were not part of v4. As
+Vincent Legoll showed interest in testing this series the necessary
+device tree changes are now part of this series.
+
+Changes since v4:
+- Add device tree changes for RK3588
+- Use seqlock to protect perf counter values from hrtimer
+- Unconditionally enable DFI when perf is enabled
+- Bring back changes to dts/binding patches that were lost in v4
+
+Changes since v3:
+- Add RK3588 support
+
+Changes since v2:
+- Fix broken reference to binding
+- Add Reviewed-by from Rob
+
+Changes since v1:
+- Fix example to actually match the binding and fix the warnings resulted thereof
+- Make addition of rockchip,rk3568-dfi an extra patch
+
+Sascha Hauer (25):
+  PM / devfreq: rockchip-dfi: Make pmu regmap mandatory
+  PM / devfreq: rockchip-dfi: Embed desc into private data struct
+  PM / devfreq: rockchip-dfi: use consistent name for private data
+    struct
+  PM / devfreq: rockchip-dfi: Add SoC specific init function
+  PM / devfreq: rockchip-dfi: dfi store raw values in counter struct
+  PM / devfreq: rockchip-dfi: Use free running counter
+  PM / devfreq: rockchip-dfi: introduce channel mask
+  PM / devfreq: rk3399_dmc,dfi: generalize DDRTYPE defines
+  PM / devfreq: rockchip-dfi: Clean up DDR type register defines
+  PM / devfreq: rockchip-dfi: Add RK3568 support
+  PM / devfreq: rockchip-dfi: Handle LPDDR2 correctly
+  PM / devfreq: rockchip-dfi: Handle LPDDR4X
+  PM / devfreq: rockchip-dfi: Pass private data struct to internal
+    functions
+  PM / devfreq: rockchip-dfi: Prepare for multiple users
+  PM / devfreq: rockchip-dfi: give variable a better name
+  PM / devfreq: rockchip-dfi: Add perf support
+  PM / devfreq: rockchip-dfi: make register stride SoC specific
+  PM / devfreq: rockchip-dfi: account for multiple DDRMON_CTRL registers
+  PM / devfreq: rockchip-dfi: add support for RK3588
+  dt-bindings: devfreq: event: convert Rockchip DFI binding to yaml
+  dt-bindings: devfreq: event: rockchip,dfi: Add rk3568 support
+  dt-bindings: devfreq: event: rockchip,dfi: Add rk3588 support
+  arm64: dts: rockchip: rk3399: Enable DFI
+  arm64: dts: rockchip: rk356x: Add DFI
+  arm64: dts: rockchip: rk3588s: Add DFI
+
+ .../bindings/devfreq/event/rockchip,dfi.yaml  |  84 ++
+ .../bindings/devfreq/event/rockchip-dfi.txt   |  18 -
+ .../rockchip,rk3399-dmc.yaml                  |   2 +-
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |   1 -
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |   7 +
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     |  16 +
+ drivers/devfreq/event/rockchip-dfi.c          | 796 +++++++++++++++---
+ drivers/devfreq/rk3399_dmc.c                  |  10 +-
+ include/soc/rockchip/rk3399_grf.h             |   9 +-
+ include/soc/rockchip/rk3568_grf.h             |  13 +
+ include/soc/rockchip/rk3588_grf.h             |  18 +
+ include/soc/rockchip/rockchip_grf.h           |  18 +
+ 12 files changed, 854 insertions(+), 138 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip,dfi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt
+ create mode 100644 include/soc/rockchip/rk3568_grf.h
+ create mode 100644 include/soc/rockchip/rk3588_grf.h
+ create mode 100644 include/soc/rockchip/rockchip_grf.h
+
+-- 
+2.39.2
+
