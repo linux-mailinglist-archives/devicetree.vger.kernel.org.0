@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18F4570FCC7
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 19:39:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 675E170FCC9
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 19:39:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231633AbjEXRjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 13:39:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52412 "EHLO
+        id S235164AbjEXRjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 13:39:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230214AbjEXRjG (ORCPT
+        with ESMTP id S230495AbjEXRjG (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 13:39:06 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50F0712B
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:39:04 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f601c57d8dso704795e9.0
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:39:04 -0700 (PDT)
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D8B1130
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:39:05 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f60dfc6028so14228855e9.1
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:39:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1684949943; x=1687541943;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DUdiazmRReas3vG3ddLXuotctYV99m5P+9uX0pWQHJA=;
-        b=XZAAyTm8ZG1+HJI6t9WYauelFdph6TIfhnRRBA7bOzytQlC3MiiLKr5yEyd+Y7/RTe
-         rNZ5ecyWnHvTc42akvHYrCnGCaW2hV/Mk0bO4LcQ2nrTbCaQZs9VL6DvBBKECm41N5qb
-         UGpKu+fl/optTD/ScvTVEEfsA/S9A7H0YG6f6pOp5rJElumm5HsHiuIFoWk7Eu9w4wTl
-         Pw+94+r1WEcHm7jpCyS0rgs+3wscMSFwAlli9cHCkifOSGlDo54dQmvFFnlnI5YMPFuH
-         6syjEaSzTv9Yg9yC25+YOv0upf8FCSwr4XKr5N0zOlONCkRBmk9z99/+J6u2Zszgpj5l
-         xJpQ==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aY4E79MucXEj1G8uY/IFTqYqJbaTpE1l8iCW6N5c1W0=;
+        b=O6i5GvsayStomqsVWgN7cXot3KUPkVot8vYwvIA1QVth0FUoVJJr+39pE9/lkQmuxk
+         mPgU57vrtWrwMYrVA5FKSRgedDSJUxS97gVfkXNIhf+BqoxBzQsnClK5PLPbjpKdGZlg
+         nj1VhQn1a3BJqb0+EvAr0fWySqsEniCFeZsJK4cM5fgFdNzB6x0VJuIlPpBnzeOa1eCV
+         5AZnXO8IX6mhi0EDJqmvHsbmbH0LY1CsgzDOMH83cm55qRxr2SETROIITE1hJ1FfMZFM
+         YnoO10cTpCdnkjO1TH9ZiLt6hKoIu70L/5S2hiwwtsVfF2utCVRE9MmdgLos1KgQ7lm0
+         EL4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20221208; t=1684949943; x=1687541943;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DUdiazmRReas3vG3ddLXuotctYV99m5P+9uX0pWQHJA=;
-        b=Y8xBCGoRdgdw7cXkKzgJLGHOXh/fNfd3DxCJpYiYOWJVntTg3zvVj1SWb+LdW5oauW
-         2bFlKnoyImm9LLnufjjT5QnKYeIlHU+ddCtNeALccFuJ91uPAGFNI1dnkAg8TOTZLCLm
-         5DurzzUulkIHmVTanGo5OjoeLq2wtVH11mQ/DUXbHedSkRUCfg6AGtYXRaeHcspq5TpI
-         nJjEs3AJovIpuArYABFZUJDorXIc2svNDK7SYw6fQUbsS2P9U5bf2sqx1j1QN+1tLpsg
-         8nm+nxMaok7asismMM4DBf/2XWMOvjdcDriY0BKH4gObiYvLwC6IakSp76eboPUvTP+b
-         zT6w==
-X-Gm-Message-State: AC+VfDy9JcWLijunrr2YibTwZK2+fuDYfK13g/H9tntYAhIps0JQyUF5
-        5w5aOqlq91NZ/IO/Vr9IK8zr5A==
-X-Google-Smtp-Source: ACHHUZ7ngyUzDcJFnhxEoAarDKO6vNXiqrRnu7zg5YvCCW6a1GO6V6OaydgAEMrhV9ljsxP9LllPMw==
-X-Received: by 2002:a05:600c:210f:b0:3f6:774:fdc with SMTP id u15-20020a05600c210f00b003f607740fdcmr69058wml.18.1684949942767;
-        Wed, 24 May 2023 10:39:02 -0700 (PDT)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aY4E79MucXEj1G8uY/IFTqYqJbaTpE1l8iCW6N5c1W0=;
+        b=d7bHCHUDoIYT8ezvN4P0asOjZfrRi8SzcRXomn+lbsULq1ZBQAOauMl5ku1Luh3UpS
+         tnOd5dOXHR3mYUHY8ufct63EUxKBGZDR6GmtJQ1fWH/NgNz9bBRqkrMoBEK8AvkOwBFz
+         LivEP57HyA3FHiGGHuiIWORwB/Lc+IRnRcVAoWwlaqwYbKJrsSBtacEyaajctkLnbhRk
+         RQ+tLHVroc7n0Eqd1hov1Efy6FWs/aKs7ZCfEz2NEk2b9AERp4i1EjPY8GLMjf0m6U9i
+         dXEqRzkfgVf6MVtjPlzrV9TJCb5LFKOfgKhhfiRF3QXypWil6Tx4QNoX557Ux+gxQKNm
+         F6VA==
+X-Gm-Message-State: AC+VfDwohaDqT9ZBZIkRdTgm/nWummtIw6nIuKfHurrkHU4SiFlGDVts
+        DUXGD49hCj5CZ0RCaeXE7o+LyctX1OtsYO51asyk0Q==
+X-Google-Smtp-Source: ACHHUZ6o1IOsj61ybZlJHh7IYbyEZKARqRMyx3CLNFpmGNskUhTtwo7N4WmfmFZBUWBDexi1uQGFYg==
+X-Received: by 2002:a1c:e901:0:b0:3f6:490:a7f3 with SMTP id q1-20020a1ce901000000b003f60490a7f3mr351607wmc.9.1684949943682;
+        Wed, 24 May 2023 10:39:03 -0700 (PDT)
 Received: from lion.localdomain (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
-        by smtp.gmail.com with ESMTPSA id l17-20020a7bc451000000b003f4fb5532a1sm2993053wmi.43.2023.05.24.10.39.01
+        by smtp.gmail.com with ESMTPSA id l17-20020a7bc451000000b003f4fb5532a1sm2993053wmi.43.2023.05.24.10.39.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 May 2023 10:39:02 -0700 (PDT)
+        Wed, 24 May 2023 10:39:03 -0700 (PDT)
 From:   Caleb Connolly <caleb.connolly@linaro.org>
-Subject: [PATCH 0/6] Enable PMI8998 charger on supported devices
-Date:   Wed, 24 May 2023 18:38:51 +0100
-Message-Id: <20230524-pmi8998-charger-dts-v1-0-f9334afc4505@linaro.org>
+Date:   Wed, 24 May 2023 18:38:52 +0100
+Subject: [PATCH 1/6] dt-bindings: mfd: qcom,spmi-pmic: Document pmi8998
+ charger
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAKtLbmQC/x2NSw6DMAwFr4K8rlvIB4VepeoiJC54QYrsClVC3
- L2hy9G80dtBSZgU7s0OQhsrv0uF7tJAmmOZCDlXBtMa23rjcF04DEPAamUiwfxR7Ix33tg+kbV
- QyzEq4SixpPlsNS/B+Vt/dZhpOwer0Iu//9vH8zh+LWJlgYYAAAA=
+Message-Id: <20230524-pmi8998-charger-dts-v1-1-f9334afc4505@linaro.org>
+References: <20230524-pmi8998-charger-dts-v1-0-f9334afc4505@linaro.org>
+In-Reply-To: <20230524-pmi8998-charger-dts-v1-0-f9334afc4505@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -66,29 +67,28 @@ To:     Andy Gross <agross@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         phone-devel@vger.kernel.org,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Joel Selvaraj <joelselvaraj.oss@gmail.com>
+        Caleb Connolly <caleb.connolly@linaro.org>
 X-Mailer: b4 0.13-dev-46309
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1799;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=820;
  i=caleb.connolly@linaro.org; h=from:subject:message-id;
- bh=YGtBZP3UKFjT8lr8Yu2Xa5Vz/k5eXAr/qTvIzGi9mNc=;
- b=owEBbQKS/ZANAwAIAQWDMSsZX2S2AcsmYgBkbku1yH9sUmoAOGWBGCdyQ5A+bzHOwUGjv6Ym6
- 4C/xhsHnu6JAjMEAAEIAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCZG5LtQAKCRAFgzErGV9k
- tnNGD/4hPKy220IelrEs5dOhOE7Fi/SWbHQc8cBmN1kdb/HB3kBPaWaVu48EtHbtnORFQm4McAL
- gCQeffYFSmg+P85Sl6cm/tQ6uQORd3zBv7nU4tSn9td+rClldtDfVh2r7umhscpKYvL0XN7pqHk
- d8lgLPWE139Yj1Zl1+04YBBYnHn6PeW2O0fdp6TU5Z9e+25DqNonegU3trXrDid4eS2+N0ogV26
- X/mmeVbc8zg83b5UTeiRFv4hC5Wt/tPdCpY2Jq16iW0MW6U6GLc3fsKpFGKMa+oKntNVo6LwPT9
- LrroR7rMQNtQc0McMfPNQ55AzV+UTN2iQOTpL9Kf2noQyhQMgtMZbkhFN18Jy8YRBWECW/3kxMv
- HXSk2GFXoK+5pSfo2JqSU2xlkzaUKqhFhZ0ZSd32g9LCo31zAM1ea0VeGGi6ZyGF3Jb0AxGtkDU
- n3DU3DGqik7VY/0rawXSySCGcYtAiBDK84PMHXygOF+tlLl8tNmvKnxW1j1RQphZZZzkl01Y91g
- a6pRnsuUMWtGZwcfXwSEaM2ickiIUDRD28Nvq013Ehihk8nhqyHbMjOxVqu9KIh8EfQCm4f6WKo
- t34g92qZYOPtIB0Q+Zh8Y65il0DBESVAtTog3Ltq2ERmTXo9LjghR/D+c9VmAsi44IL9bnt0/R6
- V4DXzR8XKIzB36w==
+ bh=zH+WGeDPvM4ddhJTfMtpW+lYqeFC8v10YNFeDn3WGJc=;
+ b=owEBbQKS/ZANAwAIAQWDMSsZX2S2AcsmYgBkbku1An1PpKhDnNw1Dcsgd2jrzBFFAA5MX/j4j
+ mwhvdVXx+OJAjMEAAEIAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCZG5LtQAKCRAFgzErGV9k
+ tsKZD/9jSc8i36r+eZXZt2NCJljo9IMuDmgls0ldEx9sfesyXwRk6uPjMqOrCqYI4YgyOgh7Xkl
+ Cl4qeidUJayHSBBQEXunwVgZq2DDybH5VYrYQMDILb6cSO6HJTT2HYZ3uxiInXj7tgfgCnzXe7p
+ 7xyYQH10D/foG37UjQ1Iu2oQjoCprrJH009/pwMP7EvuJPMuhIAIKR6hbhCNsrb/BvMD7iNYfBO
+ Qlbwwmx93a2TtOCvz2z689eL1+OYsgl6qvIQIEJQwP71mv5OQrsSBpS2KqyStX+a3vrFVz+19hs
+ sbQam9oZ7UTNeK5vLQRYQgA82Q4o3H+LzPyybXHJN4a8Us+jf1s2rag9rAnIohgG3RZkoCJxPj+
+ ttqQBDXCrpwTe7oxcWXbi5gitHEw520pxcYnFT/OLjtKTVgUXQImPLThtmiANdgT9zvx6cum5bl
+ zqyLtU5lnwYWL40OlMuUQSnp6SPjdi/FwxN6UBlk/UlvNhgZ1ez0a9QluV/puXAMHG955ZLM5/I
+ C5/n/BkXNGtF3ZGkCD8tIYKD8+BGiNT+IwTVZvirR1m9MCoRkaYNEKP4nQ+72xt7ti6PnN7JKaK
+ yhcEJ/bOLeGcPQnccEJ1RcGnpKXirXBnX3i32r3iG/RxnxNZNuhKr4YeBQl77jdrZJ8+O1GoexD
+ tnXxUXtrJEXY96Q==
 X-Developer-Key: i=caleb.connolly@linaro.org; a=openpgp;
  fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,42 +96,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These devices have been fairly heavily validated with the driver and are
-known to not explode. Add the pmi8998_charger node to pmi8998 and enable
-the charger for the OnePlus 6(T), PocoPhone F1 and SHIFT6mq.
+Document the new pmi8998 charger bindings
 
-The charger depends on the RRADC for the input voltage and current. The
-RRADC was originally disabled by default, but there isn't really a need
-for this as it's used by all devices. Let's take the opportunity to
-enable it by default.
-
-The associated driver and dt-bindings that this series depends on can be
-found here:
-https://lore.kernel.org/linux-arm-msm/20230524-pmi8998-charger-v8-0-b87ffcd9864d@linaro.org
-
+Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 ---
-Caleb Connolly (5):
-      dt-bindings: mfd: qcom,spmi-pmic: Document pmi8998 charger
-      arm64: dts: qcom: pmi8998: enable rradc by default
-      arm64: dts: qcom: pmi8998: add charger node
-      arm64: dts: qcom: sdm845-oneplus: enable pmi8998 charger
-      arm64: dts: qcom: sdm845-shift-axolotl: enable pmi8998 charger
+ Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Joel Selvaraj (1):
-      arm64: dts: qcom: sdm845-xiaomi-beryllium: enable pmi8998 charger
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+index 36de335a33aa..44590dc112be 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
++++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+@@ -133,6 +133,7 @@ patternProperties:
+     oneOf:
+       - $ref: /schemas/power/supply/qcom,pm8941-charger.yaml#
+       - $ref: /schemas/power/supply/qcom,pm8941-coincell.yaml#
++      - $ref: /schemas/power/supply/qcom,pmi8998-charger.yaml#
+ 
+   "gpio@[0-9a-f]+$":
+     type: object
 
- .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    |  1 +
- .../boot/dts/qcom/msm8998-oneplus-common.dtsi      |  4 ----
- arch/arm64/boot/dts/qcom/pmi8998.dtsi              | 22 ++++++++++++++++++++--
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts         |  4 ----
- .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi |  2 +-
- .../boot/dts/qcom/sdm845-oneplus-enchilada.dts     |  4 ++++
- arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts |  4 ++++
- arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts  |  9 +++++++++
- .../dts/qcom/sdm845-xiaomi-beryllium-common.dtsi   | 15 ++++++++++++---
- 9 files changed, 51 insertions(+), 14 deletions(-)
----
-base-commit: cc08021afd54862446ef11fd683558a7e57cdc6a
-
-// Caleb (they/them)
+-- 
+2.40.1
 
