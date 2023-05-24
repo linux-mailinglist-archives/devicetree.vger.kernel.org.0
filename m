@@ -2,102 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E9F870F75F
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 15:11:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 474AC70F776
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 15:19:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234191AbjEXNLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 09:11:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48942 "EHLO
+        id S230019AbjEXNTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 09:19:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235961AbjEXNK7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 09:10:59 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CF9BB0
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 06:10:43 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id 46e09a7af769-6af87f54860so37003a34.0
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 06:10:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684933842; x=1687525842;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CplaXtyuRGcpd2sqcudKgjD6yYCXAG3uXLTcyiq6NQA=;
-        b=O7xWyDdqV+ZVdGzYqL/4H+YloFVgpTWjWHXhtxlblsFPppN5TSzceYrxGDlqofLECE
-         JYBxt1HgyEr3N6LeGR1NFnOk3sCzrkoJFzQwoXiSpiG5FJsn0fpDw+wivvYWY40eBVMI
-         dR9nm0w/4AbNoK1M0B6oYE+tEG8MulZ/vNfQtotl601vuSGmwTjDY+drtK7Z0yGknPHM
-         l5YlUoBTIJStY2BFnOq11YNTzQ29LjP/gt3yilA1jpfx0jfkG1fn+94TRKKsP9AOkmlf
-         M36SnW2oS7jTgfxsWobrnG1e97qbvxgjox48lFUabHHYC1qfwv6Qsn/NdaUN2XfbhagQ
-         VPoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684933842; x=1687525842;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CplaXtyuRGcpd2sqcudKgjD6yYCXAG3uXLTcyiq6NQA=;
-        b=h3TXYLdeOqDKnucPPtcISpJRYZzn8WS/axk5KT+diuvAWRu8UjLGdWXorLZHzTd1sQ
-         OSU8NYhCD41UVQ4EM6vEJpuxLFVRdXzRbXfO+zSulLjFl/G4bx8fHXyJ929Yh+rkYtAy
-         T7SoyLJBTxuI3vKU5DNxhre76/kWxyfou5C4X81ENJScBb8yXYNFFzTpRm4QsQuU4o6M
-         g7zxyyx656RksVH6QkLg6CunjWgLj0r6AtksArR4FrMynf4fDrSwrZ+WDUDdjV/1gGUS
-         2Fksf1zYodzKAC7WYf2YSe0s871w2NXPDx5bu0YAfAmNp2Nb9DHul/XiBDxPkqVz9klZ
-         Aw3Q==
-X-Gm-Message-State: AC+VfDygu0LtZhtr5HWGXrXJ4Ch8XIjOVn+el+OwudTxBI0REDb0S1RN
-        IR61lK9QUgMSiY2O1GKGrwE=
-X-Google-Smtp-Source: ACHHUZ7bBKmafuwP836TV3JeWIe7Gc/RnNUtwRh/gKE8KwQFsuKGajDyl9iunjMOs7jgwrn93bafdw==
-X-Received: by 2002:a05:6830:630b:b0:6aa:eec1:5372 with SMTP id cg11-20020a056830630b00b006aaeec15372mr10020479otb.1.1684933842441;
-        Wed, 24 May 2023 06:10:42 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:14ab:657f:c6e7:b30b])
-        by smtp.gmail.com with ESMTPSA id v21-20020a05683011d500b006ab1830d483sm3234546otq.77.2023.05.24.06.10.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 May 2023 06:10:41 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 4/4] ARM: dts: imx7d-smegw01: Pass Ethernet aliases
-Date:   Wed, 24 May 2023 10:10:08 -0300
-Message-Id: <20230524131008.161193-4-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230524131008.161193-1-festevam@gmail.com>
-References: <20230524131008.161193-1-festevam@gmail.com>
+        with ESMTP id S229632AbjEXNTG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 09:19:06 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C82649B;
+        Wed, 24 May 2023 06:19:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=LN1VY0drdJalomyEpkD7+FhVOeln3OrXx82cPKL/2rU=; b=t3YL7yHK8KVYi2L4cBWsJ4J4ST
+        9wW/jJhDHimEmeAJeQoD/IlijHMm86jqdx+dPLlZNOWpQkE7odV+iIJMijP2vTJ0THDrIvZsxk9pq
+        wT0aMxzjJY+4a95l3JirT5Mxo/af1B/ClkeiemevHsEMopFYWFdOTB1MvAniXO9Xv6AAH+C1QrmKU
+        f8cTQfJaLUmliKvzBinpIK422UQ27i73eKXj5usn15PzEkxxK1X8Ex4fnyOEnCDmN5M29T+lWtNBM
+        5TEfe6YBG111wrXbAFvdIcd2hWmxJQ4UJx77qxNEiLuoLO6pVkzQJ2O4NfnVkGPEsCleuuA8jxjwi
+        vjWuWmXA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:51056)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1q1oOC-0002PQ-Rb; Wed, 24 May 2023 14:18:52 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1q1oO9-0001f6-HN; Wed, 24 May 2023 14:18:49 +0100
+Date:   Wed, 24 May 2023 14:18:49 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Alexis =?iso-8859-1?Q?Lothor=E9?= <alexis.lothore@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        paul.arola@telus.com, scott.roberts@telus.com,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Subject: Re: [PATCH net-next v3 2/7] net: dsa: mv88e6xxx: pass directly chip
+ structure to mv88e6xxx_phy_is_internal
+Message-ID: <ZG4OuWllZp3MZxO8@shell.armlinux.org.uk>
+References: <20230524130127.268201-1-alexis.lothore@bootlin.com>
+ <20230524130127.268201-3-alexis.lothore@bootlin.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230524130127.268201-3-alexis.lothore@bootlin.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On Wed, May 24, 2023 at 03:01:22PM +0200, Alexis Lothoré wrote:
+> Since this function is a simple helper, we do not need to pass a full
+> dsa_switch structure, we can directly pass the mv88e6xxx_chip structure.
+> Doing so will allow to share this function with any other function
+> not manipulating dsa_switch structure but needing info about number of
+> internal phys
+> 
+> Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+> 
+> ---
+> Changes since v2:
+> - add reviewed-by tags
+> 
+> Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
+> ---
 
-Pass Ethernet aliases, so that the bootloader can properly pass MAC address
-to Linux.
+It never ceases to amaze me the way human beings can find creative ways
+to mess things up, no matter how well things are documented. The above
+commit message (and the others that I've looked at) are all broken
+because of this creativity.
 
-This fixes the problem of getting a random MAC address for eth1 in Linux.
+In effect, because of the really weird format you've come up with here,
+your patches are in effect *not* signed off by you.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/imx7d-smegw01.dts | 2 ++
- 1 file changed, 2 insertions(+)
+The patch format is in Documentation/process/submitting-patches.rst
+under the section marked "The canonical patch format". Please review.
 
-diff --git a/arch/arm/boot/dts/imx7d-smegw01.dts b/arch/arm/boot/dts/imx7d-smegw01.dts
-index 7ec830e4ee05..85b97b5f64e7 100644
---- a/arch/arm/boot/dts/imx7d-smegw01.dts
-+++ b/arch/arm/boot/dts/imx7d-smegw01.dts
-@@ -13,6 +13,8 @@ / {
- 	compatible = "storopack,imx7d-smegw01", "fsl,imx7d";
- 
- 	aliases {
-+		ethernet0 = &fec1;
-+		ethernet1 = &fec2;
- 		mmc0 = &usdhc1;
- 		mmc1 = &usdhc3;
- 		mmc2 = &usdhc2;
+Please wait a while (a few days) to see if anyone responds to _this_
+posting with any other comments. Thanks.
+
 -- 
-2.34.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
