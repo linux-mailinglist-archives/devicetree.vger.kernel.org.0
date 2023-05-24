@@ -2,161 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC85270E9E3
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 02:00:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F21EC70EA03
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 02:07:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234317AbjEXAAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 20:00:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59876 "EHLO
+        id S233493AbjEXAHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 20:07:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232416AbjEXAAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 20:00:01 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C446B5
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 17:00:00 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id 41be03b00d2f7-51f1b6e8179so167520a12.3
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 17:00:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1684886399; x=1687478399;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Uy/Z1ySOUfUShGzbWIcnHxdYF4h1eJNt1bs6mI3x3dY=;
-        b=j5OOvIAOmeoO6XVvFfY4KnlfMbT+7WGHEUSWUMILynIR+hw0W2Brggu20OUo9l4OEy
-         5B84+4NU3PNEwuhkG78Nw0z+ksCnerIejzm5vZX1IYwJo6jdjUKmNmHEpNA7SbCLx2W0
-         R6NU2KKG6COnTgTEN94Uubmus2BcLFVKahcUI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684886399; x=1687478399;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Uy/Z1ySOUfUShGzbWIcnHxdYF4h1eJNt1bs6mI3x3dY=;
-        b=QTpwLkE/3MdDzmLS1dp1cnrxjSlIaL7iqSS0z5gmiBObJQmw478yBeSorW2mm6Q1J/
-         jnRsryHdTcjo6BIjRogqCvJERcAm29T6HiIyIwwmwvYSHV/NHMLLIbzdgugvJMkODyw8
-         sHIGIW/PjayKSG1iNyU4B5Jz0GnTscnZA31seCpbR3opE5/KjI1EqH1XfHnLlhimvdCn
-         ge6Rqo9vaXAmtVseg/0dK+gYR3hPZfyxFuX6QUoWqoFVXrpzb0FT3M94i6hVyCXihOnF
-         LOYQaa22OirPJszt47yOA5HQKcY4QLzSWLHShZ4C0TBWjyaWts4Bqz96eoPmWxMuDDVR
-         WlCg==
-X-Gm-Message-State: AC+VfDzXoj1JCfbNh038rh+3ZZEikL0J8f072X7IX1bikFpA5xtDhP6v
-        ew46jtOLAHWsYQZJW0b1XGOpwdqb1aogAjsy4hc=
-X-Google-Smtp-Source: ACHHUZ7Weq+txjNYZhLePwXxhsLJmEcB37H61isX2RoI98IkrQSQiwfcKbUwF29F9ohS0mm269QjKA==
-X-Received: by 2002:a17:902:db07:b0:1ae:89a:9e with SMTP id m7-20020a170902db0700b001ae089a009emr19600929plx.61.1684886398813;
-        Tue, 23 May 2023 16:59:58 -0700 (PDT)
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com. [209.85.214.182])
-        by smtp.gmail.com with ESMTPSA id x17-20020a1709027c1100b001a1a07d04e6sm7274902pll.77.2023.05.23.16.59.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 May 2023 16:59:58 -0700 (PDT)
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-1ac65ab7432so5665ad.0
-        for <devicetree@vger.kernel.org>; Tue, 23 May 2023 16:59:58 -0700 (PDT)
-X-Received: by 2002:a05:6e02:1949:b0:32b:7232:dac6 with SMTP id
- x9-20020a056e02194900b0032b7232dac6mr117857ilu.18.1684885989118; Tue, 23 May
- 2023 16:53:09 -0700 (PDT)
+        with ESMTP id S229539AbjEXAHT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 20:07:19 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4E578B5;
+        Tue, 23 May 2023 17:07:18 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1CFA11042;
+        Tue, 23 May 2023 17:08:03 -0700 (PDT)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 168633F67D;
+        Tue, 23 May 2023 17:07:15 -0700 (PDT)
+Date:   Wed, 24 May 2023 01:06:45 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Shengyu Qu <wiagn233@outlook.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        wens@csie.org, lgirdwood@gmail.com, broonie@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        conor.dooley@microchip.com,
+        Martin Botka <martin.botka@somainline.org>,
+        Lee Jones <lee@kernel.org>
+Subject: Re: [PATCH v3 2/3] mfd: axp20x: Add support for AXP15060 PMIC
+Message-ID: <20230524010645.0f3cf2a2@slackpad.lan>
+In-Reply-To: <TY3P286MB2611E4814895D1F6CBD127E198789@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+References: <20230421150816.10513-1-wiagn233@outlook.com>
+        <TY3P286MB261162D57695AC8164ED50E298609@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+        <20230426142740.GN50521@google.com>
+        <20230503120759.6fd6a7a9@donnerap.cambridge.arm.com>
+        <19bccb62-b7e0-855d-fb5f-4fd3dde4f6f0@linaro.org>
+        <20230515105229.GI8963@google.com>
+        <20230515161940.3bcbe932@donnerap.cambridge.arm.com>
+        <20230515152829.GW10825@google.com>
+        <TY3P286MB2611E4814895D1F6CBD127E198789@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-References: <20230523193017.4109557-1-dianders@chromium.org> <ZG0yjuNvhnircAxA@google.com>
-In-Reply-To: <ZG0yjuNvhnircAxA@google.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 23 May 2023 16:52:55 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V6E_Rdrbk6SOHvaPwi=vJtRJagct71Q6TVV=ysUw5XCg@mail.gmail.com>
-Message-ID: <CAD=FV=V6E_Rdrbk6SOHvaPwi=vJtRJagct71Q6TVV=ysUw5XCg@mail.gmail.com>
-Subject: Re: [PATCH 0/9] drm/panel and i2c-hid: Allow panels and touchscreens
- to power sequence together
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        dri-devel@lists.freedesktop.org, linux-input@vger.kernel.org,
-        hsinyi@google.com, devicetree@vger.kernel.org,
-        yangcong5@huaqin.corp-partner.google.com,
-        linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        linux-arm-msm@vger.kernel.org, cros-qcom-dts-watchers@chromium.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, 15 May 2023 23:44:03 +0800
+Shengyu Qu <wiagn233@outlook.com> wrote:
 
-On Tue, May 23, 2023 at 2:39=E2=80=AFPM Dmitry Torokhov
-<dmitry.torokhov@gmail.com> wrote:
->
-> Hi Doug,
->
-> On Tue, May 23, 2023 at 12:27:54PM -0700, Douglas Anderson wrote:
-> >
-> > The big motivation for this patch series is mostly described in the pat=
-ch
-> > ("drm/panel: Add a way for other devices to follow panel state"), but t=
-o
-> > quickly summarize here: for touchscreens that are connected to a panel =
-we
-> > need the ability to power sequence the two device together. This is not=
- a
-> > new need, but so far we've managed to get by through a combination of
-> > inefficiency, added costs, or perhaps just a little bit of brokenness.
-> > It's time to do better. This patch series allows us to do better.
->
-> This seems to grow a new way of building relationship between panels and
-> associated devices. Can we make device_link_*() work for us?
+Hi Shengyu,
 
-If you know of a way to make it work, that'd be great. ...but I don't
-_think_ it would be that easy. I haven't spent much time with the
-device_link APIs, though, so please correct me if I'm wrong.
+> Please ping me if your new version of axp313a series is sent, I would update
+> mine as soon as possible.
 
-I guess my main issue with device_link would be that that ordering
-feels backward. Specifically, the device we're acting on (the one
-we're turning off and on) is the panel. We typically turn the panel
-off and on at times (during a modeset, when the lid is closed, or just
-if the system is idle). When this happens we'd like to remove power
-from both the panel and the touchscreen. Userspace is just not setup
-to power off touchscreens in tandem with the panel and sometimes (like
-in the case of a modeset) it might not even know it needs to. With
-device_link I believe that the "child" device is in charge of powering
-the parent. I think that would mean that to use device_link we'd need
-to make the panel be the child of the touchscreen. Then, I guess we'd
-tell the touchscreen not to power itself on if it had children and
-just wait for a child to power it on? It feels really awkward partly
-because the panel doesn't feel like it should be a child of the
-touchscreen and partially because it seems weird that the touchscreen
-would somehow need to know not to request power for itself when it has
-a child.
+as you have probably seen, I have just sent out a new version, and
+included the one remaining patch from your series. So there is no
+need from your side for any further post. I'd just be grateful if you
+could test the final result.
 
-...if we're willing to accept the backwardness as described above and
-we can find a hack to keep the touchscreen from powering itself up,
-then I think things could be made to work OK-ish. I can try to
-investigate that route if it doesn't feel too ugly. ...oh, except for
-another problem. The initial power up of the i2c-hid device would also
-be a problem here. I guess with device_link we'd need to put all the
-power up work into "runtime resume". The problem is that upon initial
-power up we create "HID" sub-devices and (as far as I could tell) you
-can't do that during a runtime resume. :( We could put a special case
-to power the touchscreen up before the panel at probe time, but that
-could have other consequences?
+Cheers,
+Andre
 
-If we don't go with the backwardness then I think we're a bit stuck
-with some of the original problems. Specifically it means that unless
-userspace knows to turn off the touchscreen that the touchscreen would
-force the panel to never be power cycled. There's at least one panel
-(the one on sc7180-trogdor-homestar) where that's known to be a
-problem. It also means that we're back to drawing extra power if the
-touchscreen is left "on" but the panel power is turned off.
+> > On Mon, 15 May 2023, Andre Przywara wrote:
+> >  
+> >> On Mon, 15 May 2023 11:52:29 +0100
+> >> Lee Jones <lee@kernel.org> wrote:
+> >>  
+> >>> On Thu, 04 May 2023, Krzysztof Kozlowski wrote:
+> >>>  
+> >>>> On 03/05/2023 13:07, Andre Przywara wrote:  
+> >>>>> On Wed, 26 Apr 2023 15:27:40 +0100
+> >>>>> Lee Jones <lee@kernel.org> wrote:
+> >>>>>
+> >>>>> Hi Lee,
+> >>>>>
+> >>>>> I see this patch in Linus' tree, but something must have gone wrong here,
+> >>>>> can you please check? See below ...
+> >>>>>      
+> >>>>>> On Fri, 21 Apr 2023, Shengyu Qu wrote:
+> >>>>>>     
+> >>>>>>> The AXP15060 is a PMIC chip produced by X-Powers, and could be connected
+> >>>>>>> via an I2C bus.
+> >>>>>>>
+> >>>>>>> Describe the regmap and the MFD bits, along with the registers exposed
+> >>>>>>> via I2C. Eventually advertise the device using a new compatible string
+> >>>>>>> and add support for power off the system.
+> >>>>>>>
+> >>>>>>> The driver would disable PEK function if IRQ is not configured in device
+> >>>>>>> tree, since some boards (For example, Starfive Visionfive 2) didn't
+> >>>>>>> connect IRQ line of PMIC to SOC.
+> >>>>>>>
+> >>>>>>> GPIO function isn't enabled in this commit, since its configuration
+> >>>>>>> operation is different from any existing AXP PMICs and needs
+> >>>>>>> logic modification on existing driver. GPIO support might come in later
+> >>>>>>> patches.
+> >>>>>>>
+> >>>>>>> ---  
+> >>>>>> You must not use these above the tags or Git will drop them.
+> >>>>>>     
+> >>>>>>> Changes since v2:
+> >>>>>>>   - Rebase to AXP313a series v10 [1] + newest (20230420) -next branch  
+> >>>>> So this patch was based on the AXP313a series, but I don't see that in
+> >>>>> Linus' tree (or in any of your trees, if I have checked correctly).
+> >>>>> There must have been a conflict, as this [PATCH v3 2/3] diff actually lists
+> >>>>> the axp313a entry in the context lines.
+> >>>>>      
+> >>>>>>>   - Add axp_regulator_only_cells rather than directly using axp806_cells
+> >>>>>>>     for cases that IRQ line isn't connected.
+> >>>>>>>
+> >>>>>>> Changes since v1:
+> >>>>>>>   - Nothing
+> >>>>>>>
+> >>>>>>> [1] https://lore.kernel.org/linux-sunxi/20230401001850.4988-1-andre.przywara@arm.com/
+> >>>>>>>
+> >>>>>>> Signed-off-by: Shengyu Qu <wiagn233@outlook.com>
+> >>>>>>> ---  
+> >>>>>> Put change-logs here instead.
+> >>>>>>     
+> >>>>>>>   drivers/mfd/axp20x-i2c.c   |   2 +
+> >>>>>>>   drivers/mfd/axp20x.c       | 107 +++++++++++++++++++++++++++++++++++++
+> >>>>>>>   include/linux/mfd/axp20x.h |  85 +++++++++++++++++++++++++++++
+> >>>>>>>   3 files changed, 194 insertions(+)  
+> >>>>>> I manually added the missing tags for this and the DT patch and applied.  
+> >>>>> So this patch doesn't list any tags aside from Shengyu's
+> >>>>> Signed-off-by. The patch in Linus' tree list a Reviewed-by: from
+> >>>>> Krzysztof, which I don't see anywhere in the thread, he just reviewed the
+> >>>>> binding patch, AFAICT.  
+> >>>> Yep, I never reviewed this.
+> >>>>      
+> >>>>> I see your tentative R-b: on v2, but with the
+> >>>>> request to rebase and resend, which he did with v3. The applied patch
+> >>>>> looks like v3, but not on the base commit this was send against.
+> >>>>>
+> >>>>> So I am slightly confused, and am also wondering what happened to the
+> >>>>> AXP313a patches? I see the binding patch merged, but not the MFD part,
+> >>>>> even though you replied saying so.  
+> >>>> Because the patch #1 was broken, see:
+> >>>> https://lore.kernel.org/all/TY3P286MB261177CF7AA2959BD9517DA998609@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM/
+> >>>>
+> >>>> The SoB and Reviewed-by were after --- and apparently b4 understood it
+> >>>> as cover letter and applied everywhere.
+> >>>>
+> >>>> Lee,
+> >>>> Do you have the latest b4? If yes, this should be reported as b4 bug,
+> >>>> assuming you used it.  
+> >>> I am using b4, although the version I'm using is quite old (0.9.0).
+> >>>
+> >>> Also, this was quite some time ago - I have slept since applying this
+> >>> and do not distinctly remember doing so.  Thus, the application of your
+> >>> R-b may well have been a mistake on my part.  I'll keep an eye for such
+> >>> things in the future and if I see (and remember) an issue, I'll report
+> >>> it.  
+> >> So what are we going to do about the two series now? I guess it's not
+> >> worthwhile to revert Shengyu's patch, just for the wrong R-b: tag?  
+> > No, I won't be reverting any patches.
+> >  
+> >> So does this mean both series should be rebased on top of that and re-sent?  
+> > Yes please.
+> >  
 
-Let me know if I'm misunderstanding.
-
--Doug
