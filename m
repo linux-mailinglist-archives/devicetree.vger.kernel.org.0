@@ -2,85 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37E7D70FC3B
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 19:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9737670FC74
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 19:18:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235274AbjEXRKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 13:10:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36420 "EHLO
+        id S229799AbjEXRSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 13:18:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231526AbjEXRKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 13:10:12 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10E42BB;
-        Wed, 24 May 2023 10:10:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=obSv2d9CNF4TRo5tXs9NOApHq5GFeZyX6XlxyKD/0ls=; b=yE
-        gkY/FlfNGqIFvgACokn7CPlkszMIyq8ZvFxmW/N2kvEMFKsjfSbWOuw/lfuzV14U1O6q9Vom0otQC
-        yEHtyJ8QlDVp0SHxT+0J6T25nJeIk7YfYGT+wDgYWGCIjEzklgKpxNr5wCHYci+7xDOHjq9mT1Yfs
-        15h0G4UupaNobJE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1q1rzx-00Dofj-6Y; Wed, 24 May 2023 19:10:05 +0200
-Date:   Wed, 24 May 2023 19:10:05 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Alexis =?iso-8859-1?Q?Lothor=E9?= <alexis.lothore@bootlin.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Richard Cochran <richardcochran@gmail.com>,
+        with ESMTP id S229521AbjEXRS3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 13:18:29 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA2293
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:18:27 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f655a8135bso5082775e9.1
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:18:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684948706; x=1687540706;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:cc:to:from:user-agent:references:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DL0229BoBpNJOI+Nzjlz2oCun7fW2ym7znDfwinMLQM=;
+        b=jj0MwJzaDakiH6V2M55C66XVl7NKA/xqDkbt9zy8hCStHwIC07N6BsrjPdXP5v/oz3
+         yyEjZTqPdYj1Hd1mh7Z2t+8ZRUmwNnEwmEtXsn7Xhbau9CKn4Bv7ID1J2sSdfPpv/9q1
+         XqVNWUrY9dRw4meJnYIURwZRSAWf91CnFX71DqXYLOv71cRiBeOZ24doCwOmrLc1xbr3
+         EweDp3dVMlVDixurzRWNZYFox3mtuHH1o1/1KueqwZzfcsgUdn8ZfTsfi6V8khLGv6fo
+         +qiLB3uBSHIPkqkZXw2Py8TFkrlx75CbG+crEAkMJY7WAcV8Y0E0a8GBYMmRn8afGhY6
+         b2Xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684948706; x=1687540706;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:cc:to:from:user-agent:references:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=DL0229BoBpNJOI+Nzjlz2oCun7fW2ym7znDfwinMLQM=;
+        b=dtprThYOModYd0ZQlgLJEGb2HMByfXB42VfebMAPhqXSfcE4RCSMvB8s0eYIBAP8n9
+         UcVguqO3QKKzac+xCSkh5kyrOJJZNfSwGNLMkJ1YE4uRdN76Sj66mvHYp10qP0rkGrWB
+         F4eKm2DpqCGS2INcUKc1xc4UPRD5SMoL13R38Dq3oY8a542xmmrudZCM4rbCWvx+qDEZ
+         NoBfo9KdIAY24pJYmZGw1N8yot/ZzgyXWAvoXoD0cnCc0a5pXdwpr+Ho4YCrOkId1Mrf
+         eqZxUhoQLu48/5J7qohP31ImoSvQbk7ikf7l0ON+rJB61d3w9bOZIeeP4bHfROHdg9UM
+         Miag==
+X-Gm-Message-State: AC+VfDy4amakFCUMZ0a6WkadIrhq4NAqV6O+xMm5PEWScVSVgC+PbNAc
+        qHraOG/5whP8QFhp+aBNqezQuA==
+X-Google-Smtp-Source: ACHHUZ7EtdSlJtb5r5XsSMh9tkQ/f0DDFMNu9ia48hiYqe6yWGQPoYuj/WNNHA1F/l+o3arN16XDbA==
+X-Received: by 2002:a05:600c:3783:b0:3f6:3486:1396 with SMTP id o3-20020a05600c378300b003f634861396mr346875wmr.33.1684948706082;
+        Wed, 24 May 2023 10:18:26 -0700 (PDT)
+Received: from zen.linaroharston ([85.9.250.243])
+        by smtp.gmail.com with ESMTPSA id i2-20020a05600c290200b003eddc6aa5fasm2917304wmd.39.2023.05.24.10.18.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 May 2023 10:18:25 -0700 (PDT)
+Received: from zen (localhost [127.0.0.1])
+        by zen.linaroharston (Postfix) with ESMTP id 456A41FFBB;
+        Wed, 24 May 2023 18:18:25 +0100 (BST)
+References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
+User-agent: mu4e 1.11.6; emacs 29.0.91
+From:   Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        paul.arola@telus.com, scott.roberts@telus.com,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Subject: Re: [PATCH net-next v3 4/7] net: dsa: mv88e6xxx: add field to
- specify internal phys layout
-Message-ID: <93e2804a-0da2-48a7-942b-5231772459b9@lunn.ch>
-References: <20230524130127.268201-1-alexis.lothore@bootlin.com>
- <20230524130127.268201-5-alexis.lothore@bootlin.com>
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v13 00/24] Drivers for Gunyah hypervisor
+Date:   Wed, 24 May 2023 18:13:16 +0100
+In-reply-to: <20230509204801.2824351-1-quic_eberman@quicinc.com>
+Message-ID: <87cz2pveam.fsf@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230524130127.268201-5-alexis.lothore@bootlin.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 24, 2023 at 03:01:24PM +0200, Alexis Lothoré wrote:
-> mv88e6xxx currently assumes that switch equipped with internal phys have
-> those phys mapped contiguously starting from port 0 (see
-> mv88e6xxx_phy_is_internal). However, some switches have internal PHYs but
-> NOT starting from port 0. For example 88e6393X, 88E6193X and 88E6191X have
-> integrated PHYs available on ports 1 to 8
-> To properly support this offset, add a new field to allow specifying an
-> internal PHYs layout. If field is not set, default layout is assumed (start
-> at port 0)
-> 
-> ---
-> Changes since v2:
-> - move start/end computation out of for loop
-> - remove whitespace
-> 
-> Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Elliot Berman <quic_eberman@quicinc.com> writes:
 
-    Andrew
+> Gunyah is a Type-1 hypervisor independent of any
+> high-level OS kernel, and runs in a higher CPU privilege level. It does
+> not depend on any lower-privileged OS kernel/code for its core
+> functionality. This increases its security and can support a much smaller
+> trusted computing base than a Type-2 hypervisor.
+>
+<snip>
+>
+> The series relies on two other patches posted separately:
+>  - https://lore.kernel.org/all/20230213181832.3489174-1-quic_eberman@quic=
+inc.com/
+>  -
+> https://lore.kernel.org/all/20230213232537.2040976-2-quic_eberman@quicinc=
+.com/
+
+I couldn't find this one, but is this what it should have been:
+
+  b4 am -S -t 20230213232537.2040976-1-quic_eberman@quicinc.com
+  Grabbing thread from lore.kernel.org/all/20230213232537.2040976-1-quic_eb=
+erman%40quicinc.com/t.mbox.gz
+  Analyzing 9 messages in the thread
+  Checking attestation on all messages, may take a moment...
+  ---
+    =E2=9C=93 [PATCH 1/3] mailbox: Allow direct registration to a channel
+      + Tested-by: Sudeep Holla <sudeep.holla@arm.com>
+    =E2=9C=93 [PATCH 2/3] mailbox: omap: Use mbox_bind_client
+      + Tested-by: Sudeep Holla <sudeep.holla@arm.com>
+    =E2=9C=93 [PATCH 3/3] mailbox: pcc: Use mbox_bind_client
+      + Tested-by: Sudeep Holla <sudeep.holla@arm.com>
+    ---
+    =E2=9C=93 Signed: DKIM/quicinc.com
+  ---
+  Total patches: 3
+  ---
+  Cover: ./20230213_quic_eberman_mailbox_allow_direct_registration_to_a_cha=
+nnel.cover
+   Link: https://lore.kernel.org/r/20230213232537.2040976-1-quic_eberman@qu=
+icinc.com
+   Base: base-commit 09e41676e35ab06e4bce8870ea3bf1f191c3cb90 not known, ig=
+noring
+   Base: applies clean to current tree
+         git checkout -b 20230213_quic_eberman_quicinc_com HEAD
+         git am ./20230213_quic_eberman_mailbox_allow_direct_registration_t=
+o_a_channel.mbx
+  =F0=9F=95=9918:10:45 alex@zen:linux.git  on =EE=82=A0 review/gunyah-v12 [=
+$?]=20
+  =E2=9E=9C  git am 20230213_quic_eberman_mailbox_allow_direct_registration=
+_to_a_channel.mbx=20
+  Applying: mailbox: Allow direct registration to a channel
+  Applying: mailbox: omap: Use mbox_bind_client
+  Applying: mailbox: pcc: Use mbox_bind_client
+
+
+<snip>
+>
+> Elliot Berman (24):
+<snip>
+
+>   mailbox: Add Gunyah message queue mailbox
+
+This patch touches a file that isn't in mainline which makes me wonder
+if I've missed another pre-requisite patch?
+
+<snip>
+>  Documentation/virt/gunyah/message-queue.rst   |   8 +
+<snip>
+
+--=20
+Alex Benn=C3=A9e
+Virtualisation Tech Lead @ Linaro
