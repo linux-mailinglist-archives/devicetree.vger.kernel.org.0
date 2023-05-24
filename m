@@ -2,120 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17D2770F860
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 16:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BBC770F882
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 16:20:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235482AbjEXOMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 10:12:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50736 "EHLO
+        id S235837AbjEXOUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 10:20:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235171AbjEXOMp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 10:12:45 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2172411D
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 07:12:41 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f601c57d8dso9405785e9.0
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 07:12:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684937560; x=1687529560;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zm+/ZRBOZldlqL53b66Kc1VMqiVBWlw5REXJ3gKRg4Y=;
-        b=LHhbslmTHVtT9aRVJDuMWr6LDB2MF3ACI6tD/x5vOsxgQkBYgqvwDD2fM+JU9yS1rR
-         XzvkbnASGuJZNpMiKuI2/qFlqr16uMdAr8lTmipfrNJb6s/OVD8XXt9gOBHYaPg/xnR6
-         B6iJpZtoz1xSwOhBJMS1ND9SZv6/Ekphr0o7uDD2vsM7YYmyvFT+Fe4QprO+akeUiG81
-         5TpJskzGdjOImOoOwC/fPDAGUD5jOnCl7oGrQ95IAJMqiik4rjNWC8EVUculVpwDP3Dp
-         /2dVOwmVQ6isKH5XKbxJzxmAJGeP4NF0aaOh5tW8/GzYrRbooI3r6d8C9kyvJyTeU1I0
-         RUMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684937560; x=1687529560;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zm+/ZRBOZldlqL53b66Kc1VMqiVBWlw5REXJ3gKRg4Y=;
-        b=B7YKX6JDtQWGQDLv03w6LLmsH0k4kWNJT636CNpeIC51ndnGa5QhPniyqJY4JeHJPP
-         csDRKx2y8iRMDaHsSVKOOEi7TPGbgMJLqw+5eT7+Abfq04rRb9zMDph1t6mT09yRIA6Q
-         LfdHYqbW91HhTfPn9xa9qy0elBX8NdcitdpYGdsXKMt//0yRJKWtNX0ScfIBdMu7llI6
-         alnH9za6OQnvPmfEXgxhYE8qOQZh1C7ViYvfJ8mFg/EzDwrfPQ1Fd84jjR+zW9GbpQvh
-         9d7zVcSWzD2XY2u1Z8ZCrgthXaXTrkQPtGR1eho/pI3fOVaqplZ9pj5J/baC98xqG2M4
-         3+AA==
-X-Gm-Message-State: AC+VfDypzJI0L3nM2zTAUCXclDu5KHebiQ4xjcMolkuz4pLMGQhAQ+Y8
-        WLm3tkux8KqYkMmGaE8xS5c6Dg==
-X-Google-Smtp-Source: ACHHUZ7ZiBQArVsrxbnbOPfcgyP4nY6sB/SNzM2bGxT5NtG/F1Eh5MP/d2t7lgX/aqnh4urNKvrplQ==
-X-Received: by 2002:a7b:cbc9:0:b0:3f6:84:3df6 with SMTP id n9-20020a7bcbc9000000b003f600843df6mr9846304wmi.10.1684937560071;
-        Wed, 24 May 2023 07:12:40 -0700 (PDT)
-Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id 13-20020a05600c24cd00b003f4dde07956sm2444460wmu.42.2023.05.24.07.12.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 May 2023 07:12:39 -0700 (PDT)
-Message-ID: <cb2e035d-2630-2eca-3f15-b04e4d81c699@baylibre.com>
-Date:   Wed, 24 May 2023 16:12:37 +0200
+        with ESMTP id S233176AbjEXOU3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 10:20:29 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF293119;
+        Wed, 24 May 2023 07:20:27 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34OCelIk018004;
+        Wed, 24 May 2023 14:20:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=FfIUZHOHpcLbU5HBca+VgpgQEMlYe+fHPzpTBYhzp6k=;
+ b=SimTO1WC6iBpNg4s2T32q5nrQ1TLybO4tpAQYsQ/sPTGenKDeflZ5V+hpGV+FBfC7rFT
+ 79qZL62RudAt4a5H8IaKNLFSy6QmsVETbdMZCfHwtN51wd/STkIIF+HAhyaknlWL3SU2
+ 3+vgItoFrZN75TB+k2UZq/sL767YFf6PnpIqZPuXXCe0xEx5pvZBLYMRziTfaaCORGAt
+ h4xhw73T+nCuhKlot36xgO5B8ebg5uHEB0MiI3YWEjP3cp4zJE6E03Z0w9GVdFZheqJU
+ Jmhaudmh0m149VsK/1z/er0d/9EJ5ujTJOVJGTWNmG3O2irYLts/0b5Y2BUmJEiZb2o0 wg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qscpms2eg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 24 May 2023 14:20:21 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34OEKKxp001881
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 24 May 2023 14:20:20 GMT
+Received: from [10.217.216.177] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 24 May
+ 2023 07:20:16 -0700
+Message-ID: <a101f5f2-4458-8284-cc7f-1ce22389c26f@quicinc.com>
+Date:   Wed, 24 May 2023 19:50:14 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 4/7] ASoC: mediatek: common: soundcard driver add
- dai_fmt support
-Content-Language: en-US
-To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
-        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com
-Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230523021933.3422-1-trevor.wu@mediatek.com>
- <20230523021933.3422-5-trevor.wu@mediatek.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230523021933.3422-5-trevor.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH 3/4] clk: qcom: videocc-sm8550: Add video clock controller
+ driver for SM8550
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230509161218.11979-1-quic_jkona@quicinc.com>
+ <20230509161218.11979-4-quic_jkona@quicinc.com>
+ <CAA8EJppn9=gPFk1RRB9y50aU_G3J6QrsOVQ9GH5gT86D_hOAgQ@mail.gmail.com>
+From:   Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <CAA8EJppn9=gPFk1RRB9y50aU_G3J6QrsOVQ9GH5gT86D_hOAgQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 0PIp1uK_OZaGeK9qMccerJPMP9Sfd1zP
+X-Proofpoint-GUID: 0PIp1uK_OZaGeK9qMccerJPMP9Sfd1zP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-24_09,2023-05-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ mlxlogscore=999 clxscore=1015 priorityscore=1501 adultscore=0
+ malwarescore=0 bulkscore=0 spamscore=0 suspectscore=0 mlxscore=0
+ phishscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2304280000 definitions=main-2305240117
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2023 04:19, Trevor Wu wrote:
-> There are two changes included in the patch.
+Hi Dmitry,
+
+Thanks for your review!
+
+On 5/9/2023 10:45 PM, Dmitry Baryshkov wrote:
+> On Tue, 9 May 2023 at 19:14, Jagadeesh Kona <quic_jkona@quicinc.com> wrote:
+>>
+>> Add support for the video clock controller for video clients to be able
+>> to request for videocc clocks on SM8550 platform.
+>>
+>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> ---
+>>   drivers/clk/qcom/Kconfig          |  10 +
+>>   drivers/clk/qcom/Makefile         |   1 +
+>>   drivers/clk/qcom/videocc-sm8550.c | 468 ++++++++++++++++++++++++++++++
+>>   3 files changed, 479 insertions(+)
+>>   create mode 100644 drivers/clk/qcom/videocc-sm8550.c
+>>
+>> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+>> index 12be3e2371b3..6bb9b4aff047 100644
+>> --- a/drivers/clk/qcom/Kconfig
+>> +++ b/drivers/clk/qcom/Kconfig
+>> @@ -925,6 +925,16 @@ config SM_VIDEOCC_8250
+>>            Say Y if you want to support video devices and functionality such as
+>>            video encode and decode.
+>>
+>> +config SM_VIDEOCC_8550
+>> +       tristate "SM8550 Video Clock Controller"
+>> +       select SM_GCC_8550
+>> +       select QCOM_GDSC
+>> +       help
+>> +         Support for the video clock controller on Qualcomm Technologies, Inc.
+>> +         SM8550 devices.
+>> +         Say Y if you want to support video devices and functionality such as
+>> +         video encode/decode.
+>> +
+>>   config SPMI_PMIC_CLKDIV
+>>          tristate "SPMI PMIC clkdiv Support"
+>>          depends on SPMI || COMPILE_TEST
+>> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+>> index 9ff4c373ad95..f0b95fc217aa 100644
+>> --- a/drivers/clk/qcom/Makefile
+>> +++ b/drivers/clk/qcom/Makefile
+>> @@ -127,6 +127,7 @@ obj-$(CONFIG_SM_GPUCC_8350) += gpucc-sm8350.o
+>>   obj-$(CONFIG_SM_TCSRCC_8550) += tcsrcc-sm8550.o
+>>   obj-$(CONFIG_SM_VIDEOCC_8150) += videocc-sm8150.o
+>>   obj-$(CONFIG_SM_VIDEOCC_8250) += videocc-sm8250.o
+>> +obj-$(CONFIG_SM_VIDEOCC_8550) += videocc-sm8550.o
+>>   obj-$(CONFIG_SPMI_PMIC_CLKDIV) += clk-spmi-pmic-div.o
+>>   obj-$(CONFIG_KPSS_XCC) += kpss-xcc.o
+>>   obj-$(CONFIG_QCOM_HFPLL) += hfpll.o
+>> diff --git a/drivers/clk/qcom/videocc-sm8550.c b/drivers/clk/qcom/videocc-sm8550.c
+>> new file mode 100644
+>> index 000000000000..10e4b2725ddf
+>> --- /dev/null
+>> +++ b/drivers/clk/qcom/videocc-sm8550.c
+>> @@ -0,0 +1,468 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +#include <linux/clk-provider.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/pm_runtime.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +#include <dt-bindings/clock/qcom,sm8550-videocc.h>
+>> +
+>> +#include "clk-alpha-pll.h"
+>> +#include "clk-branch.h"
+>> +#include "clk-rcg.h"
+>> +#include "clk-regmap.h"
+>> +#include "clk-regmap-divider.h"
+>> +#include "common.h"
+>> +#include "gdsc.h"
+>> +#include "reset.h"
+>> +
+>> +enum {
+>> +       DT_BI_TCXO,
 > 
-> First, add set_dailink_daifmt() function, so dai_fmt can be updated by
-> the configuration in dai-link sub node.
+> Any additional handling for gcc_video_ahb clk? It doesn't seem to be
+> used as a parent. Probably you intended to use it as a pm_clk?
+> Yes it is a pm_clk, but no additional handling is required from driver side.
+
+>> +};
+>> +
+>> +enum {
+>> +       P_BI_TCXO,
+>> +       P_VIDEO_CC_PLL0_OUT_MAIN,
+>> +       P_VIDEO_CC_PLL1_OUT_MAIN,
+>> +};
+[skipped]
+
+>> +static struct clk_regmap *video_cc_sm8550_clocks[] = {
+>> +       [VIDEO_CC_MVS0_CLK] = &video_cc_mvs0_clk.clkr,
+>> +       [VIDEO_CC_MVS0_CLK_SRC] = &video_cc_mvs0_clk_src.clkr,
+>> +       [VIDEO_CC_MVS0_DIV_CLK_SRC] = &video_cc_mvs0_div_clk_src.clkr,
+>> +       [VIDEO_CC_MVS0C_CLK] = &video_cc_mvs0c_clk.clkr,
+>> +       [VIDEO_CC_MVS0C_DIV2_DIV_CLK_SRC] = &video_cc_mvs0c_div2_div_clk_src.clkr,
+>> +       [VIDEO_CC_MVS1_CLK] = &video_cc_mvs1_clk.clkr,
+>> +       [VIDEO_CC_MVS1_CLK_SRC] = &video_cc_mvs1_clk_src.clkr,
+>> +       [VIDEO_CC_MVS1_DIV_CLK_SRC] = &video_cc_mvs1_div_clk_src.clkr,
+>> +       [VIDEO_CC_MVS1C_CLK] = &video_cc_mvs1c_clk.clkr,
+>> +       [VIDEO_CC_MVS1C_DIV2_DIV_CLK_SRC] = &video_cc_mvs1c_div2_div_clk_src.clkr,
+>> +       [VIDEO_CC_PLL0] = &video_cc_pll0.clkr,
+>> +       [VIDEO_CC_PLL1] = &video_cc_pll1.clkr,
+>> +};
+>> +
+>> +static struct gdsc *video_cc_sm8550_gdscs[] = {
+>> +       [VIDEO_CC_MVS0C_GDSC] = &video_cc_mvs0c_gdsc,
+>> +       [VIDEO_CC_MVS0_GDSC] = &video_cc_mvs0_gdsc,
+>> +       [VIDEO_CC_MVS1C_GDSC] = &video_cc_mvs1c_gdsc,
+>> +       [VIDEO_CC_MVS1_GDSC] = &video_cc_mvs1_gdsc,
+>> +};
+>> +
+>> +static const struct qcom_reset_map video_cc_sm8550_resets[] = {
+>> +       [CVP_VIDEO_CC_INTERFACE_BCR] = { 0x80f0 },
+>> +       [CVP_VIDEO_CC_MVS0_BCR] = { 0x80a0 },
+>> +       [CVP_VIDEO_CC_MVS0C_BCR] = { 0x8048 },
+>> +       [CVP_VIDEO_CC_MVS1_BCR] = { 0x80c8 },
+>> +       [CVP_VIDEO_CC_MVS1C_BCR] = { 0x8074 },
 > 
-> Second, remove codec phandle from required property in dai-link sub node.
-> For example, user possibly needs to update dai-format for all etdm
-> co-clock dai-links, but codec doesn't need to be specified in capture
-> dai-link for a speaker amp.
+> Please rename them to start with the VIDEO_CC prefix.
 > 
-> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
-> ---
->   .../mediatek/common/mtk-soundcard-driver.c    | 49 ++++++++++++++++++-
->   1 file changed, 48 insertions(+), 1 deletion(-)
+These names are coming from hardware plan and clients will
+refer to hardware plan for these names. So we would like to
+keep the names intact same as from hardware plan.
+
+>> +       [VIDEO_CC_MVS0C_CLK_ARES] = { 0x8064, 2 },
+>> +       [VIDEO_CC_MVS1C_CLK_ARES] = { 0x8090, 2 },
+>> +};
+>> +
+>> +static const struct regmap_config video_cc_sm8550_regmap_config = {
+>> +       .reg_bits = 32,
+>> +       .reg_stride = 4,
+>> +       .val_bits = 32,
+>> +       .max_register = 0x9f4c,
+>> +       .fast_io = true,
+>> +};
+>> +
+>> +static struct qcom_cc_desc video_cc_sm8550_desc = {
+>> +       .config = &video_cc_sm8550_regmap_config,
+>> +       .clks = video_cc_sm8550_clocks,
+>> +       .num_clks = ARRAY_SIZE(video_cc_sm8550_clocks),
+>> +       .resets = video_cc_sm8550_resets,
+>> +       .num_resets = ARRAY_SIZE(video_cc_sm8550_resets),
+>> +       .gdscs = video_cc_sm8550_gdscs,
+>> +       .num_gdscs = ARRAY_SIZE(video_cc_sm8550_gdscs),
+>> +};
+>> +
+>> +static const struct of_device_id video_cc_sm8550_match_table[] = {
+>> +       { .compatible = "qcom,sm8550-videocc" },
+>> +       { }
+>> +};
+>> +MODULE_DEVICE_TABLE(of, video_cc_sm8550_match_table);
+>> +
+>> +static int video_cc_sm8550_probe(struct platform_device *pdev)
+>> +{
+>> +       struct regmap *regmap;
+>> +       int ret;
+>> +
+>> +       ret = devm_pm_runtime_enable(&pdev->dev);
+>> +       if (ret)
+>> +               return ret;
+>> +
+>> +       ret = pm_runtime_resume_and_get(&pdev->dev);
+>> +       if (ret)
+>> +               return ret;
+>> +
+>> +       regmap = qcom_cc_map(pdev, &video_cc_sm8550_desc);
+>> +       if (IS_ERR(regmap)) {
+>> +               pm_runtime_put(&pdev->dev);
+>> +               return PTR_ERR(regmap);
+>> +       }
+>> +
+>> +       clk_lucid_ole_pll_configure(&video_cc_pll0, regmap, &video_cc_pll0_config);
+>> +       clk_lucid_ole_pll_configure(&video_cc_pll1, regmap, &video_cc_pll1_config);
+>> +
+>> +       /*
+>> +        * Keep clocks always enabled:
+>> +        *      video_cc_ahb_clk
+>> +        *      video_cc_sleep_clk
+>> +        *      video_cc_xo_clk
+>> +        */
+>> +       regmap_update_bits(regmap, 0x80f4, BIT(0), BIT(0));
+>> +       regmap_update_bits(regmap, 0x8140, BIT(0), BIT(0));
+>> +       regmap_update_bits(regmap, 0x8124, BIT(0), BIT(0));
+>> +
+>> +       ret = qcom_cc_really_probe(pdev, &video_cc_sm8550_desc, regmap);
+>> +
+>> +       pm_runtime_put(&pdev->dev);
+>> +
+>> +       return ret;
+>> +}
+>> +
+>> +static struct platform_driver video_cc_sm8550_driver = {
+>> +       .probe = video_cc_sm8550_probe,
+>> +       .driver = {
+>> +               .name = "video_cc-sm8550",
+>> +               .of_match_table = video_cc_sm8550_match_table,
+>> +       },
+>> +};
+>> +
+>> +static int __init video_cc_sm8550_init(void)
+>> +{
+>> +       return platform_driver_register(&video_cc_sm8550_driver);
+>> +}
+>> +subsys_initcall(video_cc_sm8550_init);
 > 
-> diff --git a/sound/soc/mediatek/common/mtk-soundcard-driver.c b/sound/soc/mediatek/common/mtk-soundcard-driver.c
-> index 738093451ccb..5e291092046b 100644
-> --- a/sound/soc/mediatek/common/mtk-soundcard-driver.c
-> +++ b/sound/soc/mediatek/common/mtk-soundcard-driver.c
-> @@ -22,7 +22,7 @@ static int set_card_codec_info(struct snd_soc_card *card,
->   
->   	codec_node = of_get_child_by_name(sub_node, "codec");
->   	if (!codec_node)
-> -		return -EINVAL;
+> module_platform_driver() instead? There is no need to register videocc
+> at the subsys level.
+> 
+We need to evaluate and validate if module_platform_driver works for us 
+in all scenarios. We will post a cleanup patch once we conclude 
+module_platform_driver works for us in all cases.
 
-IMO, the debug or info print should be welcome here because the behavior
-change: dai link info parse will not stop if the codec node is NULL.
-That could help to understand what is happening during init.
-
-
-
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
-
--- 
-Regards,
-Alexandre
-
+Thanks & Regards,
+Jagadeesh
