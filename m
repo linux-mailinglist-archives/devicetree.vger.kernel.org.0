@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ACB470F0B8
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 10:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F41770F0BB
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 10:30:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235031AbjEXIau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 04:30:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42134 "EHLO
+        id S240006AbjEXIaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 04:30:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233663AbjEXIat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 04:30:49 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C60459E
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 01:30:48 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f42ba32e24so5675295e9.3
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 01:30:48 -0700 (PDT)
+        with ESMTP id S239474AbjEXIay (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 04:30:54 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8425B189
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 01:30:52 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3090d3e9c92so467607f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 01:30:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684917047; x=1687509047;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684917051; x=1687509051;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GFkeXmTsUMY8GSw8DO1YxsHt1wzgz+ONEfDUI+8GUAE=;
-        b=Ky164TgIAjXoNCRewjAvpvhOJ4Fq2aqesYTLjaP4MsCdZWaK7nNI1q4ACUHyf0yARP
-         khE4z1B4Wq3htHoGGiNu+1mMFFRKUkdv/98piGwOHRcsYTzoseEHnt4dQ+gSAMSTXTSb
-         1j75EhptJA+nEMLiybke6sENFCRCPbdkvcEZISCZtt8Ps/JPEsyGSZrxNu9oMC0r5Ecz
-         9O72t84s/Ms51QhGIloJa0e3TS2IsckqzZwn1CpJz4yOfg0/yCZbJbjr8Q0u71l0fRdV
-         HudbAm0rHClx0bTFzAbc85WUmKaoTxiHzJUYrkQYS5aT4NIx1ofDL7RZIuX5kDA6y4nB
-         IbMg==
+        bh=1bgK81zYJJlKzJwC/YpUVSKkmte5LSImvMG9blyHL8w=;
+        b=q3rlhiN1dqBA2GKz3Baz0KFqAEsTk9Qe+RSwPRNOe/jjZ3ukXTwBxzpVyKlxqS3oJk
+         BikGg2jYUATGzhaIdGoeT/DrFEkG8IDjhW5p65ywpyai0QXsEH/hv9LzF2PVM4/bcUpG
+         TTPCH9s57Yp/5jPz1TCf1SW3gnCEo7w06js9iutJCPnpdnSOnHnlFs+313+Apq9cJgtu
+         7x8RzeXcP/ArERx4Vg6UdoEjNUjJRmhy7qgCR6GzK4SfoMuE23SG8pbo594k6H1c6JXs
+         DCsfmjLYVxHZO73M52cFGNZJDtdjFM3Dh+RRbIpvlR4UfYU5xv0YmViBPjducNXwgp0U
+         j8oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684917047; x=1687509047;
+        d=1e100.net; s=20221208; t=1684917051; x=1687509051;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GFkeXmTsUMY8GSw8DO1YxsHt1wzgz+ONEfDUI+8GUAE=;
-        b=NmLm+far9DeHkIJhNHs0Vb7Rtqgmr+V41c37dYsApD9r+ubTxRrfHcCmJxEKYWYYPs
-         3LveQARTfNqvyU2TqdaFbqodIL/jZtWA2XNb3lnDQOsL4T9J1y6gTVClN3R58WhOL2XF
-         GCbk2Y6RXUfnXtu6x//hh0Xk0K4jqgF91DLlQCQRki4zrkQkP+WBWHRZq6WeqNmxYqd+
-         L/+X46CFEJltWzYTsl291widj4/WQdXrRR4zB9p+zuTIDazD6IV+aTpm/IB+vmYIf8qB
-         TsvYbupJ137RuzIs0YGc4+aIWF82B07oNSoPPUBKDDqEAgcUddbvwLVeGDoXz66GHew2
-         wewQ==
-X-Gm-Message-State: AC+VfDzE/3hql0JOXKp0Hq2YCU8jz5ypH9bD/8QBjMEjbXVygfsFvzja
-        1sv1r9LAgWqVI1MeT6FnnbUG7w==
-X-Google-Smtp-Source: ACHHUZ6JqNOn6TctkUQ6E/Zh8dcU2trBSmopBqGdD7CTtYD4boZi1njHtt373XgOG0bq+Mr+DhVFKQ==
-X-Received: by 2002:adf:f80d:0:b0:306:4613:e0f0 with SMTP id s13-20020adff80d000000b003064613e0f0mr11012487wrp.68.1684917047325;
-        Wed, 24 May 2023 01:30:47 -0700 (PDT)
+        bh=1bgK81zYJJlKzJwC/YpUVSKkmte5LSImvMG9blyHL8w=;
+        b=GbCZUjVXsJGf8Bd09fQuyraQOGbC6KQYcllJ/UefAIldHYsRSb8DMtRvZNp3L0lpmE
+         u6hi14oH27v2BCcodbx+tThf0jm13maDmaL/oSSWy2Mzrn76wHvrHQ8cGWM3xbfPcpNq
+         FDnZQzlTYe7dXsWHbawgt529GzCsusUbNFSN/W2cD+AY1DmFj6x2BCfNAdLtl8pXtNcW
+         ktE2gzYd/lH/pt6p2BbWn/5CbjgX9ydB4Z76Bf9lbfGIxwcu7Xng6pGiCM4ySLRZE2wk
+         VV/+WEqcJUC3ktFtWOxOZ844ENBlrrtC9Jb7sy6usU7XqjULeFesgGNBLQ3Jx8UWJow3
+         T3jA==
+X-Gm-Message-State: AC+VfDyVLJBBv37rFDmb2f2WuTklb4SkcqlHcYroR1/JaQL0dHmrXwdP
+        s+/DZP1jIO1S2NsNIxfGTVhAmw==
+X-Google-Smtp-Source: ACHHUZ4rg9xDTlc33OxE5pi3GZwUh53PWH0eMhBen5R9zYe/bMYwZfbseDecOPk9Jj73PjeMwBppWg==
+X-Received: by 2002:adf:ef42:0:b0:301:8551:446a with SMTP id c2-20020adfef42000000b003018551446amr12446568wrp.2.1684917050983;
+        Wed, 24 May 2023 01:30:50 -0700 (PDT)
 Received: from localhost.localdomain ([2a01:e0a:55f:21e0:9e19:4376:dea6:dbfa])
-        by smtp.gmail.com with ESMTPSA id n11-20020a5d484b000000b00307c0afc030sm13871832wrs.4.2023.05.24.01.30.46
+        by smtp.gmail.com with ESMTPSA id n11-20020a5d484b000000b00307c0afc030sm13871832wrs.4.2023.05.24.01.30.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 May 2023 01:30:46 -0700 (PDT)
+        Wed, 24 May 2023 01:30:50 -0700 (PDT)
 From:   Julien Stephan <jstephan@baylibre.com>
 Cc:     mkorpershoek@baylibre.com, khilman@baylibre.com,
+        Florian Sylvestre <fsylvestre@baylibre.com>,
         Julien Stephan <jstephan@baylibre.com>,
         Andy Hsieh <andy.hsieh@mediatek.com>,
         AngeloGioacchino Del Regno 
@@ -66,9 +67,9 @@ Cc:     mkorpershoek@baylibre.com, khilman@baylibre.com,
         Matthias Brugger <matthias.bgg@gmail.com>,
         Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH v3 1/3] dt-bindings: phy: add PHY_TYPE_CDPHY definition
-Date:   Wed, 24 May 2023 10:30:30 +0200
-Message-Id: <20230524083033.486490-2-jstephan@baylibre.com>
+Subject: [PATCH v3 2/3] dt-bindings: phy: add mediatek MIPI CD-PHY module v0.5
+Date:   Wed, 24 May 2023 10:30:31 +0200
+Message-Id: <20230524083033.486490-3-jstephan@baylibre.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230524083033.486490-1-jstephan@baylibre.com>
 References: <20230524083033.486490-1-jstephan@baylibre.com>
@@ -84,25 +85,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add definition for CDPHY phy type that can be configured in either D-PHY
-mode or C-PHY mode
+From: Florian Sylvestre <fsylvestre@baylibre.com>
 
+This adds the bindings, for the MIPI CD-PHY module v0.5 embedded in
+some Mediatek soc, such as the mt8365
+
+Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
 Signed-off-by: Julien Stephan <jstephan@baylibre.com>
 ---
- include/dt-bindings/phy/phy.h | 1 +
- 1 file changed, 1 insertion(+)
+ .../bindings/phy/mediatek,mt8365-csi-rx.yaml  | 67 +++++++++++++++++++
+ MAINTAINERS                                   |  6 ++
+ 2 files changed, 73 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/mediatek,mt8365-csi-rx.yaml
 
-diff --git a/include/dt-bindings/phy/phy.h b/include/dt-bindings/phy/phy.h
-index 6b901b342348..a19d85dbbf16 100644
---- a/include/dt-bindings/phy/phy.h
-+++ b/include/dt-bindings/phy/phy.h
-@@ -23,5 +23,6 @@
- #define PHY_TYPE_DPHY		10
- #define PHY_TYPE_CPHY		11
- #define PHY_TYPE_USXGMII	12
-+#define PHY_TYPE_CDPHY		13
+diff --git a/Documentation/devicetree/bindings/phy/mediatek,mt8365-csi-rx.yaml b/Documentation/devicetree/bindings/phy/mediatek,mt8365-csi-rx.yaml
+new file mode 100644
+index 000000000000..a1bd96a98051
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/mediatek,mt8365-csi-rx.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2023 MediaTek, BayLibre
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/mediatek,mt8365-csi-rx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Mediatek Sensor Interface MIPI CSI CD-PHY
++
++maintainers:
++  - Julien Stephan <jstephan@baylibre.com>
++  - Andy Hsieh <andy.hsieh@mediatek.com>
++
++description:
++  The SENINF CD-PHY is a set of CD-PHY connected to the SENINF CSI-2
++  receivers. The number of PHYs depends on the SoC model.
++  Depending on the SoC model, each PHYs can be either CD-PHY or D-PHY only
++  capable.
++
++properties:
++  compatible:
++    enum:
++      - mediatek,mt8365-csi-rx
++
++  reg:
++    maxItems: 1
++
++  '#phy-cells':
++    const: 0
++
++  mediatek,phy-type:
++    description:
++      Specify the phy type. Supported phy are D-PHY only or CD-PHY capable phys.
++      See include/dt-bindings/phy/phy.h for constants.
++    enum: [10, 13]
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - compatible
++  - reg
++  - mediatek,phy-type
++  - '#phy-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/phy/phy.h>
++    soc {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      csi0_rx: phy@11c10000 {
++        compatible = "mediatek,mt8365-csi-rx";
++        reg = <0 0x11c10000 0 0x2000>;
++        mediatek,phy-type = <PHY_TYPE_CDPHY>;
++        #phy-cells = <0>;
++      };
++
++      csi1_rx: phy@11c12000 {
++        compatible = "mediatek,mt8365-csi-rx";
++        reg = <0 0x11c12000 0 0x2000>;
++        mediatek,phy-type = <PHY_TYPE_DPHY>;
++        #phy-cells = <0>;
++      };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index b81e9fcc66cb..5da594fbb761 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -13184,6 +13184,12 @@ F:	Documentation/devicetree/bindings/media/mediatek-vpu.txt
+ F:	drivers/media/platform/mediatek/vcodec/
+ F:	drivers/media/platform/mediatek/vpu/
  
- #endif /* _DT_BINDINGS_PHY */
++MEDIATEK MIPI-CSI CDPHY DRIVER
++M:	Julien Stephan <jstephan@baylibre.com>
++M:	Andy Hsieh <andy.hsieh@mediatek.com>
++S:	Supported
++F:	Documentation/devicetree/bindings/phy/mediatek,mt8365-csi-rx.yaml
++
+ MEDIATEK MMC/SD/SDIO DRIVER
+ M:	Chaotian Jing <chaotian.jing@mediatek.com>
+ S:	Maintained
 -- 
 2.40.1
 
