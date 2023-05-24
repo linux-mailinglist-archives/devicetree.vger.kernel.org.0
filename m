@@ -2,78 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63DBD70F930
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 16:52:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E1DB70F935
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 16:53:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236113AbjEXOwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 10:52:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40878 "EHLO
+        id S236001AbjEXOx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 10:53:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235990AbjEXOv6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 10:51:58 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A935BE7A
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 07:51:36 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f68fc6b479so2302465e9.2
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 07:51:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684939869; x=1687531869;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=d2DZMvMkI+V5RMAcXCANfBiGO0oQRS/4+8XHUn3qgoQ=;
-        b=YT+4PyG2PpzfKSBHI8via/8/85UUkYBO2UQIpGyWv6Za+qBrjWJtqy48/7FF0kjuXS
-         RMowXnKeB9ZUFdWVc02eXhlevD7TG5KMShelI1AdHdYOdM2/focKmgSgHkJTQVl1hH1E
-         583D9fVRRW7QNbiEQsBi1u+lVIRB+0IiP8nSx5Q3NGOOjOE1p4Fv3Gdxj9zcGgldrsN0
-         v+Owz0hzn7fVsVQl/QfZp38PHyTcyN9qsiWdkr2Z04AyMtXOSKDIvDODXJyyQKKt5bJ7
-         Q8rffHMfEiZe4LyTr8tGRM0t/YtOcfIAT3wI0MsdXaO+QrL6w6KCtyeSFa3/ARp0/w+i
-         fPMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684939869; x=1687531869;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d2DZMvMkI+V5RMAcXCANfBiGO0oQRS/4+8XHUn3qgoQ=;
-        b=TfvtLKcH2JtIBdoHvuGHzKYQ3iO6STp/AIKwf5yTELAdXkMEfced1XODjviU8920vE
-         KZ5/5Uy8PdOD/LpLQKQJWW+7PXLoqOb+5O0Den6Dmjv99SmAxat8PVtztDajZE2r+Vih
-         /I/fJnUB8fTtYpsiSfOPLVgDog2nrtRdopCscBBsKSQwe25bJ8cZfEQraB6zztgw8tX6
-         sQ+LYcstnPbqv8M2VciMAK9u+vAaeMKR1E0xMbFqwHkGEeAwQjtzcmwfJqR4nmFJjV4q
-         mW797vChCz2JllpgIwUBAvTuhCWGhgRVqaV+MttyuG+HpdJWtrMadn2ee9afTUDwd/QW
-         X/Aw==
-X-Gm-Message-State: AC+VfDznuvzS2lBDEL3EzpdB3JmNINhWWtobmMegcm8CQ6zIJQg2Tnul
-        j26XlrXR1RZHgFNfvJC47wu6RA==
-X-Google-Smtp-Source: ACHHUZ5wWAGNXmRoeycTsyYGzAOS1ytBUa6At8n0AYB/K3UfJLVFRhbZwiqycV6JUKARY/EvMGybsA==
-X-Received: by 2002:a7b:c40a:0:b0:3f1:72fb:461a with SMTP id k10-20020a7bc40a000000b003f172fb461amr86103wmi.2.1684939869319;
-        Wed, 24 May 2023 07:51:09 -0700 (PDT)
-Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id x26-20020a05600c21da00b003f423f5b659sm2675744wmj.10.2023.05.24.07.51.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 May 2023 07:51:08 -0700 (PDT)
-Message-ID: <e13c2670-4877-7e75-aaa2-623f4ed927c0@baylibre.com>
-Date:   Wed, 24 May 2023 16:51:07 +0200
+        with ESMTP id S236019AbjEXOxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 10:53:23 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE9DE4A;
+        Wed, 24 May 2023 07:52:58 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34OEoQqZ018693;
+        Wed, 24 May 2023 14:52:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=s2tzbHZ6tRclonQlCeSSqG2fAfKn4T3Y0xn3fTKkLsM=;
+ b=NT0QXyeEmJT4pHrrFMJeErjAz0tED12dYEYGTe0BY7SBUh2lGeZxSnjsAXecLpxpXZLC
+ iS+YS8ZDRDEvutaAqHMnoGOL5/ZWx1jhkQzG9cnsSaskOsGxYRCX1UfmX680b82+Qo74
+ 8OYHbgMq5XjhSLKeKz5yjMsINRfbRKnS4kAIjouxCmG23nBZx9AoTUATr1nX6ZLWRb/i
+ yyt3tXQKGAm1KLRfRvzQT8vI5KdqoZKkrG6Id49+5c+RId+gfhHXJTu913MXxEQ/Omye
+ Rmy7r+h6u+zms3jumq6qoy2q2uFYe33Ldh+rimFpQTK8TeRutOIXl/p2iIMGFMC4PXUJ sg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qs4dfa0ht-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 24 May 2023 14:52:27 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34OEqPf3010379
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 24 May 2023 14:52:25 GMT
+Received: from hu-jkona-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 24 May 2023 07:52:20 -0700
+From:   Jagadeesh Kona <quic_jkona@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        "Ajit Pandey" <quic_ajipan@quicinc.com>
+Subject: [PATCH V2 0/4] Add Video Clock Controller driver for SM8550
+Date:   Wed, 24 May 2023 20:21:59 +0530
+Message-ID: <20230524145203.13153-1-quic_jkona@quicinc.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 5/7] ASoC: soc-dapm.c: clean up debugfs for freed
- widget
-Content-Language: en-US
-To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
-        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com
-Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230523021933.3422-1-trevor.wu@mediatek.com>
- <20230523021933.3422-6-trevor.wu@mediatek.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230523021933.3422-6-trevor.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: lw8Ic0BAGVl-lD1nbPtQOa7KSvuruSo6
+X-Proofpoint-ORIG-GUID: lw8Ic0BAGVl-lD1nbPtQOa7KSvuruSo6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-24_10,2023-05-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=783
+ suspectscore=0 impostorscore=0 phishscore=0 malwarescore=0 spamscore=0
+ lowpriorityscore=0 adultscore=0 bulkscore=0 priorityscore=1501
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305240121
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,22 +86,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2023 04:19, Trevor Wu wrote:
-> When a widget is added to dapm via snd_soc_dapm_new_widgets,
-> dapm_debugfs_add_widget is also called to create a corresponding debugfs
-> file. However, when a widget is freed by snd_soc_dapm_free_widget, the
-> corresponding debugfs is not cleared. As a result, the freed widget is
-> still seen in the dapm directory.
-> 
-> This patch adds dapm_debugfs_free_widget to free the debugfs of a
-> specified widget, and it's called at snd_soc_dapm_free_widget to clean
-> up the debugfs for freed widget.
-> 
-> Signed-off-by: Trevor Wu<trevor.wu@mediatek.com>
+Add bindings, driver and DT node for video clock controller on SM8550.
+Also, add support to configure PLL_TEST_CTL_U2 register for ole pll.
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+Depends on [1] for SM8450 videocc YAML file
+[1] https://patchwork.kernel.org/project/linux-clk/list/?series=750683
+
+Jagadeesh Kona (4):
+  clk: qcom: clk-alpha-pll: Add support to configure PLL_TEST_CTL_U2
+  dt-bindings: clock: qcom: Add SM8550 video clock controller
+  clk: qcom: videocc-sm8550: Add video clock controller driver for
+    SM8550
+  arm64: dts: qcom: sm8550: Add video clock controller
+
+ .../bindings/clock/qcom,sm8450-videocc.yaml   |   4 +-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi          |  13 +
+ drivers/clk/qcom/Kconfig                      |  10 +
+ drivers/clk/qcom/Makefile                     |   1 +
+ drivers/clk/qcom/clk-alpha-pll.c              |   2 +
+ drivers/clk/qcom/clk-alpha-pll.h              |   1 +
+ drivers/clk/qcom/videocc-sm8550.c             | 470 ++++++++++++++++++
+ 7 files changed, 500 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/clk/qcom/videocc-sm8550.c
 
 -- 
-Regards,
-Alexandre
+2.40.1
 
