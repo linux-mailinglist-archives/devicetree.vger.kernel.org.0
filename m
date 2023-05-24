@@ -2,117 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF62710035
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 23:54:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 671CA7100FA
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 00:30:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229885AbjEXVy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 17:54:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39410 "EHLO
+        id S233996AbjEXWaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 18:30:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229757AbjEXVy2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 17:54:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCF9095;
-        Wed, 24 May 2023 14:54:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6116260B20;
-        Wed, 24 May 2023 21:54:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5168EC433D2;
-        Wed, 24 May 2023 21:54:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684965266;
-        bh=F88GJ6vAwpF7GaNRxrTGbI4XIS1F/cwKB4bP/M/sqPg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nm34SmeRRRuboq2DXC8KAsXOk5fBetJUa8L40dIfrTBG6JNZVc177pxEFd3g/4lHt
-         W3H3KUpBSHEbX7a7lS/4gqi+NcoHgYZUgSexLbljemKvn6YyHGyKgCCzfsidsd90ma
-         uVVsHKKP/+MC9lwtJVvLr+jUjrmZu9yUhcaa5IlchON1wWrJJJUNk9g7D3k9W8mHKa
-         crn0j3rSqC4t4CzXdoI24ItziojE5XpUaIE1M4Ezi4U8NjNMIGwnuGo8N2LlgmRGOh
-         k1b2ImKC7HtZkH2nxEgu4S6nHyh8pKmuXqeDqna33zX325Hj0FDqQbPNTk7cfqQno5
-         9W7o6/PPQhDAQ==
-Date:   Wed, 24 May 2023 22:54:19 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Justin Chen <justin.chen@broadcom.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com, justinpopo6@gmail.com,
-        f.fainelli@gmail.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, opendmb@gmail.com,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        richardcochran@gmail.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com, simon.horman@corigine.com,
-        Florian Fainelli <florian.fainelli@broadcom.com>
-Subject: Re: [PATCH net-next v4 2/6] dt-bindings: net: Brcm ASP 2.0 Ethernet
- controller
-Message-ID: <20230524-fountain-icing-eceec8fe6c96@spud>
-References: <1684878827-40672-1-git-send-email-justin.chen@broadcom.com>
- <1684878827-40672-3-git-send-email-justin.chen@broadcom.com>
- <20230523-unfailing-twisting-9cb092b14f6f@spud>
- <CALSSxFYMm5NYw41ERr1Ah-bejDgf9EdJd1dGNL9_sKVVmrpg3g@mail.gmail.com>
- <20230524-scientist-enviable-7bfff99431cc@wendy>
- <20230524-resample-dingbat-8a9f09ba76a5@wendy>
- <CALSSxFabgO-YTQ-nzki6h+Y=n3SfzgC4giJk8BySgCErK6zrmw@mail.gmail.com>
+        with ESMTP id S238646AbjEXWaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 18:30:05 -0400
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28E6AE5D
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 15:29:16 -0700 (PDT)
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-5558b72fbf9so194377eaf.1
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 15:29:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684967187; x=1687559187;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bI9HXEZgah/BaWje7f+Ya1E/uZx7wsKYhrzu2aOyLRA=;
+        b=BarIrE+pG/kifLjFQyuFcFYMq1TEodrf9D+8dlz5rPi544qkDLbQDl/g/gpaTOzpTW
+         lkpEQL2ulajTVKC/trYFSSfjz6gViM0G0pxSpBlqT1rfTGBI2smoINnqIVGI8Z9BjOCh
+         ATVfmZIAn7/eJhAkkgImid8G6AQre2Gkmz43OE3jpoezldky6I64BqSZsFUVwQJKPkCs
+         JadEfXxrvm0ZuBTSgWGwexPaAMTWn/mS3amhJlhgDSPqeK/AogsxiJpqnEfoB492ANAV
+         UQGQetELxhOhrRO8vlcvYUW4x+c2f92ohPTzY/jNWWvUkI/xUHUQbKFH4/XIiHEiYkhk
+         AIFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684967187; x=1687559187;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bI9HXEZgah/BaWje7f+Ya1E/uZx7wsKYhrzu2aOyLRA=;
+        b=bgnUZBqfxqMUXwe39jSlhqxGX30DpAomkhSBOQ+O5yjCwhh/NlFCMNng7H+9/pXIcI
+         bDJR9YNAMREcxVmptyEfzaOapeGsx3P5GlMkaRoDSjgNRnjPKys0+zMZf7P9QFA9d1TJ
+         lyKFZ4UmX5EcJZF3DNgJHUZO1pCy5WUUaOsWFV/HlqlGNbUvJ13GdMS09K+EklUitd0q
+         S8SL2JlGrDs/viIcVaFM4pc8BZ/6lxJSNiq1AeZIZwzaXyhdRwqGduaH1pwOVcF/MKru
+         4rAPROY6mt8IIPhNpcrtIAtKf/Jst8sFJMPL0plY0sqSwJ+szlAw+Nn6LdWhqTO7aLsO
+         z8BQ==
+X-Gm-Message-State: AC+VfDylhKooVcnYDSEJnRy7QPqT3vSDCe6MNC5pFR1kYPUx/PNJETdg
+        qaB62SdoEbUBteHMpl1XgRFk4HN8ngM=
+X-Google-Smtp-Source: ACHHUZ6ymjlDJEOkHWJmHmp0/4QWyJpufHlgmb1yePFXLCTEVeJIUp80WkWKoXO1eBimAXTtVzuYow==
+X-Received: by 2002:a05:6870:f5a0:b0:171:a749:bc0c with SMTP id eh32-20020a056870f5a000b00171a749bc0cmr1986046oab.3.1684967187509;
+        Wed, 24 May 2023 15:26:27 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:4331:751b:6032:b5d])
+        by smtp.gmail.com with ESMTPSA id x131-20020a4a4189000000b0055210b1a91csm5449968ooa.3.2023.05.24.15.26.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 May 2023 15:26:26 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        inux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] ARM dts: imx6ull-phytec-tauri: Remove invalid property
+Date:   Wed, 24 May 2023 19:26:11 -0300
+Message-Id: <20230524222611.388858-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CALSSxFabgO-YTQ-nzki6h+Y=n3SfzgC4giJk8BySgCErK6zrmw@mail.gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 24, 2023 at 02:47:59PM -0700, Justin Chen wrote:
-> On Tue, May 23, 2023 at 11:56=E2=80=AFPM Conor Dooley <conor.dooley@micro=
-chip.com> wrote:
+From: Fabio Estevam <festevam@denx.de>
 
-> Gotcha. I got something like this now.
->=20
->   compatible:
->     oneOf:
->       - items:
->           - enum:
->               - brcm,bcm74165-asp
->           - const: brcm,asp-v2.1
->       - items:
->           - enum:
->               - brcm,bcm72165-asp
->           - const: brcm,asp-v2.0
+The 'rs485-rts-active-high' property is not a valid property and is not
+documented anywhere.
 
-Yes, this is what I had in mind.
+Remove it to fix the following DT schema warning:
 
-> Apologies, still getting used to this yaml stuff. Starting to make a
-> bit more sense to me now.
+serial@21f0000: Unevaluated properties are not allowed ('rs485-rts-active-high' was unexpected)
 
-No worries.
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-> > > valid fallback for "brcm,asp-v2.1"?
-> > > The oneOf: also becomes redundant since you only have one items:.
-> > >
-> > > > Will submit a v5 tomorrow.
-> > >
-> > > BTW, when you do, could you use the address listed in MAINTAINERS rat=
-her
-> > > than the one you used for this version?
-> > >
-> I changed the address listed in MAINTAINERS from the previous versions
-> of this patchset. The current version should match the address that
-> this patch set was sent from. Looks like I forgot to add a changelog
-> for that in v4.
+diff --git a/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi b/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
+index 5464a52a1f94..ea627638e40c 100644
+--- a/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
++++ b/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
+@@ -260,7 +260,6 @@ &uart4 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_uart4>;
+ 	rts-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
+-	rs485-rts-active-high;
+ 	linux,rs485-enabled-at-boot-time;
+ 	status = "okay";
+ };
+-- 
+2.34.1
 
-Hmm, I must not have been clear. You sent it to <conor@kernel.org> and I
-was hoping that you would use <conor+dt@kernel.org> instead so that you
-end up hitting the right mail filters :) It's not a problem, I was just
-added to it in -rc1 so get_maintainer.pl probably didn't spit my name
-out for your original revision.
-
-Thanks,
-Conor.
