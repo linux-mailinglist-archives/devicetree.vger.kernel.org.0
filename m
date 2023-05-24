@@ -2,92 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9737670FC74
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 19:18:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B22070FCA7
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 19:29:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229799AbjEXRSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 13:18:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42142 "EHLO
+        id S232979AbjEXR3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 13:29:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229521AbjEXRS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 13:18:29 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA2293
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:18:27 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f655a8135bso5082775e9.1
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:18:27 -0700 (PDT)
+        with ESMTP id S232974AbjEXR3f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 13:29:35 -0400
+Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67545139
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:29:32 -0700 (PDT)
+Received: by mail-il1-x12d.google.com with SMTP id e9e14a558f8ab-3382449dd00so7969275ab.3
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:29:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684948706; x=1687540706;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1684949371; x=1687541371;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=DL0229BoBpNJOI+Nzjlz2oCun7fW2ym7znDfwinMLQM=;
-        b=jj0MwJzaDakiH6V2M55C66XVl7NKA/xqDkbt9zy8hCStHwIC07N6BsrjPdXP5v/oz3
-         yyEjZTqPdYj1Hd1mh7Z2t+8ZRUmwNnEwmEtXsn7Xhbau9CKn4Bv7ID1J2sSdfPpv/9q1
-         XqVNWUrY9dRw4meJnYIURwZRSAWf91CnFX71DqXYLOv71cRiBeOZ24doCwOmrLc1xbr3
-         EweDp3dVMlVDixurzRWNZYFox3mtuHH1o1/1KueqwZzfcsgUdn8ZfTsfi6V8khLGv6fo
-         +qiLB3uBSHIPkqkZXw2Py8TFkrlx75CbG+crEAkMJY7WAcV8Y0E0a8GBYMmRn8afGhY6
-         b2Xw==
+        bh=yq6BLiBB15ZpThHz2GQJH12upVOih5oQeiwfZRvJZIs=;
+        b=R66wdfHGemyJhnbQ5WJcQ0WesBJVCHfuBOnmgTXddgC0BpVKNAxW/F2VmF+wjrvTq/
+         /730EURT7gmJWw46PXxRPGJen+wP6t/SNl+FrV452r0ceSc0Oaxu6ffyzm22nQjCCpV7
+         kVA4iEzJ1O+Jnz5WteD2IppvbAKYFfa4G3yXU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684948706; x=1687540706;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=DL0229BoBpNJOI+Nzjlz2oCun7fW2ym7znDfwinMLQM=;
-        b=dtprThYOModYd0ZQlgLJEGb2HMByfXB42VfebMAPhqXSfcE4RCSMvB8s0eYIBAP8n9
-         UcVguqO3QKKzac+xCSkh5kyrOJJZNfSwGNLMkJ1YE4uRdN76Sj66mvHYp10qP0rkGrWB
-         F4eKm2DpqCGS2INcUKc1xc4UPRD5SMoL13R38Dq3oY8a542xmmrudZCM4rbCWvx+qDEZ
-         NoBfo9KdIAY24pJYmZGw1N8yot/ZzgyXWAvoXoD0cnCc0a5pXdwpr+Ho4YCrOkId1Mrf
-         eqZxUhoQLu48/5J7qohP31ImoSvQbk7ikf7l0ON+rJB61d3w9bOZIeeP4bHfROHdg9UM
-         Miag==
-X-Gm-Message-State: AC+VfDy4amakFCUMZ0a6WkadIrhq4NAqV6O+xMm5PEWScVSVgC+PbNAc
-        qHraOG/5whP8QFhp+aBNqezQuA==
-X-Google-Smtp-Source: ACHHUZ7EtdSlJtb5r5XsSMh9tkQ/f0DDFMNu9ia48hiYqe6yWGQPoYuj/WNNHA1F/l+o3arN16XDbA==
-X-Received: by 2002:a05:600c:3783:b0:3f6:3486:1396 with SMTP id o3-20020a05600c378300b003f634861396mr346875wmr.33.1684948706082;
-        Wed, 24 May 2023 10:18:26 -0700 (PDT)
-Received: from zen.linaroharston ([85.9.250.243])
-        by smtp.gmail.com with ESMTPSA id i2-20020a05600c290200b003eddc6aa5fasm2917304wmd.39.2023.05.24.10.18.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 May 2023 10:18:25 -0700 (PDT)
-Received: from zen (localhost [127.0.0.1])
-        by zen.linaroharston (Postfix) with ESMTP id 456A41FFBB;
-        Wed, 24 May 2023 18:18:25 +0100 (BST)
-References: <20230509204801.2824351-1-quic_eberman@quicinc.com>
-User-agent: mu4e 1.11.6; emacs 29.0.91
-From:   Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        d=1e100.net; s=20221208; t=1684949371; x=1687541371;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yq6BLiBB15ZpThHz2GQJH12upVOih5oQeiwfZRvJZIs=;
+        b=FjtL9jYlZgvEONVE4HHIDeNoZguS+ByQxYOOb6m45ayvothL4oQS4EAdfM305obcIA
+         1bjQe3FEmOXCjELI+kCDx39YGcLMjpIEOMI/TvniZ20XsuJu7aYVwZS4prTzYxVxkD52
+         xy+Ej7OI4fdh//d2zojKj3ZqOTtW/8xPkWwGeJWgLMQMegOWh6k5lDsDsY3xxWuTMVXw
+         T61HaQqCxE6w/926pwUIKPw+pfi7L+JDrrl41R0vFDcsmD67RUt5b3A2RKC/QuU8MAAg
+         GprMXtjiu9Fk2RWXuzH0CmRQaDvOyiHvNHOttSDio+2SEXcccr+aXoW1FGRhtvLhXOTy
+         rYww==
+X-Gm-Message-State: AC+VfDytBM8tCsvbRUkOqrBpfODvWw0CTVLG1GpADxkySGEOZeOojRX5
+        /ILfS3pxN1vcZxPG426bF6oi6TOMS6SAouyNtfY=
+X-Google-Smtp-Source: ACHHUZ4frqR7iq5uN8nCEI2cfKOTQ02r8+HQ31KZfR/qf5U8L7O9yo+R6wAPQGGlkNwfdIFHdQ20zg==
+X-Received: by 2002:a92:db47:0:b0:335:70ad:4695 with SMTP id w7-20020a92db47000000b0033570ad4695mr13671963ilq.18.1684949371870;
+        Wed, 24 May 2023 10:29:31 -0700 (PDT)
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com. [209.85.166.176])
+        by smtp.gmail.com with ESMTPSA id f33-20020a0284a4000000b0041a9cf6651asm3155314jai.138.2023.05.24.10.29.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 May 2023 10:29:31 -0700 (PDT)
+Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-33164ec77ccso9625ab.0
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:29:31 -0700 (PDT)
+X-Received: by 2002:a05:6e02:1b09:b0:335:a48:f668 with SMTP id
+ i9-20020a056e021b0900b003350a48f668mr199716ilv.15.1684949370785; Wed, 24 May
+ 2023 10:29:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230523193017.4109557-1-dianders@chromium.org> <20230523122802.7.Ib1a98309c455cd7e26b931c69993d4fba33bbe15@changeid>
+In-Reply-To: <20230523122802.7.Ib1a98309c455cd7e26b931c69993d4fba33bbe15@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 24 May 2023 10:29:13 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Ucn7BeWWGOOEX0ho7yH31VF-w7U60KFB8qSn4L1xn3fw@mail.gmail.com>
+Message-ID: <CAD=FV=Ucn7BeWWGOOEX0ho7yH31VF-w7U60KFB8qSn4L1xn3fw@mail.gmail.com>
+Subject: Re: [PATCH 7/9] HID: i2c-hid: Support being a panel follower
+To:     Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v13 00/24] Drivers for Gunyah hypervisor
-Date:   Wed, 24 May 2023 18:13:16 +0100
-In-reply-to: <20230509204801.2824351-1-quic_eberman@quicinc.com>
-Message-ID: <87cz2pveam.fsf@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     dri-devel@lists.freedesktop.org, linux-input@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>, hsinyi@google.com,
+        devicetree@vger.kernel.org,
+        yangcong5@huaqin.corp-partner.google.com,
+        linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm-msm@vger.kernel.org, cros-qcom-dts-watchers@chromium.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,76 +90,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-Elliot Berman <quic_eberman@quicinc.com> writes:
-
-> Gunyah is a Type-1 hypervisor independent of any
-> high-level OS kernel, and runs in a higher CPU privilege level. It does
-> not depend on any lower-privileged OS kernel/code for its core
-> functionality. This increases its security and can support a much smaller
-> trusted computing base than a Type-2 hypervisor.
+On Tue, May 23, 2023 at 12:31=E2=80=AFPM Douglas Anderson <dianders@chromiu=
+m.org> wrote:
 >
-<snip>
+> As talked about in the patch ("drm/panel: Add a way for other devices
+> to follow panel state"), we really want to keep the power states of a
+> touchscreen and the panel it's attached to in sync with each other. In
+> that spirit, add support to i2c-hid to be a panel follower. This will
+> let the i2c-hid driver get informed when the panel is powered on and
+> off. From there we can match the i2c-hid device's power state to that
+> of the panel.
 >
-> The series relies on two other patches posted separately:
->  - https://lore.kernel.org/all/20230213181832.3489174-1-quic_eberman@quic=
-inc.com/
->  -
-> https://lore.kernel.org/all/20230213232537.2040976-2-quic_eberman@quicinc=
-.com/
-
-I couldn't find this one, but is this what it should have been:
-
-  b4 am -S -t 20230213232537.2040976-1-quic_eberman@quicinc.com
-  Grabbing thread from lore.kernel.org/all/20230213232537.2040976-1-quic_eb=
-erman%40quicinc.com/t.mbox.gz
-  Analyzing 9 messages in the thread
-  Checking attestation on all messages, may take a moment...
-  ---
-    =E2=9C=93 [PATCH 1/3] mailbox: Allow direct registration to a channel
-      + Tested-by: Sudeep Holla <sudeep.holla@arm.com>
-    =E2=9C=93 [PATCH 2/3] mailbox: omap: Use mbox_bind_client
-      + Tested-by: Sudeep Holla <sudeep.holla@arm.com>
-    =E2=9C=93 [PATCH 3/3] mailbox: pcc: Use mbox_bind_client
-      + Tested-by: Sudeep Holla <sudeep.holla@arm.com>
-    ---
-    =E2=9C=93 Signed: DKIM/quicinc.com
-  ---
-  Total patches: 3
-  ---
-  Cover: ./20230213_quic_eberman_mailbox_allow_direct_registration_to_a_cha=
-nnel.cover
-   Link: https://lore.kernel.org/r/20230213232537.2040976-1-quic_eberman@qu=
-icinc.com
-   Base: base-commit 09e41676e35ab06e4bce8870ea3bf1f191c3cb90 not known, ig=
-noring
-   Base: applies clean to current tree
-         git checkout -b 20230213_quic_eberman_quicinc_com HEAD
-         git am ./20230213_quic_eberman_mailbox_allow_direct_registration_t=
-o_a_channel.mbx
-  =F0=9F=95=9918:10:45 alex@zen:linux.git  on =EE=82=A0 review/gunyah-v12 [=
-$?]=20
-  =E2=9E=9C  git am 20230213_quic_eberman_mailbox_allow_direct_registration=
-_to_a_channel.mbx=20
-  Applying: mailbox: Allow direct registration to a channel
-  Applying: mailbox: omap: Use mbox_bind_client
-  Applying: mailbox: pcc: Use mbox_bind_client
-
-
-<snip>
+> NOTE: this patch specifically _doesn't_ use pm_runtime to keep track
+> of / manage the power state of the i2c-hid device, even though my
+> first instinct said that would be the way to go. Specific problems
+> with using pm_runtime():
+> * The initial power up couldn't happen in a runtime resume function
+>   since it create sub-devices and, apparently, that's not good to do
+>   in your resume function.
+> * Managing our power state with pm_runtime meant fighting to make the
+>   right thing happen at system suspend to prevent the system from
+>   trying to resume us only to suspend us again. While this might be
+>   able to be solved, it added complexity.
+> Overall the code without pm_runtime() ended up being smaller and
+> easier to understand.
 >
-> Elliot Berman (24):
-<snip>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
+>
+>  drivers/hid/i2c-hid/i2c-hid-core.c | 82 +++++++++++++++++++++++++++++-
+>  1 file changed, 81 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/hid/i2c-hid/i2c-hid-core.c b/drivers/hid/i2c-hid/i2c=
+-hid-core.c
+> index 34c0d98b4976..f1bb89377e8d 100644
+> --- a/drivers/hid/i2c-hid/i2c-hid-core.c
+> +++ b/drivers/hid/i2c-hid/i2c-hid-core.c
+> @@ -38,6 +38,8 @@
+>  #include <linux/mutex.h>
+>  #include <asm/unaligned.h>
+>
+> +#include <drm/drm_panel.h>
+> +
+>  #include "../hid-ids.h"
+>  #include "i2c-hid.h"
+>
+> @@ -107,6 +109,8 @@ struct i2c_hid {
+>         struct mutex            reset_lock;
+>
+>         struct i2chid_ops       *ops;
+> +       struct drm_panel_follower panel_follower;
+> +       bool                    is_panel_follower;
+>  };
+>
+>  static const struct i2c_hid_quirks {
+> @@ -1058,6 +1062,34 @@ int i2c_hid_core_initial_power_up(struct i2c_hid *=
+ihid)
+>         return ret;
+>  }
+>
+> +int i2c_hid_core_panel_prepared(struct drm_panel_follower *follower)
 
->   mailbox: Add Gunyah message queue mailbox
+As pointed out by the kernel test robot, I clearly missed making
+several functions "static" in this patch series. :( I'll fix that in
+v2, but for now I'll hold off sending v2 to wait for additional
+feedback.
 
-This patch touches a file that isn't in mainline which makes me wonder
-if I've missed another pre-requisite patch?
-
-<snip>
->  Documentation/virt/gunyah/message-queue.rst   |   8 +
-<snip>
-
---=20
-Alex Benn=C3=A9e
-Virtualisation Tech Lead @ Linaro
+-Doug
