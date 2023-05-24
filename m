@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03F6270F75C
+	by mail.lfdr.de (Postfix) with ESMTP id 5D5E270F75D
 	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 15:11:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229632AbjEXNLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 09:11:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48936 "EHLO
+        id S231435AbjEXNLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 09:11:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235935AbjEXNK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 09:10:58 -0400
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5142DE44
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 06:10:35 -0700 (PDT)
-Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-19ecaeaed38so21918fac.1
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 06:10:35 -0700 (PDT)
+        with ESMTP id S235954AbjEXNK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 09:10:59 -0400
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F36B6
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 06:10:37 -0700 (PDT)
+Received: by mail-ot1-x32e.google.com with SMTP id 46e09a7af769-6ab1b3aabc9so83925a34.1
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 06:10:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684933834; x=1687525834;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zr0soab68gxeDgA4gOvBbbhgnDO2bWdpTNiV8OsbIMo=;
-        b=E41CaFj/JMiw8LOeo1hvZI/rmxN7/0V3lk0gBm8A3VKF4HG8Zu/ViN33MX3W/BznKc
-         dDwyly1GIfyPQCZUxgXaRbRbOKb4A23AYF7AZ56zjEc0gh40uiVxssY3KdxUeyYSWpTN
-         VJwp63l+O1uRWE0wpGJebxkCv6OU0eto+vuSjjhOlrYFkBGtdq+bSxmmQ5BGx2axpQX7
-         v31CTyGVYZbk1KvMiejmIy2Vos7AYIIUDw4Sbad2CdSqk9jynr/gPbwqYCxxSg2/JdEr
-         hs8bl0rUmu1IXG4Av3hAYzsUgxmP3XFiutL5l0DmmtI85XBVEVouT3VNskabmo8uExwB
-         6+kA==
+        d=gmail.com; s=20221208; t=1684933837; x=1687525837;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JjZvqnGEs3KHzG3W+xiaFkKbjTRgtnYiwVrTdGHUu4k=;
+        b=C1IMYE9qlisGDdoc/jOOlxIRQlTU42Jw7H6J1DAry2yKXZtUV7k4TcL0Ki1//Ceddn
+         Q4V/cS4wO0ZUTJ/mNY0nnDAL6y9lxX2mf+1YrbRmGsPT0ufVNv8ETajtTLrAGY8LaMev
+         FCzVjg1xud0bYUu5SFucy3jP4EmEv5hYCTO8ErjYf93BN4IpFrCm/KoTsSd5MvmLN5aE
+         VtfZC8v/uRj2iBZRet3bmYGidzTPdE6T8ccZ1qGutgsbpBxcKg31NM1j46QPAfkOzvdA
+         mb4JYHCDDybFF3qYuLCff2T7J/j+ySp18J+u60EzlKy6NEiH30ZJuSknBOjb51SVs2N7
+         S9WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684933834; x=1687525834;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Zr0soab68gxeDgA4gOvBbbhgnDO2bWdpTNiV8OsbIMo=;
-        b=Vm+2Sga8Xx0eerfmCuaHJl2ES4E82riblWIHufZlYWyKrjmGCSUy8PsQyG02oO/IGB
-         BKQcOXlauJJMUh01LVipaKPyiDLigF4OV650nww+bu4l4Xkvz90qAisEqVyHE1ef2WJL
-         +3CE6ZbG+Ib0/P7j43k5ljLsRUHsF6Gvqi+jkZx8MJrMCrYn0Du0IcvEukoCtrMUzxvM
-         JrDrEjevLiWI2KExfMr0A84Z3Jv+vL+RCYILq9tCCPpf7ADg3J+PGzSVtbpHVykEQ+9e
-         lGvP9x46cX5ceB3ib7dnzMd2hNdtBHzwVCpUQbD6z8At2sErpQtxnk0EmvqyWy+gFoC6
-         BZsQ==
-X-Gm-Message-State: AC+VfDyI+gWu7lo37cWq/d74RETYpa60+gGZq6Ed1hx/c/C081do3S6O
-        XQIGwfKe6hFdmknpFURymbfLIi3aMTQ=
-X-Google-Smtp-Source: ACHHUZ7X/RtQOvfx/IHDd/RKVcYyl6gIc4ECTYbXdsYhO78IlFCgPDOnv3ipcxrL5Dt26MRgM/eN3g==
-X-Received: by 2002:a05:6871:14e:b0:192:7328:d with SMTP id z14-20020a056871014e00b001927328000dmr10481245oab.4.1684933834490;
-        Wed, 24 May 2023 06:10:34 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1684933837; x=1687525837;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JjZvqnGEs3KHzG3W+xiaFkKbjTRgtnYiwVrTdGHUu4k=;
+        b=O7XRDUShqRm8a5jYmdzFaMqymJArtwGCyFTfyn4oyagr6hyIKjkU8h2mOFtoCuLHMt
+         qyXRpfCL+e88h4HIWsNtYbaucztP7/TOLQzmX8c+qdvtfD9VLXpNR+7vNgIX/I5YSZGP
+         v9Yd9wZhLQZpa7VeZkE8v8DuBaelC3D8ioFxUO5/BS9nBtjHgj/48gkA/LkQ23itOeQe
+         XpkaqL+no+PDdRimBvQfLGr6Nfy0YioHiS6S4kedGE1fRmQ4KkHx+TSfwL+fJT7fokHu
+         l7bIZ4KtHfRsXwvZY4i4Z7pYYIAdPa2Cr1OsdVK6kFVU0ozEm5+DVT1whM2WFRbjPAia
+         n2gQ==
+X-Gm-Message-State: AC+VfDw5KXCbCRqdas45X/gqQFqtck+ZXRguwNHk3zLeFDbHWhCCvckd
+        dsFtM9FfnzM9cK90EYriGd8=
+X-Google-Smtp-Source: ACHHUZ5EK3y+qBMfuvmXrevYgFFEbUh+a6NmY/vdTqBD1thAb7MDDVX3SXm7+aDVckA2jOPR+1eY/A==
+X-Received: by 2002:a05:6830:6209:b0:6af:78e9:4d88 with SMTP id cd9-20020a056830620900b006af78e94d88mr6184710otb.3.1684933837212;
+        Wed, 24 May 2023 06:10:37 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:14ab:657f:c6e7:b30b])
-        by smtp.gmail.com with ESMTPSA id v21-20020a05683011d500b006ab1830d483sm3234546otq.77.2023.05.24.06.10.32
+        by smtp.gmail.com with ESMTPSA id v21-20020a05683011d500b006ab1830d483sm3234546otq.77.2023.05.24.06.10.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 May 2023 06:10:34 -0700 (PDT)
+        Wed, 24 May 2023 06:10:36 -0700 (PDT)
 From:   Fabio Estevam <festevam@gmail.com>
 To:     shawnguo@kernel.org
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 1/4] ARM: dts: imx7d-smegw01: Remove unneeded #address-cells/#size-cells
-Date:   Wed, 24 May 2023 10:10:05 -0300
-Message-Id: <20230524131008.161193-1-festevam@gmail.com>
+Subject: [PATCH 2/4] ARM: dts: imx7d-smegw01: Pass 'gpr' to the pinctrl groups
+Date:   Wed, 24 May 2023 10:10:06 -0300
+Message-Id: <20230524131008.161193-2-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230524131008.161193-1-festevam@gmail.com>
+References: <20230524131008.161193-1-festevam@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,30 +75,53 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Fabio Estevam <festevam@denx.de>
 
-Remove the unneeded #address-cells/#size-cells from sram@0 to fix
-the following 'make CHECK_DTBS=y imx7d-smegw01.dtb' warning:
+Pass 'gpr' to the pinctrl groups to fix the following
+'make CHECK_DTBS=y imx7d-smegw01.dtb' warning:
 
-sram@0: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
-From schema: Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+pinctrl@30330000: 'rfkillrp', 'usbotg1', 'usbotg1-pwr', 'usbotg1-pwr-gpio' do not match any of the regexes: 'grp$', 'pinctrl-[0-9]+'
+From schema: Documentation/devicetree/bindings/pinctrl/fsl,imx7d-pinctrl.yaml
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- arch/arm/boot/dts/imx7d-smegw01.dts | 2 --
- 1 file changed, 2 deletions(-)
+ arch/arm/boot/dts/imx7d-smegw01.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/arm/boot/dts/imx7d-smegw01.dts b/arch/arm/boot/dts/imx7d-smegw01.dts
-index c0f00f5db11e..76bbc2ab126e 100644
+index 76bbc2ab126e..829a3cbf8ad3 100644
 --- a/arch/arm/boot/dts/imx7d-smegw01.dts
 +++ b/arch/arm/boot/dts/imx7d-smegw01.dts
-@@ -97,8 +97,6 @@ &ecspi1 {
- 	sram@0 {
- 		compatible = "microchip,48l640";
- 		reg = <0>;
--		#address-cells = <1>;
--		#size-cells = <1>;
- 		spi-max-frequency = <16000000>;
+@@ -327,7 +327,7 @@ MX7D_PAD_SAI2_RX_DATA__GPIO6_IO21	0x17059
+ 		>;
  	};
- };
+ 
+-	pinctrl_rfkill: rfkillrp {
++	pinctrl_rfkill: rfkillgrp {
+ 		fsl,pins = <
+ 			MX7D_PAD_EPDC_DATA11__GPIO2_IO11	0x17059
+ 		>;
+@@ -353,19 +353,19 @@ MX7D_PAD_UART3_RX_DATA__UART3_DCE_RX	0x74
+ 		>;
+ 	};
+ 
+-	pinctrl_usbotg1_lpsr: usbotg1 {
++	pinctrl_usbotg1_lpsr: usbotg1grp {
+ 		fsl,pins = <
+ 			MX7D_PAD_LPSR_GPIO1_IO04__USB_OTG1_OC	0x04
+ 		>;
+ 	};
+ 
+-	pinctrl_usbotg1_pwr: usbotg1-pwr {
++	pinctrl_usbotg1_pwr: usbotg1-pwrgrp {
+ 		fsl,pins = <
+ 			MX7D_PAD_LPSR_GPIO1_IO05__USB_OTG1_PWR	0x04
+ 		>;
+ 	};
+ 
+-	pinctrl_usbotg1_pwr_gpio: usbotg1-pwr-gpio {
++	pinctrl_usbotg1_pwr_gpio: usbotg1-pwr-gpiogrp {
+ 		fsl,pins = <
+ 			MX7D_PAD_LPSR_GPIO1_IO05__GPIO1_IO5	0x04
+ 		>;
 -- 
 2.34.1
 
