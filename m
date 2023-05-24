@@ -2,222 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06564710133
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 00:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7C75710143
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 01:02:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229551AbjEXW5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 18:57:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42700 "EHLO
+        id S236883AbjEXXCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 19:02:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237284AbjEXW53 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 18:57:29 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C3B7FA
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 15:56:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1684969000;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=c2n57YKfPVwMrQwNDuZqoWvbyKlduQB03Z0HHDFLgso=;
-        b=EtCWe9dcMx+p8PKu62uHg655/GpfF1YBFy+ylbD6PJnGvhOWdHd6QiCSYJ66JnnTQmG5SR
-        vH3a8oMk3It6Q8ucD/BnAhk7Duq0teVhbfLkVWKhaJao4pN+ySzMmruhyDtt2lB+OQm6lM
-        ASAbeI9zRGz50wNpUY7ktm5QdjlwReU=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-638-mlg1lbfFPBucBHMwOv0s9A-1; Wed, 24 May 2023 18:56:39 -0400
-X-MC-Unique: mlg1lbfFPBucBHMwOv0s9A-1
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-3f3c9860201so3610751cf.0
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 15:56:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684968999; x=1687560999;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        with ESMTP id S231658AbjEXXCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 19:02:08 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F52FBB
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 16:02:03 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id 98e67ed59e1d1-253e0edc278so625642a91.3
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 16:02:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1684969323; x=1687561323;
+        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=c2n57YKfPVwMrQwNDuZqoWvbyKlduQB03Z0HHDFLgso=;
-        b=ieiKyosNXdPnfA5zABiYjPYZvizmM/5dWUzlviwfPOwvtyz3U9wKdrL54zOnIiPTei
-         8gQjDNlJ14rNLwvE/g2ItoPcObhxu1PHH2TFf90JqFMAnVWV7FnsM25jydFkeuWOz330
-         N5W2si9qaInltk99G/fM1jyzjvxQChruFHcaY7MoyGGaqRNlDWg+P6N5mOWQNGVjTL2V
-         0tb5KXIMCXCoWsuRcci/Cg8PPg9pfO/Zh/MLIfxiXybyUQDfq/ktF6849XgORE6IWquN
-         fqRuoONZbf10TbMYaFC3kUB0b7h9J6L5mOc1IBXkJ4IjgqyT5p5WcREjMNP2D7WHO0T6
-         kg3g==
-X-Gm-Message-State: AC+VfDwcMO2mmvxSeT6HO4ZuLxn1wz8F1vqU4rORv991l209UzdafknU
-        v29sNWR78VHwaTGzNXgNYExWSlyLW4+K+tltTF1ovI7P8GGXUUO0TkBFsZAnsyiOG/zLc8iv9yM
-        C3xi5oayfbqadzNQeHzQtJw==
-X-Received: by 2002:a05:622a:1812:b0:3f7:f9c6:d33a with SMTP id t18-20020a05622a181200b003f7f9c6d33amr656010qtc.51.1684968999145;
-        Wed, 24 May 2023 15:56:39 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ4CObucFQQ/UXbQ4sJujExv1d1biF4QFEW+6FEL2jpcT2X+WZhsbL2VOihUuYm6dAlnu94vPg==
-X-Received: by 2002:a05:622a:1812:b0:3f7:f9c6:d33a with SMTP id t18-20020a05622a181200b003f7f9c6d33amr655981qtc.51.1684968998843;
-        Wed, 24 May 2023 15:56:38 -0700 (PDT)
-Received: from localhost (ip98-179-76-75.ph.ph.cox.net. [98.179.76.75])
-        by smtp.gmail.com with ESMTPSA id w1-20020ac84d01000000b003f6b58b986fsm2303178qtv.41.2023.05.24.15.56.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 May 2023 15:56:38 -0700 (PDT)
-Date:   Wed, 24 May 2023 15:56:37 -0700
-From:   Jerry Snitselaar <jsnitsel@redhat.com>
-To:     Stefan Berger <stefanb@linux.ibm.com>
-Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, nayna@linux.ibm.com,
-        nasastry@in.ibm.com, mpe@ellerman.id.au,
-        Jarkko Sakkinen <jarkko@kernel.org>,
-        Jason Gunthorpe <jgg@ziepe.ca>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Nageswara R Sastry <rnsastry@linux.ibm.com>,
-        Coiby Xu <coxu@redhat.com>
-Subject: Re: [PATCH v9 2/4] tpm: of: Make of-tree specific function commonly
- available
-Message-ID: <e4dcxwp63uisirxwanjwrhzrnve45wqnxhijfp4oq274r4neco@v2btoy43ue5h>
-References: <20230418134409.177485-1-stefanb@linux.ibm.com>
- <20230418134409.177485-3-stefanb@linux.ibm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230418134409.177485-3-stefanb@linux.ibm.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        bh=fm6s1K7Ud1N1ewxYUFQAfPXZHR7BUU6HCUeaAiZsyhQ=;
+        b=W9JFoaNFCAu3UyOmCn6n42Tp5C/J+jwPRURcsP01BJhXXn0e2YH87kmzPtVa+wDeXz
+         wjEdZtB2RQ9dX41KREOfKedWMaw9fXZ6V6+Wk49oyWV0/Y+VpzLplaHSV2qMcbsVpzcH
+         BZs5gcMJ6hnID8Vx8mRggLabp/+9c24SYfHK8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684969323; x=1687561323;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fm6s1K7Ud1N1ewxYUFQAfPXZHR7BUU6HCUeaAiZsyhQ=;
+        b=hQnAuxl8HoUwnyfO+lSktZ64bdLJWM++KAEenbntyqbfT9WoQEMhDCc5TfaybJ3QlK
+         e4nVAsZxUpc7occQ3B/so4MQikN3mH5fhtsZbU8YZwTYmm9sKwyJK4B6e7n49ONIE72U
+         D8oGplsGz4tY8wra5yVIEsD649Y1q1WvPtc6cAgC6zLZHO8ShnY6fFYR/IIFKY9kAd5M
+         /aMCaHckIvzq52x5ZpoHrDpD4Q0LhVsAnDs2GXiZxszamsqvIU7ruI8Ef4RbLzTskCpP
+         0Df3U/G+EMy5oRrMfS45HRbttYFVKqz2vCO8c/rigVLT7vwi9Mw0/0sXvBJM9KmL6Hdh
+         +nvQ==
+X-Gm-Message-State: AC+VfDwUiLQhOajo63psI4FjeVG78Mvdf988KV+bviqbA6+WbLeDheKD
+        Fjro+awKnMvluW6Z25MwO4Sucg==
+X-Google-Smtp-Source: ACHHUZ5E20wX5MTYNkaH3f1zMuKCDW2OZMfabwftQmomDUaXezExGDWEHoY5nJmRgXLg3QDGpFD2Ug==
+X-Received: by 2002:a17:90a:d681:b0:255:c829:b638 with SMTP id x1-20020a17090ad68100b00255c829b638mr4797871pju.9.1684969322580;
+        Wed, 24 May 2023 16:02:02 -0700 (PDT)
+Received: from stbirv-lnx-2.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id j10-20020a17090ae60a00b00246774a9addsm1789889pjy.48.2023.05.24.16.01.59
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 24 May 2023 16:02:01 -0700 (PDT)
+From:   Justin Chen <justin.chen@broadcom.com>
+To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        bcm-kernel-feedback-list@broadcom.com
+Cc:     justin.chen@broadcom.com, florian.fainelli@broadcom.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        opendmb@gmail.com, andrew@lunn.ch, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, richardcochran@gmail.com,
+        sumit.semwal@linaro.org, christian.koenig@amd.com,
+        simon.horman@corigine.com
+Subject: [PATCH net-next v5 0/6] Brcm ASP 2.0 Ethernet Controller
+Date:   Wed, 24 May 2023 16:01:47 -0700
+Message-Id: <1684969313-35503-1-git-send-email-justin.chen@broadcom.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="000000000000f527d405fc787d51"
+X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        MIME_HEADER_CTYPE_ONLY,MIME_NO_TEXT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,T_TVD_MIME_NO_HEADERS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Apr 18, 2023 at 09:44:07AM -0400, Stefan Berger wrote:
-> Simplify tpm_read_log_of() by moving reusable parts of the code into
-> an inline function that makes it commonly available so it can be
-> used also for kexec support. Call the new of_tpm_get_sml_parameters()
-> function from the TPM Open Firmware driver.
-> 
-> Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
-> Cc: Jarkko Sakkinen <jarkko@kernel.org>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Reviewed-by: Mimi Zohar <zohar@linux.ibm.com>
-> Tested-by: Nageswara R Sastry <rnsastry@linux.ibm.com>
-> Tested-by: Coiby Xu <coxu@redhat.com>
-> Acked-by: Jarkko Sakkinen <jarkko@kernel.org>
-> 
+--000000000000f527d405fc787d51
 
-Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
+Add support for the Broadcom ASP 2.0 Ethernet controller which is first
+introduced with 72165.
 
-> ---
-> v9:
->  - Rebased on 6.3-rc7; call tpm_read_log_memory_region if -ENODEV returned
-> 
-> v7:
->  - Added original comment back into inlined function
-> 
-> v4:
->  - converted to inline function
-> ---
->  drivers/char/tpm/eventlog/of.c | 30 +++++-----------------------
->  include/linux/tpm.h            | 36 ++++++++++++++++++++++++++++++++++
->  2 files changed, 41 insertions(+), 25 deletions(-)
-> 
-> diff --git a/drivers/char/tpm/eventlog/of.c b/drivers/char/tpm/eventlog/of.c
-> index 930fe43d5daf..41688d9cbd3b 100644
-> --- a/drivers/char/tpm/eventlog/of.c
-> +++ b/drivers/char/tpm/eventlog/of.c
-> @@ -51,11 +51,10 @@ static int tpm_read_log_memory_region(struct tpm_chip *chip)
->  int tpm_read_log_of(struct tpm_chip *chip)
->  {
->  	struct device_node *np;
-> -	const u32 *sizep;
-> -	const u64 *basep;
->  	struct tpm_bios_log *log;
->  	u32 size;
->  	u64 base;
-> +	int ret;
->  
->  	log = &chip->log;
->  	if (chip->dev.parent && chip->dev.parent->of_node)
-> @@ -66,30 +65,11 @@ int tpm_read_log_of(struct tpm_chip *chip)
->  	if (of_property_read_bool(np, "powered-while-suspended"))
->  		chip->flags |= TPM_CHIP_FLAG_ALWAYS_POWERED;
->  
-> -	sizep = of_get_property(np, "linux,sml-size", NULL);
-> -	basep = of_get_property(np, "linux,sml-base", NULL);
-> -	if (sizep == NULL && basep == NULL)
-> +	ret = of_tpm_get_sml_parameters(np, &base, &size);
-> +	if (ret == -ENODEV)
->  		return tpm_read_log_memory_region(chip);
-> -	if (sizep == NULL || basep == NULL)
-> -		return -EIO;
-> -
-> -	/*
-> -	 * For both vtpm/tpm, firmware has log addr and log size in big
-> -	 * endian format. But in case of vtpm, there is a method called
-> -	 * sml-handover which is run during kernel init even before
-> -	 * device tree is setup. This sml-handover function takes care
-> -	 * of endianness and writes to sml-base and sml-size in little
-> -	 * endian format. For this reason, vtpm doesn't need conversion
-> -	 * but physical tpm needs the conversion.
-> -	 */
-> -	if (of_property_match_string(np, "compatible", "IBM,vtpm") < 0 &&
-> -	    of_property_match_string(np, "compatible", "IBM,vtpm20") < 0) {
-> -		size = be32_to_cpup((__force __be32 *)sizep);
-> -		base = be64_to_cpup((__force __be64 *)basep);
-> -	} else {
-> -		size = *sizep;
-> -		base = *basep;
-> -	}
-> +	if (ret < 0)
-> +		return ret;
->  
->  	if (size == 0) {
->  		dev_warn(&chip->dev, "%s: Event log area empty\n", __func__);
-> diff --git a/include/linux/tpm.h b/include/linux/tpm.h
-> index 4dc97b9f65fb..dd9a376a1dbb 100644
-> --- a/include/linux/tpm.h
-> +++ b/include/linux/tpm.h
-> @@ -461,4 +461,40 @@ static inline struct tpm_chip *tpm_default_chip(void)
->  	return NULL;
->  }
->  #endif
-> +
-> +#ifdef CONFIG_OF
-> +static inline int of_tpm_get_sml_parameters(struct device_node *np,
-> +					    u64 *base, u32 *size)
-> +{
-> +	const u32 *sizep;
-> +	const u64 *basep;
-> +
-> +	sizep = of_get_property(np, "linux,sml-size", NULL);
-> +	basep = of_get_property(np, "linux,sml-base", NULL);
-> +	if (sizep == NULL && basep == NULL)
-> +		return -ENODEV;
-> +	if (sizep == NULL || basep == NULL)
-> +		return -EIO;
-> +
-> +	/*
-> +	 * For both vtpm/tpm, firmware has log addr and log size in big
-> +	 * endian format. But in case of vtpm, there is a method called
-> +	 * sml-handover which is run during kernel init even before
-> +	 * device tree is setup. This sml-handover function takes care
-> +	 * of endianness and writes to sml-base and sml-size in little
-> +	 * endian format. For this reason, vtpm doesn't need conversion
-> +	 * but physical tpm needs the conversion.
-> +	 */
-> +	if (of_property_match_string(np, "compatible", "IBM,vtpm") < 0 &&
-> +	    of_property_match_string(np, "compatible", "IBM,vtpm20") < 0) {
-> +		*size = be32_to_cpup((__force __be32 *)sizep);
-> +		*base = be64_to_cpup((__force __be64 *)basep);
-> +	} else {
-> +		*size = *sizep;
-> +		*base = *basep;
-> +	}
-> +	return 0;
-> +}
-> +#endif
-> +
->  #endif
-> -- 
-> 2.38.1
-> 
+Add support for 74165 10/100 integrated Ethernet PHY which also uses
+the ASP 2.0 Ethernet controller.
 
+Florian Fainelli (2):
+  dt-bindings: net: Brcm ASP 2.0 Ethernet controller
+  net: phy: bcm7xxx: Add EPHY entry for 74165
+
+Justin Chen (4):
+  dt-bindings: net: brcm,unimac-mdio: Add asp-v2.0
+  net: bcmasp: Add support for ASP2.0 Ethernet controller
+  net: phy: mdio-bcm-unimac: Add asp v2.0 support
+  MAINTAINERS: ASP 2.0 Ethernet driver maintainers
+
+ .../devicetree/bindings/net/brcm,asp-v2.0.yaml     |  149 ++
+ .../devicetree/bindings/net/brcm,unimac-mdio.yaml  |    2 +
+ MAINTAINERS                                        |    9 +
+ drivers/net/ethernet/broadcom/Kconfig              |   11 +
+ drivers/net/ethernet/broadcom/Makefile             |    1 +
+ drivers/net/ethernet/broadcom/asp2/Makefile        |    2 +
+ drivers/net/ethernet/broadcom/asp2/bcmasp.c        | 1462 ++++++++++++++++++++
+ drivers/net/ethernet/broadcom/asp2/bcmasp.h        |  637 +++++++++
+ .../net/ethernet/broadcom/asp2/bcmasp_ethtool.c    |  568 ++++++++
+ drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c   | 1425 +++++++++++++++++++
+ .../net/ethernet/broadcom/asp2/bcmasp_intf_defs.h  |  238 ++++
+ drivers/net/mdio/mdio-bcm-unimac.c                 |    2 +
+ drivers/net/phy/bcm7xxx.c                          |    1 +
+ include/linux/brcmphy.h                            |    1 +
+ 14 files changed, 4508 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
+ create mode 100644 drivers/net/ethernet/broadcom/asp2/Makefile
+ create mode 100644 drivers/net/ethernet/broadcom/asp2/bcmasp.c
+ create mode 100644 drivers/net/ethernet/broadcom/asp2/bcmasp.h
+ create mode 100644 drivers/net/ethernet/broadcom/asp2/bcmasp_ethtool.c
+ create mode 100644 drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
+ create mode 100644 drivers/net/ethernet/broadcom/asp2/bcmasp_intf_defs.h
+
+-- 
+2.7.4
+
+
+--000000000000f527d405fc787d51
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+NhTY3E+cXCB11wty89QStajwXdhGJTYEvUgvsq1h8CwJj9w/38ldAQf5WjhPmApYeJR2ewFrBMCM
+4lHkdRJ6TDc9nXoEkypUfjJkJHe7Eal06tosh6JpAgMBAAGjggHZMIIB1TAOBgNVHQ8BAf8EBAMC
+BaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJlLmdsb2JhbHNp
+Z24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYIKwYBBQUHMAGG
+NWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwME0G
+A1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxz
+aWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqGOGh0dHA6Ly9j
+cmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3JsMCMGA1UdEQQc
+MBqBGGp1c3Rpbi5jaGVuQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSME
+GDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUIWGeYuaTsnIada5Xx8TR3cheUbgw
+DQYJKoZIhvcNAQELBQADggEBAHNQlMqQOFYPYFO71A+8t+qWMmtOdd2iGswSOvpSZ/pmGlfw8ZvY
+dRTkl27m37la84AxRkiVMes14JyOZJoMh/g7fbgPlU14eBc6WQWkIA6AmNkduFWTr1pRezkjpeo6
+xVmdBLM4VY1TFDYj7S8H2adPuypd62uHMY/MZi+BIUys4uAFA+N3NuUBNjcVZXYPplYxxKEuIFq6
+sDL+OV16G+F9CkNMN3txsym8Nnx5WAYZb6+rBUIhMGz70V05xsHQfzvo2s7f0J1tJ5BoRlPPhL0h
+VOnWA3h71u9TfSsv+PXVm3P21TfOS2uc1hbzEqyENCP4i5XQ0rv0TmPW42GZ0o4xggJtMIICaQIB
+ATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhH
+bG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwj8BKLXNpALfemdRAwDQYJ
+YIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIN0ojyTcyOK4ZjtzVjkvB0vj/9kLgf9k6v+H
+8iUyM8NNMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIzMDUyNDIz
+MDIwM1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFl
+AwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATAN
+BgkqhkiG9w0BAQEFAASCAQARwNqzRzJJ2mxSPVB/vnIqCVm+t4qAj5EwMNGuJyqy//90AfEdpVi8
+AIQrnGuAqTogkyF1eUazmA223Zup4PuByGkl7xW4RVrHGYXXs+q3W1lR2EEblN9hAgq7GzUsMeBU
+WuvE1uJGfjLhS8BUpjPOzmLUgyeEwZ+XiQVVk+0xs1ewZhr4cJjvDgWzxlRYUNYDl0XyE6vvo2lH
+Z9vGJJKY0hbwEfISoHm+QyclnvGypX8gas4u/2TzyiHhAAQ6YO2d0ZJn13JFqJCTIcPXxckf9PlF
+mav/+HSwJKKV2qLvUMrIEOCNcie05mXdo+x0KVBvN8PPBxerci1yEzYH5rWk
+--000000000000f527d405fc787d51--
