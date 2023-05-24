@@ -2,184 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6D1870F5CC
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 14:01:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F7A270F5BA
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 13:57:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbjEXMBE convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 24 May 2023 08:01:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39376 "EHLO
+        id S229834AbjEXL5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 07:57:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbjEXMBD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 08:01:03 -0400
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7DC99D;
-        Wed, 24 May 2023 05:01:02 -0700 (PDT)
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-45702d3d92cso590501e0c.1;
-        Wed, 24 May 2023 05:01:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684929661; x=1687521661;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SagXwz3fZXKRM1LQINgV90wdhBsSA1/HwNIZxym3pck=;
-        b=VAd7X6kuXpEY6NtOSBEE00h5lJyxZmHNEe+0Dfj98E4o92bRmKFHz019zwPm+BwTSU
-         KcEQ8cQ93Ogg8qzwyU0vkA6KmkY1fu8ne307lc68InnvCFVawKh4YNea/AEAgjVfA0RA
-         xIZe+1niv1dXEtIEFZzrAVhhyymwlHJ21L8650NLWBbT471WSGtrzs+0GO6yoEOkhMpa
-         MduY10/aCDtL+1sOIkHlULQ0q/Rimr3PpON03uyvh4O05JnzF1+WZDMFFWBv7TbbStfU
-         pETfcv6p8ik0+E+sBGB7GjRZhV2Hcqp3WRT6uNloDF/AF0p33desQLnb0exlqd/Ny49x
-         FHtA==
-X-Gm-Message-State: AC+VfDzSv5i/86notKMcVKkiA6nWvt+KXQ56Pa4hCZjqT0bFpqmWiuP9
-        wMEjBc24gGET8PbY5Nv8u2w1n82HNiSc6w==
-X-Google-Smtp-Source: ACHHUZ5qeWSykQja7Xbx8k/tBMIJOLnAEjDaw8VeRMa1eEelBRBsMgz5dns6gT3YYYFRlWo5qMifMQ==
-X-Received: by 2002:a1f:df42:0:b0:44f:d211:2df3 with SMTP id w63-20020a1fdf42000000b0044fd2112df3mr6714924vkg.13.1684929661154;
-        Wed, 24 May 2023 05:01:01 -0700 (PDT)
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com. [209.85.221.172])
-        by smtp.gmail.com with ESMTPSA id 9-20020a1f1809000000b0045350f4ca42sm1891730vky.1.2023.05.24.05.01.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 May 2023 05:01:00 -0700 (PDT)
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-4571d25d288so579091e0c.3;
-        Wed, 24 May 2023 05:01:00 -0700 (PDT)
-X-Received: by 2002:a81:7d87:0:b0:561:7cb7:6fb4 with SMTP id
- y129-20020a817d87000000b005617cb76fb4mr19705995ywc.7.1684929172360; Wed, 24
- May 2023 04:52:52 -0700 (PDT)
+        with ESMTP id S230225AbjEXL5S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 07:57:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6825918B
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 04:57:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DF65163C5D
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 11:57:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E39D7C433D2;
+        Wed, 24 May 2023 11:57:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1684929430;
+        bh=iIH0qE/QN5EsuIOiBySRP5iUYWEHMgTqsDrIgV1fXKk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ehkuyuj0kVP8pTXI+LO8ZSMqaq8CBRlenOEKbSFp0P6QFaWLZ0z3kMpjkoOxrQu9w
+         5fqn2e9BZI1GDQTVSJinI/A4aRJZTqIU3Fr/7T/D6rHzakhbBWUcSyc4UZcCXFVrZ9
+         Av6x8fFlY34TQ+WCt1BI6uXPPuMIErnKXhQdv6YHWVO8jqicA7XjK3+1Uqt2VIumSB
+         b3RYpz3YrEynTF8Kg2wGKir0/f4b8FkFLaQEDF8XB//EfQTLUIG/tDnVacENi3nMT2
+         rOTMwEPvIt9l/p+ecjhSl+LWR+JkuJqMdhIYcJsW/G7hYJdoDOZIgZKUaQJQH8qp64
+         xSLmcT1kHZp6Q==
+Date:   Wed, 24 May 2023 12:57:02 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, zyw@rock-chips.com,
+        sebastian.reichel@collabora.com, andyshrk@163.com,
+        jagan@amarulasolutions.com, perex@perex.cz, tiwai@suse.com,
+        lgirdwood@gmail.com, heiko@sntech.de, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 1/6] ASoC: es8328: Enabling support for 12Mhz sysclk
+Message-ID: <f5b780ac-e079-4c24-9dfc-05aee52deb9c@sirena.org.uk>
+References: <20230523213825.120077-1-macroalpha82@gmail.com>
+ <20230523213825.120077-2-macroalpha82@gmail.com>
 MIME-Version: 1.0
-References: <e4227418-151d-7222-b439-4ce53bf0fb81@amd.com> <20230523192858.31924-1-blarson@amd.com>
-In-Reply-To: <20230523192858.31924-1-blarson@amd.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 24 May 2023 13:52:40 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX_Sdb3RFrLthcwThK__GKhJvJuXWu5+2RsQpGgFRkrXQ@mail.gmail.com>
-Message-ID: <CAMuHMdX_Sdb3RFrLthcwThK__GKhJvJuXWu5+2RsQpGgFRkrXQ@mail.gmail.com>
-Subject: Re: [PATCH v14 6/8] arm64: dts: Add AMD Pensando Elba SoC support
-To:     Brad Larson <blarson@amd.com>
-Cc:     michal.simek@amd.com, adrian.hunter@intel.com, alcooperx@gmail.com,
-        andy.shevchenko@gmail.com, arnd@arndb.de,
-        brendan.higgins@linux.dev, briannorris@chromium.org,
-        broonie@kernel.org, catalin.marinas@arm.com, conor+dt@kernel.org,
-        davidgow@google.com, devicetree@vger.kernel.org,
-        fancer.lancer@gmail.com, gerg@linux-m68k.org, gsomlo@gmail.com,
-        hal.feng@starfivetech.com, hasegawa-hitomi@fujitsu.com,
-        j.neuschaefer@gmx.net, joel@jms.id.au, kernel@esmil.dk,
-        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee.jones@linaro.org, lee@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
-        p.zabel@pengutronix.de, rdunlap@infradead.org, robh+dt@kernel.org,
-        samuel@sholland.org, skhan@linuxfoundation.org,
-        suravee.suthikulpanit@amd.com, thomas.lendacky@amd.com,
-        tonyhuang.sunplus@gmail.com, ulf.hansson@linaro.org,
-        vaishnav.a@ti.com, walker.chen@starfivetech.com, will@kernel.org,
-        zhuyinbo@loongson.cn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="+rKVKEWVYZn7J9Tb"
+Content-Disposition: inline
+In-Reply-To: <20230523213825.120077-2-macroalpha82@gmail.com>
+X-Cookie: You will be divorced within a year.
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Brad,
 
-On Tue, May 23, 2023 at 9:30 PM Brad Larson <blarson@amd.com> wrote:
-> On 5/16/23 09:54, Michal Simek wrote:
-> > On 5/15/23 20:16, Brad Larson wrote:
-> >> --- /dev/null
-> >> +++ b/arch/arm64/boot/dts/amd/elba-16core.dtsi
-> >> @@ -0,0 +1,197 @@
-> >> +// SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> >> +/*
-> >> + * Copyright 2020-2022 Advanced Micro Devices, Inc.
-> >
-> > 2023 and the same below.
->
-> I'll update the copyright in the next submit
+--+rKVKEWVYZn7J9Tb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Did you make any substantial changes in 2023?
+On Tue, May 23, 2023 at 04:38:20PM -0500, Chris Morgan wrote:
 
-> >> + */
-> >> +
-> >> +/ {
-> >> +    cpus {
-> >> +            #address-cells = <2>;
-> >> +            #size-cells = <0>;
-> >> +
-> >> +            cpu-map {
-> >> +                    cluster0 {
-> >> +                            core0 { cpu = <&cpu0>; };
-> >> +                            core1 { cpu = <&cpu1>; };
-> >> +                            core2 { cpu = <&cpu2>; };
-> >> +                            core3 { cpu = <&cpu3>; };
-> >> +                    };
-> >> +
-> >> +                    cluster1 {
-> >> +                            core0 { cpu = <&cpu4>; };
-> >> +                            core1 { cpu = <&cpu5>; };
-> >> +                            core2 { cpu = <&cpu6>; };
-> >> +                            core3 { cpu = <&cpu7>; };
-> >> +                    };
-> >> +
-> >> +                    cluster2 {
-> >> +                            core0 { cpu = <&cpu8>; };
-> >> +                            core1 { cpu = <&cpu9>; };
-> >> +                            core2 { cpu = <&cpu10>; };
-> >> +                            core3 { cpu = <&cpu11>; };
-> >> +                    };
-> >> +
-> >> +                    cluster3 {
-> >> +                            core0 { cpu = <&cpu12>; };
-> >> +                            core1 { cpu = <&cpu13>; };
-> >> +                            core2 { cpu = <&cpu14>; };
-> >> +                            core3 { cpu = <&cpu15>; };
-> >> +                    };
-> >> +            };
-> >> +
-> >> +            /* CLUSTER 0 */
-> >> +            cpu0: cpu@0 {
-> >> +                    device_type = "cpu";
-> >> +                    compatible = "arm,cortex-a72";
-> >> +                    reg = <0 0x0>;
-> >
-> > Do you really need 2/0 split here. The first cell is 0 anyway.
->
-> Yes following 64-bit system definition
+> +static unsigned int ratios_12000[] = {
+> +	8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000,
+> +	48000, 88235, 96000,
+> +};
+> +
+> +static struct snd_pcm_hw_constraint_list constraints_12000 = {
+> +	.count = ARRAY_SIZE(ratios_12000),
+> +	.list = ratios_12000,
+> +};
 
-You mean for the 64-bit main address space?
-The CPU address space under /cpus is unrelated.
+...
 
-> >> +++ b/arch/arm64/boot/dts/amd/elba-flash-parts.dtsi
-> >> @@ -0,0 +1,106 @@
-> >> +// SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> >> +/*
-> >> + * Copyright 2020-2022 Advanced Micro Devices, Inc.
-> >> + */
-> >> +
-> >> +&flash0 {
-> 0xf0000>> +     partitions {
-> >> +            compatible = "fixed-partitions";
-> >> +            #address-cells = <1>;
-> >> +            #size-cells = <1>;
-> >> +            partition@0 {
-> >> +                    label = "flash";
-> >> +                    reg = <0x10000 0xfff0000>;
-> >
-> > This doesn't fit with partition@0 above.
-> > Also size is weird.
->
-> This is intended to not expose sector 0.
+> +	case 12000000:
+> +		es8328->sysclk_constraints = &constraints_12000;
+> +		es8328->mclk_ratios = ratios_12000;
 
-The unit address should still match the first reg entry
-=> partition@10000.
+The other constraints have separate rates and ratios, with wildly
+different values between the two - the ratio (I'm guessing a clock
+divider) being written to a 5 bit field which obviously can't contain
+the actual sample rate.
 
-Gr{oetje,eeting}s,
+--+rKVKEWVYZn7J9Tb
+Content-Type: application/pgp-signature; name="signature.asc"
 
-                        Geert
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRt+40ACgkQJNaLcl1U
+h9Aw1wf7BFOU6DO0NZWHZ9jydC567ScFkTrSAt6wSkPFgkeD7w4S0T2Z3oq/wTue
+a8ekwXfod9RDFZQx9jlJTNU4rpEhoY52WPbrSLnXUacpDtVMbmG4KlsVyjMBDXJf
+DKgHb2tx6d7ysETphH0A7nqjc2Vn7Av+Gih4f8aVTXVopI5KFe/jqqPZP0u5hcNP
+bW2oLU1i/eFxKiAtq+f4Nt3x4IOF/TEP2YhTSYuvfc1X/S0v65Jza5ZjjYG1DQnA
+wgZNjZqNC6OoFXvUGgnh8EogEKdhRkbxXmVaYAa3los6gQy2MOCCwYE0SpDMvx43
+CNoKmDoevLKi0tK+KksbKcGEzoW/mQ==
+=sTV7
+-----END PGP SIGNATURE-----
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--+rKVKEWVYZn7J9Tb--
