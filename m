@@ -2,140 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F0D370EA52
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 02:36:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A1C470EA7C
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 02:56:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238695AbjEXAgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 May 2023 20:36:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45724 "EHLO
+        id S238772AbjEXA40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 May 2023 20:56:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232594AbjEXAgb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 20:36:31 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2139.outbound.protection.outlook.com [40.107.113.139])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97B00C2;
-        Tue, 23 May 2023 17:36:29 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nhT7+oougquFur9mQFn67TQNkg5paCUgn/inz03eteUvRo6r8u6cboSMXJ+JYN3re/0jJLX7rs+hg9V9iBN2KJw2L/5WAlGutA0DW9mH+fdtAIa2skGbmNGCaCEBC+DOyWvI5cp3QH3Fz3TzqJXob4SUa+CJU400Ahs/OGOA5F45gs5NO7S540BB9kBTIQN68mUvGwhKfRid3uzXIrWy1KTohbuvlqCA1RazxL6EJ2DB/ARcW0gJmhK/7r4qcg2Y6AKUeWtYrpwGObciYnKDLy1cp8+xwURWACtzsb9drM2DS97sIOcFk1GYISpvgodxQCL/Hcvp1Ok99HSs4V8pVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TOkPGl2ohvFRpsIlSNWQ/MFhkMNLDNRT2uyL43XAJ74=;
- b=nlcXT+VgdE5DFVvNwIG8tUqMznnLvYA1LnbiXOU9Z5XGa0q/cPXSKYwgMTyNZXVTwsAFEIIanGQ5d+maVsu15iQ7977toB48NqYGbvmRRmZXIyMzGcVV03xatHKSLpyNj5zy7NnSeMXX/UbG+GLsove722jKjZduGvFHxMeoQ+Q7xVW9hak55BlU7hBhEtBM3k6JyZb5H3qv4JLBigSdK2R8B1BjtLd7jYzVFdfMU40JzDWXinu6x5JjdoC4hnZoEgzVsOH2yadNp4y1n/Ut/Xrsd2Aqk96wIMrVG/Qu80toImdWtRj7fINmagijxBkQvI58+miRKk9ywDfNsz7wuQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TOkPGl2ohvFRpsIlSNWQ/MFhkMNLDNRT2uyL43XAJ74=;
- b=gScoRR5FCQdtcM0LWp1WX5qC9cM++WGLshCubsvHdTxFFgNECf+7XFc+6HZrXKUHPjgFX7FFZ0vg2NZs/M/qgR79s4GTwOIp+wpOwu/rdD2tRPyRiysnxMpOWQ1vVgDLs20/naRGIk75jRUHnXv5Qn2ZghzS/2/trawEHz5FNew=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com (2603:1096:604:194::10)
- by OS3PR01MB8665.jpnprd01.prod.outlook.com (2603:1096:604:19d::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.23; Wed, 24 May
- 2023 00:36:26 +0000
-Received: from OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::91e7:a94f:9f75:d840]) by OS3PR01MB8426.jpnprd01.prod.outlook.com
- ([fe80::91e7:a94f:9f75:d840%6]) with mapi id 15.20.6433.015; Wed, 24 May 2023
- 00:36:26 +0000
-Message-ID: <87lehe7egm.wl-kuninori.morimoto.gx@renesas.com>
-From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To:     Herve Codina <herve.codina@bootlin.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 9/9] ASoC: simple-card: Handle additional devices
-In-Reply-To: <87mt1u7fql.wl-kuninori.morimoto.gx@renesas.com>
-References: <20230523151223.109551-1-herve.codina@bootlin.com>
-        <20230523151223.109551-10-herve.codina@bootlin.com>
-        <87mt1u7fql.wl-kuninori.morimoto.gx@renesas.com>
-User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date:   Wed, 24 May 2023 00:36:25 +0000
-X-ClientProxiedBy: TYCPR01CA0185.jpnprd01.prod.outlook.com
- (2603:1096:400:2b0::11) To OS3PR01MB8426.jpnprd01.prod.outlook.com
- (2603:1096:604:194::10)
+        with ESMTP id S229632AbjEXA4W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 May 2023 20:56:22 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88A9BCD;
+        Tue, 23 May 2023 17:56:19 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 7F1085FD1B;
+        Wed, 24 May 2023 03:56:17 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1684889777;
+        bh=6UJu4At4JTYJZJm3ufdH8BuFWlW2L/vFJ5Zl0oCFuaU=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+        b=DyrqPvLXGsYToa8iWySrhnm3P5Z/mM8+b7Ss+5iIy3ovu7u3BaO9/wkN1Etw9JcaC
+         KM+5eMnqEmclo/iRjGd1wbCsLYLRtR1RoyTQCBIh8jGIpXL94EUUWsynGEoFzXu/zQ
+         MGn2eFGDaedaH+FQ4a7EpO66CEP27dhPSjU8+Z0iLoBCzpX0d1gqziMwLIO49gjoal
+         0OhojjOEUcuE+5KLhe3++MIy7NihYhcUR7G4GPd2XMb7PqyGzrvDS8JLFlq4+Au+m5
+         J5CtV3pjcKpje3XRe36ZjodKBhW7PaL+TYPwu2E3dfg2//oRq4wxjJ2gLdqgAkQDLt
+         KwzwYfM0U4DOw==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Wed, 24 May 2023 03:56:16 +0300 (MSK)
+Message-ID: <3fb39050-9543-f4a4-c8f2-a996e24c8e16@sberdevices.ru>
+Date:   Wed, 24 May 2023 03:52:06 +0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OS3PR01MB8426:EE_|OS3PR01MB8665:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3dd57c34-f333-4d26-10f3-08db5beee81f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 577FhO4GQ/OuEuu2Ks9MKSJ7ypD1GGGEoVD7bFpMvO11JYPdIpZMM2O6AFTPNIv6mjUDHoNQzrNCx9oR8oFDgmGQra8RpxsnBxNOIYBA6i0A68lp+J9J6GqsozkHWeTDem+vBxSB8jh+NjD/zjhg9ce4QWBGEk60CgHm9W1HC6elXvoUWLoVIUz9LUoUTOpP6+xe26jQm8ObWlzPWVw1hlA7DpH8bFv4FnirJKWY/pSUF51co2hnmxmkb3xCd2DMIU10iTZJHZbRhCoA3gl+8boajJK+urjcZ6j/O9VPZ087Kig0F7t6N0NXpMQmU1llP3qgbM3deOwlTv6fw9ZNmTHtsmwnK/rE/ew0LtSYKouKfOtDoj112EvlI8Zq3se6bFUoRLY7z6hMm7bpklLIiKAgBwg52OqQQWGWW3vp6JRhLBs2knKiW5/375gBv/E8i/XS45bFGcg5wzlIyleI2gR1g4QQFeQB6W1gwwHsgvLd6oYgoO17VZ/PimGcmpC8WUvu2mTVi9cj55KBafPvHdiIns+8n9XSj3HUjeYr5qUeXgJcxXcyMcRCAtltJBr5qv7/8R033u9+giDceXeJGKXRNQzX1SBEZpg43AyJrCSY122a102WzWtkRr+SMj5a
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB8426.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(39860400002)(136003)(366004)(346002)(396003)(451199021)(66946007)(66476007)(66556008)(4326008)(6916009)(54906003)(316002)(478600001)(52116002)(6486002)(41300700001)(186003)(2906002)(6512007)(26005)(6506007)(8676002)(8936002)(36756003)(7416002)(5660300002)(558084003)(38350700002)(38100700002)(2616005)(86362001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?yGL07yLPrFzzsfIu2NX/i/08uBKqE2RhGA5qK5XGg44jgMy31As+4mgdR2Ue?=
- =?us-ascii?Q?UIePPmYTYuX2Jfe3abA22BGMjRK3L9gaNcV2PA7bjOm70zfs5UqTZnCZlH4c?=
- =?us-ascii?Q?TnubJbpAYSFVV/lMa8cZYRhSqJuWqgz3fZvxY9Xze5ixp+q6s7SThHFw3/dj?=
- =?us-ascii?Q?fZ64Am1tzh9EUqDOh9nv670kN74Tc1cUbmC2I00G6xayoV2/bqkb6nPyuAHK?=
- =?us-ascii?Q?iQ+sZeD5oEca4jYPw4isE0bD02Tc5FU8gwj60vsvt0+OE9Up86hiaxjD+98T?=
- =?us-ascii?Q?VCns1ZeMKUcT0Q4/rvN0OzJdo/91oMLpkpnvaE00+MXTpRCWk0ZDdlfu9rQs?=
- =?us-ascii?Q?PUHDBg4tOtatUGOj9MyG5n/2YsvXVztez5qGdwSbLkmvFKgOdsungt885hlc?=
- =?us-ascii?Q?kIVocmZ1DH2SjMr63nK/m1id//bB1cPgTEYAFgyfds71UTyis6sQByxmbGED?=
- =?us-ascii?Q?uDVDjvH21pboBtgAxA7DuOZbS97NsIVF+7HXypi+Ezu3nE0Bn1T6b6qGS1ah?=
- =?us-ascii?Q?69ekoynr02gEouint6L5YtV9jFj9HCrDEqbLhpFRyIkIQJcXxF3qzo4nQv0Y?=
- =?us-ascii?Q?ANLPch59IXb6RjZGlF9GLPxjADjKYSOy3mVDVYeq7BcIxHDhdJ/Pyb/92yh1?=
- =?us-ascii?Q?ZNDYo5HY3+EudKQduxy2COcTYwaVw/YD9J9Uanr34zliT4BeYcBv0H0gAkTE?=
- =?us-ascii?Q?St8h//jpDInt8GZLT2jn+FzxTXY6v1eZ2B1HYIAvhkJ5w17jPIxwSShLk3Bb?=
- =?us-ascii?Q?JxEapGhaU17kxMLdpyRUsiy4k5lyv8DeYjNTe2ycKgIzi18ysgH5dffIf+lV?=
- =?us-ascii?Q?+KT5Oh87utvtFuRCh0RLc/obt5fiz3gn4LUxV9Adsxt7atubd5WXdt+MK3p2?=
- =?us-ascii?Q?iw3/UZ97i+aOqUKplAoqBKOPxOVE33pPaOMM2qZ/bHrfNm65VS3iTuKF9rRR?=
- =?us-ascii?Q?AFhyH4iqAIRcQQ98i9nb+P09+zJNLKwibec1iBrQWJLdDgGMeFXg279A0Ys5?=
- =?us-ascii?Q?KZy9n76Ppq0w8PAlUQYeYBRxNvD9joohYjiPRpmTozBXoZimz2I3g8dVG0i8?=
- =?us-ascii?Q?+lVvFB1GnPtVc4GSPKtfockgDbeGNYf0U9pTsvZpQsaI5yNsN2Zm27w9GMBx?=
- =?us-ascii?Q?VnjbExIv4pmGdDfZDsvFi+e1fOGWTBQZkPWe+k4NndX2bySxQaLxCFI5raMg?=
- =?us-ascii?Q?6Jas+jP+oflhjmChZId+dVTa5GcI8P1S5/d3ekuBpBqjj7B8E5/UWdfSvHGc?=
- =?us-ascii?Q?oOvrMxSCHdvF/laAPOpEmhTfSWvEKvme8oUIw+DsS5VXOzX6pIUopkFO/oDs?=
- =?us-ascii?Q?8PDTWSGFsRUtLdzvALwxxVN4aX/28oR0+aGnnmSQf52lS5t4V5mleSbC8/e4?=
- =?us-ascii?Q?x7zR24fUMH7qD0bCMFmHQgH6eufLXI8ZnvYnkbpvIXXMyohGVQUAgTb2aih4?=
- =?us-ascii?Q?mLJRW1aFf3d4AAIM6/99DSB//HGx1E2cAMKoy0NgB8Q+WHcth5BNOyAf2D7f?=
- =?us-ascii?Q?86lVvV0ygNJpBBT528ECC8JtZN1HFpwKEhOVniqQCgrlMR6qoRyHieU7Gc+1?=
- =?us-ascii?Q?vpWy6dMu48RWcWq8IM1X0LuS7VIky0Ez+3Yc7GrMjJPbR83FA0GYnlGAsZaM?=
- =?us-ascii?Q?jk6L73ukMhJ7fD+2hDgafwo=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3dd57c34-f333-4d26-10f3-08db5beee81f
-X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB8426.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 May 2023 00:36:25.9886
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: h2yiewbF8d+VPg5ZYqIIcLoFGTH3dur3FDxpDbdcHAvIFBW1DSjmO1NL6zvPMOzr3ESctKXX+uJuFdpRI6i8aZVFObtVymro6OksjTMpUitKCn4zLkk4tyFAYym1odWb
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB8665
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v14 6/6] clk: meson: a1: add Amlogic A1 Peripherals clock
+ controller driver
+Content-Language: en-US
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+CC:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+        "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "khilman@baylibre.com" <khilman@baylibre.com>,
+        "jian.hu@amlogic.com" <jian.hu@amlogic.com>,
+        kernel <kernel@sberdevices.ru>,
+        "rockosov@gmail.com" <rockosov@gmail.com>,
+        "linux-amlogic@lists.infradead.org" 
+        <linux-amlogic@lists.infradead.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Dmitry Rokosov <DDRokosov@sberdevices.ru>
+References: <20230426095805.15338-1-ddrokosov@sberdevices.ru>
+ <20230426095805.15338-7-ddrokosov@sberdevices.ru>
+ <CAFBinCA2OhtVaCJDi8ZfAFLSE4oUgxYBDScaP_WW63curEK8Mg@mail.gmail.com>
+ <20230512140630.qd33rwzaalmadpmk@CAB-WSD-L081021>
+ <CAFBinCA8e9evk+9hTEgoNOD_+3DBst6vYDcradmr2c996jdUmw@mail.gmail.com>
+ <20230517103456.p3sjxzbepvg7cr2r@CAB-WSD-L081021>
+ <CAFBinCCPf+asVakAxeBqV-jhsZp=i2zbShByTCXfYYAQ6cCnHg@mail.gmail.com>
+ <573d96df-7b08-4fa2-668b-58ff674a314e@gmail.com>
+ <20230522134425.pc5fhojf53v6q2jz@CAB-WSD-L081021>
+ <a121266a-110a-8c4e-cd71-4e35165fc789@gmail.com>
+From:   George Stark <gnstark@sberdevices.ru>
+In-Reply-To: <a121266a-110a-8c4e-cd71-4e35165fc789@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/23 21:43:00 #21378639
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 5/22/23 23:36, Heiner Kallweit wrote:
+> On 22.05.2023 15:44, Dmitry Rokosov wrote:
+>> Heiner,
+>>
+>> On Fri, May 19, 2023 at 06:10:50PM +0200, Heiner Kallweit wrote:
+>>> On 18.05.2023 22:04, Martin Blumenstingl wrote:
+>>>> Hi Dmitry,
+>>>>
+>>>> On Wed, May 17, 2023 at 12:34 PM Dmitry Rokosov
+>>>> <ddrokosov@sberdevices.ru> wrote:
+>>>> [...]
+>>>>>>> Additionally, the CCF determines the best ancestor based on how close
+>>>>>>> its rate is to the given one, based on arithmetic calculations. However,
+>>>>>>> we have independent knowledge that a certain clock would be better, with
+>>>>>>> less jitter and fewer intermediaries, which will likely improve energy
+>>>>>>> efficiency. Sadly, the CCF cannot take this into account.
+>>>>>> I agree that the implementation in CCF is fairly simple. There's ways
+>>>>>> to trick it though: IIRC if there are multiple equally suitable clocks
+>>>>>> it picks the first one. For me all of this has worked so far which is
+>>>>>> what makes me curious in this case (not saying that anything is wrong
+>>>>>> with your approach).
+>>>>>>
+>>>>>> Do you have a (real world) example where the RTC clock should be
+>>>>>> preferred over another clock?
+>>>>>>
+>>>>> Yes, a real-life example is the need for a 32Khz clock for an external
+>>>>> wifi chip. There is one option to provide this clock with high
+>>>>> precision, which is RTC + GENCLK.
+>>>>>
+>>>>>> I'm thinking about the following scenario.
+>>>>>> PWM parents:
+>>>>>> - XTAL: 24MHz
+>>>>>> - sys: not sure - let's say 166.67MHz
+>>>>>> - RTC: 32kHz
+>>>>>>
+>>>>>> Then after that there's a divider and a gate.
+>>>>>>
+>>>>>> Let's say the PWM controller needs a 1MHz clock: it can take that from
+>>>>>> XTAL or sys. Since XTAL is evenly divisible to 1MHz CCF will pick that
+>>>>>> and use the divider.
+>>>>>> But let's say the PWM controller needs a 32kHz clock: CCF would
+>>>>>> automatically pick the RTC clock.
+>>>>>> So is your implementation there to cover let's say 1kHz where
+>>>>>> mathematically 24MHz can be divided evenly to 1kHz (and thus should
+>>>>>> not result in any jitter) but RTC gives better precision in the real
+>>>>>> world (even though it's off by 24Hz)?
+>>>>>>
+>>>>> I don't think so. The highest precision that RTC can provide is from a
+>>>>> 32KHz rate only. However, I believe that a 1kHz frequency can also be
+>>>>> achieved by using xtal 24MHz with a divider, which can provide high
+>>>>> precision as well.
+>>>> Thank you again for the great discussion on IRC today.
+>>>> Here's my short summary so I don't forget before you'll follow up on this.
+>>>>
+>>>> In general there's two known cases where the RTC clock needs to be used:
+>>>> a) When using the GENCLK output of the SoC to output the 32kHz RTC
+>>>> clock and connect that to an SDIO WiFi chip clock input (this seems
+>>>> useful in my understanding because the RTC clock provides high
+>>>> precision)
+>>>> b) When using the PWM controller to output a 32kHz clock signal. In
+>>>> this case my understanding is that using the RTC clock as input to the
+>>>> PWM controller results in the best possible signal
+>>>>
+>>>> The second case won't be supported with Heiner's patches [0] that use
+>>>> CCF (common clock framework) in the PWM controller driver.
+>>>> In this series the parent clock is calculated using:
+>>>>    freq = div64_u64(NSEC_PER_SEC * (u64)0xffff, period);
+>>>>
+>>>> A 32kHz clock means a PWM period of 30518ns. So with the above
+>>> To be precise: 30517,578125ns
+>>> What means that the PWM framework can't say "I want 32768Hz",
+>>> but just "I want something being very close to 32768Hz".
+>>> So what you need is some simple heuristic to interpret the
+>>> PWM request -> "PWM requests 30518ns, but supposedly it wants
+>>> 32768Hz"
+>>>
+>>> NSEC_PER_SEC / 30518 = 32767 (rounded down from 32767,547)
+>>> clk_round_rate(channel->clk, 32767) would return 0 (I *think*),
+>>> because it tries to find the next lower clock.
+>>>
+>>> The SoC families I'm familiar with have fclkin2 as PWM parent.
+>>> That's 1 GHz in my case, what results in a frequency of 32.767,547Hz
+>>> for period = 30518n.
+>>> What you're saying is that newer generations don't have PWM parents
+>>>> 24MHz any longer?
+>> No, of course not. For example, a fixed PLL (with all fclk_divX
+>> settings) has rates higher than 24MHz. However, we need to consider the
+>> 'heavy' background of such PWM.
+>>
+>> However, we have a "lightweight" clkin (special rtc32k) with a rate of
+>> 32kHz that we could potentially use as an input to produce a 32kHz
+>> output on the PWM lines. I don't see any reason why we should not
+>> support such special cases.
+>>
+> Two more things to consider:
+> 1. When wanting a 32kHz (well, 32768Hz) output with a 50% duty cycle,
+>     then we need hi=0 and lo=0 with a 64kHz input clock.
+>     See point 2 for an explanation of why 0 and not 1.
+>     Means we couldn't use the RTC input clock. Did you consider this?
+>     Or do I miss something?
+> 2. Seems the PWM block internally increments hi and lo, except the
+>     constant_en bit is set on newer PWM block versions.
+>     For bigger cnt values the impact is negligible, but for very small
+>     values it's something we have to consider.
+>     This was one additional motivation for me to choose an input
+>     frequency that creates big cnt values.
+>
+Hello Heiner
 
-Hi again
+As I mentioned earlier I have some changes to take into account lo and hi regs incrementing.
 
-> Is this "additional-devs" available only one per 1 Card ?
+But it's more convenient to base my patch on top on one of yours (https://lore.kernel.org/linux-amlogic/23fe625e-dc23-4db8-3dce-83167cd3b206@gmail.com/)
 
-I could understand the point.
-1 "additional-devs" per 1 Card is enough.
-
-Thank you for your help !!
+Is that ok if I resend your patch along with mine in series?
 
 Best regards
----
-Kuninori Morimoto
+George
+
+>>>
+>>>> calculation the PWM driver is asking for a clock rate of >=2GHz.
+>>>> We concluded that letting the common clock framework choose the best
+>>>> possible parent (meaning: removing CLK_SET_RATE_NO_REPARENT here) can
+>>>> be a way forward.
+>>>> But this means that the PWM controller driver must try to find the
+>>>> best possible parent somehow. The easiest way we came up with
+>>>> (pseudo-code):
+>>>>    freq = NSEC_PER_SEC / period;
+>>>>    fin_freq = clk_round_rate(channel->clk, freq);
+>>>>    if (fin_freq != freq) {
+>>>>      freq = div64_u64(NSEC_PER_SEC * (u64)0xffff, period);
+>>>>      fin_freq = clk_round_rate(channel->clk, freq);
+>>>>    }
+>>>>
+>>>> The idea is: for a requested 32kHz signal the PWM period is 30518ns.
+>>>> The updated logic would find that there's a matching clock input and
+>>>> use that directly. If not: use the original logic as suggested by
+>>>> Heiner.
+>>>>
+>>>>
+>>>> Best regards,
+>>>> Martin
+>>>>
+>>>>
+>>>> [0] https://lore.kernel.org/linux-amlogic/9faca2e6-b7a1-4748-7eb0-48f8064e323e@gmail.com/
+>
+
