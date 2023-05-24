@@ -2,130 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5257D70F801
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 15:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F46E70F817
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 15:54:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235375AbjEXNt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 09:49:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40250 "EHLO
+        id S235375AbjEXNy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 09:54:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230189AbjEXNto (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 09:49:44 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83B089E;
-        Wed, 24 May 2023 06:49:43 -0700 (PDT)
-Received: from [192.168.1.90] (unknown [188.27.34.213])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S235028AbjEXNy3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 09:54:29 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20E1CA7;
+        Wed, 24 May 2023 06:54:28 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BBF796605943;
-        Wed, 24 May 2023 14:49:40 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1684936181;
-        bh=eOWh+03SOK7Ma/sA2JICrBy2SCdrGT1dVFFRySHiFBI=;
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 770C38467A;
+        Wed, 24 May 2023 15:54:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1684936466;
+        bh=H9hgBK0Z2k4KJJri9AujHyxs0n8pT/bxbNuwzwsiCD8=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=O7Qsp6hFFseZyO9Y61woxfnLQ7oR35mF7vipm2dk/c4+9mVrNZYJLFloqs/vzkHst
-         NrXlx5DLBKi34JaJdpL5g8XeVnpTlzsW4/xk3V8t+gXa2zuznY0LAqrLAYRYuHn3Ti
-         lIHEczYNcFyW27XPdxT0t3G2zOmhyMPQlnJ11kywsGHd/Upwnl6hF1rPQq/216bbAC
-         ArGaN+tOO9X4EZdXoDgRiujGsWcSvSn91tBjvfhmDXPbdKPlyHXdXkj2FpWBRBq+6W
-         XsAVJZlkxnVTIZcYOkIfsV7BbB16dPeBJjBSKvtXvx/JnHNl21yGoHmRQmeIKqTU6b
-         gnueVO9Dpr0Pw==
-Message-ID: <cfa23203-1626-440b-ec27-efe56cb297d2@collabora.com>
-Date:   Wed, 24 May 2023 16:49:37 +0300
+        b=BKJc/stDc1RkyJLgAWaetW9Omb0UyyG8moL/uAoBsi7B6NkeSYbJmzq5bv4tjoqEI
+         iD0CMkZAqmHD2fcHv9bxLxF+IcmC52hpehwWsB8qjwWbsNWNhvAf5dr+F4i3GL2gqd
+         szo2JC9cePe9cIQOzIpdM9ee4rLAPgD6+CsYfyWj2KukDenhhiRtBjpjsptgFgE9uu
+         74HFFLZGdJsPhIKDmy/68A72hObbwJHnDturWRDNABjc3K+ociAHFCWZ/xUj32jogC
+         KPRUxRMMBcvX5PCandiuEAiuy4aFLFKuknILFRb0Czqa1kUj1Tk1/3VoKjxI5HYWJ9
+         ea1pBJgPn2dOg==
+Message-ID: <cc7a0a1a-31bb-92f4-6365-5e0c4a4bc85c@denx.de>
+Date:   Wed, 24 May 2023 15:54:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 1/3] ASoC: es8316: Increment max value for ALC Capture
- Target Volume control
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH 7/8] ARM: dts: stm32: adopt generic iio bindings for adc
+ channels on dhcor-drc
+Content-Language: en-US
+To:     Olivier Moysan <olivier.moysan@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Zhu Ning <zhuning0077@gmail.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        David Yang <yangxiaohua@everest-semi.com>,
-        Daniel Drake <drake@endlessm.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, kernel@collabora.com
-References: <20230524074156.147387-1-cristian.ciocaltea@collabora.com>
- <20230524074156.147387-2-cristian.ciocaltea@collabora.com>
- <5dbcbf84-602a-44de-ad99-268d4d5b4b2f@sirena.org.uk>
-Content-Language: en-US
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <5dbcbf84-602a-44de-ad99-268d4d5b4b2f@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     kernel@dh-electronics.com, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230524133918.1439516-1-olivier.moysan@foss.st.com>
+ <20230524133918.1439516-8-olivier.moysan@foss.st.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20230524133918.1439516-8-olivier.moysan@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/24/23 13:30, Mark Brown wrote:
-> On Wed, May 24, 2023 at 10:41:54AM +0300, Cristian Ciocaltea wrote:
+On 5/24/23 15:39, Olivier Moysan wrote:
+> Use STM32 ADC generic bindings instead of legacy bindings on
+> DHCOR DRC Compact board.
 > 
->> This means that either the hardware default is wrongly set to 0xB
->> instead of 0xA, or the specs are incorrect and instead of having the
->> range 0xA-0xF mapped to -1.5 dB, the single value 0xA should have been
->> mapped to -1.5 dB and the remaining range 0xB-0xF to 0 dB.
+> The STM32 ADC specific binding to declare channels has been deprecated,
+> hence adopt the generic IIO channels bindings, instead.
+> The STM32MP151 device tree now exposes internal channels using the
+> generic binding. This makes the change mandatory here to avoid a mixed
+> use of legacy and generic binding, which is not supported by the driver.
 > 
->> Increment the max value allowed for ALC Capture Target Volume control,
->> so that it matches the hardware default.
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> ---
+>   .../dts/stm32mp15xx-dhcor-drc-compact.dtsi    | 28 ++++++++++++++++---
+>   1 file changed, 24 insertions(+), 4 deletions(-)
 > 
->> -	SOC_SINGLE_TLV("ALC Capture Target Volume", ES8316_ADC_ALC3, 4, 10, 0,
->> +	SOC_SINGLE_TLV("ALC Capture Target Volume", ES8316_ADC_ALC3, 4, 11, 0,
->>  		       alc_target_tlv),
-> 
-> The description above of what the control does doesn't seem to match
-> what alc_target_tlv specifies - it is:
-> 
->   static const SNDRV_CTL_TLVD_DECLARE_DB_SCALE(alc_target_tlv, -1650, 150, 0);
-> 
-> which is saying that the value goes from -16.5dB up in steps of 1.5dB
-> but your description above says that 0-10 map to -1.5dB and other values
-> are 0dB.
+> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi
+> index 39af79dc654c..92d906bfd5d7 100644
+> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi
+> @@ -57,15 +57,35 @@ &adc {	/* X11 ADC inputs */
+>   	status = "okay";
+>   
+>   	adc1: adc@0 {
 
-My description above mentioned only the 0xA-0xF (10-15) range, anything
-before that is fine and the implementation matches the specs:
 
-0000 –> -16.5 dB
-0001 –> -15.0 dB
-0010 –> -13.5 dB
-...
-0111 –>  -6.0 dB
-1000 –>  -4.5 dB
-1001 –>  -3.0 dB
+I sent similar patch recently too:
 
-The inconsistency is here:
-1010-1111 –> -1.5 dB
+[PATCH] ARM: dts: stm32: Update to generic ADC channel binding on DHSOM 
+systems
 
-Since the hardware default is 1011 (11) instead of 1010 (10), I assumed
-the specs could be wrong and probably should have provided the following
-mappings:
+But I needed to add #address-cells/#size-cells here and to adc@100, 
+otherwise DTB checker was complaining . Did you run DTB check and was it 
+OK on your side ?
 
-1010 ->  -1.5 dB
-1011-1111 -> 0 dB
+> -		st,adc-channels = <0 1 6>;
+> -		st,min-sample-time-nsecs = <5000>;
+>   		status = "okay";
+> +		channel@0 {
+> +			reg = <0>;
+> +			st,min-sample-time-ns = <5000>;
+> +		};
+> +		channel@1 {
+> +			reg = <1>;
+> +			st,min-sample-time-ns = <5000>;
+> +		};
+> +		channel@6 {
+> +			reg = <6>;
+> +			st,min-sample-time-ns = <5000>;
+> +		};
+>   	};
 
-> Presumably you can check the effects of changing the value?  It seems
-> plausible that what's written in the code might be accurate and the
-> higher values might actually change the gain but it'd be better to
-> check.
-
-I haven't noticed a (measurable) change in gain when switching between
-10 and 11, but my testing equipment is also not that great. Will try to
-improve the tests accuracy.
-
-Thanks,
-Cristian
+[...]
