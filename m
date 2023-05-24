@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8429070FFB7
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 23:12:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E9970FFC4
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 23:13:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229792AbjEXVMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 17:12:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53174 "EHLO
+        id S234959AbjEXVNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 17:13:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbjEXVMy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 17:12:54 -0400
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BCE7E9
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 14:12:51 -0700 (PDT)
-Received: by mail-il1-x129.google.com with SMTP id e9e14a558f8ab-338458a9304so17165ab.1
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 14:12:51 -0700 (PDT)
+        with ESMTP id S229565AbjEXVNJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 17:13:09 -0400
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA4771A2
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 14:13:07 -0700 (PDT)
+Received: by mail-il1-x12a.google.com with SMTP id e9e14a558f8ab-338458a9304so17215ab.1
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 14:13:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1684962771; x=1687554771;
+        d=google.com; s=20221208; t=1684962786; x=1687554786;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+zT/HDg/gBVolXCcggpB7iSC/DWvpNoZ2VGMNWSuR74=;
-        b=RkcFmnM0HLWQuKc8UgAw0e9xvrWfxkZ18UU71V/+md6GlosqEs5GzDY/a4UJxCkNm2
-         yFek/5dSOlr36tQAQYPyVVOkLm7ZbOBjzFKZuVQbE7WLKT82ane7Hpz3IMu0xgVecZwN
-         SmofscwdIr2/0IZ+GlSvXW+QSbErcSYt2ufNNnYqWJ78AnD/90rAY35gMrSkatVwJz1R
-         Lr4hfQl+f+9jQ/xnercKbKQ0tlv8BIuAId9wXR5DsBdh6R2bYqLw8izC58h2uNHZrE5W
-         JGUKVXqmKPeS2SQ7bBgM95TiTju8NigM2h5+wC00qaOy/ICoPS+GZGVW6wAPMuevuqmY
-         jgcA==
+        bh=UT9Y/dwgBpalMa3LjWqrqX13zFQiiWk7YoUb5Dh/rb0=;
+        b=Pw2sY0kk+uA0lgLXJ4QrG1lbzK+hLwpi+0Liuc2siJTpaf2jce9WDPb8zfEZ94bP7O
+         EwTcsnMR1S1aTzjAc6AGBjK/1BDaVBk7mKzM2Iy3nSK/ky+tUiWdnA/oNElEszT4sUv1
+         XAImeI5oyKAzxe0XXyByLNaiKV4nWL9L105baHwfl4c09HRDi4o3+Zc/1qXLikY0KXXb
+         iuZmHBZvyHJFN8iRb3bDm+GLyOlZj8GqrEMRz+IR9B78HzJJ6wuJ5hwIZc/hMBEN9jHO
+         ZEIqBBXPvrj6UmgEjupNGYhVUHQwqWf1x+TDAmgl7ygxOyTQabqpmuVzkOerPMcH+VgS
+         gJ1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684962771; x=1687554771;
+        d=1e100.net; s=20221208; t=1684962786; x=1687554786;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+zT/HDg/gBVolXCcggpB7iSC/DWvpNoZ2VGMNWSuR74=;
-        b=Mrq5KoABkZXVFQjOD63NUn4hX+Gj/UQmTK7FwAeKj+UTKZZjElnbkkx6u/ikAVZfvO
-         v7Ls3NHtg1v1xFWXI5fOXn2G7fPGAQht2ttTU5QcfdjEGbQ0t4umAS9BUe2HpgGwqES8
-         +n9AGhVUOuOASD/zq5nRqiRL597++h4PCgm3UEVsp/g8ppC1uXE+svZIeZx1Xe//IJh+
-         Dyq5BcXzEvOeMnXmxeBmq4rHUsdbBGzIvZkYo7ZwD1+A8rIYfPLuRKcyJQHrJ5uaNv4e
-         Y9b9+nAEJUh1AfUWPwMdYX0D/8jEIr/7r+Y6pqyhQW42xng2Sq+SgJTnea8yv8W/9CTf
-         jdRg==
-X-Gm-Message-State: AC+VfDwfXT0oZ4BTyC4HiKLBSJ24POeCiSKNXhjO8wFQ9oFrQLYO/oah
-        vfb2V01KsTDeNTN0tqCFbUu0M9lkfsX6BqwhqyNIJg==
-X-Google-Smtp-Source: ACHHUZ5PVlgmDkUaggheQ9kq1zpCNNG/WvpI/zFjM6+9rZiEuRcJv3dN4QRqcRItX2BQQ3VJJ7rOlQJYb3u3SyZXEqE=
-X-Received: by 2002:a05:6e02:2196:b0:337:8a1b:b9ee with SMTP id
- j22-20020a056e02219600b003378a1bb9eemr66790ila.14.1684962770819; Wed, 24 May
- 2023 14:12:50 -0700 (PDT)
+        bh=UT9Y/dwgBpalMa3LjWqrqX13zFQiiWk7YoUb5Dh/rb0=;
+        b=GnkidsLp2XqmGpxRSI9JzK0f1JWV9mi9ESY1jfe/zSW/HQSBu2H+qmtztwCaXaYQWC
+         uJSXw7/zVPK59B2ONcYaB5RZ4iOO9BiXUqDnU0yjWjaOzze5TWHtbnkx4TeGtD33+Ns+
+         U2+PMMAxP0QIXP6oU3K4L6NxLxPPBak98x9g/IAZiKOoEHk5jDWZ1SBZQta532J998Xm
+         aHttAbV5LlscL/DlvlJTWYUecdq6bSOmOcrYxHTZkENuYHbuDMbOc0HQXa1UfV2h02Bv
+         8VxXerv1b31sIonep7To7cxnBi+GjYuomxhmehVSVyT9KkP2oVYgmbz/TkeLbc/JWd4N
+         oEMA==
+X-Gm-Message-State: AC+VfDzAIJMuxZmOpFsAbu9AvuUYWvYOeWnVI/CwZqBQKQYKhxGymocL
+        6tH0rXiOaP/yb5qg0PaDEkv3cldMdhnaJ+yG8YkCcg==
+X-Google-Smtp-Source: ACHHUZ5m6ZRnMjWwhSIGN0CAK0LQtBjTMOAsgHa9yk09PFD6/CRPJXTpFlgBJC6zrARysCmio+4jKLhu7Ni1uXqlG6c=
+X-Received: by 2002:a05:6e02:17c8:b0:338:3b6a:4719 with SMTP id
+ z8-20020a056e0217c800b003383b6a4719mr50834ilu.17.1684962786520; Wed, 24 May
+ 2023 14:13:06 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAD=FV=WRecTWsFM96k81YAx1=jJT0vpS4EPP0ZfWFUGHNFx9Tw@mail.gmail.com>
- <20230524072816.1131039-1-yangcong5@huaqin.corp-partner.google.com> <20230524072816.1131039-2-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20230524072816.1131039-2-yangcong5@huaqin.corp-partner.google.com>
+ <20230524074455.1172064-1-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20230524074455.1172064-1-yangcong5@huaqin.corp-partner.google.com>
 From:   Doug Anderson <dianders@google.com>
-Date:   Wed, 24 May 2023 14:12:36 -0700
-Message-ID: <CAD=FV=UXD7EKkfghpGWp9ziB8DX-RbUzs+zOex9trRT4J-f+Yg@mail.gmail.com>
-Subject: Re: [v2 1/4] drm/panel: Support for Starry-himax83102-j02 TDDI
- MIPI-DSI panel
+Date:   Wed, 24 May 2023 14:12:49 -0700
+Message-ID: <CAD=FV=VDDWX_LXjwxgudS38HG=+-gei2Xya7XiqcxjUTy90maw@mail.gmail.com>
+Subject: Re: [v2 2/4] dt-bindings: display: panel: Add compatible for Starry himax83102-j02
 To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 Cc:     daniel@ffwll.ch, neil.armstrong@linaro.org, sam@ravnborg.org,
         airlied@gmail.com, robh+dt@kernel.org,
@@ -76,39 +75,21 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Wed, May 24, 2023 at 12:28=E2=80=AFAM Cong Yang
+On Wed, May 24, 2023 at 12:45=E2=80=AFAM Cong Yang
 <yangcong5@huaqin.corp-partner.google.com> wrote:
 >
-> The Starry-himax83102-j02 is a 10.51" WUXGA TFT panel. which fits in nice=
-ly
-> with the existing panel-boe-tv101wum-nl6 driver. From the datasheet[1], M=
-IPI
-> needs to keep the LP11 state before the lcm_reset pin is pulled high, so
-> increase lp11_before_reset flag.
->
-> [1]: https://github.com/HimaxSoftware/Doc/tree/main/Himax_Chipset_Power_S=
-equence
+> The STARRY himax83102-j02 is a 10.51" WUXGA TFT LCD panel,
+> which fits in nicely with the existing panel-boe-tv101wum-nl6
+> driver. Hence, we add a new compatible with panel specific config.
 >
 > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 > ---
->  .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->
-> diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu=
-/drm/panel/panel-boe-tv101wum-nl6.c
-> index f5a6046f1d19..5c8ec263e11f 100644
-> --- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-> +++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-> @@ -76,6 +76,75 @@ struct panel_init_cmd {
->         .len =3D sizeof((char[]){__VA_ARGS__}), \
->         .data =3D (char[]){__VA_ARGS__} }
->
-> +static const struct panel_init_cmd starry_himax83102_j02_init_cmd[] =3D =
-{
+>  .../devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml     | 2 ++
+>  1 file changed, 2 insertions(+)
 
-nit: Please have the order of the tables match the order they're
-referenced. That means this should come _after_
-"starry_qfh032011_53g_init_cmd", not at the start of the tables.
+nit: bindings usually land first, so you should swap the order of
+patch #1 and patch #2 in your series.
 
+In any case:
 
--Doug
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
