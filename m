@@ -2,97 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5624F70F7BB
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 15:36:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4947770F7D5
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 15:40:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231805AbjEXNgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 09:36:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33620 "EHLO
+        id S235280AbjEXNkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 09:40:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231609AbjEXNgr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 09:36:47 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87A6A132;
-        Wed, 24 May 2023 06:36:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=ECySvPIgegu4Sj8aDCP+tqf0nmw3GutStZtWX6wbB84=; b=UYd7xh000gsUuibwqVs1szml7Z
-        vGZFhPeHkV+3BtYtd4HsKZNqPTLJ37fCK2L1aq4uw4d5dbhT0Zc4uUBgtPjy7MWj8bAndzB0qr7Iw
-        89JcoBSaVz8XvdaG+5zqM/UedcJk9nex+rUfRNXXlY8xbi6rkLCmvqEfIv/niX4UEQMikLwAM0RP6
-        gUL1zB+55T5WDv+m/ZGvWth27dn+qxWhknT/czUqPYPZ6P/PI1Iddc91G9CPX7pTIOCBS/TEJA471
-        v2uX1oAHT4RjDUrT0X2M/vEi1Z4wne2vOj+5yCNwu/iGEACRL3VWYcMeiJa3WKGlrycYgZ3hwqAHL
-        E+DSVxnQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45404)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1q1ofH-0002R4-W4; Wed, 24 May 2023 14:36:32 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1q1ofG-0001fJ-0V; Wed, 24 May 2023 14:36:30 +0100
-Date:   Wed, 24 May 2023 14:36:29 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Alexis =?iso-8859-1?Q?Lothor=E9?= <alexis.lothore@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235193AbjEXNkP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 09:40:15 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 804D3B3;
+        Wed, 24 May 2023 06:40:14 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34OCgXXO015679;
+        Wed, 24 May 2023 15:39:51 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=7VfyEEAa30A1jqe6julvnk2zzbBmOw5sbxPXbLc2amo=;
+ b=diyWMK1Ah/qKQOCijwPMHzdUqVrX+QshNbb8cOoc8I3uhuw52iN4MCZj6lWmtIiJZIcw
+ Wqh0/2hFts2aNtCv4Ue2yQEoGlp0wbrdFjVtJR9P7Dg3H7uQDUEZUFEitGbW2O+/SCST
+ qNSNO4ZK4/uZeN6tLOdWq5uinHZow0BkrpnE/sqX29iaw6Ava3hfZoQtsA9VzACSTHs8
+ B2Get2qRV/gFITNqDQH7mX0fN766B0m8NIE1KjkjNToD6nmR24EEVFW1EAglxGHpHNlH
+ pnXUvuweb1Au6fI70uF5TNXwc3ZuHetgJx5UlchGmD8reBbuX1mmmkW5S7hjFhCCkeL3 CQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qrthk930h-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 24 May 2023 15:39:51 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6CD4C10002A;
+        Wed, 24 May 2023 15:39:48 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8F1A3229A88;
+        Wed, 24 May 2023 15:39:48 +0200 (CEST)
+Received: from localhost (10.252.20.36) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 24 May
+ 2023 15:39:48 +0200
+From:   Olivier Moysan <olivier.moysan@foss.st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        paul.arola@telus.com, scott.roberts@telus.com,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Subject: Re: [PATCH net-next v3 7/7] net: dsa: mv88e6xxx: enable support for
- 88E6361 switch
-Message-ID: <ZG4S3QuT6ava3U72@shell.armlinux.org.uk>
-References: <20230524130127.268201-1-alexis.lothore@bootlin.com>
- <20230524130127.268201-8-alexis.lothore@bootlin.com>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Marek Vasut <marex@denx.de>
+CC:     Olivier Moysan <olivier.moysan@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@dh-electronics.com>
+Subject: [PATCH 0/8] ARM: dts: stm32: add adc internal channels on stm32mp15
+Date:   Wed, 24 May 2023 15:39:09 +0200
+Message-ID: <20230524133918.1439516-1-olivier.moysan@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230524130127.268201-8-alexis.lothore@bootlin.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.252.20.36]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-24_09,2023-05-24_01,2023-05-22_02
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 24, 2023 at 03:01:27PM +0200, Alexis Lothoré wrote:
-> diff --git a/drivers/net/dsa/mv88e6xxx/port.h b/drivers/net/dsa/mv88e6xxx/port.h
-> index 3c9fc17abdd2..56dfa9d3d4e0 100644
-> --- a/drivers/net/dsa/mv88e6xxx/port.h
-> +++ b/drivers/net/dsa/mv88e6xxx/port.h
-> @@ -138,6 +138,7 @@
->  #define MV88E6XXX_PORT_SWITCH_ID_PROD_6141	0x3400
->  #define MV88E6XXX_PORT_SWITCH_ID_PROD_6341	0x3410
->  #define MV88E6XXX_PORT_SWITCH_ID_PROD_6352	0x3520
-> +#define MV88E6XXX_PORT_SWITCH_ID_PROD_6361	0x2610
->  #define MV88E6XXX_PORT_SWITCH_ID_PROD_6350	0x3710
->  #define MV88E6XXX_PORT_SWITCH_ID_PROD_6351	0x3750
->  #define MV88E6XXX_PORT_SWITCH_ID_PROD_6390	0x3900
+Add STM32 ADC2 internal channels VREFINT and VDDCORE to STM32MP15x SoCs.
 
-This list is ordered by the value in the register. The value you are
-adding is 0x2610, which is not ordered between 0x3520 and 0x3710.
-Please move this to be after the definition for
-MV88E6XXX_PORT_SWITCH_ID_PROD_6250. Thanks.
+Add support of vrefint channel by adding access to vrefint calibration
+data in OTP.
+
+The internal channels are defined in STM32MP15 SoC DT according to
+generic channel bindings. The STM32 driver does not support a mixed use
+of legacy and generic channels. When generic channels are defined,
+legacy channel are ignored. This involves that the board device trees
+using legacy bindings have to be changed to generic bindings.
+
+Adopt generic iio bindings on all STM32 boards implementing the ADC.
+
+This serie does not update stm32mp15xx-dhcom-som and
+stm32mp15xx-dhcor-avenger96 DTs. These DTs have to be updated also, but
+this change is already handled through the following patch:
+https://lore.kernel.org/linux-arm-kernel/20230518020547.487670-1-marex@denx.de/T/
+
+Olivier Moysan (8):
+  ARM: dts: stm32: add adc internal channels to stm32mp15
+  ARM: dts: stm32: add vrefint calibration on stm32mp15
+  ARM: dts: stm32: add vrefint support to adc2 on stm32mp15
+  ARM: dts: stm32: enable adc on stm32mp15xx-dkx boards
+  ARM: dts: stm32: adopt generic iio bindings for adc channels on
+    stm32mp157c-ed1
+  ARM: dts: stm32: adopt generic iio bindings for adc channels on
+    emstamp-argon
+  ARM: dts: stm32: adopt generic iio bindings for adc channels on
+    dhcor-drc
+  ARM: dts: stm32: adopt generic iio bindings for adc channels on
+    dhcor-testbench
+
+ arch/arm/boot/dts/stm32mp151.dtsi             | 17 +++++++++++
+ arch/arm/boot/dts/stm32mp157c-ed1.dts         | 16 ++++++++--
+ .../boot/dts/stm32mp157c-emstamp-argon.dtsi   |  6 ++--
+ .../dts/stm32mp15xx-dhcor-drc-compact.dtsi    | 28 +++++++++++++++---
+ .../boot/dts/stm32mp15xx-dhcor-testbench.dtsi | 28 +++++++++++++++---
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi        | 29 +++++++++++++------
+ 6 files changed, 102 insertions(+), 22 deletions(-)
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+2.25.1
+
