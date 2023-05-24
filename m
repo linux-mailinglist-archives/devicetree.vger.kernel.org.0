@@ -2,80 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0755570F850
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 16:07:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17D2770F860
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 16:12:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235877AbjEXOHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 10:07:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47810 "EHLO
+        id S235482AbjEXOMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 10:12:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235833AbjEXOHe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 10:07:34 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E903312F;
-        Wed, 24 May 2023 07:07:31 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34ODK3KB007487;
-        Wed, 24 May 2023 14:07:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=IiWgxrw+DsmnbsHRWht4wn5W6abzsdX5Av7pdhDTV6o=;
- b=jPs8UZLt55Hk16ctxhVQQGg3eHmVFwNs6DcAc4+bh+FzuBM8OeFHAP5tdVl+V95nMUDy
- I8KoyAcTyFgXqMVPDT5SlTVwjMSdU2mP7T5S/uo1Jn5VoOhJ/x3tsiyWe3hMpu1siu5P
- p6g58livsdXd+v/i3y80Y9DOcwX3c9dMfghODTO3lEHsgMfWM9VMcN5L16IDJ7hn83xS
- +qkrN7OInCOjjbx7RY846fpYm8SwbO0Y6MKs/caK3LpsXuBFRpN/wTDe0xK7hIOTgfGF
- dFHT4Nehb/n45sDfpBXYio80SreL2HgfLMrpibWFTCPfNeiFi0DEMZxz3DC2s788YEjO 6A== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qscpms1ct-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 24 May 2023 14:07:28 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34OE7R32008889
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 24 May 2023 14:07:27 GMT
-Received: from hu-tdas-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 24 May 2023 07:07:23 -0700
-From:   Taniya Das <quic_tdas@quicinc.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>, <quic_jkona@quicinc.com>,
-        <quic_imrashai@quicinc.com>, <quic_ajipan@quicinc.com>
-Subject: [PATCH V5 3/3] arm64: dts: qcom: sm8450: Add video clock controller
-Date:   Wed, 24 May 2023 19:36:56 +0530
-Message-ID: <20230524140656.7076-4-quic_tdas@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230524140656.7076-1-quic_tdas@quicinc.com>
-References: <20230524140656.7076-1-quic_tdas@quicinc.com>
+        with ESMTP id S235171AbjEXOMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 10:12:45 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2172411D
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 07:12:41 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f601c57d8dso9405785e9.0
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 07:12:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684937560; x=1687529560;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zm+/ZRBOZldlqL53b66Kc1VMqiVBWlw5REXJ3gKRg4Y=;
+        b=LHhbslmTHVtT9aRVJDuMWr6LDB2MF3ACI6tD/x5vOsxgQkBYgqvwDD2fM+JU9yS1rR
+         XzvkbnASGuJZNpMiKuI2/qFlqr16uMdAr8lTmipfrNJb6s/OVD8XXt9gOBHYaPg/xnR6
+         B6iJpZtoz1xSwOhBJMS1ND9SZv6/Ekphr0o7uDD2vsM7YYmyvFT+Fe4QprO+akeUiG81
+         5TpJskzGdjOImOoOwC/fPDAGUD5jOnCl7oGrQ95IAJMqiik4rjNWC8EVUculVpwDP3Dp
+         /2dVOwmVQ6isKH5XKbxJzxmAJGeP4NF0aaOh5tW8/GzYrRbooI3r6d8C9kyvJyTeU1I0
+         RUMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684937560; x=1687529560;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zm+/ZRBOZldlqL53b66Kc1VMqiVBWlw5REXJ3gKRg4Y=;
+        b=B7YKX6JDtQWGQDLv03w6LLmsH0k4kWNJT636CNpeIC51ndnGa5QhPniyqJY4JeHJPP
+         csDRKx2y8iRMDaHsSVKOOEi7TPGbgMJLqw+5eT7+Abfq04rRb9zMDph1t6mT09yRIA6Q
+         LfdHYqbW91HhTfPn9xa9qy0elBX8NdcitdpYGdsXKMt//0yRJKWtNX0ScfIBdMu7llI6
+         alnH9za6OQnvPmfEXgxhYE8qOQZh1C7ViYvfJ8mFg/EzDwrfPQ1Fd84jjR+zW9GbpQvh
+         9d7zVcSWzD2XY2u1Z8ZCrgthXaXTrkQPtGR1eho/pI3fOVaqplZ9pj5J/baC98xqG2M4
+         3+AA==
+X-Gm-Message-State: AC+VfDypzJI0L3nM2zTAUCXclDu5KHebiQ4xjcMolkuz4pLMGQhAQ+Y8
+        WLm3tkux8KqYkMmGaE8xS5c6Dg==
+X-Google-Smtp-Source: ACHHUZ7ZiBQArVsrxbnbOPfcgyP4nY6sB/SNzM2bGxT5NtG/F1Eh5MP/d2t7lgX/aqnh4urNKvrplQ==
+X-Received: by 2002:a7b:cbc9:0:b0:3f6:84:3df6 with SMTP id n9-20020a7bcbc9000000b003f600843df6mr9846304wmi.10.1684937560071;
+        Wed, 24 May 2023 07:12:40 -0700 (PDT)
+Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id 13-20020a05600c24cd00b003f4dde07956sm2444460wmu.42.2023.05.24.07.12.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 May 2023 07:12:39 -0700 (PDT)
+Message-ID: <cb2e035d-2630-2eca-3f15-b04e4d81c699@baylibre.com>
+Date:   Wed, 24 May 2023 16:12:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: dTYX7K3DQsSAzGke1PENKLZsihxqonQj
-X-Proofpoint-GUID: dTYX7K3DQsSAzGke1PENKLZsihxqonQj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-24_09,2023-05-24_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- mlxlogscore=999 clxscore=1015 priorityscore=1501 adultscore=0
- malwarescore=0 bulkscore=0 spamscore=0 suspectscore=0 mlxscore=0
- phishscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2304280000 definitions=main-2305240115
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 4/7] ASoC: mediatek: common: soundcard driver add
+ dai_fmt support
+Content-Language: en-US
+To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com
+Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230523021933.3422-1-trevor.wu@mediatek.com>
+ <20230523021933.3422-5-trevor.wu@mediatek.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230523021933.3422-5-trevor.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,57 +81,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device node for video clock controller on Qualcomm SM8450 platform.
+On 23/05/2023 04:19, Trevor Wu wrote:
+> There are two changes included in the patch.
+> 
+> First, add set_dailink_daifmt() function, so dai_fmt can be updated by
+> the configuration in dai-link sub node.
+> 
+> Second, remove codec phandle from required property in dai-link sub node.
+> For example, user possibly needs to update dai-format for all etdm
+> co-clock dai-links, but codec doesn't need to be specified in capture
+> dai-link for a speaker amp.
+> 
+> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+> ---
+>   .../mediatek/common/mtk-soundcard-driver.c    | 49 ++++++++++++++++++-
+>   1 file changed, 48 insertions(+), 1 deletion(-)
+> 
+> diff --git a/sound/soc/mediatek/common/mtk-soundcard-driver.c b/sound/soc/mediatek/common/mtk-soundcard-driver.c
+> index 738093451ccb..5e291092046b 100644
+> --- a/sound/soc/mediatek/common/mtk-soundcard-driver.c
+> +++ b/sound/soc/mediatek/common/mtk-soundcard-driver.c
+> @@ -22,7 +22,7 @@ static int set_card_codec_info(struct snd_soc_card *card,
+>   
+>   	codec_node = of_get_child_by_name(sub_node, "codec");
+>   	if (!codec_node)
+> -		return -EINVAL;
 
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
----
-Changes since V4:
- - Sort the DT node by unit address.
- - include videocc header.
+IMO, the debug or info print should be welcome here because the behavior
+change: dai link info parse will not stop if the codec node is NULL.
+That could help to understand what is happening during init.
 
-Changes since V3:
- - None.
 
-Changes since V2:
- - No changes.
 
-Changes since V1:
- - No changes.
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
 
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 595533aeafc4..8bc6d1498b57 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/clock/qcom,sm8450-camcc.h>
- #include <dt-bindings/clock/qcom,sm8450-dispcc.h>
-+#include <dt-bindings/clock/qcom,sm8450-videocc.h>
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/mailbox/qcom-ipcc.h>
-@@ -2572,6 +2573,18 @@
- 			};
- 		};
-
-+		videocc: clock-controller@aaf0000 {
-+			compatible = "qcom,sm8450-videocc";
-+			reg = <0 0x0aaf0000 0 0x10000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_VIDEO_AHB_CLK>;
-+			power-domains = <&rpmhpd SM8450_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		cci0: cci@ac15000 {
- 			compatible = "qcom,sm8450-cci", "qcom,msm8996-cci";
- 			reg = <0 0x0ac15000 0 0x1000>;
---
-2.17.1
+-- 
+Regards,
+Alexandre
 
