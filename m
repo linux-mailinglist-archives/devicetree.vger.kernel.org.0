@@ -2,168 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D3A570FAC4
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 17:51:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E58A70F734
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 15:04:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235995AbjEXPvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 11:51:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49160 "EHLO
+        id S235206AbjEXND6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 09:03:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231736AbjEXPvw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 11:51:52 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB82B6
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 08:51:50 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f608074b50so12925355e9.0
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 08:51:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684943509; x=1687535509;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=h8geeXEOb1JFpSL51yP1LqtEfxAQbaVotjCJur5zhD4=;
-        b=r9Xqu5ND0Bk5xdzrVcEKYQlFpEEChNge6LbIG0g17WQIR6Y6FlFTjj1VLIptKxk12Q
-         yq45EGDPQw9rNHr+jipV1YSj4asgJuaRjeVL0NZhwSDk/F7WDrzxEpDXrSSJyrZb0/M3
-         zBXKIn/cV0bBTAFnJDnUkCCcwvue3vKTmsqLCYu0uVu4CEJS93Dy/yQ+lZNpqtjw/llJ
-         /i6QJwMZfnhn0BXjS9g7SEYSgcIwM6tYnNKca4sWH8rz2seGcHobfGaMYO1qrYroAdGx
-         05BznJ1hGxFw4jfQNNWBm56IewOjSboZXbEWkM4NBUXJGppz8/FOt58lkiEa84eE4ux7
-         4f7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684943509; x=1687535509;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h8geeXEOb1JFpSL51yP1LqtEfxAQbaVotjCJur5zhD4=;
-        b=hEk7wzDq6oodEzpsg/rBhTctTNBGMgCxjJ1ruyQAqX01ReCi5uFdOjWPXUNwB/KT9v
-         41sPfUtKzdnoOcR+fx399n2KshgU6xDS1XUtruLqwaQL4NjH3CYNqVoMK6UaXgfjsf90
-         ShMMM0VuUbPrpiD1OpUBHKO15D5sNc2YuaZnEmxB5JBk8Z8I7Tgv+alNhk4+ZQWxyJPf
-         +s3CVduxk41YrqGfzyERBT7gI0eCnLgRBc9gVgcxN/Cfjjl7sLaNI+zi84SdRv7//8KP
-         fmoVvMyBZBNK0vXlizMrRle73X8Z82N7daPBdIb003QCSqyM9b/jgt2HwPqejioTui14
-         jjDA==
-X-Gm-Message-State: AC+VfDxVJXlahB2fSZil1Vknofl2KHSJIRCZEMSR2T0OVteI67xPfT3N
-        +xtCSvJGG5nVBwnhXa2i6K8hww==
-X-Google-Smtp-Source: ACHHUZ5sgxsCI/lVRvjZNq+J7kPDx+SvOmaq/8wjAiMQ785YfC+h5iFAEtyNc1gq4Kqqj6aQ7yTjgQ==
-X-Received: by 2002:a7b:cb91:0:b0:3f6:45d:28a1 with SMTP id m17-20020a7bcb91000000b003f6045d28a1mr219488wmi.14.1684943508981;
-        Wed, 24 May 2023 08:51:48 -0700 (PDT)
-Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id z26-20020a05600c221a00b003f60101074dsm2721773wml.33.2023.05.24.08.51.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 May 2023 08:51:48 -0700 (PDT)
-Message-ID: <dcd5050b-8459-e7cc-b5ad-eb435aba6e84@baylibre.com>
-Date:   Wed, 24 May 2023 17:51:46 +0200
+        with ESMTP id S235205AbjEXNDg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 09:03:36 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B1DFE44;
+        Wed, 24 May 2023 06:03:20 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34OArOT9031201;
+        Wed, 24 May 2023 09:02:54 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3qpr27bpte-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 24 May 2023 09:02:45 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 34OD23Ci017607
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 24 May 2023 09:02:03 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Wed, 24 May 2023 09:02:02 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Wed, 24 May 2023 09:02:02 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Wed, 24 May 2023 09:02:02 -0400
+Received: from daniel-Precision-5530.ad.analog.com ([10.48.65.214])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 34OD1npV000947;
+        Wed, 24 May 2023 09:01:52 -0400
+From:   Daniel Matyas <daniel.matyas@analog.com>
+CC:     Daniel Matyas <daniel.matyas@analog.com>,
+        Rob Herring <robh@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: [PATCH v10 1/2] dt-bindings: hwmon: add MAX31827
+Date:   Wed, 24 May 2023 19:01:29 +0300
+Message-ID: <20230524160131.14081-1-daniel.matyas@analog.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 6/7] ASoC: mediatek: mt8188-mt6359: support new board
- with nau88255
-Content-Language: en-US
-To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
-        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com
-Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230523021933.3422-1-trevor.wu@mediatek.com>
- <20230523021933.3422-7-trevor.wu@mediatek.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230523021933.3422-7-trevor.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: eguqr4SGfYA-mSGxZHz18lrx9__7x59L
+X-Proofpoint-ORIG-GUID: eguqr4SGfYA-mSGxZHz18lrx9__7x59L
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-24_08,2023-05-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 lowpriorityscore=0 suspectscore=0 adultscore=0 malwarescore=0
+ phishscore=0 mlxscore=0 clxscore=1015 mlxlogscore=999 bulkscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305240107
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2023 04:19, Trevor Wu wrote:
->   	card_data = (struct mt8188_card_data *)of_device_get_match_data(&pdev->dev);
-> @@ -776,9 +1066,38 @@ static int mt8188_mt6359_dev_probe(struct platform_device *pdev)
->   				dai_link->init = mt8188_mt6359_init;
->   				init_mt6359 = true;
->   			}
-> +		} else if (strcmp(dai_link->name, "ETDM1_OUT_BE") == 0 ||
-> +			   strcmp(dai_link->name, "ETDM2_OUT_BE") == 0 ||
-> +			   strcmp(dai_link->name, "ETDM1_IN_BE") == 0 ||
-> +			   strcmp(dai_link->name, "ETDM2_IN_BE") == 0) {
-> +			if (!strcmp(dai_link->codecs->dai_name, MAX98390_CODEC_DAI)) {
-> +				dai_link->ops = &mt8188_max98390_ops;
-> +				if (init_max98390)
-> +					continue;
+MAX31827 is a low-power temperature switch with I2C interface.
 
-I prefer that you do like your patch [PATCH v2 1/7] to be consistent
-and easy to read.
+The device is a ±1°C accuracy from -40°C to +125°C
+(12 bits) local temperature switch and sensor with I2C/SM-
+Bus interface. The combination of small 6-bump wafer-lev-
+el package (WLP) and high accuracy makes this temper-
+ature sensor/switch ideal for a wide range of applications.
 
-+			if (!init_mt6359) {
-+				dai_link->init = mt8188_mt6359_init;
-+				init_mt6359 = true;
-+			}
+Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+Change log:
+v9 -> v10: Added proper change log.
+v8 -> v9: Did not use '--base'.
+v7 -> v8: Added '--base=[Linux 6.4-rc1 commmit]' when using 'git format-patch'
+v6 -> v7: No change.
+v5 -> v6: Added Reviewed-by tag.
+v3 -> v5: Forgot to add Reviewed-by tag.
+v2 -> v3: Made max31828 and max31829 compatible with max31827.
+v1 -> v2: Resolved dt_binding_check errors. Dropped status at i2c node. Made node name generic. 
 
-> +
-> +				dai_link->init = mt8188_max98390_codec_init;
-> +				init_max98390 = true;
-> +			} else if (!strcmp(dai_link->codecs->dai_name, NAU8825_CODEC_DAI)) {
-> +				dai_link->ops = &mt8188_nau8825_ops;
-> +				if (init_nau8825)
-> +					continue;
+ .../bindings/hwmon/adi,max31827.yaml          | 54 +++++++++++++++++++
+ MAINTAINERS                                   |  7 +++
+ 2 files changed, 61 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
 
-ditto
-
-> +
-> +				dai_link->init = mt8188_nau8825_codec_init;
-> +				dai_link->exit = mt8188_nau8825_codec_exit;
-> +				init_nau8825 = true;
-> +			} else {
-> +				if (strcmp(dai_link->codecs->dai_name, "snd-soc-dummy-dai")) {
-
-Shouldn't be with a NOT operator ("!") ?
-+ if (!strcmp(dai_link->codecs->dai_name, "snd-soc-dummy-dai")) {
-
-
-> +					if (init_dumb)
-> +						continue;
-
-ditto
-
-> +
-> +					dai_link->init = mt8188_dumb_amp_init;
-> +					init_dumb = true;
-> +				}
-> +			}
->   		}
->   	}
->   
-> +	priv->private_data = card_data;
->   	snd_soc_card_set_drvdata(card, priv);
->   
->   	ret = devm_snd_soc_register_card(&pdev->dev, card);
-> @@ -795,11 +1114,20 @@ static struct mt8188_card_data mt8188_evb_card = {
->   	.name = "mt8188_mt6359",
->   };
->   
-> +static struct mt8188_card_data mt8188_nau8825_card = {
-> +	.name = "mt8188_nau8825",
-> +	.quirk = NAU8825_HS_PRESENT,
-> +};
-> +
->   static const struct of_device_id mt8188_mt6359_dt_match[] = {
->   	{
->   		.compatible = "mediatek,mt8188-mt6359-evb",
->   		.data = &mt8188_evb_card,
->   	},
-> +	{
-> +		.compatible = "mediatek,mt8188-nau8825",
-> +		.data = &mt8188_nau8825_card,
-> +	},
->   	{},
->   };
->   MODULE_DEVICE_TABLE(of, mt8188_mt6359_dt_match);
-
+diff --git a/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+new file mode 100644
+index 000000000000..2dc8b07b4d3b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/adi,max31827.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices MAX31827, MAX31828, MAX31829 Low-Power Temperature Switch
++
++maintainers:
++  - Daniel Matyas <daniel.matyas@analog.com>
++
++description: |
++  Analog Devices MAX31827, MAX31828, MAX31829 Low-Power Temperature Switch with
++  I2C Interface
++  https://www.analog.com/media/en/technical-documentation/data-sheets/MAX31827-MAX31829.pdf
++
++properties:
++  compatible:
++    oneOf:
++      - const: adi,max31827
++      - items:
++          - enum:
++              - adi,max31828
++              - adi,max31829
++          - const: adi,max31827
++
++  reg:
++    maxItems: 1
++
++  vref-supply:
++    description:
++      Must have values in the interval (1.6V; 3.6V) in order for the device to
++      function correctly.
++
++required:
++  - compatible
++  - reg
++  - vref-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        temperature-sensor@42 {
++            compatible = "adi,max31827";
++            reg = <0x42>;
++            vref-supply = <&reg_vdd>;
++        };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 27ef11624748..752c7e9c4e4a 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12612,6 +12612,13 @@ F:	Documentation/userspace-api/media/drivers/max2175.rst
+ F:	drivers/media/i2c/max2175*
+ F:	include/uapi/linux/max2175.h
+ 
++MAX31827 TEMPERATURE SWITCH DRIVER
++M:	Daniel Matyas <daniel.matyas@analog.com>
++L:	linux-hwmon@vger.kernel.org
++S:	Supported
++W:	http://ez.analog.com/community/linux-device-drivers
++F:	Documentation/devicetree/bindings/hwmon/adi,max31827.yaml
++
+ MAX6650 HARDWARE MONITOR AND FAN CONTROLLER DRIVER
+ L:	linux-hwmon@vger.kernel.org
+ S:	Orphan
 -- 
-Regards,
-Alexandre
+2.34.1
 
