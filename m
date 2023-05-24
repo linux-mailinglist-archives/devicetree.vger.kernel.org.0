@@ -2,99 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62CE070FB5E
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 18:08:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3238070FB7D
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 18:12:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230330AbjEXQIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 12:08:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35334 "EHLO
+        id S230401AbjEXQM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 12:12:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231148AbjEXQI3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 12:08:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD69F123
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 09:08:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 69EC163EFD
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 16:08:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30A88C433D2;
-        Wed, 24 May 2023 16:08:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684944507;
-        bh=EhIrAt3qf72WnPgippbdlYJyH91c3TbKRVQYH5h9ekw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=UDL48NOaLdw0AKXhOOplPGQVXObIXn5pw1nrqFRQ8ll+KHYGE/BWNxR+YXOED1s7I
-         DFtvV9K1TU/VHZpp0ob+7zW4i6EbGfUA4K0yFH5wzfLpLq+bv0rqteWlLlLO0jmhrw
-         sS+ueIc55+KMRGGoEns5qNN5yOy5HDF1hLq2EOA5ds+UktbbBMtqTlgSPoB0fse5/2
-         Ym/ZfuAQ7F85n7uq9AGlwjipAN5aLfOIzCIPpS52XLfFgUbLZB7hCIRHMlyg/sqWrU
-         6tDYsRvOZnp+9xjzvIP3k2CaGr+MJdrxBl6ZtbR5JGE4Cd74JS6VdaCAEkJoM4qrac
-         /rAJXlJhQnECw==
-Message-ID: <383971f3-3302-b306-610f-486498262805@kernel.org>
-Date:   Wed, 24 May 2023 11:08:25 -0500
+        with ESMTP id S229992AbjEXQM4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 12:12:56 -0400
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BFA497
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 09:12:53 -0700 (PDT)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-199fd7b5789so369609fac.2
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 09:12:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684944772; x=1687536772;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=d2krvbmUqOnT4KV8ff+7HqiCvnexQ6qfpMeD5hBBKDI=;
+        b=BXQc/vB2/r9Dq425nCPgq9QmObSBwPsi5anYqf70r7oyC2C1g6fTPoPoi9p2iSrWSm
+         c9D/8N8/y21hqTJf1gOpXyYMdQes2dCzj59IGxkfyYh8LBDkXHDQAxrvv7vH8mJHkvJw
+         yGtmuS42uE0ofz1TYDAIU+jb/hfkVvbpCBPFqtsOCPYzgNy8/L1AGiqZK6RB9p5zpb9z
+         lPJxI73lFmeaf+4ZuSTk8xD6mS8czma8D89H23EPnv6jYzfBiFZ2bIgEz8XBJ6W/yCp5
+         8tbMO1HjL4HxIFk1o3J9og0WW5tl985SvZV0UI2jO57IL0lUKOHuzKC3HZi5WqQgwGtp
+         G+CA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684944772; x=1687536772;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=d2krvbmUqOnT4KV8ff+7HqiCvnexQ6qfpMeD5hBBKDI=;
+        b=iwO+jNsybnBckKxaDa5DbNi36L1dSManIKk7Gv3b2tVf2FOpPPUCQcw3Yr2P6Ero17
+         2uN4rS7+orYDjj2w1fhi8eNbvEH53AYLSRukSdP0jufnYEMZ6Ii2cSlFftXCXcnmN3pD
+         0Ua+Xy/eazM/M/0BQ26GHljk7Qbz3uFDa9ASkd9ekbYURRtxxbVn1Enb6eQVO0bAVC8h
+         H0DFiuXR07/rCbRK2L552zMB8NAm55+q/q0EkexrvcD4lpDlXe+UxWtRM53Wl1dXr8v/
+         sko3JAWiiUA9jtdLetV+JmkBH+8A4HKrsrOFv+V0398bglePBHHQwILutmIFAPIC1Aw5
+         5cdw==
+X-Gm-Message-State: AC+VfDxXTkFNYFtwfWdmzv7argeNbdsu7zIPL59OQYRvbbsWR7NQMJ/a
+        0UvYJFSFmEPz6lsgB7/LtfVfXHx55fgB/A==
+X-Google-Smtp-Source: ACHHUZ7Lso2poEP7KecW3pW1g3gvJHrRqlkMvpmtiMnveNZ9VYZhCemAUJ0Zdx5qdJxt5oBJVxxi4Q==
+X-Received: by 2002:a05:6870:93d5:b0:195:fe38:3b60 with SMTP id c21-20020a05687093d500b00195fe383b60mr161544oal.25.1684944772365;
+        Wed, 24 May 2023 09:12:52 -0700 (PDT)
+Received: from neuromancer. ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id u1-20020a05687036c100b0019ea8771fb0sm82550oak.13.2023.05.24.09.12.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 May 2023 09:12:52 -0700 (PDT)
+Message-ID: <646e3784.050a0220.71431.07f7@mx.google.com>
+X-Google-Original-Message-ID: <ZG43gSO+UYAi6bv+@neuromancer.>
+Date:   Wed, 24 May 2023 11:12:49 -0500
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, zyw@rock-chips.com,
+        sebastian.reichel@collabora.com, andyshrk@163.com,
+        jagan@amarulasolutions.com, perex@perex.cz, tiwai@suse.com,
+        lgirdwood@gmail.com, heiko@sntech.de, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 1/6] ASoC: es8328: Enabling support for 12Mhz sysclk
+References: <20230523213825.120077-1-macroalpha82@gmail.com>
+ <20230523213825.120077-2-macroalpha82@gmail.com>
+ <f5b780ac-e079-4c24-9dfc-05aee52deb9c@sirena.org.uk>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] arm64: dts: Unify pinctrl-single pin group nodes for
- altera
-To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org
-References: <20230523065808.15417-1-tony@atomide.com>
-Content-Language: en-US
-From:   Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20230523065808.15417-1-tony@atomide.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f5b780ac-e079-4c24-9dfc-05aee52deb9c@sirena.org.uk>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/23/23 01:58, Tony Lindgren wrote:
-> We want to unify the pinctrl-single pin group nodes to use naming "pins".
-> Otherwise non-standad pin group names will add make dtbs checks errors
-> when the pinctrl-single yaml binding gets merged.
+On Wed, May 24, 2023 at 12:57:02PM +0100, Mark Brown wrote:
+> On Tue, May 23, 2023 at 04:38:20PM -0500, Chris Morgan wrote:
 > 
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->   arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+> > +static unsigned int ratios_12000[] = {
+> > +	8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000,
+> > +	48000, 88235, 96000,
+> > +};
+> > +
+> > +static struct snd_pcm_hw_constraint_list constraints_12000 = {
+> > +	.count = ARRAY_SIZE(ratios_12000),
+> > +	.list = ratios_12000,
+> > +};
 > 
-> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-> @@ -66,14 +66,14 @@ sdmmca-ecc@ff8c8c00 {
->   };
->   
->   &pinctrl0 {
-> -	i2c1_pmx_func: i2c1-pmx-func {
-> +	i2c1_pmx_func: i2c1-pins {
->   		pinctrl-single,pins = <
->   			0x78   0x4   /* I2C1_SDA (IO6-B) PIN30SEL) */
->   			0x7c   0x4   /* I2C1_SCL (IO7-B) PIN31SEL */
->   		>;
->   	};
->   
-> -	i2c1_pmx_func_gpio: i2c1-pmx-func-gpio {
-> +	i2c1_pmx_func_gpio: i2c1-gpio-pins {
->   		pinctrl-single,pins = <
->   			0x78   0x8   /* I2C1_SDA (IO6-B) PIN30SEL) */
->   			0x7c   0x8   /* I2C1_SCL (IO7-B) PIN31SEL */
+> ...
+> 
+> > +	case 12000000:
+> > +		es8328->sysclk_constraints = &constraints_12000;
+> > +		es8328->mclk_ratios = ratios_12000;
+> 
+> The other constraints have separate rates and ratios, with wildly
+> different values between the two - the ratio (I'm guessing a clock
+> divider) being written to a 5 bit field which obviously can't contain
+> the actual sample rate.
 
-Applied!
+A bit over my head here, I saw this patch from the Rockchip BSP kernel
+branch and tested it on my mainline kernel. Long story short the clock
+for the mclk is 12000000. I see that there are similar issues for the
+ES8316 on the Rock 5B, so I will probably just wait for a proper fix
+there and then implement something similar here.
 
-Thanks,
-Dinh
+Thank you.
