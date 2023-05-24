@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D595710106
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 00:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3AC571011C
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 00:46:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231443AbjEXWfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 18:35:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59784 "EHLO
+        id S229616AbjEXWqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 18:46:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232281AbjEXWf3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 18:35:29 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B58DE6D
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 15:35:04 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-6afbb00c60fso54871a34.0
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 15:35:04 -0700 (PDT)
+        with ESMTP id S237173AbjEXWqh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 18:46:37 -0400
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E900B90
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 15:46:36 -0700 (PDT)
+Received: by mail-oo1-xc29.google.com with SMTP id 006d021491bc7-55555562288so203520eaf.0
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 15:46:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684967699; x=1687559699;
+        d=gmail.com; s=20221208; t=1684968396; x=1687560396;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=85gRKM7pf1VF4IINr+C8p9MDqkiLt0epIQnDUiVBTpc=;
-        b=fbhp4+FJsl5borOuauSPZsAkNLYns8cgQCSPcYt/rmXXExgHWbvvdho+qBd84H0/fU
-         oXkeSIglBlPDM3hQUJHRNrPJwLk5fj8BZj/37U+OGquSMBzbzanc9RL7JPzv+3vA0viV
-         MYMizrK5rZI3gEZeifCrvH+yN9yIwZqRMurkK/L77HKnT9t2ZbiNqb6J4MjLI2HIkpMn
-         kLERrv/H5G14QG3NGmG/0kRHlGGJidu20ynVwrlh9Uv0szEQRso0LriVIFeUoxgN3dKp
-         XZ1karDITiQQQ9jl4y6FDTv5QgjvXwd3ucfeIgJfAqDa+FKbQJBx1xBrHIE8j0izUtyT
-         QnhQ==
+        bh=nFpZ9P9LuD5BjlUmv1Z1M0ZAxdFeNY4Gg06S1pBdIO8=;
+        b=LhuxaFh3JqPv9uUuq/9BHcRkei/IpW6di+dOLbwHdPt0V7o1272ZSVHu84eStMnbBZ
+         l34dfJxSf/44sEsI3udL1eWx+vg9GYzwKk7GDB+m81eS888PDexButBu3VS05Sy5nhqn
+         E0leRJqxRZtWzvhl0gBX+7vsafZ7gcZqxThZ6PeN80t1lj4B7KBvzLEKnbr9pk0otLwf
+         WboWOJoa0iqDRmqPGXDse2pObWVKi81SO1TUXQ8H4v42IyQztTt8ccb9WlYOIW7i4QKf
+         oZqORh16zuW6Q5Dzg5eUibeaamx53gukAQB62/C2kbaak+WmFopnVhw6Um/bFCuZly5+
+         GYfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684967699; x=1687559699;
+        d=1e100.net; s=20221208; t=1684968396; x=1687560396;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=85gRKM7pf1VF4IINr+C8p9MDqkiLt0epIQnDUiVBTpc=;
-        b=GK2UiMH+dSgo2zXGXonyS8PHnFftiMew4GCr/4YBajYx5ADR9obFVR8upe2hgWeG3r
-         XDpbQC6TS14IwbX+h4vs0ldCxYILuUIvLewHuEmGBsAqTdH3ikghfnrSnnWt+5Ox651F
-         puMmpdKpIKa4kMHVwwhHQRJZRsIxOdA3Ru5QyZR8OzA3dCp6YLjx/yP/uXmUE3lrIBUT
-         wsxL/j//EeFfaM9cZFNQmTVr4OPFmeLug3xX2C9ZJtblh8CW8Xn4m5uG3n9qF0ECRgT0
-         Bw3a+FvIe8bOvDJQZ2f/dW4XWDMFcsRCem41BWbqUPmpLUYdfKXlxPK3KV6so9HbcR7D
-         G0Ag==
-X-Gm-Message-State: AC+VfDyy3xIOKUL/60OdT1Cesr/dQkCKoTAztuakJjAqMs7sJQACMEv3
-        ed+2Rx1Y0X2ODYBuut31mWU=
-X-Google-Smtp-Source: ACHHUZ76Sb/CDAq+BhHWnQu42yzlRxMkvWmGouAma7orcl+O0CgvPoO1dI09gZYI9piiSqrmegvCuQ==
-X-Received: by 2002:a05:6830:22d3:b0:6af:801d:e59 with SMTP id q19-20020a05683022d300b006af801d0e59mr1654116otc.2.1684967699081;
-        Wed, 24 May 2023 15:34:59 -0700 (PDT)
+        bh=nFpZ9P9LuD5BjlUmv1Z1M0ZAxdFeNY4Gg06S1pBdIO8=;
+        b=WVEdKxbgX8tKvPt7ewZ/pFzR7KDwJ1gkrVysbTKAA0w6lNtAvtG02anCQ3oeTbEtnc
+         EaECwqS8u6jHgBdvzPviO/nKCepil9NbfgotIsXhHKGnj5GxIkE8+UoHMHpG7EUatzEn
+         8MAITu7EElzQCWt8C6FKZRXS9annp23cjCTEBAwkSlUVlNHXwMcaRjMFt3rpgAZulRTU
+         IWULAMZ/SPfyejZJApLxVyx4MSLSsIJHWhcz3Ou/2aDa/eWrXGA/B3xedEnR/UrrhLp9
+         kdYQ2SocGncLUE/VFcYW+Pv6P8jlC2ViAKI2LQ3pKUJI9Q7xxYmvZBIk/IbOWEpVmG36
+         sNhg==
+X-Gm-Message-State: AC+VfDyN9f12sJICbsBdF4DRpl/gbw7q33zVPaW/XRiSUv66JijxW3fi
+        Mmz6YRNPNd462u/ArL7C3aY=
+X-Google-Smtp-Source: ACHHUZ6SZp4hY5RfsA61ZFB0NtirVLZ5XhE9rwRVrskIrVWQd8BFFYOCRJ8s4ybSA7WO+KjT4i4ZIg==
+X-Received: by 2002:a05:6820:16a3:b0:54f:d702:a405 with SMTP id bc35-20020a05682016a300b0054fd702a405mr7664254oob.1.1684968396205;
+        Wed, 24 May 2023 15:46:36 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:4331:751b:6032:b5d])
-        by smtp.gmail.com with ESMTPSA id z21-20020a05683010d500b006aaf82bd5a2sm19830oto.43.2023.05.24.15.34.55
+        by smtp.gmail.com with ESMTPSA id o201-20020a4a2cd2000000b005526983ebdcsm3549461ooo.4.2023.05.24.15.46.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 May 2023 15:34:58 -0700 (PDT)
+        Wed, 24 May 2023 15:46:35 -0700 (PDT)
 From:   Fabio Estevam <festevam@gmail.com>
 To:     shawnguo@kernel.org
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org, devicetree@vger.kernel.org,
-        inux-arm-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] ARM: dts: imx7d-flex-concentrator: Remove invalid ecspi property
-Date:   Wed, 24 May 2023 19:34:40 -0300
-Message-Id: <20230524223440.408404-1-festevam@gmail.com>
+Subject: [PATCH 1/2] ARM: dts: imx35: Remove invalid wdog property
+Date:   Wed, 24 May 2023 19:46:24 -0300
+Message-Id: <20230524224625.431182-1-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -72,37 +72,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Fabio Estevam <festevam@denx.de>
 
-The 'num-chipselects' property is not a valid property for ecspi.
+The 'clock-names' property is not a valid property for wdog.
 
 Remove it to fix the following DT check warning:
 
-spi@30630000: Unevaluated properties are not allowed ('num-chipselects' was unexpected)
-From schema: Documentation/devicetree/bindings/spi/fsl-imx-cspi.yaml
+watchdog@53fdc000: Unevaluated properties are not allowed ('clock-names' was unexpected)
+From schema: Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- arch/arm/boot/dts/imx7d-flex-concentrator.dts | 2 --
- 1 file changed, 2 deletions(-)
+ arch/arm/boot/dts/imx35.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx7d-flex-concentrator.dts b/arch/arm/boot/dts/imx7d-flex-concentrator.dts
-index bd6b5285aa8d..3a723843d562 100644
---- a/arch/arm/boot/dts/imx7d-flex-concentrator.dts
-+++ b/arch/arm/boot/dts/imx7d-flex-concentrator.dts
-@@ -107,7 +107,6 @@ &adc1 {
- &ecspi2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_ecspi2>;
--	num-chipselects = <1>;
- 	cs-gpios = <&gpio4 23 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- 
-@@ -122,7 +121,6 @@ pcf2127: rtc@0 {
- &ecspi4 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_ecspi4>;
--	num-chipselects = <1>;
- 	cs-gpios = <&gpio3 3 GPIO_ACTIVE_LOW>;
- 	status = "okay";
+diff --git a/arch/arm/boot/dts/imx35.dtsi b/arch/arm/boot/dts/imx35.dtsi
+index d650f54c3fc6..2d20e5541acc 100644
+--- a/arch/arm/boot/dts/imx35.dtsi
++++ b/arch/arm/boot/dts/imx35.dtsi
+@@ -298,7 +298,6 @@ wdog: watchdog@53fdc000 {
+ 				compatible = "fsl,imx35-wdt", "fsl,imx21-wdt";
+ 				reg = <0x53fdc000 0x4000>;
+ 				clocks = <&clks 74>;
+-				clock-names = "";
+ 				interrupts = <55>;
+ 			};
  
 -- 
 2.34.1
