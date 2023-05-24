@@ -2,84 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 113AA70F406
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 12:21:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD2A670F416
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 12:24:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232457AbjEXKVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 06:21:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46164 "EHLO
+        id S231506AbjEXKYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 06:24:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232459AbjEXKVE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 06:21:04 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C07D0E47;
-        Wed, 24 May 2023 03:20:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1684923618; x=1716459618;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/2s4Qnb05K6PsfiTfS/96AXNQs6QvNaT5gb/FneMc1g=;
-  b=w7HHlCD6iTmFpk8AsAAQAWAYxNcPLZvJJkyFH0GtBLW37RSpcLmVlDYu
-   doyrvxKTs60vJREL4SDlcBvUNHOeriqVJG1Xg4SpiAdUmHr+k+IuyE55x
-   ckbOmzh69MMxAU0BsOxx3vHwQDVVhrK8nah+9rluemDeUfDI//ZquYDEr
-   HbL5bR5S4vOHzsOuDe/RL97x7qL4LzZlpQbVTgEXE/AF4Q60APT4u+RIb
-   8zqHB4coz25o4Sbr1PwE20nL1Qj/YqNA55xxkV5DZ7UBLOcIe872xIPTG
-   ezkoyJmnOWtTmlIEFOVfGOATm7Fdk4iItgJRGqnKVIEzWPaZh5d4YlJBu
-   g==;
-X-IronPort-AV: E=Sophos;i="6.00,188,1681196400"; 
-   d="asc'?scan'208";a="153681187"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 May 2023 03:20:17 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 24 May 2023 03:20:13 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 24 May 2023 03:20:10 -0700
-Date:   Wed, 24 May 2023 11:19:48 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-CC:     Torsten Duwe <duwe@lst.de>, <linux-riscv@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <yanhong.wang@starfivetech.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S231827AbjEXKY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 06:24:27 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD0B1189
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 03:24:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1684923857; x=1716459857;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Rc84ojW4hQevoGDBaVtQpGYulSFqn5AVEQWxry54pw8=;
+  b=EZpmZWtqdqJiz+xTgJ4ZORmZijsgexFf7MIv/RydCqM6vJ8punQF1sWc
+   qv6HinrfTr7h3d+u53TfDxLQk0Yhb5EKhVZPJPRPJySNCGw3GnQgFdS+N
+   Ay0PaS+33H3/oXv2pl2VcuoOsXGI/CggZUmvocSFmrSyP5dbCLycF0xb5
+   b34zDP9BJTJbhZZPOgaEWb9muVRxz3xFK6sOrLJ5kkJfrbzWfU+YiYsOD
+   Xo46p2jp3NHVPlYwQ/z5GH0xI4bawtfgPAfdLUUIc9UkDURGgybOHQfWo
+   4Qmg9V1f61mP+6P8HoQ/77tKHsyrK0KXZgTHHSgGKcNtZmk1yqi/oj9Dc
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,188,1681164000"; 
+   d="scan'208";a="31070880"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 24 May 2023 12:24:15 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 24 May 2023 12:24:15 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 24 May 2023 12:24:15 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1684923855; x=1716459855;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=Rc84ojW4hQevoGDBaVtQpGYulSFqn5AVEQWxry54pw8=;
+  b=TbwkFSuyg12aLMwWfqOESPB83e1nNXtLc5e0Wzfj11CM1KF/oQ+ssksg
+   sEzBX25WKCVCnTDZpAXMFEkdPIkGEUY3IWUUOw8ekX+bYA49hsfewt4KU
+   lE5yegq/kjZeWpB64WllguU35By7oaf11q7mQo3fHZWTu7ImMJwz5akoY
+   6puHxFZ5acLwdmEp++XFeZ1zfu+7Pgowh2JzoctPNJT2+WcL3uvKZytrC
+   M1u2uGT3+SjL7HU4a5jZK+SMXnIsCZbcEExwKmVIphUDmhcRUgoZ+Mjij
+   EpOPCrQa2TiE0LShVssVM3LKriHlYqRUWgnUG2cj2F/SK9OF8JiCSivAl
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,188,1681164000"; 
+   d="scan'208";a="31070879"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 24 May 2023 12:24:15 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 80EA0280082;
+        Wed, 24 May 2023 12:24:15 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <u-boot@lists.denx.de>
-Subject: Re: [PATCH v4 1/7] dt-bindings: clock: Add StarFive JH7110 PLL clock
- generator
-Message-ID: <20230524-jittery-sway-41b578b24153@wendy>
-References: <20230512022036.97987-1-xingyu.wu@starfivetech.com>
- <20230512022036.97987-2-xingyu.wu@starfivetech.com>
- <20230519135733.GA10188@lst.de>
- <20230519-smokeless-guileless-2a71cae06509@wendy>
- <df43411e-8982-74f5-6148-e7281c37dada@starfivetech.com>
- <20230523-fondue-monotype-0c751a8f0c13@wendy>
- <20230523131006.46997d84@blackhole.lan>
- <20230523-saturate-axis-f46b78b7b82b@wendy>
- <38a9cb77-18b3-4daa-724b-9f2282f7d948@starfivetech.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp: Add TC9595 bridge on DH electronics i.MX8M Plus DHCOM
+Date:   Wed, 24 May 2023 12:24:14 +0200
+Message-ID: <1953702.usQuhbGJ8B@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <a8306df6-3b30-19d1-6153-b30a425c7ed0@denx.de>
+References: <20230515162424.67597-1-marex@denx.de> <3741758.kQq0lBPeGt@steina-w> <a8306df6-3b30-19d1-6153-b30a425c7ed0@denx.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dhsQSIulCPiX0eS/"
-Content-Disposition: inline
-In-Reply-To: <38a9cb77-18b3-4daa-724b-9f2282f7d948@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,121 +88,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---dhsQSIulCPiX0eS/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Marek,
 
-On Wed, May 24, 2023 at 05:00:02PM +0800, Xingyu Wu wrote:
-> On 2023/5/23 19:28, Conor Dooley wrote:
-> > On Tue, May 23, 2023 at 01:10:06PM +0200, Torsten Duwe wrote:
-> >> On Tue, 23 May 2023 09:28:39 +0100
-> >> Conor Dooley <conor.dooley@microchip.com> wrote:
-> >>=20
-> >> > On Tue, May 23, 2023 at 10:56:43AM +0800, Xingyu Wu wrote:
-> >> > > On 2023/5/19 22:16, Conor Dooley wrote:
-> >> > > > On Fri, May 19, 2023 at 03:57:33PM +0200, Torsten Duwe wrote:
-> >> > > >> On Fri, May 12, 2023 at 10:20:30AM +0800, Xingyu Wu wrote:
-> >> > > >> [...]
-> >>=20
-> >> > > >> > +/* PLL clocks */
-> >> > > >> > +#define JH7110_CLK_PLL0_OUT			0
-> >> > > >> > +#define JH7110_CLK_PLL1_OUT			1
-> >> > > >> > +#define JH7110_CLK_PLL2_OUT			2
-> >> > > >>=20
-> >> > > >> In U-Boot commit 58c9c60b Yanhong Wang added:
-> >> > > >>=20
-> >> > > >> +
-> >> > > >> +#define JH7110_SYSCLK_PLL0_OUT                       190
-> >> > > >> +#define JH7110_SYSCLK_PLL1_OUT                       191
-> >> > > >> +#define JH7110_SYSCLK_PLL2_OUT                       192
-> >> > > >> +
-> >> > > >> +#define JH7110_SYSCLK_END                    193
-> >> [...]
-> >> > > > Ohh, that's not good.. If you pass the U-Boot dtb to Linux it
-> >> > > > won't understand the numbering. The headers are part of the
-> >> > > > dt-binding :/
-> >>=20
-> >> In fact, the clock index >=3D 190 makes linux hang on boot, waiting wi=
-th
-> >> EPROBE_DEFER for every device's clock, because the sysclk driver errors
-> >> out with EINVAL (jh7110_sysclk_get()).
-> >=20
-> > Yup, that's about what I expected to happen.
-> >=20
-> >> > > Because PLL driver is separated from SYSCRG drivers in Linux, the
-> >> > > numbering starts from 0. But in Uboot, the PLL driver is included
-> >> > > in the SYSCRG driver, and the number follows the SYSCRG.
-> >> >=20
-> >> > Unfortunately, how you choose to construct your drivers has nothing =
-to
-> >> > do with this.
-> >> > These defines/numbers appear in the dts and are part of the DT ABI.
-> >> > The same dts is supposed to work for Linux & U-Boot.
-> >>=20
-> >> The JH7110 has 6 blocks of 64k iomem in that functional area:
-> >> {SYS,STG,AON} x {CRG,SYSCON}. None of these has 190 clocks.
-> >> The good news: the current DTS, as proposed here and in U-Boot master,
-> >> provides nodes for all 6 entities. The bad news is that the clock
-> >> assignments to those nodes and their numbering is messed up.
-> >>=20
-> >> AFAICT PLL{0,1,2} _are_ generated in SYS_SYSCON and thus U-Boot gets it
-> >> wrong, in addition to the erroneous DTS.
-> >=20
-> > The numbers are kinda hocus-pocus anyway, they are just made up since t=
-he
-> > clock numbering usually isn't something with a nice TRM to go and
-> > reference (unlike interrupts which usually are documented in that way).
-> > It is very helpful to make them aligned some register/bit positions or,
-> > but that is not required.
-> > IOW U-Boot is not wrong per se to use 190 instead of 0, but it is wrong
-> > to have different numbers in both places.
-> >=20
-> > It sounds like you're saying that (and I have not looked) the U-Boot dts
-> > actually has structural difference w.r.t. what provides which clock?
-> > If so, that'll need to be fixed independently of the numbering problem.
-> >=20
-> > Otherwise Xingyu & Yanhong should coordinate on which is the "correct"
-> > way of doing things & do it in both places.
-> >=20
+Am Mittwoch, 24. Mai 2023, 11:28:32 CEST schrieb Marek Vasut:
+> On 5/24/23 08:49, Alexander Stein wrote:
+> > Hi Marek,
 >=20
-> Oh, unfortunately, the 7110 can not support to mix the uboot dtb and linu=
-x dtb up.
+> Hi,
+>=20
+> > Am Dienstag, 23. Mai 2023, 15:10:05 CEST schrieb Marek Vasut:
+> >> On 5/23/23 13:17, Alexander Stein wrote:
+> >>> Hello Marek,
+> >>=20
+> >> Hi,
+> >>=20
+> >>> Am Montag, 15. Mai 2023, 18:24:24 CEST schrieb Marek Vasut:
+> >>>> Add TC9595 DSI-to-DPI and DSI-to-(e)DP bridge to
+> >>>> DH electronics i.MX8M Plus DHCOM SoM . The bridge
+> >>>> is populated on the SoM, but disabled by default
+> >>>> unless used for display output.
+> >>>>=20
+> >>>> Signed-off-by: Marek Vasut <marex@denx.de>
+> >>>=20
+> >>> Were you actually able to access the display? E.g. reading DPCD via A=
+UX
+> >>> channel?
+> >>=20
+> >> I only tried the full display port (the one with large plug) on the TC
+> >> evaluation kit, there I could use the aux channel. Are you testing this
+> >> bridge and running into issues ? Details please ?
+> >=20
+> > Which SoC is this evaluation kit based on?
+>=20
+> There is no SoC attached to it, it's just a breakout board for the
+> bridge chip. You can attach it via DSI to whichever SoC you want. So far
+> I tried STM32MP15xx and i.MX8MP.
 
-What does "cannot support" mean? It's normal and desirable for the same
-dtb to be usable for both. The Linux kernel's dt-bindings are used for
-multiple projects, not just Linux - it'd be silly for U-Boot, FreeBSD
-etc etc to go off and each have their open set of (incompatible) bindings.
+I assume you were able to successfully use the bridge on both boards, no?
 
-> If boot the Linux and should use the linux dtb instead of the uboot dtb.
-> Because all clock ids and reset ids in Linux and Uboot are different incl=
-ude
-> PLL, and some modules can work in Linux but not in uboot.
+> > Yes, I'm trying to test this bridge on imx8mp based board.
+> >=20
+> > AFAICS I run into a timeout during drm connector .get_modes call, see
+> > kernel log below.
+> >=20
+> >> samsung-dsim 32e60000.dsi: [drm:samsung_dsim_host_attach [samsung_dsim=
+]]
+> >=20
+> > Attached tc358767 device
+> >=20
+> >> tc358767 1-000f: failed to read DPCD: -110
+> >> tc358767 1-000f: failed to read display props: -110
+>=20
+> How are you supplying clock to the TC358767 (or newer) ?
+> Do you supply clock from DSI or from Xtal ?
+> If DSI and if possible, switch to Xtal and see whether that helps.
+> Also check the Xtal frequency and make sure you define that correctly in =
+DT.
 
-What do you mean by "modules"? It is fine for either Linux or U-Boot to
-not have drivers for particular peripherals - for example, there might
-be no driver for your camera related bits in U-Boot, or for controlling
-DRAM in Linux.
+It's already connected to an Xtal, according to schematic it's 26MHz. This =
+is=20
+also what I configured in DT. So far I think this looks correct.
 
-The description of the hardware should not change though, as the
-hardware has not.
+> > Looking at the AUX_CH+/- signals, I can see the native aux request and =
+the
+> > (presumable) correct answer (DP_DPCD_REV register) from the display. But
+> > for some reason the bridge runs into a aux timeout.
+> > I can see in the DP0_AUXSTATUS register the bus gets busy (0x1) after
+> > starting transfer. But after the tc_aux_wait_busy() call DP0_AUXSTATUS
+> > his indicating a timeout and sync error (0x310002).
+> > When changing the "Aux Bit Period Calculator Threshold" to 5 (register
+> > AUXCFG1), the sync error is gone, but the timeout still happens.
+> >=20
+> > The frequency used from the display is ~1MHz, which should be okay. So =
+on
+> > the electrical side all seems okay, but the native aux transfer don't
+> > work.
+> I recall DPCD read timeouts, but those were usually triggered by either
+> bad clock or wiring problems (the devkit wiring I used was horrible at
+> the beginning) from what I can recall.
 
-> I suggest to boot Linux with its own linux dtb.
+bad clock in the sense of badly configured or bad xtal hardware? As the bri=
+dge=20
+and the xtal is on the same mainboard, for now, I ignore wirings.
 
-I suggest to make sure that you can use the same dtb for both.
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-Thanks,
-Conor.
 
---dhsQSIulCPiX0eS/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG3kxAAKCRB4tDGHoIJi
-0vx/AP4uwgyX8CyzdTKAP0tSNceXaoGQKaorE8a0F6KPCW4ZHAD+OmvcSLXrIWYy
-MRDjVuoYxhZp+69Z/pvAj2zHmgWBkQo=
-=y/ba
------END PGP SIGNATURE-----
-
---dhsQSIulCPiX0eS/--
