@@ -2,70 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D29F70FFCE
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 23:13:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95F0B70FFE9
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 23:20:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229447AbjEXVNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 17:13:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53768 "EHLO
+        id S230072AbjEXVUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 17:20:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235503AbjEXVNa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 17:13:30 -0400
-Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80BB7E4C
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 14:13:18 -0700 (PDT)
-Received: by mail-il1-x12d.google.com with SMTP id e9e14a558f8ab-33a8f766b64so17405ab.1
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 14:13:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1684962798; x=1687554798;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vEdYxdYetiOJG9KjcYwzVdHTHSNxCtOLYboFK2bcSHM=;
-        b=Izcguru0m0GonlPHAnQjcOLsaouOFxVJ6x4X6zQ8HIVwD3JLF/PPVL326mc5XVKFGz
-         rj7hJ1J7g6KF7qAUQd7wylY5D9Mcg5BS3kRVjXw5McMtv7bXbcqVnl3YPx1dxTpVWy4+
-         9SbLTwWmMzz8b4vMy/+BrjOib8SOJbtkwKWEx5JFBll2qiD8K+sJzecLYB8A3zECZvU7
-         JxQlHLsXqxjhS6SJg2VAD6rGnT1nBb1Vw/JFsCZ139KJ4HQ1Fj7tX2XWaHV7oR3a076d
-         JsGEPun9WDcmlQaxZ8B1Ure0jcqF04bx04fwXCq4p4BRlHDz4azH31F3Q2BixEBCe1mb
-         vGUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684962798; x=1687554798;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vEdYxdYetiOJG9KjcYwzVdHTHSNxCtOLYboFK2bcSHM=;
-        b=gOzd2QfEU3uCoaIGTSF2wF2n2zf2LuiPEv+DFimg/att7LAcgE2FVXp11pKMKhhWA+
-         3HOP9A5p6wKbGpplvy14dYOO159J4BV0Jphsn18VWu70hSELE68ks1vcRl2F1Iy6QbU9
-         DSXHuj7+gg3USh1SO//u7bdL/0CCFCBfyfd6dDvVixuIfyHupGFqX3AMnfQzbp+dCPt2
-         W9La7taJpNBCHXTIv1HwUtC3DPNBPb2jUNC5aD9hkakr+N/4sa/Np8W7pIg/WQqSNirl
-         iaAM8RrR2wCGnRYR9T/lWzCJUXZd+waPUsrjNPX++BlLR30o0uV3IcJcciqCpBAqf3zY
-         o+mw==
-X-Gm-Message-State: AC+VfDxBFFOvTFINN/lWHNL3rMEcKIBcZ0D9JbYSYiZlBWQkKHwpYTdG
-        9wCPD6T99Ei9OhD1SoN4esvG0xfrlRgZ3Q64wxCwtA==
-X-Google-Smtp-Source: ACHHUZ6mbREIm4Ztc8moSsgKru2S/9jx12dtX3Dli6UKcvfjWKYl0QKXqxeWvi0k//DflwaHfMTWM5i2nMBZDc1nqUI=
-X-Received: by 2002:a05:6e02:1689:b0:329:333e:4e79 with SMTP id
- f9-20020a056e02168900b00329333e4e79mr85770ila.1.1684962797671; Wed, 24 May
- 2023 14:13:17 -0700 (PDT)
+        with ESMTP id S229658AbjEXVUw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 17:20:52 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F9B2132;
+        Wed, 24 May 2023 14:20:45 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34OLKFGp073915;
+        Wed, 24 May 2023 16:20:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684963215;
+        bh=Anjqsreye1B4ntfPOBld6ZtkWYZAP0DjCad9lmUAkGE=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=uQVDZHbmTkpA/mH3J5yqgWVx2chzOoe0h/S9rI0FvmWZg2RLr8kCNiD+0QI/l7vN7
+         GHz9zCK1uhebWqdfMjN3GVdd85YboWrt2a2CcVyggl1AIqVb6lrYn8rF+RPNqE36Ze
+         v3G0ScixR4azV1CH8ODECmuYMLsxDuRC9nEG+D4A=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34OLKFcM030529
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 24 May 2023 16:20:15 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 24
+ May 2023 16:20:15 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 24 May 2023 16:20:15 -0500
+Received: from [128.247.81.105] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34OLKFEC109050;
+        Wed, 24 May 2023 16:20:15 -0500
+Message-ID: <351cbfcc-a3be-ff23-ead7-5fc38013ecbb@ti.com>
+Date:   Wed, 24 May 2023 16:20:15 -0500
 MIME-Version: 1.0
-References: <CAD=FV=WRecTWsFM96k81YAx1=jJT0vpS4EPP0ZfWFUGHNFx9Tw@mail.gmail.com>
- <20230524074455.1172064-1-yangcong5@huaqin.corp-partner.google.com> <20230524074455.1172064-3-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20230524074455.1172064-3-yangcong5@huaqin.corp-partner.google.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Wed, 24 May 2023 14:13:05 -0700
-Message-ID: <CAD=FV=XUuzjjLq3YP3683jOd06odwk5Dox5MS8oY8goB-_8T5w@mail.gmail.com>
-Subject: Re: [v2 4/4] dt-bindings: display: panel: Add compatible for Starry ili9882t
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc:     daniel@ffwll.ch, neil.armstrong@linaro.org, sam@ravnborg.org,
-        airlied@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, hsinyi@google.com,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v7 2/2] can: m_can: Add hrtimer to generate software
+ interrupt
+Content-Language: en-US
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+CC:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        <linux-can@vger.kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Schuyler Patton <spatton@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        Tony Lindgren <tony@atomide.com>
+References: <20230523023749.4526-1-jm@ti.com>
+ <20230523023749.4526-3-jm@ti.com>
+ <20230523-crawlers-cupbearer-7a7cbfed010b-mkl@pengutronix.de>
+From:   Judith Mendez <jm@ti.com>
+In-Reply-To: <20230523-crawlers-cupbearer-7a7cbfed010b-mkl@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,23 +81,250 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello Marc,
 
-On Wed, May 24, 2023 at 12:45=E2=80=AFAM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> The STARRY ili9882t is a 10.51" WUXGA TFT LCD panel,
-> which fits in nicely with the existing panel-boe-tv101wum-nl6
-> driver. Hence, we add a new compatible with panel specific config.
->
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> ---
->  .../devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml     | 2 ++
->  1 file changed, 2 insertions(+)
+On 5/23/23 1:35 AM, Marc Kleine-Budde wrote:
+> On 22.05.2023 21:37:49, Judith Mendez wrote:
+>> Add an hrtimer to MCAN class device. Each MCAN will have its own
+>> hrtimer instantiated if there is no hardware interrupt found in
+>> device tree M_CAN node.
+> 
+> Please add a sentence why you introduce polling mode, i.e. there are
+> SoCs where the M_CAN interrupt is not available on the CPUs (which are
+> running Linux).
 
-nit: bindings usually land first, so you should swap the order of
-patch #3 and patch #4 in your series.
+Sure, I can do that, thanks.
 
-In any case:
+> 
+>> The hrtimer will generate a software interrupt every 1 ms. In
+>> hrtimer callback, we check if there is a transaction pending by
+>> reading a register, then process by calling the isr if there is.
+>>
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>> Changelog:
+>> v7:
+>> - Clean up m_can_platform.c if/else section after removing poll-interval
+>> - Remove poll-interval from patch description
+>> v6:
+>> - Move hrtimer stop/start function calls to m_can_open and m_can_close to
+>> support power suspend/resume
+>> v5:
+>> - Change dev_dbg to dev_info if hardware interrupt exists and polling
+>> is enabled
+>> v4:
+>> - No changes
+>> v3:
+>> - Create a define for 1 ms polling interval
+>> - Change plarform_get_irq to optional to not print error msg
+>> v2:
+>> - Add functionality to check for 'poll-interval' property in MCAN node
+>> - Add 'polling' flag in driver to check if device is using polling method
+>> - Check for timer polling and hardware interrupt cases, default to
+>> hardware interrupt method
+>> - Change ns_to_ktime() to ms_to_ktime()
+>> ---
+>>   drivers/net/can/m_can/m_can.c          | 33 ++++++++++++++++++++++++--
+>>   drivers/net/can/m_can/m_can.h          |  4 ++++
+>>   drivers/net/can/m_can/m_can_platform.c | 25 ++++++++++++++++---
+>>   3 files changed, 57 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
+>> index a5003435802b..f273d989bdff 100644
+>> --- a/drivers/net/can/m_can/m_can.c
+>> +++ b/drivers/net/can/m_can/m_can.c
+>> @@ -11,6 +11,7 @@
+>>   #include <linux/bitfield.h>
+>>   #include <linux/can/dev.h>
+>>   #include <linux/ethtool.h>
+>> +#include <linux/hrtimer.h>
+>>   #include <linux/interrupt.h>
+>>   #include <linux/io.h>
+>>   #include <linux/iopoll.h>
+>> @@ -308,6 +309,9 @@ enum m_can_reg {
+>>   #define TX_EVENT_MM_MASK	GENMASK(31, 24)
+>>   #define TX_EVENT_TXTS_MASK	GENMASK(15, 0)
+>>   
+>> +/* Hrtimer polling interval */
+>> +#define HRTIMER_POLL_INTERVAL		1
+>> +
+>>   /* The ID and DLC registers are adjacent in M_CAN FIFO memory,
+>>    * and we can save a (potentially slow) bus round trip by combining
+>>    * reads and writes to them.
+>> @@ -895,7 +899,7 @@ static int m_can_handle_bus_errors(struct net_device *dev, u32 irqstatus,
+>>   			netdev_dbg(dev, "Arbitration phase error detected\n");
+>>   			work_done += m_can_handle_lec_err(dev, lec);
+>>   		}
+>> -		
+>> +
+> 
+> Unrelated change. I've send a separate patch to fix the problem.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Sorry about this, this was not intentional.
+
+> 
+>>   		if (is_lec_err(dlec)) {
+>>   			netdev_dbg(dev, "Data phase error detected\n");
+>>   			work_done += m_can_handle_lec_err(dev, dlec);
+>> @@ -1414,6 +1418,12 @@ static int m_can_start(struct net_device *dev)
+>>   
+>>   	m_can_enable_all_interrupts(cdev);
+>>   
+>> +	if (cdev->polling) {
+>> +		dev_dbg(cdev->dev, "Start hrtimer\n");
+>> +		hrtimer_start(&cdev->hrtimer, ms_to_ktime(HRTIMER_POLL_INTERVAL),
+>> +			      HRTIMER_MODE_REL_PINNED);
+>> +	}
+>> +
+>>   	return 0;
+>>   }
+>>   
+>> @@ -1571,6 +1581,11 @@ static void m_can_stop(struct net_device *dev)
+>>   	/* disable all interrupts */
+>>   	m_can_disable_all_interrupts(cdev);
+>>   
+>> +	if (cdev->polling) {
+>> +		dev_dbg(cdev->dev, "Disabling the hrtimer\n");
+>> +		hrtimer_cancel(&cdev->hrtimer);
+>> +	}
+>> +
+> 
+> This might be a racy. Please move the disabling of the hrtimer before
+> disabling all interrupts. This makes it also symmetric with respect to
+> m_can_start().
+
+This makes sense.
+
+> 
+>>   	/* Set init mode to disengage from the network */
+>>   	m_can_config_endisable(cdev, true);
+>>   
+>> @@ -1793,6 +1808,18 @@ static netdev_tx_t m_can_start_xmit(struct sk_buff *skb,
+>>   	return NETDEV_TX_OK;
+>>   }
+>>   
+>> +static enum hrtimer_restart hrtimer_callback(struct hrtimer *timer)
+>> +{
+>> +	struct m_can_classdev *cdev = container_of(timer, struct
+>> +						   m_can_classdev, hrtimer);
+>> +
+>> +	m_can_isr(0, cdev->net);
+>> +
+>> +	hrtimer_forward_now(timer, ms_to_ktime(HRTIMER_POLL_INTERVAL));
+>> +
+>> +	return HRTIMER_RESTART;
+>> +}
+>> +
+>>   static int m_can_open(struct net_device *dev)
+>>   {
+>>   	struct m_can_classdev *cdev = netdev_priv(dev);
+>> @@ -1831,9 +1858,11 @@ static int m_can_open(struct net_device *dev)
+>>   		err = request_threaded_irq(dev->irq, NULL, m_can_isr,
+>>   					   IRQF_ONESHOT,
+>>   					   dev->name, dev);
+>> -	} else {
+>> +	} else if (!cdev->polling) {
+>>   		err = request_irq(dev->irq, m_can_isr, IRQF_SHARED, dev->name,
+>>   				  dev);
+>> +	} else {
+>> +		cdev->hrtimer.function = &hrtimer_callback;
+> 
+> I think you can move this assignment to m_can_class_register(). We only
+> need to set the function once.
+
+Great idea!
+
+> 
+>>   	}
+>>   
+>>   	if (err < 0) {
+>> diff --git a/drivers/net/can/m_can/m_can.h b/drivers/net/can/m_can/m_can.h
+>> index a839dc71dc9b..e9db5cce4e68 100644
+>> --- a/drivers/net/can/m_can/m_can.h
+>> +++ b/drivers/net/can/m_can/m_can.h
+>> @@ -15,6 +15,7 @@
+>>   #include <linux/device.h>
+>>   #include <linux/dma-mapping.h>
+>>   #include <linux/freezer.h>
+>> +#include <linux/hrtimer.h>
+>>   #include <linux/interrupt.h>
+>>   #include <linux/io.h>
+>>   #include <linux/iopoll.h>
+>> @@ -93,6 +94,9 @@ struct m_can_classdev {
+>>   	int is_peripheral;
+>>   
+>>   	struct mram_cfg mcfg[MRAM_CFG_NUM];
+>> +
+>> +	struct hrtimer hrtimer;
+>> +	bool polling;
+>>   };
+>>   
+>>   struct m_can_classdev *m_can_class_allocate_dev(struct device *dev, int sizeof_priv);
+>> diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_can/m_can_platform.c
+>> index 94dc82644113..b639c9e645d3 100644
+>> --- a/drivers/net/can/m_can/m_can_platform.c
+>> +++ b/drivers/net/can/m_can/m_can_platform.c
+>> @@ -5,6 +5,7 @@
+>>   //
+>>   // Copyright (C) 2018-19 Texas Instruments Incorporated - http://www.ti.com/
+>>   
+>> +#include <linux/hrtimer.h>
+>>   #include <linux/phy/phy.h>
+>>   #include <linux/platform_device.h>
+>>   
+>> @@ -96,12 +97,30 @@ static int m_can_plat_probe(struct platform_device *pdev)
+>>   		goto probe_fail;
+>>   
+>>   	addr = devm_platform_ioremap_resource_byname(pdev, "m_can");
+>> -	irq = platform_get_irq_byname(pdev, "int0");
+> 
+> I think irq will be uninitialized after this change. Although the
+> compiler doesn't complain :(
+
+Agreed, I did notice this when testing. But is it an issue?
+
+> 
+> BTW: I think we don't need the "polling" variable in the priv. We can
+> make use of "irq". "irq" being 0 means use polling.
+
+True, but is using the polling flag easier for the user to read?
+
+> 
+>> -	if (IS_ERR(addr) || irq < 0) {
+>> -		ret = -EINVAL;
+>> +	if (IS_ERR(addr)) {
+>> +		ret = PTR_ERR(addr);
+>>   		goto probe_fail;
+>>   	}
+>>   
+>> +	if (device_property_present(mcan_class->dev, "interrupts") ||
+>> +	    device_property_present(mcan_class->dev, "interrupt-names")) {
+>> +		irq = platform_get_irq_byname(pdev, "int0");
+>> +		mcan_class->polling = false;
+>> +		if (irq == -EPROBE_DEFER) {
+>> +			ret = -EPROBE_DEFER;
+>> +			goto probe_fail;
+>> +		}
+>> +		if (irq < 0) {
+>> +			ret = -ENXIO;
+
+EINVAL? Wouldn't ENXIO (No such device or address) be more appropriate than
+invalid argument?
+
+> 
+> Please return the original error code.
+> 
+>> +			goto probe_fail;
+>> +		}
+>> +	} else {
+>> +		mcan_class->polling = true;
+>> +		dev_dbg(mcan_class->dev, "Polling enabled, initialize hrtimer");
+>> +		hrtimer_init(&mcan_class->hrtimer, CLOCK_MONOTONIC,
+>> +			     HRTIMER_MODE_REL_PINNED);
+>> +	}
+>> +
+>>   	/* message ram could be shared */
+>>   	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "message_ram");
+>>   	if (!res) {
+
+~Judith
