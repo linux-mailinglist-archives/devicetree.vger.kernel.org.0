@@ -2,149 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A386C70FA9E
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 17:42:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D3A570FAC4
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 17:51:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236418AbjEXPmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 11:42:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39014 "EHLO
+        id S235995AbjEXPvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 11:51:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236782AbjEXPmA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 11:42:00 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7885DE5F;
-        Wed, 24 May 2023 08:41:23 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34OCHa9r031503;
-        Wed, 24 May 2023 17:39:34 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=pFQA71vTmXlhs+z5x4AEKVl+aBjRGHsJvL9B84qGPfQ=;
- b=AiNiFLBZ/K+BBZpvJ1QyxuxUstPKLo8KBB80A3y+ObcuDc3A4q4itJjc5LZ3wq9dJ6yb
- S1lPA1RoFlOd6gAazPh07r1wnl3KzJZYQMP9WiUx0zb3HczZ8QUnPhmRPilTRxC2jK7U
- FfaxnrALsPdcqeCgdtujOkllkCZIZCaY8xuKBIbQ3UiuzS+oFA8sgm7XtoV+02eUi+4e
- 2vO1I4BEAOpkBb9D7saYaKWKKt2FI1O0hJaCdKPHpzAKuAiXIGznNbJX0u01nF7OSwQ+
- mh1o++Jo1VM+5r2SDaNWpI+i7l9ULoNaU1kUtbVIYicqUVbQWomCN34uVxn2BlZi9Btw pw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qrtgv1xa9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 24 May 2023 17:39:34 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C7CA710002A;
-        Wed, 24 May 2023 17:39:33 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B9B2A23150D;
-        Wed, 24 May 2023 17:39:33 +0200 (CEST)
-Received: from [10.252.20.36] (10.252.20.36) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 24 May
- 2023 17:39:33 +0200
-Message-ID: <5bb496d0-6dc1-6ba3-6126-6429037ecf5a@foss.st.com>
-Date:   Wed, 24 May 2023 17:39:32 +0200
+        with ESMTP id S231736AbjEXPvw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 11:51:52 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB82B6
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 08:51:50 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f608074b50so12925355e9.0
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 08:51:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684943509; x=1687535509;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=h8geeXEOb1JFpSL51yP1LqtEfxAQbaVotjCJur5zhD4=;
+        b=r9Xqu5ND0Bk5xdzrVcEKYQlFpEEChNge6LbIG0g17WQIR6Y6FlFTjj1VLIptKxk12Q
+         yq45EGDPQw9rNHr+jipV1YSj4asgJuaRjeVL0NZhwSDk/F7WDrzxEpDXrSSJyrZb0/M3
+         zBXKIn/cV0bBTAFnJDnUkCCcwvue3vKTmsqLCYu0uVu4CEJS93Dy/yQ+lZNpqtjw/llJ
+         /i6QJwMZfnhn0BXjS9g7SEYSgcIwM6tYnNKca4sWH8rz2seGcHobfGaMYO1qrYroAdGx
+         05BznJ1hGxFw4jfQNNWBm56IewOjSboZXbEWkM4NBUXJGppz8/FOt58lkiEa84eE4ux7
+         4f7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684943509; x=1687535509;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=h8geeXEOb1JFpSL51yP1LqtEfxAQbaVotjCJur5zhD4=;
+        b=hEk7wzDq6oodEzpsg/rBhTctTNBGMgCxjJ1ruyQAqX01ReCi5uFdOjWPXUNwB/KT9v
+         41sPfUtKzdnoOcR+fx399n2KshgU6xDS1XUtruLqwaQL4NjH3CYNqVoMK6UaXgfjsf90
+         ShMMM0VuUbPrpiD1OpUBHKO15D5sNc2YuaZnEmxB5JBk8Z8I7Tgv+alNhk4+ZQWxyJPf
+         +s3CVduxk41YrqGfzyERBT7gI0eCnLgRBc9gVgcxN/Cfjjl7sLaNI+zi84SdRv7//8KP
+         fmoVvMyBZBNK0vXlizMrRle73X8Z82N7daPBdIb003QCSqyM9b/jgt2HwPqejioTui14
+         jjDA==
+X-Gm-Message-State: AC+VfDxVJXlahB2fSZil1Vknofl2KHSJIRCZEMSR2T0OVteI67xPfT3N
+        +xtCSvJGG5nVBwnhXa2i6K8hww==
+X-Google-Smtp-Source: ACHHUZ5sgxsCI/lVRvjZNq+J7kPDx+SvOmaq/8wjAiMQ785YfC+h5iFAEtyNc1gq4Kqqj6aQ7yTjgQ==
+X-Received: by 2002:a7b:cb91:0:b0:3f6:45d:28a1 with SMTP id m17-20020a7bcb91000000b003f6045d28a1mr219488wmi.14.1684943508981;
+        Wed, 24 May 2023 08:51:48 -0700 (PDT)
+Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id z26-20020a05600c221a00b003f60101074dsm2721773wml.33.2023.05.24.08.51.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 May 2023 08:51:48 -0700 (PDT)
+Message-ID: <dcd5050b-8459-e7cc-b5ad-eb435aba6e84@baylibre.com>
+Date:   Wed, 24 May 2023 17:51:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 7/8] ARM: dts: stm32: adopt generic iio bindings for adc
- channels on dhcor-drc
+Subject: Re: [PATCH v2 6/7] ASoC: mediatek: mt8188-mt6359: support new board
+ with nau88255
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     <kernel@dh-electronics.com>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230524133918.1439516-1-olivier.moysan@foss.st.com>
- <20230524133918.1439516-8-olivier.moysan@foss.st.com>
- <cc7a0a1a-31bb-92f4-6365-5e0c4a4bc85c@denx.de>
-From:   Olivier MOYSAN <olivier.moysan@foss.st.com>
-In-Reply-To: <cc7a0a1a-31bb-92f4-6365-5e0c4a4bc85c@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.252.20.36]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-24_11,2023-05-24_01,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com
+Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230523021933.3422-1-trevor.wu@mediatek.com>
+ <20230523021933.3422-7-trevor.wu@mediatek.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230523021933.3422-7-trevor.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+On 23/05/2023 04:19, Trevor Wu wrote:
+>   	card_data = (struct mt8188_card_data *)of_device_get_match_data(&pdev->dev);
+> @@ -776,9 +1066,38 @@ static int mt8188_mt6359_dev_probe(struct platform_device *pdev)
+>   				dai_link->init = mt8188_mt6359_init;
+>   				init_mt6359 = true;
+>   			}
+> +		} else if (strcmp(dai_link->name, "ETDM1_OUT_BE") == 0 ||
+> +			   strcmp(dai_link->name, "ETDM2_OUT_BE") == 0 ||
+> +			   strcmp(dai_link->name, "ETDM1_IN_BE") == 0 ||
+> +			   strcmp(dai_link->name, "ETDM2_IN_BE") == 0) {
+> +			if (!strcmp(dai_link->codecs->dai_name, MAX98390_CODEC_DAI)) {
+> +				dai_link->ops = &mt8188_max98390_ops;
+> +				if (init_max98390)
+> +					continue;
 
-On 5/24/23 15:54, Marek Vasut wrote:
-> On 5/24/23 15:39, Olivier Moysan wrote:
->> Use STM32 ADC generic bindings instead of legacy bindings on
->> DHCOR DRC Compact board.
->>
->> The STM32 ADC specific binding to declare channels has been deprecated,
->> hence adopt the generic IIO channels bindings, instead.
->> The STM32MP151 device tree now exposes internal channels using the
->> generic binding. This makes the change mandatory here to avoid a mixed
->> use of legacy and generic binding, which is not supported by the driver.
->>
->> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
->> ---
->>   .../dts/stm32mp15xx-dhcor-drc-compact.dtsi    | 28 ++++++++++++++++---
->>   1 file changed, 24 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi 
->> b/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi
->> index 39af79dc654c..92d906bfd5d7 100644
->> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi
->> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi
->> @@ -57,15 +57,35 @@ &adc {    /* X11 ADC inputs */
->>       status = "okay";
->>       adc1: adc@0 {
-> 
-> 
-> I sent similar patch recently too:
-> 
-> [PATCH] ARM: dts: stm32: Update to generic ADC channel binding on DHSOM 
-> systems
-> 
-> But I needed to add #address-cells/#size-cells here and to adc@100, 
-> otherwise DTB checker was complaining . Did you run DTB check and was it 
-> OK on your side ?
+I prefer that you do like your patch [PATCH v2 1/7] to be consistent
+and easy to read.
 
-The first patch in this serie adds the #address-cells/#size-cells to the 
-  SoC DT. So, there is no need to add them later in the board DT.
++			if (!init_mt6359) {
++				dai_link->init = mt8188_mt6359_init;
++				init_mt6359 = true;
++			}
 
-I can send a v2 with your patch (after removing the cells properties 
-from the patch). Having all the patches in the same serie, will help 
-avoiding sequencing problems.
+> +
+> +				dai_link->init = mt8188_max98390_codec_init;
+> +				init_max98390 = true;
+> +			} else if (!strcmp(dai_link->codecs->dai_name, NAU8825_CODEC_DAI)) {
+> +				dai_link->ops = &mt8188_nau8825_ops;
+> +				if (init_nau8825)
+> +					continue;
 
-Do you agree with this ?
+ditto
 
-BRs
-Olivier
+> +
+> +				dai_link->init = mt8188_nau8825_codec_init;
+> +				dai_link->exit = mt8188_nau8825_codec_exit;
+> +				init_nau8825 = true;
+> +			} else {
+> +				if (strcmp(dai_link->codecs->dai_name, "snd-soc-dummy-dai")) {
 
-> 
->> -        st,adc-channels = <0 1 6>;
->> -        st,min-sample-time-nsecs = <5000>;
->>           status = "okay";
->> +        channel@0 {
->> +            reg = <0>;
->> +            st,min-sample-time-ns = <5000>;
->> +        };
->> +        channel@1 {
->> +            reg = <1>;
->> +            st,min-sample-time-ns = <5000>;
->> +        };
->> +        channel@6 {
->> +            reg = <6>;
->> +            st,min-sample-time-ns = <5000>;
->> +        };
->>       };
-> 
-> [...]
+Shouldn't be with a NOT operator ("!") ?
++ if (!strcmp(dai_link->codecs->dai_name, "snd-soc-dummy-dai")) {
+
+
+> +					if (init_dumb)
+> +						continue;
+
+ditto
+
+> +
+> +					dai_link->init = mt8188_dumb_amp_init;
+> +					init_dumb = true;
+> +				}
+> +			}
+>   		}
+>   	}
+>   
+> +	priv->private_data = card_data;
+>   	snd_soc_card_set_drvdata(card, priv);
+>   
+>   	ret = devm_snd_soc_register_card(&pdev->dev, card);
+> @@ -795,11 +1114,20 @@ static struct mt8188_card_data mt8188_evb_card = {
+>   	.name = "mt8188_mt6359",
+>   };
+>   
+> +static struct mt8188_card_data mt8188_nau8825_card = {
+> +	.name = "mt8188_nau8825",
+> +	.quirk = NAU8825_HS_PRESENT,
+> +};
+> +
+>   static const struct of_device_id mt8188_mt6359_dt_match[] = {
+>   	{
+>   		.compatible = "mediatek,mt8188-mt6359-evb",
+>   		.data = &mt8188_evb_card,
+>   	},
+> +	{
+> +		.compatible = "mediatek,mt8188-nau8825",
+> +		.data = &mt8188_nau8825_card,
+> +	},
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, mt8188_mt6359_dt_match);
+
+-- 
+Regards,
+Alexandre
+
