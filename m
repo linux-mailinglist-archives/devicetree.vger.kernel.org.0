@@ -2,74 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB4A770F4EA
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 13:17:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A95BA70F568
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 13:36:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbjEXLRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 07:17:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44392 "EHLO
+        id S229992AbjEXLgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 07:36:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbjEXLRv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 07:17:51 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3707C5;
-        Wed, 24 May 2023 04:17:49 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-51190fd46c3so1615761a12.1;
-        Wed, 24 May 2023 04:17:49 -0700 (PDT)
+        with ESMTP id S229547AbjEXLgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 07:36:50 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C30F5194;
+        Wed, 24 May 2023 04:36:45 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-970028cfb6cso143723466b.1;
+        Wed, 24 May 2023 04:36:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684927068; x=1687519068;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=R1aqK7Ud0k9NZcXoizSkxgHpUDinNYt7aEGaaazv/Z8=;
-        b=M64Z8XD90NwQvjtSENRZLkYlvy3y0h4xXTeCMpaFe3Nvg7W+2i+x6uzNnrOxOpT9cC
-         I4FuijR/msNkzgjIh4JqMRWmxNvfjp0e1cErAl9eIax4U0pSa+jlozPO9dV9JJ5pH5lZ
-         a63cl6WnjP4k7MZKymPo9p73MP19YPZmy1WXkguGx3M9dB5mTp9Mdtw9DOtHVwkVtEdl
-         cRuRCw8aToFYwPEYJu318peRGvyzNY4jPQ7l2ZByZgm/catuEzNKFu5rAv/6hbrxVviK
-         8z9mAQ+zKhyYqHdihcWlxRuSz7Vq+77BbVCK7K1TjZbNpcrBVOLgOITiDVX3hshc++eG
-         r85w==
+        d=gmail.com; s=20221208; t=1684928204; x=1687520204;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=oCm6OKqBd9FZs5dbQajMLTNl/mBBTw3OR4x7693gBrE=;
+        b=I4cLiQTIHzZm8sBtmVFsdKbYNOnsZaNirYxqf6IUwmR/TVcrTxYzng5ZcIlrMGi3nJ
+         NkK6nRvGj9klSbim8whLvYb4lg+Re/RXvex9vQKI0PHxP3CHoH1IvY4656ENSpmkKITU
+         e7MhLmPx7pR3FJ12s2edRbrhtWs3KgNZX0XHKDIYTOaYfI06HSw8kqVCv9+WY7CDShQk
+         j/BtXX7LtGKvj+BbfGj4HaOh1vvDZoxhL2KhyW1JVdeZZ6mgB8Adx3wn7rNJjOh2Wqtw
+         V4hIa5AUzBdiOnM+BPnzj0UvpdnIs5pGhgDmgFobJO/+VP+p73wJMIGQ9ROnIgid7JXi
+         GTUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684927068; x=1687519068;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R1aqK7Ud0k9NZcXoizSkxgHpUDinNYt7aEGaaazv/Z8=;
-        b=ViaQ0jABN9h0Ui+ZI4M83FCkeDCdba4VvTxGaQyLoZOlE+kLlca2tZ2OVXhMy2yRsD
-         Jn0AFDiKOcyNibxvcB37yPXdZEf0mN651sZFJmRG8O9xcKpPKOLSq5xtTC5ClYymF51S
-         FVKGTAfD8K67mqdaJ1zK94izkn0M5KB004APolnbju5kyFomQkqSzgiZ6zIK6mF1UeoI
-         VX7h3s/SyN18iW0WH/Ppb/ytUMKZ2xGRDH/ED6gBzV0zNeVupctRliW1yPmlFeR+Xrzj
-         AItoeM+IwTRgAONhf8qlBUyz/kWyyOuvfAXEXgPqJGuTjTnyFm5wvjkCEVhXEIOdc3Gt
-         qTdg==
-X-Gm-Message-State: AC+VfDwt0z6vr4is93bl9KL8fFzhwoVEr3YHAHgrfm6Lyu1JtXEzP1wo
-        MTM3s10PUjFMdvKdp4PO2YQ=
-X-Google-Smtp-Source: ACHHUZ5E+uzRTP/jxOVJKqtttOPDyek7yNaAEC3dr/1xLcSEeoVvv4hI6zSfl4xIC+s8uMB4UwtZXg==
-X-Received: by 2002:a17:907:3f27:b0:96f:bf78:c380 with SMTP id hq39-20020a1709073f2700b0096fbf78c380mr12197141ejc.55.1684927068200;
-        Wed, 24 May 2023 04:17:48 -0700 (PDT)
-Received: from [192.168.3.32] ([213.149.38.146])
-        by smtp.gmail.com with ESMTPSA id kg1-20020a17090776e100b009664e25c425sm5637404ejc.95.2023.05.24.04.17.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 May 2023 04:17:47 -0700 (PDT)
-Message-ID: <248ebc1b-d077-e424-8f36-6c143b0ed697@gmail.com>
-Date:   Wed, 24 May 2023 13:17:45 +0200
+        d=1e100.net; s=20221208; t=1684928204; x=1687520204;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oCm6OKqBd9FZs5dbQajMLTNl/mBBTw3OR4x7693gBrE=;
+        b=k8NBXteQDXvTGlYqsrTkDUpAH21GRYN4fMzXOqVRCTO+b//13fAOupcWdByNMqDXTv
+         ysQTG6jn5Qy65XnyAhLDNTaCyLrgPCmyz4IL4y00pqJxH4BqxKeWxXXCX+B+g57zBPO6
+         wSAMjP2EEykWcog9kaOkal8c9ClaDbHGTcLJML2p2kPEOUVbo0Y555ePk4IeY1RTkAkr
+         MdfaOmn1wO3C8d1IFYvJ6dq5NxgOi1lKcLzTBkAGtvYIeF/gFb7sflz0ySKHGdOzfwiS
+         1LzZvEexQ8BjPSdN7Cjm4xHARngNd1MnIeDd4+l64V/cfM4nfKblMzBj5hSkFfSpvaxW
+         D3JQ==
+X-Gm-Message-State: AC+VfDy/2/33cWpXMte6+bSu/7jdiWL6uePvesQI2yvNi7/yQtY51DI+
+        Kp6yZHfdrseghwP5UkAvi7NDLPF1JaH3UQG1mW4=
+X-Google-Smtp-Source: ACHHUZ5GJeAlXBJeAiYbUR3dLRmpJzG6jJfr1vlY311+6DHVApmd/vBenb0CNYBAN8rhGpxSZ6ePzW/DFt2WAMcrqFA=
+X-Received: by 2002:a17:907:6ea2:b0:96f:98f1:6512 with SMTP id
+ sh34-20020a1709076ea200b0096f98f16512mr15842859ejc.41.1684928203919; Wed, 24
+ May 2023 04:36:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 01/13] firmware: qcom: scm: Introduce pas_metadata context
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>
-References: <20220128025513.97188-1-bjorn.andersson@linaro.org>
- <20220128025513.97188-2-bjorn.andersson@linaro.org>
-Content-Language: en-US
-From:   Robert Marko <robimarko@gmail.com>
-In-Reply-To: <20220128025513.97188-2-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+References: <20230524082744.3215427-1-bigunclemax@gmail.com> <20230524103431.50c6a2fd@donnerap.cambridge.arm.com>
+In-Reply-To: <20230524103431.50c6a2fd@donnerap.cambridge.arm.com>
+From:   Maxim Kiselev <bigunclemax@gmail.com>
+Date:   Wed, 24 May 2023 14:36:28 +0300
+Message-ID: <CALHCpMh2sZSCrFMMT13kYbsu+C2bC2xY3coB_fv0mZom_g=oPQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 0/4] Add support for Allwinner GPADC on
+ D1/T113s/R329 SoCs
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,148 +95,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Andre,
 
-On 28. 01. 2022. 03:55, Bjorn Andersson wrote:
-> Starting with Qualcomm SM8450, some new security enhancements has been
-> done in the secure world, which results in the requirement to keep the
-> metadata segment accessible by the secure world from init_image() until
-> auth_and_reset().
->
-> Introduce a "PAS metadata context" object that can be passed to
-> init_image() for tracking the mapped memory and a related release
-> function for client drivers to release the mapping once either
-> auth_and_reset() has been invoked or in error handling paths on the way
-> there.
->
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+thanks for you comments
 
-Hi Bjorn,
-I know a lot of time has passed since this patch, but this patch breaks 
-qcom_scm_pas_auth_and_reset SCM call.
-I have had MDT loader and SCM changes from this series reverted for a 
-long time but was unable to
-find the exact culprit nor how to fix it.
-I even ported the TZ log driver to see if anything is obvious there but 
-nope, calling qcom_scm_pas_auth_and_reset
-after this patch is just failling which is then causing Q6 WCSS on 
-IPQ8074 to fail probing so WLAN doesnt work.
+> This may sound kind of obvious, but wouldn't it be easier to model this
+> with one compatible string, and have the number of channels as a DT
+> property?
 
-Since I am out of ideas, I was hoping that you maybe have an idea what 
-could be the issue, I can provide the TZ log
-with all of the SCM calls when it works and when not if required.
+Yes, I completely agree that using separate config for each SoCs is looks
+overcomplicated because the only difference is the number of channels.
+I thought about a DT property with channels number but I didn't find
+another ADC driver with the same approach (except i2c ADC's with child nodes).
 
-Regards,
-Robert
+> Or, alternatively, using iio/multiplexer/io-channel-mux.yaml, since it's
+> only one ADC anyway?
+I'm sorry, I didn't quite understand what you're suggesting.
 
-> ---
->   drivers/firmware/qcom_scm.c   | 39 ++++++++++++++++++++++++++++++-----
->   drivers/soc/qcom/mdt_loader.c |  2 +-
->   include/linux/qcom_scm.h      | 10 ++++++++-
->   3 files changed, 44 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
-> index 7db8066b19fd..3218d13cbf83 100644
-> --- a/drivers/firmware/qcom_scm.c
-> +++ b/drivers/firmware/qcom_scm.c
-> @@ -435,10 +435,16 @@ static void qcom_scm_set_download_mode(bool enable)
->    *		and optional blob of data used for authenticating the metadata
->    *		and the rest of the firmware
->    * @size:	size of the metadata
-> + * @ctx:	optional metadata context
->    *
-> - * Returns 0 on success.
-> + * Return: 0 on success.
-> + *
-> + * Upon successful return, the PAS metadata context (@ctx) will be used to
-> + * track the metadata allocation, this needs to be released by invoking
-> + * qcom_scm_pas_metadata_release() by the caller.
->    */
-> -int qcom_scm_pas_init_image(u32 peripheral, const void *metadata, size_t size)
-> +int qcom_scm_pas_init_image(u32 peripheral, const void *metadata, size_t size,
-> +			    struct qcom_scm_pas_metadata *ctx)
->   {
->   	dma_addr_t mdata_phys;
->   	void *mdata_buf;
-> @@ -467,7 +473,7 @@ int qcom_scm_pas_init_image(u32 peripheral, const void *metadata, size_t size)
->   
->   	ret = qcom_scm_clk_enable();
->   	if (ret)
-> -		goto free_metadata;
-> +		goto out;
->   
->   	desc.args[1] = mdata_phys;
->   
-> @@ -475,13 +481,36 @@ int qcom_scm_pas_init_image(u32 peripheral, const void *metadata, size_t size)
->   
->   	qcom_scm_clk_disable();
->   
-> -free_metadata:
-> -	dma_free_coherent(__scm->dev, size, mdata_buf, mdata_phys);
-> +out:
-> +	if (ret < 0 || !ctx) {
-> +		dma_free_coherent(__scm->dev, size, mdata_buf, mdata_phys);
-> +	} else if (ctx) {
-> +		ctx->ptr = mdata_buf;
-> +		ctx->phys = mdata_phys;
-> +		ctx->size = size;
-> +	}
->   
->   	return ret ? : res.result[0];
->   }
->   EXPORT_SYMBOL(qcom_scm_pas_init_image);
->   
-> +/**
-> + * qcom_scm_pas_metadata_release() - release metadata context
-> + * @ctx:	metadata context
-> + */
-> +void qcom_scm_pas_metadata_release(struct qcom_scm_pas_metadata *ctx)
-> +{
-> +	if (!ctx->ptr)
-> +		return;
-> +
-> +	dma_free_coherent(__scm->dev, ctx->size, ctx->ptr, ctx->phys);
-> +
-> +	ctx->ptr = NULL;
-> +	ctx->phys = 0;
-> +	ctx->size = 0;
-> +}
-> +EXPORT_SYMBOL(qcom_scm_pas_metadata_release);
-> +
->   /**
->    * qcom_scm_pas_mem_setup() - Prepare the memory related to a given peripheral
->    *			      for firmware loading
-> diff --git a/drivers/soc/qcom/mdt_loader.c b/drivers/soc/qcom/mdt_loader.c
-> index 72fc2b539213..b00586db5391 100644
-> --- a/drivers/soc/qcom/mdt_loader.c
-> +++ b/drivers/soc/qcom/mdt_loader.c
-> @@ -171,7 +171,7 @@ static int __qcom_mdt_load(struct device *dev, const struct firmware *fw,
->   			goto out;
->   		}
->   
-> -		ret = qcom_scm_pas_init_image(pas_id, metadata, metadata_len);
-> +		ret = qcom_scm_pas_init_image(pas_id, metadata, metadata_len, NULL);
->   
->   		kfree(metadata);
->   		if (ret) {
-> diff --git a/include/linux/qcom_scm.h b/include/linux/qcom_scm.h
-> index 81cad9e1e412..4d8371410b05 100644
-> --- a/include/linux/qcom_scm.h
-> +++ b/include/linux/qcom_scm.h
-> @@ -68,8 +68,16 @@ extern int qcom_scm_set_warm_boot_addr(void *entry, const cpumask_t *cpus);
->   extern void qcom_scm_cpu_power_down(u32 flags);
->   extern int qcom_scm_set_remote_state(u32 state, u32 id);
->   
-> +struct qcom_scm_pas_metadata {
-> +	void *ptr;
-> +	dma_addr_t phys;
-> +	ssize_t size;
-> +};
-> +
->   extern int qcom_scm_pas_init_image(u32 peripheral, const void *metadata,
-> -				   size_t size);
-> +				   size_t size,
-> +				   struct qcom_scm_pas_metadata *ctx);
-> +void qcom_scm_pas_metadata_release(struct qcom_scm_pas_metadata *ctx);
->   extern int qcom_scm_pas_mem_setup(u32 peripheral, phys_addr_t addr,
->   				  phys_addr_t size);
->   extern int qcom_scm_pas_auth_and_reset(u32 peripheral);
+> And btw: it seems that the T507 (the H616 die with a different pinout) has
+> the same IP, with four channels:
+> http://dl.linux-sunxi.org/T507/
+
+Oh, thanks for pointing that. I'll add it to the list in the next version.
