@@ -2,204 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23FA670F90C
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 16:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63DBD70F930
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 16:52:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235303AbjEXOrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 10:47:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37114 "EHLO
+        id S236113AbjEXOwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 10:52:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233937AbjEXOrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 10:47:07 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F7281A6
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 07:46:55 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3093a7b71fbso896468f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 07:46:55 -0700 (PDT)
+        with ESMTP id S235990AbjEXOv6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 10:51:58 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A935BE7A
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 07:51:36 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f68fc6b479so2302465e9.2
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 07:51:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684939613; x=1687531613;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684939869; x=1687531869;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=W9Qke3iBXi7bHq6bOZpRdTikoykkN7piHbBurlNvIaA=;
-        b=IHxSDxOcgTZ/KPYWpohVQG4p0ZbEiSTPcIVJB0YomCsORWeeWzEnP23G4lm4yKW3H4
-         M8pWjpR3pqMS1rqjJLju/R+tua1H16uqbo32sKz9uro4i9hspQHSjFP3/Z4UIzFKnlA6
-         9p0VlDcodzaicsH9Ckyd7rZ33qV2ENfP2Ke7a3h/8iPIsCGY8ULM6RIui9bJtK9ozZdM
-         bcrhPYwILyuoV6Qy2aGfmD+tCnTHHY8Z/kYBfH7FG9kToWN73CDsLuSSrWItmYL7Wfat
-         eoinQooIwTjvxXKYrOt4itiGM+fi+CGu9p4D7L8Yzd9NUYgIijY7yz/sEe6dyKxxKW1G
-         vgVQ==
+        bh=d2DZMvMkI+V5RMAcXCANfBiGO0oQRS/4+8XHUn3qgoQ=;
+        b=YT+4PyG2PpzfKSBHI8via/8/85UUkYBO2UQIpGyWv6Za+qBrjWJtqy48/7FF0kjuXS
+         RMowXnKeB9ZUFdWVc02eXhlevD7TG5KMShelI1AdHdYOdM2/focKmgSgHkJTQVl1hH1E
+         583D9fVRRW7QNbiEQsBi1u+lVIRB+0IiP8nSx5Q3NGOOjOE1p4Fv3Gdxj9zcGgldrsN0
+         v+Owz0hzn7fVsVQl/QfZp38PHyTcyN9qsiWdkr2Z04AyMtXOSKDIvDODXJyyQKKt5bJ7
+         Q8rffHMfEiZe4LyTr8tGRM0t/YtOcfIAT3wI0MsdXaO+QrL6w6KCtyeSFa3/ARp0/w+i
+         fPMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684939613; x=1687531613;
+        d=1e100.net; s=20221208; t=1684939869; x=1687531869;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W9Qke3iBXi7bHq6bOZpRdTikoykkN7piHbBurlNvIaA=;
-        b=Pzb5g47CEI/RE5FSDcRrvOnh+6Fm5s57uRxq9Dg1n1eZUdGMGOABHfnKNZYCq9iLGt
-         Gv9PobaVeFX6IKNO1RSER15epvG+Bejkl1XFfQBwyO3FegtLKf0cDZfBKGbSyupZ+De2
-         3DSN/2mfwFjDYfDbQ9/9/oZfs0ips96sIP3X15bStMaqwpRrujVWaPyhGs2e0wK6Xa3R
-         7GL3sTmYfd8wthTo2CJcTSKEPfFptqBe125eZZPnDL1Jlj064MM07KPktXQvRqjYWa8A
-         IeDDg6fOjGcCPVVW6tQOSABHqTpevFsemKvYzEdrYolEwM4EcAhhKWGutJymGstcideR
-         havg==
-X-Gm-Message-State: AC+VfDxDE9F757LX53ytZiTIGsA3J9DYvp3jnSafT+ThHQxzCBnnOf5f
-        Wc5zmeUdbF+lhMmUJU0nY38DKQ==
-X-Google-Smtp-Source: ACHHUZ5w6sruo9TAxLIm5fq60R7miyYwyXDbuHMJ4cdoF0aoWVmUoBqb8izRaYYGP2bjSZwq4DIzCg==
-X-Received: by 2002:adf:feca:0:b0:30a:b46a:a443 with SMTP id q10-20020adffeca000000b0030ab46aa443mr18120wrs.51.1684939613498;
-        Wed, 24 May 2023 07:46:53 -0700 (PDT)
+        bh=d2DZMvMkI+V5RMAcXCANfBiGO0oQRS/4+8XHUn3qgoQ=;
+        b=TfvtLKcH2JtIBdoHvuGHzKYQ3iO6STp/AIKwf5yTELAdXkMEfced1XODjviU8920vE
+         KZ5/5Uy8PdOD/LpLQKQJWW+7PXLoqOb+5O0Den6Dmjv99SmAxat8PVtztDajZE2r+Vih
+         /I/fJnUB8fTtYpsiSfOPLVgDog2nrtRdopCscBBsKSQwe25bJ8cZfEQraB6zztgw8tX6
+         sQ+LYcstnPbqv8M2VciMAK9u+vAaeMKR1E0xMbFqwHkGEeAwQjtzcmwfJqR4nmFJjV4q
+         mW797vChCz2JllpgIwUBAvTuhCWGhgRVqaV+MttyuG+HpdJWtrMadn2ee9afTUDwd/QW
+         X/Aw==
+X-Gm-Message-State: AC+VfDznuvzS2lBDEL3EzpdB3JmNINhWWtobmMegcm8CQ6zIJQg2Tnul
+        j26XlrXR1RZHgFNfvJC47wu6RA==
+X-Google-Smtp-Source: ACHHUZ5wWAGNXmRoeycTsyYGzAOS1ytBUa6At8n0AYB/K3UfJLVFRhbZwiqycV6JUKARY/EvMGybsA==
+X-Received: by 2002:a7b:c40a:0:b0:3f1:72fb:461a with SMTP id k10-20020a7bc40a000000b003f172fb461amr86103wmi.2.1684939869319;
+        Wed, 24 May 2023 07:51:09 -0700 (PDT)
 Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id c11-20020adfe74b000000b00306281cfa59sm14863678wrn.47.2023.05.24.07.46.51
+        by smtp.gmail.com with ESMTPSA id x26-20020a05600c21da00b003f423f5b659sm2675744wmj.10.2023.05.24.07.51.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 May 2023 07:46:52 -0700 (PDT)
-Message-ID: <e7d82e49-340c-5eb1-27e3-e6cde900fcf2@baylibre.com>
-Date:   Wed, 24 May 2023 16:46:51 +0200
+        Wed, 24 May 2023 07:51:08 -0700 (PDT)
+Message-ID: <e13c2670-4877-7e75-aaa2-623f4ed927c0@baylibre.com>
+Date:   Wed, 24 May 2023 16:51:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/7] ASoC: dt-bindings: mediatek,mt8188-mt6359: remove
- ADDA_BE from link-name
+Subject: Re: [PATCH v2 5/7] ASoC: soc-dapm.c: clean up debugfs for freed
+ widget
 Content-Language: en-US
-To:     =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+To:     Trevor Wu <trevor.wu@mediatek.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, tiwai@suse.com, perex@perex.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com
+Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
 References: <20230523021933.3422-1-trevor.wu@mediatek.com>
- <20230523021933.3422-3-trevor.wu@mediatek.com>
- <cb69dbab-0966-8ecb-d9b9-017f430fd7ea@baylibre.com>
- <b9eecdf886b6496131e51e1e2f49536c782c3b67.camel@mediatek.com>
- <56b892cd-977e-5b24-55f0-df25e187308b@baylibre.com>
- <e0fb6da4974407726cdf668577fe0d40e6e6e9e2.camel@mediatek.com>
+ <20230523021933.3422-6-trevor.wu@mediatek.com>
 From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <e0fb6da4974407726cdf668577fe0d40e6e6e9e2.camel@mediatek.com>
+In-Reply-To: <20230523021933.3422-6-trevor.wu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/05/2023 15:45, Trevor Wu (吳文良) wrote:
-> On Wed, 2023-05-24 at 15:28 +0200, Alexandre Mergnat wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> On 24/05/2023 04:25, Trevor Wu (吳文良) wrote:
->>> On Tue, 2023-05-23 at 18:26 +0200, Alexandre Mergnat wrote:
->>>> On 23/05/2023 04:19, Trevor Wu wrote:
->>>>> ADDA_BE is used to connect to mt6359. For machine mt8188-
->>>>> mt6359,
->>>>> codec
->>>>> for ADDA_BE must be mt6359 which are configured on the machine
->>>>> driver.
->>>>> Besides, ADDA_BE is divided into two dais, UL_SRC_BE and
->>>>> DL_SRC_BE.
->>>>> As a result, remove ADDA_BE from items of link-name.
->>>>>
->>>>> Signed-off-by: Trevor Wu<trevor.wu@mediatek.com>
->>>>
->>>> I don't understand how "DL_SRC_BE" and "UL_SRC_BE" links are
->>>> done.
->>>> Why these dais don't replace "ADDA_BE" in this binding ?
->>>>
->>>> Regards,
->>>> Alexandre
->>>>
->>>
->>> Hi Alexandre,
->>>
->>> Because the sound card is mt8188-mt6359, the codec for these two
->>> links
->>> must be mt6359. Thus, I specifiy the codec in machine driver
->>> directly.
->>> If the codec is changed, there will be a new sound card and binding
->>> file. In conclusion, the codec won't be updated via dts, and that's
->>> why
->>> I don't just replace ADDA_BE in this binding.
->>>
->>> Do you suggest me add some information in the commit message?
->>
->> No it's fine, I'm just trying to understand.
->>
->> When you say "I specifiy the codec in machine driver directly", you
->> are talking about this change ?
->>
->> +               } else if (strcmp(dai_link->name, "DL_SRC_BE") == 0
->> ||
->> +                          strcmp(dai_link->name, "UL_SRC_BE") == 0)
->> {
->> +                       if (!init_mt6359) {
->> +                               dai_link->init = mt8188_mt6359_init;
->>
->> I'm asking because the equivalent was done here:
->>
->> -       [DAI_LINK_ADDA_BE] = {
->> -               .name = "ADDA_BE",
->> +       [DAI_LINK_DL_SRC_BE] = {
->> +               .name = "DL_SRC_BE",
->>                  .no_pcm = 1,
->>                  .dpcm_playback = 1,
->> -               .dpcm_capture = 1,
->> -               .init = mt8188_mt6359_init,
->> -               SND_SOC_DAILINK_REG(adda),
->> +               SND_SOC_DAILINK_REG(dl_src),
->>
->> So I'm wondering why "ADDA_BE" & "DPTX_BE" & "ETDM3_OUT_BE" are in
->> the
->> enum list of the binding since the codec is already specified in
->> machine driver too. I probably miss something but I don't know what.
->>
->>
+On 23/05/2023 04:19, Trevor Wu wrote:
+> When a widget is added to dapm via snd_soc_dapm_new_widgets,
+> dapm_debugfs_add_widget is also called to create a corresponding debugfs
+> file. However, when a widget is freed by snd_soc_dapm_free_widget, the
+> corresponding debugfs is not cleared. As a result, the freed widget is
+> still seen in the dapm directory.
 > 
+> This patch adds dapm_debugfs_free_widget to free the debugfs of a
+> specified widget, and it's called at snd_soc_dapm_free_widget to clean
+> up the debugfs for freed widget.
 > 
-> The following code snippet is cut from [PATCH v2 1/7].
-> 
->   /* BE */
-> -SND_SOC_DAILINK_DEFS(adda,
-> -                    DAILINK_COMP_ARRAY(COMP_CPU("ADDA")),
-> +SND_SOC_DAILINK_DEFS(dl_src,
-> +                    DAILINK_COMP_ARRAY(COMP_CPU("DL_SRC")),
->                       DAILINK_COMP_ARRAY(COMP_CODEC("mt6359-sound",
->                                                     "mt6359-snd-codec-
-> aif1")),
->                       DAILINK_COMP_ARRAY(COMP_EMPTY()));
-> @@ -140,6 +140,12 @@ SND_SOC_DAILINK_DEFS(pcm1,
->                       DAILINK_COMP_ARRAY(COMP_DUMMY()),
->                       DAILINK_COMP_ARRAY(COMP_EMPTY()));
->   
-> +SND_SOC_DAILINK_DEFS(ul_src,
-> +                    DAILINK_COMP_ARRAY(COMP_CPU("UL_SRC")),
-> +                    DAILINK_COMP_ARRAY(COMP_CODEC("mt6359-sound",
-> +                                                  "mt6359-snd-codec-
-> aif1")),
-> +                    DAILINK_COMP_ARRAY(COMP_EMPTY()));
-> 
-> 
-> This is why I talk about specifying the codec it connects in the
-> machine driver.
-> If you check other dai-links, you would see COMP_DUMMY() in the
-> COMP_CODEC() field.
-
-Ok thanks for the explanation. If I understand well, ADDA_BE could have 
-been removed from the enum list before your serie because the codec was 
-already specified for ADDA_BE.
+> Signed-off-by: Trevor Wu<trevor.wu@mediatek.com>
 
 Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
 
