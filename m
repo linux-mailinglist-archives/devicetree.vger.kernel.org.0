@@ -2,143 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0327B70FCD2
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 19:39:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B056A70FD22
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 19:49:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232414AbjEXRjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 13:39:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52538 "EHLO
+        id S233629AbjEXRtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 13:49:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235772AbjEXRjL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 13:39:11 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7B4E139
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:39:09 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f6094cb2ebso10309475e9.3
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 10:39:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1684949948; x=1687541948;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yraIyPA2BgDA4BIOOp7PQH949sD2z61pp/1v2JrtXPY=;
-        b=DY31kIh3aVYnf4wn/0At0p5yFpWyKnjUqsxQYy7bLxQHzyFrKSzTBlgRRHbdcTLFgU
-         Qgg+DRA9Mcw5Xwe8qB063u3aZaqr9bIsv6w8y1ar6Vv3np7H/CShjxccdEalR/+WMZ5x
-         +O1kKsPuzOoldU00zzPvW/6W77Pi0Me8+L8i0S2CsxEYKagO/kOpKPenNrLvc5GgXeZp
-         yKl6Eh16JBjT5Q/Mze+0Liq/Rxw2/SodmpcvBUq4rQd/oQ1pJatzabv/CN7pDy9djXB/
-         eNAd1E5cnsWN1Z89ruCBfyggY1XkaCit/ttnVAOh88MiKX6p4ljCL9RKXFOQvRbOveMK
-         Avdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684949948; x=1687541948;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yraIyPA2BgDA4BIOOp7PQH949sD2z61pp/1v2JrtXPY=;
-        b=cA9oQ+G36YrCSeo0QzFSd5FZAEXAhusK8Ion9tOAOgKyTaesV7vINeSXaHfqXdAlgj
-         bi9zRoWWz0GrLsio0Mp18+twR1X6i9sZlou0TdpjdWRwyOvMOgVlg4p0qFf91S4AyyYx
-         V3It8IqEt7ZmNl60RQO8w4sVnuMY5PjPHYaoE9IA8cH3Rtn5Xyg+RKm5H57Z3nQxprkj
-         OgXnVFeakUfl1XD4cN18XNGdUkN2vFkIA/mkt7Ec4MOzhUxYniJAosDsJ3RKo3uO/YQs
-         +9hfWLfyUUwZJanTZeQsT/2i4xJEJ/278O2vAThj6FcQjfgHvHWNOcmSS8fQQxppHmG6
-         6vyw==
-X-Gm-Message-State: AC+VfDyvcieb8gaLXhuOzfVwSdtdiDVHAzSa8vI6DYmpdklz/s5Cwbbf
-        Q1SqD/ODDnnCACAMZdIzOItc2A==
-X-Google-Smtp-Source: ACHHUZ4NaKC5+C9EVQJYZF90OvpHsU8S0zaefx3Fy0napWhJqMm0j/KvuVGrHLcKuqFoH/Sf2BkM6Q==
-X-Received: by 2002:a1c:7415:0:b0:3f6:11cb:4926 with SMTP id p21-20020a1c7415000000b003f611cb4926mr497885wmc.22.1684949948093;
-        Wed, 24 May 2023 10:39:08 -0700 (PDT)
-Received: from lion.localdomain (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
-        by smtp.gmail.com with ESMTPSA id l17-20020a7bc451000000b003f4fb5532a1sm2993053wmi.43.2023.05.24.10.39.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 May 2023 10:39:07 -0700 (PDT)
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-Date:   Wed, 24 May 2023 18:38:57 +0100
-Subject: [PATCH 6/6] arm64: dts: qcom: sdm845-xiaomi-beryllium: enable
- pmi8998 charger
+        with ESMTP id S231926AbjEXRtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 13:49:02 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 566C9A4;
+        Wed, 24 May 2023 10:49:00 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34OHmZMf014396;
+        Wed, 24 May 2023 12:48:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684950515;
+        bh=HlcKx1nPNkF0Zv0G2fyu1WGndM0IioJ3WYw0RsAdYpE=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=ILR6OPYVetJRGYEtBzWH39KbEvjueocA7e7yHkZch/DyireWIIrnjArn0mtZoOPFq
+         vcx1s/Mq7qjiR/0Eh+FBU8XxQUZixqrZbfoR+YuusEQtqi0KwpCe3qAG1XiHIaKIvR
+         2FTDI6LAPRMtlXIPANRnJ09vjM07wNTcCyHpWg7U=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34OHmZoT025428
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 24 May 2023 12:48:35 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 24
+ May 2023 12:48:35 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 24 May 2023 12:48:35 -0500
+Received: from [10.250.32.136] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34OHmYoP080766;
+        Wed, 24 May 2023 12:48:34 -0500
+Message-ID: <a87d493a-0f16-0096-0a01-5bbeddf4cfee@ti.com>
+Date:   Wed, 24 May 2023 12:48:34 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230524-pmi8998-charger-dts-v1-6-f9334afc4505@linaro.org>
-References: <20230524-pmi8998-charger-dts-v1-0-f9334afc4505@linaro.org>
-In-Reply-To: <20230524-pmi8998-charger-dts-v1-0-f9334afc4505@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v1 1/5] dt-bindings: arm: ti: add toradex,verdin-am62 et
+ al.
+Content-Language: en-US
+To:     Francesco Dolcini <francesco@dolcini.it>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org,
-        Joel Selvaraj <joelselvaraj.oss@gmail.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>
-X-Mailer: b4 0.13-dev-46309
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1243;
- i=caleb.connolly@linaro.org; h=from:subject:message-id;
- bh=ToLXeAXHYgqFaLcdjgSd/3kgLEeAYg+/fgo08zw4cTg=;
- b=owEBbQKS/ZANAwAIAQWDMSsZX2S2AcsmYgBkbku19HgF5fzwDwv9U2d4P8Fejop2E9wPj6+io
- /2YrwJpojqJAjMEAAEIAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCZG5LtQAKCRAFgzErGV9k
- tts0D/kBmYxYj9KrLGWdwPOVNinxqTdresr8OhmwTdMqOfYymjS3B/F+eqhVCAJEG7y/7zYt8Eg
- EZJYjN0rCTTVmnjwaw2nXuiVhdlPy6ZzApN9+sZpVWEyKwDCWOFtXlIT8UaWQduum1jF41J/Jf0
- rtTyXmfwp034WkiC1K8bzz79szRThBWd0A7YlyDmw6rTmSoxyXl5Q5NNPlQtYqEUYx9QNHD4j/U
- zymKWWwbI4/whNxj3MdPEx5Nas5EECSMxhMjpXyy1Yb0RpUagCL9mFv6AvAwtsT6qNjikmJQTLM
- SvdDvdcNIjZej2w3yo8IrUGRCifmx1tonxGm+olDCyh1AxeauPvH70YUk/m34VRgexkbUwUHdaj
- Iy93sbdoP1dWbW414mOXs5M79hrKTzIXfS2+v3ljXK35i3JvQGBQjqmwldyOHW5+Uxv2Jh4aX83
- lCR149QAbh9Y2on4VHYadwSZ7AU4iO7w727Bo6WW+yUb+gJaaf8UA0+Lhr+5/qPCv/ClYEcAJsy
- u3GlOzIhpgSdyevteZvWNcOOmHSaMzWUi6bVWZRL2FTxnzy/oOW1GB2qd2fvsa2GCMmknZRcw3c
- HQNN9gCFIS4YqBL/3M7QSVg4Jlqln3u5lFK4mGvIHPGUNTl4njNQSnlSbAAJ+ODWGTABJ4n8ata
- ojZbcl+0E4UUCEQ==
-X-Developer-Key: i=caleb.connolly@linaro.org; a=openpgp;
- fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230524143631.42471-1-francesco@dolcini.it>
+ <20230524143631.42471-2-francesco@dolcini.it>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230524143631.42471-2-francesco@dolcini.it>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+On 5/24/23 9:36 AM, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> 
+> Add toradex,verdin-am62 for Toradex Verdin AM62 SoM, its
+> nonwifi and wifi variants and the carrier boards (Dahlia,
+> Verdin Development Board and Yavia) they may be mated in.
+> 
+> Link: https://developer.toradex.com/hardware/verdin-som-family/modules/verdin-am62/
+> Link: https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> ---
+>   .../devicetree/bindings/arm/ti/k3.yaml        | 20 +++++++++++++++++++
+>   1 file changed, 20 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> index e1183f90bb06..e3aee191d403 100644
+> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> @@ -33,6 +33,26 @@ properties:
+>                 - ti,am62-lp-sk
+>             - const: ti,am625
+>   
+> +      - description: K3 AM62x SoC Toradex Verdin Modules and Carrier Boards
+> +        items:
+> +          - enum:
+> +              - toradex,verdin-am62-nonwifi-dahlia # Verdin AM62 Module on Dahlia
+> +              - toradex,verdin-am62-nonwifi-dev    # Verdin AM62 Module on Verdin Development Board
+> +              - toradex,verdin-am62-nonwifi-yavia  # Verdin AM62 Module on Yavia
+> +          - const: toradex,verdin-am62-nonwifi     # Verdin AM62 Module without Wi-Fi / BT
 
-Enable the pmi8998 charger and define some basic battery properties.
+Does this add anything? Not sure we need to split compatibles based on this, things
+like wifi vs nowifi can be described in DT, same for different memory size models, etc..
 
-Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
----
- .../arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+In fact I'm not sure we get much value at all out of top level whole-SoC compatible
+strings. Maybe we did when there was matching in kernel to do device specific fixups,
+but that isn't really used much in ARM64.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-index 1915643f1c49..2060b31648fc 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-@@ -115,6 +115,14 @@ rmtfs_mem: memory@f6301000 {
- 		};
- 	};
- 
-+	battery: battery {
-+		compatible = "simple-battery";
-+
-+		charge-full-design-microamp-hours = <4000000>;
-+		voltage-min-design-microvolt = <3400000>;
-+		voltage-max-design-microvolt = <4400000>;
-+	};
-+
- 	vreg_s4a_1p8: vreg-s4a-1p8 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vreg_s4a_1p8";
-@@ -341,6 +349,11 @@ &pmi8998_wled {
- 	qcom,cabc;
- };
- 
-+&pmi8998_charger {
-+	status = "okay";
-+	monitored-battery = <&battery>;
-+};
-+
- &pm8998_resin {
- 	linux,code = <KEY_VOLUMEDOWN>;
- 	status = "okay";
+Andrew
 
--- 
-2.40.1
-
+> +          - const: toradex,verdin-am62             # Verdin AM62 Module
+> +          - const: ti,am625
+> +
+> +      - description: K3 AM62x SoC Toradex Verdin Modules and Carrier Boards with Wi-Fi / BT
+> +        items:
+> +          - enum:
+> +              - toradex,verdin-am62-wifi-dahlia # Verdin AM62 Wi-Fi / BT Module on Dahlia
+> +              - toradex,verdin-am62-wifi-dev    # Verdin AM62 Wi-Fi / BT M. on Verdin Development B.
+> +              - toradex,verdin-am62-wifi-yavia  # Verdin AM62 Wi-Fi / BT Module on Yavia
+> +          - const: toradex,verdin-am62-wifi     # Verdin AM62 Wi-Fi / BT Module
+> +          - const: toradex,verdin-am62          # Verdin AM62 Module
+> +          - const: ti,am625
+> +
+>         - description: K3 AM642 SoC
+>           items:
+>             - enum:
