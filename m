@@ -2,56 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B85670F2C0
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 11:28:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4281870F2C4
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 11:28:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240688AbjEXJ2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 05:28:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50692 "EHLO
+        id S235477AbjEXJ2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 05:28:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240717AbjEXJ2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 05:28:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61873130;
-        Wed, 24 May 2023 02:28:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230356AbjEXJ2i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 05:28:38 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 223CDFC
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 02:28:36 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EB94763B4B;
-        Wed, 24 May 2023 09:28:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD8B2C433D2;
-        Wed, 24 May 2023 09:28:00 +0000 (UTC)
-Message-ID: <b5c45ac7-64ad-ddc1-a7a2-99d9d1c27ca7@xs4all.nl>
-Date:   Wed, 24 May 2023 11:27:59 +0200
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 94EB386002;
+        Wed, 24 May 2023 11:28:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1684920514;
+        bh=sScrjWCl2b0d4PiddyCD4G4K5vOdaYARfD19CZMs1R0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=NPm+bKVyjkeKzc7tqcNlaO7gViCeJCtQS6XZDFRvXcdbqAwUpIn/gxeLQJG+HW9I0
+         t6wMsFNKPyEqiTTePIK7XVD4Sz5ci7iCe04C48kMgiOuB9y5sOpWmG7BAouabk33E1
+         8Hwy2EEdUSxeifr9JTwA8xj7qXsOrGrEYbKvIhocqUorYmC4VlL44o3FpG9UfBlTVt
+         ++GRXk5gJO2Q5EWRPn2pqy9QR3vctR6Hu/A/qB3omw6lRVy+gF5AWhJSgezlGq4eiH
+         xj/h2KZD8EZod2OqDgDDMkzxMb0DC9NrHPgoy1QyGJz+L4Vh7VNslDpqHCXQv5eRdV
+         sZYRCd+r7m8Bg==
+Message-ID: <a8306df6-3b30-19d1-6153-b30a425c7ed0@denx.de>
+Date:   Wed, 24 May 2023 11:28:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v7,0/2] media: mediatek: vcodec: add hevc stateless
- decoder driver in MT8195
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] arm64: dts: imx8mp: Add TC9595 bridge on DH electronics
+ i.MX8M Plus DHCOM
 Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>, Nathan Hebert <nhebert@chromium.org>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230524080739.17264-1-yunfei.dong@mediatek.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20230524080739.17264-1-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+References: <20230515162424.67597-1-marex@denx.de>
+ <2684415.mvXUDI8C0e@steina-w> <43cb9c13-7d65-064e-943c-a9d3e6c63f64@denx.de>
+ <3741758.kQq0lBPeGt@steina-w>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <3741758.kQq0lBPeGt@steina-w>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,63 +67,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yunfei,
+On 5/24/23 08:49, Alexander Stein wrote:
+> Hi Marek,
 
-On 24/05/2023 10:07, Yunfei Dong wrote:
-> Add hevc stateless decoder driver to support hardware decode in MT8195, and the driver
-> need num_delta_pocs_of_ref_rps_idx value to parse slice header short_term_ref_pic_set().
-> 
-> patch 1 add num_delta_pocs_of_ref_rps_idx field.
-> patch 2 add hevc stateless decoder driver.
+Hi,
 
-This series clashes with this older series from you:
+> Am Dienstag, 23. Mai 2023, 15:10:05 CEST schrieb Marek Vasut:
+>> On 5/23/23 13:17, Alexander Stein wrote:
+>>> Hello Marek,
+>>
+>> Hi,
+>>
+>>> Am Montag, 15. Mai 2023, 18:24:24 CEST schrieb Marek Vasut:
+>>>> Add TC9595 DSI-to-DPI and DSI-to-(e)DP bridge to
+>>>> DH electronics i.MX8M Plus DHCOM SoM . The bridge
+>>>> is populated on the SoM, but disabled by default
+>>>> unless used for display output.
+>>>>
+>>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>>
+>>> Were you actually able to access the display? E.g. reading DPCD via AUX
+>>> channel?
+>>
+>> I only tried the full display port (the one with large plug) on the TC
+>> evaluation kit, there I could use the aux channel. Are you testing this
+>> bridge and running into issues ? Details please ?
+> 
+> Which SoC is this evaluation kit based on?
 
-https://patchwork.linuxtv.org/project/linux-media/cover/20230424060130.18395-1-yunfei.dong@mediatek.com/
+There is no SoC attached to it, it's just a breakout board for the 
+bridge chip. You can attach it via DSI to whichever SoC you want. So far 
+I tried STM32MP15xx and i.MX8MP.
 
-Can you post a v8 that sits on top of that older series?
+> Yes, I'm trying to test this bridge on imx8mp based board.
+> 
+> AFAICS I run into a timeout during drm connector .get_modes call, see kernel
+> log below.
+> 
+>> samsung-dsim 32e60000.dsi: [drm:samsung_dsim_host_attach [samsung_dsim]]
+> Attached tc358767 device
+>> tc358767 1-000f: failed to read DPCD: -110
+>> tc358767 1-000f: failed to read display props: -110
 
-Regards,
+How are you supplying clock to the TC358767 (or newer) ?
+Do you supply clock from DSI or from Xtal ?
+If DSI and if possible, switch to Xtal and see whether that helps.
+Also check the Xtal frequency and make sure you define that correctly in DT.
 
-	Hans
+> Looking at the AUX_CH+/- signals, I can see the native aux request and the
+> (presumable) correct answer (DP_DPCD_REV register) from the display. But for
+> some reason the bridge runs into a aux timeout.
+> I can see in the DP0_AUXSTATUS register the bus gets busy (0x1) after starting
+> transfer. But after the tc_aux_wait_busy() call DP0_AUXSTATUS his indicating a
+> timeout and sync error (0x310002).
+> When changing the "Aux Bit Period Calculator Threshold" to 5 (register
+> AUXCFG1), the sync error is gone, but the timeout still happens.
+> 
+> The frequency used from the display is ~1MHz, which should be okay. So on the
+> electrical side all seems okay, but the native aux transfer don't work.
 
-> ---
-> Changed from v6:
-> - fix AngeloGioacchino's suggestion.
-> 
-> Changed from v5:
-> - checkpatch/kernel-doc pass/build pass.
-> - fix warning: struct vdec_av1_slice_fb -> struct vdec_hevc_slice_fb.
-> - fix warning: remove unused comment for param "trans_start" and "trans_end"
-> 
-> Changed from v4:
-> - fix some comments according to Nathan's suggestion.
-> 
-> Changed from v3:
-> - add the dependency patch to this patch series for patch 1.
-> 
-> Changed from v2:
-> - fix one build warning.
-> - add the dependency patch link.
-> 
-> Changed from v1:
-> - fix build error when build 32bit system.
-> - hevc fluster test result: 132/147 (not support: 10bit => 11 and resolution => 4).
-> ---
-> Benjamin Gaignard (1):
->   media: uapi: HEVC: Add num_delta_pocs_of_ref_rps_idx field
-> 
-> Yunfei Dong (1):
->   media: mediatek: vcodec: support stateless hevc decoder
-> 
->  .../media/v4l/ext-ctrls-codec-stateless.rst   |    7 +
->  .../media/platform/mediatek/vcodec/Makefile   |    1 +
->  .../vcodec/mtk_vcodec_dec_stateless.c         |   59 +-
->  .../platform/mediatek/vcodec/mtk_vcodec_drv.h |    1 +
->  .../vcodec/vdec/vdec_hevc_req_multi_if.c      | 1097 +++++++++++++++++
->  .../platform/mediatek/vcodec/vdec_drv_if.c    |    4 +
->  .../platform/mediatek/vcodec/vdec_drv_if.h    |    1 +
->  include/uapi/linux/v4l2-controls.h            |    6 +-
->  8 files changed, 1174 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c
-> 
-
+I recall DPCD read timeouts, but those were usually triggered by either 
+bad clock or wiring problems (the devkit wiring I used was horrible at 
+the beginning) from what I can recall.
