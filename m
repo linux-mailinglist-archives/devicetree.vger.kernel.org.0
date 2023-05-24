@@ -2,60 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EF1F70FEF8
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 22:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05D0970FF1E
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 22:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232276AbjEXUIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 16:08:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33040 "EHLO
+        id S236433AbjEXUWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 16:22:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbjEXUIT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 16:08:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 400EDA9;
-        Wed, 24 May 2023 13:08:18 -0700 (PDT)
+        with ESMTP id S236438AbjEXUWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 16:22:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72BE1191;
+        Wed, 24 May 2023 13:22:40 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C6E486375C;
-        Wed, 24 May 2023 20:08:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A0DFC433D2;
-        Wed, 24 May 2023 20:08:14 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D9C8B64047;
+        Wed, 24 May 2023 20:22:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E4C9C433EF;
+        Wed, 24 May 2023 20:22:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684958897;
-        bh=vLNOrr9KtK13EsyPAoxNPbdjki7pxd2ahqV7MFBJb7w=;
+        s=k20201202; t=1684959759;
+        bh=s5ykL53eIy5CGwh+Iw+O4G1LCAdTOLiMVsk4kKJJvAs=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hE6v6J+hcose52hbKZmzV1IqIJlSqe31BXIOzcdC8O/XkdaPQdcwR648HYs3CL1Xz
-         6+eEUU/LsdjDN6VfyZGBeUQW0VW22KDV5ibRWr00w7HjjuATAVHW5HJb+swbfIRn47
-         kvzxX+qoqIhW55gTF1AxmwwC3iDZyw7GrOTdu0EQG5jh+KwDe0YXYyIsg9sooft9ud
-         MgkwZVeZ4/vK1DJyfXamegYpi7ANNYwllADNYkt9mXV4uz8jLEbpr2RiJ68IsqXGTO
-         ftQHHySi4P9bhkiCInPGePuO0IScCWAjT6d/xfRgwVgkqAtWK1zbNyASP1+34S29JR
-         wn9fT01dwwwZA==
-Date:   Wed, 24 May 2023 21:08:12 +0100
+        b=ic/gA1SoNxVphLi9Yr09q1NOWlRi4n7QtIlO8PiDMPO/5AjhF6tN41JSTraVU1rZ1
+         EsrhMklEgX39a0oHewCQ10+hcL0SEAdgS8IbzVpihF5ydl2kBE8JBBtWHHuniBvlTj
+         FzhJaENSXzTgkjYx4bCwnq8kJACAT1YwCIps5tGdyoP3z75f3+0/orOyLTDr9dlliX
+         K+tXhcvgKpbBYK39Mfgm9Xq3R0b2qbHSW7bKfJ6YQar/5Rtp+mBokGvN/eQ67bCzsz
+         Wrfc/rAdnq9ZO1clL5tM/tzth/oShl3jjHA3YfFdkdlp81/59hY37IpGAbjx+BTTfe
+         wPLGlfRd7LJag==
+Date:   Wed, 24 May 2023 21:22:34 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: mfd: qcom,spmi-pmic: Document pmi8998
- charger
-Message-ID: <20230524-kudos-contest-0d9d3fa97b49@spud>
-References: <20230524-pmi8998-charger-dts-v1-0-f9334afc4505@linaro.org>
- <20230524-pmi8998-charger-dts-v1-1-f9334afc4505@linaro.org>
- <20230524-cache-gonad-fde614bbea50@spud>
- <221cbac5-c882-0f5f-0b5b-d1fc9cadc2d7@linaro.org>
+To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc:     dianders@google.com, daniel@ffwll.ch, neil.armstrong@linaro.org,
+        sam@ravnborg.org, airlied@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, hsinyi@google.com,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [v2 0/4] Support Starry-himax83102-j02 and Starry-ili9882t TDDI
+ MIPI-DSI panel
+Message-ID: <20230524-dispense-luster-7962b13074c5@spud>
+References: <CAD=FV=WRecTWsFM96k81YAx1=jJT0vpS4EPP0ZfWFUGHNFx9Tw@mail.gmail.com>
+ <20230524072816.1131039-1-yangcong5@huaqin.corp-partner.google.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ZO7Aic4ya8ZfXIqY"
+        protocol="application/pgp-signature"; boundary="rgZPHXM2KOTwBnaO"
 Content-Disposition: inline
-In-Reply-To: <221cbac5-c882-0f5f-0b5b-d1fc9cadc2d7@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230524072816.1131039-1-yangcong5@huaqin.corp-partner.google.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -65,50 +60,35 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---ZO7Aic4ya8ZfXIqY
-Content-Type: text/plain; charset=utf-8
+--rgZPHXM2KOTwBnaO
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 24, 2023 at 08:53:27PM +0100, Caleb Connolly wrote:
-> On 24/05/2023 20:02, Conor Dooley wrote:
-> > Hey Caleb,
-> >=20
-> > On Wed, May 24, 2023 at 06:38:52PM +0100, Caleb Connolly wrote:
-> >> Document the new pmi8998 charger bindings
-> >=20
-> > This commit message looks a bit odd compared to the contents of the
-> > diff. Did you forget to git add something?
->=20
-> Well, it's not my finest commit message... The binding is in the series
-> linked in the cover letter (or [1]), I missed this addition when sending
-> that.
+On Wed, May 24, 2023 at 03:28:12PM +0800, Cong Yang wrote:
+> Compare V1:Add compatible for Starry himax83102-j02 and Starry-ili9882t
+> in dt-bindings.
 
-Ya know, I opened the cover to check if there was something more
-specific said about this & somehow did not notice it. I guess the commit
-message & the bot report from Rob addled my brain. Sorry about that.
+BTW, my mailer doesn't like how you threaded these patches, I guess you
+sent them as a reply to something I was not CCed on.
 
-> Would it be better to just squash this patch into the bindings and
-> respin the other series?
+>   dt-bindings: display: panel: Add compatible for Starry himax83102-j02
+>   dt-bindings: display: panel: Add compatible for Starry ili9882t
 
-I dunno chief. I am always loathe to tell people how they should submit
-stuff in these kind of scenarios, as I don't wanna send them up the
-garden path. But, that said, if they don't go via the same tree you're
-gonna end up creating the issue that the bot reported in whatever tree
-applies this patch without the other. =C2=AF\_(=E3=83=84)_/=C2=AF
+These two are
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Cheers,
-Conor
+Thanks,
+Conor.
 
---ZO7Aic4ya8ZfXIqY
+--rgZPHXM2KOTwBnaO
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG5urAAKCRB4tDGHoIJi
-0k9EAP4xno8EQFW12XAGE58HjyY9RKq33aS/dq8i7nPxPlx6AAEArgFfqjfWGj7F
-bcvRpsY8W1vMWujY9XpEdlrMpaynCAk=
-=vWok
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG5yCgAKCRB4tDGHoIJi
+0mNmAP9AKMIRtWN+rUBErdb+/gBM5rXYpT7EtNguO7DBe0rJsgEAz1171lVSS3no
+TFIgyfCnddHmw1ar3lRdb02Reqyxcg4=
+=TsDO
 -----END PGP SIGNATURE-----
 
---ZO7Aic4ya8ZfXIqY--
+--rgZPHXM2KOTwBnaO--
