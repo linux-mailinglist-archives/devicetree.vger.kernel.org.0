@@ -2,445 +2,317 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03AB471017B
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 01:05:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD47271019D
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 01:17:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238567AbjEXXF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 19:05:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48302 "EHLO
+        id S230045AbjEXXRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 19:17:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236356AbjEXXF1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 19:05:27 -0400
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 049FD99;
-        Wed, 24 May 2023 16:05:26 -0700 (PDT)
-Received: by mail-qv1-xf2d.google.com with SMTP id 6a1803df08f44-6239ab2b8e0so3162126d6.0;
-        Wed, 24 May 2023 16:05:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684969525; x=1687561525;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9Fkrwg40zFByibU887SHRzu9lXrU4GGCkV4LKKgsv0o=;
-        b=NBt5dlYLYOiMKlATvNroYIC5v6GCkfvrcw4AsE9OCgGHRw9GkCmV8QBvkrqRJo4XHZ
-         KvIOuwcRTtVKvP4Epg7g+cz9WPlWDLb8AKH+gDvepeNTga27MIFR38gmQRacvKBxsODV
-         YGfDr6cXk9yeLJXPNeh3dVuZ1QZkJCGpreMrmWwJnt3a6a+kRCii8s46sskv90I3EZkc
-         bj03p3cmoEVaFxtTzLLpg//H2z46mZB5LXfzMmpweESpsGu4cMDUx2DNSiCh5Log4D0v
-         4qAYIEuHELgqE7G8bZRg8FVo5EL8jvt4J/oh9qCUsCVxuAMZJlLnE+fy6Ni80jOuA/G+
-         0A0Q==
+        with ESMTP id S236807AbjEXXRa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 19:17:30 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BDC5C0
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 16:16:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1684970207;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=rC3XkpEnMUlObPvlNdUAlZ18aG/csjAe3tOi92J9ZaU=;
+        b=CGNlvr0wTPZmhIs7+nbrtIM/MizsN6/DRH5UBY+WZM6qdjzIEWp8aVLefB6odpPEzYV4IH
+        ktmZ5oK+kIiKaAaXWzJF05XUoz9ov8NUUFh8aVY8itQa+nuIEi/6swoPy9pIz7gClIMWWd
+        q3F16GIFtcFHLtRDd0rFUKdKBFl2fpI=
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
+ [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-527-6Sarvda_OY2dVDl_v1_fkg-1; Wed, 24 May 2023 19:16:38 -0400
+X-MC-Unique: 6Sarvda_OY2dVDl_v1_fkg-1
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-624b4176bf7so3840766d6.1
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 16:16:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684969525; x=1687561525;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9Fkrwg40zFByibU887SHRzu9lXrU4GGCkV4LKKgsv0o=;
-        b=GB0AOhkd2fK2zm3lI6YugGUGmESH5ciWKsuC+Rrr3kmeFJxsaMwZTpQPl4jJu7355T
-         SjrB0f3ucbe6zbxWErc3vjmDVVKftBWtvbKawUjFZV+8NmD1Gzj1vN3dmq/9rBrpyZRS
-         0QDMumIak0mF06E88He/9wgA0F5u8zdsuq49uCVEGt/ku8cLUn3orPNBzyoNRZsDrpGN
-         +2ANQyFBWPD+mBAR4StS9pohNrwbtjRD2sTEbwgzHJdPxqyXiK3ueQuFXQ8U9iig0/rt
-         8S8AGoktVEtfwhLpVCPbA3EhE3Ag7d5VspInxfdoRbdgG5f7jIOV7+eIxJ6YukX4/cc8
-         4GsA==
-X-Gm-Message-State: AC+VfDxrXv887iWwQGgKgiUT0kqP24SzHuIvrGiInIKYkis4JAZMJu9a
-        HP+l7AdCYIUsXNFPoAyIVp4=
-X-Google-Smtp-Source: ACHHUZ7easojD6kVwSRgqqQBNWAe/Hctor4HwCOp+1RegE63YmQMqq/P8pWNlwfL+dzd9+TagUyHhQ==
-X-Received: by 2002:a05:6214:f0d:b0:625:aa49:9ab9 with SMTP id gw13-20020a0562140f0d00b00625aa499ab9mr4384894qvb.61.1684969525063;
-        Wed, 24 May 2023 16:05:25 -0700 (PDT)
-Received: from Latitude-E6420.mynetworksettings.com ([2600:4040:2007:9800:650f:ad8b:38f6:d091])
-        by smtp.gmail.com with ESMTPSA id ea15-20020ad458af000000b0062075f40f61sm3914019qvb.73.2023.05.24.16.05.24
+        d=1e100.net; s=20221208; t=1684970198; x=1687562198;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rC3XkpEnMUlObPvlNdUAlZ18aG/csjAe3tOi92J9ZaU=;
+        b=Z7JtJ+nmrymYFDSLeJIfyJ6cxlurzrd8WpvEgteDG/0/RKDvJpPSlM90dw0fzy0jTg
+         cWdTbYqiak2ZRVL4Jqir1sR11o4MwlY6viiBXgQWn/ok5D00PCYJ5bSQdRPYvlU/rTt4
+         dXve3s53Cge6vjgP60ulR/HHnNXLdRhPpi8ggyRla+/g3n5HU0jiINCaXQq44Cp7F1YA
+         cQy2wxiaQw5m//slKgjqi26Vnc+HbWT86q91O0mhSfkuwqEDrRnYInIyHETIPr9kEFHi
+         lm47ph/gkWRZj4z75sj54baeb3ZAy9BFsYzxeAXss2NyJMqa6Ke26n8e+bEFxNA+3UFQ
+         MpVw==
+X-Gm-Message-State: AC+VfDxDgmn7ntp0FRcxw55hgjVhSGiRFA4s9QVvCqqLLKpdMBmBIyV1
+        Ke0wZjB7JaenLOILvGdhWswzErENTl6YIKsmfBXGytPoAjQIlbRD0lWMH5rSFC4IOWDxArNjok6
+        Vr3TvAS6+EDid92JVReO6vQ==
+X-Received: by 2002:a05:6214:dcf:b0:625:aa1a:9382 with SMTP id 15-20020a0562140dcf00b00625aa1a9382mr4273615qvt.62.1684970198252;
+        Wed, 24 May 2023 16:16:38 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ6WSD2NeAj9TDAefu6IIkB5TL7jFniPwvvPSMgXeGQRYxzvXw+kCPSskMJ4F4eBL2mTzQ6Ysg==
+X-Received: by 2002:a05:6214:dcf:b0:625:aa1a:9382 with SMTP id 15-20020a0562140dcf00b00625aa1a9382mr4273603qvt.62.1684970198014;
+        Wed, 24 May 2023 16:16:38 -0700 (PDT)
+Received: from localhost (ip98-179-76-75.ph.ph.cox.net. [98.179.76.75])
+        by smtp.gmail.com with ESMTPSA id bz16-20020ad44c10000000b00621253d19f9sm3909907qvb.98.2023.05.24.16.16.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 May 2023 16:05:24 -0700 (PDT)
-From:   Rudraksha Gupta <guptarud@gmail.com>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     david@ixit.cz, Rudraksha Gupta <guptarud@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH 5/5] ARM: Add Samsung Galaxy Express support
-Date:   Wed, 24 May 2023 19:04:58 -0400
-Message-Id: <20230524230459.120681-5-guptarud@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230524230459.120681-1-guptarud@gmail.com>
-References: <20230524230459.120681-1-guptarud@gmail.com>
+        Wed, 24 May 2023 16:16:37 -0700 (PDT)
+Date:   Wed, 24 May 2023 16:16:36 -0700
+From:   Jerry Snitselaar <jsnitsel@redhat.com>
+To:     Stefan Berger <stefanb@linux.ibm.com>
+Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, nayna@linux.ibm.com,
+        nasastry@in.ibm.com, mpe@ellerman.id.au,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        Rob Herring <robh@kernel.org>,
+        Nageswara R Sastry <rnsastry@linux.ibm.com>,
+        Coiby Xu <coxu@redhat.com>
+Subject: Re: [PATCH v9 3/4] of: kexec: Refactor IMA buffer related functions
+ to make them reusable
+Message-ID: <m3gasjgsxlggzsayurbzjaeiallxeobtggtzifnivqfyvexqn6@7rv7oumuq46x>
+References: <20230418134409.177485-1-stefanb@linux.ibm.com>
+ <20230418134409.177485-4-stefanb@linux.ibm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230418134409.177485-4-stefanb@linux.ibm.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a very basic device tree file for the Samsung Galaxy Express
-SGH-I437. Currently, the following things work: UART, eMMC, SD Card, and
-USB.
+On Tue, Apr 18, 2023 at 09:44:08AM -0400, Stefan Berger wrote:
+> Refactor IMA buffer related functions to make them reusable for carrying
+> TPM logs across kexec.
+> 
+> Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Mimi Zohar <zohar@linux.ibm.com>
+> Reviewed-by: Mimi Zohar <zohar@linux.ibm.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Tested-by: Nageswara R Sastry <rnsastry@linux.ibm.com>
+> Tested-by: Coiby Xu <coxu@redhat.com>
+> 
 
-Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../dts/qcom-msm8960-samsung-expressatt.dts   | 334 ++++++++++++++++++
- 2 files changed, 335 insertions(+)
- create mode 100644 arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
+Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 59829fc90315..12c90f263142 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1081,6 +1081,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
- 	qcom-msm8916-samsung-grandmax.dtb \
- 	qcom-msm8916-samsung-serranove.dtb \
- 	qcom-msm8960-cdp.dtb \
-+	qcom-msm8960-samsung-expressatt.dtb \
- 	qcom-msm8974-lge-nexus5-hammerhead.dtb \
- 	qcom-msm8974-sony-xperia-rhine-amami.dtb \
- 	qcom-msm8974-sony-xperia-rhine-honami.dtb \
-diff --git a/arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts b/arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
-new file mode 100644
-index 000000000000..2d6f0def0589
---- /dev/null
-+++ b/arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
-@@ -0,0 +1,334 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include <dt-bindings/input/input.h>
-+
-+#include "qcom-msm8960.dtsi"
-+#include <dt-bindings/reset/qcom,gcc-msm8960.h>
-+
-+/ {
-+	model = "Samsung Galaxy S3 SGH-I437";
-+	compatible = "samsung,expressatt", "qcom,msm8960";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		serial0 = &gsbi5_serial;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&gsbi5 {
-+	status = "okay";
-+	qcom,mode = <GSBI_PROT_I2C_UART>;
-+};
-+
-+&gsbi5_serial {
-+	status = "okay";
-+};
-+
-+/* eMMC */
-+&sdcc1 {
-+	status = "okay";
-+	vmmc-supply = <&pm8921_l5>;
-+};
-+
-+/* External micro SD card */
-+&sdcc3 {
-+	status = "okay";
-+	vmmc-supply = <&pm8921_l6>;
-+	vqmmc-supply = <&pm8921_l7>;
-+};
-+
-+&gsbi1 {
-+	status = "okay";
-+	qcom,mode = <GSBI_PROT_SPI>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi1_default>;
-+};
-+
-+&gsbi1_spi{
-+	status = "okay";
-+};
-+
-+&msmgpio {
-+	spi1_default: spi1_default {
-+		mux {
-+			pins = "gpio6", "gpio7", "gpio9";
-+			function = "gsbi1";
-+		};
-+
-+		mosi {
-+			pins = "gpio6";
-+			drive-strength = <12>;
-+			bias-disable;
-+		};
-+
-+		miso {
-+			pins = "gpio7";
-+			drive-strength = <12>;
-+			bias-disable;
-+		};
-+
-+		cs {
-+			pins = "gpio8";
-+			drive-strength = <12>;
-+			bias-disable;
-+			output-low;
-+		};
-+
-+		clk {
-+			pins = "gpio9";
-+			drive-strength = <12>;
-+			bias-disable;
-+		};
-+	};
-+};
-+
-+
-+&rpm {
-+	regulators {
-+		compatible = "qcom,rpm-pm8921-regulators";
-+		vin_lvs1_3_6-supply = <&pm8921_s4>;
-+		vin_lvs2-supply = <&pm8921_s4>;
-+		vin_lvs4_5_7-supply = <&pm8921_s4>;
-+		vdd_ncp-supply = <&pm8921_l6>;
-+		vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
-+		vdd_l21_l23_l29-supply = <&pm8921_s8>;
-+		vdd_l24-supply = <&pm8921_s1>;
-+		vdd_l25-supply = <&pm8921_s1>;
-+		vdd_l27-supply = <&pm8921_s7>;
-+		vdd_l28-supply = <&pm8921_s7>;
-+
-+		/* Buck SMPS */
-+		pm8921_s1: s1 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1225000>;
-+			regulator-max-microvolt = <1225000>;
-+			qcom,switch-mode-frequency = <3200000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_s2: s2 {
-+			regulator-min-microvolt = <1300000>;
-+			regulator-max-microvolt = <1300000>;
-+			qcom,switch-mode-frequency = <1600000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_s3: s3 {
-+			regulator-min-microvolt = <500000>;
-+			regulator-max-microvolt = <1150000>;
-+			qcom,switch-mode-frequency = <4800000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_s4: s4 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			qcom,switch-mode-frequency = <1600000>;
-+			bias-pull-down;
-+			qcom,force-mode = <QCOM_RPM_FORCE_MODE_AUTO>;
-+		};
-+
-+		pm8921_s7: s7 {
-+			regulator-min-microvolt = <1150000>;
-+			regulator-max-microvolt = <1150000>;
-+			qcom,switch-mode-frequency = <3200000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_s8: s8 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <2050000>;
-+			regulator-max-microvolt = <2050000>;
-+			qcom,switch-mode-frequency = <1600000>;
-+			bias-pull-down;
-+		};
-+
-+		/* PMOS LDO */
-+		pm8921_l1: l1 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1050000>;
-+			regulator-max-microvolt = <1050000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l2: l2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l3: l3 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3300000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l4: l4 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l5: l5 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l6: l6 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l7: l7 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1850000>;
-+			regulator-max-microvolt = <2950000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l8: l8 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3100000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l9: l9 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2850000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l10: l10 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3000000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l11: l11 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <3300000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l12: l12 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l14: l14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l15: l15 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l16: l16 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <3000000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l17: l17 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l18: l18 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1500000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l21: l21 {
-+			regulator-min-microvolt = <1900000>;
-+			regulator-max-microvolt = <1900000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l22: l22 {
-+			regulator-min-microvolt = <2750000>;
-+			regulator-max-microvolt = <2750000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l23: l23 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l24: l24 {
-+			regulator-min-microvolt = <750000>;
-+			regulator-max-microvolt = <1150000>;
-+			bias-pull-down;
-+		};
-+
-+		pm8921_l25: l25 {
-+			regulator-always-on;
-+			regulator-min-microvolt = <1225000>;
-+			regulator-max-microvolt = <1225000>;
-+			bias-pull-down;
-+		};
-+
-+		/* Low Voltage Switch */
-+		pm8921_lvs1: lvs1 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs2: lvs2 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs3: lvs3 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs4: lvs4 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs5: lvs5 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs6: lvs6 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_lvs7: lvs7 {
-+			bias-pull-down;
-+		};
-+
-+		pm8921_ncp: ncp {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			qcom,switch-mode-frequency = <1600000>;
-+		};
-+	};
-+};
-+
-+&usb_hs1_phy {
-+	v3p3-supply = <&pm8921_l3>;
-+	v1p8-supply = <&pm8921_l4>;
-+};
-+
-+&usb1 {
-+	status = "okay";
-+	dr_mode = "otg";
-+};
-+
--- 
-2.34.1
+> ---
+> v6:
+>  - Add __init to get_kexec_buffer as suggested by Jonathan
+> 
+> v5:
+>  - Rebased on Jonathan McDowell's commit "b69a2afd5afc x86/kexec: Carry
+>    forward IMA measurement log on kexec"
+> v4:
+>  - Move debug output into setup_buffer()
+> ---
+>  drivers/of/kexec.c | 126 ++++++++++++++++++++++++++-------------------
+>  1 file changed, 74 insertions(+), 52 deletions(-)
+> 
+> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+> index 1373d7e0a9b3..fa8c0c75adf9 100644
+> --- a/drivers/of/kexec.c
+> +++ b/drivers/of/kexec.c
+> @@ -117,45 +117,57 @@ static int do_get_kexec_buffer(const void *prop, int len, unsigned long *addr,
+>  }
+>  
+>  #ifdef CONFIG_HAVE_IMA_KEXEC
+> -/**
+> - * ima_get_kexec_buffer - get IMA buffer from the previous kernel
+> - * @addr:	On successful return, set to point to the buffer contents.
+> - * @size:	On successful return, set to the buffer size.
+> - *
+> - * Return: 0 on success, negative errno on error.
+> - */
+> -int __init ima_get_kexec_buffer(void **addr, size_t *size)
+> +static int __init get_kexec_buffer(const char *name, unsigned long *addr,
+> +				   size_t *size)
+>  {
+>  	int ret, len;
+> -	unsigned long tmp_addr;
+>  	unsigned long start_pfn, end_pfn;
+> -	size_t tmp_size;
+>  	const void *prop;
+>  
+> -	prop = of_get_property(of_chosen, "linux,ima-kexec-buffer", &len);
+> +	prop = of_get_property(of_chosen, name, &len);
+>  	if (!prop)
+>  		return -ENOENT;
+>  
+> -	ret = do_get_kexec_buffer(prop, len, &tmp_addr, &tmp_size);
+> +	ret = do_get_kexec_buffer(prop, len, addr, size);
+>  	if (ret)
+>  		return ret;
+>  
+> -	/* Do some sanity on the returned size for the ima-kexec buffer */
+> -	if (!tmp_size)
+> +	/* Do some sanity on the returned size for the kexec buffer */
+> +	if (!*size)
+>  		return -ENOENT;
+>  
+>  	/*
+>  	 * Calculate the PFNs for the buffer and ensure
+>  	 * they are with in addressable memory.
+>  	 */
+> -	start_pfn = PHYS_PFN(tmp_addr);
+> -	end_pfn = PHYS_PFN(tmp_addr + tmp_size - 1);
+> +	start_pfn = PHYS_PFN(*addr);
+> +	end_pfn = PHYS_PFN(*addr + *size - 1);
+>  	if (!page_is_ram(start_pfn) || !page_is_ram(end_pfn)) {
+> -		pr_warn("IMA buffer at 0x%lx, size = 0x%zx beyond memory\n",
+> -			tmp_addr, tmp_size);
+> +		pr_warn("%s buffer at 0x%lx, size = 0x%zx beyond memory\n",
+> +			name, *addr, *size);
+>  		return -EINVAL;
+>  	}
+>  
+> +	return 0;
+> +}
+> +
+> +/**
+> + * ima_get_kexec_buffer - get IMA buffer from the previous kernel
+> + * @addr:	On successful return, set to point to the buffer contents.
+> + * @size:	On successful return, set to the buffer size.
+> + *
+> + * Return: 0 on success, negative errno on error.
+> + */
+> +int __init ima_get_kexec_buffer(void **addr, size_t *size)
+> +{
+> +	int ret;
+> +	unsigned long tmp_addr;
+> +	size_t tmp_size;
+> +
+> +	ret = get_kexec_buffer("linux,ima-kexec-buffer", &tmp_addr, &tmp_size);
+> +	if (ret)
+> +		return ret;
+> +
+>  	*addr = __va(tmp_addr);
+>  	*size = tmp_size;
+>  
+> @@ -188,72 +200,82 @@ int __init ima_free_kexec_buffer(void)
+>  }
+>  #endif
+>  
+> -/**
+> - * remove_ima_buffer - remove the IMA buffer property and reservation from @fdt
+> - *
+> - * @fdt: Flattened Device Tree to update
+> - * @chosen_node: Offset to the chosen node in the device tree
+> - *
+> - * The IMA measurement buffer is of no use to a subsequent kernel, so we always
+> - * remove it from the device tree.
+> - */
+> -static void remove_ima_buffer(void *fdt, int chosen_node)
+> +static int remove_buffer(void *fdt, int chosen_node, const char *name)
+>  {
+>  	int ret, len;
+>  	unsigned long addr;
+>  	size_t size;
+>  	const void *prop;
+>  
+> -	if (!IS_ENABLED(CONFIG_HAVE_IMA_KEXEC))
+> -		return;
+> -
+> -	prop = fdt_getprop(fdt, chosen_node, "linux,ima-kexec-buffer", &len);
+> +	prop = fdt_getprop(fdt, chosen_node, name, &len);
+>  	if (!prop)
+> -		return;
+> +		return -ENOENT;
+>  
+>  	ret = do_get_kexec_buffer(prop, len, &addr, &size);
+> -	fdt_delprop(fdt, chosen_node, "linux,ima-kexec-buffer");
+> +	fdt_delprop(fdt, chosen_node, name);
+>  	if (ret)
+> -		return;
+> +		return ret;
+>  
+>  	ret = fdt_find_and_del_mem_rsv(fdt, addr, size);
+>  	if (!ret)
+> -		pr_debug("Removed old IMA buffer reservation.\n");
+> +		pr_debug("Remove old %s buffer reserveration", name);
+> +	return ret;
+>  }
+>  
+> -#ifdef CONFIG_IMA_KEXEC
+>  /**
+> - * setup_ima_buffer - add IMA buffer information to the fdt
+> - * @image:		kexec image being loaded.
+> - * @fdt:		Flattened device tree for the next kernel.
+> - * @chosen_node:	Offset to the chosen node.
+> + * remove_ima_buffer - remove the IMA buffer property and reservation from @fdt
+>   *
+> - * Return: 0 on success, or negative errno on error.
+> + * @fdt: Flattened Device Tree to update
+> + * @chosen_node: Offset to the chosen node in the device tree
+> + *
+> + * The IMA measurement buffer is of no use to a subsequent kernel, so we always
+> + * remove it from the device tree.
+>   */
+> -static int setup_ima_buffer(const struct kimage *image, void *fdt,
+> -			    int chosen_node)
+> +static void remove_ima_buffer(void *fdt, int chosen_node)
+> +{
+> +	if (!IS_ENABLED(CONFIG_HAVE_IMA_KEXEC))
+> +		return;
+> +
+> +	remove_buffer(fdt, chosen_node, "linux,ima-kexec-buffer");
+> +}
+> +
+> +#ifdef CONFIG_IMA_KEXEC
+> +static int setup_buffer(void *fdt, int chosen_node, const char *name,
+> +			phys_addr_t addr, size_t size)
+>  {
+>  	int ret;
+>  
+> -	if (!image->ima_buffer_size)
+> +	if (!size)
+>  		return 0;
+>  
+>  	ret = fdt_appendprop_addrrange(fdt, 0, chosen_node,
+> -				       "linux,ima-kexec-buffer",
+> -				       image->ima_buffer_addr,
+> -				       image->ima_buffer_size);
+> +				       name, addr, size);
+>  	if (ret < 0)
+>  		return -EINVAL;
+>  
+> -	ret = fdt_add_mem_rsv(fdt, image->ima_buffer_addr,
+> -			      image->ima_buffer_size);
+> +	ret = fdt_add_mem_rsv(fdt, addr, size);
+>  	if (ret)
+>  		return -EINVAL;
+>  
+> -	pr_debug("IMA buffer at 0x%pa, size = 0x%zx\n",
+> -		 &image->ima_buffer_addr, image->ima_buffer_size);
+> +	pr_debug("%s at 0x%pa, size = 0x%zx\n", name, &addr, size);
+>  
+>  	return 0;
+> +
+> +}
+> +
+> +/**
+> + * setup_ima_buffer - add IMA buffer information to the fdt
+> + * @image:		kexec image being loaded.
+> + * @fdt:		Flattened device tree for the next kernel.
+> + * @chosen_node:	Offset to the chosen node.
+> + *
+> + * Return: 0 on success, or negative errno on error.
+> + */
+> +static int setup_ima_buffer(const struct kimage *image, void *fdt,
+> +			    int chosen_node)
+> +{
+> +	return setup_buffer(fdt, chosen_node, "linux,ima-kexec-buffer",
+> +			    image->ima_buffer_addr, image->ima_buffer_size);
+>  }
+>  #else /* CONFIG_IMA_KEXEC */
+>  static inline int setup_ima_buffer(const struct kimage *image, void *fdt,
+> -- 
+> 2.38.1
+> 
 
