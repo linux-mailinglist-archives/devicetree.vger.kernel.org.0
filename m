@@ -2,85 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF0C970ED58
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 07:50:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B1EA70ED87
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 08:04:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239521AbjEXFuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 01:50:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38408 "EHLO
+        id S239588AbjEXGEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 02:04:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239524AbjEXFuy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 01:50:54 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B72DA13E;
-        Tue, 23 May 2023 22:50:52 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34O3q8aI022701;
-        Wed, 24 May 2023 05:50:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=n4JO77A+9YTPPexD3vFKCA3ei5urNWozkAcvOrurlmo=;
- b=lT+dSifyB/cYwoXod4NQVieJ4ju+UzLxi878ae4x4eJNfV2C9qUCVm+mKXlEnv4E2uwX
- uewDkKTxoskuzspaWQF/Pb3llwLzpo6nfqq3CppT/Xzo0dmi5X35A6xDYZ+/dg0Jb2XG
- ClPETGfQqIgJjPQikBXlXwiwcW74x776i7ZT2omAlHfhIt3YFnX0OBI7HxiQVhxgOiMR
- +UrG0XFLJdaPhB2cMFmRBnuf/twjn+99PIyy35EJ9LaxVUhpS41Ub5wwadmNTodfo16m
- 5rDc0bw8f+jPW0ZB2ByYpb8FEcjdT7oNdg1fq6GpsfvbO7PgA/FjKcXvIEMn9tOwoQj3 /w== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qs42urw1n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 24 May 2023 05:50:44 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34O5oAC9020169
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 24 May 2023 05:50:10 GMT
-Received: from [10.216.26.46] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 23 May
- 2023 22:50:03 -0700
-Message-ID: <02767039-39c2-76c7-e539-7ec7272c61ca@quicinc.com>
-Date:   Wed, 24 May 2023 11:19:08 +0530
+        with ESMTP id S239428AbjEXGEi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 02:04:38 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07CC1189;
+        Tue, 23 May 2023 23:04:30 -0700 (PDT)
+X-UUID: d67d4ea8f9f811ed9cb5633481061a41-20230524
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=5hmtsiyFe7UHLwlmngkiWlg4vYxpBwlNL7bkNB3iNWc=;
+        b=jGTV2eeXUgq9TiU24reXfjsk3/D/YpeasWiMYNJ3DvDNOUmTLSVaL3axR2MgkyNBcWleKrKnbTvhVpVVrj3/khKBWNc/D41k6uoPU3WgXiAvb3obO/qdTNaAe5aKIphA8jFprBEK6EnlJ8j5OGQvRegIt/ja37DL2AyBpjh5Ykc=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.25,REQID:f8a45051-ccfd-40f9-aa43-bbc2b7f20145,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:-25
+X-CID-META: VersionHash:d5b0ae3,CLOUDID:3a4e2e3c-de1e-4348-bc35-c96f92f1dcbb,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-UUID: d67d4ea8f9f811ed9cb5633481061a41-20230524
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 582090028; Wed, 24 May 2023 14:04:26 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 24 May 2023 14:04:25 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 24 May 2023 14:04:24 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>, Nathan Hebert <nhebert@chromium.org>
+CC:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v6,0/2] media: mediatek: vcodec: add hevc stateless decoder driver in MT8195
+Date:   Wed, 24 May 2023 14:04:21 +0800
+Message-ID: <20230524060423.15388-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH V2 1/2] dt-bindings: phy: qcom,qmp-pcie: Add ipq9574
- bindings
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <quic_srichara@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_kathirav@quicinc.com>, <quic_arajkuma@quicinc.com>,
-        <quic_anusha@quicinc.com>, <quic_ipkumar@quicinc.com>
-References: <20230519085723.15601-1-quic_devipriy@quicinc.com>
- <20230519085723.15601-2-quic_devipriy@quicinc.com>
- <874a328c-bbfb-00cb-4b2e-69132605cb2d@linaro.org>
-Content-Language: en-US
-From:   Devi Priya <quic_devipriy@quicinc.com>
-In-Reply-To: <874a328c-bbfb-00cb-4b2e-69132605cb2d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: wQgtOg2kKNP1rlW9ALb8ENFSvTdobLpb
-X-Proofpoint-GUID: wQgtOg2kKNP1rlW9ALb8ENFSvTdobLpb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-24_02,2023-05-23_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- priorityscore=1501 adultscore=0 lowpriorityscore=0 spamscore=0 mlxscore=0
- phishscore=0 suspectscore=0 malwarescore=0 mlxlogscore=999 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
- definitions=main-2305240049
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,136 +76,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add hevc stateless decoder driver to support hardware decode in MT8195, and the driver
+need num_delta_pocs_of_ref_rps_idx value to parse slice header short_term_ref_pic_set().
 
+patch 1 add num_delta_pocs_of_ref_rps_idx field.
+patch 2 add hevc stateless decoder driver.
+---
+Changed from v5:
+- checkpatch/kernel-doc pass/build pass
+- fix warning: struct vdec_av1_slice_fb -> struct vdec_hevc_slice_fb.
+- fix warning: remove unused comment for param "trans_start" and "trans_end"
 
-On 5/22/2023 2:27 AM, Dmitry Baryshkov wrote:
-> On 19/05/2023 11:57, Devi Priya wrote:
->> Add bindings for the PCIe QMP PHYs found on IPQ9574.
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->> ---
->>   Changes in V2:
->>     - Picked up the R-b tag
->>     - Did not convert the clock IDs to numerical values as the clock
->>       header (dependent patch) is merged in latest rc1.
->>
->>   .../phy/qcom,ipq9574-qmp-pcie-phy.yaml        | 90 +++++++++++++++++++
->>   1 file changed, 90 insertions(+)
->>   create mode 100644 
->> Documentation/devicetree/bindings/phy/qcom,ipq9574-qmp-pcie-phy.yaml
->>
->> diff --git 
->> a/Documentation/devicetree/bindings/phy/qcom,ipq9574-qmp-pcie-phy.yaml 
->> b/Documentation/devicetree/bindings/phy/qcom,ipq9574-qmp-pcie-phy.yaml
->> new file mode 100644
->> index 000000000000..7c8012647051
->> --- /dev/null
->> +++ 
->> b/Documentation/devicetree/bindings/phy/qcom,ipq9574-qmp-pcie-phy.yaml
->> @@ -0,0 +1,90 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/phy/qcom,ipq9574-qmp-pcie-phy.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm QMP PHY controller (PCIe, IPQ9574)
->> +
->> +maintainers:
->> +  - Vinod Koul <vkoul@kernel.org>
->> +
->> +description:
->> +  The QMP PHY controller supports physical layer functionality for a 
->> number of
->> +  controllers on Qualcomm chipsets, such as, PCIe, UFS, and USB.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - qcom,ipq9574-qmp-gen3x1-pcie-phy
->> +      - qcom,ipq9574-qmp-gen3x2-pcie-phy
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 5
->> +
->> +  clock-names:
->> +    items:
->> +      - const: aux
->> +      - const: cfg_ahb
->> +      - const: anoc_lane
->> +      - const: snoc_lane
->> +      - const: pipe
-> 
-> Could you please reorder the clocks in the following way:
-> - aux
-> - cfg_ahb
-> - pipe
-> - .. the rest
-> 
-> This will allow us to use this schema for other IPQ QMP PCIe PHYs.
-Sure, will update.
+Changed from v4:
+- fix some comments according to Nathan's suggestion.
 
-Thanks,
-Devi Priya
-> 
->> +
->> +  resets:
->> +    maxItems: 2
->> +
->> +  reset-names:
->> +    items:
->> +      - const: phy
->> +      - const: common
->> +
->> +  "#clock-cells":
->> +    const: 0
->> +
->> +  clock-output-names:
->> +    maxItems: 1
->> +
->> +  "#phy-cells":
->> +    const: 0
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - reset-names
->> +  - "#clock-cells"
->> +  - clock-output-names
->> +  - "#phy-cells"
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
->> +    #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
->> +
->> +    pcie0_phy: phy@84000 {
->> +      compatible = "qcom,ipq9574-qmp-gen3x1-pcie-phy";
->> +      reg = <0x00084000 0x1000>;
->> +
->> +      clocks = <&gcc GCC_PCIE0_AUX_CLK>,
->> +               <&gcc GCC_PCIE0_AHB_CLK>,
->> +               <&gcc GCC_ANOC_PCIE0_1LANE_M_CLK>,
->> +               <&gcc GCC_SNOC_PCIE0_1LANE_S_CLK>,
->> +               <&gcc GCC_PCIE0_PIPE_CLK>;
->> +      clock-names = "aux", "cfg_ahb", "anoc_lane", "snoc_lane", "pipe";
->> +
->> +      resets = <&gcc GCC_PCIE0_PHY_BCR>,
->> +               <&gcc GCC_PCIE0PHY_PHY_BCR>;
->> +      reset-names = "phy", "common";
->> +
->> +      #clock-cells = <0>;
->> +      clock-output-names = "gcc_pcie0_pipe_clk_src";
->> +
->> +      #phy-cells = <0>;
->> +    };
-> 
+Changed from v3:
+- add the dependency patch to this patch series for patch 1.
+
+Changed from v2:
+- fix one build warning.
+- add the dependency patch link.
+
+Changed from v1:
+- fix build error when build 32bit system.
+- hevc fluster test result: 132/147 (not support: 10bit => 11 and resolution => 4).
+---
+Benjamin Gaignard (1):
+  media: uapi: HEVC: Add num_delta_pocs_of_ref_rps_idx field
+
+Yunfei Dong (1):
+  media: mediatek: vcodec: support stateless hevc decoder
+
+ .../media/v4l/ext-ctrls-codec-stateless.rst   |    7 +
+ .../media/platform/mediatek/vcodec/Makefile   |    1 +
+ .../vcodec/mtk_vcodec_dec_stateless.c         |   59 +-
+ .../platform/mediatek/vcodec/mtk_vcodec_drv.h |    1 +
+ .../vcodec/vdec/vdec_hevc_req_multi_if.c      | 1098 +++++++++++++++++
+ .../platform/mediatek/vcodec/vdec_drv_if.c    |    4 +
+ .../platform/mediatek/vcodec/vdec_drv_if.h    |    1 +
+ include/uapi/linux/v4l2-controls.h            |    6 +-
+ 8 files changed, 1175 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c
+
+-- 
+2.18.0
+
