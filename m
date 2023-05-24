@@ -2,154 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9D1B70F792
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 15:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17D8D70F7B0
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 15:34:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230255AbjEXN2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 09:28:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56340 "EHLO
+        id S235146AbjEXNex (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 09:34:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbjEXN2o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 09:28:44 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EDE0A9
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 06:28:42 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f623adec61so5701415e9.0
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 06:28:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1684934921; x=1687526921;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dpaEDaEMiz0twNyfrOrBugRFe4goGloP1Qpqk47QwlA=;
-        b=RRpnCjpjHBTwE/i8foXECp1howHpUJB08S3RDHVRKvOK+eeAwsKC3x39tLqwNhysca
-         cI/sZp9eC0H8WA5MnMR3Wck3kwLEVf86vv/q5HMBHGSWy4KCGj8fcAyYih8bFlYz+sdD
-         pxEo14qjxYnXZIROoJUVb/epU2pySWQZPM/UhVVhdK+inP5pxhiZDg0rcJ8490MDOf2D
-         lFZHi9cri7PBUqx0937e80otPcYbB6cxD6Aov9gHkFGDb0QFamRLyqrj2Ycmk3UH1NrR
-         hoc4lFkin632699KFRBucYZo/CD34eAaRYyFXiPx/o7vUmZC9N/i30ORAGH8AuOAj9jx
-         oGnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684934921; x=1687526921;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dpaEDaEMiz0twNyfrOrBugRFe4goGloP1Qpqk47QwlA=;
-        b=HPRCRAPeQAM4rinY8Q6vKNC+ZJdqEhhPGZF0/ZSxmAdqvNU0o2dBofPW79PaPprrhF
-         5FQHOROufd6lrqV/SZHpfipp/yfaJIrVPbS03d7fWu00/hz05+wtf1+g/06OKPLyNimq
-         e0gk2IzEixTv9l/x5jwt2Qt7yDENievVmdFVoD5U3d+r4ZIfQnSTwaaDY+0IzQ/mzJq9
-         +xvdrw0GF+DWBgWb1+sLIEXeM13cPTvibOaPs5RbcXJMwQ1Zdo8zudfPvBjFOWRBYc1W
-         I0yxogt5j8Roy3o4n58FdjwjrV17tcpZZ5Dq4RgJVH/gvMszXMfIUtwgeOvrMhY9GgE0
-         mvJg==
-X-Gm-Message-State: AC+VfDz5mkBC5VPfDuwvEeT928eQMf8FpqwNE56X1gtagUovtBJHXL1v
-        h9zWZRO9IGEArBM56LvrgAAQsg==
-X-Google-Smtp-Source: ACHHUZ5UxTF7Ty4Ha1qHIPwkF1euAKvGxSLopaZQrr7mrvaQchq5F7/btnqI5+pGB6je42At5/7vFA==
-X-Received: by 2002:adf:ff90:0:b0:309:ccad:b2fb with SMTP id j16-20020adfff90000000b00309ccadb2fbmr10813993wrr.5.1684934920688;
-        Wed, 24 May 2023 06:28:40 -0700 (PDT)
-Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id j3-20020a5d4483000000b003062b57ffd1sm14483595wrq.50.2023.05.24.06.28.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 May 2023 06:28:39 -0700 (PDT)
-Message-ID: <56b892cd-977e-5b24-55f0-df25e187308b@baylibre.com>
-Date:   Wed, 24 May 2023 15:28:38 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/7] ASoC: dt-bindings: mediatek,mt8188-mt6359: remove
- ADDA_BE from link-name
-Content-Language: en-US
-To:     =?UTF-8?B?VHJldm9yIFd1ICjlkLPmlofoia8p?= <Trevor.Wu@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "tiwai@suse.com" <tiwai@suse.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S235009AbjEXNev (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 09:34:51 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 076ADA7;
+        Wed, 24 May 2023 06:34:47 -0700 (PDT)
+X-UUID: be53c3d6fa3711edb20a276fd37b9834-20230524
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=LqTI48huwfcqldzoKX+aLh/oOyBqBTof810vT25RpjY=;
+        b=D2iQ8BXAbne8i14/EDFqAkkgbgw4EPERiCWVIMPknjADIJGrM8yhXLb4PbPkhCqANtJx3918bGqcXhslC5LpkLXXXk/Myk/AK6vXLwzQkYvyIbiYwJbHSu8dP/VO1T70afjE6/EEccoVqv8n6Glu/Mo9lJPbbq2K0S5GLYCthME=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.25,REQID:040f3a96-3c4b-428b-8b2d-36c489ca172c,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:d5b0ae3,CLOUDID:91c43a3c-de1e-4348-bc35-c96f92f1dcbb,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-UUID: be53c3d6fa3711edb20a276fd37b9834-20230524
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <runyang.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 670072865; Wed, 24 May 2023 21:34:44 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 24 May 2023 21:34:42 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 24 May 2023 21:34:42 +0800
+From:   Runyang Chen <runyang.chen@mediatek.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20230523021933.3422-1-trevor.wu@mediatek.com>
- <20230523021933.3422-3-trevor.wu@mediatek.com>
- <cb69dbab-0966-8ecb-d9b9-017f430fd7ea@baylibre.com>
- <b9eecdf886b6496131e51e1e2f49536c782c3b67.camel@mediatek.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <b9eecdf886b6496131e51e1e2f49536c782c3b67.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Runyang Chen <runyang.chen@mediatek.com>
+Subject: [PATCH v3 0/2] Add infra_ao reset support for MT8188 Soc
+Date:   Wed, 24 May 2023 21:34:37 +0800
+Message-ID: <20230524133439.20659-1-runyang.chen@mediatek.com>
+X-Mailer: git-send-email 2.9.2
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/05/2023 04:25, Trevor Wu (吳文良) wrote:
-> On Tue, 2023-05-23 at 18:26 +0200, Alexandre Mergnat wrote:
->> On 23/05/2023 04:19, Trevor Wu wrote:
->>> ADDA_BE is used to connect to mt6359. For machine mt8188-mt6359,
->>> codec
->>> for ADDA_BE must be mt6359 which are configured on the machine
->>> driver.
->>> Besides, ADDA_BE is divided into two dais, UL_SRC_BE and DL_SRC_BE.
->>> As a result, remove ADDA_BE from items of link-name.
->>>
->>> Signed-off-by: Trevor Wu<trevor.wu@mediatek.com>
->>
->> I don't understand how "DL_SRC_BE" and "UL_SRC_BE" links are done.
->> Why these dais don't replace "ADDA_BE" in this binding ?
->>
->> Regards,
->> Alexandre
->>
-> 
-> Hi Alexandre,
-> 
-> Because the sound card is mt8188-mt6359, the codec for these two links
-> must be mt6359. Thus, I specifiy the codec in machine driver directly.
-> If the codec is changed, there will be a new sound card and binding
-> file. In conclusion, the codec won't be updated via dts, and that's why
-> I don't just replace ADDA_BE in this binding.
-> 
-> Do you suggest me add some information in the commit message?
+Based on tag: next-20230524, linux-next/master
 
-No it's fine, I'm just trying to understand.
+v3:
+1. The infra_ao_rst_ofs, infra_ao_idx_map and infra_ao_rst_desc are not
+modified by the driver, so constify them.
 
-When you say "I specifiy the codec in machine driver directly", you
-are talking about this change ?
+v2:
+1. Modify SoB to match author name.
 
-+		} else if (strcmp(dai_link->name, "DL_SRC_BE") == 0 ||
-+			   strcmp(dai_link->name, "UL_SRC_BE") == 0) {
-+			if (!init_mt6359) {
-+				dai_link->init = mt8188_mt6359_init;
+v1:
+1. Add thermal reset bit for MT8188.
+2. Add infra_ao reset support for MT8188.
 
-I'm asking because the equivalent was done here:
+Runyang Chen (2):
+  dt-bindings: reset: mt8188: add thermal reset control bit
+  clk: mediatek: reset: add infra_ao reset support for MT8188
 
--	[DAI_LINK_ADDA_BE] = {
--		.name = "ADDA_BE",
-+	[DAI_LINK_DL_SRC_BE] = {
-+		.name = "DL_SRC_BE",
-  		.no_pcm = 1,
-  		.dpcm_playback = 1,
--		.dpcm_capture = 1,
--		.init = mt8188_mt6359_init,
--		SND_SOC_DAILINK_REG(adda),
-+		SND_SOC_DAILINK_REG(dl_src),
+ drivers/clk/mediatek/clk-mt8188-infra_ao.c | 24 ++++++++++++++++++++++
+ include/dt-bindings/reset/mt8188-resets.h  |  5 +++++
+ 2 files changed, 29 insertions(+)
 
-So I'm wondering why "ADDA_BE" & "DPTX_BE" & "ETDM3_OUT_BE" are in the 
-enum list of the binding since the codec is already specified in
-machine driver too. I probably miss something but I don't know what.
-
--- 
-Regards,
-Alexandre
+--
+2.18.0
 
