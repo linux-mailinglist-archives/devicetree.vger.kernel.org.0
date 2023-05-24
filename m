@@ -2,199 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15DAC70EF82
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 09:36:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 556CA70EFA7
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 09:42:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239865AbjEXHgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 03:36:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38050 "EHLO
+        id S240011AbjEXHmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 03:42:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239580AbjEXHgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 03:36:09 -0400
+        with ESMTP id S239982AbjEXHmD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 03:42:03 -0400
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C97131;
-        Wed, 24 May 2023 00:35:59 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4547590;
+        Wed, 24 May 2023 00:42:01 -0700 (PDT)
+Received: from localhost (unknown [188.27.34.213])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 24E3766032B2;
-        Wed, 24 May 2023 08:35:57 +0100 (BST)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id BF15D6605992;
+        Wed, 24 May 2023 08:41:59 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1684913758;
-        bh=2P4uUVGWSU1yuuIGABANv5MaXiV9HCTbYclu2/IM3PI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=BFGNHizBzrDirVgLuoG5p0bLgQGskneur9IIARgRKquZxXDqU5cbeqxLvmAelQpx2
-         wIQOL1vD2uI6BZk5VzvitQonsIXe53UegCK/lnLH2qGKgOzMcfTFEeRlWvmrEyPkdF
-         a3H2jcrI2lXF1T0ZdY/5IToW7eTbki7UDR2xDHulp3N3pcynSh/2H8g37ZfY8/7zFO
-         ZS8ofYgPXodKinoxhur7XfqRDjxgHWP0WFwe6u+PJg8o6VVyuP2vXfoflUoFJ+BRde
-         sSCzluBsADd0iaAaoVU3hgTDdQmE6fURduxAk9NQFRjKF+RoEYixtpgk/YK3YI/rqZ
-         Np5iExasUbyoA==
-Message-ID: <2dde9a06-1ed3-f95e-f11e-91b65c039c92@collabora.com>
-Date:   Wed, 24 May 2023 09:35:54 +0200
+        s=mail; t=1684914119;
+        bh=rIv0A5Qf9tPl9upoHpRp3OawplgowbPYSCpfX7sHQQs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=mkVmnzX7hyiNjGwuOi5uJH4qVAYOE2KMAxnr1E4ywOBmJfn+sUDyoZNPzuPGiglxb
+         gjMITxPbcKo/PXM0riNWt26Q9cCbbCMLf1xg+14Awi5pPoebFb0+XrZJRAoJFGb18p
+         bZG+D/xkXEBXtPCrTO9Snx0tTpU5IhcQr5BTYB1femUNNNk+9Mom7bW1avP+DKhS97
+         vo1b9t3qacx9zR97zxM4gap6+CCkprrqy8u8Z4j+aGukg/QSqGwiVoawOJVNslroXW
+         gnSOeGiDQN0MWMr70bjVjF7YIR/R5p0mTqF/lDRQmDFSS4GOtYAfZWsfOPPYVZYmwA
+         cmuZIImgz60TQ==
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Zhu Ning <zhuning0077@gmail.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        David Yang <yangxiaohua@everest-semi.com>,
+        Daniel Drake <drake@endlessm.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, kernel@collabora.com
+Subject: [PATCH 0/3] ES8316 audio codec fixes on Rock5B
+Date:   Wed, 24 May 2023 10:41:53 +0300
+Message-Id: <20230524074156.147387-1-cristian.ciocaltea@collabora.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v5,2/2] media: mediatek: vcodec: support stateless hevc
- decoder
-Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>, Nathan Hebert <nhebert@chromium.org>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230524021625.13708-1-yunfei.dong@mediatek.com>
- <20230524021625.13708-3-yunfei.dong@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230524021625.13708-3-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 24/05/23 04:16, Yunfei Dong ha scritto:
-> Add mediatek hevc decoder linux driver which use the stateless API in MT8195.
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> Tested-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> Tested-by: Nathan Hebert <nhebert@chromium.org>
-> ---
->   .../media/platform/mediatek/vcodec/Makefile   |    1 +
->   .../vcodec/mtk_vcodec_dec_stateless.c         |   59 +-
->   .../platform/mediatek/vcodec/mtk_vcodec_drv.h |    1 +
->   .../vcodec/vdec/vdec_hevc_req_multi_if.c      | 1101 +++++++++++++++++
->   .../platform/mediatek/vcodec/vdec_drv_if.c    |    4 +
->   .../platform/mediatek/vcodec/vdec_drv_if.h    |    1 +
->   6 files changed, 1166 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c
-> 
+This patch series handles a few issues related to the ES8316 audio 
+codec, discovered while doing some testing on the Rock 5B board.
 
-..snip..
+Cristian Ciocaltea (3):
+  ASoC: es8316: Increment max value for ALC Capture Target Volume
+    control
+  ASoC: es8316: Do not set rate constraints for unsupported MCLKs
+  arm64: dts: rockchip: Assign ES8316 MCLK rate on rk3588-rock-5b
 
-> diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c
-> new file mode 100644
-> index 000000000000..9a96547af33c
-> --- /dev/null
-> +++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c
-> @@ -0,0 +1,1101 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2023 MediaTek Inc.
-> + * Author: Yunfei Dong <yunfei.dong@mediatek.com>
-> + */
-> +
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 2 ++
+ sound/soc/codecs/es8316.c                       | 4 ++--
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-..snip..
-
-> +
-> +/**
-> + * struct vdec_hevc_slice_share_info - shared information used to exchange
-> + *                                     message between lat and core
-> + *
-> + * @sps:               sequence header information from user space
-> + * @dec_params:        decoder params from user space
-> + * @hevc_slice_params: decoder params used for hardware
-> + * @trans_start:       trans start dma address
-> + * @trans_end:         trans end dma address
-
-Wrong documentation, there's no trans_start, trans_end, but just `trans`.
-
-> + */
-> +struct vdec_hevc_slice_share_info {
-> +	struct v4l2_ctrl_hevc_sps sps;
-> +	struct v4l2_ctrl_hevc_decode_params dec_params;
-> +	struct vdec_hevc_slice_lat_dec_param hevc_slice_params;
-> +	struct vdec_hevc_slice_mem trans;
-> +};
-> +
-> +/**
-> + * struct vdec_hevc_slice_inst - hevc decoder instance
-> + *
-> + * @slice_dec_num:      how many picture be decoded
-> + * @ctx:                point to mtk_vcodec_ctx
-> + * @pred_buf:           HW working predication buffer
-
-pred_buf is not present in this structure; either add it and make use
-of it, or remove the documentation for it.
-
-> + * @mv_buf:             HW working motion vector buffer
-> + * @vpu:                VPU instance
-> + * @vsi:                vsi used for lat
-> + * @vsi_core:           vsi used for core
-> + * @wrap_addr:          wrap address used for hevc
-> + *
-> + * @hevc_slice_param:   the parameters that hardware use to decode
-> + *
-> + * @resolution_changed: resolution changed
-> + * @realloc_mv_buf:     reallocate mv buffer
-> + * @cap_num_planes:     number of capture queue plane
-> + */
-> +struct vdec_hevc_slice_inst {
-> +	unsigned int slice_dec_num;
-> +	struct mtk_vcodec_ctx *ctx;
-> +	struct mtk_vcodec_mem mv_buf[HEVC_MAX_MV_NUM];
-> +	struct vdec_vpu_inst vpu;
-> +	struct vdec_hevc_slice_vsi *vsi;
-> +	struct vdec_hevc_slice_vsi *vsi_core;
-> +	struct mtk_vcodec_mem wrap_addr;
-> +
-> +	struct vdec_hevc_slice_lat_dec_param hevc_slice_param;
-> +
-> +	unsigned int resolution_changed;
-> +	unsigned int realloc_mv_buf;
-> +	unsigned int cap_num_planes;
-> +};
-> +
-> +static unsigned int vdec_hevc_get_mv_buf_size(unsigned int width, unsigned int height)
-> +{
-> +	const int unit_size = (width / 16) * (height / 16) + 8;
-
-This is supposed to be `const unsigned int`, otherwise you may overflow here (even
-if it's unlikely to, but still....!)
-
-> +
-> +	return 64 * unit_size;
-> +}
-> +
-
-..snip..
-
-> +static int vdec_hevc_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
-> +				      struct vdec_fb *fb, bool *res_chg)
-> +{
-> +	struct vdec_hevc_slice_inst *inst = h_vdec;
-> +	struct vdec_vpu_inst *vpu = &inst->vpu;
-> +
-
-Please remove this extra empty line.
-
-> +	int err, timeout = 0;
-> +	unsigned int data[2];
-> +	struct vdec_lat_buf *lat_buf;
-> +	struct vdec_hevc_slice_share_info *share_info;
-> +
-
-...after which:
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+-- 
+2.40.1
 
