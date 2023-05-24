@@ -2,65 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93E3B70FE2F
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 21:05:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12E0270FE4B
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 21:11:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbjEXTFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 15:05:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38284 "EHLO
+        id S231785AbjEXTL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 15:11:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230138AbjEXTFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 15:05:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72C72119;
-        Wed, 24 May 2023 12:05:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0877563E69;
-        Wed, 24 May 2023 19:05:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19FC2C433EF;
-        Wed, 24 May 2023 19:05:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684955123;
-        bh=7IRpNDdHhUEZCbE8G7RygmiCr0Ti7Qh7NLcdgH/35ec=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AeF+V75+9HxnSrKOxOzDMKO19pROvZCjPhYZSi1U0j8ulJ4hpTnz0bnlz7Cl6IBWF
-         oKbcDzxhhyPrvbr+ilousBeY4OGw03EqiI8z4EaK7S3GVPhQQSc/zPgQzCMqF+cG+S
-         tINkIPrAg/KnNW2+MUac9GMLTR2hzql4EqcziaHfiBcz5ewXEm+65HmMiPzCJJhAL3
-         GZcr1KmEahRFoXFEMCFusxHBQiVqXfNocCuA/bwIVNpfLTgX2x4Q1YMsH3CBSrnkl4
-         bRoOre+ZqTRKKtASttK1ibGPkiGmBIYaEL51mE/lv/1Ezfjnnqm/dqJo6cb+FsMmQO
-         7BN6kuzbaOkMw==
-Date:   Wed, 24 May 2023 20:05:17 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S231278AbjEXTLZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 15:11:25 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B3BD12E;
+        Wed, 24 May 2023 12:11:23 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34OJAxne112230;
+        Wed, 24 May 2023 14:10:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1684955459;
+        bh=44ofO+fg5oAkQw3fphX2FkEvo3iqoYAXa6FicyN/lQ4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=iIxusKymMCG6l23dWRsgMNIhzkYFVqno1SK3rkRxkd02fITtP8EReVDw3ka1YSaap
+         j+7OWDwBEOazxFJ7AN3CHopww6t4c/ClqKGOrUNy6y2PGc7JlIOadVmGvZ768POjrg
+         VFid4Lgyv4SLRLKKH3+Yf6jhxELKf2UQYXDTRrXA=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34OJAwMv099824
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 24 May 2023 14:10:59 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 24
+ May 2023 14:10:58 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 24 May 2023 14:10:58 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34OJAwiM025082;
+        Wed, 24 May 2023 14:10:58 -0500
+Date:   Wed, 24 May 2023 14:10:58 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Andrew Davis <afd@ti.com>
+CC:     Francesco Dolcini <francesco@dolcini.it>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-Subject: Re: [PATCH V2 2/4] dt-bindings: clock: qcom: Add SM8550 video clock
- controller
-Message-ID: <20230524-cape-unlovely-db4e73216095@spud>
-References: <20230524145203.13153-1-quic_jkona@quicinc.com>
- <20230524145203.13153-3-quic_jkona@quicinc.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/5] dt-bindings: arm: ti: add toradex,verdin-am62 et
+ al.
+Message-ID: <20230524191058.fkvl255j6fjcm4m5@unabashed>
+References: <20230524143631.42471-1-francesco@dolcini.it>
+ <20230524143631.42471-2-francesco@dolcini.it>
+ <a87d493a-0f16-0096-0a01-5bbeddf4cfee@ti.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="a2P0yj4aEzAov0Ta"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230524145203.13153-3-quic_jkona@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <a87d493a-0f16-0096-0a01-5bbeddf4cfee@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,31 +72,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12:48-20230524, Andrew Davis wrote:
 
---a2P0yj4aEzAov0Ta
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[..]
 
-On Wed, May 24, 2023 at 08:22:01PM +0530, Jagadeesh Kona wrote:
-> Add compatible string for SM8550 video clock controller.
->=20
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> In fact I'm not sure we get much value at all out of top level whole-SoC compatible
+> strings. Maybe we did when there was matching in kernel to do device specific fixups,
+> but that isn't really used much in ARM64.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+If you are arguing about const: ti,am625 - there is a bunch more other
+S/w systems that use compatibles for various purposes in addition to
+usage in userspace (test systems etc) that benefit. Unless there is a
+ARM64 wide trend to drop it, I don't see a reason to have a discussion
+on that.
 
-Thanks,
-Conor.
-
---a2P0yj4aEzAov0Ta
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG5f7QAKCRB4tDGHoIJi
-0qwyAP9Ct21nILVDvZMTCUux5YluLEO+yncGzHhoXG/QOhY57wD9FO9ErDcXGMRP
-C7P8HUW/CeSJbLwRzkD6ZeRxY1BCiwo=
-=yrwX
------END PGP SIGNATURE-----
-
---a2P0yj4aEzAov0Ta--
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
