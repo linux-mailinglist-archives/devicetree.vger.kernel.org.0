@@ -2,134 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B532A70F942
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 16:53:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EA0270F980
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 16:59:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236126AbjEXOxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 10:53:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42326 "EHLO
+        id S236308AbjEXO72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 10:59:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235990AbjEXOx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 10:53:28 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A19E19D;
-        Wed, 24 May 2023 07:53:04 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34OEnSNM011188;
-        Wed, 24 May 2023 14:52:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=8T/9E3hQqnERSQbAml5XpoEmJIhSNa9G1/LwUpkmURU=;
- b=X970MkOP11ERKD132J5pEh/Hjy30P08Cm44QMb4xG4UR/A+LYh09m5QOriiIymm5GAXv
- EJVpu2gMec7Cg9JjKEyW9fXtEMmqJpJNKkrU/KgnMa8+RiHgeWMckuIxFyjiAj2G4/vh
- b8G9t7k9o0vXM5wTUoSoc4gESIR8WohNIX4bYadyZGupy7g2SRwwCZ91wIjP5r+QiM6J
- 7SjT0NFY3HdbC69bz/FP8y3zK1Nl0p2wnaULHsmKr9RkUOuecBESe1+5DoF3aXcaZ+Eh
- adeX94zzkG/3PfHQ7irAAQjrU+Izt23uWrs+RipYwAJOeqW+EvbBEHg/568xTqdY5kXs og== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qscgmh5ws-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 24 May 2023 14:52:46 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34OEqjjx007570
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 24 May 2023 14:52:45 GMT
-Received: from hu-jkona-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 24 May 2023 07:52:40 -0700
-From:   Jagadeesh Kona <quic_jkona@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S236225AbjEXO71 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 10:59:27 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD095E64
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 07:59:00 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-30a4ebbda56so954293f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 07:59:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1684940335; x=1687532335;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:cc:to:from:user-agent:references:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dPTeVaA5yO30H5vPCNeErOYkc0AROqP1l6DiC6Tyn6I=;
+        b=vfpIgsnyUzdnKc4dwE+/96PjgIZvHt4dvbZ9oFQJRuK0CVK6zB1ExZEmqyOyDUEaMH
+         BPpbUfdQjZ0taYzA1AsrlvN1tRHUAtaLiRwO/ppPt3tSnmEbi/0JPy5s7QiEBux76KU1
+         +T0ASZwW7J5toOpu/nsp3pq2NfGxQd59XQfjtn70XB6B7U0d/h+ElY2TO2EwqmTVgQFV
+         4Bnu2oFUhNfw46W86ylzigop/8xarM12LGwz50nrnW2lI8914SzNVvR466awvrLz/Th8
+         2RTJ3NEnKOtlLRdaAzbNop6jsJMZCo+OvHfi+l+HAw/OtwY51swRPmgc8oYcxbSkPLMv
+         Jkfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684940335; x=1687532335;
+        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
+         :subject:cc:to:from:user-agent:references:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=dPTeVaA5yO30H5vPCNeErOYkc0AROqP1l6DiC6Tyn6I=;
+        b=NbBB855XsUfWxDY03cI5j243z1vfmhsaxHH5VdzgmOGsXLA2TatGbjgJQnVfqTTGWh
+         i2AnW/pJF4ZRyqr/uGNdirGsHVfNvWgD4sy3xkA7ykAbmLIBAV+70x6dhpdTG46UJDmc
+         Pd62QPg5D0JVunKIGMRGJ6NKiLbSXscTfwwkRbPJj54voFjNg3xCj2NAuUwGOMqext6J
+         CslJGPoRnDdQiOKYXzCfzyipKENB8ZaSMNS0elc2KY28IcEpTZsSSrcnLRSFZlculvbo
+         90tQkPPCuz7cvq2hS8y4uaM3T0jxrZu/SJNqw++ddj0j2uWMAXpOVOmeSn23Bvu3+Bt/
+         Roxg==
+X-Gm-Message-State: AC+VfDzLNPEWBSnz6E7HrCzCatPsUnBhEQGUorsiIzmG43kR9wa+7EnC
+        5ZwHZ3lYruh2Z8TumuDVbJyBdw==
+X-Google-Smtp-Source: ACHHUZ6dUa6XUsPGDzubnTbiGkJc+yNunVFb4E6K7ba0Jf0QKNNJpz+ZBmF7UznoBG5dbpFM0aZNKQ==
+X-Received: by 2002:a1c:7907:0:b0:3f4:2e13:ccdc with SMTP id l7-20020a1c7907000000b003f42e13ccdcmr126352wme.0.1684940335257;
+        Wed, 24 May 2023 07:58:55 -0700 (PDT)
+Received: from zen.linaroharston ([85.9.250.243])
+        by smtp.gmail.com with ESMTPSA id l14-20020a7bc44e000000b003f60514bdd7sm2724611wmi.4.2023.05.24.07.58.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 May 2023 07:58:54 -0700 (PDT)
+Received: from zen (localhost [127.0.0.1])
+        by zen.linaroharston (Postfix) with ESMTP id 5C26E1FFBB;
+        Wed, 24 May 2023 15:58:54 +0100 (BST)
+References: <20230424231558.70911-1-quic_eberman@quicinc.com>
+User-agent: mu4e 1.11.6; emacs 29.0.91
+From:   Alex =?utf-8?Q?Benn=C3=A9e?= <alex.bennee@linaro.org>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Ajit Pandey" <quic_ajipan@quicinc.com>
-Subject: [PATCH V2 4/4] arm64: dts: qcom: sm8550: Add video clock controller
-Date:   Wed, 24 May 2023 20:22:03 +0530
-Message-ID: <20230524145203.13153-5-quic_jkona@quicinc.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230524145203.13153-1-quic_jkona@quicinc.com>
-References: <20230524145203.13153-1-quic_jkona@quicinc.com>
+        Jonathan Corbet <corbet@lwn.net>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v12 00/25] Drivers for Gunyah hypervisor
+Date:   Wed, 24 May 2023 15:57:42 +0100
+In-reply-to: <20230424231558.70911-1-quic_eberman@quicinc.com>
+Message-ID: <87fs7lwzbl.fsf@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: BusvOzsAMveekdRgsOqg35q6ELoU-Ao_
-X-Proofpoint-ORIG-GUID: BusvOzsAMveekdRgsOqg35q6ELoU-Ao_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-24_09,2023-05-24_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 impostorscore=0 bulkscore=0 clxscore=1015 spamscore=0
- adultscore=0 malwarescore=0 phishscore=0 mlxscore=0 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305240120
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device node for video clock controller on Qualcomm SM8550 platform.
 
-Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
----
-Changes since V1:
- - Sorted DT node by unit address
- - Reused SM8450 videocc header file for SM8550
+Elliot Berman <quic_eberman@quicinc.com> writes:
 
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+> Gunyah is a Type-1 hypervisor independent of any
+> high-level OS kernel, and runs in a higher CPU privilege level. It does
+> not depend on any lower-privileged OS kernel/code for its core
+> functionality. This increases its security and can support a much smaller
+> trusted computing base than a Type-2 hypervisor.
+>
+<snip>
+>
+> The series relies on two other patches posted separately:
+>  - https://lore.kernel.org/all/20230213181832.3489174-1-quic_eberman@quic=
+inc.com/
+>  -
+> https://lore.kernel.org/all/20230213232537.2040976-2-quic_eberman@quicinc=
+.com/
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 6e9bad8f6f33..bef33b253813 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sm8450-videocc.h>
- #include <dt-bindings/clock/qcom,sm8550-gcc.h>
- #include <dt-bindings/clock/qcom,sm8550-tcsr.h>
- #include <dt-bindings/clock/qcom,sm8550-dispcc.h>
-@@ -2385,6 +2386,18 @@ opp-202000000 {
- 			};
- 		};
- 
-+		videocc: clock-controller@aaf0000 {
-+			compatible = "qcom,sm8550-videocc";
-+			reg = <0 0x0aaf0000 0 0x10000>;
-+			clocks = <&bi_tcxo_div2>,
-+				 <&gcc GCC_VIDEO_AHB_CLK>;
-+			power-domains = <&rpmhpd SM8550_MMCX>;
-+			required-opps = <&rpmhpd_opp_low_svs>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		mdss: display-subsystem@ae00000 {
- 			compatible = "qcom,sm8550-mdss";
- 			reg = <0 0x0ae00000 0 0x1000>;
--- 
-2.40.1
+I was able to apply the first patch but the second patch gives a 404:
 
+  b4 am -S -t 20230213232537.2040976-2-quic_eberman@quicinc.com
+  Grabbing thread from lore.kernel.org/all/20230213232537.2040976-2-quic_eb=
+erman%40quicinc.com/t.mbox.gz
+  That message-id is not known.
+
+was there a transcription error?
+
+--=20
+Alex Benn=C3=A9e
+Virtualisation Tech Lead @ Linaro
