@@ -2,65 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F4BA70EFE9
-	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 09:52:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2844270F02F
+	for <lists+devicetree@lfdr.de>; Wed, 24 May 2023 10:08:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239458AbjEXHwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 03:52:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49830 "EHLO
+        id S239862AbjEXIH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 04:07:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232910AbjEXHwY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 03:52:24 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E4A6E91;
-        Wed, 24 May 2023 00:52:21 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8DxqvI0wm1kx1gAAA--.1050S3;
-        Wed, 24 May 2023 15:52:20 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxQbQywm1ku2pzAA--.61392S3;
-        Wed, 24 May 2023 15:52:19 +0800 (CST)
-Subject: Re: [PATCH v11 2/2] spi: loongson: add bus driver for the loongson
- spi controller
-To:     andy.shevchenko@gmail.com
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230522071030.5193-1-zhuyinbo@loongson.cn>
- <20230522071030.5193-3-zhuyinbo@loongson.cn> <ZGy3b7ZfNwWoGDTu@surfacebook>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <35b0500c-d7fe-6479-eeff-d45bbf9a9426@loongson.cn>
-Date:   Wed, 24 May 2023 15:52:18 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S239229AbjEXIH5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 04:07:57 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E16135;
+        Wed, 24 May 2023 01:07:47 -0700 (PDT)
+X-UUID: 0ee95122fa0a11ed9cb5633481061a41-20230524
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=zcBxf2JopgBE0/qefhNOXKZs3dhHmLYOk2K3RwkLF5k=;
+        b=uerNzmrFlA4034mRp3mKfUr7D9bQ3UxtQmBe8+oFYEpiZ+qTWBINipS+da1GTlwHJyiQ27zcLSHjYqGbYL9T94krlb5o8eTsCMk7/VFCv6QUyZTb/SbFTR9+e76JocyI+JdhnQBwfnD7LzQ638xrba3dXSUqUg3kFNWSNOR7ewU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.25,REQID:9eb73153-1f49-476b-ac03-5d2f496705d0,IP:0,U
+        RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+        N:release,TS:-25
+X-CID-META: VersionHash:d5b0ae3,CLOUDID:4cabd76c-2f20-4998-991c-3b78627e4938,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-UUID: 0ee95122fa0a11ed9cb5633481061a41-20230524
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1115863944; Wed, 24 May 2023 16:07:42 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 24 May 2023 16:07:41 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 24 May 2023 16:07:40 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>, Nathan Hebert <nhebert@chromium.org>
+CC:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v7,0/2] media: mediatek: vcodec: add hevc stateless decoder driver in MT8195
+Date:   Wed, 24 May 2023 16:07:37 +0800
+Message-ID: <20230524080739.17264-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <ZGy3b7ZfNwWoGDTu@surfacebook>
-Content-Type: text/plain; charset=gbk; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8AxQbQywm1ku2pzAA--.61392S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW3AFyfGFy3ArW8CryrtF15CFg_yoW3JFW5pF
-        48Aa15KFWSyr4Iyw18XFs5GF4Yqry3J3W7JFWav3y8Kr98Zw1xXa45KF1fCr4SvFZ5ZF1x
-        ZFWUur4kCFs8C3DanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bxkFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJw
-        A2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487
-        Mc804VCY07AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2
-        IY67AKxVWUXVWUAwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0
-        Y48IcVAKI48JMxk0xIA0c2IEe2xFo4CEbIxvr21l42xK82IYc2Ij64vIr41l42xK82IY6x
-        8ErcxFaVAv8VWrMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4l
-        x2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrw
-        CI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI
-        42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z2
-        80aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8c_-PUUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,317 +76,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add hevc stateless decoder driver to support hardware decode in MT8195, and the driver
+need num_delta_pocs_of_ref_rps_idx value to parse slice header short_term_ref_pic_set().
 
+patch 1 add num_delta_pocs_of_ref_rps_idx field.
+patch 2 add hevc stateless decoder driver.
+---
+Changed from v6:
+- fix AngeloGioacchino's suggestion.
 
-ÔÚ 2023/5/23 ÏÂÎç8:54, andy.shevchenko@gmail.com Ð´µÀ:
-> Mon, May 22, 2023 at 03:10:30PM +0800, Yinbo Zhu kirjoitti:
->> This bus driver supports the Loongson SPI hardware controller in the
->> Loongson platforms and supports to use DTS and PCI framework to
->> register SPI device resources.
-> 
-> It's polite to add reviewers of the previous versions to the Cc list.
+Changed from v5:
+- checkpatch/kernel-doc pass/build pass.
+- fix warning: struct vdec_av1_slice_fb -> struct vdec_hevc_slice_fb.
+- fix warning: remove unused comment for param "trans_start" and "trans_end"
 
-okay, I got it.
-> 
-> ...
-> 
->> +static void loongson_spi_set_clk(struct loongson_spi *loongson_spi, unsigned int hz)
->> +{
->> +	unsigned char val;
->> +	unsigned int div, div_tmp;
-> 
->> +	const char rdiv[12] = {0, 1, 4, 2, 3, 5, 6, 7, 8, 9, 10, 11};
-> 
-> static?
+Changed from v4:
+- fix some comments according to Nathan's suggestion.
 
-okay, I will define "static const char rdiv".
+Changed from v3:
+- add the dependency patch to this patch series for patch 1.
 
-> 
->> +
->> +	div = clamp_val(DIV_ROUND_UP_ULL(loongson_spi->clk_rate, hz), 2, 4096);
->> +	div_tmp = rdiv[fls(div - 1)];
->> +	loongson_spi->spcr = (div_tmp & GENMASK(1, 0)) >> 0;
->> +	loongson_spi->sper = (div_tmp & GENMASK(3, 2)) >> 2;
->> +	val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPCR_REG);
->> +	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPCR_REG, (val & ~3) |
->> +			       loongson_spi->spcr);
->> +	val = loongson_spi_read_reg(loongson_spi, LOONGSON_SPI_SPER_REG);
->> +	loongson_spi_write_reg(loongson_spi, LOONGSON_SPI_SPER_REG, (val & ~3) |
->> +			       loongson_spi->sper);
->> +	loongson_spi->hz = hz;
->> +}
-> 
-> ...
-> 
->> +static int loongson_spi_update_state(struct loongson_spi *loongson_spi,
->> +				struct spi_device *spi, struct spi_transfer *t)
->> +{
->> +	unsigned int hz;
->> +
->> +	if (t)
->> +		hz = t->speed_hz;
-> 
-> And if t is NULL? hz will be uninitialized. Don't you get a compiler warning?
-> (Always test your code with `make W=1 ...`)
+Changed from v2:
+- fix one build warning.
+- add the dependency patch link.
 
-I alwasy use `make W=1` and I don't find any warnig, but that what you
-said was right and I will initial hz.
+Changed from v1:
+- fix build error when build 32bit system.
+- hevc fluster test result: 132/147 (not support: 10bit => 11 and resolution => 4).
+---
+Benjamin Gaignard (1):
+  media: uapi: HEVC: Add num_delta_pocs_of_ref_rps_idx field
 
-> 
->> +	if (hz && loongson_spi->hz != hz)
->> +		loongson_spi_set_clk(loongson_spi, hz);
->> +
->> +	if ((spi->mode ^ loongson_spi->mode) & SPI_MODE_X_MASK)
->> +		loongson_spi_set_mode(loongson_spi, spi);
->> +
->> +	return 0;
->> +}
-> 
-> ...
-> 
->> +	readb_poll_timeout(loongson_spi->base + LOONGSON_SPI_SPSR_REG, loongson_spi->spsr,
->> +			   (loongson_spi->spsr & 0x1) != 1, 1, MSEC_PER_SEC);
-> 
-> Wouldn't be better to use ' == 0' in the conditional? Or if you think your
-> approach is better (to show the exact expectation) the definition of the bit 0
-> might help
-> 
-> #define LOONGSON_... BIT(0)
+Yunfei Dong (1):
+  media: mediatek: vcodec: support stateless hevc decoder
 
-okay, I got it.
-> 
-> 
-> 	readb_poll_timeout(loongson_spi->base + LOONGSON_SPI_SPSR_REG, loongson_spi->spsr,
-> 			   (loongson_spi->spsr & LOONGSON_...) != LOONGSON_...,
-> 			   1, MSEC_PER_SEC);
-> 
-> ...
-> 
->> +	do {
->> +		if (loongson_spi_write_read_8bit(spi, &tx, &rx, count) < 0)
-> 
->> +			goto out;
-> 
-> 		break;
-> 
->> +		count--;
->> +	} while (count);
-> 
-> 	} while (--count);
-> 
-> ?
+ .../media/v4l/ext-ctrls-codec-stateless.rst   |    7 +
+ .../media/platform/mediatek/vcodec/Makefile   |    1 +
+ .../vcodec/mtk_vcodec_dec_stateless.c         |   59 +-
+ .../platform/mediatek/vcodec/mtk_vcodec_drv.h |    1 +
+ .../vcodec/vdec/vdec_hevc_req_multi_if.c      | 1097 +++++++++++++++++
+ .../platform/mediatek/vcodec/vdec_drv_if.c    |    4 +
+ .../platform/mediatek/vcodec/vdec_drv_if.h    |    1 +
+ include/uapi/linux/v4l2-controls.h            |    6 +-
+ 8 files changed, 1174 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/vdec/vdec_hevc_req_multi_if.c
 
-okay, I got it.
-
-> 
->> +out:
->> +	return xfer->len - count;
-> 
-> Shouldn't you return an error code if the write failed?
-
-okay, I got it. I will add a error code for return when write failed.
-
-> 
-> ...
-> 
->> +	master = devm_spi_alloc_master(dev, sizeof(struct loongson_spi));
-> 
->> +	if (master == NULL)
-> 
-> 	if (!master)
-> 
->> +		return -ENOMEM;
-> 
-> Why do you use deprecated naming? Can you use spi_controller* instead of
-> spi_master* in all cases?
-
-
-It seems was a personal code style issue and I don't find the
-differences between spi_controller and spi_master, Using spi_controller*
-is also acceptable to me and I will use spi_controller* instead of
-spi_master* in all cases.
-
-
-> 
-> ...
-> 
->> +	master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_CS_HIGH;
-> 
-> 	= SPI_MODE_X_MASK | SPI_CS_HIGH;
-> 
-> ...
-> 
->> +	clk = devm_clk_get_optional(dev, NULL);
->> +	if (!IS_ERR(clk))
->> +		spi->clk_rate = clk_get_rate(clk);
-> 
->> +	else
-> 
-> Redundant. Just check for the error first as it's very usual pattern in the
-> Linux kernel.
-
-Like below ?
-
-         clk = devm_clk_get_optional(dev, NULL);
--       if (!IS_ERR(clk))
--               spi->clk_rate = clk_get_rate(clk);
--       else
-+       if (IS_ERR(clk))
-                 return dev_err_probe(dev, PTR_ERR(clk), "unable to get 
-clock\n");
-
-+       spi->clk_rate = clk_get_rate(clk);
-         loongson_spi_reginit(spi);
-
-
-> 
->> +		return dev_err_probe(dev, PTR_ERR(clk), "unable to get clock\n");
-> 
-> ...
-> 
->> +static void loongson_spi_pci_unregister(struct pci_dev *pdev)
->> +{
-> 
->> +	pcim_iounmap_regions(pdev, BIT(0));
-> 
-> Not needed due to 'm' in the API name, which means "managed".
-
-> 
->> +	pci_disable_device(pdev);
-> 
-> This is simply wrong. We don't do explicit clean up for managed resources.
-> 
->> +}
-> 
-> That said, drop the ->remove() completely.
-
-okay,  I will drop the ->remove() completely.
-> 
-> ...
-> 
->> +static struct pci_device_id loongson_spi_devices[] = {
->> +	{ PCI_DEVICE(PCI_VENDOR_ID_LOONGSON, 0x7a0b) },
->> +	{ PCI_DEVICE(PCI_VENDOR_ID_LOONGSON, 0x7a1b) },
->> +	{ },
-> 
-> No comma for the terminator entry. It's by definition "terminating" something.
-
-okay, I got it.
-> 
->> +};
-> 
-> ...
-> 
->> +#include <linux/of.h>
-> 
-> There is no user of this header. Please, replace with what actually is being
-> used (presumably mod_devicetable.h and maybe others).
-> 
-
-okay, I got it.
-
->> +#include <linux/platform_device.h>
->> +
->> +#include "spi-loongson.h"
->> +
->> +static int loongson_spi_platform_probe(struct platform_device *pdev)
->> +{
->> +	int ret;
->> +	void __iomem *reg_base;
->> +	struct device *dev = &pdev->dev;
->> +
->> +	reg_base = devm_platform_ioremap_resource(pdev, 0);
->> +	if (IS_ERR(reg_base))
->> +		return PTR_ERR(reg_base);
->> +
->> +	ret = loongson_spi_init_master(dev, reg_base);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "failed to initialize master\n");
->> +
->> +	return ret;
-> 
-> 	return 0;
-
-It seems was more appropriate that initialize ret then return ret.
-Do you think so ?
-
-> 
->> +}
-> 
-> ...
-> 
->> +#ifndef __LINUX_SPI_LOONGSON_H
->> +#define __LINUX_SPI_LOONGSON_H
->> +
->> +#include <linux/bits.h>
-> 
->> +#include <linux/device.h>
-> 
-> This header is not used.
-
-okay, I got it.
-> 
->> +#include <linux/pm.h>
-> 
->> +#include <linux/spi/spi.h>
-> 
-> This neither.
-
-That other .c file seems to need it and I will move it to other .c
-code file.
-> 
->> +#include <linux/types.h>
-> 
-> 
-> For them use forward declarations
-> 
-> struct device;
-> struct spi_controller;
-> 
-> The rest of the inclusions is correct.
-
-okay, I got it.
-> 
-> ...
-> 
->> +#define	LOONGSON_SPI_SPCR_REG	0x00
->> +#define	LOONGSON_SPI_SPSR_REG	0x01
->> +#define	LOONGSON_SPI_FIFO_REG	0x02
->> +#define	LOONGSON_SPI_SPER_REG	0x03
->> +#define	LOONGSON_SPI_PARA_REG	0x04
->> +#define	LOONGSON_SPI_SFCS_REG	0x05
->> +#define	LOONGSON_SPI_TIMI_REG	0x06
-> 
-> Where is this used outside of the main driver?
-
-These definitions are only used in core.c
-
-> 
->> +/* Bits definition for Loongson SPI register */
->> +#define	LOONGSON_SPI_PARA_MEM_EN	BIT(0)
->> +#define	LOONGSON_SPI_SPCR_CPHA	BIT(2)
->> +#define	LOONGSON_SPI_SPCR_CPOL	BIT(3)
->> +#define	LOONGSON_SPI_SPCR_SPE	BIT(6)
->> +#define	LOONGSON_SPI_SPSR_WCOL	BIT(6)
->> +#define	LOONGSON_SPI_SPSR_SPIF	BIT(7)
->> +
->> +struct loongson_spi {
->> +	struct	spi_master	*master;
->> +	void __iomem		*base;
->> +	int			cs_active;
->> +	unsigned int		hz;
->> +	unsigned char		spcr;
->> +	unsigned char		sper;
->> +	unsigned char		spsr;
->> +	unsigned char		para;
->> +	unsigned char		sfcs;
->> +	unsigned char		timi;
->> +	unsigned int		mode;
->> +	u64			clk_rate;
->> +};
->> +
->> +int loongson_spi_init_master(struct device *dev, void __iomem *reg);
->> +extern const struct dev_pm_ops loongson_spi_dev_pm_ops;
->> +#endif /* __LINUX_SPI_LOONGSON_H */
-> 
+-- 
+2.25.1
 
