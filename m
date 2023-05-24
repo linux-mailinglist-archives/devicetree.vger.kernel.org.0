@@ -2,69 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 671CA7100FA
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 00:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D595710106
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 00:35:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233996AbjEXWaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 18:30:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55044 "EHLO
+        id S231443AbjEXWfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 18:35:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238646AbjEXWaF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 18:30:05 -0400
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28E6AE5D
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 15:29:16 -0700 (PDT)
-Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-5558b72fbf9so194377eaf.1
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 15:29:16 -0700 (PDT)
+        with ESMTP id S232281AbjEXWf3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 18:35:29 -0400
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B58DE6D
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 15:35:04 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-6afbb00c60fso54871a34.0
+        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 15:35:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684967187; x=1687559187;
+        d=gmail.com; s=20221208; t=1684967699; x=1687559699;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bI9HXEZgah/BaWje7f+Ya1E/uZx7wsKYhrzu2aOyLRA=;
-        b=BarIrE+pG/kifLjFQyuFcFYMq1TEodrf9D+8dlz5rPi544qkDLbQDl/g/gpaTOzpTW
-         lkpEQL2ulajTVKC/trYFSSfjz6gViM0G0pxSpBlqT1rfTGBI2smoINnqIVGI8Z9BjOCh
-         ATVfmZIAn7/eJhAkkgImid8G6AQre2Gkmz43OE3jpoezldky6I64BqSZsFUVwQJKPkCs
-         JadEfXxrvm0ZuBTSgWGwexPaAMTWn/mS3amhJlhgDSPqeK/AogsxiJpqnEfoB492ANAV
-         UQGQetELxhOhrRO8vlcvYUW4x+c2f92ohPTzY/jNWWvUkI/xUHUQbKFH4/XIiHEiYkhk
-         AIFA==
+        bh=85gRKM7pf1VF4IINr+C8p9MDqkiLt0epIQnDUiVBTpc=;
+        b=fbhp4+FJsl5borOuauSPZsAkNLYns8cgQCSPcYt/rmXXExgHWbvvdho+qBd84H0/fU
+         oXkeSIglBlPDM3hQUJHRNrPJwLk5fj8BZj/37U+OGquSMBzbzanc9RL7JPzv+3vA0viV
+         MYMizrK5rZI3gEZeifCrvH+yN9yIwZqRMurkK/L77HKnT9t2ZbiNqb6J4MjLI2HIkpMn
+         kLERrv/H5G14QG3NGmG/0kRHlGGJidu20ynVwrlh9Uv0szEQRso0LriVIFeUoxgN3dKp
+         XZ1karDITiQQQ9jl4y6FDTv5QgjvXwd3ucfeIgJfAqDa+FKbQJBx1xBrHIE8j0izUtyT
+         QnhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684967187; x=1687559187;
+        d=1e100.net; s=20221208; t=1684967699; x=1687559699;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=bI9HXEZgah/BaWje7f+Ya1E/uZx7wsKYhrzu2aOyLRA=;
-        b=bgnUZBqfxqMUXwe39jSlhqxGX30DpAomkhSBOQ+O5yjCwhh/NlFCMNng7H+9/pXIcI
-         bDJR9YNAMREcxVmptyEfzaOapeGsx3P5GlMkaRoDSjgNRnjPKys0+zMZf7P9QFA9d1TJ
-         lyKFZ4UmX5EcJZF3DNgJHUZO1pCy5WUUaOsWFV/HlqlGNbUvJ13GdMS09K+EklUitd0q
-         S8SL2JlGrDs/viIcVaFM4pc8BZ/6lxJSNiq1AeZIZwzaXyhdRwqGduaH1pwOVcF/MKru
-         4rAPROY6mt8IIPhNpcrtIAtKf/Jst8sFJMPL0plY0sqSwJ+szlAw+Nn6LdWhqTO7aLsO
-         z8BQ==
-X-Gm-Message-State: AC+VfDylhKooVcnYDSEJnRy7QPqT3vSDCe6MNC5pFR1kYPUx/PNJETdg
-        qaB62SdoEbUBteHMpl1XgRFk4HN8ngM=
-X-Google-Smtp-Source: ACHHUZ6ymjlDJEOkHWJmHmp0/4QWyJpufHlgmb1yePFXLCTEVeJIUp80WkWKoXO1eBimAXTtVzuYow==
-X-Received: by 2002:a05:6870:f5a0:b0:171:a749:bc0c with SMTP id eh32-20020a056870f5a000b00171a749bc0cmr1986046oab.3.1684967187509;
-        Wed, 24 May 2023 15:26:27 -0700 (PDT)
+        bh=85gRKM7pf1VF4IINr+C8p9MDqkiLt0epIQnDUiVBTpc=;
+        b=GK2UiMH+dSgo2zXGXonyS8PHnFftiMew4GCr/4YBajYx5ADR9obFVR8upe2hgWeG3r
+         XDpbQC6TS14IwbX+h4vs0ldCxYILuUIvLewHuEmGBsAqTdH3ikghfnrSnnWt+5Ox651F
+         puMmpdKpIKa4kMHVwwhHQRJZRsIxOdA3Ru5QyZR8OzA3dCp6YLjx/yP/uXmUE3lrIBUT
+         wsxL/j//EeFfaM9cZFNQmTVr4OPFmeLug3xX2C9ZJtblh8CW8Xn4m5uG3n9qF0ECRgT0
+         Bw3a+FvIe8bOvDJQZ2f/dW4XWDMFcsRCem41BWbqUPmpLUYdfKXlxPK3KV6so9HbcR7D
+         G0Ag==
+X-Gm-Message-State: AC+VfDyy3xIOKUL/60OdT1Cesr/dQkCKoTAztuakJjAqMs7sJQACMEv3
+        ed+2Rx1Y0X2ODYBuut31mWU=
+X-Google-Smtp-Source: ACHHUZ76Sb/CDAq+BhHWnQu42yzlRxMkvWmGouAma7orcl+O0CgvPoO1dI09gZYI9piiSqrmegvCuQ==
+X-Received: by 2002:a05:6830:22d3:b0:6af:801d:e59 with SMTP id q19-20020a05683022d300b006af801d0e59mr1654116otc.2.1684967699081;
+        Wed, 24 May 2023 15:34:59 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:4331:751b:6032:b5d])
-        by smtp.gmail.com with ESMTPSA id x131-20020a4a4189000000b0055210b1a91csm5449968ooa.3.2023.05.24.15.26.24
+        by smtp.gmail.com with ESMTPSA id z21-20020a05683010d500b006aaf82bd5a2sm19830oto.43.2023.05.24.15.34.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 May 2023 15:26:26 -0700 (PDT)
+        Wed, 24 May 2023 15:34:58 -0700 (PDT)
 From:   Fabio Estevam <festevam@gmail.com>
 To:     shawnguo@kernel.org
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org, devicetree@vger.kernel.org,
         inux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] ARM dts: imx6ull-phytec-tauri: Remove invalid property
-Date:   Wed, 24 May 2023 19:26:11 -0300
-Message-Id: <20230524222611.388858-1-festevam@gmail.com>
+Subject: [PATCH] ARM: dts: imx7d-flex-concentrator: Remove invalid ecspi property
+Date:   Wed, 24 May 2023 19:34:40 -0300
+Message-Id: <20230524223440.408404-1-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -73,30 +72,38 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Fabio Estevam <festevam@denx.de>
 
-The 'rs485-rts-active-high' property is not a valid property and is not
-documented anywhere.
+The 'num-chipselects' property is not a valid property for ecspi.
 
-Remove it to fix the following DT schema warning:
+Remove it to fix the following DT check warning:
 
-serial@21f0000: Unevaluated properties are not allowed ('rs485-rts-active-high' was unexpected)
+spi@30630000: Unevaluated properties are not allowed ('num-chipselects' was unexpected)
+From schema: Documentation/devicetree/bindings/spi/fsl-imx-cspi.yaml
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm/boot/dts/imx7d-flex-concentrator.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi b/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
-index 5464a52a1f94..ea627638e40c 100644
---- a/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
-+++ b/arch/arm/boot/dts/imx6ull-phytec-tauri.dtsi
-@@ -260,7 +260,6 @@ &uart4 {
+diff --git a/arch/arm/boot/dts/imx7d-flex-concentrator.dts b/arch/arm/boot/dts/imx7d-flex-concentrator.dts
+index bd6b5285aa8d..3a723843d562 100644
+--- a/arch/arm/boot/dts/imx7d-flex-concentrator.dts
++++ b/arch/arm/boot/dts/imx7d-flex-concentrator.dts
+@@ -107,7 +107,6 @@ &adc1 {
+ &ecspi2 {
  	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart4>;
- 	rts-gpios = <&gpio3 2 GPIO_ACTIVE_HIGH>;
--	rs485-rts-active-high;
- 	linux,rs485-enabled-at-boot-time;
+ 	pinctrl-0 = <&pinctrl_ecspi2>;
+-	num-chipselects = <1>;
+ 	cs-gpios = <&gpio4 23 GPIO_ACTIVE_LOW>;
  	status = "okay";
- };
+ 
+@@ -122,7 +121,6 @@ pcf2127: rtc@0 {
+ &ecspi4 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_ecspi4>;
+-	num-chipselects = <1>;
+ 	cs-gpios = <&gpio3 3 GPIO_ACTIVE_LOW>;
+ 	status = "okay";
+ 
 -- 
 2.34.1
 
