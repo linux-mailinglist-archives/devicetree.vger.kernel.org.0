@@ -2,148 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C19971115A
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 18:52:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4C9F711161
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 18:52:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229672AbjEYQwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 12:52:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51130 "EHLO
+        id S233760AbjEYQwe convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 25 May 2023 12:52:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjEYQwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 12:52:18 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBDB183;
-        Thu, 25 May 2023 09:52:16 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34PFADEJ023020;
-        Thu, 25 May 2023 16:52:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=rEOZjTCbEveyPPxwTpzB7ykcc97gLlUlUbyicAo//Ww=;
- b=nvWSgQYEEGYsXvElhfFOHSru5QyRNGggToIrmaz5WWsyARt1HW/zxH5U3bICIuj1ySgr
- 3JqvRR0xjf1QeMtMUpqXRa4MZse7dZehYVohW/i0x2oEf9rQ6mTLAZpuQbfkz8B2VGrF
- MXHAJORDJA+T/V8CDeoet5NjMlBokvbq1AH6wiMeg/qD6kG5Rz1dFFww4eZxoYiJRqxf
- 2/4YEI374k2ipW7jPVBN1+AgOzQEw4kLSW3GEQjkk70oCL1cq9mMJc4wZzi4vkhjPg7G
- qkzkRDAAqTHVhjfYoJruI2AGzZDyIYmsiQ2gKfOAEL5uJ4xox4pNWQBtyxjCCdUpJAQu tw== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qt02a9kqg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 May 2023 16:52:13 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34PGqBbM019664
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 May 2023 16:52:12 GMT
-Received: from [10.216.52.104] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 25 May
- 2023 09:52:05 -0700
-Message-ID: <46b4a123-af3d-0605-f3ef-1fd6db1d5d1a@quicinc.com>
-Date:   Thu, 25 May 2023 22:22:02 +0530
+        with ESMTP id S229459AbjEYQw0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 12:52:26 -0400
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79D25135;
+        Thu, 25 May 2023 09:52:25 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-561afe72a73so11215097b3.0;
+        Thu, 25 May 2023 09:52:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685033544; x=1687625544;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=k6CgsX7rQD1imkjUmMdbmcJLBMuD7eBcXMY0NddCVYM=;
+        b=RTThwB1YCiYfIVtmM6zT0dbBPPRjGDwVN4/tsXSAVl36oqAKV3xIjRxn+7VYwIsRMB
+         jCuteB9KPzTGtjyahopKQUjT1GBS1xQq0Stjiud42LcbbOF0RoQHSLZrwPwHkRxy7/8M
+         UqbH3Pop8W+iAgwfG/o6FG+xWcJDRPXuajPz8oE+3tWXbDnc8N4vwg9kxZgZ8C8CA+Ns
+         sif8aPsUEnD2VowBPwyiKUIRrflfKHliHxNohQ3jD03BreOLPQcrADXixEndQKAjxMvL
+         FKMy2kVQKkEJlS+lZ/U/FWgIYM/X4cGPd0gWxE0ftIU19edvXQXlh8d4LRRmSNfaSCIU
+         C1pQ==
+X-Gm-Message-State: AC+VfDxMKsFIiQw4emIo4hd+0km2C3JnuParCi2XPlb6vyvr3u6yx3c5
+        dZ7ZHFmMxKu+SQ2OdDdSzsKEioh3Zp4ndQ==
+X-Google-Smtp-Source: ACHHUZ4mWIFxL2PjgisU99M7M162nz30GDWzoJUBn/v0GB1NlvLfEdf0TgesUsktqAYixftO/O6qJA==
+X-Received: by 2002:a25:4409:0:b0:ba8:6530:d561 with SMTP id r9-20020a254409000000b00ba86530d561mr3532258yba.30.1685033544200;
+        Thu, 25 May 2023 09:52:24 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id o186-20020a0dccc3000000b00559f03541c6sm485682ywd.132.2023.05.25.09.52.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 May 2023 09:52:23 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-561afe72a73so11214747b3.0;
+        Thu, 25 May 2023 09:52:23 -0700 (PDT)
+X-Received: by 2002:a25:cb4b:0:b0:b8b:e98b:cbb with SMTP id
+ b72-20020a25cb4b000000b00b8be98b0cbbmr4475931ybg.38.1685033542957; Thu, 25
+ May 2023 09:52:22 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8550: Add camera clock controller
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+References: <20230522101849.297499-1-biju.das.jz@bp.renesas.com> <20230522101849.297499-4-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20230522101849.297499-4-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 25 May 2023 18:52:05 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdViVBtgkd2dmBUNr1HndCDMRd=K+0J6bA81fxD_7g+dag@mail.gmail.com>
+Message-ID: <CAMuHMdViVBtgkd2dmBUNr1HndCDMRd=K+0J6bA81fxD_7g+dag@mail.gmail.com>
+Subject: Re: [PATCH v5 03/11] dt-bindings: rtc: isil,isl1208: Document clock
+ and clock-names properties
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Satya Priya Kakitapalli" <quic_skakitap@quicinc.com>,
-        <quic_imrashai@quicinc.com>, <quic_ajipan@quicinc.com>
-References: <20230519155602.6642-1-quic_jkona@quicinc.com>
- <20230519155602.6642-5-quic_jkona@quicinc.com>
- <634c80b4-5007-4f66-9114-1dedf3c95f1f@linaro.org>
-From:   Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <634c80b4-5007-4f66-9114-1dedf3c95f1f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: GFvbzxS7s2KFfo8YZUbiWUs_hrp24bIE
-X-Proofpoint-ORIG-GUID: GFvbzxS7s2KFfo8YZUbiWUs_hrp24bIE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-25_09,2023-05-25_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 spamscore=0 malwarescore=0 suspectscore=0 clxscore=1015
- mlxscore=0 phishscore=0 adultscore=0 impostorscore=0 mlxlogscore=999
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305250140
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Trent Piepho <tpiepho@gmail.com>, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Konrad,
+On Mon, May 22, 2023 at 12:19 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> As per the HW manual, XTOSCB bit setting is as follows
+>
+> If using an external clock signal, set the XTOSCB bit as 1 to
+> disable the crystal oscillator.
+>
+> If using an external crystal, the XTOSCB bit needs to be set at 0
+> to enable the crystal oscillator.
+>
+> Document clock and clock-names properties.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> v4->v5:
+>  * Replaced oneOf->enum for clock-names as it is simpler.
+>  * Added Rb tag from Conor.
 
-Thanks for your review!
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-On 5/19/2023 10:22 PM, Konrad Dybcio wrote:
-> 
-> 
-> On 19.05.2023 17:56, Jagadeesh Kona wrote:
->> Add device node for camera clock controller on Qualcomm
->> SM8550 platform.
->>
->> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8550.dtsi | 15 +++++++++++++++
->>   1 file changed, 15 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> index e67e7c69dae6..ac82d3774ed8 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> @@ -4,6 +4,7 @@
->>    */
->>   
->>   #include <dt-bindings/clock/qcom,rpmh.h>
->> +#include <dt-bindings/clock/qcom,sm8550-camcc.h>
->>   #include <dt-bindings/clock/qcom,sm8550-gcc.h>
->>   #include <dt-bindings/clock/qcom,sm8550-tcsr.h>
->>   #include <dt-bindings/clock/qcom,sm8550-dispcc.h>
->> @@ -2397,6 +2398,20 @@ opp-202000000 {
->>   			};
->>   		};
->>   
->> +		camcc: clock-controller@ade0000 {
->> +			compatible = "qcom,sm8550-camcc";
->> +			reg = <0 0xade0000 0 0x20000>;
-> Please pad the non-zero address part to 8 hex digits
-> 
-Will take care of this in next series.
+Gr{oetje,eeting}s,
 
-> Konrad
->> +			clocks = <&bi_tcxo_div2>,
->> +				 <&bi_tcxo_ao_div2>,
->> +				 <&sleep_clk>,
->> +				 <&gcc GCC_CAMERA_AHB_CLK>;
->> +			power-domains = <&rpmhpd SM8550_MMCX>;
->> +			required-opps = <&rpmhpd_opp_low_svs>;
->> +			#clock-cells = <1>;
->> +			#reset-cells = <1>;
->> +			#power-domain-cells = <1>;
->> +		};
->> +
->>   		mdss: display-subsystem@ae00000 {
->>   			compatible = "qcom,sm8550-mdss";
->>   			reg = <0 0x0ae00000 0 0x1000>;
+                        Geert
 
-Thanks & Regards,
-Jagadeesh
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
