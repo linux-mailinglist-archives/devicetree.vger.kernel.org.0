@@ -2,67 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F05B9711937
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 23:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47796711950
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 23:42:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240535AbjEYVgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 17:36:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42930 "EHLO
+        id S240824AbjEYVmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 17:42:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232481AbjEYVgs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 17:36:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6DF0FB;
-        Thu, 25 May 2023 14:36:45 -0700 (PDT)
+        with ESMTP id S230126AbjEYVmw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 17:42:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FF9E99;
+        Thu, 25 May 2023 14:42:52 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3C03964B5F;
-        Thu, 25 May 2023 21:36:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDF05C433D2;
-        Thu, 25 May 2023 21:36:40 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8B07164B50;
+        Thu, 25 May 2023 21:42:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FCC5C433EF;
+        Thu, 25 May 2023 21:42:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685050604;
-        bh=fTgLUP/spX/1v/xhm+T8su551vODX+MVDzEHLjJVyC0=;
+        s=k20201202; t=1685050971;
+        bh=FjzpokD3KlPp8OLgmScsmPYAiivMUvZd0d1dgeN/VZM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=m6HB27VGJXeCbOAxlYtTT4a/HviFAW5evDIB38A/SneV95u29fkdGgrymnoPTo9I+
-         N+1wGdd2laYimC/zV2VmgRYK0AxX7Z4cJFe5S6azRUhhQ0ikqPnaR0tVA+w31A/nld
-         3aoR4MKfsMFBp0nYThfSCYlSUOV/GTkQnfRDr+3Xhm9Q31tEqI1QwTYy/Ylw5sCGZr
-         iPhV8IKeaVW5UOlpgf+fDQ2HMupdEVzNe0dWTYF1Qfzn8ch9qm5j6gYjBMJumbt4bW
-         geZTTXszI+HNd1PJlJt0hTGxbH7aY4sE2RUSKE1MkUPLqKgDlsOjv0WHs1Ar1rEwqB
-         1sidF7owc0fWQ==
-Date:   Thu, 25 May 2023 22:36:38 +0100
+        b=jJoyh+4n68Ju6BaUjIkoD3sxPvcYo48wGZOVliY/Qu5DJK2G8lxGnOhq0PfX6XdHg
+         PrxvI42P/D4vV/+J3ljjgB2+p9eNhClm1ROwAa72bND4XzUJc+IiMkz7VY7/YHNSJE
+         qeJC8d9HwMEzfpkb9KRxUzoHpzH7DH7nMOQyTgwX7XWcrrujDbXu1foblWM9mXi2x1
+         Gsy3oHLog8I4eL2JMhJhRlRfxxtZ6I6J2/RQFsqLoHh4wyCgzfD+tPhLFsinVpEFRd
+         aOeZSfWeBwcAGoLQKl2RRuu/ifXDJpF/hazBAFos9poa1PJrDGqHjqHM6fCsBZn26q
+         hkyW07t/y2KPQ==
+Date:   Thu, 25 May 2023 22:42:45 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Minda Chen <minda.chen@starfivetech.com>
-Cc:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Albert Ou <aou@eecs.berkeley.edu>,
-        Mason Huo <mason.huo@starfivetech.com>
-Subject: Re: [PATCH v6 7/7] riscv: dts: starfive: Add USB dts configuration
- for JH7110
-Message-ID: <20230525-cross-daybreak-24dfed69e5d0@spud>
-References: <20230518112750.57924-1-minda.chen@starfivetech.com>
- <20230518112750.57924-8-minda.chen@starfivetech.com>
+        Hal Feng <hal.feng@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v6 09/11] riscv: dts: starfive: jh7110: add pmu
+ controller node
+Message-ID: <20230525-unwarlike-mule-f37ec29cf7c5@spud>
+References: <20230518101234.143748-1-xingyu.wu@starfivetech.com>
+ <20230518101234.143748-10-xingyu.wu@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Vw7uD/P9k0KbWgXU"
+        protocol="application/pgp-signature"; boundary="ammaxlZe6GO1q9SH"
 Content-Disposition: inline
-In-Reply-To: <20230518112750.57924-8-minda.chen@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230518101234.143748-10-xingyu.wu@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,55 +67,61 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Vw7uD/P9k0KbWgXU
+--ammaxlZe6GO1q9SH
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Greg,
-
-On Thu, May 18, 2023 at 07:27:50PM +0800, Minda Chen wrote:
-> Add USB wrapper layer and Cadence USB3 controller dts
-> configuration for StarFive JH7110 SoC and VisionFive2
-> Board.
-> USB controller connect to PHY, The PHY dts configuration
-> are also added.
+On Thu, May 18, 2023 at 06:12:32PM +0800, Xingyu Wu wrote:
+> From: Walker Chen <walker.chen@starfivetech.com>
 >=20
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> Add the pmu controller node for the Starfive JH7110 SoC. The PMU needs
+> to be used by other modules such as VPU, ISP, etc.
+>=20
+> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/d=
-ts/starfive/jh7110.dtsi
-> index 71a8e9acbe55..b65f06c5b1b7 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -366,6 +366,59 @@
->  			status =3D "disabled";
->  		};
-> =20
-> +		usb0: usb@10100000 {
-> +			compatible =3D "starfive,jh7110-usb";
-> +			ranges =3D <0x0 0x0 0x10100000 0x100000>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <1>;
-> +			starfive,stg-syscon =3D <&stg_syscon 0x4>;
-> +			clocks =3D <&stgcrg JH7110_STGCLK_USB0_LPM>,
-
-Please don't pick this patch, if the rest of the series is applicable,
-as this will break building the dtb as stgcrg does not yet exist in any
-maintainer tree.
+Firstly, this is missing your SoB - but more importantly this is already
+in my tree as 6a887bcc4138 ("riscv: dts: starfive: Add PMU controller
+node").
 
 Thanks,
 Conor.
 
---Vw7uD/P9k0KbWgXU
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/d=
+ts/starfive/jh7110.dtsi
+> index 4c5fdb905da8..30e1f34d5cf8 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -496,5 +496,12 @@ aongpio: pinctrl@17020000 {
+>  			gpio-controller;
+>  			#gpio-cells =3D <2>;
+>  		};
+> +
+> +		pwrc: power-controller@17030000 {
+> +			compatible =3D "starfive,jh7110-pmu";
+> +			reg =3D <0x0 0x17030000 0x0 0x10000>;
+> +			interrupts =3D <111>;
+> +			#power-domain-cells =3D <1>;
+> +		};
+>  	};
+>  };
+> --=20
+> 2.25.1
+>=20
+
+--ammaxlZe6GO1q9SH
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG/U5gAKCRB4tDGHoIJi
-0kaRAP4zsAQYWPoPnIY4GaVky+W0yED4WO9LFF+YaELQTfg7DQEAzHPY2f/ioXn1
-ujSP13F9xiLniw+VP2XQjb6uPGHmOwc=
-=LWIh
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG/WVQAKCRB4tDGHoIJi
+0utfAP4iYxhTjF7eRb0ilQrW5LNMGhk1Qr4ecLfvdWIrU21NsAEA1DnG2vnKfoRI
+nCZWaxxfvH6O1DXPEMFiiEh8Evllvgk=
+=MphS
 -----END PGP SIGNATURE-----
 
---Vw7uD/P9k0KbWgXU--
+--ammaxlZe6GO1q9SH--
