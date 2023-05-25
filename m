@@ -2,114 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E49D2710D81
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 15:45:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88F16710DB6
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 15:57:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241337AbjEYNpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 09:45:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60554 "EHLO
+        id S241085AbjEYN52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 09:57:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233263AbjEYNpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 09:45:15 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A949F186;
-        Thu, 25 May 2023 06:45:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=lab8uV6Uad5CeYxT9BC8u1kKhysJLzzYp8wyjAQA9a8=; b=cveGaPMW4bzWesf+afiVBeA8W+
-        g2Zx3flpdZfa29mFg7VT5kbHvqycQTGyJqU8Pb/Eseis9OeW7EeVXThtxIdarhcjnRKV4M3IBUp8/
-        OLdCcG3isRaG6MaP/KJ6hUY9JKG7XGnclrOLqAW8qSCl0rrAAZZN9Zl/wtYiAsMwf5Gg=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:44290 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1q2BH9-0007uR-BN; Thu, 25 May 2023 09:45:08 -0400
-Date:   Thu, 25 May 2023 09:45:06 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Ilpo =?ISO-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, Jiri Slaby <jirislaby@kernel.org>,
-        jringle@gridpoint.com, tomasz.mon@camlingroup.com,
-        l.perczak@camlintechnologies.com,
-        linux-serial <linux-serial@vger.kernel.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Message-Id: <20230525094506.21aea1930d2d2a89d18ff7af@hugovil.com>
-In-Reply-To: <751bc02d-d06f-55cb-cb7a-a39871a0775d@linux.intel.com>
-References: <20230525040324.3773741-1-hugo@hugovil.com>
-        <20230525040324.3773741-4-hugo@hugovil.com>
-        <751bc02d-d06f-55cb-cb7a-a39871a0775d@linux.intel.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S241060AbjEYN51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 09:57:27 -0400
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85555197
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 06:57:08 -0700 (PDT)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-55db055b412so8453407b3.0
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 06:57:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685023027; x=1687615027;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=XDo5JGpMh+sfqhz2XW6FMxspF0XjVpH9YEGVgGeMjUw=;
+        b=TTAz3FOgo7dOFNI7aoiwX/0ljg5lz0wR0gFOezPqt9E1Ubrz1VqGe6aviRVmBjQGxY
+         mXF1M4aX7QL2DpYmXW1TLEnGsA82U73NiD17Sw4DpyLEEwxDd2CN8/TSuyiebDJmdOph
+         9lipSq39yElmxJTXAJncx/josTWvpCiYdKGmBZImHlwizI4ySjj7iYIFLn4+gNqcXAzs
+         5TtwqWH0jseD8nGeXTCwlMNZ9CzR5pQTY1ZGIT8VvzV0c28G2BmAPDp9CEHdDsMMBy8T
+         pKHknHW4hdN5A5n6z4//aTrHaniwuIvHJsTye3wn20Oy2P21nWwS90GzEUC3GRbupZ6U
+         sOEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685023027; x=1687615027;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XDo5JGpMh+sfqhz2XW6FMxspF0XjVpH9YEGVgGeMjUw=;
+        b=O90FMYjra1AyTISzRLUVr2r0bMWkWFgm1wmrI1eM6tz02lqL0sV1Z1f5lt84rkXAyu
+         0DdJ7/Kj8XyFfael+M6ti5y3FFQsZ8Au3vqHCRLNpkY77Qe+aQVAZ3gj1jSP/P7BwG7e
+         r+ilfnjxxI0OYaUhS7zT26ZuV+WSKn7AYftmNCqBo1mQW3yKN4Kk7g0ytzUJfvQ4UEkY
+         JroRKduNTyyEAx//s82hHSzLVvJVrxpcfZuQAAo7KT0izp4zWFmAwcrCQZvo4miw+1iw
+         rZt68aRRGRNHgHMOlj/RFV//VsRF2rMihdFSXdInohu0v4oV+Q4nYEmLbGa1IjjI1Vmj
+         3AFg==
+X-Gm-Message-State: AC+VfDycsp/C48fAcAWwB8HDiTQUpAsVeeR98WSbOTQ+KCyhBfoZSBS5
+        opAn99QchtuxU5bSmCk5IpM=
+X-Google-Smtp-Source: ACHHUZ5FiUL0rUUkvwykB8kqe+2IeLANHjnUXgIdMT6rP0bdidLHdnLmRMsDhL1wP2uFZ72SwMPzNw==
+X-Received: by 2002:a81:4ec7:0:b0:561:987e:27a with SMTP id c190-20020a814ec7000000b00561987e027amr3756808ywb.10.1685023027566;
+        Thu, 25 May 2023 06:57:07 -0700 (PDT)
+Received: from neuromancer. ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id c184-20020a0df3c1000000b00555df877a4csm371333ywf.102.2023.05.25.06.57.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 May 2023 06:57:07 -0700 (PDT)
+Message-ID: <646f6933.0d0a0220.e2a16.15a9@mx.google.com>
+X-Google-Original-Message-ID: <ZG9pMemLwjqAuaWz@neuromancer.>
+Date:   Thu, 25 May 2023 08:57:05 -0500
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, zyw@rock-chips.com,
+        sebastian.reichel@collabora.com, andyshrk@163.com,
+        jagan@amarulasolutions.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, lgirdwood@gmail.com, heiko@sntech.de,
+        conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH 4/6] dt-bindings: vendor-prefixes: add Indiedroid
+References: <20230523213825.120077-1-macroalpha82@gmail.com>
+ <20230523213825.120077-5-macroalpha82@gmail.com>
+ <20230524-extrovert-unhidden-35e289c28bc4@spud>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230524-extrovert-unhidden-35e289c28bc4@spud>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v3 03/11] serial: sc16is7xx: mark IOCONTROL register as
- volatile
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 25 May 2023 14:02:19 +0300 (EEST)
-Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com> wrote:
-
-> On Thu, 25 May 2023, Hugo Villeneuve wrote:
->=20
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >=20
-> > Bit SRESET (3) is cleared when a reset operation is completed. Having
-> > the IOCONTROL register as non-volatile will always read SRESET as 1.
-> > Therefore mark IOCONTROL register as a volatile register.
-> >=20
-> > Fixes: dfeae619d781 ("serial: sc16is7xx")
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
->=20
-> What is the impact of this problem? That is, what doesn't work? I only se=
-e=20
-> writes to SC16IS7XX_IOCONTROL_REG. If there are no concrete problems=20
-> fixed, don't put Fixes tag.
-
-Hi,
-there is a concrete problem when dumping the registers as the value read fo=
-r bit SRESET is incorrect, but it doesn't impact running code.
-
-I can remove the Fixes.
-
-Hugo.
-
-
+On Wed, May 24, 2023 at 09:30:03PM +0100, Conor Dooley wrote:
+> On Tue, May 23, 2023 at 04:38:23PM -0500, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> > 
+> > Indiedroid is a sub-brand of Ameridroid for their line of single board
+> > computers.
+> > https://indiedroid.us/
+> > 
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > > ---
-> >  drivers/tty/serial/sc16is7xx.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is=
-7xx.c
-> > index 00054bb49780..a7c4da3cfd2b 100644
-> > --- a/drivers/tty/serial/sc16is7xx.c
-> > +++ b/drivers/tty/serial/sc16is7xx.c
-> > @@ -488,6 +488,7 @@ static bool sc16is7xx_regmap_volatile(struct device=
- *dev, unsigned int reg)
-> >  	case SC16IS7XX_TXLVL_REG:
-> >  	case SC16IS7XX_RXLVL_REG:
-> >  	case SC16IS7XX_IOSTATE_REG:
-> > +	case SC16IS7XX_IOCONTROL_REG:
-> >  		return true;
-> >  	default:
-> >  		break;
-> >=20
->=20
+> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > index 82d39ab0231b..632662be6e65 100644
+> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > @@ -655,6 +655,8 @@ patternProperties:
+> >      description: Iron Device Corporation
+> >    "^isee,.*":
+> >      description: ISEE 2007 S.L.
+> > +  "^indiedroid,.*":
+> > +    description: Indiedroid
+> 
+> Can you add this in alphabetical order please?
+
+D'oh. Simple mistake, sorry. I'll fix it in V2.
+
+Thank you.
+
+> 
+> Thanks,
+> Conor.
+> 
+> >    "^isil,.*":
+> >      description: Intersil
+> >    "^issi,.*":
+> > -- 
+> > 2.34.1
+> > 
+
+
