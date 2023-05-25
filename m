@@ -2,77 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B924710AD0
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 13:23:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 102B0710ADD
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 13:26:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231482AbjEYLXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 07:23:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51852 "EHLO
+        id S240373AbjEYL0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 07:26:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230389AbjEYLXc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 07:23:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33038A3;
-        Thu, 25 May 2023 04:23:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BE8C1644EC;
-        Thu, 25 May 2023 11:23:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27048C433D2;
-        Thu, 25 May 2023 11:23:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685013810;
-        bh=W7wlD+IHC8RXCDrHAZUMoJQSoR45E2axZWzfPYa6p58=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jFCBIiqURyfWVEObng7jUTK57iS9/2MhyAeFmV1PKxnQL6uas9LdZEa0H2p+rFJKE
-         jMkKQLLIVQEW1eJC+fXNzsg/21uCnVR26lPpm7DgZBHTkcLSNSjtdMOBkhOAWDlJXP
-         C+tmfYqd/h95DafkdshR2YuHub4oRTG47JFuAoqMzOSLxnjaVo6vpjSczH/0N1bZHN
-         CsUqELmYJOT92S7Bnu0dJ+Rw55trpcbIffmvdySFp9o+moA+QmZKACz2Hd+VncOFPQ
-         wHP7S7rJf3IhAlXZqoHbsjacQXdN62lFRf40RTIUxY4SzHrinZcidMQmibjGRwf5ZC
-         Ls2/M+aqk1txg==
-Date:   Thu, 25 May 2023 12:23:25 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: leds: qcom-lpg: document PM8550 compatible
-Message-ID: <20230525112325.GF411262@google.com>
-References: <20230522-topic-sm8550-upstream-pm8550-lpg-v1-1-f016578d9e63@linaro.org>
+        with ESMTP id S240522AbjEYL0s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 07:26:48 -0400
+Received: from fgw22-7.mail.saunalahti.fi (fgw22-7.mail.saunalahti.fi [62.142.5.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AF53E7
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 04:26:46 -0700 (PDT)
+Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
+        by fgw22.mail.saunalahti.fi (Halon) with ESMTP
+        id 07139230-faef-11ed-a9de-005056bdf889;
+        Thu, 25 May 2023 14:26:44 +0300 (EEST)
+From:   andy.shevchenko@gmail.com
+Date:   Thu, 25 May 2023 14:26:43 +0300
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Subject: Re: [PATCH v3 11/11] serial: sc16is7xx: add dump registers function
+Message-ID: <ZG9F8xsPqs2ZWfED@surfacebook>
+References: <20230525040324.3773741-1-hugo@hugovil.com>
+ <20230525040324.3773741-12-hugo@hugovil.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230522-topic-sm8550-upstream-pm8550-lpg-v1-1-f016578d9e63@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230525040324.3773741-12-hugo@hugovil.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 May 2023, Neil Armstrong wrote:
-
-> The PM8550 PWM modules are compatible with the PM8350c PWM modules,
-> document the PM8350c PWM compatible as fallback for the PM8550 PWM.
+Thu, May 25, 2023 at 12:03:25AM -0400, Hugo Villeneuve kirjoitti:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../devicetree/bindings/leds/leds-qcom-lpg.yaml    | 30 +++++++++++++---------
->  1 file changed, 18 insertions(+), 12 deletions(-)
+> With this driver, it is very hard to debug the registers using
+> the /sys/kernel/debug/regmap interface.
+> 
+> The main reason is that bits 0 and 1 of the register address
+> correspond to the channels bits, so the register address itself starts
+> at bit 2, so we must 'mentally' shift each register address by 2 bits
+> to get its offset.
+> 
+> Also, only channels 0 and 1 are supported, so combinations of bits
+> 0 and 1 being 10b and 11b are invalid, and the display of these
+> registers is useless.
+> 
+> For example:
+> 
+> cat /sys/kernel/debug/regmap/spi0.0/registers
+> 04: 10 -> Port 0, register offset 1
+> 05: 10 -> Port 1, register offset 1
+> 06: 00 -> Port 2, register offset 1 -> invalid
+> 07: 00 -> port 3, register offset 1 -> invalid
+> ...
+> 
+> Add a debug module parameter to call a custom dump function for each
+> port registers after the probe phase to help debug.
 
-Doesn't seem to want to apply.
-
-Please rebase onto:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git/log/?h=for-leds-next
+Not sure about this. Can we rather create an abstract mapping on regmap?
+(Something like gpio-pca953x.c has)
 
 -- 
-Lee Jones [李琼斯]
+With Best Regards,
+Andy Shevchenko
+
+
