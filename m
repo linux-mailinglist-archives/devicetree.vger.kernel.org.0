@@ -2,54 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8972C7104A0
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 06:55:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 361827104AF
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 06:55:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239614AbjEYEzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 00:55:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
+        id S239780AbjEYEzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 00:55:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237549AbjEYEx4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 00:53:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 587CC1B3;
-        Wed, 24 May 2023 21:51:50 -0700 (PDT)
+        with ESMTP id S239470AbjEYEyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 00:54:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E901732;
+        Wed, 24 May 2023 21:51:55 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E01A9642C8;
-        Thu, 25 May 2023 04:51:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F76EC43445;
-        Thu, 25 May 2023 04:51:43 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B2E49642A8;
+        Thu, 25 May 2023 04:51:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8648BC433D2;
+        Thu, 25 May 2023 04:51:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684990304;
-        bh=IVPrSp1Rzd/jeDknlfHG2qYxHMpBodqY31lMRg/JiG8=;
+        s=k20201202; t=1684990307;
+        bh=ez3D8fuLcI2F25obBylshOkOWazf7BuCNrxi08ePRHE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DQXutS5hkqBfHRbwqtdlEDGseXSkzk7nOANff1iYVmL64i6753B1Igc3bAi32jKYe
-         5+JPitil0U2D2u59uMEcR4V5X6sqbzLIZkqWwWCzrAy0Y46zmTkmlEUE03BONpFm55
-         6wJL0guDArSxIuISvyP4cEnqve8DMxqqC980FRNdqKF+CIorFm931Erob6jGfXEOO/
-         djubnindno1SFO2PGfWCyqJ5npo1dcvkrr4gvXOYizZhj/gpuA6gDi+DaRW8418GwQ
-         WbxXyG9hgMf1TYrpP1Xj1wzIBowLsrlMOFKOXeLQkyxAxD3RQESrJ048sOLWAC3GNc
-         qLP9qawYEnWWA==
+        b=GDKSJazXp7/jKYoPuCF3/6GgslIvVeVomdz7IktiG7XzzyKqXB8x56hAnJaJNTDJL
+         uD2mR+OSvrtdE0n/FIzbsEfh8nSgkB9ZBHQIku56WpWmHqU7ARa4WXolLTZWLCJdEm
+         4rYfMu0uS8EHbQNgKRFcbuHUJr3jizhMiDLbImFtkePIUMATg62HqQq7+RkXTkYkB8
+         PrPRTlbOUEcOxQ6NPqxzKkVm5/y8/es2DBF+9AZG0tkLZtEXSEAbJtVJhFBRdilrB1
+         /SIETI55rhB6fct9Cz/GOz7R+IDqlo54g4Ykue6dxksLV+k1FMjAtd2gg3EZFYwcmC
+         tQIHaqgUaapTg==
 From:   Bjorn Andersson <andersson@kernel.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, Luca Weiss <luca@z3ntu.xyz>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+        Andy Gross <agross@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
 Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: Add BLSP DMAs for I2C
-Date:   Wed, 24 May 2023 21:54:23 -0700
-Message-Id: <168499048184.3998961.13911841167895422124.b4-ty@kernel.org>
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Subject: Re: (subset) [PATCH v3 0/3] Add PMI632 PMIC and RGB LED on sdm632-fairphone-fp3
+Date:   Wed, 24 May 2023 21:54:25 -0700
+Message-Id: <168499048187.3998961.2050518696021366636.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230422-msm8953-blsp-dma-v1-1-0024801bb587@z3ntu.xyz>
-References: <20230422-msm8953-blsp-dma-v1-1-0024801bb587@z3ntu.xyz>
+In-Reply-To: <20230414-pmi632-v3-0-079d2cada699@z3ntu.xyz>
+References: <20230414-pmi632-v3-0-079d2cada699@z3ntu.xyz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -58,17 +68,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 22 Apr 2023 13:39:16 +0200, Luca Weiss wrote:
-> MSM8953 has two DMA controllers for the various I2C, SPI and UART
-> busses. Add the nodes and configure all the I2C nodes so that the driver
-> can use the DMA.
+On Tue, 23 May 2023 22:41:27 +0200, Luca Weiss wrote:
+> Add support for the PMI632 PMIC in the spmi-gpio & qcom-lpg driver, add
+> the dtsi for the PMIC and enable the notification LED on fairphone-fp3.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: Add BLSP DMAs for I2C
-      commit: a5317b23fe6f26307f4c821d56d694c893887675
+[1/3] arm64: dts: qcom: Add PMI632 PMIC
+      commit: a1f0f2ebb044c7248c3f30b98de0f151505bd4bd
+[2/3] arm64: dts: qcom: sdm632-fairphone-fp3: Add notification LED
+      commit: 0c4f10917d22e6f36080617bfe71de1ae854ee58
 
 Best regards,
 -- 
