@@ -2,171 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 426FF710C76
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 14:54:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FE9B710C82
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 14:56:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240679AbjEYMyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 08:54:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37162 "EHLO
+        id S232045AbjEYM4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 08:56:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240404AbjEYMyW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 08:54:22 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E866135;
-        Thu, 25 May 2023 05:54:19 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34PCrdrO005723;
-        Thu, 25 May 2023 07:53:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1685019219;
-        bh=6ks66yZV5gcEqGgIUg5LbU7F3LbUrto/eH+llPvKqdE=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=odMtc5DxIo5ppR5sgJNi9JAWEZ+rLNZAW34GpZlVlUYWm6vKgKu6d5yls9aahr3c9
-         7B052k0opU+ux7gLR7y6FMOfnoymvm2lxsciC+qhwgoQeqJQrLX9EFD1OWvGzEQNCr
-         qblLB1Ax/1ulfnVB23Iou4TYWBL2WE0/UhXDRGlM=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34PCrd5O123006
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 25 May 2023 07:53:39 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
- May 2023 07:53:39 -0500
-Received: from DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c]) by
- DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c%18]) with mapi id
- 15.01.2507.023; Thu, 25 May 2023 07:53:39 -0500
-From:   "Ding, Shenghao" <shenghao-ding@ti.com>
-To:     Takashi Iwai <tiwai@suse.de>
-CC:     Shenghao Ding <13916275206@139.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "pierre-louis.bossart@linux.intel.com" 
-        <pierre-louis.bossart@linux.intel.com>,
-        "Lu, Kevin" <kevin-lu@ti.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Xu, Baojun" <x1077012@ti.com>, "Gupta, Peeyush" <peeyush@ti.com>,
-        "Navada Kanyana, Mukund" <navada@ti.com>,
-        "gentuser@gmail.com" <gentuser@gmail.com>,
-        "Ryan_Chu@wistron.com" <Ryan_Chu@wistron.com>,
-        "Sam_Wu@wistron.com" <Sam_Wu@wistron.com>
-Subject: RE: [EXTERNAL] Re: [PATCH v3 4/5] ALSA: hda/tas2781: Add tas2781 HDA
- driver
-Thread-Topic: [EXTERNAL] Re: [PATCH v3 4/5] ALSA: hda/tas2781: Add tas2781 HDA
- driver
-Thread-Index: AQHZi7qiFX/KEOnLRkSXJDizgQHnya9nuCRggABbjACAAuPwoA==
-Date:   Thu, 25 May 2023 12:53:38 +0000
-Message-ID: <0102db2e22dc472091a586bb73b467d9@ti.com>
-References: <20230519080227.20224-1-13916275206@139.com>
-        <871qjayuvv.wl-tiwai@suse.de>   <9daf95da47b540329aa9fbbd2df5e504@ti.com>
- <87353ngtp1.wl-tiwai@suse.de>
-In-Reply-To: <87353ngtp1.wl-tiwai@suse.de>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.250.162.66]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S240404AbjEYM43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 08:56:29 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 080C3E44;
+        Thu, 25 May 2023 05:55:55 -0700 (PDT)
+Received: from loongson.cn (unknown [223.106.25.146])
+        by gateway (Coremail) with SMTP id _____8AxrevIWm9kS_8AAA--.2362S3;
+        Thu, 25 May 2023 20:55:36 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.106.25.146])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxFLXFWm9kdYR3AA--.1778S2;
+        Thu, 25 May 2023 20:55:34 +0800 (CST)
+From:   Binbin Zhou <zhoubinbin@loongson.cn>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>
+Cc:     Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        linux-mips@vger.kernel.org,
+        Keguang Zhang <keguang.zhang@gmail.com>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        loongson-kernel@lists.loongnix.cn,
+        Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH V4 0/5] rtc: Add rtc driver for the Loongson family chips
+Date:   Thu, 25 May 2023 20:55:22 +0800
+Message-Id: <cover.1684983279.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxFLXFWm9kdYR3AA--.1778S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBjvJXoWxGFWDXFy7Gry7tr1fZr1rXrb_yoW5Cr1xpa
+        1ak3sxGrn5tr47Arn3Ary8uFy5Aa4fJryDCF4xX34S9FZ5C3WUXrWfKay0yrZxCryrGFy2
+        qr1kGr45WF45AFJanT9S1TB71UUUUjJqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bfAYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20xvaj40_Wr0E3s
+        1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
+        wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwA2z4
+        x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2kK
+        e7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI
+        0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280
+        aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkF7I0En4
+        kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI
+        1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
+        Wlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1I
+        6r4UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr
+        0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUv
+        cSsGvfC2KfnxnUUI43ZEXa7IU8loGPUUUUU==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi all:
 
+The initial DT-base ls2x rtc driver was written by Wang Xuerui, He has
+released five versions of patchset before, and all related mail records
+are shown below if you are interested:
 
-> -----Original Message-----
-> From: Takashi Iwai <tiwai@suse.de>
-> Sent: Tuesday, May 23, 2023 7:43 PM
-> To: Ding, Shenghao <shenghao-ding@ti.com>
-> Cc: Shenghao Ding <13916275206@139.com>; broonie@kernel.org;
-> devicetree@vger.kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> robh+dt@kernel.org; lgirdwood@gmail.com; perex@perex.cz; pierre-
-> louis.bossart@linux.intel.com; Lu, Kevin <kevin-lu@ti.com>; alsa-
-> devel@alsa-project.org; linux-kernel@vger.kernel.org; Xu, Baojun
-> <x1077012@ti.com>; Gupta, Peeyush <peeyush@ti.com>; Navada Kanyana,
-> Mukund <navada@ti.com>; gentuser@gmail.com; Ryan_Chu@wistron.com;
-> Sam_Wu@wistron.com
-> Subject: Re: [EXTERNAL] Re: [PATCH v3 4/5] ALSA: hda/tas2781: Add tas2781
-> HDA driver
->=20
-> On Tue, 23 May 2023 13:22:03 +0200,
-> Ding, Shenghao wrote:
-> >
-> > > +	[ALC287_FIXUP_TAS2781_I2C_2] =3D {
-> > > +		.type =3D HDA_FIXUP_FUNC,
-> > > +		.v.func =3D tas2781_fixup_i2c,
-> > > +		.chained =3D true,
-> > > +		.chain_id =3D ALC269_FIXUP_THINKPAD_ACPI,
-> > > +	},
-> > > +	[ALC287_FIXUP_TAS2781_I2C_4] =3D {
-> > > +		.type =3D HDA_FIXUP_FUNC,
-> > > +		.v.func =3D tas2781_fixup_i2c,
-> > > +		.chained =3D true,
-> > > +		.chain_id =3D ALC269_FIXUP_THINKPAD_ACPI,
-> > > +	},
-> >
-> > What's a difference between *_2 and *_4?
-> > Combine them into ALC287_FIXUP_TAS2781_I2C
->=20
-> Hm, so there is no difference in stereo and quad speakers?
-Yes, our firmware defines the stereo or quad speaker
->=20
-> > > +static int tas2781_save_calibration(struct tasdevice_priv
-> > > +*tas_priv) {
-> > > +	efi_guid_t efi_guid =3D EFI_GUID(0x02f9af02, 0x7734, 0x4233, 0xb4,
-> 0x3d,
-> > > +		0x93, 0xfe, 0x5a, 0xa3, 0x5d, 0xb3);
-> > > +	static efi_char16_t efi_name[] =3D L"CALI_DATA";
-> > > +	struct hda_codec *codec =3D tas_priv->codec;
-> > > +	unsigned int subid =3D codec->core.subsystem_id & 0xFFFF;
-> > > +	struct tm *tm =3D &tas_priv->tm;
-> > > +	unsigned int attr, crc;
-> > > +	unsigned int *tmp_val;
-> > > +	efi_status_t status;
-> > > +	int ret =3D 0;
-> > > +
-> > > +	//Lenovo devices
-> > > +	if ((subid =3D=3D 0x387d) || (subid =3D=3D 0x387e) || (subid =3D=3D=
- 0x3881)
-> > > +		|| (subid =3D=3D 0x3884) || (subid =3D=3D 0x3886) || (subid =3D=3D=
- 0x38a7)
-> > > +		|| (subid =3D=3D 0x38a8) || (subid =3D=3D 0x38ba) || (subid =3D=3D
-> 0x38bb)
-> > > +		|| (subid =3D=3D 0x38be) || (subid =3D=3D 0x38bf) || (subid =3D=3D=
- 0x38c3)
-> > > +		|| (subid =3D=3D 0x38cb) || (subid =3D=3D 0x38cd))
-> > > +		efi_guid =3D EFI_GUID(0x1f52d2a1, 0xbb3a, 0x457d, 0xbc, 0x09,
-> > > +			0x43, 0xa3, 0xf4, 0x31, 0x0a, 0x92);
-> >
-> > Here can be a problem: the device ID is embedded here, and it's hard to
-> find out.  You'd better to make it some quirk flag that is set in a commo=
-n
-> place and check the flag here instead of checking ID at each place.
-> >
-> > Do you have example of the solution? I found some quirk flag is static =
-in
-> the patch_realtek.c, can't be accessed outside that file.
->=20
-> You may store some values in struct hda_component, I suppose?
-I will try it.
->=20
-> BTW, please try to fix your mailer to do citation more correctly...
-accept
->=20
->=20
-> thanks,
->=20
-> Takashi
+https://lore.kernel.org/all/?q=ls2x-rtc
+
+In this series of patches, based on the code above, I have added the
+following support:
+
+1. Add ACPI-related support, as Loongson-3A5000 + LS7A is now ACPI-base
+   by default under LoongArch architecture;
+2. Add rtc alarm/walarm related functions;
+3. Merge LS1X rtc and LS2X rtc into a unified rtc-loongson driver.
+
+I have tested on Loongson-3A5000LA+LS7A1000/LS7A2000, Loongson-2K1000LA,
+Loongson-2K0500 and Loongson-2K2000(ACPI/DT).
+
+Thanks to everyone for reviewing and testing the code.
+
+-------
+v4:
+- Rebase on the top of rtc-next;
+- Drop defconfig-related patches;
+patch(1/5)
+  - New patch, Loongson RTC bindings have been rewritten and we have
+    dropped the wildcard (ls2x) in compatible.
+    Thanks to Krzysztof for your comments;
+patch(2/5)
+  - New patch, drop the ls1x rtc driver;
+patch(3/5)
+  - Clear RTC_FEATURE_UPDATE_INTERRUPT bit, for the rtc does not support
+    UIE;
+  - Add LS2K2000 support(DT/ACPI);
+  - Merge ls1x support and name the driver rtc-loongson;
+    Thanks to Jiaxun for his comments and Keguang for his assistance in
+testing.
+
+v3:
+https://lore.kernel.org/linux-rtc/cover.1681370153.git.zhoubinbin@loongson.cn/
+patch(2/7):
+ - Check patchset with "checkpatch.pl --strict";
+ - Drop static inline functions which are used only once, such as
+   ls2x_rtc_regs_to_time;
+ - Remove the suruct ls2x_rtc_regs and regmap_bulk_xxx() is used to read
+   and write rtc registers;
+ - Clear the RTC wakeup interrupt manually;
+ - Enable the RTC in set_time() and check in read_time();
+ - device_get_match_data() is used to get ls2x_pm_offset, for LS2k1000
+   has the different value;
+ - Remove some inexact CONFIG_ACPI.
+
+v2:
+1. Rebased on top of latest loongarch-next;
+2. Add interrupt descriptions to the ls2k and ls7a DTS files to avoid
+errors when the driver gets the IRQ number, Thanks to Qing Zhang for
+testing;
+3. Remove some inexact CONFIG_ACPI.
+
+Thanks.
+
+Binbin Zhou (5):
+  dt-bindings: rtc: Remove the LS2X from the trivial RTCs
+  rtc: Remove the Loongson-1 RTC driver
+  rtc: Add rtc driver for the Loongson family chips
+  MIPS: Loongson64: DTS: Add RTC support to LS7A PCH
+  MIPS: Loongson64: DTS: Add RTC support to Loongson-2K1000
+
+ .../devicetree/bindings/rtc/loongson,rtc.yaml |  47 +++
+ .../devicetree/bindings/rtc/trivial-rtc.yaml  |   2 -
+ .../boot/dts/loongson/loongson64-2k1000.dtsi  |   7 +
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   7 +
+ drivers/rtc/Kconfig                           |  23 +-
+ drivers/rtc/Makefile                          |   2 +-
+ drivers/rtc/rtc-loongson.c                    | 390 ++++++++++++++++++
+ drivers/rtc/rtc-ls1x.c                        | 192 ---------
+ 8 files changed, 465 insertions(+), 205 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/rtc/loongson,rtc.yaml
+ create mode 100644 drivers/rtc/rtc-loongson.c
+ delete mode 100644 drivers/rtc/rtc-ls1x.c
+
+-- 
+2.39.1
+
