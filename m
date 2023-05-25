@@ -2,137 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C697111D3
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 19:17:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D959E7111F0
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 19:21:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233736AbjEYRRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 13:17:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33840 "EHLO
+        id S231869AbjEYRVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 13:21:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239807AbjEYRQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 13:16:59 -0400
-Received: from sonic308-18.consmr.mail.ir2.yahoo.com (sonic308-18.consmr.mail.ir2.yahoo.com [77.238.178.146])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A0CC195
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 10:16:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1685035015; bh=xkgnHjBKgUoTwdkT61NT3PpvtEjCsZBF89ShWXMrk8A=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=HaTVT25f9lqUnbp8L5yar5hbbsHNlY0LyA4z4xDpKfjuquHCus8yaXs3rCDKo9x66KsZz+h6+Wp5VtIDnspos8woLlBvKFPipqzKx3nFKbKhJb/APNybvAcvSQ/wFCFdFBGQymd6ghuRfD1/lLb8SXYMUlpYaaFgns/UG60n/lJ6or4pNNlaHSaDBCeAZ8hxn84mGIJgW0ODm+C+NH8+WCBoExTCUvY8PwUDkKDvH/aBqk/7wY4vZzbiePXiCPD0fiGi+1HZrCw7qYqjFeoTD3saMq/XyZ5U9HuRi6yv+5hYj44MtBOpGndEaL8LilpR6JvxVSB4Y8bElbdjQ2KqpA==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1685035015; bh=PawQULQLg4LscEgh9vaZZDdtXDFK5uRu7EfNU7g6Wm4=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=JbdOqQ6ZdbOnTNnRm3U2tV1/BRfm7bpMlpIOpC4eX+uoZIuMOsGIz3kcg7ocdcD3jNtYgoHEkErTRhNkJ5hZqOTzhwsG9klQQbAF3nj1Vvybriys2E6JlcTTXDqlfRt9rBQAiqx+bbr83b+EphAnbaCg4RfHveqXGBRZi3o2Fij2upiZB9kY6SllgRAXCFvueSm84aPVkQsHmxg/IG7eqN2uSz4l5ri7wynJ8jIjrzlhsoTw2RrEQiOSY6T4tTHOgLA7VU3vN648++EA86XCvmsjodnc3j85FowixOJD2Nltacv9ZFIqyu75W5VJodiGgeLG/05Jk16/BIFKT1cJjw==
-X-YMail-OSG: RgaBlaIVM1nUppqx0Hh5l3kHWwZNL_1F8cFW6_8SOqX8CAftl676FQNZCItEdLs
- CSG5XHlk3ZiKUuvCG7jkEr7sBbM0cJvdG8V8HpUaAte_xx_UkqvmSTto3jJ8OFqDsSqTq25.wXKN
- xF1Hyj_Bi1hOgJSMLuCjY1XF_ZJGF4Ta3TYVIyOem_Lv87szWzR6HjTVm7dXSNje40SGyfbkUJrv
- H2Ly6lsR8ZuJ6xeG0v9Nq81cO3Apm5VL5z0PDjxdoFUt5o8HkMoKDNjRkbf5i1MaccC0abH24cJq
- N.XeDPH1EIfZMcEhZbZhcApAZa6_sm61gS5zyqzHnZa3_TsW5BBDjLKQduMl_hE9BUY75Gsrfz3u
- SfHnVyiyC0hQjy1mx8Rj9Mecy.wNZtyHOmgXrT0yqteJv9kBpWMy.Y94.MJ6HqIOUdYFeFQztf3Q
- PR.4NPCxFnXrvmBmuqx.vU.CfT3IxH8lZsjW0lVyHl3nEEfM40UKHwQ7.bmNZSopxx_93Htopt6T
- 3qgxmP1GcsEgobeZrwG2xTFlKuCQ8tD6gtWAR4zeLjQcXLNfLbGGeMKE0CgF5Tj.Du8FTddRzl5N
- DIOluI1N8esuPvBBBoQf1MTtmSUOA9f6ho5VCbh1WLAtHyGXNT4U8kwSSVKtvOvhDkWcgqqN0SnK
- KQtSAe6HQVD8_fF.8gz0Mxsffodk8oyaC9eE6HG_SVGSgPAV1wp65pEHZexiWdFW41SU5EEgKW0O
- i6LJH_VAH7gVEaFob6iccdzcw9VcFtWekBJWZv4uHV2c66q2WB_pTayN0C2TUTuX29M4xHv9c1F9
- WREzHvzNzvncX56AP0d55kdC9w0eveA_yP04sFhs4uo8kYHViC5k9NuprmbAbAhKkRImJQY61Qca
- RPDoXMwsZPDrEq9AjfxHVEotepGY8FGMmrMw4bTZw8BXqTNQCPt9DxbqQO0FdvSukIszIC5Cj5Iz
- HYPavvaVv4tliCGJ6ZA9ikZVgiwh89mIZG4DYzPlsRPaFyVgqC4oDtedwMOtgaTTccDNu3e8.3XO
- wHjr7FF6aTwoTMLfuq1iK9u3CsPt28ZnJWM.v8FffHQ.cIaYj5JdpGDCk2Ar8s3937w2471PoFYV
- wu1f5GwMl7EpNjUEE_7XiRjWbcaWdxdojZoNaRHcGO0GsPVGtvbKk3esyEHFptbL7My_b9dLQtdf
- 71W0tuFHUk727cCz2VtdYRgXq5W62XTCPwNje6NmPDZlDJ58H6RPfnzpDQD_2Bz4cX2WdUEjrSlf
- CbkrUlgYxeJp8NoZp5TaoNpw6TiNOttl_2dCJcTw_07LxDOVYWb_Ej8lXjbyqqEYJ1LSmnoAZreW
- yPTgb5HanuoDFQVhon9VzFUWSdeFFBvIa0uhKQRR2TAj_7q2vckt8NkpVbVs6peyrn8RmAdgSO5m
- tXAUIDiFY5xvyK9AHFeJgad45l5L_BmS2P7fS_wxkVDjVVDzyJJ8XjAF0d9cjV9audh_9SzSVQDD
- 2f.zLr.7PIbMvvgJo.1JTewYBYXLM3elEG_uaBn0WZqTtvhLaHpaXoAVyqSMOC8ZGzmHsvMG3Am1
- mGrfXpuOCGwjdiS.8wu195hq_XsqL.oHtUHOk1GqyoNEGJwv2fxYb41iT5yWGRHD3BQ9COoL2U0M
- qWEnv99aG_l2PitQIv8v1PP.9nvy8sYNtVH81HvbnTMJTd3v6sjsqL_CsJPI4KkKefNK8JhpNRqG
- Bc1RUCORhUuZ6jqcNoO6MEj1EEbL2XXl8rQ2wzLdhTXV9u8KCYX1Dt75IzwClIcSLrDKfQbY6460
- XhbXFDw4pvrfpZw6713ou4iiFvEs2CZ2MC7IlMdZUHj9Nsdu1VdZlaiiDOFf.oX0h5nAk76puZrB
- HNlOVuBla6dXq8BlPUID66yQYt7lkrYY03Qh0EHTJMuAsRrmeIk1jFCQMSUmvhxaOA_AjYGJDvZw
- MZuybCRml22EzhFR7oewV5zG7ZnQDmfrJJspdJdYpimh0xFUDRDPV6CyhNRj3VXQfTZN2yQdj6nT
- 9IShBPDECyOhurwCgyg_C9WVkvmnmpj3Rsh.CqJb8UfTMN42TZ4o5j0jbyqJ8xJf74ph3BbEnyft
- evJ4HYF5Rqsmsv_VIOAv.LViEd2zNVE0KV2ckd1HiZY8GqktH2ZE3LQvcShtnsVOJCwNoZ2EcWDt
- oWJQ1NrM1tt_mHlgUdHSA_5E_xU8q3x0zRXafmby40u.m0.1MKIDO04yv.GG4xvFPqjTqyFIShYH
- trRF2yQzZJTLsjK3VU4ueTvyI_mWBKHYb6J3XGPAzjySizWw2p4NUMfrJ5LjFvGOS444kbaKFQlr
- W7RYuI._tXg--
-X-Sonic-MF: <jahau@rocketmail.com>
-X-Sonic-ID: 6296b9f7-b72c-4688-8d28-6ed9ad826277
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.ir2.yahoo.com with HTTP; Thu, 25 May 2023 17:16:55 +0000
-Received: by hermes--production-ir2-7867f454fc-tvsct (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 728940cf93f8512d21c18c5c5db9725e;
-          Thu, 25 May 2023 17:16:50 +0000 (UTC)
-Message-ID: <8ba9bb4c-6b9f-21ea-e9fe-89d5038dff2c@rocketmail.com>
-Date:   Thu, 25 May 2023 19:16:48 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v6 04/10 RESEND] mfd: rt5033: Apply preparatory changes
- before adding rt5033-charger driver
-To:     Lee Jones <lee@kernel.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Henrik Grimler <henrik@grimler.se>,
-        Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1684182964.git.jahau@rocketmail.com>
- <31c750ae13a1c1896b51d8f0a0d9869f8b85624f.1684182964.git.jahau@rocketmail.com>
- <20230525104434.GD9691@google.com>
-Content-Language: en-US
-From:   Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <20230525104434.GD9691@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        with ESMTP id S230129AbjEYRVJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 13:21:09 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A49195;
+        Thu, 25 May 2023 10:21:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=b9Zte/1jFhBuFVD5ydCZfQdpJv9ttP11KPikJhqUxls=; b=AXPlcTFdx9qZlDVeR7WrLfgkZR
+        8oVfKSuX/aewdBSKXqeOW5wDnFjnzXEBBjxe3iBNWEJIRhEks7aVeUdNTuQ1f8p5GJmNNBpbyYKBs
+        uIhxlpQX3BKTy18j4WJTm8XESWyN0IgKrCbhaWZ3nLuV0jkYWZ8yVdXaizUb7TZWcL+g=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:50040 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1q2Edr-0001iA-0O; Thu, 25 May 2023 13:20:54 -0400
+Date:   Thu, 25 May 2023 13:20:46 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     andy.shevchenko@gmail.com, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Message-Id: <20230525132046.6c48f2fd9235215f01238a04@hugovil.com>
+In-Reply-To: <20230525113145.35cef67328b63ba4239d2361@hugovil.com>
+References: <20230525040324.3773741-1-hugo@hugovil.com>
+        <20230525040324.3773741-10-hugo@hugovil.com>
+        <ZG9FBgX2useVeuWl@surfacebook>
+        <20230525113145.35cef67328b63ba4239d2361@hugovil.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.21495 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v3 09/11] serial: sc16is7xx: add I/O register
+ translation offset
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+On Thu, 25 May 2023 11:31:45 -0400
+Hugo Villeneuve <hugo@hugovil.com> wrote:
 
-On 25.05.23 12:44, Lee Jones wrote:
-> On Mon, 15 May 2023, Jakob Hauser wrote:
-
-...
-
->> diff --git a/include/linux/mfd/rt5033.h b/include/linux/mfd/rt5033.h
->> index 8f306ac15a27..e99e2ab0c1c1 100644
->> --- a/include/linux/mfd/rt5033.h
->> +++ b/include/linux/mfd/rt5033.h
->> @@ -51,7 +51,7 @@ struct rt5033_charger_data {
->>   struct rt5033_charger {
->>   	struct device			*dev;
->>   	struct rt5033_dev		*rt5033;
->> -	struct power_supply		psy;
->> +	struct power_supply		*psy;
+> On Thu, 25 May 2023 14:22:46 +0300
+> andy.shevchenko@gmail.com wrote:
 > 
-> Is this current unused?
+> > Thu, May 25, 2023 at 12:03:23AM -0400, Hugo Villeneuve kirjoitti:
+> > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > 
+> > > If the shared GPIO pins on a dual port/channel variant like the
+> > > SC16IS752 are configured as GPIOs for port A, and modem control lines
+> > > on port A, we need to translate the Linux GPIO offset to an offset
+> > > that is compatible with the I/O registers of the SC16IS7XX (IOState,
+> > > IODir and IOIntEna).
+> > > 
+> > > Add a new variable to store that offset and set it when we detect that
+> > > special case.
+> > 
+> > ...
+> > 
+> > > +/*
+> > > + * We may need to translate the Linux GPIO offset to a SC16IS7XX offset.
+> > > + * This is needed only for the case where a dual port variant is configured to
+> > > + * have only port B as modem status lines.
+> > > + *
+> > > + * Example for SC16IS752/762 with upper bank (port A) set as GPIOs, and
+> > > + * lower bank (port B) set as modem status lines (special case described above):
+> > > + *
+> > > + * Pin         GPIO pin     Linux GPIO     SC16IS7XX
+> > > + * name        function     offset         offset
+> > > + * --------------------------------------------------
+> > > + * GPIO7/RIA    GPIO7          3              7
+> > > + * GPIO6/CDA    GPIO6          2              6
+> > > + * GPIO5/DTRA   GPIO5          1              5
+> > > + * GPIO4/DSRA   GPIO4          0              4
+> > > + * GPIO3/RIB    RIB           N/A            N/A
+> > > + * GPIO2/CDB    CDB           N/A            N/A
+> > > + * GPIO1/DTRB   DTRB          N/A            N/A
+> > > + * GPIO0/DSRB   DSRB          N/A            N/A
+> > > + *
+> > > + * Example  for SC16IS750/760 with upper bank (7..4) set as modem status lines,
+> > 
+> > Single space is enough.
+> 
+> Fixed.
+> 
+>  
+> > > + * and lower bank (3..0) as GPIOs:
+> > > + *
+> > > + * Pin         GPIO pin     Linux GPIO     SC16IS7XX
+> > > + * name        function     offset         offset
+> > > + * --------------------------------------------------
+> > > + * GPIO7/RI     RI            N/A            N/A
+> > > + * GPIO6/CD     CD            N/A            N/A
+> > > + * GPIO5/DTR    DTR           N/A            N/A
+> > > + * GPIO4/DSR    DSR           N/A            N/A
+> > > + * GPIO3        GPIO3          3              3
+> > > + * GPIO2        GPIO2          2              2
+> > > + * GPIO1        GPIO1          1              1
+> > > + * GPIO0        GPIO0          0              0
+> > > + */
+> > 
+> > Wondering if you can always register 8 pins and use valid mask to define which
+> > one are in use?
+> 
+> I will look into it, I think it may be a good idea and could help to simplify things a bit.
 
-Currently this is not in use. The rt5033 charger driver gets introduced 
-by this pachset.
+Hi,
+finally, this was the way to go. The resulting code/patch is much simpler and elegant this way. Thank you for the suggestion.
 
-The struct rt5033_charger was added in Dec 2014 with the mfd driver [1] 
-but the charger driver didn't make it [2] and further effort to 
-implement it phased out [3].
+I will submit a V4 with all the changes.
 
-[1] https://lore.kernel.org/lkml/20141209140102.GZ3951@x1
-[2] https://lore.kernel.org/lkml/20150122183037.GA24898@earth.universe
-[3] 
-https://lore.kernel.org/lkml/1425864191-4121-1-git-send-email-beomho.seo@samsung.com/T/#t
-
->>   	struct rt5033_charger_data	*chg;
->>   };
->>   
-
-Kind regards,
-Jakob
+Hugo.
