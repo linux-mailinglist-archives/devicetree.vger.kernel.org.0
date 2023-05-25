@@ -2,188 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09457710A45
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 12:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB04B710A4B
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 12:49:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239153AbjEYKsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 06:48:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35912 "EHLO
+        id S240307AbjEYKtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 06:49:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234122AbjEYKsF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 06:48:05 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2914810B;
-        Thu, 25 May 2023 03:48:02 -0700 (PDT)
-X-GND-Sasl: luca.ceresoli@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1685011681;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=PvtD5KaOGb3+YhvFCawf7mSeDahxw55HHqCVBb0xeg8=;
-        b=hWYTOtl5/ZGgCo6I4YdQarf9V+/kxk7u9NVFRlDLaQZH3Xd/FrPoQU/Blo3atY9jj9ixFW
-        nFgiYbOm76R/Iq8QXnrFGWFFFRCfitAVU8lUe+G57tkrpLmT5JRw7+CFXCxwbPV+KM4SHW
-        QW8MacuHZCYRlhIq6EH9S61aG0VNJQRDS6u6PvPMXI7+fMIx+rIVo+mvI9YtxF5147A7Qc
-        4TKJpN8VFuCo7XMZvgWB9Vhe9bdJ2ffbC06NJvnQnRxjIWO+CSzQCBwXQW7KSimszyViT2
-        J9nl0/Li+33m/rNToQEMiYxGfBjzDJi9K/mJwSMNtlsDjXy28LlKDsFOuE6P6Q==
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 2C57424000B;
-        Thu, 25 May 2023 10:47:57 +0000 (UTC)
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     devicetree@vger.kernel.org
-Cc:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: imx8mp-msc-sm2s: Add sound card
-Date:   Thu, 25 May 2023 12:47:55 +0200
-Message-Id: <20230525104755.286282-1-luca.ceresoli@bootlin.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S232250AbjEYKt3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 06:49:29 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0749810B;
+        Thu, 25 May 2023 03:49:27 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34P8BAuF011797;
+        Thu, 25 May 2023 10:49:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=2mS2U45kr5JMTtsJZuoWbB1M4W7I9XKqCsB0vzkHquM=;
+ b=QXeBNJ92k81MhkVeYy8RAs1q9dceo6J++1Mc1K5nFb2OYYIeX3Yco0OPpFDpyQhJnvrg
+ 8VFDfIT/K+bp05mfBhN+tf7eIfntjO0PZ6zxUQAAZ74MLT8WnKbUnx/sLI4jUfMN4XeP
+ yKcdUNqkWHwrmFuk5VkknCa4vguDzVb1VGbnN/ZD2N4piGfmDFQ6s34mWWELW2N4C08d
+ gn1Q4KXOYN0i9UyboDVoCWb++522MYF1P44UQQabA0223R26UAnu58x9U2GJN5F/f+9V
+ IVsX1GyfZLS+RFvleJd+xfIKcMCo8+bUcBd0kPDD/0uJ1veX9qUlQVj3BbfF9zSXxbD5 lA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qsp509ysj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 25 May 2023 10:49:23 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34PAnMcK010598
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 25 May 2023 10:49:22 GMT
+Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 25 May
+ 2023 03:49:17 -0700
+Message-ID: <8432dd81-6015-7839-1d9b-a80b350e2720@quicinc.com>
+Date:   Thu, 25 May 2023 16:19:14 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: (subset) [PATCH V3 0/6] Incremental patches on minimal boot
+ support
+To:     Bjorn Andersson <andersson@kernel.org>, <agross@kernel.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Devi Priya <quic_devipriy@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <sboyd@kernel.org>, <mturquette@baylibre.com>
+CC:     <quic_arajkuma@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_poovendh@quicinc.com>, <quic_srichara@quicinc.com>,
+        <quic_anusha@quicinc.com>
+References: <20230425084010.15581-1-quic_devipriy@quicinc.com>
+ <168454808161.2842337.17993685425906614863.b4-ty@kernel.org>
+Content-Language: en-US
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <168454808161.2842337.17993685425906614863.b4-ty@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: lwXRw80Lx-NjGTHodCHPvVJFFzJ_e93_
+X-Proofpoint-ORIG-GUID: lwXRw80Lx-NjGTHodCHPvVJFFzJ_e93_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-25_06,2023-05-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
+ lowpriorityscore=0 malwarescore=0 impostorscore=0 spamscore=0
+ suspectscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=999 clxscore=1015
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305250089
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MSC SM2-MB-EP1 carrier board for the SM2S-IMX8PLUS SMARC module has an
-NXP SGTL5000 audio codec connected to I2S-0 (sai2).
 
-This requires to:
+On 5/20/2023 7:31 AM, Bjorn Andersson wrote:
+> On Tue, 25 Apr 2023 14:10:04 +0530, Devi Priya wrote:
+>> Patchset V9 of the series: Add minimal boot support for IPQ9574 has been
+>> merged and is available in linux-next/master.
+>> V12 being the latest revision posted in the series, the delta between
+>> revisions V9 and V12 is posted as a separate series as suggested by
+>> Bjorn to avoid possible confusions.
+>>
+>> This series adds the delta changes between revisions V9 and V12.
+>>
+>> [...]
+> Applied, thanks!
+>
+> [1/6] arm64: dts: qcom: ipq9574: Update the size of GICC & GICV regions
+>        commit: 6fb45762691d12d9812c41d20b2f5db1412047ae
+> [5/6] arm64: dts: qcom: ipq9574: Drop bias_pll_ubi_nc_clk input
+>        commit: 4fc6a939aba4c0aa723b9da8363d262d3d60e57e
+> [6/6] arm64: dts: qcom: ipq9574: rename al02-c7 dts to rdp433
+>        (no commit info)
 
- * add the power supplies (always on)
- * enable sai2 with pinmuxes
- * reparent the CLKOUT1 clock that feeds the codec SYS_MCLK to
-   IMX8MP_CLK_24M in order it to generate an accurate 24 MHz rate
 
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Hi Bjorn,
 
----
 
-Changed in v2:
+I don't see the [6/6] in qcom/for-next.  Some part of the below 
+change[1] is also missed in qcom/for-next [2], I'm not sure if this is 
+because of missing [6/6]. Kindly let me know if I am missing something.
 
- - switch to simple-audio-card
- - fix typo in commit message
- - no underscores in node names
- - rename "sgtl5000-sound" node to "sound"
----
- .../dts/freescale/imx8mp-msc-sm2s-ep1.dts     | 70 +++++++++++++++++++
- 1 file changed, 70 insertions(+)
+[1] 
+https://lore.kernel.org/linux-arm-msm/168499048186.3998961.10536295689489328026.b4-ty@kernel.org/T/#t
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-index 470ff8e31e32..cd651e1e3262 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
-@@ -14,6 +14,67 @@ / {
- 	compatible = "avnet,sm2s-imx8mp-14N0600E-ep1",
- 		     "avnet,sm2s-imx8mp-14N0600E", "avnet,sm2s-imx8mp",
- 		     "fsl,imx8mp";
-+
-+	reg_vcc_3v3_audio: 3v3-audio-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3_AUD";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	reg_vcc_1v8_audio: 1v8-audio-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_1V8_AUD";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "sgtl5000-audio";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,frame-master = <&codec_dai>;
-+		simple-audio-card,bitclock-master = <&codec_dai>;
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&sai2>;
-+		};
-+
-+		codec_dai: simple-audio-card,codec {
-+			sound-dai = <&sgtl5000>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	sgtl5000: sgtl5000@a {
-+		compatible = "fsl,sgtl5000";
-+		reg = <0x0a>;
-+
-+		assigned-clocks = <&clk IMX8MP_CLK_CLKOUT1_SEL>;
-+		assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
-+		assigned-clock-rates = <24000000>;
-+		clocks = <&clk IMX8MP_CLK_CLKOUT1>;
-+		clock-names = "mclk";
-+		#sound-dai-cells = <0>;
-+
-+		VDDA-supply  = <&reg_vcc_3v3_audio>;
-+		VDDD-supply  = <&reg_vcc_1v8_audio>;
-+		VDDIO-supply = <&reg_vcc_1v8_audio>;
-+	};
-+};
-+
-+/* I2S-0 = sai2 */
-+&sai2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sai2>;
-+
-+	assigned-clocks = <&clk IMX8MP_CLK_SAI2>;
-+	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
-+	assigned-clock-rates = <12288000>;
-+
-+	fsl,sai-mclk-direction-output;
-+	status = "okay";
- };
- 
- &flexcan1 {
-@@ -32,6 +93,15 @@ &iomuxc {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_smarc_gpio>;
- 
-+	pinctrl_sai2: sai2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI2_TXFS__AUDIOMIX_SAI2_TX_SYNC   0xd6
-+			MX8MP_IOMUXC_SAI2_TXC__AUDIOMIX_SAI2_TX_BCLK    0xd6
-+			MX8MP_IOMUXC_SAI2_RXD0__AUDIOMIX_SAI2_RX_DATA00 0xd6
-+			MX8MP_IOMUXC_SAI2_TXD0__AUDIOMIX_SAI2_TX_DATA00 0xd6
-+		>;
-+	};
-+
- 	pinctrl_smarc_gpio: smarcgpiosgrp {
- 		fsl,pins =
- 			<MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x19>, /* GPIO0 */
+[2] 
+https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=for-next&id=9ef42640504e09ecc79530b6e532ebf48305516b
 
-base-commit: efdde75fee54667153a5fa236907b55452fddbfa
--- 
-2.34.1
 
+Thanks,
+
+
+>
+> Best regards,
