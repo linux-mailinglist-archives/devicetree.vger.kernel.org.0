@@ -2,133 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 053E371084F
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:08:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A203371085C
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:10:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240487AbjEYJIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 05:08:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48118 "EHLO
+        id S239601AbjEYJKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 05:10:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229912AbjEYJIh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:08:37 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D5F11A2;
-        Thu, 25 May 2023 02:08:33 -0700 (PDT)
-Received: (Authenticated sender: alexis.lothore@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 22A442000F;
-        Thu, 25 May 2023 09:08:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1685005711;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=eaf0f8on8F0v4A7b8O5FkakZD4TKew8S3VzKcKXRadk=;
-        b=pVnJ1YtyiSFpg6kxr4CkL4foygOhrmaV6OYJpNSfsWd3UTVsQom+k9LVU7Se4IyoPQ+pL7
-        bYbWl2KDjhFbQm6UuFxui6JQBiGqoxCzQ11cdWVjFwBH2kci+uv62Yqr8FNklzt/y2ePdL
-        jwT+VkqeU1AXZaF9H1kU+eOu6CQvd9uTnOi2x6rTaDjlrJ3yKIixhmo4gCKFiz6uMDGRnK
-        rdzIvWdO8BAnuBnMg9xamY8Nx6tpfIHjxFsaItQehmpWjAME1osCqW1lQ9A5eB3BAO95LD
-        bfQ2xQWochtkznHYzo3LG254v7s7jTl0pOv33vluWdinQTU8EhsjK3f12kz44w==
-Message-ID: <7126e538-0cac-fe1b-fc89-0a4c9e2afcde@bootlin.com>
-Date:   Thu, 25 May 2023 11:08:49 +0200
+        with ESMTP id S239380AbjEYJKA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:10:00 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 224A5E4B;
+        Thu, 25 May 2023 02:09:51 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DC5651042;
+        Thu, 25 May 2023 02:10:35 -0700 (PDT)
+Received: from [10.57.70.156] (unknown [10.57.70.156])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5DA9A3F67D;
+        Thu, 25 May 2023 02:09:48 -0700 (PDT)
+Message-ID: <320ee3b4-63ed-ec50-03c6-906803e34571@arm.com>
+Date:   Thu, 25 May 2023 10:09:47 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH net-next v3 2/7] net: dsa: mv88e6xxx: pass directly chip
- structure to mv88e6xxx_phy_is_internal
-Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Richard Cochran <richardcochran@gmail.com>,
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.11.0
+Subject: Re: [PATCH v4 03/11] coresight-tpdm: Initialize DSB subunit
+ configuration
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        paul.arola@telus.com, scott.roberts@telus.com,
-        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
-References: <20230524130127.268201-1-alexis.lothore@bootlin.com>
- <20230524130127.268201-3-alexis.lothore@bootlin.com>
- <ZG4OuWllZp3MZxO8@shell.armlinux.org.uk>
- <9a7fac7b-e04b-27e2-8679-ffbbb23c248e@bootlin.com>
- <325a6737-21b9-4b78-b022-9a540c3c0f33@lunn.ch>
-From:   =?UTF-8?Q?Alexis_Lothor=c3=a9?= <alexis.lothore@bootlin.com>
-In-Reply-To: <325a6737-21b9-4b78-b022-9a540c3c0f33@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
+ <1682586037-25973-4-git-send-email-quic_taozha@quicinc.com>
+ <db575b8f-12e9-dab5-c7f6-b524cbce64d9@arm.com>
+ <92b73ba2-00c5-9f18-ed27-a302f4e79bb2@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <92b73ba2-00c5-9f18-ed27-a302f4e79bb2@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/24/23 19:08, Andrew Lunn wrote:
-> On Wed, May 24, 2023 at 04:46:35PM +0200, Alexis Lothoré wrote:
->> Hello Russell,
->>
->> On 5/24/23 15:18, Russell King (Oracle) wrote:
->>> On Wed, May 24, 2023 at 03:01:22PM +0200, Alexis Lothoré wrote:
->>>> Since this function is a simple helper, we do not need to pass a full
->>>> dsa_switch structure, we can directly pass the mv88e6xxx_chip structure.
->>>> Doing so will allow to share this function with any other function
->>>> not manipulating dsa_switch structure but needing info about number of
->>>> internal phys
->>>>
->>>> Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
->>>> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
->>>>
->>>> ---
->>>> Changes since v2:
->>>> - add reviewed-by tags
->>>>
->>>> Signed-off-by: Alexis Lothoré <alexis.lothore@bootlin.com>
->>>> ---
+On 25/05/2023 09:12, Tao Zhang wrote:
+> 
+> On 5/23/2023 9:42 PM, Suzuki K Poulose wrote:
+>> On 27/04/2023 10:00, Tao Zhang wrote:
+>>> DSB is used for monitoring “events”. Events are something that
+>>> occurs at some point in time. It could be a state decode, the
+>>> act of writing/reading a particular address, a FIFO being empty,
+>>> etc. This decoding of the event desired is done outside TPDM.
+>>> DSB subunit need to be configured in enablement and disablement.
+>>> A struct that specifics associated to dsb dataset is needed. It
+>>> saves the configuration and parameters of the dsb datasets. This
+>>> change is to add this struct and initialize the configuration of
+>>> DSB subunit.
 >>>
->>> It never ceases to amaze me the way human beings can find creative ways
->>> to mess things up, no matter how well things are documented. The above
->>> commit message (and the others that I've looked at) are all broken
->>> because of this creativity.
->>>
->>> In effect, because of the really weird format you've come up with here,
->>> your patches are in effect *not* signed off by you.
+>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+
+...
+
+>>> + * dataset types. It covers Basic Counts(BC), Tenure Counts(TC),
+>>> + * Continuous Multi-Bit(CMB), Multi-lane CMB(MCMB) and Discrete Single
+>>> + * Bit(DSB). This function will initialize the configuration according
+>>> + * to the dataset type supported by the TPDM.
+>>> + */
+>>>   static void __tpdm_enable(struct tpdm_drvdata *drvdata)
+>>>   {
+>>>       CS_UNLOCK(drvdata->base);
+>>> @@ -110,15 +144,24 @@ static const struct coresight_ops tpdm_cs_ops = {
+>>>       .source_ops    = &tpdm_source_ops,
+>>>   };
+>>>   -static void tpdm_init_default_data(struct tpdm_drvdata *drvdata)
+>>> +static int tpdm_datasets_setup(struct tpdm_drvdata *drvdata)
+>>>   {
+>>>       u32 pidr;
+>>>   -    CS_UNLOCK(drvdata->base);
+>>>       /*  Get the datasets present on the TPDM. */
+>>>       pidr = readl_relaxed(drvdata->base + CORESIGHT_PERIPHIDR0);
+>>>       drvdata->datasets |= pidr & GENMASK(TPDM_DATASETS - 1, 0);
+>>> -    CS_LOCK(drvdata->base);
 >>
->> Sorry for that. This was an attempt to provide relevant changelog for each
->> patch, but obviously the way I stored those changelogs was wrong, and I did not
->> catch the consequent broken Signed-off-by lines after re-generating the series.
->> I'll do as suggested and hold off a bit before fixing/re-sending.
+>> Why are we removing the CS_{UN,}LOCK here ?
 > 
-> You can put the changelog in the commit message in git commit, you
-> just need to add the correct --- separate after the tags. The patch
-> created with git format-patch will then have two ---, but that is not
-> a problem.
-
-Yes, that is exactly what I intended to do, but digging a bit, I guess the issue
-has been that my current configuration relies on git format-patch to insert my
-SoB, and it seems to not identify the marker so it inserts the SoB after it
-instead of before. Looks like it was broken in the series v2 too.
-Fixed my configuration to sign-off right at commit time.
-
-Thanks
-
+> CS_UNLOCK is used before writing data to Coresight registers. Here this 
+> function
 > 
->     Andrew
-> 
-> ---
-> pw-bot: cr
+> doesn't need to write data to any registers, so I remove the 
+> CS_{UN,}LOCK here.
 
--- 
-Alexis Lothoré, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Please make this a separate patch to avoid confusing and keep it at the
+beginning of the series.
+
+Suzuki
 
