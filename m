@@ -2,106 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 343237106CE
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 10:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1F2B71070A
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 10:13:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235403AbjEYIAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 04:00:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41806 "EHLO
+        id S238567AbjEYING (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 04:13:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230381AbjEYIAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 04:00:04 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66E10189
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 01:00:01 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f603ff9c02so1866825e9.2
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 01:00:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685001600; x=1687593600;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rx6/AkchhhsIk24IhJ++7ZLwXy7ijhSBwh/BY8UUZQc=;
-        b=c9mNv6qaak/+jqDMGn3APvrr0+w5ES0c1AXI6yC9/c9lAG4EPwi49Txcj5wWxuApZr
-         ksHgUxODxOTedlSiCT7b4eHmnSiLO/9tL8AME3h15Z6ar5myK9hI4dYRDxnvjHK50aCF
-         Rsjpw/xs7XIBDEhTu00iegVvL2gf8NDKn2Anjnm7tsPydrfChLCRa6VhBAfl6FBECjG5
-         a0dbx99g1URkUvbhsvZ5y4DDF1VHEY3x0OL4fYijdjkNPzJxU4K14wdQ8CeVjaout3Gw
-         jsjhN8/zjx99gvNTg+vyp9I5cuLrvAJ6u7il4vyi+KSKMg9rRuddb3Ff/AeX991jC8h0
-         KRbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685001600; x=1687593600;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Rx6/AkchhhsIk24IhJ++7ZLwXy7ijhSBwh/BY8UUZQc=;
-        b=W9jf4COo5amynzhv6Kojcu/Enmmh9fOXKgnENQp6BUPpWKavV5Gqvh01spzrhPTttt
-         Zw53ZrKym0nDghMPXRTHaBVV6ztuK4OB9dxxHtpxKM/k63pBMUVa92kQfPsH9GlFdcV6
-         agKsY+ueFNw+7n5fmCP6PzyDFh3Lj4sTR7J96rJ8buNVpQUMSoG0fMXdrIIUmETGRBIq
-         xpBR3/P8MqRnY0ffqDwcz0AuuF3da+FhXB4FoQf8wuCf/KqXcCIsBeax1gqMo8hi6t4/
-         jPQ7R/TEJiNJtGcE3FQHQ+A9YD2mnVSLHzmLFBEHVXxSnYRi01jBCfo0zkzBr3YZVrvb
-         DCUw==
-X-Gm-Message-State: AC+VfDylH1nxIXdTUJ7n2YTM2hv2ah1fYWb+UOefBm5er/tjxgnHjP/F
-        MR8B1RYLou31F+/5N8MaO5k6hw==
-X-Google-Smtp-Source: ACHHUZ4TryZ8bkmN1UsFCBXfEMWzWC55lUiNfaVtlNpCYURcJisdCMit0DGkffnluVcPdw3cG+osKg==
-X-Received: by 2002:a1c:7913:0:b0:3f6:770:fafd with SMTP id l19-20020a1c7913000000b003f60770fafdmr2037330wme.7.1685001599877;
-        Thu, 25 May 2023 00:59:59 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5cdb:105b:7481:b0e6? ([2a01:e0a:982:cbb0:5cdb:105b:7481:b0e6])
-        by smtp.gmail.com with ESMTPSA id a18-20020a05600c225200b003f60a446fe5sm1178490wmm.29.2023.05.25.00.59.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 May 2023 00:59:59 -0700 (PDT)
-Message-ID: <1adda828-cf35-fb2c-6db5-f9ca91b5b62a@linaro.org>
-Date:   Thu, 25 May 2023 09:59:58 +0200
+        with ESMTP id S230264AbjEYINF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 04:13:05 -0400
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2053.outbound.protection.outlook.com [40.107.105.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5F4C1A1;
+        Thu, 25 May 2023 01:12:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KaNN1Mioo+eO8GCQzMML8ovSYITWwlYVrH5I2isO8Al/mcjAgrtHbKdPZ4FOXSsZg5GchGDS1pZrzfSAhUY17OV9kD4x8mXog320sETYlGOQT984tAHmELxthjBKjvuR1NKFAbbabT81Rd27VwFyLSAxNsZ+kXSEkokNIWjTwRImjfl9Wcb3/xaMdIVBypXl5KSraKiQTIkw0mDlp+rIdebFt+RxdWs/ZZfwJxabuEOO8YShazW8W1Wd72oOsp3jkJwkOkw0FgixvJQgGzA59lVtrHbc+CUTXsxk38qUyHCxas5Cm3itzb2ZF5mim8faXBSdOYrdB8/rKOLrv0AM4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CL0ClAkbEycSKLrUeIk4Db43FKoj6o6waN/A4Cdgoy0=;
+ b=XD3YvEWTDhANIK3/T0mrq4+QEWVlGSDphBasI51iKwRSpfFAmNML6MGhkxe1aPc+1qgYw2pAbXOCgvpElbu5iPgjTnEtgkSFqxC/s2stJegNK0/Y+6lf8LLUBpN/5E36WNQuGRJoIixMIpmNSDkqx5vNBdy1Y1KTvNbyrmr3yW+ff7ZBqFKfIzh0KuTFS+srAZTT9Fn5hkfEdFCzlOVmnbrW59AOtb3ddqqz4uIoyPPsk8bq2iLZLLT9E3rUrRuF125h9B9xtBl+XBufv29Jfn0B7ViPLK3MvERv+rmxwhw4Bulw0TRHmE8MqWPKHFWzmOJ8h4kASqG7R7TPJnfmpw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CL0ClAkbEycSKLrUeIk4Db43FKoj6o6waN/A4Cdgoy0=;
+ b=JT/fluMRRWqZUTaAKMs4HnMrFw5BnwFxNHZqTI5fI6i5CODSr2SH/Pi1rVZGdI3YwRJ6Lje8kOSnRpB5eGG7IQt3NRx8OQraTXqzWiOyRGZhShhSHaFHN9I4id39Eyzy7oknqpZBTiw+EX1uC26tYv+ch2X3TNCdNbK8iejQims=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM5PR04MB3139.eurprd04.prod.outlook.com (2603:10a6:206:8::20)
+ by AS8PR04MB7766.eurprd04.prod.outlook.com (2603:10a6:20b:2aa::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.29; Thu, 25 May
+ 2023 08:12:54 +0000
+Received: from AM5PR04MB3139.eurprd04.prod.outlook.com
+ ([fe80::682b:185:581f:7ea2]) by AM5PR04MB3139.eurprd04.prod.outlook.com
+ ([fe80::682b:185:581f:7ea2%4]) with mapi id 15.20.6433.015; Thu, 25 May 2023
+ 08:12:54 +0000
+From:   wei.fang@nxp.com
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com
+Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx93: add fsl,stop-mode property to support WOL
+Date:   Thu, 25 May 2023 16:08:25 +0800
+Message-Id: <20230525080825.513707-1-wei.fang@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SGBP274CA0009.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::21)
+ To AM5PR04MB3139.eurprd04.prod.outlook.com (2603:10a6:206:8::20)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [v3 0/4] Support Starry-himax83102-j02 and Starry-ili9882t TDDI
- MIPI-DSI panel
-Content-Language: en-US
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        dianders@chromium.org
-Cc:     airlied@gmail.com, conor+dt@kernel.org, daniel@ffwll.ch,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        hsinyi@google.com, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org, sam@ravnborg.org
-References: <CAD=FV=XUuzjjLq3YP3683jOd06odwk5Dox5MS8oY8goB-_8T5w@mail.gmail.com>
- <20230525025000.3692510-1-yangcong5@huaqin.corp-partner.google.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230525025000.3692510-1-yangcong5@huaqin.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM5PR04MB3139:EE_|AS8PR04MB7766:EE_
+X-MS-Office365-Filtering-Correlation-Id: e0af81e2-aa35-467f-056a-08db5cf7d726
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: J8bxCy84HCw6OHaTaU5AVJZam6T40pzBdnm+O9wy3vo3g6SS82dqlIN5dFXhZta7/lQ1QbWzLSvZNCitIvPLuPdPMF3k5riP6TPSm+tuT+ZAlYLVcBtBkQAVL6ReeK+c5wbpMw065V2XYqK9khGMFPDZpeHvckjNbybogZgszjedknT2G0UItx/9zUXT21d1sjpsIZ1AQVNnjL/rQcHhx8LamOuWVZvtLNhElBkvhwLkw/KGjdLBYJCOr3K0cxiRla8jtJrb6gM7mTj7Gt9DU2R5BrB9ux2/WFPEpaB9A3hCl5CJalbas3PFe3AawF0YCHnUl2S8Qu14M/IY+C675/q4LoGFnWOOHqya4CaG+kgVFQIE+Pllnqope8C4FxJL2GB61tiVlSiTm8P9xJLIgsLN3mN52ECDhMXNwpgXCy4+H6B5RpX7jKrFVnXbQSWfPnJRXsnAOY+wJslDCs3F50rSzYu3rk8zBkGxaw6oUmPzISdBS8S5UmRlNC3yFQ8r+wvPiJd8La5ZCExQSpBr9p39cHDnuhsScBB4Qe6nGFq12jJ9mlgardV+Uj6/lMXFgPCOFU75Lf73phQQ7wvW3VzYAUgaFtE1rqHzb94n/u2PBb/UFkoKZbIFk+OSNOfO
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3139.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(396003)(376002)(39860400002)(366004)(346002)(451199021)(83380400001)(2616005)(8676002)(8936002)(41300700001)(7416002)(5660300002)(2906002)(4744005)(36756003)(86362001)(478600001)(38100700002)(38350700002)(1076003)(6512007)(6666004)(186003)(26005)(6506007)(9686003)(316002)(6486002)(52116002)(66476007)(66946007)(66556008)(4326008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Z0d8z5LmEi3l741MW8s8FYGHScv9EMrCNHwRcbq3aUfz2PMQhU3ASnhCcUnp?=
+ =?us-ascii?Q?gPIqsS+SNWiBRT+qvN/Bzu8LJM+mRsaX1Eb/FgzfkVSfHMPJvW9Hv2HO9SkS?=
+ =?us-ascii?Q?W9sHFHhbVyQ43i2MwPz6fZ5c5p3jr6MwuB2TXIGc6R/B6rDkvLW5Jd81iEMW?=
+ =?us-ascii?Q?pufjEZhUT3fjiw35nrJGBWMh2sVUNOFpGWybAsQd51GeLuiiZLhznmp98xXM?=
+ =?us-ascii?Q?ZvJIhYfymoCbnJInQtCBoea4BoxK863O4WPRv2nfqbvk64X4HT0QNcEVBUyp?=
+ =?us-ascii?Q?XJzqw5V1SADpSsXNLabPhKJg9biMOGw/n5yQvP9nZog+XT92P8vsXisEuZ3l?=
+ =?us-ascii?Q?6MvhbV/58PIr5Pa+mmY2wuhfXfSX+iGUf2Z8jCHhWGKJ4fNHwXf1dfP5O6qd?=
+ =?us-ascii?Q?m1uQDQLW8C9cDaw6STdUw/1grvtWwou6yAyb250TgcKaxganxbS0LzTKTbim?=
+ =?us-ascii?Q?liVAwviAWiZaYS9FNu1Mo6dHFsmZl7MZDthp/QQGBe1KnpIpdwkCMpW1gJAp?=
+ =?us-ascii?Q?SE5//tw+eXFhLGGjUcZB1IpLzwDscdaf62jZ/Goi+K5FGx1PvnWzby88c6WV?=
+ =?us-ascii?Q?mWBxiMalm9+Z8Ixsta7s3l3+EK/g/V6+qZN2zsAOhflcxgSpjYmDcUN8Whwe?=
+ =?us-ascii?Q?1WYXK7a4WjLpze7/QzeIlQOZOi2o1DNJ1XRjUab55MRce7XvtJjVjfYPVGGv?=
+ =?us-ascii?Q?3Dblv5zqVU0B5CrZlstBh3XjFbOun5sqb0LZHYWC5BJ/RocKoNIQ64oOKnyQ?=
+ =?us-ascii?Q?CMp3yIKpeBwFEMvDGDL97sY+aCmBM0v1t2PJV/o9MVNy/uYT1bvOI/bZCRIg?=
+ =?us-ascii?Q?s/tHoQbkZ7cm6QFNXgL2vQnpww/XYhSaAz49aaI/bn2VgQxK21yUmfjn4nHG?=
+ =?us-ascii?Q?lD+CY9LCDECeS+LFuHD0S6zxOdyr99XLQnzuptZDnZ7ANlKNmp6JoRk1kwuk?=
+ =?us-ascii?Q?pz7zjQRefDWojzmBcFoToQm8LAebql8jU8a1oEZAoAFEM4EYucI21E2d5KD8?=
+ =?us-ascii?Q?s0aI2KKGdRcadzRUSPViXt+akDhEC92jm65CybSgTfacSUjgQbf44pWeU+tS?=
+ =?us-ascii?Q?Jj6Vb4hGVDY8+pWp/J9pKAY/ARigz9GMwqeFqhMP2BhM1+bkW3huwmhPN8Ls?=
+ =?us-ascii?Q?Z4dkktmKWCArfUsbGzrEXQ67Xp+F+6zoIwS8DJqqgG05HxLGCmW2diD+Eh22?=
+ =?us-ascii?Q?hggB6BQa9BjC0fgbS4OY8u+txRFCxcYagfw+Lic86xPuZSRadE2JkZQkpwD0?=
+ =?us-ascii?Q?4Rd7SYVXOIgt6sPtPTf49xIb7syxxmP2laxOBxKC4yraJheTnN+c72uGYdE0?=
+ =?us-ascii?Q?yajNYe9gVFF5GbonMhr9WrkNzT8UYsTgG212JmD41pyiBIw/zLCkyCyoSOSU?=
+ =?us-ascii?Q?tHNtrY4eSAjMqSEgM7kvSPKzr5nQV1dOW5ce9FRnzGZQkPrf+qZ873SSHXpd?=
+ =?us-ascii?Q?RSwnikVGT7Vlfg9HaD7uCMZP5W0cqNdULMlIjR65GPC6bzgZPWMJUAXCst/z?=
+ =?us-ascii?Q?hpqR1GStoAUyhHWXhw9w55x0gxUdvVqUwqSpV4QdmqbNMLX+T3BVpjAyQraa?=
+ =?us-ascii?Q?zSjbLIr87bUOJly3Wv4eX1vNfVk4t6E1g0wbf34I?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0af81e2-aa35-467f-056a-08db5cf7d726
+X-MS-Exchange-CrossTenant-AuthSource: AM5PR04MB3139.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 May 2023 08:12:54.2712
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BjavyB0SUKwQKbTgqwnSLJUeHLMyF52IBiN4Bi8HX6MTt/EroU+MJIK3w3WyaAA13pNJTEO7HZ6HlZC/m855JA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7766
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Wei Fang <wei.fang@nxp.com>
 
-On 25/05/2023 04:49, Cong Yang wrote:
-> Compare V2: order of the tables match the order they're
-> referenced.
-> 
-> Cong Yang (4):
->    dt-bindings: display: panel: Add compatible for Starry himax83102-j02
->    drm/panel: Support for Starry-himax83102-j02 TDDI MIPI-DSI panel
->    dt-bindings: display: panel: Add compatible for Starry ili9882t
->    drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI panel
-> 
->   .../display/panel/boe,tv101wum-nl6.yaml       |   4 +
->   .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 471 ++++++++++++++++++
->   2 files changed, 475 insertions(+)
->
+Add fsl,stop-mode property for FEC to support Wake-on-LAN (WOL)
+feature. Otherwise, the WOL feature of FEC does not work.
 
-Please resend without Conor's acks on patches 2 and 4.
+Signed-off-by: Wei Fang <wei.fang@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx93.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks,
-Neil
-
+diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+index e8d49660ac85..d65a72329d53 100644
+--- a/arch/arm64/boot/dts/freescale/imx93.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+@@ -685,6 +685,7 @@ fec: ethernet@42890000 {
+ 				assigned-clock-rates = <100000000>, <250000000>, <50000000>;
+ 				fsl,num-tx-queues = <3>;
+ 				fsl,num-rx-queues = <3>;
++				fsl,stop-mode = <&wakeupmix_gpr 0x0c 1>;
+ 				status = "disabled";
+ 			};
+ 
+-- 
+2.25.1
 
