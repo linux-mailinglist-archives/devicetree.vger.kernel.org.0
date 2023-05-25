@@ -2,93 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 499B571070E
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 10:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5862771071B
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 10:15:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235663AbjEYINg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 04:13:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45762 "EHLO
+        id S230131AbjEYIP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 04:15:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239233AbjEYINc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 04:13:32 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAFE1E6B;
-        Thu, 25 May 2023 01:13:13 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34P8346L002689;
-        Thu, 25 May 2023 08:13:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=kzKB8Wp7DjuOYhHLVOhTtM0p7bx4Gzr9kevGg3pmfa8=;
- b=iZ04b8Vhuu4/8a2cDGN/HhE05pJWGL2nor4xL0/s5HjX7TO1H9Bh0X0kUjN+1VxXqh6b
- Ntv2+z9oNpipsUok/iwR7/48ibU8I3MyGTQ38L2RdNtmq4gYSj5J4vzQf+wdcF1wzsA2
- UdQnfonhzOA0NsnVX18vpNf61f+K2My/00sKxkF2LaIniEdU3EWrSatStFHOZr6yi5CR
- r/z5OByWYENDi/1JPeUAEyZ1UvEIha3J5wS0uF3A5QIceGq4kOjiqGgW/oMqEn5nf7t+
- 3pnQQlg9D0a3252h2d7+dLPTVtRKQ9SkTswNkI2Xod17me0b0xfT4kOAfzcYHM2LXyjj Ug== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qt27n078y-1
+        with ESMTP id S229527AbjEYIPZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 04:15:25 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E013E195;
+        Thu, 25 May 2023 01:15:20 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34P6vCna010987;
+        Thu, 25 May 2023 10:14:54 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : from : subject : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=6eqB/2RVN5f/EsmFhOLILkPDHswfNdCOdRhZtrk1duU=;
+ b=K+tsvG6ECwhzWGvIrNzOwpjUqyOubAhwbi2QX4tUeFUYHRsm9Nb4JX0jBpFYvkxuBplF
+ DxOwlBlN0UZpkNadjuB2e5Q++17yRrTayHjHprSnkQdNHsgJqVZyEYQ2RKgO6/R2sNIy
+ DQ30QwWdeNvSW560OuPSk2VffPS7Cj/z2qEAuJou5eO5yRxVxMSjzbygIvlHhBMaA4yG
+ oM5PMGD85Y7sKFbwhr9kvSyCjaJwVyLOOqFjyZfffrHFcQwbD8t7tkCDMUNFo0GtMHJv
+ Y/XK385ajzTVd8EzcoimwS7aKwflkwBwF7Ml7EdMNanRpmOjdrulTBCwUzW98+hE/6kR Jw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qt2uy8k3c-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 May 2023 08:13:01 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34P8D0HU004032
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 May 2023 08:13:00 GMT
-Received: from [10.253.35.57] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 25 May
- 2023 01:12:55 -0700
-Message-ID: <92b73ba2-00c5-9f18-ed27-a302f4e79bb2@quicinc.com>
-Date:   Thu, 25 May 2023 16:12:53 +0800
+        Thu, 25 May 2023 10:14:54 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B6BE810002A;
+        Thu, 25 May 2023 10:14:53 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A5474212FDC;
+        Thu, 25 May 2023 10:14:53 +0200 (CEST)
+Received: from [10.252.18.243] (10.252.18.243) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 25 May
+ 2023 10:14:52 +0200
+Message-ID: <32fafa74-8964-c9cf-f95b-f2cd084f46c6@foss.st.com>
+Date:   Thu, 25 May 2023 10:14:52 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v4 03/11] coresight-tpdm: Initialize DSB subunit
- configuration
-Content-Language: en-US
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+From:   Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+Subject: Re: [PATCH v3 3/3] ARM: dts: stm32: fix several DT warnings on
+ stm32mp15
+To:     Marek Vasut <marex@denx.de>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>
+CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>
-References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
- <1682586037-25973-4-git-send-email-quic_taozha@quicinc.com>
- <db575b8f-12e9-dab5-c7f6-b524cbce64d9@arm.com>
-From:   Tao Zhang <quic_taozha@quicinc.com>
-In-Reply-To: <db575b8f-12e9-dab5-c7f6-b524cbce64d9@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        <linux-kernel@vger.kernel.org>, <kernel@dh-electronics.com>
+References: <20230517143542.284029-1-raphael.gallais-pou@foss.st.com>
+ <20230517143542.284029-4-raphael.gallais-pou@foss.st.com>
+ <f64de05b-8854-4345-80c2-f424968defdc@denx.de>
+ <e963370c-7018-243a-712d-62ca8463bfd8@foss.st.com>
+ <5f201903-17cb-5054-763c-f03b1066db1d@denx.de>
+Content-Language: en-US
+In-Reply-To: <5f201903-17cb-5054-763c-f03b1066db1d@denx.de>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: BK311cghrnofA7PuIn-m35GtUZd36ZVk
-X-Proofpoint-GUID: BK311cghrnofA7PuIn-m35GtUZd36ZVk
+X-Originating-IP: [10.252.18.243]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
  definitions=2023-05-25_04,2023-05-24_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- mlxlogscore=999 adultscore=0 priorityscore=1501 suspectscore=0
- clxscore=1015 mlxscore=0 bulkscore=0 malwarescore=0 phishscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305250067
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -96,203 +87,103 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 5/23/2023 9:42 PM, Suzuki K Poulose wrote:
-> On 27/04/2023 10:00, Tao Zhang wrote:
->> DSB is used for monitoring “events”. Events are something that
->> occurs at some point in time. It could be a state decode, the
->> act of writing/reading a particular address, a FIFO being empty,
->> etc. This decoding of the event desired is done outside TPDM.
->> DSB subunit need to be configured in enablement and disablement.
->> A struct that specifics associated to dsb dataset is needed. It
->> saves the configuration and parameters of the dsb datasets. This
->> change is to add this struct and initialize the configuration of
->> DSB subunit.
+On 5/18/23 01:33, Marek Vasut wrote:
+> On 5/17/23 19:04, Raphael Gallais-Pou wrote:
+>> Hi Marek
+>
+> Hi,
+>
+>> On 5/17/23 17:41, Marek Vasut wrote:
+>>> On 5/17/23 16:35, Raphael Gallais-Pou wrote:
+>>>
+>>> Hi,
+>>>
+>>>> diff --git a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+>>>> b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+>>>> index 0f1110e42c93..a6e2e20f12fa 100644
+>>>> --- a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+>>>> +++ b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+>>>> @@ -457,8 +457,7 @@ &ltdc {
+>>>>        status = "okay";
+>>>>          port {
+>>>> -        ltdc_ep0_out: endpoint@0 {
+>>>> -            reg = <0>;
+>>>> +        ltdc_ep0_out: endpoint {
+>>>>                remote-endpoint = <&sii9022_in>;
+>>>>            };
+>>>>        };
+>>>
+>>> This LTDC port/endpoint stuff always scares me, because I always feel I get it
+>>> wrong.
+>>>
+>>> I believe the LTDC does have one "port" , correct.
+>>>
+>>> But I think (?) that the LTDC has two endpoints, endpoint@0 for DPI (parallel
+>>> output out of the SoC) and endpoint@1 for DSI (internal connection into the
+>>> DSI serializer) ?
 >>
->> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
->> ---
->>   drivers/hwtracing/coresight/coresight-tpdm.c | 60 
->> +++++++++++++++++++++++++---
->>   drivers/hwtracing/coresight/coresight-tpdm.h | 17 ++++++++
->>   2 files changed, 72 insertions(+), 5 deletions(-)
+>> You are correct indeed, I rushed the patch and did not thought about this. I
+>> agree that this can be confusing, as I also take some time to think through it.
 >>
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->> b/drivers/hwtracing/coresight/coresight-tpdm.c
->> index ba1867f..6f8a8ab 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->> @@ -20,17 +20,51 @@
->>     DEFINE_CORESIGHT_DEVLIST(tpdm_devs, "tpdm");
->>   +static void tpdm_reset_datasets(struct tpdm_drvdata *drvdata)
->> +{
->> +    if (drvdata->datasets & TPDM_PIDR0_DS_DSB) {
->> +        memset(drvdata->dsb, 0, sizeof(struct dsb_dataset));
->> +
->> +        drvdata->dsb->trig_ts = true;
->> +        drvdata->dsb->trig_type = false;
->> +    }
->> +}
->> +
->> +static void set_trigger_type(struct tpdm_drvdata *drvdata, u32 *val)
->> +{
->> +    if (drvdata->dsb->trig_type)
->> +        *val |= TPDM_DSB_CR_TRIG_TYPE;
->> +    else
->> +        *val &= ~TPDM_DSB_CR_TRIG_TYPE;
->> +}
->> +
+>>>
+>>> Only one of the endpoints can be connected at a time, but there are actually
+>>> two endpoints in the LTDC port {} node, aren't there ?
+>> Yes, they are mutually exclusive.
+>>>
+>>> So the original description should be OK I think , maybe #address/#size-cells
+>>> are missing instead ?
+>>
+>> Thing is: this file is only included in two device-trees : stm32mp157c-dk1.dts
+>> and stm32mp157c-dk2.dts.
+>>
+>> Among those two files there is only one which adds a second endpoint. Thus if
+>> the fields are set higher in the hierarchy, a warning yields.
 >
-> Given this is not reused, we could simply inline it in the caller
-> to avoid creating a confusion, like other operations ?
-Sure, I will update it in the next patch series.
->
->>   static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
->>   {
->>       u32 val;
->>   -    /* Set the enable bit of DSB control register to 1 */
->> +    val = readl_relaxed(drvdata->base + TPDM_DSB_TIER);
->> +    /* Set trigger timestamp */
->> +    if (drvdata->dsb->trig_ts)
->> +        val |= TPDM_DSB_TIER_XTRIG_TSENAB;
->> +    else
->> +        val &= ~TPDM_DSB_TIER_XTRIG_TSENAB;,
->> +    writel_relaxed(val, drvdata->base + TPDM_DSB_TIER);
->> +
->>       val = readl_relaxed(drvdata->base + TPDM_DSB_CR);
->> +    /* Set trigger type */
->> +    set_trigger_type(drvdata, &val);
->> +    /* Set the enable bit of DSB control register to 1 */
->>       val |= TPDM_DSB_CR_ENA;
->>       writel_relaxed(val, drvdata->base + TPDM_DSB_CR);
->>   }
->>     /* TPDM enable operations */
->> +/* The TPDM or Monitor serves as data collection component for various
->
-> minor nit: Please could you extend the existing comment than adding a
-> new multi-line comment ?
-Sure, I will update it in the next patch series.
->
->> + * dataset types. It covers Basic Counts(BC), Tenure Counts(TC),
->> + * Continuous Multi-Bit(CMB), Multi-lane CMB(MCMB) and Discrete Single
->> + * Bit(DSB). This function will initialize the configuration according
->> + * to the dataset type supported by the TPDM.
->> + */
->>   static void __tpdm_enable(struct tpdm_drvdata *drvdata)
->>   {
->>       CS_UNLOCK(drvdata->base);
->> @@ -110,15 +144,24 @@ static const struct coresight_ops tpdm_cs_ops = {
->>       .source_ops    = &tpdm_source_ops,
->>   };
->>   -static void tpdm_init_default_data(struct tpdm_drvdata *drvdata)
->> +static int tpdm_datasets_setup(struct tpdm_drvdata *drvdata)
->>   {
->>       u32 pidr;
->>   -    CS_UNLOCK(drvdata->base);
->>       /*  Get the datasets present on the TPDM. */
->>       pidr = readl_relaxed(drvdata->base + CORESIGHT_PERIPHIDR0);
->>       drvdata->datasets |= pidr & GENMASK(TPDM_DATASETS - 1, 0);
->> -    CS_LOCK(drvdata->base);
->
-> Why are we removing the CS_{UN,}LOCK here ?
+> I do not understand this one part, which warning are you trying to fix ?
+> I just ran '$ make CHECK_DTBS=1 stm32mp157a-dk1.dtb stm32mp157c-dk2.dtb' in
+> latest linux-next and there was no warning related to LTDC .
 
-CS_UNLOCK is used before writing data to Coresight registers. Here this 
-function
+I'm sorry, I looked back at it and my explanations are confusing.
 
-doesn't need to write data to any registers, so I remove the 
-CS_{UN,}LOCK here.
-
-
-Best,
-
-Tao
+I use Alex Torgue's tree, and I'm based on the next branch, but linux-next
+should be the same I just checked it.
 
 >
-> Rest looks OK to me.
+> I think if you retain the stm32mp151.dtsi &ltdc { port { #address-cells = <1>;
+> #size-cells = <0>; }; }; part, then you wouldn't be getting any warnings
+> regarding LTDC , and you wouldn't have to remove the unit-address from
+> endpoint@0 .
 >
-> Suzuki
+> btw. I do use both endpoint@0/endpoint@1 in Avenger96 DTOs, but those are not
+> submitted yet, I have to clean them up a bit more first.
 >
->> +
->> +    if (drvdata->datasets & TPDM_PIDR0_DS_DSB) {
->> +        if (!drvdata->dsb) {
->> +            drvdata->dsb = devm_kzalloc(drvdata->dev,
->> +                            sizeof(*drvdata->dsb), GFP_KERNEL);
->> +            if (!drvdata->dsb)
->> +                return -ENOMEM;
->> +        }
->> +    }
->> +
->> +    return 0;
->>   }
->>     /*
->> @@ -181,6 +224,7 @@ static int tpdm_probe(struct amba_device *adev, 
->> const struct amba_id *id)
->>       struct coresight_platform_data *pdata;
->>       struct tpdm_drvdata *drvdata;
->>       struct coresight_desc desc = { 0 };
->> +    int ret;
->>         pdata = coresight_get_platform_data(dev);
->>       if (IS_ERR(pdata))
->> @@ -200,6 +244,12 @@ static int tpdm_probe(struct amba_device *adev, 
->> const struct amba_id *id)
->>         drvdata->base = base;
->>   +    ret = tpdm_datasets_setup(drvdata);
->> +    if (ret)
->> +        return ret;
->> +
->> +    tpdm_reset_datasets(drvdata);
->> +
->>       /* Set up coresight component description */
->>       desc.name = coresight_alloc_device_name(&tpdm_devs, dev);
->>       if (!desc.name)
->> @@ -216,7 +266,7 @@ static int tpdm_probe(struct amba_device *adev, 
->> const struct amba_id *id)
->>           return PTR_ERR(drvdata->csdev);
->>         spin_lock_init(&drvdata->spinlock);
->> -    tpdm_init_default_data(drvdata);
->> +
->>       /* Decrease pm refcount when probe is done.*/
->>       pm_runtime_put(&adev->dev);
->>   diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h 
->> b/drivers/hwtracing/coresight/coresight-tpdm.h
->> index 5438540..68f33bd 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
->> @@ -11,8 +11,14 @@
->>     /* DSB Subunit Registers */
->>   #define TPDM_DSB_CR        (0x780)
->> +#define TPDM_DSB_TIER        (0x784)
->> +
->>   /* Enable bit for DSB subunit */
->>   #define TPDM_DSB_CR_ENA        BIT(0)
->> +/* Enable bit for DSB subunit trigger type */
->> +#define TPDM_DSB_CR_TRIG_TYPE        BIT(12)
->> +/* Enable bit for DSB subunit trigger timestamp */
->> +#define TPDM_DSB_TIER_XTRIG_TSENAB        BIT(1)
->>     /* TPDM integration test registers */
->>   #define TPDM_ITATBCNTRL        (0xEF0)
->> @@ -41,6 +47,16 @@
->>   #define TPDM_PIDR0_DS_DSB    BIT(1)
->>     /**
->> + * struct dsb_dataset - specifics associated to dsb dataset
->> + * @trig_ts:          Enable/Disable trigger timestamp.
->> + * @trig_type:        Enable/Disable trigger type.
->> + */
->> +struct dsb_dataset {
->> +    bool            trig_ts;
->> +    bool            trig_type;
->> +};
->> +
->> +/**
->>    * struct tpdm_drvdata - specifics associated to an TPDM component
->>    * @base:       memory mapped base address for this component.
->>    * @dev:        The device entity associated to this component.
->> @@ -57,6 +73,7 @@ struct tpdm_drvdata {
->>       spinlock_t        spinlock;
->>       bool            enable;
->>       unsigned long        datasets;
->> +    struct dsb_dataset    *dsb;
->>   };
->>     #endif  /* _CORESIGHT_CORESIGHT_TPDM_H */
+>> One way to do it would be to make the endpoint@0 go down in the device-tree with
+>> its dependencies, so that both endpoints are the same level without generating
+>> noise.
 >
-> _______________________________________________
-> CoreSight mailing list -- coresight@lists.linaro.org
-> To unsubscribe send an email to coresight-leave@lists.linaro.org
+> I'm afraid I really don't quite understand which warning you're referring to.
+> Can you please share that warning and ideally how to trigger it (the
+> command-line incantation) ?
+
+Using '$ make dtbs W=1', you can observe several of the followings:
+
+arch/arm/boot/dts/stm32mp151.dtsi:1533.9-1536.6: Warning
+(avoid_unnecessary_addr_size): /soc/display-controller@5a001000/port:
+unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+arch/arm/boot/dts/stm32mp151.dtsi:1533.9-1536.6: Warning (graph_child_address):
+/soc/display-controller@5a001000/port: graph node has single child node
+'endpoint@0', #address-cells/#size-cells are not necessary
+
+This &ltdc { port { #address-cells = <1>; #size-cells = <0>; }; }; part is
+actually annoying. This is because there is several device-trees that only got
+one endpoint, and some other that includes two.
+
+For instance: stm32mp15xx-dhcor-avenger96.dtsi vs stm32mp157c-dk2.dts.
+
+I would like to remove to root part of address/size field and let only the lower
+device-trees with with multiple endpoints handle their own fields. I hope this
+explains a bit better my process.
+
+Regards,
+Raphaël Gallais-Pou
+
