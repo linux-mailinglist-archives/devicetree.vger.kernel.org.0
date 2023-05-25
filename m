@@ -2,88 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6A18711923
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 23:29:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5356D711931
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 23:34:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241373AbjEYV3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 17:29:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37908 "EHLO
+        id S233757AbjEYVeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 17:34:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241424AbjEYV3b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 17:29:31 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC36194;
-        Thu, 25 May 2023 14:28:53 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPv6:2405:201:0:21ea:e49:10dd:40c0:e842])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S229944AbjEYVeT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 17:34:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3025099;
+        Thu, 25 May 2023 14:34:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: shreeya)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id F32BB6606E82;
-        Thu, 25 May 2023 22:28:42 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685050125;
-        bh=AdgtOiujGdnJQQ340NQqbEudA96I7ryN0UWjDsdCfzY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=lG4FikeQH1NKS/9TgwgyENYkK2aokxl3DxPPZSCqCjLzFRFCna06SITyuIMxFG4tI
-         AyzaapWk/rdI57Rgvow8WBnVNPrFXQ3rVisw4OV+FTJkATQCPK8CDVga6AIr9R9aQ0
-         Fc+bIBfRy4iszF6xfcxIKOcLcO58NQlR+sXyXT2sYlnMgeleiJvfMjqLsDZraJExF9
-         SkkK4w/dla7azOKCb4gxGNB1eOAZbeqPUGoJwxYJe89op4udgQoNrW2iJIVXMQt4b+
-         IpI7THxhIvspfJoEp/6Jqi3nfRSNWtvM8f0/EC2ksfnG1BtgpoJzyaBAQbyDJzE9x5
-         JykoNe3wXRykA==
-From:   Shreeya Patel <shreeya.patel@collabora.com>
-To:     jic23@kernel.org, lars@metafoo.de, heiko@sntech.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        sebastian.reichel@collabora.com
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, gustavo.padovan@collabora.com,
-        serge.broslavsky@collabora.com,
-        Shreeya Patel <shreeya.patel@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 8/8] dt-bindings: iio: adc: Add rockchip,rk3588-saradc string
-Date:   Fri, 26 May 2023 02:57:12 +0530
-Message-Id: <20230525212712.255406-9-shreeya.patel@collabora.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230525212712.255406-1-shreeya.patel@collabora.com>
-References: <20230525212712.255406-1-shreeya.patel@collabora.com>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B1ACB64B51;
+        Thu, 25 May 2023 21:34:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EBA4C433EF;
+        Thu, 25 May 2023 21:34:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685050457;
+        bh=zZK1RRwMzH2sbsee7VnC7rlgcun9B4/SN/dI3FKVvrg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sYy8VE1VD0cAgEQuQim7zpsjY9TurkTcJPM8V//GYjopKthjG7swTE5W5MfBkiymv
+         gptEA5LzE3IQ95cBxZ2YaS+ouWHeojSMRaBTKoUhsGIXRsxsxPjsX6TPztQfMhMldh
+         SuTIH5cGrlLwRkrvhRW0H4JvwkVdYq4GVx9hTsSWN0X+ERFX/OkNNQPf1/WVd/JLgX
+         /AFo9muWJpPvbUiV5Vkz+O+/FB7GMsA1yaEPll0FSZXSUItNyIjw43FnpK+hMSGlrj
+         gSxpoHHqT3QTPfco7ev8HFXnGS/mrM0GTn+0tO7TzsMQgFzKyLBSEnWqD1V1v0qzTR
+         X5t+2G3DdOoZw==
+Date:   Thu, 25 May 2023 22:34:10 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Minda Chen <minda.chen@starfivetech.com>
+Cc:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Mason Huo <mason.huo@starfivetech.com>
+Subject: Re: [PATCH v6 5/7] dt-bindings: usb: Add StarFive JH7110 USB
+ controller
+Message-ID: <20230525-shopper-handbrake-27fc06aede32@spud>
+References: <20230518112750.57924-1-minda.chen@starfivetech.com>
+ <20230518112750.57924-6-minda.chen@starfivetech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="SLOnlnkMNKq6BWyy"
+Content-Disposition: inline
+In-Reply-To: <20230518112750.57924-6-minda.chen@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add rockchip,rk3588-saradc compatible string.
 
-Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
+--SLOnlnkMNKq6BWyy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Changes in v2
-  - Add an Acked-by tag.
+On Thu, May 18, 2023 at 07:27:48PM +0800, Minda Chen wrote:
+> StarFive JH7110 platforms USB have a wrapper module around
+> the Cadence USBSS-DRD controller. Add binding information doc
+> for that.
+>=20
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> Reviewed-by: Peter Chen <peter.chen@kernel.org>
+> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+>  .../bindings/usb/starfive,jh7110-usb.yaml     | 115 ++++++++++++++++++
+>  1 file changed, 115 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/starfive,jh7110=
+-usb.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.ya=
+ml b/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
+> new file mode 100644
+> index 000000000000..24aa9c10d6ab
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
+> @@ -0,0 +1,115 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/starfive,jh7110-usb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive JH7110 wrapper module for the Cadence USBSS-DRD controll=
+er
 
- Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml | 1 +
- 1 file changed, 1 insertion(+)
+I think you told Krzysztof you'd rename this to "StarFive JH7110 Cadence
+USBSS-DRD SoC controller"?
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-index da50b529c157..11c27ea451c8 100644
---- a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
-@@ -21,6 +21,7 @@ properties:
-               - rockchip,rk3308-saradc
-               - rockchip,rk3328-saradc
-               - rockchip,rk3568-saradc
-+              - rockchip,rk3588-saradc
-               - rockchip,rv1108-saradc
-               - rockchip,rv1126-saradc
-           - const: rockchip,rk3399-saradc
--- 
-2.30.2
+Otherwise, it looks like all the stuff from him and Rob have been sorted
+out, so other than $title this is
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
+Thanks,
+Conor..
+
+--SLOnlnkMNKq6BWyy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG/UUgAKCRB4tDGHoIJi
+0v75AP9K+Svm5FyZzmMv+llB8XO317ghvBO5MrADfge2KP6pPwEAl0bZpPNFfw8m
+AK1S29TZeiBbhbcxD8KECfWuk1118AQ=
+=3/eV
+-----END PGP SIGNATURE-----
+
+--SLOnlnkMNKq6BWyy--
