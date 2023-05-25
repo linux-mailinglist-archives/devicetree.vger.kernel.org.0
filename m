@@ -2,129 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB04B710A4B
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 12:49:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6294E710A7F
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 13:03:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240307AbjEYKtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 06:49:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36590 "EHLO
+        id S233615AbjEYLDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 07:03:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232250AbjEYKt3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 06:49:29 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0749810B;
-        Thu, 25 May 2023 03:49:27 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34P8BAuF011797;
-        Thu, 25 May 2023 10:49:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=2mS2U45kr5JMTtsJZuoWbB1M4W7I9XKqCsB0vzkHquM=;
- b=QXeBNJ92k81MhkVeYy8RAs1q9dceo6J++1Mc1K5nFb2OYYIeX3Yco0OPpFDpyQhJnvrg
- 8VFDfIT/K+bp05mfBhN+tf7eIfntjO0PZ6zxUQAAZ74MLT8WnKbUnx/sLI4jUfMN4XeP
- yKcdUNqkWHwrmFuk5VkknCa4vguDzVb1VGbnN/ZD2N4piGfmDFQ6s34mWWELW2N4C08d
- gn1Q4KXOYN0i9UyboDVoCWb++522MYF1P44UQQabA0223R26UAnu58x9U2GJN5F/f+9V
- IVsX1GyfZLS+RFvleJd+xfIKcMCo8+bUcBd0kPDD/0uJ1veX9qUlQVj3BbfF9zSXxbD5 lA== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qsp509ysj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 May 2023 10:49:23 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34PAnMcK010598
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 May 2023 10:49:22 GMT
-Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 25 May
- 2023 03:49:17 -0700
-Message-ID: <8432dd81-6015-7839-1d9b-a80b350e2720@quicinc.com>
-Date:   Thu, 25 May 2023 16:19:14 +0530
+        with ESMTP id S240901AbjEYLCp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 07:02:45 -0400
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D43F19C;
+        Thu, 25 May 2023 04:02:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1685012564; x=1716548564;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=JUZRchCrUXgDaPejlQfvti7Go2spVqBqTTI8DzIipZk=;
+  b=YFcitSV7sQazdAoXzqK9xD1Ffcf7t23aP1g8v72mqd5DsqZNP28M8Ee2
+   zrnJ3DT0hh1JNdpKrudd/W1kZjOnNTd+l+dMdexEefIOPYy6rCw74927m
+   VjXeUVqMO42j+BIe79wuu7UKfG0kMIAXvLiizfWonpc5LGv8KSlX2ssQg
+   d569LGDn+dQOJkApEXB52HHoZbFDkUxpqgXnM9TM3g2T7VXHVF0MWWwrP
+   U9s5pS4/jwWF4oNtwDtkQfESSaueSby0l+IzVAKkwIgmfc4bqGnoSsKAV
+   JTvjDsjWWy0ZUcdCwOE4MQCzMamiBIWrJbdXuEPcpW7A5OAa9ONTRCi8/
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="338430744"
+X-IronPort-AV: E=Sophos;i="6.00,191,1681196400"; 
+   d="scan'208";a="338430744"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2023 04:02:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="951402317"
+X-IronPort-AV: E=Sophos;i="6.00,191,1681196400"; 
+   d="scan'208";a="951402317"
+Received: from aghiriba-mobl.ger.corp.intel.com ([10.249.40.17])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2023 04:02:21 -0700
+Date:   Thu, 25 May 2023 14:02:19 +0300 (EEST)
+From:   =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To:     Hugo Villeneuve <hugo@hugovil.com>
+cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, Jiri Slaby <jirislaby@kernel.org>,
+        jringle@gridpoint.com, tomasz.mon@camlingroup.com,
+        l.perczak@camlintechnologies.com,
+        linux-serial <linux-serial@vger.kernel.org>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+        linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Subject: Re: [PATCH v3 03/11] serial: sc16is7xx: mark IOCONTROL register as
+ volatile
+In-Reply-To: <20230525040324.3773741-4-hugo@hugovil.com>
+Message-ID: <751bc02d-d06f-55cb-cb7a-a39871a0775d@linux.intel.com>
+References: <20230525040324.3773741-1-hugo@hugovil.com> <20230525040324.3773741-4-hugo@hugovil.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: (subset) [PATCH V3 0/6] Incremental patches on minimal boot
- support
-To:     Bjorn Andersson <andersson@kernel.org>, <agross@kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Devi Priya <quic_devipriy@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <sboyd@kernel.org>, <mturquette@baylibre.com>
-CC:     <quic_arajkuma@quicinc.com>, <quic_sjaganat@quicinc.com>,
-        <quic_poovendh@quicinc.com>, <quic_srichara@quicinc.com>,
-        <quic_anusha@quicinc.com>
-References: <20230425084010.15581-1-quic_devipriy@quicinc.com>
- <168454808161.2842337.17993685425906614863.b4-ty@kernel.org>
-Content-Language: en-US
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-In-Reply-To: <168454808161.2842337.17993685425906614863.b4-ty@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: lwXRw80Lx-NjGTHodCHPvVJFFzJ_e93_
-X-Proofpoint-ORIG-GUID: lwXRw80Lx-NjGTHodCHPvVJFFzJ_e93_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-25_06,2023-05-24_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- lowpriorityscore=0 malwarescore=0 impostorscore=0 spamscore=0
- suspectscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=999 clxscore=1015
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305250089
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 25 May 2023, Hugo Villeneuve wrote:
 
-On 5/20/2023 7:31 AM, Bjorn Andersson wrote:
-> On Tue, 25 Apr 2023 14:10:04 +0530, Devi Priya wrote:
->> Patchset V9 of the series: Add minimal boot support for IPQ9574 has been
->> merged and is available in linux-next/master.
->> V12 being the latest revision posted in the series, the delta between
->> revisions V9 and V12 is posted as a separate series as suggested by
->> Bjorn to avoid possible confusions.
->>
->> This series adds the delta changes between revisions V9 and V12.
->>
->> [...]
-> Applied, thanks!
->
-> [1/6] arm64: dts: qcom: ipq9574: Update the size of GICC & GICV regions
->        commit: 6fb45762691d12d9812c41d20b2f5db1412047ae
-> [5/6] arm64: dts: qcom: ipq9574: Drop bias_pll_ubi_nc_clk input
->        commit: 4fc6a939aba4c0aa723b9da8363d262d3d60e57e
-> [6/6] arm64: dts: qcom: ipq9574: rename al02-c7 dts to rdp433
->        (no commit info)
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> 
+> Bit SRESET (3) is cleared when a reset operation is completed. Having
+> the IOCONTROL register as non-volatile will always read SRESET as 1.
+> Therefore mark IOCONTROL register as a volatile register.
+> 
+> Fixes: dfeae619d781 ("serial: sc16is7xx")
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
+What is the impact of this problem? That is, what doesn't work? I only see 
+writes to SC16IS7XX_IOCONTROL_REG. If there are no concrete problems 
+fixed, don't put Fixes tag.
 
-Hi Bjorn,
+-- 
+ i.
 
-
-I don't see the [6/6] in qcom/for-next.  Some part of the below 
-change[1] is also missed in qcom/for-next [2], I'm not sure if this is 
-because of missing [6/6]. Kindly let me know if I am missing something.
-
-[1] 
-https://lore.kernel.org/linux-arm-msm/168499048186.3998961.10536295689489328026.b4-ty@kernel.org/T/#t
-
-[2] 
-https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=for-next&id=9ef42640504e09ecc79530b6e532ebf48305516b
-
-
-Thanks,
-
-
->
-> Best regards,
+> ---
+>  drivers/tty/serial/sc16is7xx.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+> index 00054bb49780..a7c4da3cfd2b 100644
+> --- a/drivers/tty/serial/sc16is7xx.c
+> +++ b/drivers/tty/serial/sc16is7xx.c
+> @@ -488,6 +488,7 @@ static bool sc16is7xx_regmap_volatile(struct device *dev, unsigned int reg)
+>  	case SC16IS7XX_TXLVL_REG:
+>  	case SC16IS7XX_RXLVL_REG:
+>  	case SC16IS7XX_IOSTATE_REG:
+> +	case SC16IS7XX_IOCONTROL_REG:
+>  		return true;
+>  	default:
+>  		break;
+> 
