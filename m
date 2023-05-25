@@ -2,133 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF788710912
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87B1B710920
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:42:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240786AbjEYJjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 05:39:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33246 "EHLO
+        id S234403AbjEYJmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 05:42:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240768AbjEYJjK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:39:10 -0400
-Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AE5E1A2
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 02:38:02 -0700 (PDT)
-Received: by mail-vs1-xe2a.google.com with SMTP id ada2fe7eead31-4394a25867cso533465137.0
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 02:38:02 -0700 (PDT)
+        with ESMTP id S234050AbjEYJmn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:42:43 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6679A191;
+        Thu, 25 May 2023 02:42:42 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-514454733b8so498932a12.3;
+        Thu, 25 May 2023 02:42:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1685007481; x=1687599481;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oEJFrZVH1rjo4B3+YvFZtJFJ+STMe28dWj3W1cbfjMs=;
-        b=iM2dxEBGMSs2nJR2qB95J2e/i2Np/iJRynzb0xvTDnfd99o52WnVpmlrE+ekNrdP21
-         lmFU512dtt04r3jw/y9ly4KvHRST8MXGu3XVTnkxtP2RE8qSEVcn/9w+WecabUewP9Qe
-         7p6w13DuBGgg24cRZDnYPAuAxqwd1pV2GkP+S4nF1+W6faHxDtCV++fg2FCzaO02oR7W
-         kFuXYFtxORG0kp7v+Zl4VA1/yWISCnBOirroGOPOYjymNrIS/3EV5QG1CoBjwVbpjhBk
-         XaAt9wRu05Uk1DFMHcz0qrvKmDo2lyFbQaSjmscE8ujrledQgK8tDBHsodiZuP0YgJkw
-         I8kg==
+        d=gmail.com; s=20221208; t=1685007761; x=1687599761;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6XQd90nNPC5bHeVCXpgMeDPAKRWOlZYVAdkPI9BTXzc=;
+        b=Q9zGzrF7z7hlFMbq0YtWmAN+STRLx6HxRirDP1yrRIwPbDuzGDlVvxPfTGXdsOaQ7u
+         TSZHnTYoRxvRycLXTzlxRRwmbKXjsVZ59OByukgyGazP4uLHjvcsI4BQa10cRCYd+ZF/
+         mRgVTkKAsw6Qw1hmI8fAmWnWiHo94fd7NzlQWw4ogyvNWzCvNNPT/zAvajc7uBmD2apl
+         VwVSM+BYOp+gcB+8cTVcdDVZDpR/nFk1qg/ppox4ecBEzvSLFF1Z+2intVEF6iA8psh7
+         bUHOLDPF6tyMEvyBeoIqHzPPdMuj2siasEQxr7kJuJMS1vSlXBSOiNUBa67ITzkCuhHT
+         /MMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685007481; x=1687599481;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oEJFrZVH1rjo4B3+YvFZtJFJ+STMe28dWj3W1cbfjMs=;
-        b=DUNFCAnPgPRT9zBjc5O82O5czj9w7kx2TX+y9jNBPivoRIWtK5vpMAgqX2I4HPDXiT
-         6hwU40E7jHZ5Qgzn6ZOIQ03kpwvdgl6+vSYnl46KJsKB8JrjcLD/yFgGvgGfWGkzgdDk
-         hLt339Lfibp3hQM+pkaPndy+piMVTFGcp8V1tkEJ7mL/B8TpFaJmFA7bIl0BOUGyMe8W
-         U0H1/5MzXAVpfCBSmnpmf0juqQzOGqyGXwoEC3NG85WKNLH0KFamq22IKziRtxayyiQ7
-         dhYBYXMjBCkNqCsrhQxAzjI/gniMg2geGkk9rXORLkQfLoOjkWjMwgaYGPUKj4SjubrC
-         wu/A==
-X-Gm-Message-State: AC+VfDxUPPyUE5OA7oDrFAMKDJulKxINB030fIz97VjuhJnGcbaMQ2+g
-        lx/K2PijroiDspfYw++bAeVlV/r5EYsTi4dKp+euMBeL0uFbnzzV
-X-Google-Smtp-Source: ACHHUZ7WpOy3wCLD5AtzEtx27Y4bEWHrtU9zN+2rZF5BNaH1IbmVOHvB1XOktMAjYDfHAtlHwjS6fZtVO9liQY+ETCk=
-X-Received: by 2002:a67:dc8c:0:b0:439:6c06:606e with SMTP id
- g12-20020a67dc8c000000b004396c06606emr795944vsk.0.1685007481350; Thu, 25 May
- 2023 02:38:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230411130446.401440-1-brgl@bgdev.pl> <20230411130446.401440-2-brgl@bgdev.pl>
- <CAMRc=MdDct0UzJPpOTuKHmm23Jc529NwkBWJJmXfeevpkQaSxQ@mail.gmail.com>
-In-Reply-To: <CAMRc=MdDct0UzJPpOTuKHmm23Jc529NwkBWJJmXfeevpkQaSxQ@mail.gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Thu, 25 May 2023 11:37:50 +0200
-Message-ID: <CAMRc=Me4EQ_7ArCeJASzKTimuSH=yNkrwm9DgE93s7kjdS5Nrw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/5] dt-bindings: ufs: qcom: add compatible for sa8775p
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1685007761; x=1687599761;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6XQd90nNPC5bHeVCXpgMeDPAKRWOlZYVAdkPI9BTXzc=;
+        b=IIjmrC5xQe2nwpGNupkq/LuGRHwbV/Q3tWSlVrIYEn5EEpubBe8IZXeyRWy35VDyN9
+         V+mfxDSLv16SJJQsE58EJbQrXLUVKGGccisor5r7r3VVRka1TkvejMI7eOoYVHA3Dvda
+         S+2IIeVvha2aH8fb0+qZTEmLw+/9jEuE4y3oiW2oms9eaL/CGoGd1D8jkFfyPc+mIO15
+         zB4nUHgWivPD1phZbsmS2HEX0eJ3v5MpF2B9znSMRXFH5RKG/btswTuJ1Zc/N1PcMUGk
+         hSuZr0klQdgf6qDGKSA6dMVrqvirEi7/iQcng6+7X83wLrQwTLHYejf2UytxOt0KxLIe
+         c2aQ==
+X-Gm-Message-State: AC+VfDyhB3eCFIgF43rBAb1xWuq2nggM2TKDCi1ctbtEZ2EtqcZKoNYR
+        38tIEVQWBDSm4cs7ism7yOLkOwf1dE0=
+X-Google-Smtp-Source: ACHHUZ4hCYebNsaawH3EjvG+NnzYstOSTEu0rUk9IvAP//0je2d5iAzMdSrhBMjJbsacR0JCFY6KCA==
+X-Received: by 2002:a17:907:3faa:b0:970:c9f:2db6 with SMTP id hr42-20020a1709073faa00b009700c9f2db6mr905381ejc.63.1685007760531;
+        Thu, 25 May 2023 02:42:40 -0700 (PDT)
+Received: from localhost (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id q18-20020a170906b29200b0095844605bb8sm617552ejz.10.2023.05.25.02.42.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 May 2023 02:42:40 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: [PATCH] dt-bindings: usb: tegra-xudc: Remove extraneous PHYs
+Date:   Thu, 25 May 2023 11:42:37 +0200
+Message-Id: <20230525094237.2846682-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 16, 2023 at 12:06=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.pl=
-> wrote:
->
-> On Tue, Apr 11, 2023 at 3:04=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.p=
-l> wrote:
-> >
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Add the compatible string for the UFS on sa8775p platforms.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Docu=
-mentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> > index c5a06c048389..b1c00424c2b0 100644
-> > --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> > +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> > @@ -26,6 +26,7 @@ properties:
-> >            - qcom,msm8994-ufshc
-> >            - qcom,msm8996-ufshc
-> >            - qcom,msm8998-ufshc
-> > +          - qcom,sa8775p-ufshc
-> >            - qcom,sc8280xp-ufshc
-> >            - qcom,sdm845-ufshc
-> >            - qcom,sm6350-ufshc
-> > @@ -105,6 +106,7 @@ allOf:
-> >            contains:
-> >              enum:
-> >                - qcom,msm8998-ufshc
-> > +              - qcom,sa8775p-ufshc
-> >                - qcom,sc8280xp-ufshc
-> >                - qcom,sm8250-ufshc
-> >                - qcom,sm8350-ufshc
-> > --
-> > 2.37.2
-> >
->
-> Bjorn,
->
-> Are you picking this one up as well or should it go through Rob's tree?
->
-> Bart
+From: Thierry Reding <treding@nvidia.com>
 
-Gentle ping.
+The USB device controller on Tegra210 and later supports one USB 2/3
+port, so only a single pair of PHYs is needed. Drop any of the extra
+PHYs from the bindings.
 
-Bart
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ .../devicetree/bindings/usb/nvidia,tegra-xudc.yaml         | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml b/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml
+index e2270ce0c56b..c6e661e8915c 100644
+--- a/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml
++++ b/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml
+@@ -91,6 +91,7 @@ properties:
+ 
+   phys:
+     minItems: 1
++    maxItems: 2
+     description:
+       Must contain an entry for each entry in phy-names.
+       See ../phy/phy-bindings.txt for details.
+@@ -99,13 +100,7 @@ properties:
+     minItems: 1
+     items:
+       - const: usb2-0
+-      - const: usb2-1
+-      - const: usb2-2
+-      - const: usb2-3
+       - const: usb3-0
+-      - const: usb3-1
+-      - const: usb3-2
+-      - const: usb3-3
+ 
+   avddio-usb-supply:
+     description: PCIe/USB3 analog logic power supply. Must supply 1.05 V.
+-- 
+2.40.1
+
