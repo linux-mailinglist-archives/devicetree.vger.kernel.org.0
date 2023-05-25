@@ -2,134 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABA32710E48
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 16:26:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC3E7710E6A
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 16:34:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241505AbjEYO0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 10:26:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55404 "EHLO
+        id S241543AbjEYOex (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 10:34:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241078AbjEYO0A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 10:26:00 -0400
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74A5F189
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 07:25:59 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id ca18e2360f4ac-77487fc1f16so188195639f.0
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 07:25:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1685024758; x=1687616758;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EIaS1CiG05qxEN3YCh4DxBPvMLd9g2DK0yZG+wFH+TY=;
-        b=a4NokHhg9Bu44lIpBjF2CGfyCa3pgvGppbekAn0VvUBlzF3HVxulNaACPjqy2LmjKZ
-         o7d7Rpqvj5KtbkO/Kb4k6EBUVJNjh4r5EInJASluv2YG8Y47cd5BBL7UXlYQNeGmntxJ
-         Wj1iRKlRblCDY0RdMlwq1cWrb67i/DPS1i5hE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685024758; x=1687616758;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EIaS1CiG05qxEN3YCh4DxBPvMLd9g2DK0yZG+wFH+TY=;
-        b=a4oTqRv76W14R/4fQuSV3ja8Aj681r27duh3Vd+CxuIuvMXKK0ATkjLryKvyvAYf2q
-         67PjNhpnoQEqd7mzwotcx2bo6nV8rO5uZSzrfBDbez0havyGSDHdK8zjCE7SWKryaICW
-         MDJ5Re9gj2lL3RL05ct4/Dx3ntCjuFV69ERzNd7hP96ngO08UJaO5Uo5EaHcwpbvDUw+
-         zI4VMuFIFG4hd82BtYkPFJk/llJEEUIPMwfz5uNyZ9T4BjtG/hHiGL1zQfE5umKKHSr1
-         TuunrxI+FbIbBCM24Z6yV70rqAzBih+/HiWOc5wtnkKwngCKLnNxLu3DEMnW8hQkHQbK
-         dSGQ==
-X-Gm-Message-State: AC+VfDx8CkgotlL/tofBK0ymsJKjHqmdOqq5N75O+GdVZLbe+idqzInM
-        KSgs12dSU2CaVuY6+GKmU1wYoMocPuqG96jALDQ=
-X-Google-Smtp-Source: ACHHUZ7zgS9ogFBi5QGoRn2zW/lu7zn4TzxK9j/uA61GJsmKqC9+hslTgv06oq1zHuWXubk2Ajz3sg==
-X-Received: by 2002:a92:d301:0:b0:331:3df1:6cc3 with SMTP id x1-20020a92d301000000b003313df16cc3mr14344481ila.0.1685024758329;
-        Thu, 25 May 2023 07:25:58 -0700 (PDT)
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com. [209.85.166.175])
-        by smtp.gmail.com with ESMTPSA id h1-20020a92c081000000b0033842c3f6b4sm340615ile.83.2023.05.25.07.25.57
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 May 2023 07:25:57 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-338458a9304so144645ab.1
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 07:25:57 -0700 (PDT)
-X-Received: by 2002:a05:6e02:1d12:b0:331:aabc:c8b7 with SMTP id
- i18-20020a056e021d1200b00331aabcc8b7mr224459ila.10.1685024756622; Thu, 25 May
- 2023 07:25:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <1682328761-17517-1-git-send-email-quic_vnivarth@quicinc.com>
-In-Reply-To: <1682328761-17517-1-git-send-email-quic_vnivarth@quicinc.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 25 May 2023 07:25:45 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WdTS6UA9oSahdn8k2hKRLZo974A4b8nrDYSiTggKAv+g@mail.gmail.com>
-Message-ID: <CAD=FV=WdTS6UA9oSahdn8k2hKRLZo974A4b8nrDYSiTggKAv+g@mail.gmail.com>
-Subject: Re: [PATCH v5 0/5] spi: Add DMA mode support to spi-qcom-qspi
-To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
-        andersson@kernel.org
-Cc:     agross@kernel.org, konrad.dybcio@linaro.org, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_msavaliy@quicinc.com,
-        mka@chromium.org, swboyd@chromium.org, quic_vtanuku@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S241637AbjEYOew (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 10:34:52 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 512D1101;
+        Thu, 25 May 2023 07:34:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=dmJE33FZIZmlTmfMzbCfmAi7/ICgaK239XoyyuZANyk=; b=i8QNqmiaxtOqyV5/L9vmwOcddQ
+        X1sPVmGMnt3wycGCbVIGfpG1tmhycIU1UhX0wkxvqfbLiZrw69YmJbSiziMHZPsRkICvXc/xBkaXr
+        ztqGgp3AsJODvGWs85O1yrYWHuIf3j8hWFmPSaibnX9iDmkz480ANeRbbHfu6QlX3smw=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:49690 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1q2C3A-0008KV-5y; Thu, 25 May 2023 10:34:44 -0400
+Date:   Thu, 25 May 2023 10:34:43 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     andy.shevchenko@gmail.com
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Message-Id: <20230525103443.d3d31e80221aed1ebceef30e@hugovil.com>
+In-Reply-To: <ZG9CWhiTbLBKjPC9@surfacebook>
+References: <20230525040324.3773741-1-hugo@hugovil.com>
+        <20230525040324.3773741-8-hugo@hugovil.com>
+        <ZG9CWhiTbLBKjPC9@surfacebook>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v3 07/11] dt-bindings: sc16is7xx: Add property to change
+ GPIO function
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+On Thu, 25 May 2023 14:11:22 +0300
+andy.shevchenko@gmail.com wrote:
 
-On Mon, Apr 24, 2023 at 2:32=E2=80=AFAM Vijaya Krishna Nivarthi
-<quic_vnivarth@quicinc.com> wrote:
->
-> There are large number of QSPI irqs that fire during boot/init and later
-> on every suspend/resume.
-> This could be made faster by doing DMA instead of PIO.
-> Below is comparison for number of interrupts raised in 2 scenarios...
-> Boot up and stabilise
-> Suspend/Resume
->
-> Sequence   PIO    DMA
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> Boot-up    69088  19284
-> S/R        5066   3430
->
-> Speed test results...
-> spi-nor read times in sec after 2 min uptime
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> PIO - Iterations-1000, min=3D3.18, max=3D3.74, avg=3D3.53
-> DMA - Iterations-1000, min=3D1.21, max=3D2.28, avg=3D1.79
->
-> spi-nor write times in sec after 2 min uptime
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> PIO - Iterations-1000, min=3D3.20, max=3D8.24, avg=3D3.58
-> DMA - Iterations-1000, min=3D1.25, max=3D5.13, avg=3D1.82
->
-> Further testing performed...
-> a) multiple entries in sgt (simulated by max_dma_len =3D 1024)
-> b) fallback to pio (simulated by dma setup failure)
->
-> Vijaya Krishna Nivarthi (5):
->   spi: dt-bindings: qcom,spi-qcom-qspi: Add iommus
->   arm64: dts: qcom: sc7180: Add stream-id of qspi to iommus
->   arm64: dts: qcom: sc7280: Add stream-id of qspi to iommus
->   arm64: dts: qcom: sdm845: Add stream-id of qspi to iommus
->   spi: spi-qcom-qspi: Add DMA mode support
+> Thu, May 25, 2023 at 12:03:21AM -0400, Hugo Villeneuve kirjoitti:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > 
+> > Some variants in this series of uart controllers have GPIO pins that
+> 
+> UART
 
-Mark has landed the bindings / code changes:
+Hi,
+fixed.
 
-b5762d95607e spi: spi-qcom-qspi: Add DMA mode support
-64c05eb3a0f4 spi: dt-bindings: qcom,spi-qcom-qspi: Add iommus
+> > are shared between GPIO and modem control lines.
+> > 
+> > The pin mux mode (GPIO or modem control lines) can be set for each
+> > ports (channels) supported by the variant.
+> > 
+> > This adds a property to the device tree to set the GPIO pin mux to
+> > modem control lines on selected ports if needed.
+> 
+> I'm wondering if we can convert this to YAML first and then add a new property.
 
-...so I think the dts changes here are ready for you to land. There
-are no hard dependencies here so you can land the dts without needing
-the code changes.
+Hi,
+I also thought about it, then decided to focus on simply adding the new property first since I am not an expert in YAML.
 
-Thanks!
+I think it would be best to do it after this patch series. Keep in mind that the original intent of this patch series, and this new property, was to fix a regression related to the GPIOs, and I think that converting to YAML would simply delay and add much noise to the discussion at this point.
 
--Doug
+If someone wants to do it as a separate patch after this, fine. If not, I an willing to give it a go.
+
+Hugo.
