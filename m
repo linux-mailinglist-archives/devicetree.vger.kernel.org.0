@@ -2,487 +2,331 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63E027108F7
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A1D1710911
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:39:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240716AbjEYJdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 05:33:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59250 "EHLO
+        id S240765AbjEYJji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 05:39:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240520AbjEYJcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:32:46 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3FBC1AB
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 02:32:43 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1ae507af2e5so6059825ad.1
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 02:32:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1685007163; x=1687599163;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2edDXEsQTHI7uII+c9+BmUZr5wGVnkwzXdOkT9FS/GE=;
-        b=XPbv2IKMzt1GxUt3sUXSbVSu2nv3CZE/RyBGO6HoRIp9TVxXYKfhZtn2clBFpQz6FN
-         UEhXjKwBc6+9GK0Ugi81wXhA9hUrX/mo5Af6Ny7VoC35sceygSn70ZYmbDtTbjbvdhZN
-         GTlJCWDjFyQnJn96mS0SDlgZAqK8vZK0Vp/1Hz3C0hgHLS3pOH3G4T06byhPM+zHIrK0
-         VDXC1ggDthQ6aVKRC81FZFduJcAKnEXFZULCMQ0RjBrvb18Q6IwNlmXUbSnmc67TP/rD
-         hQxVVN3ahhDKHY7aN6uRKNu63KNg922vGOA5Y9PsVodt++t6RL/UDq17ylTtoT6apxmc
-         MwvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685007163; x=1687599163;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2edDXEsQTHI7uII+c9+BmUZr5wGVnkwzXdOkT9FS/GE=;
-        b=Nt23nDQUOO0N8XHdAcy72ngmUE/CJVik2RZUklBqiV3aleDXHFC0xGa/09pGJ3OaJu
-         8XcB82Zn3olU/xSq0xcxuAKv/DRURCe4rHh3zYscKQkIVwDRHlT6fqQ2vgQWOMGqpuvd
-         +aPWU7muFZPaJAQcqaJulSCrCYAMnhyHCgL+gmoFlPyWXFDQgmtk6nNfCJuZIG2L4oNx
-         qc682AdBVdmmrl9XWapchGCB/4M+gQsbQtH7zEeGYnsbcgC5kH5XNCUgXGBmS8YZYCcP
-         /kG9iiE9Y21+2jovBCqJznDTzMIuTAh2ccEzjiiN7DQphtDA8HMB9TNzWIIwbeNCTA3P
-         Xdhw==
-X-Gm-Message-State: AC+VfDw3v4a6hUAGO9/nNFxJfmyD/QdKHj5OdGoxCt/7Gsk/NAeBPg6C
-        FTJCs2fVjQYWfPK/Vi919NWJ3g==
-X-Google-Smtp-Source: ACHHUZ6FmTha8Z5JOuQY03Iq8yyCy6x0Ce/uSiwkgoqPBJWDxm0VTSp/bm/Bslp7GxsnUYCJdKJzBQ==
-X-Received: by 2002:a17:903:22cf:b0:1ac:7e95:74bf with SMTP id y15-20020a17090322cf00b001ac7e9574bfmr1000680plg.6.1685007163266;
-        Thu, 25 May 2023 02:32:43 -0700 (PDT)
-Received: from yc.huaqin.com ([101.78.151.214])
-        by smtp.gmail.com with ESMTPSA id n6-20020a170902e54600b001afa7040a70sm951039plf.276.2023.05.25.02.32.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 May 2023 02:32:42 -0700 (PDT)
-From:   Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-To:     dianders@google.com, daniel@ffwll.ch, neil.armstrong@linaro.org,
-        sam@ravnborg.org, airlied@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, hsinyi@google.com,
-        conor+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org,
-        Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        Douglas Anderson <dianders@chromium.org>
-Subject: [v4 4/4] drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI panel
-Date:   Thu, 25 May 2023 17:31:51 +0800
-Message-Id: <20230525093151.2338370-5-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230525093151.2338370-1-yangcong5@huaqin.corp-partner.google.com>
-References: <1adda828-cf35-fb2c-6db5-f9ca91b5b62a@linaro.org>
- <20230525093151.2338370-1-yangcong5@huaqin.corp-partner.google.com>
+        with ESMTP id S240760AbjEYJjJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:39:09 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 641F4173B;
+        Thu, 25 May 2023 02:37:42 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 78BBB5FD26;
+        Thu, 25 May 2023 12:37:39 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1685007459;
+        bh=qobywYVJnOUHz0WjaEufUy7pJlPh58rBIf/mWyapB+0=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=AENyLL0j+KpGwEjQ+QN4FhtCnfmpVnRqackEWrrImh2HMKI+3EJgJ9YbzKCDpArvX
+         1ubecqHpf+cgs5eMtoTj8UQY1eUlDxLG1jON6IF4aqoT1vEjxggCOphXp6x+CYeTeH
+         ZpzMKCHUYnENITvHg5wyx2D3Kd0zfHRS/1xQE5KmI+m5h6BDDrnktxO6fRRFPbiWGg
+         6P7wlkOrFPPJPdOAQYskJGa4JPxdcvd6qpCbk9FxrQwguTlLeAn0x2yL1aPnujQzA+
+         0fdgUgU7z7g5yNv7qGgu0ihqdQ7szh4SYszTjyfRFc/Q4MwQ6amkZQx1dGQwW5CHM9
+         QA5m0NMigP5uw==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Thu, 25 May 2023 12:37:37 +0300 (MSK)
+Date:   Thu, 25 May 2023 12:37:36 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor@kernel.org>
+CC:     <jian.hu@amlogic.com>, <kernel@sberdevices.ru>,
+        <rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v16 5/6] dt-bindings: clock: meson: add A1 Peripherals
+ clock controller bindings
+Message-ID: <20230525093736.naztwqlhvskujsoa@CAB-WSD-L081021>
+References: <20230523135351.19133-1-ddrokosov@sberdevices.ru>
+ <20230523135351.19133-6-ddrokosov@sberdevices.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230523135351.19133-6-ddrokosov@sberdevices.ru>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [172.16.1.6]
+X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/25 04:52:00 #21357441
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Starry-ili9882 is a 10.51" WUXGA TFT panel. which fits in nicely with
-the existing panel-boe-tv101wum-nl6 driver. From the datasheet,MIPI need
-to keep the LP11 state before the lcm_reset pin is pulled high. So add
-lp11_before_reset flag.
+Hello Rob, Krzysztof and Conor,
 
-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
- .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 371 ++++++++++++++++++
- 1 file changed, 371 insertions(+)
+Could you please take a look at this patch version? Before Rob marked
+this patchset with RvB at v13 -
+https://lore.kernel.org/linux-amlogic/168130720431.2218249.7671061964988064525.robh@kernel.org/
 
-diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-index 0772d96e446c..720b77964fcf 100644
---- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-+++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-@@ -1370,6 +1370,346 @@ static const struct panel_init_cmd starry_himax83102_j02_init_cmd[] = {
- 	{},
- };
- 
-+static const struct panel_init_cmd starry_ili9882t_init_cmd[] = {
-+	_INIT_DELAY_CMD(5),
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x01),
-+	_INIT_DCS_CMD(0x00, 0x42),
-+	_INIT_DCS_CMD(0x01, 0x11),
-+	_INIT_DCS_CMD(0x02, 0x00),
-+	_INIT_DCS_CMD(0x03, 0x00),
-+
-+	_INIT_DCS_CMD(0x04, 0x01),
-+	_INIT_DCS_CMD(0x05, 0x11),
-+	_INIT_DCS_CMD(0x06, 0x00),
-+	_INIT_DCS_CMD(0x07, 0x00),
-+
-+	_INIT_DCS_CMD(0x08, 0x80),
-+	_INIT_DCS_CMD(0x09, 0x81),
-+	_INIT_DCS_CMD(0x0A, 0x71),
-+	_INIT_DCS_CMD(0x0B, 0x00),
-+
-+	_INIT_DCS_CMD(0x0C, 0x00),
-+	_INIT_DCS_CMD(0x0E, 0x1A),
-+
-+	_INIT_DCS_CMD(0x24, 0x00),
-+	_INIT_DCS_CMD(0x25, 0x00),
-+	_INIT_DCS_CMD(0x26, 0x00),
-+	_INIT_DCS_CMD(0x27, 0x00),
-+
-+	_INIT_DCS_CMD(0x2C, 0xD4),
-+	_INIT_DCS_CMD(0xB9, 0x40),
-+
-+	_INIT_DCS_CMD(0xB0, 0x11),
-+
-+	_INIT_DCS_CMD(0xE6, 0x32),
-+	_INIT_DCS_CMD(0xD1, 0x30),
-+
-+	_INIT_DCS_CMD(0xD6, 0x55),
-+
-+	_INIT_DCS_CMD(0xD0, 0x01),
-+	_INIT_DCS_CMD(0xE3, 0x93),
-+	_INIT_DCS_CMD(0xE4, 0x00),
-+	_INIT_DCS_CMD(0xE5, 0x80),
-+
-+	_INIT_DCS_CMD(0x31, 0x07),
-+	_INIT_DCS_CMD(0x32, 0x07),
-+	_INIT_DCS_CMD(0x33, 0x07),
-+	_INIT_DCS_CMD(0x34, 0x07),
-+	_INIT_DCS_CMD(0x35, 0x07),
-+	_INIT_DCS_CMD(0x36, 0x01),
-+	_INIT_DCS_CMD(0x37, 0x00),
-+	_INIT_DCS_CMD(0x38, 0x28),
-+	_INIT_DCS_CMD(0x39, 0x29),
-+	_INIT_DCS_CMD(0x3A, 0x11),
-+	_INIT_DCS_CMD(0x3B, 0x13),
-+	_INIT_DCS_CMD(0x3C, 0x15),
-+	_INIT_DCS_CMD(0x3D, 0x17),
-+	_INIT_DCS_CMD(0x3E, 0x09),
-+	_INIT_DCS_CMD(0x3F, 0x0D),
-+	_INIT_DCS_CMD(0x40, 0x02),
-+	_INIT_DCS_CMD(0x41, 0x02),
-+	_INIT_DCS_CMD(0x42, 0x02),
-+	_INIT_DCS_CMD(0x43, 0x02),
-+	_INIT_DCS_CMD(0x44, 0x02),
-+	_INIT_DCS_CMD(0x45, 0x02),
-+	_INIT_DCS_CMD(0x46, 0x02),
-+
-+	_INIT_DCS_CMD(0x47, 0x07),
-+	_INIT_DCS_CMD(0x48, 0x07),
-+	_INIT_DCS_CMD(0x49, 0x07),
-+	_INIT_DCS_CMD(0x4A, 0x07),
-+	_INIT_DCS_CMD(0x4B, 0x07),
-+	_INIT_DCS_CMD(0x4C, 0x01),
-+	_INIT_DCS_CMD(0x4D, 0x00),
-+	_INIT_DCS_CMD(0x4E, 0x28),
-+	_INIT_DCS_CMD(0x4F, 0x29),
-+	_INIT_DCS_CMD(0x50, 0x10),
-+	_INIT_DCS_CMD(0x51, 0x12),
-+	_INIT_DCS_CMD(0x52, 0x14),
-+	_INIT_DCS_CMD(0x53, 0x16),
-+	_INIT_DCS_CMD(0x54, 0x08),
-+	_INIT_DCS_CMD(0x55, 0x0C),
-+	_INIT_DCS_CMD(0x56, 0x02),
-+	_INIT_DCS_CMD(0x57, 0x02),
-+	_INIT_DCS_CMD(0x58, 0x02),
-+	_INIT_DCS_CMD(0x59, 0x02),
-+	_INIT_DCS_CMD(0x5A, 0x02),
-+	_INIT_DCS_CMD(0x5B, 0x02),
-+	_INIT_DCS_CMD(0x5C, 0x02),
-+
-+	_INIT_DCS_CMD(0x61, 0x07),
-+	_INIT_DCS_CMD(0x62, 0x07),
-+	_INIT_DCS_CMD(0x63, 0x07),
-+	_INIT_DCS_CMD(0x64, 0x07),
-+	_INIT_DCS_CMD(0x65, 0x07),
-+	_INIT_DCS_CMD(0x66, 0x01),
-+	_INIT_DCS_CMD(0x67, 0x00),
-+	_INIT_DCS_CMD(0x68, 0x28),
-+	_INIT_DCS_CMD(0x69, 0x29),
-+	_INIT_DCS_CMD(0x6A, 0x16),
-+	_INIT_DCS_CMD(0x6B, 0x14),
-+	_INIT_DCS_CMD(0x6C, 0x12),
-+	_INIT_DCS_CMD(0x6D, 0x10),
-+	_INIT_DCS_CMD(0x6E, 0x0C),
-+	_INIT_DCS_CMD(0x6F, 0x08),
-+	_INIT_DCS_CMD(0x70, 0x02),
-+	_INIT_DCS_CMD(0x71, 0x02),
-+	_INIT_DCS_CMD(0x72, 0x02),
-+	_INIT_DCS_CMD(0x73, 0x02),
-+	_INIT_DCS_CMD(0x74, 0x02),
-+	_INIT_DCS_CMD(0x75, 0x02),
-+	_INIT_DCS_CMD(0x76, 0x02),
-+
-+	_INIT_DCS_CMD(0x77, 0x07),
-+	_INIT_DCS_CMD(0x78, 0x07),
-+	_INIT_DCS_CMD(0x79, 0x07),
-+	_INIT_DCS_CMD(0x7A, 0x07),
-+	_INIT_DCS_CMD(0x7B, 0x07),
-+	_INIT_DCS_CMD(0x7C, 0x01),
-+	_INIT_DCS_CMD(0x7D, 0x00),
-+	_INIT_DCS_CMD(0x7E, 0x28),
-+	_INIT_DCS_CMD(0x7F, 0x29),
-+	_INIT_DCS_CMD(0x80, 0x17),
-+	_INIT_DCS_CMD(0x81, 0x15),
-+	_INIT_DCS_CMD(0x82, 0x13),
-+	_INIT_DCS_CMD(0x83, 0x11),
-+	_INIT_DCS_CMD(0x84, 0x0D),
-+	_INIT_DCS_CMD(0x85, 0x09),
-+	_INIT_DCS_CMD(0x86, 0x02),
-+	_INIT_DCS_CMD(0x87, 0x07),
-+	_INIT_DCS_CMD(0x88, 0x07),
-+	_INIT_DCS_CMD(0x89, 0x07),
-+	_INIT_DCS_CMD(0x8A, 0x07),
-+	_INIT_DCS_CMD(0x8B, 0x07),
-+	_INIT_DCS_CMD(0x8C, 0x07),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x02),
-+	_INIT_DCS_CMD(0x29, 0x3A),
-+	_INIT_DCS_CMD(0x2A, 0x3B),
-+
-+	_INIT_DCS_CMD(0x06, 0x01),
-+	_INIT_DCS_CMD(0x07, 0x01),
-+	_INIT_DCS_CMD(0x08, 0x0C),
-+	_INIT_DCS_CMD(0x09, 0x44),
-+
-+	_INIT_DCS_CMD(0x3C, 0x0A),
-+	_INIT_DCS_CMD(0x39, 0x11),
-+	_INIT_DCS_CMD(0x3D, 0x00),
-+	_INIT_DCS_CMD(0x3A, 0x0C),
-+	_INIT_DCS_CMD(0x3B, 0x44),
-+
-+	_INIT_DCS_CMD(0x53, 0x1F),
-+	_INIT_DCS_CMD(0x5E, 0x40),
-+	_INIT_DCS_CMD(0x84, 0x00),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x03),
-+	_INIT_DCS_CMD(0x20, 0x01),
-+	_INIT_DCS_CMD(0x21, 0x3C),
-+	_INIT_DCS_CMD(0x22, 0xFA),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x0A),
-+	_INIT_DCS_CMD(0xE0, 0x01),
-+	_INIT_DCS_CMD(0xE2, 0x01),
-+	_INIT_DCS_CMD(0xE5, 0x91),
-+	_INIT_DCS_CMD(0xE6, 0x3C),
-+	_INIT_DCS_CMD(0xE7, 0x00),
-+	_INIT_DCS_CMD(0xE8, 0xFA),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x12),
-+	_INIT_DCS_CMD(0x87, 0x2C),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x05),
-+	_INIT_DCS_CMD(0x73, 0xE5),
-+	_INIT_DCS_CMD(0x7F, 0x6B),
-+	_INIT_DCS_CMD(0x6D, 0xA4),
-+	_INIT_DCS_CMD(0x79, 0x54),
-+	_INIT_DCS_CMD(0x69, 0x97),
-+	_INIT_DCS_CMD(0x6A, 0x97),
-+	_INIT_DCS_CMD(0xA5, 0x3F),
-+	_INIT_DCS_CMD(0x61, 0xDA),
-+	_INIT_DCS_CMD(0xA7, 0xF1),
-+	_INIT_DCS_CMD(0x5F, 0x01),
-+	_INIT_DCS_CMD(0x62, 0x3F),
-+	_INIT_DCS_CMD(0x1D, 0x90),
-+	_INIT_DCS_CMD(0x86, 0x87),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x06),
-+	_INIT_DCS_CMD(0xC0, 0x80),
-+	_INIT_DCS_CMD(0xC1, 0x07),
-+	_INIT_DCS_CMD(0xCA, 0x58),
-+	_INIT_DCS_CMD(0xCB, 0x02),
-+	_INIT_DCS_CMD(0xCE, 0x58),
-+	_INIT_DCS_CMD(0xCF, 0x02),
-+	_INIT_DCS_CMD(0x67, 0x60),
-+	_INIT_DCS_CMD(0x10, 0x00),
-+	_INIT_DCS_CMD(0x92, 0x22),
-+	_INIT_DCS_CMD(0xD3, 0x08),
-+	_INIT_DCS_CMD(0xD6, 0x55),
-+	_INIT_DCS_CMD(0xDC, 0x38),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x08),
-+	_INIT_DCS_CMD(0xE0, 0x00, 0x10, 0x2A, 0x4D, 0x61, 0x56, 0x6A, 0x6E, 0x79, 0x76, 0x8F, 0x95, 0x98, 0xAE, 0xAA, 0xB2, 0xBB, 0xCE, 0xC6, 0xBD, 0xD5, 0xE2, 0xE8),
-+	_INIT_DCS_CMD(0xE1, 0x00, 0x10, 0x2A, 0x4D, 0x61, 0x56, 0x6A, 0x6E, 0x79, 0x76, 0x8F, 0x95, 0x98, 0xAE, 0xAA, 0xB2, 0xBB, 0xCE, 0xC6, 0xBD, 0xD5, 0xE2, 0xE8),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x04),
-+	_INIT_DCS_CMD(0xBA, 0x81),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x0C),
-+	_INIT_DCS_CMD(0x00, 0x02),
-+	_INIT_DCS_CMD(0x01, 0x00),
-+	_INIT_DCS_CMD(0x02, 0x03),
-+	_INIT_DCS_CMD(0x03, 0x01),
-+	_INIT_DCS_CMD(0x04, 0x03),
-+	_INIT_DCS_CMD(0x05, 0x02),
-+	_INIT_DCS_CMD(0x06, 0x04),
-+	_INIT_DCS_CMD(0x07, 0x03),
-+	_INIT_DCS_CMD(0x08, 0x03),
-+	_INIT_DCS_CMD(0x09, 0x04),
-+	_INIT_DCS_CMD(0x0A, 0x04),
-+	_INIT_DCS_CMD(0x0B, 0x05),
-+	_INIT_DCS_CMD(0x0C, 0x04),
-+	_INIT_DCS_CMD(0x0D, 0x06),
-+	_INIT_DCS_CMD(0x0E, 0x05),
-+	_INIT_DCS_CMD(0x0F, 0x07),
-+	_INIT_DCS_CMD(0x10, 0x04),
-+	_INIT_DCS_CMD(0x11, 0x08),
-+	_INIT_DCS_CMD(0x12, 0x05),
-+	_INIT_DCS_CMD(0x13, 0x09),
-+	_INIT_DCS_CMD(0x14, 0x05),
-+	_INIT_DCS_CMD(0x15, 0x0A),
-+	_INIT_DCS_CMD(0x16, 0x06),
-+	_INIT_DCS_CMD(0x17, 0x0B),
-+	_INIT_DCS_CMD(0x18, 0x05),
-+	_INIT_DCS_CMD(0x19, 0x0C),
-+	_INIT_DCS_CMD(0x1A, 0x06),
-+	_INIT_DCS_CMD(0x1B, 0x0D),
-+	_INIT_DCS_CMD(0x1C, 0x06),
-+	_INIT_DCS_CMD(0x1D, 0x0E),
-+	_INIT_DCS_CMD(0x1E, 0x07),
-+	_INIT_DCS_CMD(0x1F, 0x0F),
-+	_INIT_DCS_CMD(0x20, 0x06),
-+	_INIT_DCS_CMD(0x21, 0x10),
-+	_INIT_DCS_CMD(0x22, 0x07),
-+	_INIT_DCS_CMD(0x23, 0x11),
-+	_INIT_DCS_CMD(0x24, 0x07),
-+	_INIT_DCS_CMD(0x25, 0x12),
-+	_INIT_DCS_CMD(0x26, 0x08),
-+	_INIT_DCS_CMD(0x27, 0x13),
-+	_INIT_DCS_CMD(0x28, 0x07),
-+	_INIT_DCS_CMD(0x29, 0x14),
-+	_INIT_DCS_CMD(0x2A, 0x08),
-+	_INIT_DCS_CMD(0x2B, 0x15),
-+	_INIT_DCS_CMD(0x2C, 0x08),
-+	_INIT_DCS_CMD(0x2D, 0x16),
-+	_INIT_DCS_CMD(0x2E, 0x09),
-+	_INIT_DCS_CMD(0x2F, 0x17),
-+	_INIT_DCS_CMD(0x30, 0x08),
-+	_INIT_DCS_CMD(0x31, 0x18),
-+	_INIT_DCS_CMD(0x32, 0x09),
-+	_INIT_DCS_CMD(0x33, 0x19),
-+	_INIT_DCS_CMD(0x34, 0x09),
-+	_INIT_DCS_CMD(0x35, 0x1A),
-+	_INIT_DCS_CMD(0x36, 0x0A),
-+	_INIT_DCS_CMD(0x37, 0x1B),
-+	_INIT_DCS_CMD(0x38, 0x0A),
-+	_INIT_DCS_CMD(0x39, 0x1C),
-+	_INIT_DCS_CMD(0x3A, 0x0A),
-+	_INIT_DCS_CMD(0x3B, 0x1D),
-+	_INIT_DCS_CMD(0x3C, 0x0A),
-+	_INIT_DCS_CMD(0x3D, 0x1E),
-+	_INIT_DCS_CMD(0x3E, 0x0A),
-+	_INIT_DCS_CMD(0x3F, 0x1F),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x04),
-+	_INIT_DCS_CMD(0xBA, 0x01),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x0E),
-+	_INIT_DCS_CMD(0x02, 0x0C),
-+	_INIT_DCS_CMD(0x20, 0x10),
-+	_INIT_DCS_CMD(0x25, 0x16),
-+	_INIT_DCS_CMD(0x26, 0xE0),
-+	_INIT_DCS_CMD(0x27, 0x00),
-+	_INIT_DCS_CMD(0x29, 0x71),
-+	_INIT_DCS_CMD(0x2A, 0x46),
-+	_INIT_DCS_CMD(0x2B, 0x1F),
-+	_INIT_DCS_CMD(0x2D, 0xC7),
-+	_INIT_DCS_CMD(0x31, 0x02),
-+	_INIT_DCS_CMD(0x32, 0xDF),
-+	_INIT_DCS_CMD(0x33, 0x5A),
-+	_INIT_DCS_CMD(0x34, 0xC0),
-+	_INIT_DCS_CMD(0x35, 0x5A),
-+	_INIT_DCS_CMD(0x36, 0xC0),
-+	_INIT_DCS_CMD(0x38, 0x65),
-+	_INIT_DCS_CMD(0x80, 0x3E),
-+	_INIT_DCS_CMD(0x81, 0xA0),
-+	_INIT_DCS_CMD(0xB0, 0x01),
-+	_INIT_DCS_CMD(0xB1, 0xCC),
-+	_INIT_DCS_CMD(0xC0, 0x12),
-+	_INIT_DCS_CMD(0xC2, 0xCC),
-+	_INIT_DCS_CMD(0xC3, 0xCC),
-+	_INIT_DCS_CMD(0xC4, 0xCC),
-+	_INIT_DCS_CMD(0xC5, 0xCC),
-+	_INIT_DCS_CMD(0xC6, 0xCC),
-+	_INIT_DCS_CMD(0xC7, 0xCC),
-+	_INIT_DCS_CMD(0xC8, 0xCC),
-+	_INIT_DCS_CMD(0xC9, 0xCC),
-+	_INIT_DCS_CMD(0x30, 0x00),
-+	_INIT_DCS_CMD(0x00, 0x81),
-+	_INIT_DCS_CMD(0x08, 0x02),
-+	_INIT_DCS_CMD(0x09, 0x00),
-+	_INIT_DCS_CMD(0x07, 0x21),
-+	_INIT_DCS_CMD(0x04, 0x10),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x1E),
-+	_INIT_DCS_CMD(0x60, 0x00),
-+	_INIT_DCS_CMD(0x64, 0x00),
-+	_INIT_DCS_CMD(0x6D, 0x00),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x0B),
-+	_INIT_DCS_CMD(0xA6, 0x44),
-+	_INIT_DCS_CMD(0xA7, 0xB6),
-+	_INIT_DCS_CMD(0xA8, 0x03),
-+	_INIT_DCS_CMD(0xA9, 0x03),
-+	_INIT_DCS_CMD(0xAA, 0x51),
-+	_INIT_DCS_CMD(0xAB, 0x51),
-+	_INIT_DCS_CMD(0xAC, 0x04),
-+	_INIT_DCS_CMD(0xBD, 0x92),
-+	_INIT_DCS_CMD(0xBE, 0xA1),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x05),
-+	_INIT_DCS_CMD(0x86, 0x87),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x06),
-+	_INIT_DCS_CMD(0x92, 0x22),
-+
-+	_INIT_DCS_CMD(0xFF, 0x98, 0x82, 0x00),
-+	_INIT_DCS_CMD(0x11),
-+	_INIT_DELAY_CMD(120),
-+	_INIT_DCS_CMD(0x29),
-+	_INIT_DELAY_CMD(20),
-+	{},
-+};
-+
- static inline struct boe_panel *to_boe_panel(struct drm_panel *panel)
- {
- 	return container_of(panel, struct boe_panel, base);
-@@ -1795,6 +2135,34 @@ static const struct panel_desc starry_himax83102_j02_desc = {
- 	.lp11_before_reset = true,
- };
- 
-+static const struct drm_display_mode starry_ili9882t_default_mode = {
-+	.clock = 165280,
-+	.hdisplay = 1200,
-+	.hsync_start = 1200 + 32,
-+	.hsync_end = 1200 + 32 + 30,
-+	.htotal = 1200 + 32 + 30 + 32,
-+	.vdisplay = 1920,
-+	.vsync_start = 1920 + 68,
-+	.vsync_end = 1920 + 68 + 2,
-+	.vtotal = 1920 + 68 + 2 + 10,
-+	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-+};
-+
-+static const struct panel_desc starry_ili9882t_desc = {
-+	.modes = &starry_ili9882t_default_mode,
-+	.bpc = 8,
-+	.size = {
-+		.width_mm = 141,
-+		.height_mm = 226,
-+	},
-+	.lanes = 4,
-+	.format = MIPI_DSI_FMT_RGB888,
-+	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
-+		      MIPI_DSI_MODE_LPM,
-+	.init_cmds = starry_ili9882t_init_cmd,
-+	.lp11_before_reset = true,
-+};
-+
- static int boe_panel_get_modes(struct drm_panel *panel,
- 			       struct drm_connector *connector)
- {
-@@ -1971,6 +2339,9 @@ static const struct of_device_id boe_of_match[] = {
- 	{ .compatible = "starry,himax83102-j02",
- 	  .data = &starry_himax83102_j02_desc
- 	},
-+	{ .compatible = "starry,ili9882t",
-+	  .data = &starry_ili9882t_desc
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, boe_of_match);
+However, due to several comments from other maintainers, unfortunately,
+I had to rename the 'a1-clkc' controller to 'a1-peripherals-clkc' and
+remove Rob's RvB.
+
+I would be grateful for your assistance!
+
+On Tue, May 23, 2023 at 04:53:50PM +0300, Dmitry Rokosov wrote:
+> Add documentation and dt bindings for the Amlogic A1 Peripherals clock
+> controller.
+> A1 PLL clock controller has references to A1 Peripherals clock
+> controller objects, so reflect them in the schema.
+> 
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> ---
+>  .../clock/amlogic,a1-peripherals-clkc.yaml    |  73 +++++++++++
+>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   |   5 +-
+>  .../clock/amlogic,a1-peripherals-clkc.h       | 115 ++++++++++++++++++
+>  3 files changed, 191 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
+> new file mode 100644
+> index 000000000000..6d84cee1bd75
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-peripherals-clkc.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,a1-peripherals-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic A1 Peripherals Clock Control Unit
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jian Hu <jian.hu@jian.hu.com>
+> +  - Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,a1-peripherals-clkc
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: input fixed pll div2
+> +      - description: input fixed pll div3
+> +      - description: input fixed pll div5
+> +      - description: input fixed pll div7
+> +      - description: input hifi pll
+> +      - description: input oscillator (usually at 24MHz)
+> +
+> +  clock-names:
+> +    items:
+> +      - const: fclk_div2
+> +      - const: fclk_div3
+> +      - const: fclk_div5
+> +      - const: fclk_div7
+> +      - const: hifi_pll
+> +      - const: xtal
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+> +    apb {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clock-controller@800 {
+> +            compatible = "amlogic,a1-peripherals-clkc";
+> +            reg = <0 0x800 0 0x104>;
+> +            #clock-cells = <1>;
+> +            clocks = <&clkc_pll CLKID_FCLK_DIV2>,
+> +                     <&clkc_pll CLKID_FCLK_DIV3>,
+> +                     <&clkc_pll CLKID_FCLK_DIV5>,
+> +                     <&clkc_pll CLKID_FCLK_DIV7>,
+> +                     <&clkc_pll CLKID_HIFI_PLL>,
+> +                     <&xtal>;
+> +            clock-names = "fclk_div2", "fclk_div3",
+> +                          "fclk_div5", "fclk_div7",
+> +                          "hifi_pll", "xtal";
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> index 5c6fa620a63c..a59b188a8bf5 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> @@ -43,6 +43,7 @@ additionalProperties: false
+>  
+>  examples:
+>    - |
+> +    #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
+>      apb {
+>          #address-cells = <2>;
+>          #size-cells = <2>;
+> @@ -51,8 +52,8 @@ examples:
+>              compatible = "amlogic,a1-pll-clkc";
+>              reg = <0 0x7c80 0 0x18c>;
+>              #clock-cells = <1>;
+> -            clocks = <&clkc_periphs_fixpll_in>,
+> -                     <&clkc_periphs_hifipll_in>;
+> +            clocks = <&clkc_periphs CLKID_FIXPLL_IN>,
+> +                     <&clkc_periphs CLKID_HIFIPLL_IN>;
+>              clock-names = "fixpll_in", "hifipll_in";
+>          };
+>      };
+> diff --git a/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
+> new file mode 100644
+> index 000000000000..ff2730f398a6
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/amlogic,a1-peripherals-clkc.h
+> @@ -0,0 +1,115 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + * Author: Jian Hu <jian.hu@amlogic.com>
+> + *
+> + * Copyright (c) 2023, SberDevices. All Rights Reserved.
+> + * Author: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> + */
+> +
+> +#ifndef __A1_PERIPHERALS_CLKC_H
+> +#define __A1_PERIPHERALS_CLKC_H
+> +
+> +#define CLKID_FIXPLL_IN		1
+> +#define CLKID_USB_PHY_IN	2
+> +#define CLKID_USB_CTRL_IN	3
+> +#define CLKID_HIFIPLL_IN	4
+> +#define CLKID_SYSPLL_IN		5
+> +#define CLKID_DDS_IN		6
+> +#define CLKID_SYS		7
+> +#define CLKID_CLKTREE		8
+> +#define CLKID_RESET_CTRL	9
+> +#define CLKID_ANALOG_CTRL	10
+> +#define CLKID_PWR_CTRL		11
+> +#define CLKID_PAD_CTRL		12
+> +#define CLKID_SYS_CTRL		13
+> +#define CLKID_TEMP_SENSOR	14
+> +#define CLKID_AM2AXI_DIV	15
+> +#define CLKID_SPICC_B		16
+> +#define CLKID_SPICC_A		17
+> +#define CLKID_MSR		18
+> +#define CLKID_AUDIO		19
+> +#define CLKID_JTAG_CTRL		20
+> +#define CLKID_SARADC_EN		21
+> +#define CLKID_PWM_EF		22
+> +#define CLKID_PWM_CD		23
+> +#define CLKID_PWM_AB		24
+> +#define CLKID_CEC		25
+> +#define CLKID_I2C_S		26
+> +#define CLKID_IR_CTRL		27
+> +#define CLKID_I2C_M_D		28
+> +#define CLKID_I2C_M_C		29
+> +#define CLKID_I2C_M_B		30
+> +#define CLKID_I2C_M_A		31
+> +#define CLKID_ACODEC		32
+> +#define CLKID_OTP		33
+> +#define CLKID_SD_EMMC_A		34
+> +#define CLKID_USB_PHY		35
+> +#define CLKID_USB_CTRL		36
+> +#define CLKID_SYS_DSPB		37
+> +#define CLKID_SYS_DSPA		38
+> +#define CLKID_DMA		39
+> +#define CLKID_IRQ_CTRL		40
+> +#define CLKID_NIC		41
+> +#define CLKID_GIC		42
+> +#define CLKID_UART_C		43
+> +#define CLKID_UART_B		44
+> +#define CLKID_UART_A		45
+> +#define CLKID_SYS_PSRAM		46
+> +#define CLKID_RSA		47
+> +#define CLKID_CORESIGHT		48
+> +#define CLKID_AM2AXI_VAD	49
+> +#define CLKID_AUDIO_VAD		50
+> +#define CLKID_AXI_DMC		51
+> +#define CLKID_AXI_PSRAM		52
+> +#define CLKID_RAMB		53
+> +#define CLKID_RAMA		54
+> +#define CLKID_AXI_SPIFC		55
+> +#define CLKID_AXI_NIC		56
+> +#define CLKID_AXI_DMA		57
+> +#define CLKID_CPU_CTRL		58
+> +#define CLKID_ROM		59
+> +#define CLKID_PROC_I2C		60
+> +#define CLKID_DSPA_EN		63
+> +#define CLKID_DSPA_EN_NIC	64
+> +#define CLKID_DSPB_EN		65
+> +#define CLKID_DSPB_EN_NIC	66
+> +#define CLKID_RTC		67
+> +#define CLKID_CECA_32K		68
+> +#define CLKID_CECB_32K		69
+> +#define CLKID_24M		70
+> +#define CLKID_12M		71
+> +#define CLKID_FCLK_DIV2_DIVN	72
+> +#define CLKID_GEN		73
+> +#define CLKID_SARADC		75
+> +#define CLKID_PWM_A		76
+> +#define CLKID_PWM_B		77
+> +#define CLKID_PWM_C		78
+> +#define CLKID_PWM_D		79
+> +#define CLKID_PWM_E		80
+> +#define CLKID_PWM_F		81
+> +#define CLKID_SPICC		82
+> +#define CLKID_TS		83
+> +#define CLKID_SPIFC		84
+> +#define CLKID_USB_BUS		85
+> +#define CLKID_SD_EMMC		86
+> +#define CLKID_PSRAM		87
+> +#define CLKID_DMC		88
+> +#define CLKID_DSPA_A_SEL	95
+> +#define CLKID_DSPA_B_SEL	98
+> +#define CLKID_DSPB_A_SEL	101
+> +#define CLKID_DSPB_B_SEL	104
+> +#define CLKID_CECB_32K_SEL_PRE	113
+> +#define CLKID_CECB_32K_SEL	114
+> +#define CLKID_CECA_32K_SEL_PRE	117
+> +#define CLKID_CECA_32K_SEL	118
+> +#define CLKID_GEN_SEL		121
+> +#define CLKID_PWM_A_SEL		124
+> +#define CLKID_PWM_B_SEL		126
+> +#define CLKID_PWM_C_SEL		128
+> +#define CLKID_PWM_D_SEL		130
+> +#define CLKID_PWM_E_SEL		132
+> +#define CLKID_PWM_F_SEL		134
+> +#define CLKID_SD_EMMC_SEL2	147
+> +
+> +#endif /* __A1_PERIPHERALS_CLKC_H */
+> -- 
+> 2.36.0
+> 
+
 -- 
-2.25.1
-
+Thank you,
+Dmitry
