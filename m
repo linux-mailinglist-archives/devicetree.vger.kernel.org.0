@@ -2,158 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C6377107E2
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 10:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 232A271084D
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:08:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240158AbjEYItc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 04:49:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40152 "EHLO
+        id S230131AbjEYJIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 05:08:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235393AbjEYItb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 04:49:31 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8713198;
-        Thu, 25 May 2023 01:49:30 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7313C6601F25;
-        Thu, 25 May 2023 09:49:28 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685004569;
-        bh=EtbcIEsusRHFZTgu8Dex+fRPFWvkGsCdZCUXAljl5dA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=R3Kqq201hrVo9BPurnMzA4ezjYaxoOObvi2g1URGN83ygYowisAzheTdUdqoN8r5n
-         TSPVNXvf2IqTDg6Ua32jPMj5mo3fBXv6Jzp00dpCYtRkUZIBFKRI6Z95fFDvcq9zyB
-         Qmf4i6a4nRyF4Lo8EjOvSFAi7xS9fItyrAASqEHumC9d+L+2iMqekjSs9WuiEvzVgr
-         kqPO/q7IWRwlb7SHqcUp/Q775FHR3XSGYEdGLrJGcoMiI0kG0mYN6GtVrQxhaJszeY
-         PEVm7f/e/4fGzFf7IIwz7zGZD1F44ZMszNcIUEl1DVmOHxBiPP4hdPjndP8BOQ7DIl
-         oElYLmw5vShYA==
-Message-ID: <b80ceed1-0c5a-0875-dab0-309e2318d88e@collabora.com>
-Date:   Thu, 25 May 2023 10:49:26 +0200
+        with ESMTP id S229912AbjEYJIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:08:21 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 41F7E19D;
+        Thu, 25 May 2023 02:08:20 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0382F1FB;
+        Thu, 25 May 2023 02:09:05 -0700 (PDT)
+Received: from [10.57.70.156] (unknown [10.57.70.156])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4DBA83F67D;
+        Thu, 25 May 2023 02:08:17 -0700 (PDT)
+Message-ID: <9f414290-0219-302f-ca8b-231217e68efb@arm.com>
+Date:   Thu, 25 May 2023 10:08:15 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v8 07/10] arm64: dts: mediatek: add ethernet support for
- mt8365-evk
-Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.11.0
+Subject: Re: [PATCH v4 02/11] coresight-tpda: Add DSB dataset support
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>
-References: <20230203-evk-board-support-v8-0-7019f3fd0adf@baylibre.com>
- <20230203-evk-board-support-v8-7-7019f3fd0adf@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230203-evk-board-support-v8-7-7019f3fd0adf@baylibre.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1682586037-25973-1-git-send-email-quic_taozha@quicinc.com>
+ <1682586037-25973-3-git-send-email-quic_taozha@quicinc.com>
+ <444bc278-a3e3-7d99-6020-7c3337371f66@arm.com>
+ <9c4c4ea0-b5dd-d18a-fadf-cd3a65c2cf5a@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <9c4c4ea0-b5dd-d18a-fadf-cd3a65c2cf5a@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 25/05/23 10:33, Alexandre Mergnat ha scritto:
-> - Enable "vibr" and "vsim2" regulators to power the ethernet chip.
+On 25/05/2023 08:16, Tao Zhang wrote:
 > 
-> Tested-by: Kevin Hilman <khilman@baylibre.com>
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 48 +++++++++++++++++++++++++++++
->   1 file changed, 48 insertions(+)
+> On 5/23/2023 6:07 PM, Suzuki K Poulose wrote:
+>> On 27/04/2023 10:00, Tao Zhang wrote:
+>>> Read the DSB element size from the device tree. Set the register
+>>> bit that controls the DSB element size of the corresponding port.
+>>>
+>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>> ---
+>>>   drivers/hwtracing/coresight/coresight-core.c |  1 +
+>>>   drivers/hwtracing/coresight/coresight-tpda.c | 92 
+>>> +++++++++++++++++++++++++---
+>>>   drivers/hwtracing/coresight/coresight-tpda.h |  4 ++
+>>>   drivers/hwtracing/coresight/coresight-tpdm.c |  2 +-
+>>>   include/linux/coresight.h                    |  1 +
+>>>   5 files changed, 90 insertions(+), 10 deletions(-)
+>>>
+>>> diff --git a/drivers/hwtracing/coresight/coresight-core.c 
+>>> b/drivers/hwtracing/coresight/coresight-core.c
+>>> index 2af416b..f1eacbb 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-core.c
+>>> +++ b/drivers/hwtracing/coresight/coresight-core.c
+>>> @@ -1092,6 +1092,7 @@ static int coresight_validate_source(struct 
+>>> coresight_device *csdev,
+>>>         if (subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_PROC &&
+>>>           subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_SOFTWARE &&
+>>> +        subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM &&
+>>>           subtype != CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS) {
+>>>           dev_err(&csdev->dev, "wrong device subtype in %s\n", 
+>>> function);
+>>>           return -EINVAL;
+>>
+>> Please see the comment at the bottom.
+>>
+>>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c 
+>>> b/drivers/hwtracing/coresight/coresight-tpda.c
+>>> index 8d2b9d2..af9c72f 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-tpda.c
+>>> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
+>>> @@ -21,6 +21,56 @@
+>>>     DEFINE_CORESIGHT_DEVLIST(tpda_devs, "tpda");
+>>>   +/* Search and read element data size from the TPDM node in
+>>> + * the devicetree. Each input port of TPDA is connected to
+>>> + * a TPDM. Different TPDM supports different types of dataset,
+>>> + * and some may support more than one type of dataset.
+>>> + * Parameter "inport" is used to pass in the input port number
+>>> + * of TPDA, and it is set to 0 in the recursize call.
+>>> + * Parameter "parent" is used to pass in the original call.
+>>> + */
+>>> +static int tpda_set_element_size(struct tpda_drvdata *drvdata,
+>>> +               struct coresight_device *csdev, int inport, bool parent)
+>>> +{
+>>> +    static int nr_inport;
+>>> +    int i;
+>>> +    static bool tpdm_found;
+>>> +    struct coresight_device *in_csdev;
+>>> +
+>>> +    if (inport > (TPDA_MAX_INPORTS - 1))
+>>> +        return -EINVAL;
+>>> +
+>>> +    if (parent) {
+>>> +        nr_inport = inport;
+>>> +        tpdm_found = false;
+>>> +    }
+>>> +
+>>> +    for (i = 0; i < csdev->pdata->nr_inconns; i++) {
+>>> +        in_csdev = csdev->pdata->in_conns[i]->src_dev;
+>>> +        if (!in_csdev)
+>>> +            break;
+>>> +
+>>> +        if (parent)
+>>> +            if (csdev->pdata->in_conns[i]->dest_port != inport)
+>>> +                continue;
+>>> +
+>>> +        if (in_csdev->subtype.source_subtype
+>>
+>> We must match the in_csdev->type to be SOURCE && the subtype.
+> Sure, I will update it in the next patch series.
+>>
+>>> +                   == CORESIGHT_DEV_SUBTYPE_SOURCE_TPDM) {
+>>> + of_property_read_u8(in_csdev->dev.parent->of_node,
+>>> +                    "qcom,dsb-element-size", 
+>>> &drvdata->dsb_esize[nr_inport]);
+>>> +            if (!tpdm_found)
+>>> +                tpdm_found = true;
+>>> +            else
+>>> +                dev_warn(drvdata->dev,
+>>> +                    "More than one TPDM is mapped to the TPDA input 
+>>> port %d.\n",
+>>> +                    nr_inport);
+>>
+>> When we know, we have found a source device, we don't need to recurse
+>> down and could simply 'continue' to the next one in the list and skip
+>> the call below.
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-> index 1a5769c397c2..86524cbf4354 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
-> @@ -88,6 +88,29 @@ optee_reserved: optee@43200000 {
->   	};
->   };
->   
-> +&ethernet {
-> +	pinctrl-0 = <&ethernet_pins>;
-> +	pinctrl-names = "default";
-> +	phy-handle = <&eth_phy>;
-> +	phy-mode = "rmii";
-> +	/*
-> +	 * Ethernet and HDMI (DSI0) are sharing pins.
-> +	 * Only one can be enabled at a time and require the physical switch
-> +	 * SW2101 to be set on LAN position
-> +	 * mt6357_vibr_reg and mt6357_vsim2_reg are needed to supply ethernet
-> +	 */
-> +	status = "disabled";
-
-Ouh, that's sad :-(
-
-...but you're left with no other choice, so I agree with providing at least
-the full node in case anyone wants to actually enable it by flipping the
-switch on the board, so you get my
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Cheers!
-
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		eth_phy: ethernet-phy@0 {
-> +			reg = <0>;
-> +		};
-> +	};
-> +};
-> +
->   &i2c0 {
->   	clock-frequency = <100000>;
->   	pinctrl-0 = <&i2c0_pins>;
-> @@ -138,6 +161,31 @@ &mt6357_pmic {
->   };
->   
->   &pio {
-> +	ethernet_pins: ethernet-pins {
-> +		phy_reset_pins {
-> +			pinmux = <MT8365_PIN_133_TDM_TX_DATA1__FUNC_GPIO133>;
-> +		};
-> +
-> +		rmii_pins {
-> +			pinmux = <MT8365_PIN_0_GPIO0__FUNC_EXT_TXD0>,
-> +				 <MT8365_PIN_1_GPIO1__FUNC_EXT_TXD1>,
-> +				 <MT8365_PIN_2_GPIO2__FUNC_EXT_TXD2>,
-> +				 <MT8365_PIN_3_GPIO3__FUNC_EXT_TXD3>,
-> +				 <MT8365_PIN_4_GPIO4__FUNC_EXT_TXC>,
-> +				 <MT8365_PIN_5_GPIO5__FUNC_EXT_RXER>,
-> +				 <MT8365_PIN_6_GPIO6__FUNC_EXT_RXC>,
-> +				 <MT8365_PIN_7_GPIO7__FUNC_EXT_RXDV>,
-> +				 <MT8365_PIN_8_GPIO8__FUNC_EXT_RXD0>,
-> +				 <MT8365_PIN_9_GPIO9__FUNC_EXT_RXD1>,
-> +				 <MT8365_PIN_10_GPIO10__FUNC_EXT_RXD2>,
-> +				 <MT8365_PIN_11_GPIO11__FUNC_EXT_RXD3>,
-> +				 <MT8365_PIN_12_GPIO12__FUNC_EXT_TXEN>,
-> +				 <MT8365_PIN_13_GPIO13__FUNC_EXT_COL>,
-> +				 <MT8365_PIN_14_GPIO14__FUNC_EXT_MDIO>,
-> +				 <MT8365_PIN_15_GPIO15__FUNC_EXT_MDC>;
-> +		};
-> +	};
-> +
->   	gpio_keys: gpio-keys-pins {
->   		pins {
->   			pinmux = <MT8365_PIN_24_KPCOL0__FUNC_KPCOL0>;
+> Actually, one input port on TPDA only can connect to one TPDM. In the 
+> current design, it will
 > 
+> find out all the TPDMs on one input port and warn the users all the 
+> TPDMs it found. If we
+> 
+> replace 'recurse down' as 'continue' here, it may not find some TPDMs 
+> that might be connected
+> 
+> incorrectly.
+
+
+What do you mean ? When you enter the if () above, the in_csdev is a
+source and it is TPDM. There must be no input connections TPDM, i.e.
+in_csdev, so no need to go further up the connection chain looking at
+the in_csdev. The loop will continue to analyse this device (where we
+found one TPDM already) and detect any further duplicate TPDMs
+connected.
+
+Suzuki
+
 
