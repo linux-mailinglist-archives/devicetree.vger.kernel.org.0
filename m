@@ -2,132 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 489FA710FA2
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 17:32:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 148C3710FAA
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 17:33:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241805AbjEYPcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 11:32:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60566 "EHLO
+        id S234112AbjEYPdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 11:33:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241810AbjEYPcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 11:32:06 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B950199
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 08:32:04 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-64f47448aeaso1770315b3a.0
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 08:32:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685028723; x=1687620723;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=UmQi8fIzOJff3kyNGKaVTa69XxHyX2JQ/cM/6RRUYVY=;
-        b=fv94K8XOnLGVRz+eN9eeXw5o+qvVgngk6JKw1Zc/4W9HISDqNzb6NTDZBmnff2uF0x
-         s5UovWDO85t7EqIV86tWY8ZU2upyA6OzuFoNhF18Xoyi6iOi9X6ArwTaL9zTBfN7Pzgr
-         kzl9XtnZrOFzXK50ZCTxsObp0OyTd9FkCT+x+ZugTmNn1ciepfVkwk/j/eVPBYVCCzqO
-         oXJP4obDUZFABgjNJ+UUe0wQ35BPiePXyaqyQMA0Ny48yerkpH3uFOFGgERMw8Mv6s5v
-         7fAOt7TTr5MJ8GTgDpy69t1asKioeh5cpxs2rXz60oovYZ4cpnKUeYnsfQVhCK+Vt1ns
-         zqlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685028723; x=1687620723;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UmQi8fIzOJff3kyNGKaVTa69XxHyX2JQ/cM/6RRUYVY=;
-        b=XR5Jmchj8Y8g7uJK0Lec8iHkNQ11SOahN71QV978/HkCj8psE2cYhrdxgmsLLHirGG
-         9pqMS7opMacpaiSzzRfLDomlVOcTB57sPyUtvZH7Tm5hTaZyVO0254hm6Clp6lz+vXqO
-         1KDx/zWZPAhmr4LAxF/tKRwB2FtrsiBotnZZPHEJ4xmAFIY4W0iErMJekjQWii7APtMa
-         0CMI5m/YlDGBX9vOk10EQYVST8WhdrFkavY1L8AyWawC+YCXfEONFcyyjPy10jinQ3DP
-         F9uh1uxNeD3Xb/kgPes7x3fLRlZis3KIUl8+S4vk3gR3F5j6vQUobeC5fVSr+4MG8Efe
-         KEqQ==
-X-Gm-Message-State: AC+VfDwGTF+94r+a5BdeCk3WF0gOvg/cN+G9Av57WYgP2qOn8blS0Yhi
-        hEq28CnQcqcnf548d6yW3yiyRQ==
-X-Google-Smtp-Source: ACHHUZ46Du0JEr4QEa4hb5TfjiXFSDB8X9bCJLLgtTlTN8tlUOafA+SKBkA/6yJjF+jYQ0axnk4tVg==
-X-Received: by 2002:a17:903:2793:b0:1ad:e633:ee96 with SMTP id jw19-20020a170903279300b001ade633ee96mr2007567plb.55.1685028723461;
-        Thu, 25 May 2023 08:32:03 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:2825:fb66:f9f3:171d])
-        by smtp.gmail.com with ESMTPSA id bj2-20020a170902850200b001993a1fce7bsm1557285plb.196.2023.05.25.08.32.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 May 2023 08:32:02 -0700 (PDT)
-Date:   Thu, 25 May 2023 09:32:00 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Cc:     linux-remoteproc@vger.kernel.org, agross@kernel.org,
-        andersson@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski@linaro.org, corbet@lwn.net,
-        quic_visr@quicinc.com
-Subject: Re: [PATCH v5 0/2] Update section header name check
-Message-ID: <ZG9/cEMRMg06Pz4u@p14s>
-References: <20230223150559.2429562-1-quic_mohs@quicinc.com>
- <20230302215735.GA1401708@p14s>
- <f9c6fead-d573-a8bc-7e88-a53313ff8bef@quicinc.com>
+        with ESMTP id S233645AbjEYPdt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 11:33:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD02418D
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 08:33:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 59F7961155
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 15:33:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AB7BC433EF;
+        Thu, 25 May 2023 15:33:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685028827;
+        bh=R/0sYGOUGm5iNb1+bPkPKlgQmZZL0k1s6pKYpNlqQKI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cCaMdUxiwlLKqJXV0qbYeLCKrHZBS+NQFHpcd9WcNidlEea0Phd7wjP33GlmNRGsh
+         vcX4m/QlBUvC/QMVCOmr/5e89qFcB37FaVqY1Ud6NG2E6oStnSI65DzQyopyVQU68N
+         Phm1W4Ar3khSzemCjHC0oKtzoUwNEPwlOYfNBr/X/7RTcD9Qh9S9fi0OpD8iOCZCsI
+         xCV8xbLPzjm6+w/2ejTcK5wrNXa0mpUyuDA04X4i4R7+A1fbtJ5Z9fMtUYJegphNWn
+         iCDBmOuKdGG6ViD4Ws6a1RGHQqaITPyhIRweS9yFf7jvhWi1TYxJPpwjS/kvV1+3zT
+         QeWq0RxedPn3g==
+Date:   Thu, 25 May 2023 16:33:43 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     William Zhang <william.zhang@broadcom.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        f.fainelli@gmail.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: dt_binding_check report false alarm?
+Message-ID: <20230525-unlearned-trusting-1ed0cf6a6364@spud>
+References: <20230525050241.3700-1-william.zhang@broadcom.com>
+ <20230525-wrench-lushness-f9a1ad022798@wendy>
+ <00604ffd-ccb3-e640-5457-1fa1ed663d26@broadcom.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CFxmMaNzIEG8k6h0"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f9c6fead-d573-a8bc-7e88-a53313ff8bef@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <00604ffd-ccb3-e640-5457-1fa1ed663d26@broadcom.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 11, 2023 at 10:09:45PM +0530, Mohammad Rafi Shaik wrote:
-> 
-> On 3/3/2023 3:27 AM, Mathieu Poirier wrote:
-> > On Thu, Feb 23, 2023 at 08:35:57PM +0530, Mohammad Rafi Shaik wrote:
-> > > Update section header name check and corresponding documentation.
-> > > Changes since v4:
-> > >      -- Rephrase commit message.
-> > Asked for clarifications on V4 that were never given to me.  This patchset will
-> > not move forward until those have been resolved.
-> The present Qualcomm DSP binary contains resource table name as
-> ".resource_table.ac_bin_process.",
 
-My questions still haven't been answered:
+--CFxmMaNzIEG8k6h0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-1. Why do we have to change the kernel because of the way a company specific
-tool generates an ELF?
+On Thu, May 25, 2023 at 08:23:30AM -0700, William Zhang wrote:
+> Sorry for the multiple emails. Our mail relay server was not working
+> properly.
 
-2. Why is the "ac_bin_process" part needed at all?
+I only got one /shrug
 
-> so the current logic with strcmp will fail with present comparision  as the
-> binary name is not only .resource_table but resource_table.ac_bin_process So
-> to overcome this issue we modified the way of checking the resource table
-> name to make it generic.
-> 
-> strstarts(name_table + name, ".resource_table");
-> 
-> This logic will perform a string comparison with name ".resouce_table"as our
-> binary name is .resource_table.ac_bin_process it succeeds
-> 
-> > > Changes since v3:
-> > >      -- Rephrase commit message.
-> > > Changes since v2:
-> > >      -- Update the commit message with example.
-> > >      -- Update the documentation text appropriately.
-> > > Changes since v1:
-> > >      -- Update the commit message.
-> > >      -- Use strstarts instead of strstr.
-> > >      -- Update documentation file.
-> > > 
-> > > Srinivasa Rao Mandadapu (2):
-> > >    remoteproc: elf_loader: Update resource table name check
-> > >    docs: remoteproc: Update section header name requirement
-> > > 
-> > >   Documentation/staging/remoteproc.rst       | 5 ++++-
-> > >   drivers/remoteproc/remoteproc_elf_loader.c | 2 +-
-> > >   2 files changed, 5 insertions(+), 2 deletions(-)
-> > > 
-> > > -- 
-> > > 2.25.1
-> > > 
+> On 05/25/2023 06:23 AM, Conor Dooley wrote:
+> > Hey William,
+> >=20
+> > On Wed, May 24, 2023 at 10:02:41PM -0700, William Zhang wrote:
+> > > Hi,
+> > >=20
+> > > It seems dt_binding_check reports a false error when run on this
+> > > modified yaml. I picked this simple file just to demostrate this issu=
+e.
+> > > Basically I made the interrupts and interrupt-names as optional
+> > > properties. But when there are two interrupts present, then
+> > > interrupt-names are required.  However in the example, I don't define
+> > > interrupts and interrupt-name at all, the dt binding check reports er=
+ror
+> > > that interrupt-names are required:
+> >=20
+> > Rob and Krzysztof would know more than me, but since they're not
+> > around...
+> >=20
+> > > diff --git a/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yam=
+l b/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+> > > index 563a31605d2b..c37a3a64a78c 100644
+> > > --- a/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+> > > +++ b/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+> > > @@ -32,11 +32,18 @@ properties:
+> > >     clock-names:
+> > >       const: ipg
+> > > +allOf:
+> > > +  - if:
+> > > +      properties:
+> > > +        interrupts:
+> > > +          minItems: 2
+> >=20
+> > ...I don't think you can actually do this and "minItems: 2" will always
+> > evaluate to true because it is an assignment. Don't hold me to that
+> > though! The standard pattern here is to do:
+> > allOf:
+> >    - if:
+> >        properties:
+> >          compatible:
+> >            contains:
+> >              const: foo
+> >      then:
+> >        required:
+> >          - interrupt-names
+> >=20
+> > Cheers,
+> > Conor.
+> >=20
+> Our device can use one or two interrupt, or choose to not use interrupt at
+> all(polling mode). Interrupt names is only required when there are two
+> interrupts(so the driver code can tell which is which).  So I will need to
+> check if it contains two interrupts. My check does work if I have two
+> interrupt but don't have interrupt name, the check catches the error.  If=
+ I
+> have one interrupt without interrupt name, the check pass. Only when I do=
+es
+> not have interrupt and interrupt name,  it falsely report error.  Looks to
+> me that it does not treat minItem =3D 0 case properly.
+
+Right. I would not bother with the "only interrupt-names when 2
+interrupts" stuff & do the simple thing of always making it required
+when you have interrupts.
+Then you can use allOf and oneOf to allow for both schemes for the new
+device and keep enforcement of 2 items for the existing one.
+
+Cheers,
+Conor.
+
+> > > +    then:
+> > > +      required:
+> > > +        - interrupt-names
+> > > +
+> > >   required:
+> > >     - compatible
+> > >     - reg
+> > > -  - interrupts
+> > > -  - interrupt-names
+> > >     - clocks
+> > >     - clock-names
+> > > @@ -49,6 +56,4 @@ examples:
+> > >           reg =3D <0x53fac000 0x4000>;
+> > >           clocks =3D <&clks 111>;
+> > >           clock-names =3D "ipg";
+> > > -        interrupts =3D <49>, <50>;
+> > > -        interrupt-names =3D "scm", "smn";
+> > >       };
+> > > --=20
+> > > 2.34.1
+> > >=20
+> >=20
+> >=20
+
+
+
+--CFxmMaNzIEG8k6h0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG9/1wAKCRB4tDGHoIJi
+0hEpAQDdY7ORGUelBFzCsXernO5QjtC3/gE4LvW57/SLWrIacgD/ZFwmUAyCJQuq
+pFNoVwdRxDoEx84RoXyPdiT9ZprhfAc=
+=BIFh
+-----END PGP SIGNATURE-----
+
+--CFxmMaNzIEG8k6h0--
