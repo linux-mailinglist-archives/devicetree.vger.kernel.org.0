@@ -2,80 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 080F571021B
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 02:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4FB2710254
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 03:24:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231890AbjEYAxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 20:53:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44602 "EHLO
+        id S231555AbjEYBYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 21:24:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230045AbjEYAxY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 20:53:24 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CA97E6
-        for <devicetree@vger.kernel.org>; Wed, 24 May 2023 17:53:22 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id AF5272C02E0;
-        Thu, 25 May 2023 12:53:19 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1684975999;
-        bh=gakfYzajycWsBIRNP8cV6Mi5LfkKI00ALEVp/557AR0=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=opxRzPOMErYuaex5VKKtrEpdkwSwq0I/abh33hNMcE1bFwXayQdf7pizD/waWK64J
-         NWbFvdSNQa3ndbqaG4wRuNGcd5y7JQwoiBm1lFcVWgiaAL2FOujUsZ4V4xu7YAtlo8
-         eYRs7gdeyA76Ge48X0V2nWobvoTYSw5V4QSZ0Z3JQdWsPP8DiNoTpiBDXVXVBaSZ0x
-         X2OSRrSJzW/X3rwgZZUq91ud8vkfkBtrcJroc71hBDyP8wnY58AIE5g5v7tqEcz2Ah
-         N+Gzly+YvsTkYJt8qCJrtNn+4uDu66h/Ijc3ZUs6xERR8ClnrBx+ClhEUJNYgXHS5G
-         Fnu/56z5cngqw==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B646eb17f0001>; Thu, 25 May 2023 12:53:19 +1200
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 25 May 2023 12:53:19 +1200
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.026; Thu, 25 May 2023 12:53:19 +1200
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Vadym Kochan <vadym.kochan@plvision.eu>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        "Vignesh Raghavendra" <vigneshr@ti.com>,
+        with ESMTP id S229630AbjEYBYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 21:24:43 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 262BDF5;
+        Wed, 24 May 2023 18:24:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1684977882; x=1716513882;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hFml+IFBGpyck4Ofg1pKOuGV669kPAVkwNRi7Imskrg=;
+  b=UkZBq5X3kxJsfctjZeq0tsJGYHfMyN2NP8OOs3tmTHZ0bjTSnYOYI5qy
+   l8XFoAaqiSeQ8vq1VLvIBspkPKbxie/Q6zlz1UHLSs6piiu0h01yWPWrD
+   ySaRNoN/8SvIDmGT6gWRHJMDdutjPIACzYX6f46hCuq1JD9bYo8HrRi5N
+   r9pNQtlChbrjVPoO+RVtSEC4SPuM+ey5biF5bVLa+IqsewgSxo3kCc1KK
+   a3TqXrEKpO2KgmYv+CWAIC4jTIAUnFo1VBQyjzjAvR/XE6KUqbr+GZdPt
+   hmdmVTfd+tuGDHou26bPjsuThhu4phTk+6yTP1yTKRov3ZLETT49Tx0Vg
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="343208103"
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; 
+   d="scan'208";a="343208103"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 May 2023 18:24:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10720"; a="769672043"
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; 
+   d="scan'208";a="769672043"
+Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 24 May 2023 18:24:29 -0700
+Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1q1ziO-000FLD-0t;
+        Thu, 25 May 2023 01:24:28 +0000
+Date:   Thu, 25 May 2023 09:23:38 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Runyang Chen <runyang.chen@mediatek.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Liang Yang <liang.yang@amlogic.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Aviram Dali <aviramd@marvell.com>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     Elad Nachman <enachman@marvell.com>
-Subject: Re: [PATCH 0/3] mtd: rawnand: marvell: add support for AC5 SoC
-Thread-Topic: [PATCH 0/3] mtd: rawnand: marvell: add support for AC5 SoC
-Thread-Index: AQHY45PTmnmHPuwW40yPMLrn8y8OYa9qtkQA
-Date:   Thu, 25 May 2023 00:53:19 +0000
-Message-ID: <143fb1ff-b2d4-a6fe-e892-b55a7bbf56f8@alliedtelesis.co.nz>
-References: <20221019082046.30160-1-vadym.kochan@plvision.eu>
-In-Reply-To: <20221019082046.30160-1-vadym.kochan@plvision.eu>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.33.22.30]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <BED105E491B8E142A82B3707E313028D@atlnz.lc>
-Content-Transfer-Encoding: base64
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Runyang Chen <runyang.chen@mediatek.com>
+Subject: Re: [PATCH v3 2/2] clk: mediatek: reset: add infra_ao reset support
+ for MT8188
+Message-ID: <202305250908.Uvas9u4E-lkp@intel.com>
+References: <20230524133439.20659-3-runyang.chen@mediatek.com>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=cLieTWWN c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=P0xRbXHiH_UA:10 a=QG0ANWG3iu1Ceheqxc0A:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230524133439.20659-3-runyang.chen@mediatek.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,30 +77,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgVmFkeW0sDQoNCk9uIDE5LzEwLzIyIDIxOjIwLCBWYWR5bSBLb2NoYW4gd3JvdGU6DQo+IFRo
-aXMgc2VyaWVzIGFkZHMgc3VwcG9ydCBmb3IgQUM1IFNvQy4NCj4NCj4gVGhlIGZvbGxvd2luZyBj
-aGFuZ2VzIHdlcmUgbWFkZSB0byBhZGQgQUM1IHN1cHBvcnQ6DQo+DQo+ICAgICAxKSBNb2RpZnkg
-TWFydmVsbCBuYW5kIE5GQyB0aW1pbmcgc2V0IGZvciBtb2RlIDANCj4NCj4gICAgIDIpIGZpeCB2
-YWxpZGF0aW9uIGluIEFDNSBOYW5kIGRyaXZlciBmb3IgT05GSSB0aW1pbmdzIHZhbHVlcyBtb2Rl
-cyAxIGFuZCAzDQo+DQo+ICAgICAzKSByZW1vdmUgdW5uZWNlc3NhcnkgbmFuZCB0aW1pbmctbW9k
-ZSBpbiBkZXZpY2UgdHJlZSBvZiBhYzUuZHRzaQ0KPg0KPiAgICAgNCkgYWRkIG5hbmQgbWlzc2lu
-ZyBBQzVYIGxheW91dHMgLCBhZGQgb3B0aW9uIHRvIHVzZSBuZHRyIHByZWRlZmluZWQgdmFsdWVz
-DQo+DQo+ICAgICA1KSBaZXJvIHN0ZXBzIGFuZCB0b3RhbCBmaWVsZHMgb2YgZWNjIGluIGVjYyBj
-b250cm9sbGVyIGluaXRpYWxpemF0aW9uIHNvDQo+ICAgICAgICBuYW5kX3NjYW5fdGFpbCgpIHdp
-bGwgY2FsY3VsYXRlIHRoZXNlIHR3byBmaWVsZHMsIG90aGVyd2lzZQ0KPiAgICAgICAgTkFORCBp
-bml0aWFsaXphdGlvbiB3aWxsIGZhaWwgd2l0aCBrZXJuZWwgNS4xNSBhbmQgYWJvdmUuDQo+DQo+
-IEF2aXJhbSBEYWxpICgyKToNCj4gICAgZHQtYmluZGluZ3M6IG10ZDogQWRkIEFDNSBzcGVjaWZp
-YyBiaW5kaW5nDQo+ICAgIG10ZDogcmF3bmFuZDogbWFydmVsbDogYWRkIHN1cHBvcnQgZm9yIEFD
-NSBTb0MNCg0KQXJlIHlvdSBzdGlsbCBsb29raW5nIGludG8gdGhpcyBzZXJpZXM/IEkgc2VlIG9u
-ZSBwYXJ0IG1hZGUgaXQgdXBzdHJlYW0gDQphcyBjb21taXQgNjhjMThkYWU2ODg4ICgibXRkOiBy
-YXduYW5kOiBtYXJ2ZWxsOiBhZGQgbWlzc2luZyBsYXlvdXRzIikgDQphbmQgdGhlcmUgd2FzIGFu
-IG9mZi1zaG9vdCBzZXJpZXMgYXJvdW5kIGNvbnZlcnRpbmcgdGhlIERUIGJpbmRpbmcuDQoNCj4g
-VmFkeW0gS29jaGFuICgxKToNCj4gICAgbXRkOiByYXduYW5kOiBQYXJ0aWFsbHkgcmV2ZXJ0IDQx
-MTRmOTdjNDFjZCAoIm10ZDogcmF3bmFuZDogR2V0IHJpZCBvZg0KPiAgICAgIGEgZmV3IHVudXNl
-ZCBkZWZpbml0aW9ucyIpDQo+DQo+ICAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbXRkL21hcnZl
-bGwtbmFuZC50eHQgIHwgICAxICsNCj4gICBkcml2ZXJzL210ZC9uYW5kL3Jhdy9LY29uZmlnICAg
-ICAgICAgICAgICAgICAgfCAgIDIgKy0NCj4gICBkcml2ZXJzL210ZC9uYW5kL3Jhdy9tYXJ2ZWxs
-X25hbmQuYyAgICAgICAgICAgfCAyNzcgKysrKysrKysrKysrKysrKy0tDQo+ICAgZHJpdmVycy9t
-dGQvbmFuZC9yYXcvbmFuZF90aW1pbmdzLmMgICAgICAgICAgIHwgIDE0ICsNCj4gICBpbmNsdWRl
-L2xpbnV4L210ZC9yYXduYW5kLmggICAgICAgICAgICAgICAgICAgfCAgIDMgKw0KPiAgIDUgZmls
-ZXMgY2hhbmdlZCwgMjY0IGluc2VydGlvbnMoKyksIDMzIGRlbGV0aW9ucygtKQ0KPg==
+Hi Runyang,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on clk/clk-next]
+[also build test ERROR on pza/reset/next]
+[cannot apply to pza/imx-drm/next mbgg-mediatek/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Runyang-Chen/dt-bindings-reset-mt8188-add-thermal-reset-control-bit/20230524-213538
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+patch link:    https://lore.kernel.org/r/20230524133439.20659-3-runyang.chen%40mediatek.com
+patch subject: [PATCH v3 2/2] clk: mediatek: reset: add infra_ao reset support for MT8188
+config: riscv-randconfig-r042-20230524 (https://download.01.org/0day-ci/archive/20230525/202305250908.Uvas9u4E-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 4faf3aaf28226a4e950c103a14f6fc1d1fdabb1b)
+reproduce (this is a W=1 build):
+        mkdir -p ~/bin
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install riscv cross compiling tool for clang build
+        # apt-get install binutils-riscv64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/7d969d160489d561f9b1fb6388adaa1ba8fe06a1
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Runyang-Chen/dt-bindings-reset-mt8188-add-thermal-reset-control-bit/20230524-213538
+        git checkout 7d969d160489d561f9b1fb6388adaa1ba8fe06a1
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang ~/bin/make.cross W=1 O=build_dir ARCH=riscv olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang ~/bin/make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/clk/mediatek/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202305250908.Uvas9u4E-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/mediatek/clk-mt8188-infra_ao.c:196:18: error: initializing 'u16 *' (aka 'unsigned short *') with an expression of type 'const u16[5]' (aka 'const unsigned short[5]') discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+           .rst_bank_ofs = infra_ao_rst_ofs,
+                           ^~~~~~~~~~~~~~~~
+   drivers/clk/mediatek/clk-mt8188-infra_ao.c:198:17: error: initializing 'u16 *' (aka 'unsigned short *') with an expression of type 'const u16[3]' (aka 'const unsigned short[3]') discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+           .rst_idx_map = infra_ao_idx_map,
+                          ^~~~~~~~~~~~~~~~
+   2 errors generated.
+
+
+vim +196 drivers/clk/mediatek/clk-mt8188-infra_ao.c
+
+   193	
+   194	static const struct mtk_clk_rst_desc infra_ao_rst_desc = {
+   195		.version = MTK_RST_SET_CLR,
+ > 196		.rst_bank_ofs = infra_ao_rst_ofs,
+   197		.rst_bank_nr = ARRAY_SIZE(infra_ao_rst_ofs),
+   198		.rst_idx_map = infra_ao_idx_map,
+   199		.rst_idx_map_nr = ARRAY_SIZE(infra_ao_idx_map),
+   200	};
+   201	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
