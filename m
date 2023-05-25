@@ -2,79 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66DB7710274
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 03:40:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 356CF710282
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 03:45:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236458AbjEYBki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 21:40:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55184 "EHLO
+        id S229530AbjEYBpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 May 2023 21:45:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236597AbjEYBkb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 21:40:31 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA9913A;
-        Wed, 24 May 2023 18:40:28 -0700 (PDT)
-X-UUID: 1d0ef048fa9d11edb20a276fd37b9834-20230525
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=1vECssvqpnNYG6NLdvZnncp82bk62N0VHH5o/JWWwrE=;
-        b=qhxEXG3YUOemGvjJkN7PpUJlz5fjj86IM3rE2sZczUETbkCJOmVYq6piXVtwP1Qjq03ZbrCFf5Qc5DHoNyfW2UvTazWL4u3U3orbYW0qHbp+G9WoZITFkRES0Nqnizfs1yHP/T7i8+OVx0i4anbgopI37MJzTpEPgnrH68FsHJU=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.25,REQID:fd7d605e-7dc4-4e09-908d-9e6250e28ff6,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:95
-X-CID-INFO: VERSION:1.1.25,REQID:fd7d605e-7dc4-4e09-908d-9e6250e28ff6,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
-        :quarantine,TS:95
-X-CID-META: VersionHash:d5b0ae3,CLOUDID:96efea6c-2f20-4998-991c-3b78627e4938,B
-        ulkID:230525094024GS8R9MJ3,BulkQuantity:0,Recheck:0,SF:29|28|17|19|48|38,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-        ,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-UUID: 1d0ef048fa9d11edb20a276fd37b9834-20230525
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1727582007; Thu, 25 May 2023 09:40:22 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 25 May 2023 09:40:16 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 25 May 2023 09:40:15 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, Nathan Hebert <nhebert@chromium.org>
-CC:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v4,4/4] media: mediatek: vcodec: using empty lat buffer as the last one
-Date:   Thu, 25 May 2023 09:40:09 +0800
-Message-ID: <20230525014009.23345-5-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230525014009.23345-1-yunfei.dong@mediatek.com>
-References: <20230525014009.23345-1-yunfei.dong@mediatek.com>
+        with ESMTP id S229452AbjEYBpv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 21:45:51 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F59112E;
+        Wed, 24 May 2023 18:45:50 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1ae5dc9eac4so6773125ad.1;
+        Wed, 24 May 2023 18:45:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1684979150; x=1687571150;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XmRyEnm3o0xt10apdc5Jzi2N4nwke7v1h2bvJhvh2Sc=;
+        b=Y3VYsLdjT+hFAlWXNNJMthzUBHpsDCRFb820qXsc/dYqkVtHF46gI3sr9FoFAWpmPK
+         1hlm+mf5z3p6ji9v+ZKTzT9Ud/5rOifiPxtctTEXhN/mYcTdQDJly13O6L6po9HumSPt
+         THtVdpIFaAlFFnWJP/r+vRUM6dx7pcP0G5kqLTY7VncJnXGG/IlTurL00mcU0BLpVez4
+         1FPwZH9pfW3M5K0pTI8n8cv+3DPKkIVse8MWf5a9U1riTKyYlrT7RS+lxNyIaWodR6cA
+         vjNT7BIHOh03PBjTMTHZB+XLZwnCixe75ykabWmwnB1jykyjo1V9XHYq98mHN9qcn0tc
+         BfFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1684979150; x=1687571150;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XmRyEnm3o0xt10apdc5Jzi2N4nwke7v1h2bvJhvh2Sc=;
+        b=eOzZLfA25DoJaRIsjE8heLS9zQDjNdYirzx+kgXFK4k29nx8ILoNW8TnehSXSODsI/
+         R2IAL/J4cd8C2FWAzD1OqH74QC+FsLv8iHg11j1uZdWOs8NV0xD0xz0C4mOloxz1a9Ws
+         O/SQlK6FdqFMDhNK5SOLm7XnviQd13H/QlVaUe7eiJmb+6SwKC8DnsAfeONUf0mf/q1e
+         JdVYk+NsXLtjcBRzxhcqtyyuGqpxIRj8rEYLWeDXsbOE8UiOyqrj8hv6TQxyBY1g4St9
+         Byecza8B7boAOntyZyTnSKL5gRWKPi6yNTx0QLAQgby0YRxy54b/o3DEb9+bY38H0IKK
+         Knsw==
+X-Gm-Message-State: AC+VfDzCuet6LQmXPqYIchNcUepE9K5Ez50XgFjKCmqkuSitGKX6R/fZ
+        7wUdYimXE9HjnMQn33YqitgZz/KixiDSYPry9XY=
+X-Google-Smtp-Source: ACHHUZ78QaeXfyuMyHbp1vFmQ3jeRKwF3Gmim01XYIEsSc0edamhG/qunwujuPjAZzNnq5Sg+oLZgjp0A8WtgT9nkf4=
+X-Received: by 2002:a17:902:e848:b0:1a8:ce:afd1 with SMTP id
+ t8-20020a170902e84800b001a800ceafd1mr23489423plg.20.1684979149595; Wed, 24
+ May 2023 18:45:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
+References: <20230510092450.4024730-1-victor.liu@nxp.com> <20230510092450.4024730-6-victor.liu@nxp.com>
+ <b3b77a65-5109-0e29-99c5-6cefaba0492c@denx.de>
+In-Reply-To: <b3b77a65-5109-0e29-99c5-6cefaba0492c@denx.de>
+From:   Ying Liu <gnuiyl@gmail.com>
+Date:   Thu, 25 May 2023 09:45:38 +0800
+Message-ID: <CAOcKUNXTFr-uyEeKkos1m0VwoB76SMdkrAuT4zHC9c8D03Apcw@mail.gmail.com>
+Subject: Re: [PATCH v6 5/6] drm: lcdif: Add multiple encoders and first
+ bridges support
+To:     Marek Vasut <marex@denx.de>
+Cc:     Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
+        alexander.stein@ew.tq-group.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, krzysztof.kozlowski@linaro.org,
+        robh+dt@kernel.org, linux-imx@nxp.com,
+        krzysztof.kozlowski+dt@linaro.org, kernel@pengutronix.de,
+        LW@karo-electronics.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,136 +76,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding one empty lat buffer with parameter 'is_empty_flag = true'
-used to flush core work queue decode.
+Hi Marek,
 
-Queue the empty lat buffer to core list when driver need to flush decode.
-It's mean core already decode all existed lat buffer when get empty lat
-buffer, then wake up core decode done event, the driver will exit when getting
-core dec done event.
+On Thu, May 11, 2023 at 12:24=E2=80=AFAM Marek Vasut <marex@denx.de> wrote:
+> On 5/10/23 11:24, Liu Ying wrote:
+> > The single LCDIF embedded in i.MX93 SoC may drive multiple displays
+> > simultaneously.  Look at LCDIF output port's remote port parents to
+> > find all enabled first bridges.  Add an encoder for each found bridge
+> > and attach the bridge to the encoder.  This is a preparation for
+> > adding i.MX93 LCDIF support.
+> >
+> > Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > ---
+> > v5->v6:
+> > * Drop MAX_DISPLAYS macro. (Marek)
+> > * Drop the encoder member in struct lcdif_drm_private.
+> > * Drop endpoint id check.
+>
+> It might be nice to check (based on driver data for each IP variant) the
+> encoder count, but that can be a separate patch.
+>
+> Reviewed-by: Marek Vasut <marex@denx.de>
+>
+> Thanks !
+>
+> btw if this doesn't get picked by someone in like a week or two, let me
+> know and I'll apply this via drm-misc .
 
-Fixes: d227af847ac2 ("media: mediatek: vcodec: add core decode done event")
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../platform/mediatek/vcodec/vdec_msg_queue.c | 35 +++++++++++--------
- .../platform/mediatek/vcodec/vdec_msg_queue.h |  8 +++++
- 2 files changed, 28 insertions(+), 15 deletions(-)
+Thanks for your review.  I don't see any more comments in two weeks.
+Can you please go ahead to apply this series?
 
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c b/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c
-index 3f571cbc8331..66b4175601e3 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c
-+++ b/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.c
-@@ -177,9 +177,6 @@ void vdec_msg_queue_update_ube_wptr(struct vdec_msg_queue *msg_queue, uint64_t u
- 
- bool vdec_msg_queue_wait_lat_buf_full(struct vdec_msg_queue *msg_queue)
- {
--	int ret;
--	long timeout_jiff;
--
- 	if (atomic_read(&msg_queue->lat_list_cnt) == NUM_BUFFER_COUNT) {
- 		mtk_v4l2_debug(3, "wait buf full: list(%d %d) ready_num:%d status:%d",
- 			       atomic_read(&msg_queue->lat_list_cnt),
-@@ -189,19 +186,14 @@ bool vdec_msg_queue_wait_lat_buf_full(struct vdec_msg_queue *msg_queue)
- 		return true;
- 	}
- 
--	timeout_jiff = msecs_to_jiffies(1000 * (NUM_BUFFER_COUNT + 2));
--	ret = wait_event_timeout(msg_queue->core_dec_done,
--				 msg_queue->lat_ctx.ready_num == NUM_BUFFER_COUNT,
--				 timeout_jiff);
--	if (ret) {
--		mtk_v4l2_debug(3, "success to get lat buf: %d",
--			       msg_queue->lat_ctx.ready_num);
--		return true;
--	}
-+	msg_queue->flush_done = false;
-+	vdec_msg_queue_qbuf(&msg_queue->core_ctx, &msg_queue->empty_lat_buf);
-+	wait_event(msg_queue->core_dec_done, msg_queue->flush_done);
- 
--	mtk_v4l2_err("failed with lat buf isn't full: list(%d %d)",
--		     atomic_read(&msg_queue->lat_list_cnt),
--		     atomic_read(&msg_queue->core_list_cnt));
-+	mtk_v4l2_debug(3, "flush done => ready_num:%d status:%d list(%d %d)",
-+		       msg_queue->lat_ctx.ready_num, msg_queue->status,
-+		       atomic_read(&msg_queue->lat_list_cnt),
-+		       atomic_read(&msg_queue->core_list_cnt));
- 
- 	return false;
- }
-@@ -250,6 +242,14 @@ static void vdec_msg_queue_core_work(struct work_struct *work)
- 	if (!lat_buf)
- 		return;
- 
-+	if (lat_buf->is_last_frame) {
-+		ctx->msg_queue.status = CONTEXT_LIST_DEC_DONE;
-+		msg_queue->flush_done = true;
-+		wake_up(&ctx->msg_queue.core_dec_done);
-+
-+		return;
-+	}
-+
- 	ctx = lat_buf->ctx;
- 	mtk_vcodec_dec_enable_hardware(ctx, MTK_VDEC_CORE);
- 	mtk_vcodec_set_curr_ctx(dev, ctx, MTK_VDEC_CORE);
-@@ -300,6 +300,10 @@ int vdec_msg_queue_init(struct vdec_msg_queue *msg_queue,
- 	msg_queue->wdma_rptr_addr = msg_queue->wdma_addr.dma_addr;
- 	msg_queue->wdma_wptr_addr = msg_queue->wdma_addr.dma_addr;
- 
-+	msg_queue->empty_lat_buf.ctx = ctx;
-+	msg_queue->empty_lat_buf.core_decode = NULL;
-+	msg_queue->empty_lat_buf.is_last_frame = true;
-+
- 	for (i = 0; i < NUM_BUFFER_COUNT; i++) {
- 		lat_buf = &msg_queue->lat_buf[i];
- 
-@@ -325,6 +329,7 @@ int vdec_msg_queue_init(struct vdec_msg_queue *msg_queue,
- 
- 		lat_buf->ctx = ctx;
- 		lat_buf->core_decode = core_decode;
-+		lat_buf->is_last_frame = false;
- 		err = vdec_msg_queue_qbuf(&msg_queue->lat_ctx, lat_buf);
- 		if (err) {
- 			mtk_v4l2_err("failed to qbuf buf[%d]", i);
-diff --git a/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.h b/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.h
-index efc94165e016..8f771874f8e6 100644
---- a/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.h
-+++ b/drivers/media/platform/mediatek/vcodec/vdec_msg_queue.h
-@@ -62,6 +62,8 @@ struct vdec_msg_queue_ctx {
-  * @core_decode: different codec use different decode callback function
-  * @lat_list: add lat buffer to lat head list
-  * @core_list: add lat buffer to core head list
-+ *
-+ * @is_last_frame: meaning this buffer is the last frame
-  */
- struct vdec_lat_buf {
- 	struct mtk_vcodec_mem wdma_err_addr;
-@@ -74,6 +76,8 @@ struct vdec_lat_buf {
- 	core_decode_cb_t core_decode;
- 	struct list_head lat_list;
- 	struct list_head core_list;
-+
-+	bool is_last_frame;
- };
- 
- /**
-@@ -88,6 +92,8 @@ struct vdec_lat_buf {
-  *
-  * @lat_list_cnt: used to record each instance lat list count
-  * @core_list_cnt: used to record each instance core list count
-+ * @flush_done: core flush done status
-+ * @empty_lat_buf: the last lat buf used to flush decode
-  * @core_dec_done: core work queue decode done event
-  * @status: current context decode status for core hardware
-  */
-@@ -104,6 +110,8 @@ struct vdec_msg_queue {
- 
- 	atomic_t lat_list_cnt;
- 	atomic_t core_list_cnt;
-+	bool flush_done;
-+	struct vdec_lat_buf empty_lat_buf;
- 	wait_queue_head_t core_dec_done;
- 	int status;
- };
--- 
-2.18.0
-
+Regards,
+Liu Ying
