@@ -2,149 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 238B87107B5
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 10:37:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C6377107E2
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 10:49:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240167AbjEYIht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 04:37:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60444 "EHLO
+        id S240158AbjEYItc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 04:49:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240218AbjEYIhq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 04:37:46 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 422EEE77
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 01:37:11 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-3094910b150so1763110f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 01:37:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685003787; x=1687595787;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=n3dgMxXDod8W5xFRkfrc3GHYIe7IJtWHOb1qHkVrSyw=;
-        b=rAJr00uhitvg08RQiF4/r2qsuN54ed2qIy+jhMamu7WC+7DYjaVW38dSSK1ISlVYuv
-         6A/z3EOKu/EPeDsga1H+cbaD08hWHaMazOLKcPDRmpRLY0IaVV+qAT2UjceMthQJ8huZ
-         aaPBjtPUkpL6vAmnm2CICrShG7kQRnwmzn4zJvRgzlWPsMMA/KXre+5BSSCagb4f7m3z
-         P9wvqV3my11UDuiug3DQg+sxf9PNuirNezxB4co6FLAgAsPpeZqcA/Bv/iHQdB7/40bu
-         9kz9SoUv/oRNLmJvuuwV/BWANlSSV35QI/rlc1A/y6fIU3ILm0sNkvBivC26ukuQvqdh
-         oPUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685003787; x=1687595787;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=n3dgMxXDod8W5xFRkfrc3GHYIe7IJtWHOb1qHkVrSyw=;
-        b=hlP1VfVTA2PaS4jh2eWR7ip6kT+VsImX36oZX6xMLFeGqaIJiP4FqVxTvzmZ6FvSnZ
-         bV2HPOjlDx3k9cebLK2moUjJCXWryuB8qhjZE5HUnw1qTndsiuMgudMXA7Kvc/VIQ3Tx
-         sxZqZ6f/ABxfM2YNoQrjgqUilLivgVhWMb+dwVLjPC1yvGwKYBBLHEYyD1eJ6UtB9+Gu
-         XnMkyGla7UMeLRNPA5CWKlh2gCxjisXZZok9wsA7Y3issBlWgOlXFp9yLt0JwZsWcEo2
-         PRtPtHi4Mh24IBtEHWvHSv3lisNT2dFs5uZl9atb9n7UA5pPaMqziUPnsieD15UDGk/E
-         I8Kw==
-X-Gm-Message-State: AC+VfDweyGfCYsnSdVunqB6+cqtJA5fSnqRDWgUDSHF+iqhzpyt1u0kz
-        S5BgVi9lEflGBRMFLN/KKrZoOg==
-X-Google-Smtp-Source: ACHHUZ5nkq7EAYlDZowugr1Hfy9OT67waP2J4z6G+ddNE5NGUnlczveGmFzKp2JfbMx57X46VnG+Cw==
-X-Received: by 2002:a5d:4b03:0:b0:30a:8c0b:3209 with SMTP id v3-20020a5d4b03000000b0030a8c0b3209mr1682351wrq.9.1685003787201;
-        Thu, 25 May 2023 01:36:27 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5cdb:105b:7481:b0e6? ([2a01:e0a:982:cbb0:5cdb:105b:7481:b0e6])
-        by smtp.gmail.com with ESMTPSA id y8-20020a7bcd88000000b003f6038faa19sm4812494wmj.19.2023.05.25.01.36.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 May 2023 01:36:26 -0700 (PDT)
-Message-ID: <5c5910e0-8a55-416f-e1fe-2a1b223558f5@linaro.org>
-Date:   Thu, 25 May 2023 10:36:25 +0200
+        with ESMTP id S235393AbjEYItb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 04:49:31 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8713198;
+        Thu, 25 May 2023 01:49:30 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7313C6601F25;
+        Thu, 25 May 2023 09:49:28 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685004569;
+        bh=EtbcIEsusRHFZTgu8Dex+fRPFWvkGsCdZCUXAljl5dA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=R3Kqq201hrVo9BPurnMzA4ezjYaxoOObvi2g1URGN83ygYowisAzheTdUdqoN8r5n
+         TSPVNXvf2IqTDg6Ua32jPMj5mo3fBXv6Jzp00dpCYtRkUZIBFKRI6Z95fFDvcq9zyB
+         Qmf4i6a4nRyF4Lo8EjOvSFAi7xS9fItyrAASqEHumC9d+L+2iMqekjSs9WuiEvzVgr
+         kqPO/q7IWRwlb7SHqcUp/Q775FHR3XSGYEdGLrJGcoMiI0kG0mYN6GtVrQxhaJszeY
+         PEVm7f/e/4fGzFf7IIwz7zGZD1F44ZMszNcIUEl1DVmOHxBiPP4hdPjndP8BOQ7DIl
+         oElYLmw5vShYA==
+Message-ID: <b80ceed1-0c5a-0875-dab0-309e2318d88e@collabora.com>
+Date:   Thu, 25 May 2023 10:49:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] drm/panel: simple: Add Ampire AM-800480L1TMQW-T00H
+Subject: Re: [PATCH v8 07/10] arm64: dts: mediatek: add ethernet support for
+ mt8365-evk
 Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <cover.1684931026.git.geert+renesas@glider.be>
- <244d9471e0ed248ff2dea8ded3a5384a1c51904b.1684931026.git.geert+renesas@glider.be>
-Organization: Linaro Developer Services
-In-Reply-To: <244d9471e0ed248ff2dea8ded3a5384a1c51904b.1684931026.git.geert+renesas@glider.be>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>
+References: <20230203-evk-board-support-v8-0-7019f3fd0adf@baylibre.com>
+ <20230203-evk-board-support-v8-7-7019f3fd0adf@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230203-evk-board-support-v8-7-7019f3fd0adf@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/05/2023 14:32, Geert Uytterhoeven wrote:
-> Add support for the Ampire AM-800480L1TMQW-T00H 5" WVGA TFT LCD panel.
+Il 25/05/23 10:33, Alexandre Mergnat ha scritto:
+> - Enable "vibr" and "vsim2" regulators to power the ethernet chip.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 > ---
->   drivers/gpu/drm/panel/panel-simple.c | 33 ++++++++++++++++++++++++++++
->   1 file changed, 33 insertions(+)
+>   arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 48 +++++++++++++++++++++++++++++
+>   1 file changed, 48 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index 5778824dffd47a31..467117c0b2c9d463 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -778,6 +778,36 @@ static const struct drm_display_mode ampire_am800480r3tmqwa1h_mode = {
->   	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+> index 1a5769c397c2..86524cbf4354 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+> @@ -88,6 +88,29 @@ optee_reserved: optee@43200000 {
+>   	};
 >   };
 >   
-> +static const struct display_timing ampire_am_800480l1tmqw_t00h_timing = {
-> +	.pixelclock = { 29930000, 33260000, 36590000 },
-> +	.hactive = { 800, 800, 800 },
-> +	.hfront_porch = { 1, 40, 168 },
-> +	.hback_porch = { 88, 88, 88 },
-> +	.hsync_len = { 1, 128, 128 },
-> +	.vactive = { 480, 480, 480 },
-> +	.vfront_porch = { 1, 35, 37 },
-> +	.vback_porch = { 8, 8, 8 },
-> +	.vsync_len = { 1, 2, 2 },
-> +	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-> +		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE |
-> +		 DISPLAY_FLAGS_SYNC_POSEDGE,
-> +};
-> +
-> +static const struct panel_desc ampire_am_800480l1tmqw_t00h = {
-> +	.timings = &ampire_am_800480l1tmqw_t00h_timing,
-> +	.num_timings = 1,
-> +	.bpc = 8,
-> +	.size = {
-> +		.width = 111,
-> +		.height = 67,
-> +	},
-> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH |
-> +		     DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE |
-> +		     DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE,
-> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
-> +};
-> +
->   static const struct panel_desc ampire_am800480r3tmqwa1h = {
->   	.modes = &ampire_am800480r3tmqwa1h_mode,
->   	.num_modes = 1,
-> @@ -3993,6 +4023,9 @@ static const struct of_device_id platform_of_match[] = {
->   	}, {
->   		.compatible = "ampire,am-480272h3tmqw-t01h",
->   		.data = &ampire_am_480272h3tmqw_t01h,
-> +	}, {
-> +		.compatible = "ampire,am-800480l1tmqw-t00h",
-> +		.data = &ampire_am_800480l1tmqw_t00h,
->   	}, {
->   		.compatible = "ampire,am800480r3tmqwa1h",
->   		.data = &ampire_am800480r3tmqwa1h,
+> +&ethernet {
+> +	pinctrl-0 = <&ethernet_pins>;
+> +	pinctrl-names = "default";
+> +	phy-handle = <&eth_phy>;
+> +	phy-mode = "rmii";
+> +	/*
+> +	 * Ethernet and HDMI (DSI0) are sharing pins.
+> +	 * Only one can be enabled at a time and require the physical switch
+> +	 * SW2101 to be set on LAN position
+> +	 * mt6357_vibr_reg and mt6357_vsim2_reg are needed to supply ethernet
+> +	 */
+> +	status = "disabled";
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Ouh, that's sad :-(
+
+...but you're left with no other choice, so I agree with providing at least
+the full node in case anyone wants to actually enable it by flipping the
+switch on the board, so you get my
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Cheers!
+
+> +
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		eth_phy: ethernet-phy@0 {
+> +			reg = <0>;
+> +		};
+> +	};
+> +};
+> +
+>   &i2c0 {
+>   	clock-frequency = <100000>;
+>   	pinctrl-0 = <&i2c0_pins>;
+> @@ -138,6 +161,31 @@ &mt6357_pmic {
+>   };
+>   
+>   &pio {
+> +	ethernet_pins: ethernet-pins {
+> +		phy_reset_pins {
+> +			pinmux = <MT8365_PIN_133_TDM_TX_DATA1__FUNC_GPIO133>;
+> +		};
+> +
+> +		rmii_pins {
+> +			pinmux = <MT8365_PIN_0_GPIO0__FUNC_EXT_TXD0>,
+> +				 <MT8365_PIN_1_GPIO1__FUNC_EXT_TXD1>,
+> +				 <MT8365_PIN_2_GPIO2__FUNC_EXT_TXD2>,
+> +				 <MT8365_PIN_3_GPIO3__FUNC_EXT_TXD3>,
+> +				 <MT8365_PIN_4_GPIO4__FUNC_EXT_TXC>,
+> +				 <MT8365_PIN_5_GPIO5__FUNC_EXT_RXER>,
+> +				 <MT8365_PIN_6_GPIO6__FUNC_EXT_RXC>,
+> +				 <MT8365_PIN_7_GPIO7__FUNC_EXT_RXDV>,
+> +				 <MT8365_PIN_8_GPIO8__FUNC_EXT_RXD0>,
+> +				 <MT8365_PIN_9_GPIO9__FUNC_EXT_RXD1>,
+> +				 <MT8365_PIN_10_GPIO10__FUNC_EXT_RXD2>,
+> +				 <MT8365_PIN_11_GPIO11__FUNC_EXT_RXD3>,
+> +				 <MT8365_PIN_12_GPIO12__FUNC_EXT_TXEN>,
+> +				 <MT8365_PIN_13_GPIO13__FUNC_EXT_COL>,
+> +				 <MT8365_PIN_14_GPIO14__FUNC_EXT_MDIO>,
+> +				 <MT8365_PIN_15_GPIO15__FUNC_EXT_MDC>;
+> +		};
+> +	};
+> +
+>   	gpio_keys: gpio-keys-pins {
+>   		pins {
+>   			pinmux = <MT8365_PIN_24_KPCOL0__FUNC_KPCOL0>;
+> 
+
