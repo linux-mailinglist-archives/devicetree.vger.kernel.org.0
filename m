@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC82171078A
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 10:34:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 614CC71078F
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 10:34:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236207AbjEYIeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 04:34:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57952 "EHLO
+        id S240129AbjEYIei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 04:34:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239334AbjEYIef (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 04:34:35 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30409122
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 01:33:59 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-309550263e0so1748524f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 01:33:59 -0700 (PDT)
+        with ESMTP id S237059AbjEYIeh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 04:34:37 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB4519C
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 01:34:00 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f61530506aso3307115e9.1
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 01:34:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685003635; x=1687595635;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685003637; x=1687595637;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=wkyg3PseRq5i0Folj+GRO/aSoM3TKUeywxLrge822u4=;
-        b=IHRtJBEg+ATJEGHAAj+runJWLUQaBJ+qv3YL2RJSDUOI+2c+8Gnsit7XL9NdV87Wcm
-         bmnhiMFrTBtHQyAGPhMcRhgou7YYtfQHTqKtIQ/BIpJrUxMyuw0xaE5bD1L6Q0lz2T8C
-         bf1uarJWsjgBESBDO7t2+62DaXUh4/oCMvT8wbdix/K8x0HwCYcllcDFzNYw76B4nHVo
-         S0uQe/Cj9UH5oKGdGMgtbjP/5zTtlPV08KuM/so5OhSvZyiOTFGBxEAGejg2Z12LC4BL
-         YfDWgK8t5EFmEdzSv3z9NND27+4+QrUa28HZ6mRfWSM+/RF1z8oraFccUw5ZbezrX4yk
-         HXaQ==
+        bh=tDMAZYC6PlfAvsYSrf+M4iyNDJFAF/AM883C7PrISNc=;
+        b=ZCGAbdgXCXYDsCVFtmnECOBT5WP2ADILUz9yT/5vEyRqykdrS5zfQQLcLie703Q2vw
+         sxlmQh+trkLZBjESDlmT6/A77gjMjNP3+XAYCr1xrSa90A1Cut4KeNY+R+0/nHQ2BxIH
+         gmvtnKBwS1nwSS8kPyvoK/V6a9PzwwmMT5EURpa9a12lbxp9jKqDeuWfmC6E7zjA61TB
+         ukKYVsf/xZI60BZ57xAANm37s2jgmCUV/0ZPst+LBVtnyPeYCoY0FReF8bp/bgwqvU5g
+         ouh6ccna/givG4NbwIhXaw4xjab98Fx+/IKMinEazT8WDFr6fR5hT9foXlzUem/Ppzyy
+         sXTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685003635; x=1687595635;
+        d=1e100.net; s=20221208; t=1685003637; x=1687595637;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wkyg3PseRq5i0Folj+GRO/aSoM3TKUeywxLrge822u4=;
-        b=FpbrX2zAPXfkP9h5/NzgTELLfqcC38OzzJXBmGz6UEH+aRswkYCBwhE8hREz09Qg8I
-         aikrS4qksG7hH9GKOHX2yCu2wHF9pZASLf6/CaPQvdx9KvGqFNzQfyMMEgHQPgU8C27w
-         JHbC+OTgfBF9GvvVadHLeObkiIb3ndY+LfJL4sW5LfxJ1T0d13jqfv8G5acYROE3K+6Z
-         NJ6ctnrXoO6jah5+kWaZz0uNbiMju7ZYl3AEIm5nM+HwqZSzOFYys9hU8o19Dcodyb5X
-         i/7FIDaJ64hzwr4Hxf5k6NliL2FBPxNknb0cBhAc/tnA9i3p/tD9BzMOVmJ1OpnxT3Rq
-         xXDQ==
-X-Gm-Message-State: AC+VfDxVyEPwwWRjVIQFz8NxYwNIorL4u+obPSG6mPVXPqK+7NqNiWgS
-        BiLY5rui8zKLNguL7wf5JMt0Sw==
-X-Google-Smtp-Source: ACHHUZ538gNxVUvNRj7yoUeDbBW/0pV1KsL7cuIz765EeYCOCdcyFMyhx/H0Ry+Eil4BKt82CMZznQ==
-X-Received: by 2002:a5d:590d:0:b0:30a:bae6:fa9f with SMTP id v13-20020a5d590d000000b0030abae6fa9fmr896467wrd.34.1685003635596;
-        Thu, 25 May 2023 01:33:55 -0700 (PDT)
+        bh=tDMAZYC6PlfAvsYSrf+M4iyNDJFAF/AM883C7PrISNc=;
+        b=apGQThAY0EZsi03jWZZMD59oqTQns26i8CjqPCddPXBbEIQLLwE8DmzVI2t3MAsX/M
+         /SdlBvqYhfPRHSNzoNcdoAzaY/W6c72ZTLidTbaR9wUj4LM+7GfgfUb6WuTKxvZZ0hZC
+         C94Y4Z/fndVXF/Ka1bhwkmTyHrD0/SStbDBxaFVNlutWTiFbseKj5t4uAI3zvS7y8B4t
+         2xJ9iAfcoYMfXPTZ50OU8YjujC0rQ/3pSAJRuZ1Ky244LD8xRYQ5/X9hVIAZ6UFWAYxC
+         cHAO7Y2k+WfgqK39IEHGTbbxcJ2TDWkyV1bgs7JGigVlTJeP1+LQFKuuY6RVAvYV3xoQ
+         ZtNA==
+X-Gm-Message-State: AC+VfDyZPxX1/xynqqn5An0BrG1C52GX1vzNZFQQD80OTY9G2zqBYxv7
+        c+jed3doRyVheuU8LorNeTTWpA==
+X-Google-Smtp-Source: ACHHUZ6NcwZ+FPVEwSPwGU4TT6xlYG7ghCbQwCjTXicvKcWpYEiHaPck+e+02FRlIex3qeCUIJsmCA==
+X-Received: by 2002:adf:ec4d:0:b0:306:2db9:cc2c with SMTP id w13-20020adfec4d000000b003062db9cc2cmr1885209wrn.32.1685003636901;
+        Thu, 25 May 2023 01:33:56 -0700 (PDT)
 Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id o3-20020a5d6843000000b003095a329e90sm945809wrw.97.2023.05.25.01.33.54
+        by smtp.googlemail.com with ESMTPSA id o3-20020a5d6843000000b003095a329e90sm945809wrw.97.2023.05.25.01.33.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 May 2023 01:33:55 -0700 (PDT)
+        Thu, 25 May 2023 01:33:56 -0700 (PDT)
 From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Thu, 25 May 2023 10:33:11 +0200
-Subject: [PATCH v8 02/10] arm64: defconfig: enable Mediatek PMIC key
+Date:   Thu, 25 May 2023 10:33:12 +0200
+Subject: [PATCH v8 03/10] arm64: dts: mediatek: add watchdog support for
+ mt8365 SoC
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230203-evk-board-support-v8-2-7019f3fd0adf@baylibre.com>
+Message-Id: <20230203-evk-board-support-v8-3-7019f3fd0adf@baylibre.com>
 References: <20230203-evk-board-support-v8-0-7019f3fd0adf@baylibre.com>
 In-Reply-To: <20230203-evk-board-support-v8-0-7019f3fd0adf@baylibre.com>
 To:     Catalin Marinas <catalin.marinas@arm.com>,
@@ -74,53 +75,57 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Alexandre Mergnat <amergnat@baylibre.com>,
         Kevin Hilman <khilman@baylibre.com>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=877; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=jPn3tggveilK0xTrgDaZ1+RBp85nyEx21PEy7yxORvw=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkbx1v4EJwb5ltY7o9akUPr2vQ/+igut2ra6dXr9OQ
- qqPxMBiJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZG8dbwAKCRArRkmdfjHURZTzD/
- 4pgUjLhvBw1cyMvt0mnTbbCfkUC3ELYRSKtaczQt1HA0mAJOG0m+S7ULvjZV5e0QfBjIo70eRMXa51
- Vt/jJ6cCJnVlgo9hJ3PZ+Xp1/w2qTwRAtBZMhyXUFD6bHGU/VO8T4kTeVfKpZVjqoPqBzGxGuuVdig
- JIknJzkrmHab7DvupQQ9e63PhuyXGsr3Ckn43clGgIyTEDUy5YlkbFNhhFaB7ssWMhUALSmqtB1j/N
- Gdf1efeuoJLd2HgnsuAy15QsOHsym/+ejnrpD37IOz58xNYqdno/Edi3c2EHrod4DULrLSYQt2uWxr
- 5mJntZQbuTGWZuelBgsb7KvVP/XDSnC2tiWf0VvWIgFPSvGq12wWpk0P3ppI2j2S32NLoPjJ5FySIF
- Dz7fPT2gaIh4kJkWYbbqtzH2BYjmTvxakal3jMi+YQwjFtDCNIG5sUNVA4g3n/5GT9ECrHflNgiJxW
- r4Ht77qFPUVJChncFt7AScHk1iXlmE0M0mfD4FilWEd1HL5guIJCDnp1SaYA3ss0Bd8MceRzroBknY
- LphjyR8DzU5oL2cNvKy8SItqu2HZh91DTQVS/lbcME3Ve7L1sBr8+yyTFagS1oUDLiIGLbkcyTq+ub
- /8JYw1P7Y7WYl3AwlhAeX6yxerr3XUtvC5cen+HixlKOSZWcwre/1DScIu4Q==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=940; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=9yZG6Lt2sYetnfjl+HHfU8vcDGstMCEZ7QfVbikE4Lw=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkbx1vNSdMsmnHxJfKXxkhkVDFUZdZstbXniZEAhSF
+ PqyPPteJAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZG8dbwAKCRArRkmdfjHURSHoD/
+ 4gN0l5X5LvAdG3O8LVaxW4hbi6wkoRPqNGSZNxWA2LNDNhvLypC84tflW1dqzYi6cHZE9e1QQGNYyp
+ S81tq0Ya/Lz/+UEwmabof0XIRJqjp2XLGJC3keI7Lj+OycSXr/jz04/fB38VuxxNagstaArMzgOZUK
+ Eq7n5Q4TVJsuL6Kmd4MvEC+8hrJP8T8p3nwMQa4cjtgYKlm84GdPto7kbE/2hrw1KQPtiuFLDyEDv8
+ VGaTENuxs+foz8mAgrQ6KPpbrmke0GcwdALY5OTISsEM0xngrDB6aiZRcDuN1Q/EdAslMzQnZlwB0X
+ ZNfoP/P0RzNU2hPiQNwcBgD/JH2+sbXd19/Acgqp2n0zJ+3uqtHO0lmpnkOsfuygMV0QER3cZDV8B4
+ tdTOK6Chkuq1msbkdFQ+QF/hx2W+YduaCAEIjJ12Pt8XSlKyHl1/y6JBfnDFOZXiwm91Nie3mRGjhr
+ Jcme7xRHxCDVO3Syhy6x7thJKZALDyqsxjggnNz+GtAsEvRSkpcXRSOwyOjZ5MYG7WT0HWu6S41PAG
+ /TdD/ua3MvaZv0QkDp2yo1tA0ZxLIc6pfMOYFMZUeu4P01e4NTmHhdHEV/S+M1oM9FYVGh+93pA394
+ v3muDrQ6mAXOfV3iHGsfql4i+ddMZja91BEwAYbyS8hqwQJ5I6gHaFf26E0g==
 X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
  fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some Mediatek PMIC devices can manage Power and Home keys (buttons).
-This patch enable the driver which handle the 2 keys managed by the
-Mediatek PMIC.
+Add watchdog support.
 
-Tested-by: Kevin Hilman <khilman@baylibre.com>
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Tested-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index ed3fca298314..0db8293f477d 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -413,6 +413,7 @@ CONFIG_KEYBOARD_GPIO=y
- CONFIG_KEYBOARD_SNVS_PWRKEY=m
- CONFIG_KEYBOARD_IMX_SC_KEY=m
- CONFIG_KEYBOARD_CROS_EC=y
-+CONFIG_KEYBOARD_MTK_PMIC=m
- CONFIG_MOUSE_ELAN_I2C=m
- CONFIG_INPUT_TOUCHSCREEN=y
- CONFIG_TOUCHSCREEN_ATMEL_MXT=m
+diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
+index 1f6b48359115..bb45aab2e6a9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
+@@ -162,6 +162,12 @@ syscfg_pctl: syscfg-pctl@10005000 {
+ 			reg = <0 0x10005000 0 0x1000>;
+ 		};
+ 
++		watchdog: watchdog@10007000 {
++			compatible = "mediatek,mt8365-wdt", "mediatek,mt6589-wdt";
++			reg = <0 0x10007000 0 0x100>;
++			#reset-cells = <1>;
++		};
++
+ 		pio: pinctrl@1000b000 {
+ 			compatible = "mediatek,mt8365-pinctrl";
+ 			reg = <0 0x1000b000 0 0x1000>;
 
 -- 
 2.25.1
