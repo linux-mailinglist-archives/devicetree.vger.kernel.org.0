@@ -2,62 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D464711098
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 18:12:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6CAE7110C9
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 18:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231133AbjEYQMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 12:12:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56470 "EHLO
+        id S238874AbjEYQUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 12:20:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232918AbjEYQMc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 12:12:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E1110CA;
-        Thu, 25 May 2023 09:12:04 -0700 (PDT)
+        with ESMTP id S240325AbjEYQT7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 12:19:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42754195;
+        Thu, 25 May 2023 09:19:57 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 228CC64754;
-        Thu, 25 May 2023 16:12:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66545C433EF;
-        Thu, 25 May 2023 16:11:59 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CA88B6476D;
+        Thu, 25 May 2023 16:19:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F130C433D2;
+        Thu, 25 May 2023 16:19:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685031123;
-        bh=eGwbDp7GXLadDVneGLrHlJAsKXAAFdJ2QiGxjfTabbE=;
+        s=k20201202; t=1685031596;
+        bh=PEtK4XQujJVRG9JuuhXTpXbXc0yGWo0XW1UzlJpTm1U=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IxidsszBRPguHI81Nrqgyg+PAPcJOt3TiumrloR5YDGscvCz+VunNxEx/Wv6qIgSp
-         rUDCv1bUuOyqUkrFJWBRdjWpSPDaKK0YuAfwFOqDXtspsCTRoznmTrNq2EoHFriG8T
-         TezQJsczQzq9lMXz7t5ulUCJWNCTgOSElTN2RAA4CBfgUuyZ+5KH/sFWMtH+ucPJBB
-         xZ616Zp/Wh0N7ggA0H3+h4fG9C8ZGOBZggavFJVEDVFbiwRWjiaM5fGM2Ge7JAFLr2
-         V9OQSP46Krk/xEqqnri/SCHRmjfJAem2SRcfgu4X5zw1MTGtkQWoBGRIwIHOjceFgs
-         B0//walKKKRiA==
-Date:   Thu, 25 May 2023 17:11:56 +0100
+        b=YcA9yR8zEjfdA5VDDZwvy77Vy/0MjDzX9ob95Yk3imwGam7iCSYqs0X9xCzObBqaf
+         Y+mcZ+FeGGlaXhw7D21JwyaP4LPYABmiaGUFPkcu/LcmlnMF9zyLnS0VZXkC+95UGY
+         hCdblKo1/U26KBEFEKdUt3paAZSj316ZlZRBGbLCnad5yTmXJAun1tepg+TIoIOMFv
+         k4VSrT/d5jdRUvZ3ruG7L8BPS2DgRRg7f2kEkhRPZcltyr5K6J5syUtHrKvSqvZ/UN
+         exnwWOjvsdwtDYKAxtHO4y8TgYVaygUvVLL6AF+BrPYQQFjzFAHkmR45xIAfYHwaMF
+         ZtuK3EeJ7w/ew==
+Date:   Thu, 25 May 2023 17:19:51 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Justin Chen <justin.chen@broadcom.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        florian.fainelli@broadcom.com, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, opendmb@gmail.com, andrew@lunn.ch,
-        hkallweit1@gmail.com, linux@armlinux.org.uk,
-        richardcochran@gmail.com, sumit.semwal@linaro.org,
-        christian.koenig@amd.com, simon.horman@corigine.com
-Subject: Re: [PATCH net-next v5 2/6] dt-bindings: net: Brcm ASP 2.0 Ethernet
- controller
-Message-ID: <20230525-extent-osmosis-8d99bf7a780b@spud>
-References: <1684969313-35503-1-git-send-email-justin.chen@broadcom.com>
- <1684969313-35503-3-git-send-email-justin.chen@broadcom.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: tegra-xudc: Remove extraneous PHYs
+Message-ID: <20230525-pancake-amiable-903f8e96c58d@spud>
+References: <20230525094237.2846682-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="gQWeSQ/Xh494+0MG"
+        protocol="application/pgp-signature"; boundary="6032cX2oMZzLCuYF"
 Content-Disposition: inline
-In-Reply-To: <1684969313-35503-3-git-send-email-justin.chen@broadcom.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230525094237.2846682-1-thierry.reding@gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -65,96 +58,69 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---gQWeSQ/Xh494+0MG
+--6032cX2oMZzLCuYF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, May 24, 2023 at 04:01:49PM -0700, Justin Chen wrote:
-> From: Florian Fainelli <florian.fainelli@broadcom.com>
+On Thu, May 25, 2023 at 11:42:37AM +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 >=20
-> Add a binding document for the Broadcom ASP 2.0 Ethernet
-> controller.
+> The USB device controller on Tegra210 and later supports one USB 2/3
+> port, so only a single pair of PHYs is needed. Drop any of the extra
+> PHYs from the bindings.
 >=20
-> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
-> ---
-> v5
-> 	- Fix compatible string yaml format to properly capture what we want
->=20
-> v4
->         - Adjust compatible string example to reference SoC and HW ver
->=20
-> v3
->         - Minor formatting issues
->         - Change channel prop to brcm,channel for vendor specific format
->         - Removed redundant v2.0 from compat string
->         - Fix ranges field
->=20
-> v2
->         - Minor formatting issues
->=20
->  .../devicetree/bindings/net/brcm,asp-v2.0.yaml     | 149 +++++++++++++++=
-++++++
->  1 file changed, 149 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/brcm,asp-v2.0.y=
-aml
->=20
-> diff --git a/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml b/D=
-ocumentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-> new file mode 100644
-> index 000000000000..c4cd24492bfd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-> @@ -0,0 +1,149 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/brcm,asp-v2.0.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom ASP 2.0 Ethernet controller
-> +
-> +maintainers:
-> +  - Justin Chen <justin.chen@broadcom.com>
-> +  - Florian Fainelli <florian.fainelli@broadcom.com>
-> +
-> +description: Broadcom Ethernet controller first introduced with 72165
-> +
-> +properties:
-> +  '#address-cells':
-> +    const: 1
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - brcm,bcm74165-asp
-> +          - const: brcm,asp-v2.1
-> +      - items:
-> +          - enum:
-> +              - brcm,bcm72165-asp
-> +          - const: brcm,asp-v2.0
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 
-Sorry if I did not notice this before, conventionally compatible goes
-first here. IFF there is another version, could you shuffle things
-around? Otherwise,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
---gQWeSQ/Xh494+0MG
+> ---
+>  .../devicetree/bindings/usb/nvidia,tegra-xudc.yaml         | 7 +------
+>  1 file changed, 1 insertion(+), 6 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml=
+ b/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml
+> index e2270ce0c56b..c6e661e8915c 100644
+> --- a/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml
+> +++ b/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml
+> @@ -91,6 +91,7 @@ properties:
+> =20
+>    phys:
+>      minItems: 1
+> +    maxItems: 2
+>      description:
+>        Must contain an entry for each entry in phy-names.
+>        See ../phy/phy-bindings.txt for details.
+> @@ -99,13 +100,7 @@ properties:
+>      minItems: 1
+>      items:
+>        - const: usb2-0
+> -      - const: usb2-1
+> -      - const: usb2-2
+> -      - const: usb2-3
+>        - const: usb3-0
+> -      - const: usb3-1
+> -      - const: usb3-2
+> -      - const: usb3-3
+> =20
+>    avddio-usb-supply:
+>      description: PCIe/USB3 analog logic power supply. Must supply 1.05 V.
+> --=20
+> 2.40.1
+>=20
+
+--6032cX2oMZzLCuYF
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG+IzAAKCRB4tDGHoIJi
-0t8LAP0XPuVe8Xv0rC6URYPWMiOetvVlRcErsx5TLDNGuD0U8AEA8RUP6BvGw9Pv
-QWlVEE3X8asJ36V2w/7bvKuygsBc2wQ=
-=IMJt
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG+KpwAKCRB4tDGHoIJi
+0jC4AQDylP8KaWqPnEBN44hFeAbp72VX8q8/FP2vVH7qdqpqiAEA8dY7ncKN7tjz
+mw3hkVsQWeBPoNshBboVWqINmLqnWQs=
+=kYkx
 -----END PGP SIGNATURE-----
 
---gQWeSQ/Xh494+0MG--
+--6032cX2oMZzLCuYF--
