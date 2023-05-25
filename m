@@ -2,97 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AD94710C3A
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 14:41:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 426FF710C76
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 14:54:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240752AbjEYMlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 08:41:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33612 "EHLO
+        id S240679AbjEYMyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 08:54:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230464AbjEYMli (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 08:41:38 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA8C79B
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 05:41:36 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id 4fb4d7f45d1cf-510dabb3989so4439834a12.0
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 05:41:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685018495; x=1687610495;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cpy7HUUl9JUJVfHeyZRx3CTbUVGObKlyKlmgTELiasw=;
-        b=glbAjOsFuG3Ml8u+wd7Y1a/2Fc4wTzuAVkkTtB6EJ0/+5B9AYfTYO+JX/EkU0skgJH
-         eydJ4LiSHi9RmbdezgUcBGL1tJaAROtN8/hr9g8Q6ot663mwKPi+6sdlH4HPHGvyRt9h
-         DpjTbXzeGABRW+228zV9wQg9wY3v9V1SmUSQZY5MnkrrEPI0h16BJohK/lHrzq+1Tofx
-         Gd28p6ZKUCY9Nl5hsGgPPyM6BpegL24N1gZmJ5vmWL1maTm1PNg1qxQIeMy9LQ0X5/tJ
-         jP/EL2DStY1hEKHt0nbcl+VWW5w5PdEeKoD3iPH5u259FtNm5bJ8DUoe4LKCsYLYKNzV
-         exNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685018495; x=1687610495;
-        h=content-transfer-encoding:to:subject:message-id:date:from:reply-to
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cpy7HUUl9JUJVfHeyZRx3CTbUVGObKlyKlmgTELiasw=;
-        b=OngVEXMAnmXC1dyNBlsv66BKV0a+WfE5Or+FfU3ks6s0fh3/fvQ3ldg1TpJxU/1S8Y
-         v/O5fF0f94nhC7cLF4wbUqpwBhNnsIKdzNfdGxvwZ5hFEnHsAIT3DXDRjkdZFAMhc7IT
-         fKX6ugvoZE7qcUJS3sA82xjjQCrKH90d23fPVMtRhv0DcRnJlADAUni+s2PD3n1mrkGd
-         v8H650ogb16F+k+3xHEeBOFGfDM5s21Rlz2jygVVaBlxSmwn30lCFss2zOl9VGjUBRvS
-         z2wftOVQiiE9ijNkIp1FwUwloedceNDxrRApupD2ladx6wtPfzecmN7SY2hFvdmdpdlk
-         8kYw==
-X-Gm-Message-State: AC+VfDz3oWcUOvSuAUKgtHDRtcAZvfXLouIo253/B7pJnOt6rYi6O+2S
-        VBgzG4+lk/RCEFaQ85so4gEK/dud6s8UXkL5P58=
-X-Google-Smtp-Source: ACHHUZ6GVO3zO8q2fUcDkj728toLiDvsT+FZMBeMeFHLy61LBoFC0z0V6t1HNsh/aySSCO47u0Ze47+ttPdudim1lGU=
-X-Received: by 2002:a17:907:72d2:b0:96f:d780:5734 with SMTP id
- du18-20020a17090772d200b0096fd7805734mr1400475ejc.65.1685018494809; Thu, 25
- May 2023 05:41:34 -0700 (PDT)
+        with ESMTP id S240404AbjEYMyW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 08:54:22 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E866135;
+        Thu, 25 May 2023 05:54:19 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34PCrdrO005723;
+        Thu, 25 May 2023 07:53:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685019219;
+        bh=6ks66yZV5gcEqGgIUg5LbU7F3LbUrto/eH+llPvKqdE=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=odMtc5DxIo5ppR5sgJNi9JAWEZ+rLNZAW34GpZlVlUYWm6vKgKu6d5yls9aahr3c9
+         7B052k0opU+ux7gLR7y6FMOfnoymvm2lxsciC+qhwgoQeqJQrLX9EFD1OWvGzEQNCr
+         qblLB1Ax/1ulfnVB23Iou4TYWBL2WE0/UhXDRGlM=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34PCrd5O123006
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 25 May 2023 07:53:39 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 25
+ May 2023 07:53:39 -0500
+Received: from DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c]) by
+ DLEE101.ent.ti.com ([fe80::91ee:60bc:bfb7:851c%18]) with mapi id
+ 15.01.2507.023; Thu, 25 May 2023 07:53:39 -0500
+From:   "Ding, Shenghao" <shenghao-ding@ti.com>
+To:     Takashi Iwai <tiwai@suse.de>
+CC:     Shenghao Ding <13916275206@139.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "perex@perex.cz" <perex@perex.cz>,
+        "pierre-louis.bossart@linux.intel.com" 
+        <pierre-louis.bossart@linux.intel.com>,
+        "Lu, Kevin" <kevin-lu@ti.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Xu, Baojun" <x1077012@ti.com>, "Gupta, Peeyush" <peeyush@ti.com>,
+        "Navada Kanyana, Mukund" <navada@ti.com>,
+        "gentuser@gmail.com" <gentuser@gmail.com>,
+        "Ryan_Chu@wistron.com" <Ryan_Chu@wistron.com>,
+        "Sam_Wu@wistron.com" <Sam_Wu@wistron.com>
+Subject: RE: [EXTERNAL] Re: [PATCH v3 4/5] ALSA: hda/tas2781: Add tas2781 HDA
+ driver
+Thread-Topic: [EXTERNAL] Re: [PATCH v3 4/5] ALSA: hda/tas2781: Add tas2781 HDA
+ driver
+Thread-Index: AQHZi7qiFX/KEOnLRkSXJDizgQHnya9nuCRggABbjACAAuPwoA==
+Date:   Thu, 25 May 2023 12:53:38 +0000
+Message-ID: <0102db2e22dc472091a586bb73b467d9@ti.com>
+References: <20230519080227.20224-1-13916275206@139.com>
+        <871qjayuvv.wl-tiwai@suse.de>   <9daf95da47b540329aa9fbbd2df5e504@ti.com>
+ <87353ngtp1.wl-tiwai@suse.de>
+In-Reply-To: <87353ngtp1.wl-tiwai@suse.de>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.250.162.66]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Received: by 2002:a17:906:552:b0:959:c04b:2f00 with HTTP; Thu, 25 May 2023
- 05:41:33 -0700 (PDT)
-Reply-To: philipsjohnsongoodp@gmail.com
-From:   philips <robertandersongood5@gmail.com>
-Date:   Thu, 25 May 2023 14:41:33 +0200
-Message-ID: <CAD7QbCC4_VG491ob+GN7dx0ao51c9pRLzxk04Koenxoz6KGfHQ@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-X-Spam-Status: No, score=1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: *
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-0JTQvtGA0L7Qs9C+0Lkg0LTRgNGD0LMsDQrQnNC10L3RjyDQt9C+0LLRg9GCINCR0LDRgC7QpNC4
-0LvQuNC/0YEg0JTQttC+0L3RgdC+0L0sINGPINCw0LTQstC+0LrQsNGCINC4INGH0LDRgdGC0L3R
-i9C5DQrQvNC10L3QtdC00LbQtdGAINC/0L4g0YDQsNCx0L7RgtC1INGBINC60LvQuNC10L3RgtCw
-0LzQuCDQvNC+0LXQvNGDINC/0L7QutC+0LnQvdC+0LzRgyDQutC70LjQtdC90YLRgy4g0JIgMjAx
-NyDQs9C+0LTRgw0K0LzQvtC5INC60LvQuNC10L3RgiDQv9C+INC40LzQtdC90LgNCtCc0LjRgdGC
-0LXRgCDQmtCw0YDQu9C+0YEsINGPINGB0LLRj9C30LDQu9GB0Y8g0YEg0LLQsNC80Lgg0L/QviDR
-gtC+0Lkg0L/RgNC40YfQuNC90LUsINGH0YLQviDQstGLDQrQvdC+0YHQuNGC0Ywg0L7QtNC90YMg
-0YTQsNC80LjQu9C40Y4g0YEg0L/QvtC60L7QudC90YvQvCwg0Lgg0Y8g0LzQvtCz0YMg0L/RgNC1
-0LTRgdGC0LDQstC40YLRjCDQstCw0YEg0LrQsNC6DQrQsdC10L3QtdGE0LjRhtC40LDRgCDQuCDQ
-sdC70LjQttCw0LnRiNC40Lkg0YDQvtC00YHRgtCy0LXQvdC90LjQuiDRgdGA0LXQtNGB0YLQsiDQ
-vNC+0LXQs9C+INC/0L7QutC+0LnQvdC+0LPQviDQutC70LjQtdC90YLQsCwg0YLQvtCz0LTQsCDQ
-stGLDQrQstGL0YHRgtGD0L/QuNGC0Ywg0LIg0LrQsNGH0LXRgdGC0LLQtSDQtdCz0L4g0LHQu9C4
-0LbQsNC50YjQtdCz0L4g0YDQvtC00YHRgtCy0LXQvdC90LjQutCwINC4INC/0L7RgtGA0LXQsdC+
-0LLQsNGC0YwNCtGB0YDQtdC00YHRgtCy0LAuINC+0YHRgtCw0LLQu9GP0YLRjCDQvdCw0LvQuNGH
-0L3Ri9C1DQrQvdCw0YHQu9C10LTRgdGC0LLQviDRgdC10LzQuCDQvNC40LvQu9C40L7QvdC+0LIg
-0L/Rj9GC0LjRgdC+0YIg0YLRi9GB0Y/RhyDQodC+0LXQtNC40L3QtdC90L3Ri9GFINCo0YLQsNGC
-0L7Qsg0K0JTQvtC70LvQsNGA0L7QsiAoNyA1MDAgMDAwLDAwINC00L7Qu9C70LDRgNC+0LIg0KHQ
-qNCQKS4g0JzQvtC5INC/0L7QutC+0LnQvdGL0Lkg0LrQu9C40LXQvdGCINC4INC30LDQutCw0LTR
-i9GH0L3Ri9C5DQrQtNGA0YPQsyDQstGL0YDQvtGBINCyDQrCq9CU0L7QvCDQsdC10Lcg0LzQsNGC
-0LXRgNC4wrsuINCjINC90LXQs9C+INC90LUg0LHRi9C70L4g0L3QuCDRgdC10LzRjNC4LCDQvdC4
-INCx0LXQvdC10YTQuNGG0LjQsNGA0LAsINC90Lgg0YHQu9C10LTRg9GO0YnQtdCz0L4NCtGA0L7Q
-tNGB0YLQstC10L3QvdC40LrQvtCyINCyINC90LDRgdC70LXQtNGB0YLQstC+INCh0YDQtdC00YHR
-gtCy0LAg0L7RgdGC0LDQstC70LXQvdGLINCyINCx0LDQvdC60LUuDQrQktGLINC00L7Qu9C20L3R
-iyDRgdCy0Y/Qt9Cw0YLRjNGB0Y8g0YHQviDQvNC90L7QuSDRh9C10YDQtdC3INC80L7QuSDQu9C4
-0YfQvdGL0Lkg0LDQtNGA0LXRgSDRjdC70LXQutGC0YDQvtC90L3QvtC5INC/0L7Rh9GC0Ys6DQpw
-aGlsaXBzam9obnNvbmdvb2RwQGdtYWlsLmNvbQ0K0KEg0L3QsNC40LvRg9GH0YjQuNC80Lgg0L/Q
-vtC20LXQu9Cw0L3QuNGP0LzQuCwNCtCR0LDRgC4g0KTQuNC70LjQv9GBINCU0LbQvtC90YHQvtC9
-DQo=
+
+
+> -----Original Message-----
+> From: Takashi Iwai <tiwai@suse.de>
+> Sent: Tuesday, May 23, 2023 7:43 PM
+> To: Ding, Shenghao <shenghao-ding@ti.com>
+> Cc: Shenghao Ding <13916275206@139.com>; broonie@kernel.org;
+> devicetree@vger.kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> robh+dt@kernel.org; lgirdwood@gmail.com; perex@perex.cz; pierre-
+> louis.bossart@linux.intel.com; Lu, Kevin <kevin-lu@ti.com>; alsa-
+> devel@alsa-project.org; linux-kernel@vger.kernel.org; Xu, Baojun
+> <x1077012@ti.com>; Gupta, Peeyush <peeyush@ti.com>; Navada Kanyana,
+> Mukund <navada@ti.com>; gentuser@gmail.com; Ryan_Chu@wistron.com;
+> Sam_Wu@wistron.com
+> Subject: Re: [EXTERNAL] Re: [PATCH v3 4/5] ALSA: hda/tas2781: Add tas2781
+> HDA driver
+>=20
+> On Tue, 23 May 2023 13:22:03 +0200,
+> Ding, Shenghao wrote:
+> >
+> > > +	[ALC287_FIXUP_TAS2781_I2C_2] =3D {
+> > > +		.type =3D HDA_FIXUP_FUNC,
+> > > +		.v.func =3D tas2781_fixup_i2c,
+> > > +		.chained =3D true,
+> > > +		.chain_id =3D ALC269_FIXUP_THINKPAD_ACPI,
+> > > +	},
+> > > +	[ALC287_FIXUP_TAS2781_I2C_4] =3D {
+> > > +		.type =3D HDA_FIXUP_FUNC,
+> > > +		.v.func =3D tas2781_fixup_i2c,
+> > > +		.chained =3D true,
+> > > +		.chain_id =3D ALC269_FIXUP_THINKPAD_ACPI,
+> > > +	},
+> >
+> > What's a difference between *_2 and *_4?
+> > Combine them into ALC287_FIXUP_TAS2781_I2C
+>=20
+> Hm, so there is no difference in stereo and quad speakers?
+Yes, our firmware defines the stereo or quad speaker
+>=20
+> > > +static int tas2781_save_calibration(struct tasdevice_priv
+> > > +*tas_priv) {
+> > > +	efi_guid_t efi_guid =3D EFI_GUID(0x02f9af02, 0x7734, 0x4233, 0xb4,
+> 0x3d,
+> > > +		0x93, 0xfe, 0x5a, 0xa3, 0x5d, 0xb3);
+> > > +	static efi_char16_t efi_name[] =3D L"CALI_DATA";
+> > > +	struct hda_codec *codec =3D tas_priv->codec;
+> > > +	unsigned int subid =3D codec->core.subsystem_id & 0xFFFF;
+> > > +	struct tm *tm =3D &tas_priv->tm;
+> > > +	unsigned int attr, crc;
+> > > +	unsigned int *tmp_val;
+> > > +	efi_status_t status;
+> > > +	int ret =3D 0;
+> > > +
+> > > +	//Lenovo devices
+> > > +	if ((subid =3D=3D 0x387d) || (subid =3D=3D 0x387e) || (subid =3D=3D=
+ 0x3881)
+> > > +		|| (subid =3D=3D 0x3884) || (subid =3D=3D 0x3886) || (subid =3D=3D=
+ 0x38a7)
+> > > +		|| (subid =3D=3D 0x38a8) || (subid =3D=3D 0x38ba) || (subid =3D=3D
+> 0x38bb)
+> > > +		|| (subid =3D=3D 0x38be) || (subid =3D=3D 0x38bf) || (subid =3D=3D=
+ 0x38c3)
+> > > +		|| (subid =3D=3D 0x38cb) || (subid =3D=3D 0x38cd))
+> > > +		efi_guid =3D EFI_GUID(0x1f52d2a1, 0xbb3a, 0x457d, 0xbc, 0x09,
+> > > +			0x43, 0xa3, 0xf4, 0x31, 0x0a, 0x92);
+> >
+> > Here can be a problem: the device ID is embedded here, and it's hard to
+> find out.  You'd better to make it some quirk flag that is set in a commo=
+n
+> place and check the flag here instead of checking ID at each place.
+> >
+> > Do you have example of the solution? I found some quirk flag is static =
+in
+> the patch_realtek.c, can't be accessed outside that file.
+>=20
+> You may store some values in struct hda_component, I suppose?
+I will try it.
+>=20
+> BTW, please try to fix your mailer to do citation more correctly...
+accept
+>=20
+>=20
+> thanks,
+>=20
+> Takashi
