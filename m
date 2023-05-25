@@ -2,228 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 612E47108B4
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:21:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A2997108D9
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:28:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239601AbjEYJVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 05:21:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54174 "EHLO
+        id S235214AbjEYJ2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 05:28:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbjEYJVk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:21:40 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7702F197
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 02:21:38 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-30a8dc89c33so1220961f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 02:21:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685006497; x=1687598497;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7Zm/p2k/RehOfZBljDwc/bYZKGcOcF2/sVmCcVGUSgc=;
-        b=h/WfuPez2QrX3mfUg4JCwKeOj2YjWD8wYM2Ie82UqDSiqAkNZfJBMYmBbQDdyHR2Cm
-         UiXjRaSPu3slN288hugGIaOKrLB7Ir31pufgu9IPTY9Mxuwt2WLPZ/RZxpqIAmI8Prfl
-         D/AcSaWSHjj/urr4wn16iczX0d1SNsBBILDaGxMXwsYYbb/raR7djRFAdCCYnC/Ocfmh
-         zz02DsargQN9DqEeUk7RDxtyCx8bZJ9En6hwrmHSF3HW4MoJErK8rAVP/2QpgZaVvKla
-         ATBbWfn1UgrKBDOJvJJI85NQbsQAkBh+P9fiuaMM+KgBzcad3oOpODO0gr7UBm9a5PkX
-         8IzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685006497; x=1687598497;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7Zm/p2k/RehOfZBljDwc/bYZKGcOcF2/sVmCcVGUSgc=;
-        b=gCl7dLzY0vNRiCBmHPs1r4d/YxUK9s0prKSWqLdOHY1UIrScF7Xoo2IzjzHa+bRa7N
-         SHaOZPVRgHyPoj5TRwId3ZxmZ4rXhBSKV3dB1tEhS6TjvNzYc+iP2rok+EUh8Fs3RrUk
-         2QQbA0K90ansu/D7OkQPpROwRvMTM96U5hH0rLUy6XD+3xn85HOptR/WXzRufkoHRpFv
-         lwCsYTASAxKpEWukZmAqp2LFf4ukkz1Cc/zCi/9oEQ9GPGceSiC0VCO3RqgSy6AIdPmh
-         8b1I/jG7a8R7f7xpdY8xuGmL1RZgIAk445DXEA7w8r8eSzOmUgFBmLrl2MDbVwup2zBK
-         ai4A==
-X-Gm-Message-State: AC+VfDw6XB5ZDHydW/EMdjvsgYh5ZtSLMwCm/CLL2jBgkrt+4hsQFog5
-        H94twyrsiZSlUCymjeAMtMGpww==
-X-Google-Smtp-Source: ACHHUZ46dCc6t483kZe7a5eqGwSuR+0q2RWeVmzINPLITJx84wP7C+7JeIn1F7zdWCNRGS2rp27aiA==
-X-Received: by 2002:adf:e9cf:0:b0:304:6762:2490 with SMTP id l15-20020adfe9cf000000b0030467622490mr1948466wrn.3.1685006496902;
-        Thu, 25 May 2023 02:21:36 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id b4-20020a5d5504000000b003062b6a522bsm1088916wrv.96.2023.05.25.02.21.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 May 2023 02:21:36 -0700 (PDT)
-Message-ID: <dee69294-e743-e249-3075-e83f5c668c88@linaro.org>
-Date:   Thu, 25 May 2023 10:21:34 +0100
+        with ESMTP id S233064AbjEYJ2l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:28:41 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 18026A9;
+        Thu, 25 May 2023 02:28:38 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8BxlPBFKm9ka+4AAA--.2298S3;
+        Thu, 25 May 2023 17:28:37 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx97VEKm9kFBJ3AA--.194S3;
+        Thu, 25 May 2023 17:28:37 +0800 (CST)
+Subject: Re: [PATCH v11 2/2] spi: loongson: add bus driver for the loongson
+ spi controller
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230522071030.5193-1-zhuyinbo@loongson.cn>
+ <20230522071030.5193-3-zhuyinbo@loongson.cn> <ZGy3b7ZfNwWoGDTu@surfacebook>
+ <35b0500c-d7fe-6479-eeff-d45bbf9a9426@loongson.cn>
+ <CAHp75VdHPFDAd4iHdX5jXCM-tq0ZbFJDjvF9GCR_n7HVtd+obg@mail.gmail.com>
+ <2a72a2c2-6fda-1ea8-3b27-5623cc1132aa@loongson.cn>
+ <CAHp75VdMSM7VMFn8BDJpx2PJOR8DJtP0GF=sTECnMhz+MoSJ=Q@mail.gmail.com>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <889235d3-a5a2-417d-dc47-dbcf543c8549@loongson.cn>
+Date:   Thu, 25 May 2023 17:28:36 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/5] dt-bindings: clock: Add YAML schemas for LPASSCC and
- reset on SC8280XP
-To:     Johan Hovold <johan@kernel.org>
-Cc:     andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        agross@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230518113800.339158-1-srinivas.kandagatla@linaro.org>
- <20230518113800.339158-2-srinivas.kandagatla@linaro.org>
- <ZGsmCmEdoWIkcVDd@hovoldconsulting.com>
+In-Reply-To: <CAHp75VdMSM7VMFn8BDJpx2PJOR8DJtP0GF=sTECnMhz+MoSJ=Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <ZGsmCmEdoWIkcVDd@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Dx97VEKm9kFBJ3AA--.194S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjvJXoW7GFy8Xw43tryrZrWkurWDtwb_yoW8JF4UpF
+        W3JFWjkr4UKw4kCrWjq3Z8ArnY9F97Jr1Yqr95Gr97Aryqyr9xJr1UtrZF9rZ3CF12kr12
+        qa1UXFW3CFZ8XrJanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
+        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
+        bx8Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
+        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
+        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM2
+        8EF7xvwVC2z280aVCY1x0267AKxVWxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAq
+        jxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcV
+        AFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG
+        0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz4
+        8v1sIEY20_WwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I
+        3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIx
+        AIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAI
+        cVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2js
+        IEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j8pnQUUUUU=
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-thanks Johan for review,
 
-On 22/05/2023 09:21, Johan Hovold wrote:
-> On Thu, May 18, 2023 at 12:37:56PM +0100, Srinivas Kandagatla wrote:
->> The LPASS(Low Power Audio Subsystem) clock provider provides reset
+
+在 2023/5/25 下午5:16, Andy Shevchenko 写道:
+> On Thu, May 25, 2023 at 6:34 AM zhuyinbo <zhuyinbo@loongson.cn> wrote:
+>> 在 2023/5/24 下午4:42, Andy Shevchenko 写道:
+>>> On Wed, May 24, 2023 at 10:52 AM zhuyinbo <zhuyinbo@loongson.cn> wrote:
+>>>> 在 2023/5/23 下午8:54, andy.shevchenko@gmail.com 写道:
+>>>>> Mon, May 22, 2023 at 03:10:30PM +0800, Yinbo Zhu kirjoitti:
 > 
-> Missing space after LPASS acronym.
+> ...
 > 
-> s/provider/controller/?
-> 
->> controller support when is driven by the Q6DSP.
-> 
-> s/controller//?
-> 
-> "when is driven by": sounds like there are some words missing here.
-> 
->> This patch adds support for those resets and adds IDs for clients
-> 
-> There is never any need to say "this patch" in a commit message. Just say
-> 
-> 	Add support for...
-> 
->> to request the reset.
+>>>>>> +    ret = loongson_spi_init_master(dev, reg_base);
+>>>>>> +    if (ret)
+>>>>>> +            return dev_err_probe(dev, ret, "failed to initialize master\n");
+>>>>>> +
+>>>>>> +    return ret;
+>>>>>
+>>>>>         return 0;
+>>>>
+>>>> It seems was more appropriate that initialize ret then return ret.
+>>>> Do you think so ?
+>>>
+>>> What do you mean and how does it help here?
 >>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> ---
->>   .../bindings/clock/qcom,sc8280xp-lpasscc.yaml | 57 +++++++++++++++++++
->>   .../dt-bindings/clock/qcom,lpasscc-sc8280xp.h | 12 ++++
->>   2 files changed, 69 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml
->>   create mode 100644 include/dt-bindings/clock/qcom,lpasscc-sc8280xp.h
+>> I'm sorry, I was wrong before and the ret varible seems not to be
+>> initialized and it always record the return value for
+>> loongson_spi_init_master.
 >>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml b/Documentation/devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml
->> new file mode 100644
->> index 000000000000..7c30614a0af9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml
->> @@ -0,0 +1,57 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/qcom,sc8280xp-lpasscc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm LPASS Core & Audio Clock Controller on SC8280XP
->> +
->> +maintainers:
->> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> +
->> +description: |
->> +  Qualcomm LPASS core and audio clock control module provides the clocks,
->> +  reset and power domains on SC8280XP.
+>> It seems was appropriate that use "return ret" and I don't got your
+>> point that in probe for use "return 0"
 > 
-> "power domains"? copy-paste error?
-> 
->> +
->> +  See also::
->> +    include/dt-bindings/clock/qcom,lpasscc-sc8280xp.h
->> +
->> +properties:
->> +  reg: true
->> +
->> +  compatible:
->> +    enum:
->> +      - qcom,sc8280xp-lpasscc
->> +
->> +  '#reset-cells':
->> +    const: 1
->> +
->> +  '#clock-cells':
->> +    const: 1
-> 
-> Move above #reset-cells for some sorting of related attributes. Same
-> below (in two places).
-> 
->> +
->> +  qcom,adsp-pil-mode:
->> +    description:
->> +      Indicates if the LPASS would be brought out of reset using
->> +      peripheral loader.
->> +    type: boolean
-> 
-> Move above the provider cells properties?
-> 
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - qcom,adsp-pil-mode
-> 
-> If this boolean property is always needed, shouldn't that simply be
-> handled by the driver based on the compatible?
-
-Traditionally in Qcom SoCs LPASS is under the control of ADSP, there 
-have been some other variants specially chrome platforms that have moved 
-this control to APPs processor.
-
-Having this property at Device tree level provides more flexibility, 
-given that both the cases use same compatible strings.
+> In the above excerpt you will return anything except 0 with return
+> dev_err_probe(); line. Why do you still need to return ret; at the end
+> of the function?
 
 
-Am okay with reset of the comments, Will fix them in v2.
-thanks,
-Srini
+I'm sorry, I misread it and you are right and I will "return 0".
 
-> 
->> +  - '#reset-cells'
->> +  - '#clock-cells'
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/qcom,lpasscc-sc8280xp.h>
->> +    lpasscc: clock-controller@3900000 {
->> +      compatible = "qcom,sc8280xp-lpasscc";
-> 
-> binding examples use 4-space indentation.
-> 
->> +      reg = <0x033e0000 0x12000>;
-> 
-> Does not match the node unit address.
-> 
->> +      #reset-cells = <1>;
->> +      #clock-cells = <1>;
->> +      qcom,adsp-pil-mode;
->> +    };
->> +...
->> diff --git a/include/dt-bindings/clock/qcom,lpasscc-sc8280xp.h b/include/dt-bindings/clock/qcom,lpasscc-sc8280xp.h
->> new file mode 100644
->> index 000000000000..df800ea2741c
->> --- /dev/null
->> +++ b/include/dt-bindings/clock/qcom,lpasscc-sc8280xp.h
->> @@ -0,0 +1,12 @@
->> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
->> +/*
->> + * Copyright (c) 2023, Linaro Ltd.
->> + */
->> +
->> +#ifndef _DT_BINDINGS_CLK_QCOM_LPASSCC_SC8280XP_H
->> +#define _DT_BINDINGS_CLK_QCOM_LPASSCC_SC8280XP_H
->> +
->> +/* LPASS TCSR */
->> +#define LPASS_AUDIO_SWR_TX_CGCR				0
->> +
->> +#endif
+Thanks,
+Yinbo.
+
