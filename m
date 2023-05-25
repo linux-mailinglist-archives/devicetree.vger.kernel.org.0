@@ -2,193 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16A187107A0
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 10:35:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB5867107A4
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 10:35:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240312AbjEYIfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 04:35:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58038 "EHLO
+        id S240314AbjEYIfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 04:35:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240311AbjEYIey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 04:34:54 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9186AE70
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 01:34:22 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-30ab87a1897so339066f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 01:34:22 -0700 (PDT)
+        with ESMTP id S240338AbjEYIfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 04:35:15 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE4BE4D
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 01:34:44 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4effb818c37so2059629e87.3
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 01:34:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685003645; x=1687595645;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RRBwEvfGQIrh+pVMdhdSvf8KI6OxPqchD4EYbezjkwM=;
-        b=LlvJ9cdbMMkkz0SdtzRChzXK+JPc/QEtnzQ6LXT+MEYP8Q+rhhivrdbGHE90+Tjnqw
-         x4VCFspM+/fAGxa597+fTZrBuOnw5gS1YN3f8Oaqzvip0qIrfzORTcf/KUI8xlzAUjG1
-         2Pv7cTYsLyNEZxrloY6BXVaRGfzIBNMGB5ETcspuxanhDsr12nwy9HEE5NkWkNzel7Zu
-         xxtxURRTrhBE6gcuInvEdK7e747WbabDDvn9xv3ifqYhCH1FfCMoRcwamjo6n04nO7rg
-         txdifvtj0NgNz3b4aJuoWYHl+YrnJfXJNjdrwdCJ309zDfBMZEKsFczcgYtCnTrnu75O
-         BvBA==
+        d=linaro.org; s=google; t=1685003673; x=1687595673;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aPiUbsAp8X/zENPhpMO+FWccJ40VFSNvpgwqJJhnT34=;
+        b=LzTFXTehBMwT/jfMm6Z7FFXXpHBbNM+rdz9A2tlc6yEKS6GacVYx1Bn9Vn8bnUnnUX
+         ofz31CWuFtLY2+8Q3xHgLVDcxWKJbz+EN06KVbOQ0hH5xpHqoiTujdhpj0Fp5H5MI+Ll
+         wFQkX58KJUYmRY3MuTXNuI/1c5zBuFEzurBbSop3QHxn4g70cMV4rKElNS8yTvp4Gv3P
+         uwK7lIc8FD1xpkBRBudcnMZZK5A+iDGAy5erG+Pofra5RMb+xTNQIRZUlxh6VRsjYFWA
+         F+NjgKkRUa57m8C/7wgop/W4N9GPKpOa+7rVXJH4qyHhM5RQjxd8P/C2F9FMwcsrOmLd
+         kIxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685003645; x=1687595645;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RRBwEvfGQIrh+pVMdhdSvf8KI6OxPqchD4EYbezjkwM=;
-        b=gNIEdHUJNydPaLBctXyKqy2tmcHS4vdItjzD3YXxqNbZOePM41iR786Sxv3W1Ww4iN
-         KylrVwnwe7qCgS5x9edI2XI2kBcyAtuR16CnvGbcDo/DUV38My43C9HUEsEqhWelZVjd
-         d1wKEX8XcQ1OAytwWt+aCcfX9VY1GIjnVRfXaIRsyjVbuXGzs1QI+/F1xmrjJv5VqBLl
-         dSP5GTPb1D6Lp3CzkLXdD1u8cuXEkbEI6g0KqDuvHN6Atiy3GtwTyi3/Rid2a8+EXU7w
-         k/AsSSDV/q6syKCfzNxeKag7NUwQjA1w2kz18TsmQTKmy6HKyrT68QThQ6p2bt3YXk4o
-         TTkA==
-X-Gm-Message-State: AC+VfDzMoDC3tT6Y7pVZcCDWQbWVTZxrnI2hztCmiwPg3zL6BV/FHpeC
-        8r4wZubiyVZ5MTXkKmaMPJ2WdjNbEEdagOTYGNo=
-X-Google-Smtp-Source: ACHHUZ4jPcDlm5Oe7/D1Pyf9jOshwayKovAkNLACHESXsWad5CTPI20Ibmfy3F9fav5hkIRXQLtzTA==
-X-Received: by 2002:a5d:404a:0:b0:307:a075:2709 with SMTP id w10-20020a5d404a000000b00307a0752709mr1682576wrp.68.1685003645432;
-        Thu, 25 May 2023 01:34:05 -0700 (PDT)
-Received: from [127.0.1.1] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.googlemail.com with ESMTPSA id o3-20020a5d6843000000b003095a329e90sm945809wrw.97.2023.05.25.01.34.04
+        d=1e100.net; s=20221208; t=1685003673; x=1687595673;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aPiUbsAp8X/zENPhpMO+FWccJ40VFSNvpgwqJJhnT34=;
+        b=QFStA+wKjyM43txvHg8qHCGvnCcwtZ1J1jhdrj+b8A03aduqsiMsoELyX2O7gLstvJ
+         99kWeXr1skqGuAk7/lRny6wZLwfIy3Tq7cs+RRetrEd4JlbHGqMe70RwGQcBpXL9SiVV
+         kWSMhAZ2eQ9/tt9U7Prfdu/Sv2RFsOmLCX4Y6v+z7izavISBpCwr7pIpltxbMoKXZDEf
+         gucZG1vePBIvdtuVYJNs5WyEqrD+jcq7HBWOQ0lkOKNJfdiakQgfuJrpVgY9qFNEx12V
+         3iHGbzcMH18dHpuptYKpvdIdVPwK309ZDTyh8mXhal9NTpQfm2AIeZ3B33g/BoYpqgea
+         ISPw==
+X-Gm-Message-State: AC+VfDyshwHVyvaD3whVJhpWR/PCl0u+Exiw1KquTLNeWfiPdDaQzJuj
+        FLpSEBPdXZT4Sfumy2UmDrIv8xQnicPuy3UNDaU=
+X-Google-Smtp-Source: ACHHUZ7ctQDEQPnR21Ji/EfGSuZ6pLOajSEQfyilwaZ3OgDXUu1vlUTV2RUF3viTLJgLWUIWPJIxAw==
+X-Received: by 2002:ac2:4116:0:b0:4f3:3eeb:20dc with SMTP id b22-20020ac24116000000b004f33eeb20dcmr4786616lfi.16.1685003672719;
+        Thu, 25 May 2023 01:34:32 -0700 (PDT)
+Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id j28-20020ac2551c000000b004ddaea30ba6sm122242lfk.235.2023.05.25.01.34.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 May 2023 01:34:05 -0700 (PDT)
-From:   amergnat@baylibre.com
-Date:   Thu, 25 May 2023 10:33:19 +0200
-Subject: [PATCH v8 10/10] arm64: dts: mediatek: Add CPU Idle support
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230203-evk-board-support-v8-10-7019f3fd0adf@baylibre.com>
-References: <20230203-evk-board-support-v8-0-7019f3fd0adf@baylibre.com>
-In-Reply-To: <20230203-evk-board-support-v8-0-7019f3fd0adf@baylibre.com>
-To:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        Thu, 25 May 2023 01:34:32 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        Amjad Ouled-Ameur <aouledameur@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2737; i=amergnat@baylibre.com;
- h=from:subject:message-id; bh=vYzOQ2oc5j6ZLGT/M6bLKTIS/chNEplrOLaJKWbM7ds=;
- b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBkbx1vwwfm1FE2tPgSwzNRmNwwkLok2bisOz/1j0Ht
- xM5kYK2JAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZG8dbwAKCRArRkmdfjHURe6hEA
- CtgM2LWXjgPP5/TBAZ/A8Jg3uvPT49uwSr9+u5wdaLwvCpQcJDlemVP91cnOgJk0yEdYZaaU3TlWiC
- EX1+LeulD9lSiUFaxAdUf1Qrzq6D0rKDJt+9x1uBQ+2JtNRXbHh30eed7kKhXwGcK1jaszwqAY17FP
- LyC+bCmz9eL0Nc8LCMe8yB0zdVio/buNBKl33CRRC8uuTvnL2sUaBWTSwlB0Wsbxh1oTrfs2jaUN/C
- OK1cnqEmduCuFVrqzzxIy5DmWegN1lk6GrgVwcgdYYwb1VNrEIppclJ1+QBV5txM0sZKVRkO2dQRWG
- l+Y/BzsztEFNmgGj06H/2FX2ZWKpT+HEiZd/qZuETguOYQU4Ot1+Z3ybwEe6byMooYgDISpleqy0Kp
- ggiNz5KChGAkv+U4Z5C+mllOzr4QCXtnSQDP6wjMDJqVQdG2sn6H1rxOaAuDK76IRNRWKAMEtxuZ0d
- ofjZ8GA/1lNQIyRKM/Nou6cCQonCwUyCc9DGcFon1u+JAgyUdp4R5xidFjLKryztcbtLDoVwAB4hhj
- jzfwzhn3+ryEwoICdjNgF5tSojag6QuyHGVnQd9njGabSWQwTOEQa35a15FzyuGddZu0t5HbX6ierO
- B8STaKWzGY9v+88nceQrS/WZITiPlzzotX21Hylm0PCQc1jZ4uXUtd1deg1g==
-X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
- fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: pmk8350: disable ADC by default
+Date:   Thu, 25 May 2023 11:34:31 +0300
+Message-Id: <20230525083431.118929-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+There is no reason to keep the vADC enabled by default. Turn it off by
+default and only reenable on the platforms which have some channels
+configured.
 
-MT8365 has 3 CPU Idle states:
-- MCDI_CPU. (Multi-Core-Deep-Idle)
-- MCDI_CLUSTER.
-- DPIDLE. (Deep-Idle)
-
-Signed-off-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Tested-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8365.dtsi | 35 ++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ arch/arm64/boot/dts/qcom/pmk8350.dtsi             | 1 +
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts           | 2 ++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi          | 2 ++
+ arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi        | 2 ++
+ arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts | 2 ++
+ 5 files changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8365.dtsi b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-index cfe0c67ad61f..413496c92069 100644
---- a/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8365.dtsi
-@@ -128,6 +128,7 @@ cpu0: cpu@0 {
- 			reg = <0x0>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
-+			cpu-idle-states = <&CPU_MCDI &CLUSTER_MCDI &CLUSTER_DPIDLE>;
- 			i-cache-size = <0x8000>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -147,6 +148,7 @@ cpu1: cpu@1 {
- 			reg = <0x1>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
-+			cpu-idle-states = <&CPU_MCDI &CLUSTER_MCDI &CLUSTER_DPIDLE>;
- 			i-cache-size = <0x8000>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -166,6 +168,7 @@ cpu2: cpu@2 {
- 			reg = <0x2>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
-+			cpu-idle-states = <&CPU_MCDI &CLUSTER_MCDI &CLUSTER_DPIDLE>;
- 			i-cache-size = <0x8000>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -185,6 +188,7 @@ cpu3: cpu@3 {
- 			reg = <0x3>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
-+			cpu-idle-states = <&CPU_MCDI &CLUSTER_MCDI &CLUSTER_DPIDLE>;
- 			i-cache-size = <0x8000>;
- 			i-cache-line-size = <64>;
- 			i-cache-sets = <256>;
-@@ -198,6 +202,37 @@ cpu3: cpu@3 {
- 			operating-points-v2 = <&cluster0_opp>;
+diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+index bc6297e7253e..df3e916e0171 100644
+--- a/arch/arm64/boot/dts/qcom/pmk8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+@@ -56,6 +56,7 @@ pmk8350_vadc: adc@3100 {
+ 			#size-cells = <0>;
+ 			interrupts = <PMK8350_SID 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
+ 			#io-channel-cells = <1>;
++			status = "disabled";
  		};
  
-+		idle-states {
-+			entry-method = "psci";
+ 		pmk8350_adc_tm: adc-tm@3400 {
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+index 15222e92e3f5..bfeeaf36546f 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+@@ -73,6 +73,8 @@ &nvme_3v3_regulator {
+ };
+ 
+ &pmk8350_vadc {
++	status = "okay";
 +
-+			CPU_MCDI: cpu-mcdi {
-+				compatible = "arm,idle-state";
-+				local-timer-stop;
-+				arm,psci-suspend-param = <0x00010001>;
-+				entry-latency-us = <300>;
-+				exit-latency-us = <200>;
-+				min-residency-us = <1000>;
-+			};
+ 	pmr735a-die-temp@403 {
+ 		reg = <PMR735A_ADC7_DIE_TEMP>;
+ 		label = "pmr735a_die_temp";
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index 21027042cf13..7c889ddf2881 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -432,6 +432,8 @@ &pcie1_phy {
+ };
+ 
+ &pmk8350_vadc {
++	status = "okay";
 +
-+			CLUSTER_MCDI: cluster-mcdi {
-+				compatible = "arm,idle-state";
-+				local-timer-stop;
-+				arm,psci-suspend-param = <0x01010001>;
-+				entry-latency-us = <350>;
-+				exit-latency-us = <250>;
-+				min-residency-us = <1200>;
-+			};
+ 	pmk8350-die-temp@3 {
+ 		reg = <PMK8350_ADC7_DIE_TEMP>;
+ 		label = "pmk8350_die_temp";
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+index 9137db066d9e..2bae0d0ccfdd 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+@@ -383,6 +383,8 @@ &pm8350c_pwm {
+ };
+ 
+ &pmk8350_vadc {
++	status = "okay";
 +
-+			CLUSTER_DPIDLE: cluster-dpidle {
-+				compatible = "arm,idle-state";
-+				local-timer-stop;
-+				arm,psci-suspend-param = <0x01010004>;
-+				entry-latency-us = <300>;
-+				exit-latency-us = <800>;
-+				min-residency-us = <3300>;
-+			};
-+		};
+ 	pmk8350-die-temp@3 {
+ 		reg = <PMK8350_ADC7_DIE_TEMP>;
+ 		label = "pmk8350_die_temp";
+diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+index 7ae6aba5d2ec..0f21bea683b7 100644
+--- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
++++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+@@ -515,6 +515,8 @@ &pmk8350_rtc {
+ };
+ 
+ &pmk8350_vadc {
++	status = "okay";
 +
- 		l2: l2-cache {
- 			compatible = "cache";
- 			cache-level = <2>;
-
+ 	adc-chan@644 {
+ 		reg = <PMK8350_ADC7_AMUX_THM1_100K_PU>;
+ 		qcom,ratiometric;
 -- 
-2.25.1
+2.39.2
 
