@@ -2,60 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 748117104E1
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 06:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AE467104E6
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 06:57:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240061AbjEYE5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 00:57:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
+        id S239708AbjEYE5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 00:57:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbjEYEzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 00:55:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6502119A9;
-        Wed, 24 May 2023 21:52:14 -0700 (PDT)
+        with ESMTP id S238018AbjEYEz1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 00:55:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D86CF19B0;
+        Wed, 24 May 2023 21:52:15 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 63414642CF;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2578E642BA;
+        Thu, 25 May 2023 04:51:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA466C4339C;
         Thu, 25 May 2023 04:51:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D842C433D2;
-        Thu, 25 May 2023 04:51:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684990316;
-        bh=L6+h+9RDj4m+F/s1pLSzHonLLuW4an7ZQlZx1Wt57RI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PgjAsN/SWRp93k8YKH4h76hPZ+srHCrL/3UhSdfF9kBKJCg2x1pQ1/11MRnRKRsK8
-         D09r0fQGeq29DDT618XTY1Grb8ggvX7K24EZCfSYdnBbjkH5hEZgaMoXKLiMte7mt3
-         e1V9EAXg6NeDXDe9jP7hKO9odZ6lYiWzljsMoAYYKodlxeiMCfHCxqsOW73uWckRN9
-         hVxWtBBgPEQdUWYPz9ggO/cSOpKJsrUcejli/KndmlKfZwc96sDtNhadNbuuYoTZR0
-         Yhmht+Nm35D+HU//XUtEIVfb08v+cMgzhOiNPHOkbeDf7Ke7lRteqPE+582r3UtJ8W
-         AwE6yqAj4VNDg==
+        s=k20201202; t=1684990318;
+        bh=RlqdAlFBRWPWS1AIhyfo2/h/TNSQGHGcMnTN0rQ2Pfo=;
+        h=From:To:Subject:Date:In-Reply-To:References:From;
+        b=cbik4o2tbHJBo1LyPZrSeq3W6l5VEqneG2CE1Uz//tYal/3X0b40gJI418DORowdB
+         +tGZaxn/Y6OQRk8DLjYPKfmiIa4UniJ/0mD06sa8GSxvcnKPykASLN90C8RQ1Ob9PL
+         ECKioKfXhu+YljFuy97xh2LkttW4WJ2AYiASKPkLcAw5GvLMsVQ1pVsutxi57uhyKU
+         a6CSe0vh1HQNmOFYnz8FVmjdCWf0V8/QSxQ6fCgHoMnIvLrILcD6RBlf4pxobPS7KV
+         4MG20cPVLx1kbDylu/I3i8L1JripS7wObXkLPHWzj6iSx5La4Fuk5CFPq3Xlppq3T4
+         sKw6oM7+mUkVA==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        devicetree@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>,
-        linux-clk@vger.kernel.org, Imran Shaik <quic_imrashai@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Subject: Re: (subset) [PATCH V2 0/4] Add Video Clock Controller driver for SM8550
-Date:   Wed, 24 May 2023 21:54:34 -0700
-Message-Id: <168499048180.3998961.13400067851752606700.b4-ty@kernel.org>
+To:     linux-kernel@vger.kernel.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, Kathiravan T <quic_kathirav@quicinc.com>
+Subject: Re: [PATCH V2 0/2] Add SoC ID for IPQ5312 and IPQ5302
+Date:   Wed, 24 May 2023 21:54:36 -0700
+Message-Id: <168499048182.3998961.14268571937081566896.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230524145203.13153-1-quic_jkona@quicinc.com>
-References: <20230524145203.13153-1-quic_jkona@quicinc.com>
+In-Reply-To: <20230509033531.21468-1-quic_kathirav@quicinc.com>
+References: <20230509033531.21468-1-quic_kathirav@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,26 +55,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 May 2023 20:21:59 +0530, Jagadeesh Kona wrote:
-> Add bindings, driver and DT node for video clock controller on SM8550.
-> Also, add support to configure PLL_TEST_CTL_U2 register for ole pll.
+On Tue, 9 May 2023 09:05:29 +0530, Kathiravan T wrote:
+> Kathiravan T (2):
+>   dt-bindings: arm: qcom,ids: add SoC ID for IPQ5312 and IPQ5302
+>   soc: qcom: socinfo: Add Soc ID for IPQ5312 and IPQ5302
 > 
-> Depends on [1] for SM8450 videocc YAML file
-> [1] https://patchwork.kernel.org/project/linux-clk/list/?series=750683
-> 
-> Jagadeesh Kona (4):
->   clk: qcom: clk-alpha-pll: Add support to configure PLL_TEST_CTL_U2
->   dt-bindings: clock: qcom: Add SM8550 video clock controller
->   clk: qcom: videocc-sm8550: Add video clock controller driver for
->     SM8550
->   arm64: dts: qcom: sm8550: Add video clock controller
+> drivers/soc/qcom/socinfo.c         | 2 ++
+>  include/dt-bindings/arm/qcom,ids.h | 2 ++
+>  2 files changed, 4 insertions(+)
 > 
 > [...]
 
 Applied, thanks!
 
-[4/4] arm64: dts: qcom: sm8550: Add video clock controller
-      commit: 22ff170d4551756e3e4ef57253c43e8c3fffefed
+[1/2] dt-bindings: arm: qcom,ids: add SoC ID for IPQ5312 and IPQ5302
+      commit: fe78d73a914d86070ac15c9a6d1f885ce5bc4a69
+[2/2] soc: qcom: socinfo: Add Soc ID for IPQ5312 and IPQ5302
+      commit: 7f6e0028a0ca4317aeb070084e72d44ca39ace7e
 
 Best regards,
 -- 
