@@ -2,117 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA50971117A
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 18:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D03137111A5
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 19:05:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239134AbjEYQ64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 12:58:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54012 "EHLO
+        id S231263AbjEYRFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 13:05:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229832AbjEYQ6z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 12:58:55 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 499EF135;
-        Thu, 25 May 2023 09:58:54 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34PFAHul023388;
-        Thu, 25 May 2023 16:58:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=v3ifwnsMcKSTqVYUFaVpwmcfPvV69o1mSGOuxFfiRzc=;
- b=KLKnpX9U5LmbSBWqWS6KZ8RkXt3LjD4bqqvn4/rPNf1Nhxtvucf4XII71VqXZvyp8NJk
- bAKfDE7lMR53v30Qg5iWaqNeq7SB+1dfC/aH/xXiehh4FnoOXgh0EIYWmLB58Pk302p1
- 0r+ndn/G0WP7F8ZrXw+HxuTy1km1IMZBbkSC4aKel7XRLqhX1QB3M9mxZgu1LGyy3dWZ
- d/gH4OTpWjVJCsw6zrSj0r9w2qj+ynC1z0YUBfEgWSxPNAEbn/Ch9pPuX92SPkg/UovB
- HHgY3b0S4twF2jI3yCICU6fxfNQkud28l+0Pcm0KgAHpwsKujS93wkLUM7cJk7Xfulw9 9Q== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qstg3t79g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 May 2023 16:58:50 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34PGwnOU024480
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 May 2023 16:58:49 GMT
-Received: from [10.216.52.104] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 25 May
- 2023 09:58:43 -0700
-Message-ID: <86396e49-96e8-20d1-7753-0e2e5a9c0347@quicinc.com>
-Date:   Thu, 25 May 2023 22:28:38 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 2/4] dt-bindings: clock: qcom: Add SM8550 camera clock
- controller
-To:     Conor Dooley <conor@kernel.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231964AbjEYRFf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 13:05:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0989194;
+        Thu, 25 May 2023 10:05:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7E30B647B7;
+        Thu, 25 May 2023 17:05:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D10BC433D2;
+        Thu, 25 May 2023 17:05:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685034331;
+        bh=yIjNxDD74CzuvoVXeFhsdRIPEKXPng6z65P4bdifQFs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=f/jid+QsaCGwZa4IVRrVtbahris94j5A8Zi7KToWru2/XGQA2MeMzDXIDuCBG3d11
+         4dAkNMmlGw7CysZ+Bv3P31HSyXDV35IaNO/Z1DG/VNQDk/7wRNpsKs4lT+22exEUlr
+         EgGaJcH/gc2g/PxZ/PJgE++yQtgf7293g1OaLEJavjc6kGi+gRwqLf04PDdRBk7t4x
+         XBRRc5t+y3aOhuiBhW6EuzA/4bjXh+cYBxBRisrQ3/F8BrM3nr3Oxv7lu5u5QhC3Gs
+         6HKjJgMq+fGF+U8evE21qMPHv6gj2x8IFxMqEdzBzTkII1YefzMU6v5nt6GI9BG+fb
+         cNUT6aDevoBeA==
+Date:   Thu, 25 May 2023 18:05:25 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Satya Priya Kakitapalli" <quic_skakitap@quicinc.com>,
-        <quic_ajipan@quicinc.com>, <quic_imrashai@quicinc.com>
-References: <20230519155602.6642-1-quic_jkona@quicinc.com>
- <20230519155602.6642-3-quic_jkona@quicinc.com>
- <20230519-crumb-vividly-0d278146defe@spud>
-From:   Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <20230519-crumb-vividly-0d278146defe@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: p2cKUfzz3COWO46kz_wvaZC7QDH5-Yn3
-X-Proofpoint-ORIG-GUID: p2cKUfzz3COWO46kz_wvaZC7QDH5-Yn3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-25_09,2023-05-25_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- impostorscore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0
- malwarescore=0 spamscore=0 clxscore=1011 mlxlogscore=744 adultscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305250141
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        linux-mips@vger.kernel.org,
+        Keguang Zhang <keguang.zhang@gmail.com>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        loongson-kernel@lists.loongnix.cn
+Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the
+ trivial RTCs
+Message-ID: <20230525-custody-oversleep-f778eddf981c@spud>
+References: <cover.1684983279.git.zhoubinbin@loongson.cn>
+ <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="LCh+4220dViEtGIh"
+Content-Disposition: inline
+In-Reply-To: <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
 
-Thanks for your review!
+--LCh+4220dViEtGIh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 5/19/2023 10:18 PM, Conor Dooley wrote:
-> On Fri, May 19, 2023 at 09:26:00PM +0530, Jagadeesh Kona wrote:
->> Add device tree bindings for the camera clock controller on
->> Qualcomm SM8550 platform.
->>
->> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> 
-> Should this SoB go with a Co-developed-by?
-> I'll leave it up to Krzysztof or someone else familiar with qcom
-> products as to whether there's an existing binding that this should be
-> added to, but qcom,videocc.yaml seems "suspect" to an outsider.
-> 
-> Otherwise, what you have here looks fine to me.
-> 
-> Thanks,
-> Conor.
-Will reuse SM8450 CAMCC YAML file for SM8550
+Hey Binbin,
 
-Thanks & Regards,
-Jagadeesh
+On Thu, May 25, 2023 at 08:55:23PM +0800, Binbin Zhou wrote:
+> Move Loongson RTC bindings from trivial-rtc.yaml into loongson,rtc.yaml.
+>=20
+> Also, we will discard the use of wildcards in compatible (ls2x-rtc),
+> soc-based compatible is more accurate for hardware differences between
+> chips.
+>=20
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  .../devicetree/bindings/rtc/loongson,rtc.yaml | 47 +++++++++++++++++++
+>  .../devicetree/bindings/rtc/trivial-rtc.yaml  |  2 -
+>  2 files changed, 47 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/loongson,rtc.ya=
+ml
+>=20
+> diff --git a/Documentation/devicetree/bindings/rtc/loongson,rtc.yaml b/Do=
+cumentation/devicetree/bindings/rtc/loongson,rtc.yaml
+> new file mode 100644
+> index 000000000000..68e56829e390
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/loongson,rtc.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/loongson,rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson Real-Time Clock
+> +
+> +maintainers:
+> +  - Binbin Zhou <zhoubinbin@loongson.cn>
+> +
+> +allOf:
+> +  - $ref: rtc.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - loongson,ls1b-rtc
+> +      - loongson,ls1c-rtc
+> +      - loongson,ls7a-rtc
+> +      - loongson,ls2k0500-rtc
+> +      - loongson,ls2k1000-rtc
+> +      - loongson,ls2k2000-rtc
+
+|+static const struct of_device_id loongson_rtc_of_match[] =3D {
+|+       { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_config =
+},
+|+       { .compatible =3D "loongson,ls1c-rtc", .data =3D &ls1x_rtc_config =
+},
+|+       { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rtc_conf=
+ig },
+|+       { .compatible =3D "loongson,ls2k0500-rtc", .data =3D &generic_rtc_=
+config },
+|+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1000_rtc=
+_config },
+|+       { .compatible =3D "loongson,ls2k2000-rtc", .data =3D &generic_rtc_=
+config },
+|+       { /* sentinel */ }
+|+};
+
+This is a sign to me that your compatibles here are could do with some
+fallbacks. Both of the ls1 ones are compatible with each other & there
+are three that are generic.
+
+I would allow the following:
+"loongson,ls1b-rtc"
+"loongson,ls1c-rtc", "loongson,ls1b-rtc"
+"loongson,ls7a-rtc"
+"loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
+"loongson,ls2k2000-rtc", "loongson,ls7a-rtc"
+"loongson,ls2k1000-rtc"
+
+And then the driver only needs:
+|+static const struct of_device_id loongson_rtc_of_match[] =3D {
+|+       { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_config =
+},
+|+       { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rtc_conf=
+ig },
+|+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1000_rtc=
+_config },
+|+       { /* sentinel */ }
+|+};
+
+And ~if~when you add support for more devices in the future that are
+compatible with the existing ones no code changes are required.
+
+To maintain compatibility with the existing devicetrees, should the old
+"loongson,ls2x-rtc" be kept in the driver?
+
+Thanks,
+Conor.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    rtc_dev: rtc@1fe27800 {
+> +      compatible =3D "loongson,ls2k0500-rtc";
+> +      reg =3D <0x1fe27800 0x100>;
+> +
+> +      interrupt-parent =3D <&liointc1>;
+> +      interrupts =3D <8 IRQ_TYPE_LEVEL_HIGH>;
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Doc=
+umentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> index a3603e638c37..9af77f21bb7f 100644
+> --- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> +++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> @@ -47,8 +47,6 @@ properties:
+>        - isil,isl1218
+>        # Intersil ISL12022 Real-time Clock
+>        - isil,isl12022
+> -      # Loongson-2K Socs/LS7A bridge Real-time Clock
+> -      - loongson,ls2x-rtc
+>        # Real Time Clock Module with I2C-Bus
+>        - microcrystal,rv3029
+>        # Real Time Clock
+> --=20
+> 2.39.1
+>=20
+
+--LCh+4220dViEtGIh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG+VVQAKCRB4tDGHoIJi
+0hS5AP9eJ/cAM7cJFUO6MGAFwhGdgh9DuZeCmW2nKKm448BbgAD/V/jZQkjUX1PU
+fPaToEbOGD7NZIMxz9dYRjrrLufxYAc=
+=sUvs
+-----END PGP SIGNATURE-----
+
+--LCh+4220dViEtGIh--
