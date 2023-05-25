@@ -2,137 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A2AC71056B
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 07:48:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3900A7105AA
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 08:27:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229792AbjEYFsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 01:48:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50274 "EHLO
+        id S238125AbjEYG1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 02:27:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjEYFsv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 01:48:51 -0400
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 870B495;
-        Wed, 24 May 2023 22:48:49 -0700 (PDT)
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-510b4e488e4so3693233a12.3;
-        Wed, 24 May 2023 22:48:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684993728; x=1687585728;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B8+s/K+5RvHd3mBUPmt+K92bKir5drTiVIL22nfYEIw=;
-        b=KRrFryhheh/ZeXU1dlBJNp3XYdKdEqdTXRk17E4sPW0496eoqAizFBO4HOQhXAXqHQ
-         +I3zGLfTBICtRAOmdfvUVyCJxnDon/VHu03pIbc6+6GP4EgTh4MoKakKf05kq2dbeTkW
-         P5HV2VWSmDLRFnOqfW81XtrsfKH6x3IOylWCTQBGdwAtFGaYrU7QJWKj9h3PinX52pMR
-         bQWRGoW3tw8vBP00HUfyDudiEvaW1zY6HIM3eFL3zWxtW03/yJ6oefit/84CX2mI1HVC
-         g3XFPKkFMENozcdI4nWLwrUbJS5ZKpk/Ga31RyrCVFTXiWOvuuOx3moSWVWXv+AGzOK9
-         4iZg==
-X-Gm-Message-State: AC+VfDxWDAve2N0QUDINa0moiVAyg8UyXsVXU9r4jYooARDqQfyIXb1U
-        GGmKnRhoxxvFUuJ3zU46baU=
-X-Google-Smtp-Source: ACHHUZ78kwCROM6GPOi1V6fq6adO7uQrYlWFOtHDvlX1THAntXJfkj8+8n3Bv+8+Mx+VI4jYcFWVQg==
-X-Received: by 2002:a50:ed1a:0:b0:510:e877:33c with SMTP id j26-20020a50ed1a000000b00510e877033cmr3218941eds.30.1684993727811;
-        Wed, 24 May 2023 22:48:47 -0700 (PDT)
-Received: from [192.168.1.58] (185-219-167-24-static.vivo.cz. [185.219.167.24])
-        by smtp.gmail.com with ESMTPSA id d6-20020a056402078600b0050d89daaa70sm189740edy.2.2023.05.24.22.48.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 May 2023 22:48:47 -0700 (PDT)
-Message-ID: <75375f8d-e157-a364-3da5-9c8d5b832927@kernel.org>
-Date:   Thu, 25 May 2023 07:48:45 +0200
+        with ESMTP id S234189AbjEYG1A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 02:27:00 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A255187;
+        Wed, 24 May 2023 23:26:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1684996017; x=1716532017;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=rV7X8sJTUMiQ+nwFrbSH9S0xiOFtSvj7VBi8hCz7dKA=;
+  b=n4BF8SR3xqpCxN7LN5PqkDMsoLLd5wFPmoKqFG4vRG/GXhlJKJSYIQru
+   SUEmNBVyJUfvfdkyvNsvBT4VQru/mfjKeAVgxlpmAsMY4Euc44mCqbA39
+   uOAgbkdGtQoySCNxUA0Xm79FEnwC90gx/VxTPuNHspO0g9qCMJL76zg0r
+   0lH5IG9bCC+yWfRpJgKu1Rg1rn9hlZSYoEc6awzA+QcOcqNZOmtOkp5Ve
+   /b1bll1eAotvLPGVTetfnxuqoimMm9XkcW/qYo5lpkgdqpwXbj+E0W4PQ
+   WLGZMxU5p7kc+UQEpH9zAza6rlp0JxMoheIItslX0Ig/NS8vNNVFOM2Kx
+   g==;
+X-IronPort-AV: E=Sophos;i="6.00,190,1681196400"; 
+   d="asc'?scan'208";a="217194852"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 May 2023 23:26:56 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 24 May 2023 23:26:56 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Wed, 24 May 2023 23:26:53 -0700
+Date:   Thu, 25 May 2023 07:26:31 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+CC:     <dianders@chromium.org>, <airlied@gmail.com>,
+        <conor+dt@kernel.org>, <daniel@ffwll.ch>,
+        <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <hsinyi@google.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <neil.armstrong@linaro.org>,
+        <robh+dt@kernel.org>, <sam@ravnborg.org>
+Subject: Re: [v3 2/4] drm/panel: Support for Starry-himax83102-j02 TDDI
+ MIPI-DSI panel
+Message-ID: <20230525-relearn-rug-0a75ea9674f9@wendy>
+References: <CAD=FV=XUuzjjLq3YP3683jOd06odwk5Dox5MS8oY8goB-_8T5w@mail.gmail.com>
+ <20230525025000.3692510-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230525025000.3692510-3-yangcong5@huaqin.corp-partner.google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Content-Language: en-US
-To:     Arnd Bergmann <arnd@arndb.de>,
-        Jacky Huang <ychuang570808@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, Lee Jones <lee@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-serial@vger.kernel.org, soc@kernel.org, schung@nuvoton.com,
-        mjchen@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>
-References: <20230516075217.205401-1-ychuang570808@gmail.com>
- <20230516075217.205401-11-ychuang570808@gmail.com>
- <3d4acb20-c80e-fd39-c0d0-e9b1e0309d81@kernel.org>
- <aaef529f-69dc-8bec-0ae1-959a1ede87e0@gmail.com>
- <e312b861-a5cc-43b0-b2b0-7d66f47a3d0b@app.fastmail.com>
-From:   Jiri Slaby <jirislaby@kernel.org>
-Subject: Re: [PATCH v11 10/10] tty: serial: Add Nuvoton ma35d1 serial driver
- support
-In-Reply-To: <e312b861-a5cc-43b0-b2b0-7d66f47a3d0b@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CkngReavlAbqfK2R"
+Content-Disposition: inline
+In-Reply-To: <20230525025000.3692510-3-yangcong5@huaqin.corp-partner.google.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24. 05. 23, 11:00, Arnd Bergmann wrote:
-> On Wed, May 24, 2023, at 10:34, Jacky Huang wrote:
->> On 2023/5/24 下午 03:42, Jiri Slaby wrote:
->>> On 16. 05. 23, 9:52, Jacky Huang wrote:
->>>> +static void ma35d1serial_config_port(struct uart_port *port, int flags)
->>>> +{
->>>> +    /*
->>>> +     * Driver core for serial ports forces a non-zero value for port
->>>> type.
->>>> +     * Write an arbitrary value here to accommodate the serial core
->>>> driver,
->>>> +     * as ID part of UAPI is redundant.
->>>> +     */
->>>> +    port->type = 1;
->>>
->>> So this 1 translates to PORT_8250. Why not to use it directly? Or
->>> something more saner like PORT_16550A?
->>>
->> It's not actually 8250 or 16550A.
->> Can we add the following definition to
->> 'include/uapi/linux/serial_core.h' and use PORT_MA35 instead?
->>
->> #define PORT_MA35    124
-> 
-> This was already in a previous version, until Greg commented
-> that it was probably not needed:
-> 
-> https://lore.kernel.org/lkml/20fc81c9-5517-ce1e-639a-3b425cf27759@gmail.com/
-> 
-> Since leaving port->type at PORT_UNKNOWN doesn't work, and almost
-> all other drivers have something in serial_core.h, it's probably
-> best to do the same here. Checking the other drivers showed that
-> drivers/tty/serial/lantiq.c is currently the only exception, it
-> defines PORT_LTQ_ASC locally, which causes a conflict with
-> PORT_SPRD.
+--CkngReavlAbqfK2R
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hmm.
+On Thu, May 25, 2023 at 10:49:58AM +0800, Cong Yang wrote:
+> The Starry-himax83102-j02 is a 10.51" WUXGA TFT panel. which fits in nice=
+ly
+> with the existing panel-boe-tv101wum-nl6 driver. From the datasheet[1], M=
+IPI
+> needs to keep the LP11 state before the lcm_reset pin is pulled high, so
+> increase lp11_before_reset flag.
+>=20
+> [1]: https://github.com/HimaxSoftware/Doc/tree/main/Himax_Chipset_Power_S=
+equence
+>=20
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Anyone has an idea what this is really used for in userspace? Can we 
-replace all of them by simply some sort of "PORT_OTHER"?
+I didn't Ack this (or 4/4). If the patches are otherwise acceptable,
+perhaps the committer could remove my A-b from the non dt-binding
+patches.
 
-For example:
+Thanks,
+Conor.
 
-xdg-open `echo -n 'https://codesearch.debian.net/search?q=\b('; sed -n 
-'s@#define\s\(\w\+\)\s.*@\1@ p' include/uapi/linux/serial_core.h | tail 
--20 | sed 's@.* \(.*\)[\x09 ][\x09 ]*.*@\1@'|paste -sd'|' | tr -d '\n'; 
-echo ')\b'`
+--CkngReavlAbqfK2R
+Content-Type: application/pgp-signature; name="signature.asc"
 
-gives _no_ clue. FTR the above translates here into:
-https://codesearch.debian.net/search?q=\b(PORT_HSCIF|PORT_ASC|PORT_TILEGX|PORT_MEN_Z135|PORT_SC16IS7XX|PORT_MESON|PORT_DIGICOLOR|PORT_SPRD|PORT_CRIS|PORT_STM32|PORT_MVEBU|PORT_PIC32|PORT_MPS2UART|PORT_MTK_BTIF|PORT_RDA|PORT_MLB_USIO|PORT_SIFIVE_V0|PORT_SUNIX|PORT_LINFLEXUART|PORT_SUNPLUS)\b
+-----BEGIN PGP SIGNATURE-----
 
-thanks,
--- 
-js
-suse labs
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG7/lwAKCRB4tDGHoIJi
+0uSCAP9Z8K30BSavxbACku/asQVqLBzDha1SIla3Ye4HGvrPMAEAzU40VFU1stOu
+a8BR8h+xFvzt7BYgZfdbhs8oI7iw5wo=
+=odpO
+-----END PGP SIGNATURE-----
 
+--CkngReavlAbqfK2R--
