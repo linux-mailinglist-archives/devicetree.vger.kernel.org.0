@@ -2,114 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A2997108D9
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:28:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65B4B7108E9
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:32:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235214AbjEYJ2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 05:28:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57202 "EHLO
+        id S240196AbjEYJcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 05:32:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233064AbjEYJ2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:28:41 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 18026A9;
-        Thu, 25 May 2023 02:28:38 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8BxlPBFKm9ka+4AAA--.2298S3;
-        Thu, 25 May 2023 17:28:37 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx97VEKm9kFBJ3AA--.194S3;
-        Thu, 25 May 2023 17:28:37 +0800 (CST)
-Subject: Re: [PATCH v11 2/2] spi: loongson: add bus driver for the loongson
- spi controller
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230522071030.5193-1-zhuyinbo@loongson.cn>
- <20230522071030.5193-3-zhuyinbo@loongson.cn> <ZGy3b7ZfNwWoGDTu@surfacebook>
- <35b0500c-d7fe-6479-eeff-d45bbf9a9426@loongson.cn>
- <CAHp75VdHPFDAd4iHdX5jXCM-tq0ZbFJDjvF9GCR_n7HVtd+obg@mail.gmail.com>
- <2a72a2c2-6fda-1ea8-3b27-5623cc1132aa@loongson.cn>
- <CAHp75VdMSM7VMFn8BDJpx2PJOR8DJtP0GF=sTECnMhz+MoSJ=Q@mail.gmail.com>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <889235d3-a5a2-417d-dc47-dbcf543c8549@loongson.cn>
-Date:   Thu, 25 May 2023 17:28:36 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S234403AbjEYJcI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:32:08 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 691CCA9
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 02:32:07 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-1ae557aaf1dso11520955ad.2
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 02:32:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1685007127; x=1687599127;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pI/JSFAyYGipbA4uL3stbZaz5dYY5JtH3gdway4WSgc=;
+        b=boYi4NLXerPw97PswPhsYDxCqgI3jujXAEbpHtDkemVKS062IlrXyMZhbtOF9TaRoo
+         +OzXk1JU0LSMpCbkRh+BZ/uDUJvB2a7ztAgzldZetfGDqCnkz+pGZMeBexDuysX9hZIu
+         kxRcTZDTIZM4P6pS6txQn9r0Kh/TzgNw4vAuQ9JTdvD+sOsiL+X9pz55tgLfGs66x1wF
+         eLc29YlpeDTWc2OBGjesOdLGkLPpkXN2Yds1JXO0bKKcHu/ob3hxp/zv7E620ZYBIfKd
+         Q4A036oUJoe0N92ikeeKm4WlmbKHOvcI9FgxHcDRYv3PbODFzFy5JFKi6O/+pDDMftSF
+         x7uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685007127; x=1687599127;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pI/JSFAyYGipbA4uL3stbZaz5dYY5JtH3gdway4WSgc=;
+        b=Rx5HKk1UgY/9CUde6fIWJ4QGL9MLZjb0go/H1gIVkfnIsLj8RbXu1lTnEwprzvm6LD
+         hn80gxoACp7qTs05kT2zUi8dU92jYI30tRhpz1vig1Frjb08avi+uvvURmiTDk9dB2Nx
+         uy2m7ncSJPqchvypaRRSU8FeFbB4xjAxGhmd+SYUh1F8uSAl+r6026b/QELSW0+4fT+0
+         J5S6LgaExwbd52PwD/skq6ELq49tD0AaWlrlUdOt9RADIMVwzD7vV+h7qMNtrWMVZcaE
+         uQnLwzc9ZufhIajWJm4zW4bRhDe5sDQCQprbmOkXoYsEIGyRfSU5S5WRw0/Vq+x+rr/I
+         QLWg==
+X-Gm-Message-State: AC+VfDyY+KSpoWt9ypFzjOsMkmlksl7RcDn6WVW8WgrjUEZ7wM5qfhzt
+        jnGwG+HiFO+EKoqvU1JBa/qbVQ==
+X-Google-Smtp-Source: ACHHUZ6Gpg14W4sxMXQqBgOORHLA/TU8V3NBkldPWO4L0bafwxjOTd6MsgABzWE6mFVD+PVFtrvdkA==
+X-Received: by 2002:a17:903:124b:b0:1ae:a44:841c with SMTP id u11-20020a170903124b00b001ae0a44841cmr1157895plh.42.1685007126912;
+        Thu, 25 May 2023 02:32:06 -0700 (PDT)
+Received: from yc.huaqin.com ([101.78.151.214])
+        by smtp.gmail.com with ESMTPSA id n6-20020a170902e54600b001afa7040a70sm951039plf.276.2023.05.25.02.32.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 May 2023 02:32:06 -0700 (PDT)
+From:   Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+To:     dianders@google.com, daniel@ffwll.ch, neil.armstrong@linaro.org,
+        sam@ravnborg.org, airlied@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, hsinyi@google.com,
+        conor+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org,
+        Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Subject: [v4 0/4] Support Starry-himax83102-j02 and Starry-ili9882t TDDI MIPI-DSI panel
+Date:   Thu, 25 May 2023 17:31:47 +0800
+Message-Id: <20230525093151.2338370-1-yangcong5@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <1adda828-cf35-fb2c-6db5-f9ca91b5b62a@linaro.org>
+References: <1adda828-cf35-fb2c-6db5-f9ca91b5b62a@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <CAHp75VdMSM7VMFn8BDJpx2PJOR8DJtP0GF=sTECnMhz+MoSJ=Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Dx97VEKm9kFBJ3AA--.194S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjvJXoW7GFy8Xw43tryrZrWkurWDtwb_yoW8JF4UpF
-        W3JFWjkr4UKw4kCrWjq3Z8ArnY9F97Jr1Yqr95Gr97Aryqyr9xJr1UtrZF9rZ3CF12kr12
-        qa1UXFW3CFZ8XrJanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUj1kv1TuYvTs0mT0YCTnIWj
-        qI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUIcSsGvfJTRUUU
-        bx8Fc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64
-        kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28E
-        F7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM2
-        8EF7xvwVC2z280aVCY1x0267AKxVWxJr0_GcWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAq
-        jxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcV
-        AFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG
-        0xvEwIxGrwCYjI0SjxkI62AI1cAE67vIY487MxAIw28IcxkI7VAKI48JMxAIw28IcVCjz4
-        8v1sIEY20_WwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I
-        3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIx
-        AIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAI
-        cVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2js
-        IEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j8pnQUUUUU=
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Copare V3:Resend without Conor's acks on patches 2 and 4.
 
+Cong Yang (4):
+  dt-bindings: display: panel: Add compatible for Starry himax83102-j02
+  drm/panel: Support for Starry-himax83102-j02 TDDI MIPI-DSI panel
+  dt-bindings: display: panel: Add compatible for Starry ili9882t
+  drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI panel
 
-在 2023/5/25 下午5:16, Andy Shevchenko 写道:
-> On Thu, May 25, 2023 at 6:34 AM zhuyinbo <zhuyinbo@loongson.cn> wrote:
->> 在 2023/5/24 下午4:42, Andy Shevchenko 写道:
->>> On Wed, May 24, 2023 at 10:52 AM zhuyinbo <zhuyinbo@loongson.cn> wrote:
->>>> 在 2023/5/23 下午8:54, andy.shevchenko@gmail.com 写道:
->>>>> Mon, May 22, 2023 at 03:10:30PM +0800, Yinbo Zhu kirjoitti:
-> 
-> ...
-> 
->>>>>> +    ret = loongson_spi_init_master(dev, reg_base);
->>>>>> +    if (ret)
->>>>>> +            return dev_err_probe(dev, ret, "failed to initialize master\n");
->>>>>> +
->>>>>> +    return ret;
->>>>>
->>>>>         return 0;
->>>>
->>>> It seems was more appropriate that initialize ret then return ret.
->>>> Do you think so ?
->>>
->>> What do you mean and how does it help here?
->>
->> I'm sorry, I was wrong before and the ret varible seems not to be
->> initialized and it always record the return value for
->> loongson_spi_init_master.
->>
->> It seems was appropriate that use "return ret" and I don't got your
->> point that in probe for use "return 0"
-> 
-> In the above excerpt you will return anything except 0 with return
-> dev_err_probe(); line. Why do you still need to return ret; at the end
-> of the function?
+ .../display/panel/boe,tv101wum-nl6.yaml       |   4 +
+ .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 471 ++++++++++++++++++
+ 2 files changed, 475 insertions(+)
 
-
-I'm sorry, I misread it and you are right and I will "return 0".
-
-Thanks,
-Yinbo.
+-- 
+2.25.1
 
