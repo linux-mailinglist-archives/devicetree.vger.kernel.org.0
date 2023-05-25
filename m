@@ -2,101 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F293F71037D
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 05:51:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78EE67103A0
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 06:04:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229873AbjEYDvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 May 2023 23:51:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36596 "EHLO
+        id S238396AbjEYEEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 00:04:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbjEYDvu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 May 2023 23:51:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0057CE2;
-        Wed, 24 May 2023 20:51:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 86D8464259;
-        Thu, 25 May 2023 03:51:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93A1FC433D2;
-        Thu, 25 May 2023 03:51:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684986707;
-        bh=bk0RnniuXaXu7zObzQhlgQoNOyofQ/cAuLuVklUpRbI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MQGGBnUWoAIkkvvMOtc6CdLCWiSqHviqUVbtLWISrAPE3Ar06HsbWgc8rcGlcD1SR
-         biqtkppaVI3ifUrSTecR941zfDvDLviEsFPgWnngy4ox17hDsotrGDy4PoIofkuCB4
-         exyihfajFLzirqCYCTI+ogAaW9FpyYRMVoO/gqy+ZNC+eO+70OtHJNYi/TBRQFUqu6
-         MGlbj6+RUISeIFcI2My5GkNE73jEmmf4wHwgnd/Og0rbMqo94blYJ8Tg33k1CBgzn8
-         8DQrMHSZ1zcRT63xm5PS40jPeMKHn1vasBRUT6Bv4rOo6frFkLJX/DjpEBqhEwdbNz
-         Q9xh3HaaP/3BQ==
-Date:   Wed, 24 May 2023 20:55:38 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     tremblay.gabriel@gmail.com
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Change the interrupt from level_low to edge_falling
-Message-ID: <20230525035538.wcdpqmaumz5ad4r5@ripper>
-References: <20230502-gtremblay-x13s-keyboard-v1-1-6bc3e59b0d39@gmail.com>
+        with ESMTP id S238106AbjEYED7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 00:03:59 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51AAB1BD;
+        Wed, 24 May 2023 21:03:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
+        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+        List-Owner:List-Archive; bh=hTAnpCAT2Q/2ABE+7VrADwqsnFx55RsF+ONOo7NqGT0=; b=c
+        qSqnmxSidxLnq8IDBCTwt1xAjrW57C8Jk1VEXaaHYPUL24vPC9Kj/irZFLAh5WiUISOOd1q6EYVl1
+        uzy7Y5TLOgWXf+JEbUeFVi9SFi8Z7RWR4/EhzpuoK9T9dmYnh8C33hmemuKUVfTgar0QJypXL4J20
+        tQONA6/F9JJNhUEg=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:52970 helo=pettiford.lan)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1q22CK-0001dB-Ms; Thu, 25 May 2023 00:03:38 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hugo@hugovil.com,
+        linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Date:   Thu, 25 May 2023 00:03:13 -0400
+Message-Id: <20230525040324.3773741-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230502-gtremblay-x13s-keyboard-v1-1-6bc3e59b0d39@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
+Subject: [PATCH v3 00/11] serial: sc16is7xx: fix GPIO regression and rs485 improvements
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 02, 2023 at 02:31:14PM -0400, Gabriel Tremblay via B4 Relay wrote:
-> From: Gabriel Tremblay <tremblay.gabriel@gmail.com>
-> 
-> 
-> 
-> ---
-> Lenovo's x13s internal keyboard shows responsivity issues when fast
-> typing occurs. The problem is not replicated with external HID keyboard.
-> 
-> This fix tries to alleviate the problem but requires further testing
-> and commenting.
-> 
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-This is interesting, can you tell us a little bit more about why/how
-this improves the situation? Perhaps that could help someone with
-schematics to look into this further as well.
+Hello,
+this patch series mainly fixes a GPIO regression and improve RS485 flags and properties
+detection from DT.
 
-Regards,
-Bjorn
+It now also includes various small fixes and improvements that were previously
+sent as separate patches, but that made testing everything difficult.
 
-> Signed-off-by: Gabriel Tremblay <tremblay.gabriel@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index bdcba719fc38..e8d7f02c9bf3 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -639,7 +639,7 @@ keyboard@68 {
->  		reg = <0x68>;
->  
->  		hid-descr-addr = <0x1>;
-> -		interrupts-extended = <&tlmm 104 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&tlmm 104 IRQ_TYPE_EDGE_FALLING>;
->  		vdd-supply = <&vreg_misc_3p3>;
->  		vddl-supply = <&vreg_s10b>;
->  
-> 
-> ---
-> base-commit: 84e2893b4573da3bc0c9f24e2005442e420e3831
-> change-id: 20230502-gtremblay-x13s-keyboard-289935f922e2
-> 
-> Best regards,
-> -- 
-> Gabriel Tremblay <tremblay.gabriel@gmail.com>
-> 
+Patches 1 and 2 are simple comments fix/improvements.
+
+Patch 3 fixes an issue when debugging IOcontrol register. After testing the GPIO
+regression patches (patches 6 and 7, tests done by Lech Perczak), it appers that
+this patch is also necessary for having the correct IOcontrol register values.
+
+Patch 4 introduces a delay after a reset operation to respect datasheet
+timing recommandations.
+
+Patch 5 fixes an issue with init of first port during probing. This commit
+brings some questions and I appreciate if people from the serial subsystem could
+comment on my proposed solution.
+
+Patch 6 fixes a bug with the output value when first setting the GPIO direction.
+
+Patch 7, 8 and 9 fix a GPIO regression by (re)allowing to choose GPIO function for
+GPIO pins shared with modem status lines.
+
+Patch 10 allows to read common rs485 device-tree flags and properties.
+
+Patch 11 add a custom dump function as relying on regmal debugfs is not really
+practical for this driver.
+
+I have tested the changes on a custom board with two SC16IS752 DUART using a
+Variscite IMX8MN NANO SOM.
+
+Thank you.
+
+Link: [v1] https://lkml.org/lkml/2023/5/17/967
+      [v1] https://lkml.org/lkml/2023/5/17/777
+      [v1] https://lkml.org/lkml/2023/5/17/780
+      [v1] https://lkml.org/lkml/2023/5/17/785
+      [v1] https://lkml.org/lkml/2023/5/17/1311
+      [v2] https://lkml.org/lkml/2023/5/18/516
+
+Changes for V3:
+- Integrated all patches into single serie to facilitate debugging and tests.
+- Reduce number of exported GPIOs depending on new property nxp,modem-control-line-ports
+- Added additional example in DT bindings
+
+Hugo Villeneuve (11):
+  serial: sc16is7xx: fix syntax error in comments
+  serial: sc16is7xx: improve comments about variants
+  serial: sc16is7xx: mark IOCONTROL register as volatile
+  serial: sc16is7xx: add post reset delay
+  serial: sc16is7xx: fix broken port 0 uart init
+  serial: sc16is7xx: fix bug when first setting GPIO direction
+  dt-bindings: sc16is7xx: Add property to change GPIO function
+  serial: sc16is7xx: fix regression with GPIO configuration
+  serial: sc16is7xx: add I/O register translation offset
+  serial: sc16is7xx: add call to get rs485 DT flags and properties
+  serial: sc16is7xx: add dump registers function
+
+ .../bindings/serial/nxp,sc16is7xx.txt         |  46 +++++
+ drivers/tty/serial/sc16is7xx.c                | 180 +++++++++++++++---
+ 2 files changed, 199 insertions(+), 27 deletions(-)
+
+
+base-commit: 933174ae28ba72ab8de5b35cb7c98fc211235096
+-- 
+2.30.2
+
