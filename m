@@ -2,116 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DFEC710890
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 612E47108B4
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 11:21:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239674AbjEYJRZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 05:17:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52474 "EHLO
+        id S239601AbjEYJVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 05:21:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240516AbjEYJRY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:17:24 -0400
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F22A19D;
-        Thu, 25 May 2023 02:17:23 -0700 (PDT)
-Received: by mail-qv1-xf2d.google.com with SMTP id 6a1803df08f44-623839d5c19so5588186d6.1;
-        Thu, 25 May 2023 02:17:23 -0700 (PDT)
+        with ESMTP id S229663AbjEYJVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 05:21:40 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7702F197
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 02:21:38 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-30a8dc89c33so1220961f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 02:21:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685006242; x=1687598242;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MSSOPPh09pX4vWeBhoLFDRwZW9nZ5Myb1cfl7wwliIU=;
-        b=k6EvXFNOttKfq/rXbP9exD5k2Z7WlJQRxqkwBEv+MqMNs2XRAIQLBPcChB4r0c7lLv
-         9yGGMUYV1DL+F0SRpMlUa7bQgfUKMCsrn4p8R1fYSyRBPxqr+1rzNAMWIXGTZMYlvCTI
-         sQ5FeJCxSUDoqSGXRm+hHRgAVbhGHp1Gv9UpGJMB3xe29m4AckLVBbm0CrzFAuct+iLB
-         PgO3bXO+vhneyM0mL+4AtgNbYwgZChj3gqAqC/89ZXy0ItcxTR8G7SjwMCV/RYxbfaHS
-         sGyPMkF3DG8pggkea0urFulae9VZhktp6Sc6s0gYroW4v7WedxzPAK+as2Vdu+iLEYrG
-         rFvQ==
+        d=linaro.org; s=google; t=1685006497; x=1687598497;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7Zm/p2k/RehOfZBljDwc/bYZKGcOcF2/sVmCcVGUSgc=;
+        b=h/WfuPez2QrX3mfUg4JCwKeOj2YjWD8wYM2Ie82UqDSiqAkNZfJBMYmBbQDdyHR2Cm
+         UiXjRaSPu3slN288hugGIaOKrLB7Ir31pufgu9IPTY9Mxuwt2WLPZ/RZxpqIAmI8Prfl
+         D/AcSaWSHjj/urr4wn16iczX0d1SNsBBILDaGxMXwsYYbb/raR7djRFAdCCYnC/Ocfmh
+         zz02DsargQN9DqEeUk7RDxtyCx8bZJ9En6hwrmHSF3HW4MoJErK8rAVP/2QpgZaVvKla
+         ATBbWfn1UgrKBDOJvJJI85NQbsQAkBh+P9fiuaMM+KgBzcad3oOpODO0gr7UBm9a5PkX
+         8IzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685006242; x=1687598242;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MSSOPPh09pX4vWeBhoLFDRwZW9nZ5Myb1cfl7wwliIU=;
-        b=DkUo80MPQQTNks8gKtpqWIQjoTQikgQKUk3L3sgEcLeoloGmbhHEzz859HyDhoiW4g
-         6KHyoUYuWF7cN7KBy3R6DNOKSaAU1I1j7fROHkowXLPBckOOjn65UyJH60pVR2XMI2Lg
-         226y8iWaACl2Oy8dwtEaWb0Zqic4ikm0FsrhXwwktrbvGjWHgEHxazGpDyXnmcr5+1NI
-         LPvgYY+zk/dKgtwdH1YksGJiVpoXw5vDlQbrj0d2xivDOwDXfBIkI5Mqhzh/3x/MaUfS
-         /M1JsQI2wwdVC9HDtSOHjmHiWYUCPNII2wtxjg9h2iXXTcZAZPKm2rbCLn4PShCYZ8zw
-         TLdQ==
-X-Gm-Message-State: AC+VfDzEY6zWOHls5tlT+TCAp+FjC/RCitcX4C+nFKSh3AmnDEn6+INN
-        gYPnV7tOpmTrY8KPtjc/SEkqxXtHlPH/hkojuGAMAaVdX/M=
-X-Google-Smtp-Source: ACHHUZ4Fu02dvgfixrEz6YPfB54tYEIwzBIOsvF4hnRLKndonIEzJBb6Df0tRkwwnrHWcTFPgIoJZJ8mqJ13hbl02mI=
-X-Received: by 2002:a05:6214:19ef:b0:61b:6e43:b20 with SMTP id
- q15-20020a05621419ef00b0061b6e430b20mr545982qvc.42.1685006242514; Thu, 25 May
- 2023 02:17:22 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1685006497; x=1687598497;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7Zm/p2k/RehOfZBljDwc/bYZKGcOcF2/sVmCcVGUSgc=;
+        b=gCl7dLzY0vNRiCBmHPs1r4d/YxUK9s0prKSWqLdOHY1UIrScF7Xoo2IzjzHa+bRa7N
+         SHaOZPVRgHyPoj5TRwId3ZxmZ4rXhBSKV3dB1tEhS6TjvNzYc+iP2rok+EUh8Fs3RrUk
+         2QQbA0K90ansu/D7OkQPpROwRvMTM96U5hH0rLUy6XD+3xn85HOptR/WXzRufkoHRpFv
+         lwCsYTASAxKpEWukZmAqp2LFf4ukkz1Cc/zCi/9oEQ9GPGceSiC0VCO3RqgSy6AIdPmh
+         8b1I/jG7a8R7f7xpdY8xuGmL1RZgIAk445DXEA7w8r8eSzOmUgFBmLrl2MDbVwup2zBK
+         ai4A==
+X-Gm-Message-State: AC+VfDw6XB5ZDHydW/EMdjvsgYh5ZtSLMwCm/CLL2jBgkrt+4hsQFog5
+        H94twyrsiZSlUCymjeAMtMGpww==
+X-Google-Smtp-Source: ACHHUZ46dCc6t483kZe7a5eqGwSuR+0q2RWeVmzINPLITJx84wP7C+7JeIn1F7zdWCNRGS2rp27aiA==
+X-Received: by 2002:adf:e9cf:0:b0:304:6762:2490 with SMTP id l15-20020adfe9cf000000b0030467622490mr1948466wrn.3.1685006496902;
+        Thu, 25 May 2023 02:21:36 -0700 (PDT)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id b4-20020a5d5504000000b003062b6a522bsm1088916wrv.96.2023.05.25.02.21.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 May 2023 02:21:36 -0700 (PDT)
+Message-ID: <dee69294-e743-e249-3075-e83f5c668c88@linaro.org>
+Date:   Thu, 25 May 2023 10:21:34 +0100
 MIME-Version: 1.0
-References: <20230522071030.5193-1-zhuyinbo@loongson.cn> <20230522071030.5193-3-zhuyinbo@loongson.cn>
- <ZGy3b7ZfNwWoGDTu@surfacebook> <35b0500c-d7fe-6479-eeff-d45bbf9a9426@loongson.cn>
- <CAHp75VdHPFDAd4iHdX5jXCM-tq0ZbFJDjvF9GCR_n7HVtd+obg@mail.gmail.com> <2a72a2c2-6fda-1ea8-3b27-5623cc1132aa@loongson.cn>
-In-Reply-To: <2a72a2c2-6fda-1ea8-3b27-5623cc1132aa@loongson.cn>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 25 May 2023 12:16:46 +0300
-Message-ID: <CAHp75VdMSM7VMFn8BDJpx2PJOR8DJtP0GF=sTECnMhz+MoSJ=Q@mail.gmail.com>
-Subject: Re: [PATCH v11 2/2] spi: loongson: add bus driver for the loongson
- spi controller
-To:     zhuyinbo <zhuyinbo@loongson.cn>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/5] dt-bindings: clock: Add YAML schemas for LPASSCC and
+ reset on SC8280XP
+To:     Johan Hovold <johan@kernel.org>
+Cc:     andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
+        agross@kernel.org, konrad.dybcio@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230518113800.339158-1-srinivas.kandagatla@linaro.org>
+ <20230518113800.339158-2-srinivas.kandagatla@linaro.org>
+ <ZGsmCmEdoWIkcVDd@hovoldconsulting.com>
+Content-Language: en-US
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <ZGsmCmEdoWIkcVDd@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 25, 2023 at 6:34=E2=80=AFAM zhuyinbo <zhuyinbo@loongson.cn> wro=
-te:
-> =E5=9C=A8 2023/5/24 =E4=B8=8B=E5=8D=884:42, Andy Shevchenko =E5=86=99=E9=
-=81=93:
-> > On Wed, May 24, 2023 at 10:52=E2=80=AFAM zhuyinbo <zhuyinbo@loongson.cn=
-> wrote:
-> >> =E5=9C=A8 2023/5/23 =E4=B8=8B=E5=8D=888:54, andy.shevchenko@gmail.com =
-=E5=86=99=E9=81=93:
-> >>> Mon, May 22, 2023 at 03:10:30PM +0800, Yinbo Zhu kirjoitti:
+thanks Johan for review,
 
-...
+On 22/05/2023 09:21, Johan Hovold wrote:
+> On Thu, May 18, 2023 at 12:37:56PM +0100, Srinivas Kandagatla wrote:
+>> The LPASS(Low Power Audio Subsystem) clock provider provides reset
+> 
+> Missing space after LPASS acronym.
+> 
+> s/provider/controller/?
+> 
+>> controller support when is driven by the Q6DSP.
+> 
+> s/controller//?
+> 
+> "when is driven by": sounds like there are some words missing here.
+> 
+>> This patch adds support for those resets and adds IDs for clients
+> 
+> There is never any need to say "this patch" in a commit message. Just say
+> 
+> 	Add support for...
+> 
+>> to request the reset.
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> ---
+>>   .../bindings/clock/qcom,sc8280xp-lpasscc.yaml | 57 +++++++++++++++++++
+>>   .../dt-bindings/clock/qcom,lpasscc-sc8280xp.h | 12 ++++
+>>   2 files changed, 69 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml
+>>   create mode 100644 include/dt-bindings/clock/qcom,lpasscc-sc8280xp.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml b/Documentation/devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml
+>> new file mode 100644
+>> index 000000000000..7c30614a0af9
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,sc8280xp-lpasscc.yaml
+>> @@ -0,0 +1,57 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/qcom,sc8280xp-lpasscc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm LPASS Core & Audio Clock Controller on SC8280XP
+>> +
+>> +maintainers:
+>> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> +
+>> +description: |
+>> +  Qualcomm LPASS core and audio clock control module provides the clocks,
+>> +  reset and power domains on SC8280XP.
+> 
+> "power domains"? copy-paste error?
+> 
+>> +
+>> +  See also::
+>> +    include/dt-bindings/clock/qcom,lpasscc-sc8280xp.h
+>> +
+>> +properties:
+>> +  reg: true
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,sc8280xp-lpasscc
+>> +
+>> +  '#reset-cells':
+>> +    const: 1
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+> 
+> Move above #reset-cells for some sorting of related attributes. Same
+> below (in two places).
+> 
+>> +
+>> +  qcom,adsp-pil-mode:
+>> +    description:
+>> +      Indicates if the LPASS would be brought out of reset using
+>> +      peripheral loader.
+>> +    type: boolean
+> 
+> Move above the provider cells properties?
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - qcom,adsp-pil-mode
+> 
+> If this boolean property is always needed, shouldn't that simply be
+> handled by the driver based on the compatible?
 
-> >>>> +    ret =3D loongson_spi_init_master(dev, reg_base);
-> >>>> +    if (ret)
-> >>>> +            return dev_err_probe(dev, ret, "failed to initialize ma=
-ster\n");
-> >>>> +
-> >>>> +    return ret;
-> >>>
-> >>>        return 0;
-> >>
-> >> It seems was more appropriate that initialize ret then return ret.
-> >> Do you think so ?
-> >
-> > What do you mean and how does it help here?
->
-> I'm sorry, I was wrong before and the ret varible seems not to be
-> initialized and it always record the return value for
-> loongson_spi_init_master.
->
-> It seems was appropriate that use "return ret" and I don't got your
-> point that in probe for use "return 0"
+Traditionally in Qcom SoCs LPASS is under the control of ADSP, there 
+have been some other variants specially chrome platforms that have moved 
+this control to APPs processor.
 
-In the above excerpt you will return anything except 0 with return
-dev_err_probe(); line. Why do you still need to return ret; at the end
-of the function?
+Having this property at Device tree level provides more flexibility, 
+given that both the cases use same compatible strings.
 
---=20
-With Best Regards,
-Andy Shevchenko
+
+Am okay with reset of the comments, Will fix them in v2.
+thanks,
+Srini
+
+> 
+>> +  - '#reset-cells'
+>> +  - '#clock-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/qcom,lpasscc-sc8280xp.h>
+>> +    lpasscc: clock-controller@3900000 {
+>> +      compatible = "qcom,sc8280xp-lpasscc";
+> 
+> binding examples use 4-space indentation.
+> 
+>> +      reg = <0x033e0000 0x12000>;
+> 
+> Does not match the node unit address.
+> 
+>> +      #reset-cells = <1>;
+>> +      #clock-cells = <1>;
+>> +      qcom,adsp-pil-mode;
+>> +    };
+>> +...
+>> diff --git a/include/dt-bindings/clock/qcom,lpasscc-sc8280xp.h b/include/dt-bindings/clock/qcom,lpasscc-sc8280xp.h
+>> new file mode 100644
+>> index 000000000000..df800ea2741c
+>> --- /dev/null
+>> +++ b/include/dt-bindings/clock/qcom,lpasscc-sc8280xp.h
+>> @@ -0,0 +1,12 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+>> +/*
+>> + * Copyright (c) 2023, Linaro Ltd.
+>> + */
+>> +
+>> +#ifndef _DT_BINDINGS_CLK_QCOM_LPASSCC_SC8280XP_H
+>> +#define _DT_BINDINGS_CLK_QCOM_LPASSCC_SC8280XP_H
+>> +
+>> +/* LPASS TCSR */
+>> +#define LPASS_AUDIO_SWR_TX_CGCR				0
+>> +
+>> +#endif
