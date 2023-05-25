@@ -2,178 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C6547112B8
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 19:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E8C27112D7
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 19:51:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230203AbjEYRnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 13:43:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49800 "EHLO
+        id S234600AbjEYRvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 13:51:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233048AbjEYRnb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 13:43:31 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0917910E2
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 10:42:55 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id d75a77b69052e-3f392680773so6503321cf.0
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 10:42:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1685036553; x=1687628553;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GHNgOwE0Yd+ogXszXmZsT4k7noC8x1amqMlwKHEhFLg=;
-        b=KBBmYC7ljZCLSJpWSkoPnCYUAl+RDSddBtJB71WKUm8VONYpKZD0F9I/FIdRfmCxYW
-         RUIFnNMbmVJNq/xXRDexI7uz2VmCgs/Ez9sr3XVOEZJ0S+KoHpZNN/qfZ09vmTMSqAWg
-         hnDyHyibdkjCX502QcUGHJSczLEmRpIlVgUrw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685036553; x=1687628553;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GHNgOwE0Yd+ogXszXmZsT4k7noC8x1amqMlwKHEhFLg=;
-        b=A15CRJrTy5O2+7hmbyJGsH/mL5YHe3azG0uGfbdrD+KQ5ea50zd8ee+DLNSgJfhgWS
-         v7DnBEMzs/HRXE+Gq9u2uTRJi+9VhnXCz6SZvcIkwsjXFk9SHujZ6cHH4ayOU8Ck/uES
-         mtcBgz/tUy+ZQLc1coi/k/s0HAdsuwmaQGhkcqbbV+7+hAukwOUWrOsySEsfD/t3BO4C
-         J3cjAXTkzs6hX8BZB5VgEoU87Y2TtUXEDq+hsrf6BYFZjOgZ1sfWRozTNk6BCIPOLYXM
-         RQ8ts1HM9+j3LgBnq9zol12HXI5K43p+JENw5m+x+pYbYq0V3IGWWCS+8QJonp+8dBWL
-         5Wmw==
-X-Gm-Message-State: AC+VfDzzQCUdeJMblxd/WCY4p8e43drOa3D+5jsBZaKdNtFtHJ9qMYLU
-        VC6/y3ZNGQUjn1MtU06SM+S0Rg==
-X-Google-Smtp-Source: ACHHUZ5k2Bo8AYLfWnH8gVVFoXHTlFl9V4x1c9gOxnr2ccz+UK81ftvXOuztmRODWtdtZ5CHn/EWaQ==
-X-Received: by 2002:a05:622a:48:b0:3ef:3511:f494 with SMTP id y8-20020a05622a004800b003ef3511f494mr364562qtw.16.1685036552685;
-        Thu, 25 May 2023 10:42:32 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id x30-20020ac84d5e000000b003f3c9754e1dsm579064qtv.17.2023.05.25.10.42.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 May 2023 10:42:32 -0700 (PDT)
-From:   Florian Fainelli <florian.fainelli@broadcom.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        Tony Lindgren <tony@atomide.com>,
+        with ESMTP id S234713AbjEYRvh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 13:51:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B99713A;
+        Thu, 25 May 2023 10:51:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A48DE6480B;
+        Thu, 25 May 2023 17:51:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 167E6C433EF;
+        Thu, 25 May 2023 17:51:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685037095;
+        bh=mHitxRuzsrCDz6wDtNkPxZg0+Qj9SmhuC0cgq49LxIc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tR70UQHUyQLmkKcT9W7ECQblM2idV7tY1F7GXcQ5RJr1FKLYiTgrQaByckJxSrQTy
+         X7P7eBJ+koJyFqxOyogc2FfJjWHlhKHt55A1gy8Rucz+95H7x21E0xbXhRQQWcdOH5
+         0NJB3uG/wDQfBtj7kFZd3ShcFc5X1kfJemTTM7a5Xselgi3D8kWGRatL1rS2ZCTSCK
+         lOV50B8onXaN4Wuz6ew/EoCAk22YPm65z5lKBFjqDalaQaxo4IhWvRmUCL0e+nZP2Z
+         2EcBNnoELEmnWC6Ff3ebzBgllFLua2s9uZmZyM/YlixCxciD82eSPZaOu/xQBunjFO
+         jAYpjylzuIrgQ==
+Date:   Thu, 25 May 2023 18:51:29 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/1] arm64: dts: Unify pinctrl-single pin group nodes for stingray
-Date:   Thu, 25 May 2023 10:42:29 -0700
-Message-Id: <20230525174229.3547183-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230523065236.14524-1-tony@atomide.com>
-References: <20230523065236.14524-1-tony@atomide.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: mediatek: replace unusable
+ clock
+Message-ID: <20230525-snuggle-twine-ed1bfc2aee51@spud>
+References: <20230517-fix-clk-index-v2-0-1b686cefcb7e@baylibre.com>
+ <20230517-fix-clk-index-v2-1-1b686cefcb7e@baylibre.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000002cf8ce05fc882575"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="gOHHGwI3MUXVEdah"
+Content-Disposition: inline
+In-Reply-To: <20230517-fix-clk-index-v2-1-1b686cefcb7e@baylibre.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000002cf8ce05fc882575
-Content-Transfer-Encoding: 8bit
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+--gOHHGwI3MUXVEdah
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 23 May 2023 09:52:35 +0300, Tony Lindgren <tony@atomide.com> wrote:
-> We want to unify the pinctrl-single pin group nodes to use naming "pins".
-> Otherwise non-standad pin group names will add make dtbs checks errors
-> when the pinctrl-single yaml binding gets merged.
-> 
-> Let's also correct the pinctrl controller #size-cells to 0 while at it.
-> 
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
+On Thu, May 25, 2023 at 04:50:27PM +0200, Alexandre Mergnat wrote:
+> The =E2=80=9Cmcu_pm_bclk_ck_cg=E2=80=9D clock is used by co-processors an=
+d should not be
+> added to the kernel driver, otherwise the CPU just halt and the board is
+> rebooted by the wathdog.
+>=20
+> Instead, add the "aes_top0_bclk_ck_cg" missing clock to prevent
+> re-shuffling index and then preserve the ABI.
+
+How does this preserve the ABI exactly? Please describe exactly what you
+mean by that.
+Also, what about any other users of these definitions, outside of Linux?
+
+Cheers,
+Conor
+
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 > ---
+>  include/dt-bindings/clock/mediatek,mt8365-clk.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/include/dt-bindings/clock/mediatek,mt8365-clk.h b/include/dt=
+-bindings/clock/mediatek,mt8365-clk.h
+> index f9aff1775810..0a841e7cc1c3 100644
+> --- a/include/dt-bindings/clock/mediatek,mt8365-clk.h
+> +++ b/include/dt-bindings/clock/mediatek,mt8365-clk.h
+> @@ -199,7 +199,7 @@
+>  #define CLK_IFR_PWRAP_TMR		46
+>  #define CLK_IFR_PWRAP_SPI		47
+>  #define CLK_IFR_PWRAP_SYS		48
+> -#define CLK_IFR_MCU_PM_BK		49
+> +#define CLK_IFR_AES_TOP0_BK		49
+>  #define CLK_IFR_IRRX_26M		50
+>  #define CLK_IFR_IRRX_32K		51
+>  #define CLK_IFR_I2C0_AXI		52
+>=20
+> --=20
+> 2.25.1
+>=20
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
---
-Florian
+--gOHHGwI3MUXVEdah
+Content-Type: application/pgp-signature; name="signature.asc"
 
---0000000000002cf8ce05fc882575
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+-----BEGIN PGP SIGNATURE-----
 
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDBP8P9hKRVySg3Qv5DANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMjA5MTAxMjE4MTFaFw0yNTA5MTAxMjE4MTFaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEA+oi3jMmHltY4LMUy8Up5+1zjd1iSgUBXhwCJLj1GJQF+GwP8InemBbk5rjlC
-UwbQDeIlOfb8xGqHoQFGSW8p9V1XUw+cthISLkycex0AJ09ufePshLZygRLREU0H4ecNPMejxCte
-KdtB4COST4uhBkUCo9BSy1gkl8DJ8j/BQ1KNUx6oYe0CntRag+EnHv9TM9BeXBBLfmMRnWNhvOSk
-nSmRX0J3d9/G2A3FIC6WY2XnLW7eAZCQPa1Tz3n2B5BGOxwqhwKLGLNu2SRCPHwOdD6e0drURF7/
-Vax85/EqkVnFNlfxtZhS0ugx5gn2pta7bTdBm1IG4TX+A3B1G57rVwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUUwwfJ6/F
-KL0fRdVROal/Lp4lAF0wDQYJKoZIhvcNAQELBQADggEBAKBgfteDc1mChZjKBY4xAplC6uXGyBrZ
-kNGap1mHJ+JngGzZCz+dDiHRQKGpXLxkHX0BvEDZLW6LGOJ83ImrW38YMOo3ZYnCYNHA9qDOakiw
-2s1RH00JOkO5SkYdwCHj4DB9B7KEnLatJtD8MBorvt+QxTuSh4ze96Jz3kEIoHMvwGFkgObWblsc
-3/YcLBmCgaWpZ3Ksev1vJPr5n8riG3/N4on8gO5qinmmr9Y7vGeuf5dmZrYMbnb+yCBalkUmZQwY
-NxADYvcRBA0ySL6sZpj8BIIhWiXiuusuBmt2Mak2eEv0xDbovE6Z6hYyl/ZnRadbgK/ClgbY3w+O
-AfUXEZ0xggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwT
-/D/YSkVckoN0L+QwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIByR3DpzWSI0I2uU
-vKqVhmwo0TLa7BcZyXO//pTYRVvnMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIzMDUyNTE3NDIzM1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAISj6W3nW49XVyGL835PKPfS8e/pIQskue
-ELn+tvfC4mohqfe8RkP4m8aAW2E6+haq4AzJDmG65BI2eDQ9DvfbNrWeSAluizCjsQbc0bBxLh1S
-mI5MneP4E56Ku3shBPtlOpQQxE/caIwPRKfzuT6GmiF5IzbaTH27b+ZVpv9kcbvYhEFpgwvvmi93
-Fh+/ADZ0zSm9uvyC2taKLkdOadHL/R4I61bo4aOFhTiiYC3MJ41UQzi83aCeOJKCgri9GlOzAxpI
-qP9YUo1PyIFiH6VzVJCS4IwIm6YCRKQpr04fswTNByp2KRpk5xbtr5zZJCNqF9KmZFrBgmq/SHX+
-TFih
---0000000000002cf8ce05fc882575--
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG+gIQAKCRB4tDGHoIJi
+0gjeAP9v0bdBygFs8MHWwrW4JshVYCnje5trYdbmwkeisP5Q7wEAjon3h1OrMg3d
+GI0plInpgzPg0QIkgLGH6LFkO/vw/Qk=
+=p2Bs
+-----END PGP SIGNATURE-----
+
+--gOHHGwI3MUXVEdah--
