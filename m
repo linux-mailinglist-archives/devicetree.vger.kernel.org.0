@@ -2,126 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69F357117D2
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 22:07:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A698571186F
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 22:49:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232420AbjEYUHx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 16:07:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56124 "EHLO
+        id S241278AbjEYUtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 16:49:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233284AbjEYUHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 16:07:52 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18910AA
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 13:07:51 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-973bf581759so154253366b.0
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 13:07:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685045269; x=1687637269;
-        h=content-transfer-encoding:to:subject:message-id:date:from:sender
-         :reply-to:mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=8WjCLoJJObEB3nHgXYCX85Ri1ZVTg9NhxJd7ffJpQgo=;
-        b=pOEAfKb7p39K93l/quYwy4Aqm3l2aPFVzG/HMcInbfX34uECC7KfJFSnhKD8sTIqET
-         vVuii71TYCo3kgwm9X8VfIpcohUqFl5WmxhLX+J6z0PVqKrToxGawnh/tXhARNv75on4
-         Y9d/5iJp7qjauiRNLxShA5AMpoujHhvlfXtRSAL5hrU/LNno9meAqB2JmnEl4D3ObKVL
-         YbDiAJN7GBZh6TIo761SjyNfXAQkOz55OmDNiUVdKusepl2ps7jDa028c6NCmSsXrViW
-         zs1sszwQwgMM72BfKj33ixQuRSWYD1V222042FfQjQdVruxDIrXN/12g5iUE6HdKIz9e
-         sC5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685045269; x=1687637269;
-        h=content-transfer-encoding:to:subject:message-id:date:from:sender
-         :reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8WjCLoJJObEB3nHgXYCX85Ri1ZVTg9NhxJd7ffJpQgo=;
-        b=Y6S9cDZoTyzNWT7khjrWHW5YeOPQqBRpdXGGDxohc0TKSpfWOP5iPfRd8+7qzDrO15
-         TolanicJRqtVyD1TZGASGCjGH6ThVS6iooYQrREWKOD1TnjZtQsHs4knyFKr7CxxKAL9
-         rHtzbdccUPOqVjXiQbAz/SMnXYGXjtdvvX6IixLz3SPftcmIXYX+bp9EH+1nWwSesS7n
-         6ce5+gbb3/PvfMbfQDvCvw1y8Ui8kEfvFuEABtPJP49BaQQJXDsYPTmmdXih+fDSUuel
-         EfXzFCeYEedWrW1lNle28arsrvR5GbGpxyMALr1dq7MqQ3GqOus3tiEna9Lo/Gfyvpbu
-         7d5w==
-X-Gm-Message-State: AC+VfDwzMiQVBYBkDKUFiIkd5EzvHDIK28sw69YsQkc4cyTu8X5n4bbN
-        kTXQMhqtlWs5Fp869pM2YYn0CHxQDCbRRh22VH0=
-X-Google-Smtp-Source: ACHHUZ7haN/RnPcDiv7OENaSPyQzYtDUVYNb9kRJtlxIbKHXU8hn25hxrROl+YXVvIQ6WA6rU1kHCS4hzrvnuKcV4ls=
-X-Received: by 2002:a17:907:7288:b0:966:634d:9d84 with SMTP id
- dt8-20020a170907728800b00966634d9d84mr2604846ejc.20.1685045269254; Thu, 25
- May 2023 13:07:49 -0700 (PDT)
+        with ESMTP id S231495AbjEYUto (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 16:49:44 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B98CA97;
+        Thu, 25 May 2023 13:49:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1685047783; x=1716583783;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=M3hydNvGn1B4ey9GeGKTs3TFBTlEgyvaKvG4ZpFXN2s=;
+  b=ZCa2mqzUTlBVKnZ1MtxyHdMo8x56FtifHJnMaCJ84zUQFjWLv0hxM4cY
+   8ZuMNjXqwaNXtl76v2AVnPMe95yZs9XxiiJuFKOgWDgBo9diiOIpalC48
+   TyZPR37i5XTnRgOcMnDnTi/2ndKAXcSA0+47bmQacJ1OGx+X+el7dlFbA
+   qFN5HtuCidJF/xPoqcaxSbDIDeuX0PQ0zWijr0BA81E9rymS3ndFgdkGS
+   gumQ2c0tt9avt0DmAUeGdQxGf9x29xSZYJq9oFLfAMdxXBSyy5QkZOm0g
+   Y1kfMQKe1Q+M727g35dnl3wdNTdUZy8hawUixMpvTNkPupnHE/cwwSl8q
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="356407478"
+X-IronPort-AV: E=Sophos;i="6.00,192,1681196400"; 
+   d="scan'208";a="356407478"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2023 13:48:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10721"; a="829239914"
+X-IronPort-AV: E=Sophos;i="6.00,192,1681196400"; 
+   d="scan'208";a="829239914"
+Received: from dinguyen-mobl1.amr.corp.intel.com (HELO [10.92.18.74]) ([10.92.18.74])
+  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2023 13:48:01 -0700
+Message-ID: <e1e0895e-4c8d-6453-d098-972beb4d0255@linux.intel.com>
+Date:   Thu, 25 May 2023 15:47:46 -0500
 MIME-Version: 1.0
-Reply-To: mrstheresenina112@gmail.com
-Sender: westernunionm499@gmail.com
-Received: by 2002:a98:df8f:0:b0:1ce:6d9e:76e2 with HTTP; Thu, 25 May 2023
- 13:07:48 -0700 (PDT)
-From:   "Mrs. Therese Nina" <mrstheresenina112@gmail.com>
-Date:   Thu, 25 May 2023 22:07:48 +0200
-X-Google-Sender-Auth: BYC2uEStNlD6SwMeJZY-B2sd4Tc
-Message-ID: <CAAwyaLDJ-2FvM=Eqz8SvjsoF5Ljt_HDcgqYC_e3E8UR4Cxa2pA@mail.gmail.com>
-Subject: My Dear
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: Yes, score=5.6 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,LOTS_OF_MONEY,MONEY_FRAUD_3,
-        MONEY_FREEMAIL_REPTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_HK_NAME_FM_MR_MRS,T_SCC_BODY_TEXT_LINE,UNDISC_MONEY autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5008]
-        * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:62c listed in]
-        [list.dnswl.org]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [westernunionm499[at]gmail.com]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [westernunionm499[at]gmail.com]
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [mrstheresenina112[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
-        *  0.0 LOTS_OF_MONEY Huge... sums of money
-        *  1.8 MONEY_FREEMAIL_REPTO Lots of money from someone using free
-        *      email?
-        *  2.7 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-        *  0.0 MONEY_FRAUD_3 Lots of money and several fraud phrases
-X-Spam-Level: *****
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCHv2 3/6] hwmon: (socfpga) Add hardware monitoring support on
+ SoCFPGA platforms
+To:     Armin Wolf <W_Armin@gmx.de>, linux-hwmon@vger.kernel.org
+Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, jdelvare@suse.com,
+        linux@roeck-us.net,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+References: <20230508212852.8413-1-dinh.nguyen@linux.intel.com>
+ <20230508212852.8413-3-dinh.nguyen@linux.intel.com>
+ <4aa37522-9072-ac8d-0ba7-c2234c3228bc@gmx.de>
+Content-Language: en-US
+From:   Dinh Nguyen <dinh.nguyen@linux.intel.com>
+In-Reply-To: <4aa37522-9072-ac8d-0ba7-c2234c3228bc@gmx.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good Day
+Hi Armin,
 
-I write you this letter from the heart full of sincerity and tension,
-My Name are Mrs. Therese Nina, from Norway, I am married to Mr.
-Patrick Nina, A gold merchant who owns a small gold Mine in Austria;
-He died of cardiovascular disease in March 2011. During his lifetime
-he deposited the sum of =E2=82=AC 8.5 Million Euro in a bank in Austria.
+On 5/8/2023 7:57 PM, Armin Wolf wrote:
+> Am 08.05.23 um 23:28 schrieb dinh.nguyen@linux.intel.com:
+>
+>> From: Dinh Nguyen <dinh.nguyen@linux.intel.com>
+>>
+>> The driver supports 64-bit SoCFPGA platforms for temperature and voltage
+>> reading using the platform's SDM(Secure Device Manager). The driver
+>> also uses the Stratix10 Service layer driver.
+>>
+>> This driver only supports OF SoCFPGA 64-bit platforms.
+>>
+>> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+>> Signed-off-by: Dinh Nguyen <dinh.nguyen@linux.intel.com>
+>> ---
+>> v2: clean up race conditions in probe/remove functions
+>>      move changes in service driver to a separate patch
+>>      fix undefined 'ret' value in socfpga_read()
+>>      fix up socfpga_hwmon_err_to_errno() to handle signed integer
+>>      add platform specific dts binding
+>> ---
+>>   Documentation/hwmon/index.rst         |   1 +
+>>   Documentation/hwmon/socfpga-hwmon.rst |  30 ++
+>>   drivers/hwmon/Kconfig                 |  11 +
+>>   drivers/hwmon/Makefile                |   1 +
+>>   drivers/hwmon/socfpga-hwmon.c         | 408 ++++++++++++++++++++++++++
+>>   5 files changed, 451 insertions(+)
+>>   create mode 100644 Documentation/hwmon/socfpga-hwmon.rst
+>>   create mode 100644 drivers/hwmon/socfpga-hwmon.c ICENSE("GPL");
 
-I am not in good health in which I sleep every night without knowing
-if I may be alive to see the next day. I am suffering from long term
-cancer illness which has become almost impossible for me to move
-around, I have decided to donate what I have to you for the support of
-helping Motherless babies less privileged Widows' because I am dying
-and diagnosed with cancer for about two years ago.
+Thanks for the review. I've addressed all of your comments in V3.
 
-I need a very honest person who can claim this money and use it for
-Charity works, for orphanages, widows and also build schools for less
-privilege that will be named after my late husband and my name and I
-will give you more information on how the fund will be transferred to
-your bank account.
+Dinh
 
-Best Regards
-Mrs. Therese Nina
