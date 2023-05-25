@@ -2,172 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBF6E710FEB
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 17:47:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D464711098
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 18:12:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233051AbjEYPru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 11:47:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39244 "EHLO
+        id S231133AbjEYQMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 12:12:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241495AbjEYPrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 11:47:48 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D17618D
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 08:47:47 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-30ac4e7f37bso479506f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 08:47:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685029665; x=1687621665;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ybWMPvjAbxDd9m2vKZKs3PZRB9H9wahkXT4YhpmdacM=;
-        b=wTKV2Go+f+i+Mjt9tLkmgVbheb9bl7s5B+NU0V884RUjTJ1Peu8qCewYshoz4bLdeO
-         YAH4u9vIY76b7ACHvViyhuyKafwq4km9pATlhQC7Wy/KRylXi3YTLBQFb08obpDkievz
-         g4aqV5Vo4LMYp73b12lbC3rMg6SPBXuVvvPjMzMmv1cmuWP2e0Ogoe7I3s3D84Ofi7I3
-         Id0/CAyu/YDljXpJLMd0JQBn5Hl1ZPOs9IXtyUORwV0Typz+eLLnQMSzupcevvB3Tljr
-         CRKn/g41mGhugIuUKHXO2eut8Xq2TKij2+tXMdrZoOo/IqlRI2eZFmAuf3NpK5zsmoTj
-         VyIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685029665; x=1687621665;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ybWMPvjAbxDd9m2vKZKs3PZRB9H9wahkXT4YhpmdacM=;
-        b=KUsci1eZIwx1U/mxG05H+pHMl1VUhKmUNjwqJaXaSaGdszwOpxQZAEyJ0DqrF/jxJU
-         Ko4pjB2xGTpm7UVkWwnB8Qz+4sSEUZWhDUlkEeSpLFHACdBgYdQp8ihxrtZ/p9RiS1A4
-         CKsLuUOZe4LNbgMuEUxAhHhp21P8Dr2ju5i7u/iUjhYW1T/Cch7Xe6Qn6KS/sKJv0KkP
-         wvBgpFIMH8Q9dkYExftaMUJZTOXWCxcYuWOYsVQkKSgRl7gjv6iWMqYmDi3NwPsXpT2k
-         zI/ctJLEpmW05GoiYPNByzrTYYGmgp6mAmbB5Grm0phM71TY2jFIp2C3WVXO0L4Hdrth
-         iBAg==
-X-Gm-Message-State: AC+VfDy9u5NiEpE7rKcUvg4Lr9UFXmhkGgaHVPk2taqhmiww4b2aNGJj
-        LjwHi0ElRdJovk6ZeqQeIAmA8g==
-X-Google-Smtp-Source: ACHHUZ7ZCJwFJNGBcjmp/qsvw/hxlfVQohGvKbPq7HJoGe6uwtY9e849NyhdSHgLji0XW0cxExFJgw==
-X-Received: by 2002:adf:f84c:0:b0:306:4550:f651 with SMTP id d12-20020adff84c000000b003064550f651mr2993014wrq.4.1685029665561;
-        Thu, 25 May 2023 08:47:45 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id b3-20020a5d5503000000b002ca864b807csm2275873wrv.0.2023.05.25.08.47.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 May 2023 08:47:45 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 25 May 2023 17:47:38 +0200
-Subject: [PATCH 4/4] arm64: dts: qcom: sm8550-qrd: enable PMIC Volume and
- Power buttons
+        with ESMTP id S232918AbjEYQMc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 12:12:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E1110CA;
+        Thu, 25 May 2023 09:12:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 228CC64754;
+        Thu, 25 May 2023 16:12:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66545C433EF;
+        Thu, 25 May 2023 16:11:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685031123;
+        bh=eGwbDp7GXLadDVneGLrHlJAsKXAAFdJ2QiGxjfTabbE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IxidsszBRPguHI81Nrqgyg+PAPcJOt3TiumrloR5YDGscvCz+VunNxEx/Wv6qIgSp
+         rUDCv1bUuOyqUkrFJWBRdjWpSPDaKK0YuAfwFOqDXtspsCTRoznmTrNq2EoHFriG8T
+         TezQJsczQzq9lMXz7t5ulUCJWNCTgOSElTN2RAA4CBfgUuyZ+5KH/sFWMtH+ucPJBB
+         xZ616Zp/Wh0N7ggA0H3+h4fG9C8ZGOBZggavFJVEDVFbiwRWjiaM5fGM2Ge7JAFLr2
+         V9OQSP46Krk/xEqqnri/SCHRmjfJAem2SRcfgu4X5zw1MTGtkQWoBGRIwIHOjceFgs
+         B0//walKKKRiA==
+Date:   Thu, 25 May 2023 17:11:56 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Justin Chen <justin.chen@broadcom.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        florian.fainelli@broadcom.com, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, opendmb@gmail.com, andrew@lunn.ch,
+        hkallweit1@gmail.com, linux@armlinux.org.uk,
+        richardcochran@gmail.com, sumit.semwal@linaro.org,
+        christian.koenig@amd.com, simon.horman@corigine.com
+Subject: Re: [PATCH net-next v5 2/6] dt-bindings: net: Brcm ASP 2.0 Ethernet
+ controller
+Message-ID: <20230525-extent-osmosis-8d99bf7a780b@spud>
+References: <1684969313-35503-1-git-send-email-justin.chen@broadcom.com>
+ <1684969313-35503-3-git-send-email-justin.chen@broadcom.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v1-4-4d5d7602f290@linaro.org>
-References: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v1-0-4d5d7602f290@linaro.org>
-In-Reply-To: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v1-0-4d5d7602f290@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1644;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=CPwrvAAyt2H/9JeM32XZW/DCLHS5cCNgZqPt32wie4c=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkb4McVl877G51/dYVZUu5+kB0HIGxU3xcvMSUXnRk
- YVdr7ieJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZG+DHAAKCRB33NvayMhJ0b/9EA
- C5gOeMPObiEOchFROcde0PWpDIzUiz31zaz+XzjLDuNbRyKMC5GgG995WvagBO8Ecx+YVELW+MNz1l
- joEuSjUD65+dIz3NCsj7FTSjyUxSzL+k1zX2yuVmfMpwuseDwCiHgRo6w4toyYmDEdVOvKlxl39hL+
- Dt8yMpr4MIldKMcAKoEctTFfiM4fX6Sdve53AgCT9txIdbVDaIkj9ZSHmna8o1Ewq8lrMr4KyQ4RGu
- ZVVOQYLbwUyIp9t9ARVyV2I6DQhSh5N74GA/c2JtYEU1XyPeBvxSvVvmKEL2YfTar1IAodB9xJKw9C
- Q9IrJ2+8o7+hA36JDARzzVZQERFmf/dkVM3thZOGMoTLbp6P10HU/TnRbi3k+fv4c+16wcnX+hPU4S
- rLdNV2d53DJcgujXG5oiX3mdlUlxn6Z++QP9rznRjS2gdBFEl9KSTtviavYl4eMndGIEBSp++kDeyF
- RMslZcqDEVtpUAT8FrR4UAM35Oa6e5BJba2k1PdDO+0r2z7jQ5gtIKgiUOJHuwfElJe2GnJuM/vE4x
- GmTRIBcAl8b1hZmgB4sC4rDE9ZUg0RRcxA7N9YFTOVxULSr1bCWSM22q9Ect9yJ9RPxB+Elttm4NDX
- yzpXW3VVVUtljXEN/YY33HgKmkNzdKaMx016cffsINRfSlwLlsfJpXrh8VaA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="gQWeSQ/Xh494+0MG"
+Content-Disposition: inline
+In-Reply-To: <1684969313-35503-3-git-send-email-justin.chen@broadcom.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Volume Down & Power buttons are controlled by the PMIC via
-the PON hardware, and the Volume Up is connected to a PMIC gpio.
 
-Enable the necessary hardware and setup the GPIO state for the
-Volume Up gpio key.
+--gQWeSQ/Xh494+0MG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 36 +++++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+On Wed, May 24, 2023 at 04:01:49PM -0700, Justin Chen wrote:
+> From: Florian Fainelli <florian.fainelli@broadcom.com>
+>=20
+> Add a binding document for the Broadcom ASP 2.0 Ethernet
+> controller.
+>=20
+> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> Signed-off-by: Justin Chen <justin.chen@broadcom.com>
+> ---
+> v5
+> 	- Fix compatible string yaml format to properly capture what we want
+>=20
+> v4
+>         - Adjust compatible string example to reference SoC and HW ver
+>=20
+> v3
+>         - Minor formatting issues
+>         - Change channel prop to brcm,channel for vendor specific format
+>         - Removed redundant v2.0 from compat string
+>         - Fix ranges field
+>=20
+> v2
+>         - Minor formatting issues
+>=20
+>  .../devicetree/bindings/net/brcm,asp-v2.0.yaml     | 149 +++++++++++++++=
+++++++
+>  1 file changed, 149 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/brcm,asp-v2.0.y=
+aml
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml b/D=
+ocumentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
+> new file mode 100644
+> index 000000000000..c4cd24492bfd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
+> @@ -0,0 +1,149 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/brcm,asp-v2.0.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom ASP 2.0 Ethernet controller
+> +
+> +maintainers:
+> +  - Justin Chen <justin.chen@broadcom.com>
+> +  - Florian Fainelli <florian.fainelli@broadcom.com>
+> +
+> +description: Broadcom Ethernet controller first introduced with 72165
+> +
+> +properties:
+> +  '#address-cells':
+> +    const: 1
+> +  '#size-cells':
+> +    const: 1
+> +
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - brcm,bcm74165-asp
+> +          - const: brcm,asp-v2.1
+> +      - items:
+> +          - enum:
+> +              - brcm,bcm72165-asp
+> +          - const: brcm,asp-v2.0
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index b08a8201ad23..c354dcc12621 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -28,6 +28,22 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&volume_up_n>;
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&pm8550_gpios 6 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			wakeup-source;
-+		};
-+	};
-+
- 	pmic-glink {
- 		compatible = "qcom,sm8550-pmic-glink", "qcom,pmic-glink";
- 		#address-cells = <1>;
-@@ -426,6 +442,16 @@ &pcie0_phy {
- 	status = "okay";
- };
- 
-+&pon_pwrkey {
-+	status = "okay";
-+};
-+
-+&pon_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+
-+	status = "okay";
-+};
-+
- &pm8550_flash {
- 	status = "okay";
- 
-@@ -450,6 +476,16 @@ led-1 {
- 	};
- };
- 
-+&pm8550_gpios {
-+	volume_up_n: volume-up-n-state {
-+		pins = "gpio6";
-+		function = "normal";
-+		power-source = <1>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+};
-+
- &pm8550_pwm {
- 	status = "okay";
- 
+Sorry if I did not notice this before, conventionally compatible goes
+first here. IFF there is another version, could you shuffle things
+around? Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
--- 
-2.34.1
+Thanks,
+Conor.
 
+--gQWeSQ/Xh494+0MG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZG+IzAAKCRB4tDGHoIJi
+0t8LAP0XPuVe8Xv0rC6URYPWMiOetvVlRcErsx5TLDNGuD0U8AEA8RUP6BvGw9Pv
+QWlVEE3X8asJ36V2w/7bvKuygsBc2wQ=
+=IMJt
+-----END PGP SIGNATURE-----
+
+--gQWeSQ/Xh494+0MG--
