@@ -2,46 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECDCC71042F
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 06:51:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4024C710431
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 06:51:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237076AbjEYEvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 00:51:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53306 "EHLO
+        id S237947AbjEYEvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 00:51:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233942AbjEYEu7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 00:50:59 -0400
+        with ESMTP id S236597AbjEYEvB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 00:51:01 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCB5083;
-        Wed, 24 May 2023 21:50:58 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BA1683;
+        Wed, 24 May 2023 21:51:00 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 798F4641E8;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3CB04641E9;
+        Thu, 25 May 2023 04:51:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1E5EC433A0;
         Thu, 25 May 2023 04:50:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 422C3C4339E;
-        Thu, 25 May 2023 04:50:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1684990257;
-        bh=l8tcrDWF0cp2L8xHKZs4rk4OtL4USOEBMMnO7LVpJgw=;
+        s=k20201202; t=1684990259;
+        bh=uhCfD3k7vcFe2Tv+gncTdbMiYtwguC4G62urOHaRIGI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oG8PymZV4+vdJRpt6fFg0UFRw6ysGihTBv8jIcrLk/1ciz2qT2PdIiIEpaRaI+ZIf
-         H7HqeIuabHomU4Ud7mhTZXfqhGRs9VWJFlA7PzMNQKmC73oAMz+qBooO37p6yo1Csv
-         6EMVGS5M9FpOFpRwhfcBpTCdXDa5EwMczg/DkRwxaqsFvNU7xoeAj1jXacPaakLp54
-         3EaOf4+oE9fUHPJ+z8s6S1h3zXvTy/W9XAaAD4XmhX9l9/j5Wuy/O1E0K0zCbF2tsV
-         g57Iaop0D1TfKr6eQvQvSA29fekoo+ISba8M45vdr001JE4dX6nl38SLzT2G/SykbY
-         WuXUkG8eHZLGQ==
+        b=VaboKHZGCe/jMPG/ldzpiVK150ENBMgpPsa2QSXYPfK+WJZeFbZEjzfGg3i7A/62z
+         WYRsn+o3pRTVt/Jv03P2O4OTqd3iM+a5/p/FYkvRA23juXXVvkxkCHWuLuohKRQ1DS
+         zuMH3W10ORc7pByXeZpdde6w9iJGAlMn1JS5lN1+l8tf3J2oy2MKg+dwhkmh7x1u1s
+         mr7vvuzzKEOsmv0q11EcWcH1qLRDaAAuhOdgiYCChnUMEdXSnSVykn2k3Gjhwd3azc
+         lEYfL2VuRrxRH1dBQHyUR5kpyLQoFTcTIxmVC9MxhU6xq7uXr4MRVML4IP6vexFpqW
+         wflnnwRkd7vlQ==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>
-Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, konrad.dybcio@linaro.org
-Subject: Re: (subset) [PATCH v4 v0/4] sa8155p-adp devicetree ethernet cleanup
-Date:   Wed, 24 May 2023 21:53:37 -0700
-Message-Id: <168499048179.3998961.11840915445015146788.b4-ty@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, Arnaud Vrac <avrac@freebox.fr>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: qcom: msm8998: add blsp spi nodes
+Date:   Wed, 24 May 2023 21:53:39 -0700
+Message-Id: <168499048183.3998961.2068592218093290218.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230501212446.2570364-1-ahalaney@redhat.com>
-References: <20230501212446.2570364-1-ahalaney@redhat.com>
+In-Reply-To: <20230417-msm8998-spi-v2-1-b314c6d9ea31@freebox.fr>
+References: <20230417-msm8998-spi-v2-1-b314c6d9ea31@freebox.fr>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -55,27 +57,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 1 May 2023 16:24:42 -0500, Andrew Halaney wrote:
-> This series cleans up some devicetree conventions in sa8155p-adp based
-> on feedback from other platforms.
+On Mon, 17 Apr 2023 18:49:46 +0200, Arnaud Vrac wrote:
+> Add pinctrl and qup nodes in msm8998 device tree to support spi.
+> Values were ported from downstream msm-4.4 kernel.
 > 
-> The hope is that by getting it right here, future contributors won't
-> repeat the same mistakes as I did!
 > 
-> v3: https://lore.kernel.org/linux-arm-msm/20230421205512.339850-1-ahalaney@redhat.com/
-> 
-> [...]
 
 Applied, thanks!
 
-[1/4] arm64: dts: qcom: sa8155p-adp: Make compatible the first property
-      commit: eee7369de0c3cca7aacab3874663d460fb7a5b06
-[2/4] arm64: dts: qcom: Make -cells decimal
-      commit: 674631c35f8670017d3bbd51a5b52f8b953f6816
-[3/4] arm64: dts: qcom: sa8155p-adp: Remove unneeded rgmii_phy information
-      commit: 0ff4f6a380214fcf85a5b5ad64ff481d9bd1dfc6
-[4/4] arm64: dts: qcom: sa8155p-adp: Move mtl nodes into ethernet node
-      commit: 93fe463652504bba298a68b56334729cdf92c0c3
+[1/1] arm64: dts: qcom: msm8998: add blsp spi nodes
+      commit: 935e538fd6b8e30151ee822313c01005bd2865ad
 
 Best regards,
 -- 
