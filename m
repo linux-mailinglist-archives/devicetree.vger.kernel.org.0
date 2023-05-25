@@ -2,53 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A573710AEF
-	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 13:31:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9013F710AFB
+	for <lists+devicetree@lfdr.de>; Thu, 25 May 2023 13:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232250AbjEYLbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 07:31:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54378 "EHLO
+        id S233558AbjEYLc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 07:32:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240873AbjEYLbA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 07:31:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE2B195;
-        Thu, 25 May 2023 04:30:58 -0700 (PDT)
+        with ESMTP id S233511AbjEYLc6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 07:32:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6240212F;
+        Thu, 25 May 2023 04:32:57 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E56A764501;
-        Thu, 25 May 2023 11:30:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F37DC4339B;
-        Thu, 25 May 2023 11:30:55 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E592B644FE;
+        Thu, 25 May 2023 11:32:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EB3FC433D2;
+        Thu, 25 May 2023 11:32:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685014257;
-        bh=WuDnzx0mN7mNBgU7tsgoEX4DNhtKyDb/OxubW6VyA0U=;
+        s=k20201202; t=1685014376;
+        bh=jaRONdRd6B0UlNlUVZ+/ikDOkKVWHh2BtpYHjqX5Dx4=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GC+ljHC8H2Iux5AZ0GremU5o0Eby4zu6UKKSgNyfTjIWSXgLjXrQrHe/ZBENSdmmB
-         rpjFZV7JHHSX4YXl69iH+LCnz+zJjiWyZsi4gcUrfqqj6Lsr+e8lqUfoJjoNAakTps
-         ljuQitF4E2r+WIbyJeA2Nh2SzaZjOqCv74oCvYK0m4uf52VeziYlfzc6M5fNWpP2Fe
-         Xap4H/8ymCI6J8X54VvkxRvbw/Ubgi+7kF8jut2nUz1Jpb8jvyX3C7v5769Y+oMh8k
-         jxFYEeFD3JRntRv8w/pp92/5vkjCRxKCD/W9a+zg8JxGOp2X8wg8HZzO8C3Ou9n9sE
-         o6ly+cQMgxEEA==
-Date:   Thu, 25 May 2023 12:30:52 +0100
+        b=cS9Ci5AmeT5wj5DyTVrXrwLsibXdknNMbMEU1HKPk3s2DxnoxvRH8hphi4kyxbTfU
+         oajVPD4z/K6wyGmVZPiSE70s+hF+bT6wfEM1m+KaFVTPqIiA0R2cPvS63BwYwGYyvV
+         HOcOttkjzt2QoEI818WUc1AZesOkCM24s973fEK9sUI9CHTJjuLZp63UY9CNBthUPh
+         1kCvLPJT1Lo91kIU99815LbSzBDOSsPR5Qlto76nqlATInwfOd2BT0OyzEp2K36g5W
+         pSpgD5G7ByyBO/2/j6SvxH5NC1qKZROZLb8SwxFi1kgZ51Sn5Z/YSxOwpwvcSawLVI
+         Fj+PZqi+mg2dg==
+Date:   Thu, 25 May 2023 12:32:50 +0100
 From:   Lee Jones <lee@kernel.org>
-To:     p.paillet@foss.st.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: add vref_ddr supply for STPMIC1
-Message-ID: <20230525113052.GC423913@google.com>
-References: <20230523074206.201962-1-p.paillet@foss.st.com>
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: backlight: pwm: Make power-supply not
+ required
+Message-ID: <20230525113250.GF423913@google.com>
+References: <29943059c80c8db0db437f9548f084a67326647b.1684856131.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230523074206.201962-1-p.paillet@foss.st.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <29943059c80c8db0db437f9548f084a67326647b.1684856131.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -57,16 +63,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 May 2023, p.paillet@foss.st.com wrote:
+On Tue, 23 May 2023, Geert Uytterhoeven wrote:
 
-> From: Pascal Paillet <p.paillet@foss.st.com>
+> make dtbs_check:
 > 
-> Add vref_ddr supply description for the STPMIC1.
+>     arch/arm/boot/dts/renesas/r8a7742-iwg21d-q7.dtb: backlight: 'power-supply' is a required property
+> 	    From schema: Documentation/devicetree/bindings/leds/backlight/pwm-backlight.yaml
 > 
-> Signed-off-by: Pascal Paillet <p.paillet@foss.st.com>
+> As that backlight device node already has an "enable-gpios" property to
+> control the power supplied to the backlight, it sounds a bit silly to
+> have to add a "power-supply" property just to silence this warning.  In
+> addition, as of commit deaeeda2051fa280 ("backlight: pwm_bl: Don't rely
+> on a disabled PWM emiting inactive state"), the Linux driver considers
+> the power supply optional.
+> 
+> Fix this by synchronizing the bindings with actual driver behavior by
+> making the "power-supply" optional.
+> 
+> Fixes: deaeeda2051fa280 ("backlight: pwm_bl: Don't rely on a disabled PWM emiting inactive state")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  Documentation/devicetree/bindings/mfd/st,stpmic1.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> As commit deaeeda2051fa280 was only upstreamed in v6.3, I'm wondering if
+> the backlight on the iWave Systems RainboW-G20D/G21D Qseven and
+> RainboW-G22D-SODIMM boards worked before?  I don't have the hardware.
+> 
+> Thanks!
+> ---
+>  .../devicetree/bindings/leds/backlight/pwm-backlight.yaml        | 1 -
+>  1 file changed, 1 deletion(-)
 
 Applied, thanks
 
