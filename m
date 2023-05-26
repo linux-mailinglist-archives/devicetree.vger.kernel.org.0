@@ -2,137 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EF387126D7
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:39:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD5EB7126F2
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:52:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242713AbjEZMjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 08:39:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
+        id S236495AbjEZMw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 08:52:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231209AbjEZMjE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:39:04 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99B9B116;
-        Fri, 26 May 2023 05:39:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685104742; x=1716640742;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0eDJx4cPwsq80iImTB8nLrKWaWeH8p+wAFaX0YpCUpY=;
-  b=kIUIswIV8nfMoxQbefA8Gt+/iF04dDbz6AMUzWiD0g9mpzpd3vQEDOuL
-   woVibj7F8knInITZaEu/Hhkp/ShgHcu5FtvKCRu6t43StUX8pnGuNhjcY
-   Ar1efd+NqLmquQwh4XVBw/m7qm27tpaAYQfzQzRpTlYJrEVuTyNGfx9ZK
-   nnnyftnO2xstO4b2LZ/VixflGYnTZdPMi/I/q1bBzbzNoCKGS1iXGIhUd
-   K/Di5bQirhzbjYkZaa4OlceNwJZY5zniNcDQdjZ6koilDUXi4hn6RpwNm
-   PShGBJcqn5bXbDPBHN2+jKQSbKGw4AuiM7cTfuXUnppW2AXUSCFwFe4pA
+        with ESMTP id S230421AbjEZMwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:52:25 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E0B114
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 05:52:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1685105543; x=1716641543;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=P56jRYx8x4wiLyblEJCYsDvHn8dkjs3K/b4UWx2IjD8=;
+  b=m5rJiYviUmmf6KuHWee9TkbZ3/LYrIYI6jyCUUIqWpqYipeaYJXCNhSh
+   Pwk/BIXnecml2bX2/9zhkAk9D/7WFCXZwml0lFzQZjmHTwgYGJlkYE6oS
+   I6ZP8/w85QxGXNpkEwzm4oa369VdtFD2IMGvc/QnJoYJlJSDQfqH0G6WF
+   MyRYm8LH48uThtVslq1rhnNyVHv6Mdbgvng9X3aD6LkK6iB0B0ca2BjwY
+   V4h4gdRQUThfi+HHwgSWfe9+RFujG8KIHgMiQmWW+BAN8433sfuEy5wuo
+   CJXGxhIsw9Y/Gb6AX7bB4mb6AsI96TMkPQWjc04OUaXwuhUrn6EtMfokc
    Q==;
-X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; 
-   d="asc'?scan'208";a="154091159"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 May 2023 05:39:01 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 26 May 2023 05:38:55 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 26 May 2023 05:38:52 -0700
-Date:   Fri, 26 May 2023 13:38:29 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
-CC:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Conor Dooley <conor@kernel.org>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        <linux-rtc@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+X-IronPort-AV: E=Sophos;i="6.00,194,1681164000"; 
+   d="scan'208";a="31128837"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 26 May 2023 14:52:21 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 26 May 2023 14:52:21 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 26 May 2023 14:52:21 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1685105541; x=1716641541;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=P56jRYx8x4wiLyblEJCYsDvHn8dkjs3K/b4UWx2IjD8=;
+  b=XtHxJgaFzNgqe1Zu1AOsjHGfuE9A/6NgT7djD9nkyi6A/p2UW+vftRxa
+   YNRyuB0L3CeqCOJUn2P2JTc9qAjURkzfP/VvqZrd0ZdYXoPM4jWYPDCdv
+   yvpR2mlrZg1OZe5DRIVLbVWopBJE++DXpiDNHTI7ZIhFCvV9oTPPqea5/
+   zrzuTa8Q+UQ9ltnY1wd8RuibKb6ycOyqMtxqPmuhOJnOONNr+Ejan8pN8
+   ftTatV16rGYHkXVLfBA9sXEfxZfVzVGABmmAYuaMk9OnWCq1Y8Y0XURD2
+   /zUIegsFxdWTsccLF2ixZhwg1NoKej8iQa6CxEWbnTRc5mkz2rWFRsP/G
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,194,1681164000"; 
+   d="scan'208";a="31128836"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 26 May 2023 14:52:21 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 64188280082;
+        Fri, 26 May 2023 14:52:21 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
         Conor Dooley <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, Huacai Chen <chenhuacai@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, <loongarch@lists.linux.dev>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        Kelvin Cheung <keguang.zhang@gmail.com>,
-        zhao zhang <zhzhl555@gmail.com>,
-        Yang Ling <gnaygnil@gmail.com>,
-        <loongson-kernel@lists.loongnix.cn>
-Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the
- trivial RTCs
-Message-ID: <20230526-hardwired-flashbulb-de3ef456f9a0@wendy>
-References: <cover.1684983279.git.zhoubinbin@loongson.cn>
- <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
- <20230525-custody-oversleep-f778eddf981c@spud>
- <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
- <20230526-dolly-reheat-06c4d5658415@wendy>
- <1EAC8FA8-4125-4436-9EE1-13B61B5687AF@flygoat.com>
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp: Add TC9595 bridge on DH electronics i.MX8M Plus DHCOM
+Date:   Fri, 26 May 2023 14:52:21 +0200
+Message-ID: <7530294.EvYhyI6sBW@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <75c45018-fae3-aa9d-db5d-7d378f69b53c@denx.de>
+References: <20230515162424.67597-1-marex@denx.de> <1953702.usQuhbGJ8B@steina-w> <75c45018-fae3-aa9d-db5d-7d378f69b53c@denx.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="WSYevugeXVX6hZ2M"
-Content-Disposition: inline
-In-Reply-To: <1EAC8FA8-4125-4436-9EE1-13B61B5687AF@flygoat.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---WSYevugeXVX6hZ2M
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Marek,
 
-On Fri, May 26, 2023 at 01:22:15PM +0100, Jiaxun Yang wrote:
+Am Mittwoch, 24. Mai 2023, 12:37:50 CEST schrieb Marek Vasut:
+> On 5/24/23 12:24, Alexander Stein wrote:
 >=20
+> Hi,
 >=20
-> > 2023=E5=B9=B45=E6=9C=8826=E6=97=A5 13:06=EF=BC=8CConor Dooley <conor.do=
-oley@microchip.com> =E5=86=99=E9=81=93=EF=BC=9A
-> Hi all,
->=20
-> [...]
-> My two cents here as Loongson64 maintainer.
->=20
-> >=20
-> >>> To maintain compatibility with the existing devicetrees, should the o=
-ld
-> >>> "loongson,ls2x-rtc" be kept in the driver?
+> >>> Looking at the AUX_CH+/- signals, I can see the native aux request and
+> >>> the
+> >>> (presumable) correct answer (DP_DPCD_REV register) from the display. =
+But
+> >>> for some reason the bridge runs into a aux timeout.
+> >>> I can see in the DP0_AUXSTATUS register the bus gets busy (0x1) after
+> >>> starting transfer. But after the tc_aux_wait_busy() call DP0_AUXSTATUS
+> >>> his indicating a timeout and sync error (0x310002).
+> >>> When changing the "Aux Bit Period Calculator Threshold" to 5 (register
+> >>> AUXCFG1), the sync error is gone, but the timeout still happens.
+> >>>=20
+> >>> The frequency used from the display is ~1MHz, which should be okay. So
+> >>> on
+> >>> the electrical side all seems okay, but the native aux transfer don't
+> >>> work.
 > >>=20
-> >> No, It seems that wildcards in compatible are not allowed."
-> >> loongson,ls2x-rtc" itself was part of this patch series at one time,
-> >> but apparently it is not the right way to describe these chips.
+> >> I recall DPCD read timeouts, but those were usually triggered by either
+> >> bad clock or wiring problems (the devkit wiring I used was horrible at
+> >> the beginning) from what I can recall.
 > >=20
-> > Right, but it has been merged - you are deleting the driver that suppor=
-ts
-> > it after all - which means that any dtb with the old compatible will
-> > stop working.
-> It is perfectly fine to break DTB compatibility for Loongson64 systems
-> As they *only* use builtin dtb. Bootloader will only pass machine type in=
-formation
-> and kernel will choose one dtb from it=E2=80=99s dtbs pool.
+> > bad clock in the sense of badly configured or bad xtal hardware?
+>=20
+> As in, the xtal clock drives the internal PLLs and if those are
+> misconfigured for whatever reason, the chip can misbehave. You might
+> want to double-check the clock routing chapter in the toshiba bridge
+> datasheet and matching registers.
+>=20
+> Have you tried forcing the chip into 1.62G (instead of 2.7G) operation
+> and into 1-lane DP instead of 2-lane DP mode ? Does that make any
+> difference ?
 
-Ah, that is good to know thanks! I think that should be mentioned in the
-commit messages for the next revision.
+The initial AUX problem is unrelated to DP link. I had problems way before=
+=20
+2.7G or 2-lane DP comes into play. The problem in aux channel was caused by=
+=20
+bad clock input :( and the DSI host not putting all DSI lines into LP-11.
+=46or some reason apparently nobody had to do these kind of changes on=20
+samsung_dsim. I had to enable all DSI lines (incl. clock) on dsim for the=20
+bridge to properly use the AUX channel.
 
-Cheers,
-Conor.
+With that fixed, DPCD read is successfull and DP link training seems okay, =
+as=20
+I can enable the test pattern on the bridge.
 
---WSYevugeXVX6hZ2M
-Content-Type: application/pgp-signature; name="signature.asc"
+But displaying regular DSI stream is not working. I see the DSI error count=
+er=20
+continuously increasing in the DSIERRCNT register (0x300).
+=46orcing 1-lane DP or 1.62G operation reduces the possible resolution but=
+=20
+displaying does still not work.
 
------BEGIN PGP SIGNATURE-----
+Best regards
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHCoRQAKCRB4tDGHoIJi
-0m7HAQDegOrEFQvfjtNlpAP88Pr1kQ6xFHXGlHvSieXoat9fSAD/fQLNWWmCM9oI
-Nebcr7/ygJ6fD/4udFPchcokkg67nA8=
-=4uhD
------END PGP SIGNATURE-----
 
---WSYevugeXVX6hZ2M--
