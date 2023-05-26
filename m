@@ -2,129 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D856A711BD5
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 02:56:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF7A8711CC8
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 03:37:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229944AbjEZA42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 20:56:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50926 "EHLO
+        id S230140AbjEZBhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 21:37:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229842AbjEZA41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 20:56:27 -0400
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E416199
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 17:56:26 -0700 (PDT)
-Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-19a5fab868bso73557fac.1
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 17:56:26 -0700 (PDT)
+        with ESMTP id S229711AbjEZBhQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 21:37:16 -0400
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36448E2;
+        Thu, 25 May 2023 18:37:15 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-bacf7060678so621811276.0;
+        Thu, 25 May 2023 18:37:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685062585; x=1687654585;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1685065034; x=1687657034;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uzyy2Y7kUiv8FIAcpqQf1ncDJkGxxNFj+LjkP7Ztwsc=;
-        b=qOXEej9HK4jC3lGDk0SAeDGENpJaFB3KX2r6myLSZGzsMU9rqzxVpI25NPAPmQ+1mE
-         EF2rKhaRmqVM+eWRHtYqDUj/QdPPuk6m9G6yyhPX/iua/RKay2ilElRTFnFbenzdmq+c
-         ZTIdG46gmSStOlMuAj/zbGKOS2yvS7Cpzqsz/GEqkFcJ7tfL//U1kJtKx4XnfR49RYcz
-         vOyXbQtrmr2WHqh81xsoDnPN5CxLSf5YFP2YYF4CzmsfFYc9ygi62HU4RuO+p1dZrl9G
-         +lrEhsqQ/JV2Spm5XnqJl5Q7zqn0H2tQgVvApZz24xoVDliDWcyRcpvx5pm39o+YikqV
-         fxUQ==
+        bh=dbE/5+8uZmjZcqHEzUiRIHHFUgDq75qRlEVbM3X+PbU=;
+        b=OMPhxRT7v+M/V3KF/2BCyscCvSI4n0n21xH7ySQPiGUecMGuaYm9j57OrUd9D2gr53
+         ohx+8wQXsRw4txaIhHFa2EkAX4oGi9B+xM6oKSWsbHBcrKwcYAADmFvxCq1Ttb6w6gyx
+         5f/DFe7aNPc6bnmtSkRnoun4d71yG08JlNY/QV5HoXBLtHZtitkYFZrgqrUGyKUaH+Q+
+         jS26TEk7rcnX0hOAB6QikJRghbKDS3nuw1wjc57mz+PUDMi57La2L2qAV6NPg2v3Yry7
+         jEM21YBoCGiQ/0e1707PmH7DYIv7zN6atkT2KMnQEWaS+2BW+ZCNSbl6eQ7wIshzelgN
+         8M0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685062585; x=1687654585;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1685065034; x=1687657034;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=uzyy2Y7kUiv8FIAcpqQf1ncDJkGxxNFj+LjkP7Ztwsc=;
-        b=OgoRR+zawz9ef1KaXV/I6vlPVJdgV6+b0vtglG56apUQ05+xPY+HnyuzyDP1ung5Co
-         rZvWsvcnzNMF15k0j6wy0wA9KoeqWHDJfBKxpW96smlMir4SN4AZuO0ceE2gPMUQpJzx
-         L4f094g/MfcsuSQZ9CBd7njoR3hlDgm2kPXxkQRkPUTCGWtqZ3MRYQVdxv+q5OeGW6yB
-         wiC1Fj7q60VIpwn1f9bYJ1CHeOvSqZhaDVMqF4fwBbPcpj9ZMRzqrpTC+gzJKajex+Q7
-         RUgM16zZpyaGJpqygEbJDk7IJxfR7/CWkl3o3JdWozTVqtjyqKXWBsJyQCTM4XcWL+Cd
-         nP6A==
-X-Gm-Message-State: AC+VfDzH+NVtw/sI4NUy/genDhBuWaspYAgs7LGZs804RD3+zQRlTK+Z
-        iG5VTnWhzj5OXWpdGsd4j/ABiFPVznc=
-X-Google-Smtp-Source: ACHHUZ6cqmrtYj+kZPPbdeyguYzPytBssO2Wd4pyK4cbLkv9jSfD+O45er8JbkDup4MmRMVyY+EttA==
-X-Received: by 2002:a05:6830:4596:b0:6af:a1ed:3c9b with SMTP id az22-20020a056830459600b006afa1ed3c9bmr618720otb.0.1685062585476;
-        Thu, 25 May 2023 17:56:25 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:39e7:25d2:1c33:e74])
-        by smtp.gmail.com with ESMTPSA id c15-20020a9d480f000000b006aaf3e81baesm1242318otf.24.2023.05.25.17.56.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 May 2023 17:56:25 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 15/15] ARM: dts: imx6qdl-zii-rdu2: Use the mux- prefix
-Date:   Thu, 25 May 2023 21:55:29 -0300
-Message-Id: <20230526005529.150418-15-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230526005529.150418-1-festevam@gmail.com>
-References: <20230526005529.150418-1-festevam@gmail.com>
+        bh=dbE/5+8uZmjZcqHEzUiRIHHFUgDq75qRlEVbM3X+PbU=;
+        b=WgF9CO2pSMzVIjG/vhZxVuwuFNtGd254qhkL/0hwQUUe68+rycgdpfUFhG76FqwtEh
+         xbLhEza4DBmlw1cF8UCmnAq9U3Ki52bL9lyOycOYK6pqxmWEkALDirsSGzDOO/lAdnPA
+         ih2rlLL+kcIv/gBW3uQLBASWd59KN/uOB5625l3D0qCdkEkx+oZsUIwPfEIy5c+etUer
+         Dm5lOPqqN17C66cP33/bSUxDWDK8Hr4vHdQNjW7hv/dv9IONTN39dun57TlmmtGHZJcS
+         sPzYymLGGr7ZgS+ZpDgxGWqd3H8P9M5u+hXxkROqlU+FdUMus/ng6MkS0LIU+DKfAr0U
+         7pLg==
+X-Gm-Message-State: AC+VfDzEe6RTxSHmEhg2zkWCN5aFRKHiEy+1mvH1jCcacyG8iNwc4VtQ
+        5uCr8cXrbmDN4saPMS7YqmEgBqAPtY07404gJ9I=
+X-Google-Smtp-Source: ACHHUZ4GaSi0jiXxwYm5nsZ10Yb5XxkqmCcja7+35DyFqffiFSKnDGHSokuaD3vnoB0VdbIGs09thaXewJANtC6/Wig=
+X-Received: by 2002:a25:aaae:0:b0:ba7:8562:33b8 with SMTP id
+ t43-20020a25aaae000000b00ba7856233b8mr184224ybi.15.1685065034263; Thu, 25 May
+ 2023 18:37:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1684983279.git.zhoubinbin@loongson.cn> <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
+ <20230525-custody-oversleep-f778eddf981c@spud>
+In-Reply-To: <20230525-custody-oversleep-f778eddf981c@spud>
+From:   Binbin Zhou <zhoubb.aaron@gmail.com>
+Date:   Fri, 26 May 2023 09:37:02 +0800
+Message-ID: <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
+Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the trivial RTCs
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        linux-mips@vger.kernel.org,
+        Keguang Zhang <keguang.zhang@gmail.com>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        loongson-kernel@lists.loongnix.cn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On Fri, May 26, 2023 at 1:05=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> Hey Binbin,
+>
+> On Thu, May 25, 2023 at 08:55:23PM +0800, Binbin Zhou wrote:
+> > Move Loongson RTC bindings from trivial-rtc.yaml into loongson,rtc.yaml=
+.
+> >
+> > Also, we will discard the use of wildcards in compatible (ls2x-rtc),
+> > soc-based compatible is more accurate for hardware differences between
+> > chips.
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  .../devicetree/bindings/rtc/loongson,rtc.yaml | 47 +++++++++++++++++++
+> >  .../devicetree/bindings/rtc/trivial-rtc.yaml  |  2 -
+> >  2 files changed, 47 insertions(+), 2 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/rtc/loongson,rtc.=
+yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/rtc/loongson,rtc.yaml b/=
+Documentation/devicetree/bindings/rtc/loongson,rtc.yaml
+> > new file mode 100644
+> > index 000000000000..68e56829e390
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/rtc/loongson,rtc.yaml
+> > @@ -0,0 +1,49 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/rtc/loongson,rtc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Loongson Real-Time Clock
+> > +
+> > +maintainers:
+> > +  - Binbin Zhou <zhoubinbin@loongson.cn>
+> > +
+> > +allOf:
+> > +  - $ref: rtc.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - loongson,ls1b-rtc
+> > +      - loongson,ls1c-rtc
+> > +      - loongson,ls7a-rtc
+> > +      - loongson,ls2k0500-rtc
+> > +      - loongson,ls2k1000-rtc
+> > +      - loongson,ls2k2000-rtc
+>
+> |+static const struct of_device_id loongson_rtc_of_match[] =3D {
+> |+       { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_confi=
+g },
+> |+       { .compatible =3D "loongson,ls1c-rtc", .data =3D &ls1x_rtc_confi=
+g },
+> |+       { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rtc_co=
+nfig },
+> |+       { .compatible =3D "loongson,ls2k0500-rtc", .data =3D &generic_rt=
+c_config },
+> |+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1000_r=
+tc_config },
+> |+       { .compatible =3D "loongson,ls2k2000-rtc", .data =3D &generic_rt=
+c_config },
+> |+       { /* sentinel */ }
+> |+};
+>
+> This is a sign to me that your compatibles here are could do with some
+> fallbacks. Both of the ls1 ones are compatible with each other & there
+> are three that are generic.
+>
+> I would allow the following:
+> "loongson,ls1b-rtc"
+> "loongson,ls1c-rtc", "loongson,ls1b-rtc"
+> "loongson,ls7a-rtc"
+> "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
+> "loongson,ls2k2000-rtc", "loongson,ls7a-rtc"
+> "loongson,ls2k1000-rtc"
+>
+> And then the driver only needs:
+> |+static const struct of_device_id loongson_rtc_of_match[] =3D {
+> |+       { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_confi=
+g },
+> |+       { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rtc_co=
+nfig },
+> |+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1000_r=
+tc_config },
+> |+       { /* sentinel */ }
+> |+};
+>
+> And ~if~when you add support for more devices in the future that are
+> compatible with the existing ones no code changes are required.
 
-According to Documentation/devicetree/bindings/sound/imx-audmux.yaml,
-there must be a "mux-" prefix in the audmux port nodes.
+Hi Conor:
 
-Add the "mux-" prefix to avoid devicetree schema warnings.
+Thanks for your reply.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Yes, this is looking much cleaner. But it can't show every chip that
+supports that driver.
 
-diff --git a/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi b/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi
-index abd72d72ae99..9ff183e4e069 100644
---- a/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi
-@@ -848,7 +848,7 @@ &audmux {
- 	pinctrl-0 = <&pinctrl_audmux>;
- 	status = "okay";
- 
--	ssi1 {
-+	mux-ssi1 {
- 		fsl,audmux-port = <0>;
- 		fsl,port-config = <
- 			(IMX_AUDMUX_V2_PTCR_SYN |
-@@ -860,7 +860,7 @@ IMX_AUDMUX_V2_PDCR_RXDSEL(2)
- 		>;
- 	};
- 
--	aud3 {
-+	mux-aud3 {
- 		fsl,audmux-port = <2>;
- 		fsl,port-config = <
- 			IMX_AUDMUX_V2_PTCR_SYN
-@@ -868,7 +868,7 @@ IMX_AUDMUX_V2_PDCR_RXDSEL(0)
- 		>;
- 	};
- 
--	ssi2 {
-+	mux-ssi2 {
- 		fsl,audmux-port = <1>;
- 		fsl,port-config = <
- 			(IMX_AUDMUX_V2_PTCR_SYN |
-@@ -880,7 +880,7 @@ IMX_AUDMUX_V2_PDCR_RXDSEL(4)
- 		>;
- 	};
- 
--	aud5 {
-+	mux-aud5 {
- 		fsl,audmux-port = <4>;
- 		fsl,port-config = <
- 			IMX_AUDMUX_V2_PTCR_SYN
--- 
-2.34.1
+As we know, Loongson is a family of chips:
+ls1b/ls1c represent the Loongson-1 family of CPU chips;
+ls7a represents the Loongson LS7A bridge chip;
+ls2k0500/ls2k1000/ls2k2000 represent the Loongson-2 family of CPU chips.
 
+Based on my previous conversations with Krzysztof, it seems that
+soc-based to order compatible is more popular, so I have listed all
+the chips that support that RTC driver.
+
+>
+> To maintain compatibility with the existing devicetrees, should the old
+> "loongson,ls2x-rtc" be kept in the driver?
+
+No, It seems that wildcards in compatible are not allowed."
+loongson,ls2x-rtc" itself was part of this patch series at one time,
+but apparently it is not the right way to describe these chips.
+
+Here is Krzysztof's previous reply:
+https://lore.kernel.org/linux-rtc/05ebf834-2220-d1e6-e07a-529b8f9cb100@lina=
+ro.org/
+
+Thanks.
+Binbin
+
+>
+> Thanks,
+> Conor.
+>
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +
+> > +    rtc_dev: rtc@1fe27800 {
+> > +      compatible =3D "loongson,ls2k0500-rtc";
+> > +      reg =3D <0x1fe27800 0x100>;
+> > +
+> > +      interrupt-parent =3D <&liointc1>;
+> > +      interrupts =3D <8 IRQ_TYPE_LEVEL_HIGH>;
+> > +    };
+> > +
+> > +...
+> > diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/D=
+ocumentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> > index a3603e638c37..9af77f21bb7f 100644
+> > --- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> > +++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> > @@ -47,8 +47,6 @@ properties:
+> >        - isil,isl1218
+> >        # Intersil ISL12022 Real-time Clock
+> >        - isil,isl12022
+> > -      # Loongson-2K Socs/LS7A bridge Real-time Clock
+> > -      - loongson,ls2x-rtc
+> >        # Real Time Clock Module with I2C-Bus
+> >        - microcrystal,rv3029
+> >        # Real Time Clock
+> > --
+> > 2.39.1
+> >
