@@ -2,142 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A28F07123AC
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 11:32:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D46F87123BC
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 11:34:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243119AbjEZJcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 05:32:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40882 "EHLO
+        id S243258AbjEZJeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 05:34:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242732AbjEZJcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 05:32:06 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DAA9F7;
-        Fri, 26 May 2023 02:32:00 -0700 (PDT)
-X-UUID: 26e546ecfba811ed9cb5633481061a41-20230526
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=Sfj8k51ecj9c8HcMdn1rWW9Isz6l/fhmsTFfGJOkg14=;
-        b=PMtNN8f0I02IMJxHiXNLipLef9S7DJVtDHY6A5lQK+x87YD97DcFieM8KB6YP1r62mfIJB1KGmvpX1vCSuhgKBXe0RexEXEqr8XmlNT5OmvZHPDnglCblgF5iaXeRbNyE0X9eH2t0xKVLvo8osWI0PRTzHOngqik33MHJl1/7NE=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.25,REQID:041766f6-5b00-4a11-990b-cd20b25686e9,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:d5b0ae3,CLOUDID:fc0a753c-de1e-4348-bc35-c96f92f1dcbb,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-UUID: 26e546ecfba811ed9cb5633481061a41-20230526
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <trevor.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 702197121; Fri, 26 May 2023 17:31:54 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 26 May 2023 17:31:53 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 26 May 2023 17:31:53 +0800
-From:   Trevor Wu <trevor.wu@mediatek.com>
-To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <tiwai@suse.com>,
-        <perex@perex.cz>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <angelogioacchino.delregno@collabora.com>
-CC:     <trevor.wu@mediatek.com>, <amergnat@baylibre.com>,
-        <alsa-devel@alsa-project.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v3 7/7] ASoC: dt-bindings: mediatek,mt8188-mt6359: add NAU8825 support
-Date:   Fri, 26 May 2023 17:31:50 +0800
-Message-ID: <20230526093150.22923-8-trevor.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230526093150.22923-1-trevor.wu@mediatek.com>
-References: <20230526093150.22923-1-trevor.wu@mediatek.com>
+        with ESMTP id S243226AbjEZJeO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 05:34:14 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F23471BD
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 02:33:37 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f004cc54f4so542989e87.3
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 02:33:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685093603; x=1687685603;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7/oBlibUgPrZBjTfRBirdiuXhFmBs+58msrliDKw+mY=;
+        b=KoGqzYwcPZDy0P7xRldOcnXupUtJ+OB7H0ZpZPKhb1KtMCJj3127Toriic3RgG79sv
+         1FN+feWvMCT5HWrA7sgpFvh4jRJX2kk/pkx3cN8Sg4fRKrzrRZMwz5MdAg4nIcOj+5GF
+         /VGmQUIIqNjUPtgs8j+9TCUzRo6fA53EtKqzb53WSvI9E2Ut8QNd9IAlhZVZNVVww/cF
+         a5Dq5rbMa9f9g+0gVz8cTO2HusCyCJ1+XtHsTty+Ua7uhoGr/Z1tjUUEkJNf50Oj2Zgy
+         PEcPe3A3DC5MRNMLGMBqrN8ogvDJxJYHtD1uTF0DsfMARexZ7wsleU88v54cf8wKhJg1
+         nc/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685093603; x=1687685603;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7/oBlibUgPrZBjTfRBirdiuXhFmBs+58msrliDKw+mY=;
+        b=H8+Ogn9KQkkdfkoiiyS+uhW337KSLQKykRfGMK5EKDulD91a0W/wxHcOh3PehBzk72
+         w1bMvMBf3ra96Bg4kOkhaDfCdTUL4NLBocm6VoXB2hMW34NghklFa9P1DWXkGymZJxre
+         CzG79RuJKvktPqx+iS3R/wxVmZTqvcpPX9Jj9owdgXAnonPDLU+DIl1eUlRV3TtPWgwQ
+         K13IOIUNmbLIvqEv34lzn5biAw2c+Da5bUSRobPQDmOAPF1ArvGBnbiHFf2ejtXHYJik
+         +6NtGgv85wvxWy/axcT59jEClktbmOtlrIqxWdmU6w+rO8LZ0gH1zGehcU1eQZpQZkRK
+         0yCQ==
+X-Gm-Message-State: AC+VfDx1pubWZ+eDXeHiAhuWX58swIZzVcow1iCzUIOIbfgI5dFt0RCl
+        cQCu9exAxe8GXrS7b67BYihLug==
+X-Google-Smtp-Source: ACHHUZ5IMHjQOJzbUB1xcWxYldyP1P7V6EO/+PSAu1YT7XY3jrPux0ZQoExBpf+yW22mPCrPp614EA==
+X-Received: by 2002:a19:f80c:0:b0:4f4:cda3:8c99 with SMTP id a12-20020a19f80c000000b004f4cda38c99mr441265lff.42.1685093603377;
+        Fri, 26 May 2023 02:33:23 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id i20-20020ac25234000000b004efe73ee01fsm535345lfl.306.2023.05.26.02.33.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 May 2023 02:33:22 -0700 (PDT)
+Message-ID: <6e1d098d-03b9-aa63-a0bf-6cf748a0db0d@linaro.org>
+Date:   Fri, 26 May 2023 11:33:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V2 3/6] clk: qcom: clk-alpha-pll: Remove explicit CAL_L
+ configuration for EVO PLL
+Content-Language: en-US
+To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>
+References: <20230525172142.9039-1-quic_jkona@quicinc.com>
+ <20230525172142.9039-4-quic_jkona@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230525172142.9039-4-quic_jkona@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string "mediatek,mt8188-nau8825" to support new board
-with nau8825 codec.
 
-Introduce two properties "dai-format" and "mediatek,clk-provider" under
-dai-link subnode to configure dai-link parameters via dts.
 
-"codec" property is removed from required property of dai-link subnode.
-For co-clock case, it's possible two dai-links should be configured to
-the same dai format, but only one cpu dai is bound with codec.
+On 25.05.2023 19:21, Jagadeesh Kona wrote:
+> In lucid evo pll, the CAL_L field is part of L value register itself, and
+> the l value configuration passed from clock controller driver includes
+> CAL_L and L values as well. Hence remove explicit configuration of CAL_L
+> for evo pll.
+> 
+> Fixes: 260e36606a03 ("clk: qcom: clk-alpha-pll: add Lucid EVO PLL configuration interfaces")
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> ---
+Oh that isn't obvious at first sight, nice find!
 
-Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
----
- .../sound/mediatek,mt8188-mt6359.yaml         | 26 ++++++++++++++++---
- 1 file changed, 23 insertions(+), 3 deletions(-)
+I'd suggest a different solution though:
 
-diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
-index 3d2c01b693be..05e532b5d50a 100644
---- a/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
-+++ b/Documentation/devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml
-@@ -11,7 +11,9 @@ maintainers:
- 
- properties:
-   compatible:
--    const: mediatek,mt8188-mt6359-evb
-+    enum:
-+      - mediatek,mt8188-mt6359-evb
-+      - mediatek,mt8188-nau8825
- 
-   model:
-     $ref: /schemas/types.yaml#/definitions/string
-@@ -61,11 +63,28 @@ patternProperties:
-         required:
-           - sound-dai
- 
-+      dai-format:
-+        description: audio format.
-+        items:
-+          enum:
-+            - i2s
-+            - right_j
-+            - left_j
-+            - dsp_a
-+            - dsp_b
-+
-+      mediatek,clk-provider:
-+        $ref: /schemas/types.yaml#/definitions/string
-+        description: Indicates dai-link clock master.
-+        items:
-+          enum:
-+            - cpu
-+            - codec
-+
-     additionalProperties: false
- 
-     required:
-       - link-name
--      - codec
- 
- additionalProperties: false
- 
-@@ -86,7 +105,8 @@ examples:
-             "AIN1", "Headset Mic";
-         dai-link-0 {
-             link-name = "ETDM3_OUT_BE";
--
-+            dai-format = "i2s";
-+            mediatek,clk-provider = "cpu";
-             codec {
-                 sound-dai = <&hdmi0>;
-             };
--- 
-2.18.0
+#define LUCID_EVO_PLL_L_LVAL	GENMASK(..
+#define LUCID_EVO_PLL_L_CAL_L	GENMASK(..
 
+lval = FIELD_PREP(LUCID_EVO_PLL_L_LVAL, config->l) |
+       FIELD_PREP(LUCID_EVO_PLL_L_CAL_L, config->cal_l);
+
+This would make the separation between the two parts more explicit
+
+however
+
+config->l would then represent the L value and not the end value
+written to the L register
+
+Up to you, whichever you find saner!
+
+Konrad
+
+> Changes since V1:
+>  - Newly added.
+> 
+>  drivers/clk/qcom/clk-alpha-pll.c | 6 +-----
+>  1 file changed, 1 insertion(+), 5 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+> index f81c7c561352..68a80395997b 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.c
+> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+> @@ -270,7 +270,6 @@ EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
+>  #define LUCID_EVO_PCAL_NOT_DONE		BIT(8)
+>  #define LUCID_EVO_ENABLE_VOTE_RUN       BIT(25)
+>  #define LUCID_EVO_PLL_L_VAL_MASK        GENMASK(15, 0)
+> -#define LUCID_EVO_PLL_CAL_L_VAL_SHIFT	16
+>  
+>  /* ZONDA PLL specific */
+>  #define ZONDA_PLL_OUT_MASK	0xf
+> @@ -2084,10 +2083,7 @@ EXPORT_SYMBOL_GPL(clk_alpha_pll_zonda_ops);
+>  void clk_lucid_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+>  				 const struct alpha_pll_config *config)
+>  {
+> -	u32 lval = config->l;
+> -
+> -	lval |= TRION_PLL_CAL_VAL << LUCID_EVO_PLL_CAL_L_VAL_SHIFT;
+> -	clk_alpha_pll_write_config(regmap, PLL_L_VAL(pll), lval);
+> +	clk_alpha_pll_write_config(regmap, PLL_L_VAL(pll), config->l);
+>  	clk_alpha_pll_write_config(regmap, PLL_ALPHA_VAL(pll), config->alpha);
+>  	clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL(pll), config->config_ctl_val);
+>  	clk_alpha_pll_write_config(regmap, PLL_CONFIG_CTL_U(pll), config->config_ctl_hi_val);
