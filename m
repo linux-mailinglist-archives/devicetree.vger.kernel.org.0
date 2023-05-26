@@ -2,135 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54D92712471
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 12:20:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A61571247F
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 12:22:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236752AbjEZKUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 06:20:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60564 "EHLO
+        id S236835AbjEZKWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 06:22:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236878AbjEZKUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 06:20:39 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B88E1FB
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:20:36 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-30ab87a1897so300682f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:20:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685096435; x=1687688435;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=K3s8ooFUr7HL+mpTddtdIbpP60KFH9AqWFjPieFL2f0=;
-        b=p544sBJGWXY4zsoCH8La6KGT/b7IZ3KC4/Cb2RBc6TTAQ079uZ0TwZKZIDE9bY9mdN
-         jSyDQeGQHabEWxnqNhx+63wreMSikab92tS6SWP0/5800mboefbLbjXRsQMYDiedr1WA
-         KIEhNxV63VtqbDewUfiGREsbFWZZsTzTxdWXp6ufmAiqrfiH5WGmBkgpMk2SHJtBRcRp
-         EmlqjNdxsElkCSvP/mwKx7jx83BCMzCjjf+Ufqv4D47faVqctT4cyWTwNlRZ6P9XLUaO
-         1vePDY7gGucj3mMbS8Jv1+7zmqhSzuCEVMaa5xmHv/zb8F/ivWyzy8DSK/Giu8OVFr8o
-         SHig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685096435; x=1687688435;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K3s8ooFUr7HL+mpTddtdIbpP60KFH9AqWFjPieFL2f0=;
-        b=Wqu5xWuDpz7x8aZX0TdVbEI8vicz4fHxZa8XXNpVLCfKFqNX98rBBdE9ahrqLcT8k3
-         AfueBm+Jc/FB6o5K1fn5Fwy9XIwa5XEFCNtdoPpV+rUtJzz2PHSyjnu4CaBuB41oyGWV
-         5rzMSSvZGi2qXmiSlDlsAlspGb1vzOX1aFqncWz+CmAg5vLzaTeCxy7ZCd8eDREEyLJG
-         HwZd1TObwNBlmHgBSG/dODQyWm5tz5owF+xMexgVDnAMyZqhwxYRqBJhK7AhUW4QHGhO
-         dn6UZ8swrhngSyVg37kfieheuVBkcdV3sAaRBKHPMYPb3D4jullwcZMbU2233tsWsJZD
-         e4TQ==
-X-Gm-Message-State: AC+VfDz7oNr6qBz4ZXmJtS8WdaK3Dqj7aACNj8i9J2h0eQ7Hh2QOBXU0
-        5dRsQca9gPZvrgjxImVkP3cJiA==
-X-Google-Smtp-Source: ACHHUZ6Yy3l1CCvu264LHxVdtKGZKPPjZRT/yx0dNniT9+GDgWRelslel+8Hr4u3Yzz8fMPt5HybXQ==
-X-Received: by 2002:a5d:5402:0:b0:30a:b030:9cdd with SMTP id g2-20020a5d5402000000b0030ab0309cddmr956532wrv.25.1685096435053;
-        Fri, 26 May 2023 03:20:35 -0700 (PDT)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id a15-20020a5d508f000000b002ceacff44c7sm4535860wrt.83.2023.05.26.03.20.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 May 2023 03:20:34 -0700 (PDT)
-Date:   Fri, 26 May 2023 11:20:32 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Alexandru Ardelean <alex@shruggie.ro>
-Cc:     dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, lee@kernel.org, jingoohan1@gmail.com,
-        pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        deller@gmx.de, Yannick Fertre <yannick.fertre@foss.st.com>,
-        Philippe CORNU <philippe.cornu@foss.st.com>
-Subject: Re: [PATCH 2/2] dt-bindings: backlight: document new property
- default-brightness-level
-Message-ID: <20230526102032.GB626291@aspen.lan>
-References: <20230519200520.10657-1-alex@shruggie.ro>
- <20230519200520.10657-2-alex@shruggie.ro>
+        with ESMTP id S229956AbjEZKWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 06:22:34 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80B17FB;
+        Fri, 26 May 2023 03:22:33 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34Q54I14015529;
+        Fri, 26 May 2023 10:22:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=BCZdJLgyzoUWtckTjzKVsODsMMoSqMvXbxJUDyuiLSw=;
+ b=bhnMpU41mPa3jL6ldREepaQ05fRssxDlw5bsXNA9LPm9CKrHYaUPcwLNClWVt08BAahu
+ jjWrOYuLSbXMYDQOflOkD/0U3T6P5iiMSf523XYdqteZbYVov59XP9jy4vcbv41XhVjQ
+ 4COe2qiTT/ZdTRNWD3PV8fUVmlsOS2qbZPE69t7yNGK0yzlcpRofq96tWdqXoW6Cvv+5
+ 0enxVCDJMUV3AcUlW9ReyVmf3wHDDQZ+IfogMFnghqYN1Ce9REkmqpaYYMzoTcW8Ux80
+ tLg6qVnKNbQwfPvc2zvgl36LFNVcBrTQMuI/BcwA8XjGKPVaW4af5VQJZurH9jds2uOZ ZQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qt47etugw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 26 May 2023 10:22:30 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34QAMTuX018835
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 26 May 2023 10:22:29 GMT
+Received: from [10.201.192.24] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 26 May
+ 2023 03:22:25 -0700
+Message-ID: <c546d126-3a20-4682-28da-ae401caefab0@quicinc.com>
+Date:   Fri, 26 May 2023 15:52:21 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230519200520.10657-2-alex@shruggie.ro>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: ipq6018: add QFPROM node
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230526070421.25406-1-quic_kathirav@quicinc.com>
+ <20230526070421.25406-4-quic_kathirav@quicinc.com>
+ <4e226295-e19f-9518-6dda-7f96665ada65@linaro.org>
+Content-Language: en-US
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <4e226295-e19f-9518-6dda-7f96665ada65@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 0KSHUQDbgrPKNQlRESLYKm2w4lsFw1Pf
+X-Proofpoint-ORIG-GUID: 0KSHUQDbgrPKNQlRESLYKm2w4lsFw1Pf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-26_01,2023-05-25_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ suspectscore=0 clxscore=1015 adultscore=0 bulkscore=0 malwarescore=0
+ priorityscore=1501 impostorscore=0 lowpriorityscore=0 spamscore=0
+ mlxlogscore=874 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305260089
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 19, 2023 at 11:05:20PM +0300, Alexandru Ardelean wrote:
-> From: Yannick Fertre <yannick.fertre@foss.st.com>
+
+On 5/26/2023 2:54 PM, Konrad Dybcio wrote:
 >
-> Add documentation for new default-brightness-level property.
+> On 26.05.2023 09:04, Kathiravan T wrote:
+>> IPQ6018 has efuse region to determine the various HW quirks. Lets
+>> add the initial support and the individual fuses will be added as they
+>> are required.
+>>
+>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 7 +++++++
+>>   1 file changed, 7 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>> index f531797f2619..856879fd0207 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+>> @@ -206,6 +206,13 @@
+>>   		dma-ranges;
+>>   		compatible = "simple-bus";
+>>   
+>> +		qfprom: efuse@a4000 {
+> This should be a bit lower down (0xa4000 > 0x59000)
+
+
+Sorry, missed this. Will address in V2.
+
+
 >
-> Reviewed-by: Philippe CORNU <philippe.cornu@foss.st.com>
-> Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
-> Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
-> ---
->
-> Link to original patch:
->   https://github.com/STMicroelectronics/linux/commit/c4067d7bd883c6fa14ffd49892c4ce663cdafe98
->
->  .../bindings/leds/backlight/gpio-backlight.yaml          | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-> index 584030b6b0b9..b96c08cff0f0 100644
-> --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-> +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-> @@ -23,6 +23,15 @@ properties:
->      description: enable the backlight at boot.
->      type: boolean
->
-> +  default-brightness-level:
-> +    description:
-> +      The default brightness level (index into the array defined by the
-> +      "brightness-levels" property).
-
-gpio-backlight does not have a brightness-levels array property!
-
-I think it is also necessary to improve the docs of both properties to
-distinguish between the meaning of default-on and
-default-brightness-level. The result of setting default-on and
-default-brightness level to zero is that the GPIO will be off (this is
-correct behaviour but hard to figure out from the current text).
-
-default-on is a control that can "enable" the backlight at boot when it
-is not linked to a display in the DT (e.g. it is mostly for legacy
-cases). When the backlight is linked to a display then the backlight
-enable state will be automatically linked to the display enable state
-instead.
-
-default-brightness-level is useful for handling displays that
-are still readable with the backlight off (e-ink, reflective/
-transflexive LCD, etc), otherwise is should be absent or set to 1.
-
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +dependencies:
-> +  default-brightness-level: [ "brightness-levels" ]
-
-As above, depending on brightness-levels doesn't make any sense here.
-
-
-Daniel.
+> Konrad
+>> +			compatible = "qcom,ipq6018-qfprom", "qcom,qfprom";
+>> +			reg = <0x0 0x000a4000 0x0 0x2000>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <1>;
+>> +		};
+>> +
+>>   		qusb_phy_1: qusb@59000 {
+>>   			compatible = "qcom,ipq6018-qusb2-phy";
+>>   			reg = <0x0 0x00059000 0x0 0x180>;
