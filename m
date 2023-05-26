@@ -2,115 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22F0671249A
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 12:27:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A98887124A5
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 12:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243148AbjEZK1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 06:27:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36362 "EHLO
+        id S243147AbjEZK31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 06:29:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242547AbjEZK1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 06:27:17 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE2C3119
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:27:12 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3f6d01d390bso6236355e9.2
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:27:12 -0700 (PDT)
+        with ESMTP id S242591AbjEZK30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 06:29:26 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E73FB
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:29:24 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2af2c7f2883so5722701fa.3
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:29:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685096831; x=1687688831;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YfIXJEMjywgbIaPnMejEqfeJlu29DLDhW+hRk8nBYC4=;
-        b=WYZCFJVExeDVYp9MYxoWE58L9LDV10iEHG8v3I8k6jtl930DQwLlq7iZSV6CDtyHdD
-         eQoA0t0VfzgWmxBKmXy9SX16Av1QD2N1bSTTCZMqaT6Uz+v+r+FTQhPURpRiSNdKsqiM
-         IASMSZDBvGoLIsMDJwg8dCLsh0SulVWbLVni8bJ9S+dCOynjfEyvMiJsxO71uR3xHc/a
-         eTz3FbvivrNbYU5oIziujcPbzvWnkd3RhLyVmuYOQLaORhPbmWOBaDpx4D+FxU5p+ig/
-         SH0lnSMs+moJ7aH0ytEW+b6cRz2w4Vd5laCpLD9Fq1GFfIhGXa77qlBaKmEmxXmoWEcV
-         BMnw==
+        d=linaro.org; s=google; t=1685096963; x=1687688963;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/K6PbDpa1bEXTu9+nLfG+TEYuGga9QGQcY866PUs1S4=;
+        b=gls0zD+CZdmTwtc6DNf+QA/lpg0y7Qg2rRgYwry2zZXeUv5j1wUMD2sDzm5rhRPWXh
+         r/zFGO0yfdRqz4SmPN5LkZp6IZ9+Egm4C62Yo7iPdgEmYMetTfTs5Ss94LRHToV1jWSI
+         hSD3Slnyw1XdcWnCXFmOgPc40IFKdVXQNjoFqtnwRPK2thxVkwTsmbuEbDfyACbeOzqC
+         1Fhgl4BLV9RPIncWS2o7iLKiih7fSBcJJPjWDsajIWdYjzD4PBaZBSB7rbw/m7Eb4Koj
+         7bynkut6ileHW5xEwktrucRbX++MhLQvPs6Q7nA2cTVMQ5T69EcquDRClle2Y4cRGx4M
+         OVdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685096831; x=1687688831;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YfIXJEMjywgbIaPnMejEqfeJlu29DLDhW+hRk8nBYC4=;
-        b=QlorkdKi30ZBj/CDPo/hBG7QAWTOYyl2X425joRlTrhIkpwBXKti6xWdvXOVrv6AaW
-         v4Fdg3t83gb912sRHqItBoiyitbM5RnLdHrEvfAWhVIWc0Rjc8wwfRi6apKneUNRLS/t
-         qgbkqQej1ASDmZf0iF2MTf//mGxpNzaOhqL8digQL0HRlsSTV/3vGgBBikSNFLv7PZeo
-         b757frgmV+ltlEHwk3cjMSnpZT1SPgzIhFGCjI49dn3DAdRn9AE+fswXkPvUPmpSClhk
-         JKKVItqeZeVSSduTrdyeXgKFEqeZ65KydQ5RUwzhBpO8idJc8EvdYs6xvfgDoFp6iA00
-         yMhw==
-X-Gm-Message-State: AC+VfDxmiMTjoz8Slf7tvlFSASRsOe9Ecf070SOuztwzWYbySHNV3ZrD
-        SLpFxKdbem6iPPTFvr4s923TRg==
-X-Google-Smtp-Source: ACHHUZ6IzvKAf5IPmjt8K9b1nutegl78hAyGPJdoaYhRnE2oMuBVUeelQwu3T/SDLVPuKWVVJeKIcQ==
-X-Received: by 2002:a05:600c:2042:b0:3f4:2e13:ccdc with SMTP id p2-20020a05600c204200b003f42e13ccdcmr1326649wmg.0.1685096831092;
-        Fri, 26 May 2023 03:27:11 -0700 (PDT)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id l22-20020a1c7916000000b003f607875e5csm8452340wme.24.2023.05.26.03.27.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 May 2023 03:27:10 -0700 (PDT)
-Date:   Fri, 26 May 2023 11:27:08 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Alexandru Ardelean <alex@shruggie.ro>
-Cc:     dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, lee@kernel.org, jingoohan1@gmail.com,
-        pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        deller@gmx.de, Yannick Fertre <yannick.fertre@foss.st.com>,
-        Philippe CORNU <philippe.cornu@foss.st.com>
-Subject: Re: [PATCH 1/2] backlight: gpio_backlight: add new property
- default-brightness-level
-Message-ID: <20230526102708.GC626291@aspen.lan>
-References: <20230519200520.10657-1-alex@shruggie.ro>
+        d=1e100.net; s=20221208; t=1685096963; x=1687688963;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/K6PbDpa1bEXTu9+nLfG+TEYuGga9QGQcY866PUs1S4=;
+        b=hbeuvpMFItDbAxd6dcHydcOdZJkLGhw6Xi9wBywhN7VAtHRcVNfrFbPKAX5++P2H0X
+         oUM7zrRWANIuEjslmr/sRL6a1KLptNnKyQKZLnwTDhmaoNjmMJ5GmCoxJXgS8qony1G6
+         3A95Ni9np4/lTWP/iXjegynWju4RywTmK0knlqZu8d5nGbG+eRCHEkqBvG1BBqGuUBY1
+         HFL7dIlkcUKuAdHBWIcTxe2xuDzV/poRrPPVI2FjslVuU2/VK5SmjfkRkbOMrZun3nNf
+         TDCUE4kjo5SeMxyP95bxhgclX0YLaDMga49joxfu0pdiGXnyn630q3VPFcxJZV47+MCY
+         bwxw==
+X-Gm-Message-State: AC+VfDxJOpS18i+jf2l9bc9rFvOa0fIYLY9Ldngh9zClWg25L7sYA2t6
+        FKiS1DxDM0eI/yIyP/OrZGcZnw==
+X-Google-Smtp-Source: ACHHUZ5Iev8xVgOOk2KPuQQZDGrJvE8omFBcgdT2Z9BmUX0sPH8sQxquSzcLsJQ9AqRoacTuX8xVcg==
+X-Received: by 2002:a2e:b16b:0:b0:2a8:ac69:bfe with SMTP id a11-20020a2eb16b000000b002a8ac690bfemr489694ljm.42.1685096962859;
+        Fri, 26 May 2023 03:29:22 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id a17-20020a2e88d1000000b002af25598f07sm650315ljk.78.2023.05.26.03.29.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 May 2023 03:29:22 -0700 (PDT)
+Message-ID: <cfbf7e0f-994e-ea93-11e9-cd20733a11e1@linaro.org>
+Date:   Fri, 26 May 2023 12:29:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230519200520.10657-1-alex@shruggie.ro>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: ipq5332: add QFPROM node
+Content-Language: en-US
+To:     Kathiravan T <quic_kathirav@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230526070421.25406-1-quic_kathirav@quicinc.com>
+ <20230526070421.25406-3-quic_kathirav@quicinc.com>
+ <55200328-735d-6571-fcad-735cc9d1568b@linaro.org>
+ <bf0cef36-8286-df96-8c58-82aa6d1a02ad@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <bf0cef36-8286-df96-8c58-82aa6d1a02ad@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 19, 2023 at 11:05:19PM +0300, Alexandru Ardelean wrote:
-> From: Yannick Fertre <yannick.fertre@foss.st.com>
->
-> Add new property to set a brightness by default at probe.
->
-> Reviewed-by: Philippe CORNU <philippe.cornu@foss.st.com>
-> Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
-> Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
-
-Patch order should be reversed for v2. Nevertheless:
-Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
 
 
-Daniel.
+On 26.05.2023 12:24, Kathiravan T wrote:
+> 
+> On 5/26/2023 2:49 PM, Konrad Dybcio wrote:
+>>
+>> On 26.05.2023 09:04, Kathiravan T wrote:
+>>> IPQ5332 has efuse region to determine the various HW quirks. Lets
+>>> add the initial support and the individual fuses will be added as they
+>>> are required.
+>>>
+>>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/ipq5332.dtsi | 7 +++++++
+>>>   1 file changed, 7 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>>> index af4d97143bcf..c2d6cc65a323 100644
+>>> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+>>> @@ -135,6 +135,13 @@
+>>>           #size-cells = <1>;
+>>>           ranges = <0 0 0 0xffffffff>;
+>>>   +        qfprom: efuse@a4000 {
+>>> +            compatible = "qcom,ipq5332-qfprom", "qcom,qfprom";
+>>> +            reg = <0x000a4000 0x721>;
+>> That's an odd size. Are you sure this is how long the corrected region is?
+> 
+> 
+> Yes, As per the HW document, this is the size.
+OK thanks for confirming
 
->  	struct backlight_device *bl;
->  	struct gpio_backlight *gbl;
->  	int ret, init_brightness, def_value;
-> +	u32 value;
->
->  	gbl = devm_kzalloc(dev, sizeof(*gbl), GFP_KERNEL);
->  	if (gbl == NULL)
-> @@ -93,7 +94,11 @@ static int gpio_backlight_probe(struct platform_device *pdev)
->  	else
->  		bl->props.power = FB_BLANK_UNBLANK;
->
-> -	bl->props.brightness = 1;
-> +	ret = device_property_read_u32(dev, "default-brightness-level", &value);
-> +	if (!ret && value <= props.max_brightness)
-> +		bl->props.brightness = value;
-> +	else
-> +		bl->props.brightness = 1;
->
->  	init_brightness = backlight_get_brightness(bl);
->  	ret = gpiod_direction_output(gbl->gpiod, init_brightness);
-> --
-> 2.40.1
->
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+
+Konrad
+> 
+> 
+>>
+>> Konrad
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <1>;
+>>> +        };
+>>> +
+>>>           rng: rng@e3000 {
+>>>               compatible = "qcom,prng-ee";
+>>>               reg = <0x000e3000 0x1000>;
