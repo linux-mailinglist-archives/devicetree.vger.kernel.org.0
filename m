@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62031712EFB
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 23:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07468712EFF
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 23:39:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229964AbjEZVix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 17:38:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41768 "EHLO
+        id S230326AbjEZVjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 17:39:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242667AbjEZViw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 17:38:52 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECED1DF
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 14:38:47 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f61530506aso12896805e9.1
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 14:38:47 -0700 (PDT)
+        with ESMTP id S242775AbjEZVjr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 17:39:47 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8AF8DF
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 14:39:45 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f6094cb2ebso8561885e9.3
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 14:39:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685137126; x=1687729126;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1685137184; x=1687729184;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ng9N+c2e3Bp89DkXhUcd8ADdwRno1HXC51mA1TZCgUA=;
-        b=EtviSR0fErEt4WWVQjfkI6LVdNQwfETpMq9eitcy8l1haPH/ngYCo8N/Sr/mQP7rWQ
-         dzWn/u4E5OxQqMjYDdMbKNIyZ+x5XgBfvzNlLg1dEAd1kGZ2H9kAf7BtkHR3/ulfsumo
-         9nR7KJn+aCR2C8CIX26E5Nk4k77lDS/QqS0rloi0+6MewFdTmClazXlCtBON2XPQSUNn
-         zWxt3QfHeaMUkowNi/GtntIQavK4Lrv9CYTNDj+AmiJ9HcknuTdSkJCiFUJaoa/RHa5A
-         wMWYTJcRn+YxUKIc3HmWQ56hk1RZZk5cdUYhshTEOc8jZuBd9BBx2UogBVa5HFHzCA5C
-         DwWQ==
+        bh=Fr38gHrovEqvIDVjmJUcVz1yHKs2a68amocFg0XW5+I=;
+        b=mz6LhGw+L2b0oy3zfwNffZyMgRGm9NTPoy9n3vmtvsi6I6X2OPbTFsn16Buj+rejy/
+         Cl7n2yFtUdwBry6q/owM30XjthCsMRRiSQzo1b5UY67Uh1drhST2zZN+8mcOOa3OCMaY
+         nHlLgHqYIafBxn6n/RAmvfOgoIu9B1QzXshPZA1Y1F4ag79LNriTaS8uspFNLio43U0b
+         e0yuR1W123rZQ8hFiHdfMJuU2TbSSkr7nMAiC4NaDlYjmdhCxfU5yWMPJQ6RKOXGp8ue
+         OddpvLlaCzmVC8dgFq3UPcFOG7fwZ5aNskTrsMrdyFJQ04f25Crstlgh+m3lZe3FNDhc
+         laBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685137126; x=1687729126;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1685137184; x=1687729184;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ng9N+c2e3Bp89DkXhUcd8ADdwRno1HXC51mA1TZCgUA=;
-        b=DD/IV6c9jfQLyV6exAJrUbxsGy4ln/qYw/4j4xLRN0xcjcsO2bsMpSmjai4YTjbh7/
-         ihu+Nc2j6Zyt0rbwWkMIQn5C5AYDXi5OHlg/x9NfH/NzVr+aEsJAyBLNwi36cI/jIG8T
-         yuKqEeCTVRQ7GyfAmV5pRLaJoOhRxSGGB1EnItwf1dK9b5CbYZ9nrBLRlk+Pi4/rao/P
-         7Qy7pMmHoUMtf6+bBo5MNcetA5ECrZXV/5fXhE2y61V606NoCDVHxHbsnPqkAkp98uPf
-         prQohrDywOzdbq1gK0al4eM0sMyLC5BW6ug51cEEPZVQ3GDgB/d4E0Veds3dyvR1gLDO
-         DE9Q==
-X-Gm-Message-State: AC+VfDzWPQkaXNJaG2Pt9NjldnNgxGr4FP5xm0Rfm75oJueD7WoEknsh
-        lHuaO8JHbp0Ti05F9Vr2Ug6lWA==
-X-Google-Smtp-Source: ACHHUZ4RoW3fv+qUTi3BXgPtTHI02fQwYPSqH55n/ATO2lnC5wV9gvB0eua6YxhI1bQUJpM5igvwBw==
-X-Received: by 2002:a5d:69c8:0:b0:2f8:96f5:cb0f with SMTP id s8-20020a5d69c8000000b002f896f5cb0fmr2379735wrw.23.1685137126404;
-        Fri, 26 May 2023 14:38:46 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id a15-20020a5d508f000000b002ceacff44c7sm6107425wrt.83.2023.05.26.14.38.45
+        bh=Fr38gHrovEqvIDVjmJUcVz1yHKs2a68amocFg0XW5+I=;
+        b=JEgLoIYKsXbTjUupDPH5ETkkYXR9JudDE3WMaNNU3bjC94u13PcEMD82LLh6gYXt8m
+         xybRXCyGADIm/S0qZZ0CW0o2pUDRQLmq4QeFTOovhpmgKBH9DKhMgmQD6A2bri2U/OhW
+         EM4O0KuvxxP9dRZ/YdpQvJIHe1E1JWIZlHDqvPxpgi+Q/kmT36+jTq7zEB3u2UzQWoAJ
+         9NAYDSUvfXGuFCNyaNWNqTjI59gJ3PEV28wRyS0j5j9pq3Zq2Q+GKCGpc+UwMayiPPjX
+         g1LkmzUqXaMvziuuICp2zZ0VrL2MbJ6Oj9wQpgUmzl4v2Fqfg27y2KyEVuvNFPnuns9x
+         MUQw==
+X-Gm-Message-State: AC+VfDwXlG6MmwKxmwD7JfTqZloyLNnUF4j+N8gpUYx3EH4Io2bBut+i
+        ThYGmF+z17vGAuiEo8OYLmmntg==
+X-Google-Smtp-Source: ACHHUZ6sb0RcvontvHGTFeeFVWpYWfP6XcpLXn2gIyOgReaEDFza2qOvrIhPKacGPWqidQpHseAAUg==
+X-Received: by 2002:a7b:c4d9:0:b0:3f6:244:55e3 with SMTP id g25-20020a7bc4d9000000b003f6024455e3mr2177603wmk.35.1685137184171;
+        Fri, 26 May 2023 14:39:44 -0700 (PDT)
+Received: from [192.168.0.79] (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
+        by smtp.gmail.com with ESMTPSA id n26-20020a7bcbda000000b003f60482024fsm6346053wmi.30.2023.05.26.14.39.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 14:38:45 -0700 (PDT)
-Message-ID: <5074b544-741f-9873-83ae-9c8d0d057606@linaro.org>
-Date:   Fri, 26 May 2023 22:38:44 +0100
+        Fri, 26 May 2023 14:39:43 -0700 (PDT)
+Message-ID: <869ed07a-1f9c-75dc-8250-e9533f3d5b88@linaro.org>
+Date:   Fri, 26 May 2023 22:39:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 3/3] media: camss: Link CAMSS power domain
-Content-Language: en-US
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 3/6] arm64: dts: qcom: pmi8998: add charger node
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hansverk@cisco.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230526180712.8481-1-y.oudjana@protonmail.com>
- <20230526180712.8481-4-y.oudjana@protonmail.com>
- <fa395680-0e6c-3eb0-9d5a-f90a95c394b8@linaro.org>
- <e755eabf-f8d7-c2cd-aa5a-bc48c7a5d5ae@linaro.org>
- <7bbbf520-d70f-5df6-33ce-a888bf364aa5@linaro.org>
- <7257f5bb-16a3-846c-fc84-262a775e54f4@linaro.org>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <7257f5bb-16a3-846c-fc84-262a775e54f4@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org
+References: <20230524-pmi8998-charger-dts-v1-0-f9334afc4505@linaro.org>
+ <20230524-pmi8998-charger-dts-v1-3-f9334afc4505@linaro.org>
+ <e7786af1-f19d-abb4-59ce-d08fb25bd091@linaro.org>
+Content-Language: en-US
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <e7786af1-f19d-abb4-59ce-d08fb25bd091@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -90,111 +81,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/05/2023 22:28, Konrad Dybcio wrote:
+
+
+On 26/05/2023 20:46, Konrad Dybcio wrote:
 > 
 > 
-> On 26.05.2023 23:17, Bryan O'Donoghue wrote:
->> On 26/05/2023 21:57, Konrad Dybcio wrote:
->>> This code contains a whole bunch of hacky counting logic that should have
->>> been substituted with _byname, but now we're stuck with indices to keep
->>> compatibility with old DTs :/
->>>
->>> If CAMSS_GDSC (talking about pre-TITAN hw) was a parent of all the other
->>> CAMSS-related GDSCs, we could make it their parent in the clock driver
->>> and call it a day.
+> On 24.05.2023 19:38, Caleb Connolly wrote:
+>> Add a node for the smb2 charger hardware found on the pmi8998 pmic
+>> following the DT bindings.
 >>
->> I mean, it wouldn't make much sense from a hw design POV if that weren't the case..
+>> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/pmi8998.dtsi | 20 ++++++++++++++++++++
+>>  1 file changed, 20 insertions(+)
 >>
->> Hmm looks like its already there.
->>
->> static struct gdsc vfe0_gdsc = {
->>          .gdscr = 0x3664,
->>          .cxcs = (unsigned int []){ 0x36a8 },
->>          .cxc_count = 1,
->>          .pd = {
->>                  .name = "vfe0",
->>          },
->>          .parent = &camss_gdsc.pd,
->>          .pwrsts = PWRSTS_OFF_ON,
->> };
->>
->> static struct gdsc vfe1_gdsc = {
->>          .gdscr = 0x3674,
->>          .cxcs = (unsigned int []){ 0x36ac },
->>          .cxc_count = 1,
->>          .pd = {
->>                  .name = "vfe1",
->>          },
->>          .parent = &camss_gdsc.pd,
->>          .pwrsts = PWRSTS_OFF_ON,
->> };
->>
->> I feel this is probably a problem in the description of dependencies for the CSIPHY in the dts for the 8996..
->>
->> I.e. the CSIPHY requires some clocks and power-rails to be switched on ah..
->>
->> static const struct resources csiphy_res_8x96[] = {
->>          /* CSIPHY0 */
->>          {
->>                  .regulators = {},
->>                  .clock = { "top_ahb", "ispif_ahb", "ahb", "csiphy0_timer" },
->>
->>
->> should probably look something like
->>
->> static const struct resources csiphy_res_8x96[] = {
->>          /* CSIPHY0 */
->>          {
->>                  .regulators = {},
->>                  .clock = { "top_ahb", "ispif_ahb", "ahb", "csiphy0_timer", "vfe0"},
->>
->> But basically yeah, we haven't modeled the dependency to the CAMSS_GDSC via the VFEx
-> I have little idea how CAMSS is tied together, but the VFEn clocks
-> are assigned in vfe_res_8x96.clock and ispif_res_8x96.clock_for_reset.
-> 
-> FWIW the ancient msm-3.18 doesn't reference the VFE clocks in CSIPHY.
-> 
-> Anyway, looks like the issue here is that we're not toggling the
-> GDSC early enough in cases where something that's not VFE needs it.
-> 
->>
->> Hmm wait - why haven't we included the CAMSS_GDSC in the dtsi for the 8996 ?
-> Since both VFE GDSCs are children of CAMSS_GDSC and (as mentioned in the
-> commit message) the power sequencing used to be different, it just seems
-> to me like we've been piggybacking on lucky ordering since the introduction
-> of 8996 support.
-> 
-> For comparison, 8916 doesn't define it because it doesn't have it and newer
-> SoCs use TITAN.
-> 
-> SDM630 doesn't define it, but nobody touched it since like 2021 (except
-> Dmitry's fixups when he got his hands on the inforce baord) so it's
-> probably broken as well..
-> 
+>> diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+>> index be6f60bfc26c..73f51451d21d 100644
+>> --- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
+>> @@ -9,6 +9,26 @@ pmi8998_lsid0: pmic@2 {
+>>  		#address-cells = <1>;
+>>  		#size-cells = <0>;
+>>  
+>> +		pmi8998_charger: charger@1000 {
+>> +			compatible = "qcom,pmi8998-charger";
+>> +			reg = <0x1000>;
+>> +
+>> +			interrupts = <0x2 0x13 0x4 IRQ_TYPE_EDGE_BOTH>,
+>> +				     <0x2 0x12 0x2 IRQ_TYPE_EDGE_BOTH>,
+>> +				     <0x2 0x16 0x1 IRQ_TYPE_EDGE_RISING>,
+>> +				     <0x2 0x13 0x6 IRQ_TYPE_EDGE_RISING>;
+>> +			interrupt-names = "usb-plugin",
+>> +					  "bat-ov",
+>> +					  "wdog-bark",
+>> +					  "usbin-icl-change";
+>> +
+>> +			io-channels = <&pmi8998_rradc 3>,
+>> +				      <&pmi8998_rradc 4>;
+>> +			io-channel-names = "usbin_i", "usbin_v";
+> Are these hard-wired internally?
+
+Yes, features like AICL (automatic input current limiting - where the
+device pulls more and more current until the input voltage drops) are
+run autonomously and dont rely on the driver to tell the charger block
+what the readings are.
+
+This is only used to expose the voltage/current values to userspace via
+the standard psy interface.
 > 
 > Konrad
+>> +
+>> +			status = "disabled";
+>> +		};
+>> +
+>>  		pmi8998_gpios: gpio@c000 {
+>>  			compatible = "qcom,pmi8998-gpio", "qcom,spmi-gpio";
+>>  			reg = <0xc000>;
 >>
->> ---
->> bod
 
-Hmm, so what I suggested is what Yassine has i.e. adds <&mmcc 
-CAMSS_GDSC>; to the top-level camss node.
-
-Without testing, this _looks_ right to me. I just think, like Conor 
-flagged we don't need to add a dependency on the power-domain names.
-
-I don't quite know whats the reference for downstream you are looking at 
-but, just generally it is possible to waggle the CSIPHY, VFE, IFE - my 
-guess would be that CAMX @ the time of 8996 always had the CAMSS_GDSC or 
-the VFEx - and hence the VFE -> CAMSS_GDSC on by the time the CSIPHY cod 
-ran.
-
-Anyway my comments here still stand.
-
-- I don't think we need to nor should be counting power-domain names
-- I do think we should be adding CAMSS_GDSC to the 8996 top-level CAMSS node
-
-Yassine ? Can you take a stab at that ?
-
----
-bod
+-- 
+// Caleb (they/them)
