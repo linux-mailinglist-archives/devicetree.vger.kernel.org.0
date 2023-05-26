@@ -2,130 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 399C77124AB
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 12:30:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1A8D7124C8
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 12:35:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243209AbjEZK3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 06:29:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38092 "EHLO
+        id S242730AbjEZKfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 06:35:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243230AbjEZK3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 06:29:46 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22A0E119
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:29:43 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2afb2875491so5557201fa.1
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:29:43 -0700 (PDT)
+        with ESMTP id S243275AbjEZKex (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 06:34:53 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 444561A6;
+        Fri, 26 May 2023 03:34:46 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-96fbc74fbf1so98813966b.1;
+        Fri, 26 May 2023 03:34:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685096981; x=1687688981;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jiS9iHXCNDD3l5v3ycpvVXx+e/hAWgffv3FWQpgB8yU=;
-        b=TbYqScfDcWw/J88rETR+ljuTY3czF9ItUWnfkdxIYjjd7BLfvFGlv7ekEGgaqZlzfC
-         N6XKRbYdAwPiyduuoEzUFBNuK//JEWSrJOnI++Zy4frUdn3116lVoXtRO4+KhTsTvIQ2
-         KV2Eo0qAe0OH6POK5VHuw8wNmBw1PrEJ/mAdZBicbdVNSK3CM8Jg34cW2hLdQmFOyXkB
-         Lbquz0ke0p/zuOaxObexhxt90/y7KJyE8JUYxvNqcpHDMK2QVr5N7DrZBMEtVIsL9J68
-         hxOL1nzrW0lMwsA8NmU8sUwhdxvxwk2Mqd6ub4/qemfZwOPy5kj6SXaameAZCo6opZwF
-         QOIA==
+        d=gmail.com; s=20221208; t=1685097284; x=1687689284;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pwvCmAwTurzjTiiqP1IFpbM1jF6MSZrc+uB41mGDHHc=;
+        b=RB4sBOkNH2P7mla1jya0Zg/9Qkzn0Fpfjw8kMtJWLD5S90tRHBwEyOHowllRCBAkzj
+         DRo/cmwuBAKbHEGDzeSItExUHS+W76GRnqTzkmIvshMEAnPxfqr/6tCDGkgdSoISsZlW
+         +r+bmEsX9wn2QuIqlbWQEuTg9lyReRyTC8hmJc9+b6Ae0AYNaUEUIrnCQcYzK3OMxVT1
+         XEQ2WYdY9VUI/KTdKO8DzG/sW9f/3vibLdXQMkcl+JQN5GT8NxEI9bPZqrG/FbxDm0tF
+         4/wioSZqsczOFhJl/hXmzc41OyiN7cBgWnJSXEGlCjoy/P8dzCfsNaYFmu1kXH5tpcaW
+         iC2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685096981; x=1687688981;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jiS9iHXCNDD3l5v3ycpvVXx+e/hAWgffv3FWQpgB8yU=;
-        b=I5vZq5TOgAudl2dKTNKjpdYzmpeXuTAwb3nSMbIsHJmTqpNeSfxGd+MSxC6UTSDtBD
-         a5aHk8kwmtyBgzQn0N6nKZIsAk7jf62kteCp0M4O3iyA7PxjJgBbXSTmNy0kHKo34r5z
-         bV4kqDLMjwv7njpg6DiVQYItW0msctfHarXqVHPp3aylJ0ZuBMXCHQH8leTnaayc51Ch
-         nnP9xq7OWKukcKNyrGsZyiAHEklqbM2OdHn7lLKyjzUZd2ql+HhzN+mntYwPxaagPXlh
-         cseGad6Ayb7zWWY0oc2G59Glo2suq0936+fKISerkPIcCm7hEDRdyAtetFJjB/MeoARO
-         K4aw==
-X-Gm-Message-State: AC+VfDwYB9nyoU5Zws2g5UQhpEbaXPEfx2Tgp9ron+D/dkoHKBEoTH/W
-        CalPIrEmDx1x5cX+GuSBcPxt5Q==
-X-Google-Smtp-Source: ACHHUZ6nrMnyF62iub5Hm9e7eRdsaCzvfCsZnOqAW+nS7Y0F5F5LnN+i10n/EylDiJfTM0oEYJS9DQ==
-X-Received: by 2002:a2e:7806:0:b0:2a8:eae2:d563 with SMTP id t6-20020a2e7806000000b002a8eae2d563mr637548ljc.53.1685096981200;
-        Fri, 26 May 2023 03:29:41 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id e11-20020a2e984b000000b002a9ebff8431sm657828ljj.94.2023.05.26.03.29.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 03:29:40 -0700 (PDT)
-Message-ID: <af725aab-5083-2f71-27a6-e1800fba293a@linaro.org>
-Date:   Fri, 26 May 2023 12:29:39 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: ipq9574: add QFPROM node
-Content-Language: en-US
-To:     Kathiravan T <quic_kathirav@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        d=1e100.net; s=20221208; t=1685097284; x=1687689284;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pwvCmAwTurzjTiiqP1IFpbM1jF6MSZrc+uB41mGDHHc=;
+        b=KQf92VeFve8Q1treSrJ4Mu2/dTMksRMDKEQxinEvMbA+Gi31oR8dqqsgi+NATCMBrB
+         dNFai0maSBOwxv47ggZdibNl2nOiuiXuXgNUpKZQBkGneqp70+CP3vyQ/2mhzg32ItIH
+         LHrwxacHmjx49PBZ4bAvygtzgV50Yo3XauEtZJ0wDVS1Pqj8nsfxhaD7aft+w5O9NnJK
+         ZKN3cZA3T7gIhAxQLvJAmouE/VS6kw6O7kI83gWg/co/6yzhXsz1kzfkgHI2W5oH7PW+
+         ds3rtmKOElxD+yIWn5DbdPFF4kg3moeLv4yN3TFy5WzzyVW1WImo7pYLnDvu3sQiV3ac
+         NCrw==
+X-Gm-Message-State: AC+VfDyljbK9T0QpU2gKPVY6eFsbTVJM4V9cuN3azWr5TE6brKpWyBDa
+        3uYOieN+PDTfO7KIgQ1T+pY=
+X-Google-Smtp-Source: ACHHUZ5mMdiZhf8eOxycRUNvCYjv4OZFGJARBOkobN8iHD3+w1E6Sg3qtgCy+f97Lusn/2RwCaccow==
+X-Received: by 2002:a17:907:d8c:b0:94e:d951:d4e7 with SMTP id go12-20020a1709070d8c00b0094ed951d4e7mr1730223ejc.59.1685097284295;
+        Fri, 26 May 2023 03:34:44 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation.station (net-188-217-50-121.cust.vodafonedsl.it. [188.217.50.121])
+        by smtp.gmail.com with ESMTPSA id fi13-20020a170906da0d00b0096fbc516a93sm1984243ejb.211.2023.05.26.03.34.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 May 2023 03:34:43 -0700 (PDT)
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+To:     tomm.merciai@gmail.com
+Cc:     jacopo.mondi@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+        martin.hecht@avnet.eu, linuxfancy@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        =?UTF-8?q?Krzysztof=20Ha=C5=82asa?= <khalasa@piap.pl>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230526070421.25406-1-quic_kathirav@quicinc.com>
- <20230526070421.25406-5-quic_kathirav@quicinc.com>
- <7d14db71-2279-e9b9-012d-47dc50fe797b@linaro.org>
- <97e06f9e-81cb-45ad-5b2a-d8de52d023f0@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <97e06f9e-81cb-45ad-5b2a-d8de52d023f0@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: [PATCH 1/2] media: dt-bindings: alvium: add document YAML binding
+Date:   Fri, 26 May 2023 12:34:15 +0200
+Message-Id: <20230526103427.774226-2-tomm.merciai@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230526103427.774226-1-tomm.merciai@gmail.com>
+References: <20230526103427.774226-1-tomm.merciai@gmail.com>
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add documentation of device tree in YAML schema for the ALVIUM
+Camera from Allied Vision Inc.
 
+References:
+ - https://www.alliedvision.com/en/products/embedded-vision-solutions
 
-On 26.05.2023 12:24, Kathiravan T wrote:
-> 
-> On 5/26/2023 2:49 PM, Konrad Dybcio wrote:
->>
->> On 26.05.2023 09:04, Kathiravan T wrote:
->>> IPQ9574 has efuse region to determine the various HW quirks. Lets
->>> add the initial support and the individual fuses will be added as they
->>> are required.
->>>
->>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
->>> ---
->>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 7 +++++++
->>>   1 file changed, 7 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> index 1a2c813ffd43..715fe51ff567 100644
->>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> @@ -117,6 +117,13 @@
->>>           #size-cells = <1>;
->>>           ranges = <0 0 0 0xffffffff>;
->>>   +        qfprom: efuse@a4000 {
->>> +            compatible = "qcom,ipq9574-qfprom", "qcom,qfprom";
->>> +            reg = <0x000a4000 0x5a1>;
->> That's an odd size. Are you sure this is how long the corrected region is?
-> 
-> 
-> Yes, As per the HW document, this is the size.
-Thanks for confirming
+Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+---
+ .../media/i2c/alliedvision,alvium.yaml        | 117 ++++++++++++++++++
+ 1 file changed, 117 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+new file mode 100644
+index 000000000000..5385fe849ffd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+@@ -0,0 +1,117 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Alliedvision Alvium Camera
++
++maintainers:
++  - Tommaso Merciai <tomm.merciai@gmail.com>
++  - Martin Hecht <martin.hecht@avnet.eu>
++
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
++properties:
++  compatible:
++    const: alliedvision,alvium
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: XCLK Input Clock
++
++  clock-names:
++    const: xclk
++
++  powerdown-gpios:
++    maxItems: 1
++    description: >
++      Reference to the GPIO connected to the powerdown pin, if any.
++
++  reset-gpios:
++    maxItems: 1
++    description: >
++      Reference to the GPIO connected to the reset pin, if any.
++
++  streamon-delay:
++    maxItems: 1
++    description: >
++      Delay before camera start capturing frames in us.
++
++  rotation:
++    enum:
++      - 0
++      - 180
++
++  port:
++    description: Digital Output Port
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          clock-lanes:
++            const: 0
++          data-lanes:
++            minItems: 1
++            maxItems: 4
++            items:
++              enum: [1, 4]
++          link-frequencies: true
++
++        required:
++          - data-lanes
++          - link-frequencies
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++      #include <dt-bindings/clock/imx6qdl-clock.h>
++      #include <dt-bindings/gpio/gpio.h>
++
++      i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          camera: alvium@3c {
++              compatible = "alliedvision,alvium";
++              reg = <0x3c>;
++              pinctrl-names = "default";
++              pinctrl-0 = <&pinctrl_csi0_pwn>, <&pinctrl_csi0_rst>, <&pinctrl_csi_mclk>;
++              clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
++              clock-names = "xclk";
++              assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
++              assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
++              assigned-clock-rates = <24000000>;
++              streamon-delay = <20>;
++              powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
++              reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
++              status = "okay";
++
++              port {
++                  alvium_out: endpoint {
++                      remote-endpoint = <&mipi_csi_0_in>;
++                      data-lanes = <1 2 3 4>;
++                      link-frequencies = /bits/ 64 <681250000>;
++                      clock-lanes = <0>;
++                  };
++              };
++          };
++      };
++
++...
+-- 
+2.34.1
 
-Konrad
-> 
-> 
->>
->> Konrad
->>> +            #address-cells = <1>;
->>> +            #size-cells = <1>;
->>> +        };
->>> +
->>>           tlmm: pinctrl@1000000 {
->>>               compatible = "qcom,ipq9574-tlmm";
->>>               reg = <0x01000000 0x300000>;
