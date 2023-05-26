@@ -2,102 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07C85712992
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 17:33:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D386F7129A0
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 17:35:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243855AbjEZPdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 11:33:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38638 "EHLO
+        id S237255AbjEZPfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 11:35:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229945AbjEZPdd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 11:33:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1303FB;
-        Fri, 26 May 2023 08:33:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 555E560DBF;
-        Fri, 26 May 2023 15:33:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F8A9C433EF;
-        Fri, 26 May 2023 15:33:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685115209;
-        bh=gzNuCzAzZ7+zw9WNsmNLqxt3L1OmoTULjYdQ2OYFP4U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sgDwLxaxdw8ndTrnq7cYzvnxplKmWQVBcBR2fEo5qY669ReLqN9h/QxVv1F1Edhhr
-         e8nT/q3GhUm6zRi0PO00vF/JRsIBDfRj+OtZ020Q9jHNdDJZZcAfJ1Uyiofjn8wrf6
-         2NcrUHBKS9H1DM1FsS2ODrMCGg3FEAl3VkGGU5NoMw5NIULZgvm+b5Yp5BpUlfu4Yg
-         tEusSlcLCVahaLcwsNc5MuJLQhLX6fPC9uCaCQN4ongcQdKSzOwi83ksG/x6hpHnLC
-         XaYVsyl/6dMGLN5xhJZxz6SYe8O3b0Cy1wJCgND+4fKC4uusrgrvQUqAZQfvPg174s
-         tZeEQTZZQOqcg==
-Date:   Fri, 26 May 2023 16:33:23 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: qspi: cdns,qspi-nor: Add clocks for
- StarFive JH7110 SoC
-Message-ID: <87e9ed95-ea57-44c8-85f8-34264b5c6dde@sirena.org.uk>
-References: <20230526062529.46747-1-william.qiu@starfivetech.com>
- <20230526062529.46747-2-william.qiu@starfivetech.com>
+        with ESMTP id S229950AbjEZPft (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 11:35:49 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A5ECF3;
+        Fri, 26 May 2023 08:35:44 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34QDVgN0001308;
+        Fri, 26 May 2023 15:35:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=I/yJNJ8Tx5koKovC6ZBuTwfjqydZGhxxnpU/ilMbykE=;
+ b=FZCYGuTSD6I9TZcj4MINaBwt+KONWXifSNnd0YeeLgZnp7rW8wGIBjxlFlovTnI7wpmX
+ NB0QpiAMsttSbiiAbPA9M4iTyd5gpyBgiskmtDXxiWp2H9Ftc76fhcNg0LRVjek1sLV6
+ 2mkPZ6EV5q6XYKJ98hh6Qa2iqtIM5W3P+0L6KI7XfCXPiJsXlStMp8ShnFH4dJmZdFoa
+ O1a/ygr2LZyaitib1YgvqqUgVSsr9ZV4rpgOOgUy2OJqBCR0Iqg8JQECkxFXp8VlPa31
+ Tnvrjbp2Az98w7VWlTdZJBEQ0umShHiKjCI2Ut7OEM1E0PsaWjnkAxZFP9T2tBo9cIhz CQ== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qtu0u0nx1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 26 May 2023 15:35:30 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34QFZTnQ011790
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 26 May 2023 15:35:29 GMT
+Received: from jinlmao-gv.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Fri, 26 May 2023 08:35:25 -0700
+From:   Mao Jinlong <quic_jinlmao@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     Mao Jinlong <quic_jinlmao@quicinc.com>,
+        <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        "Tao Zhang" <quic_taozha@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>
+Subject: [PATCH v1 0/3] Add support for a streaming interface for TMC ETR
+Date:   Fri, 26 May 2023 23:35:05 +0800
+Message-ID: <20230526153508.6208-1-quic_jinlmao@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="k1KNVGTJrGqHtc0k"
-Content-Disposition: inline
-In-Reply-To: <20230526062529.46747-2-william.qiu@starfivetech.com>
-X-Cookie: A Smith & Wesson beats four aces.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Ym7BB_2UHm6UfdoDfRa9EaziNYBAU0Pa
+X-Proofpoint-GUID: Ym7BB_2UHm6UfdoDfRa9EaziNYBAU0Pa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-26_06,2023-05-25_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ lowpriorityscore=0 malwarescore=0 suspectscore=0 mlxlogscore=642
+ impostorscore=0 phishscore=0 mlxscore=0 spamscore=0 bulkscore=0
+ priorityscore=1501 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2304280000 definitions=main-2305260131
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series is to add support for a streaming interface for
+TMC ETR to allow for continuous log collection to secondary storage.
+An interrupt based mechanism is used to stream out the data from the device.
 
---k1KNVGTJrGqHtc0k
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+QDSS_CS_QDSSCSR_ETRIRQCTRL register is used to set the IRQ byte counter
+value. The value of this registers defines the number of bytes that when moved by
+the ETR AXI interface. It will casues an interrupt which can be used by an
+userspace program to know how much data is present in memory requiring copy to some
+other location. A zero setting disables the interrupt.A one setting
+means 8 bytes, two 16 bytes, etc. In other words, the value in this
+register is the interrupt threshold times 8 bytes. ETR must be enabled
+when use this interrupt function.
 
-On Fri, May 26, 2023 at 02:25:27PM +0800, William Qiu wrote:
+Sample:
+echo 4096 > /sys/bus/coresight/devices/tmc_etr0/block_size
+echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
+echo 1 > /sys/bus/coresight/devices/stm0/enabl_source
 
->      then:
->        properties:
-> +        clocks:
-> +          maxItems: 3
-> +
-> +        clock-names:
-> +          items:
-> +            - const: qspi-ref
-> +            - const: qspi-ahb
-> +            - const: qspi-apb
-> +
+cat /dev/byte-cntr > /data/qdss_etr.bin &
 
-Are these really the names that the clocks have in the IP?  It seems
-weird that they'd include the IP name in there and not just be ref, ahb
-and apb.
+The log collection will stop after disabling the ETR.
 
---k1KNVGTJrGqHtc0k
-Content-Type: application/pgp-signature; name="signature.asc"
+Commit link:
+https://git.codelinaro.org/clo/linux-kernel/coresight/-/commits/coresight-byte-cntr-v1
 
------BEGIN PGP SIGNATURE-----
+Mao Jinlong (3):
+  Coresight: Add driver to support for CSR
+  coresight-tmc: byte-cntr: Add support for streaming interface for ETR
+  dt-bindings: arm: Adds CoreSight CSR hardware definitions
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmRw0UMACgkQJNaLcl1U
-h9DBagf9HzZRKBRscmFdDMGNaPloiDN0Kfiy13vOIf3Uk5whgF17nUJKVr81u2Sx
-Dyn6MkuiP14JXAI4RtuTWPeIPdTJqbdenQ74rr1p5Taf4cn3XirLkJ6YBjWccsjC
-zPwO+qLmb8swT/JzWonBFqiVmeHzJ179GhKWBxPkME1iO89LaFbFAa+mI4LqzYZ9
-XbZ4VT4kpdnru//sZG1kq06xxwVzYvJy/FHZKpKxa0ZX5/SAaluYKb/z+Qt4Dtas
-4ReA/isOd8wUcjLDIG+yV98pOteXAmQy9BsCUdMLzDnDZYl1WXsZuIaJX4yudBlo
-Ih9Vt+8NxZvlVeO0zrn6/jwnIiaJbQ==
-=GwnE
------END PGP SIGNATURE-----
+ .../testing/sysfs-bus-coresight-devices-tmc   |   7 +
+ .../bindings/arm/qcom,coresight-csr.yaml      |  62 ++++
+ drivers/hwtracing/coresight/Kconfig           |  12 +
+ drivers/hwtracing/coresight/Makefile          |   3 +-
+ .../hwtracing/coresight/coresight-byte-cntr.c | 304 ++++++++++++++++++
+ .../hwtracing/coresight/coresight-byte-cntr.h |  49 +++
+ drivers/hwtracing/coresight/coresight-csr.c   | 168 ++++++++++
+ drivers/hwtracing/coresight/coresight-csr.h   |  59 ++++
+ .../hwtracing/coresight/coresight-tmc-core.c  |  66 ++++
+ .../hwtracing/coresight/coresight-tmc-etr.c   |   8 +-
+ drivers/hwtracing/coresight/coresight-tmc.h   |  12 +-
+ 11 files changed, 745 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml
+ create mode 100644 drivers/hwtracing/coresight/coresight-byte-cntr.c
+ create mode 100644 drivers/hwtracing/coresight/coresight-byte-cntr.h
+ create mode 100644 drivers/hwtracing/coresight/coresight-csr.c
+ create mode 100644 drivers/hwtracing/coresight/coresight-csr.h
 
---k1KNVGTJrGqHtc0k--
+-- 
+2.17.1
+
