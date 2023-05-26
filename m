@@ -2,111 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91C06712E8A
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 22:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 617F6712EC7
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 23:11:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237305AbjEZUzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 16:55:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54540 "EHLO
+        id S243945AbjEZVLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 17:11:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233433AbjEZUzf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 16:55:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EC24A3;
-        Fri, 26 May 2023 13:55:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E1C2965399;
-        Fri, 26 May 2023 20:55:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBEA9C433D2;
-        Fri, 26 May 2023 20:55:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685134533;
-        bh=wNFS8qMpN9xjGkOy46fougDPohwpIn+vlopjqdB2Sr8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QoyYdGl7arYEizSVYRRLhQ4r35A4aBdNP+dWXfwtrMdRlgKHyFslPBQH38lz9HCCG
-         4dGnTzHSxH6YCZgMYEtgbWEwRPido3Ff869pggt9FMU/wrGuXMkdJvo1wWfdHCQ3SF
-         D3Ia0rj187W93RTKZXe/hfrvJiF2JLdW8EtWFx2NGLTpWBan6zGUjHD9UHrmBLnedO
-         3W/3sUen9JZGepNHkwuHoERxPfjv7laOaxjxNxC0Iy1fGKosXBWbV22h0B2yMI0WhV
-         vnw09r1avVxeSHxVIFwxYjhUtmmuaEf5SRyM2L+eltnKysbD0xpWnyVfQnRRo5UdO2
-         S8cLnY9kEcurg==
-Date:   Fri, 26 May 2023 13:59:20 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     kernel test robot <lkp@intel.com>
-Cc:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, will@kernel.org,
-        robin.murphy@arm.com, joro@8bytes.org, robimarko@gmail.com,
-        quic_gurus@quicinc.com, llvm@lists.linux.dev,
-        oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        Imran Shaik <quic_imrashai@quicinc.com>
-Subject: Re: [PATCH 6/8] arm64: dts: qcom: Add support for GCC and RPMHCC for
- SDX75
-Message-ID: <20230526205920.vxibspqj7cbizxq7@ripper>
-References: <1684487350-30476-7-git-send-email-quic_rohiagar@quicinc.com>
- <202305201743.PsMD38Vz-lkp@intel.com>
+        with ESMTP id S244057AbjEZVLw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 17:11:52 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC47CD9
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 14:11:47 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f3baf04f0cso1303095e87.1
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 14:11:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685135506; x=1687727506;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1L+ycxs8nT0k5qZvWSokMUtOJErTXYk5ocz+vVaSWnw=;
+        b=Dr45UR/vjmG+V2DhYmc/+Z94k1T50oJR3bZmR/3QdgjNmgX8VS+huSL+ilAYotiOWG
+         5VdCz5PEq2JwDhTLXslGE0StQ1HuAk3HhQlag3EHYkrelF/g2wyQaMtSrkLHaKxEbbWB
+         gpFB9raWzZQSLe3PNDaF71eC0btdoGnDru5LtEtAQXHDSICUtxPCVQsxQRcUaYsss0rk
+         13hajfXAkNVUjLa15uQHSc9w4KJu02h4mgP6N+yP6kIqNiqGFwPtW/gUjTlzCEQw8Jm5
+         +/ydHKgdZUmSAUAq3vXtd2abEFRWHioaWImcKfJ5atyD4UKPGUUBm5mChNxZo1a+jleh
+         Gcfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685135506; x=1687727506;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1L+ycxs8nT0k5qZvWSokMUtOJErTXYk5ocz+vVaSWnw=;
+        b=jo5L0t6xXQ7dhsmcrqCaQFHDJKzvJdyZ5bRbAhU51icyYTGtOksfS0q8Oq5EtLqEZ+
+         fDQ8SmccLPA8yJnc2i/J1XNDkR74p2Y9UB3dYLtF7gUp3iGBMz57bCg6BfzdyYPtT9WR
+         wNKbuIYk8rDEVifGk7K0fYnZumQWkgLoPEf2p6JuvT2JI8smhruFcJ9TdcThg3K+XM+u
+         9z06iJ96O613dtPv4coiss4Iz0Yv9pNbniE3a58CbR14HsIb3QMzq+x4H2T2tXtyBbmI
+         h5x3zsD6KFfHXtYLmmjnrmqXy1wqQ4sD7UNAy8v3WK8BYKxHKX/6iembC5FRqrjMaPfj
+         X/kQ==
+X-Gm-Message-State: AC+VfDx76cOjw69GMevi/Fc/hs3NjNK715V/wTIgBu0ygH2Mf8AeCN03
+        SOLht2N62KVj3mO2eJIEeoMQViSMGW3emDVpU4k=
+X-Google-Smtp-Source: ACHHUZ5cemCoNqzhRRERX6I4HzjQMrvTEWDuDE93LE/pVDCsDJENXaFbS/q8p5n9/kFtuNQarEdlnQ==
+X-Received: by 2002:ac2:4c09:0:b0:4ef:6ed9:7af2 with SMTP id t9-20020ac24c09000000b004ef6ed97af2mr860215lfq.8.1685135506191;
+        Fri, 26 May 2023 14:11:46 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id y26-20020ac2447a000000b004f24ee39661sm787480lfl.137.2023.05.26.14.11.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 May 2023 14:11:45 -0700 (PDT)
+Message-ID: <02543b3b-a94d-fd3a-7b28-3e55f4414137@linaro.org>
+Date:   Fri, 26 May 2023 23:11:44 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <202305201743.PsMD38Vz-lkp@intel.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230510-msm8916-regulators-v1-0-54d4960a05fc@gerhold.net>
+ <20230510-msm8916-regulators-v1-7-54d4960a05fc@gerhold.net>
+ <9f474fe8-523c-3668-540a-a8fc04ed64a6@linaro.org>
+ <ZHBV-mBPhoqy8yvs@gerhold.net>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH 7/8] arm64: dts: qcom: msm8916: Define regulator
+ constraints next to usage
+In-Reply-To: <ZHBV-mBPhoqy8yvs@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 20, 2023 at 06:08:25PM +0800, kernel test robot wrote:
-> Hi Rohit,
-> 
-> kernel test robot noticed the following build errors:
-> 
-> [auto build test ERROR on robh/for-next]
-> [also build test ERROR on tip/irq/core joro-iommu/next linus/master v6.4-rc2 next-20230519]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Rohit-Agarwal/dt-bindings-arm-qcom-Document-SDX75-platform-and-boards/20230519-171116
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-> patch link:    https://lore.kernel.org/r/1684487350-30476-7-git-send-email-quic_rohiagar%40quicinc.com
-> patch subject: [PATCH 6/8] arm64: dts: qcom: Add support for GCC and RPMHCC for SDX75
-> config: arm64-randconfig-r006-20230517
-> compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project b0fb98227c90adf2536c9ad644a74d5e92961111)
-> reproduce (this is a W=1 build):
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # install arm64 cross compiling tool for clang build
->         # apt-get install binutils-aarch64-linux-gnu
->         # https://github.com/intel-lab-lkp/linux/commit/768f74f2345d9af657bd58a98e7ade22b7a5c3e2
->         git remote add linux-review https://github.com/intel-lab-lkp/linux
->         git fetch --no-tags linux-review Rohit-Agarwal/dt-bindings-arm-qcom-Document-SDX75-platform-and-boards/20230519-171116
->         git checkout 768f74f2345d9af657bd58a98e7ade22b7a5c3e2
->         # save the config file
->         mkdir build_dir && cp config build_dir/.config
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 olddefconfig
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
-> 
-> If you fix the issue, kindly add following tag where applicable
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202305201743.PsMD38Vz-lkp@intel.com/
-> 
-> All errors (new ones prefixed by >>):
-> 
->    In file included from arch/arm64/boot/dts/qcom/sdx75-idp.dts:8:
-> >> arch/arm64/boot/dts/qcom/sdx75.dtsi:10:10: fatal error: 'dt-bindings/clock/qcom,sdx75-gcc.h' file not found
->    #include <dt-bindings/clock/qcom,sdx75-gcc.h>
->             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This error can be ignored, I will fix the problem when applying the
-updated patches.
 
-Regards,
-Bjorn
+On 26.05.2023 08:47, Stephan Gerhold wrote:
+> On Fri, May 26, 2023 at 01:35:06AM +0200, Konrad Dybcio wrote:
+>> On 17.05.2023 20:48, Stephan Gerhold wrote:
+>>> Right now each MSM8916 device has a huge block of regulator constraints
+>>> with allowed voltages for each regulator. For lack of better
+>>> documentation these voltages are often copied as-is from the vendor
+>>> device tree, without much extra thought.
+>>>
+>>> Unfortunately, the voltages in the vendor device trees are often
+>>> misleading or even wrong, e.g. because:
+>>>
+>>>  - There is a large voltage range allowed and the actual voltage is
+>>>    only set somewhere hidden in some messy vendor driver. This is often
+>>>    the case for pm8916_{l14,l15,l16} because they have a broad range of
+>>>    1.8-3.3V by default.
+>>>
+>>>  - The voltage is actually wrong but thanks to the voltage constraints
+>>>    in the RPM firmware it still ends up applying the correct voltage.
+>>>
+>>> To have proper regulator constraints it is important to review them in
+>>> context of the usage. The current setup in the MSM8916 device trees
+>>> makes this quite hard because each device duplicates the standard
+>>> voltages for components of the SoC and mixes those with minor
+>>> device-specific additions and dummy voltages for completely unused
+>>> regulators.
+>>>
+>>> The actual usage of the regulators for the SoC components is in
+>>> msm8916-pm8916.dtsi, so it can and should also define the related
+>>> voltage constraints. These are not board-specific but defined in the
+>>> APQ8016E/PM8916 Device Specification. The board DT can then focus on
+>>> describing the actual board-specific regulators, which makes it much
+>>> easier to review and spot potential mistakes there.
+>>>
+>>> Note that this commit does not make any functional change. All used
+>>> regulators still have the same regulator constraints as before. Unused
+>>> regulators do not have regulator constraints anymore because most of
+>>> these were too broad or even entirely wrong. They should be added back
+>>> with proper voltage constraints when there is an actual usage.
+>>>
+>>> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+>>> ---
+>> I'm a bit torn between saying "this is very nice already" and "we should
+>> probably override each regulator individually" like so:
+>>
+>> &pm8916_l17 {
+>> 	[...]
+>> }
+>>
+>> to minimize mistakes..
+>>
+>> Not sure what to make of it, I see Bjorn already applied this, so I guess
+>> I'm just leaving some potential ideas for the future here.
+>>
+> 
+> Sorry, could you elaborate a bit on what changes you would make exactly?
+Assigning the voltage ranges through direct reference to each individual
+regulator, instead of overwriting them through referencing the
+pm8916_rpm_regulators label and (essentially) redefining them.
+
+> 
+> The way it works in this patch is that regulators that are used by the
+> SoC are defined in msm8916-pm8916.dtsi. All other (board-specific)
+> regulators must be defined together with proper voltages in the board DT.
+> 
+> What kind of mistake are you thinking of?
+Fat fingers, mostly
+
+So suppose your device needs a different voltage on L18, so you do
+
+&pm8916_rpm_regulators {
+	l19 { //fat fingers burn devices
+		regulator-min-microvolt = <12341234>;
+		regulator-max-microvolt = <43143144>;
+	};
+};
+
+DTC will happily eat that
+
+
+since we use labels, one would have to fatfinger twice, like so:
+&pm8916_rpm_regulators {
+	pm8916_l19: l19 { //this was still supposed to be l18
+...
+
+
+as these two combinations will trigger a build error
+
+
+&pm8916_rpm_regulators {
+	pm8916_l19: l18 { //duplicate label vs actual l19
+
+---
+
+&pm8916_rpm_regulators {
+	pm8916_l18: l19 { //duplicate label vs actual l18
+
+
+Konrad
+
+> 
+> Thanks,
+> Stephan
