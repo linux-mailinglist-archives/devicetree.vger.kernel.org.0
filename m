@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E9B67123E2
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 11:40:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52D4B7123FA
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 11:47:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242150AbjEZJkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 05:40:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44640 "EHLO
+        id S243163AbjEZJrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 05:47:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243297AbjEZJja (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 05:39:30 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D1F2170E
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 02:38:57 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3093eb8cd1fso300818f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 02:38:57 -0700 (PDT)
+        with ESMTP id S243238AbjEZJrJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 05:47:09 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36C92E65
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 02:46:53 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-30abe551605so481818f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 02:46:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685093935; x=1687685935;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685094411; x=1687686411;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=c9FbcJ8ok/dJicjZGixTx1rLY7WoaIvuxCHaDotirU4=;
-        b=JL9AIH+1JLjqI1bMy4zyAC7GHDy/nihvR99pjHry6l2XVXgzqeSd/O9B6T2oGdIPvA
-         VkgZBzOgUU608sykszofbkMZecWAa0HoGE9t5egEInksaJ2dQoLSSbMUQWNa5bwOV1rx
-         ohf/QuYu7rZKisOi0K2vsLSoVlPGCAscrZLaxrq3if7gialce24YicNKzQ2ugRFFnmV2
-         jbxy7WDzGnpwoxmZmZvtFkTQa2PwwcuXAHHrU9gpVzAaDI2ry12Jwe4qqtx5CeILc0O4
-         MSzVeVif0r/3wOiSpEkLOskM81rNKfB4zCaZUeRdYCujEGGmUNjWaRbZrf28KaMAzkc0
-         5P0Q==
+        bh=nat2dXg+UOzIavY+WSMDfeXKleU0IIvcUkgX31+SwQ0=;
+        b=QClPu3uwppIpWhb4E3uBUouUHuGMdCDCap+TS3E6hGmLnA4VjA4bKSBHIHelGx0ccW
+         FEr0tengi50fv5JkQcvgU1KTRffYujLtgVjvOOvZFIGz7/sclzkeUoKurDBYRU7U4O+E
+         SqZapO1awa/OnzqqYNJX4m6EBvNJHwiV0MmIk2Fg6KECJgzQiaRlFOAckqdKWBEhO/rr
+         Zw2s3DnpcD0f9Xqt48cK4kdPbfgP6+ls3uZmqN3D0SfZahD/EwRw0v+HDDU6oOj8wjYV
+         Acdo8a+1fB2+ZoPrSuE8Lf6gCE7iWPqS8QXsj3t50cBRwpqKw4Lme7PRmLQwPNJLszhT
+         KLfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685093935; x=1687685935;
+        d=1e100.net; s=20221208; t=1685094411; x=1687686411;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c9FbcJ8ok/dJicjZGixTx1rLY7WoaIvuxCHaDotirU4=;
-        b=NEzcGnjrozcR68MCAWI2ZZ13wmnQkFTSfRIrH9Wqj+XbU9B1uV64tE3om485BMGwCP
-         xrhyjvjaMaB9qCtSShT+Aw3RzC7P8b+vj22cJLqaxvltkixvmscSYdt1xYH4k2plWwZo
-         kCMZpw9RDfq49v1UIpFSoS3z+dUwCCSHvHB7bSboOUTcwXzMXdr+2X98wYT35uGErFW4
-         1iLtizQaECbzZtP8s4kGnnTdUnOcy1TF9eSJ7wV6luGJgOhy2WhjTzYPJvZ39N/UVTEc
-         bYfUg3PxZ3vMJp8lDvkdZwwDoU6CJYbTBMtaPpFyDTPDeA+sUIQGDQ6Hmx2r13F1pinO
-         1JTw==
-X-Gm-Message-State: AC+VfDzd70jN6jfenyczbQE+39yV+S2Jqg170/cmUEx5QkbgNiGDHjni
-        NLKyK0nDAD+7/wbWnh24hqQT1Q==
-X-Google-Smtp-Source: ACHHUZ5Z/uuwFU/rDxZADcj66dYaAGt7iBmpqRVcOw6fAUTz20CCVBeanIlci2qhrpcJchgxcIz/3A==
-X-Received: by 2002:a5d:640c:0:b0:30a:6958:456 with SMTP id z12-20020a5d640c000000b0030a69580456mr1091222wru.4.1685093935490;
-        Fri, 26 May 2023 02:38:55 -0700 (PDT)
+        bh=nat2dXg+UOzIavY+WSMDfeXKleU0IIvcUkgX31+SwQ0=;
+        b=PN5W7qSjpoCijF3T4a6HKE6gepPd2GWFCn3SMTP2s+LfiNzxBOdSlNiUNwblXUGZhB
+         wPYRoY4lDKFrTTZP2RI0FWTSh3Oe1/i7IrjEYTutF6vh3dk4xdCUJAqFaG0DtCGEu9Hd
+         aYWE1CvnQ00ocy8hUB1SpdewGa3GZmHRkYYEWZE5Vega9IN2Xs8nqCzsbEn59dphPs93
+         Aa+WwCYcPl2fZHWUS55sHWAA+Wayk54/6hKOaokR4y6x6EG/A/5s+fa9yZ992AAe3Ylo
+         jD7lhISggKSmOWCegoZmeb8hBSMm4uRy1oKLETH4EY6IgngXiUoPrIwG0IeSDe7ZPzu9
+         UThw==
+X-Gm-Message-State: AC+VfDxqmefHZaY8+N6kLH+50eU+phfnEqiOrYZ5cx4nuWmD2mkZGMbz
+        J8vLQuLR7Tst5Fe915E42do+Ww==
+X-Google-Smtp-Source: ACHHUZ7zzzPEEncZvQtOFznUC+/7QoK+Qxxmiu8AfkXUIs6gj8Ym6jXeyUI0v0C9XmNiOfMiKm+5OQ==
+X-Received: by 2002:a5d:5506:0:b0:309:491b:39ca with SMTP id b6-20020a5d5506000000b00309491b39camr1037698wrv.33.1685094410926;
+        Fri, 26 May 2023 02:46:50 -0700 (PDT)
 Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id y15-20020a5d4acf000000b00306299be5a2sm4489937wrs.72.2023.05.26.02.38.54
+        by smtp.gmail.com with ESMTPSA id u10-20020a5d514a000000b00307b5376b2csm4463662wrt.90.2023.05.26.02.46.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 02:38:55 -0700 (PDT)
-Message-ID: <d2ed4cce-108f-c861-5f84-0c7ac5954346@baylibre.com>
-Date:   Fri, 26 May 2023 11:38:53 +0200
+        Fri, 26 May 2023 02:46:50 -0700 (PDT)
+Message-ID: <160d8ea5-81bd-ece6-a4a6-b93a62b4d749@baylibre.com>
+Date:   Fri, 26 May 2023 11:46:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/2] clk: mediatek: mt8365: Fix index issue
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: mediatek: replace unusable
+ clock
 Content-Language: en-US
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
@@ -70,84 +71,36 @@ Cc:     Markus Schneider-Pargmann <msp@baylibre.com>,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
 References: <20230517-fix-clk-index-v2-0-1b686cefcb7e@baylibre.com>
- <20230517-fix-clk-index-v2-2-1b686cefcb7e@baylibre.com>
- <2a60740f-782d-08d5-f62f-dcc67aaf4d32@collabora.com>
+ <20230517-fix-clk-index-v2-1-1b686cefcb7e@baylibre.com>
+ <f3f7df94-74f1-dd41-00d7-0ab4fa2e4d61@collabora.com>
 From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <2a60740f-782d-08d5-f62f-dcc67aaf4d32@collabora.com>
+In-Reply-To: <f3f7df94-74f1-dd41-00d7-0ab4fa2e4d61@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 26/05/2023 10:33, AngeloGioacchino Del Regno wrote:
+On 26/05/2023 10:30, AngeloGioacchino Del Regno wrote:
 > Il 25/05/23 16:50, Alexandre Mergnat ha scritto:
->> Before the patch [1], the clock probe was done directly in the
->> clk-mt8365 driver. In this probe function, the array which stores the
->> data clocks is sized using the higher defined numbers (*_NR_CLOCK) in
->> the clock lists [2]. Currently, with the patch [1], the specific
->> clk-mt8365 probe function is replaced by the mtk generic one [3], which
->> size the clock data array by adding all the clock descriptor array size
->> provided by the clk-mt8365 driver.
+>> The “mcu_pm_bclk_ck_cg” clock is used by co-processors and should not be
+>> added to the kernel driver, otherwise the CPU just halt and the board is
+>> rebooted by the wathdog.
 >>
->> Actually, all clock indexes come from the header file [2], that mean, if
->> there are more clock (then more index) in the header file [2] than the
->> number of clock declared in the clock descriptor arrays (which is the
->> case currently), the clock data array will be undersized and then the
->> generic probe function will overflow when it will try to write in
->> "clk_data[CLK_INDEX]". Actually, instead of crashing at boot, the probe
->> function returns an error in the log which looks like:
->> "of_clk_hw_onecell_get: invalid index 135", then this clock isn't
->> enabled.
->>
->> Solve this issue by adding in the driver the missing clocks declared in
->> the header clock file [2].
->>
->> [1]: Commit ffe91cb28f6a ("clk: mediatek: mt8365: Convert to
->>       mtk_clk_simple_{probe,remove}()")
->> [2]: include/dt-bindings/clock/mediatek,mt8365-clk.h
->> [3]: drivers/clk/mediatek/clk-mtk.c
->>
->> Fixes: ffe91cb28f6a ("clk: mediatek: mt8365: Convert to 
->> mtk_clk_simple_{probe,remove}()")
->
-> This is not fixing the conversion, but the clock driver, as it 
-> originally missed
-> clock entries and hence was not compliant with its binding (header).
-> It worked before, probably, but this doesn't mean that this driver 
-> didn't contain
-> a logic mistake from the beginning :-)
->
-> So, add (or replace the current one with) the relevant Fixes tag...
->
+>> Instead, add the "aes_top0_bclk_ck_cg" missing clock to prevent
+>> re-shuffling index and then preserve the ABI.
+> 
+> It's still a breakage. Besides, have you tried to add it as 
+> CLK_IS_CRITICAL? :-)
 
-Briefly and factually, the mt8365 clk probe mechanism was different
-
-compared to the mtk clk driver. Even if it was an issue or not, it was
-
-working (for sure). When [1] improved the mt8365 clk driver by using
-
-the mtk clk generic probe, some clocks (USB here) no longer worked.
-
-So, IMHO, it still a functional regression introduced by [1], because it
-
-come from the switch of the probe function.
-
-
-I'm not blaming & shaming the author of [1], as you said, it originally
-
-missed clock entries and hence was not compliant with its binding
-
-(whereas other MTK SoC was I guess). This commit is pointed thanks
-
-to the bisect + test.
-
+As I said to Conor, I can fix the driver index issue (patch 2/2) without 
+fixing the binding (using CLK_IGNORE_UNUSED but CLK_IS_CRITICAL works too).
 
 -- 
 Regards,
