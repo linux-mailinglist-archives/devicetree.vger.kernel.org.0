@@ -2,145 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F6D1712C35
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 20:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38E61712C3A
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 20:12:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242970AbjEZSH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 14:07:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59222 "EHLO
+        id S229964AbjEZSL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 14:11:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242167AbjEZSHv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 14:07:51 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BACAF13A;
-        Fri, 26 May 2023 11:07:49 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-969f90d71d4so145760966b.3;
-        Fri, 26 May 2023 11:07:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685124468; x=1687716468;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1WNhXWuAHGSvY84FPzjUJiY/WdxRG1SooFMStX8dS0s=;
-        b=p076qqBSbmH95CyWYwmxDLH1EofZTcSiQwfiZ/E2g+jrabSJlxYZAL8tW5SovUU0kl
-         yLBT6ySFrxmU6QBCoG+/w9wNaXrhM6kSFDav/FoWx57bbKxeMC0zSf+jgfbdaSbCA3D0
-         +yyffE5niZ+54MJDvnh3PdrOH51yGAGIzB7/3QNQ9Vr4IUFQ35ESQj8Z0XaViynvnlxD
-         43tGsEqpLFaW5vnMFYkdhgIpzXE9nJHz7Om8Y+Iqbjhb0JIWkbGOT0+QPUmAH3MS0mdT
-         RRtORElzNkNcV286rOehX3U5leti+tVt6mhHQOhvu8Sgf3XWJhh3VUoBFjV2kKEfDLBo
-         A1/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685124468; x=1687716468;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1WNhXWuAHGSvY84FPzjUJiY/WdxRG1SooFMStX8dS0s=;
-        b=bpDjAZWzNOc4UTHUQw0kolOpZDMWgOVOiyQgBt9p8Zaf0BIemJLHoAjPy6mEgfkDLi
-         GCrgD/OjBTNu+7Wy3z+vspT8o4Ma/swLS6rU3orcX/jlPBmXVtIzWtazHwhtZm8MmzvE
-         uFVnbt5UM1earM+LeR2y2fQNmwtQGDiPBemZWPyZ6U0cE5QEpl5PvDcGjTUmrugH3sJp
-         FwOx5ZVJd3G6COzuUOnO5Ss3wi/F/gk6oFKTlkRkLs9CWSXDsfHGNr3LPp/ZCEuZN3fA
-         jaIZ0llFENbv5+xIpL7tugR4c9VuqqackLlPeLk5GbwZ5f/9sSX6erAL9lkmTS1PmCfg
-         yjcg==
-X-Gm-Message-State: AC+VfDxziYzqVdUNNLoC9bmCypCIMneM+k178mf5wpBCxbDsrh+0CfPf
-        tPpV+wi31qNMDQ4ZaSNAmz8=
-X-Google-Smtp-Source: ACHHUZ7wPGY8XaZ5Q26iK1pWupLRHG9OW5fzWVth17mX8oMMlY9eqhpM3UjCV5KozN8rgYMknhXCcA==
-X-Received: by 2002:a17:907:a40d:b0:968:1102:1fb7 with SMTP id sg13-20020a170907a40d00b0096811021fb7mr2680886ejc.6.1685124468084;
-        Fri, 26 May 2023 11:07:48 -0700 (PDT)
-Received: from localhost.localdomain ([95.183.227.33])
-        by smtp.gmail.com with ESMTPSA id j11-20020a170906410b00b0096f689848desm2410823ejk.195.2023.05.26.11.07.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 May 2023 11:07:47 -0700 (PDT)
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
-To:     Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hansverk@cisco.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] media: camss: Link CAMSS power domain
-Date:   Fri, 26 May 2023 21:07:12 +0300
-Message-Id: <20230526180712.8481-4-y.oudjana@protonmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230526180712.8481-1-y.oudjana@protonmail.com>
-References: <20230526180712.8481-1-y.oudjana@protonmail.com>
+        with ESMTP id S229923AbjEZSL5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 14:11:57 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B37B189;
+        Fri, 26 May 2023 11:11:55 -0700 (PDT)
+Received: from [192.168.1.90] (unknown [188.27.34.213])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D2CE16602338;
+        Fri, 26 May 2023 19:11:52 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685124713;
+        bh=5Vp0v9CQLgFPufyyf5L+TVgF51WKnOgrP8cqPyMHWyw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=PNXyJBIaI3wNOlNxvKig3Nns9gBXhDCdLGhkEmjiFdPPoMO4CmGS3ZXP6elNmMnSM
+         FBmzApVAKsvs1x8/kOWvEXfa5KNUYMmPh/PufmYGe+VGUA9yxNsQtPsV5kC4euP6vL
+         JMMSZa5ZaG2pye7g1wfIkffFAc4gvY/ts10Zso449C/OgpFh4TZHtQdXCQL31GIcsN
+         50CnWrHV2YdS7H5H6fYSRLTBjQGpJkgnc0h+iXMQS7RXZEcgLq7R5OXFWL1S2Bcbu2
+         0GTxa09nFJwItjotmi3xjGeDYkA6ckvWew7739V2zIcjbj+PM5EeW7wvKzNXVnbPKp
+         bqB/KdMupOOuQ==
+Message-ID: <3c6b67a4-4892-0057-3dfc-65ed6c7ebc37@collabora.com>
+Date:   Fri, 26 May 2023 21:11:49 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/3] ASoC: es8316: Increment max value for ALC Capture
+ Target Volume control
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Zhu Ning <zhuning0077@gmail.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        David Yang <yangxiaohua@everest-semi.com>,
+        Daniel Drake <drake@endlessm.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, kernel@collabora.com
+References: <20230524074156.147387-1-cristian.ciocaltea@collabora.com>
+ <20230524074156.147387-2-cristian.ciocaltea@collabora.com>
+ <5dbcbf84-602a-44de-ad99-268d4d5b4b2f@sirena.org.uk>
+ <cfa23203-1626-440b-ec27-efe56cb297d2@collabora.com>
+ <01fd1a9f-56c7-4864-bb2b-8b004284c8cc@sirena.org.uk>
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <01fd1a9f-56c7-4864-bb2b-8b004284c8cc@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yassine Oudjana <y.oudjana@protonmail.com>
+On 5/24/23 16:59, Mark Brown wrote:
+> On Wed, May 24, 2023 at 04:49:37PM +0300, Cristian Ciocaltea wrote:
+>> On 5/24/23 13:30, Mark Brown wrote:
+> 
+>>> Presumably you can check the effects of changing the value?  It seems
+>>> plausible that what's written in the code might be accurate and the
+>>> higher values might actually change the gain but it'd be better to
+>>> check.
+> 
+>> I haven't noticed a (measurable) change in gain when switching between
+>> 10 and 11, but my testing equipment is also not that great. Will try to
+>> improve the tests accuracy.
+> 
+> I'd expect it should be really obvious with a scope if you've got one?
+> Testing with something consistent like a sine wave (eg, from
+> speaker-test) should also make a 1.5dB difference noticable enough to
+> check if there's at least a volume change by ear even if you can't
+> specifically quantify it.
 
-The CAMSS power domain was previously enabled implicitly when the VFE
-power domains were enabled.
-Commit 46cc03175498 ("media: camss: Split power domain management")
-delayed enabling VFE power domains which in turn delayed enabling the
-CAMSS power domain. This made CSIPHY fail to enable camss_top_ahb_clk
-which requires the CAMSS power domain to be on:
+Luckily arecord & aplay provide VU meter support (via -V,
+--vumeter=TYPE'), so I could easily verify this without using any
+additional tools:
 
-[  199.097810] ------------[ cut here ]------------
-[  199.097893] camss_top_ahb_clk status stuck at 'off'
-[  199.097913] WARNING: CPU: 3 PID: 728 at drivers/clk/qcom/clk-branch.c:91 clk_branch_wait+0x140/0x160
-...
-[  199.100064]  clk_branch_wait+0x140/0x160
-[  199.100112]  clk_branch2_enable+0x30/0x40
-[  199.100159]  clk_core_enable+0x6c/0xb0
-[  199.100211]  clk_enable+0x2c/0x50
-[  199.100257]  camss_enable_clocks+0x94/0xe0 [qcom_camss]
-[  199.100342]  csiphy_set_power+0x154/0x2a0 [qcom_camss]
-...
-[  199.101594] ---[ end trace 0000000000000000 ]---
+ Volume  |  VU meter
+---------+----------
+-6.0 dB  |  30-31 %
+-4.5 dB  |  35-36 %
+-3.0 dB  |  42-43 %
+-1.5 dB  |  50-51 %
+-0.0 dB  |  50-51 %
 
-Link the CAMSS power domain in camss_configure_pd to make sure it gets
-enabled before CSIPHY tries to enable clocks.
+So it seems the specs are correct, and the problem is the hardware default.
 
-Fixes: 02afa816dbbf ("media: camss: Add basic runtime PM support")
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
----
- drivers/media/platform/qcom/camss/camss.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+Is there a better approach to handle this than extending the volume range?
 
-diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-index 1ef26aea3eae..9aea8220d923 100644
---- a/drivers/media/platform/qcom/camss/camss.c
-+++ b/drivers/media/platform/qcom/camss/camss.c
-@@ -1453,6 +1453,7 @@ static const struct media_device_ops camss_media_ops = {
- static int camss_configure_pd(struct camss *camss)
- {
- 	struct device *dev = camss->dev;
-+	int camss_pd_index;
- 	int i;
- 	int ret;
- 
-@@ -1496,7 +1497,13 @@ static int camss_configure_pd(struct camss *camss)
- 		}
- 	}
- 
--	if (i > camss->vfe_num) {
-+	/* Link CAMSS power domain if available */
-+	camss_pd_index = device_property_match_string(camss->dev, "power-domain-names", "camss");
-+	if (camss_pd_index >= 0)
-+		device_link_add(camss->dev, camss->genpd[camss_pd_index], DL_FLAG_STATELESS |
-+				DL_FLAG_PM_RUNTIME | DL_FLAG_RPM_ACTIVE);
-+
-+	if (i > camss->vfe_num && i != camss_pd_index) {
- 		camss->genpd_link[i - 1] = device_link_add(camss->dev, camss->genpd[i - 1],
- 							   DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME |
- 							   DL_FLAG_RPM_ACTIVE);
--- 
-2.40.1
-
+Regards,
+Cristian
