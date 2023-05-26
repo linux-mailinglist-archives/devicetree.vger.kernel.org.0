@@ -2,65 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FEDF71291B
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 17:07:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EB6A712923
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 17:08:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243720AbjEZPHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 11:07:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51552 "EHLO
+        id S243873AbjEZPIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 11:08:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243684AbjEZPHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 11:07:32 -0400
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F781A2;
-        Fri, 26 May 2023 08:07:26 -0700 (PDT)
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3319a6f989aso6357755ab.2;
-        Fri, 26 May 2023 08:07:26 -0700 (PDT)
+        with ESMTP id S229882AbjEZPIu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 11:08:50 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 936C9C9
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 08:08:49 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-30adc69c0dbso361896f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 08:08:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685113728; x=1687705728;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RQDPpbfKxYac4dFfl3UOiv7iiv3UKto2YwW9RD/lJd4=;
+        b=D8329d5gDBuupuw18ee7CiQedAqaHbalYu/5ad/0HLx8pzNJB/B/nXPqeXbg3zAn47
+         UPrnWRMAm7bG90BMHhmY3n+VpBQQlENz9uTjY0+zpdv1cT8jbn49d562/eYMTZuYqhaE
+         jYA1F+tj07JByXOexpqVnp32QWw6tjLsztNKTrHvXKu3Davn4xKVGIH1Y57SOpVjD20W
+         OMAE1twiDb3hwtTTAn3q+ncHQjS6yUWcoP8TeAY32wV4CwfQ8TRSn904UgqFpjjw7VBD
+         bzKazNedaXMHzxlBYF69bMm/ufjJ/1nFo4ejX/7ZVnMxqnyj/xDsr55nL9Aq142D8x7l
+         6whg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685113645; x=1687705645;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=C3SwxZHQH75a2BAIZDAbWAuC2lYpmSVUQ9esXHuE/GI=;
-        b=T9szlRgrrQzZEnmWRlrkNiJoYFJaT+gsJtquHnva2xNPD/S5SZ930L0XG3KbZxqip3
-         hF3xb5PKoU4UX02Ube82zqyNlVYabBEj0abTexQpwNJY8YA+H5L4n7Md2Lk+Cdq/eLcS
-         CSqsm/sQWRmQ9PFeh6G19rEtrK5ArEb+i5gzt9Oa1p/J+SwhPuSaeKhTrKVi8uOwz3y2
-         YwFkcfWCFTvrAnAEakAWUMDprb82IlArEmDhugXlqITI0qJhAIHvENmLxlKzZuMx/UP0
-         nd4FSNA6Ym35aDPBQ9que/jikXlUPn4FEn/Piu9fQ3aIbC14DTsSk4sYrkZTcHnNFL/7
-         0eaQ==
-X-Gm-Message-State: AC+VfDw7LEl8EU4TyFc8FS0EWTWCxhLS8PsCjbmBteEbCEirkvhdft7L
-        L7+XOM2j8K6m+LYZPiuir2ibdnl6vA==
-X-Google-Smtp-Source: ACHHUZ4sQCTa/dr9gjLgz+7HyZIHSPCkkfyyY6iaMt2G+s3hyhzHYOSrLEyG/CyX2oDIONOuCjyNrA==
-X-Received: by 2002:a92:cc4f:0:b0:32c:88d9:af1d with SMTP id t15-20020a92cc4f000000b0032c88d9af1dmr1414048ilq.13.1685113645566;
-        Fri, 26 May 2023 08:07:25 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id z1-20020a92bf01000000b003248469e5easm14423ilh.43.2023.05.26.08.07.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 May 2023 08:07:24 -0700 (PDT)
-Received: (nullmailer pid 752525 invoked by uid 1000);
-        Fri, 26 May 2023 15:07:23 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20221208; t=1685113728; x=1687705728;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RQDPpbfKxYac4dFfl3UOiv7iiv3UKto2YwW9RD/lJd4=;
+        b=YXV+Fq6a1zZw7JBALtRGfSCuLnovNptDkm2FZ6VgjJLs5FhoZFk3YpaeA/xU+f/hiZ
+         kKwABoh3e3CFd0Bcfx5fc07Cu4wuFdG6ksU8zkFRVcKmYysBVXeDYsseb96jK++M1cvB
+         HkjD0m5hwws2lfmc7y68xAJtp2yhGgAlHF/rZOUemI9NO8oGdhH+LgjSvjxQp/B/WUHh
+         Ww0bsa7WWCcwayg3Nu6dYZqtCuBcIr69InPBcxq4tMJ0X1+k7qYJ6lYgCCEwQYPEtiuy
+         yDLo37gSGQRpp5Zjfq71NvM+kAHLbzfGovu09jvGfIQBKpMG+LZZvOU/HiLOTvOUFirw
+         +v+g==
+X-Gm-Message-State: AC+VfDwjYLiukOl4iWmIaWZHW22PwYH9a9XaGb5LZECExZLZWYWa5r2v
+        1rRkkVzRTTk10EXvjqK61mWNOA==
+X-Google-Smtp-Source: ACHHUZ6Ur52z92yD9zQLf8/rpAwoOXof7X3dA6SmUIkLpPmI1FzD2sW7X7Z8flkFpqVtem4zLqfZ0w==
+X-Received: by 2002:a5d:6ac4:0:b0:309:e24:57b0 with SMTP id u4-20020a5d6ac4000000b003090e2457b0mr1955408wrw.30.1685113728030;
+        Fri, 26 May 2023 08:08:48 -0700 (PDT)
+Received: from [10.1.4.6] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id 10-20020a05600c228a00b003f42461ac75sm9055828wmf.12.2023.05.26.08.08.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 May 2023 08:08:47 -0700 (PDT)
+Message-ID: <f605a653-ba94-7a8c-1bfa-4c18f5d25da7@baylibre.com>
+Date:   Fri, 26 May 2023 17:08:45 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Frank Li <Frank.Li@nxp.com>
-Cc:     shenwei.wang@nxp.com, robh+dt@kernel.org, joy.zou@nxp.com,
-        peng.fan@nxp.com, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, imx@lists.linux.dev,
-        dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-        vkoul@kernel.org
-In-Reply-To: <20230526143639.1037099-13-Frank.Li@nxp.com>
-References: <20230526143639.1037099-1-Frank.Li@nxp.com>
- <20230526143639.1037099-13-Frank.Li@nxp.com>
-Message-Id: <168511364321.752508.2528911041260451856.robh@kernel.org>
-Subject: Re: [PATCH v1 12/12] dt-bindings: fsl-dma: fsl-edma: add edma3
- compatible string
-Date:   Fri, 26 May 2023 09:07:23 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 5/7] drm/apu: allow platform driver to implement their own
+ mmap function
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        airlied@gmail.com, daniel@ffwll.ch,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com, sumit.semwal@linaro.org,
+        christian.koenig@amd.com, jstephan@baylibre.com,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+        linaro-mm-sig@lists.linaro.org, khilman@baylibre.com,
+        nbelin@baylibre.com, bero@baylibre.com
+References: <20230517145237.295461-1-abailon@baylibre.com>
+ <20230517145237.295461-6-abailon@baylibre.com>
+ <032699a0-9a43-953a-60e9-59a515a26cef@linaro.org>
+Content-Language: en-US
+From:   Alexandre Bailon <abailon@baylibre.com>
+In-Reply-To: <032699a0-9a43-953a-60e9-59a515a26cef@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,47 +87,33 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 26 May 2023 10:36:39 -0400, Frank Li wrote:
-> Extend Freescale eDMA driver bindings to support eDMA3 IP blocks in
-> i.MX8QM and i.MX8QXP SoCs. In i.MX93, both eDMA3 and eDMA4 are now.
+
+On 5/17/23 21:45, Krzysztof Kozlowski wrote:
+> On 17/05/2023 16:52, Alexandre Bailon wrote:
+>> From: Julien Stephan <jstephan@baylibre.com>
+>>
+>> By default we will call drm_gem_mmap() unless the apu driver has
+>> declared it's own mmap handler.
+>>
+>> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+>> Reviewed-by: Julien Stephan <jstephan@baylibre.com>
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/dma/fsl,edma.yaml     | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+> One does not have to review own code. We all assume that we send good
+> code which we do not have to review by ourselves (by the author). We
+> also assume we make mistakes, which we cannot find, thus other person's
+> review is important.
+I am sorry, I am the one who made the misstake.
+I squashed this patch with another one I made, lost my signedof and left 
+the reviewed by which indeed doesn't make any sense.
+
+Best Regards,
+Alexandre
 > 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/dma/fsl,edma.yaml:113:13: [error] duplication of key "const" in mapping (key-duplicates)
-./Documentation/devicetree/bindings/dma/fsl,edma.yaml:114:13: [error] duplication of key "const" in mapping (key-duplicates)
-./Documentation/devicetree/bindings/dma/fsl,edma.yaml:115:13: [error] duplication of key "const" in mapping (key-duplicates)
-
-dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/dma/fsl,edma.example.dts'
-Documentation/devicetree/bindings/dma/fsl,edma.yaml:113:13: found duplicate key "const" with value "fsl,imx8qm-adma" (original value: "fsl,imx8qm-edma")
-make[1]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/dma/fsl,edma.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/dma/fsl,edma.yaml:113:13: found duplicate key "const" with value "fsl,imx8qm-adma" (original value: "fsl,imx8qm-edma")
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/fsl,edma.yaml: ignoring, error parsing file
-make: *** [Makefile:1512: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230526143639.1037099-13-Frank.Li@nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> Adding own review tag suggests you added them mechanically, so I doubt
+> that they really happened.
+> 
+> Anyway, your SoB is missing.
+> 
+> Best regards,
+> Krzysztof
+> 
