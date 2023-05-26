@@ -2,145 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02B59712681
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:22:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 543E7712686
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:23:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243402AbjEZMWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 08:22:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56336 "EHLO
+        id S242765AbjEZMXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 08:23:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231270AbjEZMWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:22:38 -0400
-Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com [64.147.123.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4025D8;
-        Fri, 26 May 2023 05:22:36 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.west.internal (Postfix) with ESMTP id F18BE2B067F1;
-        Fri, 26 May 2023 08:22:30 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Fri, 26 May 2023 08:22:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-        cc:cc:content-transfer-encoding:content-type:content-type:date
-        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to; s=fm2; t=
-        1685103750; x=1685110950; bh=9OjPVtcXUXsvJbsxBYn861b3PFL3iRSxocq
-        SvkSDhOY=; b=h8IerA6eCZ9zEkm18cIQ/DHlPux1lRB2Eb3ONCu4hETPvcV9qW6
-        xuNp5UiRw2wm5bzQ7fdePAz9z5TcqSD7zCNKfmha/mODlmnnLfl53CxPHUPoqdqq
-        tEbii24Pcw0iQkJl9ktKANwe3gGqsqrd7ruG2jJ+bZZpqhZaHBHGiQD5HpXe22fK
-        hV0mZijIY//jGbqewyhcRk+hkI9ssZdypLFLMVD5KWxn5q6KWHZxNMbLN9cP1GVt
-        prkwsimspjmVJBO5F11iwf6SAt6dTxoH+LDhTDwyuxZOm8scoX9EIaUzDVvOZQNQ
-        GhW+Fm/HP2dBRqAUMPlVWzkH9X96OKwrsaA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:content-type:date:date:feedback-id:feedback-id
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-        1685103750; x=1685110950; bh=9OjPVtcXUXsvJbsxBYn861b3PFL3iRSxocq
-        SvkSDhOY=; b=GG1pUEUOIvcGTaaOsY4w7DIfY6DH2oRjCIE87u9TKRDBf7U9cGj
-        /awOLAUrNa5yFsf3XWFE2/6eTfUR65UWhhTOBFbEz6U9l8gbNg0jh1VCOAlrt509
-        OWR3MUJCrm65m29ps46tYb3YewZwbkVcvvlHmg+4TVY0QsbXSUI460XrMP3SA9gZ
-        HYNM/xo1kFsPVzcEqG9zQzVhYs+GiB6GaSqTeyM8Wo/7HXT4eHjMtj1erCKni0AU
-        mucwurehc7+FemVunQ3rce6onR8kfVWLgYAKoDxuhfBZ174fnFT8Kg37WoaXh9Ln
-        nz470QJy8Ylw4E1wimzT3uSSYNXFATIdH4w==
-X-ME-Sender: <xms:hKRwZBkHX7q864GHMR5p2u3KkjNiwNseGwR4_Yorn3ndOiNxScglng>
-    <xme:hKRwZM2X2DuYYAjOgsqMUctL9811HpQYfmOdJ0R8Tzk62lHcMODgOhQfrHVIhqHZW
-    msl_vuVA-ZopgyAVCE>
-X-ME-Received: <xmr:hKRwZHoo98GT0qD4j6Z4lCbq1WOARByS2PnHA66LH2_pDHL3L3i58t1bdZe2f9ebE9In>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeejledghedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurheptggguffhjgffvefgkfhfvffosehtqhhmtdhhtdejnecuhfhrohhmpeflihgr
-    gihunhcujggrnhhguceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomheqne
-    cuggftrfgrthhtvghrnhepuddtjeffteetfeekjeeiheefueeigeeutdevieejveeihfff
-    ledvgfduiefhvddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
-    hfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
-X-ME-Proxy: <xmx:hKRwZBlE9QVAbJgBJ8y-9T_tNLVtg5lkGA2khaEZHn6Tst8Eo6ggbw>
-    <xmx:hKRwZP047JW6BsxZIg4UJhxQEw0dobcJlk1bbIOUMCgjqcZP7-0-VQ>
-    <xmx:hKRwZAsu6oBAC6FFrjzgebECkHjq19SRVjlwpom916u8uQeUmJjsGQ>
-    <xmx:hqRwZE4xbBHOTKyuwil4E5Dz2hx1jD1q9KzMZSk4eriBc18peDgt4lX5Fy8>
-Feedback-ID: ifd894703:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 26 May 2023 08:22:26 -0400 (EDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.500.231\))
-Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the trivial
- RTCs
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-In-Reply-To: <20230526-dolly-reheat-06c4d5658415@wendy>
-Date:   Fri, 26 May 2023 13:22:15 +0100
-Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Conor Dooley <conor@kernel.org>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231270AbjEZMXg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:23:36 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1BD6D8;
+        Fri, 26 May 2023 05:23:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685103815; x=1716639815;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=N0p4xIBGqTuIaskXSeOSjiy9vfxUe/NL9WXqetZ8YJw=;
+  b=tKk6dTcW8YY3WrAIv+qjBhvhb2lFKZLGN8+CnbKuwj7vFoPq1QtFowg2
+   WedgYbr1X8ChoNFIGWTAL2aArrvAeSmhvj+n4lI31JXSxFzF9RoiCfRP2
+   JNoTv53Ob7qX4eVTevEa8ISEXeZgzQwiPuwgOGaZijXa3nWc/8BMF9skD
+   7Ir3VmW5ggC0MaIqqTtasYLi8H55CwAIKhkfvLzgdZbIJ09wMZb+gv6mo
+   iMZVm+uD/ErAptPOCNE8ZcKBwBd3gXV4dI0u88g49GKQ7cKaz2FojXq1s
+   YVVYyq2kKx4/ONKu4AoDotwzn4IWgDihpYJRviV0i4wXOQ7YJux6m9ujJ
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; 
+   d="asc'?scan'208";a="215611840"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 May 2023 05:23:34 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 26 May 2023 05:23:33 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 26 May 2023 05:23:30 -0700
+Date:   Fri, 26 May 2023 13:23:07 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Torsten Duwe <duwe@lst.de>
+CC:     Xingyu Wu <xingyu.wu@starfivetech.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <yanhong.wang@starfivetech.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        Kelvin Cheung <keguang.zhang@gmail.com>,
-        zhao zhang <zhzhl555@gmail.com>,
-        Yang Ling <gnaygnil@gmail.com>,
-        loongson-kernel@lists.loongnix.cn
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <1EAC8FA8-4125-4436-9EE1-13B61B5687AF@flygoat.com>
-References: <cover.1684983279.git.zhoubinbin@loongson.cn>
- <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
- <20230525-custody-oversleep-f778eddf981c@spud>
- <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
- <20230526-dolly-reheat-06c4d5658415@wendy>
-To:     Conor Dooley <conor.dooley@microchip.com>
-X-Mailer: Apple Mail (2.3731.500.231)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <u-boot@lists.denx.de>
+Subject: Re: [PATCH v4 1/7] dt-bindings: clock: Add StarFive JH7110 PLL clock
+ generator
+Message-ID: <20230526-unwashed-musty-dee883f1d6a7@wendy>
+References: <20230512022036.97987-2-xingyu.wu@starfivetech.com>
+ <20230519135733.GA10188@lst.de>
+ <20230519-smokeless-guileless-2a71cae06509@wendy>
+ <df43411e-8982-74f5-6148-e7281c37dada@starfivetech.com>
+ <20230523-fondue-monotype-0c751a8f0c13@wendy>
+ <20230523131006.46997d84@blackhole.lan>
+ <20230523-saturate-axis-f46b78b7b82b@wendy>
+ <38a9cb77-18b3-4daa-724b-9f2282f7d948@starfivetech.com>
+ <20230524-jittery-sway-41b578b24153@wendy>
+ <20230526093432.4682eab8@blackhole.lan>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="RTLt+oLiwQtApFlh"
+Content-Disposition: inline
+In-Reply-To: <20230526093432.4682eab8@blackhole.lan>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--RTLt+oLiwQtApFlh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-
-> 2023=E5=B9=B45=E6=9C=8826=E6=97=A5 13:06=EF=BC=8CConor Dooley =
-<conor.dooley@microchip.com> =E5=86=99=E9=81=93=EF=BC=9A
-Hi all,
-
-[...]
-My two cents here as Loongson64 maintainer.
-
+On Fri, May 26, 2023 at 09:34:32AM +0200, Torsten Duwe wrote:
+> On Wed, 24 May 2023 11:19:48 +0100
+> Conor Dooley <conor.dooley@microchip.com> wrote:
 >=20
->>> To maintain compatibility with the existing devicetrees, should the =
-old
->>> "loongson,ls2x-rtc" be kept in the driver?
->>=20
->> No, It seems that wildcards in compatible are not allowed."
->> loongson,ls2x-rtc" itself was part of this patch series at one time,
->> but apparently it is not the right way to describe these chips.
+> > On Wed, May 24, 2023 at 05:00:02PM +0800, Xingyu Wu wrote:
+> > > On 2023/5/23 19:28, Conor Dooley wrote:
+> > > > On Tue, May 23, 2023 at 01:10:06PM +0200, Torsten Duwe wrote:
+> > > >> On Tue, 23 May 2023 09:28:39 +0100
+> > > >> Conor Dooley <conor.dooley@microchip.com> wrote:
+> > > >>=20
+> > > >> > On Tue, May 23, 2023 at 10:56:43AM +0800, Xingyu Wu wrote:
+> > > >> > > On 2023/5/19 22:16, Conor Dooley wrote:
+> > > >> > > > On Fri, May 19, 2023 at 03:57:33PM +0200, Torsten Duwe
+> > > >> > > > wrote:
+> > > >> > > >> On Fri, May 12, 2023 at 10:20:30AM +0800, Xingyu Wu wrote:
+> [...]
 >=20
-> Right, but it has been merged - you are deleting the driver that =
-supports
-> it after all - which means that any dtb with the old compatible will
-> stop working.
-It is perfectly fine to break DTB compatibility for Loongson64 systems
-As they *only* use builtin dtb. Bootloader will only pass machine type =
-information
-and kernel will choose one dtb from it=E2=80=99s dtbs pool.
-
-Thanks
-- Jiaxun
-
-> I don't disagree with Krzysztof that having wildcard based compatibles
-> is bad, but I do not think that regressing rtc support for systems =
-with
-> these old devicetrees is the right way to go either.
+> > > >> > > Because PLL driver is separated from SYSCRG drivers in
+> > > >> > > Linux, the numbering starts from 0. But in Uboot, the PLL
+> > > >> > > driver is included in the SYSCRG driver, and the number
+> > > >> > > follows the SYSCRG.
+> > > >> >=20
+> > > >> > Unfortunately, how you choose to construct your drivers has
+> > > >> > nothing to do with this.
 >=20
-> Thanks,
-> Conor.
+> Exactly. As I wrote (quote below), the PLLx frequencies are controlled
+> by the I/O block SYS_SYSCON (starting there at offset 0x18), according
+> to the public datasheets. All(?) other clocks are derived from those in
+> the *_CRG units. That *is* the hardware to be described, in *the* (one
+> and only!) DT. U-Boot, and any OS, are free to reorganise their driver
+> framework around that, but the hardware description is quite clear.
 
+The dt-binding that is in this series specifies that the pll clock
+controller is a child of the syscon:
+https://lore.kernel.org/linux-riscv/20230512022036.97987-1-xingyu.wu@starfi=
+vetech.com/T/#Z2e.:..:20230512022036.97987-6-xingyu.wu::40starfivetech.com:=
+1soc:starfive:starfive::2cjh7110-syscon.yaml
+
+That seems correct to me & U-Boot's devicetree is not compliant.
+
+> > > >> > These defines/numbers appear in the dts and are part of the DT
+> > > >> > ABI. The same dts is supposed to work for Linux & U-Boot.
+> > > >>=20
+> > > >> The JH7110 has 6 blocks of 64k iomem in that functional area:
+> > > >> {SYS,STG,AON} x {CRG,SYSCON}. None of these has 190 clocks.
+> > > >> The good news: the current DTS, as proposed here and in U-Boot
+> > > >> master, provides nodes for all 6 entities. The bad news is that
+> > > >> the clock assignments to those nodes and their numbering is
+> > > >> messed up.
+> > > >>=20
+> > > >> AFAICT PLL{0,1,2} _are_ generated in SYS_SYSCON and thus U-Boot
+> > > >> gets it wrong, in addition to the erroneous DTS.
+> > > >=20
+> > > > The numbers are kinda hocus-pocus anyway, they are just made up
+> > > > since the clock numbering usually isn't something with a nice TRM
+> > > > to go and reference (unlike interrupts which usually are
+> > > > documented in that way). It is very helpful to make them aligned
+> > > > some register/bit positions or, but that is not required.
+> > > > IOW U-Boot is not wrong per se to use 190 instead of 0, but it is
+> > > > wrong to have different numbers in both places.
+>=20
+> U-Boot reuses the Common Clock Framework from Linux, and I'm not sure
+> whether the clock IDs need to be unique in order for the appropriate
+> clock to be found.
+
+Unique within the clock controller, otherwise it is impossible to tell
+the difference between <&cctrl 1> and <&cctrl 1> apart! (The same
+follows even with increased #clock-cells, something must be unique).
+That's besides the point of this particular issue though.
+
+> But that would be the only restriction, if it
+> applies. Even then, each driver could register a clock with its own,
+> arbitrarily chosen base offset with the CCF, so each CRG unit could
+> still have its own clocks enumerated starting with 0 in the DTB.
+>=20
+> > > > It sounds like you're saying that (and I have not looked) the
+> > > > U-Boot dts actually has structural difference w.r.t. what
+> > > > provides which clock? If so, that'll need to be fixed
+> > > > independently of the numbering problem.
+>=20
+> > >=20
+> > > Oh, unfortunately, the 7110 can not support to mix the uboot dtb
+> > > and linux dtb up.
+> >=20
+> > What does "cannot support" mean? It's normal and desirable for the
+>=20
+> IMHO "desirable" is too weak.
+
+Yeah, agreed. I just don't like being prescriptive about what happens in
+projects that I do not maintain things for I guess.
+
+> > same dtb to be usable for both. The Linux kernel's dt-bindings are
+> > used for multiple projects, not just Linux - it'd be silly for
+> > U-Boot, FreeBSD etc etc to go off and each have their open set of
+> > (incompatible) bindings.
+> >=20
+> > > If boot the Linux and should use the linux dtb instead of the uboot
+> > > dtb. Because all clock ids and reset ids in Linux and Uboot are
+> > > different include PLL, and some modules can work in Linux but not
+> > > in uboot.
+> [...]
+> >=20
+> > > I suggest to boot Linux with its own linux dtb.
+>=20
+> This is a fragile band-aid, to be used only as a last resort. It
+> creates more problems than it solves. Your DTB will then match your
+> kernel, but whether it describes the actual hardware is a game of
+> chance. Doesn't the VisionFive2 have an RPi connector... ?
+>=20
+> One of the IMO few valid use cases of adding a DTB to the kernel
+> at boot is OpenWRT, when you build an OS Image for a particular piece
+> of hardware you have at hand.
+>=20
+> > I suggest to make sure that you can use the same dtb for both.
+>=20
+> Interestingly enough, U-Boot already has the PLL driver in a separate
+> file. I have a half-baked patch here that moves the sys_syscon DT
+> matching into that file...
+
+If you have patches that fix the devicetree & drivers in U-Boot, please
+post them. I don't really care at all which set of arbitrary numbers are
+chosen (as long as there is one and one only) but it looks like U-Boot's
+devicetree has an incorrect description of the clock controllers.
+
+Thanks,
+Conor.
+
+--RTLt+oLiwQtApFlh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHCkqwAKCRB4tDGHoIJi
+0vdkAP43YzMMBIOP4qCklag39nbgwA7LSz09sTVxhoohdmu7wQEA5hXKARvXO2uQ
+B83EN/ygq00FWZGY0aFccStWog1ZRw8=
+=W4DW
+-----END PGP SIGNATURE-----
+
+--RTLt+oLiwQtApFlh--
