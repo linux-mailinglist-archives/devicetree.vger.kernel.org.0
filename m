@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E09577121B2
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 09:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73C327121BD
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 10:02:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242639AbjEZH4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 03:56:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47542 "EHLO
+        id S242348AbjEZICl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 04:02:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242642AbjEZH4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 03:56:20 -0400
+        with ESMTP id S236792AbjEZICk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 04:02:40 -0400
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3536813D;
-        Fri, 26 May 2023 00:56:09 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E5BD3;
+        Fri, 26 May 2023 01:02:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685087769; x=1716623769;
+  t=1685088159; x=1716624159;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=i8SjRUVaH8UmFBJpxGhgn37bMQ5uZNZZ9RVzJ0t8KOk=;
-  b=CMjLFWSug9WFBZgsxtcgY0QIgwc/PpKSfGCQd3lCDHq3NDF31BlLEsVs
-   RBnzXsZKPeqqiCbsMQ8dhqsZ2otxZWqLLuAJWexj+B31JHVc/QSB9mgpe
-   FcpqcSWqjZgCr/3CzENywEn9SLOlr35meNrKsUEpWDHxq3PeBFRb80OnB
-   ObpdOCBir8YymhdsArSg+l+h3MtTdirxnltWUI+V/Fvdonr37Re05YQ2S
-   FRatgRUx+3h3VE1l4vafWhAt4BoMxDJiGw0EEfhveOvkZyvA8zE5Ds/fw
-   uDdwg6K1wxhfSsAq5yJII1oHJDcPMuhl2yqn0ClL0v2oW6hYPis3Vkh52
-   Q==;
+  bh=uUPmzyascHDc2Yhbxk2En/+7XKui32hlF6p4eUORT9A=;
+  b=A2Xlk2k+QyKpILjXGVIIxibZUv1Yy6LKHrdggeSbo4xu+dUaQ+WptxOM
+   tvHjlecvm44l4Ez+GlxvWz2N/zF3zuKEo97yk46RJUWp7/cCbi9VqQ6zw
+   uOYLjfpXXrxdlqLENP7cdHnS8bilN0O77xastW1D5I5TPLB7a/7rKXof5
+   MSwsU2oz4i9QiNPWE55l6XjqLSmRjcwd2QH8TywuHVJnAW8gyvDC9GtgO
+   QPCNr4K83bg/1bcQXwEiadvJfBPjh32y0TVj9UYeLsjKVX/oS+CElEyG4
+   kKbq0xUOzlMhX5Hw+ifxCDefxqA3AfO+pqGSuF3elz7tikQ0fitF3QGof
+   w==;
 X-IronPort-AV: E=Sophos;i="6.00,193,1681196400"; 
-   d="asc'?scan'208";a="154059732"
+   d="asc'?scan'208";a="154060890"
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 May 2023 00:56:08 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 May 2023 01:02:37 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
  chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 26 May 2023 00:56:03 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ 15.1.2507.21; Fri, 26 May 2023 01:02:37 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 26 May 2023 00:56:01 -0700
-Date:   Fri, 26 May 2023 08:55:39 +0100
+ Transport; Fri, 26 May 2023 01:02:34 -0700
+Date:   Fri, 26 May 2023 09:02:12 +0100
 From:   Conor Dooley <conor.dooley@microchip.com>
-To:     <Claudiu.Beznea@microchip.com>
-CC:     <devicetree@vger.kernel.org>, <alexandre.belloni@bootlin.com>,
-        <linux-watchdog@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <daniel.lezcano@linaro.org>, <conor+dt@kernel.org>,
-        <conor@kernel.org>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <tglx@linutronix.de>,
-        <wim@linux-watchdog.org>, <sebastian.reichel@collabora.com>,
-        <linux@roeck-us.net>
-Subject: Re: [PATCH 3/5] dt-bindings: timer: microchip,sam9x60-pit64b:
- convert to yaml
-Message-ID: <20230526-unsubtle-chowtime-ce329d7e5627@wendy>
-References: <20230525125602.640855-1-claudiu.beznea@microchip.com>
- <20230525125602.640855-4-claudiu.beznea@microchip.com>
- <20230525-straw-fidgeting-4c1099aa16fe@spud>
- <5edf3d3b-6f59-0af3-6414-940a278962bf@microchip.com>
- <20230526-knickers-aim-e01220e6a7cd@wendy>
- <5a5d25a2-e6b5-fd69-f615-cd3d6ed33b9f@microchip.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+CC:     Inki Dae <inki.dae@samsung.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] Revert "dt-bindings: bridge: samsung-dsim: Make some
+ flags optional"
+Message-ID: <20230526-oppressor-cabbie-fd5332dbc2cc@wendy>
+References: <20230526-revert-bad-binding-v1-1-67329ad1bd80@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jq43FJ9NVzNRW92F"
+        protocol="application/pgp-signature"; boundary="zfNhlKGJu8FDydZQ"
 Content-Disposition: inline
-In-Reply-To: <5a5d25a2-e6b5-fd69-f615-cd3d6ed33b9f@microchip.com>
+In-Reply-To: <20230526-revert-bad-binding-v1-1-67329ad1bd80@linaro.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -76,62 +78,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---jq43FJ9NVzNRW92F
-Content-Type: text/plain; charset=utf-8
+--zfNhlKGJu8FDydZQ
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 26, 2023 at 06:41:39AM +0000, Claudiu.Beznea@microchip.com wrot=
-e:
-> On 26.05.2023 09:23, Conor Dooley wrote:
-> > On Fri, May 26, 2023 at 04:47:28AM +0000, Claudiu.Beznea@microchip.com =
-wrote:
-> >> On 25.05.2023 20:14, Conor Dooley wrote:
-> >>>> Convert Microchip PIT64B to YAML. Along with it clock-names binding =
-has
-> >>>> been added as the driver needs it to get PIT64B clocks.
-> >>> I don't think both of these PIT things need to have different binding
-> >>> files. 90% of it is the same, just the clock-names/number - so you can
-> >>
-> >> But these are different hardware blocks with different functionalities=
- and
-> >> different drivers.
-> >=20
-> > Having different drivers doesn't preclude having them in the same
-> > binding provided the function/description etc are more or less
-> > identical. I was confused by:
-> >=20
-> > +description:
-> > +  The 64-bit periodic interval timer provides the operating system sch=
-eduler
-> > +  interrupt. It is designed to offer maximum accuracy and efficient ma=
-nagement,
-> > +  even for systems with long response times.
-> >=20
-> > +description:
-> > +  Atmel periodic interval timer provides the operating system=E2=80=99=
-s scheduler
-> > +  interrupt. It is designed to offer maximum accuracy and efficient ma=
-nagement,
-> > +  even for systems with long response time.
-> >=20
-> > Those seemed like they do the same thing to me!
+On Fri, May 26, 2023 at 09:27:16AM +0200, Neil Armstrong wrote:
+> This reverts commit cfaf76d349837f695c8aa6d7077847fec4231fe5 which was ap=
+plied
+> without review due to a bad tool manipulation.
+
+Is it a dt-binding maintainer review that you are missing on that
+patch?
+
+For this one:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
 >=20
-> They do the same thing, they are timers... But the way they do it (from
-> hardware perspective) is totally different. With this would you still
-> prefer to have them merged?
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml    | 9 +++=
++-----
+>  1 file changed, 4 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mip=
+i-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi=
+-dsim.yaml
+> index 360fea81f4b6..9f61ebdfefa8 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.=
+yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.=
+yaml
+> @@ -70,9 +70,7 @@ properties:
+>    samsung,burst-clock-frequency:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description:
+> -      DSIM high speed burst mode frequency when connected to devices
+> -      that support burst mode. If absent, the driver will use the pixel
+> -      clock from the attached device or bridge.
+> +      DSIM high speed burst mode frequency.
+> =20
+>    samsung,esc-clock-frequency:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> @@ -82,8 +80,7 @@ properties:
+>    samsung,pll-clock-frequency:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description:
+> -      DSIM oscillator clock frequency. If absent, the driver will
+> -      use the clock frequency of sclk_mipi.
+> +      DSIM oscillator clock frequency.
+> =20
+>    phys:
+>      maxItems: 1
+> @@ -137,7 +134,9 @@ required:
+>    - compatible
+>    - interrupts
+>    - reg
+> +  - samsung,burst-clock-frequency
+>    - samsung,esc-clock-frequency
+> +  - samsung,pll-clock-frequency
+> =20
+>  allOf:
+>    - $ref: ../dsi-controller.yaml#
+>=20
+> ---
+> base-commit: cfaf76d349837f695c8aa6d7077847fec4231fe5
+> change-id: 20230526-revert-bad-binding-f77a3ca96419
+>=20
+> Best regards,
+> --=20
+> Neil Armstrong <neil.armstrong@linaro.org>
+>=20
 
-Yeah, one binding would be my preference.
-
---jq43FJ9NVzNRW92F
+--zfNhlKGJu8FDydZQ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHBl8AAKCRB4tDGHoIJi
-0ipiAP98NbSsiQn027Mc4gJ0XQc+niD0ik1s1DA+bhuTimRCnwEAyuiOhfToapC1
-FlI8tu753UgyHiVKAvEh+UddupYYFAs=
-=od0H
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHBnhAAKCRB4tDGHoIJi
+0tj/AP45IR5a9ay/LFvrrvJEvwTQVEmT/6yKORu+4heiuTw+gAEAhlTCczumzNgR
+CCuPfSf1QIq9ldlpHQCis7EMHdhUhg0=
+=h9HI
 -----END PGP SIGNATURE-----
 
---jq43FJ9NVzNRW92F--
+--zfNhlKGJu8FDydZQ--
