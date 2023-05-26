@@ -2,80 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A5B3712DDA
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 21:47:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E26FF712DE2
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 21:50:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231899AbjEZTrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 15:47:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60136 "EHLO
+        id S231144AbjEZTue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 15:50:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230121AbjEZTrp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 15:47:45 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29B5BB6
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 12:47:44 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f3bb395e69so1285258e87.2
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 12:47:44 -0700 (PDT)
+        with ESMTP id S237658AbjEZTuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 15:50:32 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A647DF
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 12:50:31 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f3b4ed6fdeso1184220e87.3
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 12:50:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685130462; x=1687722462;
+        d=linaro.org; s=google; t=1685130629; x=1687722629;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CQkzKtEisrpF8CUT81uX61iLEGb3pWUzxMWX9GGjneU=;
-        b=f+pivJ3BCexcZFqZwMdNWnVhCA+BYK32sNXhN7peuXD1TAAziaCXTrqzoTRCv0TH/r
-         PbGbkz0BORT1NwwURbYutyAwvEd5OIj/MQVU8iqxZTTwkbLHMhWIlldmZo+i3SkVnBuB
-         S5xItzXHVpD9y5XmDtbx7+Ajclx4J3hInf94zCN8xR+kpnhkGqowN0ifeS+hbe5G5pEQ
-         Q4WBVoj+hepJPHB152a75G3SY6vs38TKSSyNPlWFDyy2XzApt9JztX5btRxqLjZLPOLs
-         y/H1+ZWtrG3VVS5OWJt1XtNPYQUEz9xPc4qkxexhqgAcpADuNrR5/XBSti/1WrDnnGXt
-         x+Jg==
+        bh=bptdLRnlIF+oTqXFA/f6wS8sjlEr0Ke0jCvaGBA4+pE=;
+        b=Bui0z+pRpvkINPAp8cS2BfqAj0tJiEpbXXMneIBGl3JEg7Pj/FoY4xunGNqZVB4jKa
+         BPoNKhkx22Cn/tT2GZ1plWZx/v+ucMuHCsTPQ+VXxGdNAAdXC0NfhA3dQc0K+gXCAlzg
+         Qx/x0o4/jp+TaH7M1PK+0M/2l4Pv+VdNGzajzlDEwkJ0gcmRIycY3Cza/TR1SNxyEwr5
+         3vK7uWPkQuCcUPWgmlI/heNTerMkV6oFpaDZrMl+uaCjqolZrvCp4eF0BGB6+5cy9SfS
+         inNwiyBCO6xW7MkwZY2aJUV5rxHIYFaMZZpbxqm3CmaP+zID87OVYSzUe/vtz0tLDVh2
+         UomQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685130462; x=1687722462;
+        d=1e100.net; s=20221208; t=1685130629; x=1687722629;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CQkzKtEisrpF8CUT81uX61iLEGb3pWUzxMWX9GGjneU=;
-        b=cmFU3sI+Q+eicPRtCF0bqn+uV9srKLbCEAM/7r2RMDHd139ZHLfIIgjAf0/pVjgX3o
-         MWe5ATPaZKTXRDaLm+s0NFRkgzAiGn3AuHVwg2Ga2zTmRhRBHx7R469N7Rd+sZaa728b
-         dTJ9LdFhjGF1JEKmgDWFi4vqZ3ZvnqsZD2kNalM4hjPofOv/o02I2K8kE+Bg4txeasAR
-         y95oIvIBi2Fzd/O85ZTclZheJdfuwOIrau+ApKyhGlWQq6Cj4tbr4dCf2BAYwvuHwemg
-         g3N7wDrFlvS8hfjWDc4vBm0AWTaTR/1y/xNcqovtyVX6fXjR6pMD0DrkyaFlXWlOWtIf
-         1sTg==
-X-Gm-Message-State: AC+VfDyKHbkYYp6NM+S0KJF9Tv3w4EiKDGFS1LeGFEAD9P0Xfo0ebBbf
-        g6Xj9xHGuUSuLfe3SUKxhX9p0A==
-X-Google-Smtp-Source: ACHHUZ6DMx+hasNATl8WCs5n/+Q5y8JrS66TTH0PhzIZg+omiOjBIbLy4x/4SDy/9yzsAttmyUUQwg==
-X-Received: by 2002:ac2:46e5:0:b0:4ee:d4bd:3475 with SMTP id q5-20020ac246e5000000b004eed4bd3475mr834098lfo.32.1685130462349;
-        Fri, 26 May 2023 12:47:42 -0700 (PDT)
+        bh=bptdLRnlIF+oTqXFA/f6wS8sjlEr0Ke0jCvaGBA4+pE=;
+        b=F5o81h7xjk835r6+br10Gr9rQQo3mgvD5sMbLk899LoKQ7ceime7GHpMOIaSsQWHx4
+         lLiObtV7U0HMikDHIH3UcLrUXw8GWFT2B1TUq9hBTgqXrwmk1QD20SCnYKBQXODiAxh/
+         spckkDBsokYrzGi7d1MOyhDCqR6qNeCMu2am4dCMec2iw9ejw6JmDHFa9rc/LUFBUg1C
+         uBiKgCI7lMQVZb4sqvfeseBZHrdg1fWL4jwsTxHqGFn0FVzPuvVPQIP4ZTi3sDhriVXm
+         d1sgJ8+vneV2DMcyuUw03kuFlceHbZTngBHAIVgsvAB5XG4hoh3F6185RYQCnP/TTdB1
+         7z5A==
+X-Gm-Message-State: AC+VfDzLxy61zDGlbS8S+yGV/eDVfH3zXvqSHvuiaOnbALM586hKWdAQ
+        CA0F5E7ah4zgAQP7vDa7B45+6Q==
+X-Google-Smtp-Source: ACHHUZ7P53mmtIebsfVFiPAfw7IqoHPXyWIh60Vz4umL3ti79Xy60N1su2mzjUrd69LJuyDjzk1bIw==
+X-Received: by 2002:ac2:5219:0:b0:4f3:8269:7228 with SMTP id a25-20020ac25219000000b004f382697228mr682943lfl.68.1685130629265;
+        Fri, 26 May 2023 12:50:29 -0700 (PDT)
 Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id t17-20020ac24c11000000b004e84d64ab51sm754144lfq.58.2023.05.26.12.47.41
+        by smtp.gmail.com with ESMTPSA id j5-20020ac253a5000000b004efae490c51sm750945lfh.240.2023.05.26.12.50.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 12:47:42 -0700 (PDT)
-Message-ID: <3210403b-eb17-3667-2cf3-8a4e82a24fa0@linaro.org>
-Date:   Fri, 26 May 2023 21:47:40 +0200
+        Fri, 26 May 2023 12:50:28 -0700 (PDT)
+Message-ID: <e9adc0d3-922d-f4c8-6f09-94bdc44e6602@linaro.org>
+Date:   Fri, 26 May 2023 21:50:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 6/6] arm64: dts: qcom: sdm845-xiaomi-beryllium: enable
- pmi8998 charger
+Subject: Re: [PATCH 1/4] arm64: dts: qcom: pm8550: add PWM controller
 Content-Language: en-US
-To:     Caleb Connolly <caleb.connolly@linaro.org>,
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org,
-        Joel Selvaraj <joelselvaraj.oss@gmail.com>
-References: <20230524-pmi8998-charger-dts-v1-0-f9334afc4505@linaro.org>
- <20230524-pmi8998-charger-dts-v1-6-f9334afc4505@linaro.org>
+        linux-kernel@vger.kernel.org
+References: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v1-0-4d5d7602f290@linaro.org>
+ <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v1-1-4d5d7602f290@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230524-pmi8998-charger-dts-v1-6-f9334afc4505@linaro.org>
+In-Reply-To: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v1-1-4d5d7602f290@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,49 +82,36 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 24.05.2023 19:38, Caleb Connolly wrote:
-> From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+On 25.05.2023 17:47, Neil Armstrong wrote:
+> Add the PWM function to the pm8550 dtsi, this is usually used
+> to drive RGB leds on platforms using this PMIC.
 > 
-> Enable the pmi8998 charger and define some basic battery properties.
-> 
-> Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  .../arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> index 1915643f1c49..2060b31648fc 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> @@ -115,6 +115,14 @@ rmtfs_mem: memory@f6301000 {
->  		};
->  	};
->  
-> +	battery: battery {
-> +		compatible = "simple-battery";
-> +
-> +		charge-full-design-microamp-hours = <4000000>;
-> +		voltage-min-design-microvolt = <3400000>;
-> +		voltage-max-design-microvolt = <4400000>;
-> +	};
-> +
->  	vreg_s4a_1p8: vreg-s4a-1p8 {
->  		compatible = "regulator-fixed";
->  		regulator-name = "vreg_s4a_1p8";
-> @@ -341,6 +349,11 @@ &pmi8998_wled {
->  	qcom,cabc;
->  };
->  
-> +&pmi8998_charger {
-> +	status = "okay";
-> +	monitored-battery = <&battery>;
-status last, please
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
-> +};
+>  arch/arm64/boot/dts/qcom/pm8550.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pm8550.dtsi b/arch/arm64/boot/dts/qcom/pm8550.dtsi
+> index 33f357a80636..db3d5c17a77d 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8550.dtsi
+> @@ -61,5 +61,15 @@ pm8550_flash: led-controller@ee00 {
+>  			reg = <0xee00>;
+>  			status = "disabled";
+>  		};
 > +
->  &pm8998_resin {
->  	linux,code = <KEY_VOLUMEDOWN>;
->  	status = "okay";
+> +		pm8550_pwm: pwm {
+> +			compatible = "qcom,pm8550-pwm", "qcom,pm8350c-pwm";
+> +
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			#pwm-cells = <2>;
+> +
+> +			status = "disabled";
+> +		};
+>  	};
+>  };
 > 
