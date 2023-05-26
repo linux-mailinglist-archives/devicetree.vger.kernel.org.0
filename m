@@ -2,136 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6317C712192
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 09:55:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E09577121B2
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 09:57:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242351AbjEZHzm convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 26 May 2023 03:55:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46992 "EHLO
+        id S242639AbjEZH4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 03:56:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242147AbjEZHzl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 03:55:41 -0400
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32EBD125;
-        Fri, 26 May 2023 00:55:40 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-561bd0d31c1so5200697b3.0;
-        Fri, 26 May 2023 00:55:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685087739; x=1687679739;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=d5Db8Jd59mFLPRBkBeMn6BXutz9qAM7zTWla/wvQcpY=;
-        b=lYpr1bRelIwQDT0yF4k8nPfLl4T1sbLXKwDWA6tY8ydBwDLM1+qpmKfDM9oQYVQAp/
-         Xe/Td74bMCM7zxvdujla8Ks3FikfRQOIbhnAHdbChHVzNpEYQSuULC0HTUC6BdB2tNGY
-         m8chwoG+RegrP47RMKjW0ok5IZDyxpa2dfh4J2zKMKeWOQe+yBh4QIN1qEX8sDgbqts1
-         Tds1YW/GgnTgV2I3sRO/U7jvtduQ9fe9VfLaYDQVeY5oy5NnHX73OadVxhRnk19Cy62+
-         osvVRgVYTW+yCmiBc1+zYJDInR8kQ8fFCWqRFYPHznj8cVhOYQOci9yLJnTSVDj8EucP
-         iASg==
-X-Gm-Message-State: AC+VfDzmsv8ifS4IQUlOPOccr1bIFFswIS9qNHk6nOc6mq0YVIFgUP23
-        krvBPT7BmbiutPP+xP1/j1M9p4xUtOo0/g==
-X-Google-Smtp-Source: ACHHUZ7pAlDIyLJBf+XvE5tu+1Ch8A04T1lFJq5NB/fARNU+fq95TxJIwrKGNXPKHw7uakrLeooGeQ==
-X-Received: by 2002:a0d:d54c:0:b0:565:9fc5:f0a1 with SMTP id x73-20020a0dd54c000000b005659fc5f0a1mr1220915ywd.36.1685087739091;
-        Fri, 26 May 2023 00:55:39 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id w131-20020a817b89000000b00565374c5962sm1006063ywc.98.2023.05.26.00.55.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 00:55:38 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-561bd0d31c1so5200587b3.0;
-        Fri, 26 May 2023 00:55:38 -0700 (PDT)
-X-Received: by 2002:a81:dd06:0:b0:561:dd6a:b84 with SMTP id
- e6-20020a81dd06000000b00561dd6a0b84mr1149993ywn.26.1685087738002; Fri, 26 May
- 2023 00:55:38 -0700 (PDT)
+        with ESMTP id S242642AbjEZH4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 03:56:20 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3536813D;
+        Fri, 26 May 2023 00:56:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685087769; x=1716623769;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=i8SjRUVaH8UmFBJpxGhgn37bMQ5uZNZZ9RVzJ0t8KOk=;
+  b=CMjLFWSug9WFBZgsxtcgY0QIgwc/PpKSfGCQd3lCDHq3NDF31BlLEsVs
+   RBnzXsZKPeqqiCbsMQ8dhqsZ2otxZWqLLuAJWexj+B31JHVc/QSB9mgpe
+   FcpqcSWqjZgCr/3CzENywEn9SLOlr35meNrKsUEpWDHxq3PeBFRb80OnB
+   ObpdOCBir8YymhdsArSg+l+h3MtTdirxnltWUI+V/Fvdonr37Re05YQ2S
+   FRatgRUx+3h3VE1l4vafWhAt4BoMxDJiGw0EEfhveOvkZyvA8zE5Ds/fw
+   uDdwg6K1wxhfSsAq5yJII1oHJDcPMuhl2yqn0ClL0v2oW6hYPis3Vkh52
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,193,1681196400"; 
+   d="asc'?scan'208";a="154059732"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 May 2023 00:56:08 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 26 May 2023 00:56:03 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 26 May 2023 00:56:01 -0700
+Date:   Fri, 26 May 2023 08:55:39 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     <Claudiu.Beznea@microchip.com>
+CC:     <devicetree@vger.kernel.org>, <alexandre.belloni@bootlin.com>,
+        <linux-watchdog@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <daniel.lezcano@linaro.org>, <conor+dt@kernel.org>,
+        <conor@kernel.org>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <tglx@linutronix.de>,
+        <wim@linux-watchdog.org>, <sebastian.reichel@collabora.com>,
+        <linux@roeck-us.net>
+Subject: Re: [PATCH 3/5] dt-bindings: timer: microchip,sam9x60-pit64b:
+ convert to yaml
+Message-ID: <20230526-unsubtle-chowtime-ce329d7e5627@wendy>
+References: <20230525125602.640855-1-claudiu.beznea@microchip.com>
+ <20230525125602.640855-4-claudiu.beznea@microchip.com>
+ <20230525-straw-fidgeting-4c1099aa16fe@spud>
+ <5edf3d3b-6f59-0af3-6414-940a278962bf@microchip.com>
+ <20230526-knickers-aim-e01220e6a7cd@wendy>
+ <5a5d25a2-e6b5-fd69-f615-cd3d6ed33b9f@microchip.com>
 MIME-Version: 1.0
-References: <20230522101849.297499-1-biju.das.jz@bp.renesas.com> <20230522101849.297499-12-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230522101849.297499-12-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 26 May 2023 09:55:26 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWAkyHYhUfNLB-wkDeqmzAxARCcxqiBVYLdG_Udnj5bvA@mail.gmail.com>
-Message-ID: <CAMuHMdWAkyHYhUfNLB-wkDeqmzAxARCcxqiBVYLdG_Udnj5bvA@mail.gmail.com>
-Subject: Re: [PATCH v5 11/11] arm64: dts: renesas: rzg2l-smarc-som: Enable
- PMIC and built-in RTC
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jq43FJ9NVzNRW92F"
+Content-Disposition: inline
+In-Reply-To: <5a5d25a2-e6b5-fd69-f615-cd3d6ed33b9f@microchip.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+--jq43FJ9NVzNRW92F
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for your patch!
+On Fri, May 26, 2023 at 06:41:39AM +0000, Claudiu.Beznea@microchip.com wrot=
+e:
+> On 26.05.2023 09:23, Conor Dooley wrote:
+> > On Fri, May 26, 2023 at 04:47:28AM +0000, Claudiu.Beznea@microchip.com =
+wrote:
+> >> On 25.05.2023 20:14, Conor Dooley wrote:
+> >>>> Convert Microchip PIT64B to YAML. Along with it clock-names binding =
+has
+> >>>> been added as the driver needs it to get PIT64B clocks.
+> >>> I don't think both of these PIT things need to have different binding
+> >>> files. 90% of it is the same, just the clock-names/number - so you can
+> >>
+> >> But these are different hardware blocks with different functionalities=
+ and
+> >> different drivers.
+> >=20
+> > Having different drivers doesn't preclude having them in the same
+> > binding provided the function/description etc are more or less
+> > identical. I was confused by:
+> >=20
+> > +description:
+> > +  The 64-bit periodic interval timer provides the operating system sch=
+eduler
+> > +  interrupt. It is designed to offer maximum accuracy and efficient ma=
+nagement,
+> > +  even for systems with long response times.
+> >=20
+> > +description:
+> > +  Atmel periodic interval timer provides the operating system=E2=80=99=
+s scheduler
+> > +  interrupt. It is designed to offer maximum accuracy and efficient ma=
+nagement,
+> > +  even for systems with long response time.
+> >=20
+> > Those seemed like they do the same thing to me!
+>=20
+> They do the same thing, they are timers... But the way they do it (from
+> hardware perspective) is totally different. With this would you still
+> prefer to have them merged?
 
-On Mon, May 22, 2023 at 12:19 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable PMIC RAA215300 and the built-in RTC on the RZ/{G2L,V2L} SMARC
-> EVK.
+Yeah, one binding would be my preference.
 
-Looking at the schematics for the RZ/{G2L,G2LC,V2L} SOMs, it seems not
-all SOMs have this PMIC? The ones that do have the PMIC are annotated
-"PMIC Version" on the title page.
+--jq43FJ9NVzNRW92F
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+-----BEGIN PGP SIGNATURE-----
 
-> --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-> @@ -73,6 +73,13 @@ vccq_sdhi0: regulator-vccq-sdhi0 {
->                 gpios = <&pinctrl RZG2L_GPIO(39, 0) GPIO_ACTIVE_HIGH>;
->                 regulator-always-on;
->         };
-> +
-> +       /* 32.768kHz crystal */
-> +       x2: clock-xtal {
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHBl8AAKCRB4tDGHoIJi
+0ipiAP98NbSsiQn027Mc4gJ0XQc+niD0ik1s1DA+bhuTimRCnwEAyuiOhfToapC1
+FlI8tu753UgyHiVKAvEh+UddupYYFAs=
+=od0H
+-----END PGP SIGNATURE-----
 
-"clock-extal" is a too generic name, and might cause conflicts.
-"x2-clk"?
-
-> +               compatible = "fixed-clock";
-> +               #clock-cells = <0>;
-> +               clock-frequency = <32768>;
-> +       };
->  };
->
->  &adc {
-> @@ -351,3 +358,14 @@ &wdt1 {
->         status = "okay";
->         timeout-sec = <60>;
->  };
-> +
-> +&i2c3 {
-
-Please obey alphabetical sort order.
-
-> +       raa215300: pmic@12 {
-> +               compatible = "renesas,raa215300";
-> +               reg = <0x12>, <0x6f>;
-> +               reg-names = "main", "rtc";
-> +
-> +               clocks = <&x2>;
-> +               clock-names = "xin";
-> +       };
-> +};
-> --
-> 2.25.1
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--jq43FJ9NVzNRW92F--
