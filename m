@@ -2,192 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1119D712D5B
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 21:25:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B330712D65
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 21:27:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229502AbjEZTZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 15:25:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41960 "EHLO
+        id S236530AbjEZT1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 15:27:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242258AbjEZTZA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 15:25:00 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF24EA3;
-        Fri, 26 May 2023 12:24:35 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1b011cffef2so9259055ad.3;
-        Fri, 26 May 2023 12:24:35 -0700 (PDT)
+        with ESMTP id S231240AbjEZT1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 15:27:20 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32E231B7
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 12:27:14 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f6ef9a928fso5588325e9.3
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 12:27:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685129074; x=1687721074;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8F+V6OXXzxlqAeAQ2S6nVyckBmSNTRDJrN1SofTqjrw=;
-        b=l0fvbyeOvzjhchm1f7BpPbYg1pvfRRBID8i4AaBQVgNK/2dgA3qoG7g5mCHUhLU8+v
-         Naau0mLrjmenMYJxaZXr9pxWiulhsH0h/63lg+sJHR9cVIQ793td2LmKq5Y9GxWyEUkb
-         LipYNGnex7vUfFUlCG9h9zXip6tqGL8zUof1xss0MPjoWgdEd656+rI+60EOrC93/LBm
-         odro18Sd0VWRrX/F2R7sfy4eaeJytZX8W1viq7FYKsATiKrMT7sHi7R222JYVsuTy6oV
-         7aV2Q4WMxUTa1mHVof2Z5f7YF9slphVcUIEtTn/FUKXJz7xhu4YxHErPPvxpwj5DQvwH
-         3Dyw==
+        d=linaro.org; s=google; t=1685129233; x=1687721233;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4RG7dPUDUZOMlBAs1383gBxh4HflNwt399txwioncds=;
+        b=ZClEf5sZuEtSsNFNhaeCkpj8T5RiPbpyidNqyhfa/Y4vr/mZ7hptk0svoX5Or8p7cQ
+         WsO/k8papZAuKVyUwEf+VrdsYPx54vmXxqyfJFjkds3w4zIAZSsqDDYGXUUz0XV9hcAW
+         OrnixBxePqd/jw9YCWckrOofmr+8QABIhpRcjDlv618H6n6TCX+z+Axd81jOVMT9MMPj
+         bjMiSV3H3LlW3S093wAltees8ZXStjy9Fgd+mta+fzdcheSSbA9Nrw2UhBrUP396txUT
+         di1mgCiufkID7JfjCvtne1WgiGFIZlVlEZc+Xxf4ZDEA5St4gxrcLzPoHPcG/Q+ZE0jS
+         rkYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685129074; x=1687721074;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8F+V6OXXzxlqAeAQ2S6nVyckBmSNTRDJrN1SofTqjrw=;
-        b=T2KRzfpfdXoV0aUpOODZFz5YORtcqlvOnMccnq7+xXvTi7IBmecwI3fRRslYNE4Kpt
-         9U8RrAknKHr+C+a28LLRY39CT3kDXSkMd2JXZr4CaDPuaVkY2h5GQ++AMyAobYMA7sJv
-         sq2IygOp64JRfoY5g+2BVVPFJd11M9+1zkTesGt9aWwUnplAUk/bR/ioX9yTPlVeRhJ/
-         Hftfs44RyyVZ2EQ6ObxC9An7LTKiL0DeFskrJVvm+BO641a/5wT81rxr4gWV8gqDO4p+
-         dTkCI2+L1KpM1elmYj6+YSQvKgRqpZw5pS/lHxZcVMIyK63wL2CT4F1yZ98YuXJeeffQ
-         Xj6Q==
-X-Gm-Message-State: AC+VfDxg3B9KkGwzqAjdLrGyXnaS/PnT4mafy9/iiCJrmDckz4Q99cwa
-        sWrb02nFFmgbXV+vjhv/kFfaCnf/aSGiiekOQfY=
-X-Google-Smtp-Source: ACHHUZ5Aq9OT6SrKipriSxgDG/MKDVlnUMLqDL/khDIN89awyhwqpZYdgZodTSy7yiHuDKfAL/ibrOQy5o71MeAlngM=
-X-Received: by 2002:a17:902:f550:b0:1ac:4a41:d38d with SMTP id
- h16-20020a170902f55000b001ac4a41d38dmr3398196plf.51.1685129073567; Fri, 26
- May 2023 12:24:33 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1685129233; x=1687721233;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4RG7dPUDUZOMlBAs1383gBxh4HflNwt399txwioncds=;
+        b=ZbJBBgVQh6LLJszhKscn+EsKHFfTMIfHogCBUcJljrdB1lTIRdhlqZc1jEdYUEx2It
+         T0jqj18sERAHEaWGPNY+rsG8bKJ+HHVB9yUj4nMoP/u/rS8FSFSEVkrbFZfOcbSSsJUl
+         l2o2HihmtHt1QgRZiq+zC5e0MnNcX6GQcJwP6/Vxv8ZZKfM2Ht/ojljYxLhm3rk/n3fh
+         sxJNSuwC+zhkZBxQmGQTH072hE7zD7etXTkJViUH4cuL4HNBhZR/HDeap0XNuxN/9V/s
+         jajyBPJnBSGL0rP5WEPtWmF3KNtn/F44RZuR1TiYMSdlRl45ZVyI6ao1XpsdmDon8Gqd
+         R9EQ==
+X-Gm-Message-State: AC+VfDwXc5DLSWGz2JJsNps6ZTtoS0ovFCxIf1qWF9Ef7EYYUOdXq9mC
+        b55Knx4VWwUlcL+yK/VArS9yu7Xlqf1k9KMtod6xEtz9BTdp5JiLOQs=
+X-Google-Smtp-Source: ACHHUZ6SddmgRY2i5qzNxt6nE/91yQ86wVr3fo8Fe+cRJEurp9CIx78Vc80kzgQ3AZYopDoZPb1KKwvmCK3fcyFvEKo=
+X-Received: by 2002:adf:f6c3:0:b0:309:303b:3dc5 with SMTP id
+ y3-20020adff6c3000000b00309303b3dc5mr2490703wrp.7.1685129233112; Fri, 26 May
+ 2023 12:27:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230526030559.326566-1-aford173@gmail.com> <20230526030559.326566-8-aford173@gmail.com>
- <20230526-cabana-humble-81e44944e378@spud>
-In-Reply-To: <20230526-cabana-humble-81e44944e378@spud>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Fri, 26 May 2023 14:24:21 -0500
-Message-ID: <CAHCN7xJdfO4+q071sur7wpVg+gU_Fzw9zfXvM9NDBFCN=Axiog@mail.gmail.com>
-Subject: Re: [PATCH V8 7/7] dt-bindings: bridge: samsung-dsim: Make some flags optional
-To:     Conor Dooley <conor@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, aford@beaconembedded.com,
-        Inki Dae <inki.dae@samsung.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230104101228.3964304-1-bhupesh.sharma@linaro.org> <20230526190222.2dyopipjz2llclus@ripper>
+In-Reply-To: <20230526190222.2dyopipjz2llclus@ripper>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Sat, 27 May 2023 00:57:01 +0530
+Message-ID: <CAH=2NtzRypkbWeTDqEvNY6w25Pi_OCU19VVcjuo2OA4VTvkpcw@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: qcom: sm6115: Add EUD dt node and dwc3 connector
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, quic_schowdhu@quicinc.com,
+        agross@kernel.org, konrad.dybcio@linaro.org,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 26, 2023 at 1:19=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
+Hi Bjorn,
+
+On Sat, 27 May 2023 at 00:28, Bjorn Andersson <andersson@kernel.org> wrote:
 >
-> Adam, Neil,
->
-> I meant to get to this earlier today, but broken CI got in the way...
->
-> On Thu, May 25, 2023 at 10:05:59PM -0500, Adam Ford wrote:
-> > In the event a device is connected to the samsung-dsim
-> > controller that doesn't support the burst-clock, the
-> > driver is able to get the requested pixel clock from the
-> > attached device or bridge.  In these instances, the
-> > samsung,burst-clock-frequency isn't needed, so remove
-> > it from the required list.
+> On Wed, Jan 04, 2023 at 03:42:28PM +0530, Bhupesh Sharma wrote:
+> > Add the Embedded USB Debugger(EUD) device tree node for
+> > SM6115 / SM4250 SoC.
 > >
-> > The pll-clock frequency can be set by the device tree entry
-> > for samsung,pll-clock-frequency, but in some cases, the
-> > pll-clock may have the same clock rate as sclk_mipi clock.
-> > If they are equal, this flag is not needed since the driver
-> > will use the sclk_mipi rate as a fallback.
+> > The node contains EUD base register region, EUD mode manager
+> > register region and TCSR Check register region along with the
+> > interrupt entry.
 > >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > Also add the typec connector node for EUD which is attached to
+> > EUD node via port. EUD is also attached to DWC3 node via port.
+> >
+> > To enable the role switch, we need to set dr_mode = "otg" property
+> > for 'usb_dwc3' sub-node in the board dts file.
+> >
+> > Also the EUD device can be enabled on a board once linux is boot'ed
+> > by setting:
+> >  $ echo 1 > /sys/bus/platform/drivers/qcom_eud/../enable
+> >
+>
+> I was under the impression that you where working on some updates to EUD
+> and was going to resend this, but I don't find a new version, and I
+> don't see an on-list reply from me.
+>
+> So just to make sure this isn't lost any longer... Can you please respin
+> this to correct the dtc warnings?
+
+Yes, we already have the v6 for this series here:
+https://lore.kernel.org/linux-arm-msm/20230517211756.2483552-1-bhupesh.sharma@linaro.org/
+
+Thanks,
+Bhupesh
+
+> > Cc: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > > ---
-> >  .../bindings/display/bridge/samsung,mipi-dsim.yaml       | 9 +++++----
-> >  1 file changed, 5 insertions(+), 4 deletions(-)
+> > - v2 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230104052047.3945983-1-bhupesh.sharma@linaro.org
+> > - In v3, fix the errors reported by '$ make dtbs_check' for the port sub node:
+> >   ports:
+> >     'oneOf' conditional failed, one must be fixed:
+> >         'port' is a required property
+> >         '#address-cells' is a required property
+> >         '#size-cells' is a required property
+> > - This patch is based on my earlier sm6115 usb related changes, which can
+> >   be seen here:
+> >   https://lore.kernel.org/linux-arm-msm/20221215094532.589291-1-bhupesh.sharma@linaro.org/
+> > - This patch is also dependent on my sm6115 eud dt-binding and driver changes
+> >   (v2) sent earlier, which can be seen here:
+> >   https://lore.kernel.org/linux-arm-msm/20230103150419.3923421-1-bhupesh.sharma@linaro.org/
 > >
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,m=
-ipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mi=
-pi-dsim.yaml
-> > index 9f61ebdfefa8..360fea81f4b6 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsi=
-m.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsi=
-m.yaml
-> > @@ -70,7 +70,9 @@ properties:
-> >    samsung,burst-clock-frequency:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> >      description:
-> > -      DSIM high speed burst mode frequency.
-> > +      DSIM high speed burst mode frequency when connected to devices
-> > +      that support burst mode. If absent, the driver will use the pixe=
-l
-> > +      clock from the attached device or bridge.
->
-> I'd rather this description did not say anything about drivers.
-> How about:
->         If absent, the pixel clock from the attached device or bridge
->         will be used instead.
-
-That makes sense.  I can do that.
-
-"DSIM high speed burst mode frequency (optional). If absent, the pixel
-clock from the attached device or bridge will be used instead."
-
-> Or perhaps "must be used"? Ditto below.
-
-"Must be" implies to me that the user needs to set something.  Are you
-ok with the proposed suggestion above?
->
-> Description aside, the removal seems to be backwards compatible - but
-> can every device that this binding supports work using an "attached
-> device or bridge", or are these properties going to be required for
-> certain compatibles?
-
-From what I can tell, the assumption is that the DSIM driver was
-expecting it to attach to panels in the past.  With the additional
-patch series, the DSIM can attach to bridge parts without a hard-coded
-set of clocks.  I don't expect the existing Exynos devices to change,
-but I also don't know what would preclude those SoC's from attaching
-to a bridge should someone want to design a new product around them.
-
-I'll wait a couple days for more feedback and send patch V2 with just
-this patch since the rest of the series has been applied to the drm
-branch.
-
-adam
-
->
-> Thanks,
-> Conor.
->
+> >  arch/arm64/boot/dts/qcom/sm6115.dtsi | 46 ++++++++++++++++++++++++++++
+> >  1 file changed, 46 insertions(+)
 > >
-> >    samsung,esc-clock-frequency:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> > @@ -80,7 +82,8 @@ properties:
-> >    samsung,pll-clock-frequency:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> >      description:
-> > -      DSIM oscillator clock frequency.
-> > +      DSIM oscillator clock frequency. If absent, the driver will
-> > +      use the clock frequency of sclk_mipi.
+> > diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > index 030763187cc3f..a1a4f659587f3 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
+> > @@ -170,6 +170,18 @@ core3 {
+> >               };
+> >       };
 > >
-> >    phys:
-> >      maxItems: 1
-> > @@ -134,9 +137,7 @@ required:
-> >    - compatible
-> >    - interrupts
-> >    - reg
-> > -  - samsung,burst-clock-frequency
-> >    - samsung,esc-clock-frequency
-> > -  - samsung,pll-clock-frequency
+> > +     eud_typec: connector {
+> > +             compatible = "usb-c-connector";
+> > +
+> > +             ports {
+> > +                     port@0 {
+> > +                             con_eud: endpoint {
+> > +                                     remote-endpoint = <&eud_con>;
+> > +                             };
+> > +                     };
+> > +             };
+> > +     };
+> > +
+> >       firmware {
+> >               scm: scm {
+> >                       compatible = "qcom,scm-sm6115", "qcom,scm";
+> > @@ -565,6 +577,33 @@ gcc: clock-controller@1400000 {
+> >                       #power-domain-cells = <1>;
+> >               };
 > >
-> >  allOf:
-> >    - $ref: ../dsi-controller.yaml#
+> > +             eud: eud@1610000 {
+> > +                     compatible = "qcom,sm6115-eud", "qcom,eud";
+> > +                     reg = <0x01610000 0x2000>,
+> > +                           <0x01612000 0x1000>,
+> > +                           <0x003e5018 0x4>;
+> > +                     interrupts = <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>;
+> > +                     status = "disabled";
+> > +
+> > +                     ports {
+> > +                             #address-cells = <1>;
+> > +                             #size-cells = <0>;
+> > +                             port@0 {
+> > +                                     reg = <0>;
+> > +                                     eud_ep: endpoint {
+> > +                                             remote-endpoint = <&usb2_role_switch>;
+> > +                                     };
+> > +                             };
+> > +
+> > +                             port@1 {
+> > +                                     reg = <1>;
+> > +                                     eud_con: endpoint {
+> > +                                             remote-endpoint = <&con_eud>;
+> > +                                     };
+> > +                             };
+> > +                     };
+> > +             };
+> > +
+> >               usb_hsphy: phy@1613000 {
+> >                       compatible = "qcom,sm6115-qusb2-phy";
+> >                       reg = <0x01613000 0x180>;
+> > @@ -1064,6 +1103,13 @@ usb_dwc3: usb@4e00000 {
+> >                               snps,has-lpm-erratum;
+> >                               snps,hird-threshold = /bits/ 8 <0x10>;
+> >                               snps,usb3_lpm_capable;
+> > +                             usb-role-switch;
+> > +
+> > +                             port {
+> > +                                     usb2_role_switch: endpoint {
+> > +                                             remote-endpoint = <&eud_ep>;
+> > +                                     };
+> > +                             };
+> >                       };
+> >               };
+> >
 > > --
-> > 2.39.2
+> > 2.38.1
 > >
