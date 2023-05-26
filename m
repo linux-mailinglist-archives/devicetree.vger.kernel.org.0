@@ -2,72 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEA8B712D86
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 21:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89EEF712DB0
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 21:37:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244031AbjEZTbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 15:31:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49838 "EHLO
+        id S230272AbjEZThq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 15:37:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244022AbjEZTbC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 15:31:02 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58272E6B;
-        Fri, 26 May 2023 12:30:54 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f6d01d390bso11892865e9.2;
-        Fri, 26 May 2023 12:30:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685129453; x=1687721453;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pM/LPuq+crw58Br+yK0qd+I4lbnJHtjzEVoX/VQ84uQ=;
-        b=EldHgGIA3Tv85EJKaqAN/HusU3ux1Do2Ch3hkYhXRewE9Vexa3GvViKOSM2mckcVSK
-         FH/wnqcfyrE4bvTuZ8yNw7X/t7G0lht/RiBYpgV+EVqKdeGiXS7STNdeg0/s5dLFRUAN
-         Q0RH7WWKsV48zQnHvnOekozCl+VThGWseKiiP0iuR4ZJBr4ZWQT+rLN2PwINqpk41F0R
-         Ow0enpNgcuSzASvojtJdGK/RzwRHzhCleuNkEedBpCcy7fxv6o1Pb6pq0NyeNpZUTVSg
-         73g7rOr3f2tqwngcsD5KHW6HjDQQ7/DGrycii0WuCOq9sSPXiTrdmjFN966maPUxHMR7
-         rtiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685129453; x=1687721453;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pM/LPuq+crw58Br+yK0qd+I4lbnJHtjzEVoX/VQ84uQ=;
-        b=UNZT++CBf6JqLlQdhj+eAN0p7eBLLw58zBEj04vu2FcKJlwG9wqgynq67goeZdoCt3
-         J5bpg4SHkOSOuh0oKooi5PA6sY7TEhr84w8q5HGzEhBbSslcPbB4uO/y8ysf4vfooqo5
-         jHWBCHtqjmxu+MlpNojKWRbH3CwaObi64CZy21xG+kxx7PeABGDVupOBm/QePW1z1VOB
-         OLxonp/JzSOGKoQhfPM3NTm9ZVzDgKCkeMWGQ/AzzPC+WRL0+CyJd2+zBBkOLcJx8gVC
-         Y2Y9QWpkXanmdrh7nhtBG+VdOuExARbEpYSFhNWP2kTPsTfSK3oVY8oljgIiYcBJuPM1
-         y+dQ==
-X-Gm-Message-State: AC+VfDxLgnk35DCq21VBSHShqLCHIofPXXRTq3mIQ302Fo5k3jYAdz1b
-        b7SwSOdg3i9HGkRgljV3QvwvQv7Hzp8=
-X-Google-Smtp-Source: ACHHUZ6WPvUjqJJM9XvrHnWP/l+kilzoaRyl9VRR9lXzqkR7dJzl4YKfNPcUeX/g9DpYpwIRxkiwhg==
-X-Received: by 2002:a1c:f709:0:b0:3f4:2c71:b9ad with SMTP id v9-20020a1cf709000000b003f42c71b9admr2744268wmh.30.1685129452700;
-        Fri, 26 May 2023 12:30:52 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP ([188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id 13-20020a05600c24cd00b003f4dde07956sm9704192wmu.42.2023.05.26.12.30.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 May 2023 12:30:52 -0700 (PDT)
-Date:   Fri, 26 May 2023 21:30:50 +0200
-From:   Stanislav Jakubek <stano.jakubek@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>
-Cc:     bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] ARM: dts: bcm28155-ap: use node labels
-Message-ID: <cb52d36db90fa24e40fccc69724a685344f2c2f3.1685127525.git.stano.jakubek@gmail.com>
-References: <cover.1685127525.git.stano.jakubek@gmail.com>
+        with ESMTP id S229626AbjEZThn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 15:37:43 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 250DF10DB;
+        Fri, 26 May 2023 12:37:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4AE896530B;
+        Fri, 26 May 2023 19:37:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C16B0C433D2;
+        Fri, 26 May 2023 19:37:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685129834;
+        bh=61oDnhfNH8ufLNofYCaRGxyQ/QXe0dL9oaCN4AKb+H4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UZzBo4jLBiEVjbs6iMFNF8V+fl/hLcONTLx9M+sCSyywf9duJPmXKe3bcJ/8da59b
+         T90f3Sv6oCWDCcN69gaNpq78AeJIv10KMZDsjQh1LGtNc7DWldhv1UgM0+zlan+Q9m
+         NNADrRTCVXAzXNDTE9zMaLqFZPbvcLTbS3WOmsAsi9W3WLNJQG0arSt2+19SjkA7GU
+         Mlo5diNjomNwpiC5AL3jwSThslstuZ+ixXWPNep5yDV/5RKwzwvQKQIMG53ncRKp1B
+         vHme3o2n8bN0PNQnvFtlV+hW20YWdFS4rU/R+3nVdT+tHGbgtpH4ecVAZ3s9oYbZUr
+         X3X9jCrByY7Eg==
+Date:   Fri, 26 May 2023 20:37:10 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Bharat Bhushan <bbhushan2@marvell.com>
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sgoutham@marvell.com
+Subject: Re: [PATCH 1/2 v8] dt-bindings: watchdog: marvell GTI system
+ watchdog driver
+Message-ID: <20230526-bondless-slather-5de0a5659353@spud>
+References: <20230526062626.1180-1-bbhushan2@marvell.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jK9jaRY3vIUfhC/g"
 Content-Disposition: inline
-In-Reply-To: <cover.1685127525.git.stano.jakubek@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+In-Reply-To: <20230526062626.1180-1-bbhushan2@marvell.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,144 +57,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use node labels instead of nodename@address for BCM28155 AP board
-to simplify its DTS file.
 
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
-I was not sure what to do about the &pmu node here, so I left it as is.
+--jK9jaRY3vIUfhC/g
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- arch/arm/boot/dts/bcm28155-ap.dts | 110 +++++++++++++++---------------
- 1 file changed, 55 insertions(+), 55 deletions(-)
+Yo Bharat,
 
-diff --git a/arch/arm/boot/dts/bcm28155-ap.dts b/arch/arm/boot/dts/bcm28155-ap.dts
-index 0a8ad1d673d8..08eea8b941b6 100644
---- a/arch/arm/boot/dts/bcm28155-ap.dts
-+++ b/arch/arm/boot/dts/bcm28155-ap.dts
-@@ -15,64 +15,21 @@ memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x80000000 0x40000000>; /* 1 GB */
- 	};
-+};
- 
--	serial@3e000000 {
--		status = "okay";
--	};
--
--	i2c@3e016000 {
--		clock-frequency = <400000>;
--		status = "okay";
--	};
--
--	i2c@3e017000 {
--		clock-frequency = <400000>;
--		status = "okay";
--	};
--
--	i2c@3e018000 {
--		clock-frequency = <400000>;
--		status = "okay";
--	};
--
--	i2c@3500d000 {
--		clock-frequency = <100000>;
--		status = "okay";
--
--		pmu: pmu@8 {
--			reg = <0x08>;
--		};
--	};
--
--	sdio2: mmc@3f190000 {
--		non-removable;
--		max-frequency = <48000000>;
--		vmmc-supply = <&camldo1_reg>;
--		vqmmc-supply = <&iosr1_reg>;
--		status = "okay";
--	};
--
--	sdio4: mmc@3f1b0000 {
--		max-frequency = <48000000>;
--		cd-gpios = <&gpio 14 GPIO_ACTIVE_LOW>;
--		vmmc-supply = <&sdldo_reg>;
--		vqmmc-supply = <&sdxldo_reg>;
--		status = "okay";
--	};
--
--	pwm: pwm@3e01a000 {
--		status = "okay";
--	};
-+&bsc1 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
- 
--	usbotg: usb@3f120000 {
--		vusb_d-supply = <&usbldo_reg>;
--		vusb_a-supply = <&iosr1_reg>;
--		status = "okay";
--	};
-+&bsc2 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
- 
--	usbphy: usb-phy@3f130000 {
--		status = "okay";
--	};
-+&bsc3 {
-+	clock-frequency = <400000>;
-+	status = "okay";
- };
- 
- #include "bcm59056.dtsi"
-@@ -110,3 +67,46 @@ iosr1_reg: iosr1 {
- 		};
- 	};
- };
-+
-+&pmu_bsc {
-+	clock-frequency = <100000>;
-+	status = "okay";
-+
-+	pmu: pmu@8 {
-+		reg = <0x08>;
-+	};
-+};
-+
-+&pwm {
-+	status = "okay";
-+};
-+
-+&sdio2 {
-+	non-removable;
-+	max-frequency = <48000000>;
-+	vmmc-supply = <&camldo1_reg>;
-+	vqmmc-supply = <&iosr1_reg>;
-+	status = "okay";
-+};
-+
-+&sdio4 {
-+	max-frequency = <48000000>;
-+	cd-gpios = <&gpio 14 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&sdldo_reg>;
-+	vqmmc-supply = <&sdxldo_reg>;
-+	status = "okay";
-+};
-+
-+&uartb {
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	vusb_d-supply = <&usbldo_reg>;
-+	vusb_a-supply = <&iosr1_reg>;
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
--- 
-2.25.1
+On Fri, May 26, 2023 at 11:56:25AM +0530, Bharat Bhushan wrote:
+> Add binding documentation for the Marvell GTI system
+> watchdog driver.
+>=20
+> Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
+> ---
+> v8:
+>   - Compatible name as per soc name
 
+I am sorry, but I do not understand this.
+
+>=20
+>  .../watchdog/marvell,octeontx2-wdt.yaml       | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/marvell,oc=
+teontx2-wdt.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/watchdog/marvell,octeontx2=
+-wdt.yaml b/Documentation/devicetree/bindings/watchdog/marvell,octeontx2-wd=
+t.yaml
+> new file mode 100644
+> index 000000000000..3c642359d960
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/marvell,octeontx2-wdt.ya=
+ml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/marvell,octeontx2-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell Global Timer (GTI) system watchdog
+> +
+> +allOf:
+> +  - $ref: watchdog.yaml#
+
+=46rom v7:
+Put allOf after maintainers:.
+
+> +
+> +maintainers:
+> +  - Bharat Bhushan <bbhushan2@marvell.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - marvell,cn9670-wdt
+> +      - marvell,cn9880-wdt
+> +      - marvell,cnf9535-wdt
+> +      - marvell,cn10624-wdt
+> +      - marvell,cn10308-wdt
+> +      - marvell,cnf10518-wdt
+
+static const struct of_device_id gti_wdt_of_match[] =3D {
+       { .compatible =3D "marvell,cn9670-wdt", .data =3D &match_data_octeon=
+tx2},
+       { .compatible =3D "marvell,cn9880-wdt", .data =3D &match_data_octeon=
+tx2},
+       { .compatible =3D "marvell,cnf9535-wdt", .data =3D &match_data_octeo=
+ntx2},
+       { .compatible =3D "marvell,cn10624-wdt", .data =3D &match_data_cn10k=
+},
+       { .compatible =3D "marvell,cn10308-wdt", .data =3D &match_data_cn10k=
+},
+       { .compatible =3D "marvell,cnf10518-wdt", .data =3D &match_data_cn10=
+k},
+
+This is a fat hint that you should be using fallback compatibles here.
+You even had a fallback setup in your last revision, but you seem to
+have removed it alongside the removal of the wildcards. Why did you do
+that?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+
+=46rom v7:
+maxItems instead. You see it is different than above properties?
+
+> +
+> +  clock-names:
+> +    minItems: 1
+
+=46rom v7:
+Need to define names.
+
+Cheers,
+Conor.
+
+--jK9jaRY3vIUfhC/g
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHEKZgAKCRB4tDGHoIJi
+0vhOAQDM4Kd48Bfs+qF3j13PkOqFb5hcvB6jmZsPFvb7vXntMwD9H4w03r+UQQQP
+2Mtsh6Uh+AoGt7IdaQ4aJmjMYTnzUgI=
+=DVen
+-----END PGP SIGNATURE-----
+
+--jK9jaRY3vIUfhC/g--
