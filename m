@@ -2,247 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26D59712F1C
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 23:46:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE040712F22
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 23:50:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229950AbjEZVqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 17:46:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45268 "EHLO
+        id S237297AbjEZVuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 17:50:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbjEZVqi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 17:46:38 -0400
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9357AD
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 14:46:35 -0700 (PDT)
-Received: by mail-qk1-x72a.google.com with SMTP id af79cd13be357-75ca95cd9b1so85665085a.0
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 14:46:35 -0700 (PDT)
+        with ESMTP id S230326AbjEZVuY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 17:50:24 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0BFEBC
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 14:50:22 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f6dbe3c230so12898485e9.3
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 14:50:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1685137595; x=1687729595;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=52tkdPPwCw2P/tdb+E4v1WK+oz8BRz6D2nYEbKvHF9k=;
-        b=Z2+SDT+AyXPUQD69cdvLmZ+btyVA5+hgmN9rt77+G69PeRr5iWPA1wOyivkwn2Dlpz
-         rL1hmFwzq3zyT+dwOUi+1AP9C+dhjj3c5UcIjoWYYOH4TGnB7kpF1U+vBYJda/Bo9c+l
-         gA1Pa4YRLPUsdhgA906YxDYYN3uNTO4u21tP0=
+        d=linaro.org; s=google; t=1685137821; x=1687729821;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Tv4SsP1cZoBd6AtNK+VIPLIXAUTTFa0RS4gFHrU37g=;
+        b=ZpT5C4u1U2t+6wra9KuJHDz5O2uJnBA6tk4w35eHBErKM66mpSVpHpz6jnf36riPZR
+         dpYR/hoCk5e4ENbJnP5t+i9HbYm55CPfWqzu9tDkxY51T1hctwqcaE48L2JRRubeoCdN
+         +0gYQBoqavUfHp2cD9mz4ibkY4SAp29Fjt8A8Erhn/7RItbOPzKGV9dJNF70+YUREmHh
+         yDDLRvXbFPtLdJMkyCoNAmFNt3zV8aFQfwwnaT1ncgEmPpEkz+KOqGc9xoSfp+gvMyz7
+         4iCTs+a45zG4asdWxA2sms4S1gMOzCy9TLQPbhgSylz6hRAX93wg2c6nLiA/vQP5WxVA
+         SNTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685137595; x=1687729595;
-        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=52tkdPPwCw2P/tdb+E4v1WK+oz8BRz6D2nYEbKvHF9k=;
-        b=N28ta6xTJ5NnE77EscmeP7pDlgELEGDLIs7jOvTTKe5Jq1qBJ51OCbjdU+BUK/oEQt
-         3ZMf+tYXgclKESRdaTl2CqP4MqMsJuarsEx1ZefdIMgBubBxOceRCmOdrEahSO+o/DD1
-         EOY+susDgZc6qUi1wIC0xEKUmCz2on6QBElcEvL2gdgjkSwzFWpzbVM7N/VVmoXxF2SU
-         AomhE2eWAOuS8MLzDglw8xwvm8SUdI8dl1XRMeLSZ6VI5waqTI79HbtnU9NtcWJUCHAS
-         tAqxEvC+0INDru08QyQiCj0O+ebbADswSa+LDdJyOwz3U+I+Qxj2J83UeDhsQx9nDQP0
-         Jbvw==
-X-Gm-Message-State: AC+VfDwBvEvKvjjfaE4iF/oXEtLV/JANRUC4yRhPKuhTEKNIXqcuOrDL
-        mKCSgCN8ffVtaaXMoDAdJt/hjg==
-X-Google-Smtp-Source: ACHHUZ4YpFhjfwjTMTaB4BhpA42uDMWVCFllzXTJd8TXlEX58XG7NS0QutRyUjHLqY/6XVUpFBuOVA==
-X-Received: by 2002:a05:6214:e4c:b0:626:cbe:3c6d with SMTP id o12-20020a0562140e4c00b006260cbe3c6dmr2140675qvc.22.1685137594877;
-        Fri, 26 May 2023 14:46:34 -0700 (PDT)
-Received: from [10.69.71.77] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id x16-20020a0ce0d0000000b0062593051073sm1504220qvk.111.2023.05.26.14.46.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 14:46:34 -0700 (PDT)
-Message-ID: <e0b4ef62-2d80-d5b2-e0b0-b15c00b75143@broadcom.com>
-Date:   Fri, 26 May 2023 14:46:30 -0700
+        d=1e100.net; s=20221208; t=1685137821; x=1687729821;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+Tv4SsP1cZoBd6AtNK+VIPLIXAUTTFa0RS4gFHrU37g=;
+        b=diGJARTVKgl0ii7M0Y+oGuB8ydQjXEx+vtPWZhcoULbS0+5HQL4/Zt9B/yZKbmIuml
+         tZbzIBNLgesXEj5gQGbQ8gxlGOnNWeYvF1TW2d1ytzojTVoqCW8AbKLBoKA+f9JUqbHh
+         BNjpnGixV5EyZy/okJX761S2oL6NK8q+wGwcuwcc4j51LM6/fsZzqGsPGGLzz8RqckDI
+         6YgrPOShgyen2mp1g2Hmx7jkLuq07ZipiYW5CfCClkiYXzNSGqT6/6FtaQNrJec3OvQ1
+         TI51GYidk9Tggwoe0kuxlKaCt1Nlou/tcTKVuwLx7iBNUTmn9bcg3JRoow3LzASCeVcP
+         l38A==
+X-Gm-Message-State: AC+VfDz6srzx8+qItktZzFXH0vuzxt2y8EBu8if5eiyz+omeixeZPncd
+        gFnh+qqwNrt8UNWw3VfI0PtOPw==
+X-Google-Smtp-Source: ACHHUZ7sVBLPlpNPc46fEFPYd/bS4cnZ1kWbipyngwkj1jB9IYAw9yjBP1HUc+jvY/rp7rDhnuferg==
+X-Received: by 2002:a05:6000:1001:b0:306:330e:bfe3 with SMTP id a1-20020a056000100100b00306330ebfe3mr2947066wrx.19.1685137821259;
+        Fri, 26 May 2023 14:50:21 -0700 (PDT)
+Received: from lion.localdomain (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
+        by smtp.gmail.com with ESMTPSA id u4-20020adfdd44000000b003063176ef09sm6294314wrm.6.2023.05.26.14.50.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 May 2023 14:50:20 -0700 (PDT)
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+Subject: [PATCH v2 0/5] Enable PMI8998 charger on supported devices
+Date:   Fri, 26 May 2023 22:50:19 +0100
+Message-Id: <20230524-pmi8998-charger-dts-v2-0-2a5c77d2ff0c@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.11.0
-Subject: Re: [PATCH net-next v5 3/6] net: bcmasp: Add support for ASP2.0
- Ethernet controller
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        florian.fainelli@broadcom.com, davem@davemloft.net,
-        edumazet@google.com, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        opendmb@gmail.com, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, richardcochran@gmail.com,
-        sumit.semwal@linaro.org, christian.koenig@amd.com,
-        simon.horman@corigine.com
-References: <1684969313-35503-1-git-send-email-justin.chen@broadcom.com>
- <1684969313-35503-4-git-send-email-justin.chen@broadcom.com>
- <20230525205454.1c766852@kernel.org>
-From:   Justin Chen <justin.chen@broadcom.com>
-In-Reply-To: <20230525205454.1c766852@kernel.org>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000c25a1205fc9fabcd"
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJspcWQC/32OSwqDMBRFtyIZ99mYj2hH3UdxEJOnBqqRFwkt4
+ t4bXUCH5364d2cRyWNkj2JnhMlHH5YM4lYwO5llRPAuMxNcSK6FgnX2Tds2kF0akcBtESqhlRa
+ ytigly83eRISezGKnsxvd3Ch9r0sFDtMZWAkH/7lmX13mycct0Pd6kapT/T+YKuAwtFIqM1ilu
+ X6+/WIolIFG1h3H8QMID2hW2AAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Joel Selvaraj <joelselvaraj.oss@gmail.com>
+X-Mailer: b4 0.13-dev-46309
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1882;
+ i=caleb.connolly@linaro.org; h=from:subject:message-id;
+ bh=xVMLmL6BW/BY5NZTqCV6aQV0RWm+1gDkidgGMW81XJQ=;
+ b=owEBbQKS/ZANAwAIAQWDMSsZX2S2AcsmYgBkcSmciV8OC06hYXxsM6HlQLo2iNJfEJBo6z4Vy
+ +Bx0QoF0piJAjMEAAEIAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCZHEpnAAKCRAFgzErGV9k
+ tguWEACAwB0WIVECK4tWwZthDwc2ZawkjdPbQpmYbw19EncrlA+HaEpzlhODJnSjte/zmVxV7PA
+ S71Yo31BadRDdGDVAD4MpcFhpLuj3nBNpyylvmmOUcEsAZh5DnduE3iJzWkd0d9b9tcBcYDiQpw
+ Bd0qh7oQV+uilwjndnN0/rC5MyEodH7u4E5IHNMLCkN0Sl/zc7lNGOcjfywCo+KaIkWtyjAQ8M3
+ SrlU6q8UOOXypbOu90v0vzyodULc1Jr5flAaF0R9i1pM+auJO6OAyVJ1LmIJDm3DzNWw98mXHRI
+ r65oox/01oKrLrqXDFq+nleEnqSIw+IVG5JBkVUfooIWi4GWl9rIMhHI7unFGPNlQq/bh0D4ux9
+ 8BssSNhHZ058tbKe7LD2pqynCjfdOeoqklpMKeX5z185ZMW9Z6kM5e0oUNb+nAVldfLGvv08SqP
+ OUOps4txafMZfc62AcXdDKyPy4HVWU9cJX3LWUdVaVNd5AFd69Mp2vlPkSNpAAysyJtJ0CMq4GD
+ B5fmv9ucrfd1B/IET3opjfMuxV9gP+eRCJODqeaXbikU/Z7QhLXOpdzAdBvE4JSACKZBKXyr7az
+ oH+S4ypoeHfFwKtB/HO9IlVedJJlZp4OwT2RlygKoLbYWm1bghLpdV8twxiGf/IpWj6glq6gpE6
+ kGpQcVRH3hhPzFA==
+X-Developer-Key: i=caleb.connolly@linaro.org; a=openpgp;
+ fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000c25a1205fc9fabcd
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+These devices have been fairly heavily validated with the driver and are
+known to not explode. Add the pmi8998_charger node to pmi8998 and enable
+the charger for the OnePlus 6(T), PocoPhone F1 and SHIFT6mq.
 
+The charger depends on the RRADC for the input voltage and current. The
+RRADC was originally disabled by default, but there isn't really a need
+for this as it's used by all devices. Let's take the opportunity to
+enable it by default.
 
+The associated driver and dt-bindings that this series depends on can be
+found here:
+https://lore.kernel.org/linux-arm-msm/20230524-pmi8998-charger-v9-0-cd7f6d03c0ab@linaro.org/
 
-On 5/25/23 8:54 PM, Jakub Kicinski wrote:
-> On Wed, 24 May 2023 16:01:50 -0700 Justin Chen wrote:
->> Add support for the Broadcom ASP 2.0 Ethernet controller which is first
->> introduced with 72165. This controller features two distinct Ethernet
->> ports that can be independently operated.
->>
->> This patch supports:
->>
->> - Wake-on-LAN using magic packets
->> - basic ethtool operations (link, counters, message level)
->> - MAC destination address filtering (promiscuous, ALL_MULTI, etc.)
-> 
->> +static netdev_tx_t bcmasp_xmit(struct sk_buff *skb, struct net_device *dev)
->> +{
->> +	struct bcmasp_intf *intf = netdev_priv(dev);
->> +	int spb_index, nr_frags, ret, i, j;
->> +	unsigned int total_bytes, size;
->> +	struct bcmasp_tx_cb *txcb;
->> +	dma_addr_t mapping, valid;
->> +	struct bcmasp_desc *desc;
->> +	bool csum_hw = false;
->> +	struct device *kdev;
->> +	skb_frag_t *frag;
->> +
->> +	kdev = &intf->parent->pdev->dev;
->> +
->> +	spin_lock(&intf->tx_lock);
-> 
-> What is the tx_lock for? netdevs already have a tx lock, unless you
-> declare the device as lockless.
-> 
+Changes since v1:
+ * Squash qcom,spmi-pmic bindings patch into the driver series rather
+   than add it here.
+V1: https://lore.kernel.org/all/20230524-pmi8998-charger-dts-v1-0-f9334afc4505@linaro.org/
 
-Will remove.
+---
+Caleb Connolly (4):
+      arm64: dts: qcom: pmi8998: enable rradc by default
+      arm64: dts: qcom: pmi8998: add charger node
+      arm64: dts: qcom: sdm845-oneplus: enable pmi8998 charger
+      arm64: dts: qcom: sdm845-shift-axolotl: enable pmi8998 charger
 
->> +static void bcmasp_tx_timeout(struct net_device *dev, unsigned int txqueue)
->> +{
->> +	struct bcmasp_intf *intf = netdev_priv(dev);
->> +
->> +	netif_dbg(intf, tx_err, dev, "transmit timeout!\n");
->> +
->> +	netif_trans_update(dev);
->> +	dev->stats.tx_errors++;
->> +
->> +	netif_wake_queue(dev);
-> 
-> If the queue is full xmit will just put it back to sleep.
-> You want to try to reap completions if anything, no?
-> 
+Joel Selvaraj (1):
+      arm64: dts: qcom: sdm845-xiaomi-beryllium: enable pmi8998 charger
 
-I can remove the wake. As you mentioned it won't do anything here. There 
-isn't anything to reap if we are in the timeout condition. If it is some 
-HW stall, we could flush and restart the ring, but if that is the case I 
-rather figure out why the HW is stalling. I think we can leave it as a 
-"tell the user we are stalled" and leave it as that.
+ .../boot/dts/qcom/msm8998-oneplus-common.dtsi      |  4 ----
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi              | 22 ++++++++++++++++++++--
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts         |  4 ----
+ .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi |  2 +-
+ .../boot/dts/qcom/sdm845-oneplus-enchilada.dts     |  4 ++++
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts |  4 ++++
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts  | 10 ++++++++++
+ .../dts/qcom/sdm845-xiaomi-beryllium-common.dtsi   | 16 +++++++++++++---
+ 8 files changed, 52 insertions(+), 14 deletions(-)
+---
+base-commit: cc054ff7ce5edcfeaf78d90b8d3e39be0c3eec5f
 
->> +static struct net_device_stats *bcmasp_get_stats(struct net_device *dev)
->> +{
->> +	return &dev->stats;
->> +}
-> 
-> you don't have to do this, core will use device stats if there's no ndo
-> 
->> +	ndev = alloc_etherdev(sizeof(struct bcmasp_intf));
->> +	if (!dev) {
-> 
-> *blink* condition is typo'ed
-> 
+// Caleb (they/them)
 
-Oops. Good catch.
-
-Thanks,
-Justin
-
->> +		dev_warn(dev, "%s: unable to alloc ndev\n", ndev_dn->name);
->> +		goto err;
->> +	}
-> 
-
---000000000000c25a1205fc9fabcd
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-NhTY3E+cXCB11wty89QStajwXdhGJTYEvUgvsq1h8CwJj9w/38ldAQf5WjhPmApYeJR2ewFrBMCM
-4lHkdRJ6TDc9nXoEkypUfjJkJHe7Eal06tosh6JpAgMBAAGjggHZMIIB1TAOBgNVHQ8BAf8EBAMC
-BaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJlLmdsb2JhbHNp
-Z24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYIKwYBBQUHMAGG
-NWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwME0G
-A1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxz
-aWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqGOGh0dHA6Ly9j
-cmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3JsMCMGA1UdEQQc
-MBqBGGp1c3Rpbi5jaGVuQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSME
-GDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUIWGeYuaTsnIada5Xx8TR3cheUbgw
-DQYJKoZIhvcNAQELBQADggEBAHNQlMqQOFYPYFO71A+8t+qWMmtOdd2iGswSOvpSZ/pmGlfw8ZvY
-dRTkl27m37la84AxRkiVMes14JyOZJoMh/g7fbgPlU14eBc6WQWkIA6AmNkduFWTr1pRezkjpeo6
-xVmdBLM4VY1TFDYj7S8H2adPuypd62uHMY/MZi+BIUys4uAFA+N3NuUBNjcVZXYPplYxxKEuIFq6
-sDL+OV16G+F9CkNMN3txsym8Nnx5WAYZb6+rBUIhMGz70V05xsHQfzvo2s7f0J1tJ5BoRlPPhL0h
-VOnWA3h71u9TfSsv+PXVm3P21TfOS2uc1hbzEqyENCP4i5XQ0rv0TmPW42GZ0o4xggJtMIICaQIB
-ATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhH
-bG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwj8BKLXNpALfemdRAwDQYJ
-YIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIFl+PmxGjR3ebWGPsCEzaP2KRUiSPqjLCaDP
-rSWBtqSNMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIzMDUyNjIx
-NDYzNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFl
-AwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATAN
-BgkqhkiG9w0BAQEFAASCAQB2cQdpGNrlxd1mJzBy5RX+g5U1eCL0epKfdZFJE3cEgNZ//Oz/DV9k
-l1WOcaq8OxdnOcg0aMrXhdqHDM0Xtqf7hjK7hmUjzhsH902r3WDaICw0tmeomu6o33BfsHcwR2/f
-CI/IiRza7UQyhmGTYyV2uTkyyi+c1sEc723yGLl4lhe0E2zx/2/xN95c8RC20tXVV0Ri4ethKP0z
-3r+KoSi1QC1DI6dyLLdz6+QmCzvY3D8W+91yiZUqK/rIXFqJr8BXU0Tl7c1XzEIRMq6jNEvekXjl
-3NNbw0xQg7QNo/45dq+AWtWdar00hMI2cpze7d4R81hixCh0rYHIkiA8umNs
---000000000000c25a1205fc9fabcd--
