@@ -2,124 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2046171282F
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 16:24:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F35271283B
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 16:31:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243828AbjEZOYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 10:24:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53166 "EHLO
+        id S237185AbjEZObB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 10:31:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243830AbjEZOYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 10:24:38 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFBC41A2
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 07:24:32 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id e9e14a558f8ab-3382b8b3c33so6076205ab.2
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 07:24:32 -0700 (PDT)
+        with ESMTP id S237425AbjEZObA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 10:31:00 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF05A187;
+        Fri, 26 May 2023 07:30:59 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-96fbe7fbdd4so141524766b.3;
+        Fri, 26 May 2023 07:30:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1685111071; x=1687703071;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M2LUpd1ShEDkP8CxxjKODFmXxczpxGXQR/flSSmLeAU=;
-        b=kEWUZkgoTvxNy/V0ZEyf8iVuMjif3HP0eOgRijZCMo3slAdfU6pIWvWsoJ3DDUqbGn
-         43sQME2UCHcfL01ALVWWwz1AtpbVohnLYo1t3jXnJ3IMVh1zRTmG+PgKu4eai2hHRx00
-         zsY1PFAHTU6iW4huARqGKWF2L4AJZ00wH1aqU=
+        d=gmail.com; s=20221208; t=1685111458; x=1687703458;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fFHHdaXDW2P2XXbm6YKoOMdrCYP6Pv8lFV6aN1Yl2G8=;
+        b=AgQOYwvReGu3+EI+OQ2VgzXzt8b75OzUQlYDAnUSeNYoNDRQWec8l/q9m0almb+XhX
+         1NKrKcqlUTOe1E8Z7BHo/DJY253HwLKC14BbituqRGUYYRATjeOI/vVsIz9+fLUyl+bI
+         JZ65K22rNiLHO9q4KkWggCVwH09wSeQNTIWVe2WxXiN6vDM3H2dDLK8n3UB6IookN5Uj
+         Wu3hZ2GbznRk6+tk+0PG7l7roXOHMYkIIFhFqUcKgoMrCWihWHAnvmQ7m3Epmaz5QqjP
+         JnYqzOt7z+0ayw1+CTRkwPdDp85FvG4TuazwzpMOn8PXOZK12Z9xat5CgVLLPMKIon5a
+         UYwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685111071; x=1687703071;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M2LUpd1ShEDkP8CxxjKODFmXxczpxGXQR/flSSmLeAU=;
-        b=LyYuQHYTuwytF0CXtqNnxvxRwmvgCD6WdMVQqaKEYYUkHUgDy9AKHVYv89AjMV92QN
-         /wlWr78ss2IupDn5UATtOglmQqRyhkbMrqiyCv3mfPECWokr9vCOfdmX0+bU03DZcgqU
-         u6LfKVvLlqbdeSNFDFYfCBdVYaqwTdpDhmFV1HunQ02aioTLcW+39ajZ6xSejXPx6JJt
-         pFTj6bsoB393tAXyBTGnBZi6l5dBGXJ3BjaVT78RSTcjH7USsUkm4/ngKtZZKa1oUx4d
-         3nfHE76Vy6YuUpORCRp7bUVBykvu1eJYOQw4mG2+OXhSYb7BurV7WHpFlKe2eB2VlRD/
-         tUxQ==
-X-Gm-Message-State: AC+VfDxEuUDEQ+xr5+HO9c3dq4tIihURL299+IEHXs1Ynu5gBSfa3dN5
-        pS9oWddkCVVeOzAJZ0tGtosc6+pHIp0a9Utkl5w=
-X-Google-Smtp-Source: ACHHUZ4et7gacJbFHei9y5cs9UnisijjgQ9DS+zwbk+uATPxn0vamEEUC2P47nthLJzOmrL9lE/6Dw==
-X-Received: by 2002:a92:c98e:0:b0:338:a648:9c7 with SMTP id y14-20020a92c98e000000b00338a64809c7mr1522528iln.20.1685111071151;
-        Fri, 26 May 2023 07:24:31 -0700 (PDT)
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com. [209.85.166.178])
-        by smtp.gmail.com with ESMTPSA id t7-20020a92c0c7000000b00331ab6616easm1007528ilf.67.2023.05.26.07.24.27
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 07:24:28 -0700 (PDT)
-Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-33b0848c04aso39765ab.1
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 07:24:27 -0700 (PDT)
-X-Received: by 2002:a92:cdaa:0:b0:320:9759:bf6b with SMTP id
- g10-20020a92cdaa000000b003209759bf6bmr79542ild.3.1685111067417; Fri, 26 May
- 2023 07:24:27 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1685111458; x=1687703458;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fFHHdaXDW2P2XXbm6YKoOMdrCYP6Pv8lFV6aN1Yl2G8=;
+        b=HXCxHWq2pdvXONc9DyFtDsq7wSxu8r7TKUt2QoLyqWXJav3s8SdNCm1abI9OsMF4wW
+         d3A+NFo4KC9JzJDr3+Gzq/slM4y707QqpaT8b78w8r+DpoPUEg7w2SznWLWOgBhMs0yF
+         fSfGV9ZZ18JLtn4+2A/ojSD0GWf9piovzjVRO/sC0P7EB5dqu7AEPpH50foi60XMhick
+         tn4cyINaGqzVI74SZzGZMHHwhJJ8Vq0hh9W7c/Q9cR8BeN4oNdluFlCzSuJguKzoNzvR
+         vgerpaZIq6ZO8xBqsr0jwpTA1g4ACd+KYqzN60zlMEiFnF2G3rVqnKsJ1GlsEQILa2Nf
+         hxyQ==
+X-Gm-Message-State: AC+VfDw4C9k8h8wGF0rHJMj9dk8Z7EvooeVz0v+Lfc3k2H1qSIm44p17
+        cwdzrD7zKGlGffDY0sHp0LQ=
+X-Google-Smtp-Source: ACHHUZ6+ai32bLVuCr8UK+8rM2zGClUneW9eATSaPqRwFqg5CSCV1N5wCi+5APrc6O4x8T10BbZJDg==
+X-Received: by 2002:a17:906:6a0f:b0:96f:d67b:8095 with SMTP id qw15-20020a1709066a0f00b0096fd67b8095mr2419998ejc.1.1685111457800;
+        Fri, 26 May 2023 07:30:57 -0700 (PDT)
+Received: from carbian.corp.quobyte.com ([2a02:8109:aa3f:ead8::d8a0])
+        by smtp.gmail.com with ESMTPSA id r20-20020a170906365400b0094e7d196aa4sm2157023ejb.160.2023.05.26.07.30.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 May 2023 07:30:57 -0700 (PDT)
+From:   Mehdi Djait <mehdi.djait.k@gmail.com>
+To:     jic23@kernel.org, mazziesaccount@gmail.com
+Cc:     krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, robh+dt@kernel.org,
+        lars@metafoo.de, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Mehdi Djait <mehdi.djait.k@gmail.com>
+Subject: [PATCH v4 0/7] iio: accel: Add support for Kionix/ROHM KX132-1211 accelerometer
+Date:   Fri, 26 May 2023 16:30:41 +0200
+Message-Id: <cover.1685109507.git.mehdi.djait.k@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20230526100801.16310-1-uwu@icenowy.me>
-In-Reply-To: <20230526100801.16310-1-uwu@icenowy.me>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 26 May 2023 07:24:15 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UxrFVZXn+dtgamttTVopWMSVbxYsHCGG_tS+3OTXbHiw@mail.gmail.com>
-Message-ID: <CAD=FV=UxrFVZXn+dtgamttTVopWMSVbxYsHCGG_tS+3OTXbHiw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8173-elm: remove panel model
- number in DT
-To:     Icenowy Zheng <uwu@icenowy.me>,
-        Pin-yen Lin <treapking@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello everyone,
 
-On Fri, May 26, 2023 at 3:09=E2=80=AFAM Icenowy Zheng <uwu@icenowy.me> wrot=
-e:
->
-> Currently a specific panel number is used in the Elm DTSI, which is
-> corresponded to a 12" panel. However, according to the official Chrome
-> OS devices document, Elm refers to Acer Chromebook R13, which, as the
-> name specifies, uses a 13.3" panel, which comes with EDID information.
->
-> As the kernel currently prioritizes the hardcoded timing parameters
-> matched with the panel number compatible, a wrong timing will be applied
-> to the 13.3" panel on Acer Chromebook R13, which leads to blank display.
->
-> Because the Elm DTSI is shared with Hana board, and Hana corresponds to
-> multiple devices from 11" to 14", a certain panel model number shouldn't
-> be present, and driving the panel according to its EDID information is
-> necessary.
->
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Version 4 for adding support for the kx132-1211 accelerometer
 
-We went through a bunch of back-and-forth here but in the end in the
-ChromeOS tree we have "edp-panel" as the "compatible" here in the
-ChromeOS 5.15 tree and this makes sense.
+KX132-1211 accelerometer is a sensor which:
+	- supports G-ranges of (+/-) 2, 4, 8, and 16G
+	- can be connected to I2C or SPI
+	- has internal HW FIFO buffer
+	- supports various ODRs (output data rates)
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+The KX132-1211 accelerometer is very similair to the KX022A. 
+One key difference is number of bits to report the number of data bytes that 
+have been stored in the buffer: 8 bits for KX022A vs 10 bits for
+KX132-1211.
 
-...in theory one would wish for a "Fixes" tag, but I think in previous
-discussions it was decided that it was too complicated. Hardcoding the
-other compatible string has always been technically wrong, but I guess
-it worked at some point in time. The more correct way (as you're doing
-here) needs the DP AUX bus support and the generic eDP panels, both of
-which are significantly newer than the elm dts. So I guess leaving no
-"Fixes" tag is OK, or perhaps you could do the somewhat weak:
+Changes in v4:
+- moved the allocation of the fifo_buffer to kx022a_fifo_enable and
+  kx022a_fifo_disable
+- some fixes to the regmap ranges of kx132-1211 
 
-Fixes: c2d94f72140a ("arm64: dts: mediatek: mt8173-elm: Move display
-to ps8640 auxiliary bus")
+Changes in v3:
+- added two new patches by separating the addition of the 
+  i2c_device_id table and the removal of blank lines from other
+  unrelated changes
+- fixes a warning detected by the kernel test robot
+- made all the changes related the chip_info in one patch
+
+Changes in v2:
+- added a new patch for warning when the device_id match fails in the
+  probe function
+- added a new patch for the function that retrieves the number of bytes
+  in the buffer
+- added a change to the Kconfig file in the patch adding the support
+  for the kx132-1211
+- various fixes and modifications listed under each patch
+
+Mehdi Djait (7):
+  dt-bindings: iio: Add KX132-1211 accelerometer
+  iio: accel: kionix-kx022a: Remove blank lines
+  iio: accel: kionix-kx022a: Warn on failed matches and assume
+    compatibility
+  iio: accel: kionix-kx022a: Add an i2c_device_id table
+  iio: accel: kionix-kx022a: Refactor driver and add chip_info structure
+  iio: accel: kionix-kx022a: Add a function to retrieve number of bytes
+    in buffer
+  iio: accel: Add support for Kionix/ROHM KX132-1211 accelerometer
+
+ .../bindings/iio/accel/kionix,kx022a.yaml     |  12 +-
+ drivers/iio/accel/Kconfig                     |   8 +-
+ drivers/iio/accel/kionix-kx022a-i2c.c         |  22 +-
+ drivers/iio/accel/kionix-kx022a-spi.c         |  13 +-
+ drivers/iio/accel/kionix-kx022a.c             | 315 ++++++++++++++----
+ drivers/iio/accel/kionix-kx022a.h             | 109 +++++-
+ 6 files changed, 404 insertions(+), 75 deletions(-)
+
+-- 
+2.30.2
+
