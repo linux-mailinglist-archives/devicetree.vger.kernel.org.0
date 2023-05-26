@@ -2,201 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E22BC71205A
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 08:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5A8871206C
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 08:47:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241882AbjEZGls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 02:41:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41348 "EHLO
+        id S242088AbjEZGrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 02:47:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242141AbjEZGlq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 02:41:46 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03EEA12F;
-        Thu, 25 May 2023 23:41:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685083304; x=1716619304;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=Ofvqqv2Mdo2CN9KNsti+MXhwOGx8unpKccGhNVFykDg=;
-  b=ZjYTZCHcpJVqX4cRhdlDzdFwwmDYmwWSmaoVMOh9AbquuIO02E+vFbxE
-   xWxKf0wgrXqIdec/wzDxjQ/we3MLoamEuHgzLtHx5me9b2EKW/kZSHy/j
-   Eiwm0JdhNwElW6tgZcP/SDZSO/nFKO8A3ilYwJbtBXgtqlT+2ojo3CtH6
-   JOeIU6WXCYk2DMN8MaVMnKRiHbtnYK9blek4XcJ0wPnkis2DO3YQjy789
-   p/ABCohi0DeK448xih7194hy5C5fdF6c+BIZaXTRWti6fc3arb42whDMY
-   4a4l6TFtksmqe70/7s1JrwiIwFKGZfxjAGwohokHyC81FuUAiztYaBX3W
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,193,1681196400"; 
-   d="scan'208";a="217418113"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 May 2023 23:41:42 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 25 May 2023 23:41:42 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21 via Frontend Transport; Thu, 25 May 2023 23:41:42 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HvZNxnxxX2tKY3kkZ4f1jirvpZDyQ2a2faH5bvoV3FdzysOzFsdDowg4Chov40xjS4vhWuUCX+89LLg+aECL+ReFC6DBphlj5VVFfIXxF6KbfsdlJd3N4MPjX1xzcGSBmmJSL2xRyv067iTeHoX2n9Rz/xops55uCmC3oAwNLtVr+Jq4ZS45ZqYqvOa4+eWEr4Ohjb2bUupCRycfEW6KX7pr5LrFBTzeVVGDbfrgFQfwLNCGKBEvCi//tgyTVCLur+VfH97yGIFd9bMgR1MjQrAWaUiiNSliJZ/zQEos38hoIoywrWXtdRWHXLyv9zdu9nIQAzO9Na7wJwcweTouIw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ofvqqv2Mdo2CN9KNsti+MXhwOGx8unpKccGhNVFykDg=;
- b=CQU+9ukvLljL/IWrtPyqc4JF0fSw3ZJtTFRIUaFQLJZduJEHU4dGs1xHbf3zViEVt6QKlfXqoqwO2XGdS7SIkFw/N7S8DQKwlToKY7oBb6T9y62oGfOfxMZ/TlGaXETIeozG4C5yVdcePsDDjnbq60GDw2Drbds+i1km2DkW3vylngXVgY8xTuaBWkF0a2CCamwHCqZ0UCvmJnzlkgT0412ZzLRTPi4or31dtdpd/0ta11sPPfSzWxoCSoaE83HAqJ2i8vDCX7WsQhXrSWm6eqQu40Us8syi7R0IhCR7HbR/7dmSUBAPydbS+UfMBRZ6SlnIKW4IIwKCQyQWWZR7ww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ofvqqv2Mdo2CN9KNsti+MXhwOGx8unpKccGhNVFykDg=;
- b=oiZcGyXJEmeSzJNiHcS/Z9zQdtbaSswXwThOb0GYYXQ9uU7zDXV5rLRfOrfhJjyrSmu5xGllvx7SZVDS945mB1S9Db/1V04ro9LtR9I1wLs5bjp/pgUK8y26PTgKB2bnMODfmToR0Ge4N5fym4KCRqhEXIDKDHlIDCZbTdhZ2pc=
-Received: from SJ2PR11MB7648.namprd11.prod.outlook.com (2603:10b6:a03:4c3::17)
- by SA1PR11MB6847.namprd11.prod.outlook.com (2603:10b6:806:29e::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.19; Fri, 26 May
- 2023 06:41:40 +0000
-Received: from SJ2PR11MB7648.namprd11.prod.outlook.com
- ([fe80::27bf:a69f:806f:67be]) by SJ2PR11MB7648.namprd11.prod.outlook.com
- ([fe80::27bf:a69f:806f:67be%5]) with mapi id 15.20.6433.018; Fri, 26 May 2023
- 06:41:39 +0000
-From:   <Claudiu.Beznea@microchip.com>
-To:     <Conor.Dooley@microchip.com>
-CC:     <devicetree@vger.kernel.org>, <alexandre.belloni@bootlin.com>,
-        <linux-watchdog@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <daniel.lezcano@linaro.org>, <conor+dt@kernel.org>,
-        <conor@kernel.org>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <tglx@linutronix.de>,
-        <wim@linux-watchdog.org>, <sebastian.reichel@collabora.com>,
-        <linux@roeck-us.net>
-Subject: Re: [PATCH 3/5] dt-bindings: timer: microchip,sam9x60-pit64b: convert
- to yaml
-Thread-Topic: [PATCH 3/5] dt-bindings: timer: microchip,sam9x60-pit64b:
- convert to yaml
-Thread-Index: AQHZj50fp08eOlsluEqhLuQqAw4PCQ==
-Date:   Fri, 26 May 2023 06:41:39 +0000
-Message-ID: <5a5d25a2-e6b5-fd69-f615-cd3d6ed33b9f@microchip.com>
-References: <20230525125602.640855-1-claudiu.beznea@microchip.com>
- <20230525125602.640855-4-claudiu.beznea@microchip.com>
- <20230525-straw-fidgeting-4c1099aa16fe@spud>
- <5edf3d3b-6f59-0af3-6414-940a278962bf@microchip.com>
- <20230526-knickers-aim-e01220e6a7cd@wendy>
-In-Reply-To: <20230526-knickers-aim-e01220e6a7cd@wendy>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ2PR11MB7648:EE_|SA1PR11MB6847:EE_
-x-ms-office365-filtering-correlation-id: 6eb0d5f8-9504-493f-a6df-08db5db44265
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 1M1CHZemiFcEX0j96IbzYzglkJ+rL3lf34pTAfyE+eEu9ztdhwWt2nWw4y5pSNTrYiegqOeuqVf/BRT9CVFLVg3TXRk/Mjx597Gbaz2+d9wIoQqvzd4N1UK+uADxdT0ThQdS49cKMTRycPolzZZmQo8H/OSkpHWGku8vCtNOeePubx+MTGzel0u7YeMVN/BromhgMqQM1SO17sMcqIxo3iLy7uVnGzWgxHxZeb3unQEYJpHsSvTQNp9YqIxWd3MNLhi2My1YGToS1oBZKnrgRWiT7PtwXrF/tjsK9Wdn8Yzf+F98+sLHhMrTbb0N8U9ITeoj+yWSebdOVZ1yA/p5o1oND5Q41OP8aJgndNxVYuv08d2XsHhbplU/HvSJVcMV3hhvxtaS47uSchUu3yHYub2n2Gl7er4o2RKj39qoeVVDHAU6Q3cnfGXu70gr9tvtEwqfrdb57QxtorbUISaj7eY4ZPszXXZXkYqblgkd09bN4pl4rTZhsj7GKzHriE1mMCaXi2peIA4shgNNOcxCc3gNd4MHxwPsaDqq5BI10zDCn7VROInA/Dh81XXeBRdyjxdFkXOjtVykIbM2xvt9JwnjL5D2Ai4FrMOwVpSjc4mi7lJDYuQLUSdZN+pVoSfgFjWD9RGj+Kzqgf5D2HNZL47UFbLcVNoKYSDNx0uXkmI=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR11MB7648.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(346002)(376002)(366004)(39860400002)(136003)(396003)(451199021)(316002)(6486002)(41300700001)(7416002)(6862004)(26005)(53546011)(6512007)(6506007)(8676002)(8936002)(38100700002)(5660300002)(36756003)(31696002)(2616005)(83380400001)(38070700005)(2906002)(186003)(86362001)(966005)(122000001)(6636002)(4326008)(76116006)(66946007)(91956017)(66556008)(66476007)(66446008)(64756008)(37006003)(31686004)(54906003)(478600001)(66899021)(71200400001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eEZjZnZ3bzA4YTFYOGR2OEF2dTI0NjY1TE9RbFhMQXdJclJxeEp2MmRFTWJj?=
- =?utf-8?B?OG5SVER0ZDVWKzJXdDBUYXlBVlJnbWEzMTJnNjZadzcyR255QTdubzJ5WGdt?=
- =?utf-8?B?cXJuTVVmdXU1QjcyR1hEMDlTZGo0S3BWSkhJRXN1elBQUFNTSlhmaFNkQ2FT?=
- =?utf-8?B?aDIzRTVMSExLOGJyb3JVZjlPRHprditEekRPUWRCUDJuWm9FYzJEQm5oRis5?=
- =?utf-8?B?WDIxQW9WUTg1T05iSWFTVWpFdzNXckJxbFdnUjNIQjJVSE9FdzNOTFJ1c3lY?=
- =?utf-8?B?OFJlUHFKaDhKVEN6cHpNbm52a1RXa1dvVjZ2WnJELzJwalZudGZ2Q25HL3FV?=
- =?utf-8?B?SXRwTEpPSHhhelMyZXg0MzB6dVNBeHhSUEhTMEhOSjJFamdDWFo2VHR0TDNq?=
- =?utf-8?B?SDEveGdZcmpXRlVWdURrT2hjbGFTdlE0dlNrYmpYNDB2ZEFmSmJ6MXBqcGs2?=
- =?utf-8?B?Rm9peHR4cjZBN0wvbkR5cnVjeHMxMlg5ZjViaGo3N2k1YU5xd0Z5cFgrcmda?=
- =?utf-8?B?ek15MXA1cWtGRjY0SFJZc2N4YVFESVRHYVhBZld3dkx5Nk5Vc2lkOTVNYjkv?=
- =?utf-8?B?ckR4d1gyKzFmNWlxVWZWNTNzQjlJMjJOczRBZVJBVmhpaHRUS0k1QlFxdUJ5?=
- =?utf-8?B?bXhwUkJYN29hSEpYRDlESDRpd01DRVF6cTF1a0Jzbm9ZZkt0bEt6V3AxRTg1?=
- =?utf-8?B?R3FjL1Y4MmJ4V2pWa05Wd1R6b2FaL1VkQ0JyVkhkeHIyZ3pGalJaekZmUnpM?=
- =?utf-8?B?REswMWFldG52QlU0bElWS1l0YXBjc3FmR0lmRVdpaVVtN3VMdzVOMXFGT0t0?=
- =?utf-8?B?RjlEZEJ3N0FnYTFhLzRvRVZLYTdGcjY3bnpMMmZUVzJ4c3dVOWlIWGNNWlFj?=
- =?utf-8?B?VzNBaDJHMWZSNTBIUTd4UGJWZEtqajllazJobFQ2bW1qdGFqTkN2R20xOXlF?=
- =?utf-8?B?R2xwZVJLYklBdXlEamVodTdVL2xLbWR4MlE2a3dJb1ZTSi9lTHRON1U5aUFt?=
- =?utf-8?B?VDlVaWIxZG9vSUxVVnpDa041WGxtMEs5NW1JNkkvVlFjNVV6L0Robm15MC9n?=
- =?utf-8?B?eGt4VGJrTURWQzJQbW5FTkRGQW1VTnRheHUvTUNsQ3NsRm1KUCttUk9WNGNq?=
- =?utf-8?B?WGR3LzU2RjNOWE54ZUdXZ2lHcEhHRXUwcjIvMnBsVGFBNkNzMWx6L1dRUVNJ?=
- =?utf-8?B?dFAvYW9lS0FlRXJXb1ptS3dYb1RIT0N5TUhFZitFWDlkNVlVMUlXV3IwYjRR?=
- =?utf-8?B?TEtPeFRMVnFBUGZNc1F2cFZzNHBBM3d5KzFzeFVONGZYdXpFcUE0ekR4dXA5?=
- =?utf-8?B?Z1dNc2NIVEJwcnBab2t3TkJSdmpmRlVLYS9XSkVTbW5oWWE2TEJ6aytFcEtp?=
- =?utf-8?B?MGFweEZKaDhSR1Y4dmxienNLYkhrRGQrZU5yQ3dHdEcvNHBmK1pac2wwbzQz?=
- =?utf-8?B?cGZac2paYWsrbVkrS3MrVGcrWTNyWmlZeXJETU1hZWVRSndWZm0rV2JEMEZu?=
- =?utf-8?B?K25aUTZodzM2MWhIY1F4S21PZmR0aExXYU8yZ3FZWG9pMUdleFlWTUdZR0hq?=
- =?utf-8?B?akp5M2VBL0VpOVd5K2hlU0NsNlFkSEFMRFA5bVZjQldvVXd2ZG9YakY5UjdE?=
- =?utf-8?B?M2dzRE9zQlhsY2w3UkU2UGtMQVd2cS81Wlh6alBTVlFyZUF6SWxlUVN4TThW?=
- =?utf-8?B?RUZhdXNMVlc0dE9vWmhubVVCSityME4ySUI3eGFuRDJOenRub3h1VHBiVlBp?=
- =?utf-8?B?cnlKLzA0NitZWlFxY3FHdHE2NFVrNCtQSTAxQWlZZm1tcmc5Qm0zOEQ2OEFy?=
- =?utf-8?B?NzJoNGlvd0JQaWJOVnMwOVlKYy9FUWJtN2JXeFJheHovUGJ5MW0rUTNaZFNQ?=
- =?utf-8?B?M3dIbEhLQXNWR2EvZUc0bXhlOVpqb3I2ZTRkbkZZMnpycERCeDFMOTFHQzZO?=
- =?utf-8?B?dDJ0eGNyTjl6Y1RybXd3bGFJRnpUclduYzRhK2xJTmlTV0NBYllEd0ZHN2s1?=
- =?utf-8?B?TmpMTmhOTFJpQVJxckFUY0dmVlRkclZvdWRMVUJhd2ZHR1lIZ3lCbUJTWnk0?=
- =?utf-8?B?ZkRqR040dVdoYmlEeFZ1Z0JjOHBZN1ZvNjZrZmhFcXd1SE9wUXJtaklqMTlI?=
- =?utf-8?B?T1dyTFdXOUU5RHpXem4yLytmamViWFQ2TlVyYjFmR1lnRVg1Y2JxR0xHMWZ2?=
- =?utf-8?B?M0E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <855C4C0D4C0B144C98F017311CE6E2C1@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S236735AbjEZGrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 02:47:32 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20A63125;
+        Thu, 25 May 2023 23:47:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1685083643; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=cGFNG/Ocgdc+dGc7sNDnP7vWTbWW3rY57OYtVrFvT90iVgYGWtGgs6F56DuvWeDEFP
+    GrDEqUfrGRFBsplVwgx3g2/i3ITfRE4hjqNrbBwyIhRsQOHpyC9RsMtD5wyvEHzU6s2P
+    wHqBp7xgXhoIZ8uOfC89rlCelJsmZWifn1MPJiqU+oTmkilGx0S+w/BRJZOf69E3Ggs4
+    BWIvi/6VWdDxFOUM5Z3E7aPVJ+P/sg8mC1Niz3fZIU5i6wVkDyBO5wcawyT7nfig0Wt8
+    zV2/ENx0cMZb4ksIQexTZl/khgh5s55jEXuVYkG/AZCSdEojqPOX/Hc4UCr5EKPN3xzU
+    9HZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1685083643;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=7/3hdjTLdwnUD4fcMlMWezGKin7mL9oy2oTZnbl8DKw=;
+    b=splIQfVuoDoN411bUPZ520MEKWVQazFwDJZsv29u0LeP32Z6p199s/II9/1WQSVXe0
+    ehOB4e8g6vVm1RKbOgFv0EE2aOhAO4UHZoVs9XPg5SVPLai2qIyXzxpuwnGH6ReP3wHQ
+    4eTWMdcxvlfaWycfImhYubLVOH58jMY3TgFT04queyUNAWT5Mqp1hg8XPQh5QEVtI3ij
+    FuoaZp9hWGi/HLpQxjFLt7TKkB0JgAu1np0CaY0dx8swYFVpSd04jrMAt8E+t5P/5a6j
+    SzMl6WvsXcTneQsJOe7KXfqRPSuRZ6880BFEfDxnDxJtwCGkqccvVunXrTLiolQQvB/C
+    Xpbg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1685083643;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=7/3hdjTLdwnUD4fcMlMWezGKin7mL9oy2oTZnbl8DKw=;
+    b=DYc4nd6QHcrkspgh7v3YsOExpph17K2jV78DX5o1wVCQScVGnj5zaxkdK3USiUQL92
+    PFSVI0+780XvcMctRH5C4784ikj2AOglKtcJtT2d1DCkvouKDgKD0gzBc4A6fDHYo754
+    Ea30yzL6O/wICVtBgz0TlWT9FlcHHMRqufzpHBBsyeDsL7cLUUWLRf+E10i4yPVjlexG
+    SsEL48gYeUnxbPHR07PQdvXp+ZGS1cRPYSAeJnJk5fnKGzr6uNVdnn1pAri0Y3+1xD7k
+    O/ouBIBNQqDvhW4VP+hS7M2et0WnZXsCzTp9I1NAVeDdWS8zTYcE0c8NaruNhPxZjour
+    lLCA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1685083643;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=7/3hdjTLdwnUD4fcMlMWezGKin7mL9oy2oTZnbl8DKw=;
+    b=VvYzGK5yvvo0GEomb2DLIj5qSBTDxEsg1uPBtcOpUAHKC4gmODToKrqZIxTuy0nkVh
+    tPbRLbdo0hE4pBdXxrAg==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA95nh"
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.4.0 DYNA|AUTH)
+    with ESMTPSA id j6420az4Q6lNZGK
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 26 May 2023 08:47:23 +0200 (CEST)
+Date:   Fri, 26 May 2023 08:47:22 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 7/8] arm64: dts: qcom: msm8916: Define regulator
+ constraints next to usage
+Message-ID: <ZHBV-mBPhoqy8yvs@gerhold.net>
+References: <20230510-msm8916-regulators-v1-0-54d4960a05fc@gerhold.net>
+ <20230510-msm8916-regulators-v1-7-54d4960a05fc@gerhold.net>
+ <9f474fe8-523c-3668-540a-a8fc04ed64a6@linaro.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR11MB7648.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6eb0d5f8-9504-493f-a6df-08db5db44265
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 May 2023 06:41:39.2114
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ia/b1VnGTUU7X96GsunnrL3o2WamTPvL9ohjh7A+anhBQ5p5eNOpmYNQqDEYQ1vZw9c4gvbU1v8s93ZWtS3vTjfO1zu6XioL2Ihx4FlWSXQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6847
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9f474fe8-523c-3668-540a-a8fc04ed64a6@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMjYuMDUuMjAyMyAwOToyMywgQ29ub3IgRG9vbGV5IHdyb3RlOg0KPiBFWFRFUk5BTCBFTUFJ
-TDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSBrbm93
-IHRoZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+IEhleSBDbGF1ZGl1LA0KPiANCj4gT24gRnJpLCBN
-YXkgMjYsIDIwMjMgYXQgMDQ6NDc6MjhBTSArMDAwMCwgQ2xhdWRpdS5CZXpuZWFAbWljcm9jaGlw
-LmNvbSB3cm90ZToNCj4+IE9uIDI1LjA1LjIwMjMgMjA6MTQsIENvbm9yIERvb2xleSB3cm90ZToN
-Cj4+Pj4gQ29udmVydCBNaWNyb2NoaXAgUElUNjRCIHRvIFlBTUwuIEFsb25nIHdpdGggaXQgY2xv
-Y2stbmFtZXMgYmluZGluZyBoYXMNCj4+Pj4gYmVlbiBhZGRlZCBhcyB0aGUgZHJpdmVyIG5lZWRz
-IGl0IHRvIGdldCBQSVQ2NEIgY2xvY2tzLg0KPj4+IEkgZG9uJ3QgdGhpbmsgYm90aCBvZiB0aGVz
-ZSBQSVQgdGhpbmdzIG5lZWQgdG8gaGF2ZSBkaWZmZXJlbnQgYmluZGluZw0KPj4+IGZpbGVzLiA5
-MCUgb2YgaXQgaXMgdGhlIHNhbWUsIGp1c3QgdGhlIGNsb2NrLW5hbWVzL251bWJlciAtIHNvIHlv
-dSBjYW4NCj4+DQo+PiBCdXQgdGhlc2UgYXJlIGRpZmZlcmVudCBoYXJkd2FyZSBibG9ja3Mgd2l0
-aCBkaWZmZXJlbnQgZnVuY3Rpb25hbGl0aWVzIGFuZA0KPj4gZGlmZmVyZW50IGRyaXZlcnMuDQo+
-IA0KPiBIYXZpbmcgZGlmZmVyZW50IGRyaXZlcnMgZG9lc24ndCBwcmVjbHVkZSBoYXZpbmcgdGhl
-bSBpbiB0aGUgc2FtZQ0KPiBiaW5kaW5nIHByb3ZpZGVkIHRoZSBmdW5jdGlvbi9kZXNjcmlwdGlv
-biBldGMgYXJlIG1vcmUgb3IgbGVzcw0KPiBpZGVudGljYWwuIEkgd2FzIGNvbmZ1c2VkIGJ5Og0K
-PiANCj4gK2Rlc2NyaXB0aW9uOg0KPiArICBUaGUgNjQtYml0IHBlcmlvZGljIGludGVydmFsIHRp
-bWVyIHByb3ZpZGVzIHRoZSBvcGVyYXRpbmcgc3lzdGVtIHNjaGVkdWxlcg0KPiArICBpbnRlcnJ1
-cHQuIEl0IGlzIGRlc2lnbmVkIHRvIG9mZmVyIG1heGltdW0gYWNjdXJhY3kgYW5kIGVmZmljaWVu
-dCBtYW5hZ2VtZW50LA0KPiArICBldmVuIGZvciBzeXN0ZW1zIHdpdGggbG9uZyByZXNwb25zZSB0
-aW1lcy4NCj4gDQo+ICtkZXNjcmlwdGlvbjoNCj4gKyAgQXRtZWwgcGVyaW9kaWMgaW50ZXJ2YWwg
-dGltZXIgcHJvdmlkZXMgdGhlIG9wZXJhdGluZyBzeXN0ZW3igJlzIHNjaGVkdWxlcg0KPiArICBp
-bnRlcnJ1cHQuIEl0IGlzIGRlc2lnbmVkIHRvIG9mZmVyIG1heGltdW0gYWNjdXJhY3kgYW5kIGVm
-ZmljaWVudCBtYW5hZ2VtZW50LA0KPiArICBldmVuIGZvciBzeXN0ZW1zIHdpdGggbG9uZyByZXNw
-b25zZSB0aW1lLg0KPiANCj4gVGhvc2Ugc2VlbWVkIGxpa2UgdGhleSBkbyB0aGUgc2FtZSB0aGlu
-ZyB0byBtZSENCg0KVGhleSBkbyB0aGUgc2FtZSB0aGluZywgdGhleSBhcmUgdGltZXJzLi4uIEJ1
-dCB0aGUgd2F5IHRoZXkgZG8gaXQgKGZyb20NCmhhcmR3YXJlIHBlcnNwZWN0aXZlKSBpcyB0b3Rh
-bGx5IGRpZmZlcmVudC4gV2l0aCB0aGlzIHdvdWxkIHlvdSBzdGlsbA0KcHJlZmVyIHRvIGhhdmUg
-dGhlbSBtZXJnZWQ/DQoNClRoYW5rIHlvdSwNCkNsYXVkaXUNCg0KPiANCj4gQ2hlZXJzLA0KPiBD
-b25vcg0KPiANCj4+DQo+Pj4gY29tYmluZSB0aGUgdHdvIGludG8gb25lIGZpbGUgd2l0aCBhbg0K
-Pj4NCj4+DQo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xw0KPj4gbGludXgtYXJtLWtlcm5lbCBtYWlsaW5nIGxpc3QNCj4+IGxpbnV4LWFybS1rZXJuZWxA
-bGlzdHMuaW5mcmFkZWFkLm9yZw0KPj4gaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9saW51eC1hcm0ta2VybmVsDQoNCg==
+On Fri, May 26, 2023 at 01:35:06AM +0200, Konrad Dybcio wrote:
+> On 17.05.2023 20:48, Stephan Gerhold wrote:
+> > Right now each MSM8916 device has a huge block of regulator constraints
+> > with allowed voltages for each regulator. For lack of better
+> > documentation these voltages are often copied as-is from the vendor
+> > device tree, without much extra thought.
+> > 
+> > Unfortunately, the voltages in the vendor device trees are often
+> > misleading or even wrong, e.g. because:
+> > 
+> >  - There is a large voltage range allowed and the actual voltage is
+> >    only set somewhere hidden in some messy vendor driver. This is often
+> >    the case for pm8916_{l14,l15,l16} because they have a broad range of
+> >    1.8-3.3V by default.
+> > 
+> >  - The voltage is actually wrong but thanks to the voltage constraints
+> >    in the RPM firmware it still ends up applying the correct voltage.
+> > 
+> > To have proper regulator constraints it is important to review them in
+> > context of the usage. The current setup in the MSM8916 device trees
+> > makes this quite hard because each device duplicates the standard
+> > voltages for components of the SoC and mixes those with minor
+> > device-specific additions and dummy voltages for completely unused
+> > regulators.
+> > 
+> > The actual usage of the regulators for the SoC components is in
+> > msm8916-pm8916.dtsi, so it can and should also define the related
+> > voltage constraints. These are not board-specific but defined in the
+> > APQ8016E/PM8916 Device Specification. The board DT can then focus on
+> > describing the actual board-specific regulators, which makes it much
+> > easier to review and spot potential mistakes there.
+> > 
+> > Note that this commit does not make any functional change. All used
+> > regulators still have the same regulator constraints as before. Unused
+> > regulators do not have regulator constraints anymore because most of
+> > these were too broad or even entirely wrong. They should be added back
+> > with proper voltage constraints when there is an actual usage.
+> > 
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > ---
+> I'm a bit torn between saying "this is very nice already" and "we should
+> probably override each regulator individually" like so:
+> 
+> &pm8916_l17 {
+> 	[...]
+> }
+> 
+> to minimize mistakes..
+> 
+> Not sure what to make of it, I see Bjorn already applied this, so I guess
+> I'm just leaving some potential ideas for the future here.
+> 
+
+Sorry, could you elaborate a bit on what changes you would make exactly?
+
+The way it works in this patch is that regulators that are used by the
+SoC are defined in msm8916-pm8916.dtsi. All other (board-specific)
+regulators must be defined together with proper voltages in the board DT.
+
+What kind of mistake are you thinking of?
+
+Thanks,
+Stephan
