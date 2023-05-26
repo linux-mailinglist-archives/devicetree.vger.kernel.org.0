@@ -2,162 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F3C5711EF4
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 06:47:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB4DD711F40
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 07:37:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235081AbjEZErk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 00:47:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33932 "EHLO
+        id S233008AbjEZFhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 01:37:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbjEZEri (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 00:47:38 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4722A119;
-        Thu, 25 May 2023 21:47:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685076457; x=1716612457;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=WBgCGNEYTZiX/UFiGdM5cN8VstJfhRrCbfJGg9Oeq6E=;
-  b=BsZs8RKMNAGUu/O1XZr+7ziJjN2Qv3up5rZQP7FiGWo6snPuMP2/39z+
-   j8UJA6GqAkSWX4adzYxDTKQKFeOJyP5QoEu1W2GtSoEsV0TSmgU9QS4FD
-   82Z/4QqXo8eM4WcvJk5PEJkRez4xWitJM9I4yY0I2Y6GrgKqlT9vOp8Xd
-   8dapUy9R1dcm2badMjiCbCwjA9M27BvVMiRywKQJlEJnHV3d6WEZQLLCE
-   DcUdhE4NDj/G+7drmQ1l0pANK6SzXNRdQft/ul5IUzXDVmVZVsRftcJwo
-   tz6zyiq2M78401/2rytdnuhgjmVeyvoJXzbo01JLTCCy3L1WtLgvFyhn8
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,193,1681196400"; 
-   d="scan'208";a="154035536"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 May 2023 21:47:31 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 25 May 2023 21:47:30 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 25 May 2023 21:47:29 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IgoonwY44nO8yYMWZKqcHSIKgwqw3R/TgTrourpEd5WexAeo+iNEcyqDJUBqNOPfGXXFfFqGLgd/gdljZTa2OaOA6AJFCD1aWThEtmH5Tzc5BGRbX38N/wAhxuKTK+9gGqF+8pqQ7e/uEFCDFRujPulS6jznGDuICadKBRYlT7ZlkTtmvhZfLCzepsGRPW8+yfgsc4YPm1+JrajDYtmzCCAuqaiaenHEUWGyOix1diCyXBwLnq+fOsYkZyn9RE4aV5eGgzWirbMyegzlj4mqEfbWf8r86+uOaCLQmFa+VlRFZP9GDOWZhyH3dYxHbK1rIr0ohn1Fd79j1Abxyh1FaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WBgCGNEYTZiX/UFiGdM5cN8VstJfhRrCbfJGg9Oeq6E=;
- b=SjcX28p96yzyEYSS2ttWmMjoorIyJlMB4gw2MgJTQk32I/kZr48G40+52zMcCH2K8gl5hAuLOHtUIf6bXnth3jxrGHZOGzFEh+XXn3WdmnO3z32rFt42PwRRMigXLm3AN7mgh6Jy+Tt8b0b6vca84c1651bcvoWKV/dQoBgG4SdFnEqdHNRZqZLp8+07lJEvK+i9uH/EDDB5XohyyBWWVIiuxLy77oSqqgisNSKPVQ01vajb832jRd8zZcLAZOEfKiGNmnEM6VvTk7dr+uMBQsyb06eCU0xqd1Y7kZVVONEyj7q5nXIHud9rGkyVLmbD+Jacysv+f5VBfSDac0uApg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        with ESMTP id S229790AbjEZFhK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 01:37:10 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F008194
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 22:37:07 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f6042d610fso3849645e9.1
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 22:37:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WBgCGNEYTZiX/UFiGdM5cN8VstJfhRrCbfJGg9Oeq6E=;
- b=fc+6xJhePR+7hZJnsSrUkMQrHUfb4/wxdeHwJInDQ9rGeeVvMxvEwnT7FeDJSPTy6kducJukdxycS1jc5z+RQMf5Pa4oDdwwuJbRnxUpKxwHwf8mhjdZx4x4wwXqw05S2S7Uc//X8V5+JzGdQlfTzJeuOdLKgbbvqw/e/983OhM=
-Received: from SJ2PR11MB7648.namprd11.prod.outlook.com (2603:10b6:a03:4c3::17)
- by PH7PR11MB7594.namprd11.prod.outlook.com (2603:10b6:510:268::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6411.28; Fri, 26 May
- 2023 04:47:28 +0000
-Received: from SJ2PR11MB7648.namprd11.prod.outlook.com
- ([fe80::27bf:a69f:806f:67be]) by SJ2PR11MB7648.namprd11.prod.outlook.com
- ([fe80::27bf:a69f:806f:67be%5]) with mapi id 15.20.6433.018; Fri, 26 May 2023
- 04:47:28 +0000
-From:   <Claudiu.Beznea@microchip.com>
-To:     <conor@kernel.org>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <daniel.lezcano@linaro.org>,
-        <tglx@linutronix.de>, <wim@linux-watchdog.org>,
-        <linux@roeck-us.net>, <sebastian.reichel@collabora.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>
-Subject: Re: [PATCH 3/5] dt-bindings: timer: microchip,sam9x60-pit64b: convert
- to yaml
-Thread-Topic: [PATCH 3/5] dt-bindings: timer: microchip,sam9x60-pit64b:
- convert to yaml
-Thread-Index: AQHZj40s9TcsRJXZ1kOxioXAUdLI4w==
-Date:   Fri, 26 May 2023 04:47:28 +0000
-Message-ID: <5edf3d3b-6f59-0af3-6414-940a278962bf@microchip.com>
-References: <20230525125602.640855-1-claudiu.beznea@microchip.com>
- <20230525125602.640855-4-claudiu.beznea@microchip.com>
- <20230525-straw-fidgeting-4c1099aa16fe@spud>
-In-Reply-To: <20230525-straw-fidgeting-4c1099aa16fe@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ2PR11MB7648:EE_|PH7PR11MB7594:EE_
-x-ms-office365-filtering-correlation-id: d18a4f9c-1574-4e5a-5604-08db5da44ede
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Wz/+7kNfqZBA1k1m9qtFuxpblFNto8IK5VA1e8V+wfCi2aLF1sh1o5G5SwMzIIdU0J4EeW1zuVcXlAnqBNKw/y0bRrGGzbe9MQ1RxCOvINN1/14nard/EGW5zPfa9Q+rL27UDH0p0cAM4R2YJcMUreNRUV1ZBWYJqIPxydvxBARCJc4/lIrekNe5FROdM1oxcWuzxxFJqbsmqFO6DzJJjpSqCih8lFeZrJYA3MFEflK8V9+GVLOE/5fy12bHhFlSk2evxVLPfYgZ0BSpGfSQPYk2dIHQHZX/0UbBWDs7JxSlVSer8O6EXalqhs23Ld3e7JfSZHG1NvQ+T9IHqc0Uv3hzTVMdHKQcKYNadd+kzDphndx6esyj9F88GCmvQzqXAr8kW4Enk2a8XUvD9/NTL5CvzhnDqalIDilNLcKlimn112ihsWZSgUt6OnNg5ggxx9R1OWdX8AfVGIDipRCSrzrtp/5OLQeyfzn0EIYIoFD8oJDWKKc7gZ+OxW1flVwub58rn8tcFa3ztVMhHYtFyvXIjbo7XUHuuenLyrz2AhEh6iYJepr4ZdiQKgdvJi+5zayTzKYpV84z9Keo05z31zeo0BGa4NgYGIerXFfUdV7yuf4k0gLefkjBqtfeG7TM9gdQe0WlWVTEyOo3Whh5nOaytWN5TI2ye0Ab+So4LfkXiAXXsXHjKUsoAtn7Rzkt
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR11MB7648.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(136003)(396003)(346002)(39860400002)(366004)(376002)(451199021)(316002)(54906003)(66476007)(38100700002)(31686004)(4326008)(66446008)(64756008)(71200400001)(6916009)(91956017)(76116006)(66556008)(122000001)(66946007)(41300700001)(478600001)(38070700005)(6486002)(86362001)(31696002)(5660300002)(8676002)(8936002)(4744005)(186003)(7416002)(6512007)(53546011)(26005)(6506007)(2906002)(36756003)(2616005)(83380400001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?N0lpZVNBUFZraThHeFNsN3hDUk9HZlZjMmtVWjJzNWdlS0FMSG1sSVRuNlpZ?=
- =?utf-8?B?dkxwVWN3QlZXQkVlbXNhcGI3OE5KMEVsREtiUzJzWFZrQnJUS29NelRUeXR2?=
- =?utf-8?B?aU1nd3VxVlVuYWtGTVJ4WFVPcWc1S2d3UHdYRTdtU3U2ZnpPSmN4T3M4YkE0?=
- =?utf-8?B?L0ZZVm1UcExVejc1TmJPTGNkQkxKNGlyUElDU0V1czFaTkZEaXBNUDNIeHN2?=
- =?utf-8?B?V3FGRXU3N01DYmdudDIzZTV1VURiczVFVkVZUVdPMlJaZ0Ntay9VSXdTVWpy?=
- =?utf-8?B?ZGRQdzFUMXNzbVJpRmV4YlhjQ0ZBS0R1THZKd1U5WGxGUjI4RkNpQVR6NUVO?=
- =?utf-8?B?YzhMOGRob0JieEFidUYzTnlNQk1wOHgzbHNTYWRsSm80eUJoU0M5VnVTdDRu?=
- =?utf-8?B?Tk9FbU4wQkgvTjV5em11YXNZOWxIalo3L1ZEQTI0ekowRzFEYzhvZk9TMHpF?=
- =?utf-8?B?WmdpNFprQ2Mrb013Sld3YmVzL001cHhRRXN4aDFPcGtpWjZUc04xSk9HcWpj?=
- =?utf-8?B?UzVWbWo5OG8xdThYVEVtVEpkVWxNRW11T1VUQUFrelBLYy9tMTBPTzlYaXp2?=
- =?utf-8?B?ZGZtR2tpdlFwTXRyTHFQdjVpTGxxcmkvbjg1bWdnTUtzODVlQVZnMjNQaGJp?=
- =?utf-8?B?aWZaN3hqWmxtR0l1MWhiTURMeDJOLzJLM1Y5bkJRZ3RPZkttUmdEb0s5Wmxs?=
- =?utf-8?B?RFJyUURMc2FQYktMb0pHejdtUFNMT1ZUamdhZTVqL2JPUEtGVWg5bHB6cjkx?=
- =?utf-8?B?NVRLcTJjVXJmUjQ3OUJ3NzBlaXllb0ZaaiswajBkMTEzd2cvTG5VRFF4bnU3?=
- =?utf-8?B?Q2p3cTJLTDNjak50bmJ6QkRtaStTdWUwQmEydUJ1dHY4SURuM0tEK2x2MHIx?=
- =?utf-8?B?NVhFaE5VWExvUDFBU213ZTRkaStRSlM0SmQ1UlZBcHZGUkZjVXk5OEpQK1BU?=
- =?utf-8?B?T0tZRk1PSTNyQUdHM0xxMzRNV3BPVHpmcmRRb0tYUE13ZHpORjZhNUkzbU1L?=
- =?utf-8?B?cmtiNGRFaDBHOEYrSzFUSzlHUmNRSE54OG5waGFmZU5OSDIvdlErbmlIaUhG?=
- =?utf-8?B?MjNZaWNGamFHSmxkVFVubnhmN2pDVzBCREd5MDY1TFl1Q0h0RFc1b2ZkdVUy?=
- =?utf-8?B?QmNLTGlMOG9ZMnJGNEovMStYNlhpU213a3BZeUFrTGV6cnRtWk04SmJRM1Mv?=
- =?utf-8?B?MUQvSFZwbE83akdQZEZLcjhpOG95dGNiTXJIcU5STlRpeTE1Q2owOTc5S0hV?=
- =?utf-8?B?UGhnazNnZVMxcDVZMzdZMFFkbnpqdFkyMjFlUzB5alVqckJmNjdaNWRiNkI1?=
- =?utf-8?B?SUlETHluSC9aaUc3WTg0UFFLaHIzSXR5KzNQQWtrc2ovNzZ6VStRYnIrMG9S?=
- =?utf-8?B?ZVovTFhBRFlTZzNtTG9pcXFHZ1hBb3JjNzY1VklSeUFVR05mK2lrTUdDUFdv?=
- =?utf-8?B?RXJwY3JWTk96UFc1Q0R0TzRKbHd6Tktyb3pubHNnZzdRcDFiOGd1akFPdURp?=
- =?utf-8?B?dyt4Y2FBVEswMENmVHlqL09MYzc3RWc1RHRtQXcyQSsxN1F6VERPMEt1QStl?=
- =?utf-8?B?NnRRRTMzUElFVUVyQWpXNEZiaG5BKytLUW1YcUw4dUhScEdTYklaenVpMDFQ?=
- =?utf-8?B?ZkZQZUdLdWxqLzNqN0hDa1R5RlgzWUF6bUVuTXlCam01VzcrRkhVUU5ubE1I?=
- =?utf-8?B?WGh0RUZoRWNYazBxamxMNVdWSC9hWmZkR3lCUEZ6ZlNnU1hjMlFWWUdycEFz?=
- =?utf-8?B?WFp3TkRiTFZJeVZPeGNQL0VrdnhvZnBRejdoVWlIYW5qVHdpYUlQQWRwRnA0?=
- =?utf-8?B?cmZVRFlpTUxDbHFPaTVrdFUwQ0ZPRTQ4ZDlobTNrRjlGT2NJcVVMUEVwanRK?=
- =?utf-8?B?bDVxT3FSWkNNYXFERzB5Q1kzU3JleDZHMVY0S0pGZ1FIZ3RlMm1peDdaMUxm?=
- =?utf-8?B?NStLQ0R5RnlUTE51VU8rTXU2OEtUV0dCZjVwYVZJWE05NGxaK2I1a2pxWnhl?=
- =?utf-8?B?YWE3VjVPOVdCR3hIVnpZTllEMDl0dVZha2Rpa20vR21vdVo1c2pxWis3a2dX?=
- =?utf-8?B?NW82bktXM1ZFNFdTN0NPaFJGdzhxeUdvRTBGa1pPd3hXa21pTzJGdDVFbk85?=
- =?utf-8?B?MzBxaUlkT0RjamEzdERxNXVvN2ZmZ0ZrK3FFODU0dGF5cmdzNVJaT01NdjFv?=
- =?utf-8?B?ekE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <8550599E11979A418E6CBDFEF91FA23C@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google; t=1685079425; x=1687671425;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ia3v36xyxfeQr6pILyLNKr3HLDKWkSOuXI6pXCcmms8=;
+        b=kucb3530+RUZHNakYlOYNSOANPpXsGweBVE/tmqX8I+1/Rdnb1u8jALqxnNjj+PoX9
+         KqEWuQDqt/vt47WKgLZbCH3gIvMQgJ9w7FwfgWRmvZlHVtX31kCW5E9jbvvPpNA7yJur
+         1yxQZtVJYcPcEWDNpZkIeiWmWW4qmkp1RNc/wlRJlVXUzGSOEzIf4RX96bD6ibct+dGy
+         Yud2wd3Q6RVs31CY1UIxg1Cy1SN/W7H8pEF9nqcsvs9/wHhTrDANN3h3hSR82LO0Vy+f
+         /msz0UmVNXSvofffMaYcvFW8A7slw84RiipIVuBt4IioivW6kH2xdrPjzTE/l9Q67qHs
+         HfTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685079425; x=1687671425;
+        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ia3v36xyxfeQr6pILyLNKr3HLDKWkSOuXI6pXCcmms8=;
+        b=TeegmaATUrysVTuHxd7QYK9pmuUxIx/vKr87Apc5HrsJY+F2DgS0Hs1ezT/ffJiYEx
+         DtStMqbiHA6avsQy9718p9h4Q16XhdANbu0M2WKYr7d/y7YL/MERP4liQ3s6ME+561k8
+         4P+clBfTb5+IiehozOpRh4vuPZiPsXOVT/om+uxO/Opap7ju/fYBKekvYjnYvlZuNx0K
+         0G4sWSt55Qh1Y8k6wVtiaZS6YihoEsPk8ejz7P8+e31cbfV1xtuYJjCR5nZzlNGI40sV
+         7VK3NxW3lA0Tp8gfPFF2eZ6YwpTyqwUG4SUkUko2pQavgQ/jQq+TtnciX0d2KSogfCDL
+         gTSA==
+X-Gm-Message-State: AC+VfDwSZQs3Tah68nLLOiJZWtnUsjmN0z281AJI+bJzOGYkK1tBJQqc
+        HRyuj70iyAr/BF1zn7tfINnPXdvemo3BBc75omM=
+X-Google-Smtp-Source: ACHHUZ4VDHwDx1+fbg+8sv7LJMh4u+NScozxoFmaJKEhbzXLrM9hzN36CzLmtOZqp62PGO2/8cJeGw==
+X-Received: by 2002:a1c:7918:0:b0:3f1:98bd:acec with SMTP id l24-20020a1c7918000000b003f198bdacecmr423621wme.11.1685079425585;
+        Thu, 25 May 2023 22:37:05 -0700 (PDT)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id y12-20020a1c4b0c000000b003f4290720d0sm7503569wma.47.2023.05.25.22.37.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 May 2023 22:37:04 -0700 (PDT)
+Date:   Fri, 26 May 2023 08:37:00 +0300
+From:   Dan Carpenter <dan.carpenter@linaro.org>
+To:     oe-kbuild@lists.linux.dev,
+        Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
+        krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, bhelgaas@google.com
+Cc:     lkp@intel.com, oe-kbuild-all@lists.linux.dev,
+        lorenzo.pieralisi@arm.com, linux-arm-kernel@lists.infradead.org,
+        bharat.kumar.gogada@amd.com, michals@amd.com,
+        nagaradhesh.yeleswarapu@amd.com,
+        Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Subject: Re: [PATCH v3 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
+Message-ID: <af5890b4-f084-48ad-adc2-3a664788f63e@kili.mountain>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR11MB7648.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d18a4f9c-1574-4e5a-5604-08db5da44ede
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 May 2023 04:47:28.1914
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mTEHTKevbXIRIW/uTXumVevDq8FhMO7YuXWKcvjK1/on5aWi86NbXK4zCqCLrw4ubm9Inm2tt0n9Bw1UVYc4KiOjj12IAWFfrb9+Vqm7UyI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7594
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230519105901.2399452-4-thippeswamy.havalige@amd.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -165,12 +76,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMjUuMDUuMjAyMyAyMDoxNCwgQ29ub3IgRG9vbGV5IHdyb3RlOg0KPj4gQ29udmVydCBNaWNy
-b2NoaXAgUElUNjRCIHRvIFlBTUwuIEFsb25nIHdpdGggaXQgY2xvY2stbmFtZXMgYmluZGluZyBo
-YXMNCj4+IGJlZW4gYWRkZWQgYXMgdGhlIGRyaXZlciBuZWVkcyBpdCB0byBnZXQgUElUNjRCIGNs
-b2Nrcy4NCj4gSSBkb24ndCB0aGluayBib3RoIG9mIHRoZXNlIFBJVCB0aGluZ3MgbmVlZCB0byBo
-YXZlIGRpZmZlcmVudCBiaW5kaW5nDQo+IGZpbGVzLiA5MCUgb2YgaXQgaXMgdGhlIHNhbWUsIGp1
-c3QgdGhlIGNsb2NrLW5hbWVzL251bWJlciAtIHNvIHlvdSBjYW4NCg0KQnV0IHRoZXNlIGFyZSBk
-aWZmZXJlbnQgaGFyZHdhcmUgYmxvY2tzIHdpdGggZGlmZmVyZW50IGZ1bmN0aW9uYWxpdGllcyBh
-bmQNCmRpZmZlcmVudCBkcml2ZXJzLg0KDQo+IGNvbWJpbmUgdGhlIHR3byBpbnRvIG9uZSBmaWxl
-IHdpdGggYW4NCg0K
+Hi Thippeswamy,
+
+kernel test robot noticed the following build warnings:
+
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Thippeswamy-Havalige/Move-and-rename-error-interrupt-bits-to-a-common-header/20230519-190203
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
+patch link:    https://lore.kernel.org/r/20230519105901.2399452-4-thippeswamy.havalige%40amd.com
+patch subject: [PATCH v3 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
+config: loongarch-randconfig-m041-20230521
+compiler: loongarch64-linux-gcc (GCC) 12.1.0
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Reported-by: Dan Carpenter <error27@gmail.com>
+| Closes: https://lore.kernel.org/r/202305261250.2cs1phTS-lkp@intel.com/
+
+New smatch warnings:
+drivers/pci/controller/pcie-xilinx-dma-pl.c:562 xilinx_pl_dma_pcie_init_irq_domain() warn: passing zero to 'PTR_ERR'
+drivers/pci/controller/pcie-xilinx-dma-pl.c:600 xilinx_pl_dma_pcie_setup_irq() warn: unsigned 'port->irq' is never less than zero.
+
+Old smatch warnings:
+drivers/pci/controller/pcie-xilinx-dma-pl.c:576 xilinx_pl_dma_pcie_init_irq_domain() warn: passing zero to 'PTR_ERR'
+
+vim +/PTR_ERR +562 drivers/pci/controller/pcie-xilinx-dma-pl.c
+
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  551  static int xilinx_pl_dma_pcie_init_irq_domain(struct pl_dma_pcie *port)
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  552  {
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  553  	struct device *dev = port->dev;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  554  	struct device_node *node = dev->of_node;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  555  	struct device_node *pcie_intc_node;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  556  	int ret;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  557  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  558  	/* Setup INTx */
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  559  	pcie_intc_node = of_get_child_by_name(node, "interrupt-controller");
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  560  	if (!pcie_intc_node) {
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  561  		dev_err(dev, "No PCIe Intc node found\n");
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19 @562  		return PTR_ERR(pcie_intc_node);
+
+PTR_ERR(NULL) is success.
+
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  563  	}
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  564  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  565  	port->pldma_domain = irq_domain_add_linear(pcie_intc_node, 32,
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  566  						   &event_domain_ops, port);
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  567  	if (!port->pldma_domain)
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  568  		return -ENOMEM;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  569  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  570  	irq_domain_update_bus_token(port->pldma_domain, DOMAIN_BUS_NEXUS);
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  571  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  572  	port->intx_domain = irq_domain_add_linear(pcie_intc_node, PCI_NUM_INTX,
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  573  						  &intx_domain_ops, port);
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  574  	if (!port->intx_domain) {
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  575  		dev_err(dev, "Failed to get a legacy IRQ domain\n");
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  576  		return PTR_ERR(port->intx_domain);
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  577  	}
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  578  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  579  	irq_domain_update_bus_token(port->intx_domain, DOMAIN_BUS_WIRED);
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  580  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  581  	ret = xilinx_pl_dma_pcie_init_msi_irq_domain(port);
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  582  	if (ret != 0) {
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  583  		irq_domain_remove(port->intx_domain);
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  584  		return -ENOMEM;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  585  	}
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  586  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  587  	of_node_put(pcie_intc_node);
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  588  	raw_spin_lock_init(&port->lock);
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  589  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  590  	return 0;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  591  }
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  592  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  593  static int xilinx_pl_dma_pcie_setup_irq(struct pl_dma_pcie *port)
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  594  {
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  595  	struct device *dev = port->dev;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  596  	struct platform_device *pdev = to_platform_device(dev);
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  597  	int i, irq;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  598  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  599  	port->irq = platform_get_irq(pdev, 0);
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19 @600  	if (port->irq < 0)
+                                                            ^^^^^^^^^^^^^
+unsigned isn't less than zero.  Presumably other checkers have already
+complained about this...
+
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  601  		return port->irq;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  602  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  603  	for (i = 0; i < ARRAY_SIZE(intr_cause); i++) {
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  604  		int err;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  605  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  606  		if (!intr_cause[i].str)
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  607  			continue;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  608  
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  609  		irq = irq_create_mapping(port->pldma_domain, i);
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  610  		if (!irq) {
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  611  			dev_err(dev, "Failed to map interrupt\n");
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  612  			return -ENXIO;
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  613  		}
+3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  614  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
