@@ -2,111 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75E8C71268A
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:24:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2A2C7126A7
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:30:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243454AbjEZMY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 08:24:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57766 "EHLO
+        id S231447AbjEZMax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 08:30:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243431AbjEZMYy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:24:54 -0400
-Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF901D8
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 05:24:52 -0700 (PDT)
-Received: by mail-vs1-xe29.google.com with SMTP id ada2fe7eead31-42c38a6daf3so411308137.3
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 05:24:52 -0700 (PDT)
+        with ESMTP id S235889AbjEZMav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:30:51 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54A810CB
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 05:30:23 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-309553c5417so611065f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 05:30:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1685103892; x=1687695892;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Kac9+1tgw97t/ZhT9HBMA1F6hwQ8HyeJeKG9Y95z0Z8=;
-        b=Rj2m49t9Gu6u5Dvb9guyp/NpRtEiMTVCA2ZOzuAVxziARXF8Vw8Jr85chjYO45vZbN
-         JHdF3s2zIHuAP3InBuqFoZqVXw3LfEYtLC6UfDhE6CM0SWJImVFE8PrWee5xZFpHoXXM
-         lxMVnHCM9shP17BIMJP6vCbsdBzJ56r4p03YePD2GaMgpAAPFLuSvaEZXUsz4LIyn4OQ
-         j2wTN4EtmoivZMurhUJQ6V5eshnwSkJ5xPCvX99Pjf5plfInPBDIQ4by/TPVSjTCk5Ui
-         xGePMvjUiiWrShWgM+8Grb7OP9xCxWhMEOzxML4QOu/2IMpOabk32EYDv2MdLxIUiVwp
-         K9bQ==
+        d=linaro.org; s=google; t=1685104187; x=1687696187;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7DgLeFcVKugZ1jHV952TG/acpJ3CYaYDRk+S+7y1opI=;
+        b=JJvTXawYK+2eKFBee5z6PBwWI5k4qXYQepgb/dOh40ONIfiNE4vQ9C5JZS9sngNYhg
+         jKAqABQKcPpFCxaSTHzNRTJh1NZA9QyRaeOZY1W6wo0FCJG+12yEHnJk2NO1DgadbHko
+         SXSrT3LLSZujHZOb4HyIWpS8gGRib7Sl7sEBd71FdNT6s4mX2O4QpiCkFVa9qXC//z3n
+         BL3r0fgeLMCTZ3qonHJ6AOvpUyATULG7xQO2b3uScW7N2yIporOw7/OnSPXyTG6/vxE6
+         ky7koh3XPDV1LI+z3hdqe8uaxn4vkoTeZ6obSssLU6VS6sfAL7NtZTRBfKYS3+fqa4Eq
+         /IPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685103892; x=1687695892;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Kac9+1tgw97t/ZhT9HBMA1F6hwQ8HyeJeKG9Y95z0Z8=;
-        b=TnEcNqm/KJ/f7E218u0uliqcq1aRkEX0+zbqrlQL02UjI3pNbAIwVv3cgP6D0fT7ax
-         Bsgn60cD87Cy07ccHLnmWSpb64S9gaZQPrFpak1pigr1H30Uqv2Xs8SMkWfXyTMOunPe
-         RGbEQasnuCKI6g83fn6/EdNekVslexZ727ESYZ2YT8BOOBkYQqhzrUOr5ffY4A1HMK3n
-         ae0iEE33BnV0zFwFLavCa8OO5VuvT2aqSmQdc5LD76FHYhsI3XmpnrHTUdj5U9wPeHUG
-         EDrYudWuusLNFAhAvt3PHFjoQaRfRgIITZ2HJCanudzWCZ6vycBj0U+fVgRvXxWczFFP
-         I+/g==
-X-Gm-Message-State: AC+VfDxJOyFiRcpznyViMEYc559a2XCG7IH71AA4LEikiEXDOmgFs6eC
-        Hhh89qsvt3SIZGl5LQUToP4EGLZXmAKGmDSmlj31Ow==
-X-Google-Smtp-Source: ACHHUZ4Vo4ypf1Yrzp9viUHOSDtXH4maYpbjQ0xLEQ39qLDEPhBaR9Ehjieq+52sv0yXRrHFogqdGN2e5yQGMg9FBKQ=
-X-Received: by 2002:a67:ea84:0:b0:439:4c9c:1f00 with SMTP id
- f4-20020a67ea84000000b004394c9c1f00mr456422vso.30.1685103891955; Fri, 26 May
- 2023 05:24:51 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1685104187; x=1687696187;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7DgLeFcVKugZ1jHV952TG/acpJ3CYaYDRk+S+7y1opI=;
+        b=UD5Ae0c9GqinvMN44bz6iDhya2ZlVTk2OOJoYXrAso2SbSyoSqSBfuZhEXaarZmXtx
+         7MkKcpSKZAJOYs1IjkZ8Zk50CnknCvdLg4IwzMMmJfoko/+QT8ZZfwRuDEDngdhgwLDF
+         4cmHXfK0krazr5jp21uRvJNCrwIhFrUI521/inZad9OEkJyBQCjnpGHPwjSsWvsb64Cc
+         Y6Agw2I75XV6tMcp/1plrwv46BG/va+ipf0nbP8fPibXPVeMC9cnDUd1noBBmy2bdh0g
+         FAaktAfoDDZC0Yu17i5YD8rtARNi3n7AsD+gAzWXotWm+4tMWjiRVw3pRL0NhMpfs8yM
+         tMCg==
+X-Gm-Message-State: AC+VfDx6nGpQWiMXIyWmVaBqsOBrE06Xgf3Tg7JG7O0HWB7L9qGRzB1H
+        MhpcFGCBCwwkt3jDK7ElG73OTQ==
+X-Google-Smtp-Source: ACHHUZ4Yzdh1OVvZfHTDfTPDF27Lm7PQ6wRYFT/sfIDkuo8DGhJzYx6iAQS1jK8kdTtAXhGTfBVkdw==
+X-Received: by 2002:adf:f307:0:b0:30a:c89c:c338 with SMTP id i7-20020adff307000000b0030ac89cc338mr1348537wro.50.1685104186834;
+        Fri, 26 May 2023 05:29:46 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id h3-20020a5d5483000000b00307c46f4f08sm2325314wrv.79.2023.05.26.05.29.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 May 2023 05:29:46 -0700 (PDT)
+Message-ID: <546876ba-970d-5cd5-648e-723698ca74fd@linaro.org>
+Date:   Fri, 26 May 2023 13:29:44 +0100
 MIME-Version: 1.0
-References: <cover.1683719613.git.noodles@earth.li> <cover.1684258957.git.noodles@earth.li>
- <7691a35155cf644c2efb02c282c5ef007a6570fa.1684258957.git.noodles@earth.li>
-In-Reply-To: <7691a35155cf644c2efb02c282c5ef007a6570fa.1684258957.git.noodles@earth.li>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 26 May 2023 14:24:41 +0200
-Message-ID: <CAMRc=MeJHKRYStTSwTCirdQo=f2okN2ys5=V7-ppzCaGYwDkvg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/5] dt-bindings: gpio: Add GPIO3 for AXP209 GPIO
- binding schema
-To:     Jonathan McDowell <noodles@earth.li>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH V2 1/6] dt-bindings: clock: qcom: Add SM8550 camera clock
+ controller
+Content-Language: en-US
+To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>
+References: <20230525172142.9039-1-quic_jkona@quicinc.com>
+ <20230525172142.9039-2-quic_jkona@quicinc.com>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230525172142.9039-2-quic_jkona@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 16, 2023 at 7:47=E2=80=AFPM Jonathan McDowell <noodles@earth.li=
-> wrote:
->
-> The AXP209 has a 4th GPIO, so add it in preparation for support in the
-> driver.
->
-> Signed-off-by: Jonathan McDowell <noodles@earth.li>
-> Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On 25/05/2023 18:21, Jagadeesh Kona wrote:
+> Add device tree bindings for the camera clock controller on
+> Qualcomm SM8550 platform.
+> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.=
-yaml b/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
-> index 31906c253940..1638cfe90f1c 100644
-> --- a/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
-> @@ -44,6 +44,7 @@ patternProperties:
->              - GPIO0
->              - GPIO1
->              - GPIO2
-> +            - GPIO3
->
->        function:
->          enum:
-> --
-> 2.39.2
->
+> Changes since V1:
+>   - Removed new YAML file and reused SM8450 CAMCC YAML file for SM8550
+> 
+>   .../bindings/clock/qcom,sm8450-camcc.yaml     |   8 +-
+>   include/dt-bindings/clock/qcom,sm8550-camcc.h | 187 ++++++++++++++++++
+>   2 files changed, 193 insertions(+), 2 deletions(-)
+>   create mode 100644 include/dt-bindings/clock/qcom,sm8550-camcc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> index 87ae74166807..8dbc9004202f 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> @@ -13,11 +13,15 @@ description: |
+>     Qualcomm camera clock control module provides the clocks, resets and power
+>     domains on SM8450.
+>   
+> -  See also:: include/dt-bindings/clock/qcom,sm8450-camcc.h
+> +  See also::
+> +    include/dt-bindings/clock/qcom,sm8450-camcc.h
+> +    include/dt-bindings/clock/qcom,sm8550-camcc.h
+>   
+>   properties:
+>     compatible:
+> -    const: qcom,sm8450-camcc
+> +    enum:
+> +      - qcom,sm8450-camcc
+> +      - qcom,sm8550-camcc
 
-Applied, thanks!
+Hmm,
 
-Bart
+So looking at Documentation/devicetree/bindings/clock/*camcc*.yaml we 
+seem to be repeating yaml over and over again with no substantial 
+difference between one description and another.
+
+You've picked at the thread here by adding sm8550 into sm8450.
+
+I think sm8250, sm8450, sm8550, sc7280 and ... probably sm6350 should 
+live in the one yaml description 
+Documentation/devicetree/bindings/clock/qcom,camcc.yaml
+
+sm6350 looks a bit sparse/incomplete to me so perhaps leave that out. 
+The others sc7280, sm8250, sm8450 and sm8550 can/should all be moved 
+into the same yaml file with a list of compatibles.
+
+---
+bod
