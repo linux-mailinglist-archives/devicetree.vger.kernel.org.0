@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A98887124A5
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 12:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 399C77124AB
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 12:30:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243147AbjEZK31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 06:29:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37780 "EHLO
+        id S243209AbjEZK3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 06:29:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242591AbjEZK30 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 06:29:26 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E73FB
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:29:24 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2af2c7f2883so5722701fa.3
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:29:24 -0700 (PDT)
+        with ESMTP id S243230AbjEZK3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 06:29:46 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22A0E119
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:29:43 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2afb2875491so5557201fa.1
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:29:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685096963; x=1687688963;
+        d=linaro.org; s=google; t=1685096981; x=1687688981;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/K6PbDpa1bEXTu9+nLfG+TEYuGga9QGQcY866PUs1S4=;
-        b=gls0zD+CZdmTwtc6DNf+QA/lpg0y7Qg2rRgYwry2zZXeUv5j1wUMD2sDzm5rhRPWXh
-         r/zFGO0yfdRqz4SmPN5LkZp6IZ9+Egm4C62Yo7iPdgEmYMetTfTs5Ss94LRHToV1jWSI
-         hSD3Slnyw1XdcWnCXFmOgPc40IFKdVXQNjoFqtnwRPK2thxVkwTsmbuEbDfyACbeOzqC
-         1Fhgl4BLV9RPIncWS2o7iLKiih7fSBcJJPjWDsajIWdYjzD4PBaZBSB7rbw/m7Eb4Koj
-         7bynkut6ileHW5xEwktrucRbX++MhLQvPs6Q7nA2cTVMQ5T69EcquDRClle2Y4cRGx4M
-         OVdQ==
+        bh=jiS9iHXCNDD3l5v3ycpvVXx+e/hAWgffv3FWQpgB8yU=;
+        b=TbYqScfDcWw/J88rETR+ljuTY3czF9ItUWnfkdxIYjjd7BLfvFGlv7ekEGgaqZlzfC
+         N6XKRbYdAwPiyduuoEzUFBNuK//JEWSrJOnI++Zy4frUdn3116lVoXtRO4+KhTsTvIQ2
+         KV2Eo0qAe0OH6POK5VHuw8wNmBw1PrEJ/mAdZBicbdVNSK3CM8Jg34cW2hLdQmFOyXkB
+         Lbquz0ke0p/zuOaxObexhxt90/y7KJyE8JUYxvNqcpHDMK2QVr5N7DrZBMEtVIsL9J68
+         hxOL1nzrW0lMwsA8NmU8sUwhdxvxwk2Mqd6ub4/qemfZwOPy5kj6SXaameAZCo6opZwF
+         QOIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685096963; x=1687688963;
+        d=1e100.net; s=20221208; t=1685096981; x=1687688981;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/K6PbDpa1bEXTu9+nLfG+TEYuGga9QGQcY866PUs1S4=;
-        b=hbeuvpMFItDbAxd6dcHydcOdZJkLGhw6Xi9wBywhN7VAtHRcVNfrFbPKAX5++P2H0X
-         oUM7zrRWANIuEjslmr/sRL6a1KLptNnKyQKZLnwTDhmaoNjmMJ5GmCoxJXgS8qony1G6
-         3A95Ni9np4/lTWP/iXjegynWju4RywTmK0knlqZu8d5nGbG+eRCHEkqBvG1BBqGuUBY1
-         HFL7dIlkcUKuAdHBWIcTxe2xuDzV/poRrPPVI2FjslVuU2/VK5SmjfkRkbOMrZun3nNf
-         TDCUE4kjo5SeMxyP95bxhgclX0YLaDMga49joxfu0pdiGXnyn630q3VPFcxJZV47+MCY
-         bwxw==
-X-Gm-Message-State: AC+VfDxJOpS18i+jf2l9bc9rFvOa0fIYLY9Ldngh9zClWg25L7sYA2t6
-        FKiS1DxDM0eI/yIyP/OrZGcZnw==
-X-Google-Smtp-Source: ACHHUZ5Iev8xVgOOk2KPuQQZDGrJvE8omFBcgdT2Z9BmUX0sPH8sQxquSzcLsJQ9AqRoacTuX8xVcg==
-X-Received: by 2002:a2e:b16b:0:b0:2a8:ac69:bfe with SMTP id a11-20020a2eb16b000000b002a8ac690bfemr489694ljm.42.1685096962859;
-        Fri, 26 May 2023 03:29:22 -0700 (PDT)
+        bh=jiS9iHXCNDD3l5v3ycpvVXx+e/hAWgffv3FWQpgB8yU=;
+        b=I5vZq5TOgAudl2dKTNKjpdYzmpeXuTAwb3nSMbIsHJmTqpNeSfxGd+MSxC6UTSDtBD
+         a5aHk8kwmtyBgzQn0N6nKZIsAk7jf62kteCp0M4O3iyA7PxjJgBbXSTmNy0kHKo34r5z
+         bV4kqDLMjwv7njpg6DiVQYItW0msctfHarXqVHPp3aylJ0ZuBMXCHQH8leTnaayc51Ch
+         nnP9xq7OWKukcKNyrGsZyiAHEklqbM2OdHn7lLKyjzUZd2ql+HhzN+mntYwPxaagPXlh
+         cseGad6Ayb7zWWY0oc2G59Glo2suq0936+fKISerkPIcCm7hEDRdyAtetFJjB/MeoARO
+         K4aw==
+X-Gm-Message-State: AC+VfDwYB9nyoU5Zws2g5UQhpEbaXPEfx2Tgp9ron+D/dkoHKBEoTH/W
+        CalPIrEmDx1x5cX+GuSBcPxt5Q==
+X-Google-Smtp-Source: ACHHUZ6nrMnyF62iub5Hm9e7eRdsaCzvfCsZnOqAW+nS7Y0F5F5LnN+i10n/EylDiJfTM0oEYJS9DQ==
+X-Received: by 2002:a2e:7806:0:b0:2a8:eae2:d563 with SMTP id t6-20020a2e7806000000b002a8eae2d563mr637548ljc.53.1685096981200;
+        Fri, 26 May 2023 03:29:41 -0700 (PDT)
 Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id a17-20020a2e88d1000000b002af25598f07sm650315ljk.78.2023.05.26.03.29.21
+        by smtp.gmail.com with ESMTPSA id e11-20020a2e984b000000b002a9ebff8431sm657828ljj.94.2023.05.26.03.29.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 03:29:22 -0700 (PDT)
-Message-ID: <cfbf7e0f-994e-ea93-11e9-cd20733a11e1@linaro.org>
-Date:   Fri, 26 May 2023 12:29:21 +0200
+        Fri, 26 May 2023 03:29:40 -0700 (PDT)
+Message-ID: <af725aab-5083-2f71-27a6-e1800fba293a@linaro.org>
+Date:   Fri, 26 May 2023 12:29:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 2/4] arm64: dts: qcom: ipq5332: add QFPROM node
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: ipq9574: add QFPROM node
 Content-Language: en-US
 To:     Kathiravan T <quic_kathirav@quicinc.com>,
         Andy Gross <agross@kernel.org>,
@@ -66,11 +66,11 @@ To:     Kathiravan T <quic_kathirav@quicinc.com>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230526070421.25406-1-quic_kathirav@quicinc.com>
- <20230526070421.25406-3-quic_kathirav@quicinc.com>
- <55200328-735d-6571-fcad-735cc9d1568b@linaro.org>
- <bf0cef36-8286-df96-8c58-82aa6d1a02ad@quicinc.com>
+ <20230526070421.25406-5-quic_kathirav@quicinc.com>
+ <7d14db71-2279-e9b9-012d-47dc50fe797b@linaro.org>
+ <97e06f9e-81cb-45ad-5b2a-d8de52d023f0@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <bf0cef36-8286-df96-8c58-82aa6d1a02ad@quicinc.com>
+In-Reply-To: <97e06f9e-81cb-45ad-5b2a-d8de52d023f0@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,30 +90,30 @@ On 26.05.2023 12:24, Kathiravan T wrote:
 > On 5/26/2023 2:49 PM, Konrad Dybcio wrote:
 >>
 >> On 26.05.2023 09:04, Kathiravan T wrote:
->>> IPQ5332 has efuse region to determine the various HW quirks. Lets
+>>> IPQ9574 has efuse region to determine the various HW quirks. Lets
 >>> add the initial support and the individual fuses will be added as they
 >>> are required.
 >>>
 >>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
 >>> ---
->>>   arch/arm64/boot/dts/qcom/ipq5332.dtsi | 7 +++++++
+>>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 7 +++++++
 >>>   1 file changed, 7 insertions(+)
 >>>
->>> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->>> index af4d97143bcf..c2d6cc65a323 100644
->>> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
->>> @@ -135,6 +135,13 @@
+>>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> index 1a2c813ffd43..715fe51ff567 100644
+>>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> @@ -117,6 +117,13 @@
 >>>           #size-cells = <1>;
 >>>           ranges = <0 0 0 0xffffffff>;
 >>>   +        qfprom: efuse@a4000 {
->>> +            compatible = "qcom,ipq5332-qfprom", "qcom,qfprom";
->>> +            reg = <0x000a4000 0x721>;
+>>> +            compatible = "qcom,ipq9574-qfprom", "qcom,qfprom";
+>>> +            reg = <0x000a4000 0x5a1>;
 >> That's an odd size. Are you sure this is how long the corrected region is?
 > 
 > 
 > Yes, As per the HW document, this is the size.
-OK thanks for confirming
+Thanks for confirming
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
@@ -126,6 +126,6 @@ Konrad
 >>> +            #size-cells = <1>;
 >>> +        };
 >>> +
->>>           rng: rng@e3000 {
->>>               compatible = "qcom,prng-ee";
->>>               reg = <0x000e3000 0x1000>;
+>>>           tlmm: pinctrl@1000000 {
+>>>               compatible = "qcom,ipq9574-tlmm";
+>>>               reg = <0x01000000 0x300000>;
