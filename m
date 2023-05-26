@@ -2,46 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92BF1712C88
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 20:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76BB3712C93
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 20:37:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230121AbjEZSfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 14:35:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43790 "EHLO
+        id S231440AbjEZShG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 14:37:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242821AbjEZSek (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 14:34:40 -0400
-Received: from fgw20-7.mail.saunalahti.fi (fgw20-7.mail.saunalahti.fi [62.142.5.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77B56E71
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 11:34:32 -0700 (PDT)
-Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
-        by fgw20.mail.saunalahti.fi (Halon) with ESMTP
-        id f3177185-fbf3-11ed-b3cf-005056bd6ce9;
-        Fri, 26 May 2023 21:34:29 +0300 (EEST)
-From:   andy.shevchenko@gmail.com
-Date:   Fri, 26 May 2023 21:34:29 +0300
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     andy.shevchenko@gmail.com, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Subject: Re: [PATCH v3 08/11] serial: sc16is7xx: fix regression with GPIO
- configuration
-Message-ID: <ZHD7taBP0UthlPKp@surfacebook>
-References: <20230525040324.3773741-1-hugo@hugovil.com>
- <20230525040324.3773741-9-hugo@hugovil.com>
- <ZG9EWEwb077qyBIi@surfacebook>
- <20230525110255.6ffe0a0c3f88ae03c3fc5f25@hugovil.com>
+        with ESMTP id S229732AbjEZShF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 14:37:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6DAB171A;
+        Fri, 26 May 2023 11:36:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A354C6527E;
+        Fri, 26 May 2023 18:35:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC0ACC433D2;
+        Fri, 26 May 2023 18:35:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685126142;
+        bh=VDDmjHyy+iR3Og6KPq9UzqSzR9nA/ikwlfukRRfxXHM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=An16OMJhq21wwMXZl1NioR7ndRPIXTD7voG2vWPxcHN4t4Poiohtz+oOVj32GmMBc
+         nxsESat9w4Ia6m91rbojyR0At/ojg07sFyJqVQTwd4dPsYpipfB/InH6EwGtaDPmvx
+         ke/r48WGEmHoH2gAhGJPVdPC3TBozcPqxypFTku8Io3x4+i+YnLB/HknHeuY4ghb4S
+         8cIAIW+FE5cRbHUpeVbPbjgrekKQOEPJhtUNV1bnd1RQMKinphY+avJ876E0cNDghI
+         HHj4hajn8h3TkfEx1mPwVyh9yT1rEhP0KvALzhAz/tkLv3nUiPgG8DuZWrIsGMN360
+         FccPdUOQKS+pA==
+Date:   Fri, 26 May 2023 19:35:37 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Kathiravan T <quic_kathirav@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: nvmem: qfprom: add compatible for few
+ IPQ SoCs
+Message-ID: <20230526-romp-stunned-9b3e9eb40d1e@spud>
+References: <20230526070421.25406-1-quic_kathirav@quicinc.com>
+ <20230526070421.25406-2-quic_kathirav@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="rFsBBuqS+Nmcrkb3"
 Content-Disposition: inline
-In-Reply-To: <20230525110255.6ffe0a0c3f88ae03c3fc5f25@hugovil.com>
-X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
-        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <20230526070421.25406-2-quic_kathirav@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,94 +63,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thu, May 25, 2023 at 11:02:55AM -0400, Hugo Villeneuve kirjoitti:
-> On Thu, 25 May 2023 14:19:52 +0300
-> andy.shevchenko@gmail.com wrote:
-> > Thu, May 25, 2023 at 12:03:22AM -0400, Hugo Villeneuve kirjoitti:
 
-...
+--rFsBBuqS+Nmcrkb3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > I'm wondering if we can avoid adding new ifdefferies...
-> 
-> I am simply following waht was already done in the existing driver.
-> 
-> Are you suggesting that we need to remove all these #defines? If not, what
-> exactly do you suggest?
+On Fri, May 26, 2023 at 12:34:18PM +0530, Kathiravan T wrote:
+> Add the QFPROM compatible for IPQ5332, IPQ6018 and IPQ9574
+>=20
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
 
-I was wondering and have nothing to suggest here. It seems a burden we have to
-cope with for now.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> > > +	s->gpio_configured = devtype->nr_gpio;
-> > 
-> > The name of the variable is a bit vague WRT its content.
-> > Shouldn't be as simple as the rvalue, i.e. s->nr_gpio?
-> 
-> Maybe the name could be improved (and/or comments).
-> 
-> devtype->nr_gpio is the maximum "theoretical" number of GPIOs supported by
-> the chip.
-> 
-> s->gpio_configured is the number of GPIOs that are configured or requested
-> according to the presence (or not) of the modem-control-line-ports property.
-> 
-> I wanted to avoid using the same name to avoid potential confusion.
-> 
-> Maybe devtype->nr_gpio could be renamed to devtype->nr_gpio_max and
-> s->gpio_configured to s->nr_gpio_requested or s->nr_gpio_configured?
+Thanks,
+Conor.
 
-Maybe, but first try the approach with valid mask being involved. It may be
-that we won't need this variable at all.
+--rFsBBuqS+Nmcrkb3
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...
+-----BEGIN PGP SIGNATURE-----
 
-> > > +		of_property_for_each_u32(dev->of_node, "nxp,modem-control-line-ports",
-> > > +					 prop, p, u)
-> > 
-> > The driver so far is agnostic to property provider. Please keep it that way,
-> > i.e. no of_ APIs.
-> 
-> The driver, before my patches, was already using the exact same function
-> of_property_for_each_u32() to process the irda-mode-ports property, so I
-> don't understand your comment.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHD7+QAKCRB4tDGHoIJi
+0t9vAQCFE8PJYbehdCJWON2Smf814mrVBpoIxIqPwfJP2yLlcQD+OQ8BmNH2q+bm
+Z4vfJvNqu9wcm5U5yCiWx5jI7lAcjw4=
+=RVe1
+-----END PGP SIGNATURE-----
 
-This is unfortunate. I missed that one, but i don't care about IrDA so much.
-
-> But what do you suggest instead of of_property_for_each_u32()? And do we need
-> to change it also for processing the irda-mode-ports property?
-
-device_property_read_u32_array().
-
-Independently on the IrDA case, this one is more important and would have
-consequences if we avoid agnostic APIs.
-
-...
-
-> > > +			if (u < devtype->nr_uart) {
-> > 
-> > Hmm... What other can it be?
-> 
-> Again, this is similar to the handling of the irda-mode-ports property.
-> 
-> But I am not sure I understand your question/concern?
-> 
-> I think this check is important, because if someone puts the following
-> property in a DT:
-> 
->     nxp,modem-control-line-ports = <0 1>;
-> 
-> but the variant only supports 1 port, then the check is usefull, no?
-
-But you have below checks for u value. Wouldn't be enough?
-
-> > > +				/* Use GPIO lines as modem control lines */
-> > > +				if (u == 0)
-> > > +					val |= SC16IS7XX_IOCONTROL_MODEM_A_BIT;
-> > > +				else if (u == 1)
-> > > +					val |= SC16IS7XX_IOCONTROL_MODEM_B_BIT;
-> > > +
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--rFsBBuqS+Nmcrkb3--
