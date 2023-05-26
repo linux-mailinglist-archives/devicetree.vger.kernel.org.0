@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2894E7124CD
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 12:35:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F2987124DE
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 12:38:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243246AbjEZKf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 06:35:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41736 "EHLO
+        id S242430AbjEZKij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 06:38:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242602AbjEZKfz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 06:35:55 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5592C1B4
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:35:32 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-30addbb1b14so14000f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:35:32 -0700 (PDT)
+        with ESMTP id S236570AbjEZKif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 06:38:35 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A148134
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:38:32 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f6e1394060so4040795e9.3
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 03:38:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685097330; x=1687689330;
+        d=linaro.org; s=google; t=1685097511; x=1687689511;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=nBqku5q9vZ6Xc8ZaZQnGRftVBfKjrmfStPvoq/Z7tIE=;
-        b=smTVu85CUKKohcCM2dZok368NM60if6zrxbJOJps1F1bJe9WsF6ZMP9AKyWLYKyR2c
-         FvFdAH4nZbStiwbdSje5qJ62m1Kg2b5XtOu7XtCd5NmXXcQabQPO+bBUlJbDAK1z7uSi
-         c353VExyqov5R5cn6Sj2mpS45ggaPoATZkdeeTuekTZgBC/BjYWo9DHcZ+4HVSbDqiXX
-         8BU/BFg5PGdzFXmH1XmGKjC/gnKbdfO123jEYaGG1cVca4F7DZ0Fq2Wb0Lh3CM4IxQw/
-         1NA5mnOjuuElJAuKP2duGE/NLnQUAi0z10IuuipjreNrATHcpQzAKrdG8p1P5UqgYqHg
-         W4JA==
+        bh=gqVVAm/y1HoALh+s361erx7bMZgCxQRFgtpi/v1PaKo=;
+        b=HJ7fBVJqCsT5R4//AmW9AScNLLApXJA8d/6S7+0FY9YgxHH74VnQpWwCehPoOdr0wq
+         SQ2JuvmK7sm2lA+i+BrspdAKh4JaEWD2AzLV6FIjF2d7I7ARoWcP75ZGPe3VoV3TouUX
+         IFsE/VaWeFtVv+mcA4umKZORliI1NLDFlPa8O/NLaC9owMTeCLNhJrzWzxkHyPF91Phg
+         Yw13DjWeDFiBMeKO94urScZMETTyzG7JWyUSgr0OIbueJhL17ZDbdm8bGjcQLXcB5Ps/
+         RB2Ey9BZUFnKYilXj0DM97vYkgULbKziaGJx4rJaRpxlyrTiwKssm4TGN1ASwks8GDMS
+         VZfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685097330; x=1687689330;
+        d=1e100.net; s=20221208; t=1685097511; x=1687689511;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nBqku5q9vZ6Xc8ZaZQnGRftVBfKjrmfStPvoq/Z7tIE=;
-        b=UQNshtvxwp1C39IXI4zJ41r++ABi+64Qmq3r5QvAd8dqDJuEkWiIV9k+V8b+bwlTBT
-         JM13mNwTF1L5tI8QgdzeS3IOUYDANU6xHF72od0qIJS5empiwTQR5Zhfqh1h7lICe2rR
-         Oxm93nZx42kT2ihaKIBd5vlzfb/sTFFaMxTRr0DyDl9sKgeedDxu0HNim2yhnuMw+qp1
-         mV/jODVGOGCXCZanBGsPK9g97KV6NVBXaa7kJUDMYUEibMvSQsJM84WiFlkEJsDAZVV4
-         MfltXM/MEOVS2VXpg6FoP+ohMyNKQogM8Uesosjjd2ja1Uog358AWH7iUeUGZA2wnvvB
-         c8Eg==
-X-Gm-Message-State: AC+VfDwXuTjZeUIRT2kgYllkj/IuM60Cn15V44gQmcekH7DJxyeipuLf
-        7XakA5f63R2fLw8DY9qJZ7w8Uw==
-X-Google-Smtp-Source: ACHHUZ6AYKcJLt+byatanAoL/NXFYaied7fayFtzagQ+4cmKoccBEbRSJIIocsCnjrEb67L30dbJDA==
-X-Received: by 2002:a5d:6aca:0:b0:30a:dcb9:a0b9 with SMTP id u10-20020a5d6aca000000b0030adcb9a0b9mr429105wrw.46.1685097330287;
-        Fri, 26 May 2023 03:35:30 -0700 (PDT)
+        bh=gqVVAm/y1HoALh+s361erx7bMZgCxQRFgtpi/v1PaKo=;
+        b=fnhIWZHDdHOVsuAfUI4gnPdSQp5KRQdOUz6OTwUwiDGvdQmrjObjB/V/S3mKVWcSL5
+         XgzvcylFo5fV7qt7C6gCWVeibG6IaAUmnSM94zBG2WO7dmsODEmIdApRo8r1ASK4XdFO
+         EX6gjmZQ4DkJKFUkzyaUaykKM9aweY6s03pQS68SbHEiQeFGvTk+Ir1ULu8B87N3QDRP
+         aam2GORBhRUQ6XPI786ACRTKfY7oVfp8Pj18xwiXgvyxtnxCpQeCQnD6+m4dQKYVelKE
+         ihOaJYsndSBqFnz+1c2CxXdadIFzqWbakYzGApOSbiD4TTcXNT84V6hBgECBzYDmApN4
+         fvtg==
+X-Gm-Message-State: AC+VfDxaqNPgGKS+NinNxuofcE7asm+8e+24lis972yQGDh2611c9pBg
+        0EDbhe0BIxde3bTyIFW6lfcB+HXG6Mrh58etVBuJNQ==
+X-Google-Smtp-Source: ACHHUZ656Zt2yUkAzWvrDGzkUWXOvr37WPMqjvtf1rRfMMcu9S7heLTHhVOVYRLwpW1FUroNPr92DQ==
+X-Received: by 2002:a1c:f40a:0:b0:3f4:e853:6a1 with SMTP id z10-20020a1cf40a000000b003f4e85306a1mr1350782wma.38.1685097510904;
+        Fri, 26 May 2023 03:38:30 -0700 (PDT)
 Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id b14-20020adff90e000000b00307972e46fasm4520818wrr.107.2023.05.26.03.35.29
+        by smtp.gmail.com with ESMTPSA id x4-20020a05600c21c400b003f0aefcc457sm8460239wmj.45.2023.05.26.03.38.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 May 2023 03:35:29 -0700 (PDT)
-Date:   Fri, 26 May 2023 11:35:27 +0100
+        Fri, 26 May 2023 03:38:30 -0700 (PDT)
+Date:   Fri, 26 May 2023 11:38:28 +0100
 From:   Daniel Thompson <daniel.thompson@linaro.org>
 To:     Artur Weber <aweber.kernel@gmail.com>
 Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -66,37 +66,30 @@ Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
         linux-fbdev@vger.kernel.org, linux-pwm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: backlight: lp855x: convert to YAML
- and modernize
-Message-ID: <20230526103527.GD626291@aspen.lan>
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 2/4] video: backlight: lp855x: get PWM for PWM mode
+ during probe
+Message-ID: <20230526103828.GE626291@aspen.lan>
 References: <20230519180728.2281-1-aweber.kernel@gmail.com>
- <20230519180728.2281-2-aweber.kernel@gmail.com>
+ <20230519180728.2281-3-aweber.kernel@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230519180728.2281-2-aweber.kernel@gmail.com>
+In-Reply-To: <20230519180728.2281-3-aweber.kernel@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 19, 2023 at 08:07:25PM +0200, Artur Weber wrote:
-> Notable changes:
-> - ROM child nodes use dashes instead of underscores; the driver
->   reads all child nodes regardless of their names, so this doesn't
->   break ABI.
-> - pwm-period argument is deprecated, as it effectively duplicates
->   the period value provided in pwms. The driver continues to accept
->   the property, so this should not break ABI.
+On Fri, May 19, 2023 at 08:07:26PM +0200, Artur Weber wrote:
+> Also deprecate the pwm-period DT property, as it is now redundant
+> (pwms property already contains period value).
 >
 > Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
 Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
