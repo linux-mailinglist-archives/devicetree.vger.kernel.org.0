@@ -2,108 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A03AA712146
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 09:38:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9AF1712153
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 09:42:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242416AbjEZHij convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 26 May 2023 03:38:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36728 "EHLO
+        id S242193AbjEZHmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 03:42:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242495AbjEZHig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 03:38:36 -0400
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9602AE61;
-        Fri, 26 May 2023 00:38:11 -0700 (PDT)
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-b9daef8681fso430787276.1;
-        Fri, 26 May 2023 00:38:11 -0700 (PDT)
+        with ESMTP id S242503AbjEZHmn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 03:42:43 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD13D134
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 00:42:38 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f6077660c6so2850805e9.0
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 00:42:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685086957; x=1687678957;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=NkTkGDMVJA48vFPtaSjIeYrGpqqTSqfQ3e0MrBnwrbs=;
+        b=xz3haS1KXQLY2AyRechw8Fk0OwpajCfzX8pzwP7F7lcIurYVEfVUSTIJ/6dMylYFSp
+         CF17Dhd+xW3AREahs3Gy7lsQEL/b6/XDEO4WZq+AFKAGxzrChCSf3bKWND9ZWwwVuVUr
+         MQrH7gWys3cygr092RBrAl7lGEFXv8ElesV248sw6PjhUqk0uge2kO+B0inreW6vdWmW
+         zqKNz3Vjm7ZkvcpUne4eZ9EMUANjjiKdQIE5jARMRa3G6Ot/Co51BhtRzrQ6KnNCQiae
+         FmjBGKDkJX1VwObvtvOW9Z/Xfz92iIxw/hdQMVczkgU0rUegLwDyVP8COWgqqVx1y9E4
+         442Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685086640; x=1687678640;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZplzPX/qZytJO01Mxnn0loHjJum7pyoDyw30fwHhRDI=;
-        b=LWvRGxSgY3g5prltk3Ms/LU6Ux7Bic0V7SXRkOYf4J6Xrf/0i/BHFvdsdTWIuz2bhN
-         7Y/UeqrjfQiNwFJDKfHyDEfFIRYTrszyIIZLP3I90RW1YgBvM1UDH4OOAI+zr/5OG9Ei
-         bqXRT9joASJiQVss7LKiqYBPGQwuo7cjZn6nXpKhVcFcTglHvqXcI+J3E8QIDmp/WZ1o
-         H3WHqasJnszkOeyc5fF/miOuYz3ZZXW+ii4SSIHc0uCJjb8O9VmsqMqr79aoONcNrbYe
-         aVSw6Y08jcKMNMUyTOOzONSN3PY7GG863ia7C60mtXk6Kw8R/GSA8hLuJaIm+1UUl1je
-         +8GA==
-X-Gm-Message-State: AC+VfDxy4fcRaf/5JXFo5uMTCUzNJcx6N+ip+gkO2tFSo9XeBlMm2htL
-        RaFfovxqYtwIUh4m//u0rpnh2x7IN3mqDw==
-X-Google-Smtp-Source: ACHHUZ5+VSN5PS5BON9IDesMs9tZ6jn32z4JJPGfGJ8C9PFYy9x/eiD8bcbPf9x+xkXkfaQLcvGQ6Q==
-X-Received: by 2002:a81:c305:0:b0:559:f181:1a7d with SMTP id r5-20020a81c305000000b00559f1811a7dmr1189558ywk.27.1685086639846;
-        Fri, 26 May 2023 00:37:19 -0700 (PDT)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id y123-20020a0def81000000b0055aaccfa2c7sm990143ywe.91.2023.05.26.00.37.18
+        d=1e100.net; s=20221208; t=1685086957; x=1687678957;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NkTkGDMVJA48vFPtaSjIeYrGpqqTSqfQ3e0MrBnwrbs=;
+        b=QNflx4AYUG8tgZkJ5Khn//JrY8HG9RQQMVkBpQuIp/QJM5QdhGkijGuEAA6dbN45GK
+         V3mh83+KPnHxHH4OO2CoOSrefe/mM39B8Lc/NMYpNqYG2mAqHxtgST53yooIzhVC25v1
+         EA+FYbLeyed9YcsafDdmxaI/CbsySIJO/GhAseA7fJlLzZvjciheQcZN0pGi4kw9NkD4
+         WhtgR72ctMGlaNxAfVmJc1BljSS5I5u15owJOPFi72Or7pPStsurX94LvxWG0PxQGLZG
+         kPgMSsTc9u/XyAlbqjkyFcd0Y6E6bsJtODhBAydHhbko93Kd8hB/cn/wleXDmvmese17
+         OYKQ==
+X-Gm-Message-State: AC+VfDx8lxMtImSqLBrT9q/3HjFeGi8WVS3yGjWuo38gmPBltwZ8QV3F
+        EoZQbf59l9uIYeoirNe3sNMW+w==
+X-Google-Smtp-Source: ACHHUZ78glX9owiGGfj2LcnoXd+JjAb5MfcnsGRZKu/lCr6am4/SgX/kuL7OXyh5yod59igD+QEHkA==
+X-Received: by 2002:a1c:7c19:0:b0:3f4:f4d1:5c28 with SMTP id x25-20020a1c7c19000000b003f4f4d15c28mr620538wmc.24.1685086957200;
+        Fri, 26 May 2023 00:42:37 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:15d9:4dfb:95d6:f5a0? ([2a01:e0a:982:cbb0:15d9:4dfb:95d6:f5a0])
+        by smtp.gmail.com with ESMTPSA id p19-20020a1c7413000000b003f60e143d38sm4305405wmc.11.2023.05.26.00.42.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 00:37:19 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-563b1e5f701so4992097b3.3;
-        Fri, 26 May 2023 00:37:18 -0700 (PDT)
-X-Received: by 2002:a0d:cb83:0:b0:561:d21d:8ce4 with SMTP id
- n125-20020a0dcb83000000b00561d21d8ce4mr1107854ywd.19.1685086638668; Fri, 26
- May 2023 00:37:18 -0700 (PDT)
+        Fri, 26 May 2023 00:42:34 -0700 (PDT)
+Message-ID: <1c5dd13f-8221-09e6-5b7d-a06135ce97f7@linaro.org>
+Date:   Fri, 26 May 2023 09:42:33 +0200
 MIME-Version: 1.0
-References: <20230522101849.297499-1-biju.das.jz@bp.renesas.com> <20230522101849.297499-10-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230522101849.297499-10-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 26 May 2023 09:37:06 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVgbMYPRXcH=SESmuHntF_HPKi9rSnsXza7BP5ZvDZDsQ@mail.gmail.com>
-Message-ID: <CAMuHMdVgbMYPRXcH=SESmuHntF_HPKi9rSnsXza7BP5ZvDZDsQ@mail.gmail.com>
-Subject: Re: [PATCH v5 09/11] regulator: dt-bindings: Add Renesas RAA215300
- PMIC bindings
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add Visionox R66451
+ AMOLED DSI panel bindings
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20230516-b4-r66451-panel-driver-v1-0-4210bcbb1649@quicinc.com>
+ <20230516-b4-r66451-panel-driver-v1-1-4210bcbb1649@quicinc.com>
+ <dzekdzubv6y5evn4j62hnntjdexcdi5ar2wj6hcm3dffx5jei4@h32wgmfalzvl>
+ <0d436948-b0b7-0727-0852-51f64aefa43f@linaro.org>
+ <sf4fsrvuvgn42ucrwgqlrgprlr3sofq4wqeeuxryzeubxqs4kz@r4dmwzproti4>
+Organization: Linaro Developer Services
+In-Reply-To: <sf4fsrvuvgn42ucrwgqlrgprlr3sofq4wqeeuxryzeubxqs4kz@r4dmwzproti4>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 22, 2023 at 12:19 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Document Renesas RAA215300 PMIC bindings.
->
-> The RAA215300 is a high Performance 9-Channel PMIC supporting DDR
-> Memory, with Built-In Charger and RTC.
->
-> It supports DDR3, DDR3L, DDR4, and LPDDR4 memory power requirements.
-> The internally compensated regulators, built-in Real-Time Clock (RTC),
-> 32kHz crystal oscillator, and coin cell battery charger provide a
-> highly integrated, small footprint power solution ideal for
-> System-On-Module (SOM) applications. A spread spectrum feature
-> provides an ease-of-use solution for noise-sensitive audio or RF
-> applications.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> v4->v5:
->  * Added description for clocks.
->  * Replaced Oneof->enum in clock-names as it is simpler.
->  * Added Rb tag from Conor.
+On 22/05/2023 16:51, Marijn Suijten wrote:
+> On 2023-05-22 11:05:38, Neil Armstrong wrote:
+>> On 21/05/2023 12:30, Marijn Suijten wrote:
+>>> On 2023-05-16 13:20:30, Jessica Zhang wrote:
+>>>> Document the 1080x2340 Visionox R66451 AMOLED DSI panel bindings
+>>>>
+>>>> Signed-off-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+>>>> ---
+>>>>    .../bindings/display/panel/visionox,r66451.yaml    | 59 ++++++++++++++++++++++
+>>>>    1 file changed, 59 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml b/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..6ba323683921
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
+>>>> @@ -0,0 +1,59 @@
+>>>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/display/panel/visionox,r66451.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Visionox R66451 AMOLED DSI Panel
+>>>> +
+>>>> +maintainers:
+>>>> +  - Jessica Zhang <quic_jesszhan@quicinc.com>
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: panel-common.yaml#
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: visionox,r66451
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +    description: DSI virtual channel
+>>>> +
+>>>> +  vddio-supply: true
+>>>> +  vdd-supply: true
+>>>> +  port: true
+>>>> +  reset-gpios: true
+>>>
+>>> Normally for cmd-mode panels there is also a `disp-te` pin which is
+>>> optionally registered in dsi_host.c as GPIOD_IN, but on **ALL** my Sony
+>>> phones this breaks vsync (as in: mdp5 stops receiving the interrupt, but
+>>> we can see disp-te in /proc/interrupts then).
+>>
+>> Describing it as a gpio is wrong, it should be described as a pinctrl state instead.
+> 
+> We defined both in our DTS, what weirdness does it cause when then
+> requested using GPIOD_IN?  It'd still be beneficial to see the vsync
+> interrupt raise in /proc/interrupts (but it's just a waste of CPU cycles
+> OTOH, this is all handled in the MDP hardware after all, so it's not
+> something I'd like to enable by default).
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Sure, but it's a sw hack, the pin has a TE function which directly goes to
+the DSI logic, claiming it as a GPIO will set it as GPIO function.
 
-Gr{oetje,eeting}s,
+On some platforms, PINMUX is only on output and input is always directed
+to all HW blocks, seems it's not the case here !
 
-                        Geert
+> 
+> Anyway, this is what we ended up doing to "fix" the bug (only bias the
+> pin via pinctrl, omit the disp-te DTS property).  Thanks for confirming!
+> 
+> - Marijn
+> 
+>>
+>> Neil
+> 
+> <snip>
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
