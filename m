@@ -2,729 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 500F4712BB1
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 19:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6223E712BEE
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 19:40:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236850AbjEZRXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 13:23:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42430 "EHLO
+        id S237261AbjEZRkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 13:40:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbjEZRXD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 13:23:03 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C7ABF7;
-        Fri, 26 May 2023 10:23:00 -0700 (PDT)
-Received: from jupiter.universe (dyndsl-091-248-132-021.ewe-ip-backbone.de [91.248.132.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id ECB246606E97;
-        Fri, 26 May 2023 18:22:58 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685121779;
-        bh=FrT9FJhxp9Ot/mMOcY+S9SLvHjpGtDYOVyX/S3+f4E8=;
-        h=From:To:Cc:Subject:Date:From;
-        b=WyjO1mlBLTo0iTS46JZtAA+n9h/SJLfq0KNSgOQiinxddiMMd2wOnq955U89AQiaJ
-         DYYgRPUvpmK7EJGjZrE1MdTcInmxgT6mYWa3hkW2tb8bFgpeMlpj44vdurp67nKIcR
-         NjsnLSGtYGc/EADu/ASRgkDDbOhoT0edhreNU+K8lxPoaNGhurYKygmvIL1z8tfacx
-         y+OLWH0jbGGsh4gmFahOFUjm4GwdXyWJYl3PZ6hwa1aIRY0Icx+bCj4F7Kl1/+vMH6
-         VcVl7WUAsMFwwzAFi4pB0jSTyHG/QoVpFdxyDOnKOtKbPzkzUZ6RzOsmx4h6VsMlSP
-         CK/KKJ0vCc1DA==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id D87764807E1; Fri, 26 May 2023 19:22:56 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S242685AbjEZRkS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 13:40:18 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B532E1BF;
+        Fri, 26 May 2023 10:40:13 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-96fdc081cb3so148648066b.2;
+        Fri, 26 May 2023 10:40:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685122812; x=1687714812;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lYe7XFcsN7P4IISHtfY7TK64+2c++idDy6uCthqs0d4=;
+        b=b5clFHIpFN6AOxog0y+pOhfNdJ6dYF9YBUWffs5fWvUiFS0/m6qzp41FIZC2omFHhl
+         MQWoUdNOVxxfnyUWmKwINBo56p2ci7d86p8myMP4sYPVdA9qIYwNbsKC+kBO52P+5K5t
+         VwIYtoJb24vZqIaBWqJUyLZZ+rPyL+UX9sEvHTr12mOQGJ9FcAnmHo2n+EbsPFgy4m2v
+         J5b5GODcVmrcaqkh2a2jV/q76d/5hApFXoXS3f+9ZzeXZghIrek98D+X5bcSe2dXOyUt
+         amDO+1BDOxoBS+3CNdrYfrzDdt0eShP9yVS2l6YXOr1ogaGLKLHnTB9RUnmdTmQ8Gk7Z
+         q86g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685122812; x=1687714812;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lYe7XFcsN7P4IISHtfY7TK64+2c++idDy6uCthqs0d4=;
+        b=Y0ku4CBSNOyaAUJLfYlrRgxywqqU/m2KaVZZ5bsHgi4iQKMtMQyLNrlYgTKW2kwpmM
+         GIgtFzuIUUs5PtJvWKtiOqbeaGSNOAZVDMNMZHbvVf/cp21Cx0t1PQVJwKW2WYzt23zq
+         RijMZTYxr792NYYqQrjEBoLQHPXlJDgVfWaZiUHLkgfkGvHaPcApceCZwh8aXsVbvj4W
+         Ie2LkOww5nL8TTfQN2p374rMucqR+WN4t3JyKmS6wabpvI6jXt+GCFWbn+Qz6r9jF1n3
+         i0TZzRQkq+ZWzBDqReJUE1K7/MGDA/bNngagQx7PgxifDQEAKPuU/gg9EAuNXYgJZqvF
+         2Itg==
+X-Gm-Message-State: AC+VfDxIxJvzguDiUdR/1h9a6PrBFSqxufOOHowvHoKwS/OTnO2pezXq
+        9JmdRnCQZXHH9o/5yFEZzpI=
+X-Google-Smtp-Source: ACHHUZ6TmBpMcuoB5RjB1V5KMfvUQ0tt2gRCVig9grw9hwlCWnqUwHy2KFCEnyDei2UOzq6oORqwxA==
+X-Received: by 2002:a17:907:6e8e:b0:94f:356d:cd0 with SMTP id sh14-20020a1709076e8e00b0094f356d0cd0mr3895814ejc.33.1685122812029;
+        Fri, 26 May 2023 10:40:12 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation.station (net-188-217-50-121.cust.vodafonedsl.it. [188.217.50.121])
+        by smtp.gmail.com with ESMTPSA id dk5-20020a170906f0c500b00965b2d3968csm2367723ejb.84.2023.05.26.10.40.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 May 2023 10:40:11 -0700 (PDT)
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+Cc:     jacopo.mondi@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+        martin.hecht@avnet.eu, linuxfancy@googlegroups.com,
+        Tommaso Merciai <tomm.merciai@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        kernel@collabora.com, shengfei Xu <xsf@rock-chips.com>
-Subject: [RESEND PATCH v1 1/1] arm64: dts: rockchip: rk3588-evb1: add PMIC
-Date:   Fri, 26 May 2023 19:22:55 +0200
-Message-Id: <20230526172255.68236-1-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.39.2
+        Conor Dooley <conor+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        =?UTF-8?q?Krzysztof=20Ha=C5=82asa?= <khalasa@piap.pl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] media: dt-bindings: alvium: add document YAML binding
+Date:   Fri, 26 May 2023 19:39:43 +0200
+Message-Id: <20230526173955.797226-2-tomm.merciai@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230526173955.797226-1-tomm.merciai@gmail.com>
+References: <20230526173955.797226-1-tomm.merciai@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds PMIC support for the RK3588 EVB.
+Add documentation of device tree in YAML schema for the ALVIUM
+Camera from Allied Vision Inc.
 
-Co-developed-by: shengfei Xu <xsf@rock-chips.com>
-Signed-off-by: shengfei Xu <xsf@rock-chips.com>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
-Sorry, I managed to use incorrect linux-rockchip mailing list address
-in the previous submission.
----
- .../boot/dts/rockchip/rk3588-evb1-v10.dts     | 637 ++++++++++++++++++
- 1 file changed, 637 insertions(+)
+References:
+ - https://www.alliedvision.com/en/products/embedded-vision-solutions
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-index b91af0204dbe..4b2d857ee219 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-@@ -49,6 +49,38 @@ vcc5v0_sys: vcc5v0-sys-regulator {
- 	};
- };
- 
-+&cpu_b0 {
-+	cpu-supply = <&vdd_cpu_big0_s0>;
-+};
-+
-+&cpu_b1 {
-+	cpu-supply = <&vdd_cpu_big0_s0>;
-+};
-+
-+&cpu_b2 {
-+	cpu-supply = <&vdd_cpu_big1_s0>;
-+};
-+
-+&cpu_b3 {
-+	cpu-supply = <&vdd_cpu_big1_s0>;
-+};
-+
-+&cpu_l0 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&cpu_l1 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&cpu_l2 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
-+&cpu_l3 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+};
-+
- &gmac0 {
- 	clock_in_out = "output";
- 	phy-handle = <&rgmii_phy>;
-@@ -123,6 +155,611 @@ &sdhci {
- 	status = "okay";
- };
- 
-+&spi2 {
-+	status = "okay";
-+	assigned-clocks = <&cru CLK_SPI2>;
-+	assigned-clock-rates = <200000000>;
-+	num-cs = <2>;
-+
-+	pmic@0 {
-+		compatible = "rockchip,rk806";
-+		reg = <0x0>;
-+		#gpio-cells = <2>;
-+		gpio-controller;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
-+			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
-+		pinctrl-names = "default";
-+		spi-max-frequency = <1000000>;
-+
-+		vcc1-supply = <&vcc5v0_sys>;
-+		vcc2-supply = <&vcc5v0_sys>;
-+		vcc3-supply = <&vcc5v0_sys>;
-+		vcc4-supply = <&vcc5v0_sys>;
-+		vcc5-supply = <&vcc5v0_sys>;
-+		vcc6-supply = <&vcc5v0_sys>;
-+		vcc7-supply = <&vcc5v0_sys>;
-+		vcc8-supply = <&vcc5v0_sys>;
-+		vcc9-supply = <&vcc5v0_sys>;
-+		vcc10-supply = <&vcc5v0_sys>;
-+		vcc11-supply = <&vcc_2v0_pldo_s3>;
-+		vcc12-supply = <&vcc5v0_sys>;
-+		vcc13-supply = <&vcc5v0_sys>;
-+		vcc14-supply = <&vcc_1v1_nldo_s3>;
-+		vcca-supply = <&vcc5v0_sys>;
-+
-+		rk806_dvs1_null: dvs1-null-pins {
-+			pins = "gpio_pwrctrl1";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_dvs2_null: dvs2-null-pins {
-+			pins = "gpio_pwrctrl2";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_dvs3_null: dvs3-null-pins {
-+			pins = "gpio_pwrctrl3";
-+			function = "pin_fun0";
-+		};
-+
-+
-+		regulators {
-+			vdd_gpu_s0: dcdc-reg1 {
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_gpu_s0";
-+				regulator-enable-ramp-delay = <400>;
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_npu_s0: dcdc-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_npu_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_log_s0: dcdc-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_log_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <750000>;
-+				};
-+			};
-+
-+			vdd_vdenc_s0: dcdc-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_vdenc_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+
-+			};
-+
-+			vdd_gpu_mem_s0: dcdc-reg5 {
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-enable-ramp-delay = <400>;
-+				regulator-name = "vdd_gpu_mem_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+
-+			};
-+
-+			vdd_npu_mem_s0: dcdc-reg6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_npu_mem_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+
-+			};
-+
-+			vcc_2v0_pldo_s3: dcdc-reg7 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <2000000>;
-+				regulator-max-microvolt = <2000000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_2v0_pldo_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <2000000>;
-+				};
-+			};
-+
-+			vdd_vdenc_mem_s0: dcdc-reg8 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_vdenc_mem_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd2_ddr_s3: dcdc-reg9 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-name = "vdd2_ddr_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v1_nldo_s3: dcdc-reg10 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vcc_1v1_nldo_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1100000>;
-+				};
-+			};
-+
-+			avcc_1v8_s0: pldo-reg1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "avcc_1v8_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd1_1v8_ddr_s3: pldo-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd1_1v8_ddr_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			avcc_1v8_codec_s0: pldo-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "avcc_1v8_codec_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_3v3_s3: pldo-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vcc_3v3_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vccio_sd_s0: pldo-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vccio_sd_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vccio_1v8_s3: pldo-reg6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vccio_1v8_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vdd_0v75_s3: nldo-reg1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_0v75_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <750000>;
-+				};
-+			};
-+
-+			vdd2l_0v9_ddr_s3: nldo-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-name = "vdd2l_0v9_ddr_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <900000>;
-+				};
-+			};
-+
-+			vdd_0v75_hdmi_edp_s0: nldo-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-name = "vdd_0v75_hdmi_edp_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			avdd_0v75_s0: nldo-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-name = "avdd_0v75_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_0v85_s0: nldo-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-name = "vdd_0v85_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+		};
-+	};
-+
-+	pmic@1 {
-+		compatible = "rockchip,rk806";
-+		reg = <0x01>;
-+		#gpio-cells = <2>;
-+		gpio-controller;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&rk806_slave_dvs1_null>, <&rk806_slave_dvs2_null>,
-+			    <&rk806_slave_dvs3_null>;
-+		pinctrl-names = "default";
-+		spi-max-frequency = <1000000>;
-+
-+		vcc1-supply = <&vcc5v0_sys>;
-+		vcc2-supply = <&vcc5v0_sys>;
-+		vcc3-supply = <&vcc5v0_sys>;
-+		vcc4-supply = <&vcc5v0_sys>;
-+		vcc5-supply = <&vcc5v0_sys>;
-+		vcc6-supply = <&vcc5v0_sys>;
-+		vcc7-supply = <&vcc5v0_sys>;
-+		vcc8-supply = <&vcc5v0_sys>;
-+		vcc9-supply = <&vcc5v0_sys>;
-+		vcc10-supply = <&vcc5v0_sys>;
-+		vcc11-supply = <&vcc_2v0_pldo_s3>;
-+		vcc12-supply = <&vcc5v0_sys>;
-+		vcc13-supply = <&vcc_1v1_nldo_s3>;
-+		vcc14-supply = <&vcc_2v0_pldo_s3>;
-+		vcca-supply = <&vcc5v0_sys>;
-+
-+		rk806_slave_dvs1_null: dvs1-null-pins {
-+			pins = "gpio_pwrctrl1";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_slave_dvs2_null: dvs2-null-pins {
-+			pins = "gpio_pwrctrl2";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_slave_dvs3_null: dvs3-null-pins {
-+			pins = "gpio_pwrctrl3";
-+			function = "pin_fun0";
-+		};
-+
-+		regulators {
-+			vdd_cpu_big1_s0: dcdc-reg1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <1050000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_cpu_big1_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_cpu_big0_s0: dcdc-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <1050000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_cpu_big0_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_cpu_lit_s0: dcdc-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_cpu_lit_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_3v3_s0: dcdc-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vcc_3v3_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_cpu_big1_mem_s0: dcdc-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <1050000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_cpu_big1_mem_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+
-+			vdd_cpu_big0_mem_s0: dcdc-reg6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <1050000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_cpu_big0_mem_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8_s0: dcdc-reg7 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vcc_1v8_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_cpu_lit_mem_s0: dcdc-reg8 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_cpu_lit_mem_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vddq_ddr_s0: dcdc-reg9 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-name = "vddq_ddr_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_ddr_s0: dcdc-reg10 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_ddr_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8_cam_s0: pldo-reg1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vcc_1v8_cam_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			avdd1v8_ddr_pll_s0: pldo-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "avdd1v8_ddr_pll_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_1v8_pll_s0: pldo-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_1v8_pll_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_3v3_sd_s0: pldo-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vcc_3v3_sd_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_2v8_cam_s0: pldo-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <2800000>;
-+				regulator-max-microvolt = <2800000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vcc_2v8_cam_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			pldo6_s3: pldo-reg6 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+				regulator-name = "pldo6_s3";
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vdd_0v75_pll_s0: nldo-reg1 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "vdd_0v75_pll_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_ddr_pll_s0: nldo-reg2 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-name = "vdd_ddr_pll_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			avdd_0v85_s0: nldo-reg3 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "avdd_0v85_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			avdd_1v2_cam_s0: nldo-reg4 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "avdd_1v2_cam_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			avdd_1v2_s0: nldo-reg5 {
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-name = "avdd_1v2_s0";
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &uart2 {
- 	pinctrl-0 = <&uart2m0_xfer>;
- 	status = "okay";
+Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+---
+Changes since v1:
+ - Fixed build error as suggested by RHerring bot
+
+ .../media/i2c/alliedvision,alvium.yaml        | 115 ++++++++++++++++++
+ 1 file changed, 115 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+new file mode 100644
+index 000000000000..81e9e560c99d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+@@ -0,0 +1,115 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Alliedvision Alvium Camera
++
++maintainers:
++  - Tommaso Merciai <tomm.merciai@gmail.com>
++  - Martin Hecht <martin.hecht@avnet.eu>
++
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
++properties:
++  compatible:
++    const: alliedvision,alvium
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: XCLK Input Clock
++
++  clock-names:
++    const: xclk
++
++  powerdown-gpios:
++    maxItems: 1
++    description: >
++      Reference to the GPIO connected to the powerdown pin, if any.
++
++  reset-gpios:
++    maxItems: 1
++    description: >
++      Reference to the GPIO connected to the reset pin, if any.
++
++  streamon-delay:
++    maxItems: 1
++    description: >
++      Delay before camera start capturing frames in us.
++
++  rotation:
++    enum:
++      - 0
++      - 180
++
++  port:
++    description: Digital Output Port
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          clock-lanes:
++            const: 0
++          data-lanes:
++            minItems: 1
++            maxItems: 4
++          link-frequencies: true
++
++        required:
++          - data-lanes
++          - link-frequencies
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++      #include <dt-bindings/gpio/gpio.h>
++      #include <dt-bindings/clock/imx8mp-clock.h>
++
++      i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          camera: alvium@3c {
++              compatible = "alliedvision,alvium";
++              pinctrl-names = "default";
++              pinctrl-0 = <&pinctrl_csi0_pwn>, <&pinctrl_csi0_rst>, <&pinctrl_csi_mclk>;
++              reg = <0x3c>;
++              clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
++              clock-names = "xclk";
++              assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
++              assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
++              assigned-clock-rates = <24000000>;
++              streamon-delay = <20>;
++              powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
++              reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
++              status = "okay";
++
++              port {
++                  alvium_out: endpoint {
++                      remote-endpoint = <&mipi_csi_0_in>;
++                      data-lanes = <1 2 3 4>;
++                      link-frequencies = /bits/ 64 <681250000>;
++                      clock-lanes = <0>;
++                  };
++              };
++          };
++      };
++
++...
 -- 
-2.39.2
+2.34.1
 
