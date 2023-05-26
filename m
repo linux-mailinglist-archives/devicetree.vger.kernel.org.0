@@ -2,119 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E2017129D5
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 17:43:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 767757129E1
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 17:46:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244118AbjEZPnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 11:43:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45934 "EHLO
+        id S244004AbjEZPqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 11:46:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243572AbjEZPny (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 11:43:54 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78118134
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 08:43:52 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f6e72a1464so6773205e9.1
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 08:43:52 -0700 (PDT)
+        with ESMTP id S243854AbjEZPqD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 11:46:03 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF05A1B5
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 08:45:50 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id ffacd0b85a97d-30adc69c0dbso392218f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 08:45:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685115831; x=1687707831;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685115949; x=1687707949;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=312Qxv20qtT6z2BiqRrmUkxmiNN8OsfraYgPOBDA1W8=;
-        b=gKwC8mFgz6AhT4BVC44KDGqdc4siWRAA2cwNYRpG+Gj9crgr6dhZ6pYJQsUUCyeVrj
-         REXzngGbGddXxxlwLdb9y0SFXydTR15KsaXewI8Un8LjR9QXDQnvphhmkpaXvGlMvvXE
-         kbgKT9FZix51RWAsK+xC5W2VFV9ZkJfodxXD6DElgUiDTI2Z2oPRbaAsz/7nzvQbhYi/
-         FDsS7Uma40dFkNb4F1DD8FGEcc9Lw53l1FfaOdVnJTE1jaBlo4ezpmnmgVsmIFlJGmlS
-         d43EViDu4edo8XqbvPrft05qomlCWQ/5Dbu0qnoiAIhHqzKW0pfgh3EQ88pZFvQiNnNS
-         rdyg==
+        bh=OX879Xbtaq85/UPwb2f8tq7maPJyO+QLeOiqV5vIfjA=;
+        b=wcwdcdzgtFryBiRdWxpCymHOki7j+wUintN3/adfIJ575HFiGwWvvLiGL3NjuxwRQ3
+         gnUjpSgJCSKNn+8anAU5m8DeoSjJYKZLGPLMI87dIP859SN/KobgtxhHNXERf3MpE9K5
+         wJZUC7GW/spdUYxb446kFGqU4Uox1guSsugZJ1mL4Sxg+LrCdgMTx4Y4akJ/Mt/7RFwi
+         B5nFj66Up8V+9vb6gRJa0CQVT00R3zPujsuOvvvrh439gLa0zVGQpFB4Xigr6dOrgHbQ
+         bI0KYS1ghZCHj0a5KknxdXkNKb6dYjp57m9fazVfgxJPBaDmVRu6NgMEzB6jnFMUzpvT
+         dqXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685115831; x=1687707831;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1685115949; x=1687707949;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=312Qxv20qtT6z2BiqRrmUkxmiNN8OsfraYgPOBDA1W8=;
-        b=cY5oa7gKiPz3+hVLBImHGz5tA286U5YhYzrv3s1W2E5KGRyP9c4c8yfaDsAVESpfD1
-         tSFA6O4obWe0/AUae3NhW17LMkGRnGnO/wivHaPbjFY6fkNoR8YdOZVIJpYfeizUhhO/
-         DBvSKibvINdjbOMmRxNK4KtD2witqX9xtZ4jGnQWe9Gt9wq3e6mwLoNfvJ2n9h2HSk+E
-         QLli1RGmJE3mmq9sP033hIEM9PACYu0Ks6YkopY9HpcotaF5nksIgKeRxf/CatAwny0R
-         YXEKtvLUplxkfP6dtGPrv/lN1J720CuNl7YRj2ktX+bSWghgBgOr022tAI84bAoWI09c
-         Zw1A==
-X-Gm-Message-State: AC+VfDzcp3F1Mjyc9oevoe83NQZwc5dZp3NmHumgFl3xZL1G/cJag9H3
-        Y/1nrXe0aa2O5rD8Uo4yrLlZnA==
-X-Google-Smtp-Source: ACHHUZ7Q6nwIhAVYfGO39O3z0eWSlyDAMusz11lFgR+cnF8WvUYT41nznEDgEmFKXVCC33L0gLJUvA==
-X-Received: by 2002:adf:e792:0:b0:306:340c:4737 with SMTP id n18-20020adfe792000000b00306340c4737mr1703838wrm.67.1685115830955;
-        Fri, 26 May 2023 08:43:50 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id c2-20020adfed82000000b003078a3f3a24sm5472890wro.114.2023.05.26.08.43.49
+        bh=OX879Xbtaq85/UPwb2f8tq7maPJyO+QLeOiqV5vIfjA=;
+        b=HhKmlI6JqSIxAG0aEhqFgqqHbm+OfiREqsX4vhLYT+O1Z134k/pCpu0P7jVPrdcXjA
+         odBbtS5xf4X/rJ9GdtStJrwFzuKmMVD42BwpjTocK2JC4IBG+LHu+KDNzYb6RwZ9zd8U
+         BPMjCxMk8rayso3q41j4VmmovOdhrUkjQG/WuDCvAMDAr0/1VHkU5MoowfIH4m79l5C3
+         AjhGV6ohHF0NOP/qNtLca5WqLbfEmnH8MYp/KaMmxC81s7q1m3CKuhpH6xPTFTFcVw86
+         f3Dzis/bmCIfcIZrccM3TQDkYL9eb7/gHVX3U5NBeZJ09w1f+a0AXJr6ZPSu6xpCKh5H
+         +dOw==
+X-Gm-Message-State: AC+VfDwonOu6b5S5vXfuV88FmVw35sShXjI7DW0LJObinYq33qvf8/vn
+        Zq2Vwn22j3JDImADtLuwF2V28Q==
+X-Google-Smtp-Source: ACHHUZ5UA+yXPBx7fP3hSIrT+zIrLky1zEBpDc0IHgjMDGgcI9UwC6u1LCxdVBVyifx+CDLiyp1GIA==
+X-Received: by 2002:a5d:6ac4:0:b0:309:e24:57b0 with SMTP id u4-20020a5d6ac4000000b003090e2457b0mr2066240wrw.30.1685115949116;
+        Fri, 26 May 2023 08:45:49 -0700 (PDT)
+Received: from [10.1.4.6] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id c11-20020adfe74b000000b0030630120e56sm2580734wrn.57.2023.05.26.08.45.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 08:43:50 -0700 (PDT)
-Message-ID: <8bc6aaac-f28a-3ce7-8dea-f8484fd5b6c9@linaro.org>
-Date:   Fri, 26 May 2023 16:43:49 +0100
+        Fri, 26 May 2023 08:45:48 -0700 (PDT)
+Message-ID: <01591ec1-7c87-514c-047b-bec1c45ddfa5@baylibre.com>
+Date:   Fri, 26 May 2023 17:45:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH 3/8] arm64: dts: qcom: msm8916: Fix regulator constraints
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 0/7] Add a DRM driver to support AI Processing Unit (APU)
 Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230510-msm8916-regulators-v1-0-54d4960a05fc@gerhold.net>
- <20230510-msm8916-regulators-v1-3-54d4960a05fc@gerhold.net>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230510-msm8916-regulators-v1-3-54d4960a05fc@gerhold.net>
+To:     Oded Gabbay <ogabbay@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>, airlied@gmail.com,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, devicetree@vger.kernel.org,
+        conor+dt@kernel.org, bero@baylibre.com, jstephan@baylibre.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        christian.koenig@amd.com, linaro-mm-sig@lists.linaro.org,
+        robh+dt@kernel.org, linux-mediatek@lists.infradead.org,
+        nbelin@baylibre.com, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, linux-media@vger.kernel.org,
+        sumit.semwal@linaro.org, linux-arm-kernel@lists.infradead.org,
+        angelogioacchino.delregno@collabora.com
+References: <20230517145237.295461-1-abailon@baylibre.com>
+ <d0807fe4-dba2-8244-f655-d04e80973572@quicinc.com>
+ <7ha5xud3m7.fsf@baylibre.com>
+ <CAFCwf10hNjGtEYDi24LREnMLRGT7mRECvqQMdZWv=-uA7YELYg@mail.gmail.com>
+ <ZG3pmSnUSc9oCtev@phenom.ffwll.local>
+From:   Alexandre Bailon <abailon@baylibre.com>
+In-Reply-To: <ZG3pmSnUSc9oCtev@phenom.ffwll.local>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/05/2023 19:48, Stephan Gerhold wrote:
-> The regulator constraints for most MSM8916 devices (except DB410c) were
-> originally taken from Qualcomm's msm-3.10 vendor device tree (for lack
-> of better documentation). Unfortunately it turns out that Qualcomm's
-> voltages are slightly off as well and do not match the voltage
-> constraints applied by the RPM firmware.
-> 
-> This means that we sometimes request a specific voltage but the RPM
-> firmware actually applies a much lower or higher voltage. This is
-> particularly critical for pm8916_l11 which is used as SD card VMMC
-> regulator: The SD card can choose a voltage from the current range of
-> 1.8 - 2.95V. If it chooses to run at 1.8V we pretend that this is fine
-> but the RPM firmware will still silently end up configuring 2.95V.
-> This can be easily reproduced with a multimeter or by checking the
-> SPMI hardware registers of the regulator.
-> 
-> Fix this by making the voltages match the actual "specified range" in
-> the PM8916 Device Specification which is enforced by the RPM firmware.
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
->   arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts           | 14 +++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts       | 14 +++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts             | 14 +++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts         | 14 +++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts             | 12 ++++++------
->   arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts       | 14 +++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts       | 14 +++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi | 14 +++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi   | 14 +++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-samsung-j5-common.dtsi    | 14 +++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts     | 14 +++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi                  | 14 +++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts      | 12 ++++++------
->   13 files changed, 89 insertions(+), 89 deletions(-)
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
+On 5/24/23 12:40, Daniel Vetter wrote:
+> On Wed, May 24, 2023 at 01:27:00PM +0300, Oded Gabbay wrote:
+>> On Wed, May 24, 2023 at 2:34 AM Kevin Hilman <khilman@baylibre.com> wrote:
+>>>
+>>> Jeffrey Hugo <quic_jhugo@quicinc.com> writes:
+>>>
+>>>> On 5/17/2023 8:52 AM, Alexandre Bailon wrote:
+>>>>> This adds a DRM driver that implements communication between the CPU and an
+>>>>> APU. The driver target embedded device that usually run inference using some
+>>>>> prebuilt models. The goal is to provide common infrastructure that could be
+>>>>> re-used to support many accelerators. Both kernel, userspace and firmware tries
+>>>>> to use standard and existing to leverage the development and maintenance effort.
+>>>>> The series implements two platform drivers, one for simulation and another one for
+>>>>> the mt8183 (compatible with mt8365).
+>>>>
+>>>> This looks like the 3 existing Accel drivers.  Why is this in DRM?
+>>>
+>>> Yes, this belongs in accel.  I think Alex had some issues around the
+>>> infra in accel with device nodes not appearing/opening properly, but
+>>> I'll let him comment there.  But either way, the right approach should
+>>> be to fix any issues in accel and move it there.
+>>>
+>>> [...]
+>>>
+>>>>>    .../devicetree/bindings/gpu/mtk,apu-drm.yaml  |  38 ++
+>>>>>    drivers/gpu/drm/Kconfig                       |   2 +
+>>>>>    drivers/gpu/drm/Makefile                      |   1 +
+>>>>>    drivers/gpu/drm/apu/Kconfig                   |  22 +
+>>>>>    drivers/gpu/drm/apu/Makefile                  |  10 +
+>>>>>    drivers/gpu/drm/apu/apu_drv.c                 | 282 +++++++++
+>>>>>    drivers/gpu/drm/apu/apu_gem.c                 | 230 +++++++
+>>>>>    drivers/gpu/drm/apu/apu_internal.h            | 205 ++++++
+>>>>>    drivers/gpu/drm/apu/apu_sched.c               | 592 ++++++++++++++++++
+>>>>>    drivers/gpu/drm/apu/simu_apu.c                | 313 +++++++++
+>>>>>    include/uapi/drm/apu_drm.h                    |  81 +++
+>>>>
+>>>> "apu" seems too generic.  We already have 3 "AI processing units" over
+>>>> in drivers/accel already...
+>>>
+>>> Indeed, it is generic, but that's kind of the point for this driver
+>>> since it's targetted at generalizing the interface with "AI processing
+>>> units" on a growing number of embedded SoCs (ARM, RISC-V, etc.)  In
+>>> addition, the generic naming is intentional because the goal is bigger
+>>> than the kernel and is working towards a generic, shared "libAPU"
+>>> userspace[1], but also common firmware for DSP-style inference engines
+>>> (e.g. analgous Sound Open Firmware for audio DSPs.)
+>>>
+>>> As usual, the various SoC vendors use different names (APU, NPU, NN
+>>> unit, etc.)  but we'd like a generic name for the class of devices
+>>> targetted by this driver.  And unfortunately, it looks like the equally
+>>> generic "Versatile processing unit" is already taken Intel's
+>>> drivers/accel/ivpu. :)
+>>>
+>>> Maybe since this is more about generalizing the interface between the
+>>> CPU running linux and the APU, what about the name apu_if?  But I guess
+>>> that applies to the other 3 drivers in drivers/accell also.  Hmmm...
+>>>
+>>> Naming things is hard[2], so we're definitly open to other ideas.  Any
+>>> suggestions?
+>> Maybe model it according to the tiny driver in drm display ? You can
+>> then call it tiny_apu :-)
+>> Disclosure: It was Daniel's suggestion, he can chime in with more
+>> details on the tiny driver concept.
+> 
+> Yeah so maybe a bit more detail on my thoughts:
+> 
+> First this smells like a need bypass of the entire "we want open userspace
+> for accel drivers" rule. The rule isn't quite a strict as for drm gpu
+> drivers (not sure we ended up documenting exactly what, but iirc the
+> consensus was that for build-time only dependencies we're ok with
+> downstream compilers), but it's still there.
+What is letting you think that we want to bypass open source requirements ?
+Although the neural network firmware and userspace application are not yet
+opensource, our intention is to develop a full open source stack.
+Currently, we only support Mediatek APU (an Xtensa VP6) and we have to 
+use closed source sotfware to execute inferences on the accelerator.
+As far I know, there software stack similar to mesa where we could add
+support of a new accelerator (this is also true for firmware).
+That is actually what we would like to do. But this will take a lot of 
+time and we consider this driver as a first (small) step.
+> 
+> And at least from a quick look apu.ko and libapu just look like a generic
+> accel interface, and that's not enough.
+> 
+> For the big training engines it's more or less "enough to run pytorch, but
+> it can be really slow", not sure what the right standard for these
+> inference-only drivers should be.
+To be honest, I don't know what would be required for training engines.
+We only target accelerators for embedded device that usually only run 
+inferences. In my opinion, this is 2 different use cases and I don't 
+think we could address them in the same way.
+> 
+> So that's the first reason why I don't like this.
+> 
+> The other is that I think if we do end up with a pile of tiny accel
+> drivers, we should probably look into something like simmpledrm for the
+> tiny display drivers. Probably still IP specific ioctls (at least most) so
+> that IP specific job knows and all that are easy, but then just pass to a
+> framework that simplifies a drm gem driver to "write ptes" and "run job"
+> callback, maybe with an optional "create/destroy vm/ctx" for hw which can
+> do that.
+> 
+> So maybe we end up with a drivers/accel/tiny and a bunch more helpers
+> around the existing gem ones. The rule we have for drm/tiny is "1 file,
+> less than 1kloc", and there's a bunch of them. I do think we can achieve
+> the same for tiny accel inference engines (but it's still a bit a road).
+> Maybe tiny accel is more like "less than 5kloc" since you need a bit more
+> glue for the driver specific ioctl stuff - maybe that's only needed for
+> the submit ioctl, maybe also for buffer map/unmap and creation.
+This makes sense to me.
+> 
+> Also note that there's an entire pile of in-flight work for adding new
+> helpers to the gem world to make this all easier. Once we have gpuva and
+> exec helpers there not much glue left to tie it all together with the
+> scheduler.
+I wrote this series a long time ago and just rebased it recently.
+I will take some time to see the in-flight work and see if that 
+something I could start using.
+> 
+> But the real crux is that an accel inference driver really needs to have
+> enough userspace to do an actual inference job with some
+> android/cros/whatever framework for inference (there's just too many).
+We are currently stuck with closed source fimrware, userspace 
+applications and toolchains (works with android and linux).
+We are looking for a solution but implementing something will take some 
+time.
+
+Alexandre
+> -Daniel
+> 
+>> Oded
+>>
+>>>
+>>> Kevin
+>>>
+>>> [1] https://gitlab.baylibre.com/baylibre/libapu/libapu
+>>>
+>>> [2]
+>>> "There are 2 hard problems in computer science: cache invalidation,
+>>>   naming things and off-by-1 errors."
+>>>   -- https://twitter.com/secretGeek/status/7269997868
+>>>
+> 
