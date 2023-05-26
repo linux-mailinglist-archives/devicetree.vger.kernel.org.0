@@ -2,119 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 439C1711AF6
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 02:05:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9865711B2D
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 02:29:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236413AbjEZAE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 20:04:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35548 "EHLO
+        id S235214AbjEZA3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 20:29:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239784AbjEZAEp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 20:04:45 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F328C194;
-        Thu, 25 May 2023 17:04:43 -0700 (PDT)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34PNsp8B018449;
-        Thu, 25 May 2023 19:04:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=PODMain02222019;
- bh=KMEdkmN2mqwtyDfXxt5SyyP1iCNO3Bzg7wvQm68Qgfw=;
- b=MGGWaZL2V1Bwqc4z1kRH5zcbrnJQPI99nGf7YzMm/IYmukze5UWIB4SBPpbBTzG6vIRn
- i5ZUBGC3REwwwqCi269pPRapolP7yLtTwh78arIc0vTVFLwoY8zMHS8Afh1f5eMbqZUC
- UvrzDM//7OIOeLJmPKrt4XFqyR5oybGSlmvSYhYiFGkym4tXRPEuA89uUAVimxc4G+Z9
- fn2tr/rJ0uctP40iTyHscJcpBjxlQ0CCq+GJkDwd2UwOVg6BFWHCqBwIU2Vh2ipkXha6
- nJrNP51Ejdl5y9Sb+Nev2tn/ntl9/2ObKZEsHq2apWwiiaXp1vx4Fgwha2F04yczcgXp TQ== 
-Received: from ausex02.ad.cirrus.com ([141.131.3.21])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3qptmm7qhq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 May 2023 19:04:39 -0500
-Received: from ausex02.ad.cirrus.com (141.131.37.96) by ausex02.ad.cirrus.com
- (141.131.37.96) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Thu, 25 May
- 2023 19:04:38 -0500
-Received: from ftrev.crystal.cirrus.com (141.131.38.212) by
- anon-ausex02.ad.cirrus.com (141.131.37.96) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 25 May 2023 19:04:38 -0500
-From:   Fred Treven <fred.treven@cirrus.com>
-To:     Fred Treven <fred.treven@cirrus.com>,
-        Ben Bright <ben.bright@cirrus.com>,
-        James Ogletree <james.ogletree@cirrus.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Simon Trimmer <simont@opensource.cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        <patches@opensource.cirrus.com>, <linux-input@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <lee@kernel.org>
-Subject: [PATCH RFC 5/5] mfd: cs40l26: Add CODEC driver component
-Date:   Thu, 25 May 2023 19:04:31 -0500
-Message-ID: <1685059471-9598-5-git-send-email-fred.treven@cirrus.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1685059471-9598-1-git-send-email-fred.treven@cirrus.com>
-References: <1685059471-9598-1-git-send-email-fred.treven@cirrus.com>
+        with ESMTP id S234348AbjEZA3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 20:29:44 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E55571A8
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 17:28:55 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f004cc54f4so96198e87.3
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 17:28:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685060934; x=1687652934;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WHS1nKZQCzUqgGxJIZEyDSTgpeKovaxXS5dmIp7B7mY=;
+        b=hb48OX7YswDIW6bgXvhMyWEHilfEU4nfve7nE+bYuTZx0T9EUMAs+2M/7lpaR9rIvq
+         B3ni3hmdQFue8u+rzo2kPPA2xKblgMCKZSzfwtCjDDGZR4o5UEYJHPsf1tv5S3Ltjn+Y
+         PtWgsnH7aUvLbcSZ1zLSmZMuC4+ktixdpuG/STOZ8Jv1oEh+zFo98UvIaMFsYuoaUe7N
+         JhbYct/yNJGYIKlMr7ZDNK5rdWX930m2xVvqXsWDeUoLwY3DReIEFdty2QHlTdtcc19B
+         Xu8IWl02Vpaug1WY/qckzEnZHD0LEliLOJsStW+xsgvUs9VP/PGaVVvJWLBBf3XxZhoh
+         J/lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685060934; x=1687652934;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WHS1nKZQCzUqgGxJIZEyDSTgpeKovaxXS5dmIp7B7mY=;
+        b=IhnEP3NYM91jbr1U1Za5hnt9L2n4vGF9PMM/JZsmyNrsMDdfnFdWcSai2p1IGJG87q
+         ODzPqx2fhErZs4kyDjQk1SplMHNz8xEpn+IBlhFwLwefOqkGBa1cQ87oVtNnR/FmuYf3
+         oIUSk0uWoE3qo9eqg0+cG2sH1OZZ8r4YtCp205oZ51NaCd9jWUz08l5+tJkCoSGvtfXZ
+         RONtS1Q39FYGLBmascgcvPfqSA73vLhed6Fh7oa3KhTEe6FDqq65tYEvvTrMxNqHt1tr
+         C/sZWB6mVxOi8bhI3Ipv+VVoOcBVeOHiJMJJeE0s0goJKj4ZfFxqXN2CPfAO5slAMOYS
+         nyag==
+X-Gm-Message-State: AC+VfDy+tVxb+erMnsFtDGGvFMVkrW4iUhmhmylgvr0Gm7cMQ6HV2vOo
+        WnT8drjMXGlrCG2Rv1RkcOLRWg==
+X-Google-Smtp-Source: ACHHUZ7HMH2gfDV78qkYBjih+sKJV8C+EftnKAOlJTya/1eA3U1ovDXqiVBNax8yy9vDptHy2jzpmw==
+X-Received: by 2002:a19:f816:0:b0:4f3:a49b:121f with SMTP id a22-20020a19f816000000b004f3a49b121fmr7754951lff.40.1685060934020;
+        Thu, 25 May 2023 17:28:54 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id t28-20020ac2549c000000b004f3892d21a5sm390475lfk.69.2023.05.25.17.28.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 May 2023 17:28:53 -0700 (PDT)
+Message-ID: <ef7b7335-d20c-3ddc-52df-b2801fa40283@linaro.org>
+Date:   Fri, 26 May 2023 02:28:52 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-ORIG-GUID: G3BKsgIFTqKLZh8SsGhIQJMn26swAnMA
-X-Proofpoint-GUID: G3BKsgIFTqKLZh8SsGhIQJMn26swAnMA
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 8/8] arm64: dts: qcom: msm8916-pm8916: Mark always-on
+ regulators
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230510-msm8916-regulators-v1-0-54d4960a05fc@gerhold.net>
+ <20230510-msm8916-regulators-v1-8-54d4960a05fc@gerhold.net>
+ <ea53525b-749b-25e2-6dde-662a8e273597@linaro.org>
+In-Reply-To: <ea53525b-749b-25e2-6dde-662a8e273597@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use MFD interface to load the CODEC driver along
-with the Input FF driver.
 
-Signed-off-by: Fred Treven <fred.treven@cirrus.com>
----
- drivers/input/misc/cs40l26.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/input/misc/cs40l26.c b/drivers/input/misc/cs40l26.c
-index 12c29cbd4ff0..35d15a6c2230 100644
---- a/drivers/input/misc/cs40l26.c
-+++ b/drivers/input/misc/cs40l26.c
-@@ -13,6 +13,7 @@
- #include <linux/i2c.h>
- #include <linux/interrupt.h>
- #include <linux/kernel.h>
-+#include <linux/mfd/core.h>
- #include <linux/pm_runtime.h>
- #include <linux/string.h>
- #include <linux/firmware/cirrus/wmfw.h>
-@@ -2136,6 +2137,10 @@ static inline int cs40l26_worker_init(struct cs40l26_private *cs40l26)
- 	return 0;
- }
- 
-+static const struct mfd_cell cs40l26_devs[] = {
-+	{ .name = "cs40l26-codec" },
-+};
-+
- static struct regulator_bulk_data cs40l26_supplies[] = {
- 	{ .supply = "VP" },
- 	{ .supply = "VA" },
-@@ -2275,6 +2280,12 @@ int cs40l26_probe(struct cs40l26_private *cs40l26)
- 	if (error)
- 		goto err;
- 
-+	error = devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, cs40l26_devs, 1, NULL, 0, NULL);
-+	if (error) {
-+		dev_err(dev, "Failed to MFD add device %s: %d\n", cs40l26_devs[0].name, error);
-+		goto err;
-+	}
-+
- 	return 0;
- err:
- 	cs40l26_remove(cs40l26);
--- 
-2.7.4
+On 26.05.2023 01:39, Konrad Dybcio wrote:
+> 
+> 
+> On 17.05.2023 20:48, Stephan Gerhold wrote:
+>> Some of the regulators must be always-on to ensure correct operation of
+>> the system, e.g. PM8916 L2 for the LPDDR RAM, L5 for most digital I/O
+>> and L7 for the CPU PLL (strictly speaking the CPU PLL might only need
+>> an active-only vote but this is not supported for regulators in
+>> mainline currently).
+> Would you be interested in implementing this?
+Actually, I think currently all votes are active-only votes and what
+we're missing is sleep-only (and active-sleep if we vote on both)
 
+Konrad
+> 
+> Ancient downstream defines a second device (vregname_ao) and basically
+> seems to select QCOM_SMD_(ACTIVE/SLEEP)_STATE based on that..
+> 
+> Looks like `struct regulator` stores voltage in an array that wouldn't
+> you know it, depends on the PM state. Perhaps that could be something
+> to explore!
+> 
+> Konrad
+> 
+>>
+>> The RPM firmware seems to enforce that internally, these supplies stay
+>> on even if we vote for them to power off (and there is no other
+>> processor running). This means it's pointless to keep sending
+>> enable/disable requests because they will just be ignored.
+>> Also, drivers are much more likely to get a wrong impression of the
+>> regulator status, because regulator_is_enabled() will return false when
+>> there are no users, even though the regulator is always on.
+>>
+>> Describe this properly by marking the regulators as always-on.
+>>
+>> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+>> ---
+>>  arch/arm64/boot/dts/qcom/apq8016-sbc.dts     | 5 -----
+>>  arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi | 5 +++++
+>>  2 files changed, 5 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+>> index ab8dfd858025..1c5d55854893 100644
+>> --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+>> +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+>> @@ -358,11 +358,6 @@ pm8916_l17: l17 {
+>>  	};
+>>  };
+>>  
+>> -&pm8916_s4 {
+>> -	regulator-always-on;
+>> -	regulator-boot-on;
+>> -};
+>> -
+>>  &sdhc_1 {
+>>  	status = "okay";
+>>  
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi
+>> index b38eecbd6253..64d7228bee07 100644
+>> --- a/arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi
+>> @@ -72,11 +72,13 @@ pm8916_rpm_regulators: regulators {
+>>  		pm8916_s3: s3 {
+>>  			regulator-min-microvolt = <1250000>;
+>>  			regulator-max-microvolt = <1350000>;
+>> +			regulator-always-on; /* Needed for L2 */
+>>  		};
+>>  
+>>  		pm8916_s4: s4 {
+>>  			regulator-min-microvolt = <1850000>;
+>>  			regulator-max-microvolt = <2150000>;
+>> +			regulator-always-on; /* Needed for L5/L7 */
+>>  		};
+>>  
+>>  		/*
+>> @@ -93,6 +95,7 @@ pm8916_s4: s4 {
+>>  		pm8916_l2: l2 {
+>>  			regulator-min-microvolt = <1200000>;
+>>  			regulator-max-microvolt = <1200000>;
+>> +			regulator-always-on; /* Needed for LPDDR RAM */
+>>  		};
+>>  
+>>  		/* pm8916_l3 is managed by rpmpd (MSM8916_VDDMX) */
+>> @@ -102,6 +105,7 @@ pm8916_l2: l2 {
+>>  		pm8916_l5: l5 {
+>>  			regulator-min-microvolt = <1800000>;
+>>  			regulator-max-microvolt = <1800000>;
+>> +			regulator-always-on; /* Needed for most digital I/O */
+>>  		};
+>>  
+>>  		pm8916_l6: l6 {
+>> @@ -112,6 +116,7 @@ pm8916_l6: l6 {
+>>  		pm8916_l7: l7 {
+>>  			regulator-min-microvolt = <1800000>;
+>>  			regulator-max-microvolt = <1800000>;
+>> +			regulator-always-on; /* Needed for CPU PLL */
+>>  		};
+>>  
+>>  		pm8916_l8: l8 {
+>>
