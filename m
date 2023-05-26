@@ -2,78 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91BFD71305F
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 01:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB223713067
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 01:36:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231519AbjEZXax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 19:30:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55372 "EHLO
+        id S229807AbjEZXgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 19:36:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230466AbjEZXax (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 19:30:53 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EB7618D
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 16:30:50 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f4b80bf93aso1407199e87.0
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 16:30:50 -0700 (PDT)
+        with ESMTP id S229528AbjEZXgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 19:36:24 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EDF013A
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 16:36:22 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b03d3e41fcso27310131fa.0
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 16:36:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685143848; x=1687735848;
+        d=linaro.org; s=google; t=1685144181; x=1687736181;
         h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
          :content-language:user-agent:mime-version:date:message-id:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+M2DJSnDqWWPeYg5/WUCxic9WjBCf1zdNnp12o5U7f8=;
-        b=fM29H5ZBRNCUDmA3EedA1+baSwOKI6DmGr1QhsFZmO9QuUr24riFfFiiiKDr4v2mxX
-         ZqbXqJDGGuVEic3mUguoYn/2atvtXfjloY8TsZqLCehBPHzjMjhs8bNnhpki4DZcFQJt
-         MhZALj2SDT1tM1r288fkm1WMavJVLPIJlysc4pNqP6aKa0L6eZZXh3iNOPXngsQ+jX23
-         1in6q00RbW0mPxgKFAXTANwAiIe2spvnxr6cvMKtvjlO8loUyuL0LiOZimPbisO7QuVy
-         rTuGiYLjvCTGi1Rl1WnxJMLUIpQzOiDVNIVs4K0SPEZBvzGUzfkQV4dJWlYKXC+dsE2L
-         GHlQ==
+        bh=H8aHH4bwAIGi4TXqYQZBpRXn2xRLYPqkRwFmzcf8RQ0=;
+        b=moFYde6zXumMKz5aEaI0uk1nbXQpQh0uuVU0N7nOcW9bIN+E14KL40GGacKKdKlzSS
+         C7azggyeQcADIXum3OOM2sFl5USu6mX72UQq3Cx4cK7Xzn2dq2O9UsTcygC39DhVioz4
+         HSHZ6gcXHtkZluYkbUSaXvoOivO/1AECJzDkXNX5Hv9FmlkH4lEueiRBbwCPifsndRD2
+         EKsK52Y1S6Z0loWj7eSF1We/2stHFCbU+hZRV5XOBdZj/KX/Frdhx6M7O7eqtEy8AldY
+         jVncaYlOSWI4ZtFqY/t+BFKKIogi4v4YgV3vh4RkBVUdo7uXJCM1sbCY6oed/p0PoHkg
+         F6GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685143848; x=1687735848;
+        d=1e100.net; s=20221208; t=1685144181; x=1687736181;
         h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
          :content-language:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+M2DJSnDqWWPeYg5/WUCxic9WjBCf1zdNnp12o5U7f8=;
-        b=C/zA4+h0/T9XwUX/QLd7M/e0nEE7syIqm0TdLc1GSWBZjZaq47sEuCzyIeCOLP8CTR
-         U/hgGxpYv6BwQCX3Z51gSOaNHycL7L7oq6lG6s/E4Wy+VyVRXaOVyDgEsQ+8ClhsSiwq
-         kuweYdnRdBx/Sh0Olyhy+vcYuGqU3bR2UGebxPDvi/J7TOQweoofxa7FNXPj8QG/cd3m
-         4anBHSIMD1vgSqF5tb/Tnooil8HHHP9NFuFeD2G8H7/YHHpOoIBdwErwthQ3i0Fgv/3e
-         AYzVLOUIE0DudfgouS8Ur75UEgPTCOvHWPHgOLQcd36IznQTEC0LRhwjxKTLk58JjNks
-         sa9w==
-X-Gm-Message-State: AC+VfDxjelndgXD2I/+JQEJu+W33yaLSR7lW+dlltGzUFnKS1QSVUBVk
-        +pjju2xAzzgPiA1xXz7Z/S1mxA==
-X-Google-Smtp-Source: ACHHUZ66BaAb39CSpLT2wJ8xQepZ7pM+VPEpmbazF2GkTgNf19TdqBSREDx4j07NmBHcHTfdO2RRZg==
-X-Received: by 2002:ac2:4e62:0:b0:4f4:b806:4b5f with SMTP id y2-20020ac24e62000000b004f4b8064b5fmr672955lfs.57.1685143848444;
-        Fri, 26 May 2023 16:30:48 -0700 (PDT)
+        bh=H8aHH4bwAIGi4TXqYQZBpRXn2xRLYPqkRwFmzcf8RQ0=;
+        b=O7MO7RsCcKYOnx63G6gQejiAHYLeUDqsUGnM88i9tBN/efEqCPgBnxpqyybUx4a6+e
+         BuXkS/MtBb1kgLYnprGGvmgYkb6OAsaoiyhdI4ris9zm3o6BLgyGkspI9QqGlAz0295j
+         DXeK2g8KVqqxrOmtKTzdqjEqfwRWSWO2MUGIRKf9wtOiK51AJnOPK+RI9jsl+8VD4UTd
+         eVzJz+1X6tCGCp2UyzZ25SJ/9oHKTm60vYJrdqNttmvoDeaul5SiNUhZG4KH5B0aVYwI
+         NWwupbOm3Ctu+4HkOz+T/a3b8Hbzq7BbuZ1g4WckKiSomM+VIwkmDnwIvwtUWCUDj6b8
+         BEVA==
+X-Gm-Message-State: AC+VfDynKea5l/bW33RniFF8Aul41xCrptO1RhPg1LK3t6DciPfzPzsC
+        jvzB4VPFU6TdRPX46yCWF2crMw==
+X-Google-Smtp-Source: ACHHUZ7IKzShJJud6IE5qi1orR9D9JjPUqaQtzqM51it7GaT9GyszcYoRVGVxRPY7Z8yv4xqM4X4RA==
+X-Received: by 2002:a05:6512:398b:b0:4f4:cb90:d2a0 with SMTP id j11-20020a056512398b00b004f4cb90d2a0mr137829lfu.22.1685144180796;
+        Fri, 26 May 2023 16:36:20 -0700 (PDT)
 Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id r2-20020ac24d02000000b004f3b520e0adsm828207lfi.107.2023.05.26.16.30.47
+        by smtp.gmail.com with ESMTPSA id q26-20020ac24a7a000000b004ec83bc3e2dsm827243lfp.42.2023.05.26.16.36.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 16:30:48 -0700 (PDT)
-Message-ID: <7f40f870-c11f-3105-f016-445a22fe258f@linaro.org>
-Date:   Sat, 27 May 2023 01:30:46 +0200
+        Fri, 26 May 2023 16:36:20 -0700 (PDT)
+Message-ID: <947e3212-f6ef-f00d-19c2-4f629af0e791@linaro.org>
+Date:   Sat, 27 May 2023 01:36:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
 Content-Language: en-US
 To:     Rudraksha Gupta <guptarud@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     david@ixit.cz, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     david@ixit.cz, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
 References: <20230524230459.120681-1-guptarud@gmail.com>
- <20230524230459.120681-4-guptarud@gmail.com>
+ <20230524230459.120681-5-guptarud@gmail.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH 4/5] ARM: Blindly copy the usb node from apq8064.dtsi
-In-Reply-To: <20230524230459.120681-4-guptarud@gmail.com>
+Subject: Re: [PATCH 5/5] ARM: Add Samsung Galaxy Express support
+In-Reply-To: <20230524230459.120681-5-guptarud@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,82 +85,383 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 25.05.2023 01:04, Rudraksha Gupta wrote:
-> apq8064 and msm8960 are extremely similar SoCs. Therefore copying this
-> from the apq8064 dtsi file should not be a problem. Tested this on the
-> Samsung Galaxy Express and this works.
+> This adds a very basic device tree file for the Samsung Galaxy Express
+> SGH-I437. Currently, the following things work: UART, eMMC, SD Card, and
+> USB.
 > 
 > Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
 > ---
-Well admitting to this upfront doesn't sound very good :P
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../dts/qcom-msm8960-samsung-expressatt.dts   | 334 ++++++++++++++++++
+>  2 files changed, 335 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 59829fc90315..12c90f263142 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1081,6 +1081,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+>  	qcom-msm8916-samsung-grandmax.dtb \
+>  	qcom-msm8916-samsung-serranove.dtb \
+>  	qcom-msm8960-cdp.dtb \
+> +	qcom-msm8960-samsung-expressatt.dtb \
+>  	qcom-msm8974-lge-nexus5-hammerhead.dtb \
+>  	qcom-msm8974-sony-xperia-rhine-amami.dtb \
+>  	qcom-msm8974-sony-xperia-rhine-honami.dtb \
+> diff --git a/arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts b/arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
+> new file mode 100644
+> index 000000000000..2d6f0def0589
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
+> @@ -0,0 +1,334 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +#include <dt-bindings/input/input.h>
+> +
+> +#include "qcom-msm8960.dtsi"
+> +#include <dt-bindings/reset/qcom,gcc-msm8960.h>
+> +
+> +/ {
+> +	model = "Samsung Galaxy S3 SGH-I437";
+Googling the model name, it seems to be officially sold as
+"Samsung Galaxy Express", without any mention of the S3 bit.
+Is that on purpose?
 
-Please reword the message to something like:
+> +	compatible = "samsung,expressatt", "qcom,msm8960";
+> +	chassis-type = "handset";
+> +
+> +	aliases {
+> +		serial0 = &gsbi5_serial;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +};
+> +
+> +&gsbi5 {
+> +	status = "okay";
+> +	qcom,mode = <GSBI_PROT_I2C_UART>;
+Please ensure status is the last property within each node
 
-ARM: dts: qcom-msm8960: Add USB
+> +};
+> +
+> +&gsbi5_serial {
+> +	status = "okay";
+> +};
+> +
+> +/* eMMC */
+> +&sdcc1 {
+You may want to add aliases for mmc hosts (check e.g.
+arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts)
 
-Add the required nodes to support USB on MSM8960.
-As it's very similar to APQ8064, the setup is almost identical
+> +	status = "okay";
+> +	vmmc-supply = <&pm8921_l5>;
+> +};
+> +
+> +/* External micro SD card */
+> +&sdcc3 {
+> +	status = "okay";
+> +	vmmc-supply = <&pm8921_l6>;
+> +	vqmmc-supply = <&pm8921_l7>;
+> +};
+> +
+> +&gsbi1 {
+> +	status = "okay";
+> +	qcom,mode = <GSBI_PROT_SPI>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&spi1_default>;
+Please do
 
+pinctrl-n
+pinctrl-names
 
-
-As for the contents itself, I tried taking a brief peek into the
-swamp that are the msm-3.0 boardfiles, but I barely managed to
-escape before getting drawn into the quicksands of 13yo legacy..
-
-I am however inclined to believe that the setup may in fact be
-identical(or close to) on these two SoCs..
+> +};
+> +
+> +&gsbi1_spi{
+Add a space between 'i' and '{'
 
 Konrad
-
->  arch/arm/boot/dts/qcom-msm8960.dtsi | 33 +++++++++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
-> index a4d8dd2d24a6..b11e606440cd 100644
-> --- a/arch/arm/boot/dts/qcom-msm8960.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
-> @@ -3,6 +3,7 @@
->  
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/clock/qcom,gcc-msm8960.h>
-> +#include <dt-bindings/reset/qcom,gcc-msm8960.h>
->  #include <dt-bindings/clock/qcom,lcc-msm8960.h>
->  #include <dt-bindings/mfd/qcom-rpm.h>
->  #include <dt-bindings/soc/qcom,gsbi.h>
-> @@ -370,5 +371,37 @@ gsbi1_spi: spi@16080000 {
->  				status = "disabled";
->  			};
->  		};
+> +	status = "okay";
+> +};
 > +
-> +		usb1: usb@12500000 {
-> +			compatible = "qcom,ci-hdrc";
-> +			reg = <0x12500000 0x200>,
-> +			      <0x12500200 0x200>;
-> +			interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&gcc USB_HS1_XCVR_CLK>, <&gcc USB_HS1_H_CLK>;
-> +			clock-names = "core", "iface";
-> +			assigned-clocks = <&gcc USB_HS1_XCVR_CLK>;
-> +			assigned-clock-rates = <60000000>;
-> +			resets = <&gcc USB_HS1_RESET>;
-> +			reset-names = "core";
-> +			phy_type = "ulpi";
-> +			ahb-burst-config = <0>;
-> +			phys = <&usb_hs1_phy>;
-> +			phy-names = "usb-phy";
-> +			status = "disabled";
-> +			#reset-cells = <1>;
-> +
-> +			ulpi {
-> +				usb_hs1_phy: phy {
-> +					compatible = "qcom,usb-hs-phy-msm8960",
-> +						     "qcom,usb-hs-phy";
-> +					clocks = <&sleep_clk>, <&cxo_board>;
-> +					clock-names = "sleep", "ref";
-> +					resets = <&usb1 0>;
-> +					reset-names = "por";
-> +					#phy-cells = <0>;
-> +				};
-> +			};
+> +&msmgpio {
+> +	spi1_default: spi1_default {
+> +		mux {
+> +			pins = "gpio6", "gpio7", "gpio9";
+> +			function = "gsbi1";
 > +		};
 > +
->  	};
->  };
+> +		mosi {
+> +			pins = "gpio6";
+> +			drive-strength = <12>;
+> +			bias-disable;
+> +		};
+> +
+> +		miso {
+> +			pins = "gpio7";
+> +			drive-strength = <12>;
+> +			bias-disable;
+> +		};
+> +
+> +		cs {
+> +			pins = "gpio8";
+> +			drive-strength = <12>;
+> +			bias-disable;
+> +			output-low;
+> +		};
+> +
+> +		clk {
+> +			pins = "gpio9";
+> +			drive-strength = <12>;
+> +			bias-disable;
+> +		};
+> +	};
+> +};
+> +
+> +
+> +&rpm {
+> +	regulators {
+> +		compatible = "qcom,rpm-pm8921-regulators";
+> +		vin_lvs1_3_6-supply = <&pm8921_s4>;
+> +		vin_lvs2-supply = <&pm8921_s4>;
+> +		vin_lvs4_5_7-supply = <&pm8921_s4>;
+> +		vdd_ncp-supply = <&pm8921_l6>;
+> +		vdd_l1_l2_l12_l18-supply = <&pm8921_s4>;
+> +		vdd_l21_l23_l29-supply = <&pm8921_s8>;
+> +		vdd_l24-supply = <&pm8921_s1>;
+> +		vdd_l25-supply = <&pm8921_s1>;
+> +		vdd_l27-supply = <&pm8921_s7>;
+> +		vdd_l28-supply = <&pm8921_s7>;
+> +
+> +		/* Buck SMPS */
+> +		pm8921_s1: s1 {
+> +			regulator-always-on;
+> +			regulator-min-microvolt = <1225000>;
+> +			regulator-max-microvolt = <1225000>;
+> +			qcom,switch-mode-frequency = <3200000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_s2: s2 {
+> +			regulator-min-microvolt = <1300000>;
+> +			regulator-max-microvolt = <1300000>;
+> +			qcom,switch-mode-frequency = <1600000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_s3: s3 {
+> +			regulator-min-microvolt = <500000>;
+> +			regulator-max-microvolt = <1150000>;
+> +			qcom,switch-mode-frequency = <4800000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_s4: s4 {
+> +			regulator-always-on;
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			qcom,switch-mode-frequency = <1600000>;
+> +			bias-pull-down;
+> +			qcom,force-mode = <QCOM_RPM_FORCE_MODE_AUTO>;
+> +		};
+> +
+> +		pm8921_s7: s7 {
+> +			regulator-min-microvolt = <1150000>;
+> +			regulator-max-microvolt = <1150000>;
+> +			qcom,switch-mode-frequency = <3200000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_s8: s8 {
+> +			regulator-always-on;
+> +			regulator-min-microvolt = <2050000>;
+> +			regulator-max-microvolt = <2050000>;
+> +			qcom,switch-mode-frequency = <1600000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		/* PMOS LDO */
+> +		pm8921_l1: l1 {
+> +			regulator-always-on;
+> +			regulator-min-microvolt = <1050000>;
+> +			regulator-max-microvolt = <1050000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l2: l2 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l3: l3 {
+> +			regulator-min-microvolt = <3075000>;
+> +			regulator-max-microvolt = <3300000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l4: l4 {
+> +			regulator-always-on;
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l5: l5 {
+> +			regulator-min-microvolt = <2950000>;
+> +			regulator-max-microvolt = <2950000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l6: l6 {
+> +			regulator-min-microvolt = <2950000>;
+> +			regulator-max-microvolt = <2950000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l7: l7 {
+> +			regulator-always-on;
+> +			regulator-min-microvolt = <1850000>;
+> +			regulator-max-microvolt = <2950000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l8: l8 {
+> +			regulator-min-microvolt = <3000000>;
+> +			regulator-max-microvolt = <3100000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l9: l9 {
+> +			regulator-min-microvolt = <2850000>;
+> +			regulator-max-microvolt = <2850000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l10: l10 {
+> +			regulator-min-microvolt = <3000000>;
+> +			regulator-max-microvolt = <3000000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l11: l11 {
+> +			regulator-min-microvolt = <2800000>;
+> +			regulator-max-microvolt = <3300000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l12: l12 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l14: l14 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l15: l15 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <2950000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l16: l16 {
+> +			regulator-min-microvolt = <2800000>;
+> +			regulator-max-microvolt = <3000000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l17: l17 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <3300000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l18: l18 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1500000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l21: l21 {
+> +			regulator-min-microvolt = <1900000>;
+> +			regulator-max-microvolt = <1900000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l22: l22 {
+> +			regulator-min-microvolt = <2750000>;
+> +			regulator-max-microvolt = <2750000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l23: l23 {
+> +			regulator-always-on;
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l24: l24 {
+> +			regulator-min-microvolt = <750000>;
+> +			regulator-max-microvolt = <1150000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_l25: l25 {
+> +			regulator-always-on;
+> +			regulator-min-microvolt = <1225000>;
+> +			regulator-max-microvolt = <1225000>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		/* Low Voltage Switch */
+> +		pm8921_lvs1: lvs1 {
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_lvs2: lvs2 {
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_lvs3: lvs3 {
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_lvs4: lvs4 {
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_lvs5: lvs5 {
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_lvs6: lvs6 {
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_lvs7: lvs7 {
+> +			bias-pull-down;
+> +		};
+> +
+> +		pm8921_ncp: ncp {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			qcom,switch-mode-frequency = <1600000>;
+> +		};
+> +	};
+> +};
+> +
+> +&usb_hs1_phy {
+> +	v3p3-supply = <&pm8921_l3>;
+> +	v1p8-supply = <&pm8921_l4>;
+> +};
+> +
+> +&usb1 {
+> +	status = "okay";
+> +	dr_mode = "otg";
+> +};
+> +
