@@ -2,180 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 546E171271A
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:57:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3235871272D
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 15:07:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243453AbjEZM5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 08:57:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45702 "EHLO
+        id S230094AbjEZNHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 09:07:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243446AbjEZM45 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:56:57 -0400
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43292E54;
-        Fri, 26 May 2023 05:56:33 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1685105776; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=ecL/yX4ACBM0LoiZ16bdV3ydQYoiCYrkxktY56WRb5lnQJu19PzOoJ45TErSAWXks6
-    lFSYVNmIEAiG2+R6QP3QkuLi7jmNTFAywCbG0Y9ZygwUau6WYQJu7hkJb9fmHZiiaZ4g
-    MAlfdBhuI+QN6vwH932S8PDGBjoM2ZUsMxO9+VfVxIkR2VP8t9npmC51YIKqb/QRUbxo
-    S85YOyWODE1jhvFbCYsN4Mb+CslSsT+hbPWtxa8QN6wjnY6Iq3BGAW8Cs4TX8zTw15iG
-    FLg6xVWlhZ4K/lz+wfZyqpb/klwrSe9CGM7Hy52VYmZbbPgHoWhIdLVZAui1foyhaZmh
-    Ju+g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1685105776;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=DQwmMMMxe4xHLS95ZMRaVWsx8QFAdxS0MuuF8Lk0U/4=;
-    b=le1+x/EDVncfHty+3X2zPjyOC3b/+MRDUbEiNtpTmxWKUIZSPihowxhFbBLUpPPF4y
-    HO7jkVDgMf7Rm6iJBmhdW8XbTf8ZL18ol9x16nm757ATIz+68H9zK30BhB7RlQYtqXqq
-    evM/QjUcUSVAGzCSJH8V0NTXTEli6nc0osXdbK9Diyn+Ryd6vz3CkNrJBv+qst8r/z2W
-    DKTCd+U7Wf9rAjqWkUI5+31RKJt0Sc4Wst9noDv861CtK6n1zsivvy9dURmEkfuX4f6n
-    mx/jO5X26sWz2pcxayolH6vta3gou6O5x+45lDmEgd4C681WPem/nC9uClpb+MNV6ICe
-    +k2g==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1685105776;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=DQwmMMMxe4xHLS95ZMRaVWsx8QFAdxS0MuuF8Lk0U/4=;
-    b=THhVJ6kZHG3cNYJZU4e8XwjPTlZsnstmWqzIFirvFs7/A18HSFrd0i4RTMqtZvhLFm
-    9rrwwajo8gOPuxTDbEPtJraxTFDhcG4PoWJyeehADMQtIfJ6QqNrtcu1CXYyFX3IHYLf
-    XL70Z14m3W77cFZpjLyX1PuZozF6//d62/42QCby6ZM5g/mDlBeamVTjSPqIRHTbghVn
-    VCGo+VhpwkU7Bgmr7h0AKNKp1tmjUUW/ukvAHmqfwO1owb6cX3OVc2CqkOZ5Zrqv8Tfw
-    sxwElq1TXu53HyIXk5Pd76Bs40l0u7vLqnTt/EhWvllwMfVzqaHMAmibokhCllKfmqlZ
-    EYbg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1685105776;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=DQwmMMMxe4xHLS95ZMRaVWsx8QFAdxS0MuuF8Lk0U/4=;
-    b=mof1MmHH21Ht8aPq/JeiWg3YRDolNLMTriPICUmGx31NfAzamUfqQ1+SyGvS2xm+ym
-    d5SxuLHLOgg4LxBcK6Cw==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA95nh"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.4.0 DYNA|AUTH)
-    with ESMTPSA id j6420az4QCuFb9P
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 26 May 2023 14:56:15 +0200 (CEST)
-Date:   Fri, 26 May 2023 14:55:56 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 8/8] arm64: dts: qcom: msm8916-pm8916: Mark always-on
- regulators
-Message-ID: <ZHCsXKejQxuGH2ZP@gerhold.net>
-References: <20230510-msm8916-regulators-v1-0-54d4960a05fc@gerhold.net>
- <20230510-msm8916-regulators-v1-8-54d4960a05fc@gerhold.net>
- <ea53525b-749b-25e2-6dde-662a8e273597@linaro.org>
- <ef7b7335-d20c-3ddc-52df-b2801fa40283@linaro.org>
- <ZHBTi-j657tW3jIu@gerhold.net>
- <41f5b7a9-d927-e468-d1ea-291ad35ba943@linaro.org>
+        with ESMTP id S231158AbjEZNHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 09:07:11 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55F26119;
+        Fri, 26 May 2023 06:07:09 -0700 (PDT)
+X-GND-Sasl: herve.codina@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1685106427;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=o2J4eEM5RXIP4b+rP/8OD/qqkXSOa3635HqS8iL6gx8=;
+        b=WzpM75Segot68BM+UMKk6uK+WErmwQKY5qyywJZSqXmF+qnTvlpGH35vAa9h6Epog44iG/
+        8m1dH5Q9VTLZDgmDqYDwqMSyVaz2/u207HwBoHuT73nEXYAJ4D8u8GYiggK/yL2S0zGp4/
+        eYTZfGcvi/nIiAZw0Z10Jl7DaDCgVn9OSz8rJo0x2Cy8sxYsd5P1qCBfE71+EpcLqw1yDX
+        8Aq8tv2ynvm6CqTfdEso1ZVd8z4Om265ppGvsYMflNGj3LPY+2GfQVp84xmsqqB9sMFJDK
+        m30UQ6DP6OGGxrRwcWiy/xP7+Qj3CVvuyNkOm0aisl+ob4Kzmj4ibxfoF0R76w==
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9E9B2C0006;
+        Fri, 26 May 2023 13:07:03 +0000 (UTC)
+Date:   Fri, 26 May 2023 15:07:02 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 9/9] ASoC: simple-card: Handle additional devices
+Message-ID: <20230526150702.2555143c@bootlin.com>
+In-Reply-To: <87v8ghgtyu.wl-kuninori.morimoto.gx@renesas.com>
+References: <20230523151223.109551-1-herve.codina@bootlin.com>
+        <20230523151223.109551-10-herve.codina@bootlin.com>
+        <87mt1u7fql.wl-kuninori.morimoto.gx@renesas.com>
+        <20230524141411.28765782@bootlin.com>
+        <87v8ghgtyu.wl-kuninori.morimoto.gx@renesas.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <41f5b7a9-d927-e468-d1ea-291ad35ba943@linaro.org>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 26, 2023 at 10:50:53AM +0200, Konrad Dybcio wrote:
-> On 26.05.2023 08:36, Stephan Gerhold wrote:
-> > On Fri, May 26, 2023 at 02:28:52AM +0200, Konrad Dybcio wrote:
-> >> On 26.05.2023 01:39, Konrad Dybcio wrote:
-> >>> On 17.05.2023 20:48, Stephan Gerhold wrote:
-> >>>> Some of the regulators must be always-on to ensure correct operation of
-> >>>> the system, e.g. PM8916 L2 for the LPDDR RAM, L5 for most digital I/O
-> >>>> and L7 for the CPU PLL (strictly speaking the CPU PLL might only need
-> >>>> an active-only vote but this is not supported for regulators in
-> >>>> mainline currently).
-> >>> Would you be interested in implementing this?
-> > 
-> > At least on MSM8916 there is currently no advantage implementing this.
-> > The "active-only" votes only have the CPU as limited use case. S1 (aka
-> > MSM8916_VDDCX) and L3 (MSM8916_VDDMX) are both used via rpmpd/power
-> > domains which already provides separate active-only variants. L7 (for
-> > the CPU PLL) is the only other regulator used in "active-only" mode.
-> > However, at least on MSM8916 L7 seems to stay always-on no matter what I
-> > do, so having an active-only vote on L7 doesn't provide any advantage.
-> In this case it may be more important that we tell RPM that we want it
-> to be active-only, even if it ultimately makes a different decision.
-> You probably played with this more, but my guess would be that not letting
-> off of an a-s vote could confuse the algos
+On Thu, 25 May 2023 00:01:14 +0000
+Kuninori Morimoto <kuninori.morimoto.gx@renesas.com> wrote:
+
+> Hi Herve
+> 
+> Thank you for your reply.
+> 
+> > So, IMHO, calling simple_populate_aux() from __simple_for_each_link() is
+> > not correct as it has nothing to do with DAI links and must be call once
+> > per Card.  
+> 
+> My biggest concern is that this code is calling same code multiple times.
+> It is easy to forget such thing when updating in this kind of code.
+> We don't forget / take mistake if these are merged.
+> But we have such code everywhere ;) this is just my concern, not a big deal.
+> 
+> 	static int __simple_for_each_link (...)
+> 	{
+> 		...
+> =>		add_devs = of_get_child_by_name(top, PREFIX "additional-devs");  
+> 		...
+> 	}
+> 
+> 	static int simple_populate_aux(...)
+> 	{
+> 		...
+> =>		node = of_get_child_by_name(dev->of_node, PREFIX "additional-devs");  
+> 		...
+> 	}
 > 
 
-I think in this case it does not make any difference. There is no
-difference to downstream for the power consumption during VMIN suspend
-(with these changes and my hack patches). In fact the power consumption
-is so ridiculously low (about 0.008W / 0.096 A @ 12V) that my
-measurement thing can barely measure it. :D
+Well, of_get_child_by_name() is called twice to retrieve the additional-devs
+node but for very different reason.
 
-There are definitely more important things to work on right now that
-will make a much larger difference. Perhaps one day when we have the
-important things like cpuidle, bus scaling/interconnect etc we can look
-again at this tiny little regulator that probably will never turn off
-anyway. :D
+In __simple_for_each_link() to filter out the node as it has nothing to do with a DAI.
+In simple_populate_aux() to take care of the devices declared in the node.
 
-> > 
-> >> Actually, I think currently all votes are active-only votes and what
-> >> we're missing is sleep-only (and active-sleep if we vote on both)
-> > 
-> > If you only send the "active" votes but no "sleep" votes for a resource
-> > then the RPM firmware treats it as active+sleep, see [1].
-> > The active/sleep separation only starts once a separate sleep vote has
-> > been sent for a resource for the first time.
-> > 
-> > Therefore, all requests from the SMD regulator driver apply for both
-> > active+sleep at the moment.
-> > 
-> > [1]: https://git.codelinaro.org/clo/la/kernel/msm-3.10/-/blob/LA.BR.1.2.9.1-02310-8x16.0/drivers/regulator/rpm-smd-regulator.c#L202-204
-> /me *dies*
+I am not sure that we should avoid that.
+It will lead to a more complex code and flags just to avoid this call.
+
+Not sure that it will be better.
+__simple_for_each_link() is called multiple times and is supposed to look at links.
+To avoid the of_get_child_by_name() filter-out call, __simple_for_each_link()
+will look at link *and* populate devices calling simple_populate_aux().
+And to do that correctly it will use a flag to be sure that simple_populate_aux()
+was called only once.
+
+
+In order to avoid some kind of duplication (at least the node name):
+
+	static struct device_node *simple_of_get_add_devs(struct device_node *node)
+	{
+		return of_get_child_by_name(node, PREFIX "additional-devs");
+	}
+
+	static int __simple_for_each_link (...)
+	{
+		...
+=>		add_devs = simple_of_get_add_devs(top);  
+		...
+	}
+
+	static int simple_populate_aux(...)
+	{
+		...
+=>		node = simple_of_get_add_devs(dev->of_node);  
+		...
+	}
+
+
+Does it look better ?
+
+Best regards,
+Hervé
+
+> Thank you for your help !!
 > 
-> that's a design decision if i've ever seen one..
-> 
+> Best regards
+> ---
+> Kuninori Morimoto
 
-:D
 
-> > 
-> >>>
-> >>> Ancient downstream defines a second device (vregname_ao) and basically
-> >>> seems to select QCOM_SMD_(ACTIVE/SLEEP)_STATE based on that..
-> >>>
-> >>> Looks like `struct regulator` stores voltage in an array that wouldn't
-> >>> you know it, depends on the PM state. Perhaps that could be something
-> >>> to explore!
-> >>>
-> > 
-> > Don't get confused by the similar naming here. RPM sleep votes are
-> > unrelated to the "system suspend" voltages the regulator framework
-> > supports. :)
-> > 
-> > RPM sleep votes become active if the cpuidle reaches the deepest state
-> > for the (cpu/)cluster(/CCI). This can happen anytime at runtime when the
-> > system is idle long enough. On the other hand, the regulator suspend
-> > voltages are meant to become active during system suspend (where all the
-> > devices get suspended as well).
-> Yes and pm_genpd tracks that very meticulously, at least in the case of PSCI.
 
-Meh, having a proper PSCI implementation is luxury! I have to mess with
-the good old way of poking the SPM/SAWs from Linux... :P
-
-Thanks,
-Stephan
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
