@@ -2,143 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2A2C7126A7
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:30:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF387126D7
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:39:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231447AbjEZMax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 08:30:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
+        id S242713AbjEZMjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 08:39:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235889AbjEZMav (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:30:51 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54A810CB
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 05:30:23 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-309553c5417so611065f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 05:30:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685104187; x=1687696187;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7DgLeFcVKugZ1jHV952TG/acpJ3CYaYDRk+S+7y1opI=;
-        b=JJvTXawYK+2eKFBee5z6PBwWI5k4qXYQepgb/dOh40ONIfiNE4vQ9C5JZS9sngNYhg
-         jKAqABQKcPpFCxaSTHzNRTJh1NZA9QyRaeOZY1W6wo0FCJG+12yEHnJk2NO1DgadbHko
-         SXSrT3LLSZujHZOb4HyIWpS8gGRib7Sl7sEBd71FdNT6s4mX2O4QpiCkFVa9qXC//z3n
-         BL3r0fgeLMCTZ3qonHJ6AOvpUyATULG7xQO2b3uScW7N2yIporOw7/OnSPXyTG6/vxE6
-         ky7koh3XPDV1LI+z3hdqe8uaxn4vkoTeZ6obSssLU6VS6sfAL7NtZTRBfKYS3+fqa4Eq
-         /IPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685104187; x=1687696187;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7DgLeFcVKugZ1jHV952TG/acpJ3CYaYDRk+S+7y1opI=;
-        b=UD5Ae0c9GqinvMN44bz6iDhya2ZlVTk2OOJoYXrAso2SbSyoSqSBfuZhEXaarZmXtx
-         7MkKcpSKZAJOYs1IjkZ8Zk50CnknCvdLg4IwzMMmJfoko/+QT8ZZfwRuDEDngdhgwLDF
-         4cmHXfK0krazr5jp21uRvJNCrwIhFrUI521/inZad9OEkJyBQCjnpGHPwjSsWvsb64Cc
-         Y6Agw2I75XV6tMcp/1plrwv46BG/va+ipf0nbP8fPibXPVeMC9cnDUd1noBBmy2bdh0g
-         FAaktAfoDDZC0Yu17i5YD8rtARNi3n7AsD+gAzWXotWm+4tMWjiRVw3pRL0NhMpfs8yM
-         tMCg==
-X-Gm-Message-State: AC+VfDx6nGpQWiMXIyWmVaBqsOBrE06Xgf3Tg7JG7O0HWB7L9qGRzB1H
-        MhpcFGCBCwwkt3jDK7ElG73OTQ==
-X-Google-Smtp-Source: ACHHUZ4Yzdh1OVvZfHTDfTPDF27Lm7PQ6wRYFT/sfIDkuo8DGhJzYx6iAQS1jK8kdTtAXhGTfBVkdw==
-X-Received: by 2002:adf:f307:0:b0:30a:c89c:c338 with SMTP id i7-20020adff307000000b0030ac89cc338mr1348537wro.50.1685104186834;
-        Fri, 26 May 2023 05:29:46 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id h3-20020a5d5483000000b00307c46f4f08sm2325314wrv.79.2023.05.26.05.29.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 05:29:46 -0700 (PDT)
-Message-ID: <546876ba-970d-5cd5-648e-723698ca74fd@linaro.org>
-Date:   Fri, 26 May 2023 13:29:44 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH V2 1/6] dt-bindings: clock: qcom: Add SM8550 camera clock
- controller
-Content-Language: en-US
-To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231209AbjEZMjE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:39:04 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99B9B116;
+        Fri, 26 May 2023 05:39:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685104742; x=1716640742;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0eDJx4cPwsq80iImTB8nLrKWaWeH8p+wAFaX0YpCUpY=;
+  b=kIUIswIV8nfMoxQbefA8Gt+/iF04dDbz6AMUzWiD0g9mpzpd3vQEDOuL
+   woVibj7F8knInITZaEu/Hhkp/ShgHcu5FtvKCRu6t43StUX8pnGuNhjcY
+   Ar1efd+NqLmquQwh4XVBw/m7qm27tpaAYQfzQzRpTlYJrEVuTyNGfx9ZK
+   nnnyftnO2xstO4b2LZ/VixflGYnTZdPMi/I/q1bBzbzNoCKGS1iXGIhUd
+   K/Di5bQirhzbjYkZaa4OlceNwJZY5zniNcDQdjZ6koilDUXi4hn6RpwNm
+   PShGBJcqn5bXbDPBHN2+jKQSbKGw4AuiM7cTfuXUnppW2AXUSCFwFe4pA
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; 
+   d="asc'?scan'208";a="154091159"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 May 2023 05:39:01 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 26 May 2023 05:38:55 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 26 May 2023 05:38:52 -0700
+Date:   Fri, 26 May 2023 13:38:29 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
+CC:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Conor Dooley <conor@kernel.org>,
+        Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        <linux-rtc@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230525172142.9039-1-quic_jkona@quicinc.com>
- <20230525172142.9039-2-quic_jkona@quicinc.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230525172142.9039-2-quic_jkona@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, Huacai Chen <chenhuacai@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, <loongarch@lists.linux.dev>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        Kelvin Cheung <keguang.zhang@gmail.com>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        <loongson-kernel@lists.loongnix.cn>
+Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the
+ trivial RTCs
+Message-ID: <20230526-hardwired-flashbulb-de3ef456f9a0@wendy>
+References: <cover.1684983279.git.zhoubinbin@loongson.cn>
+ <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
+ <20230525-custody-oversleep-f778eddf981c@spud>
+ <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
+ <20230526-dolly-reheat-06c4d5658415@wendy>
+ <1EAC8FA8-4125-4436-9EE1-13B61B5687AF@flygoat.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="WSYevugeXVX6hZ2M"
+Content-Disposition: inline
+In-Reply-To: <1EAC8FA8-4125-4436-9EE1-13B61B5687AF@flygoat.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/05/2023 18:21, Jagadeesh Kona wrote:
-> Add device tree bindings for the camera clock controller on
-> Qualcomm SM8550 platform.
-> 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-> ---
-> Changes since V1:
->   - Removed new YAML file and reused SM8450 CAMCC YAML file for SM8550
-> 
->   .../bindings/clock/qcom,sm8450-camcc.yaml     |   8 +-
->   include/dt-bindings/clock/qcom,sm8550-camcc.h | 187 ++++++++++++++++++
->   2 files changed, 193 insertions(+), 2 deletions(-)
->   create mode 100644 include/dt-bindings/clock/qcom,sm8550-camcc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-> index 87ae74166807..8dbc9004202f 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
-> @@ -13,11 +13,15 @@ description: |
->     Qualcomm camera clock control module provides the clocks, resets and power
->     domains on SM8450.
->   
-> -  See also:: include/dt-bindings/clock/qcom,sm8450-camcc.h
-> +  See also::
-> +    include/dt-bindings/clock/qcom,sm8450-camcc.h
-> +    include/dt-bindings/clock/qcom,sm8550-camcc.h
->   
->   properties:
->     compatible:
-> -    const: qcom,sm8450-camcc
-> +    enum:
-> +      - qcom,sm8450-camcc
-> +      - qcom,sm8550-camcc
+--WSYevugeXVX6hZ2M
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hmm,
+On Fri, May 26, 2023 at 01:22:15PM +0100, Jiaxun Yang wrote:
+>=20
+>=20
+> > 2023=E5=B9=B45=E6=9C=8826=E6=97=A5 13:06=EF=BC=8CConor Dooley <conor.do=
+oley@microchip.com> =E5=86=99=E9=81=93=EF=BC=9A
+> Hi all,
+>=20
+> [...]
+> My two cents here as Loongson64 maintainer.
+>=20
+> >=20
+> >>> To maintain compatibility with the existing devicetrees, should the o=
+ld
+> >>> "loongson,ls2x-rtc" be kept in the driver?
+> >>=20
+> >> No, It seems that wildcards in compatible are not allowed."
+> >> loongson,ls2x-rtc" itself was part of this patch series at one time,
+> >> but apparently it is not the right way to describe these chips.
+> >=20
+> > Right, but it has been merged - you are deleting the driver that suppor=
+ts
+> > it after all - which means that any dtb with the old compatible will
+> > stop working.
+> It is perfectly fine to break DTB compatibility for Loongson64 systems
+> As they *only* use builtin dtb. Bootloader will only pass machine type in=
+formation
+> and kernel will choose one dtb from it=E2=80=99s dtbs pool.
 
-So looking at Documentation/devicetree/bindings/clock/*camcc*.yaml we 
-seem to be repeating yaml over and over again with no substantial 
-difference between one description and another.
+Ah, that is good to know thanks! I think that should be mentioned in the
+commit messages for the next revision.
 
-You've picked at the thread here by adding sm8550 into sm8450.
+Cheers,
+Conor.
 
-I think sm8250, sm8450, sm8550, sc7280 and ... probably sm6350 should 
-live in the one yaml description 
-Documentation/devicetree/bindings/clock/qcom,camcc.yaml
+--WSYevugeXVX6hZ2M
+Content-Type: application/pgp-signature; name="signature.asc"
 
-sm6350 looks a bit sparse/incomplete to me so perhaps leave that out. 
-The others sc7280, sm8250, sm8450 and sm8550 can/should all be moved 
-into the same yaml file with a list of compatibles.
+-----BEGIN PGP SIGNATURE-----
 
----
-bod
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHCoRQAKCRB4tDGHoIJi
+0m7HAQDegOrEFQvfjtNlpAP88Pr1kQ6xFHXGlHvSieXoat9fSAD/fQLNWWmCM9oI
+Nebcr7/ygJ6fD/4udFPchcokkg67nA8=
+=4uhD
+-----END PGP SIGNATURE-----
+
+--WSYevugeXVX6hZ2M--
