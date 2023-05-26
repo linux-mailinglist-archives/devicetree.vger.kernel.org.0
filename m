@@ -2,234 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 767757129E1
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 17:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A19D7129F8
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 17:53:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244004AbjEZPqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 11:46:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46846 "EHLO
+        id S244221AbjEZPxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 11:53:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243854AbjEZPqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 11:46:03 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF05A1B5
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 08:45:50 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id ffacd0b85a97d-30adc69c0dbso392218f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 08:45:50 -0700 (PDT)
+        with ESMTP id S244213AbjEZPxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 11:53:51 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC11116
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 08:53:50 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-5147e8972a1so883493a12.0
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 08:53:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685115949; x=1687707949;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1685116428; x=1687708428;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OX879Xbtaq85/UPwb2f8tq7maPJyO+QLeOiqV5vIfjA=;
-        b=wcwdcdzgtFryBiRdWxpCymHOki7j+wUintN3/adfIJ575HFiGwWvvLiGL3NjuxwRQ3
-         gnUjpSgJCSKNn+8anAU5m8DeoSjJYKZLGPLMI87dIP859SN/KobgtxhHNXERf3MpE9K5
-         wJZUC7GW/spdUYxb446kFGqU4Uox1guSsugZJ1mL4Sxg+LrCdgMTx4Y4akJ/Mt/7RFwi
-         B5nFj66Up8V+9vb6gRJa0CQVT00R3zPujsuOvvvrh439gLa0zVGQpFB4Xigr6dOrgHbQ
-         bI0KYS1ghZCHj0a5KknxdXkNKb6dYjp57m9fazVfgxJPBaDmVRu6NgMEzB6jnFMUzpvT
-         dqXw==
+        bh=dn6aRVtsB7lJHlQ+n3cjJ7Hpri7VOVYN2SL9x9E1NRA=;
+        b=Q3L0DQh3ZNrcNumkcoYeh19QFAYjP2+Wit2aWVCaU5p8BCmKAhQiz2Ys+9M+2Vr3ed
+         xDgzXdBwjJkV/cVl7ep7MO5xfuAPkzwI3GGa/pSrrNUE9We2pPNvqY43SW+4SIZEa/M+
+         VXSM00wfEujSPtaG2C/UXVAZPxzSUfCL1IKMczI9oPZILIhtO1eYmREN3GQ3U/CekD1i
+         ri7XKn/wlQwqRyum3s5usItRE6zSo0mc7aJNe1GgqVB2P+9inzVUeinJzLRsT7tu5eEy
+         PeNqOnskk9yc6pMDweKCN/Mx73jBDwxj3Z1mcy85T+GF8sZNmhu02JF8La/ow1sEL3Tm
+         Oc5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685115949; x=1687707949;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1685116428; x=1687708428;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OX879Xbtaq85/UPwb2f8tq7maPJyO+QLeOiqV5vIfjA=;
-        b=HhKmlI6JqSIxAG0aEhqFgqqHbm+OfiREqsX4vhLYT+O1Z134k/pCpu0P7jVPrdcXjA
-         odBbtS5xf4X/rJ9GdtStJrwFzuKmMVD42BwpjTocK2JC4IBG+LHu+KDNzYb6RwZ9zd8U
-         BPMjCxMk8rayso3q41j4VmmovOdhrUkjQG/WuDCvAMDAr0/1VHkU5MoowfIH4m79l5C3
-         AjhGV6ohHF0NOP/qNtLca5WqLbfEmnH8MYp/KaMmxC81s7q1m3CKuhpH6xPTFTFcVw86
-         f3Dzis/bmCIfcIZrccM3TQDkYL9eb7/gHVX3U5NBeZJ09w1f+a0AXJr6ZPSu6xpCKh5H
-         +dOw==
-X-Gm-Message-State: AC+VfDwonOu6b5S5vXfuV88FmVw35sShXjI7DW0LJObinYq33qvf8/vn
-        Zq2Vwn22j3JDImADtLuwF2V28Q==
-X-Google-Smtp-Source: ACHHUZ5UA+yXPBx7fP3hSIrT+zIrLky1zEBpDc0IHgjMDGgcI9UwC6u1LCxdVBVyifx+CDLiyp1GIA==
-X-Received: by 2002:a5d:6ac4:0:b0:309:e24:57b0 with SMTP id u4-20020a5d6ac4000000b003090e2457b0mr2066240wrw.30.1685115949116;
-        Fri, 26 May 2023 08:45:49 -0700 (PDT)
-Received: from [10.1.4.6] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id c11-20020adfe74b000000b0030630120e56sm2580734wrn.57.2023.05.26.08.45.47
+        bh=dn6aRVtsB7lJHlQ+n3cjJ7Hpri7VOVYN2SL9x9E1NRA=;
+        b=RSCVyMNiKWZRTNWha5RHhF67yH73MGAtEj3DuQAeNs0SJ9qtagzwRoMH0iaK46yPSi
+         6rJ+1r5caDEjlTI/Kp6JFrAdtpfBYak4a0m2wpyIdiWKWT+UpOmJ1T50lV5dpHl42lJ8
+         xHBmdn3dgs/KcWeHZwEwA67W/crZzBUBo+jZWlzXxmjyfHLJUGioJn+OVvcLW4hpPs9x
+         TajjR5gC63UVkW9SIBXXpSLIGngz7HFgwSvxUF+xW1YiyThoKh5W85mzPaiuCepWuvsw
+         ACLWz9eWD2gM8VqvJo6C/3HvQukcIQ8IQYTqjtsnL3laWdIitgr4bkHjMCQlEPBpWyJf
+         IZhg==
+X-Gm-Message-State: AC+VfDzsnyVp3b0FVgJHjYnsyAj4m3nmJO3JJ5Z8LnNbJhdt2eiMblsr
+        cgIDkdqoDmZyuFwPvUYofaVisQ==
+X-Google-Smtp-Source: ACHHUZ6VEuV8/df/LpPQcZFhpinqdGRwuetT29m9eh7mboiTxmRAM1CNcXRbK/iX7kdA2y4v/XUhTg==
+X-Received: by 2002:aa7:d8d4:0:b0:514:25a4:3074 with SMTP id k20-20020aa7d8d4000000b0051425a43074mr1750283eds.3.1685116428674;
+        Fri, 26 May 2023 08:53:48 -0700 (PDT)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id u14-20020aa7d88e000000b0050da1edb2e4sm85463edq.31.2023.05.26.08.53.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 08:45:48 -0700 (PDT)
-Message-ID: <01591ec1-7c87-514c-047b-bec1c45ddfa5@baylibre.com>
-Date:   Fri, 26 May 2023 17:45:47 +0200
+        Fri, 26 May 2023 08:53:48 -0700 (PDT)
+Message-ID: <7074f718-a3d5-8a03-3830-77a5a0b15500@linaro.org>
+Date:   Fri, 26 May 2023 18:53:46 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 0/7] Add a DRM driver to support AI Processing Unit (APU)
-Content-Language: en-US
-To:     Oded Gabbay <ogabbay@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jeffrey Hugo <quic_jhugo@quicinc.com>, airlied@gmail.com,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, devicetree@vger.kernel.org,
-        conor+dt@kernel.org, bero@baylibre.com, jstephan@baylibre.com,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        christian.koenig@amd.com, linaro-mm-sig@lists.linaro.org,
-        robh+dt@kernel.org, linux-mediatek@lists.infradead.org,
-        nbelin@baylibre.com, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, linux-media@vger.kernel.org,
-        sumit.semwal@linaro.org, linux-arm-kernel@lists.infradead.org,
-        angelogioacchino.delregno@collabora.com
-References: <20230517145237.295461-1-abailon@baylibre.com>
- <d0807fe4-dba2-8244-f655-d04e80973572@quicinc.com>
- <7ha5xud3m7.fsf@baylibre.com>
- <CAFCwf10hNjGtEYDi24LREnMLRGT7mRECvqQMdZWv=-uA7YELYg@mail.gmail.com>
- <ZG3pmSnUSc9oCtev@phenom.ffwll.local>
-From:   Alexandre Bailon <abailon@baylibre.com>
-In-Reply-To: <ZG3pmSnUSc9oCtev@phenom.ffwll.local>
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V2 3/6] clk: qcom: clk-alpha-pll: Remove explicit CAL_L
+ configuration for EVO PLL
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Taniya Das <quic_tdas@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>
+References: <20230525172142.9039-1-quic_jkona@quicinc.com>
+ <20230525172142.9039-4-quic_jkona@quicinc.com>
+ <6e1d098d-03b9-aa63-a0bf-6cf748a0db0d@linaro.org>
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <6e1d098d-03b9-aa63-a0bf-6cf748a0db0d@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/24/23 12:40, Daniel Vetter wrote:
-> On Wed, May 24, 2023 at 01:27:00PM +0300, Oded Gabbay wrote:
->> On Wed, May 24, 2023 at 2:34 AM Kevin Hilman <khilman@baylibre.com> wrote:
->>>
->>> Jeffrey Hugo <quic_jhugo@quicinc.com> writes:
->>>
->>>> On 5/17/2023 8:52 AM, Alexandre Bailon wrote:
->>>>> This adds a DRM driver that implements communication between the CPU and an
->>>>> APU. The driver target embedded device that usually run inference using some
->>>>> prebuilt models. The goal is to provide common infrastructure that could be
->>>>> re-used to support many accelerators. Both kernel, userspace and firmware tries
->>>>> to use standard and existing to leverage the development and maintenance effort.
->>>>> The series implements two platform drivers, one for simulation and another one for
->>>>> the mt8183 (compatible with mt8365).
->>>>
->>>> This looks like the 3 existing Accel drivers.  Why is this in DRM?
->>>
->>> Yes, this belongs in accel.  I think Alex had some issues around the
->>> infra in accel with device nodes not appearing/opening properly, but
->>> I'll let him comment there.  But either way, the right approach should
->>> be to fix any issues in accel and move it there.
->>>
->>> [...]
->>>
->>>>>    .../devicetree/bindings/gpu/mtk,apu-drm.yaml  |  38 ++
->>>>>    drivers/gpu/drm/Kconfig                       |   2 +
->>>>>    drivers/gpu/drm/Makefile                      |   1 +
->>>>>    drivers/gpu/drm/apu/Kconfig                   |  22 +
->>>>>    drivers/gpu/drm/apu/Makefile                  |  10 +
->>>>>    drivers/gpu/drm/apu/apu_drv.c                 | 282 +++++++++
->>>>>    drivers/gpu/drm/apu/apu_gem.c                 | 230 +++++++
->>>>>    drivers/gpu/drm/apu/apu_internal.h            | 205 ++++++
->>>>>    drivers/gpu/drm/apu/apu_sched.c               | 592 ++++++++++++++++++
->>>>>    drivers/gpu/drm/apu/simu_apu.c                | 313 +++++++++
->>>>>    include/uapi/drm/apu_drm.h                    |  81 +++
->>>>
->>>> "apu" seems too generic.  We already have 3 "AI processing units" over
->>>> in drivers/accel already...
->>>
->>> Indeed, it is generic, but that's kind of the point for this driver
->>> since it's targetted at generalizing the interface with "AI processing
->>> units" on a growing number of embedded SoCs (ARM, RISC-V, etc.)  In
->>> addition, the generic naming is intentional because the goal is bigger
->>> than the kernel and is working towards a generic, shared "libAPU"
->>> userspace[1], but also common firmware for DSP-style inference engines
->>> (e.g. analgous Sound Open Firmware for audio DSPs.)
->>>
->>> As usual, the various SoC vendors use different names (APU, NPU, NN
->>> unit, etc.)  but we'd like a generic name for the class of devices
->>> targetted by this driver.  And unfortunately, it looks like the equally
->>> generic "Versatile processing unit" is already taken Intel's
->>> drivers/accel/ivpu. :)
->>>
->>> Maybe since this is more about generalizing the interface between the
->>> CPU running linux and the APU, what about the name apu_if?  But I guess
->>> that applies to the other 3 drivers in drivers/accell also.  Hmmm...
->>>
->>> Naming things is hard[2], so we're definitly open to other ideas.  Any
->>> suggestions?
->> Maybe model it according to the tiny driver in drm display ? You can
->> then call it tiny_apu :-)
->> Disclosure: It was Daniel's suggestion, he can chime in with more
->> details on the tiny driver concept.
+On 26/05/2023 12:33, Konrad Dybcio wrote:
 > 
-> Yeah so maybe a bit more detail on my thoughts:
 > 
-> First this smells like a need bypass of the entire "we want open userspace
-> for accel drivers" rule. The rule isn't quite a strict as for drm gpu
-> drivers (not sure we ended up documenting exactly what, but iirc the
-> consensus was that for build-time only dependencies we're ok with
-> downstream compilers), but it's still there.
-What is letting you think that we want to bypass open source requirements ?
-Although the neural network firmware and userspace application are not yet
-opensource, our intention is to develop a full open source stack.
-Currently, we only support Mediatek APU (an Xtensa VP6) and we have to 
-use closed source sotfware to execute inferences on the accelerator.
-As far I know, there software stack similar to mesa where we could add
-support of a new accelerator (this is also true for firmware).
-That is actually what we would like to do. But this will take a lot of 
-time and we consider this driver as a first (small) step.
-> 
-> And at least from a quick look apu.ko and libapu just look like a generic
-> accel interface, and that's not enough.
-> 
-> For the big training engines it's more or less "enough to run pytorch, but
-> it can be really slow", not sure what the right standard for these
-> inference-only drivers should be.
-To be honest, I don't know what would be required for training engines.
-We only target accelerators for embedded device that usually only run 
-inferences. In my opinion, this is 2 different use cases and I don't 
-think we could address them in the same way.
-> 
-> So that's the first reason why I don't like this.
-> 
-> The other is that I think if we do end up with a pile of tiny accel
-> drivers, we should probably look into something like simmpledrm for the
-> tiny display drivers. Probably still IP specific ioctls (at least most) so
-> that IP specific job knows and all that are easy, but then just pass to a
-> framework that simplifies a drm gem driver to "write ptes" and "run job"
-> callback, maybe with an optional "create/destroy vm/ctx" for hw which can
-> do that.
-> 
-> So maybe we end up with a drivers/accel/tiny and a bunch more helpers
-> around the existing gem ones. The rule we have for drm/tiny is "1 file,
-> less than 1kloc", and there's a bunch of them. I do think we can achieve
-> the same for tiny accel inference engines (but it's still a bit a road).
-> Maybe tiny accel is more like "less than 5kloc" since you need a bit more
-> glue for the driver specific ioctl stuff - maybe that's only needed for
-> the submit ioctl, maybe also for buffer map/unmap and creation.
-This makes sense to me.
-> 
-> Also note that there's an entire pile of in-flight work for adding new
-> helpers to the gem world to make this all easier. Once we have gpuva and
-> exec helpers there not much glue left to tie it all together with the
-> scheduler.
-I wrote this series a long time ago and just rebased it recently.
-I will take some time to see the in-flight work and see if that 
-something I could start using.
-> 
-> But the real crux is that an accel inference driver really needs to have
-> enough userspace to do an actual inference job with some
-> android/cros/whatever framework for inference (there's just too many).
-We are currently stuck with closed source fimrware, userspace 
-applications and toolchains (works with android and linux).
-We are looking for a solution but implementing something will take some 
-time.
-
-Alexandre
-> -Daniel
-> 
->> Oded
+> On 25.05.2023 19:21, Jagadeesh Kona wrote:
+>> In lucid evo pll, the CAL_L field is part of L value register itself, and
+>> the l value configuration passed from clock controller driver includes
+>> CAL_L and L values as well. Hence remove explicit configuration of CAL_L
+>> for evo pll.
 >>
->>>
->>> Kevin
->>>
->>> [1] https://gitlab.baylibre.com/baylibre/libapu/libapu
->>>
->>> [2]
->>> "There are 2 hard problems in computer science: cache invalidation,
->>>   naming things and off-by-1 errors."
->>>   -- https://twitter.com/secretGeek/status/7269997868
->>>
+>> Fixes: 260e36606a03 ("clk: qcom: clk-alpha-pll: add Lucid EVO PLL configuration interfaces")
+>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>> ---
+> Oh that isn't obvious at first sight, nice find!
 > 
+> I'd suggest a different solution though:
+> 
+> #define LUCID_EVO_PLL_L_LVAL	GENMASK(..
+> #define LUCID_EVO_PLL_L_CAL_L	GENMASK(..
+> 
+> lval = FIELD_PREP(LUCID_EVO_PLL_L_LVAL, config->l) |
+>         FIELD_PREP(LUCID_EVO_PLL_L_CAL_L, config->cal_l);
+> 
+> This would make the separation between the two parts more explicit
+> 
+> however
+> 
+> config->l would then represent the L value and not the end value
+> written to the L register
+
+Yes. I think there should be separate config->l and config->cal_l values 
+(and probably ringosc_cal_l, basing on the comment in the source).
+
+Just a question: is camcc-sm8550 using the same PLL type or is it some 
+kind of subtype of lucid_evo PLL?
+
+-- 
+With best wishes
+Dmitry
+
