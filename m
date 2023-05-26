@@ -2,175 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AEDA71253C
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 13:07:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC9DC712556
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 13:17:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243254AbjEZLHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 07:07:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52202 "EHLO
+        id S235332AbjEZLRv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 07:17:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243128AbjEZLHm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 07:07:42 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A65991A6;
-        Fri, 26 May 2023 04:07:38 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34QAMLdZ004954;
-        Fri, 26 May 2023 11:07:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=L+UZMrct2CdggSukP8m/AcuMAdqy/CL+Bb+0b7+crxA=;
- b=gqJ/9G04QAEQwo7LOKA9XxnbU/pVHVPPx7UKB9xCOl/mvI+E4oTPwWBdJiPWQGZhYnq8
- 0H754kpa0vQtG9JGAH+Ekc1J/dlcrUrquzGfEAs/+E1rlJ+/u8vK8seixUzuEGZfAq/k
- c/XUVglKRLmx84k5bQhAdRg4yDE4zhYpy442QGEpi3ffRMonyD5gdndlofUJQvqAfFUO
- JmPpdyMXNqv2Oaoau5ylbEzmhczFzThFjv/TlPEnGc2duqfqa3YMrIro3u3PnvU8Jj9p
- TLSA91N7drid00/DyW7zs6myrlRgPyvB25nkYVFXDHdkdOSncGoWbFQ5LR9qEOUN0qMt tg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qtp4wgq64-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 26 May 2023 11:07:34 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34QB7X6N018130
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 26 May 2023 11:07:33 GMT
-Received: from viswanat-linux.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Fri, 26 May 2023 04:07:28 -0700
-From:   Vignesh Viswanathan <quic_viswanat@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <quic_kathirav@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_srichara@quicinc.com>,
-        <quic_varada@quicinc.com>,
-        Vignesh Viswanathan <quic_viswanat@quicinc.com>
-Subject: [PATCH 3/3] arm64: dts: qcom: add few more reserved memory region
-Date:   Fri, 26 May 2023 16:36:53 +0530
-Message-ID: <20230526110653.27777-4-quic_viswanat@quicinc.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230526110653.27777-1-quic_viswanat@quicinc.com>
-References: <20230526110653.27777-1-quic_viswanat@quicinc.com>
+        with ESMTP id S230525AbjEZLRu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 07:17:50 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on20623.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e88::623])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1A38F7;
+        Fri, 26 May 2023 04:17:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hfEb4zKgd9WrUHHLDuj8KgTVBSdNi5PjTcoLJmmBUnmwbz1MEL3ozCW50e2+LVaZy8FKeVnZrakJXWEiwYL4yTl91BPLMpm1u239xYiGhnvlx+chJravSgkZZSHaO8H+Wr730+Jf96grlkXEGcMFEjKR3s4j2lhESt4vwtwVJIJSGzrpM4CDdIc4S1Tp+cEtF4oxPc1UFKpV53WQfCbIuyrd0eMhiFhpZ70D4uKoNspLDkmICQGVx12Tnv8M8E1Sz4NgxRViXvvHkTOGde2jIxA1CamrVwY1NPhd2ryyYLgLA5jHAkuMF7D8naZyaZBZL9bp4mpg43PkCDUGrZvUsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AeJxCIOnxKxZjiebu0TEig2Dvzsz/Llw1ukl0zFR1dQ=;
+ b=nFybqFKcmQtykuEdAdOUrEiabwAXBCt2surkv1qo+kv1U6YioSaF3cTnG/5OvEoSBCBHaJQ2+XLK5q9M8OQgPFXLLimIlt4MV1tNGKB+gwJkNeTvnqNmy97+EsNoUBiTGoxddhTABBbwwUUy2Rih8zNVoLYeyuR0KCtf2TyhulA2nFjvtQOR2rcjQIALX2jSVq7sFRs7rGI8BQw+tSvDEIbfqChKH6b/Sw2XAcOg5uRIVW6ikQ/oct6tNcqx8TIZ3z0gaRU91nAdU/FQQQqETsle+3uffkuvePwyhbSkyGpgWCCyvw+jzKTxwSUvrc8KQ1h3EQnE4M25FbMW4os+dw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AeJxCIOnxKxZjiebu0TEig2Dvzsz/Llw1ukl0zFR1dQ=;
+ b=Uya0XlEKAf+y2ZlcDD+wBVK3Ps4OykZ5kw1cEE9qonjJNoAGx7U1WoHUOzjW32EoacxOKX276PmyQEjVTpawGshgTeR5MNHYMYTx2ZZ2z4Eh//tctWW+DT9MXENWzIAjdZIjelR6L7Un2mr/2hCtrPErgAWbFq964ioc5E6a8RgcXm3ipHoBBMWcnBxq7VPg4YRNuEKD124zyIEUUQhTxZg9ysJ8+kPeL3tjTamzN8LsraNE1V1G1P7gBoFE6rtR5+WjFaaikmXQV4BpiT1WM5SZzq1IXpdbL6qJVvv8Yc+0F7org/NLn9+IYYFmacdRqbBp6SK4438le/CabEP+0Q==
+Received: from DM6PR11CA0050.namprd11.prod.outlook.com (2603:10b6:5:14c::27)
+ by CY5PR12MB6132.namprd12.prod.outlook.com (2603:10b6:930:24::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.17; Fri, 26 May
+ 2023 11:17:46 +0000
+Received: from DM6NAM11FT014.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:14c:cafe::21) by DM6PR11CA0050.outlook.office365.com
+ (2603:10b6:5:14c::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.19 via Frontend
+ Transport; Fri, 26 May 2023 11:17:46 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ DM6NAM11FT014.mail.protection.outlook.com (10.13.173.132) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6433.18 via Frontend Transport; Fri, 26 May 2023 11:17:46 +0000
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Fri, 26 May 2023
+ 04:17:33 -0700
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail205.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Fri, 26 May
+ 2023 04:17:33 -0700
+Received: from moonraker.nvidia.com (10.127.8.14) by mail.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server id 15.2.986.37 via Frontend
+ Transport; Fri, 26 May 2023 04:17:31 -0700
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Vidya Sagar <vidyas@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH] arm64: tegra: Fix PCIe regulator for Orin Jetson AGX
+Date:   Fri, 26 May 2023 12:17:27 +0100
+Message-ID: <20230526111727.26058-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8ZDnz2KCQen1LpyHc9BEhYjD9oNC1A1I
-X-Proofpoint-ORIG-GUID: 8ZDnz2KCQen1LpyHc9BEhYjD9oNC1A1I
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-26_01,2023-05-25_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 phishscore=0 adultscore=0 clxscore=1015 suspectscore=0
- malwarescore=0 bulkscore=0 impostorscore=0 mlxlogscore=580
- lowpriorityscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2304280000 definitions=main-2305260095
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT014:EE_|CY5PR12MB6132:EE_
+X-MS-Office365-Filtering-Correlation-Id: d9b3b11b-fb0f-4cd6-373a-08db5ddad517
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: meUFL3PSv3dtKyFiqKqf46v6+a/CTzs1wpG3HQXYOG2Iq8+JWFYomwViMStcC0znWvw+gtRwObXW3T1JmbJ2vbeQd2p9g7AoF5OCxD5Ur7MiKEKbT8uBHbagkhuhIWCGmdfCWAkFwKch/RlQviuyiPj/5g/NfZgtnD1iVPQ3pqUKbL8S66mdC1b5r4Ix/F2hsWhlyfYxAQGBj3LWd+63vkObHfXvtbYGkCijD8fXWcHpnS5xq3R6xXs2EBLCO4KQeKgZv5OVK3sRHixnP49K1iWcKHrj3RN32Yuqv5EmJW4vDohdcTnCVz7wh8ZJw5jBKZef4PzQwEfXXzpdrL7rmjqttGUbqT4PFXI/6fHinf6M0zZRa+UaJqLtbrCiGkikhuPs0MWuuKV7hbQ2XiKMAMozptXCbSapA0WZeGWX9YgHA3ZMDkRfzExNuK1aOkigOtBPI/ilXgGYU9+fKG5QvgCS5VEJW0lxvIAayIRSHLIpb8lzt02dAY7vVOnBGPKojGSaH7kWEvF7PycbdWmJhfuODwfRytnJycTWJU5f5H+zbRFdIpMhZ6fjvdM3eKGsal9YLAG14+GeLWu5ydgaM6jU6dcrx85NXeQhO2KF9v0o/Hlzn4tCY0QnGtvfqobVQOn5lJexB77xJexlHFlUO/nrkeZGf94YuAUID/PXk95V9P0XyE5xLoDiorjMPvWkjtLIAPfpPHJnchgYk5JxWpCKXhGV/Im+nJDMrQbaD7ie03RhUdgOxKvXbVkpVUZ1
+X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(346002)(39860400002)(396003)(376002)(136003)(451199021)(46966006)(36840700001)(40470700004)(40460700003)(70206006)(70586007)(478600001)(316002)(4326008)(54906003)(110136005)(86362001)(356005)(36756003)(83380400001)(47076005)(107886003)(26005)(1076003)(2616005)(336012)(426003)(36860700001)(186003)(41300700001)(8676002)(8936002)(5660300002)(2906002)(7696005)(6666004)(82310400005)(40480700001)(7636003)(82740400003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2023 11:17:46.0816
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d9b3b11b-fb0f-4cd6-373a-08db5ddad517
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT014.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6132
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In IPQ SoCs, bootloader will collect the system RAM contents upon crash
-for the post morterm analysis. If we don't reserve the memory region used
-by bootloader, obviously linux will consume it and upon next boot on
-crash, bootloader will be loaded in the same region, which will lead to
-loose some of the data, sometimes we may miss out critical information.
-So lets reserve the region used by the bootloader.
+The PCIe slot on the Jetson Orin AGX is not working and PCIe cards
+are not detected. The regulator for the 3.3V regulator for the PCIe is
+using the wrong GPIO for turning on the regulator. Fix this by updating
+the 3.3V regulator to use the correct GPIO.
 
-Similarly SBL copies some data into the reserved region and it will be
-used in the crash scenario. So reserve 1MB for SBL as well.
-
-While at it, drop the size padding in the reserved memory region,
-wherever applicable.
-
-Signed-off-by: Vignesh Viswanathan <quic_viswanat@quicinc.com>
+Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 ---
- arch/arm64/boot/dts/qcom/ipq6018.dtsi | 16 +++++++++++++---
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 14 ++++++++++++--
- 2 files changed, 25 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-index 2d77a8336111..fc64a5efbe2c 100644
---- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -156,18 +156,28 @@ rpm_msg_ram: memory@60000 {
- 			no-map;
- 		};
- 
-+		bootloader@4a100000 {
-+			reg = <0x0 0x4a100000 0x0 0x400000>;
-+			no-map;
-+		};
-+
-+		sbl@4a500000 {
-+			reg = <0x0 0x4a500000 0x0 0x100000>;
-+			no-map;
-+		};
-+
- 		tz: memory@4a600000 {
--			reg = <0x0 0x4a600000 0x0 0x00400000>;
-+			reg = <0x0 0x4a600000 0x0 0x400000>;
- 			no-map;
- 		};
- 
- 		smem_region: memory@4aa00000 {
--			reg = <0x0 0x4aa00000 0x0 0x00100000>;
-+			reg = <0x0 0x4aa00000 0x0 0x100000>;
- 			no-map;
- 		};
- 
- 		q6_region: memory@4ab00000 {
--			reg = <0x0 0x4ab00000 0x0 0x05500000>;
-+			reg = <0x0 0x4ab00000 0x0 0x5500000>;
- 			no-map;
- 		};
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
+index e161618cfca8..4dce2e214002 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
+@@ -142,7 +142,7 @@ vdd_3v3_pcie: regulator-vdd-3v3-pcie {
+ 		regulator-name = "VDD_3V3_PCIE";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+-		gpio = <&gpio TEGRA234_MAIN_GPIO(Z, 2) GPIO_ACTIVE_HIGH>;
++		gpio = <&gpio TEGRA234_MAIN_GPIO(H, 4) GPIO_ACTIVE_HIGH>;
+ 		regulator-boot-on;
+ 		enable-active-high;
  	};
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 00e559de00fb..0793b691a095 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -86,17 +86,27 @@ reserved-memory {
- 		#size-cells = <2>;
- 		ranges;
- 
-+		bootloader@4a600000 {
-+			reg = <0x0 0x4a600000 0x0 0x400000>;
-+			no-map;
-+		};
-+
-+		sbl@4aa00000 {
-+			reg = <0x0 0x4aa00000 0x0 0x100000>;
-+			no-map;
-+		};
-+
- 		smem@4ab00000 {
- 			compatible = "qcom,smem";
--			reg = <0x0 0x4ab00000 0x0 0x00100000>;
-+			reg = <0x0 0x4ab00000 0x0 0x100000>;
- 			no-map;
- 
- 			hwlocks = <&tcsr_mutex 0>;
- 		};
- 
- 		memory@4ac00000 {
-+			reg = <0x0 0x4ac00000 0x0 0x400000>;
- 			no-map;
--			reg = <0x0 0x4ac00000 0x0 0x00400000>;
- 		};
- 	};
- 
 -- 
-2.40.1
+2.34.1
 
