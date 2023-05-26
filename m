@@ -2,64 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB8A6712FB3
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 00:06:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1305971304F
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 01:21:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237792AbjEZWGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 18:06:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56930 "EHLO
+        id S230311AbjEZXVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 19:21:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230326AbjEZWGA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 18:06:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42F1410A;
-        Fri, 26 May 2023 15:05:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DD9F565427;
-        Fri, 26 May 2023 22:03:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D596C4339E;
-        Fri, 26 May 2023 22:03:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685138613;
-        bh=BwvcSxw09qrYnzwTnJsHPC1O/6lwzjzErbn1rRv/HJM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cJKBuRUX+S1sdM3L1pd36dzdDiHXNAzoMvzsBuK39o3AcqQTyiP8b7NEfSNjURcm4
-         pvWaoFjeY6HWCxQDuLHe0O5AX+7xK6TlAiJuHu9eOdgAHKy+wJ1sdvGTnP0ucbmjlQ
-         9el20HJpymz4bdudaV+r1GsRwa5dOBScqIRJCJEuYcLn6YKOQSaw5lVa3rE2LYMKHY
-         2+8sM/rYKo0KvAqdYph19zB685b8JBnR/6ho7n3Xzy20AdYNAXETEQwVcqnwnDw0Ry
-         D7AsO6Dee9i7L4pXCv3XFSSOrZr6Ar+JBxUz9WhAachu99IW0ge8ItfDfyYnfP7S7u
-         XcpRDrb9mMNwg==
-Date:   Fri, 26 May 2023 23:03:28 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Fred Treven <Fred.Treven@cirrus.com>
-Cc:     Ben Bright <Ben.Bright@cirrus.com>,
-        James Ogletree <James.Ogletree@cirrus.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Simon Trimmer <simont@opensource.cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        "patches@opensource.cirrus.com" <patches@opensource.cirrus.com>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "lee@kernel.org" <lee@kernel.org>
-Subject: Re: [PATCH v2 1/5] dt-bindings: input: cirrus,cs40l26: Support for
- CS40L26
-Message-ID: <20230526-vowel-precise-12f644b57d85@spud>
-References: <1685059471-9598-1-git-send-email-fred.treven@cirrus.com>
- <20230526-swapping-clay-d114144380a4@spud>
- <BBCD72CC-8312-4D57-9814-0E3A7F260F00@cirrus.com>
+        with ESMTP id S230226AbjEZXVM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 19:21:12 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C5913A
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 16:21:11 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f4d80bac38so1360722e87.2
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 16:21:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685143269; x=1687735269;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SKOmOc2R28x9jbWF3GaU1Dlf8eLENjPMOlwFlEqKvco=;
+        b=WqzNVCXdqniaRb4nOG1XKXliewxlpy802r+/+ZYxB1nLiPfGlb3af/U52UnY8us4Ze
+         6/BE1lZiuV1cE9IbV3BFPs6dRx0tmzx78fJeLHojLFK9ndcvQbjTirBBXR0UKO5EBUVq
+         1tAOUs3uprey3L/MFVNsvk8ZEJPQxUZmQ/uFcLouez9uMwSiaKJ4CDRaKxH/D7Hcqx+/
+         YaJSJCA0d3LiEtEdJYIJzQ33R0Ruy4YD6R2m1vK0n3CRe/v2+N45KtQi7lzgcVcsIwpv
+         Avt2nBaoeTIILL7Tz5EL9jUGwnRYD4GbB9SMGSMai3/n2X7VParRRjCbAI0vv6Ms6Fwp
+         iB2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685143269; x=1687735269;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SKOmOc2R28x9jbWF3GaU1Dlf8eLENjPMOlwFlEqKvco=;
+        b=bJcynFfuBsnZEC6ApevQiSMlxxPNlvGMvcIL53ndRPY9PjbAf69DXcoMaJhiogP4r4
+         BWbfOBmktUbpk3dk1Ub5YMHsWclvzAuhUBbaBv6QrV6bLgK+2hh6pP0CIom1gubfsl4G
+         QpKf3pmi6rKTrfZ71u9IyzAQurUdTRme6y0y8MmlN3twY3/NIWw3NpCduRKEZXimEtdo
+         DqH0s/9dgNON/8NQqdfCCpNnNeOWYQ02JTwmfq4M2kk5t8d07hS4xMHRc5w6ZxoVl/6a
+         eD3dGPYvyFOS0SlR/gjR37yPK/i0OcTiY3OW3hRJWreMDpqrR42SQc6CDvBGWq//dYC2
+         fr0w==
+X-Gm-Message-State: AC+VfDwuw7Z3X13ABo9pSC+/Kvp+ThAgIDrEvGMCTT/IMxh8lbK1zpW9
+        z3jllmPmBcVYgkF45/ukzaX0eA==
+X-Google-Smtp-Source: ACHHUZ4TFQ1k0p9lP+MHItepKoHIbFmD0WLxOz7Gw88sDOMnT6qt70yFxbamOjaO3FjOzNiiRM6tHQ==
+X-Received: by 2002:ac2:5dc1:0:b0:4f3:9930:5b8c with SMTP id x1-20020ac25dc1000000b004f399305b8cmr891437lfq.25.1685143269417;
+        Fri, 26 May 2023 16:21:09 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id v13-20020a19740d000000b004f38267a2f9sm829817lfe.161.2023.05.26.16.21.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 May 2023 16:21:08 -0700 (PDT)
+Message-ID: <11774eef-6111-4b73-1dc7-596c9808d545@linaro.org>
+Date:   Sat, 27 May 2023 01:21:07 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2jKjhS3G2UCFZYTf"
-Content-Disposition: inline
-In-Reply-To: <BBCD72CC-8312-4D57-9814-0E3A7F260F00@cirrus.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] arm64: dts: qcom: pmk8350: disable ADC by default
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230525083431.118929-1-dmitry.baryshkov@linaro.org>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230525083431.118929-1-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,115 +78,88 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---2jKjhS3G2UCFZYTf
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 26, 2023 at 09:32:36PM +0000, Fred Treven wrote:
-> > On May 26, 2023, at 2:27 PM, Conor Dooley <conor@kernel.org> wrote:
-> > Tooling does not like your series very much, prob the missing v2's on
-> > some patches:
-> > Grabbing thread from lore.kernel.org/all/1685059471-9598-1-git-send-ema=
-il-fred.treven%40cirrus.com/t.mbox.gz
-> > Checking for newer revisions
-> > Grabbing search results from lore.kernel.org
-> > Analyzing 6 messages in the thread
-> > Will use the latest revision: v2
-> > You can pick other revisions using the -vN flag
-> > Checking attestation on all messages, may take a moment...
-> > ---
-> >   =E2=9C=93 [PATCH v2 1/5] dt-bindings: input: cirrus,cs40l26: Support =
-for CS40L26
-> >     =E2=9C=93 Signed: DKIM/cirrus.com
-> >     + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> >   =E2=9C=93 [PATCH v2 2/5] Input: cs40l26 - Support for CS40L26 Haptic =
-Device
-> >     =E2=9C=93 Signed: DKIM/cirrus.com
-> >     + Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> >   ERROR: missing [3/5]!
-> >   ERROR: missing [4/5]!
-> >   ERROR: missing [5/5]!
->=20
-> Understood. I was uncertain if this was just needed for patches that had
-> been edited or for all new patches. I will resubmit with some other code
-> changes to address other comments I=E2=80=99ve received and will mark the=
- patches
-> with the same version number.=20
+On 25.05.2023 10:34, Dmitry Baryshkov wrote:
+> There is no reason to keep the vADC enabled by default. Turn it off by
+> default and only reenable on the platforms which have some channels
+> configured.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Are there any drawbacks if we keep it enabled? IMO it doesn't make
+sense to disable something that's on the chip just because it's unused.
+It only prolongs booting by a few miliseconds and keeps a few kBs of RAM
+busy, but doesn't otherwise impact anything negatively.
 
-I just whack an N into git format-patch's --reroll-count/-v option, and
-use the same across the whole series. Makes people's and tool's lives
-easier :)
-
-> >> +properties:
-> >> +  compatible:
-> >> +    enum:
-> >> +      - cirrus,cs40l26a
-> >> +      - cirrus,cs40l26b
-> >> +      - cirrus,cs40l27a
-> >> +      - cirrus,cs40l27b
-> >=20
-> > I had a _brief_ look at the driver - you don't seem to have any match
-> > data, so are all of these devices actually compatible with eachother?
-> >=20
-> > IOW, should this be:
-> > properties:
-> >  compatible:
-> >    oneOf:
-> >      - items:
-> >          - enum:
-> >              - cirrus,cs40l26b
-> >              - cirrus,cs40l27a
-> >              - cirrus,cs40l27b
-> >          - const: cirrus,cs40l26a
-> >=20
-> >      - const: cirrus,cs40l26a
-> >=20
-> > And then drop all but the cs40l26a in the driver? Apologies if I missed
-> > some difference in there.
->=20
-> They are all compatible, yes. There is match data in cs40l26-i2c.c and
-> cs40l26-spi.c if you are referring to the of_device_id struct.
-> Please let me know if I=E2=80=99m misunderstanding your meaning here.
-
-What I saw looking in the driver was:
-+static const struct of_device_id cs40l26_of_match[CS40L26_NUM_DEVS + 1] =
-=3D {
-+	{ .compatible =3D "cirrus,cs40l26a" },
-+	{ .compatible =3D "cirrus,cs40l26b" },
-+	{ .compatible =3D "cirrus,cs40l27a" },
-+	{ .compatible =3D "cirrus,cs40l27b" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, cs40l26_of_match);
-
-So you have a bunch of compatibles, but didn't immediately appear to be
-doing anything different depending on which one of them you get.
-What I meant was populating the data field of of_device_id with something
-different depending on the compatible.
-If the programming model is the same, you can document that they are all
-compatible with "cirrus,cs40l26a", rather than having to add new entries
-to the match table. Also has the advantage that if you bring out a
-cirrus,cs40l27c that is compatible with the existing devices, then no
-changes are needed to software to support it ;)
-
-Or perhaps you are doing something different based on the compatible
-that I just did not notice.
-
-Cheers,
-Conor.
-
-(The [CS40L26_NUM_DEVS + 1] is also usually just [] btw)
-
---2jKjhS3G2UCFZYTf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHEsrwAKCRB4tDGHoIJi
-0m7vAQDPzkfu91KtDUkEA7ub+4y9eLte9nVAnGrARvlVVXgIKwEAkpltvYoRM5aU
-qpe0T2WtOMV0O1ZhF3C3JeZw97aPswU=
-=MSmA
------END PGP SIGNATURE-----
-
---2jKjhS3G2UCFZYTf--
+Konrad
+>  arch/arm64/boot/dts/qcom/pmk8350.dtsi             | 1 +
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts           | 2 ++
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi          | 2 ++
+>  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi        | 2 ++
+>  arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts | 2 ++
+>  5 files changed, 9 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+> index bc6297e7253e..df3e916e0171 100644
+> --- a/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+> @@ -56,6 +56,7 @@ pmk8350_vadc: adc@3100 {
+>  			#size-cells = <0>;
+>  			interrupts = <PMK8350_SID 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
+>  			#io-channel-cells = <1>;
+> +			status = "disabled";
+>  		};
+>  
+>  		pmk8350_adc_tm: adc-tm@3400 {
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> index 15222e92e3f5..bfeeaf36546f 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> @@ -73,6 +73,8 @@ &nvme_3v3_regulator {
+>  };
+>  
+>  &pmk8350_vadc {
+> +	status = "okay";
+> +
+>  	pmr735a-die-temp@403 {
+>  		reg = <PMR735A_ADC7_DIE_TEMP>;
+>  		label = "pmr735a_die_temp";
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index 21027042cf13..7c889ddf2881 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -432,6 +432,8 @@ &pcie1_phy {
+>  };
+>  
+>  &pmk8350_vadc {
+> +	status = "okay";
+> +
+>  	pmk8350-die-temp@3 {
+>  		reg = <PMK8350_ADC7_DIE_TEMP>;
+>  		label = "pmk8350_die_temp";
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+> index 9137db066d9e..2bae0d0ccfdd 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+> @@ -383,6 +383,8 @@ &pm8350c_pwm {
+>  };
+>  
+>  &pmk8350_vadc {
+> +	status = "okay";
+> +
+>  	pmk8350-die-temp@3 {
+>  		reg = <PMK8350_ADC7_DIE_TEMP>;
+>  		label = "pmk8350_die_temp";
+> diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> index 7ae6aba5d2ec..0f21bea683b7 100644
+> --- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> @@ -515,6 +515,8 @@ &pmk8350_rtc {
+>  };
+>  
+>  &pmk8350_vadc {
+> +	status = "okay";
+> +
+>  	adc-chan@644 {
+>  		reg = <PMK8350_ADC7_AMUX_THM1_100K_PU>;
+>  		qcom,ratiometric;
