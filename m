@@ -2,167 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1BF47122A9
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 10:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 981397122BC
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 10:54:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242800AbjEZIu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 04:50:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46304 "EHLO
+        id S235979AbjEZIyM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 04:54:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236628AbjEZIu6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 04:50:58 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44F7199
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 01:50:56 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f4bdcde899so461060e87.0
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 01:50:56 -0700 (PDT)
+        with ESMTP id S242674AbjEZIyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 04:54:10 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D118E195
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 01:54:07 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-30ab87a1897so241243f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 01:54:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685091054; x=1687683054;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vFgq2+VVrviL7UALj9pqiFm5m6vdqKFWr7xuBpXEGgk=;
-        b=ME1+1zcdcnrW6W4YFgkJY1I+UtG6/knxC7rNTHRZcgSM65ZRaaM3RkNSBBfDbBa6FU
-         jw/VX2m07hj8QVYd2l74yQUINdMLICa9Oh4jqTlcVTA03+F9s3TdNzDcQIzxUdo40B9d
-         p/O8jNChmQHvRz4y2q7Oe8OzM2C2vfiNu0I+OUyqFXtkKwCX9c1yH8ViS4T6P3FC6SyT
-         NXF5XEPuQ3qeUM4dfs/pS88L7OJOsZE5uOeI7h6OsFYioA53ZA0vO9VC4NYpDB11xS9/
-         MzgWJuFbwum+WYKpWuVHsfpXi7+TAlqfG4Fr9XeObmZCsNWvF/W1mrLQnon99FphY4ix
-         raHQ==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685091246; x=1687683246;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=euKZ+WSAhXyrVn0AyoceS6rsEoXdp7CnlhslJOnii3c=;
+        b=4Mm7af47pTxR8J3orNP08NtPkDhpbxyDPcERzqr+7U/N9u+uMixl2dJYKKbuHTmR86
+         v+NDc0vAa6NNFOVw9ScYMGioN8DydRKZet4zZpk1nABJI/PzJUJYmzc8VyZ4sk+cdY9k
+         JrI/McdCRlBbQ4IBhRNJTN7gx1AnDEPBuMmc/6F5+TQe2F1k5hHesJ4mwbQ3EzHwulUM
+         9jCKozEpuyi5ofzSyhMQ2skTuXInpgS48bPPKQKdCnYCm/MFtiWZtT467tQkswk5Zm2R
+         LSOgP+ah4r5PtfHCF7IGnCUE5ef/rDost6+fU+ioS34Z1vl8fbABqWdc5Z1zA2y6Kr94
+         IrVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685091054; x=1687683054;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
-         :content-language:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1685091246; x=1687683246;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vFgq2+VVrviL7UALj9pqiFm5m6vdqKFWr7xuBpXEGgk=;
-        b=NDrtUVHwJH2Gqu0vUeBm4BH47YnpKtIbEEcBUDxJ5kMYmroJJujM8bQ5wuBCCpIfAG
-         vFSpp0a/SK+Du3jnQ2CKsOX102KA0rMKt8Ul9cpEj8MOiznJmle0KrewxjgzA4E8d9h5
-         NM8yUqwwj+QO4nVixiGhze9hPnsS03pI/o5AhsrfEhecwJWmgqQZItZdDXTHZ/MQkez/
-         6MrmFO1cZZhescW4hFVnm+C4MQHlIl1ZHRZZGW0ZESemjTTuLvj33pS8nJMfK11dT0n4
-         6m07iRHcuVVdfba6bORlXYnIXsPCNv3HNJ/kp9CQxDUpgLmUJZzd5HnRcgoV0xXlHltT
-         AtJg==
-X-Gm-Message-State: AC+VfDwvBYV3MuS/1bkcCwy+F1lBnukhh82MUM+5555uQ0dgmFvhxk7V
-        6pW/mQVjUxPZzORKQrpvvRK8Kg==
-X-Google-Smtp-Source: ACHHUZ6SBk/LbQLpRdgponALylw72ijErfTNlvdTRC9EnogFDghqyrnhNRt206k+lEMedSeVjT/SeQ==
-X-Received: by 2002:ac2:4571:0:b0:4f3:f98c:77fc with SMTP id k17-20020ac24571000000b004f3f98c77fcmr307628lfm.8.1685091054513;
-        Fri, 26 May 2023 01:50:54 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id d16-20020ac25450000000b004f3b2d3fc25sm542344lfn.10.2023.05.26.01.50.53
+        bh=euKZ+WSAhXyrVn0AyoceS6rsEoXdp7CnlhslJOnii3c=;
+        b=Zhs6ldYOo7SAIgvWTaz00J/SPIsmo37+YZRcFLLXtH27xkMou7SGgrqW7+22RAFTQK
+         2F//Z+vilnu5KXQrF246+ec8t73qeXVo2LxUgiMJRMK/ELC4lSrz///5X78kJ0qiCY4Y
+         KYKHEV5iRjRwz/84IMNgfXrxHNc1hFmpeSklyV13ZXf7T+P6WezB/xgtBIZEXTnKWu0U
+         FTFr1PJMHOo+wiAFJkog7bKD4XnO7nkteHbkmQVZPPV6Bii2n3Qpi8z1EMPPfljD0xax
+         F0eNv6NwUIf/kIm3sKovepKzXndu/9YNOFK6BbtG4rvkYvMOlFGL8GBD6NLXibde0O4f
+         UVgg==
+X-Gm-Message-State: AC+VfDx76pzYf8rj9AhvzEMlTLblAnmx1cz5DaTp4A8+4NFlGxVIoCDp
+        HIUafScfJym7orKqP+klzKhnzw==
+X-Google-Smtp-Source: ACHHUZ7d59AY8hMyzp5lhJ8jqZmAoLniSNjqiPcXwIZvvpqz+lxlM0eOFDwJJVHGsHbG8WD1qsPlyQ==
+X-Received: by 2002:a05:6000:9:b0:306:4125:5f61 with SMTP id h9-20020a056000000900b0030641255f61mr971698wrx.44.1685091246156;
+        Fri, 26 May 2023 01:54:06 -0700 (PDT)
+Received: from [192.168.1.172] (158.22.5.93.rev.sfr.net. [93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id l21-20020a1c7915000000b003f603b8eb5asm4564045wme.7.2023.05.26.01.54.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 01:50:54 -0700 (PDT)
-Message-ID: <41f5b7a9-d927-e468-d1ea-291ad35ba943@linaro.org>
-Date:   Fri, 26 May 2023 10:50:53 +0200
+        Fri, 26 May 2023 01:54:05 -0700 (PDT)
+Message-ID: <c1e706f3-9d80-3dd5-eeab-c24830f9ef03@baylibre.com>
+Date:   Fri, 26 May 2023 10:54:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: mediatek: replace unusable
+ clock
 Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230510-msm8916-regulators-v1-0-54d4960a05fc@gerhold.net>
- <20230510-msm8916-regulators-v1-8-54d4960a05fc@gerhold.net>
- <ea53525b-749b-25e2-6dde-662a8e273597@linaro.org>
- <ef7b7335-d20c-3ddc-52df-b2801fa40283@linaro.org>
- <ZHBTi-j657tW3jIu@gerhold.net>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH 8/8] arm64: dts: qcom: msm8916-pm8916: Mark always-on
- regulators
-In-Reply-To: <ZHBTi-j657tW3jIu@gerhold.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230517-fix-clk-index-v2-0-1b686cefcb7e@baylibre.com>
+ <20230517-fix-clk-index-v2-1-1b686cefcb7e@baylibre.com>
+ <20230525-snuggle-twine-ed1bfc2aee51@spud>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230525-snuggle-twine-ed1bfc2aee51@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 25/05/2023 19:51, Conor Dooley wrote:
+> On Thu, May 25, 2023 at 04:50:27PM +0200, Alexandre Mergnat wrote:
+>> The “mcu_pm_bclk_ck_cg” clock is used by co-processors and should not be
+>> added to the kernel driver, otherwise the CPU just halt and the board is
+>> rebooted by the wathdog.
+>>
+>> Instead, add the "aes_top0_bclk_ck_cg" missing clock to prevent
+>> re-shuffling index and then preserve the ABI.
+> 
+> How does this preserve the ABI exactly? Please describe exactly what you
+> mean by that.
 
+I mean that reduce the impact of the change compared to the v1 where 
+I've changed the index of the following defines to be clean.
 
-On 26.05.2023 08:36, Stephan Gerhold wrote:
-> On Fri, May 26, 2023 at 02:28:52AM +0200, Konrad Dybcio wrote:
->> On 26.05.2023 01:39, Konrad Dybcio wrote:
->>> On 17.05.2023 20:48, Stephan Gerhold wrote:
->>>> Some of the regulators must be always-on to ensure correct operation of
->>>> the system, e.g. PM8916 L2 for the LPDDR RAM, L5 for most digital I/O
->>>> and L7 for the CPU PLL (strictly speaking the CPU PLL might only need
->>>> an active-only vote but this is not supported for regulators in
->>>> mainline currently).
->>> Would you be interested in implementing this?
-> 
-> At least on MSM8916 there is currently no advantage implementing this.
-> The "active-only" votes only have the CPU as limited use case. S1 (aka
-> MSM8916_VDDCX) and L3 (MSM8916_VDDMX) are both used via rpmpd/power
-> domains which already provides separate active-only variants. L7 (for
-> the CPU PLL) is the only other regulator used in "active-only" mode.
-> However, at least on MSM8916 L7 seems to stay always-on no matter what I
-> do, so having an active-only vote on L7 doesn't provide any advantage.
-In this case it may be more important that we tell RPM that we want it
-to be active-only, even if it ultimately makes a different decision.
-You probably played with this more, but my guess would be that not letting
-off of an a-s vote could confuse the algos
+> Also, what about any other users of these definitions, outside of Linux?
 
-> 
->> Actually, I think currently all votes are active-only votes and what
->> we're missing is sleep-only (and active-sleep if we vote on both)
-> 
-> If you only send the "active" votes but no "sleep" votes for a resource
-> then the RPM firmware treats it as active+sleep, see [1].
-> The active/sleep separation only starts once a separate sleep vote has
-> been sent for a resource for the first time.
-> 
-> Therefore, all requests from the SMD regulator driver apply for both
-> active+sleep at the moment.
-> 
-> [1]: https://git.codelinaro.org/clo/la/kernel/msm-3.10/-/blob/LA.BR.1.2.9.1-02310-8x16.0/drivers/regulator/rpm-smd-regulator.c#L202-204
-/me *dies*
+The clock driver and bindings are only a couple of kernel versions old, 
+I'm pretty sure no one is using it. Also, if someone use 
+CLK_IFR_MCU_PM_BK define, I'm wondering how his CPU is working since 
+Mediatek told me that shouldn't be used, and after some try, I confirm.
 
-that's a design decision if i've ever seen one..
+I've a question: If something is wrong in the binding, you don't fix it 
+to avoid ABI change ?
 
-> 
->>>
->>> Ancient downstream defines a second device (vregname_ao) and basically
->>> seems to select QCOM_SMD_(ACTIVE/SLEEP)_STATE based on that..
->>>
->>> Looks like `struct regulator` stores voltage in an array that wouldn't
->>> you know it, depends on the PM state. Perhaps that could be something
->>> to explore!
->>>
-> 
-> Don't get confused by the similar naming here. RPM sleep votes are
-> unrelated to the "system suspend" voltages the regulator framework
-> supports. :)
-> 
-> RPM sleep votes become active if the cpuidle reaches the deepest state
-> for the (cpu/)cluster(/CCI). This can happen anytime at runtime when the
-> system is idle long enough. On the other hand, the regulator suspend
-> voltages are meant to become active during system suspend (where all the
-> devices get suspended as well).
-Yes and pm_genpd tracks that very meticulously, at least in the case of PSCI.
+TBH, I just try to clean the binding. I can fix the driver index issue 
+(patch 2/2) without fixing the binding if you prefer. But IMHO, keep an 
+unusable define isn't great...
 
-> 
-> Since we do have "active-only" support in rpmpd I think the question is
-> if it is worth bringing the feature also to regulators. Perhaps one
-> could simply treat all regulators that are needed by the CPU as power
-> domain.
-That would make sense..
+-- 
+Regards,
+Alexandre
 
-> 
-> For example, L7 on MSM8916 is fixed at 1.8V so while it doesn't have
-> corners the simple enable/disable votes could also be sent via rpmpd.
-> In some places in downstream L7 is also called VDDPX, similar to
-> VDDCX and VDDMX which are already in rpmpd.
-Yeah, anything available from RPM is only vaguely categorized as being
-a clock/regulator/bus, sometimes wrongly (see: bus clocks in rpmcc) so
-there's some flexibility here.
-
-Konrad
-> 
-> Thanks,
-> Stephan
