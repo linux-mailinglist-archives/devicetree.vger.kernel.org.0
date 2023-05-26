@@ -2,191 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A04DA712625
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:02:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 727BB712635
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:04:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231158AbjEZMB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 08:01:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45354 "EHLO
+        id S236664AbjEZMEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 08:04:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230366AbjEZMB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:01:58 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2094.outbound.protection.outlook.com [40.107.22.94])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 276E1199;
-        Fri, 26 May 2023 05:01:55 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QOqbEPm1ezFPH+Yrk4iVCYhMjSLmzN5iRwiyQ8a2DYGI3TMIHK3TALKcYPhxVzx8glzwbPiFB4z/HdeHrZL1XXRDo4AvThuP5Z7ysH8HS3Fqy+Vg4WDly6l/66IeJy/entHuFXG+LZxcXk2izfPVSacQOWEx+/5ft+AMbIIL6hYEAXGBve6F1zGv+ggRU8RA7QWKS20JbCrCXC3aQ5px4TBEZkSm2v6LrXUY8M4JAWJJGsVcuHhIr5v/0+6zVHgHcYdcBZyY6nKKTIYaLc9dxrRLdG18SrNo3u31ELc7VMITZVLsQMeBL6xmIDvujH9q2aQCf4zN6kGLWQznkvp1eA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2gDPAk4gxgf7HtF42qvIHBcx3h97h4jWV6S67/zMkpI=;
- b=Jewyt2REj6Timc07mnQbGmQgoA28rmdWtmwkgnBhOSepUHEvKGua3ZP7mXqHF77UyhauUlh3t/QlQx8LufKCtC9908HwpCghOrO0SvU1C80ARdE3UEjbozB3zbdm3XRkq6Y28whE9x1PQRsYTY3jX47lUQdlMwyNb2eBqRRHIy5DKdskp52zk1Ru9R0ZQjcxFUBUTDam/mweZi566Kye8FiIhfx0B3L1B8a39OEEaQKgJPAMkQYDE9EuVwBBV8/wgFSNikzZsx1mQSLqhCUoSD+VBXIV3dIgh70B7HSDH8yTaS8bkSPrhvMt36h7KamoVw7JWKBthwY2buVhtszDzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=plvision.eu; dmarc=pass action=none header.from=plvision.eu;
- dkim=pass header.d=plvision.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plvision.eu;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2gDPAk4gxgf7HtF42qvIHBcx3h97h4jWV6S67/zMkpI=;
- b=EBUdSDQeNGpPzAWuq49enBZsw//QZ4U7gpfKrU6RMYaKiX4ZgCYM+pgTUBwxL1FqafnxjA8zFBzYEMAKlh9nR/xhM7CnAr4UR66klIL5Tf9xJ0SYwo8eZrT9RtJMGRt20BBsXauxaZ8n3LsMIw83JIWzXf3+EDwGYt3+4KnNCQQ=
-Received: from VI1P190MB0317.EURP190.PROD.OUTLOOK.COM (2603:10a6:802:38::26)
- by PA4P190MB1101.EURP190.PROD.OUTLOOK.COM (2603:10a6:102:102::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.18; Fri, 26 May
- 2023 12:01:50 +0000
-Received: from VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
- ([fe80::398b:5b73:7509:65fc]) by VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
- ([fe80::398b:5b73:7509:65fc%3]) with mapi id 15.20.6433.016; Fri, 26 May 2023
- 12:01:50 +0000
-From:   Vadym Kochan <vadym.kochan@plvision.eu>
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Liang Yang <liang.yang@amlogic.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Aviram Dali <aviramd@marvell.com>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     Elad Nachman <enachman@marvell.com>
-Subject: Re: [PATCH 0/3] mtd: rawnand: marvell: add support for AC5 SoC
-Thread-Topic: [PATCH 0/3] mtd: rawnand: marvell: add support for AC5 SoC
-Thread-Index: AQHY45PNiQyYrdEWN06hu0A4/jLhu69rf3CAgAJMXSM=
-Date:   Fri, 26 May 2023 12:01:50 +0000
-Message-ID: <VI1P190MB031742E17BBA60A36FEF9CFB95479@VI1P190MB0317.EURP190.PROD.OUTLOOK.COM>
-References: <20221019082046.30160-1-vadym.kochan@plvision.eu>
- <143fb1ff-b2d4-a6fe-e892-b55a7bbf56f8@alliedtelesis.co.nz>
-In-Reply-To: <143fb1ff-b2d4-a6fe-e892-b55a7bbf56f8@alliedtelesis.co.nz>
-Accept-Language: uk-UA, en-US
-Content-Language: uk-UA
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=plvision.eu;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: VI1P190MB0317:EE_|PA4P190MB1101:EE_
-x-ms-office365-filtering-correlation-id: 930d2d49-b382-4246-919b-08db5de0fd1d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dzOdD0w2sdEK+WXsotD0PZAm8qJmgql5zYGRhoGKLf2GslVSkOYDkVQzQzprFtbwTwhlUei7sC82LItdVebw2nSdH6wdEcTrgplYiwkFF4+mBTYKTaSt+Y8hX9V8TB2NnRbpNeiNNnx1ipysJfsGtmt4z0qoWq4M/NQu+6TooOTTQK65rrhyXZx5L/RxoLFlITWTvUk5gwv0uHV6zJUtHtsH/4RT7V7OyUqEm8WCFsPzitDciCdPIMjyWISS167mH9jLanux0J3UpuhhtIbaEl2qjOBcj2zQZBo3ne8AHvvNjeOneUxlPTIoIHdKByAGxyWvZbxgkLUDYCUUjTezAAn2EWe80Lh6FPbtfvyHMsY6CIHNHvfKEQ5uKY29cxQffEF4S22DeGhnkj4bLbzhUQ4NowSTXv6ESq0G8A6t34vBWdqcwYWT40tO/ndWAIqEFuC1n0gfg9CInPjLhk1bu0zXpAfPLO5FpndVibZZWoaA/7JoNKak3mJy8w3KlkWe7SzvIBHDif2qihGJTFkDft8PqTTAjCktV5UT/b7XZ6ICmXtOf2tNID6N3uI6gvCq/zF73GaoRdQmvEuOPiJ6F4U5CxyB478m516+F5SFUXc9MRyUw9zVg5TIo+RwSS04mN9V2ULDv8LbQ1ZHE1h/hg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1P190MB0317.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(376002)(366004)(39830400003)(346002)(136003)(451199021)(2906002)(64756008)(76116006)(66556008)(66946007)(66476007)(66446008)(5660300002)(52536014)(83380400001)(7416002)(8676002)(8936002)(44832011)(316002)(41300700001)(4326008)(91956017)(33656002)(110136005)(478600001)(55016003)(7696005)(71200400001)(9686003)(53546011)(6506007)(921005)(186003)(26005)(38070700005)(86362001)(122000001)(38100700002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?koi8-u?Q?+YT3yRQoXtCX4cjESbFFkFLJeKFWOeIeHB1MZxrITYIX4t2awEqUItL4akk9Z8?=
- =?koi8-u?Q?ZYDZje/NfJu2osDkOIfiR2tmRHpUixMAK9xLH6SUE88uxujCX4tUm4vfrKTNyB?=
- =?koi8-u?Q?WFba9ek77/TdX6yyAYEJKAL6QuW87q42Ax7fE9A1gT/KOHlMgQqabwlLjjiUU0?=
- =?koi8-u?Q?qYc/pA3uhFlqHnqgmkH3PIEHvUSjtStwFjD2GOrgqqQuCafIunEvf5I/vQChI6?=
- =?koi8-u?Q?gLiyXxUfBrRUxZRtWNLJ6vx3QvVIenN6oCC301QhpWSSRWHPHRmhGY4K7IUx5o?=
- =?koi8-u?Q?S267ynZaZ8GbYenydzmCbYd6nvPfIC6nBM/a8d94jnNwAAyy0UFTLNg8yNF1wU?=
- =?koi8-u?Q?RldoORDIsMqm7Ima5zsKQvB9mCns3gAmYbEu4TRSnzGHLm0IQ7v+ivL32Gnrbi?=
- =?koi8-u?Q?jvZQCQRc67xYOrkuP6XkxawWsyrLVGxACMfRpdwR+W0BgO1Z7dzas4BCJHqe9X?=
- =?koi8-u?Q?9OcS+yARcHLciqXQhNU08EhS7leS63UIWFGG+yc7i2ISvjrYToqhBSdjMCnNAc?=
- =?koi8-u?Q?Qldvz5qGfGusAyy77qv1GoBrQgZSpszJewta6RoiTb1ND6ry4eALyt+xfOO5Lb?=
- =?koi8-u?Q?15kzUNoHrBoiiKDH7YflV9GW5hy8bICDAp6GyyhMILQNtT3ntc6ZgPvf9KZU9d?=
- =?koi8-u?Q?sXamtb/boKJUkqr2GWpGgc1VAt69eQ3uiULn+A3/KcDs46WkRcRWI4RSAA5Btz?=
- =?koi8-u?Q?b52cIIeTPZxOwA25kyiDuJ2KXQIMKh30qpIdjowjHyEPlFM4tkNxHjW4xi9YRI?=
- =?koi8-u?Q?piIgil1D+urdaZiW7C97l2uZGyxJ6IUAUU0qdMDZf50VE5VoqLTT43UoZTIIpE?=
- =?koi8-u?Q?sTcfMe0Qp1aPT8C+kFyBiWrHveZJgEzF4ArYXTQVVsNqO7NhnoEP35Hs/BGywk?=
- =?koi8-u?Q?QK241Pkok/Oc4+6DJnVf801iHihrLjuFR91CSkrdau5OBonnOU3GqmkPv1FQNi?=
- =?koi8-u?Q?b5gEaMDT/oSka5g+gO8owq4NxQ1iC68nQHIFGfs7D/hza5JB9e3vVIvc7JCg2y?=
- =?koi8-u?Q?eltWrU2Uple2I5MF9V23rDA5yPzN87mOJXJpsXxbEtbk2vZgQrMIJeilGlMB1+?=
- =?koi8-u?Q?O42Lyn+EvGw8bLj3jfRHNXktU0VkUM+Nt8VQ25PAK5nXNj4Waj9lWg2x54ZozD?=
- =?koi8-u?Q?iARmi/ZJGrYaNjXKxIIFSRUG3Qqct9VtIHP8jnQKDn6g69h0CFX0Vd+6/qLz3F?=
- =?koi8-u?Q?KpT5r9xW8riTrVJWWYdDYH7Kq3/Ofr2HsJ/XSMwjJpGcP/R8tHL+ZmiMDwiX+6?=
- =?koi8-u?Q?yMEwenUfAnt5qrKssbEd0bifU5oEAxeTC622JACKvq2NzlHmvpGXRJ4Rq7WIST?=
- =?koi8-u?Q?gsFs3ZAcKfFO94aYOKhQMGUHtHoDeurKVUoPw4gW3dsxGCi/SC3bRPp4xIeS2F?=
- =?koi8-u?Q?AI3nQjd36c8fdvAaPp1NxV7vM4Y0LNqTHjduX0mTulIbJHnaqpcyDySmKpiOQW?=
- =?koi8-u?Q?jWEbyOFus7ugKvbejx2Gudso5Rv6oST/YjyRe2ahReNq1j6iKuVx9qX6MNh8K+?=
- =?koi8-u?Q?ZbdwU8SI0cs1+KLcPewLLGbwNPMECpfCEaDsTMCtIneUpfahUL?=
-Content-Type: text/plain; charset="koi8-u"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S231158AbjEZMEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:04:44 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FDE9E42;
+        Fri, 26 May 2023 05:04:34 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34QB9RZk010987;
+        Fri, 26 May 2023 14:04:14 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=m3cJVkCFNQF2leqnS9Qg9XF0d/nmB54SuFFqMjaXqbc=;
+ b=RskGATPlhzQdHBxRTT8T+tyvofn6NYBLv46g3YoFniuh6BY4WVRBIbfgpFUcVJ9jPiqX
+ ZjVtahK0Ista0dD/OP8cq6L/aG9qcwH/2+QslBnVgMSStLZndPrEvcEIpvtKqKbvb7U9
+ kJFe7XKDnSqxtDscih73Nt4N7jXKs0a3ZKta5xerWJ62T/tQIel1mLMXWUEs8uzZTde5
+ E5jbDCeVf6UpMQlgON54AOmshCvFjxlG+T2KVCbQiHBnKeRv6VCWAe/flR2mx01iFpmX
+ SxCpfVoU12u9wbBW8/KWQqoRmrjwHNSM34aKXRbv1O5367+SVmtJdQp/7KMY0T4nc+05 /w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qt2uyhjja-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 26 May 2023 14:04:14 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5A02710002A;
+        Fri, 26 May 2023 14:04:13 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5172C22A6FC;
+        Fri, 26 May 2023 14:04:13 +0200 (CEST)
+Received: from [10.48.0.148] (10.48.0.148) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 26 May
+ 2023 14:04:12 +0200
+Message-ID: <d7fc3df2-aae7-d3b2-ea29-14d266289d1d@foss.st.com>
+Date:   Fri, 26 May 2023 14:04:11 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: plvision.eu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1P190MB0317.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 930d2d49-b382-4246-919b-08db5de0fd1d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 May 2023 12:01:50.3318
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 03707b74-30f3-46b6-a0e0-ff0a7438c9c4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Zp8E30ppbzbpI86lkDgsLeQsrTb/MQy/bQEngoz6qlCtnGpLPaHr/7eMlOLUyqRPMa46ticZxJGaguSodW4ip5w9kPngVBxVpF+lFk9gq1Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4P190MB1101
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/2] backlight: gpio_backlight: add new property
+ default-brightness-level
+Content-Language: en-US
+To:     Alexandru Ardelean <alex@shruggie.ro>,
+        <dri-devel@lists.freedesktop.org>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-fbdev@vger.kernel.org>
+CC:     <lee@kernel.org>, <daniel.thompson@linaro.org>,
+        <jingoohan1@gmail.com>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <deller@gmx.de>, Yannick Fertre <yannick.fertre@foss.st.com>
+References: <20230519200520.10657-1-alex@shruggie.ro>
+From:   Philippe CORNU <philippe.cornu@foss.st.com>
+In-Reply-To: <20230519200520.10657-1-alex@shruggie.ro>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.48.0.148]
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-26_01,2023-05-25_03,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
 
-Sorry for the delay.
+On 5/19/23 22:05, Alexandru Ardelean wrote:
+> From: Yannick Fertre <yannick.fertre@foss.st.com>
+> 
+> Add new property to set a brightness by default at probe.
+> 
+> Reviewed-by: Philippe CORNU <philippe.cornu@foss.st.com>
 
-Currently I do not work with Marvell, so I can't do anything with that.
+Hi Alexandru,
 
-Regards,
-Vadym
+Many thanks for your patch.
 
-________________________________________
-=F7=A6=C4: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-=EE=C1=C4=A6=D3=CC=C1=CE=CF: 25 =D4=D2=C1=D7=CE=D1 2023 =D2. 3:53
-=EB=CF=CD=D5: Vadym Kochan; Miquel Raynal; Richard Weinberger; Vignesh Ragh=
-avendra; Rob Herring; Krzysztof Kozlowski; Roger Quadros; Florian Fainelli;=
- Wolfram Sang; Liang Yang; Thomas Bogendoerfer; Aviram Dali; linux-mtd@list=
-s.infradead.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
-=EB=CF=D0=A6=D1: Elad Nachman
-=F4=C5=CD=C1: Re: [PATCH 0/3] mtd: rawnand: marvell: add support for AC5 So=
-C
+You have sent a patch originally pushed on the STMicroelectronics github 
+as mentioned in your commit message (no problem with that :-). But, the 
+"Reviewed-by" inside this github patch is linked to our gerrit STM 
+internal server so you can not use it directly for mainlining this patch.
 
-Hi Vadym,
+So please, re-send your this patch without my "Reviewed-by".
 
-On 19/10/22 21:20, Vadym Kochan wrote:
-> This series adds support for AC5 SoC.
->
-> The following changes were made to add AC5 support:
->
->     1) Modify Marvell nand NFC timing set for mode 0
->
->     2) fix validation in AC5 Nand driver for ONFI timings values modes 1 =
-and 3
->
->     3) remove unnecessary nand timing-mode in device tree of ac5.dtsi
->
->     4) add nand missing AC5X layouts , add option to use ndtr predefined =
-values
->
->     5) Zero steps and total fields of ecc in ecc controller initializatio=
-n so
->        nand_scan_tail() will calculate these two fields, otherwise
->        NAND initialization will fail with kernel 5.15 and above.
->
-> Aviram Dali (2):
->    dt-bindings: mtd: Add AC5 specific binding
->    mtd: rawnand: marvell: add support for AC5 SoC
+Many thanks
+Philippe :-)
 
-Are you still looking into this series? I see one part made it upstream
-as commit 68c18dae6888 ("mtd: rawnand: marvell: add missing layouts")
-and there was an off-shoot series around converting the DT binding.
 
-> Vadym Kochan (1):
->    mtd: rawnand: Partially revert 4114f97c41cd ("mtd: rawnand: Get rid of
->      a few unused definitions")
->
->   .../devicetree/bindings/mtd/marvell-nand.txt  |   1 +
->   drivers/mtd/nand/raw/Kconfig                  |   2 +-
->   drivers/mtd/nand/raw/marvell_nand.c           | 277 ++++++++++++++++--
->   drivers/mtd/nand/raw/nand_timings.c           |  14 +
->   include/linux/mtd/rawnand.h                   |   3 +
->   5 files changed, 264 insertions(+), 33 deletions(-)
->
+> Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
+> Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
+> ---
+> 
+> Link to original patch:
+>    https://github.com/STMicroelectronics/linux/commit/c4067d7bd883c6fa14ffd49892c4ce663cdafe98
+> 
+>   drivers/video/backlight/gpio_backlight.c | 7 ++++++-
+>   1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/video/backlight/gpio_backlight.c b/drivers/video/backlight/gpio_backlight.c
+> index 6f78d928f054..d3fa3a8bef4d 100644
+> --- a/drivers/video/backlight/gpio_backlight.c
+> +++ b/drivers/video/backlight/gpio_backlight.c
+> @@ -53,6 +53,7 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+>   	struct backlight_device *bl;
+>   	struct gpio_backlight *gbl;
+>   	int ret, init_brightness, def_value;
+> +	u32 value;
+>   
+>   	gbl = devm_kzalloc(dev, sizeof(*gbl), GFP_KERNEL);
+>   	if (gbl == NULL)
+> @@ -93,7 +94,11 @@ static int gpio_backlight_probe(struct platform_device *pdev)
+>   	else
+>   		bl->props.power = FB_BLANK_UNBLANK;
+>   
+> -	bl->props.brightness = 1;
+> +	ret = device_property_read_u32(dev, "default-brightness-level", &value);
+> +	if (!ret && value <= props.max_brightness)
+> +		bl->props.brightness = value;
+> +	else
+> +		bl->props.brightness = 1;
+>   
+>   	init_brightness = backlight_get_brightness(bl);
+>   	ret = gpiod_direction_output(gbl->gpiod, init_brightness);
