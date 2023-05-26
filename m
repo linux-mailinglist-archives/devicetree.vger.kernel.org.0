@@ -2,234 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A647171297D
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 17:29:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1CF2712994
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 17:33:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243838AbjEZP3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 11:29:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36522 "EHLO
+        id S237366AbjEZPdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 11:33:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243937AbjEZP3g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 11:29:36 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45995F7
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 08:29:23 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34QCq8vF015360;
-        Fri, 26 May 2023 17:29:00 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- references : in-reply-to : subject : date : message-id : mime-version :
- content-type : content-transfer-encoding; s=selector1;
- bh=HBLC25tXm7PL8iCv/hvsiP333s5gaIjYk0U6zt24BHc=;
- b=2zxcYfhHIFQK6h07+ohH5SliIZjSmgduH3XlzOeeKAzGZG6YSU1QpMP32OA50KNMWWxN
- 0dkhkSpo/nUUn9lJQow5Ob9wMozCRWh/kUMYVSd6PJAcJFoiXabuDIub427Jk+m7spl+
- QpLddFyMxMp2VjDM5gbBdHC+j1cTXV2nNxJH+i+BZq4qVv9yVcp00lOBi+xHyjVJUAZg
- M1F1MJxHZcsY2MsR0317iCWYj/2EhoG0RNlyMBvsz7LQ3VK8L+3Rs7ZDdqBOA44BXnp5
- 5poFv9F5BT/g58FUSNZl4VqHaAVdz85BeNLE/sPxV5ZhXNdpTKSSQ9K+IW21vx5yxwIa ug== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qttufa14n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 26 May 2023 17:29:00 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BC36E100034;
-        Fri, 26 May 2023 17:28:59 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AC9FF23C6AC;
-        Fri, 26 May 2023 17:28:59 +0200 (CEST)
-Received: from LMECWL1299 (10.201.28.137) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 26 May
- 2023 17:28:57 +0200
-From:   <patrick.delaunay@foss.st.com>
-To:     'Marek Vasut' <marex@denx.de>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     Alexandre TORGUE - foss <alexandre.torgue@foss.st.com>,
-        'Conor Dooley' <conor+dt@kernel.org>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
-        'Maxime Coquelin' <mcoquelin.stm32@gmail.com>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        'Srinivas Kandagatla' <srinivas.kandagatla@linaro.org>,
-        <devicetree@vger.kernel.org>, <kernel@dh-electronics.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20230517152513.27922-1-marex@denx.de> <20230517152513.27922-3-marex@denx.de>
-In-Reply-To: <20230517152513.27922-3-marex@denx.de>
-Subject: RE: [PATCH v2 3/3] ARM: dts: stm32: Add nvmem-syscon node to TAMP to expose boot count on DHSOM
-Date:   Fri, 26 May 2023 17:28:51 +0200
-Message-ID: <02ca01d98fe6$ca371d80$5ea55880$@foss.st.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S243860AbjEZPdj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 11:33:39 -0400
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B679189;
+        Fri, 26 May 2023 08:33:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1685115169; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=GBZZbiF7ruXKJwRU/UKRSvUduto2+nmr4tXorwsczmiQgYX5e6umskk2/+tQhriO9AZJe+ftvfTVGPPJgN/YK7iutS10S2cp/wr/Og4mmoDK2oENdQeFS9o1jv42hN/xJCiZpSZ9qBZ687gwRW465DRV7vz9XlH2dte/6iTb1/o=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1685115169; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=u7/zPgaI11esUwuCZ9ANb4+ClUiUCXAYGeOO9rKo5Z4=; 
+        b=ZM6/lRZvtjrUDMmygJ2k0TEchfTsmI4414dS4hXzJM786P3m0vmHy1WAjo8ekPvy1ii8GlwE82D7ve1P7Stv7Y3xUEeB8WRGed0ieug1FztMp3FTPk+SFlyQk1t7PcHDegAqDhcP6shJhwZizRkFkiA0B9MC2zSpJrr/3Fl5v40=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1685115169;
+        s=zmail; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Date:Date:Message-Id:Reply-To;
+        bh=u7/zPgaI11esUwuCZ9ANb4+ClUiUCXAYGeOO9rKo5Z4=;
+        b=XirbvXIgZTqaZCkasaoHW07kTVH/k1kyf9zy1EJryUVey0lrjOlEwmiJ5HfGPpFc
+        RKi2On/gJAM8lRIJjgE9+0SEB0YgSc0QM03OCevQH/UopUICPeo+dLOAFio8xlt393w
+        Yrw9GdiGGzDaqTPbj+F4UVZfTA2FMvynOpXMgG0E=
+Received: from edelgard.fodlan.icenowy.me (120.85.97.71 [120.85.97.71]) by mx.zohomail.com
+        with SMTPS id 1685115168167230.90243257128157; Fri, 26 May 2023 08:32:48 -0700 (PDT)
+Message-ID: <0803e9037a8a2ce96fdad6ec209991dcda2a30ca.camel@icenowy.me>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8173-elm: remove panel model
+ number in DT
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     Doug Anderson <dianders@chromium.org>,
+        Pin-yen Lin <treapking@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <CAD=FV=UxrFVZXn+dtgamttTVopWMSVbxYsHCGG_tS+3OTXbHiw@mail.gmail.com>
+References: <20230526100801.16310-1-uwu@icenowy.me>
+         <CAD=FV=UxrFVZXn+dtgamttTVopWMSVbxYsHCGG_tS+3OTXbHiw@mail.gmail.com>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: en-us
-Thread-Index: AQHZj9Uh86Xh97Obl0G0KFWD/onRSq9skNqA
-msip_labels: MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_Enabled=true; MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_SetDate=2023-05-26T15:28:51Z; MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_Method=Standard; MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_Name=23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0; MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_SiteId=75e027c9-20d5-47d5-b82f-77d7cd041e8f; MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_ActionId=d91f1318-ed6d-4299-a9f2-97d9fb285e39; MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_ContentBits=2
-X-Originating-IP: [10.201.28.137]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-26_06,2023-05-25_03,2023-05-22_02
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+MIME-Version: 1.0
+Date:   Fri, 26 May 2023 23:29:11 +0800
+User-Agent: Evolution 3.44.4 
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
-
-> From: Marek Vasut <marex@denx.de>
-> Sent: Wednesday, May 17, 2023 5:25 PM
-> Subject: [PATCH v2 3/3] ARM: dts: stm32: Add nvmem-syscon node to TAMP =
-to
-> expose boot count on DHSOM
+=E5=9C=A8 2023-05-26=E6=98=9F=E6=9C=9F=E4=BA=94=E7=9A=84 07:24 -0700=EF=BC=
+=8CDoug Anderson=E5=86=99=E9=81=93=EF=BC=9A
+> Hi,
 >=20
-> Add nvmem-syscon subnode to expose TAMP_BKPxR register 19 to user =
-space.
-> This register contains U-Boot boot counter, by exposing it to user =
-space the user
-> space can reset the boot counter.
+> On Fri, May 26, 2023 at 3:09=E2=80=AFAM Icenowy Zheng <uwu@icenowy.me> wr=
+ote:
+> >=20
+> > Currently a specific panel number is used in the Elm DTSI, which is
+> > corresponded to a 12" panel. However, according to the official
+> > Chrome
+> > OS devices document, Elm refers to Acer Chromebook R13, which, as
+> > the
+> > name specifies, uses a 13.3" panel, which comes with EDID
+> > information.
+> >=20
+> > As the kernel currently prioritizes the hardcoded timing parameters
+> > matched with the panel number compatible, a wrong timing will be
+> > applied
+> > to the 13.3" panel on Acer Chromebook R13, which leads to blank
+> > display.
+> >=20
+> > Because the Elm DTSI is shared with Hana board, and Hana
+> > corresponds to
+> > multiple devices from 11" to 14", a certain panel model number
+> > shouldn't
+> > be present, and driving the panel according to its EDID information
+> > is
+> > necessary.
+> >=20
+> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > ---
+> > =C2=A0arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 2 +-
+> > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
 >=20
-> Read access example:
-> "
-> $ hexdump -vC /sys/bus/nvmem/devices/5c00a000.tamp\:nvmem0/nvmem
-> 00000000  0c 00 c4 b0
-> "
+> We went through a bunch of back-and-forth here but in the end in the
+> ChromeOS tree we have "edp-panel" as the "compatible" here in the
+> ChromeOS 5.15 tree and this makes sense.
+
+I only have Elm, so I am curious that do all Hana's only rely on panel
+EDID to use different displays?
+
+BTW The Chrome OS document say that Elm and Hana are both board based
+on Oak baseboard, should the DTSI be renamed mt8173-oak.dtsi, and still
+let mt8173-elm.dts include it and then set model information?
+
 >=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> ---
-> V2: No change
-> ---
->  arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi | 11 +++++++++++
-> arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi | 11 +++++++++++
->  2 files changed, 22 insertions(+)
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
 >=20
-> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-> b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-> index 74735552f4803..b2557bb718f52 100644
-> --- a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-> @@ -537,6 +537,17 @@ &sdmmc3 {
->  	status =3D "okay";
->  };
+> ...in theory one would wish for a "Fixes" tag, but I think in
+> previous
+> discussions it was decided that it was too complicated. Hardcoding
+> the
+> other compatible string has always been technically wrong, but I
+> guess
+> it worked at some point in time. The more correct way (as you're
+> doing
+> here) needs the DP AUX bus support and the generic eDP panels, both
+> of
+> which are significantly newer than the elm dts. So I guess leaving no
+> "Fixes" tag is OK, or perhaps you could do the somewhat weak:
+
+Well I remembered when I was developing the support for Pine64
+Pinebook, which is also an ARM64 laptop with an eDP panel (via a DPI-
+eDP bridge, ANX6345). At first I didn't use any panel node in the DT,
+and the kernel maintainers argued to the bridge that seems to be
+connected to nothing (because DP is a discoverable port), and
+fortunately 2 Pinebook SKUs (11.6" and 14") is finally reduced to one,
+and it's then possible to hardcode a panel model in the Pinebook DT.
+According to my memory, the need to specify the panel is to properly
+handle eDP panel power up timing, because it's not a very standard
+thing. (Well, in my memory, when I was testing that code, on a
+(engineering sample) 14" Pinebook, the EDID timing overrided the
+hardcoded 11.6" timing and it properly works, the 14" panel is 1366x768
+but the 11.6" panel is 1920x1080.)
+
+(BTW when I checked the DT of Olimex TERES-I, which uses the same DPI-
+eDP bridge, it is still in the status of a dangling bridge, and of
+course it works ;-) )
+
 >=20
-> +&tamp {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <1>;
-> +
-> +	/* Boot counter */
-> +	nvmem {
-> +		compatible =3D "nvmem-syscon";
-> +		reg =3D <0x14c 0x4>;
-> +	};
-> +};
-> +
->  &uart4 {
->  	pinctrl-names =3D "default";
->  	pinctrl-0 =3D <&uart4_pins_a>;
-> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi
-> b/arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi
-> index bba19f21e5277..864960387e634 100644
-> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-som.dtsi
-> @@ -269,3 +269,14 @@ &rng1 {
->  &rtc {
->  	status =3D "okay";
->  };
-> +
-> +&tamp {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <1>;
-> +
-> +	/* Boot counter */
-> +	nvmem {
+> Fixes: c2d94f72140a ("arm64: dts: mediatek: mt8173-elm: Move display
+> to ps8640 auxiliary bus")
 
-According binding you need to add "@<reg>" =3D> nvmem@14c
+Well this sound quite reasonable, as the kernel should have proper AUX
+support at this commit.
 
-And you export only TAMP_BKP19R directly in a nvmem region ?
-
-> +		compatible =3D "nvmem-syscon";
-> +		reg =3D <0x14c 0x4>;
-> +	};
-> +};
-
-
-the boot counter could be a nvem cell so you could expose  other backup =
-registers=20
-
-For example :
-
-&tamp {
-	#address-cells =3D <1>;
-	#size-cells =3D <1>;
-
-	nvmem@14c  {
-		compatible =3D "nvmem-syscon";
-		reg =3D <0x14c 0x4>;
-
-		/* Data cells */
-		boot_counter: boot-counter@14c {
-			reg =3D <0x14c 0x4>;
-		};
-	};
-};
-
-Even if you export more backup register the cell will be correctly =
-described in DT
-and could be accessible directly  with sysfs without managed offset in =
-userland
-
-with https://lore.kernel.org/lkml/202305240724.z3McDuYM-lkp@intel.com/T/
-Or previous serie =
-https://lore.kernel.org/lkml/20211220064730.28806-1-zajec5@gmail.com/
-
-
-for example to export all the free register:
-
-Reference: https://wiki.st.com/stm32mpu/wiki/STM32MP15_backup_registers
-
-the cell " boot-counter" will be always available for users.
-
-&tamp {
-	#address-cells =3D <1>;
-	#size-cells =3D <1>;
-
-	/* backup register: 10 to 21 */
-	nvmem@0x128  {
-		compatible =3D "nvmem-syscon";
-		reg =3D <0x128 0x44>;
-
-		/* Data cells */
-		boot_counter: boot-counter@14c {
-			reg =3D <0x14c 0x4>;
-		};
-		boot_mode: boot-mode@150 {
-			reg =3D <0x150 0x4>;
-		};
-....
-	};
-};
-
-
-Patrick
-
-> --
-> 2.39.2
-
-ST Restricted
 
