@@ -2,59 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 844DD712668
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:17:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02B59712681
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243295AbjEZMRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 08:17:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53158 "EHLO
+        id S243402AbjEZMWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 08:22:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231378AbjEZMRF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:17:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B5FC116;
-        Fri, 26 May 2023 05:17:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AA7D66152A;
-        Fri, 26 May 2023 12:17:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C71F5C433D2;
-        Fri, 26 May 2023 12:17:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685103423;
-        bh=EExZUYFXCjwdEXwlrRa3dU5pBkNO42OY+TPVLVsgBIQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jPved3RxRsUpHIiJjl5LDQ/3UiIUXnUx0wX0TX3at9JM4URFrkiBc9fTHOE/eWGYd
-         AbHpFO52Dxhh32muct+Jacmj1efExFdBb17cyW6OMswWXIK6FRTM9E1hdTJP0IJJmu
-         JQmXB2zYIg79yqHbThy1KUHaGblZnOzcE/rYQgkKPkX3rKKOEAbxNDGL6myvwScwvl
-         gt/UChj1sb2zCmMtmOWWp/5kdxChr6dQfIVPXXThO1ZdT10cv2aDsphaFU4PcjvNov
-         jbEafWmKoda2NAp7AkQZvhR4amFmuHVBlOVp7l4OEmuxL5+l+GUsfDZg4bU7TRvQJK
-         Lnk79pbDY5eXg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1q2WNf-00076e-Pm; Fri, 26 May 2023 14:17:15 +0200
-Date:   Fri, 26 May 2023 14:17:15 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, johan+linaro@kernel.org,
-        agross@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/6] arm64: defconfig: Enable sc828x0xp lpasscc clock
- controller
-Message-ID: <ZHCjS2ViVICWCxFP@hovoldconsulting.com>
-References: <20230525122930.17141-1-srinivas.kandagatla@linaro.org>
- <20230525122930.17141-7-srinivas.kandagatla@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230525122930.17141-7-srinivas.kandagatla@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S231270AbjEZMWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:22:38 -0400
+Received: from wnew1-smtp.messagingengine.com (wnew1-smtp.messagingengine.com [64.147.123.26])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4025D8;
+        Fri, 26 May 2023 05:22:36 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.west.internal (Postfix) with ESMTP id F18BE2B067F1;
+        Fri, 26 May 2023 08:22:30 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Fri, 26 May 2023 08:22:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+        cc:cc:content-transfer-encoding:content-type:content-type:date
+        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to; s=fm2; t=
+        1685103750; x=1685110950; bh=9OjPVtcXUXsvJbsxBYn861b3PFL3iRSxocq
+        SvkSDhOY=; b=h8IerA6eCZ9zEkm18cIQ/DHlPux1lRB2Eb3ONCu4hETPvcV9qW6
+        xuNp5UiRw2wm5bzQ7fdePAz9z5TcqSD7zCNKfmha/mODlmnnLfl53CxPHUPoqdqq
+        tEbii24Pcw0iQkJl9ktKANwe3gGqsqrd7ruG2jJ+bZZpqhZaHBHGiQD5HpXe22fK
+        hV0mZijIY//jGbqewyhcRk+hkI9ssZdypLFLMVD5KWxn5q6KWHZxNMbLN9cP1GVt
+        prkwsimspjmVJBO5F11iwf6SAt6dTxoH+LDhTDwyuxZOm8scoX9EIaUzDVvOZQNQ
+        GhW+Fm/HP2dBRqAUMPlVWzkH9X96OKwrsaA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:content-type:date:date:feedback-id:feedback-id
+        :from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+        1685103750; x=1685110950; bh=9OjPVtcXUXsvJbsxBYn861b3PFL3iRSxocq
+        SvkSDhOY=; b=GG1pUEUOIvcGTaaOsY4w7DIfY6DH2oRjCIE87u9TKRDBf7U9cGj
+        /awOLAUrNa5yFsf3XWFE2/6eTfUR65UWhhTOBFbEz6U9l8gbNg0jh1VCOAlrt509
+        OWR3MUJCrm65m29ps46tYb3YewZwbkVcvvlHmg+4TVY0QsbXSUI460XrMP3SA9gZ
+        HYNM/xo1kFsPVzcEqG9zQzVhYs+GiB6GaSqTeyM8Wo/7HXT4eHjMtj1erCKni0AU
+        mucwurehc7+FemVunQ3rce6onR8kfVWLgYAKoDxuhfBZ174fnFT8Kg37WoaXh9Ln
+        nz470QJy8Ylw4E1wimzT3uSSYNXFATIdH4w==
+X-ME-Sender: <xms:hKRwZBkHX7q864GHMR5p2u3KkjNiwNseGwR4_Yorn3ndOiNxScglng>
+    <xme:hKRwZM2X2DuYYAjOgsqMUctL9811HpQYfmOdJ0R8Tzk62lHcMODgOhQfrHVIhqHZW
+    msl_vuVA-ZopgyAVCE>
+X-ME-Received: <xmr:hKRwZHoo98GT0qD4j6Z4lCbq1WOARByS2PnHA66LH2_pDHL3L3i58t1bdZe2f9ebE9In>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeejledghedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurheptggguffhjgffvefgkfhfvffosehtqhhmtdhhtdejnecuhfhrohhmpeflihgr
+    gihunhcujggrnhhguceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomheqne
+    cuggftrfgrthhtvghrnhepuddtjeffteetfeekjeeiheefueeigeeutdevieejveeihfff
+    ledvgfduiefhvddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
+    hfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:hKRwZBlE9QVAbJgBJ8y-9T_tNLVtg5lkGA2khaEZHn6Tst8Eo6ggbw>
+    <xmx:hKRwZP047JW6BsxZIg4UJhxQEw0dobcJlk1bbIOUMCgjqcZP7-0-VQ>
+    <xmx:hKRwZAsu6oBAC6FFrjzgebECkHjq19SRVjlwpom916u8uQeUmJjsGQ>
+    <xmx:hqRwZE4xbBHOTKyuwil4E5Dz2hx1jD1q9KzMZSk4eriBc18peDgt4lX5Fy8>
+Feedback-ID: ifd894703:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 26 May 2023 08:22:26 -0400 (EDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.500.231\))
+Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the trivial
+ RTCs
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+In-Reply-To: <20230526-dolly-reheat-06c4d5658415@wendy>
+Date:   Fri, 26 May 2023 13:22:15 +0100
+Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Conor Dooley <conor@kernel.org>,
+        Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        Kelvin Cheung <keguang.zhang@gmail.com>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        loongson-kernel@lists.loongnix.cn
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <1EAC8FA8-4125-4436-9EE1-13B61B5687AF@flygoat.com>
+References: <cover.1684983279.git.zhoubinbin@loongson.cn>
+ <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
+ <20230525-custody-oversleep-f778eddf981c@spud>
+ <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
+ <20230526-dolly-reheat-06c4d5658415@wendy>
+To:     Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: Apple Mail (2.3731.500.231)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,25 +106,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 25, 2023 at 01:29:30PM +0100, Srinivas Kandagatla wrote:
-> Enabled sc828x0xp lpasscc clock controller driver required for X13s laptop.
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  arch/arm64/configs/defconfig | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index 57ceb528426d..95ece45fd0cd 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -1176,6 +1176,7 @@ CONFIG_SC_GCC_7180=y
->  CONFIG_SC_GCC_7280=y
->  CONFIG_SC_GCC_8180X=y
->  CONFIG_SC_GCC_8280XP=y
-> +CONFIG_SC_LPASSCC_8280XP=m
->  CONFIG_SDM_CAMCC_845=m
->  CONFIG_SDM_GPUCC_845=y
->  CONFIG_SDM_VIDEOCC_845=y
 
-Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+
+> 2023=E5=B9=B45=E6=9C=8826=E6=97=A5 13:06=EF=BC=8CConor Dooley =
+<conor.dooley@microchip.com> =E5=86=99=E9=81=93=EF=BC=9A
+Hi all,
+
+[...]
+My two cents here as Loongson64 maintainer.
+
+>=20
+>>> To maintain compatibility with the existing devicetrees, should the =
+old
+>>> "loongson,ls2x-rtc" be kept in the driver?
+>>=20
+>> No, It seems that wildcards in compatible are not allowed."
+>> loongson,ls2x-rtc" itself was part of this patch series at one time,
+>> but apparently it is not the right way to describe these chips.
+>=20
+> Right, but it has been merged - you are deleting the driver that =
+supports
+> it after all - which means that any dtb with the old compatible will
+> stop working.
+It is perfectly fine to break DTB compatibility for Loongson64 systems
+As they *only* use builtin dtb. Bootloader will only pass machine type =
+information
+and kernel will choose one dtb from it=E2=80=99s dtbs pool.
+
+Thanks
+- Jiaxun
+
+> I don't disagree with Krzysztof that having wildcard based compatibles
+> is bad, but I do not think that regressing rtc support for systems =
+with
+> these old devicetrees is the right way to go either.
+>=20
+> Thanks,
+> Conor.
+
