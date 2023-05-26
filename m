@@ -2,61 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E2E3711CF2
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 03:44:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AB52711CEE
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 03:43:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241716AbjEZBn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 21:43:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36836 "EHLO
+        id S235953AbjEZBnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 21:43:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241914AbjEZBnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 21:43:53 -0400
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FF171A7;
-        Thu, 25 May 2023 18:43:52 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-774942ddfe0so30431139f.2;
-        Thu, 25 May 2023 18:43:52 -0700 (PDT)
+        with ESMTP id S234360AbjEZBns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 21:43:48 -0400
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DD1C189
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 18:43:47 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-77489b6f68cso31209339f.1
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 18:43:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685065431; x=1687657431;
+        d=1e100.net; s=20221208; t=1685065427; x=1687657427;
         h=date:subject:message-id:references:in-reply-to:cc:to:from
          :mime-version:content-transfer-encoding:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=UcJBsXA60m04uWBwWmLfTx0vDK+YHxaLAkQOCUWBnMg=;
-        b=fcu/v/xAv3bcA9O8OnGb80o2hRhTyVDASfxCBTs5Lmz8GR+B/H2DeWuEoCLD1ynwMB
-         zWWpSeo4hUo3djc7mA7uy/cB+8sx4ymM+vLghMrpNrfuyiEf1RzTAS2mZFi18dh2pxEq
-         QTHv3vm76k+1XvvyWQudoB29vYjgBh2RpQR20c6BFoVksZqwSYcOQLgD62/vHg54AAYu
-         P8aOZxNgbs1a48CJqPOCIBmCnJ/dSNSyI2GPPhzk5MOm+3NwkuXO2hN0RdXdgwdoKSjk
-         HKL6+38VGEW7V/O8LAjE/vmjDdar3EHQMLE6b+iwpnyP2Li23lEnE/eLjDd6FWnGExZ0
-         wjeQ==
-X-Gm-Message-State: AC+VfDxYsbjPESsBgIZRXG1/VpM0xxXDokglc5sxPHkBPglVKbccE9If
-        RoezuwVrIBgTBpES8hsNKhZSrbDJlA==
-X-Google-Smtp-Source: ACHHUZ5XM5uaXn9XSM6fbkgHRJZa5tJEeP+5zrxfIHZJ6gYS0KacPa8XYLSfmIAIvdYMEPcan3QC1g==
-X-Received: by 2002:a6b:7602:0:b0:76c:89de:ba47 with SMTP id g2-20020a6b7602000000b0076c89deba47mr1077910iom.19.1685065431430;
-        Thu, 25 May 2023 18:43:51 -0700 (PDT)
+        bh=9kkqmVgPfMqIpngCVwFGsQ4SKC/aGOoR2j/ffV6nKd4=;
+        b=fsNH4oxt8DnrgVz2q9cE0bh9mZDVScilU5gj7uItmB7JjsfJqSi0TK2ntZBlSgPQjs
+         ax9TDMRiwqiu7vZZUpl4QYzG1c6BC2UUO46NEZOiykgqDnhkJ8ygmvL0j1VRKESBX4IL
+         2LurqBvkmFynmxMbZ9ablUcLAbbrlcAE/n2VtYgSEGML3qR6e9D1xMLxq7TdBSmL+7pm
+         s1kR9eAzo8AohU7K8jJvPnkWPJNUqsn5cFO1A1XT7xYBNkpc/A3lQkolP1yXk9Wndud+
+         Bj0Vd7qA6mdyoHoA9iNiCSlOMGbxh6fs6uJiW4KyuSqhe/GNaHFgf19PGhVBtl73xd0v
+         isYw==
+X-Gm-Message-State: AC+VfDz1y1AXOmdh9GgEeIBA4WErx9i4G8T+5eZ9DNlREjuXlsGIp5gQ
+        Hy8bmFcC53vopb3pIjLpQK2JkWxb1w==
+X-Google-Smtp-Source: ACHHUZ606ICxYqI7w5Joho9qmcY1XHqxNYROkxzrFYpKsk8gS+nkwRlIKTaoQaLt73CTzi4wI9hg0Q==
+X-Received: by 2002:a92:d9c7:0:b0:329:bba2:781a with SMTP id n7-20020a92d9c7000000b00329bba2781amr346194ilq.0.1685065426628;
+        Thu, 25 May 2023 18:43:46 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id n1-20020a056638110100b00411be337516sm829734jal.24.2023.05.25.18.43.49
+        by smtp.gmail.com with ESMTPSA id o14-20020a056e02068e00b003318ec8f9e9sm658058ils.80.2023.05.25.18.43.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 May 2023 18:43:50 -0700 (PDT)
-Received: (nullmailer pid 3171 invoked by uid 1000);
+        Thu, 25 May 2023 18:43:45 -0700 (PDT)
+Received: (nullmailer pid 3166 invoked by uid 1000);
         Fri, 26 May 2023 01:43:44 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
 From:   Rob Herring <robh@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     conor+dt@kernel.org, alexandre.belloni@bootlin.com,
-        wim@linux-watchdog.org, linux-arm-kernel@lists.infradead.org,
-        nicolas.ferre@microchip.com, linux-watchdog@vger.kernel.org,
-        tglx@linutronix.de, daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux@roeck-us.net, sebastian.reichel@collabora.com,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20230525125602.640855-5-claudiu.beznea@microchip.com>
-References: <20230525125602.640855-1-claudiu.beznea@microchip.com>
- <20230525125602.640855-5-claudiu.beznea@microchip.com>
-Message-Id: <168506542457.3138.7238632491421340996.robh@kernel.org>
-Subject: Re: [PATCH 4/5] dt-bindings: watchdog: atmel,at91rm9200-wdt:
- convert to yaml
+To:     William Zhang <william.zhang@broadcom.com>
+Cc:     f.fainelli@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20230525050241.3700-1-william.zhang@broadcom.com>
+References: <20230525050241.3700-1-william.zhang@broadcom.com>
+Message-Id: <168506542054.3041.3667248390783185219.robh@kernel.org>
+Subject: Re: dt_binding_check report false alarm?
 Date:   Thu, 25 May 2023 20:43:44 -0500
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
@@ -70,16 +64,36 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 25 May 2023 15:56:01 +0300, Claudiu Beznea wrote:
-> Convert Atmel AT91RM9200 system timer watchdog bindings to YAML.
+On Wed, 24 May 2023 22:02:41 -0700, William Zhang wrote:
+> Hi,
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> It seems dt_binding_check reports a false error when run on this
+> modified yaml. I picked this simple file just to demostrate this issue.
+> Basically I made the interrupts and interrupt-names as optional
+> properties. But when there are two interrupts present, then
+> interrupt-names are required.  However in the example, I don't define
+> interrupts and interrupt-name at all, the dt binding check reports error
+> that interrupt-names are required:
+> 
+> make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+>   LINT    Documentation/devicetree/bindings
+>   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   DTEX    Documentation/devicetree/bindings/crypto/fsl-imx-scc.example.dts
+>   DTC_CHK Documentation/devicetree/bindings/crypto/fsl-imx-scc.example.dtb
+> Documentation/devicetree/bindings/crypto/fsl-imx-scc.example.dtb: crypto@53fac000: 'interrupt-names' is a required property
+> 	From schema: /home/william/projects/linux/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+> 
+> This does not make sense to me as name is required only when there are
+> two interrupts. Can someone familar with this please help to check if I
+> miss anything in the yaml file or it is indeed a bug in binding check?
+> 
+> Thanks,
+> William
+> 
 > ---
->  .../watchdog/atmel,at91rm9200-wdt.yaml        | 29 +++++++++++++++++++
->  .../watchdog/atmel-at91rm9200-wdt.txt         |  9 ------
->  2 files changed, 29 insertions(+), 9 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
+>  .../devicetree/bindings/crypto/fsl-imx-scc.yaml     | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -88,15 +102,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.example.dts:22.5-6 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.example.dtb] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1512: dt_binding_check] Error 2
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/crypto/fsl-imx-scc.example.dtb: crypto@53fac000: 'interrupt-names' is a required property
+	From schema: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230525125602.640855-5-claudiu.beznea@microchip.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230525050241.3700-1-william.zhang@broadcom.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
