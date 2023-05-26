@@ -2,52 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 485B8712DA1
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 21:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDF21712DBD
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 21:41:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243959AbjEZTfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 15:35:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51524 "EHLO
+        id S233433AbjEZTlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 15:41:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243668AbjEZTfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 15:35:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE7E19A;
-        Fri, 26 May 2023 12:35:00 -0700 (PDT)
+        with ESMTP id S229891AbjEZTlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 15:41:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2664A3;
+        Fri, 26 May 2023 12:41:48 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C15E86530B;
-        Fri, 26 May 2023 19:34:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21C3DC4339E;
-        Fri, 26 May 2023 19:34:58 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7B4B4615D8;
+        Fri, 26 May 2023 19:41:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1A6FC433D2;
+        Fri, 26 May 2023 19:41:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685129698;
-        bh=QC/gLQrIWF9SsSIBK579yYw1z9IgxvBWc5x6hhQBn04=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=a22nk2VlvKG7gmt2/QXazV8GVFIaAk72DMrTBwzN96Wf2sf1CWYUWs29j8Bh2Wk3s
-         Wy/ZO/6YC0YOHe9ewaLy00J6izsLgU3wEnQMmOX3mjNVr2JpCLdi+0k3qVKvCZKyeY
-         8BTf3hkTms0qcQhW0/OriWPTTN4TTL3vv1itluEVvqglfyM1XLMdcSu9Pj1JmdW5Ac
-         JxY//zjBHjoKKcUnd1AGH0Xfovx8xdQA77aEE3OTKPkf3ZA6+jlkd9WUNpElTwWGwV
-         67BVRopSCSZrg6chUSCAcPCv+bcDHrgNN/ZBCtxv1D28XVErJ8gYXgLh1dMZuXtqug
-         EqTFByVDVaHFQ==
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Kathiravan T <quic_kathirav@quicinc.com>, agross@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@linaro.org, linux-watchdog@vger.kernel.org,
-        wim@linux-watchdog.org, robh+dt@kernel.org, linux@roeck-us.net,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/2] Add few device nodes for IPQ9574 SoC
-Date:   Fri, 26 May 2023 12:38:37 -0700
-Message-Id: <168512991478.248818.9749939495960565023.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230329053726.14860-1-quic_kathirav@quicinc.com>
-References: <20230329053726.14860-1-quic_kathirav@quicinc.com>
+        s=k20201202; t=1685130107;
+        bh=A14wYRd6bd3k17uq6bZSud2jdXo9S6kL3opZr6tnAVM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MB+hILdtM6md541XzDe7RBrwh40QGaXBDxZSD4EJTfzBv5grj2tywoPa7Ocfo0vHz
+         gTzc2aGc9ytleWo+UzhtXz4/vw70KQcT+ptYx/94dQ39T/NZZSuTpa718jCjfnMmkL
+         Iza5uhIxRfRMHG9AYjrT1JUH9KK/ONoZZcEeRUvcVxYAv4KrosHwDVr+dmcFsLSkRC
+         /jWe9cRHDrUvchYl61UcHTmqrEZtWeFVeoho7MhNrqmfWy6dJ8qJYAbsAfPlIHyJxl
+         c68BVcuU66iDC19URkpayCQ1w+ngllXCz88FUEmOFniMgN+1vUxLPwJteyl8tWZfSN
+         pzarNOl5zG9wQ==
+Date:   Fri, 26 May 2023 20:41:42 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Samin Guo <samin.guo@starfivetech.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>,
+        Frank <Frank.Sae@motor-comm.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: motorcomm: Add pad driver
+ strength cfg
+Message-ID: <20230526-glutinous-pristine-fed571235b80@spud>
+References: <20230526090502.29835-1-samin.guo@starfivetech.com>
+ <20230526090502.29835-2-samin.guo@starfivetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="LKgeoOkBxI+igG/k"
+Content-Disposition: inline
+In-Reply-To: <20230526090502.29835-2-samin.guo@starfivetech.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -56,24 +67,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 29 Mar 2023 11:07:24 +0530, Kathiravan T wrote:
-> This series adds the support for QUP peripherals, PRNG, WDT for IPQ9574
-> SoC.
-> 
-> This series depends on the below one
-> https://lore.kernel.org/linux-arm-msm/20230328102013.21361-2-quic_poovendh@quicinc.com/
-> 
-> Kathiravan T (2):
->   dt-bindings: watchdog: qcom-wdt: add qcom,apss-wdt-ipq9574 compatible
->   arm64: dts: qcom: ipq9574: add few device nodes
-> 
-> [...]
 
-Applied, thanks!
+--LKgeoOkBxI+igG/k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[2/2] arm64: dts: qcom: ipq9574: add few device nodes
-      commit: 9ef42640504e09ecc79530b6e532ebf48305516b
+On Fri, May 26, 2023 at 05:05:01PM +0800, Samin Guo wrote:
+> The motorcomm phy (YT8531) supports the ability to adjust the drive
+> strength of the rx_clk/rx_data, the value range of pad driver
+> strength is 0 to 7.
+>=20
+> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
+> ---
+>  .../devicetree/bindings/net/motorcomm,yt8xxx.yaml    | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml =
+b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+> index 157e3bbcaf6f..29a1997a1577 100644
+> --- a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+> +++ b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+> @@ -52,6 +52,18 @@ properties:
+>        for a timer.
+>      type: boolean
+> =20
+> +  motorcomm,rx-clk-driver-strength:
+> +    description: drive strength of rx_clk pad.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+I think you should use minimum & maximum instead of these listed out
+enums. You have also had this comment since v1 & were reminded of it on
+v2 by Krzysztof: "What do the numbers mean? What are the units? mA?"
+
+This information should go into the binding, not sit in a thread on a
+mailing list that noone will look at when trying to write a DT :(
+
+Thanks,
+Conor.
+
+> +    default: 3
+> +
+> +  motorcomm,rx-data-driver-strength:
+> +    description: drive strength of rx_data/rx_ctl rgmii pad.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+> +    default: 3
+> +
+>    motorcomm,tx-clk-adj-enabled:
+>      description: |
+>        This configuration is mainly to adapt to VF2 with JH7110 SoC.
+> --=20
+> 2.17.1
+>=20
+
+--LKgeoOkBxI+igG/k
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHELdgAKCRB4tDGHoIJi
+0hbCAQDvuvTSWPRNxoXFvIBvoNjD4hQVJI4ztANnrP+SfIKHSQEA5AVSZPpJUEdS
+a3v4ifW/rEkkCs/0+vamGkR5ULUIowQ=
+=4puj
+-----END PGP SIGNATURE-----
+
+--LKgeoOkBxI+igG/k--
