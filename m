@@ -2,106 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0AF0712186
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 09:52:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DF5771218E
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 09:55:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242568AbjEZHvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 03:51:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44900 "EHLO
+        id S236772AbjEZHzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 03:55:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242565AbjEZHve (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 03:51:34 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61AA2125
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 00:51:32 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-30789a4c537so201860f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 00:51:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685087491; x=1687679491;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vSVgumf2aYp2qt988Utmhrty6r7JgjUMOf1vhbwIgVM=;
-        b=HH5IiCPntBHLkYgsL6QiZABhfwdHOLeWhFCRMFlSrGxNr0L6dthPHyJdIRMAKrNra4
-         63y/pgAi76VZNZg0zBgqvC9gEtmELmw4909Dch4ly3pRBSSU2o29JYoYKWcrkNRt8rZQ
-         sVNEXmvWppWi8rxFncKzKQkDXggzNOdrZejLBhQerNkXnXtIys5WvpDo7R6dYYm8ezzB
-         XggJyDbjjVC/FF0fuEVFdSofvxpKLGVkZWpojkWVvPqwEFmY4u+PNhbxdmPf52zHA0sp
-         tQzdzBATgOL+W8yHTaJaYx4x8bI0xNJPhLLNeLe0mxq2KEmTR7EV+y9z7GawBx2M/h3E
-         hMVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685087491; x=1687679491;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vSVgumf2aYp2qt988Utmhrty6r7JgjUMOf1vhbwIgVM=;
-        b=c7jPqxTYd/7rULx0BtMkzTrvEVp7tf6i0RQaD58gmbrSNLnKXEk5pUbymrOHXGGtVx
-         7ZfQmqktOtWNdFJtWEC1gZW+NskY0BElM1WpK4aV4gkmFuJ/USNStnbh3V/DWCususo+
-         +0pJD2xOoyKgsHjX92xir5wWyJ7v2t6+PjxxT6El1io/XydwGvSNheFTEa4rKuKmWYSd
-         s+C5oKRw6FebLlO5q+uKNmVmgE0rmHpZH+bpRbhicMp427PoLRdZJbP6/f/cs/o0/wXD
-         fm6f7ym1GnsR8rWMyViqHShHN0JBXnYtZLKkXRKEYIuU6E5TpSdxj1L9qOrxfw3d0gMo
-         Ij2w==
-X-Gm-Message-State: AC+VfDzC/blYmBvSOZjZ179IXhZYGHp51NUgXDu4nK0ajerlAGR229sI
-        sha0o4zBMgJ4mHv1GwsSPF6aHOnxf8EHdnNvnnr7FQ==
-X-Google-Smtp-Source: ACHHUZ5BAKGgVMedwMdSbhQAr3bu64t8rjg7+27iN2I67Zd0S3+ppfH0i4SJBLQfQVLsllKAFRx2Cw==
-X-Received: by 2002:a5d:4d02:0:b0:30a:c2c4:7133 with SMTP id z2-20020a5d4d02000000b0030ac2c47133mr621730wrt.49.1685087490812;
-        Fri, 26 May 2023 00:51:30 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id f7-20020a7bc8c7000000b003f42158288dsm7873151wml.20.2023.05.26.00.51.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 May 2023 00:51:30 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S242595AbjEZHyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 03:54:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0AF812C;
+        Fri, 26 May 2023 00:54:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7B3F064DBE;
+        Fri, 26 May 2023 07:54:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51903C433D2;
+        Fri, 26 May 2023 07:54:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685087692;
+        bh=r/fk7ywn0jZ7exIpVJ5GqN+idYj8JSycLJBNBKkY+To=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DSvxXar/RZIH1FoOJc/s0k6Qa+gNIwPaH8Ex5okX01QXiK6uVMuX8Om/62If8fUAE
+         ovlZKw6ujgSzuGfOdXj/7WsXOoX9EExtizR1AKOpG6kBpTvsQ+AQm0Z3wxxgwYrFhG
+         J0wBcoH9smDqA4hgRo3ygx/Gr5APCGW+Friptd4yEC3ELF3HHeClvYMs4GuUIsq8PR
+         9+rnI6UYkYfFviUuHSlezdK+URIy3tkQN3tTkF1d3Fy821oq7EGlmN06NxPajy3/AM
+         91riAScRnESGK++T/t9HJRiNIvz5tottLQD0IaFrgSrmchDo4x/VwzJ5XSua4hMkCO
+         J8RYE48HQ3a7Q==
+Date:   Fri, 26 May 2023 08:54:47 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Fred Treven <fred.treven@cirrus.com>
+Cc:     Ben Bright <ben.bright@cirrus.com>,
+        James Ogletree <james.ogletree@cirrus.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-In-Reply-To: <cover.1684931026.git.geert+renesas@glider.be>
-References: <cover.1684931026.git.geert+renesas@glider.be>
-Subject: Re: [PATCH 0/2] drm/panel: simple: Add support for Ampire
- AM-800480L1TMQW-T00H
-Message-Id: <168508748966.1489292.6504449064133741624.b4-ty@linaro.org>
-Date:   Fri, 26 May 2023 09:51:29 +0200
+        Simon Trimmer <simont@opensource.cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        patches@opensource.cirrus.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 5/5] mfd: cs40l26: Add CODEC driver component
+Message-ID: <20230526075447.GA449117@google.com>
+References: <1685059471-9598-1-git-send-email-fred.treven@cirrus.com>
+ <1685059471-9598-5-git-send-email-fred.treven@cirrus.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1685059471-9598-5-git-send-email-fred.treven@cirrus.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, 25 May 2023, Fred Treven wrote:
 
-On Wed, 24 May 2023 14:32:09 +0200, Geert Uytterhoeven wrote:
-> 	Hi all,
+> Use MFD interface to load the CODEC driver along
+> with the Input FF driver.
 > 
-> This patch series adds support for the Ampire AM-800480L1TMQW-T00H 5"
-> WVGA TFT LCD panel, which can be found on e.g. the Atmark Techno
-> Armadillo-800-EVA development board.
+> Signed-off-by: Fred Treven <fred.treven@cirrus.com>
+> ---
+>  drivers/input/misc/cs40l26.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
-> It has been tested with a WIP DT-enhanced version of the shmob-drm
-> driver.
-> 
-> [...]
+> diff --git a/drivers/input/misc/cs40l26.c b/drivers/input/misc/cs40l26.c
+> index 12c29cbd4ff0..35d15a6c2230 100644
+> --- a/drivers/input/misc/cs40l26.c
+> +++ b/drivers/input/misc/cs40l26.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/i2c.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/kernel.h>
+> +#include <linux/mfd/core.h>
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+NACK.  Please do not use the MFD API outside of drivers/mfd.
 
-[1/2] dt-bindings: display: panel-simple: Add Ampire AM-800480L1TMQW-T00H
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=d3a6c2b60f07c64631b9437032d8f079341b7a16
-[2/2] drm/panel: simple: Add Ampire AM-800480L1TMQW-T00H
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=410bb21319f69c2ec28aeafe530d00ed2f6a1c54
+>  #include <linux/pm_runtime.h>
+>  #include <linux/string.h>
+>  #include <linux/firmware/cirrus/wmfw.h>
+> @@ -2136,6 +2137,10 @@ static inline int cs40l26_worker_init(struct cs40l26_private *cs40l26)
+>  	return 0;
+>  }
+>  
+> +static const struct mfd_cell cs40l26_devs[] = {
+> +	{ .name = "cs40l26-codec" },
+
+This is one device.  Thus, not an MFD anyway.
+
+> +};
+> +
+>  static struct regulator_bulk_data cs40l26_supplies[] = {
+>  	{ .supply = "VP" },
+>  	{ .supply = "VA" },
+> @@ -2275,6 +2280,12 @@ int cs40l26_probe(struct cs40l26_private *cs40l26)
+>  	if (error)
+>  		goto err;
+>  
+> +	error = devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, cs40l26_devs, 1, NULL, 0, NULL);
+> +	if (error) {
+> +		dev_err(dev, "Failed to MFD add device %s: %d\n", cs40l26_devs[0].name, error);
+> +		goto err;
+> +	}
+> +
+>  	return 0;
+>  err:
+>  	cs40l26_remove(cs40l26);
+> -- 
+> 2.7.4
+> 
 
 -- 
-Neil
-
+Lee Jones [李琼斯]
