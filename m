@@ -2,176 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27B2B711ABD
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 01:39:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FA0B711AF2
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 02:04:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241746AbjEYXjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 19:39:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57478 "EHLO
+        id S234388AbjEZAEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 20:04:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241637AbjEYXjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 19:39:51 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3975B134
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 16:39:49 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2af1c884b08so3355271fa.1
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 16:39:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685057987; x=1687649987;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=J3ShwMSx7Uo4NT4nhrrIA5wjOwvMR7I73Ygk+ShVDI8=;
-        b=g/i9fav5m2QDxpBgCAs52QBCggiW5t0N9Dl9y/a81ODrgx+XfMQvxqdKQdFJaQu0Rg
-         f+ZAqBVd3HsY4l2IPebxNmeh04i5EEUQkkimcZH3uSLbw9nZ1V5AS+rItivqKzsZzCNc
-         g50hOyRJ5xlXA6uBhLhJe+Mc3DIqveib01Z2dxHFC17Xa5rnQvN9zdYyNeQHd0CQgBvq
-         2RYxtBtIxDEOUXwmGhIh+46FYhnHvJLa13uyaBTylvDK3x4B+6y+sxxSo6A+ZiQgsn6K
-         ht4UeTu68dge2pqM03orfXkr5C8tC13NVRqzS4ZmvkO5Wf0AnaMZ27eysq92e7cAEeYo
-         YqOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685057987; x=1687649987;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J3ShwMSx7Uo4NT4nhrrIA5wjOwvMR7I73Ygk+ShVDI8=;
-        b=OPtVBqOZIjMJZKojIo7SbGT87SOR4r+9Cdp9HzBBMIlBMsTo1xqlR7+6asuLESiP/e
-         dOazXkDHDY3e8gltyQyIuV7NeHj5mjjr1uJJ8zfygZVDBSf4CVPaOfaXopWNGAoOYWQw
-         5XfrNgQf+Qjd23KmDB5iKl3/iGNkgnBj7mt256I2UT9Of0QFWKP2evrqn8zqibkqCTDV
-         XBcVKc+rCZ8SvWW/VmfjeyHvUBVKs7xduU/NKtMnnmHNJk2GF64RfFL/ziVPVfezrrGl
-         V6ZrWElpjfEmwVyai2WKsIcoV+AIlkp0aEBAsfcmy8/HhcSYg5RR8ZX0ejFIs7hWry5p
-         VO0w==
-X-Gm-Message-State: AC+VfDw3d8kZ3DlcCO4u6uoe0zjwp94B1wRQNKu3K8mLYsbiZWeuL1CJ
-        7O1r1+KUBFHWOExXjyKoSX8+bw==
-X-Google-Smtp-Source: ACHHUZ4dG/us25PBxwby+47FvpimKaqgiXwMzX9fQaa/ANCtEgtlZuH7c4RAlNOPbmyNzbTmM6As/Q==
-X-Received: by 2002:a2e:b625:0:b0:2ad:9edd:4e2 with SMTP id s5-20020a2eb625000000b002ad9edd04e2mr1273646ljn.20.1685057987456;
-        Thu, 25 May 2023 16:39:47 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id s24-20020a2e9c18000000b002a8ae16ac8csm437988lji.18.2023.05.25.16.39.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 May 2023 16:39:47 -0700 (PDT)
-Message-ID: <ea53525b-749b-25e2-6dde-662a8e273597@linaro.org>
-Date:   Fri, 26 May 2023 01:39:45 +0200
+        with ESMTP id S230099AbjEZAEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 20:04:44 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A40199C;
+        Thu, 25 May 2023 17:04:42 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34PNsGSO016759;
+        Thu, 25 May 2023 19:04:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type;
+ s=PODMain02222019; bh=jTAjC6w0E17uXA85LdmOi45eFKPWHp+38y4g2iSpRbI=;
+ b=AU6Y79geaGg5Yvu+0Jq8EYuHNyypmkff5CSfpRdViBtqIMmrfZTwyybbZnqg6BjtZBpC
+ B/o3BgO8yqExeq/l36iNVOjHbjXSabXpcWY5trJ7iNMyhHA50VooPgiPyyL+hbnFWjqj
+ VfZMeN1/9oiQCqZ4N7fSZ+iS0YYrtj8O1kNdsfiC/VTt8B9m5/6ZNgluai4zFwl0/6Mp
+ FKwl8RM8EzNI0xYZaBMeYD4np2d053FYd3QGDsBTSYX8Hr+v7MYESfIwFonWBFLyoCuT
+ L+Hf5PdjYJiCA+qn6UVV6F+bXE1gcy5ijSv8oHbHMaQpiM5RnhS/lwfCQZ7Dkos7n9u/ 2g== 
+Received: from ausex01.ad.cirrus.com ([141.131.3.19])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3qptmm7qhn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 25 May 2023 19:04:36 -0500
+Received: from ausex02.ad.cirrus.com (141.131.37.96) by ausex01.ad.cirrus.com
+ (141.131.37.95) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Thu, 25 May
+ 2023 19:04:35 -0500
+Received: from ftrev.crystal.cirrus.com (141.131.38.212) by
+ anon-ausex02.ad.cirrus.com (141.131.37.96) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 25 May 2023 19:04:35 -0500
+From:   Fred Treven <fred.treven@cirrus.com>
+To:     Fred Treven <fred.treven@cirrus.com>,
+        Ben Bright <ben.bright@cirrus.com>,
+        James Ogletree <james.ogletree@cirrus.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Simon Trimmer <simont@opensource.cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        <patches@opensource.cirrus.com>, <linux-input@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <lee@kernel.org>
+Subject: [PATCH v2 1/5] dt-bindings: input: cirrus,cs40l26: Support for CS40L26
+Date:   Thu, 25 May 2023 19:04:27 -0500
+Message-ID: <1685059471-9598-1-git-send-email-fred.treven@cirrus.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 8/8] arm64: dts: qcom: msm8916-pm8916: Mark always-on
- regulators
-Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230510-msm8916-regulators-v1-0-54d4960a05fc@gerhold.net>
- <20230510-msm8916-regulators-v1-8-54d4960a05fc@gerhold.net>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230510-msm8916-regulators-v1-8-54d4960a05fc@gerhold.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: SfDZn0Lm3-5hMH6U450QRAmUFsbFaJpk
+X-Proofpoint-GUID: SfDZn0Lm3-5hMH6U450QRAmUFsbFaJpk
+X-Proofpoint-Spam-Reason: orgsafe
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Introduce required basic devicetree parameters for the
+initial commit of CS40L26.
 
+Signed-off-by: Fred Treven <fred.treven@cirrus.com>
+---
+ .../devicetree/bindings/input/cirrus,cs40l26.yaml  | 102 +++++++++++++++++++++
+ MAINTAINERS                                        |  10 ++
+ 2 files changed, 112 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/cirrus,cs40l26.yaml
 
-On 17.05.2023 20:48, Stephan Gerhold wrote:
-> Some of the regulators must be always-on to ensure correct operation of
-> the system, e.g. PM8916 L2 for the LPDDR RAM, L5 for most digital I/O
-> and L7 for the CPU PLL (strictly speaking the CPU PLL might only need
-> an active-only vote but this is not supported for regulators in
-> mainline currently).
-Would you be interested in implementing this?
+diff --git a/Documentation/devicetree/bindings/input/cirrus,cs40l26.yaml b/Documentation/devicetree/bindings/input/cirrus,cs40l26.yaml
+new file mode 100644
+index 000000000000..9cbc964ebded
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/cirrus,cs40l26.yaml
+@@ -0,0 +1,102 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/cirrus,cs40l26.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cirrus Logic CS40L26 Boosted Haptic Amplifier
++
++maintainers:
++  - Fred Treven <fred.treven@cirrus.com>
++
++description:
++  CS40L26 is a Boosted Haptic Driver with Integrated DSP and Waveform Memory
++  with Advanced Closed Loop Algorithms and LRA protection
++
++properties:
++  compatible:
++    enum:
++      - cirrus,cs40l26a
++      - cirrus,cs40l26b
++      - cirrus,cs40l27a
++      - cirrus,cs40l27b
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++
++  VA-supply:
++    description: Regulator for VA analog voltage
++
++  VP-supply:
++    description: Regulator for VP peak voltage
++
++  cirrus,bst-ipk-microamp:
++    description:
++      Maximum amount of current that can be drawn by the device's boost converter.
++    multipleOf: 50000
++    minimum: 1600000
++    maximum: 4800000
++    default: 4500000
++
++  cirrus,bst-ctl-microvolt:
++    description: Maximum target voltage to which DSP may increase the VBST supply.
++    multipleOf: 50000
++    minimum: 2550000
++    maximum: 11000000
++    default: 11000000
++
++  cirrus,bst-exploratory-mode-disable:
++    description:
++      Disable boost exploratory mode.
++
++      In exploratory mode the analog maximum peak current limit of 4.5 A
++      (tolerance of + 160 mA) will be applied. This is required for the
++      device to successfully detect a boost inductor short.
++
++      Boost exploratory mode allows the device to overshoot the set boost peak
++      current limit (i.e. if current peak limit is set to 2.5 A to protect the
++      battery inductor, the current limit will be opened up to 4.5 A for
++      several milliseconds at boost startup).
++      This has potential to damage the boost inductor.
++
++      Disabling this mode will prevent this from happening; it will also
++      prevent the device from detecting boost inductor short errors.
++    type: boolean
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - reset-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/input/input.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      cs40l26@58 {
++        compatible = "cirrus,cs40l26a";
++        reg = <0x58>;
++        interrupt-parent = <&gpio>;
++        interrupts = <57 IRQ_TYPE_LEVEL_LOW>;
++        reset-gpios = <&gpio 54 GPIO_ACTIVE_LOW>;
++        VA-supply = <&dummy_vreg>;
++        VP-supply = <&dummy_vreg>;
++        cirrus,bst-ctl-microvolt = <2600000>;
++        cirrus,bst-ipk-microamp = <1650000>;
++        cirrus,bst-exploratory-mode-disable;
++      };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 2b073facf399..d72ed4957b0b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -4926,6 +4926,16 @@ L:	netdev@vger.kernel.org
+ S:	Maintained
+ F:	drivers/net/ethernet/cirrus/ep93xx_eth.c
+ 
++CIRRUS LOGIC HAPTICS DRIVER
++M:	Fred Treven <fred.treven@cirrus.com>
++M:	Ben Bright <ben.bright@cirrus.com>
++M:	James Ogletree <james.ogletree@cirrus.com>
++L:	patches@opensource.cirrus.com
++S:	Supported
++W:	https://github.com/CirrusLogic/linux-drivers/wiki
++T:	git https://github.com/CirrusLogic/linux-drivers.git
++F:	Documentation/devicetree/bindings/input/cirrus,cs40l26.yaml
++
+ CIRRUS LOGIC LOCHNAGAR DRIVER
+ M:	Charles Keepax <ckeepax@opensource.cirrus.com>
+ M:	Richard Fitzgerald <rf@opensource.cirrus.com>
+-- 
+2.7.4
 
-Ancient downstream defines a second device (vregname_ao) and basically
-seems to select QCOM_SMD_(ACTIVE/SLEEP)_STATE based on that..
-
-Looks like `struct regulator` stores voltage in an array that wouldn't
-you know it, depends on the PM state. Perhaps that could be something
-to explore!
-
-Konrad
-
-> 
-> The RPM firmware seems to enforce that internally, these supplies stay
-> on even if we vote for them to power off (and there is no other
-> processor running). This means it's pointless to keep sending
-> enable/disable requests because they will just be ignored.
-> Also, drivers are much more likely to get a wrong impression of the
-> regulator status, because regulator_is_enabled() will return false when
-> there are no users, even though the regulator is always on.
-> 
-> Describe this properly by marking the regulators as always-on.
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
->  arch/arm64/boot/dts/qcom/apq8016-sbc.dts     | 5 -----
->  arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi | 5 +++++
->  2 files changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-> index ab8dfd858025..1c5d55854893 100644
-> --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-> +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-> @@ -358,11 +358,6 @@ pm8916_l17: l17 {
->  	};
->  };
->  
-> -&pm8916_s4 {
-> -	regulator-always-on;
-> -	regulator-boot-on;
-> -};
-> -
->  &sdhc_1 {
->  	status = "okay";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi
-> index b38eecbd6253..64d7228bee07 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi
-> @@ -72,11 +72,13 @@ pm8916_rpm_regulators: regulators {
->  		pm8916_s3: s3 {
->  			regulator-min-microvolt = <1250000>;
->  			regulator-max-microvolt = <1350000>;
-> +			regulator-always-on; /* Needed for L2 */
->  		};
->  
->  		pm8916_s4: s4 {
->  			regulator-min-microvolt = <1850000>;
->  			regulator-max-microvolt = <2150000>;
-> +			regulator-always-on; /* Needed for L5/L7 */
->  		};
->  
->  		/*
-> @@ -93,6 +95,7 @@ pm8916_s4: s4 {
->  		pm8916_l2: l2 {
->  			regulator-min-microvolt = <1200000>;
->  			regulator-max-microvolt = <1200000>;
-> +			regulator-always-on; /* Needed for LPDDR RAM */
->  		};
->  
->  		/* pm8916_l3 is managed by rpmpd (MSM8916_VDDMX) */
-> @@ -102,6 +105,7 @@ pm8916_l2: l2 {
->  		pm8916_l5: l5 {
->  			regulator-min-microvolt = <1800000>;
->  			regulator-max-microvolt = <1800000>;
-> +			regulator-always-on; /* Needed for most digital I/O */
->  		};
->  
->  		pm8916_l6: l6 {
-> @@ -112,6 +116,7 @@ pm8916_l6: l6 {
->  		pm8916_l7: l7 {
->  			regulator-min-microvolt = <1800000>;
->  			regulator-max-microvolt = <1800000>;
-> +			regulator-always-on; /* Needed for CPU PLL */
->  		};
->  
->  		pm8916_l8: l8 {
-> 
