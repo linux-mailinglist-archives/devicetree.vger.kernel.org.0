@@ -2,96 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CD22711FAD
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 08:15:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82362711FD1
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 08:23:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236059AbjEZGO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 02:14:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55872 "EHLO
+        id S236673AbjEZGXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 02:23:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242039AbjEZGO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 02:14:58 -0400
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5869812E
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 23:14:57 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id ca18e2360f4ac-7748d634a70so44973339f.2
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 23:14:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1685081696; x=1687673696;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qi7D9mvtZvdngBJp97OBVBXhgpmVbWBZr97BGMtinqs=;
-        b=QbEACKO6ccH3MPiTtpcel0oqQM6z5K91a36oAP+s6lVgt9JS7k2R2rLNudgD+8vzS0
-         BL5tb90LqLRnR6QuqaSdn1pBpJqkYmBIYyQZVZMQf3KFXS64EY11ECCD5ix9XOmnyxIx
-         mFJCF0niwZqWQOuQ+5gzcDnmOL+5ZwlFpqu6E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685081696; x=1687673696;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qi7D9mvtZvdngBJp97OBVBXhgpmVbWBZr97BGMtinqs=;
-        b=T3I3MC0mj+28RuMCDKcl4FZGWDZSI2+6L3qYc9phEbOq7P6weK8w4ngPfK8jGpLkED
-         Vs2kqa528boW3liafp1gNXUj4WNLrExxjDsheBvmGT3Y8bD5wMiOFWphs0YWyL/45QEz
-         PzXT/f1/PFx5kvhWwvWPMXbQfkXU40mWcRFTKoB6xYdiuN/swSrMSi3/iftgwsxfGl9i
-         uoBHot48DfAWKCjI27PZNx2NiLj7wiSjjOVnyw1F8hYt0Ki+zQ7NNzkg49XHr9ob39GE
-         cCaKuH4no3oYkMs2Faun0bg8L8ulCebAKcQFj/F+LZFBa/Gz8uy6WPdHOlSOXAIi0Q1o
-         Qlsg==
-X-Gm-Message-State: AC+VfDwxlRwymdlmQ3qxnZkI7LuFpEGw3RKXllbn9iVxB/iyVAJSjJlX
-        uJFYjp3TsbY44p84wC0jz2JpGHdX0mHtujwGiu6Oeg==
-X-Google-Smtp-Source: ACHHUZ5FwfBds24ldh80wDy8EcOs+yRHNoW67/ghdIa4MVk9kkBlHtdpjIo0Co/rJ7v/ARevPx/+p9aV+PcNPIWm6O8=
-X-Received: by 2002:a92:c00d:0:b0:331:1f0e:79b7 with SMTP id
- q13-20020a92c00d000000b003311f0e79b7mr822785ild.3.1685081696748; Thu, 25 May
- 2023 23:14:56 -0700 (PDT)
+        with ESMTP id S230058AbjEZGXv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 02:23:51 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3D2F125;
+        Thu, 25 May 2023 23:23:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685082230; x=1716618230;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PkiUpbEtrpSgSrT760mu2pOdE426KTPZd6Y2xw/xBkg=;
+  b=NAlQ8mgXYXePT4WYcRqGkPJ2FI0gVGZ0iibYeCZrSJeIQzKZhdp+9mW3
+   V4scJJDVNbRWatNX52hvhz38lmGW1AaHuwqiEjfUqQdVabjYWHou/0DKP
+   Mbp50D8G4fQjEKkuJuLQSYhmeOl4QbTJmcMl3PlsL0l22o09Il5I7srJv
+   kXOG7RUUtmBoi8EH4RteVaxOvz3VlkblOoQ8apCshQaGRH5RfeXW+rqln
+   rNiEWSzPMn1sqp2au/0jwPwAbCh4P6SQWAHGub/esf7HL2RhV5t8EweL6
+   KVasuu4g6ggwJabXn05M6CudnvhYsj1RCKxnwyXeu/QrIhwuz8O4c0xN/
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,193,1681196400"; 
+   d="asc'?scan'208";a="154045927"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 May 2023 23:23:49 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 25 May 2023 23:23:49 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 25 May 2023 23:23:47 -0700
+Date:   Fri, 26 May 2023 07:23:24 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     <Claudiu.Beznea@microchip.com>
+CC:     <conor@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <daniel.lezcano@linaro.org>, <tglx@linutronix.de>,
+        <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <sebastian.reichel@collabora.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>
+Subject: Re: [PATCH 3/5] dt-bindings: timer: microchip,sam9x60-pit64b:
+ convert to yaml
+Message-ID: <20230526-knickers-aim-e01220e6a7cd@wendy>
+References: <20230525125602.640855-1-claudiu.beznea@microchip.com>
+ <20230525125602.640855-4-claudiu.beznea@microchip.com>
+ <20230525-straw-fidgeting-4c1099aa16fe@spud>
+ <5edf3d3b-6f59-0af3-6414-940a278962bf@microchip.com>
 MIME-Version: 1.0
-References: <20230417123956.926266-1-treapking@chromium.org> <CAD=FV=VoC2gK5MtBU9qhVxJwRRUGBMLT96UH7F+QKcmGEYo_sQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=VoC2gK5MtBU9qhVxJwRRUGBMLT96UH7F+QKcmGEYo_sQ@mail.gmail.com>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Fri, 26 May 2023 14:14:45 +0800
-Message-ID: <CAEXTbpeGm4wt_FFGDawfxKo9L4dvFw++=WiiucWcaR39VFPfvQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mt8173: Power on panel regulator on boot
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Doug Anderson <dianders@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="/HQ42Kwig12uCxHh"
+Content-Disposition: inline
+In-Reply-To: <5edf3d3b-6f59-0af3-6414-940a278962bf@microchip.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Friendly ping on this patch.
+--/HQ42Kwig12uCxHh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Pin-yen
+Hey Claudiu,
 
-On Mon, Apr 17, 2023 at 9:32=E2=80=AFPM Doug Anderson <dianders@chromium.or=
-g> wrote:
->
-> Hi,
->
-> On Mon, Apr 17, 2023 at 5:40=E2=80=AFAM Pin-yen Lin <treapking@chromium.o=
-rg> wrote:
-> >
-> > Add "regulator-boot-on" to "panel_fixed_3v3" to save time on powering
-> > the regulator during boot.  Also add "off-on-delay-us" to the node to
-> > make sure the regulator never violates the panel timing requirements.
-> >
-> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> >
-> > ---
-> >
-> >  arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 2 ++
-> >  1 file changed, 2 insertions(+)
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+On Fri, May 26, 2023 at 04:47:28AM +0000, Claudiu.Beznea@microchip.com wrot=
+e:
+> On 25.05.2023 20:14, Conor Dooley wrote:
+> >> Convert Microchip PIT64B to YAML. Along with it clock-names binding has
+> >> been added as the driver needs it to get PIT64B clocks.
+> > I don't think both of these PIT things need to have different binding
+> > files. 90% of it is the same, just the clock-names/number - so you can
+>=20
+> But these are different hardware blocks with different functionalities and
+> different drivers.
+
+Having different drivers doesn't preclude having them in the same
+binding provided the function/description etc are more or less
+identical. I was confused by:
+
++description:
++  The 64-bit periodic interval timer provides the operating system schedul=
+er
++  interrupt. It is designed to offer maximum accuracy and efficient manage=
+ment,
++  even for systems with long response times.
+
++description:
++  Atmel periodic interval timer provides the operating system=E2=80=99s sc=
+heduler
++  interrupt. It is designed to offer maximum accuracy and efficient manage=
+ment,
++  even for systems with long response time.
+
+Those seemed like they do the same thing to me!
+
+Cheers,
+Conor
+
+>=20
+> > combine the two into one file with an
+>=20
+
+--/HQ42Kwig12uCxHh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHBQXAAKCRB4tDGHoIJi
+0k0HAP4xl941rIgtYkOPgtuhLrM9Ru4hF5dv2W41bdPW1crkuwEAihbwcVZ/e3bx
+CQbjq4bx5WilTAiRH7n/bkxRmjRe4QA=
+=xmcQ
+-----END PGP SIGNATURE-----
+
+--/HQ42Kwig12uCxHh--
