@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38E61712C3A
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 20:12:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 032C7712C5A
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 20:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229964AbjEZSL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 14:11:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33136 "EHLO
+        id S235984AbjEZSTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 14:19:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbjEZSL5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 14:11:57 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B37B189;
-        Fri, 26 May 2023 11:11:55 -0700 (PDT)
-Received: from [192.168.1.90] (unknown [188.27.34.213])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S236757AbjEZSTP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 14:19:15 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E76B1FB;
+        Fri, 26 May 2023 11:19:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D2CE16602338;
-        Fri, 26 May 2023 19:11:52 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685124713;
-        bh=5Vp0v9CQLgFPufyyf5L+TVgF51WKnOgrP8cqPyMHWyw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=PNXyJBIaI3wNOlNxvKig3Nns9gBXhDCdLGhkEmjiFdPPoMO4CmGS3ZXP6elNmMnSM
-         FBmzApVAKsvs1x8/kOWvEXfa5KNUYMmPh/PufmYGe+VGUA9yxNsQtPsV5kC4euP6vL
-         JMMSZa5ZaG2pye7g1wfIkffFAc4gvY/ts10Zso449C/OgpFh4TZHtQdXCQL31GIcsN
-         50CnWrHV2YdS7H5H6fYSRLTBjQGpJkgnc0h+iXMQS7RXZEcgLq7R5OXFWL1S2Bcbu2
-         0GTxa09nFJwItjotmi3xjGeDYkA6ckvWew7739V2zIcjbj+PM5EeW7wvKzNXVnbPKp
-         bqB/KdMupOOuQ==
-Message-ID: <3c6b67a4-4892-0057-3dfc-65ed6c7ebc37@collabora.com>
-Date:   Fri, 26 May 2023 21:11:49 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/3] ASoC: es8316: Increment max value for ALC Capture
- Target Volume control
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6441161588;
+        Fri, 26 May 2023 18:19:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DE9FC433D2;
+        Fri, 26 May 2023 18:19:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685125147;
+        bh=iWTupr1RxpV4vIPt/ZAUtU54RGJZjODu58DWxohFxF8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WGIkrYggkNXxT9HCucqw/zuaBIY/yRJdkLeXDCe2fApFISALs0AlR5c6Q0zin58ix
+         GorROAmfOvUUaK9QDw0MQG6e+x+/pZXP1ZNhplOPHcfc4WhVn0ZItHYLFuQsU4WcdS
+         7tf0XIVH/8AA4SluLBQ9yZf7xwN8vFFYi0m46YnAWN8w8oMk+aBXqdj82+VxzOOhjW
+         ARnDW7QzbCARXsVAMY3YozTx0XPwYaz6SJed35/mc9wYnzjUkuUJhtqcr8qSyDncRK
+         /UNfnnAuqPkxgV1ONsOyb1I/v/8YTJY3aEKDZwrf8heRuRDdKU+3MQhWWbr1OxEmG0
+         S49mviDESg0cw==
+Date:   Fri, 26 May 2023 19:19:01 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, aford@beaconembedded.com,
+        Inki Dae <inki.dae@samsung.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Zhu Ning <zhuning0077@gmail.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        David Yang <yangxiaohua@everest-semi.com>,
-        Daniel Drake <drake@endlessm.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, kernel@collabora.com
-References: <20230524074156.147387-1-cristian.ciocaltea@collabora.com>
- <20230524074156.147387-2-cristian.ciocaltea@collabora.com>
- <5dbcbf84-602a-44de-ad99-268d4d5b4b2f@sirena.org.uk>
- <cfa23203-1626-440b-ec27-efe56cb297d2@collabora.com>
- <01fd1a9f-56c7-4864-bb2b-8b004284c8cc@sirena.org.uk>
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <01fd1a9f-56c7-4864-bb2b-8b004284c8cc@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V8 7/7] dt-bindings: bridge: samsung-dsim: Make some
+ flags optional
+Message-ID: <20230526-cabana-humble-81e44944e378@spud>
+References: <20230526030559.326566-1-aford173@gmail.com>
+ <20230526030559.326566-8-aford173@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="dANPMZjV8RyI/U9e"
+Content-Disposition: inline
+In-Reply-To: <20230526030559.326566-8-aford173@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,40 +71,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/24/23 16:59, Mark Brown wrote:
-> On Wed, May 24, 2023 at 04:49:37PM +0300, Cristian Ciocaltea wrote:
->> On 5/24/23 13:30, Mark Brown wrote:
-> 
->>> Presumably you can check the effects of changing the value?  It seems
->>> plausible that what's written in the code might be accurate and the
->>> higher values might actually change the gain but it'd be better to
->>> check.
-> 
->> I haven't noticed a (measurable) change in gain when switching between
->> 10 and 11, but my testing equipment is also not that great. Will try to
->> improve the tests accuracy.
-> 
-> I'd expect it should be really obvious with a scope if you've got one?
-> Testing with something consistent like a sine wave (eg, from
-> speaker-test) should also make a 1.5dB difference noticable enough to
-> check if there's at least a volume change by ear even if you can't
-> specifically quantify it.
 
-Luckily arecord & aplay provide VU meter support (via -V,
---vumeter=TYPE'), so I could easily verify this without using any
-additional tools:
+--dANPMZjV8RyI/U9e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- Volume  |  VU meter
----------+----------
--6.0 dB  |  30-31 %
--4.5 dB  |  35-36 %
--3.0 dB  |  42-43 %
--1.5 dB  |  50-51 %
--0.0 dB  |  50-51 %
+Adam, Neil,
 
-So it seems the specs are correct, and the problem is the hardware default.
+I meant to get to this earlier today, but broken CI got in the way...
 
-Is there a better approach to handle this than extending the volume range?
+On Thu, May 25, 2023 at 10:05:59PM -0500, Adam Ford wrote:
+> In the event a device is connected to the samsung-dsim
+> controller that doesn't support the burst-clock, the
+> driver is able to get the requested pixel clock from the
+> attached device or bridge.  In these instances, the
+> samsung,burst-clock-frequency isn't needed, so remove
+> it from the required list.
+>=20
+> The pll-clock frequency can be set by the device tree entry
+> for samsung,pll-clock-frequency, but in some cases, the
+> pll-clock may have the same clock rate as sclk_mipi clock.
+> If they are equal, this flag is not needed since the driver
+> will use the sclk_mipi rate as a fallback.
+>=20
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
+>  .../bindings/display/bridge/samsung,mipi-dsim.yaml       | 9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mip=
+i-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi=
+-dsim.yaml
+> index 9f61ebdfefa8..360fea81f4b6 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.=
+yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.=
+yaml
+> @@ -70,7 +70,9 @@ properties:
+>    samsung,burst-clock-frequency:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description:
+> -      DSIM high speed burst mode frequency.
+> +      DSIM high speed burst mode frequency when connected to devices
+> +      that support burst mode. If absent, the driver will use the pixel
+> +      clock from the attached device or bridge.
 
-Regards,
-Cristian
+I'd rather this description did not say anything about drivers.
+How about:
+	If absent, the pixel clock from the attached device or bridge
+	will be used instead.
+Or perhaps "must be used"? Ditto below.
+
+Description aside, the removal seems to be backwards compatible - but
+can every device that this binding supports work using an "attached
+device or bridge", or are these properties going to be required for
+certain compatibles?
+
+Thanks,
+Conor.
+
+> =20
+>    samsung,esc-clock-frequency:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> @@ -80,7 +82,8 @@ properties:
+>    samsung,pll-clock-frequency:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description:
+> -      DSIM oscillator clock frequency.
+> +      DSIM oscillator clock frequency. If absent, the driver will
+> +      use the clock frequency of sclk_mipi.
+> =20
+>    phys:
+>      maxItems: 1
+> @@ -134,9 +137,7 @@ required:
+>    - compatible
+>    - interrupts
+>    - reg
+> -  - samsung,burst-clock-frequency
+>    - samsung,esc-clock-frequency
+> -  - samsung,pll-clock-frequency
+> =20
+>  allOf:
+>    - $ref: ../dsi-controller.yaml#
+> --=20
+> 2.39.2
+>=20
+
+--dANPMZjV8RyI/U9e
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHD4FQAKCRB4tDGHoIJi
+0tYNAQDOkEixUeeyrFahX06EBS7hYeU4dVKxnVYnC2Guj0CYKQEAqJ0Qks0YA8fe
+8RSG3iPNYY+62RvcYgVkKLqTkKnInQs=
+=MdMH
+-----END PGP SIGNATURE-----
+
+--dANPMZjV8RyI/U9e--
