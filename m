@@ -2,180 +2,310 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB4DD711F40
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 07:37:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 299CE711F6D
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 07:56:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233008AbjEZFhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 01:37:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44002 "EHLO
+        id S232211AbjEZF4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 01:56:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229790AbjEZFhK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 01:37:10 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F008194
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 22:37:07 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f6042d610fso3849645e9.1
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 22:37:07 -0700 (PDT)
+        with ESMTP id S229479AbjEZF4u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 01:56:50 -0400
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A3B4E7
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 22:56:49 -0700 (PDT)
+Received: by mail-qv1-xf2a.google.com with SMTP id 6a1803df08f44-623852980dfso3587956d6.0
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 22:56:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685079425; x=1687671425;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ia3v36xyxfeQr6pILyLNKr3HLDKWkSOuXI6pXCcmms8=;
-        b=kucb3530+RUZHNakYlOYNSOANPpXsGweBVE/tmqX8I+1/Rdnb1u8jALqxnNjj+PoX9
-         KqEWuQDqt/vt47WKgLZbCH3gIvMQgJ9w7FwfgWRmvZlHVtX31kCW5E9jbvvPpNA7yJur
-         1yxQZtVJYcPcEWDNpZkIeiWmWW4qmkp1RNc/wlRJlVXUzGSOEzIf4RX96bD6ibct+dGy
-         Yud2wd3Q6RVs31CY1UIxg1Cy1SN/W7H8pEF9nqcsvs9/wHhTrDANN3h3hSR82LO0Vy+f
-         /msz0UmVNXSvofffMaYcvFW8A7slw84RiipIVuBt4IioivW6kH2xdrPjzTE/l9Q67qHs
-         HfTQ==
+        d=broadcom.com; s=google; t=1685080608; x=1687672608;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:from:to:cc:subject:date:message-id:reply-to;
+        bh=tgXESvvpBdKfPykD1OIAH+2kHSLLh3i8sS02spinTlU=;
+        b=fJxx57TlNlWjJn+T/e88NSrjkoqniogo3I0rgINUA9fqZT+Kmz3/5fDOK+HAmAqfqa
+         WMIvEf2mEXrCx/ikk5z4L3FhetP3ic5q21X3h0fMSpyQr1D+eu9Av65DM3Cjr6Tu5+DV
+         Voo7/8EPx1pN9xz9r+nASVmwq648XUoJSd9DU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685079425; x=1687671425;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1685080608; x=1687672608;
+        h=in-reply-to:mime-version:user-agent:date:message-id:from:references
+         :cc:to:subject:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ia3v36xyxfeQr6pILyLNKr3HLDKWkSOuXI6pXCcmms8=;
-        b=TeegmaATUrysVTuHxd7QYK9pmuUxIx/vKr87Apc5HrsJY+F2DgS0Hs1ezT/ffJiYEx
-         DtStMqbiHA6avsQy9718p9h4Q16XhdANbu0M2WKYr7d/y7YL/MERP4liQ3s6ME+561k8
-         4P+clBfTb5+IiehozOpRh4vuPZiPsXOVT/om+uxO/Opap7ju/fYBKekvYjnYvlZuNx0K
-         0G4sWSt55Qh1Y8k6wVtiaZS6YihoEsPk8ejz7P8+e31cbfV1xtuYJjCR5nZzlNGI40sV
-         7VK3NxW3lA0Tp8gfPFF2eZ6YwpTyqwUG4SUkUko2pQavgQ/jQq+TtnciX0d2KSogfCDL
-         gTSA==
-X-Gm-Message-State: AC+VfDwSZQs3Tah68nLLOiJZWtnUsjmN0z281AJI+bJzOGYkK1tBJQqc
-        HRyuj70iyAr/BF1zn7tfINnPXdvemo3BBc75omM=
-X-Google-Smtp-Source: ACHHUZ4VDHwDx1+fbg+8sv7LJMh4u+NScozxoFmaJKEhbzXLrM9hzN36CzLmtOZqp62PGO2/8cJeGw==
-X-Received: by 2002:a1c:7918:0:b0:3f1:98bd:acec with SMTP id l24-20020a1c7918000000b003f198bdacecmr423621wme.11.1685079425585;
-        Thu, 25 May 2023 22:37:05 -0700 (PDT)
-Received: from localhost ([102.36.222.112])
-        by smtp.gmail.com with ESMTPSA id y12-20020a1c4b0c000000b003f4290720d0sm7503569wma.47.2023.05.25.22.37.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 May 2023 22:37:04 -0700 (PDT)
-Date:   Fri, 26 May 2023 08:37:00 +0300
-From:   Dan Carpenter <dan.carpenter@linaro.org>
-To:     oe-kbuild@lists.linux.dev,
-        Thippeswamy Havalige <thippeswamy.havalige@amd.com>,
-        krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, bhelgaas@google.com
-Cc:     lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-        lorenzo.pieralisi@arm.com, linux-arm-kernel@lists.infradead.org,
-        bharat.kumar.gogada@amd.com, michals@amd.com,
-        nagaradhesh.yeleswarapu@amd.com,
-        Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Subject: Re: [PATCH v3 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
-Message-ID: <af5890b4-f084-48ad-adc2-3a664788f63e@kili.mountain>
+        bh=tgXESvvpBdKfPykD1OIAH+2kHSLLh3i8sS02spinTlU=;
+        b=Ub2geyac0QJJK18s0VkYTP+Pe/NSLTrMNkNjuvdDjGEKktxxZG6ZAhkiD3a+j5gAqT
+         /2xUs9oXr1fa3Hj5JzIhWi33e42Ep3qN0JRQd5qSez2amO6MqQmNKfgnSynTru4fnmND
+         LPEfTDwN92+eVFyyQBphOF0GwqbEBTk7pUyqa5FPnImxYwfLCCMwOyHZ3mPMyCSddgY9
+         jc+VfW7wDUEdTsNubzfiVjqUzUoU+D+XFPKa8KwJG7JsJexfkkegAaX9qCjkNht3+ZPx
+         mnjPuDK5vCDl4cfxse2T82IgD1s3AI+XjHmO8jwb2s0IlcHV7DgFSE+aKihhrQxk7YUJ
+         5xXA==
+X-Gm-Message-State: AC+VfDwqW905tIgwX48ej4AqfqAM42fs/zkCBzcjXB9m/zC4+uuc7BoJ
+        E8A15CBMmdjhfTAJ4qavU5hH9w==
+X-Google-Smtp-Source: ACHHUZ5aRUOapKQTIHnn28eRFWQCc52hzwhT8+n+QDGemkZA3kUbXyd7Wbz9emBYmeel93N56vRCwQ==
+X-Received: by 2002:a05:6214:19cd:b0:623:9f35:edd5 with SMTP id j13-20020a05621419cd00b006239f35edd5mr885875qvc.42.1685080608263;
+        Thu, 25 May 2023 22:56:48 -0700 (PDT)
+Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id a2-20020a0ce342000000b006238888dbffsm961108qvm.139.2023.05.25.22.56.46
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 25 May 2023 22:56:47 -0700 (PDT)
+Subject: Re: dt_binding_check report false alarm?
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        f.fainelli@gmail.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20230525050241.3700-1-william.zhang@broadcom.com>
+ <20230525-wrench-lushness-f9a1ad022798@wendy>
+ <00604ffd-ccb3-e640-5457-1fa1ed663d26@broadcom.com>
+ <20230525-unlearned-trusting-1ed0cf6a6364@spud>
+ <c7fe5781-5213-8a39-f7f7-a1f5e94249cd@broadcom.com>
+ <20230525-mating-mutt-36a506094d38@spud>
+From:   William Zhang <william.zhang@broadcom.com>
+Message-ID: <58dbfc50-45ac-389d-10aa-740aee150b16@broadcom.com>
+Date:   Thu, 25 May 2023 22:56:45 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230519105901.2399452-4-thippeswamy.havalige@amd.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230525-mating-mutt-36a506094d38@spud>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="00000000000018e3b705fc9267bd"
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Thippeswamy,
+--00000000000018e3b705fc9267bd
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-kernel test robot noticed the following build warnings:
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thippeswamy-Havalige/Move-and-rename-error-interrupt-bits-to-a-common-header/20230519-190203
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20230519105901.2399452-4-thippeswamy.havalige%40amd.com
-patch subject: [PATCH v3 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
-config: loongarch-randconfig-m041-20230521
-compiler: loongarch64-linux-gcc (GCC) 12.1.0
+On 05/25/2023 11:12 AM, Conor Dooley wrote:
+> On Thu, May 25, 2023 at 10:10:46AM -0700, William Zhang wrote:
+>>
+>>
+>> On 05/25/2023 08:33 AM, Conor Dooley wrote:
+>>> On Thu, May 25, 2023 at 08:23:30AM -0700, William Zhang wrote:
+>>>> Sorry for the multiple emails. Our mail relay server was not working
+>>>> properly.
+>>>
+>>> I only got one /shrug
+>>>
+>> That's good.  Maybe it only flushed queued email to internal email accounts.
+>>
+>>>> On 05/25/2023 06:23 AM, Conor Dooley wrote:
+>>>>> Hey William,
+>>>>>
+>>>>> On Wed, May 24, 2023 at 10:02:41PM -0700, William Zhang wrote:
+>>>>>> Hi,
+>>>>>>
+>>>>>> It seems dt_binding_check reports a false error when run on this
+>>>>>> modified yaml. I picked this simple file just to demostrate this issue.
+>>>>>> Basically I made the interrupts and interrupt-names as optional
+>>>>>> properties. But when there are two interrupts present, then
+>>>>>> interrupt-names are required.  However in the example, I don't define
+>>>>>> interrupts and interrupt-name at all, the dt binding check reports error
+>>>>>> that interrupt-names are required:
+>>>>>
+>>>>> Rob and Krzysztof would know more than me, but since they're not
+>>>>> around...
+>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml b/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+>>>>>> index 563a31605d2b..c37a3a64a78c 100644
+>>>>>> --- a/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/crypto/fsl-imx-scc.yaml
+>>>>>> @@ -32,11 +32,18 @@ properties:
+>>>>>>       clock-names:
+>>>>>>         const: ipg
+>>>>>> +allOf:
+>>>>>> +  - if:
+>>>>>> +      properties:
+>>>>>> +        interrupts:
+>>>>>> +          minItems: 2
+>>>>>
+>>>>> ...I don't think you can actually do this and "minItems: 2" will always
+>>>>> evaluate to true because it is an assignment. Don't hold me to that
+>>>>> though! The standard pattern here is to do:
+>>>>> allOf:
+>>>>>      - if:
+>>>>>          properties:
+>>>>>            compatible:
+>>>>>              contains:
+>>>>>                const: foo
+>>>>>        then:
+>>>>>          required:
+>>>>>            - interrupt-names
+> 
+>>>> Our device can use one or two interrupt, or choose to not use interrupt at
+>>>> all(polling mode). Interrupt names is only required when there are two
+>>>> interrupts(so the driver code can tell which is which).  So I will need to
+>>>> check if it contains two interrupts. My check does work if I have two
+>>>> interrupt but don't have interrupt name, the check catches the error.  If I
+>>>> have one interrupt without interrupt name, the check pass. Only when I does
+>>>> not have interrupt and interrupt name,  it falsely report error.  Looks to
+>>>> me that it does not treat minItem = 0 case properly.
+>>>
+>>> Right. I would not bother with the "only interrupt-names when 2
+>>> interrupts" stuff & do the simple thing of always making it required
+>>> when you have interrupts.
+>>> Then you can use allOf and oneOf to allow for both schemes for the new
+>>> device and keep enforcement of 2 items for the existing one.
+> 
+>> I agree it is better to keep it simple. Sorry I am still new to yaml but
+>> what is the best way to check if interrupt property exist?  What I can think
+>> of is similar
+>>
+>>   - if:
+>>        properties:
+>>          interrupts:
+>>            minItems: 1
+>>      then:
+>>        required:
+>>          - interrupt-names
+>>
+>> But this still reports the same error when there is no interrupt.
+> 
+> Yeah, you don't need to do something like that.
+> It's hard to say exactly without your actual patch, but I think you're
+> over complicating things :)
+> What you seem to want to do (from where I am sitting) is something like:
+> 	dependencies:
+> 	  interrupts: interrupt-names
+> 
+> and not put interrupts/interrupt-names in the required bit.
+> That way, if you have interrupts, you need to have interrupt-names too
+> but you can have neither.
+> 
+> But yeah, without something resembling the "real" patch, rather than
+> hacking at the fsl one, it is kinda hard to say.
+> 
+> Cheers,
+> Conor.
+> 
+> 
+Yeah this dependencies rule works and it is much simple. Just need to 
+add the bracket around the interrupt-names to make it work:
+   dependencies:
+     interrupts: [interrupt-names]
+Do we have any document list all these supported keywords/rules/syntax 
+for yaml dts?
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <error27@gmail.com>
-| Closes: https://lore.kernel.org/r/202305261250.2cs1phTS-lkp@intel.com/
+My file is actually brcm,brcmnand.yaml but it is little bit complicated 
+to demonstrate the issue so just randomly pick this simple one.  Thanks 
+Conor, Robin and all the for help.   Will submit an official patches for 
+brcmnand.yaml change.
 
-New smatch warnings:
-drivers/pci/controller/pcie-xilinx-dma-pl.c:562 xilinx_pl_dma_pcie_init_irq_domain() warn: passing zero to 'PTR_ERR'
-drivers/pci/controller/pcie-xilinx-dma-pl.c:600 xilinx_pl_dma_pcie_setup_irq() warn: unsigned 'port->irq' is never less than zero.
+>>
+>>>>>> +    then:
+>>>>>> +      required:
+>>>>>> +        - interrupt-names
+>>>>>> +
+>>>>>>     required:
+>>>>>>       - compatible
+>>>>>>       - reg
+>>>>>> -  - interrupts
+>>>>>> -  - interrupt-names
+>>>>>>       - clocks
+>>>>>>       - clock-names
+>>>>>> @@ -49,6 +56,4 @@ examples:
+>>>>>>             reg = <0x53fac000 0x4000>;
+>>>>>>             clocks = <&clks 111>;
+>>>>>>             clock-names = "ipg";
+>>>>>> -        interrupts = <49>, <50>;
+>>>>>> -        interrupt-names = "scm", "smn";
+>>>>>>         };
+>>>>>> -- 
+>>>>>> 2.34.1
+>>>>>>
+>>>>>
+>>>>>
+>>>
+>>>
+> 
+> 
 
-Old smatch warnings:
-drivers/pci/controller/pcie-xilinx-dma-pl.c:576 xilinx_pl_dma_pcie_init_irq_domain() warn: passing zero to 'PTR_ERR'
+--00000000000018e3b705fc9267bd
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-vim +/PTR_ERR +562 drivers/pci/controller/pcie-xilinx-dma-pl.c
-
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  551  static int xilinx_pl_dma_pcie_init_irq_domain(struct pl_dma_pcie *port)
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  552  {
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  553  	struct device *dev = port->dev;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  554  	struct device_node *node = dev->of_node;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  555  	struct device_node *pcie_intc_node;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  556  	int ret;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  557  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  558  	/* Setup INTx */
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  559  	pcie_intc_node = of_get_child_by_name(node, "interrupt-controller");
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  560  	if (!pcie_intc_node) {
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  561  		dev_err(dev, "No PCIe Intc node found\n");
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19 @562  		return PTR_ERR(pcie_intc_node);
-
-PTR_ERR(NULL) is success.
-
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  563  	}
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  564  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  565  	port->pldma_domain = irq_domain_add_linear(pcie_intc_node, 32,
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  566  						   &event_domain_ops, port);
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  567  	if (!port->pldma_domain)
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  568  		return -ENOMEM;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  569  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  570  	irq_domain_update_bus_token(port->pldma_domain, DOMAIN_BUS_NEXUS);
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  571  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  572  	port->intx_domain = irq_domain_add_linear(pcie_intc_node, PCI_NUM_INTX,
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  573  						  &intx_domain_ops, port);
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  574  	if (!port->intx_domain) {
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  575  		dev_err(dev, "Failed to get a legacy IRQ domain\n");
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  576  		return PTR_ERR(port->intx_domain);
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  577  	}
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  578  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  579  	irq_domain_update_bus_token(port->intx_domain, DOMAIN_BUS_WIRED);
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  580  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  581  	ret = xilinx_pl_dma_pcie_init_msi_irq_domain(port);
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  582  	if (ret != 0) {
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  583  		irq_domain_remove(port->intx_domain);
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  584  		return -ENOMEM;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  585  	}
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  586  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  587  	of_node_put(pcie_intc_node);
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  588  	raw_spin_lock_init(&port->lock);
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  589  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  590  	return 0;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  591  }
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  592  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  593  static int xilinx_pl_dma_pcie_setup_irq(struct pl_dma_pcie *port)
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  594  {
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  595  	struct device *dev = port->dev;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  596  	struct platform_device *pdev = to_platform_device(dev);
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  597  	int i, irq;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  598  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  599  	port->irq = platform_get_irq(pdev, 0);
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19 @600  	if (port->irq < 0)
-                                                            ^^^^^^^^^^^^^
-unsigned isn't less than zero.  Presumably other checkers have already
-complained about this...
-
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  601  		return port->irq;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  602  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  603  	for (i = 0; i < ARRAY_SIZE(intr_cause); i++) {
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  604  		int err;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  605  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  606  		if (!intr_cause[i].str)
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  607  			continue;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  608  
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  609  		irq = irq_create_mapping(port->pldma_domain, i);
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  610  		if (!irq) {
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  611  			dev_err(dev, "Failed to map interrupt\n");
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  612  			return -ENXIO;
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  613  		}
-3edd32a3a46e2d Thippeswamy Havalige 2023-05-19  614  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+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
+YDZuuBJwnyCzevMoPtVYPharioL5H3BRnQi8YoTXH7/uRo33dewYFm474yFjwwnt82TFtveVZkVq
+6h4WIQ4wTcwFfET8zMkELnGzS5SHCl8sPD+lNxxJ1JDZYwIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUq65GzwZxydFHjjYEU/9h
+xHhPWlwwDQYJKoZIhvcNAQELBQADggEBAA2hGG3JPAdGPH0ZdohGUCIVjKz+U+EFuIDbS6A/5jqX
+VhYAxZlzj7tSjUIM7G7IhyfqPC46GKJ/4x+Amz1Z6YxNGy71L68kYD6hIbBcA5AM42QBUufly6Oa
+/ppSz3WoflVyFFQ5YXniZ+eU+2/cdnYZg4aVUnFjimOF5o3NfMLzOkhQNxbaDjFUfUYD8hKmU6v4
+0vUBj8KZ9Gi1LIagLKUREn8jku0lcLsRbnJ5Ey5ScajC/FESPyYWasOW8j8/1EoJksmhbYGKNS6C
+urb/KlmDGfVrIRYDbL0ckhGQIP5c6L+kSQZ2sHnQK0e0WgIaZYxaPYeY5u0GLCOze+3vyRMxggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwxuh2XG3FXRL1W
+JOEwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIN//TMiXzbQK6MPVB17ug7i/Nu/3
+phMzaljXTg9FZpklMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIz
+MDUyNjA1NTY0OFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQCi5Hoj0WlM8kBne8EtcuZRXXtP0Ts20wb7i0Eyzre+JqC+
+aG9APl6gGUdqoUxADWblWl4tZqNLPjrMpEbgoQjXoNWTZjNmGw2ZFCo8g2As9lgSPvPjZSHT7Ao6
+MaduDwqXySeJdRjP17IB3RCkSwKl6ilqis8GHI3PDnCApl9iA62yh+ZB1SjCkOhJmY7Bx7vB4Upi
+d8pbQugpPbRMaTEm3vdDLxZ58ZM0Kv8R6g0FZzYZO/HVuLvaZVvky8LH6dt1yUrmJaQgz7EziiK2
+Ueild5I1eSDiLjAmuw29WO4yHXuyipGWCEY8c4FhOyzXxuM+Yl8/kiYp6OUvyGNdQ4xg
+--00000000000018e3b705fc9267bd--
