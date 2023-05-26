@@ -2,168 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9BA4712218
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 10:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71FDE71223B
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 10:30:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236628AbjEZIVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 04:21:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59974 "EHLO
+        id S242701AbjEZIaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 04:30:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242135AbjEZIVe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 04:21:34 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C013E65
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 01:21:12 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f6094cb2ebso3064045e9.3
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 01:21:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685089270; x=1687681270;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=7i/lcle1xBraF8w9eo+4SpWIOMjnDNDMCKcDvZQyHZM=;
-        b=qvLicbbFFgmav5ajzEA+heiCWFT/AryRYI1wconzkNif7M9qSlQ7imMoD2UGJAkQNa
-         Hqtx+HhtsXqX46t89c06rDmn32wl+ZK+oV/sGgOTUqaJ3X0dO7/yGrAdCVw2csExBj47
-         uOKFILUgdFMqk9rOhfkxpSJ5mZHydHhhRu2IzU6xCK51f8QWSI3v2AF1tAreOLUqeqr9
-         thrGoy384OaHNvlDpVkwIb6rbiyOarnD+qb1LkSt1qphqFqjoVaIrkNMHeILB5+7/KLo
-         AefOOjeKsGKQI4GdHnznjAh/ijx8CKY7SrHv7Hm9B99fXXQ/rhkNVBRq52DRxBMf8LFL
-         NiZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685089270; x=1687681270;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7i/lcle1xBraF8w9eo+4SpWIOMjnDNDMCKcDvZQyHZM=;
-        b=Ode2atd3Pi82GnbTqi5maKmZ9u7AHjrgk9WVvyJvEkkXKb12QYgtsMfJ9A7CQ7nhrY
-         OwCEqAPPTMN3FB3Uo+TkRFZtLVsgxbbzzhepWCdAc6m3+WBzYWeW8opp2ZNcdwcBC32h
-         e7RgoX9g7uB7Fcc2J7hnR39aVmAB7mSajAL+4tACePWPDnVY5yAaDP23f8pUaPkGQPvF
-         UlLxdCtmtbAgCbjiThaQnd8xRI83IxvY8titRL7y31CXwXRPLIOdZWJoFZb5PAa+eRgX
-         3ukq+INZUHITMc1FY9n8KWZf7mR1U4Q6Y0irYjinahj2KqAYzw9H6Aa8eTPBWpi5ljlu
-         /ZgA==
-X-Gm-Message-State: AC+VfDyIimIilbCh1Fq9zSF0HGPr/ys2mq8KhKOA1TLKUnfvGYESaNuM
-        tB932Isrdg+hilYLMSWaz7L2Xw==
-X-Google-Smtp-Source: ACHHUZ6xLeRPM1v2q/+ZmYwU051OEHTFMfO/ANY42iSCar0Ce226EYQxB0NTVN5Xm8J3N5T0wYmTKw==
-X-Received: by 2002:a05:600c:2193:b0:3f4:fd67:6d7c with SMTP id e19-20020a05600c219300b003f4fd676d7cmr873084wme.40.1685089270424;
-        Fri, 26 May 2023 01:21:10 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:15d9:4dfb:95d6:f5a0? ([2a01:e0a:982:cbb0:15d9:4dfb:95d6:f5a0])
-        by smtp.gmail.com with ESMTPSA id o10-20020a1c750a000000b003f4248dcfcbsm8081540wmc.30.2023.05.26.01.21.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 01:21:09 -0700 (PDT)
-Message-ID: <b8a3e7f0-d227-117f-443b-0f6b193e792b@linaro.org>
-Date:   Fri, 26 May 2023 10:21:08 +0200
+        with ESMTP id S242682AbjEZIaV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 04:30:21 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 003E613A;
+        Fri, 26 May 2023 01:30:19 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8F4076606E83;
+        Fri, 26 May 2023 09:30:17 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685089818;
+        bh=gg3PXZMm/8qSIeSloKT4Q2tmhI1GwPnD9NTPJMDIL0Q=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Ul4aYUWqkAaDION+dPRYmOTTBp5YFpvXXgyq8i27Rc6zJGXSjE8nTF3T6QlgArrv5
+         XAmtQM35alw/+N0CB2yodcSSG0SFqvv2nfFLB1AqaHUvdUJxSzHiM2cgnnxOLgq/Ol
+         hNa1bz9lMwy7CkGX4pjdaQhbmcUAz3D2vpV9usC2GKWRgR11ZV/cUtttBohJdbpTRM
+         1uAHsEa9ivaVeBvNnDYLpN9xdeFrDX6+ZinR8aAsXSOSxbmPp3KCWFidy1qdgkj1RY
+         sCG9BDkziPRXRGbl1RJb+V+a4kyy6xo0ftJoU9UcxiclAXHpGu/gYLozjGKoHBLgAp
+         iEpcqklNY/k1g==
+Message-ID: <f3f7df94-74f1-dd41-00d7-0ab4fa2e4d61@collabora.com>
+Date:   Fri, 26 May 2023 10:30:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] Revert "dt-bindings: bridge: samsung-dsim: Make some
- flags optional"
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Inki Dae <inki.dae@samsung.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: mediatek: replace unusable
+ clock
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230526-revert-bad-binding-v1-1-67329ad1bd80@linaro.org>
- <20230526-oppressor-cabbie-fd5332dbc2cc@wendy>
-Organization: Linaro Developer Services
-In-Reply-To: <20230526-oppressor-cabbie-fd5332dbc2cc@wendy>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230517-fix-clk-index-v2-0-1b686cefcb7e@baylibre.com>
+ <20230517-fix-clk-index-v2-1-1b686cefcb7e@baylibre.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230517-fix-clk-index-v2-1-1b686cefcb7e@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/05/2023 10:02, Conor Dooley wrote:
-> On Fri, May 26, 2023 at 09:27:16AM +0200, Neil Armstrong wrote:
->> This reverts commit cfaf76d349837f695c8aa6d7077847fec4231fe5 which was applied
->> without review due to a bad tool manipulation.
+Il 25/05/23 16:50, Alexandre Mergnat ha scritto:
+> The “mcu_pm_bclk_ck_cg” clock is used by co-processors and should not be
+> added to the kernel driver, otherwise the CPU just halt and the board is
+> rebooted by the wathdog.
 > 
-> Is it a dt-binding maintainer review that you are missing on that
-> patch?
+> Instead, add the "aes_top0_bclk_ck_cg" missing clock to prevent
+> re-shuffling index and then preserve the ABI.
 
-Exact
+It's still a breakage. Besides, have you tried to add it as CLK_IS_CRITICAL? :-)
 
-> 
-> For this one:
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks, I'll apply this revert now and wait until the original
-bindings patch gets properly reviewed.
-
-Thanks,
-Neil
+Cheers,
+Angelo
 
 > 
-> Thanks,
-> Conor.
+> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+> ---
+>   include/dt-bindings/clock/mediatek,mt8365-clk.h | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   .../devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml    | 9 ++++-----
->>   1 file changed, 4 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
->> index 360fea81f4b6..9f61ebdfefa8 100644
->> --- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
->> +++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
->> @@ -70,9 +70,7 @@ properties:
->>     samsung,burst-clock-frequency:
->>       $ref: /schemas/types.yaml#/definitions/uint32
->>       description:
->> -      DSIM high speed burst mode frequency when connected to devices
->> -      that support burst mode. If absent, the driver will use the pixel
->> -      clock from the attached device or bridge.
->> +      DSIM high speed burst mode frequency.
->>   
->>     samsung,esc-clock-frequency:
->>       $ref: /schemas/types.yaml#/definitions/uint32
->> @@ -82,8 +80,7 @@ properties:
->>     samsung,pll-clock-frequency:
->>       $ref: /schemas/types.yaml#/definitions/uint32
->>       description:
->> -      DSIM oscillator clock frequency. If absent, the driver will
->> -      use the clock frequency of sclk_mipi.
->> +      DSIM oscillator clock frequency.
->>   
->>     phys:
->>       maxItems: 1
->> @@ -137,7 +134,9 @@ required:
->>     - compatible
->>     - interrupts
->>     - reg
->> +  - samsung,burst-clock-frequency
->>     - samsung,esc-clock-frequency
->> +  - samsung,pll-clock-frequency
->>   
->>   allOf:
->>     - $ref: ../dsi-controller.yaml#
->>
->> ---
->> base-commit: cfaf76d349837f695c8aa6d7077847fec4231fe5
->> change-id: 20230526-revert-bad-binding-f77a3ca96419
->>
->> Best regards,
->> -- 
->> Neil Armstrong <neil.armstrong@linaro.org>
->>
+> diff --git a/include/dt-bindings/clock/mediatek,mt8365-clk.h b/include/dt-bindings/clock/mediatek,mt8365-clk.h
+> index f9aff1775810..0a841e7cc1c3 100644
+> --- a/include/dt-bindings/clock/mediatek,mt8365-clk.h
+> +++ b/include/dt-bindings/clock/mediatek,mt8365-clk.h
+> @@ -199,7 +199,7 @@
+>   #define CLK_IFR_PWRAP_TMR		46
+>   #define CLK_IFR_PWRAP_SPI		47
+>   #define CLK_IFR_PWRAP_SYS		48
+> -#define CLK_IFR_MCU_PM_BK		49
+> +#define CLK_IFR_AES_TOP0_BK		49
+>   #define CLK_IFR_IRRX_26M		50
+>   #define CLK_IFR_IRRX_32K		51
+>   #define CLK_IFR_I2C0_AXI		52
+> 
 
