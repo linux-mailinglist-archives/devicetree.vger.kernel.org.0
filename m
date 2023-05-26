@@ -2,75 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC464712AB8
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 18:35:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A805C712B1C
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 18:55:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234439AbjEZQfu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 12:35:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40400 "EHLO
+        id S237386AbjEZQzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 12:55:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232792AbjEZQfs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 12:35:48 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA83CBC;
-        Fri, 26 May 2023 09:35:46 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f3a873476bso995184e87.1;
-        Fri, 26 May 2023 09:35:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685118945; x=1687710945;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HZdVc8cg3rTwRQ3rUGrbIe2G7Mi0MzIoMDjJTPUXsKU=;
-        b=EmEi2d9UpDaO/uDti+2NYtSCgpRhj7sgXUxRN9Sx/VbofLPSxKJKwBca93UIYX5e3K
-         qkA5Pf35BlxUXq+gNVWg/SPLT4WsrDzIFYsj9/WGFM8Wbk78HQACFY1vFoeINfYqXn7M
-         /71C3vO2yLvOCb8VkZxdQ0JB6gUG3UfXZA/b93cAuH4jp6sKm2MgMksWoFvjK4wq4UWs
-         0ByhHBeCp0TcnRZTAA5m0wGoxDMK4zrx9EODcnC4CZOunVNA+PpFdzNDDFM+H8hRWKKr
-         rzfnOOt849X1iWQs+nquUgH2MmsOHZVGqzEjn6ACJ14OPXT+9CZdY2rdYNqBnm8BSsOc
-         Qc6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685118945; x=1687710945;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HZdVc8cg3rTwRQ3rUGrbIe2G7Mi0MzIoMDjJTPUXsKU=;
-        b=OZw/gswfJuh6P7tQ8G1gxxdrbw3PFGFhJSqwNDJbROqB1WHNbaSvknRKihyPeg8zA3
-         EnygA2XhO3WfNeaManNo48iGXTZmqVHrmtEnwv47Q3HbcCjdlB1bJwzD+WqTIJRDMkJt
-         3NcCRedwujB4Ast/AGJGueTwNXZMNl13c0KGStLkAObJy4ljX2f/nroFkbU+ITAHa7qe
-         bVB3MUhe6/e1UlucTYw2xEam5/aQeQRZgnMdweocmB2WOfuAbPvnq6SsR00cN0zm0eFs
-         Sq5GIFjprg0VBc7OsHx95nyuecsTOlCXPKl63nj8CLBIPsRLVpKXkYQKbsj3AFvtMNsY
-         UGcg==
-X-Gm-Message-State: AC+VfDwXYOpP+H5/vodgoR33LPBMBnzuE/nPHSnywcYKkDXamjdAKRZZ
-        e2huwFwBS4Ln9LNdaU/3wpc=
-X-Google-Smtp-Source: ACHHUZ5k55KO5kA8DfPcVtzmJBHus1jmL85c0KC+03dEOqFdaSdMVkyjM7UiGFCrWnesoACtTtH+qg==
-X-Received: by 2002:ac2:5ec4:0:b0:4f3:7a8c:d46c with SMTP id d4-20020ac25ec4000000b004f37a8cd46cmr778242lfq.66.1685118944902;
-        Fri, 26 May 2023 09:35:44 -0700 (PDT)
-Received: from [192.168.1.126] (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id b15-20020ac2562f000000b004f13c3cb9ffsm681853lff.200.2023.05.26.09.35.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 09:35:44 -0700 (PDT)
-Message-ID: <0a816b1c-eef3-95c8-fb71-1c81251224e0@gmail.com>
-Date:   Fri, 26 May 2023 19:35:43 +0300
+        with ESMTP id S229816AbjEZQzG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 12:55:06 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F9E0A3;
+        Fri, 26 May 2023 09:55:05 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id D091E846EF;
+        Fri, 26 May 2023 18:55:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1685120102;
+        bh=cKTPC7NLR+bUlQkhK5KxByysIc4mZo54tKRP17auFUI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=QhIDWXJXStcEmnXV38Ng5kZJWd00HFalkT8KayTgOFZLVG5y+iCtPv2ioz3sjzVXQ
+         53K2Rf2asrVBEXTNXqlBcz5hwBa6xlsCCrUWl+UGEKDju7QBAer4wfSOrRrJJ4leqx
+         TEGyYwhq7QHwEcKXQbXIqNe5ThipdWqODbr+HZmu/d/CGwDdoNsI8Fllg/S6CzAvUz
+         b+CZyuNS5uxYMarcKoXVZnIyMQKSE5uNasCYh2BHnGbB/s9UQhlTc49+ow3Q8H/Xxl
+         uRtjmX2gjmwDmVhFncVTigQdgNMXxDDJ/JT5b5WDKqrbU39RS3z61/nOYJ518qJhqr
+         9py0Ak53Z8yYA==
+Message-ID: <b23ddf9e-6bba-68df-cf28-cc0e2c4218ac@denx.de>
+Date:   Fri, 26 May 2023 18:55:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v4 4/7] iio: accel: kionix-kx022a: Add an i2c_device_id
- table
-Content-Language: en-US, en-GB
-To:     Mehdi Djait <mehdi.djait.k@gmail.com>, jic23@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org,
-        andriy.shevchenko@linux.intel.com, robh+dt@kernel.org,
-        lars@metafoo.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <cover.1685109507.git.mehdi.djait.k@gmail.com>
- <ea14686bc9a9262ef9c370d9cd1a4a7b2902b4ea.1685109507.git.mehdi.djait.k@gmail.com>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <ea14686bc9a9262ef9c370d9cd1a4a7b2902b4ea.1685109507.git.mehdi.djait.k@gmail.com>
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3 3/3] ARM: dts: stm32: fix several DT warnings on
+ stm32mp15
+Content-Language: en-US
+To:     Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@dh-electronics.com
+References: <20230517143542.284029-1-raphael.gallais-pou@foss.st.com>
+ <20230517143542.284029-4-raphael.gallais-pou@foss.st.com>
+ <f64de05b-8854-4345-80c2-f424968defdc@denx.de>
+ <e963370c-7018-243a-712d-62ca8463bfd8@foss.st.com>
+ <5f201903-17cb-5054-763c-f03b1066db1d@denx.de>
+ <32fafa74-8964-c9cf-f95b-f2cd084f46c6@foss.st.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <32fafa74-8964-c9cf-f95b-f2cd084f46c6@foss.st.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,52 +74,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/26/23 17:30, Mehdi Djait wrote:
-> Add the missing i2c device id.
-> 
-> Signed-off-by: Mehdi Djait <mehdi.djait.k@gmail.com>
-Acked-by: Matti Vaittinen <mazziesaccount@gmail.com>
+On 5/25/23 10:14, Raphael Gallais-Pou wrote:
 
-> ---
-> v4:
-> - no changes
-> 
-> v3:
-> - no changes, this patch is introduced in the v2
-> 
->   drivers/iio/accel/kionix-kx022a-i2c.c | 7 +++++++
->   1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/iio/accel/kionix-kx022a-i2c.c b/drivers/iio/accel/kionix-kx022a-i2c.c
-> index e6fd02d931b6..b5a85ce3a891 100644
-> --- a/drivers/iio/accel/kionix-kx022a-i2c.c
-> +++ b/drivers/iio/accel/kionix-kx022a-i2c.c
-> @@ -30,6 +30,12 @@ static int kx022a_i2c_probe(struct i2c_client *i2c)
->   	return kx022a_probe_internal(dev);
->   }
->   
-> +static const struct i2c_device_id kx022a_i2c_id[] = {
-> +	{ .name = "kx022a" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, kx022a_i2c_id);
-> +
->   static const struct of_device_id kx022a_of_match[] = {
->   	{ .compatible = "kionix,kx022a", },
->   	{ }
-> @@ -42,6 +48,7 @@ static struct i2c_driver kx022a_i2c_driver = {
->   		.of_match_table = kx022a_of_match,
->   	  },
->   	.probe_new    = kx022a_i2c_probe,
-> +	.id_table     = kx022a_i2c_id,
->   };
->   module_i2c_driver(kx022a_i2c_driver);
->   
+Hi,
 
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+>> I think if you retain the stm32mp151.dtsi &ltdc { port { #address-cells = <1>;
+>> #size-cells = <0>; }; }; part, then you wouldn't be getting any warnings
+>> regarding LTDC , and you wouldn't have to remove the unit-address from
+>> endpoint@0 .
+>>
+>> btw. I do use both endpoint@0/endpoint@1 in Avenger96 DTOs, but those are not
+>> submitted yet, I have to clean them up a bit more first.
+>>
+>>> One way to do it would be to make the endpoint@0 go down in the device-tree with
+>>> its dependencies, so that both endpoints are the same level without generating
+>>> noise.
+>>
+>> I'm afraid I really don't quite understand which warning you're referring to.
+>> Can you please share that warning and ideally how to trigger it (the
+>> command-line incantation) ?
+> 
+> Using '$ make dtbs W=1', you can observe several of the followings:
+> 
+> arch/arm/boot/dts/stm32mp151.dtsi:1533.9-1536.6: Warning
+> (avoid_unnecessary_addr_size): /soc/display-controller@5a001000/port:
+> unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+> arch/arm/boot/dts/stm32mp151.dtsi:1533.9-1536.6: Warning (graph_child_address):
+> /soc/display-controller@5a001000/port: graph node has single child node
+> 'endpoint@0', #address-cells/#size-cells are not necessary
+> 
+> This &ltdc { port { #address-cells = <1>; #size-cells = <0>; }; }; part is
+> actually annoying. This is because there is several device-trees that only got
+> one endpoint, and some other that includes two.
+> 
+> For instance: stm32mp15xx-dhcor-avenger96.dtsi vs stm32mp157c-dk2.dts.
+> 
+> I would like to remove to root part of address/size field and let only the lower
+> device-trees with with multiple endpoints handle their own fields. I hope this
+> explains a bit better my process.
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+After thinking about this some more, and digging through LTDC driver, 
+and testing on EV1, I think dropping the LTDC node endpoint@N and 
+reg=<N> altogether and just using port/endpoint (singular) is fine.
 
+You might want to split the DSI node specific changes and the LTDC node 
+specific changes into separate patches (LTDC specific change like you 
+did in 1/3).
