@@ -2,164 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9AF1712153
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 09:42:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0AF0712186
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 09:52:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242193AbjEZHmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 03:42:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39488 "EHLO
+        id S242568AbjEZHvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 03:51:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242503AbjEZHmn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 03:42:43 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD13D134
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 00:42:38 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f6077660c6so2850805e9.0
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 00:42:38 -0700 (PDT)
+        with ESMTP id S242565AbjEZHve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 03:51:34 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61AA2125
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 00:51:32 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-30789a4c537so201860f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 00:51:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685086957; x=1687678957;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NkTkGDMVJA48vFPtaSjIeYrGpqqTSqfQ3e0MrBnwrbs=;
-        b=xz3haS1KXQLY2AyRechw8Fk0OwpajCfzX8pzwP7F7lcIurYVEfVUSTIJ/6dMylYFSp
-         CF17Dhd+xW3AREahs3Gy7lsQEL/b6/XDEO4WZq+AFKAGxzrChCSf3bKWND9ZWwwVuVUr
-         MQrH7gWys3cygr092RBrAl7lGEFXv8ElesV248sw6PjhUqk0uge2kO+B0inreW6vdWmW
-         zqKNz3Vjm7ZkvcpUne4eZ9EMUANjjiKdQIE5jARMRa3G6Ot/Co51BhtRzrQ6KnNCQiae
-         FmjBGKDkJX1VwObvtvOW9Z/Xfz92iIxw/hdQMVczkgU0rUegLwDyVP8COWgqqVx1y9E4
-         442Q==
+        d=linaro.org; s=google; t=1685087491; x=1687679491;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vSVgumf2aYp2qt988Utmhrty6r7JgjUMOf1vhbwIgVM=;
+        b=HH5IiCPntBHLkYgsL6QiZABhfwdHOLeWhFCRMFlSrGxNr0L6dthPHyJdIRMAKrNra4
+         63y/pgAi76VZNZg0zBgqvC9gEtmELmw4909Dch4ly3pRBSSU2o29JYoYKWcrkNRt8rZQ
+         sVNEXmvWppWi8rxFncKzKQkDXggzNOdrZejLBhQerNkXnXtIys5WvpDo7R6dYYm8ezzB
+         XggJyDbjjVC/FF0fuEVFdSofvxpKLGVkZWpojkWVvPqwEFmY4u+PNhbxdmPf52zHA0sp
+         tQzdzBATgOL+W8yHTaJaYx4x8bI0xNJPhLLNeLe0mxq2KEmTR7EV+y9z7GawBx2M/h3E
+         hMVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685086957; x=1687678957;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NkTkGDMVJA48vFPtaSjIeYrGpqqTSqfQ3e0MrBnwrbs=;
-        b=QNflx4AYUG8tgZkJ5Khn//JrY8HG9RQQMVkBpQuIp/QJM5QdhGkijGuEAA6dbN45GK
-         V3mh83+KPnHxHH4OO2CoOSrefe/mM39B8Lc/NMYpNqYG2mAqHxtgST53yooIzhVC25v1
-         EA+FYbLeyed9YcsafDdmxaI/CbsySIJO/GhAseA7fJlLzZvjciheQcZN0pGi4kw9NkD4
-         WhtgR72ctMGlaNxAfVmJc1BljSS5I5u15owJOPFi72Or7pPStsurX94LvxWG0PxQGLZG
-         kPgMSsTc9u/XyAlbqjkyFcd0Y6E6bsJtODhBAydHhbko93Kd8hB/cn/wleXDmvmese17
-         OYKQ==
-X-Gm-Message-State: AC+VfDx8lxMtImSqLBrT9q/3HjFeGi8WVS3yGjWuo38gmPBltwZ8QV3F
-        EoZQbf59l9uIYeoirNe3sNMW+w==
-X-Google-Smtp-Source: ACHHUZ78glX9owiGGfj2LcnoXd+JjAb5MfcnsGRZKu/lCr6am4/SgX/kuL7OXyh5yod59igD+QEHkA==
-X-Received: by 2002:a1c:7c19:0:b0:3f4:f4d1:5c28 with SMTP id x25-20020a1c7c19000000b003f4f4d15c28mr620538wmc.24.1685086957200;
-        Fri, 26 May 2023 00:42:37 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:15d9:4dfb:95d6:f5a0? ([2a01:e0a:982:cbb0:15d9:4dfb:95d6:f5a0])
-        by smtp.gmail.com with ESMTPSA id p19-20020a1c7413000000b003f60e143d38sm4305405wmc.11.2023.05.26.00.42.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 00:42:34 -0700 (PDT)
-Message-ID: <1c5dd13f-8221-09e6-5b7d-a06135ce97f7@linaro.org>
-Date:   Fri, 26 May 2023 09:42:33 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
+        d=1e100.net; s=20221208; t=1685087491; x=1687679491;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vSVgumf2aYp2qt988Utmhrty6r7JgjUMOf1vhbwIgVM=;
+        b=c7jPqxTYd/7rULx0BtMkzTrvEVp7tf6i0RQaD58gmbrSNLnKXEk5pUbymrOHXGGtVx
+         7ZfQmqktOtWNdFJtWEC1gZW+NskY0BElM1WpK4aV4gkmFuJ/USNStnbh3V/DWCususo+
+         +0pJD2xOoyKgsHjX92xir5wWyJ7v2t6+PjxxT6El1io/XydwGvSNheFTEa4rKuKmWYSd
+         s+C5oKRw6FebLlO5q+uKNmVmgE0rmHpZH+bpRbhicMp427PoLRdZJbP6/f/cs/o0/wXD
+         fm6f7ym1GnsR8rWMyViqHShHN0JBXnYtZLKkXRKEYIuU6E5TpSdxj1L9qOrxfw3d0gMo
+         Ij2w==
+X-Gm-Message-State: AC+VfDzC/blYmBvSOZjZ179IXhZYGHp51NUgXDu4nK0ajerlAGR229sI
+        sha0o4zBMgJ4mHv1GwsSPF6aHOnxf8EHdnNvnnr7FQ==
+X-Google-Smtp-Source: ACHHUZ5BAKGgVMedwMdSbhQAr3bu64t8rjg7+27iN2I67Zd0S3+ppfH0i4SJBLQfQVLsllKAFRx2Cw==
+X-Received: by 2002:a5d:4d02:0:b0:30a:c2c4:7133 with SMTP id z2-20020a5d4d02000000b0030ac2c47133mr621730wrt.49.1685087490812;
+        Fri, 26 May 2023 00:51:30 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id f7-20020a7bc8c7000000b003f42158288dsm7873151wml.20.2023.05.26.00.51.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 May 2023 00:51:30 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add Visionox R66451
- AMOLED DSI panel bindings
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
+To:     Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20230516-b4-r66451-panel-driver-v1-0-4210bcbb1649@quicinc.com>
- <20230516-b4-r66451-panel-driver-v1-1-4210bcbb1649@quicinc.com>
- <dzekdzubv6y5evn4j62hnntjdexcdi5ar2wj6hcm3dffx5jei4@h32wgmfalzvl>
- <0d436948-b0b7-0727-0852-51f64aefa43f@linaro.org>
- <sf4fsrvuvgn42ucrwgqlrgprlr3sofq4wqeeuxryzeubxqs4kz@r4dmwzproti4>
-Organization: Linaro Developer Services
-In-Reply-To: <sf4fsrvuvgn42ucrwgqlrgprlr3sofq4wqeeuxryzeubxqs4kz@r4dmwzproti4>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+In-Reply-To: <cover.1684931026.git.geert+renesas@glider.be>
+References: <cover.1684931026.git.geert+renesas@glider.be>
+Subject: Re: [PATCH 0/2] drm/panel: simple: Add support for Ampire
+ AM-800480L1TMQW-T00H
+Message-Id: <168508748966.1489292.6504449064133741624.b4-ty@linaro.org>
+Date:   Fri, 26 May 2023 09:51:29 +0200
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/05/2023 16:51, Marijn Suijten wrote:
-> On 2023-05-22 11:05:38, Neil Armstrong wrote:
->> On 21/05/2023 12:30, Marijn Suijten wrote:
->>> On 2023-05-16 13:20:30, Jessica Zhang wrote:
->>>> Document the 1080x2340 Visionox R66451 AMOLED DSI panel bindings
->>>>
->>>> Signed-off-by: Jessica Zhang <quic_jesszhan@quicinc.com>
->>>> ---
->>>>    .../bindings/display/panel/visionox,r66451.yaml    | 59 ++++++++++++++++++++++
->>>>    1 file changed, 59 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml b/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
->>>> new file mode 100644
->>>> index 000000000000..6ba323683921
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
->>>> @@ -0,0 +1,59 @@
->>>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/display/panel/visionox,r66451.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Visionox R66451 AMOLED DSI Panel
->>>> +
->>>> +maintainers:
->>>> +  - Jessica Zhang <quic_jesszhan@quicinc.com>
->>>> +
->>>> +allOf:
->>>> +  - $ref: panel-common.yaml#
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: visionox,r66451
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +    description: DSI virtual channel
->>>> +
->>>> +  vddio-supply: true
->>>> +  vdd-supply: true
->>>> +  port: true
->>>> +  reset-gpios: true
->>>
->>> Normally for cmd-mode panels there is also a `disp-te` pin which is
->>> optionally registered in dsi_host.c as GPIOD_IN, but on **ALL** my Sony
->>> phones this breaks vsync (as in: mdp5 stops receiving the interrupt, but
->>> we can see disp-te in /proc/interrupts then).
->>
->> Describing it as a gpio is wrong, it should be described as a pinctrl state instead.
-> 
-> We defined both in our DTS, what weirdness does it cause when then
-> requested using GPIOD_IN?  It'd still be beneficial to see the vsync
-> interrupt raise in /proc/interrupts (but it's just a waste of CPU cycles
-> OTOH, this is all handled in the MDP hardware after all, so it's not
-> something I'd like to enable by default).
+Hi,
 
-Sure, but it's a sw hack, the pin has a TE function which directly goes to
-the DSI logic, claiming it as a GPIO will set it as GPIO function.
+On Wed, 24 May 2023 14:32:09 +0200, Geert Uytterhoeven wrote:
+> 	Hi all,
+> 
+> This patch series adds support for the Ampire AM-800480L1TMQW-T00H 5"
+> WVGA TFT LCD panel, which can be found on e.g. the Atmark Techno
+> Armadillo-800-EVA development board.
+> 
+> It has been tested with a WIP DT-enhanced version of the shmob-drm
+> driver.
+> 
+> [...]
 
-On some platforms, PINMUX is only on output and input is always directed
-to all HW blocks, seems it's not the case here !
+Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
 
-> 
-> Anyway, this is what we ended up doing to "fix" the bug (only bias the
-> pin via pinctrl, omit the disp-te DTS property).  Thanks for confirming!
-> 
-> - Marijn
-> 
->>
->> Neil
-> 
-> <snip>
+[1/2] dt-bindings: display: panel-simple: Add Ampire AM-800480L1TMQW-T00H
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=d3a6c2b60f07c64631b9437032d8f079341b7a16
+[2/2] drm/panel: simple: Add Ampire AM-800480L1TMQW-T00H
+      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=410bb21319f69c2ec28aeafe530d00ed2f6a1c54
+
+-- 
+Neil
 
