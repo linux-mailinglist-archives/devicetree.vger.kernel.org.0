@@ -2,123 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF0B171263F
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:06:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 105A5712644
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 14:07:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242864AbjEZMGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 08:06:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49224 "EHLO
+        id S242934AbjEZMHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 08:07:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236664AbjEZMGL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:06:11 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35CA2E66;
-        Fri, 26 May 2023 05:05:41 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34QAhvxC025540;
-        Fri, 26 May 2023 14:05:24 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=YAD+QRu+FHSj9Eq1EY9SbCn4rmGwV2pr6NVxlQDczT4=;
- b=wYtieyBeRLzTpSRPI2RhKrx6qYAPDZgi3DIrkVXlJyo+PapREfB8HoriEnHC5su1uWNX
- DDWQPWXM4vi1rEkWIcnff37ctkqyK1B6JMKQ1vVER9tOMJW2Mp8xIoWaRX6wJg3aDTHa
- ASfitvxXOz4zpbJ++Hx9w5/rt1MXMlKN/JB+rUOm2obqn84xgN5M0CL95jLSPcC6OCY8
- +MQ4piAWWWxkUOJdV3MQyjxpVEOCJNZwLhqnN7hRIkh3NG1eXd8TacVDZ2REdShRImvP
- S4CC0/Fo2oJ4/nbmK8SlzriSVSXPVFc7HXTCSFTGhhG5UXTSWqFsgotV2sfSK4mdhfbG hg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qt4aw0r16-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 26 May 2023 14:05:24 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5E2FB10002A;
-        Fri, 26 May 2023 14:05:23 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 550F122AFEF;
-        Fri, 26 May 2023 14:05:23 +0200 (CEST)
-Received: from [10.48.0.148] (10.48.0.148) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 26 May
- 2023 14:05:22 +0200
-Message-ID: <9faab8c9-a38b-3f06-c2fb-6c7803b22eb1@foss.st.com>
-Date:   Fri, 26 May 2023 14:05:21 +0200
+        with ESMTP id S236664AbjEZMHZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 08:07:25 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 425AA95;
+        Fri, 26 May 2023 05:07:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685102844; x=1716638844;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9uDtaJJPHuq2pUZEOpF84Xtv1dE0EgruaQ3xoTPIbx8=;
+  b=eSLj85TIVc8KHmo2poLqGB6BR9HZPOABkzhgvrS+KGk8dYxkqpfBd7g5
+   0NrACf62b5e5Mmn9ADqDE9XVXmuidgB1CpXoWsIY0zCs0JxHnv5n2l9sl
+   9s4PBdpiheZWF9nDcrE2iuMiRmQLYr6f1heMwu+kn00LIvmY8g+BwJ0dC
+   QV37lgi8I87kewcIufDlqxQ1oyJLvggtc8Ni4Ylzmjruw985RCgH/FTid
+   dTn3KMaLkSBmEhAr7WMUDPxBqPF7Ou8Abv1pos9SV7V2AbhoUTtX2OTAo
+   ++87oq/kEvFhL4XU+o3rKdyWU8YEt2jPZauhNUDPUn9awzOGm/zMby3R5
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,194,1681196400"; 
+   d="asc'?scan'208";a="227145655"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 May 2023 05:07:12 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 26 May 2023 05:07:09 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 26 May 2023 05:07:06 -0700
+Date:   Fri, 26 May 2023 13:06:43 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>
+CC:     Conor Dooley <conor@kernel.org>,
+        Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        <linux-rtc@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, Huacai Chen <chenhuacai@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, <loongarch@lists.linux.dev>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        <linux-mips@vger.kernel.org>,
+        Keguang Zhang <keguang.zhang@gmail.com>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        <loongson-kernel@lists.loongnix.cn>
+Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the
+ trivial RTCs
+Message-ID: <20230526-dolly-reheat-06c4d5658415@wendy>
+References: <cover.1684983279.git.zhoubinbin@loongson.cn>
+ <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
+ <20230525-custody-oversleep-f778eddf981c@spud>
+ <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/2] dt-bindings: backlight: document new property
- default-brightness-level
-Content-Language: en-US
-To:     Alexandru Ardelean <alex@shruggie.ro>,
-        <dri-devel@lists.freedesktop.org>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-fbdev@vger.kernel.org>
-CC:     <lee@kernel.org>, <daniel.thompson@linaro.org>,
-        <jingoohan1@gmail.com>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <deller@gmx.de>, Yannick Fertre <yannick.fertre@foss.st.com>
-References: <20230519200520.10657-1-alex@shruggie.ro>
- <20230519200520.10657-2-alex@shruggie.ro>
-From:   Philippe CORNU <philippe.cornu@foss.st.com>
-In-Reply-To: <20230519200520.10657-2-alex@shruggie.ro>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.48.0.148]
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-26_01,2023-05-25_03,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="lgJrIcXE3eFmHlx7"
+Content-Disposition: inline
+In-Reply-To: <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--lgJrIcXE3eFmHlx7
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, May 26, 2023 at 09:37:02AM +0800, Binbin Zhou wrote:
+> On Fri, May 26, 2023 at 1:05=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
+rote:
+> > On Thu, May 25, 2023 at 08:55:23PM +0800, Binbin Zhou wrote:
 
-On 5/19/23 22:05, Alexandru Ardelean wrote:
-> From: Yannick Fertre <yannick.fertre@foss.st.com>
-> 
-> Add documentation for new default-brightness-level property.
-> 
-> Reviewed-by: Philippe CORNU <philippe.cornu@foss.st.com>
+>> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - loongson,ls1b-rtc
+> > > +      - loongson,ls1c-rtc
+> > > +      - loongson,ls7a-rtc
+> > > +      - loongson,ls2k0500-rtc
+> > > +      - loongson,ls2k1000-rtc
+> > > +      - loongson,ls2k2000-rtc
+> >
+> > |+static const struct of_device_id loongson_rtc_of_match[] =3D {
+> > |+       { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_con=
+fig },
+> > |+       { .compatible =3D "loongson,ls1c-rtc", .data =3D &ls1x_rtc_con=
+fig },
+> > |+       { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rtc_=
+config },
+> > |+       { .compatible =3D "loongson,ls2k0500-rtc", .data =3D &generic_=
+rtc_config },
+> > |+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1000=
+_rtc_config },
+> > |+       { .compatible =3D "loongson,ls2k2000-rtc", .data =3D &generic_=
+rtc_config },
+> > |+       { /* sentinel */ }
+> > |+};
+> >
+> > This is a sign to me that your compatibles here are could do with some
+> > fallbacks. Both of the ls1 ones are compatible with each other & there
+> > are three that are generic.
+> >
+> > I would allow the following:
+> > "loongson,ls1b-rtc"
+> > "loongson,ls1c-rtc", "loongson,ls1b-rtc"
+> > "loongson,ls7a-rtc"
+> > "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
+> > "loongson,ls2k2000-rtc", "loongson,ls7a-rtc"
+> > "loongson,ls2k1000-rtc"
+> >
+> > And then the driver only needs:
+> > |+static const struct of_device_id loongson_rtc_of_match[] =3D {
+> > |+       { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_con=
+fig },
+> > |+       { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rtc_=
+config },
+> > |+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1000=
+_rtc_config },
+> > |+       { /* sentinel */ }
+> > |+};
+> >
+> > And ~if~when you add support for more devices in the future that are
+> > compatible with the existing ones no code changes are required.
+>=20
+> Hi Conor:
+>=20
+> Thanks for your reply.
+>=20
+> Yes, this is looking much cleaner. But it can't show every chip that
+> supports that driver.
+>=20
+> As we know, Loongson is a family of chips:
+> ls1b/ls1c represent the Loongson-1 family of CPU chips;
+> ls7a represents the Loongson LS7A bridge chip;
+> ls2k0500/ls2k1000/ls2k2000 represent the Loongson-2 family of CPU chips.
+>=20
+> Based on my previous conversations with Krzysztof, it seems that
+> soc-based to order compatible is more popular, so I have listed all
+> the chips that support that RTC driver.
 
-Hi Alexandru,
-same comments as for the 1/2 patch.
-Many thanks
-Philippe :-)
+Right. You don't actually have to list them all *in the driver* though,
+just in the binding and in the devicetree. I think what you have missed
+is:
+> > I would allow the following:
+> > "loongson,ls1b-rtc"
+> > "loongson,ls1c-rtc", "loongson,ls1b-rtc"
+> > "loongson,ls7a-rtc"
+> > "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
+> > "loongson,ls2k2000-rtc", "loongson,ls7a-rtc"
+> > "loongson,ls2k1000-rtc"
 
-> Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
-> Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
-> ---
-> 
-> Link to original patch:
->    https://github.com/STMicroelectronics/linux/commit/c4067d7bd883c6fa14ffd49892c4ce663cdafe98
-> 
->   .../bindings/leds/backlight/gpio-backlight.yaml          | 9 +++++++++
->   1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-> index 584030b6b0b9..b96c08cff0f0 100644
-> --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-> +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-> @@ -23,6 +23,15 @@ properties:
->       description: enable the backlight at boot.
->       type: boolean
->   
-> +  default-brightness-level:
-> +    description:
-> +      The default brightness level (index into the array defined by the
-> +      "brightness-levels" property).
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +dependencies:
-> +  default-brightness-level: [ "brightness-levels" ]
-> +
->   required:
->     - compatible
->     - gpios
+This is what you would put in the compatible section of a devicetree
+node, using "fallback compatibles". So for a ls1c you put in
+compatible =3D "loongson,ls1c-rtc", "loongson,ls1b-rtc";
+and the kernel first tries to find a driver that supports
+"loongson,ls1c-rtc" but if that fails it tries to find one that supports
+"loongson,ls1b-rtc". This gives you the best of both worlds - you can
+add support easily for new systems (when an ls1d comes out, you don't
+even need to change the driver for it to just work!) and you have a
+soc-specific compatible in case you need to add some workaround for
+hardware errata etc in the future.
+
+> > To maintain compatibility with the existing devicetrees, should the old
+> > "loongson,ls2x-rtc" be kept in the driver?
+>=20
+> No, It seems that wildcards in compatible are not allowed."
+> loongson,ls2x-rtc" itself was part of this patch series at one time,
+> but apparently it is not the right way to describe these chips.
+
+Right, but it has been merged - you are deleting the driver that supports
+it after all - which means that any dtb with the old compatible will
+stop working.
+I don't disagree with Krzysztof that having wildcard based compatibles
+is bad, but I do not think that regressing rtc support for systems with
+these old devicetrees is the right way to go either.
+
+Thanks,
+Conor.
+
+--lgJrIcXE3eFmHlx7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHCg0wAKCRB4tDGHoIJi
+0mWSAQCDAMxaQunRpWEDNCiW02WKO3wTUY0nxz1jUphUwGxD+AEA9ek3o9O/gDCp
+hKbikL4ct/NAgvcpTLcTtunWKqjw4QY=
+=LEBi
+-----END PGP SIGNATURE-----
+
+--lgJrIcXE3eFmHlx7--
