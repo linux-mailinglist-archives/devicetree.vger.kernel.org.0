@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55592711BCA
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 02:56:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3054B711BCB
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 02:56:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229865AbjEZA4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 May 2023 20:56:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50594 "EHLO
+        id S233106AbjEZA4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 May 2023 20:56:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232561AbjEZA4A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 20:56:00 -0400
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FAA7194
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 17:55:59 -0700 (PDT)
-Received: by mail-ot1-x32d.google.com with SMTP id 46e09a7af769-6af8a21556fso67304a34.1
-        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 17:55:59 -0700 (PDT)
+        with ESMTP id S232528AbjEZA4D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 May 2023 20:56:03 -0400
+Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 708B61A2
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 17:56:02 -0700 (PDT)
+Received: by mail-oo1-xc30.google.com with SMTP id 006d021491bc7-557c27145d4so26958eaf.1
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 17:56:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685062558; x=1687654558;
+        d=gmail.com; s=20221208; t=1685062561; x=1687654561;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IXBO2N9svcNcLWKkfj+MbW/nvmFiOfCCqGGm4ZKQji0=;
-        b=UPhLbvzU/a1Ux+jIfeH/4HflPnPxDk3d+bHwH3CGo8JeyHCKUtkIUawvfCApmseSNc
-         Ii8vD4y95aJB9eCUMP+E+YlSG7c29x6dQcRF2/ME+6XIc/kgRQBm180D9o2XWjshtvNr
-         qt00WQTU7DZqNQEPom94AOmJUz9UrdSjWgvfi+GLY3RiIQqUYpc8/gp/WKQYha6XoVyu
-         6dTxMUWwNL1OAmESqgy/SdzhIAv8sgjX+rgPg7ztt2J9v9ITznrro6JT27yegVbYJ4pJ
-         EzQ0rZpOcsobWYtZz2h9EOKUuYnOWPcAMdzsKH2v0p5Dklv4qeQ+/7SxJb801AGMyYgP
-         oNkA==
+        bh=9ia4/S0F68REO8cAUYDaGSmNabqF8ob/+yYblTrpHB8=;
+        b=StXO8+Mu+QJU3tzHPcPu+AYQcKk+0qHkN/McELKCkxsbsjH73h6jqTmHKQyuG7ZQhY
+         lIWhPF3wLan83U4ridMyTjHkkh5ll0L+dsusp4C3B6a+9oI7ZPbm6vfUa3QjC5YkHDtE
+         FlXZhxgPj0uSh1wjB8VRteMlzdUa04HVhQMGxmPK2Fe+fN2/B1C3zGn9EFZzXA87Wv7Q
+         1sauu2br5XDPGSKfgpsrBVha94L9b6ZmEz5iqBsZRaGId4Ba9iLMpBcEthoqSkdDawi9
+         4Ac+W/0TBPu2FIsJMpnFHqU5m5PhHltb6cmwru0rhllfYTjRlJNq8ue0zP14LwbSBWtu
+         fHqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685062558; x=1687654558;
+        d=1e100.net; s=20221208; t=1685062561; x=1687654561;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IXBO2N9svcNcLWKkfj+MbW/nvmFiOfCCqGGm4ZKQji0=;
-        b=lkOik2pt+SukdZbEBechS8d9BdLwcL+Tn4QA9+gDON62hwuqs6/CSQ0UvEtsOQTAv5
-         6u1TMIwlJvVrCahJg88zwKROJ+J9u+3AAOqUAOdiAlz9tc0m9/69zsy/wxGQ+p3ULcfP
-         QzP1q3y+vRCnPwhiuYS4vbpFItDk8+fMGopl8XwrN9zLZAhtU2tyWAQ0wUgN+TfNQJhu
-         hdtLDN9u5RSF+KWEaNAIyYESAEDQzRUgZ7nTypBVhVxReEkvkchrYl91YzivFjdU2H3n
-         ba3EcroOep/Bk0mJJDYy/Fzkjd28RJWpWuEXx+5W3b5xDcDX8pVl0UuYfiUqQUahBak/
-         oMGA==
-X-Gm-Message-State: AC+VfDwlf7Z325LzlJiXBWn8J24BFLpnYsDj/fUAxH+NHhb0OtB/gKLF
-        VNFjjCcHKTCc1aUYnOja2mI=
-X-Google-Smtp-Source: ACHHUZ5Sp0uTNsHwYIFxQ8H8rsyyeyT5XsvKAxUSpkh1rSOTevv70omXSacw5GOyysXMuZq9YIAyeQ==
-X-Received: by 2002:a05:6830:461f:b0:6b0:6e9a:b5ce with SMTP id ba31-20020a056830461f00b006b06e9ab5cemr551712otb.2.1685062558639;
-        Thu, 25 May 2023 17:55:58 -0700 (PDT)
+        bh=9ia4/S0F68REO8cAUYDaGSmNabqF8ob/+yYblTrpHB8=;
+        b=B3uDATKedJyRCBFdariRx3enrzjcC6B5Oip+FsHV2Iecjz/EBUp0z5mQFcYOuFP6lL
+         PI6KRTH7FaLx06A3WCzipdjnSvXakNyVKMhrn1nEcu5dmjUEWD82o/DLXnIrZx6qvoWF
+         WWLsnwZzJ6TEMl8OpMw0qdJTjsEPaoh7enmdj2sFzpOZAE5G3/gFTWcw2eXun1Wbx4DD
+         U5fKghAV11z3D3UnItUqaBo0s0xnltsFqpWMqJ/m7oNpcAxU/K1kMFZel0v3Q7D1n6Q3
+         giXEGehZPr5lwPt/JkQjQTX+jwMBHsOcBNyoiLm1CQ7mOmKgDi9k16zhhggE/LUyP+fz
+         sb4w==
+X-Gm-Message-State: AC+VfDwevgUEymwsY0ap2ns+f2OLR9A7IHJMcWFznoKCwtEGbgzlr1C1
+        Gr9enyMgmWpd7j8clKqyPY4=
+X-Google-Smtp-Source: ACHHUZ6GxF9cnezDio/HsFGfmn4fDsiRjuVxfZNLNAPH6F1y3/n5+rQ/EAGJrdQ5Zk92tlvAWqce2Q==
+X-Received: by 2002:a4a:e0d7:0:b0:54f:e817:6827 with SMTP id e23-20020a4ae0d7000000b0054fe8176827mr218595oot.1.1685062561544;
+        Thu, 25 May 2023 17:56:01 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:39e7:25d2:1c33:e74])
-        by smtp.gmail.com with ESMTPSA id c15-20020a9d480f000000b006aaf3e81baesm1242318otf.24.2023.05.25.17.55.56
+        by smtp.gmail.com with ESMTPSA id c15-20020a9d480f000000b006aaf3e81baesm1242318otf.24.2023.05.25.17.55.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 May 2023 17:55:58 -0700 (PDT)
+        Thu, 25 May 2023 17:56:01 -0700 (PDT)
 From:   Fabio Estevam <festevam@gmail.com>
 To:     shawnguo@kernel.org
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         conor+dt@kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 06/15] ARM: dts: imx6qdl-mba6: Use the mux- prefix
-Date:   Thu, 25 May 2023 21:55:20 -0300
-Message-Id: <20230526005529.150418-6-festevam@gmail.com>
+Subject: [PATCH 07/15] ARM: dts: imx6qdl-phytec-pbab01: Use the mux- prefix
+Date:   Thu, 25 May 2023 21:55:21 -0300
+Message-Id: <20230526005529.150418-7-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230526005529.150418-1-festevam@gmail.com>
 References: <20230526005529.150418-1-festevam@gmail.com>
@@ -82,29 +82,29 @@ Add the "mux-" prefix to avoid devicetree schema warnings.
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- arch/arm/boot/dts/imx6qdl-mba6.dtsi | 4 ++--
+ arch/arm/boot/dts/imx6qdl-phytec-pbab01.dtsi | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx6qdl-mba6.dtsi b/arch/arm/boot/dts/imx6qdl-mba6.dtsi
-index 7b7e6c2ad190..b497303013c8 100644
---- a/arch/arm/boot/dts/imx6qdl-mba6.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-mba6.dtsi
-@@ -129,7 +129,7 @@ sound {
+diff --git a/arch/arm/boot/dts/imx6qdl-phytec-pbab01.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-pbab01.dtsi
+index 51d28e275aa6..a41e47c06ef4 100644
+--- a/arch/arm/boot/dts/imx6qdl-phytec-pbab01.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-phytec-pbab01.dtsi
+@@ -75,7 +75,7 @@ dailink_master: simple-audio-card,codec {
  &audmux {
  	status = "okay";
  
--	ssi0 {
-+	mux-ssi0 {
- 		fsl,audmux-port = <MX31_AUDMUX_PORT1_SSI0>;
+-	ssi2 {
++	mux-ssi2 {
+ 		fsl,audmux-port = <1>;
  		fsl,port-config = <
  			(IMX_AUDMUX_V2_PTCR_SYN |
-@@ -141,7 +141,7 @@ IMX_AUDMUX_V2_PDCR_RXDSEL(MX31_AUDMUX_PORT3_SSI_PINS_3)
+@@ -87,7 +87,7 @@ IMX_AUDMUX_V2_PDCR_RXDSEL(4)
  		>;
  	};
  
--	aud3 {
-+	mux-aud3 {
- 		fsl,audmux-port = <MX31_AUDMUX_PORT3_SSI_PINS_3>;
+-	pins5 {
++	mux-pins5 {
+ 		fsl,audmux-port = <4>;
  		fsl,port-config = <
  			IMX_AUDMUX_V2_PTCR_SYN
 -- 
