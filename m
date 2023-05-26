@@ -2,74 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 081B0712E79
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 22:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9445712E8E
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 22:57:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243836AbjEZUvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 16:51:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52344 "EHLO
+        id S243737AbjEZU5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 16:57:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243668AbjEZUvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 16:51:04 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63AAAE44
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 13:50:41 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2af2e908163so12385911fa.2
-        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 13:50:41 -0700 (PDT)
+        with ESMTP id S233433AbjEZU5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 16:57:05 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFB8919A
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 13:57:03 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f6cbdf16d2so8220765e9.2
+        for <devicetree@vger.kernel.org>; Fri, 26 May 2023 13:57:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685134239; x=1687726239;
+        d=linaro.org; s=google; t=1685134622; x=1687726622;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=p86bLQNbobDigp0k3P3tmO5QVRnjnFz7+fIP1sFxECg=;
-        b=X0C2YM6zfUM1cor3ejxX0WrV5fJ/BeHuc73ilzWM5ze/g+4YqqvhHYfzSnKuizJ9/B
-         yChH2grov0wxgM9NcpLjefbhZbnnpsKA4gdlcjxkbCeWRYfR3bfX3KGpbXyizLW0xWE/
-         iq8QdC5eOUZKbwX58EePd1/egoua3thuV4KrNGDLX35VUvd/dtqN7syDy8pDKRC5/kGh
-         Ne/Ki5i9CMR0QJ6Pd8HQJ+YTqNfrvM84WLJACfaWqVqLjj9mRBdH1wpoMPBb6Jl3SwiW
-         ZsfM8fTjqLynNADYaLE05tMPGkvlWqCVg1+oOD2jw7Y6gEy2j/r0QOoEZKgiPLg2TSVO
-         O1zg==
+        bh=Kevd9tgDOgwSftXhTE9dzSQzFuyzebjoDk0q9mVsTsM=;
+        b=zrMSuFrykCqYrES/4m1rxa7Iwr1yjsnItV90+UE5VsksD7vg2YqmE65phbqV1XxFop
+         EqfQoXnsO40ix2C+2Z+CQXNxYBGRNN4hoCrOZi40c5h93dUAWLjfVJ0jibg6VQe9CMbr
+         pGFiQ0paD8Ux+53BP/Aq6vGkKRoOMQ743WINZ/ndUz5Zra8Grgc4JyxGKOl9zhclET2y
+         29238zkCQHIQIJ/FC5/cYgMjAtKcQVI7TO+MZ/wrlEIeVdEWx8UZ9955yCv143W+YGYD
+         UOs8Z81oCefMibvas7pwcp45cDbm9iyneAgvJSDm29DqjJg/wT4KlkXGtE0g1Jj1gRdr
+         BdaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685134239; x=1687726239;
+        d=1e100.net; s=20221208; t=1685134622; x=1687726622;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p86bLQNbobDigp0k3P3tmO5QVRnjnFz7+fIP1sFxECg=;
-        b=jYbLqVBr0oEIAR65CC7uHRcJDLlbGU+I/icb/K04ehpnQZ0lyjbkObQkaxC4qj4XFc
-         pYR+ljzZyzExzPyfG7vAyTVVP039fUumUpOXv9qj2WlZa9WtEQWvROAdWg8byrtCKQwE
-         ouXzgl4nR2aMInSOLdyfDLPp3OwaAbROOf95Yf5q+/cG40jYVwyQCO6vjWdONRg6M0Ws
-         aWUZus5zH7aMxILDjQe7a7v2wW8XDbsNasvIpDN97A0WTxGNyz8MFzRvj/dxF81nZSEN
-         gMMaHf1xeQkIZ7FR8NTbiRa9ksLuMiRh9hgmjI3H/JcJFuOW/QgzfORgNHQzyg9bdoe5
-         MhpQ==
-X-Gm-Message-State: AC+VfDwL54BxPA1+QWnQcif+JIC+iA7COMrq61tdlX7SoUACj0pSD468
-        5o7yuBEcXYoJNlBgPAbPcjo9JQ==
-X-Google-Smtp-Source: ACHHUZ48hIn+EMWhdHTr8iY1OzvhRt3OSLaAaGUEpHkGvWfieZ5elIptZwAVcQSo3wBqIVfOfBu+rA==
-X-Received: by 2002:ac2:4a76:0:b0:4f4:dfd4:33e4 with SMTP id q22-20020ac24a76000000b004f4dfd433e4mr822684lfp.51.1685134239533;
-        Fri, 26 May 2023 13:50:39 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id c18-20020ac25312000000b004f37bd02a89sm773168lfh.287.2023.05.26.13.50.38
+        bh=Kevd9tgDOgwSftXhTE9dzSQzFuyzebjoDk0q9mVsTsM=;
+        b=RQmksoVrwwQKazoBxarce6VH+FLQNM86+zsITY6axpetQrNG+kd0v+SIIb+jXazvcI
+         goEcVE5ZNH1cAnuLZlYUulw7SQ8C+wrMsWbYg+A6FghHdr64D6jjUCpPDldQYJLrp/KZ
+         2XTCv0c1QtAzjb7vhk/DY41dZQvrnkt0G+6hlK5g4p1NnEvpITT+TSYj37yHo1ns0JJ6
+         H0y7eP9DKxljfq1bK6yywL/ngwIAvjXdGc9CRFdoMX79doZ9EI72Pnj1DyVLepl4k9L5
+         Az+TGHVuM1jl27MQchYto9+7Xp1sjAjPiV16PLElyt2WmHtZzsm51tMjnaTXJdU2418O
+         Tn1A==
+X-Gm-Message-State: AC+VfDxBLXGdmEvJoELZvsXB5oewsi5mLy2hPPigNeoESqfDFvyhQVnC
+        1V4Od8nRqbG/nONSOWyajTAEYg==
+X-Google-Smtp-Source: ACHHUZ6C0A0jH4aVSmj3MVzhbuO2WL9I5GXhgB8XXQaTo2ua9/gIcfIkWZCpxaX5A+5RfmSpS6AWag==
+X-Received: by 2002:a05:600c:d0:b0:3f6:7fb:b60e with SMTP id u16-20020a05600c00d000b003f607fbb60emr2075206wmm.35.1685134622380;
+        Fri, 26 May 2023 13:57:02 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id y12-20020a1c4b0c000000b003f4290720d0sm9721917wma.47.2023.05.26.13.57.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 May 2023 13:50:39 -0700 (PDT)
-Message-ID: <5e5c41e3-e659-67fb-34b8-8fe3713b36d9@linaro.org>
-Date:   Fri, 26 May 2023 22:50:37 +0200
+        Fri, 26 May 2023 13:57:01 -0700 (PDT)
+Message-ID: <7124bf0e-193b-46a1-ea88-23d7df3bffa5@linaro.org>
+Date:   Fri, 26 May 2023 21:57:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v8 11/11] arm64: dts: qcom: sm8450: add crypto nodes
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 3/3] media: camss: Link CAMSS power domain
 Content-Language: en-US
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org, vladimir.zapolskiy@linaro.org,
-        rfoss@kernel.org, neil.armstrong@linaro.org, djakov@kernel.org,
-        stephan@gerhold.net, Anders Roxell <anders.roxell@linaro.org>,
-        Linux Kernel Functional Testing <lkft@linaro.org>
-References: <20230526192210.3146896-1-bhupesh.sharma@linaro.org>
- <20230526192210.3146896-12-bhupesh.sharma@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230526192210.3146896-12-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hansverk@cisco.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230526180712.8481-1-y.oudjana@protonmail.com>
+ <20230526180712.8481-4-y.oudjana@protonmail.com>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230526180712.8481-4-y.oudjana@protonmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -81,65 +87,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 26.05.2023 21:22, Bhupesh Sharma wrote:
-> From: Neil Armstrong <neil.armstrong@linaro.org>
+On 26/05/2023 19:07, Yassine Oudjana wrote:
+> From: Yassine Oudjana <y.oudjana@protonmail.com>
 > 
-> Add crypto engine (CE) and CE BAM related nodes and definitions
-> for the SM8450 SoC.
+> The CAMSS power domain was previously enabled implicitly when the VFE
+> power domains were enabled.
+> Commit 46cc03175498 ("media: camss: Split power domain management")
+> delayed enabling VFE power domains which in turn delayed enabling the
+> CAMSS power domain. This made CSIPHY fail to enable camss_top_ahb_clk
+> which requires the CAMSS power domain to be on:
 > 
-> Tested-by: Anders Roxell <anders.roxell@linaro.org>
-> Tested-by: Linux Kernel Functional Testing <lkft@linaro.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> [Bhupesh: Corrected the compatible list]
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> [  199.097810] ------------[ cut here ]------------
+> [  199.097893] camss_top_ahb_clk status stuck at 'off'
+> [  199.097913] WARNING: CPU: 3 PID: 728 at drivers/clk/qcom/clk-branch.c:91 clk_branch_wait+0x140/0x160
+> ...
+> [  199.100064]  clk_branch_wait+0x140/0x160
+> [  199.100112]  clk_branch2_enable+0x30/0x40
+> [  199.100159]  clk_core_enable+0x6c/0xb0
+> [  199.100211]  clk_enable+0x2c/0x50
+> [  199.100257]  camss_enable_clocks+0x94/0xe0 [qcom_camss]
+> [  199.100342]  csiphy_set_power+0x154/0x2a0 [qcom_camss]
+> ...
+> [  199.101594] ---[ end trace 0000000000000000 ]---
+> 
+> Link the CAMSS power domain in camss_configure_pd to make sure it gets
+> enabled before CSIPHY tries to enable clocks.
+> 
+> Fixes: 02afa816dbbf ("media: camss: Add basic runtime PM support")
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 > ---
->  arch/arm64/boot/dts/qcom/sm8450.dtsi | 28 ++++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
+>   drivers/media/platform/qcom/camss/camss.c | 9 ++++++++-
+>   1 file changed, 8 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 7f193802a7c4..1642daea9624 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -4173,6 +4173,34 @@ ufs_mem_phy_lanes: phy@1d87400 {
->  			};
->  		};
->  
-> +		cryptobam: dma-controller@1dc4000 {
-> +			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
-> +			reg = <0 0x01dc4000 0 0x28000>;
-> +			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-> +			#dma-cells = <1>;
-> +			qcom,ee = <0>;
-> +			qcom,controlled-remotely;
-> +			iommus = <&apps_smmu 0x584 0x11>,
-> +				 <&apps_smmu 0x588 0x0>,
-> +				 <&apps_smmu 0x598 0x5>,
-Does mapping 0x598 with and without the SMR mask make sense?
+> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
+> index 1ef26aea3eae..9aea8220d923 100644
+> --- a/drivers/media/platform/qcom/camss/camss.c
+> +++ b/drivers/media/platform/qcom/camss/camss.c
+> @@ -1453,6 +1453,7 @@ static const struct media_device_ops camss_media_ops = {
+>   static int camss_configure_pd(struct camss *camss)
+>   {
+>   	struct device *dev = camss->dev;
+> +	int camss_pd_index;
+>   	int i;
+>   	int ret;
+>   
+> @@ -1496,7 +1497,13 @@ static int camss_configure_pd(struct camss *camss)
+>   		}
+>   	}
+>   
+> -	if (i > camss->vfe_num) {
+> +	/* Link CAMSS power domain if available */
+> +	camss_pd_index = device_property_match_string(camss->dev, "power-domain-names", "camss");
+> +	if (camss_pd_index >= 0)
 
-(this is a genuine question, I have no idea but would be leaning
-on the side of no)
+Surely if you get this far you already know that
 
-Konrad
-> +				 <&apps_smmu 0x59a 0x0>,
-> +				 <&apps_smmu 0x59f 0x0>;
-> +		};
-> +
-> +		crypto: crypto@1de0000 {
-> +			compatible = "qcom,sm8450-qce", "qcom,sm8150-qce", "qcom,qce";
-> +			reg = <0 0x01dfa000 0 0x6000>;
-> +			dmas = <&cryptobam 4>, <&cryptobam 5>;
-> +			dma-names = "rx", "tx";
-> +			iommus = <&apps_smmu 0x584 0x11>,
-> +				 <&apps_smmu 0x588 0x0>,
-> +				 <&apps_smmu 0x598 0x5>,
-> +				 <&apps_smmu 0x59a 0x0>,
-> +				 <&apps_smmu 0x59f 0x0>;
-> +			interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
-> +			interconnect-names = "memory";
-> +		};
-> +
->  		sdhc_2: mmc@8804000 {
->  			compatible = "qcom,sm8450-sdhci", "qcom,sdhci-msm-v5";
->  			reg = <0 0x08804000 0 0x1000>;
+camss->genpd_num = of_count_phandle_with_args(dev->of_node,
+                                               "power-domains",
+                                               "#power-domain-cells");
+if (camss->genpd_num < 0) {
+         dev_err(dev, "Power domains are not defined for camss\n");
+         return camss->genpd_num;
+}
+
+So you don't need to add this additional dependency ?
+
+---
+bod
