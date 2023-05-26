@@ -2,106 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE0DD712B6D
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 19:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CE24712B82
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 19:13:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230467AbjEZRJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 13:09:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60270 "EHLO
+        id S237405AbjEZRNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 13:13:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242209AbjEZRJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 13:09:41 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EABE1BB;
-        Fri, 26 May 2023 10:09:37 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id BEEBD8616A;
-        Fri, 26 May 2023 19:09:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1685120975;
-        bh=dUVDzPz0F4pq5wY+7RaxA4sqopSuOHiJeZJyrtkMdBc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=PUdeCYwWq9rZSAS3jYtl6Z6TgEg1NFapeA9NRxUVEjM1+ikOOZo5ng0LslQfCRRK7
-         Kkk/JyG02/MGLzn8LjNJ5sNsmHkIHQsiFhossxwnVQuzvK2EnvKgIpyH7xY5X9CqNj
-         dCjCCD/JsKsdSeIkoKHPPfd+7g4mcFH9lEoQK7e8IL4opsXfd/4khHm4XuHCE1WCuQ
-         zZl1a2OTVK+kQyJLrEGQNlwc2u4legGdtpL+COYL2FRil+0bFmWiuUjDhnVI5DJXPf
-         XAwZ0hVIiQ1t7eyLwhHz6cpi7FPTRkMp/Pss0UJtZ3nZQb6ZY7L786b4eBrSXpO7+G
-         0u9+6VluYl5XQ==
-Message-ID: <2f7981fe-e3ad-8404-b773-1ebc05f63149@denx.de>
-Date:   Fri, 26 May 2023 19:09:34 +0200
+        with ESMTP id S237418AbjEZRN2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 13:13:28 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89C6310D4;
+        Fri, 26 May 2023 10:13:07 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2af30d10d8fso9803421fa.0;
+        Fri, 26 May 2023 10:13:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685121185; x=1687713185;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jIXIP2zWjaYbZBFcIHQqMIYmOFHICRYr7cn3dtDGJTU=;
+        b=n4sM3hzT6GGKnEITLtm1o9V82TXZcmN1hewCOWUQF6BAofOLFelMmNYdKGYYrBHpJ9
+         OEWH0JmuHqPT9JK/ak327pp/koYwK1autAmEKpHZ1IIuzMaWYS7q4x80K8IaqdEvdg8E
+         2pQ1t78P1rhdU9nJulHW//XRHv1PDGDN4GjsiaWnBJLxa6l+vrWXE1G9edNJAsfIUtTo
+         UWq21QNwCLgodTlO2I6gt0WsYcPiMUptw3B/At1sjrjjBbyXa5MJ6fv2W1WLwmSeyzIv
+         3frbuDNSjVwHlKYW5BpVYKG7Zt5t1XXEk93ObK7GMwUJswqftl8B6nfPr8Xj+EE4FXAf
+         wgHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685121185; x=1687713185;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jIXIP2zWjaYbZBFcIHQqMIYmOFHICRYr7cn3dtDGJTU=;
+        b=OPzPy26Y7zrVn96XcOVlDdJE/dUqBN4KdpLB6kF8oRbVbVAtcmFHdoI/erFTXJZJFP
+         TaI8Rq8G3zCbXbiKSnGlvVeab+p6BKb1SAZP2Cqp0P9cWd7JdlBnrW0FdXTuQzZhBDfQ
+         kZH39h6/Y5d4+ItJlHKFJKxzCyJKXyVSz4Wlk3JJaitFfHMxhtevP5AbmI+3KLeM6Ih+
+         LPzYLsFhwDkxEpZxn42FDvDTuf+fpaeNPoyFC/P8a1aEwU14Xt7Ca3qs6KukDHwKF3/E
+         Ks9ZYHlc7213+MuYsa2lpbDl/SvL8e2+jlg3rV7GYMyfEyemIgQ7TSvhjZFwWrTTFTJt
+         3PNA==
+X-Gm-Message-State: AC+VfDyM6wHFlWtQUUoEFXJ2GYLA4Wtv4LkplKwIb4KPEQzODMDnFUzv
+        7zchYMQ2dH3jLphHkxLiZ2s=
+X-Google-Smtp-Source: ACHHUZ56M27lYSfafVDVv+8NEF4IosaIspdd/GcRS3lW/hVsbLDfoiz0n+98aspbTHOG8skXRJY5hw==
+X-Received: by 2002:a2e:8614:0:b0:2a7:a5f7:9651 with SMTP id a20-20020a2e8614000000b002a7a5f79651mr988300lji.23.1685121185135;
+        Fri, 26 May 2023 10:13:05 -0700 (PDT)
+Received: from [192.168.1.126] (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id c22-20020a2e9496000000b002a7853b9339sm814026ljh.119.2023.05.26.10.13.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 May 2023 10:13:04 -0700 (PDT)
+Message-ID: <aa1b7590-1105-b1f0-c0bd-784e8369913f@gmail.com>
+Date:   Fri, 26 May 2023 20:13:03 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v6 5/6] drm: lcdif: Add multiple encoders and first
- bridges support
-Content-Language: en-US
-To:     Ying Liu <gnuiyl@gmail.com>
-Cc:     Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
-        alexander.stein@ew.tq-group.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, krzysztof.kozlowski@linaro.org,
-        robh+dt@kernel.org, linux-imx@nxp.com,
-        krzysztof.kozlowski+dt@linaro.org, kernel@pengutronix.de,
-        LW@karo-electronics.de
-References: <20230510092450.4024730-1-victor.liu@nxp.com>
- <20230510092450.4024730-6-victor.liu@nxp.com>
- <b3b77a65-5109-0e29-99c5-6cefaba0492c@denx.de>
- <CAOcKUNXTFr-uyEeKkos1m0VwoB76SMdkrAuT4zHC9c8D03Apcw@mail.gmail.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAOcKUNXTFr-uyEeKkos1m0VwoB76SMdkrAuT4zHC9c8D03Apcw@mail.gmail.com>
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 7/7] iio: accel: Add support for Kionix/ROHM KX132-1211
+ accelerometer
+Content-Language: en-US, en-GB
+To:     Mehdi Djait <mehdi.djait.k@gmail.com>, jic23@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org,
+        andriy.shevchenko@linux.intel.com, robh+dt@kernel.org,
+        lars@metafoo.de, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <cover.1685111274.git.mehdi.djait.k@gmail.com>
+ <d776c1dd5beef6ef812a4f7e4958eb6cb0f5e58e.1685111274.git.mehdi.djait.k@gmail.com>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <d776c1dd5beef6ef812a4f7e4958eb6cb0f5e58e.1685111274.git.mehdi.djait.k@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/25/23 03:45, Ying Liu wrote:
-> Hi Marek,
-
-Hi,
-
-> On Thu, May 11, 2023 at 12:24 AM Marek Vasut <marex@denx.de> wrote:
->> On 5/10/23 11:24, Liu Ying wrote:
->>> The single LCDIF embedded in i.MX93 SoC may drive multiple displays
->>> simultaneously.  Look at LCDIF output port's remote port parents to
->>> find all enabled first bridges.  Add an encoder for each found bridge
->>> and attach the bridge to the encoder.  This is a preparation for
->>> adding i.MX93 LCDIF support.
->>>
->>> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->>> Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
->>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
->>> ---
->>> v5->v6:
->>> * Drop MAX_DISPLAYS macro. (Marek)
->>> * Drop the encoder member in struct lcdif_drm_private.
->>> * Drop endpoint id check.
->>
->> It might be nice to check (based on driver data for each IP variant) the
->> encoder count, but that can be a separate patch.
->>
->> Reviewed-by: Marek Vasut <marex@denx.de>
->>
->> Thanks !
->>
->> btw if this doesn't get picked by someone in like a week or two, let me
->> know and I'll apply this via drm-misc .
+On 5/26/23 17:30, Mehdi Djait wrote:
+> Kionix KX132-1211 is a tri-axis 16-bit accelerometer that can support
+> ranges from ±2G to ±16G, digital output through I²C/SPI.
+> Add support for basic accelerometer features such as reading acceleration
+> via IIO using raw reads, triggered buffer (data-ready), or the WMI IRQ.
 > 
-> Thanks for your review.  I don't see any more comments in two weeks.
-> Can you please go ahead to apply this series?
+> Datasheet: https://kionixfs.azureedge.net/en/document/KX132-1211-Technical-Reference-Manual-Rev-5.0.pdf
+> Signed-off-by: Mehdi Djait <mehdi.djait.k@gmail.com>
 
-Done, applied to drm-misc-next , thanks !
+Acked-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-Thanks for the reminder too .
+Yours,
+	-- Matti
+
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
+
