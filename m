@@ -2,143 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A152711FD9
-	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 08:25:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ADE5711FEB
+	for <lists+devicetree@lfdr.de>; Fri, 26 May 2023 08:27:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242138AbjEZGZn convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 26 May 2023 02:25:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59240 "EHLO
+        id S233339AbjEZG1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 02:27:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242142AbjEZGZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 02:25:42 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AC0F1B3;
-        Thu, 25 May 2023 23:25:38 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id F185B807C;
-        Fri, 26 May 2023 14:25:32 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 26 May
- 2023 14:25:32 +0800
-Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
- by EXMBX168.cuchost.com (172.16.6.78) with Microsoft SMTP Server (TLS) id
- 15.0.1497.42; Fri, 26 May 2023 14:25:32 +0800
-From:   William Qiu <william.qiu@starfivetech.com>
-To:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-CC:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236693AbjEZG1F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 02:27:05 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 466691A4
+        for <devicetree@vger.kernel.org>; Thu, 25 May 2023 23:26:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685082399; x=1716618399;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wa/Rj8eX1IlIw9BmUGRDWFvx1jlTBOSqErHs6rVHRn8=;
+  b=CqUvdR6BRx8ok8cgAX25Fd6elHvsqRUTlxfslBzErciYvvLD2nmAxPi8
+   +7j5JcgpmOjNKEGMvdoE3Es4VKEyNNVs/o2kb3k5MQSnP3ZintItqVq39
+   +JbW8ZRk2CGPRWqbiqrefKireBjJnOLDE9yD8d3HndU4L/o5/llL1LidW
+   +b4XQ3Bb9zYdkQmQapztrBIkgdLZqNBsDE4q8dwvC67ACbV9tx9THCBSE
+   Kzo5udI++FXG0ajKe8/Ds1EW7C7wnN9NGfjnkWgk2tp+Z7Rn0wNTdDnV8
+   FNqw+faMJGnT8J/i2otIkbmnoX28/LHmNm4xs9R5w36BKFwuutyj1+MDX
+   g==;
+X-IronPort-AV: E=Sophos;i="6.00,193,1681196400"; 
+   d="asc'?scan'208";a="214991452"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 May 2023 23:26:24 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 25 May 2023 23:26:21 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 25 May 2023 23:26:20 -0700
+Date:   Fri, 26 May 2023 07:25:58 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     William Zhang <william.zhang@broadcom.com>
+CC:     Conor Dooley <conor@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <f.fainelli@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>
-Subject: [PATCH v1 3/3] riscv: dts: starfive: Add QSPI controller node for StarFive JH7110 SoC
-Date:   Fri, 26 May 2023 14:25:29 +0800
-Message-ID: <20230526062529.46747-4-william.qiu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230526062529.46747-1-william.qiu@starfivetech.com>
-References: <20230526062529.46747-1-william.qiu@starfivetech.com>
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: dt_binding_check report false alarm?
+Message-ID: <20230526-morality-spray-4bb99d00a93a@wendy>
+References: <20230525050241.3700-1-william.zhang@broadcom.com>
+ <20230525-wrench-lushness-f9a1ad022798@wendy>
+ <00604ffd-ccb3-e640-5457-1fa1ed663d26@broadcom.com>
+ <20230525-unlearned-trusting-1ed0cf6a6364@spud>
+ <c7fe5781-5213-8a39-f7f7-a1f5e94249cd@broadcom.com>
+ <20230525-mating-mutt-36a506094d38@spud>
+ <58dbfc50-45ac-389d-10aa-740aee150b16@broadcom.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="e076N05BydOP/Xxs"
+Content-Disposition: inline
+In-Reply-To: <58dbfc50-45ac-389d-10aa-740aee150b16@broadcom.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the quad spi controller node for the StarFive JH7110 SoC.
+--e076N05BydOP/Xxs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Co-developed-by: Ziv Xu <ziv.xu@starfivetech.com>
-Signed-off-by: Ziv Xu <ziv.xu@starfivetech.com>
-Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 32 +++++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 18 +++++++++++
- 2 files changed, 50 insertions(+)
+On Thu, May 25, 2023 at 10:56:45PM -0700, William Zhang wrote:
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index 2a6d81609284..22212c1150f9 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -126,6 +126,38 @@ &i2c6 {
- 	status = "okay";
- };
- 
-+&qspi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	nor_flash: flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg=<0>;
-+		cdns,read-delay = <5>;
-+		spi-max-frequency = <12000000>;
-+		cdns,tshsl-ns = <1>;
-+		cdns,tsd2d-ns = <1>;
-+		cdns,tchsh-ns = <1>;
-+		cdns,tslch-ns = <1>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			spl@0 {
-+				reg = <0x0 0x20000>;
-+			};
-+			uboot@100000 {
-+				reg = <0x100000 0x300000>;
-+			};
-+			data@f00000 {
-+				reg = <0xf00000 0x100000>;
-+			};
-+		};
-+	};
-+};
-+
- &sysgpio {
- 	i2c0_pins: i2c0-0 {
- 		i2c-pins {
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index 4c5fdb905da8..6385443d011f 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -440,6 +440,24 @@ i2c6: i2c@12060000 {
- 			status = "disabled";
- 		};
- 
-+		qspi: spi@13010000 {
-+			compatible = "starfive,jh7110-qspi", "cdns,qspi-nor";
-+			reg = <0x0 0x13010000 0x0 0x10000
-+				0x0 0x21000000 0x0 0x400000>;
-+			interrupts = <25>;
-+			clocks = <&syscrg JH7110_SYSCLK_QSPI_REF>,
-+				 <&syscrg JH7110_SYSCLK_QSPI_AHB>,
-+				 <&syscrg JH7110_SYSCLK_QSPI_APB>;
-+			clock-names = "qspi-ref", "qspi-ahb", "qspi-apb";
-+			resets = <&syscrg JH7110_SYSRST_QSPI_APB>,
-+				 <&syscrg JH7110_SYSRST_QSPI_AHB>,
-+				 <&syscrg JH7110_SYSRST_QSPI_REF>;
-+			reset-names = "qspi", "qspi-ocp", "rstc_ref";
-+			cdns,fifo-depth = <256>;
-+			cdns,fifo-width = <4>;
-+			cdns,trigger-address = <0x0>;
-+		};
-+
- 		syscrg: clock-controller@13020000 {
- 			compatible = "starfive,jh7110-syscrg";
- 			reg = <0x0 0x13020000 0x0 0x10000>;
--- 
-2.34.1
+> Do we have any document list all these supported keywords/rules/syntax for
+> yaml dts?
 
+The example schema is a good place to look:
+https://docs.kernel.org/devicetree/bindings/writing-schema.html?highlight=example+schema#annotated-example-schema
+
+--e076N05BydOP/Xxs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHBQ9gAKCRB4tDGHoIJi
+0jMOAQDLq7JO3aySvxrsvXk7Yat+PpJ3XfQLeEcDFVMASJEiHwEAggqLyqXCi0Po
+iiaipOLurNb+bnsKkMA+fQebu8xnogY=
+=j8FJ
+-----END PGP SIGNATURE-----
+
+--e076N05BydOP/Xxs--
