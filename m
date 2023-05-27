@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA49C7135B7
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 18:24:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B8317135BF
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 18:44:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229497AbjE0QYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 12:24:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52392 "EHLO
+        id S229498AbjE0QoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 12:44:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbjE0QYF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 12:24:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5DECE1;
-        Sat, 27 May 2023 09:24:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5DF31603F3;
-        Sat, 27 May 2023 16:24:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA748C433D2;
-        Sat, 27 May 2023 16:23:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685204642;
-        bh=0hlYza4BD5ghB7457yyj1b/Tsf9YdImAC+eRMrPpF5s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iTY29u3k5WRMrJ/Sj/lzkb0rIAetgH4S3kQvKMMHr5Jj/FzbFdMR92Ol7rsHkpQx1
-         OiwZSVHvrfz9aoJQHgu98wybb8tIhYzekJIEouEE+UQCRk3bQeKyxerrhiEBsGsOJf
-         xUoF2WiY/w3xNT2Dyxf6MTZZCHdjgAefVIOf0NrofJbrAkSGP8zB3ZWdEZXGP1A073
-         ZNIdcNIazN0ZJV9TcIc9oqSf/EqqvzIC6RNqnOCCNmoYSp8N47sjpW9EeIELIDIkrW
-         ZRm1F0o7R32dN/IPK1M4/w0KacolxFdEfO4qsCctmA05C5pLACHGKYjeO5XvetZLPl
-         ZbTUue8IM3LpA==
-Date:   Sat, 27 May 2023 17:23:56 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        Kelvin Cheung <keguang.zhang@gmail.com>,
-        zhao zhang <zhzhl555@gmail.com>,
-        Yang Ling <gnaygnil@gmail.com>,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the
- trivial RTCs
-Message-ID: <20230527-passing-unfixed-39e01b787808@spud>
-References: <cover.1684983279.git.zhoubinbin@loongson.cn>
- <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
- <20230525-custody-oversleep-f778eddf981c@spud>
- <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
- <20230526-dolly-reheat-06c4d5658415@wendy>
- <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com>
- <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com>
+        with ESMTP id S229494AbjE0QoO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 12:44:14 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 528229E;
+        Sat, 27 May 2023 09:44:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1685205852; x=1716741852;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Vljc/Pd6Io02Ai7XcnqcqUOa6Gb26xpAfOgGNEwIJt0=;
+  b=UOKWhAZd/73bxZJd1uTydAyi1qC5G/1StHbrrvM7bdtD4VDcCuh2YOo0
+   p1SZasme0hvDD2NoijHQt5Ddjwti2+n8g/dozpx8VXEHERTKqSzwYxNGj
+   B1zWidQzyZDkHer+dIf6UdEZfrdhL3kC64Gwj+3YPvIENMlO8tWL2+5xV
+   WkA1HDmD4WbKDfB4CoTMiMf924SAfbYKB8Bxhc155htHYCAUPXKF/4q+w
+   qFrpoTRJed6EKO5AJHBN0OqBW4YIzjYE4yTEffDCNFRQLZp7BD/nWCeGS
+   NNJXDxaGhYh58bYiFZnGTcYucUN1bP+Nwv3nkXktdh/RlUJLlrmu8q1jT
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="351922436"
+X-IronPort-AV: E=Sophos;i="6.00,197,1681196400"; 
+   d="scan'208";a="351922436"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2023 09:44:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="795420700"
+X-IronPort-AV: E=Sophos;i="6.00,197,1681196400"; 
+   d="scan'208";a="795420700"
+Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 27 May 2023 09:44:07 -0700
+Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1q2x1S-000K4o-3B;
+        Sat, 27 May 2023 16:44:06 +0000
+Date:   Sun, 28 May 2023 00:43:41 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Mao Jinlong <quic_jinlmao@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Mao Jinlong <quic_jinlmao@quicinc.com>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>
+Subject: Re: [PATCH v1 2/3] coresight-tmc: byte-cntr: Add support for
+ streaming interface for ETR
+Message-ID: <202305280032.8rkzzoXH-lkp@intel.com>
+References: <20230526153508.6208-3-quic_jinlmao@quicinc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="a8yasedcE/Z2PgR2"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20230526153508.6208-3-quic_jinlmao@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,180 +79,207 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Mao,
 
---a8yasedcE/Z2PgR2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+kernel test robot noticed the following build errors:
 
-On Sat, May 27, 2023 at 05:13:39PM +0100, Jiaxun Yang wrote:
-> > 2023=E5=B9=B45=E6=9C=8827=E6=97=A5 10:22=EF=BC=8CBinbin Zhou <zhoubb.aa=
-ron@gmail.com> =E5=86=99=E9=81=93=EF=BC=9A
-> > On Fri, May 26, 2023 at 8:07=E2=80=AFPM Conor Dooley <conor.dooley@micr=
-ochip.com> wrote:
-> >> On Fri, May 26, 2023 at 09:37:02AM +0800, Binbin Zhou wrote:
-> >>> On Fri, May 26, 2023 at 1:05=E2=80=AFAM Conor Dooley <conor@kernel.or=
-g> wrote:
-> >>>> On Thu, May 25, 2023 at 08:55:23PM +0800, Binbin Zhou wrote:
-> >>=20
-> >>>>>> +properties:
-> >>>>> +  compatible:
-> >>>>> +    enum:
-> >>>>> +      - loongson,ls1b-rtc
-> >>>>> +      - loongson,ls1c-rtc
-> >>>>> +      - loongson,ls7a-rtc
-> >>>>> +      - loongson,ls2k0500-rtc
-> >>>>> +      - loongson,ls2k1000-rtc
-> >>>>> +      - loongson,ls2k2000-rtc
-> >>>>=20
-> >>>> |+static const struct of_device_id loongson_rtc_of_match[] =3D {
-> >>>> |+       { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_=
-config },
-> >>>> |+       { .compatible =3D "loongson,ls1c-rtc", .data =3D &ls1x_rtc_=
-config },
-> >>>> |+       { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_r=
-tc_config },
-> >>>> |+       { .compatible =3D "loongson,ls2k0500-rtc", .data =3D &gener=
-ic_rtc_config },
-> >>>> |+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1=
-000_rtc_config },
-> >>>> |+       { .compatible =3D "loongson,ls2k2000-rtc", .data =3D &gener=
-ic_rtc_config },
-> >>>> |+       { /* sentinel */ }
-> >>>> |+};
-> >>>>=20
-> >>>> This is a sign to me that your compatibles here are could do with so=
-me
-> >>>> fallbacks. Both of the ls1 ones are compatible with each other & the=
-re
-> >>>> are three that are generic.
-> >>>>=20
-> >>>> I would allow the following:
-> >>>> "loongson,ls1b-rtc"
-> >>>> "loongson,ls1c-rtc", "loongson,ls1b-rtc"
-> >>>> "loongson,ls7a-rtc"
-> >>>> "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
-> >>>> "loongson,ls2k2000-rtc", "loongson,ls7a-rtc"
-> >>>> "loongson,ls2k1000-rtc"
-> >>>>=20
-> >>>> And then the driver only needs:
-> >>>> |+static const struct of_device_id loongson_rtc_of_match[] =3D {
-> >>>> |+       { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_=
-config },
-> >>>> |+       { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_r=
-tc_config },
-> >>>> |+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1=
-000_rtc_config },
-> >>>> |+       { /* sentinel */ }
-> >>>> |+};
-> >>>>=20
-> >>>> And ~if~when you add support for more devices in the future that are
-> >>>> compatible with the existing ones no code changes are required.
-> >>>=20
-> >>> Hi Conor:
-> >>>=20
-> >>> Thanks for your reply.
-> >>>=20
-> >>> Yes, this is looking much cleaner. But it can't show every chip that
-> >>> supports that driver.
-> >>>=20
-> >>> As we know, Loongson is a family of chips:
-> >>> ls1b/ls1c represent the Loongson-1 family of CPU chips;
-> >>> ls7a represents the Loongson LS7A bridge chip;
-> >>> ls2k0500/ls2k1000/ls2k2000 represent the Loongson-2 family of CPU chi=
-ps.
-> >>>=20
-> >>> Based on my previous conversations with Krzysztof, it seems that
-> >>> soc-based to order compatible is more popular, so I have listed all
-> >>> the chips that support that RTC driver.
-> >>=20
-> >> Right. You don't actually have to list them all *in the driver* though,
-> >> just in the binding and in the devicetree. I think what you have missed
-> >> is:
-> >>>> I would allow the following:
-> >>>> "loongson,ls1b-rtc"
-> >>>> "loongson,ls1c-rtc", "loongson,ls1b-rtc"
-> >>>> "loongson,ls7a-rtc"
-> >>>> "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
-> >>>> "loongson,ls2k2000-rtc", "loongson,ls7a-rtc"
-> >>>> "loongson,ls2k1000-rtc"
-> >>=20
-> >> This is what you would put in the compatible section of a devicetree
-> >> node, using "fallback compatibles". So for a ls1c you put in
-> >> compatible =3D "loongson,ls1c-rtc", "loongson,ls1b-rtc";
-> >> and the kernel first tries to find a driver that supports
-> >> "loongson,ls1c-rtc" but if that fails it tries to find one that suppor=
-ts
-> >> "loongson,ls1b-rtc". This gives you the best of both worlds - you can
-> >> add support easily for new systems (when an ls1d comes out, you don't
-> >> even need to change the driver for it to just work!) and you have a
-> >> soc-specific compatible in case you need to add some workaround for
-> >> hardware errata etc in the future.
-> >=20
-> > I seem to understand what you are talking about.
-> > I hadn't delved into "fallback compatibles" before, so thanks for the
-> > detailed explanation.
-> >=20
-> > In fact, I have thought before if there is a good way to do it other
-> > than adding comptable to the driver frequently, and "fallback
-> > compatibles" should be the most suitable.
-> >=20
-> > So in the dt-bindings file, should we just write this:
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.4-rc3 next-20230525]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Not quite, because you still need to allow for ls1b-rtc and ls7a-rtc
-appearing on their own. That's just two more entries like the
-ls2k1000-rtc one.
+url:    https://github.com/intel-lab-lkp/linux/commits/Mao-Jinlong/Coresight-Add-driver-to-support-for-CSR/20230526-233705
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20230526153508.6208-3-quic_jinlmao%40quicinc.com
+patch subject: [PATCH v1 2/3] coresight-tmc: byte-cntr: Add support for streaming interface for ETR
+config: arm-randconfig-r034-20230526 (https://download.01.org/0day-ci/archive/20230528/202305280032.8rkzzoXH-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project 4faf3aaf28226a4e950c103a14f6fc1d1fdabb1b)
+reproduce (this is a W=1 build):
+        mkdir -p ~/bin
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm cross compiling tool for clang build
+        # apt-get install binutils-arm-linux-gnueabi
+        # https://github.com/intel-lab-lkp/linux/commit/3c44cc3f9a93e12d206b9428b5ed959c46cf08b5
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Mao-Jinlong/Coresight-Add-driver-to-support-for-CSR/20230526-233705
+        git checkout 3c44cc3f9a93e12d206b9428b5ed959c46cf08b5
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang ~/bin/make.cross W=1 O=build_dir ARCH=arm olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang ~/bin/make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/hwtracing/coresight/
 
-> >=20
-> >  compatible:
-> >    oneOf:
-> >      - items:
-> >          - enum:
-> >              - loongson,ls1c-rtc
-> >          - const: loongson,ls1b-rtc
-> >      - items:
-> >          - enum:
-> >              - loongson,ls2k0500-rtc
-> >              - loongson,ls2k2000-rtc
-> >          - const: loongson,ls7a-rtc
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202305280032.8rkzzoXH-lkp@intel.com/
 
-> >      - items:
-> >          - const: loongson,ls2k1000-rtc
+All error/warnings (new ones prefixed by >>):
 
-This one is just "const:", you don't need "items: const:".
-I didn't test this, but I figure it would be:
-	compatible:
-	  oneOf:
-	    - items:
-	        - enum:
-	            - loongson,ls1c-rtc
-	        - const: loongson,ls1b-rtc
-	    - items:
-	        - enum:
-	            - loongson,ls2k0500-rtc
-	            - loongson,ls2k2000-rtc
-	        - const: loongson,ls7a-rtc
-	    - const: loongson,ls1b-rtc
-	    - const: loongson,ls2k1000-rtc
-	    - const: loongson,ls7a-rtc
+>> drivers/hwtracing/coresight/coresight-tmc-core.c:527:9: error: call to undeclared function 'of_get_coresight_csr_name'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+                   ret = of_get_coresight_csr_name(adev->dev.of_node, &drvdata->csr_name);
+                         ^
+   1 error generated.
+--
+>> drivers/hwtracing/coresight/coresight-byte-cntr.c:139:48: error: too few arguments to function call, expected 3, have 2
+           coresight_csr_set_byte_cntr(tmcdrvdata->csr, 0);
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~                   ^
+   drivers/hwtracing/coresight/coresight-csr.h:53:20: note: 'coresight_csr_set_byte_cntr' declared here
+   static inline void coresight_csr_set_byte_cntr(struct coresight_csr *csr, int irqctrl_offset,
+                      ^
+   drivers/hwtracing/coresight/coresight-byte-cntr.c:154:49: error: too few arguments to function call, expected 3, have 2
+                   coresight_csr_set_byte_cntr(tmcdrvdata->csr, 0);
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~                   ^
+   drivers/hwtracing/coresight/coresight-csr.h:53:20: note: 'coresight_csr_set_byte_cntr' declared here
+   static inline void coresight_csr_set_byte_cntr(struct coresight_csr *csr, int irqctrl_offset,
+                      ^
+   drivers/hwtracing/coresight/coresight-byte-cntr.c:187:79: error: too few arguments to function call, expected 3, have 2
+           coresight_csr_set_byte_cntr(tmcdrvdata->csr, (byte_cntr_data->block_size) / 8);
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                  ^
+   drivers/hwtracing/coresight/coresight-csr.h:53:20: note: 'coresight_csr_set_byte_cntr' declared here
+   static inline void coresight_csr_set_byte_cntr(struct coresight_csr *csr, int irqctrl_offset,
+                      ^
+>> drivers/hwtracing/coresight/coresight-byte-cntr.c:297:6: warning: no previous prototype for function 'byte_cntr_remove' [-Wmissing-prototypes]
+   void byte_cntr_remove(struct byte_cntr *byte_cntr_data)
+        ^
+   drivers/hwtracing/coresight/coresight-byte-cntr.c:297:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+   void byte_cntr_remove(struct byte_cntr *byte_cntr_data)
+   ^
+   static 
+   1 warning and 3 errors generated.
 
-> My recommendation is leaving compatible string as is.
 
-"as is" meaning "as it is right now in Linus' tree", or "as it is in
-this patch"?
+vim +/of_get_coresight_csr_name +527 drivers/hwtracing/coresight/coresight-tmc-core.c
 
-Cheers,
-Conor.
+   481	
+   482	static int tmc_probe(struct amba_device *adev, const struct amba_id *id)
+   483	{
+   484		int ret = 0;
+   485		u32 devid;
+   486		void __iomem *base;
+   487		struct device *dev = &adev->dev;
+   488		struct coresight_platform_data *pdata = NULL;
+   489		struct tmc_drvdata *drvdata;
+   490		struct resource *res = &adev->res;
+   491		struct coresight_desc desc = { 0 };
+   492		struct coresight_dev_list *dev_list = NULL;
+   493	
+   494		ret = -ENOMEM;
+   495		drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+   496		if (!drvdata)
+   497			goto out;
+   498	
+   499		dev_set_drvdata(dev, drvdata);
+   500	
+   501		/* Validity for the resource is already checked by the AMBA core */
+   502		base = devm_ioremap_resource(dev, res);
+   503		if (IS_ERR(base)) {
+   504			ret = PTR_ERR(base);
+   505			goto out;
+   506		}
+   507	
+   508		drvdata->base = base;
+   509		desc.access = CSDEV_ACCESS_IOMEM(base);
+   510	
+   511		spin_lock_init(&drvdata->spinlock);
+   512	
+   513		devid = readl_relaxed(drvdata->base + CORESIGHT_DEVID);
+   514		drvdata->config_type = BMVAL(devid, 6, 7);
+   515		drvdata->memwidth = tmc_get_memwidth(devid);
+   516		/* This device is not associated with a session */
+   517		drvdata->pid = -1;
+   518	
+   519		if (drvdata->config_type == TMC_CONFIG_TYPE_ETR) {
+   520			drvdata->size = tmc_etr_get_default_buffer_size(dev);
+   521			drvdata->max_burst_size = tmc_etr_get_max_burst_size(dev);
+   522		} else {
+   523			drvdata->size = readl_relaxed(drvdata->base + TMC_RSZ) * 4;
+   524		}
+   525	
+   526		if (drvdata->config_type == TMC_CONFIG_TYPE_ETR) {
+ > 527			ret = of_get_coresight_csr_name(adev->dev.of_node, &drvdata->csr_name);
+   528			if (ret)
+   529				dev_dbg(dev, "No csr data\n");
+   530			else {
+   531				drvdata->csr = coresight_csr_get(drvdata->csr_name);
+   532				if (IS_ERR(drvdata->csr)) {
+   533					dev_dbg(dev, "failed to get csr, defer probe\n");
+   534					return -EPROBE_DEFER;
+   535				}
+   536	
+   537			}
+   538	
+   539		}
+   540	
+   541		desc.dev = dev;
+   542		desc.groups = coresight_tmc_groups;
+   543	
+   544		switch (drvdata->config_type) {
+   545		case TMC_CONFIG_TYPE_ETB:
+   546			desc.type = CORESIGHT_DEV_TYPE_SINK;
+   547			desc.subtype.sink_subtype = CORESIGHT_DEV_SUBTYPE_SINK_BUFFER;
+   548			desc.ops = &tmc_etb_cs_ops;
+   549			dev_list = &etb_devs;
+   550			break;
+   551		case TMC_CONFIG_TYPE_ETR:
+   552			desc.type = CORESIGHT_DEV_TYPE_SINK;
+   553			desc.subtype.sink_subtype = CORESIGHT_DEV_SUBTYPE_SINK_SYSMEM;
+   554			desc.ops = &tmc_etr_cs_ops;
+   555			ret = tmc_etr_setup_caps(dev, devid,
+   556						 coresight_get_uci_data(id));
+   557			if (ret)
+   558				goto out;
+   559			idr_init(&drvdata->idr);
+   560			drvdata->byte_cntr = byte_cntr_init(adev, drvdata);
+   561			mutex_init(&drvdata->idr_mutex);
+   562			dev_list = &etr_devs;
+   563			break;
+   564		case TMC_CONFIG_TYPE_ETF:
+   565			desc.type = CORESIGHT_DEV_TYPE_LINKSINK;
+   566			desc.subtype.sink_subtype = CORESIGHT_DEV_SUBTYPE_SINK_BUFFER;
+   567			desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_FIFO;
+   568			desc.ops = &tmc_etf_cs_ops;
+   569			dev_list = &etf_devs;
+   570			break;
+   571		default:
+   572			pr_err("%s: Unsupported TMC config\n", desc.name);
+   573			ret = -EINVAL;
+   574			goto out;
+   575		}
+   576	
+   577		desc.name = coresight_alloc_device_name(dev_list, dev);
+   578		if (!desc.name) {
+   579			ret = -ENOMEM;
+   580			goto out;
+   581		}
+   582	
+   583		pdata = coresight_get_platform_data(dev);
+   584		if (IS_ERR(pdata)) {
+   585			ret = PTR_ERR(pdata);
+   586			goto out;
+   587		}
+   588		adev->dev.platform_data = pdata;
+   589		desc.pdata = pdata;
+   590	
+   591		drvdata->csdev = coresight_register(&desc);
+   592		if (IS_ERR(drvdata->csdev)) {
+   593			ret = PTR_ERR(drvdata->csdev);
+   594			goto out;
+   595		}
+   596	
+   597		drvdata->miscdev.name = desc.name;
+   598		drvdata->miscdev.minor = MISC_DYNAMIC_MINOR;
+   599		drvdata->miscdev.fops = &tmc_fops;
+   600		ret = misc_register(&drvdata->miscdev);
+   601		if (ret)
+   602			coresight_unregister(drvdata->csdev);
+   603		else
+   604			pm_runtime_put(&adev->dev);
+   605	out:
+   606		return ret;
+   607	}
+   608	
 
---a8yasedcE/Z2PgR2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHIunAAKCRB4tDGHoIJi
-0m/uAQCuzkw1wso84qc7hQg1yRGe54Qq/5n7d4oNNpITxmc7EQD9F9V4W2yGCIzX
-HriOW3sQjp9fOFGxxuiNypG2GeFP5QY=
-=imah
------END PGP SIGNATURE-----
-
---a8yasedcE/Z2PgR2--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
