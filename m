@@ -2,81 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D1867135B0
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 18:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA49C7135B7
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 18:24:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbjE0QQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 12:16:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51336 "EHLO
+        id S229497AbjE0QYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 12:24:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229472AbjE0QQQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 12:16:16 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29045C9
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 09:16:13 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4ec8eca56cfso2122278e87.0
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 09:16:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685204171; x=1687796171;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JzqcMXV8aXA/E+ztgmw9/NYRg5djZnCXl7rg+fvKKrc=;
-        b=TtMAQUviQJGDF72CxJTvYtB5tPNXNF9VrGvM7O32PAiE28IptQtNzU5U1Ci0pS3Q91
-         Fg28aqMjXlZQrZU9jIig/mffAquE6EuETpOdOd0ASBJ38c3w8sntsNI3Q7qlIBep++eA
-         /xo70HT+P2aanYp0tqSCWWpa+ojpMu5E6y96isiGlQKtweI1GfYpj86fbpKPF6XqlxvA
-         KmWfi5J7Xa0Cox/8FKrUNRiREiEyGFB0cUjBPxk1PiQbpk4jl8fCMShVHa8uIZlQWY1Q
-         QlQPHeuZsGvBLoaf+QSN77hPQt3+z+iNnPWtyxCQa61eIDmU8rG43o7aVUpYPN5WfVpn
-         a94g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685204171; x=1687796171;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JzqcMXV8aXA/E+ztgmw9/NYRg5djZnCXl7rg+fvKKrc=;
-        b=OuPNcqbP+lpULJi8XpytpjzmcvE2jbpP0nfBJAyGR4/aalA4K7CZn843fPFGd7X2Zh
-         IlLddE0gkVbWG5AACyQY46XXxcA+3beazpuavrcDP0saLmFyX7hkmwnAGLVQr2UW+/8E
-         zTIIOWORvgY9CQogQX7FZ0sy0wpBY66qcKEHYIEhRDz+PELFJBBDCOwIr9sds24GdhGn
-         8skzyQOqkW9dQMwZ60fCmRLGGrrpA9EzXh8Ju2W/7+CRmTbFLv6aAb2R/skNPxLWi3yp
-         iRFzjRJwD3x7sImCFgkuQZipYDzqCUwn/irlxckoXfCn7tcx4BWMEbspsZqpTCt1FPBG
-         +QKg==
-X-Gm-Message-State: AC+VfDxzJ5KAjbI1SW+neNWPkVNSBM+pQIlGkNzldYR2vQDk0e3/dO0r
-        Dt8DODa2nw8aC5Z84kjRhIBq+Q==
-X-Google-Smtp-Source: ACHHUZ4VFGTXe0x62XEJ3vBr9o9yIQ7A76CQBcp/c/JXEH03cAQIi/MjgGe/3z2upGj/n3XlhGanVg==
-X-Received: by 2002:a05:6512:64:b0:4f0:c18:5114 with SMTP id i4-20020a056512006400b004f00c185114mr1623049lfo.26.1685204171275;
-        Sat, 27 May 2023 09:16:11 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id x14-20020a19f60e000000b004efe9a169d2sm1175071lfe.64.2023.05.27.09.16.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 27 May 2023 09:16:10 -0700 (PDT)
-Message-ID: <f2ed6b88-13df-8df7-55e0-5d11bf5a1ef0@linaro.org>
-Date:   Sat, 27 May 2023 18:16:09 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: msm8996pro: Add CBF scaling
- support
-Content-Language: en-US
-To:     Yassine Oudjana <yassine.oudjana@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229483AbjE0QYF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 12:24:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5DECE1;
+        Sat, 27 May 2023 09:24:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5DF31603F3;
+        Sat, 27 May 2023 16:24:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA748C433D2;
+        Sat, 27 May 2023 16:23:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685204642;
+        bh=0hlYza4BD5ghB7457yyj1b/Tsf9YdImAC+eRMrPpF5s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iTY29u3k5WRMrJ/Sj/lzkb0rIAetgH4S3kQvKMMHr5Jj/FzbFdMR92Ol7rsHkpQx1
+         OiwZSVHvrfz9aoJQHgu98wybb8tIhYzekJIEouEE+UQCRk3bQeKyxerrhiEBsGsOJf
+         xUoF2WiY/w3xNT2Dyxf6MTZZCHdjgAefVIOf0NrofJbrAkSGP8zB3ZWdEZXGP1A073
+         ZNIdcNIazN0ZJV9TcIc9oqSf/EqqvzIC6RNqnOCCNmoYSp8N47sjpW9EeIELIDIkrW
+         ZRm1F0o7R32dN/IPK1M4/w0KacolxFdEfO4qsCctmA05C5pLACHGKYjeO5XvetZLPl
+         ZbTUue8IM3LpA==
+Date:   Sat, 27 May 2023 17:23:56 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230527093934.101335-1-y.oudjana@protonmail.com>
- <20230527093934.101335-3-y.oudjana@protonmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230527093934.101335-3-y.oudjana@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        Kelvin Cheung <keguang.zhang@gmail.com>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        loongson-kernel@lists.loongnix.cn
+Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the
+ trivial RTCs
+Message-ID: <20230527-passing-unfixed-39e01b787808@spud>
+References: <cover.1684983279.git.zhoubinbin@loongson.cn>
+ <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
+ <20230525-custody-oversleep-f778eddf981c@spud>
+ <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
+ <20230526-dolly-reheat-06c4d5658415@wendy>
+ <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com>
+ <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="a8yasedcE/Z2PgR2"
+Content-Disposition: inline
+In-Reply-To: <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,321 +77,179 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--a8yasedcE/Z2PgR2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 27.05.2023 11:39, Yassine Oudjana wrote:
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
-> 
-> Add opp-peak-kBps to CPU OPPs to allow for CBF scaling, and change the
-> CBF compatible to reflect the difference between it and the one on
-> MSM8996.
-> 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Sat, May 27, 2023 at 05:13:39PM +0100, Jiaxun Yang wrote:
+> > 2023=E5=B9=B45=E6=9C=8827=E6=97=A5 10:22=EF=BC=8CBinbin Zhou <zhoubb.aa=
+ron@gmail.com> =E5=86=99=E9=81=93=EF=BC=9A
+> > On Fri, May 26, 2023 at 8:07=E2=80=AFPM Conor Dooley <conor.dooley@micr=
+ochip.com> wrote:
+> >> On Fri, May 26, 2023 at 09:37:02AM +0800, Binbin Zhou wrote:
+> >>> On Fri, May 26, 2023 at 1:05=E2=80=AFAM Conor Dooley <conor@kernel.or=
+g> wrote:
+> >>>> On Thu, May 25, 2023 at 08:55:23PM +0800, Binbin Zhou wrote:
+> >>=20
+> >>>>>> +properties:
+> >>>>> +  compatible:
+> >>>>> +    enum:
+> >>>>> +      - loongson,ls1b-rtc
+> >>>>> +      - loongson,ls1c-rtc
+> >>>>> +      - loongson,ls7a-rtc
+> >>>>> +      - loongson,ls2k0500-rtc
+> >>>>> +      - loongson,ls2k1000-rtc
+> >>>>> +      - loongson,ls2k2000-rtc
+> >>>>=20
+> >>>> |+static const struct of_device_id loongson_rtc_of_match[] =3D {
+> >>>> |+       { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_=
+config },
+> >>>> |+       { .compatible =3D "loongson,ls1c-rtc", .data =3D &ls1x_rtc_=
+config },
+> >>>> |+       { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_r=
+tc_config },
+> >>>> |+       { .compatible =3D "loongson,ls2k0500-rtc", .data =3D &gener=
+ic_rtc_config },
+> >>>> |+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1=
+000_rtc_config },
+> >>>> |+       { .compatible =3D "loongson,ls2k2000-rtc", .data =3D &gener=
+ic_rtc_config },
+> >>>> |+       { /* sentinel */ }
+> >>>> |+};
+> >>>>=20
+> >>>> This is a sign to me that your compatibles here are could do with so=
+me
+> >>>> fallbacks. Both of the ls1 ones are compatible with each other & the=
+re
+> >>>> are three that are generic.
+> >>>>=20
+> >>>> I would allow the following:
+> >>>> "loongson,ls1b-rtc"
+> >>>> "loongson,ls1c-rtc", "loongson,ls1b-rtc"
+> >>>> "loongson,ls7a-rtc"
+> >>>> "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
+> >>>> "loongson,ls2k2000-rtc", "loongson,ls7a-rtc"
+> >>>> "loongson,ls2k1000-rtc"
+> >>>>=20
+> >>>> And then the driver only needs:
+> >>>> |+static const struct of_device_id loongson_rtc_of_match[] =3D {
+> >>>> |+       { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_=
+config },
+> >>>> |+       { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_r=
+tc_config },
+> >>>> |+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1=
+000_rtc_config },
+> >>>> |+       { /* sentinel */ }
+> >>>> |+};
+> >>>>=20
+> >>>> And ~if~when you add support for more devices in the future that are
+> >>>> compatible with the existing ones no code changes are required.
+> >>>=20
+> >>> Hi Conor:
+> >>>=20
+> >>> Thanks for your reply.
+> >>>=20
+> >>> Yes, this is looking much cleaner. But it can't show every chip that
+> >>> supports that driver.
+> >>>=20
+> >>> As we know, Loongson is a family of chips:
+> >>> ls1b/ls1c represent the Loongson-1 family of CPU chips;
+> >>> ls7a represents the Loongson LS7A bridge chip;
+> >>> ls2k0500/ls2k1000/ls2k2000 represent the Loongson-2 family of CPU chi=
+ps.
+> >>>=20
+> >>> Based on my previous conversations with Krzysztof, it seems that
+> >>> soc-based to order compatible is more popular, so I have listed all
+> >>> the chips that support that RTC driver.
+> >>=20
+> >> Right. You don't actually have to list them all *in the driver* though,
+> >> just in the binding and in the devicetree. I think what you have missed
+> >> is:
+> >>>> I would allow the following:
+> >>>> "loongson,ls1b-rtc"
+> >>>> "loongson,ls1c-rtc", "loongson,ls1b-rtc"
+> >>>> "loongson,ls7a-rtc"
+> >>>> "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
+> >>>> "loongson,ls2k2000-rtc", "loongson,ls7a-rtc"
+> >>>> "loongson,ls2k1000-rtc"
+> >>=20
+> >> This is what you would put in the compatible section of a devicetree
+> >> node, using "fallback compatibles". So for a ls1c you put in
+> >> compatible =3D "loongson,ls1c-rtc", "loongson,ls1b-rtc";
+> >> and the kernel first tries to find a driver that supports
+> >> "loongson,ls1c-rtc" but if that fails it tries to find one that suppor=
+ts
+> >> "loongson,ls1b-rtc". This gives you the best of both worlds - you can
+> >> add support easily for new systems (when an ls1d comes out, you don't
+> >> even need to change the driver for it to just work!) and you have a
+> >> soc-specific compatible in case you need to add some workaround for
+> >> hardware errata etc in the future.
+> >=20
+> > I seem to understand what you are talking about.
+> > I hadn't delved into "fallback compatibles" before, so thanks for the
+> > detailed explanation.
+> >=20
+> > In fact, I have thought before if there is a good way to do it other
+> > than adding comptable to the driver frequently, and "fallback
+> > compatibles" should be the most suitable.
+> >=20
+> > So in the dt-bindings file, should we just write this:
 
-Now let's sprinkle some BWMON, CPR and GPMU and 8996 will be
-fairly complete as far as the core hw goes.. At last!
+Not quite, because you still need to allow for ls1b-rtc and ls7a-rtc
+appearing on their own. That's just two more entries like the
+ls2k1000-rtc one.
 
-Konrad
->  arch/arm64/boot/dts/qcom/msm8996pro.dtsi | 51 ++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996pro.dtsi b/arch/arm64/boot/dts/qcom/msm8996pro.dtsi
-> index a679a9c0cf99..b74cff06f300 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996pro.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996pro.dtsi
-> @@ -24,101 +24,121 @@ opp-307200000 {
->  			opp-hz = /bits/ 64 <307200000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <192000>;
->  		};
->  		opp-384000000 {
->  			opp-hz = /bits/ 64 <384000000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <192000>;
->  		};
->  		opp-460800000 {
->  			opp-hz = /bits/ 64 <460800000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <192000>;
->  		};
->  		opp-537600000 {
->  			opp-hz = /bits/ 64 <537600000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <192000>;
->  		};
->  		opp-614400000 {
->  			opp-hz = /bits/ 64 <614400000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <192000>;
->  		};
->  		opp-691200000 {
->  			opp-hz = /bits/ 64 <691200000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <307200>;
->  		};
->  		opp-768000000 {
->  			opp-hz = /bits/ 64 <768000000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <307200>;
->  		};
->  		opp-844800000 {
->  			opp-hz = /bits/ 64 <844800000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <384000>;
->  		};
->  		opp-902400000 {
->  			opp-hz = /bits/ 64 <902400000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <441600>;
->  		};
->  		opp-979200000 {
->  			opp-hz = /bits/ 64 <979200000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <537600>;
->  		};
->  		opp-1056000000 {
->  			opp-hz = /bits/ 64 <1056000000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <614400>;
->  		};
->  		opp-1132800000 {
->  			opp-hz = /bits/ 64 <1132800000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <691200>;
->  		};
->  		opp-1209600000 {
->  			opp-hz = /bits/ 64 <1209600000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <768000>;
->  		};
->  		opp-1286400000 {
->  			opp-hz = /bits/ 64 <1286400000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <844800>;
->  		};
->  		opp-1363200000 {
->  			opp-hz = /bits/ 64 <1363200000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <902400>;
->  		};
->  		opp-1440000000 {
->  			opp-hz = /bits/ 64 <1440000000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <979200>;
->  		};
->  		opp-1516800000 {
->  			opp-hz = /bits/ 64 <1516800000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1132800>;
->  		};
->  		opp-1593600000 {
->  			opp-hz = /bits/ 64 <1593600000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1190400>;
->  		};
->  		opp-1996800000 {
->  			opp-hz = /bits/ 64 <1996800000>;
->  			opp-supported-hw = <0x20>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1516800>;
->  		};
->  		opp-2188800000 {
->  			opp-hz = /bits/ 64 <2188800000>;
->  			opp-supported-hw = <0x10>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1593600>;
->  		};
->  	};
->  
-> @@ -131,136 +151,163 @@ opp-307200000 {
->  			opp-hz = /bits/ 64 <307200000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <192000>;
->  		};
->  		opp-384000000 {
->  			opp-hz = /bits/ 64 <384000000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <192000>;
->  		};
->  		opp-460800000 {
->  			opp-hz = /bits/ 64 <460800000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <192000>;
->  		};
->  		opp-537600000 {
->  			opp-hz = /bits/ 64 <537600000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <192000>;
->  		};
->  		opp-614400000 {
->  			opp-hz = /bits/ 64 <614400000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <192000>;
->  		};
->  		opp-691200000 {
->  			opp-hz = /bits/ 64 <691200000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <307200>;
->  		};
->  		opp-748800000 {
->  			opp-hz = /bits/ 64 <748800000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <307200>;
->  		};
->  		opp-825600000 {
->  			opp-hz = /bits/ 64 <825600000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <384000>;
->  		};
->  		opp-902400000 {
->  			opp-hz = /bits/ 64 <902400000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <441600>;
->  		};
->  		opp-979200000 {
->  			opp-hz = /bits/ 64 <979200000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <441600>;
->  		};
->  		opp-1056000000 {
->  			opp-hz = /bits/ 64 <1056000000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <537600>;
->  		};
->  		opp-1132800000 {
->  			opp-hz = /bits/ 64 <1132800000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <614400>;
->  		};
->  		opp-1209600000 {
->  			opp-hz = /bits/ 64 <1209600000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <691200>;
->  		};
->  		opp-1286400000 {
->  			opp-hz = /bits/ 64 <1286400000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <768000>;
->  		};
->  		opp-1363200000 {
->  			opp-hz = /bits/ 64 <1363200000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <844800>;
->  		};
->  		opp-1440000000 {
->  			opp-hz = /bits/ 64 <1440000000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <902400>;
->  		};
->  		opp-1516800000 {
->  			opp-hz = /bits/ 64 <1516800000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <979200>;
->  		};
->  		opp-1593600000 {
->  			opp-hz = /bits/ 64 <1593600000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1056000>;
->  		};
->  		opp-1670400000 {
->  			opp-hz = /bits/ 64 <1670400000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1132800>;
->  		};
->  		opp-1747200000 {
->  			opp-hz = /bits/ 64 <1747200000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1190400>;
->  		};
->  		opp-1824000000 {
->  			opp-hz = /bits/ 64 <1824000000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1286400>;
->  		};
->  		opp-1900800000 {
->  			opp-hz = /bits/ 64 <1900800000>;
->  			opp-supported-hw = <0x70>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1363200>;
->  		};
->  		opp-1977600000 {
->  			opp-hz = /bits/ 64 <1977600000>;
->  			opp-supported-hw = <0x30>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1440000>;
->  		};
->  		opp-2054400000 {
->  			opp-hz = /bits/ 64 <2054400000>;
->  			opp-supported-hw = <0x30>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1516800>;
->  		};
->  		opp-2150400000 {
->  			opp-hz = /bits/ 64 <2150400000>;
->  			opp-supported-hw = <0x30>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1593600>;
->  		};
->  		opp-2246400000 {
->  			opp-hz = /bits/ 64 <2246400000>;
->  			opp-supported-hw = <0x10>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1593600>;
->  		};
->  		opp-2342400000 {
->  			opp-hz = /bits/ 64 <2342400000>;
->  			opp-supported-hw = <0x10>;
->  			clock-latency-ns = <200000>;
-> +			opp-peak-kBps = <1593600>;
->  		};
->  	};
->  };
-> @@ -289,3 +336,7 @@ opp-560000000 {
->  	};
->  	/* The rest is inherited from msm8996 */
->  };
-> +
-> +&cbf {
-> +	compatible = "qcom,msm8996pro-cbf";
-> +};
+> >=20
+> >  compatible:
+> >    oneOf:
+> >      - items:
+> >          - enum:
+> >              - loongson,ls1c-rtc
+> >          - const: loongson,ls1b-rtc
+> >      - items:
+> >          - enum:
+> >              - loongson,ls2k0500-rtc
+> >              - loongson,ls2k2000-rtc
+> >          - const: loongson,ls7a-rtc
+
+> >      - items:
+> >          - const: loongson,ls2k1000-rtc
+
+This one is just "const:", you don't need "items: const:".
+I didn't test this, but I figure it would be:
+	compatible:
+	  oneOf:
+	    - items:
+	        - enum:
+	            - loongson,ls1c-rtc
+	        - const: loongson,ls1b-rtc
+	    - items:
+	        - enum:
+	            - loongson,ls2k0500-rtc
+	            - loongson,ls2k2000-rtc
+	        - const: loongson,ls7a-rtc
+	    - const: loongson,ls1b-rtc
+	    - const: loongson,ls2k1000-rtc
+	    - const: loongson,ls7a-rtc
+
+> My recommendation is leaving compatible string as is.
+
+"as is" meaning "as it is right now in Linus' tree", or "as it is in
+this patch"?
+
+Cheers,
+Conor.
+
+--a8yasedcE/Z2PgR2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHIunAAKCRB4tDGHoIJi
+0m/uAQCuzkw1wso84qc7hQg1yRGe54Qq/5n7d4oNNpITxmc7EQD9F9V4W2yGCIzX
+HriOW3sQjp9fOFGxxuiNypG2GeFP5QY=
+=imah
+-----END PGP SIGNATURE-----
+
+--a8yasedcE/Z2PgR2--
