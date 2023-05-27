@@ -2,104 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AA8571356C
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 17:17:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39485713582
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 17:54:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbjE0PRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 11:17:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43432 "EHLO
+        id S232683AbjE0PxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 11:53:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbjE0PRM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 11:17:12 -0400
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01781D8
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 08:17:10 -0700 (PDT)
-Received: by mail-ej1-x644.google.com with SMTP id a640c23a62f3a-96f7377c86aso319976766b.1
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 08:17:10 -0700 (PDT)
+        with ESMTP id S231463AbjE0PxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 11:53:00 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A15EFDF
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 08:52:57 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f4b80bf93aso1968180e87.0
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 08:52:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685200629; x=1687792629;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/rL+TycpMQLfB5P4Zn9xgGfUWg8yPCNTwrE46ZNldMM=;
-        b=ieQxbE9A9YtF1izePXtJJJqSIzlMixzkr8VP/Lo6U4hV+x/DpmrkLnVXgnQtpYnpRn
-         wR6NGjlNNAKjlWliA1+RwuiCfBUVELF/V/EmnCJHsE0L+0LsS4JNXQKvd8QfziKrzS/f
-         JqK6Hmp64b2Jrx0b8PcIiZoeke+Y0bJuLRVCO98iT8aqBCru0RVMwd2kxAw6Z+Sd77Xd
-         MoMiKRnRHXDBPA9KlsX1KiB2n4x3EPNOmPIszsZNeiypMzRqXtPZX109tTxDgprTmIpX
-         2ZdYKYM27XPcYw4C5MiJDbsjEXK5Kbkvd0+3+DEI64shMKkM6vCX0tUCb4VdisYhZ5Pv
-         2SVg==
+        d=linaro.org; s=google; t=1685202776; x=1687794776;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bLjznw17AJa9srYAX7PpPJBCrC7/RmyCURr/1TDqVk0=;
+        b=YjD4CVNN4Q9wjXOI4a9yl5Nc+SlRdce5X65sQhxiffmNp28FbhJt/4wKqttaZWPInb
+         v8cf2GqQFSQclKpy7/5mVC8/gevCHwnv2ECB1vh8zRcpXI5KpZ2+11KhHI/DpXW6ciq0
+         yiueB0EtdTxB/bfYjeWmX3es8zBjtg9b77ocKVhClx4hfhvNaP5thankfXKGs3INX6ST
+         aHKfxA++/42UMzlvZWodAuBu3Y/Qo4UnrJdP+rIlXEQXeyi7RhtRwi/20JR2v6dMXz7s
+         6YJanHPLgP1ds6fuwHrl/vfDNC7VCObvHRVTJMgEn9Xa0Y78X/1n6wGO1FvHNtH91Ibj
+         +iFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685200629; x=1687792629;
-        h=to:subject:message-id:date:from:reply-to:mime-version
+        d=1e100.net; s=20221208; t=1685202776; x=1687794776;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/rL+TycpMQLfB5P4Zn9xgGfUWg8yPCNTwrE46ZNldMM=;
-        b=KOyrmLmEwpL1Z1b53h4rJKxOXJoefYtAf7YPMNY556rOn6AaK6u5DnoweqlrzkGt0I
-         crO03FNO98gY2OIwY90MtIvqKnzuPSeYtcN3TZ7/mUmNf0M4dc75ZwzYQhGuW7ijB+d7
-         PhSFhBdgYn8dNCThlcvvyj7DZcO9rfzFlBdFAnzW6YyCkulhNtbBnlZb/k4Hu//ifUBX
-         9vCPPEQlyKrJ3oSteigywLx3gnZ5sL45Stg1RBIYafuLJONmHDpVuq7aTxitwH0o1SaQ
-         joRdon9CY5i/rYd5R+mR5Y8ajFtO8hTguyJgwG9us1BL5s4pV5C7FzBkpPXqGkcLC/Ta
-         rIcA==
-X-Gm-Message-State: AC+VfDzE3M+/iY8VE/Wn2pQR2gpFoRpKxGxPzXZ4nMcW/Tw/gl3II45e
-        CpJI46hoRkZCULjnRXEAQTAuAKc9Odh0iAzLXBU=
-X-Google-Smtp-Source: ACHHUZ5WkHHXNHtFYYK+78/kB0kQWgPMBZpgPst2EYzxCKWuXsNNiEQX6RI1QxQZN2ou4pQyUr8JOJjFjNLgr4J22dM=
-X-Received: by 2002:a17:906:eec5:b0:95e:ce3b:a471 with SMTP id
- wu5-20020a170906eec500b0095ece3ba471mr5451155ejb.55.1685200629000; Sat, 27
- May 2023 08:17:09 -0700 (PDT)
+        bh=bLjznw17AJa9srYAX7PpPJBCrC7/RmyCURr/1TDqVk0=;
+        b=VBftzrR8HAABfT5ccKd6bvgtzvWpKQ49BHqMRNH0yPt1IjJ2FFb1F3IPeQSky5Uro7
+         U0CQjcioNiWOMdviMI+m2DvrXhIyz60lvVCWwDxB4s2HCcEutkk85tlcUsM/SHWMmPqk
+         7YYA38ukCrFbc567HfstuKxrxuGFjOw0YC08M8RJCChBxZ8lrHcQU9bRWoEynTanmZWL
+         xaYOlRQUEVjaZcAO89FwNYq6tAix9rXv0NZrLcVQw7Lk5c8xD9nyC0nPpGx8UmwEiIQW
+         PYl1qYzEQbsXiABWio4aCqvRbUYF+ag9L3k9R2htVX2rgwAIE4gBhZCE/m/nG0dGAzBN
+         K2JA==
+X-Gm-Message-State: AC+VfDwfW70lkBJIcsJXd1m0h1eaQ4Jab4nMwJYa3FWSRsg0MHXw2c10
+        7BSv+Y8iI7I8/yJjtLpzxkuUcg==
+X-Google-Smtp-Source: ACHHUZ6KnoHfXjU6y/OUhvxQQdvDRWrn3w/Nq4zoWpkMHmDXAq6Yc206wYHOv4Np18YwnN5iimBvew==
+X-Received: by 2002:ac2:53a6:0:b0:4f4:b138:e998 with SMTP id j6-20020ac253a6000000b004f4b138e998mr1647222lfh.68.1685202775848;
+        Sat, 27 May 2023 08:52:55 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id w9-20020ac24429000000b004f4ce1d4df6sm1166778lfl.47.2023.05.27.08.52.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 27 May 2023 08:52:55 -0700 (PDT)
+Message-ID: <1aca6f57-9342-dba1-368c-76e649cde95e@linaro.org>
+Date:   Sat, 27 May 2023 17:52:53 +0200
 MIME-Version: 1.0
-Received: by 2002:a98:d914:0:b0:1cb:cec0:ab8d with HTTP; Sat, 27 May 2023
- 08:17:08 -0700 (PDT)
-Reply-To: dravasmith27@gmail.com
-From:   Dr Ava Smith <daswas250@gmail.com>
-Date:   Sat, 27 May 2023 08:17:08 -0700
-Message-ID: <CAM1W4N63wsNmh8JOLokUdQ-MwEYh3LwyQ3RMnnuPBBmVAAGQpg@mail.gmail.com>
-Subject: GREETINGS FROM DR AVA SMITH
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.4 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,
-        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:644 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.4997]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [daswas250[at]gmail.com]
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [dravasmith27[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [daswas250[at]gmail.com]
-        *  0.5 SUBJ_ALL_CAPS Subject is all capitals
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  2.8 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: camss: qcom,msm8996-camss: Add
+ CAMSS power domain
+Content-Language: en-US
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>
+Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hans Verkuil <hansverk@cisco.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230526180712.8481-1-y.oudjana@protonmail.com>
+ <20230526180712.8481-2-y.oudjana@protonmail.com>
+ <20230526-obstruct-venus-5833511a58af@spud>
+ <838b134d-46cb-6237-49b0-0c287141ebb3@linaro.org>
+ <20230526-street-pox-2ff5ee106c43@spud>
+ <8d89c14f-b2c2-7db2-f637-aa6d90273f4d@linaro.org>
+ <631e5eec-853b-dce2-c474-62e76e83d7e6@linaro.org>
+ <VKZAVR.M3FJVE7XKKY71@gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <VKZAVR.M3FJVE7XKKY71@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Hello Dear,
-how are you today?hope you are fine
-My name is Dr Ava Smith ,Am an English and French nationalities.
-I will give you pictures and more details about me as soon as i hear from you
-Thanks
-Ava
+
+
+On 27.05.2023 08:05, Yassine Oudjana wrote:
+> 
+> On Fri, May 26 2023 at 10:36:32 PM +02:00:00, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>>
+>>
+>> On 26.05.2023 22:21, Bryan O'Donoghue wrote:
+>>>  On 26/05/2023 21:19, Conor Dooley wrote:
+>>>>  On Fri, May 26, 2023 at 09:05:47PM +0100, Bryan O'Donoghue wrote:
+>>>>>  On 26/05/2023 20:46, Conor Dooley wrote:
+>>>>>>>  +  - power-domain-names
+>>>>>>  Why is this now required?
+>>>>>>
+>>>>>>  Thanks,
+>>>>>>  Conor.
+>>>>>>
+>>>>>
+>>>>>  Its an accurate description of the power/clock tree to have the top power
+>>>>>  domain be switched on prior to the clocks that depend on it.
+>>>>
+>>>>  But what does that have to do with the *names* now being required?
+>>>
+>>>  oh the names
+>>>
+>>>  no toss that
+>> this should be
+>>
+>> if:properties:compatible:blahblahmsm8996:then:required:power-domain-names
+> 
+> The only compatible in this binding is qcom,msm8996-camss, so what would this achieve?
+You're right - I didn't notice and assumed it was a camss-common one.
+
+Konrad
+> 
+>>
+>> Konrad
+>>>
+>>>>
+>>>>>  I think Yassine, you could probably include the majority of your
+>>>>>  cover-letter text in this commit to explain this change a bit better.
+>>>>
+>>>>  I think it would be good to have that regardless.
+>>>>
+>>>>  Cheers,
+>>>>  Conor.
+>>>>
+>>>>>  bod
+>>>>     ^^^ I've been trying not to think about rugby since the weekend :(
+>>>
+>>>  Pockets O'Gara should have his paddy papers rescinded
+> 
+> 
