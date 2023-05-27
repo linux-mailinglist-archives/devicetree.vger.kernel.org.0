@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 07EE97133A8
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 11:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 653F97133C2
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 11:40:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232037AbjE0JXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 05:23:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34306 "EHLO
+        id S231901AbjE0JkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 05:40:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231907AbjE0JXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 05:23:17 -0400
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED05AE46;
-        Sat, 27 May 2023 02:23:00 -0700 (PDT)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-5658875abfaso23969037b3.1;
-        Sat, 27 May 2023 02:23:00 -0700 (PDT)
+        with ESMTP id S232160AbjE0JkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 05:40:00 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43B90DE;
+        Sat, 27 May 2023 02:39:59 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-96f7377c86aso281476266b.1;
+        Sat, 27 May 2023 02:39:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685179380; x=1687771380;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YuPOou2ChL9QAjpTDeWMH9OMTxYByyxepLnhS7nCInU=;
-        b=UypQL/1cTDi0jd5atuzjWwrNbEZHph9c81yu9B026PuuRefA2X7exdJbYS+AOx0nBp
-         gAM4/C+tc/QMH5TXhnmPmcu1CzlDW+sm2lJ1uH28kYO/Iahk4SZgNrQB5Kp7NSDEcVtl
-         TAIXWUnGNKQEkgubKWG/y2W1PtO0NSljxJeG0GJOdE717jgybvCyZtHUIJrl69fjSsPs
-         c/lHsTB2ZHY1ZfwRytky/hcr8KVRp2qlxPOTva3Ow0wHEH1rK4w+J+jRsB75f8REyKCi
-         ZDkc5cgIVQr4jW7tzWZEKPTjezlb0HKQII7emo61su46V7bDndt31K4y21jhN7q5jFqp
-         l23A==
+        d=gmail.com; s=20221208; t=1685180398; x=1687772398;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Np2TY4wzluYjw6tvBst2SYU6co+dQh0uK/Q/WT/NspM=;
+        b=fQM6Hilq3wWlqNn7ZUh7pa2JPh3q2D1ecibqbwZpL2dseryd4IVDDqU7WPm7Yqayl7
+         JS8c6KW0KTxrAjKif0wMTDHuqQuGRpEXA4PnqYbkwJSuYRN7sBt4r7NJNSq7k8VUHg/P
+         ZYTNCWgy3BPS0iEY3oS7GkiJaUkujMlZB4EzF+x4O4hr6K7VzfFPm2Nt7mO6Oqrh95m+
+         3V4PLk9StJWPbL8yCz5rzQ9jDq0GtCk/frzJexGqAhzu6E4SgvXTesAT/JspksDv0M0y
+         JKESjO9U3jAeApv1zX75mKwraMofG7Fl1Lhnrdf8OkucHpd8GK41/O1La/DcodmaXdKH
+         kvng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685179380; x=1687771380;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YuPOou2ChL9QAjpTDeWMH9OMTxYByyxepLnhS7nCInU=;
-        b=EvO0hm4iRnbn42NhK8/sIJGFa45Ln/OY0aS+ok8DNloS8aamyGIOLs8Yi1qgvHbr0X
-         aKwkVlONiP0Oh6XqAD0xT95aCOhRkgXeUmpY4/tAAF2UIJMc8sAaUMRYHNXPd9U1YfmE
-         Kag2zxM/KXdOpbkqKB4/XgODL12M53pEZkpHjTB1f5QeSpzQsxZEfasc4RRpa1MquscD
-         SGFojdGPZA1lyLG98faUzSabxyBsBr+fnzcQfNtYza+KaZK9EauCzVNd5JJzIHpmy+gx
-         aq4psNMcm4vCbKrK+LrVjlqXIvbWBaWmZnsO2rG0rWsKOj9GHPMFM6ILXj30QaecFVXC
-         FxdQ==
-X-Gm-Message-State: AC+VfDyugCfpWUP3Q5Z9PAX+ZZ4KqvnjBUhf77gEBCWiHHwU7Pm0IVSd
-        rvo1XONg4pPCYvg5DgG3IHhfiKFV5gNygSAbkwg=
-X-Google-Smtp-Source: ACHHUZ4nCuMzRZKk6dXeDY7dZsT6tQWUJPKOPNYzgMbPZwdT1gG/zS5BtPMCqhQZ/U1B3et1LNOcHl0PMtnNpQgUMl0=
-X-Received: by 2002:a0d:eb03:0:b0:565:e48d:32cf with SMTP id
- u3-20020a0deb03000000b00565e48d32cfmr134704ywe.7.1685179380005; Sat, 27 May
- 2023 02:23:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1684983279.git.zhoubinbin@loongson.cn> <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
- <20230525-custody-oversleep-f778eddf981c@spud> <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
- <20230526-dolly-reheat-06c4d5658415@wendy>
-In-Reply-To: <20230526-dolly-reheat-06c4d5658415@wendy>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Sat, 27 May 2023 17:22:48 +0800
-Message-ID: <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com>
-Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the trivial RTCs
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1685180398; x=1687772398;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Np2TY4wzluYjw6tvBst2SYU6co+dQh0uK/Q/WT/NspM=;
+        b=kf9uHqodSVwbU9CRfIxgRVGjlXWGOAYlC9s+smuVQONVg2sva7yyUTvZ7plN77jejK
+         41eUYpIBPGDuPsa74QgublYU064Di+BEVYuiMLzrdyZ5TKDWmTXkUhOo6CnDOABnzIld
+         yUT7041NsC0mpR4e5dQJUzWw4mWx8q8eMn/sC+mkP6z88Cq34p03VLjqGi1Xjo+uaeNT
+         D/xS8OrphHdXrVEDXPmh8YyPR8ZcOV9D/2FnRKbjrhTTfez0xqn/QN+Sw59OBz2jLLAG
+         gZotTUKjKbaZSSzlT7Dwo0rrnrBdb/ZrHzoYd9yqAsf9GlYTkAh/KapsCremnO0jtysk
+         g/Kw==
+X-Gm-Message-State: AC+VfDydmE3JFedwf8s+5rV3Lwe8yiCTQBgWpkzdVItlfoAxSL7qHGqc
+        495bjtJVMjjlT3395ZhBbHo=
+X-Google-Smtp-Source: ACHHUZ6ma5N5Q1VKocHdFAPIRxqCBhpTqxAdCHN8no9X2aXP7GN9ZhXjf2eGNgpvRHb1DN4+mjjaIQ==
+X-Received: by 2002:a17:906:ee88:b0:96a:928c:d382 with SMTP id wt8-20020a170906ee8800b0096a928cd382mr4311846ejb.48.1685180397384;
+        Sat, 27 May 2023 02:39:57 -0700 (PDT)
+Received: from localhost.localdomain ([95.183.227.33])
+        by smtp.gmail.com with ESMTPSA id kq12-20020a170906abcc00b009596e7e0dbasm3163623ejb.162.2023.05.27.02.39.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 May 2023 02:39:56 -0700 (PDT)
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        linux-mips@vger.kernel.org,
-        Keguang Zhang <keguang.zhang@gmail.com>,
-        zhao zhang <zhzhl555@gmail.com>,
-        Yang Ling <gnaygnil@gmail.com>,
-        loongson-kernel@lists.loongnix.cn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Yassine Oudjana <yassine.oudjana@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] MSM8996 Pro CBF scaling support
+Date:   Sat, 27 May 2023 12:39:31 +0300
+Message-Id: <20230527093934.101335-1-y.oudjana@protonmail.com>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -85,151 +78,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 26, 2023 at 8:07=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
-p.com> wrote:
->
-> On Fri, May 26, 2023 at 09:37:02AM +0800, Binbin Zhou wrote:
-> > On Fri, May 26, 2023 at 1:05=E2=80=AFAM Conor Dooley <conor@kernel.org>=
- wrote:
-> > > On Thu, May 25, 2023 at 08:55:23PM +0800, Binbin Zhou wrote:
->
-> >> > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - loongson,ls1b-rtc
-> > > > +      - loongson,ls1c-rtc
-> > > > +      - loongson,ls7a-rtc
-> > > > +      - loongson,ls2k0500-rtc
-> > > > +      - loongson,ls2k1000-rtc
-> > > > +      - loongson,ls2k2000-rtc
-> > >
-> > > |+static const struct of_device_id loongson_rtc_of_match[] =3D {
-> > > |+       { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_c=
-onfig },
-> > > |+       { .compatible =3D "loongson,ls1c-rtc", .data =3D &ls1x_rtc_c=
-onfig },
-> > > |+       { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rt=
-c_config },
-> > > |+       { .compatible =3D "loongson,ls2k0500-rtc", .data =3D &generi=
-c_rtc_config },
-> > > |+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k10=
-00_rtc_config },
-> > > |+       { .compatible =3D "loongson,ls2k2000-rtc", .data =3D &generi=
-c_rtc_config },
-> > > |+       { /* sentinel */ }
-> > > |+};
-> > >
-> > > This is a sign to me that your compatibles here are could do with som=
-e
-> > > fallbacks. Both of the ls1 ones are compatible with each other & ther=
-e
-> > > are three that are generic.
-> > >
-> > > I would allow the following:
-> > > "loongson,ls1b-rtc"
-> > > "loongson,ls1c-rtc", "loongson,ls1b-rtc"
-> > > "loongson,ls7a-rtc"
-> > > "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
-> > > "loongson,ls2k2000-rtc", "loongson,ls7a-rtc"
-> > > "loongson,ls2k1000-rtc"
-> > >
-> > > And then the driver only needs:
-> > > |+static const struct of_device_id loongson_rtc_of_match[] =3D {
-> > > |+       { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_c=
-onfig },
-> > > |+       { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rt=
-c_config },
-> > > |+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k10=
-00_rtc_config },
-> > > |+       { /* sentinel */ }
-> > > |+};
-> > >
-> > > And ~if~when you add support for more devices in the future that are
-> > > compatible with the existing ones no code changes are required.
-> >
-> > Hi Conor:
-> >
-> > Thanks for your reply.
-> >
-> > Yes, this is looking much cleaner. But it can't show every chip that
-> > supports that driver.
-> >
-> > As we know, Loongson is a family of chips:
-> > ls1b/ls1c represent the Loongson-1 family of CPU chips;
-> > ls7a represents the Loongson LS7A bridge chip;
-> > ls2k0500/ls2k1000/ls2k2000 represent the Loongson-2 family of CPU chips=
-.
-> >
-> > Based on my previous conversations with Krzysztof, it seems that
-> > soc-based to order compatible is more popular, so I have listed all
-> > the chips that support that RTC driver.
->
-> Right. You don't actually have to list them all *in the driver* though,
-> just in the binding and in the devicetree. I think what you have missed
-> is:
-> > > I would allow the following:
-> > > "loongson,ls1b-rtc"
-> > > "loongson,ls1c-rtc", "loongson,ls1b-rtc"
-> > > "loongson,ls7a-rtc"
-> > > "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
-> > > "loongson,ls2k2000-rtc", "loongson,ls7a-rtc"
-> > > "loongson,ls2k1000-rtc"
->
-> This is what you would put in the compatible section of a devicetree
-> node, using "fallback compatibles". So for a ls1c you put in
-> compatible =3D "loongson,ls1c-rtc", "loongson,ls1b-rtc";
-> and the kernel first tries to find a driver that supports
-> "loongson,ls1c-rtc" but if that fails it tries to find one that supports
-> "loongson,ls1b-rtc". This gives you the best of both worlds - you can
-> add support easily for new systems (when an ls1d comes out, you don't
-> even need to change the driver for it to just work!) and you have a
-> soc-specific compatible in case you need to add some workaround for
-> hardware errata etc in the future.
+From: Yassine Oudjana <y.oudjana@protonmail.com>
 
-Hi Conor:
+MSM8996 Pro has a /4 post divisor on its CBF PLL instead of /2, allowing
+it to reach 192000000Hz on the lowest CPU OPPs (compared to 307200000Hz
+on MSM8996). Add a compatible string to differentiate between the two and
+handle the different divisor in the driver. Finally, add peak bandwidths
+to CPU OPPs in msm8996pro.dtsi.
 
-I seem to understand what you are talking about.
-I hadn't delved into "fallback compatibles" before, so thanks for the
-detailed explanation.
+This series depends on the following patch series:
+  clk: qcom: msm8996: add support for the CBF clock
+  https://lore.kernel.org/linux-arm-msm/20230410200014.432418-1-dmitry.baryshkov@linaro.org/
 
-In fact, I have thought before if there is a good way to do it other
-than adding comptable to the driver frequently, and "fallback
-compatibles" should be the most suitable.
+Changes since v1:
+  - Patch structs during probe instead of defining new ones.
 
-So in the dt-bindings file, should we just write this:
+Yassine Oudjana (3):
+  dt-bindings: clock: qcom,msm8996-cbf: Add compatible for MSM8996 Pro
+  arm64: dts: qcom: msm8996pro: Add CBF scaling support
+  clk: qcom: cbf-msm8996: Add support for MSM8996 Pro
 
-  compatible:
-    oneOf:
-      - items:
-          - enum:
-              - loongson,ls1c-rtc
-          - const: loongson,ls1b-rtc
-      - items:
-          - enum:
-              - loongson,ls2k0500-rtc
-              - loongson,ls2k2000-rtc
-          - const: loongson,ls7a-rtc
-      - items:
-          - const: loongson,ls2k1000-rtc
+ .../bindings/clock/qcom,msm8996-cbf.yaml      |  4 +-
+ arch/arm64/boot/dts/qcom/msm8996pro.dtsi      | 51 +++++++++++++++++++
+ drivers/clk/qcom/clk-cbf-8996.c               | 10 +++-
+ 3 files changed, 62 insertions(+), 3 deletions(-)
 
-Thanks.
-Binbin
+-- 
+2.40.1
 
->
-> > > To maintain compatibility with the existing devicetrees, should the o=
-ld
-> > > "loongson,ls2x-rtc" be kept in the driver?
-> >
-> > No, It seems that wildcards in compatible are not allowed."
-> > loongson,ls2x-rtc" itself was part of this patch series at one time,
-> > but apparently it is not the right way to describe these chips.
->
-> Right, but it has been merged - you are deleting the driver that supports
-> it after all - which means that any dtb with the old compatible will
-> stop working.
-> I don't disagree with Krzysztof that having wildcard based compatibles
-> is bad, but I do not think that regressing rtc support for systems with
-> these old devicetrees is the right way to go either.
->
-> Thanks,
-> Conor.
