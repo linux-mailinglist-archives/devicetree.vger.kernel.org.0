@@ -2,158 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9561A71350B
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 15:40:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1043371351A
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 16:12:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232761AbjE0NkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 09:40:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32912 "EHLO
+        id S231684AbjE0OM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 10:12:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231872AbjE0Njw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 09:39:52 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D24DC3;
-        Sat, 27 May 2023 06:39:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1685194791; x=1716730791;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=qfjzqpAYgR3XMV316cfjMosBmC4HWLJh7OuqlZd9VwU=;
-  b=mCXFZ9nYE+15llGvC5G39coFF7EeAZKzyvb4JDuivif5tvLD7m0UW92x
-   1O/0nxKXaIhhGsqOS26BYrPmKbKnsGke1VUIbEvGxJK6jv+xnzZeu4SZ7
-   qHv/dCV15iG095zhABJxUlK86YUfesm8W0O/erbCSN0x2ouH6J35C46x3
-   zszu/RMaFSi+54lWXGRnOP9u+n+2+BCzUHQgLvFAGal/xo79Ew/yaxsEh
-   SY/Ddvg3j+4Q5oksLVEWdEh2nE4sr7Ebv7eL870GHg4vnOz0m2FpnvRRu
-   xmYDTW3ZDVMayTeJlrXiZhnqROq/dCybskIU+3UD2cgcqj/0KQ3K+wSBL
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="343896226"
-X-IronPort-AV: E=Sophos;i="6.00,197,1681196400"; 
-   d="scan'208";a="343896226"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2023 06:39:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="829811418"
-X-IronPort-AV: E=Sophos;i="6.00,197,1681196400"; 
-   d="scan'208";a="829811418"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga004.jf.intel.com with ESMTP; 27 May 2023 06:39:48 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1q2u94-000J3h-2y;
-        Sat, 27 May 2023 16:39:46 +0300
-Date:   Sat, 27 May 2023 16:39:46 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Mehdi Djait <mehdi.djait.k@gmail.com>
-Cc:     jic23@kernel.org, mazziesaccount@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lars@metafoo.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 5/7] iio: accel: kionix-kx022a: Refactor driver and
- add chip_info structure
-Message-ID: <ZHIIIhtOAQRw4F40@smile.fi.intel.com>
-References: <cover.1685109507.git.mehdi.djait.k@gmail.com>
- <de588a5a3ca311f6dc3a543bfa5cea7b590ae44c.1685109507.git.mehdi.djait.k@gmail.com>
+        with ESMTP id S230137AbjE0OM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 10:12:28 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAEE8E1;
+        Sat, 27 May 2023 07:12:26 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f6dfc4e01fso18499375e9.0;
+        Sat, 27 May 2023 07:12:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685196745; x=1687788745;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Y73LttJXgXAmHhQ5741s9WbrUG10KAIdhEW2zXBoOQc=;
+        b=SSaPjwvbMG4ZCo291BUkrxKdVuhVg+Wj6kvou/lqhMCj3nP/54QbnaMb7OxpDeo3NU
+         ZoJexsI4K3GBGylrGpIQVv+olEPNxqSZvAl/b6h0/svnjQnDyEjQ2VhYtdtgcqmsWa/N
+         7bZDcgMlWxoRtRx0Azs4enYz9xTFKuIVDGWGbKp8EMp88hF+L9kGNe9btYiJyHdhQxLP
+         k82dUONAIov4yY1o6SzIHbtCgk3k4X9D6HthCiM+WBAAqcd6d2k2TjYOeIlhOY63Iqbz
+         69YYGV5/mNgE1IPWDNsnN6p4wiqkJBDFydqaWtVm/nznxcZpMXgWeV/sop3xNdxKsiS8
+         /GNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685196745; x=1687788745;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y73LttJXgXAmHhQ5741s9WbrUG10KAIdhEW2zXBoOQc=;
+        b=h5fxcQAO/PggCUAcFCrrAZGbr6qXzcO30HNkMCZ7q7ROXkm0gvRVEOyv4C+kykGuCe
+         xFrpLRHRMQG95MUTw4HH+i1ER/ukPPF1wGtSeUJ1sxnaBL8Kpdky/9fjrqDNu8ojFtio
+         Chalqc9uLTlQIGL28/0XOb0ZzN+iiuC9EsFwpQu9YO3g5p1GxS73ynLdwX783Uk7zD3m
+         TGbJMQ6mvMWpkspS19ZdiFU8H8gNyB6bOJKcEp8sEcBWcJumYLpyFTG9uibF+HhgbVFf
+         ehqgdRrYEjvEg3zxFbv1zhABuQFtVxGC8OvDKZ/ghV+bk2pd1hVL34efDHJ4Kaiz/5GF
+         jtSw==
+X-Gm-Message-State: AC+VfDyM8c6jKibhIi/zWQn+26BVhvMWzHFKKnoHmdfYOKylnoOG8KZn
+        LB3rKKbpzOgCJu/enCq7Y2E=
+X-Google-Smtp-Source: ACHHUZ7iYd9QDeDJnyOgG5uAS9aZak2X8ynHR3qkQl+oqxSFLYVzUSO3mpKQZEUnoaSQrFv9DvxE0Q==
+X-Received: by 2002:a1c:7415:0:b0:3f6:89e:2716 with SMTP id p21-20020a1c7415000000b003f6089e2716mr4510310wmc.33.1685196744886;
+        Sat, 27 May 2023 07:12:24 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP ([188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id q21-20020a1ce915000000b003f421979398sm12015239wmc.26.2023.05.27.07.12.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 May 2023 07:12:24 -0700 (PDT)
+Date:   Sat, 27 May 2023 16:12:22 +0200
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: power: reset: bcm21664-resetmgr: convert to YAML
+Message-ID: <20230527141222.GA5048@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <de588a5a3ca311f6dc3a543bfa5cea7b590ae44c.1685109507.git.mehdi.djait.k@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 26, 2023 at 04:30:46PM +0200, Mehdi Djait wrote:
-> Add the chip_info structure to the driver's private data to hold all
-> the device specific infos.
-> Refactor the kx022a driver implementation to make it more generic and
-> extensible.
+Convert Broadcom Kona family reset manager bindings to DT schema.
 
-...
+Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+---
+ .../power/reset/brcm,bcm21664-resetmgr.txt    | 14 ---------
+ .../power/reset/brcm,bcm21664-resetmgr.yaml   | 31 +++++++++++++++++++
+ 2 files changed, 31 insertions(+), 14 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/power/reset/brcm,bcm21664-resetmgr.txt
+ create mode 100644 Documentation/devicetree/bindings/power/reset/brcm,bcm21664-resetmgr.yaml
 
-> -	regmap = devm_regmap_init_i2c(i2c, &kx022a_regmap);
-> +	chip_info = device_get_match_data(&i2c->dev);
-> +	if (!chip_info) {
-> +		const struct i2c_device_id *id = i2c_client_get_device_id(i2c);
-> +		chip_info = (const struct kx022a_chip_info *)id->driver_data;
-> +	}
-
-And if still no chip_info available?..
-
-> +	regmap = devm_regmap_init_i2c(i2c, chip_info->regmap_config);
->  	if (IS_ERR(regmap))
->  		return dev_err_probe(dev, PTR_ERR(regmap),
->  				     "Failed to initialize Regmap\n");
-
-...
-
-> -	if (val > KX022A_FIFO_LENGTH)
-> -		val = KX022A_FIFO_LENGTH;
-> +	if (val > data->chip_info->fifo_length)
-> +		val = data->chip_info->fifo_length;
-
-min()/min_t() ?
-
-...
-
-> +	ret = regmap_noinc_read(data->regmap, data->chip_info->buf_read,
-> +				&data->fifo_buffer[0], fifo_bytes);
-
-data->fifo_buffer will suffice.
-
-
->  	if (ret)
->  		goto renable_out;
-
-...
-
-> +	data->fifo_buffer = kmalloc(data->chip_info->fifo_length *
-> +				    KX022A_FIFO_SAMPLES_SIZE_BYTES, GFP_KERNEL);
-
-> +
-
-Redundant blank line.
-
-> +	if (!data->fifo_buffer)
-> +		return -ENOMEM;
-
-...
-
-> +struct kx022a_chip_info {
-> +	const char *name;
-> +	const struct regmap_config *regmap_config;
-> +	const struct iio_chan_spec *channels;
-> +	unsigned int num_channels;
-> +	unsigned int fifo_length;
-> +	u8 who;
-> +	u8 id;
-> +	u8 cntl;
-> +	u8 cntl2;
-> +	u8 odcntl;
-> +	u8 buf_cntl1;
-> +	u8 buf_cntl2;
-> +	u8 buf_clear;
-> +	u8 buf_status1;
-
-Here is the gap since it's not a packed structure. Can we avoid it?
-
-> +	u16 buf_smp_lvl_mask;
-> +	u8 buf_read;
-> +	u8 inc1;
-> +	u8 inc4;
-> +	u8 inc5;
-> +	u8 inc6;
-> +	u8 xout_l;
-> +};
-
+diff --git a/Documentation/devicetree/bindings/power/reset/brcm,bcm21664-resetmgr.txt b/Documentation/devicetree/bindings/power/reset/brcm,bcm21664-resetmgr.txt
+deleted file mode 100644
+index 93f31ca1ef4b..000000000000
+--- a/Documentation/devicetree/bindings/power/reset/brcm,bcm21664-resetmgr.txt
++++ /dev/null
+@@ -1,14 +0,0 @@
+-Broadcom Kona Family Reset Manager
+-----------------------------------
+-
+-The reset manager is used on the Broadcom BCM21664 SoC.
+-
+-Required properties:
+-  - compatible: brcm,bcm21664-resetmgr
+-  - reg: memory address & range
+-
+-Example:
+-	brcm,resetmgr@35001f00 {
+-		compatible = "brcm,bcm21664-resetmgr";
+-		reg = <0x35001f00 0x24>;
+-	};
+diff --git a/Documentation/devicetree/bindings/power/reset/brcm,bcm21664-resetmgr.yaml b/Documentation/devicetree/bindings/power/reset/brcm,bcm21664-resetmgr.yaml
+new file mode 100644
+index 000000000000..3e28a59d718f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/reset/brcm,bcm21664-resetmgr.yaml
+@@ -0,0 +1,31 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/reset/brcm,bcm21664-resetmgr.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom Kona family reset manager
++
++maintainers:
++  - Florian Fainelli <f.fainelli@gmail.com>
++
++properties:
++  compatible:
++    const: brcm,bcm21664-resetmgr
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    reset-controller@35001f00 {
++        compatible = "brcm,bcm21664-resetmgr";
++        reg = <0x35001f00 0x24>;
++    };
++...
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.25.1
 
