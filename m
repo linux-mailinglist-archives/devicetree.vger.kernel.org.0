@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A11B07134EE
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 15:13:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63B907134F0
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 15:20:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230137AbjE0NNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 09:13:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55700 "EHLO
+        id S232212AbjE0NU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 09:20:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229571AbjE0NNR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 09:13:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C493A8
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 06:13:16 -0700 (PDT)
+        with ESMTP id S229571AbjE0NU1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 09:20:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83D49A6;
+        Sat, 27 May 2023 06:20:26 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1B4A661B9D
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 13:13:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C615C433D2;
-        Sat, 27 May 2023 13:13:11 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 137B56123A;
+        Sat, 27 May 2023 13:20:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28594C433EF;
+        Sat, 27 May 2023 13:20:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685193195;
-        bh=z68jI++OBWrpDEPHWE3J8WhbvfkrAg2IZjzJFU6NG3I=;
+        s=k20201202; t=1685193625;
+        bh=mM2xTR+09PSynb9NopjB/TNGUqHvXwrqo39ZZjAIock=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=D58lMBYT8IAtOQoA6fBK+kPsCDTyhglRMiFRGi0Amr/ZeDyZXTf+oq/20zK9oONGe
-         q87NjKjFzRo26+ooyYZlLf2cVL/Dr3LTArmAHOduwCxLy7rJurb8ci9G375yIai9L2
-         ifvwNwYy2sKPW8becxbo/ulc/W4dZ7fyZDJCeo8Yjm7spZ1tjGpIYioVkEm8O9O+cx
-         0Xe2aa3WbzCjP7AmrioJclZBpMO7oiYY+xsEt67xIv+3GtNRli652L4VKdCQw1pKQS
-         I7F4mNN0QXW+dygg6rlnyEOhP1Qm5YNZitWZShsLWE2Qk4Fix/J63lqYS5xHEYxCzZ
-         cxUy2XDF93N1g==
-Date:   Sat, 27 May 2023 21:12:57 +0800
+        b=kAT270zoNyle+BweOrvXhLgkDRVc9aodShD9aKdBZlDqhcu3cCDHbQPPk5AMbNKEs
+         VY5GuwIRQl/wZ/IFSdtjd7f/uTkzqHls/XwcSmT8ZLEx+TWP4tiHPAgm/IjLu+Cdob
+         Pg5pOgWzsjE9eEzCNyxic3MTA0y65GRFQ7qDvnhg6nQsYQmP4iI8BkSV0yGu8ZA2oo
+         xO0oSyKWBsJjzzmEPwG5JOn85lKg378h811MbhX+eyU6A4Bt7ZX4BdrBQ/r8Aafbkf
+         ElTjph0cPKpf09Fst+uqfXiV5msFj3WZ9n6kMy8GlvrPT1/fQxtsSxeBNoDfHfN0zw
+         AJtmZCrS4lDoA==
+Date:   Sat, 27 May 2023 21:20:12 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
+To:     wei.fang@nxp.com
 Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH 1/2] ARM: dts: imx35: Remove invalid wdog property
-Message-ID: <20230527131257.GA560301@dragon>
-References: <20230524224625.431182-1-festevam@gmail.com>
+        conor+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx93: add fsl,stop-mode property to support
+ WOL
+Message-ID: <20230527132012.GC560301@dragon>
+References: <20230525080825.513707-1-wei.fang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230524224625.431182-1-festevam@gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230525080825.513707-1-wei.fang@nxp.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -55,16 +56,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 24, 2023 at 07:46:24PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On Thu, May 25, 2023 at 04:08:25PM +0800, wei.fang@nxp.com wrote:
+> From: Wei Fang <wei.fang@nxp.com>
 > 
-> The 'clock-names' property is not a valid property for wdog.
+> Add fsl,stop-mode property for FEC to support Wake-on-LAN (WOL)
+> feature. Otherwise, the WOL feature of FEC does not work.
 > 
-> Remove it to fix the following DT check warning:
-> 
-> watchdog@53fdc000: Unevaluated properties are not allowed ('clock-names' was unexpected)
-> From schema: Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
 
-Applied both, thanks!
+Applied, thanks!
