@@ -2,243 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E929713674
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 22:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6A46713677
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 22:51:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbjE0Uqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 16:46:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56296 "EHLO
+        id S229486AbjE0UvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 16:51:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbjE0Uqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 16:46:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C40CB1;
-        Sat, 27 May 2023 13:46:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 38B22615BC;
-        Sat, 27 May 2023 20:46:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6919C4339C;
-        Sat, 27 May 2023 20:46:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685220405;
-        bh=D2oC4HfjT26KTZWAe8gA/JRbJNuOnSYmnk26i/r7Fdw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aTHU86AiAZEdXrNyZKQm5Wky7BSpOHYGKfV1K7/pAJxTmad48pKjiG/NXeAokNVm5
-         1mNuF5FC2Toue8P8MBkVYXQK08awDsVwtN7uYwhFO3w4BOwuG7xBgD/Qkvkh0wlJDO
-         F2jNlnFoFw4r9ue8K6x0RyuQFBQL/NTyykPhFeXoPkAJGuRNC3jEwrzkMDnM39WJer
-         oZzyfnnbTyVZCBGrR/AiSxtPoQ/1aGd1VbZEbsaME10o3F8pplnsDWzdGVbmK2axEe
-         pZYlIZJ4YPN4ZQRYnpY6f+BPuGpizpZiIEgfJHYuwAuHM7ikYfRk/Lr0gMRr7vberJ
-         6I1S1ecjLE1Uw==
-Date:   Sat, 27 May 2023 13:50:31 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 01/10] nvmem: qfprom: Add support for secure reading
-Message-ID: <20230527205031.iwsujvlbxazukwfy@ripper>
-References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
- <20230512122134.24339-2-quic_kbajaj@quicinc.com>
+        with ESMTP id S229472AbjE0Uu6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 16:50:58 -0400
+Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12283B4
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 13:50:58 -0700 (PDT)
+Received: by mail-oo1-xc35.google.com with SMTP id 006d021491bc7-555486c9196so189494eaf.0
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 13:50:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685220657; x=1687812657;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LVHAM2nj34AJGmXfPHhgYz7QijWKM/Pqv4RS++GB2i8=;
+        b=LGyVcAPpD/i3PUC0ZFIiZi4NMOnjXmQR9/yW243XgnG2BFwmfNnVuFGDVqpsUQNEvf
+         gcA+T84zWTfCy13XtYVXxsMOfObN4K2RFYMZ9ZKLP1gbUIgS+MgZ9FxYGIf3o/PihRx/
+         iRb8Q2kokkd7M14RyohzDBzmPQG0GT71xawfw6RrtEw2W1aDLDy0W63S3bqeh1MfUCij
+         6zm5k4Bkos9VhZQtbpsxwt8/PuGymaltBJlkQ91PPmrwSxgm4gug9rqDGAr8j03qjxjI
+         HCVrEbC0PP7uOcMyXu1bU+hRI9LXiJFKAH519m7gjNAg8pv8636jLtDoEw8ALfW+9DdF
+         5dng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685220657; x=1687812657;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LVHAM2nj34AJGmXfPHhgYz7QijWKM/Pqv4RS++GB2i8=;
+        b=EML8ZxkwjdiQ+jiOOs5GviMCL1/DUFwsMV2rVE+m5ILnIlltIuNgZ43C9paozezVQz
+         Ky3XtL4mEmdARQt9D8HRoJwkGnWWg4uxiDSgjsOiUF3jo+EyteHyBEkFP/7YNPvVYfEH
+         rbptD3PkipesN13gFJruXFemPiM9HZTJMmQoWbv6/0IeINemOGugoWWbKIuBHmQ5wAYb
+         Q21UtY5xYTcZk0x5abau0PNNyz/3bKXax+hylUE4kbCT4bO/ylbW61yZ7KnqJGYv9MOe
+         2peFl4H3+BxeyW66H3V8IQKS0PYMSZvCkUEXVfVcOVuTG2/5PhERZb1ErMthIu/WJUFr
+         rWCA==
+X-Gm-Message-State: AC+VfDypiG2oGdS/2LBDc69DWo2BerbWfVAnZNCaeJMDyU3D8Us4l91L
+        V3sORpOsDf3oiJlTfL8q6e7xzLXJE/E=
+X-Google-Smtp-Source: ACHHUZ4Lvhi8H2vVfTK/BLwOmz1Q/+O0v9ThqZqLdQyB6mnpa+L9SyE9LpuPqwXw6LUkq2zF7mo/jw==
+X-Received: by 2002:a4a:d24c:0:b0:547:50b4:9236 with SMTP id e12-20020a4ad24c000000b0054750b49236mr2480761oos.0.1685220657184;
+        Sat, 27 May 2023 13:50:57 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:e287:a09b:c5f3:bedf])
+        by smtp.gmail.com with ESMTPSA id v131-20020aca6189000000b003941c3b9f0dsm3106458oib.41.2023.05.27.13.50.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 May 2023 13:50:56 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v2 1/3] dt-bindings: pfuze100.yaml: Add an entry for interrupts
+Date:   Sat, 27 May 2023 17:50:46 -0300
+Message-Id: <20230527205048.418360-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230512122134.24339-2-quic_kbajaj@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 12, 2023 at 05:51:25PM +0530, Komal Bajaj wrote:
-> For some of the Qualcomm SoC's, it is possible that
-> some of the fuse regions or entire qfprom region is
-> protected from non-secure access. In such situations,
-> linux will have to use secure calls to read the region.
-> With that motivation, add the support of reading secure
-> regions in qfprom driver. Ensuring the address to read
-> is word aligned since our secure I/O only supports word
-> size I/O.
-> 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
->  drivers/nvmem/Kconfig  |  1 +
->  drivers/nvmem/qfprom.c | 69 +++++++++++++++++++++++++++++++++---------
->  2 files changed, 55 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> index b291b27048c7..3d896ba29b89 100644
-> --- a/drivers/nvmem/Kconfig
-> +++ b/drivers/nvmem/Kconfig
-> @@ -209,6 +209,7 @@ config NVMEM_QCOM_QFPROM
->  	tristate "QCOM QFPROM Support"
->  	depends on ARCH_QCOM || COMPILE_TEST
->  	depends on HAS_IOMEM
-> +	select QCOM_SCM
->  	help
->  	  Say y here to enable QFPROM support. The QFPROM provides access
->  	  functions for QFPROM data to rest of the drivers via nvmem interface.
-> diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
-> index c1e893c8a247..20662e2d3732 100644
-> --- a/drivers/nvmem/qfprom.c
-> +++ b/drivers/nvmem/qfprom.c
-> @@ -16,6 +16,7 @@
->  #include <linux/pm_runtime.h>
->  #include <linux/property.h>
->  #include <linux/regulator/consumer.h>
-> +#include <linux/firmware/qcom/qcom_scm.h>
-> 
->  /* Blow timer clock frequency in Mhz */
->  #define QFPROM_BLOW_TIMER_OFFSET 0x03c
-> @@ -59,21 +60,22 @@ struct qfprom_soc_data {
->  /**
->   * struct qfprom_priv - structure holding qfprom attributes
->   *
-> - * @qfpraw:       iomapped memory space for qfprom-efuse raw address space.
-> - * @qfpconf:      iomapped memory space for qfprom-efuse configuration address
-> - *                space.
-> + * @qfpraw: iomapped memory space for qfprom-efuse raw address space.
-> + * @qfpconf: iomapped memory space for qfprom-efuse configuration address space.
+From: Fabio Estevam <festevam@denx.de>
 
-Adjusting the indentation makes it unnecessarily hard to see what you
-actually changed.
+The PFUZE100 PMIC has an interrupt pin that can be connected to
+the host SoC. Describe it in the dt-bindings to avoid warnings like:
 
->   * @qfpcorrected: iomapped memory space for qfprom corrected address space.
-> - * @qfpsecurity:  iomapped memory space for qfprom security control space.
-> - * @dev:          qfprom device structure.
-> - * @secclk:       Clock supply.
-> - * @vcc:          Regulator supply.
-> - * @soc_data:     Data that for things that varies from SoC to SoC.
-> + * @qfpsecurity: iomapped memory space for qfprom security control space.
-> + * @qfpseccorrected: starting physical address for qfprom secure corrected address space.
-> + * @dev: qfprom device structure.
-> + * @secclk: Clock supply.
-> + * @vcc: Regulator supply.
-> + * @soc_data: Data that for things that varies from SoC to SoC.
->   */
->  struct qfprom_priv {
->  	void __iomem *qfpraw;
->  	void __iomem *qfpconf;
->  	void __iomem *qfpcorrected;
->  	void __iomem *qfpsecurity;
-> +	phys_addr_t qfpseccorrected;
->  	struct device *dev;
->  	struct clk *secclk;
->  	struct regulator *vcc;
-> @@ -99,10 +101,12 @@ struct qfprom_touched_values {
->   *
->   * @keepout: Array of keepout regions for this SoC.
->   * @nkeepout: Number of elements in the keepout array.
-> + * @secure: Is qfprom region for this SoC protected from non-secure access.
->   */
->  struct qfprom_soc_compatible_data {
->  	const struct nvmem_keepout *keepout;
->  	unsigned int nkeepout;
-> +	bool secure;
->  };
-> 
->  static const struct nvmem_keepout sc7180_qfprom_keepout[] = {
-> @@ -334,6 +338,34 @@ static int qfprom_reg_read(void *context,
->  	return 0;
->  }
-> 
-> +static int qfprom_sec_reg_read(void *context, unsigned int reg, void *_val, size_t bytes)
-> +{
-> +	struct qfprom_priv *priv = context;
-> +	u8 *val = _val;
-> +	int buf_start, buf_end, index, i = 0;
-> +	char *buffer;
-> +	u32 read_val;
-> +
-> +	buf_start = ALIGN_DOWN(reg, 4);
-> +	buf_end = ALIGN(reg + bytes, 4);
-> +	buffer = kzalloc(buf_end - buf_start, GFP_KERNEL);
-> +	if (!buffer)
-> +		return -ENOMEM;
+imx6q-zii-rdu2.dtb: pmic@8: 'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
+From schema: Documentation/devicetree/bindings/regulator/pfuze100.yaml
 
-I don't you need all these variables, the full temp buffer or the two
-memcpy... I think something like this should do the trick:
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+---
+Changes since v1:
+- None. Only collected Conor's Reviewed-by tag.
 
-	unsigned int i;
-	u8 *val = _val;
-	u8 tmp[4];
+ Documentation/devicetree/bindings/regulator/pfuze100.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-	for (i = 0; i < bytes; i++, reg++)
-		if (i == 0 || reg % 4 == 0)
-			qcom_scm_io_readl(qfpseccorrected + (reg & ~3), tmp);
+diff --git a/Documentation/devicetree/bindings/regulator/pfuze100.yaml b/Documentation/devicetree/bindings/regulator/pfuze100.yaml
+index 67a30b23b92c..e384e4953f0a 100644
+--- a/Documentation/devicetree/bindings/regulator/pfuze100.yaml
++++ b/Documentation/devicetree/bindings/regulator/pfuze100.yaml
+@@ -36,6 +36,9 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  interrupts:
++    maxItems: 1
++
+   fsl,pfuze-support-disable-sw:
+     $ref: /schemas/types.yaml#/definitions/flag
+     description: |
+-- 
+2.34.1
 
-		val[i] = tmp[reg & 3];
-	}
-
-> +
-> +	for (index = buf_start; index < buf_end; index += 4, i += 4) {
-> +		if (qcom_scm_io_readl(priv->qfpseccorrected + index, &read_val)) {
-> +			dev_err(priv->dev, "Couldn't access feature register\n");
-
-What's a "feature register"?
-
-Regards,
-Bjorn
-
-> +			kfree_sensitive(buffer);
-> +			return -EINVAL;
-> +		}
-> +		memcpy(buffer + i, &read_val, 4);
-> +	}
-> +
-> +	memcpy(val, buffer + reg % 4, bytes);
-> +	kfree_sensitive(buffer);
-> +	return 0;
-> +}
-> +
->  static void qfprom_runtime_disable(void *data)
->  {
->  	pm_runtime_disable(data);
-> @@ -373,13 +405,6 @@ static int qfprom_probe(struct platform_device *pdev)
->  	if (!priv)
->  		return -ENOMEM;
-> 
-> -	/* The corrected section is always provided */
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	priv->qfpcorrected = devm_ioremap_resource(dev, res);
-> -	if (IS_ERR(priv->qfpcorrected))
-> -		return PTR_ERR(priv->qfpcorrected);
-> -
-> -	econfig.size = resource_size(res);
->  	econfig.dev = dev;
->  	econfig.priv = priv;
-> 
-> @@ -390,6 +415,20 @@ static int qfprom_probe(struct platform_device *pdev)
->  		econfig.nkeepout = soc_data->nkeepout;
->  	}
-> 
-> +	/* The corrected section is always provided */
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +
-> +	if (soc_data && soc_data->secure) {
-> +		priv->qfpseccorrected = res->start;
-> +		econfig.reg_read = qfprom_sec_reg_read;
-> +	} else {
-> +		priv->qfpcorrected = devm_ioremap_resource(dev, res);
-> +		if (IS_ERR(priv->qfpcorrected))
-> +			return PTR_ERR(priv->qfpcorrected);
-> +	}
-> +
-> +	econfig.size = resource_size(res);
-> +
->  	/*
->  	 * If more than one region is provided then the OS has the ability
->  	 * to write.
-> --
-> 2.17.1
-> 
