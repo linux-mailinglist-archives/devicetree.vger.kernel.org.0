@@ -2,56 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB80E713140
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 03:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ACFB713247
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 05:57:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243877AbjE0BEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 May 2023 21:04:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49724 "EHLO
+        id S231389AbjE0D5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 May 2023 23:57:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243223AbjE0BEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 21:04:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 627F3E4E;
-        Fri, 26 May 2023 18:03:59 -0700 (PDT)
+        with ESMTP id S229963AbjE0D46 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 May 2023 23:56:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA1AA116;
+        Fri, 26 May 2023 20:56:54 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 416CC654C3;
-        Sat, 27 May 2023 01:03:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 847EBC433AA;
-        Sat, 27 May 2023 01:03:57 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4D5CC64FF1;
+        Sat, 27 May 2023 03:56:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4075C433D2;
+        Sat, 27 May 2023 03:56:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685149438;
-        bh=yOxFoBLmp1jeScMv79meMtTIDUcnUXDUr4oCfNwQ2AM=;
+        s=k20201202; t=1685159813;
+        bh=ZD7Ij+Drs1pqMm30ZIHkyCeAKzFLEQBg9YtscwC86Sg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=etGs4LLK1h56gzqxJZ4WvvhIlyJFrF8n0D2EVtUJ/+gADZpYRlpmfOAKdCye96MFw
-         BlT9l+TCfks1y1evKD2QOAM5/B9EVgCBtzQ3jgBictWvKLB8VkyArQ4oWwTstBfA1W
-         bQHSzazdWTOhECQJCMBAeF19eo0uTbFexCV8E/6zMB4b6nWqPhG7JljzBqXGRlq1xe
-         xAcO55+mPcSwJ1tAz8jRp6sAibXG1f31kad9r1RMOnxLxHcl4KhNqJ5OUAIbJ0zn9R
-         b6An0+VPFbBPFenq9uyoKWUoDqhWqn9FXTDqIYx8jdouzN6vwCfyDdIEvAdAHDw01C
-         vwIcE4rSp1sZw==
+        b=rBBMkQcvApk99FYiqc4zhW0EC+VurFT2Cr9fUuQTjLr1mYTVQQbV5YY1lHk7rgXhS
+         9LdHc8xZHImLpYCaohbVk5T8SCvOYZhG7Zlpp7CaSYtQF5nEyFB///nLG2HmFMTPTl
+         Pl1inO2qXz5vMsDS8M2MX1owRqE0CI8zp+65ErtkwtcMP8OkOg8LyS7iS5GdRaAhxd
+         ToISuSscUwaA3F7YLR386jeFcIdHpwVlrcczeXhMvu5QG4gvSDt2A3319CRR9jjmpo
+         F+eyL5zMIsasQITX+0iWTJxkP7Gw0Sc+O6PmFFvNYmrpDfO1cDYUINFh1krHjNOsKb
+         mRNg19EprQX9Q==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     cros-qcom-dts-watchers@chromium.org, agross@kernel.org,
-        Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@linaro.org, broonie@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-spi@vger.kernel.org
-Cc:     mka@chromium.org, quic_vtanuku@quicinc.com,
-        quic_msavaliy@quicinc.com, dianders@chromium.org,
-        swboyd@chromium.org
-Subject: Re: (subset) [PATCH v5 0/5] spi: Add DMA mode support to spi-qcom-qspi
-Date:   Fri, 26 May 2023 18:07:33 -0700
-Message-Id: <168514964951.348612.11351632756145429472.b4-ty@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH 0/4] SM8450 GPUCC
+Date:   Fri, 26 May 2023 21:00:35 -0700
+Message-Id: <168516003598.405989.9713462057366695068.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <1682328761-17517-1-git-send-email-quic_vnivarth@quicinc.com>
-References: <1682328761-17517-1-git-send-email-quic_vnivarth@quicinc.com>
+In-Reply-To: <20230517-topic-waipio-gpucc-v1-0-4f40e282af1d@linaro.org>
+References: <20230517-topic-waipio-gpucc-v1-0-4f40e282af1d@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,24 +64,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Apr 2023 15:02:36 +0530, Vijaya Krishna Nivarthi wrote:
-> There are large number of QSPI irqs that fire during boot/init and later
-> on every suspend/resume.
-> This could be made faster by doing DMA instead of PIO.
-> Below is comparison for number of interrupts raised in 2 scenarios...
-> Boot up and stabilise
-> Suspend/Resume
+On Wed, 17 May 2023 18:40:37 +0200, Konrad Dybcio wrote:
+> Introduce hardware clock control to ultimately avoid spurious rcg
+> (re)configurations and introduce GPUCC for SM8450.
 > 
-> [...]
+> 
 
 Applied, thanks!
 
-[2/5] arm64: dts: qcom: sc7180: Add stream-id of qspi to iommus
-      commit: 8164116023acb6dd600776a3391d5b0cd7699adc
-[3/5] arm64: dts: qcom: sc7280: Add stream-id of qspi to iommus
-      commit: cc406006126e89c5330ff5c75da20deb5cafedf8
-[4/5] arm64: dts: qcom: sdm845: Add stream-id of qspi to iommus
-      commit: 0aa2811cf5eb2355cd91035b4a76a6120a5c6382
+[2/4] clk: qcom: rcg2: Make hw_clk_ctrl toggleable
+      commit: a0e0ec7424c99a0459b44fbf0459de9728be37ab
+[3/4] clk: qcom: gcc-sm8450: Enable hw_clk_ctrl
+      commit: d4113d5f2bc9b58d3243df0edd2c42247181dbdd
+[4/4] clk: qcom: Add support for SM8450 GPUCC
+      commit: 728692d49edce3cdc77be92f3c79a6c56f81e531
 
 Best regards,
 -- 
