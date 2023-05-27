@@ -2,105 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42DE1713679
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 22:51:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AACB71367E
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 23:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbjE0UvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 16:51:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57544 "EHLO
+        id S229448AbjE0VF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 17:05:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229472AbjE0UvK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 16:51:10 -0400
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED136CE
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 13:51:04 -0700 (PDT)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-19e74f68e5fso194406fac.1
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 13:51:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685220664; x=1687812664;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=N2CUU8oXZ/mnJ+KkanrS1TwZe0J5xwZ3lM0WIMXBgRs=;
-        b=Qbfpm5DIUT31cqOGw3H+5HJXP4jXp2xcUIX+NyILJ9/do0S69jfuZ0HGPTQHCp4+Bu
-         k0WzSJJDMtbATEvLC3ROuxboaXpkujZttXdbwYScWlrkaQxV6Jfetf7OHok1G2uwcFYw
-         xsJgJXgaaXupGV6JHgXPAC7kTHiMDCIAg4yKIFTNiDqRxlqkduEzXV4CYJ/Vqt/Xqi5Y
-         2M63tY2nNmjZZ1ucrlthcfRuzLoyUjcl2so8dj7XPGeR1Zi9OQn+harrgG7+yISHDqAw
-         ft3t9GPY6GSihkn5yY2T7YzDECYomgw/VtWzGA1ouIWMtcIBLOxl5s8Js7+ZJ7fOqa++
-         Bntg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685220664; x=1687812664;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=N2CUU8oXZ/mnJ+KkanrS1TwZe0J5xwZ3lM0WIMXBgRs=;
-        b=IbPYw2ufeTzG1NIVoJpQcMq5L4fYjwd1MTu20z4vSHzpAZZ26ewp9Zx3pP0wf+3t8L
-         Rpz+Oy28G/Cr+BhDMTrdW25ylKrgJpgIkPNOZZAv3bh5voYY8X2yJtSJrq0UUT00U4ao
-         F1ceNjB6r2gIfq8zT0TTM8oBCKdNX3zUcwrku5qkf8CCX057TWKAx+CJxl6MudGKZWRk
-         ZLyFDNZGWm4pNxaJtMX4zvVD/QMUtIzPgo26q3M+Fp/8Vwm0Yl4kw3aQMyjpvpfHLl+3
-         Pn2FCXsPKdf9adMB7379jDpPFCFFYXF/rbmk6TYUiPbYHlVQP+5O7YrhDOMmtRSKdMLR
-         8dRA==
-X-Gm-Message-State: AC+VfDwbcb4LOVIed5Rgch/4a5M57Wl+r/rFOE20E9t29CRPdycSYtxz
-        Gm9sI2FArRSrvdBIiAREQsc=
-X-Google-Smtp-Source: ACHHUZ5dXS36/rJ7bTXTlrWWRdmvOafap796qCcgQaQtUJJIdtBs9ISLtrZEpbvNWxijrjvD/Qw2uQ==
-X-Received: by 2002:aca:a98f:0:b0:397:f428:c2c6 with SMTP id s137-20020acaa98f000000b00397f428c2c6mr2617423oie.0.1685220664255;
-        Sat, 27 May 2023 13:51:04 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b69:e287:a09b:c5f3:bedf])
-        by smtp.gmail.com with ESMTPSA id v131-20020aca6189000000b003941c3b9f0dsm3106458oib.41.2023.05.27.13.51.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 May 2023 13:51:03 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     shawnguo@kernel.org
-Cc:     broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2 3/3] ARM: dts: imx6ul-ccimx6ulsom: Fix the "coin" regulator name
-Date:   Sat, 27 May 2023 17:50:48 -0300
-Message-Id: <20230527205048.418360-3-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230527205048.418360-1-festevam@gmail.com>
-References: <20230527205048.418360-1-festevam@gmail.com>
+        with ESMTP id S229477AbjE0VFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 17:05:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F9F5BC;
+        Sat, 27 May 2023 14:05:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 35798603F6;
+        Sat, 27 May 2023 21:05:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DF29C433EF;
+        Sat, 27 May 2023 21:05:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685221502;
+        bh=pO4NwEQHJ6F7ZIjFw4Ym65Z1i7QKkvs9nTut+QbJV0A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RFB/48QllP9PKC6JBeIHhB8cfchqrGR7c4nAJ6tMi0BawiJRsjMHi/4JFYT3u/OOB
+         Mi45hGvJ7ztIYXYyVLXSXwxA9cMWrsdKnVRbsji+dSstDwYn/e112a3dy+M5bbEERO
+         bd+yD2fIc0vdw3iEEgBW66ACsLb7UahjLpt7i8zQIoqI5zeys2ZT7J0gXB5xbkmWh8
+         Z9vzq+qjt98cplsrW99OdpMAfVbShRlwVcs9JT+ieLqiMq8eUc1eJOOV7xTd5bL1bv
+         tCXrlHQPJISzUjJZVDWr6hDv4G9YcbykXjv7SkJ5yJtC+w7S08ePnqjmk/T9bnVkT/
+         P4fmSDWvQNjTA==
+Date:   Sat, 27 May 2023 14:08:49 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 04/10] nvmem: qfprom: Add support for secure reading
+ on QDU1000/QRU1000
+Message-ID: <20230527210849.sd3ycp2pqyorpbpr@ripper>
+References: <20230512122134.24339-1-quic_kbajaj@quicinc.com>
+ <20230512122134.24339-5-quic_kbajaj@quicinc.com>
+ <68f9bee2-5a5b-2962-6c3d-e73ade371545@linaro.org>
+ <CAA8EJppObh3h8sxB_f9SQy7EQ1Gfhe9EbzV=wsUbVNj9PtX=GA@mail.gmail.com>
+ <257e11b5-29b5-78c6-882b-ec3bb64ee28b@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <257e11b5-29b5-78c6-882b-ec3bb64ee28b@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On Mon, May 15, 2023 at 02:02:11PM +0530, Komal Bajaj wrote:
+> 
+> 
+> On 5/12/2023 11:01 PM, Dmitry Baryshkov wrote:
+> > On Fri, 12 May 2023 at 20:01, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> > > On 12/05/2023 14:21, Komal Bajaj wrote:
+> > > > Add qfprom driver support for QDU1000/QRU1000 SOCs.
+> > > > 
+> > > > Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> > > > ---
+> > > >   drivers/nvmem/qfprom.c | 5 +++++
+> > > >   1 file changed, 5 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/nvmem/qfprom.c b/drivers/nvmem/qfprom.c
+> > > > index 20662e2d3732..12a7981a8a71 100644
+> > > > --- a/drivers/nvmem/qfprom.c
+> > > > +++ b/drivers/nvmem/qfprom.c
+> > > > @@ -109,6 +109,10 @@ struct qfprom_soc_compatible_data {
+> > > >        bool secure;
+> > > >   };
+> > > > 
+> > > > +static const struct qfprom_soc_compatible_data qdu1000_qfprom = {
+> > > > +     .secure = true
+> > > > +};
+> > > > +
+> > > >   static const struct nvmem_keepout sc7180_qfprom_keepout[] = {
+> > > >        {.start = 0x128, .end = 0x148},
+> > > >        {.start = 0x220, .end = 0x228}
+> > > > @@ -490,6 +494,7 @@ static int qfprom_probe(struct platform_device *pdev)
+> > > > 
+> > > >   static const struct of_device_id qfprom_of_match[] = {
+> > > >        { .compatible = "qcom,qfprom",},
+> > > > +     { .compatible = "qcom,qdu1000-qfprom", .data = &qdu1000_qfprom},
+> > > >        { .compatible = "qcom,sc7180-qfprom", .data = &sc7180_qfprom},
+> > > I have doubts that this is still compatible with qcom,qfprom. It uses
+> > > entirely different read method. That's why generic fallbacks are bad,
+> > > one more case to my growing list of awesome examples. :)
+> Okay, will do that.
+> > Yes, it looks like it should be 'qcom,qdu1000-qfprom",
+> > "qcom,scm-qfprom". And possibly a separate driver for scm-qfprom.
+> The only difference here is in read method, which can be controlled by a
+> single property,
+> do we really need to write a separate driver for just reading secure feature
+> register.
 
-As documented in pfuze100.yaml, the correct name for the regulator is
-"coin", so change it to fix the following DT check warning:
+I presume that if reads are hidden behind scm, then the most of the
+driver - which deals with writing to qfprom - isn't going to be at all
+applicable.
 
-imx6ul-ccimx6ulsbcexpress.dtb: pmic@8: regulators: 'vcoin' does not match any of the regexes:
+So, I actually think it would make sense to put that in a separate
+qfprom-scm driver, which handles the generic fallback of
+"qcom,qfprom-scm".
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v1:
-- Keep the node and change the name from vcoin to coin.
+Regards,
+Bjorn
 
- arch/arm/boot/dts/imx6ul-ccimx6ulsom.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/imx6ul-ccimx6ulsom.dtsi b/arch/arm/boot/dts/imx6ul-ccimx6ulsom.dtsi
-index b5781c3656d1..7d1a391431bd 100644
---- a/arch/arm/boot/dts/imx6ul-ccimx6ulsom.dtsi
-+++ b/arch/arm/boot/dts/imx6ul-ccimx6ulsom.dtsi
-@@ -158,7 +158,7 @@ ldo4_ext: vldo4 {
- 				regulator-max-microvolt = <3300000>;
- 			};
- 
--			vcoin_chg: vcoin {
-+			vcoin_chg: coin {
- 				regulator-min-microvolt = <2500000>;
- 				regulator-max-microvolt = <3300000>;
- 			};
--- 
-2.34.1
-
+> 
+> Thanks,
+> Komal
+> > 
+> > 
+> 
