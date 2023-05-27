@@ -2,85 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46EC77132C1
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 08:05:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13FBE7132C9
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 08:19:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230220AbjE0GFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 02:05:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49124 "EHLO
+        id S229552AbjE0GTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 02:19:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbjE0GFc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 02:05:32 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C795F7;
-        Fri, 26 May 2023 23:05:31 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5147e40bbbbso1764559a12.3;
-        Fri, 26 May 2023 23:05:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685167530; x=1687759530;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=weCO8x8l3Juw6l9mP/1dLNluMB62SRUfdduhPwPRwKs=;
-        b=SdQmwYWzkmMO8AWb1haTnxZndg0YJcUN+JsS6L5Et4rBcxZTYTTmE1si7S4ZjsqlBU
-         JBleZ9gZ3TzzhZUvcgzCQRvWrRmFPyLEWobb1DFPoSPEhZxKQ7X5jFpdKKvTzOBntcgP
-         g85zpyd/56hc4UGJ8o1JPmMHzAqyPNmQ2eOwqEoysDSP6tszcGKRLG35xvyK4XV3h6Vp
-         qVfX1pdd7DVl/bmrjBC6gaa6Yil5lrG42ESJPMUayZe4lyQZ2RxAsL0FjZALJdLiUlAB
-         xCURYMMqEqU8EEyQ9ylzllLJ+0hPL9qntJu1SBQqwXTTtmNDz8g3DDC8bMp/Tw4CKbfP
-         V6pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685167530; x=1687759530;
-        h=mime-version:references:in-reply-to:message-id:cc:to:subject:from
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=weCO8x8l3Juw6l9mP/1dLNluMB62SRUfdduhPwPRwKs=;
-        b=hy+IHeNXUEwdLm5uAsM53q7TuYGVE7o0DQf6WtGK0iMY222JDFd9OtmXLLnWZjoCa5
-         LQDRQcY8O4oBy5pQVJ9ecoKoM3Tbt9MTAU8SC8k/5oIeHslBYKwJcsNnvph9doJJWmqA
-         lPdjY34H90XIQPYJN+lW2yiqtgIlsLbSkv2Y/OAkAmRV2yhLZ7jv8DppVw4UkffqFtnC
-         KH4Yj1aruXVFGSv9edXohBupVbLSubkqmEugIdTtAcRy6/bdLfr7KtNFtTitz9kprQuS
-         XSl4sb1moVu9N8TFpvBR0Q614rRqVDsZ9SopNQvBFZ7Awov+84II7cuUH4fsR5pd8ijv
-         TwWg==
-X-Gm-Message-State: AC+VfDx61vAtILfLk+YTwespGP1VCdcx4S7oyGypMxxMh2LSd6Fw5sMq
-        9eCaPA5fb/eKn5IC+/6LInE=
-X-Google-Smtp-Source: ACHHUZ7it/5Dzo6q+LTuAj4VcpeoTRV3nU7vfiGOmmq8/KbZZDZFVtTL/4vpN5p4NGF3N5RoEXfn/Q==
-X-Received: by 2002:a17:906:fd8d:b0:96f:4927:7a96 with SMTP id xa13-20020a170906fd8d00b0096f49277a96mr3475603ejb.70.1685167529890;
-        Fri, 26 May 2023 23:05:29 -0700 (PDT)
-Received: from [192.168.94.52] ([95.183.227.33])
-        by smtp.gmail.com with ESMTPSA id e16-20020a170906c01000b00973ca837a68sm1648361ejz.217.2023.05.26.23.05.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 May 2023 23:05:29 -0700 (PDT)
-Date:   Sat, 27 May 2023 09:05:19 +0300
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: media: camss: qcom,msm8996-camss: Add
- CAMSS power domain
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229550AbjE0GTo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 02:19:44 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A394EC;
+        Fri, 26 May 2023 23:19:41 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34R6JMs7084584;
+        Sat, 27 May 2023 01:19:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685168362;
+        bh=OfcnNqxm7dVewCiFRbleuAUQnrABJWTD05qLwJkdS2g=;
+        h=Date:To:CC:References:From:Subject:In-Reply-To;
+        b=PMwUwFfX5hE3COivb6iVLsjZ5LpFinkIIFUizm36JBVRdRh5LfWRWpv40e6EiDrPi
+         Kxq4p2izccYg7h/B3wVAYJE8kfJj2ezCi3GWzizsLQJJuKxvy7sv5InwDRhdcjSkAD
+         tPFhEgbiSWF5isfCITTuwOI6H/fnrXq55pEPXjWs=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34R6JMMF018463
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sat, 27 May 2023 01:19:22 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 27
+ May 2023 01:19:21 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sat, 27 May 2023 01:19:21 -0500
+Received: from [10.249.138.166] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34R6JHGA077281;
+        Sat, 27 May 2023 01:19:19 -0500
+Message-ID: <0cb182f8-eb53-45d8-3c8b-fb7d16f88d46@ti.com>
+Date:   Sat, 27 May 2023 11:49:17 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To:     Francesco Dolcini <francesco@dolcini.it>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hans Verkuil <hansverk@cisco.com>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <VKZAVR.M3FJVE7XKKY71@gmail.com>
-In-Reply-To: <631e5eec-853b-dce2-c474-62e76e83d7e6@linaro.org>
-References: <20230526180712.8481-1-y.oudjana@protonmail.com>
-        <20230526180712.8481-2-y.oudjana@protonmail.com>
-        <20230526-obstruct-venus-5833511a58af@spud>
-        <838b134d-46cb-6237-49b0-0c287141ebb3@linaro.org>
-        <20230526-street-pox-2ff5ee106c43@spud>
-        <8d89c14f-b2c2-7db2-f637-aa6d90273f4d@linaro.org>
-        <631e5eec-853b-dce2-c474-62e76e83d7e6@linaro.org>
-X-Mailer: geary/43.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Conor Dooley <conor+dt@kernel.org>
+CC:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lukas Wunner <lukas@wunner.de>
+References: <ZGefR4mTHHo1iQ7H@francesco-nb.int.toradex.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: DT checker RS485 unevaluated property, 8250 OMAP UART
+In-Reply-To: <ZGefR4mTHHo1iQ7H@francesco-nb.int.toradex.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,54 +70,59 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, May 26 2023 at 10:36:32 PM +02:00:00, Konrad Dybcio 
-<konrad.dybcio@linaro.org> wrote:
-> 
-> 
-> On 26.05.2023 22:21, Bryan O'Donoghue wrote:
->>  On 26/05/2023 21:19, Conor Dooley wrote:
->>>  On Fri, May 26, 2023 at 09:05:47PM +0100, Bryan O'Donoghue wrote:
->>>>  On 26/05/2023 20:46, Conor Dooley wrote:
->>>>>>  +  - power-domain-names
->>>>>  Why is this now required?
->>>>> 
->>>>>  Thanks,
->>>>>  Conor.
->>>>> 
->>>> 
->>>>  Its an accurate description of the power/clock tree to have the 
->>>> top power
->>>>  domain be switched on prior to the clocks that depend on it.
->>> 
->>>  But what does that have to do with the *names* now being required?
->> 
->>  oh the names
->> 
->>  no toss that
-> this should be
-> 
-> if:properties:compatible:blahblahmsm8996:then:required:power-domain-names
 
-The only compatible in this binding is qcom,msm8996-camss, so what 
-would this achieve?
-
+On 19/05/23 9:39 pm, Francesco Dolcini wrote:
+> Hello,
+> while writing a new DT file I stumbled across this warning
 > 
-> Konrad
->> 
->>> 
->>>>  I think Yassine, you could probably include the majority of your
->>>>  cover-letter text in this commit to explain this change a bit 
->>>> better.
->>> 
->>>  I think it would be good to have that regardless.
->>> 
->>>  Cheers,
->>>  Conor.
->>> 
->>>>  bod
->>>     ^^^ I've been trying not to think about rugby since the weekend 
->>> :(
->> 
->>  Pockets O'Gara should have his paddy papers rescinded
+> .../arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-dev.dtb: serial@2810000: Unevaluated properties are not allowed ('rs485-rts-active-high' was unexpected)
+> 	From schema: .../Documentation/devicetree/bindings/serial/8250_omap.yaml
+> 
+> The property is currently used in the OMAP serial driver
+> 
+> drivers/tty/serial/omap-serial.c
+> 1511:	if (of_property_read_bool(np, "rs485-rts-active-high")) {
+> 
 
+Would be it possible to update driver to imply rs485-rts-active-high"
+this by lack of rs485-rts-active-low property in DT instead?
 
+> and a few DT files.
+> 
+> I do require it, despite being wrong, because of some legacy reasons [1].
+> 
+> Before commit 767d3467eb60 ("dt-bindings: serial: 8250_omap: drop rs485
+> properties") this property was allowed.
+> 
+> What should I do?
+>  - ignore the warning
+>  - send a patch to reintroduce `rs485-rts-active-high: true` in 8250_omap.yaml
+>  - something else?
+> 
+> I would be inclined to send the following patch, do you agree?
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> index eb3488d8f9ee..e634e98aa994 100644
+> --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> @@ -70,6 +70,7 @@ properties:
+>    dsr-gpios: true
+>    rng-gpios: true
+>    dcd-gpios: true
+> +  rs485-rts-active-low: true
+
+I believe you mean rs485-rts-active-high here
+
+>    rts-gpio: true
+>    power-domains: true
+>    clock-frequency: true
+> 
+> [1] https://lore.kernel.org/all/ZBItlBhzo+YETcJO@francesco-nb.int.toradex.com/
+> 
+
+Also, I hope you are using 8250_ompa.c and not omap-serial.c for newer
+designs. omap-serial.c is mostly there to support legacy SoCs and not to
+be used with K3 SoCs.
+
+Regards
+Vignesh
