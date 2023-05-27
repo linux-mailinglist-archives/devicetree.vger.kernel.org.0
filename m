@@ -2,106 +2,289 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87B5A7133F5
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 12:19:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 296B17133FA
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 12:22:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232080AbjE0KTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 06:19:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44520 "EHLO
+        id S231710AbjE0KWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 06:22:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231634AbjE0KTk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 06:19:40 -0400
+        with ESMTP id S231218AbjE0KWu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 06:22:50 -0400
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52786F7
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 03:19:36 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00BB1F7
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 03:22:48 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 477D78468B;
-        Sat, 27 May 2023 12:19:28 +0200 (CEST)
+        by phobos.denx.de (Postfix) with ESMTPSA id 2629C84690;
+        Sat, 27 May 2023 12:22:46 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1685182768;
-        bh=dGW1py0tyMc0cDy0mch/O+/NN/vbH7LdGU/752yb6Qk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=oNb9as1SZpYQG73S6XK+3CTxKxiazIq4vmpBJ7KN66U1hKvfqVX8/AdXh4WiJs6o4
-         jBSQTxojJtaeamnRMG2VT0Wcu3t2V8/5hh0m0cbgrsL6tapS0+gJbGk/Q0uqMsQHdg
-         fo01WCq0TcT3NsosOcA+iWBU8bFBNB/CTvmVzC0fZ0A72qtj8yhmXrt169XfXDlf+1
-         rGvm5WvsFOQg36iCnv5a2ImfooGi+nvNKHyIy/PkL+/I03UNRxAtR08knVkZl/j6oM
-         TXj+aSbEnsIb7OkZmVjx+BFnNk10rgQiFXqZbvl4KNqTAe4NSt6uS8AloyhY1xka4f
-         COXy6+k0i78bw==
-Message-ID: <a9815e8e-9d97-ab3b-40a5-851a9c70822a@denx.de>
-Date:   Sat, 27 May 2023 12:19:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] arm64: dts: imx8mp: Add TC9595 bridge on DH electronics
- i.MX8M Plus DHCOM
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Conor Dooley <conor+dt@kernel.org>,
+        s=phobos-20191101; t=1685182967;
+        bh=bnMjkd8vpkanaz72xhkezmZu0Kgcrxav274nRlXBemU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=kFNwQW1fARUrex87+rPGS9KCFqQR64vR3990bY3AOp7qwMd6wxIbZQbi23dk1tYBH
+         0nWTfUM1VpotTBYGzxUNOlAoLxGYKjM4JNHLkSoUvmIuVsfI9Xy8yLeAfMoNCDaLlE
+         FAwLtLfGAiw0cJWW+EEWHb+KihScUME5f6TNbNqAFKiEVOjyrXpmzOg98/SfEh63Xx
+         KRRn2vJtft+XaZzvqThiKclpBibEuTnGRTdnaMJyxL//14+VUdyJ1PLmE8EleReW1I
+         IzQ/UydVqYN6tVSoN28CnSfQuwLRJAbmEjs6aM+yuEF1dGL24Vq8CRXQIVmG/rXNiq
+         Sc3dTEvETX6Gg==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
         Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org
-References: <20230515162424.67597-1-marex@denx.de>
- <20230527083515.GE528183@dragon>
-Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20230527083515.GE528183@dragon>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: imx8mp: Enable SAI audio on MX8MP DHCOM PDK2 and PDK3
+Date:   Sat, 27 May 2023 12:22:33 +0200
+Message-Id: <20230527102233.5789-1-marex@denx.de>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/27/23 10:35, Shawn Guo wrote:
-> On Mon, May 15, 2023 at 06:24:24PM +0200, Marek Vasut wrote:
->> Add TC9595 DSI-to-DPI and DSI-to-(e)DP bridge to
->> DH electronics i.MX8M Plus DHCOM SoM . The bridge
->> is populated on the SoM, but disabled by default
->> unless used for display output.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> ---
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: Fabio Estevam <festevam@gmail.com>
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->> Cc: NXP Linux Team <linux-imx@nxp.com>
->> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: Sascha Hauer <s.hauer@pengutronix.de>
->> Cc: Shawn Guo <shawnguo@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> Cc: linux-arm-kernel@lists.infradead.org
->> ---
->>   .../boot/dts/freescale/imx8mp-dhcom-som.dtsi  | 55 +++++++++++++++++++
->>   1 file changed, 55 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
->> index 98a11c31d7d45..9c0cb75386e36 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
->> @@ -240,6 +240,36 @@ &i2c3 {
->>   	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->>   	status = "okay";
->>   
->> +	tc_bridge: bridge@f {
->> +		compatible = "toshiba,tc9595", "toshiba,tc358767";
-> 
-> Is "toshiba,tc9595" documented?
+Add SAI I2S and audio bindings on MX8MP DHCOM PDK2 and PDK3.
 
-Yes, the patch is coming in via drm-misc , see:
+The VDDA is supplied from on-carrier-board regulator, the VDDIO
+is supplied from always-on on-SoM regulator. Except for different
+I2C bus used to connect the codec, the implementation is virtually
+identical on both carrier boards.
 
-https://cgit.freedesktop.org/drm/drm-misc/commit/?id=adbcfcc92b5aaffdee4c5e62c077919014c483d9
+Align regulator-avdd name to regulator-3p3vdd on PDK3, since this
+is the VDDA supply and it is the same on both carrier boards.
+
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+V2: Move compatible on top of clock-codec properties list
+---
+ .../boot/dts/freescale/imx8mp-dhcom-pdk2.dts  | 54 +++++++++++++++++++
+ .../boot/dts/freescale/imx8mp-dhcom-pdk3.dts  | 47 +++++++++++++++-
+ .../boot/dts/freescale/imx8mp-dhcom-som.dtsi  | 17 ++++++
+ 3 files changed, 116 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+index 92df6c1277c36..e9fb5f7f39b50 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+@@ -23,6 +23,12 @@ chosen {
+ 		stdout-path = &uart1;
+ 	};
+ 
++	clk_ext_audio_codec: clock-codec {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <24000000>;
++	};
++
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 
+@@ -102,6 +108,43 @@ led-3 {
+ 			pinctrl-names = "default";
+ 		};
+ 	};
++
++	reg_3p3vdd: regulator-3p3vdd {	/* 3.3VDD */
++		compatible = "regulator-fixed";
++		regulator-always-on;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-name = "3P3VDD";
++	};
++
++	sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "SGTL5000-Card";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,bitclock-master = <&codec_dai>;
++		simple-audio-card,frame-master = <&codec_dai>;
++		simple-audio-card,widgets = "Headphone", "Headphone Jack";
++		simple-audio-card,routing = "Headphone Jack", "HP_OUT";
++
++		cpu_dai: simple-audio-card,cpu {
++			sound-dai = <&sai3>;
++		};
++
++		codec_dai: simple-audio-card,codec {
++			sound-dai = <&sgtl5000>;
++		};
++	};
++};
++
++&i2c5 {
++	sgtl5000: codec@a {
++		compatible = "fsl,sgtl5000";
++		reg = <0x0a>;
++		#sound-dai-cells = <0>;
++		clocks = <&clk_ext_audio_codec>;
++		VDDA-supply = <&reg_3p3vdd>;
++		VDDIO-supply = <&reg_vdd_3p3v_awo>;
++	};
+ };
+ 
+ &fec {	/* Second ethernet */
+@@ -155,6 +198,17 @@ &pcie {
+ 	status = "okay";
+ };
+ 
++&sai3 {
++	#sound-dai-cells = <0>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_sai3>;
++	assigned-clocks = <&clk IMX8MP_CLK_SAI3>;
++	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
++	assigned-clock-rates = <12288000>;
++	fsl,sai-mclk-direction-output;
++	status = "okay";
++};
++
+ &usb3_1 {
+ 	fsl,over-current-active-low;
+ };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
+index 24dc58b3404fb..31d85d5871c91 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
+@@ -23,6 +23,12 @@ chosen {
+ 		stdout-path = &uart1;
+ 	};
+ 
++	clk_ext_audio_codec: clock-codec {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <24000000>;
++	};
++
+ 	clk_xtal25: clock-xtal25 {
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -140,12 +146,30 @@ led-3 {
+ 		};
+ 	};
+ 
+-	reg_avdd: regulator-avdd {	/* AUDIO_VDD */
++	reg_3p3vdd: regulator-3p3vdd {	/* 3.3VDD */
+ 		compatible = "regulator-fixed";
+ 		regulator-always-on;
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+-		regulator-name = "AUDIO_VDD";
++		regulator-name = "3P3VDD";
++	};
++
++	sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "SGTL5000-Card";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,bitclock-master = <&codec_dai>;
++		simple-audio-card,frame-master = <&codec_dai>;
++		simple-audio-card,widgets = "Headphone", "Headphone Jack";
++		simple-audio-card,routing = "Headphone Jack", "HP_OUT";
++
++		cpu_dai: simple-audio-card,cpu {
++			sound-dai = <&sai3>;
++		};
++
++		codec_dai: simple-audio-card,codec {
++			sound-dai = <&sgtl5000>;
++		};
+ 	};
+ };
+ 
+@@ -161,6 +185,15 @@ i2cmuxed0: i2c@0 {
+ 			#size-cells = <0>;
+ 			reg = <0>;
+ 
++			sgtl5000: codec@a {
++				compatible = "fsl,sgtl5000";
++				reg = <0x0a>;
++				#sound-dai-cells = <0>;
++				clocks = <&clk_ext_audio_codec>;
++				VDDA-supply = <&reg_3p3vdd>;
++				VDDIO-supply = <&reg_vdd_3p3v_awo>;
++			};
++
+ 			typec@3d {
+ 				compatible = "nxp,ptn5150";
+ 				reg = <0x3d>;
+@@ -263,6 +296,16 @@ &pcie {
+ 	status = "okay";
+ };
+ 
++&sai3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_sai3>;
++	assigned-clocks = <&clk IMX8MP_CLK_SAI3>;
++	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
++	assigned-clock-rates = <12288000>;
++	fsl,sai-mclk-direction-output;
++	status = "okay";
++};
++
+ &usb_dwc3_0 {
+ 	usb-role-switch;
+ 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+index 7e804f6507843..98a11c31d7d45 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+@@ -49,6 +49,14 @@ reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
+ 		startup-delay-us = <100>;
+ 		vin-supply = <&buck4>;
+ 	};
++
++	reg_vdd_3p3v_awo: regulator-vdd-3p3v-awo {	/* VDD_3V3_AWO */
++		compatible = "regulator-fixed";
++		regulator-always-on;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-name = "VDD_3P3V_AWO";
++	};
+ };
+ 
+ &A53_0 {
+@@ -863,6 +871,15 @@ MX8MP_IOMUXC_SPDIF_EXT_CLK__GPIO5_IO05		0x40000080
+ 		>;
+ 	};
+ 
++	pinctrl_sai3: dhcom-sai3-grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI3_TXFS__AUDIOMIX_SAI3_TX_SYNC	0xd6
++			MX8MP_IOMUXC_SAI3_TXC__AUDIOMIX_SAI3_TX_BCLK	0xd6
++			MX8MP_IOMUXC_SAI3_RXD__AUDIOMIX_SAI3_RX_DATA00	0xd6
++			MX8MP_IOMUXC_SAI3_TXD__AUDIOMIX_SAI3_TX_DATA00	0xd6
++		>;
++	};
++
+ 	pinctrl_touch: dhcom-touch-grp {
+ 		fsl,pins = <
+ 			/* #TOUCH_INT */
+-- 
+2.39.2
+
