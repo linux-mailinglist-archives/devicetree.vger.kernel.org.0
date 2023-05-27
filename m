@@ -2,55 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FC007134DC
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 15:02:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 747CD7134E6
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 15:07:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229571AbjE0NCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 09:02:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53234 "EHLO
+        id S232647AbjE0NHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 09:07:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbjE0NCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 09:02:36 -0400
+        with ESMTP id S231387AbjE0NHj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 09:07:39 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 011A1F3
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 06:02:35 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8186910A
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 06:07:38 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9117B60B9D
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 13:02:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06584C433EF;
-        Sat, 27 May 2023 13:02:30 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1208861AEF
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 13:07:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 311CBC433D2;
+        Sat, 27 May 2023 13:07:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685192555;
-        bh=yjmBBIb52zW131QQFgr5uyH/9BLgLxIJMoS0r4knIMA=;
+        s=k20201202; t=1685192857;
+        bh=wPaPS/S1H7l0Ltw1ccW+yD82gp5Oh0f3PA5HaV5qzSw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PpZG7cIEyt+LNQrDLCA0K5ykp0LoDW8E1Yr5yDgaY1yfYoWHZMlcsi7Biv/EV9Trg
-         mOyLnnSpX4P30qAXOW5XhcyNhJHchcoKMxyFoS+CGAxjKD6JlYF7lzlFFO/K0959w4
-         M4uWZHEyxR9O9tWeLI3rkYj0NE8OYV5SvPd94Q2HLsWOShBW0ACaR6yA6GlJvGpJkC
-         OeY3+4m2R/ViaT9AAqQ/2rysZTb6IwYoif1C9qmTbwASyndRoj351LqZOPlt6eXNg8
-         En8WPjAz9jnzuqfLqK+luwT50nb26yVFwKADdYPOFwA7DK60+bcKcCTRzYQucQWK24
-         ShEZewicn5N6g==
-Date:   Sat, 27 May 2023 21:02:22 +0800
+        b=F8avS/tA4OhiWY8bHvxfzTR7eivIznSWY4h8Mm67FxP1FLYTqkIDwg7vWvaDbnZsP
+         czekc69Hisv5n/9Zt75ywHsPOt1DNqtGscm9VusJapeEPAgkoZn/FC+HJ+QKk3r9jW
+         cszRL3AotMZ74ynfdGpT3FNwW9g9ZWDK94FTDjVbIEXEbKR9U+TBbSVbW1uuXpzV3Q
+         7uQwdCMuXlAKuu8ueDpK3ba6kwFdqfTyqR/otbLJQWRfi2ddTBT18RMWQ7yd6Tw9dJ
+         /G+zTyxuBzvlvfY1xJmMCvt18+5ru7TTkJ6AFCAIKXjwJuwNwqKJPnpb7vnh5n3YxS
+         JrzW2nymGRXAw==
+Date:   Sat, 27 May 2023 21:07:17 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: imx8mp: Enable SAI audio on MX8MP DHCOM
- PDK2 and PDK3
-Message-ID: <20230527130222.GX528183@dragon>
-References: <20230527102233.5789-1-marex@denx.de>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH 1/4] ARM: dts: imx7d-smegw01: Remove unneeded
+ #address-cells/#size-cells
+Message-ID: <20230527130717.GY528183@dragon>
+References: <20230524131008.161193-1-festevam@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230527102233.5789-1-marex@denx.de>
+In-Reply-To: <20230524131008.161193-1-festevam@gmail.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -61,17 +56,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, May 27, 2023 at 12:22:33PM +0200, Marek Vasut wrote:
-> Add SAI I2S and audio bindings on MX8MP DHCOM PDK2 and PDK3.
+On Wed, May 24, 2023 at 10:10:05AM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> The VDDA is supplied from on-carrier-board regulator, the VDDIO
-> is supplied from always-on on-SoM regulator. Except for different
-> I2C bus used to connect the codec, the implementation is virtually
-> identical on both carrier boards.
+> Remove the unneeded #address-cells/#size-cells from sram@0 to fix
+> the following 'make CHECK_DTBS=y imx7d-smegw01.dtb' warning:
 > 
-> Align regulator-avdd name to regulator-3p3vdd on PDK3, since this
-> is the VDDA supply and it is the same on both carrier boards.
+> sram@0: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
+> From schema: Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-Applied, thanks!
+Applied all, thanks!
