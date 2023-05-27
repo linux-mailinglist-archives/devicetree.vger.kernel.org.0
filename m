@@ -2,172 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 331827135A1
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 18:13:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECCFC7135AA
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 18:14:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbjE0QNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 12:13:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50234 "EHLO
+        id S229499AbjE0QOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 12:14:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231161AbjE0QNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 12:13:12 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF30DE4;
-        Sat, 27 May 2023 09:13:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1685203989; x=1716739989;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EDxDfGbnxz7XwsTpPsRv+ZA+4CNV0OhPsz+82L11lMA=;
-  b=Qp0Dcr4DVOvzZc58dD+6n+rE3l0RfpPm9Yug+woaDaTlob0Yzw7yif+D
-   P3J6V9Nem1c2X1QjCfV06KQQdCZ9wp/vEI9bdSnGlgslLqyniYDL9ofQv
-   Vet7Nvc+SictsiqzTiGnJYsRDTZEzuCPfKQvznJzhXibZu92aKX6TqZFi
-   fKS9uoPMTtajsvTDrT0XEH0WEdw4cnginP7EDIgEHeDyBV78jXWMWfQMI
-   /G2juzHJ0cNvS4lgscLCa3UZlISKpNodbAmukS1f/4tvh26OaQY8vzYza
-   y0zdNTFjg9/2X2m4kghY5aoM3xo14kHIqbkNHip8rKafGkXYvetgcfc0z
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="356796425"
-X-IronPort-AV: E=Sophos;i="6.00,197,1681196400"; 
-   d="scan'208";a="356796425"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2023 09:13:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10723"; a="1035682342"
-X-IronPort-AV: E=Sophos;i="6.00,197,1681196400"; 
-   d="scan'208";a="1035682342"
-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
-  by fmsmga005.fm.intel.com with ESMTP; 27 May 2023 09:13:06 -0700
-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1q2wXS-000K3S-0o;
-        Sat, 27 May 2023 16:13:06 +0000
-Date:   Sun, 28 May 2023 00:12:31 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Bharat Bhushan <bbhushan2@marvell.com>, wim@linux-watchdog.org,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sgoutham@marvell.com
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Bharat Bhushan <bbhushan2@marvell.com>
-Subject: Re: [PATCH 2/2 v8] Watchdog: Add marvell GTI watchdog driver
-Message-ID: <202305280038.Fo8aOfsW-lkp@intel.com>
-References: <20230526062626.1180-2-bbhushan2@marvell.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230526062626.1180-2-bbhushan2@marvell.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229483AbjE0QN7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 12:13:59 -0400
+Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com [66.111.4.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 574C0DF;
+        Sat, 27 May 2023 09:13:58 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id EAC9358026C;
+        Sat, 27 May 2023 12:13:55 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Sat, 27 May 2023 12:13:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+        cc:cc:content-transfer-encoding:content-type:content-type:date
+        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to; s=fm2; t=
+        1685204035; x=1685211235; bh=0/2nVwXt5FMw3PaKmi8rGpo6QYJ55c2Efcp
+        TwuuEPF8=; b=fnREYNyOdLSoKlXA9cPCWV02UaCKPLPb0ZODZI13UkskyjKAe6y
+        m6LskSpla+SiQ+At0cku9NeQO1wRPAO+UuVAxs3zRogcryXVrp+hfbST3i9ChuNs
+        Yn1rGlBBQs7oAonbWrJiJSEJ6ooQM/7eTa4TKm/+HS1iXiooS82v6UBZKM4Jrqaz
+        ikJrSBeUsjApRSGq7G6TJu7rwv9Sm8nKQNKclo/6O6ow1e34f7BNY/9vlgh3wXn0
+        odJQQNL4fQi7Ve21yELjOCAhkvDgriTh9N4IZL2v54VaIEC48J0gMEpUD2lPWjVV
+        dgXx40dkOPj30RjzZFZqE5NWFQn3BSmio3g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:content-type:date:date:feedback-id:feedback-id
+        :from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+        1685204035; x=1685211235; bh=0/2nVwXt5FMw3PaKmi8rGpo6QYJ55c2Efcp
+        TwuuEPF8=; b=uPcFY4LKhKhN+0rzrK8u3+MWOUBtdqKv+EBoyEyve/rFl1Qk/MD
+        ZohJQGg3LppGCOZN78ZZQLBWQufwQupkspIdtuqz1iM/yrkIkEeusAQHGOdJlPVp
+        JYMOnKeIh/b66439wGpVvHQtYpskqAhHU89WcbMdM/KtdO/PzW20Kgo0huZ1BNTm
+        rhiIOA7EY7kvPJ2E0q0Z9LvoTi4wPAaJ22Yw2ddA1jPu102Dbhaalegs2i0EeOB7
+        YWEvtRJO+fs0gmb+Ajhez6VknvlmU23pxg4Gf0QZi++sKelPbmWV3u8c3YOYloDS
+        IMYb/XzWTcroqFufoaLWu/zlTCJHYhR3x5Q==
+X-ME-Sender: <xms:QSxyZHU1_wDNqPZc-A5G4ItjF0fO0DxrQsfpaDLnHMGaDEOTjHYtgQ>
+    <xme:QSxyZPn8grwFORhDbglLALRWOtd5Mo5w8k7hNMNLdmi23a5IsXhNu3IOkPd_Gk1Ca
+    vuvBemW2VKsbXYnGVA>
+X-ME-Received: <xmr:QSxyZDbE-Q2e35SV_wKWgDctcaiCywYgl1Whlcppxfa4VjyX6_yJnZGuoIlLih_5xW1B>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeekuddgleekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurheptggguffhjgffvefgkfhfvffosehtqhhmtdhhtdejnecuhfhrohhmpeflihgr
+    gihunhcujggrnhhguceojhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomheqne
+    cuggftrfgrthhtvghrnhepuddtjeffteetfeekjeeiheefueeigeeutdevieejveeihfff
+    ledvgfduiefhvddtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
+    hfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomh
+X-ME-Proxy: <xmx:QSxyZCV7TFTalTXbtv-v3csPMPgYWf-hZvPgghZ0QYYmY_zVHH4rxA>
+    <xmx:QSxyZBlxk3M3J3IxQbSEwcnnZtdCouSxmWHkurYZya_t86qrsKqTwQ>
+    <xmx:QSxyZPc5Vh9SzjlRqXQ6wVmNIqhu7UOpeiPtUHpoiEDRBUmmz5SGOA>
+    <xmx:QyxyZLqBT7mFeG1gao39kERImy0Zi8Ir71PgIY-tW0_L2sTfhO9rqg>
+Feedback-ID: ifd894703:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 27 May 2023 12:13:51 -0400 (EDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.500.231\))
+Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the trivial
+ RTCs
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+In-Reply-To: <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com>
+Date:   Sat, 27 May 2023 17:13:39 +0100
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        Kelvin Cheung <keguang.zhang@gmail.com>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        loongson-kernel@lists.loongnix.cn
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com>
+References: <cover.1684983279.git.zhoubinbin@loongson.cn>
+ <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
+ <20230525-custody-oversleep-f778eddf981c@spud>
+ <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
+ <20230526-dolly-reheat-06c4d5658415@wendy>
+ <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com>
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>
+X-Mailer: Apple Mail (2.3731.500.231)
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bharat,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on groeck-staging/hwmon-next linus/master v6.4-rc3 next-20230525]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Bharat-Bhushan/Watchdog-Add-marvell-GTI-watchdog-driver/20230526-142851
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230526062626.1180-2-bbhushan2%40marvell.com
-patch subject: [PATCH 2/2 v8] Watchdog: Add marvell GTI watchdog driver
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20230528/202305280038.Fo8aOfsW-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        mkdir -p ~/bin
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/b5f326e7e3943850db45d2f06d737dc9ac37a575
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Bharat-Bhushan/Watchdog-Add-marvell-GTI-watchdog-driver/20230526-142851
-        git checkout b5f326e7e3943850db45d2f06d737dc9ac37a575
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 ~/bin/make.cross W=1 O=build_dir ARCH=s390 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 ~/bin/make.cross W=1 O=build_dir ARCH=s390 SHELL=/bin/bash drivers/
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202305280038.Fo8aOfsW-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/watchdog/marvell_gti_wdt.c: In function 'gti_wdt_interrupt':
->> drivers/watchdog/marvell_gti_wdt.c:89:9: error: implicit declaration of function 'writeq' [-Werror=implicit-function-declaration]
-      89 |         writeq(GTI_CWD_INT_PENDING_STATUS(priv->wdt_timer_idx),
-         |         ^~~~~~
-   drivers/watchdog/marvell_gti_wdt.c: In function 'gti_wdt_start':
->> drivers/watchdog/marvell_gti_wdt.c:126:18: error: implicit declaration of function 'readq' [-Werror=implicit-function-declaration]
-     126 |         regval = readq(priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
-         |                  ^~~~~
-   cc1: some warnings being treated as errors
 
 
-vim +/writeq +89 drivers/watchdog/marvell_gti_wdt.c
+> 2023=E5=B9=B45=E6=9C=8827=E6=97=A5 10:22=EF=BC=8CBinbin Zhou =
+<zhoubb.aaron@gmail.com> =E5=86=99=E9=81=93=EF=BC=9A
+>=20
+> On Fri, May 26, 2023 at 8:07=E2=80=AFPM Conor Dooley =
+<conor.dooley@microchip.com> wrote:
+>>=20
+>> On Fri, May 26, 2023 at 09:37:02AM +0800, Binbin Zhou wrote:
+>>> On Fri, May 26, 2023 at 1:05=E2=80=AFAM Conor Dooley =
+<conor@kernel.org> wrote:
+>>>> On Thu, May 25, 2023 at 08:55:23PM +0800, Binbin Zhou wrote:
+>>=20
+>>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - loongson,ls1b-rtc
+>>>>> +      - loongson,ls1c-rtc
+>>>>> +      - loongson,ls7a-rtc
+>>>>> +      - loongson,ls2k0500-rtc
+>>>>> +      - loongson,ls2k1000-rtc
+>>>>> +      - loongson,ls2k2000-rtc
+>>>>=20
+>>>> |+static const struct of_device_id loongson_rtc_of_match[] =3D {
+>>>> |+       { .compatible =3D "loongson,ls1b-rtc", .data =3D =
+&ls1x_rtc_config },
+>>>> |+       { .compatible =3D "loongson,ls1c-rtc", .data =3D =
+&ls1x_rtc_config },
+>>>> |+       { .compatible =3D "loongson,ls7a-rtc", .data =3D =
+&generic_rtc_config },
+>>>> |+       { .compatible =3D "loongson,ls2k0500-rtc", .data =3D =
+&generic_rtc_config },
+>>>> |+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D =
+&ls2k1000_rtc_config },
+>>>> |+       { .compatible =3D "loongson,ls2k2000-rtc", .data =3D =
+&generic_rtc_config },
+>>>> |+       { /* sentinel */ }
+>>>> |+};
+>>>>=20
+>>>> This is a sign to me that your compatibles here are could do with =
+some
+>>>> fallbacks. Both of the ls1 ones are compatible with each other & =
+there
+>>>> are three that are generic.
+>>>>=20
+>>>> I would allow the following:
+>>>> "loongson,ls1b-rtc"
+>>>> "loongson,ls1c-rtc", "loongson,ls1b-rtc"
+>>>> "loongson,ls7a-rtc"
+>>>> "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
+>>>> "loongson,ls2k2000-rtc", "loongson,ls7a-rtc"
+>>>> "loongson,ls2k1000-rtc"
+>>>>=20
+>>>> And then the driver only needs:
+>>>> |+static const struct of_device_id loongson_rtc_of_match[] =3D {
+>>>> |+       { .compatible =3D "loongson,ls1b-rtc", .data =3D =
+&ls1x_rtc_config },
+>>>> |+       { .compatible =3D "loongson,ls7a-rtc", .data =3D =
+&generic_rtc_config },
+>>>> |+       { .compatible =3D "loongson,ls2k1000-rtc", .data =3D =
+&ls2k1000_rtc_config },
+>>>> |+       { /* sentinel */ }
+>>>> |+};
+>>>>=20
+>>>> And ~if~when you add support for more devices in the future that =
+are
+>>>> compatible with the existing ones no code changes are required.
+>>>=20
+>>> Hi Conor:
+>>>=20
+>>> Thanks for your reply.
+>>>=20
+>>> Yes, this is looking much cleaner. But it can't show every chip that
+>>> supports that driver.
+>>>=20
+>>> As we know, Loongson is a family of chips:
+>>> ls1b/ls1c represent the Loongson-1 family of CPU chips;
+>>> ls7a represents the Loongson LS7A bridge chip;
+>>> ls2k0500/ls2k1000/ls2k2000 represent the Loongson-2 family of CPU =
+chips.
+>>>=20
+>>> Based on my previous conversations with Krzysztof, it seems that
+>>> soc-based to order compatible is more popular, so I have listed all
+>>> the chips that support that RTC driver.
+>>=20
+>> Right. You don't actually have to list them all *in the driver* =
+though,
+>> just in the binding and in the devicetree. I think what you have =
+missed
+>> is:
+>>>> I would allow the following:
+>>>> "loongson,ls1b-rtc"
+>>>> "loongson,ls1c-rtc", "loongson,ls1b-rtc"
+>>>> "loongson,ls7a-rtc"
+>>>> "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
+>>>> "loongson,ls2k2000-rtc", "loongson,ls7a-rtc"
+>>>> "loongson,ls2k1000-rtc"
+>>=20
+>> This is what you would put in the compatible section of a devicetree
+>> node, using "fallback compatibles". So for a ls1c you put in
+>> compatible =3D "loongson,ls1c-rtc", "loongson,ls1b-rtc";
+>> and the kernel first tries to find a driver that supports
+>> "loongson,ls1c-rtc" but if that fails it tries to find one that =
+supports
+>> "loongson,ls1b-rtc". This gives you the best of both worlds - you can
+>> add support easily for new systems (when an ls1d comes out, you don't
+>> even need to change the driver for it to just work!) and you have a
+>> soc-specific compatible in case you need to add some workaround for
+>> hardware errata etc in the future.
+>=20
+> Hi Conor:
+>=20
+> I seem to understand what you are talking about.
+> I hadn't delved into "fallback compatibles" before, so thanks for the
+> detailed explanation.
+>=20
+> In fact, I have thought before if there is a good way to do it other
+> than adding comptable to the driver frequently, and "fallback
+> compatibles" should be the most suitable.
+>=20
+> So in the dt-bindings file, should we just write this:
+>=20
+>  compatible:
+>    oneOf:
+>      - items:
+>          - enum:
+>              - loongson,ls1c-rtc
+>          - const: loongson,ls1b-rtc
+>      - items:
+>          - enum:
+>              - loongson,ls2k0500-rtc
+>              - loongson,ls2k2000-rtc
+>          - const: loongson,ls7a-rtc
+>      - items:
+>          - const: loongson,ls2k1000-rtc
 
-    82	
-    83	static irqreturn_t gti_wdt_interrupt(int irq, void *data)
-    84	{
-    85		struct watchdog_device *wdev = data;
-    86		struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
-    87	
-    88		/* Clear Interrupt Pending Status */
-  > 89		writeq(GTI_CWD_INT_PENDING_STATUS(priv->wdt_timer_idx),
-    90		       priv->base + GTI_CWD_INT);
-    91	
-    92		watchdog_notify_pretimeout(wdev);
-    93	
-    94		return IRQ_HANDLED;
-    95	}
-    96	
-    97	static int gti_wdt_ping(struct watchdog_device *wdev)
-    98	{
-    99		struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
-   100	
-   101		writeq(GTI_CWD_POKE_VAL,
-   102		       priv->base + GTI_CWD_POKE(priv->wdt_timer_idx));
-   103	
-   104		return 0;
-   105	}
-   106	
-   107	static int gti_wdt_start(struct watchdog_device *wdev)
-   108	{
-   109		struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
-   110		u64 regval;
-   111	
-   112		if (!wdev->pretimeout)
-   113			return -EINVAL;
-   114	
-   115		set_bit(WDOG_HW_RUNNING, &wdev->status);
-   116	
-   117		/* Clear any pending interrupt */
-   118		writeq(GTI_CWD_INT_PENDING_STATUS(priv->wdt_timer_idx),
-   119		       priv->base + GTI_CWD_INT);
-   120	
-   121		/* Enable Interrupt */
-   122		writeq(GTI_CWD_INT_ENA_SET_VAL(priv->wdt_timer_idx),
-   123		       priv->base + GTI_CWD_INT_ENA_SET);
-   124	
-   125		/* Set (Interrupt + SCP interrupt (DEL3T) + core domain reset) Mode */
- > 126		regval = readq(priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
-   127		regval |= GTI_CWD_WDOG_MODE_INT_DEL3T_RST;
-   128		writeq(regval, priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
-   129	
-   130		return 0;
-   131	}
-   132	
+My recommendation is leaving compatible string as is.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks
+- Jiaxun
+
+>=20
+> Thanks.
+> Binbin
