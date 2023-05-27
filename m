@@ -2,60 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8442C713409
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 12:35:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB217713425
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 12:48:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231608AbjE0KfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 06:35:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47448 "EHLO
+        id S231180AbjE0KsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 06:48:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbjE0KfE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 06:35:04 -0400
+        with ESMTP id S229730AbjE0KsK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 06:48:10 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12B2710A;
-        Sat, 27 May 2023 03:35:04 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 579E7D3
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 03:48:09 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 901CA61830;
-        Sat, 27 May 2023 10:35:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0677BC433EF;
-        Sat, 27 May 2023 10:34:59 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CFC8961048
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 10:48:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50637C433D2;
+        Sat, 27 May 2023 10:48:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685183702;
-        bh=sg2FrDsa4OyGlWP61AQ7Bo4NewAEhbkfSJkPzv0P6QQ=;
+        s=k20201202; t=1685184488;
+        bh=jp8yzmqn+yX/7ZyqNxnOtHF/5eAgz2dGP/AaMSfltz8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kyuvmmXC5XO8XPh6CnRozru8D8aARsE0yU9P5OkmbMBnuXw2o3T29Bp36D/GBWkV1
-         Z80HO32V5/EUR/JUHQgFmoPf/91NS0UaPaf1l6i0ES2pr2xAT4whW0x+8gSj1Yqnf1
-         LycJStW+Fjl74+gnHBsb10Zte0AB4Y1yBX3ke5WT6+6uZZ1tCP+4ZGDeBg/L8qKkzD
-         u1N7feJIDA2cWFW1Lr/yL/uKifG5WP7BJsFZpdiiwOUQF9VveAAn0yEWWIVn74tf+q
-         TSLnJTaABiif3cBlzeexuI72zXomNOkIQUMBhCpRUVAYpdh9lw8k6eA7NT//9muVRB
-         uDmIyHUoWRWkw==
-Date:   Sat, 27 May 2023 11:34:57 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        b=n+a3XDFdOvxFFGY4HuT/KjUamLUpMovMLaakk2LZnXUarH/qlQ8TmFMnVdpKnLjTd
+         S+B0D547jkoi0/k1z4f5El8b4Y4XDA+vXuamQVN0I/+yb663Y2vUEQ7V7GKuRMevzQ
+         XnSTi3yB+gJXo8oSoNvptFbzZRl9fbz8STCvv1/AVa0P0F2j1/3z88gh/JYhd4AAZ7
+         3mWlTeHOuVIStBqw2Ir+AA3EGPblCvZCIrOdntzR21NBzG7cHkJ4dgRWK+XP43H5w5
+         zgcBKlglTySZNj4nw9XkuDNDXnvFt50BRFLYZl3Yw+Ioj7nni5F2sEJK2/yVMy4Xej
+         3ZgwG7Qbea32Q==
+Date:   Sat, 27 May 2023 18:47:57 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Tom Rix <trix@redhat.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        phone-devel@vger.kernel.org
-Subject: Re: [PATCH v9 1/2] dt-bindings: power: supply: qcom,pmi8998-charger:
- add bindings for smb2 driver
-Message-ID: <20230527-retaining-backless-7e1c5298b2b2@spud>
-References: <20230524-pmi8998-charger-v9-0-cd7f6d03c0ab@linaro.org>
- <20230524-pmi8998-charger-v9-1-cd7f6d03c0ab@linaro.org>
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp: Add TC9595 bridge on DH electronics
+ i.MX8M Plus DHCOM
+Message-ID: <20230527104757.GL528183@dragon>
+References: <20230515162424.67597-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="4dHMmvzTtB+odP/d"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230524-pmi8998-charger-v9-1-cd7f6d03c0ab@linaro.org>
+In-Reply-To: <20230515162424.67597-1-marex@denx.de>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -66,48 +61,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, May 15, 2023 at 06:24:24PM +0200, Marek Vasut wrote:
+> Add TC9595 DSI-to-DPI and DSI-to-(e)DP bridge to
+> DH electronics i.MX8M Plus DHCOM SoM . The bridge
+> is populated on the SoM, but disabled by default
+> unless used for display output.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
---4dHMmvzTtB+odP/d
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, May 26, 2023 at 10:44:14PM +0100, Caleb Connolly wrote:
-> Add devicetree bindings for the Qualcomm PMI8998/PM660 SMB2 charger
-> driver.
->=20
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
->  .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    |  1 +
->  .../power/supply/qcom,pmi8998-charger.yaml         | 82 ++++++++++++++++=
-++++++
->  2 files changed, 83 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b/=
-Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> index 36de335a33aa..44590dc112be 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> @@ -133,6 +133,7 @@ patternProperties:
->      oneOf:
->        - $ref: /schemas/power/supply/qcom,pm8941-charger.yaml#
->        - $ref: /schemas/power/supply/qcom,pm8941-coincell.yaml#
-> +      - $ref: /schemas/power/supply/qcom,pmi8998-charger.yaml#
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
---4dHMmvzTtB+odP/d
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHHc0QAKCRB4tDGHoIJi
-0giLAQDd90qpqDEoqwaiVOGr+nJqPeUk42Zfbbahtll20cqwfAEA/DkptlMVYcLy
-IMEADcbgGO6H3ug9jI1YnTs/d+Od1gw=
-=31dr
------END PGP SIGNATURE-----
-
---4dHMmvzTtB+odP/d--
+Applied, thanks!
