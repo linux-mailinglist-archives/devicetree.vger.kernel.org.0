@@ -2,441 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0846271334B
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 10:24:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 293FE713353
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 10:28:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230483AbjE0IYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 04:24:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51038 "EHLO
+        id S229708AbjE0I23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 04:28:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230079AbjE0IYS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 04:24:18 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9D43DF;
-        Sat, 27 May 2023 01:24:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1685175856; x=1716711856;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=FCmVPzBBgvwPq8ltTtFHNwsFktml//0nPbFePSpK290=;
-  b=nPfICpJgiHnlvWmH7j5fBrjyVoY7GSNzQF/NF+jQe76Z1Eazw9HezgPt
-   zc+OFwslUly13nPDtkGW837oFkhqt+fHvAFGVG1NC5dCHugX1M5KXO5Sk
-   kCyPG5g2ihjHGqPqUhXugDnmeeg0mm90sogGzraaTvNWbDWsJQfEj3jnP
-   NL7Wu3M58NrbQflxI5iO7IHH6YKY+k3SwsvpVfgG5aOSYRLrXzzLk7EOk
-   fcD7bgH5ZQUt2DAok+2zWXTA/0y5S2ZmewCIVYu+MKsKCX6MDSu8S7X0/
-   o31YML0Fq0T8i5AbZljTvqQ2YumoDFot+59Yta/1xsaG3CTmDPrrTOb62
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="343875889"
-X-IronPort-AV: E=Sophos;i="6.00,196,1681196400"; 
-   d="scan'208";a="343875889"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 May 2023 01:24:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10722"; a="736259826"
-X-IronPort-AV: E=Sophos;i="6.00,196,1681196400"; 
-   d="scan'208";a="736259826"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga008.jf.intel.com with ESMTP; 27 May 2023 01:24:13 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1q2pDf-000IpR-2w;
-        Sat, 27 May 2023 11:24:11 +0300
-Date:   Sat, 27 May 2023 11:24:11 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Mehdi Djait <mehdi.djait.k@gmail.com>
-Cc:     jic23@kernel.org, mazziesaccount@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lars@metafoo.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 7/7] iio: accel: Add support for Kionix/ROHM
- KX132-1211 accelerometer
-Message-ID: <ZHG+K+lPIu98u+3C@smile.fi.intel.com>
-References: <cover.1685109507.git.mehdi.djait.k@gmail.com>
- <d776c1dd5beef6ef812a4f7e4958eb6cb0f5e58e.1685111274.git.mehdi.djait.k@gmail.com>
+        with ESMTP id S229684AbjE0I21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 04:28:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEED6DF
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 01:28:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 463A360F5E
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 08:28:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49B77C433EF;
+        Sat, 27 May 2023 08:28:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685176105;
+        bh=51xuMw5MtVsC3dUv56a3OkLEtjkK1MoTYM1wTAGLado=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AlIhT9OcNxY/JpgzzxiC2Sb1XawIRDqiawbV9Tx/ogxMslHNuFPTOHWk/t50q7qg9
+         l5nuIL92+y9w0nHp9ppJqWA3LfUNrXheJiFaQlXBTvHT6YDMyqvCg1b0ZfqcKcNuBl
+         LxbvzMwAXteLpSpM+QkHLA1Kx6e6cBjrD00++wL9YYZ5tioLstFE1+P/LGgbP4iEoX
+         q4njLKqHBTFMZZXGZsyA25YnltKKNBBd8/WQshILFnNNn9eveluMI1ZDBZTUkOUdnh
+         b+BXFBfw5hlpAQAxs/lbUxNzTPuty2ZdDv+IqPJY+vY850Mtq1W7N9joThsKWkPEg7
+         pRMJOhVmGU6kQ==
+Date:   Sat, 27 May 2023 16:28:13 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mp: Enable SAI audio on MX8MP DHCOM PDK2
+ and PDK3
+Message-ID: <20230527082813.GD528183@dragon>
+References: <20230515155205.61275-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d776c1dd5beef6ef812a4f7e4958eb6cb0f5e58e.1685111274.git.mehdi.djait.k@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230515155205.61275-1-marex@denx.de>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, May 26, 2023 at 04:42:33PM +0200, Mehdi Djait wrote:
-> Kionix KX132-1211 is a tri-axis 16-bit accelerometer that can support
-> ranges from ±2G to ±16G, digital output through I²C/SPI.
-> Add support for basic accelerometer features such as reading acceleration
-> via IIO using raw reads, triggered buffer (data-ready), or the WMI IRQ.
-
-Well written patch, thank you!
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-
-> Datasheet: https://kionixfs.azureedge.net/en/document/KX132-1211-Technical-Reference-Manual-Rev-5.0.pdf
-> Signed-off-by: Mehdi Djait <mehdi.djait.k@gmail.com>
+On Mon, May 15, 2023 at 05:52:05PM +0200, Marek Vasut wrote:
+> Add SAI I2S and audio bindings on MX8MP DHCOM PDK2 and PDK3.
+> 
+> The VDDA is supplied from on-carrier-board regulator, the VDDIO
+> is supplied from always-on on-SoM regulator. Except for different
+> I2C bus used to connect the codec, the implementation is virtually
+> identical on both carrier boards.
+> 
+> Align regulator-avdd name to regulator-3p3vdd on PDK3, since this
+> is the VDDA supply and it is the same on both carrier boards.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
 > ---
-> v4: 
-> - added KX132_REG_CNTL5 to the volatile ranges
-> - added the kionix reserved regs to the read_only ranges
-> - removed KX132_REG_MAN_WAKEUP from the write_only ranges
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+>  .../boot/dts/freescale/imx8mp-dhcom-pdk2.dts  | 54 +++++++++++++++++++
+>  .../boot/dts/freescale/imx8mp-dhcom-pdk3.dts  | 47 +++++++++++++++-
+>  .../boot/dts/freescale/imx8mp-dhcom-som.dtsi  | 17 ++++++
+>  3 files changed, 116 insertions(+), 2 deletions(-)
 > 
-> v3:
-> - fixed the warning of the kernel test robot in kx132_get_fifo_bytes
-> 	(invalid assignment: &=, left side has type restricted __le16
-> 	right side has type unsigned short)
-> 
-> v2:
-> - mentioned the kx132-1211 in the Kconfig
-> - added a kx132-specific get_fifo_bytes function
-> - changed the device name from "kx132" to "kx132-1211
-> 
->  drivers/iio/accel/Kconfig             |   8 +-
->  drivers/iio/accel/kionix-kx022a-i2c.c |   2 +
->  drivers/iio/accel/kionix-kx022a-spi.c |   2 +
->  drivers/iio/accel/kionix-kx022a.c     | 162 ++++++++++++++++++++++++++
->  drivers/iio/accel/kionix-kx022a.h     |  52 +++++++++
->  5 files changed, 222 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
-> index b6b45d359f28..d8cc6e6f2bb9 100644
-> --- a/drivers/iio/accel/Kconfig
-> +++ b/drivers/iio/accel/Kconfig
-> @@ -418,8 +418,8 @@ config IIO_KX022A_SPI
->  	select IIO_KX022A
->  	select REGMAP_SPI
->  	help
-> -	  Enable support for the Kionix KX022A digital tri-axis
-> -	  accelerometer connected to I2C interface.
-> +	  Enable support for the Kionix KX022A, KX132-1211 digital tri-axis
-> +	  accelerometers connected to SPI interface.
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+> index 92df6c1277c36..de26c09e17805 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+> @@ -23,6 +23,12 @@ chosen {
+>  		stdout-path = &uart1;
+>  	};
 >  
->  config IIO_KX022A_I2C
->  	tristate "Kionix KX022A tri-axis digital accelerometer I2C interface"
-> @@ -427,8 +427,8 @@ config IIO_KX022A_I2C
->  	select IIO_KX022A
->  	select REGMAP_I2C
->  	help
-> -	  Enable support for the Kionix KX022A digital tri-axis
-> -	  accelerometer connected to I2C interface.
-> +	  Enable support for the Kionix KX022A, KX132-1211 digital tri-axis
-> +	  accelerometers connected to I2C interface.
+> +	clk_ext_audio_codec: clock-codec {
+> +		#clock-cells = <0>;
+> +		clock-frequency = <24000000>;
+> +		compatible = "fixed-clock";
+
+Can we start properties with 'compatible'?
+
+Shawn
+
+> +	};
+> +
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
 >  
->  config KXSD9
->  	tristate "Kionix KXSD9 Accelerometer Driver"
-> diff --git a/drivers/iio/accel/kionix-kx022a-i2c.c b/drivers/iio/accel/kionix-kx022a-i2c.c
-> index ce299d0446f7..4ea28d2482ec 100644
-> --- a/drivers/iio/accel/kionix-kx022a-i2c.c
-> +++ b/drivers/iio/accel/kionix-kx022a-i2c.c
-> @@ -39,12 +39,14 @@ static int kx022a_i2c_probe(struct i2c_client *i2c)
->  
->  static const struct i2c_device_id kx022a_i2c_id[] = {
->  	{ .name = "kx022a", .driver_data = (kernel_ulong_t)&kx022a_chip_info },
-> +	{ .name = "kx132-1211", .driver_data = (kernel_ulong_t)&kx132_chip_info },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(i2c, kx022a_i2c_id);
->  
->  static const struct of_device_id kx022a_of_match[] = {
->  	{ .compatible = "kionix,kx022a", .data = &kx022a_chip_info },
-> +	{ .compatible = "kionix,kx132-1211", .data = &kx132_chip_info },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, kx022a_of_match);
-> diff --git a/drivers/iio/accel/kionix-kx022a-spi.c b/drivers/iio/accel/kionix-kx022a-spi.c
-> index 1e4b9d4b4b8d..3fb673ffcdeb 100644
-> --- a/drivers/iio/accel/kionix-kx022a-spi.c
-> +++ b/drivers/iio/accel/kionix-kx022a-spi.c
-> @@ -35,12 +35,14 @@ static int kx022a_spi_probe(struct spi_device *spi)
->  
->  static const struct spi_device_id kx022a_id[] = {
->  	{ .name = "kx022a", .driver_data = (kernel_ulong_t)&kx022a_chip_info },
-> +	{ .name = "kx132-1211", .driver_data = (kernel_ulong_t)&kx132_chip_info },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(spi, kx022a_id);
->  
->  static const struct of_device_id kx022a_of_match[] = {
->  	{ .compatible = "kionix,kx022a", .data = &kx022a_chip_info },
-> +	{ .compatible = "kionix,kx132-1211", .data = &kx132_chip_info },
->  	{ }
->  };
->  MODULE_DEVICE_TABLE(of, kx022a_of_match);
-> diff --git a/drivers/iio/accel/kionix-kx022a.c b/drivers/iio/accel/kionix-kx022a.c
-> index 20f5965e878c..327412a8a395 100644
-> --- a/drivers/iio/accel/kionix-kx022a.c
-> +++ b/drivers/iio/accel/kionix-kx022a.c
-> @@ -150,6 +150,117 @@ static const struct regmap_config kx022a_regmap_config = {
->  	.cache_type = REGCACHE_RBTREE,
+> @@ -102,6 +108,43 @@ led-3 {
+>  			pinctrl-names = "default";
+>  		};
+>  	};
+> +
+> +	reg_3p3vdd: regulator-3p3vdd {	/* 3.3VDD */
+> +		compatible = "regulator-fixed";
+> +		regulator-always-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-name = "3P3VDD";
+> +	};
+> +
+> +	sound {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,name = "SGTL5000-Card";
+> +		simple-audio-card,format = "i2s";
+> +		simple-audio-card,bitclock-master = <&codec_dai>;
+> +		simple-audio-card,frame-master = <&codec_dai>;
+> +		simple-audio-card,widgets = "Headphone", "Headphone Jack";
+> +		simple-audio-card,routing = "Headphone Jack", "HP_OUT";
+> +
+> +		cpu_dai: simple-audio-card,cpu {
+> +			sound-dai = <&sai3>;
+> +		};
+> +
+> +		codec_dai: simple-audio-card,codec {
+> +			sound-dai = <&sgtl5000>;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c5 {
+> +	sgtl5000: codec@a {
+> +		compatible = "fsl,sgtl5000";
+> +		reg = <0x0a>;
+> +		#sound-dai-cells = <0>;
+> +		clocks = <&clk_ext_audio_codec>;
+> +		VDDA-supply = <&reg_3p3vdd>;
+> +		VDDIO-supply = <&reg_vdd_3p3v_awo>;
+> +	};
 >  };
 >  
-> +/* Regmap configs kx132 */
-> +static const struct regmap_range kx132_volatile_ranges[] = {
-> +	{
-> +		.range_min = KX132_REG_XADP_L,
-> +		.range_max = KX132_REG_COTR,
-> +	}, {
-> +		.range_min = KX132_REG_TSCP,
-> +		.range_max = KX132_REG_INT_REL,
-> +	}, {
-> +		/* The reset bit will be cleared by sensor */
-> +		.range_min = KX132_REG_CNTL2,
-> +		.range_max = KX132_REG_CNTL2,
-> +	}, {
-> +		.range_min = KX132_REG_CNTL5,
-> +		.range_max = KX132_REG_CNTL5,
-> +	}, {
-> +		.range_min = KX132_REG_BUF_STATUS_1,
-> +		.range_max = KX132_REG_BUF_READ,
-> +	},
-> +};
-> +
-> +static const struct regmap_access_table kx132_volatile_regs = {
-> +	.yes_ranges = &kx132_volatile_ranges[0],
-> +	.n_yes_ranges = ARRAY_SIZE(kx132_volatile_ranges),
-> +};
-> +
-> +static const struct regmap_range kx132_precious_ranges[] = {
-> +	{
-> +		.range_min = KX132_REG_INT_REL,
-> +		.range_max = KX132_REG_INT_REL,
-> +	},
-> +};
-> +
-> +static const struct regmap_access_table kx132_precious_regs = {
-> +	.yes_ranges = &kx132_precious_ranges[0],
-> +	.n_yes_ranges = ARRAY_SIZE(kx132_precious_ranges),
-> +};
-> +
-> +static const struct regmap_range kx132_read_only_ranges[] = {
-> +	{
-> +		.range_min = KX132_REG_XADP_L,
-> +		.range_max = KX132_REG_INT_REL,
-> +	}, {
-> +		.range_min = KX132_REG_BUF_STATUS_1,
-> +		.range_max = KX132_REG_BUF_STATUS_2,
-> +	}, {
-> +		.range_min = KX132_REG_BUF_READ,
-> +		.range_max = KX132_REG_BUF_READ,
-> +	}, {
-> +		/* Kionix reserved registers: should not be written */
-> +		.range_min = 0x28,
-> +		.range_max = 0x28,
-> +	}, {
-> +		.range_min = 0x35,
-> +		.range_max = 0x36,
-> +	}, {
-> +		.range_min = 0x3c,
-> +		.range_max = 0x48,
-> +	}, {
-> +		.range_min = 0x4e,
-> +		.range_max = 0x5c,
-> +	}, {
-> +		.range_min = 0x77,
-> +		.range_max = 0x7f,
-> +	},
-> +};
-> +
-> +static const struct regmap_access_table kx132_ro_regs = {
-> +	.no_ranges = &kx132_read_only_ranges[0],
-> +	.n_no_ranges = ARRAY_SIZE(kx132_read_only_ranges),
-> +};
-> +
-> +static const struct regmap_range kx132_write_only_ranges[] = {
-> +	{
-> +		.range_min = KX132_REG_SELF_TEST,
-> +		.range_max = KX132_REG_SELF_TEST,
-> +	}, {
-> +		.range_min = KX132_REG_BUF_CLEAR,
-> +		.range_max = KX132_REG_BUF_CLEAR,
-> +	},
-> +};
-> +
-> +static const struct regmap_access_table kx132_wo_regs = {
-> +	.no_ranges = &kx132_write_only_ranges[0],
-> +	.n_no_ranges = ARRAY_SIZE(kx132_write_only_ranges),
-> +};
-> +
-> +static const struct regmap_range kx132_noinc_read_ranges[] = {
-> +	{
-> +		.range_min = KX132_REG_BUF_READ,
-> +		.range_max = KX132_REG_BUF_READ,
-> +	},
-> +};
-> +
-> +static const struct regmap_access_table kx132_nir_regs = {
-> +	.yes_ranges = &kx132_noinc_read_ranges[0],
-> +	.n_yes_ranges = ARRAY_SIZE(kx132_noinc_read_ranges),
-> +};
-> +
-> +static const struct regmap_config kx132_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.volatile_table = &kx132_volatile_regs,
-> +	.rd_table = &kx132_wo_regs,
-> +	.wr_table = &kx132_ro_regs,
-> +	.rd_noinc_table = &kx132_nir_regs,
-> +	.precious_table = &kx132_precious_regs,
-> +	.max_register = KX132_MAX_REGISTER,
-> +	.cache_type = REGCACHE_RBTREE,
-> +};
-> +
->  struct kx022a_data {
->  	const struct kx022a_chip_info *chip_info;
->  	struct regmap *regmap;
-> @@ -239,6 +350,13 @@ static const struct iio_chan_spec kx022a_channels[] = {
->  	IIO_CHAN_SOFT_TIMESTAMP(3),
+>  &fec {	/* Second ethernet */
+> @@ -155,6 +198,17 @@ &pcie {
+>  	status = "okay";
 >  };
 >  
-> +static const struct iio_chan_spec kx132_channels[] = {
-> +	KX022A_ACCEL_CHAN(X, KX132_REG_XOUT_L, 0),
-> +	KX022A_ACCEL_CHAN(Y, KX132_REG_YOUT_L, 1),
-> +	KX022A_ACCEL_CHAN(Z, KX132_REG_ZOUT_L, 2),
-> +	IIO_CHAN_SOFT_TIMESTAMP(3),
+> +&sai3 {
+> +	#sound-dai-cells = <0>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_sai3>;
+> +	assigned-clocks = <&clk IMX8MP_CLK_SAI3>;
+> +	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
+> +	assigned-clock-rates = <12288000>;
+> +	fsl,sai-mclk-direction-output;
+> +	status = "okay";
 > +};
 > +
->  /*
->   * The sensor HW can support ODR up to 1600 Hz, which is beyond what most of the
->   * Linux CPUs can handle without dropping samples. Also, the low power mode is
-> @@ -613,6 +731,24 @@ static int kx022a_get_fifo_bytes(struct kx022a_data *data)
->  	return fifo_bytes;
->  }
->  
-> +static int kx132_get_fifo_bytes(struct kx022a_data *data)
-> +{
-> +	__le16 buf_status;
-> +	int ret, fifo_bytes;
-> +
-> +	ret = regmap_bulk_read(data->regmap, data->chip_info->buf_status1,
-> +			       &buf_status, sizeof(buf_status));
-> +	if (ret) {
-> +		dev_err(data->dev, "Error reading buffer status\n");
-> +		return ret;
-> +	}
-> +
-> +	fifo_bytes = le16_to_cpu(buf_status);
-> +	fifo_bytes &= data->chip_info->buf_smp_lvl_mask;
-> +
-> +	return fifo_bytes;
-> +}
-> +
->  static int __kx022a_fifo_flush(struct iio_dev *idev, unsigned int samples,
->  			       bool irq)
->  {
-> @@ -1036,6 +1172,32 @@ const struct kx022a_chip_info kx022a_chip_info = {
+>  &usb3_1 {
+>  	fsl,over-current-active-low;
 >  };
->  EXPORT_SYMBOL_NS_GPL(kx022a_chip_info, IIO_KX022A);
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
+> index 24dc58b3404fb..6bcf17ffc9393 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
+> @@ -23,6 +23,12 @@ chosen {
+>  		stdout-path = &uart1;
+>  	};
 >  
-> +const struct kx022a_chip_info kx132_chip_info = {
-> +	.name		  = "kx132-1211",
-> +	.regmap_config	  = &kx132_regmap_config,
-> +	.channels	  = kx132_channels,
-> +	.num_channels	  = ARRAY_SIZE(kx132_channels),
-> +	.fifo_length	  = KX132_FIFO_LENGTH,
-> +	.who		  = KX132_REG_WHO,
-> +	.id		  = KX132_ID,
-> +	.cntl		  = KX132_REG_CNTL,
-> +	.cntl2		  = KX132_REG_CNTL2,
-> +	.odcntl		  = KX132_REG_ODCNTL,
-> +	.buf_cntl1	  = KX132_REG_BUF_CNTL1,
-> +	.buf_cntl2	  = KX132_REG_BUF_CNTL2,
-> +	.buf_clear	  = KX132_REG_BUF_CLEAR,
-> +	.buf_status1	  = KX132_REG_BUF_STATUS_1,
-> +	.buf_smp_lvl_mask = KX132_MASK_BUF_SMP_LVL,
-> +	.buf_read	  = KX132_REG_BUF_READ,
-> +	.inc1		  = KX132_REG_INC1,
-> +	.inc4		  = KX132_REG_INC4,
-> +	.inc5		  = KX132_REG_INC5,
-> +	.inc6		  = KX132_REG_INC6,
-> +	.xout_l		  = KX132_REG_XOUT_L,
-> +	.get_fifo_bytes	  = kx132_get_fifo_bytes,
+> +	clk_ext_audio_codec: clock-codec {
+> +		#clock-cells = <0>;
+> +		clock-frequency = <24000000>;
+> +		compatible = "fixed-clock";
+> +	};
+> +
+>  	clk_xtal25: clock-xtal25 {
+>  		compatible = "fixed-clock";
+>  		#clock-cells = <0>;
+> @@ -140,12 +146,30 @@ led-3 {
+>  		};
+>  	};
+>  
+> -	reg_avdd: regulator-avdd {	/* AUDIO_VDD */
+> +	reg_3p3vdd: regulator-3p3vdd {	/* 3.3VDD */
+>  		compatible = "regulator-fixed";
+>  		regulator-always-on;
+>  		regulator-min-microvolt = <3300000>;
+>  		regulator-max-microvolt = <3300000>;
+> -		regulator-name = "AUDIO_VDD";
+> +		regulator-name = "3P3VDD";
+> +	};
+> +
+> +	sound {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,name = "SGTL5000-Card";
+> +		simple-audio-card,format = "i2s";
+> +		simple-audio-card,bitclock-master = <&codec_dai>;
+> +		simple-audio-card,frame-master = <&codec_dai>;
+> +		simple-audio-card,widgets = "Headphone", "Headphone Jack";
+> +		simple-audio-card,routing = "Headphone Jack", "HP_OUT";
+> +
+> +		cpu_dai: simple-audio-card,cpu {
+> +			sound-dai = <&sai3>;
+> +		};
+> +
+> +		codec_dai: simple-audio-card,codec {
+> +			sound-dai = <&sgtl5000>;
+> +		};
+>  	};
+>  };
+>  
+> @@ -161,6 +185,15 @@ i2cmuxed0: i2c@0 {
+>  			#size-cells = <0>;
+>  			reg = <0>;
+>  
+> +			sgtl5000: codec@a {
+> +				compatible = "fsl,sgtl5000";
+> +				reg = <0x0a>;
+> +				#sound-dai-cells = <0>;
+> +				clocks = <&clk_ext_audio_codec>;
+> +				VDDA-supply = <&reg_3p3vdd>;
+> +				VDDIO-supply = <&reg_vdd_3p3v_awo>;
+> +			};
+> +
+>  			typec@3d {
+>  				compatible = "nxp,ptn5150";
+>  				reg = <0x3d>;
+> @@ -263,6 +296,16 @@ &pcie {
+>  	status = "okay";
+>  };
+>  
+> +&sai3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_sai3>;
+> +	assigned-clocks = <&clk IMX8MP_CLK_SAI3>;
+> +	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
+> +	assigned-clock-rates = <12288000>;
+> +	fsl,sai-mclk-direction-output;
+> +	status = "okay";
 > +};
-> +EXPORT_SYMBOL_NS_GPL(kx132_chip_info, IIO_KX022A);
 > +
->  int kx022a_probe_internal(struct device *dev, const struct kx022a_chip_info *chip_info)
->  {
->  	static const char * const regulator_names[] = {"io-vdd", "vdd"};
-> diff --git a/drivers/iio/accel/kionix-kx022a.h b/drivers/iio/accel/kionix-kx022a.h
-> index 7792907534b5..351867a95f8c 100644
-> --- a/drivers/iio/accel/kionix-kx022a.h
-> +++ b/drivers/iio/accel/kionix-kx022a.h
-> @@ -74,6 +74,57 @@
->  #define KX022A_REG_SELF_TEST	0x60
->  #define KX022A_MAX_REGISTER	0x60
+>  &usb_dwc3_0 {
+>  	usb-role-switch;
 >  
-> +#define KX132_REG_WHO		0x13
-> +#define KX132_ID		0x3d
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+> index 7e804f6507843..98a11c31d7d45 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+> @@ -49,6 +49,14 @@ reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
+>  		startup-delay-us = <100>;
+>  		vin-supply = <&buck4>;
+>  	};
 > +
-> +#define KX132_FIFO_LENGTH	86
-> +
-> +#define KX132_REG_CNTL		0x1b
-> +#define KX132_REG_CNTL2		0x1c
-> +#define KX132_REG_CNTL5		0x1f
-> +#define KX132_MASK_RES		BIT(6)
-> +#define KX132_GSEL_2		0x0
-> +#define KX132_GSEL_4		BIT(3)
-> +#define KX132_GSEL_8		BIT(4)
-> +#define KX132_GSEL_16		GENMASK(4, 3)
-> +
-> +#define KX132_REG_INS2		0x17
-> +#define KX132_MASK_INS2_WMI	BIT(5)
-> +
-> +#define KX132_REG_XADP_L	0x02
-> +#define KX132_REG_XOUT_L	0x08
-> +#define KX132_REG_YOUT_L	0x0a
-> +#define KX132_REG_ZOUT_L	0x0c
-> +#define KX132_REG_COTR		0x12
-> +#define KX132_REG_TSCP		0x14
-> +#define KX132_REG_INT_REL	0x1a
-> +
-> +#define KX132_REG_ODCNTL	0x21
-> +
-> +#define KX132_REG_BTS_WUF_TH	0x4a
-> +
-> +#define KX132_REG_BUF_CNTL1	0x5e
-> +#define KX132_REG_BUF_CNTL2	0x5f
-> +#define KX132_REG_BUF_STATUS_1	0x60
-> +#define KX132_REG_BUF_STATUS_2	0x61
-> +#define KX132_MASK_BUF_SMP_LVL	GENMASK(9, 0)
-> +#define KX132_REG_BUF_CLEAR	0x62
-> +#define KX132_REG_BUF_READ	0x63
-> +#define KX132_ODR_SHIFT		3
-> +#define KX132_FIFO_MAX_WMI_TH	86
-> +
-> +#define KX132_REG_INC1		0x22
-> +#define KX132_REG_INC5		0x26
-> +#define KX132_REG_INC6		0x27
-> +#define KX132_IPOL_LOW		0
-> +#define KX132_IPOL_HIGH		KX022A_MASK_IPOL
-> +#define KX132_ITYP_PULSE	KX022A_MASK_ITYP
-> +
-> +#define KX132_REG_INC4		0x25
-> +
-> +#define KX132_REG_SELF_TEST	0x5d
-> +#define KX132_MAX_REGISTER	0x76
-> +
->  struct device;
+> +	reg_vdd_3p3v_awo: regulator-vdd-3p3v-awo {	/* VDD_3V3_AWO */
+> +		compatible = "regulator-fixed";
+> +		regulator-always-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-name = "VDD_3P3V_AWO";
+> +	};
+>  };
 >  
->  struct kx022a_data;
-> @@ -131,5 +182,6 @@ struct kx022a_chip_info {
->  int kx022a_probe_internal(struct device *dev, const struct kx022a_chip_info *chip_info);
+>  &A53_0 {
+> @@ -863,6 +871,15 @@ MX8MP_IOMUXC_SPDIF_EXT_CLK__GPIO5_IO05		0x40000080
+>  		>;
+>  	};
 >  
->  extern const struct kx022a_chip_info kx022a_chip_info;
-> +extern const struct kx022a_chip_info kx132_chip_info;
->  
->  #endif
+> +	pinctrl_sai3: dhcom-sai3-grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_SAI3_TXFS__AUDIOMIX_SAI3_TX_SYNC	0xd6
+> +			MX8MP_IOMUXC_SAI3_TXC__AUDIOMIX_SAI3_TX_BCLK	0xd6
+> +			MX8MP_IOMUXC_SAI3_RXD__AUDIOMIX_SAI3_RX_DATA00	0xd6
+> +			MX8MP_IOMUXC_SAI3_TXD__AUDIOMIX_SAI3_TX_DATA00	0xd6
+> +		>;
+> +	};
+> +
+>  	pinctrl_touch: dhcom-touch-grp {
+>  		fsl,pins = <
+>  			/* #TOUCH_INT */
 > -- 
-> 2.30.2
+> 2.39.2
 > 
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
