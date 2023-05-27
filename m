@@ -2,53 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E21C171342A
-	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 13:02:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F2F713432
+	for <lists+devicetree@lfdr.de>; Sat, 27 May 2023 13:12:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229512AbjE0LCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 07:02:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52624 "EHLO
+        id S229684AbjE0LMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 07:12:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231995AbjE0LCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 07:02:11 -0400
+        with ESMTP id S229593AbjE0LMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 07:12:34 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3564AD8
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 04:02:10 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7C8DEB
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 04:12:33 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B8F2960FA5
-        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 11:02:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2021C433D2;
-        Sat, 27 May 2023 11:02:04 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 37FC060B9D
+        for <devicetree@vger.kernel.org>; Sat, 27 May 2023 11:12:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFE3FC433D2;
+        Sat, 27 May 2023 11:12:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685185329;
-        bh=WNAGop2QJNSvjXZDBOJdyUlkyRG4trGAn7qQXJs+y1E=;
+        s=k20201202; t=1685185952;
+        bh=DHie1fsJ4lVJ6CPFrMrG9ZP2iRmTlEn7Qk6fw43xqrE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fGCq3RYYrJGhLzzMxRC3suFfLUticKtwgYOxLkp65AWJKWY0+d4Jfoa7yhV31r/XC
-         k+ZW8dBnw6thoeYf84m6erCMN3dJd2lUJgd8KAw5tFo3ELJgtoA+/ivfPnHtA6qDpL
-         12JWrcFVXSg/TqvNdelCd4XcQ6wfjUsJjEpEPul6wcPN9IwT84Ni/C8ODH5LtV+sBd
-         AMWNQSCHv2u3wbh9VdoOhSydnH+gfpJTB3tcIDVZF1fjyvGpeeWeiHkBrmE883Nw7G
-         7kXabngXBhxukGIgiaekiPrjBK7tfGAIS2qA6jD3tkG/GlFxil0uSDgXhYpx7/wWUc
-         1HyGoNG+FStBg==
-Date:   Sat, 27 May 2023 19:01:57 +0800
+        b=Daca2Bu2NINYXEw2GJH+JMQnCNcxPOmhhHYW1c19rR6U509RWklMPTtwlrquPzGmY
+         HYvJkNThtBrSLwJgw6qPdhf3sLadxaeVG9Tv7uMu/cnc9r4EDy04BDNhiaazJ/A9zJ
+         C7ogE7Rt1ms1rNa2KD3+ejoQfg73gAe+sXUuaugUJsw7SFWpnhGaU+titzqNWf21cw
+         51OztUthrFnoRqnjEgyolrlW0yZVkbTXUEJVlwYwx7iU3QT0sJv1X3kMLuzrmIQ5vw
+         5EYVtI+dCuBPYEv20xV88843ESz7thkt2jmKiGneDCFkzn6tNPSnLOlFWdHH3UwMNz
+         4SUy/93WQOv8g==
+Date:   Sat, 27 May 2023 19:12:19 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Shenwei Wang <shenwei.wang@nxp.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>, linux@ew.tq-group.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/1] ARM: dts: imx6qdl: Add HDMI to TQMa6x/MBa6
-Message-ID: <20230527110157.GN528183@dragon>
-References: <20230517101107.1682625-1-alexander.stein@ew.tq-group.com>
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        imx@lists.linux.dev
+Subject: Re: [PATCH v2] arm64: dts: imx8qm-mek: correct GPIOs for USDHC2 CD
+ and WP signals
+Message-ID: <20230527111219.GO528183@dragon>
+References: <20230518135421.1905616-1-shenwei.wang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230517101107.1682625-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20230518135421.1905616-1-shenwei.wang@nxp.com>
 X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -59,15 +62,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 17, 2023 at 12:11:07PM +0200, Alexander Stein wrote:
-> This adds support for a COTS monitor connected to X17.
-> 4k monitors can be used, but are limited to 1080p.
+On Thu, May 18, 2023 at 08:54:21AM -0500, Shenwei Wang wrote:
+> The USDHC2 CD and WP sginal should be on LSIO_GPIO5.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> Changes in v2:
-> * Fix typo for pinctrl-* property
+> Fixes: 307fd14d4b14 ("arm64: dts: imx: add imx8qm mek support")
+> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
 
-Applied this version instead.
-
-Shawn
+Applied, thanks!
