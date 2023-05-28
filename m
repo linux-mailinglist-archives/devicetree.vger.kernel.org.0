@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A437D714096
-	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 23:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C2777140ED
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 00:01:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229626AbjE1VZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 May 2023 17:25:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45360 "EHLO
+        id S229505AbjE1WBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 May 2023 18:01:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbjE1VZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 17:25:42 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BE5F83;
-        Sun, 28 May 2023 14:25:41 -0700 (PDT)
-Received: from [IPV6:2405:201:0:21ea:e49:10dd:40c0:e842] (unknown [IPv6:2405:201:0:21ea:e49:10dd:40c0:e842])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: shreeya)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C6BA566028F5;
-        Sun, 28 May 2023 22:25:37 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685309140;
-        bh=WkZ6oYe+0LR8m4rMtcElrRUUrT+hfU8TiYr3DHMTugg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=RTBgXrB/mf3M7/iO+TLsMxUj1P4aQ83D1eWUFeIY78pLRXJO4lv6VIlq7X2tIhvJ/
-         Juuor+larkNDkM7kSVgtvYIC61QZ690btJ2BT8hoQrY4jJPyC9l22GXdi1HP8eh1x9
-         Z3EvLU6plFlc90o2NR+fpWkgRrKwM/DYeiXcOY9cBSVf9lSqQ1AiYQcTVRYUjeeB9j
-         TxP7/Lxok82+4XW38tI41IdHLyEfBSS0FJSIkJCEd8KtVPPJa/XVMaoOub/9gFgNus
-         JlavK+SQbcL2U29r+5S8JFjzB1KTtWa+tPP+HPnS5682w7vH5vEpwmUob8LXx0LAD5
-         /JGAzhsmYbgxg==
-Message-ID: <b11c2009-754d-6ca2-6d0e-9c303f4da9e8@collabora.com>
-Date:   Mon, 29 May 2023 02:55:32 +0530
+        with ESMTP id S229521AbjE1WBK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 18:01:10 -0400
+Received: from mail-40136.proton.ch (mail-40136.proton.ch [185.70.40.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C4DB8
+        for <devicetree@vger.kernel.org>; Sun, 28 May 2023 15:01:05 -0700 (PDT)
+Date:   Sun, 28 May 2023 22:00:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1685311263; x=1685570463;
+        bh=kwQFJjiwN8twYz8De04hRwMEmGC/2PFsVzynq91D79U=;
+        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+         Message-ID:BIMI-Selector;
+        b=F/cTeYLBdhPu3Va3xDShJgxFvuy0fBNfgarvf5EVEnkyxkudW4susNCI4Ujn7aJf7
+         9mEKOtymlS7YixdWIXlx+rCB4B2p0Vv5ZR0ki6KS+3qL6HVGopwwmM1TAYukqdIH5T
+         Prk+H0dwpO592WPdDfIj0W7LSOg/Pc3x2ymODBUk=
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>
+Subject: Re: [PATCH RFC 01/10] drm/panel: Clean up SOFEF00 config dependencies
+Message-ID: <fca259bd-5047-06bf-2c66-21acc92d22a7@connolly.tech>
+In-Reply-To: <20230521-drm-panels-sony-v1-1-541c341d6bee@somainline.org>
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org> <20230521-drm-panels-sony-v1-1-541c341d6bee@somainline.org>
+Feedback-ID: 10753939:user:proton
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH v2 0/8] RK3588 ADC support
-Content-Language: en-US
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     lars@metafoo.de, heiko@sntech.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, sebastian.reichel@collabora.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, gustavo.padovan@collabora.com,
-        serge.broslavsky@collabora.com
-References: <20230525212712.255406-1-shreeya.patel@collabora.com>
- <20230528174614.4dc5cd01@jic23-huawei>
-From:   Shreeya Patel <shreeya.patel@collabora.com>
-In-Reply-To: <20230528174614.4dc5cd01@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,55 +66,48 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 28/05/23 22:16, Jonathan Cameron wrote:
-> On Fri, 26 May 2023 02:57:04 +0530
-> Shreeya Patel <shreeya.patel@collabora.com> wrote:
->
->> This patch series adds ADC support for RK3588 and updates
->> the DT bindings for the same.
->>
->> To test ADC support on Rock 5B board, a voltage divider circuit
->> was created using the gpio pin 22 ( SARADC_IN4 ) and few more
->> tests were ran for testing the buffer and trigger support using
->> the iio_generic_buffer tool.
->>
-> FWIW I don't have any additional comments on this beyond agreeing
-> those made by others need addressing.
->
-> Fingers crossed for v3.
 
-Thanks Jonathan, I'll send a v3 after making the changes mentioned by 
-Dmitry and Angelo.
+On 21/05/2023 22:23, Marijn Suijten wrote:
+> As per the config name this Display IC features a DSI command-mode
+> interface (or the command to switch to video mode is not
+> known/documented) and does not use any of the video-mode helper
+> utilities, hence should not select VIDEOMODE_HELPERS.  In addition it
+> uses devm_gpiod_get() and related functions from GPIOLIB.
+>=20
+> Fixes: 5933baa36e26 ("drm/panel/samsung-sofef00: Add panel for OnePlus 6/=
+T devices")
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 
+Reviewed-by: Caleb Connolly <caleb@connolly.tech>
+> ---
+>  drivers/gpu/drm/panel/Kconfig | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfi=
+g
+> index 2b9d6db7860ba..67ef898d133f2 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -608,10 +608,10 @@ config DRM_PANEL_SAMSUNG_S6E8AA0
+>=20
+>  config DRM_PANEL_SAMSUNG_SOFEF00
+>  =09tristate "Samsung sofef00/s6e3fc2x01 OnePlus 6/6T DSI cmd mode panels=
+"
+> +=09depends on GPIOLIB
+>  =09depends on OF
+>  =09depends on DRM_MIPI_DSI
+>  =09depends on BACKLIGHT_CLASS_DEVICE
+> -=09select VIDEOMODE_HELPERS
+>  =09help
+>  =09  Say Y or M here if you want to enable support for the Samsung AMOLE=
+D
+>  =09  command mode panels found in the OnePlus 6/6T smartphones.
+>=20
+> --
+> 2.40.1
+>=20
 
-Regards,
-Shreeya Patel
+--=20
+Kind Regards,
+Caleb
 
->
-> Jonathan
->
->> Changes in v2
->>    - Add from address in patches 1 and 2.
->>    - Create separate patches for adding new device support and changes to
->>      the old device code.
->>    - Make use of FIELD_PREP in patch 2.
->>    - Move the enablement of clocks at it's original position in patch 3
->>    - Add Reviewed-by tag in patches 4 and 5.
->>    - Add an Acked-by tag in patch 8.
->>
->> Shreeya Patel (8):
->>    iio: adc: rockchip_saradc: Add callback functions
->>    iio: adc: rockchip_saradc: Add support for RK3588
->>    iio: adc: rockchip_saradc: Make use of devm_clk_get_enabled
->>    iio: adc: rockchip_saradc: Use of_device_get_match_data
->>    iio: adc: rockchip_saradc: Match alignment with open parenthesis
->>    iio: adc: rockchip_saradc: Use dev_err_probe
->>    arm64: dts: rockchip: Add DT node for ADC support in RK3588
->>    dt-bindings: iio: adc: Add rockchip,rk3588-saradc string
->>
->>   .../bindings/iio/adc/rockchip-saradc.yaml     |   1 +
->>   arch/arm64/boot/dts/rockchip/rk3588s.dtsi     |  12 +
->>   drivers/iio/adc/rockchip_saradc.c             | 262 +++++++++++-------
->>   3 files changed, 168 insertions(+), 107 deletions(-)
->>
->
