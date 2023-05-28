@@ -2,113 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BF4A71394C
-	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 13:41:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E8707139BC
+	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 15:56:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229472AbjE1Ll1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 May 2023 07:41:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40072 "EHLO
+        id S229616AbjE1N4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 May 2023 09:56:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjE1Ll0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 07:41:26 -0400
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFE27BC;
-        Sun, 28 May 2023 04:41:23 -0700 (PDT)
-Received: from local
-        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-         (Exim 4.96)
-        (envelope-from <daniel@makrotopia.org>)
-        id 1q3Els-0006sD-0g;
-        Sun, 28 May 2023 11:41:12 +0000
-Date:   Sun, 28 May 2023 12:41:02 +0100
-From:   Daniel Golle <daniel@makrotopia.org>
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     linux-mediatek@lists.infradead.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: mt7986: use size of reserved partition for
- bl2
-Message-ID: <ZHM9zq9t2uRuvrK7@makrotopia.org>
-References: <20230528113343.7649-1-linux@fw-web.de>
+        with ESMTP id S229614AbjE1N4K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 09:56:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1187CB8;
+        Sun, 28 May 2023 06:56:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9AC1C60B09;
+        Sun, 28 May 2023 13:56:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CC10C433D2;
+        Sun, 28 May 2023 13:56:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1685282168;
+        bh=JT5y3bSqnJBtSO4Uhlu1HHm2FPspPmwBPjGg1IWW6HM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=K4y0eD/VPD77aBerNR+9ZF+cx0epBIPX8NwlH8igpBL9qDhWgjSIyI3ae2tj8j4uh
+         RgqhQqhchTnEWgThs4DdC7zhTNmT30XImMiltRve4tVAs+AEZ0b1sAoyoHEihZwrrb
+         AOWj4Kfa/fHwwkipSW4mP5AsFFbikBAgz1q8p4rQ=
+Date:   Sun, 28 May 2023 12:56:31 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Subject: Re: [PATCH v3 11/11] serial: sc16is7xx: add dump registers function
+Message-ID: <2023052837-entree-broken-d7dd@gregkh>
+References: <20230525040324.3773741-1-hugo@hugovil.com>
+ <20230525040324.3773741-12-hugo@hugovil.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230528113343.7649-1-linux@fw-web.de>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230525040324.3773741-12-hugo@hugovil.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 28, 2023 at 01:33:42PM +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On Thu, May 25, 2023 at 12:03:25AM -0400, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> To store uncompressed bl2 more space is required than partition is
-> actually defined.
+> With this driver, it is very hard to debug the registers using
+> the /sys/kernel/debug/regmap interface.
 > 
-> There is currently no known usage of this reserved partition.
-> Openwrt uses same partition layout.
+> The main reason is that bits 0 and 1 of the register address
+> correspond to the channels bits, so the register address itself starts
+> at bit 2, so we must 'mentally' shift each register address by 2 bits
+> to get its offset.
 > 
-> We added same change to u-boot with commit d7bb1099 [1].
+> Also, only channels 0 and 1 are supported, so combinations of bits
+> 0 and 1 being 10b and 11b are invalid, and the display of these
+> registers is useless.
 > 
-> [1] https://source.denx.de/u-boot/u-boot/-/commit/d7bb109900c1ca754a0198b9afb50e3161ffc21e
+> For example:
 > 
-> Cc: stable@vger.kernel.org
-> Fixes: 8e01fb15b815 ("arm64: dts: mt7986: add Bananapi R3")
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-
-Reviewed-by: Daniel Golle <daniel@makrotopia.org>
-
+> cat /sys/kernel/debug/regmap/spi0.0/registers
+> 04: 10 -> Port 0, register offset 1
+> 05: 10 -> Port 1, register offset 1
+> 06: 00 -> Port 2, register offset 1 -> invalid
+> 07: 00 -> port 3, register offset 1 -> invalid
+> ...
+> 
+> Add a debug module parameter to call a custom dump function for each
+> port registers after the probe phase to help debug.
+> 
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > ---
-> If the bl2 does not fit into the bl2-partition (cut off), board does
-> not boot, thats why i want to increase it now. My current bl2 is 197K
-> for nor and i ran into this problem.
+>  drivers/tty/serial/sc16is7xx.c | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
 > 
-> Openwrt uses also the first reserved partition to give bl2 more
-> space:
-> 
-> https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob;f=target/linux/mediatek/dts/mt7986a-bananapi-bpi-r3-nor.dts;h=f597b869abc80d1a73f44ebb85ad4da17376bb52;hb=HEAD#l22
-> 
-> so imho it should be same in mainline to not require complex bl2
-> compression.
-> 
-> have now sent the board-specific dts to uboot too:
-> https://source.denx.de/u-boot/u-boot/-/commit/d7bb109900c1ca754a0198b9afb50e3161ffc21e
-> ---
->  .../boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso     | 7 +------
->  1 file changed, 1 insertion(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
-> index 84aa229e80f3..e48881be4ed6 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
-> @@ -27,15 +27,10 @@ partitions {
+> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
+> index 03d00b144304..693b6cc371f8 100644
+> --- a/drivers/tty/serial/sc16is7xx.c
+> +++ b/drivers/tty/serial/sc16is7xx.c
+> @@ -347,6 +347,10 @@ struct sc16is7xx_port {
+>  	struct sc16is7xx_one		p[];
+>  };
 >  
->  					partition@0 {
->  						label = "bl2";
-> -						reg = <0x0 0x20000>;
-> +						reg = <0x0 0x40000>;
->  						read-only;
->  					};
->  
-> -					partition@20000 {
-> -						label = "reserved";
-> -						reg = <0x20000 0x20000>;
-> -					};
-> -
->  					partition@40000 {
->  						label = "u-boot-env";
->  						reg = <0x40000 0x40000>;
-> -- 
-> 2.34.1
-> 
+> +static bool debug;
+> +module_param(debug, bool, 0644);
+> +MODULE_PARM_DESC(debug, "enable/disable debug messages");
+
+Sorry, but no, use the normal dynamic debugging logic that the whole
+rest of the kernel uses.  Do not add random per-driver module parameters
+like this, that would be a regression from the existing infrastructure
+that we have in place already.
+
+thanks,
+
+greg k-h
