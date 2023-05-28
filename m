@@ -2,78 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0939F713A87
-	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 18:23:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BF99713A8D
+	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 18:30:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229461AbjE1QX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 May 2023 12:23:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52460 "EHLO
+        id S229654AbjE1Q37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 May 2023 12:29:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbjE1QXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 12:23:25 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC52FBE;
-        Sun, 28 May 2023 09:23:23 -0700 (PDT)
+        with ESMTP id S229551AbjE1Q36 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 12:29:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7888FA7;
+        Sun, 28 May 2023 09:29:57 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8043860B75;
-        Sun, 28 May 2023 16:23:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73696C433D2;
-        Sun, 28 May 2023 16:23:17 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 161C960BA0;
+        Sun, 28 May 2023 16:29:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB045C433D2;
+        Sun, 28 May 2023 16:29:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685291002;
-        bh=k6G5Xe62qpgcfKk8N9aTjJvUl9Ttz60+Svd6OPPzKjE=;
+        s=k20201202; t=1685291396;
+        bh=ei8N2Em3Nr2Uv8xvmQo82ZVNT14+4f7srT0ooNh+iQo=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=l4VyYWsm8o4NwCyJJKBwXf9urk86ERcPauB041w8R9fDWaLGH/E0CySzkPogXje8R
-         YGOeAr+W3ONLschYLex7PrhJn6ABFbZbK3+66aq0sLHdXKezmFTYZI42xzBiemwulR
-         T39Rgxo6ibKafGxHoJ+JqRrCn8zMBrgEzgDUUMfwcif5Jady7vM5EkOprGHrNCjUdF
-         qPNL/GTDftsPDg2tZMcfj9n8MwBO+/AgDX+nYSe/hSa6Vp3xhLyfI9o8AoEyrxG8Fa
-         xkhbK9CVGULGb6TKkitEW0AXF6VVfYBJTMrMBh8IkrmdmMov564W2hZZ8jxK/0VzVQ
-         jc53GxRH0uksg==
-Date:   Sun, 28 May 2023 17:39:37 +0100
+        b=afV34sY38FPwajLAlwDWQFBlyPOq+izpon2VPq1T29AhDO+jOomUpeqrMi8s3+RKE
+         e/K4tWZ/MmpILm07QY2RGKmzRJUh+fGBOYqUDOkvn9sTaAhWyxkknHjo1AM4plzptd
+         gHrd+7MOXgZj3h97saRXomXc28ftLrML7FJsWSC6jDMB+q+i0z6a+KTGje9zk+lN2H
+         cXXjCMu5YEcDuo6Op0yGCHlbK9bv+BVjJ1A5l7R7q55WcK5A/6g6lF8MP9yB+tEW6r
+         J2Uhn+oJfqMvMxrYEDvX92Krd9yjhZkIPDpATS9NFLZnUb44CNjxL5cer/cQ8UaZCr
+         Ade9q6Ww7Nhaw==
+Date:   Sun, 28 May 2023 17:46:14 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Maxim Kiselev <bigunclemax@gmail.com>
-Cc:     linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Leonard =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [RFC PATCH v1 0/4] Add support for Allwinner GPADC on
- D1/T113s/R329 SoCs
-Message-ID: <20230528173937.3ae59e50@jic23-huawei>
-In-Reply-To: <20230524082744.3215427-1-bigunclemax@gmail.com>
-References: <20230524082744.3215427-1-bigunclemax@gmail.com>
+To:     Shreeya Patel <shreeya.patel@collabora.com>
+Cc:     lars@metafoo.de, heiko@sntech.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sebastian.reichel@collabora.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, gustavo.padovan@collabora.com,
+        serge.broslavsky@collabora.com
+Subject: Re: [PATCH v2 0/8] RK3588 ADC support
+Message-ID: <20230528174614.4dc5cd01@jic23-huawei>
+In-Reply-To: <20230525212712.255406-1-shreeya.patel@collabora.com>
+References: <20230525212712.255406-1-shreeya.patel@collabora.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,47 +59,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 May 2023 11:27:29 +0300
-Maxim Kiselev <bigunclemax@gmail.com> wrote:
+On Fri, 26 May 2023 02:57:04 +0530
+Shreeya Patel <shreeya.patel@collabora.com> wrote:
 
-> Hi,
+> This patch series adds ADC support for RK3588 and updates
+> the DT bindings for the same.
 > 
-> This series adds support for general purpose ADC (GPADC) on new
-> Allwinner's SoCs, such as D1, T113s and R329. The implemented driver
-> provides basic functionality for getting ADC channels data.
+> To test ADC support on Rock 5B board, a voltage divider circuit
+> was created using the gpio pin 22 ( SARADC_IN4 ) and few more
+> tests were ran for testing the buffer and trigger support using
+> the iio_generic_buffer tool.
 > 
-> All of the listed SoCs have the same IP. The only difference is the number
-> of available channels:
->      T113 - 1 channel
->      D1   - 2 channels
->      R329 - 4 channels
-> 
-> This series is just an RFC and I would be glad to see any comments
-> about it.
-Why 'just an RFC'?  Normal to call out aspects that mean it doesn't yet
-make sense for it to be picked up for upstream.
+FWIW I don't have any additional comments on this beyond agreeing
+those made by others need addressing.
 
-Looks pretty good to me in general rather than RFC material so perhaps
-I'm missing something.
+Fingers crossed for v3.
 
 Jonathan
 
 > 
+> Changes in v2
+>   - Add from address in patches 1 and 2.
+>   - Create separate patches for adding new device support and changes to
+>     the old device code.
+>   - Make use of FIELD_PREP in patch 2.
+>   - Move the enablement of clocks at it's original position in patch 3
+>   - Add Reviewed-by tag in patches 4 and 5.
+>   - Add an Acked-by tag in patch 8.
 > 
-> Maxim Kiselev (4):
->   iio: adc: Add Allwinner D1/T113s/R329 SoCs GPADC
->   dt-bindings: iio: adc: Add Allwinner D1/T113s/R329 SoCs GPADC
->   ARM: dts: sun8i: t113s: Add GPADC node
->   riscv: dts: allwinner: d1: Add GPADC node
+> Shreeya Patel (8):
+>   iio: adc: rockchip_saradc: Add callback functions
+>   iio: adc: rockchip_saradc: Add support for RK3588
+>   iio: adc: rockchip_saradc: Make use of devm_clk_get_enabled
+>   iio: adc: rockchip_saradc: Use of_device_get_match_data
+>   iio: adc: rockchip_saradc: Match alignment with open parenthesis
+>   iio: adc: rockchip_saradc: Use dev_err_probe
+>   arm64: dts: rockchip: Add DT node for ADC support in RK3588
+>   dt-bindings: iio: adc: Add rockchip,rk3588-saradc string
 > 
->  .../iio/adc/allwinner,sun20i-d1-gpadc.yaml    |  52 ++++
->  arch/arm/boot/dts/sun8i-t113s.dtsi            |  12 +
->  arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi  |  10 +
->  drivers/iio/adc/Kconfig                       |  10 +
->  drivers/iio/adc/Makefile                      |   1 +
->  drivers/iio/adc/sun20i-gpadc-iio.c            | 275 ++++++++++++++++++
->  6 files changed, 360 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
->  create mode 100644 drivers/iio/adc/sun20i-gpadc-iio.c
+>  .../bindings/iio/adc/rockchip-saradc.yaml     |   1 +
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi     |  12 +
+>  drivers/iio/adc/rockchip_saradc.c             | 262 +++++++++++-------
+>  3 files changed, 168 insertions(+), 107 deletions(-)
 > 
 
