@@ -2,108 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E8707139BC
-	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 15:56:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 342717139A2
+	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 15:27:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbjE1N4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 May 2023 09:56:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57054 "EHLO
+        id S229544AbjE1N1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 May 2023 09:27:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbjE1N4K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 09:56:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1187CB8;
-        Sun, 28 May 2023 06:56:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9AC1C60B09;
-        Sun, 28 May 2023 13:56:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CC10C433D2;
-        Sun, 28 May 2023 13:56:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1685282168;
-        bh=JT5y3bSqnJBtSO4Uhlu1HHm2FPspPmwBPjGg1IWW6HM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=K4y0eD/VPD77aBerNR+9ZF+cx0epBIPX8NwlH8igpBL9qDhWgjSIyI3ae2tj8j4uh
-         RgqhQqhchTnEWgThs4DdC7zhTNmT30XImMiltRve4tVAs+AEZ0b1sAoyoHEihZwrrb
-         AOWj4Kfa/fHwwkipSW4mP5AsFFbikBAgz1q8p4rQ=
-Date:   Sun, 28 May 2023 12:56:31 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Subject: Re: [PATCH v3 11/11] serial: sc16is7xx: add dump registers function
-Message-ID: <2023052837-entree-broken-d7dd@gregkh>
-References: <20230525040324.3773741-1-hugo@hugovil.com>
- <20230525040324.3773741-12-hugo@hugovil.com>
+        with ESMTP id S229459AbjE1N1g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 09:27:36 -0400
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BD84B1;
+        Sun, 28 May 2023 06:27:35 -0700 (PDT)
+Received: by mail-io1-xd2b.google.com with SMTP id ca18e2360f4ac-7749357e71cso70938739f.3;
+        Sun, 28 May 2023 06:27:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685280454; x=1687872454;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gEM2GqZ8OMei7ENhUmT/X40pgKCW19D6Zd4VJ4P8qcU=;
+        b=R8luGRAIhXl4kxrGq9klpfmLL7HVLRAa/SX6uXo7qUjSDp7ljH+HmXvDrigp26fNNM
+         Y1aTHI+PZx2p2Y6myKaWvQRpZcrF2mGS4i4/bb4OmmnpOnSY3Rftf+wSgzXYhru/szBg
+         WvZzyyrNjl3vPc0MtvSM5T4SFZP1r/c5DmrXaf8TdKbEbVZViNXrhHovdRLvewa8UJru
+         LbnHdaF1hxw9yFfg8R/uvFGhiSJD12OEvb3TRpjCO870OWsEA8TuSmZU2yOjd9OVKvjc
+         hl68D8s0r5CMmMqZt2m+xUJbwMuhiq05UkyozbAaTmCldXLdExAGThSaDnRRSAcRnfny
+         HLUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685280454; x=1687872454;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gEM2GqZ8OMei7ENhUmT/X40pgKCW19D6Zd4VJ4P8qcU=;
+        b=DobPtub9NarIzKNapWIUrDqcAHcMK4e9zOB0EcuL5TqbljCD38vsfrY6qY8ii9zf1E
+         6AhgOg9V/I3gbhH+QTyy4wfjC2+sVBqpgW1oNpH56PC5vwDDPxz9JSZ8K6g5lABkv5qF
+         GakCZYVjrzg3l7Vi8CxBuYqVYGJ8idWnH2t4JPU37dOfmZBfR1Jbtjtbo8Dwx9dzxs4A
+         JeCsXBCuraFotIPti7JLGGb+7r3ObL2IetW2HRWqbbxz9PmWLxdWhS0x54Tddnh2nwVU
+         U/iTLQ0rEaAUr4Bgy+3oiLrdkChpDGreewrE/lbgexeB0zJ24N5I6ksTLbM2TUU9sIXS
+         x0QQ==
+X-Gm-Message-State: AC+VfDwmGGCk/cnJnAvuRb4SF1LZr7z5HLrBjVy7YBpV9M/mEz07b0D0
+        po5zpnX+qQpAB2K04UC01hTOuvM64j6O1A==
+X-Google-Smtp-Source: ACHHUZ6GtMr4xqSpqmFvjtAU90VfNw84Yg1PZzFC6bTY+R7QA/BmfifhSOuJ0y13BfpDPWumnufYdQ==
+X-Received: by 2002:a6b:dd02:0:b0:76c:4ca6:34d7 with SMTP id f2-20020a6bdd02000000b0076c4ca634d7mr5679747ioc.19.1685280454476;
+        Sun, 28 May 2023 06:27:34 -0700 (PDT)
+Received: from aford-B741.lan ([2601:447:d001:897f:afd6:bf52:6c04:831a])
+        by smtp.gmail.com with ESMTPSA id p11-20020a02290b000000b004161fafff97sm2276330jap.136.2023.05.28.06.27.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 May 2023 06:27:34 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V2] dt-bindings: bridge: samsung-dsim: Make some flags optional
+Date:   Sun, 28 May 2023 08:27:27 -0500
+Message-Id: <20230528132727.3933-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230525040324.3773741-12-hugo@hugovil.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 25, 2023 at 12:03:25AM -0400, Hugo Villeneuve wrote:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> 
-> With this driver, it is very hard to debug the registers using
-> the /sys/kernel/debug/regmap interface.
-> 
-> The main reason is that bits 0 and 1 of the register address
-> correspond to the channels bits, so the register address itself starts
-> at bit 2, so we must 'mentally' shift each register address by 2 bits
-> to get its offset.
-> 
-> Also, only channels 0 and 1 are supported, so combinations of bits
-> 0 and 1 being 10b and 11b are invalid, and the display of these
-> registers is useless.
-> 
-> For example:
-> 
-> cat /sys/kernel/debug/regmap/spi0.0/registers
-> 04: 10 -> Port 0, register offset 1
-> 05: 10 -> Port 1, register offset 1
-> 06: 00 -> Port 2, register offset 1 -> invalid
-> 07: 00 -> port 3, register offset 1 -> invalid
-> ...
-> 
-> Add a debug module parameter to call a custom dump function for each
-> port registers after the probe phase to help debug.
-> 
-> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> ---
->  drivers/tty/serial/sc16is7xx.c | 30 ++++++++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
-> 
-> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is7xx.c
-> index 03d00b144304..693b6cc371f8 100644
-> --- a/drivers/tty/serial/sc16is7xx.c
-> +++ b/drivers/tty/serial/sc16is7xx.c
-> @@ -347,6 +347,10 @@ struct sc16is7xx_port {
->  	struct sc16is7xx_one		p[];
->  };
->  
-> +static bool debug;
-> +module_param(debug, bool, 0644);
-> +MODULE_PARM_DESC(debug, "enable/disable debug messages");
+In the event a device is connected to the samsung-dsim
+controller that doesn't support the burst-clock, the
+driver is able to get the requested pixel clock from the
+attached device or bridge.  In these instances, the
+samsung,burst-clock-frequency isn't needed, so remove
+it from the required list.
 
-Sorry, but no, use the normal dynamic debugging logic that the whole
-rest of the kernel uses.  Do not add random per-driver module parameters
-like this, that would be a regression from the existing infrastructure
-that we have in place already.
+The pll-clock frequency can be set by the device tree entry
+for samsung,pll-clock-frequency, but in some cases, the
+pll-clock may have the same clock rate as sclk_mipi clock.
+If they are equal, this flag is not needed since the driver
+will use the sclk_mipi rate as a fallback.
 
-thanks,
+Signed-off-by: Adam Ford <aford173@gmail.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+---
+V2:  Split from driver series.  Re-word updates for burst
+and pll-clock frequency.
 
-greg k-h
+diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+index 9f61ebdfefa8..06b6c44d4641 100644
+--- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+@@ -70,7 +70,9 @@ properties:
+   samsung,burst-clock-frequency:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+-      DSIM high speed burst mode frequency.
++      DSIM high speed burst mode frequency.  If absent,
++      the pixel clock from the attached device or bridge
++      will be used instead.
+ 
+   samsung,esc-clock-frequency:
+     $ref: /schemas/types.yaml#/definitions/uint32
+@@ -80,7 +82,8 @@ properties:
+   samsung,pll-clock-frequency:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description:
+-      DSIM oscillator clock frequency.
++      DSIM oscillator clock frequency. If absent, the clock frequency
++      of sclk_mipi will be used instead.
+ 
+   phys:
+     maxItems: 1
+@@ -134,9 +137,7 @@ required:
+   - compatible
+   - interrupts
+   - reg
+-  - samsung,burst-clock-frequency
+   - samsung,esc-clock-frequency
+-  - samsung,pll-clock-frequency
+ 
+ allOf:
+   - $ref: ../dsi-controller.yaml#
+-- 
+2.39.2
+
