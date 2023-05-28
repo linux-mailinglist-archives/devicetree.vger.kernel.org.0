@@ -2,77 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E890714086
-	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 23:16:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB2EB714092
+	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 23:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229574AbjE1VQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 May 2023 17:16:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43410 "EHLO
+        id S229453AbjE1VWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 May 2023 17:22:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbjE1VQQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 17:16:16 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4B3EBE;
-        Sun, 28 May 2023 14:16:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1685308573; x=1716844573;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Y+BKlDevzCKXevCjvN6HMiTRWqU67ZdEh2bnFi5G5hM=;
-  b=COkOnpd1GGIUfY3ziqE2jHpxwLEPSnkosf07+D8zeU9fB0g3R6hq/SqG
-   PIdzhl40fHV4k0HwCUUPMHQMWLKuEh0mxWSQvDNS0ny2XOFj8bVbTbjD0
-   N1GypvAc/M5t07rPfb8WmtrruAHqOsN81iNKQd7tq7koUhOKlhRr5EYKt
-   hE26FRdPQRWqwt26GejsbfQzZah0nTvn08X86pul57FILPIPE6WWTCTfZ
-   WZaw0TSFyGSDtbWIGF3JMhn1VitwJvVbo0ZtnN+N0aHNPvyeVKMlQDyNO
-   og4ehN2f22JBnFWeR2tUbR6PT5BSOFgFOdrn7mZlQ126LgBhD9HnIXdBC
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10724"; a="440918217"
-X-IronPort-AV: E=Sophos;i="6.00,198,1681196400"; 
-   d="scan'208";a="440918217"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 May 2023 14:16:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10724"; a="738927868"
-X-IronPort-AV: E=Sophos;i="6.00,198,1681196400"; 
-   d="scan'208";a="738927868"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 May 2023 14:16:07 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-        by kekkonen.fi.intel.com (Postfix) with SMTP id 32BBA12303D;
-        Mon, 29 May 2023 00:16:05 +0300 (EEST)
-Date:   Sun, 28 May 2023 21:16:05 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Tommaso Merciai <tomm.merciai@gmail.com>
-Cc:     jacopo.mondi@ideasonboard.com, laurent.pinchart@ideasonboard.com,
-        martin.hecht@avnet.eu, linuxfancy@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        Mikhail Rudenko <mike.rudenko@gmail.com>,
-        Nicholas Roth <nicholas@rothemail.net>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: alvium: add document YAML
- binding
-Message-ID: <ZHPElYOeD2C1qo4R@kekkonen.localdomain>
-References: <20230526173955.797226-1-tomm.merciai@gmail.com>
- <20230526173955.797226-2-tomm.merciai@gmail.com>
+        with ESMTP id S229571AbjE1VWh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 17:22:37 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34BFFB8;
+        Sun, 28 May 2023 14:22:36 -0700 (PDT)
+Received: from [IPV6:2405:201:0:21ea:e49:10dd:40c0:e842] (unknown [IPv6:2405:201:0:21ea:e49:10dd:40c0:e842])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: shreeya)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B151E66028F5;
+        Sun, 28 May 2023 22:22:30 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685308953;
+        bh=1lLaRddepgjlJW8m/FCwzogjASyCbCW3Pl3FgHcbwsk=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=kWKimZgJE/wgD8bXw+oYGRrist/CQD8pLhPTL34wR5pIowb42+UgENaXifYNLnz5x
+         XNOO/B/8TsxzEgVK9pKN4WawB0HKt+P+bGhGJzWCEj+if6nFTzf1YnQJ0dzrY5n7Ak
+         JbOVvy+MZFQZii4dKeorqq26GKww80mQijQAlVqsXwsRQHgqVsHP3CbQ13FE1oedH9
+         o817Lpoaes2eO+AZNYP3zIbQ4Hpbzjg6uIiD8brnzxOm8wL3EqReBkuPIjlYy+rcGn
+         +djyMiHUswW8nN2fxIj5P7zy1xy7xC5FPJdI2gp9dw/frgPDn9bpl9t5Ev1qwvc0uA
+         BdPzrn7uoPPig==
+Message-ID: <196486e3-a6e4-d330-6193-6eff248bdefb@collabora.com>
+Date:   Mon, 29 May 2023 02:52:26 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230526173955.797226-2-tomm.merciai@gmail.com>
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Subject: Re: [PATCH v2 3/8] iio: adc: rockchip_saradc: Make use of
+ devm_clk_get_enabled
+Content-Language: en-US
+To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>, jic23@kernel.org,
+        heiko@sntech.de, sebastian.reichel@collabora.com
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        lars@metafoo.de, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, gustavo.padovan@collabora.com,
+        serge.broslavsky@collabora.com
+References: <20230525212712.255406-1-shreeya.patel@collabora.com>
+ <20230525212712.255406-4-shreeya.patel@collabora.com>
+ <a7e0d4f0-a497-8697-e108-5247e11abc41@collabora.com>
+From:   Shreeya Patel <shreeya.patel@collabora.com>
+In-Reply-To: <a7e0d4f0-a497-8697-e108-5247e11abc41@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,153 +64,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tommaso,
+Hi Dmitry,
 
-On Fri, May 26, 2023 at 07:39:43PM +0200, Tommaso Merciai wrote:
-> Add documentation of device tree in YAML schema for the ALVIUM
-> Camera from Allied Vision Inc.
-> 
-> References:
->  - https://www.alliedvision.com/en/products/embedded-vision-solutions
-> 
-> Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
-> ---
-> Changes since v1:
->  - Fixed build error as suggested by RHerring bot
-> 
->  .../media/i2c/alliedvision,alvium.yaml        | 115 ++++++++++++++++++
->  1 file changed, 115 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
-> new file mode 100644
-> index 000000000000..81e9e560c99d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
-> @@ -0,0 +1,115 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Alliedvision Alvium Camera
-> +
-> +maintainers:
-> +  - Tommaso Merciai <tomm.merciai@gmail.com>
-> +  - Martin Hecht <martin.hecht@avnet.eu>
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: alliedvision,alvium
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: XCLK Input Clock
-> +
-> +  clock-names:
-> +    const: xclk
 
-I'd also drop this as you have a single clock only: it's redundant.
+On 26/05/23 06:12, Dmitry Osipenko wrote:
+> On 5/26/23 00:27, Shreeya Patel wrote:
+>> @@ -600,8 +560,6 @@ static int rockchip_saradc_suspend(struct device *dev)
+>>   	struct iio_dev *indio_dev = dev_get_drvdata(dev);
+>>   	struct rockchip_saradc *info = iio_priv(indio_dev);
+>>   
+>> -	clk_disable_unprepare(info->clk);
+>> -	clk_disable_unprepare(info->pclk);
+>>   	regulator_disable(info->vref);
+> Why clocks need to be enabled during suspend?
 
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +    description: >
-> +      Reference to the GPIO connected to the powerdown pin, if any.
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: >
-> +      Reference to the GPIO connected to the reset pin, if any.
-> +
-> +  streamon-delay:
-> +    maxItems: 1
-> +    description: >
-> +      Delay before camera start capturing frames in us.
-> +
-> +  rotation:
-> +    enum:
-> +      - 0
-> +      - 180
-> +
-> +  port:
-> +    description: Digital Output Port
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          clock-lanes:
-> +            const: 0
+They don't need to be enabled during suspend. Thanks for pointing it 
+out, I'll add them again in v3.
 
-The driver can know this, no need to have it in DT, i.e. please drop it.
 
-> +          data-lanes:
-> +            minItems: 1
-> +            maxItems: 4
-> +          link-frequencies: true
-> +
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +      #include <dt-bindings/gpio/gpio.h>
-> +      #include <dt-bindings/clock/imx8mp-clock.h>
-> +
-> +      i2c {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          camera: alvium@3c {
-> +              compatible = "alliedvision,alvium";
-> +              pinctrl-names = "default";
-> +              pinctrl-0 = <&pinctrl_csi0_pwn>, <&pinctrl_csi0_rst>, <&pinctrl_csi_mclk>;
-> +              reg = <0x3c>;
-> +              clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
-> +              clock-names = "xclk";
-> +              assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
-> +              assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
-> +              assigned-clock-rates = <24000000>;
-> +              streamon-delay = <20>;
-> +              powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
-> +              reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
-> +              status = "okay";
-> +
-> +              port {
-> +                  alvium_out: endpoint {
-> +                      remote-endpoint = <&mipi_csi_0_in>;
-> +                      data-lanes = <1 2 3 4>;
-> +                      link-frequencies = /bits/ 64 <681250000>;
-> +                      clock-lanes = <0>;
-> +                  };
-> +              };
-> +          };
-> +      };
-> +
-> +...
+Thanks,
+Shreeya Patel
 
--- 
-Kind regards,
-
-Sakari Ailus
