@@ -2,160 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2847713715
-	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 00:37:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8E42713740
+	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 02:10:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229445AbjE0WhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 May 2023 18:37:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40874 "EHLO
+        id S229448AbjE1AKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 May 2023 20:10:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229511AbjE0WhT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 18:37:19 -0400
-Received: from n169-111.mail.139.com (n169-111.mail.139.com [120.232.169.111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0839B198;
-        Sat, 27 May 2023 15:36:41 -0700 (PDT)
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM:                                                                                        
-X-RM-SPAM-FLAG: 00000000
-Received: from localhost.localdomain (unknown[183.238.123.190])
-        by rmsmtp-lg-appmail-18-12021 (RichMail) with SMTP id 2ef5647285f4565-be684;
-        Sun, 28 May 2023 06:36:39 +0800 (CST)
-X-RM-TRANSID: 2ef5647285f4565-be684
-From:   Shenghao Ding <13916275206@139.com>
-To:     broonie@kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lgirdwood@gmail.com, perex@perex.cz,
-        pierre-louis.bossart@linux.intel.com
-Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, x1077012@ti.com, peeyush@ti.com,
-        navada@ti.com, gentuser@gmail.com, Ryan_Chu@wistron.com,
-        Sam_Wu@wistron.com, tiwai@suse.de,
-        Shenghao Ding <13916275206@139.com>
-Subject: [PATCH v4 6/6] ASoC: dt-bindings: Add tas2781 amplifier
-Date:   Sun, 28 May 2023 06:36:32 +0800
-Message-Id: <20230527223632.11781-1-13916275206@139.com>
+        with ESMTP id S229445AbjE1AKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 May 2023 20:10:38 -0400
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF58EA8;
+        Sat, 27 May 2023 17:10:37 -0700 (PDT)
+Received: by mail-qt1-x82c.google.com with SMTP id d75a77b69052e-3f7a546efb1so11032271cf.2;
+        Sat, 27 May 2023 17:10:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685232636; x=1687824636;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lMCsGvkoxWSUFyaRQ4KyoqEeH9gxDpYDK1XiImU4CBA=;
+        b=r18LUXZbEyf295PSaklp4P9NGUmzPbTYzCAwdHwZtRNoSN4MoWP2YuVp0GrIvexMeR
+         0dvZK3/dzViFqtqSyIVKcS75h47Z0HTRdZULgLqHn2pijGNSXfYcVcXPL0hrV6LrRbm7
+         IX8y8whrqzZgXL+eL5zMEHBOGAGQtjUhnaRSRsbI9xAtH6fwP4sRU+lNPC64EJu6xyVN
+         EDKroP22n1mKX+NLw59ouc86TefbafTsydeKStJtYZOP8nCuX96jJIMZJft6AfGIcFcd
+         iOlQpbN0xsl0XMoaCYaseu5Hk9mHZgNMJPIabNvxynvvt+MYt2fjdaILPYyFh4JA3DMm
+         1phw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685232636; x=1687824636;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lMCsGvkoxWSUFyaRQ4KyoqEeH9gxDpYDK1XiImU4CBA=;
+        b=Bo7WLOQoSYEXQAivFGdTCmP7MLBwHYqasexNkDfiSmPU42HoQf4dPHC3U/okqRxJtO
+         iD6mQPE+y+crev5OO9K/4nuozRgzl2FKAhnAlDGNnlXOX3HEcLYFivNQBKQqGajeKxTd
+         ULVd6X10SAIzJrZ3j18th2IBoFc4T+JWRlp2+jmulhtTUxBt5o16OnzL+iTJW8KvpSw2
+         KwhPKc3ZYgBI9mn4dZZJvD6lhP+zFuc2pTIqzX7nCxGnM0IuHP+LySZnvAkGt1AgX9G9
+         CJagF8xuf5Wg1lfNWzz56Ir4YVQBHC5YQDUdj1wxCqGSH268xWGjBKik3y3mr8DLb2IV
+         aD5w==
+X-Gm-Message-State: AC+VfDwP50dyHrYPL4RMKEz+hldSGO9LOmJkv3bCjUCUfv1hNit9GKjv
+        yq3+pnj6Wex653yIhIpwRq9t546T7sf6MQ==
+X-Google-Smtp-Source: ACHHUZ7MIP/VcIjwshjdNl1IQZV0vU+2dA96XzmQnwrcz12nJc3u2smpOSknIIHBeMqz6BwKzt6pug==
+X-Received: by 2002:a05:622a:3d1:b0:3f2:f35:8e6f with SMTP id k17-20020a05622a03d100b003f20f358e6fmr6671214qtx.25.1685232636346;
+        Sat, 27 May 2023 17:10:36 -0700 (PDT)
+Received: from Latitude-E6420.mynetworksettings.com ([2600:4040:2007:9800:28b2:2867:6311:b7d0])
+        by smtp.gmail.com with ESMTPSA id t18-20020ac865d2000000b003f6a7ab1450sm2518454qto.30.2023.05.27.17.10.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 May 2023 17:10:35 -0700 (PDT)
+From:   Rudraksha Gupta <guptarud@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rudraksha Gupta <guptarud@gmail.com>
+Subject: [PATCH v2 0/4] Samsung Galaxy Express SGH-I437 Support
+Date:   Sat, 27 May 2023 20:10:05 -0400
+Message-Id: <20230528001010.47868-1-guptarud@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230527040905.stmnoshkdqgiaex6@ripper>
+References: <20230527040905.stmnoshkdqgiaex6@ripper>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
-        FROM_LOCAL_HEX,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Create tas2781.yaml for tas2781 driver.
+This patch series adds support for the Samsung Galaxy Express SGH-I437.
+Currently the following things work on this phone: UART, eMMC, SD Card, and USB.
 
-Signed-off-by: Shenghao Ding <13916275206@139.com>
+version 2:
+- Combined patch 1 into patch 4, as the sleep_clk label is specifically needed for the USB node.
+- Reformatted the commit messages to align with the style used in other commit messages that modify the same files.
+- Included a cover letter to provide an overview of the patch series.
+- Slight refactoring of the device tree source (DTS) file.
 
----
-Changes in v4:
- - remove '\t' in the file
- Changes to be committed:
-	new file:   Documentation/devicetree/bindings/sound/ti,tas2781.yaml
----
- .../devicetree/bindings/sound/ti,tas2781.yaml | 88 +++++++++++++++++++
- 1 file changed, 88 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+Rudraksha Gupta (4):
+  dt-bindings: arm: qcom: Add Samsung Galaxy Express
+  dt-bindings: Add qcom,usb-hs-phy-msm8960
+  ARM: dts: qcom: msm8960: Add USB node
+  ARM: dts: qcom: Add Samsung Galaxy Express support
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-new file mode 100644
-index 000000000000..b3dcd7b18f5d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2022 - 2023 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments TAS2781 SmartAMP
-+
-+maintainers:
-+  - Shenghao Ding <shenghao-ding@ti.com>
-+
-+description:
-+  The TAS2781 is a mono, digital input Class-D audio amplifier
-+  optimized for efficiently driving high peak power into small
-+  loudspeakers. Integrated an on-chip DSP supports Texas Instruments
-+  Smart Amp speaker protection algorithm. The integrated speaker
-+  voltage and current sense provides for real time
-+  monitoring of loudspeaker behavior.
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  '#address-cells':
-+    const: 1
-+  '#size-cells':
-+    const: 0
-+
-+  compatible:
-+    enum:
-+      - ti,tas2781
-+
-+  reg:
-+    description:
-+      I2C address, in multiple tas2781s case, all the i2c address
-+      aggreate as one Audio Device to support multiple audio slots.
-+    maxItems: 4
-+    items:
-+      minimum: 0x38
-+      maximum: 0x3f
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ti,broadcast-addr:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Generic I2C address for all the tas2781 devices in
-+      purpose of I2C broadcast during the multi-device
-+      writes, useless in mono case or remove this item to
-+      disable broadcast mode.
-+
-+  '#sound-dai-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   #include <dt-bindings/gpio/gpio.h>
-+   i2c {
-+     /* example with quad support, such as tablet or pad device */
-+     #address-cells = <1>;
-+     #size-cells = <0>;
-+     quad: codec@38 {
-+       compatible = "ti,tas2781";
-+       reg = < 0x38 /* Audio slot 0 */
-+               0x3a /* Audio slot 1 */
-+               0x39 /* Audio slot 2 */
-+               0x3b /* Audio slot 3 */
-+               >;
-+       #sound-dai-cells = <1>;
-+       reset-gpios = < &gpio1 10 GPIO_ACTIVE_HIGH >;
-+       interrupt-parent = <&gpio1>;
-+       interrupts = <15>;
-+       /* Generic I2C addr among all the tas2781s for i2c data broadcast */
-+       ti,broadcast-addr = <0x40>;
-+     };
-+   };
-+...
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ .../bindings/phy/qcom,usb-hs-phy.yaml         |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../dts/qcom-msm8960-samsung-expressatt.dts   | 334 ++++++++++++++++++
+ arch/arm/boot/dts/qcom-msm8960.dtsi           |  35 +-
+ 5 files changed, 371 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
+
 -- 
 2.34.1
-
 
