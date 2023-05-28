@@ -2,60 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFD05713A06
-	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 16:21:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A36D1713A4D
+	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 17:06:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229595AbjE1OVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 May 2023 10:21:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33714 "EHLO
+        id S229499AbjE1PGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 May 2023 11:06:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjE1OVa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 10:21:30 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53AEEBD;
-        Sun, 28 May 2023 07:21:29 -0700 (PDT)
+        with ESMTP id S229478AbjE1PGo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 11:06:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 848BDB2;
+        Sun, 28 May 2023 08:06:43 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DD5C460EA8;
-        Sun, 28 May 2023 14:21:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E57FC433EF;
-        Sun, 28 May 2023 14:21:15 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1B5C160D3A;
+        Sun, 28 May 2023 15:06:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7219C433EF;
+        Sun, 28 May 2023 15:06:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685283688;
-        bh=xzeWg9yS4+td3708ywNcgQZWVjHtPdkuS5u5qsvk90o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SF+pOVeri73IyxS9KFWa5KTq1fifX6lCs27mq8PGv9U1B+C+iLcPFe8MwD0XucNPn
-         2MoI6AoSt6Qm9NWVz4L47JCgqEfAk+91Gr3wxMFAnJUq8uqZo34eY1fXgqbXBc0vNe
-         oxDtg/vBeTojeC3B6ewLHBBIUhGcVIOh9F/BgfWA4w6X3mIIhHGGJdmM+i8mBES5fk
-         aXcKdXeMV9V5LYBB11/rx9ttXNqCHOoBKeig2P3pbGOCyXbORAzKBzmt8lQ42Hpq54
-         9aS5XNprDHyV/0ee4th2KyBcRfgWebg6QEJuQqC4syb+3c9k1prQOZi9KmiJgpMBJf
-         hZ44Gi3WZmRog==
-Date:   Sun, 28 May 2023 19:51:11 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, kw@linux.com,
-        robh@kernel.org, bhelgaas@google.com,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, quic_srichara@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_kathirav@quicinc.com,
-        quic_arajkuma@quicinc.com, quic_anusha@quicinc.com,
-        quic_ipkumar@quicinc.com
-Subject: Re: [PATCH V4 0/6] Add PCIe support for IPQ9574
-Message-ID: <20230528142111.GC2814@thinkpad>
-References: <20230519090219.15925-1-quic_devipriy@quicinc.com>
- <ZGs0RJ2y+3lSZLIC@lpieralisi>
+        s=k20201202; t=1685286402;
+        bh=LbDY2zbsfIjm0Fwv8lZSBUxpS5rnVCIa3G2XSqeSeLQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=UJFSDM9kRLTJOeQsVA3aCbLjXHJpmtVR7qVhWpUFmtU+tu3gG+HzRqlIxAe4O5gTc
+         d7Wd3biimCw2t9KjhbhZCpJfFbe+hHTqy0wKY4LSixzOLnrb8Zd7Zg7bVQ41jHCKCo
+         Ez55QoMjyhDfmhjYdIOVaGq/NNll1HwOlxqz3jN8Yig9OUPSR9hKr0TrsnSrP2C+wI
+         BZp9rzd2Pm0bcbkHBjkYaXbZXMvESofq3mhcR9TgksMbMwkI8u8P+aTXdmEQ9RbFT3
+         0Eqjtga9+buFSdHivJKdYpwHneD1RtB8/zZuIAUAb+OhjfgrWLa0MCXZhHRv3xkNf4
+         Hd3g1LJkRBdXQ==
+Date:   Sun, 28 May 2023 16:22:57 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Maxim Kiselev <bigunclemax@gmail.com>
+Cc:     Andre Przywara <andre.przywara@arm.com>, linux-iio@vger.kernel.org,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Leonard =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [RFC PATCH v1 0/4] Add support for Allwinner GPADC on
+ D1/T113s/R329 SoCs
+Message-ID: <20230528162257.7e8932b9@jic23-huawei>
+In-Reply-To: <CALHCpMh2sZSCrFMMT13kYbsu+C2bC2xY3coB_fv0mZom_g=oPQ@mail.gmail.com>
+References: <20230524082744.3215427-1-bigunclemax@gmail.com>
+        <20230524103431.50c6a2fd@donnerap.cambridge.arm.com>
+        <CALHCpMh2sZSCrFMMT13kYbsu+C2bC2xY3coB_fv0mZom_g=oPQ@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZGs0RJ2y+3lSZLIC@lpieralisi>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,70 +85,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 22, 2023 at 11:22:12AM +0200, Lorenzo Pieralisi wrote:
-> On Fri, May 19, 2023 at 02:32:13PM +0530, Devi Priya wrote:
-> > This series adds support for enabling the PCIe host devices (PCIe0, PCIe1,
-> > PCIe2, PCIe3) found on IPQ9574 platform.
-> > The PCIe0 & PCIe1 are 1-lane Gen3 host and PCIe2 & PCIe3 
-> > are 2-lane Gen3 host.
-> > 
-> > DTS patch is based on the below series
-> > https://lore.kernel.org/linux-arm-msm/20230517172527.1968-1-quic_devipriy@quicinc.com/
-> > 
-> > Changes in V4:
-> > 	- Rebased on the below series
-> > https://lore.kernel.org/linux-arm-msm/20230517172527.1968-1-quic_devipriy@quicinc.com/
-> > 	- Change logs are added to the respective patches.
-> 
-> Mani, all,
-> 
-> can I pick up patches 3 and 6 from this series ?
-> 
+On Wed, 24 May 2023 14:36:28 +0300
+Maxim Kiselev <bigunclemax@gmail.com> wrote:
 
-Patch 3 needs to be reviewed by the DT maintainer and I have a comment too. So
-this series should be put on hold until then.
-
-- Mani
-
-> Lorenzo
+> Hi Andre,
 > 
-> > [V3]
-> > https://lore.kernel.org/linux-arm-msm/20230421124938.21974-1-quic_devipriy@quicinc.com/
-> > 	- Dropped the phy driver and binding patches as they have been 
-> > 	  posted as a separate series.
-> > 	- Dropped the pinctrl binding fix patch as it is unrelated to the series
-> > 	  dt-bindings: pinctrl: qcom: Add few missing functions.
-> > 	- Rebased on linux-next/master.
-> > 	- Detailed change logs are added to the respective patches.
-> > 	
-> > [V2]
-> > https://lore.kernel.org/linux-arm-msm/20230404164828.8031-1-quic_devipriy@quicinc.com/
-> > 	- Reordered the patches and splitted the board DT changes
-> > 	  into a separate patch as suggested
-> > 	- Detailed change logs are added to the respective patches
-> > 
-> > [V1]
-> > https://lore.kernel.org/linux-arm-msm/20230214164135.17039-1-quic_devipriy@quicinc.com/
-> > 
-> > Devi Priya (6):
-> >   dt-bindings: clock: Add PCIe pipe clock definitions
-> >   clk: qcom: gcc-ipq9574: Add PCIe pipe clocks
-> >   dt-bindings: PCI: qcom: Add IPQ9574
-> >   arm64: dts: qcom: ipq9574: Add PCIe PHYs and controller nodes
-> >   arm64: dts: qcom: ipq9574: Enable PCIe PHYs and controllers
-> >   PCI: qcom: Add support for IPQ9574
-> > 
-> >  .../devicetree/bindings/pci/qcom,pcie.yaml    |  48 +++
-> >  arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts   | 113 ++++++
-> >  arch/arm64/boot/dts/qcom/ipq9574.dtsi         | 365 ++++++++++++++++++
-> >  drivers/clk/qcom/gcc-ipq9574.c                |  76 ++++
-> >  drivers/pci/controller/dwc/pcie-qcom.c        |  57 ++-
-> >  include/dt-bindings/clock/qcom,ipq9574-gcc.h  |   4 +
-> >  6 files changed, 645 insertions(+), 18 deletions(-)
-> > 
-> > -- 
-> > 2.17.1
-> > 
+> thanks for you comments
+> 
+> > This may sound kind of obvious, but wouldn't it be easier to model this
+> > with one compatible string, and have the number of channels as a DT
+> > property?  
+> 
+> Yes, I completely agree that using separate config for each SoCs is looks
+> overcomplicated because the only difference is the number of channels.
+> I thought about a DT property with channels number but I didn't find
+> another ADC driver with the same approach (except i2c ADC's with child nodes).
+If you are 100% sure that that devices are either
+1) Detectable at runtime
+2) Identical in functionality.
 
--- 
-மணிவண்ணன் சதாசிவம்
+So that in neither case will any changes on driver support expose differences
+in the future then a single compatible is fine.
+
+The back up is that you use fallback compatibles - list more than one.
+Whilst it doesn't matter (as no differences found) the driver can use
+the first one.  If differences become apparent later, others may be used.
+
+I'm not however keen on a simple channel count parameter.  If you want
+to go that way, it's better to provide the fine control of individual channel
+child nodes (see Documentation/devicetree/bindings/iio/adc/adc.yaml)
+
+That way the control is on which channels are wired to something useful, rather
+than whether the device can read them or not (which is pointless if no one
+wired them up.
+
+
+> 
+> > Or, alternatively, using iio/multiplexer/io-channel-mux.yaml, since it's
+> > only one ADC anyway?  
+> I'm sorry, I didn't quite understand what you're suggesting.
+
+That's normally only used for a separate MUX where we need a separate driver
+to handle it.  If used on a device like this it would expose additional complexity
+to userspace with no benefits in generality etc.
+
+> 
+> > And btw: it seems that the T507 (the H616 die with a different pinout) has
+> > the same IP, with four channels:
+> > http://dl.linux-sunxi.org/T507/  
+> 
+> Oh, thanks for pointing that. I'll add it to the list in the next version.
+
