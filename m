@@ -2,57 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C11D713AFD
-	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 19:07:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DDE2713B0A
+	for <lists+devicetree@lfdr.de>; Sun, 28 May 2023 19:13:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbjE1RHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 May 2023 13:07:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37920 "EHLO
+        id S229499AbjE1RNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 May 2023 13:13:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbjE1RHa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 13:07:30 -0400
+        with ESMTP id S229453AbjE1RNb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 13:13:31 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31502AD;
-        Sun, 28 May 2023 10:07:28 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6B9AAF;
+        Sun, 28 May 2023 10:13:30 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B84F061027;
-        Sun, 28 May 2023 17:07:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EBF9C433D2;
-        Sun, 28 May 2023 17:07:22 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5FA0B60DE8;
+        Sun, 28 May 2023 17:13:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E41BC433EF;
+        Sun, 28 May 2023 17:13:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685293647;
-        bh=02eNU83y4XHlZerLmzEgp+h+i4TD1tIjvR6/Yoqa/uY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pcU9oJJkdv9FRz++NJPe3GIytmTzHHWNBBCudgvNpUV0ljHUN5ZZqP97v4zhagyp+
-         1ZnegWDzt3n4jb05SVL3p/B2BDh/GixgIQztzkxRQHxViHVMJF+1X64kHxcqJPlPh6
-         tysbMtxqs8c8mM7pMPFWSnUE2aKXm8dQiyKwZuyLY+hwcT9+UTIrsj+UWkDn1yhY3M
-         W10DlO57sH6XYe0yd7+vz/G4DhxcyzBg+y8K0tnsjNen2VyShgkpp+EgGzI9Na0xCg
-         cPRQ9WAhQBwljc6k6Ue4fc0HLQOTLbyjwL/+54n/z5XGuqtvaHwMz/tOfvBBMwRRBo
-         t+zZ2Y0eAtlVQ==
-Date:   Sun, 28 May 2023 22:37:17 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, johan@kernel.org, mani@kernel.org
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sc8280xp: Add GPU related nodes
-Message-ID: <20230528170717.GG2814@thinkpad>
-References: <20230523011522.65351-1-quic_bjorande@quicinc.com>
- <20230523011522.65351-3-quic_bjorande@quicinc.com>
- <097944b0-fa7a-ad4d-1c3d-e74ab2b977de@linaro.org>
+        s=k20201202; t=1685294009;
+        bh=/zQ1SXUyOqCH+hELiORFYQYYg54iPtfk4cRc8oDWzVI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=WGvB5sTcnbN5aoP7Zzp22WKZS+b+CLMBribgneL+QDinJ0mqbJJP2zokEWJgk/XVe
+         8tZ9lg4Ol9fl16AmhWMtz0C1hU92tz/mdbdaoV+nqxEdXdcMTDGd/RypeFRGv3BQ4J
+         pgslLnUMgMnQzCrU/9wlU82HbCPU5vs+MgdX8OewEvJ6VGBKO2UPOvO6c/SGsxoO/5
+         DseTADbmR+Nxh+KlapbxmHYEYe+ibUpwOce1X9NGmzl1o2aIrNqFfzQzZRS/e5Wtzd
+         MUmNMDHlGKD1M/ANRJPkT8jdLMlRXwlN2lUx+08SiZyCpyUiHGCLPY28HmsR7J2UqA
+         Fd3PvKLoHjaxw==
+Date:   Sun, 28 May 2023 18:29:47 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 4/9] iio: consumer.h: Fix raw values documentation
+ notes
+Message-ID: <20230528182947.500eb9aa@jic23-huawei>
+In-Reply-To: <20230523151223.109551-5-herve.codina@bootlin.com>
+References: <20230523151223.109551-1-herve.codina@bootlin.com>
+        <20230523151223.109551-5-herve.codina@bootlin.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <097944b0-fa7a-ad4d-1c3d-e74ab2b977de@linaro.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -63,236 +67,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 23, 2023 at 09:59:53AM +0200, Konrad Dybcio wrote:
-> 
-> 
-> On 23.05.2023 03:15, Bjorn Andersson wrote:
-> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > 
-> > Add Adreno SMMU, GPU clock controller, GMU and GPU nodes for the
-> > SC8280XP.
-> > 
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> > ---
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
-> 
-> > 
-> > Changes since v1:
-> > - Dropped gmu_pdc_seq region from &gmu, as it shouldn't have been used.
-> > - Added missing compatible to &adreno_smmu.
-> > - Dropped aoss_qmp clock in &gmu and &adreno_smmu.
-> >  
-> >  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 169 +++++++++++++++++++++++++
-> >  1 file changed, 169 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > index d2a2224d138a..329ec2119ecf 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> > @@ -6,6 +6,7 @@
-> >  
-> >  #include <dt-bindings/clock/qcom,dispcc-sc8280xp.h>
-> >  #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
-> > +#include <dt-bindings/clock/qcom,gpucc-sc8280xp.h>
-> >  #include <dt-bindings/clock/qcom,rpmh.h>
-> >  #include <dt-bindings/interconnect/qcom,osm-l3.h>
-> >  #include <dt-bindings/interconnect/qcom,sc8280xp.h>
-> > @@ -2331,6 +2332,174 @@ tcsr: syscon@1fc0000 {
-> >  			reg = <0x0 0x01fc0000 0x0 0x30000>;
-> >  		};
-> >  
-> > +		gpu: gpu@3d00000 {
-> > +			compatible = "qcom,adreno-690.0", "qcom,adreno";
-> > +
-> > +			reg = <0 0x03d00000 0 0x40000>,
-> > +			      <0 0x03d9e000 0 0x1000>,
-> > +			      <0 0x03d61000 0 0x800>;
-> > +			reg-names = "kgsl_3d0_reg_memory",
-> > +				    "cx_mem",
-> > +				    "cx_dbgc";
-> > +			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-> > +			iommus = <&adreno_smmu 0 0xc00>, <&adreno_smmu 1 0xc00>;
-> > +			operating-points-v2 = <&gpu_opp_table>;
-> > +
-> > +			qcom,gmu = <&gmu>;
-> > +			interconnects = <&gem_noc MASTER_GFX3D 0 &mc_virt SLAVE_EBI1 0>;
-> > +			interconnect-names = "gfx-mem";
-> > +			#cooling-cells = <2>;
-> > +
-> > +			status = "disabled";
-> > +
-> > +			gpu_opp_table: opp-table {
-> > +				compatible = "operating-points-v2";
-> > +
-> > +				opp-270000000 {
-> > +					opp-hz = /bits/ 64 <270000000>;
-> > +					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-> > +					opp-peak-kBps = <451000>;
-> > +				};
-> > +
-> > +				opp-410000000 {
-> > +					opp-hz = /bits/ 64 <410000000>;
-> > +					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-> > +					opp-peak-kBps = <1555000>;
-> > +				};
-> > +
-> > +				opp-500000000 {
-> > +					opp-hz = /bits/ 64 <500000000>;
-> > +					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-> > +					opp-peak-kBps = <1555000>;
-> > +				};
-> > +
-> > +				opp-547000000 {
-> > +					opp-hz = /bits/ 64 <547000000>;
-> > +					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L2>;
-> > +					opp-peak-kBps = <1555000>;
-> > +				};
-> > +
-> > +				opp-606000000 {
-> > +					opp-hz = /bits/ 64 <606000000>;
-> > +					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
-> > +					opp-peak-kBps = <2736000>;
-> > +				};
-> > +
-> > +				opp-640000000 {
-> > +					opp-hz = /bits/ 64 <640000000>;
-> > +					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
-> > +					opp-peak-kBps = <2736000>;
-> > +				};
-> > +
-> > +				opp-690000000 {
-> > +					opp-hz = /bits/ 64 <690000000>;
-> > +					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
-> > +					opp-peak-kBps = <2736000>;
-> > +				};
-> > +			};
-> > +		};
-> > +
-> > +		gmu: gmu@3d6a000 {
-> > +			compatible = "qcom,adreno-gmu-690.0", "qcom,adreno-gmu";
-> > +			reg = <0 0x03d6a000 0 0x34000>,
-> > +			      <0 0x03de0000 0 0x10000>,
-> > +			      <0 0x0b290000 0 0x10000>;
-> > +			reg-names = "gmu", "rscc", "gmu_pdc";
-> > +			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-names = "hfi", "gmu";
-> > +			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
-> > +				 <&gpucc GPU_CC_CXO_CLK>,
-> > +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
-> > +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-> > +				 <&gpucc GPU_CC_AHB_CLK>,
-> > +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
-> > +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>;
-> > +			clock-names = "gmu",
-> > +				      "cxo",
-> > +				      "axi",
-> > +				      "memnoc",
-> > +				      "ahb",
-> > +				      "hub",
-> > +				      "smmu_vote";
-> > +			power-domains = <&gpucc GPU_CC_CX_GDSC>,
-> > +					<&gpucc GPU_CC_GX_GDSC>;
-> > +			power-domain-names = "cx",
-> > +					     "gx";
-> > +			iommus = <&adreno_smmu 5 0xc00>;
-> > +			operating-points-v2 = <&gmu_opp_table>;
-> > +
-> > +			status = "disabled";
-> I've recently discovered that - and I am not 100% sure - all GMUs are
-> cache-coherent. Could you please ask somebody at qc about this?
-> 
+On Tue, 23 May 2023 17:12:18 +0200
+Herve Codina <herve.codina@bootlin.com> wrote:
 
-AFAIU, GMU's job is controlling the voltage and clock to the GPU. It doesn't do
-any data transactions on its own. So cache-coherent doesn't make sense to me.
-
-- Mani
-
-> > +
-> > +			gmu_opp_table: opp-table {
-> > +				compatible = "operating-points-v2";
-> > +
-> > +				opp-200000000 {
-> > +					opp-hz = /bits/ 64 <200000000>;
-> > +					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-> > +				};
-> Missing 500MHz + RPMH_REGULATOR_LEVEL_SVS
+> The raw values notes mention 'ADC counts' and are not fully accurate.
 > 
-> (that may be used in the future for hw scheduling)
-> > +			};
-> > +		};
-> > +
-> > +		gpucc: clock-controller@3d90000 {
-> > +			compatible = "qcom,sc8280xp-gpucc";
-> > +			reg = <0 0x03d90000 0 0x9000>;
-> > +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> > +				 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
-> > +				 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-> > +			clock-names = "bi_tcxo",
-> > +				      "gcc_gpu_gpll0_clk_src",
-> > +				      "gcc_gpu_gpll0_div_clk_src";
-> FWIW the driver doesn't use clock-names, but the binding defines it,
-> so I suppose it's fine
+> Reword the notes in order to remove the 'ADC counts' and describe the
+> conversion needed between a raw value and a value in the standard units.
 > 
-> > +
-> > +			power-domains = <&rpmhpd SC8280XP_GFX>;
-> > +			#clock-cells = <1>;
-> > +			#reset-cells = <1>;
-> > +			#power-domain-cells = <1>;
-> > +
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		adreno_smmu: iommu@3da0000 {
-> > +			compatible = "qcom,sc8280xp-smmu-500", "qcom,adreno-smmu",
-> > +				     "qcom,smmu-500", "arm,mmu-500";
-> > +			reg = <0 0x03da0000 0 0x20000>;
-> > +			#iommu-cells = <2>;
-> > +			#global-interrupts = <2>;
-> > +			interrupts = <GIC_SPI 672 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 673 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 678 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 679 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 680 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 681 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 682 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 683 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 684 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 685 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 686 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 687 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 688 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 689 IRQ_TYPE_LEVEL_HIGH>;
-> > +
-> > +			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-> > +				 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
-> > +				 <&gpucc GPU_CC_AHB_CLK>,
-> > +				 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
-> > +				 <&gpucc GPU_CC_CX_GMU_CLK>,
-> > +				 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
-> > +				 <&gpucc GPU_CC_HUB_AON_CLK>;
-> > +			clock-names = "gcc_gpu_memnoc_gfx_clk",
-> > +				      "gcc_gpu_snoc_dvm_gfx_clk",
-> > +				      "gpu_cc_ahb_clk",
-> > +				      "gpu_cc_hlos1_vote_gpu_smmu_clk",
-> > +				      "gpu_cc_cx_gmu_clk",
-> > +				      "gpu_cc_hub_cx_int_clk",
-> > +				      "gpu_cc_hub_aon_clk";
-> > +
-> > +			power-domains = <&gpucc GPU_CC_CX_GDSC>;
-> > +
-> > +			status = "disabled";
-> This one should be dma-coherent (per downstream, plus 8350's mmu is for sure)
-> 
-> Konrad
-> > +		};
-> > +
-> >  		usb_0_hsphy: phy@88e5000 {
-> >  			compatible = "qcom,sc8280xp-usb-hs-phy",
-> >  				     "qcom,usb-snps-hs-5nm-phy";
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+I'm not 100% sure what path this will take - though hopefully and immutable
+branch I can pick up will be involved. On that basis I won't pick this up
+now and instead give
 
--- 
-மணிவண்ணன் சதாசிவம்
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> ---
+>  include/linux/iio/consumer.h | 25 +++++++++++++++----------
+>  1 file changed, 15 insertions(+), 10 deletions(-)
+> 
+> diff --git a/include/linux/iio/consumer.h b/include/linux/iio/consumer.h
+> index 6802596b017c..f536820b9cf2 100644
+> --- a/include/linux/iio/consumer.h
+> +++ b/include/linux/iio/consumer.h
+> @@ -201,8 +201,9 @@ struct iio_dev
+>   * @chan:		The channel being queried.
+>   * @val:		Value read back.
+>   *
+> - * Note raw reads from iio channels are in adc counts and hence
+> - * scale will need to be applied if standard units required.
+> + * Note, if standard units are required, raw reads from iio channels
+> + * need the offset (default 0) and scale (default 1) to be applied
+> + * as (raw + offset) * scale.
+>   */
+>  int iio_read_channel_raw(struct iio_channel *chan,
+>  			 int *val);
+> @@ -212,8 +213,9 @@ int iio_read_channel_raw(struct iio_channel *chan,
+>   * @chan:		The channel being queried.
+>   * @val:		Value read back.
+>   *
+> - * Note raw reads from iio channels are in adc counts and hence
+> - * scale will need to be applied if standard units required.
+> + * Note, if standard units are required, raw reads from iio channels
+> + * need the offset (default 0) and scale (default 1) to be applied
+> + * as (raw + offset) * scale.
+>   *
+>   * In opposit to the normal iio_read_channel_raw this function
+>   * returns the average of multiple reads.
+> @@ -281,8 +283,9 @@ int iio_read_channel_attribute(struct iio_channel *chan, int *val,
+>   * @chan:		The channel being queried.
+>   * @val:		Value being written.
+>   *
+> - * Note raw writes to iio channels are in dac counts and hence
+> - * scale will need to be applied if standard units required.
+> + * Note that for raw writes to iio channels, if the value provided is
+> + * in standard units, the affect of the scale and offset must be removed
+> + * as (value / scale) - offset.
+>   */
+>  int iio_write_channel_raw(struct iio_channel *chan, int val);
+>  
+> @@ -292,8 +295,9 @@ int iio_write_channel_raw(struct iio_channel *chan, int val);
+>   * @chan:		The channel being queried.
+>   * @val:		Value read back.
+>   *
+> - * Note raw reads from iio channels are in adc counts and hence
+> - * scale will need to be applied if standard units are required.
+> + * Note, if standard units are required, raw reads from iio channels
+> + * need the offset (default 0) and scale (default 1) to be applied
+> + * as (raw + offset) * scale.
+>   */
+>  int iio_read_max_channel_raw(struct iio_channel *chan, int *val);
+>  
+> @@ -308,8 +312,9 @@ int iio_read_max_channel_raw(struct iio_channel *chan, int *val);
+>   * For ranges, three vals are always returned; min, step and max.
+>   * For lists, all the possible values are enumerated.
+>   *
+> - * Note raw available values from iio channels are in adc counts and
+> - * hence scale will need to be applied if standard units are required.
+> + * Note, if standard units are required, raw available values from iio
+> + * channels need the offset (default 0) and scale (default 1) to be applied
+> + * as (raw + offset) * scale.
+>   */
+>  int iio_read_avail_channel_raw(struct iio_channel *chan,
+>  			       const int **vals, int *length);
+
