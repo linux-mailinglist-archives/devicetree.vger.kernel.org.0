@@ -2,201 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FE3B7151C0
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 00:20:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FE397151C3
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 00:20:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229731AbjE2WUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 18:20:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47260 "EHLO
+        id S229805AbjE2WU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 18:20:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbjE2WUP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 18:20:15 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D4CF92;
-        Mon, 29 May 2023 15:20:11 -0700 (PDT)
-X-GND-Sasl: alexandre.belloni@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1685398810;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=piJwelwJzoOHS0zCI5Yv47Y6GkNNebOL6BgBOE2MHnk=;
-        b=GYvMNZIwrEw+CKQccWlGAsp9/B0XQij1+v9eXoXg5b76awP6gyEfbvbMT1VctZQe9LWlHu
-        amP8iVBM/ta9hE6C8GluIBXOUuJVwSjJPw9K++CmF39zf1xZlraWvQQ9qMD0mCe13t1lCZ
-        91U8JVaWGi59WFSuX/6m9XxMUDasjru1Nhdd6ekoedFyRrH/N8uRDQ+M7ISDpRynjeIar+
-        qwUTBdV9F1+a0q/rzPxAmLeSpcd9HcjLF6M6VwSayQMrBqJw4W5xf5BvQfmzspRcodd2Va
-        20W+zWQmtTgKz9CzgRQJ9c4r0yfhZyIK7lnai8TW6+cQ4ocOH/Y3CBptt4Sxfg==
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E736F240005;
-        Mon, 29 May 2023 22:20:07 +0000 (UTC)
-Date:   Tue, 30 May 2023 00:20:07 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Keguang Zhang <keguang.zhang@gmail.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        zhao zhang <zhzhl555@gmail.com>,
-        Yang Ling <gnaygnil@gmail.com>,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the
- trivial RTCs
-Message-ID: <2023052922200701b20517@mail.local>
-References: <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
- <20230526-dolly-reheat-06c4d5658415@wendy>
- <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com>
- <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com>
- <20230527-passing-unfixed-39e01b787808@spud>
- <14EF9F21-8150-40D9-8870-E9151C4882CF@flygoat.com>
- <20230527-poet-antarctic-cc02aa60ab52@spud>
- <CAJhJPsU_qOJKO99S1xjJaSUqXsXAG7HpYbzs5wTb8J4-tQqSQA@mail.gmail.com>
- <E229B204-1B00-4B24-B4BF-15277682FB4B@kernel.org>
- <CAMpQs4K4e3BSVvqXa+QjhM5XDxHc_ZCiRYW+HgPo21AQ_bYSRQ@mail.gmail.com>
+        with ESMTP id S229453AbjE2WUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 18:20:25 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7541692
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 15:20:20 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2af2ef0d0daso37971741fa.2
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 15:20:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685398819; x=1687990819;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=USqTtpZDzyEPrsHSC9jFOSH+OQLok+CQPPy4QrEEqFA=;
+        b=jEpgLgtV7r99HbSXnV1kD5IeD32rh8mN8wROSgew7n4EJf9kNaykVP5/nS17RfXUqa
+         PkPdw2vEqJJdNi3M1xdh4pDcKfwSQgLJxmIVwIWhmCqwjxV5Fzoe6K/uJIF6X/kG/+1T
+         Xfyp9HmnfA/yxham5hSpvZiqALfsdUV9XZz13n5bK4bKn5TXwEaJna6nQ1VSosKQpwRi
+         vfN86iCYXae4u5aP/Zj38WnJGfcVVP8165/k56eIkfRpAGtaF0U3GIOMHi6eUgCOGfFP
+         5pDiiRJkDUwvkUs3nfZMDqu/g59zTYU5fdSkMyzjw4k0dJISXL00801nCm5rdMAhz5aC
+         wdVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685398819; x=1687990819;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=USqTtpZDzyEPrsHSC9jFOSH+OQLok+CQPPy4QrEEqFA=;
+        b=J9khTIXryNqWXXxcSdUv/oheVJjLrstV2jLtxMu94h24nYkCqtMNNwW3y7A/WjiMZR
+         9r2LgWczfDc+BcL4ZcSj6y5WY0+GSUFGlPnHUSVgmiXQdtXw7ACc4c6/RYPvhbWDgj84
+         6scuo9d0GgTwtq6FFdXp0CzsMzSSaMkyWXhHFg39QV/KFpUsIVOi5einY5JrtSxP4b6O
+         Tn6GUVVDxwL5KRmMwfapjhiEYeS9DX4XD5vXbKDMCanEeZjipjHCmj4j9NbHSyZvg/Gx
+         r+Nyj/GOPjevcXNhKr9dRbakW893PuGXWy5ZASrLE33X6tdBgf+1DDdAdtAoJ6lUOaLW
+         xmRA==
+X-Gm-Message-State: AC+VfDzVd1uwUlJ+mX/o8F4iKQFit+y1Om7xqBY+SoPKJTbk+rq5V7PB
+        HEf0WrykHnbXzzgPoFSqcvVMVw==
+X-Google-Smtp-Source: ACHHUZ6QPLFeKcQ4ZS9i2gxp9ZfFi+7aj7bRNJOGHEhaqjPDrylDtjNPIO8RJ2v8iV9DqrvR298gCg==
+X-Received: by 2002:a2e:b0fc:0:b0:2a8:b37c:17f0 with SMTP id h28-20020a2eb0fc000000b002a8b37c17f0mr4931553ljl.4.1685398818715;
+        Mon, 29 May 2023 15:20:18 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id e18-20020a2e9852000000b002af15f2a735sm2609555ljj.111.2023.05.29.15.20.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 May 2023 15:20:18 -0700 (PDT)
+Message-ID: <66d0c903-5b79-68d4-8303-76c4846770d8@linaro.org>
+Date:   Tue, 30 May 2023 01:20:17 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMpQs4K4e3BSVvqXa+QjhM5XDxHc_ZCiRYW+HgPo21AQ_bYSRQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH RFC 06/10] drm/panel/samsung-sofef01: Add panel driver for
+ Sony Xperia 5 / 10 II
+Content-Language: en-GB
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-6-541c341d6bee@somainline.org>
+ <f34cd6a8-6d6d-9dcf-b681-56439416c4b4@linaro.org>
+ <gzhxxdh235nsbjbns37thi33rpk546ynkihihjiam46pkngkud@opwtr2swvdau>
+ <CAA8EJppniEh3cFpi=AdK-i=KZcd=tzpPru0W4Vq9LJjJL8q=qQ@mail.gmail.com>
+ <bz7kqcdxnrbt2lzaykgxnviusrksu5txng3ngietj6rb3mhmsx@qwbann5px44w>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <bz7kqcdxnrbt2lzaykgxnviusrksu5txng3ngietj6rb3mhmsx@qwbann5px44w>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On 29/05/2023 23:58, Marijn Suijten wrote:
+> On 2023-05-23 01:56:46, Dmitry Baryshkov wrote:
+>> On Tue, 23 May 2023 at 01:32, Marijn Suijten
+>> <marijn.suijten@somainline.org> wrote:
+>>>
+>>> On 2023-05-22 04:19:45, Dmitry Baryshkov wrote:
+>>>> On 22/05/2023 00:23, Marijn Suijten wrote:
+>>>>> This SOFEF01-M Display-IC driver supports two modes with different
+>>>>> compatibles to differentiate between slightly different physical sizes
+>>>>> (panels) found on the Xperia 5 (6.1") and 10 II (6.0").
+>>>>>
+>>>>> It is currently also used to hardcode significantly higher fake porches
+>>>>> for the Xperia 5, which are unused in transfers due to this being a
+>>>>> command-mode panel but do have an effect on the clock rates set by
+>>>>> dsi_host.c.  Without higher clock rates this panel fails to achieve
+>>>>> 60fps and has significant tearing artifacts, while the same calculated
+>>>>> clock rate works perfectly fine on the Xperia 10 II.
+>>>
+>>> <snip>
+>>>
+>>>>> +/* Sony Xperia 5 (kumano bahamut) */
+>>>>> +static const struct drm_display_mode samsung_sofef01_m_bahamut_mode = {
+>>>>> +   /*
+>>>>> +    * WARNING: These massive porches are wrong/useless for CMDmode
+>>>>> +    * (and not defined in downstream DTS) but necessary to bump dsi
+>>>>> +    * clocks higher, so that we can achieve proper 60fps without tearing.
+>>>>> +    */
+>>>>> +   .clock = (1080 + 156 + 8 + 8) * (2520 + 2393 + 8 + 8) * 60 / 1000,
+>>>>> +   .hdisplay = 1080,
+>>>>> +   .hsync_start = 1080 + 156,
+>>>>> +   .hsync_end = 1080 + 156 + 8,
+>>>>> +   .htotal = 1080 + 156 + 8 + 8,
+>>>>> +   .vdisplay = 2520,
+>>>>> +   .vsync_start = 2520 + 2393,
+>>>>> +   .vsync_end = 2520 + 2393 + 8,
+>>>>> +   .vtotal = 2520 + 2393 + 8 + 8,
+>>>>> +   .width_mm = 61,
+>>>>> +   .height_mm = 142,
+>>>>> +};
+>>>>> +
+>>>>> +/* Sony Xperia 10 II (seine pdx201) */
+>>>>> +static const struct drm_display_mode samsung_sofef01_m_pdx201_mode = {
+>>>>> +   .clock = (1080 + 8 + 8 + 8) * (2520 + 8 + 8 + 8) * 60 / 1000,
+>>>>> +   .hdisplay = 1080,
+>>>>> +   .hsync_start = 1080 + 8,
+>>>>> +   .hsync_end = 1080 + 8 + 8,
+>>>>> +   .htotal = 1080 + 8 + 8 + 8,
+>>>>> +   .vdisplay = 2520,
+>>>>> +   .vsync_start = 2520 + 8,
+>>>>> +   .vsync_end = 2520 + 8 + 8,
+>>>>> +   .vtotal = 2520 + 8 + 8 + 8,
+>>>>> +   .width_mm = 60,
+>>>>> +   .height_mm = 139,
+>>>>> +};
+>>>>> +
+>>>>> +static const struct of_device_id samsung_sofef01_m_of_match[] = {
+>>>>> +   { .compatible = "samsung,sofef01-m-bahamut", .data = &samsung_sofef01_m_bahamut_mode },
+>>>>> +   { .compatible = "samsung,sofef01-m-pdx201", .data = &samsung_sofef01_m_pdx201_mode },
+>>>>
+>>>> Are there really two panels? Can we use one mode for both usecases?
+>>>
+>>> See the commit description where I explained exactly this: the panels
+>>> have different dimensions (6.1" vs 6.0", hence different DPI) and I also
+>>> abuse this to hack in higher clock rates via fake porches.
+>>>
+>>> I just ended up on a scary website that supposedly contains the panel
+>>> names:
+>>>
+>>> - Xperia 5 (bahamut, 6.1"): AMB609TC01
+>>> - Xperia 10 II (pdx201, 6.0"): AMS597UT01
+>>
+>> Great! From the patch description it was not obvious if those are two
+>> different panels or a single panel with slight difference in the glass
+>> cover. With these names in place (well, with two distinct names in
+>> place) it makes sense.
+> 
+> For completeness: keep the current single file but embed these panel
+> names as suffix (eg. `samsung,sofef-01-m-am[bs]...`) to the compatible
+> (and document these more explicitly elsewhere)?
 
-Honestly, the list of compatibles is fine for me. I wouldn't go for
-fallback. The improvement would be to drop "loongson,ls1c-rtc",
-and probably "loongson,ls2k0500-rtc" and "loongson,ls2k2000-rtc".
+Where do the sofef parts of the name come from? Glancing at other 
+panels, I'd expect something simpler. Maybe:
 
-loongson,ls1c-rtc is definitively not needed, the alarm may not be wired
-but the registers are there.
+samsung,sofef01m-amb60...
 
-For 2k0500 and 2k2000, I don't mind either way.
-
-On 29/05/2023 16:31:42+0800, Binbin Zhou wrote:
-> Hi Krzysztof:
 > 
-> Excuse me.
-> We have different opinions on how to better describe rtc-loongson compatible.
+> - Marijn
 > 
-> Based on my previous communication with you, I think we should list
-> all the Socs in the driver and drop the wildcards.
-> This should be clearer and more straightforward:
-> 
->         { .compatible = "loongson,ls1b-rtc", .data = &ls1x_rtc_config
-> }, //ls1b soc
->         { .compatible = "loongson,ls1c-rtc", .data = &ls1x_rtc_config
-> }, //ls1c soc
->         { .compatible = "loongson,ls7a-rtc", .data =
-> &generic_rtc_config }, //ls7a bridge chip
->         { .compatible = "loongson,ls2k0500-rtc", .data =
-> &generic_rtc_config }, // ls2k0500 soc
->         { .compatible = "loongson,ls2k2000-rtc", .data =
-> &generic_rtc_config }, // ls2k2000 soc
->         { .compatible = "loongson,ls2k1000-rtc", .data =
-> &ls2k1000_rtc_config }, // ls2k1000 soc
-> 
-> And Conor thought it should be rendered using a fallback compatible
-> form based on ".data".
-> 
->         "loongson,ls1b-rtc"
->         "loongson,ls1c-rtc", "loongson,ls1b-rtc"
->         "loongson,ls7a-rtc"
->         "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
->         "longson,ls2k2000-rtc", "longson,ls7a-rtc"
->         "loonson,ls2k1000-rtc"
-> 
->         { .compatible = "loongson,ls1b-rtc", .data = &ls1x_rtc_config }
->         { .compatible = "loongson,ls7a-rtc", .data = &generic_rtc_config }
->         { .compatible = "loongson,ls2k1000-rtc", .data = &ls2k1000_rtc_config }
-> 
-> In this form,  I think it might not be possible to show very
-> graphically which chips are using the driver.
-> Also, for example, "ls7a" is a bridge chip, while
-> "ls2k2000"/"ls2k0500" are soc chips, and it seems inappropriate to
-> integrate them into one item.
-> 
-> Which one do you think is more suitable for us?
-> 
-> Here is the link to our discussion:
-> 
-> https://lore.kernel.org/linux-rtc/E229B204-1B00-4B24-B4BF-15277682FB4B@kernel.org/T/#m6c1ae9b74fceafc4042f7598b1bc594e68e5ec76
-> 
-> Thanks.
-> Binbin
-> 
-> 
-> On Mon, May 29, 2023 at 2:24 PM Conor Dooley <conor@kernel.org> wrote:
-> >
-> >
-> >
-> > On 29 May 2023 03:59:57 IST, Keguang Zhang <keguang.zhang@gmail.com> wrote:
-> > >On Sun, May 28, 2023 at 6:22 AM Conor Dooley <conor@kernel.org> wrote:
-> > >>
-> > >> On Sat, May 27, 2023 at 10:59:48PM +0100, Jiaxun Yang wrote:
-> > >> > > 2023年5月27日 17:23，Conor Dooley <conor@kernel.org> 写道：
-> > >> > > On Sat, May 27, 2023 at 05:13:39PM +0100, Jiaxun Yang wrote:
-> > >>
-> > >> > >> My recommendation is leaving compatible string as is.
-> > >> > >
-> > >> > > "as is" meaning "as it is right now in Linus' tree", or "as it is in
-> > >> > > this patch"?
-> > >> >
-> > >> > Ah sorry I meant in this patch.
-> > >> >
-> > >> > Since there won’t be any new ls1x chip that will boot Linux any time soon (due to
-> > >> > Loongson move away from MIPS but LoongArch32 is undefined for now), and
-> > >> > rest compatible strings are wide enough to cover their family, I think the present
-> > >> > compatible strings in this patch describes hardware best.
-> > >>
-> > >> I don't see why new bindings being written for old hardware should somehow
-> > >> be treated differently than new bindings for new hardware.
-> > >
-> > >Let me add that ls1b RTC and ls1c RTC are not exactly the same.
-> > >The former supports RTC interrupt, while the latter does not.
-> > >So my suggestion is to leave the compatible string as it is in this patch.
-> >
-> > Just as a reminder, there are more than ls1b & c in the patch, lest we forget.
-> > Also, fallback compatibles mean a compatible subset, not only that two devices are identical.
-> > The interrupt is passed by the interrupts property.
-> >
+>>
+>> -- 
+>> With best wishes
+>> Dmitry
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+With best wishes
+Dmitry
+
