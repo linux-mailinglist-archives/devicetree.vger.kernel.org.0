@@ -2,97 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DAF4714EB7
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 19:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4872C714F08
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 19:49:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbjE2RFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 13:05:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47528 "EHLO
+        id S229486AbjE2Rtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 13:49:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229451AbjE2RFh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 13:05:37 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42991B5;
-        Mon, 29 May 2023 10:05:36 -0700 (PDT)
-Received: from jupiter.universe (dyndsl-091-248-212-236.ewe-ip-backbone.de [91.248.212.236])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S229457AbjE2Rtk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 13:49:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC226C7;
+        Mon, 29 May 2023 10:49:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C25996605961;
-        Mon, 29 May 2023 18:05:34 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685379934;
-        bh=xH8PWa9VSV+c2f1XMWbXNN3LL+RLVhtLxiDB+5plPzY=;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 57E2A6157D;
+        Mon, 29 May 2023 17:49:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5210C433D2;
+        Mon, 29 May 2023 17:49:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685382578;
+        bh=w6IvOvi08pEaUqTJh5LkFUiOSX8C9pAinrnPh+Qkx/Y=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PHyDCkx37kcDgV+p61IUy0+8Xj2U6iHNG3iCtyXUhp3iZPcA36U0+BHCEFKGStK6Z
-         6eSzGRPQEmWoyhZf3a6THPF1nsNqIXu7DuTFdrYHGrxlcAQ+IFCkYaEPuHvQ+Vx7Eq
-         FVvGZx6q1sfovYhllsNcIAP7XGRzNGlhqF8KGxUn/bdZiuZuNfRJNa2Xh9tP3HzaIH
-         uVJuMWfX+X6H/5DgZZ5q0Z8iTrIb7fotCD8Kv23QreOY0Fbut6C9ZsuxnOZtiXtKn2
-         6JlJQ5ZYkfCwGIGbgm8mSlRyJbDEpHkwmcvS4xFiaYBaqcU5LQAomO9mA6KYNkm6pc
-         KRpIRyiBQz4HQ==
-Received: by jupiter.universe (Postfix, from userid 1000)
-        id 756E74807E2; Mon, 29 May 2023 19:05:32 +0200 (CEST)
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: [PATCH v1 2/2] arm64: dts: rockchip: rock-5b: Add SD card support
-Date:   Mon, 29 May 2023 19:05:32 +0200
-Message-Id: <20230529170532.59804-2-sebastian.reichel@collabora.com>
+        b=M35iP0f1ZNqSw9RuP/Qwdpofhhr4ANuwhjhUGCsPjDVavvPGY9TcevIa01mX3Fb0Q
+         xRvsBSGd96SbsEdBeVcO0v0mxC2NmuNPwkGyZD6b7ggZW29T99f8ug2Vj6gs2zbs1u
+         Ll/D7mGtpgthzi8Kgh2mz0H9Sj4ofamaeNB9w9Td9IbTn87S2eyWSL1s4shEynUpWK
+         SO+CrEPcZ8BcfMB+LOwJq2B2s9HEBAjRlNX9ozKs+cdhQTMsf5/cKoBNCtfqY49JeN
+         yF9NW3gZt7sTlCz12aaVnvPhfvd9MxP2UeW2feYrneEygPrNf2CCFbSNmwOSUHGWYx
+         umiEbMCmWhHtA==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     linux-phy@lists.infradead.org,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@linaro.org, dmitry.baryshkov@linaro.org,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, bhupesh.linux@gmail.com,
+        konrad.dybcio@linaro.org
+Subject: Re: (subset) [PATCH v11 0/4] Enable USB SS qmp phy for Qualcomm SM6115 SoC
+Date:   Mon, 29 May 2023 10:53:22 -0700
+Message-Id: <168538280003.437034.14219843180641577263.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230529170532.59804-1-sebastian.reichel@collabora.com>
-References: <20230529170532.59804-1-sebastian.reichel@collabora.com>
+In-Reply-To: <20230516150511.2346357-1-bhupesh.sharma@linaro.org>
+References: <20230516150511.2346357-1-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lucas Tanure <lucas.tanure@collabora.com>
+On Tue, 16 May 2023 20:35:07 +0530, Bhupesh Sharma wrote:
+> Changes since v10:
+> -----------------
+> - v10 can be seen here: https://lore.kernel.org/lkml/20230502053534.1240553-4-bhupesh.sharma@linaro.org/
+> - Rebased on phy/next, as Vinod was seeing rebasing issues with v9 while
+>   applying.
+> 
+> Changes since v9:
+> -----------------
+> - v9 can be seen here: https://lore.kernel.org/linux-arm-msm/20230501192432.1220727-1-bhupesh.sharma@linaro.org/
+> - Addressed review comments from Dmitry on v9, regarding register size
+>   and pcs_misc offset handling. Also collected his R-Bs.
+> 
+> [...]
 
-Add sdmmc support for Rock Pi 5B board.
+Applied, thanks!
 
-Signed-off-by: Lucas Tanure <lucas.tanure@collabora.com>
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+[3/4] arm64: dts: qcom: sm6115: Add USB SS qmp phy node
+      commit: 9dd5f6dba72928e1f16b259fb1c984f80bfa4120
+[4/4] arm64: dts: qcom: qrb4210-rb2: Enable USB node
+      commit: eaa53a85748d58c4398c5c9acaa8d01d92adbb67
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index 2180fea1fb82..e62538cbaf25 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -216,6 +216,20 @@ &sdhci {
- 	status = "okay";
- };
- 
-+&sdmmc {
-+	max-frequency = <200000000>;
-+	no-sdio;
-+	no-mmc;
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc_3v3_s3>;
-+	vqmmc-supply = <&vccio_sd_s0>;
-+	status = "okay";
-+};
-+
- &spi2 {
- 	status = "okay";
- 	assigned-clocks = <&cru CLK_SPI2>;
+Best regards,
 -- 
-2.39.2
-
+Bjorn Andersson <andersson@kernel.org>
