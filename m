@@ -2,230 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A59B3714619
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 10:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B78B714627
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 10:12:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231678AbjE2II4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 04:08:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38004 "EHLO
+        id S231460AbjE2IMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 04:12:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231685AbjE2IIz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 04:08:55 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AF4B590;
-        Mon, 29 May 2023 01:08:52 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.00,200,1681138800"; 
-   d="scan'208";a="161242016"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 29 May 2023 17:08:50 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 2286F400C741;
-        Mon, 29 May 2023 17:08:50 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        geert+renesas@glider.be, magnus.damm@gmail.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH net-next 5/5] net: renesas: rswitch: Use per-queue rate limiter
-Date:   Mon, 29 May 2023 17:08:40 +0900
-Message-Id: <20230529080840.1156458-6-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230529080840.1156458-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20230529080840.1156458-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S230168AbjE2IMC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 04:12:02 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1681890;
+        Mon, 29 May 2023 01:11:59 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-53202149ae2so1805177a12.3;
+        Mon, 29 May 2023 01:11:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685347918; x=1687939918;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ITRflIOmLkq0lkA6U0VtIoupb3ZXWfiBF04AqIIoi9o=;
+        b=EiieOEYW0qWqoR2XSztxvUhDXIvJwpk4VldiYlBD8rZ/atZqlf1ixEo+4Pq1ifvKsu
+         7OZTF3u8iFOZz9hW7pM3iBAr+SzAR2bLaEgUW0hGuaVeXFTyJgE8KSIkSF/3JB++/02g
+         XhphLaz0RqaiNbrxI6XoDsXUBagig+dCEUt3DCwwR5laM0cp22bGuaRlFAS0vmb8sGHS
+         Qu9/a4yK1/E6WijthNXi7bVUD7oN984AmuLhmmvrJkAMvaIBigDuuDGf4sjK+ik2pORh
+         0zs8q8twwlrEcp8/G3/Q5KhXCkXaoAKLESTKl4vEVaDZZNsY6tD5EaLoJuoPHsjCWEOn
+         QjJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685347918; x=1687939918;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ITRflIOmLkq0lkA6U0VtIoupb3ZXWfiBF04AqIIoi9o=;
+        b=hM8YUC7guNBMXJDQQM6uZMbCm8cGIPucbg7VpcU+RJVjWX7vKulw6BvD+7muD3fFsY
+         La3SACHMIm/OOkXNUhUjqoVFZ11w3FikSs+tS45FzZL4l6fxn4gDR9oNdqr8LVQ4SPap
+         aCf6V5VTNxKN1eeacoZaP6ClR/6bcs1yJd7xOO2JVd+ISG3N5RL5fyf9yiibe9qFDdsg
+         Uo+xEtcZfnBuztnmXG/XA3hbwnhTkJWGwhUe31DM8tahexvDavsXnQDN7ccfAeUxkNYD
+         rKCMC+iAtO7Nh7iB9wrGTWgqSE+MxcpvYxZwP3TOPS7Tw2yVxlDW3mwImQKaA+7UzbOd
+         C2gw==
+X-Gm-Message-State: AC+VfDx1ljNWxH+Xxn0hnTqIbPOYZ2RDzqRl3PZHWOLVT4Xt6UpuBmwR
+        u50i82yMFW+pKWmsLsFnyzw=
+X-Google-Smtp-Source: ACHHUZ7QZU0efRghNTC1uA2xMtvWd8GuQtAjRwoNf4tH35DbcLShCgaZ3fR5ZrBl4aw4/bJ1Hg8LkA==
+X-Received: by 2002:a17:90a:fd09:b0:24d:ebf8:b228 with SMTP id cv9-20020a17090afd0900b0024debf8b228mr9564707pjb.19.1685347918446;
+        Mon, 29 May 2023 01:11:58 -0700 (PDT)
+Received: from debian.me (subs02-180-214-232-78.three.co.id. [180.214.232.78])
+        by smtp.gmail.com with ESMTPSA id a2-20020a17090abe0200b002565a84c848sm2655118pjs.43.2023.05.29.01.11.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 May 2023 01:11:58 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+        id 691BC106A11; Mon, 29 May 2023 15:11:55 +0700 (WIB)
+Date:   Mon, 29 May 2023 15:11:55 +0700
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+To:     Hao Zhang <quic_hazha@quicinc.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>,
+        James Clark <james.clark@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 0/3] Add support to configure Coresight Dummy subunit
+Message-ID: <ZHReS1qkktqziCxM@debian.me>
+References: <20230526100753.34581-1-quic_hazha@quicinc.com>
+ <5c56a874-dc41-c68c-6f70-efcbc67c29b2@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6QXsBYr0FX1el6tf"
+Content-Disposition: inline
+In-Reply-To: <5c56a874-dc41-c68c-6f70-efcbc67c29b2@quicinc.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use per-queue rate limiter instead of global rate limiter. Otherwise
-TX performance will be low when we use multiple ports at the same time.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
- drivers/net/ethernet/renesas/rswitch.c | 51 +++++++++++++++++---------
- drivers/net/ethernet/renesas/rswitch.h | 15 +++++++-
- 2 files changed, 47 insertions(+), 19 deletions(-)
+--6QXsBYr0FX1el6tf
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/net/ethernet/renesas/rswitch.c b/drivers/net/ethernet/renesas/rswitch.c
-index 4ae34b0206cd..a7195625a2c7 100644
---- a/drivers/net/ethernet/renesas/rswitch.c
-+++ b/drivers/net/ethernet/renesas/rswitch.c
-@@ -156,22 +156,31 @@ static int rswitch_gwca_axi_ram_reset(struct rswitch_private *priv)
- 	return rswitch_reg_wait(priv->addr, GWARIRM, GWARIRM_ARR, GWARIRM_ARR);
- }
- 
--static void rswitch_gwca_set_rate_limit(struct rswitch_private *priv, int rate)
-+static void rswitch_gwca_set_rate_limit(struct rswitch_private *priv,
-+					struct rswitch_gwca_queue *txq)
- {
--	u32 gwgrlulc, gwgrlc;
-+	u64 period_ps;
-+	unsigned long rate;
-+	u32 gwrlc;
- 
--	switch (rate) {
--	case 1000:
--		gwgrlulc = 0x0000005f;
--		gwgrlc = 0x00010260;
--		break;
--	default:
--		dev_err(&priv->pdev->dev, "%s: This rate is not supported (%d)\n", __func__, rate);
--		return;
--	}
-+	rate = clk_get_rate(priv->aclk);
-+	if (!rate)
-+		rate = RSWITCH_ACLK_DEFAULT;
-+
-+	period_ps = div64_u64(1000000000000ULL, rate);
-+
-+	/* GWRLC value = 256 * ACLK_period[ns] * maxBandwidth[Gbps] */
-+	gwrlc = 256 * period_ps * txq->speed / 1000000;
-+
-+	/* To avoid overflow internally, the value should be 97% */
-+	gwrlc = gwrlc * 97 / 100;
- 
--	iowrite32(gwgrlulc, priv->addr + GWGRLULC);
--	iowrite32(gwgrlc, priv->addr + GWGRLC);
-+	dev_dbg(&priv->pdev->dev,
-+		"%s: index = %d, speed = %d, rate = %ld, gwrlc = %08x\n",
-+		__func__, txq->index_trim, txq->speed, rate, gwrlc);
-+
-+	iowrite32(GWRLULC_NOT_REQUIRED, priv->addr + GWRLULC(txq->index_trim));
-+	iowrite32(gwrlc | GWRLC_RLE, priv->addr + GWRLC(txq->index_trim));
- }
- 
- static bool rswitch_is_any_data_irq(struct rswitch_private *priv, u32 *dis, bool tx)
-@@ -548,6 +557,10 @@ static struct rswitch_gwca_queue *rswitch_gwca_get(struct rswitch_private *priv,
- 	memset(gq, 0, sizeof(*gq));
- 	gq->index = index;
- 
-+	/* The first "Rate limiter" queue is located at GWCA_AXI_CHAIN_N - 1 */
-+	if (dir_tx)
-+		gq->index_trim = GWCA_AXI_CHAIN_N - index - 1;
-+
- 	return gq;
- }
- 
-@@ -651,7 +664,6 @@ static int rswitch_gwca_hw_init(struct rswitch_private *priv)
- 	iowrite32(lower_32_bits(priv->gwca.ts_queue.ring_dma), priv->addr + GWTDCAC10);
- 	iowrite32(upper_32_bits(priv->gwca.ts_queue.ring_dma), priv->addr + GWTDCAC00);
- 	iowrite32(GWCA_TS_IRQ_BIT, priv->addr + GWTSDCC0);
--	rswitch_gwca_set_rate_limit(priv, priv->gwca.speed);
- 
- 	for (i = 0; i < RSWITCH_NUM_PORTS; i++) {
- 		err = rswitch_rxdmac_init(priv, i);
-@@ -1441,6 +1453,8 @@ static int rswitch_open(struct net_device *ndev)
- 	napi_enable(&rdev->napi);
- 	netif_start_queue(ndev);
- 
-+	rswitch_gwca_set_rate_limit(rdev->priv, rdev->tx_queue);
-+
- 	rswitch_enadis_data_irq(rdev->priv, rdev->tx_queue->index, true);
- 	rswitch_enadis_data_irq(rdev->priv, rdev->rx_queue->index, true);
- 
-@@ -1723,9 +1737,6 @@ static int rswitch_device_alloc(struct rswitch_private *priv, int index)
- 	if (err < 0)
- 		goto out_get_params;
- 
--	if (rdev->priv->gwca.speed < rdev->etha->speed)
--		rdev->priv->gwca.speed = rdev->etha->speed;
--
- 	err = rswitch_rxdmac_alloc(ndev);
- 	if (err < 0)
- 		goto out_rxdmac;
-@@ -1734,6 +1745,8 @@ static int rswitch_device_alloc(struct rswitch_private *priv, int index)
- 	if (err < 0)
- 		goto out_txdmac;
- 
-+	rdev->tx_queue->speed = rdev->etha->speed;
-+
- 	return 0;
- 
- out_txdmac:
-@@ -1903,6 +1916,10 @@ static int renesas_eth_sw_probe(struct platform_device *pdev)
- 	pm_runtime_enable(&pdev->dev);
- 	pm_runtime_get_sync(&pdev->dev);
- 
-+	priv->aclk = devm_clk_get_optional(&pdev->dev, "aclk");
-+	if (IS_ERR(priv->aclk))
-+		return PTR_ERR(priv->aclk);
-+
- 	ret = rswitch_init(priv);
- 	if (ret < 0) {
- 		pm_runtime_put(&pdev->dev);
-diff --git a/drivers/net/ethernet/renesas/rswitch.h b/drivers/net/ethernet/renesas/rswitch.h
-index 7ba45ddab42a..741f45266c29 100644
---- a/drivers/net/ethernet/renesas/rswitch.h
-+++ b/drivers/net/ethernet/renesas/rswitch.h
-@@ -7,9 +7,11 @@
- #ifndef __RSWITCH_H__
- #define __RSWITCH_H__
- 
-+#include <linux/clk.h>
- #include <linux/platform_device.h>
- #include "rcar_gen4_ptp.h"
- 
-+#define RSWITCH_ACLK_DEFAULT	400000000UL
- #define RSWITCH_NUM_PORTS	3
- #define rswitch_for_each_enabled_port(priv, i)		\
- 	for (i = 0; i < RSWITCH_NUM_PORTS; i++)		\
-@@ -676,7 +678,7 @@ enum rswitch_reg {
- 	GWIDACAM10	= GWRO + 0x0984,
- 	GWGRLC		= GWRO + 0x0a00,
- 	GWGRLULC	= GWRO + 0x0a04,
--	GWRLIVC0	= GWRO + 0x0a80,
-+	GWRLC0		= GWRO + 0x0a80,
- 	GWRLULC0	= GWRO + 0x0a84,
- 	GWIDPC		= GWRO + 0x0b00,
- 	GWIDC0		= GWRO + 0x0c00,
-@@ -778,6 +780,11 @@ enum rswitch_gwca_mode {
- #define GWTRC(queue)		(GWTRC0 + (queue) / 32 * 4)
- #define GWDCC_OFFS(queue)	(GWDCC0 + (queue) * 4)
- 
-+#define GWRLC(trim)		(GWRLC0 + (trim) * 8)
-+#define GWRLC_RLE		BIT(16)
-+#define GWRLULC(trim)		(GWRLULC0 + (trim) * 8)
-+#define GWRLULC_NOT_REQUIRED	0x00800000
-+
- #define GWDIS(i)		(GWDIS0 + (i) * 0x10)
- #define GWDIE(i)		(GWDIE0 + (i) * 0x10)
- #define GWDID(i)		(GWDID0 + (i) * 0x10)
-@@ -942,6 +949,10 @@ struct rswitch_gwca_queue {
- 	bool dir_tx;
- 	struct sk_buff **skbs;
- 	struct net_device *ndev;	/* queue to ndev for irq */
-+
-+	/* For tx_ring */
-+	int index_trim;
-+	int speed;
- };
- 
- struct rswitch_gwca_ts_info {
-@@ -963,7 +974,6 @@ struct rswitch_gwca {
- 	DECLARE_BITMAP(used, GWCA_AXI_CHAIN_N);
- 	u32 tx_irq_bits[GWCA_NUM_IRQ_REGS];
- 	u32 rx_irq_bits[GWCA_NUM_IRQ_REGS];
--	int speed;
- };
- 
- #define NUM_QUEUES_PER_NDEV	2
-@@ -997,6 +1007,7 @@ struct rswitch_private {
- 	struct platform_device *pdev;
- 	void __iomem *addr;
- 	struct rcar_gen4_ptp_private *ptp_priv;
-+	struct clk *aclk;
- 
- 	struct rswitch_device *rdev[RSWITCH_NUM_PORTS];
- 	DECLARE_BITMAP(opened_ports, RSWITCH_NUM_PORTS);
--- 
-2.25.1
+On Mon, May 29, 2023 at 03:17:32PM +0800, Hao Zhang wrote:
+> Hi,
+>=20
+> Add the missing information for this patch series.
+>=20
+> Thanks,
+> Hao
+>=20
+> On 5/26/2023 6:07 PM, Hao Zhang wrote:
+>=20
+> Introduction of Coresight Dummy subunit
+> The Coresight Dummy subunit is for Coresight Dummy component, there are
+> some specific Coresight devices that HLOS don't have permission to access.
+> Such as some TPDMs, they would be configured in NON-HLOS side, but it's
+> necessary to build Coresight path for it to debug. So there need driver to
+> register dummy devices as Coresight devices.
+>=20
+> Commit link:
+> https://git.codelinaro.org/clo/linux-kernel/coresight/-/tree/coresight-du=
+mmy-v5
 
+OK, please reroll.
+
+--=20
+An old man doll... just what I always wanted! - Clara
+
+--6QXsBYr0FX1el6tf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZHReSwAKCRD2uYlJVVFO
+o8nGAQCXX1l4ccCpzdDZVWr0b1HG+nQadNo2EQnbSJPsqEGQDwEApvpm9ytnx3IE
+z1SjTimJHr/KkJAqU93pxteEYEpV9wQ=
+=d+Dp
+-----END PGP SIGNATURE-----
+
+--6QXsBYr0FX1el6tf--
