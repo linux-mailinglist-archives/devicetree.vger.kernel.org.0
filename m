@@ -2,305 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FF49714A9E
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:47:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C665B714AA4
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:48:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbjE2Nrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 09:47:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60950 "EHLO
+        id S229915AbjE2Nso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 09:48:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229917AbjE2Nrw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:47:52 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBAF0106;
-        Mon, 29 May 2023 06:47:45 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-309382efe13so2027635f8f.2;
-        Mon, 29 May 2023 06:47:45 -0700 (PDT)
+        with ESMTP id S229562AbjE2Nsn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:48:43 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14E50A7
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:48:42 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-30ac4e7f37bso1945090f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:48:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685368064; x=1687960064;
+        d=linaro.org; s=google; t=1685368120; x=1687960120;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=myJE6wqP7SpgcJyO3f8/0tcs82r/jtAw33/b3j2JkJ8=;
-        b=oCpcveOpc3ZxOpH99/p0DTvagTnLnycBju6u9B40KEfprAGFjUByl9JlqOLM/v1+8U
-         CGqm3R588wyIj0Pj6Dp/toPskJS/CZidIXvZcgfB2lNvWxST65L0b1WWKhGnGoILA1hS
-         Juz8Kk2fmmW979GQpwI2/eEI0oWWlBcMa7/cQEaboUWgSGowZzAegovGuyC57RO/WVZK
-         4Zn3qpOxCebc7xVHB+Y4Xkaggmr3XAr7SkX3q6RvyrvXt8tWAn7XlzVhPZ3L/NAsCjtQ
-         R6nayL5XJKPqNFy+zbSgo5n7NWEF8mJXEFkdBNuacnyn5ty8pOyLdctD7G0agT1ZmhoT
-         W4YQ==
+        bh=Ygh+oO9nvPS/69geqyJq74mEoRjomikOCE/0QvmTjsA=;
+        b=D0VISu+wsAdynfkSb2W4dB8UkYlgKXgWgEPl2APo3VZUDMtI/yXDLY7RT0TmVleKeA
+         LW26C7nbcYgRPgMIncmq3rIBMKgYW/EdgwjDZGKnBHZEpd3NruWDMrhaqCEjVIdRBe8J
+         NrNLuZJjSQJzL6jttoz6hOC+5lOK9L9LbQOyAqy9KC8u9ghw+YpUR6NaTLpxiCfSdBii
+         5Iz3js23lR9HalSHFmhodSEI7ghS6Bd1oyA9sek4vRWh+5JiTUpa5nluSGrsxhiXm7y5
+         i12WnopFVxLpEmGVO0C9Gl87tzzBGf8xul2pjKH8Y0DVWB+3Yb0juRyBRHIe7QLPWIt9
+         FXVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685368064; x=1687960064;
+        d=1e100.net; s=20221208; t=1685368120; x=1687960120;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=myJE6wqP7SpgcJyO3f8/0tcs82r/jtAw33/b3j2JkJ8=;
-        b=N5VXvRSMW1mB2YbbmjN5FaKLNWzaS8Z9pPa+WBsdz0s9mzASOxL7bYBl33VcOTUkEZ
-         5bpZY3EIt1dKTFhnUWDC1Oy4sT62C+8vuX5ayJ1RDhPvm8CB1uiUcVv4QpQ5ezH/05fy
-         vnZSSFwUuLTAwqxpthfnHZa7y03hHmeRnMI1DCe2xUBFtUjD2KMTcfMWfYhhOZaVJQGg
-         CWfgIoZd6buuLj5Cmj3LfilcPXaS1eQxUPDxzVrxQjKwN0uInwqCT5/AAmGr/7Or8VbE
-         U6iwPJSaUgni/xWMhFK8WRbPXkY3+s0Egsd5NQEHnGCgH6XISZ9Olw5HHej1d20f0MNQ
-         D3yg==
-X-Gm-Message-State: AC+VfDze1vl0TAYQ5wpBHz52wifr/tf4MI2n1JYv+rn0liFo3XvIo1dz
-        VPcQFrGnhnUwbn0h3sOFXz8=
-X-Google-Smtp-Source: ACHHUZ4CbOFmTDokYBwfIa3AupZCc9BFrord46r0GreN2feVi5EocX/omYSGgSN05k20qNnh3fvB3g==
-X-Received: by 2002:adf:cd8a:0:b0:30a:e59f:cd60 with SMTP id q10-20020adfcd8a000000b0030ae59fcd60mr5247477wrj.48.1685368064021;
-        Mon, 29 May 2023 06:47:44 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id t16-20020a5d6910000000b00307a86a4bcesm30885wru.35.2023.05.29.06.47.41
+        bh=Ygh+oO9nvPS/69geqyJq74mEoRjomikOCE/0QvmTjsA=;
+        b=TcjLI09xi4mA6okvdjrNNamvSBk6YLmoDVp4Bo2oxaXJUasZuHt+jH5hJzv1Xa8oIx
+         jxJoCdUz7psr+Hh0y6xnlxcW2WSPN+Kda8koykzRtJZaIl+x2dtSRvuueZhK2/aiTbAp
+         lgbVwqa1TW9gLuBpNwX0E/1xOX7tc3mHYmkR3h6JmFJk6L8DgSpVfPbsWidpjQmKTo0+
+         1HnlEhCkm9ixrh49luBd79eKmNOVAoOmfgLcaN4SMiEXqBsAglqegZva3j+Scm7S5iUD
+         9Dc5PPUC9oZpRFJhtG6FCKam9y/UBtlFafhmewi1GNPRqS9pAh67RXF/6bIWQe814Fqz
+         eiyw==
+X-Gm-Message-State: AC+VfDxbPCI3foR1JPig4fmE7l1BhkT9OycAkNyNDyE5g/bZWcX/AcCl
+        0M0brr5TQGUIeKAvIF3ejRa2dA==
+X-Google-Smtp-Source: ACHHUZ7qm1seiYs9z6EiSNYUPrDaF5K9vTYnlVYkOH7qP+ndiO5rmy3QzgvFpVknNyIr22KyKsw6Cw==
+X-Received: by 2002:adf:e4cf:0:b0:306:31fb:1c3e with SMTP id v15-20020adfe4cf000000b0030631fb1c3emr8769862wrm.26.1685368120594;
+        Mon, 29 May 2023 06:48:40 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id x11-20020a5d490b000000b003063a92bbf5sm10820wrq.70.2023.05.29.06.48.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 May 2023 06:47:43 -0700 (PDT)
-Message-ID: <e9064b57-bbe2-7774-1d08-4d7b8e28ecbf@gmail.com>
-Date:   Mon, 29 May 2023 15:47:41 +0200
+        Mon, 29 May 2023 06:48:40 -0700 (PDT)
+Message-ID: <eca51371-3ff3-a126-bab6-175becf9624c@linaro.org>
+Date:   Mon, 29 May 2023 14:48:38 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Add AP domain thermal zones
-Content-Language: en-US, ca-ES, es-ES
-To:     bchihi@baylibre.com, daniel.lezcano@linaro.org,
-        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
-        amitk@kernel.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        wenst@chromium.org, khilman@baylibre.com, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com
-References: <20230405100907.53740-1-bchihi@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230405100907.53740-1-bchihi@baylibre.com>
+ Thunderbird/102.8.0
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: msm8916: Move aliases to boards
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230525-msm8916-labels-v1-0-bec0f5fb46fb@gerhold.net>
+ <20230525-msm8916-labels-v1-6-bec0f5fb46fb@gerhold.net>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230525-msm8916-labels-v1-6-bec0f5fb46fb@gerhold.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 05/04/2023 12:09, bchihi@baylibre.com wrote:
-> From: Balsam CHIHI <bchihi@baylibre.com>
+On 29/05/2023 13:47, Stephan Gerhold wrote:
+> MSM8939 has the aliases defined separately for each board (because
+> there could be (theoretically) a board where the slots are numbered
+> differently. To make MSM8916 and MSM8939 more consistent do the same
+> for all MSM8916 boards and move aliases there.
 > 
-> Add AP Domain thermal zones for the mt8195 and
-> specify the targeted temperature thresholds.
-> 
-> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
-> 
-
-Applied, thanks!
-
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
-> This patch squashes and replaces
-> 
-> [PATCH 3/4] arm64: dts: mediatek: mt8195: Add AP domain thermal zones
-> https://lore.kernel.org/all/20230307154524.118541-4-bchihi@baylibre.com/
-> 
-> and
-> 
-> [PATCH 4/4] arm64: dts: mediatek: mt8195: Add AP domain temperature thresholds
-> https://lore.kernel.org/all/20230307154524.118541-5-bchihi@baylibre.com/
-> 
-> of the series
-> 
-> [PATCH 0/4] Add LVTS's AP thermal domain support for mt8195
-> https://lore.kernel.org/all/20230307154524.118541-1-bchihi@baylibre.com/
-> ---
-> ---
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 180 +++++++++++++++++++++++
->   1 file changed, 180 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index 972c5b86ddae..75da456c512b 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -2909,5 +2909,185 @@ map0 {
->   				};
->   			};
->   		};
-> +
-> +		vpu0-thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <250>;
-> +			thermal-sensors = <&lvts_ap MT8195_AP_VPU0>;
-> +
-> +			trips {
-> +				vpu0_alert: trip-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				vpu0_crit: trip-crit {
-> +					temperature = <100000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		vpu1-thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <250>;
-> +			thermal-sensors = <&lvts_ap MT8195_AP_VPU1>;
-> +
-> +			trips {
-> +				vpu1_alert: trip-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				vpu1_crit: trip-crit {
-> +					temperature = <100000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		gpu0-thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <250>;
-> +			thermal-sensors = <&lvts_ap MT8195_AP_GPU0>;
-> +
-> +			trips {
-> +				gpu0_alert: trip-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				gpu0_crit: trip-crit {
-> +					temperature = <100000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		gpu1-thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <250>;
-> +			thermal-sensors = <&lvts_ap MT8195_AP_GPU1>;
-> +
-> +			trips {
-> +				gpu1_alert: trip-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				gpu1_crit: trip-crit {
-> +					temperature = <100000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		vdec-thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <250>;
-> +			thermal-sensors = <&lvts_ap MT8195_AP_VDEC>;
-> +
-> +			trips {
-> +				vdec_alert: trip-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				vdec_crit: trip-crit {
-> +					temperature = <100000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		img-thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <250>;
-> +			thermal-sensors = <&lvts_ap MT8195_AP_IMG>;
-> +
-> +			trips {
-> +				img_alert: trip-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				img_crit: trip-crit {
-> +					temperature = <100000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		infra-thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <250>;
-> +			thermal-sensors = <&lvts_ap MT8195_AP_INFRA>;
-> +
-> +			trips {
-> +				infra_alert: trip-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				infra_crit: trip-crit {
-> +					temperature = <100000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		cam0-thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <250>;
-> +			thermal-sensors = <&lvts_ap MT8195_AP_CAM0>;
-> +
-> +			trips {
-> +				cam0_alert: trip-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				cam0_crit: trip-crit {
-> +					temperature = <100000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +
-> +		cam1-thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <250>;
-> +			thermal-sensors = <&lvts_ap MT8195_AP_CAM1>;
-> +
-> +			trips {
-> +				cam1_alert: trip-alert {
-> +					temperature = <85000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
-> +				cam1_crit: trip-crit {
-> +					temperature = <100000>;
-> +					hysteresis = <2000>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
->   	};
->   };
+
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
