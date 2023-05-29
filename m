@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CFB2714AFF
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:53:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCD0C714B08
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:53:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230078AbjE2NxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 09:53:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36168 "EHLO
+        id S230048AbjE2Nxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 09:53:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230032AbjE2Nwv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:52:51 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1688F187
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:52:41 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so3522861e87.2
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:52:41 -0700 (PDT)
+        with ESMTP id S230049AbjE2NxQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:53:16 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E783CE42
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:52:44 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f4bd608cf4so3708334e87.1
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:52:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685368361; x=1687960361;
+        d=linaro.org; s=google; t=1685368363; x=1687960363;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=nbeDfglU9RuqTNjicprjwIl53dVBd5+75wJTdFjQtgw=;
-        b=kTmeGuDwHU7ur/4sCsdXFYp5FoWicN2xTDVsoJWnudN7w6K3dZD4YeNnSBuqew7TON
-         58SXqtcMN+NnCtucxZleD7d20JoqR8E1L0azxk1a5Pqk4OiRH9L2CQKMFv+NgW+J6+Mi
-         Y4zK7R4L3i0rEm5jeG30d4F2LmsjpQDMpmSON/IedFUxBTHeCmmJt4JLzxIqvV2KjS3M
-         Yyv5zTuXXSyFKfvhIBtwFD4W7RUVgCFm3XUmn2A1orAp1hjSiW/J9C4GrYVPjcZR9z5w
-         zPkRRsLO7LI1ggBw0U82WHFL7qf3+CEp1fYNQdvBD5hPUJu2/pcaaAZwh+80oaSeOBpJ
-         Qapw==
+        bh=qFYsjcpB0Nba4u0VqORGhd4E3cIiBrU4W4oXEsIChBs=;
+        b=RMWt3A1XwbC22/nrZGneoME8qUo9Uk1/nwlsoBBoDVsjR5keDACzXx0Kq13uKfskdH
+         NRDJvbukCDqz9v2XYQ8H5L86iEcrZhlqNkxNygotPsv84Wtyr6egUkI4+4lscSpvrkG1
+         uJIZpKGLnqKYSmCzchIkzuPeTq+o/FdDsc60f9V6wHM/13r+RN+Lf/iiWw0J0rLC7zrU
+         CQmAX33pXI+N2jLEuWO0TQwhDpnnit1bGWmBI9wLvsn6m9OO4CI7mMQixxe9iwtg8wi+
+         qKNJ0/DGSCY2fcabAwh1kVPJceAWmRdAU7C5EpbF98ZWuaHTgYkP89YAVHEzzgZShhKT
+         C2BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685368361; x=1687960361;
+        d=1e100.net; s=20221208; t=1685368363; x=1687960363;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nbeDfglU9RuqTNjicprjwIl53dVBd5+75wJTdFjQtgw=;
-        b=IeI17dt/NQCGPOvX5/g/rUZ1xsFY+Y4aisj6uOntKJxrWBhkIPdes5JiU5VtmE5nRE
-         bcafvXWiO5gitcxQetywOqawljCQ54OKz9ErGkf2UcNe6Rd/dDsx70TTNEtj/Ho78+sa
-         zSpYUpSysM6XkASW2Z/6yzeupihiFPek/vtHWAsOPxVb7BdP9e+NAK2vn4CME10E7W+X
-         IEjbqqLbSWyU21CqMJgpw4Y/ysypq06sQBDcM47CSVE3/7Jo5mumf1i9IkN7iNI0dXGj
-         yZM30EkVRMM8FV3nOdM8Xn+iSoFjsxKCgGYy6ba+sHxDdsHuUJqo3VDcS9eybMpmnbZw
-         QdrA==
-X-Gm-Message-State: AC+VfDwN+D3MkAoNogZa14ZWsMU3rWbCHkZGkTTigZbjyLpN44Oop5Oi
-        dwybS86sv49XDcqlO1hPzdV+1g==
-X-Google-Smtp-Source: ACHHUZ6PQypAvlUh2hsqbkNhe5pjEaOiHixQ8ChfdSLjTypH8+v6gv71iop8fwxlVFtHecbwAVj8dw==
-X-Received: by 2002:a19:f616:0:b0:4f2:5aae:937 with SMTP id x22-20020a19f616000000b004f25aae0937mr3856646lfe.64.1685368361510;
-        Mon, 29 May 2023 06:52:41 -0700 (PDT)
+        bh=qFYsjcpB0Nba4u0VqORGhd4E3cIiBrU4W4oXEsIChBs=;
+        b=eOdM/QmTVUqzpdymlRWUvpFVvIAHZVApbnlyGdwGknYRWlz/KxvhD2QH0KcV5pOmNV
+         99QRPXrSK/UlTtMqt7tmZyqhFgkNLM97UhJnR6nrFfdS9ULw+hD99YSZysZ+VJ2Z9du2
+         yIRJcKVfAQcFtKyfYtqMmyDytcxA06LN/U7vPBRU9XP5wAIff95x3fdWXiVgmQUjl1Ys
+         Y9ZSKh1qlHeRYrxOnt5hk6knEtT04qBfG8HOX5gMnAlOdA7bnxWoRZzqiHnnFWS1yl6A
+         /yt8UrV2re3CYZzWfPCdjRZvwX4QEeyp4sTp8+JZYq42EgzUtz6/fkrZNgct7iA8BbNb
+         EQzg==
+X-Gm-Message-State: AC+VfDzmmxxrJkJLXIX1L218QtL3gYsQuFm6HtuwHUxSsyysiIUwCwbW
+        b5yQQcvPsdR8uk816sh03ewn5Q==
+X-Google-Smtp-Source: ACHHUZ7PwBY9aHIEnE3Eoae3OkmnxByaBhoLuVpOLtAEsue08zOC9k1KcBFVwBJFdbuRC8/fP5ImQA==
+X-Received: by 2002:ac2:5635:0:b0:4f4:d0ab:97e0 with SMTP id b21-20020ac25635000000b004f4d0ab97e0mr3419132lff.20.1685368362943;
+        Mon, 29 May 2023 06:52:42 -0700 (PDT)
 Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id c16-20020ac25310000000b004f2532cfbc1sm4700lfh.81.2023.05.29.06.52.40
+        by smtp.gmail.com with ESMTPSA id c16-20020ac25310000000b004f2532cfbc1sm4700lfh.81.2023.05.29.06.52.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 May 2023 06:52:41 -0700 (PDT)
+        Mon, 29 May 2023 06:52:42 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Mon, 29 May 2023 15:52:30 +0200
-Subject: [PATCH v8 11/18] drm/msm/adreno: Disable has_cached_coherent in
- GMU wrapper configurations
+Date:   Mon, 29 May 2023 15:52:31 +0200
+Subject: [PATCH v8 12/18] drm/msm/a6xx: Add support for A619_holi
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230223-topic-gmuwrapper-v8-11-69c68206609e@linaro.org>
+Message-Id: <20230223-topic-gmuwrapper-v8-12-69c68206609e@linaro.org>
 References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
 In-Reply-To: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -76,11 +75,11 @@ Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         Marijn Suijten <marijn.suijten@somainline.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1685368343; l=1374;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1685368343; l=4010;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=Ocm0vLk+RPaXxNK50G6/CzW6Z0tf26goam4OhjTSWzI=;
- b=OqnZmmRzBagGO+AOTrI+XHelqF3EIrMG+V9wzMJiWxI2d7ec+LBLcEAQeWd3/PRVxqEVdvWEp
- mJS/OIqE32OBBWlH7Zwv4UhJkkd+aYRL2Vi2oGPZNQkASJogpaYiT/0
+ bh=aKOKSCJ6t3/Hd9vl27cppwKNdpDBx2SmjHodX0JtW8A=;
+ b=vp5j5jt5ELZFOf833i3i+IWDRtEHW/GspmcVxCdLf0R0JQFI8wRsHvq7+nPvtfsa8pGmTCMg2
+ dv92MFLRe8xBZSIQ5vW8kFquo5y3clTs54kq40TgaslWQY8S40YzuVu
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -93,40 +92,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A610 and A619_holi don't support the feature. Disable it to make the GPU stop
-crashing after almost each and every submission - the received data on
-the GPU end was simply incomplete in garbled, resulting in almost nothing
-being executed properly. Extend the disablement to adreno_has_gmu_wrapper,
-as none of the GMU wrapper Adrenos that don't support yet seem to feature it.
+A619_holi is a GMU-less variant of the already-supported A619 GPU.
+It's present on at least SM4350 (holi) and SM6375 (blair). No mesa
+changes are required. Add the required kernel-side support for it.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/gpu/drm/msm/adreno/adreno_device.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c   | 27 +++++++++++++++++++++++++--
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h |  5 +++++
+ 2 files changed, 30 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
-index 8cff86e9d35c..b133755a56c4 100644
---- a/drivers/gpu/drm/msm/adreno/adreno_device.c
-+++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
-@@ -551,7 +551,6 @@ static int adreno_bind(struct device *dev, struct device *master, void *data)
- 		config.rev.minor, config.rev.patchid);
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+index 0a44762dbb6d..bb04f65e6f68 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+@@ -810,6 +810,9 @@ static void a6xx_set_ubwc_config(struct msm_gpu *gpu)
+ 	if (adreno_is_a618(adreno_gpu))
+ 		return;
  
- 	priv->is_a2xx = config.rev.core == 2;
--	priv->has_cached_coherent = config.rev.core >= 6;
- 
- 	gpu = info->init(drm);
- 	if (IS_ERR(gpu)) {
-@@ -563,6 +562,10 @@ static int adreno_bind(struct device *dev, struct device *master, void *data)
- 	if (ret)
- 		return ret;
- 
-+	if (config.rev.core >= 6)
-+		if (!adreno_has_gmu_wrapper(to_adreno_gpu(gpu)))
-+			priv->has_cached_coherent = true;
++	if (adreno_is_a619_holi(adreno_gpu))
++		hbb_lo = 0;
 +
- 	return 0;
+ 	if (adreno_is_a640_family(adreno_gpu))
+ 		amsbc = 1;
+ 
+@@ -1027,7 +1030,12 @@ static int hw_init(struct msm_gpu *gpu)
+ 	}
+ 
+ 	/* Clear GBIF halt in case GX domain was not collapsed */
+-	if (a6xx_has_gbif(adreno_gpu)) {
++	if (adreno_is_a619_holi(adreno_gpu)) {
++		gpu_write(gpu, REG_A6XX_GBIF_HALT, 0);
++		gpu_write(gpu, REG_A6XX_RBBM_GPR0_CNTL, 0);
++		/* Let's make extra sure that the GPU can access the memory.. */
++		mb();
++	} else if (a6xx_has_gbif(adreno_gpu)) {
+ 		gpu_write(gpu, REG_A6XX_GBIF_HALT, 0);
+ 		gpu_write(gpu, REG_A6XX_RBBM_GBIF_HALT, 0);
+ 		/* Let's make extra sure that the GPU can access the memory.. */
+@@ -1036,6 +1044,9 @@ static int hw_init(struct msm_gpu *gpu)
+ 
+ 	gpu_write(gpu, REG_A6XX_RBBM_SECVID_TSB_CNTL, 0);
+ 
++	if (adreno_is_a619_holi(adreno_gpu))
++		a6xx_sptprac_enable(gmu);
++
+ 	/*
+ 	 * Disable the trusted memory range - we don't actually supported secure
+ 	 * memory rendering at this point in time and we don't want to block off
+@@ -1656,12 +1667,18 @@ static void a6xx_llc_slices_init(struct platform_device *pdev,
+ #define GBIF_CLIENT_HALT_MASK		BIT(0)
+ #define GBIF_ARB_HALT_MASK		BIT(1)
+ #define VBIF_XIN_HALT_CTRL0_MASK	GENMASK(3, 0)
++#define VBIF_RESET_ACK_MASK		0xF0
++#define GPR0_GBIF_HALT_REQUEST		0x1E0
+ 
+ void a6xx_bus_clear_pending_transactions(struct adreno_gpu *adreno_gpu, bool gx_off)
+ {
+ 	struct msm_gpu *gpu = &adreno_gpu->base;
+ 
+-	if (!a6xx_has_gbif(adreno_gpu)) {
++	if (adreno_is_a619_holi(adreno_gpu)) {
++		gpu_write(gpu, 0x18, GPR0_GBIF_HALT_REQUEST);
++		spin_until((gpu_read(gpu, REG_A6XX_RBBM_VBIF_GX_RESET_STATUS) &
++				(VBIF_RESET_ACK_MASK)) == VBIF_RESET_ACK_MASK);
++	} else if (!a6xx_has_gbif(adreno_gpu)) {
+ 		gpu_write(gpu, REG_A6XX_VBIF_XIN_HALT_CTRL0, VBIF_XIN_HALT_CTRL0_MASK);
+ 		spin_until((gpu_read(gpu, REG_A6XX_VBIF_XIN_HALT_CTRL1) &
+ 				(VBIF_XIN_HALT_CTRL0_MASK)) == VBIF_XIN_HALT_CTRL0_MASK);
+@@ -1756,6 +1773,9 @@ static int a6xx_pm_resume(struct msm_gpu *gpu)
+ 	if (ret)
+ 		goto err_bulk_clk;
+ 
++	if (adreno_is_a619_holi(adreno_gpu))
++		a6xx_sptprac_enable(gmu);
++
+ 	/* If anything goes south, tear the GPU down piece by piece.. */
+ 	if (ret) {
+ err_bulk_clk:
+@@ -1815,6 +1835,9 @@ static int a6xx_pm_suspend(struct msm_gpu *gpu)
+ 	/* Drain the outstanding traffic on memory buses */
+ 	a6xx_bus_clear_pending_transactions(adreno_gpu, true);
+ 
++	if (adreno_is_a619_holi(adreno_gpu))
++		a6xx_sptprac_disable(gmu);
++
+ 	clk_bulk_disable_unprepare(gpu->nr_clocks, gpu->grp_clks);
+ 
+ 	pm_runtime_put_sync(gmu->gxpd);
+diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+index ee5352bc5329..432fee5c1516 100644
+--- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
++++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+@@ -252,6 +252,11 @@ static inline int adreno_is_a619(struct adreno_gpu *gpu)
+ 	return gpu->revn == 619;
  }
  
++static inline int adreno_is_a619_holi(struct adreno_gpu *gpu)
++{
++	return adreno_is_a619(gpu) && adreno_has_gmu_wrapper(gpu);
++}
++
+ static inline int adreno_is_a630(struct adreno_gpu *gpu)
+ {
+ 	return gpu->revn == 630;
 
 -- 
 2.40.1
