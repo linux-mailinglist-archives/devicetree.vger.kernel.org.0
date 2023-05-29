@@ -2,315 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 240E97145C9
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 09:57:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C84677145D7
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 10:02:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231455AbjE2H5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 03:57:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59166 "EHLO
+        id S231502AbjE2ICh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 04:02:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229965AbjE2H5w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 03:57:52 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3A65AC;
-        Mon, 29 May 2023 00:57:50 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-514924b4f8cso2914340a12.3;
-        Mon, 29 May 2023 00:57:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685347069; x=1687939069;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qqGqiO4ndkjf0+jSsXuDX+UyXqG51piAUZDUSuHN4n0=;
-        b=g890nTuCK59aYad1AAbzUTKgqG343hFWwrQVdLcJB7bl51HmS4hEHyTbUBPmhvsm51
-         V/PhNdSjzdd8qbrY6Ba/qIua6eravlQ+45w1UDpuyD7wFmDC96xgY2wmflKQE9Tg3Bq8
-         iLgOg2Ou/qM+AxExe8FjeAgf07FIS1ai/y/Ec4i/VibwxtK6HJhtNw4vn/kwLu7cmp+x
-         7tzuxXon27wJSbQqAhojQiHHZSdw0wGwCJiFXKdI+GE1OQk3NPPFpTG/kOuWOkIR2rSu
-         bRdGmvaTRcMrofm8LIvCQLNCeWTpvmVCKaFSE9EZTqYql23BBmLX1Gof6wfgsKUF74K3
-         3OSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685347069; x=1687939069;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qqGqiO4ndkjf0+jSsXuDX+UyXqG51piAUZDUSuHN4n0=;
-        b=TUpn8Ym5p0i5P1fr2NpwLloYjkuXZ0mu+r/rp51je3M4YPYmYgXY1lhCYyG6d9jeUS
-         eapb3THk2J6IOijWcy1mMbUzH4yIaeus3MYGOnC5eNcJ4gSUZ91+LNGKdnjMvAsUIcKB
-         URjb/F2xmzfvhaxubcBDM5v2LSKvX+ZEiWGECyYA7ugep7un1c2fN0ltF7k67rMszSgH
-         iauBNodhQ8wRYwQXmLiHp6j0g5zDDkOISkPBM0swOzGXK41zf2pR9nl6ydfR+pXV2+Aj
-         /vXplqm0jWu6dTESk1rcbpOaslG9mhfA5NxYBEeULe23i5PZDm9WvKAwxzLCRj0Tm1IY
-         vKXg==
-X-Gm-Message-State: AC+VfDwkXZqgIkOwayKgxyn2aYafa3O/jACI6f6SJjuu9evN7YqRGJ6p
-        lZ2BeNifinHi5tx5D46B6cM=
-X-Google-Smtp-Source: ACHHUZ4NRmJMKd+1mQzdudbceBwYSK5vISu+5C0co5Xwsapztsi8NsAGKPYsg9E2msEbdwtg7K5HNA==
-X-Received: by 2002:a50:ef10:0:b0:514:8e56:4cae with SMTP id m16-20020a50ef10000000b005148e564caemr5999786eds.8.1685347069282;
-        Mon, 29 May 2023 00:57:49 -0700 (PDT)
-Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation (net-188-217-50-121.cust.vodafonedsl.it. [188.217.50.121])
-        by smtp.gmail.com with ESMTPSA id z4-20020aa7d404000000b0050bc9ffed66sm2782001edq.53.2023.05.29.00.57.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 May 2023 00:57:48 -0700 (PDT)
-Date:   Mon, 29 May 2023 09:57:45 +0200
-From:   Tommaso Merciai <tomm.merciai@gmail.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        jacopo.mondi@ideasonboard.com, martin.hecht@avnet.eu,
-        linuxfancy@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        Mikhail Rudenko <mike.rudenko@gmail.com>,
-        Nicholas Roth <nicholas@rothemail.net>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Michael Roeder <michael.roeder@avnet.eu>
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: alvium: add document YAML
- binding
-Message-ID: <ZHRa+Uzmez9Q+sX1@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
-References: <20230526173955.797226-1-tomm.merciai@gmail.com>
- <20230526173955.797226-2-tomm.merciai@gmail.com>
- <ZHPElYOeD2C1qo4R@kekkonen.localdomain>
- <20230529063907.GB25984@pendragon.ideasonboard.com>
+        with ESMTP id S229556AbjE2ICf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 04:02:35 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AFFEA7;
+        Mon, 29 May 2023 01:02:33 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 79C1C6605961;
+        Mon, 29 May 2023 09:02:31 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685347352;
+        bh=A4ZNREQoh5/KC7x7Aai+h2epscmtPk1u6BBSzcPw1yE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=dX6SHWyOxgUzPCOpqEMFwfU+oDrE2Q9SSL6ricQ3zd7lGcaD3r9IwZdbfbjLB40Ik
+         Sp4UqpDoKXrblE28lnsvwltd+8w2d1o57AMCrzERi6Zr3wrjVGUhC+zN5y5Tpk1kD6
+         eOpc8OW1TZ+ytBLa4U0aLa/o2vJCU+gXldjU5EoOJB8mUwz08lgUMnRqyw811AxiRX
+         k4EIiiMVX3rQP1iElyi+w4xNvoFcIfxZAzWHGN+5I1x9LAg0ZCUnAp+6f3dN5rJ7BN
+         X6qv/9KC+Oc3PFU/EKQzH+OcXUw0LAmu+4wh/6fRoIt/mkdD5khf6bc9v01SLa+C3B
+         fLDu65wLzWeSg==
+Message-ID: <f4a9e090-3712-200e-bd09-70090c9cccbc@collabora.com>
+Date:   Mon, 29 May 2023 10:02:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230529063907.GB25984@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8173-elm: remove panel model
+ number in DT
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>,
+        Icenowy Zheng <uwu@icenowy.me>,
+        Pin-yen Lin <treapking@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20230526100801.16310-1-uwu@icenowy.me>
+ <CAD=FV=UxrFVZXn+dtgamttTVopWMSVbxYsHCGG_tS+3OTXbHiw@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAD=FV=UxrFVZXn+dtgamttTVopWMSVbxYsHCGG_tS+3OTXbHiw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Laurent,
-
-On Mon, May 29, 2023 at 09:39:07AM +0300, Laurent Pinchart wrote:
-> On Sun, May 28, 2023 at 09:16:05PM +0000, Sakari Ailus wrote:
-> > On Fri, May 26, 2023 at 07:39:43PM +0200, Tommaso Merciai wrote:
-> > > Add documentation of device tree in YAML schema for the ALVIUM
-> > > Camera from Allied Vision Inc.
-> > > 
-> > > References:
-> > >  - https://www.alliedvision.com/en/products/embedded-vision-solutions
-> > > 
-> > > Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
-> > > ---
-> > > Changes since v1:
-> > >  - Fixed build error as suggested by RHerring bot
-> > > 
-> > >  .../media/i2c/alliedvision,alvium.yaml        | 115 ++++++++++++++++++
-> > >  1 file changed, 115 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
-> > > new file mode 100644
-> > > index 000000000000..81e9e560c99d
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
-> > > @@ -0,0 +1,115 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Alliedvision Alvium Camera
+Il 26/05/23 16:24, Doug Anderson ha scritto:
+> Hi,
 > 
-> s/Alliedvision/Allied Vision/
-
-Arg... Thanks :)
-
+> On Fri, May 26, 2023 at 3:09 AM Icenowy Zheng <uwu@icenowy.me> wrote:
+>>
+>> Currently a specific panel number is used in the Elm DTSI, which is
+>> corresponded to a 12" panel. However, according to the official Chrome
+>> OS devices document, Elm refers to Acer Chromebook R13, which, as the
+>> name specifies, uses a 13.3" panel, which comes with EDID information.
+>>
+>> As the kernel currently prioritizes the hardcoded timing parameters
+>> matched with the panel number compatible, a wrong timing will be applied
+>> to the 13.3" panel on Acer Chromebook R13, which leads to blank display.
+>>
+>> Because the Elm DTSI is shared with Hana board, and Hana corresponds to
+>> multiple devices from 11" to 14", a certain panel model number shouldn't
+>> be present, and driving the panel according to its EDID information is
+>> necessary.
+>>
+>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> > > +
-> > > +maintainers:
-> > > +  - Tommaso Merciai <tomm.merciai@gmail.com>
-> > > +  - Martin Hecht <martin.hecht@avnet.eu>
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/media/video-interface-devices.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: alliedvision,alvium
+> We went through a bunch of back-and-forth here but in the end in the
+> ChromeOS tree we have "edp-panel" as the "compatible" here in the
+> ChromeOS 5.15 tree and this makes sense.
 > 
-> The name is very generic. There are Alvium camera modules that have a
-> GMSL or FPD-Link interface, and I'm pretty sure those will require a
-> different driver. I would add module-specific compatible strings (e.g.
-> "alliedvision,alvium-1500c", ...) here, with a generic fallback.
-> "alliedvision,alvium" isn't good as it won't cover GMSL or FPD-Link,
-> maybe "alliedvision,alvium-csi2" would be an option.
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
 > 
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    description: XCLK Input Clock
-> > > +
-> > > +  clock-names:
-> > > +    const: xclk
-> > 
-> > I'd also drop this as you have a single clock only: it's redundant.
-> > 
-> > > +
-> > > +  powerdown-gpios:
-> > > +    maxItems: 1
-> > > +    description: >
-> > > +      Reference to the GPIO connected to the powerdown pin, if any.
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +    description: >
-> > > +      Reference to the GPIO connected to the reset pin, if any.
+> ...in theory one would wish for a "Fixes" tag, but I think in previous
+> discussions it was decided that it was too complicated. Hardcoding the
+> other compatible string has always been technically wrong, but I guess
+> it worked at some point in time. The more correct way (as you're doing
+> here) needs the DP AUX bus support and the generic eDP panels, both of
+> which are significantly newer than the elm dts. So I guess leaving no
+> "Fixes" tag is OK, or perhaps you could do the somewhat weak:
 > 
-> Reading the Alvium CSI-2 Cameras User Guide, I don't see any powerdown
-> or reset pin on the 22-pin connector. Am I missing something ? There are
-> however two GPIOs (in addition to the I2C signals that are also
-> documented as GPIOs), do you plan to support those ?
+> Fixes: c2d94f72140a ("arm64: dts: mediatek: mt8173-elm: Move display
+> to ps8640 auxiliary bus")
 
-You are completely right I will drop rst and pwdn pins.
-About 2 gpios, we don't use those for now.
+I remember I didn't change the compatible to panel-edp because it didn't
+work at that time, but it does now... I'm not sure what actually fixed that
+and if the commit(s) was/were backported to that suggested point, so I
+would leave the Fixes tag out, as that may break older kernels.
 
-> 
-> > > +
-> > > +  streamon-delay:
-> > > +    maxItems: 1
-> > > +    description: >
-> > > +      Delay before camera start capturing frames in us.
-> 
-> Add "-us" to the property name to indicate the unit.
-> 
-> This is a vendor-specific property, and should thus have a vendor
-> prefix.
-> 
-> A longer description is needed, from that single line I have no idea
-> what the property does exactly.
+Anyway, for this commit:
 
-Thanks for the suggestion.
-I will provide a cleared description on v3.
-
-> 
-> > > +
-> > > +  rotation:
-> > > +    enum:
-> > > +      - 0
-> > > +      - 180
-> 
-> Why is the rotation restricted to 0 or 180 ? Someone could mount the
-> module with  90 degrees rotation, shouldn't the DT bindings allow
-> describing that ?
-
-I'll drop rotation.
-
-> 
-> You need a property for the vcc-ext-in supply.
-
-Can you give me more details about this?
-Thanks.
-
-> 
-> > > +
-> > > +  port:
-> > > +    description: Digital Output Port
-> > > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +    additionalProperties: false
-> > > +
-> > > +    properties:
-> > > +      endpoint:
-> > > +        $ref: /schemas/media/video-interfaces.yaml#
-> > > +        unevaluatedProperties: false
-> > > +
-> > > +        properties:
-> > > +          clock-lanes:
-> > > +            const: 0
-> > 
-> > The driver can know this, no need to have it in DT, i.e. please drop it.
-> > 
-> > > +          data-lanes:
-> > > +            minItems: 1
-> > > +            maxItems: 4
-> > > +          link-frequencies: true
-> > > +
-> > > +        required:
-> > > +          - data-lanes
-> > > +          - link-frequencies
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - clocks
-> > > +  - clock-names
-> > > +  - port
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +      #include <dt-bindings/gpio/gpio.h>
-> > > +      #include <dt-bindings/clock/imx8mp-clock.h>
-> > > +
-> > > +      i2c {
-> > > +          #address-cells = <1>;
-> > > +          #size-cells = <0>;
-> > > +
-> > > +          camera: alvium@3c {
-> > > +              compatible = "alliedvision,alvium";
-> 
-> The "alliedvision" prefix is missing from
-> Documentation/devicetree/bindings/vendor-prefixes.yaml.
-
-oks
-
-> 
-> > > +              pinctrl-names = "default";
-> > > +              pinctrl-0 = <&pinctrl_csi0_pwn>, <&pinctrl_csi0_rst>, <&pinctrl_csi_mclk>;
-> 
-> I'd drop pinctrl, it makes the example longer without adding much value.
-
-oks
-
-> 
-> > > +              reg = <0x3c>;
-> > > +              clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
-> > > +              clock-names = "xclk";
-> > > +              assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
-> > > +              assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
-> > > +              assigned-clock-rates = <24000000>;
-> > > +              streamon-delay = <20>;
-> > > +              powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
-> > > +              reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
-> > > +              status = "okay";
-> > > +
-> > > +              port {
-> > > +                  alvium_out: endpoint {
-> > > +                      remote-endpoint = <&mipi_csi_0_in>;
-> > > +                      data-lanes = <1 2 3 4>;
-> > > +                      link-frequencies = /bits/ 64 <681250000>;
-> > > +                      clock-lanes = <0>;
-> > > +                  };
-> > > +              };
-> > > +          };
-> > > +      };
-> > > +
-> > > +...
-
-Thanks for your time.
-
-Regards,
-Tommaso
-
-
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
