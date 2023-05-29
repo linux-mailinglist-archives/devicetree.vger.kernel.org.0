@@ -2,195 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90BCA714835
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 12:49:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D43AD71487A
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 13:26:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230388AbjE2Ktj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 06:49:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41818 "EHLO
+        id S231478AbjE2L0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 07:26:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229965AbjE2Ktf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 06:49:35 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47C97C2;
-        Mon, 29 May 2023 03:49:33 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34TAnO1Z089145;
-        Mon, 29 May 2023 05:49:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1685357364;
-        bh=0MHzJQiVfolu0HjY0ae28OKooLMIQmAJEbGRg4/hQGU=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=KhLrIxHm7OxKoae64uvhQrPeFH4WtqQZCZU7Mwjd5JmEVRAzp7s9TmAdX0Y7GMU81
-         nla5uKXMTrRWtAABex8DVGa5AlVHPktj6+sp55++GQj4vGZRM0LDAmpCDRm4s7rgEX
-         E04VN6iqH33RGXUO1dNVTIm/7ZnIY+T3e/SLZDN8=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34TAnO8B119652
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 29 May 2023 05:49:24 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
- May 2023 05:49:24 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 29 May 2023 05:49:24 -0500
-Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34TAnDno028618;
-        Mon, 29 May 2023 05:49:21 -0500
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <afd@ti.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721s2: Add overlay to enable main CPSW2G with GESI
-Date:   Mon, 29 May 2023 16:19:13 +0530
-Message-ID: <20230529104913.560045-3-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230529104913.560045-1-s-vadapalli@ti.com>
-References: <20230529104913.560045-1-s-vadapalli@ti.com>
+        with ESMTP id S229636AbjE2L0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 07:26:10 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AF0DE3;
+        Mon, 29 May 2023 04:26:04 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34TAa3kr031395;
+        Mon, 29 May 2023 11:26:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=2AqSR667t5Vzc2GyeIS1unOFBhkMKqudJXgsYyN/Rj0=;
+ b=En/epoxJfCCiNZXt3InPr+qrqPYANvrMLcUbEib3E4nf4EKE9bAadqiDEpZOtlCPy9A8
+ sP0ZaG+b4bQLuvAz+GpgawZXftzcKr8yR6UwxMYyClRW77/0HGuslw+i48wMqEuJscyK
+ 3gWUcCXT5IBYeobQ6zSL6PJRn/MUub66M3TVo73aqAeRRDYiTNQbfGeS8GfJoGsEXojq
+ 80P2oDlfLY4812HYMsyTmIfp98h5Xo+ppnCQnRmDqd0gWYR+U19CMkAVd+WtIi6gFU+l
+ 4P0tC29JKdxzDl6S2UBDHm0qqikL15YljQKC7vP/XhhvIjNxM/c5rGvW4OkaEJH6jtbs Xg== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3quaqpbbg0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 29 May 2023 11:26:00 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34TBPxdX001481
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 29 May 2023 11:25:59 GMT
+Received: from [10.201.198.120] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 29 May
+ 2023 04:25:53 -0700
+Message-ID: <408e5161-f290-68a6-048c-472a2b34a587@quicinc.com>
+Date:   Mon, 29 May 2023 16:55:49 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq9574: add support for RDP454
+ variant
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_devipriy@quicinc.com>
+References: <20230519103128.30783-1-quic_poovendh@quicinc.com>
+ <20230519103128.30783-3-quic_poovendh@quicinc.com>
+ <8a5df35a-2429-3880-6a1e-795c13c3b3d1@linaro.org>
+From:   POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>
+In-Reply-To: <8a5df35a-2429-3880-6a1e-795c13c3b3d1@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: EngBIo-bPQYd3djRPm80XBROK92y441T
+X-Proofpoint-ORIG-GUID: EngBIo-bPQYd3djRPm80XBROK92y441T
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-29_07,2023-05-25_03,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ bulkscore=0 impostorscore=0 priorityscore=1501 mlxlogscore=999
+ clxscore=1011 spamscore=0 suspectscore=0 phishscore=0 malwarescore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305290098
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kishon Vijay Abraham I <kishon@ti.com>
 
-The MAIN CPSW2G instance of CPSW on J721S2 SoC can be enabled with the GESI
-Expansion Board connected to the J7 Common-Proc-Board. Use the overlay
-to enable this.
+On 5/19/2023 11:01 PM, Konrad Dybcio wrote:
+>
+> On 19.05.2023 12:31, Poovendhan Selvaraj wrote:
+>> From: POOVENDHAN SELVARAJ <quic_poovendh@quicinc.com>
+>>
+>> Add the initial device tree support for the Reference Design Platform (RDP)
+>> 454 based on IPQ9574 family of SoCs. This patch adds support for Console
+>> UART, SPI NOR and SMPA1 regulator node.
+>>
+>> Signed-off-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/Makefile           |  1 +
+>>   arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts | 92 +++++++++++++++++++++
+>>   2 files changed, 93 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>> index 7b5466395f46..834e790bec90 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c2.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp418.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp433.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp449.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq9574-rdp454.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-acer-a1-724.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-asus-z00l.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts
+>> new file mode 100644
+>> index 000000000000..b3e853a9cc94
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts
+>> @@ -0,0 +1,92 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+>> +/*
+>> + * IPQ9574 RDP454 board device tree source
+>> + *
+>> + * Copyright (c) 2020-2021 The Linux Foundation. All rights reserved.
+>> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "ipq9574.dtsi"
+>> +
+>> +/ {
+>> +	model = "Qualcomm Technologies, Inc. IPQ9574/AP-AL02-C9";
+>> +	compatible = "qcom,ipq9574-ap-al02-c9", "qcom,ipq9574";
+>> +
+>> +	aliases {
+>> +		serial0 = &blsp1_uart2;
+>> +	};
+>> +
+>> +	chosen {
+>> +		stdout-path = "serial0:115200n8";
+>> +	};
+>> +};
+>> +
+>> +/* In AL02-C9, the max supported CPU Freq is 1.5 GHz. Disabling frequencies beyond 1.5GHz*/
+> In -> On
+>
+> GHz*/ -> GHz */
+>
+> Disabling -> Disable
+Okay. Will address them in next spin
+>
+> Can this not be determined based on fuse values?
 
-Add alias for the MAIN CPSW2G port to enable kernel to fetch MAC address
-directly from U-Boot.
+Yes...That should be possible.Will then drop the below cpu_opp_table 
+entries and post a separate series for the same.
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile               |  2 +
- .../dts/ti/k3-j721s2-evm-gesi-exp-board.dtso  | 85 +++++++++++++++++++
- 2 files changed, 87 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
+>
+>> +&cpu_opp_table {
+>> +	opp-1800000000 {
+>> +		opp-supported-hw = <0>;
+>> +	};
+>> +
+>> +	opp-2208000000 {
+>> +		opp-supported-hw = <0>;
+>> +	};
+>> +};
+>> +
+>> +/* Disable IPQ9574 integrated radio's reserved memory */
+> ?
+>
+> Konrad
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index c83c9d772b81..13db9b8dbe1d 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -42,6 +42,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
- # Boards with J721s2 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
- 
- # Boards with J784s4 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
-@@ -49,3 +50,4 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
- 
- # Enable support for device-tree overlays
- DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
-+DTC_FLAGS_k3-j721s2-common-proc-board += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso b/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
-new file mode 100644
-index 000000000000..9ababfeef904
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
-@@ -0,0 +1,85 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/**
-+ * DT Overlay for MAIN CPSW2G using GESI Expansion Board with J7 common processor board.
-+ *
-+ * GESI Board Product Link: https://www.ti.com/tool/J7EXPCXEVM
-+ *
-+ * Copyright (C) 2023 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/net/ti-dp83867.h>
-+
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	aliases {
-+		ethernet1 = "/bus@100000/ethernet@c200000/ethernet-ports/port@1";
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_cpsw_mdio_pins_default: main-cpsw-mdio-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0c0, PIN_OUTPUT, 6) /* (T28) MCASP1_AXR0.MDIO0_MDC */
-+			J721S2_IOPAD(0x0bc, PIN_INPUT, 6) /* (V28) MCASP1_AFSX.MDIO0_MDIO */
-+		>;
-+	};
-+
-+	rgmii1_pins_default: rgmii1-pins-default {
-+		pinctrl-single,pins = <
-+			J721S2_IOPAD(0x0b8, PIN_INPUT, 6) /* (AA24) MCASP1_ACLKX.RGMII1_RD0 */
-+			J721S2_IOPAD(0x0a0, PIN_INPUT, 6) /* (AB25) MCASP0_AXR12.RGMII1_RD1 */
-+			J721S2_IOPAD(0x0a4, PIN_INPUT, 6) /* (T23) MCASP0_AXR13.RGMII1_RD2 */
-+			J721S2_IOPAD(0x0a8, PIN_INPUT, 6) /* (U24) MCASP0_AXR14.RGMII1_RD3 */
-+			J721S2_IOPAD(0x0b0, PIN_INPUT, 6) /* (AD26) MCASP1_AXR3.RGMII1_RXC */
-+			J721S2_IOPAD(0x0ac, PIN_INPUT, 6) /* (AC25) MCASP0_AXR15.RGMII1_RX_CTL */
-+			J721S2_IOPAD(0x08c, PIN_OUTPUT, 6) /* (T25) MCASP0_AXR7.RGMII1_TD0 */
-+			J721S2_IOPAD(0x090, PIN_OUTPUT, 6) /* (W24) MCASP0_AXR8.RGMII1_TD1 */
-+			J721S2_IOPAD(0x094, PIN_OUTPUT, 6) /* (AA25) MCASP0_AXR9.RGMII1_TD2 */
-+			J721S2_IOPAD(0x098, PIN_OUTPUT, 6) /* (V25) MCASP0_AXR10.RGMII1_TD3 */
-+			J721S2_IOPAD(0x0b4, PIN_OUTPUT, 6) /* (U25) MCASP1_AXR4.RGMII1_TXC */
-+			J721S2_IOPAD(0x09c, PIN_OUTPUT, 6) /* (T24) MCASP0_AXR11.RGMII1_TX_CTL */
-+		>;
-+	};
-+};
-+
-+&exp1 {
-+	p15 {
-+		/* P15 - EXP_MUX2 */
-+		gpio-hog;
-+		gpios = <13 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "EXP_MUX2";
-+	};
-+};
-+
-+&main_cpsw {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rgmii1_pins_default>;
-+};
-+
-+&main_cpsw_mdio {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_cpsw_mdio_pins_default>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	main_cpsw_phy0: ethernet-phy@0 {
-+		reg = <0>;
-+		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-+		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+		ti,min-output-impedance;
-+	};
-+};
-+
-+&main_cpsw_port1 {
-+	status = "okay";
-+	phy-mode = "rgmii-rxid";
-+	phy-handle = <&main_cpsw_phy0>;
-+};
--- 
-2.25.1
+sorry, will drop it as it got added by mistake.
 
+Regards,
+Poovendhan S
+
+>> +&blsp1_spi0 {
+>> +	pinctrl-0 = <&spi_0_pins>;
+>> +	pinctrl-names = "default";
+>> +	status = "okay";
+>> +
+>> +	flash@0 {
+>> +		compatible = "micron,n25q128a11", "jedec,spi-nor";
+>> +		reg = <0>;
+>> +		#address-cells = <1>;
+>> +		#size-cells = <1>;
+>> +		spi-max-frequency = <50000000>;
+>> +	};
+>> +};
+>> +
+>> +&blsp1_uart2 {
+>> +	pinctrl-0 = <&uart2_pins>;
+>> +	pinctrl-names = "default";
+>> +	status = "okay";
+>> +};
+>> +
+>> +&rpm_requests {
+>> +	regulators {
+>> +		compatible = "qcom,rpm-mp5496-regulators";
+>> +
+>> +		ipq9574_s1: s1 {
+>> +		/*
+>> +		 * During kernel bootup, the SoC runs at 800MHz with 875mV set by the bootloaders.
+>> +		 * During regulator registration, kernel not knowing the initial voltage,
+>> +		 * considers it as zero and brings up the regulators with minimum supported voltage.
+>> +		 * Update the regulator-min-microvolt with SVS voltage of 725mV so that
+>> +		 * the regulators are brought up with 725mV which is sufficient for all the
+>> +		 * corner parts to operate at 800MHz
+>> +		 */
+>> +			regulator-min-microvolt = <725000>;
+>> +			regulator-max-microvolt = <1075000>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&sleep_clk {
+>> +	clock-frequency = <32000>;
+>> +};
+>> +
+>> +&tlmm {
+>> +	spi_0_pins: spi-0-state {
+>> +		pins = "gpio11", "gpio12", "gpio13", "gpio14";
+>> +		function = "blsp0_spi";
+>> +		drive-strength = <8>;
+>> +		bias-disable;
+>> +	};
+>> +};
+>> +
+>> +&xo_board_clk {
+>> +	clock-frequency = <24000000>;
+>> +};
