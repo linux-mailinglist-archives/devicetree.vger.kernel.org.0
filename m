@@ -2,135 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F80E714F68
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 20:36:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3418D714F69
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 20:36:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229472AbjE2SgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 14:36:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43242 "EHLO
+        id S229478AbjE2SgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 14:36:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjE2SgL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 14:36:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB384C4;
-        Mon, 29 May 2023 11:36:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 532A962769;
-        Mon, 29 May 2023 18:36:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFCECC433D2;
-        Mon, 29 May 2023 18:36:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685385368;
-        bh=lkTfNrYOzCpI6SoJNVwaVPp2FKlAnmBT7ORl+lXnr8k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PtFPe3kDIykYxjwzabBZHJtnv4O8hLCMDBeWrQClthr/SU4D1WMpa7v6pkwJ/a70E
-         nH4QeRLPkjUnu7qq5LXJh/sFyvz8nqwGSTqnBvlxByRTK6TyrJczkIBqJTNC3U7iuw
-         ujFSGtyg7bYwhwKAz/tU5jA86PcqCvRc4lsQs+4hfZCfBhdexJfzlsx0S49jVLaOcA
-         lOMO0xXJY9KKjb+2Q5Faa5kxxpkAqMidCaQOMxit47KIOz0dTqzDkmsop89Jf1mMDv
-         8BoGWF6zJUQvcUorlTYmxHs17s/syiEM7Xzo23vBnVIYCUAT9ioIxhfx4fqaUr1KZ3
-         xSNYp7O7WxZkw==
-Date:   Mon, 29 May 2023 19:36:03 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        geert+renesas@glider.be, magnus.damm@gmail.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH net-next 1/5] dt-bindings: net: r8a779f0-ether-switch:
- Add ACLK
-Message-ID: <20230529-cassette-carnivore-4109a31ccd11@spud>
-References: <20230529080840.1156458-1-yoshihiro.shimoda.uh@renesas.com>
- <20230529080840.1156458-2-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S229577AbjE2SgT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 14:36:19 -0400
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4ACBDC
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 11:36:16 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-568900c331aso14316357b3.3
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 11:36:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685385376; x=1687977376;
+        h=to:subject:message-id:date:from:sender:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xA47Ni5t/7XV0W1xjAwHZ0TOPYS+bs2DngwWSaFoKKY=;
+        b=hZGvlES+AP5BxsI8K0JI2bO3HXWre6SmiJlA5rwmhPvJ5UuVmbzraDDfusrZfZ6QGn
+         /N80ESTUkdslqQ5FnfvkOzrWyCqdxYMWl/JTwgS+Ps4/7OmEmMd1W5Qa5vw8F4fDwBql
+         RNiJPnviRw6ztrEZrXxH2GnZIuaV3t0TfjLtHWETlCWGiLn8DABCui7jfQ8xhC3QsZ/s
+         Okm+bz3Bxlgfo3Z4bq3xoinSi55w7svMeWkWvRx1dm50El09it/VqYsuKyyUmwU/MAAI
+         EXG8kWiCCbfN2B5153j1br9CtqoXV/qIUMUKRmmr1RvLwWLNL+5UNekV2DbakwV10wlI
+         B7gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685385376; x=1687977376;
+        h=to:subject:message-id:date:from:sender:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xA47Ni5t/7XV0W1xjAwHZ0TOPYS+bs2DngwWSaFoKKY=;
+        b=GJMiQxVr8VUEqPKHNOUOE6Y2DgpEP3VeOWK32SbJfy7hT08el/KZbzvWnKsP8Q5oAu
+         RtRjcG2wKUu8JDAYCqd8ipIYCtHuXYHROyjn4n3THnUlZgBSSTmE7SQ7dr6atKpQvIP2
+         9tlaHLlCBaEIbqXP3fHRZ75AvlAUwSYKHmnYvL9Wo0u8AVd8lMkLrrfpZ3IeZwABQbOs
+         4YhUYlK6sywM53DBA5XKe7sINGPJTG498C2HHYPrHfxBt1gqFdBgXaxPPuoBswyJQn7K
+         M/lJMYIbpN30JJMYXs3Touhf1VrLxgumtH3M7sHjxovwztSh/ZL1pajuu+8GTLcEHnoe
+         ouKA==
+X-Gm-Message-State: AC+VfDzTnCjLB4+qiq8Bwm0mEQDi8vBW+mgg8XVavrWvKsUG2hzpQN5g
+        kGQvEqYhwhzAD+/1P01UlsmQKS/F3rLoc62zV+Y=
+X-Google-Smtp-Source: ACHHUZ5DQJ6cUrBWAGL9MI8hDglvxwDFBRXufzmqFKilK6RO796D7K8cnh+GmH2Qp6CvhlmvfF7z45E+Jt1UfrkrIW4=
+X-Received: by 2002:a0d:ea88:0:b0:565:c8ad:90d3 with SMTP id
+ t130-20020a0dea88000000b00565c8ad90d3mr10328629ywe.43.1685385375991; Mon, 29
+ May 2023 11:36:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="8OwMbtV6y5wx6lrz"
-Content-Disposition: inline
-In-Reply-To: <20230529080840.1156458-2-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Sender: oliviahamilton706@gmail.com
+Received: by 2002:a05:7010:8caa:b0:358:1328:55aa with HTTP; Mon, 29 May 2023
+ 11:36:15 -0700 (PDT)
+From:   "Rev.sister Bridget" <mayawillmson@gmail.com>
+Date:   Mon, 29 May 2023 18:36:15 +0000
+X-Google-Sender-Auth: iNm4AnSIvZiJQXGYOrPLC_ojniA
+Message-ID: <CA+k-=v+rVYfD3Ljnad3VhUHxzODkfoFKbb=5yPxF1PshARgDpw@mail.gmail.com>
+Subject: hey
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---8OwMbtV6y5wx6lrz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey,
-
-On Mon, May 29, 2023 at 05:08:36PM +0900, Yoshihiro Shimoda wrote:
-> Add ACLK of GWCA which needs to calculate registers' values for
-> rate limiter feature.
->=20
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  .../bindings/net/renesas,r8a779f0-ether-switch.yaml    | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether=
--switch.yaml b/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether=
--switch.yaml
-> index e933a1e48d67..cbe05fdcadaf 100644
-> --- a/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch=
-=2Eyaml
-> +++ b/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-switch=
-=2Eyaml
-> @@ -75,7 +75,12 @@ properties:
->        - const: rmac2_phy
-> =20
->    clocks:
-> -    maxItems: 1
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: fck
-> +      - const: aclk
-
-Since having both clocks is now required, please add some detail in the
-commit message about why that is the case. Reading it sounds like this
-is an optional new feature & not something that is required.
-
-Thanks,
-Conor.
-
-> =20
->    resets:
->      maxItems: 1
-> @@ -221,7 +226,8 @@ examples:
->                            "rmac2_mdio",
->                            "rmac0_phy", "rmac1_phy",
->                            "rmac2_phy";
-> -        clocks =3D <&cpg CPG_MOD 1505>;
-> +        clocks =3D <&cpg CPG_MOD 1505>, <&cpg CPG_CORE R8A779F0_CLK_S0D2=
-_HSC>;
-> +        clock-names =3D "fck", "aclk";
->          power-domains =3D <&sysc R8A779F0_PD_ALWAYS_ON>;
->          resets =3D <&cpg 1505>;
-> =20
-> --=20
-> 2.25.1
->=20
-
---8OwMbtV6y5wx6lrz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHTwkwAKCRB4tDGHoIJi
-0ioFAP99inWrlxukmjHpvT9VUVemMgcZA3zU47zhjrwDpVsQDwEAwLykfanYED3H
-ymxwPcszUZKtk/BEKJfD1oEUiQLfpgg=
-=le1N
------END PGP SIGNATURE-----
-
---8OwMbtV6y5wx6lrz--
+-- 
+I'm rev.sister Bridget.
+i would like to talk to you
+hope you don't mind
