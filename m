@@ -2,78 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41851714D42
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 17:42:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CB27714D68
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 17:52:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229802AbjE2Pmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 11:42:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39036 "EHLO
+        id S230080AbjE2PwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 11:52:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229558AbjE2Pmp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 11:42:45 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2F5FA8;
-        Mon, 29 May 2023 08:42:44 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f6077660c6so22044345e9.0;
-        Mon, 29 May 2023 08:42:44 -0700 (PDT)
+        with ESMTP id S230081AbjE2PwN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 11:52:13 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98229D2
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 08:52:08 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2af29b37bd7so36156861fa.1
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 08:52:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685374963; x=1687966963;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1685375527; x=1687967527;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Jo5a/JXM5eyW7F1q0/7SeqrmDEnGh/l3ApKPMD9Menw=;
-        b=a9GXuJPJ1WwsWgUNonfxaq2F+J/b1NBIb60iy51Z522x3mLN3q1pu2zTaP5SkAbi85
-         9bmzZF6Y1t0vtmLk4WNkYV8aOG1x3Vcbh6EhvdA7xqPY6gym6Sjho1uepWWseO25KyC0
-         ujYqNu5v6CQ0PaW3wU4Fjw3Y7pAPJNITdWd8OQkFGOSOem3a0cgbm8KS2plJtuP1Elho
-         ZUelxc7ueCj5vfCLuI6GOaVwzB3/bvpb/OGd68KTg/Wo6XHyFc71vJKTacYKZN0Vnsw5
-         FuvJyMNfOl4ZVptsWiCJTdc1XFYGEArY/JSSYlna3ZXaNrDg8vsj2wyV/8Spl25H2HnO
-         xFaQ==
+        bh=8tUMB0Arnzo+AT6kHbEoV+hUDFUyJsBQnoR//IWQPk0=;
+        b=zLJpM1yMjM2jEAg0xkg0V82BM3gYCiuGXjeuQ8uqNFyeQVrsITa4s8pt9F1M9dX6em
+         amqHOwBzdrsB9VXJA7v/TwwrVxCTAPI9Gslc++AZQHeTOdDNbdZGE02FLVtRFE11DTn2
+         hR4KzEi4lK8dtAzVas2g3yifVoMEYxzHA6aOONQLjxWvmE4S1Pjqyamflerau4RpA3Yz
+         CtL1N86ytP6cnAA8HHiR36cQbXLNkaqocalSIrnGZ+0P5QKWwzdHv6r8rVSy7NjbJXnA
+         wPsBcrl7jgMx1qedXQ3MK4OzyCUFEzeYwEJUxF7b52QZYLvLZJMW5hOjtyzBHg5phOoJ
+         I6bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685374963; x=1687966963;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1685375527; x=1687967527;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Jo5a/JXM5eyW7F1q0/7SeqrmDEnGh/l3ApKPMD9Menw=;
-        b=Us+OapGyYsU/6/w8twVtVHjUOKgSum8v8pTo9o92uIC0EQTFRr2NECcX1rrUSTrDL/
-         25/1NFy3j9B1vV4VVsu0nlZCrGAl0ksM2ypKIzvy00/dbOG2fgUiAgz/MOzC6xfj5RzR
-         JhGBGyYBFTWUqP7Xx75DUCKEzzpuwYz/SWo8f3aOjiPnns2aWQcd5Oii1uxd0kUskYSq
-         01GzQ9vwWckGiXON1OzL0xuaGLDeDBuTfHANH6vx5MjzrFoSC137zvcDVfOup7+uWcxR
-         /3tSMuRtUGMLkH+xPe8N3hHbMIuYzwZkduLJKly68auOHb9Lx0eqWoMadNJSo5ly6DoQ
-         6MiA==
-X-Gm-Message-State: AC+VfDx3SifHLiZ9sOeBZBcQ5PqmKy6JibfsJuXuZLXNMmjWhU+V76sm
-        6h8ZJZfqTHjPmQkfN/ychFg=
-X-Google-Smtp-Source: ACHHUZ44sfIsfx0Za8jPqM0u7GQcawEC5lcy0s9b1DixpfISlRFlYpxslgFy1XaCY3F/xqRBrpjuTg==
-X-Received: by 2002:a7b:c7d0:0:b0:3f6:f152:1183 with SMTP id z16-20020a7bc7d0000000b003f6f1521183mr10002428wmk.37.1685374963211;
-        Mon, 29 May 2023 08:42:43 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id t7-20020a7bc3c7000000b003f6132f95e6sm18176715wmj.35.2023.05.29.08.42.41
+        bh=8tUMB0Arnzo+AT6kHbEoV+hUDFUyJsBQnoR//IWQPk0=;
+        b=hXbypPcLBO7AlRgSdUwhRH+F/nCkTS8BiJR7bj7phnJfncyDTWtWNZfm7UYZdIrkMk
+         YSrorTyvfgn24U6fN3ytSmY56n/vYZ5hBj/uYJjh1NDWWBI8d0j3MUNwhbWTCOYBGEZj
+         72Qes0CWS9+T6rOsG66Mz1HXKVsmOujda75afuL49zQU+lklwNPG7YQCUoOLx75S0hhg
+         8ietk4a4PINZrWpScmG3XZreocYznRZMwwapognd6rbZwDixdMcfygnUVXQbNoivzR4b
+         jkLHx1pbQfZGUy89ZYD5xjpRgXdHf6O8ZsYwStGfaD+qwSlr+Av4L4639dKtmC2L7uqW
+         W3eQ==
+X-Gm-Message-State: AC+VfDzmAiIVSp79yEjHCGSXaue1LIm9PtYl9/Gh+zE+0WlLNLHGdyJM
+        yrm/iZPxmTqgqtmzBsHj3v3n0Q==
+X-Google-Smtp-Source: ACHHUZ5Sor6FiO6samNwLAYbLWo/qtqeEXMfZrh8dSM0s5uirIT3Xz1m8W509FWOUhQqW3Q1sLIurw==
+X-Received: by 2002:a2e:a3d2:0:b0:2b0:4e69:c174 with SMTP id w18-20020a2ea3d2000000b002b04e69c174mr4797267lje.31.1685375526856;
+        Mon, 29 May 2023 08:52:06 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id l7-20020a2eb687000000b002a774fb7923sm2489707ljo.45.2023.05.29.08.52.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 May 2023 08:42:42 -0700 (PDT)
-Message-ID: <89e05581-be6e-409b-c4ba-c35297045af6@gmail.com>
-Date:   Mon, 29 May 2023 17:42:41 +0200
+        Mon, 29 May 2023 08:52:06 -0700 (PDT)
+Message-ID: <76daf752-d050-b283-89b4-19ca57ac62ee@linaro.org>
+Date:   Mon, 29 May 2023 17:52:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] arm64: dts: mediatek: add missing cache properties
-Content-Language: en-US, ca-ES, es-ES
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230421223157.115367-1-krzysztof.kozlowski@linaro.org>
- <5590f51a-16b6-93ae-d8a0-ab6b4e2e1016@linaro.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <5590f51a-16b6-93ae-d8a0-ab6b4e2e1016@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 4/6] arm64: dts: qcom: msm8916/39: Clean up MDSS labels
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230525-msm8916-labels-v1-0-bec0f5fb46fb@gerhold.net>
+ <20230525-msm8916-labels-v1-4-bec0f5fb46fb@gerhold.net>
+ <6f1954e6-e98d-6911-8721-c50082bfb1d7@linaro.org>
+ <ZHS-HSgaBxMXiKy9@gerhold.net>
+ <17f31258-bc38-245f-532f-fdaa1ee8ad33@linaro.org>
+ <343e2e95-17ee-f5e3-61e9-7e0b793859a6@linaro.org>
+ <ZHTFOZFxq-JgLP-p@gerhold.net>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ZHTFOZFxq-JgLP-p@gerhold.net>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,20 +84,44 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 16/05/2023 18:32, Krzysztof Kozlowski wrote:
-> On 22/04/2023 00:31, Krzysztof Kozlowski wrote:
->> As all level 2 and level 3 caches are unified, add required
->> cache-unified properties to fix warnings like:
+On 29.05.2023 17:31, Stephan Gerhold wrote:
+> On Mon, May 29, 2023 at 04:26:09PM +0100, Bryan O'Donoghue wrote:
+>> On 29/05/2023 16:24, Bryan O'Donoghue wrote:
+>>> On 29/05/2023 16:00, Stephan Gerhold wrote:
+>>>> Do you mean update the examples in the yaml bindings
+>>>
+>>> Yep.
+>>>
+>>> grep dsi0_out Documentation/* -r | grep qcom
+>>> grep dsi0_in Documentation/* -r | grep qcom
+>>>
+>>> Consider splitting this patch out and fixing up[1] Documentation/* and
+>>> arch/arm/boot/dts/*.dts[i] , arch/arm64/boot/dts/qcom/*.dts[i]
+>>>
+>>> We may as well be consistent everywhere.
+>>>
+>>> ---
+>>> bod
 >>
->>    mt7622-rfb1.dtb: l2-cache: 'cache-unified' is a required property
 >>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> [1] In a standalone series
 >>
->> ---
 > 
-> Hi Matthias,
-> 
-> Could you grab this one?
-> 
+> Right I will check this and try to adjust the documentation and/or the
+> other SoCs in a separate series.
+Agreed, bindings don't really care about labels but they set examples.
 
-Applied now, thanks!
+I'd really appreciate if you could take care of that, Stephan.
+
+ I would still prefer to apply it for
+> 8916/8939 as part of this series since I have some unrelated follow-up
+> changes that would just cause unnecessary conflicts for Bjorn otherwise.
+> 
+> We already have most newer SoCs using the naming convention in this
+> patch so it definitely does not make the existing situation any worse. :)
+Definitely!
+
+Konrad
+> 
+> Thanks,
+> Stephan
