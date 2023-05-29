@@ -2,52 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DC6A7144C4
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 08:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07E5B7144BB
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 08:27:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231775AbjE2G2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 02:28:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54826 "EHLO
+        id S231656AbjE2G1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 02:27:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231700AbjE2G15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 02:27:57 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CFB32136;
-        Sun, 28 May 2023 23:27:25 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 514DE1576;
-        Sun, 28 May 2023 23:26:53 -0700 (PDT)
-Received: from a077893.blr.arm.com (a077893.blr.arm.com [10.162.40.17])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 6269F3F6C4;
-        Sun, 28 May 2023 23:26:01 -0700 (PDT)
-From:   Anshuman Khandual <anshuman.khandual@arm.com>
-To:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
-        suzuki.poulose@arm.com
-Cc:     scclevenger@os.amperecomputing.com,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V5 6/6] coresight: etm4x: Add ACPI support in platform driver
-Date:   Mon, 29 May 2023 11:55:11 +0530
-Message-Id: <20230529062511.52016-7-anshuman.khandual@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230529062511.52016-1-anshuman.khandual@arm.com>
-References: <20230529062511.52016-1-anshuman.khandual@arm.com>
+        with ESMTP id S231718AbjE2G1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 02:27:43 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC7BEBB;
+        Sun, 28 May 2023 23:27:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685341629; x=1716877629;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=KcTINnFqEvZciX/JTiRqX8Z8FBun2lhdVHpacFRYHL4=;
+  b=17J28CGx+sP+Vjy3WBSFZworUluYI3IWEsfg4nqsQGsh0QD6twmUZfli
+   xT4PHR1kvErkDJIHrjiKGHr91AewdBK7FB7cn2GBX1BYvgEyzNIHIjtXL
+   sESEzEICZtzFTf5U7UWqC/KZBu3iTK3ENggh0wjSr+/kx+KBVue0BV6le
+   6cQRwr1fL/mgcdno3oNrnqH4qd9we4Dy9gBpZEVRlyFsKol24szTp0jTq
+   kEVv7S5h1PwdGHDKsqNNWUwQPSrLAXqBm4CRgPREKOnaI76bd4MQyaqGw
+   lysaOQREgIRmqcHQkl5sUJTcaLQd4jrEeE/+rV4x6FGgdAjU1NKW231Iv
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,200,1681196400"; 
+   d="scan'208";a="215861621"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 May 2023 23:26:24 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Sun, 28 May 2023 23:26:22 -0700
+Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Sun, 28 May 2023 23:26:17 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <daniel.lezcano@linaro.org>,
+        <tglx@linutronix.de>, <wim@linux-watchdog.org>,
+        <linux@roeck-us.net>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        "Claudiu Beznea" <claudiu.beznea@microchip.com>
+Subject: [PATCH v2 0/4] dt-bindings: timer: Microchip AT91 convert to YAML
+Date:   Mon, 29 May 2023 09:26:00 +0300
+Message-ID: <20230529062604.1498052-1-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,77 +66,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
+Hi,
 
-Drop ETM4X ACPI ID from the AMBA ACPI device list, and instead just move it
-inside the new ACPI devices list detected and used via platform driver.
+Series converts Microchip AT91 timers DT bindings to YAML. Along with it the
+atmel,at91rm9200-wdt has been converted and introduced in this series
+as it is referenced by atmel,at91rm9200-st.
 
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Len Brown <lenb@kernel.org>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc: Mike Leach <mike.leach@linaro.org>
-Cc: Leo Yan <leo.yan@linaro.org>
-Cc: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: linux-acpi@vger.kernel.org
-Cc: coresight@lists.linaro.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
-Reviewed-by: Sudeep Holla <sudeep.holla@arm.com> (for ACPI specific changes)
-Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
----
- drivers/acpi/acpi_amba.c                           |  1 -
- drivers/hwtracing/coresight/coresight-etm4x-core.c | 10 ++++++++++
- 2 files changed, 10 insertions(+), 1 deletion(-)
+Thank you,
+Claudiu Beznea
 
-diff --git a/drivers/acpi/acpi_amba.c b/drivers/acpi/acpi_amba.c
-index f5b443ab01c2..099966cbac5a 100644
---- a/drivers/acpi/acpi_amba.c
-+++ b/drivers/acpi/acpi_amba.c
-@@ -22,7 +22,6 @@
- static const struct acpi_device_id amba_id_list[] = {
- 	{"ARMH0061", 0}, /* PL061 GPIO Device */
- 	{"ARMH0330", 0}, /* ARM DMA Controller DMA-330 */
--	{"ARMHC500", 0}, /* ARM CoreSight ETM4x */
- 	{"ARMHC501", 0}, /* ARM CoreSight ETR */
- 	{"ARMHC502", 0}, /* ARM CoreSight STM */
- 	{"ARMHC503", 0}, /* ARM CoreSight Debug */
-diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
-index e10f6676dd9b..fd6f9dff5881 100644
---- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
-+++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
-@@ -3,6 +3,7 @@
-  * Copyright (c) 2014, The Linux Foundation. All rights reserved.
-  */
- 
-+#include <linux/acpi.h>
- #include <linux/bitops.h>
- #include <linux/kernel.h>
- #include <linux/moduleparam.h>
-@@ -2344,12 +2345,21 @@ static const struct of_device_id etm4_sysreg_match[] = {
- 	{}
- };
- 
-+#ifdef CONFIG_ACPI
-+static const struct acpi_device_id etm4x_acpi_ids[] = {
-+	{"ARMHC500", 0}, /* ARM CoreSight ETM4x */
-+	{}
-+};
-+MODULE_DEVICE_TABLE(acpi, etm4x_acpi_ids);
-+#endif
-+
- static struct platform_driver etm4_platform_driver = {
- 	.probe		= etm4_probe_platform_dev,
- 	.remove		= etm4_remove_platform_dev,
- 	.driver			= {
- 		.name			= "coresight-etm4x",
- 		.of_match_table		= etm4_sysreg_match,
-+		.acpi_match_table	= ACPI_PTR(etm4x_acpi_ids),
- 		.suppress_bind_attrs	= true,
- 		.pm			= &etm4_dev_pm_ops,
- 	},
+Changes in v2:
+- fixed compilation errors (sorry for that in v1)
+- moved DTS patch as the 1st patch in series
+- squash PIT and PIT64B into the same documentation file
+- use Microchip in titles, descriptions and commit message
+- in patch 4/4 remove oneOf from compatible section
+
+Claudiu Beznea (4):
+  ARM: dts: at91: sama7g5: keep only microchip,sam9x60-pit64b compatible
+    for pit64b
+  dt-bindings: timer: atmel,at91sam9260-pit: convert to yaml
+  dt-bindings: watchdog: atmel,at91rm9200-wdt: convert to yaml
+  dt-bindings: timer: atmel,at91rm9200-st: convert to yaml
+
+ .../devicetree/bindings/arm/atmel-sysregs.txt | 21 ----
+ .../bindings/timer/atmel,at91rm9200-st.yaml   | 65 +++++++++++++
+ .../bindings/timer/atmel,at91sam9260-pit.yaml | 96 +++++++++++++++++++
+ .../watchdog/atmel,at91rm9200-wdt.yaml        | 29 ++++++
+ .../watchdog/atmel-at91rm9200-wdt.txt         |  9 --
+ arch/arm/boot/dts/sama7g5.dtsi                |  4 +-
+ 6 files changed, 192 insertions(+), 32 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/atmel,at91rm9200-st.yaml
+ create mode 100644 Documentation/devicetree/bindings/timer/atmel,at91sam9260-pit.yaml
+ create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,at91rm9200-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-at91rm9200-wdt.txt
+
 -- 
-2.25.1
+2.34.1
 
