@@ -2,83 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBCF9714C6F
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 16:49:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1B9A714C73
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 16:50:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbjE2Otr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 10:49:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44656 "EHLO
+        id S229748AbjE2OuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 10:50:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbjE2Otp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 10:49:45 -0400
-Received: from ms.lwn.net (ms.lwn.net [IPv6:2600:3c01:e000:3a1::42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60184E5;
-        Mon, 29 May 2023 07:49:41 -0700 (PDT)
-Received: from tp8.. (mdns.lwn.net [45.79.72.68])
+        with ESMTP id S229626AbjE2OuJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 10:50:09 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47D87BE;
+        Mon, 29 May 2023 07:50:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ms.lwn.net (Postfix) with ESMTPSA id DC85E5CC;
-        Mon, 29 May 2023 14:49:38 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net DC85E5CC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
-        t=1685371780; bh=qNswSaB1rsYK39qc93wLacaWCqvSv3BALS+O8tlq2Iw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZO4v+5KcvByaNdUK7MWOpCXLrPFFf2KtlOumFM8uDXxuDbvQ4FJbKeuAcHsrod2rS
-         lS8yzaVHlMiRHiGIfoYrY7JC+Fbietmb0KFcqnfe6KWtzXwUgxbo1QAd4c8JTkwnpO
-         ZIDSfl++VeCIyWgFbe74fPfcgZ2XQpMLFu2c+ZI+zEdeKpBPA1au2+rF6Ev1p1h8SV
-         lymNucxBNM5B1WRDWKFYKDBOIRyY9ENCOWJ6tNPZYStKpH5JpbXfDrC4C1g4aa6uCj
-         BGJLGi0CAd+RvrVtV3AX9EkF11j4LO9SM4SN4drTnQkpeOGtOWmHGv19Jf71huM/YX
-         qm9vVjDB43QDQ==
-From:   Jonathan Corbet <corbet@lwn.net>
-To:     linux-doc@vger.kernel.org
-Cc:     linux-arch@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Jonathan Corbet <corbet@lwn.net>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CFF11625DC;
+        Mon, 29 May 2023 14:50:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FB7AC433EF;
+        Mon, 29 May 2023 14:50:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1685371807;
+        bh=E0tWy/tllSnb1lYVWIZlelUhkji8r4mVy6G9oBExVwU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=viLao7rq8xt8Htq1rCGOx9cEElTBVeXUlVkQb36y7z7xU5fpCC5x/QuQcL+qy2vzQ
+         gx1IyBCAgM4v7FYVOaGCjms2PzvXNZMJEB2p/AgfgVYBqwKvza1g7N7DZlmLpnV/YM
+         VWUfBG9h5qwVii2+PgiTuXJL5Jc+K68E8GnHxZr4=
+Date:   Mon, 29 May 2023 15:50:04 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Minda Chen <minda.chen@starfivetech.com>
+Cc:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2 7/7] dt-bindings: Update Documentation/arm references
-Date:   Mon, 29 May 2023 08:48:56 -0600
-Message-Id: <20230529144856.102755-8-corbet@lwn.net>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230529144856.102755-1-corbet@lwn.net>
-References: <20230529144856.102755-1-corbet@lwn.net>
+        Pawel Laszczak <pawell@cadence.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Mason Huo <mason.huo@starfivetech.com>
+Subject: Re: [PATCH v6 6/7] usb: cdns3: Add StarFive JH7110 USB driver
+Message-ID: <2023052951-humbly-dentist-cb9c@gregkh>
+References: <20230518112750.57924-1-minda.chen@starfivetech.com>
+ <20230518112750.57924-7-minda.chen@starfivetech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230518112750.57924-7-minda.chen@starfivetech.com>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Arm documentation has moved to Documentation/arch/arm; update one
-devicetree reference to match.
+On Thu, May 18, 2023 at 07:27:49PM +0800, Minda Chen wrote:
+> Adds Specific Glue layer to support USB peripherals on
+> StarFive JH7110 SoC.
+> There is a Cadence USB3 core for JH7110 SoCs, the cdns
+> core is the child of this USB wrapper module device.
+> 
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> Acked-by: Peter Chen <peter.chen@kernel.org>
+> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> ---
+>  MAINTAINERS                        |   6 +
+>  drivers/usb/cdns3/Kconfig          |  11 ++
+>  drivers/usb/cdns3/Makefile         |   1 +
+>  drivers/usb/cdns3/cdns3-starfive.c | 246 +++++++++++++++++++++++++++++
+>  4 files changed, 264 insertions(+)
+>  create mode 100644 drivers/usb/cdns3/cdns3-starfive.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 5519f81c8296..06c63f43bb17 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20168,6 +20168,12 @@ F:	Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml
+>  F:	drivers/phy/starfive/phy-jh7110-pcie.c
+>  F:	drivers/phy/starfive/phy-jh7110-usb.c
+>  
+> +STARFIVE JH71X0 USB DRIVERS
+> +M:	Minda Chen <minda.chen@starfivetech.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
+> +F:	drivers/usb/cdns3/cdns3-starfive.c
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: devicetree@vger.kernel.org
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Jonathan Corbet <corbet@lwn.net>
----
- Documentation/devicetree/bindings/arm/xen.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Does not apply anymore, please rebase and resend.
 
-diff --git a/Documentation/devicetree/bindings/arm/xen.txt b/Documentation/devicetree/bindings/arm/xen.txt
-index 61d77acbeb5e..f925290d4641 100644
---- a/Documentation/devicetree/bindings/arm/xen.txt
-+++ b/Documentation/devicetree/bindings/arm/xen.txt
-@@ -56,7 +56,7 @@ hypervisor {
- };
- 
- The format and meaning of the "xen,uefi-*" parameters are similar to those in
--Documentation/arm/uefi.rst, which are provided by the regular UEFI stub. However
-+Documentation/arch/arm/uefi.rst, which are provided by the regular UEFI stub. However
- they differ because they are provided by the Xen hypervisor, together with a set
- of UEFI runtime services implemented via hypercalls, see
- http://xenbits.xen.org/docs/unstable/hypercall/x86_64/include,public,platform.h.html.
--- 
-2.40.1
+thanks,
 
+greg k-h
