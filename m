@@ -2,107 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC9C67145A7
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 09:41:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C80CB7145AC
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 09:41:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231138AbjE2Hld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 03:41:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54080 "EHLO
+        id S231463AbjE2Hll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 03:41:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231487AbjE2HlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 03:41:24 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E059136
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 00:41:10 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f3b314b1d7so3087270e87.1
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 00:41:10 -0700 (PDT)
+        with ESMTP id S231530AbjE2Hlb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 03:41:31 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 095A9CA;
+        Mon, 29 May 2023 00:41:28 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96fbe7fbdd4so556242666b.3;
+        Mon, 29 May 2023 00:41:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685346068; x=1687938068;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zIyR1lHJkA+sNFp9J1o6uPmPADLzeJ2t6TMfApH2cO0=;
-        b=G4I84p/8BXGAdQhmvw9H0kqEpMVZkOZUBt1/JCz/TZyyBkJgH/IVNGlt15swfM6pMU
-         +Fz3vw2l93bpO61w3Y+E990mCaxZK0f3QXKYGJNdO1bjSIkEotzDCWZNwoa2rOVGuUNO
-         EHDv7+aXWMsQyIRxe0nJszhH+zeykKrEwcn7YFUZFi3YDUVX/u46i0vk4t/34hJAfAEb
-         Q6Jw/uXk9OfQkm9iNVpZfH/o+jKj+73h8eIwawuDVl9h/ElsGaqsxjDs1rrezm6RP+4j
-         7FcFeOdfk+CUI/2xH+tFurLaTKS9UsTdVahpKofk0V8vY8sSEDvdS9zcOzkZO9vLPANZ
-         cc0Q==
+        d=gmail.com; s=20221208; t=1685346086; x=1687938086;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=O8AKvRuhZAAgYNyvkCPO3RgEAGqxsbL29QI7a0NawxI=;
+        b=SRAUjFhpvWuvUifRrQRqGVrKGO5yvn6LaaTV8aJEWsJTTvyWSY7tpf197/cU0jtRnJ
+         QajMF2nccPHD/s1LFH7ZYBuNqR9clIRKEYNwH07Nqey8UGuGZQHgXWNdgRbRMku3416M
+         qAsw3OaKeYpm6Y8pYuCFy22p2iO8rV99jMhflL13CVI0exYWZXInu559voiCga6UCDN2
+         xRriw8uO7lYtdoaVYCANVsYerA4+gJ0uBuVJSXt82K0SnkeEDzYINZKwT4Nffi8Av5mW
+         7as0cZeeFz0Gz8fhK1pM+2ZL4OIGzI01ucg0CYhppnwpZV2DXggpKg/y80tX6UI1dvrv
+         iPyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685346068; x=1687938068;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zIyR1lHJkA+sNFp9J1o6uPmPADLzeJ2t6TMfApH2cO0=;
-        b=ipsWbBchlKLwuSbEUDfdXWmZlLXcHIhkMjWyyLF2nSwammpy/pw9/01GXY8CtY789Z
-         V4NLMHFBFcset4Cyh3t1PYizM+JaO3DMRYXZm5wKbPL04EyvACAnm46KJimVarcszZYx
-         97Y5SslwRRAHOT4cTohDpw5/WwEANrikHkVe/TZvW277+rRryV6ZcuB+wfztJqXhQ/c6
-         MzYRaXMLCEh1uCv1XZEcy3AUS4lBnIhpqaFF8nQLVvYLEiKZFHVq3yTNKvjjwQuLJfpK
-         MQTXp3YOh5HGOon3zpaGeon3m1xiBigMDOiVYcnxmpPqrbPlPnLFuCdnfZskv7mVVEah
-         G7ng==
-X-Gm-Message-State: AC+VfDxZ9pTThpGHuKyZZw+Ls6Cxz4koQ7YS1lY8RaZZrCaaUK/+7t7M
-        cY7FPm85DfdxJFTt2gbb5xb2Cg==
-X-Google-Smtp-Source: ACHHUZ7CGoVzdq3YVY4Qh7oruPyoZkhaD7bLodOYquMFSgOk89OF+fipcK/1Q84XygMuQ4wDmXzFjQ==
-X-Received: by 2002:ac2:4423:0:b0:4f3:b2a7:68ef with SMTP id w3-20020ac24423000000b004f3b2a768efmr2891357lfl.10.1685346068232;
-        Mon, 29 May 2023 00:41:08 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id w25-20020a05651204d900b004cc8196a308sm1876082lfq.98.2023.05.29.00.41.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 May 2023 00:41:07 -0700 (PDT)
-Message-ID: <a8d3d68d-d202-ddba-3289-65b347807538@linaro.org>
-Date:   Mon, 29 May 2023 09:41:06 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2 1/4] dt-bindings: arm: qcom: Add Samsung Galaxy Express
-Content-Language: en-US
-To:     Rudraksha Gupta <guptarud@gmail.com>,
-        Conor Dooley <conor@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        d=1e100.net; s=20221208; t=1685346086; x=1687938086;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O8AKvRuhZAAgYNyvkCPO3RgEAGqxsbL29QI7a0NawxI=;
+        b=coyE+CjPXANA99FDVulJf6BAdkfCScSUOXTlzWHmxdWygNfE2kdq0ITfupsTPWsSOV
+         G0XdTBUrWoAAp0+P8jTaptjAylM+XQxjP6qWf2x+1wFVD9/NF7So74GBDhU5V4dUz1lh
+         6vFCl8weUk3v4bz6OqPq12DqK8DMkHs8/xfZxYj7Cycb8+WSxzO/E9eXcsva3nyc55fy
+         I4/wvWvddYf08N9hWS7lnusRtw2bstX6BaFApU9w2yK4+AcwNBqlwSdOq0J6n0Ez666L
+         f1Zi+fDNVOfuZaZNsAi2GGhJzvcgQZYWwpfZ6kNYR8rmxd8eFCr0wlZWQaNUQmDDpaBN
+         CKXA==
+X-Gm-Message-State: AC+VfDyFJKodrkCxVuGIsDSr19Ua3PniUDrbZz80scf5ZER92ca0sZ60
+        3WIDHwpZSI197QC7J5OzVp4=
+X-Google-Smtp-Source: ACHHUZ4WmH4FfsoTmJZpXUhL+/sUohMsGu35bnSlxqwOuHNCix7ho55/dZ666v7aJrq97Ll18gE2JQ==
+X-Received: by 2002:a17:906:4fca:b0:94e:cefc:8df0 with SMTP id i10-20020a1709064fca00b0094ecefc8df0mr9460648ejw.61.1685346086140;
+        Mon, 29 May 2023 00:41:26 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation (net-188-217-50-121.cust.vodafonedsl.it. [188.217.50.121])
+        by smtp.gmail.com with ESMTPSA id d5-20020a170906640500b0094ef923a6ccsm5569778ejm.219.2023.05.29.00.41.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 May 2023 00:41:25 -0700 (PDT)
+Date:   Mon, 29 May 2023 09:41:23 +0200
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     jacopo.mondi@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+        martin.hecht@avnet.eu, linuxfancy@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20230527040905.stmnoshkdqgiaex6@ripper>
- <20230528001010.47868-2-guptarud@gmail.com>
- <20230528-decode-creasing-f5b3996163e5@spud>
- <ad7a6ee3-cabb-6f92-a595-8791801cfe97@gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <ad7a6ee3-cabb-6f92-a595-8791801cfe97@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: alvium: add document YAML
+ binding
+Message-ID: <ZHRXI6c7G3Sh03i9@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+References: <20230526173955.797226-1-tomm.merciai@gmail.com>
+ <20230526173955.797226-2-tomm.merciai@gmail.com>
+ <ZHPElYOeD2C1qo4R@kekkonen.localdomain>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZHPElYOeD2C1qo4R@kekkonen.localdomain>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sakari,
 
-
-On 28.05.2023 15:36, Rudraksha Gupta wrote:
->> Where did the "att" come from in the compatible. Is this some carrier specific model of the phone?
+On Sun, May 28, 2023 at 09:16:05PM +0000, Sakari Ailus wrote:
+> Hi Tommaso,
 > 
-> This is the code name for the device. Since there are usually multiple variants of a device, using the code name differentiates between those variants. For example, if I left this as "samsung,express", it would be unclear if I am referring to the GT-I8730 (code name: expresslte) or the SGH-I437 model. This is typically done in postmarketOS: https://wiki.postmarketos.org/wiki/Devices and XDA developers. I believe it is a carrier specific model of the Samsung Galaxy Express.
+> On Fri, May 26, 2023 at 07:39:43PM +0200, Tommaso Merciai wrote:
+> > Add documentation of device tree in YAML schema for the ALVIUM
+> > Camera from Allied Vision Inc.
+> > 
+> > References:
+> >  - https://www.alliedvision.com/en/products/embedded-vision-solutions
+> > 
+> > Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> > ---
+> > Changes since v1:
+> >  - Fixed build error as suggested by RHerring bot
+> > 
+> >  .../media/i2c/alliedvision,alvium.yaml        | 115 ++++++++++++++++++
+> >  1 file changed, 115 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > new file mode 100644
+> > index 000000000000..81e9e560c99d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > @@ -0,0 +1,115 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Alliedvision Alvium Camera
+> > +
+> > +maintainers:
+> > +  - Tommaso Merciai <tomm.merciai@gmail.com>
+> > +  - Martin Hecht <martin.hecht@avnet.eu>
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/media/video-interface-devices.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: alliedvision,alvium
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    description: XCLK Input Clock
+> > +
+> > +  clock-names:
+> > +    const: xclk
 > 
+> I'd also drop this as you have a single clock only: it's redundant.
 
-Please fix your email client:
+Then you suggest also to drop devm_clk_get(dev, "xclk");
+into the driver code and use devm_clk_get(&pdev->dev, NULL);
+right?
 
-- wrap each line at about 80 characters
-- don't trim messages unless they're very long or
-  there's some other good reason
-- Don't send v(n+1) as a reply to v(n), send it in a
-  separate thread.
+> 
+> > +
+> > +  powerdown-gpios:
+> > +    maxItems: 1
+> > +    description: >
+> > +      Reference to the GPIO connected to the powerdown pin, if any.
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description: >
+> > +      Reference to the GPIO connected to the reset pin, if any.
+> > +
+> > +  streamon-delay:
+> > +    maxItems: 1
+> > +    description: >
+> > +      Delay before camera start capturing frames in us.
+> > +
+> > +  rotation:
+> > +    enum:
+> > +      - 0
+> > +      - 180
+> > +
+> > +  port:
+> > +    description: Digital Output Port
+> > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        $ref: /schemas/media/video-interfaces.yaml#
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          clock-lanes:
+> > +            const: 0
+> 
+> The driver can know this, no need to have it in DT, i.e. please drop it.
 
+Oks.
 
+> 
+> > +          data-lanes:
+> > +            minItems: 1
+> > +            maxItems: 4
+> > +          link-frequencies: true
+> > +
+> > +        required:
+> > +          - data-lanes
+> > +          - link-frequencies
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +      #include <dt-bindings/gpio/gpio.h>
+> > +      #include <dt-bindings/clock/imx8mp-clock.h>
+> > +
+> > +      i2c {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +
+> > +          camera: alvium@3c {
+> > +              compatible = "alliedvision,alvium";
+> > +              pinctrl-names = "default";
+> > +              pinctrl-0 = <&pinctrl_csi0_pwn>, <&pinctrl_csi0_rst>, <&pinctrl_csi_mclk>;
+> > +              reg = <0x3c>;
+> > +              clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+> > +              clock-names = "xclk";
+> > +              assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+> > +              assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+> > +              assigned-clock-rates = <24000000>;
+> > +              streamon-delay = <20>;
+> > +              powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+> > +              reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+> > +              status = "okay";
+> > +
+> > +              port {
+> > +                  alvium_out: endpoint {
+> > +                      remote-endpoint = <&mipi_csi_0_in>;
+> > +                      data-lanes = <1 2 3 4>;
+> > +                      link-frequencies = /bits/ 64 <681250000>;
+> > +                      clock-lanes = <0>;
+> > +                  };
+> > +              };
+> > +          };
+> > +      };
+> > +
+> > +...
 
-Konrad
+Thanks,
+Tommaso
+
+> 
+> -- 
+> Kind regards,
+> 
+> Sakari Ailus
