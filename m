@@ -2,70 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49CD37149AF
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 14:50:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08B4D7149BC
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 14:56:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbjE2MuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 08:50:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58160 "EHLO
+        id S229478AbjE2M4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 08:56:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbjE2MuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 08:50:15 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A115188;
-        Mon, 29 May 2023 05:49:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685364573; x=1716900573;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=sihrqxGXOegLfJu5K0vAKoVsedsMzHotWvqPkMnnUEw=;
-  b=uDO2Z0sMLsXYOmn1XkSLjoYsvw17laPvRLlTof4rL2JjtyTbblKp9Mze
-   wOWWYqnjJeO+q00HWDAUTBzog5p/71Epn9o85LVr8Hg14kF2mpT4IkqxR
-   1k7GUNmH1qRvGRw0TFTLSY5PiYS6iTKkLItJUHWk1otmY219kEIrQp/6n
-   JkO/WBIug1mUmzs9GkL4L5TUvdU7uintceEFY0rQDNca3vPBvKJTUIO2L
-   feiRoE9r+yH//H8YPF+hyET20SOC2ltDNXNKv39sCxfSc0DzOUq/59//w
-   s9p+k5KDkIQfu/B4hZiy6JcGHzN1VV915IiWLrSUIHMG/TuakwYAT15o4
-   g==;
-X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; 
-   d="asc'?scan'208";a="154432424"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 May 2023 05:49:01 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 29 May 2023 05:49:01 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Mon, 29 May 2023 05:48:58 -0700
-Date:   Mon, 29 May 2023 13:48:36 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     <Claudiu.Beznea@microchip.com>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <daniel.lezcano@linaro.org>,
-        <tglx@linutronix.de>, <wim@linux-watchdog.org>,
-        <linux@roeck-us.net>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: timer: atmel,at91sam9260-pit:
- convert to yaml
-Message-ID: <20230529-schematic-abrasion-a06a29481ace@wendy>
-References: <20230529062604.1498052-1-claudiu.beznea@microchip.com>
- <20230529062604.1498052-3-claudiu.beznea@microchip.com>
- <20230529-chuck-turbofan-a8aabbdd9341@wendy>
- <f4c04190-c90e-bf5f-f666-c979a7aee8ce@microchip.com>
+        with ESMTP id S229501AbjE2M4Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 08:56:25 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1512FC7
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 05:56:23 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f3b314b1d7so3386496e87.1
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 05:56:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685364981; x=1687956981;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4kMFfJbf4XWQRQofGy/2ExiTeQJT1aHojFUaBWm+VSo=;
+        b=BcDC1g2wM+Hky7zS2L1tkWnaCDYLDXZq2kb6pZOERWNUGx4d4jTjMFTHA07E9ApWSs
+         w+dyPzzFDF3mjciTlbZNFVMzL/VqivyhhPdPLFa3yzhOHRSao2rqJFFI8bD3+OYBthlK
+         cq0H0qxoBbufK5TxSEmJmBpx8zfFHFOi9XoKYMSWvS22GfCJQRLB+Ff4jk+3MSMU5qY4
+         slPIAevDm7tgAQ5UqsacisFeDInVrT4+dS8H3vtMsofj414q5j61MyW00wyoYBurH+bv
+         y7HCbVbew2INxWhgZ3swJESm6zOzcDUMSK3Ixg87sQZFddSnkj1j3UTgIYdzbaMlDnMK
+         aloA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685364981; x=1687956981;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4kMFfJbf4XWQRQofGy/2ExiTeQJT1aHojFUaBWm+VSo=;
+        b=Ym5/SbHsAxcUPT0P8VTHgXDjKaQfQientybFmsAoQ2Mv1udDZI/nce9FMt2dRQImd1
+         X2S5oQRuwoZePq4/uRIUWsxvz9SZkUvk9bf9K5Byc/6oC0x1SE26xU5tLIyQyT1QZI3j
+         1t7zkUxD3/ZiGeRhLY83loApAXHOPuy1gbwVKary0HRbmekhVKWkt74UotGYzF1u4yAH
+         U4z26StFGCLByyY3YiHNWzWoCgy85LDfFwWp2cuiL8MAhqpJnftOA7gYpr/HAWk10t1L
+         kZ1ZriAS9h5j/Bu+55ZVopitqvykyHGTCgpJ0iFUOinpllt7+6F29dF5Ibfah/fT2TEP
+         9z9g==
+X-Gm-Message-State: AC+VfDzduAfs4s06fGI9WckeTExXmGmoHoJW5GWv6C64EOE+G3d+vf6C
+        M5BWsqUexHBZJYvWWq3yDrQ7LQ==
+X-Google-Smtp-Source: ACHHUZ5SDvE89GclIQVxV0l3jEskTCdcupX432GYZIWoRyUD9NsdvqkL1Ne2Cb1FwCZlHaWbxFlAnQ==
+X-Received: by 2002:a19:750c:0:b0:4eb:18d:91de with SMTP id y12-20020a19750c000000b004eb018d91demr3416851lfe.43.1685364981202;
+        Mon, 29 May 2023 05:56:21 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id d12-20020ac241cc000000b004f2529c71c1sm1959695lfi.260.2023.05.29.05.56.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 May 2023 05:56:20 -0700 (PDT)
+Message-ID: <8bbdc1c3-7caf-c189-9c81-a26efc79c4f0@linaro.org>
+Date:   Mon, 29 May 2023 15:56:20 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="QnBF0FcDx3VBpqKu"
-Content-Disposition: inline
-In-Reply-To: <f4c04190-c90e-bf5f-f666-c979a7aee8ce@microchip.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [Freedreno] [PATCH 4/7] drm/msm/mdp5: Add MDP5 configuration for
+ MSM8226
+Content-Language: en-GB
+To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230308-msm8226-mdp-v1-0-679f335d3d5b@z3ntu.xyz>
+ <20230308-msm8226-mdp-v1-4-679f335d3d5b@z3ntu.xyz>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230308-msm8226-mdp-v1-4-679f335d3d5b@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,66 +88,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---QnBF0FcDx3VBpqKu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 29/05/2023 12:44, Luca Weiss wrote:
+> Add the required config for the v1.1 MDP5 found on MSM8226.
+> 
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+>   drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c | 82 ++++++++++++++++++++++++++++++++
+>   1 file changed, 82 insertions(+)
 
-On Mon, May 29, 2023 at 12:32:49PM +0000, Claudiu.Beznea@microchip.com wrot=
-e:
-> On 29.05.2023 15:17, Conor Dooley wrote:
-> > On Mon, May 29, 2023 at 09:26:02AM +0300, Claudiu Beznea wrote:
-> >> +        interrupts:
-> >> +          description:
-> >> +            Contain interrupt for the PIT which is the IRQ line share=
-d across all
-> >> +            System Controller members.
-> >=20
-> > I think you should drop this & the corresponding section below, since
-> > both PIT and PIT64 have a single interrupt.
->=20
-> OK. Just wanted to emphasize with this that in case of PIT the interrupt
-> may be shared with other IPs.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Hmm. Perhaps for the other patch, keep the description then, and for this
-one remove the description from the else branch & add explain what "all
-system controller members" actually means here? It probably made sense in
-the txt binding, but "system controller" has lost its context here.
-Maybe something like:
-"Shared interrupt between the PIT and other functions of the system
-controller, for example, the watchdog, trumpet and airhorn"?
+-- 
+With best wishes
+Dmitry
 
-Cheers,
-Conor.
-
-> >> +        clocks:
-> >> +          maxItems: 1
-> >> +
-> >> +    else:
-> >> +      properties:
-> >> +        interrupts:
-> >> +          description:
-> >> +            PIT64B peripheral interrupt identifier.
-> >> +        clocks:
-> >> +          minItems: 2
-> >> +        clock-names:
-> >> +          items:
-> >> +            - const: pclk
-> >> +            - const: gclk
-> >> +      required:
-> >> +        - clock-names
-> >=20
->=20
-
---QnBF0FcDx3VBpqKu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHSfIwAKCRB4tDGHoIJi
-0jihAP9RPI9uRTfWz1IZRSiam+UQ+nEDIQA6miPvid++71X53gD/WqPNahZzotuJ
-FT+ZEVVKizduAnFCebdolxza7JIw6Ac=
-=16Ml
------END PGP SIGNATURE-----
-
---QnBF0FcDx3VBpqKu--
