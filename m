@@ -2,67 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A57DD714480
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 08:25:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11D677144A6
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 08:26:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231609AbjE2GZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 02:25:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51780 "EHLO
+        id S231577AbjE2G0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 02:26:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231504AbjE2GYu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 02:24:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F817EA;
-        Sun, 28 May 2023 23:24:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 14E76612DB;
-        Mon, 29 May 2023 06:24:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1BE1C4339B;
-        Mon, 29 May 2023 06:24:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685341457;
-        bh=xZQ4c3sZfJ1nNEi2GqOvmmx6GGK5BJZioTZWTyJcUB4=;
-        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
-        b=okzVTHJLaVvykLXWWqT9sSAnbTsG6R8QSNm5nJZtaHcteF7moKcxFof5iXFKkjQoP
-         whTfYpmf7wITNgUeZQY3/CMYYN49UwsjXJ3N9bM/8nRTuCw/t7/QUfDdqEvZSqddUF
-         ZJOtRGIRS0uEEhi1gPXod8SJaxKe+fbomEZCcXCqbr1jMi/j7R2mM3mAAy9DBg1TJ8
-         RVTTT8q8CqdqA9wM2LtOhjbQv/1KYVFwqlHieMnihPuPdiBc6Jzcr82ySaf6LhcE5d
-         13oAJ9Pk0IbwUXy+E2HVjxQYXO5Xo7Jx8mMudbiXoi7X4tziqATloY6krK3RITdE7g
-         pTP8URjybR0HA==
-Date:   Mon, 29 May 2023 07:24:12 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-CC:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        zhao zhang <zhzhl555@gmail.com>,
-        Yang Ling <gnaygnil@gmail.com>,
-        loongson-kernel@lists.loongnix.cn
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_V4_1/5=5D_dt-bindings=3A_rtc=3A_?= =?US-ASCII?Q?Remove_the_LS2X_from_the_trivial_RTCs?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <CAJhJPsU_qOJKO99S1xjJaSUqXsXAG7HpYbzs5wTb8J4-tQqSQA@mail.gmail.com>
-References: <cover.1684983279.git.zhoubinbin@loongson.cn> <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn> <20230525-custody-oversleep-f778eddf981c@spud> <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com> <20230526-dolly-reheat-06c4d5658415@wendy> <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com> <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com> <20230527-passing-unfixed-39e01b787808@spud> <14EF9F21-8150-40D9-8870-E9151C4882CF@flygoat.com> <20230527-poet-antarctic-cc02aa60ab52@spud> <CAJhJPsU_qOJKO99S1xjJaSUqXsXAG7HpYbzs5wTb8J4-tQqSQA@mail.gmail.com>
-Message-ID: <E229B204-1B00-4B24-B4BF-15277682FB4B@kernel.org>
+        with ESMTP id S229691AbjE2G0y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 02:26:54 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D9F40100;
+        Sun, 28 May 2023 23:26:18 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3EF252F4;
+        Sun, 28 May 2023 23:26:12 -0700 (PDT)
+Received: from a077893.blr.arm.com (a077893.blr.arm.com [10.162.40.17])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id E8E573F6C4;
+        Sun, 28 May 2023 23:25:20 -0700 (PDT)
+From:   Anshuman Khandual <anshuman.khandual@arm.com>
+To:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        suzuki.poulose@arm.com
+Cc:     scclevenger@os.amperecomputing.com,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V5 0/6] coresight: etm4x: Migrate ACPI AMBA devices to platform driver
+Date:   Mon, 29 May 2023 11:55:05 +0530
+Message-Id: <20230529062511.52016-1-anshuman.khandual@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,46 +53,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+CoreSight ETM4x devices could be accessed either via MMIO (handled via
+amba_driver) or CPU system instructions (handled via platform driver). But
+this has the following issues :
+
+  - Each new CPU comes up with its own PID and thus we need to keep on
+    adding the "known" PIDs to get it working with AMBA driver. While
+    the ETM4 architecture (and CoreSight architecture) defines way to
+    identify a device as ETM4. Thus older kernels  won't be able to
+    "discover" a newer CPU, unless we add the PIDs.
+
+  - With ACPI, the ETM4x devices have the same HID to identify the device
+    irrespective of the mode of access. This creates a problem where two
+    different drivers (both AMBA based driver and platform driver) would
+    hook into the "HID" and could conflict. e.g., if AMBA driver gets
+    hold of a non-MMIO device, the probe fails. If we have single driver
+    hooked into the given "HID", we could handle them seamlessly,
+    irrespective of the mode of access.
+
+  - CoreSight is heavily dependent on the runtime power management. With
+    ACPI, amba_driver doesn't get us anywhere with handling the power
+    and thus one need to always turn the power ON to use them. Moving to
+    platform driver gives us the power management for free.
+
+Due to all of the above, we are moving ACPI MMIO based etm4x devices to be
+supported via tha platform driver. The series makes the existing platform
+driver generic to handle both type of the access modes. Although existing
+AMBA driver would still continue to support DT based etm4x MMIO devices.
+Although some problems still remain, such as manually adding PIDs for all
+new AMBA DT based devices.
+
+The series applies on 6.4-rc4.
+
+Changes in V5:
+
+- Updated the comment for apb clock in drvdata structure
+- Updated conditional check in etm4_runtime_suspend/resume()
+- Asserted that the APB clock is present and also enabled
+
+Changes in V4:
+
+https://lore.kernel.org/all/20230523044553.1525048-1-anshuman.khandual@arm.com/
+
+- Changed in-code comment in etm4_check_arch_features()
+- Re-ordered pm_runtime_disable() in etm4_remove_platform_dev()
+- Renamed back etm4_match as etm4_sysreg_match
+- Moved back [PATCH 6/6] as [PATCH 5/6]
+
+Changes in V3:
+
+https://lore.kernel.org/all/20230519052149.1367814-1-anshuman.khandual@arm.com/
+
+- Returned from etm4_check_arch_features() for non iomem devices 
+- Renamed ETM_DEVTYPE_ETMv4x_ARCH as CS_DEVTYPE_PE_TRACE
+- Renamed is_etm4x_devtype() as is_devtype_cpu_trace()
+- Added a patch to ignore the absence of graph connections
+
+Changes in V2:
+
+https://lore.kernel.org/all/20230327050537.30861-1-anshuman.khandual@arm.com/
+
+- Enables ACPI etm4x device support in the existing platform driver
+- Dropped last two patches from the series
+- Dropped redundant 'devarch' checking from is_etm4x_device()
+- Renamed updated is_etm4x_device() as is_etm4x_devtype()
+- Fixed arguments in fallback stub for etm4_check_arch_features()
+- Tagged etm4_dev_pm_ops with etm4_platform_driver
+- Updated the comment for coresight_get_enable_apb_pclk() helper
+- Updated the comment for new 'pclk' element in struct etm4_drvdata
+- Dropped the clock when devm_ioremap_resource() fails
+- Convert IS_ERR() into a direct pointer check in etm4_remove_platform_dev()
+- Dropped "arm,coresight-etm4x" compatible property from etm4_match[]
+
+Changes in V1:
+
+https://lore.kernel.org/all/20230317030501.1811905-1-anshuman.khandual@arm.com/
+
+Cc: Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>
+Cc: Steve Clevenger <scclevenger@os.amperecomputing.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: Russell King (Oracle) <linux@armlinux.org.uk>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Len Brown <lenb@kernel.org>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: Mike Leach <mike.leach@linaro.org>
+Cc: Leo Yan <leo.yan@linaro.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-acpi@vger.kernel.org
+Cc: coresight@lists.linaro.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
 
 
-On 29 May 2023 03:59:57 IST, Keguang Zhang <keguang=2Ezhang@gmail=2Ecom> w=
-rote:
->On Sun, May 28, 2023 at 6:22=E2=80=AFAM Conor Dooley <conor@kernel=2Eorg>=
- wrote:
->>
->> On Sat, May 27, 2023 at 10:59:48PM +0100, Jiaxun Yang wrote:
->> > > 2023=E5=B9=B45=E6=9C=8827=E6=97=A5 17:23=EF=BC=8CConor Dooley <cono=
-r@kernel=2Eorg> =E5=86=99=E9=81=93=EF=BC=9A
->> > > On Sat, May 27, 2023 at 05:13:39PM +0100, Jiaxun Yang wrote:
->>
->> > >> My recommendation is leaving compatible string as is=2E
->> > >
->> > > "as is" meaning "as it is right now in Linus' tree", or "as it is i=
-n
->> > > this patch"?
->> >
->> > Ah sorry I meant in this patch=2E
->> >
->> > Since there won=E2=80=99t be any new ls1x chip that will boot Linux a=
-ny time soon (due to
->> > Loongson move away from MIPS but LoongArch32 is undefined for now), a=
-nd
->> > rest compatible strings are wide enough to cover their family, I thin=
-k the present
->> > compatible strings in this patch describes hardware best=2E
->>
->> I don't see why new bindings being written for old hardware should some=
-how
->> be treated differently than new bindings for new hardware=2E
->
->Let me add that ls1b RTC and ls1c RTC are not exactly the same=2E
->The former supports RTC interrupt, while the latter does not=2E
->So my suggestion is to leave the compatible string as it is in this patch=
-=2E
+Anshuman Khandual (4):
+  coresight: etm4x: Allocate and device assign 'struct etmv4_drvdata' earlier
+  coresight: etm4x: Drop iomem 'base' argument from etm4_probe()
+  coresight: etm4x: Drop pid argument from etm4_probe()
+  coresight: etm4x: Change etm4_platform_driver driver for MMIO devices
 
-Just as a reminder, there are more than ls1b & c in the patch, lest we for=
-get=2E
-Also, fallback compatibles mean a compatible subset, not only that two dev=
-ices are identical=2E
-The interrupt is passed by the interrupts property=2E
+Suzuki K Poulose (2):
+  coresight: platform: acpi: Ignore the absence of graph
+  coresight: etm4x: Add ACPI support in platform driver
+
+ drivers/acpi/acpi_amba.c                      |   1 -
+ .../coresight/coresight-etm4x-core.c          | 117 ++++++++++++++----
+ drivers/hwtracing/coresight/coresight-etm4x.h |   4 +
+ .../hwtracing/coresight/coresight-platform.c  |   6 +-
+ include/linux/coresight.h                     |  59 +++++++++
+ 5 files changed, 163 insertions(+), 24 deletions(-)
+
+-- 
+2.25.1
 
