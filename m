@@ -2,93 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB055714C04
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 16:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE5ED714C0A
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 16:27:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbjE2O02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 10:26:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33752 "EHLO
+        id S230179AbjE2O1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 10:27:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbjE2O0Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 10:26:24 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B45A2BE;
-        Mon, 29 May 2023 07:26:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=cx7ozsq4Ym7aNtqiQ+eL6o15aawxdE3rmyy6EdLqFFo=; b=iMTbp89jqd9wOwIM/GUMsMrfEK
-        hz5MEXwocmqCGZwaX/PcpIgaefZvEl3A8HeokychVml8Ym32V1OZQCRbiEEI2kFQO5muZ50nGz1YY
-        xx7mVyXo/QsM5d9KUi+e5vTKGN7yQ27Y4ITHvwJJCB14OCiYlBg92dcRJoLDjnjNiG2I=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:42490 helo=debian-acer)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1q3dow-0004VK-JV; Mon, 29 May 2023 10:26:04 -0400
-Date:   Mon, 29 May 2023 10:26:01 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <jirislaby@kernel.org>, <jringle@gridpoint.com>,
-        <l.perczak@camlintechnologies.com>, <tomasz.mon@camlingroup.com>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>, hugo@hugovil.com
-Message-Id: <20230529102601.144e17eccefaedc891e76f3a@hugovil.com>
-In-Reply-To: <20230529-seventy-stash-0446d9ae02e8@wendy>
-References: <20230529140711.896830-1-hugo@hugovil.com>
-        <20230529140711.896830-7-hugo@hugovil.com>
-        <20230529-seventy-stash-0446d9ae02e8@wendy>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S229579AbjE2O11 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 10:27:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD47ED;
+        Mon, 29 May 2023 07:27:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7C3776108F;
+        Mon, 29 May 2023 14:27:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74932C433D2;
+        Mon, 29 May 2023 14:27:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1685370438;
+        bh=LCmcN44zu2yuo4XqoPyGygsVCbsY+Qs6nCuuIueHTtI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KSXCop9E8wErtX4kx1Fso7pWTN/Y9yeqoEHrUP6NIVK3BNt050vHPbtEC+JHUboOU
+         GNv18nT8m0jQ5tR0KrgbbAYoMhYkpcVrmIi3/4c7lt/nqpOkxiHHTq5mtTNUTwnUOk
+         oxGbk4o95JoJ9+avlSlEYSVwA45cJeDHxPAIXsAY=
+Date:   Mon, 29 May 2023 15:27:16 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Stanley Chang <stanley_chang@realtek.com>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Ray Chi <raychi@google.com>, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] usb: phy: add usb phy notify port status API
+Message-ID: <2023052905-maimed-studied-3563@gregkh>
+References: <20230525022617.30537-1-stanley_chang@realtek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230525022617.30537-1-stanley_chang@realtek.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
-Subject: Re: [PATCH v4 6/9] dt-bindings: sc16is7xx: Add property to change
- GPIO function
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 May 2023 15:16:47 +0100
-Conor Dooley <conor.dooley@microchip.com> wrote:
-
-> Hey Hugo,
+On Thu, May 25, 2023 at 10:26:02AM +0800, Stanley Chang wrote:
+> In Realtek SoC, the parameter of usb phy is designed to can dynamic
+> tuning base on port status. Therefore, add a notify callback of phy
+> driver when usb port status change.
 > 
-> On Mon, May 29, 2023 at 10:07:08AM -0400, Hugo Villeneuve wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > Some variants in this series of UART controllers have GPIO pins that
-> > are shared between GPIO and modem control lines.
-> > 
-> > The pin mux mode (GPIO or modem control lines) can be set for each
-> > ports (channels) supported by the variant.
-> > 
-> > This adds a property to the device tree to set the GPIO pin mux to
-> > modem control lines on selected ports if needed.
-> > 
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+> ---
+> v1 to v2 change:
+>     No change
+> ---
+>  drivers/usb/core/hub.c  | 13 +++++++++++++
+>  include/linux/usb/phy.h | 14 ++++++++++++++
+>  2 files changed, 27 insertions(+)
 > 
-> Did I not ack this in v2? I didn't notice a reason for dropping it
-> in the cover etc. Was it intentionally dropped, or missed?
-> 
-> Cheers,
-> Conor.
+> diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
+> index 97a0f8faea6e..b4fbbeae1927 100644
+> --- a/drivers/usb/core/hub.c
+> +++ b/drivers/usb/core/hub.c
+> @@ -614,6 +614,19 @@ static int hub_ext_port_status(struct usb_hub *hub, int port1, int type,
+>  		ret = 0;
+>  	}
+>  	mutex_unlock(&hub->status_mutex);
+> +
+> +	if (!ret) {
+> +		struct usb_device *hdev = hub->hdev;
+> +
+> +		if (hdev && !hdev->parent) {
+> +			struct usb_hcd *hcd = bus_to_hcd(hdev->bus);
+> +
+> +			if (hcd->usb_phy)
+> +				usb_phy_notify_port_status(hcd->usb_phy,
+> +					    port1 - 1, *status, *change);
+> +		}
+> +	}
+> +
+>  	return ret;
+>  }
+>  
+> diff --git a/include/linux/usb/phy.h b/include/linux/usb/phy.h
+> index e4de6bc1f69b..53bf3540098f 100644
+> --- a/include/linux/usb/phy.h
+> +++ b/include/linux/usb/phy.h
+> @@ -144,6 +144,10 @@ struct usb_phy {
+>  	 */
+>  	int	(*set_wakeup)(struct usb_phy *x, bool enabled);
+>  
+> +	/* notify phy port status change */
+> +	int	(*notify_port_status)(struct usb_phy *x,
+> +		int port, u16 portstatus, u16 portchange);
+> +
+>  	/* notify phy connect status change */
+>  	int	(*notify_connect)(struct usb_phy *x,
+>  			enum usb_device_speed speed);
 
-Hi Conor,
-In v3, I slighly modified the example, and that is why I didn't copy your ack.
+Why can't this be part of the same notify_connect() callback?
 
-Hugo.
+What makes it different somehow?  Please document this much better.
+
+
+> @@ -316,6 +320,16 @@ usb_phy_set_wakeup(struct usb_phy *x, bool enabled)
+>  		return 0;
+>  }
+>  
+> +static inline int
+> +usb_phy_notify_port_status(struct usb_phy *x, int port, u16 portstatus,
+> +	    u16 portchange)
+> +{
+> +	if (x && x->notify_port_status)
+
+How can x ever be NULL?
+
+thanks,
+
+greg k-h
