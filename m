@@ -2,80 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43DE871477C
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 11:54:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A849171478B
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 11:57:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231847AbjE2Jy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 05:54:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49078 "EHLO
+        id S231544AbjE2J5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 05:57:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231920AbjE2Jy4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 05:54:56 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94C3CA4;
-        Mon, 29 May 2023 02:54:55 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 1EC8885727;
-        Mon, 29 May 2023 11:54:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1685354094;
-        bh=9GUyg9+gt7TVBcEa/jnDJGhoVSQTLctlj2bS4yr1fZY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=mIyaKHlWyKDfRge7rpO4RsQnmyhSUWEcSRJY7Fi1gP8w06+cu8xmBDWbLPOeDzS/U
-         +Rxtd1qQWyV4rmnUmCnnsst7K60Lgw0CDnehN4+eCmv9Fmi6D0STvSJ5OUR5KniP1d
-         oCbvGPJNCLY5P0BamRPTDIR8hd1yNtKFgGlCKF+CmI4sxge1EEZ9N5HmO5P/wXAWou
-         oIHnhcQtyIoYoQWOHXDTVCgdVNvRr5/MITRXfNir+a8DLvyBRXarvucXBPg5PrAKfH
-         uU4CpcV8SFsQqI0s95yjCf/eAjEuX4h8CO0WJhVAFHv06gfO35PxuUmZfjA/3pOBHi
-         4Rc9MkON9wEOw==
-Message-ID: <f5b83a37-f448-64e5-1d7a-b297106ce22a@denx.de>
-Date:   Mon, 29 May 2023 11:54:01 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v4 4/4] ARM: dts: stm32: fix ltdc warnings in stm32mp15
- boards
-Content-Language: en-US
-To:     Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229678AbjE2J5h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 05:57:37 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AF02A7;
+        Mon, 29 May 2023 02:57:34 -0700 (PDT)
+X-GND-Sasl: luca.ceresoli@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1685354253;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=SxmIAh8GDseBZYntGUc44Z35aazp12eXjBcsoorWiBw=;
+        b=MPMZnN+KYG/+ouKEjouxriDE/jepLFdXO5DxpcQr6YK2v6ReIMqv4irstra0t8aMds7m7+
+        u9LPkrn24GLJRjIrIWLdmvY67dSj8e6S1hJC8cr7RBt8ttHTMeM68lrhQyr2gi5eJJjOBq
+        pKdqr5d0LZSold8WsIouK4zurxoPfvSTLb/EjIg/VsSs/2VNwwen5ug9jlHcrGiL4PH/CX
+        0XTzNoqWeK+jSb5Vwwed4VqxsJTidRQRLYGEmP0X9vquN6D81fpM0SD7Qk1PDtYE0bic91
+        NAznIauWv4YCq75iDnWGQTJ9734kZ8Db1derm0icOXdS+sVfnX85W16z6oSKhg==
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id C130560008;
+        Mon, 29 May 2023 09:57:29 +0000 (UTC)
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     devicetree@vger.kernel.org
+Cc:     Luca Ceresoli <luca.ceresoli@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@dh-electronics.com
-References: <20230529091359.71987-1-raphael.gallais-pou@foss.st.com>
- <20230529091359.71987-5-raphael.gallais-pou@foss.st.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20230529091359.71987-5-raphael.gallais-pou@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3] arm64: dts: imx8mp-msc-sm2s: Add sound card
+Date:   Mon, 29 May 2023 11:57:28 +0200
+Message-Id: <20230529095728.83993-1-luca.ceresoli@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/29/23 11:13, Raphael Gallais-Pou wrote:
-> Those concern:
->    * "#size-cells" and "#address-cells" wrongly used
->    * residual "reg" property appearing on endpoints where it could be
->      avoided
-> 
-> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+The MSC SM2-MB-EP1 carrier board for the SM2S-IMX8PLUS SMARC module has an
+NXP SGTL5000 audio codec connected to I2S-0 (sai2).
 
-Reviewed-by: Marek Vasut <marex@denx.de>
+This requires to:
+
+ * add the power supplies (always on)
+ * enable sai2 with pinmuxes
+ * reparent the CLKOUT1 clock that feeds the codec SYS_MCLK to
+   IMX8MP_CLK_24M in order it to generate an accurate 24 MHz rate
+
+Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+
+---
+
+Changed in v3:
+
+ - renamed codec node name to "audio-codec"
+
+Changed in v2:
+
+ - switch to simple-audio-card
+ - fix typo in commit message
+ - no underscores in node names
+ - rename "sgtl5000-sound" node to "sound"
+---
+ .../dts/freescale/imx8mp-msc-sm2s-ep1.dts     | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
+index 470ff8e31e32..64d522c71a44 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
+@@ -14,6 +14,67 @@ / {
+ 	compatible = "avnet,sm2s-imx8mp-14N0600E-ep1",
+ 		     "avnet,sm2s-imx8mp-14N0600E", "avnet,sm2s-imx8mp",
+ 		     "fsl,imx8mp";
++
++	reg_vcc_3v3_audio: 3v3-audio-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_3V3_AUD";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	reg_vcc_1v8_audio: 1v8-audio-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_1V8_AUD";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
++
++	sound {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "sgtl5000-audio";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,frame-master = <&codec_dai>;
++		simple-audio-card,bitclock-master = <&codec_dai>;
++
++		simple-audio-card,cpu {
++			sound-dai = <&sai2>;
++		};
++
++		codec_dai: simple-audio-card,codec {
++			sound-dai = <&sgtl5000>;
++		};
++	};
++};
++
++&i2c1 {
++	sgtl5000: audio-codec@a {
++		compatible = "fsl,sgtl5000";
++		reg = <0x0a>;
++
++		assigned-clocks = <&clk IMX8MP_CLK_CLKOUT1_SEL>;
++		assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
++		assigned-clock-rates = <24000000>;
++		clocks = <&clk IMX8MP_CLK_CLKOUT1>;
++		clock-names = "mclk";
++		#sound-dai-cells = <0>;
++
++		VDDA-supply  = <&reg_vcc_3v3_audio>;
++		VDDD-supply  = <&reg_vcc_1v8_audio>;
++		VDDIO-supply = <&reg_vcc_1v8_audio>;
++	};
++};
++
++/* I2S-0 = sai2 */
++&sai2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_sai2>;
++
++	assigned-clocks = <&clk IMX8MP_CLK_SAI2>;
++	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
++	assigned-clock-rates = <12288000>;
++
++	fsl,sai-mclk-direction-output;
++	status = "okay";
+ };
+ 
+ &flexcan1 {
+@@ -32,6 +93,15 @@ &iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_smarc_gpio>;
+ 
++	pinctrl_sai2: sai2grp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI2_TXFS__AUDIOMIX_SAI2_TX_SYNC   0xd6
++			MX8MP_IOMUXC_SAI2_TXC__AUDIOMIX_SAI2_TX_BCLK    0xd6
++			MX8MP_IOMUXC_SAI2_RXD0__AUDIOMIX_SAI2_RX_DATA00 0xd6
++			MX8MP_IOMUXC_SAI2_TXD0__AUDIOMIX_SAI2_TX_DATA00 0xd6
++		>;
++	};
++
+ 	pinctrl_smarc_gpio: smarcgpiosgrp {
+ 		fsl,pins =
+ 			<MX8MP_IOMUXC_GPIO1_IO11__GPIO1_IO11	0x19>, /* GPIO0 */
+
+base-commit: b20b0e97fc472249839abdc4d69cffdc695e97aa
+-- 
+2.34.1
+
