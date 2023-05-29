@@ -2,233 +2,511 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 039CA714A6C
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C786714A7C
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:38:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229748AbjE2NeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 09:34:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54116 "EHLO
+        id S229874AbjE2Ni0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 09:38:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbjE2NeL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:34:11 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A266E0
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:34:10 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2af177f12d1so35372001fa.0
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:34:10 -0700 (PDT)
+        with ESMTP id S229688AbjE2NiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:38:25 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1BBFCF;
+        Mon, 29 May 2023 06:38:22 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-64d3bc502ddso3942439b3a.0;
+        Mon, 29 May 2023 06:38:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685367248; x=1687959248;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DUA07q7mYkXN8wVPChZecILFUwJ1RMa5CnZ3abb0nMY=;
-        b=pkW7Z1cVHEOnlVLJkBjNzjkkiO8NM2vYMLg6yPxEdMZ2a07USLAPzWdhHOB5ViPxJs
-         TZTkzfHOA6Nd8C9lsl7ldEAWItXSrez20w7NBPuJ+jjjdgAD6OCqoSP/2HGemsEenIoV
-         84kGCeEAAGsLW9TilZsnBUf1CVYKxcl6lNSSsgy+A1vPyw7uRrmk3a8zKsfVfeKpCjU4
-         YM3I1qjSzuUNl+hcZ+nLIqAc62tuJSGaaKwfvRxTuYI5AR2MkbLTSNdQ37r+qEPUjXhn
-         AJdqqJUcI7AMDVk4VlFrnSiKCVD43MaykDtFwJbScMgPLoCmpoz4B9EwLBTl9e1XTBlz
-         C9Ng==
+        d=gmail.com; s=20221208; t=1685367502; x=1687959502;
+        h=content-transfer-encoding:in-reply-to:subject:from:content-language
+         :references:to:user-agent:mime-version:date:message-id:sender:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=/Wz1iKEYkaJwrBK5fzZBFhYmG1xumF7J7SB6Or0Q1f4=;
+        b=fhIXuGg5vHxdfBqBvQhYdbRXMJbHF2551fB5vbqfCKqPweWwV2CpxwIc94kKWFL4CI
+         7UReQo+g8hjpFFi/0AwrU96mfAftVX41ai2RGhgfy3RivlqLcy9rdK1m2/vfKCOS23rN
+         0fn4DuXfhJE2x2b3gmKvW5Ze1/cqyJI30Yn/TNrRRHhsnPoUi7Gr4O4lw4cuC6BOGHrG
+         /WTzOoP1ZauWGJ+j/8wxVALwGd9pAfNMyy3yadwHnQh9rwT9arrklLWdotzhjwlxMntr
+         Slzg7zAwYoJH3z1sPlBc7D/2sIex59lm74GJ3goaZJQzjoD36ZO0kFI4ue0L3q3tA2dy
+         CY6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685367248; x=1687959248;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1685367502; x=1687959502;
+        h=content-transfer-encoding:in-reply-to:subject:from:content-language
+         :references:to:user-agent:mime-version:date:message-id:sender
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DUA07q7mYkXN8wVPChZecILFUwJ1RMa5CnZ3abb0nMY=;
-        b=ZcKvltB2chqlJuodt7FNnumYxGdOx5uRQ649wmHpJM5q2eAPDgogs+PhqZqTG7stTB
-         SWIXt+NsvJCVVzf6it23pyz4Rhow1GvP4Ta9wWL5zpJ0o4XOxsfeMLDWQr3d2bxAUFVX
-         y/bRXmLUCLqX4u7jB7NIQnVsJLWP0D0Sz9t2p6hoEHn7ZcR8uMkLVE7T3yV+kQPrNoEJ
-         0ncpGRrpTB9ZgAua10SObJqb+g89t4EzYRsGU8TAGaq7vrCw+FcKCoJ/vBjuIj8RqOjG
-         zehszE53UWtEypV3g3RdK6wrWAzGYLVvEnX2nvQNvZDxuh2kzGnphdkWC2dN7oY7rEee
-         7NKg==
-X-Gm-Message-State: AC+VfDzg+n2fJw6V5xDJLVezKRueYJQP9/ayL8S9PfJwO1Ih42/0Ybfo
-        YA1jMwi+WgahgSpO68A3AHn32Q==
-X-Google-Smtp-Source: ACHHUZ4fjkUlyAONcCrJHEq5VFwORiOBYxD/b92R5rW/39PS7RVBLgtIWEXQkKEJ6aKOtUeVzkpq+g==
-X-Received: by 2002:a2e:b6c2:0:b0:2ac:8486:e318 with SMTP id m2-20020a2eb6c2000000b002ac8486e318mr3473659ljo.35.1685367248247;
-        Mon, 29 May 2023 06:34:08 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id i10-20020a2e808a000000b002adc2fe3fc8sm2450984ljg.4.2023.05.29.06.34.07
+        bh=/Wz1iKEYkaJwrBK5fzZBFhYmG1xumF7J7SB6Or0Q1f4=;
+        b=Vx8mRA76HAijQIDtpLk0jPuIZhZcH/PngnC/5Jn+kwTeW8+xLEUw/jvQw1lDa8XAUT
+         IHvTpurRTQuAMkd8hpMrfpuQ7u3oGWuyk+RBnOSdMD/CwbUT6vyDZ39zydGAM1BsfYmx
+         rzlGHeb5EcGYTMHO6ke0GC3uiFAQ9FhEh/u9M97dJ+f20a0rl2/6iNsgBq7STDKr70PW
+         +jkNHggN8RlV2q6FWMXdg0GILiGJfdV6llJv52w7vMuz/wm3iBsX6tsnNUCakqyk+48V
+         7mFR+Eq6l/wOQShtp8S2lq3qeaNs0G+TwphjGwKvEW1LFELoSqZRKz0hWFoau2MRXmZ8
+         0J0g==
+X-Gm-Message-State: AC+VfDwyLgU5YW8OmS4jFU5IvtD3qvOabNwy4hb2iJi8wRxNr+0lNw0o
+        746lQbjWvoLNIoQBwvZkpU4=
+X-Google-Smtp-Source: ACHHUZ5RVT3C34ovjV2v3LSw3G/oqyYka+FLhLY7Xfemsbj3HfGUGcMHuXA8HMQczdwp2wMLONtQew==
+X-Received: by 2002:a17:902:c94a:b0:1a0:7156:f8d1 with SMTP id i10-20020a170902c94a00b001a07156f8d1mr15701286pla.19.1685367501990;
+        Mon, 29 May 2023 06:38:21 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id k8-20020a170902760800b001acad86ebc5sm8269811pll.33.2023.05.29.06.38.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 May 2023 06:34:07 -0700 (PDT)
-Message-ID: <419972e3-3052-87ae-a471-5fcf0a01f7da@linaro.org>
-Date:   Mon, 29 May 2023 16:34:07 +0300
+        Mon, 29 May 2023 06:38:21 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <059bfc62-c2a5-df57-dceb-669585fad4d5@roeck-us.net>
+Date:   Mon, 29 May 2023 06:38:19 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 4/7] drm/msm/mdp5: Add MDP5 configuration for MSM8226
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230308-msm8226-mdp-v1-0-679f335d3d5b@z3ntu.xyz>
- <20230308-msm8226-mdp-v1-4-679f335d3d5b@z3ntu.xyz>
- <9858de8d-54ae-aa0c-35d8-fe8c1c8473b7@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <9858de8d-54ae-aa0c-35d8-fe8c1c8473b7@linaro.org>
+ Thunderbird/102.10.0
+To:     Bharat Bhushan <bbhushan2@marvell.com>, wim@linux-watchdog.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sgoutham@marvell.com
+References: <20230526062626.1180-1-bbhushan2@marvell.com>
+ <20230526062626.1180-2-bbhushan2@marvell.com>
+Content-Language: en-US
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH 2/2 v8] Watchdog: Add marvell GTI watchdog driver
+In-Reply-To: <20230526062626.1180-2-bbhushan2@marvell.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/05/2023 14:59, Konrad Dybcio wrote:
+On 5/25/23 23:26, Bharat Bhushan wrote:
+> This patch add support for Marvell GTI watchdog.  Global timer
+> unit (GTI) support hardware watchdog timer. Software programs
+> watchdog timer to generate interrupt on first timeout, second
+> timeout is configured to be ignored and system reboots on
+> third timeout.
 > 
+> Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
+> ---
+> v8:
+>    - Compatible names as per soc names
+>    - This driver run on ARM64 based architecture, Added 64BIT config
+>      dependency to avoid compilation error related to readq/writeq on
+>      32 as platform (Hexagon)
+>   
+
+In the future, please provide complete change logs.
+
+>   drivers/watchdog/Kconfig           |  13 ++
+>   drivers/watchdog/Makefile          |   1 +
+>   drivers/watchdog/marvell_gti_wdt.c | 346 +++++++++++++++++++++++++++++
+>   3 files changed, 360 insertions(+)
+>   create mode 100644 drivers/watchdog/marvell_gti_wdt.c
 > 
-> On 29.05.2023 11:44, Luca Weiss wrote:
->> Add the required config for the v1.1 MDP5 found on MSM8226.
->>
->> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
->> ---
->>   drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c | 82 ++++++++++++++++++++++++++++++++
->>   1 file changed, 82 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c b/drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c
->> index 2eec2d78f32a..694d54341337 100644
->> --- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c
->> +++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_cfg.c
->> @@ -103,6 +103,87 @@ static const struct mdp5_cfg_hw msm8x74v1_config = {
->>   	.max_clk = 200000000,
->>   };
->>   
->> +static const struct mdp5_cfg_hw msm8x26_config = {
-> Luca, this patch looks good as-is (without diving into the values).
-> 
-> Dmitry, I see some things that we may improve here..
-> 
-> 1. Rename msm8xab to msm89ab or something, it's really inconsistent
->     with other drivers
-> 
-> 2. Some values seem very common / always constant.. perhaps we could
->     add some #defines like we do in DPU?
+> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> index f22138709bf5..bbdc20f33dbf 100644
+> --- a/drivers/watchdog/Kconfig
+> +++ b/drivers/watchdog/Kconfig
+> @@ -1779,6 +1779,19 @@ config OCTEON_WDT
+>   	  from the first interrupt, it is then only poked when the
+>   	  device is written.
+>   
+> +config MARVELL_GTI_WDT
+> +	tristate "Marvell GTI Watchdog driver"
+> +	depends on ARCH_THUNDER || (COMPILE_TEST && 64BIT)
+> +	default y
 
-I really would not like to go the DPU way here. Maybe we can define the 
-'full-featured' masks, while leaving the older hardware intact.
+Does this watchdog exist on all Thunder processors ?
+If not please drop.
 
-> 3. Can we add some magic defines to make flush_hw_mask non-cryptic?
+> +	select WATCHDOG_CORE
+> +	help
+> +	 Marvell GTI hardware supports watchdog timer. First timeout
+> +	 works as watchdog pretimeout and installed interrupt handler
+> +	 will be called on first timeout. Hardware can generate interrupt
+> +	 to SCP on second timeout but it is not enabled, So second
+> +	 timeout is ignored. If device poke does not happen then system
+> +	 will reboot on third timeout.
+> +
+>   config BCM2835_WDT
+>   	tristate "Broadcom BCM2835 hardware watchdog"
+>   	depends on ARCH_BCM2835 || (OF && COMPILE_TEST)
+> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+> index b4c4ccf2d703..a164cd161ef3 100644
+> --- a/drivers/watchdog/Makefile
+> +++ b/drivers/watchdog/Makefile
+> @@ -98,6 +98,7 @@ obj-$(CONFIG_VISCONTI_WATCHDOG) += visconti_wdt.o
+>   obj-$(CONFIG_MSC313E_WATCHDOG) += msc313e_wdt.o
+>   obj-$(CONFIG_APPLE_WATCHDOG) += apple_wdt.o
+>   obj-$(CONFIG_SUNPLUS_WATCHDOG) += sunplus_wdt.o
+> +obj-$(CONFIG_MARVELL_GTI_WDT) += marvell_gti_wdt.o
+>   
+>   # X86 (i386 + ia64 + x86_64) Architecture
+>   obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
+> diff --git a/drivers/watchdog/marvell_gti_wdt.c b/drivers/watchdog/marvell_gti_wdt.c
+> new file mode 100644
+> index 000000000000..976bb9306115
+> --- /dev/null
+> +++ b/drivers/watchdog/marvell_gti_wdt.c
+> @@ -0,0 +1,346 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Marvell GTI Watchdog driver
+> + *
+> + * Copyright (C) 2023 Marvell.
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/watchdog.h>
+> +#include <linux/clk.h>
+> +
+Alphabetic order, please. Also, include io.h since
+you are using io functions (writeq).
 
-Sounds like a good idea, especially since we have all the defines. I'll 
-tend to it after landing 8226.
+> +/*
+> + * Hardware supports following mode of operation:
+> + * 1) Interrupt Only:
+> + *    This will generate the interrupt to arm core whenever timeout happens.
+> + *
+> + * 2) Interrupt + del3t (Interrupt to firmware (SCP processor)).
+> + *    This will generate interrupt to arm core on 1st timeout happens
+> + *    This will generate interrupt to SCP processor on 2nd timeout happens
+> + *
+> + * 3) Interrupt + Interrupt to SCP processor (called delt3t) + reboot.
+> + *    This will generate interrupt to arm core on 1st timeout happens
+> + *    Will generate interrupt to SCP processor on 2nd timeout happens,
+> + *    if interrupt is configured.
+> + *    Reboot on 3rd timeout.
+> + *
+> + * Driver will use hardware in mode-3 above so that system can reboot in case
+> + * a hardware hang. Also h/w is configured not to generate SCP interrupt, so
+> + * effectively 2nd timeout is ignored within hardware.
+> + *
+> + * First timeout is effectively watchdog pretimeout.
+> + */
+> +
+> +/* GTI CWD Watchdog (GTI_CWD_WDOG) Register */
+> +#define GTI_CWD_WDOG(reg_offset)	(0x8 * reg_offset)
 
-> 
-> 4. We can probably use pointers in data structs and deduplicate identical
->     blocks!
+reg_offset in ()
 
-Let's see.
+> +#define GTI_CWD_WDOG_MODE_INT_DEL3T_RST	0x3
+> +#define GTI_CWD_WDOG_MODE_MASK		GENMASK_ULL(1, 0)
+> +#define GTI_CWD_WDOG_LEN_SHIFT		4
+> +#define GTI_CWD_WDOG_LEN_MASK		GENMASK_ULL(19, 4)
+> +#define GTI_CWD_WDOG_CNT_SHIFT		20
+> +#define GTI_CWD_WDOG_CNT_MASK		GENMASK_ULL(43, 20)
+> +
+> +/* GTI CWD Watchdog Interrupt (GTI_CWD_INT) Register */
+> +#define GTI_CWD_INT			0x200
+> +#define GTI_CWD_INT_PENDING_STATUS(bit)	(1 << bit)
+> +
+> +/* GTI CWD Watchdog Interrupt Enable Clear (GTI_CWD_INT_ENA_CLR) Register */
+> +#define GTI_CWD_INT_ENA_CLR		0x210
+> +#define GTI_CWD_INT_ENA_CLR_VAL(bit)	(1 << bit)
 
-> 
-> Konrad
->> +	.name = "msm8x26",
->> +	.mdp = {
->> +		.count = 1,
->> +		.caps = MDP_CAP_SMP |
->> +			0,
->> +	},
->> +	.smp = {
->> +		.mmb_count = 7,
->> +		.mmb_size = 4096,
->> +		.clients = {
->> +			[SSPP_VIG0] =  1,
->> +			[SSPP_DMA0] = 4,
->> +			[SSPP_RGB0] = 7,
->> +		},
->> +	},
->> +	.ctl = {
->> +		.count = 2,
->> +		.base = { 0x00500, 0x00600 },
->> +		.flush_hw_mask = 0x0003ffff,
->> +	},
->> +	.pipe_vig = {
->> +		.count = 1,
->> +		.base = { 0x01100 },
->> +		.caps = MDP_PIPE_CAP_HFLIP |
->> +			MDP_PIPE_CAP_VFLIP |
->> +			MDP_PIPE_CAP_SCALE |
->> +			MDP_PIPE_CAP_CSC   |
->> +			0,
->> +	},
->> +	.pipe_rgb = {
->> +		.count = 1,
->> +		.base = { 0x01d00 },
->> +		.caps = MDP_PIPE_CAP_HFLIP |
->> +			MDP_PIPE_CAP_VFLIP |
->> +			MDP_PIPE_CAP_SCALE |
->> +			0,
->> +	},
->> +	.pipe_dma = {
->> +		.count = 1,
->> +		.base = { 0x02900 },
->> +		.caps = MDP_PIPE_CAP_HFLIP |
->> +			MDP_PIPE_CAP_VFLIP |
->> +			0,
->> +	},
->> +	.lm = {
->> +		.count = 2,
->> +		.base = { 0x03100, 0x03d00 },
->> +		.instances = {
->> +				{ .id = 0, .pp = 0, .dspp = 0,
->> +				  .caps = MDP_LM_CAP_DISPLAY, },
->> +				{ .id = 1, .pp = -1, .dspp = -1,
->> +				  .caps = MDP_LM_CAP_WB },
->> +			     },
->> +		.nb_stages = 2,
->> +		.max_width = 2048,
->> +		.max_height = 0xFFFF,
->> +	},
->> +	.dspp = {
->> +		.count = 1,
->> +		.base = { 0x04500 },
->> +	},
->> +	.pp = {
->> +		.count = 1,
->> +		.base = { 0x21a00 },
->> +	},
->> +	.intf = {
->> +		.base = { 0x00000, 0x21200 },
->> +		.connect = {
->> +			[0] = INTF_DISABLED,
->> +			[1] = INTF_DSI,
->> +		},
->> +	},
->> +	.perf = {
->> +		.ab_inefficiency = 100,
->> +		.ib_inefficiency = 200,
->> +		.clk_inefficiency = 125
->> +	},
->> +	.max_clk = 200000000,
->> +};
->> +
->>   static const struct mdp5_cfg_hw msm8x74v2_config = {
->>   	.name = "msm8x74",
->>   	.mdp = {
->> @@ -1236,6 +1317,7 @@ static const struct mdp5_cfg_hw sdm660_config = {
->>   
->>   static const struct mdp5_cfg_handler cfg_handlers_v1[] = {
->>   	{ .revision = 0, .config = { .hw = &msm8x74v1_config } },
->> +	{ .revision = 1, .config = { .hw = &msm8x26_config } },
->>   	{ .revision = 2, .config = { .hw = &msm8x74v2_config } },
->>   	{ .revision = 3, .config = { .hw = &apq8084_config } },
->>   	{ .revision = 6, .config = { .hw = &msm8x16_config } },
->>
+Please use BIT().
 
--- 
-With best wishes
-Dmitry
+> +
+> +/* GTI CWD Watchdog Interrupt Enable Set (GTI_CWD_INT_ENA_SET) Register */
+> +#define GTI_CWD_INT_ENA_SET		0x218
+> +#define GTI_CWD_INT_ENA_SET_VAL(bit)	(1 << bit)
+> +
+> +/* GTI CWD Watchdog Poke (GTI_CWD_POKE) Registers */
+> +#define GTI_CWD_POKE(reg_offset)	(0x10000 + 0x8 * reg_offset)
+> +#define GTI_CWD_POKE_VAL		1
+> +
+> +struct gti_match_data {
+> +	u32 gti_num_timers;
+> +};
+> +
+> +static const struct gti_match_data match_data_octeontx2 = {
+
+The driver depends on ARCH_THUNDER but not ARCH_THUNDER2.
+
+> +	.gti_num_timers = 54,
+> +};
+> +
+> +static const struct gti_match_data match_data_cn10k = {
+> +	.gti_num_timers = 64,
+> +};
+> +
+> +struct gti_wdt_priv {
+> +	struct watchdog_device wdev;
+> +	void __iomem *base;
+> +	u32 clock_freq;
+> +	struct clk *sclk;
+> +	/* wdt_timer_idx used for timer to be used for system watchdog */
+> +	u32 wdt_timer_idx;
+> +	const struct gti_match_data *data;
+> +};
+> +
+> +static irqreturn_t gti_wdt_interrupt(int irq, void *data)
+> +{
+> +	struct watchdog_device *wdev = data;
+> +	struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> +
+> +	/* Clear Interrupt Pending Status */
+> +	writeq(GTI_CWD_INT_PENDING_STATUS(priv->wdt_timer_idx),
+> +	       priv->base + GTI_CWD_INT);
+> +
+> +	watchdog_notify_pretimeout(wdev);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int gti_wdt_ping(struct watchdog_device *wdev)
+> +{
+> +	struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> +
+> +	writeq(GTI_CWD_POKE_VAL,
+> +	       priv->base + GTI_CWD_POKE(priv->wdt_timer_idx));
+> +
+> +	return 0;
+> +}
+> +
+> +static int gti_wdt_start(struct watchdog_device *wdev)
+> +{
+> +	struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> +	u64 regval;
+> +
+> +	if (!wdev->pretimeout)
+> +		return -EINVAL;
+> +
+> +	set_bit(WDOG_HW_RUNNING, &wdev->status);
+> +
+> +	/* Clear any pending interrupt */
+> +	writeq(GTI_CWD_INT_PENDING_STATUS(priv->wdt_timer_idx),
+> +	       priv->base + GTI_CWD_INT);
+> +
+> +	/* Enable Interrupt */
+> +	writeq(GTI_CWD_INT_ENA_SET_VAL(priv->wdt_timer_idx),
+> +	       priv->base + GTI_CWD_INT_ENA_SET);
+> +
+> +	/* Set (Interrupt + SCP interrupt (DEL3T) + core domain reset) Mode */
+> +	regval = readq(priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
+> +	regval |= GTI_CWD_WDOG_MODE_INT_DEL3T_RST;
+> +	writeq(regval, priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
+> +
+> +	return 0;
+> +}
+> +
+> +static int gti_wdt_stop(struct watchdog_device *wdev)
+> +{
+> +	struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> +	u64 regval;
+> +
+> +	/* Disable Interrupt */
+> +	writeq(GTI_CWD_INT_ENA_CLR_VAL(priv->wdt_timer_idx),
+> +	       priv->base + GTI_CWD_INT_ENA_CLR);
+> +
+> +	/* Set GTI_CWD_WDOG.Mode = 0 to stop the timer */
+> +	regval = readq(priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
+> +	regval &= ~GTI_CWD_WDOG_MODE_MASK;
+> +	writeq(regval, priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
+> +
+> +	return 0;
+> +}
+> +
+> +static int gti_wdt_settimeout(struct watchdog_device *wdev,
+> +					unsigned int timeout)
+> +{
+> +	struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> +	u64 timeout_wdog, regval;
+> +
+> +	/* Update new timeout */
+> +	wdev->timeout = timeout;
+> +
+> +	/* Pretimeout is 1/3 of timeout */
+> +	wdev->pretimeout = timeout / 3;
+> +
+> +	/* Get clock cycles from pretimeout */
+> +	timeout_wdog = (u64)priv->clock_freq * wdev->pretimeout;
+> +
+> +	/* Watchdog counts in 1024 cycle steps */
+> +	timeout_wdog = timeout_wdog >> 10;
+> +
+> +	/* GTI_CWD_WDOG.CNT: reload counter is 16-bit */
+> +	timeout_wdog = (timeout_wdog + 0xff) >> 8;
+> +	if (timeout_wdog >= 0x10000)
+> +		timeout_wdog = 0xffff;
+> +
+> +	/*
+> +	 * GTI_CWD_WDOG.LEN is 24bit, lower 8-bits should be zero and
+> +	 * upper 16-bits are same as GTI_CWD_WDOG.CNT
+> +	 */
+> +	regval = readq(priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
+> +	regval &= GTI_CWD_WDOG_MODE_MASK;
+> +	regval |= (timeout_wdog << (GTI_CWD_WDOG_CNT_SHIFT + 8)) |
+> +		   (timeout_wdog << GTI_CWD_WDOG_LEN_SHIFT);
+> +	writeq(regval, priv->base + GTI_CWD_WDOG(priv->wdt_timer_idx));
+> +
+> +	return 0;
+> +}
+> +
+> +static int gti_wdt_set_pretimeout(struct watchdog_device *wdev,
+> +					unsigned int timeout)
+> +{
+> +	struct gti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> +	struct watchdog_device *wdog_dev = &priv->wdev;
+> +
+> +	/* pretimeout should 1/3 of max_timeout */
+> +	if (timeout * 3 <= wdog_dev->max_timeout)
+> +		return gti_wdt_settimeout(wdev, timeout * 3);
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static void gti_clk_disable_unprepare(void *data)
+> +{
+> +	clk_disable_unprepare(data);
+> +}
+> +
+> +static int gti_wdt_get_cntfrq(struct platform_device *pdev,
+> +			      struct gti_wdt_priv *priv)
+> +{
+> +	int err;
+> +
+> +	priv->sclk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(priv->sclk))
+> +		return PTR_ERR(priv->sclk);
+> +
+> +	err = clk_prepare_enable(priv->sclk);
+> +	if (err)
+> +		return err;
+> +
+
+Any reason for not using devm_clk_get_enabled() ?
+
+> +	err = devm_add_action_or_reset(&pdev->dev,
+> +				       gti_clk_disable_unprepare, priv->sclk);
+> +	if (err)
+> +		return err;
+> +
+> +	priv->clock_freq = clk_get_rate(priv->sclk);
+> +	if (!priv->clock_freq)
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct watchdog_info gti_wdt_ident = {
+> +	.identity = "Marvell GTI watchdog",
+> +	.options = WDIOF_SETTIMEOUT | WDIOF_PRETIMEOUT | WDIOF_KEEPALIVEPING |
+> +		   WDIOF_MAGICCLOSE | WDIOF_CARDRESET,
+> +};
+> +
+> +static const struct watchdog_ops gti_wdt_ops = {
+> +	.owner = THIS_MODULE,
+> +	.start = gti_wdt_start,
+> +	.stop = gti_wdt_stop,
+> +	.ping = gti_wdt_ping,
+> +	.set_timeout = gti_wdt_settimeout,
+> +	.set_pretimeout = gti_wdt_set_pretimeout,
+> +};
+> +
+> +static int gti_wdt_probe(struct platform_device *pdev)
+> +{
+> +	struct gti_wdt_priv *priv;
+> +	struct device *dev = &pdev->dev;
+> +	struct watchdog_device *wdog_dev;
+> +	u64 max_pretimeout;
+> +	u32 wdt_idx;
+> +	int irq;
+> +	int err;
+> +
+> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->base),
+> +			      "reg property not valid/found\n");
+> +
+> +	err = gti_wdt_get_cntfrq(pdev, priv);
+> +	if (err)
+> +		return dev_err_probe(&pdev->dev, err,
+> +				     "GTI clock frequency not valid/found");
+> +
+> +	priv->data = of_device_get_match_data(dev);
+> +
+> +	/* default use last timer for watchdog */
+> +	priv->wdt_timer_idx = priv->data->gti_num_timers - 1;
+> +
+> +	err = of_property_read_u32(dev->of_node, "marvell,wdt-timer-index",
+> +				   &wdt_idx);
+> +	if (!err) {
+> +		if (wdt_idx >= priv->data->gti_num_timers)
+> +			return dev_err_probe(&pdev->dev, err,
+> +				"GTI wdog timer index not valid");
+> +
+> +		priv->wdt_timer_idx = wdt_idx;
+> +	}
+> +
+> +	wdog_dev = &priv->wdev;
+> +	wdog_dev->info = &gti_wdt_ident,
+> +	wdog_dev->ops = &gti_wdt_ops,
+> +	wdog_dev->parent = dev;
+> +	/*
+> +	 * Watchdog counter is 24 bit where lower 8 bits are zeros
+> +	 * This counter decrements every 1024 clock cycles.
+> +	 */
+> +	max_pretimeout = (GTI_CWD_WDOG_CNT_MASK >> GTI_CWD_WDOG_CNT_SHIFT);
+> +	max_pretimeout &= ~0xFFUL;
+> +	max_pretimeout = (max_pretimeout * 1024) / priv->clock_freq;
+> +	wdog_dev->pretimeout = max_pretimeout;
+> +
+> +	/* Maximum timeout is 3 times the pretimeout */
+> +	wdog_dev->max_timeout = max_pretimeout * 3;
+> +	/* Minimum first timeout (pretimeout) is 1, so min_timeout as 3 */
+> +	wdog_dev->min_timeout = 3;
+> +	wdog_dev->timeout = wdog_dev->pretimeout;
+> +
+> +	watchdog_set_drvdata(wdog_dev, priv);
+> +	platform_set_drvdata(pdev, priv);
+> +	gti_wdt_settimeout(wdog_dev, wdog_dev->timeout);
+> +	watchdog_stop_on_reboot(wdog_dev);
+> +	watchdog_stop_on_unregister(wdog_dev);
+> +
+> +	err = devm_watchdog_register_device(dev, wdog_dev);
+> +	if (err)
+> +		return err;
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return dev_err_probe(&pdev->dev, irq, "IRQ resource not found\n");
+> +
+> +	err = devm_request_irq(dev, irq, gti_wdt_interrupt, 0,
+> +			       pdev->name, &priv->wdev);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to register interrupt handler\n");
+> +
+> +	dev_info(dev, "Watchdog enabled (timeout=%d sec)\n", wdog_dev->timeout);
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id gti_wdt_of_match[] = {
+> +	{ .compatible = "marvell,cn9670-wdt", .data = &match_data_octeontx2},
+> +	{ .compatible = "marvell,cn9880-wdt", .data = &match_data_octeontx2},
+> +	{ .compatible = "marvell,cnf9535-wdt", .data = &match_data_octeontx2},
+> +	{ .compatible = "marvell,cn10624-wdt", .data = &match_data_cn10k},
+> +	{ .compatible = "marvell,cn10308-wdt", .data = &match_data_cn10k},
+> +	{ .compatible = "marvell,cnf10518-wdt", .data = &match_data_cn10k},
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, gti_wdt_of_match);
+> +
+> +static struct platform_driver gti_wdt_driver = {
+> +	.driver = {
+> +		.name = "gti-wdt",
+> +		.of_match_table = gti_wdt_of_match,
+> +	},
+> +	.probe = gti_wdt_probe,
+> +};
+> +module_platform_driver(gti_wdt_driver);
+> +
+> +MODULE_AUTHOR("Bharat Bhushan <bbhushan2@marvell.com>");
+> +MODULE_DESCRIPTION("Marvell GTI watchdog driver");
 
