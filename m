@@ -2,247 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55E5A714AAE
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:50:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D49A5714B2E
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:56:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229607AbjE2NuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 09:50:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34526 "EHLO
+        id S230139AbjE2N4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 09:56:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbjE2NuX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:50:23 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D385107;
-        Mon, 29 May 2023 06:50:14 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (om126255106133.24.openmobile.ne.jp [126.255.106.133])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 614A0836;
-        Mon, 29 May 2023 15:49:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1685368191;
-        bh=Z5YaI4FQ4nsu1kJlSC+REgzPugOlcWreD0VGwhXFugU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DfUOhJEn3jJ8hZGyuHKR6cZM1Pk9DNtw6KtaAouAzEjQpD9TFVN0U31Dr9+zXGG2S
-         2ppxSsf70NTxWVukFTs0J/EEN1hME65gkv0tSZx+pO8qTT9BSrz3guMMWhhNBjGh6x
-         0ZMQsLmYUdWs0rBrw5sOuYx0+QuLJhVCoCDyewfk=
-Date:   Mon, 29 May 2023 16:49:59 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S230146AbjE2N4j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:56:39 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2062.outbound.protection.outlook.com [40.107.244.62])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34151AB;
+        Mon, 29 May 2023 06:56:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VkoFD6SokLDzL1TaV68kFFvUCuqg/DdGxb7c/e+WMzgggcfl/8OORXu/2EKyHFxdT6gPyJprtFY81ScflAMCfPQfNI79HofR1nuM3i2IytQYmbPhjYb6e1a3RBL4safMx+GZoaTp2w0CM2EM06xHErW1trwwfGJI6teHXVCImEJLk9CVwUwOpq6UOG3dGjgDT46k+pd7FCJFpUsRHiMXFr2U2ssWH0WKG1Q0T7f7pMec3hT1JLK1VBudPunldvICDlVHHVZuMg0wuj7Y8hZqnHGINAimKVUxDISNRQYu25VKwUsaO61YTL8oOnZYbDFQCyiPPMsmiXfAxpdL5gLY8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p9gtc2VhbWCIZy47243+8XCQwEjfXDrJuuOv8yLB//4=;
+ b=JswYpQqeBmvM3Muu4NKe3wysRlWxS5w+RMcHg0d+uCZMUFSRIRVGK2ug7VVDlHF2tCAU7VRVShO/BF+swAlrTsRR6ILRbBsa4NuA2NTguQ/aqwveEDLOC+yD+A38pq6thcMWFalu+rUitJ5e3lf5LEKpaZ7I/xlmvOn183hNF/BRMRnpuVF9iBLx3miYNLR1KkL72W09eVu4hiPfUDMKWozmbI4IzIHVMReyEAY7cyT1pJLKnghKFxv7AXf0WAXpUbt4SGZB7bwo/3wpl2DTU5a/2Xk018RQxgepfsaUbzsiBNdOo1tzPp8eHtIvMbaD3/y3+wg+pcJsgpqDs/WpdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p9gtc2VhbWCIZy47243+8XCQwEjfXDrJuuOv8yLB//4=;
+ b=BUDd7KSQL575s5w09YzT5yOcnPfzRIQU5vWQzbxDHqCHe6KtJbquS1kz6vIu+dyN1+uvLRJBI72p4gFPQpR7FeK2MpUNIW9lYkCyLz5ZZ889/8vWzrJUmEsetMgDAFU+AI+G1yjQqZwqdfoIqw55Xjhkc/Ap1UKqSmq+VBwvGEMyh/QtEu6xm18hWQXNWD4Jl8CIR94oi4hk/5JcxZGYO5PNQXaUlv0GH740EAQLOHRqYK2vOwW8EsWarDVpuhRSrb7ISLfa5I1+IlQ4xs4WlE2f7EeNbCCsOHJpWUpui525RPDzpglX1EZKSqpGJ6pdE6+yGmkxO7ilSMp/LuRAzA==
+Received: from MW4P223CA0022.NAMP223.PROD.OUTLOOK.COM (2603:10b6:303:80::27)
+ by MW3PR12MB4540.namprd12.prod.outlook.com (2603:10b6:303:52::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.22; Mon, 29 May
+ 2023 13:54:50 +0000
+Received: from CO1NAM11FT066.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:80:cafe::42) by MW4P223CA0022.outlook.office365.com
+ (2603:10b6:303:80::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.22 via Frontend
+ Transport; Mon, 29 May 2023 13:54:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ CO1NAM11FT066.mail.protection.outlook.com (10.13.175.18) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6455.21 via Frontend Transport; Mon, 29 May 2023 13:54:49 +0000
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Mon, 29 May 2023
+ 06:54:34 -0700
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail204.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Mon, 29 May
+ 2023 06:54:34 -0700
+Received: from 44189d9-lcedt.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server id 15.2.986.37 via Frontend
+ Transport; Mon, 29 May 2023 06:54:31 -0700
+From:   Peter De Schrijver <pdeschrijver@nvidia.com>
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>, <stefank@nvidia.com>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>
+CC:     Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v9 RESEND 2/5] dt-bindings: display: Document Renesas
- RZ/G2L DU bindings
-Message-ID: <20230529134959.GA27467@pendragon.ideasonboard.com>
-References: <20230502100912.143114-1-biju.das.jz@bp.renesas.com>
- <20230502100912.143114-3-biju.das.jz@bp.renesas.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Joe Perches <joe@perches.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
+Subject: [PATCH v5 0/5] firmware: tegra: Add MRQ support for Tegra264.
+Date:   Mon, 29 May 2023 16:50:40 +0300
+Message-ID: <20230529135044.2746339-1-pdeschrijver@nvidia.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230502100912.143114-3-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT066:EE_|MW3PR12MB4540:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9b435e42-bf1a-49ba-6b18-08db604c455f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: MQRlKAzKXaBMpM8FuVcnpG6x6ukJ2sGVu34pGP1BkHc3qlpeVbOcUMHqzaKNOYF720Ishw03Vp+Zl4xp8igYKysWLt2m0QFlGdiQ3XrXTGvo/q4oClKoucHoKJmtRjFTPH1Ccq4mCADH/3R2JH6qH5SoFgy62YsxrGvLkLw2832hCn6fivDbDtGwhEKnPue/2Xh4c1rud1TZcGFTI2eJx7us4rsso74/ltFCFnPDdi3+5q2wfkkht1ST3RPa7bvZH3saRtCsyf6vxKJ+Qfx1MpUvMCJO3hzO61PpWpcp7Pe+7TBul3cVMokJ1UMA4cF/2wAZEQUmWIFoHW/jBeuyWWStIiUYQ+RzGpkq0S2S0MWW9n7E/uIhJqKlKuf9TP4RJGvUlGDq/c5UZHgvudIGyK4765vLDOZdUURb9KynpDKczgiJ/gCOePmks5EBmij/V43tky5M5IZsyZRc075prh1CPHiSJB8ql+8tTp5Ui4HDwwwUk2O9o60hbb7QvQNB115Oi+fbzmiWp41Nf4qu/iM5ZHtXlTCvNtm6ZW8Fh7aVk1qmeJLXalRya0NJZyBtyJ8+mEV8XMHL9Ow39wFcj+9U/q3rIMGX4+mCCPnm02htBMp7J7rlVJ7k1orpyKhzISDY62hDD5RGI/LEY3RGd0s/SqLRygSEKrvbkbla6Em4SiGSmdUD77H9lzz3r39qQzCmqzvbEmyd2uM2lgVEajKh+UFT+sETLDzzKtgcBmhUvY5H2ocHUO7JBkFBttsb
+X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(396003)(346002)(39850400004)(376002)(136003)(451199021)(46966006)(40470700004)(36840700001)(186003)(2906002)(2616005)(54906003)(110136005)(426003)(336012)(478600001)(26005)(1076003)(47076005)(83380400001)(36860700001)(40460700003)(86362001)(7696005)(356005)(7636003)(8676002)(82740400003)(41300700001)(8936002)(40480700001)(5660300002)(6666004)(70586007)(70206006)(316002)(82310400005)(36756003)(4326008)(6636002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 May 2023 13:54:49.9157
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b435e42-bf1a-49ba-6b18-08db604c455f
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT066.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR12MB4540
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Changes in v2:
 
-Thank you for the patch.
+- Added signoff messages
+- Updated bindings to support DRAM MRQ GSCs
+- Split out memory-region property for tegra186-bpmp into its own patch
+- Addressed sparse errors in bpmp-tegra186.c
 
-On Tue, May 02, 2023 at 11:09:09AM +0100, Biju Das wrote:
-> The RZ/G2L LCD controller is composed of Frame Compression Processor
-> (FCPVD), Video Signal Processor (VSPD), and Display Unit (DU).
-> 
-> The DU module supports the following hardware features
-> − Display Parallel Interface (DPI) and MIPI LINK Video Interface
-> − Display timing master
-> − Generates video timings
-> − Selecting the polarity of output DCLK, HSYNC, VSYNC, and DE
-> − Supports Progressive
-> − Input data format (from VSPD): RGB888, RGB666
-> − Output data format: same as Input data format
-> − Supporting Full HD (1920 pixels x 1080 lines) for MIPI-DSI Output
-> − Supporting WXGA (1280 pixels x 800 lines) for Parallel Output
-> 
-> This patch document DU module found on RZ/G2L LCDC.
+Changes in v3:
 
-s/document/documents the/
+- Added #address-cells = <2> and #size-cells = <2> to
+  nvidia,tegra264-bpmp-shmem binding example.
 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> v8->v9:
->  * No change
-> v7->v8:
->  * No change
-> v6->v7:
->  * No change
-> v5->v6:
->  * No change.
-> v4->v5:
->  * Added Rb tag from Rob.
-> v3->v4:
->  * Changed compatible name from renesas,du-r9a07g044->renesas,r9a07g044-du
->  * started using same compatible for RZ/G2{L,LC}
-> v3: New patch
-> ---
->  .../bindings/display/renesas,rzg2l-du.yaml    | 124 ++++++++++++++++++
->  1 file changed, 124 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-> new file mode 100644
-> index 000000000000..ab99e7d57a7d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-> @@ -0,0 +1,124 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/renesas,rzg2l-du.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L Display Unit (DU)
-> +
-> +maintainers:
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
-> +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> +
-> +description: |
-> +  These DT bindings describe the Display Unit embedded in the Renesas RZ/G2L
-> +  and RZ/V2L SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - renesas,r9a07g044-du # RZ/G2{L,LC}
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Main clock
-> +      - description: Register access clock
-> +      - description: Video clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: aclk
-> +      - const: pclk
-> +      - const: vclk
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    description: |
-> +      The connections to the DU output video ports are modeled using the OF
-> +      graph bindings specified in Documentation/devicetree/bindings/graph.txt.
+Changes in v4:
 
-The file has moved to graph.yaml in the dt-schema repo. I'll drop the
-last part of the sentence, starting with "specified by".
+- Added lost Acked-by tags to patch 1 and 2.
+- Updated topic for patch 3 to 'soc/tegra: fuse:'.
+- Updated topic for patch 4 to 'dt-bindings: Add support for DRAM MRQ GSCs'.
+- Updated topic for patch 5 to 'dt-bindings: Add support for tegra186-bpmp DRAM MRQ GSCs'.
+- Removed unneeded include statements in patch 6.
+- Renamed some functions in patch 6 for more consistent naming.
+- Improved handling of void * vs void __iomem * in patch6 .
 
-> +      The number of ports and their assignment are model-dependent. Each port
-> +      shall have a single endpoint.
-> +
-> +    patternProperties:
-> +      "^port@[0-1]$":
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        unevaluatedProperties: false
-> +
-> +    required:
-> +      - port@0
-> +
-> +    unevaluatedProperties: false
-> +
-> +  renesas,vsps:
-> +    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-> +    items:
-> +      items:
-> +        - description: phandle to VSP instance that serves the DU channel
-> +        - description: Channel index identifying the LIF instance in that VSP
-> +    description:
-> +      A list of phandle and channel index tuples to the VSPs that handle the
-> +      memory interfaces for the DU channels.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - power-domains
-> +  - ports
-> +  - renesas,vsps
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # RZ/G2L DU
-> +  - |
-> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    display@10890000 {
-> +        compatible = "renesas,r9a07g044-du";
-> +        reg = <0x10890000 0x10000>;
-> +        interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&cpg CPG_MOD R9A07G044_LCDC_CLK_A>,
-> +                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_P>,
-> +                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_D>;
-> +        clock-names = "aclk", "pclk", "vclk";
-> +        resets = <&cpg R9A07G044_LCDC_RESET_N>;
-> +        power-domains = <&cpg>;
-> +
-> +        renesas,vsps = <&vspd0 0>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                endpoint {
-> +                    remote-endpoint = <&dsi0_in>;
-> +                };
-> +            };
-> +            port@1 {
-> +                reg = <1>;
-> +                endpoint {
-> +                };
+Changes in v5:
 
-Endpoints shouldn't be empty, you can just drop the endpoint here.
+- Small formatting fixes in patch 2 and 3.
+- Add a comment to patch 6 to clarify the purpose of the enum.
 
-I'll fix all this locally.
+Peter De Schrijver (4):
+  dt-bindings: mailbox: tegra: Document Tegra264 HSP
+  dt-bindings: reserved-memory: Add support for DRAM MRQ GSCs
+  dt-bindings: firmware: Add support for tegra186-bpmp DRAM MRQ GSCs
+  firmware: tegra: bpmp: Add support for DRAM MRQ GSCs
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Stefan Kristiansson (1):
+  mailbox: tegra: add support for Tegra264
 
-> +            };
-> +        };
-> +    };
-> +
-> +...
+ .../firmware/nvidia,tegra186-bpmp.yaml        |  39 ++-
+ .../bindings/mailbox/nvidia,tegra186-hsp.yaml |   1 +
+ .../nvidia,tegra264-bpmp-shmem.yaml           |  47 ++++
+ drivers/firmware/tegra/bpmp-tegra186.c        | 232 +++++++++++++-----
+ drivers/firmware/tegra/bpmp.c                 |   4 +-
+ drivers/mailbox/tegra-hsp.c                   |  16 +-
+ 6 files changed, 264 insertions(+), 75 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvidia,tegra264-bpmp-shmem.yaml
 
 -- 
-Regards,
+2.34.1
 
-Laurent Pinchart
