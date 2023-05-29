@@ -2,172 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D48327144CE
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 08:28:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62FA47144FD
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 08:39:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231681AbjE2G2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 02:28:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54836 "EHLO
+        id S231516AbjE2GjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 02:39:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231682AbjE2G2i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 02:28:38 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 520911BC;
-        Sun, 28 May 2023 23:28:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685341689; x=1716877689;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=dh0EL4hNH/yV6+3G0mpHZLbVKP4ILEfFeFyXC+i3GrQ=;
-  b=2NmnZp6HaVGmrA1AEITvTv7CHjLplUFnxV2vJ07Uz/CNJZt6bKSPZNMc
-   QrBxFPndnvvnwko9++CuagztkyIwGIrcPdg67aozo5Ue2VPxSaTzxEwwb
-   6BJERPcCJsvZZEFW3gu7FoK7DNfb1OOGWoQajTTgpb5glPJaH9iORJ6s0
-   hfohjILa/pyL62kUlML4ENDpuFG/IeUHktcPtY1m59lx4AtXAMij/668H
-   v2lg7H/l6kgvcZTG/1NSOqLsEjA0Y9iYsIdxG9W4BmBT16tRVYg+Rakw5
-   EdHg/sNLwr2O4JM0m+JvUqUGw2siqaOLgu+hjC8iVGAQnEU4PUMf+FZKy
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.00,200,1681196400"; 
-   d="scan'208";a="215861693"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 May 2023 23:26:44 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Sun, 28 May 2023 23:26:42 -0700
-Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.21 via Frontend Transport; Sun, 28 May 2023 23:26:37 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <daniel.lezcano@linaro.org>,
-        <tglx@linutronix.de>, <wim@linux-watchdog.org>,
-        <linux@roeck-us.net>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
-        "Claudiu Beznea" <claudiu.beznea@microchip.com>
-Subject: [PATCH v2 4/4] dt-bindings: timer: atmel,at91rm9200-st: convert to yaml
-Date:   Mon, 29 May 2023 09:26:04 +0300
-Message-ID: <20230529062604.1498052-5-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230529062604.1498052-1-claudiu.beznea@microchip.com>
-References: <20230529062604.1498052-1-claudiu.beznea@microchip.com>
+        with ESMTP id S230338AbjE2GjK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 02:39:10 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A207E90;
+        Sun, 28 May 2023 23:39:08 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (om126255106133.24.openmobile.ne.jp [126.255.106.133])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 53C68327;
+        Mon, 29 May 2023 08:38:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1685342326;
+        bh=fa5DcWfYFxXh6ZRXgXD2CyLPJ7lIV1gqoDog7SPFUhw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eseyMY8n7ezkkrSxDUwgZtsI+dY8YZqdJs8XO+wdOTOnU6KYkDPw3yTL0nsxLsbry
+         iLbQoITT/OUGm17tADvbCeBdHbkKzv3+CQ+SW5v4wmKeJfVNYZyxcJgev7VTGO1Icm
+         OwY72AG1NfWdawt281/FnH+PdWk+t5O/FIMRsa9Q=
+Date:   Mon, 29 May 2023 09:39:07 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Tommaso Merciai <tomm.merciai@gmail.com>,
+        jacopo.mondi@ideasonboard.com, martin.hecht@avnet.eu,
+        linuxfancy@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: alvium: add document YAML
+ binding
+Message-ID: <20230529063907.GB25984@pendragon.ideasonboard.com>
+References: <20230526173955.797226-1-tomm.merciai@gmail.com>
+ <20230526173955.797226-2-tomm.merciai@gmail.com>
+ <ZHPElYOeD2C1qo4R@kekkonen.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <ZHPElYOeD2C1qo4R@kekkonen.localdomain>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Microchip AT91 system timer to YAML.
+On Sun, May 28, 2023 at 09:16:05PM +0000, Sakari Ailus wrote:
+> On Fri, May 26, 2023 at 07:39:43PM +0200, Tommaso Merciai wrote:
+> > Add documentation of device tree in YAML schema for the ALVIUM
+> > Camera from Allied Vision Inc.
+> > 
+> > References:
+> >  - https://www.alliedvision.com/en/products/embedded-vision-solutions
+> > 
+> > Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> > ---
+> > Changes since v1:
+> >  - Fixed build error as suggested by RHerring bot
+> > 
+> >  .../media/i2c/alliedvision,alvium.yaml        | 115 ++++++++++++++++++
+> >  1 file changed, 115 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > new file mode 100644
+> > index 000000000000..81e9e560c99d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > @@ -0,0 +1,115 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Alliedvision Alvium Camera
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- .../devicetree/bindings/arm/atmel-sysregs.txt |  9 ---
- .../bindings/timer/atmel,at91rm9200-st.yaml   | 65 +++++++++++++++++++
- 2 files changed, 65 insertions(+), 9 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/timer/atmel,at91rm9200-st.yaml
+s/Alliedvision/Allied Vision/
 
-diff --git a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
-index 54d3f586403e..68c0eacb01ac 100644
---- a/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
-+++ b/Documentation/devicetree/bindings/arm/atmel-sysregs.txt
-@@ -4,15 +4,6 @@ Chipid required properties:
- - compatible: Should be "atmel,sama5d2-chipid" or "microchip,sama7g5-chipid"
- - reg : Should contain registers location and length
- 
--System Timer (ST) required properties:
--- compatible: Should be "atmel,at91rm9200-st", "syscon", "simple-mfd"
--- reg: Should contain registers location and length
--- interrupts: Should contain interrupt for the ST which is the IRQ line
--  shared across all System Controller members.
--- clocks: phandle to input clock.
--Its subnodes can be:
--- watchdog: compatible should be "atmel,at91rm9200-wdt"
--
- RAMC SDRAM/DDR Controller required properties:
- - compatible: Should be "atmel,at91rm9200-sdramc", "syscon"
- 			"atmel,at91sam9260-sdramc",
-diff --git a/Documentation/devicetree/bindings/timer/atmel,at91rm9200-st.yaml b/Documentation/devicetree/bindings/timer/atmel,at91rm9200-st.yaml
-new file mode 100644
-index 000000000000..a75644e1a2fe
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/atmel,at91rm9200-st.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/atmel,at91rm9200-st.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip AT91 System Timer (ST)
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Alexandre Belloni <alexandre.belloni@microchip.com>
-+  - Claudiu Beznea <claudiu.beznea@microchip.com>
-+
-+description:
-+  Microchip AT91 system timer integrates a period interval timer, a watchdog
-+  timer and a real-time timer.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: atmel,at91rm9200-st
-+      - const: syscon
-+      - const: simple-mfd
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    description:
-+      Contain interrupt for the ST which is the IRQ line shared across all
-+      system controller members.
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  watchdog:
-+    $ref: ../watchdog/atmel,at91rm9200-wdt.yaml
-+    description:
-+      Child node describing watchdog.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    st: timer@fffffd00 {
-+        compatible = "atmel,at91rm9200-st", "syscon", "simple-mfd";
-+        reg = <0xfffffd00 0x100>;
-+        interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
-+        clocks = <&slow_xtal>;
-+
-+        watchdog {
-+            compatible = "atmel,at91rm9200-wdt";
-+        };
-+    };
-+
-+...
+> > +
+> > +maintainers:
+> > +  - Tommaso Merciai <tomm.merciai@gmail.com>
+> > +  - Martin Hecht <martin.hecht@avnet.eu>
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/media/video-interface-devices.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: alliedvision,alvium
+
+The name is very generic. There are Alvium camera modules that have a
+GMSL or FPD-Link interface, and I'm pretty sure those will require a
+different driver. I would add module-specific compatible strings (e.g.
+"alliedvision,alvium-1500c", ...) here, with a generic fallback.
+"alliedvision,alvium" isn't good as it won't cover GMSL or FPD-Link,
+maybe "alliedvision,alvium-csi2" would be an option.
+
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    description: XCLK Input Clock
+> > +
+> > +  clock-names:
+> > +    const: xclk
+> 
+> I'd also drop this as you have a single clock only: it's redundant.
+> 
+> > +
+> > +  powerdown-gpios:
+> > +    maxItems: 1
+> > +    description: >
+> > +      Reference to the GPIO connected to the powerdown pin, if any.
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description: >
+> > +      Reference to the GPIO connected to the reset pin, if any.
+
+Reading the Alvium CSI-2 Cameras User Guide, I don't see any powerdown
+or reset pin on the 22-pin connector. Am I missing something ? There are
+however two GPIOs (in addition to the I2C signals that are also
+documented as GPIOs), do you plan to support those ?
+
+> > +
+> > +  streamon-delay:
+> > +    maxItems: 1
+> > +    description: >
+> > +      Delay before camera start capturing frames in us.
+
+Add "-us" to the property name to indicate the unit.
+
+This is a vendor-specific property, and should thus have a vendor
+prefix.
+
+A longer description is needed, from that single line I have no idea
+what the property does exactly.
+
+> > +
+> > +  rotation:
+> > +    enum:
+> > +      - 0
+> > +      - 180
+
+Why is the rotation restricted to 0 or 180 ? Someone could mount the
+module with  90 degrees rotation, shouldn't the DT bindings allow
+describing that ?
+
+You need a property for the vcc-ext-in supply.
+
+> > +
+> > +  port:
+> > +    description: Digital Output Port
+> > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        $ref: /schemas/media/video-interfaces.yaml#
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          clock-lanes:
+> > +            const: 0
+> 
+> The driver can know this, no need to have it in DT, i.e. please drop it.
+> 
+> > +          data-lanes:
+> > +            minItems: 1
+> > +            maxItems: 4
+> > +          link-frequencies: true
+> > +
+> > +        required:
+> > +          - data-lanes
+> > +          - link-frequencies
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +      #include <dt-bindings/gpio/gpio.h>
+> > +      #include <dt-bindings/clock/imx8mp-clock.h>
+> > +
+> > +      i2c {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +
+> > +          camera: alvium@3c {
+> > +              compatible = "alliedvision,alvium";
+
+The "alliedvision" prefix is missing from
+Documentation/devicetree/bindings/vendor-prefixes.yaml.
+
+> > +              pinctrl-names = "default";
+> > +              pinctrl-0 = <&pinctrl_csi0_pwn>, <&pinctrl_csi0_rst>, <&pinctrl_csi_mclk>;
+
+I'd drop pinctrl, it makes the example longer without adding much value.
+
+> > +              reg = <0x3c>;
+> > +              clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+> > +              clock-names = "xclk";
+> > +              assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+> > +              assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+> > +              assigned-clock-rates = <24000000>;
+> > +              streamon-delay = <20>;
+> > +              powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+> > +              reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+> > +              status = "okay";
+> > +
+> > +              port {
+> > +                  alvium_out: endpoint {
+> > +                      remote-endpoint = <&mipi_csi_0_in>;
+> > +                      data-lanes = <1 2 3 4>;
+> > +                      link-frequencies = /bits/ 64 <681250000>;
+> > +                      clock-lanes = <0>;
+> > +                  };
+> > +              };
+> > +          };
+> > +      };
+> > +
+> > +...
+
 -- 
-2.34.1
+Regards,
 
+Laurent Pinchart
