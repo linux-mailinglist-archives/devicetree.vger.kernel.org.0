@@ -2,125 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA4277150A0
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 22:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E954E71509F
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 22:38:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229550AbjE2Uis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229524AbjE2Uis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 29 May 2023 16:38:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51272 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjE2Uir (ORCPT
+        with ESMTP id S229453AbjE2Uir (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 16:38:47 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBDA9CF;
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF703C9;
         Mon, 29 May 2023 13:38:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1685392725; x=1716928725;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=80zeTr03g4xomq5pu4ZYCNKAnqlmEy16OLjNfIzV/lQ=;
-  b=Xk+tIqnDRWDUujY9xQp55i5ExqSV3aTLRFjdtIxQIh1AoncGe8nyNol0
-   SDpYImF+dwBIR7yzZx1A7hfgy248+zrzB1GnsO4EnZuSbsDLi4QNyn4WF
-   +Fqn6KAGgSlY2XCbkeU8C+I7Nyw07mfrGJ22XsVsXJbBo+OfcnK/AvM4m
-   Jyr3WKdIneRYBpMHN6Z4YWRx9e5C0KkvK0nfBuiuAscXnlNJE7NQRgBml
-   GQkCvhcSXB5a01tp48rywyKJKrR2YSzzv8AUYDzkYOtuCKJaQGVFAUkdV
-   WztW341nz2ZgrbPcicDjcxmXuB0AWmv+i5LU5C8AYvm9tMtRMucdnmJgi
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="357142639"
-X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; 
-   d="scan'208";a="357142639"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 May 2023 13:38:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="683681859"
-X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; 
-   d="scan'208";a="683681859"
-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 29 May 2023 13:38:41 -0700
-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1q3jdZ-000L7e-0V;
-        Mon, 29 May 2023 20:38:41 +0000
-Date:   Tue, 30 May 2023 04:37:53 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        geert+renesas@glider.be, magnus.damm@gmail.com
-Cc:     oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH net-next 5/5] net: renesas: rswitch: Use per-queue rate
- limiter
-Message-ID: <202305300454.Kyjag1oy-lkp@intel.com>
-References: <20230529080840.1156458-6-yoshihiro.shimoda.uh@renesas.com>
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-96f9cfa7eddso666030866b.2;
+        Mon, 29 May 2023 13:38:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20221208; t=1685392724; x=1687984724;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U1toJ4Ziiwkh6Uorqj0Y7CR8iggvNFOiNmMnjnIZtME=;
+        b=jSTFRK90J4fjGPvkA2TKfJY2v4K96Gd0EFHgmeeisj5WF0B697V0YN8iDEI8dq8F2S
+         BjddDb5lARn85ymxhNdSfn+wPq7QHypoBDjF/PNnq5T0OVqWPRusr3g+WMR7MSWBgJFZ
+         ithPzxjE4liO2A6ntGlySxN3wZiLQlYUuAF4gnHRQOaQDq29zg9Ugjjjq9Ywcph+Eu0x
+         b5t7d07GEsR9E24MlEPXWOwV/Knq1HXU3aMF+yhkSzDVdkzWWzxQz1gnTuXAp+VYFhwM
+         uinEs07l7yXB7O4WcXQKa/4Obpp3VCIyclSTDBKV8oyIpcaHqiPwW8XvMRo86vBk/n67
+         XR5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685392724; x=1687984724;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U1toJ4Ziiwkh6Uorqj0Y7CR8iggvNFOiNmMnjnIZtME=;
+        b=V2N/R9ojq/C/f8JRxNojrFsH3gQAFFYfoEuDDZ4Sqgz7M9coHAOloiyOZtHSW03lfK
+         jXo5BYK1XGUqf3KZ3FFpbpxYCBx4fLEixKmp2iHWjTLnhoESzXRrUuEhOoiAvhk73FI9
+         Et6U9waqC18icv7A5kQu3WJGkwUlgitC2egNx6wRqEg4b3W+2HmUNrNwkcf7ib8urWRY
+         mzfW9bMcnUWsroaNyOZ1yxQKKpgZJo0m3wp7XKfQ8HUGceLkFGarGcVkxphfH03SRF0c
+         NoctfvWFwJmo1k9fnf58hwziWmyWCzx3XA+bg5d3SrZrRGPDcP4Qc+Un2CaA6B0R1jXv
+         ir4w==
+X-Gm-Message-State: AC+VfDyeuExoZ0jK5cQDIJ9iQFJ1fFNu5o8FixES5x6+OfSpoGFP0HfQ
+        KuoTP6y+Zjmaj86h4TJxfwZU+gDJ1rOEbvh2aRQ=
+X-Google-Smtp-Source: ACHHUZ4UtXw5S6P31cGYC8SENa/qvkWQuSzFjsy13hgt+tpBjTHl3HQ3Xk+hjLn2wdue1VC2ihr2v8r1mi/Prs9uGvU=
+X-Received: by 2002:a17:907:7fa7:b0:94f:59aa:8a7c with SMTP id
+ qk39-20020a1709077fa700b0094f59aa8a7cmr409487ejc.20.1685392724055; Mon, 29
+ May 2023 13:38:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230529080840.1156458-6-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230517133309.9874-1-ddrokosov@sberdevices.ru>
+ <20230517133309.9874-6-ddrokosov@sberdevices.ru> <CAFBinCC3kQ9Nz3R2W-Qj9tbPJfS8JsB_4AkmPgS6xpQ96DBy2w@mail.gmail.com>
+ <20230522130033.a47vlybocme66rev@CAB-WSD-L081021>
+In-Reply-To: <20230522130033.a47vlybocme66rev@CAB-WSD-L081021>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 29 May 2023 22:38:33 +0200
+Message-ID: <CAFBinCAk9+Km3BssA8d8nc_Z_GbhY87FD3qQRpZ2k7ChKt7TBg@mail.gmail.com>
+Subject: Re: [PATCH v15 5/6] dt-bindings: clock: meson: add A1 Peripherals
+ clock controller bindings
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     neil.armstrong@linaro.org, jbrunet@baylibre.com,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        khilman@baylibre.com, jian.hu@amlogic.com, kernel@sberdevices.ru,
+        rockosov@gmail.com, linux-amlogic@lists.infradead.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yoshihiro,
+Hi Dmitry,
 
-kernel test robot noticed the following build errors:
+On Mon, May 22, 2023 at 3:00=E2=80=AFPM Dmitry Rokosov <ddrokosov@sberdevic=
+es.ru> wrote:
+[...]
+> > This IP block has at least one additional input called "sys_pll_div16".
+> > My understanding is that the "sys_pll_div16" clock is generated by the
+> > CPU clock controller. Support for the CPU clock controller
+> > (dt-bindings and a driver) will be added at a later time by Dmitry.
+> > How can we manage incrementally implementing the clock controllers?
+> > From a hardware perspective the "sys_pll_div16" input is mandatory.
+> > How to manage this in the .dts patches then (for example: does this
+> > mean that Dmitry can only add the clock controller to the .dts when
+> > all clock controller bindings have been implemented - or is there
+> > another way)?
+>
+> You're absolutely right: currently, not all inputs are supported because
+> the CPU clock controller isn't ready yet =E2=80=93 I'm working on it at t=
+he
+> moment.
+>
+> I understand your concerns about bindings and schema description, but
+> there is an issue to be considered. I'm developing the entire clock
+> controller A1 subsystem incrementally in three stages: peripherals and
+> PLL, CPU, and Audio. This is because the CPU can operate at a static
+> frequency and voltage, and the board boots normally without the CPU
+> clock controller, thermal sensor, and OPP table. Audio is also
+> important, but it's optional. On the other hand, without setting up the
+> peripherals and PLL controllers, the board won't function because
+> they're fundamental.
+I understand your approach and I like it (without that incremental
+approach you would probably be looking at a series with 15-20
+patches).
 
-[auto build test ERROR on net-next/main]
+Maybe the dt-binding maintainers have a suggestion for us here?
+Let me try to summarize the issue in a few bullet points:
+- There's (at least) four clock controllers on the Amlogic A1 SoC
+- Some of these clock controllers take the outputs of another clock
+controller as inputs
+- In this series patch the peripheral clock controller has an input
+called "sys_pll_div16"
+- The clock controller which provides the "sys_pll_div16" clock is not
+implemented yet (my understanding is that implementing it and adding
+it to this series is not easy: it would add even more patches that
+need to be reviewed and in general it's a tricky clock controller to
+implement as it manages the CPU clocks)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yoshihiro-Shimoda/dt-bindings-net-r8a779f0-ether-switch-Add-ACLK/20230529-161010
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20230529080840.1156458-6-yoshihiro.shimoda.uh%40renesas.com
-patch subject: [PATCH net-next 5/5] net: renesas: rswitch: Use per-queue rate limiter
-config: mips-allyesconfig (https://download.01.org/0day-ci/archive/20230530/202305300454.Kyjag1oy-lkp@intel.com/config)
-compiler: mips-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        mkdir -p ~/bin
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/64502944471d5b6fac76f49c06c29edfbbe43935
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Yoshihiro-Shimoda/dt-bindings-net-r8a779f0-ether-switch-Add-ACLK/20230529-161010
-        git checkout 64502944471d5b6fac76f49c06c29edfbbe43935
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 ~/bin/make.cross W=1 O=build_dir ARCH=mips olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 ~/bin/make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash
+> Right now, we're in the first stage of the plan. Unfortunately, I can't
+> disclose the exact names and number of clock bindings for the CPU and
+> Audio, as they're still in development and only exist in my head or
+> draft versions.
+>
+> If possible, I'd prefer to provide the new bindings and connections once
+> all the appropriate drivers are finalized.
+Question to Conor and Krzysztof (assuming you read my summary above):
+Is it fine that Dmitry adds additional inputs to the peripheral clock
+controller binding in later patches?
+If not: how can we proceed in case we need to add them now (the
+dt-binding example is the easy part for me as we can just make up a
+phandle like &sys_pll_div16_clk and use that - but this can't work
+when Dmitry tries to add the clock controller to meson-a1.dtsi)
 
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202305300454.Kyjag1oy-lkp@intel.com/
+PS: Dmitry is trying to get this series into Linux 6.5. As far as I
+remember the common clock maintainers don't take pull requests with
+new features after -rc6 (which is in less than two weeks).
+So time is getting a bit short and for me this is the very last
+outstanding question. If you say that it's fine to add clocks later on
+this will immediately get my Reviewed-by.
 
-All errors (new ones prefixed by >>):
 
-   arch/mips/kernel/head.o: in function `kernel_entry':
-   (.ref.text+0xac): relocation truncated to fit: R_MIPS_26 against `start_kernel'
-   init/main.o: in function `set_reset_devices':
-   main.c:(.init.text+0x20): relocation truncated to fit: R_MIPS_26 against `_mcount'
-   main.c:(.init.text+0x30): relocation truncated to fit: R_MIPS_26 against `__sanitizer_cov_trace_pc'
-   init/main.o: in function `debug_kernel':
-   main.c:(.init.text+0xa4): relocation truncated to fit: R_MIPS_26 against `_mcount'
-   main.c:(.init.text+0xb4): relocation truncated to fit: R_MIPS_26 against `__sanitizer_cov_trace_pc'
-   init/main.o: in function `quiet_kernel':
-   main.c:(.init.text+0x128): relocation truncated to fit: R_MIPS_26 against `_mcount'
-   main.c:(.init.text+0x138): relocation truncated to fit: R_MIPS_26 against `__sanitizer_cov_trace_pc'
-   init/main.o: in function `warn_bootconfig':
-   main.c:(.init.text+0x1ac): relocation truncated to fit: R_MIPS_26 against `_mcount'
-   main.c:(.init.text+0x1bc): relocation truncated to fit: R_MIPS_26 against `__sanitizer_cov_trace_pc'
-   init/main.o: in function `init_setup':
-   main.c:(.init.text+0x234): relocation truncated to fit: R_MIPS_26 against `_mcount'
-   main.c:(.init.text+0x254): additional relocation overflows omitted from the output
-   mips-linux-ld: drivers/net/ethernet/renesas/rswitch.o: in function `rswitch_open':
->> rswitch.c:(.text.rswitch_open+0x1a4): undefined reference to `__udivdi3'
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Martin
