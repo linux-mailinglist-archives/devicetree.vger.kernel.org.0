@@ -2,153 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D0247147CF
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 12:18:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0879B7147DA
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 12:25:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232007AbjE2KSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 06:18:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59882 "EHLO
+        id S231522AbjE2KZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 06:25:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbjE2KSc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 06:18:32 -0400
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9F583;
-        Mon, 29 May 2023 03:18:30 -0700 (PDT)
-X-GND-Sasl: luca.ceresoli@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1685355509;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=vUyuxrjpFgblrxgFyN4LMCGNQnaGs9nK3yiZjdqa8co=;
-        b=WYgn5Ck9kYUjG7GNjHvlrUTvNj4ZRLgl/6yS3N9FTeXdb84PzexkAoXW8IEqTub+6vL9Ex
-        yLUtkei6fEgTUbXslUME+CCT8bp0YgAdVw2hWZzWDft5/++89DAfHalIFUE+Wp/CDBe1UW
-        M6WxT/c9T4aARy1DodOaCxuFaHd0nq5gpg66/Dm0I+9TOyF8IDelS3bZ/gmBV5JY1Tdolk
-        IMmybcpc6d36NKGNu1h+IAmxPO4kuFYBawo/EvwbOiUnAAQyxmbKfVDJn/M+hhdshA28lb
-        zTBZiBm4WN8hmK+Qp6pfHmowgZ0jRc3HW0sHemZ7SBivWeLVjSfuay1YOPfqcA==
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-GND-Sasl: luca.ceresoli@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 83341240005;
-        Mon, 29 May 2023 10:18:27 +0000 (UTC)
-Date:   Mon, 29 May 2023 12:18:25 +0200
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Jun Li <jun.li@nxp.com>
-Cc:     Francesco Dolcini <francesco@dolcini.it>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Xu Yang <xu.yang_2@nxp.com>
-Subject: Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling runtime-pm
-Message-ID: <20230529121825.71e9b6d6@booty>
-In-Reply-To: <20230508151756.785ec07e@booty>
-References: <23672d66d229d3be4cc854ddf1462c3507f1c2fc.camel@toradex.com>
-        <20230504162312.1506763-1-luca.ceresoli@bootlin.com>
-        <ZFPiRvoF5l8uGzzZ@francesco-nb.int.toradex.com>
-        <PA4PR04MB96403377F5E37C12AD8C25B389729@PA4PR04MB9640.eurprd04.prod.outlook.com>
-        <20230505120618.2f4cf22c@booty>
-        <ZFThyn/D/dDK9nk3@francesco-nb.int.toradex.com>
-        <PA4PR04MB96405EE2468555EA900B340189739@PA4PR04MB9640.eurprd04.prod.outlook.com>
-        <ZFjaNzY32x8o2XG7@francesco-nb.int.toradex.com>
-        <20230508151756.785ec07e@booty>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229692AbjE2KZV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 06:25:21 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76B25C7
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 03:25:19 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2af1ae3a21fso32649171fa.0
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 03:25:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685355918; x=1687947918;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DZdc6i5z2R/+Y9/ZFuY2y7w4jz+QILDjulsUhtAyGX4=;
+        b=QNCnfs6uHjOyrcMnfQ8vqUApOV5PYhd2YixOtZ7ZLvFcGAb6Pb0aoP3puWryA+eRMF
+         OJ+TttCaALibGx5g/3d20G59+wyTb4AcAIYonXNHlIGNNSvcA6etaisqMX/KFPN8LdOi
+         u45uXcF9YqwZpUIKi5nbVvyfNtY7dC1jiUf+KzlOYXTKTvtyrAuzPLjdnouSQ3J+/7PR
+         U9Fx1vCsn9yIS6lHP631N6DB/5W0s+QezhHySMggtRmrAAinkVQ1oeNq6eaBWORj6ntF
+         wGlq3kjjX1JnvGuIJ4CZNUXMTni0jXDlxQbvqRZkkRe6cLMIt+zwWHBlUzKOeT7hYcJk
+         JR+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685355918; x=1687947918;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DZdc6i5z2R/+Y9/ZFuY2y7w4jz+QILDjulsUhtAyGX4=;
+        b=eKS7LX58NIgwquctiJ7rMtaED6qRGHwLWJsjT0VD1TuEUMX1rc4XDw+EpGu5SBp0mC
+         XEEhHnxqq6ij6aZPzEL5kpmFyNsZVLyouysQlMknA+0KbMgK4gUuLA8WnZWOQt9G/T4w
+         ZwtSHGxRj0tLoFIHj0DplmbJH7ho14zSmfwR5IBRGite/rkAaEBv3e9iV07KDeToLaRU
+         Kvj1JYrgAY4cvi5Kpx4ClWHfF87SqND5hPkEitJERh9llPlUSKQZJKNgQRFq4V88Q/r4
+         fl8cY0Tfc1MuygivSCr3P/mEB4lquhd4l7JiBiOUGpdlDzj29UfkhH+VCwtK4wTKnT3R
+         FGcg==
+X-Gm-Message-State: AC+VfDxzBv9wxCd4pouKVNhd4Q4AAKnaGOC5ZVJ2p4vV6aLRps2IwyWP
+        SmNI8l8x87Xd3vnFRlLjxI75eA==
+X-Google-Smtp-Source: ACHHUZ4vIs5yH8NjfN0Nkf8gbyCGQ+5UHb7B/5mHAM8XHR9LNDJubjGFpITvbLKj2kdYgWG0sTKPqA==
+X-Received: by 2002:ac2:593b:0:b0:4f4:e26c:644c with SMTP id v27-20020ac2593b000000b004f4e26c644cmr3364039lfi.68.1685355917693;
+        Mon, 29 May 2023 03:25:17 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id i20-20020ac25234000000b004e887fd71acsm1905505lfl.236.2023.05.29.03.25.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 May 2023 03:25:17 -0700 (PDT)
+Message-ID: <ef8e2090-7e55-14c1-1472-cee7c0ee66ea@linaro.org>
+Date:   Mon, 29 May 2023 12:25:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 6/7] drm/msm/dsi: Add phy configuration for MSM8226
+To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230308-msm8226-mdp-v1-0-679f335d3d5b@z3ntu.xyz>
+ <20230308-msm8226-mdp-v1-6-679f335d3d5b@z3ntu.xyz>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230308-msm8226-mdp-v1-6-679f335d3d5b@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Jun,
 
-On Mon, 8 May 2023 15:17:56 +0200
-Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
 
-> Hello Jun, Francesco,
+On 29.05.2023 11:44, Luca Weiss wrote:
+> MSM8226 uses a modified PLL lock sequence compared to MSM8974, which is
+> based on the function dsi_pll_enable_seq_m in the msm-3.10 kernel.
 > 
-> On Mon, 8 May 2023 13:17:11 +0200
-> Francesco Dolcini <francesco@dolcini.it> wrote:
+> Worth noting that the msm-3.10 downstream kernel also will try other
+> sequences in case this one doesn't work, but during testing it has shown
+> that the _m sequence succeeds first time also:
 > 
-> > On Sat, May 06, 2023 at 09:02:39AM +0000, Jun Li wrote:  
-> > > > -----Original Message-----
-> > > > From: Francesco Dolcini <francesco@dolcini.it>
-> > > > Sent: Friday, May 5, 2023 7:00 PM
-> > > > To: Luca Ceresoli <luca.ceresoli@bootlin.com>; Jun Li <jun.li@nxp.com>
-> > > > Cc: Francesco Dolcini <francesco@dolcini.it>; devicetree@vger.kernel.org;
-> > > > festevam@gmail.com; gregkh@linuxfoundation.org; kernel@pengutronix.de;
-> > > > linux-arm-kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>;
-> > > > linux-kernel@vger.kernel.org; linux-usb@vger.kernel.org;
-> > > > peter.chen@nxp.com; robh+dt@kernel.org; s.hauer@pengutronix.de;
-> > > > shawnguo@kernel.org; Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>;
-> > > > Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > > Subject: Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling runtime-pm
-> > > > 
-> > > > On Fri, May 05, 2023 at 12:06:18PM +0200, Luca Ceresoli wrote:    
-> > > > > On Fri, 5 May 2023 09:49:16 +0000
-> > > > > Jun Li <jun.li@nxp.com> wrote:    
-> > > > > > Is your board design similar like Francesco's as below?    
-> > > > >
-> > > > > Possibly, but I'm afraid I can't say: I am using the Toradex Colibri
-> > > > > i.MX6ULL SoM, whose schematics are not public.    
-> > > > 
-> > > > I can confirm that it's the same.    
-> > > 
-> > > Thanks Francesco for the confirmation, had a check with design team,
-> > > there is no status bit which can be used to judge the VDD_USB_CAP is
-> > > powered or not, so we have to add a board level dts property to tell
-> > > this usb phy driver to bypass MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS.
-> > > 
-> > > Before send a formal patch, I want to confirm this should work for your
-> > > HW design, like below simple hack:    
-> > 
-> > Thanks Li Jun, I tested it with v6.3.1 kernel and it's all good.
-> > I would be happy to test the patch as soon as you send it.  
+>   .pll_enable_seqs[0] = dsi_pll_enable_seq_m,
+>   .pll_enable_seqs[1] = dsi_pll_enable_seq_m,
+>   .pll_enable_seqs[2] = dsi_pll_enable_seq_d,
+>   .pll_enable_seqs[3] = dsi_pll_enable_seq_d,
+>   .pll_enable_seqs[4] = dsi_pll_enable_seq_f1,
+>   .pll_enable_seqs[5] = dsi_pll_enable_seq_c,
+>   .pll_enable_seqs[6] = dsi_pll_enable_seq_e,
 > 
-> Thanks Jun, it works here as well, on 6.1.27!
+> We may need to expand this in the future.
+> 
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.c      |  2 +
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.h      |  3 +-
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm.c | 97 ++++++++++++++++++++++++++++++
+>  3 files changed, 101 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> index bb09cbe8ff86..9d5795c58a98 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
+> @@ -541,6 +541,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
+>  	  .data = &dsi_phy_28nm_hpm_famb_cfgs },
+>  	{ .compatible = "qcom,dsi-phy-28nm-lp",
+>  	  .data = &dsi_phy_28nm_lp_cfgs },
+> +	{ .compatible = "qcom,dsi-phy-28nm-8226",
+> +	  .data = &dsi_phy_28nm_8226_cfgs },
+>  #endif
+>  #ifdef CONFIG_DRM_MSM_DSI_20NM_PHY
+>  	{ .compatible = "qcom,dsi-phy-20nm",
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> index 7137a17ae523..8b640d174785 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
+> @@ -46,8 +46,9 @@ struct msm_dsi_phy_cfg {
+>  extern const struct msm_dsi_phy_cfg dsi_phy_28nm_hpm_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_28nm_hpm_famb_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_28nm_lp_cfgs;
+> -extern const struct msm_dsi_phy_cfg dsi_phy_20nm_cfgs;
+> +extern const struct msm_dsi_phy_cfg dsi_phy_28nm_8226_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_28nm_8960_cfgs;
+> +extern const struct msm_dsi_phy_cfg dsi_phy_20nm_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_660_cfgs;
+>  extern const struct msm_dsi_phy_cfg dsi_phy_14nm_2290_cfgs;
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm.c
+> index 4c1bf55c5f38..f71308387566 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm.c
+> @@ -37,6 +37,7 @@
+>  
+>  /* v2.0.0 28nm LP implementation */
+>  #define DSI_PHY_28NM_QUIRK_PHY_LP	BIT(0)
+> +#define DSI_PHY_28NM_QUIRK_PHY_8226	BIT(1)
+>  
+>  #define LPFR_LUT_SIZE			10
+>  struct lpfr_cfg {
+> @@ -377,6 +378,74 @@ static int dsi_pll_28nm_vco_prepare_hpm(struct clk_hw *hw)
+>  	return ret;
+>  }
+>  
+> +static int dsi_pll_28nm_vco_prepare_8226(struct clk_hw *hw)
+> +{
+> +	struct dsi_pll_28nm *pll_28nm = to_pll_28nm(hw);
+> +	struct device *dev = &pll_28nm->phy->pdev->dev;
+> +	void __iomem *base = pll_28nm->phy->pll_base;
+> +	u32 max_reads = 5, timeout_us = 100;
+> +	bool locked;
+> +	u32 val;
+> +	int i;
+> +
+> +	DBG("id=%d", pll_28nm->phy->id);
+> +
+> +	pll_28nm_software_reset(pll_28nm);
+> +
+> +	/*
+> +	 * PLL power up sequence.
+> +	 * Add necessary delays recommended by hardware.
+> +	 */
+> +	dsi_phy_write(base + REG_DSI_28nm_PHY_PLL_CAL_CFG1, 0x34);
+> +
+> +	val = DSI_28nm_PHY_PLL_GLB_CFG_PLL_PWRDN_B; // 1
+Did you send the correct revision?
 
-Have you managed to make progress on the patch after Francesco's and my
-tests?
-
-As I see it, a proper fix for mainline could be as simple as a new DT
-property to describe this specific hardware configuration and a patch
-to ignore the flag when the property is present. Is my understanding
-correct?
-
-Best regards,
-Luca
-
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Konrad
+> +	dsi_phy_write_udelay(base + REG_DSI_28nm_PHY_PLL_GLB_CFG, val, 200);
+> +
+> +	val |= DSI_28nm_PHY_PLL_GLB_CFG_PLL_PWRGEN_PWRDN_B; // 4
+> +	dsi_phy_write_udelay(base + REG_DSI_28nm_PHY_PLL_GLB_CFG, val, 200);
+> +
+> +	val |= DSI_28nm_PHY_PLL_GLB_CFG_PLL_LDO_PWRDN_B; // 2
+> +	val |= DSI_28nm_PHY_PLL_GLB_CFG_PLL_ENABLE; // 8
+> +	dsi_phy_write_udelay(base + REG_DSI_28nm_PHY_PLL_GLB_CFG, val, 600);
+> +
+> +	for (i = 0; i < 7; i++) {
+> +		/* DSI Uniphy lock detect setting */
+> +		dsi_phy_write(base + REG_DSI_28nm_PHY_PLL_LKDET_CFG2, 0x0d);
+> +		dsi_phy_write_udelay(base + REG_DSI_28nm_PHY_PLL_LKDET_CFG2,
+> +				0x0c, 100);
+> +		dsi_phy_write(base + REG_DSI_28nm_PHY_PLL_LKDET_CFG2, 0x0d);
+> +
+> +		/* poll for PLL ready status */
+> +		locked = pll_28nm_poll_for_ready(pll_28nm,
+> +						max_reads, timeout_us);
+> +		if (locked)
+> +			break;
+> +
+> +		pll_28nm_software_reset(pll_28nm);
+> +
+> +		/*
+> +		 * PLL power up sequence.
+> +		 * Add necessary delays recommended by hardware.
+> +		 */
+> +		dsi_phy_write_udelay(base + REG_DSI_28nm_PHY_PLL_PWRGEN_CFG, 0x00, 50);
+> +
+> +		val = DSI_28nm_PHY_PLL_GLB_CFG_PLL_PWRDN_B; // 1
+> +		val |= DSI_28nm_PHY_PLL_GLB_CFG_PLL_PWRGEN_PWRDN_B; // 4
+> +		dsi_phy_write_udelay(base + REG_DSI_28nm_PHY_PLL_GLB_CFG, val, 100);
+> +
+> +		val |= DSI_28nm_PHY_PLL_GLB_CFG_PLL_LDO_PWRDN_B; // 2
+> +		val |= DSI_28nm_PHY_PLL_GLB_CFG_PLL_ENABLE; // 8
+> +		dsi_phy_write_udelay(base + REG_DSI_28nm_PHY_PLL_GLB_CFG, val, 600);
+> +	}
+> +
+> +	if (unlikely(!locked))
+> +		DRM_DEV_ERROR(dev, "DSI PLL lock failed\n");
+> +	else
+> +		DBG("DSI PLL Lock success");
+> +
+> +	return locked ? 0 : -EINVAL;
+> +}
+> +
+>  static int dsi_pll_28nm_vco_prepare_lp(struct clk_hw *hw)
+>  {
+>  	struct dsi_pll_28nm *pll_28nm = to_pll_28nm(hw);
+> @@ -471,6 +540,15 @@ static const struct clk_ops clk_ops_dsi_pll_28nm_vco_lp = {
+>  	.is_enabled = dsi_pll_28nm_clk_is_enabled,
+>  };
+>  
+> +static const struct clk_ops clk_ops_dsi_pll_28nm_vco_8226 = {
+> +	.round_rate = dsi_pll_28nm_clk_round_rate,
+> +	.set_rate = dsi_pll_28nm_clk_set_rate,
+> +	.recalc_rate = dsi_pll_28nm_clk_recalc_rate,
+> +	.prepare = dsi_pll_28nm_vco_prepare_8226,
+> +	.unprepare = dsi_pll_28nm_vco_unprepare,
+> +	.is_enabled = dsi_pll_28nm_clk_is_enabled,
+> +};
+> +
+>  /*
+>   * PLL Callbacks
+>   */
+> @@ -536,6 +614,8 @@ static int pll_28nm_register(struct dsi_pll_28nm *pll_28nm, struct clk_hw **prov
+>  
+>  	if (pll_28nm->phy->cfg->quirks & DSI_PHY_28NM_QUIRK_PHY_LP)
+>  		vco_init.ops = &clk_ops_dsi_pll_28nm_vco_lp;
+> +	else if (pll_28nm->phy->cfg->quirks & DSI_PHY_28NM_QUIRK_PHY_8226)
+> +		vco_init.ops = &clk_ops_dsi_pll_28nm_vco_8226;
+>  	else
+>  		vco_init.ops = &clk_ops_dsi_pll_28nm_vco_hpm;
+>  
+> @@ -820,3 +900,20 @@ const struct msm_dsi_phy_cfg dsi_phy_28nm_lp_cfgs = {
+>  	.quirks = DSI_PHY_28NM_QUIRK_PHY_LP,
+>  };
+>  
+> +const struct msm_dsi_phy_cfg dsi_phy_28nm_8226_cfgs = {
+> +	.has_phy_regulator = true,
+> +	.regulator_data = dsi_phy_28nm_regulators,
+> +	.num_regulators = ARRAY_SIZE(dsi_phy_28nm_regulators),
+> +	.ops = {
+> +		.enable = dsi_28nm_phy_enable,
+> +		.disable = dsi_28nm_phy_disable,
+> +		.pll_init = dsi_pll_28nm_init,
+> +		.save_pll_state = dsi_28nm_pll_save_state,
+> +		.restore_pll_state = dsi_28nm_pll_restore_state,
+> +	},
+> +	.min_pll_rate = VCO_MIN_RATE,
+> +	.max_pll_rate = VCO_MAX_RATE,
+> +	.io_start = { 0xfd922b00 },
+> +	.num_dsi_phy = 1,
+> +	.quirks = DSI_PHY_28NM_QUIRK_PHY_8226,
+> +};
+> 
