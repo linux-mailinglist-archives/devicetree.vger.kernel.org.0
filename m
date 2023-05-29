@@ -2,286 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6D3D7151BA
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 00:19:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FE3B7151C0
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 00:20:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbjE2WTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 18:19:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46618 "EHLO
+        id S229731AbjE2WUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 18:20:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229588AbjE2WTL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 18:19:11 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1606311A
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 15:18:43 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f3b5881734so4205693e87.0
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 15:18:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685398721; x=1687990721;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EZVm7UiouESyKo6k2LBzlK9njKm8DA0ECdqTFD1OkjA=;
-        b=Fd3ljygoclvCV+t+t68E7faPRuA7OY+1N0EbqrDmrRCnHTCOHcGHWFlR8X86bXZpsw
-         oylPFV2bUlgPsegg7vGvHGw4htpTaMWEVcqgvatSzfNZfYmGDnqjFmS5Vws6Xj8YI6a5
-         MQk25AeL2uZSAdjSeBow9k9cqPa5daUoG8b/LoowqTxa7aSQp62GmP1Y1Z0aEp5m2j9O
-         Y3wOUeTldt9uO1Uoo6mxFLu7pTiPXT/XmUayYngFW5eve8Qxs4hAkzDd9JHy+UB8wKo6
-         BAKx7bmexea+55rI2fAAQtJ5MtBret9f8Y74Kl9JRro/gB7tXAfJbR0z03MWzDNenF9N
-         182g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685398721; x=1687990721;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EZVm7UiouESyKo6k2LBzlK9njKm8DA0ECdqTFD1OkjA=;
-        b=SdGMtNgAlKuecPT94BDxWnr29auMeVd239dmNErns7SmOLEc1yZfzpzSJpL5SwWdrR
-         GlbpTaCLsbydqu9vY21tOTaeIV8qrA4spbe+Q/9/stQWXnCzh/RZ+R/2CrakV824Ezz9
-         aYGuTLNkrjzuv2SWRSMEZPQvmwFkUwLwxWZG//wcDcFSAkMFFoinzy9V3K+zy9yGRxVb
-         /A2h0JAhpLQY0YnbQnXe4RJTVgAru/zlot5nl9JTFdxWC5+c3YZrss7/ut0uqgy4GP79
-         zprCKHA3ouONNPT7qLpC+IIM2bVLyNVQ5Q6GvV7ElTsYUnfk0TKqYQPFbAHE2yU15BE2
-         qdRg==
-X-Gm-Message-State: AC+VfDwddmbjx9QrRxETCZmIwMTc9Ake3i6Qo9RUM0CGzRBEsLoPnScQ
-        +7d1ayS90fmPennfIl7eaTV9Vg==
-X-Google-Smtp-Source: ACHHUZ4e4DeF7peEMmQbB+Q/seVcfomkLOXTZL9x2Y7AVdJlug2gaPKj0fov20Ge3ModNV3lWC7SPA==
-X-Received: by 2002:ac2:4859:0:b0:4ec:7b87:931a with SMTP id 25-20020ac24859000000b004ec7b87931amr32739lfy.13.1685398721236;
-        Mon, 29 May 2023 15:18:41 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id g22-20020ac25396000000b004edb8fac1cesm127455lfh.215.2023.05.29.15.18.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 May 2023 15:18:40 -0700 (PDT)
-Message-ID: <ebc3ff33-6e4f-b107-33c6-f35b03307058@linaro.org>
-Date:   Tue, 30 May 2023 01:18:40 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH RFC 03/10] drm/panel: Add LGD panel driver for Sony Xperia
- XZ3
-Content-Language: en-GB
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     neil.armstrong@linaro.org, Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229453AbjE2WUP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 18:20:15 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D4CF92;
+        Mon, 29 May 2023 15:20:11 -0700 (PDT)
+X-GND-Sasl: alexandre.belloni@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1685398810;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=piJwelwJzoOHS0zCI5Yv47Y6GkNNebOL6BgBOE2MHnk=;
+        b=GYvMNZIwrEw+CKQccWlGAsp9/B0XQij1+v9eXoXg5b76awP6gyEfbvbMT1VctZQe9LWlHu
+        amP8iVBM/ta9hE6C8GluIBXOUuJVwSjJPw9K++CmF39zf1xZlraWvQQ9qMD0mCe13t1lCZ
+        91U8JVaWGi59WFSuX/6m9XxMUDasjru1Nhdd6ekoedFyRrH/N8uRDQ+M7ISDpRynjeIar+
+        qwUTBdV9F1+a0q/rzPxAmLeSpcd9HcjLF6M6VwSayQMrBqJw4W5xf5BvQfmzspRcodd2Va
+        20W+zWQmtTgKz9CzgRQJ9c4r0yfhZyIK7lnai8TW6+cQ4ocOH/Y3CBptt4Sxfg==
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E736F240005;
+        Mon, 29 May 2023 22:20:07 +0000 (UTC)
+Date:   Tue, 30 May 2023 00:20:07 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc:     Conor Dooley <conor@kernel.org>,
+        Keguang Zhang <keguang.zhang@gmail.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>
-References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
- <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
- <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
- <71675a02-0801-62dc-2673-4a0907636b21@linaro.org>
- <CAA8EJpq=HZqiBZ6bpUNH47VmASuH+Mi5OD5BHmg0TPwtsKHf8w@mail.gmail.com>
- <oxgtbj7qmsdvz5gl4bud64jedmhdmvphjfge7uy6uwulefqfsa@pleslv2zgwbp>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <oxgtbj7qmsdvz5gl4bud64jedmhdmvphjfge7uy6uwulefqfsa@pleslv2zgwbp>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        loongson-kernel@lists.loongnix.cn
+Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the
+ trivial RTCs
+Message-ID: <2023052922200701b20517@mail.local>
+References: <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
+ <20230526-dolly-reheat-06c4d5658415@wendy>
+ <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com>
+ <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com>
+ <20230527-passing-unfixed-39e01b787808@spud>
+ <14EF9F21-8150-40D9-8870-E9151C4882CF@flygoat.com>
+ <20230527-poet-antarctic-cc02aa60ab52@spud>
+ <CAJhJPsU_qOJKO99S1xjJaSUqXsXAG7HpYbzs5wTb8J4-tQqSQA@mail.gmail.com>
+ <E229B204-1B00-4B24-B4BF-15277682FB4B@kernel.org>
+ <CAMpQs4K4e3BSVvqXa+QjhM5XDxHc_ZCiRYW+HgPo21AQ_bYSRQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMpQs4K4e3BSVvqXa+QjhM5XDxHc_ZCiRYW+HgPo21AQ_bYSRQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2023 00:07, Marijn Suijten wrote:
-> On 2023-05-22 15:58:56, Dmitry Baryshkov wrote:
->> On Mon, 22 May 2023 at 12:04, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>>
->>> On 22/05/2023 03:16, Dmitry Baryshkov wrote:
->>>> On 22/05/2023 00:23, Marijn Suijten wrote:
->>>>> Sony provides an unlabeled LGD + Atmel maXTouch assembly in its Xperia
->>>>> XZ3 (tama akatsuki) phone, with custom DCS commands to match.
->>>>>
->>>>> This panel features Display Stream Compression 1.1.
->>>>>
->>>>> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
->>>>> ---
->>>>>    drivers/gpu/drm/panel/Kconfig                   |  11 +
->>>>>    drivers/gpu/drm/panel/Makefile                  |   1 +
->>>>>    drivers/gpu/drm/panel/panel-sony-akatsuki-lgd.c | 362 ++++++++++++++++++++++++
->>>>>    3 files changed, 374 insertions(+)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
->>>>> index 67ef898d133f2..18bd116e78a71 100644
->>>>> --- a/drivers/gpu/drm/panel/Kconfig
->>>>> +++ b/drivers/gpu/drm/panel/Kconfig
->>>>> @@ -706,6 +706,17 @@ config DRM_PANEL_SONY_ACX565AKM
->>>>>          Say Y here if you want to enable support for the Sony ACX565AKM
->>>>>          800x600 3.5" panel (found on the Nokia N900).
->>>>> +config DRM_PANEL_SONY_AKATSUKI_LGD
->>>>> +    tristate "Sony Xperia XZ3 LGD panel"
->>>>> +    depends on GPIOLIB && OF
->>>>> +    depends on DRM_MIPI_DSI
->>>>> +    depends on BACKLIGHT_CLASS_DEVICE
->>>>> +    help
->>>>> +      Say Y here if you want to enable support for the Sony Xperia XZ3
->>>>> +      1440x2880@60 6.0" OLED DSI cmd mode panel produced by LG Display.
->>>>> +
->>>>> +      This panel uses Display Stream Compression 1.1.
->>>>> +
->>>>>    config DRM_PANEL_SONY_TD4353_JDI
->>>>>        tristate "Sony TD4353 JDI panel"
->>>>>        depends on GPIOLIB && OF
->>>>> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
->>>>> index ff169781e82d7..85133f73558f3 100644
->>>>> --- a/drivers/gpu/drm/panel/Makefile
->>>>> +++ b/drivers/gpu/drm/panel/Makefile
->>>>> @@ -71,6 +71,7 @@ obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) += panel-sitronix-st7701.o
->>>>>    obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) += panel-sitronix-st7703.o
->>>>>    obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += panel-sitronix-st7789v.o
->>>>>    obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) += panel-sony-acx565akm.o
->>>>> +obj-$(CONFIG_DRM_PANEL_SONY_AKATSUKI_LGD) += panel-sony-akatsuki-lgd.o
->>>>>    obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) += panel-sony-td4353-jdi.o
->>>>>    obj-$(CONFIG_DRM_PANEL_SONY_TULIP_TRULY_NT35521) += panel-sony-tulip-truly-nt35521.o
->>>>>    obj-$(CONFIG_DRM_PANEL_TDO_TL070WSH30) += panel-tdo-tl070wsh30.o
->>>>> diff --git a/drivers/gpu/drm/panel/panel-sony-akatsuki-lgd.c b/drivers/gpu/drm/panel/panel-sony-akatsuki-lgd.c
->>>>> new file mode 100644
->>>>> index 0000000000000..f55788f963dab
->>>>> --- /dev/null
->>>>> +++ b/drivers/gpu/drm/panel/panel-sony-akatsuki-lgd.c
->>>>> @@ -0,0 +1,362 @@
->>>>> +// SPDX-License-Identifier: GPL-2.0-only
->>>>> +/*
->>>>> + * Copyright (c) 2023 Marijn Suijten <marijn.suijten@somainline.org>
->>>>> + *
->>>>> + * Based on Sony Downstream's "Atmel LGD ID5" Akatsuki panel dtsi.
->>>>> + */
->>>>> +
->>>>> +#include <linux/backlight.h>
->>>>> +#include <linux/delay.h>
->>>>> +#include <linux/gpio/consumer.h>
->>>>> +#include <linux/module.h>
->>>>> +#include <linux/of.h>
->>>>> +#include <linux/of_device.h>
->>>>> +#include <linux/regulator/consumer.h>
->>>>> +
->>>>> +#include <video/mipi_display.h>
->>>>> +
->>>>> +#include <drm/drm_mipi_dsi.h>
->>>>> +#include <drm/drm_modes.h>
->>>>> +#include <drm/drm_panel.h>
->>>>> +#include <drm/drm_probe_helper.h>
->>>>> +#include <drm/display/drm_dsc.h>
->>>>> +#include <drm/display/drm_dsc_helper.h>
->>>>> +
->>>>> +struct sony_akatsuki_lgd {
->>>>> +    struct drm_panel panel;
->>>>> +    struct mipi_dsi_device *dsi;
->>>>> +    struct regulator *vddio;
->>>>> +    struct gpio_desc *reset_gpio;
->>>>> +    bool prepared;
->>>>> +};
->>>>> +
->>>>> +static inline struct sony_akatsuki_lgd *to_sony_akatsuki_lgd(struct drm_panel *panel)
->>>>> +{
->>>>> +    return container_of(panel, struct sony_akatsuki_lgd, panel);
->>>>> +}
->>>>> +
->>>>> +static int sony_akatsuki_lgd_on(struct sony_akatsuki_lgd *ctx)
->>>>> +{
->>>>> +    struct mipi_dsi_device *dsi = ctx->dsi;
->>>>> +    struct device *dev = &dsi->dev;
->>>>> +    int ret;
->>>>> +
->>>>> +    dsi->mode_flags |= MIPI_DSI_MODE_LPM;
->>>>> +
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0x7f, 0x5a, 0x5a);
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf1, 0x5a, 0x5a);
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x5a, 0x5a);
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0x02, 0x01);
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0x59, 0x01);
->>>>> +    /* Enable backlight control */
->>>>> +    mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, BIT(5));
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0x57, 0x20, 0x80, 0xde, 0x60, 0x00);
->>>>> +
->>>>> +    ret = mipi_dsi_dcs_set_column_address(dsi, 0, 1440 - 1);
->>>>> +    if (ret < 0) {
->>>>> +        dev_err(dev, "Failed to set column address: %d\n", ret);
->>>>> +        return ret;
->>>>> +    }
->>>>> +
->>>>> +    ret = mipi_dsi_dcs_set_page_address(dsi, 0, 2880 - 1);
->>>>> +    if (ret < 0) {
->>>>> +        dev_err(dev, "Failed to set page address: %d\n", ret);
->>>>> +        return ret;
->>>>> +    }
->>>>> +
->>>>> +    mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_POWER_SAVE, 0x00);
->>>>> +
->>>>> +    ret = mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
->>>>> +    if (ret < 0) {
->>>>> +        dev_err(dev, "Failed to set tear on: %d\n", ret);
->>>>> +        return ret;
->>>>> +    }
->>>>> +
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0x7f, 0x5a, 0x5a);
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf1, 0x5a, 0x5a);
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x5a, 0x5a);
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x03);
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf6, 0x04);
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x05);
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf6, 0x01, 0x7f, 0x00);
->>>>> +
->>>>> +    ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
->>>>> +    if (ret < 0) {
->>>>> +        dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
->>>>> +        return ret;
->>>>> +    }
->>>>> +    msleep(120);
->>>>> +
->>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xe3, 0xac, 0x19, 0x34, 0x14, 0x7d);
->>>>> +
->>>>> +    ret = mipi_dsi_dcs_set_display_on(dsi);
->>>>> +    if (ret < 0) {
->>>>> +        dev_err(dev, "Failed to turn display on: %d\n", ret);
->>>>> +        return ret;
->>>>> +    }
->>>>
->>>> My usual question: should the mipi_dsi_dcs_exit_sleep_mode() / mipi_dsi_dcs_set_display_on() be moved from prepare() to enable() part?
->>>
->>>
->>> No, prepare is called before the video stream is started and when display is still in LPM mode and the mode hasn't been set.
->>>
->>
->> Yes, that's my point. Shouldn't we enable the panel _after_ starting the stream?
-> 
-> I have never investigated what it takes to split these functions, but
-> some of these panels do show some corruption at startup which may be
-> circumvented by powering the panel on after starting the video stream?
-> 
-> I'm just not sure where to make the split: downstream does describe a
-> qcom,mdss-dsi-on-command and qcom,mdss-dsi-post-panel-on-command, where
-> the latter only contains set_display_on() (not exit_sleep_mode()).
-> It is documented like:
-> 
->      same as "qcom,mdss-dsi-on-command" except commands are sent after
->      displaying an image."
-> 
-> So this seems like the right way to split them up, I'll test this out on
-> all submitted panel drivers.
+Hello,
 
-Interesting enough, Neil suggested that sending all the commands during 
-pre_enable() is the correct sequence (especially for VIDEO mode panels), 
-since not all DSI hosts can send commands after switching to the VIDEO mode.
+Honestly, the list of compatibles is fine for me. I wouldn't go for
+fallback. The improvement would be to drop "loongson,ls1c-rtc",
+and probably "loongson,ls2k0500-rtc" and "loongson,ls2k2000-rtc".
+
+loongson,ls1c-rtc is definitively not needed, the alarm may not be wired
+but the registers are there.
+
+For 2k0500 and 2k2000, I don't mind either way.
+
+On 29/05/2023 16:31:42+0800, Binbin Zhou wrote:
+> Hi Krzysztof:
+> 
+> Excuse me.
+> We have different opinions on how to better describe rtc-loongson compatible.
+> 
+> Based on my previous communication with you, I think we should list
+> all the Socs in the driver and drop the wildcards.
+> This should be clearer and more straightforward:
+> 
+>         { .compatible = "loongson,ls1b-rtc", .data = &ls1x_rtc_config
+> }, //ls1b soc
+>         { .compatible = "loongson,ls1c-rtc", .data = &ls1x_rtc_config
+> }, //ls1c soc
+>         { .compatible = "loongson,ls7a-rtc", .data =
+> &generic_rtc_config }, //ls7a bridge chip
+>         { .compatible = "loongson,ls2k0500-rtc", .data =
+> &generic_rtc_config }, // ls2k0500 soc
+>         { .compatible = "loongson,ls2k2000-rtc", .data =
+> &generic_rtc_config }, // ls2k2000 soc
+>         { .compatible = "loongson,ls2k1000-rtc", .data =
+> &ls2k1000_rtc_config }, // ls2k1000 soc
+> 
+> And Conor thought it should be rendered using a fallback compatible
+> form based on ".data".
+> 
+>         "loongson,ls1b-rtc"
+>         "loongson,ls1c-rtc", "loongson,ls1b-rtc"
+>         "loongson,ls7a-rtc"
+>         "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
+>         "longson,ls2k2000-rtc", "longson,ls7a-rtc"
+>         "loonson,ls2k1000-rtc"
+> 
+>         { .compatible = "loongson,ls1b-rtc", .data = &ls1x_rtc_config }
+>         { .compatible = "loongson,ls7a-rtc", .data = &generic_rtc_config }
+>         { .compatible = "loongson,ls2k1000-rtc", .data = &ls2k1000_rtc_config }
+> 
+> In this form,  I think it might not be possible to show very
+> graphically which chips are using the driver.
+> Also, for example, "ls7a" is a bridge chip, while
+> "ls2k2000"/"ls2k0500" are soc chips, and it seems inappropriate to
+> integrate them into one item.
+> 
+> Which one do you think is more suitable for us?
+> 
+> Here is the link to our discussion:
+> 
+> https://lore.kernel.org/linux-rtc/E229B204-1B00-4B24-B4BF-15277682FB4B@kernel.org/T/#m6c1ae9b74fceafc4042f7598b1bc594e68e5ec76
+> 
+> Thanks.
+> Binbin
+> 
+> 
+> On Mon, May 29, 2023 at 2:24 PM Conor Dooley <conor@kernel.org> wrote:
+> >
+> >
+> >
+> > On 29 May 2023 03:59:57 IST, Keguang Zhang <keguang.zhang@gmail.com> wrote:
+> > >On Sun, May 28, 2023 at 6:22 AM Conor Dooley <conor@kernel.org> wrote:
+> > >>
+> > >> On Sat, May 27, 2023 at 10:59:48PM +0100, Jiaxun Yang wrote:
+> > >> > > 2023年5月27日 17:23，Conor Dooley <conor@kernel.org> 写道：
+> > >> > > On Sat, May 27, 2023 at 05:13:39PM +0100, Jiaxun Yang wrote:
+> > >>
+> > >> > >> My recommendation is leaving compatible string as is.
+> > >> > >
+> > >> > > "as is" meaning "as it is right now in Linus' tree", or "as it is in
+> > >> > > this patch"?
+> > >> >
+> > >> > Ah sorry I meant in this patch.
+> > >> >
+> > >> > Since there won’t be any new ls1x chip that will boot Linux any time soon (due to
+> > >> > Loongson move away from MIPS but LoongArch32 is undefined for now), and
+> > >> > rest compatible strings are wide enough to cover their family, I think the present
+> > >> > compatible strings in this patch describes hardware best.
+> > >>
+> > >> I don't see why new bindings being written for old hardware should somehow
+> > >> be treated differently than new bindings for new hardware.
+> > >
+> > >Let me add that ls1b RTC and ls1c RTC are not exactly the same.
+> > >The former supports RTC interrupt, while the latter does not.
+> > >So my suggestion is to leave the compatible string as it is in this patch.
+> >
+> > Just as a reminder, there are more than ls1b & c in the patch, lest we forget.
+> > Also, fallback compatibles mean a compatible subset, not only that two devices are identical.
+> > The interrupt is passed by the interrupts property.
+> >
 
 -- 
-With best wishes
-Dmitry
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
