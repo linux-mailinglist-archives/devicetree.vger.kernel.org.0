@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86727714B1A
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:54:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5679714B20
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:54:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230132AbjE2Nya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 09:54:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36622 "EHLO
+        id S230089AbjE2Nyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 09:54:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229832AbjE2Nxw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:53:52 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E046E74
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:53:14 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f4bd608cf4so3708450e87.1
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:53:13 -0700 (PDT)
+        with ESMTP id S230088AbjE2Nx4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:53:56 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3155910C8
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:53:21 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f4b256a0c9so3522664e87.2
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:53:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685368370; x=1687960370;
+        d=linaro.org; s=google; t=1685368371; x=1687960371;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=lDSZyiWV1L3BRZwRMeS6SIoOfuaLOZofn1lovAqE5Sk=;
-        b=jdau9cNGT3OQ5ByQWLmTcbNwOu28BAHrM+zgswlKGdh0yjQH/jvJ2OG+zd+XXMDaBu
-         cJrLfJwjjMB5ANos89CMzKv2ilRT+iYk5Pr0U/D8/WzAhqTD/lVIyt5Ld4d+9QrzUDbK
-         v8fkayaepQHPQChfu22LbH34e0Fv0Kd9oWCdbUsm79JyARfE4xrl32IhKc2nHN1mHWYQ
-         XWsiaU41wec9wmuVHhBesjnU1WcAuyekPFiZPuzAduyiB2gJOMnfNOn88fk3UX7v4PwE
-         0DV620eE5LKUN0hDPybVoRSV/KNte3uj9DNBViHVOO2t/MDmmgEGVNaCXk+VFSix5nOh
-         KTuA==
+        bh=p58CUVqLSR0Tnh+edVFp6/c85yeAdv4ChlUd6Ivl4lE=;
+        b=a1UO99vkagOh/S32zwT51/eizQof70iXiTgLznMSd9CsXwBvvLDZB/WA+Zjzs2yZud
+         d0SYoJ1slw62ov5Xq/oh78Is5q/UPPENMXFIg5jr1lXVQ5NjoB67WwFF/N1fevNMiw0I
+         qqkJaOxV/EVstxkTAK3dr5Uzgr80sycyPWtrMwP2lPn8n1LzDfWD7hhPkeWxE0VOyobI
+         HSZmq1v9vwFoNpbJozETEAFSi9fk7FziFIPaTLE6tnvRB1HLVz4o8hUHo3QqbtCyTooL
+         GS/Gga6SI7S3Y3ZHBGMucZ2dtJhkObBcLi5S93dgl/mzvRScLgjc5UrA83nuNBXiq66P
+         ZHgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685368370; x=1687960370;
+        d=1e100.net; s=20221208; t=1685368371; x=1687960371;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lDSZyiWV1L3BRZwRMeS6SIoOfuaLOZofn1lovAqE5Sk=;
-        b=fJIotVSH5hCcvoQrQa/jHdnEP2h3U7mXr72tEGL305SIXbGjpjfkeLl49CEfvMNOwc
-         pHBjg6UNwSEb1t8RCQ9mTo1xyMz3kbR6AdMxmxSQxIprGFsmlVlmKlDgIYzVdHistFtb
-         hHUF68WhsKaRWpNukXiG59dEVp3pNLKrqaG5Tz72Iel4DmTPwf1GAg58H96k/xlyFveY
-         qUDQzbOq6oz/BZ9YfhTE0r8FY2O5VCF8kP9OWQtSjHGIYlHXHw5eHCV1PVlrf2ZUlf+f
-         Xa7Q7i7juRZZAoGgQekxxKsCK7MfqPldIVaF5U+8t2eJWT4Juz72AUAcGcbdq+jW8Cpb
-         nXsw==
-X-Gm-Message-State: AC+VfDwL1DPf4+IHM1lqju3Z/DlI0RWq1BqBuUOtSt2ehk5KRkVMTTll
-        NLHxkXckFrco3uHBF4uC28QqBA==
-X-Google-Smtp-Source: ACHHUZ7XgylCe5x8c31PNsGKQidKa7ddP8MW48epA/QIXyhfVy5nG5DMKTZEEZDh0IhZNes7NbqP2w==
-X-Received: by 2002:ac2:5204:0:b0:4f4:c937:9dc4 with SMTP id a4-20020ac25204000000b004f4c9379dc4mr4453715lfl.67.1685368370091;
-        Mon, 29 May 2023 06:52:50 -0700 (PDT)
+        bh=p58CUVqLSR0Tnh+edVFp6/c85yeAdv4ChlUd6Ivl4lE=;
+        b=UFce0FVJGrHPO9ebiPCxMfSzeCGvyFSX14+4dcYqQzLFmWRPHnYmL23N/xlnaNdMPj
+         ygUfZAJAPnRcmCUdMUsarsZuRv4uqFjP3wAYIb+bltlymPJs/KAckQ+pdtKlroX40GxP
+         BDP82oIT5gZmxCeDwZvXbWZG9iZrXbuHfA3JeCAgEInN3ypEW+nkBUpXJMMugruXKjwt
+         2/1ksvdEeAaUrKtkXmcgKSESMvxjfIebzlsecJzmnbr7dLNZSVZViu4ZbvbKMOW7X6XN
+         r9HpyC7lSr6oHYm2aRV4IUF/MMJliQ7+TCrhxH9uTtiD779fD82XoI4i5kKLEMqEWw9x
+         ASOA==
+X-Gm-Message-State: AC+VfDyJuC4i8+NaVFEWGcK/lBPF33L4gTEtM8CQGYolXKV40cBH0wx2
+        Nvcx+c+N2tK9zuJ+2YqlQtFgKg==
+X-Google-Smtp-Source: ACHHUZ63Z3eJuDnAvuUI83xqUyXnOhx0Q6NIV16cLmP/m8VuJGE0yGBfdp7h6Ltsv0vqYIBRm2YgEw==
+X-Received: by 2002:ac2:5212:0:b0:4f3:aae3:aedc with SMTP id a18-20020ac25212000000b004f3aae3aedcmr3287507lfl.9.1685368371519;
+        Mon, 29 May 2023 06:52:51 -0700 (PDT)
 Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id c16-20020ac25310000000b004f2532cfbc1sm4700lfh.81.2023.05.29.06.52.48
+        by smtp.gmail.com with ESMTPSA id c16-20020ac25310000000b004f2532cfbc1sm4700lfh.81.2023.05.29.06.52.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 May 2023 06:52:49 -0700 (PDT)
+        Mon, 29 May 2023 06:52:51 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Mon, 29 May 2023 15:52:36 +0200
-Subject: [PATCH v8 17/18] drm/msm/a6xx: Add A619_holi speedbin support
+Date:   Mon, 29 May 2023 15:52:37 +0200
+Subject: [PATCH v8 18/18] drm/msm/a6xx: Add A610 speedbin support
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230223-topic-gmuwrapper-v8-17-69c68206609e@linaro.org>
+Message-Id: <20230223-topic-gmuwrapper-v8-18-69c68206609e@linaro.org>
 References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
 In-Reply-To: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -75,16 +75,16 @@ Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         Marijn Suijten <marijn.suijten@somainline.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1685368343; l=2033;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1685368343; l=1852;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=gUTIPidqDWS0P1lNtbrS0Px4anPItm4IBqiFMyfoOxc=;
- b=BvUhulc/6Bw/MuEau8P6DGoJnIw9T0wdrzyGspLuR6E71zrUFFTJ/lVWz/hYaFuMnnttmKNC4
- uLsYGoq/f5HDcWEdrzmUfLwv0SGrtjvxois6uMGcwAuXSvrK71uOuSk
+ bh=XyERlWDTsfWZFtKFZysYLOHv2ihqt9U+AK25cPIEZ8I=;
+ b=2n8OuzD0JlvWdAYJLyaK9eKey1cglmNCSfu2QjRZowbgEZbyhz4HvTwrDp0kby9LRkmISLbjr
+ Kcr2krpAbHsBJvpoNGqk/mYX4QT+h2FMVRaFTxDXcCH1aHeS+I5R/H0
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,66 +92,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A619_holi is implemented on at least two SoCs: SM4350 (holi) and SM6375
-(blair). This is what seems to be a first occurrence of this happening,
-but it's easy to overcome by guarding the SoC-specific fuse values with
-of_machine_is_compatible(). Do just that to enable frequency limiting
-on these SoCs.
+A610 is implemented on at least three SoCs: SM6115 (bengal), SM6125
+(trinket) and SM6225 (khaje). Trinket does not support speed binning
+(only a single SKU exists) and we don't yet support khaje upstream.
+Hence, add a fuse mapping table for bengal to allow for per-chip
+frequency limiting.
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
 diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index ca4ffa44097e..d046af5f6de2 100644
+index d046af5f6de2..c304fa118cff 100644
 --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
 +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -2110,6 +2110,34 @@ static u32 a618_get_speed_bin(u32 fuse)
- 	return UINT_MAX;
+@@ -2098,6 +2098,30 @@ static bool a6xx_progress(struct msm_gpu *gpu, struct msm_ringbuffer *ring)
+ 	return progress;
  }
  
-+static u32 a619_holi_get_speed_bin(u32 fuse)
++static u32 a610_get_speed_bin(u32 fuse)
 +{
 +	/*
-+	 * There are (at least) two SoCs implementing A619_holi: SM4350 (holi)
-+	 * and SM6375 (blair). Limit the fuse matching to the corresponding
-+	 * SoC to prevent bogus frequency setting (as improbable as it may be,
-+	 * given unexpected fuse values are.. unexpected! But still possible.)
++	 * There are (at least) three SoCs implementing A610: SM6125 (trinket),
++	 * SM6115 (bengal) and SM6225 (khaje). Trinket does not have speedbinning,
++	 * as only a single SKU exists and we don't support khaje upstream yet.
++	 * Hence, this matching table is only valid for bengal and can be easily
++	 * expanded if need be.
 +	 */
 +
 +	if (fuse == 0)
 +		return 0;
-+
-+	if (of_machine_is_compatible("qcom,sm4350")) {
-+		if (fuse == 138)
-+			return 1;
-+		else if (fuse == 92)
-+			return 2;
-+	} else if (of_machine_is_compatible("qcom,sm6375")) {
-+		if (fuse == 190)
-+			return 1;
-+		else if (fuse == 177)
-+			return 2;
-+	} else
-+		pr_warn("Unknown SoC implementing A619_holi!\n");
++	else if (fuse == 206)
++		return 1;
++	else if (fuse == 200)
++		return 2;
++	else if (fuse == 157)
++		return 3;
++	else if (fuse == 127)
++		return 4;
 +
 +	return UINT_MAX;
 +}
 +
- static u32 a619_get_speed_bin(u32 fuse)
+ static u32 a618_get_speed_bin(u32 fuse)
  {
  	if (fuse == 0)
-@@ -2170,6 +2198,9 @@ static u32 fuse_to_supp_hw(struct device *dev, struct adreno_gpu *adreno_gpu, u3
+@@ -2195,6 +2219,9 @@ static u32 fuse_to_supp_hw(struct device *dev, struct adreno_gpu *adreno_gpu, u3
+ {
+ 	u32 val = UINT_MAX;
+ 
++	if (adreno_is_a610(adreno_gpu))
++		val = a610_get_speed_bin(fuse);
++
  	if (adreno_is_a618(adreno_gpu))
  		val = a618_get_speed_bin(fuse);
- 
-+	else if (adreno_is_a619_holi(adreno_gpu))
-+		val = a619_holi_get_speed_bin(fuse);
-+
- 	else if (adreno_is_a619(adreno_gpu))
- 		val = a619_get_speed_bin(fuse);
  
 
 -- 
