@@ -2,76 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24B9C714BFC
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 16:25:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 551CD714C00
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 16:26:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbjE2OZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 10:25:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33120 "EHLO
+        id S230122AbjE2O0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 10:26:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230118AbjE2OZh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 10:25:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49FEABE;
-        Mon, 29 May 2023 07:25:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C02326108F;
-        Mon, 29 May 2023 14:25:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6ABEC433D2;
-        Mon, 29 May 2023 14:25:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1685370335;
-        bh=HXadNXLfa2pbjtGXi2soLzjDLazsmd3HtXkwWcxlYt0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bGci5ftxukNC7rajgrAB0odDczjRsSI1tM9XB83O3u3Qp5ipQeWPupRAzGEkY82y9
-         lGaeFs8LdcFF4Jx60BEDegK2e2cGvNOm82GfW5Wg61wYKzkGo74q7dA3o6LJYQmPaD
-         fXwNoUGhZ6tnRhuV/VT4+PtDZlUk9vNAdCheiGTU=
-Date:   Mon, 29 May 2023 15:25:33 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Stanley Chang <stanley_chang@realtek.com>
-Cc:     kernel test robot <lkp@intel.com>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S229601AbjE2O0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 10:26:17 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5C10A7;
+        Mon, 29 May 2023 07:26:00 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-30adc51b65cso2826357f8f.0;
+        Mon, 29 May 2023 07:26:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685370359; x=1687962359;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qXtZ8jTLGIvEBWYCRTpBhewkMkogoQ9bFzj7hAi4Wtg=;
+        b=CtQyVaqVUpQtQQJZ9jec28L6SLkbwl9snhpTaa3zgPPN6JigSwMqEGpZ2L9te1RxEm
+         dbddbM1aasXrU1DpFm5I8jDwYs+WuPO4bhDSaHdctK6Edar1OmIwprHqda5sIqtQmA6a
+         XPRXAugKnnxK4kOrlLSvQCeTjYtPKjdPls1WCVCiDeqwHmQ9CxXR5gzoXpwWUAwp1MDC
+         jXvIrKvjLMdtUkgIlqR01vnB250SUePsItLH6zjLVq4LqNNQGqLwN/jd4M1f63Gixcfu
+         nHDKlQBDsjfZ3Sxft8vmsG3H+LOY5VObwvJ98NBO8Yt8FZBGqvFtjSXWTDER4X+YT0yS
+         +EnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685370359; x=1687962359;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qXtZ8jTLGIvEBWYCRTpBhewkMkogoQ9bFzj7hAi4Wtg=;
+        b=OoofdG5lPDES+R9TAMJxtM+bw/NU1hrQDOyLvVpUvqJHB3B9w3CfU20H69jFb6HX6k
+         DxfryQwZZ/sfnjWX0cUL8PSnq75tB7pBLxfQWCMwI7lDJ1lQPsrHuFQoh63jniStfPP/
+         755eLs9frxetHgmlJu1yfszCcF5dPO/G8simnfl2juYBOCNpBcQAMlz5azpqR2wi6SF6
+         m2mFo6WHfzMbTfukSBGbY5sruAJl4t9Jrm9p/3hftJHBPHJClVsavMDFOGF8rhZgorO3
+         WsWYKafMGQZgw/69XQKEo6LU/YeadKeVV7+Fofx0fGFhaP1ERDnG/S2OhSxQwpiVTIi1
+         69Cg==
+X-Gm-Message-State: AC+VfDw74JOMC/u/8x+fqFaQfBNGvPweDudhiNNfUyt0tRnB0YxpPcib
+        qAafL/PzJd1Zfk+d2qBs1pc=
+X-Google-Smtp-Source: ACHHUZ75e2K3NjqMzIg1RWmj1krj3NbJ1QjixBfZ2gImSczXxJoYNdhM2rHgT47jRzLvjBUC7KveHA==
+X-Received: by 2002:a5d:6291:0:b0:309:e24:57b3 with SMTP id k17-20020a5d6291000000b003090e2457b3mr9982997wru.4.1685370358984;
+        Mon, 29 May 2023 07:25:58 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id p3-20020a5d4583000000b0030649242b72sm78475wrq.113.2023.05.29.07.25.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 May 2023 07:25:57 -0700 (PDT)
+Message-ID: <3aeb528f-4425-4be9-091d-068e8419334e@gmail.com>
+Date:   Mon, 29 May 2023 16:25:56 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 2/2] arm64: dts: mt7622: handle interrupts from MT7531
+ switch on BPI-R64
+Content-Language: en-US, ca-ES, es-ES
+To:     Daniel Golle <daniel@makrotopia.org>, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Ray Chi <raychi@google.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] phy: realtek: usb: Add driver for the Realtek SoC
- USB 2.0/3.0 PHY
-Message-ID: <2023052915-repurpose-partner-20a8@gregkh>
-References: <20230525022617.30537-1-stanley_chang@realtek.com>
- <20230525022617.30537-2-stanley_chang@realtek.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230525022617.30537-2-stanley_chang@realtek.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+References: <ZEA-DV_OsmFg5egL@makrotopia.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <ZEA-DV_OsmFg5egL@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 25, 2023 at 10:26:03AM +0800, Stanley Chang wrote:
-> Realtek DHC (digital home center) RTD SoCs support DWC3 XHCI USB 2.0/3.0
-> controller. Added two drivers to drive the  USB 2.0/3.0 PHY transceivers.
-> For USB 3.0 transceivers, a driver phy-rtk-usb3 is provided.
-> The driver phy-rtk-usb2 is used to support USB 2.0 transceivers.
+
+
+On 19/04/2023 21:16, Daniel Golle wrote:
+> Since commit ba751e28d442 ("net: dsa: mt7530: add interrupt support")
+> the mt7530 driver can act as an interrupt controller. Wire up irq line
+> of the MT7531 switch on the BananaPi BPi-R64 board, so the status of
+> the PHYs of the five 1000Base-T ports doesn't need to be polled any
+> more.
 > 
-> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
-> Reported-by: kernel test robot <lkp@intel.com>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 
-The kernel test robot did not report that a new driver was needed :(
+Applied, thanks
 
+> ---
+>   arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+> index d583e816684cf..aabd104b12acf 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+> @@ -150,6 +150,10 @@ mdio: mdio-bus {
+>   		switch@0 {
+>   			compatible = "mediatek,mt7531";
+>   			reg = <0>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <1>;
+> +			interrupt-parent = <&pio>;
+> +			interrupts = <53 IRQ_TYPE_LEVEL_HIGH>;
+>   			reset-gpios = <&pio 54 0>;
+>   
+>   			ports {
