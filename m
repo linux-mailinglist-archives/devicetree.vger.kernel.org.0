@@ -2,153 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EDE77151F4
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 00:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCC907151F9
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 00:40:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbjE2WjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 18:39:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54742 "EHLO
+        id S229999AbjE2WkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 18:40:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229985AbjE2WjP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 18:39:15 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ADE9CD
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 15:39:13 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f4b80bf93aso4099476e87.0
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 15:39:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685399951; x=1687991951;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2Xub4E75y8Nyr5XajoijONWb7PnUiTj5szgyWiuoPJQ=;
-        b=MneeusNPF5NlydCsdbfh/dap+ohfCB4fgHdqa2BiNfYpPkKSUL6R7YM/Y4tXnpktFG
-         e9Dwm0RCk1+uJPcmzdXjzFsAa6CK4T2GYqX35VNV5Xs2qMkOyOIPQUoHY7Umj9oSIkda
-         LpcsZQEAcC0OQBp3IoT0ssriIOY9SiQu7X2dFxsNWFMpf68LONBDstH9WlY7rnGHWPiM
-         IQJ4vUgwdOqc+VPpm9CY4yol+rr4G1PmDpG6sXCCdvyCNG0O0U/qo3qIUsM7BsTqExdl
-         lCDBUDOFvlOZKHfkoupjfALiOTsHqOxHMU2m5g3jsKaPxmL50s7B8MRrFT7gJ57n3cKf
-         w2+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685399951; x=1687991951;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2Xub4E75y8Nyr5XajoijONWb7PnUiTj5szgyWiuoPJQ=;
-        b=TOt2ep33QRsHh9AgOkYxBzzCnAdSPMy7GJwYh/B0PDkyH97qguzr9NhiM1IvmowEKb
-         Fhe6SwUk1kIsi5zxkcjpneLDX7M7St7gsnG2IyZX7lTb2eEExJHalet85vGmXQfkUxTU
-         8iZ8lAt+XLkwpX34vIiwdhre8XZra/aC0QDhtFoBW9HenEXv/WJENe2wHoRrma/HJ52U
-         TgOhM1eyomBeOdn9dC8bG7XOMBwVn10g6Oq1ZK12uVjsvXJe1D3LExKjssfZUH+zRkj7
-         T7RCdwCCnb+qoDG5rib3p87MfqveaLCDDiUqX5IC10kZzwhTqVf7L89O3oBLIg7CgsgQ
-         j+Pw==
-X-Gm-Message-State: AC+VfDwZQj3OQYyt8tjUgY6F96+hwiLbMFZ3bEF9JXmEKTG4ZoAq5xQt
-        MGW9jdB88xqCQKn8d2vtP4zbWA==
-X-Google-Smtp-Source: ACHHUZ4An8N93KNttIkDEg95kOa0os1fM8bISo57wWgd27lbpv8dT/gg0gviUKDQnepBfNN1PxN0cQ==
-X-Received: by 2002:a05:6512:247:b0:4e9:9e45:3470 with SMTP id b7-20020a056512024700b004e99e453470mr36318lfo.3.1685399951314;
-        Mon, 29 May 2023 15:39:11 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id j28-20020ac2551c000000b004f27cf63a03sm128312lfk.299.2023.05.29.15.39.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 May 2023 15:39:10 -0700 (PDT)
-Message-ID: <d52b384f-9853-3921-d4f2-5aedb7ef4c61@linaro.org>
-Date:   Tue, 30 May 2023 01:39:10 +0300
+        with ESMTP id S229998AbjE2WkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 18:40:23 -0400
+Received: from fgw23-7.mail.saunalahti.fi (fgw23-7.mail.saunalahti.fi [62.142.5.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFAECCF
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 15:40:21 -0700 (PDT)
+Received: from localhost (88-113-26-95.elisa-laajakaista.fi [88.113.26.95])
+        by fgw23.mail.saunalahti.fi (Halon) with ESMTP
+        id ca0df54f-fe71-11ed-b972-005056bdfda7;
+        Tue, 30 May 2023 01:40:19 +0300 (EEST)
+From:   andy.shevchenko@gmail.com
+Date:   Tue, 30 May 2023 01:40:19 +0300
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Subject: Re: [PATCH v4 0/9] serial: sc16is7xx: fix GPIO regression and rs485
+ improvements
+Message-ID: <ZHUp0wcleB06s-N5@surfacebook>
+References: <20230529140711.896830-1-hugo@hugovil.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH RFC 03/10] drm/panel: Add LGD panel driver for Sony Xperia
- XZ3
-Content-Language: en-GB
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     neil.armstrong@linaro.org, Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>
-References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
- <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
- <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
- <71675a02-0801-62dc-2673-4a0907636b21@linaro.org>
- <CAA8EJpq=HZqiBZ6bpUNH47VmASuH+Mi5OD5BHmg0TPwtsKHf8w@mail.gmail.com>
- <oxgtbj7qmsdvz5gl4bud64jedmhdmvphjfge7uy6uwulefqfsa@pleslv2zgwbp>
- <ebc3ff33-6e4f-b107-33c6-f35b03307058@linaro.org>
- <v3ac2ihqjce7vxcsjnm7ett2vc6wb4hb3bb6x4widd55eintw7@fgkyipbbl2ei>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <v3ac2ihqjce7vxcsjnm7ett2vc6wb4hb3bb6x4widd55eintw7@fgkyipbbl2ei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230529140711.896830-1-hugo@hugovil.com>
+X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2023 01:37, Marijn Suijten wrote:
-> On 2023-05-30 01:18:40, Dmitry Baryshkov wrote:
-> <snip>
->>>>>>> +    ret = mipi_dsi_dcs_set_display_on(dsi);
->>>>>>> +    if (ret < 0) {
->>>>>>> +        dev_err(dev, "Failed to turn display on: %d\n", ret);
->>>>>>> +        return ret;
->>>>>>> +    }
->>>>>>
->>>>>> My usual question: should the mipi_dsi_dcs_exit_sleep_mode() / mipi_dsi_dcs_set_display_on() be moved from prepare() to enable() part?
->>>>>
->>>>>
->>>>> No, prepare is called before the video stream is started and when display is still in LPM mode and the mode hasn't been set.
->>>>>
->>>>
->>>> Yes, that's my point. Shouldn't we enable the panel _after_ starting the stream?
->>>
->>> I have never investigated what it takes to split these functions, but
->>> some of these panels do show some corruption at startup which may be
->>> circumvented by powering the panel on after starting the video stream?
->>>
->>> I'm just not sure where to make the split: downstream does describe a
->>> qcom,mdss-dsi-on-command and qcom,mdss-dsi-post-panel-on-command, where
->>> the latter only contains set_display_on() (not exit_sleep_mode()).
->>> It is documented like:
->>>
->>>       same as "qcom,mdss-dsi-on-command" except commands are sent after
->>>       displaying an image."
->>>
->>> So this seems like the right way to split them up, I'll test this out on
->>> all submitted panel drivers.
->>
->> Interesting enough, Neil suggested that sending all the commands during
->> pre_enable() is the correct sequence (especially for VIDEO mode panels),
->> since not all DSI hosts can send commands after switching to the VIDEO mode.
+Mon, May 29, 2023 at 10:07:02AM -0400, Hugo Villeneuve kirjoitti:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> Note that all these panels and Driver-ICs are command-mode, and/or
-> programmed to run in command-mode, so there shouldn't be any notion of a
-> VIDEO stream (any command-mode frame is just an "arbitrary command" as
-> far as I understood).
-
-Yes, from the data stream point of view. I was talking about the DSI 
-host being able to send arbitrary commands or not after enabling the 
-video/cmd stream.
-
+> Hello,
+> this patch series mainly fixes a GPIO regression and improve RS485 flags and
+> properties detection from DT.
 > 
-> - Marijn
+> It now also includes various small fixes and improvements that were previously
+> sent as separate patches, but that made testing everything difficult.
+> 
+> Patch 1 fixes an issue when debugging IOcontrol register. After testing the GPIO
+> regression patches (patches 6 and 7, tests done by Lech Perczak), it appers that
+> this patch is also necessary for having the correct IOcontrol register values.
+> 
+> Patch 2 introduces a delay after a reset operation to respect datasheet
+> timing recommandations.
+> 
+> Patch 3 fixes an issue with init of first port during probing.
+> 
+> Patch 4 fixes a bug with the output value when first setting the GPIO direction.
+> 
+> Patch 5 is a refactor of GPIO registration code.
+> 
+> Patches 6 and 7 fix a GPIO regression by (re)allowing to choose GPIO function
+> for GPIO pins shared with modem status lines.
+> 
+> Patch 8 allows to read common rs485 device-tree flags and properties.
+> 
+> Patch 9 improves comments about chip variants.
+> 
+> I have tested the changes on a custom board with two SC16IS752 DUART using a
+> Variscite IMX8MN NANO SOM.
+
+In general looks good to me, just some minor things and patch ordering issues.
+Thank you for doing this!
 
 -- 
-With best wishes
-Dmitry
+With Best Regards,
+Andy Shevchenko
+
 
