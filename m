@@ -2,73 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73029714AA9
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55E5A714AAE
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:50:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229753AbjE2Nt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 09:49:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34060 "EHLO
+        id S229607AbjE2NuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 09:50:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229607AbjE2Nt5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:49:57 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D591EA7;
-        Mon, 29 May 2023 06:49:53 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 0756D5FD0A;
-        Mon, 29 May 2023 16:49:51 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        with ESMTP id S229505AbjE2NuX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:50:23 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D385107;
+        Mon, 29 May 2023 06:50:14 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (om126255106133.24.openmobile.ne.jp [126.255.106.133])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 614A0836;
+        Mon, 29 May 2023 15:49:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
         s=mail; t=1685368191;
-        bh=THwSTiUgcfU0pN7hOf4QtxshefiF8YvUMoTpottLmWg=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=mddf9/y8v6hAkp68ikcDPDEEZPFmcm9XfJgm/d/pBwXY7Tnrz9IJCEJl5RorF9lki
-         Ss2Hje9CJuNmumleXd+y9THp7TpXjfmScVhtEKAPtqeh5VlHHWpUKIha7S3OgwMMHo
-         JtcHoeLzZ81xVgpo2CabIB4th5WCdbc9HW6/c4nW4Lihra0ozcL/fJf+OQCwTgOiuC
-         eTW/Noa0ZWB/YB4eTZAGTD7qua/4yoG4g4BlJ72F5BqwnCNSi6x3kOmqBpkJqLdYGc
-         LiC6yZgLICBN8DiAblqAdXsEP19n/RS8RC14rFy1TNPtyOaYQjGMUEA0jmqd34hH/z
-         yNMiW6geR5ZbQ==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Mon, 29 May 2023 16:49:49 +0300 (MSK)
-Date:   Mon, 29 May 2023 16:49:44 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <khilman@baylibre.com>, <jian.hu@amlogic.com>,
-        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
-        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v13 4/6] clk: meson: a1: add Amlogic A1 PLL clock
- controller driver
-Message-ID: <20230529134944.dh7isqg5ontfbtpa@CAB-WSD-L081021>
-References: <20230405195927.13487-1-ddrokosov@sberdevices.ru>
- <20230405195927.13487-5-ddrokosov@sberdevices.ru>
- <CAFBinCA3uZXzr3RgnWnKV5Qr-CPaZQX5joDg319i_cgzhLJy2g@mail.gmail.com>
- <20230425123304.xjmrkraybp2siwdw@CAB-WSD-L081021>
- <CAFBinCCqx1oHf+PcXBkeRYHnGQChbTTPRyD8SJU+ait+TG+AjQ@mail.gmail.com>
- <20230511132606.vk52yorf43alwgew@CAB-WSD-L081021>
- <CAFBinCCmNLQF_qV3k4kgDEAsemEsjL-GQtPex7Pmxrc2sHx30A@mail.gmail.com>
+        bh=Z5YaI4FQ4nsu1kJlSC+REgzPugOlcWreD0VGwhXFugU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DfUOhJEn3jJ8hZGyuHKR6cZM1Pk9DNtw6KtaAouAzEjQpD9TFVN0U31Dr9+zXGG2S
+         2ppxSsf70NTxWVukFTs0J/EEN1hME65gkv0tSZx+pO8qTT9BSrz3guMMWhhNBjGh6x
+         0ZMQsLmYUdWs0rBrw5sOuYx0+QuLJhVCoCDyewfk=
+Date:   Mon, 29 May 2023 16:49:59 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v9 RESEND 2/5] dt-bindings: display: Document Renesas
+ RZ/G2L DU bindings
+Message-ID: <20230529134959.GA27467@pendragon.ideasonboard.com>
+References: <20230502100912.143114-1-biju.das.jz@bp.renesas.com>
+ <20230502100912.143114-3-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFBinCCmNLQF_qV3k4kgDEAsemEsjL-GQtPex7Pmxrc2sHx30A@mail.gmail.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [172.16.1.6]
-X-ClientProxiedBy: S-MS-EXCH01.sberdevices.ru (172.16.1.4) To
- S-MS-EXCH01.sberdevices.ru (172.16.1.4)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/05/29 07:59:00 #21367693
-X-KSMG-AntiVirus-Status: Clean, skipped
+In-Reply-To: <20230502100912.143114-3-biju.das.jz@bp.renesas.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,88 +55,194 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Martin,
+Hi Biju,
 
-As I promised before, I'm now back with the vendor's reply regarding
-AUDDDS. The information is still incomplete, but I have provided the
-available details below. Please take a look.
+Thank you for the patch.
 
-On Sun, May 14, 2023 at 10:53:53PM +0200, Martin Blumenstingl wrote:
-> Hi Dmitry.
+On Tue, May 02, 2023 at 11:09:09AM +0100, Biju Das wrote:
+> The RZ/G2L LCD controller is composed of Frame Compression Processor
+> (FCPVD), Video Signal Processor (VSPD), and Display Unit (DU).
 > 
-> On Thu, May 11, 2023 at 3:26 PM Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-> [...]
-> > > If you agree with my statement from above I'll be able to make my
-> > > original question more specific:
-> > > Since we know that we have all the required inputs for fixed_pll,
-> > > sys_pll and hifi_pll - do you know what AUDDDS is and whether it
-> > > requires any specific clock inputs (other than "fixpll_in" and
-> > > "hifipll_in")?
-> > >
-> >
-> > To be honest, I have prepared A1 peripherals and A1 PLL drivers based on very
-> > poor Amlogic datasheets and custom 4.19-based vendor drivers.
-> > The vendor driver has an AUDDDS clock in the PLL clock part, but it is not
-> > used anywhere. Unfortunately, as usual, the datasheet doesn't provide any
-> > information or explanation about what it is. However, the driver has a few
-> > lines of comments that indicate:
-> >
-> >     /*
-> >      * aud dds clock is not pll clock, not divider clock,
-> >      * No clock model can describe it.
-> >      * So we regard it as a gate, and the gate ops
-> >      * should realize lonely.
-> >      */
-> >
-> > Additionally, the vendor driver states that AUDDDS has a 49Mhz clock,
-> > but I do not see any relationship with other clocks (including the exported
-> > GENCLK).
-> > Jian did not include it in the first version of the PLL driver, and I have
-> > decided not to change it either.
-> >
-> > I also noticed a few lines of AUDDDS initialization sequences in the vendor
-> > driver, which may affect CPU clock objects (from my point of view).
-> > However, they are currently under development, and I will try to figure it
-> > out with Amlogic support.
-> >
-> > > > However, I do not believe this to be a significant issue. The clock DT
-> > > > bindings are organized to simplify the process of introducing new bindings,
-> > > > whether public or private. For instance, we may add new bindings to
-> > > > include/dt-bindings at the end of the list and increase the overall number,
-> > > > without disrupting the DT bindings ABI (the old numbers will remain
-> > > > unchanged).
-> > > Yep, this part is clear to me. I should have been more specific that I
-> > > was asking about the inputs that are described in the .yaml file, not
-> > > the clock IDs.
-> >
-> > Actually, AUDDDS has an xtal2dds parent clock, and if we need to have
-> > the AUDDDS clock in the PLL driver, we should add one more link between
-> > peripherals and PLL drivers.
-> >
-> > Let me know if you have any questions.
-> I have no questions - all I can say is that:
-> - I like your approach of clarifying details of the AUDDDS clock with Amlogic
-> - and I fully agree with your conclusion that (depending on what
-> Amlogic says) we need one more link from the PLL driver to the AUDDDS
-> clock
+> The DU module supports the following hardware features
+> − Display Parallel Interface (DPI) and MIPI LINK Video Interface
+> − Display timing master
+> − Generates video timings
+> − Selecting the polarity of output DCLK, HSYNC, VSYNC, and DE
+> − Supports Progressive
+> − Input data format (from VSPD): RGB888, RGB666
+> − Output data format: same as Input data format
+> − Supporting Full HD (1920 pixels x 1080 lines) for MIPI-DSI Output
+> − Supporting WXGA (1280 pixels x 800 lines) for Parallel Output
 > 
-> Thank you for your persistence with this series, I'm sure it will pay
-> off in the long run!
+> This patch document DU module found on RZ/G2L LCDC.
 
-AUDDDS is a direct digital synthesizer used as a clock source.  It is
-not used as default. You need to modify some clk registers in dts to
-enable it. Basically, it is used for audio.
+s/document/documents the/
 
-In A1 design, you can use AUD DDS as a clock source and it is not
-necessary. It is not used in the Amlogic default setting.
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> v8->v9:
+>  * No change
+> v7->v8:
+>  * No change
+> v6->v7:
+>  * No change
+> v5->v6:
+>  * No change.
+> v4->v5:
+>  * Added Rb tag from Rob.
+> v3->v4:
+>  * Changed compatible name from renesas,du-r9a07g044->renesas,r9a07g044-du
+>  * started using same compatible for RZ/G2{L,LC}
+> v3: New patch
+> ---
+>  .../bindings/display/renesas,rzg2l-du.yaml    | 124 ++++++++++++++++++
+>  1 file changed, 124 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> new file mode 100644
+> index 000000000000..ab99e7d57a7d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+> @@ -0,0 +1,124 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/renesas,rzg2l-du.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/G2L Display Unit (DU)
+> +
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> +
+> +description: |
+> +  These DT bindings describe the Display Unit embedded in the Renesas RZ/G2L
+> +  and RZ/V2L SoCs.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - renesas,r9a07g044-du # RZ/G2{L,LC}
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Main clock
+> +      - description: Register access clock
+> +      - description: Video clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: aclk
+> +      - const: pclk
+> +      - const: vclk
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    description: |
+> +      The connections to the DU output video ports are modeled using the OF
+> +      graph bindings specified in Documentation/devicetree/bindings/graph.txt.
 
-According to the vendor, it is not necessary and is currently disabled
-by default. While we don't have much information about AUDDDS, the
-vendor suggests that it's not a commonly used clock object in A1
-projects and it may be skipped if not needed.
+The file has moved to graph.yaml in the dt-schema repo. I'll drop the
+last part of the sentence, starting with "specified by".
 
-Based on all above information, I suppose we can skip it now.
+> +      The number of ports and their assignment are model-dependent. Each port
+> +      shall have a single endpoint.
+> +
+> +    patternProperties:
+> +      "^port@[0-1]$":
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        unevaluatedProperties: false
+> +
+> +    required:
+> +      - port@0
+> +
+> +    unevaluatedProperties: false
+> +
+> +  renesas,vsps:
+> +    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+> +    items:
+> +      items:
+> +        - description: phandle to VSP instance that serves the DU channel
+> +        - description: Channel index identifying the LIF instance in that VSP
+> +    description:
+> +      A list of phandle and channel index tuples to the VSPs that handle the
+> +      memory interfaces for the DU channels.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - power-domains
+> +  - ports
+> +  - renesas,vsps
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # RZ/G2L DU
+> +  - |
+> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    display@10890000 {
+> +        compatible = "renesas,r9a07g044-du";
+> +        reg = <0x10890000 0x10000>;
+> +        interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&cpg CPG_MOD R9A07G044_LCDC_CLK_A>,
+> +                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_P>,
+> +                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_D>;
+> +        clock-names = "aclk", "pclk", "vclk";
+> +        resets = <&cpg R9A07G044_LCDC_RESET_N>;
+> +        power-domains = <&cpg>;
+> +
+> +        renesas,vsps = <&vspd0 0>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                reg = <0>;
+> +                endpoint {
+> +                    remote-endpoint = <&dsi0_in>;
+> +                };
+> +            };
+> +            port@1 {
+> +                reg = <1>;
+> +                endpoint {
+> +                };
+
+Endpoints shouldn't be empty, you can just drop the endpoint here.
+
+I'll fix all this locally.
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+
+> +            };
+> +        };
+> +    };
+> +
+> +...
 
 -- 
-Thank you,
-Dmitry
+Regards,
+
+Laurent Pinchart
