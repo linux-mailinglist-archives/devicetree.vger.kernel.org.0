@@ -2,64 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E5207150AD
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 22:43:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5C217150B0
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 22:44:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbjE2Unu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 16:43:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52696 "EHLO
+        id S229498AbjE2Uoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 16:44:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229632AbjE2Unn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 16:43:43 -0400
-Received: from mxout1.routing.net (mxout1.routing.net [134.0.28.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964F9DB;
-        Mon, 29 May 2023 13:43:38 -0700 (PDT)
-Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
-        by mxout1.routing.net (Postfix) with ESMTP id 695513FC7F;
-        Mon, 29 May 2023 20:43:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1685393015;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=NiNTNWADcq8Wf9sTDfcLcaA78qUAbBkS8piCK+YIth4=;
-        b=X7uCk1A5RWowtoLg5C28QXGgBuPhnlgquA0AlaMFd43ibD+ZUiiExwvswPC2MKv8xwn93/
-        lYdNhnN/6uXhuWKKJ1g57S9tFrJvZcprKeOWolnq3tU34kfnUUp1wV3Es+/nhVbwQv8nsJ
-        lqZPUaqmWk5su9LXSJu66RUD+Zv4PZg=
-Received: from frank-G5.. (fttx-pool-217.61.156.2.bambit.de [217.61.156.2])
-        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 4483E1006D1;
-        Mon, 29 May 2023 20:43:34 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        "Hui.Liu" <hui.liu@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Lala Lin <lala.lin@mediatek.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Golle <daniel@makrotopia.org>
-Subject: [PATCH v2 4/4] arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts
-Date:   Mon, 29 May 2023 22:42:58 +0200
-Message-Id: <20230529204258.65238-5-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230529204258.65238-1-linux@fw-web.de>
-References: <20230529204258.65238-1-linux@fw-web.de>
+        with ESMTP id S229494AbjE2Uop (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 16:44:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C101EC9;
+        Mon, 29 May 2023 13:44:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D7086287E;
+        Mon, 29 May 2023 20:44:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEE44C433D2;
+        Mon, 29 May 2023 20:44:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685393073;
+        bh=CxcZNzFtJ0OjwhQEzIXvr8CgGHHZsHpJhb4n+27D/dc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LH9JjXv1UM7H1Cgclyv5KyzfLjnEYyjj9D4UYftXNbytATxxQ8XGzl52CEo29e5rj
+         zcugpB5ompIDbNgu4LnWZ00+wf6PX2MD8a4rE8LgBZ+In0O0CICkeVXc8geZEsnlWK
+         nwWCbl/yirYJrT0hEdngr4Gb0LCmFJFVgUFvBWGJAO6eZnVh+dTjuEBVv9SqIMa1Bf
+         27b5uMJ1lxFpncVIl18B/tyNSt75KOBjHTq5Fu0Z6EmLxstPLzKngr7NNQYR3j2gc4
+         Oc5KiQbxaX+r7eJKH3CgLSn+ialr8eqrj+u4x8TSF/AtcKFn/EjMYDrgWDFx9YxmOG
+         pn4WbrS09to0w==
+Date:   Mon, 29 May 2023 21:44:28 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        geert+renesas@glider.be, magnus.damm@gmail.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH net-next 1/5] dt-bindings: net: r8a779f0-ether-switch:
+ Add ACLK
+Message-ID: <20230529-ambiance-profile-d45c01caacc3@spud>
+References: <20230529080840.1156458-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230529080840.1156458-2-yoshihiro.shimoda.uh@renesas.com>
+ <20230529-cassette-carnivore-4109a31ccd11@spud>
+ <15fece9d-a716-44d6-bd88-876979acedf1@lunn.ch>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: b1d02627-873f-44dd-a92e-df7ed1a9bf87
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="LyQJ+oosq6xedgH0"
+Content-Disposition: inline
+In-Reply-To: <15fece9d-a716-44d6-bd88-876979acedf1@lunn.ch>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,68 +63,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daniel Golle <daniel@makrotopia.org>
 
-Add pwm-fan and cooling-maps to BananaPi-R3 devicetree.
+--LyQJ+oosq6xedgH0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
-this is based on Patch from openwrt. as my PWM-fan seems to need 5v pwm
-signal and r3 only provides 3v3 on 3pin-socket it does not work for me.
----
- .../dts/mediatek/mt7986a-bananapi-bpi-r3.dts  | 31 +++++++++++++++++++
- 1 file changed, 31 insertions(+)
+On Mon, May 29, 2023 at 10:11:12PM +0200, Andrew Lunn wrote:
+> On Mon, May 29, 2023 at 07:36:03PM +0100, Conor Dooley wrote:
+> > On Mon, May 29, 2023 at 05:08:36PM +0900, Yoshihiro Shimoda wrote:
+> > > Add ACLK of GWCA which needs to calculate registers' values for
+> > > rate limiter feature.
+> > >=20
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > > ---
+> > >  .../bindings/net/renesas,r8a779f0-ether-switch.yaml    | 10 ++++++++=
+--
+> > >  1 file changed, 8 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/net/renesas,r8a779f0-e=
+ther-switch.yaml b/Documentation/devicetree/bindings/net/renesas,r8a779f0-e=
+ther-switch.yaml
+> > > index e933a1e48d67..cbe05fdcadaf 100644
+> > > --- a/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-sw=
+itch.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/renesas,r8a779f0-ether-sw=
+itch.yaml
+> > > @@ -75,7 +75,12 @@ properties:
+> > >        - const: rmac2_phy
+> > > =20
+> > >    clocks:
+> > > -    maxItems: 1
+> > > +    maxItems: 2
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: fck
+> > > +      - const: aclk
+> >=20
+> > Since having both clocks is now required, please add some detail in the
+> > commit message about why that is the case. Reading it sounds like this
+> > is an optional new feature & not something that is required.
+>=20
+> This is something i wondered about, backwards compatibility with old
+> DT blobs. In the C code it is optional, and has a default clock rate
+> if the clock is not present.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-index 782519429497..29c018bbf29d 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-@@ -37,6 +37,15 @@ dcin: regulator-12vd {
- 		regulator-always-on;
- 	};
- 
-+	fan: pwm-fan {
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		/* cooling level (0, 1, 2) - pwm inverted */
-+		cooling-levels = <255 96 0>;
-+		pwms = <&pwm 0 10000 0>;
-+		status = "okay";
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
-@@ -132,6 +141,28 @@ sfp2: sfp-2 {
- 	};
- };
- 
-+&cpu_thermal {
-+	cooling-maps {
-+		cpu-active-high {
-+			/* active: set fan to cooling level 2 */
-+			cooling-device = <&fan 2 2>;
-+			trip = <&cpu_trip_active_high>;
-+		};
-+
-+		cpu-active-low {
-+			/* active: set fan to cooling level 1 */
-+			cooling-device = <&fan 1 1>;
-+			trip = <&cpu_trip_active_low>;
-+		};
-+
-+		cpu-passive {
-+			/* passive: set fan to cooling level 0 */
-+			cooling-device = <&fan 0 0>;
-+			trip = <&cpu_trip_passive>;
-+		};
-+	};
-+};
-+
- &crypto {
- 	status = "okay";
- };
--- 
-2.34.1
+Yeah, I did the cursory check of the code to make sure that an old dtb
+would still function, which is part of why I am asking for the
+explanation of the enforcement here. I'm not clear on what the
+consequences of getting the default rate is. Perhaps if I read the whole
+series and understood the code I would be, but this commit should
+explain the why anyway & save me the trouble ;)
 
+> So the yaml should not enforce an aclk member.
+
+This however I could go either way on. If the thing isn't going to
+function properly with the fallback rate, but would just limp on on
+in whatever broken way it has always done, I would agree with making
+the second clock required so that no new devicetrees are written in a
+way that would put the hardware into that broken state.
+On the other hand, if it works perfectly fine for some use cases without
+the second clock & just using the default rathe then I don't think the
+presence of the second clock should be enforced.
+
+Cheers,
+Conor.
+
+--LyQJ+oosq6xedgH0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHUOrAAKCRB4tDGHoIJi
+0giwAP0SSbeFi966FE7XkVpoO7WWhUj/nhu0mvqp7cEjcwZGtQD/TYJ8J9KRo8x1
+z9MY3uNX40ZiyQ+6IKwzr18/cRcEnQk=
+=Hehz
+-----END PGP SIGNATURE-----
+
+--LyQJ+oosq6xedgH0--
