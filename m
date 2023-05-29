@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73922714A28
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:20:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6059714A2E
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:22:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbjE2NUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 09:20:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46054 "EHLO
+        id S229680AbjE2NWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 09:22:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbjE2NUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:20:22 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDACCA7
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:20:17 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f6094cb2d2so33891385e9.2
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:20:17 -0700 (PDT)
+        with ESMTP id S229671AbjE2NWC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:22:02 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B8B3B7
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:22:00 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3f6042d610fso33832135e9.1
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:22:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685366416; x=1687958416;
+        d=linaro.org; s=google; t=1685366518; x=1687958518;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=yzXTVsKBHc2Kk6Dlzodvb1WiYIhmlbBuhYwp2QvY7kY=;
-        b=Q4dhslguXqfvdeBbTNbD5ieJpnyWVGQ292U3s0hH/PjCuddzk3CN+sANR4gn1OsZv3
-         SjrZIB3UWQexOfRPr0D4AwJpyy9JasYdySD6s5jReCOvE6pg1k1fxtWbXBWLB+zFD6E0
-         ZVUc36Sub9p597E5XaOACg7548qx/+FyJYRpIxKdqCOlqSMDTYR12+LT0fR+Elh5jkh3
-         NdczRN2f2nprVP+dKlXICSsIJ+v5hYvbmEMfWYWiew1YyAg8/vM5HkOHhzBvsE2bNayr
-         ADp9nmosfmQtUHV1LQ8K4fSRVxLv8wpV6vymCDU8/MCx2uFeDc5+Ca58idopvBUS7zEb
-         MLxQ==
+        bh=zQPnGID00Brxksr1LEFVX3pOkofF35RoN55bi7pgARE=;
+        b=gDWZdNkikMtW4jwWJdMwNzOTeQk4XvTMscX5BPzfte6VLW360lle6e8nAPlUk9g/o8
+         xd8wZgiMFPhfztetNazQ8wsnZQFaI88+oW4POxwsz+1GQuVs/DmN/acHJycNy6r+Ps7f
+         fF3/keTavialx5OmeiHTOF6Ui4Uf7eEq9tMAVBM8km/Sd8ZuwJ85Q97IBqXr6/x+sjbE
+         S3pGNhIqb4ct/ZeUSH6toXAJnGCgK5x4qhD7ueiq8QiYUL0B20fbb4yYJ7ERWOT2A0Pn
+         gYxOZK/+sK82Nno81ex8nMHW0dQtNdc+u/9T/T7/QTYrHhCVMclfHrp3J+MHeQdik3RB
+         Sokw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685366416; x=1687958416;
+        d=1e100.net; s=20221208; t=1685366518; x=1687958518;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yzXTVsKBHc2Kk6Dlzodvb1WiYIhmlbBuhYwp2QvY7kY=;
-        b=O749NONSOXWFJXhWG/6CmOf+ARqK0ImtTIY9qDVQvI/ElBd0tvun/JEQ4cRg3WNQwW
-         SGg/npi8o7pTWzpDpfpRp1ZFzC1C7wWJXr8h/7GlZwqPxBB/AkHYiNM2QxC+4PaeW0tq
-         AcKpX/XWtU1YJnp59/1+d3EXO71GThGsnXEOoPZkgri/W5N9HVyZbWti/EG595oI4mWG
-         FMr8W9i7xLSby54Dk0mi2hAiRJZ5npdqOMUmBlvRAGzyJE6PEPANMG+GHfEpWbWIKaFX
-         q1xTtDtP7AQPKTwJna+146lTWfzQwNyZ//yPB8zHA00uHh7CUtp7Z1S7dre0FxcAn2Va
-         r4Nw==
-X-Gm-Message-State: AC+VfDyPEzRrnKPZtaXBtJj81IBbfOow4cKhk5ybAnQ9HsyRk3l2zq5W
-        bgYVHqZkIqxdPW/DaccR3E+uhw==
-X-Google-Smtp-Source: ACHHUZ4eZHe90J8QngVS1kOPyL07sdkVXU+1x8EKxC4xW3EVOaYQ0axJDQmvbADW7mTWFDjleFodjA==
-X-Received: by 2002:a7b:c01a:0:b0:3f6:f29:7b4b with SMTP id c26-20020a7bc01a000000b003f60f297b4bmr9784322wmb.12.1685366416247;
-        Mon, 29 May 2023 06:20:16 -0700 (PDT)
+        bh=zQPnGID00Brxksr1LEFVX3pOkofF35RoN55bi7pgARE=;
+        b=WLUe1sYuMcHRRL1G1k3OWbGyOjUu4c48AonaDWIpaFPqhnuJB9zCGGKmy+fmebZmi2
+         FXJldKJbkJHjUBN8Rksk4QL+KJhlY7Ly/vOwJJ6sQPqKxiORarQ/SffCTmuA6JQLrOKh
+         THUo/Akh5ZNecQtMb+Qa/vXpOLCVXIPjJidw7tw3VtJOqTGlEm6rTgf+sWhKf7EGx96X
+         FE+ejJAHxCCFZSZ7tUzzZXR9fJnvdW5enZhCxhbFPu4vJmybc5Nq1vkzEwDnApS+XmKX
+         7keR0qx2nITldbTUWNevWqBdaFNqV/ztF3RBOaMnSZFDmXxYv3yYXsGGkb+8TpjTowIP
+         aywA==
+X-Gm-Message-State: AC+VfDzqH/U7qvZQfwARLpHzcHhaD+43iBGo84UCiYF7mx/TQY1c5u0W
+        DCKH+6htvSltdVOnIy1GgSqOsg==
+X-Google-Smtp-Source: ACHHUZ7I186EtiGbOGB/RbLAQfHQJKOuhNb282Woas7dhrX98jASbnMChjEDiPUjYpdc2Fh5m03Dlw==
+X-Received: by 2002:a7b:c01a:0:b0:3f6:11e9:de8e with SMTP id c26-20020a7bc01a000000b003f611e9de8emr8649611wmb.4.1685366518607;
+        Mon, 29 May 2023 06:21:58 -0700 (PDT)
 Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id k6-20020a05600c0b4600b003f4fe09aa43sm18060709wmr.8.2023.05.29.06.20.15
+        by smtp.gmail.com with ESMTPSA id v7-20020a05600c214700b003f4f89bc48dsm17990815wml.15.2023.05.29.06.21.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 May 2023 06:20:15 -0700 (PDT)
-Message-ID: <4c0c0869-5e57-63cf-0152-a58443dc0512@linaro.org>
-Date:   Mon, 29 May 2023 14:20:14 +0100
+        Mon, 29 May 2023 06:21:58 -0700 (PDT)
+Message-ID: <cf8f746f-93d2-8ddc-7e6d-6324322e46e4@linaro.org>
+Date:   Mon, 29 May 2023 14:21:57 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.8.0
-Subject: Re: [PATCH 1/6] arm64: dts: qcom: msm8916: Rename &msmgpio -> &tlmm
+Subject: Re: [PATCH 2/6] arm64: dts: qcom: msm8916/39: Rename &blsp1_uartN ->
+ &blsp_uartN
 Content-Language: en-US
 To:     Stephan Gerhold <stephan@gerhold.net>,
         Bjorn Andersson <andersson@kernel.org>
@@ -62,9 +63,9 @@ Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230525-msm8916-labels-v1-0-bec0f5fb46fb@gerhold.net>
- <20230525-msm8916-labels-v1-1-bec0f5fb46fb@gerhold.net>
+ <20230525-msm8916-labels-v1-2-bec0f5fb46fb@gerhold.net>
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230525-msm8916-labels-v1-1-bec0f5fb46fb@gerhold.net>
+In-Reply-To: <20230525-msm8916-labels-v1-2-bec0f5fb46fb@gerhold.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,44 +79,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 29/05/2023 13:46, Stephan Gerhold wrote:
-> MSM8916 is the only ARM64 Qualcomm SoC that is still using the old
-> &msmgpio name. Change this to &tlmm to avoid confusion.
+> For some reason the BLSP UART controllers have a label with a number
+> behind blsp (&blsp1_uartN) while I2C/SPI are named without (&blsp_i2cN).
+> This is confusing, especially for proper node ordering in board DTs.
 > 
-> Note that the node ordering does not change because the MSM8916 device
-> trees have pinctrl separated at the bottom (similar to sc7180).
+> Right now all board DTs are ordered as if the number behind blsp does
+> not exist (&blsp_i2cN comes before &blsp1_uartN). Strictly speaking
+> correct ordering would be the other way around ('1' comes before '_').
+> 
+> End this confusion by giving the UART controllers consistent labels.
+> There is just one BLSP on MSM8916/39 so the number is redundant.
 > 
 > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
->   arch/arm64/boot/dts/qcom/apq8016-sbc.dts           | 24 ++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-acer-a1-724.dts   | 14 ++++----
->   .../boot/dts/qcom/msm8916-alcatel-idol347.dts      | 24 ++++++-------
->   arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts     | 20 +++++------
->   arch/arm64/boot/dts/qcom/msm8916-gplus-fl8005a.dts | 20 +++++------
->   arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts     | 34 +++++++++---------
->   .../boot/dts/qcom/msm8916-longcheer-l8150.dts      | 20 +++++------
->   .../boot/dts/qcom/msm8916-longcheer-l8910.dts      | 16 ++++-----
->   arch/arm64/boot/dts/qcom/msm8916-pins.dtsi         |  2 +-
->   .../dts/qcom/msm8916-samsung-a2015-common.dtsi     | 40 ++++++++++-----------
->   .../boot/dts/qcom/msm8916-samsung-a3u-eur.dts      | 12 +++----
->   .../boot/dts/qcom/msm8916-samsung-a5u-eur.dts      |  6 ++--
->   .../dts/qcom/msm8916-samsung-e2015-common.dtsi     |  6 ++--
->   .../boot/dts/qcom/msm8916-samsung-grandmax.dts     |  6 ++--
->   .../boot/dts/qcom/msm8916-samsung-gt5-common.dtsi  | 14 ++++----
->   arch/arm64/boot/dts/qcom/msm8916-samsung-gt510.dts | 12 +++----
->   arch/arm64/boot/dts/qcom/msm8916-samsung-gt58.dts  |  8 ++---
->   .../boot/dts/qcom/msm8916-samsung-j5-common.dtsi   | 16 ++++-----
->   .../boot/dts/qcom/msm8916-samsung-serranove.dts    | 42 +++++++++++-----------
->   arch/arm64/boot/dts/qcom/msm8916-thwc-uf896.dts    |  8 ++---
->   arch/arm64/boot/dts/qcom/msm8916-thwc-ufi001c.dts  | 10 +++---
->   arch/arm64/boot/dts/qcom/msm8916-ufi.dtsi          |  2 +-
->   .../boot/dts/qcom/msm8916-wingtech-wt88047.dts     | 16 ++++-----
->   .../arm64/boot/dts/qcom/msm8916-yiming-uz801v3.dts |  8 ++---
->   arch/arm64/boot/dts/qcom/msm8916.dtsi              |  4 +--
->   25 files changed, 192 insertions(+), 192 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
-> index 1c5d55854893..82f141b55eb3 100644
-> --- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
 
 Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
