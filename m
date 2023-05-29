@@ -2,145 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D642171479B
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 12:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D0247147CF
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 12:18:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231748AbjE2KCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 06:02:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52326 "EHLO
+        id S232007AbjE2KSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 06:18:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231948AbjE2KB3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 06:01:29 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6EE2106
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 03:01:16 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f505aace48so445841e87.0
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 03:01:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685354475; x=1687946475;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NnjxsqeBUt3nN6IEIFcMokb1FE2z6yxCiutSi12fIMw=;
-        b=Zam50bsfGCeAd+Q4HbMgubwGcnEpql+KsjM/23AhbtzJIILsYkkVddgYpFlg3q6JeF
-         xPiy7PxJLnXjRCn/0UBBzSDxx++ggSzm23TrygJ6CX4ykUKsaXTGlVjNWKqh6UcW+bSf
-         gtXeTN/hyEmTXWqBdxh5AOLVZDuIbPe28n8FBM2StjpIGdXfGpm8Qyc2Y9YRXbXpC89S
-         YZyMdocDpieHb3ogMuleFdR+x+S+PfaIZdl/aIa93tRURNUJlPrRYPhjDzQTENlzozWf
-         yyNV6F3WxJoHImcYu28PArW0rhjX0gpgVdrulNMchTuvJ4nu49Og5n6PFWB5fEgW9v9a
-         Pnqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685354475; x=1687946475;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NnjxsqeBUt3nN6IEIFcMokb1FE2z6yxCiutSi12fIMw=;
-        b=lS0G4ITCe9kMlKYOlSiI2alqwNaGfIgzuotTMFQO7WQeTOM0Lel01uJDMlyuVx3RxY
-         pvi+x9MzGtLNCiXpaxTqbiPMyC4exF7WanP5EgSFzp1u/x9pPUnWSKCQofPY5IjMGKI6
-         HWJwcpyOdy3robNCBfixU6MvluzYPnEtjiEJThwSnXWlN9z5qUy7Z+bBLh+dela5695X
-         cr5w89ArmPpGuPvGZNLwaO7KroRBD8OgqGkXI1H3uXuDZlAjH9S6VBJicYgUMV9hGau3
-         Pki2/njYPLZDHDGOLzGT6DpOcCb5ZGM9tF0Qr4Ihrhe5lIcjpw1Le77ZaM09AFquBmN3
-         Y3ag==
-X-Gm-Message-State: AC+VfDw2zm3Jbf375ba/U2j1u8S3RTXRWpREVkwRoSbAM/FHZF6vRPEY
-        kB7TYTz2y/MeOV6CpUn6l9bsWA==
-X-Google-Smtp-Source: ACHHUZ614GmzOwkADdb0cx2/sLyZX4qloMdouIYDIHIuIU3ETpYVay2HnEGMkLMZCvonJyeyWejbcg==
-X-Received: by 2002:ac2:44c9:0:b0:4e8:4412:1d95 with SMTP id d9-20020ac244c9000000b004e844121d95mr3096049lfm.29.1685354475042;
-        Mon, 29 May 2023 03:01:15 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id y19-20020ac24473000000b004f3bb9f1068sm1915381lfl.225.2023.05.29.03.01.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 May 2023 03:01:14 -0700 (PDT)
-Message-ID: <3b5b6271-9611-9884-f0de-5b3f7c3d7b72@linaro.org>
-Date:   Mon, 29 May 2023 13:01:13 +0300
+        with ESMTP id S229613AbjE2KSc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 06:18:32 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9F583;
+        Mon, 29 May 2023 03:18:30 -0700 (PDT)
+X-GND-Sasl: luca.ceresoli@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1685355509;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=vUyuxrjpFgblrxgFyN4LMCGNQnaGs9nK3yiZjdqa8co=;
+        b=WYgn5Ck9kYUjG7GNjHvlrUTvNj4ZRLgl/6yS3N9FTeXdb84PzexkAoXW8IEqTub+6vL9Ex
+        yLUtkei6fEgTUbXslUME+CCT8bp0YgAdVw2hWZzWDft5/++89DAfHalIFUE+Wp/CDBe1UW
+        M6WxT/c9T4aARy1DodOaCxuFaHd0nq5gpg66/Dm0I+9TOyF8IDelS3bZ/gmBV5JY1Tdolk
+        IMmybcpc6d36NKGNu1h+IAmxPO4kuFYBawo/EvwbOiUnAAQyxmbKfVDJn/M+hhdshA28lb
+        zTBZiBm4WN8hmK+Qp6pfHmowgZ0jRc3HW0sHemZ7SBivWeLVjSfuay1YOPfqcA==
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+X-GND-Sasl: luca.ceresoli@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 83341240005;
+        Mon, 29 May 2023 10:18:27 +0000 (UTC)
+Date:   Mon, 29 May 2023 12:18:25 +0200
+From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
+To:     Jun Li <jun.li@nxp.com>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Xu Yang <xu.yang_2@nxp.com>
+Subject: Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling runtime-pm
+Message-ID: <20230529121825.71e9b6d6@booty>
+In-Reply-To: <20230508151756.785ec07e@booty>
+References: <23672d66d229d3be4cc854ddf1462c3507f1c2fc.camel@toradex.com>
+        <20230504162312.1506763-1-luca.ceresoli@bootlin.com>
+        <ZFPiRvoF5l8uGzzZ@francesco-nb.int.toradex.com>
+        <PA4PR04MB96403377F5E37C12AD8C25B389729@PA4PR04MB9640.eurprd04.prod.outlook.com>
+        <20230505120618.2f4cf22c@booty>
+        <ZFThyn/D/dDK9nk3@francesco-nb.int.toradex.com>
+        <PA4PR04MB96405EE2468555EA900B340189739@PA4PR04MB9640.eurprd04.prod.outlook.com>
+        <ZFjaNzY32x8o2XG7@francesco-nb.int.toradex.com>
+        <20230508151756.785ec07e@booty>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 0/5] MDSS reg bus interconnect
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230417-topic-dpu_regbus-v1-0-06fbdc1643c0@linaro.org>
- <CAA8EJpo8X7KrrXoButyW0d1Lz=a5Stw2inFGt2R7KJ+2NTX6wA@mail.gmail.com>
- <74a817ff-5850-330d-8cac-f551be6fa35c@linaro.org>
- <254cd131-4ad1-44c9-2653-862580503c15@linaro.org>
- <e99a9fe9-21e4-fc56-d400-4f6e9df2eaed@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <e99a9fe9-21e4-fc56-d400-4f6e9df2eaed@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/05/2023 12:08, Konrad Dybcio wrote:
+Hello Jun,
+
+On Mon, 8 May 2023 15:17:56 +0200
+Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
+
+> Hello Jun, Francesco,
 > 
+> On Mon, 8 May 2023 13:17:11 +0200
+> Francesco Dolcini <francesco@dolcini.it> wrote:
 > 
-> On 29.05.2023 10:47, Dmitry Baryshkov wrote:
->> On 29/05/2023 10:42, Konrad Dybcio wrote:
->>>
->>>
->>> On 29.05.2023 04:42, Dmitry Baryshkov wrote:
->>>> On Mon, 17 Apr 2023 at 18:30, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>>>>
->>>>> Apart from the already handled data bus (MAS_MDP_Pn<->DDR), there's
->>>>> another path that needs to be handled to ensure MDSS functions properly,
->>>>> namely the "reg bus", a.k.a the CPU-MDSS interconnect.
->>>>>
->>>>> Gating that path may have a variety of effects.. from none to otherwise
->>>>> inexplicable DSI timeouts..
->>>>>
->>>>> This series tries to address the lack of that.
->>>>>
->>>>> Example path:
->>>>>
->>>>> interconnects = <&bimc MASTER_AMPSS_M0 0 &config_noc SLAVE_DISPLAY_CFG 0>;
->>>>
->>>> If we are going to touch the MDSS interconnects, could you please also
->>>> add the rotator interconnect to the bindings?
->>>> We do not need to touch it at this time, but let's not have to change
->>>> bindings later again.
->>>>
->>> Ack
->>
->> Also, several points noted from the mdss fbdev driver:
->>
->> - All possible clents vote for the low bw setting. This includes DSI, HDMI, MDSS itself and INTF
-> As in, "you need NUM_CLIENTS * MIN_VOTE" or as in "any client necessitates
-> a vote"?
-
-Each client has separate vote
-
+> > On Sat, May 06, 2023 at 09:02:39AM +0000, Jun Li wrote:  
+> > > > -----Original Message-----
+> > > > From: Francesco Dolcini <francesco@dolcini.it>
+> > > > Sent: Friday, May 5, 2023 7:00 PM
+> > > > To: Luca Ceresoli <luca.ceresoli@bootlin.com>; Jun Li <jun.li@nxp.com>
+> > > > Cc: Francesco Dolcini <francesco@dolcini.it>; devicetree@vger.kernel.org;
+> > > > festevam@gmail.com; gregkh@linuxfoundation.org; kernel@pengutronix.de;
+> > > > linux-arm-kernel@lists.infradead.org; dl-linux-imx <linux-imx@nxp.com>;
+> > > > linux-kernel@vger.kernel.org; linux-usb@vger.kernel.org;
+> > > > peter.chen@nxp.com; robh+dt@kernel.org; s.hauer@pengutronix.de;
+> > > > shawnguo@kernel.org; Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>;
+> > > > Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > > Subject: Re: [PATCH v2 2/3] usb: chipidea: imx: support disabling runtime-pm
+> > > > 
+> > > > On Fri, May 05, 2023 at 12:06:18PM +0200, Luca Ceresoli wrote:    
+> > > > > On Fri, 5 May 2023 09:49:16 +0000
+> > > > > Jun Li <jun.li@nxp.com> wrote:    
+> > > > > > Is your board design similar like Francesco's as below?    
+> > > > >
+> > > > > Possibly, but I'm afraid I can't say: I am using the Toradex Colibri
+> > > > > i.MX6ULL SoM, whose schematics are not public.    
+> > > > 
+> > > > I can confirm that it's the same.    
+> > > 
+> > > Thanks Francesco for the confirmation, had a check with design team,
+> > > there is no status bit which can be used to judge the VDD_USB_CAP is
+> > > powered or not, so we have to add a board level dts property to tell
+> > > this usb phy driver to bypass MXS_PHY_DISCONNECT_LINE_WITHOUT_VBUS.
+> > > 
+> > > Before send a formal patch, I want to confirm this should work for your
+> > > HW design, like below simple hack:    
+> > 
+> > Thanks Li Jun, I tested it with v6.3.1 kernel and it's all good.
+> > I would be happy to test the patch as soon as you send it.  
 > 
->> - SMMU also casts such vote, which I do not think should be necessary, unless there is a separate MDSS SMMU?
-> There's one on 8996, pre-845 SoCs often have a MMSS MMU, 845 and
-> later have a MMSS-specific TBU which (theoretically) requires a
-> vote for access to 0x400-0x7ff SIDs
+> Thanks Jun, it works here as well, on 6.1.27!
 
-Ack.
+Have you managed to make progress on the patch after Francesco's and my
+tests?
 
-> 
->> - PINGPONG cacsts high bw setting for the sake of speeding up the LUT tables if required.
-> Hm, I think is would be a separate topic.
+As I see it, a proper fix for mainline could be as simple as a new DT
+property to describe this specific hardware configuration and a patch
+to ignore the flag when the property is present. Is my understanding
+correct?
 
-I think so. I'd do a single vote from mdp5/dpu1. Then we can cast higher 
-vote from PP/DSPP/etc.
+Best regards,
+Luca
 
 -- 
-With best wishes
-Dmitry
-
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
