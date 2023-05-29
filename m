@@ -2,150 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E954E71509F
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 22:38:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97F157150A7
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 22:43:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229524AbjE2Uis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 16:38:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51270 "EHLO
+        id S229567AbjE2Unj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 16:43:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbjE2Uir (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 16:38:47 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF703C9;
-        Mon, 29 May 2023 13:38:45 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-96f9cfa7eddso666030866b.2;
-        Mon, 29 May 2023 13:38:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20221208; t=1685392724; x=1687984724;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U1toJ4Ziiwkh6Uorqj0Y7CR8iggvNFOiNmMnjnIZtME=;
-        b=jSTFRK90J4fjGPvkA2TKfJY2v4K96Gd0EFHgmeeisj5WF0B697V0YN8iDEI8dq8F2S
-         BjddDb5lARn85ymxhNdSfn+wPq7QHypoBDjF/PNnq5T0OVqWPRusr3g+WMR7MSWBgJFZ
-         ithPzxjE4liO2A6ntGlySxN3wZiLQlYUuAF4gnHRQOaQDq29zg9Ugjjjq9Ywcph+Eu0x
-         b5t7d07GEsR9E24MlEPXWOwV/Knq1HXU3aMF+yhkSzDVdkzWWzxQz1gnTuXAp+VYFhwM
-         uinEs07l7yXB7O4WcXQKa/4Obpp3VCIyclSTDBKV8oyIpcaHqiPwW8XvMRo86vBk/n67
-         XR5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685392724; x=1687984724;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U1toJ4Ziiwkh6Uorqj0Y7CR8iggvNFOiNmMnjnIZtME=;
-        b=V2N/R9ojq/C/f8JRxNojrFsH3gQAFFYfoEuDDZ4Sqgz7M9coHAOloiyOZtHSW03lfK
-         jXo5BYK1XGUqf3KZ3FFpbpxYCBx4fLEixKmp2iHWjTLnhoESzXRrUuEhOoiAvhk73FI9
-         Et6U9waqC18icv7A5kQu3WJGkwUlgitC2egNx6wRqEg4b3W+2HmUNrNwkcf7ib8urWRY
-         mzfW9bMcnUWsroaNyOZ1yxQKKpgZJo0m3wp7XKfQ8HUGceLkFGarGcVkxphfH03SRF0c
-         NoctfvWFwJmo1k9fnf58hwziWmyWCzx3XA+bg5d3SrZrRGPDcP4Qc+Un2CaA6B0R1jXv
-         ir4w==
-X-Gm-Message-State: AC+VfDyeuExoZ0jK5cQDIJ9iQFJ1fFNu5o8FixES5x6+OfSpoGFP0HfQ
-        KuoTP6y+Zjmaj86h4TJxfwZU+gDJ1rOEbvh2aRQ=
-X-Google-Smtp-Source: ACHHUZ4UtXw5S6P31cGYC8SENa/qvkWQuSzFjsy13hgt+tpBjTHl3HQ3Xk+hjLn2wdue1VC2ihr2v8r1mi/Prs9uGvU=
-X-Received: by 2002:a17:907:7fa7:b0:94f:59aa:8a7c with SMTP id
- qk39-20020a1709077fa700b0094f59aa8a7cmr409487ejc.20.1685392724055; Mon, 29
- May 2023 13:38:44 -0700 (PDT)
+        with ESMTP id S229484AbjE2Uni (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 16:43:38 -0400
+Received: from mxout1.routing.net (mxout1.routing.net [IPv6:2a03:2900:1:a::a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03685C9;
+        Mon, 29 May 2023 13:43:33 -0700 (PDT)
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+        by mxout1.routing.net (Postfix) with ESMTP id D31B23FC75;
+        Mon, 29 May 2023 20:43:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1685393012;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=12dKsnOQcu5Mg/WyiYcFp/cBeSbhx5zQ0lcmDfOc+hE=;
+        b=QQqwtJ3yFEIOHtNxIWveOakMqe5WInd4m8/unfLduXW96Lcvuvvf3woYfZ8/tnGHkBxe6V
+        ktWF4R/52MzrK0QEy3/OYJC5cjayT13M0G1FxhcnnIINaJXFWaF3RrxbJbdIyvLO2YdR0C
+        A4PnEKezL3NYz76lQS4mvl0xA2Hs72k=
+Received: from frank-G5.. (fttx-pool-217.61.156.2.bambit.de [217.61.156.2])
+        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 95CA81006D1;
+        Mon, 29 May 2023 20:43:30 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        "Hui.Liu" <hui.liu@mediatek.com>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Lala Lin <lala.lin@mediatek.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Daniel Golle <daniel@makrotopia.org>
+Subject: Subject: [PATCH v2 0/4] Add mt7986 thermal and pwm
+Date:   Mon, 29 May 2023 22:42:54 +0200
+Message-Id: <20230529204258.65238-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230517133309.9874-1-ddrokosov@sberdevices.ru>
- <20230517133309.9874-6-ddrokosov@sberdevices.ru> <CAFBinCC3kQ9Nz3R2W-Qj9tbPJfS8JsB_4AkmPgS6xpQ96DBy2w@mail.gmail.com>
- <20230522130033.a47vlybocme66rev@CAB-WSD-L081021>
-In-Reply-To: <20230522130033.a47vlybocme66rev@CAB-WSD-L081021>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 29 May 2023 22:38:33 +0200
-Message-ID: <CAFBinCAk9+Km3BssA8d8nc_Z_GbhY87FD3qQRpZ2k7ChKt7TBg@mail.gmail.com>
-Subject: Re: [PATCH v15 5/6] dt-bindings: clock: meson: add A1 Peripherals
- clock controller bindings
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     neil.armstrong@linaro.org, jbrunet@baylibre.com,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        khilman@baylibre.com, jian.hu@amlogic.com, kernel@sberdevices.ru,
-        rockosov@gmail.com, linux-amlogic@lists.infradead.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: e59d6275-e4fb-4fc6-8a60-5251efc945c4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,
+        T_SPF_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+From: Frank Wunderlich <frank-w@public-files.de>
 
-On Mon, May 22, 2023 at 3:00=E2=80=AFPM Dmitry Rokosov <ddrokosov@sberdevic=
-es.ru> wrote:
-[...]
-> > This IP block has at least one additional input called "sys_pll_div16".
-> > My understanding is that the "sys_pll_div16" clock is generated by the
-> > CPU clock controller. Support for the CPU clock controller
-> > (dt-bindings and a driver) will be added at a later time by Dmitry.
-> > How can we manage incrementally implementing the clock controllers?
-> > From a hardware perspective the "sys_pll_div16" input is mandatory.
-> > How to manage this in the .dts patches then (for example: does this
-> > mean that Dmitry can only add the clock controller to the .dts when
-> > all clock controller bindings have been implemented - or is there
-> > another way)?
->
-> You're absolutely right: currently, not all inputs are supported because
-> the CPU clock controller isn't ready yet =E2=80=93 I'm working on it at t=
-he
-> moment.
->
-> I understand your concerns about bindings and schema description, but
-> there is an issue to be considered. I'm developing the entire clock
-> controller A1 subsystem incrementally in three stages: peripherals and
-> PLL, CPU, and Audio. This is because the CPU can operate at a static
-> frequency and voltage, and the board boots normally without the CPU
-> clock controller, thermal sensor, and OPP table. Audio is also
-> important, but it's optional. On the other hand, without setting up the
-> peripherals and PLL controllers, the board won't function because
-> they're fundamental.
-I understand your approach and I like it (without that incremental
-approach you would probably be looking at a series with 15-20
-patches).
+This series add thermal related devicetree-nodes and necessary
+dt-bindings.
 
-Maybe the dt-binding maintainers have a suggestion for us here?
-Let me try to summarize the issue in a few bullet points:
-- There's (at least) four clock controllers on the Amlogic A1 SoC
-- Some of these clock controllers take the outputs of another clock
-controller as inputs
-- In this series patch the peripheral clock controller has an input
-called "sys_pll_div16"
-- The clock controller which provides the "sys_pll_div16" clock is not
-implemented yet (my understanding is that implementing it and adding
-it to this series is not easy: it would add even more patches that
-need to be reviewed and in general it's a tricky clock controller to
-implement as it manages the CPU clocks)
+I left pwm-fan for r3 for now as i cannot test this completely due to
+missing 2 pin-jack and 3v3 pwm-level which my fan cannot handle (starts
+spinning at ~3V). Only checked voltage of pwm there.
 
-> Right now, we're in the first stage of the plan. Unfortunately, I can't
-> disclose the exact names and number of clock bindings for the CPU and
-> Audio, as they're still in development and only exist in my head or
-> draft versions.
->
-> If possible, I'd prefer to provide the new bindings and connections once
-> all the appropriate drivers are finalized.
-Question to Conor and Krzysztof (assuming you read my summary above):
-Is it fine that Dmitry adds additional inputs to the peripheral clock
-controller binding in later patches?
-If not: how can we proceed in case we need to add them now (the
-dt-binding example is the easy part for me as we can just make up a
-phandle like &sys_pll_div16_clk and use that - but this can't work
-when Dmitry tries to add the clock controller to meson-a1.dtsi)
+changes in v2:
+- drop highest 2 trip points as they are not yet used
+- leave already applied patches
 
-PS: Dmitry is trying to get this series into Linux 6.5. As far as I
-remember the common clock maintainers don't take pull requests with
-new features after -rc6 (which is in less than two weeks).
-So time is getting a bit short and for me this is the very last
-outstanding question. If you say that it's fine to add clocks later on
-this will immediately get my Reviewed-by.
+Daniel Golle (3):
+  arm64: dts: mt7986: add thermal and efuse
+  arm64: dts: mt7986: add thermal-zones
+  arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts
 
+Frank Wunderlich (1):
+  dt-bindings: nvmem: mediatek: efuse: add support for mt7986
 
-Best regards,
-Martin
+ .../bindings/nvmem/mediatek,efuse.yaml        |  1 +
+ .../dts/mediatek/mt7986a-bananapi-bpi-r3.dts  | 31 +++++++++
+ arch/arm64/boot/dts/mediatek/mt7986a.dtsi     | 63 +++++++++++++++++++
+ 3 files changed, 95 insertions(+)
+
+-- 
+2.34.1
+
