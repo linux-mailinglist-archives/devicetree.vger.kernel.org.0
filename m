@@ -2,58 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2219714226
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 04:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCABD714232
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 05:00:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229534AbjE2CuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 May 2023 22:50:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57190 "EHLO
+        id S229610AbjE2DAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 May 2023 23:00:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231351AbjE2CuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 22:50:15 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F25D5BB;
-        Sun, 28 May 2023 19:50:13 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ADB86AB6;
-        Sun, 28 May 2023 19:50:58 -0700 (PDT)
-Received: from [10.162.40.17] (a077893.blr.arm.com [10.162.40.17])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6C4C63F64C;
-        Sun, 28 May 2023 19:50:07 -0700 (PDT)
-Message-ID: <6862ce69-e316-be85-7725-c4471c905556@arm.com>
-Date:   Mon, 29 May 2023 08:20:04 +0530
+        with ESMTP id S229478AbjE2DAS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 May 2023 23:00:18 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 886ABAF;
+        Sun, 28 May 2023 20:00:15 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-510b56724caso8492538a12.1;
+        Sun, 28 May 2023 20:00:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685329214; x=1687921214;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gnwCDU/T0dIgwtC1BckdG+1O/GRZHwgSBiHqZjkeZY0=;
+        b=DHutnTQgsS/VW4QNKEqWBXu31AcnEMJlOLXo4uu32E9qQe5Ta1xW8sW7EW8BAdzNKD
+         FxCYP/gKb1tw+8b+w+vO+plLSnLcI4GQ42pBE34z2+DXSwaXslTmjsqjrBXGEfHeJYtL
+         nRcxwuFuGt7JIgC88ZxriwIwKCI3d2rpr5BMkLh5yQhYWr7NHCfkbfYkvk3pBClfb0FT
+         GQzwvklLlCiVX/YPLoAXzLhuDrutM1KbTd2bv9/NJxdC4BBqQymOIANQLkMP3sCUywaP
+         UTIlgveLuOW56214lTZFq151Kd/mVGY3B4nSvVN1j0FiRaFPM8khKhZupda2wPUl0PZQ
+         GTRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685329214; x=1687921214;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gnwCDU/T0dIgwtC1BckdG+1O/GRZHwgSBiHqZjkeZY0=;
+        b=C2x+rlHJhgYxBZOlGj1kY6kfXY8jZekMH0/NdBeEGVUqO6eu3sHPJZxaV+K89JL4OH
+         8LyoWcFzewurTW/udiKaCfZV9lZBIPwOnVZtX0kmleyrRxoxrw7aXr+sjCu/ZFiflTSg
+         yWTJPtrJnhTDaZ5a4cts6U3pPZRbOorvJVeGGnEOLL9TxXm23qx4GylC3o3xvpC4AFlN
+         UMiadC5jWVWWulkax/J5pfTr4QlojAyXjVQ1YO9r5bihnQkYG9A0eJgAOnQm8asA+/TG
+         IqHOZ508pss4JHJH49xjXNYysKKYMaWd5VRlKKthsMpLJxj9C1Qk/FtIm1iCwaIHFyAJ
+         rwCw==
+X-Gm-Message-State: AC+VfDzCWCP3u77a6VeAg1+uLQn31gR+G1wLV5OC85PFs1032QQTbTxF
+        T5TMAu783KP8+Q0ZVMHtXCo+SgqPgZU4LxXCmmA=
+X-Google-Smtp-Source: ACHHUZ41+qkZF5JJGOKotRickXAjiArq6Xp1CoMDAreNbe/oiNtC8e9tF2SAa/F/Vlh80jWpuKSBQnIXY7WdeJB1uj8=
+X-Received: by 2002:a17:907:720c:b0:965:ae3a:52c8 with SMTP id
+ dr12-20020a170907720c00b00965ae3a52c8mr5673819ejc.32.1685329213609; Sun, 28
+ May 2023 20:00:13 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V4 4/6] coresight: etm4x: Change etm4_platform_driver
- driver for MMIO devices
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        coresight@lists.linaro.org
-Cc:     Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
-        Steve Clevenger <scclevenger@os.amperecomputing.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-References: <20230523044553.1525048-1-anshuman.khandual@arm.com>
- <20230523044553.1525048-5-anshuman.khandual@arm.com>
- <0dab3bb3-c264-494f-1132-94e1f03ccee3@arm.com>
-Content-Language: en-US
-From:   Anshuman Khandual <anshuman.khandual@arm.com>
-In-Reply-To: <0dab3bb3-c264-494f-1132-94e1f03ccee3@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+References: <cover.1684983279.git.zhoubinbin@loongson.cn> <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
+ <20230525-custody-oversleep-f778eddf981c@spud> <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
+ <20230526-dolly-reheat-06c4d5658415@wendy> <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com>
+ <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com> <20230527-passing-unfixed-39e01b787808@spud>
+ <14EF9F21-8150-40D9-8870-E9151C4882CF@flygoat.com> <20230527-poet-antarctic-cc02aa60ab52@spud>
+In-Reply-To: <20230527-poet-antarctic-cc02aa60ab52@spud>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Mon, 29 May 2023 10:59:57 +0800
+Message-ID: <CAJhJPsU_qOJKO99S1xjJaSUqXsXAG7HpYbzs5wTb8J4-tQqSQA@mail.gmail.com>
+Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the trivial RTCs
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        loongson-kernel@lists.loongnix.cn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,212 +87,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, May 28, 2023 at 6:22=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Sat, May 27, 2023 at 10:59:48PM +0100, Jiaxun Yang wrote:
+> > > 2023=E5=B9=B45=E6=9C=8827=E6=97=A5 17:23=EF=BC=8CConor Dooley <conor@=
+kernel.org> =E5=86=99=E9=81=93=EF=BC=9A
+> > > On Sat, May 27, 2023 at 05:13:39PM +0100, Jiaxun Yang wrote:
+>
+> > >> My recommendation is leaving compatible string as is.
+> > >
+> > > "as is" meaning "as it is right now in Linus' tree", or "as it is in
+> > > this patch"?
+> >
+> > Ah sorry I meant in this patch.
+> >
+> > Since there won=E2=80=99t be any new ls1x chip that will boot Linux any=
+ time soon (due to
+> > Loongson move away from MIPS but LoongArch32 is undefined for now), and
+> > rest compatible strings are wide enough to cover their family, I think =
+the present
+> > compatible strings in this patch describes hardware best.
+>
+> I don't see why new bindings being written for old hardware should someho=
+w
+> be treated differently than new bindings for new hardware.
 
+Let me add that ls1b RTC and ls1c RTC are not exactly the same.
+The former supports RTC interrupt, while the latter does not.
+So my suggestion is to leave the compatible string as it is in this patch.
 
-On 5/26/23 02:53, Suzuki K Poulose wrote:
-> Hi Anshuman
-> 
-> Please find a minor issue with the clock handling below.
-> 
-> On 23/05/2023 05:45, Anshuman Khandual wrote:
->> Add support for handling MMIO based devices via platform driver. We need to
->> make sure that :
->>
->> 1) The APB clock, if present is enabled at probe and via runtime_pm ops
->> 2) Use the ETM4x architecture or CoreSight architecture registers to
->>     identify a device as CoreSight ETM4x, instead of relying a white list of
->>     "Peripheral IDs"
->>
->> The driver doesn't get to handle the devices yet, until we wire the ACPI
->> changes to move the devices to be handled via platform driver than the
->> etm4_amba driver.
->>
->> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
->> Cc: Mike Leach <mike.leach@linaro.org>
->> Cc: Leo Yan <leo.yan@linaro.org>
->> Cc: coresight@lists.linaro.org
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-kernel@vger.kernel.org
->> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
->> ---
->>   .../coresight/coresight-etm4x-core.c          | 57 ++++++++++++++++++-
->>   drivers/hwtracing/coresight/coresight-etm4x.h |  4 ++
->>   include/linux/coresight.h                     | 47 +++++++++++++++
->>   3 files changed, 106 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> index 57a7181017bd..c9e2219ee6b6 100644
->> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->> @@ -30,6 +30,7 @@
->>   #include <linux/platform_device.h>
->>   #include <linux/pm_runtime.h>
->>   #include <linux/property.h>
->> +#include <linux/clk/clk-conf.h>
->>     #include <asm/barrier.h>
->>   #include <asm/sections.h>
->> @@ -1073,11 +1074,21 @@ static bool etm4_init_sysreg_access(struct etmv4_drvdata *drvdata,
->>       return true;
->>   }
->>   +static bool is_devtype_cpu_trace(void __iomem *base)
->> +{
->> +    u32 devtype = readl(base + TRCDEVTYPE);
->> +
->> +    return (devtype == CS_DEVTYPE_PE_TRACE);
->> +}
->> +
->>   static bool etm4_init_iomem_access(struct etmv4_drvdata *drvdata,
->>                      struct csdev_access *csa)
->>   {
->>       u32 devarch = readl_relaxed(drvdata->base + TRCDEVARCH);
->>   +    if (!is_coresight_device(drvdata->base) || !is_devtype_cpu_trace(drvdata->base))
->> +        return false;
->> +
->>       /*
->>        * All ETMs must implement TRCDEVARCH to indicate that
->>        * the component is an ETMv4. Even though TRCIDR1 also
->> @@ -2135,6 +2146,7 @@ static int etm4_probe_amba(struct amba_device *adev, const struct amba_id *id)
->>     static int etm4_probe_platform_dev(struct platform_device *pdev)
->>   {
->> +    struct resource *res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>       struct etmv4_drvdata *drvdata;
->>       int ret;
->>   @@ -2142,7 +2154,18 @@ static int etm4_probe_platform_dev(struct platform_device *pdev)
->>       if (!drvdata)
->>           return -ENOMEM;
->>   -    drvdata->base = NULL;
->> +    drvdata->pclk = coresight_get_enable_apb_pclk(&pdev->dev);
->> +    if (IS_ERR(drvdata->pclk))
->> +        return -ENODEV;
->> +
->> +    if (res) {
->> +        drvdata->base = devm_ioremap_resource(&pdev->dev, res);
->> +        if (IS_ERR(drvdata->base)) {
->> +            clk_put(drvdata->pclk);
-> 
-> clk_put() can handle drvdata->pclk == NULL and bail out early. So calling this without the != NULL check is fine.
-> 
->> +            return PTR_ERR(drvdata->base);
->> +        }
->> +    }
->> +
->>       dev_set_drvdata(&pdev->dev, drvdata);
->>       pm_runtime_get_noresume(&pdev->dev);
->>       pm_runtime_set_active(&pdev->dev);
->> @@ -2188,7 +2211,7 @@ static struct amba_cs_uci_id uci_id_etm4[] = {
->>           /*  ETMv4 UCI data */
->>           .devarch    = ETM_DEVARCH_ETMv4x_ARCH,
->>           .devarch_mask    = ETM_DEVARCH_ID_MASK,
->> -        .devtype    = 0x00000013,
->> +        .devtype    = CS_DEVTYPE_PE_TRACE,
->>       }
->>   };
->>   @@ -2247,6 +2270,9 @@ static int __exit etm4_remove_platform_dev(struct platform_device *pdev)
->>       if (drvdata)
->>           ret = etm4_remove_dev(drvdata);
->>       pm_runtime_disable(&pdev->dev);
->> +
->> +    if (drvdata->pclk)
->> +        clk_put(drvdata->pclk);
->>       return ret;
->>   }
->>   @@ -2286,6 +2312,32 @@ static struct amba_driver etm4x_amba_driver = {
->>       .id_table    = etm4_ids,
->>   };
->>   +#ifdef CONFIG_PM
->> +static int etm4_runtime_suspend(struct device *dev)
->> +{
->> +    struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
->> +
->> +    if (!IS_ERR(drvdata->pclk))
->> +        clk_disable_unprepare(drvdata->pclk);
-> 
-> However this seems to be inconsistent. Should we not use:
-> 
->     if (drvdata->pclk)
->         ...
+--=20
+Best regards,
 
-This makes sense, will update the condition check as follows.
-
---- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
-+++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
-@@ -2318,7 +2318,7 @@ static int etm4_runtime_suspend(struct device *dev)
- {
-        struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
- 
--       if (!IS_ERR(drvdata->pclk))
-+       if (drvdata->pclk && !IS_ERR(drvdata->pclk))
-                clk_disable_unprepare(drvdata->pclk);
- 
-        return 0;
-@@ -2328,7 +2328,7 @@ static int etm4_runtime_resume(struct device *dev)
- {
-        struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
- 
--       if (!IS_ERR(drvdata->pclk))
-+       if (drvdata->pclk && !IS_ERR(drvdata->pclk))
-                clk_prepare_enable(drvdata->pclk);
- 
-        return 0;
-
-> 
->> +
->> +    return 0;
->> +}
->> +
->> +static int etm4_runtime_resume(struct device *dev)
->> +{
->> +    struct etmv4_drvdata *drvdata = dev_get_drvdata(dev);
->> +
->> +    if (!IS_ERR(drvdata->pclk))
-> 
-> same as above ?
-> 
->> +        clk_prepare_enable(drvdata->pclk);
->> +
->> +    return 0;
->> +}
->> +#endif
->> +
->> +static const struct dev_pm_ops etm4_dev_pm_ops = {
->> +    SET_RUNTIME_PM_OPS(etm4_runtime_suspend, etm4_runtime_resume, NULL)
->> +};
->> +
->>   static const struct of_device_id etm4_sysreg_match[] = {
->>       { .compatible    = "arm,coresight-etm4x-sysreg" },
->>       { .compatible    = "arm,embedded-trace-extension" },
->> @@ -2299,6 +2351,7 @@ static struct platform_driver etm4_platform_driver = {
->>           .name            = "coresight-etm4x",
->>           .of_match_table        = etm4_sysreg_match,
->>           .suppress_bind_attrs    = true,
->> +        .pm            = &etm4_dev_pm_ops,
->>       },
->>   };
->>   diff --git a/drivers/hwtracing/coresight/coresight-etm4x.h b/drivers/hwtracing/coresight/coresight-etm4x.h
->> index 27c8a9901868..0ff0bd2cd504 100644
->> --- a/drivers/hwtracing/coresight/coresight-etm4x.h
->> +++ b/drivers/hwtracing/coresight/coresight-etm4x.h
->> @@ -701,6 +701,8 @@
->>   #define ETM_DEVARCH_ETE_ARCH                        \
->>       (ETM_DEVARCH_ARCHITECT_ARM | ETM_DEVARCH_ARCHID_ETE | ETM_DEVARCH_PRESENT)
->>   +#define CS_DEVTYPE_PE_TRACE        0x00000013
->> +
->>   #define TRCSTATR_IDLE_BIT        0
->>   #define TRCSTATR_PMSTABLE_BIT        1
->>   #define ETM_DEFAULT_ADDR_COMP        0
->> @@ -944,6 +946,7 @@ struct etmv4_save_state {
->>     /**
->>    * struct etm4_drvdata - specifics associated to an ETM component
->> + * @pclk        APB clock for this component
-> 
-> Might be worth adding the comment here :
-> 
->      * @pclk:        APB clock if present, otherwise NULL
-
-Sure, will update this comment above.
-
-> 
-> Rest looks fine to me
-> 
-> Suzuki
+Keguang Zhang
