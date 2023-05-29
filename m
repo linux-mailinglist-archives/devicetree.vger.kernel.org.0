@@ -2,191 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3649C71464D
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 10:32:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5C63714674
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 10:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229521AbjE2Ib6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 04:31:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42992 "EHLO
+        id S231569AbjE2IqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 04:46:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbjE2Ib5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 04:31:57 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1310FA4;
-        Mon, 29 May 2023 01:31:56 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-bad041bf313so4540560276.0;
-        Mon, 29 May 2023 01:31:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685349115; x=1687941115;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+FxycY0EuudHbJCyhRTGcH7IuXekFEZEWmV5CsytKFQ=;
-        b=VXpntmCbpolloNLKD8Bi6Ar6EI5uCPaS3KLfIfhu8+wzZpr1SvKjAPZbbpTPiY1oCK
-         ylOEr8yeh6pzQRkcLveTW9zTCRwE2mNDVu5uMNKBGptrU9XrHhr1weYnDsucM7H/6IRr
-         +awpjTusACIN06pXTaIDOB7Z18ov+VZUqvBMN5egkM1tlEmELGtrpGQAEWToFRiGfV7U
-         thqm6VPItIq0PAvkneeR9oHr4NO0n0jN4ewHRK+zCIOBOXxQFItcQQ0VIbbINg1cJgfr
-         RFwXnpPpJfBEYwCKPlVrQkTWBhdubgEsqcRt8yMNeb+FGS2auHbVmTJ+lhOrgTLrRmkj
-         PwQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685349115; x=1687941115;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+FxycY0EuudHbJCyhRTGcH7IuXekFEZEWmV5CsytKFQ=;
-        b=CVxnaF6Fr/ZNrlzpPupddYUaHNudVLkA1f3A6dW2RQY+m3qY2c5YPN6EAmxV+7chV2
-         j2YusZIR7EQgcMxQhNcqcUuhKwQfgk5S1yibppN6J4BezGfXzyUeruM+tlmJDGNVaIDn
-         0TOMmNhNn8arxv+oKYBSEWEQ260hxTuu//Ab3vRXaWOJeebTw7TnuCppxExEXM3OHOn5
-         Gaocb5/gQ+EeH0Uc8l//4v47d/FvAnjLJkOaoBMgX/c0zIzcTtdoEr8603T0niJMJpk5
-         zt5wGruaLmT4lhYkeiuq8swT6uHk6xlPwBQorpzLJzFV94A2NoEmrOpBcF50a2Z1hnQZ
-         E8Mw==
-X-Gm-Message-State: AC+VfDybnfWRq9HH1vnL56m0rKJuiIEYVBZaSKpAmJGyyFAyCDQa4g4d
-        7l5NE/znyP/8thDsy/fqgnYcyYEeSPIQ5ZI58Po=
-X-Google-Smtp-Source: ACHHUZ6XUPf4mVUXBHGr8+dvKgOO1fTdQ2NGSgiKVZmkPRy+K60/QlBBts3Tt1FatGAJvNciWpjDnPxQC+3PfleVDuI=
-X-Received: by 2002:a25:3607:0:b0:ba7:5005:dc46 with SMTP id
- d7-20020a253607000000b00ba75005dc46mr10014963yba.33.1685349115110; Mon, 29
- May 2023 01:31:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1684983279.git.zhoubinbin@loongson.cn> <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
- <20230525-custody-oversleep-f778eddf981c@spud> <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
- <20230526-dolly-reheat-06c4d5658415@wendy> <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com>
- <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com> <20230527-passing-unfixed-39e01b787808@spud>
- <14EF9F21-8150-40D9-8870-E9151C4882CF@flygoat.com> <20230527-poet-antarctic-cc02aa60ab52@spud>
- <CAJhJPsU_qOJKO99S1xjJaSUqXsXAG7HpYbzs5wTb8J4-tQqSQA@mail.gmail.com> <E229B204-1B00-4B24-B4BF-15277682FB4B@kernel.org>
-In-Reply-To: <E229B204-1B00-4B24-B4BF-15277682FB4B@kernel.org>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Mon, 29 May 2023 16:31:42 +0800
-Message-ID: <CAMpQs4K4e3BSVvqXa+QjhM5XDxHc_ZCiRYW+HgPo21AQ_bYSRQ@mail.gmail.com>
-Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the trivial RTCs
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Keguang Zhang <keguang.zhang@gmail.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229512AbjE2IqQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 04:46:16 -0400
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B60CFAC;
+        Mon, 29 May 2023 01:46:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1685349926; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=UWDchVkEZiy1zgz7GOmGojV4k3GBe6B0J98/o/8VuWZImfM7kKhp+evlWTG/+wbLdsJ48ehE9ywSCra0uNGxZbhwSl3fLDHhXabD1T+CchT4/ig6hwhab1nphrL3/I0E12AZ2RpofM1EBRjZ32Q9nwPOuEvqeMp8sKfs81zSCMI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1685349926; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=rN6UaHs4ggHcS2A5CJI/CPXVvIQe2q2wnZMpU72p46E=; 
+        b=U04yBJ6K+7f3xyXrBevDloZNd20L0TVYYzAqNYVrSiz8sVrOFzu3DZjl2EEZiWPS2lVH4b3ZGnChjhL01ZEiQQCcyAkFDh9Ryo0Rdax72hKpjRcDHPGP+vbTPke5Jv6nVSskWfo2pFFWE7v4uTPIPvchEk0fN831fpgDl5dUdNQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=icenowy.me;
+        spf=pass  smtp.mailfrom=uwu@icenowy.me;
+        dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1685349926;
+        s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+        bh=rN6UaHs4ggHcS2A5CJI/CPXVvIQe2q2wnZMpU72p46E=;
+        b=nvT+YTQtDXzEyPmjNP5ayAWvRISvccnkg/aNGQk5OBtQBsDatWrwkwNIH8NFyyYe
+        CDhzWq1bPZCMZaIOaHP8fdoHlYicWGzCQxWWX2WGSHrS8q8zn0wYWQJD/AdSSwEZMcI
+        eZzcFClARRmsJ8lxp/drRGTeX1hYnaKjzEZ23cCEqJIHx0Kp/poS1sRQMGm+Qsl9yNA
+        D4bvTBgIyB4jyxuDObQs0jbB52KfE7lYdTRRfS5Og/u33ie3XdY1GxnVHz7vP1rQz6K
+        /nGacoEHLUEQr2uviIIn8ALAL50ucCBD8iPWtPazpAfij2ZYeKmLDXA6U8KXpe0DPwy
+        2QvW3gZizw==
+Received: from edelgard.fodlan.icenowy.me (120.85.97.71 [120.85.97.71]) by mx.zohomail.com
+        with SMTPS id 1685349925541243.71967151550905; Mon, 29 May 2023 01:45:25 -0700 (PDT)
+Message-ID: <6996788b112f4795d2930a6664b3152cd9a380a8.camel@icenowy.me>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8173-elm: remove panel model
+ number in DT
+From:   Icenowy Zheng <uwu@icenowy.me>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Pin-yen Lin <treapking@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        zhao zhang <zhzhl555@gmail.com>,
-        Yang Ling <gnaygnil@gmail.com>,
-        loongson-kernel@lists.loongnix.cn
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org
+Date:   Mon, 29 May 2023 16:45:20 +0800
+In-Reply-To: <f4a9e090-3712-200e-bd09-70090c9cccbc@collabora.com>
+References: <20230526100801.16310-1-uwu@icenowy.me>
+         <CAD=FV=UxrFVZXn+dtgamttTVopWMSVbxYsHCGG_tS+3OTXbHiw@mail.gmail.com>
+         <f4a9e090-3712-200e-bd09-70090c9cccbc@collabora.com>
+Organization: Anthon Open-Source Community
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Evolution 3.44.4 
+MIME-Version: 1.0
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLACK autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof:
+=E5=9C=A8 2023-05-29=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 10:02 +0200=EF=BC=
+=8CAngeloGioacchino Del Regno=E5=86=99=E9=81=93=EF=BC=9A
+> Il 26/05/23 16:24, Doug Anderson ha scritto:
+> > Hi,
+> >=20
+> > On Fri, May 26, 2023 at 3:09=E2=80=AFAM Icenowy Zheng <uwu@icenowy.me>
+> > wrote:
+> > >=20
+> > > Currently a specific panel number is used in the Elm DTSI, which
+> > > is
+> > > corresponded to a 12" panel. However, according to the official
+> > > Chrome
+> > > OS devices document, Elm refers to Acer Chromebook R13, which, as
+> > > the
+> > > name specifies, uses a 13.3" panel, which comes with EDID
+> > > information.
+> > >=20
+> > > As the kernel currently prioritizes the hardcoded timing
+> > > parameters
+> > > matched with the panel number compatible, a wrong timing will be
+> > > applied
+> > > to the 13.3" panel on Acer Chromebook R13, which leads to blank
+> > > display.
+> > >=20
+> > > Because the Elm DTSI is shared with Hana board, and Hana
+> > > corresponds to
+> > > multiple devices from 11" to 14", a certain panel model number
+> > > shouldn't
+> > > be present, and driving the panel according to its EDID
+> > > information is
+> > > necessary.
+> > >=20
+> > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > ---
+> > > =C2=A0 arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 2 +-
+> > > =C2=A0 1 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > We went through a bunch of back-and-forth here but in the end in
+> > the
+> > ChromeOS tree we have "edp-panel" as the "compatible" here in the
+> > ChromeOS 5.15 tree and this makes sense.
+> >=20
+> > Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> >=20
+> > ...in theory one would wish for a "Fixes" tag, but I think in
+> > previous
+> > discussions it was decided that it was too complicated. Hardcoding
+> > the
+> > other compatible string has always been technically wrong, but I
+> > guess
+> > it worked at some point in time. The more correct way (as you're
+> > doing
+> > here) needs the DP AUX bus support and the generic eDP panels, both
+> > of
+> > which are significantly newer than the elm dts. So I guess leaving
+> > no
+> > "Fixes" tag is OK, or perhaps you could do the somewhat weak:
+> >=20
+> > Fixes: c2d94f72140a ("arm64: dts: mediatek: mt8173-elm: Move
+> > display
+> > to ps8640 auxiliary bus")
+>=20
+> I remember I didn't change the compatible to panel-edp because it
+> didn't
+> work at that time, but it does now... I'm not sure what actually
+> fixed that
+> and if the commit(s) was/were backported to that suggested point, so
+> I
+> would leave the Fixes tag out, as that may break older kernel.
 
-Excuse me.
-We have different opinions on how to better describe rtc-loongson compatibl=
-e.
+Well at least I developed this patch on v6.3.
 
-Based on my previous communication with you, I think we should list
-all the Socs in the driver and drop the wildcards.
-This should be clearer and more straightforward:
+(In fact the same kernel config do not boot to system at all on
+v6.0/v6.1 when I do make olddefconfig then build)
 
-        { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_config
-}, //ls1b soc
-        { .compatible =3D "loongson,ls1c-rtc", .data =3D &ls1x_rtc_config
-}, //ls1c soc
-        { .compatible =3D "loongson,ls7a-rtc", .data =3D
-&generic_rtc_config }, //ls7a bridge chip
-        { .compatible =3D "loongson,ls2k0500-rtc", .data =3D
-&generic_rtc_config }, // ls2k0500 soc
-        { .compatible =3D "loongson,ls2k2000-rtc", .data =3D
-&generic_rtc_config }, // ls2k2000 soc
-        { .compatible =3D "loongson,ls2k1000-rtc", .data =3D
-&ls2k1000_rtc_config }, // ls2k1000 soc
+>=20
+> Anyway, for this commit:
+>=20
+> Reviewed-by: AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com>
 
-And Conor thought it should be rendered using a fallback compatible
-form based on ".data".
-
-        "loongson,ls1b-rtc"
-        "loongson,ls1c-rtc", "loongson,ls1b-rtc"
-        "loongson,ls7a-rtc"
-        "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
-        "longson,ls2k2000-rtc", "longson,ls7a-rtc"
-        "loonson,ls2k1000-rtc"
-
-        { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_config }
-        { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rtc_confi=
-g }
-        { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1000_rtc_=
-config }
-
-In this form,  I think it might not be possible to show very
-graphically which chips are using the driver.
-Also, for example, "ls7a" is a bridge chip, while
-"ls2k2000"/"ls2k0500" are soc chips, and it seems inappropriate to
-integrate them into one item.
-
-Which one do you think is more suitable for us?
-
-Here is the link to our discussion:
-
-https://lore.kernel.org/linux-rtc/E229B204-1B00-4B24-B4BF-15277682FB4B@kern=
-el.org/T/#m6c1ae9b74fceafc4042f7598b1bc594e68e5ec76
-
-Thanks.
-Binbin
-
-
-On Mon, May 29, 2023 at 2:24=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
->
->
-> On 29 May 2023 03:59:57 IST, Keguang Zhang <keguang.zhang@gmail.com> wrot=
-e:
-> >On Sun, May 28, 2023 at 6:22=E2=80=AFAM Conor Dooley <conor@kernel.org> =
-wrote:
-> >>
-> >> On Sat, May 27, 2023 at 10:59:48PM +0100, Jiaxun Yang wrote:
-> >> > > 2023=E5=B9=B45=E6=9C=8827=E6=97=A5 17:23=EF=BC=8CConor Dooley <con=
-or@kernel.org> =E5=86=99=E9=81=93=EF=BC=9A
-> >> > > On Sat, May 27, 2023 at 05:13:39PM +0100, Jiaxun Yang wrote:
-> >>
-> >> > >> My recommendation is leaving compatible string as is.
-> >> > >
-> >> > > "as is" meaning "as it is right now in Linus' tree", or "as it is =
-in
-> >> > > this patch"?
-> >> >
-> >> > Ah sorry I meant in this patch.
-> >> >
-> >> > Since there won=E2=80=99t be any new ls1x chip that will boot Linux =
-any time soon (due to
-> >> > Loongson move away from MIPS but LoongArch32 is undefined for now), =
-and
-> >> > rest compatible strings are wide enough to cover their family, I thi=
-nk the present
-> >> > compatible strings in this patch describes hardware best.
-> >>
-> >> I don't see why new bindings being written for old hardware should som=
-ehow
-> >> be treated differently than new bindings for new hardware.
-> >
-> >Let me add that ls1b RTC and ls1c RTC are not exactly the same.
-> >The former supports RTC interrupt, while the latter does not.
-> >So my suggestion is to leave the compatible string as it is in this patc=
-h.
->
-> Just as a reminder, there are more than ls1b & c in the patch, lest we fo=
-rget.
-> Also, fallback compatibles mean a compatible subset, not only that two de=
-vices are identical.
-> The interrupt is passed by the interrupts property.
->
