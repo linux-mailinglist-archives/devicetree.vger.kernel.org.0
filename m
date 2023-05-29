@@ -2,102 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9B15714C84
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 16:52:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8273714C9F
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 17:01:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229819AbjE2Owi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 10:52:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47006 "EHLO
+        id S229679AbjE2PBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 11:01:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbjE2Owi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 10:52:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A39FB7;
-        Mon, 29 May 2023 07:52:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E536C625ED;
-        Mon, 29 May 2023 14:52:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D85F0C433EF;
-        Mon, 29 May 2023 14:52:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1685371956;
-        bh=ruooO/hib2eTqtlqdlGt216wI4HkJrfG1ILQsX52itE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nJebyKeflDMM5C6oB2CfMassfdovNwMUV+z1ZshUEw77BFvbe9bZvCSW7Xn9Dy8y+
-         aHzdo6eK+u4d1Y3xC0idUGt5RHO192gedw0PG09MTuNPIxJVnCR6so+WtCWJyPL1tN
-         WgelPvDMo/qoPKhhnRCwd7xVd7nVnopNNv6kcKpM=
-Date:   Mon, 29 May 2023 15:52:34 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Minda Chen <minda.chen@starfivetech.com>
-Cc:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Mason Huo <mason.huo@starfivetech.com>
-Subject: Re: [PATCH v6 6/7] usb: cdns3: Add StarFive JH7110 USB driver
-Message-ID: <2023052926-shiny-unelected-5d5f@gregkh>
-References: <20230518112750.57924-1-minda.chen@starfivetech.com>
- <20230518112750.57924-7-minda.chen@starfivetech.com>
- <2023052951-humbly-dentist-cb9c@gregkh>
+        with ESMTP id S229478AbjE2PBF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 11:01:05 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52244CF;
+        Mon, 29 May 2023 08:01:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1685372461; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=TeSUgNsviWgTVrVSnU40bV5R/cHXanV8tma+FMDWJlFy/71IT2GJbWPRagVA4NQwNA
+    U2ar3rZ7ByCtIUJkxe2g8RJg+1NkKwDZb9zlDLzD/rtxWbDcjKl7wBv0GmgRSmTUVj0I
+    /jHTpsVYX8ONHGRP37yAzCHcdyl9ng99+91LOMHZjDiDG9/YfN4foHPPfMhIqF+ypujT
+    x3nbqf6l+Ki8oZ5Vvw7DVnvD5dmV/pB0Y6YvdH0lNOL1wBBSes9rPOgOUALT9/UiJz/5
+    hvAY0A+f11uYKGAL2NyCHm/I+sym7A9r40w1TBSJsdgUAghRMsVpzlTAlHoZAo1PyWei
+    OQcg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1685372461;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=+wzkjf8akFN6Ea02ez3eZdGqus6ezvmNm9bS8kdiMx8=;
+    b=XTcMGJnBfgpSQgRe+XfoonK10OwsghMyvsYOJehUEpTz1q+Gv1mSvJioo1Bed9TrPK
+    4fQL+mbQZ+NlfAF1vjU1YSq9BVqfbK8xps6fAeghVR0N9cfl5VeZ89qwI1sAR17c+EXX
+    QBVMBfuiQRw0meo2K0+erwamfhVvzcQtt60eVpUZASJzUM/PHER6BOg4btEFX1gaRE6b
+    mRodUGiXgkl7hZLU/WkolSji0cloSdx5b7DLJ0nZSQEssviIP8wnNumvW4nv96/qS9ao
+    TEf132f8ToXwGdht9NEoxGPfZDBVY0Ctq8eNbAm6jvW2MsEtccsxkYGpt7oktyTKtgzi
+    9UHg==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1685372461;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=+wzkjf8akFN6Ea02ez3eZdGqus6ezvmNm9bS8kdiMx8=;
+    b=gusDTWrkNZ8aDk1NpbmhIdjLnDMM4zvSOq02AZuzseqzID870u/wLJzaUBqT3ZHxYx
+    cmxOdbLEatwg1zCgdpzpKuaxWrQTvsTvGUpxEdD7W5euRhkVfTtaGeQWNmaGS8XMmTf2
+    A17eJGic66xwvwdirNxM8XiErxqah7DGpqyFVvGlAgpwBustTBUtRK6+LwCdpl8rGLNL
+    83VqVjLk32/jDinCtv3wE5kLAbdxA2n+a3WK1nvS2IVQtfJ+u9fNDZl7hWSTu3iR/MDL
+    dNov97kaMNqnUBrySFZQ0W3yuZ2A3A8nFnJI+JY9mAmFUtljs158UUjxoZS/i+uwnnah
+    y1hw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1685372461;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=+wzkjf8akFN6Ea02ez3eZdGqus6ezvmNm9bS8kdiMx8=;
+    b=MWRN6KEIuGY+fuwWaRj5s1FHHvee/GDJ55nXozFI/eWsP1n3neRqT0nk/vabIjbQs9
+    IaefzQIO4D/sNjM90oBA==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4paA8pqP1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.4.0 DYNA|AUTH)
+    with ESMTPSA id j6420az4TF10fFG
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 29 May 2023 17:01:00 +0200 (CEST)
+Date:   Mon, 29 May 2023 17:00:54 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/6] arm64: dts: qcom: msm8916/39: Clean up MDSS labels
+Message-ID: <ZHS-HSgaBxMXiKy9@gerhold.net>
+References: <20230525-msm8916-labels-v1-0-bec0f5fb46fb@gerhold.net>
+ <20230525-msm8916-labels-v1-4-bec0f5fb46fb@gerhold.net>
+ <6f1954e6-e98d-6911-8721-c50082bfb1d7@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2023052951-humbly-dentist-cb9c@gregkh>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <6f1954e6-e98d-6911-8721-c50082bfb1d7@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 29, 2023 at 03:50:04PM +0100, Greg Kroah-Hartman wrote:
-> On Thu, May 18, 2023 at 07:27:49PM +0800, Minda Chen wrote:
-> > Adds Specific Glue layer to support USB peripherals on
-> > StarFive JH7110 SoC.
-> > There is a Cadence USB3 core for JH7110 SoCs, the cdns
-> > core is the child of this USB wrapper module device.
+On Mon, May 29, 2023 at 02:33:43PM +0100, Bryan O'Donoghue wrote:
+> On 29/05/2023 13:47, Stephan Gerhold wrote:
+> > Right now MDSS related definitions cannot be properly grouped together
+> > in board DTs because the labels do not use consistent prefixes. The DSI
+> > PHY label is particularly weird because the DSI number is at the end
+> > (&dsi_phy0) while DSI itself is called &dsi0.
 > > 
-> > Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> > Acked-by: Peter Chen <peter.chen@kernel.org>
-> > Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> > Follow the example of more recent SoCs and give all the MDSS related
+> > nodes a consistent label that allows proper grouping.
+> > 
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > > ---
-> >  MAINTAINERS                        |   6 +
-> >  drivers/usb/cdns3/Kconfig          |  11 ++
-> >  drivers/usb/cdns3/Makefile         |   1 +
-> >  drivers/usb/cdns3/cdns3-starfive.c | 246 +++++++++++++++++++++++++++++
-> >  4 files changed, 264 insertions(+)
-> >  create mode 100644 drivers/usb/cdns3/cdns3-starfive.c
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 5519f81c8296..06c63f43bb17 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -20168,6 +20168,12 @@ F:	Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml
-> >  F:	drivers/phy/starfive/phy-jh7110-pcie.c
-> >  F:	drivers/phy/starfive/phy-jh7110-usb.c
-> >  
-> > +STARFIVE JH71X0 USB DRIVERS
-> > +M:	Minda Chen <minda.chen@starfivetech.com>
-> > +S:	Maintained
-> > +F:	Documentation/devicetree/bindings/usb/starfive,jh7110-usb.yaml
-> > +F:	drivers/usb/cdns3/cdns3-starfive.c
 > 
-> Does not apply anymore, please rebase and resend.
+> You should probably churn the yaml that goes with this..
+> 
 
-Nevermind, I fixed it up.
+Do you mean update the examples in the yaml bindings or what exactly?
+
+Will take a look at those in a separate change (DT bindings don't make
+any definitions about labels so it's not strictly related). From a quick
+look it even seems like the labels are even omitted mostly in the
+bindings.
+
+Thanks,
+Stephan
