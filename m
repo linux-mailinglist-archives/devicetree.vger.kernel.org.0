@@ -2,72 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FCFB714E3D
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 18:23:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D58B5714E3B
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 18:23:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230045AbjE2QX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 12:23:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60510 "EHLO
+        id S230029AbjE2QX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 12:23:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbjE2QXQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 12:23:16 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B32A107;
-        Mon, 29 May 2023 09:23:02 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34TBPIIZ020224;
-        Mon, 29 May 2023 18:22:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=SEnLjI1iAJ0BEpP1paBgUZKIcQgTv9KF2fDW8DrAk08=;
- b=wjl3+33EFWOfCJDg/PSwDBVR+ARSFhtCo2KszAdTchx9mjj6ulZ0+Egil7JdNdfyUS4l
- /MbCvlJDY+KUdNcFxYLHGPhxeAopmggqHj8CkOGybXB+A6pQFoSzDcMUDyOlfkXFX9wO
- XbYgJO/hoBIiYxEza/wAsGpup/eDn3cHQMuIxUhq3Bb1kComt8gSnTLFxI/vuPRL1Jm5
- qC5FP4p9HRV8Hx+OTu3crtrlhzbLretp7ToAyifRyvCfFKLcS3b4umNN1XYavZ7pi5Kc
- aHPHPUCwa9GFZFsXgQ1ePZ0D6hjP0WRLjI16CFsfuQUZL6k8mp/BtYrgQ58SDdXUgdsm GQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qvsnnhxd9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 29 May 2023 18:22:48 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CF3AA100039;
-        Mon, 29 May 2023 18:22:47 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C7DF6235F07;
-        Mon, 29 May 2023 18:22:47 +0200 (CEST)
-Received: from localhost (10.201.21.93) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Mon, 29 May
- 2023 18:22:47 +0200
-From:   Alexandre Torgue <alexandre.torgue@foss.st.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, <soc@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
-Subject: [PATCH 11/11] MAINTAINERS: add entry for ARM/STM32 ARCHITECTURE
-Date:   Mon, 29 May 2023 18:20:34 +0200
-Message-ID: <20230529162034.20481-12-alexandre.torgue@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230529162034.20481-1-alexandre.torgue@foss.st.com>
-References: <20230529162034.20481-1-alexandre.torgue@foss.st.com>
+        with ESMTP id S229944AbjE2QXN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 12:23:13 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3FEFE8;
+        Mon, 29 May 2023 09:22:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=n4QXLGAfRkLH8bC9a2mTFIwRoAkIoJF6zXz6tT7k76A=; b=T/3hS/8qkG2fAAL7LAX8/auZp8
+        d8jXB5EuF0GzluT7bxRwuBjNiOkIMSyNLyn78Fjl2nniVlYHvVjmCapLDz8WD6/cvjAy3aEHJIoFY
+        7DfBIKxQ1yw6NSSoGFwPbOsQxclH2TaiZ0oLImnV7w+le4FPAGB4oXgGFuEHoRgNg6R0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1q3fdn-00EFMM-H5; Mon, 29 May 2023 18:22:39 +0200
+Date:   Mon, 29 May 2023 18:22:39 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        geert+renesas@glider.be, magnus.damm@gmail.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH net-next 0/5] net: renesas: rswitch: Improve performance
+ of TX
+Message-ID: <a181cce3-c553-4635-a039-021be50f2a51@lunn.ch>
+References: <20230529080840.1156458-1-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-29_10,2023-05-29_01,2023-05-22_02
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230529080840.1156458-1-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,23 +51,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-STM32 SoCs based on Armv8 have been added to the STM32 family. Those new
-SoCs are maintained as legacy STM32 MPU.
+On Mon, May 29, 2023 at 05:08:35PM +0900, Yoshihiro Shimoda wrote:
+> This patch series is based on next-20230525.
 
-Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+Hi Yoshihiro
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7e0b87d5aa2e..06759396e220 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2849,6 +2849,7 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/atorgue/stm32.git stm32-nex
- F:	arch/arm/boot/dts/stm32*
- F:	arch/arm/mach-stm32/
- F:	drivers/clocksource/armv7m_systick.c
-+F:	arch/arm64/boot/dts/st/
- N:	stm32
- N:	stm
- 
--- 
-2.17.1
+Patches for networking should be based on the HEAD of net-next/main.
 
+	Andrew
