@@ -2,178 +2,289 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 296CC71454B
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 09:18:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44A5F71455D
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 09:22:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229572AbjE2HSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 03:18:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44344 "EHLO
+        id S229960AbjE2HWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 03:22:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbjE2HSH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 03:18:07 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41607A4;
-        Mon, 29 May 2023 00:18:06 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34T6u7J6009420;
-        Mon, 29 May 2023 07:17:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=o32+Zs65tVZRqYisIvSrSLdqpdjM/OYIVeuEGXaxkUY=;
- b=NV6aIBJ8RQk4XcBSZG0GoKVH3FYOmKnwGnBB9H+LFmqAHXGIm7X9ESlcH5Bg+B55mt/3
- xqvUUm7Q0ooz6Y20uBR8+vaL+97qUDH47AuJFJwlmnZpdGogM0fMT96dv2sFZYptRS2E
- YGzLBV6i2RKAe12dU3Lek7Vi15RLHsAsBAVSgwQxcJs06gLQpsKqYWlcfZHInO6waXy3
- ZUQVdq1th9AmjuX7k4cBm93dps4TAch0L/YTj57Rg9li3HMq3Tk21UJCZBnJ5FrApFi3
- z225Ya2u8UBYmHSTShUKkjNzrlXWK1SR8yrWKjnv9MzkG8N/VH08l/hRZSEseeM5Cj9F Qw== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3quawgjthc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 29 May 2023 07:17:42 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34T7HekE011850
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 29 May 2023 07:17:40 GMT
-Received: from [10.253.79.81] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 29 May
- 2023 00:17:35 -0700
-Message-ID: <5c56a874-dc41-c68c-6f70-efcbc67c29b2@quicinc.com>
-Date:   Mon, 29 May 2023 15:17:32 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v5 0/3] Add support to configure Coresight Dummy subunit
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        James Clark <james.clark@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S229572AbjE2HWT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 03:22:19 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10745A7;
+        Mon, 29 May 2023 00:22:18 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-96f7bf29550so459229166b.3;
+        Mon, 29 May 2023 00:22:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685344936; x=1687936936;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=wjVWxXvSLXJuz7mSrEjAxP2mc1hCweJJgtd+gvyPVdE=;
+        b=kVe635JkcprzHLEEUfko6c9PT0mWkz5Jyn0v4vAndxdy94y9UaQRS+r1GxSAo2nxx9
+         ivCQxH/AmiVLkiOQKqLsYHMaDJXo5S2tQFrrYOA89L4MwJKK1wQZ5SzUkdtVeycRL3O+
+         +7NtQovLgeBqUDAZTPi7SplWE6HdFqlcsXUH/EJTMzMIhmOakZqMc0gcTmtE+gX95eUL
+         E2Dr7daOLjUFbP/FicrRKGQdWkrcrvc5ni9zgFRqxcZZXw6YdSGxBRhCGEHbiTkAH9wb
+         BXtvunhN+bgs+F/Yn+v4tiJZISLtGk/Iu+glA3gRC19mmdpXCkKMykO25n81/DgcqTly
+         3FCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685344936; x=1687936936;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wjVWxXvSLXJuz7mSrEjAxP2mc1hCweJJgtd+gvyPVdE=;
+        b=WdDtPpxbPHjCtMKkweC1mmOWZqNQLReB5tK7egRZ/3j3QLwQvPo+/UfqElfTl+NV7r
+         HvEju2vBKWarF+Nv63gBgd2AOqTj/ycli2Zujivwpmqfd3micA5j+0ofr3To/h+MYhl6
+         jRhqp+QIoAK1yn1FSXykUkdP9lD/93f2pg7P998KvCFinKCTxsCaI1DbcV56qCvxJgKR
+         iJeFzQS4UZwkgzhefBzF5AYzgN6aV5qQONXJ8ekXxJCiItsWihxp80t3g0lIjANLbYIn
+         +IBHGpjU+GGvMg40jBg0njkmFrZgtm/+++vRF/k6sHokRj9pR2hyPvW0sj9UKcXunFrX
+         rhPQ==
+X-Gm-Message-State: AC+VfDytWJe2PeaKx5AhclWWR1Ll4KLNCpMYfuGuPWff+kAWDdOrNQlV
+        divtvIVbbVed4i/huinv2bw=
+X-Google-Smtp-Source: ACHHUZ6YY3E5mk2A3FVTfi0Yo8id7xi0ZsdFs4CLIcREmEB0S703vR0wADO3DNzyoxj1iVN9oOlelA==
+X-Received: by 2002:a17:907:7208:b0:971:9364:f8cd with SMTP id dr8-20020a170907720800b009719364f8cdmr9014493ejc.44.1685344936227;
+        Mon, 29 May 2023 00:22:16 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation (net-188-217-50-121.cust.vodafonedsl.it. [188.217.50.121])
+        by smtp.gmail.com with ESMTPSA id f26-20020a170906561a00b009664e25c425sm5608985ejq.95.2023.05.29.00.22.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 May 2023 00:22:15 -0700 (PDT)
+Date:   Mon, 29 May 2023 09:22:12 +0200
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     jacopo.mondi@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+        martin.hecht@avnet.eu, linuxfancy@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "Paul Walmsley" <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jonathan Corbet <corbet@lwn.net>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        "Yuanfang Zhang" <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        <linux-doc@vger.kernel.org>
-References: <20230526100753.34581-1-quic_hazha@quicinc.com>
-Content-Language: en-US
-From:   Hao Zhang <quic_hazha@quicinc.com>
-In-Reply-To: <20230526100753.34581-1-quic_hazha@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: sFRmv892x0D2A7hEFZSgzFwuaCajquvT
-X-Proofpoint-GUID: sFRmv892x0D2A7hEFZSgzFwuaCajquvT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-29_04,2023-05-25_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- priorityscore=1501 mlxscore=0 phishscore=0 impostorscore=0 mlxlogscore=999
- bulkscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
- definitions=main-2305290062
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: alvium: add document YAML
+ binding
+Message-ID: <ZHRSpP6P5wcgTYAX@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+References: <20230526173955.797226-1-tomm.merciai@gmail.com>
+ <20230526173955.797226-2-tomm.merciai@gmail.com>
+ <20230526-mural-expletive-76b9dd5db83b@spud>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230526-mural-expletive-76b9dd5db83b@spud>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Conor,
+Thanks for the review.
 
-Add the missing information for this patch series.
+On Fri, May 26, 2023 at 08:00:05PM +0100, Conor Dooley wrote:
+> Hey Tommaso,
+> 
+> On Fri, May 26, 2023 at 07:39:43PM +0200, Tommaso Merciai wrote:
+> > Add documentation of device tree in YAML schema for the ALVIUM
+> > Camera from Allied Vision Inc.
+> > 
+> > References:
+> >  - https://www.alliedvision.com/en/products/embedded-vision-solutions
+> > 
+> > Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> > ---
+> > Changes since v1:
+> >  - Fixed build error as suggested by RHerring bot
+> > 
+> >  .../media/i2c/alliedvision,alvium.yaml        | 115 ++++++++++++++++++
+> >  1 file changed, 115 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > new file mode 100644
+> > index 000000000000..81e9e560c99d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > @@ -0,0 +1,115 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> 
+> No dual license?
 
-Thanks,
-Hao
+Yep, agree. Thanks.
 
-On 5/26/2023 6:07 PM, Hao Zhang wrote:
+> 
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Alliedvision Alvium Camera
+> > +
+> > +maintainers:
+> > +  - Tommaso Merciai <tomm.merciai@gmail.com>
+> > +  - Martin Hecht <martin.hecht@avnet.eu>
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/media/video-interface-devices.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: alliedvision,alvium
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    description: XCLK Input Clock
+> 
+> Description is a bit moot when you have the clock name and there's only
+> one. No harm done I suppose.
 
-Introduction of Coresight Dummy subunit
-The Coresight Dummy subunit is for Coresight Dummy component, there are
-some specific Coresight devices that HLOS don't have permission to access.
-Such as some TPDMs, they would be configured in NON-HLOS side, but it's
-necessary to build Coresight path for it to debug. So there need driver 
-to register dummy devices as Coresight devices.
+Agree, we can drop description.
 
-Commit link:
-https://git.codelinaro.org/clo/linux-kernel/coresight/-/tree/coresight-dummy-v5
+> 
+> > +
+> > +  clock-names:
+> > +    const: xclk
+> > +
+> > +  powerdown-gpios:
+> > +    maxItems: 1
+> > +    description: >
+> 
+> You don't have any newlines, so you don't need a >
 
-> Changes in V5:
-> 1. Follow the alphabetical order for the header files in
-> coresight-dummy.c. -- Suzuki K Poulose
-> 2. Update the maintainers.
-> 3. Split the Coresight Dummy YAML to 2 schema files.
-> -- Rob Herring & Krzysztof Kozlowski
-> 4. Update the coresight-dummy.rst file. -- Bagas Sanjaya
+Thanks, I found the same ">" into ov5640 .yaml
+
 > 
-> Changes in V4:
-> 1. Remove traceid allocation in dummy_probe function since it is
-> currently not in use, will upstream it as the part of ATID filtering
-> in the further.  -- Suzuki K Poulose
-> 2. Remove 'oneOf' as there is only one entry. -- Rob Herring
+> > +      Reference to the GPIO connected to the powerdown pin, if any.
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description: >
+> > +      Reference to the GPIO connected to the reset pin, if any.
+> > +
+> > +  streamon-delay:
+> > +    maxItems: 1
+> > +    description: >
+> > +      Delay before camera start capturing frames in us.
+> > +
+> > +  rotation:
+> > +    enum:
+> > +      - 0
+> > +      - 180
 > 
-> Changes in V3:
-> 1. Use API "dev_dbg" to replace "dev_info". -- Suzuki K Poulose
-> 2. Drop "qcom" property and take it as a dummy framework.
-> -- Suzuki K Poulose
-> 3. Add new sub-type "CORESIGHT_DEV_SUBTYPE_SINK_DUMMY" to support
-> coresight dummy module -- Mike Leach
-> 4. Use compatibles "arm,coresight-dummy-source" and
-> "arm,coresight-dummy-sink" to replace property "qcom,dummy-source" and
-> "qcom,dummy-sink". -- Mike Leach
-> 5. Define source_devs and sink_devs DEVLIST to replace dummy_devs, make
-> it clear at the first level. -- Mike Leach
-> 6. Modify subject of YAML patch, drop "YAML schema". -- Krzysztof Kozlowski
-> 7. Drop some redundant items and correct syntax errors in yaml file.
-> -- Krzysztof Kozlowski & Rob Herring
-> 8. Correct required property of yaml file, constrain out ports to
-> dummy-source and in ports to dummy-sink. -- Mike Leach
-> 9. Drop "Sysfs files and directories" contents of coresight-dummy.rst.
-> -- Suzuki K Poulose/Greg Kroah-Hartman
-> 10.Correct syntax errors of coresight-dummy.rst. -- Bagas Sanjaya
+> Could style this as enum: [0, 180], but I don't mind which you do.
+
+For now this property is unused.
+I'll drop this.
+
 > 
-> Changes in V2:
-> 1. Declare dummy_init and dummy_exit as static to fix missing-prototypes
-> warnings. -- kernel test robot
-> 2. Fix the errors of coresight-dummy yaml file. -- Rob Herring
+> > +  port:
+> > +    description: Digital Output Port
+> > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        $ref: /schemas/media/video-interfaces.yaml#
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          clock-lanes:
+> > +            const: 0
+> > +          data-lanes:
+> > +            minItems: 1
+> > +            maxItems: 4
+> > +          link-frequencies: true
+> > +
+> > +        required:
+> > +          - data-lanes
+> > +          - link-frequencies
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +      #include <dt-bindings/gpio/gpio.h>
+> > +      #include <dt-bindings/clock/imx8mp-clock.h>
+> > +
+> > +      i2c {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +
+> > +          camera: alvium@3c {
 > 
-> Hao Zhang (3):
->    Coresight: Add coresight dummy driver
->    dt-bindings: arm: Add support for Coresight dummy trace
->    Documentation: trace: Add documentation for Coresight Dummy Trace
+> Label does not seem to be used & the generic node name should probably
+> be "camera", no?
+
+What about using: "alvium: camera@3c {" ?
+Like in some .yaml of ov sensors?
+
 > 
->   .../arm/arm,coresight-dummy-sink.yaml         |  73 ++++++++
->   .../arm/arm,coresight-dummy-source.yaml       |  71 ++++++++
->   .../trace/coresight/coresight-dummy.rst       |  32 ++++
->   drivers/hwtracing/coresight/Kconfig           |  11 ++
->   drivers/hwtracing/coresight/Makefile          |   1 +
->   drivers/hwtracing/coresight/coresight-dummy.c | 163 ++++++++++++++++++
->   include/linux/coresight.h                     |   1 +
->   7 files changed, 352 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
->   create mode 100644 Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
->   create mode 100644 Documentation/trace/coresight/coresight-dummy.rst
->   create mode 100644 drivers/hwtracing/coresight/coresight-dummy.c
+> > +              compatible = "alliedvision,alvium";
+> > +              pinctrl-names = "default";
+> > +              pinctrl-0 = <&pinctrl_csi0_pwn>, <&pinctrl_csi0_rst>, <&pinctrl_csi_mclk>;
+> > +              reg = <0x3c>;
+> > +              clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+> > +              clock-names = "xclk";
+> > +              assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+> > +              assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+> > +              assigned-clock-rates = <24000000>;
+> > +              streamon-delay = <20>;
+> > +              powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+> > +              reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+> > +              status = "okay";
+> > +
+> > +              port {
+> > +                  alvium_out: endpoint {
 > 
+> Ditto here, drop the unused label?
+
+I think we need this.
+
+
+
+Thanks!
+
+Regards,
+Tommaso
+
+> 
+> Otherwise, looks grand to me.
+> 
+> Cheers,
+> Conor.
+> 
+> > +                      remote-endpoint = <&mipi_csi_0_in>;
+> > +                      data-lanes = <1 2 3 4>;
+> > +                      link-frequencies = /bits/ 64 <681250000>;
+> > +                      clock-lanes = <0>;
+> > +                  };
+> > +              };
+> > +          };
+> > +      };
+> > +
+> > +...
+> > -- 
+> > 2.34.1
+> > 
+
+
