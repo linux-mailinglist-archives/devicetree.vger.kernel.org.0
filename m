@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B48D1714ADB
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59CCB714ADD
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 15:52:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230015AbjE2Nwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 09:52:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35746 "EHLO
+        id S230029AbjE2Nwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 09:52:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229951AbjE2Nwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:52:34 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A879C
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:52:32 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4effb818c37so3514692e87.3
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:52:32 -0700 (PDT)
+        with ESMTP id S229891AbjE2Nwp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 09:52:45 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F0A4E5
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:52:34 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f3baf04f0cso3585002e87.1
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 06:52:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685368351; x=1687960351;
+        d=linaro.org; s=google; t=1685368352; x=1687960352;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ox41uPAx3lnO302Ry1Df1WPA2I0vwUL6Eka5WZ9+II8=;
-        b=HjjCbA1IfVPklnX4hxxrr479tjGTHg03aPYbA8LjoLjynxFAIoy1254+uA6zs2GEsa
-         Ng/Rk9cGdPncBQIoyVXEAfCfbqznsEQGn+2gojUxV8rBwLa9Oz7ebFYckH5recNqAdjG
-         a4lbdd7kGFF2BVDzUayofSUUVgUI6OcC6yvy7xqJaBONnPyvA6nroooBpZkYsM1slWDY
-         shj2NXr5SszJlMMPpeLYgNDaYRKyW65E5FujU+XxcpFES/VJ89qJbU1xXgxO1p338Ief
-         8yQVGIZiJdNMQYcijN1WISgjtb1UUjWK7k735ppzRgxztzsBCOu1i+UkdgVrEioBQde+
-         Hzaw==
+        bh=jU/QRs28WbUWBLa9spUWYgfjKgk/ufPjSJvFjGsZJBw=;
+        b=DZYJiwNgAOCuTAmxeofHg/qVfKAWJtzO6Bw/+1Oane7wm6jJ7QnEurd89MH4b9It9a
+         BlG/Fwq/k4EcY2Y8E31R+y4/emXOpOskkNM43lNbTkfVwSE74RKfDdqQt4HelFwe2c+o
+         75zhvkNmhzl3jKmBcUspwMO3VKKgfRa37LCwPw5kzj7jLYs6c2uom1RnKdacGOhdmvFx
+         U441fkjq4LFnPTbU34D/v3ulriBrR8W4nBRgCiR2bs1jNqlbbUJopdIN4CyX/foDkEDG
+         /zVPaeOYghm0aRSWQHNSKUR+Lnlk5U9p5AacHydHqIungVMXhq3u+d6FcheZY8X2nROj
+         O4vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685368351; x=1687960351;
+        d=1e100.net; s=20221208; t=1685368352; x=1687960352;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Ox41uPAx3lnO302Ry1Df1WPA2I0vwUL6Eka5WZ9+II8=;
-        b=h9S8ZwupfqJNH594M8N5oXbyFNE2HO2s7JtPAHNUMIau5pm+zZCInsSIr1k+5gZb1H
-         NjDqLwABj+/OhYANgfX1/Tn2pWrQMMoX3wzbtwxG7Ds90PWSW1PfwJaEzB6UfNjAEECo
-         HarEHkh/ycy6UHU+IT+8uu8S0EXJ0DSKYvVSWSCUN2bRtikDg7WVZQeoJIQ/4oQJ5de2
-         frk2xw2rh8LM/Gbtty8s5vMZnQHYdlLIqrPGhTciXII8bP6+wbob7vlqGoch1qLFNWPW
-         ao4ZmeWLCeAo9i62458U6Ei4nrEPrjN8fTovCza5PVjx+WPkX5ORaeWScZSG/dWw9oRy
-         2rUA==
-X-Gm-Message-State: AC+VfDwKAlIZDsKpKy2nhFjGmxDghtKrXd+5dsN7Mvvsroa7IexFbmAz
-        JewAwnXzqkDoiEG04+PiXAjQ81H17Kb1e7qa270=
-X-Google-Smtp-Source: ACHHUZ4vk8LTno9K6vFTsGH2IPC+ZCybTCoUIpBBvQz3qqRJqqUUTyGGvWflVjF1p/neVA3yrS/NKg==
-X-Received: by 2002:a05:6512:241:b0:4ef:f06e:eacf with SMTP id b1-20020a056512024100b004eff06eeacfmr3324513lfo.27.1685368351092;
-        Mon, 29 May 2023 06:52:31 -0700 (PDT)
+        bh=jU/QRs28WbUWBLa9spUWYgfjKgk/ufPjSJvFjGsZJBw=;
+        b=cPZvgLrCpAZcqLGYqyZ5hwA4E/H3/QNIrSUdkJn/u06TxLbr2xLpZ1QoRYJdhKtvbX
+         cTLmZedN61p5UeHgrATRW16GOU+gI0OYsRNu4vu1msZ6ZhHcjsLugS9gKaUHZm/EH1vg
+         PAP981X5ZiR5ti8XF1P8/aGrqlXQfZNllS8eMmWZ0zkqq2A/8eLWwb2YxeINJCDPtxbb
+         DdWlHUrYHQ8GnxrATXnD/4jYt0RY5prViF/By4WjyU0qAwrfOqtJZ2FTOBRWYgKHpEIz
+         gD65me/PD92FjlcFtUAIwJZMo80DoO11ND4RIerC3fQrNua9DnqxYsswQaAiLnzRIpaf
+         mpYg==
+X-Gm-Message-State: AC+VfDz6x/wRxbJKt1xap9JF4QL2IYxpl+dmBjGlB6jtY291lv6F24gg
+        GGH75M0YKt52IL57alNLiBWzyA==
+X-Google-Smtp-Source: ACHHUZ7Nv4ges/qwizyKEG6r8efWpEMuacmGcSUQhC5Lh0Z3O7jM/k9PaLL+Q1acefsDrBfXmAyzYw==
+X-Received: by 2002:ac2:522d:0:b0:4f1:4f26:738f with SMTP id i13-20020ac2522d000000b004f14f26738fmr3581867lfl.19.1685368352525;
+        Mon, 29 May 2023 06:52:32 -0700 (PDT)
 Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id c16-20020ac25310000000b004f2532cfbc1sm4700lfh.81.2023.05.29.06.52.29
+        by smtp.gmail.com with ESMTPSA id c16-20020ac25310000000b004f2532cfbc1sm4700lfh.81.2023.05.29.06.52.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 May 2023 06:52:30 -0700 (PDT)
+        Mon, 29 May 2023 06:52:32 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Mon, 29 May 2023 15:52:23 +0200
-Subject: [PATCH v8 04/18] drm/msm/a6xx: Move force keepalive vote removal
- to a6xx_gmu_force_off()
+Date:   Mon, 29 May 2023 15:52:24 +0200
+Subject: [PATCH v8 05/18] drm/msm/a6xx: Move
+ a6xx_bus_clear_pending_transactions to a6xx_gpu
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230223-topic-gmuwrapper-v8-4-69c68206609e@linaro.org>
+Message-Id: <20230223-topic-gmuwrapper-v8-5-69c68206609e@linaro.org>
 References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
 In-Reply-To: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -76,16 +76,16 @@ Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         Marijn Suijten <marijn.suijten@somainline.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1685368343; l=2072;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1685368343; l=4540;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=WdDcDOyizy5IWwyMqltY5oqm/fsHIExj5zaeUB68hS4=;
- b=aBSvTQ5N+E1G5FcVBte5HyjyDhSx9dEGT5S8/XgIqhCakLKJD5Ck2zwhKKKgt07wHSnknGu9b
- 7Rw2pv5mdrNAaU0rJUKpQsXXRqg8KFTAUdhhuSj3Z/kbRs+0dNbohMD
+ bh=zYmgc7iLON/6dS4YTyhHFJni2Xfaf0lKUqQXZ4N48q0=;
+ b=wTo6WfHIf9KQWgTpgdujWS4sFryq2ZRdJV+oQIFuDuX2+rXsMp5eBGkKLYFuehC4gdwrae2bM
+ nszpqrDr/xCDzmN/jYJ1tNOlbLV5IE0vUAcbIeP3gSFBXx9jlXt/Tvj
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,58 +93,126 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As pointed out by Akhil during the review process of GMU wrapper
-introduction [1], it makes sense to move this write into the function
-that's responsible for forcibly shutting the GMU off.
+This function is responsible for telling the GPU to halt transactions
+on all of its relevant buses, drain them and leave them in a predictable
+state, so that the GPU can be e.g. reset cleanly.
 
-It is also very convenient to move this to GMU-specific code, so that
-it does not have to be guarded by an if-condition to avoid calling it
-on GMU wrapper targets.
+Move the function to a6xx_gpu.c, remove the static keyword and add a
+prototype in a6xx_gpu.h to accomodate for the move.
 
-Move the write to the aforementioned a6xx_gmu_force_off() to achieve
-that. No effective functional change.
-
-[1] https://lore.kernel.org/linux-arm-msm/20230501194022.GA18382@akhilpo-linux.qualcomm.com/
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 6 ++++++
- drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 6 ------
- 2 files changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 37 -----------------------------------
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 36 ++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.h |  2 ++
+ 3 files changed, 38 insertions(+), 37 deletions(-)
 
 diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-index 87babbb2a19f..9421716a2fe5 100644
+index 9421716a2fe5..b86be123ecd0 100644
 --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
 +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
-@@ -912,6 +912,12 @@ static void a6xx_gmu_force_off(struct a6xx_gmu *gmu)
- 	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
- 	struct msm_gpu *gpu = &adreno_gpu->base;
+@@ -868,43 +868,6 @@ static void a6xx_gmu_rpmh_off(struct a6xx_gmu *gmu)
+ 		(val & 1), 100, 1000);
+ }
  
-+	/*
-+	 * Turn off keep alive that might have been enabled by the hang
-+	 * interrupt
-+	 */
-+	gmu_write(&a6xx_gpu->gmu, REG_A6XX_GMU_GMU_PWR_COL_KEEPALIVE, 0);
-+
- 	/* Flush all the queues */
- 	a6xx_hfi_stop(gmu);
- 
+-#define GBIF_CLIENT_HALT_MASK             BIT(0)
+-#define GBIF_ARB_HALT_MASK                BIT(1)
+-
+-static void a6xx_bus_clear_pending_transactions(struct adreno_gpu *adreno_gpu,
+-		bool gx_off)
+-{
+-	struct msm_gpu *gpu = &adreno_gpu->base;
+-
+-	if (!a6xx_has_gbif(adreno_gpu)) {
+-		gpu_write(gpu, REG_A6XX_VBIF_XIN_HALT_CTRL0, 0xf);
+-		spin_until((gpu_read(gpu, REG_A6XX_VBIF_XIN_HALT_CTRL1) &
+-								0xf) == 0xf);
+-		gpu_write(gpu, REG_A6XX_VBIF_XIN_HALT_CTRL0, 0);
+-
+-		return;
+-	}
+-
+-	if (gx_off) {
+-		/* Halt the gx side of GBIF */
+-		gpu_write(gpu, REG_A6XX_RBBM_GBIF_HALT, 1);
+-		spin_until(gpu_read(gpu, REG_A6XX_RBBM_GBIF_HALT_ACK) & 1);
+-	}
+-
+-	/* Halt new client requests on GBIF */
+-	gpu_write(gpu, REG_A6XX_GBIF_HALT, GBIF_CLIENT_HALT_MASK);
+-	spin_until((gpu_read(gpu, REG_A6XX_GBIF_HALT_ACK) &
+-			(GBIF_CLIENT_HALT_MASK)) == GBIF_CLIENT_HALT_MASK);
+-
+-	/* Halt all AXI requests on GBIF */
+-	gpu_write(gpu, REG_A6XX_GBIF_HALT, GBIF_ARB_HALT_MASK);
+-	spin_until((gpu_read(gpu,  REG_A6XX_GBIF_HALT_ACK) &
+-			(GBIF_ARB_HALT_MASK)) == GBIF_ARB_HALT_MASK);
+-
+-	/* The GBIF halt needs to be explicitly cleared */
+-	gpu_write(gpu, REG_A6XX_GBIF_HALT, 0x0);
+-}
+-
+ /* Force the GMU off in case it isn't responsive */
+ static void a6xx_gmu_force_off(struct a6xx_gmu *gmu)
+ {
 diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index 9fb214f150dd..e34aa15156a4 100644
+index e34aa15156a4..6bb4da70f6a6 100644
 --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
 +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -1274,12 +1274,6 @@ static void a6xx_recover(struct msm_gpu *gpu)
- 	/* Halt SQE first */
- 	gpu_write(gpu, REG_A6XX_CP_SQE_CNTL, 3);
+@@ -1597,6 +1597,42 @@ static void a6xx_llc_slices_init(struct platform_device *pdev,
+ 		a6xx_gpu->llc_mmio = ERR_PTR(-EINVAL);
+ }
  
--	/*
--	 * Turn off keep alive that might have been enabled by the hang
--	 * interrupt
--	 */
--	gmu_write(&a6xx_gpu->gmu, REG_A6XX_GMU_GMU_PWR_COL_KEEPALIVE, 0);
--
- 	pm_runtime_dont_use_autosuspend(&gpu->pdev->dev);
++#define GBIF_CLIENT_HALT_MASK             BIT(0)
++#define GBIF_ARB_HALT_MASK                BIT(1)
++
++void a6xx_bus_clear_pending_transactions(struct adreno_gpu *adreno_gpu, bool gx_off)
++{
++	struct msm_gpu *gpu = &adreno_gpu->base;
++
++	if (!a6xx_has_gbif(adreno_gpu)) {
++		gpu_write(gpu, REG_A6XX_VBIF_XIN_HALT_CTRL0, 0xf);
++		spin_until((gpu_read(gpu, REG_A6XX_VBIF_XIN_HALT_CTRL1) &
++								0xf) == 0xf);
++		gpu_write(gpu, REG_A6XX_VBIF_XIN_HALT_CTRL0, 0);
++
++		return;
++	}
++
++	if (gx_off) {
++		/* Halt the gx side of GBIF */
++		gpu_write(gpu, REG_A6XX_RBBM_GBIF_HALT, 1);
++		spin_until(gpu_read(gpu, REG_A6XX_RBBM_GBIF_HALT_ACK) & 1);
++	}
++
++	/* Halt new client requests on GBIF */
++	gpu_write(gpu, REG_A6XX_GBIF_HALT, GBIF_CLIENT_HALT_MASK);
++	spin_until((gpu_read(gpu, REG_A6XX_GBIF_HALT_ACK) &
++			(GBIF_CLIENT_HALT_MASK)) == GBIF_CLIENT_HALT_MASK);
++
++	/* Halt all AXI requests on GBIF */
++	gpu_write(gpu, REG_A6XX_GBIF_HALT, GBIF_ARB_HALT_MASK);
++	spin_until((gpu_read(gpu,  REG_A6XX_GBIF_HALT_ACK) &
++			(GBIF_ARB_HALT_MASK)) == GBIF_ARB_HALT_MASK);
++
++	/* The GBIF halt needs to be explicitly cleared */
++	gpu_write(gpu, REG_A6XX_GBIF_HALT, 0x0);
++}
++
+ static int a6xx_pm_resume(struct msm_gpu *gpu)
+ {
+ 	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+index eea2e60ce3b7..9580def06d45 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+@@ -88,4 +88,6 @@ void a6xx_show(struct msm_gpu *gpu, struct msm_gpu_state *state,
+ struct msm_gpu_state *a6xx_gpu_state_get(struct msm_gpu *gpu);
+ int a6xx_gpu_state_put(struct msm_gpu_state *state);
  
- 	/* active_submit won't change until we make a submission */
++void a6xx_bus_clear_pending_transactions(struct adreno_gpu *adreno_gpu, bool gx_off);
++
+ #endif /* __A6XX_GPU_H__ */
 
 -- 
 2.40.1
