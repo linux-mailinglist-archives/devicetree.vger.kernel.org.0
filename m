@@ -2,264 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 945A271450A
-	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 08:43:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0168371450D
+	for <lists+devicetree@lfdr.de>; Mon, 29 May 2023 08:44:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230338AbjE2Gn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 02:43:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35014 "EHLO
+        id S231445AbjE2GoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 02:44:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229669AbjE2Gn1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 02:43:27 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C95B590;
-        Sun, 28 May 2023 23:43:25 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (om126255106133.24.openmobile.ne.jp [126.255.106.133])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 706B0A3A;
-        Mon, 29 May 2023 08:43:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1685342584;
-        bh=Gv1wI1HXl/xftSGvC9ynLWDPtrckqiB0NV3CbxCDPik=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lqDRPQnXMSEWTP28yDtwpUXXze/a4+S9M9pcDx8K9h3JkIcHiJiPU/Bl2rlO2gcPy
-         0yQQ8+kYRGcjzxX5tGzMnqP+MIKzw78rJhCc/smBUeG5s/mJU2CKLRL3h72c8rNkB7
-         Uauy9drU49LUmGdZhA8orjL2MZy8htXLLq1JU+ek=
-Date:   Mon, 29 May 2023 09:43:26 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Tommaso Merciai <tomm.merciai@gmail.com>,
-        jacopo.mondi@ideasonboard.com, martin.hecht@avnet.eu,
-        linuxfancy@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229669AbjE2GoU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 02:44:20 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C316C90;
+        Sun, 28 May 2023 23:44:17 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id E8A4780ED;
+        Mon, 29 May 2023 14:44:14 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 29 May
+ 2023 14:44:14 +0800
+Received: from [192.168.120.57] (171.223.208.138) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 29 May
+ 2023 14:44:14 +0800
+Message-ID: <a09cc0c9-ef4e-120f-e61a-94f628d67e38@starfivetech.com>
+Date:   Mon, 29 May 2023 14:44:13 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v1 1/3] dt-bindings: qspi: cdns,qspi-nor: Add clocks for
+ StarFive JH7110 SoC
+To:     Mark Brown <broonie@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Gerald Loacker <gerald.loacker@wolfvision.net>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        Mikhail Rudenko <mike.rudenko@gmail.com>,
-        Nicholas Roth <nicholas@rothemail.net>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: alvium: add document YAML
- binding
-Message-ID: <20230529064326.GC25984@pendragon.ideasonboard.com>
-References: <20230526173955.797226-1-tomm.merciai@gmail.com>
- <20230526173955.797226-2-tomm.merciai@gmail.com>
- <ZHPElYOeD2C1qo4R@kekkonen.localdomain>
- <20230529063907.GB25984@pendragon.ideasonboard.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230529063907.GB25984@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        "Emil Renner Berthing" <kernel@esmil.dk>,
+        Ziv Xu <ziv.xu@starfivetech.com>
+References: <20230526062529.46747-1-william.qiu@starfivetech.com>
+ <20230526062529.46747-2-william.qiu@starfivetech.com>
+ <87e9ed95-ea57-44c8-85f8-34264b5c6dde@sirena.org.uk>
+Content-Language: en-US
+From:   William Qiu <william.qiu@starfivetech.com>
+In-Reply-To: <87e9ed95-ea57-44c8-85f8-34264b5c6dde@sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 29, 2023 at 09:39:13AM +0300, Laurent Pinchart wrote:
-> On Sun, May 28, 2023 at 09:16:05PM +0000, Sakari Ailus wrote:
-> > On Fri, May 26, 2023 at 07:39:43PM +0200, Tommaso Merciai wrote:
-> > > Add documentation of device tree in YAML schema for the ALVIUM
-> > > Camera from Allied Vision Inc.
-> > > 
-> > > References:
-> > >  - https://www.alliedvision.com/en/products/embedded-vision-solutions
-> > > 
-> > > Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
-> > > ---
-> > > Changes since v1:
-> > >  - Fixed build error as suggested by RHerring bot
-> > > 
-> > >  .../media/i2c/alliedvision,alvium.yaml        | 115 ++++++++++++++++++
-> > >  1 file changed, 115 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
-> > > new file mode 100644
-> > > index 000000000000..81e9e560c99d
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
-> > > @@ -0,0 +1,115 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Alliedvision Alvium Camera
-> 
-> s/Alliedvision/Allied Vision/
-> 
-> > > +
-> > > +maintainers:
-> > > +  - Tommaso Merciai <tomm.merciai@gmail.com>
-> > > +  - Martin Hecht <martin.hecht@avnet.eu>
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/media/video-interface-devices.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: alliedvision,alvium
-> 
-> The name is very generic. There are Alvium camera modules that have a
-> GMSL or FPD-Link interface, and I'm pretty sure those will require a
-> different driver. I would add module-specific compatible strings (e.g.
-> "alliedvision,alvium-1500c", ...) here, with a generic fallback.
-> "alliedvision,alvium" isn't good as it won't cover GMSL or FPD-Link,
-> maybe "alliedvision,alvium-csi2" would be an option.
 
-Actually, "alvium-1500c" as a specific compatible string won't do. You
-need the exact model in the compatible string, otherwise it won't be
-possible for the driver to handle device-specific configuration (for
-instance accessing registers of the camera sensor for fine-grained
-configuration). I would thus recommend using "alliedvision,alvium-1500c"
-and "alliedvision,alvium-1800c" as generic fallbacks, along compatible
-strings that include the exact device model.
 
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    description: XCLK Input Clock
-> > > +
-> > > +  clock-names:
-> > > +    const: xclk
-> > 
-> > I'd also drop this as you have a single clock only: it's redundant.
-> > 
-> > > +
-> > > +  powerdown-gpios:
-> > > +    maxItems: 1
-> > > +    description: >
-> > > +      Reference to the GPIO connected to the powerdown pin, if any.
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +    description: >
-> > > +      Reference to the GPIO connected to the reset pin, if any.
+On 2023/5/26 23:33, Mark Brown wrote:
+> On Fri, May 26, 2023 at 02:25:27PM +0800, William Qiu wrote:
 > 
-> Reading the Alvium CSI-2 Cameras User Guide, I don't see any powerdown
-> or reset pin on the 22-pin connector. Am I missing something ? There are
-> however two GPIOs (in addition to the I2C signals that are also
-> documented as GPIOs), do you plan to support those ?
+>>      then:
+>>        properties:
+>> +        clocks:
+>> +          maxItems: 3
+>> +
+>> +        clock-names:
+>> +          items:
+>> +            - const: qspi-ref
+>> +            - const: qspi-ahb
+>> +            - const: qspi-apb
+>> +
 > 
-> > > +
-> > > +  streamon-delay:
-> > > +    maxItems: 1
-> > > +    description: >
-> > > +      Delay before camera start capturing frames in us.
-> 
-> Add "-us" to the property name to indicate the unit.
-> 
-> This is a vendor-specific property, and should thus have a vendor
-> prefix.
-> 
-> A longer description is needed, from that single line I have no idea
-> what the property does exactly.
-> 
-> > > +
-> > > +  rotation:
-> > > +    enum:
-> > > +      - 0
-> > > +      - 180
-> 
-> Why is the rotation restricted to 0 or 180 ? Someone could mount the
-> module with  90 degrees rotation, shouldn't the DT bindings allow
-> describing that ?
-> 
-> You need a property for the vcc-ext-in supply.
-> 
-> > > +
-> > > +  port:
-> > > +    description: Digital Output Port
-> > > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +    additionalProperties: false
-> > > +
-> > > +    properties:
-> > > +      endpoint:
-> > > +        $ref: /schemas/media/video-interfaces.yaml#
-> > > +        unevaluatedProperties: false
-> > > +
-> > > +        properties:
-> > > +          clock-lanes:
-> > > +            const: 0
-> > 
-> > The driver can know this, no need to have it in DT, i.e. please drop it.
-> > 
-> > > +          data-lanes:
-> > > +            minItems: 1
-> > > +            maxItems: 4
-> > > +          link-frequencies: true
-> > > +
-> > > +        required:
-> > > +          - data-lanes
-> > > +          - link-frequencies
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - clocks
-> > > +  - clock-names
-> > > +  - port
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +      #include <dt-bindings/gpio/gpio.h>
-> > > +      #include <dt-bindings/clock/imx8mp-clock.h>
-> > > +
-> > > +      i2c {
-> > > +          #address-cells = <1>;
-> > > +          #size-cells = <0>;
-> > > +
-> > > +          camera: alvium@3c {
-> > > +              compatible = "alliedvision,alvium";
-> 
-> The "alliedvision" prefix is missing from
-> Documentation/devicetree/bindings/vendor-prefixes.yaml.
-> 
-> > > +              pinctrl-names = "default";
-> > > +              pinctrl-0 = <&pinctrl_csi0_pwn>, <&pinctrl_csi0_rst>, <&pinctrl_csi_mclk>;
-> 
-> I'd drop pinctrl, it makes the example longer without adding much value.
-> 
-> > > +              reg = <0x3c>;
-> > > +              clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
-> > > +              clock-names = "xclk";
-> > > +              assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
-> > > +              assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
-> > > +              assigned-clock-rates = <24000000>;
-> > > +              streamon-delay = <20>;
-> > > +              powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
-> > > +              reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
-> > > +              status = "okay";
-> > > +
-> > > +              port {
-> > > +                  alvium_out: endpoint {
-> > > +                      remote-endpoint = <&mipi_csi_0_in>;
-> > > +                      data-lanes = <1 2 3 4>;
-> > > +                      link-frequencies = /bits/ 64 <681250000>;
-> > > +                      clock-lanes = <0>;
-> > > +                  };
-> > > +              };
-> > > +          };
-> > > +      };
-> > > +
-> > > +...
+> Are these really the names that the clocks have in the IP?  It seems
+> weird that they'd include the IP name in there and not just be ref, ahb
+> and apb.
+Hi Mark,
 
--- 
-Regards,
+	These three clocks are the internal clocks in the IP. The AHB
+clock is the main system clock used to transfer data over the AHB bus
+between an external master and the QSPI controller. The APB clock is used
+to access the register map of the QSPI controller, perform controller and
+device configuration.service interrupts and control certain run time modes.
+The reference clock is used to serialize the data and drive the external
+SPI interface.
 
-Laurent Pinchart
+	I'm going to change the names of these three clocks to hclk, pclk,
+and ref_clk, as defined in the data book. What do you think?
+
+	Thanks for taking time to review this patch series and give useful
+suggestions.
+
+Best regards,
+William
