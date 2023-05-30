@@ -2,89 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A2A0715433
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 05:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18B9E715450
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 05:59:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbjE3Dfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 23:35:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48404 "EHLO
+        id S229911AbjE3D7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 23:59:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjE3Dfc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 23:35:32 -0400
-Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1B7BCD;
-        Mon, 29 May 2023 20:35:30 -0700 (PDT)
-Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-19a347d69c8so3661924fac.1;
-        Mon, 29 May 2023 20:35:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685417730; x=1688009730;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=G4VjNC0LF+TbHs+mURTHmXgD0hOPze9ZN8bR7X5CNSk=;
-        b=LGUPFo+iLAlIQdQAdRxrkby/iQpU3PiBO5bKBsRFnm+Y6Cv2OgvEFl42pdJ9RFFfTe
-         XHkjymwq3cLB+gHQcHJoV3+b2OjEaXlMHZIQbmVfwsl19cuJy1sik4jJ19teAwytZjMM
-         B+GB+0XNpMBTibSfc8a10oUp00Gxe54pnN1IigUyaJJSNx7bjsBXbnqOHHPA8zZRsgm4
-         Gd9WGYa/BZW6Vyw+8gILlqi6bpE4Agcf1k4EuwdseAEjo1xT53PL2nWYAPsbpZTkRkY+
-         N9VnQQ0mt9cmC577d5JQ3LWgYcwp54xAPfaux+UYGI5aOhlnD45348T1Vr2bfyY5nPWZ
-         F1JQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685417730; x=1688009730;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=G4VjNC0LF+TbHs+mURTHmXgD0hOPze9ZN8bR7X5CNSk=;
-        b=HEvSSbWF33IJlw/BQWWcWeKMrHbrQiPEnL8PEoL14eIeJT2mvMnPrAUCyd9UbeZcEQ
-         vLRu9EJaV/GTLgREiTvJh/gqoK+58mgjjo5yvHyyDJJ+/As+Cbi9xxRxxu/pP2cZax4h
-         wY6BKyQW2Tg76ktvqJx5Xum9mB3ftxn6JvbLVdg5O5GmG4lWiAd2QSn/OWnJnFZmDQFF
-         Dlj4H2X9/Yb9BRFsugJM91q8FeyJg1bcpmunuwcjZkvu3ojCRK6udijdCo28q3HkYoUt
-         BDTisHJbMjOCe1hbu70yCogq3fPh3V1ILlS1aZYUjiBH2P+cW13lEfjLHESfSTOPaTTs
-         k7sg==
-X-Gm-Message-State: AC+VfDzNSZw1T/1dABFJKkObuc4pSsrgt90ZFCfZVpdO+WrZ2+OprURQ
-        FkMY0c5kX6LilVLXZU2Pix53lcxErQ+3fLxYPAI=
-X-Google-Smtp-Source: ACHHUZ6+zIkxN3C9WzXjAnT4zXK2VSRO8RckiYEQSnKbaPUYN2FatjU6gdYahNvRGTTQdPB4teG+rPc/enBFGyPJIHg=
-X-Received: by 2002:a05:6870:9894:b0:18b:1936:30ee with SMTP id
- eg20-20020a056870989400b0018b193630eemr469820oab.56.1685417730035; Mon, 29
- May 2023 20:35:30 -0700 (PDT)
+        with ESMTP id S229478AbjE3D7n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 23:59:43 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9144494;
+        Mon, 29 May 2023 20:59:42 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34U2X6uw000824;
+        Tue, 30 May 2023 03:59:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : from : subject : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=fQim3q8iOjpLNRj2uSbSbhxVGXrNRMfRVaKA9f/ozBk=;
+ b=FuWxvZHkT2h7mQXM5XSOUBzo4yuO6KwEzuusyXZ613e7xiNE6pBf5XP1XBQ4c91WV1ja
+ jM4cUeSIqqCiPmGMg4RboVVTFIofOJUQbuqXKIwgy94W0wZnGleHFwzCK5RL1jh6V21I
+ yg6vGfBChLlEPGm9s+yM1JWKUfOo/5z6wb3vQZMlV5bRnGB9b4f5dKO5PHLYHdmBNdKY
+ 6Nex70F6rMht5QwFycq0wtjs9/8xh8s9AuyX/2O84k6FDJSjj3uAZKN91tD3k8bKRdV5
+ 2DCcM61Q5wzc9Q8ZGmHkH50O4lfLl2WV0bLIT+42I1l8MrrCcmUtUS/YKMN34vEg/NMy ZA== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qw7rtr5qp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 03:59:10 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34U3x9NQ003442
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 03:59:09 GMT
+Received: from [10.216.48.5] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 29 May
+ 2023 20:59:01 -0700
+Message-ID: <c19122ca-58b7-a407-0ce3-41dab4218c81@quicinc.com>
+Date:   Tue, 30 May 2023 09:28:52 +0530
 MIME-Version: 1.0
-References: <84b31c59-81d3-c83d-ece9-a120b1cdcdd7@arinc9.com>
- <20230529150833.526084-1-liviu@dudau.co.uk> <20230529150833.526084-3-liviu@dudau.co.uk>
-In-Reply-To: <20230529150833.526084-3-liviu@dudau.co.uk>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Tue, 30 May 2023 05:35:19 +0200
-Message-ID: <CAMhs-H-vwviikXFm7JnQffe3JxuBP-q2grJb15tUJ-OXGqONfw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: mips: Add bindings for TP-Link HC220
- G5 v1 board
-To:     Liviu Dudau <liviu@dudau.co.uk>
-Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+From:   Devi Priya <quic_devipriy@quicinc.com>
+Subject: Re: (subset) [PATCH V3 0/5] Add APSS clock controller support for
+ IPQ9574
+To:     Bjorn Andersson <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <will@kernel.org>, <arnd@arndb.de>,
+        <catalin.marinas@arm.com>, <krzysztof.kozlowski+dt@linaro.org>,
+        <agross@kernel.org>, <jassisinghbrar@gmail.com>,
+        <nfraprado@collabora.com>, <geert+renesas@glider.be>,
+        <sboyd@kernel.org>, <mturquette@baylibre.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <rafal@milecki.pl>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, <dmitry.baryshkov@linaro.org>,
+        <broonie@kernel.org>
+CC:     <quic_arajkuma@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_anusha@quicinc.com>, <quic_sjaganat@quicinc.com>,
+        <quic_srichara@quicinc.com>, <quic_ipkumar@quicinc.com>
+References: <20230406061314.10916-1-quic_devipriy@quicinc.com>
+ <168512991479.248818.11621497605486086318.b4-ty@kernel.org>
+Content-Language: en-US
+In-Reply-To: <168512991479.248818.11621497605486086318.b4-ty@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8g5kwYEPPjTnIhW8SIU3jAlS04W-2qzV
+X-Proofpoint-ORIG-GUID: 8g5kwYEPPjTnIhW8SIU3jAlS04W-2qzV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-30_01,2023-05-29_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 spamscore=0
+ phishscore=0 mlxscore=0 mlxlogscore=999 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 adultscore=0 priorityscore=1501 suspectscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305300031
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 29, 2023 at 5:08=E2=80=AFPM Liviu Dudau <liviu@dudau.co.uk> wro=
-te:
->
-> Add bindings for the compatible string used for the TP-Link's
-> HC220 G5 V1 board, a wireless AP based on MT7621.
->
-> Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
-> ---
->  Documentation/devicetree/bindings/mips/ralink.yaml | 1 +
->  1 file changed, 1 insertion(+)
 
-Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 
-Thanks,
-    Sergio Paracuellos
+On 5/27/2023 1:08 AM, Bjorn Andersson wrote:
+> On Thu, 6 Apr 2023 11:43:09 +0530, Devi Priya wrote:
+>> APSS PLL found in IPQ9574 platform is of type Huayra.
+>> This series adds support for the APSS clock to bump the CPU frequency
+>> above 800MHz.
+>>
+>> DTS patch is based on the below series
+>> https://lore.kernel.org/linux-arm-msm/20230404164828.8031-1-quic_devipriy@quicinc.com/
+>>
+>> [...]
+> 
+Thanks! To update on the dependency, This series does not hold any 
+dependencies as the DTS patch cleanly applies on [1] which has already 
+been picked up for linux-next.
+
+[PATCH V3 4/5] arm64: dts: qcom: ipq9574: Add support for APSS clock 
+controller
+
+[1] - 
+https://lore.kernel.org/linux-arm-msm/20230517072806.13170-1-quic_kathirav@quicinc.com/
+
+> Applied, thanks!
+> 
+> [5/5] arm64: defconfig: Enable ipq6018 apss clock and PLL controller
+>        commit: 3098f34977480c9aa75cf328501f1b47ec49fec7
+> 
+> Best regards,
