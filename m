@@ -2,79 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99EAB716172
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:19:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EAFB716177
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232470AbjE3NTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 09:19:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45842 "EHLO
+        id S231916AbjE3NUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 09:20:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232627AbjE3NTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:19:39 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 230F3A3
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:19:36 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5147a478c38so6665253a12.0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:19:36 -0700 (PDT)
+        with ESMTP id S232711AbjE3NUE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:20:04 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9870DC9
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:20:01 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5149390b20aso5483180a12.3
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:20:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685452774; x=1688044774;
+        d=linaro.org; s=google; t=1685452800; x=1688044800;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dakJQqvXwovc4cRZ0OniHS45vADzGKSPIPf7PzecMTs=;
-        b=W0nJotOSH+1jhS48FYxALZLysmmBF/e1g87sOFeqyOfryBaZSphmfWUsUN+qB3h6kr
-         UiZMZ+ABwb85wqSkRY4Hz3eVaTIOza/V4KEexguKc7ppUoWZ1zYlz0v6vfnMPjOT1PKB
-         dnDb5d5dZ8OHo1iGG6nWf/tTlIUxii3aqfuiAWyxoEhStIq3q6IzTZoO5g/aCLGDi18O
-         pDsGeARco374dB5JEjY1rdNUFCMp1AAa8dyAmS9hX5ckNHskR0CiG9ABAdtaXp71bLK3
-         qOitNukaBNNDOsBiJB6NR1yIm7rHf4bWUF2+8DntT3bHKgq/eSSQ9pW0KQnu+8o0qHSh
-         tN+Q==
+        bh=ZtdQMBowYm585Zs6pfgqzqfvh1FN6JnmrWJTtQvCM60=;
+        b=ERD0iEIjO1D9B3IphjhYjTp60AoE9cvj3bshMUhzxvHO8eA0SGmXuiP/OUnlcORqhU
+         rR56aes2miuxoBR+Q5HFBoy3yrs6N7HB6Pi1LtxfcwF85pVk/YdOG+KmK02NjeTfzPj+
+         5e3qFg+SmT3VpUO5bRNCzKkImdVs98pHG407RKMd8NkrvworFJ1yN0wc6LzP6yCnGj/Y
+         ac8jdAvPDl5wVfeSJOO3GSZASg4SuQs5usyVOqy8s+KK3TF8+8QHSd9EsKNBHcMEBwjv
+         4wfPRz0tObvghkDlUOQhGfpo1Z4zifGGUdkhQDa7ASX3J42gKsmmSQI7WiXaPWA5s5TT
+         H3TA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685452774; x=1688044774;
+        d=1e100.net; s=20221208; t=1685452800; x=1688044800;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dakJQqvXwovc4cRZ0OniHS45vADzGKSPIPf7PzecMTs=;
-        b=JALYzca03qlaDASCjqPuRZIVcO9evO061LvB7/bUBg0h6d9Z0asWRu3rognD/ZN50Z
-         EI8a8A747iifca3n4/0roaHTevEZioRSfFil3wyh6pAgMMuFDFsgc6ilZzTKGDSJZRf9
-         +Q0arPBdLwk0EdM4e9HyhOhI6MENiepEjedIdtADqsN/rx0LOVtL8erahqHcEPVeY+iq
-         U+cpeZgpVMB0cxlpb+H8rR1vTB6/Pa6mymD8d8yHpxpFO5a0p6ZkZd7+XPb4G0voK4Ph
-         E3LOfOiosiGrSb3B01+U7fjUWKOhA6jcawTiWdI2DDH5q9kGPK7+El6/SaA2cgYZjTpF
-         c/Qg==
-X-Gm-Message-State: AC+VfDwCwcFirmpr5W2ebshzmYxVaUO5Ea4cZYG66L5/6FoOwUItKeNN
-        ebrRP81AyLLJxDxhNnRO3PR51A==
-X-Google-Smtp-Source: ACHHUZ6PwL740lBYyywAT37VtwWDCbyXudvCjQYX+7D2ia9Vvrgwv222iORYh7NyLYiL3Dz94ZK/wA==
-X-Received: by 2002:aa7:c144:0:b0:514:9e81:9070 with SMTP id r4-20020aa7c144000000b005149e819070mr1795435edp.15.1685452774654;
-        Tue, 30 May 2023 06:19:34 -0700 (PDT)
+        bh=ZtdQMBowYm585Zs6pfgqzqfvh1FN6JnmrWJTtQvCM60=;
+        b=iHAIZCbrtwPV3oDewUkzJKrTI46RiM4w+CFfFljjKA9U10H1dqtL7AHzxl/M0RPIDa
+         cSh4SwrYmp6v6MfbebpVDaExbOFRVAaC2HjpAkfHx3XYI3NbbEKw696HVlk+QjPdYbdm
+         Q0vi8F4wv6z2qYp17vMTagM9fEB0I2UacOuhLMcl0aPiCWtK3Ckwk5p5k4m1MhIZC6LC
+         iAuwq73LiaFVK2gcfTQ61UY7OT/BjyCr1p8y31Ww4K5F2t4ZarvWnQwiv0SbY/01IKjA
+         duDbb1nI/PLuu3v4/SZhWR5aK9bdg5+RBvmCmXzC5STgAp3DvPE2+74N+VByKJ3K2s78
+         O4ZQ==
+X-Gm-Message-State: AC+VfDww59c3297XtvhqbzbScfZ/JmykkfDH1PzmCxAG+Iq85DXbHsZJ
+        jpxJ2GZyeLnpX2I9T3qhHK8FIg==
+X-Google-Smtp-Source: ACHHUZ4bovaQYTnMKj4zfyO8sYWd9MdrERUhOb70V+wtH6un/B77uGDs1PpadB+mwEs5SsMcVpZyrw==
+X-Received: by 2002:a17:907:6e0d:b0:94e:afa6:299f with SMTP id sd13-20020a1709076e0d00b0094eafa6299fmr2422396ejc.22.1685452800052;
+        Tue, 30 May 2023 06:20:00 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id n18-20020aa7c692000000b0050470aa444fsm4371324edq.51.2023.05.30.06.19.33
+        by smtp.gmail.com with ESMTPSA id bt22-20020a170906b15600b0096f603dc8ddsm7408681ejb.142.2023.05.30.06.19.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 06:19:34 -0700 (PDT)
-Message-ID: <ea82c596-5284-2361-245d-228748ecb722@linaro.org>
-Date:   Tue, 30 May 2023 15:19:32 +0200
+        Tue, 30 May 2023 06:19:59 -0700 (PDT)
+Message-ID: <c926e7f8-946e-5fe7-023f-46a319fabdcc@linaro.org>
+Date:   Tue, 30 May 2023 15:19:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 2/5] ARM: Add samsung,expressatt to qcom.yaml
+Subject: Re: [PATCH 3/5] ARM: Add qcom,usb-hs-phy-msm8960 to
+ qcom,usb-hs-phy.yaml
 Content-Language: en-US
 To:     Rudraksha Gupta <guptarud@gmail.com>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc:     david@ixit.cz, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 References: <20230524230459.120681-1-guptarud@gmail.com>
- <20230524230459.120681-2-guptarud@gmail.com>
+ <20230524230459.120681-3-guptarud@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230524230459.120681-2-guptarud@gmail.com>
+In-Reply-To: <20230524230459.120681-3-guptarud@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,13 +87,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On 25/05/2023 01:04, Rudraksha Gupta wrote:
 > Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
-
-Missing commit msg explaining what's this.
+> ---
 
 Please use subject prefixes matching the subsystem. You can get them for
 example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
 your patch is touching.
 
+Missing commit msg.
 
 Best regards,
 Krzysztof
