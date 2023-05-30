@@ -2,114 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBC6F716C80
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 20:28:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C84F6716CDA
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 20:53:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232411AbjE3S2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 14:28:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57940 "EHLO
+        id S232673AbjE3Sx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 14:53:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229997AbjE3S2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 14:28:49 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B9E1B2;
-        Tue, 30 May 2023 11:28:48 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C38B4619FE;
-        Tue, 30 May 2023 18:28:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07BBCC4339E;
-        Tue, 30 May 2023 18:28:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685471327;
-        bh=EKx6VTVPtif3VopxDUTsogjb7XDS6ckoH87zFUChkRk=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=gNq/ZsXDpV3i7lAAIj9wedxoaIHRiPa8GeMA8KY+BCc+AtgakCixsCrcHU8v2kD2S
-         qjnXa48y6IVO/aLnDPRCGY3kpkEcBd0FFnj/Q3kjZNZ0xk88kLveBEI0YD/Kp1h0pv
-         wqPhDhAOt3KWFaOqSJcfgF8JBgPb8c5uMWp6U3Xrt7eRhVp9yhDenqNBPb0QvBwIpb
-         gyzSzCAYGhIEHZu9lj61HTMaAyZxD1CClcEgLnZnW8fT6ECmvgfC7/PZYbL1KVFZ4v
-         uJkNEAot6nXMpDrNfwQgTKt/eHJTPJdb3HZtlkh3yVLR3bETuF72j3SQtRz5ujEj/a
-         wwctPjUFDTKeA==
-From:   Mark Brown <broonie@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232364AbjE3Sxx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 14:53:53 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9710E11A;
+        Tue, 30 May 2023 11:53:46 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34UIraC5103087;
+        Tue, 30 May 2023 13:53:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685472816;
+        bh=CyF6SW6HfaO/Jbyibzsjo2HNvNguoBsxC7LAz9g3V7I=;
+        h=From:To:CC:Subject:Date;
+        b=Zu/MozsqDMiYS2bvz0RnLhfjN0+oeM4w1yKy8MiZdTcpGWSRP4qVBdglyueMUahBC
+         oAxld3Azda8NuYbVb6T8SNS7vjPpmlBT5LkXQwnv2yZc50AcjD05pCDNdoyDk4F6Yi
+         nT5JxoNX8//kBKRHdnoHrOTdfZ7AXHyRC9HGF6Ik=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34UIra4n057176
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 30 May 2023 13:53:36 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
+ May 2023 13:53:36 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 30 May 2023 13:53:36 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34UIrax3019046;
+        Tue, 30 May 2023 13:53:36 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dipen Patel <dipenp@nvidia.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dilip Kota <eswara.kota@linux.intel.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-spi@vger.kernel.org, timestamp@lists.linux.dev,
-        linux-watchdog@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Tony Lindgren <tony@atomide.com>,
-        Oleksij Rempel <linux@rempel-privat.de>
-In-Reply-To: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
-References: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH 0/7] dt-bindings: restrict node name suffixes
-Message-Id: <168547131548.1034788.34188090441869561.b4-ty@kernel.org>
-Date:   Tue, 30 May 2023 19:28:35 +0100
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+        Nitin Yadav <n-yadav@ti.com>,
+        Neha Malcom Francis <n-francis@ti.com>
+Subject: [PATCH 0/2] arm64: dts: ti: k3-am62/64: Add ESM Support
+Date:   Tue, 30 May 2023 13:53:33 -0500
+Message-ID: <20230530185335.79942-1-nm@ti.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-bfdf5
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 May 2023 16:48:44 +0200, Krzysztof Kozlowski wrote:
-> Tree-wide cleanup of DTS node name suffixes "-N", e.g. "pwm-5", so we allow
-> only decimal numbers.  In few cases narrow the pattern to also disallow
-> multiple suffixes, e.g. "pwm-5-5".
-> 
-> No dependencies, can be applied by individual subsystems.
-> 
-> Cc: Tony Lindgren <tony@atomide.com>
-> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
-> 
-> [...]
+Couple of follow on patches based on [1] adding ESM nodes and mapping
+for AM62/AM64.
 
-Applied to
+Nishanth Menon (2):
+  arm64: dts: ti: k3-am62: Add ESM support
+  arm64: dts: ti: k3-am64: Add ESM support
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 6 ++++++
+ arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi  | 6 ++++++
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 6 ++++++
+ arch/arm64/boot/dts/ti/k3-am64-mcu.dtsi  | 6 ++++++
+ 4 files changed, 24 insertions(+)
 
-Thanks!
-
-[5/7] spi: dt-bindings: restrict node name suffixes
-      commit: c4fb6880edc15866a530c7b8f2698ae65f80cfab
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+[1] https://lore.kernel.org/all/20230504080526.133149-1-n-francis@ti.com/
+-- 
+2.40.0
 
