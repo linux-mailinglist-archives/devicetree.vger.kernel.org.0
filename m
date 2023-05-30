@@ -2,203 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FE167159F8
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 11:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A85715A34
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 11:31:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230492AbjE3JYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 05:24:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38934 "EHLO
+        id S230230AbjE3JbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 05:31:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230497AbjE3JXd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 05:23:33 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EA701A5;
-        Tue, 30 May 2023 02:22:34 -0700 (PDT)
-X-GND-Sasl: alexandre.belloni@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1685438525;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=lDeMCws0siBZEnFYW0HPlqW6XjIAotmNt0sSp/ryskU=;
-        b=O17IF2fNtRO5Hl91YjW7GViADXoYAzM4XlcnDh5I9spcj3HeRYv++HqEl9zxM3IXHaHq48
-        WgX8OKwL2LY79HI9E+FIU+kjRmf5QP0wK7ns7F3KAvg0kuo/q2poa/YX1GbbrLjLu3O6FS
-        ZBu2o/vpQXPWWAMTxmEeEhhbvaa46hmNNaKI4M5FNgLZTBDpGUAr3/sS6quQGUL7SESCE0
-        f7PccbBC6nF4hj8iC5Asv/reeNq1Y+qT1eOkeyQVHk0HC+isYTmNRNaAZf+Jgz5E6O5VmK
-        CUl/Yt/qZV9DC7qIvNar/vd4oFfnl+fiD+4SdKZlJmHiynbKokEn2FZ0XFDxmg==
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 06F341BF208;
-        Tue, 30 May 2023 09:22:00 +0000 (UTC)
-Date:   Tue, 30 May 2023 11:22:00 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Conor Dooley <conor@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        zhao zhang <zhzhl555@gmail.com>,
-        Yang Ling <gnaygnil@gmail.com>,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the
- trivial RTCs
-Message-ID: <2023053009220055969681@mail.local>
-References: <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com>
- <20230527-passing-unfixed-39e01b787808@spud>
- <14EF9F21-8150-40D9-8870-E9151C4882CF@flygoat.com>
- <20230527-poet-antarctic-cc02aa60ab52@spud>
- <CAJhJPsU_qOJKO99S1xjJaSUqXsXAG7HpYbzs5wTb8J4-tQqSQA@mail.gmail.com>
- <E229B204-1B00-4B24-B4BF-15277682FB4B@kernel.org>
- <CAMpQs4K4e3BSVvqXa+QjhM5XDxHc_ZCiRYW+HgPo21AQ_bYSRQ@mail.gmail.com>
- <6845b6ce-06a8-9a0c-7f04-50fa906cd1e4@linaro.org>
- <202305300840203aa4ff4c@mail.local>
- <CAJhJPsXyS_+tTLJ1JSCNx6wXs8eGwwQ4khg=-0gRGZuJRDddoQ@mail.gmail.com>
+        with ESMTP id S230247AbjE3JbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 05:31:00 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30504FA
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 02:29:55 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2af1ae3a21fso44776201fa.0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 02:29:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685438993; x=1688030993;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+FDuYrgA2PtZhvkKUmkAEjPi6ir414k8/3mt89BWyiw=;
+        b=x06FtjeWv+gNlvPJF9/0GVmIyBvjBmyC/YQtxyXBxngdzlXpbHWMTGDxkkC8PQaRxz
+         1x+clY8tlQ0rMz3KHsSRBR239hakwjeVv7hzKxYBA5xkasPLhencN7Rb4bQjC6QNtYSx
+         aVcq7WXp8e7s4jl13HZrd/JoVmYpgt/dG5xrCAdCHLZB0Fu533+RLvYxFUzniC7ATXBM
+         Xwn4kXnU6lKPV8mfoUjJSwz981VpxUVw6vUlo9VQrODKHkAacmGJlv1AzUqGnPHmZv1A
+         b+cB3hZ8mkub2LWflET7w6zGPUGS8zeMEb99gY1Qj7iesrCyzabXiB5m1iSnOlRcSpMk
+         H7Tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685438993; x=1688030993;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+FDuYrgA2PtZhvkKUmkAEjPi6ir414k8/3mt89BWyiw=;
+        b=BZihPM2v4uM33DRmdR6WvoGzNuiNSE9tbwYAVvyhay+8Slt9BEKLS3AGchwmZn6ZSB
+         KxnXYYfBupaunp+jzvI1+RxY3Hn6odyPM82O3Eaq/VuKu9KiMTmrkBFLbSHSQmJjzVnn
+         OveMTfJc8R8kHD+Je+TmLc+UIAhW4jQGvylblMIlg6K1cCDyWjBbyXzGYTQ+EJEt+Uvo
+         Y64i+nWOGklHJeGD88d0Ew2G07k9xBLwfktzIkLanw+70gk22ieiYzp/R4P92llPqIU+
+         utaLz1UkDfuVUFjz19b9J9yiqlnfrXTALvfZ710KaIkn5/tqsIZuoaY8gTFuxyJVK3V7
+         +Lwg==
+X-Gm-Message-State: AC+VfDzuEuuk0uItFZ+5k3G0MMViv5Vj+PeHf9pt2ox+gBB7DpPduodk
+        4wxjPB6ZS0lt6F7baQ8HOA/t5A==
+X-Google-Smtp-Source: ACHHUZ7Sl60OmxrIrASOSmvDJ8xnwip2lAGckE0thy0BWsF8hbdqJvsbE55ayVqgf0SrvMUbKi8X2Q==
+X-Received: by 2002:a2e:9c83:0:b0:2a8:eae2:d55c with SMTP id x3-20020a2e9c83000000b002a8eae2d55cmr496806lji.15.1685438993387;
+        Tue, 30 May 2023 02:29:53 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id q10-20020a2e968a000000b002ab2184a9basm2731045lji.109.2023.05.30.02.29.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 02:29:53 -0700 (PDT)
+Message-ID: <29888a4c-b745-3975-f330-d3a4033cd2a4@linaro.org>
+Date:   Tue, 30 May 2023 11:29:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJhJPsXyS_+tTLJ1JSCNx6wXs8eGwwQ4khg=-0gRGZuJRDddoQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH RFC 03/10] drm/panel: Add LGD panel driver for Sony Xperia
+ XZ3
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
+ <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
+ <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
+ <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
+ <63qt5jmdi5qg7tvhbb7vk75kz53wmygc7iubwprfhcc3hvgwuv@ildrzq32ese3>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <63qt5jmdi5qg7tvhbb7vk75kz53wmygc7iubwprfhcc3hvgwuv@ildrzq32ese3>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2023 17:13:12+0800, Keguang Zhang wrote:
-> On Tue, May 30, 2023 at 4:40 PM Alexandre Belloni
-> <alexandre.belloni@bootlin.com> wrote:
-> >
-> > On 30/05/2023 10:17:43+0200, Krzysztof Kozlowski wrote:
-> > > On 29/05/2023 10:31, Binbin Zhou wrote:
-> > > > Hi Krzysztof:
-> > > >
-> > > > Excuse me.
-> > > > We have different opinions on how to better describe rtc-loongson compatible.
-> > > >
-> > > > Based on my previous communication with you, I think we should list
-> > > > all the Socs in the driver and drop the wildcards.
-> > >
-> > > Suggestion was about the bindings. Not in the driver. I never said to
-> > > list all compatibles in the driver...
-> > >
-> > > > This should be clearer and more straightforward:
-> > > >
-> > > >         { .compatible = "loongson,ls1b-rtc", .data = &ls1x_rtc_config
-> > > > }, //ls1b soc
-> > > >         { .compatible = "loongson,ls1c-rtc", .data = &ls1x_rtc_config
-> > > > }, //ls1c soc
-> > > >         { .compatible = "loongson,ls7a-rtc", .data =
-> > > > &generic_rtc_config }, //ls7a bridge chip
-> > > >         { .compatible = "loongson,ls2k0500-rtc", .data =
-> > > > &generic_rtc_config }, // ls2k0500 soc
-> > > >         { .compatible = "loongson,ls2k2000-rtc", .data =
-> > > > &generic_rtc_config }, // ls2k2000 soc
-> > > >         { .compatible = "loongson,ls2k1000-rtc", .data =
-> > > > &ls2k1000_rtc_config }, // ls2k1000 soc
-> > >
-> > > I would suggest to use fallbacks as suggested by Conor at least for some
-> > > of them. You referred to my previous comments about wildcards.
-> > > Wildcard != fallback.
-> > >
-> > > >
-> > > > And Conor thought it should be rendered using a fallback compatible
-> > > > form based on ".data".
-> > >
-> > > Based on common (compatible) programming model unless you already have
-> > > clear hardware differences making them incompatible.
-> > >
-> > > >
-> > > >         "loongson,ls1b-rtc"
-> > > >         "loongson,ls1c-rtc", "loongson,ls1b-rtc"
-> > > >         "loongson,ls7a-rtc"
-> > > >         "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
-> > > >         "longson,ls2k2000-rtc", "longson,ls7a-rtc"
-> > > >         "loonson,ls2k1000-rtc"
-> > > >
-> > > >         { .compatible = "loongson,ls1b-rtc", .data = &ls1x_rtc_config }
-> > > >         { .compatible = "loongson,ls7a-rtc", .data = &generic_rtc_config }
-> > > >         { .compatible = "loongson,ls2k1000-rtc", .data = &ls2k1000_rtc_config }
-> > > >
-> > > > In this form,  I think it might not be possible to show very
-> > > > graphically which chips are using the driver.
-> > >
-> > > ??? How is it impossible? For all other SoCs and architectures it is
-> > > possible, so what is special for Loongson?
-> > >
-> > > > Also, for example, "ls7a" is a bridge chip, while
-> > > > "ls2k2000"/"ls2k0500" are soc chips, and it seems inappropriate to
-> > > > integrate them into one item.
-> > >
-> > > Why it is inappropriate? I don't see the issue here... what is a
-> > > "bridge" chip? Isn't this also an SoC?
-> > >
-> > >
-> > > >
-> > > > Which one do you think is more suitable for us?
-> > >
-> > > Use fallbacks for some. You pointed difference in alarm for ls1x, right?
-> > > If so, then they can stay separate.
-> >
-> > From what I seen the IP and register set is the same, it is just the
-> > integration on the SoC that differs.
-> >
-> Actually, ls1c RTC registers are not the same as ls1b.
-> ls1c doesn't have the following resgisters.
-> +#define TOY_MATCH0_REG         0x34 /* TOY timing interrupt 0 */
-> +#define TOY_MATCH1_REG         0x38 /* TOY timing interrupt 1 */
-> +#define TOY_MATCH2_REG         0x3c /* TOY timing interrupt 2 */
+
+
+On 30.05.2023 10:41, Marijn Suijten wrote:
+> On 2023-05-30 09:24:24, Neil Armstrong wrote:
+>> Hi Marijn, Dmitry, Caleb, Jessica,
+>>
+>> On 29/05/2023 23:11, Marijn Suijten wrote:
+>>> On 2023-05-22 04:16:20, Dmitry Baryshkov wrote:
+>>> <snip>
+>>>>> +	if (ctx->dsi->dsc) {
+>>>>
+>>>> dsi->dsc is always set, thus this condition can be dropped.
+>>>
+>>> I want to leave room for possibly running the panel without DSC (at a
+>>> lower resolution/refresh rate, or at higher power consumption if there
+>>> is enough BW) by not assigning the pointer, if we get access to panel
+>>> documentation: probably one of the magic commands sent in this driver
+>>> controls it but we don't know which.
+>>
+>> I'd like to investigate if DSC should perhaps only be enabled if we
+>> run non certain platforms/socs ?
+>>
+>> I mean, we don't know if the controller supports DSC and those particular
+>> DSC parameters so we should probably start adding something like :
+>>
+>> static drm_dsc_config dsc_params_qcom = {}
+>>
+>> static const struct of_device_id panel_of_dsc_params[] = {
+>> 	{ .compatible = "qcom,sm8150", , .data = &dsc_params_qcom },
+>> 	{ .compatible = "qcom,sm8250", , .data = &dsc_params_qcom },
+>> 	{ .compatible = "qcom,sm8350", , .data = &dsc_params_qcom },
+>> 	{ .compatible = "qcom,sm8450", , .data = &dsc_params_qcom },
+>> };
 > 
-> +#define RTC_CTRL_REG           0x40 /* TOY and RTC control register */
-> +#define RTC_TRIM_REG           0x60 /* Must be initialized to 0 */
-> +#define RTC_WRITE0_REG         0x64 /* RTC counters value (write-only) */
-> +#define RTC_READ0_REG          0x68 /* RTC counters value (read-only) */
-> +#define RTC_MATCH0_REG         0x6c /* RTC timing interrupt 0 */
-> +#define RTC_MATCH1_REG         0x70 /* RTC timing interrupt 1 */
-> +#define RTC_MATCH2_REG         0x74 /* RTC timing interrupt 2 */
+> I'd absolutely hate hardcoding a list of compatible SoC names in a panel
+> driver.  For one these lists will fall out of date really soon even if
+> we store this list in a generic place: even the current DPU catalog and
+> new entries floating on the lists weren't faithfully representing DSC
+> capabilities (but that's all being / been fixed now).
+Yes, a driver should behave predictably, regardless of the platform.
+
 > 
-> As you can see, it doesn't support match function, which is why ls1c
-> doesn't support RTC interrupt.
+> What's more, most of these panel drivers are "hardcoded" for a specific
+> (smartphone) device (and SoC...) since we don't (usually) have the
+> DrIC/panel name nor documentation to make the commands generic enough.
+> I don't think we should be specific on that end, while being generic on
+> the DSC side.
+> 
+> That does mean I'll remove the if (dsc) here, as Dmitry noted most of
+> this driver expects/requires it is enabled.
+I'd say we could assume it's mandatory as of today.
 
-They are in the Loongson1C Processor User Manual I have which states:
-
-21.2.6 SYS_TOYMATCH0/1/2 (no register in 1C2)
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Konrad
+> 
+>> ...
+>> static int sony_akatsuki_lgd_probe(struct mipi_dsi_device *dsi)
+>> ...
+>> 	const struct of_device_id *match;
+>>
+>> ...
+>> 	match = of_match_node(panel_of_dsc_params, of_root);
+>> 	if (match && match->data) {
+>> 		dsi->dsc = devm_kzalloc(&dsi->dev, sizeof(*dsc), GFP_KERNEL);
+>> 		memcpy(dsi->dsc, match->data, sizeof(*dsc));
+>> 	} else {
+>> 		dev_warn(&dsi->dev, "DSI controller is not marked as supporting DSC\n");
+>> 	}
+>> ...
+>> }
+>>
+>> and probably bail out if it's a DSC only panel.
+>>
+>> We could alternatively match on the DSI controller's dsi->host->dev instead of the SoC root compatible.
+> 
+> I'd much rather have the DSI host/controller state whether it is capable
+> of DSC (likely allowing us to expose different modes for panels that
+> support toggling DSC), but for starters also validate (in DPU?) that the
+> pointer is NULL when the hardware does not support it (but maybe that
+> already happens implicitly somewhere in e.g.
+> dpu_encoder_virt_atomic_mode_set when finding the DSC blocks).
+> 
+> - Marijn
