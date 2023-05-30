@@ -2,96 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2F84715B1B
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 12:10:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7E75715B2F
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 12:13:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231176AbjE3KKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 06:10:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44796 "EHLO
+        id S229911AbjE3KNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 06:13:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231136AbjE3KJn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 06:09:43 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11F5593;
-        Tue, 30 May 2023 03:09:37 -0700 (PDT)
-Received: from stefanw-SCHENKER ([37.4.248.58]) by mrelayeu.kundenserver.de
- (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1N1gac-1qEl5B15OC-0121IH; Tue, 30 May 2023 12:09:09 +0200
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
+        with ESMTP id S229977AbjE3KNf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 06:13:35 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC2B8AB;
+        Tue, 30 May 2023 03:13:30 -0700 (PDT)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id 785E91F842;
+        Tue, 30 May 2023 12:13:25 +0200 (CEST)
+Date:   Tue, 30 May 2023 12:13:20 +0200
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Marek Vasut <marex@denx.de>, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH V4 2/2] dt-bindings: imxgpt: add imx6ul compatible
-Date:   Tue, 30 May 2023 12:08:43 +0200
-Message-Id: <20230530100843.15072-3-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230530100843.15072-1-stefan.wahren@i2se.com>
-References: <20230530100843.15072-1-stefan.wahren@i2se.com>
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lukas Wunner <lukas@wunner.de>
+Subject: Re: DT checker RS485 unevaluated property, 8250 OMAP UART
+Message-ID: <ZHXMMHQ9VevVtqHz@francesco-nb.int.toradex.com>
+References: <ZGefR4mTHHo1iQ7H@francesco-nb.int.toradex.com>
+ <0cb182f8-eb53-45d8-3c8b-fb7d16f88d46@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:q+6glmaBLTUjizXeKRScM+ThD4mzq5bQPImbRnYuNw8FauQ0lb+
- jXdEnpleoDdFRUXr73DrVn4cbennLfQOBxp8n8uljUgB0rn3s1QEU7qC6yfJD0y2uMinpaq
- EjAo/a+3MrrCGf13y7uwHIGdkuYzV8tyzbtCGLWJz48PQmgEhmXyxvn0pWlhMOQUHhVDsjS
- aQyASebSuJcP0uJnimhew==
-UI-OutboundReport: notjunk:1;M01:P0:6JsSqUpKsQg=;LuYs2rRX5rdwDRMVXWTFSE4j3Vm
- Cg9nHmh1jE7c8FEvQJl7dbq5iAGCQSBk9ldl0JOiXykrpkOc1T8+HW+kDUjgGt888s5Xuaa+F
- q8F86TVVbf9Ac31OpdxBBNdyRhfoQmoSMgFd+xeQKvVGf6eDcrbE9FSY/cmLTIh43oeEF4yCg
- VD63RfaSYVNbN5vusaGJv6uMmS/JEc4hByCZMGMul//BksgYpq3gyAa5UMCq539lhDuCQLVP9
- ulGOsqt94023ctjxyny+AtvAco5df6kS4PmDQZL/hllp/AzFSD0qLNcfzyK+HG0fDWuuNts/v
- 9QkszW96oGzF0Hqs2FTmWflKGeh5Y54XDTkciwt+9bC6zUoiBj9jy+r986o2GWC5GNMgt/wJd
- r3qQUCccUL9lr4w3aWOKaM++/O1X6KXi5RwO7j8+kArlTnJHcqzzt09KAN3OoZky8JOHewlT3
- Fi97Kc5BpwHu9S7MR+bGDLDDRmnkZGI/GDYt3LE6tlQQdv4/pniS0O4qS7KxTaV5zTu4uII1p
- mPWhMjJFC6gVrp2tju06Y4P4efRJBYpj9a2OGBGTjp4ty25RVLUHMN+jjuDi7v8s3InF9R6q/
- yLiVU9YWeCIZUhyzLCTztQOSq40FoRFEFQU6+nDqH6ue+aZv40D4hiCpPE+f58qjJpzQ8BstI
- NgPlOb8Y5uzXduHoQSNfHXLTdFNrJ5AAPU1L/jYvzA==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0cb182f8-eb53-45d8-3c8b-fb7d16f88d46@ti.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently the dtbs_check for imx6ul generates warnings like this:
+On Sat, May 27, 2023 at 11:49:17AM +0530, Vignesh Raghavendra wrote:
+> On 19/05/23 9:39 pm, Francesco Dolcini wrote:
+> > Hello,
+> > while writing a new DT file I stumbled across this warning
+> > 
+> > .../arch/arm64/boot/dts/ti/k3-am625-verdin-wifi-dev.dtb: serial@2810000: Unevaluated properties are not allowed ('rs485-rts-active-high' was unexpected)
+> > 	From schema: .../Documentation/devicetree/bindings/serial/8250_omap.yaml
+> > 
+> > The property is currently used in the OMAP serial driver
+> > 
+> > drivers/tty/serial/omap-serial.c
+> > 1511:	if (of_property_read_bool(np, "rs485-rts-active-high")) {
+> > 
+> 
+> Would be it possible to update driver to imply rs485-rts-active-high"
+> this by lack of rs485-rts-active-low property in DT instead?
 
-['fsl,imx6ul-gpt', 'fsl,imx6sx-gpt'] is too long
+What about backward compatibility? This is what is done in all drivers
+apart omap-serial if I'm not wrong.
 
-According to the timer-imx-gpt driver all imx6 use the same imx6dl data,
-but according to the existing DTS files the imx6ul GPT IP is derived from
-imx6sx. So better follow the DTS files here and make the imx6ul GPT
-compatible to the imx6sl one to fix the warning.
+> > I would be inclined to send the following patch, do you agree?
+> > 
+> > diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> > index eb3488d8f9ee..e634e98aa994 100644
+> > --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> > @@ -70,6 +70,7 @@ properties:
+> >    dsr-gpios: true
+> >    rng-gpios: true
+> >    dcd-gpios: true
+> > +  rs485-rts-active-low: true
+> 
+> I believe you mean rs485-rts-active-high here
+whoops, yes of course.
 
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+> 
+> >    rts-gpio: true
+> >    power-domains: true
+> >    clock-frequency: true
+> > 
+> > [1] https://lore.kernel.org/all/ZBItlBhzo+YETcJO@francesco-nb.int.toradex.com/
+> > 
+> 
+> Also, I hope you are using 8250_ompa.c and not omap-serial.c for newer
+> designs. omap-serial.c is mostly there to support legacy SoCs and not to
+> be used with K3 SoCs.
 
-diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-index 716c6afcca1f..685137338ac9 100644
---- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-+++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
-@@ -34,6 +34,9 @@ properties:
-               - fsl,imxrt1050-gpt
-               - fsl,imxrt1170-gpt
-           - const: fsl,imx6dl-gpt
-+      - items:
-+          - const: fsl,imx6ul-gpt
-+          - const: fsl,imx6sx-gpt
- 
-   reg:
-     maxItems: 1
--- 
-2.34.1
+Thanks for this head-up. This confused myself, while the issue I
+reported here is real, it does affect only omap-serial.c. In my case I
+am using 8250_omap.c and I can just omit the property from the DTS as
+generally expected!
+
+Francesco
+
 
