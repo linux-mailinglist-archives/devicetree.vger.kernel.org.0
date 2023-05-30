@@ -2,122 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 688CE716509
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:50:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48A50716573
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:59:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232867AbjE3OuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 10:50:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57076 "EHLO
+        id S231147AbjE3O7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 10:59:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232123AbjE3OuI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:50:08 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E9311A
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:49:45 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f6da07feb2so47037945e9.0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:49:45 -0700 (PDT)
+        with ESMTP id S230424AbjE3O7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:59:07 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694BC132
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:58:39 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51492ae66a4so4782611a12.1
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:58:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1685458181; x=1688050181;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=udNghephkvKhPZuJBjEix+UuL920fK/8W/QzTCO5Pcg=;
-        b=W+7ofkddfcWJ06zeU0Da9XAhr+E4Vfz4rR3jL63NhJI+86PbNPD1NqbIUy2FS+9h4p
-         jbzV2VPtF3LhpyKSiJWN5UqkQmx5LK2/wCHSuLL5wy2qILsQ4nDcgQkrmCwY9n1rrOIr
-         GlDCNJ6jgx3+e7ql8RJFM9G1LgUfgjr4Io1MCLTwjyBw+1ngsJy1uKqsGnkhcZR9GmWr
-         zEU8kIuY6sMgHKNnu7tYrkVtm3OlR9kxLlWmtLGGb2X4v9nNMQ1Gv1BCp0H9b/nDi0EH
-         4eY/QLB97/Jo6DF4CjJ/AToKbqAsAuxeydt6ifJBMflL9KnCYnQfLLB2LGwrvc2ZaVdG
-         JLew==
+        d=linaro.org; s=google; t=1685458716; x=1688050716;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Y5roT10laz2CzdwcuNGZ1IEx+qEHueK0Fd53T1e6Xfk=;
+        b=m8nB5byu9FRrq2xdOz/5PN01pQ542DAaRl8HaAx/xEegXEiP1+BIKz3/DBtds6G7L0
+         YG9UbTW13AEpez9bXniZcEIOPeP8NvNNZuR5XTzAHSZHsR8OTo3+sjOycud5gTd2NCiv
+         9wAteWijVbfam4t1GhAk8rh7tPXqA9gnOwgeZ/2x0FWwlwhXOg3jzI5f3j9f0hywMN3j
+         ftodd438uGD7V9Gih/siMbZ0FCeQidy8MDMIHgQNTK8kTVmkAr/7HAovSI5TYsEzcQ6i
+         Y6xUggAy1HmKBar/swX+Xcg+uKPJZZS+JQa7hdGyH0j8m8aoiYpkP+U997QBCwr13Rfg
+         bDhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685458181; x=1688050181;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=udNghephkvKhPZuJBjEix+UuL920fK/8W/QzTCO5Pcg=;
-        b=A69sVjLgdQ903LezlHkvGD2kgrl13jHNXfgRLBepa7jauicUP/jYoXEHgKWgMl6mWd
-         OxXiPlxQNUH/m9C+M8chProtIPzzx9R9Ol9pGmr5GbQzMIaMPL8vgostmeE+h4dA0WN3
-         OZecsLV66tiNbHEG3bR+ievBspaTbKLPNW0uXXuacvHlef4qqpQRblKgTDjfllt9tFJ4
-         vOYTj/CIbM59QYACBPWexcIBZLqGG4a0ZfqJZmadyPHJ7kyjsIEG+PPpHWD8yfhoPKWs
-         cGSUbpPpXJ7FF1fxdX/MMNPLdQDeW3W4dbScToAOP/BUfCOtxHkXWdUrvroNn7jjls/6
-         bTrA==
-X-Gm-Message-State: AC+VfDxpuXxA+zkBxsnLEHLSeivg6AMnMeXKFCTUlWaPziMpkI1gA2DK
-        SbffqAKikm4WuzBIfrshFHB0dQ==
-X-Google-Smtp-Source: ACHHUZ75uX94LvL6Mu4X8bBwL6aHIfbExTPA32GAruz4VRZiaZa0LwAOuzBPJm+FdPrWQQgM8rwz0w==
-X-Received: by 2002:a1c:790e:0:b0:3f6:72ec:5fc3 with SMTP id l14-20020a1c790e000000b003f672ec5fc3mr2087614wme.12.1685458181458;
-        Tue, 30 May 2023 07:49:41 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:5bdd:98ce:604e:9cf0])
-        by smtp.gmail.com with ESMTPSA id t19-20020a7bc3d3000000b003f423508c6bsm17323488wmj.44.2023.05.30.07.49.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 07:49:41 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RESEND PATCH] dt-bindings: iommu: arm,smmu: enable clocks for sa8775p Adreno SMMU
-Date:   Tue, 30 May 2023 16:49:31 +0200
-Message-Id: <20230530144931.188900-1-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.39.2
+        d=1e100.net; s=20221208; t=1685458716; x=1688050716;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y5roT10laz2CzdwcuNGZ1IEx+qEHueK0Fd53T1e6Xfk=;
+        b=UQUItMhfoP//9PSfrsQE0y6Hgw3d4uH/h1klf2LN4vEYSy/B6j489xMWVEHTRetVrV
+         QxARQ1YNSDXRbMhj70Bjfs1oWrB92YDTn40odHYI6WjmEKn3UoT1cLu+HvaxiRqFhfvg
+         OwA7iiYqOBPMyNi7Ao5Fig68+tLpj798YEiIrL2mr5gJNARVZSqX88yx+ybLKAVjvdQZ
+         yDThGkYMM8CJcH/mIb/xf5MT4dfvAnCk/kgIxAXniGU2fa0dBR0XOaMeDlotMxG07cWC
+         RKao2OxmLf5IBQq2hDxdIkdYrpBNRaOlP+afkQKkJnzqhLU18Um2mcjLbJ//sOLyORxM
+         gDjA==
+X-Gm-Message-State: AC+VfDzcnVkLqlplYtq5gJtgNY8PZDDC3hyWOkP6OdnAOL9xxppbquSn
+        Fd1Hw07XebbKVEVnSCz5geY9Fg==
+X-Google-Smtp-Source: ACHHUZ7Be8Z+NCpE61J4jKqCk67UtnMimLo2D/Jlbqp1FUziK8Rm1KdNBdY1sQ5h++vhPhdtE2COeQ==
+X-Received: by 2002:a05:6402:1645:b0:50d:8991:d1b9 with SMTP id s5-20020a056402164500b0050d8991d1b9mr1853579edx.8.1685458716495;
+        Tue, 30 May 2023 07:58:36 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id a21-20020aa7d755000000b0050bc041d2a8sm4425119eds.15.2023.05.30.07.58.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 07:58:35 -0700 (PDT)
+Message-ID: <ed004607-5a23-564a-3185-a63af87783e5@linaro.org>
+Date:   Tue, 30 May 2023 16:58:32 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/2] dt-bindings: i2c: imx-lpi2c: Add bus recovery example
+Content-Language: en-US
+To:     carlos.song@nxp.com, aisheng.dong@nxp.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, Anson.Huang@nxp.com
+Cc:     xiaoning.wang@nxp.com, haibo.chen@nxp.com, linux-imx@nxp.com,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230529074302.3612294-1-carlos.song@nxp.com>
+ <20230529074302.3612294-2-carlos.song@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230529074302.3612294-2-carlos.song@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On 29/05/2023 09:43, carlos.song@nxp.com wrote:
+> From: Clark Wang <xiaoning.wang@nxp.com>
+> 
+> Add i2c bus recovery configuration example.
 
-The GPU SMMU will require the clocks property to be set so put the
-relevant compatible into the adreno if-then block.
+Why? That's just example... also with coding style issue.
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Resending with all IOMMU maintainers in CC.
+> 
+> Signed-off-by: Clark Wang <xiaoning.wang@nxp.com>
+> Signed-off-by: Carlos Song <carlos.song@nxp.com>
+> ---
+>  .../devicetree/bindings/i2c/i2c-imx-lpi2c.yaml   | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+> index 4656f5112b84..62ee457496e4 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+> @@ -58,6 +58,16 @@ properties:
+>    power-domains:
+>      maxItems: 1
+>  
+> +  pinctrl-names:
+> +    minItems: 1
+> +    maxItems: 3
 
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+What's the benefit of this? Entries should be defined but without it is
+not really helpful. Anyway not explained in commit msg.
 
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index ba677d401e24..53bed0160be8 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -79,6 +79,7 @@ properties:
-       - description: Qcom Adreno GPUs implementing "qcom,smmu-500" and "arm,mmu-500"
-         items:
-           - enum:
-+              - qcom,sa8775p-smmu-500
-               - qcom,sc7280-smmu-500
-               - qcom,sm6115-smmu-500
-               - qcom,sm6125-smmu-500
-@@ -331,7 +332,9 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: qcom,sc7280-smmu-500
-+            enum:
-+              - qcom,sa8775p-smmu-500
-+              - qcom,sc7280-smmu-500
-     then:
-       properties:
-         clock-names:
-@@ -413,7 +416,6 @@ allOf:
-               - nvidia,smmu-500
-               - qcom,qcm2290-smmu-500
-               - qcom,qdu1000-smmu-500
--              - qcom,sa8775p-smmu-500
-               - qcom,sc7180-smmu-500
-               - qcom,sc8180x-smmu-500
-               - qcom,sc8280xp-smmu-500
--- 
-2.39.2
+> +
+> +  scl-gpios:
+> +    maxItems: 1
+> +
+> +  sda-gpios:
+> +    maxItems: 1
+
+You don't need these two. Anyway not explained in commit msg.
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -70,6 +80,7 @@ examples:
+>    - |
+>      #include <dt-bindings/clock/imx7ulp-clock.h>
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+>  
+>      i2c@40a50000 {
+>          compatible = "fsl,imx7ulp-lpi2c";
+> @@ -78,4 +89,9 @@ examples:
+>          interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+>          clocks = <&clks IMX7ULP_CLK_LPI2C7>,
+>                   <&clks IMX7ULP_CLK_NIC1_BUS_DIV>;
+> +        pinctrl-names = "default","gpio";
+
+Missing space.
+
+> +        pinctrl-0 = <&pinctrl_i2c>;
+> +        pinctrl-1 = <&pinctrl_i2c_recovery>;
+> +        scl-gpios = <&gpio5 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +        sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+>      };
+
+Best regards,
+Krzysztof
 
