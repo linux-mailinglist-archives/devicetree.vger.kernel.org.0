@@ -2,106 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2231717191
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 01:21:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EDEF7171C6
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 01:37:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233595AbjE3XUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 19:20:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49274 "EHLO
+        id S233519AbjE3XhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 19:37:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233759AbjE3XUb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 19:20:31 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF1FE8
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 16:20:28 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 8FF822C0596;
-        Wed, 31 May 2023 11:20:26 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1685488826;
-        bh=pBukmPQ3it++bc32Xj8MsVYzyzLTR0p/rymwPyFTAGs=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=BYjlzXQYNAH+TTZndsi3Omsk4q6jlYGG9kp5bOIZWJZES36RecojF+CndtM+n25gG
-         j0zqQw1itQ5Jo3/yk6rjWLj8uRu+Ul5wdCyXeBzIYHrg9NSntophgYpmJDIYJVBTd0
-         MQkPZze968IAHvgBfqNDoDzacGCWFCwiHAbpbx7wUua/QJphwQwkzcbKsthAFokBMR
-         +O9AJkLitZrU0btKCt+sHwSoiIJTKDqBSotwyqaXhpDeBzqR4IPRXjqh7JLQx595dY
-         rr/QVem53M8zH8X1FY/XkqNgOIK+ERtUisSpVUzvPCUfKT+FyIb79kq1+kthtvJjTt
-         R6D5vsK1bn3Og==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B647684ba0001>; Wed, 31 May 2023 11:20:26 +1200
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.1118.26; Wed, 31 May 2023 11:20:26 +1200
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with Microsoft
- SMTP Server (TLS) id 15.0.1497.48; Wed, 31 May 2023 11:20:26 +1200
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.026; Wed, 31 May 2023 11:20:25 +1200
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
-        "richard@nod.at" <richard@nod.at>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "vadym.kochan@plvision.eu" <vadym.kochan@plvision.eu>
-CC:     "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "enachman@marvell.com" <enachman@marvell.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: mtd: marvell-nand: Convert to YAML DT
- scheme
-Thread-Topic: [PATCH v6 1/2] dt-bindings: mtd: marvell-nand: Convert to YAML
- DT scheme
-Thread-Index: AQHZkpEvY3k2XQch4kKrVAHkTx0+pa9x9QcAgAC3TIA=
-Date:   Tue, 30 May 2023 23:20:25 +0000
-Message-ID: <bc538264-20f5-03e1-a4a6-6f9f076f15eb@alliedtelesis.co.nz>
-References: <20230530005337.3687938-1-chris.packham@alliedtelesis.co.nz>
- <20230530005337.3687938-2-chris.packham@alliedtelesis.co.nz>
- <a1b2caed-b314-59db-ee00-92fc983150f6@linaro.org>
-In-Reply-To: <a1b2caed-b314-59db-ee00-92fc983150f6@linaro.org>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.33.22.30]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <11A8F379D8E7434AA6EEC968A66617F4@atlnz.lc>
-Content-Transfer-Encoding: base64
+        with ESMTP id S231738AbjE3XhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 19:37:00 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87D44B2;
+        Tue, 30 May 2023 16:36:58 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34UN73mK018218;
+        Tue, 30 May 2023 23:36:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=6kSOMu1j39pQtUnfq9gRJPoZ8R6gTWL51zbuMiwHUZc=;
+ b=YufKTgklYdAfS24pXs10jNoAjtVidILVbxpW438JUuSonsMFznCQ7+6ds/1k9/Xt+fJJ
+ 3QM7st8EVKRemnHbrPMqOIn4+0iPuPaH6Gt3yfmyfP2APrqIfDkvz6vrrxvL4p+w+CGr
+ f/fO5JA1bGOX/i0eIKwkIN3lsDmoGNlRcUzJN8ZjKvJ2MkynODhzQycj+3XVAlO/6VZD
+ 2rY1lgyqJv4zN219IbTbxqnKrI2/Q/wdT+A+/Vr9n0SW+AS0wZjJlPXCBBPBrS7gxIK/
+ 20sjLzD9OjO9TA2/VSbA6F5F9g0rPYejs3OdeVLBKBgPxE/4Sm5DstX6NVeZYkwgmmDW jg== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qw8v4tbfm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 23:36:50 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34UNanjR029535
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 23:36:49 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Tue, 30 May 2023 16:36:49 -0700
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+CC:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/3] soc: qcom: rmtfs: Support dynamic allocation
+Date:   Tue, 30 May 2023 16:36:40 -0700
+Message-ID: <20230530233643.4044823-1-quic_bjorande@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=cLieTWWN c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=P0xRbXHiH_UA:10 a=jWhIqavZLoxoapoUxmoA:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: -fxLBcLwygHTt6HOiba3DYige1w_MDx5
+X-Proofpoint-GUID: -fxLBcLwygHTt6HOiba3DYige1w_MDx5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-30_17,2023-05-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ impostorscore=0 spamscore=0 phishscore=0 malwarescore=0 bulkscore=0
+ adultscore=0 mlxscore=0 mlxlogscore=814 priorityscore=1501 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305300193
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMzEvMDUvMjMgMDA6MjQsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+PiArDQo+PiAr
-cHJvcGVydGllczoNCj4+ICsgIGNvbXBhdGlibGU6DQo+PiArICAgIG9uZU9mOg0KPj4gKyAgICAg
-IC0gaXRlbXM6DQo+PiArICAgICAgICAgIC0gY29uc3Q6IG1hcnZlbGwsYXJtYWRhLThrLW5hbmQt
-Y29udHJvbGxlcg0KPj4gKyAgICAgICAgICAtIGNvbnN0OiBtYXJ2ZWxsLGFybWFkYTM3MC1uYW5k
-LWNvbnRyb2xsZXINCj4+ICsgICAgICAtIGVudW06DQo+PiArICAgICAgICAgIC0gbWFydmVsbCxh
-cm1hZGEzNzAtbmFuZC1jb250cm9sbGVyDQo+PiArICAgICAgICAgIC0gbWFydmVsbCxweGEzeHgt
-bmFuZC1jb250cm9sbGVyDQo+IFlvdSBtaXNzIGhlcmUgZGVwcmVjYXRlZCBjb21wYXRpYmxlcywg
-d2hpY2ggYXJlIEJUVyBzdGlsbCB1c2VkLiBEb24ndA0KPiBkcm9wIHByb3BlcnRpZXMgYW5kIGNv
-bXBhdGlibGVzIGR1cmluZyBjb252ZXJzaW9uLg0KSXMgdGhlcmUgYW55IHdheSB0byBpbmRpY2F0
-ZSB0aGF0IGEgY29tcGF0aWJsZSB2YWx1ZSBpcyBkZXByZWNhdGVkPyBJIA0Ka25vdyBob3cgdG8g
-bWFyayBhIHByb3BlcnR5IGFzIGRlcHJlY2F0ZWQgYnV0IGhvdyBkbyBJIGluZGljYXRlIHRoaXMg
-Zm9yIA0Kc3BlY2lmaWMgY29tcGF0aWJsZSB2YWx1ZXM/
+Some platforms have laxed requirements on the placement of the rmtfs
+memory region, introduce support for guard pages to allow the DeviceTree
+author to rely on the OS/Linux for placement of the region.
+
+Bjorn Andersson (3):
+  dt-bindings: reserved-memory: rmtfs: Allow guard pages
+  soc: qcom: rmtfs: Support discarding guard pages
+  soc: qcom: rtmfs: Handle reserved-memory allocation issues
+
+ .../bindings/reserved-memory/qcom,rmtfs-mem.yaml     |  7 +++++++
+ drivers/soc/qcom/rmtfs_mem.c                         | 12 +++++++++++-
+ 2 files changed, 18 insertions(+), 1 deletion(-)
+
+-- 
+2.25.1
+
