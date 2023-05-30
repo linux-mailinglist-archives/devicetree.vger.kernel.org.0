@@ -2,71 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F085716472
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:40:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1E34716488
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:42:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232385AbjE3Ok2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 10:40:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49552 "EHLO
+        id S230446AbjE3Ol6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 10:41:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232001AbjE3OkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:40:25 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18E73D9
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:40:23 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-973f8dbcc02so467251466b.3
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:40:23 -0700 (PDT)
+        with ESMTP id S230415AbjE3Ol6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:41:58 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD969C
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:41:56 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9707313e32eso880956266b.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:41:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685457621; x=1688049621;
+        d=linaro.org; s=google; t=1685457715; x=1688049715;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xe6HK9Kb35n4rfCfNWtBuecD+uDUu7lqn2KbidhEueY=;
-        b=Plsb8fika+/zh+L/6FO0YtwBdpqBVezJiZNWFl1VRMvGSMEhCLKcxWhOraKns36TDF
-         uqdpMfUTfAhBc2/OkGK3xDCAmrng9gbAF9Z7hmf8ywWHpeBSoNUfCuFHIHkFfYhNFY96
-         ABDuCIcXn8HEA/RE6fhbKDjbQ8nMbpvdiA3CqiK8g+MUEm+JgasKDXesrpPNrUftMAI/
-         dARy6NLOm2X2M/OywmrqVCytL4CNoOk2hJAUZ+bjveYeC/zmXcmSU72Jtk6nZ9eeVUlF
-         EnXr6CimLZR8/UXu+JKsudTXoQhrmE9IA7sxOad2ae2PP3I9d1nqxJc7juXUhwEPUd6V
-         sGSQ==
+        bh=HZ55BKQe5vzGyKOw1n9AfdmJAZ4/YqSEcizV/peiawc=;
+        b=dxSdSpU7OGIj4962KNBkgW1KbqPrzRKBhU9L5IBdAAvsWc2bKREhNjl4OUwgp2Yjz6
+         57RGn+qRr5GHadFP7aiwF9FNWndp3Ea+PktAySTiFwxOChucyZGyNnax4I06uYsZEOCG
+         1WYIY/zUsJSKO++7OVVxo5/s96vjvzDibfYVtb8XcOatHLDfxB5ivqFkWiTwX2PoL/42
+         NjSz2sA5OhnD4p1Dq1HTFDzg0NIr/l16awbBKW0tmzU2spc1IX9Jl+orMMhxktBbJl8q
+         fX79Rn48OqxJNi14gOKbkaTHiXsjnF/UH7uX3+D6kOOlepg0hj57LFeRRoS1gbTboW3m
+         AK3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685457621; x=1688049621;
+        d=1e100.net; s=20221208; t=1685457715; x=1688049715;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xe6HK9Kb35n4rfCfNWtBuecD+uDUu7lqn2KbidhEueY=;
-        b=NvtiF3t7Gdo7yoZla2w6ZnJrEftCmO93AMZrjnY8d1w0r9tEU+uCYl6N9mVsRQ/jaE
-         242eIS90jtcVvHkVcO3YQ67yi0Y2sqqj+BHMVyDENuSjtbarobvu9QF7LnvL0Op662OS
-         six2pewE7zjlSb8UjIf7lYOvfFn3ZuQXPPUzIQIp1cwFYOU8/MpCevPU176M45hTZoZz
-         nxaO4qb/p5WdT4HPh5gIlTzvYhfbtfLG4uV6+UTs08KNWvwgOwK3f+eu+yIrEUOaUJCX
-         nfwmR4p/n51+8QrAsS0mWxdhC9M8B+70goMhRDYouEz7MVEkALIXQuvI7RqhbrS1wLWB
-         UvPA==
-X-Gm-Message-State: AC+VfDyBquIUDIx3FI7hprgYS3OvtA1Q4fBVlh0NwBlZHzOB5BP3bXAy
-        3+gBlnykhfNZ4VUT6bJZcO3nGw==
-X-Google-Smtp-Source: ACHHUZ5Ta7S9kKaVrAx84G6ObMgsg+WsFPS9nY9M8aUCa8bxlB3xzf4hXlb1WcyJ4QEO+vwXrQsD+w==
-X-Received: by 2002:a17:907:7d90:b0:94a:8291:a1e3 with SMTP id oz16-20020a1709077d9000b0094a8291a1e3mr2573651ejc.74.1685457621030;
-        Tue, 30 May 2023 07:40:21 -0700 (PDT)
+        bh=HZ55BKQe5vzGyKOw1n9AfdmJAZ4/YqSEcizV/peiawc=;
+        b=BDxTvUtGMl3xUQrW7vVTzf9016PlelsJkRWrCK6TEa63fHw93Y0ry+1FXaHe5B52DW
+         c5fp5W04aEN368VvMVEpdFEx5E89HNGoDpwtc8U5yvXmpfbC/LCFeSimYZI6JlBlPX4V
+         QvLrl/H67rkjNGWfYGskfa2AT9blKzdrqQZS14SsEemXu0XuSYXfglhUPxQokUFiKh2r
+         U4zKGylEZ7peSc0SIiRtJyFl6MwEtkpPZ+1rjsCUd8Q07DKsHLLzZGr5YFyOnzbMUIWc
+         fsNboH2aqDa5XY+Bulbi0jCMuhXWRwSp4p+IjdXs/vCzhsmcgfpzeDWuvnOT9hhUOuJW
+         nMlA==
+X-Gm-Message-State: AC+VfDwzGnRTAu7tJyjLuMLB+9ZXwlZDd4KjqRnA6BBMyEk3x1Oh7LbZ
+        Rx8ObCYSiCV3itALgpQXN/7Gnw==
+X-Google-Smtp-Source: ACHHUZ7BxBV9LFJWkXWwzhZqkFq1FAFu83njQb+13RZvNUWZRprYqN594V5GTTGTi3Y5+Zght+O7Dw==
+X-Received: by 2002:a17:907:97d3:b0:94e:5679:d950 with SMTP id js19-20020a17090797d300b0094e5679d950mr2593647ejc.72.1685457714905;
+        Tue, 30 May 2023 07:41:54 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id d7-20020a170906c20700b0096f55247570sm7412780ejz.0.2023.05.30.07.40.19
+        by smtp.gmail.com with ESMTPSA id fi13-20020a170906da0d00b0096fbc516a93sm7380282ejb.211.2023.05.30.07.41.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 07:40:20 -0700 (PDT)
-Message-ID: <cd4177b1-d418-58fc-9643-d013b7aa7ec4@linaro.org>
-Date:   Tue, 30 May 2023 16:40:18 +0200
+        Tue, 30 May 2023 07:41:54 -0700 (PDT)
+Message-ID: <f0edb172-46e7-e734-d469-dea1925d0a03@linaro.org>
+Date:   Tue, 30 May 2023 16:41:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v4 6/6] ASoC: dt-bindings: Add tas2781 amplifier
+Subject: Re: [PATCH v2 12/12] dt-bindings: fsl-dma: fsl-edma: add edma3
+ compatible string
 Content-Language: en-US
-To:     Shenghao Ding <13916275206@139.com>, broonie@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, lgirdwood@gmail.com, perex@perex.cz,
-        pierre-louis.bossart@linux.intel.com
-Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, x1077012@ti.com, peeyush@ti.com,
-        navada@ti.com, gentuser@gmail.com, Ryan_Chu@wistron.com,
-        Sam_Wu@wistron.com, tiwai@suse.de
-References: <20230527223632.11781-1-13916275206@139.com>
+To:     Frank Li <Frank.li@nxp.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, peng.fan@nxp.com,
+        vkoul@kernel.org, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, imx@lists.linux.dev, joy.zou@nxp.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        shenwei.wang@nxp.com
+References: <20230529200453.1423796-1-Frank.Li@nxp.com>
+ <20230529200453.1423796-13-Frank.Li@nxp.com>
+ <65e7b6df-b83b-2d7c-5093-f5822050827a@linaro.org>
+ <ZHYAuOA6JHv6LYwl@lizhi-Precision-Tower-5810>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230527223632.11781-1-13916275206@139.com>
+In-Reply-To: <ZHYAuOA6JHv6LYwl@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,134 +81,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/05/2023 00:36, Shenghao Ding wrote:
-> Create tas2781.yaml for tas2781 driver.
+On 30/05/2023 15:57, Frank Li wrote:
+> On Tue, May 30, 2023 at 03:08:48PM +0200, Krzysztof Kozlowski wrote:
+>>> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>>> index 5fd8fc604261..eed12687b0c9 100644
+>>> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>>> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>>> @@ -21,6 +21,10 @@ properties:
+>>>        - enum:
+>>>            - fsl,vf610-edma
+>>>            - fsl,imx7ulp-edma
+>>> +          - fsl,imx8qm-edma
+>>> +          - fsl,imx8qm-adma
+>>> +          - fsl,imx93-edma3
+>>> +          - fsl,imx93-edma4
+>>
+>> What are these last two? What is "3" and "4"?
 > 
-> Signed-off-by: Shenghao Ding <13916275206@139.com>
+> imx93 edma have two version, edma3(AHB) and edma4(AXI).
+> There are little bit difference at channel space size.
 > 
-> ---
-> Changes in v4:
->  - remove '\t' in the file
+> +static struct fsl_edma_drvdata imx93_data3 = {
+> +	.version = v3,
+> +	.flags = FSL_EDMA_DRV_HAS_CHMUX | FSL_EDMA_DRV_HAS_DMACLK,
+> +	.chreg_space_sz = 0x10000,
+> +	.chreg_off = 0x10000,
+> +	.setup_irq = fsl_edma3_irq_init,
+> +};
+> +
+> +static struct fsl_edma_drvdata imx93_data4 = {
+> +	.version = v4,
+> +	.flags = FSL_EDMA_DRV_HAS_CHMUX | FSL_EDMA_DRV_HAS_DMACLK,
+> +	.chreg_space_sz = 0x8000,
+> +	.chreg_off = 0x10000,
+> +	.setup_irq = fsl_edma3_irq_init,
 
-Keep the rest of the changelog.
+OK
 
->  Changes to be committed:
-> 	new file:   Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-
-This is useless, drop.
-
-Your mail threading is still broken. This breaks usage with b4, so I
-cannot easily make diffs or apply it easily (e.g. via any message ID). I
-already mentioned this and no improvements at v4.
-
-
-
-> ---
->  .../devicetree/bindings/sound/ti,tas2781.yaml | 88 +++++++++++++++++++
->  1 file changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> +};
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-> new file mode 100644
-> index 000000000000..b3dcd7b18f5d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 - 2023 Texas Instruments Incorporated
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments TAS2781 SmartAMP
-> +
-> +maintainers:
-> +  - Shenghao Ding <shenghao-ding@ti.com>
-> +
-> +description:
-> +  The TAS2781 is a mono, digital input Class-D audio amplifier
-> +  optimized for efficiently driving high peak power into small
-> +  loudspeakers. Integrated an on-chip DSP supports Texas Instruments
-> +  Smart Amp speaker protection algorithm. The integrated speaker
-> +  voltage and current sense provides for real time
-> +  monitoring of loudspeaker behavior.
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  '#address-cells':
-> +    const: 1
-> +  '#size-cells':
-> +    const: 0
+>>
+>>>        - items:
+>>>            - const: fsl,ls1028a-edma
+>>>            - const: fsl,vf610-edma
+>>> @@ -101,6 +105,22 @@ allOf:
+>>>          reg:
+>>>            maxItems: 2
+>>>  
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            anyOf:
+>>> +              - const: fsl,imx8qm-edma
+>>> +              - const: fsl,imx8qm-adma
+>>> +              - const: fsl,imx93-edma3
+>>> +              - const: fsl,imx93-edma4
+>>> +    then:
+>>> +      properties:
+>>> +        reg:
+>>> +          maxItems: 1
+>>> +        interrupts:
+>>> +          maxItems: 64
+>>
+>> That's odd. What about the names? What about minItems? Anyway, this
+>> wasn't tested - you will have failures with dtbs_check.
+> 
+> It passed dtbs_check. interrupt-names is optional property, which
+> will no used after edma v3.
+> 
+> Planned dts look like:
+> 
+> +                       edma1: dma-controller@44000000{
+> +                               compatible = "fsl,imx93-edma3";
+> +                               reg = <0x44000000 0x200000>;
+> +                               #dma-cells = <3>;
+> +                               dma-channels = <31>;
+> +                               interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
+> +                                            <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
+> +                                            <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
+> 						....
 
-Put compatible first. What's more I don't understand why added it. Your
-changelog does not explain it - you wrote there is only one change, fix
-of tab.
-
-> +
-> +  compatible:
-> +    enum:
-> +      - ti,tas2781
-> +
-> +  reg:
-> +    description:
-> +      I2C address, in multiple tas2781s case, all the i2c address
-> +      aggreate as one Audio Device to support multiple audio slots.
-> +    maxItems: 4
-> +    items:
-> +      minimum: 0x38
-> +      maximum: 0x3f
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  ti,broadcast-addr:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Generic I2C address for all the tas2781 devices in
-> +      purpose of I2C broadcast during the multi-device
-> +      writes, useless in mono case or remove this item to
-> +      disable broadcast mode.
-> +
-> +  '#sound-dai-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +   #include <dt-bindings/gpio/gpio.h>
-> +   i2c {
-> +     /* example with quad support, such as tablet or pad device */
-> +     #address-cells = <1>;
-> +     #size-cells = <0>;
-> +     quad: codec@38 {
-> +       compatible = "ti,tas2781";
-> +       reg = < 0x38 /* Audio slot 0 */
-> +               0x3a /* Audio slot 1 */
-> +               0x39 /* Audio slot 2 */
-> +               0x3b /* Audio slot 3 */
-
-These should be four items, right? <0x38>, <0x3a> etc. Drop spaces
-around <>, that's not DTS syntax.
-
-
-> +               >;
-> +       #sound-dai-cells = <1>;
-> +       reset-gpios = < &gpio1 10 GPIO_ACTIVE_HIGH >;
-
-Drop redundant white space.
-
-
+So add here interrupt-names and double check the result... Optional
+means it can appear.
 
 Best regards,
 Krzysztof
