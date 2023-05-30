@@ -2,126 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 012A67168F7
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 18:15:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 928AB71693B
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 18:25:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233363AbjE3QPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 12:15:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32896 "EHLO
+        id S231371AbjE3QZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 12:25:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233527AbjE3QPO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 12:15:14 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E84A123
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 09:14:30 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f603ff9c02so33218885e9.2
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 09:14:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685463268; x=1688055268;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=8E/XALJcqXkwZP5gRRQxOrP1E6GYgsvl1mdzFrPwoHs=;
-        b=j7m5TLNGHYPks/DB5NwpJEaJxEUZvnwmAKhmJYFtmqFeCgOHe8TS50IiAFQL2HcLgq
-         lM7rpvgWzLPAF2PY6LDDwM+Ga+MCp4PWHjlq7IoaCp0mQytpFLLwlWqJW04FEdagUmh1
-         5F5WPw8m/NgBWnJ7Nlj+Y6b95Qp2ZvzXWn9jVPme1qcq6vYBxnWUtONnLfZ/2sDty/i2
-         lI1Mz/lSVzybNmw7d+ig33KtqN4Tmb7TGgXwql9s0F86XgS906kfLIhMAmD3OiOoOZK4
-         9jJb5VblFBNf9mKmyd9FZKKovWKueEBnzstsZUeIWoH9XIp6thMxkGUc7GNJRDbPCIc2
-         JlPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685463268; x=1688055268;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8E/XALJcqXkwZP5gRRQxOrP1E6GYgsvl1mdzFrPwoHs=;
-        b=fSK92ZVYZOPRxWBIJok9kYp3fgDkDbvzLHAVeTJbY9z37fKOjfI1ISfnl+NFsa0ak4
-         9EXv5H9NfFkKkm0qjqEWIwc7qbELJKw5oHv1wAgN7MrZEswTd4bPGfsxscNzXC21HU3l
-         6i/Qxo8Q96i+aMXU6h2XXMx52LudB3KbMjt27Lcx6TOg1dPlDhWmjJU4IZ2AtaG1iGpS
-         RrnP8mj0JXyQNZnNxxuXt+PTswyvgrXsbcdHYzY4UGSNHy9JGXTQXIndXwgQbC3LxlgZ
-         iATvmVVoqIfcjASa7x0fGxEjGVnN0vkWRsto4AsK7PTEUwIbkO7Sb0QuWCM+4WD/rzEQ
-         y0pQ==
-X-Gm-Message-State: AC+VfDzRgtFZXbVV6S5rs7zhxgrNcaL8EA27SHax8tLbTY/DHH428uZ9
-        v1DsCPLOLYm0MjHObQCTRpwl9g==
-X-Google-Smtp-Source: ACHHUZ6WWApvC/NMBiE72EVqrmA/84lk/cV8yiAqD8+jVocG4E4+KuL2cR+91Sc1Wzm58YlqYiG3DQ==
-X-Received: by 2002:a05:600c:2214:b0:3f6:2d8:4823 with SMTP id z20-20020a05600c221400b003f602d84823mr2080466wml.3.1685463268024;
-        Tue, 30 May 2023 09:14:28 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id 8-20020a05600c024800b003f4e8530696sm17729719wmj.46.2023.05.30.09.14.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 09:14:27 -0700 (PDT)
-References: <20230517133309.9874-1-ddrokosov@sberdevices.ru>
-User-agent: mu4e 1.8.13; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        neil.armstrong@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
-        martin.blumenstingl@googlemail.com
-Cc:     jian.hu@amlogic.com, kernel@sberdevices.ru, rockosov@gmail.com,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        with ESMTP id S232036AbjE3QZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 12:25:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CAD3E8;
+        Tue, 30 May 2023 09:25:15 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3F53562CD7;
+        Tue, 30 May 2023 16:25:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E037C433D2;
+        Tue, 30 May 2023 16:24:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685463903;
+        bh=ACMyBw8aBnxiwOn2sGNCuMmXFrRs+KzaneQ9BAek270=;
+        h=From:To:Cc:Subject:Date:From;
+        b=XvWvDIE1Ft9keSbeXqQfOI1P3L00zUknWIQdylE1nrnb9OynfjQ1ln8qoIgm3NPq0
+         SZ73e2WlSLBQxQepWFJEQXhJcKghKsmYT+up9nc1PUj+i/vCthruVK1OAeqGQMn59e
+         DCqaAQOp06jGCvqZpEUTM+TJ3suSTx1eCt+OEyB51GT9rfn8Fac54EFwMtN7SgugPW
+         HGZFi9/ESXdojChhxxgPtL0fU/3o9t7x7QzZnhBbkx9/l/ekSeTzoHEl4/3g0AsQdD
+         PRFE62cp5QePE2869nUSxvHX4PABXveEGgmdWNRDYKc5jsDqi0+lyxFGDW///XMW2C
+         jNI4QCt2zJgzg==
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Georgi Djakov <djakov@kernel.org>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v15 0/6] add Amlogic A1 clock controller drivers
-Date:   Tue, 30 May 2023 18:14:01 +0200
-In-reply-to: <20230517133309.9874-1-ddrokosov@sberdevices.ru>
-Message-ID: <1jilc94x0d.fsf@starbuckisacylon.baylibre.com>
+        linux-usb@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Subject: [PATCH v3 00/15] Introduce the SC8180x devices
+Date:   Tue, 30 May 2023 21:54:39 +0530
+Message-Id: <20230530162454.51708-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This introduces Qualcomm SC8180x SoC which features in Lenovo Flex 5G
+laptop. This also adds support for Primus platform as well as Lenovo Flex 5G
+laptop.
 
-On Wed 17 May 2023 at 16:33, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+Changes in v3:
+ - Split DTS patch into smaller check
+ - checkpatch and dtbs check error fixes
+ - fix comments from Konrad/Krzysztof
 
-> A1 SoC has four clock controllers on the board: PLL, Peripherals, CPU,
-> and Audio. The audio clock controller is different from others, but the
-> rest are very similar from a functional and regmap point of view.
-> This patch series add support for Amlogic A1 PLL and Peripherals clock
-> drivers.
-> It blocks all A1 peripherals mainline support and a couple of patch series,
-> which were already reviewed and acked, but weren't merged due to pending
-> clock controller drivers series, e.g.
-> https://lore.kernel.org/all/20230418111612.19479-1-ddrokosov@sberdevices.ru/
->
-> TODO: CPU and Audio clock controllers are not included in this patch
-> series, it will be sent later. The following clks from these controllers
-> are not supported for now:
-> * Audio clks - vad, mclk_vad, mclk_d, resample_a, locker_in, mclk_b,
->    pdmdclk, pdmsysclk, eqdrc, spdifin, mclk_a, audio2_toaudiotop,
->    audio2_tovad, audio2_toddr_vad, audio2_tdmin_vad, audio2_pdm,
->    audio2_ddr_arb, audio_audiolocker, audio_eqdrc, audio_resamplea,
->    audio_spdifin, audio_toddrb, audio_toddra, audio_frddrb, audio_frddra,
->    audio_tdmoutb, audio_tdmouta, audio_loopbacka, audio_tdminlb,
->    audio_tdminb, audio_tdmina, audio_ddr_arb, mclk_c
->
-> * CPU clks: cpu_fixed_source_sel0, cpu_fixed_source_div0,
->             cpu_fixed_source_sel1, cpu_fixed_source_div1, cpu_clk
->
-> Validation:
-> * to double check all clk flags run below helper script:
->     pushd /sys/kernel/debug/clk
->     for f in *; do
->         if [[ -f "$f/clk_flags" ]]; then
->             flags="$(cat $f/clk_flags | awk '{$1=$1};1' | sed ':a;N;$!ba;s/\n/ | /g')"
->             echo -e "$f: $flags"
->         fi
->     done
->     popd
->
-> * to trace current clks state use '/sys/kernel/debug/clk/clk_dump' node
->   with jq post-processing:
->     $ cat /sys/kernel/debug/clk/clk_dump | jq '.' > clk_dump.json
->
-> * to debug clk rate propagation, compile kernel with the following
->   definition:
->     $ sed -i "s/undef CLOCK_ALLOW_WRITE_DEBUGFS/define CLOCK_ALLOW_WRITE_DEBUGFS/g" drivers/clk/clk.c
->   after that, clk_rate debug node for each clock will be available for
->   write operation
->
+Changes in v2:
+ - Fix the ufs pcie and phy bindings
+ - Lots of error fixes for dtbs_check
+ - Add few more missing compatiables
 
-Applied, Thx
+Bjorn Andersson (3):
+  arm64: dts: qcom: Introduce the SC8180x platform
+  arm64: dts: qcom: sc8180x: Introduce Primus
+  arm64: dts: qcom: sc8180x: Introduce Lenovo Flex 5G
+
+Vinod Koul (12):
+  dt-bindings: PCI: qcom: Fix sc8180x clocks and interrupts
+  dt-bindings: usb: qcom,dwc3: Add SC8180x binding
+  dt-bindings: interconnect: split SC8180x to own schema
+  scsi: ufs: dt-bindings: Add SC8180x binding
+  dt-bindings: qcom,pdc: Add SC8180x compatible
+  arm64: dts: qcom: sc8180x: Add interconnects and lmh
+  arm64: dts: qcom: sc8180x: Add thermal zones
+  arm64: dts: qcom: sc8180x: Add QUPs
+  arm64: dts: qcom: sc8180x: Add PCIe instances
+  arm64: dts: qcom: sc8180x: Add remoteprocs, wifi and usb nodes
+  arm64: dts: qcom: sc8180x: Add display and gpu nodes
+  arm64: dts: qcom: sc8180x: Add pmics
+
+ .../bindings/interconnect/qcom,rpmh.yaml      |   11 -
+ .../interconnect/qcom,sc8180x-rpmh.yaml       |   49 +
+ .../interrupt-controller/qcom,pdc.yaml        |    1 +
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |   29 +-
+ .../devicetree/bindings/ufs/qcom,ufs.yaml     |    2 +
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    |    3 +
+ arch/arm64/boot/dts/qcom/Makefile             |    2 +
+ .../boot/dts/qcom/sc8180x-lenovo-flex-5g.dts  |  583 +++
+ arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi   |  326 ++
+ arch/arm64/boot/dts/qcom/sc8180x-primus.dts   |  706 +++
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi         | 4030 +++++++++++++++++
+ 11 files changed, 5730 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sc8180x-rpmh.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sc8180x-primus.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc8180x.dtsi
+
+-- 
+2.40.1
+
