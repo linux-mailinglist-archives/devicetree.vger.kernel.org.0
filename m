@@ -2,214 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0835B7156A6
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 09:25:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2A877156BC
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 09:29:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230427AbjE3HZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 03:25:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53620 "EHLO
+        id S231191AbjE3H3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 03:29:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231189AbjE3HY7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 03:24:59 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954EFFE
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 00:24:27 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-30ae967ef74so1239335f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 00:24:27 -0700 (PDT)
+        with ESMTP id S230234AbjE3H2e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 03:28:34 -0400
+Received: from mail-vk1-xa35.google.com (mail-vk1-xa35.google.com [IPv6:2607:f8b0:4864:20::a35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E36319B
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 00:28:15 -0700 (PDT)
+Received: by mail-vk1-xa35.google.com with SMTP id 71dfb90a1353d-4571d25d288so2686894e0c.3
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 00:28:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685431466; x=1688023466;
-        h=content-transfer-encoding:in-reply-to:subject:organization
-         :references:cc:to:content-language:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3I07vAEecFzrsjsVE9f8408EJbUoemH3VbQP/pvyq0o=;
-        b=Z4iMUc8I4mYDKowOA3j9094HmVweQiDz9dbUui86MbD/5GfslWwlTRQxJxTRu2j4bb
-         s5DAGSzIai/XfJrBrEJfFWBXKtHt/MQu3yJPGOFDWesqc8/opbVwMqlVcNfsTsGfHvOd
-         7nwJpNR3YqsF7eRcLBt5F7cJlA/pvhNfBdtoULbxV+oMRm2D3kHO5Z587Afxx4nP7Hku
-         gaJDTUKrYCpCDcsjvhWLqP4qQsND+t/4ljUREljBMvKnrPdv/RSpfTce1WvgfXMzip6b
-         NHsXkR5YtCA5bZ6Ph2PoBFjG+m0j4WzyNTvDa4V4iC80158/KFksx53cMa4086asAhuG
-         vdbg==
+        d=chromium.org; s=google; t=1685431694; x=1688023694;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OCgynGq67ALKegDWHOnwBw+W3AAJiRXYWJGBUDwaz7k=;
+        b=Scz+y1v49XF8CbK1f5L6+O5+BLeaDdOqS7gfMFDV9xOAeweo1APxY9t+6TL2fqiDZ1
+         mu3D7zp8dRU2KBgliZVXcrYJC1Zlu3igaZqbKSn/2Zyl+SDgwlJGpcH2eiLpSBCVeB3t
+         ISSeQl/vhsKbxBgS4SOghVBiNPTQa6DXKfu94=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685431466; x=1688023466;
-        h=content-transfer-encoding:in-reply-to:subject:organization
-         :references:cc:to:content-language:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=3I07vAEecFzrsjsVE9f8408EJbUoemH3VbQP/pvyq0o=;
-        b=ZrPIrPkGxk+MmFuclMdZHsFo20lXTA00V+eXpoBCMrypmguZfXUTfq38uUj0/N5fGs
-         eykc6aS7N+4oNxZGkxb3IRhKvYdOlNabHp4MTQv40E29Mqk8JjL3Nuqaed1pNWia5Z6i
-         MY9y0xwzBJsIIOmTLbxlIFsGUaIMa+9UF2A7OdaH/PoaIShDuKGa4gHT8jyVkC7V2YUe
-         VVs+ePqumyx2LVXpNqApSdSJOqW7fSScxGSuH2HTsXW47C7fRiCgXn2pnzpWwUs2WRjs
-         TUo/20oH7CDRh+ORUcENmFnAgYUdmD7VfvFaM78LWs/zrV5tMbcf1BRtTzKmvij6vurm
-         xCEw==
-X-Gm-Message-State: AC+VfDw0n9CUQPKJyQ4T1uxiyCGxz+996FMIX7Gn3n8kc7yZg7UTfik4
-        vD+yiSCfMZVD+52yBohAqbOAeA==
-X-Google-Smtp-Source: ACHHUZ58qsQBRk2dHD/eWA5ULkS1FSwEEPsv+OGKs4QRSpWa05Iabdz4F0KQemDxDPmDQI1jbpsLlQ==
-X-Received: by 2002:a05:6000:371:b0:307:9d2a:fd35 with SMTP id f17-20020a056000037100b003079d2afd35mr823799wrf.53.1685431466027;
-        Tue, 30 May 2023 00:24:26 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4294:2221:d2df:9e87? ([2a01:e0a:982:cbb0:4294:2221:d2df:9e87])
-        by smtp.gmail.com with ESMTPSA id l3-20020a5d4103000000b003047d5b8817sm2219893wrp.80.2023.05.30.00.24.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 00:24:25 -0700 (PDT)
-Message-ID: <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
-Date:   Tue, 30 May 2023 09:24:24 +0200
+        d=1e100.net; s=20221208; t=1685431694; x=1688023694;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OCgynGq67ALKegDWHOnwBw+W3AAJiRXYWJGBUDwaz7k=;
+        b=FQa6enFlqjcBqPeahu5xODRlER8BC9f6LeqybEGxWxTQh+RmfA9sJHizmwW3vPhKri
+         V3O4rELOYTjk32GLIzWvIXeEiolbU44cyig2EPSli3gPV4bbKFAPOBkMaJx+XfGzh7PY
+         q1TwqWEsgnadCcG1ZrdrxfKMBRzde9+8Cjh9X6AAM6FUhgIl1vy4MA1aX6lVIurv5jEn
+         Qv2SGpDeeGDmuHzTkQ+E/iB7MKbDJdUFSERC2uENVYJzuT1BTj46D1BkerJEkwFIaR7e
+         yqq1jCj0x/NBBQDoPaKsZylRGBCpsPM/Ttdlm/8pDPtBjwgsDAF6Jtv9g6+I3cgn0dmu
+         sTlA==
+X-Gm-Message-State: AC+VfDynhxOu3/2c/tKSwFFVr6TPPzbLPqZ7Vid9A8xYcUAGlkr7eLqj
+        FKyaXEcPQqQVaBPlZw4DX2E9R60doYuvbqVWDrxSBA==
+X-Google-Smtp-Source: ACHHUZ6fL/grV0awl9WykFSsFWLwHVGeiIhqkSVSfAVpNCJK6q5E8S64jpA0MWKklZJMO1VR0bmMP3sKJzadwSXq2Ak=
+X-Received: by 2002:a1f:5e8f:0:b0:44f:e6ff:f30e with SMTP id
+ s137-20020a1f5e8f000000b0044fe6fff30emr368533vkb.10.1685431694694; Tue, 30
+ May 2023 00:28:14 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>
-Cc:     Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>
-References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
- <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
- <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
- <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
-Organization: Linaro Developer Services
-Subject: Re: [PATCH RFC 03/10] drm/panel: Add LGD panel driver for Sony Xperia
- XZ3
-In-Reply-To: <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230303013842.23259-1-allen-kh.cheng@mediatek.com> <4ebd1c9f-0460-4436-8e17-0e46e88f4828@notapiano>
+In-Reply-To: <4ebd1c9f-0460-4436-8e17-0e46e88f4828@notapiano>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 30 May 2023 15:28:03 +0800
+Message-ID: <CAGXv+5Hd-8e9QWGQ2MB++xjNH0sRemmQnVnAk=CfE8DBhkYZQw@mail.gmail.com>
+Subject: Re: [RESEND 0/6] media: mediatek: Update video decoder nodes for
+ MT8195 and MT8192
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marijn, Dmitry, Caleb, Jessica,
+On Tue, Apr 4, 2023 at 6:19=E2=80=AFAM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
+>
+> On Fri, Mar 03, 2023 at 09:38:36AM +0800, Allen-KH Cheng wrote:
+> > This series is based on matthias github v6.3-tmp. Since there is a
+> > dependence in the following series, I resend a series for them.
+> >
+> > patchwork.kernel.org/project/linux-mediatek/list/?series=3D702423
+> > patchwork.kernel.org/project/linux-mediatek/list/?series=3D702078
+>
+> Hi Matthias,
+>
+> this series has been completely reviewed and tested for a while, and the
+> bindings patches were already picked up by Hans and are on their way to 6=
+.4 [1].
+> So could you please pick the devicetree patches?
 
-On 29/05/2023 23:11, Marijn Suijten wrote:
-> On 2023-05-22 04:16:20, Dmitry Baryshkov wrote:
-> <snip>
->>> +	if (ctx->dsi->dsc) {
->>
->> dsi->dsc is always set, thus this condition can be dropped.
-> 
-> I want to leave room for possibly running the panel without DSC (at a
-> lower resolution/refresh rate, or at higher power consumption if there
-> is enough BW) by not assigning the pointer, if we get access to panel
-> documentation: probably one of the magic commands sent in this driver
-> controls it but we don't know which.
+Ping again on this series.
 
-I'd like to investigate if DSC should perhaps only be enabled if we
-run non certain platforms/socs ?
+The device tree patches can be picked up.
 
-I mean, we don't know if the controller supports DSC and those particular
-DSC parameters so we should probably start adding something like :
-
-static drm_dsc_config dsc_params_qcom = {}
-
-static const struct of_device_id panel_of_dsc_params[] = {
-	{ .compatible = "qcom,sm8150", , .data = &dsc_params_qcom },
-	{ .compatible = "qcom,sm8250", , .data = &dsc_params_qcom },
-	{ .compatible = "qcom,sm8350", , .data = &dsc_params_qcom },
-	{ .compatible = "qcom,sm8450", , .data = &dsc_params_qcom },
-};
-
-...
-static int sony_akatsuki_lgd_probe(struct mipi_dsi_device *dsi)
-...
-	const struct of_device_id *match;
-
-...
-	match = of_match_node(panel_of_dsc_params, of_root);
-	if (match && match->data) {
-		dsi->dsc = devm_kzalloc(&dsi->dev, sizeof(*dsc), GFP_KERNEL);
-		memcpy(dsi->dsc, match->data, sizeof(*dsc));
-	} else {
-		dev_warn(&dsi->dev, "DSI controller is not marked as supporting DSC\n");
-	}
-...
-}
-
-and probably bail out if it's a DSC only panel.
-
-We could alternatively match on the DSI controller's dsi->host->dev instead of the SoC root compatible.
-
-Neil
-
-> 
->>> +		drm_dsc_pps_payload_pack(&pps, ctx->dsi->dsc);
->>> +
->>> +		ret = mipi_dsi_picture_parameter_set(ctx->dsi, &pps);
->>> +		if (ret < 0) {
->>> +			dev_err(panel->dev, "failed to transmit PPS: %d\n", ret);
->>> +			goto fail;
->>> +		}
->>> +		ret = mipi_dsi_compression_mode(ctx->dsi, true);
->>> +		if (ret < 0) {
->>> +			dev_err(dev, "failed to enable compression mode: %d\n", ret);
->>> +			goto fail;
->>> +		}
->>> +
->>> +		msleep(28);
->>> +	}
->>> +
->>> +	ctx->prepared = true;
->>> +	return 0;
->>> +
->>> +fail:
->>> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
->>> +	regulator_disable(ctx->vddio);
->>> +	return ret;
->>> +}
-> <snip>
->>> +	/* This panel only supports DSC; unconditionally enable it */
-> 
-> On that note I should perhaps reword this.
-> 
->>> +	dsi->dsc = dsc = devm_kzalloc(&dsi->dev, sizeof(*dsc), GFP_KERNEL);
->>
->> I think double assignments are frowned upon.
-> 
-> Ack.
-> 
->>
->>> +	if (!dsc)
->>> +		return -ENOMEM;
->>> +
->>> +	dsc->dsc_version_major = 1;
->>> +	dsc->dsc_version_minor = 1;
->>> +
->>> +	dsc->slice_height = 32;
->>> +	dsc->slice_count = 2;
->>> +	// TODO: Get hdisplay from the mode
->>
->> Would you like to fix the TODO?
-> 
-> I can't unless either migrating to drm_bridge (is that doable?) or
-> expand drm_panel.  That's a larger task, but I don't think this driver
-> is the right place to track that desire.  Should I drop the comment
-> entirely or reword it?
-> 
->>> +	WARN_ON(1440 % dsc->slice_count);
->>> +	dsc->slice_width = 1440 / dsc->slice_count;
-> 
-> <snip>
-> 
-> - Marijn
-
+> Thanks,
+> N=C3=ADcolas
+>
+> [1] https://lore.kernel.org/all/98c48690-631d-1086-9b7c-004c61cc8dbb@xs4a=
+ll.nl/
+>
+> >
+> > Allen-KH Cheng (3):
+> >   media: dt-bindings: media: mediatek: Rename child node names for
+> >     decoder
+> >   media: dt-bindings: media: mediatek: Remove "dma-ranges" property for
+> >     decoder
+> >   arm64: dts: mt8192: Add video-codec nodes
+> >
+> > Yunfei Dong (3):
+> >   media: dt-bindings: media: mediatek: vcodec: adapt to the
+> >     'clock-names' of different platforms
+> >   media: dt-bindings: media: mediatek: vcodec: Change the max reg value
+> >     to 2
+> >   arm64: dts: mt8195: Add video decoder node
+> >
+> >  .../media/mediatek,vcodec-subdev-decoder.yaml | 113 +++++++-----------
+> >  arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  59 +++++++++
+> >  arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  70 +++++++++++
+> >  3 files changed, 173 insertions(+), 69 deletions(-)
+> >
+> > --
+> > 2.18.0
+> >
