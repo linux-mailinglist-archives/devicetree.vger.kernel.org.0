@@ -2,100 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F07371530F
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 03:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 986F9715368
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 04:07:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229820AbjE3BwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 21:52:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34516 "EHLO
+        id S230084AbjE3CHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 22:07:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbjE3BwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 21:52:22 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E37DE5;
-        Mon, 29 May 2023 18:52:17 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 34U1odtwF008068, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 34U1odtwF008068
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-        Tue, 30 May 2023 09:50:39 +0800
-Received: from RTEXMBS02.realtek.com.tw (172.21.6.95) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Tue, 30 May 2023 09:50:52 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXMBS02.realtek.com.tw (172.21.6.95) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Tue, 30 May 2023 09:50:51 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Tue, 30 May 2023 09:50:51 +0800
-From:   =?big5?B?U3RhbmxleSBDaGFuZ1up96h8vHdd?= <stanley_chang@realtek.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     kernel test robot <lkp@intel.com>, Vinod Koul <vkoul@kernel.org>,
-        "Kishon Vijay Abraham I" <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230028AbjE3CG7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 22:06:59 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 321ED1B4;
+        Mon, 29 May 2023 19:06:26 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id B3D2424E271;
+        Tue, 30 May 2023 10:05:39 +0800 (CST)
+Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 30 May
+ 2023 10:05:39 +0800
+Received: from [192.168.120.57] (171.223.208.138) by EXMBX168.cuchost.com
+ (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 30 May
+ 2023 10:05:39 +0800
+Message-ID: <86555925-b8dd-29a8-60cd-5c2ff2c1432a@starfivetech.com>
+Date:   Tue, 30 May 2023 10:05:38 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v1 2/3] spi: cadence-quadspi: Add clock configuration for
+ StarFive JH7110 QSPI
+Content-Language: en-US
+From:   William Qiu <william.qiu@starfivetech.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Ray Chi <raychi@google.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-Subject: RE: [PATCH v2 2/3] phy: realtek: usb: Add driver for the Realtek SoC USB 2.0/3.0 PHY
-Thread-Topic: [PATCH v2 2/3] phy: realtek: usb: Add driver for the Realtek SoC
- USB 2.0/3.0 PHY
-Thread-Index: AQHZjrBQ+6WcWUIIakaazG2RI9C3Xq9wz12AgAFERBA=
-Date:   Tue, 30 May 2023 01:50:51 +0000
-Message-ID: <1dfa6d4026364fb99eeffa548cda0cfc@realtek.com>
-References: <20230525022617.30537-1-stanley_chang@realtek.com>
- <20230525022617.30537-2-stanley_chang@realtek.com>
- <2023052915-repurpose-partner-20a8@gregkh>
-In-Reply-To: <2023052915-repurpose-partner-20a8@gregkh>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXMBS02.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        "Emil Renner Berthing" <kernel@esmil.dk>,
+        Ziv Xu <ziv.xu@starfivetech.com>
+References: <20230526062529.46747-1-william.qiu@starfivetech.com>
+ <20230526062529.46747-3-william.qiu@starfivetech.com>
+ <fecc9d6a-022e-49d9-a452-8a63c409ebf3@sirena.org.uk>
+ <042c560d-1f36-8e97-3796-7423245592f4@starfivetech.com>
+In-Reply-To: <042c560d-1f36-8e97-3796-7423245592f4@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
+ (172.16.6.78)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR3JlZywNCg0KPiBPbiBUaHUsIE1heSAyNSwgMjAyMyBhdCAxMDoyNjowM0FNICswODAwLCBT
-dGFubGV5IENoYW5nIHdyb3RlOg0KPiA+IFJlYWx0ZWsgREhDIChkaWdpdGFsIGhvbWUgY2VudGVy
-KSBSVEQgU29DcyBzdXBwb3J0IERXQzMgWEhDSSBVU0INCj4gPiAyLjAvMy4wIGNvbnRyb2xsZXIu
-IEFkZGVkIHR3byBkcml2ZXJzIHRvIGRyaXZlIHRoZSAgVVNCIDIuMC8zLjAgUEhZDQo+IHRyYW5z
-Y2VpdmVycy4NCj4gPiBGb3IgVVNCIDMuMCB0cmFuc2NlaXZlcnMsIGEgZHJpdmVyIHBoeS1ydGst
-dXNiMyBpcyBwcm92aWRlZC4NCj4gPiBUaGUgZHJpdmVyIHBoeS1ydGstdXNiMiBpcyB1c2VkIHRv
-IHN1cHBvcnQgVVNCIDIuMCB0cmFuc2NlaXZlcnMuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBT
-dGFubGV5IENoYW5nIDxzdGFubGV5X2NoYW5nQHJlYWx0ZWsuY29tPg0KPiA+IFJlcG9ydGVkLWJ5
-OiBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGludGVsLmNvbT4NCj4gDQo+IFRoZSBrZXJuZWwgdGVz
-dCByb2JvdCBkaWQgbm90IHJlcG9ydCB0aGF0IGEgbmV3IGRyaXZlciB3YXMgbmVlZGVkIDooDQo+
-IA0KDQpUaGlzIHJlcG9ydCBpcyBiYXNlZCBvbiB2MSBwYXRjaC4NCmh0dHBzOi8vcGF0Y2h3b3Jr
-Lmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC11c2IvcGF0Y2gvMjAyMzA1MTkwNDU4MjUuMjgzNjkt
-Mi1zdGFubGV5X2NoYW5nQHJlYWx0ZWsuY29tLw0KDQpUaGUgb3JpZ2luYWwgZHJpdmVyIGlzIGF0
-IGRyaXZlcnMvdXNiL3BoeS8NCklmIHRoaXMgcmVwb3J0IGlzIG5vdCBhcHByb3ByaWF0ZSwgSSB3
-aWxsIHJlbW92ZSBpdC4NCg0KVGhhbmtzLA0KU3RhbmxleQ0K
+
+
+On 2023/5/29 14:44, William Qiu wrote:
+> 
+> 
+> On 2023/5/26 23:36, Mark Brown wrote:
+>> On Fri, May 26, 2023 at 02:25:28PM +0800, William Qiu wrote:
+>> 
+>>>  	if (of_device_is_compatible(pdev->dev.of_node, "starfive,jh7110-qspi")) {
+>>> +		qspi_ahb = devm_clk_get(dev, "qspi-ahb");
+>>> +		if (IS_ERR(qspi_ahb)) {
+>>> +			dev_err(dev, "Cannot claim QSPI_AHB clock.\n");
+>>> +			ret = PTR_ERR(qspi_ahb);
+>>> +			return ret;
+>>> +		}
+>>> +
+>>> +		ret = clk_prepare_enable(qspi_ahb);
+>>> +		if (ret) {
+>>> +			dev_err(dev, "Cannot enable QSPI AHB clock.\n");
+>>> +			goto probe_clk_failed;
+>>> +		}
+>> 
+>> Nothing ever disables or unprepares this clock as far as I can tell?
+>> Perhaps also consider using the clk_bulk_ APIs.
+> 
+> I will add in next version.
+> 
+> Thanks for taking time to review this patch series and give useful
+> suggestions.
+> 
+> Best regards,
+> William
+
+Hi Mark,
+
+	Now I want to replace the original devm_clk_get API in the
+driver with devm_clk_bulk_get_all API, which can achieve compatibility,
+but it seems that it is not good for other ip with only one clock, so I
+want to ask about that can I replace it? Or define that inside jh7110?
+
+Best regards,
+William
