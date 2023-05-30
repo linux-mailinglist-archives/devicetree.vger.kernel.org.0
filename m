@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 534EE716197
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:22:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBF9F7161A7
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:24:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232210AbjE3NWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 09:22:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48726 "EHLO
+        id S229698AbjE3NY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 09:24:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230385AbjE3NWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:22:45 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67E02F3
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:22:40 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-96f7377c86aso804028366b.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:22:40 -0700 (PDT)
+        with ESMTP id S229852AbjE3NY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:24:27 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 900B5D9
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:24:19 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-974265a1a40so107867266b.0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:24:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685452959; x=1688044959;
+        d=linaro.org; s=google; t=1685453058; x=1688045058;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/24UxPBfR0sgEFqt/O6F91wFOQpVVQfus6oLh21Y0t0=;
-        b=DmIrPMnOuyRs7Z/Y5MO/vMwytCqh3Klgp3OWWvqhoHTcsmrb22wZ6jSH8ZJpiDIb4F
-         YBoOWQoH4MbBZJjKE7wBFfGyp9OktLQBP5LvaqZKvz3GD8iwxAVrLEj1piYY//GU8NVX
-         9Qf/yEY/7MGUvANSTn+Sit+uQGkM2weDAZq+Z8d7cfLK4qVHMb+B1jewFuS5hUHarEWD
-         vF2do19OHGTWt0Om1/iy6MBEr6fQ6xhN5B6rWsZvSHKfP/go6CxxSGaahZffpDFGpQq6
-         VGFPLziUXUkhcXQWfF9c/S9BT6g3sPZEatKZzH+Wrwn/L3rMFKaJfAX+Cf4oH+CUbHKZ
-         U2WQ==
+        bh=f13+//j5TUSK7f17I23pgVcVd7PAgs1drwm4AW53RHM=;
+        b=zC14MYkKGvdGUnL0dteMGGW+ZVB+LtSJnuFAGxZ/yRtnxaHKhM2+owjsNOlMVqR2zz
+         QCOcAeSXtqxWdqUcu7BgM3t1mkvqUHoCIETz/izhIQ2clL/1yrr6/eyi5eujcIjQSDg5
+         4tFrkX5xraNaG4SScrEQ1WIAO7Kh8kjw+ZqfOouXU7sSFWciqn2J2Bby10nGMuy5/bp+
+         pA9XuUc7Ohz7HKYlwJcwl27Y4yA5dz3pstZ1iQB760AJnYos3PDZi+X57zapbUEl5vcX
+         baySGpbCaL4zCDgIGimm8Zl1I0XQPTCng8O/2rpHAfejd3kOnP6x1vI95UeaYIm0F50x
+         eeDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685452959; x=1688044959;
+        d=1e100.net; s=20221208; t=1685453058; x=1688045058;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/24UxPBfR0sgEFqt/O6F91wFOQpVVQfus6oLh21Y0t0=;
-        b=ImkeCQW+5/o/LzAN3HIXBBacmZ/7Yd0pozXASAMIEobPV6Mqec7URxyjulrKmcUILx
-         HX7uCbalUOvRyqLz+dz/NPiRvXqFb+G4bzf2CWMs3lTm393c55BaB/454c/ry/DoLN4T
-         2ULLwxoT2cgJSvxyeyF3jJ6Q3bBzMzuYSdkhNAMqM42Io5CJIWJXFy3j3rBEpB5t0Yn2
-         HFX691tPt6RYlAJ45Jtryoc+yvilvjp+7GELu/YK7nxTQhJPSesLaBHCGRgniaNEg4rJ
-         MLKckUhyS+SoEo7Kdrb9lbp3kg/oKRMJiaXOzROHgCFuC+LVmabygwFPKodSNNqJ7pLT
-         uKvQ==
-X-Gm-Message-State: AC+VfDzya9HRsG9nNSL6xu45v7+o55f5fK2Vy3o79RF7KT3s+XCZGKx6
-        I0Ytu7P9SkyQJWTWrPwrF0zyfg==
-X-Google-Smtp-Source: ACHHUZ5XdM462+bLqkMo9j64utn6Epv2miFRV1JBcRRR1jwxLR2ZzYktlryXRxelMtBLc0cubiaRrQ==
-X-Received: by 2002:a17:907:7206:b0:974:1eeb:1ab7 with SMTP id dr6-20020a170907720600b009741eeb1ab7mr1891024ejc.24.1685452958920;
-        Tue, 30 May 2023 06:22:38 -0700 (PDT)
+        bh=f13+//j5TUSK7f17I23pgVcVd7PAgs1drwm4AW53RHM=;
+        b=FrCcBItwcd7sO8S0N6sf+kG7SWBh/Ni7emcoXKRCYCGw1cr+Mzw/2zCATFsqD+dM6Z
+         m8wWcuKvGsK6RkojuiSqMtmOz+ZqFzhX5cAKBSvVHd+/QvhmPUIXMm6kov3myA6ns3E4
+         r9Xv7bCXpL3TfuSmVkWCGnBxYUAcDwbrs4q6lI2ryJcAgwNFYWi1NOUZiq6Lla+mZDZq
+         IL4acfFEAwlOGQMU7cusvtRh0RpJ0iuc7paPkDeP4bAGwR3bjiS3rImFT32afk75lmMn
+         d+XrhS6DlT7TQ39zLHDkFz6wP7WLoCpwApERBuxF3fRA060Tbs8z8N6mKdN6oZu0UJ0u
+         nR3A==
+X-Gm-Message-State: AC+VfDzCxpWCfeec7HuZeMMirysNXBHDp+xA60O4YtpsJPu/QNzNm/af
+        mVgz/Tt2X6i77vp5cVCdWFNwKA==
+X-Google-Smtp-Source: ACHHUZ45MHzQv6JgtBdSZV3zezwsX8mKYWid5QGh2Tm9MTh1hRIo/ZlaX97ft0SeEvZoCw6qfiVN2A==
+X-Received: by 2002:a17:906:9753:b0:965:d7c7:24db with SMTP id o19-20020a170906975300b00965d7c724dbmr2131710ejy.32.1685453058029;
+        Tue, 30 May 2023 06:24:18 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id la11-20020a170906ad8b00b00965f5d778e3sm7380051ejb.120.2023.05.30.06.22.37
+        by smtp.gmail.com with ESMTPSA id me21-20020a170906aed500b0096a16e49b0fsm7305207ejb.51.2023.05.30.06.24.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 06:22:38 -0700 (PDT)
-Message-ID: <20845b22-9250-c4fe-376f-d0d600679c8e@linaro.org>
-Date:   Tue, 30 May 2023 15:22:36 +0200
+        Tue, 30 May 2023 06:24:17 -0700 (PDT)
+Message-ID: <3f2eefcc-fb0b-d374-995d-3c0b7e4b4507@linaro.org>
+Date:   Tue, 30 May 2023 15:24:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 3/4] ARM: dts: qcom: msm8960: Add USB node
+Subject: Re: [PATCH v2 4/4] ARM: dts: qcom: Add Samsung Galaxy Express support
 Content-Language: en-US
 To:     Rudraksha Gupta <guptarud@gmail.com>,
         Andy Gross <agross@kernel.org>,
@@ -71,66 +71,178 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org
 References: <20230527040905.stmnoshkdqgiaex6@ripper>
- <20230528001010.47868-4-guptarud@gmail.com>
+ <20230528001010.47868-5-guptarud@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230528001010.47868-4-guptarud@gmail.com>
+In-Reply-To: <20230528001010.47868-5-guptarud@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Thank you for your patch. There is something to discuss/improve.
+
+
+
 On 28/05/2023 02:10, Rudraksha Gupta wrote:
-> Add the required nodes to support USB on the MSM8960 SoC. As it's very
-> similar to the APQ8064 SoC, the nodes are almost identical
-> 
-> Add a label to sleep_clk for the USB node to reference
+> This adds a very basic device tree file for the Samsung Galaxy Express
+
+Please do not use "This commit/patch", but imperative mood. See longer
+explanation here:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+
+> SGH-I437. Currently, the following things work: UART, eMMC, SD Card, and
+> USB.
 > 
 > Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
-
-
-> +		usb1: usb@12500000 {
-> +			compatible = "qcom,ci-hdrc";
-> +			reg = <0x12500000 0x200>,
-> +			      <0x12500200 0x200>;
-> +			interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&gcc USB_HS1_XCVR_CLK>, <&gcc USB_HS1_H_CLK>;
-> +			clock-names = "core", "iface";
-> +			assigned-clocks = <&gcc USB_HS1_XCVR_CLK>;
-> +			assigned-clock-rates = <60000000>;
-> +			resets = <&gcc USB_HS1_RESET>;
-> +			reset-names = "core";
-> +			phy_type = "ulpi";
-> +			ahb-burst-config = <0>;
-> +			phys = <&usb_hs1_phy>;
-> +			phy-names = "usb-phy";
-> +			status = "disabled";
-
-status is the last
-
-> +			#reset-cells = <1>;
+> ---
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../dts/qcom-msm8960-samsung-expressatt.dts   | 334 ++++++++++++++++++
+>  2 files changed, 335 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 59829fc90315..12c90f263142 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1081,6 +1081,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+>  	qcom-msm8916-samsung-grandmax.dtb \
+>  	qcom-msm8916-samsung-serranove.dtb \
+>  	qcom-msm8960-cdp.dtb \
+> +	qcom-msm8960-samsung-expressatt.dtb \
+>  	qcom-msm8974-lge-nexus5-hammerhead.dtb \
+>  	qcom-msm8974-sony-xperia-rhine-amami.dtb \
+>  	qcom-msm8974-sony-xperia-rhine-honami.dtb \
+> diff --git a/arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts b/arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
+> new file mode 100644
+> index 000000000000..a1ee9c272558
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
+> @@ -0,0 +1,334 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +#include <dt-bindings/input/input.h>
 > +
-> +			ulpi {
-> +				usb_hs1_phy: phy {
-> +					compatible = "qcom,usb-hs-phy-msm8960",
-> +						     "qcom,usb-hs-phy";
-> +					clocks = <&sleep_clk>, <&cxo_board>;
-> +					clock-names = "sleep", "ref";
-> +					resets = <&usb1 0>;
-> +					reset-names = "por";
-> +					#phy-cells = <0>;
-> +				};
-> +			};
+> +#include "qcom-msm8960.dtsi"
+> +#include <dt-bindings/reset/qcom,gcc-msm8960.h>
+> +
+> +/ {
+> +	model = "Samsung Galaxy Express SGH-I437";
+> +	compatible = "samsung,expressatt", "qcom,msm8960";
+> +	chassis-type = "handset";
+> +
+> +	aliases {
+> +		serial0 = &gsbi5_serial;
+> +		mmc0 = &sdcc1; /* SDCC1 eMMC slot */
+> +		mmc1 = &sdcc3; /* SDCC3 SD card slot */
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +};
+> +
+> +&gsbi5 {
+> +	qcom,mode = <GSBI_PROT_I2C_UART>;
+> +	status = "okay";
+> +};
+> +
+> +&gsbi5_serial {
+> +	status = "okay";
+> +};
+> +
+> +&sdcc1 {
+> +	vmmc-supply = <&pm8921_l5>;
+> +	status = "okay";
+> +};
+> +
+> +&sdcc3 {
+> +	vmmc-supply = <&pm8921_l6>;
+> +	vqmmc-supply = <&pm8921_l7>;
+> +	status = "okay";
+> +};
+> +
+> +&gsbi1 {
+> +	qcom,mode = <GSBI_PROT_SPI>;
+> +	pinctrl-0 = <&spi1_default>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +};
+> +
+> +&gsbi1_spi {
+> +	status = "okay";
+> +};
+> +
+> +&msmgpio {
+> +	spi1_default: spi1_default {
+
+No underscores in node names, missing proper suffix.
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+> +		mux {
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+> +			pins = "gpio6", "gpio7", "gpio9";
+> +			function = "gsbi1";
 > +		};
 > +
+> +		mosi {
 
-Don't add stray blank lines.
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+> +			pins = "gpio6";
+> +			drive-strength = <12>;
+> +			bias-disable;
+> +		};
+> +
+> +		miso {
+> +			pins = "gpio7";
+> +			drive-strength = <12>;
+> +			bias-disable;
+> +		};
+> +
+> +		cs {
+> +			pins = "gpio8";
+> +			drive-strength = <12>;
+> +			bias-disable;
+> +			output-low;
+> +		};
+> +
+> +		clk {
+> +			pins = "gpio9";
+> +			drive-strength = <12>;
+> +			bias-disable;
+> +		};
+> +	};
+> +};
+> +
+> +
+
+One blank line, not two.
+
+...
+
+> +&usb1 {
+> +	dr_mode = "otg";
+> +	status = "okay";
+> +};
+> +
+
+No improvements here.
 
 Best regards,
 Krzysztof
