@@ -2,143 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAD92716B64
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1A81716B80
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:47:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231591AbjE3Rn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 13:43:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37962 "EHLO
+        id S230329AbjE3RrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 13:47:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229866AbjE3Rn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:43:56 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEDC7B2;
-        Tue, 30 May 2023 10:43:54 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34UEUMvM029742;
-        Tue, 30 May 2023 17:43:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=yWUsg6QimbYul7pErz2NZHFb7ycHxa+A6W4lnRDWMD0=;
- b=PlJVIEzp1Ic5WZU6rZLupxqcPDsUkDjWVm22HAR4HNFiXF8tvSvk98ukSs3+0FMFgUSC
- RX3maRACZoHkpGB+IBU3oGZjZ4I/lA7+ntKZDu4qpV9RZAuouJdZEGZ9xQdYI3iCA2Wj
- grgJpZ6dka7O3UouxS4nH5hjjfx0W+Quuuk8EgOoVEwm0DDJq4iLZrwjVlpnLfrBuJsn
- DronrZZ2b6etPEVyjF9gY+S6QkgEfdGCfBWFpcEsH1JAA4+Veg8FC7OnpzuxKhkfVb7E
- 3jlLZ4BahOtfp6S7n6BljZYwzygZWVcUMwKM/rYbkVikaW/+yrzr7HD/Irfr/sdCiVJV NQ== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qwa34hn2r-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 17:43:45 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34UHhj1W030400
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 17:43:45 GMT
-Received: from [10.71.110.193] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 30 May
- 2023 10:43:44 -0700
-Message-ID: <a5b7d094-3e2a-f5e3-0c1e-90e95a3b7715@quicinc.com>
-Date:   Tue, 30 May 2023 10:43:44 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/2] drm/panel: Add driver for Visionox r66451 panel
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-CC:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        <devicetree@vger.kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        with ESMTP id S230096AbjE3RrP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:47:15 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7E9BB2;
+        Tue, 30 May 2023 10:47:14 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-64d3fdcadb8so3519792b3a.3;
+        Tue, 30 May 2023 10:47:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685468834; x=1688060834;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4KFcanc4CjzN6hzpjon4X1hruFFYHDR7ugE4zm99DHQ=;
+        b=OdR4Y7H6Nx7sBNTAd11PEkft3yN3efyKaIhV51v9ftLHVjNGbfszMwZosHkg5dbvth
+         fGKbqJWOkQEJBu9OgQv5/ubfry9JCPiWIKt6agjG7Z9uG13BkYg/lmLuPtIG+hdVAG/t
+         WztyPKjFqolTIx3oqTGSy0hNZ+bgyO77i/EWyvAzYxdfOPWR07on947GOAxT3K1cYvcb
+         dRauGNu4twfMxT+IxF3YuBxl3FxAjvRZnR2zhmO1CoAm7Y/bEdSRRZJFIh55JuuGY2HO
+         NLZFONHUXgPe1Yd+JHK7+pyUnZAn8kTI1QC+L6ulzm5YhZyWROjecxT8gFsQvLpmTQwL
+         jOxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685468834; x=1688060834;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4KFcanc4CjzN6hzpjon4X1hruFFYHDR7ugE4zm99DHQ=;
+        b=GsncgJ8SLyPCxvYEqb5ODhwfqwF65yYfU9CqayW6mzZEF+g2lCjX9W4opaZrjmQ8so
+         REEWpqvefH1T8s52Dl9Jw1zKx/Poh3JIRC6iiKjgFWs6uTEx8/Z2hnJc/hnyT5foSC7V
+         WIUpykHBpHCHlG75rgzTGn6k0WAGRYmLTwHspw/pTKphrkxPO55RkPwn1ptmH77y14HE
+         6pJFOCpO5IUHilskTy/SxHyNN2vx/wWp3VqPlW7iigNZjqtOIc+ezg/B62U6cesIl19c
+         61Kz+lLvro2UhdPW1+HmWXO6XEyNlDH//Y3i24GVGOU7R5Gdv1lgfSiVwS77XSkTurbv
+         /9+w==
+X-Gm-Message-State: AC+VfDy66KYeCdd3N667pwXkru2LGLsmVDwmk85bilzipetsMjktJJx3
+        qcCmXPV6/P0dRZJpcu77HTI=
+X-Google-Smtp-Source: ACHHUZ5H1oTyoutcnUo3XiPYYzwua35COz5cA3FRa6JU3oW4ADLdTbZES7lj7v/2W8drbB6s7qiXwA==
+X-Received: by 2002:a17:903:24e:b0:1af:ff02:bc19 with SMTP id j14-20020a170903024e00b001afff02bc19mr3552294plh.26.1685468834029;
+        Tue, 30 May 2023 10:47:14 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id b4-20020a170902b60400b001a6f7744a27sm10604029pls.87.2023.05.30.10.47.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 May 2023 10:47:13 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 30 May 2023 10:47:11 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>
-References: <20230516-b4-r66451-panel-driver-v1-0-4210bcbb1649@quicinc.com>
- <20230516-b4-r66451-panel-driver-v1-2-4210bcbb1649@quicinc.com>
- <3cca2809-fa26-f0cf-2ccc-6737d150b43d@linaro.org>
- <kc65fjf5xibvszx4afomzbmfrlld4vcnwfxqxefrupkaxw74fa@j2op4bj2recm>
- <2d9d7454-0e7d-b6f2-93ff-9eca69380e47@quicinc.com>
- <9d50bc4e-e747-47fa-03cf-4dbd33f778dd@quicinc.com>
- <5becf303-8a23-6ace-2379-0a002e9b48f7@linaro.org>
- <6enrlcmw6a2vxwzocsdbcx7yaltzh3kv4w3yiydzx7ylrtdozn@xzwdj35uj7na>
-From:   Jessica Zhang <quic_jesszhan@quicinc.com>
-In-Reply-To: <6enrlcmw6a2vxwzocsdbcx7yaltzh3kv4w3yiydzx7ylrtdozn@xzwdj35uj7na>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: BVHgrVs6HbLQae_tgt4HA7Q0HLncqrP5
-X-Proofpoint-GUID: BVHgrVs6HbLQae_tgt4HA7Q0HLncqrP5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-30_13,2023-05-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 phishscore=0 adultscore=0 bulkscore=0 spamscore=0
- suspectscore=0 impostorscore=0 malwarescore=0 priorityscore=1501
- mlxlogscore=999 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305300141
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Dipen Patel <dipenp@nvidia.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Dilip Kota <eswara.kota@linux.intel.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-spi@vger.kernel.org, timestamp@lists.linux.dev,
+        linux-watchdog@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>
+Subject: Re: [PATCH 7/7] dt-bindings: watchdog: restrict node name suffixes
+Message-ID: <2aaba5d8-37ad-4086-a81d-0d3e78cf5664@roeck-us.net>
+References: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
+ <20230530144851.92059-8-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230530144851.92059-8-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/29/2023 5:09 AM, Marijn Suijten wrote:
-> On 2023-05-26 09:32:45, Neil Armstrong wrote:
-> <snip>
->>>>>>> +static int visionox_r66451_bl_update_status(struct backlight_device *bl)
->>>>>>> +{
->>>>>>> +    struct mipi_dsi_device *dsi = bl_get_data(bl);
->>>>>>> +    u16 brightness = backlight_get_brightness(bl);
->>>>>>> +
->>>>>>> +    return mipi_dsi_dcs_set_display_brightness(dsi, cpu_to_le16(brightness));
->>>>>>
->>>>>> mipi_dsi_dcs_set_display_brightness() already converts the brightness,
->>>>>> so you don't need cpu_to_le16 here.
->>>>>
->>>>> Tread carefully here: we've had the same issue and conversation on our
->>>>> Sony panels where this extra inversion is required.
->>>>> set_display_brightness() sends the bytes as little-endian to the panel
->>>>> (and it even assumes little-endian in get_display_brightness()) but the
->>>>> spec for 16-bit brightness values states that they have to be sent in
->>>>> big-endian.  This is why c9d27c6be518b ("drm/mipi-dsi: Fix byte order of
->>>>> 16-bit DCS set/get brightness") added
->>>>> mipi_dsi_dcs_set_display_brightness_large().
->>>>>
->>>>> Jessica, if you need to have the endian swap here (should be very easy
->>>>> to test with a real panel, but it should be given the max_brightness
->>>>> value being over 8 bits) please switch to the _large() variant.
->>>>
->>>> Got it, thanks for the heads up!
->>>
->>> Hi Marijn,
->>>
->>> Just wanted to update this thread -- I've checked the backlight brightness values in the sysfs and it matches the value being given in the panel driver (255), so I think it should be fine to use *_set_display_brightness() without the _large() variant.
->>
->> Sure, I was also misleaded by you using cpu_to_le16() but as Dmitry said it's already
->> done in mipi_dsi_dcs_set_display_brightness() and a no-op on LE arm64 platforms anyway.
+On Tue, May 30, 2023 at 04:48:51PM +0200, Krzysztof Kozlowski wrote:
+> Make the pattern matching node names a bit stricter to improve DTS
+> consistency.  The pattern is restricted to -N suffixes to decimal
+> numbers.
 > 
-> Yuck, right, it's cpu_to_le16 here and not cpu_to_be16.  @Jessica, can
-> you please remove this misleading conversion?
-> mipi_dsi_dcs_set_display_brightness() takes a native u16, not a specific
-> __le16.
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Hi Marijn,
-
-Acked, will drop the conversion.
-
-Thanks,
-
-Jessica Zhang
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
 > 
-> - Marijn
+> ---
+> 
+> Cc: Tony Lindgren <tony@atomide.com>
+> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/watchdog/watchdog.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/watchdog.yaml b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
+> index 519b48889eb1..f0a584af1223 100644
+> --- a/Documentation/devicetree/bindings/watchdog/watchdog.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
+> @@ -17,11 +17,11 @@ description: |
+>  select:
+>    properties:
+>      $nodename:
+> -      pattern: "^watchdog(@.*|-[0-9a-f])?$"
+> +      pattern: "^watchdog(@.*|-([0-9]|[1-9][0-9]+))?$"
+>  
+>  properties:
+>    $nodename:
+> -    pattern: "^(timer|watchdog)(@.*|-[0-9a-f])?$"
+> +    pattern: "^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$"
+>  
+>    timeout-sec:
+>      description:
+> -- 
+> 2.34.1
+> 
