@@ -2,77 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB4347171C4
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 01:37:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB8B071721D
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 01:56:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231738AbjE3XhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 19:37:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57964 "EHLO
+        id S233691AbjE3XzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 19:55:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233029AbjE3XhA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 19:37:00 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42652107;
-        Tue, 30 May 2023 16:36:59 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34UNGt45003635;
-        Tue, 30 May 2023 23:36:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=qPSZiIgCFceFazehkUzE7aZRdYowN6+xUI+qlLpyzz8=;
- b=QFdikKn19y1Bv0kcIVdpWgiMHW8Ew/gVMOvFOwma0qLXYg5na9LTgY0h67youKn0/fFT
- P7iZxZ3fytdsH3Kg4avX2bc0iwQJ/khyNyG9Ou0XB+k5l61hLA7K2Cmxoz7S+cnCNvgV
- BNn4CIk+Q/WosVgvH3KgkBJfZvMdP/FPjhNhdslUM5hMJ8qqxw6rqTQnUmEz4HiKY6Ue
- 093CRFhkZjBNIX8KzYJn/FnCWXs54fQLuu9ParhBdiV+H14FFLFvHVdFHY5tIBOm514s
- WJX7ieqyBqmayUasmLelU5IZg7TDSL100ERi8Vtb//YuP2AotDQRwhR6he0xBOPnpIzc qA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qw8v4tbfq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 23:36:50 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34UNaooJ014641
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 23:36:50 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Tue, 30 May 2023 16:36:49 -0700
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 3/3] soc: qcom: rtmfs: Handle reserved-memory allocation issues
-Date:   Tue, 30 May 2023 16:36:43 -0700
-Message-ID: <20230530233643.4044823-4-quic_bjorande@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230530233643.4044823-1-quic_bjorande@quicinc.com>
-References: <20230530233643.4044823-1-quic_bjorande@quicinc.com>
+        with ESMTP id S233077AbjE3XzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 19:55:16 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9CF613D
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 16:55:06 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 7F2C82C02A9;
+        Wed, 31 May 2023 11:55:04 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1685490904;
+        bh=rYPBxqvtp0wIOTTAPOhH2Lr7A6SahJQpVsGE6juPgK0=;
+        h=From:To:Cc:Subject:Date:From;
+        b=EWgXHpk7vrpJrTKeDH4PjH3iLwlaWHVhkBm5FczTqI6JH+D0hYOM6jsc/x/1nBpK+
+         nubABTgsVJHkvZqCR2i5QDgcjpN6gIraB5Tfn0EdoUnpVXyLSY0gfSVEHQIM3Far9b
+         MMvDY+mKi3JlLcIV9fpTa8Q5GWYbIGDSL1pbSrvejbJDVarizATsmdD54H8dWCy9Ac
+         U2cDvcdQDNfuWR06AyVgEQN1kE6//VN5rnXBhZj8TNsHuXVp5Tqyb5aOBy+9f7e9iz
+         0GkNZL4k5lPlgH5d3hjL83tanjKzAM3EhSNtN2rRBsLjPsr3/dubChQ5cA+URo/RT/
+         m6m6hv+En3sig==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B64768cd80000>; Wed, 31 May 2023 11:55:04 +1200
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id 5713513EDD5;
+        Wed, 31 May 2023 11:55:04 +1200 (NZST)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 5442E280AFE; Wed, 31 May 2023 11:55:04 +1200 (NZST)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        enachman@marvell.com,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v7 0/4] dt-bindings: mtd: marvell-nand: Add YAML scheme
+Date:   Wed, 31 May 2023 11:54:52 +1200
+Message-Id: <20230530235456.1009082-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 8sC1niehEyTMmkS9m9iHlIm1tTyOaNI9
-X-Proofpoint-GUID: 8sC1niehEyTMmkS9m9iHlIm1tTyOaNI9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-30_17,2023-05-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 spamscore=0 phishscore=0 malwarescore=0 bulkscore=0
- adultscore=0 mlxscore=0 mlxlogscore=823 priorityscore=1501 clxscore=1015
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305300193
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=cLieTWWN c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=P0xRbXHiH_UA:10 a=YqPRQZ2WnNP4KUIKbxQA:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,34 +65,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In the even that Linux failed to allocate the reserved memory range
-specified in the DeviceTree, the size of the reserved_mem will be 0,
-which results in a oops when memory remapping is attempted.
+Add YAML scheme for the Marvell's NAND controller
+to validate it's DT bindings. Old txt file is deleted,
+not included the compatibles and properties which were marked as
+deprecated.
 
-Detect this and report that the memory region was not found instead.
+Also fix node name in cp11x DTSI acording to nand-controller.yaml
 
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
+I've picked up this series to hopefully get it over the line. I think I'v=
+e
+addressed all the feedback from the last round of review.
 
-Changes since v1:
-- New patch
+As of v7 I've re-ordered the patches so the fixups for the device trees c=
+ome
+before the schema so if the series is applied in order the various checke=
+rs
+should pass cleanly.
 
- drivers/soc/qcom/rmtfs_mem.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Chris Packham (2):
+  ARM: dts: mvebu: align MTD partition nodes to dtschema
+  dt-bindings: mtd: marvell-nand: Remove deprecated compatibles
 
-diff --git a/drivers/soc/qcom/rmtfs_mem.c b/drivers/soc/qcom/rmtfs_mem.c
-index 28238974d913..e3a55fa041f9 100644
---- a/drivers/soc/qcom/rmtfs_mem.c
-+++ b/drivers/soc/qcom/rmtfs_mem.c
-@@ -180,7 +180,7 @@ static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
- 	int ret, i;
- 
- 	rmem = of_reserved_mem_lookup(node);
--	if (!rmem) {
-+	if (!rmem || !rmem->size) {
- 		dev_err(&pdev->dev, "failed to acquire memory region\n");
- 		return -EINVAL;
- 	}
--- 
-2.25.1
+Vadym Kochan (2):
+  arm64: dts: marvell: cp11x: Fix nand_controller node name according to
+    YAML
+  dt-bindings: mtd: marvell-nand: Convert to YAML DT scheme
+
+ .../bindings/mtd/marvell,nand-controller.yaml | 218 ++++++++++++++++++
+ .../devicetree/bindings/mtd/marvell-nand.txt  | 126 ----------
+ MAINTAINERS                                   |   1 -
+ arch/arm/boot/dts/armada-385-atl-x530.dts     |  14 +-
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |   2 +-
+ 5 files changed, 226 insertions(+), 135 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/marvell,nand-co=
+ntroller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/marvell-nand.tx=
+t
+
+--=20
+2.40.1
 
