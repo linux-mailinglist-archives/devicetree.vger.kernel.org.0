@@ -2,142 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70F33716A46
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 18:59:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5E96716A83
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:11:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233217AbjE3Q7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 12:59:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36630 "EHLO
+        id S230096AbjE3RLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 13:11:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233188AbjE3Q7Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 12:59:25 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 916EB1BD;
-        Tue, 30 May 2023 09:59:11 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34UGx19P078904;
-        Tue, 30 May 2023 11:59:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1685465941;
-        bh=t0Em9EaCYQjYsxC+cWcjR0XK+W/RjuPjZeE/KBWkhCA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=mYh2AUobVsXvW6UK9RQj9U/456RYLxmArFkg8jb87eHhzJnXA2yH3fSkErbndKKcm
-         QQdYOx3j4Zd+CTiWkxACRpzhcZ5ILApD8Mje1JGJIMTnnJzDMNMHTrd9wG13t8fqrb
-         mJ/FNh7lUMhdu8xgqD6TqypKeQq7r0r6w1W3a+WE=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34UGx1Ph029844
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 May 2023 11:59:01 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
- May 2023 11:59:01 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 30 May 2023 11:59:01 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34UGx1wO036774;
-        Tue, 30 May 2023 11:59:01 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S231690AbjE3RLh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:11:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22C2F114;
+        Tue, 30 May 2023 10:11:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 77090630A7;
+        Tue, 30 May 2023 17:11:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4A19C4339C;
+        Tue, 30 May 2023 17:11:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685466673;
+        bh=N6T7E2wPg+ksFvC4zTDbs7YVrQwcgW2P2fcGeKZjY20=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CFXovLHe2oCMksV5jMa1XRicI4ibzn2nGkPyGMPtRnC/y08Yp1GJGpfGxkDMnPjUD
+         qZYV3T982TxPaZJbNLbkVlsLxnwdoXIr1gMYRSbBBtmyb38QYNiI0vOaHqIPHSYlny
+         f7aHQpTFYKWKABhjocGyZKtjbwZx021cztTm/1LP472sZoPdfbJIF+fQowxr3luvtO
+         vFKZWc7TtHmcGsP8e7FivPGzTjYgomj+DAEhRquGGK4SNsoZI20AB0mYJmViyDGojr
+         OgochEVNk8ky0h6j2vMHGI169NU7lgIPPHKOPvuG8aH5roBKLrYsul0Y30Tl0lzs3E
+         vdCGDlBy+9FxQ==
+Date:   Tue, 30 May 2023 18:11:06 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>, Udit Kumar <u-kumar1@ti.com>,
-        Nitin Yadav <n-yadav@ti.com>, Andrew Davis <afd@ti.com>
-Subject: [PATCH 7/7] arm64: dts: ti: k3-j784s4-mcu-wakeup: Add sa3_secproxy and mcu_sec_proxy
-Date:   Tue, 30 May 2023 11:59:00 -0500
-Message-ID: <20230530165900.47502-8-nm@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230530165900.47502-1-nm@ti.com>
-References: <20230530165900.47502-1-nm@ti.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Dipen Patel <dipenp@nvidia.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dilip Kota <eswara.kota@linux.intel.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-spi@vger.kernel.org, timestamp@lists.linux.dev,
+        linux-watchdog@vger.kernel.org, Tony Lindgren <tony@atomide.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>
+Subject: Re: [PATCH 0/7] dt-bindings: restrict node name suffixes
+Message-ID: <20230530-banister-luxurious-d33a5d289749@spud>
+References: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="3drXRST+roPPVcQt"
+Content-Disposition: inline
+In-Reply-To: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Security Management Subsystem(SMS) has it's own unique secure
-proxy as part of Security Accelerator (SA3) module. This is used
-for communicating with ROM and for special usecases such as HSM
-operations. In addition MCU island has it's own secure proxy for
-usecases involving the MCU micro controllers. These are in addition
-to the one in the main domain DMSS subsystem that is used for general
-purpose communication.
 
-Describe the nodes for use with bootloaders and firmware that require
-these communication paths which uses interrupts to corresponding micro
-controller interrupt controller. Mark the node as disabled since these
-instances do not have interrupts routed to the main processor by
-default for a complete description of the node.
+--3drXRST+roPPVcQt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
-New patch
+On Tue, May 30, 2023 at 04:48:44PM +0200, Krzysztof Kozlowski wrote:
+> Hi,
+>=20
+> Tree-wide cleanup of DTS node name suffixes "-N", e.g. "pwm-5", so we all=
+ow
+> only decimal numbers.  In few cases narrow the pattern to also disallow
+> multiple suffixes, e.g. "pwm-5-5".
 
- .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+I figure there'll be quite a bit of stuff to fix up afterwards?
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-index f04fcb614cbe..0dc957e989fb 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-@@ -39,6 +39,21 @@ chipid@43000014 {
- 		reg = <0x00 0x43000014 0x00 0x4>;
- 	};
- 
-+	secure_proxy_sa3: mailbox@43600000 {
-+		compatible = "ti,am654-secure-proxy";
-+		#mbox-cells = <1>;
-+		reg-names = "target_data", "rt", "scfg";
-+		reg = <0x00 0x43600000 0x00 0x10000>,
-+		      <0x00 0x44880000 0x00 0x20000>,
-+		      <0x00 0x44860000 0x00 0x20000>;
-+		/*
-+		 * Marked Disabled:
-+		 * Node is incomplete as it is meant for bootloaders and
-+		 * firmware on non-MPU processors
-+		 */
-+		status = "disabled";
-+	};
-+
- 	mcu_ram: sram@41c00000 {
- 		compatible = "mmio-sram";
- 		reg = <0x00 0x41c00000 0x00 0x100000>;
-@@ -280,6 +295,21 @@ mcu_udmap: dma-controller@285c0000 {
- 		};
- 	};
- 
-+	secure_proxy_mcu: mailbox@2a480000 {
-+		compatible = "ti,am654-secure-proxy";
-+		#mbox-cells = <1>;
-+		reg-names = "target_data", "rt", "scfg";
-+		reg = <0x00 0x2a480000 0x00 0x80000>,
-+		      <0x00 0x2a380000 0x00 0x80000>,
-+		      <0x00 0x2a400000 0x00 0x80000>;
-+		/*
-+		 * Marked Disabled:
-+		 * Node is incomplete as it is meant for bootloaders and
-+		 * firmware on non-MPU processors
-+		 */
-+		status = "disabled";
-+	};
-+
- 	mcu_cpsw: ethernet@46000000 {
- 		compatible = "ti,j721e-cpsw-nuss";
- 		#address-cells = <2>;
--- 
-2.40.0
+Thanks,
+Conor.
 
+>=20
+> No dependencies, can be applied by individual subsystems.
+>=20
+> Cc: Tony Lindgren <tony@atomide.com>
+> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
+>=20
+> Link: https://lore.kernel.org/all/20221127182232.GA128974-robh@kernel.org/
+>=20
+> Best regards,
+> Krzysztof
+>=20
+> Krzysztof Kozlowski (7):
+>   dt-bindings: phy: intel,combo-phy: restrict node name suffixes
+>   dt-bindings: pwm: restrict node name suffixes
+>   dt-bindings: rtc: restrict node name suffixes
+>   dt-bindings: slimbus: restrict node name suffixes
+>   spi: dt-bindings: restrict node name suffixes
+>   dt-bindings: timestamp: restrict node name suffixes
+>   dt-bindings: watchdog: restrict node name suffixes
+>=20
+>  Documentation/devicetree/bindings/phy/intel,combo-phy.yaml    | 2 +-
+>  Documentation/devicetree/bindings/pwm/pwm.yaml                | 2 +-
+>  Documentation/devicetree/bindings/rtc/rtc.yaml                | 2 +-
+>  Documentation/devicetree/bindings/slimbus/slimbus.yaml        | 2 +-
+>  Documentation/devicetree/bindings/spi/spi-controller.yaml     | 2 +-
+>  .../bindings/timestamp/hardware-timestamps-common.yaml        | 2 +-
+>  Documentation/devicetree/bindings/watchdog/watchdog.yaml      | 4 ++--
+>  7 files changed, 8 insertions(+), 8 deletions(-)
+>=20
+> --=20
+> 2.34.1
+>=20
+
+--3drXRST+roPPVcQt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHYuKgAKCRB4tDGHoIJi
+0nXKAQDamcvDwarCjeG65qUN+fBYxaI+//cyJEQB1SuuBpUTGgEAy0ivPKjui6wX
+d/shbUIhWWfohF1w8yRNuYfQATp+AAQ=
+=EmEg
+-----END PGP SIGNATURE-----
+
+--3drXRST+roPPVcQt--
