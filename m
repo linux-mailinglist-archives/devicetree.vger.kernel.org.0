@@ -2,111 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88590716DCB
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 21:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D12A5716DDE
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 21:45:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231374AbjE3Tm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 15:42:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33718 "EHLO
+        id S231406AbjE3TpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 15:45:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231203AbjE3Tmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 15:42:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842DA10D;
-        Tue, 30 May 2023 12:42:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7E4C2630C9;
-        Tue, 30 May 2023 19:42:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2055C433EF;
-        Tue, 30 May 2023 19:42:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685475733;
-        bh=C/ZCDt9dxkFqBdenxsotP/gQkEWd0TJC2yhywFPrxlU=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=K93thLG6dvDqETIhFEajld3t2N4JSaO+9Xro4KcquZXq1aN8xBW+sXicFMELWgaLN
-         pH7eC573JWpTDi9D957EgYNr4EObZ099H9tylABVhlNPWiginmSVtQalMUMe7LzTSg
-         B+My6btPtnLo87e2Akm6IJ4pUY5VJ7eWcfWTemfBXPUkOKZUb+uzyjw5+5yZdIgVrq
-         x9X35u5rfa/oLL3HeFZY9F3/sj2eOg3MarOTrLMKtgJFhyW3oSNdhqpR80NrGqe2Md
-         0Olhr1iNLouKS4XBHXt74Mw4/0YZWyVOU/f7YG+9R5Zo8OoYcVIdLUP997A/59oh4H
-         54LZ17CBqO6AQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230313AbjE3TpQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 15:45:16 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EBC0C9
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 12:45:14 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f4f89f71b8so3565885e87.3
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 12:45:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685475912; x=1688067912;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KPBl7CVyGi7z3EnEqP8i0l1/Rp7cAONGFh5tesIqeUQ=;
+        b=wtwhG4hRQYmLsKNHr6yPT4PxwE86DRjpaU6CInTtWe3dQ2ORJ8RSSIXgYsctPq6pHo
+         bsA42IlNLmBkPQ/aQjb3MZy6gU3CFsIMPdeyzO5j4eGvo6PIt1UYhJ6JtG0JRkrjaWE/
+         YEPRJBYadY2QY5eqwR5qbTGk/gIuL7tzHKSoHirm3c9fjHaqMXhIqFETJLAJiR0SsQZt
+         UteV3tsJK9l88yPqJbBHlLCTQ/TTfIPTf9CupsZwVq80qHHlujm3eCXZ5+6O7iHp23Qa
+         xsyrUjkluvR9qYqvCyl6wKxZcjBrwKPcJRWYpUkob8CYw6mvzJUXwLLExLRFHhshXXLi
+         ENfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685475912; x=1688067912;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KPBl7CVyGi7z3EnEqP8i0l1/Rp7cAONGFh5tesIqeUQ=;
+        b=BmdnV8ZgIqDF3Ej6BSgnVtWH3XdjYAOHuEp2P8nFxcxmFr2QSSZ9MNX5VWnsuw36bG
+         U662w38Q3KPqx/UO6wYBeXy+9MMmY/TuTC6wiUnBf3ZJoESGNRIn5VbnnUGfXVCwwMBX
+         Ibd7JQ21SoJkTfrIUB9WxbVnCnyAt4tLKrH2GIFZxwBraR/3B6I0CgDLSSy0AF3D8YP2
+         MhydGMOPgaMKwZGO1jNEuEsGaXxjadxWPcMNCCZzmzVUWgBpCjF0zFDV6uVQ2b+qRKV8
+         jAxlz09iojon5Lx22p+osTPQHhbyDCeACMhP5f1NkPAk3LJbbuPPKqpTLpOfo1yyTA/m
+         L5WA==
+X-Gm-Message-State: AC+VfDy9I4jbd0/hJm6uPpiocOP+J3H7JMpkBCtSD3FQiMdj96fqkTvS
+        OQFnLmoI38YLebc/2Fzoq894iQ==
+X-Google-Smtp-Source: ACHHUZ48qmvzgPiAm4eIF9ZN57Y01/3tKsrZOTUz5daAvG3cHRT2GRkwsPORqWGpzNxu5zinnU4l0w==
+X-Received: by 2002:a2e:3101:0:b0:2a8:e642:8cdb with SMTP id x1-20020a2e3101000000b002a8e6428cdbmr1345004ljx.49.1685475912524;
+        Tue, 30 May 2023 12:45:12 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id a24-20020a2e8618000000b002a76c16ad65sm3017684lji.87.2023.05.30.12.45.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 12:45:12 -0700 (PDT)
+Message-ID: <0e9903c0-4669-9298-e0ee-72fc775998c3@linaro.org>
+Date:   Tue, 30 May 2023 21:45:10 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Content-Language: en-US
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Zhu Ning <zhuning0077@gmail.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        David Yang <yangxiaohua@everest-semi.com>,
-        Daniel Drake <drake@endlessm.com>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, kernel@collabora.com
-In-Reply-To: <20230530181140.483936-1-cristian.ciocaltea@collabora.com>
-References: <20230530181140.483936-1-cristian.ciocaltea@collabora.com>
-Subject: Re: (subset) [PATCH v2 0/3] ES8316 audio codec fixes on Rock5B
-Message-Id: <168547572955.1446927.6113726229906083649.b4-ty@kernel.org>
-Date:   Tue, 30 May 2023 20:42:09 +0100
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230530193436.3833889-1-quic_bjorande@quicinc.com>
+ <20230530193436.3833889-3-quic_bjorande@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH 2/2] soc: qcom: rmtfs: Support dynamic placement of region
+In-Reply-To: <20230530193436.3833889-3-quic_bjorande@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-bfdf5
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 May 2023 21:11:37 +0300, Cristian Ciocaltea wrote:
-> This patch series handles a few issues related to the ES8316 audio
-> codec, discovered while doing some testing on the Rock 5B board.
+
+
+On 30.05.2023 21:34, Bjorn Andersson wrote:
+> In some configurations, the exact placement of the rmtfs shared memory
+> region isn't so strict. In the current implementation the author of the
+> DeviceTree source is forced to make up a memory region.
+IIUC the test here would be... "works" / "doesn't", just as if one
+misplaced the fixed region?
+
+Does the downstream sharedmem-uio driver do any additional cryptic
+magic or does it simply rely on the vendor's cma/dma pool settings?
+Can we replicate its behavior to stop hardcoding rmtfs, period?
+
 > 
-> Changes in v2:
->  - Preserved original dB gain range in PATCH 1
->  - Rewrote PATCH 2 conditional statement, per Mark's review
->  - Rebased series onto next-20230530
->  - v1: https://lore.kernel.org/all/20230524074156.147387-1-cristian.ciocaltea@collabora.com/
+> Extend the rmtfs memory driver to relieve the author of this
+> responsibility by introducing support for using dynamic allocation in
+> the driver.
 > 
-> [...]
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 10 ++++
+>  drivers/soc/qcom/rmtfs_mem.c            | 66 +++++++++++++++++++------
+>  2 files changed, 61 insertions(+), 15 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> index d1440b790fa6..e6191b8ba4c6 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> @@ -12,6 +12,8 @@
+>  #include "pm8998.dtsi"
+>  #include "pmi8998.dtsi"
+>  
+> +/delete-node/ &rmtfs_mem;
+> +
+>  / {
+>  	model = "Qualcomm Technologies, Inc. SDM845 MTP";
+>  	compatible = "qcom,sdm845-mtp", "qcom,sdm845";
+> @@ -48,6 +50,14 @@ vreg_s4a_1p8: pm8998-smps4 {
+>  		vin-supply = <&vph_pwr>;
+>  	};
+>  
+> +	rmtfs {
+> +		compatible = "qcom,rmtfs-mem";
+> +
+> +		qcom,alloc-size = <(2*1024*1024)>;
+> +		qcom,client-id = <1>;
+> +		qcom,vmid = <15>;
+> +	};
+This should have been a separate patch.
 
-Applied to
+> +
+>  	thermal-zones {
+>  		xo_thermal: xo-thermal {
+>  			polling-delay-passive = <0>;
+> diff --git a/drivers/soc/qcom/rmtfs_mem.c b/drivers/soc/qcom/rmtfs_mem.c
+> index f83811f51175..5f56ded9f905 100644
+> --- a/drivers/soc/qcom/rmtfs_mem.c
+> +++ b/drivers/soc/qcom/rmtfs_mem.c
+> @@ -3,6 +3,8 @@
+>   * Copyright (c) 2017 Linaro Ltd.
+>   */
+>  
+> +#include "linux/gfp_types.h"
+> +#include "linux/sizes.h"
+<>?
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+>  #include <linux/kernel.h>
+>  #include <linux/cdev.h>
+>  #include <linux/err.h>
+> @@ -168,23 +170,63 @@ static void qcom_rmtfs_mem_release_device(struct device *dev)
+>  	kfree(rmtfs_mem);
+>  }
+>  
+> +static int qcom_rmtfs_acquire_mem(struct device *dev, struct qcom_rmtfs_mem *rmtfs_mem)
+> +{
+> +	struct device_node *node = dev->of_node;
+> +	struct reserved_mem *rmem;
+> +	dma_addr_t dma_addr;
+> +	void *mem;
+> +	u32 size;
+> +	int ret;
+> +
+> +	rmem = of_reserved_mem_lookup(node);
+> +	if (rmem) {
+> +		rmtfs_mem->addr = rmem->base;
+> +		rmtfs_mem->size = rmem->size;
+> +
+> +		rmtfs_mem->base = devm_memremap(&rmtfs_mem->dev, rmtfs_mem->addr,
+> +						rmtfs_mem->size, MEMREMAP_WC);
+> +		if (IS_ERR(rmtfs_mem->base)) {
+> +			dev_err(dev, "failed to remap rmtfs_mem region\n");
+> +			return PTR_ERR(rmtfs_mem->base);
+> +		}
+> +
+> +		return 0;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "qcom,alloc-size", &size);
+> +	if (ret < 0) {
+> +		dev_err(dev, "rmtfs of unknown size\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/*
+> +	 * Ensure that the protected region isn't adjacent to other protected
+> +	 * regions by allocating an empty page on either side.
+> +	 */
+> +	mem = dma_alloc_coherent(dev, size + 2 * SZ_4K, &dma_addr, GFP_KERNEL);
+Should this be made pagesize-independent? Can we even run non-4K kernels on msm?
 
-Thanks!
-
-[1/3] ASoC: es8316: Increment max value for ALC Capture Target Volume control
-      commit: 6f073429037cd79d7311cd8236311c53f5ea8f01
-[2/3] ASoC: es8316: Do not set rate constraints for unsupported MCLKs
-      commit: 60413129ee2b38a80347489270af7f6e1c1de4d0
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Konrad
+> +	if (mem) {
+> +		rmtfs_mem->base = mem + SZ_4K;
+> +		rmtfs_mem->addr = dma_addr + SZ_4K;
+> +		rmtfs_mem->size = size;
+> +
+> +		return 0;
+> +	}
+> +
+> +	dev_err(dev, "unable to allocate memory for rmtfs mem\n");
+> +	return -ENOMEM;
+> +}
+> +
+>  static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
+>  {
+>  	struct device_node *node = pdev->dev.of_node;
+>  	struct qcom_scm_vmperm perms[NUM_MAX_VMIDS + 1];
+> -	struct reserved_mem *rmem;
+>  	struct qcom_rmtfs_mem *rmtfs_mem;
+>  	u32 client_id;
+>  	u32 vmid[NUM_MAX_VMIDS];
+>  	int num_vmids;
+>  	int ret, i;
+>  
+> -	rmem = of_reserved_mem_lookup(node);
+> -	if (!rmem) {
+> -		dev_err(&pdev->dev, "failed to acquire memory region\n");
+> -		return -EINVAL;
+> -	}
+> -
+>  	ret = of_property_read_u32(node, "qcom,client-id", &client_id);
+>  	if (ret) {
+>  		dev_err(&pdev->dev, "failed to parse \"qcom,client-id\"\n");
+> @@ -196,22 +238,16 @@ static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
+>  	if (!rmtfs_mem)
+>  		return -ENOMEM;
+>  
+> -	rmtfs_mem->addr = rmem->base;
+>  	rmtfs_mem->client_id = client_id;
+> -	rmtfs_mem->size = rmem->size;
+>  
+>  	device_initialize(&rmtfs_mem->dev);
+>  	rmtfs_mem->dev.parent = &pdev->dev;
+>  	rmtfs_mem->dev.groups = qcom_rmtfs_mem_groups;
+>  	rmtfs_mem->dev.release = qcom_rmtfs_mem_release_device;
+>  
+> -	rmtfs_mem->base = devm_memremap(&rmtfs_mem->dev, rmtfs_mem->addr,
+> -					rmtfs_mem->size, MEMREMAP_WC);
+> -	if (IS_ERR(rmtfs_mem->base)) {
+> -		dev_err(&pdev->dev, "failed to remap rmtfs_mem region\n");
+> -		ret = PTR_ERR(rmtfs_mem->base);
+> +	ret = qcom_rmtfs_acquire_mem(&pdev->dev, rmtfs_mem);
+> +	if (ret < 0)
+>  		goto put_device;
+> -	}
+>  
+>  	cdev_init(&rmtfs_mem->cdev, &qcom_rmtfs_mem_fops);
+>  	rmtfs_mem->cdev.owner = THIS_MODULE;
