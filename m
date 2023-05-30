@@ -2,116 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 412457160F5
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:02:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16EC67160FA
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:03:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232491AbjE3NCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 09:02:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60910 "EHLO
+        id S232492AbjE3NDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 09:03:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232540AbjE3NCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:02:36 -0400
-X-Greylist: delayed 79971 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 30 May 2023 06:02:32 PDT
-Received: from ms.lwn.net (ms.lwn.net [45.79.88.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EAA4D9;
-        Tue, 30 May 2023 06:02:32 -0700 (PDT)
-Received: from localhost (mdns.lwn.net [45.79.72.68])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ms.lwn.net (Postfix) with ESMTPSA id 165FD5CC;
-        Tue, 30 May 2023 13:02:29 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 165FD5CC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
-        t=1685451751; bh=3SGbXGOQNzzGuMtucvkj8QS43S18mpeT+xTTD9gRr68=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=fQLTe/EMkViY19r/dHDcNbZ14XWOlj9BKD73/NwQgPP+qgOQzu6QiIkelbQwXpj3S
-         H1beUZwWf1ho4h4uRVjJ6ByOHdtCN9zXw+WmuLl8WBA7qTwHe4kUiotqquVeJJmfJX
-         +6Eq/Be3Uxp3vxuzEYYd5StIRsHOfYjbwhu9CU0hAEi6OCbPC4vNAJd0n2j//aOhte
-         cI9FdwrwqPvCXBna/YB7M8kToLOgzWlRA6FBDlaopMDy016wrDP6gmrSaxsaFfqPXh
-         vDf7F3ME9XEFq3oRXMEHBBhQ1RO/pAtlagOuf2LQnfbwYtxtZnhwN6rSYNP7cZhSMk
-         2YGJDg55H+4ug==
-From:   Jonathan Corbet <corbet@lwn.net>
-To:     Conor Dooley <conor.dooley@microchip.com>, soc@kernel.org
-Cc:     conor@kernel.org, conor.dooley@microchip.com,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        olof@lixom.net, palmer@dabbelt.com, robh+dt@kernel.org,
-        arnd@arndb.de
-Subject: Re: [PATCH v2] Documentation/process: add soc maintainer handbook
-In-Reply-To: <20230530-multiple-whooping-ee5706fceb67@wendy>
-References: <20230530-multiple-whooping-ee5706fceb67@wendy>
-Date:   Tue, 30 May 2023 07:02:26 -0600
-Message-ID: <87bki23rbx.fsf@meer.lwn.net>
+        with ESMTP id S232434AbjE3NDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:03:19 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74829103
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:03:13 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-5147f5efeb5so7477942a12.0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:03:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685451792; x=1688043792;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sxSrHcQ+Rfv5WsJBf8E7yyTNyGPqPL0fjVeC2MNErXk=;
+        b=qA4PIGQoDKrsxkHHX+DKsKbUKxUC97JbrgygST95dAvXvCdyG0IzQDXaaZqunaxM0k
+         Uo/aTqlH4B/p0/h/6D9EqHad2J67br3d/6etgDDn7srO1UZaZjwNX26pKArUPBTMYcp+
+         sWcyDfNsDj/gw1TAZKYIE6mjHqOeCsAjRGV9pl025mjYhYaaL2ivr4yUbxxw9WJ+4yOQ
+         w5eCHXims/Vo3twYU39ORtQwxeOkqiWdCxNxtwe2Yh297xKyFE1iQxEse2je5EAEO2Qu
+         XAb8HAf2zYgQitFTyA5w9w9J5EihjdhhA7xq0RezZFYmJitT5iwt4dRiNiCmkR3IiySC
+         7SeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685451792; x=1688043792;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sxSrHcQ+Rfv5WsJBf8E7yyTNyGPqPL0fjVeC2MNErXk=;
+        b=h2bb6/4LKqFeKeP7ioXzDNxzgqvVe5NwmBTEptFsnTqYqLR1XZ8gWG+TxJvUNxe6us
+         VR3vS0E65uDNekLPFkfsNhszClttJAatKBkWFToXAfNEBuYS/BLQrAThd0gyEiuxCTpZ
+         weN75sjpI2dYe4HOs/jfdYwAp1LV/xUu6VCrjB1Qv7yfLHPpW4NOzUzSpLGLnX/Y9/0m
+         DnkOz83hTjQ2ZAD/FSHJ0g6NB5EjU13m5UjkDo35/3sE81bu5jIM4ipvITkHjsMF6pz2
+         k50v6OZoEK9/SzZOjYht9uPHznKgSUK5R/FXOm35XzGy8h4Iq30TffhOEXf+TTJFNG/t
+         fq4g==
+X-Gm-Message-State: AC+VfDzHqPovqZcQ/zUwx/FIEK59yZLqe6+D1nMAIeAuL3KMqo49AUF7
+        IJgpnfr/CXK6mtBlZaZM5nP5VQ==
+X-Google-Smtp-Source: ACHHUZ4YokxW5yBSu8opb+3Wdc9O/FIwR5swnl0lU0efma8tJWTF9gW7M5io/1Q45rU1m21plhKTsg==
+X-Received: by 2002:a17:907:9342:b0:96a:ee54:9f19 with SMTP id bv2-20020a170907934200b0096aee549f19mr2515980ejc.48.1685451791771;
+        Tue, 30 May 2023 06:03:11 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id sa24-20020a170906edb800b0096595cc0810sm7329283ejb.72.2023.05.30.06.03.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 06:03:11 -0700 (PDT)
+Message-ID: <8ea4e54a-56bc-c3a9-f67e-7d2fad4ba09c@linaro.org>
+Date:   Tue, 30 May 2023 15:03:09 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V2 1/4] dt-bindings: nvmem: qfprom: add compatible for few
+ IPQ SoCs
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Kathiravan T <quic_kathirav@quicinc.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+References: <20230526125305.19626-1-quic_kathirav@quicinc.com>
+ <20230526125305.19626-2-quic_kathirav@quicinc.com>
+ <20230530125918.4waqxc4xmnetb5wb@krzk-bin>
+In-Reply-To: <20230530125918.4waqxc4xmnetb5wb@krzk-bin>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Conor Dooley <conor.dooley@microchip.com> writes:
+On 30/05/2023 14:59, Krzysztof Kozlowski wrote:
+> On Fri, 26 May 2023 18:23:02 +0530, Kathiravan T wrote:
+>> Add the QFPROM compatible for IPQ5332, IPQ6018 and IPQ9574
+>>
+>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+>> ---
+>> Changes in V2:
+>> 	- No changes
+>>
+>>  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 3 +++
+>>  1 file changed, 3 insertions(+)
+>>
+> 
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/1786533
+> 
+> 
+> qfprom@1b44000: compatible:0: 'qcom,qcm2290-qfprom' is not one of ['qcom,apq8064-qfprom', 'qcom,apq8084-qfprom', 'qcom,ipq5332-qfprom', 'qcom,ipq6018-qfprom', 'qcom,ipq8064-qfprom', 'qcom,ipq8074-qfprom', 'qcom,ipq9574-qfprom', 'qcom,msm8916-qfprom', 'qcom,msm8974-qfprom', 'qcom,msm8976-qfprom', 'qcom,msm8996-qfprom', 'qcom,msm8998-qfprom', 'qcom,qcs404-qfprom', 'qcom,sc7180-qfprom', 'qcom,sc7280-qfprom', 'qcom,sdm630-qfprom', 'qcom,sdm670-qfprom', 'qcom,sdm845-qfprom', 'qcom,sm6115-qfprom', 'qcom,sm6350-qfprom', 'qcom,sm6375-qfprom', 'qcom,sm8150-qfprom', 'qcom,sm8250-qfprom']
+> 	arch/arm64/boot/dts/qcom/qrb2210-rb1.dtb
 
-> Arnd suggested that adding a maintainer handbook for the SoC "subsystem"
-> would be helpful in trying to bring on board maintainers for the various
-> new platforms cropping up in RISC-V land.
->
-> Add a document briefly describing the role of the SoC subsystem and some
-> basic advice for (new) platform maintainers.
->
-> Suggested-by: Arnd Bergmann <arnd@arndb.de>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Changes in v2:
-> - add Krzysztof's suggested method for avoiding inter-branch
->   dependencies
-> - explicitly mention that tags should be signed
-> - link to the devicetree abi document, rather than trying to explain it
->   here & reword that whole section
-> - fix some typos, capitalisation & unify bullet style
->
-> The devicetree abi doc feels quite out of date at this point, and could
-> probably do with a spring clean - but it also feels like hallowed ground
-> on which one should tread lightly, so I won't go near that til Rob is
-> back.
+Not related, can be ignored.
 
-So, this is a nit, but worth considering...
+Best regards,
+Krzysztof
 
->  Documentation/devicetree/bindings/ABI.rst     |   2 +
->  .../devicetree/bindings/writing-schema.rst    |   2 +
->  .../process/maintainer-handbooks.rst          |   3 +-
->  Documentation/process/maintainer-soc.rst      | 178 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  5 files changed, 185 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/process/maintainer-soc.rst
->
-> diff --git a/Documentation/devicetree/bindings/ABI.rst b/Documentation/devicetree/bindings/ABI.rst
-> index a885713cf184..93ec82f78ae5 100644
-> --- a/Documentation/devicetree/bindings/ABI.rst
-> +++ b/Documentation/devicetree/bindings/ABI.rst
-> @@ -1,5 +1,7 @@
->  .. SPDX-License-Identifier: GPL-2.0
->  
-> +.. _devicetree-abi:
-
-Somehow we've developed this habit of putting labels at the top of each
-file; I really think that they just add clutter and are best left out.
-Without the label, this reference:
-
-> +Perhaps one of the most important things to highlight is that dt-bindings
-> +document the ABI between the devicetree and the kernel. Please see
-> +:ref:`devicetree-abi` more information on the ABI.
-
-...can just be written as "Please see
-Documentation/devicetree/bindings/ABI.rst".  The cross-reference link
-will be generated as expected, and readers of the plain-text docs don't
-have to go grepping to find the reference.
-
-Thanks,
-
-jon
