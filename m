@@ -2,168 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1E34716488
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B73277164A1
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:44:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbjE3Ol6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 10:41:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51120 "EHLO
+        id S231232AbjE3Oob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 10:44:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230415AbjE3Ol6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:41:58 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD969C
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:41:56 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9707313e32eso880956266b.2
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:41:56 -0700 (PDT)
+        with ESMTP id S229999AbjE3Ooa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:44:30 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C64BB0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:44:29 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96fab30d1e1so945733366b.0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:44:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685457715; x=1688049715;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1685457868; x=1688049868;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HZ55BKQe5vzGyKOw1n9AfdmJAZ4/YqSEcizV/peiawc=;
-        b=dxSdSpU7OGIj4962KNBkgW1KbqPrzRKBhU9L5IBdAAvsWc2bKREhNjl4OUwgp2Yjz6
-         57RGn+qRr5GHadFP7aiwF9FNWndp3Ea+PktAySTiFwxOChucyZGyNnax4I06uYsZEOCG
-         1WYIY/zUsJSKO++7OVVxo5/s96vjvzDibfYVtb8XcOatHLDfxB5ivqFkWiTwX2PoL/42
-         NjSz2sA5OhnD4p1Dq1HTFDzg0NIr/l16awbBKW0tmzU2spc1IX9Jl+orMMhxktBbJl8q
-         fX79Rn48OqxJNi14gOKbkaTHiXsjnF/UH7uX3+D6kOOlepg0hj57LFeRRoS1gbTboW3m
-         AK3A==
+        bh=tDgeJNYR1mRc99Zwj6kB5L18o06yCX2/R5yquqZiFxE=;
+        b=s9B2XEAGQnToGrKy96poGs6yBxMIg2mYHKWAVzyLwmGed+drbKC3E4WkNzfMSribiD
+         T4dZCqmg1eM6qB2lYjEIWvjlunTeAdG4MgUb/OCX7Js05KGquKhRl+r+fShDpW07OtWD
+         tC6GsH1gTz8dkeAh7DrmtXStiLql+G+zBo/+fGoXEoOeDdqvcZK3yeJ4KMOrdVoiHFRs
+         Ubxbv0ryCJKqa28BFX6eLF5vJUpFVYZS3/XVdN2e2HR7ZD/i0Xso7l9x5T6qaaGAEEN6
+         nArTdsa56zvCs8SDhzENCq/7xLpsdUF7PdTC3+TxZ4iJrANS0I1jR4fJ1wzcHYAc8kQC
+         FPDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685457715; x=1688049715;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1685457868; x=1688049868;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HZ55BKQe5vzGyKOw1n9AfdmJAZ4/YqSEcizV/peiawc=;
-        b=BDxTvUtGMl3xUQrW7vVTzf9016PlelsJkRWrCK6TEa63fHw93Y0ry+1FXaHe5B52DW
-         c5fp5W04aEN368VvMVEpdFEx5E89HNGoDpwtc8U5yvXmpfbC/LCFeSimYZI6JlBlPX4V
-         QvLrl/H67rkjNGWfYGskfa2AT9blKzdrqQZS14SsEemXu0XuSYXfglhUPxQokUFiKh2r
-         U4zKGylEZ7peSc0SIiRtJyFl6MwEtkpPZ+1rjsCUd8Q07DKsHLLzZGr5YFyOnzbMUIWc
-         fsNboH2aqDa5XY+Bulbi0jCMuhXWRwSp4p+IjdXs/vCzhsmcgfpzeDWuvnOT9hhUOuJW
-         nMlA==
-X-Gm-Message-State: AC+VfDwzGnRTAu7tJyjLuMLB+9ZXwlZDd4KjqRnA6BBMyEk3x1Oh7LbZ
-        Rx8ObCYSiCV3itALgpQXN/7Gnw==
-X-Google-Smtp-Source: ACHHUZ7BxBV9LFJWkXWwzhZqkFq1FAFu83njQb+13RZvNUWZRprYqN594V5GTTGTi3Y5+Zght+O7Dw==
-X-Received: by 2002:a17:907:97d3:b0:94e:5679:d950 with SMTP id js19-20020a17090797d300b0094e5679d950mr2593647ejc.72.1685457714905;
-        Tue, 30 May 2023 07:41:54 -0700 (PDT)
+        bh=tDgeJNYR1mRc99Zwj6kB5L18o06yCX2/R5yquqZiFxE=;
+        b=XayZlh2vIzKifes/n/uEn4JKgVOP1ihocCWycw/AuDfN1vLmJXTg9eU/Kugl8MkOcm
+         Wi3xSttbPDbZQYsjuA8uDKSOBe1cw3a+BwqqxLU2Ad8NvGFr4g/vRzd4LkZbcBbDM4W9
+         v9QrKbUN8TtHRqWiu3pxuIESWb6MA5gs/phOUmxZBg29HSEecIo4owCS3g6CYossGBzq
+         Ce1i9NEbi/+EPa5U3Ene46obW+3XVuSFGyc67VJnLpOixx9W6bvAR9HWeHqF3a+l//ev
+         CcnWcf67QNtTaD6DnsBuq+zTxbySwOOejCr65R7E8FqThikYtJ3ctB6msU76GswOGthR
+         +1EQ==
+X-Gm-Message-State: AC+VfDw3rmHndaShRSltihPkGw2c+Xro2NPce0ctlkUZJsu9MneEs8FK
+        JHDihvSoeuMQEgT6/h+X/oiYEoyS3t77QkbdHxrStg==
+X-Google-Smtp-Source: ACHHUZ4T5PHcFnaPx8v9mzg3bIbkkS6HlPhAMlCvITGaIHWTSg5GtmcwkVpaT4RExgTL+ftHPEXFZA==
+X-Received: by 2002:a17:907:7da0:b0:96f:b40a:c85f with SMTP id oz32-20020a1709077da000b0096fb40ac85fmr10682964ejc.23.1685457867760;
+        Tue, 30 May 2023 07:44:27 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id fi13-20020a170906da0d00b0096fbc516a93sm7380282ejb.211.2023.05.30.07.41.53
+        by smtp.gmail.com with ESMTPSA id b16-20020a170906151000b0096b15e4ffcesm7415705ejd.85.2023.05.30.07.44.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 07:41:54 -0700 (PDT)
-Message-ID: <f0edb172-46e7-e734-d469-dea1925d0a03@linaro.org>
-Date:   Tue, 30 May 2023 16:41:52 +0200
+        Tue, 30 May 2023 07:44:27 -0700 (PDT)
+Message-ID: <fdfc568e-703e-6e74-953e-742c00f0b5fe@linaro.org>
+Date:   Tue, 30 May 2023 16:44:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 12/12] dt-bindings: fsl-dma: fsl-edma: add edma3
- compatible string
+Subject: Re: [PATCH] arm64: dts: qcom: ipq6018: correct the qrng node name
 Content-Language: en-US
-To:     Frank Li <Frank.li@nxp.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, peng.fan@nxp.com,
-        vkoul@kernel.org, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org, imx@lists.linux.dev, joy.zou@nxp.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        shenwei.wang@nxp.com
-References: <20230529200453.1423796-1-Frank.Li@nxp.com>
- <20230529200453.1423796-13-Frank.Li@nxp.com>
- <65e7b6df-b83b-2d7c-5093-f5822050827a@linaro.org>
- <ZHYAuOA6JHv6LYwl@lizhi-Precision-Tower-5810>
+To:     Kathiravan T <quic_kathirav@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230526161138.25497-1-quic_kathirav@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZHYAuOA6JHv6LYwl@lizhi-Precision-Tower-5810>
+In-Reply-To: <20230526161138.25497-1-quic_kathirav@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2023 15:57, Frank Li wrote:
-> On Tue, May 30, 2023 at 03:08:48PM +0200, Krzysztof Kozlowski wrote:
->>> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>> index 5fd8fc604261..eed12687b0c9 100644
->>> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>> @@ -21,6 +21,10 @@ properties:
->>>        - enum:
->>>            - fsl,vf610-edma
->>>            - fsl,imx7ulp-edma
->>> +          - fsl,imx8qm-edma
->>> +          - fsl,imx8qm-adma
->>> +          - fsl,imx93-edma3
->>> +          - fsl,imx93-edma4
->>
->> What are these last two? What is "3" and "4"?
+On 26/05/2023 18:11, Kathiravan T wrote:
+> qrng node address is mentioned incorrectly. Lets fix it.
 > 
-> imx93 edma have two version, edma3(AHB) and edma4(AXI).
-> There are little bit difference at channel space size.
+> Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> ---
+> Note: Only compilation and dtbs_check is checked. Also dependent on the
+> below series, no functional dependencies
+> https://lore.kernel.org/linux-arm-msm/20230526125305.19626-1-quic_kathirav@quicinc.com/T/#t
 > 
-> +static struct fsl_edma_drvdata imx93_data3 = {
-> +	.version = v3,
-> +	.flags = FSL_EDMA_DRV_HAS_CHMUX | FSL_EDMA_DRV_HAS_DMACLK,
-> +	.chreg_space_sz = 0x10000,
-> +	.chreg_off = 0x10000,
-> +	.setup_irq = fsl_edma3_irq_init,
-> +};
-> +
-> +static struct fsl_edma_drvdata imx93_data4 = {
-> +	.version = v4,
-> +	.flags = FSL_EDMA_DRV_HAS_CHMUX | FSL_EDMA_DRV_HAS_DMACLK,
-> +	.chreg_space_sz = 0x8000,
-> +	.chreg_off = 0x10000,
-> +	.setup_irq = fsl_edma3_irq_init,
+>  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> index 0f6d6c6daed2..5d2cc0caf5a1 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> @@ -309,7 +309,7 @@
+>  			#size-cells = <1>;
+>  		};
+>  
+> -		prng: qrng@e1000 {
+> +		prng: qrng@e3000 {
 
-OK
+This was fixed some time ago:
 
-> +};
-> 
->>
->>>        - items:
->>>            - const: fsl,ls1028a-edma
->>>            - const: fsl,vf610-edma
->>> @@ -101,6 +105,22 @@ allOf:
->>>          reg:
->>>            maxItems: 2
->>>  
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          contains:
->>> +            anyOf:
->>> +              - const: fsl,imx8qm-edma
->>> +              - const: fsl,imx8qm-adma
->>> +              - const: fsl,imx93-edma3
->>> +              - const: fsl,imx93-edma4
->>> +    then:
->>> +      properties:
->>> +        reg:
->>> +          maxItems: 1
->>> +        interrupts:
->>> +          maxItems: 64
->>
->> That's odd. What about the names? What about minItems? Anyway, this
->> wasn't tested - you will have failures with dtbs_check.
-> 
-> It passed dtbs_check. interrupt-names is optional property, which
-> will no used after edma v3.
-> 
-> Planned dts look like:
-> 
-> +                       edma1: dma-controller@44000000{
-> +                               compatible = "fsl,imx93-edma3";
-> +                               reg = <0x44000000 0x200000>;
-> +                               #dma-cells = <3>;
-> +                               dma-channels = <31>;
-> +                               interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
-> +                                            <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
-> +                                            <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-> 						....
-
-So add here interrupt-names and double check the result... Optional
-means it can appear.
+https://lore.kernel.org/all/20230419211856.79332-1-krzysztof.kozlowski@linaro.org/
 
 Best regards,
 Krzysztof
