@@ -2,152 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19A78716DB3
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 21:37:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88590716DCB
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 21:42:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233003AbjE3Thz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 15:37:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59310 "EHLO
+        id S231374AbjE3Tm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 15:42:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232977AbjE3Thw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 15:37:52 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 446EB115
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 12:37:50 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2af316b4515so50833471fa.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 12:37:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685475468; x=1688067468;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s4TpePdBcmf3Xw/fPvZUtcZlrHBAqUXKquGcCNg+8W4=;
-        b=dwqIw6MQH1tUrPDRdlGNfOTTTS4X4TGXQBY6HjdV5Kg/WHQzZi2rk7Z0ZKBU4R88To
-         87Gq0HTgwpKhiHITsrTyshd5kxb7AYHjQsTvJCVi4So0J1/KZ+WEV72qAqLGwkIf9tcA
-         j1BBmL89W2jhfWoI6aYtO4BDyJcFk8uOWSWT/CkDscbcr6PFBhwJHjTwvr1nQa25nrRM
-         SVg+N5WOIlmJwPm481pMcfUyC5hjhedozkJhHP7W4lIza4JckFXy+ZYyVrKPedcOJvyO
-         q1608se3L2Em3vQcjSv7Bw3clbM48BtRCN4MTtrYM8E8Xs5f3A5OF6Q6UIwX5Ud7Ey2A
-         4UxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685475468; x=1688067468;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s4TpePdBcmf3Xw/fPvZUtcZlrHBAqUXKquGcCNg+8W4=;
-        b=VXamcM471UqoviLDJSRKmX82N9f0zwYBZe0JQJvvHbTBUwtD141MNoDA8TcSU4n4NI
-         NqyiO2T/XS20cXJ0B7QXVO1kgw4oufzZE514nCqJww6vZGDQseef6HZoWkmGe4Y8v5dv
-         vWjr4jvxEoMvniN7GNlTcVg+2jgNb2izVaEq/oAgC/OBACF/C+cWGzEE1HgcSsNGBW7f
-         asE1jnqko/6NoPkNsQrC2TuWnviAiwKV6xf+n6kWyi4dCKA5auryufD2hiuBdfzrZJtG
-         czfm6ZXYYaQIub3JkGsNaCRCsxhCxQFxQnGBZ1C5a7pM0kfJvRG++FukIWI3wQfQg/26
-         F+PQ==
-X-Gm-Message-State: AC+VfDwteiTwmj4nEbhTmdpbRiL6A/gCPgXM7RAqbKYGFENy4sO3XvEj
-        MQ4NFTCQhNorsP2j4uziiuaJpQ==
-X-Google-Smtp-Source: ACHHUZ7pnAUM8bkHrV3d/NxVG64VyEJxxguXYTf7NQ+tfO8xq5mMB6Rk9GYLhNJX7tDJe9D0x1Tf0w==
-X-Received: by 2002:a2e:a212:0:b0:2aa:40dd:7a55 with SMTP id h18-20020a2ea212000000b002aa40dd7a55mr1376227ljm.8.1685475468466;
-        Tue, 30 May 2023 12:37:48 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id t10-20020a2e780a000000b002adb566dc10sm2962863ljc.129.2023.05.30.12.37.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 12:37:48 -0700 (PDT)
-Message-ID: <c9c232a4-519a-108f-3651-5af6ba812dc8@linaro.org>
-Date:   Tue, 30 May 2023 21:37:46 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 1/2] dt-bindings: reserved-memory: rmtfs: Allow dynamic
- allocation
-Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231203AbjE3Tmz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 15:42:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842DA10D;
+        Tue, 30 May 2023 12:42:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7E4C2630C9;
+        Tue, 30 May 2023 19:42:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2055C433EF;
+        Tue, 30 May 2023 19:42:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685475733;
+        bh=C/ZCDt9dxkFqBdenxsotP/gQkEWd0TJC2yhywFPrxlU=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=K93thLG6dvDqETIhFEajld3t2N4JSaO+9Xro4KcquZXq1aN8xBW+sXicFMELWgaLN
+         pH7eC573JWpTDi9D957EgYNr4EObZ099H9tylABVhlNPWiginmSVtQalMUMe7LzTSg
+         B+My6btPtnLo87e2Akm6IJ4pUY5VJ7eWcfWTemfBXPUkOKZUb+uzyjw5+5yZdIgVrq
+         x9X35u5rfa/oLL3HeFZY9F3/sj2eOg3MarOTrLMKtgJFhyW3oSNdhqpR80NrGqe2Md
+         0Olhr1iNLouKS4XBHXt74Mw4/0YZWyVOU/f7YG+9R5Zo8OoYcVIdLUP997A/59oh4H
+         54LZ17CBqO6AQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230530193436.3833889-1-quic_bjorande@quicinc.com>
- <20230530193436.3833889-2-quic_bjorande@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230530193436.3833889-2-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Zhu Ning <zhuning0077@gmail.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        David Yang <yangxiaohua@everest-semi.com>,
+        Daniel Drake <drake@endlessm.com>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, kernel@collabora.com
+In-Reply-To: <20230530181140.483936-1-cristian.ciocaltea@collabora.com>
+References: <20230530181140.483936-1-cristian.ciocaltea@collabora.com>
+Subject: Re: (subset) [PATCH v2 0/3] ES8316 audio codec fixes on Rock5B
+Message-Id: <168547572955.1446927.6113726229906083649.b4-ty@kernel.org>
+Date:   Tue, 30 May 2023 20:42:09 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: b4 0.13-dev-bfdf5
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 30.05.2023 21:34, Bjorn Andersson wrote:
-> Allow instances of the qcom,rmtfs-mem either be defined as a
-> reserved-memory regoin, or just standalone given just a size.
+On Tue, 30 May 2023 21:11:37 +0300, Cristian Ciocaltea wrote:
+> This patch series handles a few issues related to the ES8316 audio
+> codec, discovered while doing some testing on the Rock 5B board.
 > 
-> This relieve the DeviceTree source author the need to come up with a
-> static memory region for the region.
+> Changes in v2:
+>  - Preserved original dB gain range in PATCH 1
+>  - Rewrote PATCH 2 conditional statement, per Mark's review
+>  - Rebased series onto next-20230530
+>  - v1: https://lore.kernel.org/all/20230524074156.147387-1-cristian.ciocaltea@collabora.com/
 > 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
->  .../reserved-memory/qcom,rmtfs-mem.yaml       | 23 ++++++++++++++++---
->  1 file changed, 20 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
-> index bab982f00485..8b5de033f9ac 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
-> +++ b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
-> @@ -14,13 +14,16 @@ description: |
->  maintainers:
->    - Bjorn Andersson <bjorn.andersson@linaro.org>
->  
-> -allOf:
-> -  - $ref: reserved-memory.yaml
-> -
->  properties:
->    compatible:
->      const: qcom,rmtfs-mem
->  
-> +  qcom,alloc-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Requested size of the rmtfs memory allocation, when not defined as a
-> +      reserved-memory region.
-> +
->    qcom,client-id:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description: >
-> @@ -36,6 +39,11 @@ properties:
->  required:
->    - qcom,client-id
->  
-> +oneOf:
-> +  - $ref: reserved-memory.yaml
-> +  - required:
-> +      - qcom,alloc-size
-> +
->  unevaluatedProperties: false
->  
->  examples:
-> @@ -53,3 +61,12 @@ examples:
->              qcom,client-id = <1>;
->          };
->      };
-> +  - |
-> +    rmtfs {
-> +        compatible = "qcom,rmtfs-mem";
-> +
-> +        qcom,alloc-size = <(2*1024*1024)>;
-2 nitty nits:
+> [...]
 
-- Most uses of DT arithmetic put spaces between the operands
-- You could add a comment explaining what this example brings to
-  the table
+Applied to
 
-Konrad
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> +        qcom,client-id = <1>;
-> +        qcom,vmid = <15>;
-> +    };
-> +...
+Thanks!
+
+[1/3] ASoC: es8316: Increment max value for ALC Capture Target Volume control
+      commit: 6f073429037cd79d7311cd8236311c53f5ea8f01
+[2/3] ASoC: es8316: Do not set rate constraints for unsupported MCLKs
+      commit: 60413129ee2b38a80347489270af7f6e1c1de4d0
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
