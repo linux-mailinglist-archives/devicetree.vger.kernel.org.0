@@ -2,101 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C7B97156C7
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 09:30:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C0707156C5
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 09:30:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229620AbjE3Ha5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 03:30:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57472 "EHLO
+        id S231214AbjE3Hay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 03:30:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230495AbjE3Ha1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 03:30:27 -0400
-Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 206A790
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 00:29:52 -0700 (PDT)
-Received: by mail-ua1-x934.google.com with SMTP id a1e0cc1a2514c-784205f0058so1245439241.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 00:29:52 -0700 (PDT)
+        with ESMTP id S230464AbjE3Ha0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 03:30:26 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C0310E
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 00:29:45 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-30af56f5f52so126988f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 00:29:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1685431791; x=1688023791;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4ZN4QnyKrnxiBs4E17NJb3ZAuAuwM5m7siN0Hd43Wwc=;
-        b=nYn/YGbyfBNmz+lexWZr0TyjGCBc6NcIQSLPze6+c7Qn28R/DOrhrNKArMa5MNjB8t
-         1R8k+DFg4jZkZL85GHp6/9B1DzH6b1YcdhznnkpbvQxC6Pu/46+OWnKV4RjkPe3O6OSN
-         5TIwLxxA9CZ7i9PD0m9eKg0/EHs4PGlFcZaPA=
+        d=linaro.org; s=google; t=1685431784; x=1688023784;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=XHy/LfOj6uTyno9ClqD5FZ00I/Rkz/Xjmgux3hflxTk=;
+        b=ym+oY4CXyrSgaCceabymeYOlBGvNxreXMNA6azegNUVvk2uLxP5llY7KADbBoF+j9C
+         xglV/ILfwZuXjx9Bh1QbRAnKpO0cqvYqIzYgmBsgpdZ8IuFsWqo6DD6PGY3ZBRYruM51
+         XN05pkm+BRRdsyQLCUJqfLf14FqwM+2e+I2TGg5/Pu2X4+TSzqeCf0HzqRal2hw7b6cT
+         OlkNNry+Dniq+WI7eNoWORS724ZZ/DkxyOZK327XU5cZO8x9nlUIvSSCHQgdy3iqH3iO
+         RGMVzff9WoYord9vpMS5ECfTXk2f+nLCD9KzrlScxXo9S9ZPaBZmQrJrYlNEXICQP0xI
+         USZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685431791; x=1688023791;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4ZN4QnyKrnxiBs4E17NJb3ZAuAuwM5m7siN0Hd43Wwc=;
-        b=lrsF7xZsOSEiMtD0lKeWDQpmfj6V0KLIQJ9DxlKTWTTeBAprFKBGDIvJbRpmaD65AX
-         Yw/j/uAVKvt2t4j54c6rYc04MD3K6Ncd5Dk0JTUwBHymMRUaIBBVzYyx8tB2mu7uRfd7
-         1OYFtouI1EmPKvrD6lVNq7owUtx3mOFKl71YpUevuaEzWWglDHY92/jK8jDu6uaMFDA6
-         grki8nuU1EGydObM9DFzs1sQUkeaAjNkzn6I2orOLLDiKWfuwNPOdB7blfJV+G1iJHVb
-         pa1L/vqbafARV6TE4IV2LGQ09/8LIfZ2O0CVMDHOtrDDXtzknvSH9X0KALbT5aeOTlfx
-         Y2UQ==
-X-Gm-Message-State: AC+VfDzAzUDKCFiHZMIogGn9PUsNXUK/T+t+W/uTyTsvocoC5Fc2N1FV
-        aJXfSSmC50mub2p5TBkAQnnDMl7rwSgiRjzDRp04Ug==
-X-Google-Smtp-Source: ACHHUZ685uMwzIsN5k4ruyfFJG+uL5euWQ7CixRe5wGcspUJWh5A1E77FzA1+QPQ6Cn4xvLSstZut1Fy7DkMh2u1aBo=
-X-Received: by 2002:a67:fbcf:0:b0:439:4112:820 with SMTP id
- o15-20020a67fbcf000000b0043941120820mr383122vsr.27.1685431791178; Tue, 30 May
- 2023 00:29:51 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1685431784; x=1688023784;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XHy/LfOj6uTyno9ClqD5FZ00I/Rkz/Xjmgux3hflxTk=;
+        b=FjVK8N0JjwgpsIkI5Y8Fc4Swc5O5Q1HmrzBpMSU3+lx+H7+zQIOKt5M+7TZYQX7qkY
+         nr/bzSYPP+u4G8wpPEb8hF81std3sUS++N0Zx9Ycnp2iPWnWdH4Lf3/ANkoj8rfe4+hY
+         kVaabC+zF4jGBvvUyhMEQ502553pLw1lJ9+NF35Bv3nABtxlsHEG/gXxBEeO6t7YAgt5
+         FS0ubuAnU3zi4JkiFLMhZOfCT/nRM5cpB66Lyp5ULsM0cIYXgu15/NHAH73KowrJ3qi+
+         vf2KwBMNJynVWmFQJvel1MTdd4koedA85XQqNVTtido6ZcUpR30fYfyzMfC27CDmB6D5
+         nDuA==
+X-Gm-Message-State: AC+VfDxYI6UyhVrogWFzlSLMupThwZgmpknt4W2XxPQ8ScIQsoyH10O2
+        feRBN23VpRAl4JT693uDHbRMDA==
+X-Google-Smtp-Source: ACHHUZ6Oj80NsiNcsYRYMVVckEsOwSLWymbKsXeb+oj8fmPzK/Wkc65dHdjb3SIxn8GblysOHQNkhQ==
+X-Received: by 2002:adf:f9cd:0:b0:307:41a1:a125 with SMTP id w13-20020adff9cd000000b0030741a1a125mr897548wrr.12.1685431784210;
+        Tue, 30 May 2023 00:29:44 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:4294:2221:d2df:9e87? ([2a01:e0a:982:cbb0:4294:2221:d2df:9e87])
+        by smtp.gmail.com with ESMTPSA id h12-20020a5d6e0c000000b002ca864b807csm2356099wrz.0.2023.05.30.00.29.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 00:29:43 -0700 (PDT)
+Message-ID: <d76f1e0d-8747-91f7-63f1-9ad85dafef9c@linaro.org>
+Date:   Tue, 30 May 2023 09:29:43 +0200
 MIME-Version: 1.0
-References: <20230317061944.15434-1-allen-kh.cheng@mediatek.com> <20230317195453.lpymxjk7oqvbxkq5@notapiano>
-In-Reply-To: <20230317195453.lpymxjk7oqvbxkq5@notapiano>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 30 May 2023 15:29:40 +0800
-Message-ID: <CAGXv+5GyLeVBAk_DXJoTxoG400mnq4y6pa1JXRD7Svc4rtMQBg@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: mediatek: Add cpufreq nodes for MT8192
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: sm8550: enable PMIC RTC on MTP &
+ QRD boards
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        angelogioacchino.delregno@collabora.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v1-0-4d5d7602f290@linaro.org>
+ <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v1-3-4d5d7602f290@linaro.org>
+ <4806dbd8-4f9b-0a6f-adf0-4beab74b1ba1@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <4806dbd8-4f9b-0a6f-adf0-4beab74b1ba1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 18, 2023 at 3:55=E2=80=AFAM N=C3=ADcolas F. R. A. Prado
-<nfraprado@collabora.com> wrote:
->
-> On Fri, Mar 17, 2023 at 02:19:44PM +0800, Allen-KH Cheng wrote:
-> > Add the cpufreq nodes for MT8192 SoC.
-> >
-> > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
->
-> Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
-> Tested-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
->
-> Tested on Asurada Spherion Chromebook as well. In particular, verified th=
-at
-> applying this commit makes suspend/resume work. Before, it would hang dur=
-ing
-> resume:
->
->         Enabling non-boot CPUs ...
->         Detected VIPT I-cache on CPU1
->         GICv3: CPU1: found redistributor 100 region 0:0x000000000c060000
->         CPU1: Booted secondary processor 0x0000000100 [0x412fd050]
->
-> But with this commit applied the machine is able to proceed bringing up t=
-he
-> secondary processors and complete resume.
+On 26/05/2023 21:51, Konrad Dybcio wrote:
+> 
+> 
+> On 25.05.2023 17:47, Neil Armstrong wrote:
+>> The PMK8550 RTC is functional on the SM8550 MTP & QRD boards,
+>> let's enable them.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+> WDYM "functional"? Is there a reason it shouldn't be enabled for
+> everyone?
 
-Ping on this patch.
+There's none, I'll enable it in the PMIC dtsi instead.
 
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+Neil
+
+> 
+> Konrad
+>>   arch/arm64/boot/dts/qcom/sm8550-mtp.dts | 4 ++++
+>>   arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 4 ++++
+>>   2 files changed, 8 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+>> index e2b9bb6b1e27..6bf111e655f7 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+>> @@ -496,6 +496,10 @@ &pm8550b_eusb2_repeater {
+>>   	vdd3-supply = <&vreg_l5b_3p1>;
+>>   };
+>>   
+>> +&pmk8550_rtc {
+>> +	status = "okay";
+>> +};
+>> +
+>>   &qupv3_id_0 {
+>>   	status = "okay";
+>>   };
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+>> index 4a8177f99523..b08a8201ad23 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+>> @@ -482,6 +482,10 @@ &pm8550b_eusb2_repeater {
+>>   	vdd3-supply = <&vreg_l5b_3p1>;
+>>   };
+>>   
+>> +&pmk8550_rtc {
+>> +	status = "okay";
+>> +};
+>> +
+>>   &qupv3_id_0 {
+>>   	status = "okay";
+>>   };
+>>
+
