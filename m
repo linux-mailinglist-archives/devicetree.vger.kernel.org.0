@@ -2,74 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6CAE7170ED
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 00:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AB97717163
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 01:12:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232009AbjE3Wsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 18:48:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56478 "EHLO
+        id S233746AbjE3XMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 19:12:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230224AbjE3Wst (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 18:48:49 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2EACF7;
-        Tue, 30 May 2023 15:48:47 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34UMmLKF002592;
-        Tue, 30 May 2023 17:48:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1685486901;
-        bh=tPk3emC6Snw6cg/0CkZoLTdGPjFUQKpNWuVgfPE3QlU=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=pqOVi/cOICwgczDbbzU9rlT8uKn7FbLGCFvydyDIPVx0+stQt5Ea57NJMrEIMSWMK
-         +KAMBFYhEx0TsIW7A8+Q+L8w7S61wm6phOZgDpjmKpWVBugb3GticZ67arkSuBNZ0u
-         gCnttELMFkwG+w57tdA0lBkI6hsWVqszd+N/af2c=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34UMmLFG102580
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 May 2023 17:48:21 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
- May 2023 17:48:21 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 30 May 2023 17:48:20 -0500
-Received: from uda0498204.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34UMmKxX112899;
-        Tue, 30 May 2023 17:48:20 -0500
-From:   Judith Mendez <jm@ti.com>
-To:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        <linux-can@vger.kernel.org>
-CC:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, <netdev@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Schuyler Patton <spatton@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Simon Horman <simon.horman@corigine.com>,
-        Conor Dooley <conor+dt@linaro.org>,
-        Tony Lindgren <tony@atomide.com>
-Subject: [PATCH v8 2/2] can: m_can: Add hrtimer to generate software interrupt
-Date:   Tue, 30 May 2023 17:48:20 -0500
-Message-ID: <20230530224820.303619-3-jm@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230530224820.303619-1-jm@ti.com>
-References: <20230530224820.303619-1-jm@ti.com>
+        with ESMTP id S233543AbjE3XMn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 19:12:43 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E67EF7
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 16:12:40 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f3b9755961so5715591e87.0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 16:12:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685488358; x=1688080358;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VlrmURisZS7q/QAHr0J+CvY3JO6uf1hNrIrIO78pa18=;
+        b=Fo0dkMfhk0Vi7P8wz+WXkw8ZPZV1Vl46ZM2YvqHNrCx9UMIvhl/jfg9hq8sV/acL40
+         zoP7YnVKsrw6L2VW68/nOnjEeKMGGdJjyS/NCqXRB2XMT6OiG7nLn+EMCmfJVRQHwK7b
+         5eL3Tni5dC1qzaRa8FFbwih7k291xNEPD8o6am09pdq7qVvmFOjqx0ihux/gWtYdzop2
+         ZiWhO36st07XHN8nCQTai6hanK+/c1MQZAmaEG18LfyLad0dqLlobuJsGs//05uPJl2V
+         PS9e0Nweu4I64ocP32S0iqk9vgCzfE/GqRkjv07elKjyGsVxvY/OatYzm/bisf8dupJQ
+         YzCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685488358; x=1688080358;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VlrmURisZS7q/QAHr0J+CvY3JO6uf1hNrIrIO78pa18=;
+        b=BQ1YNw50J2eYBqGvhTQTNS4fnn/KiXcm0uxwBZt+mYOCQs25g1hiOCRepeaRJrVeF/
+         2c4IYiSbQnXwlnsw+bgazlSHmsX5GJ6xobfX438eDeuXA1jGTSras737RoYqr0AnNsRV
+         jjoqgQCvTHvP+kDImqrbJgqtYrovP/ILWFvlpS241yWitY+dLYLQITLQ1CqTVOYnDYis
+         8zDQGalkKNHsoaARvjzl5P3ljCHbDxq3qa/GlzjYZQfKa9cFhU7wUfhRG0zTK+NpV302
+         3KFQB++ETYWyGy+1BbzYMaWxvCT0Vhn7VaVUT7f/6fvNulNzjeF7xzYSCMgkv2kAclWw
+         4P8g==
+X-Gm-Message-State: AC+VfDzIb4MKt3LM9hwC0e4DliI9OtI+Gc3VnfEIc7aWoFtKMgkpU9Ll
+        2bBycPWiv3XJoLLiECT5yyv5eg==
+X-Google-Smtp-Source: ACHHUZ4hbr+QnHxMndXp+K41DpevzQh5vk3K1wv9jGL+7zjGaSwdfj1uOgSrwYbmIAtG/nr/fHUTcw==
+X-Received: by 2002:ac2:4c13:0:b0:4ef:f11c:f5b0 with SMTP id t19-20020ac24c13000000b004eff11cf5b0mr1760472lfq.54.1685488358638;
+        Tue, 30 May 2023 16:12:38 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id i22-20020a056512007600b004f3940c2b07sm472758lfo.274.2023.05.30.16.12.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 16:12:38 -0700 (PDT)
+Message-ID: <f3908927-e9b7-c61e-d5e6-8223dfe45bf8@linaro.org>
+Date:   Wed, 31 May 2023 02:12:37 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/2] drm/panel: Add driver for Visionox r66451 panel
+Content-Language: en-GB
+To:     Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230516-b4-r66451-panel-driver-v1-0-4210bcbb1649@quicinc.com>
+ <20230516-b4-r66451-panel-driver-v1-2-4210bcbb1649@quicinc.com>
+ <3cca2809-fa26-f0cf-2ccc-6737d150b43d@linaro.org>
+ <aeef04c4-7952-2b7c-d673-5c75dda19154@quicinc.com>
+ <196a43da-1f59-6213-7c4f-2cfcb8d39b32@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <196a43da-1f59-6213-7c4f-2cfcb8d39b32@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,211 +85,425 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce timer polling method to MCAN since some SoCs may not
-have M_CAN interrupt routed to A53 Linux and do not have
-interrupt property in device tree M_CAN node.
+On 30/05/2023 23:09, Jessica Zhang wrote:
+> 
+> 
+> On 5/18/2023 3:17 PM, Jessica Zhang wrote:
+>>
+>>
+>> On 5/17/2023 5:19 PM, Dmitry Baryshkov wrote:
+>>> On 16/05/2023 23:20, Jessica Zhang wrote:
+>>>> Add support for the 1080x2340 Visionox R66451 AMOLED DSI panel that
+>>>> comes with the Qualcomm HDK8350 display expansion pack.
+>>>>
+>>>> The panel enables display compression (DSC v1.2) by default.
+>>>>
+>>>> Signed-off-by: Jessica Zhang <quic_jesszhan@quicinc.com>
+>>>> ---
+>>>>   drivers/gpu/drm/panel/Kconfig                 |   8 +
+>>>>   drivers/gpu/drm/panel/Makefile                |   1 +
+>>>>   drivers/gpu/drm/panel/panel-visionox-r66451.c | 395 
+>>>> ++++++++++++++++++++++++++
+>>>>   3 files changed, 404 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/panel/Kconfig 
+>>>> b/drivers/gpu/drm/panel/Kconfig
+>>>> index 29cf5fa39ff2..9c2c36dbddf3 100644
+>>>> --- a/drivers/gpu/drm/panel/Kconfig
+>>>> +++ b/drivers/gpu/drm/panel/Kconfig
+>>>> @@ -766,6 +766,14 @@ config DRM_PANEL_VISIONOX_VTDR6130
+>>>>         Say Y here if you want to enable support for Visionox
+>>>>         VTDR6130 1080x2400 AMOLED DSI panel.
+>>>> +config DRM_PANEL_VISIONOX_R66451
+>>>> +    tristate "Visionox R66451"
+>>>> +    depends on OF
+>>>> +    depends on DRM_MIPI_DSI
+>>>> +    help
+>>>> +      Say Y here if you want to enable support for Visionox
+>>>> +      R66451 1080x2340 AMOLED DSI panel.
+>>>> +
+>>>>   config DRM_PANEL_WIDECHIPS_WS2401
+>>>>       tristate "Widechips WS2401 DPI panel driver"
+>>>>       depends on SPI && GPIOLIB
+>>>> diff --git a/drivers/gpu/drm/panel/Makefile 
+>>>> b/drivers/gpu/drm/panel/Makefile
+>>>> index b3e8ba29edd3..e043a92ee676 100644
+>>>> --- a/drivers/gpu/drm/panel/Makefile
+>>>> +++ b/drivers/gpu/drm/panel/Makefile
+>>>> @@ -78,5 +78,6 @@ obj-$(CONFIG_DRM_PANEL_TPO_TPG110) += 
+>>>> panel-tpo-tpg110.o
+>>>>   obj-$(CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA) += panel-truly-nt35597.o
+>>>>   obj-$(CONFIG_DRM_PANEL_VISIONOX_RM69299) += panel-visionox-rm69299.o
+>>>>   obj-$(CONFIG_DRM_PANEL_VISIONOX_VTDR6130) += 
+>>>> panel-visionox-vtdr6130.o
+>>>> +obj-$(CONFIG_DRM_PANEL_VISIONOX_R66451) += panel-visionox-r66451.o
+>>>>   obj-$(CONFIG_DRM_PANEL_WIDECHIPS_WS2401) += panel-widechips-ws2401.o
+>>>>   obj-$(CONFIG_DRM_PANEL_XINPENG_XPP055C272) += 
+>>>> panel-xinpeng-xpp055c272.o
+>>>> diff --git a/drivers/gpu/drm/panel/panel-visionox-r66451.c 
+>>>> b/drivers/gpu/drm/panel/panel-visionox-r66451.c
+>>>> new file mode 100644
+>>>> index 000000000000..e3648ead3e84
+>>>> --- /dev/null
+>>>> +++ b/drivers/gpu/drm/panel/panel-visionox-r66451.c
+>>>> @@ -0,0 +1,395 @@
+>>>> +//SPDX-License-Identifier: GPL-2.0-only
+>>>> +//Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights 
+>>>> reserved.
+>>>> +
+>>>> +#include <linux/backlight.h>
+>>>> +#include <linux/delay.h>
+>>>> +#include <linux/gpio/consumer.h>
+>>>> +#include <linux/module.h>
+>>>> +#include <linux/of.h>
+>>>> +#include <linux/regulator/consumer.h>
+>>>> +
+>>>> +#include <drm/drm_mipi_dsi.h>
+>>>> +#include <drm/drm_modes.h>
+>>>> +#include <drm/drm_panel.h>
+>>>> +#include <drm/display/drm_dsc.h>
+>>>> +#include <drm/display/drm_dsc_helper.h>
+>>>> +
+>>>> +#include <video/mipi_display.h>
+>>>> +
+>>>> +struct visionox_r66451 {
+>>>> +    struct drm_panel panel;
+>>>> +    struct mipi_dsi_device *dsi;
+>>>> +    struct gpio_desc *reset_gpio;
+>>>> +    struct regulator_bulk_data supplies[2];
+>>>> +    bool prepared, enabled;
+>>>> +};
+>>>> +
+>>>> +static inline struct visionox_r66451 *to_visionox_r66451(struct 
+>>>> drm_panel *panel)
+>>>> +{
+>>>> +    return container_of(panel, struct visionox_r66451, panel);
+>>>> +}
+>>>> +
+>>>> +static void visionox_r66451_reset(struct visionox_r66451 *ctx)
+>>>> +{
+>>>> +    gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+>>>> +    usleep_range(10000, 10100);
+>>>> +    gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+>>>> +    usleep_range(10000, 10100);
+>>>> +    gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+>>>> +    usleep_range(10000, 10100);
+>>>> +}
+>>>> +
+>>>> +static int visionox_r66451_on(struct visionox_r66451 *ctx)
+>>>> +{
+>>>> +    struct mipi_dsi_device *dsi = ctx->dsi;
+>>>> +    struct device *dev = &dsi->dev;
+>>>> +    int ret;
+>>>> +
+>>>> +    dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+>>>> +
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x00);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xc2,
+>>>> +                   0x09, 0x24, 0x0c, 0x00, 0x00, 0x0c, 0x00, 0x00, 
+>>>> 0x00,
+>>>> +                   0x09, 0x3c);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xd7,
+>>>> +                   0x00, 0xb9, 0x3c, 0x00, 0x40, 0x04, 0x00, 0xa0, 
+>>>> 0x0a,
+>>>> +                   0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+>>>> 0x19,
+>>>> +                   0x3c, 0x00, 0x40, 0x04, 0x00, 0xa0, 0x0a);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x80);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xde,
+>>>> +                   0x40, 0x00, 0x18, 0x00, 0x18, 0x00, 0x18, 0x00, 
+>>>> 0x18,
+>>>> +                   0x10, 0x00, 0x18, 0x00, 0x18, 0x00, 0x18, 0x02, 
+>>>> 0x00, 0x00);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x04);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xe8, 0x00, 0x02);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xe4, 0x00, 0x08);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x00);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xc4,
+>>>> +                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+>>>> 0x00,
+>>>> +                   0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x32);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xcf,
+>>>> +                   0x64, 0x0b, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+>>>> 0x08,
+>>>> +                   0x00, 0x0b, 0x77, 0x01, 0x01, 0x01, 0x01, 0x01, 
+>>>> 0x01,
+>>>> +                   0x02, 0x02, 0x02, 0x02, 0x02, 0x03);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xd3,
+>>>> +                   0x45, 0x00, 0x00, 0x01, 0x13, 0x15, 0x00, 0x15, 
+>>>> 0x07,
+>>>> +                   0x0f, 0x77, 0x77, 0x77, 0x37, 0xb2, 0x11, 0x00, 
+>>>> 0xa0,
+>>>> +                   0x3c, 0x9c);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xd7,
+>>>> +                   0x00, 0xb9, 0x34, 0x00, 0x40, 0x04, 0x00, 0xa0, 
+>>>> 0x0a,
+>>>> +                   0x00, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+>>>> 0x19,
+>>>> +                   0x34, 0x00, 0x40, 0x04, 0x00, 0xa0, 0x0a);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xd8,
+>>>> +                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+>>>> 0x00,
+>>>> +                   0x3a, 0x00, 0x3a, 0x00, 0x3a, 0x00, 0x3a, 0x00, 
+>>>> 0x3a,
+>>>> +                   0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+>>>> 0x00,
+>>>> +                   0x00, 0x0a, 0x00, 0x0a, 0x00, 0x00, 0x00, 0x00, 
+>>>> 0x00,
+>>>> +                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+>>>> 0x0a,
+>>>> +                   0x00, 0x32, 0x00, 0x0a, 0x00, 0x22);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xdf,
+>>>> +                   0x50, 0x42, 0x58, 0x81, 0x2d, 0x00, 0x00, 0x00, 
+>>>> 0x00,
+>>>> +                   0x00, 0x00, 0x6b, 0x00, 0x00, 0x00, 0x00, 0x00, 
+>>>> 0x00,
+>>>> +                   0x00, 0x00, 0x01, 0x0f, 0xff, 0xd4, 0x0e, 0x00, 
+>>>> 0x00,
+>>>> +                   0x00, 0x00, 0x00, 0x00, 0x0f, 0x53, 0xf1, 0x00, 
+>>>> 0x00,
+>>>> +                   0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf7, 0x01);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x80);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xe4, 0x34, 0xb4, 0x00, 0x00, 0x00, 
+>>>> 0x39, 0x04, 0x09, 0x34);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xe6, 0x00);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x04);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xdf, 0x50, 0x40);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf3, 0x50, 0x00, 0x00, 0x00, 0x00);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x11);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf3, 0x01, 0x00, 0x00, 0x00, 0x01);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf4, 0x00, 0x02);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x19);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xdf, 0x50, 0x42);
+>>>> +    mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+>>>> +    mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_COLUMN_ADDRESS, 0x00, 
+>>>> 0x00, 0x04, 0x37);
+>>>
+>>> Please use mipi_dsi_dcs_set_column_address(dsi, 0, 1080 - 1);
+>>
+>> Hi Dmitry,
+>>
+>> Acked.
+>>
+>>>
+>>>> +    mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_SET_PAGE_ADDRESS, 0x00, 
+>>>> 0x00, 0x09, 0x23);
+>>>
+>>> mipi_dsi_dcs_set_page_address(dsi, 0, 2340 - 1);
+>>
+>> Acked.
+>>
+>>>
+>>>> +
+>>>> +    ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
+>>>> +    if (ret < 0) {
+>>>> +        dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
+>>>> +        return ret;
+>>>> +    }
+>>>> +    msleep(120);
+>>>> +
+>>>> +    ret = mipi_dsi_dcs_set_display_on(dsi);
+>>>
+>>> Should the mipi_dsi_dcs_set_display_on() (and maybe exit sleep mode) 
+>>> be a a part of _enable()? Correspondingly _off should IMO be a part 
+>>> of _disable callback().
+>>
+>> Acked. Looking at the downstream code, it seems that all the dcs on 
+>> commands can be sent within _enable() (and similarly for the off 
+>> commands with _disable()).
+>>
+>>>
+>>>> +    if (ret < 0) {
+>>>> +        dev_err(dev, "Failed on set display on: %d\n", ret);
+>>>> +        return ret;
+>>>> +    }
+>>>> +    msleep(20);
+>>>
+>>>
+>>> Do we need to add here the following line?
+>>>
+>>> dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+>>
+>> Do you mean within the return on error block?
+>>
+>>  From my understanding, we should be setting the MIPI_DSI_MODE_LPM for 
+>> panel_on() then unsetting MODE_LPM in panel_off().
+>>
+>>>
+>>>
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static int visionox_r66451_off(struct visionox_r66451 *ctx)
+>>>> +{
+>>>> +    struct mipi_dsi_device *dsi = ctx->dsi;
+>>>> +    struct device *dev = &dsi->dev;
+>>>> +    int ret;
+>>>> +
+>>>> +    dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+>>>> +
+>>>> +    ret = mipi_dsi_dcs_set_display_off(dsi);
+>>>> +    if (ret < 0) {
+>>>> +        dev_err(dev, "Failed to set display off: %d\n", ret);
+>>>> +        return ret;
+>>>> +    }
+>>>> +    msleep(20);
+>>>> +
+>>>> +    ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
+>>>> +    if (ret < 0) {
+>>>> +        dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
+>>>> +        return ret;
+>>>> +    }
+>>>> +    msleep(120);
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static int visionox_r66451_prepare(struct drm_panel *panel)
+>>>> +{
+>>>> +    struct visionox_r66451 *ctx = to_visionox_r66451(panel);
+>>>> +    struct device *dev = &ctx->dsi->dev;
+>>>> +    int ret;
+>>>> +
+>>>> +    if (ctx->prepared)
+>>>> +        return 0;
+>>>> +
+>>>> +    ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies),
+>>>> +                    ctx->supplies);
+>>>> +    if (ret < 0)
+>>>> +        return ret;
+>>>> +
+>>>> +    visionox_r66451_reset(ctx);
+>>>> +
+>>>> +    ret = visionox_r66451_on(ctx);
+>>>> +    if (ret < 0) {
+>>>> +        dev_err(dev, "Failed to initialize panel: %d\n", ret);
+>>>> +        gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+>>>> +        regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), 
+>>>> ctx->supplies);
+>>>> +        return ret;
+>>>> +    }
+>>>> +
+>>>> +    ctx->prepared = true;
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static int visionox_r66451_unprepare(struct drm_panel *panel)
+>>>> +{
+>>>> +    struct visionox_r66451 *ctx = to_visionox_r66451(panel);
+>>>> +    struct device *dev = &ctx->dsi->dev;
+>>>> +    int ret;
+>>>> +
+>>>> +    if (!ctx->prepared)
+>>>> +        return 0;
+>>>> +
+>>>> +    ret = visionox_r66451_off(ctx);
+>>>> +    if (ret < 0)
+>>>> +        dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
+>>>> +
+>>>> +    gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+>>>> +    regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+>>>> +
+>>>> +    ctx->prepared = false;
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static const struct drm_display_mode visionox_r66451_mode = {
+>>>> +    .clock = (1080 + 95 + 1 + 40) * (2340 + 25 + 1 + 4) * 120 / 1000,
+>>>> +    .hdisplay = 1080,
+>>>> +    .hsync_start = 1080 + 95,
+>>>> +    .hsync_end = 1080 + 95 + 1,
+>>>> +    .htotal = 1080 + 95 + 1 + 40,
+>>>> +    .vdisplay = 2340,
+>>>> +    .vsync_start = 2340 + 25,
+>>>> +    .vsync_end = 2340 + 25 + 1,
+>>>> +    .vtotal = 2340 + 25 + 1 + 4,
+>>>> +    .width_mm = 0,
+>>>> +    .height_mm = 0,
+>>>
+>>> Please provide real values here.
+>>
+>> Acked.
+>>
+>>>
+>>>> +};
+>>>> +
+>>>> +static int visionox_r66451_enable(struct drm_panel *panel)
+>>>> +{
+>>>> +    struct visionox_r66451 *ctx = to_visionox_r66451(panel);
+>>>> +    struct mipi_dsi_device *dsi = ctx->dsi;
+>>>> +    struct drm_dsc_picture_parameter_set pps;
+>>>> +    int ret;
+>>>> +
+>>>> +    if (ctx->enabled)
+>>>> +        return 0;
+>>>> +
+>>>> +    if (!dsi->dsc) {
+>>>> +        dev_err(&dsi->dev, "DSC not attached to DSI\n");
+>>>> +        return -ENODEV;
+>>>> +    }
+>>>> +
+>>>> +    drm_dsc_pps_payload_pack(&pps, dsi->dsc);
+>>>> +    ret = mipi_dsi_picture_parameter_set(dsi, &pps);
+>>>> +
+>>>> +    ctx->enabled = true;
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static int visionox_r66451_disable(struct drm_panel *panel)
+>>>> +{
+>>>> +    struct visionox_r66451 *ctx = to_visionox_r66451(panel);
+>>>> +
+>>>> +    ctx->enabled = false;
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static int visionox_r66451_get_modes(struct drm_panel *panel,
+>>>> +                    struct drm_connector *connector)
+>>>> +{
+>>>> +    struct drm_display_mode *mode;
+>>>> +
+>>>> +    mode = drm_mode_duplicate(connector->dev, &visionox_r66451_mode);
+>>>> +    if (!mode)
+>>>> +        return -ENOMEM;
+>>>> +
+>>>> +    drm_mode_set_name(mode);
+>>>> +
+>>>> +    mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
+>>>> +    connector->display_info.width_mm = mode->width_mm;
+>>>> +    connector->display_info.height_mm = mode->height_mm;
+>>>> +    drm_mode_probed_add(connector, mode);
+>>>
+>>> Can we use drm_connector_helper_get_modes_fixed() instead?
+>>
+>> Acked.
+> 
+> Hi Dmitry,
+> 
+> Just wanted to follow up on this -- As Marijn mentioned in a separated 
+> thread, DRM_MODE_TYPE_DRIVER is not set within 
+> drm_connector_helper_get_modes_fixed(), and looking at the kernel docs, 
+> that's a required flag for this mode.
 
-On AM62x SoC, MCANs on MCU domain do not have hardware interrupt
-routed to A53 Linux, instead they will use timer polling method.
+You can set this flag in the visionox_r66451_mode, can you not?
 
-Add an hrtimer to MCAN class device. Each MCAN will have its own
-hrtimer instantiated if there is no hardware interrupt found in
-device tree M_CAN node. The timer will generate a software
-interrupt every 1 ms. In hrtimer callback, we check if there is
-a transaction pending by reading a register, then process by
-calling the isr if there is.
+> Since I'm not able to set the *_TYPE_DRIVER flag before 
+> *_get_modes_fixed() is called, I'll stick to using the previous method 
+> of calling drm_mode_probed_add() directly in 
+> visionox_r66451_get_modes(). (FWIW, other drivers such as 
+> panel-visionox-vtdr6130, panel-truly-nt35597, and panel-visionox-rm69299 
+> also don't use *_get_modes_fixed() and call drm_mode_probed_add() 
+> directly in their get_mode() implementations.)
 
-Signed-off-by: Judith Mendez <jm@ti.com>
----
-Changelog:
-v8:
-- Cancel hrtimer after interrupts in m_can_stop
-- Move assignment of hrtimer_callback to m_can_class_register()
-- Initialize irq = 0 if polling mode is used
-- Add reson for polling mode in commit msg
-- Remove unrelated change
-- Remove polling flag
-v7:
-- Clean up m_can_platform.c if/else section after removing poll-interval
-- Remove poll-interval from patch description
-v6:
-- Move hrtimer stop/start function calls to m_can_open and m_can_close to
-support power suspend/resume
-v5:
-- Change dev_dbg to dev_info if hardware interrupt exists and polling
-is enabled
-v4:
-- No changes
-v3:
-- Create a define for 1 ms polling interval
-- Change plarform_get_irq to optional to not print error msg
-v2:
-- Add functionality to check for 'poll-interval' property in MCAN node 
-- Add 'polling' flag in driver to check if device is using polling method
-- Check for timer polling and hardware interrupt cases, default to
-hardware interrupt method
-- Change ns_to_ktime() to ms_to_ktime()
----
- drivers/net/can/m_can/m_can.c          | 34 ++++++++++++++++++++++++--
- drivers/net/can/m_can/m_can.h          |  3 +++
- drivers/net/can/m_can/m_can_platform.c | 24 +++++++++++++++---
- 3 files changed, 56 insertions(+), 5 deletions(-)
+That doesn't mean that we should increase the amount of the c&p code.
 
-diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
-index a5003435802b..d1d1de94e590 100644
---- a/drivers/net/can/m_can/m_can.c
-+++ b/drivers/net/can/m_can/m_can.c
-@@ -11,6 +11,7 @@
- #include <linux/bitfield.h>
- #include <linux/can/dev.h>
- #include <linux/ethtool.h>
-+#include <linux/hrtimer.h>
- #include <linux/interrupt.h>
- #include <linux/io.h>
- #include <linux/iopoll.h>
-@@ -308,6 +309,9 @@ enum m_can_reg {
- #define TX_EVENT_MM_MASK	GENMASK(31, 24)
- #define TX_EVENT_TXTS_MASK	GENMASK(15, 0)
- 
-+/* Hrtimer polling interval */
-+#define HRTIMER_POLL_INTERVAL		1
-+
- /* The ID and DLC registers are adjacent in M_CAN FIFO memory,
-  * and we can save a (potentially slow) bus round trip by combining
-  * reads and writes to them.
-@@ -1414,6 +1418,12 @@ static int m_can_start(struct net_device *dev)
- 
- 	m_can_enable_all_interrupts(cdev);
- 
-+	if (dev->irq == 0) {
-+		dev_dbg(cdev->dev, "Start hrtimer\n");
-+		hrtimer_start(&cdev->hrtimer, ms_to_ktime(HRTIMER_POLL_INTERVAL),
-+			      HRTIMER_MODE_REL_PINNED);
-+	}
-+
- 	return 0;
- }
- 
-@@ -1568,6 +1578,11 @@ static void m_can_stop(struct net_device *dev)
- {
- 	struct m_can_classdev *cdev = netdev_priv(dev);
- 
-+	if (dev->irq == 0) {
-+		dev_dbg(cdev->dev, "Stop hrtimer\n");
-+		hrtimer_cancel(&cdev->hrtimer);
-+	}
-+
- 	/* disable all interrupts */
- 	m_can_disable_all_interrupts(cdev);
- 
-@@ -1793,6 +1808,18 @@ static netdev_tx_t m_can_start_xmit(struct sk_buff *skb,
- 	return NETDEV_TX_OK;
- }
- 
-+static enum hrtimer_restart hrtimer_callback(struct hrtimer *timer)
-+{
-+	struct m_can_classdev *cdev = container_of(timer, struct
-+						   m_can_classdev, hrtimer);
-+
-+	m_can_isr(0, cdev->net);
-+
-+	hrtimer_forward_now(timer, ms_to_ktime(HRTIMER_POLL_INTERVAL));
-+
-+	return HRTIMER_RESTART;
-+}
-+
- static int m_can_open(struct net_device *dev)
- {
- 	struct m_can_classdev *cdev = netdev_priv(dev);
-@@ -1831,10 +1858,10 @@ static int m_can_open(struct net_device *dev)
- 		err = request_threaded_irq(dev->irq, NULL, m_can_isr,
- 					   IRQF_ONESHOT,
- 					   dev->name, dev);
--	} else {
-+	}
-+	if (dev->irq > 0)
- 		err = request_irq(dev->irq, m_can_isr, IRQF_SHARED, dev->name,
- 				  dev);
--	}
- 
- 	if (err < 0) {
- 		netdev_err(dev, "failed to request interrupt\n");
-@@ -2027,6 +2054,9 @@ int m_can_class_register(struct m_can_classdev *cdev)
- 			goto clk_disable;
- 	}
- 
-+	if (cdev->net->irq == 0)
-+		cdev->hrtimer.function = &hrtimer_callback;
-+
- 	ret = m_can_dev_setup(cdev);
- 	if (ret)
- 		goto rx_offload_del;
-diff --git a/drivers/net/can/m_can/m_can.h b/drivers/net/can/m_can/m_can.h
-index a839dc71dc9b..2ac18ac867a4 100644
---- a/drivers/net/can/m_can/m_can.h
-+++ b/drivers/net/can/m_can/m_can.h
-@@ -15,6 +15,7 @@
- #include <linux/device.h>
- #include <linux/dma-mapping.h>
- #include <linux/freezer.h>
-+#include <linux/hrtimer.h>
- #include <linux/interrupt.h>
- #include <linux/io.h>
- #include <linux/iopoll.h>
-@@ -93,6 +94,8 @@ struct m_can_classdev {
- 	int is_peripheral;
- 
- 	struct mram_cfg mcfg[MRAM_CFG_NUM];
-+
-+	struct hrtimer hrtimer;
- };
- 
- struct m_can_classdev *m_can_class_allocate_dev(struct device *dev, int sizeof_priv);
-diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_can/m_can_platform.c
-index 94dc82644113..a7ab2c8b55d1 100644
---- a/drivers/net/can/m_can/m_can_platform.c
-+++ b/drivers/net/can/m_can/m_can_platform.c
-@@ -5,6 +5,7 @@
- //
- // Copyright (C) 2018-19 Texas Instruments Incorporated - http://www.ti.com/
- 
-+#include <linux/hrtimer.h>
- #include <linux/phy/phy.h>
- #include <linux/platform_device.h>
- 
-@@ -96,12 +97,29 @@ static int m_can_plat_probe(struct platform_device *pdev)
- 		goto probe_fail;
- 
- 	addr = devm_platform_ioremap_resource_byname(pdev, "m_can");
--	irq = platform_get_irq_byname(pdev, "int0");
--	if (IS_ERR(addr) || irq < 0) {
--		ret = -EINVAL;
-+	if (IS_ERR(addr)) {
-+		ret = PTR_ERR(addr);
- 		goto probe_fail;
- 	}
- 
-+	if (device_property_present(mcan_class->dev, "interrupts") ||
-+	    device_property_present(mcan_class->dev, "interrupt-names")) {
-+		irq = platform_get_irq_byname(pdev, "int0");
-+		if (irq == -EPROBE_DEFER) {
-+			ret = -EPROBE_DEFER;
-+			goto probe_fail;
-+		}
-+		if (irq < 0) {
-+			ret = -EINVAL;
-+			goto probe_fail;
-+		}
-+	} else {
-+		irq = 0;
-+		dev_dbg(mcan_class->dev, "Polling enabled, initialize hrtimer");
-+		hrtimer_init(&mcan_class->hrtimer, CLOCK_MONOTONIC,
-+			     HRTIMER_MODE_REL_PINNED);
-+	}
-+
- 	/* message ram could be shared */
- 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "message_ram");
- 	if (!res) {
+If I have time, I'try doing a rework of existing panel drivers.
+
 -- 
-2.34.1
+With best wishes
+Dmitry
 
