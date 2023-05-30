@@ -2,135 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1A81716B80
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:47:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F017E716B8A
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbjE3RrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 13:47:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40206 "EHLO
+        id S231286AbjE3RtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 13:49:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230096AbjE3RrP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:47:15 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7E9BB2;
-        Tue, 30 May 2023 10:47:14 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-64d3fdcadb8so3519792b3a.3;
-        Tue, 30 May 2023 10:47:14 -0700 (PDT)
+        with ESMTP id S229630AbjE3RtD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:49:03 -0400
+Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B883BE
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:49:02 -0700 (PDT)
+Received: by mail-vs1-xe2f.google.com with SMTP id ada2fe7eead31-4394b1820a8so1588812137.3
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:49:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685468834; x=1688060834;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4KFcanc4CjzN6hzpjon4X1hruFFYHDR7ugE4zm99DHQ=;
-        b=OdR4Y7H6Nx7sBNTAd11PEkft3yN3efyKaIhV51v9ftLHVjNGbfszMwZosHkg5dbvth
-         fGKbqJWOkQEJBu9OgQv5/ubfry9JCPiWIKt6agjG7Z9uG13BkYg/lmLuPtIG+hdVAG/t
-         WztyPKjFqolTIx3oqTGSy0hNZ+bgyO77i/EWyvAzYxdfOPWR07on947GOAxT3K1cYvcb
-         dRauGNu4twfMxT+IxF3YuBxl3FxAjvRZnR2zhmO1CoAm7Y/bEdSRRZJFIh55JuuGY2HO
-         NLZFONHUXgPe1Yd+JHK7+pyUnZAn8kTI1QC+L6ulzm5YhZyWROjecxT8gFsQvLpmTQwL
-         jOxA==
+        d=raspberrypi.com; s=google; t=1685468941; x=1688060941;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=caWXGzmTtjdyFwC0bsrS/u+5fCZZHUNGKu4lMqQ0PcY=;
+        b=ZfK2N+5nnESrgRzeDyoqUPMDwu2UmQ5j5OytAcXjCdpwfMntAy+htfFJpoIkLckygb
+         clSQBUJhb+Gb0IVKg8iqFOK8fzoMCxG6DwVd+JuSgFnpU55CL2hPanyoPv3eG50C/MRZ
+         udlHAZXgX1UnZHimgNkkm6qnqcuIDiaGpaimbp0f8Z0iGNnJdJnjo6Iqs5ePkEj8znyV
+         T2ktGgNfPIXp7tovmD4rdk1V32Fywo6iFKW5UAHqYnesLSKbYAwg+8gt8Q5LoNY2oO8e
+         h3DWyxFpXln8KEef1KTFo0wlxjW1Uy2h2DbpRkZgBQOoMuEC60Lk+YHPc8llAAqrF8IY
+         7UTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685468834; x=1688060834;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4KFcanc4CjzN6hzpjon4X1hruFFYHDR7ugE4zm99DHQ=;
-        b=GsncgJ8SLyPCxvYEqb5ODhwfqwF65yYfU9CqayW6mzZEF+g2lCjX9W4opaZrjmQ8so
-         REEWpqvefH1T8s52Dl9Jw1zKx/Poh3JIRC6iiKjgFWs6uTEx8/Z2hnJc/hnyT5foSC7V
-         WIUpykHBpHCHlG75rgzTGn6k0WAGRYmLTwHspw/pTKphrkxPO55RkPwn1ptmH77y14HE
-         6pJFOCpO5IUHilskTy/SxHyNN2vx/wWp3VqPlW7iigNZjqtOIc+ezg/B62U6cesIl19c
-         61Kz+lLvro2UhdPW1+HmWXO6XEyNlDH//Y3i24GVGOU7R5Gdv1lgfSiVwS77XSkTurbv
-         /9+w==
-X-Gm-Message-State: AC+VfDy66KYeCdd3N667pwXkru2LGLsmVDwmk85bilzipetsMjktJJx3
-        qcCmXPV6/P0dRZJpcu77HTI=
-X-Google-Smtp-Source: ACHHUZ5H1oTyoutcnUo3XiPYYzwua35COz5cA3FRa6JU3oW4ADLdTbZES7lj7v/2W8drbB6s7qiXwA==
-X-Received: by 2002:a17:903:24e:b0:1af:ff02:bc19 with SMTP id j14-20020a170903024e00b001afff02bc19mr3552294plh.26.1685468834029;
-        Tue, 30 May 2023 10:47:14 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id b4-20020a170902b60400b001a6f7744a27sm10604029pls.87.2023.05.30.10.47.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 10:47:13 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 30 May 2023 10:47:11 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Dipen Patel <dipenp@nvidia.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Dilip Kota <eswara.kota@linux.intel.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-spi@vger.kernel.org, timestamp@lists.linux.dev,
-        linux-watchdog@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Oleksij Rempel <o.rempel@pengutronix.de>
-Subject: Re: [PATCH 7/7] dt-bindings: watchdog: restrict node name suffixes
-Message-ID: <2aaba5d8-37ad-4086-a81d-0d3e78cf5664@roeck-us.net>
-References: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
- <20230530144851.92059-8-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20221208; t=1685468941; x=1688060941;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=caWXGzmTtjdyFwC0bsrS/u+5fCZZHUNGKu4lMqQ0PcY=;
+        b=ZfSwcX0vEgBlRLm2NVV2Gs7Tha5B9m96czYZ0Chnmqwt3CHn6IEtRmf+ZkF+IY2XOg
+         sX02NrC5kbASlPPLCEtwfa20nrJ9b1GvlQrppYRxcR3OOgS9CCQb7cT6EjQGIBq36HPM
+         AqdN7HuRQsTKhYmGrRk90VB3tuYo2g+4T6RfplNPQg5tdLBZIasAecbQo3RPvGqe0F6m
+         gqtMMAcdq3XwIaw0HsBzamTp5LQDYA7TayFNtJqqy+YWZpcJPTZgIfiXQwVZ15WBxkTa
+         OyShV5vMWv8O3C3eARRy02OPIgxY7Lbo8DWfUfrrLE+sljEs7UEsV5M0KPMqBDYPxZWE
+         YK8A==
+X-Gm-Message-State: AC+VfDzOvmBSM1a7oi8VCEyaegWvm0/KDo6jhSsSfcblDSQFJEo16C98
+        mFkn5tIzIsEYkDU4fzvq9NJdXNmTDh1u90850+9aDg==
+X-Google-Smtp-Source: ACHHUZ4/6ODbPSfqIe9WJ5ExTjh7kAeuYusIscG65esUBAoUtwIN8DZJAdBSxMQHW5dGsxXaT+yeFO/q1Mzyu2k3Fs0=
+X-Received: by 2002:a05:6102:3a49:b0:434:865e:700a with SMTP id
+ c9-20020a0561023a4900b00434865e700amr1228399vsu.16.1685468941113; Tue, 30 May
+ 2023 10:49:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230530144851.92059-8-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
+ <20230530173000.3060865-20-dave.stevenson@raspberrypi.com> <20230530-crying-dispose-2a0e3bc76301@spud>
+In-Reply-To: <20230530-crying-dispose-2a0e3bc76301@spud>
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date:   Tue, 30 May 2023 18:48:44 +0100
+Message-ID: <CAPY8ntDsA4PVOowDed6zMqawzFWehABWTENkiLahGubyDZZOTw@mail.gmail.com>
+Subject: Re: [PATCH 19/21] dt-bindings: media: imx258: Add alternate
+ compatible strings
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 04:48:51PM +0200, Krzysztof Kozlowski wrote:
-> Make the pattern matching node names a bit stricter to improve DTS
-> consistency.  The pattern is restricted to -N suffixes to decimal
-> numbers.
-> 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Conor
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Thanks for the incredibly speedy review.
 
-> 
-> ---
-> 
-> Cc: Tony Lindgren <tony@atomide.com>
-> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/watchdog/watchdog.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/watchdog.yaml b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-> index 519b48889eb1..f0a584af1223 100644
-> --- a/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-> @@ -17,11 +17,11 @@ description: |
->  select:
->    properties:
->      $nodename:
-> -      pattern: "^watchdog(@.*|-[0-9a-f])?$"
-> +      pattern: "^watchdog(@.*|-([0-9]|[1-9][0-9]+))?$"
->  
->  properties:
->    $nodename:
-> -    pattern: "^(timer|watchdog)(@.*|-[0-9a-f])?$"
-> +    pattern: "^(timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$"
->  
->    timeout-sec:
->      description:
-> -- 
-> 2.34.1
-> 
+On Tue, 30 May 2023 at 18:39, Conor Dooley <conor@kernel.org> wrote:
+>
+> Hey Dave,
+>
+> On Tue, May 30, 2023 at 06:29:58PM +0100, Dave Stevenson wrote:
+> > There are a number of variants of the imx258 modules that can not
+> > be differentiated at runtime, so add compatible strings for them.
+> >
+> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > ---
+> >  .../devicetree/bindings/media/i2c/sony,imx258.yaml         | 7 ++++++-
+> >  1 file changed, 6 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> > index bee61a443b23..3415b26b5991 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> > @@ -14,10 +14,15 @@ description: |-
+> >    type stacked image sensor with a square pixel array of size 4208 x 3120. It
+> >    is programmable through I2C interface.  Image data is sent through MIPI
+> >    CSI-2.
+> > +  There are a number of variants of the sensor which cannot be detected at
+> > +  runtime, so multiple compatible strings are required to differentiate these.
+>
+> This is implied by having several compatibles.
+
+I'm happy to drop it, just that I've seen a number of media bindings
+that had debate on why extra compatible strings were required.
+
+> >  properties:
+> >    compatible:
+> > -    const: sony,imx258
+> > +    oneOf:
+> > +      - enum:
+> > +          - sony,imx258
+> > +          - sony,imx258-pdaf
+>
+> Why not just
+> properties:
+>   compatible:
+>     enum:
+> ?
+> I don't see other patches anding more complex compatibles (or they've
+> not arrived yet) so it doesn't appear to be avoiding churn.
+
+I'll freely admit that DT bindings are a black art to me, so I was
+following sony,imx290.yaml [1].
+properties:
+  compatible:
+    oneOf:
+      - enum:
+          - sony,imx290lqr # Colour
+          - sony,imx290llr # Monochrome
+          - sony,imx327lqr # Colour
+      - const: sony,imx290
+        deprecated: true
+
+Looking again at that case, I assume the oneOf is selecting between
+the enum and the const? Seeing as we don't have the const, I guess we
+can drop the "oneOf:"
+
+Thanks for your help.
+
+  Dave
+
+[1] https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/media/i2c/sony%2Cimx290.yaml#L27-L34
+
+> Cheers,
+> Conor.
