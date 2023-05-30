@@ -2,112 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3207D7160DD
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DFEC7160EB
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:01:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232428AbjE3NAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 09:00:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57868 "EHLO
+        id S232481AbjE3NBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 09:01:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232548AbjE3M7z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 08:59:55 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A2DC107
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 05:59:31 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-96f99222e80so914065866b.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 05:59:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685451565; x=1688043565;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=bJKVtkQkQoC4E9Aq5P1zai4vqqsMy8w6t211JaxwDCU=;
-        b=EduhXg0vsAisfGwJuKPj3SLiJgITAVJmRg5G/6Ql+7WOtJ7zUJevpiepbuNgYqkDFC
-         0GsX4/It5j/OFt+Mq/VhrtN9ysbiLmBkm5gVGLYghScaAzhWePvqJdk2Ix1CTAsk7dWN
-         p4ij+/Fq9oCLp0Gi/upuWJa+66dJA8YtC7cAN5V5l6tRW/cqgWwR/z3tK7Y17U931z6B
-         /yjiL4jEIlwoWfmBat6/90A1b/ilP3oXDAWvlJrZKF2Zcxrep2Er1OJwdNOgHVvIV5Fz
-         ZuOGvfxeH7LvRcE4kkYWgtMTNRqjURacLlCk/MmnlE9kQx8ZTcZOZA/8lojCB9lLuUHN
-         OsHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685451565; x=1688043565;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bJKVtkQkQoC4E9Aq5P1zai4vqqsMy8w6t211JaxwDCU=;
-        b=GJlBqI82/QzTH+aptMTu9NcQ1t+NvHIZvgU/7Z84WDNZqbYsHmT8I5mKRQ6IfBKqGG
-         9pLQAseFh9B4l14psWHSjDJOg9/8nGPweWyGtSV/7zRTeObXjGFX7X5Jm8sCBo9OYxu1
-         zvbBxaVXF/yxt7cP3ASXT6gKt48BaVg+bLdpFb0kf27RczowDlmxMngWoZ+kB0uupyCK
-         TmZZVdtxF6WMjM7G0JwrDL+fhqWEhqVhGOLwbdKvnT9KsBGOYLGcezEj/Xcx5eXyDJAc
-         wFmTkR53VwLsZ5/TR/utX43HeKOCU5vdz+GlNLU1eNwlDPQery/JLpyrkZsyfhODKCsM
-         vUzA==
-X-Gm-Message-State: AC+VfDyOtrWgU5zZRPVw7KCwqgAZCPmwOemtn/wyQ5gJCxi9LRkhtHHu
-        BjnSrhmpNk7F5y/5k41kO9SRNQ==
-X-Google-Smtp-Source: ACHHUZ7sG1jHvP1ouiV/MHYG37LTy7wih8YNLIQsIFYJ+2JNQM0VSKF1FQl4S03+1Ik1p8l5H1S7yg==
-X-Received: by 2002:a17:907:868c:b0:967:4bc7:38c0 with SMTP id qa12-20020a170907868c00b009674bc738c0mr2120189ejc.9.1685451561717;
-        Tue, 30 May 2023 05:59:21 -0700 (PDT)
-Received: from krzk-bin ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id j1-20020a1709064b4100b009664cdb3fc5sm7275579ejv.138.2023.05.30.05.59.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 05:59:21 -0700 (PDT)
-Date:   Tue, 30 May 2023 14:59:18 +0200
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Kathiravan T <quic_kathirav@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH V2 1/4] dt-bindings: nvmem: qfprom: add compatible for
- few IPQ SoCs
-Message-ID: <20230530125918.4waqxc4xmnetb5wb@krzk-bin>
-References: <20230526125305.19626-1-quic_kathirav@quicinc.com>
- <20230526125305.19626-2-quic_kathirav@quicinc.com>
+        with ESMTP id S232419AbjE3NBA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:01:00 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87D15E51
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:00:38 -0700 (PDT)
+Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: festevam@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 2E521846B2;
+        Tue, 30 May 2023 15:00:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1685451635;
+        bh=AayDHq3BhFJLkahY5dB78oWM4/0UK+Wh4Au50Z8d8hs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=MR87sdfFe93by/ZM2IM6968jiK7q37C8AIfpAia2ofeBDX1cBRHfACKpN1zS6oYjZ
+         /qrqJ1JSSZ1wontRWP0zv9cesOozmkSbjQ8nUSwhdCDALJJmM0kKeoNFgnTcDp7UkX
+         usKXhdaEqT8sEB8ITty0w1oERCWAL6mLDtQEwSpLQ/iWQCdaHE07AAAjRlxkikJE4P
+         S2p4r2sGbsTXdyJPcPQBDjK+yz/9SdfrQU51xv8mqF+U+uihgr/QLBND0Ej3Pnii6v
+         oOG7Mvs/CDA52YXLhyeOBHmgWcYcf4+5noIBWogRLbERJSkFIjQ8S8ksrWNRSLTov5
+         KvW5vfBiyPCbA==
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230526125305.19626-2-quic_kathirav@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 30 May 2023 10:00:34 -0300
+From:   Fabio Estevam <festevam@denx.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        broonie@kernel.org, shawnguo@kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: pfuze100.yaml: Add an entry for
+ interrupts
+In-Reply-To: <1ea23f76-58c2-402a-2831-ac496ef41b11@linaro.org>
+References: <20230527205048.418360-1-festevam@gmail.com>
+ <20230530125758.ke7isykxf3bg4efu@krzk-bin>
+ <1ea23f76-58c2-402a-2831-ac496ef41b11@linaro.org>
+Message-ID: <bab1dddfe012c960f11655a856ac19e9@denx.de>
+X-Sender: festevam@denx.de
+User-Agent: Roundcube Webmail/1.3.6
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 May 2023 18:23:02 +0530, Kathiravan T wrote:
-> Add the QFPROM compatible for IPQ5332, IPQ6018 and IPQ9574
-> 
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> ---
-> Changes in V2:
-> 	- No changes
-> 
->  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+On 30/05/2023 09:59, Krzysztof Kozlowski wrote:
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+> It seems you fix all these.
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
-
-Full log is available here: https://patchwork.ozlabs.org/patch/1786533
-
-
-qfprom@1b44000: compatible:0: 'qcom,qcm2290-qfprom' is not one of ['qcom,apq8064-qfprom', 'qcom,apq8084-qfprom', 'qcom,ipq5332-qfprom', 'qcom,ipq6018-qfprom', 'qcom,ipq8064-qfprom', 'qcom,ipq8074-qfprom', 'qcom,ipq9574-qfprom', 'qcom,msm8916-qfprom', 'qcom,msm8974-qfprom', 'qcom,msm8976-qfprom', 'qcom,msm8996-qfprom', 'qcom,msm8998-qfprom', 'qcom,qcs404-qfprom', 'qcom,sc7180-qfprom', 'qcom,sc7280-qfprom', 'qcom,sdm630-qfprom', 'qcom,sdm670-qfprom', 'qcom,sdm845-qfprom', 'qcom,sm6115-qfprom', 'qcom,sm6350-qfprom', 'qcom,sm6375-qfprom', 'qcom,sm8150-qfprom', 'qcom,sm8250-qfprom']
-	arch/arm64/boot/dts/qcom/qrb2210-rb1.dtb
-
-qfprom@1b44000: Unevaluated properties are not allowed ('compatible' was unexpected)
-	arch/arm64/boot/dts/qcom/qrb2210-rb1.dtb
-
-qfprom@700000: Unevaluated properties are not allowed ('ranges' was unexpected)
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dtb
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dtb
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dtb
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-lagan-yuga.dtb
+That's correct. All these errors were fixed by this series.
