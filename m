@@ -2,199 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A84CF715A40
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 11:34:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69CED715A8F
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 11:46:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229551AbjE3Jei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 05:34:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49124 "EHLO
+        id S231186AbjE3Jqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 05:46:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbjE3Jef (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 05:34:35 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9C0B93;
-        Tue, 30 May 2023 02:34:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685439274; x=1716975274;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wp2pAf3CqrBt5skpkT7zvWMDCqetgcUZchDB3RC0Ee0=;
-  b=kXIirub0TyEkQRY6Ysquy7FBA3PGu3ATzksW1IY/Jz8Df2EbGHBsOXoC
-   CBB5HVIm/pkx9lz+I6nvndUMyBrEHG//323opXgmWHrvDXGEsaJaLWIOR
-   55f9sADJdIn4tLB3glUx4umCXPIe36G5elhy9sG6czl7dwb3VZk2quFeS
-   YbYvdvk4ae/df60WUu0PeuKfh/mX9D7h8Aef4XMUhlBwYEkXR4UB4YSwf
-   a8fCiQN3YxfXzPoDSCn28eo+UEsPaA+/LufMW5L4AEyZ9xss8Zell3Obb
-   tYtTmDg2Fz4wUlkeYgUpgkoXb1aLDvNCyrIaNkT3yTHJvg4AQ8hUoJh7u
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; 
-   d="asc'?scan'208";a="216005891"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 May 2023 02:34:34 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 30 May 2023 02:34:32 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Tue, 30 May 2023 02:34:29 -0700
-Date:   Tue, 30 May 2023 10:34:07 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        <krzysztof.kozlowski+dt@linaro.org>, <neil.armstrong@linaro.org>,
-        <jbrunet@baylibre.com>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>, <khilman@baylibre.com>,
-        <jian.hu@amlogic.com>, <kernel@sberdevices.ru>,
-        <rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v15 5/6] dt-bindings: clock: meson: add A1 Peripherals
- clock controller bindings
-Message-ID: <20230530-illusive-pushpin-1e35d0a50e0d@wendy>
-References: <20230517133309.9874-1-ddrokosov@sberdevices.ru>
- <20230517133309.9874-6-ddrokosov@sberdevices.ru>
- <CAFBinCC3kQ9Nz3R2W-Qj9tbPJfS8JsB_4AkmPgS6xpQ96DBy2w@mail.gmail.com>
- <20230522130033.a47vlybocme66rev@CAB-WSD-L081021>
- <CAFBinCAk9+Km3BssA8d8nc_Z_GbhY87FD3qQRpZ2k7ChKt7TBg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="36vkeFCCRp4Cr9uu"
-Content-Disposition: inline
-In-Reply-To: <CAFBinCAk9+Km3BssA8d8nc_Z_GbhY87FD3qQRpZ2k7ChKt7TBg@mail.gmail.com>
+        with ESMTP id S229739AbjE3Jqm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 05:46:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B8BBA3;
+        Tue, 30 May 2023 02:46:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A3619625E7;
+        Tue, 30 May 2023 09:46:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B3AFC433EF;
+        Tue, 30 May 2023 09:46:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685440000;
+        bh=jRdh+GkRfDWttXL/fmD+LV2d9JEAsUu+MFteor4o3v8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=NWQkW7oqD1s/xQaFLgewy15nv1KOWGXsn0f6FF/858zpx8bI3nhSwnRXEShDXDMkx
+         piTiQBqj89sTUkdaMIMcfWKRnJjeK35AreN69JjZp2umweAEJrjrWJ8M/8H4NLUBM9
+         +WVdgprovyGlGiPrKHjvBKi8A6MoAd3USs2SgXo8M3qo+Mk/CSaHQfquRrR+cYF8VP
+         33/FKZgiQHACj/TMzi3XFg7aBUN+S4EoKZZ9V4Ktn1xgYi+6rIYy+csL6WcARJXv/S
+         Bl81LUJeWfbjgLHWweh59yJ1G0l8RdwcMEMmvruI9W6NFd3kc8QXVwJEJlOYce6iT9
+         8Nfj481yN1BmQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1q3vw5-001GVk-R1;
+        Tue, 30 May 2023 10:46:37 +0100
+Date:   Tue, 30 May 2023 10:46:37 +0100
+Message-ID: <868rd6cfsy.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, wenst@chromium.org,
+        yidilin@chromium.org, Tinghan Shen <tinghan.shen@mediatek.com>,
+        jwerner@chromium.org, Weiyi Lu <weiyi.lu@mediatek.com>,
+        Ben Ho <Ben.Ho@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        linux-kernel@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v2 2/5] irqchip/gic-v3: Disable pseudo NMIs on Mediatek devices w/ firmware issues
+In-Reply-To: <CAMuHMdWM_t7uQqkesM3fnSK7THrmLszA7U54==A0-98xPH90Bw@mail.gmail.com>
+References: <20230515131353.v2.cover@dianders>
+        <20230515131353.v2.2.I88dc0a0eb1d9d537de61604cd8994ecc55c0cac1@changeid>
+        <CAMuHMdWM_t7uQqkesM3fnSK7THrmLszA7U54==A0-98xPH90Bw@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: geert@linux-m68k.org, dianders@chromium.org, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, allen-kh.cheng@mediatek.com, linux-mediatek@lists.infradead.org, eddie.huang@mediatek.com, hsin-hsiung.wang@mediatek.com, angelogioacchino.delregno@collabora.com, wenst@chromium.org, yidilin@chromium.org, tinghan.shen@mediatek.com, jwerner@chromium.org, weiyi.lu@mediatek.com, Ben.Ho@mediatek.com, seiya.wang@mediatek.com, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---36vkeFCCRp4Cr9uu
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Yo,
-
-On Mon, May 29, 2023 at 10:38:33PM +0200, Martin Blumenstingl wrote:
-> On Mon, May 22, 2023 at 3:00=E2=80=AFPM Dmitry Rokosov <ddrokosov@sberdev=
-ices.ru> wrote:
-> [...]
-> > > This IP block has at least one additional input called "sys_pll_div16=
-".
-> > > My understanding is that the "sys_pll_div16" clock is generated by the
-> > > CPU clock controller. Support for the CPU clock controller
-> > > (dt-bindings and a driver) will be added at a later time by Dmitry.
-> > > How can we manage incrementally implementing the clock controllers?
-> > > From a hardware perspective the "sys_pll_div16" input is mandatory.
-> > > How to manage this in the .dts patches then (for example: does this
-> > > mean that Dmitry can only add the clock controller to the .dts when
-> > > all clock controller bindings have been implemented - or is there
-> > > another way)?
-> >
-> > You're absolutely right: currently, not all inputs are supported because
-> > the CPU clock controller isn't ready yet =E2=80=93 I'm working on it at=
- the
-> > moment.
-> >
-> > I understand your concerns about bindings and schema description, but
-> > there is an issue to be considered. I'm developing the entire clock
-> > controller A1 subsystem incrementally in three stages: peripherals and
-> > PLL, CPU, and Audio. This is because the CPU can operate at a static
-> > frequency and voltage, and the board boots normally without the CPU
-> > clock controller, thermal sensor, and OPP table. Audio is also
-> > important, but it's optional. On the other hand, without setting up the
-> > peripherals and PLL controllers, the board won't function because
-> > they're fundamental.
-> I understand your approach and I like it (without that incremental
-> approach you would probably be looking at a series with 15-20
-> patches).
+On Tue, 30 May 2023 09:29:02 +0100,
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >=20
-> Maybe the dt-binding maintainers have a suggestion for us here?
-> Let me try to summarize the issue in a few bullet points:
-> - There's (at least) four clock controllers on the Amlogic A1 SoC
-> - Some of these clock controllers take the outputs of another clock
-> controller as inputs
-> - In this series patch the peripheral clock controller has an input
-> called "sys_pll_div16"
-> - The clock controller which provides the "sys_pll_div16" clock is not
-> implemented yet (my understanding is that implementing it and adding
-> it to this series is not easy: it would add even more patches that
-> need to be reviewed and in general it's a tricky clock controller to
-> implement as it manages the CPU clocks)
-
-If I am understanding correctly, this series implements the child
-controller and a parent, which is unimplemented, provides the child with
-sys_pll_div16.
-The thing I am missing is whether the child controller has some outputs
-that depend on this sys_pll_div16 input & whether those are documented
-in this series. Regardless, you should be able to add more output clocks
-without compatibility issues.
-
-> > Right now, we're in the first stage of the plan. Unfortunately, I can't
-> > disclose the exact names and number of clock bindings for the CPU and
-> > Audio, as they're still in development and only exist in my head or
-> > draft versions.
+> Hi Douglas,
+>=20
+> On Mon, May 15, 2023 at 10:16=E2=80=AFPM Douglas Anderson <dianders@chrom=
+ium.org> wrote:
+> > Some Chromebooks with Mediatek SoCs have a problem where the firmware
+> > doesn't properly save/restore certain GICR registers. Newer
+> > Chromebooks should fix this issue and we may be able to do firmware
+> > updates for old Chromebooks. At the moment, the only known issue with
+> > these Chromebooks is that we can't enable "pseudo NMIs" since the
+> > priority register can be lost. Enabling "pseudo NMIs" on Chromebooks
+> > with the problematic firmware causes crashes and freezes.
 > >
-> > If possible, I'd prefer to provide the new bindings and connections once
-> > all the appropriate drivers are finalized.
-> Question to Conor and Krzysztof (assuming you read my summary above):
-> Is it fine that Dmitry adds additional inputs to the peripheral clock
-> controller binding in later patches?
+> > Let's detect devices with this problem and then disable "pseudo NMIs"
+> > on them. We'll detect the problem by looking for the presence of the
+> > "mediatek,broken-save-restore-fw" property in the GIC device tree
+> > node. Any devices with fixed firmware will not have this property.
+> >
+> > Our detection plan works because we never bake a Chromebook's device
+> > tree into firmware. Instead, device trees are always bundled with the
+> > kernel. We'll update the device trees of all affected Chromebooks and
+> > then we'll never enable "pseudo NMI" on a kernel that is bundled with
+> > old device trees. When a firmware update is shipped that fixes this
+> > issue it will know to patch the device tree to remove the property.
+> >
+> > In order to make this work, the quick detection mechanism of the GICv3
+> > code is extended to be able to look for properties in addition to
+> > looking at "compatible".
+> >
+> > Reviewed-by: Julius Werner <jwerner@chromium.org>
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > ---
+> >
+> > Changes in v2:
+> > - mediatek,gicr-save-quirk =3D> mediatek,broken-save-restore-fw
+>=20
+> Thanks for your patch, which is now commit 44bd78dd2b8897f5
+> ("irqchip/gic-v3: Disable pseudo NMIs on Mediatek devices w/
+> firmware issues") in v6.4-rc4.
+>=20
+> This causes enabling an unrelated workaround on R-Car V4H:
+>=20
+>     GIC: enabling workaround for GICv3: Cavium erratum 38539
+>=20
+> > --- a/drivers/irqchip/irq-gic-common.c
+> > +++ b/drivers/irqchip/irq-gic-common.c
+> > @@ -16,7 +16,11 @@ void gic_enable_of_quirks(const struct device_node *=
+np,
+> >                           const struct gic_quirk *quirks, void *data)
+> >  {
+> >         for (; quirks->desc; quirks++) {
+> > -               if (!of_device_is_compatible(np, quirks->compatible))
+> > +               if (quirks->compatible &&
+> > +                   !of_device_is_compatible(np, quirks->compatible))
+> > +                       continue;
+> > +               if (quirks->property &&
+> > +                   !of_property_read_bool(np, quirks->property))
+> >                         continue;
+>=20
+> Presumably the loop should continue if none of quirks-compatible
+> or quirks->property is set?
 
-Perhaps Krzysztof will disagree with me, but my take on it would be that
-the binding should describe the individual clock controller in its
-totality, but the driver can choose to only implement a subset of it.
+Indeed, thanks for pointing that out. Can you give the following hack
+a go (compile tested only)?
 
-If you define the binding as only needing N inputs, but then later
-expand it to having N+M inputs, the driver will have to support N & N+M
-input clocks to preserve compatibility.
-If you define it as needing N+M inputs from the beginning, but only use
-N, there is no issue with backwards compatibility when you later use
-them all.
+diff --git a/drivers/irqchip/irq-gic-common.c b/drivers/irqchip/irq-gic-com=
+mon.c
+index de47b51cdadb..7b591736ab58 100644
+--- a/drivers/irqchip/irq-gic-common.c
++++ b/drivers/irqchip/irq-gic-common.c
+@@ -16,6 +16,8 @@ void gic_enable_of_quirks(const struct device_node *np,
+ 			  const struct gic_quirk *quirks, void *data)
+ {
+ 	for (; quirks->desc; quirks++) {
++		if (!quirks->compatible && !quirks->property)
++			continue;
+ 		if (quirks->compatible &&
+ 		    !of_device_is_compatible(np, quirks->compatible))
+ 			continue;
 
-> If not: how can we proceed in case we need to add them now (the
-> dt-binding example is the easy part for me as we can just make up a
-> phandle like &sys_pll_div16_clk and use that - but this can't work
-> when Dmitry tries to add the clock controller to meson-a1.dtsi)
-
-I would be inclined to do the same thing in the dts as the example,
-and make up a fixed-frequency clock and use it to plug the hole.
-When you have bindings etc written for the clock controller providing
-that clock, the fixed-frequency clock could be swapped out for the real
-one.
-
-> PS: Dmitry is trying to get this series into Linux 6.5. As far as I
-> remember the common clock maintainers don't take pull requests with
-> new features after -rc6 (which is in less than two weeks).
-> So time is getting a bit short and for me this is the very last
-> outstanding question. If you say that it's fine to add clocks later on
-> this will immediately get my Reviewed-by.
-
-I *think* that what I've just said should not get in the way of such a
-timeline, as it would only involve a "small" change to the dt-binding,
-but not require additional bindings or driver.
+If that works for you, I'll queue it ASAP.
 
 Cheers,
-Conor.
 
+	M.
 
---36vkeFCCRp4Cr9uu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHXDDgAKCRB4tDGHoIJi
-0tPiAQDxJgM01v9LEi2iF1dr7RKotniwIpWYNsLXwvRueTh4JAEAz4CqON+2GW8z
-dmSUkX/YHEFtQPiocrOvOz8I74RHVg0=
-=ipL3
------END PGP SIGNATURE-----
-
---36vkeFCCRp4Cr9uu--
+--=20
+Without deviation from the norm, progress is not possible.
