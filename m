@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F07B7158B4
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:37:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77E9B7158B7
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:37:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229917AbjE3Ihm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 04:37:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47250 "EHLO
+        id S230234AbjE3Ihn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 04:37:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230387AbjE3Ihd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:37:33 -0400
+        with ESMTP id S230385AbjE3Ihc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:37:32 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AC93D9
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F6A0B2
         for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:37:31 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1q3uqy-0002xU-JO; Tue, 30 May 2023 10:37:16 +0200
+        id 1q3uqy-0002xY-JM; Tue, 30 May 2023 10:37:16 +0200
 Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <ore@pengutronix.de>)
-        id 1q3uqw-003pab-R1; Tue, 30 May 2023 10:37:14 +0200
+        id 1q3uqx-003pak-Bv; Tue, 30 May 2023 10:37:15 +0200
 Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <ore@pengutronix.de>)
-        id 1q3uqw-00AbUl-3C; Tue, 30 May 2023 10:37:14 +0200
+        id 1q3uqw-00AbUv-3y; Tue, 30 May 2023 10:37:14 +0200
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>,
@@ -38,9 +38,9 @@ Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
         linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         netdev@vger.kernel.org
-Subject: [PATCH v2 1/3] dt-bindings: net: pse-pd: Update regex pattern for ethernet-pse nodes
-Date:   Tue, 30 May 2023 10:37:11 +0200
-Message-Id: <20230530083713.2527380-2-o.rempel@pengutronix.de>
+Subject: [PATCH v2 2/3] dt-bindings: net: pse-pd: Add "ethernet-pse-0" example to improve validation in podl-pse-regulator DT binding
+Date:   Tue, 30 May 2023 10:37:12 +0200
+Message-Id: <20230530083713.2527380-3-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230530083713.2527380-1-o.rempel@pengutronix.de>
 References: <20230530083713.2527380-1-o.rempel@pengutronix.de>
@@ -59,33 +59,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch modifies the regex pattern for the $nodename property in the
-device tree bindings documentation for PSE-PD controllers. The updated
-pattern allows for additional node names, including those with a hyphen
-followed by a hexadecimal digit.
-
-Before this change, the pattern ^ethernet-pse(@.*)?$ only allowed for
-node names like "ethernet-pse" or "ethernet-pse@1". With the new pattern
-node names like "ethernet-pse-1" are now also valid.
+This change adds a new example, "ethernet-pse-0", to the device tree
+binding for podl-pse-regulator. This helps improve validation by
+supporting more types of node names.
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 ---
- .../devicetree/bindings/net/pse-pd/pse-controller.yaml          | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml  | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml b/Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml
-index b110abb42597..3548efc2191c 100644
---- a/Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml
-@@ -16,7 +16,7 @@ maintainers:
- 
- properties:
-   $nodename:
--    pattern: "^ethernet-pse(@.*)?$"
-+    pattern: "^ethernet-pse(@[0-9a-f]+|-([0-9a-f]+))?$"
- 
-   "#pse-cells":
-     description:
+diff --git a/Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml b/Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml
+index 94a527e6aa1b..25d237e0f406 100644
+--- a/Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml
++++ b/Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml
+@@ -38,3 +38,9 @@ examples:
+       pse-supply = <&reg_t1l1>;
+       #pse-cells = <0>;
+     };
++  - |
++    ethernet-pse-0 {
++      compatible = "podl-pse-regulator";
++      pse-supply = <&reg_t1l1>;
++      #pse-cells = <0>;
++    };
 -- 
 2.39.2
 
