@@ -2,120 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99BCE7160D8
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 14:59:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3207D7160DD
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:00:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232409AbjE3M7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 08:59:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57498 "EHLO
+        id S232428AbjE3NAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 09:00:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229935AbjE3M7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 08:59:39 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE11211A
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 05:59:14 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-96f99222e80so914020266b.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 05:59:14 -0700 (PDT)
+        with ESMTP id S232548AbjE3M7z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 08:59:55 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A2DC107
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 05:59:31 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-96f99222e80so914065866b.1
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 05:59:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685451553; x=1688043553;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=YKzqjiGxVMzWVVfsT/Cf511nH74+nq/oJr+k6w823oU=;
-        b=QU3X/XZ1flLNTepoQEef1Msa2WzJtUPS4qnH/k+gewtqd9mg9Y4XC/1+Y94pYUdIIz
-         d3F4qYcJrAr/VjTVGhvFUyAKX2aDioK20OlTWIzJmEJ3pA9Je1huadZRHtKt2jfrV3Hs
-         IjF2pmv0PQiaPkbalXOw8uyI8vIMT2NYkZZLoWDKO5uLa7+NT9kQqcezYMf4zK4b3V2z
-         qiT2zYLdthbzPGwz4217KfXDkpZnWbUOI6P9OCBXvaHjFZOTMZUgAtfpTkq0F69mWpxT
-         FZ0efFNke6LSBTirf2du2UWqugVE021vL0Slpji5Q1mfabIGnC0bBxGks2PHyrDDkKty
-         F4PQ==
+        d=linaro.org; s=google; t=1685451565; x=1688043565;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bJKVtkQkQoC4E9Aq5P1zai4vqqsMy8w6t211JaxwDCU=;
+        b=EduhXg0vsAisfGwJuKPj3SLiJgITAVJmRg5G/6Ql+7WOtJ7zUJevpiepbuNgYqkDFC
+         0GsX4/It5j/OFt+Mq/VhrtN9ysbiLmBkm5gVGLYghScaAzhWePvqJdk2Ix1CTAsk7dWN
+         p4ij+/Fq9oCLp0Gi/upuWJa+66dJA8YtC7cAN5V5l6tRW/cqgWwR/z3tK7Y17U931z6B
+         /yjiL4jEIlwoWfmBat6/90A1b/ilP3oXDAWvlJrZKF2Zcxrep2Er1OJwdNOgHVvIV5Fz
+         ZuOGvfxeH7LvRcE4kkYWgtMTNRqjURacLlCk/MmnlE9kQx8ZTcZOZA/8lojCB9lLuUHN
+         OsHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685451553; x=1688043553;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YKzqjiGxVMzWVVfsT/Cf511nH74+nq/oJr+k6w823oU=;
-        b=Fz8shXQCmK6USbBBcL6zy2+uvUXbSQmmGOaG1s7h4Q40BGkJz3el/JmetofkQq5yij
-         QkeRXlORg+mlFfQAgD01LXhREh2TmeA+6ujTFwe9fMfEygTs31WFLfqsJpom+aIqDfIZ
-         fbwT9IYDG/5Kz/Gw80F6x2qfbURIq5yEBWgYvtjl9wM4JQXGDR6BDe4EZUYCZzq38iCL
-         WAWJjPgP9MdzcEnq+ltXseNi4iZLIOE5E2VJvLFX8ZXEI4AlmB2XIXaQyuAQmfXTTkOq
-         zg+BsgpPs9UbsvQN9lYq4N3MUZv5w+QQc0mHnfgMAMU9MrZIxHjoNEOWi2RW17IkTbjX
-         Gc2w==
-X-Gm-Message-State: AC+VfDy23vxDmC8qTQ2zfPqnjXG9q90qjYussC5yaDrdFTBmBcTpENN0
-        KHir8XnsCIRZ83T7/gWqoBERlg==
-X-Google-Smtp-Source: ACHHUZ7nnF1/hv/gQW+Rp4tA6V/xLRLeLOIjqQOd8mOMh1TDNhdMsFvhM3lpbrx5tt1xZUYFlNblWw==
-X-Received: by 2002:a17:907:6ea8:b0:973:9443:c5fc with SMTP id sh40-20020a1709076ea800b009739443c5fcmr10916236ejc.14.1685451551501;
-        Tue, 30 May 2023 05:59:11 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id m19-20020a1709066d1300b0096f0c8beebbsm7323533ejr.79.2023.05.30.05.59.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 05:59:11 -0700 (PDT)
-Message-ID: <1ea23f76-58c2-402a-2831-ac496ef41b11@linaro.org>
-Date:   Tue, 30 May 2023 14:59:09 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: pfuze100.yaml: Add an entry for
- interrupts
+        d=1e100.net; s=20221208; t=1685451565; x=1688043565;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bJKVtkQkQoC4E9Aq5P1zai4vqqsMy8w6t211JaxwDCU=;
+        b=GJlBqI82/QzTH+aptMTu9NcQ1t+NvHIZvgU/7Z84WDNZqbYsHmT8I5mKRQ6IfBKqGG
+         9pLQAseFh9B4l14psWHSjDJOg9/8nGPweWyGtSV/7zRTeObXjGFX7X5Jm8sCBo9OYxu1
+         zvbBxaVXF/yxt7cP3ASXT6gKt48BaVg+bLdpFb0kf27RczowDlmxMngWoZ+kB0uupyCK
+         TmZZVdtxF6WMjM7G0JwrDL+fhqWEhqVhGOLwbdKvnT9KsBGOYLGcezEj/Xcx5eXyDJAc
+         wFmTkR53VwLsZ5/TR/utX43HeKOCU5vdz+GlNLU1eNwlDPQery/JLpyrkZsyfhODKCsM
+         vUzA==
+X-Gm-Message-State: AC+VfDyOtrWgU5zZRPVw7KCwqgAZCPmwOemtn/wyQ5gJCxi9LRkhtHHu
+        BjnSrhmpNk7F5y/5k41kO9SRNQ==
+X-Google-Smtp-Source: ACHHUZ7sG1jHvP1ouiV/MHYG37LTy7wih8YNLIQsIFYJ+2JNQM0VSKF1FQl4S03+1Ik1p8l5H1S7yg==
+X-Received: by 2002:a17:907:868c:b0:967:4bc7:38c0 with SMTP id qa12-20020a170907868c00b009674bc738c0mr2120189ejc.9.1685451561717;
+        Tue, 30 May 2023 05:59:21 -0700 (PDT)
+Received: from krzk-bin ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id j1-20020a1709064b4100b009664cdb3fc5sm7275579ejv.138.2023.05.30.05.59.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 May 2023 05:59:21 -0700 (PDT)
+Date:   Tue, 30 May 2023 14:59:18 +0200
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Fabio Estevam <festevam@denx.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        broonie@kernel.org, shawnguo@kernel.org
-References: <20230527205048.418360-1-festevam@gmail.com>
- <20230530125758.ke7isykxf3bg4efu@krzk-bin>
-Content-Language: en-US
-In-Reply-To: <20230530125758.ke7isykxf3bg4efu@krzk-bin>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Kathiravan T <quic_kathirav@quicinc.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH V2 1/4] dt-bindings: nvmem: qfprom: add compatible for
+ few IPQ SoCs
+Message-ID: <20230530125918.4waqxc4xmnetb5wb@krzk-bin>
+References: <20230526125305.19626-1-quic_kathirav@quicinc.com>
+ <20230526125305.19626-2-quic_kathirav@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230526125305.19626-2-quic_kathirav@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2023 14:57, Krzysztof Kozlowski wrote:
-> On Sat, 27 May 2023 17:50:46 -0300, Fabio Estevam wrote:
->> From: Fabio Estevam <festevam@denx.de>
->>
->> The PFUZE100 PMIC has an interrupt pin that can be connected to
->> the host SoC. Describe it in the dt-bindings to avoid warnings like:
->>
->> imx6q-zii-rdu2.dtb: pmic@8: 'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
->> From schema: Documentation/devicetree/bindings/regulator/pfuze100.yaml
->>
->> Signed-off-by: Fabio Estevam <festevam@denx.de>
->> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->> ---
->> Changes since v1:
->> - None. Only collected Conor's Reviewed-by tag.
->>
->>  Documentation/devicetree/bindings/regulator/pfuze100.yaml | 3 +++
->>  1 file changed, 3 insertions(+)
->>
+On Fri, 26 May 2023 18:23:02 +0530, Kathiravan T wrote:
+> Add the QFPROM compatible for IPQ5332, IPQ6018 and IPQ9574
 > 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> ---
+> Changes in V2:
+> 	- No changes
 > 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
+>  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1786770
-> 
-> 
-> pf0100@8: $nodename:0: 'pf0100@8' does not match '^pmic@[0-9]$'
-> 	arch/arm/boot/dts/imx6dl-riotboard.dtb
-> 
-> pfuze100@8: $nodename:0: 'pfuze100@8' does not match '^pmic@[0-9]$'
 
-It seems you fix all these.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Best regards,
-Krzysztof
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
+Full log is available here: https://patchwork.ozlabs.org/patch/1786533
+
+
+qfprom@1b44000: compatible:0: 'qcom,qcm2290-qfprom' is not one of ['qcom,apq8064-qfprom', 'qcom,apq8084-qfprom', 'qcom,ipq5332-qfprom', 'qcom,ipq6018-qfprom', 'qcom,ipq8064-qfprom', 'qcom,ipq8074-qfprom', 'qcom,ipq9574-qfprom', 'qcom,msm8916-qfprom', 'qcom,msm8974-qfprom', 'qcom,msm8976-qfprom', 'qcom,msm8996-qfprom', 'qcom,msm8998-qfprom', 'qcom,qcs404-qfprom', 'qcom,sc7180-qfprom', 'qcom,sc7280-qfprom', 'qcom,sdm630-qfprom', 'qcom,sdm670-qfprom', 'qcom,sdm845-qfprom', 'qcom,sm6115-qfprom', 'qcom,sm6350-qfprom', 'qcom,sm6375-qfprom', 'qcom,sm8150-qfprom', 'qcom,sm8250-qfprom']
+	arch/arm64/boot/dts/qcom/qrb2210-rb1.dtb
+
+qfprom@1b44000: Unevaluated properties are not allowed ('compatible' was unexpected)
+	arch/arm64/boot/dts/qcom/qrb2210-rb1.dtb
+
+qfprom@700000: Unevaluated properties are not allowed ('ranges' was unexpected)
+	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dtb
+	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dtb
+	arch/arm/boot/dts/qcom-apq8064-ifc6410.dtb
+	arch/arm/boot/dts/qcom-apq8064-sony-xperia-lagan-yuga.dtb
