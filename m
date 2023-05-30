@@ -2,126 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 311EE7161EA
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC3627161F8
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230519AbjE3NbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 09:31:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54188 "EHLO
+        id S230191AbjE3NcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 09:32:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232124AbjE3NbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:31:11 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85F4DC5;
-        Tue, 30 May 2023 06:31:06 -0700 (PDT)
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34U9eANS001363;
-        Tue, 30 May 2023 15:30:36 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=lELW+s5lmZKWjeMpQ3kERNUcACwyTcZXXJ9J7hPodYM=;
- b=AnIbH62mrtryj5eucMpAcmm7vu6e90DGIOEeyBwBr5os1VZfXnk2dYbcmF+9upVowr4O
- bh6bv5dXqEZ1kAJcx5gfVc1pLJ3MCU3HP587Muttw03ezl9K+u/lXF5mfcOg1T7V1RvB
- NK39tpP5rzsHHWi/PbKg0ZdnqCGaOayumWft5aS4urv3qth8XeWsYs8uxm4/o3ckOeFJ
- Y3ovWkyXksPu1vb49NM7ssyKlx+XRSQqRW4Kv874oJ/1nK2/YENoMnpFQxDKEth6Jt5y
- p4+rD8WgoWU5mSHEI1lk3vvCo35XQBIUwk9AqPrskaxdtzkqwx8YUM6suUS2x+XxyCZS 2w== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qweqe1db0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 15:30:36 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0451A10002A;
-        Tue, 30 May 2023 15:30:34 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EAC1B228A29;
-        Tue, 30 May 2023 15:30:34 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 30 May
- 2023 15:30:33 +0200
-Message-ID: <92d5a699-9f5d-2e40-ca73-4604f3e5a657@foss.st.com>
-Date:   Tue, 30 May 2023 15:30:32 +0200
+        with ESMTP id S230163AbjE3NcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:32:24 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64225A1;
+        Tue, 30 May 2023 06:32:23 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34UDW1CU010504;
+        Tue, 30 May 2023 08:32:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685453521;
+        bh=TVuo4D7cz4/tEVfuFzYLxXwg0NBeCVTRyOotng1WRcs=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=SaIiBja+wsle1bsWMjGbHRz9yQalDYwsCqXj/8iXi4GH26M13G6np3C79uhB1z7fH
+         8aKOJoZxnNtpJDtnqFE6X2Yh6VYvIXFc0Q0TItAVyAsfAthDA+mcVT1VoqULm+vpWk
+         11Bl7CsVkx129Z3NkzeaOrW8BAe2bzXoysczXnig=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34UDW17I063353
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 30 May 2023 08:32:01 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
+ May 2023 08:32:01 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 30 May 2023 08:32:01 -0500
+Received: from [10.249.142.56] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34UDVvu7012242;
+        Tue, 30 May 2023 08:31:58 -0500
+Message-ID: <ae30ee49-6cd2-c80f-28fb-9538e8932010@ti.com>
+Date:   Tue, 30 May 2023 19:01:57 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
-Subject: Re: [PATCH v4 2/4] dt-bindings: display: st,stm32-dsi: Remove
- unnecessary fields
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        David Airlie <airlied@gmail.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        <kernel@dh-electronics.com>, Marek Vasut <marex@denx.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>,
+Subject: Re: [PATCH v1 3/5] arm64: dts: ti: add verdin am62
+To:     Nishanth Menon <nm@ti.com>,
+        Francesco Dolcini <francesco@dolcini.it>
+CC:     Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20230529091359.71987-1-raphael.gallais-pou@foss.st.com>
- <20230529091359.71987-3-raphael.gallais-pou@foss.st.com>
- <20230530122736.tflfu5cugbd7ooup@krzk-bin>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230530122736.tflfu5cugbd7ooup@krzk-bin>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230524143631.42471-1-francesco@dolcini.it>
+ <20230524143631.42471-4-francesco@dolcini.it>
+ <20230530121044.sjhv452b4hs4lyiy@flyer>
+Content-Language: en-US
+From:   "Raghavendra, Vignesh" <vigneshr@ti.com>
+In-Reply-To: <20230530121044.sjhv452b4hs4lyiy@flyer>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-30_10,2023-05-30_01,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/30/23 14:27, Krzysztof Kozlowski wrote:
-> On Mon, 29 May 2023 11:13:57 +0200, Raphael Gallais-Pou wrote:
->> "#address-cells" and "#size-cells" are two properties that are not
->> mandatory. For instance, the DSI could refer to a bridge outside the scope
->> of the node rather than include a 'panel@0' subnode. By doing so, address
->> and size fields become then unnecessary, creating a warning at build time.
->>
->> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->> Reviewed-by: Marek Vasut <marex@denx.de>
->> ---
->>   Documentation/devicetree/bindings/display/st,stm32-dsi.yaml | 2 --
->>   1 file changed, 2 deletions(-)
->>
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings
-I checked it before merging the series on stm32-next tree. I didn't get 
-this error. I didn't check commit per commit.
+Hi
 
-Do you get this error after merging the whole series ?
+On 5/30/2023 5:40 PM, Nishanth Menon wrote:
+> On 16:36-20230524, Francesco Dolcini wrote:
+> [...]
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
+>> new file mode 100644
+>> index 000000000000..e138b1c8ed14
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
+>> @@ -0,0 +1,233 @@
+>> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+>> +/*
+>> + * Copyright 2023 Toradex
+> 
+> Please also add appropriate product links to dts/dtsi
+> 
+>> + */
+>> +
+>> +/ {
+>> +	sound_card: sound-card {
+>> +		compatible = "simple-audio-card";
+>> +		simple-audio-card,bitclock-master = <&dailink_master>;
+>> +		simple-audio-card,format = "i2s";
+>> +		simple-audio-card,frame-master = <&dailink_master>;
+>> +		simple-audio-card,name = "verdin-nau8822";
+>> +		simple-audio-card,routing =
+>> +			"Headphones", "LHP",
+>> +			"Headphones", "RHP",
+>> +			"Speaker", "LSPK",
+>> +			"Speaker", "RSPK",
+>> +			"Line Out", "AUXOUT1",
+>> +			"Line Out", "AUXOUT2",
+>> +			"LAUX", "Line In",
+>> +			"RAUX", "Line In",
+>> +			"LMICP", "Mic In",
+>> +			"RMICP", "Mic In";
+>> +		simple-audio-card,widgets =
+>> +			"Headphones", "Headphones",
+>> +			"Line Out", "Line Out",
+>> +			"Speaker", "Speaker",
+>> +			"Microphone", "Mic In",
+>> +			"Line", "Line In";
+>> +
+>> +		dailink_master: simple-audio-card,codec {
+>> +			clocks = <&k3_clks 157 10>;
+>> +			sound-dai = <&nau8822_1a>;
+>> +		};
+>> +
+>> +		simple-audio-card,cpu {
+>> +			sound-dai = <&mcasp0>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +/* Verdin ETHs */
+>> +&cpsw3g {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_rgmii1 &pinctrl_rgmii2>;
+> 
+> here and elsewhere:
+> pinctrl-0 = <&pinctrl_rgmii1>, <&pinctrl_rgmii2>;
+> 
+> 
+>> +	status = "okay";
+>> +};
+> [...]
+>> +	/* EEPROM */
+>> +	eeprom@57 {
+>> +		compatible = "st,24c02", "atmel,24c02";
+> 
+> checkpatch warns: DT compatible string "st,24c02" appears un-documented
+> 
 
+Checkpatch now seems outdated in favor of dtbs_check. DT schemas use
+regex for compatibles and thus simple grep in
+Doucmentation/devicetree-bindings/ doesn't help. Eg: In this case:
+
+Documentation/devicetree/bindings/eeprom/at24.yaml has the regex to
+cover the compatibles
+
+>> +		reg = <0x57>;
+>> +		pagesize = <16>;
+>> +	};
+>> +};
+>> +
+>> +/* Verdin I2C_2_DSI */
+>> +&main_i2c2 {
+>> +	status = "okay";
+> 
+> Here and few other dtsis:
+> you should set status along with pinmux.
+> 
+> [...]
+>> +
+>> +/* Verdin UART_2 */
+>> +&wkup_uart0 {
+>> +	/* FIXME: WKUP UART0 is used by DM firmware */
+>> +	status = "reserved";
+> 
+> If you do configure this in R5 SPL, you'd want to add the pinmux as
+> well.
+> 
+>> +};
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi
+>> new file mode 100644
+>> index 000000000000..289db1666fc0
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi
+>> @@ -0,0 +1,36 @@
+>> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+>> +/*
+>> + * Copyright 2023 Toradex
+>> + */
+>> +
+>> +/ {
+>> +	wifi_pwrseq: wifi-pwrseq {
+>> +		compatible = "mmc-pwrseq-simple";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_wifi_en>;
+>> +		reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_LOW>;
+>> +	};
+>> +};
+>> +
+>> +
+> 
+> Drop extra EoLs.
+> 
+> [...]
+> 
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+>> new file mode 100644
+>> index 000000000000..2e7cb607df45
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+>> @@ -0,0 +1,1400 @@
+>> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> 
+> Assuming you really intent this instead of purely GPL-2.0
+> 
+> [...]
+> 
+>> +/* MDIO, shared by Verdin ETH_1 (On-module PHY) and Verdin ETH_2_RGMII */
+>> +&cpsw3g_mdio {
+>> +	assigned-clocks = <&k3_clks 157 20>;
+>> +	assigned-clock-parents = <&k3_clks 157 22>;
+>> +	assigned-clock-rates = <25000000>;
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_eth_clock &pinctrl_mdio>;
+>> +	status = "disabled";
+>> +
+>> +	cpsw3g_phy0: ethernet-phy@0 {
+>> +		compatible = "ethernet-phy-id2000.a231";
+> 
+> Check binding - we don't include any compatibles that dont have yaml
+> conversion done (pinctrl is the only exception).
+
+Same here ;)
+Documentation/devicetree/bindings/net/ethernet-phy.yaml covers it
 
 > 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
+> [...]
 > 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1787034
+>> +/* TODO: Verdin DSI_1 / TIDSS */
+> Drop the TODO.
 > 
+> [...]
 > 
-> dsi@40016c00: Unevaluated properties are not allowed ('panel-dsi@0' was unexpected)
-> 	arch/arm/boot/dts/stm32f469-disco.dtb
-> 
-> dsi@5a000000: Unevaluated properties are not allowed ('panel-dsi@0' was unexpected)
-> 	arch/arm/boot/dts/stm32mp157c-ev1.dtb
-> 	arch/arm/boot/dts/stm32mp157c-ev1-scmi.dtb
-
