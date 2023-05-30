@@ -2,170 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F0F17155CA
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 08:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFBCB7155EB
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 08:59:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230169AbjE3G52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 02:57:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37784 "EHLO
+        id S230213AbjE3G7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 02:59:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229992AbjE3G50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 02:57:26 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F3F3E5;
-        Mon, 29 May 2023 23:57:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1685429844; x=1716965844;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VOir9wRdXMhSVA1RPy8DGCcS8yW7/ACO/H4hKKTX2dY=;
-  b=RU3yy3tysmQuUobD9s5vTVgUZ+91NJmMRE8myCJna7oYaIpIhisxajoq
-   z5o5MgKLKmlWOtaQUUkjVJZshT5lgduVXZi8gdHjASCiaI7j/eIgfwl8+
-   TE7FkxQhR8EyBKBgQMjw/aSJvMS4B3PErw20R9yxdapx/yK9DMTbM6ao+
-   lToeLRQOci7jtp8kBZIsbhUwQDgmI9/tZc7anD3+21K0JBy+qbRG1Myxh
-   aSv5SK8masWfMTDmXoGUWJMHaa70cGKXAqFTksn+Jd2UQunl1BBy+z0GA
-   wLGquvL2CAPUoTxfU2HCRIZ7uj8jfNDS1PBkoAT9t8i+2Ya7ICLXsoytI
-   g==;
-X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; 
-   d="asc'?scan'208";a="215392567"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 May 2023 23:57:23 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 29 May 2023 23:57:23 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Mon, 29 May 2023 23:57:20 -0700
-Date:   Tue, 30 May 2023 07:56:57 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Stanley =?utf-8?B?Q2hhbmdb5piM6IKy5b63XQ==?= 
-        <stanley_chang@realtek.com>
-CC:     Conor Dooley <conor@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Ray Chi <raychi@google.com>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] dt-bindings: phy: realtek: Add the doc about the
- Realtek SoC USB 2.0/3.0 PHY
-Message-ID: <20230530-monsieur-dumpling-32c102f78c56@wendy>
-References: <20230525022617.30537-1-stanley_chang@realtek.com>
- <20230525022617.30537-3-stanley_chang@realtek.com>
- <20230529-impurity-dismount-bca5c9100c9b@spud>
- <44015844858c42a79e0e7f9207d01496@realtek.com>
+        with ESMTP id S230342AbjE3G7p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 02:59:45 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3BDB2;
+        Mon, 29 May 2023 23:59:42 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E2DFF66058F8;
+        Tue, 30 May 2023 07:59:39 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685429981;
+        bh=LEEyS50uUZjJKNoFijv9Ne6IwUdkHPUoQgYBkOeP+Oo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=fYUCe55szRdKFc+b170KtqwiMen1htHtk3aCD8aGXquRO59YyZVi/xHjj8Cd6K9Pa
+         32yuLQ49dHqKWYn6s7ZNRozZc4pU8JE5d/SYBeap1XAn7mb0Naau3ZL7tEkQ7NVCFZ
+         xPthGisDY0IAm/lq4eC8AiMfjmGwGJTcK1wmDwsp9z3n3hhfi3Ad3/nOuaTtMV46pw
+         4XhCcnWQjhgae7kAXWpbRp0F/ZLx/ubKmrLPKG6h7ZrR4Syi+a8+qg3as6NLemqsZK
+         dediYofmekeICFhUKz5+47wT2yEe9abuGhKamTLiLek/7H7ja2K54ludz3+iHSy8fv
+         T1wBrVp7B2ZiA==
+Message-ID: <d50e3c7e-0900-7cb5-f6cc-ddc1f474ff33@collabora.com>
+Date:   Tue, 30 May 2023 08:59:37 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="W3NXbn335O8/41NE"
-Content-Disposition: inline
-In-Reply-To: <44015844858c42a79e0e7f9207d01496@realtek.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH v3 4/5] arm64: dts: mediatek: mt8192: Add thermal nodes
+ and thermal zones
+Content-Language: en-US
+To:     =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        daniel.lezcano@linaro.org, rafael@kernel.org, amitk@kernel.org,
+        rui.zhang@intel.com, matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        wenst@chromium.org, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com, nfraprado@collabora.com,
+        abailon@baylibre.com, amergnat@baylibre.com, khilman@baylibre.com
+References: <20230529164605.3552619-1-bero@baylibre.com>
+ <20230529164605.3552619-5-bero@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230529164605.3552619-5-bero@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---W3NXbn335O8/41NE
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Il 29/05/23 18:46, Bernhard Rosenkränzer ha scritto:
+> From: Balsam CHIHI <bchihi@baylibre.com>
+> 
+> Add thermal nodes and thermal zones for the mt8192.
+> The mt8192 SoC has several hotspots around the CPUs.
+> Specify the targeted temperature threshold to apply the mitigation
+> and define the associated cooling devices.
+> 
+> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> [bero@baylibre.com: cosmetic changes]
+> Signed-off-by: Bernhard Rosenkränzer <bero@baylibre.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 454 +++++++++++++++++++++++
+>   1 file changed, 454 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index 5c30caf740265..330c5bb4ebc85 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -14,6 +14,8 @@
+>   #include <dt-bindings/phy/phy.h>
+>   #include <dt-bindings/power/mt8192-power.h>
+>   #include <dt-bindings/reset/mt8192-resets.h>
+> +#include <dt-bindings/thermal/thermal.h>
+> +#include <dt-bindings/thermal/mediatek,lvts-thermal.h>
+>   
+>   / {
+>   	compatible = "mediatek,mt8192";
+> @@ -71,6 +73,7 @@ cpu0: cpu@0 {
+>   			d-cache-sets = <128>;
+>   			next-level-cache = <&l2_0>;
+>   			capacity-dmips-mhz = <530>;
+> +			#cooling-cells = <2>;
+>   		};
+>   
+>   		cpu1: cpu@100 {
+> @@ -88,6 +91,7 @@ cpu1: cpu@100 {
+>   			d-cache-sets = <128>;
+>   			next-level-cache = <&l2_0>;
+>   			capacity-dmips-mhz = <530>;
+> +			#cooling-cells = <2>;
+>   		};
+>   
+>   		cpu2: cpu@200 {
+> @@ -105,6 +109,7 @@ cpu2: cpu@200 {
+>   			d-cache-sets = <128>;
+>   			next-level-cache = <&l2_0>;
+>   			capacity-dmips-mhz = <530>;
+> +			#cooling-cells = <2>;
+>   		};
+>   
+>   		cpu3: cpu@300 {
+> @@ -122,6 +127,7 @@ cpu3: cpu@300 {
+>   			d-cache-sets = <128>;
+>   			next-level-cache = <&l2_0>;
+>   			capacity-dmips-mhz = <530>;
+> +			#cooling-cells = <2>;
+>   		};
+>   
+>   		cpu4: cpu@400 {
+> @@ -139,6 +145,7 @@ cpu4: cpu@400 {
+>   			d-cache-sets = <256>;
+>   			next-level-cache = <&l2_1>;
+>   			capacity-dmips-mhz = <1024>;
+> +			#cooling-cells = <2>;
+>   		};
+>   
+>   		cpu5: cpu@500 {
+> @@ -156,6 +163,7 @@ cpu5: cpu@500 {
+>   			d-cache-sets = <256>;
+>   			next-level-cache = <&l2_1>;
+>   			capacity-dmips-mhz = <1024>;
+> +			#cooling-cells = <2>;
+>   		};
+>   
+>   		cpu6: cpu@600 {
+> @@ -173,6 +181,7 @@ cpu6: cpu@600 {
+>   			d-cache-sets = <256>;
+>   			next-level-cache = <&l2_1>;
+>   			capacity-dmips-mhz = <1024>;
+> +			#cooling-cells = <2>;
+>   		};
+>   
+>   		cpu7: cpu@700 {
+> @@ -190,6 +199,7 @@ cpu7: cpu@700 {
+>   			d-cache-sets = <256>;
+>   			next-level-cache = <&l2_1>;
+>   			capacity-dmips-mhz = <1024>;
+> +			#cooling-cells = <2>;
+>   		};
+>   
+>   		cpu-map {
+> @@ -771,6 +781,17 @@ spi0: spi@1100a000 {
+>   			status = "disabled";
+>   		};
+>   
+> +		lvts_ap: thermal-sensor@1100b000 {
+> +			compatible = "mediatek,mt8192-lvts-ap";
+> +			reg = <0 0x1100b000 0 0x1000>;
 
-On Tue, May 30, 2023 at 03:08:29AM +0000, Stanley Chang[=E6=98=8C=E8=82=B2=
-=E5=BE=B7] wrote:
-> Hi Conor,
->=20
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - realtek,usb2phy
-> > > +      - realtek,rtd-usb2phy
-> > > +      - realtek,rtd1295-usb2phy
-> > > +      - realtek,rtd1395-usb2phy
-> > > +      - realtek,rtd1619-usb2phy
-> > > +      - realtek,rtd1319-usb2phy
-> > > +      - realtek,rtd1619b-usb2phy
-> > > +      - realtek,rtd1312c-usb2phy
-> > > +      - realtek,rtd1319d-usb2phy
-> > > +      - realtek,rtd1315e-usb2phy
->=20
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - realtek,usb3phy
-> > > +      - realtek,rtd-usb3phy
-> > > +      - realtek,rtd1295-usb3phy
-> > > +      - realtek,rtd1619-usb3phy
-> > > +      - realtek,rtd1319-usb3phy
-> > > +      - realtek,rtd1619b-usb3phy
-> > > +      - realtek,rtd1319d-usb3phy
->=20
-> > Ignoring everything else, because I really want Krzysztof or Rob to
-> > review this rather than me, but what's going on here with the
-> > compatibles?
-> > What hardware do "usbNphy" and "rtd-usbNphy" represent?
-> >=20
-> > You have device-specific compatibles, which is great, but you also allow
-> > only those two generic ones. I had a _brief_ look at the driver, and it
-> > seems like there is no decision making done based on the compatibles,
-> > only on the properties. Is that correct?
-> > If it is, I would understand having "realtek,usb3phy" as a fallback
-> > compatible for "realtek,rtd1619-usb3phy", but I do not get the current
-> > setup.
->=20
-> This driver is compatible with all Realtek RTD SoCs without specifying di=
-fferent settings.
-> So use "realtek,usb3phy" as fallback compatible for all SoCs.
-> This is the compatible name we use.
-> Other compatible names simply indicate that the driver supports the SoCs.
+reg = <0 0x1100b000 0 0xc00>;
 
-Then you should write the binding such that having fallback compatibles
-is permitted. Try plugging
-compatible =3D "realtek,rtd1295-usb2phy", "realtek,rtd-usb2phy", "realtek,u=
-sb2phy";
-into your example below and see what happens.
+...as 0xc00 should be more than sufficient. This is important for later
+when we'll get SVS support up (which is in the LVTS-AP iospace range).
 
-> The name "usbNphy" and "rtd-usbNphy" seem to be more generic for all RTD =
-SoCs,
-> but they are not device-specific compatible.
-> Do you have a better suggestion?
+Regards,
+Angelo
 
-Write the binding so that having fallback compatibles in the DT actually
-works, don't add the SoC-specific ones merely as indicators that those
-SoCs are supported and don't permit "realtek,usbNphy" or
-"realtek,rtd-usbNphy" in isolation ;)
 
-Cheers,
-Conor.
-
---W3NXbn335O8/41NE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHWeKgAKCRB4tDGHoIJi
-0gUMAQDaAWRa95AFdcTrun9KJrWgJmpk4c2Jh03zukk+uTrWkQEAp5S58xu4+voq
-u38k5+Xn+V6Fiovzr8Qywo1BJggf1Q0=
-=a78/
------END PGP SIGNATURE-----
-
---W3NXbn335O8/41NE--
