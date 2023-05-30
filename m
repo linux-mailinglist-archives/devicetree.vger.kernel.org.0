@@ -2,133 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03592716227
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:37:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A0F071623D
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:39:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232729AbjE3NhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 09:37:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57832 "EHLO
+        id S230261AbjE3NjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 09:39:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbjE3NhF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:37:05 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5827ABE;
-        Tue, 30 May 2023 06:37:04 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f4d80bac38so4852387e87.2;
-        Tue, 30 May 2023 06:37:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685453822; x=1688045822;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K9Mq4zTWNZxgXmn77g79M7jiTcegyvnCqH1d/BABQRw=;
-        b=Tn4Gr4wRFBnmRXvGahCMu9rNobPmMYN8iSyEl20zLtrgzWSJL4bp+oACyFTPtiDbTq
-         EsiK6eeKBz8T+2bki3VzbNfn9Pc70z4iLK+4LvqSW/Q7y8Vs5I6EQ/Mj8ZlNVGulExoG
-         OsHJajngXiEn3d2wvy2+Km+MzUxGEFre6/6U6LywE5RiM3dGaRUKa1AqZ2GP0AOZOnft
-         EezTnovfp8nhgLYmrj82PGukGCbSpS4pju9I5EjY4cxa5IEehNzb6R88MGKyMpZVKwoC
-         ambgheXDptarg+92YQtTZC5xmZlMqC892eU622fce1VsY5d6Ke9xnO5TSBfV1RxAIYow
-         WnWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685453822; x=1688045822;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K9Mq4zTWNZxgXmn77g79M7jiTcegyvnCqH1d/BABQRw=;
-        b=MdYpBOeGRbAgLuyuXBz6oQwfDaVRr8upaGNBT0ELeC4T4UJHRPnF1IV3u6T7pGKChs
-         0tCKsRv76W6dt18bvsJUbDpv148W3Evk8nXF27u3zYo8VPnxqC4CSFR19ctjDvu/9auf
-         c6C7YeMyWehq6Y2zN9DkvMkSmAnGF133OVV7b9P2Mb5EpNv6drFqJ7Vg2tzk7UFA68OD
-         MDzCnGm2ScM9wN0UdtjLWAe6bZvkwKGiMx9DkpuRDHTt7l4M6OKH03OyoSDgbsvtxddS
-         ydnp+wVpQeMfG7+dzsPPLmjLA/S/MVZQdy0+WX0kx/zE+E5wB988mFRYfh5YmUprEyND
-         UL3w==
-X-Gm-Message-State: AC+VfDzoxtX7dvONC0eS8R3p5C1EzFXiu+RdcnpbZux7wY7Ejws5k4S9
-        kF/J7FS94fnibKaLrk7LiMk=
-X-Google-Smtp-Source: ACHHUZ5t2Nn7S/8nL4xxINGuqPWyAQcwVNuhnBx7I23hCptUvObR4Lwvybnt1G0QIKjeLWfJOB8CFg==
-X-Received: by 2002:ac2:532f:0:b0:4f3:9001:848d with SMTP id f15-20020ac2532f000000b004f39001848dmr692804lfh.9.1685453822244;
-        Tue, 30 May 2023 06:37:02 -0700 (PDT)
-Received: from localhost (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id l19-20020aa7cad3000000b00510b5051f95sm4427140edt.90.2023.05.30.06.37.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 06:37:01 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        Prathamesh Shete <pshete@nvidia.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH v3 3/3] arm64: tegra: Add Tegra234 pin controllers
-Date:   Tue, 30 May 2023 15:36:54 +0200
-Message-Id: <20230530133654.1296480-4-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230530133654.1296480-1-thierry.reding@gmail.com>
-References: <20230530133654.1296480-1-thierry.reding@gmail.com>
+        with ESMTP id S231665AbjE3NjI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:39:08 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4861EA1;
+        Tue, 30 May 2023 06:39:07 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34UC3ghA017399;
+        Tue, 30 May 2023 15:38:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=h3UJJ7gv6LbZY+kgVidEBO7tNCMRdOY5R4jWJYzfASU=;
+ b=E/qCAVSEb2LZOD/LX+28gscOj8xRXRisI6JDDFiZPNH6eX0D/+LpjJ/WP4Mswln/FreS
+ od+vhg9iV6OFDPjq7DhMg+t5Ze/UkWiLkmhpi0pwdmkpVR1cKKRUuDJF/RXlynaxcxEM
+ 94m4aZn61Z+mvlY88Yq1jfdnpNsxHoklL96St0WZrsXV8u4XfGim5YS8Fc3BVzdWnQ8I
+ CmINMCJf5YXkRf9kn64CnmqhrcQ6OFfhCo9e73NX+f583dwbKL9fWCb++ib1Kav6+TVZ
+ 989jjzhE4rG2+fTH5mHqO+u854vXF8lfQdF4cQ4pMo46jIdsSLWWphltmuPPNXlUn81f cA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3quahy8aue-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 15:38:38 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1AF5910002A;
+        Tue, 30 May 2023 15:38:38 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 11B16228A35;
+        Tue, 30 May 2023 15:38:38 +0200 (CEST)
+Received: from [10.129.178.187] (10.129.178.187) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 30 May
+ 2023 15:38:37 +0200
+Message-ID: <af31ae21-2711-2fac-e885-b3bbbcb12be8@foss.st.com>
+Date:   Tue, 30 May 2023 15:38:37 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 2/4] dt-bindings: display: st,stm32-dsi: Remove
+ unnecessary fields
+Content-Language: en-US
+To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        David Airlie <airlied@gmail.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        <kernel@dh-electronics.com>, Marek Vasut <marex@denx.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Conor Dooley <conor+dt@kernel.org>
+References: <20230529091359.71987-1-raphael.gallais-pou@foss.st.com>
+ <20230529091359.71987-3-raphael.gallais-pou@foss.st.com>
+ <20230530122736.tflfu5cugbd7ooup@krzk-bin>
+ <92d5a699-9f5d-2e40-ca73-4604f3e5a657@foss.st.com>
+From:   Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+In-Reply-To: <92d5a699-9f5d-2e40-ca73-4604f3e5a657@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.129.178.187]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-30_10,2023-05-30_01,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Prathamesh Shete <pshete@nvidia.com>
 
-Add the device tree nodes for the MAIN and AON pin controllers found on
-the Tegra234 family of SoCs.
+On 5/30/23 15:30, Alexandre TORGUE wrote:
+> On 5/30/23 14:27, Krzysztof Kozlowski wrote:
+>> On Mon, 29 May 2023 11:13:57 +0200, Raphael Gallais-Pou wrote:
+>>> "#address-cells" and "#size-cells" are two properties that are not
+>>> mandatory. For instance, the DSI could refer to a bridge outside the scope
+>>> of the node rather than include a 'panel@0' subnode. By doing so, address
+>>> and size fields become then unnecessary, creating a warning at build time.
+>>>
+>>> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>> Reviewed-by: Marek Vasut <marex@denx.de>
+>>> ---
+>>>   Documentation/devicetree/bindings/display/st,stm32-dsi.yaml | 2 --
+>>>   1 file changed, 2 deletions(-)
+>>>
+>>
+>> Running 'make dtbs_check' with the schema in this patch gives the
+>> following warnings. Consider if they are expected or the schema is
+>> incorrect. These may not be new warnings
+> I checked it before merging the series on stm32-next tree. I didn't get this
+> error. I didn't check commit per commit.
+>
+> Do you get this error after merging the whole series ?
 
-Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
-Changes in v3:
-- use correct value for #address-cells and #size-cells
-- correct gpio-ranges property name
 
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+I think this is because of the order of the patches within the serie. The patch
+correcting the yaml is before those modifying the device-trees. This could
+explain warnings rise up when checking patch per patch. However I did not get
+any errors on top of  the whole serie.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index 133b2d32d19b..9dba05be03d2 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -109,6 +109,7 @@ gpio: gpio@2200000 {
- 			interrupt-controller;
- 			#gpio-cells = <2>;
- 			gpio-controller;
-+			gpio-ranges = <&pinmux 0 0 164>;
- 		};
- 
- 		ethernet@2310000 {
-@@ -147,6 +148,11 @@ codec@242c000 {
- 			status = "disabled";
- 		};
- 
-+		pinmux: pinmux@2430000 {
-+			compatible = "nvidia,tegra234-pinmux";
-+			reg = <0x0 0x2430000 0x0 0x19100>;
-+		};
-+
- 		gpcdma: dma-controller@2600000 {
- 			compatible = "nvidia,tegra234-gpcdma",
- 				     "nvidia,tegra186-gpcdma";
-@@ -1805,6 +1811,12 @@ gpio_aon: gpio@c2f0000 {
- 			interrupt-controller;
- 			#gpio-cells = <2>;
- 			gpio-controller;
-+			gpio-ranges = <&pinmux_aon 0 0 32>;
-+		};
-+
-+		pinmux_aon: pinmux@c300000 {
-+			compatible = "nvidia,tegra234-pinmux-aon";
-+			reg = <0x0 0xc300000 0x0 0x4000>;
- 		};
- 
- 		pwm4: pwm@c340000 {
--- 
-2.40.1
-
+>
+>
+>>
+>> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+>> This will change in the future.
+>>
+>> Full log is available here: https://patchwork.ozlabs.org/patch/1787034
+>>
+>>
+>> dsi@40016c00: Unevaluated properties are not allowed ('panel-dsi@0' was
+>> unexpected)
+>>     arch/arm/boot/dts/stm32f469-disco.dtb
+>>
+>> dsi@5a000000: Unevaluated properties are not allowed ('panel-dsi@0' was
+>> unexpected)
+>>     arch/arm/boot/dts/stm32mp157c-ev1.dtb
+>>     arch/arm/boot/dts/stm32mp157c-ev1-scmi.dtb
+>
