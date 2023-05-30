@@ -2,235 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4885716D9C
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 21:35:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17060716DAA
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 21:36:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232976AbjE3TfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 15:35:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56986 "EHLO
+        id S230527AbjE3Tgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 15:36:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232648AbjE3Tet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 15:34:49 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB234BE;
-        Tue, 30 May 2023 12:34:47 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34UJUK2e022992;
-        Tue, 30 May 2023 19:34:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=mpiQCMZW0ekrzjHH3XqOVdBgVCerwNUa7fbHPWFc3w0=;
- b=cwmkFQVFM0fSFMol5lg5WiSWlDsUGibN+TNzI4IxMsKOVGeotSiIUxcTlRFE9tOdVb0B
- nRLzWczDpEOt1nsRgjbfjzt8Ccq2y9xdk02EWEWfc1aq+WY/HgAXk96sJy0j+5UvN3qc
- 0pWCVIJdVrNAeKFkp5uNL3069P8qVKy8Bur8v64wX+UO50lraWYCQ5C78Y8lHZONGqUz
- B9ilMC/TMr7l7FnzAI6LVa+TQgdE8aR/PARY4NpIvtxNZ6OLIhLFFwLN2ALQb/n8mQR4
- GK5Ljz/EBf8RAucy3a8m2YAtprX9XrgEIuN3ACySCxhZ86Cs3OVgviczzH4WjogmoV8m /A== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qwp69g54a-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 19:34:43 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34UJYhhM023375
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 19:34:43 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Tue, 30 May 2023 12:34:42 -0700
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230219AbjE3Tgb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 15:36:31 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45341137;
+        Tue, 30 May 2023 12:36:22 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f3baf04f0cso5520560e87.1;
+        Tue, 30 May 2023 12:36:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20221208; t=1685475380; x=1688067380;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QEE5HR8KnTXDzE7qIjWjCheMHM5HqAaaQn2y8Q+rxV8=;
+        b=IVNYUCmhiNFu0EgZ0lRI69pOYybAw0Roa8Zps1B2zd6CwZ7FdSroL2EOxDfml0hl2k
+         qo04Uq1vSu9zxk3gbbRpCUq+kbB4EYsM4sMt9kIpzRVLpuenwvbcptbkDrlFjz12s+jq
+         Scm6s+4dseL2zUnMkuF3CYBxGsMySIe2Fb7A5mFYMwNE68P9YxV/Fl9CbWB02Ef8mvKK
+         ZitD/QzB1WKggCor0rhynySgN8NAXQQ+YISaEfdcnHBcfTYnBfKh+elXdbA0muZjv4WC
+         WhNKhfsMy0lBtIqF9wiFwHe13B4CIBjJ2815jAkuozg8QmHhGJJdZtGzvf2u7K6N7b3l
+         /Etw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685475380; x=1688067380;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QEE5HR8KnTXDzE7qIjWjCheMHM5HqAaaQn2y8Q+rxV8=;
+        b=PvJ+2RPX+aXc1nQsd76lfSZUU7kg1vIPFlj35IjwFznnK3wySeli5oBBQp9QF1j31w
+         wCwQ+2DyF71mUalN40hxgFCZCRYjlC8s/TkKIPTC3o/UMX68190pSC2tWNbiw3tngWkG
+         OfNu2bexDgHrKfZuRkL7HhCJZE/5dtAmc1jsG8C+v1zOHQ5VsbQTvBcA262taiHBWg7X
+         XJbA3f7SVsZY203h4gxvB971HC9aD/uFY4Ln9tJiHUmN+WPhsOKw+FgV+qHXLnZ7shrA
+         FU3AT6iNvUvszlgxxJNemkkvolYkpXyuPDMowPOrkMC97dvTvZv0ko2F9W2eYv2fQN9v
+         4vaQ==
+X-Gm-Message-State: AC+VfDyxIsGz5+up22DzMcWdXLQs0w6qAIiVNmIw8wrYRuaClsaPfgoY
+        nAGVdzRqqvVW1QIDZtWvO692GbfqjssxzEeGdj0=
+X-Google-Smtp-Source: ACHHUZ5gc/hxHeYex2Y8Okc8JH1HtS8SizLAVO7CtDJbdkVMJw6syU7DTQmP8/PMv1wx+1QnYFOncA22xyJ5j/x0vzw=
+X-Received: by 2002:ac2:4c13:0:b0:4f3:8258:5894 with SMTP id
+ t19-20020ac24c13000000b004f382585894mr1358968lfq.27.1685475380186; Tue, 30
+ May 2023 12:36:20 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
+ <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-5-56eb7a4d5b8e@linaro.org>
+ <1jv8ga445j.fsf@starbuckisacylon.baylibre.com> <c24502f9-f717-6ff9-211c-1d129ef02f24@linaro.org>
+In-Reply-To: <c24502f9-f717-6ff9-211c-1d129ef02f24@linaro.org>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 30 May 2023 21:36:09 +0200
+Message-ID: <CAFBinCD4nZPp4JKpGARBkWL5pKVHJ0GSLTvy3S_q9mF=1d37Kg@mail.gmail.com>
+Subject: Re: [PATCH v5 05/17] clk: meson: g12a: make VCLK2 and ENCL clock path
+ configurable by CCF
+To:     neil.armstrong@linaro.org
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] soc: qcom: rmtfs: Support dynamic placement of region
-Date:   Tue, 30 May 2023 12:34:36 -0700
-Message-ID: <20230530193436.3833889-3-quic_bjorande@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230530193436.3833889-1-quic_bjorande@quicinc.com>
-References: <20230530193436.3833889-1-quic_bjorande@quicinc.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: xGUzTctcTjN6jw_tTIYXeNywOv9BRaZJ
-X-Proofpoint-GUID: xGUzTctcTjN6jw_tTIYXeNywOv9BRaZJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-30_14,2023-05-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 mlxscore=0 lowpriorityscore=0 malwarescore=0
- suspectscore=0 spamscore=0 mlxlogscore=999 phishscore=0 adultscore=0
- bulkscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2304280000 definitions=main-2305300158
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "Lukas F. Hartmann" <lukas@mntre.com>,
+        Nicolas Belin <nbelin@baylibre.com>,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-phy@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In some configurations, the exact placement of the rmtfs shared memory
-region isn't so strict. In the current implementation the author of the
-DeviceTree source is forced to make up a memory region.
+Hi Neil,
 
-Extend the rmtfs memory driver to relieve the author of this
-responsibility by introducing support for using dynamic allocation in
-the driver.
+On Tue, May 30, 2023 at 5:57=E2=80=AFPM Neil Armstrong
+<neil.armstrong@linaro.org> wrote:
+[...]
+> >> The mipi_dsi_pxclk_div is set as RO in order to use the same GP0
+> >> for mipi_dsi_pxclk and vclk2_input.
+> >
+> > I don't think notifiers is the appropriate approach here.
+> > Whenever there is clock change the motifiers would trigger an off/on of
+> > the clock, regardless of the clock usage or state.
+> > If you have several consummers on this vclk2, this would
+> > cause glitches and maybe this is not desirable.
+> >
+> > I think it would be better to handle the enable and reset with a
+> > specific gate driver, in prepare() or enable(), and the give the clock
+> > CLK_SET_RATE_GATE flag.
+> >
+> > This would require the clock to be properly turn off before changing th=
+e
+> > rate.
+>
+> Sure, will see how to switch to that, seem Martin did than on Meson8.
+You can start here: [0]
+It may not be the nicest logic but so far it works (for me).
 
-Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 10 ++++
- drivers/soc/qcom/rmtfs_mem.c            | 66 +++++++++++++++++++------
- 2 files changed, 61 insertions(+), 15 deletions(-)
+Please note that I don't mix between CCF and direct register IO clock handl=
+ing:
+For the old SoCs I'm relying only on CCF to manage the clocks.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-index d1440b790fa6..e6191b8ba4c6 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-@@ -12,6 +12,8 @@
- #include "pm8998.dtsi"
- #include "pmi8998.dtsi"
- 
-+/delete-node/ &rmtfs_mem;
-+
- / {
- 	model = "Qualcomm Technologies, Inc. SDM845 MTP";
- 	compatible = "qcom,sdm845-mtp", "qcom,sdm845";
-@@ -48,6 +50,14 @@ vreg_s4a_1p8: pm8998-smps4 {
- 		vin-supply = <&vph_pwr>;
- 	};
- 
-+	rmtfs {
-+		compatible = "qcom,rmtfs-mem";
-+
-+		qcom,alloc-size = <(2*1024*1024)>;
-+		qcom,client-id = <1>;
-+		qcom,vmid = <15>;
-+	};
-+
- 	thermal-zones {
- 		xo_thermal: xo-thermal {
- 			polling-delay-passive = <0>;
-diff --git a/drivers/soc/qcom/rmtfs_mem.c b/drivers/soc/qcom/rmtfs_mem.c
-index f83811f51175..5f56ded9f905 100644
---- a/drivers/soc/qcom/rmtfs_mem.c
-+++ b/drivers/soc/qcom/rmtfs_mem.c
-@@ -3,6 +3,8 @@
-  * Copyright (c) 2017 Linaro Ltd.
-  */
- 
-+#include "linux/gfp_types.h"
-+#include "linux/sizes.h"
- #include <linux/kernel.h>
- #include <linux/cdev.h>
- #include <linux/err.h>
-@@ -168,23 +170,63 @@ static void qcom_rmtfs_mem_release_device(struct device *dev)
- 	kfree(rmtfs_mem);
- }
- 
-+static int qcom_rmtfs_acquire_mem(struct device *dev, struct qcom_rmtfs_mem *rmtfs_mem)
-+{
-+	struct device_node *node = dev->of_node;
-+	struct reserved_mem *rmem;
-+	dma_addr_t dma_addr;
-+	void *mem;
-+	u32 size;
-+	int ret;
-+
-+	rmem = of_reserved_mem_lookup(node);
-+	if (rmem) {
-+		rmtfs_mem->addr = rmem->base;
-+		rmtfs_mem->size = rmem->size;
-+
-+		rmtfs_mem->base = devm_memremap(&rmtfs_mem->dev, rmtfs_mem->addr,
-+						rmtfs_mem->size, MEMREMAP_WC);
-+		if (IS_ERR(rmtfs_mem->base)) {
-+			dev_err(dev, "failed to remap rmtfs_mem region\n");
-+			return PTR_ERR(rmtfs_mem->base);
-+		}
-+
-+		return 0;
-+	}
-+
-+	ret = of_property_read_u32(node, "qcom,alloc-size", &size);
-+	if (ret < 0) {
-+		dev_err(dev, "rmtfs of unknown size\n");
-+		return -EINVAL;
-+	}
-+
-+	/*
-+	 * Ensure that the protected region isn't adjacent to other protected
-+	 * regions by allocating an empty page on either side.
-+	 */
-+	mem = dma_alloc_coherent(dev, size + 2 * SZ_4K, &dma_addr, GFP_KERNEL);
-+	if (mem) {
-+		rmtfs_mem->base = mem + SZ_4K;
-+		rmtfs_mem->addr = dma_addr + SZ_4K;
-+		rmtfs_mem->size = size;
-+
-+		return 0;
-+	}
-+
-+	dev_err(dev, "unable to allocate memory for rmtfs mem\n");
-+	return -ENOMEM;
-+}
-+
- static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
- {
- 	struct device_node *node = pdev->dev.of_node;
- 	struct qcom_scm_vmperm perms[NUM_MAX_VMIDS + 1];
--	struct reserved_mem *rmem;
- 	struct qcom_rmtfs_mem *rmtfs_mem;
- 	u32 client_id;
- 	u32 vmid[NUM_MAX_VMIDS];
- 	int num_vmids;
- 	int ret, i;
- 
--	rmem = of_reserved_mem_lookup(node);
--	if (!rmem) {
--		dev_err(&pdev->dev, "failed to acquire memory region\n");
--		return -EINVAL;
--	}
--
- 	ret = of_property_read_u32(node, "qcom,client-id", &client_id);
- 	if (ret) {
- 		dev_err(&pdev->dev, "failed to parse \"qcom,client-id\"\n");
-@@ -196,22 +238,16 @@ static int qcom_rmtfs_mem_probe(struct platform_device *pdev)
- 	if (!rmtfs_mem)
- 		return -ENOMEM;
- 
--	rmtfs_mem->addr = rmem->base;
- 	rmtfs_mem->client_id = client_id;
--	rmtfs_mem->size = rmem->size;
- 
- 	device_initialize(&rmtfs_mem->dev);
- 	rmtfs_mem->dev.parent = &pdev->dev;
- 	rmtfs_mem->dev.groups = qcom_rmtfs_mem_groups;
- 	rmtfs_mem->dev.release = qcom_rmtfs_mem_release_device;
- 
--	rmtfs_mem->base = devm_memremap(&rmtfs_mem->dev, rmtfs_mem->addr,
--					rmtfs_mem->size, MEMREMAP_WC);
--	if (IS_ERR(rmtfs_mem->base)) {
--		dev_err(&pdev->dev, "failed to remap rmtfs_mem region\n");
--		ret = PTR_ERR(rmtfs_mem->base);
-+	ret = qcom_rmtfs_acquire_mem(&pdev->dev, rmtfs_mem);
-+	if (ret < 0)
- 		goto put_device;
--	}
- 
- 	cdev_init(&rmtfs_mem->cdev, &qcom_rmtfs_mem_fops);
- 	rmtfs_mem->cdev.owner = THIS_MODULE;
--- 
-2.25.1
 
+Best regards,
+Martin
+
+
+[0] https://github.com/xdarklight/linux/blob/meson-mx-integration-6.3-20230=
+410/drivers/gpu/drm/meson/meson_vclk.c#L1177-L1179
