@@ -2,65 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 660DB715DCF
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:50:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E25E715E2C
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:57:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231373AbjE3Luz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 07:50:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53472 "EHLO
+        id S232089AbjE3L5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 07:57:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231247AbjE3Luy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:50:54 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67B94D9
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:50:52 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S230302AbjE3L5c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:57:32 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC9DFE4F;
+        Tue, 30 May 2023 04:56:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 9609A8479B;
-        Tue, 30 May 2023 13:50:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1685447450;
-        bh=sYTeSQZR8nPFYltLofKFJmmA9gZTRkwev6OoPQuW8wg=;
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A98E262E9B;
+        Tue, 30 May 2023 11:56:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EA45C433AC;
+        Tue, 30 May 2023 11:56:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685447778;
+        bh=KeOWYbGzBY6vsVhyFwQJbzeNpJ1yJW9UJp+AlHyUM4Q=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=pXY1khZArTCe+Pgv50v6FWW9dF1ITEOY3smGGgpNXrsF8bslfPdHWjzGwrHNFm6zh
-         mCNEPiYnRiRUBiwc2oDWCcWf8tk/uUq2LBXwVP/uL71K170UVJJzs+kby5V9moPUuL
-         grFx2lc04xxPcsW5eowXgU1q2eMytW1zX842NATtaPqO2mstFtHGeocoERCdiDDaI9
-         3No0Xw7HXtbyziJrlO5ZgC4uOmr34Or0NipIxy5FKlrfmad/rvJlSfoUhaInXv9MHg
-         6rxtSFf09IE3Bj5iq88AVy1ejypNqrzH1muK92YX1fjE1HpbHXGNpVo/0rsq0oe6Pl
-         9dSKeMrDpcYNA==
-Message-ID: <133c8b4a-8680-f613-807a-2d7931d0a186@denx.de>
-Date:   Tue, 30 May 2023 13:50:49 +0200
+        b=KxfGhgSzSTG4M0ESseMtRydcsomhRiE3JIbU1OGrM17QfJcmsWCtomRLTgl/Ytj1b
+         jFxplFqiRHFwszV2wH8grmmKzdccd6qUeBZ8vKPG4Glgp3SnwKYxnlfOLrVO/ce8eT
+         9zXeNMswtHe4OV8TyYq7LGGhSuRUaIE7KAJogJEZX16H2FZptFLcNC/EaYEDjNgSV1
+         cDIH1EDaYygPaP6517e6MfVZvoz4hKSB85xwwIJHSGmKt/LmDbpxK7uL+fAjpmgQ+w
+         3PWLR98vtGFU+boagrlLLZbUxOidH7gnjHxsz4j0IEKlO3LnQ61t7gYM8exypWLP3C
+         34oFGGlh/i+cQ==
+Message-ID: <bd19f71b-59ee-80e7-9ff1-1cc26ecc49a7@kernel.org>
+Date:   Tue, 30 May 2023 13:56:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [Linux-stm32] [PATCH 1/5] ARM: dts: stm32: Add missing detach
- mailbox for emtrion emSBC-Argon
+Subject: Re: [v2 2/2] dt-bindings: input: touchscreen: Add ilitek 9882T
+ touchscreen chip
 Content-Language: en-US
-To:     Arnaud POULIQUEN <arnaud.pouliquen@st.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "kernel@dh-electronics.com" <kernel@dh-electronics.com>
-References: <20230518011246.438097-1-marex@denx.de>
- <PAXPR10MB471850924065C987981634C1F14B9@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <PAXPR10MB471850924065C987981634C1F14B9@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+To:     Doug Anderson <dianders@chromium.org>,
+        Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc:     benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
+        dmitry.torokhov@gmail.com, hsinyi@google.com, jikos@kernel.org,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mka@chromium.org
+References: <CAD=FV=VYfPSwar2AXBxB3vX0dV1kjQ5bZMxsEBFhUnMNRXbBCw@mail.gmail.com>
+ <20230520050649.2494497-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230520050649.2494497-3-yangcong5@huaqin.corp-partner.google.com>
+ <CAD=FV=Wm_SK0V6WJUkuvu8yFfiP60JBuOdw9cy=0Ck2Jbn-X2A@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <CAD=FV=Wm_SK0V6WJUkuvu8yFfiP60JBuOdw9cy=0Ck2Jbn-X2A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,102 +63,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/30/23 10:43, Arnaud POULIQUEN wrote:
-> Hello Marek,
-
-Hi,
-
-> ST Restricted
+On 22/05/2023 17:33, Doug Anderson wrote:
+> Hi,
 > 
->> -----Original Message-----
->> From: Linux-stm32 <linux-stm32-bounces@st-md-mailman.stormreply.com>
->> On Behalf Of Marek Vasut
->> Sent: Thursday, May 18, 2023 3:13 AM
->> To: linux-arm-kernel@lists.infradead.org
->> Cc: Marek Vasut <marex@denx.de>; devicetree@vger.kernel.org; Conor
->> Dooley <conor+dt@kernel.org>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>; Richard Cochran
->> <richardcochran@gmail.com>; Rob Herring <robh+dt@kernel.org>; Maxime
->> Coquelin <mcoquelin.stm32@gmail.com>; linux-stm32@st-md-
->> mailman.stormreply.com; kernel@dh-electronics.com
->> Subject: [Linux-stm32] [PATCH 1/5] ARM: dts: stm32: Add missing detach
->> mailbox for emtrion emSBC-Argon
+> On Fri, May 19, 2023 at 10:07 PM Cong Yang
+> <yangcong5@huaqin.corp-partner.google.com> wrote:
 >>
->> Add missing "detach" mailbox to this board to permit the CPU to inform the
->> remote processor on a detach. This signal allows the remote processor
->> firmware to stop IPC communication and to reinitialize the resources for a
->> re-attach.
+>> Add an ilitek touch screen chip ili9882t.
 >>
->> Without this mailbox, detach is not possible and kernel log contains the
->> following warning to, so make sure all the STM32MP15xx platform DTs are in
->> sync regarding the mailboxes to fix the detach issue and the warning:
->> "
->> stm32-rproc 10000000.m4: mbox_request_channel_byname() could not
->> locate channel named "detach"
->> "
->>
->> Fixes: 6257dfc1c412 ("ARM: dts: stm32: Add coprocessor detach mbox on
->> stm32mp15x-dkx boards")
->> Signed-off-by: Marek Vasut <marex@denx.de>
+>> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
 >> ---
->> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
->> Cc: Richard Cochran <richardcochran@gmail.com>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> Cc: kernel@dh-electronics.com
->> Cc: linux-arm-kernel@lists.infradead.org
->> Cc: linux-stm32@st-md-mailman.stormreply.com
->> ---
->>   arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
->> b/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
->> index b01470a9a3d53..82061c9186338 100644
->> --- a/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
->> +++ b/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
->> @@ -366,8 +366,8 @@ &iwdg2 {
->>   &m4_rproc {
->>   	memory-region = <&retram>, <&mcuram>, <&mcuram2>,
->> <&vdev0vring0>,
->>   			<&vdev0vring1>, <&vdev0buffer>;
->> -	mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>;
->> -	mbox-names = "vq0", "vq1", "shutdown";
->> +	mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>, <&ipcc 3>;
->> +	mbox-names = "vq0", "vq1", "shutdown", "detach";
+>>  .../devicetree/bindings/input/elan,ekth6915.yaml         | 9 +++++++--
+>>  1 file changed, 7 insertions(+), 2 deletions(-)
 > 
-> Why do you want to add the detach mailbox?
-> It looks to me here that you want to clean the warning message, right?
+> I'm curious about the DT maintainers opinion here. Should this be a
+> new bindings file, or should it be together in the elan file. If
+> nothing else, I think the secondary voltage rail name is wrong. I took
+> a quick peek at a datasheet I found and I don't even see a 3.3V rail
+> going to the ili9882t. That makes it weird to reuse "vcc33-supply" for
+> a second supply...
 
-Yes
+It's easier if they are CCed...
 
-> The detach is used in a particular usecase where the main processor
-> is  shutdown while the coprocessor is still running.
-> I would prefer to not enable it by default as it need a specific
-> coprocessor Firmware.
+Best regards,
+Krzysztof
 
-Why is it enabled by default on ST boards and left out on all other boards ?
-
-Surely the ST evaluation boards can load and run both types of firmware, 
-ones which do use the detach mailbox and ones which do not use the 
-detach mailbox , right ?
-
-I assume that if the firmware does not use the detach mailbox, then the 
-detach mailbox is just ignored and unused, so there is no problem with 
-having it described in the DT in any case ?
-
-And if that's the case, then I would much rather prefer to have all the 
-boards describe the same set of mailboxes, so they don't diverge . What 
-do you think ?
-
-> Rather than adding unused optional mailbox, I will more in favor
-> of having a mbox_request_channel_byname_optional helper or
-> something similar
-
-See above, I think it is better to have the mailbox described in DT 
-always and not use it (the user can always remove it), than to not have 
-it described on some boards and have it described on other boards 
-(inconsistency).
