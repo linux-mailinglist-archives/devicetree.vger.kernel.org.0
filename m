@@ -2,117 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCD0F71541F
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 05:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A2A0715433
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 05:35:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229672AbjE3DJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 23:09:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45908 "EHLO
+        id S229489AbjE3Dfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 23:35:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjE3DJX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 23:09:23 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28916B0;
-        Mon, 29 May 2023 20:09:21 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 34U38HzB4006839, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 34U38HzB4006839
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-        Tue, 30 May 2023 11:08:17 +0800
-Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.17; Tue, 30 May 2023 11:08:30 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Tue, 30 May 2023 11:08:29 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Tue, 30 May 2023 11:08:29 +0800
-From:   =?big5?B?U3RhbmxleSBDaGFuZ1up96h8vHdd?= <stanley_chang@realtek.com>
-To:     Conor Dooley <conor@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Ray Chi <raychi@google.com>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-Subject: RE: [PATCH v2 3/3] dt-bindings: phy: realtek: Add the doc about the Realtek SoC USB 2.0/3.0 PHY
-Thread-Topic: [PATCH v2 3/3] dt-bindings: phy: realtek: Add the doc about the
- Realtek SoC USB 2.0/3.0 PHY
-Thread-Index: AQHZjrBYcJlLsVj/HkuHUZRifSysgq9xG94AgAEOUJA=
-Date:   Tue, 30 May 2023 03:08:29 +0000
-Message-ID: <44015844858c42a79e0e7f9207d01496@realtek.com>
-References: <20230525022617.30537-1-stanley_chang@realtek.com>
- <20230525022617.30537-3-stanley_chang@realtek.com>
- <20230529-impurity-dismount-bca5c9100c9b@spud>
-In-Reply-To: <20230529-impurity-dismount-bca5c9100c9b@spud>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXDAG01.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229461AbjE3Dfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 23:35:32 -0400
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1B7BCD;
+        Mon, 29 May 2023 20:35:30 -0700 (PDT)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-19a347d69c8so3661924fac.1;
+        Mon, 29 May 2023 20:35:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685417730; x=1688009730;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G4VjNC0LF+TbHs+mURTHmXgD0hOPze9ZN8bR7X5CNSk=;
+        b=LGUPFo+iLAlIQdQAdRxrkby/iQpU3PiBO5bKBsRFnm+Y6Cv2OgvEFl42pdJ9RFFfTe
+         XHkjymwq3cLB+gHQcHJoV3+b2OjEaXlMHZIQbmVfwsl19cuJy1sik4jJ19teAwytZjMM
+         B+GB+0XNpMBTibSfc8a10oUp00Gxe54pnN1IigUyaJJSNx7bjsBXbnqOHHPA8zZRsgm4
+         Gd9WGYa/BZW6Vyw+8gILlqi6bpE4Agcf1k4EuwdseAEjo1xT53PL2nWYAPsbpZTkRkY+
+         N9VnQQ0mt9cmC577d5JQ3LWgYcwp54xAPfaux+UYGI5aOhlnD45348T1Vr2bfyY5nPWZ
+         F1JQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685417730; x=1688009730;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=G4VjNC0LF+TbHs+mURTHmXgD0hOPze9ZN8bR7X5CNSk=;
+        b=HEvSSbWF33IJlw/BQWWcWeKMrHbrQiPEnL8PEoL14eIeJT2mvMnPrAUCyd9UbeZcEQ
+         vLRu9EJaV/GTLgREiTvJh/gqoK+58mgjjo5yvHyyDJJ+/As+Cbi9xxRxxu/pP2cZax4h
+         wY6BKyQW2Tg76ktvqJx5Xum9mB3ftxn6JvbLVdg5O5GmG4lWiAd2QSn/OWnJnFZmDQFF
+         Dlj4H2X9/Yb9BRFsugJM91q8FeyJg1bcpmunuwcjZkvu3ojCRK6udijdCo28q3HkYoUt
+         BDTisHJbMjOCe1hbu70yCogq3fPh3V1ILlS1aZYUjiBH2P+cW13lEfjLHESfSTOPaTTs
+         k7sg==
+X-Gm-Message-State: AC+VfDzNSZw1T/1dABFJKkObuc4pSsrgt90ZFCfZVpdO+WrZ2+OprURQ
+        FkMY0c5kX6LilVLXZU2Pix53lcxErQ+3fLxYPAI=
+X-Google-Smtp-Source: ACHHUZ6+zIkxN3C9WzXjAnT4zXK2VSRO8RckiYEQSnKbaPUYN2FatjU6gdYahNvRGTTQdPB4teG+rPc/enBFGyPJIHg=
+X-Received: by 2002:a05:6870:9894:b0:18b:1936:30ee with SMTP id
+ eg20-20020a056870989400b0018b193630eemr469820oab.56.1685417730035; Mon, 29
+ May 2023 20:35:30 -0700 (PDT)
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <84b31c59-81d3-c83d-ece9-a120b1cdcdd7@arinc9.com>
+ <20230529150833.526084-1-liviu@dudau.co.uk> <20230529150833.526084-3-liviu@dudau.co.uk>
+In-Reply-To: <20230529150833.526084-3-liviu@dudau.co.uk>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Tue, 30 May 2023 05:35:19 +0200
+Message-ID: <CAMhs-H-vwviikXFm7JnQffe3JxuBP-q2grJb15tUJ-OXGqONfw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: mips: Add bindings for TP-Link HC220
+ G5 v1 board
+To:     Liviu Dudau <liviu@dudau.co.uk>
+Cc:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Burton <paulburton@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQ29ub3IsDQoNCj4gPiArcHJvcGVydGllczoNCj4gPiArICBjb21wYXRpYmxlOg0KPiA+ICsg
-ICAgZW51bToNCj4gPiArICAgICAgLSByZWFsdGVrLHVzYjJwaHkNCj4gPiArICAgICAgLSByZWFs
-dGVrLHJ0ZC11c2IycGh5DQo+ID4gKyAgICAgIC0gcmVhbHRlayxydGQxMjk1LXVzYjJwaHkNCj4g
-PiArICAgICAgLSByZWFsdGVrLHJ0ZDEzOTUtdXNiMnBoeQ0KPiA+ICsgICAgICAtIHJlYWx0ZWss
-cnRkMTYxOS11c2IycGh5DQo+ID4gKyAgICAgIC0gcmVhbHRlayxydGQxMzE5LXVzYjJwaHkNCj4g
-PiArICAgICAgLSByZWFsdGVrLHJ0ZDE2MTliLXVzYjJwaHkNCj4gPiArICAgICAgLSByZWFsdGVr
-LHJ0ZDEzMTJjLXVzYjJwaHkNCj4gPiArICAgICAgLSByZWFsdGVrLHJ0ZDEzMTlkLXVzYjJwaHkN
-Cj4gPiArICAgICAgLSByZWFsdGVrLHJ0ZDEzMTVlLXVzYjJwaHkNCg0KPiA+ICtwcm9wZXJ0aWVz
-Og0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4gKyAgICBlbnVtOg0KPiA+ICsgICAgICAtIHJlYWx0
-ZWssdXNiM3BoeQ0KPiA+ICsgICAgICAtIHJlYWx0ZWsscnRkLXVzYjNwaHkNCj4gPiArICAgICAg
-LSByZWFsdGVrLHJ0ZDEyOTUtdXNiM3BoeQ0KPiA+ICsgICAgICAtIHJlYWx0ZWsscnRkMTYxOS11
-c2IzcGh5DQo+ID4gKyAgICAgIC0gcmVhbHRlayxydGQxMzE5LXVzYjNwaHkNCj4gPiArICAgICAg
-LSByZWFsdGVrLHJ0ZDE2MTliLXVzYjNwaHkNCj4gPiArICAgICAgLSByZWFsdGVrLHJ0ZDEzMTlk
-LXVzYjNwaHkNCg0KPiBJZ25vcmluZyBldmVyeXRoaW5nIGVsc2UsIGJlY2F1c2UgSSByZWFsbHkg
-d2FudCBLcnp5c3p0b2Ygb3IgUm9iIHRvDQo+IHJldmlldyB0aGlzIHJhdGhlciB0aGFuIG1lLCBi
-dXQgd2hhdCdzIGdvaW5nIG9uIGhlcmUgd2l0aCB0aGUNCj4gY29tcGF0aWJsZXM/DQo+IFdoYXQg
-aGFyZHdhcmUgZG8gInVzYk5waHkiIGFuZCAicnRkLXVzYk5waHkiIHJlcHJlc2VudD8NCj4gDQo+
-IFlvdSBoYXZlIGRldmljZS1zcGVjaWZpYyBjb21wYXRpYmxlcywgd2hpY2ggaXMgZ3JlYXQsIGJ1
-dCB5b3UgYWxzbyBhbGxvdw0KPiBvbmx5IHRob3NlIHR3byBnZW5lcmljIG9uZXMuIEkgaGFkIGEg
-X2JyaWVmXyBsb29rIGF0IHRoZSBkcml2ZXIsIGFuZCBpdA0KPiBzZWVtcyBsaWtlIHRoZXJlIGlz
-IG5vIGRlY2lzaW9uIG1ha2luZyBkb25lIGJhc2VkIG9uIHRoZSBjb21wYXRpYmxlcywNCj4gb25s
-eSBvbiB0aGUgcHJvcGVydGllcy4gSXMgdGhhdCBjb3JyZWN0Pw0KPiBJZiBpdCBpcywgSSB3b3Vs
-ZCB1bmRlcnN0YW5kIGhhdmluZyAicmVhbHRlayx1c2IzcGh5IiBhcyBhIGZhbGxiYWNrDQo+IGNv
-bXBhdGlibGUgZm9yICJyZWFsdGVrLHJ0ZDE2MTktdXNiM3BoeSIsIGJ1dCBJIGRvIG5vdCBnZXQg
-dGhlIGN1cnJlbnQNCj4gc2V0dXAuDQoNClRoaXMgZHJpdmVyIGlzIGNvbXBhdGlibGUgd2l0aCBh
-bGwgUmVhbHRlayBSVEQgU29DcyB3aXRob3V0IHNwZWNpZnlpbmcgZGlmZmVyZW50IHNldHRpbmdz
-Lg0KU28gdXNlICJyZWFsdGVrLHVzYjNwaHkiIGFzIGZhbGxiYWNrIGNvbXBhdGlibGUgZm9yIGFs
-bCBTb0NzLg0KVGhpcyBpcyB0aGUgY29tcGF0aWJsZSBuYW1lIHdlIHVzZS4NCk90aGVyIGNvbXBh
-dGlibGUgbmFtZXMgc2ltcGx5IGluZGljYXRlIHRoYXQgdGhlIGRyaXZlciBzdXBwb3J0cyB0aGUg
-U29Dcy4NCg0KVGhlIG5hbWUgInVzYk5waHkiIGFuZCAicnRkLXVzYk5waHkiIHNlZW0gdG8gYmUg
-bW9yZSBnZW5lcmljIGZvciBhbGwgUlREIFNvQ3MsDQpidXQgdGhleSBhcmUgbm90IGRldmljZS1z
-cGVjaWZpYyBjb21wYXRpYmxlLg0KRG8geW91IGhhdmUgYSBiZXR0ZXIgc3VnZ2VzdGlvbj8NCg0K
-PiANCj4gQWxzbywgSSByZWFsbHkgdGhpbmsgdGhpcyBzaG91bGQgYmUgYnJva2VuIGRvd24gaW50
-byB0d28gcGF0Y2hlcywgb25lDQo+IGZvciBlYWNoIG9mIFVTQiAyICYgMy4NCg0KT2theSwgSSB3
-aWxsIHNwbGl0IHRvIHR3byBwYXRjaGVzLg0KDQpUaGFua3MsDQpTdGFubGV5DQo=
+On Mon, May 29, 2023 at 5:08=E2=80=AFPM Liviu Dudau <liviu@dudau.co.uk> wro=
+te:
+>
+> Add bindings for the compatible string used for the TP-Link's
+> HC220 G5 V1 board, a wireless AP based on MT7621.
+>
+> Signed-off-by: Liviu Dudau <liviu@dudau.co.uk>
+> ---
+>  Documentation/devicetree/bindings/mips/ralink.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+
+Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+
+Thanks,
+    Sergio Paracuellos
