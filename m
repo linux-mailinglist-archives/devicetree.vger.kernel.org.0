@@ -2,178 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 441FB7158DA
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:41:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA6497158E3
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:41:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230350AbjE3IlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 04:41:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49706 "EHLO
+        id S229531AbjE3Ilk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 04:41:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230359AbjE3Ikv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:40:51 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F74FA1;
-        Tue, 30 May 2023 01:40:24 -0700 (PDT)
-X-GND-Sasl: alexandre.belloni@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1685436023;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=sLHoLzcDxTMkNrSDWeQ9/VGo4UTTLUB5CXv7cjZfhig=;
-        b=DEP9SKyahkuU0aI7s2GN1o1DcggFS80E80hbCBv9JGZmkh2dbvAONwP0QfjRvdfVuGnEXd
-        FjcGhReFXEwJOL4iBBAKxWL7oy/41rMxCNpexmL+++qgCl2tThXiVYKo00YJ/ntjG2ztS7
-        sOqriANMTAHVvuI8600XdlPQ3rKfIRMbm2G2xbgRZjDIief/iDQU82UxgnsA1AgSX1YHi3
-        geWCnNIwQCavoGCJIsCz5z8GQ2oNB6A4E3aIBj4kkduQ6wnYx9BHTXpzA9sVaijm/EdWWd
-        pqy3QMPlzlLHr9ajSi0T1xWeMy1pwmwEqmtIV7rJRZwj+mdgDv6cUhR+RxY7iQ==
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 918554000D;
-        Tue, 30 May 2023 08:40:20 +0000 (UTC)
-Date:   Tue, 30 May 2023 10:40:20 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Conor Dooley <conor@kernel.org>,
-        Keguang Zhang <keguang.zhang@gmail.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229649AbjE3IlW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:41:22 -0400
+Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 623F4194;
+        Tue, 30 May 2023 01:41:21 -0700 (PDT)
+Received: from SoMainline.org (82-72-63-87.cable.dynamic.v4.ziggo.nl [82.72.63.87])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 8B8B820311;
+        Tue, 30 May 2023 10:41:18 +0200 (CEST)
+Date:   Tue, 30 May 2023 10:41:17 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        zhao zhang <zhzhl555@gmail.com>,
-        Yang Ling <gnaygnil@gmail.com>,
-        loongson-kernel@lists.loongnix.cn
-Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the
- trivial RTCs
-Message-ID: <202305300840203aa4ff4c@mail.local>
-References: <20230526-dolly-reheat-06c4d5658415@wendy>
- <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com>
- <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com>
- <20230527-passing-unfixed-39e01b787808@spud>
- <14EF9F21-8150-40D9-8870-E9151C4882CF@flygoat.com>
- <20230527-poet-antarctic-cc02aa60ab52@spud>
- <CAJhJPsU_qOJKO99S1xjJaSUqXsXAG7HpYbzs5wTb8J4-tQqSQA@mail.gmail.com>
- <E229B204-1B00-4B24-B4BF-15277682FB4B@kernel.org>
- <CAMpQs4K4e3BSVvqXa+QjhM5XDxHc_ZCiRYW+HgPo21AQ_bYSRQ@mail.gmail.com>
- <6845b6ce-06a8-9a0c-7f04-50fa906cd1e4@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>
+Subject: Re: [PATCH RFC 03/10] drm/panel: Add LGD panel driver for Sony
+ Xperia XZ3
+Message-ID: <63qt5jmdi5qg7tvhbb7vk75kz53wmygc7iubwprfhcc3hvgwuv@ildrzq32ese3>
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
+ <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
+ <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
+ <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6845b6ce-06a8-9a0c-7f04-50fa906cd1e4@linaro.org>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2023 10:17:43+0200, Krzysztof Kozlowski wrote:
-> On 29/05/2023 10:31, Binbin Zhou wrote:
-> > Hi Krzysztof:
+On 2023-05-30 09:24:24, Neil Armstrong wrote:
+> Hi Marijn, Dmitry, Caleb, Jessica,
+> 
+> On 29/05/2023 23:11, Marijn Suijten wrote:
+> > On 2023-05-22 04:16:20, Dmitry Baryshkov wrote:
+> > <snip>
+> >>> +	if (ctx->dsi->dsc) {
+> >>
+> >> dsi->dsc is always set, thus this condition can be dropped.
 > > 
-> > Excuse me.
-> > We have different opinions on how to better describe rtc-loongson compatible.
-> > 
-> > Based on my previous communication with you, I think we should list
-> > all the Socs in the driver and drop the wildcards.
+> > I want to leave room for possibly running the panel without DSC (at a
+> > lower resolution/refresh rate, or at higher power consumption if there
+> > is enough BW) by not assigning the pointer, if we get access to panel
+> > documentation: probably one of the magic commands sent in this driver
+> > controls it but we don't know which.
 > 
-> Suggestion was about the bindings. Not in the driver. I never said to
-> list all compatibles in the driver...
+> I'd like to investigate if DSC should perhaps only be enabled if we
+> run non certain platforms/socs ?
 > 
-> > This should be clearer and more straightforward:
-> > 
-> >         { .compatible = "loongson,ls1b-rtc", .data = &ls1x_rtc_config
-> > }, //ls1b soc
-> >         { .compatible = "loongson,ls1c-rtc", .data = &ls1x_rtc_config
-> > }, //ls1c soc
-> >         { .compatible = "loongson,ls7a-rtc", .data =
-> > &generic_rtc_config }, //ls7a bridge chip
-> >         { .compatible = "loongson,ls2k0500-rtc", .data =
-> > &generic_rtc_config }, // ls2k0500 soc
-> >         { .compatible = "loongson,ls2k2000-rtc", .data =
-> > &generic_rtc_config }, // ls2k2000 soc
-> >         { .compatible = "loongson,ls2k1000-rtc", .data =
-> > &ls2k1000_rtc_config }, // ls2k1000 soc
+> I mean, we don't know if the controller supports DSC and those particular
+> DSC parameters so we should probably start adding something like :
 > 
-> I would suggest to use fallbacks as suggested by Conor at least for some
-> of them. You referred to my previous comments about wildcards.
-> Wildcard != fallback.
+> static drm_dsc_config dsc_params_qcom = {}
 > 
-> > 
-> > And Conor thought it should be rendered using a fallback compatible
-> > form based on ".data".
-> 
-> Based on common (compatible) programming model unless you already have
-> clear hardware differences making them incompatible.
-> 
-> > 
-> >         "loongson,ls1b-rtc"
-> >         "loongson,ls1c-rtc", "loongson,ls1b-rtc"
-> >         "loongson,ls7a-rtc"
-> >         "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
-> >         "longson,ls2k2000-rtc", "longson,ls7a-rtc"
-> >         "loonson,ls2k1000-rtc"
-> > 
-> >         { .compatible = "loongson,ls1b-rtc", .data = &ls1x_rtc_config }
-> >         { .compatible = "loongson,ls7a-rtc", .data = &generic_rtc_config }
-> >         { .compatible = "loongson,ls2k1000-rtc", .data = &ls2k1000_rtc_config }
-> > 
-> > In this form,  I think it might not be possible to show very
-> > graphically which chips are using the driver.
-> 
-> ??? How is it impossible? For all other SoCs and architectures it is
-> possible, so what is special for Loongson?
-> 
-> > Also, for example, "ls7a" is a bridge chip, while
-> > "ls2k2000"/"ls2k0500" are soc chips, and it seems inappropriate to
-> > integrate them into one item.
-> 
-> Why it is inappropriate? I don't see the issue here... what is a
-> "bridge" chip? Isn't this also an SoC?
-> 
-> 
-> > 
-> > Which one do you think is more suitable for us?
-> 
-> Use fallbacks for some. You pointed difference in alarm for ls1x, right?
-> If so, then they can stay separate.
+> static const struct of_device_id panel_of_dsc_params[] = {
+> 	{ .compatible = "qcom,sm8150", , .data = &dsc_params_qcom },
+> 	{ .compatible = "qcom,sm8250", , .data = &dsc_params_qcom },
+> 	{ .compatible = "qcom,sm8350", , .data = &dsc_params_qcom },
+> 	{ .compatible = "qcom,sm8450", , .data = &dsc_params_qcom },
+> };
 
-From what I seen the IP and register set is the same, it is just the
-integration on the SoC that differs.
+I'd absolutely hate hardcoding a list of compatible SoC names in a panel
+driver.  For one these lists will fall out of date really soon even if
+we store this list in a generic place: even the current DPU catalog and
+new entries floating on the lists weren't faithfully representing DSC
+capabilities (but that's all being / been fixed now).
 
+What's more, most of these panel drivers are "hardcoded" for a specific
+(smartphone) device (and SoC...) since we don't (usually) have the
+DrIC/panel name nor documentation to make the commands generic enough.
+I don't think we should be specific on that end, while being generic on
+the DSC side.
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+That does mean I'll remove the if (dsc) here, as Dmitry noted most of
+this driver expects/requires it is enabled.
+
+> ...
+> static int sony_akatsuki_lgd_probe(struct mipi_dsi_device *dsi)
+> ...
+> 	const struct of_device_id *match;
+> 
+> ...
+> 	match = of_match_node(panel_of_dsc_params, of_root);
+> 	if (match && match->data) {
+> 		dsi->dsc = devm_kzalloc(&dsi->dev, sizeof(*dsc), GFP_KERNEL);
+> 		memcpy(dsi->dsc, match->data, sizeof(*dsc));
+> 	} else {
+> 		dev_warn(&dsi->dev, "DSI controller is not marked as supporting DSC\n");
+> 	}
+> ...
+> }
+> 
+> and probably bail out if it's a DSC only panel.
+> 
+> We could alternatively match on the DSI controller's dsi->host->dev instead of the SoC root compatible.
+
+I'd much rather have the DSI host/controller state whether it is capable
+of DSC (likely allowing us to expose different modes for panels that
+support toggling DSC), but for starters also validate (in DPU?) that the
+pointer is NULL when the hardware does not support it (but maybe that
+already happens implicitly somewhere in e.g.
+dpu_encoder_virt_atomic_mode_set when finding the DSC blocks).
+
+- Marijn
