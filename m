@@ -2,319 +2,455 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7990571557D
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 08:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D21D71558A
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 08:34:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229946AbjE3GZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 02:25:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56088 "EHLO
+        id S229513AbjE3Ge1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 02:34:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjE3GZ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 02:25:26 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1461DC
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 23:25:22 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-ba1815e12efso3134699276.3
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 23:25:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1685427922; x=1688019922;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kOlMpam2kXZ0NreKKU8RZ924QV5LazGnCRSzw/kR1po=;
-        b=DLEnIVlzrUvEekpze2GkSbuJFCJbdFfo9+FQRmnmmOirDj8s9a7aXAjA0DKS3F3poi
-         lG3JyuTbHD5GMH7krISFMJk8pmBdpgzUyDodmkWy8jqeDers+5sXmidQM96RAxHS0bq/
-         480KdzjufQKwo/4YqmTrBR0JTVcio0x0mrhfE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685427922; x=1688019922;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kOlMpam2kXZ0NreKKU8RZ924QV5LazGnCRSzw/kR1po=;
-        b=kSBPNG5gntxYgRggq2rsCo/9JC7+YPjZb8Z3WQXMgqranIOXwD1orYZrgXvAGX7uhb
-         trNIEm3F5Tb0D3w04Hh1OjERHYyQDvt5KrK5jJMe31uRVAWId0l5M03vgaraDxygm0uK
-         DAD7btCUPPlweOWlTQM0Qw+ZyvtQhTQoynIg3V3GHDiftj0rIWeKmDe3UhN2dnEhlAhf
-         9kSeyCNMUuhJt6TtLn49JCAYgyPalONe/7VLR6YKzaz+L8Ky9guDpXEON/xkqCSUPZkN
-         zrw6/m/ritXaH6Wt6PNxSqXns2IH9lZUGSC1OJENMA+cwW914vKKLXJdz3KDeShsaZ6x
-         kURA==
-X-Gm-Message-State: AC+VfDw8luCl+IA5XEM7ZHUYxyXXaKpcjNtjhxZg3BdBX/zNdZ5yDUMC
-        YFnt9nz5M6in2uSeqqzvElMUMPuMb187JeD3yOLHZzjUX1eQTHRC7QxPGA==
-X-Google-Smtp-Source: ACHHUZ4sItdsjQ7pB9PdqtemdF5Juj1rYgsq7Ifn54tyYkzcZ0COMpT7XW5O8au1v15Fwpo8RiRMmRqK8oPuTUin86w=
-X-Received: by 2002:a25:2707:0:b0:ba6:a923:4744 with SMTP id
- n7-20020a252707000000b00ba6a9234744mr1694940ybn.44.1685427921802; Mon, 29 May
- 2023 23:25:21 -0700 (PDT)
+        with ESMTP id S230156AbjE3Ge0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 02:34:26 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0312FF9;
+        Mon, 29 May 2023 23:34:22 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2703066059A8;
+        Tue, 30 May 2023 07:34:20 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685428460;
+        bh=9u/3vfyrCNJ7i4AQmi3WyoUFjeY9bZLdj22EvbJoXk8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=db0S1tPVYZfBFEE+RGu+bdVOUT5xvih39xIDtoen7tQL379ZNY9a13fXzSpNSeCm3
+         lEYDrDF3O6tftgZXXOF1JIYY2kWxJ9SFCak2q4d90c/8A4JFShzieAx2/aDaSlhBIu
+         ccJvkj/MeakBEMwLzGAfZaoxkkghaF0xySc1BSUwFjFbqcIUvi/ZXph8jOQ8R3X3ir
+         Sudo7SOALVPjKMcxNCNo+xRFF248YBfHFRJ4hbbMuFXP1dSRa7unl/gdbbaIdIZm7M
+         u+tmKAmJZ5rmul9Kn5GQgD5bxk9KTp3JLe8HmL5sVgqR1oF1lVUdSUTf2EbNhllF7E
+         vmseNAxNvYsIg==
+Message-ID: <076badf1-520e-ed6f-c459-cf77c99bf0b9@collabora.com>
+Date:   Tue, 30 May 2023 08:34:17 +0200
 MIME-Version: 1.0
-References: <20230331091145.737305-1-treapking@chromium.org>
- <20230331091145.737305-5-treapking@chromium.org> <CAE-0n51E5foFWQAsA73662_5e6XP426wuUCVVmcS5UWwiYpDmw@mail.gmail.com>
- <CAEXTbpdcbB_z4ZGCGzc-cM74ECKyxekbroKCWFnhH8eR=4HmvA@mail.gmail.com>
- <CAE-0n50atfmr-bFh5XtTCm4WpSijJGSe0B5JP8ni7CCYk7Bs5A@mail.gmail.com>
- <CAE-0n51Qy-KDGHOCr4Smpebq1fCURqvJ2RJz6KAtVpv5e+DSGA@mail.gmail.com>
- <CAEXTbpeKe1dVHp9cauMN-9nQb35oJ-ZhdFV-8BiWzjjhWAy0Zg@mail.gmail.com>
- <CAE-0n50bj303jou==v6eMabrZ3EL6Cq7tPJmCj9vM_B7FA8s2g@mail.gmail.com> <CAEXTbpcWfYV_58pw_VupjhAFZsUU3pkLRN_8JoASyLLBmgTYqQ@mail.gmail.com>
-In-Reply-To: <CAEXTbpcWfYV_58pw_VupjhAFZsUU3pkLRN_8JoASyLLBmgTYqQ@mail.gmail.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Tue, 30 May 2023 11:55:09 +0530
-Message-ID: <CAMty3ZArgjaPmVMCHvps875c22WWS-bXx5GVMhQUURORgx7UvQ@mail.gmail.com>
-Subject: Re: [PATCH v15 04/10] dt-bindings: display: bridge: anx7625: Add
- mode-switch support
-To:     Pin-yen Lin <treapking@chromium.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Benson Leung <bleung@chromium.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Xin Ji <xji@analogixsemi.com>, Marek Vasut <marex@denx.de>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Lyude Paul <lyude@redhat.com>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org,
-        chrome-platform@lists.linux.dev,
-        =?UTF-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
+Subject: Re: [PATCH] arm64: mediatek: Propagate chassis-type where possible
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com,
+        Kevin Hilman <khilman@baylibre.com>
+References: <20230517101108.205654-1-angelogioacchino.delregno@collabora.com>
+ <4f75238e-dd98-3e33-7187-4131d524919c@gmail.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <4f75238e-dd98-3e33-7187-4131d524919c@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 10, 2023 at 9:12=E2=80=AFAM Pin-yen Lin <treapking@chromium.org=
-> wrote:
->
-> +Jagan who worked on a similar design and initiated the thread.
->
-> Hi Stephen,
->
-> On Sat, Apr 29, 2023 at 12:47=E2=80=AFPM Stephen Boyd <swboyd@chromium.or=
-g> wrote:
-> >
-> > Quoting Pin-yen Lin (2023-04-20 02:10:46)
-> > > On Thu, Apr 20, 2023 at 2:10=E2=80=AFPM Stephen Boyd <swboyd@chromium=
-.org> wrote:
-> > > >
-> > > > Quoting Stephen Boyd (2023-04-13 17:22:46)
-> > > > > Quoting Pin-yen Lin (2023-04-13 02:50:44)
-> > > > > >
-> > > > > > Actually the `mode-switch` property here is mainly because
-> > > > > > `fwnode_typec_mux_get`[1] and `typec_mux_match`[2] only return =
-matches
-> > > > > > when the property is present. I am not sure what side effects w=
-ould be
-> > > > > > if I remove the ID-matching condition in `typec_mux_match`, so =
-I added
-> > > > > > the property here.
-> > > > > >
-> > > > > > Is it feasible to remove the `mode-switch` property here given =
-the
-> > > > > > existing implementation of the Type-C framework?
-> > > > >
-> > > > > Omitting the mode-switch property would require changes to the ty=
-pe-c
-> > > > > framework.
-> > > > >
-> > > > > I'm wondering if we can have this anx driver register mode switch=
-es for
-> > > > > however many endpoints exist in the output port all the time when=
- the
-> > > > > aux-bus node doesn't exist. Then the type-c framework can walk fr=
-om the
-> > > > > usb-c-connector to each connected node looking for a device that =
-is both
-> > > > > a drm_bridge and a mode-switch. When it finds that combination, i=
-t knows
-> > > > > that the mode-switch has been found. This hinges on the idea that=
- a
-> > > > > device that would have the mode-switch property is a drm_bridge a=
-nd
-> > > > > would register a mode-switch with the type-c framework.
-> > > > >
-> > > > > It may be a little complicated though, because we would only regi=
-ster
-> > > > > one drm_bridge for the input to this anx device. The type-c walki=
-ng code
-> > > > > would need to look at the graph endpoint, and find the parent dev=
-ice to
-> > > > > see if it is a drm_bridge.
-> > > >
-> > > > I've been thinking more about this. I think we should only have the
-> > > > 'mode-switch' property possible when the USB input pins (port@2) ar=
-e
-> > > > connected and the DPI input pins are connected (port@0). Probably y=
-ou
-> > > > don't have that case though?
-> > >
-> > > No we don't have the use case that uses the USB input pins on anx7625=
-.
-> > > >
-> > > > In your case, this device should register either one or two drm_bri=
-dges
-> > > > that connect to whatever downstream is actually muxing the 2 DP lan=
-es
-> > > > with the USB SS lanes onto the usb-c-connector.
-> > >
-> > > What do you mean by "muxing the 2 DP lanes with the USB SS lanes''? I=
-n
-> > > our use case, the USB data lanes from both ports are connected to a
-> > > USB hub, but the DP lanes are muxed by the crosspoint switch on
-> > > anx7625. HPD and AUX for the external display are muxed by the EC. Yo=
-u
-> > > can find the diagram at
-> > > https://lore.kernel.org/linux-usb/YxGzk6DNAt0aCvIY@chromium.org/
-> >
-> > I mean that you must have some sort of orientation switch hardware that
-> > takes the 2 DP lanes and the 2 USB SuperSpeed "lanes" or "pairs" and
-> > puts them all onto a usb-c-connector. The usb-c-connector node can't be
-> > connected directly to the anx7625 in your diagram because there must be
-> > some sort of "flipper" that does the orientation control. Otherwise the
-> > usb-c-connector wouldn't work if the user flipped the cable. Probably
-> > this is some TCPC or redriver controlled by the EC.
-> >
-> > >
-> > > > If that is the EC for
-> > > > ChromeOS, then the EC should have a binding that accepts some numbe=
-r of
-> > > > input ports for DP. The EC would act as a drm_bridge, or in this ca=
-se
-> > > > probably two bridges, and also as two type-c switches for each
-> > > > drm_bridge corresponding to the usb-c-connector nodes. When DP is o=
-n the
-> > > > cable, the type-c switch/mux would signal to the drm_bridge that th=
-e
-> > > > display is 'connected' via DRM_BRIDGE_OP_DETECT and struct
-> > > > drm_bridge_funcs::detect(). Then the drm_bridge in this anx part wo=
-uld
-> > > > implement struct drm_bridge_funcs::atomic_enable() and configure th=
-e
-> > > > crosspoint switch the right way depending on the reg property of th=
-e
-> > > > output node in port@1.
-> > >
-> > > So there will be two drm bridges that act as the downstreams for
-> > > anx7625, and we find the downstream with connector_status_connected t=
-o
-> > > configure the crosspoint switch? How do we support that kind of
-> > > topology given that the drm bridge chain is currently a list? Are you
-> > > suggesting making the bridge topology to a tree, or maintaining the
-> > > two downstreams inside the anx7625 driver and not attaching them to
-> > > the bridge chain?
-> >
-> > Good point. I'm suggesting to make the drm bridge chain into a tree. We
-> > need to teach drm_bridge core about a mux, and have some logic to
-> > navigate atomically switching from one output to another. I was talking
-> > with dianders@ and he was suggesting to use bridge attach/detach for
-> > this. I'm not sure that will work though because that hook is only
-> > called when the encoder is attached to the bridge.
-> >
-> > It may also turn out that this helps with DP multi-stream transport
-> > (MST). As far as I can recall DP MST doesn't mesh well with drm_bridge
-> > designs because it wants to operate on a drm_connector and
-> > drm_bridge_connector_init() wants to make only one drm_connector for a
-> > chain of bridges. If you squint, the anx7625 could be an MST "branch"
-> > that only supports one drm_connector being enabled at a time. Maybe tha=
-t
-> > is what we should do here, make drm_bridge support creating more than
-> > one drm_connector and when there is a mux in the tree it walks both
-> > sides and runs a callback similar to struct
-> > drm_dp_mst_topology_cbs::add_connector() to tell the encoder that
-> > there's another possible drm_connector here.
->
-> I have been surveying the approaches to change the bridge chain in
-> runtime, and I found this thread[1]. Quoting from Daniel:
-> "... exchanging the bridge chain isn't supported, there's no locking
-> for that since it's assumed to be invariant over the lifetime of the
-> drm_device instance. The simplest way to make that happen right now is to
-> have 2 drm_encoder instances, one with the lvds bridge chain, the other
-> with the hdmi bridge chain, and select the right encoder/bridge chain
-> depending upon which output userspace picks.
-> ...
-> I wouldn't try to make bridge chains exchangeable instead, that's
-> headaches - e.g. with dp mst we've also opted for a bunch of fake
-> drm_encoders to model that kind of switching."
->
-> I'm not sure how we register two encoders properly, though. Do we make
-> the encoder driver check all the downstream bridges and register two
-> drm_encoder when a bridge is acting as a mux?
->
-> [1]: https://www.spinics.net/lists/dri-devel/msg340511.html
->
-> >
-> > >
-> > > Also, if we still register mode switches on the two downstream
-> > > bridges, why do you prefer that over the original approach that
-> > > register switches in the anx7625 driver?
-> >
-> > I prefer to not have a mode-switch property here for a couple reasons:
-> >
-> >  1. The binding is usb type-c specific, and in the case of the IT6505
-> >  part there is nothing that indicates this is a usb type-c piece of
-> >  hardware. The IT6505 is simply a display bridge. The anx7625 part
-> >  actually does accept usb signals though, but that isn't being used or
-> >  described here. That's where my disclaimer about mode-switch making
-> >  sense applies when the usb input is used.
-> >
-> >  2. Putting mode-switch into the graph endpoint nodes is awkward. It is
-> >  a device property, and graph nodes are not devices. Some patches in
-> >  this series have to work around this fact and special case the graph
-> >  walking logic to treat the graph itself as a place to look for the
-> >  property.
-> >
-> >  3. The mode-switch property probably isn't necessary at all. The DT
-> >  reviewers have been asking why it is needed. The EC driver that
-> >  registers the usb-c-connectors can be the mode-switch and the
-> >  orientation-switch. And in reality, it _is_ both. The DP signals and
-> >  the USB signals go to the TCPC/redriver that is controlled by the EC
-> >  and the EC is the device that's doing the mode switching to push DP an=
-d
-> >  USB through the TCPC/redriver out on the right pins of the
-> >  usb-c-connector.
+Il 29/05/23 17:53, Matthias Brugger ha scritto:
+> 
+> 
+> On 17/05/2023 12:11, AngeloGioacchino Del Regno wrote:
+>> The chassis-type string identifies the form-factor of the system:
+>> add this property to all device trees of devices for which the form
+>> factor is known.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> Applied thanks!
+> 
+> I'm I correct that you are missing the chassis-type for some boards from pumpkin 
+> series? My bet is they are embedded, but I'd prefer that someone with access to the 
+> boards can clarify.
+> 
 
-I'm hoping that I'm replying to the right in-line comments.
+You're correct. I am 95% sure that they are embedded... not 100% sure though.
 
-The design I have tried was able to switch the runtime display, where
-I initially booted the system with LVDS and once Linux comes up the
-console then I can connect HDMI Out cable so-that switch bridge will
-detect the HPD and Turn-Off LVDS and Turn-ON HDMI Display. If I unplug
-HDMI Out cable then the switch bridge detects the change of HPD and
-Turn-Off HDMI and Turn ON LVDS.
+If anyone with access to those boards can either send a patch, or clarify that
+to us, that would be genuinely appreciated.
 
-The design uses a switching bridge that acts as another gpio-interrupt
-bridge that sits between the DSI controller and SN65DSI84/ADV7535
-bridges. From the switch bridge, the final bridge pipeline will attach
-during bridge ops attach call which is indeed uncommon with respect to
-some of the mainline drivers. If the switch bridge detects the changes
-in HPD then the handler will update kms and which indeed updates the
-bridge chain at run-time. So may be unconventional but I don't find
-any other solutions other than altering the bridge chain at run time.
-Incidentally, I see more switch bridges coming on this design in the
-market in order to produce more than one output.
+Cheers!
+Angelo
 
-May be it is a worthy topic to discuss further.
+> Regards,
+> Matthias
+> 
+>> ---
+>>
+>> I had to ignore some devicetrees as I wasn't sure about the correct
+>> chassis-type of some devices; this raises an issue that we shall solve
+>> when reviewing new DTs, as we shall tell developers to add this
+>> property so that we don't lose track of "what was what".
+>>
+>> Even though this property is technically "Optional, Recommended", I
+>> think it's useful to have it as this may (or may not) be actively used
+>> in the future (think about "handset" form factor and thermal envelope).
+>>
+>> Cheers!
+>>
+>>   arch/arm64/boot/dts/mediatek/mt2712-evb.dts                      | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt6755-evb.dts                      | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt6779-evb.dts                      | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt6795-evb.dts                      | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt6797-evb.dts                      | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt6797-x20-dev.dts                  | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts         | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts                     | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts         | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts                     | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts                     | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dts                  | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dts            | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts                 | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8173-elm.dts                      | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8173-evb.dts                      | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8183-evb.dts                      | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts     | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts       | 1 +
+>>   .../boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts     | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts       | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts             | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts       | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts      | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts      | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts         | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts       | 1 +
+>>   arch/arm64/boot/dts/mediatek/mt8186-evb.dts                      | 1 +
+>>   28 files changed, 28 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+>> index d31a194124c9..fffdb7bbf889 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+>> @@ -11,6 +11,7 @@
+>>   / {
+>>       model = "MediaTek MT2712 evaluation board";
+>> +    chassis-type = "embedded";
+>>       compatible = "mediatek,mt2712-evb", "mediatek,mt2712";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt6755-evb.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt6755-evb.dts
+>> index e079b7932ba3..00b14f85c6a1 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt6755-evb.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt6755-evb.dts
+>> @@ -9,6 +9,7 @@
+>>   / {
+>>       model = "MediaTek MT6755 EVB";
+>> +    chassis-type = "embedded";
+>>       compatible = "mediatek,mt6755-evb", "mediatek,mt6755";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt6779-evb.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt6779-evb.dts
+>> index 164f5cbb3821..56b1bf06e26b 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt6779-evb.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt6779-evb.dts
+>> @@ -10,6 +10,7 @@
+>>   / {
+>>       model = "MediaTek MT6779 EVB";
+>> +    chassis-type = "embedded";
+>>       compatible = "mediatek,mt6779-evb", "mediatek,mt6779";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt6795-evb.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt6795-evb.dts
+>> index 1ed2f81edeff..e0d4d7a63139 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt6795-evb.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt6795-evb.dts
+>> @@ -9,6 +9,7 @@
+>>   / {
+>>       model = "MediaTek MT6795 Evaluation Board";
+>> +    chassis-type = "embedded";
+>>       compatible = "mediatek,mt6795-evb", "mediatek,mt6795";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt6797-evb.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt6797-evb.dts
+>> index 2327e752d164..c927932afa0d 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt6797-evb.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt6797-evb.dts
+>> @@ -9,6 +9,7 @@
+>>   / {
+>>       model = "MediaTek MT6797 Evaluation Board";
+>> +    chassis-type = "embedded";
+>>       compatible = "mediatek,mt6797-evb", "mediatek,mt6797";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt6797-x20-dev.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt6797-x20-dev.dts
+>> index eff9e8dbd076..9534cf3a09d0 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt6797-x20-dev.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt6797-x20-dev.dts
+>> @@ -12,6 +12,7 @@
+>>   / {
+>>       model = "Mediatek X20 Development Board";
+>> +    chassis-type = "embedded";
+>>       compatible = "archermind,mt6797-x20-dev", "mediatek,mt6797";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+>> index af3fe61e4093..4848164e8e59 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+>> @@ -15,6 +15,7 @@
+>>   / {
+>>       model = "Bananapi BPI-R64";
+>> +    chassis-type = "embedded";
+>>       compatible = "bananapi,bpi-r64", "mediatek,mt7622";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
+>> index b74e774c6eba..dad8e683aac5 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
+>> @@ -15,6 +15,7 @@
+>>   / {
+>>       model = "MediaTek MT7622 RFB1 board";
+>> +    chassis-type = "embedded";
+>>       compatible = "mediatek,mt7622-rfb1", "mediatek,mt7622";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+>> index 33bd6febc160..7128f779c165 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
+>> @@ -16,6 +16,7 @@
+>>   / {
+>>       model = "Bananapi BPI-R3";
+>> +    chassis-type = "embedded";
+>>       compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+>> index 4f18b4a9a8c8..3ef371ca254e 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+>> @@ -11,6 +11,7 @@
+>>   / {
+>>       model = "MediaTek MT7986a RFB";
+>> +    chassis-type = "embedded";
+>>       compatible = "mediatek,mt7986a-rfb", "mediatek,mt7986a";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+>> index 188ce82ae56c..dde190442e38 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+>> @@ -9,6 +9,7 @@
+>>   / {
+>>       model = "MediaTek MT7986b RFB";
+>> +    chassis-type = "embedded";
+>>       compatible = "mediatek,mt7986b-rfb", "mediatek,mt7986b";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dts
+>> index 774a2f3fb4b2..ebf1a358f42a 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dts
+>> @@ -11,6 +11,7 @@
+>>   / {
+>>       model = "Pumpkin MT8167";
+>> +    chassis-type = "embedded";
+>>       compatible = "mediatek,mt8167-pumpkin", "mediatek,mt8167";
+>>       memory@40000000 {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dts
+>> index 28433b94f7c7..256f245ac01d 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dts
+>> @@ -8,6 +8,7 @@
+>>   / {
+>>       model = "Google Hanawl";
+>> +    chassis-type = "laptop";
+>>       compatible = "google,hana-rev7", "mediatek,mt8173";
+>>   };
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts
+>> index c234296755e1..fcf0cb76a87c 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dts
+>> @@ -8,6 +8,7 @@
+>>   / {
+>>       model = "Google Hana";
+>> +    chassis-type = "laptop";
+>>       compatible = "google,hana-rev6", "google,hana-rev5",
+>>                "google,hana-rev4", "google,hana-rev3",
+>>                "google,hana", "mediatek,mt8173";
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8173-elm.dts
+>> index e9e4ac0b74b2..2390d04204e8 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dts
+>> @@ -8,6 +8,7 @@
+>>   / {
+>>       model = "Google Elm";
+>> +    chassis-type = "laptop";
+>>       compatible = "google,elm-rev8", "google,elm-rev7", "google,elm-rev6",
+>>                "google,elm-rev5", "google,elm-rev4", "google,elm-rev3",
+>>                "google,elm", "mediatek,mt8173";
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
+>> index 755df5694234..5122963d8743 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8173-evb.dts
+>> @@ -10,6 +10,7 @@
+>>   / {
+>>       model = "MediaTek MT8173 evaluation board";
+>> +    chassis-type = "embedded";
+>>       compatible = "mediatek,mt8173-evb", "mediatek,mt8173";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+>> index 3e3f4b1b00f0..d8bd51807683 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+>> @@ -11,6 +11,7 @@
+>>   / {
+>>       model = "MediaTek MT8183 evaluation board";
+>> +    chassis-type = "embedded";
+>>       compatible = "mediatek,mt8183-evb", "mediatek,mt8183";
+>>       aliases {
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
+>> index 1a2ec0787d3c..19c1e2bee494 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dts
+>> @@ -9,6 +9,7 @@
+>>   / {
+>>       model = "Google burnet board";
+>> +    chassis-type = "convertible";
+>>       compatible = "google,burnet", "mediatek,mt8183";
+>>   };
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+>> index 0eca3ff8672a..552bfc726999 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+>> @@ -9,6 +9,7 @@
+>>   / {
+>>       model = "Google damu board";
+>> +    chassis-type = "convertible";
+>>       compatible = "google,damu", "mediatek,mt8183";
+>>   };
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts
+>> index bc2c57f0a827..8ac6bf5b17f9 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dts
+>> @@ -9,6 +9,7 @@
+>>   / {
+>>       model = "Google juniper sku16 board";
+>> +    chassis-type = "convertible";
+>>       compatible = "google,juniper-sku16", "google,juniper", "mediatek,mt8183";
+>>   };
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts
+>> index 3a724e6f915c..fcce8ea1232e 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts
+>> @@ -9,6 +9,7 @@
+>>   / {
+>>       model = "MediaTek kakadu board sku22";
+>> +    chassis-type = "tablet";
+>>       compatible = "google,kakadu-rev3-sku22", "google,kakadu-rev2-sku22",
+>>                "google,kakadu", "mediatek,mt8183";
+>>   };
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts
+>> index 89a139a0ee44..ebfabba72507 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dts
+>> @@ -9,6 +9,7 @@
+>>   / {
+>>       model = "MediaTek kakadu board";
+>> +    chassis-type = "tablet";
+>>       compatible = "google,kakadu-rev3", "google,kakadu-rev2",
+>>               "google,kakadu", "mediatek,mt8183";
+>>   };
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts
+>> index e3dd75bdaea4..7213cdcca612 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dts
+>> @@ -12,6 +12,7 @@
+>>   / {
+>>       model = "MediaTek kodama sku16 board";
+>> +    chassis-type = "tablet";
+>>       compatible = "google,kodama-sku16", "google,kodama", "mediatek,mt8183";
+>>   };
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts
+>> index d81935ae07bc..bbf0cd1aa66d 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dts
+>> @@ -12,6 +12,7 @@
+>>   / {
+>>       model = "MediaTek kodama sku272 board";
+>> +    chassis-type = "tablet";
+>>       compatible = "google,kodama-sku272", "google,kodama", "mediatek,mt8183";
+>>   };
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts
+>> index f4082fbe0517..a429ffeac3bd 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dts
+>> @@ -12,6 +12,7 @@
+>>   / {
+>>       model = "MediaTek kodama sku288 board";
+>> +    chassis-type = "tablet";
+>>       compatible = "google,kodama-sku288", "google,kodama", "mediatek,mt8183";
+>>   };
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts
+>> index fb5ee91b6fe0..4ac75806fa94 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dts
+>> @@ -14,6 +14,7 @@
+>>   / {
+>>       model = "MediaTek krane sku0 board";
+>> +    chassis-type = "tablet";
+>>       compatible = "google,krane-sku0", "google,krane", "mediatek,mt8183";
+>>   };
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+>> index 721d16f9c3b4..095279e55d50 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dts
+>> @@ -14,6 +14,7 @@
+>>   / {
+>>       model = "MediaTek krane sku176 board";
+>> +    chassis-type = "tablet";
+>>       compatible = "google,krane-sku176", "google,krane", "mediatek,mt8183";
+>>   };
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-evb.dts 
+>> b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
+>> index ed74a3617c13..2667a7424200 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
+>> @@ -7,6 +7,7 @@
+>>   / {
+>>       model = "MediaTek MT8186 evaluation board";
+>> +    chassis-type = "embedded";
+>>       compatible = "mediatek,mt8186-evb", "mediatek,mt8186";
+>>       aliases {
+> 
 
-Thanks,
-Jagan.
+-- 
+AngeloGioacchino Del Regno
+Software Engineer
+
+Collabora Ltd.
+Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
+Registered in England & Wales, no. 5513718
+
