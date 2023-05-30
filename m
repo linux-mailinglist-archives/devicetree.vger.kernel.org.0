@@ -2,112 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B73277164A1
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:44:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE9B97164CC
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231232AbjE3Oob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 10:44:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52844 "EHLO
+        id S232410AbjE3OtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 10:49:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229999AbjE3Ooa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:44:30 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C64BB0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:44:29 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96fab30d1e1so945733366b.0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:44:29 -0700 (PDT)
+        with ESMTP id S232601AbjE3OtB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:49:01 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7785114
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:48:57 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5149c76f4dbso4395786a12.1
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:48:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685457868; x=1688049868;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tDgeJNYR1mRc99Zwj6kB5L18o06yCX2/R5yquqZiFxE=;
-        b=s9B2XEAGQnToGrKy96poGs6yBxMIg2mYHKWAVzyLwmGed+drbKC3E4WkNzfMSribiD
-         T4dZCqmg1eM6qB2lYjEIWvjlunTeAdG4MgUb/OCX7Js05KGquKhRl+r+fShDpW07OtWD
-         tC6GsH1gTz8dkeAh7DrmtXStiLql+G+zBo/+fGoXEoOeDdqvcZK3yeJ4KMOrdVoiHFRs
-         Ubxbv0ryCJKqa28BFX6eLF5vJUpFVYZS3/XVdN2e2HR7ZD/i0Xso7l9x5T6qaaGAEEN6
-         nArTdsa56zvCs8SDhzENCq/7xLpsdUF7PdTC3+TxZ4iJrANS0I1jR4fJ1wzcHYAc8kQC
-         FPDw==
+        d=linaro.org; s=google; t=1685458136; x=1688050136;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iV7Orb1i2HT8c6ntLQeDsScnfo8QsjoWIKrRpD+mlDM=;
+        b=q6DaxHgqELE2tu8Q1AxgIsCDpH+TNAJJHJp6Q7g8/Fkd/88Tk4TUy/ri0mT4Ktg5Mo
+         8loUDrV8rgOV4A6XNocbQ8st6LPKLPsCoM9M7NfuJiiPgFmWodAuWDMcEhGTqfI+4Tzf
+         71FhpeXfe33npOU4xXk8C/+4upzoWtXD+5OuR9V4CwEY+McHM/HpsrVpr/f2HM5wwk11
+         q6ItDg0BTxwcfJWB6uZBQGx+4pwaP2uzwuVXxHf91dLVKqsCTNfh3dg7BgyEkITCyOjh
+         IHl3EJehb7WHjyFD+D9eQjjetOZhYahUl2+MIzDnN4ovGk7najQrxWq/MU940DgRFDiZ
+         Y5Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685457868; x=1688049868;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tDgeJNYR1mRc99Zwj6kB5L18o06yCX2/R5yquqZiFxE=;
-        b=XayZlh2vIzKifes/n/uEn4JKgVOP1ihocCWycw/AuDfN1vLmJXTg9eU/Kugl8MkOcm
-         Wi3xSttbPDbZQYsjuA8uDKSOBe1cw3a+BwqqxLU2Ad8NvGFr4g/vRzd4LkZbcBbDM4W9
-         v9QrKbUN8TtHRqWiu3pxuIESWb6MA5gs/phOUmxZBg29HSEecIo4owCS3g6CYossGBzq
-         Ce1i9NEbi/+EPa5U3Ene46obW+3XVuSFGyc67VJnLpOixx9W6bvAR9HWeHqF3a+l//ev
-         CcnWcf67QNtTaD6DnsBuq+zTxbySwOOejCr65R7E8FqThikYtJ3ctB6msU76GswOGthR
-         +1EQ==
-X-Gm-Message-State: AC+VfDw3rmHndaShRSltihPkGw2c+Xro2NPce0ctlkUZJsu9MneEs8FK
-        JHDihvSoeuMQEgT6/h+X/oiYEoyS3t77QkbdHxrStg==
-X-Google-Smtp-Source: ACHHUZ4T5PHcFnaPx8v9mzg3bIbkkS6HlPhAMlCvITGaIHWTSg5GtmcwkVpaT4RExgTL+ftHPEXFZA==
-X-Received: by 2002:a17:907:7da0:b0:96f:b40a:c85f with SMTP id oz32-20020a1709077da000b0096fb40ac85fmr10682964ejc.23.1685457867760;
-        Tue, 30 May 2023 07:44:27 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id b16-20020a170906151000b0096b15e4ffcesm7415705ejd.85.2023.05.30.07.44.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 07:44:27 -0700 (PDT)
-Message-ID: <fdfc568e-703e-6e74-953e-742c00f0b5fe@linaro.org>
-Date:   Tue, 30 May 2023 16:44:25 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] arm64: dts: qcom: ipq6018: correct the qrng node name
-Content-Language: en-US
-To:     Kathiravan T <quic_kathirav@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        d=1e100.net; s=20221208; t=1685458136; x=1688050136;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iV7Orb1i2HT8c6ntLQeDsScnfo8QsjoWIKrRpD+mlDM=;
+        b=KUCiuabdaW4z9mGxIufPLYJZm6ybcs/6H+oPpfg3XOjg+DXeDAA7CK8GAKgcJYKbRi
+         9tG7r+LTYqxHeHK6a0bVyZvp2hVcwcd/6Z3HSiFO8d0jFS2eRa+Sz9rJekkX0bZS9+nc
+         u9d7qgbSm10+dM3rmkLNsorPjqcvZcEOcu0+5SL1hIGyKa/yfM7j3zy2wFH7s6kGGaXz
+         JfcZPfCFHjdgvwprGJ9dSpUaGwoj0kpJ0/NdNBMFV8VzucpgTDInaKfLjiTQlo062CbM
+         1uPoqBND8mQrLnaxKJ6UpT/n6xfqZu+29qIsw+7IMhUAaVVHAtXkbVmKwc4FBfptJIuk
+         WYjw==
+X-Gm-Message-State: AC+VfDya3BDSuu84y5KAj3TwtSIWS6BnCBSC0PUwEXL2X2G74Y7jSgEQ
+        V0JFkzy7n8vkPJ/uVGtYt4rKcA==
+X-Google-Smtp-Source: ACHHUZ57600gdJ8fZghoBNthDb/ZJ2da044/ygwaZp54+5w2nAm+4l+5lOMfpN+gAlzBZIyE3wXFJQ==
+X-Received: by 2002:aa7:d9c4:0:b0:50d:fcfb:861b with SMTP id v4-20020aa7d9c4000000b0050dfcfb861bmr1926404eds.0.1685458136376;
+        Tue, 30 May 2023 07:48:56 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id q21-20020aa7cc15000000b00514b2717ec6sm631283edt.28.2023.05.30.07.48.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 May 2023 07:48:55 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230526161138.25497-1-quic_kathirav@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230526161138.25497-1-quic_kathirav@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Dipen Patel <dipenp@nvidia.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Dilip Kota <eswara.kota@linux.intel.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-spi@vger.kernel.org, timestamp@lists.linux.dev,
+        linux-watchdog@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>
+Subject: [PATCH 0/7] dt-bindings: restrict node name suffixes
+Date:   Tue, 30 May 2023 16:48:44 +0200
+Message-Id: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/05/2023 18:11, Kathiravan T wrote:
-> qrng node address is mentioned incorrectly. Lets fix it.
-> 
-> Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> ---
-> Note: Only compilation and dtbs_check is checked. Also dependent on the
-> below series, no functional dependencies
-> https://lore.kernel.org/linux-arm-msm/20230526125305.19626-1-quic_kathirav@quicinc.com/T/#t
-> 
->  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> index 0f6d6c6daed2..5d2cc0caf5a1 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> @@ -309,7 +309,7 @@
->  			#size-cells = <1>;
->  		};
->  
-> -		prng: qrng@e1000 {
-> +		prng: qrng@e3000 {
+Hi,
 
-This was fixed some time ago:
+Tree-wide cleanup of DTS node name suffixes "-N", e.g. "pwm-5", so we allow
+only decimal numbers.  In few cases narrow the pattern to also disallow
+multiple suffixes, e.g. "pwm-5-5".
 
-https://lore.kernel.org/all/20230419211856.79332-1-krzysztof.kozlowski@linaro.org/
+No dependencies, can be applied by individual subsystems.
+
+Cc: Tony Lindgren <tony@atomide.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>
+
+Link: https://lore.kernel.org/all/20221127182232.GA128974-robh@kernel.org/
 
 Best regards,
 Krzysztof
+
+Krzysztof Kozlowski (7):
+  dt-bindings: phy: intel,combo-phy: restrict node name suffixes
+  dt-bindings: pwm: restrict node name suffixes
+  dt-bindings: rtc: restrict node name suffixes
+  dt-bindings: slimbus: restrict node name suffixes
+  spi: dt-bindings: restrict node name suffixes
+  dt-bindings: timestamp: restrict node name suffixes
+  dt-bindings: watchdog: restrict node name suffixes
+
+ Documentation/devicetree/bindings/phy/intel,combo-phy.yaml    | 2 +-
+ Documentation/devicetree/bindings/pwm/pwm.yaml                | 2 +-
+ Documentation/devicetree/bindings/rtc/rtc.yaml                | 2 +-
+ Documentation/devicetree/bindings/slimbus/slimbus.yaml        | 2 +-
+ Documentation/devicetree/bindings/spi/spi-controller.yaml     | 2 +-
+ .../bindings/timestamp/hardware-timestamps-common.yaml        | 2 +-
+ Documentation/devicetree/bindings/watchdog/watchdog.yaml      | 4 ++--
+ 7 files changed, 8 insertions(+), 8 deletions(-)
+
+-- 
+2.34.1
 
