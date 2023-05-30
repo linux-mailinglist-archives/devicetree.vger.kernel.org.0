@@ -2,148 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B79197157D5
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D88E7157E3
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:04:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229883AbjE3IB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 04:01:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53978 "EHLO
+        id S229733AbjE3IEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 04:04:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbjE3IBz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:01:55 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82511C7
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:01:51 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f60dfc6028so42998945e9.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:01:51 -0700 (PDT)
+        with ESMTP id S229919AbjE3IEg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:04:36 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41D75A8
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:04:35 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f6dfc4e01fso43022375e9.0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:04:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685433710; x=1688025710;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=j1K+SN90yu6GVNFzY/ynyoEBrXtMpQCEy39+3j7Gsoo=;
-        b=j6dw88xQf9k7F1V+LU60cf/re3KpD6D+fW+DuVMLwRgTmhtgvGBkxbQlIeTmZKtmmr
-         zCM3GqaerO/6z26xHJaQYLx+BGboERMLqQD6jCUU/eCovKr0uMeaComrQU5hNjbXthEg
-         ZmN+iasm1ETNVdligfCV3KxuBLgHxcv/DfDaSD0Iy2SCptARZQGpZGo3myQ8ifjWCREO
-         U5CrEpbdpYipdluUtg/bLcVvJy7CLTIwnt7KGo6u8uju/z/WM5lUfbRLeE7M0ryQPM5N
-         +LsYGB8b/r2Grt/yuYFDDvwqXLH0CadCh5FxvSm5GqDLKJQ+oiYzzMO1x0VzuhiM8417
-         VpCA==
+        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1685433874; x=1688025874;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RjdcHakCzRp2uDPOf1QJOq47vmihq6bx2AuDxoEXfOE=;
+        b=FDmwQIBU+rDZiJvbW1YTb6Nvtv32CT3waSZraGR5m0N/Ms1Hp4lSo9Cjsgx0SEuSex
+         G7kgDEEDswd6pBtrVkoYvLUf48IXqIoDPi6HcJa672ZxeKgNQe3jKbnlg7nS5ZbJAErG
+         BcpjlO6WedDL2jJ7QGURxWfRh+kEtQi4jrqUn62BBZtLnjtNq86oWP7St++e9x2zSpgO
+         GSMJmPalS5q7PHUPPtpjq9yxF1mDEMvYcyMsFNK33+vhn6r/xi5uMhiLsm0BvNGhHWpa
+         fAnVIfUp5JI106rZE2MESeh4Iw+o2yHf4TdOtfMeGL7HqA0daZj7wo5o/gPK8jDUKuMK
+         +DNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685433710; x=1688025710;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1685433874; x=1688025874;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=j1K+SN90yu6GVNFzY/ynyoEBrXtMpQCEy39+3j7Gsoo=;
-        b=kXJPRiuuU0UFx0KhHwPRlhQ1DwXIOs06J3CcZ0lPM8BKoWF/h3GvAqimgl/tS5q307
-         xFL32HyFh/ehMvRZ3dJ9eVeVJHk/JbHXFIXCkPwH+CS6RNhj5xibR0ff/mtZNSomQl+l
-         EUt42aH1f3l5GhIPstGto3P+ASrWxq3dHKPreUEYhAqKzAoHOv9b2McslEdIr0gMTCm4
-         ikRfK/fB+FiWb74+1EXNsi2+T85TMx78R1buZTnJEVtK0FMKbBnbXLD7nkPh0oCqvpXN
-         tfl9oPgGheeVuwV4b8hS9/7Dy+DxYTQUqcS3Fmlrcksg+X/LEnpfxSJmZSNOhjlThOu6
-         HX2A==
-X-Gm-Message-State: AC+VfDxVM3Ew3pdGhLAvM/RydWvxTSGdI2s6AHCiM38X0MczkXJvOw7f
-        Nca3vD7czTbiN1ldNNDwXxbTTA==
-X-Google-Smtp-Source: ACHHUZ5M8En45/6tBUvjo3i971gc63XBq54RnLe8ykSVS26PwEsEHPaJ1bHuRb+HD8LOEkdWqYHFFg==
-X-Received: by 2002:a7b:cbc8:0:b0:3f6:1a9:b9db with SMTP id n8-20020a7bcbc8000000b003f601a9b9dbmr820957wmi.21.1685433709934;
-        Tue, 30 May 2023 01:01:49 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4294:2221:d2df:9e87? ([2a01:e0a:982:cbb0:4294:2221:d2df:9e87])
-        by smtp.gmail.com with ESMTPSA id p23-20020a05600c205700b003f42314832fsm16526895wmg.18.2023.05.30.01.01.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 01:01:49 -0700 (PDT)
-Message-ID: <ba2c5887-a046-c5c6-4bc0-98549003c244@linaro.org>
-Date:   Tue, 30 May 2023 10:01:48 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH V8 0/7] drm: bridge: samsung-dsim: Support variable
- clocking
-Content-Language: en-US
-To:     Adam Ford <aford173@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, aford@beaconembedded.com,
-        Inki Dae <inki.dae@samsung.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        bh=RjdcHakCzRp2uDPOf1QJOq47vmihq6bx2AuDxoEXfOE=;
+        b=hDrrw1mUPNMWUiJrlTh4rKoqbvuHW75xZQJJjwP8xEZ8E2/jPBFjnH2dSwzQ5XHGf/
+         emJx+GpaqA/mzS2AtsbOFXlPXmrGTye1CdnbpZ2zCA8O4+DKz775bvM8vw1MCbu6mBaR
+         GPjmYukZ1cjtK7/YGR3NRBjZGPvuM5EU0iY0O1Hs5sdp5HN5YsL5e5ufihCd9DtqCoYC
+         FdgmOokfGT7BsnGyswLRNwrrR5K/Gysr2V5lW1JqaeGz/GwbNgPWV1IZrwX/RMaHQN9C
+         6kpVj5Q9q6/DEAbyss4CLYBdfcHbsS9dbKAUIGs2KomB4FsaTjV4Ciz4qtgZcWWBaysN
+         nO6A==
+X-Gm-Message-State: AC+VfDx/GHJEHCNG5KM3vlZev5DihfoOBB6XNSjmQh7W7OAWfsT/owlQ
+        WbtmpLIGd1MAwIHVQW61KpXcSw==
+X-Google-Smtp-Source: ACHHUZ4EXH26JifnRLV35t73W7c9aZ6OsRaB13FCf0u1UgCoCH3BzpbjGhbi2O2/JVao2KQatBmCug==
+X-Received: by 2002:a7b:ce96:0:b0:3f4:2174:b28a with SMTP id q22-20020a7bce96000000b003f42174b28amr1280948wmj.15.1685433873743;
+        Tue, 30 May 2023 01:04:33 -0700 (PDT)
+Received: from localhost.localdomain (amontpellier-656-1-456-62.w92-145.abo.wanadoo.fr. [92.145.124.62])
+        by smtp.gmail.com with ESMTPSA id f12-20020a7bcd0c000000b003f601a31ca2sm16762193wmj.33.2023.05.30.01.04.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 May 2023 01:04:33 -0700 (PDT)
+From:   Alexandre Ghiti <alexghiti@rivosinc.com>
+To:     "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Pavel Machek <pavel@ucw.cz>, linux-pm@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230526030559.326566-1-aford173@gmail.com>
- <168508573345.1449766.11809947722851001124.b4-ty@linaro.org>
- <cd3c7cca-9edd-ca16-8376-e3ba924eaa30@linaro.org>
- <CAHCN7xK8R72eTTenp4UeuOKT7NojKDC9_ReWa0HLexzqo9E6UQ@mail.gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <CAHCN7xK8R72eTTenp4UeuOKT7NojKDC9_ReWa0HLexzqo9E6UQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Frank Rowand <frowand.list@gmail.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Anup Patel <anup@brainfault.org>,
+        =?UTF-8?q?Bj=C3=B6rn=20T=C3=B6pel?= <bjorn@rivosinc.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Alexandre Ghiti <alexghiti@rivosinc.com>
+Subject: [RFC PATCH 0/1] fdt: Mark "/reserved-memory" nodes as nosave if !reusable
+Date:   Tue, 30 May 2023 10:04:24 +0200
+Message-Id: <20230530080425.18612-1-alexghiti@rivosinc.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/05/2023 16:04, Adam Ford wrote:
-> On Fri, May 26, 2023 at 2:24 AM Neil Armstrong
-> <neil.armstrong@linaro.org> wrote:
->>
->> On 26/05/2023 09:22, Neil Armstrong wrote:
->>> Hi,
->>>
->>> On Thu, 25 May 2023 22:05:52 -0500, Adam Ford wrote:
->>>> This series fixes the blanking pack size and the PMS calculation.  It then
->>>> adds support to allows the DSIM to dynamically DPHY clocks, and support
->>>> non-burst mode while allowing the removal of the hard-coded clock values
->>>> for the PLL for imx8m mini/nano/plus, and it allows the removal of the
->>>> burst-clock device tree entry when burst-mode isn't supported by connected
->>>> devices like an HDMI brige.  In that event, the HS clock is set to the
->>>> value requested by the bridge chip.
->>>>
->>>> [...]
->>>
->>> Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
->>>
->>> [1/7] drm: bridge: samsung-dsim: fix blanking packet size calculation
->>>         https://cgit.freedesktop.org/drm/drm-misc/commit/?id=a617b33f7e513f25becf843bc97f8f1658c16337
->>> [2/7] drm: bridge: samsung-dsim: Fix PMS Calculator on imx8m[mnp]
->>>         https://cgit.freedesktop.org/drm/drm-misc/commit/?id=54f1a83c72250b182fa7722b0c5f6eb5e769598d
->>> [3/7] drm: bridge: samsung-dsim: Fetch pll-clock-frequency automatically
->>>         https://cgit.freedesktop.org/drm/drm-misc/commit/?id=33d8d14c83bf67aa0d262961a6fda9c40f3c1052
->>> [4/7] drm: bridge: samsung-dsim: Select GENERIC_PHY_MIPI_DPHY
->>>         https://cgit.freedesktop.org/drm/drm-misc/commit/?id=171b3b1e0f8b8c894f2388e1cf765a56f831ee5e
->>> [5/7] drm: bridge: samsung-dsim: Dynamically configure DPHY timing
->>>         https://cgit.freedesktop.org/drm/drm-misc/commit/?id=89691775f5735fca9dc40e119edcbb52a25b9612
->>> [6/7] drm: bridge: samsung-dsim: Support non-burst mode
->>>         https://cgit.freedesktop.org/drm/drm-misc/commit/?id=bb0e13b9e223b218c9f242f8d340a332b4381042
->>> [7/7] dt-bindings: bridge: samsung-dsim: Make some flags optional
->>>         https://cgit.freedesktop.org/drm/drm-misc/commit/?id=cfaf76d349837f695c8aa6d7077847fec4231fe5
->>>
->>
->> OK I made a bad manipulation, I applied patch 7 without review... I'll send a revert patch.
-> 
-> Sorry, I didn't mean to complicate things by adding the binding patch.
-> I added a note in the cover letter to indicate it, but I also
-> recognize that it contradicted my earlier email.
+In the RISC-V kernel, the firmware does not mark the region it uses as
+"no-map" so that the kernel can avoid having holes in the linear mapping
+and then use larger pages.
 
-No problem :-)
+But with the recent support of hibernation on RISC-V, we noticed that
+the hibernation process was trying to access those firmware regions
+which are protected from *all* accesses (using PMP). So the hibernation
+process fails.
 
-Neil
+We still don't have any "specification" regarding the naming of those
+firmware regions, so we can't currently target those specific regions
+(they are described as subnodes of "/reserved-memory").
 
-> 
-> adam
->>
->> Neil
+I think we should actually mark all those "/reserved-memory" regions as
+"nosave" since they should not be used by the kernel (see the
+documentation pointed in the patch), hence the RFC since I may be
+missing something here (legacy, other usage...etc).
+
+Please let me know what you think!
+
+Alexandre Ghiti (1):
+  fdt: Mark "/reserved-memory" nodes as nosave if !reusable
+
+ arch/riscv/kernel/setup.c |  2 +
+ drivers/of/fdt.c          | 77 +++++++++++++++++++++++++++++++++++++++
+ include/linux/of_fdt.h    |  1 +
+ 3 files changed, 80 insertions(+)
+
+-- 
+2.39.2
 
