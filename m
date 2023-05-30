@@ -2,105 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 986F9715368
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 04:07:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7506771536B
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 04:08:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230084AbjE3CHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 22:07:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47442 "EHLO
+        id S230089AbjE3CIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 22:08:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230028AbjE3CG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 22:06:59 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 321ED1B4;
-        Mon, 29 May 2023 19:06:26 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id B3D2424E271;
-        Tue, 30 May 2023 10:05:39 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 30 May
- 2023 10:05:39 +0800
-Received: from [192.168.120.57] (171.223.208.138) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 30 May
- 2023 10:05:39 +0800
-Message-ID: <86555925-b8dd-29a8-60cd-5c2ff2c1432a@starfivetech.com>
-Date:   Tue, 30 May 2023 10:05:38 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v1 2/3] spi: cadence-quadspi: Add clock configuration for
- StarFive JH7110 QSPI
-Content-Language: en-US
-From:   William Qiu <william.qiu@starfivetech.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>
-References: <20230526062529.46747-1-william.qiu@starfivetech.com>
- <20230526062529.46747-3-william.qiu@starfivetech.com>
- <fecc9d6a-022e-49d9-a452-8a63c409ebf3@sirena.org.uk>
- <042c560d-1f36-8e97-3796-7423245592f4@starfivetech.com>
-In-Reply-To: <042c560d-1f36-8e97-3796-7423245592f4@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S230028AbjE3CIF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 22:08:05 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB4EF131;
+        Mon, 29 May 2023 19:07:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=8b7axy2ugwNnYpSJ0ufdxmI8eLFv3CFyiX/N3qWXuJ8=; b=tfvBCuK4DDooO23JHHoy0i7lZ6
+        rIdQLSmZMncYs7N3rUt8W9Y9e+Vr7JZkGzKEnlZVhaqIMBA6zZQH7YV0CrWQqn0q8Q0DYObTsSkQ5
+        ECmUM8Y9UihOYWqKPkHSLvL1RaGq7Zcn46wQb/a0mAn5cc0C6RBD6lK63y8/dMRPGxIg=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:59646 helo=debian-acer)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1q3olR-0002Pe-83; Mon, 29 May 2023 22:07:09 -0400
+Date:   Mon, 29 May 2023 22:07:08 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     andy.shevchenko@gmail.com
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Message-Id: <20230529220708.66f7825fed9ee36b181128cf@hugovil.com>
+In-Reply-To: <ZHUnwNNcU_EnS4bo@surfacebook>
+References: <20230529140711.896830-1-hugo@hugovil.com>
+        <ZHUnwNNcU_EnS4bo@surfacebook>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v4 0/9] serial: sc16is7xx: fix GPIO regression and rs485
+ improvements
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 30 May 2023 01:31:28 +0300
+andy.shevchenko@gmail.com wrote:
 
+> Mon, May 29, 2023 at 10:07:02AM -0400, Hugo Villeneuve kirjoitti:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > 
+> > Hello,
+> > this patch series mainly fixes a GPIO regression and improve RS485 flags and
+> > properties detection from DT.
+> > 
+> > It now also includes various small fixes and improvements that were previously
+> > sent as separate patches, but that made testing everything difficult.
+> > 
+> > Patch 1 fixes an issue when debugging IOcontrol register. After testing the GPIO
+> > regression patches (patches 6 and 7, tests done by Lech Perczak), it appers that
+> > this patch is also necessary for having the correct IOcontrol register values.
+> > 
+> > Patch 2 introduces a delay after a reset operation to respect datasheet
+> > timing recommandations.
+> 
+> These two patches are w/o Fixes tag, they should be moved in the series further
+> as I explained before.
 
-On 2023/5/29 14:44, William Qiu wrote:
-> 
-> 
-> On 2023/5/26 23:36, Mark Brown wrote:
->> On Fri, May 26, 2023 at 02:25:28PM +0800, William Qiu wrote:
->> 
->>>  	if (of_device_is_compatible(pdev->dev.of_node, "starfive,jh7110-qspi")) {
->>> +		qspi_ahb = devm_clk_get(dev, "qspi-ahb");
->>> +		if (IS_ERR(qspi_ahb)) {
->>> +			dev_err(dev, "Cannot claim QSPI_AHB clock.\n");
->>> +			ret = PTR_ERR(qspi_ahb);
->>> +			return ret;
->>> +		}
->>> +
->>> +		ret = clk_prepare_enable(qspi_ahb);
->>> +		if (ret) {
->>> +			dev_err(dev, "Cannot enable QSPI AHB clock.\n");
->>> +			goto probe_clk_failed;
->>> +		}
->> 
->> Nothing ever disables or unprepares this clock as far as I can tell?
->> Perhaps also consider using the clk_bulk_ APIs.
-> 
-> I will add in next version.
-> 
-> Thanks for taking time to review this patch series and give useful
-> suggestions.
-> 
-> Best regards,
-> William
+Your explanation was not clear.
 
-Hi Mark,
+Anyway, I moved them in position 7 and 8.
 
-	Now I want to replace the original devm_clk_get API in the
-driver with devm_clk_bulk_get_all API, which can achieve compatibility,
-but it seems that it is not good for other ip with only one clock, so I
-want to ask about that can I replace it? Or define that inside jh7110?
-
-Best regards,
-William
+ 
+> > Patch 3 fixes an issue with init of first port during probing.
+> > 
+> > Patch 4 fixes a bug with the output value when first setting the GPIO direction.
+> > 
+> > Patch 5 is a refactor of GPIO registration code.
+> > 
+> > Patches 6 and 7 fix a GPIO regression by (re)allowing to choose GPIO function
+> > for GPIO pins shared with modem status lines.
+> > 
+> > Patch 8 allows to read common rs485 device-tree flags and properties.
+> > 
+> > Patch 9 improves comments about chip variants.
+> > 
+> > I have tested the changes on a custom board with two SC16IS752 DUART using a
+> > Variscite IMX8MN NANO SOM.
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
