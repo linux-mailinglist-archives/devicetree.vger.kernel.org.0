@@ -2,83 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62B477157B3
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 09:55:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12B287157C6
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:00:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229605AbjE3Hze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 03:55:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49680 "EHLO
+        id S229814AbjE3IA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 04:00:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbjE3Hzd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 03:55:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F2E6F7;
-        Tue, 30 May 2023 00:55:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B05C762349;
-        Tue, 30 May 2023 07:55:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71025C433EF;
-        Tue, 30 May 2023 07:55:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685433322;
-        bh=8ZdTOa03jdrIEEMTRubaTPNotfGUbHnWuYuQN/xtOPA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=pZTF2iPEAyO8W9Utdy4WVirRx29yvcU1kmInYUI3eNQMllXS+VOlwBK05kE4cjMxm
-         iT9hShvfgQRfHdzjKYv0DOEqATP1TAWzLwnevJEwSTONFyqhoUJow0AyIu9DOmiuf/
-         FrofSDhfMRE4axz/VDizJeMojrALTfc8JO5H6NEBKIJww4JAw+HE/ifoy8w7RZ5XTM
-         qav5qHfQL/LZqApbRShIy2S4xYnoc4V2YwhXkLIF31fE41+oJqdf61xZIYtkFz8Hj0
-         sXAXTjeGZy7wLLDsAyg0GKY24Z1D/n5oKbLDtnqMHzs77yXpHvyuFYSMVMWsvwcj8N
-         gusvJxpYikayw==
-Message-ID: <43d8b745-ea0e-4359-8291-be750abab41a@kernel.org>
-Date:   Tue, 30 May 2023 09:55:15 +0200
+        with ESMTP id S229739AbjE3IAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:00:25 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A817EDB;
+        Tue, 30 May 2023 01:00:23 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34U3trF5017624;
+        Tue, 30 May 2023 10:00:02 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=F6s3aD3XjXvai6aASf5oktFqcXSWfCYGDRUtEZKcHTU=;
+ b=JiwR7fSL+Spg+EPI/ayGRMDGZe+2f1u/NpUH/q7aXfsopV7ie2mDahW8OLSZ3v5vYIUI
+ k8fOovmZEL+hbAyBQpA1pH9rWegcACyQ45cX2idDAWHxICeyJXug0XrbY1ZZsMfuSNgE
+ TK9eAm2/lN4fmY56I5uhvL2/I5LZGBZtDJxlcjbpNs/t6DyRAeiWUJtDGf58LhpR9BLw
+ 3cZ7X69JRBDhP4c0pvWG/CZ/Syhip1f0ajVN4kmKUvSSB69G6J1VjfmD83JMnZJW46Lk
+ sLcLvNCfAFrbjx16omnWL82R96MA8bkBRym024YLXWd08l26HzBDnvHPOtDbo6kUBhZd UA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3quahy634c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 10:00:02 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D281B10002A;
+        Tue, 30 May 2023 10:00:00 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C872C2138F6;
+        Tue, 30 May 2023 10:00:00 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 30 May
+ 2023 10:00:00 +0200
+Message-ID: <8a4f3112-54ed-e0c1-52ee-395a41255163@foss.st.com>
+Date:   Tue, 30 May 2023 09:59:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2] dt-bindings: net: Add QCA2066 Bluetooth
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 7/8] ARM: dts: stm32: adopt generic iio bindings for adc
+ channels on dhcor-drc
 Content-Language: en-US
-To:     "Tim Jiang (QUIC)" <quic_tjiang@quicinc.com>
-Cc:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Balakrishna Godavarthi (QUIC)" <quic_bgodavar@quicinc.com>,
-        "Hemant Gupta (QUIC)" <quic_hemantg@quicinc.com>
-References: <20230518092719.11308-1-quic_tjiang@quicinc.com>
- <fb3678d67fd4428eaec98365288384ed@quicinc.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <fb3678d67fd4428eaec98365288384ed@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+To:     Olivier MOYSAN <olivier.moysan@foss.st.com>,
+        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <kernel@dh-electronics.com>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230524133918.1439516-1-olivier.moysan@foss.st.com>
+ <20230524133918.1439516-8-olivier.moysan@foss.st.com>
+ <cc7a0a1a-31bb-92f4-6365-5e0c4a4bc85c@denx.de>
+ <5bb496d0-6dc1-6ba3-6126-6429037ecf5a@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <5bb496d0-6dc1-6ba3-6126-6429037ecf5a@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-30_05,2023-05-29_02,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/05/2023 09:49, Tim Jiang (QUIC) wrote:
-> Hi krzk:
->   Could you help review this patch ?
+Marek, Olivier
 
-Did you send it to me (as asked by get_maintainers.pl)?
+On 5/24/23 17:39, Olivier MOYSAN wrote:
+> Hi Marek,
+> 
+> On 5/24/23 15:54, Marek Vasut wrote:
+>> On 5/24/23 15:39, Olivier Moysan wrote:
+>>> Use STM32 ADC generic bindings instead of legacy bindings on
+>>> DHCOR DRC Compact board.
+>>>
+>>> The STM32 ADC specific binding to declare channels has been deprecated,
+>>> hence adopt the generic IIO channels bindings, instead.
+>>> The STM32MP151 device tree now exposes internal channels using the
+>>> generic binding. This makes the change mandatory here to avoid a mixed
+>>> use of legacy and generic binding, which is not supported by the driver.
+>>>
+>>> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+>>> ---
+>>>   .../dts/stm32mp15xx-dhcor-drc-compact.dtsi    | 28 ++++++++++++++++---
+>>>   1 file changed, 24 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi 
+>>> b/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi
+>>> index 39af79dc654c..92d906bfd5d7 100644
+>>> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi
+>>> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi
+>>> @@ -57,15 +57,35 @@ &adc {    /* X11 ADC inputs */
+>>>       status = "okay";
+>>>       adc1: adc@0 {
+>>
+>>
+>> I sent similar patch recently too:
+>>
+>> [PATCH] ARM: dts: stm32: Update to generic ADC channel binding on 
+>> DHSOM systems
+>>
+>> But I needed to add #address-cells/#size-cells here and to adc@100, 
+>> otherwise DTB checker was complaining . Did you run DTB check and was 
+>> it OK on your side ?
+> 
+> The first patch in this serie adds the #address-cells/#size-cells to the 
+>   SoC DT. So, there is no need to add them later in the board DT.
+> 
+> I can send a v2 with your patch (after removing the cells properties 
+> from the patch). Having all the patches in the same serie, will help 
+> avoiding sequencing problems.
+> 
+> Do you agree with this ?
+
+What is the status of this patch ?
+
+Marek, I would prefer to take all ADC updates in this series if you agree.
+
+Alex
 
 > 
-> Regards.
-> Tim
+> BRs
+> Olivier
 > 
-> 
-> -----Original Message-----
-> From: Tim Jiang (QUIC) <quic_tjiang@quicinc.com> 
-> Sent: Thursday, May 18, 2023 5:27 PM
-> To: krzk@kernel.org
-> Cc: netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Balakrishna Godavarthi (QUIC) <quic_bgodavar@quicinc.com>; Hemant Gupta (QUIC) <quic_hemantg@quicinc.com>; Tim Jiang (QUIC) <quic_tjiang@quicinc.com>
-
-I think not...
-
-Best regards,
-Krzysztof
+>>
+>>> -        st,adc-channels = <0 1 6>;
+>>> -        st,min-sample-time-nsecs = <5000>;
+>>>           status = "okay";
+>>> +        channel@0 {
+>>> +            reg = <0>;
+>>> +            st,min-sample-time-ns = <5000>;
+>>> +        };
+>>> +        channel@1 {
+>>> +            reg = <1>;
+>>> +            st,min-sample-time-ns = <5000>;
+>>> +        };
+>>> +        channel@6 {
+>>> +            reg = <6>;
+>>> +            st,min-sample-time-ns = <5000>;
+>>> +        };
+>>>       };
+>>
+>> [...]
 
