@@ -2,114 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5904A715392
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 04:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E1AA7153BF
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 04:38:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229934AbjE3CUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 22:20:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57156 "EHLO
+        id S229647AbjE3Ch6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 22:37:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229989AbjE3CUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 22:20:54 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81E3DB5;
-        Mon, 29 May 2023 19:20:44 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 34U2JXGT0028436, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 34U2JXGT0028436
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-        Tue, 30 May 2023 10:19:33 +0800
-Received: from RTEXMBS05.realtek.com.tw (172.21.6.98) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.17; Tue, 30 May 2023 10:19:46 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXMBS05.realtek.com.tw (172.21.6.98) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Tue, 30 May 2023 10:19:45 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Tue, 30 May 2023 10:19:45 +0800
-From:   =?big5?B?U3RhbmxleSBDaGFuZ1up96h8vHdd?= <stanley_chang@realtek.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+        with ESMTP id S230048AbjE3Ch4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 22:37:56 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB6FC7;
+        Mon, 29 May 2023 19:37:54 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 8D13724E282;
+        Tue, 30 May 2023 10:37:52 +0800 (CST)
+Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 30 May
+ 2023 10:37:52 +0800
+Received: from [192.168.125.107] (113.72.147.198) by EXMBX062.cuchost.com
+ (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 30 May
+ 2023 10:37:51 +0800
+Message-ID: <3b4eff36-28db-5880-3094-efa491a69dc7@starfivetech.com>
+Date:   Tue, 30 May 2023 10:37:50 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v5 1/3] dt-bindings: phy: Add starfive,jh7110-dphy-rx
+Content-Language: en-US
+To:     Conor Dooley <conor.dooley@microchip.com>
 CC:     Vinod Koul <vkoul@kernel.org>,
         Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Michael Grzeschik <m.grzeschik@pengutronix.de>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        "Flavio Suligoi" <f.suligoi@asem.it>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Mathias Nyman" <mathias.nyman@linux.intel.com>,
-        Ray Chi <raychi@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-Subject: RE: [PATCH v2 1/3] usb: phy: add usb phy notify port status API
-Thread-Topic: [PATCH v2 1/3] usb: phy: add usb phy notify port status API
-Thread-Index: AQHZjrBJqs57LUq3CEa1m1O4SeqC6K9wz9gAgAFFkIA=
-Date:   Tue, 30 May 2023 02:19:45 +0000
-Message-ID: <647ded70ff024a3081cbf5c45f5da12c@realtek.com>
-References: <20230525022617.30537-1-stanley_chang@realtek.com>
- <2023052905-maimed-studied-3563@gregkh>
-In-Reply-To: <2023052905-maimed-studied-3563@gregkh>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXMBS05.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230529121503.3544-1-changhuang.liang@starfivetech.com>
+ <20230529121503.3544-2-changhuang.liang@starfivetech.com>
+ <20230529-envy-itinerary-e4007cb0da9a@wendy>
+From:   Changhuang Liang <changhuang.liang@starfivetech.com>
+In-Reply-To: <20230529-envy-itinerary-e4007cb0da9a@wendy>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.147.198]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX062.cuchost.com
+ (172.16.6.62)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR3JlZywNCg0KPiA+IC0tLSBhL2luY2x1ZGUvbGludXgvdXNiL3BoeS5oDQo+ID4gKysrIGIv
-aW5jbHVkZS9saW51eC91c2IvcGh5LmgNCj4gPiBAQCAtMTQ0LDYgKzE0NCwxMCBAQCBzdHJ1Y3Qg
-dXNiX3BoeSB7DQo+ID4gICAgICAgICovDQo+ID4gICAgICAgaW50ICAgICAoKnNldF93YWtldXAp
-KHN0cnVjdCB1c2JfcGh5ICp4LCBib29sIGVuYWJsZWQpOw0KPiA+DQo+ID4gKyAgICAgLyogbm90
-aWZ5IHBoeSBwb3J0IHN0YXR1cyBjaGFuZ2UgKi8NCj4gPiArICAgICBpbnQgICAgICgqbm90aWZ5
-X3BvcnRfc3RhdHVzKShzdHJ1Y3QgdXNiX3BoeSAqeCwNCj4gPiArICAgICAgICAgICAgIGludCBw
-b3J0LCB1MTYgcG9ydHN0YXR1cywgdTE2IHBvcnRjaGFuZ2UpOw0KPiA+ICsNCj4gPiAgICAgICAv
-KiBub3RpZnkgcGh5IGNvbm5lY3Qgc3RhdHVzIGNoYW5nZSAqLw0KPiA+ICAgICAgIGludCAgICAg
-KCpub3RpZnlfY29ubmVjdCkoc3RydWN0IHVzYl9waHkgKngsDQo+ID4gICAgICAgICAgICAgICAg
-ICAgICAgIGVudW0gdXNiX2RldmljZV9zcGVlZCBzcGVlZCk7DQo+IA0KPiBXaHkgY2FuJ3QgdGhp
-cyBiZSBwYXJ0IG9mIHRoZSBzYW1lIG5vdGlmeV9jb25uZWN0KCkgY2FsbGJhY2s/DQoNClRoZSBu
-b3RpZnkgY29ubmVjdCBpcyBhdCBkZXZpY2UgcmVhZHkuIEJ1dCBJIHdhbnQgbm90aWZ5IHBvcnQg
-c3RhdHVzIGNoYW5nZSBiZWZvcmUgcG9ydCByZXNldC4NCg0KPiBXaGF0IG1ha2VzIGl0IGRpZmZl
-cmVudCBzb21laG93PyAgUGxlYXNlIGRvY3VtZW50IHRoaXMgbXVjaCBiZXR0ZXIuDQoNCkluIFJl
-YWx0ZWsgcGh5IGRyaXZlciwgd2UgaGF2ZSBkZXNpZ25lZCB0byBkeW5hbWljYWxseSBhZGp1c3Qg
-ZGlzY29ubmVjdGlvbiBsZXZlbCBhbmQgY2FsaWJyYXRlIHBoeSBwYXJhbWV0ZXJzLg0KU28gd2Ug
-ZG8gdGhpcyB3aGVuIHRoZSBkZXZpY2UgY29ubmVjdGVkIGJpdCBjaGFuZ2VzIGFuZCB3aGVuIHRo
-ZSBkaXNjb25uZWN0ZWQgYml0IGNoYW5nZXMuDQpQb3J0IHN0YXR1cyBjaGFuZ2Ugbm90aWZpY2F0
-aW9uOg0KMS4gQ2hlY2sgaWYgcG9ydHN0YXR1cyBpcyBVU0JfUE9SVF9TVEFUX0NPTk5FQ1RJT04g
-YW5kIHBvcnRjaGFuZ2UgaXMgVVNCX1BPUlRfU1RBVF9DX0NPTk5FQ1RJT04uDQogIFRoZSBkZXZp
-Y2UgaXMgY29ubmVjdGVkLCB0aGUgZHJpdmVyIGxvd2VycyB0aGUgZGlzY29ubmVjdGlvbiBsZXZl
-bCBhbmQgY2FsaWJyYXRlcyB0aGUgcGh5IHBhcmFtZXRlcnMuDQoyLiBUaGUgZGV2aWNlIGRpc2Nv
-bm5lY3RzLCB0aGUgZHJpdmVyIGluY3JlYXNlcyB0aGUgZGlzY29ubmVjdCBsZXZlbCBhbmQgY2Fs
-aWJyYXRlcyB0aGUgcGh5IHBhcmFtZXRlcnMuDQoNCklmIHdlIGFkanVzdCB0aGUgZGlzY29ubmVj
-dGlvbiBsZXZlbCBpbiBub3RpZnlfY29ubmVjdCAsIHRoZSBkaXNjb25uZWN0IG1heSBoYXZlIGJl
-ZW4gdHJpZ2dlcmVkIGF0IHRoaXMgc3RhZ2UuIA0KU28gd2UgbmVlZCB0byBjaGFuZ2UgdGhhdCBh
-cyBlYXJseSBhcyBwb3NzaWJsZS4NCg0KDQo+IA0KPiA+IEBAIC0zMTYsNiArMzIwLDE2IEBAIHVz
-Yl9waHlfc2V0X3dha2V1cChzdHJ1Y3QgdXNiX3BoeSAqeCwgYm9vbA0KPiBlbmFibGVkKQ0KPiA+
-ICAgICAgICAgICAgICAgcmV0dXJuIDA7DQo+ID4gIH0NCj4gPg0KPiA+ICtzdGF0aWMgaW5saW5l
-IGludA0KPiA+ICt1c2JfcGh5X25vdGlmeV9wb3J0X3N0YXR1cyhzdHJ1Y3QgdXNiX3BoeSAqeCwg
-aW50IHBvcnQsIHUxNiBwb3J0c3RhdHVzLA0KPiA+ICsgICAgICAgICB1MTYgcG9ydGNoYW5nZSkN
-Cj4gPiArew0KPiA+ICsgICAgIGlmICh4ICYmIHgtPm5vdGlmeV9wb3J0X3N0YXR1cykNCj4gDQo+
-IEhvdyBjYW4geCBldmVyIGJlIE5VTEw/DQoNCkl0IGlzIHBvc3NpYmxlLg0KSWYgdGhlIGNvbnRy
-b2xsZXIgbm90IHVzZSB1c2ItcGh5IGRyaXZlci4gSXQgIGlzIE5VTEwuDQoNClRoYW5rcywNClN0
-YW5sZXkNCg==
+
+
+On 2023/5/29 22:05, Conor Dooley wrote:
+> Hey Changhuang,
+> 
+> Couple of minor bits from me here, you don't need to fix them unless
+> the binding has to change for other reasons.
+> 
+
+Thanks for your comments.
+
+[...]
+>> +$id: http://devicetree.org/schemas/phy/starfive,jh7110-dphy-rx.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: StarFive SoC MIPI D-PHY Rx Controller
+> 
+> nit: either s/SoC/JH7110/ or s/SoC//.
+> 
+
+Changed to "StarFive JH7110 SoC MIPI D-PHY Rx Controller"?
+
+>> +
+>> +maintainers:
+>> +  - Jack Zhu <jack.zhu@starfivetech.com>
+>> +  - Changhuang Liang <changhuang.liang@starfivetech.com>
+>> +
+>> +description:
+>> +  The StarFive SoC uses the MIPI CSI D-PHY based on M31 IP to transfer
+>> +  CSI camera data.
+> 
+> nit: "Starfive SoCs contain a MIPI CSI D-PHY based on an M31 IP, used to
+> transfer CSI camera data."
+> 
+
+Will fixed this.
+
+>> +properties:
+>> +  compatible:
+>> +    const: starfive,jh7110-dphy-rx
+[...]
+>> +  resets:
+>> +    items:
+>> +      - description: DPHY_HW reset
+>> +      - description: DPHY_B09_ALWAYS_ON reset
+> 
+> I'd prefer not to have what looks like copy-paste from a datasheet
+> and instead a description of what they do.
+> 
+> Otherwise, this looks grand to me, but I don't understand the hardware
+> so there is no point in me leaving an R-b on this.
+> Hopefully Krzysztof can take a look at it in the coming days.
+> 
+I will wait for Krzysztof's comments.
