@@ -2,433 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC818715868
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:25:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC81B71582E
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230146AbjE3IZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 04:25:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39986 "EHLO
+        id S230175AbjE3IRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 04:17:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229504AbjE3IZe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:25:34 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB689A8
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:25:30 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f6cbdf16d2so27142695e9.2
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:25:30 -0700 (PDT)
+        with ESMTP id S229631AbjE3IRy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:17:54 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F6B2B2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:17:52 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-96fbe7fbdd4so770869066b.3
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:17:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685435129; x=1688027129;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=SvIiC0tOn9JXjgEEMb2AHKhOD9R5hXhsC5m8XidP4wE=;
-        b=hHwXEXJDcZfSy1cHOIb+C4vds2lK2fU4gM1AYiPuppLxTFqTQEiF53w6enCM4NEcSJ
-         e9hdovgvTk7yx8sr8kM6R0pdTZZNdnwiOGYkdN61lMLK2pHUu+zac+bPF8eWYVVLb6IJ
-         FfGcKFexE41CCeHIg08+QyEiBQnGDblXpyJ7y8X5RyDS3zKbVODwwGk3Wz9cj4drWh/e
-         +e59OiG9QjLLN/Sd0cGkJj+bF3FU+CX+fV3OJ2MyrQ2iq+OgqE4HWjghOaiw04Nqwl74
-         eOoKck/Vm0euPB2Q6AvIDdUQzD4SOqhpw4G0udS7lySowMiEZB/SLq3QzwF69PSPKOlG
-         xs/g==
+        d=linaro.org; s=google; t=1685434671; x=1688026671;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wj2vfQdeCUjWFOPL+bMFdYDd0gpNNfItUQBUV/Ri/2M=;
+        b=Wf7KuFj7iGQR88uOLPjc+IB78K44kDu2wxK0pshvE7DCoA1ZxklnaM0i57sXuqbzoH
+         JMqJ81tCkjUCNwmYFwT5nB/Jgj/LfVCF8F8mGLyjc/TbKxFxRhr4j2VtUlWxGmPRy2m5
+         jM8RlB6BMf4gfyL0A9SNnR/39KDUjrrKXn3WdpoajS3yvZ7ofLspdaV+XKUOtu20r5kg
+         0DQ3bSE/GSwm9kUgakt3s+flOHdHteLLjYVckLjrZn0yRin8rnHEhi4JLA3E9QIkVaJI
+         vCUxbxQAtCS/AdM2v+2CDAM3oWb/5oTxHX6wyG5CLn7+/ifyboGpL1OuvHdUyoEji8Rk
+         a2ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685435129; x=1688027129;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SvIiC0tOn9JXjgEEMb2AHKhOD9R5hXhsC5m8XidP4wE=;
-        b=Im10CK3+MwDBr9smiJXKVjwQN+nGwoMAbtSggNQvt0/bY+uxTxSFgh0EFoiN8NyQ+b
-         Yam9QtlqB5Ch4BLFmitMAUbE6Wtx1mMqv+YIjAa3H6crjcWGPCNoVxI0PXKQxzqh4pIn
-         agias0f04PVqmF+J2oi0VVzirwmpHcPIaINtiV0ASgfLYkDfAJIcBbRCF86csOucARlo
-         hyie2GtWNxlCHhL0HTI9rf2tjdc5e1nX/UbVVWq0NiirsS4ezT6Eu4Kt6p6PZZpuCYmE
-         JrkWuXGCF6Yuwax3qJsNqi4MVApMSbOTZ4Rqo5x516Q87flDCmIDp1/mJ4brfqYylX9k
-         uB+A==
-X-Gm-Message-State: AC+VfDz7BKRiKcKLYdeyfdWUq3fU4OMy+fP+ernzHsYqlxjo7yYE8KBm
-        WrHBPSpVj2CzSxkIEeaCd6MJzw==
-X-Google-Smtp-Source: ACHHUZ48T0Rf/UZpdnaERcC1zFBnmkpHQ7DfgsP9176iJ0HDszOp74yGqHswf6xmv5a9/OD6tkX1QQ==
-X-Received: by 2002:a5d:4808:0:b0:306:3284:824f with SMTP id l8-20020a5d4808000000b003063284824fmr1047151wrq.8.1685435129123;
-        Tue, 30 May 2023 01:25:29 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id t4-20020a5d5344000000b00307acec258esm2485843wrv.3.2023.05.30.01.25.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 01:25:28 -0700 (PDT)
-References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org>
- <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-5-56eb7a4d5b8e@linaro.org>
-User-agent: mu4e 1.8.13; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     "Lukas F. Hartmann" <lukas@mntre.com>,
-        Nicolas Belin <nbelin@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH v5 05/17] clk: meson: g12a: make VCLK2 and ENCL clock
- path configurable by CCF
-Date:   Tue, 30 May 2023 10:14:51 +0200
-In-reply-to: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-5-56eb7a4d5b8e@linaro.org>
-Message-ID: <1jv8ga445j.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20221208; t=1685434671; x=1688026671;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wj2vfQdeCUjWFOPL+bMFdYDd0gpNNfItUQBUV/Ri/2M=;
+        b=Sfp8KJCnX7CWAzudF/E/a5xwdxUZz47TNBqymd3NrKW3lyO9twCx747izp7kXTXx4t
+         h+fJjDeJjMqKtlJWbVukRvBeD7BFUd0AO0cCyrfrr8FyJt4RB6j76Swt5YmLzUyXkgql
+         hyuee5fPwsIIdK/aWuC3OfdU1TdSAWWhDRI6VC8bSA8He4Yb6DIPczd2PnoO9cYvhSVP
+         GqqkEC8oP5J5kvUH4IDqf0nQ2hTr3RmMwPzrEDEE3tIO5Khrh4OguygEvaVoHkOlmK94
+         SjcBdIe3JJMh2znhX0GfyWiMV7vQOyjSXJunzGK7QAdB2OeHcq0dRKBySHrJuQlbaFkP
+         q/aA==
+X-Gm-Message-State: AC+VfDwo07Dyf3DrKtLBCe4n4msiTmD8KHvQcnYCFN0ViFWrCjyFq5BJ
+        CeWzNFtnpYHrixcEFLuvmYBxtA==
+X-Google-Smtp-Source: ACHHUZ4ugdMu/st7rHgbvOjOdy3SxB7DRmoSoqFn8ddgzUQzF4fLz9AHwm0lhkzCFrruSb2/UPMBQQ==
+X-Received: by 2002:a17:907:ea4:b0:953:37eb:7727 with SMTP id ho36-20020a1709070ea400b0095337eb7727mr1853835ejc.43.1685434670780;
+        Tue, 30 May 2023 01:17:50 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id sa24-20020a170906edb800b0096595cc0810sm6994419ejb.72.2023.05.30.01.17.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 01:17:50 -0700 (PDT)
+Message-ID: <6845b6ce-06a8-9a0c-7f04-50fa906cd1e4@linaro.org>
+Date:   Tue, 30 May 2023 10:17:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the trivial
+ RTCs
+Content-Language: en-US
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Conor Dooley <conor@kernel.org>
+Cc:     Keguang Zhang <keguang.zhang@gmail.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        loongson-kernel@lists.loongnix.cn
+References: <cover.1684983279.git.zhoubinbin@loongson.cn>
+ <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
+ <20230525-custody-oversleep-f778eddf981c@spud>
+ <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
+ <20230526-dolly-reheat-06c4d5658415@wendy>
+ <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com>
+ <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com>
+ <20230527-passing-unfixed-39e01b787808@spud>
+ <14EF9F21-8150-40D9-8870-E9151C4882CF@flygoat.com>
+ <20230527-poet-antarctic-cc02aa60ab52@spud>
+ <CAJhJPsU_qOJKO99S1xjJaSUqXsXAG7HpYbzs5wTb8J4-tQqSQA@mail.gmail.com>
+ <E229B204-1B00-4B24-B4BF-15277682FB4B@kernel.org>
+ <CAMpQs4K4e3BSVvqXa+QjhM5XDxHc_ZCiRYW+HgPo21AQ_bYSRQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMpQs4K4e3BSVvqXa+QjhM5XDxHc_ZCiRYW+HgPo21AQ_bYSRQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 29/05/2023 10:31, Binbin Zhou wrote:
+> Hi Krzysztof:
+> 
+> Excuse me.
+> We have different opinions on how to better describe rtc-loongson compatible.
+> 
+> Based on my previous communication with you, I think we should list
+> all the Socs in the driver and drop the wildcards.
 
-On Tue 30 May 2023 at 09:38, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+Suggestion was about the bindings. Not in the driver. I never said to
+list all compatibles in the driver...
 
-> In order to setup the DSI clock, let's make the unused VCLK2 clock path
-> configuration via CCF.
->
-> The nocache option is removed from following clocks:
-> - vclk2_sel
-> - vclk2_input
-> - vclk2_div
-> - vclk2
-> - vclk_div1
-> - vclk2_div2_en
-> - vclk2_div4_en
-> - vclk2_div6_en
-> - vclk2_div12_en
-> - vclk2_div2
-> - vclk2_div4
-> - vclk2_div6
-> - vclk2_div12
-> - cts_encl_sel
->
-> The missing vclk2 reset sequence is handled via new clkc notifiers
-> in order to reset the vclk2 after each rate change as done by Amlogic
-> in the vendor implementation.
->
-> In order to set a rate on cts_encl via the vclk2 clock path,
-> the NO_REPARENT flag is set on cts_encl_sel & vclk2_sel in order
-> to keep CCF from selection a parent.
-> The parents of cts_encl_sel & vclk2_sel are expected to be defined
-> in DT.
->
-> The following clock scheme is to be used for DSI:
->
-> xtal
-> \_ gp0_pll_dco
->    \_ gp0_pll
->       |- vclk2_sel
->       |  \_ vclk2_input
->       |     \_ vclk2_div
->       |        \_ vclk2
->       |           \_ vclk2_div1
->       |              \_ cts_encl_sel
->       |                 \_ cts_encl	-> to VPU LCD Encoder
->       |- mipi_dsi_pxclk_sel
->       \_ mipi_dsi_pxclk_div
->          \_ mipi_dsi_pxclk		-> to DSI controller
->
-> The mipi_dsi_pxclk_div is set as RO in order to use the same GP0
-> for mipi_dsi_pxclk and vclk2_input.
+> This should be clearer and more straightforward:
+> 
+>         { .compatible = "loongson,ls1b-rtc", .data = &ls1x_rtc_config
+> }, //ls1b soc
+>         { .compatible = "loongson,ls1c-rtc", .data = &ls1x_rtc_config
+> }, //ls1c soc
+>         { .compatible = "loongson,ls7a-rtc", .data =
+> &generic_rtc_config }, //ls7a bridge chip
+>         { .compatible = "loongson,ls2k0500-rtc", .data =
+> &generic_rtc_config }, // ls2k0500 soc
+>         { .compatible = "loongson,ls2k2000-rtc", .data =
+> &generic_rtc_config }, // ls2k2000 soc
+>         { .compatible = "loongson,ls2k1000-rtc", .data =
+> &ls2k1000_rtc_config }, // ls2k1000 soc
 
-I don't think notifiers is the appropriate approach here.
-Whenever there is clock change the motifiers would trigger an off/on of
-the clock, regardless of the clock usage or state.
-If you have several consummers on this vclk2, this would
-cause glitches and maybe this is not desirable.
+I would suggest to use fallbacks as suggested by Conor at least for some
+of them. You referred to my previous comments about wildcards.
+Wildcard != fallback.
 
-I think it would be better to handle the enable and reset with a
-specific gate driver, in prepare() or enable(), and the give the clock
-CLK_SET_RATE_GATE flag.
+> 
+> And Conor thought it should be rendered using a fallback compatible
+> form based on ".data".
 
-This would require the clock to be properly turn off before changing the
-rate.
+Based on common (compatible) programming model unless you already have
+clear hardware differences making them incompatible.
 
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/clk/meson/g12a.c | 131 +++++++++++++++++++++++++++++++++++++++++++----
->  1 file changed, 120 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-> index 461ebd79497c..e4053f4957d5 100644
-> --- a/drivers/clk/meson/g12a.c
-> +++ b/drivers/clk/meson/g12a.c
-> @@ -3163,7 +3163,7 @@ static struct clk_regmap g12a_vclk2_sel = {
->  		.ops = &clk_regmap_mux_ops,
->  		.parent_hws = g12a_vclk_parent_hws,
->  		.num_parents = ARRAY_SIZE(g12a_vclk_parent_hws),
-> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
-> +		.flags = CLK_SET_RATE_NO_REPARENT,
->  	},
->  };
->  
-> @@ -3191,7 +3191,6 @@ static struct clk_regmap g12a_vclk2_input = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_sel.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
->  	},
->  };
->  
-> @@ -3212,6 +3211,40 @@ static struct clk_regmap g12a_vclk_div = {
->  	},
->  };
->  
-> +struct g12a_vclk_div_notifier {
-> +	struct clk_regmap *clk;
-> +	unsigned int offset;
-> +	u8 en_bit_idx;
-> +	u8 reset_bit_idx;
-> +	struct notifier_block nb;
-> +};
-> +
-> +static int g12a_vclk_div_notifier_cb(struct notifier_block *nb,
-> +				  unsigned long event, void *data)
-> +{
-> +	struct g12a_vclk_div_notifier *nb_data =
-> +		container_of(nb, struct g12a_vclk_div_notifier, nb);
-> +
-> +	switch (event) {
-> +	case PRE_RATE_CHANGE:
-> +		/* disable and reset vclk2 divider */
-> +		regmap_update_bits(nb_data->clk->map, nb_data->offset,
-> +				   BIT(nb_data->en_bit_idx) |
-> +				   BIT(nb_data->reset_bit_idx),
-> +				   BIT(nb_data->reset_bit_idx));
-> +		return NOTIFY_OK;
-> +	case POST_RATE_CHANGE:
-> +		/* enabled and release reset */
-> +		regmap_update_bits(nb_data->clk->map, nb_data->offset,
-> +				   BIT(nb_data->en_bit_idx) |
-> +				   BIT(nb_data->reset_bit_idx),
-> +				   BIT(nb_data->en_bit_idx));
-> +		return NOTIFY_OK;
-> +	default:
-> +		return NOTIFY_DONE;
-> +	};
-> +};
-> +
->  static struct clk_regmap g12a_vclk2_div = {
->  	.data = &(struct clk_regmap_div_data){
->  		.offset = HHI_VIID_CLK_DIV,
-> @@ -3225,10 +3258,18 @@ static struct clk_regmap g12a_vclk2_div = {
->  			&g12a_vclk2_input.hw
->  		},
->  		.num_parents = 1,
-> -		.flags = CLK_GET_RATE_NOCACHE,
-> +		.flags = CLK_DIVIDER_ROUND_CLOSEST,
->  	},
->  };
->  
-> +static struct g12a_vclk_div_notifier g12a_vclk2_div_data = {
-> +	.clk = &g12a_vclk2_div,
-> +	.offset = HHI_VIID_CLK_DIV,
-> +	.en_bit_idx = 16,
-> +	.reset_bit_idx = 17,
-> +	.nb.notifier_call = g12a_vclk_div_notifier_cb,
-> +};
-> +
->  static struct clk_regmap g12a_vclk = {
->  	.data = &(struct clk_regmap_gate_data){
->  		.offset = HHI_VID_CLK_CNTL,
-> @@ -3243,6 +3284,33 @@ static struct clk_regmap g12a_vclk = {
->  	},
->  };
->  
-> +struct g12a_vclk_reset_notifier {
-> +	struct clk_regmap *clk;
-> +	unsigned int offset;
-> +	u8 bit_idx;
-> +	struct notifier_block nb;
-> +};
-> +
-> +static int g12a_vclk_notifier_cb(struct notifier_block *nb,
-> +				  unsigned long event, void *data)
-> +{
-> +	struct g12a_vclk_reset_notifier *nb_data =
-> +		container_of(nb, struct g12a_vclk_reset_notifier, nb);
-> +
-> +	switch (event) {
-> +	case POST_RATE_CHANGE:
-> +		/* reset vclk2 */
-> +		regmap_update_bits(nb_data->clk->map, nb_data->offset,
-> +				   BIT(nb_data->bit_idx), BIT(nb_data->bit_idx));
-> +		regmap_update_bits(nb_data->clk->map, nb_data->offset,
-> +				   BIT(nb_data->bit_idx), 0);
-> +
-> +		return NOTIFY_OK;
-> +	default:
-> +		return NOTIFY_DONE;
-> +	};
-> +}
-> +
->  static struct clk_regmap g12a_vclk2 = {
->  	.data = &(struct clk_regmap_gate_data){
->  		.offset = HHI_VIID_CLK_CNTL,
-> @@ -3253,10 +3321,17 @@ static struct clk_regmap g12a_vclk2 = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2_div.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> +static struct g12a_vclk_reset_notifier g12a_vclk2_data = {
-> +	.clk = &g12a_vclk2,
-> +	.offset = HHI_VIID_CLK_CNTL,
-> +	.bit_idx = 15,
-> +	.nb.notifier_call = g12a_vclk_notifier_cb,
-> +};
-> +
->  static struct clk_regmap g12a_vclk_div1 = {
->  	.data = &(struct clk_regmap_gate_data){
->  		.offset = HHI_VID_CLK_CNTL,
-> @@ -3337,7 +3412,7 @@ static struct clk_regmap g12a_vclk2_div1 = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3351,7 +3426,7 @@ static struct clk_regmap g12a_vclk2_div2_en = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3365,7 +3440,7 @@ static struct clk_regmap g12a_vclk2_div4_en = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3379,7 +3454,7 @@ static struct clk_regmap g12a_vclk2_div6_en = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3393,7 +3468,7 @@ static struct clk_regmap g12a_vclk2_div12_en = {
->  		.ops = &clk_regmap_gate_ops,
->  		.parent_hws = (const struct clk_hw *[]) { &g12a_vclk2.hw },
->  		.num_parents = 1,
-> -		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3459,6 +3534,7 @@ static struct clk_fixed_factor g12a_vclk2_div2 = {
->  			&g12a_vclk2_div2_en.hw
->  		},
->  		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3472,6 +3548,7 @@ static struct clk_fixed_factor g12a_vclk2_div4 = {
->  			&g12a_vclk2_div4_en.hw
->  		},
->  		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3485,6 +3562,7 @@ static struct clk_fixed_factor g12a_vclk2_div6 = {
->  			&g12a_vclk2_div6_en.hw
->  		},
->  		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3498,6 +3576,7 @@ static struct clk_fixed_factor g12a_vclk2_div12 = {
->  			&g12a_vclk2_div12_en.hw
->  		},
->  		.num_parents = 1,
-> +		.flags = CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3559,7 +3638,7 @@ static struct clk_regmap g12a_cts_encl_sel = {
->  		.ops = &clk_regmap_mux_ops,
->  		.parent_hws = g12a_cts_parent_hws,
->  		.num_parents = ARRAY_SIZE(g12a_cts_parent_hws),
-> -		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
-> +		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
->  	},
->  };
->  
-> @@ -3727,7 +3806,7 @@ static struct clk_regmap g12a_mipi_dsi_pxclk_div = {
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "mipi_dsi_pxclk_div",
-> -		.ops = &clk_regmap_divider_ops,
-> +		.ops = &clk_regmap_divider_ro_ops,
->  		.parent_hws = (const struct clk_hw *[]) {
->  			&g12a_mipi_dsi_pxclk_sel.hw
->  		},
-> @@ -5421,6 +5500,32 @@ static int meson_g12a_dvfs_setup(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static int meson_g12a_vclk_setup(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct clk *notifier_clk;
-> +	int ret;
-> +
-> +	/* Setup clock notifier for vclk2 */
-> +	notifier_clk = devm_clk_hw_get_clk(dev, &g12a_vclk2.hw, DVFS_CON_ID);
-> +	ret = devm_clk_notifier_register(dev, notifier_clk, &g12a_vclk2_data.nb);
-> +	if (ret) {
-> +		dev_err(dev, "failed to register the vlkc2 notifier\n");
-> +		return ret;
-> +	}
-> +
-> +	/* Setup clock notifier for vclk2_div */
-> +	notifier_clk = devm_clk_hw_get_clk(dev, &g12a_vclk2_div.hw, DVFS_CON_ID);
-> +	ret = devm_clk_notifier_register(dev, notifier_clk,
-> +					 &g12a_vclk2_div_data.nb);
-> +	if (ret) {
-> +		dev_err(dev, "failed to register the vclk2_div notifier\n");
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  struct meson_g12a_data {
->  	const struct meson_eeclkc_data eeclkc_data;
->  	int (*dvfs_setup)(struct platform_device *pdev);
-> @@ -5443,6 +5548,10 @@ static int meson_g12a_probe(struct platform_device *pdev)
->  	g12a_data = container_of(eeclkc_data, struct meson_g12a_data,
->  				 eeclkc_data);
->  
-> +	ret = meson_g12a_vclk_setup(pdev);
-> +	if (ret)
-> +		return ret;
-> +
->  	if (g12a_data->dvfs_setup)
->  		return g12a_data->dvfs_setup(pdev);
+> 
+>         "loongson,ls1b-rtc"
+>         "loongson,ls1c-rtc", "loongson,ls1b-rtc"
+>         "loongson,ls7a-rtc"
+>         "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
+>         "longson,ls2k2000-rtc", "longson,ls7a-rtc"
+>         "loonson,ls2k1000-rtc"
+> 
+>         { .compatible = "loongson,ls1b-rtc", .data = &ls1x_rtc_config }
+>         { .compatible = "loongson,ls7a-rtc", .data = &generic_rtc_config }
+>         { .compatible = "loongson,ls2k1000-rtc", .data = &ls2k1000_rtc_config }
+> 
+> In this form,  I think it might not be possible to show very
+> graphically which chips are using the driver.
+
+??? How is it impossible? For all other SoCs and architectures it is
+possible, so what is special for Loongson?
+
+> Also, for example, "ls7a" is a bridge chip, while
+> "ls2k2000"/"ls2k0500" are soc chips, and it seems inappropriate to
+> integrate them into one item.
+
+Why it is inappropriate? I don't see the issue here... what is a
+"bridge" chip? Isn't this also an SoC?
+
+
+> 
+> Which one do you think is more suitable for us?
+
+Use fallbacks for some. You pointed difference in alarm for ls1x, right?
+If so, then they can stay separate.
+
+ls2k500 and ls2k2000 seem compatible with each other so should use fallback.
+
+Best regards,
+Krzysztof
 
