@@ -2,146 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48A50716573
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E82C7165D0
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 17:03:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231147AbjE3O7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 10:59:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36810 "EHLO
+        id S232821AbjE3PDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 11:03:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230424AbjE3O7H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:59:07 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694BC132
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:58:39 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51492ae66a4so4782611a12.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:58:39 -0700 (PDT)
+        with ESMTP id S232587AbjE3PDV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 11:03:21 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 065AA121
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 08:03:13 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-96fe2a1db26so810850466b.0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 08:03:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685458716; x=1688050716;
+        d=linaro.org; s=google; t=1685458991; x=1688050991;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y5roT10laz2CzdwcuNGZ1IEx+qEHueK0Fd53T1e6Xfk=;
-        b=m8nB5byu9FRrq2xdOz/5PN01pQ542DAaRl8HaAx/xEegXEiP1+BIKz3/DBtds6G7L0
-         YG9UbTW13AEpez9bXniZcEIOPeP8NvNNZuR5XTzAHSZHsR8OTo3+sjOycud5gTd2NCiv
-         9wAteWijVbfam4t1GhAk8rh7tPXqA9gnOwgeZ/2x0FWwlwhXOg3jzI5f3j9f0hywMN3j
-         ftodd438uGD7V9Gih/siMbZ0FCeQidy8MDMIHgQNTK8kTVmkAr/7HAovSI5TYsEzcQ6i
-         Y6xUggAy1HmKBar/swX+Xcg+uKPJZZS+JQa7hdGyH0j8m8aoiYpkP+U997QBCwr13Rfg
-         bDhA==
+        bh=aEQIS/yFx71ksD8fqCte2hKOWxpFvygsifDUrj8phvs=;
+        b=aN/gac4kaiXeacQLi7VjMayPi1MFte4yfPUgsI1CsRSGdTsepky2Hj41IkxLP3s+AX
+         7y+s02gUNv1muYqXr7R2YxL/i1ZWjwXxK1AEuS4n4iGbt3FGT63R9R/B5FoczB7MRko1
+         PQX4u0u+jado2AmqHECpiaDyiMonRZdZqFDFZ+qt0vNTRTaWRbUAMxkfRKJR5FeoZAJ8
+         yn0AAtyWy01+4/ImyA8E/X2t1SLu1SfijO83m58Y1rVpaswsYAFmdZmjwFADhwqL/x4l
+         xiXfcf6fXpW/ZE/6VDG+GgMytXPxRxtPAOrIJOy10OGG3LNg4DkJlLcD0ClZtQL/IqMm
+         1nbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685458716; x=1688050716;
+        d=1e100.net; s=20221208; t=1685458991; x=1688050991;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y5roT10laz2CzdwcuNGZ1IEx+qEHueK0Fd53T1e6Xfk=;
-        b=UQUItMhfoP//9PSfrsQE0y6Hgw3d4uH/h1klf2LN4vEYSy/B6j489xMWVEHTRetVrV
-         QxARQ1YNSDXRbMhj70Bjfs1oWrB92YDTn40odHYI6WjmEKn3UoT1cLu+HvaxiRqFhfvg
-         OwA7iiYqOBPMyNi7Ao5Fig68+tLpj798YEiIrL2mr5gJNARVZSqX88yx+ybLKAVjvdQZ
-         yDThGkYMM8CJcH/mIb/xf5MT4dfvAnCk/kgIxAXniGU2fa0dBR0XOaMeDlotMxG07cWC
-         RKao2OxmLf5IBQq2hDxdIkdYrpBNRaOlP+afkQKkJnzqhLU18Um2mcjLbJ//sOLyORxM
-         gDjA==
-X-Gm-Message-State: AC+VfDzcnVkLqlplYtq5gJtgNY8PZDDC3hyWOkP6OdnAOL9xxppbquSn
-        Fd1Hw07XebbKVEVnSCz5geY9Fg==
-X-Google-Smtp-Source: ACHHUZ7Be8Z+NCpE61J4jKqCk67UtnMimLo2D/Jlbqp1FUziK8Rm1KdNBdY1sQ5h++vhPhdtE2COeQ==
-X-Received: by 2002:a05:6402:1645:b0:50d:8991:d1b9 with SMTP id s5-20020a056402164500b0050d8991d1b9mr1853579edx.8.1685458716495;
-        Tue, 30 May 2023 07:58:36 -0700 (PDT)
+        bh=aEQIS/yFx71ksD8fqCte2hKOWxpFvygsifDUrj8phvs=;
+        b=SXIOaydAAsFCuqztYRtlOu4XPnP9Cl5JLvqxKInoNhHShMS4Tv7KeEDAv6uWW1lQqF
+         iDLJKGTRpcHY0gL7KFgVy/m1QqOpdfDHwACDy5ECYpz/hVAvV7zNm19NJ/1YpGT/hd9E
+         lAuYN1H0ldHuxT5o9CuBt1pCQkx7Ica4wD1D+0gfh8kMq54Ty4ZdpYQWdpatt/Gt9SmS
+         O0T0kJo0Zb3chFnzKpDB4gIxKtchB/uAw8XxkjDiD3f30x386DwpHcyVvj84kGwRQAN3
+         Bj9Vst3YCXXqI3GB2SxucpCi2uAm60xHMqnLfWjF2RfScRDBNUvfsQ61uRCJbtpEqo7z
+         N9aA==
+X-Gm-Message-State: AC+VfDzF4gF00S970imXI21RNt5KNyOQVRQQb6m5gCSnT/bm22JslfE/
+        3iprewXjKZ7xp1y+ThTOiYAbrg==
+X-Google-Smtp-Source: ACHHUZ6XvwXoHtKC8YDdDZKazBHpDWhj1BoSeeIbpL9HLB6seooGiaMn7Rbk26lp9ksoPRaeY/+3hQ==
+X-Received: by 2002:a17:907:d16:b0:960:ddba:e5c3 with SMTP id gn22-20020a1709070d1600b00960ddbae5c3mr2787944ejc.32.1685458991445;
+        Tue, 30 May 2023 08:03:11 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id a21-20020aa7d755000000b0050bc041d2a8sm4425119eds.15.2023.05.30.07.58.33
+        by smtp.gmail.com with ESMTPSA id f11-20020a1709062c4b00b0096a6bf89259sm7374073ejh.167.2023.05.30.08.03.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 07:58:35 -0700 (PDT)
-Message-ID: <ed004607-5a23-564a-3185-a63af87783e5@linaro.org>
-Date:   Tue, 30 May 2023 16:58:32 +0200
+        Tue, 30 May 2023 08:03:10 -0700 (PDT)
+Message-ID: <9218c23d-91f2-9eda-47b1-f2f38bf13535@linaro.org>
+Date:   Tue, 30 May 2023 17:03:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 2/2] dt-bindings: i2c: imx-lpi2c: Add bus recovery example
+Subject: Re: [PATCH] dt-bindings: power: reset: bcm21664-resetmgr: convert to
+ YAML
 Content-Language: en-US
-To:     carlos.song@nxp.com, aisheng.dong@nxp.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, Anson.Huang@nxp.com
-Cc:     xiaoning.wang@nxp.com, haibo.chen@nxp.com, linux-imx@nxp.com,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230529074302.3612294-1-carlos.song@nxp.com>
- <20230529074302.3612294-2-carlos.song@nxp.com>
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230527141222.GA5048@standask-GA-A55M-S2HP>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230529074302.3612294-2-carlos.song@nxp.com>
+In-Reply-To: <20230527141222.GA5048@standask-GA-A55M-S2HP>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/05/2023 09:43, carlos.song@nxp.com wrote:
-> From: Clark Wang <xiaoning.wang@nxp.com>
+On 27/05/2023 16:12, Stanislav Jakubek wrote:
+> Convert Broadcom Kona family reset manager bindings to DT schema.
 > 
-> Add i2c bus recovery configuration example.
-
-Why? That's just example... also with coding style issue.
-
-> 
-> Signed-off-by: Clark Wang <xiaoning.wang@nxp.com>
-> Signed-off-by: Carlos Song <carlos.song@nxp.com>
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 > ---
->  .../devicetree/bindings/i2c/i2c-imx-lpi2c.yaml   | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
-> index 4656f5112b84..62ee457496e4 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
-> @@ -58,6 +58,16 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> +  pinctrl-names:
-> +    minItems: 1
-> +    maxItems: 3
+>  .../power/reset/brcm,bcm21664-resetmgr.txt    | 14 ---------
 
-What's the benefit of this? Entries should be defined but without it is
-not really helpful. Anyway not explained in commit msg.
-
-> +
-> +  scl-gpios:
-> +    maxItems: 1
-> +
-> +  sda-gpios:
-> +    maxItems: 1
-
-You don't need these two. Anyway not explained in commit msg.
-
-> +
->  required:
->    - compatible
->    - reg
-> @@ -70,6 +80,7 @@ examples:
->    - |
->      #include <dt-bindings/clock/imx7ulp-clock.h>
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/gpio/gpio.h>
->  
->      i2c@40a50000 {
->          compatible = "fsl,imx7ulp-lpi2c";
-> @@ -78,4 +89,9 @@ examples:
->          interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
->          clocks = <&clks IMX7ULP_CLK_LPI2C7>,
->                   <&clks IMX7ULP_CLK_NIC1_BUS_DIV>;
-> +        pinctrl-names = "default","gpio";
-
-Missing space.
-
-> +        pinctrl-0 = <&pinctrl_i2c>;
-> +        pinctrl-1 = <&pinctrl_i2c_recovery>;
-> +        scl-gpios = <&gpio5 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> +        sda-gpios = <&gpio5 15 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->      };
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
