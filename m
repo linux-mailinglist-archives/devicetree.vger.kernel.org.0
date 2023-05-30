@@ -2,117 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AD297158ED
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48DE9715791
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 09:49:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229455AbjE3Imd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 04:42:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51270 "EHLO
+        id S229484AbjE3Htl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 03:49:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbjE3Imc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:42:32 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC756A1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:42:30 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34U3teF6017376;
-        Tue, 30 May 2023 09:46:09 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=x0GEoyW7rRaXHjpZ8+iyqeJ8FgkTO+MOAPiHZlVPtCU=;
- b=WzS/j98Th+aGKl9A79ZeHpcmlpsuDU6IdFfMeiRYJu6QqO10YqiVtwXTmso9LmSpDEM9
- BaLkt8na2FXKBcXk2K4Claqjyg6f/npajuShTGXQqAiEAcNPoSd9V8aKbN1ZgWvH1pL9
- nwusJzwGR0oZxigeWFscMJxwzFM5OzUkYWpa6ztZ1LBy/O+K0erqEFKOe8lb3HkNNfCO
- GJSXLNs4r3T5QmCA8vckIxsMorwRvQiBWvffIDp8H6AOAXRL2DKmiuYq2EW0xNov1+oT
- bPJo+Tfc03zKwd5j2BUCcxMUokj7zr2ZKayjOv6gt5Kub+kqgaK4/Cl96N32InKJ2EHK pQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3quahy602g-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 09:46:09 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D0F5010002A;
-        Tue, 30 May 2023 09:46:07 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C2AC92138D6;
-        Tue, 30 May 2023 09:46:07 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 30 May
- 2023 09:46:07 +0200
-Message-ID: <f0fd3fed-b2bb-539c-51da-f8abc4029930@foss.st.com>
-Date:   Tue, 30 May 2023 09:46:06 +0200
+        with ESMTP id S229455AbjE3HtZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 03:49:25 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEFC010DF
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 00:49:00 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5149bdb59daso3145126a12.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 00:49:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685432932; x=1688024932;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hD/u8KvctJNZ9Q6wgoPTwjsd10fbyNIfr6gIoMYFm8k=;
+        b=KhbpEb5ujpWhqfksp2CBPV4rcQPsr903YtN0YRWnnc84rzCpIYhZ6kiUX9Z/TLGX9T
+         n9a2MekI+c3SzHD+uecC6SayG9whs9240GFuBGLJoiHeFbWv9bFiEFpHH1qLDAWUh+yb
+         d2hhA2jMCCtaniqG0l3hPWT7BkBe5k/uMpjeW+TxqkVG2VEW82C+8EGi3aBxtiG78LeR
+         58oZ9P1Zl9MJuBTeiy9c4Cijnx1NZSlNTcBksMtgcw9fbtdxfBSjuj2KfhjSvTGpDtls
+         hKHAILnXNnl8V758NVRDNSTNWq4v/9GgJ0r6y8RErN8gcK+p1l38VffH2FT9m/NHp+Z9
+         23gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685432932; x=1688024932;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hD/u8KvctJNZ9Q6wgoPTwjsd10fbyNIfr6gIoMYFm8k=;
+        b=JfHtyrJ/85iQQTlEHMKv6nlpxw7UeaHb8OKcVTM1st1vvaBJpLNaQG6hRNK4I6C5Q1
+         CEMFx8nAwaY01gzS97ip2J05n2pp0bTrEoMb6nSDwnFQOGyi752INVxFHc8GW05D21z+
+         0vOCLInewWOtbR/4PZsKgDJlLtM4CeA4ODHhfL/WGRbINsOo84a4QC33Pm5L+aqhQoIk
+         cLj0atBTfCSMdqGZWutrRAsH8pjRhOduUU6UO2+c49YILfQQ32igKoG4cGCIHwCPDZ7I
+         ceMHyTJffDiG9jFFQpER0qEZUkR88LV3X4FG+NaQ618UyETW0Lb9at4wQ7Gb7Alf4A81
+         6YKg==
+X-Gm-Message-State: AC+VfDzGB6Ri42HsjnGJwonq7jmQKeiE530SGPB2MVXRP5mM2ax1glSY
+        Mxh44t0T5wH0TsKMDtne1cE7hA==
+X-Google-Smtp-Source: ACHHUZ7O8LfbLyaKQcZlRXwpwrnwZEfFVKCOKwVDTDCFB+1bWeIDzE8NQ0wsIzHShQIqw8DR35SAIQ==
+X-Received: by 2002:aa7:ce04:0:b0:514:75ff:6a86 with SMTP id d4-20020aa7ce04000000b0051475ff6a86mr955152edv.29.1685432931881;
+        Tue, 30 May 2023 00:48:51 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id c5-20020aa7d605000000b005149cb5ee2dsm2373329edr.82.2023.05.30.00.48.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 00:48:51 -0700 (PDT)
+Message-ID: <8c28ea3a-68f5-1233-9e79-bd9e09d4f485@linaro.org>
+Date:   Tue, 30 May 2023 09:48:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH] ARM: dts: stm32: Shorten the AV96 HDMI sound card name
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V8 7/7] dt-bindings: bridge: samsung-dsim: Make some flags
+ optional
+To:     Conor Dooley <conor@kernel.org>, Adam Ford <aford173@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, aford@beaconembedded.com,
+        Inki Dae <inki.dae@samsung.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230526030559.326566-1-aford173@gmail.com>
+ <20230526030559.326566-8-aford173@gmail.com>
+ <20230526-cabana-humble-81e44944e378@spud>
+ <CAHCN7xJdfO4+q071sur7wpVg+gU_Fzw9zfXvM9NDBFCN=Axiog@mail.gmail.com>
+ <20230526-lily-underwent-1dc0be746be0@spud>
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <kernel@dh-electronics.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20230518004232.422893-1-marex@denx.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230518004232.422893-1-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-30_04,2023-05-29_02,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230526-lily-underwent-1dc0be746be0@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek
-
-On 5/18/23 02:42, Marek Vasut wrote:
-> Fix the following error in kernel log due to too long sound card name:
-> "
-> asoc-audio-graph-card sound: ASoC: driver name too long 'STM32MP1-AV96-HDMI' -> 'STM32MP1-AV96-H'
-> "
+On 26/05/2023 21:30, Conor Dooley wrote:
+> On Fri, May 26, 2023 at 02:24:21PM -0500, Adam Ford wrote:
+>> On Fri, May 26, 2023 at 1:19 PM Conor Dooley <conor@kernel.org> wrote:
+>>> On Thu, May 25, 2023 at 10:05:59PM -0500, Adam Ford wrote:
 > 
-> Fixes: e027da342772 ("ARM: dts: stm32: Add bindings for audio on AV96")
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> ---
->   arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>      description:
+>>>> -      DSIM high speed burst mode frequency.
+>>>> +      DSIM high speed burst mode frequency when connected to devices
+>>>> +      that support burst mode. If absent, the driver will use the pixel
+>>>> +      clock from the attached device or bridge.
+>>>
+>>> I'd rather this description did not say anything about drivers.
+>>> How about:
+>>>         If absent, the pixel clock from the attached device or bridge
+>>>         will be used instead.
+>>
+>> That makes sense.  I can do that.
+>>
+>> "DSIM high speed burst mode frequency (optional). If absent, the pixel
+>> clock from the attached device or bridge will be used instead."
+>>
+>>> Or perhaps "must be used"? Ditto below.
+>>
+>> "Must be" implies to me that the user needs to set something.  Are you
+>> ok with the proposed suggestion above?
+>>>
+>>> Description aside, the removal seems to be backwards compatible - but
+>>> can every device that this binding supports work using an "attached
+>>> device or bridge", or are these properties going to be required for
+>>> certain compatibles?
+>>
+>> From what I can tell, the assumption is that the DSIM driver was
+>> expecting it to attach to panels in the past.  With the additional
+>> patch series, the DSIM can attach to bridge parts without a hard-coded
+>> set of clocks.  I don't expect the existing Exynos devices to change,
+>> but I also don't know what would preclude those SoC's from attaching
+>> to a bridge should someone want to design a new product around them.
 > 
-> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-> index 302efac5d26f0..2b52515457e4b 100644
-> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-> @@ -87,7 +87,7 @@ sd_switch: regulator-sd_switch {
->   
->   	sound {
->   		compatible = "audio-graph-card";
-> -		label = "STM32MP1-AV96-HDMI";
-> +		label = "STM32-AV96-HDMI";
->   		dais = <&sai2a_port>;
->   		status = "okay";
->   	};
+> Okay, that seems fair. With your revised wording,
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+>>
+>> I'll wait a couple days for more feedback and send patch V2 with just
+>> this patch since the rest of the series has been applied to the drm
+>> branch.
+> 
+> Sounds good. Krzysztof will hopefully be able to take a look then too to
+> make sure I am not making a hames of things.
 
-Applied on stm32-next.
+We should avoid references to driver, because bindings are used also in
+other projects where driver can behave differently. Also "driver" is
+then ambiguous - which driver do you mean? Please re-phrase.
 
-Thanks.
-Alex
+Best regards,
+Krzysztof
+
