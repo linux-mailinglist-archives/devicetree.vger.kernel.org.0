@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D76F716B04
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:30:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 447F2716B05
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:30:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233413AbjE3Ra4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 13:30:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58668 "EHLO
+        id S233448AbjE3Ra5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 13:30:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233380AbjE3Ray (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:30:54 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A19611D
+        with ESMTP id S232372AbjE3Raz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:30:55 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADED3BE
         for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:30:39 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3090d3e9c92so4690227f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:30:38 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-30aa76048fbso3234789f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:30:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1685467837; x=1688059837;
+        d=raspberrypi.com; s=google; t=1685467838; x=1688059838;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wNvQ77TjHdn7xwbRTU0kRT/fFnnc0Ql3C6LB28GoFhQ=;
-        b=C+tBtFwp/c+s4jh2lyng+JKXf1I5MkQCiQB5WljFY3cc2BVCqsgAIt8eFa2d3XIPoC
-         ICzCGI//meWa5ae0Qo1ylNIo4Ti0QjkydLrymgxLMtfyU5ffcKRMtaENQQ0ri2qLlUtq
-         XVfMTxUdzo5gJ9JezyLi0OuUnX1s36HkDLA9FYelt5H5Y0R7zm1C340ZbSXcg1fow4Mt
-         cTtn5H2G/ZPDgDPqzIa1iRv5KHS00OqxQRG/um7O19WF3+mRdQmzgyiXEp3sh/ctc2n6
-         kkD1HaNetRR0gfVGdKRvtwi1JAggKql4tYxY9/bFEVo5g83FAwXHJLJhBwwjps6BRsKA
-         dIcQ==
+        bh=u7/FcO1U+j1nYafNALuQBE2oIBBveZJ8k9FM+1r+mLQ=;
+        b=PSCTZ0VOFIA3mpQiEXJUivFW8R2a6tk7L5ikbNoZvsr9W2gYRZwLzi/ud/rQmuiBiB
+         ct+GrXvxJc9Pab+fK9zXGhuBp09GxNOZezt+SmURMAUlu/Onnq2y7EW2ui2FCqKZNm50
+         hAjaI6g1lpTbcyz8rhg5JE8XomTEYzrjRnJPp7+SFgjrra94OigGndnXPwZ1EgJuJ2nC
+         BDVdbVEnIVC0S3LJPBdY2YcirvtZbxb+6vTZi3GIeFYMF6w7YPOV5ijtvSwttWufWG3w
+         1wHUkvDUp0bCbTq64fes1T8btiDzs57aruc5mZyzNYGt10MN7MqLGhLYIhA0Tsr3uO3C
+         fRjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685467837; x=1688059837;
+        d=1e100.net; s=20221208; t=1685467838; x=1688059838;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wNvQ77TjHdn7xwbRTU0kRT/fFnnc0Ql3C6LB28GoFhQ=;
-        b=hKyARHanre1eJG41UZgdty5qb4ICXpTbTpIPl453Bz2lQym4WDvrYVkRQdWjjvBWoX
-         O5/VM0woZOP09iBTaQdC42oy1s3/7lZvha1i0CWUoMNpll+2k02y1lBVBeeoKeC4bgKI
-         +1QYDisOIdZfiPlgJwwx9dPk7PpuFHQCItl7+YSnCnYHNZg/fvFSxD+x7YreK/dODwjM
-         YoeLSnvyTRpc2DJ+WFvplNzrcYAFbrB0ADbTi//3Rv3CFM7vRNq2/7sUdjeblm/B+8IP
-         5ICzN2p0Nd3hINuWNXpTnlwlXnxTynyicN9KNyl8pSV7xbE5K1ipDCvv5camDZS3MnJE
-         pFUg==
-X-Gm-Message-State: AC+VfDwLmcwvalep7MjXsuDnpNrTO5oceBGgGOLqZM4TktGbivUy+HVS
-        LIoKIBQwDqX7CDWzNpJa14u6rg==
-X-Google-Smtp-Source: ACHHUZ5BLuPx8Jx93Zg89Xzzt9/DkSqXRdx24AvfrBtzHIKYJYgk0iZIGjXhn/xQkIZWq8NpRcZeHA==
-X-Received: by 2002:a5d:4eca:0:b0:301:8551:446a with SMTP id s10-20020a5d4eca000000b003018551446amr2170729wrv.2.1685467837548;
-        Tue, 30 May 2023 10:30:37 -0700 (PDT)
+        bh=u7/FcO1U+j1nYafNALuQBE2oIBBveZJ8k9FM+1r+mLQ=;
+        b=JelYma0lvvHNZ3F+zqqYaVc0l0M1fjzzYb2N+pe77VgIUozDYZ5nGj5STBEMoKQzKW
+         pP28i5Yy2obp0gu/KIS0m5jAQlzl+lSCmVR5DwnLaMj5YG5jFH8NrNd6b2nowQDj4U0U
+         JKv69wPP8wRgLXxQm+/0UnmTaOZSn6DShHbh5ND7vMWD97EkVc0wm9uwIWRuAxnH8R/H
+         SAgQtHlX0M6/0bAh43feG22eEBeHaBLr17W9yyn512933gFutmwbpubkG4ZzjBq5rkbH
+         FXBQFoYE3o05+dOaHDKAfjFMEZnRQx80DcxG0GT/kaZE1wm6f+01JcKG13bx0QxZqqXa
+         GfYQ==
+X-Gm-Message-State: AC+VfDyJXKeVlnKUe8vRcvmBe51tmtkreEMjNnlGl4s6H4jG6/yYuurc
+        l+fJJPD3qtPYaFZ5Hvq1ZSmB0A==
+X-Google-Smtp-Source: ACHHUZ5F5xRqIVyM6Ii8wAbGuU8dMOv2X8P1gGJ3+JcLOVS1ZYMlWofiOpOjlu5hbw/a4T/kF8DKcw==
+X-Received: by 2002:a5d:5551:0:b0:306:3731:f73b with SMTP id g17-20020a5d5551000000b003063731f73bmr2197212wrw.43.1685467838228;
+        Tue, 30 May 2023 10:30:38 -0700 (PDT)
 Received: from dave-Ubuntu2204.pitowers.org ([93.93.133.154])
-        by smtp.googlemail.com with ESMTPSA id h14-20020a056000000e00b0030ae901bc54sm3964823wrx.62.2023.05.30.10.30.36
+        by smtp.googlemail.com with ESMTPSA id h14-20020a056000000e00b0030ae901bc54sm3964823wrx.62.2023.05.30.10.30.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 30 May 2023 10:30:37 -0700 (PDT)
 From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
@@ -55,9 +55,9 @@ To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
 Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: [PATCH 04/21] media: i2c: imx258: Remove redundant I2C writes.
-Date:   Tue, 30 May 2023 18:29:43 +0100
-Message-Id: <20230530173000.3060865-5-dave.stevenson@raspberrypi.com>
+Subject: [PATCH 05/21] media: i2c: imx258: Add regulator control
+Date:   Tue, 30 May 2023 18:29:44 +0100
+Message-Id: <20230530173000.3060865-6-dave.stevenson@raspberrypi.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
 References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
@@ -66,52 +66,119 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Registers 0x0202 and 0x0203 are written via the control handler
-for V4L2_CID_EXPOSURE, so are not needed from the mode lists.
+The device tree bindings define the relevant regulators for the
+sensor, so update the driver to request the regulators and control
+them at the appropriate times.
 
 Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 ---
- drivers/media/i2c/imx258.c | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/media/i2c/imx258.c | 42 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 41 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-index aabd5c3e8af9..b695fd987b71 100644
+index b695fd987b71..30bae7388c3a 100644
 --- a/drivers/media/i2c/imx258.c
 +++ b/drivers/media/i2c/imx258.c
-@@ -237,8 +237,6 @@ static const struct imx258_reg mode_4208x3120_regs[] = {
- 	{ 0x034E, 0x0C },
- 	{ 0x034F, 0x30 },
- 	{ 0x0350, 0x01 },
--	{ 0x0202, 0x0C },
--	{ 0x0203, 0x46 },
- 	{ 0x0204, 0x00 },
- 	{ 0x0205, 0x00 },
- 	{ 0x020E, 0x01 },
-@@ -356,8 +354,6 @@ static const struct imx258_reg mode_2104_1560_regs[] = {
- 	{ 0x034E, 0x06 },
- 	{ 0x034F, 0x18 },
- 	{ 0x0350, 0x01 },
--	{ 0x0202, 0x06 },
--	{ 0x0203, 0x2E },
- 	{ 0x0204, 0x00 },
- 	{ 0x0205, 0x00 },
- 	{ 0x020E, 0x01 },
-@@ -475,8 +471,6 @@ static const struct imx258_reg mode_1048_780_regs[] = {
- 	{ 0x034E, 0x03 },
- 	{ 0x034F, 0x0C },
- 	{ 0x0350, 0x01 },
--	{ 0x0202, 0x03 },
--	{ 0x0203, 0x42 },
- 	{ 0x0204, 0x00 },
- 	{ 0x0205, 0x00 },
- 	{ 0x020E, 0x01 },
+@@ -7,6 +7,7 @@
+ #include <linux/i2c.h>
+ #include <linux/module.h>
+ #include <linux/pm_runtime.h>
++#include <linux/regulator/consumer.h>
+ #include <media/v4l2-ctrls.h>
+ #include <media/v4l2-device.h>
+ #include <media/v4l2-fwnode.h>
+@@ -507,6 +508,16 @@ static const char * const imx258_test_pattern_menu[] = {
+ 	"Pseudorandom Sequence (PN9)",
+ };
+ 
++/* regulator supplies */
++static const char * const imx258_supply_name[] = {
++	/* Supplies can be enabled in any order */
++	"vana",  /* Analog (2.8V) supply */
++	"vdig",  /* Digital Core (1.2V) supply */
++	"vif",  /* IF (1.8V) supply */
++};
++
++#define IMX258_NUM_SUPPLIES ARRAY_SIZE(imx258_supply_name)
++
+ /* Configurations for supported link frequencies */
+ #define IMX258_LINK_FREQ_634MHZ	633600000ULL
+ #define IMX258_LINK_FREQ_320MHZ	320000000ULL
+@@ -614,6 +625,7 @@ struct imx258 {
+ 	bool streaming;
+ 
+ 	struct clk *clk;
++	struct regulator_bulk_data supplies[IMX258_NUM_SUPPLIES];
+ };
+ 
+ static inline struct imx258 *to_imx258(struct v4l2_subdev *_sd)
+@@ -999,9 +1011,19 @@ static int imx258_power_on(struct device *dev)
+ 	struct imx258 *imx258 = to_imx258(sd);
+ 	int ret;
+ 
++	ret = regulator_bulk_enable(IMX258_NUM_SUPPLIES,
++				    imx258->supplies);
++	if (ret) {
++		dev_err(dev, "%s: failed to enable regulators\n",
++			__func__);
++		return ret;
++	}
++
+ 	ret = clk_prepare_enable(imx258->clk);
+-	if (ret)
++	if (ret) {
+ 		dev_err(dev, "failed to enable clock\n");
++		regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
++	}
+ 
+ 	return ret;
+ }
+@@ -1012,6 +1034,7 @@ static int imx258_power_off(struct device *dev)
+ 	struct imx258 *imx258 = to_imx258(sd);
+ 
+ 	clk_disable_unprepare(imx258->clk);
++	regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
+ 
+ 	return 0;
+ }
+@@ -1260,6 +1283,19 @@ static void imx258_free_controls(struct imx258 *imx258)
+ 	mutex_destroy(&imx258->mutex);
+ }
+ 
++static int imx258_get_regulators(struct imx258 *imx258,
++				 struct i2c_client *client)
++{
++	unsigned int i;
++
++	for (i = 0; i < IMX258_NUM_SUPPLIES; i++)
++		imx258->supplies[i].supply = imx258_supply_name[i];
++
++	return devm_regulator_bulk_get(&client->dev,
++				       IMX258_NUM_SUPPLIES,
++				       imx258->supplies);
++}
++
+ static int imx258_probe(struct i2c_client *client)
+ {
+ 	struct imx258 *imx258;
+@@ -1270,6 +1306,10 @@ static int imx258_probe(struct i2c_client *client)
+ 	if (!imx258)
+ 		return -ENOMEM;
+ 
++	ret = imx258_get_regulators(imx258, client);
++	if (ret)
++		return ret;
++
+ 	imx258->clk = devm_clk_get_optional(&client->dev, NULL);
+ 	if (IS_ERR(imx258->clk))
+ 		return dev_err_probe(&client->dev, PTR_ERR(imx258->clk),
 -- 
 2.25.1
 
