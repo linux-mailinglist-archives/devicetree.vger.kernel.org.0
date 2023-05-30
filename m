@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11BD4716BB5
+	by mail.lfdr.de (Postfix) with ESMTP id 81BFB716BB6
 	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:56:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233313AbjE3R4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 13:56:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43802 "EHLO
+        id S232814AbjE3R44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 13:56:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232814AbjE3R4t (ORCPT
+        with ESMTP id S233048AbjE3R4t (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:56:49 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80D99B2
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:56:47 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4489EE5
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:56:48 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ukl@pengutronix.de>)
-        id 1q43aB-0003Qj-Mg; Tue, 30 May 2023 19:56:31 +0200
+        id 1q43aB-0003Qm-Ss; Tue, 30 May 2023 19:56:31 +0200
 Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <ukl@pengutronix.de>)
-        id 1q43aB-003vWJ-03; Tue, 30 May 2023 19:56:31 +0200
+        id 1q43aB-003vWM-67; Tue, 30 May 2023 19:56:31 +0200
 Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <ukl@pengutronix.de>)
-        id 1q43aA-009Zpd-CC; Tue, 30 May 2023 19:56:30 +0200
+        id 1q43aA-009Zpg-IF; Tue, 30 May 2023 19:56:30 +0200
 From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
         <u.kleine-koenig@pengutronix.de>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
@@ -35,15 +35,15 @@ To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         Florian Fainelli <f.fainelli@gmail.com>,
         Aurelien Jarno <aurelien@aurel32.net>
 Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH 1/2] arm64: dts: broadcom: Enable device-tree overlay support for RPi devices
-Date:   Tue, 30 May 2023 19:56:23 +0200
-Message-Id: <20230530175624.2360218-2-u.kleine-koenig@pengutronix.de>
+Subject: [PATCH 2/2] arm: dts: Enable device-tree overlay support for RPi devices
+Date:   Tue, 30 May 2023 19:56:24 +0200
+Message-Id: <20230530175624.2360218-3-u.kleine-koenig@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230530175624.2360218-1-u.kleine-koenig@pengutronix.de>
 References: <20230530175624.2360218-1-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1855; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=UxD0BnjOijw8hop6KACDNBULeVXO8NHe9NFdVmMqZys=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBkdjjEUfJNN4OmIxHXcZ6fijOGCuMbVu13FyvvP PFW3Ix+R5qJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZHY4xAAKCRCPgPtYfRL+ TmFUB/sG6zF3fhza5E9MBFcsiSJo1Cyjcsu5kOmAo6eD+iONaNHDWsWquiVaNpgl+EavkcDwi8G xyaMzS/99MjAa+O7hnsSzmjg1HLTVYMFD34MAFWwvIlg/mWLYG6s49ig7Tjc6NNWs2SXhV+nsuQ yKWFF3NSQB5sVszj/JUUppOnL9V0yxvj1g6TZJ5TmviKq5dncGq5tCs/MuPmbLvJD+5ecvBYf7E rgFzuUp15YeGBAmvvfSdC5yM54sWlW6v1lmSzqXKb6z/892oEzzjm0vXsfLKOE8vYYffC4Bi9S5 A5D4x/ax4RrKqUlqZ2Al7tcPMKXVMeveytTPXzL0JfERIyHi
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2852; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=EATKJ4RBPv2Qqpg/miNC+q7c8xFY0gbUB3j0UOy4qVk=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBkdjjFx93FPlHN2stVSS3FSptj80daAj3ppaCui 3VydBavPGaJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZHY4xQAKCRCPgPtYfRL+ TvGxB/0YlOxRYyTZbJd2nLNapO9qMOxrS/Qa2ETiD6Ue8mn5iUor9naqCXPfi26NeVKZaB7gpzf 769P6/NWEZdodFOoTZK/kOuASISLyWOnGOpkNC1tnSw84rKSU0ZI5I+Hw06NKtHMPqdVGb+f/M/ QBNq54zU5nkySU7L7cuEIEXduXcc2jCiM3gGLa8bmUmePIGwYwTX4f+UhPZKQQlKLtU7XhvU3GX 9DW5UcAEG+zRRzD+kYMQLB4MpSRgG+iQ8ZusLmUYvg0iSot6MfOfmXRMvBv7E0Ht1KVqvodQ4i2 16DF9P46CmFFTZdNNi+wH9+xUschDLF/RwaqElv698IVTCly
 X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
@@ -76,6 +76,15 @@ by ~40%. For example, with v6.4-rc1 increase in size is as follows:
   bcm2711-rpi-400.dtb       27556 -> 38141 bytes
   bcm2711-rpi-4-b.dtb       27484 -> 38069 bytes
   bcm2711-rpi-cm4-io.dtb    27373 -> 38076 bytes
+  bcm2835-rpi-a.dtb         12879 -> 18235 bytes
+  bcm2835-rpi-a-plus.dtb    13015 -> 18371 bytes
+  bcm2835-rpi-b.dtb         12997 -> 18377 bytes
+  bcm2835-rpi-b-plus.dtb    13237 -> 18666 bytes
+  bcm2835-rpi-b-rev2.dtb    13085 -> 18514 bytes
+  bcm2835-rpi-cm1-io1.dtb   13109 -> 18528 bytes
+  bcm2835-rpi-zero.dtb      12923 -> 18311 bytes
+  bcm2835-rpi-zero-w.dtb    13449 -> 18889 bytes
+  bcm2836-rpi-2-b.dtb       14500 -> 20252 bytes
   bcm2837-rpi-3-a-plus.dtb  14930 -> 20713 bytes
   bcm2837-rpi-3-b.dtb       15107 -> 20979 bytes
   bcm2837-rpi-3-b-plus.dtb  15463 -> 21443 bytes
@@ -83,26 +92,42 @@ by ~40%. For example, with v6.4-rc1 increase in size is as follows:
   bcm2837-rpi-zero-2-w.dtb  14781 -> 20524 bytes
 
 Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-Link: https://lore.kernel.org/r/20220410225940.135744-2-aurelien@aurel32.net
-[ukleinek: rebased to v6.4, replaced by a single assignment to DTC_FLAGS]
+Link: https://lore.kernel.org/r/20220410225940.135744-3-aurelien@aurel32.net
+[ukleinek: rebased to v6.4-rc1]
 Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 ---
- arch/arm64/boot/dts/broadcom/Makefile | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm/boot/dts/Makefile | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts/broadcom/Makefile
-index 05d8c5ecf3b0..8b4591ddd27c 100644
---- a/arch/arm64/boot/dts/broadcom/Makefile
-+++ b/arch/arm64/boot/dts/broadcom/Makefile
-@@ -1,4 +1,8 @@
- # SPDX-License-Identifier: GPL-2.0
-+
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 59829fc90315..68e89f9289ef 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -85,6 +85,24 @@ dtb-$(CONFIG_SOC_SP7021) += \
+ 	sunplus-sp7021-demo-v3.dtb
+ dtb-$(CONFIG_ARCH_AXXIA) += \
+ 	axm5516-amarillo.dtb
 +# Enables support for device-tree overlays
-+DTC_FLAGS := -@
-+
- dtb-$(CONFIG_ARCH_BCM2835) += bcm2711-rpi-400.dtb \
- 			      bcm2711-rpi-4-b.dtb \
- 			      bcm2711-rpi-cm4-io.dtb \
++DTC_FLAGS_bcm2835-rpi-b := -@
++DTC_FLAGS_bcm2835-rpi-a := -@
++DTC_FLAGS_bcm2835-rpi-b-rev2 := -@
++DTC_FLAGS_bcm2835-rpi-b-plus := -@
++DTC_FLAGS_bcm2835-rpi-a-plus := -@
++DTC_FLAGS_bcm2835-rpi-cm1-io1 := -@
++DTC_FLAGS_bcm2836-rpi-2-b := -@
++DTC_FLAGS_bcm2837-rpi-3-a-plus := -@
++DTC_FLAGS_bcm2837-rpi-3-b := -@
++DTC_FLAGS_bcm2837-rpi-3-b-plus := -@
++DTC_FLAGS_bcm2837-rpi-cm3-io3 := -@
++DTC_FLAGS_bcm2837-rpi-zero-2-w := -@
++DTC_FLAGS_bcm2711-rpi-400 := -@
++DTC_FLAGS_bcm2711-rpi-4-b := -@
++DTC_FLAGS_bcm2711-rpi-cm4-io := -@
++DTC_FLAGS_bcm2835-rpi-zero := -@
++DTC_FLAGS_bcm2835-rpi-zero-w := -@
+ dtb-$(CONFIG_ARCH_BCM2835) += \
+ 	bcm2835-rpi-b.dtb \
+ 	bcm2835-rpi-a.dtb \
 -- 
 2.39.2
 
