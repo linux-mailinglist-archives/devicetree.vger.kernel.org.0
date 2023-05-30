@@ -2,159 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE30D716DFA
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 21:48:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A6CD716E0C
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 21:51:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230193AbjE3Ts5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 15:48:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37134 "EHLO
+        id S232372AbjE3Tvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 15:51:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230311AbjE3Ts5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 15:48:57 -0400
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BDF2E8;
-        Tue, 30 May 2023 12:48:55 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1685476133; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=pop3NnhrhZEAeUjnOXlrOnJgzu7/QXn4WnQ4LxAepL1V6oGMgQLF84+ww4Ph5KGYhh
-    7bG9BBsVzRaSrKBaWYFvAMhVpFtzs8hsne1cgyvdDT1sxhA6u7YnmUrwZ4J1OeRrifzG
-    iqucgzfD4hkkSkvs3TyVKarnCjvCvS8lSkXpKmbcK+MyhADYp8IF+mq3j6ycTIGtrneY
-    qsb7tQmzOf3LW18D1tpnHK73FsRG+FiY++ukus0bPKCzZbVzR29/upQSOt5EYIy3v+Ok
-    NzyEolHSM6TfxJF83o1/wNIOYDcRf3X8UNv/bAkqJoMafRa2wB1TssHkS5Z4UYHkGXbm
-    ItoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1685476133;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=T5CdztljMKq8HhGIpu+2afxFrsW10AdGa/gk1f9uPvg=;
-    b=Lb6nl9GUblisWuGhbK4Jqx0kW2/qRjGvGDH3lidI33DdkL8yj5zEF9Zl/U/aIP+Z7y
-    qSo+aGFwFKBERvMvMjPAtUIHHgMPNysL5yVQ10CtseQ7s6dXJ4LfF9MJzHCkaG/zCXal
-    PAU7RpIxAJ1YgkNMj19hf1P6batbHmRQsWVJt2xolb/4rzfwM4OaD7PBDcgqPypdfQz/
-    wfGrm1eSXTShRTYR62yn76EO6JwHnY1InGXIgNodtu3Hj9u5PDNfCLGJfvvb4oUrTNC1
-    k53HDDbdVo8zQBjLCkcF2fONoQ8opVJ3JZ0aUOXjcA1bTzNIJYqIg5HJPhZbm1VIH6K5
-    bTNQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1685476133;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=T5CdztljMKq8HhGIpu+2afxFrsW10AdGa/gk1f9uPvg=;
-    b=MLjwIMvj0RorFujTsCZyyV+uniL7w5BmJJV4u9BEYV4bnSs60GYnKBLvYXgeIHzCgD
-    SBhHbYapZefK9NcrBnIBD1Q1les+G77wn5K3iE40YVjvWpaX6H0Ji3qTYb6Kxx+X8oa8
-    EVenO9YXQ5eE98I4uSV3SBC06Ip/m+ovLi5wKpuyD6bKck5R0citaqpVoVMBjRp7oIju
-    FEN1Lr6GNy7kVTfGJg6Er+hBgeC+EcxHu4mmjFjE/pxE17MgWCA7TzUTwsjdjQh5s6Is
-    MPWNgD/3MdTwC3h6sRYzLxsUOKBpEGsP6Cw4I33zwmOq3ppU+WU5IJ4Fce3oo4e3ODWR
-    VIsw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1685476133;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=T5CdztljMKq8HhGIpu+2afxFrsW10AdGa/gk1f9uPvg=;
-    b=DpfzWWAIopgKluKnlAsAh/Br4D8F+EJjOJoejLEl/vRHlCvDoHsUycfw5ZaLb41ypl
-    sxnEduT67bHbcQfdvHCg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA95nh"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.4.0 DYNA|AUTH)
-    with ESMTPSA id j6420az4UJmqjqV
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 30 May 2023 21:48:52 +0200 (CEST)
-Date:   Tue, 30 May 2023 21:48:46 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] soc: qcom: rmtfs: Support dynamic placement of region
-Message-ID: <ZHZTHlfDsngUrTRX@gerhold.net>
-References: <20230530193436.3833889-1-quic_bjorande@quicinc.com>
- <20230530193436.3833889-3-quic_bjorande@quicinc.com>
+        with ESMTP id S231243AbjE3Tvj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 15:51:39 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5967E8
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 12:51:36 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f6d01d390bso51059385e9.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 12:51:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1685476295; x=1688068295;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=s4IP0REEtyhlwPhv3kFKNTWdtdlRtMxYQpQGr2LUnNY=;
+        b=X+L30U6OtZYV6NJxpUsIT3EUrhXpO+Rbpc/CUuKMe+iH/8ojw0i3ru8JocPgpng/38
+         a0kNWl5KuV4GRpMvk8GHofXjHk0lchRyG151rQ4piGvg5J+CExg9lPoaFDn7XvN8zjdJ
+         P1mffWsVX505trVtESlZ7SF4MX+EIbn2yJoHjdzrRrdZZ+GUs6vsQCG6Jy6PLg1gdaZc
+         DJ+qDA4ho3j0wzeEm9hw+0UJCILUGym0zbYTDYG+01BgHE02wLB1TRCr8MDvULDHLeta
+         gp1+XIZJBDHf0V8Niy9lqAI9jTU7c+twzzZouPJcu8B8rh2HJVZtcnD08j6yAGVTYBz2
+         EEwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685476295; x=1688068295;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=s4IP0REEtyhlwPhv3kFKNTWdtdlRtMxYQpQGr2LUnNY=;
+        b=Zv2eAMW05OekhAf7Xmi2K3hwiC540FoguLTU5En7kOkPK71r15XJGBhZrmAknxBAhM
+         bjjP8Y2ISFZALX6oA3kaofghspdzBo5m43Qk4l4CL9NqsJZClp7Rh3qh6yOaSL2fblic
+         joVU5bqM4JJHFBranDHBozPM5OMpd0hQHxgQr3VoloGznXeGGWrRO/M0cO1MsYBqmAhs
+         uS7RsCmIwrX3jIrt7CnIML/a5uxMRxKsA0MSRi3fe1MKCwWjAvpvzGx4hePbUxa+iRwn
+         UhFvy1sL3uyWel49dzOH78JIJmAGYH4EFcM4dXqeBZspFCtyVFi12LSdaK4MrN+iE9pj
+         UP6w==
+X-Gm-Message-State: AC+VfDzkobtouTa1mujiSs+XzN2M2OSQhCGO1CytsfkT2PjwvW+Srwgi
+        YIrQ+Am7xUY/ioiNigyii41LuA==
+X-Google-Smtp-Source: ACHHUZ7hkrQC/2/AK9nHX2Acv4D68laPB0ntxwZ4+W0bje9e7rPwXVFYOYCY9WVFwqS2LOYZBc376w==
+X-Received: by 2002:a05:600c:2204:b0:3f6:c7b:d3c8 with SMTP id z4-20020a05600c220400b003f60c7bd3c8mr3423689wml.16.1685476295166;
+        Tue, 30 May 2023 12:51:35 -0700 (PDT)
+Received: from ph18.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id n11-20020adfe34b000000b003078cd719ffsm4271545wrj.95.2023.05.30.12.51.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 May 2023 12:51:34 -0700 (PDT)
+From:   =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>
+To:     daniel.lezcano@linaro.org, angelogioacchino.delregno@collabora.com,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        wenst@chromium.org, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com, nfraprado@collabora.com,
+        abailon@baylibre.com, amergnat@baylibre.com, khilman@baylibre.com
+Subject: [PATCH v4 0/5] Add LVTS support for mt8192
+Date:   Tue, 30 May 2023 21:51:27 +0200
+Message-ID: <20230530195132.2286163-1-bero@baylibre.com>
+X-Mailer: git-send-email 2.41.0.rc2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230530193436.3833889-3-quic_bjorande@quicinc.com>
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 12:34:36PM -0700, Bjorn Andersson wrote:
-> In some configurations, the exact placement of the rmtfs shared memory
-> region isn't so strict. In the current implementation the author of the
-> DeviceTree source is forced to make up a memory region.
-> 
-> Extend the rmtfs memory driver to relieve the author of this
-> responsibility by introducing support for using dynamic allocation in
-> the driver.
-> 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 10 ++++
->  drivers/soc/qcom/rmtfs_mem.c            | 66 +++++++++++++++++++------
->  2 files changed, 61 insertions(+), 15 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> index d1440b790fa6..e6191b8ba4c6 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> @@ -12,6 +12,8 @@
->  #include "pm8998.dtsi"
->  #include "pmi8998.dtsi"
->  
-> +/delete-node/ &rmtfs_mem;
-> +
->  / {
->  	model = "Qualcomm Technologies, Inc. SDM845 MTP";
->  	compatible = "qcom,sdm845-mtp", "qcom,sdm845";
-> @@ -48,6 +50,14 @@ vreg_s4a_1p8: pm8998-smps4 {
->  		vin-supply = <&vph_pwr>;
->  	};
->  
-> +	rmtfs {
-> +		compatible = "qcom,rmtfs-mem";
-> +
-> +		qcom,alloc-size = <(2*1024*1024)>;
-> +		qcom,client-id = <1>;
-> +		qcom,vmid = <15>;
-> +	};
-> +
+From: Balsam CHIHI <bchihi@baylibre.com>
 
-Couldn't you just use the existing dynamic allocation of
-reserved-memory, without any driver changes?
+Add full LVTS support (MCU thermal domain + AP thermal domain) to MediaTek MT8192 SoC.
+Also, add Suspend and Resume support to LVTS Driver (all SoCs),
+and update the documentation that describes the Calibration Data Offsets.
 
-/ {
-	reserved-memory {
-		rmtfs {
-			compatible = "qcom,rmtfs-mem";
-			size = <0x0 (2*1024*1024)>;
-			alignment = <0x0 ...>; // if you want a special one
-			no-map; // don't we want to map this actually?
+Changelog:
+    v4 :
+        - Shrink the lvts_ap thermal sensor I/O range to 0xc00 to make
+          room for SVS support, pointed out by
+          AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-			qcom,client-id = <1>;
-			qcom,vmid = <15>;
-		};
-	};
-};
+    v3 : 
+        - Rebased :
+            base-commit: 6a3d37b4d885129561e1cef361216f00472f7d2e
+        - Fix issues in v2 pointed out by Nícolas F. R. A. Prado <nfraprado@collabora.com>:
+          Use filtered mode to make sure threshold interrupts are triggered,
+          protocol documentation, cosmetics
+        - I (bero@baylibre.com) will be taking care of this patchset
+          from now on, since Balsam has left BayLibre. Thanks for
+          getting it almost ready, Balsam!
 
-You won't get the 4K empty pages but I guess you just have them because
-you allocate the memory without proper alignment?
+    v2 :
+        - Based on top of thermal/linux-next :
+            base-commit: 7ac82227ee046f8234471de4c12a40b8c2d3ddcc
+        - Squash "add thermal zones and thermal nodes" and
+            "add temperature mitigation threshold" commits together to form
+            "arm64: dts: mediatek: mt8192: Add thermal nodes and thermal zones" commit.
+        - Add Suspend and Resume support to LVTS Driver.
+        - Update Calibration Data documentation.
+        - Fix calibration data offsets for mt8192
+            (Thanks to "Chen-Yu Tsai" and "Nícolas F. R. A. Prado").
+        https://lore.kernel.org/all/20230425133052.199767-1-bchihi@baylibre.com/
+        Tested-by: Chen-Yu Tsai <wenst@chromium.org>
 
-Related patch series where I propose using it for most firmware memory
-regions:
-https://lore.kernel.org/linux-arm-msm/20230510-dt-resv-bottom-up-v1-5-3bf68873dbed@gerhold.net/
+    v1 :
+        - The initial series "Add LVTS support for mt8192" :
+            "https://lore.kernel.org/all/20230307163413.143334-1-bchihi@baylibre.com/".
 
-Thanks,
-Stephan
+Balsam CHIHI (5):
+  dt-bindings: thermal: mediatek: Add LVTS thermal controller definition
+    for mt8192
+  thermal/drivers/mediatek/lvts_thermal: Add suspend and resume
+  thermal/drivers/mediatek/lvts_thermal: Add mt8192 support
+  arm64: dts: mediatek: mt8192: Add thermal nodes and thermal zones
+  thermal/drivers/mediatek/lvts_thermal: Update calibration data
+    documentation
+
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      | 454 ++++++++++++++++++
+ drivers/thermal/mediatek/lvts_thermal.c       | 160 +++++-
+ .../thermal/mediatek,lvts-thermal.h           |  19 +
+ 3 files changed, 631 insertions(+), 2 deletions(-)
+
+base-commit: 8c33787278ca8db73ad7d23f932c8c39b9f6e543
+-- 
+2.41.0.rc2
+
