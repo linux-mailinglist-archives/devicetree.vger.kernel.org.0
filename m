@@ -2,72 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6961771613D
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:14:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39F9D71615A
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:17:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231702AbjE3NOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 09:14:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41174 "EHLO
+        id S232133AbjE3NRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 09:17:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230496AbjE3NOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:14:08 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E8339C
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:14:07 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-5149aafef44so3737014a12.0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:14:07 -0700 (PDT)
+        with ESMTP id S232332AbjE3NRs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:17:48 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84E93BE
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:17:47 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5147f7d045bso6239723a12.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:17:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685452446; x=1688044446;
+        d=linaro.org; s=google; t=1685452666; x=1688044666;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fUH9XtAzWIRgOsb1MqDJfvd6qVENrkssqR4+2VADmQU=;
-        b=iLSrL45SV8BP5SNaj9ihAs/HG1rHntKH8UaPf63oqwFqxFSR3voahRiA6NEluOhKtu
-         ZTWv7fK83uKK5C7t5jOu7RMYdZ0qCXslmYTpIm+t+1WULQ0dTV+ziS/8Isu6K3DlYOjz
-         8TG5F71WCuwaE7AwHpS7Zj7M1Lo5T+UykhITrpppwUN8RqIsUUf4Iee/kT71bNlhbuuF
-         /XkTcRCmJr1HZNRZeq17NBZww56GGHJllapgC0nC/bEuBsHqLQzx+zttBSsa5qMY8IR0
-         OIlVyz9O7ET9giNoKqD+fXIkU923lQIPOBa2AmO4BtTdrIgWdhXOVkNilDHJjMDJY/hn
-         y/MA==
+        bh=SlNRAu+sEqLR68lQ/UatfZNoRCWXT5cJKm3Hf7V3cqY=;
+        b=f33JruTlMMoPyVZkVavi0A8dxukxKGnRaj+eiilvbN8KQ1BhNxAH2fgnQlW6hT7los
+         cyTU52WlvsApotwNQHpjaVYOs7XRCMVsPDDQFEWvUV6AVu2UD8kuqLaT7iFeX8AZQ8TN
+         p2XdXV/0788Q80hkom3MinHMcMOLxp1fYBVEY7rIUpxxuVQPghvLxcm90taS72++Ll4Z
+         WRVTVi4hGV6XcpxcB5/7n+HK9rnO/Mgmb5OrirRnRX/4YgLYIdrANYVJ/23WpSqD1lKe
+         5YfUX2jS+5oME1Z0yMWjvUj8aZ8zKoYgwTgkUOiKRM8XoTE677gZMmbPrN1D5DH4LYMj
+         kSPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685452446; x=1688044446;
+        d=1e100.net; s=20221208; t=1685452666; x=1688044666;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fUH9XtAzWIRgOsb1MqDJfvd6qVENrkssqR4+2VADmQU=;
-        b=Vt2cl/4G3izdo+ritLiSCBMGRxJBPOiwHTwShsHKIlZBYGANFvSDPdrCJLTBlG9F8u
-         9m4UrP1+EeR9dGjrgnrnn2yCGzDlxz8eRVRPL7wwSDUFW6I6+IyJaizTc/5Ipz2Kwrei
-         makv31eMh/MZzfzU54COBA5D5/+PGnDLSkZVG7hWy5Vvly1SXqaJpdUODb2pIyJ4JBtL
-         VpHSkLrHrmZj5uh0hBcZZz0fiemjujXQDhXRGxOoJB14O2/tlntWICE2kmrLN9P7j8JR
-         DWZMxaD1UnAF+CMGJBBq8pueVXMk2leVYDyyimO1MrSQ8A2ZgG43lX1p5M1uPXYtv5qt
-         TVWQ==
-X-Gm-Message-State: AC+VfDxMi1EKlEs2q1BgagNRSnxNJl28HLA9HPwXIkiv5tkfQETlaR5S
-        HQWX1uXsUFEd0tGTWKEKtNV4Lw==
-X-Google-Smtp-Source: ACHHUZ71bUnQXRzAkoYWkylcW0WPdqFvOlzeWjYH5TDzER83v471t24VZ6980CJNywvjLuGF0XQLiA==
-X-Received: by 2002:aa7:d8cb:0:b0:514:9474:f4b7 with SMTP id k11-20020aa7d8cb000000b005149474f4b7mr1588818eds.31.1685452445895;
-        Tue, 30 May 2023 06:14:05 -0700 (PDT)
+        bh=SlNRAu+sEqLR68lQ/UatfZNoRCWXT5cJKm3Hf7V3cqY=;
+        b=J61nD9n0yednC5E+bsoNJReg0h26ojrdKy7ck+l5bIU1/9/K3IYUaboI4kJrDOeh/x
+         GUjplMWXtk7/OyghS9/WZG1xe5l6xNXRKNP1KRUA4hQWqyiV2Rg6IlenA0biyFAC1dzI
+         p/W42qvA7+BUpTFpcplvvd87TjNN1sb13Cxmq42VPzPUr8EnRvj1tgKTKqAEziwm/g6n
+         HAvzPzmjN/f3K3kCzG3YiZsVNtikokCc6O1mrmC/tJ4ONDQ3HYL20YucgYVr2SygeO9O
+         5IJ7UUChrhLQBaHbwXmERADlUEWDjn1NhPr72CMO5dh+e6OAR6Utp1Yjvpdo5oU/Qhfg
+         3aXg==
+X-Gm-Message-State: AC+VfDx5KJfR2xUmtMB7oUfBlHhCo6YrLIAwVcSMiiDa6lHOORoaL+cq
+        P0bgMMwxsJMX/OUxOHsNN8P0BQ==
+X-Google-Smtp-Source: ACHHUZ50wxHHnMyT/M88twI82FLThHbRKUAp3t34rKhe2wbJmxLklwc1X5L/E5GjzkfV5y5besrNcw==
+X-Received: by 2002:a17:907:7206:b0:974:1ef3:e6d1 with SMTP id dr6-20020a170907720600b009741ef3e6d1mr1727125ejc.9.1685452666001;
+        Tue, 30 May 2023 06:17:46 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id j2-20020a50ed02000000b0050bc4600d38sm3929947eds.79.2023.05.30.06.14.04
+        by smtp.gmail.com with ESMTPSA id m22-20020a1709066d1600b0096f777fc1ccsm7235383ejr.200.2023.05.30.06.17.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 06:14:05 -0700 (PDT)
-Message-ID: <34864c2f-dbe2-8598-ad4c-f9c3acc13164@linaro.org>
-Date:   Tue, 30 May 2023 15:14:03 +0200
+        Tue, 30 May 2023 06:17:45 -0700 (PDT)
+Message-ID: <83fb5973-5514-6c66-fc15-84fb439f1398@linaro.org>
+Date:   Tue, 30 May 2023 15:17:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2] Documentation/process: add soc maintainer handbook
+Subject: Re: [PATCH v4 4/5] dt-bindings: iommu: arm,smmu: enable clocks for
+ sa8775p Adreno SMMU
 Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>, soc@kernel.org
-Cc:     conor@kernel.org, corbet@lwn.net, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        olof@lixom.net, palmer@dabbelt.com, robh+dt@kernel.org,
-        arnd@arndb.de
-References: <20230530-multiple-whooping-ee5706fceb67@wendy>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20230417125844.400782-1-brgl@bgdev.pl>
+ <20230417125844.400782-5-brgl@bgdev.pl>
+ <9f2c0b2d-b11e-512f-1566-5097547c60d1@linaro.org>
+ <CAMRc=Mey2mjNppokxcNBTyaZPTjBkiuQX-DHTvMXJkiLKq7UoA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230530-multiple-whooping-ee5706fceb67@wendy>
+In-Reply-To: <CAMRc=Mey2mjNppokxcNBTyaZPTjBkiuQX-DHTvMXJkiLKq7UoA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -78,37 +88,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2023 14:49, Conor Dooley wrote:
-> Arnd suggested that adding a maintainer handbook for the SoC "subsystem"
-> would be helpful in trying to bring on board maintainers for the various
-> new platforms cropping up in RISC-V land.
+On 30/05/2023 11:47, Bartosz Golaszewski wrote:
+> On Tue, May 16, 2023 at 1:42 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 17/04/2023 14:58, Bartosz Golaszewski wrote:
+>>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>>
+>>> The GPU SMMU will require the clocks property to be set so put the
+>>> relevant compatible into the adreno if-then block.
+>>>
+>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>>> ---
+>>
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> Best regards,
+>> Krzysztof
+>>
 > 
-> Add a document briefly describing the role of the SoC subsystem and some
-> basic advice for (new) platform maintainers.
-> 
-> Suggested-by: Arnd Bergmann <arnd@arndb.de>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Changes in v2:
-> - add Krzysztof's suggested method for avoiding inter-branch
->   dependencies
-> - explicitly mention that tags should be signed
-> - link to the devicetree abi document, rather than trying to explain it
->   here & reword that whole section
-> - fix some typos, capitalisation & unify bullet style
-> 
-> The devicetree abi doc feels quite out of date at this point, and could
-> probably do with a spring clean - but it also feels like hallowed groun
+> Hey IOMMU maintainers, could you please pick this one up for the next
+> merge window?
 
-Yep, but that's another topic.
-
-> d
-> on which one should tread lightly, so I won't go near that til Rob is
-> back.
-
-Thanks!
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I think you missed to Cc them (except Will).
 
 Best regards,
 Krzysztof
