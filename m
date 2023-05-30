@@ -2,63 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2AC2716B92
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8287716BAB
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:55:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbjE3RvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 13:51:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42070 "EHLO
+        id S233153AbjE3RzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 13:55:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230234AbjE3RvB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:51:01 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 814ABA3;
-        Tue, 30 May 2023 10:50:58 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34UHone2006637;
-        Tue, 30 May 2023 12:50:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1685469050;
-        bh=EeURbpGqVcxBuyv5DijQKXjocdeNk4oLnlwGWm0D+9s=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=zDH7qfSArEfl8AtR5v6WXwA1pWT5TS6JGO+gibYnUTgOCOzCWAbRkOVtjn187pbOw
-         /heL5lQin/SVPr24WdCIuCooyD7nb2SPHs6LOR6U0fISWyGs/SqZ1czTOhdrARAPdS
-         EL1017YRdbdNoZV5KLkwsg6vuGTCKEdA4biPMYts=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34UHonPv074569
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 May 2023 12:50:49 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
- May 2023 12:50:49 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 30 May 2023 12:50:49 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34UHoniL019431;
-        Tue, 30 May 2023 12:50:49 -0500
-Date:   Tue, 30 May 2023 12:50:49 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Nitin Yadav <n-yadav@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62x-sk-common: Add main_uart1
- and wkup_uart nodes
-Message-ID: <20230530175049.yjcc6nnuipbkafhx@cryptic>
-References: <20230510123216.3440019-1-n-yadav@ti.com>
- <20230510123216.3440019-2-n-yadav@ti.com>
+        with ESMTP id S232814AbjE3RzN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:55:13 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 709A68F;
+        Tue, 30 May 2023 10:55:10 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34UHsPtj030299;
+        Tue, 30 May 2023 17:54:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=8Y/2JgpkJ6x4T6pUMTX9PFkSR0ZlrMtocgjiRNfUQ+I=;
+ b=XsvwH6GXw8vUlJtikDzHYzpkw8vnRqYw4tEtmEcUpnAD3sejvU4L46rBMwNvyudntsDD
+ U+IPn3ogc7KYqKtrDxfpfB04VhuXrH2qjytDQ0+Nt8M273+YDdMQkfpBlxGxUSkugubB
+ INXd/sT0s4OJcP//wJCtAeubDOof5V+BPepLcKixHsT7h2jKFeotFczZknzGiMGsvECs
+ XUr6Hqz2/8qGOK2b3gXaYFys5uxhluH6DD0STWr36pL+KlXbgCNPv4g7zPzJN7ceneVj
+ v2wDIw0mwUsT0Wojmr8SftHT1b0GOtS+TCJ+ZH5MTtjM0wA45kGMH98XwcH84Qr/kMYE 7A== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qvv7nu0v6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 17:54:53 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34UHsqU3020458
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 17:54:52 GMT
+Received: from [10.134.70.142] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 30 May
+ 2023 10:54:17 -0700
+Message-ID: <00d30c09-d622-11c1-2e07-44a798659982@quicinc.com>
+Date:   Tue, 30 May 2023 10:54:17 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230510123216.3440019-2-n-yadav@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH RFC 03/10] drm/panel: Add LGD panel driver for Sony Xperia
+ XZ3
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>
+CC:     <neil.armstrong@linaro.org>, Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Andy Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        "Jami Kettunen" <jami.kettunen@somainline.org>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
+ <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
+ <71675a02-0801-62dc-2673-4a0907636b21@linaro.org>
+ <CAA8EJpq=HZqiBZ6bpUNH47VmASuH+Mi5OD5BHmg0TPwtsKHf8w@mail.gmail.com>
+ <oxgtbj7qmsdvz5gl4bud64jedmhdmvphjfge7uy6uwulefqfsa@pleslv2zgwbp>
+ <ebc3ff33-6e4f-b107-33c6-f35b03307058@linaro.org>
+From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <ebc3ff33-6e4f-b107-33c6-f35b03307058@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: MZW0XBke_CM3cyveuuOoLMbT1dgCVJho
+X-Proofpoint-GUID: MZW0XBke_CM3cyveuuOoLMbT1dgCVJho
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-30_13,2023-05-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1011
+ priorityscore=1501 malwarescore=0 bulkscore=0 spamscore=0 mlxscore=0
+ mlxlogscore=999 adultscore=0 lowpriorityscore=0 suspectscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305300143
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,48 +103,223 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18:02-20230510, Nitin Yadav wrote:
-> wkup_uart and main_uart1 on this platform is used by TIFS and DM
-> firmwares. Describe pinmux and add aliases for completeness.
+
+
+On 5/29/2023 3:18 PM, Dmitry Baryshkov wrote:
+> On 30/05/2023 00:07, Marijn Suijten wrote:
+>> On 2023-05-22 15:58:56, Dmitry Baryshkov wrote:
+>>> On Mon, 22 May 2023 at 12:04, Neil Armstrong 
+>>> <neil.armstrong@linaro.org> wrote:
+>>>>
+>>>> On 22/05/2023 03:16, Dmitry Baryshkov wrote:
+>>>>> On 22/05/2023 00:23, Marijn Suijten wrote:
+>>>>>> Sony provides an unlabeled LGD + Atmel maXTouch assembly in its 
+>>>>>> Xperia
+>>>>>> XZ3 (tama akatsuki) phone, with custom DCS commands to match.
+>>>>>>
+>>>>>> This panel features Display Stream Compression 1.1.
+>>>>>>
+>>>>>> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+>>>>>> ---
+>>>>>>    drivers/gpu/drm/panel/Kconfig                   |  11 +
+>>>>>>    drivers/gpu/drm/panel/Makefile                  |   1 +
+>>>>>>    drivers/gpu/drm/panel/panel-sony-akatsuki-lgd.c | 362 
+>>>>>> ++++++++++++++++++++++++
+>>>>>>    3 files changed, 374 insertions(+)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/panel/Kconfig 
+>>>>>> b/drivers/gpu/drm/panel/Kconfig
+>>>>>> index 67ef898d133f2..18bd116e78a71 100644
+>>>>>> --- a/drivers/gpu/drm/panel/Kconfig
+>>>>>> +++ b/drivers/gpu/drm/panel/Kconfig
+>>>>>> @@ -706,6 +706,17 @@ config DRM_PANEL_SONY_ACX565AKM
+>>>>>>          Say Y here if you want to enable support for the Sony 
+>>>>>> ACX565AKM
+>>>>>>          800x600 3.5" panel (found on the Nokia N900).
+>>>>>> +config DRM_PANEL_SONY_AKATSUKI_LGD
+>>>>>> +    tristate "Sony Xperia XZ3 LGD panel"
+>>>>>> +    depends on GPIOLIB && OF
+>>>>>> +    depends on DRM_MIPI_DSI
+>>>>>> +    depends on BACKLIGHT_CLASS_DEVICE
+>>>>>> +    help
+>>>>>> +      Say Y here if you want to enable support for the Sony 
+>>>>>> Xperia XZ3
+>>>>>> +      1440x2880@60 6.0" OLED DSI cmd mode panel produced by LG 
+>>>>>> Display.
+>>>>>> +
+>>>>>> +      This panel uses Display Stream Compression 1.1.
+>>>>>> +
+>>>>>>    config DRM_PANEL_SONY_TD4353_JDI
+>>>>>>        tristate "Sony TD4353 JDI panel"
+>>>>>>        depends on GPIOLIB && OF
+>>>>>> diff --git a/drivers/gpu/drm/panel/Makefile 
+>>>>>> b/drivers/gpu/drm/panel/Makefile
+>>>>>> index ff169781e82d7..85133f73558f3 100644
+>>>>>> --- a/drivers/gpu/drm/panel/Makefile
+>>>>>> +++ b/drivers/gpu/drm/panel/Makefile
+>>>>>> @@ -71,6 +71,7 @@ obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7701) += 
+>>>>>> panel-sitronix-st7701.o
+>>>>>>    obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7703) += panel-sitronix-st7703.o
+>>>>>>    obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += 
+>>>>>> panel-sitronix-st7789v.o
+>>>>>>    obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) += panel-sony-acx565akm.o
+>>>>>> +obj-$(CONFIG_DRM_PANEL_SONY_AKATSUKI_LGD) += 
+>>>>>> panel-sony-akatsuki-lgd.o
+>>>>>>    obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) += panel-sony-td4353-jdi.o
+>>>>>>    obj-$(CONFIG_DRM_PANEL_SONY_TULIP_TRULY_NT35521) += 
+>>>>>> panel-sony-tulip-truly-nt35521.o
+>>>>>>    obj-$(CONFIG_DRM_PANEL_TDO_TL070WSH30) += panel-tdo-tl070wsh30.o
+>>>>>> diff --git a/drivers/gpu/drm/panel/panel-sony-akatsuki-lgd.c 
+>>>>>> b/drivers/gpu/drm/panel/panel-sony-akatsuki-lgd.c
+>>>>>> new file mode 100644
+>>>>>> index 0000000000000..f55788f963dab
+>>>>>> --- /dev/null
+>>>>>> +++ b/drivers/gpu/drm/panel/panel-sony-akatsuki-lgd.c
+>>>>>> @@ -0,0 +1,362 @@
+>>>>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>>>>> +/*
+>>>>>> + * Copyright (c) 2023 Marijn Suijten <marijn.suijten@somainline.org>
+>>>>>> + *
+>>>>>> + * Based on Sony Downstream's "Atmel LGD ID5" Akatsuki panel dtsi.
+>>>>>> + */
+>>>>>> +
+>>>>>> +#include <linux/backlight.h>
+>>>>>> +#include <linux/delay.h>
+>>>>>> +#include <linux/gpio/consumer.h>
+>>>>>> +#include <linux/module.h>
+>>>>>> +#include <linux/of.h>
+>>>>>> +#include <linux/of_device.h>
+>>>>>> +#include <linux/regulator/consumer.h>
+>>>>>> +
+>>>>>> +#include <video/mipi_display.h>
+>>>>>> +
+>>>>>> +#include <drm/drm_mipi_dsi.h>
+>>>>>> +#include <drm/drm_modes.h>
+>>>>>> +#include <drm/drm_panel.h>
+>>>>>> +#include <drm/drm_probe_helper.h>
+>>>>>> +#include <drm/display/drm_dsc.h>
+>>>>>> +#include <drm/display/drm_dsc_helper.h>
+>>>>>> +
+>>>>>> +struct sony_akatsuki_lgd {
+>>>>>> +    struct drm_panel panel;
+>>>>>> +    struct mipi_dsi_device *dsi;
+>>>>>> +    struct regulator *vddio;
+>>>>>> +    struct gpio_desc *reset_gpio;
+>>>>>> +    bool prepared;
+>>>>>> +};
+>>>>>> +
+>>>>>> +static inline struct sony_akatsuki_lgd 
+>>>>>> *to_sony_akatsuki_lgd(struct drm_panel *panel)
+>>>>>> +{
+>>>>>> +    return container_of(panel, struct sony_akatsuki_lgd, panel);
+>>>>>> +}
+>>>>>> +
+>>>>>> +static int sony_akatsuki_lgd_on(struct sony_akatsuki_lgd *ctx)
+>>>>>> +{
+>>>>>> +    struct mipi_dsi_device *dsi = ctx->dsi;
+>>>>>> +    struct device *dev = &dsi->dev;
+>>>>>> +    int ret;
+>>>>>> +
+>>>>>> +    dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+>>>>>> +
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0x7f, 0x5a, 0x5a);
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf1, 0x5a, 0x5a);
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x5a, 0x5a);
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0x02, 0x01);
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0x59, 0x01);
+>>>>>> +    /* Enable backlight control */
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, 
+>>>>>> BIT(5));
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0x57, 0x20, 0x80, 0xde, 0x60, 0x00);
+>>>>>> +
+>>>>>> +    ret = mipi_dsi_dcs_set_column_address(dsi, 0, 1440 - 1);
+>>>>>> +    if (ret < 0) {
+>>>>>> +        dev_err(dev, "Failed to set column address: %d\n", ret);
+>>>>>> +        return ret;
+>>>>>> +    }
+>>>>>> +
+>>>>>> +    ret = mipi_dsi_dcs_set_page_address(dsi, 0, 2880 - 1);
+>>>>>> +    if (ret < 0) {
+>>>>>> +        dev_err(dev, "Failed to set page address: %d\n", ret);
+>>>>>> +        return ret;
+>>>>>> +    }
+>>>>>> +
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_POWER_SAVE, 0x00);
+>>>>>> +
+>>>>>> +    ret = mipi_dsi_dcs_set_tear_on(dsi, 
+>>>>>> MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+>>>>>> +    if (ret < 0) {
+>>>>>> +        dev_err(dev, "Failed to set tear on: %d\n", ret);
+>>>>>> +        return ret;
+>>>>>> +    }
+>>>>>> +
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0x7f, 0x5a, 0x5a);
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf1, 0x5a, 0x5a);
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf2, 0x5a, 0x5a);
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x03);
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf6, 0x04);
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x05);
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xf6, 0x01, 0x7f, 0x00);
+>>>>>> +
+>>>>>> +    ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
+>>>>>> +    if (ret < 0) {
+>>>>>> +        dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
+>>>>>> +        return ret;
+>>>>>> +    }
+>>>>>> +    msleep(120);
+>>>>>> +
+>>>>>> +    mipi_dsi_dcs_write_seq(dsi, 0xe3, 0xac, 0x19, 0x34, 0x14, 0x7d);
+>>>>>> +
+>>>>>> +    ret = mipi_dsi_dcs_set_display_on(dsi);
+>>>>>> +    if (ret < 0) {
+>>>>>> +        dev_err(dev, "Failed to turn display on: %d\n", ret);
+>>>>>> +        return ret;
+>>>>>> +    }
+>>>>>
+>>>>> My usual question: should the mipi_dsi_dcs_exit_sleep_mode() / 
+>>>>> mipi_dsi_dcs_set_display_on() be moved from prepare() to enable() 
+>>>>> part?
+>>>>
+>>>>
+>>>> No, prepare is called before the video stream is started and when 
+>>>> display is still in LPM mode and the mode hasn't been set.
+>>>>
+>>>
+>>> Yes, that's my point. Shouldn't we enable the panel _after_ starting 
+>>> the stream?
+>>
+>> I have never investigated what it takes to split these functions, but
+>> some of these panels do show some corruption at startup which may be
+>> circumvented by powering the panel on after starting the video stream?
+>>
+>> I'm just not sure where to make the split: downstream does describe a
+>> qcom,mdss-dsi-on-command and qcom,mdss-dsi-post-panel-on-command, where
+>> the latter only contains set_display_on() (not exit_sleep_mode()).
+>> It is documented like:
+>>
+>>      same as "qcom,mdss-dsi-on-command" except commands are sent after
+>>      displaying an image."
+>>
+>> So this seems like the right way to split them up, I'll test this out on
+>> all submitted panel drivers.
 > 
-> Signed-off-by: Nitin Yadav <n-yadav@ti.com>
-> ---
->  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 26 +++++++++++++++++++
->  1 file changed, 26 insertions(+)
+> Interesting enough, Neil suggested that sending all the commands during 
+> pre_enable() is the correct sequence (especially for VIDEO mode panels), 
+> since not all DSI hosts can send commands after switching to the VIDEO 
+> mode.
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> index 976f8303c84f..e29ea8ae2177 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> @@ -12,7 +12,9 @@
->  
->  / {
->  	aliases {
-> +		serial0 = &wkup_uart0;
->  		serial2 = &main_uart0;
-> +		serial3 = &main_uart1;
->  		mmc0 = &sdhci0;
->  		mmc1 = &sdhci1;
->  		mmc2 = &sdhci2;
-> @@ -127,6 +129,15 @@ AM62X_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (E14/E11) UART0_TXD */
->  		>;
->  	};
->  
-> +	main_uart1_pins_default: main-uart1-pins-default {
-> +		pinctrl-single,pins = <
-> +			AM62X_IOPAD(0x194, PIN_INPUT, 2) /* (B19) MCASP0_AXR3.UART1_CTSn */
-> +			AM62X_IOPAD(0x198, PIN_OUTPUT, 2) /* (A19) MCASP0_AXR2.UART1_RTSn */
-> +			AM62X_IOPAD(0x1ac, PIN_INPUT, 2) /* (E19) MCASP0_AFSR.UART1_RXD */
-> +			AM62X_IOPAD(0x1b0, PIN_OUTPUT, 2) /* (A20) MCAS/mP0_ACLKR.UART1_TXD */
-In all places for sk-common.dtsi,
 
-Could you fix the documentation in line with rest of the code?
+I agree with Neil here.
 
-/* First pad number is ALW package and second is AMC package */
+Yes, it does seem natural to think that sending the video stream before 
+sending the on commands would avoid any potential corruption / garbage 
+screen issues.
 
-[..]
+But even from panel side should allow that. I have seen panel ON 
+sequences where some explicitly ask for ON commands before the video stream.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+So, we cannot really generalize it and needs to be treated on a 
+host-to-host and panel-to-panel basis.
+
