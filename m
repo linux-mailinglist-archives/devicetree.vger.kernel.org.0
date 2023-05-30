@@ -2,104 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D17A07161DB
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:30:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 311EE7161EA
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232170AbjE3NaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 09:30:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52270 "EHLO
+        id S230519AbjE3NbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 09:31:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232740AbjE3N31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:29:27 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B7F10D7
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:28:41 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-514924b4f8cso5577609a12.3
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:28:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685453320; x=1688045320;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6A+xXqLFRW5fPXvfVtMkX6LKKLoRKsjcMfJO7DhUdik=;
-        b=rGjo7SPzrKSY6EqsgQVRt48TIldoTaPYWqJ4d8AGd3N/7kXcz3IVtfw90c0acOKck1
-         geEzvO4vKhrbosBH9t63C/h+4PL7LLjLpAwiaYpvbzOBVYhrLk4dCH6Vs2pBKgdb/Sab
-         owcB4U6XZjeVvPzSJaKDXrTbYY6wEI0JbKtutAu/SARMLZES4bPop97ma5vG2Ou5/2WJ
-         B6HnwEqrZP3i28mC2ZvmLDEJyBSAaXiLwcoNvq12sRCoKV+iLRuuPL4xgQ2QnEuPNJu3
-         EYrNOYTSY7pbMBiglG+Ab8iR5J0RPhV/8q7Qe1JUoTHWrZXMY9CV7U1tEJsYDAEs6LQs
-         45hA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685453320; x=1688045320;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6A+xXqLFRW5fPXvfVtMkX6LKKLoRKsjcMfJO7DhUdik=;
-        b=WbFJbEJHYGujqG/YJYl+/7jjdJfSTTUhkltOgVZxP3z4NotTSVvyImsBYlaWu65DpC
-         h/5h4X9aR9ACAou6NAnqBgVC+f8xD+73MWztnu2dcgr7mmpl3ygX4ti14N/qd7oWlWEb
-         8uiLCcoYbwY2wVDfMp/hJIWSO4ERYSX2Y7g4A2EHX2aPT7yJm6z4yPSph3xr7ulDjrf/
-         z27jCqe2pAK1JpC6oEKy1zHOXCTbnS7xpfMowRagFemH+rXj33s9kXVj7w6FJD5WTt03
-         fcX2fxcQwsXdg6qjtaDPOAqWwyCQGqd2rPiMxwYVvZOBWxYZ9pFdJNWmmUAZLYJ1CGex
-         iJAA==
-X-Gm-Message-State: AC+VfDw869LoqA1n3iF1KMDcQ790+FSv4CGxgaJBhKvJisHx08aq4/fx
-        LOcSmjPKeZ3a8Ov4H/GE/SA+Yg==
-X-Google-Smtp-Source: ACHHUZ5uWXFecH4hpqdfYXssIU+Y9H1eIyhmt9oBeAgqCNlcWe46eAJq7azf0oz4fVbkd7+2dwimlg==
-X-Received: by 2002:a17:907:720c:b0:96f:a190:8381 with SMTP id dr12-20020a170907720c00b0096fa1908381mr2171472ejc.10.1685453319750;
-        Tue, 30 May 2023 06:28:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id b11-20020a170906490b00b00965cfc209d5sm7329293ejq.8.2023.05.30.06.28.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 06:28:39 -0700 (PDT)
-Message-ID: <0ef5b9dc-0c01-2a36-533f-4959e2e870ca@linaro.org>
-Date:   Tue, 30 May 2023 15:28:37 +0200
+        with ESMTP id S232124AbjE3NbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:31:11 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85F4DC5;
+        Tue, 30 May 2023 06:31:06 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34U9eANS001363;
+        Tue, 30 May 2023 15:30:36 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=lELW+s5lmZKWjeMpQ3kERNUcACwyTcZXXJ9J7hPodYM=;
+ b=AnIbH62mrtryj5eucMpAcmm7vu6e90DGIOEeyBwBr5os1VZfXnk2dYbcmF+9upVowr4O
+ bh6bv5dXqEZ1kAJcx5gfVc1pLJ3MCU3HP587Muttw03ezl9K+u/lXF5mfcOg1T7V1RvB
+ NK39tpP5rzsHHWi/PbKg0ZdnqCGaOayumWft5aS4urv3qth8XeWsYs8uxm4/o3ckOeFJ
+ Y3ovWkyXksPu1vb49NM7ssyKlx+XRSQqRW4Kv874oJ/1nK2/YENoMnpFQxDKEth6Jt5y
+ p4+rD8WgoWU5mSHEI1lk3vvCo35XQBIUwk9AqPrskaxdtzkqwx8YUM6suUS2x+XxyCZS 2w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qweqe1db0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 15:30:36 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0451A10002A;
+        Tue, 30 May 2023 15:30:34 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EAC1B228A29;
+        Tue, 30 May 2023 15:30:34 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 30 May
+ 2023 15:30:33 +0200
+Message-ID: <92d5a699-9f5d-2e40-ca73-4604f3e5a657@foss.st.com>
+Date:   Tue, 30 May 2023 15:30:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v8 01/10] arm64: defconfig: enable MT6357 regulator
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 2/4] dt-bindings: display: st,stm32-dsi: Remove
+ unnecessary fields
 Content-Language: en-US
-To:     Alexandre Mergnat <amergnat@baylibre.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
+        David Airlie <airlied@gmail.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        <kernel@dh-electronics.com>, Marek Vasut <marex@denx.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        <linux-arm-kernel@lists.infradead.org>,
         Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>
-References: <20230203-evk-board-support-v8-0-7019f3fd0adf@baylibre.com>
- <20230203-evk-board-support-v8-1-7019f3fd0adf@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230203-evk-board-support-v8-1-7019f3fd0adf@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
+References: <20230529091359.71987-1-raphael.gallais-pou@foss.st.com>
+ <20230529091359.71987-3-raphael.gallais-pou@foss.st.com>
+ <20230530122736.tflfu5cugbd7ooup@krzk-bin>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230530122736.tflfu5cugbd7ooup@krzk-bin>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-30_10,2023-05-30_01,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/05/2023 10:33, Alexandre Mergnat wrote:
-> Enable the power regulator support of MediaTek MT6357 PMIC. This driver
-> supports the control of different power rails of device through
-> regulator interface.
+On 5/30/23 14:27, Krzysztof Kozlowski wrote:
+> On Mon, 29 May 2023 11:13:57 +0200, Raphael Gallais-Pou wrote:
+>> "#address-cells" and "#size-cells" are two properties that are not
+>> mandatory. For instance, the DSI could refer to a bridge outside the scope
+>> of the node rather than include a 'panel@0' subnode. By doing so, address
+>> and size fields become then unnecessary, creating a warning at build time.
+>>
+>> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> Reviewed-by: Marek Vasut <marex@denx.de>
+>> ---
+>>   Documentation/devicetree/bindings/display/st,stm32-dsi.yaml | 2 --
+>>   1 file changed, 2 deletions(-)
+>>
 > 
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings
+I checked it before merging the series on stm32-next tree. I didn't get 
+this error. I didn't check commit per commit.
 
-It's nice to say which boards/SoCs use it which would justify why we
-want it in defconfig.
+Do you get this error after merging the whole series ?
 
-Your last sentence brings no new information - it's kind of obvious for
-every PMIC. Instead of redundant information add something actually
-missing - why do we need it in defconfig, IOW, what platform needs it?
 
-Best regards,
-Krzysztof
+> 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/1787034
+> 
+> 
+> dsi@40016c00: Unevaluated properties are not allowed ('panel-dsi@0' was unexpected)
+> 	arch/arm/boot/dts/stm32f469-disco.dtb
+> 
+> dsi@5a000000: Unevaluated properties are not allowed ('panel-dsi@0' was unexpected)
+> 	arch/arm/boot/dts/stm32mp157c-ev1.dtb
+> 	arch/arm/boot/dts/stm32mp157c-ev1-scmi.dtb
 
