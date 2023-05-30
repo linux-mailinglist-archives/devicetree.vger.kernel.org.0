@@ -2,144 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 889AB715F78
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 14:30:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24FF6716001
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 14:37:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229951AbjE3MaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 08:30:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56754 "EHLO
+        id S232091AbjE3Mhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 08:37:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbjE3M34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 08:29:56 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B59E211C;
-        Tue, 30 May 2023 05:29:42 -0700 (PDT)
-X-UUID: 9996ee8afee511edb20a276fd37b9834-20230530
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=RRHVElMyL6UjQ1vvoJ2Fmm9xm1wJ7Rkni4XIZBAGM5Y=;
-        b=LLA02G9ZPFL7LQXajqa0uFHQm0pRLgrph/rw071Xm5c78qZG2SYcXGsmPFohIMMwQ9maq5XG3j/Uv9H1xReOry3oT4yD+gblxKH+Wr/M20Yeuz8W8dwrvgayHN4Hmx4zq+WWwAz+T96CQ45ckQtazu1+fpJgCB0eGoIV53CqnRc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.25,REQID:b75b9dd3-c482-45f9-aba1-4e9fe77a2273,IP:0,U
-        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-        N:release,TS:90
-X-CID-INFO: VERSION:1.1.25,REQID:b75b9dd3-c482-45f9-aba1-4e9fe77a2273,IP:0,URL
-        :0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTIO
-        N:quarantine,TS:90
-X-CID-META: VersionHash:d5b0ae3,CLOUDID:7cae023d-7aa7-41f3-a6bd-0433bee822f3,B
-        ulkID:230530202922IKVOD16G,BulkQuantity:0,Recheck:0,SF:38|29|28|17|19|48,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-        ,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-UUID: 9996ee8afee511edb20a276fd37b9834-20230530
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 615932227; Tue, 30 May 2023 20:29:19 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 30 May 2023 20:29:18 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 30 May 2023 20:29:17 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, Nathan Hebert <nhebert@chromium.org>
-CC:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v6,8/8] media: mediatek: vcodec: Add dbgfs help function
-Date:   Tue, 30 May 2023 20:29:08 +0800
-Message-ID: <20230530122908.19267-9-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230530122908.19267-1-yunfei.dong@mediatek.com>
-References: <20230530122908.19267-1-yunfei.dong@mediatek.com>
+        with ESMTP id S232213AbjE3MhH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 08:37:07 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B368E6E
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 05:36:18 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f3b9c88af8so5035082e87.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 05:36:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685450166; x=1688042166;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HI7dbhgmaIMwW4q8f+hPLe/hTimoyZ6ymqMZWiieGkI=;
+        b=UqrGq9WKdhCo/HIcRxyzdAw4ZOl4ja0Co5fqE+9gwfkW+zSE5dUNEZ3u18p9XfDCgj
+         ZuTfNo+G5obqi3sITJEE58eRMPq0ARSWAKI3BgELGzoiPhBEPsrvCY7JA/YYQod9E6f3
+         ja7T9Pp9JwPPLOara6vZBYQO2A3MSSEF46wKcIEa03p59Muajc+IyOsZHYaK6dUfyAm7
+         Ffy2FgJFECnRKHSTI/TuvskxdSc8S9bO3BvRIo8oa+3fuxMWz4rgrjVy8Qv6Ii41gm4a
+         dcy8lRyolO3rGNxlLJ6QdZU+zCVR5B2PofquG9KWfQkP0805rR3/PbNkRH3U+yRQMfs+
+         zQgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685450166; x=1688042166;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HI7dbhgmaIMwW4q8f+hPLe/hTimoyZ6ymqMZWiieGkI=;
+        b=luyKeIcSzijhh4Zrle7ETlZgBRbIZkTfCDHEjIKwva9jYLJkOvG7SlSuqS891rFxu9
+         Yt5sZR9aiPKqeUi6Ma2vRlq3bq8ljn+OJ0X+nndz7am46ITcov9HDD8gsOsqbm34H1nq
+         cw9LOEZOMsxMpKMyA/U+vJQF0DNVsLy4JGfAunFhlqQ0o5AAx/rD+4irqWsdBN3x5ZW6
+         4VU3Idbfypf//8MFMStR6WZJ2JOf0sgb2sx+QLvNagmgfZjDV7ydr0L7qQ2T9QKVngsz
+         71wY4t0Pfe0P8XFYQOGMbDnuBiDdRKZrUZX9RKye4KfPEb7Y3dpWdY72v0JQsbbsNeUX
+         kphw==
+X-Gm-Message-State: AC+VfDzC9hN0d7mJV4zfwJy1sh8+32Jhjj8PlxePfYXizAgLYE7Mwr+V
+        L/ti0rZV/Mashuf/JK6R8I5gtA==
+X-Google-Smtp-Source: ACHHUZ6wyWffrbLJXvu1TzBoYTsLShwlS92A6RywQVWSBg/DxQvTW7DGXSWynROQFTS4NcPM3NQLuA==
+X-Received: by 2002:ac2:4c27:0:b0:4f2:53f6:d4bf with SMTP id u7-20020ac24c27000000b004f253f6d4bfmr655196lfq.48.1685450165873;
+        Tue, 30 May 2023 05:36:05 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id l9-20020ac24309000000b004f3b520e0adsm329680lfh.107.2023.05.30.05.36.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 05:36:05 -0700 (PDT)
+Message-ID: <e927cfcd-bf34-5daf-0e24-4dd828106968@linaro.org>
+Date:   Tue, 30 May 2023 15:36:04 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: RFC: DSI host capabilities (was: [PATCH RFC 03/10] drm/panel: Add
+ LGD panel driver for Sony Xperia XZ3)
+Content-Language: en-GB
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <dri-devel@lists.freedesktop.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        freedreno <freedreno@lists.freedesktop.org>
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
+ <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
+ <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
+ <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
+ <CAA8EJppG=MAVpK1J_8bNnkJ23y9NtgY7a2GVResXJvhEKyNsrw@mail.gmail.com>
+ <739a8bd9-9ff0-5072-fdae-b64efdf86842@collabora.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <739a8bd9-9ff0-5072-fdae-b64efdf86842@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Getting dbgfs help information with command "echo -help > vdec"
-or "echo > vdec".
+On 30/05/2023 15:15, AngeloGioacchino Del Regno wrote:
+> Il 30/05/23 13:44, Dmitry Baryshkov ha scritto:
+>> On Tue, 30 May 2023 at 10:24, Neil Armstrong 
+>> <neil.armstrong@linaro.org> wrote:
+>>>
+>>> Hi Marijn, Dmitry, Caleb, Jessica,
+>>>
+>>> On 29/05/2023 23:11, Marijn Suijten wrote:
+>>>> On 2023-05-22 04:16:20, Dmitry Baryshkov wrote:
+>>>> <snip>
+>>>>>> +   if (ctx->dsi->dsc) {
+>>>>>
+>>>>> dsi->dsc is always set, thus this condition can be dropped.
+>>>>
+>>>> I want to leave room for possibly running the panel without DSC (at a
+>>>> lower resolution/refresh rate, or at higher power consumption if there
+>>>> is enough BW) by not assigning the pointer, if we get access to panel
+>>>> documentation: probably one of the magic commands sent in this driver
+>>>> controls it but we don't know which.
+>>>
+>>> I'd like to investigate if DSC should perhaps only be enabled if we
+>>> run non certain platforms/socs ?
+>>>
+>>> I mean, we don't know if the controller supports DSC and those 
+>>> particular
+>>> DSC parameters so we should probably start adding something like :
+>>>
+>>> static drm_dsc_config dsc_params_qcom = {}
+>>>
+>>> static const struct of_device_id panel_of_dsc_params[] = {
+>>>          { .compatible = "qcom,sm8150", , .data = &dsc_params_qcom },
+>>>          { .compatible = "qcom,sm8250", , .data = &dsc_params_qcom },
+>>>          { .compatible = "qcom,sm8350", , .data = &dsc_params_qcom },
+>>>          { .compatible = "qcom,sm8450", , .data = &dsc_params_qcom },
+>>> };
+>>
+>> I think this would damage the reusability of the drivers. The panel
+>> driver does not actually care if the SoC is SM8350, sunxi-something or
+>> RCar.
+>> Instead it cares about host capabilities.
+>>
+>> I think instead we should extend mipi_dsi_host:
+>>
+>> #define MIPI_DSI_HOST_MODE_VIDEO BIT(0)
+>> #define MIPI_DSI_HOST_MODE_CMD  BIT(1)
+>> #define MIPI_DSI_HOST_VIDEO_SUPPORTS_COMMANDS BIT(2)
+>> // FIXME: do we need to provide additional caps here ?
+>>
+>> #define MIPI_DSI_DSC_1_1 BIT(0)
+>> #define MIPI_DSI_DSC_1_2 BIT(1)
+>> #define MIPI_DSI_DSC_NATIVE_422 BIT(2)
+>> #define MIPI_DSI_DSC_NATIVE_420 BIT(3)
+>> #define MIPI_DSI_DSC_FRAC_BPP BIT(4)
+>> // etc.
+>>
+>> struct mipi_dsi_host {
+>>   // new fields only
+>>    unsigned long mode_flags;
+>>    unsigned long dsc_flags;
+>> };
+>>
+>> Then the panel driver can adapt itself to the host capabilities and
+>> (possibly) select one of the internally supported DSC profiles.
+>>
+> 
+> I completely agree about extending mipi_dsi_host, other SoCs could reuse 
+> that and
+> support for DSC panels would become a lot cleaner.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../mediatek/vcodec/mtk_vcodec_dbgfs.c        | 24 ++++++++++++++++++-
- 1 file changed, 23 insertions(+), 1 deletion(-)
+Sounds good. I will wait for one or two more days (to get the possible 
+feedback on fields/flags/etc) and post an RFC patch to dri-devel.
 
-diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c
-index 688884db651e..2151c3967684 100644
---- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c
-+++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c
-@@ -52,6 +52,23 @@ static void mtk_vdec_dbgfs_get_format_type(struct mtk_vcodec_ctx *ctx, char *buf
- 	*used += curr_len;
- }
- 
-+static void mtk_vdec_dbgfs_get_help(char *buf, int *used, int total)
-+{
-+	int curr_len;
-+
-+	curr_len = snprintf(buf + *used, total - *used,
-+			    "help: (1: echo -'info' > vdec 2: cat vdec)\n");
-+	*used += curr_len;
-+
-+	curr_len = snprintf(buf + *used, total - *used,
-+			    "\t-picinfo: get resolution\n");
-+	*used += curr_len;
-+
-+	curr_len = snprintf(buf + *used, total - *used,
-+			    "\t-format: get output & capture queue format\n");
-+	*used += curr_len;
-+}
-+
- static ssize_t mtk_vdec_dbgfs_write(struct file *filp, const char __user *ubuf,
- 				    size_t count, loff_t *ppos)
- {
-@@ -83,6 +100,11 @@ static ssize_t mtk_vdec_dbgfs_read(struct file *filp, char __user *ubuf,
- 	if (!buf)
- 		return -ENOMEM;
- 
-+	if (strstr(dbgfs->dbgfs_buf, "-help") || dbgfs->buf_size == 1) {
-+		mtk_vdec_dbgfs_get_help(buf, &used_len, total_len);
-+		goto read_buffer;
-+	}
-+
- 	if (strstr(dbgfs->dbgfs_buf, "-picinfo"))
- 		dbgfs_index[MTK_VDEC_DBGFS_PICINFO] = true;
- 
-@@ -109,7 +131,7 @@ static ssize_t mtk_vdec_dbgfs_read(struct file *filp, char __user *ubuf,
- 			mtk_vdec_dbgfs_get_format_type(ctx, buf, &used_len, total_len);
- 	}
- 	mutex_unlock(&dbgfs->dbgfs_lock);
--
-+read_buffer:
- 	ret = simple_read_from_buffer(ubuf, count, ppos, buf, used_len);
- 	kfree(buf);
- 	return ret;
+> 
+> For example, on MediaTek DRM there's some support for DSC, more or less 
+> the same
+> for SPRD DRM and some DSI bridge drivers... having a clean 
+> infrastructure would
+> definitely help.
+> 
+> I'm sad I cannot offer testing in that case because despite being sure 
+> that there
+> are MTK smartphones around with DSI panels using DSC, I have none... and 
+> all of the
+> Chromebooks are not using DSC anyway (but using DisplayPort compression, 
+> which is
+> obviously an entirely different beast).
+> 
+>>>
+>>> ...
+>>> static int sony_akatsuki_lgd_probe(struct mipi_dsi_device *dsi)
+>>> ...
+>>>          const struct of_device_id *match;
+>>>
+>>> ...
+>>>          match = of_match_node(panel_of_dsc_params, of_root);
+>>>          if (match && match->data) {
+>>>                  dsi->dsc = devm_kzalloc(&dsi->dev, sizeof(*dsc), 
+>>> GFP_KERNEL);
+>>>                  memcpy(dsi->dsc, match->data, sizeof(*dsc));
+>>>          } else {
+>>>                  dev_warn(&dsi->dev, "DSI controller is not marked as 
+>>> supporting DSC\n");
+>>>          }
+>>> ...
+>>> }
+>>>
+>>> and probably bail out if it's a DSC only panel.
+>>>
+> 
+> Usually DDICs support both DSC and non-DSC modes, depending on the initial
+> programming (read: init commands)... but the usual issue is that many DDICs
+> are not publicly documented for reasons, so yes, bailing out if DSC is not
+> supported would be the only option, and would be fine at this point.
+> 
+> Cheers,
+> Angelo
+> 
+>>> We could alternatively match on the DSI controller's dsi->host->dev 
+>>> instead of the SoC root compatible.
+>>>
+>>> Neil
+>>
+> 
+
 -- 
-2.18.0
+With best wishes
+Dmitry
 
