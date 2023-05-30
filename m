@@ -2,157 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0D81715D31
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:28:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63D92715D52
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:36:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231947AbjE3L2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 07:28:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37636 "EHLO
+        id S230146AbjE3Lgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 07:36:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230228AbjE3L2i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:28:38 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6105610A
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:28:35 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-96f53c06babso773466866b.3
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:28:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685446114; x=1688038114;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GUGM9vwyi3bSbkT57iVkDIziKVOQ8v/LTR1nAotjTgg=;
-        b=nh1cIMyMIIVbE/20jQbHGjREBn1rbgCyE8VEshFq7JIYMMP6B9PDcJ6HC+UetWNx0F
-         /o11oGuJ3bXvaKs+6y4hncrrQmiEOuX8vuCccmawAE2Aq47yC7J+R8zHUz8nr2y1rDEu
-         Y0dS2jh0fW3jKqoWluxSU+6CYsHNQtyTjnTrUOq9KGmpQ7/97XONLbkxxNujJv7VEYPj
-         rpm3sFUuSTcq1OMbeO8ig4Y8ZL/CZrdk/NOz2SOxjH93Qi3pUfO8bMTuRnQvII2qcCCx
-         LtT3DF02tSBskeq0+Jar+1IzAZad0N3eeGga7m5RUbTz+E1GHL/HC6ZfEfXl10AwVqxo
-         dVNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685446114; x=1688038114;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GUGM9vwyi3bSbkT57iVkDIziKVOQ8v/LTR1nAotjTgg=;
-        b=Fe0M9T69S8S/nYN8DqMjRMk5W8OwuYUgVqVOEn/3YyxYNw2pQ9+wlSHt9DFjFasAjZ
-         f+aeMd2XJDeJmpNjShj5JHZK2g6iM9zHYol8a1tgyoEewCyBLlziaAXUyk3SUV6foe3V
-         hqRRfvfH3O07QJXENJ7vSGS8X/l28TOGkETWPZnuKBQyaLbOVvV1Gcrj2Ym61Uj9V4Lm
-         6myDHrY2qoBikNw9ojf8jl7ykDL+G15cm9LsMQ3PHD3aZF8D95t2lMFsXhCb7YDE5K+O
-         yrFGwssAx1ifhLcOptrOuhvlu7PpUWdth8OQcxpb9TWIzTL6+y+hz44bpYiX6KXgeJgF
-         ATLw==
-X-Gm-Message-State: AC+VfDw1b3iJI2nHIOmsuR5lIHXmUCN1UxD19uaQQjVRA5tlFdRANWjI
-        69+1MOz7wd5VZ3tUCpS873lOmw==
-X-Google-Smtp-Source: ACHHUZ5V9wS6Ke7Ij4PQnrUFWP1yKwmKVCcMaEEHDfjjHy5/X9n+fUlh+WbrulYEOMfLmXzA92PZIw==
-X-Received: by 2002:a17:907:9707:b0:974:1ef7:15be with SMTP id jg7-20020a170907970700b009741ef715bemr1990950ejc.30.1685446113893;
-        Tue, 30 May 2023 04:28:33 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id j23-20020a170906475700b00967a18df1easm7207714ejs.117.2023.05.30.04.28.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 04:28:33 -0700 (PDT)
-Message-ID: <98e4684b-725f-92f0-2920-d7bd582f60db@linaro.org>
-Date:   Tue, 30 May 2023 13:28:30 +0200
+        with ESMTP id S229473AbjE3Lgt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:36:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1BCB0;
+        Tue, 30 May 2023 04:36:48 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2D5C962314;
+        Tue, 30 May 2023 11:36:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72E40C433EF;
+        Tue, 30 May 2023 11:36:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685446607;
+        bh=iXCnSpqvku5TBvKgY0SIrL7G7nudm6YESXMmzmXUbU8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GTcik89aH1GnRIFAEfVubBgatbsO1FId7GW/IRBcONL4z03EgtErF/yMgEsdsRQZA
+         WCHlU8TMmnjd2fEuOhJP9psrh5ZK3tq2H6sMZS5IVwsn1cqklw6knLDGF83906Mm3b
+         hV5DxEd/3g6UpXojZxw/xkh8dNMZdKcCeAjcLFEoV9tByq24DlBt/giTfLEVxcNORk
+         +Qo1KszQrpQG/fQhf174Ns/NlDzklyZLJezgBL+lEPX2RUnFo+Me7vUnP+oFyZDPKR
+         OCKfgjykoQy0fVdFmIdVZnNXgw/jZnRwyh7edoQyrn5XMt4KWCxJjHjmLUinu0zfBs
+         ZUMkezRxrGs2A==
+Date:   Tue, 30 May 2023 12:36:40 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Zhu Ning <zhuning0077@gmail.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        David Yang <yangxiaohua@everest-semi.com>,
+        Daniel Drake <drake@endlessm.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, kernel@collabora.com
+Subject: Re: [PATCH 1/3] ASoC: es8316: Increment max value for ALC Capture
+ Target Volume control
+Message-ID: <4a3f54a3-2cbd-4a22-9742-9ba60e78643b@sirena.org.uk>
+References: <20230524074156.147387-1-cristian.ciocaltea@collabora.com>
+ <20230524074156.147387-2-cristian.ciocaltea@collabora.com>
+ <5dbcbf84-602a-44de-ad99-268d4d5b4b2f@sirena.org.uk>
+ <cfa23203-1626-440b-ec27-efe56cb297d2@collabora.com>
+ <01fd1a9f-56c7-4864-bb2b-8b004284c8cc@sirena.org.uk>
+ <3c6b67a4-4892-0057-3dfc-65ed6c7ebc37@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: thermal: tsens: Add ipq9574
- compatible
-Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, amitk@kernel.org,
-        thara.gopinath@gmail.com, rafael@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Praveenkumar I <quic_ipkumar@quicinc.com>
-References: <cover.1684920389.git.quic_varada@quicinc.com>
- <cb26ad4a6550c18b1a70104c6b75c10946766944.1684920389.git.quic_varada@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <cb26ad4a6550c18b1a70104c6b75c10946766944.1684920389.git.quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="d7bOgmCsIJ4exiLW"
+Content-Disposition: inline
+In-Reply-To: <3c6b67a4-4892-0057-3dfc-65ed6c7ebc37@collabora.com>
+X-Cookie: I've read SEVEN MILLION books!!
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/05/2023 11:36, Varadarajan Narayanan wrote:
-> From: Praveenkumar I <quic_ipkumar@quicinc.com>
-> 
-> Qualcomm IPQ9574 has tsens v2.3.1 block, which is similar to IPQ8074 tsens.
-> 
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> [v4]:
-> 	Add description about IPQ9574 and remove unnecessary
-> 	additions to the file
-> [v3]:
-> 	Fix dt_binding_check & dtbs_check errors (Used
-> 	Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-> 	as reference/example)
-> 
-> 	Drop 'Acked-by: Rob Herring' as suggested in review
-> 
-> [v2]:
-> 	Thanks to Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 	for the tip to make qcom,ipq8074-tsens as fallback.
-> ---
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> index d1ec963..1a752e0 100644
-> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -16,9 +16,14 @@ description: |
->    The IP versions are named v0.1, v1 and v2 in the driver, where v0.1 captures
->    everything before v1 when there was no versioning information.
->  
-> +  Since IPQ9574 is similar to IPQ8074, mapping it to IPQ8074 without
-> +  introducing a new compatible.
-> +
->  properties:
->    compatible:
->      oneOf:
-> +      - const: qcom,ipq8074-tsens
 
-No, no need to move it to const. Was correct before.
-> +
->        - description: msm8960 TSENS based
->          items:
->            - enum:
-> @@ -64,8 +69,10 @@ properties:
->            - const: qcom,tsens-v2
->  
->        - description: v2 of TSENS with combined interrupt
-> -        enum:
-> -          - qcom,ipq8074-tsens
+--d7bOgmCsIJ4exiLW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Again, "-" means you remove a diff hunk. `man diff` and `man patch` (or
-Wikipedia, dunno).
+On Fri, May 26, 2023 at 09:11:49PM +0300, Cristian Ciocaltea wrote:
 
-> +        items:
-> +          - enum:
-> +              - qcom,ipq9574-tsens
-> +          - const: qcom,ipq8074-tsens
+> -1.5 dB  |  50-51 %
+> -0.0 dB  |  50-51 %
 
-No, do not touch existing entry.
+> So it seems the specs are correct, and the problem is the hardware default.
 
-You need new item on entire list with two compatibles:
+> Is there a better approach to handle this than extending the volume range?
 
-+        items:
-+          - enum:
-+              - qcom,ipq9574-tsens
-+          - const: qcom,ipq8074-tsens
+The other option would be to change the value in the register during
+probe to one that's in range, that wouldn't stop any existing saved
+settings from generating errors but would mean there wouldn't be any new
+ones.  Either approach is probably fine.
 
-That's it. There should be no removal hunks in your diff (so one with "-").
+--d7bOgmCsIJ4exiLW
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Krzysztof
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmR138cACgkQJNaLcl1U
+h9AZDQf8CRVQJfTeFq5Qw9fVO1/pJlyLSgRpJGmTNzHtJqiQWeIHUvhUdQk308MA
+F8c9ONRYZYqB1lr26oNF0MWRJYI8BQJC35xYxLiK2EyKYLvyiK7K9JekQybKdzpk
+o4fAXlKCjlMHBqVF9ivHEBUjMyM2aZrLc7D0DSX2N+VhVP9evvNNNyccAKxGUE91
+7UDcJARuzCs1ENlzyaJKrZxiGDKbVapt6KMcnz7evtqAQpKgjfdDYOoKWyZcRSAp
+5yQjcYk7+XfGkn8KddHjGbgAV6ZJ9BKcZfJ4PwwMm9iJhoVTONpUBPn6UQMb4PN0
+PmKgoDkU7j2X/W+b/zWraTxZvy6O/g==
+=buze
+-----END PGP SIGNATURE-----
+
+--d7bOgmCsIJ4exiLW--
