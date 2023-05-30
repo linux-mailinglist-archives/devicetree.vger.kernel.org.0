@@ -2,110 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E767162FF
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:04:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D7F3716351
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:13:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232861AbjE3OEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 10:04:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49060 "EHLO
+        id S230515AbjE3ONa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 10:13:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232605AbjE3OEh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:04:37 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C31D9
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:04:36 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5147e8972a1so7221379a12.0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:04:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685455475; x=1688047475;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QYxvmLTRS13Ehc3QgciGTadH+O7LLfNmtYTSHMK4epM=;
-        b=AfV/EiRzkrXsTyysLyhpCFT8cI/HfscqQp0tI3HrhAPz4ynNqrdym/iIYy5F/pw+74
-         B9HnS9kFRB3OrvdSz+l1t5ler1GR1rUzWopwNykAPsXX4pJiWJEynSMnuIuoelqSREbq
-         ozI4/MsvwNS9UHhbajkaDiRF0QC22E9exrDbrPg1dJ7luqtjpqEU6/CoFoDMGV4u1kUz
-         MT9BzkXx9EfhaR9lPnuDXjPH/zoC7cnRLgGeYwlHHNve2aQQ2qD/vNc5NPFtAX0ymfoI
-         ksq577fC4rGw/UrfFPjDK2aAU68qmtvXNsSuq2Jp16qUQXVVKU9+RxFPFbIcvR3uR9I2
-         PR6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685455475; x=1688047475;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QYxvmLTRS13Ehc3QgciGTadH+O7LLfNmtYTSHMK4epM=;
-        b=EZ5GccP2vkN+H9lUv1+nMtTcfwvABaYf3trZzlzdVpW6THX3JSjzAmfzQv1LD9697c
-         CqHo32p1kdd4ThDCvDhFT2FUDcz6BDsFcYpAcODKymyHIZnmo/moBEsqpk2IXAw8YUI2
-         Uu25ViR/FGcsyBRowbfGqsfy5hwgnbUtHFz4Jbgaa5f9e6oeHetDf45Vdw9iH6BJYTIE
-         7UzORRWkjFvSOdyMQFperYZNYdWw3EY19EIylZ/HbqAlnIs30pzdhOdoI41kOu+o5s6+
-         ZxXATf29Wmsb3FtcGtwg+P9Vgg6218ppPBudD8UM2Z5VXpevJg24+O1LpGovMQX1Uetz
-         e0jQ==
-X-Gm-Message-State: AC+VfDz0hyp7/qvCfV58zqBsHBFx/m+aiVr2PMVrtM45a2bPI61XhKu+
-        SYHbeYSXIR/9VdEezWHvi6avuA==
-X-Google-Smtp-Source: ACHHUZ65SdQ7bm40X1xjIzR//czjn3KI6YOqjCZL15qypKnRSXEwK+KSK6hQIq2PFBtO6Vd526Gbkw==
-X-Received: by 2002:aa7:dccd:0:b0:50c:cde7:285b with SMTP id w13-20020aa7dccd000000b0050ccde7285bmr1610460edu.29.1685455475339;
-        Tue, 30 May 2023 07:04:35 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id r25-20020aa7da19000000b00510d8e43fe0sm4415999eds.7.2023.05.30.07.04.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 07:04:34 -0700 (PDT)
-Message-ID: <ca6042f7-5586-8f7d-19a1-73a3676697f6@linaro.org>
-Date:   Tue, 30 May 2023 16:04:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/3] dt-bindings: net: pse-pd: Add "ethernet-pse-0"
- example to improve validation in podl-pse-regulator DT binding
-Content-Language: en-US
-To:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        with ESMTP id S229709AbjE3ON2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:13:28 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72BDA1A8;
+        Tue, 30 May 2023 07:12:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685455971; x=1716991971;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WEVu+mlvG0A1jNh0gMO3FS1zwOln0/CKg69F1Wt0HZ4=;
+  b=uSI2073EMpI6UpRAYMz/GdViDIDiTvwHYHPPp8W00IPxMqU3UjRM8ul1
+   haZksZhJckEHnneTFjwlSDPFoym5+fG0dX6g39FM51Wy6Ydr6ZgEefByZ
+   4yDGhAPDNEJuEKxE7pXZitaWp9/W5DMs8XX04Ziq5JTsr4pYcqdBgOnqy
+   H2jM9vgIOHcmKaCBcBJa7TK2Sr8rzN8hs3yc3nTpNFCzyBnO2Mz+xN5NY
+   p2qs3YU9+/S1WyfF+fzm+e8MmTIicgh5p3SXhsymHmt8xrFUlp6/qP9q6
+   +TcpIoGdOLu2zYBIAsuDuyXBLDIVvMaCvHODvmyVuKLVi69HE+S7Ojwqx
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,204,1681196400"; 
+   d="asc'?scan'208";a="213732970"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 May 2023 07:12:41 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 30 May 2023 07:12:38 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 30 May 2023 07:12:35 -0700
+Date:   Tue, 30 May 2023 15:12:12 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Conor Dooley <conor@kernel.org>
+CC:     Sean Anderson <sean.anderson@seco.com>,
+        Anup Patel <anup@brainfault.org>,
+        Andrew Jones <ajones@ventanamicro.com>, <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>
-Cc:     kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-References: <20230530083713.2527380-1-o.rempel@pengutronix.de>
- <20230530083713.2527380-3-o.rempel@pengutronix.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230530083713.2527380-3-o.rempel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
+        <linux-riscv@lists.infradead.org>, <qemu-riscv@nongnu.org>,
+        <u-boot@lists.denx.de>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1] dt-bindings: riscv: deprecate riscv,isa
+Message-ID: <20230530-duller-reset-a34ae111f207@wendy>
+References: <20230518-thermos-sanitary-cf3fbc777ea1@wendy>
+ <20230518-4050231ca8dbe93c08cf9c9a@orel>
+ <CAAhSdy07Mg_JBF+4ucGFiWdBKh-Ass5G_aUWqBqTnDSFp7S=0A@mail.gmail.com>
+ <20230518-hammock-doornail-478e8ea8e6a7@wendy>
+ <f7c20090-220c-2805-86ba-b174a89f65b3@seco.com>
+ <20230518-monkhood-dispersal-6749b1228b0d@spud>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ljjWyKcHLn9dJQRC"
+Content-Disposition: inline
+In-Reply-To: <20230518-monkhood-dispersal-6749b1228b0d@spud>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2023 10:37, Oleksij Rempel wrote:
-> This change adds a new example, "ethernet-pse-0", to the device tree
-> binding for podl-pse-regulator. This helps improve validation by
-> supporting more types of node names.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
->  .../devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml  | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml b/Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml
-> index 94a527e6aa1b..25d237e0f406 100644
-> --- a/Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml
-> +++ b/Documentation/devicetree/bindings/net/pse-pd/podl-pse-regulator.yaml
-> @@ -38,3 +38,9 @@ examples:
->        pse-supply = <&reg_t1l1>;
->        #pse-cells = <0>;
->      };
-> +  - |
-> +    ethernet-pse-0 {
+--ljjWyKcHLn9dJQRC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It's the same example. No need for new one with different node names.
+On Thu, May 18, 2023 at 10:42:34PM +0100, Conor Dooley wrote:
+> On Thu, May 18, 2023 at 02:30:53PM -0400, Sean Anderson wrote:
 
-Best regards,
-Krzysztof
+> >=20
+> > Why not just have something like
+> >=20
+> > mycpu {
+> > 	...
+> > 	riscv,isa {
+> > 		i;
+> > 		m;
+> > 		a;
+> > 		zicsr;
+> > 		...
+> > 	};
+> > };
+>
+> Naming of the node aside (perhaps that could be riscv,isa-extensions)
+> there's not something hitting me immediately as to why that is a no-no.
+> If the size is a concern, this would certainly be more efficient & not
+> like the probing would be anything other than trivial more difficult
+> what I have in my proposal.
 
+Having started messing around with this, one of the main advantages, to
+me, of this approach is proper validation.
+cpus.yaml has additionalProperties: true in it, which would have had to
+be sorted out, or worked around, but creating a child-node with the
+properties in it allows setting additionalProperties: false.
+
+> Rob's AFK at the moment, and I was hoping that he would take a look at
+> the idea, so I won't respin til he is back, but I'll give this a go in
+> the interim.
+
+Mechanically, the conversion of the patch isn't difficult, but I'll still
+wait for Rob to come back before sending a v2. But that v2 will more
+than likely implement your suggestion.
+
+Cheers,
+Conor.
+
+--ljjWyKcHLn9dJQRC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHYEPAAKCRB4tDGHoIJi
+0gU0AQC4+rB11CsvWYlWy1TRnq5jU9IikN+9XHIPda7SYYnZMQEAo6jPRTwwWFo7
+hJxgKpYYRrcYOdotg5wYkneWq4yBCQs=
+=BG8u
+-----END PGP SIGNATURE-----
+
+--ljjWyKcHLn9dJQRC--
