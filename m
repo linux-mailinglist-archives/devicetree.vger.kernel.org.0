@@ -2,107 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA61A715846
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:21:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13E96715850
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:22:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229792AbjE3IVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 04:21:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37598 "EHLO
+        id S230034AbjE3IWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 04:22:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229917AbjE3IVb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:21:31 -0400
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0659BE;
-        Tue, 30 May 2023 01:21:29 -0700 (PDT)
-Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-55586f22ab7so2594443eaf.2;
-        Tue, 30 May 2023 01:21:29 -0700 (PDT)
+        with ESMTP id S229898AbjE3IWs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:22:48 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91B57EC
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:22:46 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96f9cfa7eddso745541166b.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:22:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685434889; x=1688026889;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=GoFbV56mg6Q55NdGwwdOG9BX33ZimndK6LI0LO9roZc=;
-        b=MuR7+cuL0G0CoFLKb0VXhDL65PL/4j+U47R3t73ppIx4SHvrw0H7ZG+xvPscbhp9ez
-         q9Ofg4ReNMKkTWXz+Aa8uLtSJJSYmqhzc7aJ9KX5Vbf9vmnZPiL/id1wEPeWI8ovLBjJ
-         +Wojt58ZBt4gvhgfnfk3cHwYlyP0QBLS4Tht2y9ACgH+gh6AOziAc/xiUTaRpWS0YIa+
-         bRyicQNU2cU76Whp5vdgKz0u6JSH6SEpSxwZHaX9hVaDaVIPCIGMCedjxlOB265dPIut
-         fb247453Kl2mi8T4tjwBaUo3jo7rYoKGN0hssCqNUjyzRTHGvHwSMZUX4Z9GAb1vyVwR
-         aCTg==
+        d=linaro.org; s=google; t=1685434965; x=1688026965;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B/06GITGnCR0InunQ97FoRRag82uonE7bPllWWYnN1M=;
+        b=U1TazgPBw5tN1EoHoX2aYS+f7yuRJQmgbSX8Faf0Bl+3Aen9PgAwjj/0rmvY9/jx/V
+         wxUIl2QoR9bQBNWCOFoGRZvur5o8ChrHMf5YTCBx7BSdQyb7i0mCLSc6Hvu1ROVnMOmR
+         qVL+77W7bRowiTu0GS4l1gbrykcmPub1l5cyvgiwp9qlcZkVHMv2glUWHW3XveLtjIbM
+         RzxBtF+OaPNpCMPPq8+YGn2mdyLtvUriEkuiTO9c+PqnSpUy80yLpaEWwgUBYIh2mEMA
+         m4Bfen7IRj2WfC0fXuHiXESe875Pr9nt/Neqkv41FZRzwKmqOGNKNFZKnTyBMO1nZe9J
+         lgZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685434889; x=1688026889;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GoFbV56mg6Q55NdGwwdOG9BX33ZimndK6LI0LO9roZc=;
-        b=RB4hibgAP+07iwo8k91Jn3xRGNAJOdHdryxZKpaIKJhyXrRHSLAivRg3XeA5srp1s8
-         K1Et6sNtDQjEsuwx8csQku2lTilj/fKlmtxC7svu5wn76s3y4Hm8fJP+XqYDqu58Nlb5
-         1MOVREIScY7zpRO6ajSBPS9abf6xIa8Hi/j3PYZBzLkQmA0sKdtXm0uZ2sxrVquqKTrK
-         HYt7cKOPhBfPUxU6jHpKO6PBfvW5L/NQh5J5qzbb0KAzoDqwBuOWB/YxRTVDg/rMF1rv
-         aRHQPEQvsaaZ5YM4z0qjkR8DYw6jG568PyPl5iKol9lFe4sL3DID1rQ9oFiYNK47w30C
-         W5vQ==
-X-Gm-Message-State: AC+VfDyPqnZOQ4YGRHl2yenuTd6wqesRRwWA10lv5pFE/mMQY25Ehh02
-        tHGFOQW5+KommuBTVvGyLqlgm+pgc5uAa2bwzL4=
-X-Google-Smtp-Source: ACHHUZ6ofFn3is8D65zPcrksWtiIffohoJmAaDU4/V3zZOzhrBQ0r8RxVKjddmzo4f5H7xb270edOUD6IG3aC1GQiII=
-X-Received: by 2002:a4a:4fd2:0:b0:555:51a9:5bff with SMTP id
- c201-20020a4a4fd2000000b0055551a95bffmr711688oob.8.1685434888861; Tue, 30 May
- 2023 01:21:28 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1685434965; x=1688026965;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=B/06GITGnCR0InunQ97FoRRag82uonE7bPllWWYnN1M=;
+        b=IVbx3/v9xt34kaBnOYtttc/swnSNDRRTZ0/L0imZjo/8bPyGxNczNA9uRxPf3Qwm4Z
+         HLFJyOwSBx5Nd0E21Ssq+5BxALWep9okWNABAoQgbqaJInsk6+pYmXftMoUWNAwH+uj+
+         o+cCbQvv1REktr4xSFoWVUnn194OLrisHjsx044WnV71jNs/cabozLHvDvCAht03MrKo
+         1oYhv7KlMeAdnT3GW1Pyc+/d3vm0eBkXuF673Z8nujpmVJlnTSZ+5GY4//AmF1NBobhH
+         TfyKNYMRYSV1v5e0HZr6Mx+yE9S/75pg6vkzoVzq1d3dAlY21rNYTEg5qRIxVRco05y4
+         Z8QQ==
+X-Gm-Message-State: AC+VfDz0d7U20CIYD45Y2sfiVuvIxlhP6c6siKN52hQ0yUBvNhiKWo1O
+        YXrrIEU6Y6izs/swDj2g7w+5Pg==
+X-Google-Smtp-Source: ACHHUZ75GDAqupUSVPJ5Aas4ogi42LerslQkAQXJPqBERjGGYbWLC0fwnXvjKlihSB0tFyOdHnUbNQ==
+X-Received: by 2002:a17:907:3da0:b0:974:1e0e:9bd3 with SMTP id he32-20020a1709073da000b009741e0e9bd3mr1622046ejc.23.1685434964999;
+        Tue, 30 May 2023 01:22:44 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id cf6-20020a170906b2c600b0096f272206b3sm6949583ejb.125.2023.05.30.01.22.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 May 2023 01:22:44 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Artur Weber <aweber.kernel@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 0/3] ARM: dts: samsung: Fix some typos in comments
+Date:   Tue, 30 May 2023 10:22:36 +0200
+Message-Id: <168543493680.14409.2040056469867223710.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230519190625.7844-1-aweber.kernel@gmail.com>
+References: <20230519190625.7844-1-aweber.kernel@gmail.com>
 MIME-Version: 1.0
-References: <20230427055032.85015-1-rath@ibv-augsburg.de>
-In-Reply-To: <20230427055032.85015-1-rath@ibv-augsburg.de>
-From:   Christian Gmeiner <christian.gmeiner@gmail.com>
-Date:   Tue, 30 May 2023 10:21:17 +0200
-Message-ID: <CAH9NwWdPL8NAr+MGD7Ca-KWyW7Oy9amN63_zUSwFwT=dcFvMJw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Cadence PCIe PHY latency for PTM
-To:     Dominic Rath <rath@ibv-augsburg.de>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        tjoseph@cadence.com, bhelgaas@google.com, lpieralisi@kernel.org,
-        nm@ti.com, vigneshr@ti.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        bahle@ibv-augsburg.de
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dominic
 
-Am Do., 27. Apr. 2023 um 07:50 Uhr schrieb Dominic Rath <rath@ibv-augsburg.de>:
->
-> Hello Everyone,
->
-> this series adds PHY latency properties to the Cadence PCIe
-> driver to improve PTM accuracy, and configures the necessary
-> values for TI's AM64x processors.
->
-> These latencies are implementation specific and need to be
-> configured in the PCIe IP core's registers to allow the
-> PCIe controller to exactly determine the RX/TX timestamps for
-> PCIe PTM messages.
->
-> TI doesn't document these values in the datasheet or reference
-> manual as of now, but provided the necessary data via TI's E2E
-> forums (see PATCH 3/3).
->
-> Changes from v1 to v2:
->    - move latency property to PHY instead of PCIe controller
->    - drop vendor prefix from property name
->    - rephrase commit message regarding optional properties
->    - emit an info message instead of a warning in case
->      an optional property is missing
->
-> Best Regards,
->
+On Fri, 19 May 2023 21:06:22 +0200, Artur Weber wrote:
+> Change 'specfic' to 'specific', 'optiosn' to 'options' and remove
+> duplicated 'are listed' in DTSI heading comments. While we're at it,
+> fix the s5pv210-pinctrl.dtsi header (seems like it was copied out of
+> the main DTSI file and never changed to match the new contents).
+> 
+> This patch has been split off from a patch in a separate series:
+> "[PATCH v3 11/13] ARM: dts: exynos: Fix some typos in comments"
+> https://lore.kernel.org/all/20230501195525.6268-12-aweber.kernel@gmail.com/
+> It has been split into 3 separate commits: one for Exynos chips,
+> one for s3c64xx and one for s5pv210.
+> 
+> [...]
 
-Hope you send out a v3 soon.
+Applied, thanks!
 
+[1/3] ARM: dts: exynos: Fix some typos in comments
+      https://git.kernel.org/krzk/linux/c/2f6905307a7bb998e819c03097f3cc54a51b015a
+[2/3] ARM: dts: s3c64xx: Fix some typos in comments
+      https://git.kernel.org/krzk/linux/c/316c31fba6eda4543d5e234b13d0c0605a83a643
+[3/3] ARM: dts: s5pv210: Fix typo in comments, fix pinctrl header
+      https://git.kernel.org/krzk/linux/c/6a988251c4e53da33107c1975f578904c0635b43
+
+Best regards,
 -- 
-greets
---
-Christian Gmeiner, MSc
-
-https://christian-gmeiner.info/privacypolicy
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
