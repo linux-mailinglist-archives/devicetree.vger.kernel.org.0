@@ -2,130 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86762715E85
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 14:09:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22E3E715E93
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 14:11:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231280AbjE3MJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 08:09:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41746 "EHLO
+        id S230114AbjE3MLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 08:11:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231362AbjE3MJC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 08:09:02 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED61FC5;
-        Tue, 30 May 2023 05:09:00 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34UC4pTN018239;
-        Tue, 30 May 2023 14:08:32 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=eUMt/DGvSnsVrLlt9wTQ7XbXUJ6l9bqRdAwrT9NXRl4=;
- b=gpY60mVqFAHm5rhYyUhnApTQy+VI+kpHjEhL+RL0V2FdWiHUyjZb48b4pLS6qiNbGX2e
- 8xG4XR6+yUNpNSeUxA4EXa5JjMMkmNjj5IK73Vel8PP7cYDEwSL0b7/tylFqnodu4hur
- fbTNPB4qVeEaXOjcwJERDAbMS+VHSlHWumhHWNtGtSfgWnexxbyY9outi7zR0CxkGOB4
- PPVL1rjtBiY/OfGpBt6JBbHG3PcHaoPvvt9Zf3zcy80AcRq+f+/mewrlw4x+tQTT9vFl
- zWUaCpiAUxiejXCqZ3+nZTRv+EaoIv/xBqq7cZpZoZgOpY4PQaXDVZztTUYO6JQAj1Yq hw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qwdm5hhgj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 14:08:32 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5F0C610002A;
-        Tue, 30 May 2023 14:08:30 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3839E21ED5D;
-        Tue, 30 May 2023 14:08:30 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 30 May
- 2023 14:08:29 +0200
-Message-ID: <4308327f-d2e2-e9a2-6add-5e0352d3f1e2@foss.st.com>
-Date:   Tue, 30 May 2023 14:08:29 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 02/11] pinctrl: stm32: add stm32mp257 pinctrl support
-Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>
-CC:     Conor Dooley <conor@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S230335AbjE3MLJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 08:11:09 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA2EA90;
+        Tue, 30 May 2023 05:11:06 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34UCAiqM035104;
+        Tue, 30 May 2023 07:10:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685448644;
+        bh=3Wjej0LyT5Fh0GI+iBtjlzAn6+Ozz/czgZi2sHh7gn4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=GbAAIkZy2kKT8iGefaeW15cnQQ0EEREBemLruY8lOnDjmdMeD8AaomxCrrdPc3cAz
+         6gk+5zo0yREL0txskgln29YNSa0A9rEPWolVyijRAP3YZBLhmf8Uz16JbnSqZsxmPV
+         QpE9hsnsf08MQ5Dt8SYatkJy2Gp3qnPorFzeOa5c=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34UCAink049402
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 30 May 2023 07:10:44 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
+ May 2023 07:10:44 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 30 May 2023 07:10:44 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34UCAipR020110;
+        Tue, 30 May 2023 07:10:44 -0500
+Date:   Tue, 30 May 2023 07:10:44 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Francesco Dolcini <francesco@dolcini.it>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, <soc@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
-References: <20230529162034.20481-1-alexandre.torgue@foss.st.com>
- <20230529162034.20481-3-alexandre.torgue@foss.st.com>
- <20230529-enrich-clammy-14b498baf09f@spud>
- <879b7689-5663-28b5-9431-2fdd243ffff2@foss.st.com>
- <20230530-payday-gravity-45a26bd7f2dc@wendy>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230530-payday-gravity-45a26bd7f2dc@wendy>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-30_08,2023-05-30_01,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 3/5] arm64: dts: ti: add verdin am62
+Message-ID: <20230530121044.sjhv452b4hs4lyiy@flyer>
+References: <20230524143631.42471-1-francesco@dolcini.it>
+ <20230524143631.42471-4-francesco@dolcini.it>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230524143631.42471-4-francesco@dolcini.it>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/30/23 10:56, Conor Dooley wrote:
-> On Tue, May 30, 2023 at 10:38:30AM +0200, Alexandre TORGUE wrote:
->> Hi Conor
->>
->> On 5/29/23 20:04, Conor Dooley wrote:
->>> On Mon, May 29, 2023 at 06:20:25PM +0200, Alexandre Torgue wrote:
->>>> Add stm32mp257 pinctrl support.
->>>> diff --git a/drivers/pinctrl/stm32/pinctrl-stm32.h b/drivers/pinctrl/stm32/pinctrl-stm32.h
->>>> index e0c31c4c8bca..5e5de92ddd58 100644
->>>> --- a/drivers/pinctrl/stm32/pinctrl-stm32.h
->>>> +++ b/drivers/pinctrl/stm32/pinctrl-stm32.h
->>>> @@ -24,6 +24,9 @@
->>>>    #define STM32MP_PKG_AB		BIT(1)
->>>>    #define STM32MP_PKG_AC		BIT(2)
->>>>    #define STM32MP_PKG_AD		BIT(3)
->>>> +#define STM32MP_PKG_AI		BIT(8)
->>>> +#define STM32MP_PKG_AK		BIT(10)
->>>> +#define STM32MP_PKG_AL		BIT(11)
->>>
->>> Mainly out of curiosity, why have you go duplicate defines for these?
->>
->> Mainly to fit with available packages for various STM32 MPU. Currently MP1
->> SoCs are available with packages AB/AC/AD and MP2 series with AI/AK/AL but
->> in the future we could have package AB/AC/AD/AI available for a particular
->> SoC and then I need to anticipate this case.
-> 
-> Sorry, what I meant was "why have you got defines for these in this
-> header, when there is an existing set in
-> include/dt-bindings/pinctrl/stm32-pinfunc.h?".
+On 16:36-20230524, Francesco Dolcini wrote:
+[...]
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
+> new file mode 100644
+> index 000000000000..e138b1c8ed14
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-dev.dtsi
+> @@ -0,0 +1,233 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright 2023 Toradex
 
-Ok, I see. To be honest I do it as we did in the past for STM32 MCU and 
-MP1 products. We had this discussion maybe 5 or 6 years ago about the 
-fact to include or not the "dt-bindings" file in the stm32 drivers. I 
-don't remember exactly the rational behind our choice. It is something 
-that we could improve for all our STM32 products. Sorry for this 
-imprecise answer.
+Please also add appropriate product links to dts/dtsi
 
-Alex
+> + */
+> +
+> +/ {
+> +	sound_card: sound-card {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,bitclock-master = <&dailink_master>;
+> +		simple-audio-card,format = "i2s";
+> +		simple-audio-card,frame-master = <&dailink_master>;
+> +		simple-audio-card,name = "verdin-nau8822";
+> +		simple-audio-card,routing =
+> +			"Headphones", "LHP",
+> +			"Headphones", "RHP",
+> +			"Speaker", "LSPK",
+> +			"Speaker", "RSPK",
+> +			"Line Out", "AUXOUT1",
+> +			"Line Out", "AUXOUT2",
+> +			"LAUX", "Line In",
+> +			"RAUX", "Line In",
+> +			"LMICP", "Mic In",
+> +			"RMICP", "Mic In";
+> +		simple-audio-card,widgets =
+> +			"Headphones", "Headphones",
+> +			"Line Out", "Line Out",
+> +			"Speaker", "Speaker",
+> +			"Microphone", "Mic In",
+> +			"Line", "Line In";
+> +
+> +		dailink_master: simple-audio-card,codec {
+> +			clocks = <&k3_clks 157 10>;
+> +			sound-dai = <&nau8822_1a>;
+> +		};
+> +
+> +		simple-audio-card,cpu {
+> +			sound-dai = <&mcasp0>;
+> +		};
+> +	};
+> +};
+> +
+> +/* Verdin ETHs */
+> +&cpsw3g {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii1 &pinctrl_rgmii2>;
+
+here and elsewhere:
+pinctrl-0 = <&pinctrl_rgmii1>, <&pinctrl_rgmii2>;
 
 
-> 
-> Cheers,
-> Conor.
-> 
+> +	status = "okay";
+> +};
+[...]
+> +	/* EEPROM */
+> +	eeprom@57 {
+> +		compatible = "st,24c02", "atmel,24c02";
 
+checkpatch warns: DT compatible string "st,24c02" appears un-documented
+
+> +		reg = <0x57>;
+> +		pagesize = <16>;
+> +	};
+> +};
+> +
+> +/* Verdin I2C_2_DSI */
+> +&main_i2c2 {
+> +	status = "okay";
+
+Here and few other dtsis:
+you should set status along with pinmux.
+
+[...]
+> +
+> +/* Verdin UART_2 */
+> +&wkup_uart0 {
+> +	/* FIXME: WKUP UART0 is used by DM firmware */
+> +	status = "reserved";
+
+If you do configure this in R5 SPL, you'd want to add the pinmux as
+well.
+
+> +};
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi
+> new file mode 100644
+> index 000000000000..289db1666fc0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi
+> @@ -0,0 +1,36 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright 2023 Toradex
+> + */
+> +
+> +/ {
+> +	wifi_pwrseq: wifi-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_wifi_en>;
+> +		reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_LOW>;
+> +	};
+> +};
+> +
+> +
+
+Drop extra EoLs.
+
+[...]
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> new file mode 100644
+> index 000000000000..2e7cb607df45
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> @@ -0,0 +1,1400 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+
+Assuming you really intent this instead of purely GPL-2.0
+
+[...]
+
+> +/* MDIO, shared by Verdin ETH_1 (On-module PHY) and Verdin ETH_2_RGMII */
+> +&cpsw3g_mdio {
+> +	assigned-clocks = <&k3_clks 157 20>;
+> +	assigned-clock-parents = <&k3_clks 157 22>;
+> +	assigned-clock-rates = <25000000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_eth_clock &pinctrl_mdio>;
+> +	status = "disabled";
+> +
+> +	cpsw3g_phy0: ethernet-phy@0 {
+> +		compatible = "ethernet-phy-id2000.a231";
+
+Check binding - we don't include any compatibles that dont have yaml
+conversion done (pinctrl is the only exception).
+
+[...]
+
+> +/* TODO: Verdin DSI_1 / TIDSS */
+Drop the TODO.
+
+[...]
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
