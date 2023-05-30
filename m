@@ -2,167 +2,359 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B123F715D0B
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:23:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B479715D21
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:26:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231858AbjE3LXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 07:23:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33730 "EHLO
+        id S231862AbjE3L0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 07:26:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231880AbjE3LXP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:23:15 -0400
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2063.outbound.protection.outlook.com [40.107.100.63])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5195FF3;
-        Tue, 30 May 2023 04:23:03 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CnBwFRQbDORCZoMN7ppJdRymz7xU3BvYmBbFfXYzzzdB/wtny2z8N7gUUfpJFgaYbKvc/Gv4DV8cqW1jCCtA0Kqi2ruN5/5JzFQ+sd5L8UhPk9AO1w9ouHGu8+3+jBU291zlcN5INThlyYJRr5+kBQSQB3/SYnKAk3zRFcU5hJQjO5Rd/6RQ0d6ERkBMZCx9SXk0Sc8KQ3ah7Z5sFSH2NlkQFVpqg3NvzG4fcRwvjjiMRLeaVddmGnlLMYuvr6PhYJiChaShPhEOJwQU1jGjfmAb1Z5QpC2EmZzywjQaEwD9Ptz+yFyrHGVyOwtSOWfiv/1NPYOHrGxk9tIQT/e1Hg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T0wM7zE9RhmV6LCn9HAfk51yUsi62S59Lc8jp0P1k+M=;
- b=RrS4/PBNkDWkGOOx3zRsgsHHws3uNK0HlwzLCe3zlZKGa0cxr/e2dQM7ChUTnGYUY2wI1SliZGSjTH3OPP2a0HCesFlOulGQXx7WGct+F72yRjmr1UWytqp3+PAoZADE4AfeaRNOUDw4+eVvA3Zct9c5Tmfw5GoCinukQrFcysruo7eMCQyJ1eW2ZDQl0+Azs08Ayx+urH4fB49vO45Qs0G/eDhEsjMU9+f4ezMbfJyHwGN3Eo6tqFVgH8b4Wl0OOiv/h5opFBIQDyHWp5r730I0cJsCdoerKu3eSoPYxd0VcGoZfagqeO35LtCAAflbHwo8UrHNlCEL9dP4oTawSQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T0wM7zE9RhmV6LCn9HAfk51yUsi62S59Lc8jp0P1k+M=;
- b=HzA4KcRLy4f9IuNT3QD0CLXceDmdfBo3sASkU3shc7e8onKXTHoiBtI1hwgiiKhx0+/M6e5pnHBB/UOXmDvZstAXQOHdGlqx3QM5pFa9phThxE1bAb3Ip11HkjSwRgI+TofzYPVKqFz5cYzkPgVWoP8dFBc6EymB4QnJMfmAWDOAnOrHsRtDGz9BMADalLjOaObmKVYy7r7wuGGaGXmNP5UDc2/GYRVKc4gF+bhhQtFsgg/YWu8CZ7SSavX0sgrkXKazWYavuVsJl8KiO0KM7mUzXP3bzrw9Xwb/2YRRGP7N93boBblp0BVpXhhOV1mVcbBlInNQlu34yYVrNn8Mvg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
- MN2PR12MB4062.namprd12.prod.outlook.com (2603:10b6:208:1d0::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Tue, 30 May
- 2023 11:23:01 +0000
-Received: from CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::21ef:9d59:5b2d:f1e8]) by CO6PR12MB5444.namprd12.prod.outlook.com
- ([fe80::21ef:9d59:5b2d:f1e8%4]) with mapi id 15.20.6433.022; Tue, 30 May 2023
- 11:23:01 +0000
-Message-ID: <ed797fc9-98de-bcc0-583c-6b1c4a807204@nvidia.com>
-Date:   Tue, 30 May 2023 12:22:54 +0100
+        with ESMTP id S229739AbjE3L0C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:26:02 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5CEFA0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:25:59 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96f683e8855so623322766b.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:25:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685445958; x=1688037958;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yh8k+8Mg0f8oFwAT69U0IqHzyWcrLwSDiNojC7iPZXQ=;
+        b=LEma82aW/l8N0SmfPHbX/QLW0R3p0hkoV4nIeGyB+5YVZAlj74jznYQm2BEOV1RJJj
+         rgxvsy+LB+xa8IvaSHV0w+z4Iz8unG4TCGFH+a2Lis32aHnmwd8ToBRZAKPYpLHn6oxp
+         Q2Q1JqDuNfLXDCuOHzKC2m9s9Ud4QIajuLDtH6HH93maX0E+K7WD3my9Miup9Nwbd2x1
+         bNoyh8PXA9TByjCKiToByU3f+D5BeX3tumNsf39p/xDR7VDs37fqerDwxajZjjlUaC/k
+         HPu3bDWuCtQQZ3oCRh8/H4DwWqziCzD4zGPv9fRtjH10L8fc2Tm21ITApuxBBPp2WaHN
+         7d1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685445958; x=1688037958;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yh8k+8Mg0f8oFwAT69U0IqHzyWcrLwSDiNojC7iPZXQ=;
+        b=YO6UMwD3oa/WqiSTkDeVYGgcZFTl1nFqYHFoIMl1Iyf84AtskwzeLYhAHgAVSGImwx
+         qOFkYkJvAywkUvByu4FLkKBDWPd211RsNpczMO/xv3+tLtOt1KLN8YYrs62FtSVazMeL
+         pt2TF08wESGY+4jQn5azmA//xsgaW04JMq6TPZO4v1JWqB50jJ7vHJC7P/WxbdIIfSuy
+         gWbOIP2fkfHzb8zv7j45ArAiQF/g73GhG2ZZFGSOpirAoi8danDrFJmUBzBalVH0SMmd
+         S2ByMo6Cb4Cqf3a00wm1kMrS83aayutCUZnmPG0jfdyexaiI3NMNqVJzKSxuPzB+Lo3+
+         2qtA==
+X-Gm-Message-State: AC+VfDy3S1TN/To8pP+hE4fFT9UQU3cglSnaIWxlGR/D65obq+xaW2GZ
+        EJuqAbY7yXy5qX0gOExjQgUujw==
+X-Google-Smtp-Source: ACHHUZ7O7+k0Cn3sF+q3JHVWscMw9ErYLsHc1zaXS47yHrfBrPVt49G8v5yG2yI7zg8xP97bXZXBKQ==
+X-Received: by 2002:a17:907:9805:b0:96f:5902:8c4d with SMTP id ji5-20020a170907980500b0096f59028c4dmr2243915ejc.27.1685445958165;
+        Tue, 30 May 2023 04:25:58 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id pg27-20020a170907205b00b009662d0e637esm7120846ejb.155.2023.05.30.04.25.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 04:25:57 -0700 (PDT)
+Message-ID: <186d6df5-7982-5725-1f66-bef71b504df8@linaro.org>
+Date:   Tue, 30 May 2023 13:25:54 +0200
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH] arm64: tegra: Fix PCIe regulator for Orin Jetson AGX
+Subject: Re: [PATCH v3 2/4] dt-bindings: thermal: tsens: Add ipq9574
+ compatible
 Content-Language: en-US
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Vidya Sagar <vidyas@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
-References: <20230526111727.26058-1-jonathanh@nvidia.com>
- <6dd9edcb-40cf-9873-b8aa-993bb18a3584@nvidia.com>
-In-Reply-To: <6dd9edcb-40cf-9873-b8aa-993bb18a3584@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: LO4P123CA0387.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:18f::14) To CO6PR12MB5444.namprd12.prod.outlook.com
- (2603:10b6:5:35e::8)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|MN2PR12MB4062:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f905e14-b5ed-4532-0833-08db61003a44
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: SvMrW8Y5aDlx5gEP4WfooZ6t+HLr2EcDEZnbd+UynJIHsycxH9BqWpieK4Tb+vkcTMQv2GkKtpctiiZMNynMDzLNu9BCBsBahhbAv3+yxSLz3PaaBWdKCKYXHxuq05c7zgrhtFhx0ZhYcWBcGpWnVHHK36jzSy22tVbOL1YL7hsQfH8LCzy1lQC1vJiAbK14l+nmGBs/USOtCoMTweiNPTeu3qs0uBY1VAEYTzMVahpL15gAqYK1PRM89F6pZrupmf1ta0/95hYB4criNXuK6+7PY3Kpryt2HcWPLrkJDCriERbHwYMLJ4gylo9vkr8QmRT7oInoVHFzYmrgfQNU2S1/8ocSjYBuDVK5chjQcG68YDxaXHbmxYy0Jet86aSbYXhe+RrAj1zVpKDe+8lgzu+xsq3n1HZ+VGb/zHy5u3ftKveKARVK4uawTRErT7fuxd9A3TVU2j0OjI4gcy0gcze/qrQrhRKQZOvrI+ZEwCz8yK/LP7KKfoO3Pk9tc2SGC8hbSKFq8Juv4CgmZOG7rEIZNkBYFzHXyli2AitNjHfer5Genh9men6nURti6AohVlTOgyUMYKrDs//Bt591ExDfwgFONyM7mL4gimBrtYHYqkSNaFLKZ+Ocu+IYtH/CfDRY3Gq5MNcRplv27MjP6g==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(346002)(136003)(376002)(396003)(39860400002)(451199021)(31696002)(86362001)(36756003)(110136005)(478600001)(66556008)(4326008)(66476007)(66946007)(316002)(6486002)(6666004)(8936002)(8676002)(41300700001)(5660300002)(2906002)(38100700002)(2616005)(55236004)(53546011)(6512007)(26005)(6506007)(186003)(83380400001)(31686004)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YmFscnJVVzhaeDNVazl1Y1pNU2ZnSjlPdUtuWTBxSE55LzBlLzExZFA2SkIw?=
- =?utf-8?B?RldwOFNsVGZWUk5WUitURWIxUnRpZzV2TTdCTllWaTJnUjZ1Vzg0eXAxd3B1?=
- =?utf-8?B?MzVXOW83VFkrWXg2S3A0TFgvMG41U210dUZibjgxbi9kZUd2NEV6ZWpiNk1I?=
- =?utf-8?B?T1RRNWJLWkI1UG51VnBpTzdZNVl3dXJaOVJSVGE2ZHlsNW9COHkrRVFTU2Vq?=
- =?utf-8?B?dlpYeVFwU3lWYWN5aUpqaThpdDBicmZVQzIxZnhGOSs4eVptYlNOVjhtL0Iz?=
- =?utf-8?B?WEZ1bW5Tc083a3pFck92Mnl0cTV0NWhZelpCTzUxNzlIbE9MN2RqdFZQS1Qy?=
- =?utf-8?B?bjBNVjZoVHJGWnkzQTNsSmh3eDNEYlg2amdJRFZLZURCWXFxWFI4VGJFSThy?=
- =?utf-8?B?STJBL1J6YUZRRGp6eXpWWERJcE4yaWFlQ3NUazFaTVBzL1hSbmdGMURjbGVF?=
- =?utf-8?B?VkVJODBBb25ITy9HSW5zZDlLSlZQdGZvN3U0SHIyL2tXbnRMSzR4ckxXMnN5?=
- =?utf-8?B?NjJZTXI3bWMwMUxpcGY3bEx5K2RpU1h1VlZoWWtRVFJIVHFod0ozNG1SOHZH?=
- =?utf-8?B?YXZCM1pmTTk1NWM3WmhZOUNXTUFPWUV6NU9Ra0NsUlhkYko3VWh3V0IwZ2tv?=
- =?utf-8?B?dVFsaWZveFFaTnFKdW1Yci9jeDV6NS9vaTlsVHJzajA2Q0FrZmYyYzBJUHRI?=
- =?utf-8?B?SEdpdVJlQVZ2N1VsN2xXWmlNTTBEa1d4MStDTmpjRHBudXFUVEVxVWVLaFFY?=
- =?utf-8?B?anBBdlBid1pvTkNpVkVxQjZqeExzRFZ0bVlVNkNjY2lNeXl2SWQ0UFFZZU9T?=
- =?utf-8?B?RlFiTnBUVGV3VnBTMlhQZEJwYXlsbGFWQ2R2TG9TZzc1SjhqN2VnbitrM0Vn?=
- =?utf-8?B?TDd5OHJQM2JpOWdaU1pSY0ZtWUZOU0wxT0RGMWM5b0tncnMzNmpjTTJWT0cx?=
- =?utf-8?B?Nmk4eG9wVjRsREh2WThzU21YOUpURmlTbmUzR0ZFeVFlVzF6ZGxBalZuZmM4?=
- =?utf-8?B?L3BpOFd4NVF5MHREVXpVbGNlMFdYUVhTc2w4dWRINFBnVk94R3dWTlM1bld4?=
- =?utf-8?B?ZXlsWWNrdTFWU0ljQzcxenJIaFVMbk1TQkdEZVczNDlnTDNFeTBPRDJxYlFP?=
- =?utf-8?B?QWFZUEs5UmVhSXFqSEUwZ3o2ckF0MmZvbldCM3k5M0wzMlRPMzRrN2xYZllm?=
- =?utf-8?B?dnBWMjJkczNMbWtrUEhxR25wc2UvemZEeG5YbXNwRmEvcHVtSWlhSWRFdUZO?=
- =?utf-8?B?VjQwSlhZeTNBSWdrbnFrK0VKTytCLzY2bjRCSWRwMWt2YkQ5aklVeS80dCtY?=
- =?utf-8?B?R043b3lnUEhVeUZtTlJUVWVKM3hKMjJ1d2VtWkVOVHdraVA3WWV2UG40RG9V?=
- =?utf-8?B?a0NQUlJCUVNQeUExY1J1M0l6VDhGVUU0Zk9HKzJ1c3hhcGVTZ2UvN085VmJs?=
- =?utf-8?B?TStVcGtBRVlOOXowcUNNaTRFR1R6MHd2UTYrU21lbzhTN1c0MjZLZytxL0dN?=
- =?utf-8?B?bEVwcG8wd2lrSjhzdEFSNXZxbGMxbTc1SHFUc2Q5d0xYYUJadTRMNTFucVV1?=
- =?utf-8?B?czJaYk1sb2RGaStyOW9qdXRNdkRpb2hkSXJUMWlDY1RuZVlHTENmdVhKOExu?=
- =?utf-8?B?UWhZMWRlSjc0ZHdobTJleXVUTjIveFErdlh6RXdnYkpVWElWVVZPYm9DL1pK?=
- =?utf-8?B?T09MSWk2NS9iYXY0WnlKYW5JeDlsaW5vNlZ3UW1qbVE2a3NGZkRCZFZ1Rk9C?=
- =?utf-8?B?RzBNUVU5WG9xSWJXM251bHNpZzlwTGxzQ0VyeVpBZE5JUUw2dURtVHFnU3FE?=
- =?utf-8?B?bWFML3JCRVJKMi9VdzB5MlJZZHhOak43ZzJVZnBPMUNvTkFrT3ZaYVZuMnJa?=
- =?utf-8?B?bXBjcFNTMGFNWnpVWWNPM3pETTNML0pYTTBnbGlGLytWUTY5S2pKdkJEUVVQ?=
- =?utf-8?B?dlZvY1NrS3g1Tjk1Q0Rac3V5cFNXdURyTmxIdTNGOWtsRkEzVDZwWnkwdlFS?=
- =?utf-8?B?RWNsWUFsL2djRUxLdElaNmpyT2VKTzR2MjBXeEdwT2UrNkk0cGkwaCt0RHBo?=
- =?utf-8?B?OXIzVm96WEt5YnpuWHZwQUpTVDlKb25uK21TNTRkZ3FMckxPN012dklRL3k0?=
- =?utf-8?Q?e2kqyLMfzkq5VkhYclVkiqJr+?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f905e14-b5ed-4532-0833-08db61003a44
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2023 11:23:01.1382
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PY/w7ubpyjEAb65Q7xYc5FYJp6Eee30E20qfvZwC5BWlQcOlPG2E+kdy8mqtJgQQnIT0sYSxGsYZ/0hWeEd15A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4062
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        amitk@kernel.org, thara.gopinath@gmail.com, rafael@kernel.org,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Praveenkumar I <quic_ipkumar@quicinc.com>
+References: <37adcf5d8d545a076e8ed971a4fb6c6c2833ef3c.1684140883.git.quic_varada@quicinc.com>
+ <b7e749ff-f4f0-0e61-9aae-876db4278fbc@linaro.org>
+ <20230516120426.GA1679@varda-linux.qualcomm.com>
+ <1999753b-ceee-d66c-9a48-cbcbb8e6236e@linaro.org>
+ <20230517055726.GA3165@varda-linux.qualcomm.com>
+ <cfba78d7-e563-4544-00f3-0991b91eb1f3@linaro.org>
+ <20230518054054.GA998@varda-linux.qualcomm.com>
+ <fe1d81d2-52e6-7d2d-8d6c-ffdcbb8ccc89@linaro.org>
+ <20230518090503.GA9173@varda-linux.qualcomm.com>
+ <24b60ca3-b6b9-662f-03c8-df1536b52bc9@linaro.org>
+ <20230523101903.GA31656@varda-linux.qualcomm.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230523101903.GA31656@varda-linux.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 26/05/2023 12:19, Jon Hunter wrote:
-> Adding linux-tegra ...
+On 23/05/2023 12:19, Varadarajan Narayanan wrote:
+> On Thu, May 18, 2023 at 01:06:49PM +0200, Krzysztof Kozlowski wrote:
+>> On 18/05/2023 11:05, Varadarajan Narayanan wrote:
+>>> On Thu, May 18, 2023 at 09:09:12AM +0200, Krzysztof Kozlowski wrote:
+>>>> On 18/05/2023 07:40, Varadarajan Narayanan wrote:
+>>>>> On Wed, May 17, 2023 at 09:00:49AM +0200, Krzysztof Kozlowski wrote:
+>>>>>> On 17/05/2023 07:57, Varadarajan Narayanan wrote:
+>>>>>>> Part-1 is adding the 'const' entries at the beginning i.e.
+>>>>>>>
+>>>>>>> 	+      - const: qcom,tsens-v0_1
+>>>>>>> 	+      - const: qcom,tsens-v1
+>>>>>>> 	+      - const: qcom,tsens-v2
+>>>>>>> 	+      - const: qcom,ipq8074-tsens
+>>>>>>>
+>>>>>>> Part-2 is changing from one valid syntax to another i.e.
+>>>>>>>
+>>>>>>> 	+        items:
+>>>>>>> 	+          - enum:
+>>>>>>> 	+              - qcom,ipq9574-tsens
+>>>>>>> 	+          - const: qcom,ipq8074-tsens
+>>>>>>>
+>>>>>>> Without both of the above changes, either or both of dtbs_check
+>>>>>>> & dt_binding_check fails. So, it is not possible to just add the
+>>>>>>> "valid hunk" (part-2) alone.
+>>>>>>
+>>>>>> Of course it is. All schema files work like that...
+>>>>>>>
+>>>>>>> If having both part-1 and part-2 in the same patch is not
+>>>>>>> acceptable, shall I split them into two patches? Please let me know.
+>>>>>>
+>>>>>> No, hunk one is not justified.
+>>>>>
+>>>>> For the other compatibles, the enum entries and const/fallback
+>>>>> entries are different. For the 9574 & 8074 case, we want to have
+>>>>> qcom,ipq8074-tsens as both enum and const/fallback entry. Hence,
+>>>>> if we don't have the first hunk, dtbs_check fails for 8074
+>>>>> related dtbs
+>>>>>
+>>>>> 	ipq8074-hk01.dtb: thermal-sensor@4a9000: compatible: 'oneOf' condition
+>>>>> 		['qcom,ipq8074-tsens'] is too short
+>>>>
+>>>> Why? It is already there. Open the file and you will see that this is
+>>>> already covered.
+>>>
+>>> I guess dtbs_check doesn't like the same value being a const and
+>>> a oneof entry.
+>>
+>> I don't understand.
 > 
-> On 26/05/2023 12:17, Jon Hunter wrote:
->> The PCIe slot on the Jetson Orin AGX is not working and PCIe cards
->> are not detected. The regulator for the 3.3V regulator for the PCIe is
->> using the wrong GPIO for turning on the regulator. Fix this by updating
->> the 3.3V regulator to use the correct GPIO.
+>       - description: v2 of TSENS with combined interrupt
+>         items:
+>           - enum:
+>               - qcom,ipq9574-tsens	<--- one of the compatible entries
+>           - const: qcom,ipq8074-tsens	<--- fallback entry
+> 
+> In this patch, we want 8074 to act as a compatible entry for
+> ipq8074*.dts and fallback entry for ipq9574.dtsi. That is why I
+> believe we are not able to just add 9574 and get it to pass
+> dtbs_check and dt_binding_check.
+
+Nope, no other bindings have any problems with that. Fix your syntax as
+I said.
+
+> 
+>>>  Have attached the file, please see if something is
+>>> not in order.
 >>
->> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
->> ---
->>   arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
+>> I don't know what changed there. Please work on patches.
 >>
->> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi 
->> b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
->> index e161618cfca8..4dce2e214002 100644
->> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
->> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
->> @@ -142,7 +142,7 @@ vdd_3v3_pcie: regulator-vdd-3v3-pcie {
->>           regulator-name = "VDD_3V3_PCIE";
->>           regulator-min-microvolt = <3300000>;
->>           regulator-max-microvolt = <3300000>;
->> -        gpio = <&gpio TEGRA234_MAIN_GPIO(Z, 2) GPIO_ACTIVE_HIGH>;
->> +        gpio = <&gpio TEGRA234_MAIN_GPIO(H, 4) GPIO_ACTIVE_HIGH>;
+>>>
+>>>> If you remove it, then yes, you will see errors and the answer is: do
+>>>> not remove it.
+>>>
+>>> I haven't removed it.
+>>
+>> You did. Look:
+>>
+>>        - description: v2 of TSENS with combined interrupt
+>> -        enum:
+>> -          - qcom,ipq8074-tsens
+>>
+>> The first character in the diff (-) means removal.
+> 
+> It changed from 'enum' to 'const', that is why I said it is not
+> removed.
+
+You removed that hunk. Diff hunk. It does not matter that you added
+similar one in different place. You removed this one. Don't.
+
+> 
+>>> For this patch, ipq8074-tsens changed from
+>>> being an oneof enum entry to a const entry. Probably, that is why
+>>> dtbs_check is giving these errors.
+>>
+>> You removed the entry which you should not have touched.
+>>
+>>>
+>>>>> 	ipq8074-hk10-c2.dtb: thermal-sensor@4a9000: compatible: 'oneOf' condition
+>>>>> 		['qcom,ipq8074-tsens'] is too short
+>>>>>
+>>>>> 	ipq8074-hk10-c1.dtb: thermal-sensor@4a9000: compatible: 'oneOf' condition
+>>>>> 		['qcom,ipq8074-tsens'] is too short
+>>>>>
+>>>>> I'm not sure of the correct solution. Having the first hunk
+>>>>> solves the above dtbs_check errors, so went with it. I'm able to
+>>>>> avoid dtbs_check errors with just one entry in the first hunk.
+>>>>
+>>>> You made multiple changes in one patch which is not correct. Your goal
+>>>> is to add only one change - ipq9574 followed by ipq8074. Add this one.
+>>>> Don't touch others.
+>>>
+>>> But that breaks dtbs_check.
+>>
+>> All other cases, hundreds of other binding files, do not have problem.
+>> Only this one "breaks dtbs_check". No, it does not.
+>>
+>> Whatever is broken is result of your removal of unrelated pieces.
+> 
+> Not sure about other binding files. Probably they don't have the
+> same value for fallback and normal compatible. If there is such
+> an example binding file, will replicate that syntax/structure for
+> ipq9574 too.
+
+No. There are many examples of other bindings which do not have any
+problems with it and what we talk here is common pattern. You created
+some fake problem of wrong syntax and then fixed it with different
+approach...
+
+> 
+> In the 'nvidia,tegra210-ope' example (https://elixir.bootlin.com/linux/v6.3-rc6/source/Documentation/devicetree/bindings/sound/nvidia,tegra210-ope.yaml#L25)
+> too 'nvidia,tegra210-ope' is listed twice
+> 
+>       - const: nvidia,tegra210-ope	<===
+>       - items:
+>           - enum:
+>               - nvidia,tegra234-ope
+>               - nvidia,tegra194-ope
+>               - nvidia,tegra186-ope
+>           - const: nvidia,tegra210-ope	<===
+> 
+>>>>>  	+      - const: qcom,ipq8074-tsens
+>>>>>
+>>>>> Please let me know if there is a better way to resolve this or we
+>>>>> can have just the 8074 entry in the first hunk.
+>>>>
+>>>> You only need to add new item on the oneOf list:
+>>>>  - enum
+>>>>      - ipq9574
+>>>>  - const: ipq8074
+>>>
+>>> The "['qcom,ipq8074-tsens'] is too short" errors were generated
+>>> with the above snippet only. Please see the attachment
+>>
+>> It's not true. The error you see is result because you removed something
+>> you should not. I did not ask you to remove anything. So repeating -
+>> "add new item". Adding is not "removal and adding". Adding is just "adding".
+> 
+> See below for the changes that were tried and the corresponding errors.
+> 
+> (1) No lines removed
+> 
+> 	@@ -66,6 +66,7 @@
+> 	       - description: v2 of TSENS with combined interrupt
+> 		 enum:
+> 		   - qcom,ipq8074-tsens
+> 	+          - qcom,ipq9574-tsens
+
+This does not make sense, right? Let's not discuss solutions which do
+not make sense...
+
+> 
+> 	   reg:
+> 	     items:
+> 
+> 	dt_binding_check: No errors
+> 
+> 	dtbs_check	:
+> 		arch/arm64/boot/dts/qcom/ipq9574-rdp433.dtb: thermal-sensor@4a9000: compatible: 'oneOf' conditional failed, one must be fixed:
+> 	        ['qcom,ipq9574-tsens', 'qcom,ipq8074-tsens'] is too long
+> 
+> (2) No lines removed
+> 
+> 	@@ -66,6 +66,8 @@
+> 	       - description: v2 of TSENS with combined interrupt
+> 		 enum:
+> 		   - qcom,ipq8074-tsens
+> 	+          - qcom,ipq9574-tsens
+> 	+        - const: qcom,ipq8074-tsens
+
+You change existing entry, which breaks it. Don't.
+
+> 
+> 	   reg:
+> 	     items:
+> 
+> 	dt_binding_check: No errors
+> 
+> 	dtbs_check	: Gives errors for all the DTS files that have tsens-v0_1, tsens-v2, tsens-v1. Copy pasted a sample for each one of them
+> 		arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dtb: /soc@0/thermal-sensor@4a9000: failed to match any schema with compatible: ['qcom,msm8916-tsens', 'qcom,tsens-v0_1']
+> 		arch/arm64/boot/dts/qcom/msm8953-xiaomi-tissot.dtb: /soc@0/thermal-sensor@4a9000: failed to match any schema with compatible: ['qcom,msm8953-tsens', 'qcom,tsens-v2']
+> 		arch/arm64/boot/dts/qcom/msm8956-sony-xperia-loire-suzu.dtb: /soc@0/thermal-sensor@4a9000: failed to match any schema with compatible: ['qcom,msm8956-tsens', 'qcom,tsens-v1']
+> 
+> 
+> (3) No lines removed
+> 	@@ -19,6 +19,7 @@
+> 	 properties:
+> 	   compatible:
+> 	     oneOf:
+> 	+      - const: qcom,ipq8074-tsens
+> 	       - description: msm8960 TSENS based
+> 		 items:
+> 		   - enum:
+> 	@@ -66,6 +67,8 @@
+> 	       - description: v2 of TSENS with combined interrupt
+> 		 enum:
+> 		   - qcom,ipq8074-tsens
+> 	+          - qcom,ipq9574-tsens
+> 	+        - const: qcom,ipq8074-tsens
+
+Don't change existing entry.
+
+> 
+> 	   reg:
+> 	     items:
+> 
+> 	dt_binding_check: Same as above
+> 
+> 	dtbs_check	: Same as above
+> 
+> (4) Change 8074 from enum to const
+> 	@@ -19,6 +19,7 @@
+> 	 properties:
+> 	   compatible:
+> 	     oneOf:
+> 	+      - const: qcom,ipq8074-tsens
+> 	       - description: msm8960 TSENS based
+> 		 items:
+> 		   - enum:
+> 	@@ -64,8 +65,10 @@
+> 		   - const: qcom,tsens-v2
+> 
+> 	       - description: v2 of TSENS with combined interrupt
+> 	-        enum:
+> 	-          - qcom,ipq8074-tsens
+> 	+        items:
+> 	+          - enum:
+> 	+              - qcom,ipq9574-tsens
+> 	+          - const: qcom,ipq8074-tsens
+
+Don't touch existing entry. Third time.
+
+> 
+> 	   reg:
+> 	     items:
+> 
+> 	dt_binding_check: No errors
+> 
+> 	dtbs_check	: No errors
+> 
+> But (4) doesn't seem acceptable. Any other alternative to resolve this?
+
+Don't touch existing entry. Fourth time. Add a new one matching your
+combination.
 
 
-Apparently the original GPIO we had was for pre-production boards and 
-hence the mistake was made. Let me know if you want me to add that 
-detail to the commit message.
+Best regards,
+Krzysztof
 
-Jon
-
--- 
-nvpublic
