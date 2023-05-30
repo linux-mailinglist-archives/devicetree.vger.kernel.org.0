@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA532715E62
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 14:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C801B715E5B
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 14:04:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232230AbjE3MEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 08:04:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36522 "EHLO
+        id S232196AbjE3MEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 08:04:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232184AbjE3MEJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 08:04:09 -0400
+        with ESMTP id S232161AbjE3MEF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 08:04:05 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33113110
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 05:04:06 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B17FEEA
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 05:04:04 -0700 (PDT)
 Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1q3y4s-0000DN-Ma; Tue, 30 May 2023 14:03:50 +0200
+        id 1q3y4s-0000Co-6I; Tue, 30 May 2023 14:03:50 +0200
 Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
         by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
         (envelope-from <ore@pengutronix.de>)
-        id 1q3y4r-003rWz-Tu; Tue, 30 May 2023 14:03:49 +0200
+        id 1q3y4r-003rWl-EY; Tue, 30 May 2023 14:03:49 +0200
 Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <ore@pengutronix.de>)
-        id 1q3y4o-00C3vp-Rw; Tue, 30 May 2023 14:03:46 +0200
+        id 1q3y4o-00C3vz-SS; Tue, 30 May 2023 14:03:46 +0200
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
@@ -36,9 +36,9 @@ Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
         linux-arm-kernel@lists.infradead.org,
         NXP Linux Team <linux-imx@nxp.com>,
         Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH v1 10/15] ARM: dts: imx6dl: prtmvt: fix different USB related warnings
-Date:   Tue, 30 May 2023 14:03:40 +0200
-Message-Id: <20230530120345.2874900-11-o.rempel@pengutronix.de>
+Subject: [PATCH v1 11/15] ARM: dts: imx6qp: prtwd3: Enable USB over current detection on USB OTG port
+Date:   Tue, 30 May 2023 14:03:41 +0200
+Message-Id: <20230530120345.2874900-12-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230530120345.2874900-1-o.rempel@pengutronix.de>
 References: <20230530120345.2874900-1-o.rempel@pengutronix.de>
@@ -57,34 +57,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix USB-related warnings in imx6dl prtmvt device tree by disabling
-unused usbphynop1 and usbphynop2 USB PHYs and over-current detection
-which is not supported on USB h1 port. This fixes the following warnings
-with the current kernel:
-usb_phy_generic usbphynop1: dummy supplies not allowed for exclusive requests
-usb_phy_generic usbphynop2: dummy supplies not allowed for exclusive requests
-imx_usb 2184200.usb: No over current polarity defined
-
-By the way, fix over-current detection on usbotg port.
+The imx6qp-prtwd3 board supports USB over current detection on the USB
+OTG port, however, it was previously disabled in the device tree. This
+commit enables the over current detection by changing the device tree
+setting from 'disable-over-current' to 'over-current-active-low'. This
+could potentially protect the USB port from damage due to over current
+situations.
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 ---
- arch/arm/boot/dts/imx6dl-prtmvt.dts | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/imx6qp-prtwd3.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx6dl-prtmvt.dts b/arch/arm/boot/dts/imx6dl-prtmvt.dts
-index 5f4fa796ca18..773a84a5739d 100644
---- a/arch/arm/boot/dts/imx6dl-prtmvt.dts
-+++ b/arch/arm/boot/dts/imx6dl-prtmvt.dts
-@@ -560,6 +560,7 @@ &usbh1 {
- 	pinctrl-names = "default";
- 	phy_type = "utmi";
- 	dr_mode = "host";
-+	disable-over-current;
- 	status = "okay";
- };
- 
-@@ -569,10 +570,18 @@ &usbotg {
+diff --git a/arch/arm/boot/dts/imx6qp-prtwd3.dts b/arch/arm/boot/dts/imx6qp-prtwd3.dts
+index a8154c901d4f..657d112ac3a1 100644
+--- a/arch/arm/boot/dts/imx6qp-prtwd3.dts
++++ b/arch/arm/boot/dts/imx6qp-prtwd3.dts
+@@ -518,7 +518,7 @@ &usbotg {
  	pinctrl-0 = <&pinctrl_usbotg>;
  	phy_type = "utmi";
  	dr_mode = "host";
@@ -93,17 +82,6 @@ index 5f4fa796ca18..773a84a5739d 100644
  	status = "okay";
  };
  
-+&usbphynop1 {
-+	status = "disabled";
-+};
-+
-+&usbphynop2 {
-+	status = "disabled";
-+};
-+
- &usdhc1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_usdhc1>;
 -- 
 2.39.2
 
