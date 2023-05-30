@@ -2,129 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 076767166B5
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 17:13:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C76E87166DC
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 17:20:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231261AbjE3PN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 11:13:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49500 "EHLO
+        id S229697AbjE3PUH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 11:20:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231860AbjE3PN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 11:13:27 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24FD5B0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 08:13:25 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2af2696fd1cso48708551fa.2
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 08:13:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685459603; x=1688051603;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q0/z84vpwzDI0aF57Cc6ksVNfZpqpUHT2FEMjJzlh94=;
-        b=DLZkgFZOM1gND9DmdiaAJM9g+tCWyWEsy1rkK9h2UTsv0Xf9cVeV39g4AF38Q4a/Hw
-         N6HHkBeepqYGI9sL+Ukzk6jnP7mAPiRveUI36F787m14Px3yeYH7NzwNJF/AZafarbVq
-         XHnNv5dQTUQ6/m4RGdrYDAW0Dqd2mWwiyd2xjia9Q+oZsYiMigwHxBusSGdfTTZBdIna
-         z+TYxlrWo8LbxJFUjuv79mi5xPR7boJfEpvpRTpFXH6APgKufjExoZ68nUzFXjBhlQjJ
-         xYhGnSOM33ER6+mwu5KyqFhFGrvaKyrkH+KNckfje7ENSrETpl2ps6DKAk1ZUm/dqRj3
-         E2Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685459603; x=1688051603;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q0/z84vpwzDI0aF57Cc6ksVNfZpqpUHT2FEMjJzlh94=;
-        b=bSq5RGUgI+rxqThtIWV7WWwA6201Km+t+K/IcLq5DEg+tfz9qr5FTBpQnlrpkJGWKC
-         9pYLjjKIdEte9WJM4qldFf5JW8PgBKYBj3HXazx9m7c7APryPmYjm58zQ93AfwF/Qj9J
-         ldKK3f/kzB0iUHyOM6fPvIBiVOlbflv6K5a2TFuoNcncZ6U175twfvhX0gXGIDwBBpPn
-         NEpAgvQqDviz81JJrpN5wV9PQY3oLicoeZNDNL3x1gUQj2Kdt43srpN94/bit9oKcg2M
-         CYe9isy+fIV6RhwDOYHaU3g3JP/qAubrl/4pHWjAH0xoVZiZpmAPyznGfCDuIVVayFRg
-         Fbpg==
-X-Gm-Message-State: AC+VfDy9fH2XgsQKEpmcUe93U6uy7dbxvkeQkOTqHwtUk79Oi8opcQru
-        AF9qWhs4H6aa4UIkYjyRdsSHAg==
-X-Google-Smtp-Source: ACHHUZ7SvKJbZWJPmeT0C+ABZU3yfrSxqfz3eGl3iFFeZe4ORHtBEQZ2gfN0Dz9DmIpJ5trb7iGK5w==
-X-Received: by 2002:a2e:9e59:0:b0:2af:1119:8c77 with SMTP id g25-20020a2e9e59000000b002af11198c77mr972198ljk.49.1685459603419;
-        Tue, 30 May 2023 08:13:23 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id q26-20020a17090622da00b0096f7cf96525sm7578171eja.146.2023.05.30.08.13.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 08:13:23 -0700 (PDT)
-Message-ID: <bf204c54-a51b-21d0-9fbf-3729d277ef76@linaro.org>
-Date:   Tue, 30 May 2023 17:13:20 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v4 2/4] dt-bindings: display: st,stm32-dsi: Remove
- unnecessary fields
-Content-Language: en-US
-To:     Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Cc:     linux-stm32@st-md-mailman.stormreply.com,
+        with ESMTP id S230178AbjE3PUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 11:20:06 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3CA9E8
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 08:20:04 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q418d-0007zm-KT; Tue, 30 May 2023 17:19:55 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q418c-003uGX-It; Tue, 30 May 2023 17:19:54 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1q418b-009XZl-Lk; Tue, 30 May 2023 17:19:53 +0200
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        David Airlie <airlied@gmail.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        kernel@dh-electronics.com, Marek Vasut <marex@denx.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        linux-arm-kernel@lists.infradead.org,
         Conor Dooley <conor+dt@kernel.org>
-References: <20230529091359.71987-1-raphael.gallais-pou@foss.st.com>
- <20230529091359.71987-3-raphael.gallais-pou@foss.st.com>
- <20230530122736.tflfu5cugbd7ooup@krzk-bin>
- <92d5a699-9f5d-2e40-ca73-4604f3e5a657@foss.st.com>
- <af31ae21-2711-2fac-e885-b3bbbcb12be8@foss.st.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <af31ae21-2711-2fac-e885-b3bbbcb12be8@foss.st.com>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Kent Gibson <warthog618@gmail.com>
+Subject: [PATCH v2 0/2] gpio: introduce hog properties with less ambiguity
+Date:   Tue, 30 May 2023 17:19:44 +0200
+Message-Id: <20230530151946.2317748-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1658; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=wiI74e46ToWHZc/6ArbrTrYVH4iGdfuKtXso1nG5FLs=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBkdhQA++q78TcFbOUXN57P/8g0FuP9WF5sfuwzZ OEauF+GOLaJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZHYUAAAKCRCPgPtYfRL+ TvX+B/913rRAOd36p3+tdaHmShzFshqd2HddX4VTqsprTW8wSjA4926VYIZfevmypYshVDt0kFx j0ZHuCKVjix64ioUR/xqigdOddTzMbt47eBlap1POLJ+8FgmTNyiFnbtzaTkziVnYms2V0WUm59 xYNbkmynuHH8OtW5UvtLijmsAu48ahEv4PfM15hHWQrxJeQHc/F/oiMmbGv7onTvqp3JCoYpTSb Psf9Yp8NNPiIELRt+skmO2tU9PGZhnYWZGwd1c0HYDWP6Fq7wXRYUm1WP49plEQKWWik9phmQgL PEvFu5tsGVQ+j5qzfl1HXw7v2RpxZTcX4Xb6NfjFjC6xL16t
+X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2023 15:38, Raphael Gallais-Pou wrote:
-> 
-> On 5/30/23 15:30, Alexandre TORGUE wrote:
->> On 5/30/23 14:27, Krzysztof Kozlowski wrote:
->>> On Mon, 29 May 2023 11:13:57 +0200, Raphael Gallais-Pou wrote:
->>>> "#address-cells" and "#size-cells" are two properties that are not
->>>> mandatory. For instance, the DSI could refer to a bridge outside the scope
->>>> of the node rather than include a 'panel@0' subnode. By doing so, address
->>>> and size fields become then unnecessary, creating a warning at build time.
->>>>
->>>> Signed-off-by: Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
->>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->>>> Reviewed-by: Marek Vasut <marex@denx.de>
->>>> ---
->>>>   Documentation/devicetree/bindings/display/st,stm32-dsi.yaml | 2 --
->>>>   1 file changed, 2 deletions(-)
->>>>
->>>
->>> Running 'make dtbs_check' with the schema in this patch gives the
->>> following warnings. Consider if they are expected or the schema is
->>> incorrect. These may not be new warnings
->> I checked it before merging the series on stm32-next tree. I didn't get this
->> error. I didn't check commit per commit.
->>
->> Do you get this error after merging the whole series ?
-> 
-> 
-> I think this is because of the order of the patches within the serie. The patch
-> correcting the yaml is before those modifying the device-trees. This could
-> explain warnings rise up when checking patch per patch. However I did not get
-> any errors on top of  the whole serie.
+Hello,
 
-Yeah. Ignore the report if you tested it by yourself.
+this is another approach after
+https://lore.kernel.org/linux-gpio/20210503210526.43455-1-u.kleine-koenig@pengutronix.de
+two years ago. I switched back to "active" and "inactive" from
+"asserted" and "deasserted". The poll about the naming is ambigous, but
+I think with a slight preference of active/inactive over
+asserted/deasserted (with my unbiased self preferring active/inactive,
+too :-)
 
-Best regards,
-Krzysztof
+Rob Herring acked patch #1 and Linus Walleij acked patch #2 of the
+asserted/deasserted variant back then, I dropped these as the change is
+too relevant IMHO.
+
+In the previous post I had some inconsistencies that should be gone now.
+
+And Andy wrote:
+> I like the idea (with active-inactive terms), but...
+> 
+> It’s a half baked solution. Please use fwnode to cover all possible
+> providers.
+
+which I didn't address because I want to change what is currently
+supported and not introduce new support. Adding fwnode is orthogonal to
+this renaming. I didn't find any other more general implementation that
+would affect more than "of" for output-high and output-low. Please tell me
+if I missed something.
+
+Best regards
+Uwe
+
+Uwe Kleine-König (2):
+  dt-bindings: gpio: introduce hog properties with less ambiguity
+  gpio: use "active" and "inactive" instead of "high" and "low" for output hogs
+
+ Documentation/devicetree/bindings/gpio/gpio.txt | 16 +++++++++++-----
+ drivers/gpio/gpiolib-of.c                       | 10 ++++++++--
+ include/linux/gpio/consumer.h                   | 14 ++++++++++----
+ 3 files changed, 29 insertions(+), 11 deletions(-)
+
+
+base-commit: 8c33787278ca8db73ad7d23f932c8c39b9f6e543
+-- 
+2.39.2
 
