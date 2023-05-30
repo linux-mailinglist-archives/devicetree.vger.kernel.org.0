@@ -2,56 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3E79715BEE
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 12:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EED9715BF6
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 12:39:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbjE3KgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 06:36:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34902 "EHLO
+        id S229722AbjE3KjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 06:39:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229741AbjE3KgF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 06:36:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E42493;
-        Tue, 30 May 2023 03:36:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BDE25622ED;
-        Tue, 30 May 2023 10:36:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2088C433D2;
-        Tue, 30 May 2023 10:36:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1685442963;
-        bh=ZVai/mTaWfY135wWyLAju++agFOOV34SkE1c25xveCs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EhKNtA9O9eeCZBKYvyCToCBa93l5OpVA575gmbD/JKdy6STHbYEpPWfC2zxA3SNQd
-         iPNXnyKOPfK7IHeVRpvVtLChXXeYrWKBfudZV1RNamlo8w6YSqIVFndISjI4r+cxap
-         t5JEKSt3uUStWoYByKntvhOGSGOv9gLYcLNZ/qcg=
-Date:   Tue, 30 May 2023 11:36:00 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Jisheng Zhang <jszhang@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v4 04/10] serial: bflb_uart: add Bouffalolab UART Driver
-Message-ID: <2023053010-gondola-luminous-f5e7@gregkh>
-References: <20230518152244.2178-1-jszhang@kernel.org>
- <20230518152244.2178-5-jszhang@kernel.org>
+        with ESMTP id S229550AbjE3KjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 06:39:18 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F5848F
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 03:39:16 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2af1a7d2f6aso45962301fa.1
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 03:39:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685443155; x=1688035155;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Pp01pTU0LLZTAqdqXz+wrNOlBn7PTZXDx908dElQMmU=;
+        b=i11BM9FhvI10iSIagRDQ8gpSTj3qxQckeRSmzTUuvItuX56xzU4bfUlSsI5OwoG0hh
+         Pk1gSVtlbE1TUs4JOQZ8DxNKjzZAZv3Y3O3kZJBgvVhsWVwEPyWR4BDxLJpCivEAW82h
+         8u25JiPhFjjei3EnqA55tDbCQK+FV7t20uwyfWQvyqo0KXokG2934MfVW2OnMoSPwxPf
+         IMa76io93hKPQ6wqJ/Y1OelhxYJjpt95Sq56VccMXjIerpqdxCt8CHLpOabewvg0YiRc
+         t2kp6plbJGB+cYQghvKNbECL3FNlfy7nPhs4eO6rjpXaDLlaT8I8+Dg9yrIyHsvQXEzE
+         c33g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685443155; x=1688035155;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pp01pTU0LLZTAqdqXz+wrNOlBn7PTZXDx908dElQMmU=;
+        b=XUDGJrgYjludE/0KRfZMZHjMTuDunYtb45km7uVDBHZrAF3ECASxcObOFqyTx8n0Ou
+         +yQ65LJuATsjsHP32yY45SGhAhYO+3ZsGJYjm/LoAoyezP+Ce1PtriaLUBRRhqjOJOml
+         VlWofO09SysTtfqSCsfXFmSqE5xu+aJjTJpITYGJe2b/8l0JbAMEuR9GGRVjkExgxpa0
+         ElLeNvrBbhYrqItbSPNgd2rozZPsrdTLxLDs2p7pwauUkBqlRUzQ/8v4EwCfNNmpEMJA
+         vpl2cPHf6iWWJBu1gmXgUDppYY7SN232hfANAZw6z1sLKH47DDfanokuRn8A/iPYTqCW
+         yt7w==
+X-Gm-Message-State: AC+VfDyW4SQjLSI7rl2K6hnHA8oXbbIFIvBQNifzfiSkTXmb5Xc1EfI1
+        Gkjt2eJ5vg8EKj0onhOXuPL+xA==
+X-Google-Smtp-Source: ACHHUZ4/Nn6vN7DTk9A+WMkb82XFH7/E/6AkovjSiRTQrlUjFU5Vfbhe1lvhGSIesALarPLePLnDZg==
+X-Received: by 2002:a2e:9f01:0:b0:2a7:98b2:923b with SMTP id u1-20020a2e9f01000000b002a798b2923bmr549563ljk.0.1685443154914;
+        Tue, 30 May 2023 03:39:14 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id i10-20020a2e808a000000b002adc2fe3fc8sm2814482ljg.4.2023.05.30.03.39.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 03:39:14 -0700 (PDT)
+Message-ID: <821eff3e-67e1-6398-b9a0-0de7cd149e36@linaro.org>
+Date:   Tue, 30 May 2023 12:39:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230518152244.2178-5-jszhang@kernel.org>
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] ARM: dts: imx6sll-evk: add eMMC node support
+To:     Bough Chen <haibo.chen@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20230518084733.344162-1-haibo.chen@nxp.com>
+ <8fba7dee-e445-8658-fe2f-d14793f9a343@linaro.org>
+ <DB7PR04MB4010031616E89061103CF5B9907C9@DB7PR04MB4010.eurprd04.prod.outlook.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DB7PR04MB4010031616E89061103CF5B9907C9@DB7PR04MB4010.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,207 +84,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 18, 2023 at 11:22:38PM +0800, Jisheng Zhang wrote:
-> Add the driver for Bouffalolab UART IP which is found in Bouffalolab
-> SoCs such as bl808.
-
-New uarts are being created that are NOT 8250-like?  Why????
-
-
+On 19/05/2023 08:07, Bough Chen wrote:
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: 2023年5月18日 20:10
+>> To: Bough Chen <haibo.chen@nxp.com>; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>> shawnguo@kernel.org; s.hauer@pengutronix.de
+>> Cc: kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx
+>> <linux-imx@nxp.com>; devicetree@vger.kernel.org
+>> Subject: Re: [PATCH] ARM: dts: imx6sll-evk: add eMMC node support
+>>
+>> On 18/05/2023 10:47, haibo.chen@nxp.com wrote:
+>>> From: Haibo Chen <haibo.chen@nxp.com>
+>>>
+>>> On imx6sll-evk board, eMMC is connect on the usdhc2.
+>>
+>>
+>>> +	pinctrl_usdhc2: usdhc2grp {
+>>> +		fsl,pins = <
+>>> +			MX6SLL_PAD_SD2_CMD__SD2_CMD		0x17059
+>>> +			MX6SLL_PAD_SD2_CLK__SD2_CLK		0x13059
+>>> +			MX6SLL_PAD_SD2_DATA0__SD2_DATA0		0x17059
+>>> +			MX6SLL_PAD_SD2_DATA1__SD2_DATA1		0x17059
+>>> +			MX6SLL_PAD_SD2_DATA2__SD2_DATA2		0x17059
+>>> +			MX6SLL_PAD_SD2_DATA3__SD2_DATA3		0x17059
+>>> +			MX6SLL_PAD_SD2_DATA4__SD2_DATA4		0x17059
+>>> +			MX6SLL_PAD_SD2_DATA5__SD2_DATA5		0x17059
+>>> +			MX6SLL_PAD_SD2_DATA6__SD2_DATA6		0x17059
+>>> +			MX6SLL_PAD_SD2_DATA7__SD2_DATA7		0x17059
+>>> +			MX6SLL_PAD_GPIO4_IO21__SD2_STROBE	0x13059
+>>> +		>;
+>>> +	};
+>>> +
+>>> +	pinctrl_usdhc2_100mhz: usdhc2grp_100mhz {
+>>
+>> No underscores in node names. Schema expects certain pattern, so be sure to
+>> test it. Please run `make dtbs_check` (see
+>> Documentation/devicetree/bindings/writing-schema.rst for instructions).
 > 
-> UART driver probe will create path named "/dev/ttySx".
+> Hi Krzvsztof,
 > 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->  drivers/tty/serial/Kconfig       |  18 +
->  drivers/tty/serial/Makefile      |   1 +
->  drivers/tty/serial/bflb_uart.c   | 586 +++++++++++++++++++++++++++++++
->  include/uapi/linux/serial_core.h |   3 +
->  4 files changed, 608 insertions(+)
->  create mode 100644 drivers/tty/serial/bflb_uart.c
-> 
-> diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
-> index 398e5aac2e77..abc30a0713f5 100644
-> --- a/drivers/tty/serial/Kconfig
-> +++ b/drivers/tty/serial/Kconfig
-> @@ -179,6 +179,24 @@ config SERIAL_ATMEL_TTYAT
->  
->  	  Say Y if you have an external 8250/16C550 UART.  If unsure, say N.
->  
-> +config SERIAL_BFLB
-> +	tristate "Bouffalolab serial port support"
-> +	select SERIAL_CORE
-> +	depends on COMMON_CLK
-> +	help
-> +	  This enables the driver for the Bouffalolab's serial.
-> +
-> +config SERIAL_BFLB_CONSOLE
-> +	bool "Support for console on Bouffalolab serial port"
-> +	depends on SERIAL_BFLB=y
-> +	select SERIAL_CORE_CONSOLE
-> +	select SERIAL_EARLYCON
-> +	help
-> +	  Say Y here if you wish to use a Bouffalolab UART as the
-> +	  system console (the system console is the device which
-> +	  receives all kernel messages and warnings and which allows
-> +	  logins in single user mode) as /dev/ttySn.
-> +
->  config SERIAL_KGDB_NMI
->  	bool "Serial console over KGDB NMI debugger port"
->  	depends on KGDB_SERIAL_CONSOLE
-> diff --git a/drivers/tty/serial/Makefile b/drivers/tty/serial/Makefile
-> index cd9afd9e3018..5788a708d327 100644
-> --- a/drivers/tty/serial/Makefile
-> +++ b/drivers/tty/serial/Makefile
-> @@ -25,6 +25,7 @@ obj-$(CONFIG_SERIAL_8250) += 8250/
->  
->  obj-$(CONFIG_SERIAL_AMBA_PL010) += amba-pl010.o
->  obj-$(CONFIG_SERIAL_AMBA_PL011) += amba-pl011.o
-> +obj-$(CONFIG_SERIAL_BFLB) += bflb_uart.o
->  obj-$(CONFIG_SERIAL_CLPS711X) += clps711x.o
->  obj-$(CONFIG_SERIAL_PXA_NON8250) += pxa.o
->  obj-$(CONFIG_SERIAL_SA1100) += sa1100.o
-> diff --git a/drivers/tty/serial/bflb_uart.c b/drivers/tty/serial/bflb_uart.c
-> new file mode 100644
-> index 000000000000..3f80bba8599a
-> --- /dev/null
-> +++ b/drivers/tty/serial/bflb_uart.c
-> @@ -0,0 +1,586 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Based on bflb_uart.c, by Bouffalolab team
-> + *
-> + * Copyright (C) 2022 Jisheng Zhang <jszhang@kernel.org>
+> Thanks for point that out. I will change this.
+> But when I use 'make dtbs_check' to check the imx6sll-evk.dtb, though there is some issue shows up, but do not find any message point the rules "no underscores in node names".
+> Anything I missing? Or this is just an implied rule？
 
-It is 2023 :)
+underscores is explicit. dtc (make dtbs) with W=2 already complains
+about it.
 
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/console.h>
-> +#include <linux/kernel.h>
-> +#include <linux/init.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/serial.h>
-> +#include <linux/serial_core.h>
-> +#include <linux/tty.h>
-> +#include <linux/tty_flip.h>
-> +
-> +#define UART_UTX_CONFIG			0x00
-> +#define  UART_CR_UTX_EN			BIT(0)
-> +#define  UART_CR_UTX_CTS_EN		BIT(1)
-> +#define  UART_CR_UTX_FRM_EN		BIT(2)
-> +#define  UART_CR_UTX_PRT_EN		BIT(4)
-> +#define  UART_CR_UTX_PRT_SEL		BIT(5)
-> +#define  UART_CR_UTX_BIT_CNT_D_MSK	GENMASK(10, 8)
-> +#define  UART_CR_UTX_BIT_CNT_P_MSK	GENMASK(12, 11)
-> +#define UART_URX_CONFIG			0x04
-> +#define  UART_CR_URX_EN			BIT(0)
-> +#define  UART_CR_URX_PRT_EN		BIT(4)
-> +#define  UART_CR_URX_PRT_SEL		BIT(5)
-> +#define  UART_CR_URX_BIT_CNT_D_MSK	GENMASK(10, 8)
-> +#define UART_BIT_PRD			0x08
-> +#define  UART_CR_UTX_BIT_PRD_MSK	GENMASK(15, 0)
-> +#define  UART_CR_URX_BIT_PRD_MSK	GENMASK(31, 16)
-> +#define UART_DATA_CONFIG		0x0c
-> +#define  UART_CR_UART_BIT_INV		BIT(0)
-> +#define UART_URX_RTO_TIMER		0x18
-> +#define  UART_CR_URX_RTO_VALUE_MSK	GENMASK(7, 0)
-> +#define UART_SW_MODE			0x1c
-> +#define UART_INT_STS			0x20
-> +#define  UART_UTX_END_INT		BIT(0)
-> +#define  UART_URX_END_INT		BIT(1)
-> +#define  UART_UTX_FIFO_INT		BIT(2)
-> +#define  UART_URX_FIFO_INT		BIT(3)
-> +#define  UART_URX_RTO_INT		BIT(4)
-> +#define  UART_URX_PCE_INT		BIT(5)
-> +#define  UART_UTX_FER_INT		BIT(6)
-> +#define  UART_URX_FER_INT		BIT(7)
-> +#define  UART_URX_LSE_INT		BIT(8)
-> +#define UART_INT_MASK			0x24
-> +#define UART_INT_CLEAR			0x28
-> +#define UART_INT_EN			0x2c
-> +#define UART_STATUS			0x30
-> +#define  UART_STS_UTX_BUS_BUSY		BIT(0)
-> +#define UART_FIFO_CONFIG_0		0x80
-> +#define  UART_DMA_TX_EN			BIT(0)
-> +#define  UART_DMA_RX_EN			BIT(1)
-> +#define  UART_TX_FIFO_CLR		BIT(2)
-> +#define  UART_RX_FIFO_CLR		BIT(3)
-> +#define  UART_TX_FIFO_OVERFLOW		BIT(4)
-> +#define  UART_TX_FIFO_UNDERFLOW		BIT(5)
-> +#define  UART_RX_FIFO_OVERFLOW		BIT(6)
-> +#define  UART_RX_FIFO_UNDERFLOW		BIT(7)
-> +#define UART_FIFO_CONFIG_1		0x84
-> +#define  UART_TX_FIFO_CNT_MSK		GENMASK(5, 0)
-> +#define  UART_RX_FIFO_CNT_MSK		GENMASK(13, 8)
-> +#define  UART_TX_FIFO_TH_MSK		GENMASK(20, 16)
-> +#define  UART_RX_FIFO_TH_MSK		GENMASK(28, 24)
-> +#define UART_FIFO_WDATA			0x88
-> +#define UART_FIFO_RDATA			0x8c
-> +#define  UART_FIFO_RDATA_MSK		GENMASK(7, 0)
-> +
-> +#define BFLB_UART_MAXPORTS		8
-> +#define BFLB_UART_BAUD			2000000
-> +#define BFLB_UART_RX_FIFO_TH		7
-> +#define BFLB_UART_TX_FIFO_TH		15
-> +#define BFLB_UART_URX_RTO_TIME		0x4f
-> +
-> +struct bflb_uart_port {
-> +	struct uart_port port;
-> +	struct clk *clk;
-> +};
-> +
-> +static struct bflb_uart_port *bflb_uart_ports[BFLB_UART_MAXPORTS];
-> +
-> +static inline u32 rdl(struct uart_port *port, u32 reg)
-> +{
-> +	return readl_relaxed(port->membase + reg);
-> +}
-> +
-> +static inline void wrl(struct uart_port *port, u32 reg, u32 value)
-> +{
-> +	writel_relaxed(value, port->membase + reg);
-> +}
-> +
-> +static inline void wrb(struct uart_port *port, u32 reg, u8 value)
-> +{
-> +	writeb_relaxed(value, port->membase + reg);
-> +}
-> +
-> +static unsigned int bflb_uart_tx_empty(struct uart_port *port)
-> +{
-> +	return (rdl(port, UART_FIFO_CONFIG_1) & UART_TX_FIFO_CNT_MSK) ? TIOCSER_TEMT : 0;
-> +}
-> +
-> +static unsigned int bflb_uart_get_mctrl(struct uart_port *port)
-> +{
-> +	return TIOCM_CAR | TIOCM_DSR | TIOCM_CTS;
-> +}
-> +
-> +static void bflb_uart_set_mctrl(struct uart_port *port, unsigned int sigs)
-> +{
-> +}
+Maybe your bindings for pinctrl were not converted to DT schema? But in
+such case anyway we want the same pattern for this as for other iMX schemas.
 
-Why is a blank function required here?
+Best regards,
+Krzysztof
 
-
-> --- a/include/uapi/linux/serial_core.h
-> +++ b/include/uapi/linux/serial_core.h
-> @@ -279,4 +279,7 @@
->  /* Sunplus UART */
->  #define PORT_SUNPLUS	123
->  
-> +/* Bouffalolab UART */
-> +#define PORT_BFLB	124
-
-Why is this required?  What userspace code is going to need this?
-
-thanks,
-
-greg k-h
