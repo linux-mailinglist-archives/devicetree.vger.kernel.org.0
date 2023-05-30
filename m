@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9D40716B18
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A19D3716B1A
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:31:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230089AbjE3RbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 13:31:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58842 "EHLO
+        id S233504AbjE3RbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 13:31:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233472AbjE3RbC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:31:02 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E673B129
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:30:47 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f6d01d390bso49261915e9.2
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:30:47 -0700 (PDT)
+        with ESMTP id S233215AbjE3RbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:31:03 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD27D188
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:30:48 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-30aa76048fbso3235178f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:30:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1685467846; x=1688059846;
+        d=raspberrypi.com; s=google; t=1685467847; x=1688059847;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=43TPLP/zbwjjcZHsJnlPOp0qUD2+JiyTZrGh8WQAfhs=;
-        b=OM7iccpfdiTbONVwFnEGafOIBxIXpG0QTMDRHlQ3pxsGqKa3sK7W/PzPXwrDux0Aj/
-         opKl17PGjdTfdfPPFuPtYYw4AhvgH+1ZKzC2Z3zkB93i1gdwKjNMXPG55MnkHtcIhoDK
-         TRD2gJ6vHiKYyxumNhyhOhJ/Dyd5MUzw9V7Qn02iS50MtStVjLcrvaB/l/3R0ga4XawS
-         EE5+RhmFRT7TDNS1axU6gP/IOu6fxtEjRuviCJUtSNJ3w8ssNDalDUV+d8SHAhGBmwK6
-         SSJtWAqDVyBrHA7Nx+Fx87+FDQAQQQOPfAr2Dz4opdFU6HnDGYrNzBgKUL0QwQYhre+8
-         /vkw==
+        bh=cnWY7OTC78+bqFCEFt1iBTNvVK0nkspVbxS6HHLxTBw=;
+        b=jVGfs046dCFefrTKca4lLHASiUFjo83tZ9XRKITF1Pzv20fgvULT8BKQL3ygFC/tY6
+         PklFwZrB9LAzkY7QkYgbOTf/pRDmglOSoXXsLELgBlcNshkPh0MsPopE3Ux8TQtaCNgn
+         n8ttUmiJ7Gvhk5eheTZsdAl0JjKjSnZAY2BbEXXvKUPBlXKg29oy5XNqbi46eDAogxxR
+         f9ZrjBu3k9kiRmT4A8kI6cPUNBTyiqC550GX8HOSesP9iYWU5xBNUiD0hXSpIzGEDMHB
+         Yb0FxeKpDKwtYZ33ESeQGern5AfEGyAOArq6UCfH9+2jnH9A4k1ZpXdqZkaBsg+Pf0r+
+         61pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685467846; x=1688059846;
+        d=1e100.net; s=20221208; t=1685467847; x=1688059847;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=43TPLP/zbwjjcZHsJnlPOp0qUD2+JiyTZrGh8WQAfhs=;
-        b=gyZkC5kjqiBTO15qCQFrgmwB/D7LRWJBc0I8yVr4KDxbnpGtTe0q2IGquW2AkEYwVy
-         KfqDg5MjK3kxwcs+AVFxEyoseAcuc8jn7WFPTfZpMBXWTxeDPEkp8/dhfqJpXYm/hqcz
-         MbvE0rYRsdRVjHYQf+rcHXtf6uoamba0amouXZcvHUJ5evvKr4fiB5tQgJtse8373o3Z
-         fivrHEWqX4UCmmwaoocZCZrssXB585hTlyP4BO+xRdSUNGRcyTbEIZAOdW64LkMrrM+q
-         aU89lmh6TPsXAAw6SONlmgWDZFBL1FVYRL1/uPkgLNw/wtfXDtS69W8b+X3UxawSIPU1
-         xNXw==
-X-Gm-Message-State: AC+VfDwMO9rIy05vWBvQkyvtEXMdNSZSPXclbxu/kgqgzWmtIq3VqAZi
-        qS88nd70RVzNHbz8x5Vf4K7+PA==
-X-Google-Smtp-Source: ACHHUZ5RwwXfjKiXmITxChOZWxmXXS3AWlzn00d34nzz6SvZdZqve5cgB9OfE5OgQAGB1OGJ3xb1aw==
-X-Received: by 2002:a7b:cb99:0:b0:3f6:923:9ec with SMTP id m25-20020a7bcb99000000b003f6092309ecmr3101950wmi.25.1685467846477;
-        Tue, 30 May 2023 10:30:46 -0700 (PDT)
+        bh=cnWY7OTC78+bqFCEFt1iBTNvVK0nkspVbxS6HHLxTBw=;
+        b=gqAgcJtIs5G4nROty588DJTojZFET4sqpIrOUs1alpaK6NAqZU/TpnXaG/KFvyuBad
+         pNos/H3girUWUoAzA3Zc9CpKUfGxMCOfQWGPGcZZQLG8HPkn2WH07XlPIgzGDA9w0Tid
+         oTVZNs4ACoEeEkX/wN7gkqPDYrfwx1RzptYbqyKdGCgXwUZiTWXjWasU7akZYf80IMTm
+         iNnb8jGqdPrIIc9Vod8TWmtJcyrKo/w4z1K2Lx/iQIjh0I2A2pjAFkV9El9guoIGyMyL
+         cACBXZwY0mSwIKStDJOEuppNr2qTIWT1sX8M3WaHj/UY/MymLwYgyZ9duAmLfbYG+HY7
+         wjVg==
+X-Gm-Message-State: AC+VfDy/8sduvh43OUUNPnRcjDM3otynTS7BFgkdQG7BAZ/TXxC+nI/v
+        GG5gWXGZV1jg5tF0ZpT4NFy71A==
+X-Google-Smtp-Source: ACHHUZ40lW60nbY8Y/M4PKGKr3nMy/UnHyiZSUEW0ViFeGk/4T8j3O3pNZ0BY8Tv/ZTuYxO+O3Krkg==
+X-Received: by 2002:a05:6000:12c8:b0:309:48eb:cdf9 with SMTP id l8-20020a05600012c800b0030948ebcdf9mr2215743wrx.38.1685467847261;
+        Tue, 30 May 2023 10:30:47 -0700 (PDT)
 Received: from dave-Ubuntu2204.pitowers.org ([93.93.133.154])
-        by smtp.googlemail.com with ESMTPSA id h14-20020a056000000e00b0030ae901bc54sm3964823wrx.62.2023.05.30.10.30.45
+        by smtp.googlemail.com with ESMTPSA id h14-20020a056000000e00b0030ae901bc54sm3964823wrx.62.2023.05.30.10.30.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 30 May 2023 10:30:46 -0700 (PDT)
 From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
@@ -55,9 +55,9 @@ To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
 Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: [PATCH 16/21] media: i2c: imx258: Set pixel_rate range to the same as the value
-Date:   Tue, 30 May 2023 18:29:55 +0100
-Message-Id: <20230530173000.3060865-17-dave.stevenson@raspberrypi.com>
+Subject: [PATCH 17/21] media: i2c: imx258: Support faster pixel rate on binned modes
+Date:   Tue, 30 May 2023 18:29:56 +0100
+Message-Id: <20230530173000.3060865-18-dave.stevenson@raspberrypi.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
 References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
@@ -73,61 +73,258 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With a read only control there is limited point in advertising
-a minimum and maximum for the control, so change to set the
-value, min, and max all to the selected pixel rate.
+With the binned modes, there is little point in faithfully
+reproducing the horizontal line length of 5352 pixels on the CSI2
+bus, and the FIFO between the pixel array and MIPI serialiser
+allows us to remove that dependency.
+
+Allow the pixel array to run with the normal settings, with the MIPI
+serialiser at half the rate. This requires some additional
+information for the link frequency to pixel rate function that
+needs to be added to the configuration tables.
 
 Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 ---
- drivers/media/i2c/imx258.c | 18 +++++++-----------
- 1 file changed, 7 insertions(+), 11 deletions(-)
+ drivers/media/i2c/imx258.c | 109 ++++++++++++++++++++++++-------------
+ 1 file changed, 71 insertions(+), 38 deletions(-)
 
 diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-index 7d6528f9ca4d..b9b650d40365 100644
+index b9b650d40365..986757650378 100644
 --- a/drivers/media/i2c/imx258.c
 +++ b/drivers/media/i2c/imx258.c
-@@ -1002,7 +1002,8 @@ static int imx258_set_pad_format(struct v4l2_subdev *sd,
+@@ -103,6 +103,11 @@ struct imx258_reg_list {
+ 	const struct imx258_reg *regs;
+ };
+ 
++struct imx258_link_cfg {
++	unsigned int lf_to_pix_rate_factor;
++	struct imx258_reg_list reg_list;
++};
++
+ #define IMX258_LANE_CONFIGS	2
+ #define IMX258_2_LANE_MODE	0
+ #define IMX258_4_LANE_MODE	1
+@@ -112,8 +117,8 @@ struct imx258_link_freq_config {
+ 	u64 link_frequency;
+ 	u32 pixels_per_line;
+ 
+-	/* PLL registers for this link frequency */
+-	struct imx258_reg_list reg_list[IMX258_LANE_CONFIGS];
++	/* Configuration for this link frequency / num lanes selection */
++	struct imx258_link_cfg link_cfg[IMX258_LANE_CONFIGS];
+ };
+ 
+ /* Mode : resolution and related config&values */
+@@ -272,7 +277,7 @@ static const struct imx258_reg mipi_640mbps_19_2mhz_4l[] = {
+ static const struct imx258_reg mipi_642mbps_24mhz_2l[] = {
+ 	{ 0x0136, 0x18 },
+ 	{ 0x0137, 0x00 },
+-	{ 0x0301, 0x0A },
++	{ 0x0301, 0x05 },
+ 	{ 0x0303, 0x02 },
+ 	{ 0x0305, 0x04 },
+ 	{ 0x0306, 0x00 },
+@@ -478,14 +483,22 @@ enum {
+ };
+ 
+ /*
+- * pixel_rate = link_freq * data-rate * nr_of_lanes / bits_per_sample
+- * data rate => double data rate;
+- * number of lanes => (configurable 2 or 4);
+- * bits per pixel => 10
++ * Pixel rate does not necessarily relate to link frequency on this sensor as
++ * there is a FIFO between the pixel array pipeline and the MIPI serializer.
++ * The recommendation from Sony is that the pixel array is always run with a
++ * line length of 5352 pixels, which means that there is a large amount of
++ * blanking time for the 1048x780 mode. There is no need to replicate this
++ * blanking on the CSI2 bus, and the configuration of register 0x0301 allows the
++ * divider to be altered.
++ *
++ * The actual factor between link frequency and pixel rate is in the
++ * imx258_link_cfg, so use this to convert between the two.
++ * bits per pixel being 10, and D-PHY being DDR is assumed by this function, so
++ * the value is only the combination of number of lanes and pixel clock divider.
+  */
+-static u64 link_freq_to_pixel_rate(u64 f, unsigned int nlanes)
++static u64 link_freq_to_pixel_rate(u64 f, const struct imx258_link_cfg *link_cfg)
+ {
+-	f *= 2 * nlanes;
++	f *= 2 * link_cfg->lf_to_pix_rate_factor;
+ 	do_div(f, 10);
+ 
+ 	return f;
+@@ -510,31 +523,33 @@ static const s64 link_freq_menu_items_24[] = {
+ 	IMX258_LINK_FREQ_321MHZ,
+ };
+ 
++#define REGS(_list) { .num_of_regs = ARRAY_SIZE(_list), .regs = _list, }
++
+ /* Link frequency configs */
+ static const struct imx258_link_freq_config link_freq_configs_19_2[] = {
+ 	[IMX258_LINK_FREQ_1267MBPS] = {
+ 		.pixels_per_line = IMX258_PPL_DEFAULT,
+-		.reg_list = {
++		.link_cfg = {
+ 			[IMX258_2_LANE_MODE] = {
+-				.num_of_regs = ARRAY_SIZE(mipi_1267mbps_19_2mhz_2l),
+-				.regs = mipi_1267mbps_19_2mhz_2l,
++				.lf_to_pix_rate_factor = 2 * 2,
++				.reg_list = REGS(mipi_1267mbps_19_2mhz_2l),
+ 			},
+ 			[IMX258_4_LANE_MODE] = {
+-				.num_of_regs = ARRAY_SIZE(mipi_1267mbps_19_2mhz_4l),
+-				.regs = mipi_1267mbps_19_2mhz_4l,
++				.lf_to_pix_rate_factor = 4,
++				.reg_list = REGS(mipi_1267mbps_19_2mhz_4l),
+ 			},
+ 		}
+ 	},
+ 	[IMX258_LINK_FREQ_640MBPS] = {
+ 		.pixels_per_line = IMX258_PPL_DEFAULT,
+-		.reg_list = {
++		.link_cfg = {
+ 			[IMX258_2_LANE_MODE] = {
+-				.num_of_regs = ARRAY_SIZE(mipi_640mbps_19_2mhz_2l),
+-				.regs = mipi_640mbps_19_2mhz_2l,
++				.lf_to_pix_rate_factor = 2,
++				.reg_list = REGS(mipi_640mbps_19_2mhz_2l),
+ 			},
+ 			[IMX258_4_LANE_MODE] = {
+-				.num_of_regs = ARRAY_SIZE(mipi_640mbps_19_2mhz_4l),
+-				.regs = mipi_640mbps_19_2mhz_4l,
++				.lf_to_pix_rate_factor = 4,
++				.reg_list = REGS(mipi_640mbps_19_2mhz_4l),
+ 			},
+ 		}
+ 	},
+@@ -543,27 +558,27 @@ static const struct imx258_link_freq_config link_freq_configs_19_2[] = {
+ static const struct imx258_link_freq_config link_freq_configs_24[] = {
+ 	[IMX258_LINK_FREQ_1267MBPS] = {
+ 		.pixels_per_line = IMX258_PPL_DEFAULT,
+-		.reg_list = {
++		.link_cfg = {
+ 			[IMX258_2_LANE_MODE] = {
+-				.num_of_regs = ARRAY_SIZE(mipi_1272mbps_24mhz_2l),
+-				.regs = mipi_1272mbps_24mhz_2l,
++				.lf_to_pix_rate_factor = 2,
++				.reg_list = REGS(mipi_1272mbps_24mhz_2l),
+ 			},
+ 			[IMX258_4_LANE_MODE] = {
+-				.num_of_regs = ARRAY_SIZE(mipi_1272mbps_24mhz_4l),
+-				.regs = mipi_1272mbps_24mhz_4l,
++				.lf_to_pix_rate_factor = 4,
++				.reg_list = REGS(mipi_1272mbps_24mhz_4l),
+ 			},
+ 		}
+ 	},
+ 	[IMX258_LINK_FREQ_640MBPS] = {
+ 		.pixels_per_line = IMX258_PPL_DEFAULT,
+-		.reg_list = {
++		.link_cfg = {
+ 			[IMX258_2_LANE_MODE] = {
+-				.num_of_regs = ARRAY_SIZE(mipi_642mbps_24mhz_2l),
+-				.regs = mipi_642mbps_24mhz_2l,
++				.lf_to_pix_rate_factor = 2 * 2,
++				.reg_list = REGS(mipi_642mbps_24mhz_2l),
+ 			},
+ 			[IMX258_4_LANE_MODE] = {
+-				.num_of_regs = ARRAY_SIZE(mipi_642mbps_24mhz_4l),
+-				.regs = mipi_642mbps_24mhz_4l,
++				.lf_to_pix_rate_factor = 4,
++				.reg_list = REGS(mipi_642mbps_24mhz_4l),
+ 			},
+ 		}
+ 	},
+@@ -643,7 +658,7 @@ struct imx258 {
+ 
+ 	const struct imx258_link_freq_config *link_freq_configs;
+ 	const s64 *link_freq_menu_items;
+-	unsigned int nlanes;
++	unsigned int lane_mode_idx;
+ 	unsigned int csi2_flags;
+ 
+ 	/*
+@@ -976,8 +991,10 @@ static int imx258_set_pad_format(struct v4l2_subdev *sd,
+ 				 struct v4l2_subdev_format *fmt)
+ {
+ 	struct imx258 *imx258 = to_imx258(sd);
+-	const struct imx258_mode *mode;
++	const struct imx258_link_freq_config *link_freq_cfgs;
++	const struct imx258_link_cfg *link_cfg;
+ 	struct v4l2_mbus_framefmt *framefmt;
++	const struct imx258_mode *mode;
+ 	s32 vblank_def;
+ 	s32 vblank_min;
+ 	s64 h_blank;
+@@ -1001,7 +1018,11 @@ static int imx258_set_pad_format(struct v4l2_subdev *sd,
+ 		__v4l2_ctrl_s_ctrl(imx258->link_freq, mode->link_freq_index);
  
  		link_freq = imx258->link_freq_menu_items[mode->link_freq_index];
- 		pixel_rate = link_freq_to_pixel_rate(link_freq, imx258->nlanes);
--		__v4l2_ctrl_s_ctrl_int64(imx258->pixel_rate, pixel_rate);
-+		__v4l2_ctrl_modify_range(imx258->pixel_rate, pixel_rate,
-+					 pixel_rate, 1, pixel_rate);
+-		pixel_rate = link_freq_to_pixel_rate(link_freq, imx258->nlanes);
++		link_freq_cfgs =
++			&imx258->link_freq_configs[mode->link_freq_index];
++
++		link_cfg = &link_freq_cfgs->link_cfg[imx258->lane_mode_idx];
++		pixel_rate = link_freq_to_pixel_rate(link_freq, link_cfg);
+ 		__v4l2_ctrl_modify_range(imx258->pixel_rate, pixel_rate,
+ 					 pixel_rate, 1, pixel_rate);
  		/* Update limits and set FPS to default */
- 		vblank_def = imx258->cur_mode->vts_def -
- 			     imx258->cur_mode->height;
-@@ -1328,8 +1329,7 @@ static int imx258_init_controls(struct imx258 *imx258)
+@@ -1098,7 +1119,8 @@ static int imx258_start_streaming(struct imx258 *imx258)
+ 	/* Setup PLL */
+ 	link_freq_index = imx258->cur_mode->link_freq_index;
+ 	link_freq_cfg = &imx258->link_freq_configs[link_freq_index];
+-	reg_list = &link_freq_cfg->reg_list[imx258->nlanes == 2 ? 0 : 1];
++
++	reg_list = &link_freq_cfg->link_cfg[imx258->lane_mode_idx].reg_list;
+ 	ret = imx258_write_regs(imx258, reg_list->regs, reg_list->num_of_regs);
+ 	if (ret) {
+ 		dev_err(&client->dev, "%s failed to set plls\n", __func__);
+@@ -1324,9 +1346,11 @@ static const struct v4l2_subdev_internal_ops imx258_internal_ops = {
+ static int imx258_init_controls(struct imx258 *imx258)
+ {
+ 	struct i2c_client *client = v4l2_get_subdevdata(&imx258->sd);
++	const struct imx258_link_freq_config *link_freq_cfgs;
+ 	struct v4l2_fwnode_device_properties props;
+-	struct v4l2_ctrl_handler *ctrl_hdlr;
  	struct v4l2_ctrl *vflip, *hflip;
++	struct v4l2_ctrl_handler *ctrl_hdlr;
++	const struct imx258_link_cfg *link_cfg;
  	s64 vblank_def;
  	s64 vblank_min;
--	s64 pixel_rate_min;
--	s64 pixel_rate_max;
-+	s64 pixel_rate;
- 	int ret;
- 
- 	ctrl_hdlr = &imx258->ctrl_handler;
-@@ -1360,17 +1360,13 @@ static int imx258_init_controls(struct imx258 *imx258)
+ 	s64 pixel_rate;
+@@ -1360,8 +1384,11 @@ static int imx258_init_controls(struct imx258 *imx258)
  	if (vflip)
  		vflip->flags |= V4L2_CTRL_FLAG_READ_ONLY;
  
--	pixel_rate_max =
--		link_freq_to_pixel_rate(imx258->link_freq_menu_items[0],
--					imx258->nlanes);
--	pixel_rate_min =
--		link_freq_to_pixel_rate(imx258->link_freq_menu_items[1],
--					imx258->nlanes);
-+	pixel_rate = link_freq_to_pixel_rate(imx258->link_freq_menu_items[0],
-+					     imx258->nlanes);
++	link_freq_cfgs = &imx258->link_freq_configs[0];
++	link_cfg = link_freq_cfgs[imx258->lane_mode_idx].link_cfg;
+ 	pixel_rate = link_freq_to_pixel_rate(imx258->link_freq_menu_items[0],
+-					     imx258->nlanes);
++					     link_cfg);
++
  	/* By default, PIXEL_RATE is read only */
  	imx258->pixel_rate = v4l2_ctrl_new_std(ctrl_hdlr, &imx258_ctrl_ops,
  				V4L2_CID_PIXEL_RATE,
--				pixel_rate_min, pixel_rate_max,
--				1, pixel_rate_max);
-+				pixel_rate, pixel_rate,
-+				1, pixel_rate);
+@@ -1522,10 +1549,16 @@ static int imx258_probe(struct i2c_client *client)
+ 	}
  
- 
- 	vblank_def = imx258->cur_mode->vts_def - imx258->cur_mode->height;
+ 	/* Get number of data lanes */
+-	imx258->nlanes = ep.bus.mipi_csi2.num_data_lanes;
+-	if (imx258->nlanes != 2 && imx258->nlanes != 4) {
++	switch (ep.bus.mipi_csi2.num_data_lanes) {
++	case 2:
++		imx258->lane_mode_idx = IMX258_2_LANE_MODE;
++		break;
++	case 4:
++		imx258->lane_mode_idx = IMX258_4_LANE_MODE;
++		break;
++	default:
+ 		dev_err(&client->dev, "Invalid data lanes: %u\n",
+-			imx258->nlanes);
++			ep.bus.mipi_csi2.num_data_lanes);
+ 		ret = -EINVAL;
+ 		goto error_endpoint_poweron;
+ 	}
 -- 
 2.25.1
 
