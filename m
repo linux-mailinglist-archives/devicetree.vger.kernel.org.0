@@ -2,63 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 715337152AF
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 02:53:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 032F97152DC
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 03:09:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229650AbjE3Axu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 20:53:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51406 "EHLO
+        id S229821AbjE3BJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 21:09:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbjE3Axt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 20:53:49 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20E5ADC
-        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 17:53:47 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id C6BA62C0594;
-        Tue, 30 May 2023 12:53:44 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1685408024;
-        bh=CXHc14wOkGFB3ru5MP+zwp9GpkkiRXC27fcKcbXH3uA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=G6ltXgm7UQz9iI4+S39G2J4BNh4v7lfAPM8jefdvNXJWJYvgPQJ17pkzuOiwtjJrL
-         buNJRveWy5gyelP9cTYxkfec2LX1KnxHK0Q3qZSWkx+fpsDebS1HyVTwE2jA3yxA6e
-         9zQtgdC8Dkp71gjTi5Ji1V+8q2rj3sNz2fhHi8wFKc84dhwodExX0EqcZHiCuK3ejt
-         cy6K9nm2hLqAi+hRQRr0Tkuryk0I3Au3MHKOtxdPfVz3nwjGSr526TyV7mbmBfkL2S
-         RpEUfiOBh3M6ipdNIUub0FmJX8kjtHWVeF435OM7DLnJYjEEXMOYMyZ2lx5xsnrATY
-         UR658isxhwNWg==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B647549180002>; Tue, 30 May 2023 12:53:44 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id 9D4B413EE41;
-        Tue, 30 May 2023 12:53:44 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id 9A26B283D16; Tue, 30 May 2023 12:53:44 +1200 (NZST)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, vadym.kochan@plvision.eu
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        enachman@marvell.com,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v6 2/2] arm64: dts: marvell: cp11x: Fix nand_controller node name according to YAML
-Date:   Tue, 30 May 2023 12:53:37 +1200
-Message-Id: <20230530005337.3687938-3-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230530005337.3687938-1-chris.packham@alliedtelesis.co.nz>
-References: <20230530005337.3687938-1-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S229578AbjE3BJY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 21:09:24 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7232CF;
+        Mon, 29 May 2023 18:09:22 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-2568befcf1dso912564a91.0;
+        Mon, 29 May 2023 18:09:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685408962; x=1688000962;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=d1wG3ZzBNrC3Iuv0Sazp7NPX3sgvbpQA8Twr3uxU34s=;
+        b=kXw1U6akBeszmRiZ1MVvqGt5eDQuWhg17xwHKHH1jEX/9yaFkD1SOvWX/DEiaSJ8V9
+         a39ZEYAGgARyRX7UhQmHCk6Ej8CON2madP8nOXK+2PwuqPMl7c39mDtdlgUY2qONvt4O
+         17GOFsEwtbE1glmbzKXvHUnmFP86NdwnWvazFzlNQSlmKMm0RxUAnSXNw3RXzsnw3mma
+         adXNWyoyVDsjz+4PA2AMk3EJ9+cLtETJoBicLQLeaR+5EPBiZN0vSR7ej7T6bl5azXNN
+         gXCpv+CXrKKrWXCo74OPAUXxjC/6Kj8uND/4IW5e5bLShDEOZKg7DeX93UwgYWKlPIGn
+         TYuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685408962; x=1688000962;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=d1wG3ZzBNrC3Iuv0Sazp7NPX3sgvbpQA8Twr3uxU34s=;
+        b=GZYbuKS9LvAHhiCTaKE6/o8aWjPJ4ZVYeQPWN+w3FNy51OnH6dS1N9DooT0/CHYKLP
+         5GFrE4auFAOf7AQvn+fI8SyQbq81WTLireYtp1XSw+2LLp5XMUPOfUbJvP07KRS7UKEP
+         5ZZH5F0sQwIDVvsh18PCxvjjYAqbMWR4fvl4Ky1UQZj3ZTh1WwDmdkTRoVvYo9bcbkHn
+         cbFaRO+AceO/UVRW7dLdgwfzfTOZO5iXFNaQfcfXcJXCqbQHi+AsAPIAef7xEAE1Tck2
+         sELSuSGvbW/3fFl24E4Y9lSVDnZlHzMXyXBHQxZPNaq889ygucZvzIGJrQFy7rwoi0X+
+         phxg==
+X-Gm-Message-State: AC+VfDwP5L7KbjyLUTDpSmgzleEelqj8U8lC13QMZqGMvJN+x8pjjLq3
+        9jjxsNYbmbfGkptFUS0S790=
+X-Google-Smtp-Source: ACHHUZ4lRcccoA8lGODePVC271WFd12PsoH9zTA9AafQ4ZPdWcMilHiDIITrvpbD1M0gojDXw1+KCw==
+X-Received: by 2002:a17:90b:3a91:b0:24e:3752:194f with SMTP id om17-20020a17090b3a9100b0024e3752194fmr9899966pjb.21.1685408961878;
+        Mon, 29 May 2023 18:09:21 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id b1-20020a17090a100100b002532eef4fc5sm8271339pja.34.2023.05.29.18.09.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 May 2023 18:09:21 -0700 (PDT)
+Message-ID: <c9493f4d-8056-20a0-6ed2-161fbcc3d34e@gmail.com>
+Date:   Tue, 30 May 2023 09:09:16 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=cLieTWWN c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=P0xRbXHiH_UA:10 a=g8kJ_gb0AAAA:8 a=GKaKEI1dGHIjLaXU8GMA:9 a=ecSNLfPMzbq-p5zXJZOg:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v11 10/10] tty: serial: Add Nuvoton ma35d1 serial driver
+ support
+From:   Jacky Huang <ychuang570808@gmail.com>
+To:     Jiri Slaby <jirislaby@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        gregkh@linuxfoundation.org, tmaimon77@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, arnd@arndb.de, soc@kernel.org,
+        schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230516075217.205401-1-ychuang570808@gmail.com>
+ <20230516075217.205401-11-ychuang570808@gmail.com>
+ <3d4acb20-c80e-fd39-c0d0-e9b1e0309d81@kernel.org>
+ <aaef529f-69dc-8bec-0ae1-959a1ede87e0@gmail.com>
+Content-Language: en-US
+In-Reply-To: <aaef529f-69dc-8bec-0ae1-959a1ede87e0@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,32 +86,247 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vadym Kochan <vadym.kochan@plvision.eu>
+Dear Jiri,
 
-Marvell NAND controller has now YAML to validate it's DT bindings, so
-change the node name of cp11x DTSI as it is required by nand-controller.y=
-aml
 
-Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
- arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 2023/5/24 下午 04:34, Jacky Huang wrote:
+> Dear Jiri,
+>
+> Thanks for your advice.
+>
+> On 2023/5/24 下午 03:42, Jiri Slaby wrote:
+>> On 16. 05. 23, 9:52, Jacky Huang wrote:
+>>> +static void ma35d1serial_config_port(struct uart_port *port, int 
+>>> flags)
+>>> +{
+>>> +    /*
+>>> +     * Driver core for serial ports forces a non-zero value for 
+>>> port type.
+>>> +     * Write an arbitrary value here to accommodate the serial core 
+>>> driver,
+>>> +     * as ID part of UAPI is redundant.
+>>> +     */
+>>> +    port->type = 1;
+>>
+>> So this 1 translates to PORT_8250. Why not to use it directly? Or 
+>> something more saner like PORT_16550A?
+>>
+> It's not actually 8250 or 16550A.
+> Can we add the following definition to 
+> 'include/uapi/linux/serial_core.h' and use PORT_MA35 instead?
+>
+> #define PORT_MA35    124
+>
+>
+>>> +}
+>>> +
+>>> +static int ma35d1serial_verify_port(struct uart_port *port, struct 
+>>> serial_struct *ser)
+>>> +{
+>>> +    if (port->type != PORT_UNKNOWN && ser->type != 1)
+>>> +        return -EINVAL;
+>>> +
+>>> +    return 0;
+>>> +}
+>> ...
+>>> +static int __init ma35d1serial_console_setup(struct console *co, 
+>>> char *options)
+>>> +{
+>>> +    struct device_node *np = ma35d1serial_uart_nodes[co->index];
+>>> +    struct uart_ma35d1_port *p = &ma35d1serial_ports[co->index];
+>>> +    u32 val32[4];
+>>> +    struct uart_port *port;
+>>> +    int baud = 115200;
+>>> +    int bits = 8;
+>>> +    int parity = 'n';
+>>> +    int flow = 'n';
+>>> +
+>>> +    /*
+>>> +     * Check whether an invalid uart number has been specified, and
+>>
+>> You dereferenced ma35d1serial_uart_nodes already. Doesn't 
+>> console=ttyNVT1000 (or something like that) crash the system?
+>>
+>
+> I will add the following check before np = 
+> "ma35d1serial_uart_nodes[co->index]".
+>
+> if (co->index < 0 || co->index >= MA35_UART_NR)
+>     return -EINVAL;
+>
+>
+>>> +     * if so, search for the first available port that does have
+>>> +     * console support.
+>>
+>> The code below doesn't match this comment.
+>
+> Yes, I will remove the above comment.
+>
+>>
+>>> +     */
+>>> +    if ((co->index < 0) || (co->index >= MA35_UART_NR)) {
+>>> +        pr_debug("Console Port%x out of range\n", co->index);
+>>> +        return -EINVAL;
+>>> +    }
+>>> +
+>>> +    if (of_property_read_u32_array(np, "reg", val32, 4) != 0)
+>>
+>> Shouldn't that 4 be ARRAY_SIZE(val32) instead?
+>>
+>
+> Will be fixed.
+>
+>>> +        return -EINVAL;
+>>
+>> One \n here please.
+>>
+>
+> Okay, I will add it.
+>
+>>> +    p->port.iobase = val32[1];
+>>> +    p->port.membase = ioremap(p->port.iobase, MA35_UART_REG_SIZE);
+>>
+>> What if this fails?
+>>
+>
+> I will add a check for the return value.
+>
+>>> +    p->port.ops = &ma35d1serial_ops;
+>>> +    p->port.line = 0;
+>>> +    p->port.uartclk = MA35_UART_CONSOLE_CLK;
+>>> +
+>>> +    port = &ma35d1serial_ports[co->index].port;
+>>
+>> Isn't this:
+>>   port = &p->port;
+>> ?
+>>
+>> Either use port on all above lines or drop the "port" variable 
+>> completely and use "p->port" below instead.
+>>
+>
+> I will remove port variable and use p->port only.
+>
+>>> +
+>>> +    if (options)
+>>> +        uart_parse_options(options, &baud, &parity, &bits, &flow);
+>>> +
+>>> +    return uart_set_options(port, co, baud, parity, bits, flow);
+>>> +}
+>>> +
+>>> +static struct console ma35d1serial_console = {
+>>> +    .name    = "ttyNVT",
+>>> +    .write   = ma35d1serial_console_write,
+>>> +    .device  = uart_console_device,
+>>> +    .setup   = ma35d1serial_console_setup,
+>>> +    .flags   = CON_PRINTBUFFER | CON_ENABLED,
+>>> +    .index   = -1,
+>>> +    .data    = &ma35d1serial_reg,
+>>
+>> I don't see console->data used anywhere in the driver?
+>>
+>
+> I will remove it.
+>
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/b=
-oot/dts/marvell/armada-cp11x.dtsi
-index 0cc9ee9871e7..4ec1aae0a3a9 100644
---- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-@@ -468,7 +468,7 @@ CP11X_LABEL(uart3): serial@702300 {
- 			status =3D "disabled";
- 		};
-=20
--		CP11X_LABEL(nand_controller): nand@720000 {
-+		CP11X_LABEL(nand_controller): nand-controller@720000 {
- 			/*
- 			 * Due to the limitation of the pins available
- 			 * this controller is only usable on the CPM
---=20
-2.40.1
+I removed the " .data    = &ma35d1serial_reg", but kernel crashed in 
+'drivers/tty/serial/serial_core.c'.
+
+The variable 'p' of  uart_console_device() refer to a NULL, because 
+co->data is NULL.
+As a result, kernel crashed at 'p->tty_driver'.
+
+struct tty_driver *uart_console_device(struct console *co, int *index)
+{
+     struct uart_driver *p = co->data;
+     *index = co->index;
+     return p->tty_driver;
+}
+
+We seem to be unable to remove it.
+If there are no other considerations, I will keep it in the next version.
+
+>>> +};
+>> ...
+>>> +static int ma35d1serial_probe(struct platform_device *pdev)
+>>> +{
+>>> +    struct resource *res_mem;
+>>> +    struct uart_ma35d1_port *up;
+>>> +    int ret = 0;
+>>> +
+>>> +    if (pdev->dev.of_node) {
+>>> +        ret = of_alias_get_id(pdev->dev.of_node, "serial");
+>>> +        if (ret < 0) {
+>>> +            dev_err(&pdev->dev, "failed to get alias/pdev id, errno 
+>>> %d\n", ret);
+>>> +            return ret;
+>>> +        }
+>>> +    }
+>>> +    up = &ma35d1serial_ports[ret];
+>>> +    up->port.line = ret;
+>>> +    res_mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>>> +    if (!res_mem)
+>>> +        return -ENODEV;
+>>> +
+>>> +    up->port.iobase = res_mem->start;
+>>> +    up->port.membase = ioremap(up->port.iobase, MA35_UART_REG_SIZE);
+>>
+>> Check this too.
+>>
+>
+> Okay, sure.
+>
+>>> +    up->port.ops = &ma35d1serial_ops;
+>>> +
+>>> +    spin_lock_init(&up->port.lock);
+>>> +
+>>> +    up->clk = of_clk_get(pdev->dev.of_node, 0);
+>>> +    if (IS_ERR(up->clk)) {
+>>> +        ret = PTR_ERR(up->clk);
+>>> +        dev_err(&pdev->dev, "failed to get core clk: %d\n", ret);
+>>> +        goto err_iounmap;
+>>> +    }
+>>> +
+>>> +    ret = clk_prepare_enable(up->clk);
+>>> +    if (ret)
+>>> +        goto err_iounmap;
+>>> +
+>>> +    if (up->port.line != 0)
+>>> +        up->port.uartclk = clk_get_rate(up->clk);
+>>> +
+>>> +    ret = platform_get_irq(pdev, 0);
+>>> +    if (ret < 0)
+>>> +        goto err_clk_disable;
+>>> +
+>>> +    up->port.irq = ret;
+>>> +    up->port.dev = &pdev->dev;
+>>> +    up->port.flags = UPF_BOOT_AUTOCONF;
+>>> +
+>>> +    platform_set_drvdata(pdev, up);
+>>> +
+>>> +    ret = uart_add_one_port(&ma35d1serial_reg, &up->port);
+>>> +    if (ret < 0)
+>>> +        goto err_free_irq;
+>>> +
+>>> +    return 0;
+>>> +
+>>> +err_free_irq:
+>>> +    free_irq(up->port.irq, &up->port);
+>>> +
+>>> +err_clk_disable:
+>>> +    clk_disable_unprepare(up->clk);
+>>> +
+>>> +err_iounmap:
+>>> +    iounmap(up->port.membase);
+>>> +    return ret;
+>>> +}
+>>
+>> thanks,
+>
+> Best regards,
+> Jacky Huang
+>
+
+Best regards,
+Jacky Huang
 
