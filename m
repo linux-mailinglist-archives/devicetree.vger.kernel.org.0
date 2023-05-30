@@ -2,117 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B929716350
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:13:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F085716472
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:40:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232554AbjE3ON1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 10:13:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55448 "EHLO
+        id S232385AbjE3Ok2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 10:40:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230519AbjE3ONW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:13:22 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBBFB192
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:12:42 -0700 (PDT)
+        with ESMTP id S232001AbjE3OkZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:40:25 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18E73D9
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:40:23 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-973f8dbcc02so467251466b.3
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 07:40:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1685455963; x=1716991963;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=7AzCqgfvbO6kt0hNc5G02Mva74cvAgLh4ZGOlU4BKfA=;
-  b=Rmcfgy5he3JH258q1Pf3Szz+YjCgcug/CHig4+58iBNidOYzlsTexQul
-   2VM7iGsqT7CzlNSUA4YitIL5AL4HSySrzd9yW2s8d9ykr0aIOgwPxytOU
-   +TDaoBs0/Jgj5XIth8QYCrM/jdFkkAphM8hZZNsF/3mGhRnpY2B4DXBsj
-   Ul1jf4Q4ba1JurpUADWSPKLka50DUeEQoX613x1K68ZJV3bsVsjajvC+k
-   9LWm99+o8L3XI6yZl7oSstjNBI8czL7tTfnTBqsZpfUeFoZDT7Xb25PKQ
-   1cuc2fEr2vchkdJmZpQO858h44JlRVcwBFdLODH7jmxCwZPxxJ6d+Mi9O
-   g==;
-X-IronPort-AV: E=Sophos;i="6.00,204,1681164000"; 
-   d="scan'208";a="31170472"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 30 May 2023 16:12:35 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 30 May 2023 16:12:35 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 30 May 2023 16:12:35 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1685455955; x=1716991955;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=7AzCqgfvbO6kt0hNc5G02Mva74cvAgLh4ZGOlU4BKfA=;
-  b=C5h3c2S46Yi+swr0i1u6HLUdpy578I7PS/pylpmMuTM3HBHvzQUU68zB
-   ujZWW1JBKnHWOyk9wru7p6R7OSKhui0U+YYxp2Xpq27kN3xqBP3jprjay
-   wT+e8NNsFAQoeqbUuL9K2YZHbBOa7LZ/mqxv+Yk9NZXdJ+FETKkw9dzTH
-   Y+hs7e/WPWkealRNdYWy8DpDStI0fe9XaoroGHCO46l0LoJHKtb8IaG0g
-   CAhCo+zUGnEKg56BlDBJF7ez53WOcKaaFAJdIc6n3QoE4SkoY8zD4Knns
-   gyD8iXjlLVMxGVOrdDSW0bXNkFMoDxC4xqfPWeoaVMty+xNsECxIHubHx
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.00,204,1681164000"; 
-   d="scan'208";a="31170471"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 30 May 2023 16:12:35 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7E77B280096;
-        Tue, 30 May 2023 16:12:35 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>, linux@ew.tq-group.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: tqma8mqml: Add vcc supply to i2c eeproms
-Date:   Tue, 30 May 2023 16:12:34 +0200
-Message-Id: <20230530141234.407118-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+        d=linaro.org; s=google; t=1685457621; x=1688049621;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Xe6HK9Kb35n4rfCfNWtBuecD+uDUu7lqn2KbidhEueY=;
+        b=Plsb8fika+/zh+L/6FO0YtwBdpqBVezJiZNWFl1VRMvGSMEhCLKcxWhOraKns36TDF
+         uqdpMfUTfAhBc2/OkGK3xDCAmrng9gbAF9Z7hmf8ywWHpeBSoNUfCuFHIHkFfYhNFY96
+         ABDuCIcXn8HEA/RE6fhbKDjbQ8nMbpvdiA3CqiK8g+MUEm+JgasKDXesrpPNrUftMAI/
+         dARy6NLOm2X2M/OywmrqVCytL4CNoOk2hJAUZ+bjveYeC/zmXcmSU72Jtk6nZ9eeVUlF
+         EnXr6CimLZR8/UXu+JKsudTXoQhrmE9IA7sxOad2ae2PP3I9d1nqxJc7juXUhwEPUd6V
+         sGSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685457621; x=1688049621;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xe6HK9Kb35n4rfCfNWtBuecD+uDUu7lqn2KbidhEueY=;
+        b=NvtiF3t7Gdo7yoZla2w6ZnJrEftCmO93AMZrjnY8d1w0r9tEU+uCYl6N9mVsRQ/jaE
+         242eIS90jtcVvHkVcO3YQ67yi0Y2sqqj+BHMVyDENuSjtbarobvu9QF7LnvL0Op662OS
+         six2pewE7zjlSb8UjIf7lYOvfFn3ZuQXPPUzIQIp1cwFYOU8/MpCevPU176M45hTZoZz
+         nxaO4qb/p5WdT4HPh5gIlTzvYhfbtfLG4uV6+UTs08KNWvwgOwK3f+eu+yIrEUOaUJCX
+         nfwmR4p/n51+8QrAsS0mWxdhC9M8B+70goMhRDYouEz7MVEkALIXQuvI7RqhbrS1wLWB
+         UvPA==
+X-Gm-Message-State: AC+VfDyBquIUDIx3FI7hprgYS3OvtA1Q4fBVlh0NwBlZHzOB5BP3bXAy
+        3+gBlnykhfNZ4VUT6bJZcO3nGw==
+X-Google-Smtp-Source: ACHHUZ5Ta7S9kKaVrAx84G6ObMgsg+WsFPS9nY9M8aUCa8bxlB3xzf4hXlb1WcyJ4QEO+vwXrQsD+w==
+X-Received: by 2002:a17:907:7d90:b0:94a:8291:a1e3 with SMTP id oz16-20020a1709077d9000b0094a8291a1e3mr2573651ejc.74.1685457621030;
+        Tue, 30 May 2023 07:40:21 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id d7-20020a170906c20700b0096f55247570sm7412780ejz.0.2023.05.30.07.40.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 07:40:20 -0700 (PDT)
+Message-ID: <cd4177b1-d418-58fc-9643-d013b7aa7ec4@linaro.org>
+Date:   Tue, 30 May 2023 16:40:18 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 6/6] ASoC: dt-bindings: Add tas2781 amplifier
+Content-Language: en-US
+To:     Shenghao Ding <13916275206@139.com>, broonie@kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, lgirdwood@gmail.com, perex@perex.cz,
+        pierre-louis.bossart@linux.intel.com
+Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, x1077012@ti.com, peeyush@ti.com,
+        navada@ti.com, gentuser@gmail.com, Ryan_Chu@wistron.com,
+        Sam_Wu@wistron.com, tiwai@suse.de
+References: <20230527223632.11781-1-13916275206@139.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230527223632.11781-1-13916275206@139.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixes the warnings:
-at24 0-0053: supply vcc not found, using dummy regulator
-at24 0-0057: supply vcc not found, using dummy regulator
+On 28/05/2023 00:36, Shenghao Ding wrote:
+> Create tas2781.yaml for tas2781 driver.
+> 
+> Signed-off-by: Shenghao Ding <13916275206@139.com>
+> 
+> ---
+> Changes in v4:
+>  - remove '\t' in the file
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Keep the rest of the changelog.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
-index 2be16abb6b69..8c0c6e715924 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
-@@ -219,12 +219,14 @@ eeprom1: eeprom@53 {
- 		read-only;
- 		reg = <0x53>;
- 		pagesize = <16>;
-+		vcc-supply = <&reg_vcc3v3>;
- 	};
- 
- 	eeprom0: eeprom@57 {
- 		compatible = "atmel,24c64";
- 		reg = <0x57>;
- 		pagesize = <32>;
-+		vcc-supply = <&reg_vcc3v3>;
- 	};
- };
- 
--- 
-2.34.1
+>  Changes to be committed:
+> 	new file:   Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+
+This is useless, drop.
+
+Your mail threading is still broken. This breaks usage with b4, so I
+cannot easily make diffs or apply it easily (e.g. via any message ID). I
+already mentioned this and no improvements at v4.
+
+
+
+> ---
+>  .../devicetree/bindings/sound/ti,tas2781.yaml | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> new file mode 100644
+> index 000000000000..b3dcd7b18f5d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 - 2023 Texas Instruments Incorporated
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/ti,tas2781.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments TAS2781 SmartAMP
+> +
+> +maintainers:
+> +  - Shenghao Ding <shenghao-ding@ti.com>
+> +
+> +description:
+> +  The TAS2781 is a mono, digital input Class-D audio amplifier
+> +  optimized for efficiently driving high peak power into small
+> +  loudspeakers. Integrated an on-chip DSP supports Texas Instruments
+> +  Smart Amp speaker protection algorithm. The integrated speaker
+> +  voltage and current sense provides for real time
+> +  monitoring of loudspeaker behavior.
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  '#address-cells':
+> +    const: 1
+> +  '#size-cells':
+> +    const: 0
+
+Put compatible first. What's more I don't understand why added it. Your
+changelog does not explain it - you wrote there is only one change, fix
+of tab.
+
+> +
+> +  compatible:
+> +    enum:
+> +      - ti,tas2781
+> +
+> +  reg:
+> +    description:
+> +      I2C address, in multiple tas2781s case, all the i2c address
+> +      aggreate as one Audio Device to support multiple audio slots.
+> +    maxItems: 4
+> +    items:
+> +      minimum: 0x38
+> +      maximum: 0x3f
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  ti,broadcast-addr:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Generic I2C address for all the tas2781 devices in
+> +      purpose of I2C broadcast during the multi-device
+> +      writes, useless in mono case or remove this item to
+> +      disable broadcast mode.
+> +
+> +  '#sound-dai-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +   #include <dt-bindings/gpio/gpio.h>
+> +   i2c {
+> +     /* example with quad support, such as tablet or pad device */
+> +     #address-cells = <1>;
+> +     #size-cells = <0>;
+> +     quad: codec@38 {
+> +       compatible = "ti,tas2781";
+> +       reg = < 0x38 /* Audio slot 0 */
+> +               0x3a /* Audio slot 1 */
+> +               0x39 /* Audio slot 2 */
+> +               0x3b /* Audio slot 3 */
+
+These should be four items, right? <0x38>, <0x3a> etc. Drop spaces
+around <>, that's not DTS syntax.
+
+
+> +               >;
+> +       #sound-dai-cells = <1>;
+> +       reset-gpios = < &gpio1 10 GPIO_ACTIVE_HIGH >;
+
+Drop redundant white space.
+
+
+
+Best regards,
+Krzysztof
 
