@@ -2,100 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C851D71661B
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 17:05:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87EE4716652
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 17:12:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233142AbjE3PEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 11:04:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41218 "EHLO
+        id S232862AbjE3PMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 11:12:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233109AbjE3PEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 11:04:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DC34118;
-        Tue, 30 May 2023 08:04:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 04B98630FF;
-        Tue, 30 May 2023 15:04:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 181E2C433AE;
-        Tue, 30 May 2023 15:04:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685459067;
-        bh=QnEoh+X+SgNcIBxD5KzNnV5xmRN1TrKhb2ZElCWGT+8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=E3jWOhPweOzR2ItjP8ZU+908Aay1KcouvnvGiVgboQaHDLkc0/4LNgMeFKx4X94T/
-         Gp4aM6Fv0bxhFIuCsdWeqHbtcuIBymKu4iv0saqyg7A7J4Dx4hypkXKRKe9/nPQU3e
-         ZZ0WCXNWC8FHoTBGTALmgCKcCrhhuZcRKuhNGjzMBkbkMpRyuGofpNZQTjMnaA3rql
-         UAwIsY/DFwamgl6nb2/h0D7KwTV5axTLimNDik/dAq3qkq4OgmUOykOmxkl0/qoFqh
-         7Hsmo23aIkJ7CQgMwh/CqLsFhKR3IZwEx+EwjRBA0eDRUt8kRy4dODFixGHdZ07yrx
-         BsTXkPms8MBsg==
-From:   matthias.bgg@kernel.org
-To:     rafael@kernel.org, Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     devicetree@vger.kernel.org, Amit Kucheria <amitk@kernel.org>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Zhang Rui <rui.zhang@intel.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: mt8173: Update thermal node
-Date:   Tue, 30 May 2023 17:04:13 +0200
-Message-Id: <20230530150413.12918-2-matthias.bgg@kernel.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230530150413.12918-1-matthias.bgg@kernel.org>
-References: <20230530150413.12918-1-matthias.bgg@kernel.org>
+        with ESMTP id S232631AbjE3PMM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 11:12:12 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E750A7
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 08:12:10 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-64d4e4598f0so5101904b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 08:12:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685459530; x=1688051530;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=PXZe3EXlAkMKdJhgYvpR9WnbJkKx1aPWVPLYsgdSCp0=;
+        b=AHUi1Q0uxvq1yojNNWM27xAyY/5x1EvANnavaQWFqqA8Myu7acYzmXPy3PnG1zkD6h
+         wDMb/uyJ4XO0zwZEYPArfWxLOkOiOx63n4XoGLyDvbbPYtT3d5PITn8xAKdyokmjQHFw
+         hiNZXPsg5Pe8bF85Zn2riaUcxYV2br3/dMOR1z5CHdYbIy3k3zNACkN1EKlusTcNFkBA
+         Mmo9bGpJJeGtgCP6u8PO++LvSVnPRITOg4aOP1XBr3OndkjutibyS4/dJEpobaRNDLBb
+         CxDJ+xsc/9sMUUiUTqkk87rnorIW/wwaoFNhMZxfuXAZdXzM55ybuEmEIs8zj0hE3MtR
+         wtVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685459530; x=1688051530;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PXZe3EXlAkMKdJhgYvpR9WnbJkKx1aPWVPLYsgdSCp0=;
+        b=O9KexU0n03weiyeNT8S7nHbptjj8ZgmzKgvbMqrAVVQDna5TffVebaLNo8LLhhLRQL
+         HaWYPg1Jx+zFxk5S97sf/O50lyeX6RwUX4SofMZ0TW1vwdQAzru3GX4j3TET57pqR3yS
+         3KdzMwbZK4xkLv3gmRDyCDJdKxxcpKwZP/w0b+JnddeW7aRdAsSyg2HLDaWTPg8ClSWT
+         /R8+yyIy0J307jNnxOtbHZUXYWWdgnjvltji352dOh2KWCrxWb+qrKHdEPUCMS2GShwr
+         /pAiko7IQj4AjVXC3mX/WinO70rrowRfkNbC8VLZzifZUxfPQj0UrxfFiHFkZbJqtwAv
+         3zkA==
+X-Gm-Message-State: AC+VfDxTFpa3BS8+77juzHaXfsnU3PMUq379VC74H03XTHilENiqQ1p6
+        5gl09ZeMbP5EXAWRnThH8Ly00mAmu7bI1l/+heyj8Q==
+X-Google-Smtp-Source: ACHHUZ6gJX/HNxjQ97t6UmNIGPvxKmCnXU4VBGb1OMIMZ79GfO8VpBvRPxPpgqVByZqJFmOq6s+D90C97NUyUE8YQVs=
+X-Received: by 2002:a05:6a20:8e2a:b0:10a:cb95:5aa3 with SMTP id
+ y42-20020a056a208e2a00b0010acb955aa3mr3301523pzj.7.1685459529601; Tue, 30 May
+ 2023 08:12:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230526153508.6208-1-quic_jinlmao@quicinc.com>
+In-Reply-To: <20230526153508.6208-1-quic_jinlmao@quicinc.com>
+From:   Mike Leach <mike.leach@linaro.org>
+Date:   Tue, 30 May 2023 16:11:58 +0100
+Message-ID: <CAJ9a7VhoMFqzSnvfq=kJzoPbTS3nPenyWPE5t-n9j+G2CL3SGA@mail.gmail.com>
+Subject: Re: [PATCH v1 0/3] Add support for a streaming interface for TMC ETR
+To:     Mao Jinlong <quic_jinlmao@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Leo Yan <leo.yan@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthias Brugger <matthias.bgg@gmail.com>
+Hi,
 
-Following the binding description, update to use
-thermal-sensor-cells = 1
+I have a few general comments about this patch set.
 
-Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
+Firstly, I am assuming that this is a standard TMC, with the new byte
+monitor functionality implemented in the CSR block.
 
----
+Now that being the case, all the byte counter operations, the sysfs
+block_size, file ops to read the data and interrupt handling should be
+in the CSR driver, not the TMC driver.
+This counter is not part of a generic TMC device - but a specific
+hardware addition into your system. As such I would expect it to be in
+a separate driver.
 
- arch/arm64/boot/dts/mediatek/mt8173.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+The specific enabling of the CSR counters from within the enable code
+of the TMC should be removed. If your device is set up correctly as a
+helper device with appropriate connections between TMC and CSR, then
+the enable operations can be handled automatically using the helper
+function mechnisms added in this patchset:-
+https://lists.linaro.org/archives/list/coresight@lists.linaro.org/thread/2BBWZCBJWP3AOLBJSB64I5727JZFA6QZ/
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-index c47d7d900f28..44c553bddd46 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-@@ -270,7 +270,7 @@ cpu_thermal: cpu-thermal {
- 			polling-delay-passive = <1000>; /* milliseconds */
- 			polling-delay = <1000>; /* milliseconds */
- 
--			thermal-sensors = <&thermal>;
-+			thermal-sensors = <&thermal 0>;
- 			sustainable-power = <1500>; /* milliwatts */
- 
- 			trips {
-@@ -766,7 +766,7 @@ spi: spi@1100a000 {
- 		};
- 
- 		thermal: thermal@1100b000 {
--			#thermal-sensor-cells = <0>;
-+			#thermal-sensor-cells = <1>;
- 			compatible = "mediatek,mt8173-thermal";
- 			reg = <0 0x1100b000 0 0x1000>;
- 			interrupts = <0 70 IRQ_TYPE_LEVEL_LOW>;
--- 
-2.40.1
+I also see that you are assuming that you will be able to read the TMC
+memory faster than it fills - as there is no guard against overflow or
+detection when the TMC buffer wraps. Given the amount of trace that
+can be generated in a very short space of time, I cannot see how this
+can be guaranteed. Any undetected buffer wrap will result in
+significant decode failures.
 
+The normal sysfs read operations synchronise the DMA using a system
+call and read the RRP and RWP to ensure determine the start and end
+positions of the buffer. This cannot be done safely without stopping
+the TMC. Moreover, you are assuming that the buffer allocated is a
+contiguous flat mapped buffer, and not scatter gather.
+
+The change to the TMC core code - even if this operation could be
+guaranteed to be reliable, should be limited to extracting the data
+only - ensuring that the above constraints are observed.
+
+I'll comment inline in a couple of the other patches
+
+Thanks and Regards
+
+Mike
+
+
+On Fri, 26 May 2023 at 16:35, Mao Jinlong <quic_jinlmao@quicinc.com> wrote:
+>
+> This patch series is to add support for a streaming interface for
+> TMC ETR to allow for continuous log collection to secondary storage.
+> An interrupt based mechanism is used to stream out the data from the device.
+>
+> QDSS_CS_QDSSCSR_ETRIRQCTRL register is used to set the IRQ byte counter
+> value. The value of this registers defines the number of bytes that when moved by
+> the ETR AXI interface. It will casues an interrupt which can be used by an
+> userspace program to know how much data is present in memory requiring copy to some
+> other location. A zero setting disables the interrupt.A one setting
+> means 8 bytes, two 16 bytes, etc. In other words, the value in this
+> register is the interrupt threshold times 8 bytes. ETR must be enabled
+> when use this interrupt function.
+>
+> Sample:
+> echo 4096 > /sys/bus/coresight/devices/tmc_etr0/block_size
+> echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
+> echo 1 > /sys/bus/coresight/devices/stm0/enabl_source
+>
+> cat /dev/byte-cntr > /data/qdss_etr.bin &
+>
+> The log collection will stop after disabling the ETR.
+>
+> Commit link:
+> https://git.codelinaro.org/clo/linux-kernel/coresight/-/commits/coresight-byte-cntr-v1
+>
+> Mao Jinlong (3):
+>   Coresight: Add driver to support for CSR
+>   coresight-tmc: byte-cntr: Add support for streaming interface for ETR
+>   dt-bindings: arm: Adds CoreSight CSR hardware definitions
+>
+>  .../testing/sysfs-bus-coresight-devices-tmc   |   7 +
+>  .../bindings/arm/qcom,coresight-csr.yaml      |  62 ++++
+>  drivers/hwtracing/coresight/Kconfig           |  12 +
+>  drivers/hwtracing/coresight/Makefile          |   3 +-
+>  .../hwtracing/coresight/coresight-byte-cntr.c | 304 ++++++++++++++++++
+>  .../hwtracing/coresight/coresight-byte-cntr.h |  49 +++
+>  drivers/hwtracing/coresight/coresight-csr.c   | 168 ++++++++++
+>  drivers/hwtracing/coresight/coresight-csr.h   |  59 ++++
+>  .../hwtracing/coresight/coresight-tmc-core.c  |  66 ++++
+>  .../hwtracing/coresight/coresight-tmc-etr.c   |   8 +-
+>  drivers/hwtracing/coresight/coresight-tmc.h   |  12 +-
+>  11 files changed, 745 insertions(+), 5 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml
+>  create mode 100644 drivers/hwtracing/coresight/coresight-byte-cntr.c
+>  create mode 100644 drivers/hwtracing/coresight/coresight-byte-cntr.h
+>  create mode 100644 drivers/hwtracing/coresight/coresight-csr.c
+>  create mode 100644 drivers/hwtracing/coresight/coresight-csr.h
+>
+> --
+> 2.17.1
+>
+
+
+--
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
