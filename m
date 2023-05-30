@@ -2,131 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8403715B09
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 12:06:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66F0C715B37
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 12:15:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231374AbjE3KGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 06:06:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42548 "EHLO
+        id S229778AbjE3KPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 06:15:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231368AbjE3KGG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 06:06:06 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F5D93;
-        Tue, 30 May 2023 03:06:05 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4B2EB66059A8;
-        Tue, 30 May 2023 11:06:03 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685441164;
-        bh=h0G8aacKqdBgS5C1qg9jRMOSlWZ7H/k7T1lOosYm1Mc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=j8cGkxrJY6l2EEhgjzw1vbKYkXTrr+ION8Bu6BWlrU/yaGtexhg0Af7H2oZuoSzDj
-         P/IwJvxngRCz9TDCE9OE/rVMxbEqudQIhmQx6BrdLDO6yLecvozQkuLjX84d+UXjZD
-         9tyUYFI7jooiBTv7y0yh44QSly4ehpCwV072VZJfgDxRNJxkoGRfAQOKYb+GNC3SMK
-         bRkrTD4GEbKOEEVF/fN5brgAoZMnUkLf+jJzWfpEnl+XUAHHh0/tWpXvYdsaELF4WT
-         lCSUDbGIwJc9XEJQpfbDot+qVr5eEuBR3xV1FPdefWoWbPQxKeYr4jBYiy4CQtNh1s
-         U0Ok3OPj2Z5ZA==
-Message-ID: <f3322e41-1891-a33b-daaa-731ec548ec4e@collabora.com>
-Date:   Tue, 30 May 2023 12:06:00 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH v5,8/8] media: mediatek: vcodec: Add dbgfs help function
-Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        =?UTF-8?Q?N=c3=adcolas_F_=2e_R_=2e_A_=2e_Prado?= 
-        <nfraprado@collabora.com>, Nathan Hebert <nhebert@chromium.org>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S231438AbjE3KPE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 06:15:04 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F9EF93;
+        Tue, 30 May 2023 03:15:02 -0700 (PDT)
+Received: from stefanw-SCHENKER ([37.4.248.58]) by mrelayeu.kundenserver.de
+ (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MTzOe-1pe3Py0phi-00R2ux; Tue, 30 May 2023 12:09:08 +0200
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Marek Vasut <marex@denx.de>, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230525021219.23638-1-yunfei.dong@mediatek.com>
- <20230525021219.23638-9-yunfei.dong@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230525021219.23638-9-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH V4 0/2] dt-bindings: imx: Fix dtbs_check warnings
+Date:   Tue, 30 May 2023 12:08:41 +0200
+Message-Id: <20230530100843.15072-1-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:cmG0J6+3RtVmaV1J0wWj307gxunjjnimgjFaE9b6lVjMHRQjufg
+ bczJG8hWuj3cBP0mZBDkoj0Rx0boCBSHEqMopw1W/fl3a1EBEJayHTZOi4yy71Rdp0QPX4p
+ SoC2FaxRJQfVTSVVZo/iU34Wa1jcSC+Plmp+kz+DzQZK5viI8M0AaMBXH7HH5Y4meA+X1wY
+ 3zBD4aY/eCzRVei9EVb9w==
+UI-OutboundReport: notjunk:1;M01:P0:MFVebADgs8M=;xnkBNB/IZ2UWaMjlN/W/WmW97Al
+ 8Ur6JxLVRiRyU3Y91c+1lvMElxZ/mS4v2hrJH5/7lXDMmnre9AE4aXY+nNeNtM4Nirc/LZ2WH
+ WEiOm6FoHBV4/bNAGNmLMgpKgfYCsg5uHtTfaCXBcpWGNwgqfwajCTrN7biTMtskOCAM7C8H3
+ UNCI5trU59lHwLrOCA3sqTYd5RlZ5IiOi2Z14nWp0he+mAjEEyDa14Vh8Usp3kYTPCr4YRLJa
+ YwRrQ1YcchfzBvqCkXAp+m519anBb11NIU7eOO98HUNFeusmAb/6ue0sGCp98KAln5P99Rm+3
+ LYAcw/KsmkgXu1R3ZvCw/2aWAWgCBmywX02CMTyvym5cJE3apezJU1pYjeHWGeITaChKI6afw
+ L4REzpuoCa+7KxFfQRkzUhkoC5sKsLk4NDvT9AZRlVIfd9Nko2JkPnTUcOY7CJz2GnNCVqcXM
+ Ft3d0TX1zRsC7vclohVP5qI93fnKvhNcdoodOS2Lfcn8+lA4/UalTOLfMuabpR9XZMT+r+4Bn
+ t0gHywGxYm05hUNVLwRlmg15WFgd54dK0vauXotvsahfAVjeRFodH9KUzoxUNyMnKpJSDzgDR
+ TCjZxbJBqxk0ZbGBnsDdNAjlUtngNTjJA8+Xa4v60DFgUyw9yMMhpJFivmGbXTZnHNSYNWg8Y
+ Q9zRzXrsSh2dWNBuIW6ZdUgSsuDcqeZ0w/XoyYtSRA==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 25/05/23 04:12, Yunfei Dong ha scritto:
-> Getting dbgfs help information with command "echo -help > vdec".
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
->   .../mediatek/vcodec/mtk_vcodec_dbgfs.c        | 24 ++++++++++++++++++-
->   1 file changed, 23 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c
-> index 237d0dc8a1fc..2372fc449b45 100644
-> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c
-> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dbgfs.c
-> @@ -52,6 +52,23 @@ static void mtk_vdec_dbgfs_get_format_type(struct mtk_vcodec_ctx *ctx, char *buf
->   	*used += curr_len;
->   }
->   
-> +static void mtk_vdec_dbgfs_get_help(char *buf, int *used, int total)
-> +{
-> +	int curr_len;
-> +
-> +	curr_len = snprintf(buf + *used, total - *used,
-> +			    "help: (1: echo -'info' > vdec 2: cat vdec)\n");
-> +	*used += curr_len;
-> +
-> +	curr_len = snprintf(buf + *used, total - *used,
-> +			    "\t-picinfo: get resolution\n");
-> +	*used += curr_len;
-> +
-> +	curr_len = snprintf(buf + *used, total - *used,
-> +			    "\t-format: get output & capture queue format\n");
-> +	*used += curr_len;
-> +}
-> +
->   static ssize_t mtk_vdec_dbgfs_write(struct file *filp, const char __user *ubuf,
->   				    size_t count, loff_t *ppos)
->   {
-> @@ -84,6 +101,11 @@ static ssize_t mtk_vdec_dbgfs_read(struct file *filp, char __user *ubuf,
->   	if (!buf)
->   		return -ENOMEM;
->   
-> +	if (strstr(dbgfs->dbgfs_buf, "-help")) {
+This series tries to address some dtbs_check warnings on i.MX6ULL.
 
-I would print the help strings in two conditions:
-1. -help
-2. (nothing)
+Changes in V4:
+- drop patch 1 from V3 which has already been addressed by Marek Vasut
+- drop already applied patches from V3 (#3, #5, #6) 
 
-...so that if you don't echo anything to vdec (no params), you get the help text.
-Otherwise, you would have to know that "-help" is a parameter that gives you help
-text in the first place.
+Changes in V3:
+- add Krzysztof's Reviewed-Bys
+- fix indentation in Patch 6 found by Krzysztof Kozlowski
 
-As for this commit "as is", it works as intended and it is useful to retrieve
-the help text; you can either send a followup commit that extends the help to
-the corner case that I've explained, or send a v6 adding that to this same commit.
+Changes in V2:
+- new patch to fix fsl-imx-uart warnings 
+- fixed GPC typo found by Fabio Estevam
+- keep enum in bindings as suggested by Krzysztof Kozlowski
+- make imx6ul GPT compatible to imx6sx
 
-I would prefer to see a v6 -- BUT -- since this series was sent a long time ago,
-you will get my R-b and I will leave the final choice to Hans.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Stefan Wahren (2):
+  dt-bindings: crypto: fsl-dcp: add imx6sl and imx6ull compatible
+  dt-bindings: imxgpt: add imx6ul compatible
 
+ .../devicetree/bindings/crypto/fsl-dcp.yaml          | 12 +++++++++---
+ .../devicetree/bindings/timer/fsl,imxgpt.yaml        |  3 +++
+ 2 files changed, 12 insertions(+), 3 deletions(-)
+
+-- 
+2.34.1
 
