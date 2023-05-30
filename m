@@ -2,150 +2,476 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5A6F715C0A
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 12:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 278F0715C0D
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 12:43:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231624AbjE3Kme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 06:42:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37276 "EHLO
+        id S230007AbjE3KnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 06:43:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231616AbjE3Km3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 06:42:29 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2045.outbound.protection.outlook.com [40.107.8.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2317AA0;
-        Tue, 30 May 2023 03:42:28 -0700 (PDT)
+        with ESMTP id S230106AbjE3KnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 06:43:03 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on20601.outbound.protection.outlook.com [IPv6:2a01:111:f400:7eae::601])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21E89113;
+        Tue, 30 May 2023 03:42:50 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cJ7kchsS03bALR/edHaq48NW23xvWP42Qg3KNiW2oHrTal+JP0wGTBQFtrnF5TTIGWMBoyph/ptZ2Ltgy16wl9j7ZgBaYGuKXUv5A4X0E6E5eFr6PYtY0je+Amdumx9fi0Yi5BJh2LkYSX/YOeZAZKHtxqS/CHxhuAvZthaUE94zKZTqZZJSVVh/dVSPpgt7YpWMV/SbXFz0Tn4+FALPumSTavaPb/pGU949g2cWog8hegegfENQ1yvR7oJMLUqAeawY3uoAl+VLSCjhVeeRKsegGcMGDu5U9pRL6enHnFrIP88msvxMDFs2Gbn0Bh9nwJr6cBC9GNvPlMN/IyxRkQ==
+ b=KpGVtAbTuuABqGzMZZdrQuWgQdN1FiXeWMzukilPxpUtBrEThRh8G6j9YTG+dpat64TVde3rm/xU2WF3bAw5Vsbct305c/Xvj2RVANk/wDRFJ6IsJLbHY7CES8rAagIwnjWg0/GRncsbxEgaeL14J3Q4tyOh4vfzEMDgUk8XfTOin62oWlIyqgHshTU7VIkp6cN8VTpi0O941hdVCHCCwYd9Z3wdzE8R/YWFaLMnqNyaIlC6fyb9T23FMKykRxKG2YW7mHZHW4tLXWD1K4O1Blm1wyr/i/eFKlIwn9JgLP/NPVpThbb7l1EggIIL5uFUKwSxa4ZkSC9sXtmUDRvhCA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kHRSLOaI/yJsZDYFElTSfXqQ4dhP9oePucPTJcoGNno=;
- b=Tox4rSe29hgJl4kviPRcxW82skBY9EmwB/9ojOQl9Gxh7GuyWn4XsVktekmoHAo34UW6YMkHvCwNpi5l0HdpPVs0D6pokzsHcifm5D9TcPpXZRHyD7d1f4dVMzoO6stON+Gq3Vb7tCqZlR8xkTZbMwuZRj3pz+xsGRIJEzufXsTv3+uCp3vvJkr1BhZZ2JvuzgXRqhlNfHy2OiE80gGNP+JDhPPc6sXFUj8kbDyU2OAGHgbrbjTiyZIbkhbWfpKPQcaVpCxcTHCFxQZN0dwSsaVg96nEJ/1NeTsqwpCFxUX5gMXF5/eutlV0f0puHzafD6tjhAFK0TzASGCc/hdPBg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ bh=NZmufrcU8o7J4J8CL8v3GgrSnASqsgNMcKhwb9rkS4g=;
+ b=I+AMjSlXfbjAzfRvJF3ZDRGmboaLUPqoUbZ7UTKIZsKodeNEoRjEIfsNdUI/Je8L6ItUIBQnCCNLwiYdSPVDshdQKrdFxPaVmj6cBWJlcA90KzMtu2rNwcINqfqTAOthTx1bd5YSD4tH2ahuv+uc+eVAWCONY4WfDXt7Q3JImJrMvlvP91t5XMqfLBR9QeuGA4g3ff6A/xQ2HFcv917kD+SyTPMuxYl6IrJm2ZR8Q8NwyS566tHJop816PYESxK5hiQs2kMBti8ZENzL52lra/Tw+sJG9v0f4Ny3uXvtcmzedOBoMad4BpIvIHBsmG6qXwEItuCIfNYQ+1i5yQ0uug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kHRSLOaI/yJsZDYFElTSfXqQ4dhP9oePucPTJcoGNno=;
- b=BrifqBJeJdmKjeSTtTpL996G8vWr9X+ejpLNUYiyErfFlpTz/UVyaxs6PtlvNqQN+b/Pt07h5RwOlgqD67teokYZhrxcnA4SCVdnGkY9QdmjRfmZ9WR1Vh7/JBp7GHvsa3Is1AKZ0+XJueAPA5rIitQ9zk0i1YXM70nrP9QT1CE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB7PR04MB4505.eurprd04.prod.outlook.com (2603:10a6:5:39::26) by
- AS5PR04MB9970.eurprd04.prod.outlook.com (2603:10a6:20b:67e::21) with
+ bh=NZmufrcU8o7J4J8CL8v3GgrSnASqsgNMcKhwb9rkS4g=;
+ b=enYFSgBsRaLycT0YIjb3PN87YZMVJrWVprjAZcy7wvh1J/ZmdLl/Iwfqofe/SYe6styFXMIfCVbsbD+jspH3/+iF1/QI6xHYDdSnFQinjesVcsQhNvi6vTl+Xh04yJfQ7Yym2Oh1AfljIO5ePa3PyFYhVUxbQMkaFQuD2OJpnXg=
+Received: from DS7PR06CA0015.namprd06.prod.outlook.com (2603:10b6:8:2a::26) by
+ SJ2PR12MB8691.namprd12.prod.outlook.com (2603:10b6:a03:541::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.22; Tue, 30 May
- 2023 10:42:26 +0000
-Received: from DB7PR04MB4505.eurprd04.prod.outlook.com
- ([fe80::f9b0:8c34:e57:92a4]) by DB7PR04MB4505.eurprd04.prod.outlook.com
- ([fe80::f9b0:8c34:e57:92a4%7]) with mapi id 15.20.6433.022; Tue, 30 May 2023
- 10:42:26 +0000
-From:   Xu Yang <xu.yang_2@nxp.com>
-To:     peter.chen@kernel.org, robh+dt@kernel.org
-Cc:     gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
-        linux-imx@nxp.com, jun.li@nxp.com, xu.yang_2@nxp.com,
-        devicetree@vger.kernel.org, peng.fan@nxp.com
-Subject: [PATCH 2/2] usb: chipidea: imx: don't request QoS for imx8ulp
-Date:   Tue, 30 May 2023 18:40:07 +0800
-Message-Id: <20230530104007.1294702-2-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230530104007.1294702-1-xu.yang_2@nxp.com>
-References: <20230530104007.1294702-1-xu.yang_2@nxp.com>
+ 2023 10:42:46 +0000
+Received: from DM6NAM11FT014.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:2a:cafe::81) by DS7PR06CA0015.outlook.office365.com
+ (2603:10b6:8:2a::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23 via Frontend
+ Transport; Tue, 30 May 2023 10:42:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ DM6NAM11FT014.mail.protection.outlook.com (10.13.173.132) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6455.21 via Frontend Transport; Tue, 30 May 2023 10:42:45 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 30 May
+ 2023 05:42:44 -0500
+From:   Michal Simek <michal.simek@amd.com>
+To:     <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+        <michal.simek@xilinx.com>, <git@xilinx.com>
+CC:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
+        Andrew Davis <afd@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "Harini Katakam" <harini.katakam@amd.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Parth Gajjar <parth.gajjar@amd.com>,
+        Piyush Mehta <piyush.mehta@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        Tanmay Shah <tanmay.shah@amd.com>,
+        Vishal Sagar <vishal.sagar@amd.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v3] arm64: zynqmp: Switch to amd.com emails
+Date:   Tue, 30 May 2023 12:42:41 +0200
+Message-ID: <108cbbbab29e13d386d38a779fd582f10844a030.1685443337.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=13624; i=michal.simek@amd.com; h=from:subject:message-id; bh=gb8iiQ4tExnr3NU0FpwUo/cT0cIfl9PBrRIn0w+lzi4=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhpTSy5LqDDVFP+4fn9kfEbUqnvV1i8rk8xE/pbdtNDEU7 a2L7vnVEcvCIMjEICumyCJtc+XM3soZU4QvHpaDmcPKBDKEgYtTACaiuohhnqrJvY273kZc7moI nLrJcI7BFsPSZoa5InUeW7i94hccmH2kWr75U3nwpHphAA==
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SG2PR01CA0165.apcprd01.prod.exchangelabs.com
- (2603:1096:4:28::21) To DB7PR04MB4505.eurprd04.prod.outlook.com
- (2603:10a6:5:39::26)
-MIME-Version: 1.0
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB7PR04MB4505:EE_|AS5PR04MB9970:EE_
-X-MS-Office365-Filtering-Correlation-Id: a9c78966-7989-4fc3-6ee6-08db60fa8eff
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT014:EE_|SJ2PR12MB8691:EE_
+X-MS-Office365-Filtering-Correlation-Id: 355edb52-f584-4155-1f01-08db60fa9ae1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: V0HZh9jF3PMDODXrwhmT0K38QOjiIA3o1lz2RQisex0LYAidMoo46bR3ksbOF3UnIsLcFWe/A4DxCNHBYyetCRhwYxTel1L9tiy9mU1cEF1VMD9of5JpJwFNJaPSbwPoE1J50JkoYBqSowQvudWS4JZ2GqqAQnDFh2Ql8zhrUximEuLKoigLLzMWxpn9ip1xnJUTBpaz2Irj72Y8Xs4iRqyTFVwmB2aQ3k9kuzGZvUWPfnPlyPTqhH2cTtm4fO+VlYsO+27k3s7AX8cctalnIFAvZ1xww+sk/wEa07pk6seay/F8/U/iD60/vdvKvi/6HYheraJzu+wjkNL2n4Q82ouasOqoJ4IRbR4ZUiQytj84/XECkookQrJtOMP+NB2/qQWnExCild9n/y7mT4/7fI8mzRwNm/IhDe+VSXaEY6ik5FSRRES2ekcoptfaBOzQhT6zG6ufBpije2RYnMh4DS5aTBZ5dNQqg1y9/hEViTeaLgh54RRoIy47Dks/78wg1WVGTXPpX/w055QLmIS4+FaXnOKrbp7WQHgygdAXTvV9+v63NThUj+zfio5JW/RyX2E0OiD7ymad10WpWOTV+kVR4OuHLIl8ORZZjZrsxg46v32M5H4l7QhO+RuwXCzaSLAZA1ID1m9H5/yT7sv6TQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4505.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(346002)(366004)(376002)(39860400002)(396003)(451199021)(1076003)(186003)(6506007)(26005)(52116002)(6486002)(6512007)(316002)(6666004)(2906002)(5660300002)(36756003)(41300700001)(8936002)(8676002)(478600001)(38350700002)(38100700002)(4326008)(86362001)(66946007)(2616005)(66476007)(66556008)(83380400001)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2VXkih3Gkeinq+wYVLnKiovXf/pOT/SbcQDWCYcR0uhmH4WXoTn40WDk7rqO?=
- =?us-ascii?Q?X4reaoSQK0gr8kzCICl419ZO31iPI09okK5fY6It7l1yqFti94wkSJleEnAS?=
- =?us-ascii?Q?j70cfhCKMaU5S+zSOlESmNQB4ALayDf38QRkGVUrFj9bGQRX7nlbnrawfXwC?=
- =?us-ascii?Q?GvxeEHgwDoCraXGC6QL1fvjw5Ws3jQyajILI877JFVyCx8+0bS8eG7zGj5DM?=
- =?us-ascii?Q?YR6PP2+i+6t++5WISl0lamTMLaxgWbjRFUK1+dCxjy83uD3h4XOGUC4z9Li4?=
- =?us-ascii?Q?1JEUDYcTcFd+Vy1OsB+/KtaW67iCfnZjKVnJRxxlaUHeEJCfR7LR2FctdyZk?=
- =?us-ascii?Q?OtiLEz1IlOEbqKKl+fVhSaORw4Bw69jC57XZMXv6aVl81oxt8ILOoNTeO/XI?=
- =?us-ascii?Q?okBR5SuTNuXwNRUdKKpcXbjxYWNPNFI5/b+erMMZTFijugCTttOZHehVrVNP?=
- =?us-ascii?Q?xkKghp7kfvYPqu1nW0ynLoIvpg1Pp4wUaVPTruCGPc3v8gcJmkkLC4Zud62G?=
- =?us-ascii?Q?h9YflqIdmnd5Ks6vEA9bIhSnAWxdm/Rae7x8vgg3vtc287IFzM82yuoCaWxt?=
- =?us-ascii?Q?uyvPlhdWtrNL6qB4tMkRNk+n8egB/dTqM2Dzp+K07tpbVYSeJp70imM9E/kQ?=
- =?us-ascii?Q?rxnmJCex7A0y6HCg0jePmNPHpO3+k75z67JRpl0yyJ1etHU90NJdbhGq3Ic9?=
- =?us-ascii?Q?SSix0b59+FXpzCGPsKAcF1jDK7WIOTSgclBvCsd/6Sr66V9svSOGi8rnRMoE?=
- =?us-ascii?Q?tjhDMIPYxZFGVEm4oVnopefsVgm+N7EEyD1UxB3Psabn9TRz5S7wTbuVkwWK?=
- =?us-ascii?Q?Z/b5rrZ+Nu78PDNVG7EyD/ik+uYzmwZNFo99eVlFY3kYNFIxR8UxmaBtpO5b?=
- =?us-ascii?Q?OcFp7le7hZSHDGahVQ6WVcKFTtHIql6UHIUJz4m5G3+II5wHkyxGfJYvWyfT?=
- =?us-ascii?Q?ioftST5PPUwaxf27EcChEFDLSOhV3CjrbUawsIajtI5uAf3+kcmf3Db+itZT?=
- =?us-ascii?Q?nWubNMZ06ZC3qel5ZfxWdG+QrBRcFPMvUgxQkTjLIw0EHv5vTfEgaXoBpYRN?=
- =?us-ascii?Q?NnvgTnLe1d/OAyjLnbAE90CWXkAniYGqhXt/1lGJs2Yi4djPAGC37rzOheyV?=
- =?us-ascii?Q?KZ0a/rt8nhUyb7wXEjvZe+TqswSmQqFSoUHFD0Xzmz6nA29VpP0fy11arD4+?=
- =?us-ascii?Q?z0ECH4BGM7slsUxalfcMiEICrhJrVXqoRNiT2RRFo6C2fcaCha99qQdM2dBx?=
- =?us-ascii?Q?ZX94v+z2lY9DZEiBuLsDdUWv/nssZIJpl2/192cCkgOfflJeDhv2O5XfdMOY?=
- =?us-ascii?Q?bihgz6wxd4Pt8ucZcZNJvwgNCB+pBg7QZU73pj1sdKiIhFjQlnN+K/SqCQbS?=
- =?us-ascii?Q?aFcl0RGpdKyomdGrTQ9jnLSX0IdFYGSc1pq05RTXhngVuMVPNRKeLv1KQ6HQ?=
- =?us-ascii?Q?Q4S52JdW+Go1Aaq414+O40t2nvB2JU0I17M2Jbdx0WzDDS/Wp238iHs5ppwf?=
- =?us-ascii?Q?cMtGrh/o38XZFtuuQY9oEgrE+daghtdNf+SQgbNOTQj0T7G4jB8E3b3XXce3?=
- =?us-ascii?Q?sT8ocW0907olFIZtLNxPcxXJgJatxpomdZFnciRC?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a9c78966-7989-4fc3-6ee6-08db60fa8eff
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4505.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2023 10:42:26.3679
+X-Microsoft-Antispam-Message-Info: yRKdkhg3KjsrAeMIVE4SYAo23wZbiDSDKP1nhdTghKLCE2+p/8/+yb1GQofOjLAa3InCj8ysAWp1/W2bg3oOvWg5VHqb1KlffgkCMC+ZKQWoFPW/98WY4BxqOs/lGWJ9TDS4rJWfmNmoPf344EU92OIIbZWE+8/TF+w+u6b2gHAS/4d4HXL2CN/A4Yju4ZEtbAqItPmv3mtxsiZhlyhqrSyoUDcCiQAjIT+Je8YikOT93saDWzF3B3pZFZNZdn4/BQHUmdlyd4YvEvjKhiVFmLcIsOadKD1MywLSz4LroHrS1N6jIjQ9P77t7PySJuucSArzwpQcABeUxYmPI9LMEMr6DRBzU+MHtDPncz5hVY84WcnI6OPPFvGXWzXRm2UXCsi+jaj7U8VY0T51ZW6no1KaIIFGuQiubW9yV92ois79tjYi9Q0oWTRCmOyTtHwdWHozRHvIGxHYVm1cdIeMFLnGdvE2UlMicNpXPLkCUBBPb47EmEXJL6wjFWSMPBHqGLevOx4KjgokIQjZ0zcn91XdBYkF6Iz67WiNuUdl69qzE9xqMAQgd37z0HFZYJ9Jq7ce4bNcct5+5zvbF56GCxwTfWN3kCBQ/lXSTaY6Dmxb7Zw6jYhOzzM3LimYxIeMdFx+D1miVvMhD0UxpkMgmRSGJVt+a9rk2r2mAhYwUEj9FAWSFiDFX33pNACLdA5gac+KXQpzVFRpxpjHMDqoN6tNaAyn4llKrJGOsIfpiHK+glAzPuLZ9cL/UPYiwPqPsUrj8gIC7Kskzt88HjLel+mV0FINTPHgRw4kO3VVxI4CGuhvcZhnfVIvonHsNZn+
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(136003)(346002)(376002)(396003)(39860400002)(451199021)(36840700001)(40470700004)(46966006)(16526019)(186003)(26005)(316002)(30864003)(6666004)(2906002)(40480700001)(40460700003)(5660300002)(41300700001)(7416002)(36756003)(44832011)(8676002)(8936002)(478600001)(81166007)(82740400003)(356005)(36860700001)(54906003)(110136005)(336012)(426003)(82310400005)(4326008)(86362001)(2616005)(47076005)(70206006)(70586007)(83380400001)(2004002)(36900700001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2023 10:42:45.8811
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3EUcv+v/1l4LEHZIbOX09SZH5coMYE3bwFJ1/mlRdutrjkJ+mXEvjcjaF4i+BcWg8mF9XKEshRmA+jbNiyDn5A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS5PR04MB9970
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 355edb52-f584-4155-1f01-08db60fa9ae1
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT014.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8691
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use dedicated imx8ulp usb compatible to remove QoS request
-since imx8ulp has no such limitation of imx7ulp: DMA will
-not work if system enters idle.
+Update my and DPs email address to match current setup.
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-Signed-off-by: Li Jun <jun.li@nxp.com>
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
- drivers/usb/chipidea/ci_hdrc_imx.c | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/usb/chipidea/ci_hdrc_imx.c b/drivers/usb/chipidea/ci_hdrc_imx.c
-index 9f0f4ec701c5..336ef6dd8e7d 100644
---- a/drivers/usb/chipidea/ci_hdrc_imx.c
-+++ b/drivers/usb/chipidea/ci_hdrc_imx.c
-@@ -70,6 +70,10 @@ static const struct ci_hdrc_imx_platform_flag imx7ulp_usb_data = {
- 		CI_HDRC_PMQOS,
- };
+Changes in v3:
+- Add Laurent's reviewed-by line
+- Also convert DP email in xm019 DT
+
+Changes in v2:
+- Remove all copyright changes
+- Fix DPs name
+
+ arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dts      | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi         | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso   | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso   | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts      | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dts     | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts      | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts      | 4 ++--
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts | 4 ++--
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts      | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts    | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts    | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts      | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts      | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts      | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts      | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts      | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts      | 2 +-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts     | 4 ++--
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi                 | 2 +-
+ 24 files changed, 27 insertions(+), 27 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dts b/arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dts
+index 88aa06fa78a8..4c1bd69e7553 100644
+--- a/arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dts
++++ b/arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2018, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
  
-+static const struct ci_hdrc_imx_platform_flag imx8ulp_usb_data = {
-+	.flags = CI_HDRC_SUPPORTS_RUNTIME_PM,
-+};
-+
- static const struct of_device_id ci_hdrc_imx_dt_ids[] = {
- 	{ .compatible = "fsl,imx23-usb", .data = &imx23_usb_data},
- 	{ .compatible = "fsl,imx28-usb", .data = &imx28_usb_data},
-@@ -80,6 +84,7 @@ static const struct of_device_id ci_hdrc_imx_dt_ids[] = {
- 	{ .compatible = "fsl,imx6ul-usb", .data = &imx6ul_usb_data},
- 	{ .compatible = "fsl,imx7d-usb", .data = &imx7d_usb_data},
- 	{ .compatible = "fsl,imx7ulp-usb", .data = &imx7ulp_usb_data},
-+	{ .compatible = "fsl,imx8ulp-usb", .data = &imx8ulp_usb_data},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, ci_hdrc_imx_dt_ids);
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+index 719ea5d5ae88..f04716841a0c 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
+@@ -5,7 +5,7 @@
+  * (C) Copyright 2017 - 2022, Xilinx, Inc.
+  * (C) Copyright 2022 - 2023, Advanced Micro Devices, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+index bebbe955eec1..669fe6084f3f 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+@@ -9,7 +9,7 @@
+  * "Y" - A01 board modified with legacy interposer (Nexperia)
+  * "Z" - A01 board modified with Diode interposer
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ #include <dt-bindings/gpio/gpio.h>
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+index 8e66448f35a9..7886a19139ee 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2020 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ #include <dt-bindings/gpio/gpio.h>
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+index 464e28bf078a..c1ab1ab690df 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2020 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dts
+index c70966c1f344..85b0d1677240 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2020 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ #include "zynqmp-sm-k26-revA.dts"
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
+index f1598527e5ec..48d6a7202406 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2017 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
+index 04efa1683eaa..e80484f9b137 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
+@@ -4,8 +4,8 @@
+  *
+  * (C) Copyright 2015 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
+- * Siva Durga Prasad Paladugu <sivadur@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
++ * Siva Durga Prasad Paladugu <siva.durga.prasad.paladugu@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+index f89ef2afcd9e..1a7995ee62ce 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2015 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+index 868ca655a220..869b733a0634 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2015 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+index 381cc682cef9..38b0a312171b 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2016 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+index 6e0106bf1294..05be71eab722 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2015 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
+index ae2d03d98322..b1e933b8a2cd 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dts
+@@ -4,8 +4,8 @@
+  *
+  * (C) Copyright 2015 - 2021, Xilinx, Inc.
+  *
+- * Siva Durga Prasad <siva.durga.paladugu@xilinx.com>
+- * Michal Simek <michal.simek@xilinx.com>
++ * Siva Durga Prasad Paladugu <siva.durga.prasad.paladugu@amd.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+index 70c48079575d..544801814bd5 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2016 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  * Nathalie Chan King Choy
+  */
+ 
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
+index 6647e97edba3..c8f71a1aec89 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2016 - 2018, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ #include "zynqmp-zcu102-revB.dts"
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts
+index b6798394fcf4..705369766a55 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2016 - 2020, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ #include "zynqmp-zcu102-rev1.0.dts"
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+index d600eeb5b2b7..230ef94d5dcb 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2015 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts
+index f7d718ff116b..63419deb5b33 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2016 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ #include "zynqmp-zcu102-revA.dts"
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+index 473fae564906..d178a4f898c9 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2017 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+index c8ba9ed157be..38b11594c074 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2017 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+index 09773b7200f8..8af0879806cf 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2016 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+index e0305dcbb010..f76687914e30 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2017 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts
+index 4874e0ad914e..e615286b8eff 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts
+@@ -4,8 +4,8 @@
+  *
+  * (C) Copyright 2017 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
+- * Siva Durga Prasad Paladugu <sivadur@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
++ * Siva Durga Prasad Paladugu <siva.durga.prasad.paladugu@amd.com>
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index 850b497d7a81..a961bb6f31ff 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -4,7 +4,7 @@
+  *
+  * (C) Copyright 2014 - 2021, Xilinx, Inc.
+  *
+- * Michal Simek <michal.simek@xilinx.com>
++ * Michal Simek <michal.simek@amd.com>
+  *
+  * This program is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU General Public License as
 -- 
-2.34.1
+2.36.1
 
