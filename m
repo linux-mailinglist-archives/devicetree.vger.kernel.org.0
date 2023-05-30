@@ -2,83 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DF6F715C9C
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6465715CB8
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:11:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231802AbjE3LGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 07:06:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51608 "EHLO
+        id S231425AbjE3LL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 07:11:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbjE3LGo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:06:44 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64DD6FC
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:06:39 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51478f6106cso7122041a12.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:06:39 -0700 (PDT)
+        with ESMTP id S231340AbjE3LLV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:11:21 -0400
+Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34558114
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:11:19 -0700 (PDT)
+Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-565bdae581eso52754777b3.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:11:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685444798; x=1688036798;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JYFJ+H1VAY9LSysZ7K+45YdOSI8zV/BM4XST8evs3Lk=;
-        b=GRaHLdJjqrz/j8TuJaGorsmpvVlJ/aJ8ZTKWe7B6d0ygiVJvNWPO97kbjZSe9OPY2z
-         7fY5/TH8WkL5SRTPlFJg8Mxc5e/vIHfsTGYcXcANZILRSiAuzE1ua1lF8v65u+Vh9DZG
-         I2obghP9lHIWQ08HFR6XlFh2vneQ+yMzfHbT5UXIe5aNUYAHN2jVxFFKjthrR+ovnCf6
-         GF8A9g981k9sBfJnVAdDMH4YKMczM5mUjrbc0tiJjyqZ093jnizaiMWWEK4eVvClQT6u
-         XyPrPim9jb/LT8aUqk0rpy51VsGYStIIuppcgYGnUAbjIXhKlUEtYYu+pj9CqayKU5fY
-         xo2w==
+        d=linaro.org; s=google; t=1685445078; x=1688037078;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Aw1Y+LNx+6x6rqkl3hDGtyQpbkH+fbTyufgVbhUx3g=;
+        b=j/znRIUxKJksQNwddxQU58ISTnn7vK+X/i5ctJxZ9kV6Zy74Y7/Ykn1i3yLD1unHfB
+         g1n31aO8w98GIWhpkbzZdHOXZnpLE2VSfzmvc/YNKfYQ+LBduA0dV7wxL+4vq+e3GzxM
+         sAdSD89FDbS9Y4yyVzNrAZCaHYJpp5Q4IIQoIbini+Vow6/Aj3cpWNe0+W6ligWOPT2u
+         ARA3eKBN3lrXEJPxQhCOpk/6dZoqf4VOoqMec7n/yDYe8vrRCOvF8UzCReBELiA6OU9O
+         T1cqBbP8F832jq3ASijrL+IzrUy3RQNNoH6YoT9idANpQ6ukYRvvIxPv5UNVQ9n5LYH9
+         Z0yA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685444798; x=1688036798;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JYFJ+H1VAY9LSysZ7K+45YdOSI8zV/BM4XST8evs3Lk=;
-        b=PVJ1/6npU4IXDAlCx48sDQ5yyC61IoYheoCQG28tlI35chtYwBPgW5TH1NF+jvryY1
-         oYfu0Smclktu0Rv3gQxlurXYRNWtqI4mrycxErawkxkKNaAyOiv4cEthXVK/KBdnZyI7
-         z3b+jGvhsUHKPGyRvX/UzZzjEfuWWaFyrZLwC/o5jG0no0LGGHnC4epUg2IN28QY9yAC
-         +gtZFIPAqk0QiKgiu1bhiosh5e/nvbAwXOMP03lM2H/KNTXfBr5iM916wXu4Z1e4OEMe
-         pmuFRMvAJdwYpuVz1l73IoUhL2vpdSq6OnZh1MfkeWmngfujhRYKqbQnkRjOCzxbQxBf
-         ObVg==
-X-Gm-Message-State: AC+VfDzoUM7wR98peWqAnnqMo89pHQ39UF5HWPM52mHWP9it3147lFp+
-        +kz8MVJG57Lk7xuOIkUbYFmn1A==
-X-Google-Smtp-Source: ACHHUZ64Q/ay65U65CSNrCAMOYDxWnNJb1JH1XN/eF5xsCwlNK2bd3s7+QCeYD7ZV7qF30UTRIgleA==
-X-Received: by 2002:a17:907:9716:b0:94f:6218:191d with SMTP id jg22-20020a170907971600b0094f6218191dmr1989845ejc.32.1685444797753;
-        Tue, 30 May 2023 04:06:37 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id j21-20020a17090686d500b00965a0f30fbfsm7143145ejy.186.2023.05.30.04.06.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 04:06:37 -0700 (PDT)
-Message-ID: <ea6d31cc-68b2-3b73-ae12-dad122a85857@linaro.org>
-Date:   Tue, 30 May 2023 13:06:33 +0200
+        d=1e100.net; s=20221208; t=1685445078; x=1688037078;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2Aw1Y+LNx+6x6rqkl3hDGtyQpbkH+fbTyufgVbhUx3g=;
+        b=Wy5vK2uGvfukc2h5Q1H171Q2Ht/CpSR1Bv0gBU02pZ4HDVTCwRlYQ/Y7fXCedmdOPl
+         cZr9ZDC/P1Pv07biT2p4nd/r6/D3tgSVbWUvdSmRUyJyO+bzuUG9ep7SxxV/T3NcECy5
+         krV4NIqQfVTnb1yazoRJUzQIWuDOuJuewm1Aeh9yX6UeHQSVzeGHg88IfZZUKltOtKbl
+         0B0ZmlohR4u8ppr+y40sslOegmcZUFaHpxn6+puDdGlOvADbIj6nNXfmu3Eh++6mpae5
+         +hA+RKGGBQZYavRFLavJK2RqguXwJctW7VKA00UUGpHoJnmWqyP08X4D4u7SS3F99/XL
+         2c4A==
+X-Gm-Message-State: AC+VfDyCesLNhyHithWCMstu5WBBQCNKvoEGlEUD529/iDS0P/+iODRn
+        SRCttHVuU++h8bDHz/xDeP669V3947x82ZRfsrgs5Q==
+X-Google-Smtp-Source: ACHHUZ5W8uyQC5KcaoA8JpMcpez1cJAmTKelhw60cKwxaP/qh9Nq55tKrVcBkj3EzUU6ZABnGEZGlGc1VHQoEZDvPAA=
+X-Received: by 2002:a0d:e212:0:b0:55d:a4fb:864a with SMTP id
+ l18-20020a0de212000000b0055da4fb864amr1965071ywe.14.1685445078295; Tue, 30
+ May 2023 04:11:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V2 12/13] arm64: dts: qcom: ipq5018: Add RDP432-c1 board
- support
-Content-Language: en-US
-To:     Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jassisinghbrar@gmail.com,
-        mathieu.poirier@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, quic_eberman@quicinc.com, quic_mojha@quicinc.com,
-        kvalo@kernel.org, loic.poulain@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_anusha@quicinc.com,
-        quic_poovendh@quicinc.com, quic_varada@quicinc.com,
-        quic_devipriy@quicinc.com
-References: <20230521222852.5740-1-quic_mmanikan@quicinc.com>
- <20230521222852.5740-13-quic_mmanikan@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230521222852.5740-13-quic_mmanikan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
+ <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org> <71675a02-0801-62dc-2673-4a0907636b21@linaro.org>
+ <CAA8EJpq=HZqiBZ6bpUNH47VmASuH+Mi5OD5BHmg0TPwtsKHf8w@mail.gmail.com>
+ <oxgtbj7qmsdvz5gl4bud64jedmhdmvphjfge7uy6uwulefqfsa@pleslv2zgwbp>
+ <ebc3ff33-6e4f-b107-33c6-f35b03307058@linaro.org> <v3ac2ihqjce7vxcsjnm7ett2vc6wb4hb3bb6x4widd55eintw7@fgkyipbbl2ei>
+ <d52b384f-9853-3921-d4f2-5aedb7ef4c61@linaro.org> <ao2w7eiuc4olqbycmdviqrpqbdpoltusixlllied7jbo5fucap@xv6xvgi43yio>
+In-Reply-To: <ao2w7eiuc4olqbycmdviqrpqbdpoltusixlllied7jbo5fucap@xv6xvgi43yio>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 30 May 2023 14:11:06 +0300
+Message-ID: <CAA8EJpqt_VCE+Nz8w5mRMrg_oN87xByk2NKy8v+9LLPjP-nLYw@mail.gmail.com>
+Subject: Re: [PATCH RFC 03/10] drm/panel: Add LGD panel driver for Sony Xperia XZ3
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     neil.armstrong@linaro.org, Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,77 +90,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/05/2023 00:28, Manikanta Mylavarapu wrote:
-> Add initial device tree support for the RDP432-C1 board.
-> 
-> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> ---
-> Changes in V2:
-> 	- Renamed mp03.5-c1 to RDP432-c1
-> 	- Removed boot-args
-> 	- Resolved dt-binding error's
-> 
->  arch/arm64/boot/dts/qcom/Makefile             |  1 +
->  .../arm64/boot/dts/qcom/ipq5018-rdp432-c1.dts | 49 +++++++++++++++++++
->  2 files changed, 50 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-rdp432-c1.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 259bd57c6064..bb9164de75b0 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-mi01.2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp468.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c1.dts b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c1.dts
-> new file mode 100644
-> index 000000000000..7fe28d9859b0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c1.dts
-> @@ -0,0 +1,49 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
-> +/*
-> + * IPQ5018 RDP432-C1 board device tree source
-> + *
-> + * Copyright (c) 2023, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "ipq5018.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. IPQ5018/AP-RDP432.1-C1";
-> +	compatible = "qcom,ipq5018-rdp432-c1", "qcom,ipq5018";
-> +
-> +	aliases {
-> +		serial0 = &blsp1_uart1;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&blsp1_uart1 {
-> +	pinctrl-0 = <&uart1_pins>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
-> +
-> +&q6v5_wcss {
-> +	pd-2 {
-> +		firmware-name = "IPQ5018/q6_fw.mdt";
+On Tue, 30 May 2023 at 11:27, Marijn Suijten
+<marijn.suijten@somainline.org> wrote:
+>
+> On 2023-05-30 01:39:10, Dmitry Baryshkov wrote:
+> > On 30/05/2023 01:37, Marijn Suijten wrote:
+> > > On 2023-05-30 01:18:40, Dmitry Baryshkov wrote:
+> > > <snip>
+> > >>>>>>> +    ret = mipi_dsi_dcs_set_display_on(dsi);
+> > >>>>>>> +    if (ret < 0) {
+> > >>>>>>> +        dev_err(dev, "Failed to turn display on: %d\n", ret);
+> > >>>>>>> +        return ret;
+> > >>>>>>> +    }
+> > >>>>>>
+> > >>>>>> My usual question: should the mipi_dsi_dcs_exit_sleep_mode() / mipi_dsi_dcs_set_display_on() be moved from prepare() to enable() part?
+> > >>>>>
+> > >>>>>
+> > >>>>> No, prepare is called before the video stream is started and when display is still in LPM mode and the mode hasn't been set.
+> > >>>>>
+> > >>>>
+> > >>>> Yes, that's my point. Shouldn't we enable the panel _after_ starting the stream?
+> > >>>
+> > >>> I have never investigated what it takes to split these functions, but
+> > >>> some of these panels do show some corruption at startup which may be
+> > >>> circumvented by powering the panel on after starting the video stream?
+> > >>>
+> > >>> I'm just not sure where to make the split: downstream does describe a
+> > >>> qcom,mdss-dsi-on-command and qcom,mdss-dsi-post-panel-on-command, where
+> > >>> the latter only contains set_display_on() (not exit_sleep_mode()).
+> > >>> It is documented like:
+> > >>>
+> > >>>       same as "qcom,mdss-dsi-on-command" except commands are sent after
+> > >>>       displaying an image."
+> > >>>
+> > >>> So this seems like the right way to split them up, I'll test this out on
+> > >>> all submitted panel drivers.
+> > >>
+> > >> Interesting enough, Neil suggested that sending all the commands during
+> > >> pre_enable() is the correct sequence (especially for VIDEO mode panels),
+> > >> since not all DSI hosts can send commands after switching to the VIDEO mode.
+> > >
+> > > Note that all these panels and Driver-ICs are command-mode, and/or
+> > > programmed to run in command-mode, so there shouldn't be any notion of a
+> > > VIDEO stream (any command-mode frame is just an "arbitrary command" as
+> > > far as I understood).
+> >
+> > Yes, from the data stream point of view. I was talking about the DSI
+> > host being able to send arbitrary commands or not after enabling the
+> > video/cmd stream.
+>
+> Is this a known limitation of SM8250 then?  Or is the brightness_set
+> issue more likely a "problem" with the panel that the downstream kernel
+> is "somehow" working around or aware of, and I just haven't found
+> how/where it deals with that?
+> (Alternatively we could be "doing it wrong" for other panels but it
+>  turns out to be working anyway)
 
-Does not look like correct paths. Please open firmware and look there.
-Or open other DTS files and check example. Missing qcom, lowercase,
-that's minimum of fixes needed.
+Please excuse me for not being explicit enough. Qualcomm hardware
+doesn't have this problem. Thus I was completely unaware of it before
+talking to Neil.
+So, our hardware works in most of the cases.
 
-Best regards,
-Krzysztof
-
+-- 
+With best wishes
+Dmitry
