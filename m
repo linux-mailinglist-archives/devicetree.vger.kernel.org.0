@@ -2,58 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBC69716DAC
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 21:36:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19A78716DB3
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 21:37:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232209AbjE3Tgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 15:36:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58626 "EHLO
+        id S233003AbjE3Thz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 15:37:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233027AbjE3Tgs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 15:36:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 318FA11F;
-        Tue, 30 May 2023 12:36:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B824762F76;
-        Tue, 30 May 2023 19:36:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91962C4339B;
-        Tue, 30 May 2023 19:36:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685475402;
-        bh=ph9K4D1UYkzwqsYXJeKMX/MfjzDtMKFgr1dwVtkVq6U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JUWceABhas0YqIutE0PfpxJ4z3smGc1DBgrFbD+C7fUzzfMsZQstdyPuTiogyiztp
-         FKVR3sDAoN5lQ+jBEntOxXjPPxqQyCmisaXHDhR9LfOktZr1lyzBtjHPKYLhRHXPdB
-         hq9hPJ4vCFulJGqgfKYQsZhcgueZmked8kuJr7kSpF2GM4M/VZO48mi3qWKbX2R8+c
-         VaqrMzBOZrtRnB+UNae4tJnEQ9wMw7RIrDwcxBihKx0slkwXShlrC87XLcmh8uz8UN
-         zG9ndH/0apVYXdgPU5vEU5cJXfaBpN+QBB8qkYubqm7kfvBE7VdaHwfznn54zOgkTR
-         oWwWAxkNDxuSg==
-Date:   Tue, 30 May 2023 20:36:38 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 19/21] dt-bindings: media: imx258: Add alternate
- compatible strings
-Message-ID: <20230530-ascend-couch-5f9ae4acb7a2@spud>
-References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
- <20230530173000.3060865-20-dave.stevenson@raspberrypi.com>
- <20230530-crying-dispose-2a0e3bc76301@spud>
- <CAPY8ntDsA4PVOowDed6zMqawzFWehABWTENkiLahGubyDZZOTw@mail.gmail.com>
+        with ESMTP id S232977AbjE3Thw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 15:37:52 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 446EB115
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 12:37:50 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2af316b4515so50833471fa.1
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 12:37:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685475468; x=1688067468;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=s4TpePdBcmf3Xw/fPvZUtcZlrHBAqUXKquGcCNg+8W4=;
+        b=dwqIw6MQH1tUrPDRdlGNfOTTTS4X4TGXQBY6HjdV5Kg/WHQzZi2rk7Z0ZKBU4R88To
+         87Gq0HTgwpKhiHITsrTyshd5kxb7AYHjQsTvJCVi4So0J1/KZ+WEV72qAqLGwkIf9tcA
+         j1BBmL89W2jhfWoI6aYtO4BDyJcFk8uOWSWT/CkDscbcr6PFBhwJHjTwvr1nQa25nrRM
+         SVg+N5WOIlmJwPm481pMcfUyC5hjhedozkJhHP7W4lIza4JckFXy+ZYyVrKPedcOJvyO
+         q1608se3L2Em3vQcjSv7Bw3clbM48BtRCN4MTtrYM8E8Xs5f3A5OF6Q6UIwX5Ud7Ey2A
+         4UxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685475468; x=1688067468;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=s4TpePdBcmf3Xw/fPvZUtcZlrHBAqUXKquGcCNg+8W4=;
+        b=VXamcM471UqoviLDJSRKmX82N9f0zwYBZe0JQJvvHbTBUwtD141MNoDA8TcSU4n4NI
+         NqyiO2T/XS20cXJ0B7QXVO1kgw4oufzZE514nCqJww6vZGDQseef6HZoWkmGe4Y8v5dv
+         vWjr4jvxEoMvniN7GNlTcVg+2jgNb2izVaEq/oAgC/OBACF/C+cWGzEE1HgcSsNGBW7f
+         asE1jnqko/6NoPkNsQrC2TuWnviAiwKV6xf+n6kWyi4dCKA5auryufD2hiuBdfzrZJtG
+         czfm6ZXYYaQIub3JkGsNaCRCsxhCxQFxQnGBZ1C5a7pM0kfJvRG++FukIWI3wQfQg/26
+         F+PQ==
+X-Gm-Message-State: AC+VfDwteiTwmj4nEbhTmdpbRiL6A/gCPgXM7RAqbKYGFENy4sO3XvEj
+        MQ4NFTCQhNorsP2j4uziiuaJpQ==
+X-Google-Smtp-Source: ACHHUZ7pnAUM8bkHrV3d/NxVG64VyEJxxguXYTf7NQ+tfO8xq5mMB6Rk9GYLhNJX7tDJe9D0x1Tf0w==
+X-Received: by 2002:a2e:a212:0:b0:2aa:40dd:7a55 with SMTP id h18-20020a2ea212000000b002aa40dd7a55mr1376227ljm.8.1685475468466;
+        Tue, 30 May 2023 12:37:48 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id t10-20020a2e780a000000b002adb566dc10sm2962863ljc.129.2023.05.30.12.37.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 12:37:48 -0700 (PDT)
+Message-ID: <c9c232a4-519a-108f-3651-5af6ba812dc8@linaro.org>
+Date:   Tue, 30 May 2023 21:37:46 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="BJ1Mz4DDsym0YypQ"
-Content-Disposition: inline
-In-Reply-To: <CAPY8ntDsA4PVOowDed6zMqawzFWehABWTENkiLahGubyDZZOTw@mail.gmail.com>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 1/2] dt-bindings: reserved-memory: rmtfs: Allow dynamic
+ allocation
+Content-Language: en-US
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230530193436.3833889-1-quic_bjorande@quicinc.com>
+ <20230530193436.3833889-2-quic_bjorande@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230530193436.3833889-2-quic_bjorande@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -61,105 +81,73 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---BJ1Mz4DDsym0YypQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 30, 2023 at 06:48:44PM +0100, Dave Stevenson wrote:
-> Thanks for the incredibly speedy review.
+On 30.05.2023 21:34, Bjorn Andersson wrote:
+> Allow instances of the qcom,rmtfs-mem either be defined as a
+> reserved-memory regoin, or just standalone given just a size.
+> 
+> This relieve the DeviceTree source author the need to come up with a
+> static memory region for the region.
+> 
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
+>  .../reserved-memory/qcom,rmtfs-mem.yaml       | 23 ++++++++++++++++---
+>  1 file changed, 20 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
+> index bab982f00485..8b5de033f9ac 100644
+> --- a/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
+> +++ b/Documentation/devicetree/bindings/reserved-memory/qcom,rmtfs-mem.yaml
+> @@ -14,13 +14,16 @@ description: |
+>  maintainers:
+>    - Bjorn Andersson <bjorn.andersson@linaro.org>
+>  
+> -allOf:
+> -  - $ref: reserved-memory.yaml
+> -
+>  properties:
+>    compatible:
+>      const: qcom,rmtfs-mem
+>  
+> +  qcom,alloc-size:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Requested size of the rmtfs memory allocation, when not defined as a
+> +      reserved-memory region.
+> +
+>    qcom,client-id:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: >
+> @@ -36,6 +39,11 @@ properties:
+>  required:
+>    - qcom,client-id
+>  
+> +oneOf:
+> +  - $ref: reserved-memory.yaml
+> +  - required:
+> +      - qcom,alloc-size
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
+> @@ -53,3 +61,12 @@ examples:
+>              qcom,client-id = <1>;
+>          };
+>      };
+> +  - |
+> +    rmtfs {
+> +        compatible = "qcom,rmtfs-mem";
+> +
+> +        qcom,alloc-size = <(2*1024*1024)>;
+2 nitty nits:
 
-Just happened to change mailboxes right as it arrived ;)
+- Most uses of DT arithmetic put spaces between the operands
+- You could add a comment explaining what this example brings to
+  the table
 
-> On Tue, 30 May 2023 at 18:39, Conor Dooley <conor@kernel.org> wrote:
-> >
-> > Hey Dave,
-> >
-> > On Tue, May 30, 2023 at 06:29:58PM +0100, Dave Stevenson wrote:
-> > > There are a number of variants of the imx258 modules that can not
-> > > be differentiated at runtime, so add compatible strings for them.
-> > >
-> > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > > ---
-> > >  .../devicetree/bindings/media/i2c/sony,imx258.yaml         | 7 +++++=
-+-
-> > >  1 file changed, 6 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx258.=
-yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
-> > > index bee61a443b23..3415b26b5991 100644
-> > > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
-> > > @@ -14,10 +14,15 @@ description: |-
-> > >    type stacked image sensor with a square pixel array of size 4208 x=
- 3120. It
-> > >    is programmable through I2C interface.  Image data is sent through=
- MIPI
-> > >    CSI-2.
-> > > +  There are a number of variants of the sensor which cannot be detec=
-ted at
-> > > +  runtime, so multiple compatible strings are required to differenti=
-ate these.
-> >
-> > This is implied by having several compatibles.
->=20
-> I'm happy to drop it, just that I've seen a number of media bindings
-> that had debate on why extra compatible strings were required.
+Konrad
 
-If there were no non-detectable differences, then there should be
-a fallback compatible i.e.
-compatible =3D "sony,imx666-foo", "sony,imx666";
-Maybe Laurent will come in here and scream at me, but I don't think the
-pattern should be propagated.
-
-> > >  properties:
-> > >    compatible:
-> > > -    const: sony,imx258
-> > > +    oneOf:
-> > > +      - enum:
-> > > +          - sony,imx258
-> > > +          - sony,imx258-pdaf
-> >
-> > Why not just
-> > properties:
-> >   compatible:
-> >     enum:
-> > ?
-> > I don't see other patches anding more complex compatibles (or they've
-> > not arrived yet) so it doesn't appear to be avoiding churn.
->=20
-> I'll freely admit that DT bindings are a black art to me, so I was
-> following sony,imx290.yaml [1].
-> properties:
->   compatible:
->     oneOf:
->       - enum:
->           - sony,imx290lqr # Colour
->           - sony,imx290llr # Monochrome
->           - sony,imx327lqr # Colour
->       - const: sony,imx290
->         deprecated: true
->=20
-> Looking again at that case, I assume the oneOf is selecting between
-> the enum and the const?
-
-Bingo!
-
-> Seeing as we don't have the const, I guess we
-> can drop the "oneOf:"
-
-Cheers,
-Conor.
-
---BJ1Mz4DDsym0YypQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHZQRgAKCRB4tDGHoIJi
-0q2eAQDyjGLt678LoQn5U6gRWLF0bKqrmLU2CeeclaTqDSfdigD/ZpB1aK/6a3/h
-h1Uq6BbgqUwgJuaqdjmC7HzExJcGnwI=
-=A7Pe
------END PGP SIGNATURE-----
-
---BJ1Mz4DDsym0YypQ--
+> +        qcom,client-id = <1>;
+> +        qcom,vmid = <15>;
+> +    };
+> +...
