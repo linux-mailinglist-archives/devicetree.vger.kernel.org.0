@@ -2,67 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B9DE7166F2
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 17:27:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37B49716705
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 17:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230391AbjE3P1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 11:27:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54578 "EHLO
+        id S231787AbjE3P3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 11:29:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230411AbjE3P1o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 11:27:44 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71E03C5
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 08:27:43 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q41Fd-0000cs-KF; Tue, 30 May 2023 17:27:09 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q41FZ-003uHM-R0; Tue, 30 May 2023 17:27:05 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q41FY-009Xf3-TU; Tue, 30 May 2023 17:27:04 +0200
-Date:   Tue, 30 May 2023 17:27:04 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Dipen Patel <dipenp@nvidia.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dilip Kota <eswara.kota@linux.intel.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-spi@vger.kernel.org, timestamp@lists.linux.dev,
-        linux-watchdog@vger.kernel.org, Tony Lindgren <tony@atomide.com>,
-        Oleksij Rempel <o.rempel@pengutronix.de>
-Subject: Re: [PATCH 0/7] dt-bindings: restrict node name suffixes
-Message-ID: <20230530152704.tbflnepnioupnkmv@pengutronix.de>
-References: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S232204AbjE3P2z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 11:28:55 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83DF5EC;
+        Tue, 30 May 2023 08:28:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=p+s9gSQrQiYw5ODKxvFDAD7YpyqH4RVKdMgrxjPQcFM=; b=i4ihhIyrcbAa91KXE9+2uW2hKD
+        JO4nKIWMpyY82Lfp49eIfIph/l0xq/RznS2rGmZMO6fCvP+gu80hbKUiZKP1grTnDRaSnkSTl+hu8
+        qqom96t66rZT+nEMtma4BbMJC+7sM5aMZNJjW+HxVboIKQOQaIB5+1eWukJ4VA0CzneM+qZhbudoW
+        v4s2fo+AN5zz/Y8n7nxpnD9nOXNaBZ2IKCmOGOkgUYjNxvgSPsHct4RmYCgDVem1OG7vuBlfqiz/T
+        EzjuDfJJ5FQEqxcuAgVI3Oc5kv8yTZIWeq/4Hy0ize8Zs+bZBpGRpYZ/AGea5fIGXqpMaYpLRJZrq
+        GITtxs/Q==;
+Received: from [2601:1c2:980:9ec0::2764]
+        by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
+        id 1q41HE-00EPT0-0S;
+        Tue, 30 May 2023 15:28:48 +0000
+Message-ID: <44a247a3-e349-94da-8235-1b6911463d78@infradead.org>
+Date:   Tue, 30 May 2023 08:28:44 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="qbppmt5ki4y3pwo5"
-Content-Disposition: inline
-In-Reply-To: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2] Documentation/process: add soc maintainer handbook
+Content-Language: en-US
+To:     Conor Dooley <conor.dooley@microchip.com>, soc@kernel.org
+Cc:     conor@kernel.org, corbet@lwn.net, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        olof@lixom.net, palmer@dabbelt.com, robh+dt@kernel.org,
+        arnd@arndb.de
+References: <20230530-multiple-whooping-ee5706fceb67@wendy>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20230530-multiple-whooping-ee5706fceb67@wendy>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,45 +58,305 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---qbppmt5ki4y3pwo5
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On 5/30/23 05:49, Conor Dooley wrote:
+> Arnd suggested that adding a maintainer handbook for the SoC "subsystem"
+> would be helpful in trying to bring on board maintainers for the various
+> new platforms cropping up in RISC-V land.
+> 
+> Add a document briefly describing the role of the SoC subsystem and some
+> basic advice for (new) platform maintainers.
+> 
+> Suggested-by: Arnd Bergmann <arnd@arndb.de>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> Changes in v2:
+> - add Krzysztof's suggested method for avoiding inter-branch
+>   dependencies
+> - explicitly mention that tags should be signed
+> - link to the devicetree abi document, rather than trying to explain it
+>   here & reword that whole section
+> - fix some typos, capitalisation & unify bullet style
+> 
+> The devicetree abi doc feels quite out of date at this point, and could
+> probably do with a spring clean - but it also feels like hallowed ground
+> on which one should tread lightly, so I won't go near that til Rob is
+> back.
+> ---
+>  Documentation/devicetree/bindings/ABI.rst     |   2 +
+>  .../devicetree/bindings/writing-schema.rst    |   2 +
+>  .../process/maintainer-handbooks.rst          |   3 +-
+>  Documentation/process/maintainer-soc.rst      | 178 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  5 files changed, 185 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/process/maintainer-soc.rst
+> 
+> diff --git a/Documentation/devicetree/bindings/ABI.rst b/Documentation/devicetree/bindings/ABI.rst
+> index a885713cf184..93ec82f78ae5 100644
+> --- a/Documentation/devicetree/bindings/ABI.rst
+> +++ b/Documentation/devicetree/bindings/ABI.rst
+> @@ -1,5 +1,7 @@
+>  .. SPDX-License-Identifier: GPL-2.0
+>  
+> +.. _devicetree-abi:
+> +
+>  ===================
+>  Devicetree (DT) ABI
+>  ===================
+> diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
+> index 4a381d20f2b4..640d857dabf3 100644
+> --- a/Documentation/devicetree/bindings/writing-schema.rst
+> +++ b/Documentation/devicetree/bindings/writing-schema.rst
+> @@ -136,6 +136,8 @@ installed. Ensure they are in your PATH (~/.local/bin by default).
+>  
+>  Recommended is also to install yamllint (used by dtschema when present).
 
-On Tue, May 30, 2023 at 04:48:44PM +0200, Krzysztof Kozlowski wrote:
-> Hi,
->=20
-> Tree-wide cleanup of DTS node name suffixes "-N", e.g. "pwm-5", so we all=
-ow
-> only decimal numbers.  In few cases narrow the pattern to also disallow
-> multiple suffixes, e.g. "pwm-5-5".
->=20
-> No dependencies, can be applied by individual subsystems.
+I don't see anything in Documentation/ about where to find yamllint...
+please.
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+>  
+> +.. _running-checks:
+> +
+>  Running checks
+>  ~~~~~~~~~~~~~~
+>  
 
-Thanks
-Uwe
+> diff --git a/Documentation/process/maintainer-soc.rst b/Documentation/process/maintainer-soc.rst
+> new file mode 100644
+> index 000000000000..9683c7d199b2
+> --- /dev/null
+> +++ b/Documentation/process/maintainer-soc.rst
+> @@ -0,0 +1,178 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +.. _maintainer-soc:
+> +
+> +=============
+> +SoC Subsystem
+> +=============
+> +
+> +Overview
+> +--------
+> +
+> +The SoC subsystem is a place of aggregation for SoC-specific code.
+> +The main components of the subsystem are:
+> +
+> +* devicetrees for 32- & 64-bit ARM and RISC-V
+> +* 32-bit ARM board files (arch/arm/mach*)
+> +* 32- & 64-bit ARM defconfigs
+> +* SoC specific drivers across architectures, in particular for 32- & 64-bit
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+     SoC-specific
 
---qbppmt5ki4y3pwo5
-Content-Type: application/pgp-signature; name="signature.asc"
+> +  ARM, RISC-V and Loongarch
+> +
+> +These "SoC specific drivers" do not include clock, GPIO etc drivers that have
 
------BEGIN PGP SIGNATURE-----
+          SoC-specific                                GPIO, etc. drivers that have
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmR2FcgACgkQj4D7WH0S
-/k6mKggAlnEVcB4qInHpsUcVID/g9Si5ycFYWHV3Ur9fkw4/flTJsQ0+OPpooZXI
-dpvQ7Kl9QZycIs6FZtMyK5Pgi6npW15XG8hL7k+NZq1YUw0qNt6vxH8UqSSUjIdY
-to0v66ItQ5jvqJxskCqXG5nE4c39BB6kQmV0LmVqovwRxYEc3GvRqZgOF5RBVvfY
-/WGbC2DUwy+zYVyBuAEP9D57J/iJKGXd3Axujy4SwzEJfcdq38axsICip6LF2J3I
-goisJHcTFiyiw0ATcuvUafLQDXJUta6y3tmq/SKEjej6z5Iu1p2w3iH6SZ/FTeJx
-GHPzrrwL7MzOXnIV9L0w6WsAOJBKtg==
-=/tKH
------END PGP SIGNATURE-----
+> +other top-level maintainers. The drivers/soc/ directory is generally meant
+> +for kernel-internal drivers that are used by other drivers to provide SoC
 
---qbppmt5ki4y3pwo5--
+                                                                         SoC-
+
+> +specific functionality like identifying a SoC revision or interfacing with
+
+                     I would write:        an SoC
+
+> +power domains.
+> +
+> +The SoC subsystem also serves as an intermediate location for changes to
+> +drivers/bus, drivers/firmware, drivers/reset and drivers/memory.  The addition
+> +of new platforms, or the removal of existing ones, often go through the SoC
+> +tree as a dedicated branch covering multiple subsystems.
+> +
+> +The main SoC tree is housed on git.kernel.org:
+> +  https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/
+> +
+> +Clearly this is quite a wide range of topics, which no one person, or even
+> +small group of people are capable of maintaining.  Instead, the SoC subsystem
+> +is comprised of many submaintainers, each taking care of individual platforms
+> +and driver sub-directories.
+
+submaintainers and sub-directories ? hm.
+
+> +In this regard, "platform" usually refers to a series of SoCs from a given
+> +vendor, for example, Nvidia's series of Tegra SoCs.  Many submaintainers operate
+> +on a vendor level, responsible for multiple product lines.  For several reasons,
+> +including acquisitions/different business units in a company, things vary
+> +significantly here.  The various submaintainers are documented in the
+> +MAINTAINERS file.
+> +
+> +Most of these submaintainers have their own trees where they stage patches,
+> +sending pull requests to the main SoC tree.  These trees are usually, but not
+> +always, listed in MAINTAINERS.  The main SoC maintainers can be reached via the
+> +alias soc@kernel.org if there is no platform-specific maintainer, or if they
+> +are unresponsive.
+> +
+> +What the SoC tree is not, however, is a location for architecture specific code
+
+                                                        architecture-specific
+
+> +changes.  Each architecture has it's own maintainers that are responsible for
+
+                                   its
+
+> +architectural details, cpu errata and the like.
+
+                          CPU
+
+> +
+> +Information for (new) Submaintainers
+> +------------------------------------
+> +
+> +As new platforms spring up, they often bring with them new submaintainers,
+> +many of whom work for the silicon vendor, and may not be familiar with the
+> +process.
+> +
+> +Devicetree ABI Stability
+> +~~~~~~~~~~~~~~~~~~~~~~~~
+> +
+> +Perhaps one of the most important things to highlight is that dt-bindings
+> +document the ABI between the devicetree and the kernel. Please see
+> +:ref:`devicetree-abi` more information on the ABI.
+> +
+> +If changes are being made to a devicetree that are incompatible with old
+> +kernels, the devicetree patch should not be applied until the driver is, or an
+> +appropriate time later.  Most importantly, any incompatible changes should be
+> +clearly pointed out in the patch description and pull request, along with the
+> +expected impact on existing users, such as bootloaders or other operating
+> +systems.
+> +
+> +Driver Branch Dependencies
+> +~~~~~~~~~~~~~~~~~~~~~~~~~~
+> +
+> +A common problem is synchronizing changes between device drivers and devicetree
+> +files, even if a change is compatible in both directions, this may require
+
+   files. Even if
+
+> +coordinating how the changes get merged through different maintainer trees.
+> +
+> +Usually the branch that includes a driver change will also include the
+> +corresponding change to the devicetree binding description, to ensure they are
+> +in fact compatible.  This means that the devicetree branch can end up causing
+
+s/in fact/remain/
+(suggestion)
+
+> +warnings in the "make dtbs_check" step.  If a devicetree change depends on
+> +missing additions to a header file in include/dt-bindings/, it will fail the
+> +"make dtbs" step and not get merged.
+> +
+> +There are multiple ways to deal with this:
+> +
+> +* Avoid defining custom macros in include/dt-bindings/ for hardware constants
+> +  that can be derived from a datasheet -- binding macros in header file should
+
+                                                            in a header file | in header files
+
+> +  only be used as a last resort if there is no natural way to define a binding
+> +
+> +* Use literal values in the devicetree file in place of macros even when a
+> +  header is required, and change them to the named representation in a
+> +  following release
+> +
+> +* Defer the devicetree changes to a release after the binding and driver have
+> +  already been merged
+> +
+> +* Change the bindings in a shared immutable branch that is used as the base for
+> +  both the driver change and the devicetree changes
+> +
+> +* Add duplicate defines in the devicetree file guarded by an #ifndef section,
+> +  removing them in a later release
+> +
+> +Devicetree Naming Convention
+> +~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> +
+> +The general naming scheme for devicetree files are as follows.  The aspects of a
+
+                      scheme ...                  is
+
+> +platform that are set at the SoC level, like cpu cores, are contained in a file
+
+                                                CPU
+
+> +named $soc.dtsi, for example, jh7100.dtsi.  Integration details, that will vary
+> +from board to board, are described in $soc-$board.dtsi.  An example of this is
+> +jh7100-beaglev-starlight.dts.  Often many boards are variations on a theme, and
+
+                            ^^^ Why not dtsi, like the sentence before says?
+or is the $soc-$board.dtsi wrong?
+
+> +frequently there are intermediate files, such as jh7100-common.dtsi, which sit
+> +between the $soc.dtsi and $soc-$board.dts files, containing the descriptions of
+> +common hardware.
+> +
+> +Some platforms also have System on Modules, containing an SoC, which are then
+> +integrated into several different boards. For these platforms, $soc-$som.dtsi
+> +and $soc-$som-$board.dts are typical.
+> +
+> +Directories are usually named after the vendor of the SoC at the time of it's
+
+                                                                            its
+
+> +inclusion, leading to some historical directory names in the tree.
+> +
+> +Validating Devicetree Files
+> +~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> +
+> +``make dtbs_check`` can be used to validate that devicetree files are compliant
+> +with the dt-bindings that describe the ABI.  Please see :ref:`running-checks`
+> +for more information on the validation of devicetrees.
+> +
+> +For new platforms, or additions to existing ones, ``make dtbs_check`` should not
+> +add any new warnings.  For RISC-V, as it has the advantage of being a newer
+> +architecture, ``make dtbs_check W=1`` is required to not add any new warnings.
+> +If in any doubt about a devicetree change, reach out to the devicetree
+> +maintainers.
+> +
+> +Branches and Pull Requests
+> +~~~~~~~~~~~~~~~~~~~~~~~~~~
+> +
+> +Just as the main SoC tree has several branches, it is expected that
+> +submaintainers will do the same. Driver, defconfig and devicetree changes should
+> +all be split into separate branches and appear in separate pull requests to the
+> +SoC maintainers.  Each branch should be usable by itself and avoid
+> +regressions that originate from dependencies on other branches.
+> +
+> +Small sets of patches can also be sent as separate emails to soc@kernel.org,
+> +grouped into the same categories.
+> +
+> +If changes do not fit into the normal patterns, there can be additional
+> +top-level branches, e.g. for a treewide rework, or the addition of new SoC
+> +platforms including dts files and drivers.
+> +
+> +Branches with a lot of changes can benefit from getting split up into separate
+> +topics branches, even if they end up getting merged into the same branch of the
+> +SoC tree.  An example here would be one branch for devicetree warning fixes, one
+> +for a rework and one for newly added boards.
+> +
+> +Another common way to split up changes is to send an early pull request with the
+> +majority of the changes at some point between rc1 and rc4, following up with one
+> +or more smaller pull requests towards the end of the cycle that can add late
+> +changes or address problems idenfied while testing the first set.
+
+                               identified
+
+> +
+> +While there is no cut-off time for late pull requests, it helps to only send
+> +small branches as time gets closer to the merge window.
+> +
+> +Pull requests for bugfixes for the current release can be sent at any time, but
+> +again having multiple smaller branches is better than trying to combine too many
+> +patches into one pull request.
+> +
+> +The subject line of a pull request should begin with "[GIT PULL]" and made using
+> +a signed tag, rather than a branch.  This tag should contain a short description
+> +summarising the changes in the pull request.  For more detail on sending pull
+> +requests, please see :ref:`pullrequests`.
+
+>  
+
+-- 
+~Randy
