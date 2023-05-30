@@ -2,109 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AA16716A9D
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:17:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ECB0716AD2
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:24:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230239AbjE3RRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 13:17:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48100 "EHLO
+        id S233011AbjE3RYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 13:24:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230104AbjE3RRV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:17:21 -0400
-Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB4BD98;
-        Tue, 30 May 2023 10:17:20 -0700 (PDT)
-Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        by mail11.truemail.it (Postfix) with ESMTPA id A3735207A3;
-        Tue, 30 May 2023 19:17:18 +0200 (CEST)
-Date:   Tue, 30 May 2023 19:17:17 +0200
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Francesco Dolcini <francesco@dolcini.it>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S232951AbjE3RYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:24:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723D91A2;
+        Tue, 30 May 2023 10:23:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BFF9863127;
+        Tue, 30 May 2023 17:22:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD3DCC433D2;
+        Tue, 30 May 2023 17:22:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685467331;
+        bh=QewfULGDzQw9U8Sjf5XkcO2JdMdAuFaRZdNueC5s0yU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fn1PZNRTwL8dtH+YSdMWiNxKTQgLI4jjWZPrXGNCw2bmxXzetvhdi9uvapssaeNjy
+         PUrqQse5a27RfWC7mwGnoRmLnCWHKKUZvu/SFHvbUG37WakyZdMohzKouEQyHHfHhJ
+         ZSbBbqLMmyrTkkZ8TXpZNzLEtl73JaPbMr1QJ5Pnu6z1Ch3bOVgJtlFNx5N+RXEo6g
+         RkxZ935caiXca5SPQMLraZ2jZeGfO7fLcobwhwkvIVeY7Khm2/Ab2kb4rlbU8nR5Wv
+         UfCqBJ3I/pH4qW34pbsYZkdcyequfJKYDDvqj7d7uHGZ4YSYJAC4B3rl+/5DZdqajx
+         M84uaqqx+gPYw==
+Date:   Tue, 30 May 2023 18:22:06 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     fl.scratchpad@gmail.com
+Cc:     jic23@kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 3/5] arm64: dts: ti: add verdin am62
-Message-ID: <ZHYvnSMSnzoaYvWm@francesco-nb.int.toradex.com>
-References: <20230524143631.42471-1-francesco@dolcini.it>
- <20230524143631.42471-4-francesco@dolcini.it>
- <20230530121044.sjhv452b4hs4lyiy@flyer>
- <ZHYl8/8k4CTm/2LW@francesco-nb.int.toradex.com>
- <20230530165351.rqpu7go3kw6j3upc@storable>
+        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] dt-bindings: iio: ad7192: Allow selection of
+ clock modes
+Message-ID: <20230530-cannabis-headstone-883c5b891dd3@spud>
+References: <20230530075311.400686-1-fl.scratchpad@gmail.com>
+ <20230530075311.400686-6-fl.scratchpad@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="GOC40fJ/cBBzzJa4"
 Content-Disposition: inline
-In-Reply-To: <20230530165351.rqpu7go3kw6j3upc@storable>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230530075311.400686-6-fl.scratchpad@gmail.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 11:53:51AM -0500, Nishanth Menon wrote:
-> On 18:36-20230530, Francesco Dolcini wrote:
-> > On Tue, May 30, 2023 at 07:10:44AM -0500, Nishanth Menon wrote:
-> > > On 16:36-20230524, Francesco Dolcini wrote:
-> > > > +/* Verdin I2C_2_DSI */
-> > > > +&main_i2c2 {
-> > > > +	status = "okay";
-> > > 
-> > > Here and few other dtsis:
-> > > you should set status along with pinmux.
-> > This is already done in the SoM dtsi, same applies to the other comment
-> > you have on this pinmux topic.
-> > 
-> > To rephrase what's hopefully is already written in the commit
-> > message/series description, or at least it was in my intention.
-> > 
-> > The system is modular, with multiple SoM variant and multiple carrier
-> > boards. Standard interfaces are defined at the family level, e.g.
-> > already in the SoM, in the carrier board DT file peripherals are just
-> > enabled, the pinmux is already defined in the common som.dtsi [1][2][3]
-> > files and the carrier board just use those unless there is some kind of
-> > non-standard deviation.
-> > 
-> > This prevents duplication and simplify writing device tree file for board
-> > that use standard Verdin family interfaces. This should be visible
-> > looking at this series in which 3 different boards (Dev, Yavia and
-> > Dahlia) are added.
-> 
-> It helps clarity if the node is marked "okay" when all the necessary
-> properties required for operation (in this case pinmux) is enabled. I
-> don't see a big change as a result. Just stops people from hunting for
-> where pinmux is actually done.
 
-I would disagree here, I would prefer to keep this as it is.
-Of course, doing the change you request here is trivial, just some copy
-paste.
+--GOC40fJ/cBBzzJa4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The pinctrl is not all the necessary properties, you still need go
-hunting on the dtsi includes hierarchy to see that everything is there.
-And I think this is just fine, we do this just to avoid duplicating
-common stuff.
+On Tue, May 30, 2023 at 09:53:11AM +0200, fl.scratchpad@gmail.com wrote:
+> From: Fabrizio Lamarque <fl.scratchpad@gmail.com>
+>=20
+> AD7192 supports external clock sources, generated by a digital clock
+> source or a crystal oscillator, or internally generated clock option
+> without external components.
+>=20
+> Describe choice between internal and external clock, crystal or external
+> oscillator, and internal clock output enable.
+>=20
+> Signed-off-by: Fabrizio Lamarque <fl.scratchpad@gmail.com>
+> ---
+>  .../bindings/iio/adc/adi,ad7192.yaml          | 27 ++++++++++++++++---
+>  1 file changed, 24 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> index 16def2985ab4..f7ecfd65ad80 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> @@ -32,7 +32,8 @@ properties:
+> =20
+>    clocks:
+>      maxItems: 1
+> -    description: phandle to the master clock (mclk)
+> +    description: |
+> +      Master clock (mclk). If not set, internal clock is used.
+> =20
+>    clock-names:
+>      items:
+> @@ -50,6 +51,17 @@ properties:
+>    vref-supply:
+>      description: VRef voltage supply
+> =20
+> +  adi,clock-xtal:
+> +    description: |
+> +      Select whether an external crystal oscillator or an external
+> +      clock is applied as master (mclk) clock.
+> +    type: boolean
 
-What you get for sure is information duplication, with all the
-interfaces that are enabled getting the same pinctrl on
-multiple files.
+Am I being daft, or are these the same thing? If they are not, and use
+different input pins, I think it should be explained as it not clear.
+Could you explain why we actually care that the source is a xtal versus
+it being mclk, and why just having master clock is not sufficient?
 
-Just on this series you have 3 carrier boards, we have 1 more we should
-just send and they all share mostly the same pinmux.
-... And the Verdin AM62 is really a very brand new product.
+> +  adi,int-clock-output-enable:
+> +    description: |
+> +      When internal clock is selected, this bit enables clock out pin.
+> +    type: boolean
 
-From my point of view I would also lose some clarity, since the current
-structure, at least to some extent, helps understanding when a carrier
-board is deviating from the family specification.
+And this one makes you a clock provider, so the devices advocate
+position would be that you know that this bit should be set if
+"clocks" is not present and a consumer requests a clock.
+I don't seem to have got the driver patches (at least not in this
+mailbox), so I have got no information on how you've actually implemented
+this.
 
-I hope this explanation gives some more context.
+Cheers,
+Conor.
 
-Francesco
+> +
+>    adi,rejection-60-Hz-enable:
+>      description: |
+>        This bit enables a notch at 60 Hz when the first notch of the sinc
+> @@ -84,11 +96,12 @@ properties:
+>      description: see Documentation/devicetree/bindings/iio/adc/adc.yaml
+>      type: boolean
+> =20
+> +dependencies:
+> +  adi,clock-xtal: ['clocks', 'clock-names']
+> +
+>  required:
+>    - compatible
+>    - reg
+> -  - clocks
+> -  - clock-names
+>    - interrupts
+>    - dvdd-supply
+>    - avdd-supply
+> @@ -98,6 +111,13 @@ required:
+> =20
+>  allOf:
+>    - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +  - if:
+> +      required:
+> +        - clocks
+> +        - clock-names
+> +    then:
+> +      properties:
+> +        adi,int-clock-output-enable: false
+> =20
+>  unevaluatedProperties: false
+> =20
+> @@ -115,6 +135,7 @@ examples:
+>              spi-cpha;
+>              clocks =3D <&ad7192_mclk>;
+>              clock-names =3D "mclk";
+> +            adi,clock-xtal;
+>              interrupts =3D <25 0x2>;
+>              interrupt-parent =3D <&gpio>;
+>              dvdd-supply =3D <&dvdd>;
+> --=20
+> 2.34.1
+>=20
 
+--GOC40fJ/cBBzzJa4
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHYwvgAKCRB4tDGHoIJi
+0qkFAP9uZ1N8bFxZsXbgW8kQo1+vlYKpinjPWQHQw4vNab1QdAEAiMZn03LxwMx2
+/4Q9ctSo9xBk9Le4GVYdC0z4WQRcWgs=
+=KNs6
+-----END PGP SIGNATURE-----
+
+--GOC40fJ/cBBzzJa4--
