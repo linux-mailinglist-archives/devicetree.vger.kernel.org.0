@@ -2,131 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35152716215
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:35:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66C5B716222
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:37:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232712AbjE3NfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 09:35:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56826 "EHLO
+        id S232467AbjE3NhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 09:37:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232550AbjE3NfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:35:15 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0264C9
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:35:13 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2af20198f20so45918101fa.0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:35:13 -0700 (PDT)
+        with ESMTP id S231202AbjE3NhC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:37:02 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1F86A1;
+        Tue, 30 May 2023 06:37:00 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-514ab6cb529so2529951a12.1;
+        Tue, 30 May 2023 06:37:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685453712; x=1688045712;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=esrS2JrirWe4B7WnBE6lWhH7ic1H72jPQtf9dYjET/o=;
-        b=eXw8hAtNcFEzRdbA87IlfYD/UEWIUiKRDrEOaqIW+Oh1wy/SbwTe74xg4Cw9oOZD44
-         jxtu5hq28hAgiuJXHHlOCxSEZBOzKgamjrgtaq5RZExNE99V+2bL3CFDf0PNIuk+juZy
-         Xy9eNTiEsloqmBsu9xvJSq2XsCjtNgJrKo8riJ6Yhxy5/gxUOl5iV+dnhvKjks7bE1+P
-         QWKv6xbRj8HEL0Zh/CIVh9+XboOWcY/AOQrVQP0lQOonHr9X+1R7ibeEKHPZhckB0ubE
-         P8P8EjOKhNlfQHmPCVWBQjsPz65DidJlM0WjyIc1jGg8yYq/tEWKPjb9DsxRyywwECyp
-         JqSw==
+        d=gmail.com; s=20221208; t=1685453819; x=1688045819;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=R0IWIqkvCL18T9qeOtu9NAQt+OvEofJMXnjblcNmSjY=;
+        b=IyReP3q8IxnCSaJs0VU0mJ/YfofrvlenASA7XMfhGyL0VL7qiz6RLkDUPFz//scKQj
+         ufIrgg1ZxzFUpRDqlXtkZw7a8MAcsrWbyLhNBxUGF/M5sE8UCKqLFrLcIsMlrvJhadMy
+         tNt89YyHdTniRqYz/baPSmNOpnibtebm2hJ3osqpsTK1+CWJWfDFo8T6cOzs/RIjDFSa
+         8u0FkEIIO4hLHeMvD9ly08rRuLISQ57X+vjXCdKisFreJNwls06r+BtOTZN5SwQ/MEkH
+         UdcilrAxqJXM6OyvnXZBAyzFk7zCTJWx6m8jdT+E3TZJlUxzqun7QclbrwtjSj4qPeZU
+         JY8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685453712; x=1688045712;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=esrS2JrirWe4B7WnBE6lWhH7ic1H72jPQtf9dYjET/o=;
-        b=hICgdO0270WjWRNGf3n+eeKEwCNZ28LzWyiCuh9Six1fvdi9xn2RW8GoukikKmTy88
-         6oOLcREnBA85Zt3xqb3auJ6QrtwT7211agWpsvMpEHx+KZJ/G7D8SpL3Cgd3pP8e2Aw1
-         kc+Nr9VlLXPcFzKGmbea3R5OCoDHygJqvl4ziwW2xCICw5q9fd59+LQyUSE/bwa3qdI4
-         QYhtHd4vIV7PSBViyED1uweV4xDZtl77Oml79R1yT8dxiNe+cX07zSIDSvCx+B4WiwNY
-         Q7Nbw8qOdgVDce1YJgqY1rrFPAl2i7oq9nULqPW1ufKGqpAIGJpdOyTZpaUZDbLfFLxt
-         s8Vg==
-X-Gm-Message-State: AC+VfDz5JCyDLN7SnxvojNPSD8vQCxUdD8S9yBIUNWwc8u5N042gSiZ2
-        rtVLYaHDGxoUNYPibqhLzEvXag==
-X-Google-Smtp-Source: ACHHUZ6xGZT7dZoyXIAnGa1T69qsx8GwAAc7QhVXrx+prNUPgYI6GaaLc4rWjbqmvjFDHNZ3LgrWog==
-X-Received: by 2002:a2e:7301:0:b0:2ad:8f4a:1e52 with SMTP id o1-20020a2e7301000000b002ad8f4a1e52mr809175ljc.30.1685453712183;
-        Tue, 30 May 2023 06:35:12 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id m25-20020a2e97d9000000b002a8b9570403sm2866179ljj.31.2023.05.30.06.35.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 06:35:11 -0700 (PDT)
-Message-ID: <1ceeb56e-3efd-6858-358a-bd1976c625b1@linaro.org>
-Date:   Tue, 30 May 2023 15:35:09 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v8 01/18] dt-bindings: display/msm: gpu: Document GMU
- wrapper-equipped A6xx
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     freedreno@lists.freedesktop.org, Sean Paul <sean@poorly.run>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, David Airlie <airlied@gmail.com>,
-        dri-devel@lists.freedesktop.org, Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Clark <robdclark@chromium.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1685453819; x=1688045819;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=R0IWIqkvCL18T9qeOtu9NAQt+OvEofJMXnjblcNmSjY=;
+        b=Q9uTKKfAoXFV9GYEUGmzIAvlPK6+24vMo24IUzr2blUlkSbbRMYMRtW0EVifwgNV1V
+         T13xobj2gWirVqD6QfzoTxmHt1BYTg78N1Db2cbHn0UrCOPob+wI4MzMR1MwrJHZMIDk
+         QyocAwGlFwN+KqqyP3gNY+xP4MOtA0MXOtTgA6qKWQbp+pZ+ro5hC8RfCcgfcj7cp+qD
+         StTvyF/3ZtwSgkIkXbmMCdS5v4egQ6cmcTdsjikAR3jjD5PfTGC8iiTYcq8kLfwdTYVd
+         yiMdq7rxgLxsdd0tcafe7L63DcThMl+ZXW1JPL6FRFab58r1dDfOPXtJ3vtz3e19Lu1/
+         Wq4A==
+X-Gm-Message-State: AC+VfDwibABuneIufoxxCdH+CiGP19rK/2kpN6fhJQzBwjUD0Z+bes7g
+        VWyX/sX5PJAYwKGMBghBRlJ2hT7+S9Y=
+X-Google-Smtp-Source: ACHHUZ7aR6lQs3L4LjqWBy2qx1L3csAHgpKgAoWPIujOHePrHL+ALGRZ9P80yzz/BhEwnNvLzbZYnw==
+X-Received: by 2002:a17:907:9712:b0:94a:4739:bed9 with SMTP id jg18-20020a170907971200b0094a4739bed9mr2374976ejc.13.1685453819127;
+        Tue, 30 May 2023 06:36:59 -0700 (PDT)
+Received: from localhost (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id qt11-20020a170906eceb00b009655eb8be26sm7373130ejb.73.2023.05.30.06.36.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 May 2023 06:36:58 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
- <20230223-topic-gmuwrapper-v8-1-69c68206609e@linaro.org>
- <20230530122652.lct6tk6zseny6gxl@krzk-bin>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230530122652.lct6tk6zseny6gxl@krzk-bin>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Prathamesh Shete <pshete@nvidia.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH v3 0/3] pinctrl: tegra: Add Tegra234 pinmux driver
+Date:   Tue, 30 May 2023 15:36:51 +0200
+Message-Id: <20230530133654.1296480-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Thierry Reding <treding@nvidia.com>
 
+Hi,
 
-On 30.05.2023 14:26, Krzysztof Kozlowski wrote:
-> On Mon, 29 May 2023 15:52:20 +0200, Konrad Dybcio wrote:
->> The "GMU Wrapper" is Qualcomm's name for "let's treat the GPU blocks
->> we'd normally assign to the GMU as if they were a part of the GMU, even
->> though they are not". It's a (good) software representation of the GMU_CX
->> and GMU_GX register spaces within the GPUSS that helps us programatically
->> treat these de-facto GMU-less parts in a way that's very similar to their
->> GMU-equipped cousins, massively saving up on code duplication.
->>
->> The "wrapper" register space was specifically designed to mimic the layout
->> of a real GMU, though it rather obviously does not have the M3 core et al.
->>
->> GMU wrapper-equipped A6xx GPUs require clocks and clock-names to be
->> specified under the GPU node, just like their older cousins. Account
->> for that.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  .../devicetree/bindings/display/msm/gpu.yaml       | 61 ++++++++++++++++++----
->>  1 file changed, 52 insertions(+), 9 deletions(-)
->>
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-I think it'd be beneficial if the bot diffed the output of checks pre-
-and post- patch.
+this is an updated version of Prathamesh's v2 of the series, which can
+be found here:
 
-Konrad
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1787121
-> 
-> 
-> gpu@2c00000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	arch/arm64/boot/dts/qcom/sm8150-hdk.dtb
-> 	arch/arm64/boot/dts/qcom/sm8150-mtp.dtb
+	https://patchwork.ozlabs.org/project/linux-tegra/list/?series=345256
+
+The most prominent change is the split of the device tree bindings into
+multiple files to make them more readable, as agreed upon with Krzysztof
+during review.
+
+Changes in v3:
+- split up device tree bindings into multiple files for better
+  readability
+- do not permit underscore in pinmux node names
+- use correct #address-cells and #size-cells for DT nodes
+- fixup a typo in the gpio-ranges property name
+
+Note that the driver patch applies on top of the function table fix that
+I sent out earlier:
+
+	http://patchwork.ozlabs.org/project/linux-tegra/list/?series=357206
+
+Once accepted, patches 1 and 2 can go through the pinctrl tree and I can
+pick up patch 3 into the Tegra tree. Alternatively I can also pick up
+patch 1 into the Tegra tree to help with validation. We're not quite at
+a point yet where the Tegra DTs fully validate, so it doesn't matter
+much which way these get applied.
+
+Thanks,
+Thierry
+
+Prathamesh Shete (3):
+  dt-bindings: pinctrl: Document Tegra234 pin controllers
+  pinctrl: tegra: Add Tegra234 pinmux driver
+  arm64: tegra: Add Tegra234 pin controllers
+
+ .../pinctrl/nvidia,tegra234-pinmux-aon.yaml   |   61 +
+ .../nvidia,tegra234-pinmux-common.yaml        |   65 +
+ .../pinctrl/nvidia,tegra234-pinmux.yaml       |  141 ++
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |   12 +
+ drivers/pinctrl/tegra/Kconfig                 |    4 +
+ drivers/pinctrl/tegra/Makefile                |    1 +
+ drivers/pinctrl/tegra/pinctrl-tegra234.c      | 1969 +++++++++++++++++
+ drivers/soc/tegra/Kconfig                     |    1 +
+ 8 files changed, 2254 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux-aon.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nvidia,tegra234-pinmux.yaml
+ create mode 100644 drivers/pinctrl/tegra/pinctrl-tegra234.c
+
+-- 
+2.40.1
+
