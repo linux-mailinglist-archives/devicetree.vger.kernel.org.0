@@ -2,168 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E7477154F4
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 07:36:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83D4A71553B
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 08:02:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230196AbjE3Fg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 01:36:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42024 "EHLO
+        id S229551AbjE3GCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 02:02:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230197AbjE3Fgy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 01:36:54 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2080.outbound.protection.outlook.com [40.107.114.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C798EC;
-        Mon, 29 May 2023 22:36:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fbIoUl4T3Ld3/G/zC4s2OpHwVLaQIEcfrXV42KY3yHJNlAKhvJtKX8dazQwhV/10xFL8YF/5WqtoBijSII2NqTvlS0M/e2X1A8ZaYuVdV0/q6XHKatXuhF+faITA6duQutP7PwseM/8sfgsIXuR11GZmlmQ4OCm1I7u8losmeTWrznsBb22uEGkt4Au2cheWC/vS/vIHBWH0hYrJ2gFy48jceWgKotwjvyKlDVDe3BN6Rv3yayMM2HU+0XVHo+jiQaJ/EdjONzvaIyii8GtodwJvHDDXr4YvgkT39qJTJQyWSpnoDwQjba6soMVznYcGva0HePClXMdKsKEDAC4aIw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=G7lwWTYyV8XWKnqgyhnARwTSVKqZUcSHxhGXhWq3ues=;
- b=gDiZRe5BkefeQBOrodq4mqj/OrFTqP7J9LSolIImAgxXF2fx8veacqJvlodHR4YOtXjWtDMCw+LmycC4MdWNuuLPplwp6YIQgvMGcS9GvCjaYz3k4f61xuUacF/Yu2My5595y1lVz/bIFqmGK6Q2C7LUfv2NRXKpT4qcnUVCWqDVxE4PjgPEVpf45+9w2jHgpSWogtA5GWUNuHs1lpVnhd4rfSxeXYumYSP5lZ0olAMYc0vWfb9dlQGh2r0nFG0uy2sX6l0KIaI0jc+UkGshLhJ1f65p36zEUXhdhVek/nvbtfAy982aNDHHmxcH46f2mAVqrXuV/flSKqjz4tzJPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=sord.co.jp; dmarc=pass action=none header.from=sord.co.jp;
- dkim=pass header.d=sord.co.jp; arc=none
+        with ESMTP id S229864AbjE3GCj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 02:02:39 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26732E5
+        for <devicetree@vger.kernel.org>; Mon, 29 May 2023 23:02:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sordcorp.onmicrosoft.com; s=selector2-sordcorp-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=G7lwWTYyV8XWKnqgyhnARwTSVKqZUcSHxhGXhWq3ues=;
- b=uJWzzUm90TG2mjfgdRdXFHHMmkR59/EAVM4pORfTu21lJxB5tQZSLMppiug60DwvQYjE2SSwfng+7ZnO7c7KOlIkUN0AZJ2hwoMM1+MUJpS3PHxF/bgzacx7UoFaz5WaKr+gVKizLiPkxdTXLnoSxhSVwOGPxHczUR4g278dQg8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=sord.co.jp;
-Received: from OSZPR01MB7049.jpnprd01.prod.outlook.com (2603:1096:604:13c::13)
- by TYWPR01MB11894.jpnprd01.prod.outlook.com (2603:1096:400:3fc::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Tue, 30 May
- 2023 05:36:51 +0000
-Received: from OSZPR01MB7049.jpnprd01.prod.outlook.com
- ([fe80::361d:fa2b:36c9:268e]) by OSZPR01MB7049.jpnprd01.prod.outlook.com
- ([fe80::361d:fa2b:36c9:268e%2]) with mapi id 15.20.6433.022; Tue, 30 May 2023
- 05:36:51 +0000
-Message-ID: <7eedd83d-7d87-ba3e-7a38-990f05a44579@sord.co.jp>
-Date:   Tue, 30 May 2023 14:36:49 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To:     netdev@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Michael Hennerich <michael.hennerich@analog.com>,
-        Alexandru Tachici <alexandru.tachici@analog.com>
-From:   Atsushi Nemoto <atsushi.nemoto@sord.co.jp>
-Subject: [PATCH net-next 2/2] net: phy: adin: add support for inverting the
- link status output signal
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TYCPR01CA0036.jpnprd01.prod.outlook.com
- (2603:1096:405:1::24) To OSZPR01MB7049.jpnprd01.prod.outlook.com
- (2603:1096:604:13c::13)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1685426557; x=1716962557;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=KPmITw0D5tU2qnkJH8pFZkwrRlp65kTmwDxJj7XFCX8=;
+  b=ERLWl6ZgMak6P7hJdkU1xDHWjM9LQ0rfplVD63aQ7WSqpYiT+0QBmy9U
+   lxsZdSQDN+BND3F6aAsLsr5r3NPaux257Pc9HsUQHgXCxqQAxJ/+Ywgd4
+   YE/qOL423ImxiZ1ZvqkfoCAm64PJ7kOSxSwsz0EbFmccFGJQY1goFVnPR
+   Z/i64Um2BfwxCS8KmIvINVFrfGNTPCJI+7Rw5Qv6JK3qGgcW72uuTx0bJ
+   cADulVPQWHyuY2g+vN4U6WsuibwbIrxgT23RdCmIrpTrAF5C4e6ajCIdr
+   4i5jeSY+Wr+EGsupHZhi8U1CiW0wKNtG0oJtuMhwBDst394Txf/bNvsD+
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,203,1681164000"; 
+   d="scan'208";a="31152016"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 30 May 2023 08:02:34 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 30 May 2023 08:02:34 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 30 May 2023 08:02:34 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1685426554; x=1716962554;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=KPmITw0D5tU2qnkJH8pFZkwrRlp65kTmwDxJj7XFCX8=;
+  b=lDZuTwPo60IGRYIaEuEQKe89LNfWx5Lt4WuX8eVJRe2t9fBkehaemh1b
+   ZKSxoYhdn+R2oncLr3cFU8MPAvyhP0Gi9v1DmLLY78GfPMf3CLcOsWGaP
+   L1OdSDNjmoYAXpsxc8ZtI7HnkMES7YYITWc9CIrE9fgnPnlU8Lx3SoFoR
+   8EJh+wiDC7jSmXl4n6lekq/K96ZS9qCiI6KAVR4+jIASHo3hTRhVPezQ+
+   fB3B3tfM73QsOpdGP7sQs6/TXcHWd+6aAY1Zaf04elCVCtO7zt3qlz4qI
+   1hJdXJUZD57gULICWWe5yL1v+tGHKNZlQnbQVtuvLkm9oSt082CFApJ+f
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,203,1681164000"; 
+   d="scan'208";a="31152015"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 30 May 2023 08:02:34 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8FF2C28008D;
+        Tue, 30 May 2023 08:02:34 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/1] ARM: dts: imx6qdl-mba6: add mac address for USB ethernet controller
+Date:   Tue, 30 May 2023 08:02:34 +0200
+Message-ID: <12221806.O9o76ZdvQC@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230527081559.GA528183@dragon>
+References: <20230515054429.14736-1-alexander.stein@ew.tq-group.com> <20230527081559.GA528183@dragon>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSZPR01MB7049:EE_|TYWPR01MB11894:EE_
-X-MS-Office365-Filtering-Correlation-Id: 27f8a8ab-b09f-4c67-429d-08db60cfde75
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BP5z0rFOctRpPsZaTVfd1jw4dbz1wJ35ov5YGPkTAk+fRR3hOAfqBnWjNgZIGfwkfPZUcMpJLwG5hPGR+WBlLDioE32g8YryH06p6pECIw9HQYGCX+aDzoVRRTts02sAD8UcpD6oadcXeYk6XCNhZJgJVEVhFJ8FKboFDXCPRJWZHNRi5XmMAmSzrYOabZY1xpA/N/JIqX2FBGvF0/EgfWyQcKUl4lf27GFogONyu0YW8XRystbDMLRBm+6K4zyQTf6+znZd3FsZFchqr+mx5cn2ogbsebDfrHnba+Fh8YuOiTWgDDIzgskucEy5FM6aCpLOlSu9Bn1gQ+9LCb5729qFdvL7EF8jW0hdS5C0E0v3drmEL7yHHtktgKVHG6Mx1XvI3gXJS7ETQ/4kd1+6gSt2+EXIB58Z8GaqNfVMByDi6dbjlfLg+uXFeq57SlWdp25DEG6ulQH+vm5UP3vmqNwOdSnMqaaADgxx/D5PCnX5Ax7HrROKlhbLfldM09q48fJmBZ7PZgF7nSiUXZk3gxi+BFoMz6hL2KxzziXrfvgq/aogJGlt1VIy7Hx05kcHbU7zCdeFmOcBe1WiCZVDjJ+wXj3wYrSYSUNBjQSlGawWt5UXCTVy8YKqVmi9+6JwSe9RT60mlxRWm0R6HMRgzw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSZPR01MB7049.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(376002)(346002)(136003)(396003)(366004)(39850400004)(451199021)(478600001)(8676002)(8936002)(54906003)(41300700001)(5660300002)(86362001)(6486002)(316002)(31686004)(4326008)(66476007)(66556008)(66946007)(6512007)(44832011)(31696002)(6506007)(26005)(186003)(2616005)(2906002)(36756003)(38100700002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d2IrKzg3STVwMEd4QjhuRVAvOUFwNXg2YmxOWm53MnVIQWtydmd4aE5HUUJo?=
- =?utf-8?B?K2d0WTdWWG5rdmtUY01Fa2VsSHpaSHgzUlpWNHF1cTNMbVp1YnIvY0ZCSlBr?=
- =?utf-8?B?US9IOWc4QlovY01uekpzTU5KYzlLT1ZUb2lSSzhXbW9rTUxyWE5LUnpzNmdk?=
- =?utf-8?B?UTk3OTc3cU5BZExLTTFjWkUwRFZSOXVUYUpBV0JBN2Y0QlhmZWZVRk1yTG1m?=
- =?utf-8?B?Q1VMdWRyazE3RmJhRi9yR0E4VEZJL0Vna0dxMDZKZzhaK2F2a0FtamtQdmVM?=
- =?utf-8?B?Y3hrT3BGbnFtWFVmQjVPTy90WWFKL3o1UCt6UTZON2RpNDVaVUxyb0EwK3FF?=
- =?utf-8?B?UzJFcC8zdUFvdlYyMHNXUXc2eThOMnJkQTF4bVB2WEF5eGlSZGxZTFZjM3ZU?=
- =?utf-8?B?SkRzRG42dlYwaDk4ckFQWXV3NXlwVWZROU5UL3dRTjZzQ0JqSi9ZakZvcE9y?=
- =?utf-8?B?TmdvYkpTL3BqNkdETzFWemY2RnhTVzlsQ1h1M2lsaW5jclIxU3BScmJ5bkVs?=
- =?utf-8?B?dTVaQzkrZ2czR04wNlJYTFAvdFFDZ3JtT0tKSDVucG1IZ3Q5L1VuWmx1M0pI?=
- =?utf-8?B?VFRYYnBiU3MzUGl6azVRa0YzMER4UWFNMFF6ZmxHQTlEVTZwZTNJZThXbE1o?=
- =?utf-8?B?Y2NpL3pOUGJqYnY5SUNSSm9VM2pEeGYyRG9NREdyWkg4M0dldVFoUXBEbEQz?=
- =?utf-8?B?YThPY1ZsVVdxbjNzWWJJK0xkYUhER0RKV1ZYWDJITmtWSzdsM0VIR01yYmJp?=
- =?utf-8?B?bEdoMVViYnplS0Exc0N6U2RMNFQ0c0hNcmJObnR5bkh5V3AzSUhmVC9VRDVn?=
- =?utf-8?B?YXJ0QVFtTFFoSjRmaHJLTDIzTzJIWmxSQTltTlY2Y1c2b1IwQVB2UE5LZEdy?=
- =?utf-8?B?Nk0xQmtUeUFtbXZIYnA0MUM3U3dqWGVxQXhRTzhyaklCeERvZ3pLOWVQTFNZ?=
- =?utf-8?B?OXFLUTdDTDBBdlNnV29hVDVNOEJxN2x6eDFEM0twTTNGWHhKZ2tqWXJiaWJO?=
- =?utf-8?B?cjZtVDZsNkJuWWpmMzdpc092UDBrYXNXQ1B4Z0dYSjVGQ1lRaG9Sa201dEdi?=
- =?utf-8?B?bWt0a2txVjc4WU1GNnUvbk9BUGJ0NHFyVW16Q1M3YWF0NXdLWU1HZm1GL0FX?=
- =?utf-8?B?bzdBQ2JNR1ZxUzhJOWhUbUtvNndYTmFCZjdnMTlGNGptdlNOOWl1eVdUSTJT?=
- =?utf-8?B?OXF4OThKY1dXYzJ5RkpobU0zMUdVOTlZYlVvMjZOWVdnRTZkZjFuanNzODZT?=
- =?utf-8?B?aG4zdE43bGU0L0ozMTFzS1VoaUQ2d2pYV1FoK1FDaExSY3ZyczJydEVhN1F2?=
- =?utf-8?B?VHUxc2E4RTZndW5hRnpNK2dLNmdNVndHcExubmZZVDE4ZlN0SFRTdG1XeHc4?=
- =?utf-8?B?elZ6ZHN1ZWlPOHdvdTJIeUgvRHZQQy9lMkNQUmNDczRrQld5NjB2d21qSGZY?=
- =?utf-8?B?RjNFUmhtVEtzS1JHR2NWQVdKNG52SjlST0xNZFJEdlBmekJVZ0tic1lqU1dD?=
- =?utf-8?B?VHMvY0NCcU9XajJkNCtHNUlRMXU0T1g5aUl3VlZVNk50Y3loTmJIOHJCSUZ0?=
- =?utf-8?B?bm5rN0dSUzUyR1k3VTY2S1kzRG1BOTJzVzNsUFozREdzTzRIc3BDRnNRUVAr?=
- =?utf-8?B?T05tK0ErcHpkaDR5WGtTZ2lxdkV3bWxVeWxNTGhYTDIzYlJwM2hxbzNCbkNC?=
- =?utf-8?B?V3h6NFNuZlp0YURlL094WkFkbnN2NDhaeC9Gd0toZGJwMy8yZVFZOTJuZGg1?=
- =?utf-8?B?UkRqRzNuc1BOVUJ0aUJWclZIVHBiYjU2WUxDb1UySjBsMU54NVluL1F3dksr?=
- =?utf-8?B?TXp0eXR6TnI1UlVzaEsxRVVUNmlicXpSTUVZNTVlRXdsclEzL3JDZUlKS3Y3?=
- =?utf-8?B?ZkJ5YXZkRzdVRUNQNnphbURXVzBkWEprMmllL29vQitLcHRUbnJjai92R0pS?=
- =?utf-8?B?WWlkUjVNMHF1RVdLWk8yODU2Y1ZvRDE2QUxJd29oWGpQU2xPeDRya2hqN3Nz?=
- =?utf-8?B?a1hwdDJnT3U0WHdQOVlaYk9UYTdaaHdBcVNROUVEV2RVZXloQ1J5UlZTU0Ft?=
- =?utf-8?B?eEZMUmtCRWRqOUcwcVNtOUJMZVV0bWxCcURCeVBDQlAvZW9kNTFpK0NkZ1I5?=
- =?utf-8?B?SVMxUjB1cmlVMmd6RTBkdStMb3k4Z3N3RTZ1aUtWOXUxUU9tM3l2YXhEZ0Zu?=
- =?utf-8?B?NkE9PQ==?=
-X-OriginatorOrg: sord.co.jp
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27f8a8ab-b09f-4c67-429d-08db60cfde75
-X-MS-Exchange-CrossTenant-AuthSource: OSZPR01MB7049.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2023 05:36:51.0625
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: cf867293-59a2-46d0-8328-dfdea9397b80
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CkLAkjhanzk/lV1d3OVJL3X90E5dxLqxs1t/9yN3MU87LB+6L7JgYVcB5A6pIrW7mIAzrZXn/f8aEuHX/OIlJ0HVfVKWYAZS9mHMDX+7jm0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB11894
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ADIN1200/ADIN1300 supports inverting the link status output signal
-on the LINK_ST pin.
+Hi Shawn,
 
-Add support for selecting this feature via device-tree properties.
+Am Samstag, 27. Mai 2023, 10:15:59 CEST schrieb Shawn Guo:
+> On Mon, May 15, 2023 at 07:44:29AM +0200, Alexander Stein wrote:
+> > The mac address is stored in mainboard eeprom.
+> >=20
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > Changes in v2:
+> > * Fix indentation
+> >=20
+> >  arch/arm/boot/dts/imx6qdl-mba6.dtsi  | 16 ++++++++++++++++
+> >  arch/arm/boot/dts/imx6qdl-mba6a.dtsi |  6 ++++++
+> >  arch/arm/boot/dts/imx6qdl-mba6b.dtsi |  6 ++++++
+> >  3 files changed, 28 insertions(+)
+> >=20
+> > diff --git a/arch/arm/boot/dts/imx6qdl-mba6.dtsi
+> > b/arch/arm/boot/dts/imx6qdl-mba6.dtsi index 7b7e6c2ad190..9d90d7647024
+> > 100644
+> > --- a/arch/arm/boot/dts/imx6qdl-mba6.dtsi
+> > +++ b/arch/arm/boot/dts/imx6qdl-mba6.dtsi
+> > @@ -272,6 +272,22 @@ &uart5 {
+> >=20
+> >  &usbh1 {
+> > =20
+> >  	disable-over-current;
+> >  	status =3D "okay";
+> >=20
+> > +	#address-cells =3D <1>;
+> > +	#size-cells =3D <0>;
+> > +
+> > +	hub@1 {
+> > +		compatible =3D "usb424,2517";
+> > +		reg =3D <1>;
+> > +		#address-cells =3D <1>;
+> > +		#size-cells =3D <0>;
+> > +
+> > +		ethernet@1 {
+> > +			compatible =3D "usb424,9e00";
+>=20
+> These two usb424 compatible strings are undocumented?
 
-Signed-off-by: Atsushi Nemoto <atsushi.nemoto@sord.co.jp>
----
- drivers/net/phy/adin.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Well, there are bindings in Documentation/devicetree/bindings/usb/usb-
+device.yaml. But (all) the VID/PID are not listed explicitly.
 
-diff --git a/drivers/net/phy/adin.c b/drivers/net/phy/adin.c
-index 134637584a83..331f9574328f 100644
---- a/drivers/net/phy/adin.c
-+++ b/drivers/net/phy/adin.c
-@@ -140,6 +140,9 @@
- #define ADIN1300_RMII_20_BITS			0x0004
- #define ADIN1300_RMII_24_BITS			0x0005
- 
-+#define ADIN1300_GE_LNK_STAT_INV_REG		0xff3c
-+#define   ADIN1300_GE_LNK_STAT_INV_EN		BIT(0)
-+
- /**
-  * struct adin_cfg_reg_map - map a config value to aregister value
-  * @cfg:	value in device configuration
-@@ -495,6 +498,15 @@ static int adin_config_init(struct phy_device *phydev)
- 	if (rc < 0)
- 		return rc;
- 
-+	if (device_property_read_bool(&phydev->mdio.dev,
-+				      "adi,link-stat-inv")) {
-+		rc = phy_set_bits_mmd(phydev, MDIO_MMD_VEND1,
-+				      ADIN1300_GE_LNK_STAT_INV_REG,
-+				      ADIN1300_GE_LNK_STAT_INV_EN);
-+		if (rc < 0)
-+			return rc;
-+	}
-+
- 	phydev_dbg(phydev, "PHY is using mode '%s'\n",
- 		   phy_modes(phydev->interface));
- 
--- 
-2.30.2
+Best regards,
+Alexander
+
+> Shawn
+>=20
+> > +			reg =3D <1>;
+> > +			nvmem-cells =3D <&mba_mac_address>;
+> > +			nvmem-cell-names =3D "mac-address";
+> > +		};
+> > +	};
+> >=20
+> >  };
+> > =20
+> >  &usbotg {
+> >=20
+> > diff --git a/arch/arm/boot/dts/imx6qdl-mba6a.dtsi
+> > b/arch/arm/boot/dts/imx6qdl-mba6a.dtsi index df8fa169e9f6..27fec340c380
+> > 100644
+> > --- a/arch/arm/boot/dts/imx6qdl-mba6a.dtsi
+> > +++ b/arch/arm/boot/dts/imx6qdl-mba6a.dtsi
+> > @@ -21,6 +21,12 @@ m24c64_57: eeprom@57 {
+> >=20
+> >  		compatible =3D "atmel,24c64";
+> >  		reg =3D <0x57>;
+> >  		pagesize =3D <32>;
+> >=20
+> > +		#address-cells =3D <1>;
+> > +		#size-cells =3D <1>;
+> > +
+> > +		mba_mac_address: mac-address@20 {
+> > +			reg =3D <0x20 0x6>;
+> > +		};
+> >=20
+> >  	};
+> >  =09
+> >  	rtc0: rtc@68 {
+> >=20
+> > diff --git a/arch/arm/boot/dts/imx6qdl-mba6b.dtsi
+> > b/arch/arm/boot/dts/imx6qdl-mba6b.dtsi index 7d1cd7454c7f..0a9f076eeb36
+> > 100644
+> > --- a/arch/arm/boot/dts/imx6qdl-mba6b.dtsi
+> > +++ b/arch/arm/boot/dts/imx6qdl-mba6b.dtsi
+> > @@ -31,6 +31,12 @@ m24c64_57: eeprom@57 {
+> >=20
+> >  		compatible =3D "atmel,24c64";
+> >  		reg =3D <0x57>;
+> >  		pagesize =3D <32>;
+> >=20
+> > +		#address-cells =3D <1>;
+> > +		#size-cells =3D <1>;
+> > +
+> > +		mba_mac_address: mac-address@20 {
+> > +			reg =3D <0x20 0x6>;
+> > +		};
+> >=20
+> >  	};
+> >  =09
+> >  	rtc0: rtc@68 {
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
 
