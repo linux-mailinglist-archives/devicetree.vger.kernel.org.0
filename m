@@ -2,126 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20CB0715D9F
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:44:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC8B0715DB2
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:45:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbjE3Lnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 07:43:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46308 "EHLO
+        id S232059AbjE3Lpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 07:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232030AbjE3LnO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:43:14 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77159131;
-        Tue, 30 May 2023 04:42:54 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id D075F8479B;
-        Tue, 30 May 2023 13:42:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1685446971;
-        bh=fPulCLOn1mDw2aXbZrWUn9R4dyD+ptp9MMeZ6zuSx4s=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=fQOI2qQIliHlw5IBVoVQPjBW8dfbxdCD/zknMLgW+WX7i+RCMkehb3tGYYhLracTA
-         K+6OsEGYkX9yTYUvqZUinTcRc0x3wEvAaj7H85kchvnCMpMT+Pp8kiHDPTcDnbm6zE
-         XHHSpPvPSDfZOEBiW0alPBrw3x79efxt8g/XZE/E/EWAXgV9JqJ9M3sUV0YhqEnUKk
-         HfrlFCdHX5aFDd9deniXm6paoU0ZYl4u/RPoq4e8T86i6djNn2l2joyJKkZDjZQpXA
-         rvPZlWqmBJOffSxwjn85DrPymQUktn/6q1c8zNyOjGF+zydZRe/9bW4/whGaccCfTT
-         wSN0fBx1Oz8JA==
-Message-ID: <974c3ce3-5081-67d0-ae80-444e99e437e5@denx.de>
-Date:   Tue, 30 May 2023 13:42:50 +0200
+        with ESMTP id S232269AbjE3LpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:45:15 -0400
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB37CFF
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:44:52 -0700 (PDT)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-565cd2fc9acso40622667b3.0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:44:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685447089; x=1688039089;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=S9RhZ916M+s7tDZgpo9Wzznoebm/fAUfY5MYE+/drBw=;
+        b=OKIoEEWyVizW6XkMyPO6QwCMHd/0iR5rmncpIrrQUQTlksDWz0wcVDYuWhketFlx0A
+         Sfa8B942ObG4Kxcw5EP3m06QSc/TVMh19u2OKWiyvtB2xQFj9QOvTNeqkvoYjAZrPRBH
+         d73Sf1ajmNzMqgTUhPS5x0CPF/gryqjpiy5QgeL08IEcS7YEjomUKk7qblD9HoI2wkM1
+         pAyB1XFj+UAR46Gp7Exesye2q8N9M3Cql6pFGtgaIBJZFwvYQySIO4qTuXaHgasKuWSv
+         9wKHT+X167H5pS120gtowatFGeqeZ4reAdUoU8+JOBW5DdVTkvtb1wqB5+NH8mE4wrg4
+         b/lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685447089; x=1688039089;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S9RhZ916M+s7tDZgpo9Wzznoebm/fAUfY5MYE+/drBw=;
+        b=lrW+QdEverAfy5hy80mKBxEFmYhqC0PvJUa5DaAUdTJuAiJj6nmhtBbFU38x/S1rWE
+         mFU/1G+uHu38LA9Ji2hE8rtQKaC0f46xfAYcgMu4gIKyFdgrJCFwsJpen4E7fe8BQbCQ
+         acYVa6YS+V+kcDDCuH/NukdzYchuMFKuE/I5KEpNNPYf6zwZ1lEUTnAWiUmDu83bKltl
+         nx5wwIEQRqF1EfMjq7qaaok568LwSmHOvVh2DtSWFzhVS6d56gnnJL/VH4f8SnDOl8LS
+         LdJYOUDYZnsF+/aDP15SXP2JBUKVlS9Yy7ndTfPybQy+1wfjRUJiFUTTjsnLHoeuJkDY
+         HNbw==
+X-Gm-Message-State: AC+VfDxtmetvG/uSN2veY8zRv88RXmq91FBizPoLr40cRIwDyryHBh2P
+        deLjFZyZ4LxO5Civtxg8amxBlrJUyS8Zj9pEJ8GQ7A==
+X-Google-Smtp-Source: ACHHUZ4hbxOl2LP2th0Gz1Dge04tp/BfXhVAvw6UvSmrbx4UBGt42Qesjqw4YEtzSIadW85OqQ9H/daPolj3cnlcyLA=
+X-Received: by 2002:a0d:cc52:0:b0:565:ba4b:aa81 with SMTP id
+ o79-20020a0dcc52000000b00565ba4baa81mr2348049ywd.45.1685447089579; Tue, 30
+ May 2023 04:44:49 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 7/8] ARM: dts: stm32: adopt generic iio bindings for adc
- channels on dhcor-drc
-To:     Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Olivier MOYSAN <olivier.moysan@foss.st.com>,
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
+ <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org> <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
+ <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
+In-Reply-To: <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 30 May 2023 14:44:38 +0300
+Message-ID: <CAA8EJppG=MAVpK1J_8bNnkJ23y9NtgY7a2GVResXJvhEKyNsrw@mail.gmail.com>
+Subject: RFC: DSI host capabilities (was: [PATCH RFC 03/10] drm/panel: Add LGD
+ panel driver for Sony Xperia XZ3)
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc:     kernel@dh-electronics.com, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230524133918.1439516-1-olivier.moysan@foss.st.com>
- <20230524133918.1439516-8-olivier.moysan@foss.st.com>
- <cc7a0a1a-31bb-92f4-6365-5e0c4a4bc85c@denx.de>
- <5bb496d0-6dc1-6ba3-6126-6429037ecf5a@foss.st.com>
- <8a4f3112-54ed-e0c1-52ee-395a41255163@foss.st.com>
-Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <8a4f3112-54ed-e0c1-52ee-395a41255163@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <dri-devel@lists.freedesktop.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        freedreno <freedreno@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/30/23 09:59, Alexandre TORGUE wrote:
-> Marek, Olivier
-> 
-> On 5/24/23 17:39, Olivier MOYSAN wrote:
->> Hi Marek,
->>
->> On 5/24/23 15:54, Marek Vasut wrote:
->>> On 5/24/23 15:39, Olivier Moysan wrote:
->>>> Use STM32 ADC generic bindings instead of legacy bindings on
->>>> DHCOR DRC Compact board.
->>>>
->>>> The STM32 ADC specific binding to declare channels has been deprecated,
->>>> hence adopt the generic IIO channels bindings, instead.
->>>> The STM32MP151 device tree now exposes internal channels using the
->>>> generic binding. This makes the change mandatory here to avoid a mixed
->>>> use of legacy and generic binding, which is not supported by the 
->>>> driver.
->>>>
->>>> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
->>>> ---
->>>>   .../dts/stm32mp15xx-dhcor-drc-compact.dtsi    | 28 
->>>> ++++++++++++++++---
->>>>   1 file changed, 24 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi 
->>>> b/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi
->>>> index 39af79dc654c..92d906bfd5d7 100644
->>>> --- a/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi
->>>> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-drc-compact.dtsi
->>>> @@ -57,15 +57,35 @@ &adc {    /* X11 ADC inputs */
->>>>       status = "okay";
->>>>       adc1: adc@0 {
->>>
->>>
->>> I sent similar patch recently too:
->>>
->>> [PATCH] ARM: dts: stm32: Update to generic ADC channel binding on 
->>> DHSOM systems
->>>
->>> But I needed to add #address-cells/#size-cells here and to adc@100, 
->>> otherwise DTB checker was complaining . Did you run DTB check and was 
->>> it OK on your side ?
->>
->> The first patch in this serie adds the #address-cells/#size-cells to 
->> the   SoC DT. So, there is no need to add them later in the board DT.
->>
->> I can send a v2 with your patch (after removing the cells properties 
->> from the patch). Having all the patches in the same serie, will help 
->> avoiding sequencing problems.
->>
->> Do you agree with this ?
-> 
-> What is the status of this patch ?
-> 
-> Marek, I would prefer to take all ADC updates in this series if you agree.
+On Tue, 30 May 2023 at 10:24, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>
+> Hi Marijn, Dmitry, Caleb, Jessica,
+>
+> On 29/05/2023 23:11, Marijn Suijten wrote:
+> > On 2023-05-22 04:16:20, Dmitry Baryshkov wrote:
+> > <snip>
+> >>> +   if (ctx->dsi->dsc) {
+> >>
+> >> dsi->dsc is always set, thus this condition can be dropped.
+> >
+> > I want to leave room for possibly running the panel without DSC (at a
+> > lower resolution/refresh rate, or at higher power consumption if there
+> > is enough BW) by not assigning the pointer, if we get access to panel
+> > documentation: probably one of the magic commands sent in this driver
+> > controls it but we don't know which.
+>
+> I'd like to investigate if DSC should perhaps only be enabled if we
+> run non certain platforms/socs ?
+>
+> I mean, we don't know if the controller supports DSC and those particular
+> DSC parameters so we should probably start adding something like :
+>
+> static drm_dsc_config dsc_params_qcom = {}
+>
+> static const struct of_device_id panel_of_dsc_params[] = {
+>         { .compatible = "qcom,sm8150", , .data = &dsc_params_qcom },
+>         { .compatible = "qcom,sm8250", , .data = &dsc_params_qcom },
+>         { .compatible = "qcom,sm8350", , .data = &dsc_params_qcom },
+>         { .compatible = "qcom,sm8450", , .data = &dsc_params_qcom },
+> };
 
-I missed the reply from Olivier, sorry. Please pick the whole thing.
+I think this would damage the reusability of the drivers. The panel
+driver does not actually care if the SoC is SM8350, sunxi-something or
+RCar.
+Instead it cares about host capabilities.
+
+I think instead we should extend mipi_dsi_host:
+
+#define MIPI_DSI_HOST_MODE_VIDEO BIT(0)
+#define MIPI_DSI_HOST_MODE_CMD  BIT(1)
+#define MIPI_DSI_HOST_VIDEO_SUPPORTS_COMMANDS BIT(2)
+// FIXME: do we need to provide additional caps here ?
+
+#define MIPI_DSI_DSC_1_1 BIT(0)
+#define MIPI_DSI_DSC_1_2 BIT(1)
+#define MIPI_DSI_DSC_NATIVE_422 BIT(2)
+#define MIPI_DSI_DSC_NATIVE_420 BIT(3)
+#define MIPI_DSI_DSC_FRAC_BPP BIT(4)
+// etc.
+
+struct mipi_dsi_host {
+ // new fields only
+  unsigned long mode_flags;
+  unsigned long dsc_flags;
+};
+
+Then the panel driver can adapt itself to the host capabilities and
+(possibly) select one of the internally supported DSC profiles.
+
+>
+> ...
+> static int sony_akatsuki_lgd_probe(struct mipi_dsi_device *dsi)
+> ...
+>         const struct of_device_id *match;
+>
+> ...
+>         match = of_match_node(panel_of_dsc_params, of_root);
+>         if (match && match->data) {
+>                 dsi->dsc = devm_kzalloc(&dsi->dev, sizeof(*dsc), GFP_KERNEL);
+>                 memcpy(dsi->dsc, match->data, sizeof(*dsc));
+>         } else {
+>                 dev_warn(&dsi->dev, "DSI controller is not marked as supporting DSC\n");
+>         }
+> ...
+> }
+>
+> and probably bail out if it's a DSC only panel.
+>
+> We could alternatively match on the DSI controller's dsi->host->dev instead of the SoC root compatible.
+>
+> Neil
+
+-- 
+With best wishes
+Dmitry
