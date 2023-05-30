@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99F78715C7A
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FCD1715C86
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:04:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231738AbjE3LCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 07:02:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48562 "EHLO
+        id S229712AbjE3LEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 07:04:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231726AbjE3LCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:02:01 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24906E5
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:01:59 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-970028cfb6cso840337266b.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:01:59 -0700 (PDT)
+        with ESMTP id S231696AbjE3LEE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:04:04 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFFC8EC
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:04:02 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-974265a1a40so78906166b.0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:04:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685444518; x=1688036518;
+        d=linaro.org; s=google; t=1685444641; x=1688036641;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mqiWOENTW3CXASLaJvgBSl36DYvfzKWd32k4rlj7DMg=;
-        b=H5RC3j865FAkcJKpJ/ImrNlvbdo31/emM6ok7cpJchEr0x4ZdnJzW73LU0aJHGocVV
-         iXaCR0WcQn3vCAOZafxYLlnBmYIwdwfhegTN3434QMDH0ofJnlsFWSY7NhSZdrmeMK0P
-         zE/7APOBqhl3uaLroZfRizOOBWKccBdmyEl4KH6C6tSg5NLHeuWwdEFOjont8awy7+yz
-         6Z3f8LrJSxqkVXGzlP/qlF21fPBe0wBiKcTlsTC006jJMmYxHouEfwhb7Zbj/lXLA3G6
-         hT3BarKJkSqwZnPwBaK/Zz+2hGEJVD1BX4TuH8BQaKJKOLKuVfVXjeencjTVOumwne2T
-         Vqtg==
+        bh=sJpPcvlhDr55XVdV13FrZJDCixqh9Kz7L+e3bwYKNW0=;
+        b=eYmzjC9fjdboCt4Xpc1iRgGhbX0DwkZwyCCYJEoSymGBuYMlTQ902mIbm3+WH3VYLA
+         RTFkAhI1YXZvlZlryC5dxg0/KK/Qe3Czy5QvtLngJAFjxA5fgKVZfJGDLkV8kIhyAl/G
+         hujYth1n/g/GjHkdWwotfFFTWShqfywSzRZPiMYgjdqEb+5Cude8j+tTtj/V+H2bMsdc
+         ASD7wE5L+EdaA6yTgh+G+sIc8aDo5XvE75uuh6LNepuJAIcx+WchpxT5Go0Fzd31eziI
+         W0/QWSyKlmEk8g2vJs1Ro/DGzpXY7ObUS0Hc4IrljLe43/5GTWi3roiT+8ha/jLU8IqN
+         rF5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685444518; x=1688036518;
+        d=1e100.net; s=20221208; t=1685444641; x=1688036641;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mqiWOENTW3CXASLaJvgBSl36DYvfzKWd32k4rlj7DMg=;
-        b=clSdSLNzp7zXewV1jcIegzSEEuzcBHozpLo1nxXoMd2KAdXin76u9e0sH7vOxIQkce
-         k3wtsT8Eg/Pz25ju2avEVc3gP0k6wFErKjh+HeLPWsIpyV0ezo56tvw2MtuyrdNyb/rD
-         WW+iBgmOo92bkC7G7S9G74exuRqfc0pqU8lEIVlayrn6TtRcSO0dI4xe7h/Y89oiisRL
-         anu/YYc8QYZYvp6sS0EAW+Ql1hqq8bYomQHyNnrY66bBUx+kDUZ31TC1EVjkxyrXV0r8
-         Blj9MxEX2ejpqp9+kkJnit2J+qxByg9Hn7LKaNf3HCfZldByZirfDNbxIj9LEGBqN3e+
-         acvw==
-X-Gm-Message-State: AC+VfDwn52fV2w+Ap2ijpEjH4GvA9iMFTOHQ6rvgpmIH8egrz3Ow9GEJ
-        4A1QdNrml44tlHrR/FrLJpBq1g==
-X-Google-Smtp-Source: ACHHUZ7EdPsQUATI97T7TTNuUDnDStW+T3FEAeWPo+yfm29Wp4MOkToA00AJYrowOetUBHDSlDJRIg==
-X-Received: by 2002:a17:907:2d9f:b0:94e:e97b:c65 with SMTP id gt31-20020a1709072d9f00b0094ee97b0c65mr2301544ejc.60.1685444518085;
-        Tue, 30 May 2023 04:01:58 -0700 (PDT)
+        bh=sJpPcvlhDr55XVdV13FrZJDCixqh9Kz7L+e3bwYKNW0=;
+        b=HvOVGgQFwzKXyZ+dSoyiIaRCrK+uF2aPGLexjCt+0zkDzGD6S7hvau1N/Eta121Ilw
+         Jv2ygUmuAY4nYKlBmbwebhV5W0lC9yssP+IhAE0nHAfhqxaqIYdVFmEYeJAbxMt06djX
+         hxAwwJEd++n897L20d/0b56GXznCc71GLarOh5v3487OO8apZwLNVev2yeMM8JrGgnaN
+         ksQWJOjRi/wRR8w4f1DZbwWaMcmGWM9sXTUGD3Bc3b+66xOkMWHy9WwUxLDgTCPNF+Ue
+         gB5MgyvZbPoLiV1bD+Y+LbGK/1xZj1F0V8GkuMWihSfnBrhErR6hdpjgx29iQV/JA1pR
+         dPsw==
+X-Gm-Message-State: AC+VfDz/OkARf64UJNhi1kLQxDfwevuv16SJkhJl2RK+N/CueTmwkYi/
+        QwKMMkqR/euA3tUXbCkPAL/Zbg==
+X-Google-Smtp-Source: ACHHUZ47aLpUcTUH2+3Tb4gKZeBxw7El92S1s3TQBI7H0P8ZOWBOqOvi1F1laf1lx80mffdjpGOLOg==
+X-Received: by 2002:a17:906:6a04:b0:973:93c3:16a1 with SMTP id qw4-20020a1709066a0400b0097393c316a1mr9228224ejc.19.1685444641154;
+        Tue, 30 May 2023 04:04:01 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id kb9-20020a1709070f8900b00967004187b8sm7195515ejc.36.2023.05.30.04.01.55
+        by smtp.gmail.com with ESMTPSA id h26-20020a1709062dda00b00969f2d5267asm7225424eji.114.2023.05.30.04.03.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 04:01:57 -0700 (PDT)
-Message-ID: <514a9e26-aeb9-ce05-1055-337646098ec1@linaro.org>
-Date:   Tue, 30 May 2023 13:01:55 +0200
+        Tue, 30 May 2023 04:04:00 -0700 (PDT)
+Message-ID: <46944bf1-3a07-0db7-2702-f6b7d54b611a@linaro.org>
+Date:   Tue, 30 May 2023 13:03:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH V2 04/13] dt-bindings: clock: qcom: gcc-ipq5018: remove q6
- clocks macros
+Subject: Re: [PATCH V2 06/13] clk: qcom: ipq5018: remove q6 bring up clocks
 Content-Language: en-US
 To:     Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
         agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
@@ -72,9 +71,9 @@ Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
         quic_poovendh@quicinc.com, quic_varada@quicinc.com,
         quic_devipriy@quicinc.com
 References: <20230521222852.5740-1-quic_mmanikan@quicinc.com>
- <20230521222852.5740-5-quic_mmanikan@quicinc.com>
+ <20230521222852.5740-7-quic_mmanikan@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230521222852.5740-5-quic_mmanikan@quicinc.com>
+In-Reply-To: <20230521222852.5740-7-quic_mmanikan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,22 +87,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/05/2023 00:28, Manikanta Mylavarapu wrote:
-> Since Q6 firmware takes care of bring up clocks in multipd
-> model, remove bring up clock macros.
+> Since Q6 firmware takes care of it's bring up clocks
+> in multipd model, remove from gcc driver.
 > 
 > Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
 > ---
->  include/dt-bindings/clock/qcom,gcc-ipq5018.h | 21 --------------------
->  1 file changed, 21 deletions(-)
+>  drivers/clk/qcom/gcc-ipq5018.c | 414 ---------------------------------
+>  1 file changed, 414 deletions(-)
 > 
 
-I am fine with this if it still compiles... I have doubts about it,
-unless of some depedencies (you mentioned three !)... but then it gets
-complicated.
+So here is explanation - your patchset is not bisectable.
 
-Keep patches doing same logical change in same patchset. This dependency
-dance in recent submissions is making things tricky and prolonging your
-upstreaming process significantly.
+What's more, I really wonder now why these clocks were added if firmware
+handles them?
 
 Best regards,
 Krzysztof
