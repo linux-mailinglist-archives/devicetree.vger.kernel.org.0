@@ -2,105 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52040716FA5
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 23:25:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BE8A716FBD
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 23:30:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229946AbjE3VZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 17:25:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49054 "EHLO
+        id S231499AbjE3Va4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 17:30:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233426AbjE3VYi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 17:24:38 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 647D310A;
-        Tue, 30 May 2023 14:24:37 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-64d5b4c400fso5587335b3a.1;
-        Tue, 30 May 2023 14:24:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685481877; x=1688073877;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lf4Z9YM584RxPxtekhg1O6Jg1+vKk3NS50lQs9HLET4=;
-        b=SxPcpA0RkDSh6WW0LTYkjemKG5TpashrZVstG+xtYM3+f23QmPJE23JMDI5tPMu9Gd
-         pH1zPJwBss/pHu6VYOU0GVespUNX3d77fVQ1o/BatEok/5gm8MYjBqask0J7H+AzgOYn
-         1r7UBzv4H1BFY61jq2T77bzP9p6Yt9wzQ/3QK57EwqOfw2hCH9YwbPZNPtGmacamK65m
-         3e0W6UibP62f3n6YUbgIb4Btcye3SVr7G4ZYObHCx0ZDV/82lpZTNmU6lkf+vdpIA6CV
-         wTJnDx2S2lRhOhQSt9K0njHLo9lW5Hu8YAKX+Jzbp74C3n5NRAIRUxeLFK6OL6DCRhi6
-         Tjmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685481877; x=1688073877;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lf4Z9YM584RxPxtekhg1O6Jg1+vKk3NS50lQs9HLET4=;
-        b=Rjzv98+VN8M673B0PLfv1511K8nB6RIho+EKW1Ttj4fkZdXMLU3Pzvl+09kRO0gaHQ
-         BnKCuMD4ZuXRd7lEYcnhDX3APhGi6DGj7jIg6FdkEDxgyrFTc9omCif59ni2tYMCXn9N
-         3Hz7I7xZB2i8pVCgOXikzfpVDNFcJfKV1eJOnG4uM/CJTpylJ6bryG4NL6ShLvW4ZmB+
-         QS1cqI6KVnN0BGTfwLeob41+UsNAVHW+MrXumTQxjK7XMCTf6u0UnLS7rQA9fHt5MiKM
-         2lPxQmJM7n6vUJlUTd6uywil1UsgJwmaCzygMup0N2HU4vAzkBKMUOrx8kACoWCIv0ak
-         aSYw==
-X-Gm-Message-State: AC+VfDwAOkPdjcT9nLGAVGmtNa6O4Yfs8zghob9JYqPJ6apIJddsE51q
-        BQMfLlwkxgfs10Fec/+dh0c=
-X-Google-Smtp-Source: ACHHUZ5FdDfHq5uzHHtqc3wO2ef3hvpWGLBPKVLe1B1D8eGU1Bwp2L78yxgx9QztJNICOVd5caoh5Q==
-X-Received: by 2002:a05:6a00:9a0:b0:63b:8eeb:77b8 with SMTP id u32-20020a056a0009a000b0063b8eeb77b8mr4227571pfg.13.1685481876642;
-        Tue, 30 May 2023 14:24:36 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:7987:7b1c:51b:39d1])
-        by smtp.gmail.com with ESMTPSA id c4-20020aa781c4000000b0064d413ca7desm2111649pfn.171.2023.05.30.14.24.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 14:24:35 -0700 (PDT)
-Date:   Tue, 30 May 2023 14:24:32 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
-        hsinyi@google.com, jikos@kernel.org, linux-input@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mka@chromium.org
-Subject: Re: [v2 1/2] HID: i2c-hid: elan: Add ili9882t timing
-Message-ID: <ZHZpkGYYkYK4SrHX@google.com>
-References: <CAD=FV=VYfPSwar2AXBxB3vX0dV1kjQ5bZMxsEBFhUnMNRXbBCw@mail.gmail.com>
- <20230520050649.2494497-1-yangcong5@huaqin.corp-partner.google.com>
- <20230520050649.2494497-2-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=Xpe=zOeq2pG17Q0n_SZZHAFmaE+6C=SnuHqnHN6uObog@mail.gmail.com>
+        with ESMTP id S230045AbjE3Vaz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 17:30:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05B4DE8;
+        Tue, 30 May 2023 14:30:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8BB7160B74;
+        Tue, 30 May 2023 21:30:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 869C2C433EF;
+        Tue, 30 May 2023 21:30:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685482253;
+        bh=PrlL1qfJ4X4PgO5aGdikpfSveOZTNv2Z4rqYo4OiJts=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iBLPvGkJZb7R3XA/E6T8YvG3XN3DGpqP+dWwEAjFyBXDGCduGXbXAq87fVbsr2MLp
+         JCRGsqL8OjIS7OoZJV8H6VAT7RvnFilBArfPFhq2v/H8IECnEiskUYB1tDdwx8Seaq
+         zzjYXil1T7WjAoNC7cVfQTKVQmZMoz42iM4N+mzCxvPPwy48NSWEbUz4NJ6ZJUqXDF
+         rWbjPpjQpkA5/r0r4F8/P1WgC3iPCgGNPbYqM5Mv2u8seoTuyTR9gh72kit3EGIMMX
+         DKOzBWAZNwrqDv73tchVsncDT35LregvMV1mNTFEr3rSan8EnhhEhfRqCBpPkh0HR6
+         4plYDAsXS+qeA==
+Date:   Tue, 30 May 2023 22:30:46 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     lee@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linus.walleij@linaro.org, vkoul@kernel.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, lgirdwood@gmail.com,
+        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
+        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
+        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] spi: cs42l43: Add SPI controller support
+Message-ID: <171e2054-e41c-46a5-b478-f699909c5bd7@sirena.org.uk>
+References: <20230530122112.1314458-1-ckeepax@opensource.cirrus.com>
+ <20230530122112.1314458-6-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="LUy+8fUc7Rrtf09J"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=Xpe=zOeq2pG17Q0n_SZZHAFmaE+6C=SnuHqnHN6uObog@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230530122112.1314458-6-ckeepax@opensource.cirrus.com>
+X-Cookie: I've read SEVEN MILLION books!!
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 22, 2023 at 08:27:38AM -0700, Doug Anderson wrote:
-> Hi,
-> 
-> On Fri, May 19, 2023 at 10:07 PM Cong Yang
-> <yangcong5@huaqin.corp-partner.google.com> wrote:
-> >
-> > The ili9882t is a TDDI IC ((Touch with Display Driver)). It requires the
-> > panel reset gpio to be high before i2c commands. Use a longer delay in
-> > post_power_delay_ms to ensure the poweron sequence.
-> >
-> > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> > ---
-> >  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> 
-> This seems OK to me. The one thing I'd also do is to update the
-> Kconfig description to say that this driver is also used for Ilitek. I
-> think it's fine to keep the symbol name as I2C_HID_OF_ELAN but just
-> change the description.
 
-Does ilitek have the same set of regulators, etc, or is it only the
-timing? I'd probably make it a separate mini-driver...
+--LUy+8fUc7Rrtf09J
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks.
+On Tue, May 30, 2023 at 01:21:11PM +0100, Charles Keepax wrote:
 
--- 
-Dmitry
+A couple of small things:
+
+> +static unsigned int cs42l43_clock_divs[16] = {
+> +	2, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30
+> +};
+
+Do we need to specify the size of the array?  I just had to count the
+number of initialisers :(   Should probably also be const.
+
+> +		for (; buf < block - (sizeof(u32) - 1); buf += sizeof(u32))
+> +			regmap_write(regmap, CS42L43_TX_DATA, *(const u32 *)buf);
+
+We're passing a byte stream through a u32 here - are you sure this is
+endian safe?
+
+--LUy+8fUc7Rrtf09J
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmR2awUACgkQJNaLcl1U
+h9BLMAf7B1to2LkSkIjsJGp1+2cKMbTn+WNW6z2CuH5pGIv8uv6hHT/yakD/DAtD
+xqM8doMGB7ckoPBvhosXpSmd7TODf4nrrADZEB9yL5ZgAyPl9tgk7ZrNldZUr8bV
+KBRZASEbj3MNDA4EzBe8oG7jn3vwgF+Yes6wYzvhiUkQFL1alr7u/7IQ4lJlKWTL
+hnYHrP4S/2ZbZzJO16dLz47zIYMAtERArGEfrKYdQ1rmWazZMGFJ8MwboxkC8ZMQ
+gR2K6dVAAsncxp3ruAEB520UX7td4j1tm2rcJgyNTbgXbJsn7wVZ882YEXAF24L8
+oRslOoGjnPOB9/vkdOYSL79Zyx1Xyg==
+=Yi++
+-----END PGP SIGNATURE-----
+
+--LUy+8fUc7Rrtf09J--
