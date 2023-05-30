@@ -2,99 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AC39716A33
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 18:58:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B020716A48
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 18:59:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232417AbjE3Q6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 12:58:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35414 "EHLO
+        id S233199AbjE3Q7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 12:59:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232971AbjE3Q6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 12:58:17 -0400
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 028179D;
-        Tue, 30 May 2023 09:58:14 -0700 (PDT)
-Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        by mail11.truemail.it (Postfix) with ESMTPA id DD99D207A3;
-        Tue, 30 May 2023 18:58:12 +0200 (CEST)
-Date:   Tue, 30 May 2023 18:58:11 +0200
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Francesco Dolcini <francesco@dolcini.it>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233190AbjE3Q7Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 12:59:25 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 147AF184;
+        Tue, 30 May 2023 09:59:10 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34UGx19e078892;
+        Tue, 30 May 2023 11:59:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1685465941;
+        bh=6M2aKEuRzEO5x6yCRaOU9u1elCkXurH6+7kxcN/ICaw=;
+        h=From:To:CC:Subject:Date;
+        b=qpHuNJ/q7e74dDkHn6lpvH5+UN2PyK8gdpotdItNsG+7NOSsSTQgJSl597mQrRf9Q
+         KTARAiAk/2g1aP/j1v6kwy1M7G/621jjakkfzABYmrfhsReI8baINiySfxejCIykSl
+         w9qdutWedxH0hzfeF0fiuyWO6ZAy1JbJP1lPyhOI=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34UGx16k087477
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 30 May 2023 11:59:01 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
+ May 2023 11:59:01 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 30 May 2023 11:59:01 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34UGx1Dd038965;
+        Tue, 30 May 2023 11:59:01 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/5] dt-bindings: arm: ti: add toradex,verdin-am62 et
- al.
-Message-ID: <ZHYrIwfzLyYC+2Cb@francesco-nb.int.toradex.com>
-References: <20230524143631.42471-1-francesco@dolcini.it>
- <20230524143631.42471-2-francesco@dolcini.it>
- <20230530121231.fnfqhkfliysrv2pr@engross>
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>, Udit Kumar <u-kumar1@ti.com>,
+        Nitin Yadav <n-yadav@ti.com>, Andrew Davis <afd@ti.com>
+Subject: [PATCH 0/7] arm64: dts: ti: Add additional secproxy instances
+Date:   Tue, 30 May 2023 11:58:53 -0500
+Message-ID: <20230530165900.47502-1-nm@ti.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230530121231.fnfqhkfliysrv2pr@engross>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 07:12:31AM -0500, Nishanth Menon wrote:
-> On 16:36-20230524, Francesco Dolcini wrote:
-> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > 
-> > Add toradex,verdin-am62 for Toradex Verdin AM62 SoM, its
-> > nonwifi and wifi variants and the carrier boards (Dahlia,
-> > Verdin Development Board and Yavia) they may be mated in.
-> > 
-> > Link: https://developer.toradex.com/hardware/verdin-som-family/modules/verdin-am62/
-> > Link: https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
-> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > ---
-> >  .../devicetree/bindings/arm/ti/k3.yaml        | 20 +++++++++++++++++++
-> >  1 file changed, 20 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > index e1183f90bb06..e3aee191d403 100644
-> > --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > @@ -33,6 +33,26 @@ properties:
-> >                - ti,am62-lp-sk
-> >            - const: ti,am625
-> >  
-> > +      - description: K3 AM62x SoC Toradex Verdin Modules and Carrier Boards
-> > +        items:
-> > +          - enum:
-> > +              - toradex,verdin-am62-nonwifi-dahlia # Verdin AM62 Module on Dahlia
-> > +              - toradex,verdin-am62-nonwifi-dev    # Verdin AM62 Module on Verdin Development Board
-> > +              - toradex,verdin-am62-nonwifi-yavia  # Verdin AM62 Module on Yavia
-> 
-> Does'nt one of these indicate the rest?
+Hi,
 
-Strictly speaking it does.
+This series introduces secure proxies meant for usage with bootloaders
+and firmware components in the SoC for all K3 SoCs. AM64x SoC is an odd
+case here as the single instance of secure proxy is dual use for both
+ROM and general purpose. All other SoCs have independent instances that
+is used for firmware and bootloader communication.
 
-However it's convenient to have a tuple with more generic compatible
-afterward.
+Nitin had posted [1] to address one of the SoCs (AM62), I am cleaning
+that patch a bit in this series.
 
-I tried to explain some of the reasoning for that on this email [1].
+Nishanth Menon (6):
+  arm64: dts: ti: k3-am62a-main: Add sa3_secproxy
+  arm64: dts: ti: k3-am65-mcu: Add mcu_secproxy
+  arm64: dts: ti: k3-j7200-mcu: Add mcu_secproxy
+  arm64: dts: ti: k3-j721e-mcu: Add mcu_secproxy
+  arm64: dts: ti: k3-j721s2-mcu-wakeup: Add sa3_secproxy and
+    mcu_sec_proxy
+  arm64: dts: ti: k3-j784s4-mcu-wakeup: Add sa3_secproxy and
+    mcu_sec_proxy
 
-More in general this tuple of compatible is matching how the actual system
-is layered (SoC -> base SoM -> SoM variant -> carrier board) that is
-also reflected on the dtsi include hierarchy.
+Nitin Yadav (1):
+  arm64: dts: ti: k3-am62-main: Add sa3_secproxy
 
-FWIW, this is the standard approach you can see on fsl.yaml, where such
-kind of modular system are pretty much standard.
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi      | 15 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi     | 15 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       | 15 ++++++++++
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 15 ++++++++++
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      | 15 ++++++++++
+ .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 30 +++++++++++++++++++
+ .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     | 30 +++++++++++++++++++
+ 7 files changed, 135 insertions(+)
 
-[1] https://lore.kernel.org/all/ZG5jYV%2FNfGJvYkma@francesco-nb.int.toradex.com/
-
-Francesco
+[1] https://lore.kernel.org/all/20230519113434.1024206-3-n-yadav@ti.com/
+-- 
+2.40.0
 
