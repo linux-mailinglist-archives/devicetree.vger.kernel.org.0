@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA760716B0F
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:31:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52520716B13
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:31:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233469AbjE3RbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 13:31:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58778 "EHLO
+        id S233477AbjE3RbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 13:31:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233476AbjE3Ra7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:30:59 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB9F137
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:30:44 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f6ffc2b314so540825e9.0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:30:44 -0700 (PDT)
+        with ESMTP id S233407AbjE3RbB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:31:01 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE517C5
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:30:45 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-30ad99fa586so4549881f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:30:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1685467843; x=1688059843;
+        d=raspberrypi.com; s=google; t=1685467844; x=1688059844;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jbrlyIIVWtljdw9WJ85IvtoCQCr75FYCyMVLGQO5Tmc=;
-        b=CA0VBEoc9iIBzHXJRv4T+k/OL6i3wBgopcXzil+L2P8VpB3s0QjWHoj3gJlUnn2zfY
-         MRABR0lKl6stLocFEZ+aneDF+hR2zlE4wnZx/9/0EXijhvm8zTAfVrGJjSercDkQurmk
-         8zXW9mJjx6wEKMQBNsVwzedFlbFY0vEePWLDJR09RYvS/JnaqYw58x8vQ8JAlySRrpqi
-         aBKWB5S7h7yXLGF9bI7mnvg76dFzq5ELcr3RbyunOAOcZEEuxj8awsxjcEZvCA9jUaHs
-         sE5gfT/tIBldNYSqJ+w/Mbcv1ZyI5lYjLGJFoGYnCAO6g6Ha9/vL3KPkD7mgNflHAVpy
-         /8VQ==
+        bh=s0RVCChZrw1HM9gOYT9R7Dq9M2JqYnSrsD9fDiYXZqw=;
+        b=Mk9j0A28T6ZsD/yDUdYTaasqk+2b7wKUk8E2DlztWHh0RyXRVFPSZD7ZFthFUpAdrG
+         XT7y0PraqOExWZyDr3DW/zW5kv1lZduZS/yWQTcwt4cQuXGneoQCTc5EYZUPD/C9N3MI
+         rQ8qLEbk0YZ/DQcWp9mrTnjHQRAHU6P3f5EFCQQCBownaSvGlzmSc7WxBvb0m9Wh6sO6
+         /t5/namP+ryoxiOM8VAIZ0qSOS4TG0d9zYoR29nca3R18m/pVoB2tu6337r41oo8hlst
+         rhZa4vvN6M6hD1tiHrFC059RUIwDNRsz8a6AidKnYjJkrWTsOPfCyC9nkmK2y6Lj8AT6
+         GuyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685467843; x=1688059843;
+        d=1e100.net; s=20221208; t=1685467844; x=1688059844;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jbrlyIIVWtljdw9WJ85IvtoCQCr75FYCyMVLGQO5Tmc=;
-        b=YNIVVPgSNAn3ajWEt+lxTfiHtvh5vK9nDfD5PXYxZD9uXxBInhD5xZ1sipC7aTLem4
-         aQvppketlx0wzfQRx3b4KEWHfzrim4nxSKttT2qJwDAUCzVmDgWPNu1je8IMGyQy6Vzp
-         YcNwXY8ch3fJ3RPaltZit73eTAZl6NHyHh/hH790Ksk7AYvh3S4dX7t771ALrfzzjrEp
-         LIIlWNqHqia9dLISiHVD501zKdvIIHFZxFkOOytI9/4jdkGc4NG3VkJSuJStyx9cesQg
-         6t1obGJacMWKssx8PgIEE9c1hXiyM0knYPk3rzM2y7YtpYJ/KsZWSvYPsp4OFXNRntKb
-         ZMog==
-X-Gm-Message-State: AC+VfDyO8cXvx1iEhim4j/KCnniJGy7h16bTApYLy+zg1iL9DnD/WuJw
-        tF/5xmU7t6wy/S00s0dEAdVEJpHqVfFnjMpLJLg=
-X-Google-Smtp-Source: ACHHUZ58ZZhVsCHcRerb4diHY/iL0doRdlIylB7Zl7T38eUt87QIs7tYNUSOBmSCHZnVQyQOthf1YQ==
-X-Received: by 2002:a5d:5957:0:b0:30a:ed4c:e17d with SMTP id e23-20020a5d5957000000b0030aed4ce17dmr4276888wri.5.1685467843361;
-        Tue, 30 May 2023 10:30:43 -0700 (PDT)
+        bh=s0RVCChZrw1HM9gOYT9R7Dq9M2JqYnSrsD9fDiYXZqw=;
+        b=DdHXLKgsu8efWfGMFYmEseesGsnURgeFO6ukcE+K90pDvgetrwu+giuwyNPDStg41C
+         +cLILOrMU5gQu9M6wKGK9etN4jS0BSXo0e9kyDIoetgMpLGHqlioJ/sH3LjQ0gW5Kyrm
+         hLFaY61bF2zWyMisNAs1TX2hU52TqQIf5jVMtgivcCgsI2PpJtxysB2+5ZeAYX0g+s0e
+         YEttpPxtkXNEqMMyNHtFeHm9jn3qkXL2S12KB9LchrP7Okmqbtr2VwLujfSWPyxWZcnY
+         YDAR4z4SZDCyQ9w+LMIGnudsUS4xFQ9xA8f2uiNxlJALm4eLsplToUAD49oREZr+t7V2
+         6lqw==
+X-Gm-Message-State: AC+VfDzyeIIUWuuUZglicB0Q6tixAnzWsLTYdouilNa1IkxJvr4+O1q5
+        shZJReWPMH+fmrvac/hCCk/4iw==
+X-Google-Smtp-Source: ACHHUZ5Y27ra5AaDsbjy8uc6KnHxbqSIL9rvP8ykCeiZTJYKsmQpxOYMh5RFpxYgewnchbx9vZqxow==
+X-Received: by 2002:adf:d851:0:b0:304:8147:f0ba with SMTP id k17-20020adfd851000000b003048147f0bamr2494403wrl.3.1685467844357;
+        Tue, 30 May 2023 10:30:44 -0700 (PDT)
 Received: from dave-Ubuntu2204.pitowers.org ([93.93.133.154])
-        by smtp.googlemail.com with ESMTPSA id h14-20020a056000000e00b0030ae901bc54sm3964823wrx.62.2023.05.30.10.30.42
+        by smtp.googlemail.com with ESMTPSA id h14-20020a056000000e00b0030ae901bc54sm3964823wrx.62.2023.05.30.10.30.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 10:30:43 -0700 (PDT)
+        Tue, 30 May 2023 10:30:44 -0700 (PDT)
 From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
 To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
         linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
 Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: [PATCH 12/21] media: i2c: imx258: Allow configuration of clock lane behaviour
-Date:   Tue, 30 May 2023 18:29:51 +0100
-Message-Id: <20230530173000.3060865-13-dave.stevenson@raspberrypi.com>
+Subject: [PATCH 13/21] media: i2c: imx258: Correct max FRM_LENGTH_LINES value
+Date:   Tue, 30 May 2023 18:29:52 +0100
+Message-Id: <20230530173000.3060865-14-dave.stevenson@raspberrypi.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
 References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
@@ -73,61 +73,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sensor supports the clock lane either remaining in HS mode
-during frame blanking, or dropping to LP11.
-
-Add configuration of the mode via V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK.
+The data sheet states that the maximum value for registers
+0x0340/0x0341 FRM_LENGTH_LINES is 65525(decimal), not the
+0xFFFF defined in this driver. Correct this limit.
 
 Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 ---
- drivers/media/i2c/imx258.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/media/i2c/imx258.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-index 1fa83fe82f27..b5c2dcb7c9e6 100644
+index b5c2dcb7c9e6..f5199e3243e8 100644
 --- a/drivers/media/i2c/imx258.c
 +++ b/drivers/media/i2c/imx258.c
-@@ -72,6 +72,8 @@
- /* Test Pattern Control */
- #define IMX258_REG_TEST_PATTERN		0x0600
+@@ -28,7 +28,7 @@
+ #define IMX258_VTS_30FPS		0x0c50
+ #define IMX258_VTS_30FPS_2K		0x0638
+ #define IMX258_VTS_30FPS_VGA		0x034c
+-#define IMX258_VTS_MAX			0xffff
++#define IMX258_VTS_MAX			65525
  
-+#define IMX258_CLK_BLANK_STOP		0x4040
-+
- /* Orientation */
- #define REG_MIRROR_FLIP_CONTROL		0x0101
- #define REG_CONFIG_MIRROR_FLIP		0x03
-@@ -634,6 +636,7 @@ struct imx258 {
- 	const struct imx258_link_freq_config *link_freq_configs;
- 	const s64 *link_freq_menu_items;
- 	unsigned int nlanes;
-+	unsigned int csi2_flags;
- 
- 	/*
- 	 * Mutex for serialized access:
-@@ -1072,6 +1075,15 @@ static int imx258_start_streaming(struct imx258 *imx258)
- 		return ret;
- 	}
- 
-+	ret = imx258_write_reg(imx258, IMX258_CLK_BLANK_STOP,
-+			       IMX258_REG_VALUE_08BIT,
-+			       imx258->csi2_flags & V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK ?
-+			       1 : 0);
-+	if (ret) {
-+		dev_err(&client->dev, "%s failed to set clock lane mode\n", __func__);
-+		return ret;
-+	}
-+
- 	/* Apply default values of current mode */
- 	reg_list = &imx258->cur_mode->reg_list;
- 	ret = imx258_write_regs(imx258, reg_list->regs, reg_list->num_of_regs);
-@@ -1486,6 +1498,8 @@ static int imx258_probe(struct i2c_client *client)
- 		goto error_endpoint_poweron;
- 	}
- 
-+	imx258->csi2_flags = ep.bus.mipi_csi2.flags;
-+
- 	/* Initialize subdev */
- 	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
+ #define IMX258_REG_VTS			0x0340
  
 -- 
 2.25.1
