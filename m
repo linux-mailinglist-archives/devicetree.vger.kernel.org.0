@@ -2,92 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBCB77161AB
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:24:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D17A07161DB
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:30:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbjE3NYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 09:24:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50128 "EHLO
+        id S232170AbjE3NaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 09:30:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230165AbjE3NYb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:24:31 -0400
-X-Greylist: delayed 11461 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 30 May 2023 06:24:29 PDT
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16584B0;
-        Tue, 30 May 2023 06:24:29 -0700 (PDT)
-Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        by mail11.truemail.it (Postfix) with ESMTPA id 25694209A7;
-        Tue, 30 May 2023 15:24:27 +0200 (CEST)
-Date:   Tue, 30 May 2023 15:24:22 +0200
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Francesco Dolcini <francesco@dolcini.it>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        with ESMTP id S232740AbjE3N31 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:29:27 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B7F10D7
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:28:41 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-514924b4f8cso5577609a12.3
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 06:28:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685453320; x=1688045320;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6A+xXqLFRW5fPXvfVtMkX6LKKLoRKsjcMfJO7DhUdik=;
+        b=rGjo7SPzrKSY6EqsgQVRt48TIldoTaPYWqJ4d8AGd3N/7kXcz3IVtfw90c0acOKck1
+         geEzvO4vKhrbosBH9t63C/h+4PL7LLjLpAwiaYpvbzOBVYhrLk4dCH6Vs2pBKgdb/Sab
+         owcB4U6XZjeVvPzSJaKDXrTbYY6wEI0JbKtutAu/SARMLZES4bPop97ma5vG2Ou5/2WJ
+         B6HnwEqrZP3i28mC2ZvmLDEJyBSAaXiLwcoNvq12sRCoKV+iLRuuPL4xgQ2QnEuPNJu3
+         EYrNOYTSY7pbMBiglG+Ab8iR5J0RPhV/8q7Qe1JUoTHWrZXMY9CV7U1tEJsYDAEs6LQs
+         45hA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685453320; x=1688045320;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6A+xXqLFRW5fPXvfVtMkX6LKKLoRKsjcMfJO7DhUdik=;
+        b=WbFJbEJHYGujqG/YJYl+/7jjdJfSTTUhkltOgVZxP3z4NotTSVvyImsBYlaWu65DpC
+         h/5h4X9aR9ACAou6NAnqBgVC+f8xD+73MWztnu2dcgr7mmpl3ygX4ti14N/qd7oWlWEb
+         8uiLCcoYbwY2wVDfMp/hJIWSO4ERYSX2Y7g4A2EHX2aPT7yJm6z4yPSph3xr7ulDjrf/
+         z27jCqe2pAK1JpC6oEKy1zHOXCTbnS7xpfMowRagFemH+rXj33s9kXVj7w6FJD5WTt03
+         fcX2fxcQwsXdg6qjtaDPOAqWwyCQGqd2rPiMxwYVvZOBWxYZ9pFdJNWmmUAZLYJ1CGex
+         iJAA==
+X-Gm-Message-State: AC+VfDw869LoqA1n3iF1KMDcQ790+FSv4CGxgaJBhKvJisHx08aq4/fx
+        LOcSmjPKeZ3a8Ov4H/GE/SA+Yg==
+X-Google-Smtp-Source: ACHHUZ5uWXFecH4hpqdfYXssIU+Y9H1eIyhmt9oBeAgqCNlcWe46eAJq7azf0oz4fVbkd7+2dwimlg==
+X-Received: by 2002:a17:907:720c:b0:96f:a190:8381 with SMTP id dr12-20020a170907720c00b0096fa1908381mr2171472ejc.10.1685453319750;
+        Tue, 30 May 2023 06:28:39 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id b11-20020a170906490b00b00965cfc209d5sm7329293ejq.8.2023.05.30.06.28.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 06:28:39 -0700 (PDT)
+Message-ID: <0ef5b9dc-0c01-2a36-533f-4959e2e870ca@linaro.org>
+Date:   Tue, 30 May 2023 15:28:37 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v8 01/10] arm64: defconfig: enable MT6357 regulator
+Content-Language: en-US
+To:     Alexandre Mergnat <amergnat@baylibre.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lukas Wunner <lukas@wunner.de>
-Subject: Re: DT checker RS485 unevaluated property, 8250 OMAP UART
-Message-ID: <ZHX5Bm5pRUebY0Xu@francesco-nb.int.toradex.com>
-References: <ZGefR4mTHHo1iQ7H@francesco-nb.int.toradex.com>
- <0cb182f8-eb53-45d8-3c8b-fb7d16f88d46@ti.com>
- <ZHXMMHQ9VevVtqHz@francesco-nb.int.toradex.com>
- <cd06b0f4-fb86-cc16-5a80-b4896b5c4cd9@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cd06b0f4-fb86-cc16-5a80-b4896b5c4cd9@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>
+References: <20230203-evk-board-support-v8-0-7019f3fd0adf@baylibre.com>
+ <20230203-evk-board-support-v8-1-7019f3fd0adf@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230203-evk-board-support-v8-1-7019f3fd0adf@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 01:38:42PM +0200, Krzysztof Kozlowski wrote:
-> On 30/05/2023 12:13, Francesco Dolcini wrote:
-> > On Sat, May 27, 2023 at 11:49:17AM +0530, Vignesh Raghavendra wrote:
-> >> On 19/05/23 9:39 pm, Francesco Dolcini wrote:
-> >>> I would be inclined to send the following patch, do you agree?
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Documentation/devicetree/bindings/serial/8250_omap.yaml
-> >>> index eb3488d8f9ee..e634e98aa994 100644
-> >>> --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
-> >>> +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
-> >>> @@ -70,6 +70,7 @@ properties:
-> >>>    dsr-gpios: true
-> >>>    rng-gpios: true
-> >>>    dcd-gpios: true
-> >>> +  rs485-rts-active-low: true
-> >>
-> >> I believe you mean rs485-rts-active-high here
-> > whoops, yes of course.
+On 25/05/2023 10:33, Alexandre Mergnat wrote:
+> Enable the power regulator support of MediaTek MT6357 PMIC. This driver
+> supports the control of different power rails of device through
+> regulator interface.
 > 
-> Yes, with a Fixes tag.
 
-Ack
+It's nice to say which boards/SoCs use it which would justify why we
+want it in defconfig.
 
-> >>>    rts-gpio: true
-> >>>    power-domains: true
-> >>>    clock-frequency: true
-> >>>
-> >>> [1] https://lore.kernel.org/all/ZBItlBhzo+YETcJO@francesco-nb.int.toradex.com/
-> >>>
-> >>
-> >> Also, I hope you are using 8250_ompa.c and not omap-serial.c for newer
-> >> designs. omap-serial.c is mostly there to support legacy SoCs and not to
-> >> be used with K3 SoCs.
-> > 
-> > Thanks for this head-up. This confused myself, while the issue I
-> > reported here is real, it does affect only omap-serial.c. In my case I
-> > am using 8250_omap.c and I can just omit the property from the DTS as
-> > generally expected!
-> 
-> OK. Are you going send a fix for original issue?
+Your last sentence brings no new information - it's kind of obvious for
+every PMIC. Instead of redundant information add something actually
+missing - why do we need it in defconfig, IOW, what platform needs it?
 
-I'll do it, thanks!
+Best regards,
+Krzysztof
 
