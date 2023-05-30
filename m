@@ -2,62 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA6497158E3
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:41:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67A307158F4
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:43:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229531AbjE3Ilk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 04:41:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49840 "EHLO
+        id S229578AbjE3Inj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 04:43:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229649AbjE3IlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:41:22 -0400
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [5.144.164.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 623F4194;
-        Tue, 30 May 2023 01:41:21 -0700 (PDT)
-Received: from SoMainline.org (82-72-63-87.cable.dynamic.v4.ziggo.nl [82.72.63.87])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 8B8B820311;
-        Tue, 30 May 2023 10:41:18 +0200 (CEST)
-Date:   Tue, 30 May 2023 10:41:17 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229843AbjE3Ini (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:43:38 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79730C9
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:43:36 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34U8KJUX017624;
+        Tue, 30 May 2023 10:43:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=STMicroelectronics;
+ bh=2d8c8O/pjh1bEKlQHcC0sQgiqQ9COSQ+088Nx6UPyfQ=;
+ b=p5k7b1hUeXPXDAkdM9T9z2oLtcMIvu7Q8wmhajJTUkroE1gLgXUjt/mVCOHWxZYjnH7n
+ hhMbPnvPhTgtHRG5WotRxERnNg3e1qXZxkhsS/anhuXyqK3/CC1phEMFAdSbab2L4HIr
+ szybBOcKUnIKAp/LCQv/6y3uyid14nhDrzOi1m0vP5nvmTB4ticMl3caWRcufO9TUCi2
+ dyQs6ycnxkNmLcVvVkHke+uaXKgCDTGm6rTf8OE6+9LAW0QvnAcxDVAwm4+XjUPEAmft
+ eRLXudgLzHyX+Jpeb8Gs0UrqLn8TDCvGjRdw+6P+/P9DxZ+nCioyl4G5k2Ibl3/QbErL 3Q== 
+Received: from eur02-vi1-obe.outbound.protection.outlook.com (mail-vi1eur02lp2044.outbound.protection.outlook.com [104.47.11.44])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3quahy6ebt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 10:43:13 +0200
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UaHZQ6P2Ho3GFA+81e8GxAnDYfXZj6bV6cJmoLlZ5B3BRm0NghW+ox3iW8u39lQ0jqanPEP48+M6cOeJeHyV9JtGA6reUkAGqYBW1QKcwyML2+Mw/YeMz2QBZmpMYZ6rrqtTnUHmssJec2TH6nDF1rNHYsekjx8LBwJgAaESIbHZ1AgI2CIQW7GsJGZO5pqZxvgbhLHebzdrfKEbcxS3Y96a5TSzdnt+L/NYpQXgOWBHfyWeGpJZh+WzcJKmX0mhUR+sXhpzC4+83gk3GOjCpNSOiNVpkJxB4AQxetulSGl8FYVoPt5atXF6vXqy9mTuEVMPFM5AhcSK7ntoxfR+fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2d8c8O/pjh1bEKlQHcC0sQgiqQ9COSQ+088Nx6UPyfQ=;
+ b=bc0Atb2R7P7Z+bIPtpAk284oftaNSSj6VGftaPb3OVS3eu4VxxkN4wIsMV1YZ0ckZRx7e9emZcRmAs61yYWTu4hiCYYez6Unm364RATFp5KUFv3tcCp9+tk/g7IxsVxWRqv+4Vb6caiEg+TmM2pfLNGQv1fI0hp9vLd4iJbkmBY9sLT6uLBt696vcIoPYmjbZ8u0C7UVTQXYQ+x/cqnJdV+Z9DAuG1d7pBwBtIdGYor4gcRHS9Taec4o2WCk/ZKQi7bBr3gksADfc+vRD/gl3Srq9PHIJVwcAFZRjCRKPFDIcjNm7ytfOnrbuMjJvkyUWnNNXoP1mTbOKbUaeA4G0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=st.com; dmarc=pass action=none header.from=st.com; dkim=pass
+ header.d=st.com; arc=none
+Received: from PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:158::12)
+ by DU0PR10MB5169.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:341::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.22; Tue, 30 May
+ 2023 08:43:11 +0000
+Received: from PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::624f:2b21:6c2d:b5bb]) by PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::624f:2b21:6c2d:b5bb%6]) with mapi id 15.20.6433.022; Tue, 30 May 2023
+ 08:43:11 +0000
+From:   Arnaud POULIQUEN <arnaud.pouliquen@st.com>
+To:     Marek Vasut <marex@denx.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>
-Subject: Re: [PATCH RFC 03/10] drm/panel: Add LGD panel driver for Sony
- Xperia XZ3
-Message-ID: <63qt5jmdi5qg7tvhbb7vk75kz53wmygc7iubwprfhcc3hvgwuv@ildrzq32ese3>
-References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
- <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
- <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
- <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
- <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "kernel@dh-electronics.com" <kernel@dh-electronics.com>
+Subject: RE: [Linux-stm32] [PATCH 1/5] ARM: dts: stm32: Add missing detach
+        mailbox for emtrion emSBC-Argon
+Thread-Topic: [Linux-stm32] [PATCH 1/5] ARM: dts: stm32: Add missing detach
+        mailbox for emtrion emSBC-Argon
+Thread-Index: AQHZiSXvi5SPKVF8ekCGJJKAZyVT669yi2Ug
+Date:   Tue, 30 May 2023 08:43:11 +0000
+Message-ID: <PAXPR10MB471850924065C987981634C1F14B9@PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM>
+References: <20230518011246.438097-1-marex@denx.de>
+In-Reply-To: <20230518011246.438097-1-marex@denx.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_Enabled=true;
+ MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_SetDate=2023-05-30T08:43:09Z;
+ MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_Method=Standard;
+ MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_Name=23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0;
+ MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_SiteId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;
+ MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_ActionId=03b047c0-d0c9-42e2-ae42-b63d44844e8f;
+ MSIP_Label_23add6c0-cfdb-4bb9-b90f-bf23b83aa6c0_ContentBits=2
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR10MB4718:EE_|DU0PR10MB5169:EE_
+x-ms-office365-filtering-correlation-id: 4e23b842-4526-40e0-be47-08db60e9e686
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: rFYwzdcXVjnwK2MVh60m7hXofrL/CLxzqhW7bRB+xRBZJ/21E1zaQrzzyYEEidQ4m+VFTI80C/KHOQb8/1fTySYnT3B6PJWuXf3KqV0o2VD4EAtOv1Or3YIV4IF0MzBVNnLMGfVDKSnHEt/lhn1N2PchUdXaf7U7/qOTOP/TQMpth8+bx+2N0d/MM9oyOKDTktkaNbhvwyzcaXDN8T3Q8v8wdP7lO9KvOr8pgmxibxu9uKgyeWLrTjAHbTXBeysr5TvbvzYkjCA4vyHlYqURRx5bBV7w7n9FCwpiqB5bQLXJYaxbdynKGFn2NPiB0ByMiCHnC2XWSJEr8d5NTgvYUwoZ4dRvFvFCKtafjJG3rWgGErmvS3OU/roESV7Vzw6s7xPMD1MGykqqNW/yzqVSDRwNIIhljvBwaryDb9pg8uhcmkki0GLgR0N49PB+RxwC5xOpnyEi6/XwrQmsf0VjyZGJx/cB07SDhuvo7/j/zYGbVVS3aOZbHujYFT36KXCTiakoqX7+deM46jFZvzbWkVIf7Z4hQsKv5r1Vbn7RZMuX8Qm2hxZFeHyMs0wEuiE7zgl+gQFK4Cc+Qb3qzBh8nwjHR1GqeGwnRaQp1HhYrYA=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(346002)(39860400002)(366004)(396003)(376002)(451199021)(33656002)(186003)(15650500001)(26005)(55236004)(53546011)(6506007)(9686003)(7696005)(316002)(2906002)(71200400001)(55016003)(52536014)(5660300002)(41300700001)(7416002)(966005)(8936002)(478600001)(122000001)(38100700002)(110136005)(54906003)(4326008)(86362001)(38070700005)(66446008)(66946007)(64756008)(66476007)(66556008)(83380400001)(76116006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FfRjSKu7stqIJVDORqnKePCaJuor74/ye93EQelCvD22LdjFF0rvpAZWWmvU?=
+ =?us-ascii?Q?bWew8xRTY3ovPfMdEu/4X9jWTX9GrauToeQbY7LKOnivrPlQAC7dou/q83Wm?=
+ =?us-ascii?Q?fT04kKqwo20R03hCRtBN6HvhoFgiuNj1TJnxI2oKo7iP7ZYP7F+O/hrvGP+1?=
+ =?us-ascii?Q?qbcLmhho6JUf2Y7ZrurHM3QbTphTaqgeD2jJFB3DmsbpcfEfuONDgHNl88c4?=
+ =?us-ascii?Q?dvGtP0+xE86cETTbT8Yf/Jl2l5Us2Slp2XsJFC1zbclJ/QudmkC01189yUxE?=
+ =?us-ascii?Q?4h41dUJagRpCObuyMFDHn0lBYHIXRbJJk0NkKnVZIo6SmUENsH52JKe7TpF/?=
+ =?us-ascii?Q?gwUTnij9gtzJjD21I4jHStoSFtGnfur5hWo9ZvdhY7SVIU0Oc9+Wp0cc24oD?=
+ =?us-ascii?Q?zxAthLlzX8gFn5nFzIWuVt6/E8c5I1gOWIPW2RzxXM9PA14t/Y9aXR0/Rmmv?=
+ =?us-ascii?Q?DXrxrGjdWZdGj3MEa8fGIpeMekA//50MEPhnYpLmVQKhqcFpi7OpsJ2oiyVx?=
+ =?us-ascii?Q?lFRsTwt1PjH4BPjsomBgzWkaSFm1L1KHrOMmYqC2nF/YWvAFwO7F4kRnBvH+?=
+ =?us-ascii?Q?n7EjbOvIc2P+YYN7iYtA5SXrvt8iPDluYTBNIhAYXNorBjISKm7SIR+8X1lO?=
+ =?us-ascii?Q?smSg5sdIov3LdE36hXflFI85Qn8uKtbmL5l6a7cnJPMX6Sx6Nv9hSfW6GoVP?=
+ =?us-ascii?Q?EfSP1cxw9bomAjOSWbZ24dMTlAuBJgx/vO+6XOJxX26t5Sz/Mwt9jpNQHE+S?=
+ =?us-ascii?Q?T/XwWXcP1DZdeOWqMcHdfuLIQ3tQJaEDlibBKrstpQFN5AuGpn6yrNTibnE9?=
+ =?us-ascii?Q?JU8qKxvBYD+jytNQ2nxCLUqRTtNqXSkGaaau1Hk6e/o5c3gGP4HGDfYX5to9?=
+ =?us-ascii?Q?70F7vns/J0CM3W70dVLCycvA9HoY2MuE6RGojcLGF6k1owmjAwX+Ui/pyryJ?=
+ =?us-ascii?Q?PGEmHl/AAed147boiB7rT1Gbvfpki3Ek8w2Ob+u5qBYE+H26zHnzhD26GzIK?=
+ =?us-ascii?Q?FulNfSav+NS1eo7h3QtdK5vXLqJYZTYl2NH/D5d0I8NcqiA79oBnS9CPMHsT?=
+ =?us-ascii?Q?AY0o8DqcpE8hIS7otgxPOH9vU8XYnvGQZDHlve5q26TjkSrD1pvq9BJczxR4?=
+ =?us-ascii?Q?wVi+pdsaRWuZqejBCZTBohRZ02Xk4o4uVmXTzlYSj3n7dw3moebOAJiNuX6R?=
+ =?us-ascii?Q?gdmd/3ugcHbedmDD9M3+A2p/s5pTXgFhgwSI8LlYE61F5+j9FzWo3QuetO0b?=
+ =?us-ascii?Q?fIFwKbP3i6zfHAUUfV5lowXw6lQBY7BlbczB6BiMwyIkL1Pgu3q5hAB43b2B?=
+ =?us-ascii?Q?oDn0Ok0T05BLAfRGiEOnO9VVF7KHG0LyZVld3Ba7TcAo86sGFAddX+wTxjfu?=
+ =?us-ascii?Q?zb0zs4uLx7AcVkuyjtwg6eNotNKjtIrB1qPeBGcxhoBqlAKpuupTb706D7Kp?=
+ =?us-ascii?Q?wiuqgZiPedo3/9nUK2gOo2+MMV28aMTTaa8bdwy4H2sVp+OtUw+S3pizi5Y7?=
+ =?us-ascii?Q?+UMHrnHAWu8JQJ8basLS7hVJ5aC48ABRooWsXDxVZhGcrRBIq/L0+sBzKE5g?=
+ =?us-ascii?Q?dyPx7pxyy+jytOUHF+n7++DWcrbylqUMS/iY499k?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-OriginatorOrg: ST.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR10MB4718.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e23b842-4526-40e0-be47-08db60e9e686
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 May 2023 08:43:11.4228
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Svsuh3C1xHWQi6B9QXt8Qf0Mtb9DPoVRHOMvlAAj3BUJ8GJO1joa/t4Y9SoCmxqgnLaLSR6uAEuL78VMmJyqRA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB5169
+X-Proofpoint-ORIG-GUID: d5lN89YuOPmT72zFgjohOgTSOKeUj2dS
+X-Proofpoint-GUID: d5lN89YuOPmT72zFgjohOgTSOKeUj2dS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-30_06,2023-05-29_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 mlxlogscore=471
+ bulkscore=0 impostorscore=0 phishscore=0 clxscore=1011 priorityscore=1501
+ mlxscore=0 spamscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
+ definitions=main-2305300072
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,77 +152,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-05-30 09:24:24, Neil Armstrong wrote:
-> Hi Marijn, Dmitry, Caleb, Jessica,
-> 
-> On 29/05/2023 23:11, Marijn Suijten wrote:
-> > On 2023-05-22 04:16:20, Dmitry Baryshkov wrote:
-> > <snip>
-> >>> +	if (ctx->dsi->dsc) {
-> >>
-> >> dsi->dsc is always set, thus this condition can be dropped.
-> > 
-> > I want to leave room for possibly running the panel without DSC (at a
-> > lower resolution/refresh rate, or at higher power consumption if there
-> > is enough BW) by not assigning the pointer, if we get access to panel
-> > documentation: probably one of the magic commands sent in this driver
-> > controls it but we don't know which.
-> 
-> I'd like to investigate if DSC should perhaps only be enabled if we
-> run non certain platforms/socs ?
-> 
-> I mean, we don't know if the controller supports DSC and those particular
-> DSC parameters so we should probably start adding something like :
-> 
-> static drm_dsc_config dsc_params_qcom = {}
-> 
-> static const struct of_device_id panel_of_dsc_params[] = {
-> 	{ .compatible = "qcom,sm8150", , .data = &dsc_params_qcom },
-> 	{ .compatible = "qcom,sm8250", , .data = &dsc_params_qcom },
-> 	{ .compatible = "qcom,sm8350", , .data = &dsc_params_qcom },
-> 	{ .compatible = "qcom,sm8450", , .data = &dsc_params_qcom },
-> };
+Hello Marek,
 
-I'd absolutely hate hardcoding a list of compatible SoC names in a panel
-driver.  For one these lists will fall out of date really soon even if
-we store this list in a generic place: even the current DPU catalog and
-new entries floating on the lists weren't faithfully representing DSC
-capabilities (but that's all being / been fixed now).
 
-What's more, most of these panel drivers are "hardcoded" for a specific
-(smartphone) device (and SoC...) since we don't (usually) have the
-DrIC/panel name nor documentation to make the commands generic enough.
-I don't think we should be specific on that end, while being generic on
-the DSC side.
+ST Restricted
 
-That does mean I'll remove the if (dsc) here, as Dmitry noted most of
-this driver expects/requires it is enabled.
+> -----Original Message-----
+> From: Linux-stm32 <linux-stm32-bounces@st-md-mailman.stormreply.com>
+> On Behalf Of Marek Vasut
+> Sent: Thursday, May 18, 2023 3:13 AM
+> To: linux-arm-kernel@lists.infradead.org
+> Cc: Marek Vasut <marex@denx.de>; devicetree@vger.kernel.org; Conor
+> Dooley <conor+dt@kernel.org>; Krzysztof Kozlowski
+> <krzysztof.kozlowski+dt@linaro.org>; Richard Cochran
+> <richardcochran@gmail.com>; Rob Herring <robh+dt@kernel.org>; Maxime
+> Coquelin <mcoquelin.stm32@gmail.com>; linux-stm32@st-md-
+> mailman.stormreply.com; kernel@dh-electronics.com
+> Subject: [Linux-stm32] [PATCH 1/5] ARM: dts: stm32: Add missing detach
+> mailbox for emtrion emSBC-Argon
+>=20
+> Add missing "detach" mailbox to this board to permit the CPU to inform th=
+e
+> remote processor on a detach. This signal allows the remote processor
+> firmware to stop IPC communication and to reinitialize the resources for =
+a
+> re-attach.
+>=20
+> Without this mailbox, detach is not possible and kernel log contains the
+> following warning to, so make sure all the STM32MP15xx platform DTs are i=
+n
+> sync regarding the mailboxes to fix the detach issue and the warning:
+> "
+> stm32-rproc 10000000.m4: mbox_request_channel_byname() could not
+> locate channel named "detach"
+> "
+>=20
+> Fixes: 6257dfc1c412 ("ARM: dts: stm32: Add coprocessor detach mbox on
+> stm32mp15x-dkx boards")
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> Cc: Richard Cochran <richardcochran@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: kernel@dh-electronics.com
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> ---
+>  arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
+> b/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
+> index b01470a9a3d53..82061c9186338 100644
+> --- a/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp157c-emstamp-argon.dtsi
+> @@ -366,8 +366,8 @@ &iwdg2 {
+>  &m4_rproc {
+>  	memory-region =3D <&retram>, <&mcuram>, <&mcuram2>,
+> <&vdev0vring0>,
+>  			<&vdev0vring1>, <&vdev0buffer>;
+> -	mboxes =3D <&ipcc 0>, <&ipcc 1>, <&ipcc 2>;
+> -	mbox-names =3D "vq0", "vq1", "shutdown";
+> +	mboxes =3D <&ipcc 0>, <&ipcc 1>, <&ipcc 2>, <&ipcc 3>;
+> +	mbox-names =3D "vq0", "vq1", "shutdown", "detach";
 
-> ...
-> static int sony_akatsuki_lgd_probe(struct mipi_dsi_device *dsi)
-> ...
-> 	const struct of_device_id *match;
-> 
-> ...
-> 	match = of_match_node(panel_of_dsc_params, of_root);
-> 	if (match && match->data) {
-> 		dsi->dsc = devm_kzalloc(&dsi->dev, sizeof(*dsc), GFP_KERNEL);
-> 		memcpy(dsi->dsc, match->data, sizeof(*dsc));
-> 	} else {
-> 		dev_warn(&dsi->dev, "DSI controller is not marked as supporting DSC\n");
-> 	}
-> ...
-> }
-> 
-> and probably bail out if it's a DSC only panel.
-> 
-> We could alternatively match on the DSI controller's dsi->host->dev instead of the SoC root compatible.
+Why do you want to add the detach mailbox?=20
+It looks to me here that you want to clean the warning message, right?
 
-I'd much rather have the DSI host/controller state whether it is capable
-of DSC (likely allowing us to expose different modes for panels that
-support toggling DSC), but for starters also validate (in DPU?) that the
-pointer is NULL when the hardware does not support it (but maybe that
-already happens implicitly somewhere in e.g.
-dpu_encoder_virt_atomic_mode_set when finding the DSC blocks).
+The detach is used in a particular usecase where the main processor
+is  shutdown while the coprocessor is still running.
+I would prefer to not enable it by default as it need a specific
+coprocessor Firmware.
 
-- Marijn
+Rather than adding unused optional mailbox, I will more in favor
+of having a mbox_request_channel_byname_optional helper or
+something similar
+
+Regards
+Arnaud=20
+
+=20
+
+>  	interrupt-parent =3D <&exti>;
+>  	interrupts =3D <68 1>;
+>  	interrupt-names =3D "wdg";
+> --
+> 2.39.2
+>=20
+> _______________________________________________
+> Linux-stm32 mailing list
+> Linux-stm32@st-md-mailman.stormreply.com
+> https://st-md-mailman.stormreply.com/mailman/listinfo/linux-stm32
