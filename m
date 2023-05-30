@@ -2,206 +2,365 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DFA3715D6B
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EFEC715D8A
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:42:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229691AbjE3LkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 07:40:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43798 "EHLO
+        id S230201AbjE3Llk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 07:41:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbjE3LkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:40:04 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B53C5;
-        Tue, 30 May 2023 04:40:03 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id 3f1490d57ef6-b9daef8681fso3358245276.1;
-        Tue, 30 May 2023 04:40:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685446802; x=1688038802;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pl5TicixGzRQ0Rq0fw3FNPOG1mfIhS0y+dbkDNMEbHI=;
-        b=brYtG3pmzpjYxd0Gspn+o+J/iBHmc4MVzR7HSexEtLmYmHpWz1GUbxDnAePchkkuDT
-         1X1eWz/LvDJ3VPoUwppx5yQIj5reIhouxsv5CIrwspQUd1p7DEzGuKnZLRrqSfA/Ut6v
-         +DEsWTkChutc2HZT/Jo4WQhhys9SqMj5zujqLXp5XUJSgMc4yeFVcg1u+g9UfVxetwMj
-         AT+wofkSXoUraY/WlFJOq8mLWycHCH+GR1fW+mysT8oBxYlrMXnOcdPbexFnJi4kBFC/
-         rdvOS4sJoBZ2An8avCaTGirU9DJ2JDz9H6OCeanbmygSBFWqI1iFd9zIjqkRNXRvMsq6
-         icHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685446802; x=1688038802;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pl5TicixGzRQ0Rq0fw3FNPOG1mfIhS0y+dbkDNMEbHI=;
-        b=MwXqG9oqi1QPezU8pNf8B5UVP5YToh+cx6WTSMllKHXoufez5u1ClWljLBfzLlm65v
-         HU3GLyGpsOG9+HbyEXTryuRdkuzUMO+e/V26+8IcaeNpJVefiR8il6bm9Iqcs8VI6/jc
-         ne4GMtremsv/JoL0o5NZ+iAUs9PTU6zIT262SrkHar8LpNlEv2dwCXGrVscYAykod0gy
-         MD7IT0V4Q73Xg12nFuDuL3MmiUd52RX1VbFvdIASYKXHn2KSBqy8gZnKqCdSK6ASu4Zj
-         R7NAh10s9L4C6FJSCKN86wFJdLwPuDQedYs7X1N+DyLZXnGK43j3C5uKg5k/XI4lE1zr
-         DTTg==
-X-Gm-Message-State: AC+VfDwF+lD9UFEUPeejNerSFgWndht86Wg5iWFE27L+i/zGvcelxfff
-        l8XsQeLkITbzvHRmsFHtwxmCryVF001a+EQ605Q=
-X-Google-Smtp-Source: ACHHUZ5HLiNtBoCLtNDdf4gENt8MpYtx6f5wliUYDAFOEj+EumK9qpKm+caObyiJwcoOzICOaaSjesoNWnDLtA2vx+g=
-X-Received: by 2002:a0d:d4cd:0:b0:564:c4db:633a with SMTP id
- w196-20020a0dd4cd000000b00564c4db633amr2212623ywd.15.1685446802410; Tue, 30
- May 2023 04:40:02 -0700 (PDT)
+        with ESMTP id S232009AbjE3LlY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:41:24 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6443BC5;
+        Tue, 30 May 2023 04:41:19 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34UAvKrP017680;
+        Tue, 30 May 2023 11:40:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=C+1W4yC5tWE+8Yc0UUM/AugePwf0UpR0wu8bWDMYeJ8=;
+ b=Jht/QMJDp5J2wluapefC0M+V/u/11OCZ6iYObWsdv83v05xiXb0I6o0UeZMEKLHCY9Kr
+ KDEPzPOx/mDhqMLwTMG48bq5P8aulWJh37JOov4vyBX+QS003n7NrjAigCRmgA4w2z3f
+ /Pz1BYvmhmbAOx/+BA7YiUpHMymuungNdYqN8vxmVePkDYX4/r6ri/TvapI9y8dsnMKu
+ 04w/NkyvzdM0jMhPHhMamlh/Tyvhd9NeMriwmyHXKlCVBxicyWSvxTXIGFcSeraocjMp
+ 3kx5sZK1Cp5tkA/MoOhZm6vmmm6BFLMa/O5jOd3Kk+iv1S8qMRwcQ3aPKZL/DwsUCBMq kA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qvsr22djv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 11:40:40 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34UBedJQ029753
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 11:40:39 GMT
+Received: from [10.214.66.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 30 May
+ 2023 04:40:34 -0700
+Message-ID: <ec664db0-ae0f-5046-25c4-315d0a2c8a3f@quicinc.com>
+Date:   Tue, 30 May 2023 17:10:31 +0530
 MIME-Version: 1.0
-References: <cover.1684983279.git.zhoubinbin@loongson.cn> <9a2fbd6860f37760ca6089c150fd6f67628405f6.1684983279.git.zhoubinbin@loongson.cn>
- <20230525-custody-oversleep-f778eddf981c@spud> <CAMpQs4LuGAUfMNB93B=vgwJaLqEM6Cq5KyaCtnHOL7RWGuZy-w@mail.gmail.com>
- <20230526-dolly-reheat-06c4d5658415@wendy> <CAMpQs4KeHCW+9ssAn-jF0efiUOzERRFDu9Sjz1Mtv5Lk1uFuPA@mail.gmail.com>
- <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com> <20230527-passing-unfixed-39e01b787808@spud>
- <14EF9F21-8150-40D9-8870-E9151C4882CF@flygoat.com> <20230527-poet-antarctic-cc02aa60ab52@spud>
- <CAJhJPsU_qOJKO99S1xjJaSUqXsXAG7HpYbzs5wTb8J4-tQqSQA@mail.gmail.com>
- <E229B204-1B00-4B24-B4BF-15277682FB4B@kernel.org> <CAMpQs4K4e3BSVvqXa+QjhM5XDxHc_ZCiRYW+HgPo21AQ_bYSRQ@mail.gmail.com>
- <6845b6ce-06a8-9a0c-7f04-50fa906cd1e4@linaro.org>
-In-Reply-To: <6845b6ce-06a8-9a0c-7f04-50fa906cd1e4@linaro.org>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Tue, 30 May 2023 19:39:50 +0800
-Message-ID: <CAMpQs4JLp3iUh6LkN6SND8O8wRZZcM04Shcq4rUa5QEOUAVsGg@mail.gmail.com>
-Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the trivial RTCs
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Keguang Zhang <keguang.zhang@gmail.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        zhao zhang <zhzhl555@gmail.com>,
-        Yang Ling <gnaygnil@gmail.com>,
-        loongson-kernel@lists.loongnix.cn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH 5/8] arm64: dts: qcom: Add SDX75 platform and IDP board
+ support
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <tglx@linutronix.de>, <maz@kernel.org>, <will@kernel.org>,
+        <robin.murphy@arm.com>, <joro@8bytes.org>, <robimarko@gmail.com>,
+        <quic_gurus@quicinc.com>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>
+References: <1684487350-30476-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1684487350-30476-6-git-send-email-quic_rohiagar@quicinc.com>
+ <405186ab-46df-fcf1-2894-a08c4b42c069@linaro.org>
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+In-Reply-To: <405186ab-46df-fcf1-2894-a08c4b42c069@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: MdBpNHBErCWz9bwsmzJ9zZmY0sJErEq-
+X-Proofpoint-GUID: MdBpNHBErCWz9bwsmzJ9zZmY0sJErEq-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-30_08,2023-05-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ malwarescore=0 bulkscore=0 mlxlogscore=999 priorityscore=1501 spamscore=0
+ phishscore=0 lowpriorityscore=0 adultscore=0 suspectscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2304280000
+ definitions=main-2305300096
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 4:17=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 29/05/2023 10:31, Binbin Zhou wrote:
-> > Hi Krzysztof:
-> >
-> > Excuse me.
-> > We have different opinions on how to better describe rtc-loongson compa=
-tible.
-> >
-> > Based on my previous communication with you, I think we should list
-> > all the Socs in the driver and drop the wildcards.
->
-> Suggestion was about the bindings. Not in the driver. I never said to
-> list all compatibles in the driver...
->
-> > This should be clearer and more straightforward:
-> >
-> >         { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_conf=
-ig
-> > }, //ls1b soc
-> >         { .compatible =3D "loongson,ls1c-rtc", .data =3D &ls1x_rtc_conf=
-ig
-> > }, //ls1c soc
-> >         { .compatible =3D "loongson,ls7a-rtc", .data =3D
-> > &generic_rtc_config }, //ls7a bridge chip
-> >         { .compatible =3D "loongson,ls2k0500-rtc", .data =3D
-> > &generic_rtc_config }, // ls2k0500 soc
-> >         { .compatible =3D "loongson,ls2k2000-rtc", .data =3D
-> > &generic_rtc_config }, // ls2k2000 soc
-> >         { .compatible =3D "loongson,ls2k1000-rtc", .data =3D
-> > &ls2k1000_rtc_config }, // ls2k1000 soc
->
-> I would suggest to use fallbacks as suggested by Conor at least for some
-> of them. You referred to my previous comments about wildcards.
-> Wildcard !=3D fallback.
->
-> >
-> > And Conor thought it should be rendered using a fallback compatible
-> > form based on ".data".
->
-> Based on common (compatible) programming model unless you already have
-> clear hardware differences making them incompatible.
->
-> >
-> >         "loongson,ls1b-rtc"
-> >         "loongson,ls1c-rtc", "loongson,ls1b-rtc"
-> >         "loongson,ls7a-rtc"
-> >         "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
-> >         "longson,ls2k2000-rtc", "longson,ls7a-rtc"
-> >         "loonson,ls2k1000-rtc"
-> >
-> >         { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_conf=
-ig }
-> >         { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rtc_c=
-onfig }
-> >         { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1000_=
-rtc_config }
-> >
-> > In this form,  I think it might not be possible to show very
-> > graphically which chips are using the driver.
->
-> ??? How is it impossible? For all other SoCs and architectures it is
-> possible, so what is special for Loongson?
->
-> > Also, for example, "ls7a" is a bridge chip, while
-> > "ls2k2000"/"ls2k0500" are soc chips, and it seems inappropriate to
-> > integrate them into one item.
->
-> Why it is inappropriate? I don't see the issue here... what is a
-> "bridge" chip? Isn't this also an SoC?
->
-Hi Krzysztof:
+Thanks for reviewing. Sorry for the late reply was on leave.
 
-LS7A bridge chip can be considered as a combination of South and North
-bridge. Generally, it will be connected to the Loongson-3 series CPUs.
-LS2K500/LS2K1000/LS2K2000 refers to the LS2K series embedded CPU chip.
-
-Therefore, from the understanding of the driver code, I don't think it
-is appropriate to fallback them together. Please pardon me if this
-view does not apply to dt-binding.
-
-If fallback is necessary, can we have this:
-
-Let ls7a remain a separate item.
-
-"loongson,ls1b-rtc"
-"loongson,ls1c-rtc", "loongson,ls1b-rtc"
-"loongson,ls7a-rtc"
-"loongson,ls2k0500-rtc"
-"loongson,ls2k2000-rtc", "loongson,ls2k0500-rtc"
-"loongson,ls2k1000-rtc"
-
-{ .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rtc_config }
-{ .compatible =3D "loongson,ls7a-rtc", .data =3D &generic_rtc_config }
-{ .compatible =3D "loongson,ls2k0500-rtc", .data =3D &generic_rtc_config }
-{ .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2k1000_rtc_config }
-
-Thanks.
-Binbin
-
+On 5/19/2023 10:58 PM, Konrad Dybcio wrote:
 >
-> >
-> > Which one do you think is more suitable for us?
+> On 19.05.2023 11:09, Rohit Agarwal wrote:
+>> Add basic devicetree support for SDX75 platform and IDP board from
+>> Qualcomm. The SDX75 platform features an ARM Cortex A55 CPU which forms
+>> the Application Processor Sub System (APSS) along with standard Qualcomm
+>> peripherals like GCC, TLMM, UART, QPIC, and BAM etc... Also, there
+>> exists the networking parts such as IPA, MHI, PCIE-EP, EMAC, and Modem
+>> etc..
+>>
+>> This commit adds basic devicetree support.
+>>
+>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/Makefile      |   1 +
+>>   arch/arm64/boot/dts/qcom/sdx75-idp.dts |  19 ++
+>>   arch/arm64/boot/dts/qcom/sdx75.dtsi    | 534 +++++++++++++++++++++++++++++++++
+>>   3 files changed, 554 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/sdx75-idp.dts
+>>   create mode 100644 arch/arm64/boot/dts/qcom/sdx75.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+>> index d42c595..4fd5a18 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -173,6 +173,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-polaris.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-shift-axolotl.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)	+= sdx75-idp.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sm4250-oneplus-billie2.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sm6115p-lenovo-j606f.dtb
+>>   dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
+>> new file mode 100644
+>> index 0000000..e2e803b
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
+>> @@ -0,0 +1,19 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "sdx75.dtsi"
+>> +
+>> +/ {
+>> +	model = "Qualcomm Technologies, Inc. SDX75 IDP";
+>> +	compatible = "qcom,sdx75-idp", "qcom,sdx75";
+>> +	qcom,board-id = <0x2010022 0x302>;
+> You should be able to get by without qcom,{msm,board}-id.
+Actually the bootloader requires the msm and board id. Shouldn't this 
+become a necessary field then?
 >
-> Use fallbacks for some. You pointed difference in alarm for ls1x, right?
-> If so, then they can stay separate.
+>> +
+>> +};
+>> +
+>> +&tlmm {
+>> +	gpio-reserved-ranges = <110 6>;
+>> +};
+>> diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+>> new file mode 100644
+>> index 0000000..c2b8810
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+>> @@ -0,0 +1,534 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * SDX75 SoC device tree source
+>> + *
+>> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + *
+>> + */
+>> +
+>> +#include <dt-bindings/clock/qcom,rpmh.h>
+>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>> +
+>> +/ {
+>> +	#address-cells = <2>;
+>> +	#size-cells = <2>;
+>> +	qcom,msm-id = <556 0x10000>;
+>> +	interrupt-parent = <&intc>;
+>> +
+>> +	chosen: chosen { };
+>> +
+>> +	memory {
+> The memory node should have a unit address.
+Sure will update this.
 >
-> ls2k500 and ls2k2000 seem compatible with each other so should use fallba=
-ck.
+>> +		device_type = "memory";
+>> +		reg = <0 0 0 0>;
+>> +	};
+>> +
+>> +	clocks { };
+>> +
+>> +	cpus {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <0>;
+>> +
+> [...]
 >
-> Best regards,
-> Krzysztof
+>> +
+>> +		CLUSTER_PD: power-domain-cpu-cluster0 {
+>> +			#power-domain-cells = <0>;
+>> +			domain-idle-states = <&CLUSTER_SLEEP_0 &CX_RET &CLUSTER_SLEEP_1>;
+> Is CLUSTER_SLEEP_1 deeper than CX retention?
+Yes
 >
+>> +		};
+>> +	};
+>> +
+>> +	firmware {
+>> +		scm: scm {
+>> +			compatible = "qcom,scm-sdx75", "qcom,scm";
+>> +		};
+>> +	};
+>> +
+>> +	pmu {
+>> +		compatible = "arm,armv8-pmuv3";
+>> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+>> +	};
+>> +
+>> +	reserved-memory {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+>> +
+>> +		gunyah_hyp_mem: memory@80000000 {
+> reserved memory subnodes should have meaningful node names, e.g.
+>
+> hypervisor@800...
+Will update this.
+>
+>> +			reg = <0x0 0x80000000 0x0 0x800000>;
+>> +			no-map;
+>> +		};
+>> +
+> [...]
+>
+>> +
+>> +	smem: qcom,smem {
+>> +		compatible = "qcom,smem";
+>> +		memory-region = <&smem_mem>;
+>> +		hwlocks = <&tcsr_mutex 3>;
+>> +	};
+>> +
+>> +	soc: soc {
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+> Are the SoC buses limited to 32b addresses?
+No, Will fix this in the next.
+>
+>> +		compatible = "simple-bus";
+> Compatible should go first.
+Yes, Ok.
+>> +
+>> +		tcsr_mutex: hwlock@1f40000 {
+>> +			compatible = "qcom,tcsr-mutex";
+>> +			reg = <0x0 0x01f40000 0x0 0x40000>;
+>> +			#hwlock-cells = <1>;
+>> +		};
+>> +
+>> +		pdc: interrupt-controller@b220000 {
+>> +			compatible = "qcom,sdx75-pdc", "qcom,pdc";
+>> +			reg = <0x0 0xb220000 0x0 0x30000>,
+>> +			      <0x0 0x174000f0 0x0 0x64>;
+>> +			qcom,pdc-ranges = <0 147 52>,
+>> +					  <52 266 32>,
+>> +					  <84 500 59>;
+>> +			#interrupt-cells = <2>;
+>> +			interrupt-parent = <&intc>;
+>> +			interrupt-controller;
+>> +		};
+>> +
+>> +		tlmm: pinctrl@f000000 {
+>> +			compatible = "qcom,sdx75-tlmm";
+>> +			reg = <0x0 0x0f000000 0x0 0x400000>;
+>> +			interrupts = <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>;
+>> +			gpio-controller;
+>> +			#gpio-cells = <2>;
+>> +			gpio-ranges = <&tlmm 0 0 133>;
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <2>;
+>> +			wakeup-parent = <&pdc>;
+>> +		};
+>> +
+>> +		apps_smmu: iommu@15000000 {
+>> +			compatible = "qcom,sdx75-smmu-500", "arm,mmu-500";
+>> +			reg = <0x0 0x15000000 0x0 0x40000>;
+>> +			#iommu-cells = <2>;
+>> +			#global-interrupts = <2>;
+>> +			interrupts = <GIC_SPI 65 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 298 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 301 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 302 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 303 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
+> Many newer SoCs have dma-coherent SMMUs. Is this the case here?
+Yes, Will add the dma-coherent property here.
+>
+>> +		};
+>> +
+>> +		intc: interrupt-controller@17200000 {
+>> +			compatible = "arm,gic-v3";
+>> +			#interrupt-cells = <3>;
+>> +			interrupt-controller;
+>> +			#redistributor-regions = <1>;
+>> +			redistributor-stride = <0x0 0x20000>;
+>> +			reg = <0x0 0x17200000 0x0 0x10000>,
+>> +			      <0x0 0x17260000 0x0 0x80000>;
+>> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+>> +		};
+>> +
+>> +		timer@17420000 {
+>> +			compatible = "arm,armv7-timer-mem";
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges;
+>> +			reg = <0x0 0x17420000 0x0 0x1000>;
+>> +			clock-frequency = <19200000>;
+> clock-frequency is discouraged, unless strictly necessary.
+>
+> Since gh is running, the timer is already programmed so it should be
+> fine to drop this.
+>
+> [...]
+>
+>> +	timer {
+>> +		compatible = "arm,armv8-timer";
+>> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+>> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+>> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+>> +			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+>> +		clock-frequency = <19200000>;
+> Ditto
+Ok Thanks for the info. Dropping the clock frequency property in the 
+next version.
+
+Thanks,
+Rohit.
+>
+> Konrad
+>> +	};
+>> +};
