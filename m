@@ -2,248 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA68F715A3D
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 11:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A84CF715A40
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 11:34:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230291AbjE3Jc7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 05:32:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47272 "EHLO
+        id S229551AbjE3Jei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 05:34:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230288AbjE3Jca (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 05:32:30 -0400
-X-Greylist: delayed 75 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 30 May 2023 02:32:02 PDT
-Received: from eu-smtp-delivery-197.mimecast.com (eu-smtp-delivery-197.mimecast.com [185.58.86.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91FE910CF
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 02:32:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=camlingroup.com;
-        s=mimecast20210310; t=1685439120;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=CYq5z9W0NccyKEsJKexRxxFs3gJikqqLjDv0pN+hT28=;
-        b=O13rxKxBTix52Fc81Iib8PzahY05Wk4kbZAbnV3DDfwZR+voxLG6ZYtlpXkjjQBte1N4iE
-        zPVWtoDV+FmpI/CJQfGvsTjFXhtLuIe0QoCT3OxIXlZnwdEF0sz3biRjH4qmWB6Nc8731j
-        E9FwrTkM5xkxtstOJ4ITVV78r8zgbvE=
-Received: from GBR01-CWL-obe.outbound.protection.outlook.com
- (mail-cwlgbr01lp2056.outbound.protection.outlook.com [104.47.20.56]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- uk-mta-19-7QfL-y1KN1WFW7i1tE2nNA-1; Tue, 30 May 2023 10:30:35 +0100
-X-MC-Unique: 7QfL-y1KN1WFW7i1tE2nNA-1
-Received: from CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:142::9)
- by LO2P123MB7163.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:328::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Tue, 30 May
- 2023 09:30:33 +0000
-Received: from CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM
- ([fe80::6c38:e856:880a:704f]) by CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM
- ([fe80::6c38:e856:880a:704f%7]) with mapi id 15.20.6433.022; Tue, 30 May 2023
- 09:30:33 +0000
-Message-ID: <c15a90d6-b3c1-e432-9216-c4c1e2c44ce6@camlingroup.com>
-Date:   Tue, 30 May 2023 11:30:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v4 0/9] serial: sc16is7xx: fix GPIO regression and rs485
- improvements
-To:     Hugo Villeneuve <hugo@hugovil.com>, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jirislaby@kernel.org, jringle@gridpoint.com,
-        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com
-CC:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>
-References: <20230529140711.896830-1-hugo@hugovil.com>
-From:   Lech Perczak <lech.perczak@camlingroup.com>
-In-Reply-To: <20230529140711.896830-1-hugo@hugovil.com>
-X-ClientProxiedBy: LO4P123CA0485.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:1a8::22) To CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:400:142::9)
+        with ESMTP id S229475AbjE3Jef (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 05:34:35 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9C0B93;
+        Tue, 30 May 2023 02:34:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685439274; x=1716975274;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wp2pAf3CqrBt5skpkT7zvWMDCqetgcUZchDB3RC0Ee0=;
+  b=kXIirub0TyEkQRY6Ysquy7FBA3PGu3ATzksW1IY/Jz8Df2EbGHBsOXoC
+   CBB5HVIm/pkx9lz+I6nvndUMyBrEHG//323opXgmWHrvDXGEsaJaLWIOR
+   55f9sADJdIn4tLB3glUx4umCXPIe36G5elhy9sG6czl7dwb3VZk2quFeS
+   YbYvdvk4ae/df60WUu0PeuKfh/mX9D7h8Aef4XMUhlBwYEkXR4UB4YSwf
+   a8fCiQN3YxfXzPoDSCn28eo+UEsPaA+/LufMW5L4AEyZ9xss8Zell3Obb
+   tYtTmDg2Fz4wUlkeYgUpgkoXb1aLDvNCyrIaNkT3yTHJvg4AQ8hUoJh7u
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,203,1681196400"; 
+   d="asc'?scan'208";a="216005891"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 May 2023 02:34:34 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 30 May 2023 02:34:32 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Tue, 30 May 2023 02:34:29 -0700
+Date:   Tue, 30 May 2023 10:34:07 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        <krzysztof.kozlowski+dt@linaro.org>, <neil.armstrong@linaro.org>,
+        <jbrunet@baylibre.com>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <robh+dt@kernel.org>, <khilman@baylibre.com>,
+        <jian.hu@amlogic.com>, <kernel@sberdevices.ru>,
+        <rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v15 5/6] dt-bindings: clock: meson: add A1 Peripherals
+ clock controller bindings
+Message-ID: <20230530-illusive-pushpin-1e35d0a50e0d@wendy>
+References: <20230517133309.9874-1-ddrokosov@sberdevices.ru>
+ <20230517133309.9874-6-ddrokosov@sberdevices.ru>
+ <CAFBinCC3kQ9Nz3R2W-Qj9tbPJfS8JsB_4AkmPgS6xpQ96DBy2w@mail.gmail.com>
+ <20230522130033.a47vlybocme66rev@CAB-WSD-L081021>
+ <CAFBinCAk9+Km3BssA8d8nc_Z_GbhY87FD3qQRpZ2k7ChKt7TBg@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CWXP123MB5267:EE_|LO2P123MB7163:EE_
-X-MS-Office365-Filtering-Correlation-Id: 57b1d8c8-2a40-428d-7c8f-08db60f0848d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0
-X-Microsoft-Antispam-Message-Info: fxEnYUYPLBAaHl8t82BSZtcAtJAmM2OoG9mykPb/hm79t8xCFuilPgRWB44afemnRg6K9XZh8R4cVsX8tECoZB/fs2lSo4lHl7qw2bzLTJLtQ+UBxppEGKNPUnFY1l8pZhhKO6r0JfBFYW+70ubTOgyka/4OK8kEX4isUFEw4ybFqE2+UTCcJKmjP90lQLUeNFeY01n1PPXr96IdgpCdOQaYhhWXe3LucAe6wELncV679gJY7e7o4ujA+IoYpN1E6vGQv0VtoHzAQ991SynqTZ1xUymp7qxpzLh/ktAwLJWCjA3e+BovJtT82Zh5DgHr0bRBH3Gc6vq1PLc0KdF5iTjXcECmrfqVkpoPi82/rgqJQC7VKUiFpCNx1DwKZu2iZ7oPr6JG4jCmqlTq916OMhJ6epku8NxPC3enHJ+ojNk2rHtGqSDl1gKwPXy6eQvdbTqw9P4bHJQnP30YPvcxt0/xr6qzbsAmgoDcvTVejvq8+Inrl8Gn4NsS1wZ3kuH7X5sdjZ6hExbDyACVryL4t4O5QLg1asz9MpG6WlzoEINNfhBx6eplXysFT2anlJP0bv9Hh/ytcD/Ub/1yYahIF6YR6sNcAd8TYUqtYv9gHKPRX5JKUxqvIyHC0AYCykOXm9CsMlvjThK71hQHBEoKUQbxBERJrtA6UgFyWt1m2ZvPmlGkOrEbPySu2c5w4/N9NHp3RlGoK0Y1YABaSOpMVw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(376002)(39850400004)(136003)(366004)(346002)(396003)(451199021)(966005)(186003)(2616005)(38100700002)(41300700001)(31686004)(83380400001)(6512007)(6506007)(26005)(6666004)(6486002)(478600001)(66476007)(6636002)(4326008)(66946007)(66556008)(316002)(5660300002)(8676002)(8936002)(44832011)(7416002)(2906002)(86362001)(31696002)(36756003)(43740500002)(45980500001)(18886065003);DIR:OUT;SFP:1101
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qz/bfQia/tou7gc7oA7750IK9GZzXy1OItFycnZ2a95yDihz1dtbVAjAe9yw?=
- =?us-ascii?Q?2/wY0oL3p3isJZj/x1vw8BoLkZARKtB9d8HNUrpWUkbZwrXDUVE/x4GRhGiO?=
- =?us-ascii?Q?odORgnDSVqPW7QaPnd8rthngPdaGAd7zaseHmZLYI+x2cPovKoDd/LWkcgmS?=
- =?us-ascii?Q?GcSLNQH/g3Knl1zB5tGCp5XoGURrj333t4km310rnVhil6+4TILEGuu0+Spm?=
- =?us-ascii?Q?t4CBDjui5eSmwH5pWdy4MA4yfnJBro1qjBiUgez56Qpp8gqiA2u6Wp/BnVRy?=
- =?us-ascii?Q?Ilb5gk4L+Ne3lH53Tkfm4vU+yKiABaSIN3qK+iXfPxr5epGgh2MiO3rpNJiA?=
- =?us-ascii?Q?RW01yJMY6SmyBGYOim/ak0TDF/JzHt7cHMRHouFg2J/cuOQrMFR4bdVuJsJa?=
- =?us-ascii?Q?vlZNfDUJWZrpSIDhTLYGILap8LBdDKMkeb66AY+KHEAb+LdUlYxcTU5F88aW?=
- =?us-ascii?Q?Uhr3UxSiWsMxW03l+EYDS1NPBzuWPg/BnJ2xEVSc5NxBBVOlAOUo7Ihnb/tn?=
- =?us-ascii?Q?TMykh9Y5h97lRYxFMQcKrO8iNS6ASrowfWsXXk6YvOPz/g9n0zZdvicoQKK1?=
- =?us-ascii?Q?PGmBUPY8I7bUbmZU1AnJ1GhzjHyVID8+zpLEzNfnNdltuTMI0uM66yiDMcEE?=
- =?us-ascii?Q?bGdDLjbItawiQo+W5GvgRCNA4/HKd5X4jjWSckq1HSk9al+lBJkHSzP5cimG?=
- =?us-ascii?Q?kFn2zaM0ZGxDj7KFUsHH9DR1DsgAByT7CS4f7QDqAzdUpfdjWVB234u8Z6mM?=
- =?us-ascii?Q?duAFiXbOT5CzGGnYRMMDGCc9jcwYDstsHq24rZd7n/kWW0z/dj0c1zD4gifr?=
- =?us-ascii?Q?jjW+piEgd+cA8pwg6YKtVW1OdOzvjrFBj0vMSJveroLwHJSxGdyHS1GGRa2s?=
- =?us-ascii?Q?55LB8acV7OA6dXb1U0Mp8E9i/VHcCZJnhM1pOnK3P0RmFeBz4+uwnr7KXhKQ?=
- =?us-ascii?Q?GX446yAmQtFOV4fc43xlX6zcRHdlknJqmHrzCLkUVl6uCEy6VB5v3K62J0d0?=
- =?us-ascii?Q?mMHbh6iYS72K3m/8c4WV/Ues86BkqrYpLump46RrGnz8zXkgDwzUk7PtvU3y?=
- =?us-ascii?Q?8Gj5FDD8AT82YsDgsPGhY53Q6KewgDhWjORFEJGU8xc6QFkIpGgw7zL/rWDI?=
- =?us-ascii?Q?+KMQkJCbUPONk/l0LkAwIQZkjtpB4XaNckzTQdwyY9z2sMceUhGlmHg08klX?=
- =?us-ascii?Q?OBw+pdpIxL2yedXxRu48Rt6ndBTrhtzzL+QUeOAbOgW1a1tln1fRggC1MXt6?=
- =?us-ascii?Q?w8qK+ZQ5H95g+uNzTGpWI2apDgncu17beGfxZXhK7hvQp4pvpNzSdxWYMAz4?=
- =?us-ascii?Q?tYuT970mH6TXcadN0s4rGjeGoU51jwgARrY1vbYxQULw/Ryzcw3/yBEnkX4t?=
- =?us-ascii?Q?37NFCtAOW0fa4qU8chsqXd59YbTWeJHTOyb+TIpRIhx1tb6iQadswU4r7kOd?=
- =?us-ascii?Q?nBuxezpfMgkQewrWJyIcVK7HACW8bu+pi4yE1xZmDkvp1iAE+e0DH5fla0VX?=
- =?us-ascii?Q?0n6TmOWBVaumi4ujKF5n3BfnxQgERIGCzA8qothx/bK5zElhtlW35/nDVjfq?=
- =?us-ascii?Q?qUYQ+pGv/eZQ5hSgHfFIswtnWd+O0xwiMylbIJoYkwwOohKW7jGlhsw1uZx5?=
- =?us-ascii?Q?nQ=3D=3D?=
-X-OriginatorOrg: camlingroup.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57b1d8c8-2a40-428d-7c8f-08db60f0848d
-X-MS-Exchange-CrossTenant-AuthSource: CWXP123MB5267.GBRP123.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2023 09:30:33.7037
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fd4b1729-b18d-46d2-9ba0-2717b852b252
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /oynNsH4gvo4OIVcCMObpK69mZytSvdEv8/3aWcXcI7pMjtF4pyZ/lE7+9U4z+yHxhlrlc1VjM+KL0RoIZ/ZzQW+zv/3gTWjQa+645IRHdE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO2P123MB7163
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: camlingroup.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="36vkeFCCRp4Cr9uu"
+Content-Disposition: inline
+In-Reply-To: <CAFBinCAk9+Km3BssA8d8nc_Z_GbhY87FD3qQRpZ2k7ChKt7TBg@mail.gmail.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-W dniu 29.05.2023 o=C2=A016:07, Hugo Villeneuve pisze:
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
->
-> Hello,
-> this patch series mainly fixes a GPIO regression and improve RS485 flags =
-and
-> properties detection from DT.
->
-> It now also includes various small fixes and improvements that were previ=
-ously
-> sent as separate patches, but that made testing everything difficult.
->
-> Patch 1 fixes an issue when debugging IOcontrol register. After testing t=
-he GPIO
-> regression patches (patches 6 and 7, tests done by Lech Perczak), it appe=
-rs that
-> this patch is also necessary for having the correct IOcontrol register va=
-lues.
->
-> Patch 2 introduces a delay after a reset operation to respect datasheet
-> timing recommandations.
->
-> Patch 3 fixes an issue with init of first port during probing.
->
-> Patch 4 fixes a bug with the output value when first setting the GPIO dir=
-ection.
->
-> Patch 5 is a refactor of GPIO registration code.
->
-> Patches 6 and 7 fix a GPIO regression by (re)allowing to choose GPIO func=
-tion
-> for GPIO pins shared with modem status lines.
->
-> Patch 8 allows to read common rs485 device-tree flags and properties.
->
-> Patch 9 improves comments about chip variants.
->
-> I have tested the changes on a custom board with two SC16IS752 DUART usin=
-g a
-> Variscite IMX8MN NANO SOM.
->
-> Thank you.
->
-> Link: [v1] https://lkml.org/lkml/2023/5/17/967 <https://lkml.org/lkml/202=
-3/5/17/967>
-> [v1] https://lkml.org/lkml/2023/5/17/777 <https://lkml.org/lkml/2023/5/17=
-/777>
-> [v1] https://lkml.org/lkml/2023/5/17/780 <https://lkml.org/lkml/2023/5/17=
-/780>
-> [v1] https://lkml.org/lkml/2023/5/17/785 <https://lkml.org/lkml/2023/5/17=
-/785>
-> [v1] https://lkml.org/lkml/2023/5/17/1311 <https://lkml.org/lkml/2023/5/1=
-7/1311>
-> [v2] https://lkml.org/lkml/2023/5/18/516 <https://lkml.org/lkml/2023/5/18=
-/516>
-> [v3] https://lkml.org/lkml/2023/5/25/7 <https://lkml.org/lkml/2023/5/25/7=
->
->
-> Changes for V3:
-> - Integrated all patches into single serie to facilitate debugging and te=
-sts.
-> - Reduce number of exported GPIOs depending on new property
-> nxp,modem-control-line-ports
-> - Added additional example in DT bindings
->
-> Changes for V4:
-> - Increase reset post delay to relax scheduler.
-> - Put comments patches at the end.
-> - Remove Fixes tag for patch "mark IOCONTROL register as volatile".
-> - Improve commit messages after reviews.
-> - Fix coding style issues after reviews.
-> - Change GPIO registration to always register the maximum number of GPIOs
-> supported by the chip, but maks-out GPIOs declared as modem control lines=
-.
-> - Add patch to refactor GPIO registration.
-> - Remove patch "serial: sc16is7xx: fix syntax error in comments".
-> - Remove patch "add dump registers function"
->
-> Hugo Villeneuve (9):
-> serial: sc16is7xx: mark IOCONTROL register as volatile
-> serial: sc16is7xx: add post reset delay
-> serial: sc16is7xx: fix broken port 0 uart init
-> serial: sc16is7xx: fix bug when first setting GPIO direction
-> serial: sc16is7xx: refactor GPIO controller registration
-> dt-bindings: sc16is7xx: Add property to change GPIO function
-> serial: sc16is7xx: fix regression with GPIO configuration
-> serial: sc16is7xx: add call to get rs485 DT flags and properties
-> serial: sc16is7xx: improve comments about variants
->
-> .../bindings/serial/nxp,sc16is7xx.txt | 46 ++++++
-> drivers/tty/serial/sc16is7xx.c | 150 +++++++++++++-----
-> 2 files changed, 156 insertions(+), 40 deletions(-)
->
->
-> base-commit: 8b817fded42d8fe3a0eb47b1149d907851a3c942
+--36vkeFCCRp4Cr9uu
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It would be a lot of sending, to do that for every patch separately, so for=
- whole series:
-Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
+Yo,
 
-And where applicable - for code patches:
-Tested-by: Lech Perczak <lech.perczak@camlingroup.com>
+On Mon, May 29, 2023 at 10:38:33PM +0200, Martin Blumenstingl wrote:
+> On Mon, May 22, 2023 at 3:00=E2=80=AFPM Dmitry Rokosov <ddrokosov@sberdev=
+ices.ru> wrote:
+> [...]
+> > > This IP block has at least one additional input called "sys_pll_div16=
+".
+> > > My understanding is that the "sys_pll_div16" clock is generated by the
+> > > CPU clock controller. Support for the CPU clock controller
+> > > (dt-bindings and a driver) will be added at a later time by Dmitry.
+> > > How can we manage incrementally implementing the clock controllers?
+> > > From a hardware perspective the "sys_pll_div16" input is mandatory.
+> > > How to manage this in the .dts patches then (for example: does this
+> > > mean that Dmitry can only add the clock controller to the .dts when
+> > > all clock controller bindings have been implemented - or is there
+> > > another way)?
+> >
+> > You're absolutely right: currently, not all inputs are supported because
+> > the CPU clock controller isn't ready yet =E2=80=93 I'm working on it at=
+ the
+> > moment.
+> >
+> > I understand your concerns about bindings and schema description, but
+> > there is an issue to be considered. I'm developing the entire clock
+> > controller A1 subsystem incrementally in three stages: peripherals and
+> > PLL, CPU, and Audio. This is because the CPU can operate at a static
+> > frequency and voltage, and the board boots normally without the CPU
+> > clock controller, thermal sensor, and OPP table. Audio is also
+> > important, but it's optional. On the other hand, without setting up the
+> > peripherals and PLL controllers, the board won't function because
+> > they're fundamental.
+> I understand your approach and I like it (without that incremental
+> approach you would probably be looking at a series with 15-20
+> patches).
+>=20
+> Maybe the dt-binding maintainers have a suggestion for us here?
+> Let me try to summarize the issue in a few bullet points:
+> - There's (at least) four clock controllers on the Amlogic A1 SoC
+> - Some of these clock controllers take the outputs of another clock
+> controller as inputs
+> - In this series patch the peripheral clock controller has an input
+> called "sys_pll_div16"
+> - The clock controller which provides the "sys_pll_div16" clock is not
+> implemented yet (my understanding is that implementing it and adding
+> it to this series is not easy: it would add even more patches that
+> need to be reviewed and in general it's a tricky clock controller to
+> implement as it manages the CPU clocks)
 
-I tested whole series at the same time.
-I did my tests on an i.MX6 board with SC16IS760 over SPI, which differs a t=
-iny bit from SC16IS752,
-and everything works as it should.
-Thank you for fixing this!
+If I am understanding correctly, this series implements the child
+controller and a parent, which is unimplemented, provides the child with
+sys_pll_div16.
+The thing I am missing is whether the child controller has some outputs
+that depend on this sys_pll_div16 input & whether those are documented
+in this series. Regardless, you should be able to add more output clocks
+without compatibility issues.
 
-> --=20
-> 2.30.2
->
---=20
-Pozdrawiam/With kind regards,
-Lech Perczak
+> > Right now, we're in the first stage of the plan. Unfortunately, I can't
+> > disclose the exact names and number of clock bindings for the CPU and
+> > Audio, as they're still in development and only exist in my head or
+> > draft versions.
+> >
+> > If possible, I'd prefer to provide the new bindings and connections once
+> > all the appropriate drivers are finalized.
+> Question to Conor and Krzysztof (assuming you read my summary above):
+> Is it fine that Dmitry adds additional inputs to the peripheral clock
+> controller binding in later patches?
 
-Sr. Software Engineer
-Camlin Technologies Poland Limited Sp. z o.o.
-Strzegomska 54,
-53-611 Wroclaw
-Tel:     (+48) 71 75 000 16
-Email:   lech.perczak@camlingroup.com
-Website: http://www.camlingroup.com
+Perhaps Krzysztof will disagree with me, but my take on it would be that
+the binding should describe the individual clock controller in its
+totality, but the driver can choose to only implement a subset of it.
 
+If you define the binding as only needing N inputs, but then later
+expand it to having N+M inputs, the driver will have to support N & N+M
+input clocks to preserve compatibility.
+If you define it as needing N+M inputs from the beginning, but only use
+N, there is no issue with backwards compatibility when you later use
+them all.
+
+> If not: how can we proceed in case we need to add them now (the
+> dt-binding example is the easy part for me as we can just make up a
+> phandle like &sys_pll_div16_clk and use that - but this can't work
+> when Dmitry tries to add the clock controller to meson-a1.dtsi)
+
+I would be inclined to do the same thing in the dts as the example,
+and make up a fixed-frequency clock and use it to plug the hole.
+When you have bindings etc written for the clock controller providing
+that clock, the fixed-frequency clock could be swapped out for the real
+one.
+
+> PS: Dmitry is trying to get this series into Linux 6.5. As far as I
+> remember the common clock maintainers don't take pull requests with
+> new features after -rc6 (which is in less than two weeks).
+> So time is getting a bit short and for me this is the very last
+> outstanding question. If you say that it's fine to add clocks later on
+> this will immediately get my Reviewed-by.
+
+I *think* that what I've just said should not get in the way of such a
+timeline, as it would only involve a "small" change to the dt-binding,
+but not require additional bindings or driver.
+
+Cheers,
+Conor.
+
+
+--36vkeFCCRp4Cr9uu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHXDDgAKCRB4tDGHoIJi
+0tPiAQDxJgM01v9LEi2iF1dr7RKotniwIpWYNsLXwvRueTh4JAEAz4CqON+2GW8z
+dmSUkX/YHEFtQPiocrOvOz8I74RHVg0=
+=ipL3
+-----END PGP SIGNATURE-----
+
+--36vkeFCCRp4Cr9uu--
