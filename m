@@ -2,107 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3293E715372
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 04:08:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5904A715392
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 04:20:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230112AbjE3CIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 22:08:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49350 "EHLO
+        id S229934AbjE3CUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 22:20:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230132AbjE3CIu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 22:08:50 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B3A61BD;
-        Mon, 29 May 2023 19:08:29 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34U201hL022203;
-        Tue, 30 May 2023 02:08:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=BU/Zh7gAVl7zuLey3Sc2DV5MP6qQi28dn/deIGn+bE8=;
- b=nyPaH9dDAjZ4hXlFB37OJF0ifEnQqWuUGufBGyFCEnDMa0GXFJ73E/BrwSLnhz00wiwC
- S1BlkDR82DC63QDBSgrfNcel+9ZelFrlw/+atGMwsK+oAetKxFgdj5PfPgLtXqC4yThJ
- GHdSh5qRAJAOmqXnopxvcXkyjTzupIxTofI0PpjPnouZKQSb4z5KTnswD4KIohyI5Nyo
- 5Uy+PgqiZru1mjIX6wXyo7Vr8nRU1XPw+WQ0mQL9WUiDu4FEdeGeO4Xl+9aTVkJf9NlX
- 2k5eTXxXcHmApt1s0TlF/Fi1GnIEISspBeRSFojoboCYmxOg57zphR5Il9ivQIQHnasU +A== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qvws8gt58-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 02:08:25 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34U28OM6004526
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 02:08:24 GMT
-Received: from [10.216.20.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 29 May
- 2023 19:08:20 -0700
-Message-ID: <b85216b3-8e6a-b3ea-4c01-680b1339a623@quicinc.com>
-Date:   Tue, 30 May 2023 07:38:17 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.0
-Subject: Re: [PATCH V3 0/3] Minor updates in the IPQ5332 DTS files
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229989AbjE3CUy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 22:20:54 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81E3DB5;
+        Mon, 29 May 2023 19:20:44 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 34U2JXGT0028436, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 34U2JXGT0028436
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+        Tue, 30 May 2023 10:19:33 +0800
+Received: from RTEXMBS05.realtek.com.tw (172.21.6.98) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Tue, 30 May 2023 10:19:46 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXMBS05.realtek.com.tw (172.21.6.98) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Tue, 30 May 2023 10:19:45 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
+ RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
+ 15.01.2375.007; Tue, 30 May 2023 10:19:45 +0800
+From:   =?big5?B?U3RhbmxleSBDaGFuZ1up96h8vHdd?= <stanley_chang@realtek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230519133844.23512-1-quic_kathirav@quicinc.com>
-Content-Language: en-US
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-In-Reply-To: <20230519133844.23512-1-quic_kathirav@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: HxBdie4wuRl7l4QO8YQujraezCU8NvBb
-X-Proofpoint-GUID: HxBdie4wuRl7l4QO8YQujraezCU8NvBb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-29_14,2023-05-29_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=589
- suspectscore=0 mlxscore=0 adultscore=0 impostorscore=0 phishscore=0
- bulkscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
- priorityscore=1501 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2304280000 definitions=main-2305300015
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Alan Stern <stern@rowland.harvard.edu>,
+        Michael Grzeschik <m.grzeschik@pengutronix.de>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        "Flavio Suligoi" <f.suligoi@asem.it>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        "Mathias Nyman" <mathias.nyman@linux.intel.com>,
+        Ray Chi <raychi@google.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+Subject: RE: [PATCH v2 1/3] usb: phy: add usb phy notify port status API
+Thread-Topic: [PATCH v2 1/3] usb: phy: add usb phy notify port status API
+Thread-Index: AQHZjrBJqs57LUq3CEa1m1O4SeqC6K9wz9gAgAFFkIA=
+Date:   Tue, 30 May 2023 02:19:45 +0000
+Message-ID: <647ded70ff024a3081cbf5c45f5da12c@realtek.com>
+References: <20230525022617.30537-1-stanley_chang@realtek.com>
+ <2023052905-maimed-studied-3563@gregkh>
+In-Reply-To: <2023052905-maimed-studied-3563@gregkh>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.159]
+x-kse-serverinfo: RTEXMBS05.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 5/19/2023 7:08 PM, Kathiravan T wrote:
-> Rename the MI01.2 DTS after Reference Design Platform(RDP) number to align
-> with ipq5332-rdp468.dts, add UART1 node and reserve memory for U-boot
-> and SBL to avoid losing the RAM contents which will be used in post
-> morterm analysis.
-
-
-Gentle Reminder...
-
-
->
-> Kathiravan T (3):
->    arm64: dts: qcom: ipq5332: rename mi01.2 dts to rdp441
->    arm64: dts: qcom: ipq5332: define UART1
->    arm64: dts: qcom: ipq5332: add few more reserved memory region
->
->   arch/arm64/boot/dts/qcom/Makefile             |  2 +-
->   ...{ipq5332-mi01.2.dts => ipq5332-rdp441.dts} |  0
->   arch/arm64/boot/dts/qcom/ipq5332.dtsi         | 24 ++++++++++++++++++-
->   3 files changed, 24 insertions(+), 2 deletions(-)
->   rename arch/arm64/boot/dts/qcom/{ipq5332-mi01.2.dts => ipq5332-rdp441.dts} (100%)
->
+SGkgR3JlZywNCg0KPiA+IC0tLSBhL2luY2x1ZGUvbGludXgvdXNiL3BoeS5oDQo+ID4gKysrIGIv
+aW5jbHVkZS9saW51eC91c2IvcGh5LmgNCj4gPiBAQCAtMTQ0LDYgKzE0NCwxMCBAQCBzdHJ1Y3Qg
+dXNiX3BoeSB7DQo+ID4gICAgICAgICovDQo+ID4gICAgICAgaW50ICAgICAoKnNldF93YWtldXAp
+KHN0cnVjdCB1c2JfcGh5ICp4LCBib29sIGVuYWJsZWQpOw0KPiA+DQo+ID4gKyAgICAgLyogbm90
+aWZ5IHBoeSBwb3J0IHN0YXR1cyBjaGFuZ2UgKi8NCj4gPiArICAgICBpbnQgICAgICgqbm90aWZ5
+X3BvcnRfc3RhdHVzKShzdHJ1Y3QgdXNiX3BoeSAqeCwNCj4gPiArICAgICAgICAgICAgIGludCBw
+b3J0LCB1MTYgcG9ydHN0YXR1cywgdTE2IHBvcnRjaGFuZ2UpOw0KPiA+ICsNCj4gPiAgICAgICAv
+KiBub3RpZnkgcGh5IGNvbm5lY3Qgc3RhdHVzIGNoYW5nZSAqLw0KPiA+ICAgICAgIGludCAgICAg
+KCpub3RpZnlfY29ubmVjdCkoc3RydWN0IHVzYl9waHkgKngsDQo+ID4gICAgICAgICAgICAgICAg
+ICAgICAgIGVudW0gdXNiX2RldmljZV9zcGVlZCBzcGVlZCk7DQo+IA0KPiBXaHkgY2FuJ3QgdGhp
+cyBiZSBwYXJ0IG9mIHRoZSBzYW1lIG5vdGlmeV9jb25uZWN0KCkgY2FsbGJhY2s/DQoNClRoZSBu
+b3RpZnkgY29ubmVjdCBpcyBhdCBkZXZpY2UgcmVhZHkuIEJ1dCBJIHdhbnQgbm90aWZ5IHBvcnQg
+c3RhdHVzIGNoYW5nZSBiZWZvcmUgcG9ydCByZXNldC4NCg0KPiBXaGF0IG1ha2VzIGl0IGRpZmZl
+cmVudCBzb21laG93PyAgUGxlYXNlIGRvY3VtZW50IHRoaXMgbXVjaCBiZXR0ZXIuDQoNCkluIFJl
+YWx0ZWsgcGh5IGRyaXZlciwgd2UgaGF2ZSBkZXNpZ25lZCB0byBkeW5hbWljYWxseSBhZGp1c3Qg
+ZGlzY29ubmVjdGlvbiBsZXZlbCBhbmQgY2FsaWJyYXRlIHBoeSBwYXJhbWV0ZXJzLg0KU28gd2Ug
+ZG8gdGhpcyB3aGVuIHRoZSBkZXZpY2UgY29ubmVjdGVkIGJpdCBjaGFuZ2VzIGFuZCB3aGVuIHRo
+ZSBkaXNjb25uZWN0ZWQgYml0IGNoYW5nZXMuDQpQb3J0IHN0YXR1cyBjaGFuZ2Ugbm90aWZpY2F0
+aW9uOg0KMS4gQ2hlY2sgaWYgcG9ydHN0YXR1cyBpcyBVU0JfUE9SVF9TVEFUX0NPTk5FQ1RJT04g
+YW5kIHBvcnRjaGFuZ2UgaXMgVVNCX1BPUlRfU1RBVF9DX0NPTk5FQ1RJT04uDQogIFRoZSBkZXZp
+Y2UgaXMgY29ubmVjdGVkLCB0aGUgZHJpdmVyIGxvd2VycyB0aGUgZGlzY29ubmVjdGlvbiBsZXZl
+bCBhbmQgY2FsaWJyYXRlcyB0aGUgcGh5IHBhcmFtZXRlcnMuDQoyLiBUaGUgZGV2aWNlIGRpc2Nv
+bm5lY3RzLCB0aGUgZHJpdmVyIGluY3JlYXNlcyB0aGUgZGlzY29ubmVjdCBsZXZlbCBhbmQgY2Fs
+aWJyYXRlcyB0aGUgcGh5IHBhcmFtZXRlcnMuDQoNCklmIHdlIGFkanVzdCB0aGUgZGlzY29ubmVj
+dGlvbiBsZXZlbCBpbiBub3RpZnlfY29ubmVjdCAsIHRoZSBkaXNjb25uZWN0IG1heSBoYXZlIGJl
+ZW4gdHJpZ2dlcmVkIGF0IHRoaXMgc3RhZ2UuIA0KU28gd2UgbmVlZCB0byBjaGFuZ2UgdGhhdCBh
+cyBlYXJseSBhcyBwb3NzaWJsZS4NCg0KDQo+IA0KPiA+IEBAIC0zMTYsNiArMzIwLDE2IEBAIHVz
+Yl9waHlfc2V0X3dha2V1cChzdHJ1Y3QgdXNiX3BoeSAqeCwgYm9vbA0KPiBlbmFibGVkKQ0KPiA+
+ICAgICAgICAgICAgICAgcmV0dXJuIDA7DQo+ID4gIH0NCj4gPg0KPiA+ICtzdGF0aWMgaW5saW5l
+IGludA0KPiA+ICt1c2JfcGh5X25vdGlmeV9wb3J0X3N0YXR1cyhzdHJ1Y3QgdXNiX3BoeSAqeCwg
+aW50IHBvcnQsIHUxNiBwb3J0c3RhdHVzLA0KPiA+ICsgICAgICAgICB1MTYgcG9ydGNoYW5nZSkN
+Cj4gPiArew0KPiA+ICsgICAgIGlmICh4ICYmIHgtPm5vdGlmeV9wb3J0X3N0YXR1cykNCj4gDQo+
+IEhvdyBjYW4geCBldmVyIGJlIE5VTEw/DQoNCkl0IGlzIHBvc3NpYmxlLg0KSWYgdGhlIGNvbnRy
+b2xsZXIgbm90IHVzZSB1c2ItcGh5IGRyaXZlci4gSXQgIGlzIE5VTEwuDQoNClRoYW5rcywNClN0
+YW5sZXkNCg==
