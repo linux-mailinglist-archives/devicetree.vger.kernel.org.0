@@ -2,118 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55DD8716A36
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 18:58:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AC39716A33
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 18:58:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232977AbjE3Q6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 12:58:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35422 "EHLO
+        id S232417AbjE3Q6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 12:58:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233001AbjE3Q6S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 12:58:18 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FAFCBE
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 09:58:15 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id e9e14a558f8ab-33b22221da6so4940205ab.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 09:58:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1685465894; x=1688057894;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gQLTtDtW2MQvZzbg1+YtroMwuASMRT+NGV7h3iEinfc=;
-        b=jKXOLdmMGDtcuMnS0qzDKS4DqEurX+SoZtJ3H1yf0l6aQMdvReO4ODlE4ao1iQ1Ahc
-         Ey4z8uk9iBlbNnn5/qLiK8PRmKnJiFfjnvrEzGq1kumQ3cuTGdWI+FB90ofY07NuJYqj
-         uweY7TVrJ7OrjBo3OVNl30ZzLxzwvTg1ciz1g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685465894; x=1688057894;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gQLTtDtW2MQvZzbg1+YtroMwuASMRT+NGV7h3iEinfc=;
-        b=kD0zxR9h05NLU/Sb2t555MMbveCyriJ72qpjffKbUTcrg9uJ2TaQ0PNx/mo4/YRTdy
-         BcubT3IEeabvWL4MvMk4Nc56pDMnOcK7aTEUWbEbv87n3KHcsU9LFdsYAp669x9opV0Q
-         b+HXO+CNuTDbDRaFv2oqV/skgYF4JakQDOvtawc/x4f/DzOjmHGh+ICa1Cpx43YRj4ab
-         AaKTD+L2UMJS6COI4d+O2eHla/S+q7EuW8tKhYTKQG7ZKZaZX6WvpE5vXcuV4Fa7a0Xf
-         k1wLTKND2gJ0PGfar4wPHpWoADXU2eFfz9q9FMWuraUK3qoSzfWMIhGB2I4agWk1C+YI
-         ZYYQ==
-X-Gm-Message-State: AC+VfDy4hF9gwU/6NvB45AHZlspeCT60DyMRQLT5pETpXuS/aj28agBG
-        4fAkMKIHFaAQX7KxZBt4sOOATwTXZMfoHdn7d1E=
-X-Google-Smtp-Source: ACHHUZ7tU8EEG1c2dB2JX2cEMevJ7WDInHoo0EEd8w5frWm1hpD6lFAzno5oQvsPfv81M1S71mhy5A==
-X-Received: by 2002:a92:d08b:0:b0:32b:12ee:3f0b with SMTP id h11-20020a92d08b000000b0032b12ee3f0bmr129047ilh.9.1685465894173;
+        with ESMTP id S232971AbjE3Q6R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 12:58:17 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 028179D;
         Tue, 30 May 2023 09:58:14 -0700 (PDT)
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com. [209.85.166.178])
-        by smtp.gmail.com with ESMTPSA id b10-20020a92c14a000000b00338460ef47bsm2499252ilh.73.2023.05.30.09.58.13
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 09:58:13 -0700 (PDT)
-Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-33b7f217dd0so5925ab.0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 09:58:13 -0700 (PDT)
-X-Received: by 2002:a05:6e02:b24:b0:338:9f6a:d546 with SMTP id
- e4-20020a056e020b2400b003389f6ad546mr181095ilu.20.1685465893122; Tue, 30 May
- 2023 09:58:13 -0700 (PDT)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id DD99D207A3;
+        Tue, 30 May 2023 18:58:12 +0200 (CEST)
+Date:   Tue, 30 May 2023 18:58:11 +0200
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/5] dt-bindings: arm: ti: add toradex,verdin-am62 et
+ al.
+Message-ID: <ZHYrIwfzLyYC+2Cb@francesco-nb.int.toradex.com>
+References: <20230524143631.42471-1-francesco@dolcini.it>
+ <20230524143631.42471-2-francesco@dolcini.it>
+ <20230530121231.fnfqhkfliysrv2pr@engross>
 MIME-Version: 1.0
-References: <CAD=FV=VYfPSwar2AXBxB3vX0dV1kjQ5bZMxsEBFhUnMNRXbBCw@mail.gmail.com>
- <20230520050649.2494497-1-yangcong5@huaqin.corp-partner.google.com>
- <20230520050649.2494497-3-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=Wm_SK0V6WJUkuvu8yFfiP60JBuOdw9cy=0Ck2Jbn-X2A@mail.gmail.com> <bd19f71b-59ee-80e7-9ff1-1cc26ecc49a7@kernel.org>
-In-Reply-To: <bd19f71b-59ee-80e7-9ff1-1cc26ecc49a7@kernel.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 30 May 2023 09:58:01 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WaVXUr8=4MrZQgA7t=yUBDt-iMvOFSeWhsKZ8XHJAREA@mail.gmail.com>
-Message-ID: <CAD=FV=WaVXUr8=4MrZQgA7t=yUBDt-iMvOFSeWhsKZ8XHJAREA@mail.gmail.com>
-Subject: Re: [v2 2/2] dt-bindings: input: touchscreen: Add ilitek 9882T
- touchscreen chip
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
-        dmitry.torokhov@gmail.com, hsinyi@google.com, jikos@kernel.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mka@chromium.org, Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230530121231.fnfqhkfliysrv2pr@engross>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, May 30, 2023 at 07:12:31AM -0500, Nishanth Menon wrote:
+> On 16:36-20230524, Francesco Dolcini wrote:
+> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > 
+> > Add toradex,verdin-am62 for Toradex Verdin AM62 SoM, its
+> > nonwifi and wifi variants and the carrier boards (Dahlia,
+> > Verdin Development Board and Yavia) they may be mated in.
+> > 
+> > Link: https://developer.toradex.com/hardware/verdin-som-family/modules/verdin-am62/
+> > Link: https://www.toradex.com/computer-on-modules/verdin-arm-family/ti-am62
+> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > ---
+> >  .../devicetree/bindings/arm/ti/k3.yaml        | 20 +++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > index e1183f90bb06..e3aee191d403 100644
+> > --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > @@ -33,6 +33,26 @@ properties:
+> >                - ti,am62-lp-sk
+> >            - const: ti,am625
+> >  
+> > +      - description: K3 AM62x SoC Toradex Verdin Modules and Carrier Boards
+> > +        items:
+> > +          - enum:
+> > +              - toradex,verdin-am62-nonwifi-dahlia # Verdin AM62 Module on Dahlia
+> > +              - toradex,verdin-am62-nonwifi-dev    # Verdin AM62 Module on Verdin Development Board
+> > +              - toradex,verdin-am62-nonwifi-yavia  # Verdin AM62 Module on Yavia
+> 
+> Does'nt one of these indicate the rest?
 
-On Tue, May 30, 2023 at 4:56=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 22/05/2023 17:33, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Fri, May 19, 2023 at 10:07=E2=80=AFPM Cong Yang
-> > <yangcong5@huaqin.corp-partner.google.com> wrote:
-> >>
-> >> Add an ilitek touch screen chip ili9882t.
-> >>
-> >> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> >> ---
-> >>  .../devicetree/bindings/input/elan,ekth6915.yaml         | 9 +++++++-=
--
-> >>  1 file changed, 7 insertions(+), 2 deletions(-)
-> >
-> > I'm curious about the DT maintainers opinion here. Should this be a
-> > new bindings file, or should it be together in the elan file. If
-> > nothing else, I think the secondary voltage rail name is wrong. I took
-> > a quick peek at a datasheet I found and I don't even see a 3.3V rail
-> > going to the ili9882t. That makes it weird to reuse "vcc33-supply" for
-> > a second supply...
->
-> It's easier if they are CCed...
+Strictly speaking it does.
 
-Crud. I just assumed and didn't check the CC list. Cong: can you
-resend and make sure you're CCing the people that get_maintainers
-points at. One way to find that would be:
+However it's convenient to have a tuple with more generic compatible
+afterward.
 
-./scripts/get_maintainer.pl -f
-Documentation/devicetree/bindings/input/elan,ekth6915.yaml
+I tried to explain some of the reasoning for that on this email [1].
+
+More in general this tuple of compatible is matching how the actual system
+is layered (SoC -> base SoM -> SoM variant -> carrier board) that is
+also reflected on the dtsi include hierarchy.
+
+FWIW, this is the standard approach you can see on fsl.yaml, where such
+kind of modular system are pretty much standard.
+
+[1] https://lore.kernel.org/all/ZG5jYV%2FNfGJvYkma@francesco-nb.int.toradex.com/
+
+Francesco
+
