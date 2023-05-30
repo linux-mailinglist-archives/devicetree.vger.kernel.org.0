@@ -2,68 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95FAB716A17
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 18:54:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55DD8716A36
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 18:58:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232784AbjE3QyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 12:54:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60890 "EHLO
+        id S232977AbjE3Q6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 12:58:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232735AbjE3QyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 12:54:10 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6035798;
-        Tue, 30 May 2023 09:54:09 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34UGrpxp100113;
-        Tue, 30 May 2023 11:53:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1685465631;
-        bh=qHCVx3BIq9X1uACaU8mCt5w9MrSWYDRDLVsof4y5rJA=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=Eh8lb9rC33+6TEeutiEhe7UQZK1BV5ANIhjVsk8zqYuioZqdjZaaZIogRh6NoV821
-         xd/HWQ5bprqWnTEbGU3HFaOxBJsZDstsYiaPbIzwc9kkQ3MMaiytENqkqRumH+k5ba
-         +Lq7bP2VaTrjnYArk7gmvpEKQ2jIjLnTlOs7tpvo=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34UGrpVL015854
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 May 2023 11:53:51 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
- May 2023 11:53:51 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 30 May 2023 11:53:51 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34UGrpJF033406;
-        Tue, 30 May 2023 11:53:51 -0500
-Date:   Tue, 30 May 2023 11:53:51 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Francesco Dolcini <francesco@dolcini.it>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 3/5] arm64: dts: ti: add verdin am62
-Message-ID: <20230530165351.rqpu7go3kw6j3upc@storable>
-References: <20230524143631.42471-1-francesco@dolcini.it>
- <20230524143631.42471-4-francesco@dolcini.it>
- <20230530121044.sjhv452b4hs4lyiy@flyer>
- <ZHYl8/8k4CTm/2LW@francesco-nb.int.toradex.com>
+        with ESMTP id S233001AbjE3Q6S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 12:58:18 -0400
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FAFCBE
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 09:58:15 -0700 (PDT)
+Received: by mail-il1-x131.google.com with SMTP id e9e14a558f8ab-33b22221da6so4940205ab.1
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 09:58:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1685465894; x=1688057894;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gQLTtDtW2MQvZzbg1+YtroMwuASMRT+NGV7h3iEinfc=;
+        b=jKXOLdmMGDtcuMnS0qzDKS4DqEurX+SoZtJ3H1yf0l6aQMdvReO4ODlE4ao1iQ1Ahc
+         Ey4z8uk9iBlbNnn5/qLiK8PRmKnJiFfjnvrEzGq1kumQ3cuTGdWI+FB90ofY07NuJYqj
+         uweY7TVrJ7OrjBo3OVNl30ZzLxzwvTg1ciz1g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685465894; x=1688057894;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gQLTtDtW2MQvZzbg1+YtroMwuASMRT+NGV7h3iEinfc=;
+        b=kD0zxR9h05NLU/Sb2t555MMbveCyriJ72qpjffKbUTcrg9uJ2TaQ0PNx/mo4/YRTdy
+         BcubT3IEeabvWL4MvMk4Nc56pDMnOcK7aTEUWbEbv87n3KHcsU9LFdsYAp669x9opV0Q
+         b+HXO+CNuTDbDRaFv2oqV/skgYF4JakQDOvtawc/x4f/DzOjmHGh+ICa1Cpx43YRj4ab
+         AaKTD+L2UMJS6COI4d+O2eHla/S+q7EuW8tKhYTKQG7ZKZaZX6WvpE5vXcuV4Fa7a0Xf
+         k1wLTKND2gJ0PGfar4wPHpWoADXU2eFfz9q9FMWuraUK3qoSzfWMIhGB2I4agWk1C+YI
+         ZYYQ==
+X-Gm-Message-State: AC+VfDy4hF9gwU/6NvB45AHZlspeCT60DyMRQLT5pETpXuS/aj28agBG
+        4fAkMKIHFaAQX7KxZBt4sOOATwTXZMfoHdn7d1E=
+X-Google-Smtp-Source: ACHHUZ7tU8EEG1c2dB2JX2cEMevJ7WDInHoo0EEd8w5frWm1hpD6lFAzno5oQvsPfv81M1S71mhy5A==
+X-Received: by 2002:a92:d08b:0:b0:32b:12ee:3f0b with SMTP id h11-20020a92d08b000000b0032b12ee3f0bmr129047ilh.9.1685465894173;
+        Tue, 30 May 2023 09:58:14 -0700 (PDT)
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com. [209.85.166.178])
+        by smtp.gmail.com with ESMTPSA id b10-20020a92c14a000000b00338460ef47bsm2499252ilh.73.2023.05.30.09.58.13
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 09:58:13 -0700 (PDT)
+Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-33b7f217dd0so5925ab.0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 09:58:13 -0700 (PDT)
+X-Received: by 2002:a05:6e02:b24:b0:338:9f6a:d546 with SMTP id
+ e4-20020a056e020b2400b003389f6ad546mr181095ilu.20.1685465893122; Tue, 30 May
+ 2023 09:58:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZHYl8/8k4CTm/2LW@francesco-nb.int.toradex.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+References: <CAD=FV=VYfPSwar2AXBxB3vX0dV1kjQ5bZMxsEBFhUnMNRXbBCw@mail.gmail.com>
+ <20230520050649.2494497-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230520050649.2494497-3-yangcong5@huaqin.corp-partner.google.com>
+ <CAD=FV=Wm_SK0V6WJUkuvu8yFfiP60JBuOdw9cy=0Ck2Jbn-X2A@mail.gmail.com> <bd19f71b-59ee-80e7-9ff1-1cc26ecc49a7@kernel.org>
+In-Reply-To: <bd19f71b-59ee-80e7-9ff1-1cc26ecc49a7@kernel.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 30 May 2023 09:58:01 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WaVXUr8=4MrZQgA7t=yUBDt-iMvOFSeWhsKZ8XHJAREA@mail.gmail.com>
+Message-ID: <CAD=FV=WaVXUr8=4MrZQgA7t=yUBDt-iMvOFSeWhsKZ8XHJAREA@mail.gmail.com>
+Subject: Re: [v2 2/2] dt-bindings: input: touchscreen: Add ilitek 9882T
+ touchscreen chip
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+        benjamin.tissoires@redhat.com, devicetree@vger.kernel.org,
+        dmitry.torokhov@gmail.com, hsinyi@google.com, jikos@kernel.org,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mka@chromium.org, Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,39 +83,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18:36-20230530, Francesco Dolcini wrote:
-> On Tue, May 30, 2023 at 07:10:44AM -0500, Nishanth Menon wrote:
-> > On 16:36-20230524, Francesco Dolcini wrote:
-> > > +/* Verdin I2C_2_DSI */
-> > > +&main_i2c2 {
-> > > +	status = "okay";
-> > 
-> > Here and few other dtsis:
-> > you should set status along with pinmux.
-> This is already done in the SoM dtsi, same applies to the other comment
-> you have on this pinmux topic.
-> 
-> To rephrase what's hopefully is already written in the commit
-> message/series description, or at least it was in my intention.
-> 
-> The system is modular, with multiple SoM variant and multiple carrier
-> boards. Standard interfaces are defined at the family level, e.g.
-> already in the SoM, in the carrier board DT file peripherals are just
-> enabled, the pinmux is already defined in the common som.dtsi [1][2][3]
-> files and the carrier board just use those unless there is some kind of
-> non-standard deviation.
-> 
-> This prevents duplication and simplify writing device tree file for board
-> that use standard Verdin family interfaces. This should be visible
-> looking at this series in which 3 different boards (Dev, Yavia and
-> Dahlia) are added.
+Hi,
 
-It helps clarity if the node is marked "okay" when all the necessary
-properties required for operation (in this case pinmux) is enabled. I
-don't see a big change as a result. Just stops people from hunting for
-where pinmux is actually done.
+On Tue, May 30, 2023 at 4:56=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 22/05/2023 17:33, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Fri, May 19, 2023 at 10:07=E2=80=AFPM Cong Yang
+> > <yangcong5@huaqin.corp-partner.google.com> wrote:
+> >>
+> >> Add an ilitek touch screen chip ili9882t.
+> >>
+> >> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> >> ---
+> >>  .../devicetree/bindings/input/elan,ekth6915.yaml         | 9 +++++++-=
+-
+> >>  1 file changed, 7 insertions(+), 2 deletions(-)
+> >
+> > I'm curious about the DT maintainers opinion here. Should this be a
+> > new bindings file, or should it be together in the elan file. If
+> > nothing else, I think the secondary voltage rail name is wrong. I took
+> > a quick peek at a datasheet I found and I don't even see a 3.3V rail
+> > going to the ili9882t. That makes it weird to reuse "vcc33-supply" for
+> > a second supply...
+>
+> It's easier if they are CCed...
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Crud. I just assumed and didn't check the CC list. Cong: can you
+resend and make sure you're CCing the people that get_maintainers
+points at. One way to find that would be:
+
+./scripts/get_maintainer.pl -f
+Documentation/devicetree/bindings/input/elan,ekth6915.yaml
