@@ -2,132 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81BFB716BB6
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:56:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53A1A716BF9
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 20:11:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232814AbjE3R44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 13:56:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43806 "EHLO
+        id S230234AbjE3SLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 14:11:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233048AbjE3R4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:56:49 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4489EE5
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 10:56:48 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q43aB-0003Qm-Ss; Tue, 30 May 2023 19:56:31 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q43aB-003vWM-67; Tue, 30 May 2023 19:56:31 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q43aA-009Zpg-IF; Tue, 30 May 2023 19:56:30 +0200
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230096AbjE3SLr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 14:11:47 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AA54A3;
+        Tue, 30 May 2023 11:11:46 -0700 (PDT)
+Received: from localhost (unknown [188.27.34.213])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: cristicc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D11BA66003B0;
+        Tue, 30 May 2023 19:11:43 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685470304;
+        bh=GQF9lUAe0Utvbi867xCuwYxDhrPJXP6m2MEpKIazxXo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Gb34rY/H0aIJjjGOchyEPTHOzBtnXtSSUbQsHDxYhKy3LCWlhY1z4fewyDPhPSsfc
+         brl+qlCTDcplTnVbe5pdI48q03dxP/JpPd1iiEJiMld3/y2STdpl+kkXHE5gUJUmEH
+         kOyZ/P0lmd3mzC0+aiXvNGlEbXt4Q1ewQz5e7KTuz0+Z95Uts7A3Y2nKgSFcYnKUyR
+         MYYC4keeqB9I5CEfhzMpE/cCcUpCdIpyraA2KamNxlhfOoERTiL8MmoLspVjplJyLi
+         3RppIVXc8AC/rSRches7FtT+H5qT1pmZBsUWNB8mr4yliCZ9dp8loOsUc41lbOHnsZ
+         /qT/mR4f+TWYw==
+From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Aurelien Jarno <aurelien@aurel32.net>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] arm: dts: Enable device-tree overlay support for RPi devices
-Date:   Tue, 30 May 2023 19:56:24 +0200
-Message-Id: <20230530175624.2360218-3-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230530175624.2360218-1-u.kleine-koenig@pengutronix.de>
-References: <20230530175624.2360218-1-u.kleine-koenig@pengutronix.de>
+        Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Zhu Ning <zhuning0077@gmail.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        David Yang <yangxiaohua@everest-semi.com>,
+        Daniel Drake <drake@endlessm.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, kernel@collabora.com
+Subject: [PATCH v2 0/3] ES8316 audio codec fixes on Rock5B
+Date:   Tue, 30 May 2023 21:11:37 +0300
+Message-Id: <20230530181140.483936-1-cristian.ciocaltea@collabora.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2852; i=u.kleine-koenig@pengutronix.de; h=from:subject; bh=EATKJ4RBPv2Qqpg/miNC+q7c8xFY0gbUB3j0UOy4qVk=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBkdjjFx93FPlHN2stVSS3FSptj80daAj3ppaCui 3VydBavPGaJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZHY4xQAKCRCPgPtYfRL+ TvGxB/0YlOxRYyTZbJd2nLNapO9qMOxrS/Qa2ETiD6Ue8mn5iUor9naqCXPfi26NeVKZaB7gpzf 769P6/NWEZdodFOoTZK/kOuASISLyWOnGOpkNC1tnSw84rKSU0ZI5I+Hw06NKtHMPqdVGb+f/M/ QBNq54zU5nkySU7L7cuEIEXduXcc2jCiM3gGLa8bmUmePIGwYwTX4f+UhPZKQQlKLtU7XhvU3GX 9DW5UcAEG+zRRzD+kYMQLB4MpSRgG+iQ8ZusLmUYvg0iSot6MfOfmXRMvBv7E0Ht1KVqvodQ4i2 16DF9P46CmFFTZdNNi+wH9+xUschDLF/RwaqElv698IVTCly
-X-Developer-Key: i=u.kleine-koenig@pengutronix.de; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Aurelien Jarno <aurelien@aurel32.net>
+This patch series handles a few issues related to the ES8316 audio 
+codec, discovered while doing some testing on the Rock 5B board.
 
-Add the '-@' DTC option for the Raspberry Pi devices. This option
-populates the '__symbols__' node that contains all the necessary symbols
-for supporting device-tree overlays (for instance from the firmware or
-the bootloader) on these devices.
+Changes in v2:
+ - Preserved original dB gain range in PATCH 1
+ - Rewrote PATCH 2 conditional statement, per Mark's review
+ - Rebased series onto next-20230530
+ - v1: https://lore.kernel.org/all/20230524074156.147387-1-cristian.ciocaltea@collabora.com/
 
-The Rasbperry Pi devices are well known for their GPIO header, that
-allow various "HATs" or other modules do be connected and this enables
-users to create out-of-tree device-tree overlays for these modules.
+Cristian Ciocaltea (3):
+  ASoC: es8316: Increment max value for ALC Capture Target Volume
+    control
+  ASoC: es8316: Do not set rate constraints for unsupported MCLKs
+  arm64: dts: rockchip: Assign ES8316 MCLK rate on rk3588-rock-5b
 
-Please note that this change does increase the size of the resulting DTB
-by ~40%. For example, with v6.4-rc1 increase in size is as follows:
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |  2 ++
+ sound/soc/codecs/es8316.c                     | 23 +++++++++++--------
+ 2 files changed, 16 insertions(+), 9 deletions(-)
 
-  bcm2711-rpi-400.dtb       27556 -> 38141 bytes
-  bcm2711-rpi-4-b.dtb       27484 -> 38069 bytes
-  bcm2711-rpi-cm4-io.dtb    27373 -> 38076 bytes
-  bcm2835-rpi-a.dtb         12879 -> 18235 bytes
-  bcm2835-rpi-a-plus.dtb    13015 -> 18371 bytes
-  bcm2835-rpi-b.dtb         12997 -> 18377 bytes
-  bcm2835-rpi-b-plus.dtb    13237 -> 18666 bytes
-  bcm2835-rpi-b-rev2.dtb    13085 -> 18514 bytes
-  bcm2835-rpi-cm1-io1.dtb   13109 -> 18528 bytes
-  bcm2835-rpi-zero.dtb      12923 -> 18311 bytes
-  bcm2835-rpi-zero-w.dtb    13449 -> 18889 bytes
-  bcm2836-rpi-2-b.dtb       14500 -> 20252 bytes
-  bcm2837-rpi-3-a-plus.dtb  14930 -> 20713 bytes
-  bcm2837-rpi-3-b.dtb       15107 -> 20979 bytes
-  bcm2837-rpi-3-b-plus.dtb  15463 -> 21443 bytes
-  bcm2837-rpi-cm3-io3.dtb   14429 -> 20098 bytes
-  bcm2837-rpi-zero-2-w.dtb  14781 -> 20524 bytes
-
-Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-Link: https://lore.kernel.org/r/20220410225940.135744-3-aurelien@aurel32.net
-[ukleinek: rebased to v6.4-rc1]
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- arch/arm/boot/dts/Makefile | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 59829fc90315..68e89f9289ef 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -85,6 +85,24 @@ dtb-$(CONFIG_SOC_SP7021) += \
- 	sunplus-sp7021-demo-v3.dtb
- dtb-$(CONFIG_ARCH_AXXIA) += \
- 	axm5516-amarillo.dtb
-+# Enables support for device-tree overlays
-+DTC_FLAGS_bcm2835-rpi-b := -@
-+DTC_FLAGS_bcm2835-rpi-a := -@
-+DTC_FLAGS_bcm2835-rpi-b-rev2 := -@
-+DTC_FLAGS_bcm2835-rpi-b-plus := -@
-+DTC_FLAGS_bcm2835-rpi-a-plus := -@
-+DTC_FLAGS_bcm2835-rpi-cm1-io1 := -@
-+DTC_FLAGS_bcm2836-rpi-2-b := -@
-+DTC_FLAGS_bcm2837-rpi-3-a-plus := -@
-+DTC_FLAGS_bcm2837-rpi-3-b := -@
-+DTC_FLAGS_bcm2837-rpi-3-b-plus := -@
-+DTC_FLAGS_bcm2837-rpi-cm3-io3 := -@
-+DTC_FLAGS_bcm2837-rpi-zero-2-w := -@
-+DTC_FLAGS_bcm2711-rpi-400 := -@
-+DTC_FLAGS_bcm2711-rpi-4-b := -@
-+DTC_FLAGS_bcm2711-rpi-cm4-io := -@
-+DTC_FLAGS_bcm2835-rpi-zero := -@
-+DTC_FLAGS_bcm2835-rpi-zero-w := -@
- dtb-$(CONFIG_ARCH_BCM2835) += \
- 	bcm2835-rpi-b.dtb \
- 	bcm2835-rpi-a.dtb \
 -- 
-2.39.2
+2.40.1
 
