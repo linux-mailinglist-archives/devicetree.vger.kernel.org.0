@@ -2,108 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F0F47157F0
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:06:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ED86715804
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:09:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230012AbjE3IGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 04:06:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56746 "EHLO
+        id S230046AbjE3IJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 04:09:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229970AbjE3IGP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:06:15 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03EB0EA
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:06:14 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3f6d38a140bso29523305e9.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:06:13 -0700 (PDT)
+        with ESMTP id S230051AbjE3IIm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:08:42 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A639210C
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:08:25 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-514953b3aa6so3494339a12.1
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 01:08:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685433972; x=1688025972;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x65KE+uKYeb7ssZC2FNtK6B+rqgxlUIxtSzrxN15FOQ=;
-        b=ffOEDtzeJr+xuIg4YRJs+HxBmRdZ9NFk4+Mx0Ch6k6aCZWaBMLXytREcCsnIz2iXZa
-         UV3bz4l7qnjsf4LaVQtmpjb2KulMGMN43h+oxPPCJuWpFy4eBSA4Cd1hqa9xNUIUkvQ3
-         Z9rZTPrtlS1nmm8CYxK4tumA4GTTBO9hqfgdpv0rNAn8Ndg85ynai6XSeciCx3EVBcX2
-         egfHQAbYI22wAw34083Gz6t3ownLmZmgHcokMAoj9hFkkdMlea/LWsAG2bflk290xA1f
-         LCpw0ngJ9efdnXlM+a3z2r9JEZ4W006Xa9DV/6cX38P7hpsM880lgni9yaqPQsETMqo0
-         GjUA==
+        d=linaro.org; s=google; t=1685434104; x=1688026104;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NQhjJ+6D9VsTTMDieSwfWtpvTuOPCjU+h7AtDdnwYcM=;
+        b=iOIgj8Tjhk5wu3ob5u7Zk7NjAWU5m8PbqRtznROJZ30GAgsI8TvPzjRkDJXGqrwZtS
+         eWoGfcuKJWSR7619n9y+doXwOCHSI7JpNx4TFwD5XflWa1Dsq4d6zeVlmER1b38973x7
+         Ns+Ub1NTxEe9rzfJgXNQ3+txI+Yu174kPVlGS3ODtVJ6wb3dC3MzcqBgQwu/sPFpCD2H
+         d3kkGmE6v4J0404GdcV6/++laiJeQxikgDv6MNUkrDkIKMWm4ln3GT96wnMuyrbDgUOM
+         bos3B1G9EkWDLcKGdRPMWvhS7Kh+afVSVY9aInTrWW/VwaVpx+O5aZrHBqQKdu91TfXt
+         PmnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685433972; x=1688025972;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=x65KE+uKYeb7ssZC2FNtK6B+rqgxlUIxtSzrxN15FOQ=;
-        b=CDdwD/8gPhbtv0oKBsmR4VWy/6YuE7R7ZI5WuUWOMV5YrkbOVEKXvt918fU9paDU22
-         4R4rB36uWCInEHbd3G5kgjiCbr5YobpO32iytKZdd84Q39GZjg28ZrVDrpFmOKT9Wnec
-         L99xeHxMRnj5g0Ua8RCF+YueQmdyV71JUWfL3xM410QPzedmoGBytoFWS0IkeclcpKIl
-         Y0tMto3av6xoYrzUKE6aaoDKATmzRdpk7c7TeK8bCL0vwEUzlMUI0HnWC0Uh08AecTIr
-         LqPOgLVfmfg9B8yPoztGFHTvkvbXPgjSSlD8IRoKa3Gm4sOmfJKSOgBLzU2zSvQ/PpQ3
-         fuCQ==
-X-Gm-Message-State: AC+VfDzpR/sBInjTefjMsSebOuXF0+kmtWRbC0XtrkbI0rvHtCG/eGRW
-        n5zTHPuvc7Ur9VJCo1T21wJJAA==
-X-Google-Smtp-Source: ACHHUZ5BFb11PtQ/I26ACejaIx73ewZ0yAW4jCRQ68LHqsCiA8uZpZefR1IYaxoZ9MVi2UkwACp/fQ==
-X-Received: by 2002:a05:600c:3651:b0:3f5:fa76:8dd0 with SMTP id y17-20020a05600c365100b003f5fa768dd0mr1311471wmq.0.1685433972473;
-        Tue, 30 May 2023 01:06:12 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v4-20020a5d4a44000000b0030497b3224bsm2369704wrs.64.2023.05.30.01.06.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 01:06:12 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     dri-devel@lists.freedesktop.org, Adam Ford <aford173@gmail.com>
-Cc:     aford@beaconembedded.com,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1685434104; x=1688026104;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NQhjJ+6D9VsTTMDieSwfWtpvTuOPCjU+h7AtDdnwYcM=;
+        b=VwXCCKPd+qCc3ubOH+yTuqERvw9oXyxUrlnjcqgQuFRopOU7v08lzlgslBqWt6rle7
+         5SWBVPRZc9aX7i9+sEU/owLtZlcElYOWrOjpdEYz4xBOrN/FGQwycS4vqPm50AD54tpP
+         i0CYN22bFaGzyzUMxw+lqdwL5HQT/gNyXgwetJJOO5SrETWYzwAITw2nCma4zFDK4n1e
+         l2LJFiMhJ6gefjN6Lhe9UvjeSsKP315HTb5vrsinTgFhkR+OZpbnAsK6JfWu0XcPpkB3
+         4XxFZgrlbR9NYchQtONR3GMxmgwfQt6uQpHyrytrvZUbPqO2sbttPcUs+gDhKzwnf8gV
+         GkGg==
+X-Gm-Message-State: AC+VfDzODkJXofRGooiFjhJMorxoExI/22R07PEhYncwKW32uc3EXH4i
+        hBg96fB3R6ucMInKjSXOxP+bHd34Ai9+uhN+ck8CxKQJ
+X-Google-Smtp-Source: ACHHUZ7zESSJK/T+t45vczioXDndjnO+H2WtnGA8SN2N6SO/FRpryfGtWVdQHvCzmNgM89NX54j1vQ==
+X-Received: by 2002:a17:907:97c5:b0:970:482:9fcd with SMTP id js5-20020a17090797c500b0097004829fcdmr1740437ejc.24.1685434104165;
+        Tue, 30 May 2023 01:08:24 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id c7-20020a170906154700b00965ec1faf27sm6926113ejd.74.2023.05.30.01.08.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 May 2023 01:08:23 -0700 (PDT)
+Message-ID: <2f883bad-2f8e-ef03-fc3f-c13980fb1536@linaro.org>
+Date:   Tue, 30 May 2023 10:08:22 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V4 2/5] rtc: Remove the Loongson-1 RTC driver
+Content-Language: en-US
+To:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20230528132727.3933-1-aford173@gmail.com>
-References: <20230528132727.3933-1-aford173@gmail.com>
-Subject: Re: [PATCH V2] dt-bindings: bridge: samsung-dsim: Make some flags
- optional
-Message-Id: <168543397153.1595635.3344136004150912350.b4-ty@linaro.org>
-Date:   Tue, 30 May 2023 10:06:11 +0200
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+        Huacai Chen <chenhuacai@loongson.cn>
+Cc:     Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        linux-mips@vger.kernel.org,
+        Keguang Zhang <keguang.zhang@gmail.com>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        loongson-kernel@lists.loongnix.cn
+References: <cover.1684983279.git.zhoubinbin@loongson.cn>
+ <98fc717871d3a39b18ad1a26780d0d2cf1fa0896.1684983279.git.zhoubinbin@loongson.cn>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <98fc717871d3a39b18ad1a26780d0d2cf1fa0896.1684983279.git.zhoubinbin@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Sun, 28 May 2023 08:27:27 -0500, Adam Ford wrote:
-> In the event a device is connected to the samsung-dsim
-> controller that doesn't support the burst-clock, the
-> driver is able to get the requested pixel clock from the
-> attached device or bridge.  In these instances, the
-> samsung,burst-clock-frequency isn't needed, so remove
-> it from the required list.
+On 25/05/2023 14:55, Binbin Zhou wrote:
+> Remove the ls1x-rtc driver as it is obsolete. We will continue to
+> support the ls1x RTC in the upcoming Loongson unified RTC driver
+> rtc-loongson.
 > 
-> [...]
+> Cc: Keguang Zhang <keguang.zhang@gmail.com>
+> Cc: zhao zhang <zhzhl555@gmail.com>
+> Cc: Yang Ling <gnaygnil@gmail.com>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  drivers/rtc/Kconfig    |  10 ---
+>  drivers/rtc/Makefile   |   1 -
+>  drivers/rtc/rtc-ls1x.c | 192 -----------------------------------------
+>  3 files changed, 203 deletions(-)
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+Removal in one commit and adding a new driver in second is not what we
+usually do. We expect code to be developed and to evolve.
 
-[1/1] dt-bindings: bridge: samsung-dsim: Make some flags optional
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=5769b45abedca0b9d14145e156c180af36139416
-
--- 
-Neil
+Best regards,
+Krzysztof
 
