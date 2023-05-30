@@ -2,134 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02C70716E73
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 22:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DCE2716EF5
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 22:38:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233085AbjE3UNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 16:13:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48182 "EHLO
+        id S229991AbjE3UiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 16:38:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233103AbjE3UNi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 16:13:38 -0400
-Received: from mxout2.routing.net (mxout2.routing.net [IPv6:2a03:2900:1:a::b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E18810A;
-        Tue, 30 May 2023 13:13:37 -0700 (PDT)
-Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
-        by mxout2.routing.net (Postfix) with ESMTP id 8E308615DB;
-        Tue, 30 May 2023 20:13:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1685477615;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=BFfAo9ifBuoYhXH6mSTzgnU8pbkgDeuCzxPB9AR/n9k=;
-        b=xDavmHBlUzSpXgjrFHSaDgVB7cl4BE8IpATNpSGSlAQya7VaW7RfjZjdZwWrLbLMCkItgh
-        TGN3fRYeyQdF2vaxUvFsh6P8G5Yzv4SrqQK5fD5vhagK1GMHlQDc69arQzjbLNI/1aMT3g
-        L22x3g/9HrNSiu4u3YM7euUr97QBojc=
-Received: from frank-G5.. (fttx-pool-217.61.157.145.bambit.de [217.61.157.145])
-        by mxbox1.masterlogin.de (Postfix) with ESMTPSA id 7E12C4062D;
-        Tue, 30 May 2023 20:13:34 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        "Hui.Liu" <hui.liu@mediatek.com>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Lala Lin <lala.lin@mediatek.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Golle <daniel@makrotopia.org>
-Subject: [PATCH v3 4/4] arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts
-Date:   Tue, 30 May 2023 22:12:35 +0200
-Message-Id: <20230530201235.22330-5-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230530201235.22330-1-linux@fw-web.de>
-References: <20230530201235.22330-1-linux@fw-web.de>
+        with ESMTP id S231330AbjE3UiG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 16:38:06 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0E6D193
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 13:37:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 702216336C
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 20:37:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2623C433A1
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 20:37:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685479058;
+        bh=BmuRWUnnLUJ6wKqnziT7mvO4yByxbGFWDNPAdo7vvIQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NIm9qoqq/JdGM4I+9hNxqCjIi4R3g5V9GPZKR59yYdCmt8RFBOQfdt+g7jDWo/Syw
+         ueVdWDce3/O9mux9hsmPzcRRtHbkiVHCIar2WAaIhYrVdcbraYful3UbjE/EN6Ch75
+         PpWIZ927IaigB3x67L1xALPY3yFhUdApdn3tmHOAGNsk5Y1nWAIA5ZoU18WOSMQ2kk
+         KqPee6YDQxS8kKoe92iYoO6hbBL/tTZEo00qr89eyr5NNaTpqgkMlk/0EwlkmAVdwg
+         rPiX4467KSdAjrnL4FGkkK8WhcFsA1d/DeBZxenRNU2IMKH9zRAhIRBULIu+/zMaH7
+         ygf9X1wXa5tyQ==
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1b04706c974so21142105ad.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 13:37:38 -0700 (PDT)
+X-Gm-Message-State: AC+VfDwZ94Lr1fVi9LhLyz5BXGcaCyn81JvX8me1JSj3qUhMz5+dKv05
+        0FphfSniwooAVe79suSQHwwQd5/vKn3VyyCoWOLqoQ==
+X-Google-Smtp-Source: ACHHUZ7Uoc+NqQ7Tszpt2VVC0190x6eSQZupgLeOT3JinpbUmGlCFqZtMK0irKDZAgtcO7sBCrNe4fAXfwxc03SvL/k=
+X-Received: by 2002:a17:902:c244:b0:1b0:26f0:4c72 with SMTP id
+ 4-20020a170902c24400b001b026f04c72mr3559911plg.28.1685479058385; Tue, 30 May
+ 2023 13:37:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: eb43ed84-52f3-4a28-89ff-cb5b0bbaf3e3
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230530192805.648646-1-marex@denx.de> <20230530192805.648646-2-marex@denx.de>
+In-Reply-To: <20230530192805.648646-2-marex@denx.de>
+From:   Robert Foss <rfoss@kernel.org>
+Date:   Tue, 30 May 2023 22:37:27 +0200
+X-Gmail-Original-Message-ID: <CAN6tsi4CYkq2OmGDQnQNXM5XZwXvrAzE0dLRrMTBAN-prAG7ig@mail.gmail.com>
+Message-ID: <CAN6tsi4CYkq2OmGDQnQNXM5XZwXvrAzE0dLRrMTBAN-prAG7ig@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/bridge: tc358762: Add reset GPIO support
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Daniel Golle <daniel@makrotopia.org>
+On Tue, May 30, 2023 at 9:28=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+>
+> Add reset GPIO support. The reset GPIO is cleared after supply regulator
+> was enabled, and set before supply regulator is disabled.
+>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Andrzej Hajda <andrzej.hajda@intel.com>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Jernej Skrabec <jernej.skrabec@gmail.com>
+> Cc: Jonas Karlman <jonas@kwiboo.se>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+> Cc: Marek Vasut <marex@denx.de>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Robert Foss <rfoss@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> ---
+>  drivers/gpu/drm/bridge/tc358762.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/bridge/tc358762.c b/drivers/gpu/drm/bridge/t=
+c358762.c
+> index 77f7f7f547570..5641395fd310e 100644
+> --- a/drivers/gpu/drm/bridge/tc358762.c
+> +++ b/drivers/gpu/drm/bridge/tc358762.c
+> @@ -11,6 +11,7 @@
+>   */
+>
+>  #include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/mod_devicetable.h>
+>  #include <linux/module.h>
+>  #include <linux/of_graph.h>
+> @@ -63,6 +64,7 @@ struct tc358762 {
+>         struct drm_bridge bridge;
+>         struct regulator *regulator;
+>         struct drm_bridge *panel_bridge;
+> +       struct gpio_desc *reset_gpio;
+>         bool pre_enabled;
+>         int error;
+>  };
+> @@ -138,6 +140,9 @@ static void tc358762_post_disable(struct drm_bridge *=
+bridge)
+>
+>         ctx->pre_enabled =3D false;
+>
+> +       if (ctx->reset_gpio)
+> +               gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +
+>         ret =3D regulator_disable(ctx->regulator);
+>         if (ret < 0)
+>                 dev_err(ctx->dev, "error disabling regulators (%d)\n", re=
+t);
+> @@ -152,6 +157,11 @@ static void tc358762_pre_enable(struct drm_bridge *b=
+ridge)
+>         if (ret < 0)
+>                 dev_err(ctx->dev, "error enabling regulators (%d)\n", ret=
+);
+>
+> +       if (ctx->reset_gpio) {
+> +               gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +               usleep_range(5000, 10000);
+> +       }
+> +
+>         ret =3D tc358762_init(ctx);
+>         if (ret < 0)
+>                 dev_err(ctx->dev, "error initializing bridge (%d)\n", ret=
+);
+> @@ -185,6 +195,11 @@ static int tc358762_parse_dt(struct tc358762 *ctx)
+>
+>         ctx->panel_bridge =3D panel_bridge;
+>
+> +       /* Reset GPIO is optional */
+> +       ctx->reset_gpio =3D devm_gpiod_get_optional(dev, "reset", GPIOD_O=
+UT_LOW);
+> +       if (IS_ERR(ctx->reset_gpio))
+> +               return PTR_ERR(ctx->reset_gpio);
+> +
+>         return 0;
+>  }
+>
+> --
+> 2.39.2
+>
 
-Add pwm-fan and cooling-maps to BananaPi-R3 devicetree.
+This all looks good, snoozing it for a few days before applying.
 
-Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
-this is based on Patch from openwrt. as my PWM-fan seems to need 5v pwm
-signal and r3 only provides 3v3 on 3pin-socket it does not work for me.
----
- .../dts/mediatek/mt7986a-bananapi-bpi-r3.dts  | 31 +++++++++++++++++++
- 1 file changed, 31 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-index 782519429497..29c018bbf29d 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-@@ -37,6 +37,15 @@ dcin: regulator-12vd {
- 		regulator-always-on;
- 	};
- 
-+	fan: pwm-fan {
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		/* cooling level (0, 1, 2) - pwm inverted */
-+		cooling-levels = <255 96 0>;
-+		pwms = <&pwm 0 10000 0>;
-+		status = "okay";
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
-@@ -132,6 +141,28 @@ sfp2: sfp-2 {
- 	};
- };
- 
-+&cpu_thermal {
-+	cooling-maps {
-+		cpu-active-high {
-+			/* active: set fan to cooling level 2 */
-+			cooling-device = <&fan 2 2>;
-+			trip = <&cpu_trip_active_high>;
-+		};
-+
-+		cpu-active-low {
-+			/* active: set fan to cooling level 1 */
-+			cooling-device = <&fan 1 1>;
-+			trip = <&cpu_trip_active_low>;
-+		};
-+
-+		cpu-passive {
-+			/* passive: set fan to cooling level 0 */
-+			cooling-device = <&fan 0 0>;
-+			trip = <&cpu_trip_passive>;
-+		};
-+	};
-+};
-+
- &crypto {
- 	status = "okay";
- };
--- 
-2.34.1
-
+Reviewed-by: Robert Foss <rfoss@kernel.org>
