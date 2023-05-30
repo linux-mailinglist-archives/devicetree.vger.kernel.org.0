@@ -2,176 +2,334 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A54771629C
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:50:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC045716083
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 14:51:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232086AbjE3Nuv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 09:50:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39636 "EHLO
+        id S232106AbjE3Mve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 08:51:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230183AbjE3Nuu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:50:50 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37785EA;
-        Tue, 30 May 2023 06:50:44 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34UC4pcC018239;
-        Tue, 30 May 2023 14:49:21 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=8v+0p59Typ3U3+A0Vdhp+6kA+itNhaM4lGhf6lg8Pug=;
- b=Q7cTmlKkkqwCgBvzhU5C/8I9Svhejus3dbXQlCIYD+iYNkc8EstyY4GdrF71Gg1gT2UG
- J/2yKSPLzcQ6MfmFQ/jRkSgOOd9LTF86iSonWucCIEbmsTFGhHaTjsahfk1+/BhHjxd/
- EM4jKQj0zrO3ZbSclkmPb/HhjYdTl3mS/Xp2v9hGvFN7w8m9iJiuddlaGrx3vKFnSn43
- 1s9JSyFsl2vzWIB1Y8lVQO7JtoG6EkauEJ7O2zSJf81r6GgWSWSzp5z6ZaJRfSlZ8EH+
- wS+k7WZ6Fubw01qWqm6FfVgojSgh3FCPOMv0Kim1aSF/5RHV1nWVnMxtmaQ5iFQjI7iw LA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qwdm5hsgn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 14:49:21 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4172710002A;
-        Tue, 30 May 2023 14:49:21 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 390622248D6;
-        Tue, 30 May 2023 14:49:21 +0200 (CEST)
-Received: from localhost (10.201.20.178) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 30 May
- 2023 14:49:20 +0200
-From:   Olivier Moysan <olivier.moysan@foss.st.com>
-To:     Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     <kernel@dh-electronics.com>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
+        with ESMTP id S232087AbjE3Mvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 08:51:33 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49787E40;
+        Tue, 30 May 2023 05:51:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1685451063; x=1716987063;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=81Z+HN/HXj5AQPxeRiT1gdchzsxtqZSuUxHWE9CobS0=;
+  b=GSjKmkOQpsX4wwnjyXZ+tach/INi7um6/sS+2m/u1nRxbWn89vjZ3QIb
+   e731g+JdyiW8GVlYAAyURA2VpBdg/DOjLb2TTfzTxixtqFJ6TOBDZgVUD
+   Yo8EilQahej4Ss/TsydxE24MYu2fEJ5QHG04EmvRr2EgVn470QLLmrXb2
+   BcWjKRYbeJ0hF+bke7WA9EhQnYbURTyCzkAbAPnaNKGH7J/+k1jMdkSGz
+   oIN7KgB+7pjjLZQxN8NvKZuNr644j2JD7xfl24ln7jCna7kW0UAkf5GGv
+   qNNOG38byFhRjSpjD1v0QFzN+0L0MmjXujkfhRIx8UeZD0WzzaJ4DQNGT
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,204,1681196400"; 
+   d="scan'208";a="227583731"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 May 2023 05:50:10 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Tue, 30 May 2023 05:50:10 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Tue, 30 May 2023 05:50:07 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     <soc@kernel.org>
+CC:     <conor@kernel.org>, <conor.dooley@microchip.com>, <corbet@lwn.net>,
+        <devicetree@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 9/9] ARM: dts: stm32: Update to generic ADC channel binding on DHSOM systems
-Date:   Tue, 30 May 2023 14:45:37 +0200
-Message-ID: <20230530124538.621760-10-olivier.moysan@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230530124538.621760-1-olivier.moysan@foss.st.com>
-References: <20230530124538.621760-1-olivier.moysan@foss.st.com>
+        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <olof@lixom.net>,
+        <palmer@dabbelt.com>, <robh+dt@kernel.org>, <arnd@arndb.de>
+Subject: [PATCH v2] Documentation/process: add soc maintainer handbook
+Date:   Tue, 30 May 2023 13:49:36 +0100
+Message-ID: <20230530-multiple-whooping-ee5706fceb67@wendy>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=11964; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=81Z+HN/HXj5AQPxeRiT1gdchzsxtqZSuUxHWE9CobS0=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCmlH+4xSB3++qBlgt5B9mzdXOsosxDHWeIvDy9/JXZdKKfq bKdZRykLgxgHg6yYIkvi7b4WqfV/XHY497yFmcPKBDaEi1MAJqL2hJFhzfcit6zZu/YuKH/LnrUs76 zt7tM2H76lBecu+me57fSO1YwMe5peThB4n6SvG6Zw1LD84DmLEJ+wY5N/TN8z6ceH3kuFrAA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.201.20.178]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-30_09,2023-05-30_01,2023-05-22_02
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marek Vasut <marex@denx.de>
+Arnd suggested that adding a maintainer handbook for the SoC "subsystem"
+would be helpful in trying to bring on board maintainers for the various
+new platforms cropping up in RISC-V land.
 
-The generic ADC channel binding is recommended over legacy one, update the
-DT to the modern binding. No functional change. For further details, see
-commit which adds the generic binding to STM32 ADC binding document:
-'664b9879f56e ("dt-bindings: iio: stm32-adc: add generic channel binding")'
+Add a document briefly describing the role of the SoC subsystem and some
+basic advice for (new) platform maintainers.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
+Suggested-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi  | 18 +++++----
- .../boot/dts/stm32mp15xx-dhcor-avenger96.dtsi | 38 +++++++++++++++----
- 2 files changed, 40 insertions(+), 16 deletions(-)
+Changes in v2:
+- add Krzysztof's suggested method for avoiding inter-branch
+  dependencies
+- explicitly mention that tags should be signed
+- link to the devicetree abi document, rather than trying to explain it
+  here & reword that whole section
+- fix some typos, capitalisation & unify bullet style
 
-diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-index c06edd2eacb0..e61df23d361a 100644
---- a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-@@ -80,17 +80,19 @@ &adc {
- 	vdda-supply = <&vdda>;
- 	vref-supply = <&vdda>;
- 	status = "okay";
-+};
+The devicetree abi doc feels quite out of date at this point, and could
+probably do with a spring clean - but it also feels like hallowed ground
+on which one should tread lightly, so I won't go near that til Rob is
+back.
+---
+ Documentation/devicetree/bindings/ABI.rst     |   2 +
+ .../devicetree/bindings/writing-schema.rst    |   2 +
+ .../process/maintainer-handbooks.rst          |   3 +-
+ Documentation/process/maintainer-soc.rst      | 178 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 5 files changed, 185 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/process/maintainer-soc.rst
+
+diff --git a/Documentation/devicetree/bindings/ABI.rst b/Documentation/devicetree/bindings/ABI.rst
+index a885713cf184..93ec82f78ae5 100644
+--- a/Documentation/devicetree/bindings/ABI.rst
++++ b/Documentation/devicetree/bindings/ABI.rst
+@@ -1,5 +1,7 @@
+ .. SPDX-License-Identifier: GPL-2.0
  
--	adc1: adc@0 {
--		st,min-sample-time-nsecs = <5000>;
--		st,adc-channels = <0>;
--		status = "okay";
-+&adc1 {
-+	channel@0 {
-+		reg = <0>;
-+		st,min-sample-time-ns = <5000>;
- 	};
-+};
- 
--	adc2: adc@100 {
--		st,adc-channels = <1>;
--		st,min-sample-time-nsecs = <5000>;
--		status = "okay";
-+&adc2 {
-+	channel@1 {
-+		reg = <1>;
-+		st,min-sample-time-ns = <5000>;
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-index cdd4902b59a9..0069ad75d55e 100644
---- a/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-dhcor-avenger96.dtsi
-@@ -111,17 +111,39 @@ &adc {
- 	vdda-supply = <&vdda>;
- 	vref-supply = <&vdda>;
- 	status = "okay";
-+};
- 
--	adc1: adc@0 {
--		st,adc-channels = <0 1 6>;
--		st,min-sample-time-nsecs = <5000>;
--		status = "okay";
-+&adc1 {
-+	channel@0 {
-+		reg = <0>;
-+		st,min-sample-time-ns = <5000>;
- 	};
- 
--	adc2: adc@100 {
--		st,adc-channels = <0 1 2>;
--		st,min-sample-time-nsecs = <5000>;
--		status = "okay";
-+	channel@1 {
-+		reg = <1>;
-+		st,min-sample-time-ns = <5000>;
-+	};
++.. _devicetree-abi:
 +
-+	channel@6 {
-+		reg = <6>;
-+		st,min-sample-time-ns = <5000>;
-+	};
-+};
+ ===================
+ Devicetree (DT) ABI
+ ===================
+diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
+index 4a381d20f2b4..640d857dabf3 100644
+--- a/Documentation/devicetree/bindings/writing-schema.rst
++++ b/Documentation/devicetree/bindings/writing-schema.rst
+@@ -136,6 +136,8 @@ installed. Ensure they are in your PATH (~/.local/bin by default).
+ 
+ Recommended is also to install yamllint (used by dtschema when present).
+ 
++.. _running-checks:
 +
-+&adc2 {
-+	channel@0 {
-+		reg = <0>;
-+		st,min-sample-time-ns = <5000>;
-+	};
+ Running checks
+ ~~~~~~~~~~~~~~
+ 
+diff --git a/Documentation/process/maintainer-handbooks.rst b/Documentation/process/maintainer-handbooks.rst
+index d783060b4cc6..fe24cb665fb7 100644
+--- a/Documentation/process/maintainer-handbooks.rst
++++ b/Documentation/process/maintainer-handbooks.rst
+@@ -15,5 +15,6 @@ Contents:
+    :numbered:
+    :maxdepth: 2
+ 
+-   maintainer-tip
+    maintainer-netdev
++   maintainer-soc
++   maintainer-tip
+diff --git a/Documentation/process/maintainer-soc.rst b/Documentation/process/maintainer-soc.rst
+new file mode 100644
+index 000000000000..9683c7d199b2
+--- /dev/null
++++ b/Documentation/process/maintainer-soc.rst
+@@ -0,0 +1,178 @@
++.. SPDX-License-Identifier: GPL-2.0
 +
-+	channel@1 {
-+		reg = <1>;
-+		st,min-sample-time-ns = <5000>;
-+	};
++.. _maintainer-soc:
 +
-+	channel@2 {
-+		reg = <2>;
-+		st,min-sample-time-ns = <5000>;
- 	};
- };
++=============
++SoC Subsystem
++=============
++
++Overview
++--------
++
++The SoC subsystem is a place of aggregation for SoC-specific code.
++The main components of the subsystem are:
++
++* devicetrees for 32- & 64-bit ARM and RISC-V
++* 32-bit ARM board files (arch/arm/mach*)
++* 32- & 64-bit ARM defconfigs
++* SoC specific drivers across architectures, in particular for 32- & 64-bit
++  ARM, RISC-V and Loongarch
++
++These "SoC specific drivers" do not include clock, GPIO etc drivers that have
++other top-level maintainers. The drivers/soc/ directory is generally meant
++for kernel-internal drivers that are used by other drivers to provide SoC
++specific functionality like identifying a SoC revision or interfacing with
++power domains.
++
++The SoC subsystem also serves as an intermediate location for changes to
++drivers/bus, drivers/firmware, drivers/reset and drivers/memory.  The addition
++of new platforms, or the removal of existing ones, often go through the SoC
++tree as a dedicated branch covering multiple subsystems.
++
++The main SoC tree is housed on git.kernel.org:
++  https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/
++
++Clearly this is quite a wide range of topics, which no one person, or even
++small group of people are capable of maintaining.  Instead, the SoC subsystem
++is comprised of many submaintainers, each taking care of individual platforms
++and driver sub-directories.
++In this regard, "platform" usually refers to a series of SoCs from a given
++vendor, for example, Nvidia's series of Tegra SoCs.  Many submaintainers operate
++on a vendor level, responsible for multiple product lines.  For several reasons,
++including acquisitions/different business units in a company, things vary
++significantly here.  The various submaintainers are documented in the
++MAINTAINERS file.
++
++Most of these submaintainers have their own trees where they stage patches,
++sending pull requests to the main SoC tree.  These trees are usually, but not
++always, listed in MAINTAINERS.  The main SoC maintainers can be reached via the
++alias soc@kernel.org if there is no platform-specific maintainer, or if they
++are unresponsive.
++
++What the SoC tree is not, however, is a location for architecture specific code
++changes.  Each architecture has it's own maintainers that are responsible for
++architectural details, cpu errata and the like.
++
++Information for (new) Submaintainers
++------------------------------------
++
++As new platforms spring up, they often bring with them new submaintainers,
++many of whom work for the silicon vendor, and may not be familiar with the
++process.
++
++Devicetree ABI Stability
++~~~~~~~~~~~~~~~~~~~~~~~~
++
++Perhaps one of the most important things to highlight is that dt-bindings
++document the ABI between the devicetree and the kernel. Please see
++:ref:`devicetree-abi` more information on the ABI.
++
++If changes are being made to a devicetree that are incompatible with old
++kernels, the devicetree patch should not be applied until the driver is, or an
++appropriate time later.  Most importantly, any incompatible changes should be
++clearly pointed out in the patch description and pull request, along with the
++expected impact on existing users, such as bootloaders or other operating
++systems.
++
++Driver Branch Dependencies
++~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++A common problem is synchronizing changes between device drivers and devicetree
++files, even if a change is compatible in both directions, this may require
++coordinating how the changes get merged through different maintainer trees.
++
++Usually the branch that includes a driver change will also include the
++corresponding change to the devicetree binding description, to ensure they are
++in fact compatible.  This means that the devicetree branch can end up causing
++warnings in the "make dtbs_check" step.  If a devicetree change depends on
++missing additions to a header file in include/dt-bindings/, it will fail the
++"make dtbs" step and not get merged.
++
++There are multiple ways to deal with this:
++
++* Avoid defining custom macros in include/dt-bindings/ for hardware constants
++  that can be derived from a datasheet -- binding macros in header file should
++  only be used as a last resort if there is no natural way to define a binding
++
++* Use literal values in the devicetree file in place of macros even when a
++  header is required, and change them to the named representation in a
++  following release
++
++* Defer the devicetree changes to a release after the binding and driver have
++  already been merged
++
++* Change the bindings in a shared immutable branch that is used as the base for
++  both the driver change and the devicetree changes
++
++* Add duplicate defines in the devicetree file guarded by an #ifndef section,
++  removing them in a later release
++
++Devicetree Naming Convention
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++The general naming scheme for devicetree files are as follows.  The aspects of a
++platform that are set at the SoC level, like cpu cores, are contained in a file
++named $soc.dtsi, for example, jh7100.dtsi.  Integration details, that will vary
++from board to board, are described in $soc-$board.dtsi.  An example of this is
++jh7100-beaglev-starlight.dts.  Often many boards are variations on a theme, and
++frequently there are intermediate files, such as jh7100-common.dtsi, which sit
++between the $soc.dtsi and $soc-$board.dts files, containing the descriptions of
++common hardware.
++
++Some platforms also have System on Modules, containing an SoC, which are then
++integrated into several different boards. For these platforms, $soc-$som.dtsi
++and $soc-$som-$board.dts are typical.
++
++Directories are usually named after the vendor of the SoC at the time of it's
++inclusion, leading to some historical directory names in the tree.
++
++Validating Devicetree Files
++~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++``make dtbs_check`` can be used to validate that devicetree files are compliant
++with the dt-bindings that describe the ABI.  Please see :ref:`running-checks`
++for more information on the validation of devicetrees.
++
++For new platforms, or additions to existing ones, ``make dtbs_check`` should not
++add any new warnings.  For RISC-V, as it has the advantage of being a newer
++architecture, ``make dtbs_check W=1`` is required to not add any new warnings.
++If in any doubt about a devicetree change, reach out to the devicetree
++maintainers.
++
++Branches and Pull Requests
++~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++Just as the main SoC tree has several branches, it is expected that
++submaintainers will do the same. Driver, defconfig and devicetree changes should
++all be split into separate branches and appear in separate pull requests to the
++SoC maintainers.  Each branch should be usable by itself and avoid
++regressions that originate from dependencies on other branches.
++
++Small sets of patches can also be sent as separate emails to soc@kernel.org,
++grouped into the same categories.
++
++If changes do not fit into the normal patterns, there can be additional
++top-level branches, e.g. for a treewide rework, or the addition of new SoC
++platforms including dts files and drivers.
++
++Branches with a lot of changes can benefit from getting split up into separate
++topics branches, even if they end up getting merged into the same branch of the
++SoC tree.  An example here would be one branch for devicetree warning fixes, one
++for a rework and one for newly added boards.
++
++Another common way to split up changes is to send an early pull request with the
++majority of the changes at some point between rc1 and rc4, following up with one
++or more smaller pull requests towards the end of the cycle that can add late
++changes or address problems idenfied while testing the first set.
++
++While there is no cut-off time for late pull requests, it helps to only send
++small branches as time gets closer to the merge window.
++
++Pull requests for bugfixes for the current release can be sent at any time, but
++again having multiple smaller branches is better than trying to combine too many
++patches into one pull request.
++
++The subject line of a pull request should begin with "[GIT PULL]" and made using
++a signed tag, rather than a branch.  This tag should contain a short description
++summarising the changes in the pull request.  For more detail on sending pull
++requests, please see :ref:`pullrequests`.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 7e0b87d5aa2e..29631c325857 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1815,6 +1815,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ S:	Maintained
+ C:	irc://irc.libera.chat/armlinux
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git
++F:	Documentation/process/maintainer-soc.rst
+ F:	arch/arm/boot/dts/Makefile
+ F:	arch/arm64/boot/dts/Makefile
  
 -- 
-2.25.1
+2.39.2
 
