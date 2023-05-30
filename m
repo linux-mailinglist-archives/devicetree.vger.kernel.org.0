@@ -2,204 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 935E67162C3
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 15:57:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CECDD7162EE
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 16:03:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232446AbjE3N5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 09:57:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44160 "EHLO
+        id S232729AbjE3ODG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 10:03:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232299AbjE3N5h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 09:57:37 -0400
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2088.outbound.protection.outlook.com [40.107.247.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD7C5B2;
-        Tue, 30 May 2023 06:57:31 -0700 (PDT)
+        with ESMTP id S232813AbjE3ODF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 10:03:05 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0C91F3;
+        Tue, 30 May 2023 07:03:03 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gvKa9tOsxgHhfHK0R3EVmE3qi3Sof58JVp+7HOgeriImih9Gr4uVyzj3FWVVJTf0bUMg/df+VArqe4+ft/+HPmm+2LcLivNQVyKL3wrAPlgHWfa7sUYG6kv+LR3y8FpkBRflczQ5Qf0+MSAQnLCqXgO7PUmuv3o0EKRGzjVKVwD66RTwuCSnMHpTnnOt5nwTdG9csCWiobj88iuT6N1OEMu0dNV5+qswe5NN7oyU9iGOSjQhR4x3OhbVX/aZrMA4/LT7mBr1WhdVK/+XA76J5Ea4jlkDaJkQ/A/ABrGnUCpQKT5M4sll/jHNZeC8Z1lwJqxzE4UiTLXkzwlX/B1+jQ==
+ b=JJOTtQfhsknBChqIgl251HXqa1z9xxsBuDEUh4rNrF2kCxpXZByEzbx2vgA+JgCbIeM5wRuBcqGX3Uh6e2d+2heOCv6mbRpiQZn7uUgc+jy2Ojw16dUBJmQlu5pTmKvvCe+lUkrI3VgvmgeK04rBM7jPkxu9AcjCvFKcsB7pC+4GS/G4D04+llurWBH14I9JKvkppnqBgprD/JSth9iKot7RQsaG74EB/HF3Tau06cHWd2FdJ1EBQ67p3VvkHFmc3yUuDsz0hppFZhZQiyZk2fFpLHQNihmLzvn8KQyDEh1pDzwCsP9fgqZWzpLwz/HTyw57THp4j/m+CStIosxruA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lYtLD5sROeqTmgNGLhgoY//0q3FMZ+v6DFq1DkjnIl4=;
- b=ctoAqQkywDKD/LrdBsDQJuLbA+L6K2CcEfU629/Yk9zaLI0wfR9W5mvQNzCXJF5/MVYxHeU0yS468toVjDQONjsDVYNc8NN8O7zikGbCJa77l/SfztbMWPiPGryx5c8+wfsupUwV3UWwDw1Zb2Xd1cQwj2zWexYD1TT/5W0+E6GcCR0f5h152eLRuSsHe9PXnfIZd3eFH3EpBhEk10xZqkrsPidaKVXXrYO1aLDb71uvnwJlsA4w96SsCL5rpvr9cVKy5QTLgUqABXbSAaOlDLCBsunNQ59DFZouBaaqVQzO8T3ySnD04pd316tBSYoRpALWyf8uPtG5TcAB/O8oJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ bh=1yL0uRTe/2lCHsE6oqof/xZeoInQiBPILVlntryKTfw=;
+ b=lkUKMBQCPsSIUUpWqyNHiIcaIkartpO9fgWNVcKUEQRsYl8+OvIDpQaBHj3c6ci7w1tsHyU2WxXT0/0Pa4Vi84DLVbg84nM38wfZKokXqw7HpnJMk+pieVIsTeC8WN6fpeNw00/oCX9gyl/djbe/VwZwv1ZxhMN7OTuQBIfXnStvlQQCjORMbViuelHafuJW6zdCwrPpvZzfMm8YsgGtQ1+6hpKgoRB+r+kgT5tSshvOCfjN5GEzxaP34PwOkD2e2PKoQ861m5k0LOi20Cl0dXgmscHCCpvp9J4aCnmm4BfNbHHb+jbm8+lXWHeG/KzWo/Bp4qV//boZOuMpJddEhA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lYtLD5sROeqTmgNGLhgoY//0q3FMZ+v6DFq1DkjnIl4=;
- b=qwLNiRB0Am0biQ7IlPITJ8DUcv7t7BynNDbdleA9GNW3ndPShSwPXEvGkgJabwD7F744wXGH8DqkaJ/w1vGjLtNk6j2iAYw4MRut62JniDZtIMrQHNvpa9sn4MmKeuLkHkSFKFuUnwLFoUFBzqgWS2g8qq121nzzokUONqC94B8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by AM9PR04MB8652.eurprd04.prod.outlook.com (2603:10a6:20b:43f::21) with
+ bh=1yL0uRTe/2lCHsE6oqof/xZeoInQiBPILVlntryKTfw=;
+ b=JsV2ox8vkOMjBmqCJAFPxg2YW3ZbMhYoa4nubX8AiVbqHjxHL1EjjEipaKM64Qq2Kxsh7aGJzDn0KYlxuXVQQjppPN5OH9dSbYlyhINcx9Lq6YgsDMz0V4QUsBMue7uH8e4OjqC5+BVbYWQwV53BtzDaMqas4Y7gFGXy69PmSrJRRa9m8NjkUeY/FcpOWc/wVXTledB9qylXcnSztXIGygMPWawvKB24iGAzWs/oMizP7avu7d7Uq/x4ZQfKE9rcLFdPJhcLcfPROisk+JKUj1I5IYd5flxuy5C3HUHdtppHZxkAunD/Fq7ggwH5+1IuOkr7sidveYqdVjzm4bvoDw==
+Received: from DM6PR14CA0061.namprd14.prod.outlook.com (2603:10b6:5:18f::38)
+ by DM6PR12MB4450.namprd12.prod.outlook.com (2603:10b6:5:28e::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Tue, 30 May
- 2023 13:57:29 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::4a2a:262e:415f:e41c]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::4a2a:262e:415f:e41c%7]) with mapi id 15.20.6433.022; Tue, 30 May 2023
- 13:57:29 +0000
-Date:   Tue, 30 May 2023 09:57:12 -0400
-From:   Frank Li <Frank.li@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, peng.fan@nxp.com,
-        vkoul@kernel.org, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org, imx@lists.linux.dev, joy.zou@nxp.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        shenwei.wang@nxp.com
-Subject: Re: [PATCH v2 12/12] dt-bindings: fsl-dma: fsl-edma: add edma3
- compatible string
-Message-ID: <ZHYAuOA6JHv6LYwl@lizhi-Precision-Tower-5810>
-References: <20230529200453.1423796-1-Frank.Li@nxp.com>
- <20230529200453.1423796-13-Frank.Li@nxp.com>
- <65e7b6df-b83b-2d7c-5093-f5822050827a@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <65e7b6df-b83b-2d7c-5093-f5822050827a@linaro.org>
-X-ClientProxiedBy: BY5PR13CA0017.namprd13.prod.outlook.com
- (2603:10b6:a03:180::30) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
+ 2023 14:03:00 +0000
+Received: from DM6NAM11FT089.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:18f:cafe::5b) by DM6PR14CA0061.outlook.office365.com
+ (2603:10b6:5:18f::38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23 via Frontend
+ Transport; Tue, 30 May 2023 14:03:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ DM6NAM11FT089.mail.protection.outlook.com (10.13.173.82) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6455.21 via Frontend Transport; Tue, 30 May 2023 14:02:59 +0000
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Tue, 30 May 2023
+ 07:02:47 -0700
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail204.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Tue, 30 May
+ 2023 07:02:47 -0700
+Received: from moonraker.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server id 15.2.986.37 via Frontend
+ Transport; Tue, 30 May 2023 07:02:45 -0700
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH 1/2] arm64: tegra: Enable USB device for Jetson AGX Orin
+Date:   Tue, 30 May 2023 15:02:31 +0100
+Message-ID: <20230530140232.53854-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|AM9PR04MB8652:EE_
-X-MS-Office365-Filtering-Correlation-Id: cdb6adfd-fb76-4931-2818-08db6115ce74
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT089:EE_|DM6PR12MB4450:EE_
+X-MS-Office365-Filtering-Correlation-Id: 35eea482-138a-40f4-8023-08db611693d8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ELmtRYN8mrTUYiAU5xCPNKQYZy18r3xbJjsfeZ6HEzPK4zDqGLfWWLf6vbRQffi2IAJW9YTfKoiiWb8PFaAIkX7x/fA7g8bAeqqdQOC3EgUSNXnQxlZ7WyJMMqqScDbjGwV72pNb+iyzZEJogT9BljFtAm2f4uX7TMQYU5KLb82ObQuC/0+wtraJjA5CpleTLRF8zZ9gBHGTRTqiw4vWKRD04EE5fqkigR/x6N4rFvuNmV94KMP+Wi+qsEj1hzTQW30pGDgYAu+d7tQ6PtWKv6pY6mhHaviUZPiiUjUoCNrWQF5l0JeAaVSTXeO0/onIMNY/OL+ey0LpROxysrABI1JUyDUsm1C+ARY1wPGfkw4huNrjsj71r2R4mHoRGAmjpRXuoPn9Rwac9UVUEXq1uxbwBFEQgxQ5P21LtPbvQgNGUalR8ev8UKgMKk7Vjv//JH1kn0ROzNnOC4EEKBEOTTcKD9Z1oyc2SnuqegtATo0nvX4CbOiKXQoq/gAwnL5NfrDm8kJGJaM1QRdLBD6HJXDBwOraQcBxCArqqiN2af+TanCgOsSnjxfnA4FXwnU4G8JJcOwBsto4eC0l856XBAWLMHmIpyeDbORnC1vTVW/T+rs3yV0khRQSRhpFQP31
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(7916004)(136003)(346002)(376002)(39860400002)(396003)(366004)(451199021)(6916009)(66946007)(4326008)(66476007)(66556008)(5660300002)(86362001)(478600001)(6486002)(41300700001)(52116002)(8676002)(8936002)(6512007)(9686003)(6666004)(316002)(6506007)(26005)(33716001)(186003)(83380400001)(2906002)(38100700002)(38350700002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ZwsH/CAmg4ycG0O4x3H9z6h3rXIsjA5q6BaGmGryf+UZjbk3TwpOcB1GY4rP?=
- =?us-ascii?Q?NTrxNOZaQCSf0ikkfElALzCjgu0wbRO6LNyTgFF5wlT5BpCVxvJPJDhgQ9c4?=
- =?us-ascii?Q?qnzRBq7xGDegdlDys5HX1RDEx6Qn58lxpFiag1mCWwcEeGSUKXNDGD7TXnZi?=
- =?us-ascii?Q?SDTB2To9LEbAwWSkrMS2hmVqxR4YyIuSNt9XRvZIujE0IfHvi17I7lnXT3b9?=
- =?us-ascii?Q?6cgdb7VbyVhcvXqCrHLWK59CyI4AMXnnqglrRjT8w9H4/oCIReLuSMy6wKU3?=
- =?us-ascii?Q?gKI7YcCPhgN9z9gPtZeKsYo/tHpDMHQ3bF2WUJ1G/SxkjTs9cfUPhu+nAk6d?=
- =?us-ascii?Q?H7a2OUE6H0Cmjzbwu7mRNOzOx2fbUWU3pBL/iFOlE6l+xMoC9s3eHJwErLM8?=
- =?us-ascii?Q?TNqJaRwcbIkhD2V/hVHb8xTmFi2HkXM3tvu16IEknmqwhk00PaT8LU+yypm9?=
- =?us-ascii?Q?7JdfZUfnCpY0g5oe1QzUQLz5v0EHuEYM0OoEXAEbc57NSOSh8t0tKsLZZ3Io?=
- =?us-ascii?Q?zW9TKApAceBB4U4QVE4ZCQGk/SXsV7vu/G0M75i7hhd0/AZHuEaEU40TIcD6?=
- =?us-ascii?Q?5e4DP4+9oX9muSFGFW1xvYcxCYQxD36PYUDLQnrvPJTKqr25KuFIF5PJdU+w?=
- =?us-ascii?Q?xdben8vDZWzbkII+OSlqdDy8OVpmso8aAZ/ppXr/mncPbuRa4AMFY+qwmq63?=
- =?us-ascii?Q?pQBCa4fqFJOzhvIIO03vbqCvHBP2INiziYc5rA1s3QZNBBTT44Vk9lI+8WyT?=
- =?us-ascii?Q?JHYMIHvVyM0sqpn5Vc/GSA+717a+Cyj/uioUBDefoYE/uqhqSCaVUtDIQaQM?=
- =?us-ascii?Q?KalYuu3SS4t7eAWtj3SuSFcTy+AEnW6Gy2m9xpv5p9LQSWCXRAy9N/HG2AuU?=
- =?us-ascii?Q?q1bcCvxCABJtHgaMoQWb3UJP4lkj5UfaZs0JnCXlOACdWEcG7Z3EiO7Z5vko?=
- =?us-ascii?Q?ocpfX6XrkkTs5llMmUF3Z3KPSxAABt87BwXhNquvUcZfBPcEq/1ZD/tkZ/+d?=
- =?us-ascii?Q?inoNkIhR/sLwtXCNElNcr4xFfduSbiVVwPUlkAiPfupWe8UOAIpdsLdEqas2?=
- =?us-ascii?Q?LZyQccKWi+SjqdIVdzpUkow3QlF+Lyqa9OqZZ0kw+vof9aEruE9LeA4zvib0?=
- =?us-ascii?Q?3ssjaFRyfWUhAe7tN03bechL1ev+C7x/eJ48MVqxXEWKYpNEm2OIamYuMbqq?=
- =?us-ascii?Q?8zO3wkDWTV1qV3VnMijHaH3SehbiWIZdZtfmsdP8uJVpy0uYZk5XgHBQZFwM?=
- =?us-ascii?Q?KVVOXQdFvV8fHMQptPxOYYGJAgmTHa/clesJXqizJqewn3j/shLc7tCP0H/8?=
- =?us-ascii?Q?10kvNi8oFWbYGzi7Lwz/50W3e9PqhaHC7ltznFLjJ7fXfug7seRI9YzyeFjo?=
- =?us-ascii?Q?uMvcr69MJ5R+NeiyMXSWAKty/GV5GScubIGidtTrswvFA0B4ETqQjTtQe8fq?=
- =?us-ascii?Q?ZdRkdIF0Y/B8PzJTLAVGRLkR3kkg6mat2tVRBklzaiTqFtoL15vvmPfnZ7j5?=
- =?us-ascii?Q?LELzZCPUuIiZWlsjvo5+tnyA2ANCT0cbnBYxCdWwLsA0IWfYzfIY6A1Uz6dG?=
- =?us-ascii?Q?BThjVg8vcD3nOnhBsbJYbfemQvj1RxFZZnf1GV1R?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cdb6adfd-fb76-4931-2818-08db6115ce74
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2023 13:57:29.0811
+X-Microsoft-Antispam-Message-Info: 1LRBZz2o/PwTDjjVHiCpc/i+TVeURxK2G7R5UesU9cuJfyaiEGuC7vjm3pZiyhZr81TYkmHZjUUAJ7SrwKaSRSXuHvZeQoPAbX822U7NSM3xcVsFbyh6Dn5PzRArC6+/fatTHdrU91peDbr7GL4IgogEmbqdCAH9GiviywXM/Hl154oS3dLs9c6GepDZj1mvoNqfJU8b+iP7NMh45nFtR0PLalTy+7yvErSEnuy+laCAc73IbcC/8lfwj2Woip4OCydtnDb+ZStTPeXh7cxcUmXIXQaxJn5nKO5cmi1LN073iWH2UUEB5TnUg46cZYCeLxrmRJh5hxBZICVhKIaIomvzCOBzZIW7GsQNBXo0GbqMYXfF4elPlsWZHzf2Hgj6pTNmEBts8e9Y21ncqantL7RzG6t/WDQSnB+ZKCvF3ZMbAtmjY4KRLdxYpdsD3CF2Zdw6I4VKwbScG5KpE1fQ7yvFB3+fWf6btKDUIWuIVoENm5VJHNs2lxUnMzozEpB11MXe8GnBYh6kzQxLRh7v1FBk46gx7Jq4pTX4dw0yPXML6e/VPqkPd4D88CHbR+AKcKBZ+0tdmzmBrYoGuJgJV1Qumjm2MwPE7WeBGKRmi3iKtLnafoheQYqnj2ivhpfoL+asY/sxGFZpSWUHtjWBp6385LkxA6GrUm6jj6Gkqfo5FfxTGVqsN2NQZDmVEvZdXjP2EvQXK3bTRrFUsu764REFLjbc4s5/WX6RkypJcbVIEQVpzUZRENG9tFWrdzFn
+X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(136003)(376002)(346002)(39860400002)(396003)(451199021)(40470700004)(46966006)(36840700001)(36860700001)(40460700003)(47076005)(83380400001)(86362001)(5660300002)(70586007)(316002)(6666004)(70206006)(4326008)(82310400005)(36756003)(107886003)(82740400003)(8676002)(7636003)(8936002)(356005)(41300700001)(7696005)(40480700001)(110136005)(54906003)(2906002)(2616005)(186003)(426003)(478600001)(336012)(1076003)(26005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2023 14:02:59.9265
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M2cmhO7Srpk2KO4vhgvxOkloSmMr95MNkwzDXA6x7ER/LWN7xS0xzxcrsEHbuAOsGUHMSnblfPuELtcWqMUhRg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8652
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 35eea482-138a-40f4-8023-08db611693d8
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT089.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4450
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 03:08:48PM +0200, Krzysztof Kozlowski wrote:
-> > diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> > index 5fd8fc604261..eed12687b0c9 100644
-> > --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> > +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> > @@ -21,6 +21,10 @@ properties:
-> >        - enum:
-> >            - fsl,vf610-edma
-> >            - fsl,imx7ulp-edma
-> > +          - fsl,imx8qm-edma
-> > +          - fsl,imx8qm-adma
-> > +          - fsl,imx93-edma3
-> > +          - fsl,imx93-edma4
-> 
-> What are these last two? What is "3" and "4"?
+Enable USB device support for the Jetson AGX Orin platform and update
+the mode for the usb2-0 port to be on-the-go.
 
-imx93 edma have two version, edma3(AHB) and edma4(AXI).
-There are little bit difference at channel space size.
+Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+---
+ .../dts/nvidia/tegra234-p3737-0000+p3701-0000.dts     | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-+static struct fsl_edma_drvdata imx93_data3 = {
-+	.version = v3,
-+	.flags = FSL_EDMA_DRV_HAS_CHMUX | FSL_EDMA_DRV_HAS_DMACLK,
-+	.chreg_space_sz = 0x10000,
-+	.chreg_off = 0x10000,
-+	.setup_irq = fsl_edma3_irq_init,
-+};
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+index aacacfe4a6ea..5b4f4f3ae34d 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+@@ -2096,7 +2096,8 @@ usb3-2 {
+ 
+ 			ports {
+ 				usb2-0 {
+-					mode = "host";
++					mode = "otg";
++					usb-role-switch;
+ 					status = "okay";
+ 					port {
+ 						hs_typec_p1: endpoint {
+@@ -2152,6 +2153,14 @@ usb3-2 {
+ 			};
+ 		};
+ 
++		usb@3550000 {
++			status = "okay";
 +
-+static struct fsl_edma_drvdata imx93_data4 = {
-+	.version = v4,
-+	.flags = FSL_EDMA_DRV_HAS_CHMUX | FSL_EDMA_DRV_HAS_DMACLK,
-+	.chreg_space_sz = 0x8000,
-+	.chreg_off = 0x10000,
-+	.setup_irq = fsl_edma3_irq_init,
-+};
++			phys = <&{/bus@0/padctl@3520000/pads/usb2/lanes/usb2-0}>,
++			       <&{/bus@0/padctl@3520000/pads/usb3/lanes/usb3-1}>;
++			phy-names = "usb2-0", "usb3-0";
++		};
++
+ 		usb@3610000 {
+ 			status = "okay";
+ 
+-- 
+2.34.1
 
-> 
-> >        - items:
-> >            - const: fsl,ls1028a-edma
-> >            - const: fsl,vf610-edma
-> > @@ -101,6 +105,22 @@ allOf:
-> >          reg:
-> >            maxItems: 2
-> >  
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            anyOf:
-> > +              - const: fsl,imx8qm-edma
-> > +              - const: fsl,imx8qm-adma
-> > +              - const: fsl,imx93-edma3
-> > +              - const: fsl,imx93-edma4
-> > +    then:
-> > +      properties:
-> > +        reg:
-> > +          maxItems: 1
-> > +        interrupts:
-> > +          maxItems: 64
-> 
-> That's odd. What about the names? What about minItems? Anyway, this
-> wasn't tested - you will have failures with dtbs_check.
-
-It passed dtbs_check. interrupt-names is optional property, which
-will no used after edma v3.
-
-Planned dts look like:
-
-+                       edma1: dma-controller@44000000{
-+                               compatible = "fsl,imx93-edma3";
-+                               reg = <0x44000000 0x200000>;
-+                               #dma-cells = <3>;
-+                               dma-channels = <31>;
-+                               interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
-+                                            <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
-+                                            <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-						....
-+			};
-
-
-
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
