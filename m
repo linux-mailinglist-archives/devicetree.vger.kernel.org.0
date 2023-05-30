@@ -2,103 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB5FC715CE9
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:20:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBA20715CF2
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 13:21:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231451AbjE3LUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 07:20:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59052 "EHLO
+        id S231497AbjE3LVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 07:21:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231436AbjE3LUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:20:22 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23405E5
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:20:21 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-974265a1a40so81960766b.0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 04:20:21 -0700 (PDT)
+        with ESMTP id S231620AbjE3LVE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 07:21:04 -0400
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C36A8114;
+        Tue, 30 May 2023 04:21:02 -0700 (PDT)
+Received: by mail-io1-xd33.google.com with SMTP id ca18e2360f4ac-77487fcb522so120287939f.2;
+        Tue, 30 May 2023 04:21:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685445619; x=1688037619;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yd20fg17/wzyWFeVpB0r/Y/yZQClC31CURysYMhhkuU=;
-        b=baDQMQRBHrpQXjmgPj76DVAPn0aostT2Uq1RrXkdot38883uSNcgxjtRVCB/NDC91N
-         4f9hMlK9Nw3VUYDqcT2EHcEa8AaKq8AEU5+gzW4tGPGM1wIDhmq1zML4qigrSjZdpGJa
-         AOuJ8FL+Ze2f3oZLO+ZSS4fSDG496gQ0KdOCIQ+/7/cPUEoWaT+Mzxi/mirof3R89O6h
-         319mLvygA+sRrfxmFGq+o+7XbJRuBcIH5RQEjWUg0ySBJaCxTbU8QNjV5wZ+RdrjP/EG
-         FfFaVCp4aGFIifEJGcIbEAnRNFc+uV0yMqr8mlWZTBvbjgVExDF1ytB0DaVTHlrP/Gmx
-         1E5g==
+        d=gmail.com; s=20221208; t=1685445662; x=1688037662;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TKOVEGYHxWU1Tm4Om2FNng9wfK8qi7L3C4EYFqaB2Vo=;
+        b=ruJ+IgmgaxQKj1pFMEOfoVBkLMWGbox8DDd1SeHiVjY5Pek9v7/rtEvrleVSjmP/ED
+         /XnCx3Uaa5sLI6dyxItIGW+aS6CemTOIyxynjqJDYp1ZIRoxk+a4zWLooWBOwaoDUSDJ
+         fcaK7RxxdbN83lAgK8rsay8+5b4Bpfq610J3Jppk9l87ssGgSmTnANIlXStO2+K1dWEJ
+         FsE/qWR/FkgVnePqIwv2J+nzBG5fcc853ZkJLsBXOUNPbTpKp1s//FmswpDpmdGG9/Ef
+         q2DASnrNNxBfXDCLnh7Ajms798mGPHSIUELdlgBFrzqUNS5j3E3C862V0vmkZGxEGDRf
+         rT9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685445619; x=1688037619;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yd20fg17/wzyWFeVpB0r/Y/yZQClC31CURysYMhhkuU=;
-        b=HDooYyeB52BeVp8mCX8Ylt5LVpEF3r9CGKI/fS6srOzUIRszzRRFClVajOD4L/O57S
-         c6R+X8fN+b+82a+9CalYZfUZiCUnTY8IPoeI9Qxwt+3h4WBj8H0P6PknWVEktXFAVpdD
-         U9/ug6WaHDaHPsafMygYKG+95Jb7UsOImq9nhCKCCGfGhuyrT9FJUpwFvGeBM1kpVVgR
-         AL159i9v1wlQhVh11Lvz7NCoqY4tjTyE7pped74IwTslqKfHSEMEtReXvlW7AGTJurky
-         /2m+1cFypnQihvSqrq4OFZp1xnnz9DZmLZL2w5JRf8CctDxSjN7etJqZnYk+K5XhPaDr
-         fnUQ==
-X-Gm-Message-State: AC+VfDzSdnJugLdSJGPsnXlFwwKalLqik4GXST6kvuZebRQeTKz4C7l+
-        FYg3ADF2bbpek1QvsSyHhrz5Tg==
-X-Google-Smtp-Source: ACHHUZ7i0rQP+G4NUnQ1Pzw44Mp8S1ZzLD4qDMbuKxpk6jJO6NiExe52FOsO4buRImy0W0OI/3FFvw==
-X-Received: by 2002:a17:907:1ca2:b0:953:834d:899b with SMTP id nb34-20020a1709071ca200b00953834d899bmr10294984ejc.29.1685445619558;
-        Tue, 30 May 2023 04:20:19 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id h3-20020a1709063c0300b00965ff04f9f6sm7314636ejg.161.2023.05.30.04.20.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 04:20:19 -0700 (PDT)
-Message-ID: <1c57f588-4101-3892-5797-4ffc6c654dd9@linaro.org>
-Date:   Tue, 30 May 2023 13:20:16 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3] arm64: zynqmp: Switch to amd.com emails
-Content-Language: en-US
-To:     Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-        monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
-        Andrew Davis <afd@ti.com>, Conor Dooley <conor+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1685445662; x=1688037662;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TKOVEGYHxWU1Tm4Om2FNng9wfK8qi7L3C4EYFqaB2Vo=;
+        b=VQSc+JGqzOh4k2YFMEf+cT8AQJqQqpa5onbzJXODH14cbBEan9ZVOwe9ObT7GlR1aw
+         qZBQVdwi0Wh+4srXe2/F8LqcQLvhSpsJ3i8MRXYbn9ngmN7DISjHmDFEHzjJTNpQ18bc
+         zhOxA3/3rO53Leho1iN8AcyAocdzKRTZXQ++Y56dGE6Muo3cDU0kyBE276Zzw8q2+yt9
+         drOXgd36Anby7+v6BpgviAQmlvCTpmtT19suzoEJ6NymhRlM5GXJ8Y5ecScTIxp0GcuA
+         J2qGvTwq3RyBlQsVcTXoegeD8+59CMxDgL4I7B75sR/UmgazbZ5VnJ2INoJgSLlP1x8z
+         9R3w==
+X-Gm-Message-State: AC+VfDx2zdJ6CL2409ESnJH48F6RZxPIFCSIrJnG3ybzIfs11dwczRnS
+        bI4DLxN0Cbj7FcbMwTY+jCRNOQ6tnkg=
+X-Google-Smtp-Source: ACHHUZ7W0qid6AdPyodyq/TeyV+NlOb+jn7jEYueEwTbtsu8yqV2BotTe962efGWUmqO4tQHst5jFQ==
+X-Received: by 2002:a6b:6402:0:b0:776:f992:78cf with SMTP id t2-20020a6b6402000000b00776f99278cfmr1246448iog.12.1685445661517;
+        Tue, 30 May 2023 04:21:01 -0700 (PDT)
+Received: from aford-B741.lan ([2601:447:d001:897f:a5e7:c9e9:bb20:39c1])
+        by smtp.gmail.com with ESMTPSA id co17-20020a0566383e1100b003c4e02148e5sm634363jab.53.2023.05.30.04.21.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 May 2023 04:21:01 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-renesas-soc@vger.kernel.org
+Cc:     biju.das.jz@bp.renesas.com, marek.vasut+renesas@gmail.com,
+        cstevens@beaconembedded.com, aford@beaconembedded.com,
+        Adam Ford <aford173@gmail.com>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Harini Katakam <harini.katakam@amd.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Parth Gajjar <parth.gajjar@amd.com>,
-        Piyush Mehta <piyush.mehta@xilinx.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Robert Hancock <robert.hancock@calian.com>,
-        Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>,
-        Srinivas Neeli <srinivas.neeli@xilinx.com>,
-        Tanmay Shah <tanmay.shah@amd.com>,
-        Vishal Sagar <vishal.sagar@amd.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <108cbbbab29e13d386d38a779fd582f10844a030.1685443337.git.michal.simek@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <108cbbbab29e13d386d38a779fd582f10844a030.1685443337.git.michal.simek@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: [RFC 1/3] clk: renesas: rcar-gen3: Add support for ZG clock
+Date:   Tue, 30 May 2023 06:20:47 -0500
+Message-Id: <20230530112050.5635-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2023 12:42, Michal Simek wrote:
-> Update my and DPs email address to match current setup.
-> 
-> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
+A clock used for the 3D graphics appears to be common
+among multiple SoC's, so add a generic gen3 clock
+for clocking the graphics.
 
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+diff --git a/drivers/clk/renesas/rcar-gen3-cpg.c b/drivers/clk/renesas/rcar-gen3-cpg.c
+index b3ef62fa612e..7abfbf77a497 100644
+--- a/drivers/clk/renesas/rcar-gen3-cpg.c
++++ b/drivers/clk/renesas/rcar-gen3-cpg.c
+@@ -301,6 +301,39 @@ static struct clk * __init cpg_z_clk_register(const char *name,
+ 	return clk;
+ }
+ 
++static struct clk * __init cpg_zg_clk_register(const char *name,
++					       const char *parent_name,
++					       void __iomem *reg,
++					       unsigned int div,
++					       unsigned int offset)
++{
++	struct clk_init_data init;
++	struct cpg_z_clk *zclk;
++	struct clk *clk;
++
++	zclk = kzalloc(sizeof(*zclk), GFP_KERNEL);
++	if (!zclk)
++		return ERR_PTR(-ENOMEM);
++
++	init.name = name;
++	init.ops = &cpg_z_clk_ops;
++	init.flags = 0;
++	init.parent_names = &parent_name;
++	init.num_parents = 1;
++
++	zclk->reg = reg + CPG_FRQCRB;
++	zclk->kick_reg = reg + CPG_FRQCRB;
++	zclk->hw.init = &init;
++	zclk->mask = GENMASK(offset + 4, offset);
++	zclk->fixed_div = div; /* PLLVCO x 1/div1 x 3DGE divider x 1/div2 */
++
++	clk = clk_register(NULL, &zclk->hw);
++	if (IS_ERR(clk))
++		kfree(zclk);
++
++	return clk;
++}
++
+ static const struct clk_div_table cpg_rpcsrc_div_table[] = {
+ 	{ 2, 5 }, { 3, 6 }, { 0, 0 },
+ };
+@@ -502,6 +535,9 @@ struct clk * __init rcar_gen3_cpg_clk_register(struct device *dev,
+ 	case CLK_TYPE_GEN3_RPCD2:
+ 		return cpg_rpcd2_clk_register(core->name, base + CPG_RPCCKCR,
+ 					      __clk_get_name(parent));
++	case CLK_TYPE_GEN3_ZG:
++		return cpg_zg_clk_register(core->name, __clk_get_name(parent),
++					   base, core->div, core->offset);
+ 
+ 	default:
+ 		return ERR_PTR(-EINVAL);
+diff --git a/drivers/clk/renesas/rcar-gen3-cpg.h b/drivers/clk/renesas/rcar-gen3-cpg.h
+index 9028bf4295ce..bfdc649bdf12 100644
+--- a/drivers/clk/renesas/rcar-gen3-cpg.h
++++ b/drivers/clk/renesas/rcar-gen3-cpg.h
+@@ -22,6 +22,7 @@ enum rcar_gen3_clk_types {
+ 	CLK_TYPE_GEN3_R,
+ 	CLK_TYPE_GEN3_MDSEL,	/* Select parent/divider using mode pin */
+ 	CLK_TYPE_GEN3_Z,
++	CLK_TYPE_GEN3_ZG,
+ 	CLK_TYPE_GEN3_OSC,	/* OSC EXTAL predivider and fixed divider */
+ 	CLK_TYPE_GEN3_RCKSEL,	/* Select parent/divider using RCKCR.CKSEL */
+ 	CLK_TYPE_GEN3_RPCSRC,
+-- 
+2.39.2
 
