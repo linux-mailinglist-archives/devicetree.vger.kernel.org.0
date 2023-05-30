@@ -2,140 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5E96716A83
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:11:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AA16716A9D
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 19:17:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230096AbjE3RLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 13:11:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44202 "EHLO
+        id S230239AbjE3RRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 13:17:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231690AbjE3RLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:11:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22C2F114;
-        Tue, 30 May 2023 10:11:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 77090630A7;
-        Tue, 30 May 2023 17:11:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4A19C4339C;
-        Tue, 30 May 2023 17:11:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685466673;
-        bh=N6T7E2wPg+ksFvC4zTDbs7YVrQwcgW2P2fcGeKZjY20=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CFXovLHe2oCMksV5jMa1XRicI4ibzn2nGkPyGMPtRnC/y08Yp1GJGpfGxkDMnPjUD
-         qZYV3T982TxPaZJbNLbkVlsLxnwdoXIr1gMYRSbBBtmyb38QYNiI0vOaHqIPHSYlny
-         f7aHQpTFYKWKABhjocGyZKtjbwZx021cztTm/1LP472sZoPdfbJIF+fQowxr3luvtO
-         vFKZWc7TtHmcGsP8e7FivPGzTjYgomj+DAEhRquGGK4SNsoZI20AB0mYJmViyDGojr
-         OgochEVNk8ky0h6j2vMHGI169NU7lgIPPHKOPvuG8aH5roBKLrYsul0Y30Tl0lzs3E
-         vdCGDlBy+9FxQ==
-Date:   Tue, 30 May 2023 18:11:06 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S230104AbjE3RRV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 13:17:21 -0400
+Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB4BD98;
+        Tue, 30 May 2023 10:17:20 -0700 (PDT)
+Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+        by mail11.truemail.it (Postfix) with ESMTPA id A3735207A3;
+        Tue, 30 May 2023 19:17:18 +0200 (CEST)
+Date:   Tue, 30 May 2023 19:17:17 +0200
+From:   Francesco Dolcini <francesco@dolcini.it>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Francesco Dolcini <francesco@dolcini.it>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Dipen Patel <dipenp@nvidia.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Dilip Kota <eswara.kota@linux.intel.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-spi@vger.kernel.org, timestamp@lists.linux.dev,
-        linux-watchdog@vger.kernel.org, Tony Lindgren <tony@atomide.com>,
-        Oleksij Rempel <o.rempel@pengutronix.de>
-Subject: Re: [PATCH 0/7] dt-bindings: restrict node name suffixes
-Message-ID: <20230530-banister-luxurious-d33a5d289749@spud>
-References: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/5] arm64: dts: ti: add verdin am62
+Message-ID: <ZHYvnSMSnzoaYvWm@francesco-nb.int.toradex.com>
+References: <20230524143631.42471-1-francesco@dolcini.it>
+ <20230524143631.42471-4-francesco@dolcini.it>
+ <20230530121044.sjhv452b4hs4lyiy@flyer>
+ <ZHYl8/8k4CTm/2LW@francesco-nb.int.toradex.com>
+ <20230530165351.rqpu7go3kw6j3upc@storable>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3drXRST+roPPVcQt"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230530165351.rqpu7go3kw6j3upc@storable>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, May 30, 2023 at 11:53:51AM -0500, Nishanth Menon wrote:
+> On 18:36-20230530, Francesco Dolcini wrote:
+> > On Tue, May 30, 2023 at 07:10:44AM -0500, Nishanth Menon wrote:
+> > > On 16:36-20230524, Francesco Dolcini wrote:
+> > > > +/* Verdin I2C_2_DSI */
+> > > > +&main_i2c2 {
+> > > > +	status = "okay";
+> > > 
+> > > Here and few other dtsis:
+> > > you should set status along with pinmux.
+> > This is already done in the SoM dtsi, same applies to the other comment
+> > you have on this pinmux topic.
+> > 
+> > To rephrase what's hopefully is already written in the commit
+> > message/series description, or at least it was in my intention.
+> > 
+> > The system is modular, with multiple SoM variant and multiple carrier
+> > boards. Standard interfaces are defined at the family level, e.g.
+> > already in the SoM, in the carrier board DT file peripherals are just
+> > enabled, the pinmux is already defined in the common som.dtsi [1][2][3]
+> > files and the carrier board just use those unless there is some kind of
+> > non-standard deviation.
+> > 
+> > This prevents duplication and simplify writing device tree file for board
+> > that use standard Verdin family interfaces. This should be visible
+> > looking at this series in which 3 different boards (Dev, Yavia and
+> > Dahlia) are added.
+> 
+> It helps clarity if the node is marked "okay" when all the necessary
+> properties required for operation (in this case pinmux) is enabled. I
+> don't see a big change as a result. Just stops people from hunting for
+> where pinmux is actually done.
 
---3drXRST+roPPVcQt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I would disagree here, I would prefer to keep this as it is.
+Of course, doing the change you request here is trivial, just some copy
+paste.
 
-On Tue, May 30, 2023 at 04:48:44PM +0200, Krzysztof Kozlowski wrote:
-> Hi,
->=20
-> Tree-wide cleanup of DTS node name suffixes "-N", e.g. "pwm-5", so we all=
-ow
-> only decimal numbers.  In few cases narrow the pattern to also disallow
-> multiple suffixes, e.g. "pwm-5-5".
+The pinctrl is not all the necessary properties, you still need go
+hunting on the dtsi includes hierarchy to see that everything is there.
+And I think this is just fine, we do this just to avoid duplicating
+common stuff.
 
-I figure there'll be quite a bit of stuff to fix up afterwards?
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+What you get for sure is information duplication, with all the
+interfaces that are enabled getting the same pinctrl on
+multiple files.
 
-Thanks,
-Conor.
+Just on this series you have 3 carrier boards, we have 1 more we should
+just send and they all share mostly the same pinmux.
+... And the Verdin AM62 is really a very brand new product.
 
->=20
-> No dependencies, can be applied by individual subsystems.
->=20
-> Cc: Tony Lindgren <tony@atomide.com>
-> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
->=20
-> Link: https://lore.kernel.org/all/20221127182232.GA128974-robh@kernel.org/
->=20
-> Best regards,
-> Krzysztof
->=20
-> Krzysztof Kozlowski (7):
->   dt-bindings: phy: intel,combo-phy: restrict node name suffixes
->   dt-bindings: pwm: restrict node name suffixes
->   dt-bindings: rtc: restrict node name suffixes
->   dt-bindings: slimbus: restrict node name suffixes
->   spi: dt-bindings: restrict node name suffixes
->   dt-bindings: timestamp: restrict node name suffixes
->   dt-bindings: watchdog: restrict node name suffixes
->=20
->  Documentation/devicetree/bindings/phy/intel,combo-phy.yaml    | 2 +-
->  Documentation/devicetree/bindings/pwm/pwm.yaml                | 2 +-
->  Documentation/devicetree/bindings/rtc/rtc.yaml                | 2 +-
->  Documentation/devicetree/bindings/slimbus/slimbus.yaml        | 2 +-
->  Documentation/devicetree/bindings/spi/spi-controller.yaml     | 2 +-
->  .../bindings/timestamp/hardware-timestamps-common.yaml        | 2 +-
->  Documentation/devicetree/bindings/watchdog/watchdog.yaml      | 4 ++--
->  7 files changed, 8 insertions(+), 8 deletions(-)
->=20
-> --=20
-> 2.34.1
->=20
+From my point of view I would also lose some clarity, since the current
+structure, at least to some extent, helps understanding when a carrier
+board is deviating from the family specification.
 
---3drXRST+roPPVcQt
-Content-Type: application/pgp-signature; name="signature.asc"
+I hope this explanation gives some more context.
 
------BEGIN PGP SIGNATURE-----
+Francesco
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHYuKgAKCRB4tDGHoIJi
-0nXKAQDamcvDwarCjeG65qUN+fBYxaI+//cyJEQB1SuuBpUTGgEAy0ivPKjui6wX
-d/shbUIhWWfohF1w8yRNuYfQATp+AAQ=
-=EmEg
------END PGP SIGNATURE-----
 
---3drXRST+roPPVcQt--
