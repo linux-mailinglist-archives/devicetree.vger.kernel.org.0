@@ -2,197 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE2A2715EBF
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 14:16:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6F37715EE9
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 14:21:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230033AbjE3MP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 08:15:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46036 "EHLO
+        id S230146AbjE3MVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 08:21:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230448AbjE3MPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 08:15:55 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B56F12B;
-        Tue, 30 May 2023 05:15:26 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab] (unknown [IPv6:2001:b07:2ed:14ed:a962:cd4d:a84:1eab])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id AA6186606E94;
-        Tue, 30 May 2023 13:15:23 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1685448925;
-        bh=4wNEnxY6LQ6QUhnOBO99wgPeevp5yEWOIVnYVgFq2ok=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=K9Xc5p9TKYcf8khiFK1yY4EMlDkotGT1R4P4TK35EuA84Fs9v/gwwCy3V9jQpBwUb
-         tazT0TXpsYhyI+TofjuTvsn7XaigKSBo3YYNoBoeBuGDn/zWOhY+wV9CCFuYchm8DW
-         M5tWdBaEnadB6CXH8kqUxo4PmbdNFtvGTtiMFy1MpZ5yU1pkgD3ak0SN8RV0AGx5qE
-         De742jKhCiI+Hf4+nj1TNNkSM2bjp6JEzA1maq2nP4wJi0H5TRXkcy3kR6wQr8dSmD
-         eaZsGJGQwG78nf5hxCnXw3fUbpekqi8mh++i44zXGbtJhYMphjUNtRpqXSrmF8r4jq
-         o3wF1rqlcjfGA==
-Message-ID: <739a8bd9-9ff0-5072-fdae-b64efdf86842@collabora.com>
-Date:   Tue, 30 May 2023 14:15:21 +0200
+        with ESMTP id S229691AbjE3MVa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 08:21:30 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E37C5;
+        Tue, 30 May 2023 05:21:29 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34UBAOkI020617;
+        Tue, 30 May 2023 07:21:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=2GgFwvas2rFXV4McY7VMK9G2VCTdQUXyqwVMLSgXHI8=;
+ b=UA3y3BVM/HgEl3CvdA4HZc2gbM8jFUqQi/CiHcc0ZFNZhofB6Z4XmmYumWJtz5foHWTt
+ BKrnlyvQbPQwV5iz49jSEfT+Q9i1f2500/Suca2P+00WIbeZjJ0Dzpa8hPZSWja6uaSP
+ vv897JhneMBD31sFIKQ6pEQESlXwvsyW0HPzsJw6dO+VKSrVTxMi5mvOedE7Z2DvSEhB
+ ZeGNwSx6Hz1zgd3SWFhxnvog33uNSUBqSlXOCaudeplmUzw2v+7JIs98VR5oUkt6AOCu
+ nCi8gwPIvN09qcOjof8KSdWRBYp2Z/y93qrDEo8qe6Nk3Z8ej3UupkGWAp4dvPEb9IKm IA== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3quf90u2t5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 30 May 2023 07:21:14 -0500
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Tue, 30 May
+ 2023 13:21:12 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Tue, 30 May 2023 13:21:12 +0100
+Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 840C745;
+        Tue, 30 May 2023 12:21:12 +0000 (UTC)
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <lee@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+        <vkoul@kernel.org>
+CC:     <robh+dt@kernel.org>, <conor+dt@kernel.org>, <lgirdwood@gmail.com>,
+        <yung-chuan.liao@linux.intel.com>, <sanyog.r.kale@intel.com>,
+        <pierre-louis.bossart@linux.intel.com>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/6] Add cs42l43 PC focused SoundWire CODEC
+Date:   Tue, 30 May 2023 13:21:06 +0100
+Message-ID: <20230530122112.1314458-1-ckeepax@opensource.cirrus.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: RFC: DSI host capabilities (was: [PATCH RFC 03/10] drm/panel: Add
- LGD panel driver for Sony Xperia XZ3)
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        freedreno <freedreno@lists.freedesktop.org>
-References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
- <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
- <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
- <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
- <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
- <CAA8EJppG=MAVpK1J_8bNnkJ23y9NtgY7a2GVResXJvhEKyNsrw@mail.gmail.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAA8EJppG=MAVpK1J_8bNnkJ23y9NtgY7a2GVResXJvhEKyNsrw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: mDDcEAkFiQSYVCUwRek4aYj5J8slS2_p
+X-Proofpoint-ORIG-GUID: mDDcEAkFiQSYVCUwRek4aYj5J8slS2_p
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 30/05/23 13:44, Dmitry Baryshkov ha scritto:
-> On Tue, 30 May 2023 at 10:24, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>
->> Hi Marijn, Dmitry, Caleb, Jessica,
->>
->> On 29/05/2023 23:11, Marijn Suijten wrote:
->>> On 2023-05-22 04:16:20, Dmitry Baryshkov wrote:
->>> <snip>
->>>>> +   if (ctx->dsi->dsc) {
->>>>
->>>> dsi->dsc is always set, thus this condition can be dropped.
->>>
->>> I want to leave room for possibly running the panel without DSC (at a
->>> lower resolution/refresh rate, or at higher power consumption if there
->>> is enough BW) by not assigning the pointer, if we get access to panel
->>> documentation: probably one of the magic commands sent in this driver
->>> controls it but we don't know which.
->>
->> I'd like to investigate if DSC should perhaps only be enabled if we
->> run non certain platforms/socs ?
->>
->> I mean, we don't know if the controller supports DSC and those particular
->> DSC parameters so we should probably start adding something like :
->>
->> static drm_dsc_config dsc_params_qcom = {}
->>
->> static const struct of_device_id panel_of_dsc_params[] = {
->>          { .compatible = "qcom,sm8150", , .data = &dsc_params_qcom },
->>          { .compatible = "qcom,sm8250", , .data = &dsc_params_qcom },
->>          { .compatible = "qcom,sm8350", , .data = &dsc_params_qcom },
->>          { .compatible = "qcom,sm8450", , .data = &dsc_params_qcom },
->> };
-> 
-> I think this would damage the reusability of the drivers. The panel
-> driver does not actually care if the SoC is SM8350, sunxi-something or
-> RCar.
-> Instead it cares about host capabilities.
-> 
-> I think instead we should extend mipi_dsi_host:
-> 
-> #define MIPI_DSI_HOST_MODE_VIDEO BIT(0)
-> #define MIPI_DSI_HOST_MODE_CMD  BIT(1)
-> #define MIPI_DSI_HOST_VIDEO_SUPPORTS_COMMANDS BIT(2)
-> // FIXME: do we need to provide additional caps here ?
-> 
-> #define MIPI_DSI_DSC_1_1 BIT(0)
-> #define MIPI_DSI_DSC_1_2 BIT(1)
-> #define MIPI_DSI_DSC_NATIVE_422 BIT(2)
-> #define MIPI_DSI_DSC_NATIVE_420 BIT(3)
-> #define MIPI_DSI_DSC_FRAC_BPP BIT(4)
-> // etc.
-> 
-> struct mipi_dsi_host {
->   // new fields only
->    unsigned long mode_flags;
->    unsigned long dsc_flags;
-> };
-> 
-> Then the panel driver can adapt itself to the host capabilities and
-> (possibly) select one of the internally supported DSC profiles.
-> 
+This patch chain adds support for the Cirrus Logic cs42l43 PC focused
+SoundWire CODEC. The chain is currently based of Lee's for-mfd-next
+branch.
 
-I completely agree about extending mipi_dsi_host, other SoCs could reuse that and
-support for DSC panels would become a lot cleaner.
+Change notes are included with each patch, most of the changes are
+trivial, the notable ones are moving the IRQs out of irqchip and into
+the MFD, and moving the DT binding to sound.
 
-For example, on MediaTek DRM there's some support for DSC, more or less the same
-for SPRD DRM and some DSI bridge drivers... having a clean infrastructure would
-definitely help.
+Thanks,
+Charles
 
-I'm sad I cannot offer testing in that case because despite being sure that there
-are MTK smartphones around with DSI panels using DSC, I have none... and all of the
-Chromebooks are not using DSC anyway (but using DisplayPort compression, which is
-obviously an entirely different beast).
+Charles Keepax (4):
+  dt-bindings: mfd: cirrus,cs42l43: Add initial DT binding
+  mfd: cs42l43: Add support for cs42l43 core driver
+  pinctrl: cs42l43: Add support for the cs42l43
+  ASoC: cs42l43: Add support for the cs42l43
 
->>
->> ...
->> static int sony_akatsuki_lgd_probe(struct mipi_dsi_device *dsi)
->> ...
->>          const struct of_device_id *match;
->>
->> ...
->>          match = of_match_node(panel_of_dsc_params, of_root);
->>          if (match && match->data) {
->>                  dsi->dsc = devm_kzalloc(&dsi->dev, sizeof(*dsc), GFP_KERNEL);
->>                  memcpy(dsi->dsc, match->data, sizeof(*dsc));
->>          } else {
->>                  dev_warn(&dsi->dev, "DSI controller is not marked as supporting DSC\n");
->>          }
->> ...
->> }
->>
->> and probably bail out if it's a DSC only panel.
->>
+Lucas Tanure (2):
+  soundwire: bus: Allow SoundWire peripherals to register IRQ handlers
+  spi: cs42l43: Add SPI controller support
 
-Usually DDICs support both DSC and non-DSC modes, depending on the initial
-programming (read: init commands)... but the usual issue is that many DDICs
-are not publicly documented for reasons, so yes, bailing out if DSC is not
-supported would be the only option, and would be fine at this point.
+ .../bindings/sound/cirrus,cs42l43.yaml        |  320 +++
+ MAINTAINERS                                   |    5 +
+ drivers/mfd/Kconfig                           |   23 +
+ drivers/mfd/Makefile                          |    3 +
+ drivers/mfd/cs42l43-i2c.c                     |   86 +
+ drivers/mfd/cs42l43-sdw.c                     |  213 ++
+ drivers/mfd/cs42l43.c                         | 1141 +++++++++
+ drivers/mfd/cs42l43.h                         |   23 +
+ drivers/pinctrl/cirrus/Kconfig                |   11 +
+ drivers/pinctrl/cirrus/Makefile               |    2 +
+ drivers/pinctrl/cirrus/pinctrl-cs42l43.c      |  609 +++++
+ drivers/soundwire/bus.c                       |   31 +
+ drivers/soundwire/bus_type.c                  |   12 +
+ drivers/spi/Kconfig                           |    7 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-cs42l43.c                     |  279 ++
+ include/linux/mfd/cs42l43-regs.h              | 1172 +++++++++
+ include/linux/mfd/cs42l43.h                   |  102 +
+ include/linux/soundwire/sdw.h                 |    9 +
+ include/sound/cs42l43.h                       |   17 +
+ sound/soc/codecs/Kconfig                      |   16 +
+ sound/soc/codecs/Makefile                     |    4 +
+ sound/soc/codecs/cs42l43-jack.c               |  951 +++++++
+ sound/soc/codecs/cs42l43-sdw.c                |   75 +
+ sound/soc/codecs/cs42l43.c                    | 2275 +++++++++++++++++
+ sound/soc/codecs/cs42l43.h                    |  126 +
+ 26 files changed, 7513 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs42l43.yaml
+ create mode 100644 drivers/mfd/cs42l43-i2c.c
+ create mode 100644 drivers/mfd/cs42l43-sdw.c
+ create mode 100644 drivers/mfd/cs42l43.c
+ create mode 100644 drivers/mfd/cs42l43.h
+ create mode 100644 drivers/pinctrl/cirrus/pinctrl-cs42l43.c
+ create mode 100644 drivers/spi/spi-cs42l43.c
+ create mode 100644 include/linux/mfd/cs42l43-regs.h
+ create mode 100644 include/linux/mfd/cs42l43.h
+ create mode 100644 include/sound/cs42l43.h
+ create mode 100644 sound/soc/codecs/cs42l43-jack.c
+ create mode 100644 sound/soc/codecs/cs42l43-sdw.c
+ create mode 100644 sound/soc/codecs/cs42l43.c
+ create mode 100644 sound/soc/codecs/cs42l43.h
 
-Cheers,
-Angelo
-
->> We could alternatively match on the DSI controller's dsi->host->dev instead of the SoC root compatible.
->>
->> Neil
-> 
+-- 
+2.30.2
 
