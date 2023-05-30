@@ -2,225 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A17ED715AA3
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 11:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18AC3715AB2
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 11:52:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230517AbjE3JuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 05:50:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59290 "EHLO
+        id S230231AbjE3JwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 05:52:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231246AbjE3Jt4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 05:49:56 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5907B9C;
-        Tue, 30 May 2023 02:49:54 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-5149e65c218so3516770a12.2;
-        Tue, 30 May 2023 02:49:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685440193; x=1688032193;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D++kU1nB61eBtycdhje0CGacbkQPrmHYWln6MSMfpxE=;
-        b=ebrO0AbiU699M78nj/lkJ6TLK8RtTBThEw1uJZmz6/RBWliG/+CcnbPuvUu6kEudoG
-         qR+M4Ylx1cuvkWlA0nbTnG2oa3+SDbvWWTdCV6MPbbq34myN6p9w59Hfle4mnu+FU13w
-         mm7ERI6L2lJ/O5Dx/DuLDZzscMzb+vg+K3+1kkWBDRT/RTiq8+Xu1B6ikmc4HxmEAoVL
-         D55Z6KwoZU3zk7m47NadZiBEPWWtK5kwxO4VUmfxWoelyXTdcU67ENwMH8CUPQcURzNx
-         C/07+xDsnQ3MlUjH/fBNCpPLlA/5Q3TJF5FHIDv7LP7sNUWRw/o7exy2QhpYlbwPi76H
-         6cFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685440193; x=1688032193;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=D++kU1nB61eBtycdhje0CGacbkQPrmHYWln6MSMfpxE=;
-        b=D/DuUc6ARlwiXCHGHkt8xFcEpAPN+sGlZ5+TmiDM3QH5dRLdQeOiJ+ylpAiLa+VOXA
-         CBi6MjhFRJrNycYSIzs73WM4COLMGTc4mecXJ90ZnBKiQOZRYFKjBmvKIOop0ylpC4GA
-         HHTPcTCvNx4jDSONnKIMcl/kb1nilLMGZFr0aUNAyLl5mE+eedjRKt4iSyafNufpVqiY
-         5MgMEVD9UdIR9xBrzOH6LjiedSKgXi+lZSLKEMLO16wDIhQq7hzSTDtlszL78L39VxLE
-         YiGuIK20ZH6+Cp+ydjNuVJp7a605mQsr1ysiunVooOFvGP0YRA/uV782ke4jKGnCwfxo
-         JowA==
-X-Gm-Message-State: AC+VfDyVueyX3aeR1xE63RxyDYNyAzt3qt4LZPGGV1eenTkJEITqIiUl
-        jbtoX+Q9e5JjMfMO+VK5T8asGtsgqBbEEkeeoHM=
-X-Google-Smtp-Source: ACHHUZ6b8UI8RWUYgeGBH85JNvUp42kjeJ8QW/vqH7ouLfa3WTiJdMb24oJp719CZUAgB+5nqOZYeLsBvW3/8Um6k6g=
-X-Received: by 2002:a17:907:ea6:b0:96f:d154:54f7 with SMTP id
- ho38-20020a1709070ea600b0096fd15454f7mr1750791ejc.42.1685440192524; Tue, 30
- May 2023 02:49:52 -0700 (PDT)
+        with ESMTP id S231271AbjE3JwO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 05:52:14 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2054.outbound.protection.outlook.com [40.107.94.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADDE107;
+        Tue, 30 May 2023 02:51:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=it5UYb8CgKI0343VfANaot8oIIYMmMNnJGRHUZqPur/SNBZficiAa0afQPmCklQH6e5fv6PPTXsmVGwxMG36MyWXcPV7MRiIAbsVap6p5dCUCxI6F7RqsGIRUWknatlJ+DdGpRl+pLwhSxFd8a2RvCJ4uYUxkD5rKFZERwmuUahbYXJ9gfduQ0PSpMk1shydTBnxr7BuAAsAm3SucQnlCWr5xhs5JXaEpooFZG51kdUWLVbfZp+I9y/GTPHo+eBQbfJUB97GsEgqtCFQqgsYSJ9NLz0ZrSFpXNwMsdAxOVcb1sVprIXIOZLDIu/sUZTBVhVG4kG+4cwWi4t5pbhiKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IrajCeCb7cgAEhN9x0cg11BgXO9HKr5qwYp2/jdafaw=;
+ b=fRROuP4EthBwAOs+2vLmWtCBBpyrvfa/Y6hFd6ygtQ91mxZMqVy287hVebRktPcJzWp9gghjDw3SBiodq3W5NHJkUPqpF/e84Df5sm2fss6WzVRGopxPG0nZ6SsVYBrbUpqt7RdwR6pYnH/IwiFdhGyK2qXd0cyAutdS9W9itS+adl3uSCOk0b5lG3nQ7axKXg7cvgHWUFhVVKCfMdeTE/smRJ+4MJDML7+FyyeCpc/LwpNfa7CXZ9sCaWiTrwadWbHfZXU3wkPO8T1rNooZZzAiYHmykVvqPTfN1+Ml9sigq6gIA/zqHZBHVepldsnRDX6op97aF3arwAmCSo2AdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=davemloft.net smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IrajCeCb7cgAEhN9x0cg11BgXO9HKr5qwYp2/jdafaw=;
+ b=po27/zVBOI6pvKWb/n6O21MgjAsx3pxWxIzfsT6FdBJUfrs7H4xVRBWDp/JlLdguxEHdcCuyoJfVfvX0UwatR51W0NDnOjJmWM+R9mmiooG3OWsYQo9/p9g+KONLqgXhB10GbDEf3gLtEqOUrfdLuLVP3zZHw/4SZJ71ndW+2EQ=
+Received: from BYAPR02CA0003.namprd02.prod.outlook.com (2603:10b6:a02:ee::16)
+ by PH7PR12MB6693.namprd12.prod.outlook.com (2603:10b6:510:1b0::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Tue, 30 May
+ 2023 09:51:45 +0000
+Received: from CO1NAM11FT041.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:a02:ee:cafe::b0) by BYAPR02CA0003.outlook.office365.com
+ (2603:10b6:a02:ee::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23 via Frontend
+ Transport; Tue, 30 May 2023 09:51:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1NAM11FT041.mail.protection.outlook.com (10.13.174.217) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6455.21 via Frontend Transport; Tue, 30 May 2023 09:51:44 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 30 May
+ 2023 04:51:44 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Tue, 30 May
+ 2023 02:51:43 -0700
+Received: from xhdpranavis40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Tue, 30 May 2023 04:51:39 -0500
+From:   Pranavi Somisetty <pranavi.somisetty@amd.com>
+To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
+        <claudiu.beznea@microchip.com>
+CC:     <git@amd.com>, <michal.simek@amd.com>, <harini.katakam@amd.com>,
+        <radhey.shyam.pandey@amd.com>, <pranavi.somisetty@amd.com>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH net-next v3 0/2] Add support for partial store and forward
+Date:   Tue, 30 May 2023 03:51:36 -0600
+Message-ID: <20230530095138.1302-1-pranavi.somisetty@amd.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-References: <A206E0A5-9BF0-4787-9B06-9F91FA3C60A3@flygoat.com>
- <20230527-passing-unfixed-39e01b787808@spud> <14EF9F21-8150-40D9-8870-E9151C4882CF@flygoat.com>
- <20230527-poet-antarctic-cc02aa60ab52@spud> <CAJhJPsU_qOJKO99S1xjJaSUqXsXAG7HpYbzs5wTb8J4-tQqSQA@mail.gmail.com>
- <E229B204-1B00-4B24-B4BF-15277682FB4B@kernel.org> <CAMpQs4K4e3BSVvqXa+QjhM5XDxHc_ZCiRYW+HgPo21AQ_bYSRQ@mail.gmail.com>
- <6845b6ce-06a8-9a0c-7f04-50fa906cd1e4@linaro.org> <202305300840203aa4ff4c@mail.local>
- <CAJhJPsXyS_+tTLJ1JSCNx6wXs8eGwwQ4khg=-0gRGZuJRDddoQ@mail.gmail.com> <2023053009220055969681@mail.local>
-In-Reply-To: <2023053009220055969681@mail.local>
-From:   Keguang Zhang <keguang.zhang@gmail.com>
-Date:   Tue, 30 May 2023 17:49:34 +0800
-Message-ID: <CAJhJPsVvdSwzGw=m8cxSPqgp6x=_GNj9vaD4+68Yoj9Rj-kj0Q@mail.gmail.com>
-Subject: Re: [PATCH V4 1/5] dt-bindings: rtc: Remove the LS2X from the trivial RTCs
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Conor Dooley <conor@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        zhao zhang <zhzhl555@gmail.com>,
-        Yang Ling <gnaygnil@gmail.com>,
-        loongson-kernel@lists.loongnix.cn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT041:EE_|PH7PR12MB6693:EE_
+X-MS-Office365-Filtering-Correlation-Id: aa2f718a-4ba2-4715-1408-08db60f37a4b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: FR7DwKRZx43V3hjkYateTV0t5LuOO8scWa7c/jLTxdp/FqRZ5WX1U8y+eB1p8OHBA/qe3cgJFyV2BdzPO8xcLCHMdTSKfUnLHCJVGH0PRzBOY3Y0rNZ0sw6x3FM2YG1wPmU4GXG7qjHoSb2oN0rpnwHmjK6CpzRxQqWq3Xwh6JASy/rI1ybu2Zlc6ZxU3JVCEEEuVziv0hy8aGjRBWLx/6YJXhBudZNnEzeNd+nTWClRIKqtiSJeFgJaBWg7FxS4NN75nYC/SeNVQsWZjhW6rJnezj9fTI3qPMLNE/lYy1+apbJ9sDTZlrdpOXSB1ERWqYgjsyPjyF10Jq1jv5rOiWSQ46OpfklfPFPP3dW+2z0PH69F5HbOe9WPTktTCS1YCE9BgjWgfZB+926XxG5bWEVXlnJK3tavjUs+UfmDzt33xDb6ZZQw5MgwLWA9keV7bFXmtzGn1RCEKeJSc057VQPC9J+zakX5GvuKwKZrOTGYZY/IlI12HoRQxw2NySpouVSgQjtsbPFZfND/BSpF/QZHppB02Eo2p/WW1jE6cvmcsGw2J3S7ukLYBwZF/4b68jh6WfS805669gQaiwlX6h+Twby5HDjQtxBmA2y4/dhXKwo4RT4k/uzBmB4UyPTeVA7nZ/wQKX7etjPB2OLBmJLj7zKgcBpmiHEaUGMTeHzTSj/53bCLtVF8aaSv0Bwqrm7PXtSlYCu8hROQ369563WPnRUn2LAilPAemwFUNFCx1uRRTHZ1vQagli7jUOJUcjWQlbKZs3TzetJTk+lv897KzzGru21EUoMJtHWU+Ps=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(136003)(376002)(396003)(346002)(451199021)(36840700001)(40470700004)(46966006)(1076003)(26005)(186003)(316002)(6666004)(2906002)(40460700003)(5660300002)(41300700001)(36756003)(44832011)(7416002)(8676002)(966005)(8936002)(478600001)(82740400003)(81166007)(36860700001)(356005)(40480700001)(54906003)(336012)(426003)(82310400005)(4326008)(110136005)(2616005)(47076005)(70586007)(70206006)(83380400001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 May 2023 09:51:44.6711
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa2f718a-4ba2-4715-1408-08db60f37a4b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT041.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6693
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 5:22=E2=80=AFPM Alexandre Belloni
-<alexandre.belloni@bootlin.com> wrote:
->
-> On 30/05/2023 17:13:12+0800, Keguang Zhang wrote:
-> > On Tue, May 30, 2023 at 4:40=E2=80=AFPM Alexandre Belloni
-> > <alexandre.belloni@bootlin.com> wrote:
-> > >
-> > > On 30/05/2023 10:17:43+0200, Krzysztof Kozlowski wrote:
-> > > > On 29/05/2023 10:31, Binbin Zhou wrote:
-> > > > > Hi Krzysztof:
-> > > > >
-> > > > > Excuse me.
-> > > > > We have different opinions on how to better describe rtc-loongson=
- compatible.
-> > > > >
-> > > > > Based on my previous communication with you, I think we should li=
-st
-> > > > > all the Socs in the driver and drop the wildcards.
-> > > >
-> > > > Suggestion was about the bindings. Not in the driver. I never said =
-to
-> > > > list all compatibles in the driver...
-> > > >
-> > > > > This should be clearer and more straightforward:
-> > > > >
-> > > > >         { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rt=
-c_config
-> > > > > }, //ls1b soc
-> > > > >         { .compatible =3D "loongson,ls1c-rtc", .data =3D &ls1x_rt=
-c_config
-> > > > > }, //ls1c soc
-> > > > >         { .compatible =3D "loongson,ls7a-rtc", .data =3D
-> > > > > &generic_rtc_config }, //ls7a bridge chip
-> > > > >         { .compatible =3D "loongson,ls2k0500-rtc", .data =3D
-> > > > > &generic_rtc_config }, // ls2k0500 soc
-> > > > >         { .compatible =3D "loongson,ls2k2000-rtc", .data =3D
-> > > > > &generic_rtc_config }, // ls2k2000 soc
-> > > > >         { .compatible =3D "loongson,ls2k1000-rtc", .data =3D
-> > > > > &ls2k1000_rtc_config }, // ls2k1000 soc
-> > > >
-> > > > I would suggest to use fallbacks as suggested by Conor at least for=
- some
-> > > > of them. You referred to my previous comments about wildcards.
-> > > > Wildcard !=3D fallback.
-> > > >
-> > > > >
-> > > > > And Conor thought it should be rendered using a fallback compatib=
-le
-> > > > > form based on ".data".
-> > > >
-> > > > Based on common (compatible) programming model unless you already h=
-ave
-> > > > clear hardware differences making them incompatible.
-> > > >
-> > > > >
-> > > > >         "loongson,ls1b-rtc"
-> > > > >         "loongson,ls1c-rtc", "loongson,ls1b-rtc"
-> > > > >         "loongson,ls7a-rtc"
-> > > > >         "loongson,ls2k0500-rtc", "loongson,ls7a-rtc"
-> > > > >         "longson,ls2k2000-rtc", "longson,ls7a-rtc"
-> > > > >         "loonson,ls2k1000-rtc"
-> > > > >
-> > > > >         { .compatible =3D "loongson,ls1b-rtc", .data =3D &ls1x_rt=
-c_config }
-> > > > >         { .compatible =3D "loongson,ls7a-rtc", .data =3D &generic=
-_rtc_config }
-> > > > >         { .compatible =3D "loongson,ls2k1000-rtc", .data =3D &ls2=
-k1000_rtc_config }
-> > > > >
-> > > > > In this form,  I think it might not be possible to show very
-> > > > > graphically which chips are using the driver.
-> > > >
-> > > > ??? How is it impossible? For all other SoCs and architectures it i=
-s
-> > > > possible, so what is special for Loongson?
-> > > >
-> > > > > Also, for example, "ls7a" is a bridge chip, while
-> > > > > "ls2k2000"/"ls2k0500" are soc chips, and it seems inappropriate t=
-o
-> > > > > integrate them into one item.
-> > > >
-> > > > Why it is inappropriate? I don't see the issue here... what is a
-> > > > "bridge" chip? Isn't this also an SoC?
-> > > >
-> > > >
-> > > > >
-> > > > > Which one do you think is more suitable for us?
-> > > >
-> > > > Use fallbacks for some. You pointed difference in alarm for ls1x, r=
-ight?
-> > > > If so, then they can stay separate.
-> > >
-> > > From what I seen the IP and register set is the same, it is just the
-> > > integration on the SoC that differs.
-> > >
-> > Actually, ls1c RTC registers are not the same as ls1b.
-> > ls1c doesn't have the following resgisters.
-> > +#define TOY_MATCH0_REG         0x34 /* TOY timing interrupt 0 */
-> > +#define TOY_MATCH1_REG         0x38 /* TOY timing interrupt 1 */
-> > +#define TOY_MATCH2_REG         0x3c /* TOY timing interrupt 2 */
-> >
-> > +#define RTC_CTRL_REG           0x40 /* TOY and RTC control register */
-> > +#define RTC_TRIM_REG           0x60 /* Must be initialized to 0 */
-> > +#define RTC_WRITE0_REG         0x64 /* RTC counters value (write-only)=
- */
-> > +#define RTC_READ0_REG          0x68 /* RTC counters value (read-only) =
-*/
-> > +#define RTC_MATCH0_REG         0x6c /* RTC timing interrupt 0 */
-> > +#define RTC_MATCH1_REG         0x70 /* RTC timing interrupt 1 */
-> > +#define RTC_MATCH2_REG         0x74 /* RTC timing interrupt 2 */
-> >
-> > As you can see, it doesn't support match function, which is why ls1c
-> > doesn't support RTC interrupt.
->
-> They are in the Loongson1C Processor User Manual I have which states:
->
-> 21.2.6 SYS_TOYMATCH0/1/2 (no register in 1C2)
->
-I'm afraid that your user manual is outdated.
-The latest 1C300 user manual (v1.5) doesn't have section 21.2.6 at all.
-Sorry, I can't find English version.
-Here is the Chinese version:
-https://www.loongson.cn/uploads/images/2022051616223977135.%E9%BE%99%E8%8A%=
-AF1C300%E5%A4%84%E7%90%86%E5%99%A8%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf
-> --
-> Alexandre Belloni, co-owner and COO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+Add support for partial store and forward mode in Cadence MACB.
 
+Link for v1:
+https://lore.kernel.org/all/20221213121245.13981-1-pranavi.somisetty@amd.com/
 
+Changes v2:
+1. Removed all the changes related to validating FCS when Rx checksum
+offload is disabled.
+2. Instead of using a platform dependent number (0xFFF) for the reset
+value of rx watermark, derive it from designcfg_debug2 register.
+3. Added a check to see if partial s/f is supported, by reading the
+designcfg_debug6 register.
+4. Added devicetree bindings for "rx-watermark" property.
+Link for v2:
+https://lore.kernel.org/all/20230511071214.18611-1-pranavi.somisetty@amd.com/
 
---=20
-Best regards,
+Changes v3:
+1. Fixed DT schema error: "scalar properties shouldn't have array keywords"
+2. Modified description of rx-watermark in to include units of the watermark value
+3. Modified the DT property name corresponding to rx_watermark in pbuf_rxcutthru to
+"cdns,rx-watermark".
+4. Followed reverse christmas tree pattern in declaring variables.
+5. Return -EINVAL when an invalid watermark value is set.
+6. Removed netdev_info when partial store and forward is not enabled.
+7. Validating the rx-watermark value in probe itself and only write to the register
+in init.
+8. Writing a reset value to the pbuf_cuthru register before disabing partial store
+and forward is redundant. So removing it.
+9. Removed the platform caps flag.
+10. Instead of reading rx-watermark from DT in macb_configure_caps,
+reading it in probe.
+11. Changed Signed-Off-By and author names on the macb driver patch.
 
-Keguang Zhang
+Maulik Jodhani (1):
+  net: macb: Add support for partial store and forward
+
+Pranavi Somisetty (1):
+  dt-bindings: net: cdns,macb: Add rx-watermark property
+
+ .../devicetree/bindings/net/cdns,macb.yaml    |  9 ++++++
+ drivers/net/ethernet/cadence/macb.h           | 14 +++++++++
+ drivers/net/ethernet/cadence/macb_main.c      | 29 +++++++++++++++++++
+ 3 files changed, 52 insertions(+)
+
+-- 
+2.36.1
+
