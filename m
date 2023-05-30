@@ -2,77 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BECC7158C2
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:39:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0A207158C6
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 10:39:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229866AbjE3Ii7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 04:38:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48442 "EHLO
+        id S230176AbjE3IjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 04:39:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229591AbjE3Ii5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:38:57 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C56FC9;
-        Tue, 30 May 2023 01:38:56 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34U8Ri1s011756;
-        Tue, 30 May 2023 10:38:34 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=6XRVWHAypnu32raoYPkLydBCpQf/QSqdlpI2jgGeJuM=;
- b=DBIMMx4p7vAigngOucRzM3KQsG5V2Afxd+sxur5VrsCRnoUouWacwqtUPAuqGqLhori+
- 8hjFtEaPLv4dHnRLT6mfnXoY3aKkhRBkVuM81MdaJoKiKHpjx8uR6eORwJdEUeykUWCh
- ZmlKdQAV+x0q//GQTGYKzD1aPydi3EIQxlZYhtX5cb8iUX8SDM9eRJa00jQ7YNWbE8S6
- /PdE2N6tEEhefOboTI50c+LwkEEu+1TfDal2Kg2SMoa6Gz9BT5+XiptWO+XlXh+Rh270
- qyP8q6cdif2TYT9sUgezFixmSG9WybPXgGAFv+gr3oJHRzcjfGfSHT5qoV/OxmeCoVcv tw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3qvsnnnx46-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 30 May 2023 10:38:34 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6266410002A;
-        Tue, 30 May 2023 10:38:31 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 39FF321683B;
-        Tue, 30 May 2023 10:38:31 +0200 (CEST)
-Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 30 May
- 2023 10:38:30 +0200
-Message-ID: <879b7689-5663-28b5-9431-2fdd243ffff2@foss.st.com>
-Date:   Tue, 30 May 2023 10:38:30 +0200
+        with ESMTP id S230089AbjE3IjJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 04:39:09 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C256CBF;
+        Tue, 30 May 2023 01:39:07 -0700 (PDT)
+X-GND-Sasl: alexandre.belloni@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1685435946;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=2zMAQurx6j5eJt60qxcRl7LgyeTAElgXySavg4WXE30=;
+        b=SG8cB3IBdwzYA1YrzK4sNPTknENv6L1BK234JvN/fQQ549/HLGQChEV4sUhCJ1OfSIuHwB
+        UY2LunyjvHAALHHOctFLXIsKJo382RJgKzV2LYF7DC6Hscn302ONMCx7nItzz8dMtUJXmP
+        KxPn1HdKwizWQwEuZXWG8vbY1fVZ3CC6QkSccNwF954wKOTmB/TabNwn70HnOeoq8+97Z7
+        fbwVpoOxKxA8ViT42ASJIRYvg1Nk3EJEx58PvIQfCG5wlKtOC8H3pvzIoLPT9SjVvRrc4D
+        wtp/9VQXAtRfI+Q9Efu50UCqrzgcPQTtEOpncpQiQCPrO0WOK9bC58eDtjr9Mg==
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7DBF8C0004;
+        Tue, 30 May 2023 08:39:03 +0000 (UTC)
+Date:   Tue, 30 May 2023 10:39:02 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        linux-mips@vger.kernel.org,
+        Keguang Zhang <keguang.zhang@gmail.com>,
+        zhao zhang <zhzhl555@gmail.com>,
+        Yang Ling <gnaygnil@gmail.com>,
+        loongson-kernel@lists.loongnix.cn
+Subject: Re: [PATCH V4 2/5] rtc: Remove the Loongson-1 RTC driver
+Message-ID: <20230530083902f09c6b43@mail.local>
+References: <cover.1684983279.git.zhoubinbin@loongson.cn>
+ <98fc717871d3a39b18ad1a26780d0d2cf1fa0896.1684983279.git.zhoubinbin@loongson.cn>
+ <2f883bad-2f8e-ef03-fc3f-c13980fb1536@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 02/11] pinctrl: stm32: add stm32mp257 pinctrl support
-Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, <soc@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
-References: <20230529162034.20481-1-alexandre.torgue@foss.st.com>
- <20230529162034.20481-3-alexandre.torgue@foss.st.com>
- <20230529-enrich-clammy-14b498baf09f@spud>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230529-enrich-clammy-14b498baf09f@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.93]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-30_05,2023-05-29_02,2023-05-22_02
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2f883bad-2f8e-ef03-fc3f-c13980fb1536@linaro.org>
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,34 +83,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor
-
-On 5/29/23 20:04, Conor Dooley wrote:
-> On Mon, May 29, 2023 at 06:20:25PM +0200, Alexandre Torgue wrote:
->> Add stm32mp257 pinctrl support.
->> diff --git a/drivers/pinctrl/stm32/pinctrl-stm32.h b/drivers/pinctrl/stm32/pinctrl-stm32.h
->> index e0c31c4c8bca..5e5de92ddd58 100644
->> --- a/drivers/pinctrl/stm32/pinctrl-stm32.h
->> +++ b/drivers/pinctrl/stm32/pinctrl-stm32.h
->> @@ -24,6 +24,9 @@
->>   #define STM32MP_PKG_AB		BIT(1)
->>   #define STM32MP_PKG_AC		BIT(2)
->>   #define STM32MP_PKG_AD		BIT(3)
->> +#define STM32MP_PKG_AI		BIT(8)
->> +#define STM32MP_PKG_AK		BIT(10)
->> +#define STM32MP_PKG_AL		BIT(11)
+On 30/05/2023 10:08:22+0200, Krzysztof Kozlowski wrote:
+> On 25/05/2023 14:55, Binbin Zhou wrote:
+> > Remove the ls1x-rtc driver as it is obsolete. We will continue to
+> > support the ls1x RTC in the upcoming Loongson unified RTC driver
+> > rtc-loongson.
+> > 
+> > Cc: Keguang Zhang <keguang.zhang@gmail.com>
+> > Cc: zhao zhang <zhzhl555@gmail.com>
+> > Cc: Yang Ling <gnaygnil@gmail.com>
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  drivers/rtc/Kconfig    |  10 ---
+> >  drivers/rtc/Makefile   |   1 -
+> >  drivers/rtc/rtc-ls1x.c | 192 -----------------------------------------
+> >  3 files changed, 203 deletions(-)
 > 
-> Mainly out of curiosity, why have you go duplicate defines for these?
-
-Mainly to fit with available packages for various STM32 MPU. Currently 
-MP1 SoCs are available with packages AB/AC/AD and MP2 series with 
-AI/AK/AL but in the future we could have package AB/AC/AD/AI available 
-for a particular SoC and then I need to anticipate this case.
-
-Cheers
-Alex
-
+> Removal in one commit and adding a new driver in second is not what we
+> usually do. We expect code to be developed and to evolve.
 > 
-> Cheers,
-> Conor.
 
+I'm fine with that, even if unusual.
+
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
