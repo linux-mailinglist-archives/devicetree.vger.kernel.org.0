@@ -2,67 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D83715264
-	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 01:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63F24715282
+	for <lists+devicetree@lfdr.de>; Tue, 30 May 2023 02:12:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbjE2Xpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 May 2023 19:45:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42262 "EHLO
+        id S229631AbjE3AMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 May 2023 20:12:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229551AbjE2Xpv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 19:45:51 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8A6CBE;
-        Mon, 29 May 2023 16:45:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1685403948; x=1716939948;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ZxkLAt+T2tTst5N4Upa2aLGwMB7qrAJ6eYEXtpheeww=;
-  b=lvUElMsZf1F3EqTaEspnpCIFUvTd1hZ0rFRPd3bl+pYFckaAsRPlj8u2
-   JvUKebPAnmapCa+kKe+tJGz0bu62MXQrH9XB5X6IMrZ0UgzAaX5TP5fnE
-   cd0kbKkagMSFIwEcuVtaI/LwZHYUpqJJCsvg7/Jhqyz/rQDy5fgKQ0kfi
-   Ho+7kZvE41cUryMbyN6moSe699zIdBveVzFMNnIAs+RZLUbCnl1YXGnFv
-   so1cQnnBDlwJMVYkXlIEMfTisaWZ9r8z+xJOew77bVnLzvm/k1JUR5OD5
-   VFo1bHMVg3l8PT0ScOtPBicu/2eVgAv+7IkqjgxEgFAveDTAfjhpGqS7A
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="420535408"
-X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; 
-   d="scan'208";a="420535408"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 May 2023 16:45:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10725"; a="683726205"
-X-IronPort-AV: E=Sophos;i="6.00,201,1681196400"; 
-   d="scan'208";a="683726205"
-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 29 May 2023 16:45:45 -0700
-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1q3mYa-000LAu-1o;
-        Mon, 29 May 2023 23:45:44 +0000
-Date:   Tue, 30 May 2023 07:45:04 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        geert+renesas@glider.be, magnus.damm@gmail.com
-Cc:     oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH net-next 5/5] net: renesas: rswitch: Use per-queue rate
- limiter
-Message-ID: <202305300718.pdF0iaxU-lkp@intel.com>
-References: <20230529080840.1156458-6-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S229527AbjE3AMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 May 2023 20:12:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F0DCD9;
+        Mon, 29 May 2023 17:12:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B4CD162917;
+        Tue, 30 May 2023 00:12:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9283FC433D2;
+        Tue, 30 May 2023 00:12:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685405559;
+        bh=msPrcnJSgNCQtqeT+hSr1SNGfu6h2JevdDkGn3rRsug=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=RoQiMSR28K+Bu/nutrwh0vzTaVTJcDzx7H2G6kYE4zv5y4nTVC0dwYnUHMwYGcsPf
+         B+iUS+BgMRZ5URniVUsVU8vE0qNuh41+aXj4Vyiyl046AiNONz9TrSW/ENaaHeB/rq
+         3hI1sxLEneqyunfgW/t2vI1PJIioQpiKNr4vOIvQCr9Rojx0y8yTQeV9f9vf20ppnq
+         7BFEwPazUgklYr/EMCDivNxJVqr+wf6SdGYJU9rP45vqBaA6vVx2CXpukb1s7rLHIK
+         jUFuO0ZL4hLbVrjDzSe6wl0N5btgX9kNw0k6HO3GqzNMLcksFQxRgmLkevmVaFu1rw
+         4d5AgeBBPE1Gw==
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH 0/6] arm64: dts: qcom: msm8916/39: Clean up labels
+Date:   Mon, 29 May 2023 17:16:23 -0700
+Message-Id: <168540577537.2201922.5958435179653162412.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230525-msm8916-labels-v1-0-bec0f5fb46fb@gerhold.net>
+References: <20230525-msm8916-labels-v1-0-bec0f5fb46fb@gerhold.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230529080840.1156458-6-yoshihiro.shimoda.uh@renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,39 +57,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yoshihiro,
+On Mon, 29 May 2023 14:46:57 +0200, Stephan Gerhold wrote:
+> MSM8916 and MSM8939 are very similar and almost fully "pin-compatible",
+> so there are some devices that exist in very similar variants with both
+> MSM8916 and MSM8939. To allow sharing definitions for such devices the
+> SoCs should be set up as similar as possible, e.g. using the same
+> labels. At least for me this will also simplify maintenance and review
+> because board DTs do not behave and/or look subtly different.
+> 
+> [...]
 
-kernel test robot noticed the following build errors:
+Applied, thanks!
 
-[auto build test ERROR on net-next/main]
+[1/6] arm64: dts: qcom: msm8916: Rename &msmgpio -> &tlmm
+      commit: 41e22c2ff38eaea777f1158071539e659aa7980d
+[2/6] arm64: dts: qcom: msm8916/39: Rename &blsp1_uartN -> &blsp_uartN
+      commit: c310ca82e229124e7b373125d82ea8fdbf2f9f81
+[3/6] arm64: dts: qcom: msm8916/39: Use consistent name for I2C/SPI pinctrl
+      commit: fdfc21f65023dbbfe11dcd8f106230668ba8d9e5
+[4/6] arm64: dts: qcom: msm8916/39: Clean up MDSS labels
+      commit: 835f939501769253eb7eb2dc5389b8592a63a3ed
+[5/6] arm64: dts: qcom: pm8916: Rename &wcd_codec -> &pm8916_codec
+      commit: 274cf2bdd6c94da2bf293f5a6c9a5f712dd4b01e
+[6/6] arm64: dts: qcom: msm8916: Move aliases to boards
+      commit: 154f23a8d70cd39158cfdcfb71c112f687352da4
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yoshihiro-Shimoda/dt-bindings-net-r8a779f0-ether-switch-Add-ACLK/20230529-161010
-base:   net-next/main
-patch link:    https://lore.kernel.org/r/20230529080840.1156458-6-yoshihiro.shimoda.uh%40renesas.com
-patch subject: [PATCH net-next 5/5] net: renesas: rswitch: Use per-queue rate limiter
-config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20230530/202305300718.pdF0iaxU-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        mkdir -p ~/bin
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/64502944471d5b6fac76f49c06c29edfbbe43935
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Yoshihiro-Shimoda/dt-bindings-net-r8a779f0-ether-switch-Add-ACLK/20230529-161010
-        git checkout 64502944471d5b6fac76f49c06c29edfbbe43935
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 ~/bin/make.cross W=1 O=build_dir ARCH=powerpc olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 ~/bin/make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202305300718.pdF0iaxU-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "__udivdi3" [drivers/net/ethernet/renesas/rswitch_drv.ko] undefined!
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Bjorn Andersson <andersson@kernel.org>
