@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F6E3717B14
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:03:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A56E2717B70
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:12:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235342AbjEaJDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 05:03:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45270 "EHLO
+        id S235061AbjEaJL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 05:11:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235275AbjEaJDK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:03:10 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 276DF132
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:02:42 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-96f7bf3cf9eso1027455966b.0
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:02:42 -0700 (PDT)
+        with ESMTP id S235422AbjEaJL4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:11:56 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3801A13D
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:11:45 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f50470d77cso3575708e87.0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:11:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685523747; x=1688115747;
+        d=linaro.org; s=google; t=1685524303; x=1688116303;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eLGOgCTdN9b0I3RzLK+qTsPeSIXwIOR+lUiYzHLyqkA=;
-        b=hl/FuLnQZIjxtgYC0n4FAzTYUV3krumKQ/xsy+UH7E/f3dgqeMgPN/5AWK3SEAbCIr
-         FI5o6PsmvyimDsqt5v5W0X8JCTWp4IIqZ8x4bJAK1WuGUur4LrMbrSLlB4RyvOnzIWpj
-         UnB3gYbhh4tVYaSM44gFg9i9Vmw/5b+wvnLAVnsq+U/bFznueJbE05QomY6GoS+Thfyi
-         92yxam3PqKLAhtN2FkiFthHuejjWHvOd2bLzYlJhwaQRKPfYLKleciRdi3ZkGUkRYYwx
-         li9VHUt3YJlo2ixD5iK57yOeNvKQ5dkacN1nQ4J0gD5U8MxsmtBUBfgxsazERnuF8oTC
-         IkKw==
+        bh=n+rhtjoI0oVWr4lv7CIl4YpL7WJExUtXF/mZsGUKruo=;
+        b=Iy51vWIAOJEYhuMmlu7qQREiZEWb0ykWvKQrH7g08xAUjpmSTz9580hHm3zNvhwRPO
+         mOOyHvchn3HQLHZwYDg3ldiYL8VsczTo0PSdfcIK6SY6nOuJjlLDoxQ1ouk7rsf7xiuD
+         BSJdPpSZ23dx4Xg1VHUbo4f5Pyh44FzgERtIMQ+aLXdnI5J17cljPgvOVN+FkYh1Z+bz
+         U4VcaucTXmnct4QrLcjkeGQTLHxV89MU1WwEyukaaTyraCFqrusVXJZBFmv82V1p3GLV
+         hzKKAboSdcxG9c3/2ZsCLitpsJEy66ioLd0f1oKlXimzwzUhBs+NJIyosKNn0OZTeGoK
+         k/+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685523747; x=1688115747;
+        d=1e100.net; s=20221208; t=1685524303; x=1688116303;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eLGOgCTdN9b0I3RzLK+qTsPeSIXwIOR+lUiYzHLyqkA=;
-        b=I519qn2Y2wd7CpUnD5D1w8afLdIrtG08StvNQ52AOM9cUvkA/tL40U93LqEg0rKsNx
-         yPOehAVc1xtxAUrVpHQ1koqCXk1c3evulQxVVMj+idCmX50uQJ96c1QfDtKBJrXsPpJQ
-         tF2AnN4kmRSBIIrdkzue919aECuUbDjNN8tSNHAKBsp7w5i+zCQpMykn9QBZtHblw1Dw
-         xnh0uYUtNKkdWT2pEbNcfRf2LHZmvGL2nTfQAkv+hIxh6zucQjfZjxDqb6UuTrQ0+4qu
-         EOkfNZmA+4GETQhrCeDLk9LCocTLQlRPKuEDIRCX896VBLNaSUXFQf1jZuXWFcYz8tGw
-         EeLQ==
-X-Gm-Message-State: AC+VfDzCFHFZYRppyw/sXVjjWYkSoY0OVusNvDaiZ+PFoELlgB6u7n6y
-        cZm2i/oD2o0v5WQ9HrMjZEeKwg==
-X-Google-Smtp-Source: ACHHUZ6y49DNKKcWtbOKQ31f6lJ93szs/HfhYKInuhEAs8m2uleiHDoOT2aH1n4H9RrcakuD5WjtOg==
-X-Received: by 2002:a17:907:7da5:b0:966:4d75:4a44 with SMTP id oz37-20020a1709077da500b009664d754a44mr4305321ejc.24.1685523747328;
-        Wed, 31 May 2023 02:02:27 -0700 (PDT)
+        bh=n+rhtjoI0oVWr4lv7CIl4YpL7WJExUtXF/mZsGUKruo=;
+        b=cMHcKC9bab0qD2xQpr9b9OBCBhvFGQyiRNH/LxpPyvRYNKK15H3fcpFzj5aTU3suH9
+         rxLysOemJk0lpcQ0okwZc9HZbDBXK3VnsceyycdvnGgW59zmPsf8aY2dqGXEoVLymIwQ
+         IteIRxr7sbwWM2a0WEZlclH8ZAyh5iSUHjIvtyvMnrfcBBE8HURQqBBBd8dRaSHHEsSt
+         TUuMlHc88p7K9k1eRLrCV2yboiprAHeXVzz7DsT28XbwtDtNg4OfTRIkanm4LQ7G3Wkm
+         HqZxWG4Br6rd5V/2w4Q47p2we1H2gPLM7KKhZRtKKPt0Ndp+XkvoKMJEvu7KRphdijju
+         MGHg==
+X-Gm-Message-State: AC+VfDwZeBEtMLcPAzExPu3tPhavSuFlUQsuk31K7QdO18ucLQ3l4zFN
+        98FHloCZPhm7TuYOYdUj4iudVQ==
+X-Google-Smtp-Source: ACHHUZ6xBAZjyXT/YB/xNZ0KdSNoP9qtdld3FAw0nIeEga8FmMgG+PzrRjktTTnIcrWrcPyIGTzFqw==
+X-Received: by 2002:a05:6512:243:b0:4f3:a485:919a with SMTP id b3-20020a056512024300b004f3a485919amr2147076lfo.57.1685524303455;
+        Wed, 31 May 2023 02:11:43 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id b13-20020a1709065e4d00b00965e9b435dfsm8560598eju.65.2023.05.31.02.02.25
+        by smtp.gmail.com with ESMTPSA id a19-20020a50ff13000000b005148f0e8568sm5124081edu.39.2023.05.31.02.11.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 02:02:26 -0700 (PDT)
-Message-ID: <eef819db-4de3-06fe-8fe6-b0fe87ab5d84@linaro.org>
-Date:   Wed, 31 May 2023 11:02:24 +0200
+        Wed, 31 May 2023 02:11:42 -0700 (PDT)
+Message-ID: <0de8cecf-ec36-9300-656b-2c073f60c407@linaro.org>
+Date:   Wed, 31 May 2023 11:11:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/6] dt-bindings: sound: cirrus,cs42l43: Add initial DT
- binding
+Subject: Re: [PATCH v1 1/3] dt-bindings: regulator: pca9450: add pca9451a
+ support
 Content-Language: en-US
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>, broonie@kernel.org,
-        lee@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linus.walleij@linaro.org, vkoul@kernel.org
-Cc:     robh+dt@kernel.org, conor+dt@kernel.org, lgirdwood@gmail.com,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+To:     Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Joy Zou <joy.zou@nxp.com>, ping.bai@nxp.com,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-References: <20230530122112.1314458-1-ckeepax@opensource.cirrus.com>
- <20230530122112.1314458-3-ckeepax@opensource.cirrus.com>
+References: <20230531065724.3671795-1-joy.zou@nxp.com>
+ <20230531065724.3671795-2-joy.zou@nxp.com>
+ <f343458e-519c-1e5c-e48f-acfed2c00ad7@linaro.org>
+ <25e6d735-f191-68a1-84cc-d7e1ae4c3217@kontron.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230530122112.1314458-3-ckeepax@opensource.cirrus.com>
+In-Reply-To: <25e6d735-f191-68a1-84cc-d7e1ae4c3217@kontron.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,189 +83,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/05/2023 14:21, Charles Keepax wrote:
-> The CS42L43 is an audio CODEC with integrated MIPI SoundWire interface
-> (Version 1.2.1 compliant), I2C, SPI, and I2S/TDM interfaces designed
-> for portable applications. It provides a high dynamic range, stereo
-> DAC for headphone output, two integrated Class D amplifiers for
-> loudspeakers, and two ADCs for wired headset microphone input or
-> stereo line input. PDM inputs are provided for digital microphones.
+On 31/05/2023 09:22, Frieder Schrempf wrote:
+> On 31.05.23 08:56, Krzysztof Kozlowski wrote:
+>> On 31/05/2023 08:57, Joy Zou wrote:
+>>> Update pca9450 bindings.
+>>>
+>>> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+>>> ---
+>>
+>> Subject prefix is: regulator: dt-bindings: pca9450:
 > 
-> Add a YAML DT binding document for this device.
+> Is there some way to have this consistent for all subsystems? Most
+> subsystems seem to use:
 > 
-> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+>   dt-bindings: [subsystem]:
+> 
+> But some use:
+> 
+>   [subsystem]: dt-bindings:
+> 
+> Casual contributors (like me) will very often get it wrong on the first
+> try. Examining the history is extra effort that could be avoided and
+> often doesn't provide a definite hint as you find both variations in the
+> past.
+> 
+> Can we standardize this and make checkpatch validate the subject line?
 
-Thank you for your patch. There is something to discuss/improve.
+I understand your pain. :)
 
+My expectation is just to have "dt-bindings:" prefix. It can be anywhere
+- first or second, doesn't matter to me.
 
-> +  clocks:
-> +    items:
-> +      - description: Synchronous audio clock provided on mclk_in.
-> +
-> +  clock-names:
-> +    const: mclk
-> +
-> +  cirrus,bias-low:
-> +    type: boolean
-> +    description:
-> +      Select a 1.8V headset micbias rather than 2.8V.
-> +
-> +  cirrus,bias-sense-ua:
+Then there is the generic rule that subsystem prefix should be the first
+and here there is a disagreement between some folks. Most maintainers
+either don't care or assume bindings are separate subsystem. Mark (spi,
+ASoC, regulator) and media-folks say it is not separate subsystem (real
+subsystem are spi, regulator etc), thus they want their subsystem name
+as the first prefix. It sounds reasonable. Anyway it does not contradict
+DT bindings maintainers expectation to have somewhere "dt-bindings:" prefix.
 
-"ua" looks like microamp. If so, microamp instead:
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
+My comment was only to help you and there is no need to resend. I think
+Mark when applying will drop "dt-bindings" prefix if is before
+regulator, though. Life, no big deal.
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Current at which the headset micbias sense clamp will engage, 0 to
-> +      disable.
-> +    enum: [ 0, 14, 23, 41, 50, 60, 68, 86, 95 ]
-> +    default: 0
-> +
-> +  cirrus,bias-ramp-ms:
-> +    description:
-> +      Time in milliseconds the hardware allows for the headset micbias to
-> +      ramp up.
-> +    enum: [ 10, 40, 90, 170 ]
-> +    default: 170
-> +
-> +  cirrus,detect-us:
-> +    description:
-> +      Time in microseconds the type detection will run for. Long values will
-> +      cause more audible effects, but give more accurate detection.
-> +    enum: [ 20, 100, 1000, 10000, 50000, 75000, 100000, 200000 ]
-> +    default: 10000
-> +
-> +  cirrus,button-automute:
-> +    type: boolean
-> +    description:
-> +      Enable the hardware automuting of decimator 1 when a headset button is
-> +      pressed.
-> +
-> +  cirrus,buttons-ohms:
-> +    description:
-> +      Impedance in Ohms for each headset button, these should be listed in
-> +      ascending order.
-> +    minItems: 1
-> +    maxItems: 6
-> +
-> +  cirrus,tip-debounce-ms:
-> +    description:
-> +      Software debounce on tip sense triggering in milliseconds.
-> +    default: 0
-> +
-> +  cirrus,tip-invert:
-> +    type: boolean
-> +    description:
-> +      Indicates tip detect polarity, inverted implies open-circuit whilst the
-> +      jack is inserted.
-> +
-> +  cirrus,tip-disable-pullup:
-> +    type: boolean
-> +    description:
-> +      Indicates if the internal pullup on the tip detect should be disabled.
-> +
-> +  cirrus,tip-fall-db-ms:
-> +    description:
-> +      Time in milliseconds a falling edge on the tip detect should be hardware
-> +      debounced for. Note the falling edge is considered after the invert.
-> +    enum: [ 0, 125, 250, 500, 750, 1000, 1250, 1500 ]
-> +    default: 500
-> +
-> +  cirrus,tip-rise-db-ms:
-> +    description:
-> +      Time in milliseconds a rising edge on the tip detect should be hardware
-> +      debounced for. Note the rising edge is considered after the invert.
-> +    enum: [ 0, 125, 250, 500, 750, 1000, 1250, 1500 ]
-> +    default: 500
-> +
-> +  cirrus,use-ring-sense:
-> +    type: boolean
-> +    description:
-> +      Indicates if the ring sense should be used.
-> +
-> +  cirrus,ring-invert:
-> +    type: boolean
-> +    description:
-> +      Indicates ring detect polarity, inverted implies open-circuit whilst the
-> +      jack is inserted.
-> +
-> +  cirrus,ring-disable-pullup:
-> +    type: boolean
-> +    description:
-> +      Indicates if the internal pullup on the ring detect should be disabled.
-> +
-> +  cirrus,ring-fall-db-ms:
-> +    description:
-> +      Time in milliseconds a falling edge on the ring detect should be hardware
-> +      debounced for. Note the falling edge is considered after the invert.
-> +    enum: [ 0, 125, 250, 500, 750, 1000, 1250, 1500 ]
-> +    default: 500
-> +
-> +  cirrus,ring-rise-db-ms:
-> +    description:
-> +      Time in milliseconds a rising edge on the ring detect should be hardware
-> +      debounced for. Note the rising edge is considered after the invert.
-> +    enum: [ 0, 125, 250, 500, 750, 1000, 1250, 1500 ]
-> +    default: 500
-> +
-> +  pinctrl:
-> +    type: object
-> +
-> +    allOf:
-
-Drop allOf, just "$ref: ......"
-
-> +      - $ref: /schemas/pinctrl/pinctrl.yaml#
-> +
-> +    additionalProperties: false
-
-Also drop blank lines between these three above.
-
-> +
-> +    properties:
-> +      gpio-controller: true
-> +
-> +      '#gpio-cells':
-> +        const: 2
-> +
-> +      gpio-ranges:
-> +        items:
-> +          - description: A phandle to the CODEC pinctrl node
-> +            minimum: 0
-> +          - const: 0
-> +          - const: 0
-> +          - const: 3
-> +
-> +    patternProperties:
-> +      "-state$":
-
-Use consistent quotes, either " or ' everywhere
-
-> +        oneOf:
-> +          - $ref: "#/$defs/cirrus-cs42l43-state"
-> +          - patternProperties:
-> +              "-pins$":
-> +                $ref: "#/$defs/cirrus-cs42l43-state"
-> +            additionalProperties: false
-> +
-> +  spi:
-> +    type: object
-> +
-> +    allOf:
-> +      - $ref: /schemas/spi/spi-controller.yaml#
-> +
-> +    unevaluatedProperties: false
-
-Same comments here.
-
-> +
-> +$defs:
-> +  cirrus-cs42l43-state:
-> +    type: object
-> +
-
-
+Whether checkpatch can do this? Sure, quite likely, one just need some
+Perl-foo to add such rule. :)
 
 Best regards,
 Krzysztof
