@@ -2,181 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9A1F718A6A
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 21:47:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FB8D718A7E
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 21:50:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbjEaTrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 15:47:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33906 "EHLO
+        id S229689AbjEaTuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 15:50:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229874AbjEaTqv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 15:46:51 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4902126
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:46:49 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-969f90d71d4so883704466b.3
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:46:49 -0700 (PDT)
+        with ESMTP id S229603AbjEaTuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 15:50:12 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64046136
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:50:06 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-96fd3a658eeso885761266b.1
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:50:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685562408; x=1688154408;
+        d=linaro.org; s=google; t=1685562605; x=1688154605;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1hKxjiaWU4gxzP5Yco0VtqcM7V2UjDrbLP5jSeYjmKA=;
-        b=VxdE5sRK9HQnrjWoJI7FPbhFdQn0cY3wm30cE+MN4eF2PhDH24eLFhpCBtlGT6t9rS
-         LbQ3sYusakJzSt47dmg1s7htuZlvLgUZEQC1pafIr4gudgmbZhZ/jk3h5+xkC4y/2ui1
-         DnSQNsMJAY4ZkEU9mnAT0fRjXrqRi080ERJQAKTrtYA6A5RN3ZAL3MnWJ7oD7BEWcrYs
-         /Igsuu3X+ob7SvjodFoVigrkIwaeT+GwbzngtSi0EIE01EtPCP+pib1dxWVCtLYNBu92
-         M8tyGtdkoN1OHUYau04H3wDYvZLi1Df9nKLzIySsB7vY9zNwFHDTIVW9fQR1e2Gf//AD
-         Q5rQ==
+        bh=0Ap8ivNjjEOpFy0ZGNi/uN4rZsPt4ntDdAH9alXocoE=;
+        b=V+o0KY6EHF2eGAko/76pQzl3pSBg62mpWcK2vyehG/3MIIb77ZsvRGl7CF0YsWq1Tx
+         zk1RMf5cX2S00BzNWmWzQoQ1pRM+Yrj71zOIT1A8EFTHjY24LQrGlynVOcVET95q29n+
+         HYeVvjjLfaOGHBThEu9Pr2lJHM85PbTmdpka7S57PWtf6jhqmbDYmUqIP6hUYgCQOdr1
+         jEIZWtnKalI1Tv9iF5223ZJmQhrChTOtJad7aP1bqrFp00SoFWb8zMGEkXMXTfmNaB05
+         LzKyCz/wQE+KuCCCtDNLfSyzQJ5n3Sl/8Inox0rCfgZi/9i65PpMneBtH+axGP1C3Eja
+         eNzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685562408; x=1688154408;
+        d=1e100.net; s=20221208; t=1685562605; x=1688154605;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1hKxjiaWU4gxzP5Yco0VtqcM7V2UjDrbLP5jSeYjmKA=;
-        b=LNv/wqrKcabDTakUSw1a+47EQz9YbWTezENgVydPWQUtDtY3ExyuOupgll7fS7Twfl
-         jeuXSIp48e2EQV2uzJpxbzsryObISsFIM8AtCfLvE9ajRBszuq1utp+uUIXltb3FPpw4
-         8MOUk5oumHGrLHIbBo69OIdXp3JXKe1OT1mzy0PzU09s1Cv1WFcWIAIAeu8GlYxiEVsX
-         L+jhjl/nPnXKDfR+iBxJauqQ3rywJzXaDxH/vmhyXlELs2Kyp2Adum7hLzThrLty6oTQ
-         3KnQwFFdnZ28oH1Tr3ytMGdrISI1cFC6PPNQPOob58Vfx/2U5na2wItLxT3/kQjeAvmf
-         w9yw==
-X-Gm-Message-State: AC+VfDxjLmN5tWL68K+qxtLAykDCc257a6C6oFUf02A/mhLKiJEpoqVX
-        oAgPpb5WafqLa0OwDfyUMk2CZA==
-X-Google-Smtp-Source: ACHHUZ5nuz3D9s6a4n39/QN6AzlfU12FPYvQSz8eV/LpaQLXQwB9hM5KyxOa9hHlfc1Ujh5E84uUjg==
-X-Received: by 2002:a17:907:86a4:b0:973:e4c2:2bcd with SMTP id qa36-20020a17090786a400b00973e4c22bcdmr6190242ejc.18.1685562408308;
-        Wed, 31 May 2023 12:46:48 -0700 (PDT)
+        bh=0Ap8ivNjjEOpFy0ZGNi/uN4rZsPt4ntDdAH9alXocoE=;
+        b=g1JAzzj1oHjDeAvWhxkxOSnHIlfv34zP/htL2ZOG1Uag0jNtnHg3JO8g/kPBf01oEb
+         BAE2VKawp7pCdLk9LN+cBkazlhdCvZJRTzRg/rwIYcbBuP3ekECm45WaAQ6s4+XBli6e
+         0t70kBfPGSfnQy0o2GtILHNCBS6BlkTYpH2SbkvGahBEOE8iUBJAynGxpg+yHSOBkThO
+         V2DRSXsMstfZWIOyuCuYbfmgSfJzFXQ7u/eB4wVgZD3JuNkCd7eaFMpKQLAXJyVD6TmW
+         sg/7LWJ7OMb1xv5tSDWxAzSYBuSut1bY/2RN+KyJm8AT2kcI1xVB/zU6YiloQWdquN2y
+         ck7g==
+X-Gm-Message-State: AC+VfDz7k+bimT8scCtPEZLuQSq/T5YC+EDxvy0erHX+XQX1ESaSwaDg
+        95o6I26y3DWc58XGr1Ox8rNdOQ==
+X-Google-Smtp-Source: ACHHUZ4PjdSLkkd1JzVIKJUf6mH9GIes77eNlkJ5MIKSWkuyHYrUlyFCaskH7ywMFWJVRowdPVfYBA==
+X-Received: by 2002:a17:907:e93:b0:971:484:6391 with SMTP id ho19-20020a1709070e9300b0097104846391mr6614763ejc.20.1685562604719;
+        Wed, 31 May 2023 12:50:04 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id f19-20020a170906139300b0095fd0462695sm9399751ejc.5.2023.05.31.12.46.46
+        by smtp.gmail.com with ESMTPSA id j21-20020a17090686d500b00965a0f30fbfsm9383346ejy.186.2023.05.31.12.50.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 12:46:47 -0700 (PDT)
-Message-ID: <2196dd29-93ee-00f7-65b4-ede73aa8ba77@linaro.org>
-Date:   Wed, 31 May 2023 21:46:45 +0200
+        Wed, 31 May 2023 12:50:04 -0700 (PDT)
+Message-ID: <f815348f-0f54-617c-8373-df283be532f4@linaro.org>
+Date:   Wed, 31 May 2023 21:50:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v11 1/2] dt-bindings: spi: add loongson spi
+Subject: Re: [EXT] Re: [PATCH 2/2] dt-bindings: i2c: imx-lpi2c: Add bus
+ recovery example
 Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>,
-        Conor Dooley <conor.dooley@microchip.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230522071030.5193-1-zhuyinbo@loongson.cn>
- <20230522071030.5193-2-zhuyinbo@loongson.cn>
- <20230524-pouncing-variable-c520e85f8db8@wendy>
- <b1e3d199-de5a-f8d5-9159-4965e9e1f5ef@loongson.cn>
- <20230524-relative-trimmer-046fb26a7764@wendy>
- <99b362c2-640c-9150-26ee-e9add4483886@loongson.cn>
+To:     Carlos Song <carlos.song@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "Anson.Huang@nxp.com" <Anson.Huang@nxp.com>
+Cc:     Clark Wang <xiaoning.wang@nxp.com>,
+        Bough Chen <haibo.chen@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20230529074302.3612294-1-carlos.song@nxp.com>
+ <20230529074302.3612294-2-carlos.song@nxp.com>
+ <ed004607-5a23-564a-3185-a63af87783e5@linaro.org>
+ <VI1PR04MB5005E43373DB10A9FD726AD7E8489@VI1PR04MB5005.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <99b362c2-640c-9150-26ee-e9add4483886@loongson.cn>
+In-Reply-To: <VI1PR04MB5005E43373DB10A9FD726AD7E8489@VI1PR04MB5005.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/05/2023 04:22, zhuyinbo wrote:
-> 
-> 
-> 在 2023/5/24 下午6:29, Conor Dooley 写道:
->> On Wed, May 24, 2023 at 05:44:38PM +0800, zhuyinbo wrote:
->>>
->>>
->>> 在 2023/5/24 下午4:56, Conor Dooley 写道:
->>>> On Mon, May 22, 2023 at 03:10:29PM +0800, Yinbo Zhu wrote:
->>>>> Add the Loongson platform spi binding with DT schema format using
->>>>> json-schema.
->>>>>
->>>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> ---
->>>>>    .../bindings/spi/loongson,ls2k-spi.yaml       | 41 +++++++++++++++++++
->>>>>    MAINTAINERS                                   |  6 +++
->>>>>    2 files changed, 47 insertions(+)
->>>>>    create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..d0be6e5378d7
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>> @@ -0,0 +1,41 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/spi/loongson,ls2k-spi.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Loongson SPI controller
->>>>> +
->>>>> +maintainers:
->>>>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: /schemas/spi/spi-controller.yaml#
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - loongson,ls2k-spi
->>>>
->>>> I am sorry to jump in here at such a late stage with a (potentially)
->>>> trivial question. "ls2k" is the SoC family rather than a specific model
->>>> as far as I understand.
->>>> The answer is probably yes, but do all SoCs in the family have an
->>>> identical version of the IP?
->>>
->>>
->>> No, but the spi supported by this loongson spi driver are all the same
->>> identical version, and other type or verion spi will be supported as
->>> needed in the future.
+On 31/05/2023 12:22, Carlos Song wrote:
+> Hi,
+> 	Thanks for you reply. 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Tuesday, May 30, 2023 10:59 PM
+>> To: Carlos Song <carlos.song@nxp.com>; Aisheng Dong
+>> <aisheng.dong@nxp.com>; shawnguo@kernel.org; s.hauer@pengutronix.de;
+>> kernel@pengutronix.de; festevam@gmail.com; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>> Anson.Huang@nxp.com
+>> Cc: Clark Wang <xiaoning.wang@nxp.com>; Bough Chen
+>> <haibo.chen@nxp.com>; dl-linux-imx <linux-imx@nxp.com>;
+>> linux-i2c@vger.kernel.org; devicetree@vger.kernel.org;
+>> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org
+>> Subject: [EXT] Re: [PATCH 2/2] dt-bindings: i2c: imx-lpi2c: Add bus recovery
+>> example
 >>
->> Does having a catch-all compatible make sense then when not all SoCs in
->> the ls2k family will actually be able to use this driver?
+>> Caution: This is an external email. Please take care when clicking links or
+>> opening attachments. When in doubt, report the message using the 'Report this
+>> email' button
+>>
+>>
+>> On 29/05/2023 09:43, carlos.song@nxp.com wrote:
+>>> From: Clark Wang <xiaoning.wang@nxp.com>
+>>>
+>>> Add i2c bus recovery configuration example.
+>>
+>> Why? That's just example... also with coding style issue.
+>>
+>>>
+>>> Signed-off-by: Clark Wang <xiaoning.wang@nxp.com>
+>>> Signed-off-by: Carlos Song <carlos.song@nxp.com>
+>>> ---
+>>>  .../devicetree/bindings/i2c/i2c-imx-lpi2c.yaml   | 16 ++++++++++++++++
+>>>  1 file changed, 16 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+>>> b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+>>> index 4656f5112b84..62ee457496e4 100644
+>>> --- a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+>>> +++ b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
+>>> @@ -58,6 +58,16 @@ properties:
+>>>    power-domains:
+>>>      maxItems: 1
+>>>
+>>> +  pinctrl-names:
+>>> +    minItems: 1
+>>> +    maxItems: 3
+>>
+>> What's the benefit of this? Entries should be defined but without it is not really
+>> helpful. Anyway not explained in commit msg.
+>>
+>>> +
+>>> +  scl-gpios:
+>>> +    maxItems: 1
+>>> +
+>>> +  sda-gpios:
+>>> +    maxItems: 1
+>>
+>> You don't need these two. Anyway not explained in commit msg.
+>>
 > 
+> Sorry for confusing you with the poor commit log and without
+> full description.
 > 
-> Yes, it is make sense as it can reduce the workload of the community.
-> For the Loongson platform, the versions of spi peripherals are almost
-> the same, except for a few  or individual SoCs.  And we have also
-> discussed compatible internally, and we tend to define it this way.
+> The reason why we need sending the patch for dt-binding is :
+> We sent out a patch for I.MX LPI2C bus support recovery function.
+> When LPI2C use recovery function, lpi2c controller need to switch the 
+> SCL pin and SDA pin to their GPIO function.  So I think the scl-gpio and
+> sda-gpio property need to be added in the dt-bindings.
 
-So you have chosen different path than what's clearly recommended by
-community, existing experience and documentation:
+Why do you think they are not in the bindings already?
 
-https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
-
-Family names are not accepted as specific compatibles. Whenever they
-were accepted, it lead to problems. All the time.
-
-https://lore.kernel.org/all/20220822181701.GA89665-robh@kernel.org/
-https://lore.kernel.org/all/78651e07-6b3e-4243-8e1f-fcd1dfb3ffe1@www.fastmail.com/
-https://lore.kernel.org/all/288f56ba9cfad46354203b7698babe91@walle.cc/
-https://lore.kernel.org/all/106e443a-e765-51fe-b556-e4e7e2aa771c@linaro.org/
-and many many more discussions.
-
-You should choose carefully, because we will keep NAK-ing adding
-properties to circumvent missing compatibles.
 > 
->> Or am I misunderstanding and all ls2k SoCs do work with this driver and
->> you were talking about other, future products?
+> And alternative pinmux settings are described in a separate pinctrl state "gpio". 
+> So maybe "gpio" pinctrl item need to be added.
 > 
-> Actually, in 2k500 has one special type spi was only one cs and their's
-> register definition was different from common type spi thus this driver
-> doesn't support but this driver can support another common type spi in
-> 2k500.  for this special type spi I will add support as needed in the
-> future.
+> I would like to know whether the above changes are really unnecessary according to above case?
+> Or because of the vague commit log, you are misled and think that our patch is not necessary to add examples.
 
-Bindings are for hardware, not driver. What does your driver support or
-does not, matters less.
+
+I claim your patch has zero effect. Can you prove otherwise?
+
+Proof is with DTS example and result of dtbs_check.
+
+> 
+> Is there no need to add sda/scl-gpios property or no need to add maxItems: 1?
+
+I think entire patch can be dropped.
+
+> We also find the sci-gpio and sda-gpio have been defined in the ref: /schemas/i2c/i2c-controller.yaml. 
+> So is this the root cause of no need to add these properties?
+
+Yes.
+
 
 Best regards,
 Krzysztof
