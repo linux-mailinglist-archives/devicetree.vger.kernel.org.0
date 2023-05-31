@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D6227172FB
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 03:16:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1BE87172FE
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 03:16:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233986AbjEaBQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 21:16:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36900 "EHLO
+        id S233999AbjEaBQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 21:16:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233990AbjEaBQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 21:16:41 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 869B8124
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:16:38 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f3b314b1d7so5597068e87.1
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:16:38 -0700 (PDT)
+        with ESMTP id S233981AbjEaBQn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 21:16:43 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD1DA10B
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:16:39 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f3bb395e69so6109150e87.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:16:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685495796; x=1688087796;
+        d=linaro.org; s=google; t=1685495798; x=1688087798;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Q//XAIkKHgx7oIPUKYlaCubFyjV6qA0wwmFjUTyWuMs=;
-        b=Uv4alCCm2OZoZ13sZCgAUcICzmUHpZl+sotJ5T7KN4x+upGbPAtk1ZYCrjr04VKgN1
-         psCXvx/nnvyKpQO+flxhiS6UCnkfJLoNGUmHnu1dswLRHyO8FdResLK38W+7lHfCVJ87
-         6Mhi9eufBrqbxKljSQbWwjMezPT46OGXshEMiKOHSyYYotkdD7rbxtzzP6bcecL55Z88
-         2v49OHv0RTwlSPAQc8jJ/zvM0qZKH6xOxIzMLT+kxYGv5BxdY3HXj5CCmR1VL1d2JIg9
-         Z7cIzJadnfOF3XVeUN5EmUZxSO2lGjadk8RhE6xNc7BoS6XFFXQESh3eOT+gsdN+x8ga
-         GZ7Q==
+        bh=XMJEYcHn8wCho//OE4bkVw8opEzX+BpNx5GppcxdOxc=;
+        b=nm2Mqrxjy8KIcP2W1lgq2T/BWkrOhzdTDXZBGBZWfYi43/PtWIW//sMSEIygKC03CN
+         WDfFSYgXPf9gsheI5viE5W/zWBb3rQr9PTWH7HybUYPS7j4s3+eiMIBVcQ6nZijttbhz
+         Ash286AtXuoV54GO9sx7pL4ioOEYOVNGMZ3AXYo9qHXEEpLiQ0vqVqaW6BG5/Bfpkh4n
+         VrlvnN4Vff968hLMj+9NeICeYa8nYvTiDY4iDTkQ7Vw8Sm5AcRKL+5SUD7P9KVy09kwR
+         nD9nzY5Fh+9epskvgU/xIesjtMAJ7riIO5ivVVgR7kbc4u3kSNzSLyUIV6EXI2sjH6/E
+         7fNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685495796; x=1688087796;
+        d=1e100.net; s=20221208; t=1685495798; x=1688087798;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Q//XAIkKHgx7oIPUKYlaCubFyjV6qA0wwmFjUTyWuMs=;
-        b=Ba3+kVkMPnioSRAuP45del1NEmjaXxqgTvX7P5v0J+CU55q/HG7r7x3qMul/awIkAS
-         sRUJ5LzyFWNN9FgyGz1tCs1CSML4ffER1i+wmecJRZcYn1ng8r1Kto5dqpkOa+Ocaumv
-         6Sm2+v1pEVVk3ki8dFeplGF+gakug89XWdfLjxW49W4QrFeO7XBE6TbMsaWM7mxQ2YjO
-         SWH1qlOdow0PIqEG0pM/BVbr29qdXQWQsrPZtAzI7a2BJ1Yg4dlxQIDBcQhAxLaA4n5/
-         JZsEaYPix1KcjVoJuUSNQCe2qLr0KmQrWpnfo11UTUJqv0jrzD+OzYhQpPQA7D8l88Hr
-         qDww==
-X-Gm-Message-State: AC+VfDy5SDsgruL3V2Sn43X/hL5casArr4FA/9ZFLE/Lc0nd++geVvGE
-        8/rlc9BB+aWi6/q4jvaCv/mGjg==
-X-Google-Smtp-Source: ACHHUZ4E0nP/WyZdkyT1biHnS/h68dnwBgjDI2J0IgLQwP8pmLrlf/SQNwOw+VHYWbV0NXwh3lADnQ==
-X-Received: by 2002:ac2:44ac:0:b0:4f2:509b:87ba with SMTP id c12-20020ac244ac000000b004f2509b87bamr1781191lfm.50.1685495796700;
-        Tue, 30 May 2023 18:16:36 -0700 (PDT)
+        bh=XMJEYcHn8wCho//OE4bkVw8opEzX+BpNx5GppcxdOxc=;
+        b=j+X3iamty9Dj4IC+U83myO3NRxmCAhJ7gEaJDhQbEDMnDFdwnLV+uns2Vi6bcqDUBr
+         61z57tPau7B+sJt2v0f28uonzWGD69/nchrGOzanv9U2L5/LHQws8/15Mo86rSLMvuqe
+         PsekmDKKOz3NcBkHRNzbg3cbXQer4ECugReQSIroDFYiQ7kk8vf3InYnZLQlaIBfJjYD
+         RmSrqjDZnE7uDcaeneyw8HRPEzHcGALCsFd7TbttTiQe62h3m2/yrgolmJ/SPAimKpvt
+         OhNcScJqA+tfdiPXU55cgCRdbrGLyqPt4dvA1t3rhSeR/Oiygrmc433qm5b1Q4XhcwBB
+         xcFg==
+X-Gm-Message-State: AC+VfDwZbVO6LbcPZdM3n+/F+IzIYPDFwxH2PQWDP7mwq/FWfoWr7g0o
+        CtUu4w4AJgAjpIM+nqyEBs6dHg==
+X-Google-Smtp-Source: ACHHUZ5sr4CmvCbXj+O/UxYVp/c9rk/aaFXZS7FliJdVlSNani7vtsw3L3cgoY8efiixPuR3Zrcy7Q==
+X-Received: by 2002:ac2:5fcf:0:b0:4f3:b1dc:b46b with SMTP id q15-20020ac25fcf000000b004f3b1dcb46bmr1608944lfg.1.1685495797977;
+        Tue, 30 May 2023 18:16:37 -0700 (PDT)
 Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
-        by smtp.gmail.com with ESMTPSA id v24-20020ac25618000000b004f3787d8006sm505640lfd.128.2023.05.30.18.16.35
+        by smtp.gmail.com with ESMTPSA id v24-20020ac25618000000b004f3787d8006sm505640lfd.128.2023.05.30.18.16.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 18:16:35 -0700 (PDT)
+        Tue, 30 May 2023 18:16:37 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,9 +57,9 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 09/14] arm64: dts: qcom: sc8180x: rename labels for DSI nodes
-Date:   Wed, 31 May 2023 04:16:18 +0300
-Message-Id: <20230531011623.3808538-10-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 10/14] arm64: dts: qcom: sdm630: rename labels for DSI nodes
+Date:   Wed, 31 May 2023 04:16:19 +0300
+Message-Id: <20230531011623.3808538-11-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230531011623.3808538-1-dmitry.baryshkov@linaro.org>
 References: <20230531011623.3808538-1-dmitry.baryshkov@linaro.org>
@@ -84,55 +84,117 @@ node labels from dsi_* to mdss_dsi_*.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc8180x.dtsi | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ .../boot/dts/qcom/sda660-inforce-ifc6560.dts  | 16 ++++++-------
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          | 20 ++++++++--------
+ arch/arm64/boot/dts/qcom/sdm660.dtsi          | 24 +++++++++----------
+ 3 files changed, 30 insertions(+), 30 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-index e8613a00fcab..ef970c3479ca 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-@@ -2732,14 +2732,14 @@ dpu_intf0_out: endpoint {
- 					port@1 {
- 						reg = <1>;
- 						dpu_intf1_out: endpoint {
+diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+index 7459525d9982..0b23d5bb3f26 100644
+--- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
++++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
+@@ -134,7 +134,7 @@ port@0 {
+ 				reg = <0>;
+ 
+ 				adv7533_in: endpoint {
+-					remote-endpoint = <&dsi0_out>;
++					remote-endpoint = <&mdss_dsi0_out>;
+ 				};
+ 			};
+ 
+@@ -183,25 +183,25 @@ bluetooth {
+ 	};
+ };
+ 
+-&dsi0 {
++&mdss {
++	status = "okay";
++};
++
++&mdss_dsi0 {
+ 	status = "okay";
+ 	vdda-supply = <&vreg_l1a_1p225>;
+ };
+ 
+-&dsi0_out {
++&mdss_dsi0_out {
+ 	remote-endpoint = <&adv7533_in>;
+ 	data-lanes = <0 1 2 3>;
+ };
+ 
+-&dsi0_phy {
++&mdss_dsi0_phy {
+ 	status = "okay";
+ 	vcca-supply = <&vreg_l1b_0p925>;
+ };
+ 
+-&mdss {
+-	status = "okay";
+-};
+-
+ &mmss_smmu {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index 897f2440c9c8..bba0f366ef03 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -1463,8 +1463,8 @@ mmcc: clock-controller@c8c0000 {
+ 					<&sleep_clk>,
+ 					<&gcc GCC_MMSS_GPLL0_CLK>,
+ 					<&gcc GCC_MMSS_GPLL0_DIV_CLK>,
+-					<&dsi0_phy 1>,
+-					<&dsi0_phy 0>,
++					<&mdss_dsi0_phy 1>,
++					<&mdss_dsi0_phy 0>,
+ 					<0>,
+ 					<0>,
+ 					<0>,
+@@ -1536,7 +1536,7 @@ ports {
+ 					port@0 {
+ 						reg = <0>;
+ 						mdp5_intf1_out: endpoint {
 -							remote-endpoint = <&dsi0_in>;
 +							remote-endpoint = <&mdss_dsi0_in>;
  						};
  					};
- 
- 					port@2 {
- 						reg = <2>;
- 						dpu_intf2_out: endpoint {
--							remote-endpoint = <&dsi1_in>;
-+							remote-endpoint = <&mdss_dsi1_in>;
- 						};
- 					};
- 
-@@ -2783,7 +2783,7 @@ opp-460000000 {
+ 				};
+@@ -1572,7 +1572,7 @@ opp-412500000 {
  				};
  			};
  
--			dsi0: dsi@ae94000 {
-+			mdss_dsi0: dsi@ae94000 {
- 				compatible = "qcom,mdss-dsi-ctrl";
- 				reg = <0 0x0ae94000 0 0x400>;
- 				reg-names = "dsi_ctrl";
-@@ -2807,7 +2807,7 @@ dsi0: dsi@ae94000 {
- 				operating-points-v2 = <&dsi_opp_table>;
- 				power-domains = <&rpmhpd SC8180X_MMCX>;
+-			dsi0: dsi@c994000 {
++			mdss_dsi0: dsi@c994000 {
+ 				compatible = "qcom,sdm660-dsi-ctrl",
+ 					     "qcom,mdss-dsi-ctrl";
+ 				reg = <0x0c994000 0x400>;
+@@ -1586,8 +1586,8 @@ dsi0: dsi@c994000 {
+ 
+ 				assigned-clocks = <&mmcc BYTE0_CLK_SRC>,
+ 						  <&mmcc PCLK0_CLK_SRC>;
+-				assigned-clock-parents = <&dsi0_phy 0>,
+-							 <&dsi0_phy 1>;
++				assigned-clock-parents = <&mdss_dsi0_phy 0>,
++							 <&mdss_dsi0_phy 1>;
+ 
+ 				clocks = <&mmcc MDSS_MDP_CLK>,
+ 					 <&mmcc MDSS_BYTE0_CLK>,
+@@ -1608,7 +1608,7 @@ dsi0: dsi@c994000 {
+ 					      "pixel",
+ 					      "core";
  
 -				phys = <&dsi0_phy>;
 +				phys = <&mdss_dsi0_phy>;
- 				phy-names = "dsi";
  
  				status = "disabled";
-@@ -2818,14 +2818,14 @@ ports {
+ 
+@@ -1618,20 +1618,20 @@ ports {
  
  					port@0 {
  						reg = <0>;
 -						dsi0_in: endpoint {
 +						mdss_dsi0_in: endpoint {
- 							remote-endpoint = <&dpu_intf1_out>;
+ 							remote-endpoint = <&mdp5_intf1_out>;
  						};
  					};
  
@@ -143,57 +205,93 @@ index e8613a00fcab..ef970c3479ca 100644
  						};
  					};
  				};
-@@ -2850,7 +2850,7 @@ opp-358000000 {
+ 			};
+ 
+-			dsi0_phy: phy@c994400 {
++			mdss_dsi0_phy: phy@c994400 {
+ 				compatible = "qcom,dsi-phy-14nm-660";
+ 				reg = <0x0c994400 0x100>,
+ 				      <0x0c994500 0x300>,
+diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+index f0f27fc12c18..f89b27c99f40 100644
+--- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+@@ -148,14 +148,14 @@ ports {
+ 		port@1 {
+ 			reg = <1>;
+ 			mdp5_intf2_out: endpoint {
+-				remote-endpoint = <&dsi1_in>;
++				remote-endpoint = <&mdss_dsi1_in>;
+ 			};
+ 		};
+ 	};
+ };
+ 
+ &mdss {
+-	dsi1: dsi@c996000 {
++	mdss_dsi1: dsi@c996000 {
+ 		compatible = "qcom,sdm660-dsi-ctrl",
+ 			     "qcom,mdss-dsi-ctrl";
+ 		reg = <0x0c996000 0x400>;
+@@ -170,8 +170,8 @@ dsi1: dsi@c996000 {
+ 
+ 		assigned-clocks = <&mmcc BYTE1_CLK_SRC>,
+ 					<&mmcc PCLK1_CLK_SRC>;
+-		assigned-clock-parents = <&dsi1_phy 0>,
+-						<&dsi1_phy 1>;
++		assigned-clock-parents = <&mdss_dsi1_phy 0>,
++						<&mdss_dsi1_phy 1>;
+ 
+ 		clocks = <&mmcc MDSS_MDP_CLK>,
+ 				<&mmcc MDSS_BYTE1_CLK>,
+@@ -192,7 +192,7 @@ dsi1: dsi@c996000 {
+ 					"pixel",
+ 					"core";
+ 
+-		phys = <&dsi1_phy>;
++		phys = <&mdss_dsi1_phy>;
+ 
+ 		status = "disabled";
+ 
+@@ -202,20 +202,20 @@ ports {
+ 
+ 			port@0 {
+ 				reg = <0>;
+-				dsi1_in: endpoint {
++				mdss_dsi1_in: endpoint {
+ 					remote-endpoint = <&mdp5_intf2_out>;
  				};
  			};
  
--			dsi0_phy: dsi-phy@ae94400 {
-+			mdss_dsi0_phy: dsi-phy@ae94400 {
- 				compatible = "qcom,dsi-phy-7nm";
- 				reg = <0 0x0ae94400 0 0x200>,
- 				      <0 0x0ae94600 0 0x280>,
-@@ -2869,7 +2869,7 @@ dsi0_phy: dsi-phy@ae94400 {
- 				status = "disabled";
- 			};
- 
--			dsi1: dsi@ae96000 {
-+			mdss_dsi1: dsi@ae96000 {
- 				compatible = "qcom,mdss-dsi-ctrl";
- 				reg = <0 0x0ae96000 0 0x400>;
- 				reg-names = "dsi_ctrl";
-@@ -2893,7 +2893,7 @@ dsi1: dsi@ae96000 {
- 				operating-points-v2 = <&dsi_opp_table>;
- 				power-domains = <&rpmhpd SC8180X_MMCX>;
- 
--				phys = <&dsi1_phy>;
-+				phys = <&mdss_dsi1_phy>;
- 				phy-names = "dsi";
- 
- 				status = "disabled";
-@@ -2904,20 +2904,20 @@ ports {
- 
- 					port@0 {
- 						reg = <0>;
--						dsi1_in: endpoint {
-+						mdss_dsi1_in: endpoint {
- 							remote-endpoint = <&dpu_intf2_out>;
- 						};
- 					};
- 
- 					port@1 {
- 						reg = <1>;
--						dsi1_out: endpoint {
-+						mdss_dsi1_out: endpoint {
- 						};
- 					};
+ 			port@1 {
+ 				reg = <1>;
+-				dsi1_out: endpoint {
++				mdss_dsi1_out: endpoint {
  				};
  			};
+ 		};
+ 	};
  
--			dsi1_phy: dsi-phy@ae96400 {
-+			mdss_dsi1_phy: dsi-phy@ae96400 {
- 				compatible = "qcom,dsi-phy-7nm";
- 				reg = <0 0x0ae96400 0 0x200>,
- 				      <0 0x0ae96600 0 0x280>,
+-	dsi1_phy: phy@c996400 {
++	mdss_dsi1_phy: phy@c996400 {
+ 		compatible = "qcom,dsi-phy-14nm-660";
+ 		reg = <0x0c996400 0x100>,
+ 				<0x0c996500 0x300>,
+@@ -239,10 +239,10 @@ &mmcc {
+ 			<&sleep_clk>,
+ 			<&gcc GCC_MMSS_GPLL0_CLK>,
+ 			<&gcc GCC_MMSS_GPLL0_DIV_CLK>,
+-			<&dsi0_phy 1>,
+-			<&dsi0_phy 0>,
+-			<&dsi1_phy 1>,
+-			<&dsi1_phy 0>,
++			<&mdss_dsi0_phy 1>,
++			<&mdss_dsi0_phy 0>,
++			<&mdss_dsi1_phy 1>,
++			<&mdss_dsi1_phy 0>,
+ 			<0>,
+ 			<0>;
+ };
 -- 
 2.39.2
 
