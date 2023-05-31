@@ -2,166 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2A4B71813D
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:16:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 100AB718138
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235951AbjEaNQP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 31 May 2023 09:16:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40390 "EHLO
+        id S236366AbjEaNQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 09:16:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236350AbjEaNQN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:16:13 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 594919D;
-        Wed, 31 May 2023 06:16:12 -0700 (PDT)
-Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-38eb2984c82so2018073b6e.0;
-        Wed, 31 May 2023 06:16:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685538971; x=1688130971;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kIuhlHydXOIu4C3uuGsJ33JDY8/UzFh5D7EZjgGK2P0=;
-        b=aIHmMaK+yUflF/57rOAdiiYDzcuBOTGTkv6bILCXXb3VdYGxvxN8yiEGxDJV0URS3C
-         xWo4CZnxBEGmO2YVRT029Q0UX4LaOa8gvQhgcpVd3UBrJphp6BmGq7FCjPwch2yIPmvB
-         OkzFaJ8rNvdnM3+fMjrmuqkqZ8TZ2pyfuzJPUIeDFaZe5FOeGtytqSiKLh43lMae8e/Y
-         NKluGjY6c3fj7jjQUW3GdLDnVfBBUF5pQauekkCirR73uvO/DqVf0n6KKg9s4uDJLCol
-         N8DjGQVdtLO9pPoxi4/JLSX53XSv4157FMFCUyZTsMvcxbohTaTJHKxhs5EqOseea8zd
-         S3Qg==
-X-Gm-Message-State: AC+VfDz78UtNaL8pHF9MlOu9xCcOVooY7VE9r8IXGxYbCHzO4dinX2ZA
-        Dxl044pyNpDYamtOVJ18jTgCTt8ddVNkdw==
-X-Google-Smtp-Source: ACHHUZ6a2OcykRInwzKBhmLC3u4+dhdrzOSZZk0ooxCqc7qsWJa9IjKt8Woux4Gu06H7k+Zpb3pNEw==
-X-Received: by 2002:a05:6808:1383:b0:39a:4ac8:34ae with SMTP id c3-20020a056808138300b0039a4ac834aemr1680152oiw.12.1685538971388;
-        Wed, 31 May 2023 06:16:11 -0700 (PDT)
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com. [209.85.222.176])
-        by smtp.gmail.com with ESMTPSA id m10-20020ad44a0a000000b006235e8fe94esm390054qvz.58.2023.05.31.06.16.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 06:16:11 -0700 (PDT)
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-75b050b4fa0so602782885a.0;
-        Wed, 31 May 2023 06:16:11 -0700 (PDT)
-X-Received: by 2002:a0d:f181:0:b0:568:fe3a:46b3 with SMTP id
- a123-20020a0df181000000b00568fe3a46b3mr1220876ywf.28.1685538581391; Wed, 31
- May 2023 06:09:41 -0700 (PDT)
+        with ESMTP id S236351AbjEaNQA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:16:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E5AD132;
+        Wed, 31 May 2023 06:15:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 17EA963990;
+        Wed, 31 May 2023 13:15:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE6E4C433D2;
+        Wed, 31 May 2023 13:15:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685538954;
+        bh=vOTa5MUOhxTH37zrJH/3NXFRmUhlyERnZdSp2zEDzMw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MohAVbsLBjUuF5j7mcmA9YUSlj8iSsNTlEp/4CErRWscq4hgDdCdQosJYH1VX4OD6
+         8NljKsV5mGEhUd1bhty4MryUDP67j/72hfE9RwsOyvQKPDxb4XJeZmBxrcwM5yItv9
+         w75Pwt1QP+4/+B92+4gwUkipydak26QdEsMhkWtVUC5CET8Nf6ledh09d2yH4Jw5vm
+         vAbMHe3wzZOSz09HLRiInoRz2Qbd/JEN22sFPp6ueeZX8bBcto/W2TATKoS5IcrHOZ
+         v8EUAeAV3boQ0COyFoMKckHuXwnhD7UO9cjN04I7opo7rzwIuf65Spo8+nsPb6wA+5
+         mSHMBTxXIddGA==
+Date:   Wed, 31 May 2023 14:15:49 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Yingkun Meng <mengyingkun@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn
+Subject: Re: [PATCH 1/2] dt-bindings: dmaengine: Add Loongson LS2X APB DMA
+ controller
+Message-ID: <20230531-quicksand-enviable-75a070860077@spud>
+References: <cover.1685448898.git.zhoubinbin@loongson.cn>
+ <23536e4dcd5a839e932901b7c66a15d1f5465c4d.1685448898.git.zhoubinbin@loongson.cn>
 MIME-Version: 1.0
-References: <CAMuHMdX_Sdb3RFrLthcwThK__GKhJvJuXWu5+2RsQpGgFRkrXQ@mail.gmail.com>
- <20230530220347.14049-1-blarson@amd.com>
-In-Reply-To: <20230530220347.14049-1-blarson@amd.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 31 May 2023 15:09:28 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWQGEoB_LLsfLurOV8fT0BO-RYGcsS_Gra49CPiGH9J=g@mail.gmail.com>
-Message-ID: <CAMuHMdWQGEoB_LLsfLurOV8fT0BO-RYGcsS_Gra49CPiGH9J=g@mail.gmail.com>
-Subject: Re: [PATCH v14 6/8] arm64: dts: Add AMD Pensando Elba SoC support
-To:     Brad Larson <blarson@amd.com>
-Cc:     adrian.hunter@intel.com, alcooperx@gmail.com,
-        andy.shevchenko@gmail.com, arnd@arndb.de,
-        brendan.higgins@linux.dev, briannorris@chromium.org,
-        broonie@kernel.org, catalin.marinas@arm.com, conor+dt@kernel.org,
-        davidgow@google.com, devicetree@vger.kernel.org,
-        fancer.lancer@gmail.com, gerg@linux-m68k.org, gsomlo@gmail.com,
-        hal.feng@starfivetech.com, hasegawa-hitomi@fujitsu.com,
-        j.neuschaefer@gmx.net, joel@jms.id.au, kernel@esmil.dk,
-        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee.jones@linaro.org, lee@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
-        michal.simek@amd.com, p.zabel@pengutronix.de,
-        rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org,
-        skhan@linuxfoundation.org, suravee.suthikulpanit@amd.com,
-        thomas.lendacky@amd.com, tonyhuang.sunplus@gmail.com,
-        ulf.hansson@linaro.org, vaishnav.a@ti.com,
-        walker.chen@starfivetech.com, will@kernel.org, zhuyinbo@loongson.cn
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="qc6F2OFGFNda1XWa"
+Content-Disposition: inline
+In-Reply-To: <23536e4dcd5a839e932901b7c66a15d1f5465c4d.1685448898.git.zhoubinbin@loongson.cn>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Brad,
 
-On Wed, May 31, 2023 at 12:04 AM Brad Larson <blarson@amd.com> wrote:
-> On Wed, May 24, 2023 at 13:52 Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Tue, May 23, 2023 at 9:30â€¯PM Brad Larson <blarson@amd.com> wrote:
-> >> On 5/16/23 09:54, Michal Simek wrote:
-> >> > On 5/15/23 20:16, Brad Larson wrote:
-> >> >> + */
-> >> >> +
-> >> >> +/ {
-> >> >> +    cpus {
-> >> >> +            #address-cells = <2>;
-> >> >> +            #size-cells = <0>;
-> >> >> +
-> >> >> +            cpu-map {
-> >> >> +                    cluster0 {
-> >> >> +                            core0 { cpu = <&cpu0>; };
-> >> >> +                            core1 { cpu = <&cpu1>; };
-> >> >> +                            core2 { cpu = <&cpu2>; };
-> >> >> +                            core3 { cpu = <&cpu3>; };
-> >> >> +                    };
-> >> >> +
-> >> >> +                    cluster1 {
-> >> >> +                            core0 { cpu = <&cpu4>; };
-> >> >> +                            core1 { cpu = <&cpu5>; };
-> >> >> +                            core2 { cpu = <&cpu6>; };
-> >> >> +                            core3 { cpu = <&cpu7>; };
-> >> >> +                    };
-> >> >> +
-> >> >> +                    cluster2 {
-> >> >> +                            core0 { cpu = <&cpu8>; };
-> >> >> +                            core1 { cpu = <&cpu9>; };
-> >> >> +                            core2 { cpu = <&cpu10>; };
-> >> >> +                            core3 { cpu = <&cpu11>; };
-> >> >> +                    };
-> >> >> +
-> >> >> +                    cluster3 {
-> >> >> +                            core0 { cpu = <&cpu12>; };
-> >> >> +                            core1 { cpu = <&cpu13>; };
-> >> >> +                            core2 { cpu = <&cpu14>; };
-> >> >> +                            core3 { cpu = <&cpu15>; };
-> >> >> +                    };
-> >> >> +            };
-> >> >> +
-> >> >> +            /* CLUSTER 0 */
-> >> >> +            cpu0: cpu@0 {
-> >> >> +                    device_type = "cpu";
-> >> >> +                    compatible = "arm,cortex-a72";
-> >> >> +                    reg = <0 0x0>;
-> >> >
-> >> > Do you really need 2/0 split here. The first cell is 0 anyway.
-> >>
-> >> Yes following 64-bit system definition
-> >
-> > You mean for the 64-bit main address space?
-> > The CPU address space under /cpus is unrelated.
->
-> Yes, the reg prop for this node is CPU/threads per dt spec.  Checked the history and
-> the Elba dt was derived from socionext for these nodes and this is how those device
-> trees are configured along with over a dozen other devices.  I changed to
-> address-cells = <1> and dropped the leading zero from all cpu* reg<> and booting
-> the system I'm observing no change.  Looking in drivers/of I'm not seeing where
-> cpu*/reg is read and used, any recommendation?
+--qc6F2OFGFNda1XWa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-drivers/of/cpu.c
+On Wed, May 31, 2023 at 04:50:04PM +0800, Binbin Zhou wrote:
+> Add Loongson LS2X APB DMA controller binding with DT schema
+> format using json-schema.
+>=20
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  .../bindings/dma/loongson,ls2x-apbdma.yaml    | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/loongson,ls2x-a=
+pbdma.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.y=
+aml b/Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
+> new file mode 100644
+> index 000000000000..9df32dd98aaf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/loongson,ls2x-apbdma.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/loongson,ls2x-apbdma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson LS2X APB DMA controller
+> +
+> +description: |
 
-Looks like there are lots of DTS files that use #address-cells = <2> for
-CPU nodes :-(
+As a minor nit, the | shouldn't be required here.
 
-    git grep -w -A1 cpus -- "*dts*" | grep address-cells | grep "<2>"
+> +  The Loongson LS2X APB DMA controller is used for transferring data
+> +  between system memory and the peripherals on the APB bus.
+> +
+> +maintainers:
+> +  - Binbin Zhou <zhoubinbin@loongson.cn>
+> +
+> +allOf:
+> +  - $ref: dma-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: loongson,ls2k1000-apbdma
+> +      - items:
+> +          - const: loongson,ls2k0500-apbdma
+> +          - const: loongson,ls2k1000-apbdma
 
-I would use <1> is the first cell is always zero...
+Sweet, good to see fallbacks in use here ;)
 
-Gr{oetje,eeting}s,
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  "#dma-cells":
+> +    const: 1
+> +
+> +  dma-channels:
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - "#dma-cells"
+> +  - dma-channels
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    apbdma0: dma-controller@1fe00c00 {
 
-                        Geert
+Nothing references the apbdma0 label so it can be dropped.
+Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Thanks,
+Conor.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +        compatible =3D "loongson,ls2k1000-apbdma";
+> +        reg =3D <0x1fe00c00 0x8>;
+> +        interrupt-parent =3D <&liointc1>;
+> +        interrupts =3D <12 IRQ_TYPE_LEVEL_HIGH>;
+> +        #dma-cells =3D <1>;
+> +        dma-channels =3D <1>;
+> +    };
+> +
+> +...
+> --=20
+> 2.39.1
+>=20
+
+--qc6F2OFGFNda1XWa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHdIhQAKCRB4tDGHoIJi
+0tOrAP9Cl0SsiSBLexNeoIQe71NHkgQQJYYL6Bkmn5tX+RRFUQEAkGeOMq9MYEdb
+GxJXw1qKzqK4800lDfFBhRMJaIMligk=
+=3DRW
+-----END PGP SIGNATURE-----
+
+--qc6F2OFGFNda1XWa--
