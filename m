@@ -2,304 +2,295 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71BFE717C44
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:43:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67634717C47
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:44:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235336AbjEaJni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 05:43:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44978 "EHLO
+        id S234934AbjEaJoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 05:44:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234746AbjEaJnh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:43:37 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AC5DA0
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:43:35 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2af2b74d258so60492311fa.3
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:43:35 -0700 (PDT)
+        with ESMTP id S234454AbjEaJoA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:44:00 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9265FA0;
+        Wed, 31 May 2023 02:43:58 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5149aafef44so5206199a12.0;
+        Wed, 31 May 2023 02:43:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685526213; x=1688118213;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cn2/3d22hfTJ2Ng6UionkIse0o+m+9T9vxOcYzMtQas=;
-        b=aBFcFItYU9ptCtPvOtJzfhG1kEjQ0J++b3FafqvGxyfreNk6UXyU/yB33yIlbP60AT
-         PYbVW0fbTvL/dwXzRD01Zp2AMeFhXOrUuAlWC1cZWAMgIt6wK/t2NlGRrwccw5C1I6FS
-         CV4DDin5ARGjLUohVGM9mpTUv574GHArLX9ZJKeFFvgxTixo4IcPqWXcXB7NMACd/uQ/
-         xMqBEzsu0aZk7WDi1AuaM7ZRwoHc0972ZGzNvoCFn97cWOfTXGKzDTj29kM1AMUGaQMk
-         TopKakfqYn+JP5l93bymzk3z7UKTOTgAqdjKlBowMxIy/MCWBxSTG2qz7mi0WLYcWpPG
-         +9kQ==
+        d=gmail.com; s=20221208; t=1685526237; x=1688118237;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7EsGCmYgG1uVmQhWm7edBWDo73geGk5NCE6+eOOumnk=;
+        b=Y33HdGdM+6nWEMAgvmpfiTXLDee6lvx93EsYLTou3Wkz+N7v3gLTJpvnIMezLJDtPy
+         Z0Dy61gld22m9A1giOeAf2LCidPyZR6ztuvOeLO25fWsn0L/TWH7LIZMAZaO1CZ63XEx
+         kfp+3alpIUBC83RdhujVBDp+MPIp1d/Dz5ZcKbo53HkijIp9Ng5Pr/C9HnoXWwQJJ/1a
+         a9uau7eNLX1YtG8neMzdT0GPTxkLq1Y3Uin4VUxz1DzBsDUlYlp/3NlFuQ7SOk+GhmWH
+         JlD3wfp157HgA+5brcsYTEnxBwQwUXTcEsb2+4vD7zjUDpzyYNkMn9Gzg7WN9i0HknMg
+         ZRaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685526213; x=1688118213;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cn2/3d22hfTJ2Ng6UionkIse0o+m+9T9vxOcYzMtQas=;
-        b=BP7W6OFoKzgbBWO5kcPog2UyLC5xRQNmOZNvDxhV4Z1c9DmT+QBiG0sSguFOh/Wa1Q
-         h5EAh8bHN58r27hxfVD55Bjgi82OsbaN4+MCLYoXpwAQPNbVUInRCbDkB3Gs//bu4zoP
-         G6nHVbbiJfOMRA9a78hGOwlfSXXcXwFArWBFzcp0B/bstdjgvnHapB+erjLRQ8TcSYQM
-         O34iz/KnqEnFtqFv+BGaTZ7+N4Sat9Agjq1eHFI2ZfXi3tX0fym0gRNfVcaiYBtPT7Ml
-         uzLHR2Fr0vixwMZUIVDBCbBhlI5h46noB0ItjXXhOo6fUOcu8WqTBa8is4tmgyCmjN5s
-         QQvg==
-X-Gm-Message-State: AC+VfDxZ+GxXH5Yny5olv0W+7IFy+e7UmVtxvg6l5G5hjjLG9BQhodUz
-        jBQqz1mkN/RZY2QyRGe1SQbGRQ==
-X-Google-Smtp-Source: ACHHUZ663hQ61QGK8c361yT0zp5qh6WkLOD2zN3eHG1HUeUzHTJU8/ad4srRN1+30hIuObWgrL0mDw==
-X-Received: by 2002:a2e:9f02:0:b0:2a7:653d:166c with SMTP id u2-20020a2e9f02000000b002a7653d166cmr2478947ljk.3.1685526213533;
-        Wed, 31 May 2023 02:43:33 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id n10-20020a2e878a000000b002afd30401b0sm3234383lji.138.2023.05.31.02.43.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 02:43:33 -0700 (PDT)
-Message-ID: <82a5aa82-835e-d22c-7a37-2673284252db@linaro.org>
-Date:   Wed, 31 May 2023 11:43:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 10/14] arm64: dts: qcom: sdm630: rename labels for DSI
- nodes
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        d=1e100.net; s=20221208; t=1685526237; x=1688118237;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7EsGCmYgG1uVmQhWm7edBWDo73geGk5NCE6+eOOumnk=;
+        b=CBCc1TiTvjvHrkJfZeruIzDAPhXiiSZhYyD2Znklz8tSVkOYTNfWOUp7mvoFa45yf7
+         QwefMtaUK7tuIMQF5AYtyUXx8LvSPW3YjhLaT+rD8F5qN4fiylbovoSTpUPO+s8S64Hz
+         a3PevKF9Rri01iMrE2Ho2zB/6SCS5bN9DV1n5hK1+q9EejuT9ZqlWuoX5pSUWCovn4CK
+         aNbTAy/Cp/Kx8A8O9hwBB2LOWNszJjY47L2AV4YX9Qq9Tty3BUZXP+bWHFKoTbnuN/OW
+         XYjHnoBps85BdPBzm+ttyAkoOggubu4awbQY54J96vywv3a0T+fgny/SKD3GkJmywV+L
+         3Wrg==
+X-Gm-Message-State: AC+VfDybTYdIw3PB2JwXy/oKW+nAUlT9dVc01uy/ErhmEC3puIpw8C9x
+        soP/YjHwBaxvKNkrltIp0sg=
+X-Google-Smtp-Source: ACHHUZ4MPuZTPd5SBIQa8gkDcRHQQN4rpa1rkBEpqgPXcZlbgh4Kuptiitdcb14/ilenLq9ENatajA==
+X-Received: by 2002:a17:907:6d12:b0:96a:2b4:eb65 with SMTP id sa18-20020a1709076d1200b0096a02b4eb65mr4345741ejc.9.1685526236696;
+        Wed, 31 May 2023 02:43:56 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation (net-188-217-50-121.cust.vodafonedsl.it. [188.217.50.121])
+        by smtp.gmail.com with ESMTPSA id r20-20020a170906365400b0094e7d196aa4sm8640166ejb.160.2023.05.31.02.43.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 May 2023 02:43:56 -0700 (PDT)
+Date:   Wed, 31 May 2023 11:43:53 +0200
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     jacopo.mondi@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+        martin.hecht@avnet.eu, linuxfancy@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230531011623.3808538-1-dmitry.baryshkov@linaro.org>
- <20230531011623.3808538-11-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230531011623.3808538-11-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] media: dt-bindings: alvium: add document YAML binding
+Message-ID: <ZHcW2UTaMng88bVA@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+References: <20230526103427.774226-1-tomm.merciai@gmail.com>
+ <20230526103427.774226-2-tomm.merciai@gmail.com>
+ <8835e826-2ef8-bc52-3248-bd347ba7e8c1@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8835e826-2ef8-bc52-3248-bd347ba7e8c1@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Krzysztof,
+
+On Tue, May 30, 2023 at 05:52:17PM +0200, Krzysztof Kozlowski wrote:
+> On 26/05/2023 12:34, Tommaso Merciai wrote:
+> > Add documentation of device tree in YAML schema for the ALVIUM
+> > Camera from Allied Vision Inc.
+> > 
+> 
+> Thank you for your patch. There is something to discuss/improve.
+> 
+> 
+> > References:
+> >  - https://www.alliedvision.com/en/products/embedded-vision-solutions
+> > 
+> > Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+> > ---
+> >  .../media/i2c/alliedvision,alvium.yaml        | 117 ++++++++++++++++++
+> >  1 file changed, 117 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > new file mode 100644
+> > index 000000000000..5385fe849ffd
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium.yaml
+> > @@ -0,0 +1,117 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> 
+> Dual license please.
+> 
+> Please run scripts/checkpatch.pl and fix reported warnings. Some
+> warnings can be ignored, but the code here looks like it needs a fix.
+> Feel free to get in touch if the warning is not clear.
+> 
+> It does not look like you tested the bindings, at least after quick
+> look. Please run `make dt_binding_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> Maybe you need to update your dtschema and yamllint.
+> 
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/alliedvision,alvium.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Alliedvision Alvium Camera
+> > +
+> > +maintainers:
+> > +  - Tommaso Merciai <tomm.merciai@gmail.com>
+> > +  - Martin Hecht <martin.hecht@avnet.eu>
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/media/video-interface-devices.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: alliedvision,alvium
+> 
+> Missing vendor prefix in vendor-prefixes.yaml
+> 
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    description: XCLK Input Clock
+> 
+> maxItems: 1
+> 
+> > +
+> > +  clock-names:
+> > +    const: xclk
+> 
+> Drop names, useless for one entry with generic name.
+> 
+> > +
+> > +  powerdown-gpios:
+> > +    maxItems: 1
+> > +    description: >
+> > +      Reference to the GPIO connected to the powerdown pin, if any.
+> 
+> Drop description, it's obvious.
+> 
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description: >
+> > +      Reference to the GPIO connected to the reset pin, if any.
+> 
+> Drop description, it's obvious.
+> 
+> 
+> > +
+> > +  streamon-delay:
+> > +    maxItems: 1
+> > +    description: >
+> > +      Delay before camera start capturing frames in us.
+> 
+> Missing vendor prefix (unless it is a common property), missing units
+> suffix in property name (-us). It's not a list. Why this should be a
+> hardware property?
+> 
+> > +
+> > +  rotation:
+> > +    enum:
+> > +      - 0
+> > +      - 180
+> > +
+> > +  port:
+> > +    description: Digital Output Port
+> > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        $ref: /schemas/media/video-interfaces.yaml#
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          clock-lanes:
+> > +            const: 0
+> 
+> Blank line
+> 
+> > +          data-lanes:
+> > +            minItems: 1
+> > +            maxItems: 4
+> 
+> Four items and each 1 or 4? so <4>, <1>, and what else? Please provide
+> example for this.
+> 
+> > +            items:
+> > +              enum: [1, 4]
+> > +          link-frequencies: true
+> 
+> Drop this one, should not be needed.
+> 
+> > +
+> > +        required:
+> > +          - data-lanes
+> > +          - link-frequencies
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +      #include <dt-bindings/clock/imx6qdl-clock.h>
+> > +      #include <dt-bindings/gpio/gpio.h>
+> 
+> Use 4 spaces for example indentation. Not 6.
+> 
+> > +
+> > +      i2c {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +
+> > +          camera: alvium@3c {
+> 
+> Node names should be generic. See also explanation and list of examples
+> in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> > +              compatible = "alliedvision,alvium";
+> > +              reg = <0x3c>;
+> > +              pinctrl-names = "default";
+> > +              pinctrl-0 = <&pinctrl_csi0_pwn>, <&pinctrl_csi0_rst>, <&pinctrl_csi_mclk>;
+> > +              clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+> > +              clock-names = "xclk";
+> > +              assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO2>;
+> > +              assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
+> > +              assigned-clock-rates = <24000000>;
+> > +              streamon-delay = <20>;
+> > +              powerdown-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+> > +              reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
+> > +              status = "okay";
+> 
+> Drop status
+> 
+> > +
+> > +              port {
+> > +                  alvium_out: endpoint {
+> > +                      remote-endpoint = <&mipi_csi_0_in>;
+> > +                      data-lanes = <1 2 3 4>;
+> 
+> OK, here is the example. You did not test it.
+
+Thanks for your review.
+I miss this on v2, mb.
+I'll apply your hints on v3.
+
+Regards,
+Tommaso
 
 
-On 31.05.2023 03:16, Dmitry Baryshkov wrote:
-> Currently in board files MDSS and DSI nodes stay apart, because labels
-> for DSI nodes do not have the mdss_ prefix. It was found that grouping
-> all display-related notes is more useful.
 > 
-> To keep all display-related nodes close in the board files, change DSI
-> node labels from dsi_* to mdss_dsi_*.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Konrad
->  .../boot/dts/qcom/sda660-inforce-ifc6560.dts  | 16 ++++++-------
->  arch/arm64/boot/dts/qcom/sdm630.dtsi          | 20 ++++++++--------
->  arch/arm64/boot/dts/qcom/sdm660.dtsi          | 24 +++++++++----------
->  3 files changed, 30 insertions(+), 30 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-> index 7459525d9982..0b23d5bb3f26 100644
-> --- a/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-> +++ b/arch/arm64/boot/dts/qcom/sda660-inforce-ifc6560.dts
-> @@ -134,7 +134,7 @@ port@0 {
->  				reg = <0>;
->  
->  				adv7533_in: endpoint {
-> -					remote-endpoint = <&dsi0_out>;
-> +					remote-endpoint = <&mdss_dsi0_out>;
->  				};
->  			};
->  
-> @@ -183,25 +183,25 @@ bluetooth {
->  	};
->  };
->  
-> -&dsi0 {
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0 {
->  	status = "okay";
->  	vdda-supply = <&vreg_l1a_1p225>;
->  };
->  
-> -&dsi0_out {
-> +&mdss_dsi0_out {
->  	remote-endpoint = <&adv7533_in>;
->  	data-lanes = <0 1 2 3>;
->  };
->  
-> -&dsi0_phy {
-> +&mdss_dsi0_phy {
->  	status = "okay";
->  	vcca-supply = <&vreg_l1b_0p925>;
->  };
->  
-> -&mdss {
-> -	status = "okay";
-> -};
-> -
->  &mmss_smmu {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> index 897f2440c9c8..bba0f366ef03 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> @@ -1463,8 +1463,8 @@ mmcc: clock-controller@c8c0000 {
->  					<&sleep_clk>,
->  					<&gcc GCC_MMSS_GPLL0_CLK>,
->  					<&gcc GCC_MMSS_GPLL0_DIV_CLK>,
-> -					<&dsi0_phy 1>,
-> -					<&dsi0_phy 0>,
-> +					<&mdss_dsi0_phy 1>,
-> +					<&mdss_dsi0_phy 0>,
->  					<0>,
->  					<0>,
->  					<0>,
-> @@ -1536,7 +1536,7 @@ ports {
->  					port@0 {
->  						reg = <0>;
->  						mdp5_intf1_out: endpoint {
-> -							remote-endpoint = <&dsi0_in>;
-> +							remote-endpoint = <&mdss_dsi0_in>;
->  						};
->  					};
->  				};
-> @@ -1572,7 +1572,7 @@ opp-412500000 {
->  				};
->  			};
->  
-> -			dsi0: dsi@c994000 {
-> +			mdss_dsi0: dsi@c994000 {
->  				compatible = "qcom,sdm660-dsi-ctrl",
->  					     "qcom,mdss-dsi-ctrl";
->  				reg = <0x0c994000 0x400>;
-> @@ -1586,8 +1586,8 @@ dsi0: dsi@c994000 {
->  
->  				assigned-clocks = <&mmcc BYTE0_CLK_SRC>,
->  						  <&mmcc PCLK0_CLK_SRC>;
-> -				assigned-clock-parents = <&dsi0_phy 0>,
-> -							 <&dsi0_phy 1>;
-> +				assigned-clock-parents = <&mdss_dsi0_phy 0>,
-> +							 <&mdss_dsi0_phy 1>;
->  
->  				clocks = <&mmcc MDSS_MDP_CLK>,
->  					 <&mmcc MDSS_BYTE0_CLK>,
-> @@ -1608,7 +1608,7 @@ dsi0: dsi@c994000 {
->  					      "pixel",
->  					      "core";
->  
-> -				phys = <&dsi0_phy>;
-> +				phys = <&mdss_dsi0_phy>;
->  
->  				status = "disabled";
->  
-> @@ -1618,20 +1618,20 @@ ports {
->  
->  					port@0 {
->  						reg = <0>;
-> -						dsi0_in: endpoint {
-> +						mdss_dsi0_in: endpoint {
->  							remote-endpoint = <&mdp5_intf1_out>;
->  						};
->  					};
->  
->  					port@1 {
->  						reg = <1>;
-> -						dsi0_out: endpoint {
-> +						mdss_dsi0_out: endpoint {
->  						};
->  					};
->  				};
->  			};
->  
-> -			dsi0_phy: phy@c994400 {
-> +			mdss_dsi0_phy: phy@c994400 {
->  				compatible = "qcom,dsi-phy-14nm-660";
->  				reg = <0x0c994400 0x100>,
->  				      <0x0c994500 0x300>,
-> diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
-> index f0f27fc12c18..f89b27c99f40 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
-> @@ -148,14 +148,14 @@ ports {
->  		port@1 {
->  			reg = <1>;
->  			mdp5_intf2_out: endpoint {
-> -				remote-endpoint = <&dsi1_in>;
-> +				remote-endpoint = <&mdss_dsi1_in>;
->  			};
->  		};
->  	};
->  };
->  
->  &mdss {
-> -	dsi1: dsi@c996000 {
-> +	mdss_dsi1: dsi@c996000 {
->  		compatible = "qcom,sdm660-dsi-ctrl",
->  			     "qcom,mdss-dsi-ctrl";
->  		reg = <0x0c996000 0x400>;
-> @@ -170,8 +170,8 @@ dsi1: dsi@c996000 {
->  
->  		assigned-clocks = <&mmcc BYTE1_CLK_SRC>,
->  					<&mmcc PCLK1_CLK_SRC>;
-> -		assigned-clock-parents = <&dsi1_phy 0>,
-> -						<&dsi1_phy 1>;
-> +		assigned-clock-parents = <&mdss_dsi1_phy 0>,
-> +						<&mdss_dsi1_phy 1>;
->  
->  		clocks = <&mmcc MDSS_MDP_CLK>,
->  				<&mmcc MDSS_BYTE1_CLK>,
-> @@ -192,7 +192,7 @@ dsi1: dsi@c996000 {
->  					"pixel",
->  					"core";
->  
-> -		phys = <&dsi1_phy>;
-> +		phys = <&mdss_dsi1_phy>;
->  
->  		status = "disabled";
->  
-> @@ -202,20 +202,20 @@ ports {
->  
->  			port@0 {
->  				reg = <0>;
-> -				dsi1_in: endpoint {
-> +				mdss_dsi1_in: endpoint {
->  					remote-endpoint = <&mdp5_intf2_out>;
->  				};
->  			};
->  
->  			port@1 {
->  				reg = <1>;
-> -				dsi1_out: endpoint {
-> +				mdss_dsi1_out: endpoint {
->  				};
->  			};
->  		};
->  	};
->  
-> -	dsi1_phy: phy@c996400 {
-> +	mdss_dsi1_phy: phy@c996400 {
->  		compatible = "qcom,dsi-phy-14nm-660";
->  		reg = <0x0c996400 0x100>,
->  				<0x0c996500 0x300>,
-> @@ -239,10 +239,10 @@ &mmcc {
->  			<&sleep_clk>,
->  			<&gcc GCC_MMSS_GPLL0_CLK>,
->  			<&gcc GCC_MMSS_GPLL0_DIV_CLK>,
-> -			<&dsi0_phy 1>,
-> -			<&dsi0_phy 0>,
-> -			<&dsi1_phy 1>,
-> -			<&dsi1_phy 0>,
-> +			<&mdss_dsi0_phy 1>,
-> +			<&mdss_dsi0_phy 0>,
-> +			<&mdss_dsi1_phy 1>,
-> +			<&mdss_dsi1_phy 0>,
->  			<0>,
->  			<0>;
->  };
+> Best regards,
+> Krzysztof
+> 
