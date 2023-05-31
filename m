@@ -2,109 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 167A5717B7E
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:13:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A42B717B94
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 11:17:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234905AbjEaJND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 05:13:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55266 "EHLO
+        id S234846AbjEaJRo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 05:17:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235030AbjEaJNC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:13:02 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E6E810E
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:12:56 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-30789a4c537so3865541f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:12:56 -0700 (PDT)
+        with ESMTP id S235023AbjEaJRm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 05:17:42 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE44DD9
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:17:40 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-96f818c48fbso976332166b.0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 02:17:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685524375; x=1688116375;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b+YQlgx1VFjGNM9jR4+GNT4YtqTgZVS0cajTtQFZxPY=;
-        b=TxgwASoWbYILqZMx1W+qJLLjUFcaq8VRufal5QmKv95NcDXZwa2NneqoeYjhsD96/0
-         wfqjbVUm2NUBapNFOcmvDvKAIhr6DzfTL3C7JBNsury9sdT8Ujc4dQpyMOzSIyrElG/D
-         MJ5JrgN92GvFuSM8u+O+P72L9t81wLayJDnPoe5M0IejPqt8abZAeBYRGt3sJCPPmX9k
-         llGPNvd7wKwPetElGvsC5pbltpMWAQ6GIWef6E2fV83EdFR3yjyF37SMHYO28qItls3k
-         prYaYkggSzcB67YRUUSkdSFT2WLspoPtqDHCq1+M8E4aJwC8Dj7u/HSwRbR833CoGbAx
-         kGgA==
+        d=linaro.org; s=google; t=1685524659; x=1688116659;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OADC3RfZz8aGJuKXNoOKeJUa9cEawhPV5nN0Ge23Nzo=;
+        b=Ff5Z9vs7m6+MWJxaKpqar6M9LALIChP6jBiwVtVzc3n81B4S6RoiYfhqOP9ZQc9L7O
+         rZ5u0Q584Ng+8r4dGqx6ZmwULpo/ZwLqmQwRIXxmMpCZk62etI4oJ6VFEIgKKPKJlutf
+         w0hZ55SSQ05ac0O3gXNybzXJVMaNAm/CgG9+KAONDSZDvxPdwo//S1wW29I/iLlatzkI
+         SsF+EUEvnnGaeyzAKP8wfRFHMUQUNkXlfbFzCj8xM9SM8fbwUL4jP8YiRzzX1Gu1sDVu
+         352fRp8qaqO5ANlDAbN1Lyxvm65fWCNG8Di7lWIuaTR3w8dmciNewyu1zGuLUvFq74Ye
+         kccg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685524375; x=1688116375;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b+YQlgx1VFjGNM9jR4+GNT4YtqTgZVS0cajTtQFZxPY=;
-        b=JOA/H4cD6kzSK+hRy56nAf0I7poopfo6/WjU/q3F8PFaGHqFi8qsule6o1rSJ1O1Zd
-         AyAwzWmZ4DlIwIP1KM08TvogjnFbrOGYuiMnYQraWcgzaTJixqyjjO1OI5NWBipuHJ4E
-         cyorWUEsl77noauJlQkM5nDlYjEwjUyFvpfsXpjqWUPsdRaLzji/Nqpr7wzI7KO9O+6q
-         LHdEXukmyQKzRkklegmJQaWu5aaT0Iwz3bGrGollnneFBkfHXMHZGSwgQxSQvcYgJi5H
-         dPX1SUs+n3O4l8ueni8AFVCXy+NeECT4GMjJcC8rzkBl3YSXG8+9ncspeLDtEriZmEvC
-         SGXw==
-X-Gm-Message-State: AC+VfDz6noqZ56BdsFOsC8+MDfFSmNlLNXre5wibn6DnlM+IPGmXCt2s
-        4v0I9dfV8OcyYxcoPunqdh0bQw==
-X-Google-Smtp-Source: ACHHUZ63Rq1SiIBEGY8gi25g6h2KtY943yA6ZZTaGh4uMaC/0fDaORIAd9BOP/nEMenZLdqK/Nut7w==
-X-Received: by 2002:a5d:5150:0:b0:30a:e973:b182 with SMTP id u16-20020a5d5150000000b0030ae973b182mr3192370wrt.1.1685524374979;
-        Wed, 31 May 2023 02:12:54 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id cs1-20020a056000088100b002e5f6f8fc4fsm6117294wrb.100.2023.05.31.02.12.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 May 2023 02:12:54 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org
-In-Reply-To: <20230531000259.3758235-1-dmitry.baryshkov@linaro.org>
-References: <20230531000259.3758235-1-dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v3 0/3] drm/bridge: display-connector: add external
- supply support
-Message-Id: <168552437407.2007178.8614236021819101690.b4-ty@linaro.org>
-Date:   Wed, 31 May 2023 11:12:54 +0200
+        d=1e100.net; s=20221208; t=1685524659; x=1688116659;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OADC3RfZz8aGJuKXNoOKeJUa9cEawhPV5nN0Ge23Nzo=;
+        b=Vt97V/zYm0EYQCtHjU5gZdX5i4HFmyoaqaRxD9/mrlJNKUTUin1vLlnl9Nwolld9Qf
+         WbcHegDFwdhIApXGGWhS2XFG6npEr+hUUYxBpezTiIlM7jCfTFvomqIxDqb3fpXSB9LJ
+         LTyQzBHdJbFtt1Ek8alEFqVJBi0RA7V+zulyRyXf9646rrWDnM55wBv6ZrAnd9MBMyEB
+         hgXbaLRD3WLok2XbSmhSGFWPoCJOvbrLKdHFyy+NWo/WS25L7LKf+fe8F/Gur/4pIY/k
+         V8oC9iBPY2TyDy+2SkPogJAUF+nuLLPJiinqL7w8+inGa/JrdkbzK9v7M52HaizehRcJ
+         R94g==
+X-Gm-Message-State: AC+VfDz9gDD+xo3grTL13OJNY6bQtnMj+TpwBHRDSdV95GSwGcxbBBTx
+        xOsebgB73ub+BiCt3HhEdwuB1w==
+X-Google-Smtp-Source: ACHHUZ6Mwh1uhjbIvXzEqr7u6gpp/I8WIdGTzFCAjeE3E4N0lM8OSIEEpXCjuHkrdJ3YTuCvJFnGrg==
+X-Received: by 2002:a17:906:6a0c:b0:973:daa0:2f6 with SMTP id qw12-20020a1709066a0c00b00973daa002f6mr4796212ejc.3.1685524659193;
+        Wed, 31 May 2023 02:17:39 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id q10-20020a170906b28a00b00965d294e633sm8682465ejz.58.2023.05.31.02.17.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 May 2023 02:17:38 -0700 (PDT)
+Message-ID: <1f966e93-50c3-142e-620c-8fbb16e9b1a7@linaro.org>
+Date:   Wed, 31 May 2023 11:17:37 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: power: supply: Fix rt9467 charger enable
+ gpio active level
+Content-Language: en-US
+To:     cy_huang@richtek.com, sre@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     chiaen_wu@richtek.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1685522813-14481-1-git-send-email-cy_huang@richtek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1685522813-14481-1-git-send-email-cy_huang@richtek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Wed, 31 May 2023 03:02:56 +0300, Dmitry Baryshkov wrote:
-> On some devices the 5V pin of the HDMI connector and/or the ESD
-> protection logic is powered on by a separate regulator. The dp-connector
-> for such usecases provides dp-pwr supply support. Follow this example
-> and make hdmi-connector support the hdmi-pwr supply.
+On 31/05/2023 10:46, cy_huang@richtek.com wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Changes since v2:
-> - Changed to use proper supply name instead of hardcoded "dp-pwr" (Neil)
+> The RT9467 charger enable pin is an external signal that used to enable
+> battery charging. From the datasheet, the active level is low. Although
+> it's already configured to logic low at driver probe function, but the
+
+NAK.
+
+You mix two different things. Driver behavior and DTS. Driver can
+operate either on real level - matching hardware - or on logical level
+(high as enable, low as disable). First choice is usually wrong, because
+it does not allow inverted signals.
+
+'Correcting' bindings to wrong approach is wrong. If the signal is
+active low, then the flag is active low. Simple as that.
+
+> current binding example declared it as 'GPIO_ACTIVE_LOW', this causes
+> this pin be output high and disable battery charging.
 > 
-> [...]
+> Fixes: e1b4620fb503 ("dt-bindings: power: supply: Add Richtek RT9467 battery charger")
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+> Hi,
+> 
+>   This patch is to fix the active level for charger enable gpio polarity.
 
-Thanks, Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+This is just example - it does not fix anything...
 
-[1/3] dt-bindings: display: hdmi-connector: add hdmi-pwr supply
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=41b74821751466457dc8b87606ac4d71ec568d4e
-[2/3] drm/bridge: display-connector: rename dp_pwr to connector_pwr
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=99304fd0050314a0c998c28300393ec574998db9
-[3/3] drm/bridge: display-connector: handle hdmi-pwr supply
-      https://cgit.freedesktop.org/drm/drm-misc/commit/?id=6eb6b6f0a012993070b26dacb5ea1ff5fc233c18
+> Currently, the wrong active level makes the user confused and
+> unexpectedly disable battery charging by default.
+> ---
+>  Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml b/Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml
+> index 3723717..cdc7678 100644
+> --- a/Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/richtek,rt9467.yaml
+> @@ -69,7 +69,7 @@ examples:
+>          reg = <0x5b>;
+>          wakeup-source;
+>          interrupts-extended = <&gpio_intc 32 IRQ_TYPE_LEVEL_LOW>;
+> -        charge-enable-gpios = <&gpio26 1 GPIO_ACTIVE_LOW>;
+> +        charge-enable-gpios = <&gpio26 1 GPIO_ACTIVE_HIGH>;
+>  
+>          rt9467_otg_vbus: usb-otg-vbus-regulator {
+>            regulator-name = "rt9467-usb-otg-vbus";
 
--- 
-Neil
+Best regards,
+Krzysztof
 
