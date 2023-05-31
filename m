@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AC87717348
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 03:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15D1371734D
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 03:43:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233608AbjEaBm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 21:42:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43794 "EHLO
+        id S233646AbjEaBm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 21:42:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233646AbjEaBmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 21:42:55 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68135123
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:42:54 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f3a611b3ddso541861e87.0
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:42:54 -0700 (PDT)
+        with ESMTP id S231473AbjEaBm4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 21:42:56 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46621F9
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:42:55 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f4b0a0b557so5811604e87.1
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:42:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685497372; x=1688089372;
+        d=linaro.org; s=google; t=1685497373; x=1688089373;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=N12gfFtx2uUrPiE+zEwFxqEuTlfoHWgM0ZbjtW5pSzo=;
-        b=s40cckDoVbkyLiNx+I24Sv8hcbm0EfanQbMSWlF0Za2R/LeKdodwn/8zZ8Ug9QVTJu
-         mIbfhcd/mckYqHp9rCw91uRxAoeX7MojU6hUBiYeGngr6FQKKuND1SusUuuGvm4Wmh7m
-         Bb84yxQGxZTtYnwy8Zca/kLTkC3VJj3++lUcJgEO4T3KstqL785U6ziVNOKuFR++5Ycc
-         gsQSnBlyWp5goB+ujA7juECNpLEkQy8JiSdLONspiwYjscDW/tTU/AKHYjT9ITK2fitS
-         Y/mWOCFYbv3+lDgfH5KcBLtpi/51fi3XTTMR9tlYN0kLrOVWauZ/7jFCB9ZrFhMGVM74
-         3X3A==
+        bh=ePONLKG6w8Sb9ucFxfluXQBvZKdoTzrtXA0KFPUr4P0=;
+        b=o9cSS2QpT4Wsl9SR9B2SslD69sG9DYpVAE9i7hyhzarTk8AkclAH51cTCzfmX6ln4/
+         PTnNwSnTK3kesILZwZFPs2fxd/O4gxE6FR9zAOgnUiX/1/APaO7Y0rrs1Rw8/3Htdhwu
+         d6PcQugcBh/entClYpOKT+yIhiivQ/kWlM1yX8l74Coeu8iTJ7mH91JJdytoE0rRPMlz
+         EvJR51/pRjqRnSIDrk3neBCce8ZHKySuks1xpbRMn6UU4k/ipL9WHf/Kwbj3Fld/1SeE
+         c0rC4QVURUgMugoZKLnSEL4y8upXUwC7Yf/I8LxZt6jfwgp/eY8sfKdowM0arOrltgqe
+         nSTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685497372; x=1688089372;
+        d=1e100.net; s=20221208; t=1685497373; x=1688089373;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=N12gfFtx2uUrPiE+zEwFxqEuTlfoHWgM0ZbjtW5pSzo=;
-        b=dLonaJgdMTJMRvOoLifEGqeIc22kHYinxXRONXpiEQeTMK0+nDfSDpQsToBjMrDEYC
-         CwFkbWFmeqfsdjgVk0DXAMjQIrpuTeCPFla/ZrnE9ogRB2FdpRIR6N/Hzgm/3a4TENxI
-         KVys2NIxeA14d3LpB55GyhiepSqXNrsOYNdNeT7+yr8kUb9a5qCOCyVHgnBLAo1gLMVj
-         PhYFDvISmrYGLwHOEfj5bkGNpDUHOZOs6Kty8Jc164mcpdxcrDyXbUEnI2EKmdLPojC5
-         dWvE6IJ3kh9j8ta+A0vQrGlQzGtFKOgMaNoqtPDdYyzkLfv3Koex2aptnM1P6kG3+yQb
-         qDFg==
-X-Gm-Message-State: AC+VfDwKUnfyWuY7Iu6DYdKrGqi+TyhS9fzYJXSrY8NHJ4xlR8butpMv
-        S6gYO7VJ0jp/Ewlmo1rxR3HLjw==
-X-Google-Smtp-Source: ACHHUZ4B7uyEA+PMOmmqXz5/TeRg0+k23G4/4d5E3EfVX5cES1J0OJdMClokWlam/MMqPqXPHxVWig==
-X-Received: by 2002:a05:6512:ad3:b0:4f1:3a46:b351 with SMTP id n19-20020a0565120ad300b004f13a46b351mr4504276lfu.4.1685497372822;
-        Tue, 30 May 2023 18:42:52 -0700 (PDT)
+        bh=ePONLKG6w8Sb9ucFxfluXQBvZKdoTzrtXA0KFPUr4P0=;
+        b=Pky1j0qwi10zyR/khnV0E/h4ah8XghV9NXeVaEII4zyNQPUyTslwYCiWyIXO1LyKob
+         gQCwu2EQ6SOSEalMSCUdBpnHq2YJdC0No1UM3GqKUh7LL0qB6h1Iy55ysq1aPCCZSCA8
+         YBXJCPPI3xFrRY5kyeitvVYgZDIrT6Yv0vajA0cm27LozVX5JIa5p9IAGgyp2376e5PV
+         ghNHdgWMEM8X6JEGhlAc5QpdByWDb14zc3OYPqYxwAm8E6F4kHwSlss8Kn4qm7EpBXeh
+         vGzBPU41SeEjaKQFKM5bHIkCrj0neAoqoppYqL3NKvHNd4VKed9xnKiipmk3nT8HYrIH
+         Edng==
+X-Gm-Message-State: AC+VfDxhmauemDEvL+7riB9XO5OXN+DtVSjAArW2gHRBEXvVo2yckHge
+        atNEVqbHyqATDndDvEnZiKDy9w==
+X-Google-Smtp-Source: ACHHUZ6rN08epjLFVRSdRe8/aHjgfq3mu6/vKJMLlFwJfB7csOoyfLgMXdNLW261Y5UZbe60d8+XWw==
+X-Received: by 2002:ac2:5292:0:b0:4f2:5c4b:e69b with SMTP id q18-20020ac25292000000b004f25c4be69bmr1948255lfm.67.1685497373704;
+        Tue, 30 May 2023 18:42:53 -0700 (PDT)
 Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
-        by smtp.gmail.com with ESMTPSA id q20-20020ac25294000000b004f3945751b2sm515994lfm.43.2023.05.30.18.42.51
+        by smtp.gmail.com with ESMTPSA id q20-20020ac25294000000b004f3945751b2sm515994lfm.43.2023.05.30.18.42.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 18:42:52 -0700 (PDT)
+        Tue, 30 May 2023 18:42:53 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -60,9 +60,9 @@ To:     Sebastian Reichel <sre@kernel.org>,
         Vinod Koul <vkoul@kernel.org>
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
-Subject: [PATCH v3 3/4] ARM: dts: qcom-pm8941: add resin support
-Date:   Wed, 31 May 2023 04:42:47 +0300
-Message-Id: <20230531014248.3824043-4-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 4/4] ARM: dts: qcom: apq8074-dragonboard: add resin
+Date:   Wed, 31 May 2023 04:42:48 +0300
+Message-Id: <20230531014248.3824043-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230531014248.3824043-1-dmitry.baryshkov@linaro.org>
 References: <20230531014248.3824043-1-dmitry.baryshkov@linaro.org>
@@ -71,56 +71,37 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Wrap existing pwrkey and new resin nodes into the new pon node to enable
-volume-down key support on platforms using pm8941 PMIC.
+Add device nodes for resin (reset, volume-down) device node.
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom-pm8941.dtsi | 22 +++++++++++++++++-----
- 1 file changed, 17 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/qcom-apq8074-dragonboard.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm/boot/dts/qcom-pm8941.dtsi b/arch/arm/boot/dts/qcom-pm8941.dtsi
-index a821f0368a28..cf1fcf97fa88 100644
---- a/arch/arm/boot/dts/qcom-pm8941.dtsi
-+++ b/arch/arm/boot/dts/qcom-pm8941.dtsi
-@@ -19,12 +19,24 @@ rtc@6000 {
- 			interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
- 		};
+diff --git a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
+index 7f759b00524b..ce5eb56a5d1d 100644
+--- a/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
++++ b/arch/arm/boot/dts/qcom-apq8074-dragonboard.dts
+@@ -148,6 +148,11 @@ led@7 {
+ 	};
+ };
  
--		pwrkey@800 {
--			compatible = "qcom,pm8941-pwrkey";
-+		pon@800 {
-+			compatible = "qcom,pm8941-pon";
- 			reg = <0x800>;
--			interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
--			debounce = <15625>;
--			bias-pull-up;
++&pm8941_resin {
++	linux,code = <KEY_VOLUMEDOWN>;
++	status = "okay";
++};
 +
-+			pwrkey {
-+				compatible = "qcom,pm8941-pwrkey";
-+				interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
-+				debounce = <15625>;
-+				bias-pull-up;
-+			};
-+
-+			pm8941_resin: resin {
-+				compatible = "qcom,pm8941-resin";
-+				interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
-+				debounce = <15625>;
-+				bias-pull-up;
-+				status = "disabled";
-+			};
- 		};
- 
- 		usb_id: usb-detect@900 {
+ &pm8941_wled {
+ 	qcom,cs-out;
+ 	qcom,switching-freq = <3200>;
 -- 
 2.39.2
 
