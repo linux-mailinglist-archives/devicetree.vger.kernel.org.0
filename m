@@ -2,117 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01BAF71814B
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:21:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AE4E718158
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:22:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232598AbjEaNVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 09:21:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42368 "EHLO
+        id S235353AbjEaNWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 09:22:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230456AbjEaNVF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:21:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74A5123;
-        Wed, 31 May 2023 06:21:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5C78A63A67;
-        Wed, 31 May 2023 13:21:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8286BC4339B;
-        Wed, 31 May 2023 13:21:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685539263;
-        bh=38r927G2inyVMml0LWLz7BZPDRXvg4VePw65RoNKYtc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LdZne+qt+TBfcx78L1P/e2jFK0kSzM5OFwvU2lxOWm2TlFradzemowoi00+tmv6y0
-         sWY0vKMfcns0lX4vAY/CH6ckpM41qmMi1xxJxqhdUeryyDNpqMpv5VLXnjTFxKv5YT
-         30pidaxePH2tzlQBSPb4vfBLDSguMgjWY93t7Ya/SLeTzGPsOFra84VCLvf9MR2KbQ
-         vf2dSCmwUct0o7VADfK7uJOVALI/Hv4GXRwP19ty6V6ofqoGe4+N9AN+pZH+WtAalo
-         AsJXlkNLdL/RX27xAB+do3GU73RxNpW897H95tp6qq29koGhTPCIRNZF0s6kd6Xn8P
-         VIb+hnRbwW75g==
-Date:   Wed, 31 May 2023 14:20:57 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        with ESMTP id S231651AbjEaNWr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:22:47 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD99E98
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 06:22:45 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f4bdcde899so6549884e87.0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 06:22:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685539364; x=1688131364;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KIZPiJOryrYBNzDV98c5rF00N4czhl7JRYIFLL6eVDE=;
+        b=tE0emTrSm9NQyVenD1GTAkMF6bvCt1cGL00lP46GIgghU5FL+whNQ94bXxDu07Nqmc
+         GKamdIfxvYDEGucW1fWmwZ0eU2CRPwRqfBbdGlNOSbbJ/QlhSj2dNXDQbZe156n4wxZp
+         C6U/8JeNf9MnNOi2hL7jrb69nQ2U8YEf9xiDPBbkOkjOVBVrikwSCXXMHWqy8AbAGD/I
+         mdWQSdcpuCAglFEX78X4Sdr3owhIYl2IK7EtP87uHJwf08xU3LU7FFBo744cTwiBfqPR
+         /F+pyfXakVR1aVmHNcGQpmnxURMi8SPXJPrkzHAAWrqODPGYDZIB7eHGd6GftY+e/byD
+         19VA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685539364; x=1688131364;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KIZPiJOryrYBNzDV98c5rF00N4czhl7JRYIFLL6eVDE=;
+        b=kTYIa7bhoxjSSVTAd1LuImAFngdSQLcKar7W0XSoXU4OiGRQPXxIWPoV2MsFvkwUkn
+         e5ebM57e6U2xQcwQVqOYoNOkQ2R6rjP4CfBVAJlWr7xNEi8RL79kb3p7XTR+17csu3O1
+         zwBIPTWLH9AQHVf0eX13knZrDd0GnbZgrgS1M2g1AEx9fH/On9XuGw7OUKNojpoJKGLw
+         9qOlwf76Zl504to33XKdcSHiteaPvTjrIaLLAvMOcmX1O7h/f4uk/I62Um9lNQHjLo0O
+         SEfj01ymy3r5O26kY4sRcvV/T1Zol03h2KW8LUIrgfSBw8BDZ+EmGpsMZ3U0+3EC2Iet
+         /BTw==
+X-Gm-Message-State: AC+VfDwlX2RHTC3RY5JiDD2eP/ChcMgCclctyhLZWA+fyVb/z2fmNkn3
+        9cdlAODSI8bN7Z0IIGYR+xCEzHLeNdrnVWphrrk=
+X-Google-Smtp-Source: ACHHUZ69cuPzxgFaBu/ndAZ/Jh0mzfaPzNG2OiEpJsxsJzTr0tCnhuHghDE45Y+hXakMT1wYSGfSMQ==
+X-Received: by 2002:ac2:4c1a:0:b0:4dd:9a38:fcc with SMTP id t26-20020ac24c1a000000b004dd9a380fccmr2597905lfq.63.1685539363921;
+        Wed, 31 May 2023 06:22:43 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id w8-20020ac24428000000b004eb0c51780bsm720138lfl.29.2023.05.31.06.22.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 May 2023 06:22:43 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/8] Flush RSC votes properly on more RPMh platforms
+Date:   Wed, 31 May 2023 15:22:34 +0200
+Message-Id: <20230531-topic-rsc-v1-0-b4a985f57b8b@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABpKd2QC/x2NQQqDQAxFrzJkbUBnEGyvUrrIjLEGZJSkiiDev
+ aHL93mfd4GxChs8wwXKh5is1aFrApSZ6odRRmeIbUxtnzr8rpsUVCuYeh7SMNKDpgzuZzLGrFT
+ L7I+6L4uPm/Ik5z/wet/3D/m8hRNwAAAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>
-Subject: Re: [PATCH v1 2/3] spi: cadence-quadspi: Add clock configuration for
- StarFive JH7110 QSPI
-Message-ID: <075db1ba-e15c-4c3c-9430-99c866eca24d@sirena.org.uk>
-References: <20230526062529.46747-1-william.qiu@starfivetech.com>
- <20230526062529.46747-3-william.qiu@starfivetech.com>
- <fecc9d6a-022e-49d9-a452-8a63c409ebf3@sirena.org.uk>
- <042c560d-1f36-8e97-3796-7423245592f4@starfivetech.com>
- <86555925-b8dd-29a8-60cd-5c2ff2c1432a@starfivetech.com>
- <eb68722b-bcab-4aa1-aa4e-54bfe95ef414@sirena.org.uk>
- <93ba0b97-45aa-e59d-1454-80c4f245acc0@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="G6ktQj/BvBBSNjYO"
-Content-Disposition: inline
-In-Reply-To: <93ba0b97-45aa-e59d-1454-80c4f245acc0@starfivetech.com>
-X-Cookie: Will Rogers never met you.
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        Lina Iyer <ilina@codeaurora.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <andy.gross@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1685539362; l=2037;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=JZ68AX9UMXCzwIdH9lqsuXJaapN5UStvCJNTkI8Mj+8=;
+ b=ORTrmJjKqdpwjFR3Ef9AKxSvaE6DTtZc1d7TLHHwp12L0cAOPlIES0MvS3S3LGxSz/AxR4Jmh
+ GOR+J3KZS6GCaEJgQbWBIsWFVAxYV3whdi16uuGo7Fm7luAxpwKRd59
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+As pointed out in [1], the Linux implementation of RSC basically requires
+(even if not explicitly) that we point it to a power domain which
+represents the power state of the CPUs. In an effort to fulfill that
+requirement, make it required in bindings and hook it up on all platforms
+where I was able to do. This means all RPMh platforms, except
 
---G6ktQj/BvBBSNjYO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+- SC7180
+- SC7280
+- SA8775
 
-On Wed, May 31, 2023 at 02:19:16PM +0800, William Qiu wrote:
-> On 2023/5/30 18:33, Mark Brown wrote:
+As there wasn't an idle-states setup (which may be on purpose for CrOS
+devices, certainly not for Windows SC7[12]80s) that I could validate.
+(Doug, Bartosz, could you guys look into your respective platforms of
+interest here?)
 
-> > You could always specify a different array of clocks depending on which
-> > compatible the driver sees, just like you'd conditionally request clocks
-> > individually.
+This series also adds support for idle states on SM6350, as I was able
+to add and test that.
 
-> 	If specify a different array of clocks depending on which compatible
-> the driver sees, since there will also be clock operations in the suspend
-> and resume interfaces, this can make the code look complicated.
+[1] https://lore.kernel.org/linux-arm-msm/20230512150425.3171122-1-quic_bjorande@quicinc.com/
 
-If you store the clock count and array in the driver data that should be
-fairly simple I think.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (8):
+      dt-bindings: soc: qcom,rpmh-rsc: Require power-domains
+      arm64: dts: qcom: sm6350: Add PSCI idle states
+      arm64: dts: qcom: qdu1000: Flush RSC sleep & wake votes
+      arm64: dts: qcom: sc8180x: Flush RSC sleep & wake votes
+      arm64: dts: qcom: sdm670: Flush RSC sleep & wake votes
+      arm64: dts: qcom: sdm845: Flush RSC sleep & wake votes
+      arm64: dts: qcom: sm6350: Flush RSC sleep & wake votes
+      arm64: dts: qcom: sm8550: Flush RSC sleep & wake votes
 
-> 	as following:
+ .../bindings/soc/qcom/qcom,rpmh-rsc.yaml           |   2 +
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi              |   1 +
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi              |   1 +
+ arch/arm64/boot/dts/qcom/sdm670.dtsi               |   1 +
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |   1 +
+ arch/arm64/boot/dts/qcom/sm6350.dtsi               | 142 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi               |   1 +
+ 7 files changed, 149 insertions(+)
+---
+base-commit: d4cee89031c80066ec461bb77b5e13a4f37d5fd2
+change-id: 20230531-topic-rsc-35e838da9afb
 
-> 	/* Obtain QSPI clock. */
-> 	cqspi->num_clks = devm_clk_bulk_get_all(dev, &cqspi->clks);
-> 	if (cqspi->num_clks < 0) {
-> 		dev_err(dev, "Cannot claim QSPI clock: %u\n", cqspi->num_clks);
-> 		return -EINVAL;
-> 	}
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
-> 	This way, the code will look simpler and clearer. How do you think
-> about it.
-
-I'm not clear how enable and disable would then work?
-
---G6ktQj/BvBBSNjYO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmR3SbkACgkQJNaLcl1U
-h9A5YAf6AyXRsEmaDvRUFjWZZNZoMgo2EFDR0Jl7tIiuqYCoBj6JUWnZZBV7bZnq
-tVBoRN8pUEPIdzISOFwas3GYdOHZdSMagbeH2d8DZp7Cn7YTBcHKdw4otXRB+4QN
-tXJITLg7JSbzgd6gP/wfMp+q9Yyf0q+T9kRsrBTFSYuJmh6yg8CRaHrHmdomTBAB
-ZvB/TwoNFJYrvpRIJXUQC3mOviO7eQCVr9z6ZG8iwlzlxym7ZSC/rRbG2MtKlxls
-zIaL56Kwe4MQg7LgQejCY+z4ZLUdqpLb9DiVOp9bRspzRuWdRABZsdzahkgEZCbL
-C2/G7xzOwRn0cvaF+TipvT73i+QPxA==
-=6EZR
------END PGP SIGNATURE-----
-
---G6ktQj/BvBBSNjYO--
