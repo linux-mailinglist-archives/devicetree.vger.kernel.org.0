@@ -2,44 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CBA37185E7
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 17:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E04CF7185EE
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 17:17:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234332AbjEaPQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 11:16:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44058 "EHLO
+        id S231833AbjEaPRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 11:17:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234293AbjEaPQX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 11:16:23 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F9998;
-        Wed, 31 May 2023 08:16:22 -0700 (PDT)
-Received: from ideasonboard.com (unknown [IPv6:2001:b07:5d2e:52c9:72c3:346:a663:c82d])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 943D5844;
-        Wed, 31 May 2023 17:15:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1685546159;
-        bh=HeXBZlYluFZrJepoAl3Q51k415r93t0ilHotlcCj12w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QHjHFLqPSCT8DgU5wqBmdQ6CTOhcwzCCBXDZAoxOai61XmZRglnleAiI+OIlggxn+
-         +CxmMiLRXg5AP3mngp2PMsXCJ5NLrF7vAex5D8Psrn1/Is4r2Z5EWb4uDZdJ2Vv3as
-         ac6VGsOIIbh3r72N1qBdzhDJQunCr8VRhG9VT53c=
-Date:   Wed, 31 May 2023 17:16:17 +0200
-From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S234271AbjEaPRF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 11:17:05 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 838E211D;
+        Wed, 31 May 2023 08:17:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=zulFnBIOvpdXzsXSodPwLCmaalOVRPPAxIcwsGbXZrU=; b=ttG6x4A+90V0zw0Y8l/vgIMO/G
+        uRCnVZduiOSABPA65Vx4Jw8llwlvtzFL6+wWbf6g/DqKHHAiNB1QESkW88rQAccgX7Hra/ONdweIG
+        z148paC7S7agHEWsUK332nBTWYQFgXXpmdhHw7QxAbljfg6wxg3BWvLUCVGBCsIvW1So=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1q4NZ8-00ETKT-FD; Wed, 31 May 2023 17:16:46 +0200
+Date:   Wed, 31 May 2023 17:16:46 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Detlev Casanova <detlev.casanova@collabora.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 06/21] media: i2c: imx258: Make V4L2_CID_VBLANK
- configurable.
-Message-ID: <vnwwrfgwr5ueiheqsnvxz7sh3qjcftocjjxdghvrigfmlss4yu@5xq3tppv4pxg>
-References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
- <20230530173000.3060865-7-dave.stevenson@raspberrypi.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: net: phy: Support external PHY xtal
+Message-ID: <ade45bcf-c174-429a-96ca-d0ffb41748d4@lunn.ch>
+References: <20230531150340.522994-1-detlev.casanova@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230530173000.3060865-7-dave.stevenson@raspberrypi.com>
+In-Reply-To: <20230531150340.522994-1-detlev.casanova@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -50,84 +57,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dave
-
-On Tue, May 30, 2023 at 06:29:45PM +0100, Dave Stevenson wrote:
-> The values and ranges of V4L2_CID_VBLANK are all computed,
-> so there is no reason for it to be a read only control.
-> Remove the register values from the mode lists, add the
-> handler, and remove the read only flag.
->
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+On Wed, May 31, 2023 at 11:03:39AM -0400, Detlev Casanova wrote:
+> Ethernet PHYs can have external an clock that needs to be activated before
+> probing the PHY.
+> 
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 > ---
->  drivers/media/i2c/imx258.c | 16 +++++++---------
->  1 file changed, 7 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> index 30bae7388c3a..c6fb649abb95 100644
-> --- a/drivers/media/i2c/imx258.c
-> +++ b/drivers/media/i2c/imx258.c
-> @@ -30,6 +30,8 @@
->  #define IMX258_VTS_30FPS_VGA		0x034c
->  #define IMX258_VTS_MAX			0xffff
->
-> +#define IMX258_REG_VTS			0x0340
-> +
->  /* HBLANK control - read only */
->  #define IMX258_PPL_DEFAULT		5352
->
-> @@ -202,8 +204,6 @@ static const struct imx258_reg mode_4208x3120_regs[] = {
->  	{ 0x0114, 0x03 },
->  	{ 0x0342, 0x14 },
->  	{ 0x0343, 0xE8 },
-> -	{ 0x0340, 0x0C },
-> -	{ 0x0341, 0x50 },
->  	{ 0x0344, 0x00 },
->  	{ 0x0345, 0x00 },
->  	{ 0x0346, 0x00 },
-> @@ -319,8 +319,6 @@ static const struct imx258_reg mode_2104_1560_regs[] = {
->  	{ 0x0114, 0x03 },
->  	{ 0x0342, 0x14 },
->  	{ 0x0343, 0xE8 },
-> -	{ 0x0340, 0x06 },
-> -	{ 0x0341, 0x38 },
->  	{ 0x0344, 0x00 },
->  	{ 0x0345, 0x00 },
->  	{ 0x0346, 0x00 },
-> @@ -436,8 +434,6 @@ static const struct imx258_reg mode_1048_780_regs[] = {
->  	{ 0x0114, 0x03 },
->  	{ 0x0342, 0x14 },
->  	{ 0x0343, 0xE8 },
-> -	{ 0x0340, 0x03 },
-> -	{ 0x0341, 0x4C },
->  	{ 0x0344, 0x00 },
->  	{ 0x0345, 0x00 },
->  	{ 0x0346, 0x00 },
-> @@ -803,6 +799,11 @@ static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
->  					       BIT(IMX258_HDR_RATIO_MAX));
->  		}
->  		break;
-> +	case V4L2_CID_VBLANK:
+>  .../devicetree/bindings/net/ethernet-phy.yaml          | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> index 4f574532ee13..e83a33c2aa59 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> @@ -93,6 +93,16 @@ properties:
+>        the turn around line low at end of the control phase of the
+>        MDIO transaction.
+>  
+> +  clock-names:
+> +    items:
+> +      - const: xtal
 
-Should a new vblank value change the exposure limits too ?
+I don't think xtal is the best of names here. It generally is used as
+an abbreviation for crystal. And the commit message is about there not
+being a crystal, but an actual clock.
 
-> +		ret = imx258_write_reg(imx258, IMX258_REG_VTS,
-> +				       IMX258_REG_VALUE_16BIT,
-> +				       imx258->cur_mode->height + ctrl->val);
-> +		break;
->  	default:
->  		dev_info(&client->dev,
->  			 "ctrl(id:0x%x,val:0x%x) is not handled\n",
-> @@ -1214,9 +1215,6 @@ static int imx258_init_controls(struct imx258 *imx258)
->  				IMX258_VTS_MAX - imx258->cur_mode->height, 1,
->  				vblank_def);
->
-> -	if (imx258->vblank)
-> -		imx258->vblank->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> -
->  	imx258->hblank = v4l2_ctrl_new_std(
->  				ctrl_hdlr, &imx258_ctrl_ops, V4L2_CID_HBLANK,
->  				IMX258_PPL_DEFAULT - imx258->cur_mode->width,
-> --
-> 2.25.1
->
+How is this clock named on the datasheet?
+
+    Andrew
