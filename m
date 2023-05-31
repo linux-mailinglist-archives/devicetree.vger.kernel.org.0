@@ -2,138 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8B5D718730
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 18:18:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DECE71875C
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 18:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbjEaQSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 12:18:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48674 "EHLO
+        id S229455AbjEaQ3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 12:29:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbjEaQSD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 12:18:03 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D0CE2;
-        Wed, 31 May 2023 09:18:02 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34VBUmvC006564;
-        Wed, 31 May 2023 16:17:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Qh2GGerr2d0RNJC2IMcfWBoUYTAUMgGeuDdnmlkrO9w=;
- b=RFM6Mb+WToorNfBoBUZuo8PsSkw6sM3LOhm1egNAQrmVuPVCgvwYbC0SNZJ7PMaq9/qH
- 6EldkZvGJ2Y7hEHRZCeOOXGAhC0klU5tuq0zkflmP26Y6DDSCydb9UtjiUbf4M7qsnc9
- SfALWzWzm8VV1znmULIsRy98Hrr2/egaZL4R3MBG6hfx73FyUlT/6Gis4VklOdJz2Ifx
- hJYrd9TdBu0VxfO5xAom4xIC2/viHuWC9uNj+pYqF/nV7tfshX1wECkdReVpyDKFEyOM
- m+Bx1hoyoajFehF65/QbRxmYP7PhiM/p96X9R08FaYKAqeAS8fynC6mhGHf65U0X/7sH +g== 
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qwx8q9q1n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 31 May 2023 16:17:48 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34VGHkxK028336
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 31 May 2023 16:17:46 GMT
-Received: from [10.110.116.41] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 31 May
- 2023 09:17:46 -0700
-Message-ID: <2be5948e-c3ea-9baa-7fd4-9fb4527a0988@quicinc.com>
-Date:   Wed, 31 May 2023 09:17:45 -0700
+        with ESMTP id S229687AbjEaQ32 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 12:29:28 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DE8598
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 09:29:14 -0700 (PDT)
+Received: from mercury (dyndsl-091-248-214-208.ewe-ip-backbone.de [91.248.214.208])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1439D6606EB5;
+        Wed, 31 May 2023 17:29:08 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1685550548;
+        bh=B4JrijyeBWKHLM41eWs9XN2LOSSnJrBLonXarw4fV5M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BPHE4k3v3a7f1+wyWHqLB85XX+TLjZVnS/H8yuQHM4Z+pybGsrPsmE3sxqoi5tp7v
+         EIRvnYZAer55h4d9oyyHEmugAspc4ZMB82cXGK8rbVb+gQYZth66Fr5zg6ii6dDqW4
+         wyZm1v6zeXJKRFR9jmpNfT9uTMEVYI3U3R4j9zVzEG5U4F8F71PzdUn0xmUzSyW/M0
+         Ry946hPd4c+ScobmXjN+VMP8UC28iT79spyEyTTwFgGVYAONDQoyZ+54F804oSuOgy
+         7vadnOAoQyaXCKOkogGFsS/61C4TvtJV6Xe0h0EqME8qds73qt1FVFYeC4/6FcKml+
+         LnMZqpK5bEPig==
+Received: by mercury (Postfix, from userid 1000)
+        id B074A10607D5; Wed, 31 May 2023 18:29:05 +0200 (CEST)
+Date:   Wed, 31 May 2023 18:29:05 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        lucas.tanure@collabora.com, kever.yang@rock-chips.com,
+        yifeng.zhao@rock-chips.com, andyshrk@163.com,
+        jagan@amarulasolutions.com, heiko@sntech.de, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        broonie@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V2 1/5] arm64: dts: rockchip: add default pinctrl for
+ rk3588 emmc
+Message-ID: <20230531162905.rf4sephnrim4a6xg@mercury.elektranox.org>
+References: <20230531161220.280744-1-macroalpha82@gmail.com>
+ <20230531161220.280744-2-macroalpha82@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Subject: Re: [PATCH V23 2/3] misc: dcc: Add driver support for Data Capture
- and Compare unit(DCC)
-Content-Language: en-US
-From:   Trilok Soni <quic_tsoni@quicinc.com>
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@ieee.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <cover.1683265984.git.quic_schowdhu@quicinc.com>
- <2259ab0348282349e88905ea99bcb4aa815d941f.1683265984.git.quic_schowdhu@quicinc.com>
- <6b3b33c1-0186-3a3f-0d6a-03bf0725fb73@quicinc.com>
-In-Reply-To: <6b3b33c1-0186-3a3f-0d6a-03bf0725fb73@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0GB1IK3npKJo9Or1Eusavv7WXbwON4Sb
-X-Proofpoint-GUID: 0GB1IK3npKJo9Or1Eusavv7WXbwON4Sb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-31_11,2023-05-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- mlxlogscore=956 adultscore=0 impostorscore=0 malwarescore=0 clxscore=1015
- spamscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305310139
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="jezy76cm4esww4g3"
+Content-Disposition: inline
+In-Reply-To: <20230531161220.280744-2-macroalpha82@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/23/2023 10:10 PM, Trilok Soni wrote:
-> On 5/4/2023 11:36 PM, Souradeep Chowdhury wrote:
->> The DCC is a DMA Engine designed to capture and store data during system
->> crash or software triggers. The DCC operates based on user inputs via
->> the debugfs interface. The user gives addresses as inputs and these
->> addresses are stored in the dcc sram. In case of a system crash or a
->> manual software trigger by the user through the debugfs interface, the
->> dcc captures and stores the values at these addresses. This patch
->> contains the driver which has all the methods pertaining to the debugfs
->> interface, auxiliary functions to support all the four fundamental
->> operations of dcc namely read, write, read/modify/write and loop. The
->> probe method here instantiates all the resources necessary for dcc to
->> operate mainly the dedicated dcc sram where it stores the values. The
->> DCC driver can be used for debugging purposes without going for a reboot
->> since it can perform software triggers as well based on user inputs.
->>
->> Also update the documentation for debugfs entries which explains the
->> functionalities of each debugfs file that has been created for dcc.
->> Update the documentation to reflect new module name for dcc.
->>
->> The following is the justification of using debugfs interface over the
->> other alternatives like sysfs/ioctls
->>
->> i) As can be seen from the debugfs attribute descriptions, some of the
->> debugfs attribute files here contains multiple arguments which needs to
->> be accepted from the user. This goes against the design style of sysfs.
->>
->> ii) The user input patterns have been made simple and convenient in this
->> case with the use of debugfs interface as user doesn't need to shuffle
->> between different files to execute one instruction as was the case on
->> using other alternatives.
->>
->> Signed-off-by: Souradeep Chowdhury <quic_schowdhu@quicinc.com>
->> Reviewed-by: Alex Elder <elder@linaro.org>
-> 
-> 
-> Bjorn, do you have any remaining comments here? Are you going to provide 
->   your Reviewed-by here and other patches?
-> 
-> If there are no comments then I would like this series to be picked by 
-> the maintainer you suggest.
-> 
 
-Gentle reminder again here. I would like to make some progress on DCC 
-discussion here. Is it ready to be picked up by Bjorn or Arnd?
+--jezy76cm4esww4g3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
----Trilok Soni
+Hi,
+
+On Wed, May 31, 2023 at 11:12:16AM -0500, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+>=20
+> Add a default pinctrl definition for the rk3588 emmc.
+>=20
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+-- Sebastian
+
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/=
+dts/rockchip/rk3588s.dtsi
+> index 657c019d27fa..571cdec24a66 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> @@ -1187,6 +1187,9 @@ sdhci: mmc@fe2e0000 {
+>  			 <&cru TMCLK_EMMC>;
+>  		clock-names =3D "core", "bus", "axi", "block", "timer";
+>  		max-frequency =3D <200000000>;
+> +		pinctrl-0 =3D <&emmc_rstnout>, <&emmc_bus8>, <&emmc_clk>,
+> +			    <&emmc_cmd>, <&emmc_data_strobe>;
+> +		pinctrl-names =3D "default";
+>  		resets =3D <&cru SRST_C_EMMC>, <&cru SRST_H_EMMC>,
+>  			 <&cru SRST_A_EMMC>, <&cru SRST_B_EMMC>,
+>  			 <&cru SRST_T_EMMC>;
+> --=20
+> 2.34.1
+>=20
+
+--jezy76cm4esww4g3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmR3dcIACgkQ2O7X88g7
++poFaQ/8DgWbCuM2C/2ClIypRzMvWvUwZ1qdmSezWeHiMuwfYWBSEqiA8XeTx2QD
+6NwIHWBo7Bum/AcqvLn/YMJYqIe2THPDbeN/nMqu2i7C/h00zrPwVGn5p5gx2+ea
+5R10j4U2J5D0qSX7si0vZcY+kJ9Q9lEoB10bSqMgwqW13n15UlVabU/WcJkLAvDZ
+qh13yv35rqO7hrUlLP13GAXCNAQ2cKUFHUHuBhPfy7Va32+BlJFzsWai9IC5YgCI
+8C2zOOLocnAGVEGxnKKSxqdsgJqvtu08D2G9GNetvMo60KmLhtFWgDlDUvsgu/Ld
+zkFCx8x/tbz7mMiTzYawWAeXl3/bPpZwNSmDu8JmnyAVxOSsmH5yZQy70HmhkDJv
+6MIFb/unY6SymrZROjG+pd+x2ykZyyATGmi/ky7FGRgDi4ngB9Yg8sbwrxHHgLHf
+H+Yrwp1WXxaYlkCx00/7ej1nRg+s2LSUHn/X69PHi3qUS37M77yOtzskeGuAvg5P
+gdzrwvMNr6EqU0rVc0TLWjwzh1tL5NCbauI+Tu1QqJauXZFX6iyOk2i34DeulWdp
+MflZXBDatjxEjW/EuRihr9CphNvOSy72lOP56aVRkiNwnBgkdw6PVd2HXStT6Tlg
+IBsbRVh7tO+EGUxQpuJ21JEGZjzOoIMVnrbCrMwjBWP5wjg6A50=
+=8DIv
+-----END PGP SIGNATURE-----
+
+--jezy76cm4esww4g3--
