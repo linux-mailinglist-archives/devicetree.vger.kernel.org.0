@@ -2,493 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09B05717716
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 08:46:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2F61717719
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 08:47:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234380AbjEaGqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 02:46:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43652 "EHLO
+        id S234376AbjEaGrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 02:47:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234370AbjEaGqt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 02:46:49 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 301B3129
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 23:46:43 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-96f850b32caso1002299866b.3
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 23:46:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685515601; x=1688107601;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=O9LVcpHFc3rOBMWpazl71Ns+UHySVLjLK3E1s5apWUs=;
-        b=BhdJb6gFRVHuyJpvKBy+xYpSTE9QGrdzN9DI09Yif2FVj/QaH90NIIKZnrfvkER5Or
-         4+cd33lqypjttAO1tGxabRp7681gsh3xdvBAlx13aTS0mw7rCkl7tiI0xvRy84vn9KS2
-         gSFAUISbqVkpEwqk6ZjTzNEtzy7QjrvAE9cC5EMzvzlY8nNnuo/n7RfOqCzcaz2C0Ol/
-         0sY18qN4MrEcnByWnsHS/qIQfxqHFazIXZyYazAB6W59wFZkWGyrt1FEfMNZYub2BjpF
-         +wFpJpkmaIufz4AbRlUa2lAdjipvCEIFNj/IVvT7HIEpI7iYYXrZT/7PbBkWgSQvf8j8
-         vfOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685515601; x=1688107601;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O9LVcpHFc3rOBMWpazl71Ns+UHySVLjLK3E1s5apWUs=;
-        b=lVmqc28/hTgBEFCcTUprlf/hPHJbdhIXoN4fkBY7UpplzbPiebZp7HVeUK5OUzB4KP
-         DdSL80/6Y3kUJEg3qCu8BF1bztyq8E8qiyaKfqY+GSiDtclWVVViuCcu2s4DDlHG8AOb
-         C95nKjkNZQ/OVz9RHrehEl5moSEbFlzWPxjF2RdeCnVHeaNp+t7TVt+VrxNzqkSMhKna
-         ppju8psEJk5tOTCKNuLIYocx2CDoRw0mx0jU+ZwNX65e829qUiKYhoYCsEsbC8Fz0zoK
-         GOsSdexWmHuY6FxuwS0XPNxwYmo5AdNTqm8f81KqOPM+HEvk5XAy5sqSCH+uNozXMpX5
-         PRvw==
-X-Gm-Message-State: AC+VfDy/X5NqrTGsUEU/5ydaN4fkudNjbjCKTdFOEZ/O6Yekw8mzh+Zj
-        IiB4xcZb6AaH2eFwDf/M2uCxQw==
-X-Google-Smtp-Source: ACHHUZ60PP5s+Fnb1ncFvktr1pxskGuX8aiz0nVa/fwQABk4fzGQpIunv9GrQ5dHujv5eksbSxwyLw==
-X-Received: by 2002:a17:907:2d0a:b0:974:1ef7:1e33 with SMTP id gs10-20020a1709072d0a00b009741ef71e33mr4599696ejc.8.1685515601492;
-        Tue, 30 May 2023 23:46:41 -0700 (PDT)
-Received: from linaro.org ([86.121.163.20])
-        by smtp.gmail.com with ESMTPSA id a17-20020a17090680d100b0096739e10659sm8447512ejx.163.2023.05.30.23.46.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 23:46:41 -0700 (PDT)
-Date:   Wed, 31 May 2023 09:46:38 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Biggers <ebiggers@kernel.org>
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [PATCH v7 3/3] mmc: sdhci-msm: Switch to the new ICE API
-Message-ID: <ZHbtTmEAnzZWbHnJ@linaro.org>
-References: <20230408214041.533749-1-abel.vesa@linaro.org>
- <20230408214041.533749-4-abel.vesa@linaro.org>
+        with ESMTP id S234373AbjEaGrV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 02:47:21 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2043.outbound.protection.outlook.com [40.107.20.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46308183;
+        Tue, 30 May 2023 23:47:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=StJClorVXtC5qmlsr9V33o9m7EhRFKT6v2nuf2j/tzWZcM1r2rGKagRBEKxTHtISmx97oCPMBo9y1+nG9xiPg2rin46jTw1T5Jk3N+zBwyshLQoKQMCr6w/lBb6yD+FaTiZdySk50zq8Y45CGedZ37+GNZ1XJW4CY/UqKsK9Z9jDUtEaoQZr6EVD9gWqTAoezQ+Ly9XTZkMJ2G4D1xvZqQ+Rxn7BROo5TarV6YpZj1Pa1PKepL2+I9+c/30lopGgynhnz1mnPFkVaNWseI+/m4ueUcZNcsUlcge+1nvpUVyJLFZXhHbLfpa1YGw3Zmc/CJUXbobt+vNlvT5zqBxX8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Kx16tH3pLZ1LtBQrOd1PVzMIQZ8NlfFCDzj9lF8vyKw=;
+ b=RYFNfUvO0Bgjndp87cCx9IwBsw2NClr9SGwzSGuPEvs/j8uZxBl26XQb1xszipJ+t4FKmIU3MpTqSB6MD1eiRlr46G+ZybWwnvub+PS2yLeClTTzh22o1T99X8VUF4m2zZKW51nuGL8FQV2gSxu+HYE/SecSzAuxwi0YLGFVGGODYtwAfRpAbWSlg8x3wL0hPvqQym4nxgVZGamWwvkGjdXQltM2dl27OEttzhnnG/5vOLL8WsUDeBG34WUNtdhtpLQR6XvBNExCN40XttwXNkaaP/uqejM7/MyZPL2emf9d43x3bIR7r8A353iRrh7Xakuyx4PllHFRjuXDkGNIaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Kx16tH3pLZ1LtBQrOd1PVzMIQZ8NlfFCDzj9lF8vyKw=;
+ b=YRBIKaxvRMvM9hQuSAqutPAeBaA1No2rz3TlnWE07BQM2QqN2bUbglulffHoTEbZhnmyb73NeC4gnKPVGjaJeUEGC61pTGFMnScmmJE1NeQqaH4cwL4k0SGRqRhZ3GuvBvMxjofEI1ftt6k2KjKHPlTSKcWU92t96ckuW/4PgE8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PA4PR04MB9416.eurprd04.prod.outlook.com (2603:10a6:102:2ab::21)
+ by PA4PR04MB7791.eurprd04.prod.outlook.com (2603:10a6:102:cf::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Wed, 31 May
+ 2023 06:47:07 +0000
+Received: from PA4PR04MB9416.eurprd04.prod.outlook.com
+ ([fe80::8799:40ed:fc37:6028]) by PA4PR04MB9416.eurprd04.prod.outlook.com
+ ([fe80::8799:40ed:fc37:6028%6]) with mapi id 15.20.6433.022; Wed, 31 May 2023
+ 06:47:07 +0000
+Message-ID: <e8a30c9f-8b82-a7af-7043-44d55c628d23@oss.nxp.com>
+Date:   Wed, 31 May 2023 14:46:57 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v2 02/12] dmaengine: fsl-edma: clean up
+ fsl_edma_irq_exit()
+To:     Frank Li <Frank.Li@nxp.com>, krzysztof.kozlowski+dt@linaro.org,
+        peng.fan@nxp.com, vkoul@kernel.org
+Cc:     devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        imx@lists.linux.dev, joy.zou@nxp.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, shenwei.wang@nxp.com
+References: <20230529200453.1423796-1-Frank.Li@nxp.com>
+ <20230529200453.1423796-3-Frank.Li@nxp.com>
+From:   Peng Fan <peng.fan@oss.nxp.com>
+In-Reply-To: <20230529200453.1423796-3-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR01CA0007.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:191::11) To PA4PR04MB9416.eurprd04.prod.outlook.com
+ (2603:10a6:102:2ab::21)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230408214041.533749-4-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9416:EE_|PA4PR04MB7791:EE_
+X-MS-Office365-Filtering-Correlation-Id: c100dada-b478-484a-e628-08db61a2d9e0
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: BTI2DsE3vGvoAj1FsTxlMpZ4lP6x7adBohiDi5936PquOzSZWu3YsOR70nMfPPXGLKk0+BIW5etMB8/qwTbsvxWep5P2X7YkxgHtw07JkqLBpwrApHiKPNh8f56h53NTMVibH8F+L4WSnSKfvdU+0qjzHqwDMzqZ6NtCX6F3Ptjeu7ifdBQh1Cj+7njTWVadiqB1FfShWu0DeVyEhIL3aJtEgn2hPO2H20fvH/3oKw9Uhuj+/eieC8UNfM7JnLNW6y6qipIJB8mDuG4GnBfS7DFlbEn9pGVDQq3vrB1/xtyRmpCJ+gNzY0MmaTl6LYp7JmbahASxpfXlCyZD+yM2kF89wT/44S/G17o9mcyuooiIZH5lQe6HMyXU5tJPLghrS5ng4njNkR5n3mthsPGwiyqqZEur8kNabSadvS1LFtz4OG/wHXCHBwFwxjI7zM0abdmux9hzjVZCRewgLEYJplG2JSTkIGRJwyId2/KDIogNpIO1hK0d9omb4zNrMwDrZ0VNvWhb2Q+Xy6pRq1s/ETfV7UPCQ5EFUCZNE47oba62T2xKxGgdj1U3jgdoLbuDByALlZgkoQyX8jO9Y4aOIqWVyrBUbiTdC+8aaMkyTks7gCmf5II8sS//EetECdResGF18DpT6K2EVL1HcoPKjg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9416.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(366004)(376002)(39860400002)(136003)(396003)(451199021)(31686004)(316002)(66476007)(66556008)(66946007)(478600001)(4326008)(86362001)(31696002)(558084003)(186003)(6506007)(6512007)(53546011)(26005)(2616005)(41300700001)(44832011)(8936002)(8676002)(2906002)(83380400001)(6666004)(6486002)(5660300002)(38100700002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YUNQV1lhc3EyaWR6c2xDWmZQM1VQNFNjOC8vTjd2cXpITXdoMHczSmprd25M?=
+ =?utf-8?B?b0ZMaEJnT0tua2J1cUFRZHlZQkY3Ukp2RDFyazZzWEhNZUVQZUI2OFUrTWNB?=
+ =?utf-8?B?MmhDZ2ZXZkx2VVROZWZnRzFsM1ExUTVMZVpwKzRTQzRmVTQyeVg1VFE2Zllu?=
+ =?utf-8?B?K1dNa1RNY0hMdmo1WUhXL2pObzQ1RlI2elhOQUF4bzgwbEl0YWxqQXZCUHJ6?=
+ =?utf-8?B?dWFWTFlNNmRlTGNkc2g3dk9NVzQ0UHI2MWV6d0Y4b1oxdkgzc0dhQXJHSG5a?=
+ =?utf-8?B?d1l0SVd6dHVmOU91VTd1U0JpYjN1K01BSE1xS1FCZERiWTRlMC9zWGFReFM0?=
+ =?utf-8?B?L2t5NzVHZjVRSkdxOG9WU2Z0NE1uODdySXFaZVNTNE9WQnlGQmp1dnB0dFo1?=
+ =?utf-8?B?cTArRjl5VGpQTnJJU09uM3dSZmdxNXdlM2RIMkFUaGJaTm0xbEY5a3VoanZO?=
+ =?utf-8?B?c2tzYzNPM1A5RUpzZ09LK1ZQMkk3L3ZzSVQ5ZGMxTm1hY2dGbkRIYVR4RW9z?=
+ =?utf-8?B?aWIrYUk5azBteDIxc2oxSmJya21aRFFhOExQR25SODdDOEsxeXhOOHZJUU9W?=
+ =?utf-8?B?SWxEbWhlWXZ5WTcvbmoxZmVqY1hIdWRQYWdWSjdBbDFGSnpoMDdXcGw0MTl3?=
+ =?utf-8?B?QkVoYU5WQ1VUMGFVVXBlKzZORnFETExCRlNNQ04rMklpWUYyYWU4VG9zQWxa?=
+ =?utf-8?B?ZXRiZndpNmp1NGg2Wkt6U0MwL2N3S3ZFaEpxNHZpWFl3eVpaUU83dTFPS2U2?=
+ =?utf-8?B?Y01JSU1YRW1XdUhPcWY2K2YwNnE2Rk1YbDhqaitWdVhUL3MrcmZ0dzE5SHZL?=
+ =?utf-8?B?cnBQejJtL3E0SzAvTXJDNnY1ZE15QXU3WUl2SnNrSUI5RHVFVnJ3WnJDc2JK?=
+ =?utf-8?B?Zi9ITXlKWmt0STMxeU02cWpLNTVDdm9BQ1BweW8yejVxeXFsNXVQNkhaclFk?=
+ =?utf-8?B?Vml3d3lqNWptcXVxN1BtL0FqeGd1blJjZHdRNFFPSldBNkFLQmlreTJwZGl6?=
+ =?utf-8?B?WS9xVzRoUHZSYmRBUXVuVnFLVjdrRm1qaGtCL1JvQ0EzaXV2N1BhaEtUOUdq?=
+ =?utf-8?B?c3VycUdHRk1MNDlGdmc5OFpTbHJKNmFNZmZMOUpEcmRWQ1E4ejdVb1hMdVRU?=
+ =?utf-8?B?OExKV3Y0SjN1SzF1QkZMc0d0WEUzcVR6bFFkMk1ySmhiaktSNzJaaXN0QTIx?=
+ =?utf-8?B?b3VrZFlvRWZBbkw1c21BTmZlYytONDhVWXhxVnIvNkdyL0NlWHduRHRyaUFk?=
+ =?utf-8?B?SkQ0bHhkTWtmMllaVnd6VVZqY3BqN1FDWDRBV3pER0FYd0dkRGxGSWs0R2g3?=
+ =?utf-8?B?UkMrWkZMYTVycHBQWHBuM0lac0l4TC95OHg2d0hRWUI0NWFuTGkramsveHZy?=
+ =?utf-8?B?Mk5qNVBLY2FwOFV1ZnBuc2dYMGk0R04rZ3h0MUpXSmRFV0k4UmY5MTdZREFL?=
+ =?utf-8?B?Z0Q5ZGNFNmZndzhscmtIZzFHN2pqS2FhdUY5S0NwTCs0b1I1M1JXR3BYeXFS?=
+ =?utf-8?B?R2hnUEY2UGNpT0k1OGhBbWdQRDg5aHV1d09XczBUa1RsdmFSQjAybUR4K0Y0?=
+ =?utf-8?B?UkV1NWNVNjNHQVBtMnBDczY5V0JzcUxTaE1mZUMwaVlRQUo0TUlxaUVPdEE5?=
+ =?utf-8?B?NHo3czZQRXc3TG5aZE1vZmRLSXBUNmVSOGFseXdtWG8rMmg3dUlEQ3p5T1lh?=
+ =?utf-8?B?WmZWMW9oaG9vTUVUeHZYcHlkdmZMcHFxTG9BSElnODdzWDh4ZTRCMjVRL0pq?=
+ =?utf-8?B?Sk9sT3dvVm1XYjZXOW5CZncraHJwcVo0SXhzWnhuZlB5QTFjWVZDNHNNTlBU?=
+ =?utf-8?B?SnZhNFVXdEdtTjFSelVhNXRYSllsd0NSMGh2ak9neXN1VElOallPaVJYM3VF?=
+ =?utf-8?B?NUJmeElYWktpdEhRRWZ2MkVsSHZIMmZ0clFqS2ptZzJselowaThYbTdqS3lJ?=
+ =?utf-8?B?WDhKYnRQczcxMGV3QjhJSW9xWnlKRVdBWTQrWFR5ckFGblJjN1NxNkJ0OU5B?=
+ =?utf-8?B?UFJYQm93K2MxQmNWWGROZnVFVkRwMHhFV1BVQ0NuejRON3liT0ZUdUlSLzhr?=
+ =?utf-8?B?RUJnY1AxMDdtUENQTnRUQ1E1OCtzdFd2MTZic1dLRjRPOGFoM0c0V1pqd3hH?=
+ =?utf-8?Q?Q7VN3NLqkH/C5hFKlUnKNehdC?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c100dada-b478-484a-e628-08db61a2d9e0
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9416.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2023 06:47:07.4548
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jKDIW0quzGggMLNb4+Jdz5mVISAzbiyn8mW/TIBbMjZbwtU6VvCiGATiLNKQy8L9KU0IoaHcRtOWiPXvlGli7g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7791
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-04-09 00:40:41, Abel Vesa wrote:
-> Now that there is a new dedicated ICE driver, drop the sdhci-msm ICE
-> implementation and use the new ICE api provided by the Qualcomm soc
-> driver ice. The platforms that already have ICE support will use the
-> API as library since there will not be a devicetree node, but instead
-> they have reg range. In this case, the of_qcom_ice_get will return an
-> ICE instance created for the consumer's device. But if there are
-> platforms that do not have ice reg in the consumer devicetree node
-> and instead provide a dedicated ICE devicetree node, theof_qcom_ice_get
-> will look up the device based on qcom,ice property and will get the ICE
-> instance registered by the probe function of the ice driver.
-> 
-> The ICE clock is now handle by the new driver. This is done by enabling
-> it on the creation of the ICE instance and then enabling/disabling it on
-> SDCC runtime resume/suspend.
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
 
-Hi Ulf,
 
-I think you can now apply this one again.
+On 5/30/2023 4:04 AM, Frank Li wrote:
+> In the probe function, devm_request_irq is now being used to automatically
+> manage IRQ. It eliminates the need for manual IRQ freeing during removal.
+> 
+> Signed-off-by: Frank Li<Frank.Li@nxp.com>
 
-The renaming of the ice module is part of -next now and it is:
-47820d3263a4 ("soc: qcom: Rename ice to qcom_ice to avoid module name conflict")
-
-Thanks,
-Abel
-
-> 
-> The v6 is here:
-> https://lore.kernel.org/all/20230407105029.2274111-6-abel.vesa@linaro.org/
-> 
-> Changes since v6:
->  * none
-> 
-> Changes since v5:
->  * Reworded the commit message to add information about what happens
->    with the ICE clock and who handles it.
->  * Added temp ice variable to avoid setting the host ice to any value
->    until a valid one is provided.
->  * Dropped the qcom_scm.h include as it is not used anymore now that we
->    moved that to the new ICE driver
-> 
-> Changes since v4:
->  * none
-> 
-> Changes since v3:
->  * added back the checks for and the setting of MMC_CAP2_CRYPTO
->  * added enable/resume/suspend implementation for !CONFIG_MMC_CRYPTO
->  * dropped cfg->crypto_cap_idx argument from qcom_ice_program_key
-> 
-> Changes since v2:
->  * added the suspend API call for ICE
->  * kept old wrappers over ICE API in
-> 
-> Changes since v1:
->  * Added a check for supported algorithm and key size
->    and passed the ICE defined values for algorithm and key size
->  * Added call to evict function
-> 
->  drivers/mmc/host/Kconfig     |   2 +-
->  drivers/mmc/host/sdhci-msm.c | 223 ++++++++---------------------------
->  2 files changed, 48 insertions(+), 177 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-> index 4745fe217ade..09f837df5435 100644
-> --- a/drivers/mmc/host/Kconfig
-> +++ b/drivers/mmc/host/Kconfig
-> @@ -549,7 +549,7 @@ config MMC_SDHCI_MSM
->  	depends on MMC_SDHCI_PLTFM
->  	select MMC_SDHCI_IO_ACCESSORS
->  	select MMC_CQHCI
-> -	select QCOM_SCM if MMC_CRYPTO
-> +	select QCOM_INLINE_CRYPTO_ENGINE if MMC_CRYPTO
->  	help
->  	  This selects the Secure Digital Host Controller Interface (SDHCI)
->  	  support present in Qualcomm SOCs. The controller supports
-> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> index 8ac81d57a3df..98171bf5748c 100644
-> --- a/drivers/mmc/host/sdhci-msm.c
-> +++ b/drivers/mmc/host/sdhci-msm.c
-> @@ -13,12 +13,13 @@
->  #include <linux/pm_opp.h>
->  #include <linux/slab.h>
->  #include <linux/iopoll.h>
-> -#include <linux/firmware/qcom/qcom_scm.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/interconnect.h>
->  #include <linux/pinctrl/consumer.h>
->  #include <linux/reset.h>
->  
-> +#include <soc/qcom/ice.h>
-> +
->  #include "sdhci-cqhci.h"
->  #include "sdhci-pltfm.h"
->  #include "cqhci.h"
-> @@ -258,12 +259,14 @@ struct sdhci_msm_variant_info {
->  struct sdhci_msm_host {
->  	struct platform_device *pdev;
->  	void __iomem *core_mem;	/* MSM SDCC mapped address */
-> -	void __iomem *ice_mem;	/* MSM ICE mapped address (if available) */
->  	int pwr_irq;		/* power irq */
->  	struct clk *bus_clk;	/* SDHC bus voter clock */
->  	struct clk *xo_clk;	/* TCXO clk needed for FLL feature of cm_dll*/
-> -	/* core, iface, cal, sleep, and ice clocks */
-> -	struct clk_bulk_data bulk_clks[5];
-> +	/* core, iface, cal and sleep clocks */
-> +	struct clk_bulk_data bulk_clks[4];
-> +#ifdef CONFIG_MMC_CRYPTO
-> +	struct qcom_ice *ice;
-> +#endif
->  	unsigned long clk_rate;
->  	struct mmc_host *mmc;
->  	bool use_14lpp_dll_reset;
-> @@ -1804,164 +1807,51 @@ static void sdhci_msm_set_clock(struct sdhci_host *host, unsigned int clock)
->  
->  #ifdef CONFIG_MMC_CRYPTO
->  
-> -#define AES_256_XTS_KEY_SIZE			64
-> -
-> -/* QCOM ICE registers */
-> -
-> -#define QCOM_ICE_REG_VERSION			0x0008
-> -
-> -#define QCOM_ICE_REG_FUSE_SETTING		0x0010
-> -#define QCOM_ICE_FUSE_SETTING_MASK		0x1
-> -#define QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK	0x2
-> -#define QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK	0x4
-> -
-> -#define QCOM_ICE_REG_BIST_STATUS		0x0070
-> -#define QCOM_ICE_BIST_STATUS_MASK		0xF0000000
-> -
-> -#define QCOM_ICE_REG_ADVANCED_CONTROL		0x1000
-> -
-> -#define sdhci_msm_ice_writel(host, val, reg)	\
-> -	writel((val), (host)->ice_mem + (reg))
-> -#define sdhci_msm_ice_readl(host, reg)	\
-> -	readl((host)->ice_mem + (reg))
-> -
-> -static bool sdhci_msm_ice_supported(struct sdhci_msm_host *msm_host)
-> -{
-> -	struct device *dev = mmc_dev(msm_host->mmc);
-> -	u32 regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_VERSION);
-> -	int major = regval >> 24;
-> -	int minor = (regval >> 16) & 0xFF;
-> -	int step = regval & 0xFFFF;
-> -
-> -	/* For now this driver only supports ICE version 3. */
-> -	if (major != 3) {
-> -		dev_warn(dev, "Unsupported ICE version: v%d.%d.%d\n",
-> -			 major, minor, step);
-> -		return false;
-> -	}
-> -
-> -	dev_info(dev, "Found QC Inline Crypto Engine (ICE) v%d.%d.%d\n",
-> -		 major, minor, step);
-> -
-> -	/* If fuses are blown, ICE might not work in the standard way. */
-> -	regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_FUSE_SETTING);
-> -	if (regval & (QCOM_ICE_FUSE_SETTING_MASK |
-> -		      QCOM_ICE_FORCE_HW_KEY0_SETTING_MASK |
-> -		      QCOM_ICE_FORCE_HW_KEY1_SETTING_MASK)) {
-> -		dev_warn(dev, "Fuses are blown; ICE is unusable!\n");
-> -		return false;
-> -	}
-> -	return true;
-> -}
-> -
-> -static inline struct clk *sdhci_msm_ice_get_clk(struct device *dev)
-> -{
-> -	return devm_clk_get(dev, "ice");
-> -}
-> -
->  static int sdhci_msm_ice_init(struct sdhci_msm_host *msm_host,
->  			      struct cqhci_host *cq_host)
->  {
->  	struct mmc_host *mmc = msm_host->mmc;
->  	struct device *dev = mmc_dev(mmc);
-> -	struct resource *res;
-> +	struct qcom_ice *ice;
->  
->  	if (!(cqhci_readl(cq_host, CQHCI_CAP) & CQHCI_CAP_CS))
->  		return 0;
->  
-> -	res = platform_get_resource_byname(msm_host->pdev, IORESOURCE_MEM,
-> -					   "ice");
-> -	if (!res) {
-> -		dev_warn(dev, "ICE registers not found\n");
-> -		goto disable;
-> -	}
-> -
-> -	if (!qcom_scm_ice_available()) {
-> -		dev_warn(dev, "ICE SCM interface not found\n");
-> -		goto disable;
-> +	ice = of_qcom_ice_get(dev);
-> +	if (ice == ERR_PTR(-EOPNOTSUPP)) {
-> +		dev_warn(dev, "Disabling inline encryption support\n");
-> +		ice = NULL;
->  	}
->  
-> -	msm_host->ice_mem = devm_ioremap_resource(dev, res);
-> -	if (IS_ERR(msm_host->ice_mem))
-> -		return PTR_ERR(msm_host->ice_mem);
-> -
-> -	if (!sdhci_msm_ice_supported(msm_host))
-> -		goto disable;
-> +	if (IS_ERR_OR_NULL(ice))
-> +		return PTR_ERR_OR_ZERO(ice);
->  
-> +	msm_host->ice = ice;
->  	mmc->caps2 |= MMC_CAP2_CRYPTO;
-> -	return 0;
->  
-> -disable:
-> -	dev_warn(dev, "Disabling inline encryption support\n");
->  	return 0;
->  }
->  
-> -static void sdhci_msm_ice_low_power_mode_enable(struct sdhci_msm_host *msm_host)
-> -{
-> -	u32 regval;
-> -
-> -	regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_ADVANCED_CONTROL);
-> -	/*
-> -	 * Enable low power mode sequence
-> -	 * [0]-0, [1]-0, [2]-0, [3]-E, [4]-0, [5]-0, [6]-0, [7]-0
-> -	 */
-> -	regval |= 0x7000;
-> -	sdhci_msm_ice_writel(msm_host, regval, QCOM_ICE_REG_ADVANCED_CONTROL);
-> -}
-> -
-> -static void sdhci_msm_ice_optimization_enable(struct sdhci_msm_host *msm_host)
-> +static void sdhci_msm_ice_enable(struct sdhci_msm_host *msm_host)
->  {
-> -	u32 regval;
-> -
-> -	/* ICE Optimizations Enable Sequence */
-> -	regval = sdhci_msm_ice_readl(msm_host, QCOM_ICE_REG_ADVANCED_CONTROL);
-> -	regval |= 0xD807100;
-> -	/* ICE HPG requires delay before writing */
-> -	udelay(5);
-> -	sdhci_msm_ice_writel(msm_host, regval, QCOM_ICE_REG_ADVANCED_CONTROL);
-> -	udelay(5);
-> +	if (msm_host->mmc->caps2 & MMC_CAP2_CRYPTO)
-> +		qcom_ice_enable(msm_host->ice);
->  }
->  
-> -/*
-> - * Wait until the ICE BIST (built-in self-test) has completed.
-> - *
-> - * This may be necessary before ICE can be used.
-> - *
-> - * Note that we don't really care whether the BIST passed or failed; we really
-> - * just want to make sure that it isn't still running.  This is because (a) the
-> - * BIST is a FIPS compliance thing that never fails in practice, (b) ICE is
-> - * documented to reject crypto requests if the BIST fails, so we needn't do it
-> - * in software too, and (c) properly testing storage encryption requires testing
-> - * the full storage stack anyway, and not relying on hardware-level self-tests.
-> - */
-> -static int sdhci_msm_ice_wait_bist_status(struct sdhci_msm_host *msm_host)
-> +static __maybe_unused int sdhci_msm_ice_resume(struct sdhci_msm_host *msm_host)
->  {
-> -	u32 regval;
-> -	int err;
-> +	if (msm_host->mmc->caps2 & MMC_CAP2_CRYPTO)
-> +		return qcom_ice_resume(msm_host->ice);
->  
-> -	err = readl_poll_timeout(msm_host->ice_mem + QCOM_ICE_REG_BIST_STATUS,
-> -				 regval, !(regval & QCOM_ICE_BIST_STATUS_MASK),
-> -				 50, 5000);
-> -	if (err)
-> -		dev_err(mmc_dev(msm_host->mmc),
-> -			"Timed out waiting for ICE self-test to complete\n");
-> -	return err;
-> +	return 0;
->  }
->  
-> -static void sdhci_msm_ice_enable(struct sdhci_msm_host *msm_host)
-> +static __maybe_unused int sdhci_msm_ice_suspend(struct sdhci_msm_host *msm_host)
->  {
-> -	if (!(msm_host->mmc->caps2 & MMC_CAP2_CRYPTO))
-> -		return;
-> -	sdhci_msm_ice_low_power_mode_enable(msm_host);
-> -	sdhci_msm_ice_optimization_enable(msm_host);
-> -	sdhci_msm_ice_wait_bist_status(msm_host);
-> -}
-> +	if (msm_host->mmc->caps2 & MMC_CAP2_CRYPTO)
-> +		return qcom_ice_suspend(msm_host->ice);
->  
-> -static int __maybe_unused sdhci_msm_ice_resume(struct sdhci_msm_host *msm_host)
-> -{
-> -	if (!(msm_host->mmc->caps2 & MMC_CAP2_CRYPTO))
-> -		return 0;
-> -	return sdhci_msm_ice_wait_bist_status(msm_host);
-> +	return 0;
->  }
->  
->  /*
-> @@ -1972,48 +1862,28 @@ static int sdhci_msm_program_key(struct cqhci_host *cq_host,
->  				 const union cqhci_crypto_cfg_entry *cfg,
->  				 int slot)
->  {
-> -	struct device *dev = mmc_dev(cq_host->mmc);
-> +	struct sdhci_host *host = mmc_priv(cq_host->mmc);
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
->  	union cqhci_crypto_cap_entry cap;
-> -	union {
-> -		u8 bytes[AES_256_XTS_KEY_SIZE];
-> -		u32 words[AES_256_XTS_KEY_SIZE / sizeof(u32)];
-> -	} key;
-> -	int i;
-> -	int err;
-> -
-> -	if (!(cfg->config_enable & CQHCI_CRYPTO_CONFIGURATION_ENABLE))
-> -		return qcom_scm_ice_invalidate_key(slot);
->  
->  	/* Only AES-256-XTS has been tested so far. */
->  	cap = cq_host->crypto_cap_array[cfg->crypto_cap_idx];
->  	if (cap.algorithm_id != CQHCI_CRYPTO_ALG_AES_XTS ||
-> -	    cap.key_size != CQHCI_CRYPTO_KEY_SIZE_256) {
-> -		dev_err_ratelimited(dev,
-> -				    "Unhandled crypto capability; algorithm_id=%d, key_size=%d\n",
-> -				    cap.algorithm_id, cap.key_size);
-> +		cap.key_size != CQHCI_CRYPTO_KEY_SIZE_256)
->  		return -EINVAL;
-> -	}
->  
-> -	memcpy(key.bytes, cfg->crypto_key, AES_256_XTS_KEY_SIZE);
-> -
-> -	/*
-> -	 * The SCM call byte-swaps the 32-bit words of the key.  So we have to
-> -	 * do the same, in order for the final key be correct.
-> -	 */
-> -	for (i = 0; i < ARRAY_SIZE(key.words); i++)
-> -		__cpu_to_be32s(&key.words[i]);
-> -
-> -	err = qcom_scm_ice_set_key(slot, key.bytes, AES_256_XTS_KEY_SIZE,
-> -				   QCOM_SCM_ICE_CIPHER_AES_256_XTS,
-> -				   cfg->data_unit_size);
-> -	memzero_explicit(&key, sizeof(key));
-> -	return err;
-> +	if (cfg->config_enable & CQHCI_CRYPTO_CONFIGURATION_ENABLE)
-> +		return qcom_ice_program_key(msm_host->ice,
-> +					    QCOM_ICE_CRYPTO_ALG_AES_XTS,
-> +					    QCOM_ICE_CRYPTO_KEY_SIZE_256,
-> +					    cfg->crypto_key,
-> +					    cfg->data_unit_size, slot);
-> +	else
-> +		return qcom_ice_evict_key(msm_host->ice, slot);
->  }
-> +
->  #else /* CONFIG_MMC_CRYPTO */
-> -static inline struct clk *sdhci_msm_ice_get_clk(struct device *dev)
-> -{
-> -	return NULL;
-> -}
->  
->  static inline int sdhci_msm_ice_init(struct sdhci_msm_host *msm_host,
->  				     struct cqhci_host *cq_host)
-> @@ -2025,11 +1895,17 @@ static inline void sdhci_msm_ice_enable(struct sdhci_msm_host *msm_host)
->  {
->  }
->  
-> -static inline int __maybe_unused
-> +static inline __maybe_unused int
->  sdhci_msm_ice_resume(struct sdhci_msm_host *msm_host)
->  {
->  	return 0;
->  }
-> +
-> +static inline __maybe_unused int
-> +sdhci_msm_ice_suspend(struct sdhci_msm_host *msm_host)
-> +{
-> +	return 0;
-> +}
->  #endif /* !CONFIG_MMC_CRYPTO */
->  
->  /*****************************************************************************\
-> @@ -2630,11 +2506,6 @@ static int sdhci_msm_probe(struct platform_device *pdev)
->  		clk = NULL;
->  	msm_host->bulk_clks[3].clk = clk;
->  
-> -	clk = sdhci_msm_ice_get_clk(&pdev->dev);
-> -	if (IS_ERR(clk))
-> -		clk = NULL;
-> -	msm_host->bulk_clks[4].clk = clk;
-> -
->  	ret = clk_bulk_prepare_enable(ARRAY_SIZE(msm_host->bulk_clks),
->  				      msm_host->bulk_clks);
->  	if (ret)
-> @@ -2827,7 +2698,7 @@ static __maybe_unused int sdhci_msm_runtime_suspend(struct device *dev)
->  	clk_bulk_disable_unprepare(ARRAY_SIZE(msm_host->bulk_clks),
->  				   msm_host->bulk_clks);
->  
-> -	return 0;
-> +	return sdhci_msm_ice_suspend(msm_host);
->  }
->  
->  static __maybe_unused int sdhci_msm_runtime_resume(struct device *dev)
-> -- 
-> 2.34.1
-> 
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
