@@ -2,398 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 491EE71855F
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 16:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AF2771856F
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 17:00:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231417AbjEaOzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 10:55:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58072 "EHLO
+        id S233424AbjEaPAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 11:00:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233510AbjEaOzI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 10:55:08 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2E47D9
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 07:55:05 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2af290cf9b7so61954741fa.3
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 07:55:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685544904; x=1688136904;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6TqMXVRIcXDpIunz3BCRjGjg2eqs/x79rI3Yc7fWGng=;
-        b=tyqHCxP5DW6t2Lb5hpTE4WaI8+vME3wquslqXzoHRsZcu9MbC9TULuaTpvodSVQ59L
-         xtl1VSJUorLCcbCtcKRJV/Pi+8rmGD/8r/Y8m4jLyTllj0ehIiQDqcPaxh0T+8cswxvN
-         4zamQEi8pnAVZX9WUIecslGJEq2paljCHaWuIrBESv43HbwuG28tq6eRWSwzFSpp88sE
-         8d0+jg2z48g2zCqM+f4UOBh2JtlTEj2EmlqWCZz6wiVrYEZkTjpQiAEObvaFahheaau3
-         VIsm/HrRLJUKEBHiRkLF4MxZRDAvrf2S1U4ioYHIE2Y5H0DsIf+9vHiuk/TyDmAx2kZ9
-         +kcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685544904; x=1688136904;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6TqMXVRIcXDpIunz3BCRjGjg2eqs/x79rI3Yc7fWGng=;
-        b=Q1QIitSGvaTZw4oF3jLXl9sgH+HZYqopT0tx1vdq+Bx3Tz5UwMV7KehsphSz9dMs7i
-         80iewhHs1XUO/C/KH5L/ROgkRMtQS1kcaWXQxXfwgee/fMAxgIAjwl2GE9jqssrNixRZ
-         YskYXiFRgJO1yUQyIO78YQ5XgzP7xbCnSKYReMNRBir5PlKND2tncaJjl4hfyDBuUZTs
-         HWW+R8k5lf4bzweXLoi5Wp18mzwAViw2fi9/NrZSHZwZfYd7HWLL4GA7WApKwSUuuBFL
-         uanyFk2yaL2tHyuMxl+LuNYDxj74GPZQYF0QKKnq3hwhx8g7B9YLg9PrkaFNKoJPJdaB
-         t+RA==
-X-Gm-Message-State: AC+VfDxKM50SXTe3ixblGxYAMctqod6FUJl76bv9oykXdA7ULbUxsBLa
-        79vu5pEfySzNCNbuw+OidewYKw==
-X-Google-Smtp-Source: ACHHUZ5YCHMCLR1NSDQmBAizApylsR46k/qxtptQFran2p0NRiyqfvBh5HtMTGmouqHn5bjJfoKCQw==
-X-Received: by 2002:a2e:3203:0:b0:2ad:dd7e:6651 with SMTP id y3-20020a2e3203000000b002addd7e6651mr3179661ljy.43.1685544903832;
-        Wed, 31 May 2023 07:55:03 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id o7-20020a2e7307000000b002ad92c2ff54sm3325452ljc.15.2023.05.31.07.55.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 07:55:03 -0700 (PDT)
-Message-ID: <965bc277-b31b-e278-a793-90248615c9d6@linaro.org>
-Date:   Wed, 31 May 2023 16:55:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH] arm64: dts: qcom: sm6115: Set up CPU cooling maps
-Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230418-topic-cool_bengal-v1-1-c5d53814dc74@linaro.org>
- <20230418130223.wvsu3bsm62i2gtpp@ripper>
- <139ea923-968b-cee2-15e0-3fb8112e15d9@linaro.org>
- <20230418155146.3qpin45woex5sbli@ripper>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230418155146.3qpin45woex5sbli@ripper>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S233365AbjEaPAP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 11:00:15 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74341C0;
+        Wed, 31 May 2023 08:00:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=t8QJwDf3mZID2T9DPgkl1+dJxRUwSZ5+A++Qcf/Rniw=; b=xX61yxXxpOjNlrMJw13F5RNmue
+        8irpmpzggpyfC9GePxX8T4/eRJUYTw80VsHb7r51qBMFINBS8cr24ZVuWpNYhAcDFZKuu2PqXETVy
+        Iy4oWFmbZq/1uvAnc4kn9gMrXsIS758jUs0XvnNpZXwWWh1PpzBLtsFNV8S0JR0dRKwQ=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:34748 helo=debian-acer)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1q4NIy-0001AW-O7; Wed, 31 May 2023 11:00:05 -0400
+Date:   Wed, 31 May 2023 11:00:03 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     Lech Perczak <lech.perczak@camlingroup.com>,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Message-Id: <20230531110003.86b96815986db3bef7b72635@hugovil.com>
+In-Reply-To: <20230531095608.e1b4358549562b8e1bdf5cb4@hugovil.com>
+References: <20230529140711.896830-1-hugo@hugovil.com>
+        <c15a90d6-b3c1-e432-9216-c4c1e2c44ce6@camlingroup.com>
+        <20230530090836.27b8d080d6b6c022b303ac9e@hugovil.com>
+        <c691858d-31af-2892-c0a3-89a37b19af86@camlingroup.com>
+        <20230531095608.e1b4358549562b8e1bdf5cb4@hugovil.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v4 0/9] serial: sc16is7xx: fix GPIO regression and rs485
+ improvements
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 31 May 2023 09:56:08 -0400
+Hugo Villeneuve <hugo@hugovil.com> wrote:
 
+> On Wed, 31 May 2023 12:43:48 +0200
+> Lech Perczak <lech.perczak@camlingroup.com> wrote:
+>=20
+> > W dniu 30.05.2023 o=A015:08, Hugo Villeneuve pisze:
+> > > On Tue, 30 May 2023 11:30:07 +0200
+> > > Lech Perczak <lech.perczak@camlingroup.com> wrote:
+> > >
+> > > > W dniu 29.05.2023 o=A016:07, Hugo Villeneuve pisze:
+> > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > >
+> > > > > Hello,
+> > > > > this patch series mainly fixes a GPIO regression and improve RS48=
+5 flags and
+> > > > > properties detection from DT.
+> > > > >
+> > > > > It now also includes various small fixes and improvements that we=
+re previously
+> > > > > sent as separate patches, but that made testing everything diffic=
+ult.
+> > > > >
+> > > > > Patch 1 fixes an issue when debugging IOcontrol register. After t=
+esting the GPIO
+> > > > > regression patches (patches 6 and 7, tests done by Lech Perczak),=
+ it appers that
+> > > > > this patch is also necessary for having the correct IOcontrol reg=
+ister values.
+> > > > >
+> > > > > Patch 2 introduces a delay after a reset operation to respect dat=
+asheet
+> > > > > timing recommandations.
+> > > > >
+> > > > > Patch 3 fixes an issue with init of first port during probing.
+> > > > >
+> > > > > Patch 4 fixes a bug with the output value when first setting the =
+GPIO direction.
+> > > > >
+> > > > > Patch 5 is a refactor of GPIO registration code.
+> > > > >
+> > > > > Patches 6 and 7 fix a GPIO regression by (re)allowing to choose G=
+PIO function
+> > > > > for GPIO pins shared with modem status lines.
+> > > > >
+> > > > > Patch 8 allows to read common rs485 device-tree flags and propert=
+ies.
+> > > > >
+> > > > > Patch 9 improves comments about chip variants.
+> > > > >
+> > > > > I have tested the changes on a custom board with two SC16IS752 DU=
+ART using a
+> > > > > Variscite IMX8MN NANO SOM.
+> > > > >
+> > > > > Thank you.
+> > > > >
+> > > > > Link: [v1] https://lkml.org/lkml/2023/5/17/967 <https://lkml.org/=
+lkml/2023/5/17/967> <https://lkml.org/lkml/2023/5/17/967 <https://lkml.org/=
+lkml/2023/5/17/967>>
+> > > > > [v1] https://lkml.org/lkml/2023/5/17/777 <https://lkml.org/lkml/2=
+023/5/17/777> <https://lkml.org/lkml/2023/5/17/777 <https://lkml.org/lkml/2=
+023/5/17/777>>
+> > > > > [v1] https://lkml.org/lkml/2023/5/17/780 <https://lkml.org/lkml/2=
+023/5/17/780> <https://lkml.org/lkml/2023/5/17/780 <https://lkml.org/lkml/2=
+023/5/17/780>>
+> > > > > [v1] https://lkml.org/lkml/2023/5/17/785 <https://lkml.org/lkml/2=
+023/5/17/785> <https://lkml.org/lkml/2023/5/17/785 <https://lkml.org/lkml/2=
+023/5/17/785>>
+> > > > > [v1] https://lkml.org/lkml/2023/5/17/1311 <https://lkml.org/lkml/=
+2023/5/17/1311> <https://lkml.org/lkml/2023/5/17/1311 <https://lkml.org/lkm=
+l/2023/5/17/1311>>
+> > > > > [v2] https://lkml.org/lkml/2023/5/18/516 <https://lkml.org/lkml/2=
+023/5/18/516> <https://lkml.org/lkml/2023/5/18/516 <https://lkml.org/lkml/2=
+023/5/18/516>>
+> > > > > [v3] https://lkml.org/lkml/2023/5/25/7 <https://lkml.org/lkml/202=
+3/5/25/7> <https://lkml.org/lkml/2023/5/25/7 <https://lkml.org/lkml/2023/5/=
+25/7>>
+> > > > >
+> > > > > Changes for V3:
+> > > > > - Integrated all patches into single serie to facilitate debuggin=
+g and tests.
+> > > > > - Reduce number of exported GPIOs depending on new property
+> > > > > nxp,modem-control-line-ports
+> > > > > - Added additional example in DT bindings
+> > > > >
+> > > > > Changes for V4:
+> > > > > - Increase reset post delay to relax scheduler.
+> > > > > - Put comments patches at the end.
+> > > > > - Remove Fixes tag for patch "mark IOCONTROL register as volatile=
+".
+> > > > > - Improve commit messages after reviews.
+> > > > > - Fix coding style issues after reviews.
+> > > > > - Change GPIO registration to always register the maximum number =
+of GPIOs
+> > > > > supported by the chip, but maks-out GPIOs declared as modem contr=
+ol lines.
+> > > > > - Add patch to refactor GPIO registration.
+> > > > > - Remove patch "serial: sc16is7xx: fix syntax error in comments".
+> > > > > - Remove patch "add dump registers function"
+> > > > >
+> > > > > Hugo Villeneuve (9):
+> > > > > serial: sc16is7xx: mark IOCONTROL register as volatile
+> > > > > serial: sc16is7xx: add post reset delay
+> > > > > serial: sc16is7xx: fix broken port 0 uart init
+> > > > > serial: sc16is7xx: fix bug when first setting GPIO direction
+> > > > > serial: sc16is7xx: refactor GPIO controller registration
+> > > > > dt-bindings: sc16is7xx: Add property to change GPIO function
+> > > > > serial: sc16is7xx: fix regression with GPIO configuration
+> > > > > serial: sc16is7xx: add call to get rs485 DT flags and properties
+> > > > > serial: sc16is7xx: improve comments about variants
+> > > > >
+> > > > > .../bindings/serial/nxp,sc16is7xx.txt | 46 ++++++
+> > > > > drivers/tty/serial/sc16is7xx.c | 150 +++++++++++++-----
+> > > > > 2 files changed, 156 insertions(+), 40 deletions(-)
+> > > > >
+> > > > >
+> > > > > base-commit: 8b817fded42d8fe3a0eb47b1149d907851a3c942
+> > > >
+> > > > It would be a lot of sending, to do that for every patch separately=
+, so for whole series:
+> > > > Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
+> > > >
+> > > > And where applicable - for code patches:
+> > > > Tested-by: Lech Perczak <lech.perczak@camlingroup.com>
+> > > >
+> > > > I tested whole series at the same time.
+> > > > I did my tests on an i.MX6 board with SC16IS760 over SPI, which dif=
+fers a tiny bit from SC16IS752,
+> > > > and everything works as it should.
+> > > > Thank you for fixing this!
+> > >
+> > > Hi Lech,
+> > > thank for your feedback.
+> > >
+> > > You mentioned before that without the patch "mark IOCONTROL register =
+as volatile", things were not working properly for you. Could you retest by=
+ removing this patch and see if things are still working?
+> > >
+> > > Thank you, Hugo.
+> >=20
+> > Hello Hugo,
+> >=20
+> > Just checked - this patch is required, reverting it causes things to fa=
+il, so this patch should be marked as a pre-requisite for the actual fix an=
+d included in backports.
+> > Perhaps using direct write to this register made it work, but it was li=
+kely by accident.
+>=20
+> Hi Lech,
+> thank you for the test, I will mark it as such in upcoming series V5.
+>=20
+> Hugo.
 
-On 18.04.2023 17:51, Bjorn Andersson wrote:
-> On Tue, Apr 18, 2023 at 03:01:47PM +0200, Konrad Dybcio wrote:
->>
->>
->> On 18.04.2023 15:02, Bjorn Andersson wrote:
->>> On Tue, Apr 18, 2023 at 01:56:56PM +0200, Konrad Dybcio wrote:
->>>> Set up CPU cooling maps to ensure the thermal framework is aware of
->>>> the connection between the CPUs and the TSENS sensors.
->>>>
->>>> All of the maps refer to all 4 CPUs within a given cluster at a time,
->>>> as that's what can be considered the smallest DVFS target unit - they
->>>> all share the same voltage line and clock source.
->>>>
->>>
->>> Generally software based CPU cooling is considered too slow to cope with
->>> CPU core temperature changes, and the limits hardware working together
->>> with OSM/EPSS will do a better job maintaining appropriate core
->>> temperature levels.
->>>
->>> Is there a reason why this can't be used/relied upon on this platform?
->> I haven't set up LMH yet and the default limits, at least with my dubious
->> meta build, seem to let the board go to 75degC with just 4 cores working..
->>
->> Not sure if there's a voltage droop when I let it go full throttle or
->> something, but pushing it to the limit definitely causes the board to be
->> (even) less stable..
->>
->>>
->>>
->>> PS. Amending this mechanism with software based cooling to keep the
->>> system at a reasonable/lower temperature is a good idea.
->> We don't like burned chips around here!
->>
-> 
-> Limits hardware will help you with that, software based cooling will
-> help avoid burning the user.
-So, are there any reasons not to take this patch?
+Since I reworked a bit patch 5/9 in series 5, I removed your "Tested-by" an=
+d "Reviewed-by" tags only for this patch. Please reconfirm these tags when =
+you have tested series 5.
 
-Konrad
-> 
-> Regards,
-> Bjorn
-> 
->> Konrad
->>>
->>> Regards,
->>> Bjorn
->>>
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/sm6115.dtsi | 137 +++++++++++++++++++++++++++++++++++
->>>>  1 file changed, 137 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sm6115.dtsi b/arch/arm64/boot/dts/qcom/sm6115.dtsi
->>>> index 631ca327e064..36ff913c1a60 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sm6115.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/sm6115.dtsi
->>>> @@ -12,6 +12,7 @@
->>>>  #include <dt-bindings/gpio/gpio.h>
->>>>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>>  #include <dt-bindings/power/qcom-rpmpd.h>
->>>> +#include <dt-bindings/thermal/thermal.h>
->>>>  
->>>>  / {
->>>>  	interrupt-parent = <&intc>;
->>>> @@ -47,6 +48,8 @@ CPU0: cpu@0 {
->>>>  			enable-method = "psci";
->>>>  			next-level-cache = <&L2_0>;
->>>>  			qcom,freq-domain = <&cpufreq_hw 0>;
->>>> +			#cooling-cells = <2>;
->>>> +
->>>>  			L2_0: l2-cache {
->>>>  				compatible = "cache";
->>>>  				cache-level = <2>;
->>>> @@ -63,6 +66,7 @@ CPU1: cpu@1 {
->>>>  			enable-method = "psci";
->>>>  			next-level-cache = <&L2_0>;
->>>>  			qcom,freq-domain = <&cpufreq_hw 0>;
->>>> +			#cooling-cells = <2>;
->>>>  		};
->>>>  
->>>>  		CPU2: cpu@2 {
->>>> @@ -75,6 +79,7 @@ CPU2: cpu@2 {
->>>>  			enable-method = "psci";
->>>>  			next-level-cache = <&L2_0>;
->>>>  			qcom,freq-domain = <&cpufreq_hw 0>;
->>>> +			#cooling-cells = <2>;
->>>>  		};
->>>>  
->>>>  		CPU3: cpu@3 {
->>>> @@ -87,6 +92,7 @@ CPU3: cpu@3 {
->>>>  			enable-method = "psci";
->>>>  			next-level-cache = <&L2_0>;
->>>>  			qcom,freq-domain = <&cpufreq_hw 0>;
->>>> +			#cooling-cells = <2>;
->>>>  		};
->>>>  
->>>>  		CPU4: cpu@100 {
->>>> @@ -99,6 +105,8 @@ CPU4: cpu@100 {
->>>>  			dynamic-power-coefficient = <282>;
->>>>  			next-level-cache = <&L2_1>;
->>>>  			qcom,freq-domain = <&cpufreq_hw 1>;
->>>> +			#cooling-cells = <2>;
->>>> +
->>>>  			L2_1: l2-cache {
->>>>  				compatible = "cache";
->>>>  				cache-level = <2>;
->>>> @@ -115,6 +123,7 @@ CPU5: cpu@101 {
->>>>  			enable-method = "psci";
->>>>  			next-level-cache = <&L2_1>;
->>>>  			qcom,freq-domain = <&cpufreq_hw 1>;
->>>> +			#cooling-cells = <2>;
->>>>  		};
->>>>  
->>>>  		CPU6: cpu@102 {
->>>> @@ -127,6 +136,7 @@ CPU6: cpu@102 {
->>>>  			enable-method = "psci";
->>>>  			next-level-cache = <&L2_1>;
->>>>  			qcom,freq-domain = <&cpufreq_hw 1>;
->>>> +			#cooling-cells = <2>;
->>>>  		};
->>>>  
->>>>  		CPU7: cpu@103 {
->>>> @@ -139,6 +149,7 @@ CPU7: cpu@103 {
->>>>  			enable-method = "psci";
->>>>  			next-level-cache = <&L2_1>;
->>>>  			qcom,freq-domain = <&cpufreq_hw 1>;
->>>> +			#cooling-cells = <2>;
->>>>  		};
->>>>  
->>>>  		cpu-map {
->>>> @@ -2471,6 +2482,24 @@ cpu4-thermal {
->>>>  			polling-delay = <0>;
->>>>  			thermal-sensors = <&tsens0 6>;
->>>>  
->>>> +			cooling-maps {
->>>> +				map0 {
->>>> +					trip = <&cpu4_alert0>;
->>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +
->>>> +				map1 {
->>>> +					trip = <&cpu4_alert1>;
->>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +			};
->>>> +
->>>>  			trips {
->>>>  				cpu4_alert0: trip-point0 {
->>>>  					temperature = <90000>;
->>>> @@ -2497,6 +2526,24 @@ cpu5-thermal {
->>>>  			polling-delay = <0>;
->>>>  			thermal-sensors = <&tsens0 7>;
->>>>  
->>>> +			cooling-maps {
->>>> +				map0 {
->>>> +					trip = <&cpu5_alert0>;
->>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +
->>>> +				map1 {
->>>> +					trip = <&cpu5_alert1>;
->>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +			};
->>>> +
->>>>  			trips {
->>>>  				cpu5_alert0: trip-point0 {
->>>>  					temperature = <90000>;
->>>> @@ -2523,6 +2570,24 @@ cpu6-thermal {
->>>>  			polling-delay = <0>;
->>>>  			thermal-sensors = <&tsens0 8>;
->>>>  
->>>> +			cooling-maps {
->>>> +				map0 {
->>>> +					trip = <&cpu6_alert0>;
->>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +
->>>> +				map1 {
->>>> +					trip = <&cpu6_alert1>;
->>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +			};
->>>> +
->>>>  			trips {
->>>>  				cpu6_alert0: trip-point0 {
->>>>  					temperature = <90000>;
->>>> @@ -2549,6 +2614,24 @@ cpu7-thermal {
->>>>  			polling-delay = <0>;
->>>>  			thermal-sensors = <&tsens0 9>;
->>>>  
->>>> +			cooling-maps {
->>>> +				map0 {
->>>> +					trip = <&cpu7_alert0>;
->>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +
->>>> +				map1 {
->>>> +					trip = <&cpu7_alert1>;
->>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +			};
->>>> +
->>>>  			trips {
->>>>  				cpu7_alert0: trip-point0 {
->>>>  					temperature = <90000>;
->>>> @@ -2575,6 +2658,24 @@ cpu45-thermal {
->>>>  			polling-delay = <0>;
->>>>  			thermal-sensors = <&tsens0 10>;
->>>>  
->>>> +			cooling-maps {
->>>> +				map0 {
->>>> +					trip = <&cpu45_alert0>;
->>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +
->>>> +				map1 {
->>>> +					trip = <&cpu45_alert1>;
->>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +			};
->>>> +
->>>>  			trips {
->>>>  				cpu45_alert0: trip-point0 {
->>>>  					temperature = <90000>;
->>>> @@ -2601,6 +2702,24 @@ cpu67-thermal {
->>>>  			polling-delay = <0>;
->>>>  			thermal-sensors = <&tsens0 11>;
->>>>  
->>>> +			cooling-maps {
->>>> +				map0 {
->>>> +					trip = <&cpu67_alert0>;
->>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +
->>>> +				map1 {
->>>> +					trip = <&cpu67_alert1>;
->>>> +					cooling-device = <&CPU4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +			};
->>>> +
->>>>  			trips {
->>>>  				cpu67_alert0: trip-point0 {
->>>>  					temperature = <90000>;
->>>> @@ -2627,6 +2746,24 @@ cpu0123-thermal {
->>>>  			polling-delay = <0>;
->>>>  			thermal-sensors = <&tsens0 12>;
->>>>  
->>>> +			cooling-maps {
->>>> +				map0 {
->>>> +					trip = <&cpu0123_alert0>;
->>>> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +
->>>> +				map1 {
->>>> +					trip = <&cpu0123_alert1>;
->>>> +					cooling-device = <&CPU0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>>> +							 <&CPU3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>>> +				};
->>>> +			};
->>>> +
->>>>  			trips {
->>>>  				cpu0123_alert0: trip-point0 {
->>>>  					temperature = <90000>;
->>>>
->>>> ---
->>>> base-commit: 4aa1da8d99724f6c0b762b58a71cee7c5e2e109b
->>>> change-id: 20230418-topic-cool_bengal-2f5f3f47269c
->>>>
->>>> Best regards,
->>>> -- 
->>>> Konrad Dybcio <konrad.dybcio@linaro.org>
->>>>
+Thank you,
+Hugo.
+
+--=20
+Hugo Villeneuve <hugo@hugovil.com>
