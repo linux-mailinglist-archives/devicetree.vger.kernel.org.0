@@ -2,94 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AE9F717743
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 08:56:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C224C717750
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 08:57:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230146AbjEaG4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 02:56:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49182 "EHLO
+        id S234470AbjEaG5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 02:57:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232276AbjEaG4Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 02:56:16 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1DD113
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 23:56:14 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51480d3e161so7262471a12.3
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 23:56:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685516173; x=1688108173;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sRl18fIDPuzFUH5L1KBy/4v4z8SL7j1KIPt3iFyBt8w=;
-        b=O67yMsSBzjied33O/74JPXPKICCdj2Y4FkUaBPd8DbrXNfI+24UFdTQv7J4qNGC3h1
-         6sZjBvqHChuKUExcDwsTZ6ZWQrEHxe7L+tN2Sp8AHk3rf8hxA9SGrJbPLtstlemCZhqD
-         qCsbkpMFuRMJY9jQUSUHNzN+g9NWA6zRrufUVYja8+DSIBNG/wJchDSf7fYYdWChC564
-         sXgdvwG1zVe6olx0jLzHcpujOiyu7VLhgtTFINTHbtNWZD4i32XI4qpZBnhi3i3lutaO
-         fVdAqCx9vhyUOeOYtddo7iFjrJeatDKy3sRGlfufpD3jt2qOukADyD2I9EYgJXNm6O83
-         YF1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685516173; x=1688108173;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sRl18fIDPuzFUH5L1KBy/4v4z8SL7j1KIPt3iFyBt8w=;
-        b=bP6RIebmv5Q1rH0F9nvLabTbPzK6abvJgmnmgFHNpxnU7axXDdzV/VYWgTNvDjv63G
-         GvvTO5O6JDJZB31E7Fjqx6bm7Mxp98rgrNHi/JSuuWRBTA4eXEOrr9VNiKAx4ocjOUi9
-         Iy78vB777Ij3XPL7X1+080pU56KtbOXYnBAEZ9I1MyD6NUeURtB09JjDU7D+lOAp43e+
-         1baqZ6UAbUNy/Up9LsYu1mET4DDjxYQxxqlq+KJvXWXEPD6q4K2n7TWgA0ZdRgTz0Axq
-         4lWPvW97R+Joc6kC9332tPqBqtOdf4UxCVtLp1Wl8VkhsvyxRygPDWv+k1R2+GD3BSWi
-         g3Vg==
-X-Gm-Message-State: AC+VfDyb7G1QE1QxWiAouL10fShQZzhzd2CHdyOOUo1sA6TAkY8j2x8E
-        JiVkvCNmY/NDxsXZ0/oV6buL1g==
-X-Google-Smtp-Source: ACHHUZ53PhvEeZRc4PxzrRyja66TSVSRwEUfAVi5qVfcNtueGY6bjR+MKSR4Fi50FMpWZqypa4WQEw==
-X-Received: by 2002:a17:907:86ab:b0:96f:d345:d104 with SMTP id qa43-20020a17090786ab00b0096fd345d104mr3377494ejc.38.1685516173106;
-        Tue, 30 May 2023 23:56:13 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id d21-20020a170906371500b0094f1fe1696bsm8372046ejc.216.2023.05.30.23.56.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 23:56:12 -0700 (PDT)
-Message-ID: <f343458e-519c-1e5c-e48f-acfed2c00ad7@linaro.org>
-Date:   Wed, 31 May 2023 08:56:10 +0200
+        with ESMTP id S234464AbjEaG5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 02:57:30 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A092C123;
+        Tue, 30 May 2023 23:57:17 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34V4qpA2031333;
+        Wed, 31 May 2023 06:57:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=NR3Q8HzM/kNZvUW8fosfrOWA+FQP1xa9077RQjFPCRU=;
+ b=n0jUFH0ExkxQOxqWQGG5j5JXVsy4VNO6I4dIUSkaPPoulopSY8lN9Vrg77P/PKRpYvMY
+ rYhJjew71pEURp3q5XBg7dXxhWdbLgB4OF5BETreVyX6KpepCmUy9+1sp8Bv0dHYuvmb
+ aNO+3vS85wJYYJI7VMd5499D234c26jLX4fIwtxAYE+4SvYveeK3LuIQ/chW2MWlf4qX
+ Z/Y+NkxGeSdQjhF83tG3/0J3V5LzAoOt6Xz3Jk6vUwPs3OHDgxlv1+sDAdjlZlJHOs9J
+ HNzAg1MLWNffnhmgzGhTaAIgQyycd55jNx260482fBskXF1k7zVBRgtPk4UH2e3ZiskQ /Q== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qwx8q8cj5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 31 May 2023 06:57:13 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34V6vC7X025284
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 31 May 2023 06:57:12 GMT
+Received: from sridsn-linux.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Tue, 30 May 2023 23:57:09 -0700
+From:   Sridharan S N <quic_sridsn@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Sridharan S N <quic_sridsn@quicinc.com>
+Subject: [PATCH 0/2] Add support for GPIO based leds and buttons
+Date:   Wed, 31 May 2023 12:26:17 +0530
+Message-ID: <20230531065619.9181-1-quic_sridsn@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v1 1/3] dt-bindings: regulator: pca9450: add pca9451a
- support
-Content-Language: en-US
-To:     Joy Zou <joy.zou@nxp.com>, ping.bai@nxp.com, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230531065724.3671795-1-joy.zou@nxp.com>
- <20230531065724.3671795-2-joy.zou@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230531065724.3671795-2-joy.zou@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: D5lverxT6EwCN_8Cfy1qY6ONoGxu403L
+X-Proofpoint-GUID: D5lverxT6EwCN_8Cfy1qY6ONoGxu403L
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-31_03,2023-05-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ mlxlogscore=563 adultscore=0 impostorscore=0 malwarescore=0 clxscore=1011
+ spamscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305310061
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2023 08:57, Joy Zou wrote:
-> Update pca9450 bindings.
-> 
-> Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> ---
+Add support for wlan-2g led and wps button available on IPQ5332 and
+IPQ9574
 
-Subject prefix is: regulator: dt-bindings: pca9450:
+Sridharan S N (2):
+  arm64: dts: qcom: ipq5332: enable GPIO based LEDs and Buttons
+  arm64: dts: qcom: ipq9574: enable GPIO based LEDs
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ arch/arm64/boot/dts/qcom/ipq5332-mi01.2.dts | 43 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts | 43 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts | 43 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/ipq9574-rdp418.dts | 20 ++++++++++
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 20 ++++++++++
+ arch/arm64/boot/dts/qcom/ipq9574-rdp449.dts | 20 ++++++++++
+ arch/arm64/boot/dts/qcom/ipq9574-rdp453.dts | 20 ++++++++++
+ 7 files changed, 209 insertions(+)
 
-Best regards,
-Krzysztof
+-- 
+2.17.1
 
