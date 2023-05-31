@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0D7B71833E
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:49:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C401F718332
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:48:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236859AbjEaNtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 09:49:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60726 "EHLO
+        id S236883AbjEaNsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 09:48:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236803AbjEaNsa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:48:30 -0400
+        with ESMTP id S236868AbjEaNsK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:48:10 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E0881AE;
-        Wed, 31 May 2023 06:44:44 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A08A19A7;
+        Wed, 31 May 2023 06:44:25 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E8DC0628FE;
-        Wed, 31 May 2023 13:43:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A79FC4339B;
-        Wed, 31 May 2023 13:43:26 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B3A7563B82;
+        Wed, 31 May 2023 13:44:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0887AC433D2;
+        Wed, 31 May 2023 13:44:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1685540607;
-        bh=mqL994jDilpj3DORbkHAMlSuexwDHjFi8s1HMFeV82w=;
+        s=k20201202; t=1685540662;
+        bh=EjYxZE7A74rWWZbpPoDhTcnxA4iNZQDK6VDAwe2HQsg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ubcU0tlFZ4ppwzzb9kWdI1fpyvhR38nkFKwijnm2OjXVzYfhYV826879Lclf8zyQ4
-         +CrrVXOqxWhzv2LXQ78Oosu/O7LmB3vRm99Z3EG0rWK6tLKehSMWkL24C8Bm0AQqRo
-         Jk0d77ul+xnnu75rgAAFMakNAzg8jQyAf901Xl89MQl/VyRuL9nGcwxYTL1XKZaV/l
-         T5Ly9zgLnIvZgoyofjGTjfo10xHf+V3vQqsdW1TCGLx3RHV+Z/rZ3Wwv2kDOy6jJc+
-         012PF7/p8AYTlp7l9El6lM49S8GgA/jEIaEl8m7oZM4O9URNw/QMDxB9BN+dr6rwhW
-         uog0aoNZpNjPg==
+        b=NrYXacFaanvpjBzAysTlfPeBWrsEawMVufQJwpi//reL66hdgJnvCcJkPoy9bvgtN
+         NFUOql1Dae4yPZCjdjmsVaVC8Mod1je4sXz0Gv/aIJkvdlFQFntZtf9wtvMmVLavxG
+         6Eg4fgk0HKnWA78Fwi2uOskyyQvHXKsuFcRb6vuXZJWfDvz+ItNkh5yVtgvU9K3ZDY
+         Cxczibt+NZlRtJOvQ9BrilQvAnTRCCpAZLCxOFsqDDRDN3+KMGte1VgJGNfbBx1QLk
+         TNyMpBPczQaY0u1I/JVuUt7CpoW8RNFYhEG8czliEy7jfH0RTerKl1Psf2vEEaU/Ju
+         PWfxzmBSTFYAQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -39,12 +39,12 @@ Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         lpieralisi@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 04/24] ARM: dts: vexpress: add missing cache properties
-Date:   Wed, 31 May 2023 09:43:00 -0400
-Message-Id: <20230531134320.3384102-4-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 04/21] ARM: dts: vexpress: add missing cache properties
+Date:   Wed, 31 May 2023 09:43:57 -0400
+Message-Id: <20230531134415.3384458-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230531134320.3384102-1-sashal@kernel.org>
-References: <20230531134320.3384102-1-sashal@kernel.org>
+In-Reply-To: <20230531134415.3384458-1-sashal@kernel.org>
+References: <20230531134415.3384458-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -77,7 +77,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm/boot/dts/vexpress-v2p-ca5s.dts b/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
-index 3b88209bacea2..ff1f9a1bcfcfc 100644
+index 7aa64ae257798..6fc48016fe8ed 100644
 --- a/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
 +++ b/arch/arm/boot/dts/vexpress-v2p-ca5s.dts
 @@ -132,6 +132,7 @@ L2: cache-controller@2c0f0000 {
