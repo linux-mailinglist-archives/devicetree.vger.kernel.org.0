@@ -2,82 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 342D9717FB7
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 14:16:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 379B2717FC6
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 14:22:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231622AbjEaMQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 08:16:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60040 "EHLO
+        id S235314AbjEaMWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 08:22:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234902AbjEaMQt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 08:16:49 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 395DA10F
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 05:16:46 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f4f3ac389eso5210486e87.1
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 05:16:46 -0700 (PDT)
+        with ESMTP id S232442AbjEaMWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 08:22:34 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0593310F
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 05:22:33 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3f60e536250so6773915e9.1
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 05:22:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685535404; x=1688127404;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hT8OWO/UkE0kJ6wTvhFLdugI0TrRyYIKyUCIvnylcuU=;
-        b=FKhQ6M9DAU6XKeD3PQo9JSksHN0bjlsBy/f+P3kjxo2TXQMCaJabZjg+J24b+SLPO7
-         IZMtOjgb+qwiMnLq+sP3pEph4cylsweJ1hfzp9eYzhbov2MIybYEFWthvdO5sUhJy7fe
-         p6QhnTUMOm5gw0BiqYJfm6Y51MdD5+I3/a2fkNQxGcKnv+mv8pTJYsNFMOEQWy6AXDbN
-         i3TncdeE2QZQadJLmwse+/WchATfZHYEMBR2192bczqZ6ZHr3WWNsR+ExuTVjpiboP+b
-         smliWY7Z3IFs1C22Ko2fGLJGLYX9ULaTmmFihgYDXQ7D2E/q/5Hp4N9MEhygX8oqWSrX
-         o+1w==
+        d=linaro.org; s=google; t=1685535751; x=1688127751;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+hlItBZSa8qJMMaCDwSxrKtteXj1iXy2B/zXCOUIhkI=;
+        b=O5XTdtzfbB9EPm/UAT4dvJk29SfhxgWZq6XzK5iQvxKuIkEwW5hmJ4WrAuKTB+8rTC
+         R0A0WeKY1H+cAmnKq+My2RZ3+pCHGC1Oas0GmkDCLgtIpkHT6MhtkggumKVOa9+MCU6I
+         BOtFcWHXDbfu8jBbjnrif4rb0cKiLDkzkBa+2X8iJsm8t79PCirZnjOVB2/T48U0qkqd
+         zuC3IGJCrs6juZMubqFeocp9msU5OyoZz1Oc3D0LN70JLfOeu33RnCXQsgR7wkHx7+ve
+         9rAnw3xOAamSI6ttmuj2j3Utz2GkA2FjZ1k3sD0wP/mAMsfe1CG7yi3wFH/GCkRKvs+H
+         Pp8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685535404; x=1688127404;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hT8OWO/UkE0kJ6wTvhFLdugI0TrRyYIKyUCIvnylcuU=;
-        b=BOlHtDTEJg/SQTkPdYa6VWAFBFmP045zZI2EGIHu9OBeOXyn0Syp5e20lYCH/3jgNx
-         qfLbepqBSxqUiqZgkJJgRbspeuleBwAsK8jUAuDZJdF57W5rFgAeAdUqMaVV9ILx8a5L
-         mhSztVLfSKLveSUrbfEBOwhGAfVXUsccJ2hX/dTKpB3Q2koX1UiKhJyBdDaWDPb7IWMB
-         wqH0SdB/8Xk+UsARtueErXNwwnqgi5Yb8sgDZAc10kFsUxBF3dxaF1l5z+YiiQzG+Sil
-         O/VAux7PArIzL/GA8M/j4StBWfTyFa83xYZ0fRSZXeVvQwFMQWZJ0eJKQHW/d75u75Vz
-         thbA==
-X-Gm-Message-State: AC+VfDyaYEG1bZQGglE2k1U9Yo38xA8C3zwVs+botkbv0FqcKveBccS/
-        cocYaQ2CnOwbURlm/4nK69h24g==
-X-Google-Smtp-Source: ACHHUZ7cGiELVkb8DvCdytKB2IjLOgZ/B+AsDkxpI50GWOxdoI5c7ghiS9/UMkPHu+sEIgIio40VTA==
-X-Received: by 2002:ac2:4c02:0:b0:4f3:a9d4:45f0 with SMTP id t2-20020ac24c02000000b004f3a9d445f0mr3046529lfq.17.1685535404440;
-        Wed, 31 May 2023 05:16:44 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id g7-20020a19ee07000000b004f517c21ef4sm336041lfb.44.2023.05.31.05.16.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 05:16:44 -0700 (PDT)
-Message-ID: <10388324-45c7-b8ae-fb48-64becff76e66@linaro.org>
-Date:   Wed, 31 May 2023 14:16:42 +0200
+        d=1e100.net; s=20221208; t=1685535751; x=1688127751;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+hlItBZSa8qJMMaCDwSxrKtteXj1iXy2B/zXCOUIhkI=;
+        b=NExN4tXXD7+DWGmRfGzTRpSt3f7A+e6xOSlyNtZYGgaMBNyLDdae54FU3d6dn58tUt
+         yLEm0vOagWLUeynUV3i8fYnmxZdC7DuBfg1oR/XvTb8F1MGUPwSkX5UZMSACB81dVf9n
+         2nOsa4ZX1TZo6fLi8k59lwoV+a9mT/4NSTjsgkTJdFfdnIv6Zd/rxeKABd/LjB0+yGjJ
+         R4Ej83p0THpdAv9MyMqcPCJD1lWz5ZjoFMBgiqdoRArdRNIBSRFaOMyHU9Z88deWlnq8
+         HYoL44X6CWpiBCqIszlH4Cov1GRIWm9dBXUaxM2C4ZLtEKQ/GqVB4tnv3OYRpehpXHk0
+         qVNQ==
+X-Gm-Message-State: AC+VfDxBQrmcTMNJgf8nUO0pY1NQp47bgE5vA3zCSqfkjSZU+T/4mmET
+        NCmm4/xGoMtSqVtuhGbjTmTK7fo+X6GHJ/cOHKT2Cg==
+X-Google-Smtp-Source: ACHHUZ4GFuR2ifUDLAIF6/6enGSlV92VU2gn1fcrxoIfGAyVHBNiQyrpozCa9Br08r7n0uwPm8HiYQ==
+X-Received: by 2002:a1c:6a0a:0:b0:3f6:3486:1391 with SMTP id f10-20020a1c6a0a000000b003f634861391mr4291324wmc.13.1685535751243;
+        Wed, 31 May 2023 05:22:31 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id n7-20020adfe347000000b00309382eb047sm6637954wrj.112.2023.05.31.05.22.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 May 2023 05:22:30 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 0/4] arm64: qcom: sm8550: enable PMIC devices
+Date:   Wed, 31 May 2023 14:22:23 +0200
+Message-Id: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v2-0-a3b890604c49@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v3 2/5] phy: qcom-qmp-combo: add support for the USB+DP
- PHY on SM8150 platform
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP87d2QC/5WPQQ6DIBREr9Kw7m8Q/Wq76j0aFwioJAgE1LQx3
+ r1oN926fLN4M7OSqIJWkTwuKwlq0VE7m4BdL0QM3PYKtExMGGU5RYYwOa8FxLFGpDD7OAXFR/A
+ /Nr4HOYHIswJRMtaxkiRTy6OCNnArhuSyszEp9EF1+n1Uv5rEg46TC59jyZLt6bnSJQMKLdZFL
+ ivkJcufRlse3M2Ffh9xXlZIlFVJ04s7/Zc127Z9AYIIaDA5AQAA
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org
-References: <20230531023415.1209301-1-dmitry.baryshkov@linaro.org>
- <20230531023415.1209301-3-dmitry.baryshkov@linaro.org>
- <47e84a3c-b457-7aff-ad6a-809178c08b62@linaro.org>
- <CAA8EJprDPzTQU1j6n17gYAeiXw1t6M_d4CciTtD8mHNksYGHow@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAA8EJprDPzTQU1j6n17gYAeiXw1t6M_d4CciTtD8mHNksYGHow@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1627;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=KL6QyPg63cMU5N+qVVw/DznqwEpOJlcW5JwBk19/9zA=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkdzwE4zS2k1BuY/kN4sQV0jN0DpjHlwbjK3D/EyQC
+ LTv5D+yJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZHc8BAAKCRB33NvayMhJ0ccED/
+ 4u2kcI+Dd1zixfhzz7gpeTAuv8R53saMTtZ7PWU6DfCIRTraW6cNY2gNdGGT28WciBv59pm5NUE3d2
+ ARJnUVdU8e90WxEP//OikBa48kMKPQNcxw9slVH0IIDIJAEmAZ38Vs6HMAXGmo05NLgt1eaCZBFHiw
+ apH8TBXKS1Xho41mecxLhV00KcYvF1LRfvwFXRWVDfP9KIg4o3/9S1UBjW5S3nK9Vripg8wbhtcGf0
+ iEfWFqX2v+MzP+gcrsHwlubBgrg6x2u3j/Fcy/SPCvXqL4Xj7SSzMgk9dnFh9Y3qJURca8Da5LiS9H
+ CmuacqnN5A4dRuqrWwsuJZlUUfWKfaRhEKhhGC1+2YqhI6q6JxYcaqJ2qj2lrptgCinzYNO1Yq+srf
+ g4uKdmTYKFTb/cBAZ/OM0YpBH8rMwbC73kDp30kBvVkLJKvVr4PkRuO74NtzcJhuybBgxX8tHFesMF
+ zflybsozPxqP296OcncVL8OTYEV8+XTvi6mzSYuNoO81B5n2iY05jfaMMqTd4oh+KOrCsGlMRIuKrQ
+ o2LTMQsSV6nDC6XQo+y1E8Fom8FkQBlhaRF6cI0B42zv/sE97mvGdPRGYeZss69s+24O9iYl04kD2G
+ XXL3qLm3CMRZ6gpHzaDMjxmxSymLHQkNfW6umUai1doo2caf6vGWptQMSJPw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,66 +95,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This enables the following PMIC devices:
+- PWM RGB LED
+- RTC
+- Volume and Power buttons
 
+on the SM8550 boards.
 
-On 31.05.2023 14:13, Dmitry Baryshkov wrote:
-> On Wed, 31 May 2023 at 14:35, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->> On 31.05.2023 04:34, Dmitry Baryshkov wrote:
->>> SM8150 and SC8180X are close relatives. Reuse sc8180x data to support
->>> USB+DP combo PHY on SM8150 platform.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->> I'm not sure this is right. Downstream reuses SA8195 USB seq.
-> 
-> The upstream driver uses sm8150 data for sc8180x. So even if sc8180x
-> data is not correct for sc8180x, it is definitely the one that we
-> should use for sm8150:
-Right sorry, this patch adds support for 81*5*0. I wanted to point out
-that 8180 has a different set of init commands and one of them is probably
-incorrect.
+Depends on:
+- [1] PWM bindings, merged by Lee
+- [2] functional fix
+- [3] & [4] QRD flash DT changes merged by Bjorn
 
-Konrad
-> 
-> static const struct qmp_phy_cfg sc8180x_usb3dpphy_cfg = {
->         .serdes_tbl             = sm8150_usb3_serdes_tbl,
->         .serdes_tbl_num         = ARRAY_SIZE(sm8150_usb3_serdes_tbl),
->         .tx_tbl                 = sm8150_usb3_tx_tbl,
->         .tx_tbl_num             = ARRAY_SIZE(sm8150_usb3_tx_tbl),
->         .rx_tbl                 = sm8150_usb3_rx_tbl,
->         .rx_tbl_num             = ARRAY_SIZE(sm8150_usb3_rx_tbl),
->         .pcs_tbl                = sm8150_usb3_pcs_tbl,
->         .pcs_tbl_num            = ARRAY_SIZE(sm8150_usb3_pcs_tbl),
->         .pcs_usb_tbl            = sm8150_usb3_pcs_usb_tbl,
->         .pcs_usb_tbl_num        = ARRAY_SIZE(sm8150_usb3_pcs_usb_tbl),
-> 
->         .dp_serdes_tbl          = qmp_v4_dp_serdes_tbl,
->         .dp_serdes_tbl_num      = ARRAY_SIZE(qmp_v4_dp_serdes_tbl),
->         .dp_tx_tbl              = qmp_v4_dp_tx_tbl,
->         .dp_tx_tbl_num          = ARRAY_SIZE(qmp_v4_dp_tx_tbl),
-> 
-> 
-> 
->>
->> Konrad
->>>  drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
->>> index 33cc99d9c77d..2bff1bbb8610 100644
->>> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
->>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
->>> @@ -3614,6 +3614,10 @@ static const struct of_device_id qmp_combo_of_match_table[] = {
->>>               .compatible = "qcom,sm6350-qmp-usb3-dp-phy",
->>>               .data = &sm6350_usb3dpphy_cfg,
->>>       },
->>> +     {
->>> +             .compatible = "qcom,sm8150-qmp-usb3-dp-phy",
->>> +             .data = &sc8180x_usb3dpphy_cfg,
->>> +     },
->>>       {
->>>               .compatible = "qcom,sm8250-qmp-usb3-dp-phy",
->>>               .data = &sm8250_usb3dpphy_cfg,
-> 
-> 
-> 
+[1] https://lore.kernel.org/all/20230522-topic-sm8550-upstream-pm8550-lpg-v2-1-c5117f1d41f9@linaro.org/
+[2] https://lore.kernel.org/r/20230515162604.649203-1-quic_bjorande@quicinc.com
+[3] https://lore.kernel.org/r/20230516150202.188655-3-krzysztof.kozlowski@linaro.org
+[4] https://lore.kernel.org/r/20230516150202.188655-2-krzysztof.kozlowski@linaro.org
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Always enable RTC in a new patch
+- Drop patch enabling RTC on boards
+- Move PON names to meet alphabetical order
+- Link to v1: https://lore.kernel.org/r/20230525-topic-sm8550-upstream-pm8550-lpg-dt-v1-0-4d5d7602f290@linaro.org
+
+---
+Neil Armstrong (4):
+      arm64: dts: qcom: pm8550: add PWM controller
+      arm64: dts: qcom: sm8550-qrd: add notification RGB LED
+      arm64: dts: qcom: pmk8550: always enable RTC PMIC device
+      arm64: dts: qcom: sm8550-qrd: enable PMIC Volume and Power buttons
+
+ arch/arm64/boot/dts/qcom/pm8550.dtsi    | 10 ++++++
+ arch/arm64/boot/dts/qcom/pmk8550.dtsi   |  1 -
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 63 +++++++++++++++++++++++++++++++++
+ 3 files changed, 73 insertions(+), 1 deletion(-)
+---
+base-commit: 388a38fadd00565867bda40c3b87c3a983bfb83d
+change-id: 20230525-topic-sm8550-upstream-pm8550-lpg-dt-c31455d22f26
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
