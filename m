@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 555EE718161
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:22:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53305718163
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:23:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235961AbjEaNWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 09:22:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43576 "EHLO
+        id S236396AbjEaNW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 09:22:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235479AbjEaNWv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:22:51 -0400
+        with ESMTP id S236371AbjEaNWx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:22:53 -0400
 Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C8F4D9
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 06:22:50 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f4b384c09fso6885302e87.3
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 06:22:50 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29B4FA0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 06:22:52 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f122ff663eso6624223e87.2
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 06:22:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685539368; x=1688131368;
+        d=linaro.org; s=google; t=1685539370; x=1688131370;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gtyrqdTWQcpyKl/kqFYipYrPO4h9o2BturowbZwWg50=;
-        b=PnygFpmsP4XDLrc1sbNSX+SaH/yPGxZFhlYEKvnyO7HwfGYw4+b522olTeCAwlBjJm
-         WPNWVlO2DVoz6iA0qgVuvZHwMNSBi6+BGJjSB3DBmoet1m5SB6KJMtK0znvtKYR+22PT
-         r0Ynusu/TrZNREo+MYwOAidMSusPA8mf5pOTQDBgD9z+rDlzdQCjZNyouKR4X3AB7EDt
-         0nHWeoVA7Cz8HY43hjiq1MyJ7+yzQXWZaRDQIrVX+tEtJir5MCbC58yii/+d7KNnLiE+
-         fy2knePgF6PKgzvqSBwPqkaTeeMtGVXGs7m3fRUiG5w2RVoKjE0KBPh7uhvgqTElvU0j
-         ch2A==
+        bh=Ofn+y+PGmsgVQL53Qyo7xRQqsOY2ldRcLbPHWF8Ex50=;
+        b=ar0oLQdwCyoTg4+4Vm94VPv4TNwrDHD+dDpoMUqRwn9fFLxJBiDvsDMTSc+fw1/IjF
+         Pcgok4c/qqCJjExCjFyeRfj/nzhTg6kP8HLsVZdl6tafKZpQ5fpk5HXwwGjyZNme6qRs
+         dvQb+l011lHg1Ztk+agtcn0KGWDUMxAVc1NshZBi9/CtYx/ZZtAAB4zTVp4uttvdDAGl
+         wgBnZziyrpK5rYmiTSe+8XvPDhZGqAD4tQLj7z/IohF/0K0xoa2Y187rgNrR77Mj6vBJ
+         25TBxXT3LjhkWgrqf9X+Rwjnn/ZfFjYWSTlczQBgXk4MdERqrV5fdMjoZK7TTPJQJ28p
+         FZ/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685539368; x=1688131368;
+        d=1e100.net; s=20221208; t=1685539370; x=1688131370;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gtyrqdTWQcpyKl/kqFYipYrPO4h9o2BturowbZwWg50=;
-        b=jN4qucaM65ST9jKFqXZKiGdVSZabkGaVRvH7Y38p9vHlQaxKnxrIUGGtQRD53HQUFU
-         Z3LUFoJIQJogaMdIYPBDedBVzMwYe3uExGlsHbBjPWUCCiIzpqoXedxwT+ESxEr/itR1
-         C6ICj64e394zlMx/+fGvILtl9/lVM1KGIz0lCB0vuCpyml8EJ4RErxYZrXsN786tw9xY
-         29owVhvYr5WJ0ln4y+Ezu41piu5zUGcwoi7vq3XcSMTL5f9FsCU7P6h2D4HqpxWuJRUX
-         1Xz9I9vRvYDomGky6D+PDJe+WiVzMMCNh3p1JdcNWtuvfCHL231i6IqRRceIdmXZXB+g
-         2dGQ==
-X-Gm-Message-State: AC+VfDwXZ7SBR6dQ9ALFXANlCMm14juoOU46iJ0QFhgsgOHZ/eFbyNzV
-        JMX63O28+55vfkym0slWIQYPWA==
-X-Google-Smtp-Source: ACHHUZ4Mv2gd/xa2zr6hrKHRSrLA6yH4TWCYgO7H3a7ogK4GJ6qZeYKZYNQ3vVj0GKfot50DQtsO2Q==
-X-Received: by 2002:ac2:483a:0:b0:4f4:ca61:82bb with SMTP id 26-20020ac2483a000000b004f4ca6182bbmr2743707lft.45.1685539368528;
-        Wed, 31 May 2023 06:22:48 -0700 (PDT)
+        bh=Ofn+y+PGmsgVQL53Qyo7xRQqsOY2ldRcLbPHWF8Ex50=;
+        b=cSjPsFoKaHpnOIddYCkkeHVhzQxYmG++LQnWMVDa9vZRZ9nctfuvTFIzQnAhDWxDC4
+         qirmjsvYOLsVk7YlptBIOD/MJ8w/UK7B0aX323rl6+6yrLO7b14woQYnwCZaB5xCi6q/
+         b+91a7hXsLSItiPHYZoeRbrr2RXmn1gvrFjEYCHl3QAJ3GqveYraemz2qGv4CzFeCY+h
+         4AWwsqiUDAzxRVCHULyb37SMItTo94vMvoyeMSvKTF9f8dN7A4DHz5DlFv34D4MhXMnB
+         Nz6z2PtYOmM1xFQCKTVVRV64b8psIfHPJshuKnL36j3jvWlEucTwL78C5SmK4vUi3bY2
+         Y15w==
+X-Gm-Message-State: AC+VfDyWl2aVHxNJYMWU04ZWVKhDuM6x8bru6/RA3gzcDMkCXTbyBurA
+        F+9XQepBrMAhi8cljMffOcF6pA==
+X-Google-Smtp-Source: ACHHUZ4tuT1gnRZKjhJiiDqEeYOxTr040+EXB8lVn3cc8+vVSJNaOXxUKQXk6hB354n6VjIGtLGcmg==
+X-Received: by 2002:a05:6512:41b:b0:4f3:a812:5ae with SMTP id u27-20020a056512041b00b004f3a81205aemr2601995lfk.37.1685539370547;
+        Wed, 31 May 2023 06:22:50 -0700 (PDT)
 Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id w8-20020ac24428000000b004eb0c51780bsm720138lfl.29.2023.05.31.06.22.47
+        by smtp.gmail.com with ESMTPSA id w8-20020ac24428000000b004eb0c51780bsm720138lfl.29.2023.05.31.06.22.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 31 May 2023 06:22:48 -0700 (PDT)
+        Wed, 31 May 2023 06:22:49 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 31 May 2023 15:22:37 +0200
-Subject: [PATCH 3/8] arm64: dts: qcom: qdu1000: Flush RSC sleep & wake
+Date:   Wed, 31 May 2023 15:22:38 +0200
+Subject: [PATCH 4/8] arm64: dts: qcom: sc8180x: Flush RSC sleep & wake
  votes
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230531-topic-rsc-v1-3-b4a985f57b8b@linaro.org>
+Message-Id: <20230531-topic-rsc-v1-4-b4a985f57b8b@linaro.org>
 References: <20230531-topic-rsc-v1-0-b4a985f57b8b@linaro.org>
 In-Reply-To: <20230531-topic-rsc-v1-0-b4a985f57b8b@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
@@ -80,17 +80,17 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1685539362; l=1027;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1685539362; l=971;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=TObQ9wJAJgJwWqQ5Ixf0yflCFVNt1QkEEHiCMIA7XQ8=;
- b=sY2igrHYMkKIIn82pO1xm4mjQC+2D0hOpPwiNmbXxsM8LJiqZ3ofxrmnxykQRUEpkyRwZj/8O
- Ae+3IBDD4o0ASUc/CzU1GpUnHc9r7ESy37zSi5u7kWSZgIZPm/3Qxau
+ bh=cKOapMBIii+fL2wQU7lC3ue35ogY5raQDF5oY+5d6gw=;
+ b=Q+osHJ0Dqpj6i+/TSyJc4+DBCPPXg5metQbQTebGzUk2lqRBcOQyi8USKRHKdlq+j4gEQhgdR
+ SHePggS83qYD+dUfe9fvU4uvSt41aCOOXwmBhE1R0KOjYW0ePJB5nc3
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -104,19 +104,19 @@ about this event.
 
 Without this, only AMC votes are being commited.
 
-Fixes: 6bd20c54b589 ("arm64: dts: qcom: Add base QDU1000/QRU1000 DTSIs")
+Fixes: 8575f197b077 ("arm64: dts: qcom: Introduce the SC8180x platform")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/qdu1000.dtsi | 1 +
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-index ddc3239478ae..4bc8c77a3538 100644
---- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
-@@ -1252,6 +1252,7 @@ apps_rsc: rsc@17a00000 {
- 			qcom,tcs-config = <ACTIVE_TCS    2>, <SLEEP_TCS     3>,
- 					  <WAKE_TCS      3>, <CONTROL_TCS   0>;
+diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+index e8613a00fcab..573c542b1ce8 100644
+--- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+@@ -3495,6 +3495,7 @@ apps_rsc: rsc@18200000 {
+ 					  <WAKE_TCS    1>,
+ 					  <CONTROL_TCS 0>;
  			label = "apps_rsc";
 +			power-domains = <&CLUSTER_PD>;
  
