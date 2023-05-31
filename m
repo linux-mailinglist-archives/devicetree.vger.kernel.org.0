@@ -2,128 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD50071882D
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 19:11:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0356D718837
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 19:12:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229614AbjEaRLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 13:11:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50154 "EHLO
+        id S230156AbjEaRMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 13:12:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229686AbjEaRLn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 13:11:43 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FCA3133;
-        Wed, 31 May 2023 10:11:40 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34VETEqH032254;
-        Wed, 31 May 2023 17:11:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=/Kj6AS/TnqEEItEU3nofU6kwgoDlOE903p9vfMYKykI=;
- b=ZWD3sSt7BgcyzgAFK8JZnIylD2R+K78r4EMNlQ9BCQvMSXC1PPLjvCpgw35d/fWgoJxf
- eKdRZSb6clwfO8Zv/YPKXppu0GB0KIFVoHO3aptjQ5So8TlEUjljf61iD7/2Tzk3NHLI
- IMP9G5h9GUCvg1c0irgUNRTpE40RFiBaSvTeOg4fBz2b/81J/Um7YV/yOz0gbPWPggiJ
- G3GvLKv0xPs9Rqq8V3k1Ba4TbBInNlFN8bIftHa33XfzmtxdY16G2PUwECZ9PNdIgX4d
- Dvk4G7zC3iRB4bNvbI4Nuqknsahk9lyrn4vW3WJT13Em28Hh4oRDirS7e/R/PNO/Xops Kg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qx81x8ehk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 31 May 2023 17:11:31 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34VHBUnr001235
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 31 May 2023 17:11:30 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 31 May 2023 10:11:30 -0700
-Date:   Wed, 31 May 2023 10:11:29 -0700
-From:   Bjorn Andersson <quic_bjorande@quicinc.com>
-To:     Johan Hovold <johan@kernel.org>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <mani@kernel.org>,
-        Steev Klimaszewski <steev@kali.org>
-Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: sc8280xp: Add GPU related nodes
-Message-ID: <20230531171129.GA112802@hu-bjorande-lv.qualcomm.com>
-References: <20230531030945.4109453-1-quic_bjorande@quicinc.com>
- <20230531030945.4109453-3-quic_bjorande@quicinc.com>
- <ZHb3I6NUcjHZ64wD@hovoldconsulting.com>
+        with ESMTP id S229872AbjEaRMY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 13:12:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47CF593;
+        Wed, 31 May 2023 10:12:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D33BB60DE9;
+        Wed, 31 May 2023 17:12:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AD87C4339C;
+        Wed, 31 May 2023 17:12:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685553134;
+        bh=+Ml1j+mRUJgmXvowGAHL7NQaz1pxH/evVJuvs2hRgso=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=BYw8uvSKtQqAvjDQ1+aUtduoiKuESJASt6I+ZqQvJA20//6FeGNg1f866MI0WmXrT
+         ruslzv5W28Kb6NwsYa/Ad9LZOTko8KfxpqzYAE5WtJWktKj6c06tq4gtDVwv/0Pwaa
+         mDJqQwfoyV5LITBF0ptaPtkQU62PGfvfZrYX/EoeTekMyu8tbdC4xAoE58FqEESk2p
+         eFIBgNmgyA68cfWPAbwwdKubtp/VUXFKB8qg6me5gxLsMyb5ASRluj4WLsfXQxe4Un
+         /blsTaEObx/P02q5JlLcYRt8k4n4G5SotCTPWArugBDQtmsIg6K2A530cZDiM7CjtV
+         unjSWwsaoEZtA==
+Date:   Wed, 31 May 2023 12:12:12 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc:     krzysztof.kozlowski@linaro.org, bhelgaas@google.com,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        lorenzo.pieralisi@arm.com, linux-arm-kernel@lists.infradead.org,
+        bharat.kumar.gogada@amd.com, michals@amd.com,
+        nagaradhesh.yeleswarapu@amd.com
+Subject: Re: [PATCH v4 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
+Message-ID: <ZHd/7AaLaGyr1jNA@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZHb3I6NUcjHZ64wD@hovoldconsulting.com>
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ziteT-qECaU_xNzTvlVnNvSsdwLrK-P3
-X-Proofpoint-ORIG-GUID: ziteT-qECaU_xNzTvlVnNvSsdwLrK-P3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-31_12,2023-05-31_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 phishscore=0 spamscore=0 mlxlogscore=720 malwarescore=0
- adultscore=0 bulkscore=0 impostorscore=0 mlxscore=0 priorityscore=1501
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305310145
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230531083825.985584-4-thippeswamy.havalige@amd.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 31, 2023 at 09:28:35AM +0200, Johan Hovold wrote:
-> On Tue, May 30, 2023 at 08:09:44PM -0700, Bjorn Andersson wrote:
-> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > 
-> > Add Adreno SMMU, GPU clock controller, GMU and GPU nodes for the
-> > SC8280XP.
-> > 
-> > Tested-by: Steev Klimaszewski <steev@kali.org>
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> > ---
-> > 
-> > Changes since v2:
-> > - Added missing opp level (both gpu and gmu)
-> > - Corrected opp-level for highest gpu opp
-> > - Added dma-coherent to gpu smmu
-> > 
-> > Note that in order for the GPU driver to probe, the last change
-> > requires:
-> > https://lore.kernel.org/linux-arm-msm/20230410185226.3240336-1-dmitry.baryshkov@linaro.org/
+On Wed, May 31, 2023 at 02:08:25PM +0530, Thippeswamy Havalige wrote:
+> Add support for Xilinx XDMA Soft IP core as Root Port.
 > 
-> That's a pretty well-hidden notice about a critical dependency. I just
-> spent the morning debugging why this series broke the probe of the GPU
-> and only saw this when I was going to report my findings.
+> The Zynq UltraScale+ MPSoCs devices support XDMA soft IP module in
+> programmable logic.
 > 
-> Please consider putting information like this in the cover letter in the
-> future.
+> The integrated XDMA soft IP block has integrated bridge function that
+> can act as PCIe Root Port.
 > 
-> > Changes since v1:
-> > - Dropped gmu_pdc_seq region from &gmu, as it shouldn't have been used.
-> > - Added missing compatible to &adreno_smmu.
-> > - Dropped aoss_qmp clock in &gmu and &adreno_smmu.
-> 
-> Changelogs are also preferably placed in the cover letter so that you
-> don't have to read through N patches to determine what changed from one
-> revision of a series to the next.
-> 
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
 
-I've always put the changelog in the patches. But I can see the value of
-using the cover-letter for that purpose. I will consider doing so...
+> |Reported-by: kernel test robot <lkp@intel.com>
+> |Reported-by: Dan Carpenter <error27@gmail.com>
+> |Closes: https://lore.kernel.org/r/202305261250.2cs1phTS-lkp@intel.com/
 
-Regards,
+Not relevant.  These are basically review comments.
+
+> +	  Add support for the Xilinx PL DMA PCIe host bridge,
+> +	  The controller is an soft IP which can act as Root Port.
+> +	  If you know your system provides xilinx PCIe host controller
+> +	  bridge DMA as soft IP say Y; if you are not sure, say N.
+
+s/is an soft/is soft/
+s/xilinx/Xilinx/
+
+> +#define XILINX_PCIE_DMA_REG_IMR			0x0000013c
+> +#define XILINX_PCIE_DMA_REG_MSIBASE1		0x0000014c
+> +#define XILINX_PCIE_DMA_REG_MSI_HI_MASK		0x0000017c
+> ...
+> +#define XILINX_PCIE_DMA_IMR_ALL_MASK	0x0FF30FE9
+> +#define XILINX_PCIE_DMA_IDR_ALL_MASK	0xFFFFFFFF
+
+Pick upper-case hex or lower-case hex and use it consistently.
+
+> +static inline bool xilinx_pl_dma_pcie_linkup(struct pl_dma_pcie *port)
+
+Name this *_pcie_link_up() (not *_pcie_linkup()) to match other drivers.
+
+> +static bool xilinx_pl_dma_pcie_valid_device(struct pci_bus *bus, unsigned int devfn)
+> +{
+> +	struct pl_dma_pcie *port = bus->sysdata;
+> +
+> +	/* Check if link is up when trying to access downstream ports */
+> +	if (!pci_is_root_bus(bus)) {
+> +		if (!xilinx_pl_dma_pcie_linkup(port))
+> +			return false;
+> +	} else if (devfn > 0)
+> +		/* Only one device down on each root port */
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+> +static void __iomem *xilinx_pl_dma_pcie_map_bus(struct pci_bus *bus,
+> +						unsigned int devfn, int where)
+> +{
+> +	struct pl_dma_pcie *port = bus->sysdata;
+> +
+> +	if (!xilinx_pl_dma_pcie_valid_device(bus, devfn))
+> +		return NULL;
+
+Checking whether the link is up is racy because the link may be up, so
+xilinx_pl_dma_pcie_valid_device() returns true, then the link may go
+down before the read below.
+
+What happens then?  If it's an error that you can recover from, it
+would better to skip the link up check and just handle the error.
+
+> +	return port->reg_base + PCIE_ECAM_OFFSET(bus->number, devfn, where);
+> +}
+
+> +	/*set the Bridge enable bit */
+
+  /* Set ... */ (add space before "Set" and capitalize it)
+
 Bjorn
