@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 451D8718AF7
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 22:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EF62718AFD
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 22:21:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230259AbjEaUS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 16:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48410 "EHLO
+        id S229830AbjEaUVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 16:21:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230104AbjEaUS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 16:18:56 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498BB12C
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:18:50 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2af290cf9b7so987361fa.3
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:18:50 -0700 (PDT)
+        with ESMTP id S229785AbjEaUVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 16:21:14 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DFDD13D
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:21:08 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-97392066d04so938798866b.3
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:21:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685564328; x=1688156328;
+        d=linaro.org; s=google; t=1685564466; x=1688156466;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xfW0uzgTADsWhcSoswaGkp1tdAOqlTEb9s1G6Pboe/Y=;
-        b=Knwpl11wAJpByir5y9Ihgahijnbhr5aV5DLBxtRiuInO9UBfTXRZYStISf3LvlCSOr
-         gTh5N9TlcXO86fcFvg7p65LNMPagDHpvXL0AZT6nguxBxKn10N2oszYyl3/XKT9dedpl
-         avo05kphEPJbry9s9AgWXP1g7eSkxULHiKyPVG1HU4FtLNegjBNBEj7ABWvDJwP2suAv
-         otuId3S+Ti2KVdRZ6IE7fV2CDRTLzhWnW/CWHCv4UFXvXU9HfTAN8Wo9OBGlmPIdBmRM
-         vRdgynkumPFVK0XZ7mMAF6zN1NUsVRAIVUbOeUC/LGZdv9OQrcWPiRKxwIHTtttoBcYf
-         hISg==
+        bh=NxPEf63AFg+DV+ZToXhnUfaFQleSYdZ0i/Sjcxk5aaQ=;
+        b=tQkbqnGDTID6cfrY3OHkj5a7efjjb5KZynubNKbMdCmfAbfl7Gy/D4eJHNnpq8yFgf
+         8IJAfQu550uDvcer6tKVtRdR0BMpVvoiQLQmxT5pj6EzU/s7YxXlD6DGEQ+xtha++ILD
+         IBTSq1U3e5OVEngvuNqiLXrfBjUZ1X8/ubySNzuXWPCUVUzLoT4HY4qab1+myc4xAr0I
+         UnuidtV+IEffsXZavfUVOLDf6yQp8hsLbVDKxamMzJgzpUp+gLYEjXqXExJwKgnyISgK
+         qP7cQagLvHTgeYpF5gGiI9ZiMHB8YjeyrNIUgdpEtK2Na2J5LDyQc+Bt2CsAXT94zc+Z
+         /JFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685564328; x=1688156328;
+        d=1e100.net; s=20221208; t=1685564466; x=1688156466;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xfW0uzgTADsWhcSoswaGkp1tdAOqlTEb9s1G6Pboe/Y=;
-        b=TTsK/a1AEo3lYFWQVBvWaveWAp5PyZLsp7P6lafvzjOrzyAuVS2a8OiK5i84aTbIJp
-         g1ziER37DIjM2FvAqRurbDZa1CSRf23b1CrH73vIlh9eyvO3qcFHyQq3LUn4pJbKoFAr
-         3TMxovyzCO4z9rDvC6OMBK/Svj0VRr6zpsjQTfJN2HuLhKwI3TZUlk/YEbMytgEdPZdQ
-         K72WOzXayu9MYydvuUI2Uva1T9JS//sdb/JYyfvs2LmxCXeudXmr19gm26kOZIMBk2fN
-         DKbRScY3GhJbAV4HZn6XGahR0/+Lg4z7GLq8MmiH1JldOdUqDV2FS13Il2XzETtq77hf
-         uz2w==
-X-Gm-Message-State: AC+VfDx6G/0w3KDcZ/sNGajRZIdbGFTyi5Pz2BfDLc0n8ab8pbDqoWFR
-        BZNsk1ZkrTnXlXWFxX6p6L0DeA==
-X-Google-Smtp-Source: ACHHUZ7MnLxIs+OPsxwSz9SByrSFUAFokzZIXJoW5Mr6QI6WE1tX+SQJSsrIHUQ4EFkbIlqgaPoTzA==
-X-Received: by 2002:a2e:3013:0:b0:2af:1120:3f6a with SMTP id w19-20020a2e3013000000b002af11203f6amr3410946ljw.11.1685564328477;
-        Wed, 31 May 2023 13:18:48 -0700 (PDT)
+        bh=NxPEf63AFg+DV+ZToXhnUfaFQleSYdZ0i/Sjcxk5aaQ=;
+        b=bd728xLgrnqfSa6orIY4xW0ZbCeUsPdfqVsgLwWv/Yd/Ht7gfXiSsdjUHnilLoTCNf
+         zWFlQ6gNbKR50Tp8m61qiTifhaf/ty5kdAO3iFwyAsRj3fVhwpL6Qlf0ie/WCPtmkQ39
+         LDzwtB4iIBM8wvjJ7oFd/vRu2dgHpoxGgTRm9AI6Rprk4C2r6yv9lvyes/6WtlKDxS3t
+         G4/JSFkd8niBL8mUPNvaYM11WRBAW7uByE5Ndw6f23Ik/IleCXD/w/wqtGRyUnMBLXhR
+         3mX+28+2ShiMGIGFvGHCHlJt0mFUo0Aov7TrwQ6EtMtuO4LGBaqMwXbZ1NPEUgWc6wUz
+         4GLw==
+X-Gm-Message-State: AC+VfDype5RMp2YsfPu3ZAUSp8qzm+p4RUhdG+RXyh1QXTVDEmwxVry5
+        P/n3F1YbYVMhXBhk+8wsmkmGrA==
+X-Google-Smtp-Source: ACHHUZ4LRIiFiQB5xTphzpjry4kPpP0lkH337e52S1OJ1ep8S/bimhIqQebqnT1AYb4nkyk+VpDYgQ==
+X-Received: by 2002:a17:907:9495:b0:967:a127:7e79 with SMTP id dm21-20020a170907949500b00967a1277e79mr5683305ejc.28.1685564466653;
+        Wed, 31 May 2023 13:21:06 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id j11-20020a170906410b00b0096f689848desm9454874ejk.195.2023.05.31.13.18.47
+        by smtp.gmail.com with ESMTPSA id pg27-20020a170907205b00b009662d0e637esm9345274ejb.155.2023.05.31.13.21.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 13:18:48 -0700 (PDT)
-Message-ID: <7b171f36-3a17-ac6a-6033-ef2d20e8538c@linaro.org>
-Date:   Wed, 31 May 2023 22:18:46 +0200
+        Wed, 31 May 2023 13:21:06 -0700 (PDT)
+Message-ID: <f4bb0547-9625-f058-1a9f-7239023a28ce@linaro.org>
+Date:   Wed, 31 May 2023 22:21:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH] dt-bindings: samsung,mipi-dsim: Use port-base reference
+Subject: Re: [PATCH V2 3/5] dt-bindings: vendor-prefixes: add Indiedroid
 Content-Language: en-US
-To:     Fabio Estevam <festevam@denx.de>
-Cc:     Fabio Estevam <festevam@gmail.com>, neil.armstrong@linaro.org,
-        marex@denx.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-References: <20230531014315.1198880-1-festevam@gmail.com>
- <eb2b71df-6767-40f3-afc1-ef1552aeaee6@linaro.org>
- <095bb5c25f120536bf38bf87df5900cb@denx.de>
+To:     Chris Morgan <macroalpha82@gmail.com>,
+        linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, lucas.tanure@collabora.com,
+        kever.yang@rock-chips.com, yifeng.zhao@rock-chips.com,
+        sebastian.reichel@collabora.com, andyshrk@163.com,
+        jagan@amarulasolutions.com, heiko@sntech.de, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        broonie@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+References: <20230531161220.280744-1-macroalpha82@gmail.com>
+ <20230531161220.280744-4-macroalpha82@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <095bb5c25f120536bf38bf87df5900cb@denx.de>
+In-Reply-To: <20230531161220.280744-4-macroalpha82@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,30 +80,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2023 21:12, Fabio Estevam wrote:
-> On 31/05/2023 15:56, Krzysztof Kozlowski wrote:
+On 31/05/2023 18:12, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
->> This would have sense if you kept original intention, so
->> additionalProperties: false
->>
->> Without it - you just break bindings to hide warning.
+> Indiedroid is a sub-brand of Ameridroid for their line of single board
+> computers.
+> https://indiedroid.us/
 > 
-> I am not sure I understood your suggestion.
-> 
-> Is this what you mean?
 
-No. I meant that port-base is for cases when you extend the list of
-properties and it needs additional/unevaluatedProps: false.
-
-You don't have it, thus your fix is like this case:
-1. We have DTS with wrong property, not accepted by bindings. What to do?
-2. Let's change bindings "additionalProperties: false" to "true".
-Problem solved!
-
-No, not solved :)
-
-The graph bindings are a bit tricky, so the best to look for existing
-examples.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
