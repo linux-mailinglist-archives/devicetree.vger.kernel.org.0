@@ -2,71 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC023717AB4
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 10:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F51F717AB7
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 10:52:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234716AbjEaIvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 04:51:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37108 "EHLO
+        id S232599AbjEaIvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 04:51:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbjEaIui (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 04:50:38 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39D3013E;
-        Wed, 31 May 2023 01:50:37 -0700 (PDT)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34V5CpMU031404;
-        Wed, 31 May 2023 03:50:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=aTCRz7r1hZ9HCbXbe8YpYrEWZ+l87uW7+6z/lJ/pl2s=;
- b=grrrAXSdDNAH2agLUJUfuL5gfFXfOLew2e6BcsH1dK7bDcy6uVebAFAkc1U06N9xN1IG
- yGawyPxrxT+mVHY0JLWl1rX6ZmBUYh3aRt5JgrU/4nr5Rr/i5R80k1SojJjCt2D0MJ0+
- lJMVRjPzU8KwpZsQ1uKXh7lmBYHDjXJRq584B/i+TmIyO6Cg00fn3kks6I+yFdeNFSeU
- Aq3dHv86mzwsF4KCXMcUMuNpS6SvXkYuepT5J/3XyQ1TB8ZfjcwYmHU0PEhgkp3VikKT
- o2fNel1fIh2K8QYpzEMA9soyugLDEgd7bOrttteFlDhAdKO+Tr2aF8uaK5vMHxqkm/AD oA== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3que9mvg7j-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 31 May 2023 03:50:25 -0500
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Wed, 31 May
- 2023 09:50:23 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 31 May 2023 09:50:23 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id C8BFA11C6;
-        Wed, 31 May 2023 08:50:23 +0000 (UTC)
-Date:   Wed, 31 May 2023 08:50:23 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     <broonie@kernel.org>, <lee@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
-        <vkoul@kernel.org>
-CC:     <robh+dt@kernel.org>, <conor+dt@kernel.org>, <lgirdwood@gmail.com>,
-        <yung-chuan.liao@linux.intel.com>, <sanyog.r.kale@intel.com>,
-        <pierre-louis.bossart@linux.intel.com>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/6] dt-bindings: sound: cirrus,cs42l43: Add initial
- DT binding
-Message-ID: <20230531085023.GH68926@ediswmail.ad.cirrus.com>
-References: <20230530122112.1314458-1-ckeepax@opensource.cirrus.com>
- <20230530122112.1314458-3-ckeepax@opensource.cirrus.com>
+        with ESMTP id S234770AbjEaIvM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 04:51:12 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2042.outbound.protection.outlook.com [40.107.94.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79E2C123;
+        Wed, 31 May 2023 01:51:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Um90luZkrUsQDHuk352U3yfl24T363mHvn6drr7P+ehsbvpfc6PvYWkZ7M9AF7a6QPLNNhcQqjUbZ4ExjZ7sJbqFB23+mILcXFv33QfzpyZGhnWGbhd5fkqbV/QIB1T+t+/vU9FEswrr5Hp5ynEv/cC6+9HCpPIl6YNffPEDADEiu81h+dLvsFSdpTtUe6uDRQm2UR0Ou0SfEEJMfq0AyznENbarqSIV5+w5kgqeygbH2QyA9TWOobdaHjauD2O59TplAJss+R6j8COFW/yJvwx708Y1CRw/3QIIfuuZSVE1HDrOODSA2nTsnla6S3b4nB0+8tYcYumy6uGziIeNew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zhr2JO3eHBqQ/5rpQVg5fkycpkmnl3BPX8xFc/iONEU=;
+ b=Uhq3ZaItp4V8A/nfqnT+l3cucHGWBjl907yuKfLLxNbFPziEZ8wZ0jHfJ2dd9ooVukK7QHDoefyvbekoFEU0AL1iIP+f4ReI77+butDA1iS1rjUNkdoMksaSc1uCcdt7wjUpTG6D2ur0oWftq1P1VEVlP/UAPZSRLKgMBHHCCeEpLdKUgB2p6Zl1hU5s1cTAFsbAVo+HTTNxaFWODetD3COkrvwNWH+jaLs9PTIbJ29LwtdEDs36DwkFwjDkfe2fIpbobLPid9zAoYEmEMaa3nLGv/YGSandfvGKxkMsAe8LDKNioasmyjXO0tMiQVRwuC6vZyKeHeQ8ZtgNZxaa0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.233) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zhr2JO3eHBqQ/5rpQVg5fkycpkmnl3BPX8xFc/iONEU=;
+ b=lzlhVnPwSqQjv8voig7VI2k5hgibdBE2C6Sq7Qpo2b38LhQ1E9cAKECTpdfL7Gmm4wISjxJ/dxyFdT38RapdWfYdhq9RJEdMvfPsDE2yR+bA9K9Xf/q06bdHSM1pNKpArKFQc/D+MbQfXl2pw2iBAPAF9nVL3F+19hQl8g3HFzUIuozSkttVhsG1O5q+Vuw2ItW6MVaScbvBVsGV/iSUeE8Xb7UPLKZuOVd68856XbDibKoMuu4PjmO8rTlwLmQKnnkukNi9MzLWPf9zgWCgXzkDwYLzPjvWFebmjPABSMQuldD1ZFFesmJo83I3py1A0FVxp8mo4ZSEMuY8KN/WWg==
+Received: from BY5PR03CA0029.namprd03.prod.outlook.com (2603:10b6:a03:1e0::39)
+ by IA1PR12MB6554.namprd12.prod.outlook.com (2603:10b6:208:3a2::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23; Wed, 31 May
+ 2023 08:51:05 +0000
+Received: from DM6NAM11FT105.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:a03:1e0:cafe::5e) by BY5PR03CA0029.outlook.office365.com
+ (2603:10b6:a03:1e0::39) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.23 via Frontend
+ Transport; Wed, 31 May 2023 08:51:05 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.233) by
+ DM6NAM11FT105.mail.protection.outlook.com (10.13.173.164) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6455.22 via Frontend Transport; Wed, 31 May 2023 08:51:05 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
+ (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Wed, 31 May 2023
+ 01:50:55 -0700
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.37; Wed, 31 May 2023 01:50:55 -0700
+Received: from build-shgarg-20230103T221109854.nvidia.com (10.127.8.13) by
+ mail.nvidia.com (10.126.190.182) with Microsoft SMTP Server id 15.2.986.37
+ via Frontend Transport; Wed, 31 May 2023 01:50:55 -0700
+From:   Shubhi Garg <shgarg@nvidia.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
+CC:     <shgarg@nvidia.com>
+Subject: [PATCH] arm64: tegra: Add PCIe and DP 3.3V supplies
+Date:   Wed, 31 May 2023 08:50:52 +0000
+Message-ID: <20230531085052.3082394-1-shgarg@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230530122112.1314458-3-ckeepax@opensource.cirrus.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: IwEdBZpt7lnnkG1kErsM3_AW2-E5PGgl
-X-Proofpoint-ORIG-GUID: IwEdBZpt7lnnkG1kErsM3_AW2-E5PGgl
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM6NAM11FT105:EE_|IA1PR12MB6554:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6c90ea54-201d-45e5-9644-08db61b42b6a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: l7aMqPYAM5nQKXGkIUILaF83K/hGx03ASUDEq3kyNlFJ4PbvV59t5FvR+A8ZLO3ngXGIcG5XNS1HTf7pGoRYxEm3xCKFR8f4HYUo0knapfbL9typgpORi5KTe6Rtf5W8zrbvH60EqHE4G+4lOUC02PC1lhzJ8sQiVFCrh3BO47/fqV6AKrQEN/KZvWL1CRMQKRt9/kec3WIIzA/7H/E92p+iFUukPc/zKeVHTdgrAB8ongW+PzZ7NLv88BmKf088f2F/2zxNxlCajzvEQwFgKRvNTJyRvvzRoNTy8CUMmRSgoGeAbQWv9EG8GIKOv3cdDPt+wBC2qTClL4MEFsKWsZ0cvPC9Rph8IjIchq5WNOE1+8Otgx7u1tWcgRotlUjfdFdbhFiD9SE70F2T+EON3H0WQ0hY8F+yTtlfTYsawX2BkWdQD2etAjBYaRj2hZbTL1knuNLvnPNDvltZBIvuU+HHi352VArcJ19i+Md6zdiM6zQd8Yw70C0W18nB6ZWyPgqtNuo+vDn2fCBoIFSU0V6ROfeVA9aVaqkE7a7bSCJz+exK0QVayOxOvWi0yVd3C+MQxfNxE0b5qQk9BJX8DrqrsOApxdlnvPQbOFKlsiI0jabLRAbSmnrHOpK5x4KstLB11vZSn3F9CZkT7SfIbulOVRcd+UW3NBfimiQAEJaGwUZR9dpOWzsMZU57zlKXGXrHyM84xdKWHh8Tbr5S/McrCMcUliJrDRL/rZx6XD/ZScTsZtH1yq05ny4+hIBz
+X-Forefront-Antispam-Report: CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(376002)(346002)(136003)(396003)(39860400002)(451199021)(40470700004)(36840700001)(46966006)(316002)(186003)(1076003)(26005)(7696005)(6666004)(2906002)(40480700001)(36756003)(40460700003)(107886003)(5660300002)(41300700001)(8676002)(8936002)(478600001)(356005)(7636003)(82740400003)(36860700001)(110136005)(336012)(426003)(4326008)(82310400005)(86362001)(70586007)(2616005)(70206006)(47076005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2023 08:51:05.2064
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c90ea54-201d-45e5-9644-08db61b42b6a
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT105.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6554
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,18 +103,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 01:21:08PM +0100, Charles Keepax wrote:
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7e0b87d5aa2e5..0db9f37eec258 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -4926,6 +4926,7 @@ M:	Richard Fitzgerald <rf@opensource.cirrus.com>
->  L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
->  L:	patches@opensource.cirrus.com
->  S:	Maintained
-> +F:	Documentation/devicetree/bindings/mfd/cirrus,cs*
+Add the 3.3V supplies for PCIe C1 controller and Display Port controller
+for the NVIDIA IGX Orin platform.
 
-Just spotted this should be dropped for v3 as well, sorry.
+Signed-off-by: Shubhi Garg <shgarg@nvidia.com>
+---
+ .../nvidia/tegra234-p3740-0002+p3701-0008.dts |  1 +
+ .../boot/dts/nvidia/tegra234-p3740-0002.dtsi  | 28 +++++++++++++++++++
+ 2 files changed, 29 insertions(+)
 
-Thanks,
-Charles
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts
+index 43d797e5544f..c0ba69c16382 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts
+@@ -35,6 +35,7 @@
+ 		pcie@14100000 {
+ 			status = "okay";
+ 			vddio-pex-ctl-supply = <&vdd_1v8_ao>;
++			vpcie3v3-supply = <&vdd_3v3_wifi>;
+ 			phys = <&p2u_hsio_3>;
+ 			phy-names = "p2u-0";
+ 		};
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002.dtsi
+index c95063b19321..7f6c34b79491 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002.dtsi
+@@ -134,4 +134,32 @@
+ 				"usb3-0", "usb3-1", "usb3-2";
+ 		};
+ 	};
++
++	vdd_3v3_dp: regulator-vdd-3v3-dp {
++				compatible = "regulator-fixed";
++				regulator-name = "vdd-3v3-dp";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				vin-supply = <&vdd_3v3_sys>;
++				gpio = <&gpio TEGRA234_MAIN_GPIO(H, 6) 0>;
++				enable-active-high;
++				regulator-always-on;
++	};
++
++	vdd_3v3_sys: regulator-vdd-3v3-sys {
++				compatible = "regulator-fixed";
++				regulator-name = "vdd-3v3-sys";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++	};
++
++	vdd_3v3_wifi: regulator-vdd-3v3-wifi {
++				compatible = "regulator-fixed";
++				regulator-name = "vdd-3v3-wifi";
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				gpio = <&gpio TEGRA234_MAIN_GPIO(G, 3) GPIO_ACTIVE_HIGH>;
++				regulator-boot-on;
++				enable-active-high;
++	};
+ };
+-- 
+2.17.1
+
