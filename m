@@ -2,43 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13DE47185CA
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 17:11:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CBA37185E7
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 17:16:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232568AbjEaPLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 11:11:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41524 "EHLO
+        id S234332AbjEaPQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 11:16:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231565AbjEaPLm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 11:11:42 -0400
+        with ESMTP id S234293AbjEaPQX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 11:16:23 -0400
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B56398;
-        Wed, 31 May 2023 08:11:41 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F9998;
+        Wed, 31 May 2023 08:16:22 -0700 (PDT)
 Received: from ideasonboard.com (unknown [IPv6:2001:b07:5d2e:52c9:72c3:346:a663:c82d])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 07B5D844;
-        Wed, 31 May 2023 17:11:18 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 943D5844;
+        Wed, 31 May 2023 17:15:59 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1685545879;
-        bh=2erwBLSNvjq5RTLDHj3pdKLpmajzY7di3aYquz7xyk4=;
+        s=mail; t=1685546159;
+        bh=HeXBZlYluFZrJepoAl3Q51k415r93t0ilHotlcCj12w=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Zx7MGUJxDybYML60jM/CLl4KzZ3D8j1NvDV2OeKHzieryZgkAYGOUUHnUi5xYxswc
-         MZVf4GBP2KRZ3pJ/Dk48pOjmzFyy4a0Cky4DsBkeUqYS8OX4BOtE20eSPqKA5Zk1md
-         SjDEoZ9bjI6/2ZyAmoCjXbPfZm1JEGsmIOJHdHnA=
-Date:   Wed, 31 May 2023 17:11:38 +0200
+        b=QHjHFLqPSCT8DgU5wqBmdQ6CTOhcwzCCBXDZAoxOai61XmZRglnleAiI+OIlggxn+
+         +CxmMiLRXg5AP3mngp2PMsXCJ5NLrF7vAex5D8Psrn1/Is4r2Z5EWb4uDZdJ2Vv3as
+         ac6VGsOIIbh3r72N1qBdzhDJQunCr8VRhG9VT53c=
+Date:   Wed, 31 May 2023 17:16:17 +0200
 From:   Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 To:     Dave Stevenson <dave.stevenson@raspberrypi.com>
 Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
         linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 05/21] media: i2c: imx258: Add regulator control
-Message-ID: <6s6fafip54y5er63qy6ac3wp5gnvryczxz5sxtvyy3ctxla5bk@okfxvbuenvla>
+Subject: Re: [PATCH 06/21] media: i2c: imx258: Make V4L2_CID_VBLANK
+ configurable.
+Message-ID: <vnwwrfgwr5ueiheqsnvxz7sh3qjcftocjjxdghvrigfmlss4yu@5xq3tppv4pxg>
 References: <20230530173000.3060865-1-dave.stevenson@raspberrypi.com>
- <20230530173000.3060865-6-dave.stevenson@raspberrypi.com>
+ <20230530173000.3060865-7-dave.stevenson@raspberrypi.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230530173000.3060865-6-dave.stevenson@raspberrypi.com>
+In-Reply-To: <20230530173000.3060865-7-dave.stevenson@raspberrypi.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
@@ -51,119 +52,82 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Dave
 
-On Tue, May 30, 2023 at 06:29:44PM +0100, Dave Stevenson wrote:
-> The device tree bindings define the relevant regulators for the
-> sensor, so update the driver to request the regulators and control
-> them at the appropriate times.
+On Tue, May 30, 2023 at 06:29:45PM +0100, Dave Stevenson wrote:
+> The values and ranges of V4L2_CID_VBLANK are all computed,
+> so there is no reason for it to be a read only control.
+> Remove the register values from the mode lists, add the
+> handler, and remove the read only flag.
 >
 > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 > ---
->  drivers/media/i2c/imx258.c | 42 +++++++++++++++++++++++++++++++++++++-
->  1 file changed, 41 insertions(+), 1 deletion(-)
+>  drivers/media/i2c/imx258.c | 16 +++++++---------
+>  1 file changed, 7 insertions(+), 9 deletions(-)
 >
 > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> index b695fd987b71..30bae7388c3a 100644
+> index 30bae7388c3a..c6fb649abb95 100644
 > --- a/drivers/media/i2c/imx258.c
 > +++ b/drivers/media/i2c/imx258.c
-> @@ -7,6 +7,7 @@
->  #include <linux/i2c.h>
->  #include <linux/module.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/regulator/consumer.h>
->  #include <media/v4l2-ctrls.h>
->  #include <media/v4l2-device.h>
->  #include <media/v4l2-fwnode.h>
-> @@ -507,6 +508,16 @@ static const char * const imx258_test_pattern_menu[] = {
->  	"Pseudorandom Sequence (PN9)",
->  };
+> @@ -30,6 +30,8 @@
+>  #define IMX258_VTS_30FPS_VGA		0x034c
+>  #define IMX258_VTS_MAX			0xffff
 >
-> +/* regulator supplies */
-> +static const char * const imx258_supply_name[] = {
-> +	/* Supplies can be enabled in any order */
-> +	"vana",  /* Analog (2.8V) supply */
-> +	"vdig",  /* Digital Core (1.2V) supply */
-> +	"vif",  /* IF (1.8V) supply */
-> +};
+> +#define IMX258_REG_VTS			0x0340
 > +
-> +#define IMX258_NUM_SUPPLIES ARRAY_SIZE(imx258_supply_name)
-> +
->  /* Configurations for supported link frequencies */
->  #define IMX258_LINK_FREQ_634MHZ	633600000ULL
->  #define IMX258_LINK_FREQ_320MHZ	320000000ULL
-> @@ -614,6 +625,7 @@ struct imx258 {
->  	bool streaming;
+>  /* HBLANK control - read only */
+>  #define IMX258_PPL_DEFAULT		5352
 >
->  	struct clk *clk;
-> +	struct regulator_bulk_data supplies[IMX258_NUM_SUPPLIES];
->  };
->
->  static inline struct imx258 *to_imx258(struct v4l2_subdev *_sd)
-> @@ -999,9 +1011,19 @@ static int imx258_power_on(struct device *dev)
->  	struct imx258 *imx258 = to_imx258(sd);
->  	int ret;
->
-> +	ret = regulator_bulk_enable(IMX258_NUM_SUPPLIES,
-> +				    imx258->supplies);
-> +	if (ret) {
-> +		dev_err(dev, "%s: failed to enable regulators\n",
-> +			__func__);
-> +		return ret;
-> +	}
-> +
->  	ret = clk_prepare_enable(imx258->clk);
-> -	if (ret)
-> +	if (ret) {
->  		dev_err(dev, "failed to enable clock\n");
-> +		regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
-> +	}
->
->  	return ret;
->  }
-> @@ -1012,6 +1034,7 @@ static int imx258_power_off(struct device *dev)
->  	struct imx258 *imx258 = to_imx258(sd);
->
->  	clk_disable_unprepare(imx258->clk);
-> +	regulator_bulk_disable(IMX258_NUM_SUPPLIES, imx258->supplies);
->
->  	return 0;
->  }
-> @@ -1260,6 +1283,19 @@ static void imx258_free_controls(struct imx258 *imx258)
->  	mutex_destroy(&imx258->mutex);
->  }
->
-> +static int imx258_get_regulators(struct imx258 *imx258,
-> +				 struct i2c_client *client)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < IMX258_NUM_SUPPLIES; i++)
-> +		imx258->supplies[i].supply = imx258_supply_name[i];
-> +
-> +	return devm_regulator_bulk_get(&client->dev,
-> +				       IMX258_NUM_SUPPLIES,
-> +				       imx258->supplies);
+> @@ -202,8 +204,6 @@ static const struct imx258_reg mode_4208x3120_regs[] = {
+>  	{ 0x0114, 0x03 },
+>  	{ 0x0342, 0x14 },
+>  	{ 0x0343, 0xE8 },
+> -	{ 0x0340, 0x0C },
+> -	{ 0x0341, 0x50 },
+>  	{ 0x0344, 0x00 },
+>  	{ 0x0345, 0x00 },
+>  	{ 0x0346, 0x00 },
+> @@ -319,8 +319,6 @@ static const struct imx258_reg mode_2104_1560_regs[] = {
+>  	{ 0x0114, 0x03 },
+>  	{ 0x0342, 0x14 },
+>  	{ 0x0343, 0xE8 },
+> -	{ 0x0340, 0x06 },
+> -	{ 0x0341, 0x38 },
+>  	{ 0x0344, 0x00 },
+>  	{ 0x0345, 0x00 },
+>  	{ 0x0346, 0x00 },
+> @@ -436,8 +434,6 @@ static const struct imx258_reg mode_1048_780_regs[] = {
+>  	{ 0x0114, 0x03 },
+>  	{ 0x0342, 0x14 },
+>  	{ 0x0343, 0xE8 },
+> -	{ 0x0340, 0x03 },
+> -	{ 0x0341, 0x4C },
+>  	{ 0x0344, 0x00 },
+>  	{ 0x0345, 0x00 },
+>  	{ 0x0346, 0x00 },
+> @@ -803,6 +799,11 @@ static int imx258_set_ctrl(struct v4l2_ctrl *ctrl)
+>  					       BIT(IMX258_HDR_RATIO_MAX));
+>  		}
+>  		break;
+> +	case V4L2_CID_VBLANK:
 
-nit: fits on 2 lines
+Should a new vblank value change the exposure limits too ?
 
-> +}
-> +
->  static int imx258_probe(struct i2c_client *client)
->  {
->  	struct imx258 *imx258;
-> @@ -1270,6 +1306,10 @@ static int imx258_probe(struct i2c_client *client)
->  	if (!imx258)
->  		return -ENOMEM;
+> +		ret = imx258_write_reg(imx258, IMX258_REG_VTS,
+> +				       IMX258_REG_VALUE_16BIT,
+> +				       imx258->cur_mode->height + ctrl->val);
+> +		break;
+>  	default:
+>  		dev_info(&client->dev,
+>  			 "ctrl(id:0x%x,val:0x%x) is not handled\n",
+> @@ -1214,9 +1215,6 @@ static int imx258_init_controls(struct imx258 *imx258)
+>  				IMX258_VTS_MAX - imx258->cur_mode->height, 1,
+>  				vblank_def);
 >
-> +	ret = imx258_get_regulators(imx258, client);
-> +	if (ret)
-> +		return ret;
-
-Is dev_err_probe() useful here ?
-
-> +
->  	imx258->clk = devm_clk_get_optional(&client->dev, NULL);
->  	if (IS_ERR(imx258->clk))
->  		return dev_err_probe(&client->dev, PTR_ERR(imx258->clk),
+> -	if (imx258->vblank)
+> -		imx258->vblank->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+> -
+>  	imx258->hblank = v4l2_ctrl_new_std(
+>  				ctrl_hdlr, &imx258_ctrl_ops, V4L2_CID_HBLANK,
+>  				IMX258_PPL_DEFAULT - imx258->cur_mode->width,
 > --
 > 2.25.1
 >
