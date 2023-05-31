@@ -2,106 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 574C4718485
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 16:16:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A81B67184DB
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 16:26:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237622AbjEaOQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 10:16:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56818 "EHLO
+        id S236336AbjEaO0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 10:26:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237621AbjEaOPq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 10:15:46 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C878718D;
-        Wed, 31 May 2023 07:13:20 -0700 (PDT)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34V5CpaG031404;
-        Wed, 31 May 2023 09:12:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=DfcZshtC/3kePJgZElnsMbSUMBBpHznHMh0D64IdoII=;
- b=ApqQ+JFfSzg+1JB9vTTtQ6kONI8wr2UWK94lbyvCuEPStuZp7bhenjNYydsOQrbr5cW9
- QOeLN+yWeBz+VuHFGE3W0W+IIpeH4c0Gz4lIMFAm+vj+RRdn7QPmycW6j08R/dHZ/qFs
- 7ldmOfOGYsgkGbI4kSbTr7q3WdgUkBR4YdWzgzTseHkNtB5IgncTzjDVi9cxQaDFRb+K
- QZR6u8tTT3IrbG4Q6QdABwZRbLTRkK3hJjGkmu7RqkvUhv26RrjiqdN1GM5Bl/w8a6Td
- ep+DcqVcOsaWKRNeU7dEo9Fd0R27E4SIvL13c1KS1IMbhJ1ZFwrNnRvyt8c9MgVf+1oh tQ== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3que9mvtw7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 31 May 2023 09:12:09 -0500
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Wed, 31 May
- 2023 15:12:07 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 31 May 2023 15:12:07 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 598FD475;
-        Wed, 31 May 2023 14:12:07 +0000 (UTC)
-Date:   Wed, 31 May 2023 14:12:07 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     <broonie@kernel.org>, <lee@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
-        <vkoul@kernel.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>,
-        <lgirdwood@gmail.com>, <yung-chuan.liao@linux.intel.com>,
-        <sanyog.r.kale@intel.com>, <pierre-louis.bossart@linux.intel.com>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/6] dt-bindings: sound: cirrus,cs42l43: Add initial
- DT binding
-Message-ID: <20230531141207.GJ68926@ediswmail.ad.cirrus.com>
-References: <20230530122112.1314458-1-ckeepax@opensource.cirrus.com>
- <20230530122112.1314458-3-ckeepax@opensource.cirrus.com>
- <eef819db-4de3-06fe-8fe6-b0fe87ab5d84@linaro.org>
+        with ESMTP id S231436AbjEaOZ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 10:25:58 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A99113E
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 07:25:53 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so6681208e87.2
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 07:25:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685543151; x=1688135151;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+Eb0OXLJcEfhgIFwTQmDQjV6ffwQwHbOIk4I821xSAg=;
+        b=nBCwUiRZj+UDmpg5sKSTyvh84doNB1kMWEgzprxmXJfURZ3iToEWz81O8ZCKgSMHoS
+         vXj5YQIhsXWE2WSH+trwcgST72DFJFHTyKfbEMlVYxm/lKRQbpn9jtkOkJfoMDHCHgMJ
+         hgMRQrN16y1+0C9pJbUUBtUnZUB1jaWmzXRe7nC3gnGCU7kujbhCqAdDQ+n5dtbUxEeU
+         cSwiSL1Z72IMl5820A1n0RFA44RsYRusBSTqFaShWZY4I6u8HRVcRjtgqGjNKV93ktFw
+         KuSCfIoQHJ3iYb0vVgcj/vy2b2Yks+DqbuIdIz+C6CaiQ+pxhHRoOv7KtkFFlQCf+6SW
+         DKbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685543151; x=1688135151;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Eb0OXLJcEfhgIFwTQmDQjV6ffwQwHbOIk4I821xSAg=;
+        b=F5vp0N7EfBFFL2CKpHqxAFNMbIdBd5F40jTI+JsZ/EYZkqQ0YRFKeGaHGaSB5kl8mv
+         sERH4RRVGOSnUZRAwT0IJ7luAChsipP9qohZ5+1vH7shwDqiXSeF8A6L2tAGaluUD8oy
+         SczoEFiJEGUSM4XeZX2RyYiEyllNHtTlznHf5PKEjO4wh333PHOHqm5LTWvYEzZn0xXa
+         Gb3RuFQ5UJ1MFk6uFkeng5XeB0gEvkV9y8ckP8tWsFzGZ/kf0Zl8qVUB+nmdORpfhLSX
+         K/SuU/HpHi52481vvSAImmcZUvtf7yErn4BSxYWZuDpuOEfTl/LZe7+OXFXUUG1lggNf
+         vYbw==
+X-Gm-Message-State: AC+VfDzXZxz9cPcZRPFV4MTbCQ4dfoiKx7wBFmupfzlDYLNoBB7n6Ajq
+        AnrHxdU6zsl/5uG9aCdpCb32EQ==
+X-Google-Smtp-Source: ACHHUZ4s+6gL6MluIupp7PlORfJ5WRqj6KBjxlG3wSOvCJYuLhh+0DhjJOXOeF+pai8Ryshvz6vPcw==
+X-Received: by 2002:ac2:5598:0:b0:4eb:1361:895c with SMTP id v24-20020ac25598000000b004eb1361895cmr3010335lfg.55.1685543151556;
+        Wed, 31 May 2023 07:25:51 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id c21-20020ac244b5000000b004f51418f78fsm560626lfm.38.2023.05.31.07.25.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 May 2023 07:25:50 -0700 (PDT)
+Message-ID: <fec8f422-e00b-4ca2-ae8b-28034e16eb36@linaro.org>
+Date:   Wed, 31 May 2023 16:25:49 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <eef819db-4de3-06fe-8fe6-b0fe87ab5d84@linaro.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: hIXSRhjnKWNOVq-ly_WiPUo81d5fSQGO
-X-Proofpoint-ORIG-GUID: hIXSRhjnKWNOVq-ly_WiPUo81d5fSQGO
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 0/8] Flush RSC votes properly on more RPMh platforms
+Content-Language: en-US
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Richard Acayan <mailingradian@gmail.com>,
+        Lina Iyer <ilina@codeaurora.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <andy.gross@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20230531-topic-rsc-v1-0-b4a985f57b8b@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230531-topic-rsc-v1-0-b4a985f57b8b@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 31, 2023 at 11:02:24AM +0200, Krzysztof Kozlowski wrote:
-> On 30/05/2023 14:21, Charles Keepax wrote:
-> > +  cirrus,bias-sense-ua:
-> 
-> "ua" looks like microamp. If so, microamp instead:
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
-> 
-> > +  pinctrl:
-> > +    type: object
-> > +
-> > +    allOf:
-> 
-> Drop allOf, just "$ref: ......"
-> 
-> > +      - $ref: /schemas/pinctrl/pinctrl.yaml#
-> > +
-> > +    additionalProperties: false
-> 
-> Also drop blank lines between these three above.
-> 
-> > +    patternProperties:
-> > +      "-state$":
-> 
-> Use consistent quotes, either " or ' everywhere
-> 
 
-Thanks, will fix those all up for v3.
 
-Thanks,
-Charles
+On 31.05.2023 15:22, Konrad Dybcio wrote:
+> As pointed out in [1], the Linux implementation of RSC basically requires
+> (even if not explicitly) that we point it to a power domain which
+> represents the power state of the CPUs. In an effort to fulfill that
+> requirement, make it required in bindings and hook it up on all platforms
+> where I was able to do. This means all RPMh platforms, except
+> 
+> - SC7180
+> - SC7280
+> - SA8775
+> 
+> As there wasn't an idle-states setup (which may be on purpose for CrOS
+> devices, certainly not for Windows SC7[12]80s) that I could validate.
+> (Doug, Bartosz, could you guys look into your respective platforms of
+> interest here?)
+> 
+> This series also adds support for idle states on SM6350, as I was able
+> to add and test that.
+I noticed that 7280 is WIP:
+
+> 
+> [1] https://lore.kernel.org/linux-arm-msm/20230512150425.3171122-1-quic_bjorande@quicinc.com/
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+> Konrad Dybcio (8):
+>       dt-bindings: soc: qcom,rpmh-rsc: Require power-domains
+>       arm64: dts: qcom: sm6350: Add PSCI idle states
+>       arm64: dts: qcom: qdu1000: Flush RSC sleep & wake votes
+>       arm64: dts: qcom: sc8180x: Flush RSC sleep & wake votes
+>       arm64: dts: qcom: sdm670: Flush RSC sleep & wake votes
+>       arm64: dts: qcom: sdm845: Flush RSC sleep & wake votes
+>       arm64: dts: qcom: sm6350: Flush RSC sleep & wake votes
+>       arm64: dts: qcom: sm8550: Flush RSC sleep & wake votes
+> 
+>  .../bindings/soc/qcom/qcom,rpmh-rsc.yaml           |   2 +
+>  arch/arm64/boot/dts/qcom/qdu1000.dtsi              |   1 +
+>  arch/arm64/boot/dts/qcom/sc8180x.dtsi              |   1 +
+>  arch/arm64/boot/dts/qcom/sdm670.dtsi               |   1 +
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi               |   1 +
+>  arch/arm64/boot/dts/qcom/sm6350.dtsi               | 142 +++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi               |   1 +
+>  7 files changed, 149 insertions(+)
+> ---
+> base-commit: d4cee89031c80066ec461bb77b5e13a4f37d5fd2
+> change-id: 20230531-topic-rsc-35e838da9afb
+> 
+> Best regards,
