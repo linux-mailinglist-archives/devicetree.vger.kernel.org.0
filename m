@@ -2,129 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10A32718B7C
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 22:55:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E5C0718BB3
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 23:20:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229873AbjEaUzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 16:55:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57962 "EHLO
+        id S229745AbjEaVUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 17:20:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbjEaUzL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 16:55:11 -0400
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E037A129
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:55:09 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id ca18e2360f4ac-7770c1546e2so11180639f.0
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:55:09 -0700 (PDT)
+        with ESMTP id S229537AbjEaVUN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 17:20:13 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C1DC129;
+        Wed, 31 May 2023 14:20:12 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-5147dce372eso370356a12.0;
+        Wed, 31 May 2023 14:20:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1685566509; x=1688158509;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1685568010; x=1688160010;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=AYHmPPdm4Dau+d947lCnpQiMGTh8x8NsQoxsSBGTC/s=;
-        b=nWyU5MJ3DqF/1xsCnT8xvvrJ1X+RS1AuqjdXWjjMqGNNT03sQXXdx96xEWonhKtbI2
-         +uqVX0CFTblLuAkVtRqPPRDzvZq0hZVNcJkRMv2n+TAxQKEl2duSkPsoP83XOujaGox8
-         uikxQ7HESMH/nuPQMUJ+WDOcPF5Ei0gRLBURs=
+        bh=DTefpjTnRZwzVlyTq29ijDBrPiJ0xnSJwo8bcfjK+r0=;
+        b=ZFTcDDCB+AImDsN60FrC9VBlEtsMZFDvVnEE5x4/2yTGBPIiWndvUFYAl6tHOi6WIy
+         YieUjYix44EqaB5hUp4ldMGNazarRLkck+YAQf8DViExoqjwYF4ZS+aReuMLn0SY2GtR
+         hdPVtp1IJOwkQ59+zx6g6KN4PzSVy8+4Nb85rJbAUfEtpk1ag+Q1KfFHcwieqYph9BJV
+         NhiflZjBIF9AfS/BsyhTCmjOs9ir4NwE75gyg28zu921bkgsb+KVnAazMybI11s8L+sp
+         2DFGmwd1oXlYdiWZUrxe7i1Lo3XdUiyQ5Fcaf61KhqxahCPiQKk/Q8655i9AHLyOSvV3
+         Qrvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685566509; x=1688158509;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1685568010; x=1688160010;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=AYHmPPdm4Dau+d947lCnpQiMGTh8x8NsQoxsSBGTC/s=;
-        b=gTo/d1nov59/8cbi7gSmvcjyA1vB63+JsP0YsSIsPZhxGylM44slnYAP3IKjK2Mozp
-         K7w62zbE34veYo3zytdYjT0QEk+7mEwUwGjEjhpsx0VOjtCW8ufdtX1f+dQH7m84DEiO
-         gUB/y25ejiSaxzHjTSlKMW4Ok+atm/svV5rTMe0JhGqvLoH/3IgHitFwhbUvrPw1FS0H
-         h6lySM1AOtyVjbvYZbbaug4RCkS5wcfR9uQ8xvjkqWGkqvAB/BPOppKb61MmThQFcc+c
-         W2ypnSt3llba7xWvRof7cNjvQ6+pHMQ8U4GVOORCFLCqYyxHmpAJNaa3J4n8TKd2nw5m
-         cVWg==
-X-Gm-Message-State: AC+VfDwg17y5IrMejGLkzT8OkLT6Ch/DhdN4POPVikRvCMGwlfJOJ9xc
-        vo6N3UsiaUuAV8Sz6pXW9I0U8WoF54QaoZldihA=
-X-Google-Smtp-Source: ACHHUZ68rR18MZZbt/8qtNRvzXLjrIdHvU8RFJgxmvw9byO21lskf0yMfnYT7hPAKY/3UKKrNtWmoA==
-X-Received: by 2002:a5e:c007:0:b0:775:5f74:f4ca with SMTP id u7-20020a5ec007000000b007755f74f4camr4613381iol.9.1685566508806;
-        Wed, 31 May 2023 13:55:08 -0700 (PDT)
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com. [209.85.166.171])
-        by smtp.gmail.com with ESMTPSA id n21-20020a6b7215000000b00752f62cd3bdsm3979479ioc.12.2023.05.31.13.55.08
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 13:55:08 -0700 (PDT)
-Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-33b398f2ab8so41925ab.0
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:55:08 -0700 (PDT)
-X-Received: by 2002:a05:6e02:b42:b0:33a:e716:a76d with SMTP id
- f2-20020a056e020b4200b0033ae716a76dmr37485ilu.27.1685566153516; Wed, 31 May
- 2023 13:49:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230531-topic-rsc-v1-0-b4a985f57b8b@linaro.org> <20230531-topic-rsc-v1-6-b4a985f57b8b@linaro.org>
-In-Reply-To: <20230531-topic-rsc-v1-6-b4a985f57b8b@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 31 May 2023 13:49:01 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Vx9txUs4=b_enDMTBXuNsTGXO2v3KyauuD8k_J++vbfA@mail.gmail.com>
-Message-ID: <CAD=FV=Vx9txUs4=b_enDMTBXuNsTGXO2v3KyauuD8k_J++vbfA@mail.gmail.com>
-Subject: Re: [PATCH 6/8] arm64: dts: qcom: sdm845: Flush RSC sleep & wake votes
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        bh=DTefpjTnRZwzVlyTq29ijDBrPiJ0xnSJwo8bcfjK+r0=;
+        b=P9xq3/tathTpEYDzQ9z+QQqLKyH5xOAanm9SScip++AMSEIwyFa0YiUDOwbzWfc/iW
+         Z9zQ67TobFVV40VllrHuc3g5aTZMeBX8qlGO4KvCK74u4uuZpgOjyoGmJ0P14ThLv67L
+         hARtEMhB1hqipjD7+x/MiYDy/XjZq7e9If2U0fav+MBaFqJ0XcFRpf0RGWlKuk/Yllgl
+         EVPbGUpesJoWx7VDuxm/m+GEd0vUGoCZhHd/wEtWXh+J8mpNP7sR5QCMqkx7N1KvBT9s
+         wcek/4QdPY9ueGPaRbx8pzvoxYCHpZYgKm8I6dfvBGbgaZ4Alr9AyNDZ1KoOX1zWrz58
+         hnJA==
+X-Gm-Message-State: AC+VfDw9iFYYZYFQjnKm9FZTQ2Jczjn4FD7Jx8bM6rqKadzZPK499PBl
+        C+3YCnoGKF5YtV2H/g+RAHw=
+X-Google-Smtp-Source: ACHHUZ5mr/4sMrKF5T8XZ8TsweV7bGMUcQcBrBBBVN+jEXwVJ5fiLfFcaaqr4tN2QnOP13QcHGC7qA==
+X-Received: by 2002:a17:907:6d23:b0:973:d9ad:273f with SMTP id sa35-20020a1709076d2300b00973d9ad273fmr6055603ejc.46.1685568010061;
+        Wed, 31 May 2023 14:20:10 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-1-233.dynamic.telemach.net. [82.149.1.233])
+        by smtp.gmail.com with ESMTPSA id b8-20020a1709064d4800b00965f31ff894sm9472629ejv.137.2023.05.31.14.20.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 31 May 2023 14:20:09 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Richard Acayan <mailingradian@gmail.com>,
-        Lina Iyer <ilina@codeaurora.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Gross <andy.gross@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Clark <robdclark@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
+        Jonathan McDowell <noodles@earth.li>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v3 0/5] Minor device-tree additions for C.H.I.P
+Date:   Wed, 31 May 2023 23:20:06 +0200
+Message-ID: <4832198.31r3eYUQgx@jernej-laptop>
+In-Reply-To: <cover.1684258957.git.noodles@earth.li>
+References: <cover.1683719613.git.noodles@earth.li>
+ <cover.1684258957.git.noodles@earth.li>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Dne torek, 16. maj 2023 ob 19:46:55 CEST je Jonathan McDowell napisal(a):
+> This small patch series adds some improvements for the C.H.I.P DTS,
+> enabling bluetooth, exporting the PMIC temperature details via iio-hwmon
+> and finally adding the appropriate base pinmux info for an external MMC
+> card. As a pre-requisite for the Bluetooth it also adds support to the
+> AXP209 driver for GPIO3, which is the Bluetooth device wakeup line.
+> 
+> v3:
+> - Add Reviewed-By/Acked-Bys
+> - Drop redundant else
+> - Switch to GENMASK/decimal values for GPIO3 function defs
+> v2:
+> - Fix missing ; on bluetooth stanza in DTS
+> - Add device/host wake GPIOs for Bluetooth device
+> - Add omit-if-no-ref on the port E pinmux stanza
+> - Rename axp20x_temp to pmic-temp
+> - Add AXP209 GPIO3 support
+> 
+> Jonathan McDowell (5):
+>   dt-bindings: gpio: Add GPIO3 for AXP209 GPIO binding schema
+>   pinctrl: axp209: Add support for GPIO3 on the AXP209
+>   ARM: dts: sun5i: chip: Enable bluetooth
+>   ARM: dts: sun5i: Add port E pinmux settings for mmc2
+>   ARM: dts: axp209: Add iio-hwmon node for internal temperature
 
-On Wed, May 31, 2023 at 6:22=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro=
-.org> wrote:
->
-> The rpmh driver will cache sleep and wake votes until the cluster
-> power-domain is about to enter idle, to avoid unnecessary writes. So
-> associate the apps_rsc with the cluster pd, so that it can be notified
-> about this event.
->
-> Without this, only AMC votes are being commited.
->
-> Fixes: c83545d95376 ("arm64: dts: sdm845: Add rpmh-rsc node")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/q=
-com/sdm845.dtsi
-> index 950305aad44d..707550ef4990 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -5138,6 +5138,7 @@ apps_rsc: rsc@179c0000 {
->                                           <SLEEP_TCS   3>,
->                                           <WAKE_TCS    3>,
->                                           <CONTROL_TCS 1>;
-> +                       power-domains =3D <&CLUSTER_PD>;
+Patches 3-5 applied to sunxi tree. Thanks!
 
-It would be good to confirm that this doesn't throw sdm845-cheza for a
-loop. No sdm845 Chromebooks ever officially shipped, but some people
-like Rob Clark still use the old boards in their CI farms. Adding him
-here in case he wants to check. Worst case we could just delete the
-property from the cheza device tree.
+Best regards,
+Jernej
 
--Doug
+> 
+>  .../bindings/gpio/x-powers,axp209-gpio.yaml   |  1 +
+>  arch/arm/boot/dts/axp209.dtsi                 |  7 ++++
+>  arch/arm/boot/dts/sun5i-r8-chip.dts           |  6 +++
+>  arch/arm/boot/dts/sun5i.dtsi                  |  9 ++++
+>  drivers/pinctrl/pinctrl-axp209.c              | 42 +++++++++++++++++++
+>  5 files changed, 65 insertions(+)
+> 
+> 
+
+
+
+
