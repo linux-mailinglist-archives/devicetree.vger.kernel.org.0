@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 332D3718A0F
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 21:21:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C5B5718A11
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 21:21:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229821AbjEaTVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 15:21:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52532 "EHLO
+        id S229805AbjEaTVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 15:21:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229805AbjEaTVG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 15:21:06 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74849133
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:21:04 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5147a478c38so214973a12.0
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:21:04 -0700 (PDT)
+        with ESMTP id S229761AbjEaTVc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 15:21:32 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CF3D125
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:21:31 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-510d6b939bfso210123a12.0
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:21:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685560863; x=1688152863;
+        d=linaro.org; s=google; t=1685560889; x=1688152889;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Lz1nG2B3q0llv6deAIMIjSEMvsrQuQ3uKlNlDgfU5wU=;
-        b=DvSDgeuRNVRc8TL9mrIG3iWEzc8MrZLyaNSP/JQxFELc38pYKUWja2yVsCJ/cLylkK
-         vEC47lS9oNgkqcKMZs/FZgHJowNhBLhNvkHJ40isYf3g0WyhF+DUNnCLXo3+6gjHTa0w
-         oLm8Xa69uEAyeRhU395izpWOeLSeQhhkgxOVsh0S9N4+kvu5SAyf2AnTBKzcm6uqw+D4
-         7hHVZ8ysTESRDxZPDIX3Z25qomuOQBysCWfrJnNPkCwW5+sEI4ZGgiGoIeRfbiem7gZX
-         qIaCtoUxYF/Gxd4zaa5YZV0QRImRI9Ki4dp12nSYjIIYDW2AtyYsZa+J+buibw/NRRXc
-         mbjQ==
+        bh=euJrgCKwkiyjhiMxI+ubH3oD9UXVTFWeoNPUv882XB8=;
+        b=OvlHEOGE5DlDQkWLp9hwBlb7BNEkyE+zAdSvgvpckWbEBmXUEIsrxAhgK2Tykq/zcp
+         tUKuQXUEPzAx37XQzc4zC3hSsWKZZPLOJ0Mfu8+Gt6qIafea5zN7PyqdyVGMXz5Pkj5r
+         xchFqtVPaxTP6ghGHlL45BsGlGSDtanD10+uanebJl+/dnxM0QUXhJPT6Gdl+QrCkwB3
+         kL6ad51TomQUXcUA+mNXZMlnyD+iVxsmLq8GnfsRQvphl8NWt94jSXFmszkUfrvzXlCG
+         0KKayV76d6Pwh7bqo7GPFD2mMnt7UvWXE8k5NG7TNloj0GRY83y1txE2qPB4IZi12biM
+         fpVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685560863; x=1688152863;
+        d=1e100.net; s=20221208; t=1685560889; x=1688152889;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Lz1nG2B3q0llv6deAIMIjSEMvsrQuQ3uKlNlDgfU5wU=;
-        b=Hq15ip8qoTRMY4a2csR8FIciTfcrguoNaPKR7ao+RPIVL9r5wOmijU3agXvrcix6jS
-         eKYNTRId+B7TxVvn/ZOVDUOSXTF/x8XPV04/xbKuit95b9Ddwmm470yqIeppNLxIOzUx
-         zSvA9vrUUtl6aHG97dBCdh1T71mfmVr07/s5NBqTxq3ORL5lTGm46GhJAJK0X6nEen+x
-         cGNVmAtagL+onCw0eHa4Wd+45XYqKwvSGS3sRJe82X4CTZ9cZRGgNqkxkLh/CFE4w1AC
-         9gfr6p2eF/SnNw3caIIp4cXolID+jIG23nRPAs+J1WHgEkALf6dRl8gf9pM4P/Ob2NM7
-         VhYQ==
-X-Gm-Message-State: AC+VfDx2Wb2zNfa6nlrvsU3BghKO8pEmAMNve3aSU8+9t22TxJNq3G2T
-        UqhkJaWJg82qMeJ+HenIgINrAw==
-X-Google-Smtp-Source: ACHHUZ4d3/SnLt9Jvl5J0vVomD8iecQJLFMVGA7ToDhrEvJzS2tN8jTV37tKer0T748WigaTQU6f6A==
-X-Received: by 2002:a17:907:26ca:b0:969:f433:9b54 with SMTP id bp10-20020a17090726ca00b00969f4339b54mr6317786ejc.39.1685560862913;
-        Wed, 31 May 2023 12:21:02 -0700 (PDT)
+        bh=euJrgCKwkiyjhiMxI+ubH3oD9UXVTFWeoNPUv882XB8=;
+        b=JXsQX6IJxxDRuS9kI8TeegT684yPmJltPFEOlwtUrRBh3idfTX41X6WRqv65czz0vE
+         El+VuY6RBzc5VyPx+V8jzwA7ZlS69DDNrFUQ2UgwPGejge1uyR6qJktYN2PNBpTSc0Qo
+         DjgIoM5bgaOGTSifDBKVmuySlENrt7F6meRdsAZ4XkMNL8TWqB214BrvtKyw9d5IPum5
+         gGHpL1jkJZ8GKL/yZgyekZDmOKyh9u32f4q4EGjcW0T4DL6N1prTOQIS2m1Te1UZnz+c
+         AkzLr1VlxuBqSjHb4iOgmUijfIXCGNsvG3RLnj487U2XJHVk8qNCzzzwK5ZeaCSRRZNn
+         QnYQ==
+X-Gm-Message-State: AC+VfDzMp4dj31gH2642246eksUKZQK7BWaaUeCAK5iLaXkESVL1vUDh
+        GgcqBm6L5QEu9m9bL1dBn9MauA==
+X-Google-Smtp-Source: ACHHUZ7K2J36QDgprdxLRgHsGRzNJVdmXo+wyftNE2ma6LStjGJBua2pcpdP2afycP4yxJc+XhaR9Q==
+X-Received: by 2002:a17:907:9305:b0:974:1c90:b3d3 with SMTP id bu5-20020a170907930500b009741c90b3d3mr6372234ejc.12.1685560889557;
+        Wed, 31 May 2023 12:21:29 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id s7-20020a170906c30700b0094f410225c7sm9397440ejz.169.2023.05.31.12.21.00
+        by smtp.gmail.com with ESMTPSA id bq13-20020a170906d0cd00b00965c6c63ea3sm9423154ejb.35.2023.05.31.12.21.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 12:21:02 -0700 (PDT)
-Message-ID: <0cb1d679-9e5b-8030-368e-69c3fc54511f@linaro.org>
-Date:   Wed, 31 May 2023 21:20:59 +0200
+        Wed, 31 May 2023 12:21:29 -0700 (PDT)
+Message-ID: <12e3cb86-45e2-6f7a-eb8a-d1674e138b1a@linaro.org>
+Date:   Wed, 31 May 2023 21:21:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
 Subject: Re: [PATCH V2 1/6] dt-bindings: clock: qcom: Add SM8550 camera clock
  controller
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
+To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
         Andy Gross <agross@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
@@ -76,76 +75,33 @@ Cc:     Bjorn Andersson <andersson@kernel.org>,
         Ajit Pandey <quic_ajipan@quicinc.com>
 References: <20230525172142.9039-1-quic_jkona@quicinc.com>
  <20230525172142.9039-2-quic_jkona@quicinc.com>
- <546876ba-970d-5cd5-648e-723698ca74fd@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <546876ba-970d-5cd5-648e-723698ca74fd@linaro.org>
+In-Reply-To: <20230525172142.9039-2-quic_jkona@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/05/2023 14:29, Bryan O'Donoghue wrote:
-> On 25/05/2023 18:21, Jagadeesh Kona wrote:
->> Add device tree bindings for the camera clock controller on
->> Qualcomm SM8550 platform.
->>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
->> ---
->> Changes since V1:
->>   - Removed new YAML file and reused SM8450 CAMCC YAML file for SM8550
->>
->>   .../bindings/clock/qcom,sm8450-camcc.yaml     |   8 +-
->>   include/dt-bindings/clock/qcom,sm8550-camcc.h | 187 ++++++++++++++++++
->>   2 files changed, 193 insertions(+), 2 deletions(-)
->>   create mode 100644 include/dt-bindings/clock/qcom,sm8550-camcc.h
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
->> index 87ae74166807..8dbc9004202f 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
->> @@ -13,11 +13,15 @@ description: |
->>     Qualcomm camera clock control module provides the clocks, resets and power
->>     domains on SM8450.
->>   
->> -  See also:: include/dt-bindings/clock/qcom,sm8450-camcc.h
->> +  See also::
->> +    include/dt-bindings/clock/qcom,sm8450-camcc.h
->> +    include/dt-bindings/clock/qcom,sm8550-camcc.h
->>   
->>   properties:
->>     compatible:
->> -    const: qcom,sm8450-camcc
->> +    enum:
->> +      - qcom,sm8450-camcc
->> +      - qcom,sm8550-camcc
+On 25/05/2023 19:21, Jagadeesh Kona wrote:
+> Add device tree bindings for the camera clock controller on
+> Qualcomm SM8550 platform.
 > 
-> Hmm,
-> 
-> So looking at Documentation/devicetree/bindings/clock/*camcc*.yaml we 
-> seem to be repeating yaml over and over again with no substantial 
-> difference between one description and another.
-> 
-> You've picked at the thread here by adding sm8550 into sm8450.
-> 
-> I think sm8250, sm8450, sm8550, sc7280 and ... probably sm6350 should 
-> live in the one yaml description 
-> Documentation/devicetree/bindings/clock/qcom,camcc.yaml
-> 
-> sm6350 looks a bit sparse/incomplete to me so perhaps leave that out. 
-> The others sc7280, sm8250, sm8450 and sm8550 can/should all be moved 
-> into the same yaml file with a list of compatibles.
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+> ---
+> Changes since V1:
+>  - Removed new YAML file and reused SM8450 CAMCC YAML file for SM8550
 
-Clocks are different. The ones with same clocks should be together, but
-in other cases better to have separate schemas. It gets trickier to read
-with multiple if:then:
+Assuming Bryan does not object after my comment:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
