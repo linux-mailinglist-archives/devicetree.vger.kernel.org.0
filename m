@@ -2,226 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F03D718523
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 16:39:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5330C718425
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 16:04:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236311AbjEaOjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 10:39:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50406 "EHLO
+        id S237524AbjEaOEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 10:04:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235000AbjEaOjS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 10:39:18 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215C3B2;
-        Wed, 31 May 2023 07:39:17 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34V9fLun011588;
-        Wed, 31 May 2023 13:51:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=ZxUMWkiYU6cjz5PhfZnz13CUvFrMj/R9q+3PcYeSAjs=;
- b=HwEK7ZeJL+PCeg48tvmbrMoNRaq9GpYqSosT8Yx/EHOgTRD/sE0v7gkNmKYeKBp1lEDQ
- B4YkvIE6HZeWDHDvg6SEBhrjJ+eEQWjouI2fTqRe6ixgFODjtGVl3erUptkSi/x+jI9s
- 9c+bU50RbPRNqICCULD9kuKPUgWSMaNdB9X1mipA64gNot8+FFUFTxFeMh0y0Qdil6Ha
- HkrB9wuu0ndkkJ+3t6Fsdgxl43CQQYL8q9i9Y43fO96ruWO36m3T7upZdLWp6cZ6O+s1
- tCEokJrZa+sJRJciRorB3hjjtMVzNr5KRuJGkz/CTYO8lSYmOwR3xaAdB79jy/bhm+e2 xw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qx1yk0tha-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 31 May 2023 13:51:25 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34VDpPhB012149
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 31 May 2023 13:51:25 GMT
-Received: from kathirav-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 31 May 2023 06:51:21 -0700
-From:   Kathiravan T <quic_kathirav@quicinc.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Kathiravan T <quic_kathirav@quicinc.com>
-Subject: [PATCH 4/4] arm64: dts: qcom: ipq5332: add support for the RDP474 variant
-Date:   Wed, 31 May 2023 19:20:48 +0530
-Message-ID: <20230531135048.19164-5-quic_kathirav@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230531135048.19164-1-quic_kathirav@quicinc.com>
-References: <20230531135048.19164-1-quic_kathirav@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: fFnpxUxY91j8tYsLWLPj6KVbVgwhyZDQ
-X-Proofpoint-GUID: fFnpxUxY91j8tYsLWLPj6KVbVgwhyZDQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
- definitions=2023-05-31_08,2023-05-31_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
- mlxlogscore=999 phishscore=0 adultscore=0 bulkscore=0 spamscore=0
- impostorscore=0 clxscore=1015 malwarescore=0 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2304280000 definitions=main-2305310119
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231312AbjEaOEC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 10:04:02 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E99223591;
+        Wed, 31 May 2023 06:58:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=bwuQspTy1mOtqYbpi42BSg/6JZzLF3aBnMaOThn2Z10=; b=JU6+bvZQs8ZNTYjsgd45XMwojo
+        583AIIgedzDd2EmJ3C4tHo3hE9GPl6DRZ2BhC2stWbCPB6mjHPZYiNks6C1UtHbJyBLSOrHXSBtzs
+        cLGXckJcQmmhMsyrNuwJ+9fAS3rZ5KgRIz8DnGL47lR9uwW+/D59jtmCwIBrkGg/dVgY=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:49292 helo=debian-acer)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1q4MJ6-0000Dn-Uf; Wed, 31 May 2023 09:56:11 -0400
+Date:   Wed, 31 May 2023 09:56:08 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Lech Perczak <lech.perczak@camlingroup.com>
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        l.perczak@camlintechnologies.com, tomasz.mon@camlingroup.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Message-Id: <20230531095608.e1b4358549562b8e1bdf5cb4@hugovil.com>
+In-Reply-To: <c691858d-31af-2892-c0a3-89a37b19af86@camlingroup.com>
+References: <20230529140711.896830-1-hugo@hugovil.com>
+        <c15a90d6-b3c1-e432-9216-c4c1e2c44ce6@camlingroup.com>
+        <20230530090836.27b8d080d6b6c022b303ac9e@hugovil.com>
+        <c691858d-31af-2892-c0a3-89a37b19af86@camlingroup.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v4 0/9] serial: sc16is7xx: fix GPIO regression and rs485
+ improvements
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the initial device tree support for the Reference Design
-Platform(RDP) 474 based on IPQ5332 family of SoC. This patch carries
-the support for Console UART, eMMC, I2C and GPIO based buttons.
+On Wed, 31 May 2023 12:43:48 +0200
+Lech Perczak <lech.perczak@camlingroup.com> wrote:
 
-Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
----
- arch/arm64/boot/dts/qcom/Makefile           |   1 +
- arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts | 112 ++++++++++++++++++++
- 2 files changed, 113 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
+> W dniu 30.05.2023 o=A015:08, Hugo Villeneuve pisze:
+> > On Tue, 30 May 2023 11:30:07 +0200
+> > Lech Perczak <lech.perczak@camlingroup.com> wrote:
+> >
+> > > W dniu 29.05.2023 o=A016:07, Hugo Villeneuve pisze:
+> > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > >
+> > > > Hello,
+> > > > this patch series mainly fixes a GPIO regression and improve RS485 =
+flags and
+> > > > properties detection from DT.
+> > > >
+> > > > It now also includes various small fixes and improvements that were=
+ previously
+> > > > sent as separate patches, but that made testing everything difficul=
+t.
+> > > >
+> > > > Patch 1 fixes an issue when debugging IOcontrol register. After tes=
+ting the GPIO
+> > > > regression patches (patches 6 and 7, tests done by Lech Perczak), i=
+t appers that
+> > > > this patch is also necessary for having the correct IOcontrol regis=
+ter values.
+> > > >
+> > > > Patch 2 introduces a delay after a reset operation to respect datas=
+heet
+> > > > timing recommandations.
+> > > >
+> > > > Patch 3 fixes an issue with init of first port during probing.
+> > > >
+> > > > Patch 4 fixes a bug with the output value when first setting the GP=
+IO direction.
+> > > >
+> > > > Patch 5 is a refactor of GPIO registration code.
+> > > >
+> > > > Patches 6 and 7 fix a GPIO regression by (re)allowing to choose GPI=
+O function
+> > > > for GPIO pins shared with modem status lines.
+> > > >
+> > > > Patch 8 allows to read common rs485 device-tree flags and propertie=
+s.
+> > > >
+> > > > Patch 9 improves comments about chip variants.
+> > > >
+> > > > I have tested the changes on a custom board with two SC16IS752 DUAR=
+T using a
+> > > > Variscite IMX8MN NANO SOM.
+> > > >
+> > > > Thank you.
+> > > >
+> > > > Link: [v1] https://lkml.org/lkml/2023/5/17/967 <https://lkml.org/lk=
+ml/2023/5/17/967> <https://lkml.org/lkml/2023/5/17/967 <https://lkml.org/lk=
+ml/2023/5/17/967>>
+> > > > [v1] https://lkml.org/lkml/2023/5/17/777 <https://lkml.org/lkml/202=
+3/5/17/777> <https://lkml.org/lkml/2023/5/17/777 <https://lkml.org/lkml/202=
+3/5/17/777>>
+> > > > [v1] https://lkml.org/lkml/2023/5/17/780 <https://lkml.org/lkml/202=
+3/5/17/780> <https://lkml.org/lkml/2023/5/17/780 <https://lkml.org/lkml/202=
+3/5/17/780>>
+> > > > [v1] https://lkml.org/lkml/2023/5/17/785 <https://lkml.org/lkml/202=
+3/5/17/785> <https://lkml.org/lkml/2023/5/17/785 <https://lkml.org/lkml/202=
+3/5/17/785>>
+> > > > [v1] https://lkml.org/lkml/2023/5/17/1311 <https://lkml.org/lkml/20=
+23/5/17/1311> <https://lkml.org/lkml/2023/5/17/1311 <https://lkml.org/lkml/=
+2023/5/17/1311>>
+> > > > [v2] https://lkml.org/lkml/2023/5/18/516 <https://lkml.org/lkml/202=
+3/5/18/516> <https://lkml.org/lkml/2023/5/18/516 <https://lkml.org/lkml/202=
+3/5/18/516>>
+> > > > [v3] https://lkml.org/lkml/2023/5/25/7 <https://lkml.org/lkml/2023/=
+5/25/7> <https://lkml.org/lkml/2023/5/25/7 <https://lkml.org/lkml/2023/5/25=
+/7>>
+> > > >
+> > > > Changes for V3:
+> > > > - Integrated all patches into single serie to facilitate debugging =
+and tests.
+> > > > - Reduce number of exported GPIOs depending on new property
+> > > > nxp,modem-control-line-ports
+> > > > - Added additional example in DT bindings
+> > > >
+> > > > Changes for V4:
+> > > > - Increase reset post delay to relax scheduler.
+> > > > - Put comments patches at the end.
+> > > > - Remove Fixes tag for patch "mark IOCONTROL register as volatile".
+> > > > - Improve commit messages after reviews.
+> > > > - Fix coding style issues after reviews.
+> > > > - Change GPIO registration to always register the maximum number of=
+ GPIOs
+> > > > supported by the chip, but maks-out GPIOs declared as modem control=
+ lines.
+> > > > - Add patch to refactor GPIO registration.
+> > > > - Remove patch "serial: sc16is7xx: fix syntax error in comments".
+> > > > - Remove patch "add dump registers function"
+> > > >
+> > > > Hugo Villeneuve (9):
+> > > > serial: sc16is7xx: mark IOCONTROL register as volatile
+> > > > serial: sc16is7xx: add post reset delay
+> > > > serial: sc16is7xx: fix broken port 0 uart init
+> > > > serial: sc16is7xx: fix bug when first setting GPIO direction
+> > > > serial: sc16is7xx: refactor GPIO controller registration
+> > > > dt-bindings: sc16is7xx: Add property to change GPIO function
+> > > > serial: sc16is7xx: fix regression with GPIO configuration
+> > > > serial: sc16is7xx: add call to get rs485 DT flags and properties
+> > > > serial: sc16is7xx: improve comments about variants
+> > > >
+> > > > .../bindings/serial/nxp,sc16is7xx.txt | 46 ++++++
+> > > > drivers/tty/serial/sc16is7xx.c | 150 +++++++++++++-----
+> > > > 2 files changed, 156 insertions(+), 40 deletions(-)
+> > > >
+> > > >
+> > > > base-commit: 8b817fded42d8fe3a0eb47b1149d907851a3c942
+> > >
+> > > It would be a lot of sending, to do that for every patch separately, =
+so for whole series:
+> > > Reviewed-by: Lech Perczak <lech.perczak@camlingroup.com>
+> > >
+> > > And where applicable - for code patches:
+> > > Tested-by: Lech Perczak <lech.perczak@camlingroup.com>
+> > >
+> > > I tested whole series at the same time.
+> > > I did my tests on an i.MX6 board with SC16IS760 over SPI, which diffe=
+rs a tiny bit from SC16IS752,
+> > > and everything works as it should.
+> > > Thank you for fixing this!
+> >
+> > Hi Lech,
+> > thank for your feedback.
+> >
+> > You mentioned before that without the patch "mark IOCONTROL register as=
+ volatile", things were not working properly for you. Could you retest by r=
+emoving this patch and see if things are still working?
+> >
+> > Thank you, Hugo.
+>=20
+> Hello Hugo,
+>=20
+> Just checked - this patch is required, reverting it causes things to fail=
+, so this patch should be marked as a pre-requisite for the actual fix and =
+included in backports.
+> Perhaps using direct write to this register made it work, but it was like=
+ly by accident.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 4f9e81253e18..0f8c763a9bd9 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-mi01.2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp442.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp468.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp474.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq6018-cp01-c1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk01.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= ipq8074-hk10-c1.dtb
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
-new file mode 100644
-index 000000000000..085729a0fdf1
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
-@@ -0,0 +1,112 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * IPQ5332 RDP474 board device tree source
-+ *
-+ * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include "ipq5332.dtsi"
-+
-+/ {
-+	model = "Qualcomm Technologies, Inc. IPQ5332 MI01.9";
-+	compatible = "qcom,ipq5332-ap-mi01.9", "qcom,ipq5332";
-+
-+	aliases {
-+		serial0 = &blsp1_uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	gpio_keys {
-+		compatible = "gpio-keys";
-+		pinctrl-0 = <&gpio_keys_default>;
-+		pinctrl-names = "default";
-+
-+		button-wps {
-+			label = "wps";
-+			linux,code = <KEY_WPS_BUTTON>;
-+			gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <1>;
-+			debounce-interval = <60>;
-+		};
-+	};
-+};
-+
-+&blsp1_uart0 {
-+	pinctrl-0 = <&serial_0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&blsp1_i2c1 {
-+	clock-frequency  = <400000>;
-+	pinctrl-0 = <&i2c_1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&sdhc {
-+	bus-width = <4>;
-+	max-frequency = <192000000>;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	pinctrl-0 = <&sdc_default_state>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&sleep_clk {
-+	clock-frequency = <32000>;
-+};
-+
-+&xo_board {
-+	clock-frequency = <24000000>;
-+};
-+
-+/* PINCTRL */
-+
-+&tlmm {
-+	gpio_keys_default: gpio-keys-default-state {
-+		pins = "gpio35";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	i2c_1_pins: i2c-1-state {
-+		pins = "gpio29", "gpio30";
-+		function = "blsp1_i2c0";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	sdc_default_state: sdc-default-state {
-+		clk-pins {
-+			pins = "gpio13";
-+			function = "sdc_clk";
-+			drive-strength = <8>;
-+			bias-disable;
-+		};
-+
-+		cmd-pins {
-+			pins = "gpio12";
-+			function = "sdc_cmd";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+
-+		data-pins {
-+			pins = "gpio8", "gpio9", "gpio10", "gpio11";
-+			function = "sdc_data";
-+			drive-strength = <8>;
-+			bias-pull-up;
-+		};
-+	};
-+};
--- 
-2.17.1
+Hi Lech,
+thank you for the test, I will mark it as such in upcoming series V5.
 
+Hugo.
