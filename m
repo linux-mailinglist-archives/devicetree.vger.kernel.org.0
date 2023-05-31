@@ -2,116 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A96837172C2
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 02:55:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAE997172E9
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 03:16:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231962AbjEaAzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 20:55:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60182 "EHLO
+        id S233945AbjEaBQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 21:16:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230148AbjEaAzk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 20:55:40 -0400
-Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE836F3;
-        Tue, 30 May 2023 17:55:39 -0700 (PDT)
-Received: by mail-oo1-xc32.google.com with SMTP id 006d021491bc7-557d1360112so1345584eaf.3;
-        Tue, 30 May 2023 17:55:39 -0700 (PDT)
+        with ESMTP id S232003AbjEaBQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 21:16:28 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B583FF9
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:16:26 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f50a8f6dd7so2343845e87.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:16:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685494539; x=1688086539;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=xvplO8LxGVSbTiU4TdPJpjay1ivlsolFTql3/bTEI28=;
-        b=nVJZKRBJWwxYtMuGJR8XdZ8cqM83PRFYhZox9tt7r9z8TvL+ROhBn3ghLOA/FcjkwM
-         pdymG267PcCPe/1ErzqK/oI9SNTsMmSEH5Pb6fICdFY1yZm1VskyZQgo4S5gvRfwKCLN
-         RXpdXCclT+PiMa6th0HtsKX+S7PedaNdn4YagF5xsUTV/nRLfIBYTmrXKwa1WKX7MbEX
-         SReO+g/9/IpqEYkUXdLaGMCy9kyTH/TAjqGQSQdoND+LPeL/dDyNJr1O2rM7TPgSrHdw
-         aaSTiAWAOp3SanQ832mTW4DUD+bblQ/7WNvwmLc69UKK9PBMmYOrzwOSA+VSVqvqjkP4
-         kiqg==
+        d=linaro.org; s=google; t=1685495785; x=1688087785;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=d/caFhQp7Iw95ymi/uGFBz2t1WW3xwlGAOA4olG3h9M=;
+        b=T0AKYEL/EOlt7fzc+EakSsnA+2o9fCC5CSllcsJH39hh7PAr2AX8gFLQGoCRR2/1LD
+         jnmuCGzup4y2z39CciG+TCjQKdfWVMRJGhgCZeQ9JefOo6xkyxQUhp36U3X57Rl+89eq
+         /fINWCQCV1i95oUN7UPqxBVxCiFMLfGA8I+ea8eSrzOoByMllPhK5lOtoBQnmPWwaxWX
+         Izas7e2M+REFOPJ8v5ax3UU6TgLy/49PLsfVox7cH70LsZA0CbSNRivgIVAoiObkeFOQ
+         rBX65PBZdylwpKFy1uocMKe+uXfCgtTi4WSGK7ydY1YdZtO2azYMi95TOBdrHtr8hVNC
+         u7nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685494539; x=1688086539;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xvplO8LxGVSbTiU4TdPJpjay1ivlsolFTql3/bTEI28=;
-        b=XRfEbBh3hhoGqWXWBkCygPq3IKikfCCXVpimSa5nQhSLw+OLYAsF0bYQNDrE3sB0DU
-         CjvCI4X9YHI3Al59pbvs2tA20+en7fTDk9TB+n0RFDANSfHjzf4sDYn5Pr2wYDTtObm7
-         K6mI83AQpegOKzc/uP3ePS8iTw2twH0u3Vh84LA2u+xkKqe/dPeOk5v6I6rXQa15oFsj
-         drcbN+xx/MKQgfzuf8hRCyc07/zfc1qUNKi+jlGrnEEP0LFvvJZswan17Ia9Ktv9ilkm
-         RoU7gzZriPvo4GT7ZotThNjaLs+mCGnlT1RQDV/hYt/4gzFic5Vqg4kTeqlx0CdeV1BJ
-         pk3g==
-X-Gm-Message-State: AC+VfDwysj0CjxLxpe4zpeL6xWviEfOG96mDhr+hj11K/IsOv/3RbyMk
-        kSvCqJ/1KwdgKJb0MFYemjs=
-X-Google-Smtp-Source: ACHHUZ65SJck6SCJBGnLKc3eddxSo8Wo+3ORqBE6B9Xe5CoywlRPjjq4u68TvKGKiMd9xwmZzKXdqQ==
-X-Received: by 2002:a05:6808:4091:b0:398:4098:33e4 with SMTP id db17-20020a056808409100b00398409833e4mr2097072oib.29.1685494538931;
-        Tue, 30 May 2023 17:55:38 -0700 (PDT)
-Received: from sol (194-223-178-180.tpgi.com.au. [194.223.178.180])
-        by smtp.gmail.com with ESMTPSA id q5-20020a170902dac500b001b050df0a93sm2970721plx.93.2023.05.30.17.55.34
+        d=1e100.net; s=20221208; t=1685495785; x=1688087785;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d/caFhQp7Iw95ymi/uGFBz2t1WW3xwlGAOA4olG3h9M=;
+        b=QXesSTZe3j18FeVApZwdnr16y1aHoO5M9fzxRsPwM6RpimNs05OfJqS69kvhxD2Hjy
+         YeEoVNiuMLqh4y8EljABoBDditdAVQHeL0TF07pj4s1QMPnWEOsoaVju/RXszYOSyCb0
+         v0x/qncond5DMjM4gvSHmkpVBgAerK3LjG7q6CkCnzngsN+WK9UbauOYknOwRB1UfnFN
+         u4Raf9vKu2FMRCiw6SVTSIlUpbfxaYITsnUIbp3cosE3p4Uo+Sl6aJVOazsP3RTAAek9
+         aCqubImHlpN+m06XdLzL+YunKXdbYkBxvYf9rYa4LSXFEZ8RQc0ROpDfa6WswLtMhiQy
+         ZrmQ==
+X-Gm-Message-State: AC+VfDx103+QGnvqRtijXFm7leZT9rMTX8JJMZWGZ27aVv1bsxzGHu4a
+        90V6LF3Zq8d7ZeNG4vqOFX3wew==
+X-Google-Smtp-Source: ACHHUZ7/cz2jQmdHbgDH9CJNkoRpQcjv5/J07wkVHTuhtdR6o034j0klJMNdtd51mS5axq1MvdMplA==
+X-Received: by 2002:a19:f61a:0:b0:4ef:e895:cff2 with SMTP id x26-20020a19f61a000000b004efe895cff2mr1551598lfe.64.1685495784888;
+        Tue, 30 May 2023 18:16:24 -0700 (PDT)
+Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
+        by smtp.gmail.com with ESMTPSA id v24-20020ac25618000000b004f3787d8006sm505640lfd.128.2023.05.30.18.16.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 17:55:38 -0700 (PDT)
-Date:   Wed, 31 May 2023 08:55:32 +0800
-From:   Kent Gibson <warthog618@gmail.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        Tue, 30 May 2023 18:16:24 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: Re: [PATCH v2 0/2] gpio: introduce hog properties with less ambiguity
-Message-ID: <ZHabBOFfTBLOREgS@sol>
-References: <20230530151946.2317748-1-u.kleine-koenig@pengutronix.de>
- <ZHYbnDHgc9ZMc7rj@sol>
- <CAMRc=Md3wCLuiS0tt2_v8Q1peqP+AkSrUNj1jg_8aZfDnj+2SQ@mail.gmail.com>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 00/14] arm/arm64: dts: qcom: MDSS nodes cleanup
+Date:   Wed, 31 May 2023 04:16:09 +0300
+Message-Id: <20230531011623.3808538-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMRc=Md3wCLuiS0tt2_v8Q1peqP+AkSrUNj1jg_8aZfDnj+2SQ@mail.gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, May 30, 2023 at 09:15:55PM +0200, Bartosz Golaszewski wrote:
-> On Tue, May 30, 2023 at 5:52 PM Kent Gibson <warthog618@gmail.com> wrote:
-> >
-> > On Tue, May 30, 2023 at 05:19:44PM +0200, Uwe Kleine-König wrote:
-> > > Hello,
-> > >
-> > > this is another approach after
-> > > https://lore.kernel.org/linux-gpio/20210503210526.43455-1-u.kleine-koenig@pengutronix.de
-> > > two years ago. I switched back to "active" and "inactive" from
-> > > "asserted" and "deasserted". The poll about the naming is ambigous, but
-> > > I think with a slight preference of active/inactive over
-> > > asserted/deasserted (with my unbiased self preferring active/inactive,
-> > > too :-)
-> > >
-> >
-> > FWIW, this makes sense to me too - the active/inactive naming is used in
-> > both the GPIO uAPI and libgpiod v2, so it would be consistent with that,
-> > if nothing else.
-> >
-> > Bart, just wondering if gpio-sim should support the aliases as well?
-> > I realise they don't support active-low, so polarity isn't an issue, and
-> > it could even be confusing to support the alias, but just throwing it
-> > out there...
-> >
-> 
-> I'm not sure what you need aliases for? Value is only shown, never
-> stored (where you'd need "active", "inactive" strings).
-> 
+Conclude several ongoing cleanups of display-related nodes for Qualcomm
+platforms:
 
-I was thinking wrt the definition in DT - to  allow the switch to
-output-active etc throughout.  And I suppose also for configuring the
-hogs in configfs, but mainly the DT.
+- Don't disable MDP/DPU node, it is enough to disable MDSS device itself
+- Remove useless mdss_mdp enablements
+- Change labels for DSI and HDMI nodes to start with mdss_ prefix
 
-Cheers,
-Kent.
+Note, node labels on APQ8064 were not changed, since APQ8064 doesn't
+have the MDSS device. Later we might consider to change labels to start
+with mdp_ prefix.
+
+Dmitry Baryshkov (14):
+  arm64: dts: qcom: sc7280: Don't disable MDP explicitly
+  arm64: dts: qcom: sm8350-hdk: remove useless enablement of mdss_mdp
+  arm64: dts: qcom: sm8450-hdk: remove useless enablement of mdss_mdp
+  arm64: dts: qcom: qrb5165-rb5: remove useless enablement of mdss_mdp
+  arm64: dts: qcom: msm8953: rename labels for DSI nodes
+  arm64: dts: qcom: msm8996: rename labels for DSI nodes
+  arm64: dts: qcom: sc7180: rename labels for DSI nodes
+  arm64: dts: qcom: sc7280: rename labels for DSI nodes
+  arm64: dts: qcom: sc8180x: rename labels for DSI nodes
+  arm64: dts: qcom: sdm630: rename labels for DSI nodes
+  arm64: dts: qcom: sdm845: rename labels for DSI nodes
+  arm64: dts: qcom: sm8250: rename labels for DSI nodes
+  arm64: dts: qcom: msm8996: rename labels for HDMI nodes
+  ARM: dts: qcom: msm8974: rename labels for DSI nodes
+
+ .../arm/boot/dts/qcom-apq8074-dragonboard.dts |  24 +--
+ .../qcom-msm8974-lge-nexus5-hammerhead.dts    |  16 +-
+ arch/arm/boot/dts/qcom-msm8974.dtsi           |  36 ++---
+ .../boot/dts/qcom-msm8974pro-samsung-klte.dts |  24 +--
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dts   |  50 +++----
+ arch/arm64/boot/dts/qcom/apq8096-ifc6640.dts  |   6 +-
+ arch/arm64/boot/dts/qcom/msm8953.dtsi         |  40 ++---
+ arch/arm64/boot/dts/qcom/msm8996-mtp.dts      |   4 +-
+ .../boot/dts/qcom/msm8996-oneplus-common.dtsi |  30 ++--
+ .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  |  22 +--
+ .../boot/dts/qcom/msm8996-xiaomi-gemini.dts   |  18 +--
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  52 +++----
+ .../dts/qcom/msm8996pro-xiaomi-natrium.dts    |  18 +--
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      |  50 +++----
+ .../boot/dts/qcom/sc7180-acer-aspire1.dts     |  32 ++--
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts       |  14 +-
+ .../qcom/sc7180-trogdor-parade-ps8640.dtsi    |  10 +-
+ .../qcom/sc7180-trogdor-quackingstick-r0.dts  |   2 +-
+ .../qcom/sc7180-trogdor-quackingstick.dtsi    |  52 +++----
+ .../dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi |  10 +-
+ .../sc7180-trogdor-wormdingler-rev1-boe.dts   |   2 +-
+ .../dts/qcom/sc7180-trogdor-wormdingler.dtsi  |  46 +++---
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  28 ++--
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |  22 +--
+ .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi |   4 -
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |   8 +-
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi         |  24 +--
+ .../boot/dts/qcom/sda660-inforce-ifc6560.dts  |  16 +-
+ arch/arm64/boot/dts/qcom/sdm630.dtsi          |  20 +--
+ arch/arm64/boot/dts/qcom/sdm660.dtsi          |  24 +--
+ arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi    |  40 ++---
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |  98 ++++++-------
+ arch/arm64/boot/dts/qcom/sdm845-mtp.dts       |  86 +++++------
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |  76 +++++-----
+ .../boot/dts/qcom/sdm845-shift-axolotl.dts    |  76 +++++-----
+ .../dts/qcom/sdm845-sony-xperia-tama.dtsi     |  74 +++++-----
+ .../qcom/sdm845-xiaomi-beryllium-common.dtsi  |  66 ++++-----
+ .../boot/dts/qcom/sdm845-xiaomi-polaris.dts   |  76 +++++-----
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  36 ++---
+ .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  40 ++---
+ .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 138 +++++++++---------
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  36 ++---
+ arch/arm64/boot/dts/qcom/sm8350-hdk.dts       |   4 -
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts       |   4 -
+ 44 files changed, 768 insertions(+), 786 deletions(-)
+
+-- 
+2.39.2
+
