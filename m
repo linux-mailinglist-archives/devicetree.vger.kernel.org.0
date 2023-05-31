@@ -2,114 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51B6871805B
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 14:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB2BE7180A0
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 14:57:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232014AbjEaMxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 08:53:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49312 "EHLO
+        id S236225AbjEaM5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 08:57:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53042 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232718AbjEaMxP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 08:53:15 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on20619.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e1b::619])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E8A6137;
-        Wed, 31 May 2023 05:52:51 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DOWS/cwbvEixiQyZ/RByqx3zvJkghXi4ld8OyXRRX1GqkNWy8SmcMYxzAekXnuwCCvsns+6SQ3TJjgPbEEAAaFItNgfU7momyDCoAq2JBP+aaCJ6SGl3/lJgZnQvlcS7V5HwLqCpWU8w8WX/uM26ogCZu/+1pGR388CdUXZmMHDnMBkeBmn/HIKHNwg8EDz3IMPDaFHw0T1oMWPT7+NaNHJ0+wgKbqzIj6we5aDtk15ij21BCbI8CIu5o9EDPPiuhZg/0dABdcFaupInbQJeO9PLu47qwuALH8RgxwX7o86jqIfXXjCzZMI38WzZTHdObD6fC9aa6Q3leD3HNbthuw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/IstQzwLbEbkvZXXWsy2ex8JCtKFNPlVMhEPiU260No=;
- b=m/0Ns/fokVFSG7osRjS5KqzY70yPQuszdHkx4ED2TV3PsFo7I7oXF7ZoVYXtbw1uwk3Qu35MTZBD3JPFLALWEvxMWjwcHiTWJVJIixrkWeHsu6HR74AuDGSpgdj8saVEsPhqt6niekL9Q+eDK3OsJRYavMth7k7FeDX5HDdb/wdixEBQeT2lH4EVfwI1/2PwHB/T1uEhwB3zClq9gDVYAooDjWWp1UqVml0ZcYBSZEtVc/FudCNpktEstooi3X/B57C1bIJmmFIjGrVV5850X27YisUBSLCPcTi+cUpN2ZRXyv3c2/2CcPmGhFj3az8Q912jZdoZELNXysuAmBxUVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/IstQzwLbEbkvZXXWsy2ex8JCtKFNPlVMhEPiU260No=;
- b=sCbB19Z/lOTWObqvgzy8imJDG5JiC6pP+AoQOdebC6675HCaSQrkLCaiB1srkxjkvYMg5l67Zro/mei0/Rp6TYzJJQPTAhC3r+yBer0anUmHOfXxPSsFeqBOG6EBfJvWLQiEjG6rLdppmjrZNro++sGpKLUSdxlZJWqgYBgiltY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by VI1PR04MB6911.eurprd04.prod.outlook.com (2603:10a6:803:12e::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.24; Wed, 31 May
- 2023 12:51:09 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::4a2a:262e:415f:e41c]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::4a2a:262e:415f:e41c%7]) with mapi id 15.20.6433.024; Wed, 31 May 2023
- 12:51:09 +0000
-Date:   Wed, 31 May 2023 08:50:55 -0400
-From:   Frank Li <Frank.li@nxp.com>
-To:     Peng Fan <peng.fan@oss.nxp.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, peng.fan@nxp.com,
-        vkoul@kernel.org, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org, imx@lists.linux.dev, joy.zou@nxp.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        shenwei.wang@nxp.com
-Subject: Re: [PATCH v2 04/12] dmaengine: fsl-edma: remove v3 from enum
- edma_version
-Message-ID: <ZHdCrzKavdjQtfiQ@lizhi-Precision-Tower-5810>
-References: <20230529200453.1423796-1-Frank.Li@nxp.com>
- <20230529200453.1423796-5-Frank.Li@nxp.com>
- <79803451-3af0-26b5-2407-ec47172dcecc@oss.nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <79803451-3af0-26b5-2407-ec47172dcecc@oss.nxp.com>
-X-ClientProxiedBy: BY3PR10CA0019.namprd10.prod.outlook.com
- (2603:10b6:a03:255::24) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
+        with ESMTP id S236191AbjEaM44 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 08:56:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20F351B7;
+        Wed, 31 May 2023 05:56:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B774D63A78;
+        Wed, 31 May 2023 12:56:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA13FC433EF;
+        Wed, 31 May 2023 12:56:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685537783;
+        bh=WXX43CMo95lfddmy+CLKvQFqCbHXhy3Lbo5aNPHsISg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=biRRxafrqyx+rWwtFEsB7QNWTuxAqD+wRDF/OSfGLNP1Xg1WdTZh7FiYTwfHovOGL
+         aMc8VhChl0Ooc1ufcXF+i9f+w32UOmLKKtiLpgpWT7QheMEstvuqR4r/Ym6DcCqMRW
+         2EMtc4r/v3JEuctmwhBnvcqja5M1Xe4CzxumqqNavJYnLfAbZkUv0YtULrY8eorVDY
+         BGkP9jzQOavXtozqum5abIh0uM8ADOcyKbuh8TgLK3o5lzY1IaIJv8Q5/6ZOff8wmT
+         Tuh8hTPks39afTqC2NmJ4CdCaSTPJX2nhEPQfSfgO7/QKzMS7mFX6e07yybLm2/iw9
+         FDQSCupq3nAsg==
+Date:   Wed, 31 May 2023 13:56:18 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Fabrizio Lamarque <fl.scratchpad@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        jic23@kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] dt-bindings: iio: ad7192: Allow selection of
+ clock modes
+Message-ID: <20230531-engraving-gave-9b0b8f818923@spud>
+References: <20230530075311.400686-1-fl.scratchpad@gmail.com>
+ <20230530075311.400686-6-fl.scratchpad@gmail.com>
+ <20230530-cannabis-headstone-883c5b891dd3@spud>
+ <CAPJMGm4=sRQGPmVi8NjAVvOVrr8s2By6PO8kKRKZt3W0FR9j-Q@mail.gmail.com>
+ <5d65b644-9b79-d232-d0d0-d2772325eef5@linaro.org>
+ <CAPJMGm6T_x9Oocdmbrhi879QqZSd812LxJP=J554UbH9k9_LBw@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|VI1PR04MB6911:EE_
-X-MS-Office365-Filtering-Correlation-Id: 071f6d88-a9bf-4e40-1c1f-08db61d5b487
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: udKYUfy47u531ilmq4R9x6+QG2SUu4X84Huu8/lpyw1d20tgVwBIKHZzqjDYYIoZNPWpRWq3gjXneaOZYrEkhmbeTjI9SMQe1no48w1y/KS2WkWu2bsOrLtIp3QefBSWk6rNNWfAdZZ7tppgNjCXanew07dGuBEn8tdP12VgJEraev8dU1vjqFs3Qy6IJbKwbd3YhBjY1jRjA7yS5jd4/M1/OJRTeUaQ5C75fzlzjupgJm6hcYj3nIilT8na2qqvWITnFBjGVTs1quRuOmUW9kg6TbgMOxMj4vEi1ZN5zOm3kWfdbZ2J045+YRSoHBzBI8A27TW95ihj9gpQWza8yb8IdARTEPakA9atIWbbEpgJmdEhWzG2OzbwUpefw9Xd+MYv4S4LhZlKUtgaQeuUfXmOpnGx7BoQHTNjcKS1cO+sBDcpTfKKURjA70BB9k6ARHGCpQcT5iTfa15xVvciARCckEEExFSdp6EydDzPoTgQxN/0DLx3Li5gAHO/72ayleuSAjyKgp8uaGu46y3483NDFeoOEfOaITCJfc0cm+4y/vJqww+srOlX3b1CQaPun1/Hh08sqdoSyW+8+ggD6Ji88EezgNb4aEJhb+LqJTQm6yb+AhUItTBrEl9nnXLw
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(7916004)(366004)(396003)(376002)(346002)(39860400002)(136003)(451199021)(4744005)(2906002)(8936002)(8676002)(6862004)(41300700001)(4326008)(316002)(66556008)(66476007)(66946007)(478600001)(6486002)(6666004)(5660300002)(52116002)(9686003)(53546011)(6512007)(6506007)(26005)(186003)(33716001)(38100700002)(38350700002)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bhAzED7cKeHeTdKZdSNdn2GXCEuVpBXZMEopB6h9fN8aY6PFnfJhuJIbr0+J?=
- =?us-ascii?Q?l3mDZaHK+vdVlKHA2t9doBD3p7g/ZuUZ0bYypOpk+fzt6JPo3HHV8eNVlfbJ?=
- =?us-ascii?Q?Zaa13ZxeV7ZzsGHRi/msKrhVNkKhAzURx5lapjVDtNnV6ScRTGqJEIrSz/rp?=
- =?us-ascii?Q?Sc2evl5k3JRzdOI/BPvGy/18gma1rh9Zm1nju0OcVVp8AC7vSbBGqb3G5j0T?=
- =?us-ascii?Q?VoZN7r1E+iKnA6hxMrWAnGdn/lHwEX0knciSg31QX0CgB4KKUrkl8rdeghRo?=
- =?us-ascii?Q?6EgXjGRqmY2TsKRKXy4NzXAI8wc3fpuBqsXs+FHKCCQmIhZFmroAlEsPsLLC?=
- =?us-ascii?Q?24qDsKaRkTMiuuPBfoVZawK/nVsso4qaqTZo58FjCZO0FrxetYJOQYo4uwJm?=
- =?us-ascii?Q?p0oGpBLrq9+mrba1FpGas9Oigm8equ+tbDQOw/ZGzgsXnq3ugMpd9O88yYOC?=
- =?us-ascii?Q?CBE/00Cd4dx+Xj9oOByjtEy0dZEZ/sOsfygwSOreYJDN6QZEyCsoQ3318VPV?=
- =?us-ascii?Q?EKT7+A3AED8kjDyApoIyQ0O38fU1s8EUQoK1kKMOAoqI7cOnZNizDrdC6HvN?=
- =?us-ascii?Q?NidMcGoR7FJ5f7Uzp8cHme06Jvco19z3jGsm0xom4JZw3jxgtzQIy2OwEHPa?=
- =?us-ascii?Q?3vhrDrzL312vssTlvEqomx7lL4CFayJjpcdINa0t6Sg30Fi5K26hYgMw44/4?=
- =?us-ascii?Q?VeT5uuKSmzFx54pzYzk1Co09Q/K+61Y6Ur9tJLBE5Exh0pQ3Qjw8ezvvqsVf?=
- =?us-ascii?Q?8FSdl26nP9PFZn1MQwDKjMpRPNlT9/w+8MExyzEceVGoRmGNH6DxD6Ybdc66?=
- =?us-ascii?Q?wo2A9UEW7UmOYTogB81/mQWQSz05nSWsycbMxcDDh5OI1emZ0FS+SoX6Ic4n?=
- =?us-ascii?Q?GQxKQ5XQEJDznkzar9sahNZNb9h9cBd8HcBN5pisez8B9zejatsvUwAkSNSX?=
- =?us-ascii?Q?YEs2slbRLTu9ybWhHzQnJW0pq1g0UdfuTd8Ee9k9KgepQMMn/arO94DhReFm?=
- =?us-ascii?Q?DlUC02d7QXqr+3AlYyJZ0o8UfHU+bxxf6bp2r89PViP5KzVgAqinFg1nu8DI?=
- =?us-ascii?Q?i+OsonKbPWAxxCKflIQEiUIpzL0Xmsc1XvcEeouvpK4lWoN10Qo7ocK8qk1T?=
- =?us-ascii?Q?0ou7Q1acn/LCQJ27Iow+M5Gz1EZ7oMOM8iJKhGuSbVvfqYkgQlo9A/QSW3Qa?=
- =?us-ascii?Q?JzSTn6ZruqfkUql1/W3eI0f0+xOYth+PL4bD28pMOWuaCFYuJpHRSkc6p093?=
- =?us-ascii?Q?JSnW+b7kUYmiaXoJAqkKkntRd9pJEktnsokpLD43hSMdpQUlS8L0KNssazIQ?=
- =?us-ascii?Q?oZEyIV9/0F1RNI9TJAZRo10Nk7UxYZEV8mmP75lcH2Co7xIcwaceQ25kBJxR?=
- =?us-ascii?Q?pVq5FBKSvqMCe2Ooya4hq+CXxAs6KCdmEUeoATHZN6e0adimVfsoefVQ3kP4?=
- =?us-ascii?Q?0IvPAZYL8IEbSR1NyVwrPhpDkTTynm2zsQR4KhjnGbqwI75B94BzfcoY396e?=
- =?us-ascii?Q?vUNufekzIQHUog35t8tE/9YJgfPBrmV9pKSLdsEEm8GUkFq7sQHvTaikj+37?=
- =?us-ascii?Q?Bwa9DRctFJK1R9YLJhhpfN2x/2zZL+FAtwgD7fCD?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 071f6d88-a9bf-4e40-1c1f-08db61d5b487
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 May 2023 12:51:08.9296
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lEFJKnwIg6P3al4tsSQlTkTQBtjtmAbLBCrXZvPlXh4tLxZeBRYdmDWu+Wb1xuLz4Q4W51ZazNaSQKBwJAcFHA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6911
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,SPF_HELO_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR,URIBL_BLOCKED autolearn=no
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="hUzqiqle6qW6Urme"
+Content-Disposition: inline
+In-Reply-To: <CAPJMGm6T_x9Oocdmbrhi879QqZSd812LxJP=J554UbH9k9_LBw@mail.gmail.com>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -117,25 +66,181 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 31, 2023 at 02:50:57PM +0800, Peng Fan wrote:
-> 
-> 
-> On 5/30/2023 4:04 AM, Frank Li wrote:
-> >   static struct fsl_edma_drvdata imx7ulp_data = {
-> > -       .version = v3,
-> > +       .version = v1,
-> 
-> This may confuse people.How about for hardware
-> version >= v3, use new flag as yours?
 
-I can use drvflags to distinguish. I checked spec, 7ULP called eDMA2.
-Okay, let me change to check drvflags.
+--hUzqiqle6qW6Urme
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Anyways, we should align version with hardware IP version, or not
-use it at all.
+On Wed, May 31, 2023 at 11:40:08AM +0200, Fabrizio Lamarque wrote:
+> On Wed, May 31, 2023 at 9:14=E2=80=AFAM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 31/05/2023 08:59, Fabrizio Lamarque wrote:
+> > > On Tue, May 30, 2023 at 7:22=E2=80=AFPM Conor Dooley <conor@kernel.or=
+g> wrote:
+> > >>
+> > >> On Tue, May 30, 2023 at 09:53:11AM +0200, fl.scratchpad@gmail.com wr=
+ote:
+> > >>> From: Fabrizio Lamarque <fl.scratchpad@gmail.com>
+> > >>>
+> > >>> AD7192 supports external clock sources, generated by a digital clock
+> > >>> source or a crystal oscillator, or internally generated clock option
+> > >>> without external components.
+> > >>>
+> > >>> Describe choice between internal and external clock, crystal or ext=
+ernal
+> > >>> oscillator, and internal clock output enable.
+> > >>>
+> > >>> Signed-off-by: Fabrizio Lamarque <fl.scratchpad@gmail.com>
+> > >>> ---
+> > >>>  .../bindings/iio/adc/adi,ad7192.yaml          | 27 +++++++++++++++=
++---
+> > >>>  1 file changed, 24 insertions(+), 3 deletions(-)
+> > >>>
+> > >>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.y=
+aml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> > >>> index 16def2985ab4..f7ecfd65ad80 100644
+> > >>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> > >>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> > >>> @@ -32,7 +32,8 @@ properties:
+> > >>>
+> > >>>    clocks:
+> > >>>      maxItems: 1
+> > >>> -    description: phandle to the master clock (mclk)
+> > >>> +    description: |
+> > >>> +      Master clock (mclk). If not set, internal clock is used.
+> > >>>
+> > >>>    clock-names:
+> > >>>      items:
+> > >>> @@ -50,6 +51,17 @@ properties:
+> > >>>    vref-supply:
+> > >>>      description: VRef voltage supply
+> > >>>
+> > >>> +  adi,clock-xtal:
+> > >>> +    description: |
+> > >>> +      Select whether an external crystal oscillator or an external
+> > >>> +      clock is applied as master (mclk) clock.
+> > >>> +    type: boolean
+> > >>
+> > >> Am I being daft, or are these the same thing? If they are not, and u=
+se
+> > >> different input pins, I think it should be explained as it not clear.
+> > >> Could you explain why we actually care that the source is a xtal ver=
+sus
+> > >> it being mclk, and why just having master clock is not sufficient?
+> > >
+> > > I may revise the description as follows. Feel free to add your sugges=
+tions
+> > > in case it is still not clear enough.
+> > >
+> > > "Select whether an external crystal oscillator between MCLK1 and MCLK=
+2 or
+> > > an external CMOS-compatible clock on MCLK2 is used as master clock".
+> > >
+> > > This is used to properly set CLK0 and CLK1 bits in the MODE register.
+> > > I guess most applications would use an external crystal or internal c=
+lock.
+> > > The external digital clock would allow synchronization of multiple AD=
+Cs,
+> >
+> > Description confuses me. Why would it matter what type of clock you have
+> > as input - external crystal oscillator or external CMOS-compatible
+> > clock? Later you refer to "internal", so maybe you meant here also
+> > internal for one of the options?
+>=20
+> The AD7192 needs to be configured according to the type of external
+> clock that is
+> applied on MCLK1/MCLK2 pins in order to activate the correct circuitry.
+>=20
+> Here are some citations from the datasheet:
+>=20
+> MCLK2 pin description:
+> "The AD7192 has an internal 4.92 MHz clock. This internal clock can be
+> made available
+> on the MCLK2 pin. The clock for the AD7192 can be provided externally
+> also in the form
+> of a crystal or external clock. A crystal can be tied across the MCLK1
+> and MCLK2 pins.
+> Alternatively, the MCLK2 pin can be driven with a CMOS-compatible clock a=
+nd the
+> MCLK1 pin left unconnected."
+>=20
+> Each of these clock modes have to be configured via AD7192 mode register.
+> (Clock source configuration bits, mode register, CLK0 and CLK1).
+> Here is their description from datasheet:
+>=20
+> "Either the on-chip 4.92 MHz clock or an external clock can be used.
+> The ability to
+> use an external clock allows several AD7192 devices to be synchronized. A=
+lso,
+> 50 Hz/60 Hz rejection is improved when an accurate external clock
+> drives the AD7192."
+>=20
+> The choice between internal clock, external crystal oscillator or
+> external CMOS digital
+> clock is a decision of the HW designer driven by noise rejection,
+> synchronization, and
+> cost requirements.
+>=20
+> If possible, I kindly ask you suggestions on how to adjust the description
+> so that it would be cleaner.
 
-Frank
+For me at least, I partially wanted it explained so that intimate
+knowledge of the part was not required to review the binding! To me, the
+original description is perfectly clear about how the hardware is
+configured, but nothing says why software needs to actually know about
+it.
+I'd be happy if you worked
+> Each of these clock modes have to be configured via AD7192 mode register.
+into the description, but perhaps Krzysztof disagrees.
 
-> 
-> Regards,
-> Peng.
+Cheers,
+Conor.
+
+> > >>> +  adi,int-clock-output-enable:
+> > >>> +    description: |
+> > >>> +      When internal clock is selected, this bit enables clock out =
+pin.
+> > >>> +    type: boolean
+> > >>
+> > >> And this one makes you a clock provider, so the devices advocate
+> > >> position would be that you know that this bit should be set if
+> > >> "clocks" is not present and a consumer requests a clock.
+> > >> I don't seem to have got the driver patches (at least not in this
+> > >> mailbox), so I have got no information on how you've actually implem=
+ented
+> > >> this.
+> > >
+> > > I see... When this bit is set, the AD7192 node should also be a clock=
+ provider.
+> > > The clock is output on MCLK2 pin, hence it can be used with internally
+> > > generated clock only.
+> > > I tend to dislike the idea of a "conditional clock provider". Also, I=
+'d guess
+> >
+> > Either this is a clock provider via common clock framework or is not.
+> > Don't re-implement clock provider via other properties but just skip
+> > such feature.
+>=20
+> Ok, I understand. I will remove the bit from the patch in V4. Thank you.
+>=20
+> The bit was already existing upstream in the driver, but I would just drop
+> the change in documentation without any additional patch that removes it
+> from the driver.
+>=20
+> Best regards,
+> Fabrizio Lamarque
+
+--hUzqiqle6qW6Urme
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZHdD8gAKCRB4tDGHoIJi
+0iX8AP4jM2LspkoDQqGr2uNev1zyUHQLv8qDCO+A6Tx+0avo3AEApiqAifZ/vWC1
+g0rKlc/qFvOBHV1esZl+tT7+cO3+LA4=
+=n88b
+-----END PGP SIGNATURE-----
+
+--hUzqiqle6qW6Urme--
