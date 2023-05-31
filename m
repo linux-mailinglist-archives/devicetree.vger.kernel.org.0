@@ -2,163 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9127717939
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 09:57:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 566EF717942
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 09:58:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234924AbjEaH5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 03:57:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58838 "EHLO
+        id S235064AbjEaH6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 03:58:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235028AbjEaH47 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 03:56:59 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A16D173B;
-        Wed, 31 May 2023 00:56:01 -0700 (PDT)
+        with ESMTP id S234877AbjEaH6L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 03:58:11 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CFFF1705
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 00:57:48 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-96f99222e80so138100566b.1
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 00:57:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1685519761; x=1717055761;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=5FS2roWGat0mA6b4IgEeq1guiQgG3htuXfzj9dNEmIw=;
-  b=XCGMBeJpPJ5ZO0Phr0fSjMuvD1o+tuzBt4mhYop/JdPvgRkf3z0xT/0c
-   1KGb4KAAGQ78JlIQQaHyMcA6l5RiQ3dYfoXQJvUTTV4REL4g//BnfahZX
-   GTEdidwbtT9kF8tCF5Okq4/co8yicYMGYnk8bQkbaFOBJOqhcpnX80RdC
-   j5Hqi66JacyQrhKVDRywyjhludf1GT6YP1bdn0aXzDZkLpohFDMTVS+kz
-   Tqhdiqc3G7RlVw/g72XdR+h+vXMTx2i1GsQHqN0aGiB0iwr9n3CguZBt+
-   umSVHmuzEx3Q76dpnslOnwrxuV90DJ5E+Wclk5UQG2AnuNyY9aQeKsYXb
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,205,1681164000"; 
-   d="scan'208";a="31185786"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 31 May 2023 09:55:53 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 31 May 2023 09:55:54 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 31 May 2023 09:55:54 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1685519753; x=1717055753;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=5FS2roWGat0mA6b4IgEeq1guiQgG3htuXfzj9dNEmIw=;
-  b=OoQa90CS6I6ZOIAkg4ArSC9cGdOtrrrEwemWNO00GWLDT+dgZrsj8vc0
-   tEi+PLrwZByV6RS292Pz2VKdjQuM9Ek58jDWYZ2HIFIVt4rPIjpsYKYp+
-   6gxBAaLzoYgF+CHJZBoXMAnB8xC/WXBa9z4LR834XrjSqfqwEExhPia1M
-   1tkW2gv6z+kl3dHlYAAxBcCNLo9jBQRDEfWm1zy8TqD9kR1G8MYh7gGff
-   +IJMtb5U2Ewe+ZQ51mb7aVqxQCcTG/XG3W+JiCjA3pvRhlaJXycQDTBVA
-   K8YAJ5kRI2/hoBTwck8o1mU35I3fz9ZX6TWe9O6VH8VZH7vYbJ5V3xLVC
-   g==;
-X-IronPort-AV: E=Sophos;i="6.00,205,1681164000"; 
-   d="scan'208";a="31185785"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 31 May 2023 09:55:53 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 9AA3B280099;
-        Wed, 31 May 2023 09:55:53 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx8qxp: add adma_pwm in adma
-Date:   Wed, 31 May 2023 09:55:53 +0200
-Message-ID: <2232211.iZASKD2KPV@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230424082108.26512-2-alexander.stein@ew.tq-group.com>
-References: <20230424082108.26512-1-alexander.stein@ew.tq-group.com> <20230424082108.26512-2-alexander.stein@ew.tq-group.com>
+        d=linaro.org; s=google; t=1685519866; x=1688111866;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qX3wCILele8uoAh+Ad7WZ/vlKQvPjoQ0nfu/yoKu41g=;
+        b=flD6sSA/TdOv3sMP5SAlv3GyMkxQsWff4xhE6fu7Q3oeRFc1ee1khC3Gj05ODRrkeq
+         lgrVlfyVHQS0H+ZtcYMJnM4z/vyY0zMKNMNgLdBodXDoT79fZHzjyXtNsr2luO7/h8iL
+         yrj10/PHT15jcZGajsUGBsdSkGziH3/fXYzbQVNPLjkWGCdmgQoK2CwqvIJby9YXL5na
+         XrNINK+LXN+/SvNW3QtD6enGR03KHF3aP2SgOmj3Sb2QlR+KF/ptTKtGxIXfaLMgQRTP
+         I2kcfJztOF5CuG1zWM0NYwPraM58lKIunij8sNtDHGL6j5DI+Si5hIDoYrrU6x+a9lgD
+         dsZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685519866; x=1688111866;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qX3wCILele8uoAh+Ad7WZ/vlKQvPjoQ0nfu/yoKu41g=;
+        b=XQD1ZvG9cAKRhMTAuK1jyr6gwhXm83WX2zSCmJf6R1KIVBdhwP/8IKy5gYIitmNco3
+         CP6s3+8ZrsyhR70hAsldg7/6Z9+vn3om5oD//raFC6sll5XF5x5WspAxBEpdyUX9xjV1
+         xznqesV6kV7GGTaVwb8hxyejTCu8aq9EFKbrwHZ2nPxA76YGBLHv9LDqeK9jua57pA6o
+         RRaYx7/PVepMbiQMwJTYdklwlgm9vIINkY68WHDzC3DHnkxGZuXmmCvBW/cmZHFIUy1N
+         OLdu91ag52USKLIVifOGBY6U2/VPYk+9+zfHq72S9sAB5R8qWv6fX/BleMz2SHfsGwJu
+         WmaQ==
+X-Gm-Message-State: AC+VfDw2gxO3bQGXJYqmSqXAjFYG1SS6RoV6PrmBCpTXBB/j8FNdOe/i
+        pPVu7y5LIWWWiiZkOHJiJGUHmw==
+X-Google-Smtp-Source: ACHHUZ5fQqJmewtqVZHAJCN32Csc6ijmMvPanRmYM/zvlBubU9p9InzqP/N0Rr0hEZYtC/nYwJ5xbA==
+X-Received: by 2002:a17:907:1ca2:b0:953:834d:899b with SMTP id nb34-20020a1709071ca200b00953834d899bmr13078693ejc.29.1685519866366;
+        Wed, 31 May 2023 00:57:46 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.199.204])
+        by smtp.gmail.com with ESMTPSA id c19-20020a170906341300b00965f98eefc1sm8550340ejb.116.2023.05.31.00.57.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 May 2023 00:57:45 -0700 (PDT)
+Message-ID: <80108a00-4416-a419-e45a-e5e4c1f111a8@linaro.org>
+Date:   Wed, 31 May 2023 09:57:43 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: thermal: mediatek: Move auxdac binding
+ to yaml
+Content-Language: en-US
+To:     matthias.bgg@kernel.org, rafael@kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     devicetree@vger.kernel.org, Amit Kucheria <amitk@kernel.org>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Zhang Rui <rui.zhang@intel.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>
+References: <20230530150413.12918-1-matthias.bgg@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230530150413.12918-1-matthias.bgg@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 30/05/2023 17:04, matthias.bgg@kernel.org wrote:
+> From: Matthias Brugger <matthias.bgg@gmail.com>
+> 
+> Convert the older binding to yaml syntax.
+> 
+> Signed-off-by: Matthias Brugger <matthias.bgg@gmail.com>
+> ---
+> 
+>  .../bindings/thermal/mediatek,thermal.yaml    | 168 ++++++++++++++++++
+>  .../bindings/thermal/mediatek-thermal.txt     |  52 ------
+>  2 files changed, 168 insertions(+), 52 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/thermal/mediatek-thermal.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
+> new file mode 100644
+> index 000000000000..7aa2bdc43567
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/mediatek,thermal.yaml
+> @@ -0,0 +1,168 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/mediatek,thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Thermal Sensor
+> +
+> +maintainers:
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
+> +
+> +description: |
+> +  The MediaTek thermal controller measures the on-SoC temperatures.
+> +  This device does not have its own ADC, instead it directly controls
+> +  the AUXADC via AHB bus accesses. For this reason this device needs
+> +  phandles to the AUXADC. Also it controls a mux in the apmixedsys
+> +  register space via AHB bus accesses, so a phandle to the APMIXEDSYS
+> +  is also needed.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - mediatek,mt2701-thermal
+> +          - mediatek,mt2712-thermal
+> +          - mediatek,mt7622-thermal
+> +          - mediatek,mt7986-thermal
+> +          - mediatek,mt8173-thermal
+> +          - mediatek,mt8183-thermal
+> +          - mediatek,mt8365-thermal
+> +      - items:
+> +          - const: mediatek,mt7981-thermal
+> +          - const: mediatek,mt7986-thermal
+> +      - items:
+> +          - const: mediatek,mt8516-thermal
+> +          - const: mediatek,mt2701-thermal
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 2
 
-Am Montag, 24. April 2023, 10:21:08 CEST schrieb Alexander Stein:
-> Add PWM device and the corresponding clock gating device in adma subsyste=
-m.
+maxItems instead
 
-Gentle ping.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: therm
+> +      - const: auxadc
+> +
+> +  resets:
+> +    maxItems: 1
+> +    description: Reference to the reset controller controlling the thermal controller.
+
+You can drop description, it's obvious.
+
+> +
+> +  reset-names:
+> +    items:
+> +      - const: therm
+> +
+> +  nvmem-cells:
+> +    items:
+> +      - description: Calibration eFuse data. If unspecified default values are used.
+> +
+> +  nvmem-cell-names:
+> +    items:
+> +      - const: calibration-data
+> +
+> +  mediatek,auxadc:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      A phandle to the AUXADC which the thermal controller uses.
+> +
+> +  mediatek,apmixedsys:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      A phandle to the APMIXEDSYS controller.
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 1
+> +
+> +  bank0-supply:
+> +    description: Regulator node supplying voltage to the first bank
+> +
+> +  bank1-supply:
+> +    description: Regulator node supplying voltage to the second bank
+
+These were not present before. Mention this in commit msg. Also drop "node".
+
+> +
+> +
+
+Just one blank line.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - mediatek,auxadc
+> +  - mediatek,apmixedsys
+> +  - "#thermal-sensor-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/mt8173-clk.h>
+> +    #include <dt-bindings/reset/mt8173-resets.h>
+> +
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      auxadc: auxadc@11001000 {
+> +        compatible = "mediatek,mt8173-auxadc";
+> +        reg = <0 0x11001000 0 0x1000>;
+> +        clocks = <&pericfg CLK_PERI_AUXADC>;
+> +        clock-names = "main";
+> +        #io-channel-cells = <1>;
+> +      };
+> +
+> +      apmixedsys: clock-controller@10209000 {
+> +        compatible = "mediatek,mt8173-apmixedsys";
+> +        reg = <0 0x10209000 0 0x1000>;
+> +        #clock-cells = <1>;
+> +      };
+
+Drop both examples, not really relevant to thermal. It grows the example
+with code already documented somewhere else.
+
+> +
+> +      thermal: thermal@1100b000 {
+> +        #thermal-sensor-cells = <1>;
+> +        compatible = "mediatek,mt8173-thermal";
+> +        reg = <0 0x1100b000 0 0x1000>;
+> +        interrupts = <0 70 IRQ_TYPE_LEVEL_LOW>;
+> +        clocks = <&pericfg CLK_PERI_THERM>, <&pericfg CLK_PERI_AUXADC>;
+> +        clock-names = "therm", "auxadc";
+> +        resets = <&pericfg MT8173_PERI_THERM_SW_RST>;
+> +        reset-names = "therm";
+> +        mediatek,auxadc = <&auxadc>;
+> +        mediatek,apmixedsys = <&apmixedsys>;
+> +        nvmem-cells = <&thermal_calibration_data>;
+> +        nvmem-cell-names = "calibration-data";
+> +      };
+> +
+> +      thermal-zones {
+> +        cpu_thermal: cpu-thermal {
+> +          polling-delay-passive = <1000>;
+> +          polling-delay = <1000>;
+> +
+> +          thermal-sensors = <&thermal 0>;
+> +          sustainable-power = <1500>;
+> +
+> +          trips {
+> +            threshold: trip-point0 {
+> +              temperature = <68000>;
+> +              hysteresis = <2000>;
+> +              type = "passive";
+> +            };
+> +
+> +            target: trip-point1 {
+> +              temperature = <85000>;
+> +              hysteresis = <2000>;
+> +              type = "passive";
+> +            };
+> +
+> +            cpu_crit: cpu_crit0 {
+
+No underscores in node names.
+
 
 Best regards,
-Alexander
-
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> * New in v2
->=20
->  .../arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 25 +++++++++++++++++++
->  1 file changed, 25 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi index
-> 2dce8f2ee3ea..7d5f96c99020 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
-> @@ -124,6 +124,19 @@ lpuart3: serial@5a090000 {
->  		status =3D "disabled";
->  	};
->=20
-> +	adma_pwm: pwm@5a190000 {
-> +		compatible =3D "fsl,imx8qxp-pwm", "fsl,imx27-pwm";
-> +		reg =3D <0x5a190000 0x1000>;
-> +		interrupts =3D <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks =3D <&adma_pwm_lpcg 1>,
-> +			 <&adma_pwm_lpcg 0>;
-> +		clock-names =3D "ipg", "per";
-> +		assigned-clocks =3D <&clk IMX_SC_R_LCD_0_PWM_0=20
-IMX_SC_PM_CLK_PER>;
-> +		assigned-clock-rates =3D <24000000>;
-> +		#pwm-cells =3D <2>;
-> +		power-domains =3D <&pd IMX_SC_R_LCD_0_PWM_0>;
-> +	};
-> +
->  	spi0_lpcg: clock-controller@5a400000 {
->  		compatible =3D "fsl,imx8qxp-lpcg";
->  		reg =3D <0x5a400000 0x10000>;
-> @@ -220,6 +233,18 @@ uart3_lpcg: clock-controller@5a490000 {
->  		power-domains =3D <&pd IMX_SC_R_UART_3>;
->  	};
->=20
-> +	adma_pwm_lpcg: clock-controller@5a590000 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x5a590000 0x10000>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&clk IMX_SC_R_LCD_0_PWM_0 IMX_SC_PM_CLK_PER>,
-> +			 <&dma_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-> +		clock-output-names =3D "adma_pwm_lpcg_clk",
-> +				     "adma_pwm_lpcg_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_LCD_0_PWM_0>;
-> +	};
-> +
->  	i2c0: i2c@5a800000 {
->  		reg =3D <0x5a800000 0x4000>;
->  		interrupts =3D <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>;
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+Krzysztof
 
