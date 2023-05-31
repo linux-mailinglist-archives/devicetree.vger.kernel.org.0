@@ -2,129 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1C4171740F
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 05:09:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D5DB717457
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 05:27:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231314AbjEaDJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 23:09:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37960 "EHLO
+        id S231558AbjEaD11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 23:27:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231407AbjEaDJu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 23:09:50 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5567211D;
-        Tue, 30 May 2023 20:09:42 -0700 (PDT)
-X-UUID: 937d9f5aff6011ed9cb5633481061a41-20230531
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=i+8nMDyCUgtl3WLgCsYivUYfh194g8U9gITbrqABQrw=;
-        b=CBUHuG6vgK2XOuk4r0+BVMmcmrW2FviYTw++N7TLu+KifPuyIFEen7kC535V1eL35EWecL/U8RWPC+GNNuOPKJkyT5Lkf7iNVMCU7J9uUy1WeEwzfd874sYUrlu3CdXDhzX/gOj8BPS+EW+sqZ21rnxoWCx41LTF5cvLrPfCV3I=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.25,REQID:b03f65da-9970-429d-afd1-900f4fae9d44,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-        :release,TS:95
-X-CID-INFO: VERSION:1.1.25,REQID:b03f65da-9970-429d-afd1-900f4fae9d44,IP:0,URL
-        :0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,BULK:0,RULE:Spam_GS981B3D,ACTION
-        :quarantine,TS:95
-X-CID-META: VersionHash:d5b0ae3,CLOUDID:3f4fe13c-de1e-4348-bc35-c96f92f1dcbb,B
-        ulkID:230531110938JUYPPQMA,BulkQuantity:0,Recheck:0,SF:28|17|19|48|38|29,T
-        C:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,CO
-        L:0,OSI:0,OSA:0,AV:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-UUID: 937d9f5aff6011ed9cb5633481061a41-20230531
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <shuijing.li@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1874157115; Wed, 31 May 2023 11:09:37 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+        with ESMTP id S229558AbjEaD10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 23:27:26 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1933A0;
+        Tue, 30 May 2023 20:27:24 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 34V3KNE0028776;
+        Wed, 31 May 2023 03:27:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=NJWHqxC5VMCqTH6Nl2YKSjkcaF9QSLV0bWFnNEPVjTQ=;
+ b=TwFJK1y5Ey2bBHAE78zwCeEvSX6MQGh1k4ctmK+H3l/KUUaiMCHXeWBYG1HOP33pyyQS
+ 7J/ck86rsYcB9tA4422Rw5Em9n4AfC1teQgBw/Q57bqAQfNMuDfcAQjito049tE0b6Rl
+ ee4F4HKpC1bwLCLZ3iYqGugs7F2fdHOGa3/ZoEwINybiFom1DqxoPXI5ZN95SFlELzyM
+ vHQ4ltU/C9OvA8tG2po9ApRWicEgOPPDNwQtrKicJ4LXNMaOU/r4pEeAv4ScSX1FgVbi
+ xIqrnls462skM91FGKK7HMMQR73y2Zr4B0DrRRbS5rigSGtmoJAmj6QHtQQFrFhsPyYx Mg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3qw7rttrnw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 31 May 2023 03:27:21 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 34V3RJ0V015091
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 31 May 2023 03:27:19 GMT
+Received: from poovendh-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 31 May 2023 11:09:36 +0800
-Received: from mszsdhlt06.gcn.mediatek.inc (10.16.6.206) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 31 May 2023 11:09:35 +0800
-From:   Shuijing Li <shuijing.li@mediatek.com>
-To:     <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
-        <matthias.bgg@gmail.com>, <angelogioacchino.delregno@collabora.com>
-CC:     <devicetree@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <jitao.shi@mediatek.com>, Shuijing Li <shuijing.li@mediatek.com>,
-        Fei Shao <fshao@chromium.org>
-Subject: [PATCH v3] pwm: mtk_disp: Fix the disable flow of disp_pwm
-Date:   Wed, 31 May 2023 11:10:01 +0800
-Message-ID: <20230531031001.7440-1-shuijing.li@mediatek.com>
-X-Mailer: git-send-email 2.40.1
+ 15.2.986.42; Tue, 30 May 2023 20:27:14 -0700
+From:   Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <quic_srichara@quicinc.com>, <quic_gokulsri@quicinc.com>,
+        <quic_sjaganat@quicinc.com>, <quic_kathirav@quicinc.com>,
+        <quic_arajkuma@quicinc.com>, <quic_anusha@quicinc.com>,
+        <quic_devipriy@quicinc.com>
+Subject: [PATCH V2 0/2] Add initial support for RDP454 of IPQ9574 family
+Date:   Wed, 31 May 2023 08:56:46 +0530
+Message-ID: <20230531032648.23816-1-quic_poovendh@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,MAY_BE_FORGED,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: MuEvKYW87GLSbaSIxsijQURk6NtfytAr
+X-Proofpoint-ORIG-GUID: MuEvKYW87GLSbaSIxsijQURk6NtfytAr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.573,FMLib:17.11.176.26
+ definitions=2023-05-30_18,2023-05-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
+ phishscore=0 mlxscore=0 mlxlogscore=734 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 adultscore=0 priorityscore=1501 suspectscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2304280000 definitions=main-2305310027
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a flow error in the original mtk_disp_pwm_apply() function.
-If this function is called when the clock is disabled, there will be a
-chance to operate the disp_pwm register, resulting in disp_pwm exception.
-Fix this accordingly.
+Add the initial device tree support for the Reference Design
+Platform(RDP) 454 based on IPQ9574 family of SoCs. This patch series adds
+support for Console UART, SPI NOR and SMPA1 regulator node.
 
-Fixes: 888a623db5d0 ("pwm: mtk-disp: Implement atomic API .apply()")
-Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-Tested-by: Fei Shao <fshao@chromium.org>
----
-Changes in v3:
-Add Fixes per suggestion from the previous thread:
-https://lore.kernel.org/lkml/CAC=S1nhVrbaAh2u7rG-=-RubsxTZvMBRZO-t0NA8jG7M8187EA@mail.gmail.com/
-Changes in v2:
-Use
-if (A && B) {
-        something();
-}
-instead of
-if (A) {
-        if (B) {
-                something();
-        }
-}
-per suggestion from the previous thread:
-https://lore.kernel.org/lkml/20230515140346.bxeu6xewi6a446nd@pengutronix.de/
----
- drivers/pwm/pwm-mtk-disp.c | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
+V2:
+	- Change logs are added to the respective patches.
 
-diff --git a/drivers/pwm/pwm-mtk-disp.c b/drivers/pwm/pwm-mtk-disp.c
-index 79e321e96f56..2401b6733241 100644
---- a/drivers/pwm/pwm-mtk-disp.c
-+++ b/drivers/pwm/pwm-mtk-disp.c
-@@ -79,14 +79,11 @@ static int mtk_disp_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 	if (state->polarity != PWM_POLARITY_NORMAL)
- 		return -EINVAL;
- 
--	if (!state->enabled) {
--		mtk_disp_pwm_update_bits(mdp, DISP_PWM_EN, mdp->data->enable_mask,
--					 0x0);
--
--		if (mdp->enabled) {
--			clk_disable_unprepare(mdp->clk_mm);
--			clk_disable_unprepare(mdp->clk_main);
--		}
-+	if (!state->enabled && mdp->enabled) {
-+		mtk_disp_pwm_update_bits(mdp, DISP_PWM_EN,
-+					 mdp->data->enable_mask, 0x0);
-+		clk_disable_unprepare(mdp->clk_mm);
-+		clk_disable_unprepare(mdp->clk_main);
- 
- 		mdp->enabled = false;
- 		return 0;
+V1 can be found at
+	https://lore.kernel.org/linux-arm-msm/20230519103128.30783-1-quic_poovendh@quicinc.com/
+
+Poovendhan Selvaraj (2):
+  dt-bindings: arm: qcom: document AL02-C9 board based on IPQ9574 family
+  arm64: dts: qcom: ipq9574: add support for RDP454 variant
+
+ .../devicetree/bindings/arm/qcom.yaml         |  2 +
+ arch/arm64/boot/dts/qcom/Makefile             |  1 +
+ arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts   | 80 +++++++++++++++++++
+ 3 files changed, 83 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq9574-rdp454.dts
+
+
+base-commit: 8c33787278ca8db73ad7d23f932c8c39b9f6e543
 -- 
-2.40.1
+2.17.1
 
