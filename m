@@ -2,119 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5190C7179A7
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 10:10:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 269607179BE
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 10:16:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232546AbjEaIKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 04:10:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41092 "EHLO
+        id S235145AbjEaIQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 04:16:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235188AbjEaIK3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 04:10:29 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D92DBE
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 01:10:28 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-6af6df840ffso4220443a34.1
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 01:10:28 -0700 (PDT)
+        with ESMTP id S231993AbjEaIQA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 04:16:00 -0400
+Received: from mail-vk1-xa34.google.com (mail-vk1-xa34.google.com [IPv6:2607:f8b0:4864:20::a34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D9C593
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 01:15:59 -0700 (PDT)
+Received: by mail-vk1-xa34.google.com with SMTP id 71dfb90a1353d-456d534f403so3215160e0c.2
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 01:15:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1685520628; x=1688112628;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1685520958; x=1688112958;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Ha8WXDq7F6ehlGZN4Wnm79SzuKrgIbv9GmD5p3/ciq4=;
-        b=DgBV7q1iFWBDxiVHk9JUFMK901wD1MP+icEW/zcNq51kchIW9/fmxP0NskfzKA04e9
-         kTop/smn/jjdxZnRzBEiyWP2WMy0SSyrLpcoG2hW8cO7XgbPfZ8aSYBZLEQ0Vodxjgvu
-         7bLrHj8W2DAz+pgxbvT9/QzRwEeDcvRgAIb2o=
+        bh=j+LYBn2d5F5zSswKXzUQPCUZnQJRWf9mOfUbaKg3l0w=;
+        b=rMKmXPVn3E3lgiHa3lycUjJARHwVgxFmwfl5sCpdWFiTMVw2lqaS9GLBN3aux6PLVS
+         +cphWgiDlPFjdTctdja+HfoNHSkR0Mv0SJ1LTtR0zTBvejt9mmqfgZ/Om3RxKnjLWrAg
+         NUQbTlNH9YVzdJmhkOdWcodbnjnVp4dh8g2U6BPbrTiBEsoDqToze6m814CUVSlEyK24
+         1JbHnwFdNmQqp2Ht1oh7CW8xqk+8QBbFVos89g6UObdhKssiiPEWuVTMEleFB1u5hDFZ
+         z3pWTezwyiU0731bu3W1mudxVmHGoWzOA+8uOoNZSJ5A02PIEwdwvgZGHutnvN1AZoIc
+         NyBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685520628; x=1688112628;
+        d=1e100.net; s=20221208; t=1685520958; x=1688112958;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Ha8WXDq7F6ehlGZN4Wnm79SzuKrgIbv9GmD5p3/ciq4=;
-        b=bRpetXymmxDSSnA7uAhV1ex+C2DOVCa+8xfRo37Yh2E9zwbMq9rfQoa1ECfr2ccvDi
-         765jch2SuzlmP6KLdDfKxDoREnixG3HQbfmo3r+FBXlZXeGGmUiLcShm13vDwxAuXz+W
-         KcN3ApnN08qwNjFB10jOzxIfRFyjrB2q5lmyivAtfQmSnhivJOmQj6+/XQmkgJ3aUpnY
-         FlIqB+HkNM+0tWGNkKqEfslYZ+b9TwEoZqWPVdgDgchbH4D2NbHNruyjzvZQfTZHv30k
-         pL1dnua1YtVO2L98h4/ZNJCt2CMgZBICLdsawNO/uRw8tZJP0EvQej15EKYok7fIONJc
-         XBUQ==
-X-Gm-Message-State: AC+VfDzu0ikMe00ftXhV9/fAqxVTbuwZIOfhox2M8LNZD0vKIhOiMTJv
-        TEGLGbm0E4B1NNtYKJTLjhdM6EGg4Wa/qxMBu1L/Xw==
-X-Google-Smtp-Source: ACHHUZ7rqg56DAcPJ9jkQZEWk9382a7L5h4RC6wgNI04P1u6bH0gTq4NfXck/bmoQRGPPXVH2knI7dLMyJlEpKqSWtU=
-X-Received: by 2002:a05:6830:1d6f:b0:6b0:c54c:8247 with SMTP id
- l15-20020a0568301d6f00b006b0c54c8247mr949912oti.24.1685520627954; Wed, 31 May
- 2023 01:10:27 -0700 (PDT)
+        bh=j+LYBn2d5F5zSswKXzUQPCUZnQJRWf9mOfUbaKg3l0w=;
+        b=WEKQ1L3V5WMCCpVUMiYmiAXJr8ODUGkfMI5meobFevbYCKfbpijk7GIBbN3O57h846
+         JTgiX4RezYy8/1z0V3MZdEskQ9by/oykha5XklFq/DZXFADEmkXfMGGm3BcY6YoU2g55
+         sMW0zS4rx8bMN6YsdQQxAjTeORL+i1HxapFvhl/pTqB7m25G6OFw7AeMr2kgDnyACOOl
+         CgDXXuqQRHY+xhuSXpHvlv2SsgPBd/KOWLM4s1zmFeFXJWyxtRNLXQ4fw1x/p/YiJJyO
+         IzJzw/skwQr/h4zAxXFUJbQ7WBlPmSlNWVhcS7uk+jrKmENjo/eeaHS2GF4yssJjKpIA
+         ljKw==
+X-Gm-Message-State: AC+VfDyZIvtqIMD3VtdEUs1/XFPjtb7T+xptrHM5Qtvi+HpjziPyjpYG
+        A4eZH3MXm8rSJYe4U9reGye4zgVz7rwNGiRCO4A4CA==
+X-Google-Smtp-Source: ACHHUZ48zd6+NSboV0/QVlTXbxck4+hQ02rvQ8jT8/OjQ2yO0i7Aa0NldEv5lWNZ8h/fCfRqRYZG1yI2xFljYMFKfKQ=
+X-Received: by 2002:a1f:ca07:0:b0:44f:d211:2df3 with SMTP id
+ a7-20020a1fca07000000b0044fd2112df3mr1581190vkg.13.1685520958083; Wed, 31 May
+ 2023 01:15:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230220093343.3447381-1-hsinyi@chromium.org> <CAGXv+5E4_k1jKTnninYkuT6Tf=skB00AowHpM+hc8j_VFM-RfQ@mail.gmail.com>
- <CAJMQK-hnK69iVJhqW_8UtKHHLQ3608Cb74Jk_b+xHH0BBu4yVw@mail.gmail.com>
- <d39b0e77-e013-fe7e-9523-9bdbaacb5853@collabora.com> <90ad9b86-e03c-8e80-88d6-d514bbe9cacd@gmail.com>
- <CAJMQK-jmT1YDf0y6FYUUFHkQ0b-ZHD9S4X2zpkrmNoz5Dz4ctQ@mail.gmail.com>
-In-Reply-To: <CAJMQK-jmT1YDf0y6FYUUFHkQ0b-ZHD9S4X2zpkrmNoz5Dz4ctQ@mail.gmail.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Wed, 31 May 2023 16:10:01 +0800
-Message-ID: <CAJMQK-gWQUgY7NRhkSuk7KMf8XZEBfJZEEXo0S+8ty7Ms7xZ9w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8183: kukui: Add scp firmware-name
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
+References: <20230530151946.2317748-1-u.kleine-koenig@pengutronix.de>
+ <ZHYbnDHgc9ZMc7rj@sol> <CAMRc=Md3wCLuiS0tt2_v8Q1peqP+AkSrUNj1jg_8aZfDnj+2SQ@mail.gmail.com>
+ <ZHabBOFfTBLOREgS@sol>
+In-Reply-To: <ZHabBOFfTBLOREgS@sol>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Wed, 31 May 2023 10:15:47 +0200
+Message-ID: <CAMRc=McL-NqxWbHF88B_FcxFNm3b1e2qxG1_d8XkZ4xXsc9Ybg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] gpio: introduce hog properties with less ambiguity
+To:     Kent Gibson <warthog618@gmail.com>
+Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
+        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 31, 2023 at 3:47=E2=80=AFPM Hsin-Yi Wang <hsinyi@chromium.org> =
+On Wed, May 31, 2023 at 2:55=E2=80=AFAM Kent Gibson <warthog618@gmail.com> =
 wrote:
 >
-> On Wed, May 31, 2023 at 3:30=E2=80=AFPM Matthias Brugger <matthias.bgg@gm=
-ail.com> wrote:
-> >
-> >
-> >
-> > On 30/05/2023 09:12, AngeloGioacchino Del Regno wrote:
-> > > Il 30/05/23 07:12, Hsin-Yi Wang ha scritto:
-> > >> On Tue, Feb 21, 2023 at 11:25=E2=80=AFAM Chen-Yu Tsai <wenst@chromiu=
-m.org> wrote:
-> > >>>
-> > >>> On Mon, Feb 20, 2023 at 5:34 PM Hsin-Yi Wang <hsinyi@chromium.org> =
-wrote:
-> > >>>>
-> > >>>> The upstream SCP firmware path is /lib/firmware/mediatek/mt8183/sc=
-p.img
-> > >>>>
-> > >>>> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > >>>
-> > >>> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> > >>
-> > >> hi Matthias,
-> > >>
-> > >> Kindly ping on the patch, thanks!
+> On Tue, May 30, 2023 at 09:15:55PM +0200, Bartosz Golaszewski wrote:
+> > On Tue, May 30, 2023 at 5:52=E2=80=AFPM Kent Gibson <warthog618@gmail.c=
+om> wrote:
 > > >
-> > > Agreed. Matthias, please pick this one.
+> > > On Tue, May 30, 2023 at 05:19:44PM +0200, Uwe Kleine-K=C3=B6nig wrote=
+:
+> > > > Hello,
+> > > >
+> > > > this is another approach after
+> > > > https://lore.kernel.org/linux-gpio/20210503210526.43455-1-u.kleine-=
+koenig@pengutronix.de
+> > > > two years ago. I switched back to "active" and "inactive" from
+> > > > "asserted" and "deasserted". The poll about the naming is ambigous,=
+ but
+> > > > I think with a slight preference of active/inactive over
+> > > > asserted/deasserted (with my unbiased self preferring active/inacti=
+ve,
+> > > > too :-)
+> > > >
 > > >
-> > > Hsin-Yi, can you also please send a version of this patch for stable?
+> > > FWIW, this makes sense to me too - the active/inactive naming is used=
+ in
+> > > both the GPIO uAPI and libgpiod v2, so it would be consistent with th=
+at,
+> > > if nothing else.
+> > >
+> > > Bart, just wondering if gpio-sim should support the aliases as well?
+> > > I realise they don't support active-low, so polarity isn't an issue, =
+and
+> > > it could even be confusing to support the alias, but just throwing it
+> > > out there...
+> > >
+> >
+> > I'm not sure what you need aliases for? Value is only shown, never
+> > stored (where you'd need "active", "inactive" strings).
+> >
 >
-> I sent a patch based on stable:
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20230531074421.=
-888652-1-hsinyi@chromium.org/
+> I was thinking wrt the definition in DT - to  allow the switch to
+> output-active etc throughout.  And I suppose also for configuring the
+> hogs in configfs, but mainly the DT.
 >
 
-Archived the above patch. I'll wait for the original patch landed then
-send it to stable.
+But gpio-sim doesn't handle DT separately - it reuses the gpiolib-of
+code and pretty much works like regular DT drivers.
 
-> > >
-> >
-> > Applied thanks!
->
-> Thanks!
+Bart
