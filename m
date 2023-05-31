@@ -2,82 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DFE37184DE
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 16:26:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CB0D7184E9
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 16:27:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232598AbjEaO0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 10:26:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40226 "EHLO
+        id S236563AbjEaO1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 10:27:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236063AbjEaO0H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 10:26:07 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9546E132
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 07:25:59 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4f3b9c88af8so7063290e87.2
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 07:25:59 -0700 (PDT)
+        with ESMTP id S236350AbjEaO1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 10:27:02 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A99C6193
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 07:26:44 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f4b256a0c9so6636786e87.2
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 07:26:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685543158; x=1688135158;
+        d=linaro.org; s=google; t=1685543203; x=1688135203;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=f3eWnseMLfg8ECq2Frh5aGqeQN/ETi8NIrJOE/0E91I=;
-        b=TfuHohM5fAfuXzZq2l0zLCXfZ5KzHV3nWr33YfTBr6hsB5vAnkEIeemZCSHtID23Fe
-         c5Kexabr1lifq69sOaxsJlvLOdNSds9Y7obKAOEJ1rh9jRKsKKGc4hiZR0IV2EjXNCbg
-         g8O/L9xY/XvWNn8yqOwomT5kgPpIBTr9BsuUa3dTTZLZOuk02Cty+o8g16QS4XteKJiH
-         csTEbqx/Qut8WVQd7HTJ8931n5/e8ot4V1e2EaJYSQhT6AqqpPRwe5DPWwf8ZhSYKtr7
-         WvH59cO48gB5g9kMo3lpPpbYarNrsbpNMI1a75DkB/hhVJEddkbm9UuJI97wQzSwhwyi
-         W2cw==
+        bh=zsb/Lkvit7E6o25rklytBN+4+1hIjsLT4kpV/+YNtPI=;
+        b=s5VJQSDMVf1ZO7LSn6Qz8ogWZMVgFKLHWGk5Ta/NYNJuEAmViSvBAw2cNM+FoqKHzu
+         rt2AsxhMJEHCEM1ycEb9dm5lSnn/F8cQNrgQysTAyKtaTNjANRmjDbcTxEBJTRSmcXo4
+         PY2D8Lw4YPtigFF4peLh5Ih2rK/SbYWEOodnDVCzSkbvlxARLxewCjXii/eapKmFyYRc
+         PjAmyypkxgf7retomJFTRxAU3KsNu8b+ijtrJqw5pHlecNoYn2hLI2+T5tj/GOFQlTTc
+         z7KiW4ud2tTmt/0iS4zIffQQHvy2lfKVHM0R0NMviBVb0V9dd9Qsc3N+vV0u+u/oYSk+
+         V/+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685543158; x=1688135158;
+        d=1e100.net; s=20221208; t=1685543203; x=1688135203;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=f3eWnseMLfg8ECq2Frh5aGqeQN/ETi8NIrJOE/0E91I=;
-        b=ToCEFr3xsHXwmWb+IhrFGvAVKxnK81pTgwqTWOOaKxCBZwjep2Gkduqi+U5vOXUcGq
-         ypA/+MY02WkaoYzlpFV57EtlpAbWs/WcWyn8r/iM4kLIz4/pejgK/h4upLhJqWYhndfy
-         bX5szHMbT/SF0Fh7DFuEcwyKx2IjuOCA8hO1g+HTmrufqdF8dG2hrA6lUjOV8lqcB25s
-         KHwGtNed5LUgW/xFAkU98PR5uyxJqzKFafSTmuMdQXvNvGqjXyygHCCDM3g2Uuh48Mhx
-         2ubI41MTA49Uei+1bKFxEyr6Yid8e1d0Y6bPmIKQkChnIeRXjxvT98BGd1qZgGJLZA9o
-         exiQ==
-X-Gm-Message-State: AC+VfDxWAV8iEUtbHrcC8P9kZdT1O+qJwTvJVV48RvPI+Eyt54mUEiLY
-        jnf7YXsY0Cgjs37FMvR9xynLlg==
-X-Google-Smtp-Source: ACHHUZ6u4LuS1NxV0tGTA3FIn3ey/cR3jQHvozhHbjspDpHdHYHTOiVqg8BfBvzqXRCnP0IMKytwWw==
-X-Received: by 2002:a19:7001:0:b0:4ee:d8f3:1390 with SMTP id h1-20020a197001000000b004eed8f31390mr2549884lfc.53.1685543157855;
-        Wed, 31 May 2023 07:25:57 -0700 (PDT)
+        bh=zsb/Lkvit7E6o25rklytBN+4+1hIjsLT4kpV/+YNtPI=;
+        b=Ew/cACLZz7s0Z8ddLFvOGBH3/YeZHEEdMLkXHT2FvhdDiQTT+cTqLS58rWf8fA2hQZ
+         BN6KipCApBm1oTiHeWFOl6Kasj0W/EcP1425Qy3RY4uglikPbRZOi/etLzEv/tSCFt8k
+         dvLNNf0lsZjV32GGdKnqMBjNSvhnC90X3oEhMvchlNf4xa3YhWMZJEVyGRLFv3Jhz/0r
+         lkP/OLHDiOJ9fRA7cnN/AYuioByX51kyP4/OT6ABy0/CdKNZad453Obkqm+JHYfeBWM1
+         8nwzbr1BTR5AomymXbxPNzBK74J0jc46+apbp4qkwrqM0b8gAwQH/xNRmHA0L0WRj0g8
+         5XlA==
+X-Gm-Message-State: AC+VfDySPNyo35xgN2g4uRqtJDKZrz71E6JByebPRSvw21m4QhkUbvhb
+        LWgFg+1nGMw9k7rZkoLkqZp1Qg==
+X-Google-Smtp-Source: ACHHUZ6oAHKtG4Gtml+ABdtf9CkPpqdfRliFW4OeYR4pkE2wnfjiDAC/126mi+a6wiyp1UEy4wYyIA==
+X-Received: by 2002:ac2:518c:0:b0:4f3:baf9:8f8e with SMTP id u12-20020ac2518c000000b004f3baf98f8emr2961540lfi.4.1685543202973;
+        Wed, 31 May 2023 07:26:42 -0700 (PDT)
 Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id 14-20020ac2484e000000b004f25129628fsm734993lfy.151.2023.05.31.07.25.56
+        by smtp.gmail.com with ESMTPSA id v2-20020a056512096200b004edc55d3900sm743380lft.0.2023.05.31.07.26.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 07:25:57 -0700 (PDT)
-Message-ID: <f5875c10-21c1-43b6-4ce6-25b968588412@linaro.org>
-Date:   Wed, 31 May 2023 16:25:55 +0200
+        Wed, 31 May 2023 07:26:42 -0700 (PDT)
+Message-ID: <b6015e94-47f1-aaa3-ad42-9ee8f78daeec@linaro.org>
+Date:   Wed, 31 May 2023 16:26:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 0/8] Flush RSC votes properly on more RPMh platforms
+Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: pmk8550: always enable RTC PMIC
+ device
 Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Richard Acayan <mailingradian@gmail.com>,
-        Lina Iyer <ilina@codeaurora.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andy Gross <andy.gross@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-References: <20230531-topic-rsc-v1-0-b4a985f57b8b@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v2-0-a3b890604c49@linaro.org>
+ <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v2-3-a3b890604c49@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230531-topic-rsc-v1-0-b4a985f57b8b@linaro.org>
+In-Reply-To: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v2-3-a3b890604c49@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,54 +83,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 31.05.2023 15:22, Konrad Dybcio wrote:
-> As pointed out in [1], the Linux implementation of RSC basically requires
-> (even if not explicitly) that we point it to a power domain which
-> represents the power state of the CPUs. In an effort to fulfill that
-> requirement, make it required in bindings and hook it up on all platforms
-> where I was able to do. This means all RPMh platforms, except
+On 31.05.2023 14:22, Neil Armstrong wrote:
+> There's no reason to keep the RTC disabled, it has been tested
+> and is functional on the SM8550 QRD and MTP boards.
 > 
-> - SC7180
-> - SC7280
-> - SA8775
-> 
-> As there wasn't an idle-states setup (which may be on purpose for CrOS
-> devices, certainly not for Windows SC7[12]80s) that I could validate.
-> (Doug, Bartosz, could you guys look into your respective platforms of
-> interest here?)
-> 
-> This series also adds support for idle states on SM6350, as I was able
-> to add and test that.
-I noticed that 7280 is WIP:
-
-https://lore.kernel.org/lkml/20230424110933.3908-4-quic_mkshah@quicinc.com/
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
+>  arch/arm64/boot/dts/qcom/pmk8550.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> [1] https://lore.kernel.org/linux-arm-msm/20230512150425.3171122-1-quic_bjorande@quicinc.com/
+> diff --git a/arch/arm64/boot/dts/qcom/pmk8550.dtsi b/arch/arm64/boot/dts/qcom/pmk8550.dtsi
+> index 8c897d4fee29..c7ac9b2eaacf 100644
+> --- a/arch/arm64/boot/dts/qcom/pmk8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pmk8550.dtsi
+> @@ -49,7 +49,6 @@ pmk8550_rtc: rtc@6100 {
+>  			reg = <0x6100>, <0x6200>;
+>  			reg-names = "rtc", "alarm";
+>  			interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
+> -			status = "disabled";
+>  		};
+>  
+>  		pmk8550_sdam_2: nvram@7100 {
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> Konrad Dybcio (8):
->       dt-bindings: soc: qcom,rpmh-rsc: Require power-domains
->       arm64: dts: qcom: sm6350: Add PSCI idle states
->       arm64: dts: qcom: qdu1000: Flush RSC sleep & wake votes
->       arm64: dts: qcom: sc8180x: Flush RSC sleep & wake votes
->       arm64: dts: qcom: sdm670: Flush RSC sleep & wake votes
->       arm64: dts: qcom: sdm845: Flush RSC sleep & wake votes
->       arm64: dts: qcom: sm6350: Flush RSC sleep & wake votes
->       arm64: dts: qcom: sm8550: Flush RSC sleep & wake votes
-> 
->  .../bindings/soc/qcom/qcom,rpmh-rsc.yaml           |   2 +
->  arch/arm64/boot/dts/qcom/qdu1000.dtsi              |   1 +
->  arch/arm64/boot/dts/qcom/sc8180x.dtsi              |   1 +
->  arch/arm64/boot/dts/qcom/sdm670.dtsi               |   1 +
->  arch/arm64/boot/dts/qcom/sdm845.dtsi               |   1 +
->  arch/arm64/boot/dts/qcom/sm6350.dtsi               | 142 +++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sm8550.dtsi               |   1 +
->  7 files changed, 149 insertions(+)
-> ---
-> base-commit: d4cee89031c80066ec461bb77b5e13a4f37d5fd2
-> change-id: 20230531-topic-rsc-35e838da9afb
-> 
-> Best regards,
