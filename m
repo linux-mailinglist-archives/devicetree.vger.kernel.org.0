@@ -2,87 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B94AA7173AD
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 04:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4222B7173BF
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 04:34:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231788AbjEaCZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 22:25:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55506 "EHLO
+        id S233978AbjEaCeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 22:34:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230465AbjEaCZK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 22:25:10 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E97511C;
-        Tue, 30 May 2023 19:25:00 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2B8457FE2;
-        Wed, 31 May 2023 10:24:53 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 31 May
- 2023 10:24:53 +0800
-Received: from [192.168.120.57] (171.223.208.138) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 31 May
- 2023 10:24:52 +0800
-Message-ID: <d9b4a420-14f9-4678-804c-9edbd848c01d@starfivetech.com>
-Date:   Wed, 31 May 2023 10:24:51 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v1 1/3] dt-bindings: qspi: cdns,qspi-nor: Add clocks for
- StarFive JH7110 SoC
-To:     Mark Brown <broonie@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S230465AbjEaCeU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 22:34:20 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90CC79F
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 19:34:18 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f4b80bf93aso5910497e87.0
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 19:34:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1685500457; x=1688092457;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8hTyjGZ6AL0yA0rgfhYU4TsPoXNrzNumNaJEOJx+Ur0=;
+        b=jK+2S+R8CqfU9FneCHCZ7GGe5jeac5TqTHTQE3sQfTWEV1ujxTU51imTOye1Tnl9vb
+         mEMriq3PZpEyUX/rgjJYVYy8cgzsyJ/UozBjdPzAGDvRsXee0xHsWdL0wM/AZlc+3t/D
+         g3a0EPcOMvQlxN571CFT9hA456ekPLlMBUSHEhapo4EGhWDqznTx7Zhozpfv7B4nG+YM
+         734RxbGN5pMzB+YOPPO9npZtOMI12VQuWU22bpUe4hlcgLaDoWRPDJVqlViSCQkYwbPZ
+         adaaREJPyZSlsLBykdXDW5YJlgXpfLCgv8ZKKYV2G2c6g0RDXfhUWjASqTNRxznqI60D
+         IzWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685500457; x=1688092457;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8hTyjGZ6AL0yA0rgfhYU4TsPoXNrzNumNaJEOJx+Ur0=;
+        b=fqOYMaYGapfrSp3Xq0/uHut625pSZ24v0p2FYjXxoCjqxZAdKgQSbzUmQwyjxR3H5k
+         VBYT9dU700GycJGruQU4hdt9AGchnl164M0grkOMJWaUjpU+ORHSOCgcrnNWXNb+YyuI
+         znMe0L+WfJjhba1qx2oWUaDKKMI2IxSEN50qwmngNN1ReYqb0f9JPz3t5tCsiW2dhuYT
+         u/AiZAlWYDWpRI/o3ff7IHWCuGF/VqhqZ9UZ0Rkt9BDz0GZ4jGRrkCUe2zgvct8QoeMP
+         eBY1IfepxTmicK0zlx09NR/DvxJokOkT8MVkk0kCFNnlu/xmHM+c7kEt6DQMQzPDbX95
+         I42g==
+X-Gm-Message-State: AC+VfDzv0HFWo8Wwb1WSVesoPv02s4JTpZGzVTln0DPauYy7EHd91gC1
+        +rtLVdL/eRsn7RbxminKyaqmqA==
+X-Google-Smtp-Source: ACHHUZ6xgtJ/m1ezI+vUkAGSOWphS4aRy5+t4HwdNbQyNIJ3lfr6ksI6qsM4MWX1jMCtwXDxgKQq5Q==
+X-Received: by 2002:ac2:532d:0:b0:4f3:92a9:aa06 with SMTP id f13-20020ac2532d000000b004f392a9aa06mr1731047lfh.48.1685500456861;
+        Tue, 30 May 2023 19:34:16 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id v24-20020ac25618000000b004f3787d8006sm524096lfd.128.2023.05.30.19.34.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 May 2023 19:34:16 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>
-References: <20230526062529.46747-1-william.qiu@starfivetech.com>
- <20230526062529.46747-2-william.qiu@starfivetech.com>
- <87e9ed95-ea57-44c8-85f8-34264b5c6dde@sirena.org.uk>
- <a09cc0c9-ef4e-120f-e61a-94f628d67e38@starfivetech.com>
- <d417628d-7994-4b07-a670-ec14ad938764@sirena.org.uk>
-Content-Language: en-US
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <d417628d-7994-4b07-a670-ec14ad938764@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 0/5] phy: qcom-qmp-usb: split away legacy USB+DP code
+Date:   Wed, 31 May 2023 05:34:10 +0300
+Message-Id: <20230531023415.1209301-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+While working on the QMP binding cleanup, I noticed that USB QMP driver
+supports both simple USB PHYs (which should be updated) and USB-only
+part of USB+DP PHYs (which are largely legacy and don't need to be
+updated). To ease further cleanup perform a quick cleanup of the last
+remaining USB+DP PHY (on sm8150 platform) and split the legacy codepath
+from the USB QMP PHY driver.
 
+Changes since v2:
+- Fixed phy subnode names (noted by Caleb)
 
-On 2023/5/30 18:02, Mark Brown wrote:
-> On Mon, May 29, 2023 at 02:44:13PM +0800, William Qiu wrote:
->> On 2023/5/26 23:33, Mark Brown wrote:
->> > On Fri, May 26, 2023 at 02:25:27PM +0800, William Qiu wrote:
-> 
->> >> +        clock-names:
->> >> +          items:
->> >> +            - const: qspi-ref
->> >> +            - const: qspi-ahb
->> >> +            - const: qspi-apb
-> 
->> 	I'm going to change the names of these three clocks to hclk, pclk,
->> and ref_clk, as defined in the data book. What do you think?
-> 
-> That looks fine.  ref, ahb and apb would also be fine, it's just the
-> qspi- prefix that I was querying.
+Changes since v1:
+- Rebased on top of phy/next
 
-That's fine. I will fix it in next version.
+Dmitry Baryshkov (5):
+  dt-bindings: phy: qcom,sc7180-qmp-usb3-dp-phy: add sm8150 USB+DP PHY
+  phy: qcom-qmp-combo: add support for the USB+DP PHY on SM8150 platform
+  arm64: dts: qcom: sm8150: turn first USB PHY into USB+DP PHY
+  dt-bindings: phy: qcom,msm8996-qmp-usb3-phy: drop legacy bindings
+  phy: qcom-qmp-usb: split off the legacy USB+dp_com support
 
-Best regards,
-William
+ .../phy/qcom,msm8996-qmp-usb3-phy.yaml        |   80 -
+ .../phy/qcom,sc7180-qmp-usb3-dp-phy.yaml      |    2 +
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |   19 +-
+ drivers/phy/qualcomm/Kconfig                  |   10 +
+ drivers/phy/qualcomm/Makefile                 |    1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c     |    4 +
+ .../phy/qualcomm/phy-qcom-qmp-usb-legacy.c    | 1407 +++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       |  556 -------
+ 8 files changed, 1438 insertions(+), 641 deletions(-)
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-usb-legacy.c
+
+-- 
+2.39.2
+
