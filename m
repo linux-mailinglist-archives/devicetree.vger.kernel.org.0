@@ -2,268 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 838737187A9
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 18:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C239F7187BF
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 18:46:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229851AbjEaQmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 12:42:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33932 "EHLO
+        id S229932AbjEaQqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 12:46:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229520AbjEaQmy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 12:42:54 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 041FA12C;
-        Wed, 31 May 2023 09:42:53 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-64d44b198baso926101b3a.0;
-        Wed, 31 May 2023 09:42:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685551372; x=1688143372;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:to
-         :content-language:user-agent:mime-version:date:message-id:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hp1iyYuSXGdZgXFgvFkqzrcL5409CMPQscypykwCUa0=;
-        b=qtpBDa4wfXFgH6cnSME8/dDLkC3F5WPDX7HhJ3E/ShmbLSFQJFmHm1Kak1DX3gwApi
-         AwELC0HkXlPQ59iLnDaV/e3JOjSCSdZyHrfAlHIHTdBaXhcgpASivcSzzL6uguzQvxXL
-         PSIwy3V7TMIQYlEQuZ9N9Fqrgm0vsX4RgVJ9QVlZ7wcGG9levJ1vJjAKaJbwsGiuFMRF
-         f+BoLkd2ng6ihAU+0Ig1w0LSXO2dhsLpoJbmLUuhaFymiReo9EdggLSZX6ECpWfj0GNp
-         jDyYklYxuYe6Hj0u+GQqlIhpgqYiFDdPLz1XFeR/LmiH9kfD+VJe7l1n095KNLlrrfUs
-         1VMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685551372; x=1688143372;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:to
-         :content-language:user-agent:mime-version:date:message-id:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hp1iyYuSXGdZgXFgvFkqzrcL5409CMPQscypykwCUa0=;
-        b=JhiL+hSIycd44NxobC2RBgCZH7+G/HrkIfsHUHxanwZSltQwM8Q0CwnGAuuvZr5SeG
-         yQsc4w+mQFayy/zZrGkKK0FPpezQtIJK4c7c1k7W5y/XD1e7jcszctGowqF49jKaVGmM
-         4+IqTDaapkbIBnkJPgF6425RTn96RhU/9puPo/dX9CL80HjZ1bbXQUNG9teonL7kIMrA
-         4PoTfx3/moLnhSGihuPxpVeOpofMBYqgMU2xgyPMITW2m8Wikj82xzCb74fRq5QE8uQF
-         kMqgb+ufpM4bpR1V8slU2Dk7yYBG4tvsHS4+4t3CL+locuUdtGxDNfW1lfTv5voEa5ua
-         dUcw==
-X-Gm-Message-State: AC+VfDy4L7r7BwhcgKEKG5AofxdOjuScX0DgMuVrs3xsEu1BV9KPQLZe
-        A3oA1kVE6liHBCNEvGHIzOU=
-X-Google-Smtp-Source: ACHHUZ42qUfIN6ffalR9gqA9UAUPucFU/LVgXATHaxj44L16PTCJII+lWPKCm+NCxM1ASwC5MshzTw==
-X-Received: by 2002:a05:6a00:1509:b0:5a8:9858:750a with SMTP id q9-20020a056a00150900b005a89858750amr6846557pfu.13.1685551372220;
-        Wed, 31 May 2023 09:42:52 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id l6-20020a654486000000b0050927cb606asm1388351pgq.13.2023.05.31.09.42.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 09:42:51 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <07b2a2f7-5ddc-0f10-6b1f-184dc21fa580@roeck-us.net>
-Date:   Wed, 31 May 2023 09:42:48 -0700
+        with ESMTP id S229922AbjEaQql (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 12:46:41 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A33018C;
+        Wed, 31 May 2023 09:46:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1685551600; x=1717087600;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OHgj5x9BlTOsr+jbuUC5FRn0FouRgE7wpNKD+K6wmEE=;
+  b=BkvpiWvW1b5fy4WXr/CbxjmDeGjAtSeBgvsm1IPeyWa8MAlRb3q0Y7L7
+   LcVspy0hTzBYjEku8mvMIsxnQST6ajD9+cgP4oaLPewvhe9IfAnjS0ox1
+   KzbQOO1JgHGwCBd6rrd5tHzY7lPzJX2zAyX9Ftge8doYOcOhOhBjbCPIQ
+   9iaDcOzZmhFjAZcrSZR2zJBmIxHNQx5TbDzTgwOP7E77BVw59bOj48Xox
+   Z975FgVOAwmv14wiOzYcnGDrANYGOWdCOuWbiePty/hYdVrRCu607ZCSC
+   e+SzIvBvp30EnEbD4Nn4CDxaVhnWNFK5dfAIElj11AEf4BOBMHP5ND9RW
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="354138620"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; 
+   d="scan'208";a="354138620"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 May 2023 09:46:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10727"; a="796775221"
+X-IronPort-AV: E=Sophos;i="6.00,207,1681196400"; 
+   d="scan'208";a="796775221"
+Received: from lkp-server01.sh.intel.com (HELO fb1ced2c09fb) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 31 May 2023 09:46:34 -0700
+Received: from kbuild by fb1ced2c09fb with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1q4Oy1-0001Uv-1V;
+        Wed, 31 May 2023 16:46:33 +0000
+Date:   Thu, 1 Jun 2023 00:45:56 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Jeff LaBundy <jeff@labundy.com>, dmitry.torokhov@gmail.com,
+        robh+dt@kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, jeff@labundy.com
+Subject: Re: [PATCH 2/2] Input: iqs7222 - add support for Azoteq IQS7222D
+Message-ID: <202306010012.Dmk3yaas-lkp@intel.com>
+References: <ZHaoFCIpUM6ocPKO@nixie71>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To:     nick.hawkins@hpe.com, verdun@hpe.com, linus.walleij@linaro.org,
-        brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jdelvare@suse.com,
-        andy.shevchenko@gmail.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org
-References: <20230531151918.105223-1-nick.hawkins@hpe.com>
- <20230531151918.105223-5-nick.hawkins@hpe.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v2 4/5] hwmon: (gxp_fan_ctrl) Provide fan info via gpio
-In-Reply-To: <20230531151918.105223-5-nick.hawkins@hpe.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZHaoFCIpUM6ocPKO@nixie71>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/31/23 08:19, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
-> 
-> The fan driver now receives fan data from GPIO via a shared variable.
+Hi Jeff,
 
-No, it is not necessary. The driver can and should get the GPIO data using
-the gpio API.
+kernel test robot noticed the following build warnings:
 
-> This is a necessity as the Host and the driver need access to the same
-> information. Part of the changes includes removing a system power check
-> as the GPIO driver needs it to report power state to host.
-> 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-> 
-> ---
-> 
-> v2:
->   *Removed use of shared functions to GPIO in favor of a shared variable
->   *Added build dependency on GXP GPIO driver.
-> ---
->   drivers/hwmon/Kconfig        |  2 +-
->   drivers/hwmon/gxp-fan-ctrl.c | 61 +++++-------------------------------
->   drivers/hwmon/gxp-gpio.h     | 13 ++++++++
->   3 files changed, 21 insertions(+), 55 deletions(-)
->   create mode 100644 drivers/hwmon/gxp-gpio.h
-> 
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index 5b3b76477b0e..5c606bea31f9 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -716,7 +716,7 @@ config SENSORS_GPIO_FAN
->   
->   config SENSORS_GXP_FAN_CTRL
->   	tristate "HPE GXP fan controller"
-> -	depends on ARCH_HPE_GXP || COMPILE_TEST
-> +	depends on (ARCH_HPE_GXP  && GPIO_GXP_PL) || COMPILE_TEST
+[auto build test WARNING on dtor-input/next]
+[also build test WARNING on dtor-input/for-linus robh/for-next hid/for-next linus/master v6.4-rc4 next-20230531]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Compile test will fail badly unless those external variables
-are declared.
+url:    https://github.com/intel-lab-lkp/linux/commits/Jeff-LaBundy/Input-iqs7222-add-support-for-Azoteq-IQS7222D/20230531-095226
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
+patch link:    https://lore.kernel.org/r/ZHaoFCIpUM6ocPKO%40nixie71
+patch subject: [PATCH 2/2] Input: iqs7222 - add support for Azoteq IQS7222D
+config: i386-allyesconfig (https://download.01.org/0day-ci/archive/20230601/202306010012.Dmk3yaas-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build):
+        # https://github.com/intel-lab-lkp/linux/commit/b8b40762779cc4c0208ff51ef9fbb2d8015ba164
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Jeff-LaBundy/Input-iqs7222-add-support-for-Azoteq-IQS7222D/20230531-095226
+        git checkout b8b40762779cc4c0208ff51ef9fbb2d8015ba164
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 O=build_dir ARCH=i386 olddefconfig
+        make W=1 O=build_dir ARCH=i386 SHELL=/bin/bash drivers/input/misc/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306010012.Dmk3yaas-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/input/misc/iqs7222.c: In function 'iqs7222_parse_tpad':
+>> drivers/input/misc/iqs7222.c:2574:36: warning: unused variable 'val' [-Wunused-variable]
+    2574 |         unsigned int chan_sel[12], val;
+         |                                    ^~~
 
 
->   	help
->   	  If you say yes here you get support for GXP fan control functionality.
->   
-> diff --git a/drivers/hwmon/gxp-fan-ctrl.c b/drivers/hwmon/gxp-fan-ctrl.c
-> index 0014b8b0fd41..8555231328d7 100644
-> --- a/drivers/hwmon/gxp-fan-ctrl.c
-> +++ b/drivers/hwmon/gxp-fan-ctrl.c
-> @@ -1,5 +1,5 @@
->   // SPDX-License-Identifier: GPL-2.0-only
-> -/* Copyright (C) 2022 Hewlett-Packard Enterprise Development Company, L.P. */
-> +/* Copyright (C) 2023 Hewlett-Packard Enterprise Development Company, L.P. */
->   
->   #include <linux/bits.h>
->   #include <linux/err.h>
-> @@ -8,51 +8,28 @@
->   #include <linux/module.h>
->   #include <linux/of_device.h>
->   #include <linux/platform_device.h>
-> +#include "gxp-gpio.h"
->   
->   #define OFS_FAN_INST	0 /* Is 0 because plreg base will be set at INST */
->   #define OFS_FAN_FAIL	2 /* Is 2 bytes after base */
-> -#define OFS_SEVSTAT	0 /* Is 0 because fn2 base will be set at SEVSTAT */
-> -#define POWER_BIT	24
->   
->   struct gxp_fan_ctrl_drvdata {
-> -	void __iomem	*base;
-> -	void __iomem	*plreg;
-> -	void __iomem	*fn2;
-> +	void __iomem *base;
->   };
->   
->   static bool fan_installed(struct device *dev, int fan)
->   {
-> -	struct gxp_fan_ctrl_drvdata *drvdata = dev_get_drvdata(dev);
-> -	u8 val;
-> -
-> -	val = readb(drvdata->plreg + OFS_FAN_INST);
-> -
-> -	return !!(val & BIT(fan));
-> +	return !!(fan_presence & BIT(fan));
->   }
->   
->   static long fan_failed(struct device *dev, int fan)
->   {
-> -	struct gxp_fan_ctrl_drvdata *drvdata = dev_get_drvdata(dev);
-> -	u8 val;
-> -
-> -	val = readb(drvdata->plreg + OFS_FAN_FAIL);
-> -
-> -	return !!(val & BIT(fan));
-> +	return !!(fan_fail & BIT(fan));
->   }
->   
->   static long fan_enabled(struct device *dev, int fan)
->   {
-> -	struct gxp_fan_ctrl_drvdata *drvdata = dev_get_drvdata(dev);
-> -	u32 val;
-> -
-> -	/*
-> -	 * Check the power status as if the platform is off the value
-> -	 * reported for the PWM will be incorrect. Report fan as
-> -	 * disabled.
-> -	 */
-> -	val = readl(drvdata->fn2 + OFS_SEVSTAT);
-> -
-> -	return !!((val & BIT(POWER_BIT)) && fan_installed(dev, fan));
-> +	return !!(fan_installed(dev, fan));
+vim +/val +2574 drivers/input/misc/iqs7222.c
 
-Unnecessary () around function call.
+  2563	
+  2564	static int iqs7222_parse_tpad(struct iqs7222_private *iqs7222,
+  2565				      struct fwnode_handle *tpad_node, int tpad_index)
+  2566	{
+  2567		const struct iqs7222_dev_desc *dev_desc = iqs7222->dev_desc;
+  2568		struct touchscreen_properties *prop = &iqs7222->prop;
+  2569		struct i2c_client *client = iqs7222->client;
+  2570		int num_chan = dev_desc->reg_grps[IQS7222_REG_GRP_CHAN].num_row;
+  2571		int count, error, i;
+  2572		u16 *event_mask = &iqs7222->sys_setup[dev_desc->event_offset];
+  2573		u16 *tpad_setup = iqs7222->tpad_setup;
+> 2574		unsigned int chan_sel[12], val;
+  2575	
+  2576		error = iqs7222_parse_props(iqs7222, tpad_node, tpad_index,
+  2577					    IQS7222_REG_GRP_TPAD,
+  2578					    IQS7222_REG_KEY_NONE);
+  2579		if (error)
+  2580			return error;
+  2581	
+  2582		count = fwnode_property_count_u32(tpad_node, "azoteq,channel-select");
+  2583		if (count < 0) {
+  2584			dev_err(&client->dev, "Failed to count %s channels: %d\n",
+  2585				fwnode_get_name(tpad_node), count);
+  2586			return count;
+  2587		} else if (!count || count > ARRAY_SIZE(chan_sel)) {
+  2588			dev_err(&client->dev, "Invalid number of %s channels\n",
+  2589				fwnode_get_name(tpad_node));
+  2590			return -EINVAL;
+  2591		}
+  2592	
+  2593		error = fwnode_property_read_u32_array(tpad_node,
+  2594						       "azoteq,channel-select",
+  2595						       chan_sel, count);
+  2596		if (error) {
+  2597			dev_err(&client->dev, "Failed to read %s channels: %d\n",
+  2598				fwnode_get_name(tpad_node), error);
+  2599			return error;
+  2600		}
+  2601	
+  2602		tpad_setup[6] &= ~GENMASK(num_chan - 1, 0);
+  2603	
+  2604		for (i = 0; i < ARRAY_SIZE(chan_sel); i++) {
+  2605			tpad_setup[8 + i] = 0;
+  2606			if (i >= count || chan_sel[i] == U8_MAX)
+  2607				continue;
+  2608	
+  2609			if (chan_sel[i] >= num_chan) {
+  2610				dev_err(&client->dev, "Invalid %s channel: %u\n",
+  2611					fwnode_get_name(tpad_node), chan_sel[i]);
+  2612				return -EINVAL;
+  2613			}
+  2614	
+  2615			/*
+  2616			 * The following fields indicate which channels participate in
+  2617			 * the trackpad, as well as each channel's relative placement.
+  2618			 */
+  2619			tpad_setup[6] |= BIT(chan_sel[i]);
+  2620			tpad_setup[8 + i] = chan_sel[i] * 34 + 1072;
+  2621		}
+  2622	
+  2623		tpad_setup[7] = dev_desc->touch_link;
+  2624		if (fwnode_property_present(tpad_node, "azoteq,use-prox"))
+  2625			tpad_setup[7] -= 2;
+  2626	
+  2627		for (i = 0; i < ARRAY_SIZE(iqs7222_tp_events); i++)
+  2628			tpad_setup[20] &= ~(iqs7222_tp_events[i].strict |
+  2629					    iqs7222_tp_events[i].enable);
+  2630	
+  2631		for (i = 0; i < ARRAY_SIZE(iqs7222_tp_events); i++) {
+  2632			const char *event_name = iqs7222_tp_events[i].name;
+  2633			struct fwnode_handle *event_node;
+  2634	
+  2635			event_node = fwnode_get_named_child_node(tpad_node, event_name);
+  2636			if (!event_node)
+  2637				continue;
+  2638	
+  2639			if (fwnode_property_present(event_node,
+  2640						    "azoteq,gesture-angle-tighten"))
+  2641				tpad_setup[20] |= iqs7222_tp_events[i].strict;
+  2642	
+  2643			tpad_setup[20] |= iqs7222_tp_events[i].enable;
+  2644	
+  2645			error = iqs7222_parse_event(iqs7222, event_node, tpad_index,
+  2646						    IQS7222_REG_GRP_TPAD,
+  2647						    iqs7222_tp_events[i].reg_key,
+  2648						    iqs7222_tp_events[i].link, 1566,
+  2649						    NULL,
+  2650						    &iqs7222->tp_code[i]);
+  2651			fwnode_handle_put(event_node);
+  2652			if (error)
+  2653				return error;
+  2654	
+  2655			if (!dev_desc->event_offset)
+  2656				continue;
+  2657	
+  2658			/*
+  2659			 * The press/release event is determined based on whether the
+  2660			 * coordinate fields report 0xFFFF and solely relies on touch
+  2661			 * or proximity interrupts to be unmasked.
+  2662			 */
+  2663			if (i)
+  2664				*event_mask |= IQS7222_EVENT_MASK_TPAD;
+  2665			else if (tpad_setup[7] == dev_desc->touch_link)
+  2666				*event_mask |= IQS7222_EVENT_MASK_TOUCH;
+  2667			else
+  2668				*event_mask |= IQS7222_EVENT_MASK_PROX;
+  2669		}
+  2670	
+  2671		if (!iqs7222->tp_code[0])
+  2672			return 0;
+  2673	
+  2674		input_set_abs_params(iqs7222->keypad, ABS_X,
+  2675				     0, (tpad_setup[4] ? : 1) - 1, 0, 0);
+  2676	
+  2677		input_set_abs_params(iqs7222->keypad, ABS_Y,
+  2678				     0, (tpad_setup[5] ? : 1) - 1, 0, 0);
+  2679	
+  2680		touchscreen_parse_properties(iqs7222->keypad, false, prop);
+  2681	
+  2682		if (prop->max_x >= U16_MAX || prop->max_y >= U16_MAX) {
+  2683			dev_err(&client->dev, "Invalid trackpad size: %u*%u\n",
+  2684				prop->max_x, prop->max_y);
+  2685			return -EINVAL;
+  2686		}
+  2687	
+  2688		tpad_setup[4] = prop->max_x + 1;
+  2689		tpad_setup[5] = prop->max_y + 1;
+  2690	
+  2691		return 0;
+  2692	}
+  2693	
 
->   }
->   
->   static int gxp_pwm_write(struct device *dev, u32 attr, int channel, long val)
-> @@ -98,20 +75,8 @@ static int gxp_fan_read(struct device *dev, u32 attr, int channel, long *val)
->   static int gxp_pwm_read(struct device *dev, u32 attr, int channel, long *val)
->   {
->   	struct gxp_fan_ctrl_drvdata *drvdata = dev_get_drvdata(dev);
-> -	u32 reg;
->   
-> -	/*
-> -	 * Check the power status of the platform. If the platform is off
-> -	 * the value reported for the PWM will be incorrect. In this case
-> -	 * report a PWM of zero.
-> -	 */
-> -
-> -	reg = readl(drvdata->fn2 + OFS_SEVSTAT);
-> -
-> -	if (reg & BIT(POWER_BIT))
-> -		*val = fan_installed(dev, channel) ? readb(drvdata->base + channel) : 0;
-> -	else
-> -		*val = 0;
-> +	*val = fan_installed(dev, channel) ? readb(drvdata->base + channel) : 0;
->   
->   	return 0;
->   }
-> @@ -212,18 +177,6 @@ static int gxp_fan_ctrl_probe(struct platform_device *pdev)
->   		return dev_err_probe(dev, PTR_ERR(drvdata->base),
->   				     "failed to map base\n");
->   
-> -	drvdata->plreg = devm_platform_ioremap_resource_byname(pdev,
-> -							       "pl");
-> -	if (IS_ERR(drvdata->plreg))
-> -		return dev_err_probe(dev, PTR_ERR(drvdata->plreg),
-> -				     "failed to map plreg\n");
-> -
-> -	drvdata->fn2 = devm_platform_ioremap_resource_byname(pdev,
-> -							     "fn2");
-> -	if (IS_ERR(drvdata->fn2))
-> -		return dev_err_probe(dev, PTR_ERR(drvdata->fn2),
-> -				     "failed to map fn2\n");
-> -
->   	hwmon_dev = devm_hwmon_device_register_with_info(&pdev->dev,
->   							 "hpe_gxp_fan_ctrl",
->   							 drvdata,
-> diff --git a/drivers/hwmon/gxp-gpio.h b/drivers/hwmon/gxp-gpio.h
-> new file mode 100644
-> index 000000000000..88abe60bbe83
-> --- /dev/null
-> +++ b/drivers/hwmon/gxp-gpio.h
-> @@ -0,0 +1,13 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/* Copyright (C) 2023 Hewlett-Packard Enterprise Development Company, L.P. */
-> +
-> +#ifndef __GPIO_GXP_H__
-> +#define __GPIO_GXP_H__
-> +
-> +#include <linux/err.h>
-> +
-> +/* Data provided by GPIO */
-> +extern u8 fan_presence;
-> +extern u8 fan_fail;
-> +
-
-This is not acceptable. It is way too generic for a global variable, and it
-does not use the gpio API. Besides, the variables would have to be declared
-in an include file associated with the code introducing them.
-
-If you want to use gpio pins in the hwmon driver, use the gpio API
-([devm_]gpiod_get() and associated functions). There are lots of examples
-in the kernel showing how to do that.
-
-Guenter
-
-> +#endif /* __GPIO_GXP_H__ */
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
