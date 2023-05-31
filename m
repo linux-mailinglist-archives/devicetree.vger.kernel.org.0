@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1DB4717241
+	by mail.lfdr.de (Postfix) with ESMTP id 9D27C717240
 	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 02:03:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233816AbjEaADH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 May 2023 20:03:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43252 "EHLO
+        id S231488AbjEaADI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 May 2023 20:03:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233828AbjEaADG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 20:03:06 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0048CD9
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 17:03:04 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f4b256a0c9so5725956e87.2
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 17:03:04 -0700 (PDT)
+        with ESMTP id S233818AbjEaADH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 20:03:07 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB29AF9
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 17:03:05 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4f3b9c88af8so6062465e87.2
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 17:03:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685491383; x=1688083383;
+        d=linaro.org; s=google; t=1685491384; x=1688083384;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4ndSnEYa6LuA1WUrC19j/UvYoRdHNkWnuQlVQYWKx9U=;
-        b=Whq/xMUjT6yPq+YCLB+EuBapvj/IuETp3Rbm7Lu3h0xBbJH/4mAMz8623PcEegc2e2
-         zFHxVWgu6auHbYP5N2TBb2IozP0o8sIeXq//0GrXelKsdIm27EKT0pTpsFaa8/LtkLlm
-         m5PRl1wZbzr6LgwIGzDClTtwTNoSA/YPmHnKS55DWhOTdQYpfI3uVRDFZUQ8fOLvEE7Z
-         dA2HJaEdLOpgXiYgOzOJA6Un0RIqciX/BMeeXNPF6TXc/9OQqU88wIwb1HYvCcNF8IQw
-         +lqdDcV3l2msQ24nXwzYdmku1d1fatyRgQoVFbFm9oRJIFqbAQm15U1NzbCFFNTkNAw+
-         mehA==
+        bh=3OEmXr21pqF/DhjjsNsj2jQ6ewL1wVXkcJUB2jONab0=;
+        b=hZN+kfDdoHLAt9GaIgZHuFu6HKXzZ3Ktc6kJP8d49Cw/arvaoOyLntl3lVChaxWKSU
+         WnyRHNtTlmbX/Ci+j5APLM7eM7uEFY7GktDA8loVPNYMEDJqTSpXMrL6GMnA+8ZP5i6p
+         TJgpVij7aDHfAGjGO8wEnGN18G+4+p1gn/8+EJrsAx5aEKU9fSutn4y+33/icfXzsWYA
+         KcsV2pwFMizAFnyhffeFoEUK9GOhFzORMy5guBrOB2evko0PNrC+PJFWYEuRPIQddLSn
+         dWBZR4p6JZCXtH+Lfwd78UAr6lnvHcywtKO6TgeiD7KWl4j502ltQC9DuP20ZIBywgA/
+         KaGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685491383; x=1688083383;
+        d=1e100.net; s=20221208; t=1685491384; x=1688083384;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4ndSnEYa6LuA1WUrC19j/UvYoRdHNkWnuQlVQYWKx9U=;
-        b=CxBW0RPi+TYbTnhz2OoY+Vf/S7IJccEQy81MYwnKB0faUBM7Be43/mLqHwcb7NLri0
-         PU0W8D0vWTPmt3/ysfyRhEJGPdI1u3zgQ2ADn7HUFLtloAR73yKPOpUpO6Y6nQRGD8Gb
-         GnGDuXR6O4aAciBNp1XsbIiyWTryM6/FfC7k0ftvSaDkebZMyZ+7GNKAmXUPOrVEZh4K
-         xEuLofAfecRJ9zk7rzIY9PJBVH8d8ocry4XYD0+dYSOt/y57sXctz0ajOCQOmjJBLbCf
-         XX4+hR30Z8bQLe2LadKiX992wcCFT/eU7GcgaLsUJakE+3kuNbZ7wfQOY8+XGpnGOSqr
-         Txdg==
-X-Gm-Message-State: AC+VfDyg2PaiiYRxavoor2TI2yh4vqZFlHfdkdsBnYFLV1JCyUst8c1w
-        rq9RHnlb1qTsKDrs/yJ0WR0gcQ==
-X-Google-Smtp-Source: ACHHUZ7ax9Ag9+No8JNb9aFjqLI3V7NHwlCsNbV20G9jaRilJ73e4gdRu5nvWYi9gfwhGWiQaazD7A==
-X-Received: by 2002:a19:7514:0:b0:4f4:dbcc:54d3 with SMTP id y20-20020a197514000000b004f4dbcc54d3mr1750354lfe.53.1685491383396;
-        Tue, 30 May 2023 17:03:03 -0700 (PDT)
+        bh=3OEmXr21pqF/DhjjsNsj2jQ6ewL1wVXkcJUB2jONab0=;
+        b=DHxhilbAAZWusUC+UdPrLN10neQOFKoC4wJ690Uj/2klJMg5brr6ShfENtFToS48jB
+         75JxjAYVoTmoBOnA/CUEt+oZ1WVnMAarQEWiUPeGWlbUWMvPF0Iib3OLozU95NaAuKwx
+         cTJRd3Bk4fPoAzdtOj9uFNHk953mqhv/lUlZyPWHNgU1T7KIeJ7w+uuHStBS+ghkVqc2
+         QkMZOUBfFyirGSBNFFD1OgjapC/U843T1dKIS2OCDMbglxTBAnSIbjll7HHfsprQSVn7
+         TEnR3p4qjEjnFMyEetnmYLxxhajXZUGF010dJ4Js4L0IwNJdtdCaEtxAI0e7n+3OaPMF
+         LuAQ==
+X-Gm-Message-State: AC+VfDxql6wrt/R2dg/myzD0l1IXjQA1q9IUJ8d+qAtl837IcQelvNUe
+        m8oCWHidM8CDjnsf7Ws3eU+haA==
+X-Google-Smtp-Source: ACHHUZ7S8cGW6Oy5Se6ClqJ1RTus/DPNFHmu81b1xTiPY1WGRF6SQ9zHvno/ZAHf1nqswW6tYzBp7w==
+X-Received: by 2002:ac2:5491:0:b0:4f2:579d:6867 with SMTP id t17-20020ac25491000000b004f2579d6867mr1546144lfk.20.1685491384301;
+        Tue, 30 May 2023 17:03:04 -0700 (PDT)
 Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
-        by smtp.gmail.com with ESMTPSA id d30-20020ac25ede000000b004f13eff5375sm490388lfq.45.2023.05.30.17.03.02
+        by smtp.gmail.com with ESMTPSA id d30-20020ac25ede000000b004f13eff5375sm490388lfq.45.2023.05.30.17.03.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 17:03:02 -0700 (PDT)
+        Tue, 30 May 2023 17:03:03 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -62,11 +62,10 @@ To:     Rob Herring <robh+dt@kernel.org>,
         David Airlie <airlied@gmail.com>,
         Daniel Vetter <daniel@ffwll.ch>
 Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v3 2/3] drm/bridge: display-connector: rename dp_pwr to connector_pwr
-Date:   Wed, 31 May 2023 03:02:58 +0300
-Message-Id: <20230531000259.3758235-3-dmitry.baryshkov@linaro.org>
+        freedreno@lists.freedesktop.org
+Subject: [PATCH v3 3/3] drm/bridge: display-connector: handle hdmi-pwr supply
+Date:   Wed, 31 May 2023 03:02:59 +0300
+Message-Id: <20230531000259.3758235-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230531000259.3758235-1-dmitry.baryshkov@linaro.org>
 References: <20230531000259.3758235-1-dmitry.baryshkov@linaro.org>
@@ -82,69 +81,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In preparation to adding support for the hdmi_pwr supply, rename dp_pwr
-structure field to the generic connector_pwr.
+On some devices the +5V Power pin of the HDMI connector and/or the ESD
+protection logic is powered on by a separate regulator. Instead of
+declaring this regulator as always-on, make hdmi-connector support the
+additional hdmi-pwr supply.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/gpu/drm/bridge/display-connector.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/bridge/display-connector.c | 55 ++++++++++++----------
+ 1 file changed, 29 insertions(+), 26 deletions(-)
 
 diff --git a/drivers/gpu/drm/bridge/display-connector.c b/drivers/gpu/drm/bridge/display-connector.c
-index 56ae511367b1..cad3105ab186 100644
+index cad3105ab186..f7f436cf96e0 100644
 --- a/drivers/gpu/drm/bridge/display-connector.c
 +++ b/drivers/gpu/drm/bridge/display-connector.c
-@@ -24,7 +24,7 @@ struct display_connector {
- 	struct gpio_desc	*hpd_gpio;
- 	int			hpd_irq;
+@@ -191,6 +191,18 @@ static irqreturn_t display_connector_hpd_irq(int irq, void *arg)
+ 	return IRQ_HANDLED;
+ }
  
--	struct regulator	*dp_pwr;
-+	struct regulator	*supply;
- 	struct gpio_desc	*ddc_en;
- };
- 
-@@ -316,14 +316,14 @@ static int display_connector_probe(struct platform_device *pdev)
++static int display_connector_get_supply(struct platform_device *pdev,
++					struct display_connector *conn,
++					const char *name)
++{
++	conn->supply = devm_regulator_get_optional(&pdev->dev, name);
++
++	if (conn->supply == ERR_PTR(-ENODEV))
++		conn->supply = NULL;
++
++	return PTR_ERR_OR_ZERO(conn->supply);
++}
++
+ static int display_connector_probe(struct platform_device *pdev)
+ {
+ 	struct display_connector *conn;
+@@ -316,36 +328,15 @@ static int display_connector_probe(struct platform_device *pdev)
  	if (type == DRM_MODE_CONNECTOR_DisplayPort) {
  		int ret;
  
--		conn->dp_pwr = devm_regulator_get_optional(&pdev->dev, "dp-pwr");
-+		conn->supply = devm_regulator_get_optional(&pdev->dev, "dp-pwr");
+-		conn->supply = devm_regulator_get_optional(&pdev->dev, "dp-pwr");
+-
+-		if (IS_ERR(conn->supply)) {
+-			ret = PTR_ERR(conn->supply);
+-
+-			switch (ret) {
+-			case -ENODEV:
+-				conn->supply = NULL;
+-				break;
+-
+-			case -EPROBE_DEFER:
+-				return -EPROBE_DEFER;
+-
+-			default:
+-				dev_err(&pdev->dev, "failed to get DP PWR regulator: %d\n", ret);
+-				return ret;
+-			}
+-		}
+-
+-		if (conn->supply) {
+-			ret = regulator_enable(conn->supply);
+-			if (ret) {
+-				dev_err(&pdev->dev, "failed to enable DP PWR regulator: %d\n", ret);
+-				return ret;
+-			}
+-		}
++		ret = display_connector_get_supply(pdev, conn, "dp-pwr");
++		if (ret < 0)
++			return dev_err_probe(&pdev->dev, ret, "failed to get DP PWR regulator\n");
+ 	}
  
--		if (IS_ERR(conn->dp_pwr)) {
--			ret = PTR_ERR(conn->dp_pwr);
-+		if (IS_ERR(conn->supply)) {
-+			ret = PTR_ERR(conn->supply);
+ 	/* enable DDC */
+ 	if (type == DRM_MODE_CONNECTOR_HDMIA) {
++		int ret;
++
+ 		conn->ddc_en = devm_gpiod_get_optional(&pdev->dev, "ddc-en",
+ 						       GPIOD_OUT_HIGH);
  
- 			switch (ret) {
- 			case -ENODEV:
--				conn->dp_pwr = NULL;
-+				conn->supply = NULL;
- 				break;
- 
- 			case -EPROBE_DEFER:
-@@ -335,8 +335,8 @@ static int display_connector_probe(struct platform_device *pdev)
- 			}
+@@ -353,6 +344,18 @@ static int display_connector_probe(struct platform_device *pdev)
+ 			dev_err(&pdev->dev, "Couldn't get ddc-en gpio\n");
+ 			return PTR_ERR(conn->ddc_en);
  		}
++
++		ret = display_connector_get_supply(pdev, conn, "hdmi-pwr");
++		if (ret < 0)
++			return dev_err_probe(&pdev->dev, ret, "failed to get HDMI +5V Power regulator\n");
++	}
++
++	if (conn->supply) {
++		ret = regulator_enable(conn->supply);
++		if (ret) {
++			dev_err(&pdev->dev, "failed to enable PWR regulator: %d\n", ret);
++			return ret;
++		}
+ 	}
  
--		if (conn->dp_pwr) {
--			ret = regulator_enable(conn->dp_pwr);
-+		if (conn->supply) {
-+			ret = regulator_enable(conn->supply);
- 			if (ret) {
- 				dev_err(&pdev->dev, "failed to enable DP PWR regulator: %d\n", ret);
- 				return ret;
-@@ -386,8 +386,8 @@ static void display_connector_remove(struct platform_device *pdev)
- 	if (conn->ddc_en)
- 		gpiod_set_value(conn->ddc_en, 0);
- 
--	if (conn->dp_pwr)
--		regulator_disable(conn->dp_pwr);
-+	if (conn->supply)
-+		regulator_disable(conn->supply);
- 
- 	drm_bridge_remove(&conn->bridge);
- 
+ 	conn->bridge.funcs = &display_connector_bridge_funcs;
 -- 
 2.39.2
 
