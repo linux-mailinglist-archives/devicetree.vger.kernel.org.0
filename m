@@ -2,107 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 362437189CB
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 21:06:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E23B27189DA
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 21:09:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229648AbjEaTGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 15:06:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44450 "EHLO
+        id S229748AbjEaTJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 15:09:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229643AbjEaTGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 15:06:47 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEAA8A3
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:06:43 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-514ab6cb529so2788678a12.1
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 12:06:43 -0700 (PDT)
+        with ESMTP id S229648AbjEaTJ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 15:09:26 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20DB125;
+        Wed, 31 May 2023 12:08:56 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-5147e441c33so240614a12.0;
+        Wed, 31 May 2023 12:08:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685560002; x=1688152002;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20221208; t=1685560135; x=1688152135;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=yR7IN/rJmbW/7sc8ydTiLPthUafqqH/Du1ORqrZgWWg=;
-        b=o78KcazMr6xQ4rfYIG/MI2lJw3SPhYcP/anXxXwf/QirEg3eLc3JBqJEygjdozMb7T
-         XMuj5WnUIXQWbN4bOrUXg89LTE5tOW/ueBje9/PlO/HCVoCoImvsiinSkYELAGzQ98fD
-         Bjxs6XBXr1XXVIqtc4vHLr/UaV5Ye4W0GirbhdyWHMA2teayX/xQYH72cbQbjVdoCHSy
-         dsbJsltwxpL1qnbq250cq/HzKvCtF7Fbr6Pg7/iHzFSMoRWOBGNfuJ33nyOyu2jDRwig
-         IH4E+3idZlHhTmH2FQsN7NEvZv2e38wha9gZt9dSjToPxbHLyLZpxUNsI0fpArlzE8zs
-         yiGw==
+        bh=zyxR30g2bKMnEjOEuROEiWjiUjocH3rGbPWdVsGv92s=;
+        b=Ye2IWrnhoxGCqV8CGZvUTZnGQFK30FN7eFPb3mkua59MXfEURFTToTqMIc9p4HZwMP
+         wFzjlVy9+QNsDn11n5oBQPUWKVZnTri5EvZYXX1lbvupKK/+7zMxPcBPoMJN839ELKW9
+         a1pgRCPWS7GNpT+c1HzgV+ns6eEcXkOses3w16nXfaSiXwV1vQJr86mZsPBcDWh3byPy
+         lPMencn3DjE+it5T1fGr1w6nHJ67qk4Bc8giOLvY+PenGdUi6wMJS29BtBXJdbiVu/+6
+         gZaLhB2bkTvf02Mdre9GTMnAcN8mLKnnjMiRp55fte9LFOqZf4BXk3L4hm5yihFbKZDz
+         XFMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685560002; x=1688152002;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1685560135; x=1688152135;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yR7IN/rJmbW/7sc8ydTiLPthUafqqH/Du1ORqrZgWWg=;
-        b=eBaTuLZ3HE9mwcQXIEc8azL/WAqEJj2zejdsbQ7h/RV3i/fop1DPqejnIlCC/VntB1
-         LJjZqaW58Onirj0Oigstpv0gBezKVig5dDrWj+p9Xkffml2ChDUB+8kzQd9wRxoT+4Ur
-         UcWx30tfgXUtV0XaD7UK51XkXVDiC15EjfcXTj3zff6AzUOghXmwKgk5K2vJ0GLhG1sT
-         gHlmaR4a7pU7PRMwmHiw0DrcUl3WiHo/Ya9vLxGKep9sqH5U/Gpi5hDXyx6ffbZW0smu
-         OiyUf4Nla7GmgNeDDWREQuDNivfTp3+KKmxQW3Gc7BDp/VkT7j2EBB66S1JLyy4bUlYJ
-         pVkg==
-X-Gm-Message-State: AC+VfDwLhW3uelqXXMJa7DVQdaFyQWMYw9m2mqoTafzaFbQmfJ0tm6/c
-        NKCT/J2s64l0fIK7Dw4/lbfIwQ==
-X-Google-Smtp-Source: ACHHUZ6Gjg4u5HI2TPqwWF8w/xRRnBF6kJtCaMF4P1k+1aswfie5jogdRnQ0Qklx1CUCHyCnNq/pyg==
-X-Received: by 2002:a17:907:2d27:b0:94e:4285:390c with SMTP id gs39-20020a1709072d2700b0094e4285390cmr6798209ejc.10.1685560002373;
-        Wed, 31 May 2023 12:06:42 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id md7-20020a170906ae8700b0094edbe5c7ddsm9404066ejb.38.2023.05.31.12.06.39
+        bh=zyxR30g2bKMnEjOEuROEiWjiUjocH3rGbPWdVsGv92s=;
+        b=IWpyQphcW6Z5uhCXJTtrPBNMDEutfQlECtR3IN/QE/b4R3cT9BPhuYOyEirPRM8sqr
+         prMKBpA5fruEx8XnGNuqIkkrLU2o8Z61/EGfjYF9l45ShbuJYN6N7H4DxfnVqRP3DNZz
+         eIuSacu7WvxvdPU5Ht//0wBRExNS/RNbFrb8yGE+1mQqJU4OAhHtyH34WE/c/9P/hV8+
+         DHVfP7nc+PcClFZ6xqS/dveeIT8qEa+L2U8KeUZgy8fFvAgB37vpP1fLazQpavNjOehV
+         TY6UD6GzYPw+M761+S01IyIVDcETHD3J7+4C9plBWsuCEzJzcCY1kXHS0MRyYA4WfczR
+         GklQ==
+X-Gm-Message-State: AC+VfDzCd127y1refm3+AEVDP9wKa3tFGDwK63Owm7rgfkazVeZGWiC3
+        iFJj+OIbKi5/RveJ/wd/G6c=
+X-Google-Smtp-Source: ACHHUZ7fgGkI5VqrGVbz2CLufCaK0JikIDl9Hwd+z7uJFtvba3mR751C8zmx9S8daTsL5HhTRk9D+w==
+X-Received: by 2002:a05:6402:5107:b0:514:9311:e83a with SMTP id m7-20020a056402510700b005149311e83amr7142584edd.8.1685560134877;
+        Wed, 31 May 2023 12:08:54 -0700 (PDT)
+Received: from ?IPV6:2a01:c23:c18f:4600:8999:532:b66e:c213? (dynamic-2a01-0c23-c18f-4600-8999-0532-b66e-c213.c23.pool.telefonica.de. [2a01:c23:c18f:4600:8999:532:b66e:c213])
+        by smtp.googlemail.com with ESMTPSA id d25-20020a50fb19000000b0050cc4461fc5sm6101880edq.92.2023.05.31.12.08.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 12:06:41 -0700 (PDT)
-Message-ID: <cfd657bc-59ba-e63b-beb9-1661b8195a95@linaro.org>
-Date:   Wed, 31 May 2023 21:06:38 +0200
+        Wed, 31 May 2023 12:08:54 -0700 (PDT)
+Message-ID: <4a6c413c-8791-fd00-a73e-7a12413693e3@gmail.com>
+Date:   Wed, 31 May 2023 21:08:53 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v4 1/8] dt-bindings: display: mediatek: add MT8195 hdmi
- bindings
-Content-Language: en-US
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 2/2] net: phy: realtek: Add optional external PHY clock
+To:     Detlev Casanova <detlev.casanova@collabora.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Andrew Lunn <andrew@lunn.ch>, Russell King <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, CK Hu <ck.hu@mediatek.com>,
-        Jitao shi <jitao.shi@mediatek.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, mac.shen@mediatek.com,
-        stuart.lee@mediatek.com
-References: <20220919-v4-0-687f09a06dd9@baylibre.com>
- <20220919-v4-1-687f09a06dd9@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220919-v4-1-687f09a06dd9@baylibre.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230531150340.522994-1-detlev.casanova@collabora.com>
+ <20230531150340.522994-2-detlev.casanova@collabora.com>
+Content-Language: en-US
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <20230531150340.522994-2-detlev.casanova@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/05/2023 16:30, Guillaume Ranquet wrote:
-> Add mt8195 SoC bindings for hdmi and hdmi-ddc
+On 31.05.2023 17:03, Detlev Casanova wrote:
+> In some cases, the PHY can use an external clock source instead of a
+> crystal.
 > 
-> On mt8195 the ddc i2c controller is part of the hdmi IP block and thus has no
-> specific register range, power domain or interrupt, making it simpler
-> than the legacy "mediatek,hdmi-ddc" binding.
+> Add an optional clock in the phy node to make sure that the clock source
+> is enabled, if specified, before probing.
 > 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> ---
+>  drivers/net/phy/realtek.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
+> index 3d99fd6664d7..70c75dbbf799 100644
+> --- a/drivers/net/phy/realtek.c
+> +++ b/drivers/net/phy/realtek.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/phy.h>
+>  #include <linux/module.h>
+>  #include <linux/delay.h>
+> +#include <linux/clk.h>
+>  
+>  #define RTL821x_PHYSR				0x11
+>  #define RTL821x_PHYSR_DUPLEX			BIT(13)
+> @@ -80,6 +81,7 @@ struct rtl821x_priv {
+>  	u16 phycr1;
+>  	u16 phycr2;
+>  	bool has_phycr2;
+> +	struct clk *clk;
+>  };
+>  
+>  static int rtl821x_read_page(struct phy_device *phydev)
+> @@ -103,6 +105,11 @@ static int rtl821x_probe(struct phy_device *phydev)
+>  	if (!priv)
+>  		return -ENOMEM;
+>  
+> +	priv->clk = devm_clk_get_optional_enabled(dev, "xtal");
 
+Why add priv->clk if it isn't used outside probe()?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+How about suspend/resume? Would it make sense to stop the clock
+whilst PHY is suspended?
 
-Best regards,
-Krzysztof
+> +	if (IS_ERR(priv->clk))
+> +		return dev_err_probe(dev, PTR_ERR(priv->clk),
+> +				     "failed to get phy xtal clock\n");
+> +
+>  	ret = phy_read_paged(phydev, 0xa43, RTL8211F_PHYCR1);
+>  	if (ret < 0)
+>  		return ret;
 
