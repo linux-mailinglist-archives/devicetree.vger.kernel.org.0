@@ -2,158 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D6BC718AC5
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 22:06:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43FB6718AE0
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 22:15:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230179AbjEaUGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 16:06:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42968 "EHLO
+        id S229542AbjEaUPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 16:15:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbjEaUGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 16:06:16 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6187712B
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:06:14 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51496f57e59so225086a12.2
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:06:14 -0700 (PDT)
+        with ESMTP id S229934AbjEaUO6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 16:14:58 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDCED136
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:14:53 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f5021faa16so4761617e87.2
+        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 13:14:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685563573; x=1688155573;
+        d=linaro.org; s=google; t=1685564092; x=1688156092;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=88XdFTbrHk+zgo/9nKqPMnV1vAS6bpV3qe5bGBfKbI0=;
-        b=PGoUcW6+SxAtu7vhFcbSBfivY0amCpnP460PJo6/2mY9RuUP2Iz14tObAADJwd2IDc
-         lERlre9LpQDO9fA1jilp3iKM5WSG/S6+7ZjJ1DBsdB2x4VtnCxvezcWUDVAJ9jgsFO9Z
-         H4+w1J2oJvWn1+9ZmTNTjPrUAUkmvi2+M9pQgPZOG4MHtkORe61ehz4EC4mTGbUPb1bH
-         9QWa9gp7aHE3fT67NrkAE0xkPnSbnt9cOKVK5RZh2urel1SE6CbCiVJRxpAmvFoC+BGS
-         se9rk0Ogl1IbAbRUnbg9hwaNfxaApsDh4Xpjbsxpf9Zim0yrrhaUiA1gzQF51F+PDN4f
-         wciA==
+        bh=d/djM4DIThQkh0ZR00KI8IINzMZsz/yFsT9iAasATNE=;
+        b=mGHlmKfQizrY+l8OiobCj7noM6Uh/mv60bVdscVvf3J6KJGSTIsdnmoq7dPGiEOM4E
+         FS7NmjX7tjD4d2HA8oZ5z2n0/JSLlqSmtPC171VbC2nuKetxWEPNmapkLy5NN40Nf/hX
+         j2Qy9mBO23RLgULeIAYeKToOqD+jCHspQ9BF1FDtYnf+X8+OQBiqzQZ8wViEQBDXVfjw
+         8SwEv/HbXZiIzq4R2GhFw5CTMIZ0986fsNlZegDNRctZCVT9kqg7/3QaTDebEqcgf53U
+         75sDWQQdp/W3WGV6wAV9JEQvbKruyHjgyfaERjXmnjwdJrLWw1xr7RZLY6FvEVi5QsxJ
+         atSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685563573; x=1688155573;
+        d=1e100.net; s=20221208; t=1685564092; x=1688156092;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=88XdFTbrHk+zgo/9nKqPMnV1vAS6bpV3qe5bGBfKbI0=;
-        b=FyKhqKUolr5a5wV6EY5TmbNjMwDoP/2Let2v1+q6kE8Um5j9WOZltkeCo1MUsdIoaP
-         yZ2QZZ9/XRDbK7e7N6m7ex5m+3eRVMaYhe9RSKRbcY/f5Br5Nhp23GOcDplznRbUsIpt
-         qF7CWe8/Bhhu1kr2Po0dOtOz+nMejN1+tC6GLTfJ6sHrb0AM007MDB0pCm2pOdT6swUe
-         cJIc6rsGWYNG8tVt+IbtzyaRQX4ZjkfCvYRctTs/QBnLbUJiC6Os0FDEgSKt+udfkaUs
-         Bt6BK6XikJUdYTGDc+W1bg9iTHAsJO4T0UM5HEExeMtYI377WgYVaEfeXsDJYLzs4udV
-         Lm7A==
-X-Gm-Message-State: AC+VfDz2+JRpbEFx20G880r14qRbwUqFX8yTNucb2CcJEscZz8Tzh7XT
-        RUG3PCXpijVsv0htdKJG/U1iSw==
-X-Google-Smtp-Source: ACHHUZ6KmoP6bptP/pGz93SaUyQcaMlvHz5fi8XBllRNIeD0ckXbO8Owp+k5OlkT/pW2zThiFn0soQ==
-X-Received: by 2002:a17:907:6d93:b0:959:5407:3e65 with SMTP id sb19-20020a1709076d9300b0095954073e65mr6877104ejc.55.1685563572858;
-        Wed, 31 May 2023 13:06:12 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id f13-20020a170906560d00b009603d34cfecsm9463283ejq.164.2023.05.31.13.06.11
+        bh=d/djM4DIThQkh0ZR00KI8IINzMZsz/yFsT9iAasATNE=;
+        b=k6NVi/Ra4bry2fvFhZpQnZKavAV3z2gbB7IlspWH4f7iEJqV5n3wJ/uOXCRST5QgQM
+         7C1LX2B2loftqwkM9bHhK/k51ULx2GObBu7Cpjf6IlXIDGv+57fh3vkkF01Gsp+ZYx5u
+         kDFwah6Tw3xcil4iIZvfkeslMT6I7mN++kG5Qk/RMg4iT+T8BaTtkGOKNAp7j5CT/+Dz
+         4QbBKC3+wiUXpBOol/sfhXzKAVNhkEKoGd1QsHMVa7zEMwo2dTndiBEfXFP5kMz+q9qK
+         n4ZowI6WHU4yNXo97TkNHTQ9OjxmP5oqi4qs/tcN5Ga52Z08bQuFXvl5VnuYlP8f1prv
+         reug==
+X-Gm-Message-State: AC+VfDwKZOUhnGKiefQ+oIsVKSlBDhQBEGNL9TPpRGjeB4DXAYaN45rD
+        XGwOJY2SWS8AYNvtwK3YWzjsIw==
+X-Google-Smtp-Source: ACHHUZ57xMQG+SuLqKKwNdOKgeHWktkrA4w4R2AlSFo0nr2D54gjkHcjOcN+sTvKbt1CCuTD2o/jxw==
+X-Received: by 2002:ac2:42d4:0:b0:4f0:276:295b with SMTP id n20-20020ac242d4000000b004f00276295bmr58303lfl.46.1685564091950;
+        Wed, 31 May 2023 13:14:51 -0700 (PDT)
+Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
+        by smtp.gmail.com with ESMTPSA id l9-20020ac24309000000b004f00189e1dcsm825354lfh.117.2023.05.31.13.14.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 13:06:12 -0700 (PDT)
-Message-ID: <69d355ff-90e1-09d2-d4ff-0d7dedc8addb@linaro.org>
-Date:   Wed, 31 May 2023 22:06:10 +0200
+        Wed, 31 May 2023 13:14:51 -0700 (PDT)
+Message-ID: <da01a33d-a4f9-1086-3365-5a0528db16d9@linaro.org>
+Date:   Wed, 31 May 2023 22:14:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v11 1/2] dt-bindings: spi: add loongson spi
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2 5/6] arm64: dts: qcom: sc8280xp: add resets for
+ soundwire controllers
 Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>,
-        Conor Dooley <conor.dooley@microchip.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jianmin Lv <lvjianmin@loongson.cn>,
-        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230522071030.5193-1-zhuyinbo@loongson.cn>
- <20230522071030.5193-2-zhuyinbo@loongson.cn>
- <20230524-pouncing-variable-c520e85f8db8@wendy>
- <b1e3d199-de5a-f8d5-9159-4965e9e1f5ef@loongson.cn>
- <20230524-relative-trimmer-046fb26a7764@wendy>
- <99b362c2-640c-9150-26ee-e9add4483886@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <99b362c2-640c-9150-26ee-e9add4483886@loongson.cn>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     johan+linaro@kernel.org, agross@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230525122930.17141-1-srinivas.kandagatla@linaro.org>
+ <20230525122930.17141-6-srinivas.kandagatla@linaro.org>
+ <542a67da-5870-dda0-3604-9367a438e51b@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <542a67da-5870-dda0-3604-9367a438e51b@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/05/2023 04:22, zhuyinbo wrote:
-> 
-> 
-> 在 2023/5/24 下午6:29, Conor Dooley 写道:
->> On Wed, May 24, 2023 at 05:44:38PM +0800, zhuyinbo wrote:
->>>
->>>
->>> 在 2023/5/24 下午4:56, Conor Dooley 写道:
->>>> On Mon, May 22, 2023 at 03:10:29PM +0800, Yinbo Zhu wrote:
->>>>> Add the Loongson platform spi binding with DT schema format using
->>>>> json-schema.
->>>>>
->>>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
->>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> ---
->>>>>    .../bindings/spi/loongson,ls2k-spi.yaml       | 41 +++++++++++++++++++
->>>>>    MAINTAINERS                                   |  6 +++
->>>>>    2 files changed, 47 insertions(+)
->>>>>    create mode 100644 Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..d0be6e5378d7
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/spi/loongson,ls2k-spi.yaml
->>>>> @@ -0,0 +1,41 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/spi/loongson,ls2k-spi.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Loongson SPI controller
->>>>> +
->>>>> +maintainers:
->>>>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: /schemas/spi/spi-controller.yaml#
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - loongson,ls2k-spi
->>>>
->>>> I am sorry to jump in here at such a late stage with a (potentially)
->>>> trivial question. "ls2k" is the SoC family rather than a specific model
->>>> as far as I understand.
->>>> The answer is probably yes, but do all SoCs in the family have an
->>>> identical version of the IP?
->>>
->>>
->>> No, but the spi supported by this loongson spi driver are all the same
->>> identical version, and other type or verion spi will be supported as
->>> needed in the future.
+
+
+On 31.05.2023 22:03, Krzysztof Kozlowski wrote:
+> On 25/05/2023 14:29, Srinivas Kandagatla wrote:
+>> Soundwire controllers on sc8280xp needs an explicit reset, add
+>> support for this.
 >>
->> Does having a catch-all compatible make sense then when not all SoCs in
->> the ls2k family will actually be able to use this driver?
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 23 +++++++++++++++++++++++
+>>  1 file changed, 23 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>> index 6730349e34f4..39be2e89ce05 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
+>> @@ -6,6 +6,7 @@
+>>  
+>>  #include <dt-bindings/clock/qcom,dispcc-sc8280xp.h>
+>>  #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
+>> +#include <dt-bindings/clock/qcom,lpasscc-sc8280xp.h>
+>>  #include <dt-bindings/clock/qcom,rpmh.h>
+>>  #include <dt-bindings/interconnect/qcom,osm-l3.h>
+>>  #include <dt-bindings/interconnect/qcom,sc8280xp.h>
+>> @@ -2560,6 +2561,8 @@
+>>  			interrupts = <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
+>>  			clocks = <&rxmacro>;
+>>  			clock-names = "iface";
+>> +			resets = <&lpass_audiocc LPASS_AUDIO_SWR_RX_CGCR>;
+>> +			reset-names = "swr_audio_cgcr";
+>>  			label = "RX";
+>>  
+>>  			qcom,din-ports = <0>;
+>> @@ -2634,6 +2637,8 @@
+>>  			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
+>>  			clocks = <&wsamacro>;
+>>  			clock-names = "iface";
+>> +			resets = <&lpass_audiocc LPASS_AUDIO_SWR_WSA_CGCR>;
+>> +			reset-names = "swr_audio_cgcr";
+>>  			label = "WSA";
+>>  
+>>  			qcom,din-ports = <2>;
+>> @@ -2656,6 +2661,14 @@
+>>  			status = "disabled";
+>>  		};
+>>  
+>> +		lpass_audiocc: clock-controller@32a9000 {
+>> +			compatible = "qcom,sc8280xp-lpassaudiocc";
+>> +			reg = <0 0x032a9000 0 0x1000>;
+>> +			qcom,adsp-pil-mode;
 > 
+> Here and...
 > 
-> Yes, it is make sense as it can reduce the workload of the community.
+>> +			#clock-cells = <1>;
+>> +			#reset-cells = <1>;
+>> +		};
+>> +
+>>  		swr2: soundwire-controller@3330000 {
+>>  			compatible = "qcom,soundwire-v1.6.0";
+>>  			reg = <0 0x03330000 0 0x2000>;
+>> @@ -2665,6 +2678,8 @@
+>>  
+>>  			clocks = <&txmacro>;
+>>  			clock-names = "iface";
+>> +			resets = <&lpasscc LPASS_AUDIO_SWR_TX_CGCR>;
+>> +			reset-names = "swr_audio_cgcr";
+>>  			label = "TX";
+>>  			#sound-dai-cells = <1>;
+>>  			#address-cells = <2>;
+>> @@ -2901,6 +2916,14 @@
+>>  			};
+>>  		};
+>>  
+>> +		lpasscc: clock-controller@33e0000 {
+>> +			compatible = "qcom,sc8280xp-lpasscc";
+>> +			reg = <0 0x033e0000 0 0x12000>;
+>> +			qcom,adsp-pil-mode;
+> 
+> ... here - where do you use these properties? Driver ignores them.
+> 
+> AFAIR, these were only for sc7280 where we supported two variants for audio.
+Smells like pure copypasta - we don't support any 8280xp chromebooks (not
+even sure if any exist) and WP devices have a normal TZ+PAS setup
 
-I missed it - that's a great comment. Hm, I don't know... Reviewing
-Loongson patches is quite a work, so I don't see here reduced workload.
-
-Please read existing guidelines:
-https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst
-
-All of them.
-
-Best regards,
-Krzysztof
-
+Konrad
+> 
+> Best regards,
+> Krzysztof
+> 
