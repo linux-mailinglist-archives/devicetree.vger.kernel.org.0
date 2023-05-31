@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1DE771785F
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 09:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8C63717865
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 09:38:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234674AbjEaHff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 03:35:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44770 "EHLO
+        id S234602AbjEaHh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 03:37:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234657AbjEaHfe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 03:35:34 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 783ADC0;
-        Wed, 31 May 2023 00:35:32 -0700 (PDT)
+        with ESMTP id S234477AbjEaHh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 03:37:58 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F7A3C5;
+        Wed, 31 May 2023 00:37:56 -0700 (PDT)
 X-GND-Sasl: miquel.raynal@bootlin.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1685518530;
+        t=1685518675;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=WWtlFYzuHfQ3SlMfLkKb18GwFkwsJ5XNHKhR+KU6DsM=;
-        b=I7lq4Ksn1hRLvrMAyPj7jTH0rXUWpa2y8sb11pCvfqi3hVSwuYZy8VjaAQKZIs9sF77P+L
-        eib0ELs21oehsVa9MWbsXnKFAn82tJcFRc4HQySI1g3tKTJ+EInI0Mka7bHs13JiFEr/+8
-        1sV9wggKRt3sbgTKIye5bjqasRH7gVhhMhATppUpfCbCpZXIS7MZgLjfMIDf6ty8ewQly/
-        RMoIT877U92v9B9qlPKKkEegNyjYbG2ZMP85fMmeDb9K6XIKcreB2dA+JU9kt0lnjNUUdV
-        G6B+RZkEDNxjEwAQ1qNfOPP12mBbkQYgkfCdFoCeTyPMma4hwfDLA3/0X5lsMQ==
+        bh=crOpwvqDjgCv5Iq8u/sJqrtyV1k8VhIgkmZfw96TObI=;
+        b=MHE4kD9uYhdo+tdxmqhAEUgebBeDxykmVLMZMpMzMKAU+RSHEtHsdEpyv8WH2nOfRbROJr
+        Y4D0LRK6hgoph8i/s6COIQiPi9BJZnBikCP7W5/Z3YzLxkZ72N6SEo89gJ5UoVke215o4F
+        X10/u/gr7XzzpzAMUaurHTFaYs+9d7guyErtIcig2Yw56lh42sZmsveZQbELzfbN4JtwUT
+        GxK7Y6gzs+OsXhKLTjd5MhkXA1REa3dPnxNk9Oio55QARHSrAFJ+VGJrLIHuSsr1CaXsqT
+        pv5qPw2364H8JKMvP07nzgesCjsZwf+KpmwQubOnFaWmr+e2LIifmQmTpQ48kA==
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
@@ -40,23 +40,25 @@ X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 39439E0016;
-        Wed, 31 May 2023 07:35:27 +0000 (UTC)
-Date:   Wed, 31 May 2023 09:35:26 +0200
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 88D6DFF808;
+        Wed, 31 May 2023 07:37:52 +0000 (UTC)
+Date:   Wed, 31 May 2023 09:37:52 +0200
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
 Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, enachman@marvell.com
-Subject: Re: [PATCH v7 2/4] ARM: dts: mvebu: align MTD partition nodes to
- dtschema
-Message-ID: <20230531093526.1fe2acb3@xps-13>
-In-Reply-To: <20230530235456.1009082-3-chris.packham@alliedtelesis.co.nz>
-References: <20230530235456.1009082-1-chris.packham@alliedtelesis.co.nz>
-        <20230530235456.1009082-3-chris.packham@alliedtelesis.co.nz>
+        arnd@arndb.de, daniel.lezcano@linaro.org,
+        neil.armstrong@linaro.org, f.fainelli@gmail.com,
+        christophe.kerello@foss.st.com, liang.yang@amlogic.com,
+        jdelvare@suse.de, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] mtd: rawnand: marvell: add support for AC5 SoC
+Message-ID: <20230531093752.17fbeb1b@xps-13>
+In-Reply-To: <20230531025847.1284862-3-chris.packham@alliedtelesis.co.nz>
+References: <20230531025847.1284862-1-chris.packham@alliedtelesis.co.nz>
+        <20230531025847.1284862-3-chris.packham@alliedtelesis.co.nz>
 Organization: Bootlin
 X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
@@ -74,69 +76,107 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Chris,
 
-chris.packham@alliedtelesis.co.nz wrote on Wed, 31 May 2023 11:54:54
+chris.packham@alliedtelesis.co.nz wrote on Wed, 31 May 2023 14:58:47
 +1200:
 
-> Update the node names for the SPI NOR and NAND partitions to conform to
-> the partition properties in the relevant dtschema.
->=20
+> Add support for the AC5/AC5X SoC from Marvell. The NFC on this SoC only
+> supports SDR modes up to 3.
+
+Strange!
+
+But alright, I'm okay with the series.
+
+I'll put it aside waiting for all binding changes to be acked (yaml
+conversion series + this one) and then I'll apply everything.
+
+> Marvell's SDK includes some predefined values for the ndtr registers.
+> These haven't been incorporated as the existing code seems to get good
+> values based on measurements taken with an oscilloscope.
+
+Good :)
+
+By the way did you sort the timings question on 8k?
+
 > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-
-Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
-
 > ---
->  arch/arm/boot/dts/armada-385-atl-x530.dts | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
+>  drivers/mtd/nand/raw/Kconfig        |  2 +-
+>  drivers/mtd/nand/raw/marvell_nand.c | 16 ++++++++++++++++
+>  2 files changed, 17 insertions(+), 1 deletion(-)
 >=20
-> diff --git a/arch/arm/boot/dts/armada-385-atl-x530.dts b/arch/arm/boot/dt=
-s/armada-385-atl-x530.dts
-> index 241f5d7c80e9..5a9ab8410b7b 100644
-> --- a/arch/arm/boot/dts/armada-385-atl-x530.dts
-> +++ b/arch/arm/boot/dts/armada-385-atl-x530.dts
-> @@ -179,19 +179,19 @@ partitions {
->  			compatible =3D "fixed-partitions";
->  			#address-cells =3D <1>;
->  			#size-cells =3D <1>;
-> -			partition@u-boot {
-> +			partition@0 {
->  				reg =3D <0x00000000 0x00100000>;
->  				label =3D "u-boot";
->  			};
-> -			partition@u-boot-env {
-> +			partition@100000 {
->  				reg =3D <0x00100000 0x00040000>;
->  				label =3D "u-boot-env";
->  			};
-> -			partition@unused {
-> +			partition@140000 {
->  				reg =3D <0x00140000 0x00e80000>;
->  				label =3D "unused";
->  			};
-> -			partition@idprom {
-> +			partition@fc0000 {
->  				reg =3D <0x00fc0000 0x00040000>;
->  				label =3D "idprom";
->  			};
-> @@ -216,16 +216,16 @@ partitions {
->  			compatible =3D "fixed-partitions";
->  			#address-cells =3D <1>;
->  			#size-cells =3D <1>;
-> -			partition@user {
-> +			partition@0 {
->  				reg =3D <0x00000000 0x0f000000>;
->  				label =3D "user";
->  			};
-> -			partition@errlog {
-> +			partition@f000000 {
->  				/* Maximum mtdoops size is 8MB, so set to that. */
->  				reg =3D <0x0f000000 0x00800000>;
->  				label =3D "errlog";
->  			};
-> -			partition@nand-bbt {
-> +			partition@f800000 {
->  				reg =3D <0x0f800000 0x00800000>;
->  				label =3D "nand-bbt";
->  			};
+> diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
+> index b523354dfb00..0f4cbb497010 100644
+> --- a/drivers/mtd/nand/raw/Kconfig
+> +++ b/drivers/mtd/nand/raw/Kconfig
+> @@ -160,7 +160,7 @@ config MTD_NAND_MARVELL
+>  	  including:
+>  	  - PXA3xx processors (NFCv1)
+>  	  - 32-bit Armada platforms (XP, 37x, 38x, 39x) (NFCv2)
+> -	  - 64-bit Aramda platforms (7k, 8k) (NFCv2)
+> +	  - 64-bit Aramda platforms (7k, 8k, ac5) (NFCv2)
+> =20
+>  config MTD_NAND_SLC_LPC32XX
+>  	tristate "NXP LPC32xx SLC NAND controller"
+> diff --git a/drivers/mtd/nand/raw/marvell_nand.c b/drivers/mtd/nand/raw/m=
+arvell_nand.c
+> index 30c15e4e1cc0..b9a8dd324211 100644
+> --- a/drivers/mtd/nand/raw/marvell_nand.c
+> +++ b/drivers/mtd/nand/raw/marvell_nand.c
+> @@ -375,6 +375,7 @@ static inline struct marvell_nand_chip_sel *to_nand_s=
+el(struct marvell_nand_chip
+>   *			BCH error detection and correction algorithm,
+>   *			NDCB3 register has been added
+>   * @use_dma:		Use dma for data transfers
+> + * @max_mode_number:	Maximum timing mode supported by the controller
+>   */
+>  struct marvell_nfc_caps {
+>  	unsigned int max_cs_nb;
+> @@ -383,6 +384,7 @@ struct marvell_nfc_caps {
+>  	bool legacy_of_bindings;
+>  	bool is_nfcv2;
+>  	bool use_dma;
+> +	unsigned int max_mode_number;
+>  };
+> =20
+>  /**
+> @@ -2376,6 +2378,9 @@ static int marvell_nfc_setup_interface(struct nand_=
+chip *chip, int chipnr,
+>  	if (IS_ERR(sdr))
+>  		return PTR_ERR(sdr);
+> =20
+> +	if (nfc->caps->max_mode_number && nfc->caps->max_mode_number < conf->ti=
+mings.mode)
+> +		return -EOPNOTSUPP;
+> +
+>  	/*
+>  	 * SDR timings are given in pico-seconds while NFC timings must be
+>  	 * expressed in NAND controller clock cycles, which is half of the
+> @@ -3073,6 +3078,13 @@ static const struct marvell_nfc_caps marvell_armad=
+a_8k_nfc_caps =3D {
+>  	.is_nfcv2 =3D true,
+>  };
+> =20
+> +static const struct marvell_nfc_caps marvell_ac5_caps =3D {
+> +	.max_cs_nb =3D 2,
+> +	.max_rb_nb =3D 1,
+> +	.is_nfcv2 =3D true,
+> +	.max_mode_number =3D 3,
+> +};
+> +
+>  static const struct marvell_nfc_caps marvell_armada370_nfc_caps =3D {
+>  	.max_cs_nb =3D 4,
+>  	.max_rb_nb =3D 2,
+> @@ -3121,6 +3133,10 @@ static const struct of_device_id marvell_nfc_of_id=
+s[] =3D {
+>  		.compatible =3D "marvell,armada-8k-nand-controller",
+>  		.data =3D &marvell_armada_8k_nfc_caps,
+>  	},
+> +	{
+> +		.compatible =3D "marvell,ac5-nand-controller",
+> +		.data =3D &marvell_ac5_caps,
+> +	},
+>  	{
+>  		.compatible =3D "marvell,armada370-nand-controller",
+>  		.data =3D &marvell_armada370_nfc_caps,
 
 
 Thanks,
