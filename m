@@ -2,114 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40751717828
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 09:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F86671782E
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 09:28:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234639AbjEaH1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 03:27:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38690 "EHLO
+        id S234209AbjEaH2i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 03:28:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234591AbjEaH1c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 03:27:32 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E17CBE5;
-        Wed, 31 May 2023 00:27:26 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f60b3f32b4so39009295e9.1;
-        Wed, 31 May 2023 00:27:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685518045; x=1688110045;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y4X5Wohwv6l7HU9svLxZYiAxT8tGzCt99NLg9x4sH48=;
-        b=P25pgQT4ztxcFXczUNWGPi84IBW6g/Jd+safyXGsj1qyVbTfUqAwQUh05EY1POVK00
-         USnZasIvT7j38RpnlHdUc6+WdRdVJ7Hn5Be6yGxWeD4upOozgjPRU0hOO6hpzqloDrBW
-         p5U/v4nvimUTATKPslhEh0YfzCyr5nfv0yaMKiY+2Wjk4y2AkWIOxxNlOoc7Cl3XP0/G
-         YgEb8bHNFCtAmdj51k/Xam1zavfP2aVGCNHd+tsLEkEKrCBP63N7RkaMrq99CUwZEznx
-         4SjaxtXjJHLIUUiK96j9wy2r58lOGyTEGf5pQFpf6aH9cm+e7beTlp+gQ5OrVZyi/5+4
-         Kp1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685518045; x=1688110045;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y4X5Wohwv6l7HU9svLxZYiAxT8tGzCt99NLg9x4sH48=;
-        b=g+BTsZJJQa1Yxnp7jrUSYWOOw4KokmySWQNTUMxFbus/mv3x0FVtxR4IhHv9iLz9TC
-         SxjNazPWMzaTH1eICaAYXPLZLoE4jk94WIy4CP5ol/QmVHM0aKLJ1CbwljODqjeM6Rwm
-         Zmzti/G3qI71KsKF5TzsfeiPmj84HShVZZ2E2FkLXjykSf6AvC1ROMhmBRh8KcedrCH7
-         Bjcz+ZprWqhBnAaGzJxVpJBlDy87bZjIKsMAV43hTTFob+JBBSkiwSW5SlHTSVvIBhoo
-         cmnRl8omiQ1MwR+rljOHKkCg6jSIln7GDj1Fm+tSa3DEMZxcPv2P6Y/GbP43Myd5iCy6
-         XRtA==
-X-Gm-Message-State: AC+VfDzPT53jzfsE4uZT3WTS7YpsIxMiQltOUB4e8Zma/5HLel0MxJ0W
-        rSZJSwbEIsGV8o/dkaiWhfs=
-X-Google-Smtp-Source: ACHHUZ4l8Rpu8ekx4hkNFGccONUxbjH37LBEkRGolmNei00ETECpzfuyFqy5GtAbgRijq28rpDHzfA==
-X-Received: by 2002:a1c:c906:0:b0:3f4:2c21:b52c with SMTP id f6-20020a1cc906000000b003f42c21b52cmr3293418wmb.39.1685518045063;
-        Wed, 31 May 2023 00:27:25 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id n15-20020a1c720f000000b003f6cf9afc25sm19476238wmc.40.2023.05.31.00.27.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 00:27:23 -0700 (PDT)
-Message-ID: <de7389cb-8b38-49c9-4768-ba0ad49993d1@gmail.com>
-Date:   Wed, 31 May 2023 09:27:22 +0200
+        with ESMTP id S234123AbjEaH2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 03:28:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 187DB123;
+        Wed, 31 May 2023 00:28:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9DE076376B;
+        Wed, 31 May 2023 07:28:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05087C433A0;
+        Wed, 31 May 2023 07:28:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685518113;
+        bh=UE35bN0SYktAgtulGtfRw0ZGksuMveOylG6L1tzctnk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SGEvusDHV50xFpcIlZ1fNz5joNg7Q2NhNz97qTLqpKYfqfj3PcrVzptKrQlT5mzUy
+         hxhCZUr8tkDTTox8iy4inhitrzU1oQ4JxFYmNlE40tcdNa8vYIxeKAubbBc4CZHAj+
+         cNcmoljlW3a7V7NvHkWdh+xMcjkG/mUXhKckg/z8KjNyEkH4o2p7HvNNGiIO4RB1j1
+         Yoki+MSxlYabo0hDhzuE0Zgj/qvqcAUwFYEemMOd63otKh4AcYsQcFhqTM2xAr0BYu
+         D8mcbQErrxFK0EcNby/YjZvor33EHAiBFB+Fp48pygeQyRMbkmbCLQY6WrmnVNbbSc
+         j/yIUKtBDaGtg==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1q4GG3-0006k2-F1; Wed, 31 May 2023 09:28:36 +0200
+Date:   Wed, 31 May 2023 09:28:35 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, mani@kernel.org,
+        Steev Klimaszewski <steev@kali.org>
+Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: sc8280xp: Add GPU related nodes
+Message-ID: <ZHb3I6NUcjHZ64wD@hovoldconsulting.com>
+References: <20230531030945.4109453-1-quic_bjorande@quicinc.com>
+ <20230531030945.4109453-3-quic_bjorande@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [RESEND 0/6] media: mediatek: Update video decoder nodes for
- MT8195 and MT8192
-Content-Language: en-US, ca-ES, es-ES
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-References: <20230303013842.23259-1-allen-kh.cheng@mediatek.com>
- <4ebd1c9f-0460-4436-8e17-0e46e88f4828@notapiano>
- <CAGXv+5Hd-8e9QWGQ2MB++xjNH0sRemmQnVnAk=CfE8DBhkYZQw@mail.gmail.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <CAGXv+5Hd-8e9QWGQ2MB++xjNH0sRemmQnVnAk=CfE8DBhkYZQw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230531030945.4109453-3-quic_bjorande@quicinc.com>
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 30/05/2023 09:28, Chen-Yu Tsai wrote:
-> On Tue, Apr 4, 2023 at 6:19 AM Nícolas F. R. A. Prado
-> <nfraprado@collabora.com> wrote:
->>
->> On Fri, Mar 03, 2023 at 09:38:36AM +0800, Allen-KH Cheng wrote:
->>> This series is based on matthias github v6.3-tmp. Since there is a
->>> dependence in the following series, I resend a series for them.
->>>
->>> patchwork.kernel.org/project/linux-mediatek/list/?series=702423
->>> patchwork.kernel.org/project/linux-mediatek/list/?series=702078
->>
->> Hi Matthias,
->>
->> this series has been completely reviewed and tested for a while, and the
->> bindings patches were already picked up by Hans and are on their way to 6.4 [1].
->> So could you please pick the devicetree patches?
+On Tue, May 30, 2023 at 08:09:44PM -0700, Bjorn Andersson wrote:
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
 > 
-> Ping again on this series.
+> Add Adreno SMMU, GPU clock controller, GMU and GPU nodes for the
+> SC8280XP.
 > 
-> The device tree patches can be picked up.
+> Tested-by: Steev Klimaszewski <steev@kali.org>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
+> ---
 > 
+> Changes since v2:
+> - Added missing opp level (both gpu and gmu)
+> - Corrected opp-level for highest gpu opp
+> - Added dma-coherent to gpu smmu
+> 
+> Note that in order for the GPU driver to probe, the last change
+> requires:
+> https://lore.kernel.org/linux-arm-msm/20230410185226.3240336-1-dmitry.baryshkov@linaro.org/
 
-Nicolas, Chen, thanks for the ping. It's unfortunate that there are no email 
-send by the maintainer to the mailinglist to confirm that the patches got 
-accepted. So it's very helpful if you help me on that.
+That's a pretty well-hidden notice about a critical dependency. I just
+spent the morning debugging why this series broke the probe of the GPU
+and only saw this when I was going to report my findings.
 
-Patches are applied now.
-Regards,
-Matthias
+Please consider putting information like this in the cover letter in the
+future.
+
+> Changes since v1:
+> - Dropped gmu_pdc_seq region from &gmu, as it shouldn't have been used.
+> - Added missing compatible to &adreno_smmu.
+> - Dropped aoss_qmp clock in &gmu and &adreno_smmu.
+
+Changelogs are also preferably placed in the cover letter so that you
+don't have to read through N patches to determine what changed from one
+revision of a series to the next.
+
+Johan
