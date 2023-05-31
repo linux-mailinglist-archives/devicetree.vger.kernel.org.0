@@ -2,280 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6636B71762A
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 07:29:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1E7F7176B8
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 08:18:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234112AbjEaF3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 01:29:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49056 "EHLO
+        id S232229AbjEaGST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 02:18:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229890AbjEaF3S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 01:29:18 -0400
-Received: from mail.inventec.com (mail.inventec.com [61.220.76.156])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CABE6113;
-        Tue, 30 May 2023 22:29:14 -0700 (PDT)
+        with ESMTP id S229904AbjEaGSS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 02:18:18 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D263F9F;
+        Tue, 30 May 2023 23:18:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-    s=sEx04; d=inventec.com;
-    h=from:to:cc:subject:date:message-id:in-reply-to:content-type:
-      mime-version;
-    bh=Z0oxHgirMi2FSe8nQidbeefWvIn8Re++om6n7YaUEq0=;
-    b=Ny5NEN+Esz/2X0Y60P5XV6mtkUsdHwSxIjvrdqjoLhasS3UteRZzr3aMdGswo5
-      Qc3l12MFs0ONyoAMI6UBqi+H62LQJ5SYcfrDF8pPdSTXIhzY9qV6qMZ+lsV3yM
-      96dy+eCgx5DSfhNvdwCFc1Lf74zAZX8rtEqsSkPSqGLWut4=
-Received: from IEC1-EX2016-04.iec.inventec (10.1.254.222) by
- IEC1-EX2016-04.iec.inventec (10.1.254.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 31 May 2023 13:29:08 +0800
-Received: from IEC1-MSE-FE1.inventec.com (10.1.254.203) by
- IEC1-EX2016-04.iec.inventec (10.1.254.222) with Microsoft SMTP Server id
- 15.1.2507.21 via Frontend Transport; Wed, 31 May 2023 13:29:08 +0800
-Received: from IEC1-EX2016-02.iec.inventec (IEC1-EX2016-02.iec.inventec [10.1.254.221])
-        by IEC1-MSE-FE1.inventec.com with ESMTP id 34V5T7uS069777;
-        Wed, 31 May 2023 13:29:07 +0800 (GMT-8)
-        (envelope-from Chen.PJ@inventec.com)
-Received: from IEC1-EX2016-01.iec.inventec (10.15.2.58) by
- IEC1-EX2016-02.iec.inventec (10.1.254.221) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 31 May 2023 13:29:07 +0800
-Received: from IEC1-EX2016-01.iec.inventec ([fe80::ad9c:c1af:d29:f80d]) by
- IEC1-EX2016-01.iec.inventec ([fe80::ad9c:c1af:d29:f80d%7]) with mapi id
- 15.01.2507.021; Wed, 31 May 2023 13:29:06 +0800
-From:   =?big5?B?Q2hlbi5QSiCzr6xmpfQgVEFP?= <Chen.PJ@inventec.com>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        "soc@kernel.org" <soc@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1685513897; x=1717049897;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=j0wWi76fQ0wDtCQgiYmR4rSGfexj1RzQ3UKzwhMVl9o=;
+  b=MR5XqYHmBDkDn9JxzV3f6y6mLC5mXbXAhps1szoTYbLAPCqEHCXQdrn2
+   wzvBoipAQHu+eAHs2ISCipSKvsSZBQmrXhKH3XZ/17PABWAGPaDZAS3B0
+   FpHi0oxlopWghFxjkGHDvSDdHSaKZ6UIv17nadPX26LnhrmQvfJj9vuW3
+   +lJWF2Kf0UNFj25BB2o7UG6yQ/1NuwbdiiOoURQm6DKN+4LNrfcKhplot
+   dp51pDMMtoEYgpPqEjEtkWnlZlUNofKiis86I7CfmAlH8jyvWM2YrnRkk
+   ueAELwOT/BV7pbYFoLR7J5CAGVr3pawvx6e1aQKl5dtPVX8rck7JIRhh/
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,205,1681164000"; 
+   d="scan'208";a="31181399"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 31 May 2023 08:18:14 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 31 May 2023 08:18:15 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 31 May 2023 08:18:15 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1685513894; x=1717049894;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=j0wWi76fQ0wDtCQgiYmR4rSGfexj1RzQ3UKzwhMVl9o=;
+  b=CefChO4tiUsXU35oRzpwUIB4cQDq0uYx9G4SnqhQqD8Zikuw7e9vls96
+   ZS09B1GSe429NqWPok7/jq61uPLDhTZMq1Ov73j/z2+Ttvvvc3QHP0Qlx
+   3S+WLWBZij4omZOzYle0H+tSXkTK0QqO4zszjuG5rvgO1g9pVnU/z86MT
+   6c/1aH+x+wQSd+XkIMmeKf51X6t5qNL+LxkRcRRLchbbWzhsd2ir/weqO
+   xN51oZ+K17MfL/Kav3wkYn5ggZq4vyHB4CbhisPrxFeRQ8zPKrqCoBIgu
+   cSTecFGEFcOTAbhhc3EPFZ70RWP/ewICyS9mqSgTfILrBnm/D42TfYaD+
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,205,1681164000"; 
+   d="scan'208";a="31181398"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 31 May 2023 08:18:14 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 8ADB0280099;
+        Wed, 31 May 2023 08:18:14 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
-CC:     =?big5?B?WWUuVmljILitpnSyTSBUQU8=?= <ye.vic@inventec.com>,
-        =?big5?B?SHVhbmcuQWxhbmcgtsCtXq2mIFRBTw==?= 
-        <Huang.Alang@inventec.com>
-Subject: [PATCH v4 2/2] ARM: dts: aspeed: Adding Inventec Starscream BMC
-Thread-Topic: [PATCH v4 2/2] ARM: dts: aspeed: Adding Inventec Starscream BMC
-Thread-Index: AQHZk4DRLjyR/lN0/0untbadEfrurw==
-Date:   Wed, 31 May 2023 05:29:06 +0000
-Message-ID: <cc443e835715493287045ffbc3fdcc02@inventec.com>
-References: <28f0ce0a82464083ae24f9ef2f598425@inventec.com>
-In-Reply-To: <28f0ce0a82464083ae24f9ef2f598425@inventec.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-imapappendstamp: IEC1-EX2016-01.iec.inventec (15.01.2507.021)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [10.6.245.192]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        Conor Dooley <conor+dt@kernel.org>,
+        Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Kent Gibson <warthog618@gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: introduce hog properties with less ambiguity
+Date:   Wed, 31 May 2023 08:18:14 +0200
+Message-ID: <4491320.LvFx2qVVIh@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230530151946.2317748-2-u.kleine-koenig@pengutronix.de>
+References: <20230530151946.2317748-1-u.kleine-koenig@pengutronix.de> <20230530151946.2317748-2-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-X-MAIL: IEC1-MSE-FE1.inventec.com 34V5T7uS069777
-X-TM-SNTS-SMTP: C0F49D73EC4AE001D4A1E147E87789C9D994C27EFF76A567C16E8BDB1E0FA95C2000:8
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED,WEIRD_QUOTING autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SW5pdGlhbCBpbnRyb2R1Y3Rpb24gb2YgSW52ZW50ZWMgU3RhcnNjcmVhbSB4ODYgZmFtaWx5DQpl
-cXVpcHBlZCB3aXRoIEFTVDI2MDAgQk1DIFNvQy4NCg0KU2lnbmVkLW9mZi1ieTogQ2hlbiBQSiA8
-Q2hlbi5wakBpbnZlbnRlYy5jb20+DQoNCi0tLQ0KIFYzIC0+IFY0Og0KICAtIFJlcGx5IHdpdGgg
-ZGV2aWNldHJlZSBiaW5kaW5nDQogVjIgLT4gVjM6DQogIC0gUmVuYW1lIHRoZSBub2RlIG5hbWUg
-dG8gZ2VuZXJpYy4NCiBWMSAtPiBWMjoNCiAgLSBDb3JyZWN0IExpY2Vuc2UgZGVzY3JpcHRpb24N
-CiAgLSBSZW1vdmUgbm90IHN1cHBvcnRlZCBkZXZpY2UNCiAgLSBVc2luZyBvcGVuYm1jLWZsYXNo
-LWxheW91dC5kdHNpDQogIC0gQ29ycmVjdCBkZXZpY2UgZm9ybWF0DQotLS0NCiBhcmNoL2FybS9i
-b290L2R0cy9NYWtlZmlsZSAgICAgICAgICAgICAgICAgICAgfCAgIDEgKw0KIC4uLi9kdHMvYXNw
-ZWVkLWJtYy1pbnZlbnRlYy1zdGFyc2NyZWFtLmR0cyAgICB8IDQ4NSArKysrKysrKysrKysrKysr
-KysNCiAyIGZpbGVzIGNoYW5nZWQsIDQ4NiBpbnNlcnRpb25zKCspDQogY3JlYXRlIG1vZGUgMTAw
-NjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC1ibWMtaW52ZW50ZWMtc3RhcnNjcmVhbS5kdHMN
-Cg0KZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL01ha2VmaWxlIGIvYXJjaC9hcm0vYm9v
-dC9kdHMvTWFrZWZpbGUNCmluZGV4IGViNjgxOTAzZDUwYi4uNmE4OTdmZjQwZmYwIDEwMDY0NA0K
-LS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUNCisrKyBiL2FyY2gvYXJtL2Jvb3QvZHRz
-L01ha2VmaWxlDQpAQCAtMTYyOSw2ICsxNjI5LDcgQEAgZHRiLSQoQ09ORklHX0FSQ0hfQVNQRUVE
-KSArPSBcDQogCWFzcGVlZC1ibWMtcXVhbnRhLXE3MWwuZHRiIFwNCiAJYXNwZWVkLWJtYy1xdWFu
-dGEtczZxLmR0YiBcDQogCWFzcGVlZC1ibWMtc3VwZXJtaWNyby14MTFzcGkuZHRiIFwNCisJYXNw
-ZWVkLWJtYy1pbnZlbnRlYy1zdGFyc2NyZWFtLmR0YiBcDQogCWFzcGVlZC1ibWMtaW52ZW50ZWMt
-dHJhbnNmb3JtZXJzLmR0YiBcDQogCWFzcGVlZC1ibWMtdHlhbi1zNzEwNi5kdGIgXA0KIAlhc3Bl
-ZWQtYm1jLXR5YW4tczgwMzYuZHRiIFwNCmRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9h
-c3BlZWQtYm1jLWludmVudGVjLXN0YXJzY3JlYW0uZHRzIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXNw
-ZWVkLWJtYy1pbnZlbnRlYy1zdGFyc2NyZWFtLmR0cw0KbmV3IGZpbGUgbW9kZSAxMDA2NDQNCmlu
-ZGV4IDAwMDAwMDAwMDAwMC4uMTVlMzU1YWEyYzlmDQotLS0gL2Rldi9udWxsDQorKysgYi9hcmNo
-L2FybS9ib290L2R0cy9hc3BlZWQtYm1jLWludmVudGVjLXN0YXJzY3JlYW0uZHRzDQpAQCAtMCww
-ICsxLDQ4NSBAQA0KKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9yLWxhdGVy
-DQorLy8gQ29weXJpZ2h0IDIwMjMgSW52ZW50ZWMgQ29ycC4NCisNCisvZHRzLXYxLzsNCisNCisj
-aW5jbHVkZSAiYXNwZWVkLWc2LmR0c2kiDQorI2luY2x1ZGUgImFzcGVlZC1nNi1waW5jdHJsLmR0
-c2kiDQorI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2kyYy9pMmMuaD4NCisjaW5jbHVkZSA8ZHQtYmlu
-ZGluZ3MvZ3Bpby9hc3BlZWQtZ3Bpby5oPg0KKw0KKy8gew0KKwltb2RlbCA9ICJTVEFSU0NSRUFN
-IEJNQyI7DQorCWNvbXBhdGlibGUgPSAiaW52ZW50ZWMsc3RhcnNjcmVhbS1ibWMiLCAiYXNwZWVk
-LGFzdDI2MDAiOw0KKw0KKwlhbGlhc2VzIHsNCisJCXNlcmlhbDQgPSAmdWFydDU7DQorCX07DQor
-DQorCWNob3NlbiB7DQorCQlzdGRvdXQtcGF0aCA9ICZ1YXJ0NTsNCisJfTsNCisNCisJbWVtb3J5
-QDgwMDAwMDAwIHsNCisJCWRldmljZV90eXBlID0gIm1lbW9yeSI7DQorCQlyZWcgPSA8MHg4MDAw
-MDAwMCAweDgwMDAwMDAwPjsNCisJfTsNCisNCisJcmVzZXJ2ZWQtbWVtb3J5IHsNCisJCSNhZGRy
-ZXNzLWNlbGxzID0gPDE+Ow0KKwkJI3NpemUtY2VsbHMgPSA8MT47DQorCQlyYW5nZXM7DQorDQor
-CQl2aWRlb19lbmdpbmVfbWVtb3J5OiB2aWRlbyB7DQorCQkJc2l6ZSA9IDwweDA0MDAwMDAwPjsN
-CisJCQlhbGlnbm1lbnQgPSA8MHgwMTAwMDAwMD47DQorCQkJY29tcGF0aWJsZSA9ICJzaGFyZWQt
-ZG1hLXBvb2wiOw0KKwkJCXJldXNhYmxlOw0KKwkJfTsNCisJfTsNCisNCisNCisJaWlvLWh3bW9u
-IHsNCisJCWNvbXBhdGlibGUgPSAiaWlvLWh3bW9uIjsNCisJCWlvLWNoYW5uZWxzID0NCisJCTwm
-YWRjX3U3NCAwPiwgLy8gUDBfVkREMTENCisJCTwmYWRjX3U3NCAxPiwgLy8gUDFfVkREMTENCisJ
-CTwmYWRjX3U3NCAyPiwgLy8gUDBfM1YzX1M1DQorCQk8JmFkY191NzQgMz4sIC8vIFAxXzNWM19T
-NQ0KKwkJPCZhZGNfdTc0IDQ+LCAvLyBQM1YzDQorCQk8JmFkY191NzQgNT4sIC8vIFZCQVQNCisJ
-CTwmYWRjX3U3NCA2PiwgLy8gUDNWM19TVEJZDQorCQk8JmFkY191NzQgNz4sIC8vIFA1Vl9TVEJZ
-DQorCQk8JmFkY191NzQgOD4sIC8vIFA1Vg0KKwkJPCZhZGNfdTc0IDk+LCAvLyBQMTJWDQorCQk8
-JmFkY191NzQgMTA+LCAvLyBQMV9WREQxOF9TNQ0KKwkJPCZhZGNfdTc0IDExPiAvLyBQMF9WREQx
-OF9TNQ0KKwkJOw0KKwl9Ow0KKw0KKwlsZWRzIHsNCisJCWNvbXBhdGlibGUgPSAiZ3Bpby1sZWRz
-IjsNCisNCisJCXVpZCB7DQorCQkJbGFiZWwgPSAiVUlEX0xFRCI7DQorCQkJZ3Bpb3MgPSA8Jmdw
-aW8wIEFTUEVFRF9HUElPKFgsIDIpIEdQSU9fQUNUSVZFX0xPVz47DQorCQl9Ow0KKw0KKwkJaGVh
-cnRiZWF0IHsNCisJCQlsYWJlbCA9ICJIQl9MRUQiOw0KKwkJCWdwaW9zID0gPCZncGlvMCBBU1BF
-RURfR1BJTyhQLCA3KSBHUElPX0FDVElWRV9MT1c+Ow0KKwkJfTsNCisJfTsNCit9Ow0KKw0KKyZt
-ZGlvMCB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisNCisJZXRocGh5MDogZXRoZXJuZXQtcGh5QDAg
-ew0KKwkJY29tcGF0aWJsZSA9ICJldGhlcm5ldC1waHktaWVlZTgwMi4zLWMyMiI7DQorCQlyZWcg
-PSA8MT47DQorCX07DQorfTsNCisNCismbWFjMiB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisJcGlu
-Y3RybC1uYW1lcyA9ICJkZWZhdWx0IjsNCisJcGh5LW1vZGUgPSAicm1paSI7DQorCXBpbmN0cmwt
-MCA9IDwmcGluY3RybF9ybWlpM19kZWZhdWx0PjsNCisJdXNlLW5jc2k7DQorfTsNCisNCismbWFj
-MyB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisNCisJcGh5LW1vZGUgPSAicmdtaWkiOw0KKwlwaHkt
-aGFuZGxlID0gPCZldGhwaHkwPjsNCisNCisJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsNCisJ
-cGluY3RybC0wID0gPCZwaW5jdHJsX3JnbWlpNF9kZWZhdWx0PjsNCit9Ow0KKw0KKyZmbWMgew0K
-KwlzdGF0dXMgPSAib2theSI7DQorCWZsYXNoQDAgew0KKwkJc3RhdHVzID0gIm9rYXkiOw0KKwkJ
-bTI1cCxmYXN0LXJlYWQ7DQorCQlsYWJlbCA9ICJibWMiOw0KKwkJc3BpLW1heC1mcmVxdWVuY3kg
-PSA8NTAwMDAwMDA+Ow0KKwkJc3BpLXR4LWJ1cy13aWR0aCA9IDw0PjsNCisJCXNwaS1yeC1idXMt
-d2lkdGggPSA8ND47DQorI2luY2x1ZGUgIm9wZW5ibWMtZmxhc2gtbGF5b3V0LmR0c2kiDQorCX07
-DQorDQorCWZsYXNoQDEgew0KKwkJc3RhdHVzID0gIm9rYXkiOw0KKwkJbTI1cCxmYXN0LXJlYWQ7
-DQorCQlsYWJlbCA9ICJibWMyIjsNCisJCXNwaS1tYXgtZnJlcXVlbmN5ID0gPDUwMDAwMDAwPjsN
-CisJCXNwaS10eC1idXMtd2lkdGggPSA8ND47DQorCQlzcGktcngtYnVzLXdpZHRoID0gPDQ+Ow0K
-Kwl9Ow0KK307DQorDQorJnNwaTEgew0KKwlzdGF0dXMgPSAib2theSI7DQorCXBpbmN0cmwtbmFt
-ZXMgPSAiZGVmYXVsdCI7DQorCXBpbmN0cmwtMCA9IDwmcGluY3RybF9zcGkxX2RlZmF1bHQ+Ow0K
-Kw0KKwlmbGFzaEAwIHsNCisJCXN0YXR1cyA9ICJva2F5IjsNCisJCW0yNXAsZmFzdC1yZWFkOw0K
-KwkJbGFiZWwgPSAiYmlvcyI7DQorCQlzcGktbWF4LWZyZXF1ZW5jeSA9IDw1MDAwMDAwMD47DQor
-CQlzcGktdHgtYnVzLXdpZHRoID0gPDQ+Ow0KKwkJc3BpLXJ4LWJ1cy13aWR0aCA9IDw0PjsNCisJ
-fTsNCit9Ow0KKw0KKw0KKyZ3ZHQxIHsNCisJc3RhdHVzID0gIm9rYXkiOw0KK307DQorDQorJnZ1
-YXJ0MSB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKw0KKyZ1YXJ0MSB7DQorCXN0YXR1cyA9
-ICJva2F5IjsNCit9Ow0KKw0KKyZ1YXJ0MyB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKw0K
-KyZ1YXJ0NSB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKw0KKyZrY3MzIHsNCisJYXNwZWVk
-LGxwYy1pby1yZWcgPSA8MHhjYTI+Ow0KKwlzdGF0dXMgPSAib2theSI7DQorfTsNCisNCismdWFy
-dF9yb3V0aW5nIHsNCisJc3RhdHVzID0gIm9rYXkiOw0KK307DQorDQorJmkyYzAgew0KKwlzdGF0
-dXMgPSAib2theSI7DQorfTsNCismaTJjMSB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKyZp
-MmMyIHsNCisJc3RhdHVzID0gIm9rYXkiOw0KK307DQorJmkyYzMgew0KKwlzdGF0dXMgPSAib2th
-eSI7DQorfTsNCisNCismaTJjNCB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisNCisJLy8gSTJDIEVY
-UEFOREVSDQorCWkyYy1zd2l0Y2hANzEgew0KKwkJY29tcGF0aWJsZSA9ICJueHAscGNhOTU0NiI7
-DQorCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJcmVn
-ID0gPDB4NzE+Ow0KKw0KKwkJaTJjQDAgew0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJ
-CSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJCXJlZyA9IDwwPjsNCisJCQkvLyBBTUQgU0ItVFNJIENQ
-VTENCisJCQlzYnRzaUA0YyB7DQorCQkJCWNvbXBhdGlibGUgPSAiYW1kLHNidHNpIjsNCisJCQkJ
-cmVnID0gPDB4NGM+Ow0KKwkJCX07DQorCQl9Ow0KKw0KKwkJaTJjQDEgew0KKwkJCSNhZGRyZXNz
-LWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJCXJlZyA9IDwxPjsNCisJ
-CQkvLyBBTUQgU0ItVFNJIENQVTINCisJCQlzYnRzaUA0OCB7DQorCQkJCWNvbXBhdGlibGUgPSAi
-YW1kLHNidHNpIjsNCisJCQkJcmVnID0gPDB4NDg+Ow0KKwkJCX07DQorCQl9Ow0KKwl9Ow0KK307
-DQorDQorJmkyYzUgew0KKwlzdGF0dXMgPSAib2theSI7DQorDQorCS8vIEkyQyBFWFBBTkRFUiBV
-MTUzDQorCWkyYy1zd2l0Y2hANzAgew0KKwkJY29tcGF0aWJsZSA9ICJueHAscGNhOTU0NiI7DQor
-CQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJcmVnID0g
-PDB4NzA+Ow0KKw0KKwkJdXNiX2h1YjogaTJjQDAgew0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+
-Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJCXJlZyA9IDwwPjsNCisNCisJCQkvLyBVU0Ig
-VTExNA0KKwkJCXVzYi1odWJAMmMgew0KKwkJCQljb21wYXRpYmxlID0gIm1pY3JvY2hpcCx1c2Iy
-NTE0YiI7DQorCQkJCXJlZyA9IDwweDJjPjsNCisJCQl9Ow0KKwkJfTsNCisNCisJCXJpc2VyMTog
-aTJjQDEgew0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+
-Ow0KKwkJCXJlZyA9IDwxPjsNCisJCX07DQorDQorCQlyaXNlcjI6IGkyY0AyIHsNCisJCQkjYWRk
-cmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCisJCQlyZWcgPSA8Mj47
-DQorCQl9Ow0KKw0KKwkJaTJjQDMgew0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNz
-aXplLWNlbGxzID0gPDA+Ow0KKwkJCXJlZyA9IDwzPjsNCisJCX07DQorCX07DQorfTsNCisNCism
-aTJjNiB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisNCisJLy8gRlJVIE1vdGhlcmJvYXJkDQorCWVl
-cHJvbUA1MSB7DQorCQljb21wYXRpYmxlID0gImF0bWVsLDI0YzY0IjsNCisJCXJlZyA9IDwweDUx
-PjsNCisJCXBhZ2VzaXplID0gPDMyPjsNCisJfTsNCisNCisJLy8gQURDX1U3NA0KKwlhZGNfdTc0
-OiBhZGNAMzUgew0KKwkJY29tcGF0aWJsZSA9ICJtYXhpbSxtYXgxMTM5IjsNCisJCXJlZyA9IDww
-eDM1PjsNCisJCSNpby1jaGFubmVsLWNlbGxzID0gPDE+Ow0KKwl9Ow0KKw0KKwlwc3VANTggew0K
-KwkJY29tcGF0aWJsZSA9ICJwbWJ1cyI7DQorCQlyZWcgPSA8MHg1OD47DQorCX07DQorDQorCXBz
-dUA1YSB7DQorCQljb21wYXRpYmxlID0gInBtYnVzIjsNCisJCXJlZyA9IDwweDVhPjsNCisJfTsN
-CisNCisJLy8gTW90aGVyYm9hcmQgVGVtcF9VODkNCisJdGVtcGVyYXR1cmUtc2Vuc29yQDRlIHsN
-CisJCWNvbXBhdGlibGUgPSAidGksdG1wNDIxIjsNCisJCXJlZyA9IDwweDRlPjsNCisJfTsNCisN
-CisJLy8gUnVuQk1DIFRlbXBfVTYNCisJdGVtcGVyYXR1cmUtc2Vuc29yQDQ5IHsNCisJCWNvbXBh
-dGlibGUgPSAidGksdG1wNzUiOw0KKwkJcmVnID0gPDB4NDk+Ow0KKwl9Ow0KKw0KKwkvLyBSaWdo
-dCBlYXIgYm9hcmQgVGVtcF9VMQ0KKwl0ZW1wZXJhdHVyZS1zZW5zb3JAN2Mgew0KKwkJY29tcGF0
-aWJsZSA9ICJlbWMxNDAzIjsNCisJCXJlZyA9IDwweDdjPjsNCisJfTsNCit9Ow0KKw0KKyZpMmM3
-IHsNCisJc3RhdHVzID0gIm9rYXkiOw0KKwkvLyBJMkMgRVhQQU5ERVIgVTQwDQorCWkyYy1zd2l0
-Y2hANzAgew0KKwkJY29tcGF0aWJsZSA9ICJueHAscGNhOTU0NSI7DQorCQkjYWRkcmVzcy1jZWxs
-cyA9IDwxPjsNCisJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJcmVnID0gPDB4NzA+Ow0KKw0KKwkJ
-aTJjQDAgew0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+
-Ow0KKwkJCXJlZyA9IDwwPjsNCisJCX07DQorDQorCQlpMmNAMSB7DQorCQkJI2FkZHJlc3MtY2Vs
-bHMgPSA8MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MD47DQorCQkJcmVnID0gPDE+Ow0KKwkJfTsN
-CisNCisJCWkyY0AyIHsNCisJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1jZWxs
-cyA9IDwwPjsNCisJCQlyZWcgPSA8Mj47DQorCQl9Ow0KKw0KKwkJaTJjQDMgew0KKwkJCSNhZGRy
-ZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJCXJlZyA9IDwzPjsN
-CisJCX07DQorCX07DQorfTsNCisNCisNCismaTJjOCB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisJ
-Ly8gRlJVIFJ1bkJNQw0KKwllZXByb21ANTEgew0KKwkJY29tcGF0aWJsZSA9ICJhdG1lbCwyNGM1
-MTIiOw0KKwkJcmVnID0gPDB4NTE+Ow0KKwkJcGFnZXNpemUgPSA8MTI4PjsNCisJfTsNCisNCisJ
-Ly8gRmFuIGNvbnRyb2xsZXINCisJcHdtQDIwIHsNCisJCWNvbXBhdGlibGUgPSAibWF4MzE3OTAi
-Ow0KKwkJcmVnID0gPDB4MjA+Ow0KKwl9Ow0KKwlwd21AMjMgew0KKwkJY29tcGF0aWJsZSA9ICJt
-YXgzMTc5MCI7DQorCQlyZWcgPSA8MHgyMz47DQorCX07DQorCXB3bUAyZSB7DQorCQljb21wYXRp
-YmxlID0gImVtYzIzMDUiOw0KKwkJcmVnID0gPDB4MmU+Ow0KKwl9Ow0KK307DQorDQorJmkyYzkg
-ew0KKwlzdGF0dXMgPSAib2theSI7DQorfTsNCisNCismaTJjMTAgew0KKwlzdGF0dXMgPSAib2th
-eSI7DQorfTsNCisNCismaTJjMTEgew0KKwlzdGF0dXMgPSAib2theSI7DQorfTsNCisNCismaTJj
-MTIgew0KKwlzdGF0dXMgPSAib2theSI7DQorCS8vIEZSVSBTQ00NCisJZWVwcm9tQDUxIHsNCisJ
-CWNvbXBhdGlibGUgPSAiYXRtZWwsMjRjNTEyIjsNCisJCXJlZyA9IDwweDUxPjsNCisJCXBhZ2Vz
-aXplID0gPDEyOD47DQorCX07DQorDQorCS8vIFNDTSBUZW1wX1UxNw0KKwl0ZW1wZXJhdHVyZS1z
-ZW5zb3JANGYgew0KKwkJY29tcGF0aWJsZSA9ICJ0aSx0bXA3NSI7DQorCQlyZWcgPSA8MHg0Zj47
-DQorCX07DQorfTsNCisNCisNCismZ3BpbzAgew0KKwlzdGF0dXMgPSAib2theSI7DQorCWdwaW8t
-bGluZS1uYW1lcyA9DQorCS8qQTAtQTcqLyAgICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkv
-KkIwLUI3Ki8gICAiYWxlcnQtcHN1MC1zbWItci1uIiwiYm1jLXJlYWR5IiwiIiwiYXNzZXJ0LWNw
-dTAtcHJvY2hvdC1yLW4iLCIiLCIiLCIiLCIiLA0KKwkvKkMwLUM3Ki8gICAiIiwiIiwiIiwiIiwi
-IiwiIiwiIiwiIiwNCisJLypEMC1ENyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8q
-RTAtRTcqLyAgICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkYwLUY3Ki8gICAiIiwiIiwi
-IiwiIiwicmVzZXQtc2dwaW8tci1uIiwiIiwiIiwiIiwNCisJLypHMC1HNyovICAgIiIsIiIsInNj
-bS1qdGFnLW11eC1zZWxlY3QiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkgwLUg3Ki8gICAiIiwiIiwi
-IiwiIiwicmVzZXQtb3V0IiwicG93ZXItb3V0IiwiIiwiIiwNCisJLypJMC1JNyovICAgIiIsIiIs
-IiIsIiIsIiIsIiIsImlycS1ibWMtY3B1MC1idWYtbm1pLW4iLCIiLA0KKwkvKkowLUo3Ki8gICAi
-IiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJLypLMC1LNyovICAgIiIsIiIsIiIsIiIsIiIsIiIs
-IiIsIiIsDQorCS8qTDAtTDcqLyAgICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKk0wLU03
-Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJLypOMC1ONyovICAgIiIsIiIsIm5jc2kt
-b2NwLWNsay1lbi1uIiwiIiwiIiwiIiwiIiwiIiwNCisJLypPMC1PNyovICAgIiIsIiIsIiIsIiIs
-IiIsIiIsImNwdTEtdGhlcm1hbC10cmlwLW4iLCIiLA0KKwkvKlAwLVA3Ki8gICAiIiwiIiwiIiwi
-IiwiIiwiIiwiIiwiIiwNCisJLypRMC1RNyovICAgImNwdTAtcHJvY2hvdC1uIiwiIiwiY3B1MS1w
-cm9jaG90LW4iLCIiLCJjcHUwLXBlLXJzdDAiLCIiLCIiLCIiLA0KKwkvKlIwLVI3Ki8gICAiIiwi
-IiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJLypTMC1TNyovICAgIiIsIiIsIiIsIiIsIiIsIlBDSF9T
-TFBfUzRfQk1DX04iLCJjcHUwLXRoZXJtdHJpcC1uIiwiYWxlcnQtcHN1MS1zbWItci1uIiwNCisJ
-LypUMC1UNyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qVTAtVTcqLyAgICIiLCIi
-LCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKlYwLVY3Ki8gICAiYmlvcy1yZWNvdmVyeS1idWYtbiIs
-IiIsImFzc2VydC1jcHUxLXByb2Nob3Qtci1uIiwiIiwicG93ZXItY2hhc3Npcy1nb29kIiwiIiwi
-IiwiIiwNCisJLypXMC1XNyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qWDAtWDcq
-LyAgICIiLCIiLCIiLCIiLCJwbGF0Zm9ybS10eXBlIiwiIiwiIiwiIiwNCisJLypZMC1ZNyovICAg
-IiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qWjAtWjcqLyAgICIiLCJjcGxkLXBvd2VyLWJy
-ZWFrLW4iLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkFBMC1BQTcqLyAiIiwiIiwiIiwiIiwiIiwi
-IiwiIiwiIiwNCisJLypBQjAtQUI3Ki8gIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qQUMw
-LUFDNyovICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiOw0KK307DQorDQorJnNncGlvbTAgew0KKwlz
-dGF0dXMgPSAib2theSI7DQorCW1heC1uZ3Bpb3MgPSA8NjQ+Ow0KKwluZ3Bpb3MgPSA8NjQ+Ow0K
-KwlidXMtZnJlcXVlbmN5ID0gPDEwMDAwMDA+Ow0KKwlncGlvLWxpbmUtbmFtZXMgPQ0KKwkvKmlu
-IC0gb3V0IC0gaW4gLSBvdXQgKi8NCisJLypBMC1BNyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIs
-IiIsDQorCS8qQTAtQTcqLyAgICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkIwLUI3Ki8g
-ICAiIiwicmVzZXQtY3B1MC1pMmMtbiIsIiIsInJlc2V0LWNwdTEtaTJjLW4iLCIiLCJyZXNldC1p
-MmMtYnVzNy1uIiwiIiwidXNiMjUxNC0xLXJlc2V0LW4iLA0KKwkvKkIwLUI3Ki8gICAiIiwiYm1j
-LWNwdTAtdWFydC1lbiIsIiIsImhkdC1idWZmLWVuLW4iLCIiLCJhc3NlcnQtY2xlYXItY21vcyIs
-IiIsImhkdC1tdXgtc2VsZWN0LW1vbiIsDQorCS8qQzAtQzcqLyAgICJsZWQtaWRlbnRpZnkiLCJj
-cGxkLWp0YWctb2Utci1uIiwiY3B1MC1zcGQtaG9zdC1jdHJsLW4iLCJyZXNldC1jcGxkLWhkdC1u
-IiwiIiwiaTNjLW11eC1zZWxlY3QiLCIiLCJzcGktbXV4LXNlbGVjdCIsDQorCS8qQzAtQzcqLyAg
-ICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkQwLUQ3Ki8gICAiIiwiIiwiIiwiIiwiIiwi
-IiwiIiwiIiwNCisJLypEMC1ENyovICAgIiIsIiIsIiIsIiIsIiIsIiIsImJpb3MtcG9zdC1jb21w
-bGV0ZS1idWYtbiIsIiIsDQorCS8qRTAtRTcqLyAgICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0K
-KwkvKkUwLUU3Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJLypGMC1GNyovICAgInBy
-ZXNlbmNlLWZhbjAtbiIsIiIsInByZXNlbmNlLWZhbjEtbiIsIiIsInByZXNlbmNlLWZhbjItbiIs
-IiIsInByZXNlbmNlLWZhbjMtbiIsIiIsDQorCS8qRjAtRjcqLyAgICJwcmVzZW5jZS1mYW40LW4i
-LCIiLCJwcmVzZW5jZS1mYW41LW4iLCIiLCJwcmVzZW5jZS1jcHUwLW4iLCIiLCJwcmVzZW5jZS1j
-cHUxLW4iLCIiLA0KKwkvKkcwLUc3Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJLypH
-MC1HNyovICAgIiIsIiIsIiIsIiIsInByZXNlbmNlLXBzdTAtY3BsZC1uIiwiIiwicHJlc2VuY2Ut
-cHN1MS1jcGxkLW4iLCIiLA0KKwkvKkgwLUg3Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwN
-CisJLypIMC1INyovICAgIiIsIiIsIiIsIiIsInByZXNlbmNlLXJpc2VyMC1uIiwiIiwicHJlc2Vu
-Y2UtcmlzZXIxLW4iLCIiOw0KK307DQorDQorDQorJmxwY19zbm9vcCB7DQorCXN0YXR1cyA9ICJv
-a2F5IjsNCisJc25vb3AtcG9ydHMgPSA8MHg4MD47DQorfTsNCisNCismZW1tY19jb250cm9sbGVy
-IHsNCisJc3RhdHVzID0gIm9rYXkiOw0KK307DQorDQorJmVtbWMgew0KKwlzdGF0dXMgPSAib2th
-eSI7DQorCW5vbi1yZW1vdmFibGU7DQorCW1heC1mcmVxdWVuY3kgPSA8NTIwMDAwMDA+Ow0KKwli
-dXMtd2lkdGggPSA8OD47DQorfTsNCisNCismdmlkZW8gew0KKwlzdGF0dXMgPSAib2theSI7DQor
-CW1lbW9yeS1yZWdpb24gPSA8JnZpZGVvX2VuZ2luZV9tZW1vcnk+Ow0KK307DQorDQorJnZodWIg
-ew0KKwlzdGF0dXMgPSAib2theSI7DQorCWFzcGVlZCx2aHViLWRvd25zdHJlYW0tcG9ydHMgPSA8
-Nz47DQorCWFzcGVlZCx2aHViLWdlbmVyaWMtZW5kcG9pbnRzID0gPDIxPjsNCisJcGluY3RybC1u
-YW1lcyA9ICJkZWZhdWx0IjsNCisJcGluY3RybC0wID0gPCZwaW5jdHJsX3VzYjJhZF9kZWZhdWx0
-PjsNCit9Ow0KKw0KKyZydGMgew0KKwlzdGF0dXMgPSAib2theSI7DQorfTsNCisNCi0tIA0KMi4y
-NS4xDQoNCg==
+Hi,
+
+Am Dienstag, 30. Mai 2023, 17:19:45 CEST schrieb Uwe Kleine-K=F6nig:
+> For active low lines the semantic of output-low and output-high is hard
+> to grasp because there is a double negation involved and so output-low
+> is actually a request to drive the line high (aka inactive).
+>=20
+> So introduce output-inactive and output-active with the same semantic as
+> output-low and output-high respectively have today, but with a more
+> sensible name.
+>=20
+> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/gpio/gpio.txt | 16 +++++++++++-----
+>  1 file changed, 11 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio.txt
+> b/Documentation/devicetree/bindings/gpio/gpio.txt index
+> d82c32217fff..2f037bbd3ffa 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio.txt
+> +++ b/Documentation/devicetree/bindings/gpio/gpio.txt
+> @@ -209,15 +209,21 @@ Required properties:
+>  - gpios:      Store the GPIO information (id, flags, ...) for each GPIO =
+to
+>  	      affect. Shall contain an integer multiple of the number of=20
+cells
+>  	      specified in its parent node (GPIO controller node).
+> +
+>  Only one of the following properties scanned in the order shown below.
+>  This means that when multiple properties are present they will be search=
+ed
+>  in the order presented below and the first match is taken as the intended
+>  configuration.
+> -- input:      A property specifying to set the GPIO direction as input.
+> -- output-low  A property specifying to set the GPIO direction as output
+> with -	      the value low.
+> -- output-high A property specifying to set the GPIO direction as output
+> with -	      the value high.
+> +- input:             A property specifying to set the GPIO direction as
+> input. +- output-inactive:   A property specifying to set the GPIO
+> direction as output +		     with the inactive value=20
+(depending on the
+> line's polarity, +		     which is active-high by default)
+> +- output-active:     A property specifying to set the GPIO direction as
+> output +		     with the active value.
+
+I know this is essentially just renaming currently existing properties.
+But these mutual exclusive (boolean) properties make it impossible to chang=
+e=20
+them in DT overlay. Any ideas how to support changing the output level onGP=
+IO=20
+hogs in DT overlay?
+
+Despite that, this change looks sensible to me.
+
+Best regards,
+Alexander
+
+> +For backwards compatibility "output-low" and "output-high" are supported=
+ as
+> +aliases for "output-inactive" and "output-active" respectively. Their
+> usage is +misleading for active-low outputs, so their use is discouraged.
+>=20
+>  Optional properties:
+>  - line-name:  The GPIO label name. If not present the node name is used.
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
