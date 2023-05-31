@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA8737172EE
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 03:16:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AF7B7172F0
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 03:16:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231545AbjEaBQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S233966AbjEaBQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 30 May 2023 21:16:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36852 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233482AbjEaBQd (ORCPT
+        with ESMTP id S233969AbjEaBQd (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 30 May 2023 21:16:33 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF0EAF9
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:16:30 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f3bb61f860so6120482e87.3
-        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:16:30 -0700 (PDT)
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE731FC
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:16:31 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f4f8b94c06so4037340e87.1
+        for <devicetree@vger.kernel.org>; Tue, 30 May 2023 18:16:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685495789; x=1688087789;
+        d=linaro.org; s=google; t=1685495790; x=1688087790;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=eMZeiPIi7TP7gXho3St6dgJ9AasXrJTL2jtP8YLAFi0=;
-        b=iJES3Hzzswvmk70tOV0eW4Fc+P3sx1muEyTLXZc06JlECYGjtynQoDvtOKbikmotV/
-         nO+NbhRgkTn3Tpod3kP8JfWxkCFvhpduXtSFVuwq+8HC3IAKuI5Ssj+IQGlDa9gzznqf
-         jefY8EkqDE4rmVBnAPpUAEx984rAd+r7UlQ6hb96Fe3cWBC7bA6UJp1VUNKvkyY+6eMo
-         f4yxGIZTj5f6yxB7jr1RKayQgL1evZv/fZsoh+2gB8y705u98bPa9wbt+SEuHhpXy0UZ
-         uYQn7KvfPnY4rh2UiJ99ugCfU89/NZQTspL6fe/OgKLy902w/EMLPsiMopiPaWVkCfep
-         cv/g==
+        bh=TMjfTjBGLXw7IVGJ+nf3D2GY7OrsoBlL/iS2L0XV7Gg=;
+        b=L2y9SosxlrvjTJV08OVlHfoKIFH8OYw/2e1GHpt/X4EnbV7B2efpHW6QmmDcxwaTkJ
+         fpAYDGJqQf8cR8nwAKabkw8ViN7KGUuVYTMuvTicYdQLU10sGinB5Ir3jyco7dzSudKn
+         oS4jpfIOCPvra6GLJzvZyF4hiu65ZtHoViTK3fSmyuIgca7OzHaJXzHqxkdw0Qr9kZz6
+         tgv20+oQuibZRUp6R9Pk6s397oqZX22aodbAMJn1+ITd3Z3leM57nczySsZ7plImg/c7
+         pa8XA4zhDRh2gZnymXGM5joOdAtCgJjUpk3OkMnNlCBCbE2ve8u5aoHZEPXn28uxd62E
+         by4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685495789; x=1688087789;
+        d=1e100.net; s=20221208; t=1685495790; x=1688087790;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=eMZeiPIi7TP7gXho3St6dgJ9AasXrJTL2jtP8YLAFi0=;
-        b=WHWyMQJllO2KCnn+Lh20FgV6yHsDpqsAfQBJmL/wn/m4S2QqUfdZ0GehOhAvrl8PFM
-         xp5e0D8ebkxmaizdlRzSJ3PVGJ7e3MqP6WKEeuatGIQVyXG1XSAwOC3iempuNXWBTO5u
-         S2z4qTTeiFnzan1IH2dBoVHvU5h5304Rt4fIVWPvfG1D3QuxkexS3cVk8/2yj14Jm8G5
-         vnyWIkOGneyaBHxc0v9XifywXpWDjNmGRwIJJOBPhVUW42AFBCpjfI7ryxtGPUDT7O47
-         RjHpJ8HkzBbn6SRW+FCv1maHCBGcVTnisw/azjlDrrJ/xJu8TMf2yMyv1it9tH6wI3pi
-         Am5g==
-X-Gm-Message-State: AC+VfDzY2re7P5WBmS7NcYtR8XzVyYvgkm/cQeoOyd0By4CSKYIAo1Q1
-        +Woh7K1P+2QdoeJpTedYqWdw0g==
-X-Google-Smtp-Source: ACHHUZ44SFqHBtOb4DQtt+L0gX+v2ZLGih7vIXIy0lsFJCCVeHyJoe4PDY/ARDZGUg4dr9Oipl+AxQ==
-X-Received: by 2002:a05:6512:64:b0:4f4:cb4c:36e5 with SMTP id i4-20020a056512006400b004f4cb4c36e5mr1635744lfo.29.1685495787676;
-        Tue, 30 May 2023 18:16:27 -0700 (PDT)
+        bh=TMjfTjBGLXw7IVGJ+nf3D2GY7OrsoBlL/iS2L0XV7Gg=;
+        b=J4RsGTuc7FNhi3BFc47E6ChRQUdAbC3/ohx3LhQlxtzhVMhI9pX2iHAePv7eUg2iIb
+         GxJIXhs5mLGxCcUPGoddyw29rTeLwltea6IIrVKG0Ysq2D2SN1NnGrMyDylbJFa4eMzV
+         NESh2PjvBjm48abEVEiN92Ja+udfzFck1wO8/8FIXgMCpnE/f5/qd//4KNMqTQ1LYt5j
+         21ImDEhJFT97aG8A4iY45go6PQ5pLGo5+1XG2QdgTK067pLZBh3ANaGsz5ZeaFzY7vqH
+         k9Bd/GsYvgnOAe6e9E/lKCjvKCg29XM2HUlglscvgv8w52FDGe67kEvE1qLGzFQl10WO
+         MuHQ==
+X-Gm-Message-State: AC+VfDwVOQHJD27YiiJ+dpeC2GjtbbRDi8ad0B+8uhsVODPPyz8uILSj
+        fe+ocU1/hFLaoKd97nGlvpNXhQ==
+X-Google-Smtp-Source: ACHHUZ55BaJYIc4njdOwvXBII52zDTIe044DyjKXnOIF1/7xd4yIAgtkCGycTitBWBg75Wafnfw5aw==
+X-Received: by 2002:a19:5502:0:b0:4f3:8c0d:41c3 with SMTP id n2-20020a195502000000b004f38c0d41c3mr1765898lfe.6.1685495790172;
+        Tue, 30 May 2023 18:16:30 -0700 (PDT)
 Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
-        by smtp.gmail.com with ESMTPSA id v24-20020ac25618000000b004f3787d8006sm505640lfd.128.2023.05.30.18.16.26
+        by smtp.gmail.com with ESMTPSA id v24-20020ac25618000000b004f3787d8006sm505640lfd.128.2023.05.30.18.16.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 May 2023 18:16:26 -0700 (PDT)
+        Tue, 30 May 2023 18:16:29 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,9 +57,9 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 02/14] arm64: dts: qcom: sm8350-hdk: remove useless enablement of mdss_mdp
-Date:   Wed, 31 May 2023 04:16:11 +0300
-Message-Id: <20230531011623.3808538-3-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 03/14] arm64: dts: qcom: sm8450-hdk: remove useless enablement of mdss_mdp
+Date:   Wed, 31 May 2023 04:16:12 +0300
+Message-Id: <20230531011623.3808538-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230531011623.3808538-1-dmitry.baryshkov@linaro.org>
 References: <20230531011623.3808538-1-dmitry.baryshkov@linaro.org>
@@ -80,14 +80,14 @@ enabling it in the board DTS file.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 4 ----
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 4 ----
  1 file changed, 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-index d3788bd72ac3..61dd9663fabe 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-@@ -424,10 +424,6 @@ mdss_dp0_out: endpoint {
+diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+index d5aeb7319776..bc4c125d1832 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+@@ -568,10 +568,6 @@ mdss_dp0_out: endpoint {
  	};
  };
  
@@ -95,9 +95,9 @@ index d3788bd72ac3..61dd9663fabe 100644
 -	status = "okay";
 -};
 -
- &mpss {
+ &pcie0 {
  	status = "okay";
- 	firmware-name = "qcom/sm8350/modem.mbn";
+ 	max-link-speed = <2>;
 -- 
 2.39.2
 
