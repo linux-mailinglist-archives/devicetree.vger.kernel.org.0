@@ -2,573 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF965717620
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 07:26:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6636B71762A
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 07:29:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234047AbjEaF0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 01:26:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48030 "EHLO
+        id S234112AbjEaF3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 01:29:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229890AbjEaF0w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 01:26:52 -0400
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2068.outbound.protection.outlook.com [40.107.94.68])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69C69EE;
-        Tue, 30 May 2023 22:26:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mS/qOA17MswulaVv93jon3c/4Eeg7R2cIbpvgGoIZd8Tj1ReywUDm+wAiIav4AoDn+4tS3gvpLrpIOcvalrXVAOImNdD9vgHiWiL1iGPqsg+SDisVd8xdGLNGstMEqruvz2AmMK5Y0moyHJBvnCazAXHwQgXb6HxNMGl2amUQ1TNrwkfQ4TFLwKSJen7+VRLtv10Eq0/Iyw4x7clMOZsZWUA/2WJ4vQJnMztfNJcRBr+8Kga336A5bV7S4zjieujrAUsUsiGal/F1v0zlIyNLwrz+aV3Wf2LTkatDJPddmHgkjoUMQXhswj1IgmiYKd5jBaTXkU9Ql2G6JFuGwtgRg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t/Fx8Z5aOiiqgX7FjcpS8H0+wTPJ0Vc68JAglgSWOCY=;
- b=JFoRe4qHMQWJgnz4fpsZ2OekA+0w4D3zSjG1e2rkWfNILvInjdTNmNp+Cn8GrU5+8MX7mDBkCsKZpjYDiJV5NROL/DKoWHUa9FZJeoY7fYtNSjywTm1TxHU/IxnqwEIiXQWyEU5cWLHRlweLqXYsepvZHJ9JLlD15+5QiungXKb3V/L2H5WtN2t6kqbZ38d7DIqayMy8nS5C8+2yEAv49F4GjQlGJc8UEd/OzOn+QhAjeKTIgI9p0rlnHFvU190xhmCxVgDI/pMuLr0iHlehSz/60uQIU2JPbAO5+U6YGUdYaAl5BGUUiMgQUHdVJ6Az+vEuuUCR+R/qZ4P3qz2+FA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t/Fx8Z5aOiiqgX7FjcpS8H0+wTPJ0Vc68JAglgSWOCY=;
- b=AGHhDoNbQT39noxHL+s21tDv2ppKthh01f+RGhH5Vt9bPWnNHw4qcvtJ9a9bp0xvvNBtT4zz7ExbW6MhxbCoJsrzne9lIwDQkbg8B60m16/7gk8SUDwLw0Z/VPt3TgyJgjb6b0ZSyJagjjUl4YbMOQKBAJTqU5r4UPz8xmNIMh8=
-Received: from BN7PR12MB2802.namprd12.prod.outlook.com (2603:10b6:408:25::33)
- by CY5PR12MB9055.namprd12.prod.outlook.com (2603:10b6:930:35::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6433.24; Wed, 31 May
- 2023 05:26:47 +0000
-Received: from BN7PR12MB2802.namprd12.prod.outlook.com
- ([fe80::b65d:f33d:c4f:94d0]) by BN7PR12MB2802.namprd12.prod.outlook.com
- ([fe80::b65d:f33d:c4f:94d0%7]) with mapi id 15.20.6433.022; Wed, 31 May 2023
- 05:26:47 +0000
-From:   "Mahapatra, Amit Kumar" <amit.kumar-mahapatra@amd.com>
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "lee@kernel.org" <lee@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "yung-chuan.liao@linux.intel.com" <yung-chuan.liao@linux.intel.com>,
-        "sanyog.r.kale@intel.com" <sanyog.r.kale@intel.com>,
-        "pierre-louis.bossart@linux.intel.com" 
-        <pierre-louis.bossart@linux.intel.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "patches@opensource.cirrus.com" <patches@opensource.cirrus.com>,
+        with ESMTP id S229890AbjEaF3S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 01:29:18 -0400
+Received: from mail.inventec.com (mail.inventec.com [61.220.76.156])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CABE6113;
+        Tue, 30 May 2023 22:29:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+    s=sEx04; d=inventec.com;
+    h=from:to:cc:subject:date:message-id:in-reply-to:content-type:
+      mime-version;
+    bh=Z0oxHgirMi2FSe8nQidbeefWvIn8Re++om6n7YaUEq0=;
+    b=Ny5NEN+Esz/2X0Y60P5XV6mtkUsdHwSxIjvrdqjoLhasS3UteRZzr3aMdGswo5
+      Qc3l12MFs0ONyoAMI6UBqi+H62LQJ5SYcfrDF8pPdSTXIhzY9qV6qMZ+lsV3yM
+      96dy+eCgx5DSfhNvdwCFc1Lf74zAZX8rtEqsSkPSqGLWut4=
+Received: from IEC1-EX2016-04.iec.inventec (10.1.254.222) by
+ IEC1-EX2016-04.iec.inventec (10.1.254.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 31 May 2023 13:29:08 +0800
+Received: from IEC1-MSE-FE1.inventec.com (10.1.254.203) by
+ IEC1-EX2016-04.iec.inventec (10.1.254.222) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Wed, 31 May 2023 13:29:08 +0800
+Received: from IEC1-EX2016-02.iec.inventec (IEC1-EX2016-02.iec.inventec [10.1.254.221])
+        by IEC1-MSE-FE1.inventec.com with ESMTP id 34V5T7uS069777;
+        Wed, 31 May 2023 13:29:07 +0800 (GMT-8)
+        (envelope-from Chen.PJ@inventec.com)
+Received: from IEC1-EX2016-01.iec.inventec (10.15.2.58) by
+ IEC1-EX2016-02.iec.inventec (10.1.254.221) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 31 May 2023 13:29:07 +0800
+Received: from IEC1-EX2016-01.iec.inventec ([fe80::ad9c:c1af:d29:f80d]) by
+ IEC1-EX2016-01.iec.inventec ([fe80::ad9c:c1af:d29:f80d%7]) with mapi id
+ 15.01.2507.021; Wed, 31 May 2023 13:29:06 +0800
+From:   =?big5?B?Q2hlbi5QSiCzr6xmpfQgVEFP?= <Chen.PJ@inventec.com>
+To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        "soc@kernel.org" <soc@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Subject: RE: [PATCH v2 5/6] spi: cs42l43: Add SPI controller support
-Thread-Topic: [PATCH v2 5/6] spi: cs42l43: Add SPI controller support
-Thread-Index: AQHZkvFOxnymbIC5RUqFNdNVbAs5OK9z2k7g
-Date:   Wed, 31 May 2023 05:26:46 +0000
-Message-ID: <BN7PR12MB28024FF756EFAE44E1713FBDDC489@BN7PR12MB2802.namprd12.prod.outlook.com>
-References: <20230530122112.1314458-1-ckeepax@opensource.cirrus.com>
- <20230530122112.1314458-6-ckeepax@opensource.cirrus.com>
-In-Reply-To: <20230530122112.1314458-6-ckeepax@opensource.cirrus.com>
-Accept-Language: en-US
-Content-Language: en-US
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
+CC:     =?big5?B?WWUuVmljILitpnSyTSBUQU8=?= <ye.vic@inventec.com>,
+        =?big5?B?SHVhbmcuQWxhbmcgtsCtXq2mIFRBTw==?= 
+        <Huang.Alang@inventec.com>
+Subject: [PATCH v4 2/2] ARM: dts: aspeed: Adding Inventec Starscream BMC
+Thread-Topic: [PATCH v4 2/2] ARM: dts: aspeed: Adding Inventec Starscream BMC
+Thread-Index: AQHZk4DRLjyR/lN0/0untbadEfrurw==
+Date:   Wed, 31 May 2023 05:29:06 +0000
+Message-ID: <cc443e835715493287045ffbc3fdcc02@inventec.com>
+References: <28f0ce0a82464083ae24f9ef2f598425@inventec.com>
+In-Reply-To: <28f0ce0a82464083ae24f9ef2f598425@inventec.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN7PR12MB2802:EE_|CY5PR12MB9055:EE_
-x-ms-office365-filtering-correlation-id: 48ef444d-6b3f-4572-f9b7-08db6197a0cc
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: v0QRxbK6zw9UGy/bRObHY6RgPhTPglES3Phs/Ihzlj/M0AHMc3LLbJwINwXomMjiRqn7N3oHO/xYIR+WtwlcAygT7E8KPYlmK+CZKFHCdcC/DCiI6bAzpk1FONckEx5obghZNMDOsstQ3wqPZ+wgDMVGKT2Z1oBk5qbPtDd4ZlN/urfzl9tZNuIHgEKPAApoWhbyEma7R/R+VTJudse6EEpp6zJ2Rn94rk7GC6oaW3VH7K9FQUiVFwOAXPoujdkfTEB4hEIIekQ69pMxD/Nuhh1H1uMB0D0XEpSZOD0TcQuQVXM6oklmwoqv35aHziSUknFkUlqXuss+cTR0iIp6slL1MUDsHGoS4m3oZ5tmQzdSg5jbkTugxne0xeRXjuadXU5sLSElXOSZFs+GKG3lChcOn2D7VCdHJetNwKMNitqT/bScZ6LQXmu0A5dtMYZELiiju9WLuloodC7KuhpTl26Zg6LsfY/FWsaNoxnfk3KBkWNuoYpOalyQFU4dsHeqZTappvA697T38WIa8u9FgOs9f/L4NgtHqK75k+ezMbD9T5XUhJCGsJVvT+Wwb4L9T2aWg+KrBX4oa/62L8UvcfkTsHe6VE4bIWLkcj8OFtI=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR12MB2802.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(39860400002)(346002)(366004)(396003)(136003)(451199021)(2906002)(30864003)(83380400001)(86362001)(33656002)(38070700005)(38100700002)(122000001)(55016003)(8936002)(8676002)(7416002)(5660300002)(52536014)(4326008)(316002)(71200400001)(76116006)(66946007)(66556008)(66476007)(64756008)(66446008)(966005)(41300700001)(7696005)(6506007)(26005)(186003)(9686003)(54906003)(110136005)(53546011)(478600001)(19627235002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?89tTptEP87A/XEimLjX4Lnv2+lzmKKQctPTKAg2qoQTGNlizRHRysLtoO2HJ?=
- =?us-ascii?Q?ATjeP8hOhXzB4YwgiOR3zb3rhESP2sajJWGA5NDqFRKrlqkmehbTXGCqKvnu?=
- =?us-ascii?Q?+E4pENfeGpBPQi7g1gLZlRd1dtEYR8EPn/bW3Nwwn2F5VO1ZBR2cvGnT7BS/?=
- =?us-ascii?Q?s02pAtXny0sPmHTlDefoFLu116wzK5UOkGd1+FUt2nXThCtLY4VCW5xGqqQq?=
- =?us-ascii?Q?Pm0pR4uMN6Cm4vY6SbxIvpKfQ/mzCLwffQvo3+tTLDnjhN+o+CGx5OOFvvsh?=
- =?us-ascii?Q?j4dLXfRwdEnNHaX9pu/0RtXphaeuM4HiSYmfBO7Pdc36pVkf7VWUL3VFPduX?=
- =?us-ascii?Q?JqtQyVMYKHUH5tulVF5Eg4ujtj+0zJ9VOKI+Vs2/93X1APJfmGwB5srAZwuY?=
- =?us-ascii?Q?wgpZOMrC1sJhCL8+/3Ub5oRafyZte2Q8GexHjAAZ/5Gt7/3ZZXJHEBgySmrq?=
- =?us-ascii?Q?MaC3Wk/DGa9tfRVralNNjyDaXim9fjNePHl4UseWZxctJVzi8yCmNsGyqu8g?=
- =?us-ascii?Q?rn2fJrZjxf+1cv8zNfjpcmkgy+Kd4j0dxTL+o7S8tt2euZB+KaxKbvhA1HCp?=
- =?us-ascii?Q?Xje74kfhCyXWqH9zZCMP8IFrT1bUvPyxo91/0ysAN+RqfFHl7MB2sAH8VPxk?=
- =?us-ascii?Q?LUMy8zp7Wo+Bl7x6UzduuHyoOQCG+tdHq0T3GVRryq7XSlLQ0LFMFuCH9nfy?=
- =?us-ascii?Q?9i1HNX29Li/LPl5ISIw3khZT8rGkBSYe/KWD4fQEs8AWB0yBrpJed1cQtlIh?=
- =?us-ascii?Q?Va6+ZufqVLrEtJ0bcfY5z/JW+KfiE9nCFzLGz2gdDvyYtCf82Hpw36wlR1xe?=
- =?us-ascii?Q?9CgxFMe9RS5JFEDvaTKohuktEjrdgAHEJ0aKUFNBZRaEM5zryoXPkqhdyP9D?=
- =?us-ascii?Q?VphnqN6fQbByKwU6pfxENlT+RBrWDaELZB4SKfgCzyYOZqN+NJjipymf7pJf?=
- =?us-ascii?Q?Hy1gGxYtDV7eTKwQQX61RBlwNjoDCGjHGJpGx0rf/5l24hIqVHrhKAIZ5t5e?=
- =?us-ascii?Q?zBpj5n4Qw/BmK2LV1t1h7MmsrRYHt4LNA0A2cV9N+UlHT9LEGq5IqGe/SMgP?=
- =?us-ascii?Q?nw1sv0STGZv9mswBh0KyvcxWen1jHqBmo9c7KpZJoGOZraWDvloJJ3o4+ppJ?=
- =?us-ascii?Q?1Qv/vc4BV0d6xHtU+yPEzTr/GircB4OHkqhdt+TxVU5tTl2TVhqCHft3B+8W?=
- =?us-ascii?Q?d9F3du52UafS95eQPtUxTj80mHdjgq3de1ZKr+MJC8WUbiYtzSgJGUTbF1FO?=
- =?us-ascii?Q?nEXc/ZWTKDpb1Cxa64apkzjk3n1zVRw6XPQxFf9C47k5dsxNWqVzW4ql5c75?=
- =?us-ascii?Q?Qma3An6S+rYRq+WXM6kHK0U2EwVz6JrJOtcBbAiTn4/ClfWmOyBBxGGNooWR?=
- =?us-ascii?Q?8eVQoBcnsoBfk4XeL63LOlm9hy3syQ4jz33G6Jaz6mX3NAgc64hnXrnEB5g3?=
- =?us-ascii?Q?UgpyTUbmaOLoCa4HfQtuX+90aHYnLR0j58AieeNUWROU3wC7STtOYkxPODBl?=
- =?us-ascii?Q?676dY/DMyZMMaIC6gBTl+Br+Vu0lslkfXXalBZJG1VUlN1M9/m3Se8jQWibf?=
- =?us-ascii?Q?O3go+xHwYvQ89lh42B0=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-imapappendstamp: IEC1-EX2016-01.iec.inventec (15.01.2507.021)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [10.6.245.192]
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN7PR12MB2802.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 48ef444d-6b3f-4572-f9b7-08db6197a0cc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 May 2023 05:26:46.8595
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sFz6yLWYEg7RNFYo8aTWSlDlQH4r/rmkkw78Gm49Nc2gWI/V0jqvtDjM3b/YC2fwv4m04NK8Yppshbwioh9cWw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB9055
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+X-MAIL: IEC1-MSE-FE1.inventec.com 34V5T7uS069777
+X-TM-SNTS-SMTP: C0F49D73EC4AE001D4A1E147E87789C9D994C27EFF76A567C16E8BDB1E0FA95C2000:8
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED,WEIRD_QUOTING autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-
-> -----Original Message-----
-> From: Charles Keepax <ckeepax@opensource.cirrus.com>
-> Sent: Tuesday, May 30, 2023 5:51 PM
-> To: broonie@kernel.org; lee@kernel.org; krzysztof.kozlowski+dt@linaro.org=
-;
-> linus.walleij@linaro.org; vkoul@kernel.org
-> Cc: robh+dt@kernel.org; conor+dt@kernel.org; lgirdwood@gmail.com; yung-
-> chuan.liao@linux.intel.com; sanyog.r.kale@intel.com; pierre-
-> louis.bossart@linux.intel.com; alsa-devel@alsa-project.org;
-> patches@opensource.cirrus.com; devicetree@vger.kernel.org; linux-
-> gpio@vger.kernel.org; linux-spi@vger.kernel.org; linux-kernel@vger.kernel=
-.org
-> Subject: [PATCH v2 5/6] spi: cs42l43: Add SPI controller support
->=20
-> CAUTION: This message has originated from an External Source. Please use
-> proper judgment and caution when opening attachments, clicking links, or
-> responding to this email.
->=20
->=20
-> From: Lucas Tanure <tanureal@opensource.cirrus.com>
->=20
-> The CS42L43 is an audio CODEC with integrated MIPI SoundWire interface
-> (Version 1.2.1 compliant), I2C, SPI, and I2S/TDM interfaces designed for
-> portable applications. It provides a high dynamic range, stereo DAC for
-> headphone output, two integrated Class D amplifiers for loudspeakers, and
-> two ADCs for wired headset microphone input or stereo line input. PDM
-> inputs are provided for digital microphones.
->=20
-> The SPI component incorporates a SPI controller interface for communicati=
-on
-> with other peripheral components.
->=20
-> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
-> Signed-off-by: Maciej Strozek <mstrozek@opensource.cirrus.com>
-> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> ---
->=20
-> Changes since v1:
->  - Use HZ_PER_MHZ
->  - Return ret in un/prepare_transfer_hardware
->  - Use SPI_MODE_X_MASK
->  - Use devm_pm_runtime_enable
->  - Switch to using a platform_device_id table
->  - Use device_set_node
->  - Use min rather than min_t, and updating some consts to make it work
->=20
-> Thanks,
-> Charles
->=20
->  MAINTAINERS               |   1 +
->  drivers/spi/Kconfig       |   7 +
->  drivers/spi/Makefile      |   1 +
->  drivers/spi/spi-cs42l43.c | 279 ++++++++++++++++++++++++++++++++++++++
->  4 files changed, 288 insertions(+)
->  create mode 100644 drivers/spi/spi-cs42l43.c
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ed26f63087342..a30dfbeb4f57a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -4930,6 +4930,7 @@ F:
-> Documentation/devicetree/bindings/mfd/cirrus,cs*
->  F:     Documentation/devicetree/bindings/sound/cirrus,cs*
->  F:     drivers/mfd/cs42l43*
->  F:     drivers/pinctrl/cirrus/pinctrl-cs42l43*
-> +F:     drivers/spi/spi-cs42l43*
->  F:     include/dt-bindings/sound/cs*
->  F:     include/linux/mfd/cs42l43*
->  F:     include/sound/cs*
-> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig index
-> 3de2ebe8294aa..f6ce06de41051 100644
-> --- a/drivers/spi/Kconfig
-> +++ b/drivers/spi/Kconfig
-> @@ -281,6 +281,13 @@ config SPI_COLDFIRE_QSPI
->           This enables support for the Coldfire QSPI controller in master
->           mode.
->=20
-> +config SPI_CS42L43
-> +       tristate "Cirrus Logic CS42L43 SPI controller"
-> +       depends on MFD_CS42L43 && PINCTRL_CS42L43
-> +       help
-> +         This enables support for the SPI controller inside the Cirrus L=
-ogic
-> +         CS42L43 audio codec.
-> +
->  config SPI_DAVINCI
->         tristate "Texas Instruments DaVinci/DA8x/OMAP-L/AM1x SoC SPI
-> controller"
->         depends on ARCH_DAVINCI || ARCH_KEYSTONE || COMPILE_TEST diff --
-> git a/drivers/spi/Makefile b/drivers/spi/Makefile index
-> 28c4817a8a74a..49937ea0d73d0 100644
-> --- a/drivers/spi/Makefile
-> +++ b/drivers/spi/Makefile
-> @@ -40,6 +40,7 @@ obj-$(CONFIG_SPI_CADENCE_QUADSPI)     +=3D spi-
-> cadence-quadspi.o
->  obj-$(CONFIG_SPI_CADENCE_XSPI)         +=3D spi-cadence-xspi.o
->  obj-$(CONFIG_SPI_CLPS711X)             +=3D spi-clps711x.o
->  obj-$(CONFIG_SPI_COLDFIRE_QSPI)                +=3D spi-coldfire-qspi.o
-> +obj-$(CONFIG_SPI_CS42L43)              +=3D spi-cs42l43.o
->  obj-$(CONFIG_SPI_DAVINCI)              +=3D spi-davinci.o
->  obj-$(CONFIG_SPI_DLN2)                 +=3D spi-dln2.o
->  obj-$(CONFIG_SPI_DESIGNWARE)           +=3D spi-dw.o
-> diff --git a/drivers/spi/spi-cs42l43.c b/drivers/spi/spi-cs42l43.c new fi=
-le mode
-> 100644 index 0000000000000..5f86f4feb22c8
-> --- /dev/null
-> +++ b/drivers/spi/spi-cs42l43.c
-> @@ -0,0 +1,279 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +//
-> +// CS42L43 SPI Controller Driver
-> +//
-> +// Copyright (C) 2022-2023 Cirrus Logic, Inc. and
-> +//                         Cirrus Logic International Semiconductor Ltd.
-> +
-> +#include <linux/device.h>
-> +#include <linux/errno.h>
-> +#include <linux/mfd/cs42l43.h>
-> +#include <linux/mfd/cs42l43-regs.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +#include <linux/spi/spi.h>
-> +#include <linux/units.h>
-> +
-> +#define CS42L43_FIFO_SIZE              16
-> +#define CS42L43_SPI_ROOT_HZ            (4 * HZ_PER_MHZ)
-> +#define CS42L43_SPI_MAX_LENGTH         65532
-> +
-> +enum cs42l43_spi_cmd {
-> +       CS42L43_WRITE,
-> +       CS42L43_READ
-> +};
-> +
-> +struct cs42l43_spi {
-> +       struct device *dev;
-> +       struct regmap *regmap;
-> +       struct spi_controller *ctlr;
-> +};
-> +
-> +static unsigned int cs42l43_clock_divs[16] =3D {
-> +       2, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30 };
-> +
-> +static int cs42l43_spi_tx(struct regmap *regmap, const u8 *buf,
-> +unsigned int len) {
-> +       const u8 *end =3D buf + len;
-> +       u32 val;
-> +       int ret;
-> +
-> +       while (buf < end) {
-> +               const u8 *block =3D min(buf + CS42L43_FIFO_SIZE, end);
-> +
-> +               for (; buf < block - (sizeof(u32) - 1); buf +=3D sizeof(u=
-32))
-> +                       regmap_write(regmap, CS42L43_TX_DATA, *(const
-> + u32 *)buf);
-> +
-> +               if (buf < block) {
-> +                       unsigned int residue =3D end - buf;
-> +
-> +                       memcpy(&val, buf, residue);
-> +                       regmap_write(regmap, CS42L43_TX_DATA, val);
-> +                       buf +=3D residue;
-> +               }
-> +
-> +               regmap_write(regmap, CS42L43_TRAN_CONFIG8,
-> + CS42L43_SPI_TX_DONE_MASK);
-> +
-> +               ret =3D regmap_read_poll_timeout(regmap, CS42L43_TRAN_STA=
-TUS1,
-> +                                              val, (val & CS42L43_SPI_TX=
-_REQUEST_MASK),
-> +                                              1000, 5000);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int cs42l43_spi_rx(struct regmap *regmap, u8 *buf, unsigned int
-> +len) {
-> +       u8 *end =3D buf + len;
-> +       u32 val;
-> +       int ret;
-> +
-> +       while (buf < end) {
-> +               const u8 *block =3D min(buf + CS42L43_FIFO_SIZE, end);
-> +
-> +               ret =3D regmap_read_poll_timeout(regmap, CS42L43_TRAN_STA=
-TUS1,
-> +                                              val, (val & CS42L43_SPI_RX=
-_REQUEST_MASK),
-> +                                              1000, 5000);
-> +               if (ret)
-> +                       return ret;
-> +
-> +               for (; buf < block - (sizeof(u32) - 1); buf +=3D sizeof(u=
-32)) {
-> +                       ret =3D regmap_read(regmap, CS42L43_RX_DATA, (u32=
- *)buf);
-> +                       if (ret)
-> +                               return ret;
-> +               }
-> +
-> +               if (buf < block) {
-> +                       unsigned int residue =3D end - buf;
-> +
-> +                       ret =3D regmap_read(regmap, CS42L43_RX_DATA, &val=
-);
-> +                       if (ret)
-> +                               return ret;
-> +
-> +                       memcpy(buf, &val, residue);
-> +                       buf +=3D residue;
-> +               }
-> +
-> +               regmap_write(regmap, CS42L43_TRAN_CONFIG8,
-> CS42L43_SPI_RX_DONE_MASK);
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int cs42l43_transfer_one(struct spi_controller *ctlr, struct spi_=
-device
-> *spi,
-> +                               struct spi_transfer *tfr) {
-> +       struct cs42l43_spi *priv =3D spi_controller_get_devdata(spi->cont=
-roller);
-> +       int i, ret =3D -EINVAL;
-> +
-> +       for (i =3D 0; i < ARRAY_SIZE(cs42l43_clock_divs); i++) {
-> +               if (CS42L43_SPI_ROOT_HZ / cs42l43_clock_divs[i] <=3D tfr-=
->speed_hz)
-> +                       break;
-> +       }
-> +
-> +       if (i =3D=3D ARRAY_SIZE(cs42l43_clock_divs))
-> +               return -EINVAL;
-> +
-> +       regmap_write(priv->regmap, CS42L43_SPI_CLK_CONFIG1, i);
-> +
-> +       if (tfr->tx_buf) {
-> +               regmap_write(priv->regmap, CS42L43_TRAN_CONFIG3,
-> CS42L43_WRITE);
-> +               regmap_write(priv->regmap, CS42L43_TRAN_CONFIG4, tfr->len=
- - 1);
-> +       } else if (tfr->rx_buf) {
-> +               regmap_write(priv->regmap, CS42L43_TRAN_CONFIG3,
-> CS42L43_READ);
-> +               regmap_write(priv->regmap, CS42L43_TRAN_CONFIG5, tfr->len=
- - 1);
-> +       }
-> +
-> +       regmap_write(priv->regmap, CS42L43_TRAN_CONFIG1,
-> + CS42L43_SPI_START_MASK);
-> +
-> +       if (tfr->tx_buf)
-> +               ret =3D cs42l43_spi_tx(priv->regmap, (const u8 *)tfr->tx_=
-buf, tfr->len);
-> +       else if (tfr->rx_buf)
-> +               ret =3D cs42l43_spi_rx(priv->regmap, (u8 *)tfr->rx_buf,
-> + tfr->len);
-> +
-> +       return ret;
-> +}
-> +
-> +static void cs42l43_set_cs(struct spi_device *spi, bool is_high) {
-> +       struct cs42l43_spi *priv =3D
-> +spi_controller_get_devdata(spi->controller);
-> +
-> +       if (spi->chip_select =3D=3D 0)
-
-New set/get APIs for accessing spi->chip_select were introduced by
-https://github.com/torvalds/linux/commit/303feb3cc06ac0665d0ee9c1414941200e=
-60e8a3
-please use these APIs instead of accessing spi->chip_select directly.
-
-> +               regmap_write(priv->regmap, CS42L43_SPI_CONFIG2,
-> +!is_high); }
-> +
-> +static int cs42l43_prepare_message(struct spi_controller *ctlr, struct
-> +spi_message *msg) {
-> +       struct cs42l43_spi *priv =3D spi_controller_get_devdata(ctlr);
-> +       struct spi_device *spi =3D msg->spi;
-> +       unsigned int spi_config1 =3D 0;
-> +
-> +       /* select another internal CS, which doesn't exist, so CS 0 is no=
-t used */
-> +       if (spi->cs_gpiod)
-
-Same here for spi->cs_gpio
-
-Regards,
-Amit
-> +               spi_config1 |=3D 1 << CS42L43_SPI_SS_SEL_SHIFT;
-> +       if (spi->mode & SPI_CPOL)
-> +               spi_config1 |=3D CS42L43_SPI_CPOL_MASK;
-> +       if (spi->mode & SPI_CPHA)
-> +               spi_config1 |=3D CS42L43_SPI_CPHA_MASK;
-> +       if (spi->mode & SPI_3WIRE)
-> +               spi_config1 |=3D CS42L43_SPI_THREE_WIRE_MASK;
-> +
-> +       regmap_write(priv->regmap, CS42L43_SPI_CONFIG1, spi_config1);
-> +
-> +       return 0;
-> +}
-> +
-> +static int cs42l43_prepare_transfer_hardware(struct spi_controller
-> +*ctlr) {
-> +       struct cs42l43_spi *priv =3D spi_controller_get_devdata(ctlr);
-> +       int ret;
-> +
-> +       ret =3D regmap_write(priv->regmap, CS42L43_BLOCK_EN2,
-> CS42L43_SPI_MSTR_EN_MASK);
-> +       if (ret)
-> +               dev_err(priv->dev, "Failed to enable SPI controller:
-> + %d\n", ret);
-> +
-> +       return ret;
-> +}
-> +
-> +static int cs42l43_unprepare_transfer_hardware(struct spi_controller
-> +*ctlr) {
-> +       struct cs42l43_spi *priv =3D spi_controller_get_devdata(ctlr);
-> +       int ret;
-> +
-> +       ret =3D regmap_write(priv->regmap, CS42L43_BLOCK_EN2, 0);
-> +       if (ret)
-> +               dev_err(priv->dev, "Failed to disable SPI controller:
-> + %d\n", ret);
-> +
-> +       return ret;
-> +}
-> +
-> +static size_t cs42l43_spi_max_length(struct spi_device *spi) {
-> +       return CS42L43_SPI_MAX_LENGTH;
-> +}
-> +
-> +static int cs42l43_spi_probe(struct platform_device *pdev) {
-> +       struct cs42l43 *cs42l43 =3D dev_get_drvdata(pdev->dev.parent);
-> +       struct cs42l43_spi *priv;
-> +       struct fwnode_handle *fwnode =3D dev_fwnode(cs42l43->dev);
-> +       int ret;
-> +
-> +       priv =3D devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> +       if (!priv)
-> +               return -ENOMEM;
-> +
-> +       priv->ctlr =3D devm_spi_alloc_master(&pdev->dev, sizeof(*priv->ct=
-lr));
-> +       if (!priv->ctlr)
-> +               return -ENOMEM;
-> +
-> +       spi_controller_set_devdata(priv->ctlr, priv);
-> +
-> +       priv->dev =3D &pdev->dev;
-> +       priv->regmap =3D cs42l43->regmap;
-> +
-> +       priv->ctlr->prepare_message =3D cs42l43_prepare_message;
-> +       priv->ctlr->prepare_transfer_hardware =3D
-> cs42l43_prepare_transfer_hardware;
-> +       priv->ctlr->unprepare_transfer_hardware =3D
-> cs42l43_unprepare_transfer_hardware;
-> +       priv->ctlr->transfer_one =3D cs42l43_transfer_one;
-> +       priv->ctlr->set_cs =3D cs42l43_set_cs;
-> +       priv->ctlr->max_transfer_size =3D cs42l43_spi_max_length;
-> +
-> +       if (is_of_node(fwnode))
-> +               fwnode =3D fwnode_get_named_child_node(fwnode, "spi");
-> +
-> +       device_set_node(&priv->ctlr->dev, fwnode);
-> +
-> +       priv->ctlr->mode_bits =3D SPI_3WIRE | SPI_MODE_X_MASK;
-> +       priv->ctlr->flags =3D SPI_CONTROLLER_HALF_DUPLEX;
-> +       priv->ctlr->bits_per_word_mask =3D SPI_BPW_MASK(8) |
-> SPI_BPW_MASK(16) |
-> +                                        SPI_BPW_MASK(32);
-> +       priv->ctlr->min_speed_hz =3D CS42L43_SPI_ROOT_HZ /
-> +                                  cs42l43_clock_divs[ARRAY_SIZE(cs42l43_=
-clock_divs) - 1];
-> +       priv->ctlr->max_speed_hz =3D CS42L43_SPI_ROOT_HZ /
-> cs42l43_clock_divs[0];
-> +       priv->ctlr->use_gpio_descriptors =3D true;
-> +       priv->ctlr->auto_runtime_pm =3D true;
-> +
-> +       devm_pm_runtime_enable(priv->dev);
-> +       pm_runtime_idle(priv->dev);
-> +
-> +       regmap_write(priv->regmap, CS42L43_TRAN_CONFIG6,
-> CS42L43_FIFO_SIZE - 1);
-> +       regmap_write(priv->regmap, CS42L43_TRAN_CONFIG7,
-> + CS42L43_FIFO_SIZE - 1);
-> +
-> +       // Disable Watchdog timer and enable stall
-> +       regmap_write(priv->regmap, CS42L43_SPI_CONFIG3, 0);
-> +       regmap_write(priv->regmap, CS42L43_SPI_CONFIG4,
-> + CS42L43_SPI_STALL_ENA_MASK);
-> +
-> +       ret =3D devm_spi_register_controller(priv->dev, priv->ctlr);
-> +       if (ret) {
-> +               pm_runtime_disable(priv->dev);
-> +               dev_err(priv->dev, "Failed to register SPI controller: %d=
-\n", ret);
-> +       }
-> +
-> +       return ret;
-> +}
-> +
-> +static const struct platform_device_id cs42l43_spi_id_table[] =3D {
-> +       { "cs42l43-spi", },
-> +       {}
-> +};
-> +MODULE_DEVICE_TABLE(platform, cs42l43_spi_id_table);
-> +
-> +static struct platform_driver cs42l43_spi_driver =3D {
-> +       .driver =3D {
-> +               .name   =3D "cs42l43-spi",
-> +       },
-> +       .probe          =3D cs42l43_spi_probe,
-> +       .id_table       =3D cs42l43_spi_id_table,
-> +};
-> +module_platform_driver(cs42l43_spi_driver);
-> +
-> +MODULE_DESCRIPTION("CS42L43 SPI Driver"); MODULE_AUTHOR("Lucas
-> Tanure
-> +<tanureal@opensource.cirrus.com>");
-> +MODULE_AUTHOR("Maciej Strozek <mstrozek@opensource.cirrus.com>");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.30.2
-
+SW5pdGlhbCBpbnRyb2R1Y3Rpb24gb2YgSW52ZW50ZWMgU3RhcnNjcmVhbSB4ODYgZmFtaWx5DQpl
+cXVpcHBlZCB3aXRoIEFTVDI2MDAgQk1DIFNvQy4NCg0KU2lnbmVkLW9mZi1ieTogQ2hlbiBQSiA8
+Q2hlbi5wakBpbnZlbnRlYy5jb20+DQoNCi0tLQ0KIFYzIC0+IFY0Og0KICAtIFJlcGx5IHdpdGgg
+ZGV2aWNldHJlZSBiaW5kaW5nDQogVjIgLT4gVjM6DQogIC0gUmVuYW1lIHRoZSBub2RlIG5hbWUg
+dG8gZ2VuZXJpYy4NCiBWMSAtPiBWMjoNCiAgLSBDb3JyZWN0IExpY2Vuc2UgZGVzY3JpcHRpb24N
+CiAgLSBSZW1vdmUgbm90IHN1cHBvcnRlZCBkZXZpY2UNCiAgLSBVc2luZyBvcGVuYm1jLWZsYXNo
+LWxheW91dC5kdHNpDQogIC0gQ29ycmVjdCBkZXZpY2UgZm9ybWF0DQotLS0NCiBhcmNoL2FybS9i
+b290L2R0cy9NYWtlZmlsZSAgICAgICAgICAgICAgICAgICAgfCAgIDEgKw0KIC4uLi9kdHMvYXNw
+ZWVkLWJtYy1pbnZlbnRlYy1zdGFyc2NyZWFtLmR0cyAgICB8IDQ4NSArKysrKysrKysrKysrKysr
+KysNCiAyIGZpbGVzIGNoYW5nZWQsIDQ4NiBpbnNlcnRpb25zKCspDQogY3JlYXRlIG1vZGUgMTAw
+NjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC1ibWMtaW52ZW50ZWMtc3RhcnNjcmVhbS5kdHMN
+Cg0KZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL01ha2VmaWxlIGIvYXJjaC9hcm0vYm9v
+dC9kdHMvTWFrZWZpbGUNCmluZGV4IGViNjgxOTAzZDUwYi4uNmE4OTdmZjQwZmYwIDEwMDY0NA0K
+LS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUNCisrKyBiL2FyY2gvYXJtL2Jvb3QvZHRz
+L01ha2VmaWxlDQpAQCAtMTYyOSw2ICsxNjI5LDcgQEAgZHRiLSQoQ09ORklHX0FSQ0hfQVNQRUVE
+KSArPSBcDQogCWFzcGVlZC1ibWMtcXVhbnRhLXE3MWwuZHRiIFwNCiAJYXNwZWVkLWJtYy1xdWFu
+dGEtczZxLmR0YiBcDQogCWFzcGVlZC1ibWMtc3VwZXJtaWNyby14MTFzcGkuZHRiIFwNCisJYXNw
+ZWVkLWJtYy1pbnZlbnRlYy1zdGFyc2NyZWFtLmR0YiBcDQogCWFzcGVlZC1ibWMtaW52ZW50ZWMt
+dHJhbnNmb3JtZXJzLmR0YiBcDQogCWFzcGVlZC1ibWMtdHlhbi1zNzEwNi5kdGIgXA0KIAlhc3Bl
+ZWQtYm1jLXR5YW4tczgwMzYuZHRiIFwNCmRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9h
+c3BlZWQtYm1jLWludmVudGVjLXN0YXJzY3JlYW0uZHRzIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXNw
+ZWVkLWJtYy1pbnZlbnRlYy1zdGFyc2NyZWFtLmR0cw0KbmV3IGZpbGUgbW9kZSAxMDA2NDQNCmlu
+ZGV4IDAwMDAwMDAwMDAwMC4uMTVlMzU1YWEyYzlmDQotLS0gL2Rldi9udWxsDQorKysgYi9hcmNo
+L2FybS9ib290L2R0cy9hc3BlZWQtYm1jLWludmVudGVjLXN0YXJzY3JlYW0uZHRzDQpAQCAtMCww
+ICsxLDQ4NSBAQA0KKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9yLWxhdGVy
+DQorLy8gQ29weXJpZ2h0IDIwMjMgSW52ZW50ZWMgQ29ycC4NCisNCisvZHRzLXYxLzsNCisNCisj
+aW5jbHVkZSAiYXNwZWVkLWc2LmR0c2kiDQorI2luY2x1ZGUgImFzcGVlZC1nNi1waW5jdHJsLmR0
+c2kiDQorI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2kyYy9pMmMuaD4NCisjaW5jbHVkZSA8ZHQtYmlu
+ZGluZ3MvZ3Bpby9hc3BlZWQtZ3Bpby5oPg0KKw0KKy8gew0KKwltb2RlbCA9ICJTVEFSU0NSRUFN
+IEJNQyI7DQorCWNvbXBhdGlibGUgPSAiaW52ZW50ZWMsc3RhcnNjcmVhbS1ibWMiLCAiYXNwZWVk
+LGFzdDI2MDAiOw0KKw0KKwlhbGlhc2VzIHsNCisJCXNlcmlhbDQgPSAmdWFydDU7DQorCX07DQor
+DQorCWNob3NlbiB7DQorCQlzdGRvdXQtcGF0aCA9ICZ1YXJ0NTsNCisJfTsNCisNCisJbWVtb3J5
+QDgwMDAwMDAwIHsNCisJCWRldmljZV90eXBlID0gIm1lbW9yeSI7DQorCQlyZWcgPSA8MHg4MDAw
+MDAwMCAweDgwMDAwMDAwPjsNCisJfTsNCisNCisJcmVzZXJ2ZWQtbWVtb3J5IHsNCisJCSNhZGRy
+ZXNzLWNlbGxzID0gPDE+Ow0KKwkJI3NpemUtY2VsbHMgPSA8MT47DQorCQlyYW5nZXM7DQorDQor
+CQl2aWRlb19lbmdpbmVfbWVtb3J5OiB2aWRlbyB7DQorCQkJc2l6ZSA9IDwweDA0MDAwMDAwPjsN
+CisJCQlhbGlnbm1lbnQgPSA8MHgwMTAwMDAwMD47DQorCQkJY29tcGF0aWJsZSA9ICJzaGFyZWQt
+ZG1hLXBvb2wiOw0KKwkJCXJldXNhYmxlOw0KKwkJfTsNCisJfTsNCisNCisNCisJaWlvLWh3bW9u
+IHsNCisJCWNvbXBhdGlibGUgPSAiaWlvLWh3bW9uIjsNCisJCWlvLWNoYW5uZWxzID0NCisJCTwm
+YWRjX3U3NCAwPiwgLy8gUDBfVkREMTENCisJCTwmYWRjX3U3NCAxPiwgLy8gUDFfVkREMTENCisJ
+CTwmYWRjX3U3NCAyPiwgLy8gUDBfM1YzX1M1DQorCQk8JmFkY191NzQgMz4sIC8vIFAxXzNWM19T
+NQ0KKwkJPCZhZGNfdTc0IDQ+LCAvLyBQM1YzDQorCQk8JmFkY191NzQgNT4sIC8vIFZCQVQNCisJ
+CTwmYWRjX3U3NCA2PiwgLy8gUDNWM19TVEJZDQorCQk8JmFkY191NzQgNz4sIC8vIFA1Vl9TVEJZ
+DQorCQk8JmFkY191NzQgOD4sIC8vIFA1Vg0KKwkJPCZhZGNfdTc0IDk+LCAvLyBQMTJWDQorCQk8
+JmFkY191NzQgMTA+LCAvLyBQMV9WREQxOF9TNQ0KKwkJPCZhZGNfdTc0IDExPiAvLyBQMF9WREQx
+OF9TNQ0KKwkJOw0KKwl9Ow0KKw0KKwlsZWRzIHsNCisJCWNvbXBhdGlibGUgPSAiZ3Bpby1sZWRz
+IjsNCisNCisJCXVpZCB7DQorCQkJbGFiZWwgPSAiVUlEX0xFRCI7DQorCQkJZ3Bpb3MgPSA8Jmdw
+aW8wIEFTUEVFRF9HUElPKFgsIDIpIEdQSU9fQUNUSVZFX0xPVz47DQorCQl9Ow0KKw0KKwkJaGVh
+cnRiZWF0IHsNCisJCQlsYWJlbCA9ICJIQl9MRUQiOw0KKwkJCWdwaW9zID0gPCZncGlvMCBBU1BF
+RURfR1BJTyhQLCA3KSBHUElPX0FDVElWRV9MT1c+Ow0KKwkJfTsNCisJfTsNCit9Ow0KKw0KKyZt
+ZGlvMCB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisNCisJZXRocGh5MDogZXRoZXJuZXQtcGh5QDAg
+ew0KKwkJY29tcGF0aWJsZSA9ICJldGhlcm5ldC1waHktaWVlZTgwMi4zLWMyMiI7DQorCQlyZWcg
+PSA8MT47DQorCX07DQorfTsNCisNCismbWFjMiB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisJcGlu
+Y3RybC1uYW1lcyA9ICJkZWZhdWx0IjsNCisJcGh5LW1vZGUgPSAicm1paSI7DQorCXBpbmN0cmwt
+MCA9IDwmcGluY3RybF9ybWlpM19kZWZhdWx0PjsNCisJdXNlLW5jc2k7DQorfTsNCisNCismbWFj
+MyB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisNCisJcGh5LW1vZGUgPSAicmdtaWkiOw0KKwlwaHkt
+aGFuZGxlID0gPCZldGhwaHkwPjsNCisNCisJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsNCisJ
+cGluY3RybC0wID0gPCZwaW5jdHJsX3JnbWlpNF9kZWZhdWx0PjsNCit9Ow0KKw0KKyZmbWMgew0K
+KwlzdGF0dXMgPSAib2theSI7DQorCWZsYXNoQDAgew0KKwkJc3RhdHVzID0gIm9rYXkiOw0KKwkJ
+bTI1cCxmYXN0LXJlYWQ7DQorCQlsYWJlbCA9ICJibWMiOw0KKwkJc3BpLW1heC1mcmVxdWVuY3kg
+PSA8NTAwMDAwMDA+Ow0KKwkJc3BpLXR4LWJ1cy13aWR0aCA9IDw0PjsNCisJCXNwaS1yeC1idXMt
+d2lkdGggPSA8ND47DQorI2luY2x1ZGUgIm9wZW5ibWMtZmxhc2gtbGF5b3V0LmR0c2kiDQorCX07
+DQorDQorCWZsYXNoQDEgew0KKwkJc3RhdHVzID0gIm9rYXkiOw0KKwkJbTI1cCxmYXN0LXJlYWQ7
+DQorCQlsYWJlbCA9ICJibWMyIjsNCisJCXNwaS1tYXgtZnJlcXVlbmN5ID0gPDUwMDAwMDAwPjsN
+CisJCXNwaS10eC1idXMtd2lkdGggPSA8ND47DQorCQlzcGktcngtYnVzLXdpZHRoID0gPDQ+Ow0K
+Kwl9Ow0KK307DQorDQorJnNwaTEgew0KKwlzdGF0dXMgPSAib2theSI7DQorCXBpbmN0cmwtbmFt
+ZXMgPSAiZGVmYXVsdCI7DQorCXBpbmN0cmwtMCA9IDwmcGluY3RybF9zcGkxX2RlZmF1bHQ+Ow0K
+Kw0KKwlmbGFzaEAwIHsNCisJCXN0YXR1cyA9ICJva2F5IjsNCisJCW0yNXAsZmFzdC1yZWFkOw0K
+KwkJbGFiZWwgPSAiYmlvcyI7DQorCQlzcGktbWF4LWZyZXF1ZW5jeSA9IDw1MDAwMDAwMD47DQor
+CQlzcGktdHgtYnVzLXdpZHRoID0gPDQ+Ow0KKwkJc3BpLXJ4LWJ1cy13aWR0aCA9IDw0PjsNCisJ
+fTsNCit9Ow0KKw0KKw0KKyZ3ZHQxIHsNCisJc3RhdHVzID0gIm9rYXkiOw0KK307DQorDQorJnZ1
+YXJ0MSB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKw0KKyZ1YXJ0MSB7DQorCXN0YXR1cyA9
+ICJva2F5IjsNCit9Ow0KKw0KKyZ1YXJ0MyB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKw0K
+KyZ1YXJ0NSB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKw0KKyZrY3MzIHsNCisJYXNwZWVk
+LGxwYy1pby1yZWcgPSA8MHhjYTI+Ow0KKwlzdGF0dXMgPSAib2theSI7DQorfTsNCisNCismdWFy
+dF9yb3V0aW5nIHsNCisJc3RhdHVzID0gIm9rYXkiOw0KK307DQorDQorJmkyYzAgew0KKwlzdGF0
+dXMgPSAib2theSI7DQorfTsNCismaTJjMSB7DQorCXN0YXR1cyA9ICJva2F5IjsNCit9Ow0KKyZp
+MmMyIHsNCisJc3RhdHVzID0gIm9rYXkiOw0KK307DQorJmkyYzMgew0KKwlzdGF0dXMgPSAib2th
+eSI7DQorfTsNCisNCismaTJjNCB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisNCisJLy8gSTJDIEVY
+UEFOREVSDQorCWkyYy1zd2l0Y2hANzEgew0KKwkJY29tcGF0aWJsZSA9ICJueHAscGNhOTU0NiI7
+DQorCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJcmVn
+ID0gPDB4NzE+Ow0KKw0KKwkJaTJjQDAgew0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJ
+CSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJCXJlZyA9IDwwPjsNCisJCQkvLyBBTUQgU0ItVFNJIENQ
+VTENCisJCQlzYnRzaUA0YyB7DQorCQkJCWNvbXBhdGlibGUgPSAiYW1kLHNidHNpIjsNCisJCQkJ
+cmVnID0gPDB4NGM+Ow0KKwkJCX07DQorCQl9Ow0KKw0KKwkJaTJjQDEgew0KKwkJCSNhZGRyZXNz
+LWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJCXJlZyA9IDwxPjsNCisJ
+CQkvLyBBTUQgU0ItVFNJIENQVTINCisJCQlzYnRzaUA0OCB7DQorCQkJCWNvbXBhdGlibGUgPSAi
+YW1kLHNidHNpIjsNCisJCQkJcmVnID0gPDB4NDg+Ow0KKwkJCX07DQorCQl9Ow0KKwl9Ow0KK307
+DQorDQorJmkyYzUgew0KKwlzdGF0dXMgPSAib2theSI7DQorDQorCS8vIEkyQyBFWFBBTkRFUiBV
+MTUzDQorCWkyYy1zd2l0Y2hANzAgew0KKwkJY29tcGF0aWJsZSA9ICJueHAscGNhOTU0NiI7DQor
+CQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJcmVnID0g
+PDB4NzA+Ow0KKw0KKwkJdXNiX2h1YjogaTJjQDAgew0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+
+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJCXJlZyA9IDwwPjsNCisNCisJCQkvLyBVU0Ig
+VTExNA0KKwkJCXVzYi1odWJAMmMgew0KKwkJCQljb21wYXRpYmxlID0gIm1pY3JvY2hpcCx1c2Iy
+NTE0YiI7DQorCQkJCXJlZyA9IDwweDJjPjsNCisJCQl9Ow0KKwkJfTsNCisNCisJCXJpc2VyMTog
+aTJjQDEgew0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+
+Ow0KKwkJCXJlZyA9IDwxPjsNCisJCX07DQorDQorCQlyaXNlcjI6IGkyY0AyIHsNCisJCQkjYWRk
+cmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCisJCQlyZWcgPSA8Mj47
+DQorCQl9Ow0KKw0KKwkJaTJjQDMgew0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNz
+aXplLWNlbGxzID0gPDA+Ow0KKwkJCXJlZyA9IDwzPjsNCisJCX07DQorCX07DQorfTsNCisNCism
+aTJjNiB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisNCisJLy8gRlJVIE1vdGhlcmJvYXJkDQorCWVl
+cHJvbUA1MSB7DQorCQljb21wYXRpYmxlID0gImF0bWVsLDI0YzY0IjsNCisJCXJlZyA9IDwweDUx
+PjsNCisJCXBhZ2VzaXplID0gPDMyPjsNCisJfTsNCisNCisJLy8gQURDX1U3NA0KKwlhZGNfdTc0
+OiBhZGNAMzUgew0KKwkJY29tcGF0aWJsZSA9ICJtYXhpbSxtYXgxMTM5IjsNCisJCXJlZyA9IDww
+eDM1PjsNCisJCSNpby1jaGFubmVsLWNlbGxzID0gPDE+Ow0KKwl9Ow0KKw0KKwlwc3VANTggew0K
+KwkJY29tcGF0aWJsZSA9ICJwbWJ1cyI7DQorCQlyZWcgPSA8MHg1OD47DQorCX07DQorDQorCXBz
+dUA1YSB7DQorCQljb21wYXRpYmxlID0gInBtYnVzIjsNCisJCXJlZyA9IDwweDVhPjsNCisJfTsN
+CisNCisJLy8gTW90aGVyYm9hcmQgVGVtcF9VODkNCisJdGVtcGVyYXR1cmUtc2Vuc29yQDRlIHsN
+CisJCWNvbXBhdGlibGUgPSAidGksdG1wNDIxIjsNCisJCXJlZyA9IDwweDRlPjsNCisJfTsNCisN
+CisJLy8gUnVuQk1DIFRlbXBfVTYNCisJdGVtcGVyYXR1cmUtc2Vuc29yQDQ5IHsNCisJCWNvbXBh
+dGlibGUgPSAidGksdG1wNzUiOw0KKwkJcmVnID0gPDB4NDk+Ow0KKwl9Ow0KKw0KKwkvLyBSaWdo
+dCBlYXIgYm9hcmQgVGVtcF9VMQ0KKwl0ZW1wZXJhdHVyZS1zZW5zb3JAN2Mgew0KKwkJY29tcGF0
+aWJsZSA9ICJlbWMxNDAzIjsNCisJCXJlZyA9IDwweDdjPjsNCisJfTsNCit9Ow0KKw0KKyZpMmM3
+IHsNCisJc3RhdHVzID0gIm9rYXkiOw0KKwkvLyBJMkMgRVhQQU5ERVIgVTQwDQorCWkyYy1zd2l0
+Y2hANzAgew0KKwkJY29tcGF0aWJsZSA9ICJueHAscGNhOTU0NSI7DQorCQkjYWRkcmVzcy1jZWxs
+cyA9IDwxPjsNCisJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJcmVnID0gPDB4NzA+Ow0KKw0KKwkJ
+aTJjQDAgew0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+
+Ow0KKwkJCXJlZyA9IDwwPjsNCisJCX07DQorDQorCQlpMmNAMSB7DQorCQkJI2FkZHJlc3MtY2Vs
+bHMgPSA8MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MD47DQorCQkJcmVnID0gPDE+Ow0KKwkJfTsN
+CisNCisJCWkyY0AyIHsNCisJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1jZWxs
+cyA9IDwwPjsNCisJCQlyZWcgPSA8Mj47DQorCQl9Ow0KKw0KKwkJaTJjQDMgew0KKwkJCSNhZGRy
+ZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJCXJlZyA9IDwzPjsN
+CisJCX07DQorCX07DQorfTsNCisNCisNCismaTJjOCB7DQorCXN0YXR1cyA9ICJva2F5IjsNCisJ
+Ly8gRlJVIFJ1bkJNQw0KKwllZXByb21ANTEgew0KKwkJY29tcGF0aWJsZSA9ICJhdG1lbCwyNGM1
+MTIiOw0KKwkJcmVnID0gPDB4NTE+Ow0KKwkJcGFnZXNpemUgPSA8MTI4PjsNCisJfTsNCisNCisJ
+Ly8gRmFuIGNvbnRyb2xsZXINCisJcHdtQDIwIHsNCisJCWNvbXBhdGlibGUgPSAibWF4MzE3OTAi
+Ow0KKwkJcmVnID0gPDB4MjA+Ow0KKwl9Ow0KKwlwd21AMjMgew0KKwkJY29tcGF0aWJsZSA9ICJt
+YXgzMTc5MCI7DQorCQlyZWcgPSA8MHgyMz47DQorCX07DQorCXB3bUAyZSB7DQorCQljb21wYXRp
+YmxlID0gImVtYzIzMDUiOw0KKwkJcmVnID0gPDB4MmU+Ow0KKwl9Ow0KK307DQorDQorJmkyYzkg
+ew0KKwlzdGF0dXMgPSAib2theSI7DQorfTsNCisNCismaTJjMTAgew0KKwlzdGF0dXMgPSAib2th
+eSI7DQorfTsNCisNCismaTJjMTEgew0KKwlzdGF0dXMgPSAib2theSI7DQorfTsNCisNCismaTJj
+MTIgew0KKwlzdGF0dXMgPSAib2theSI7DQorCS8vIEZSVSBTQ00NCisJZWVwcm9tQDUxIHsNCisJ
+CWNvbXBhdGlibGUgPSAiYXRtZWwsMjRjNTEyIjsNCisJCXJlZyA9IDwweDUxPjsNCisJCXBhZ2Vz
+aXplID0gPDEyOD47DQorCX07DQorDQorCS8vIFNDTSBUZW1wX1UxNw0KKwl0ZW1wZXJhdHVyZS1z
+ZW5zb3JANGYgew0KKwkJY29tcGF0aWJsZSA9ICJ0aSx0bXA3NSI7DQorCQlyZWcgPSA8MHg0Zj47
+DQorCX07DQorfTsNCisNCisNCismZ3BpbzAgew0KKwlzdGF0dXMgPSAib2theSI7DQorCWdwaW8t
+bGluZS1uYW1lcyA9DQorCS8qQTAtQTcqLyAgICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkv
+KkIwLUI3Ki8gICAiYWxlcnQtcHN1MC1zbWItci1uIiwiYm1jLXJlYWR5IiwiIiwiYXNzZXJ0LWNw
+dTAtcHJvY2hvdC1yLW4iLCIiLCIiLCIiLCIiLA0KKwkvKkMwLUM3Ki8gICAiIiwiIiwiIiwiIiwi
+IiwiIiwiIiwiIiwNCisJLypEMC1ENyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8q
+RTAtRTcqLyAgICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkYwLUY3Ki8gICAiIiwiIiwi
+IiwiIiwicmVzZXQtc2dwaW8tci1uIiwiIiwiIiwiIiwNCisJLypHMC1HNyovICAgIiIsIiIsInNj
+bS1qdGFnLW11eC1zZWxlY3QiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkgwLUg3Ki8gICAiIiwiIiwi
+IiwiIiwicmVzZXQtb3V0IiwicG93ZXItb3V0IiwiIiwiIiwNCisJLypJMC1JNyovICAgIiIsIiIs
+IiIsIiIsIiIsIiIsImlycS1ibWMtY3B1MC1idWYtbm1pLW4iLCIiLA0KKwkvKkowLUo3Ki8gICAi
+IiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJLypLMC1LNyovICAgIiIsIiIsIiIsIiIsIiIsIiIs
+IiIsIiIsDQorCS8qTDAtTDcqLyAgICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKk0wLU03
+Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJLypOMC1ONyovICAgIiIsIiIsIm5jc2kt
+b2NwLWNsay1lbi1uIiwiIiwiIiwiIiwiIiwiIiwNCisJLypPMC1PNyovICAgIiIsIiIsIiIsIiIs
+IiIsIiIsImNwdTEtdGhlcm1hbC10cmlwLW4iLCIiLA0KKwkvKlAwLVA3Ki8gICAiIiwiIiwiIiwi
+IiwiIiwiIiwiIiwiIiwNCisJLypRMC1RNyovICAgImNwdTAtcHJvY2hvdC1uIiwiIiwiY3B1MS1w
+cm9jaG90LW4iLCIiLCJjcHUwLXBlLXJzdDAiLCIiLCIiLCIiLA0KKwkvKlIwLVI3Ki8gICAiIiwi
+IiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJLypTMC1TNyovICAgIiIsIiIsIiIsIiIsIiIsIlBDSF9T
+TFBfUzRfQk1DX04iLCJjcHUwLXRoZXJtdHJpcC1uIiwiYWxlcnQtcHN1MS1zbWItci1uIiwNCisJ
+LypUMC1UNyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qVTAtVTcqLyAgICIiLCIi
+LCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKlYwLVY3Ki8gICAiYmlvcy1yZWNvdmVyeS1idWYtbiIs
+IiIsImFzc2VydC1jcHUxLXByb2Nob3Qtci1uIiwiIiwicG93ZXItY2hhc3Npcy1nb29kIiwiIiwi
+IiwiIiwNCisJLypXMC1XNyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qWDAtWDcq
+LyAgICIiLCIiLCIiLCIiLCJwbGF0Zm9ybS10eXBlIiwiIiwiIiwiIiwNCisJLypZMC1ZNyovICAg
+IiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qWjAtWjcqLyAgICIiLCJjcGxkLXBvd2VyLWJy
+ZWFrLW4iLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkFBMC1BQTcqLyAiIiwiIiwiIiwiIiwiIiwi
+IiwiIiwiIiwNCisJLypBQjAtQUI3Ki8gIiIsIiIsIiIsIiIsIiIsIiIsIiIsIiIsDQorCS8qQUMw
+LUFDNyovICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiOw0KK307DQorDQorJnNncGlvbTAgew0KKwlz
+dGF0dXMgPSAib2theSI7DQorCW1heC1uZ3Bpb3MgPSA8NjQ+Ow0KKwluZ3Bpb3MgPSA8NjQ+Ow0K
+KwlidXMtZnJlcXVlbmN5ID0gPDEwMDAwMDA+Ow0KKwlncGlvLWxpbmUtbmFtZXMgPQ0KKwkvKmlu
+IC0gb3V0IC0gaW4gLSBvdXQgKi8NCisJLypBMC1BNyovICAgIiIsIiIsIiIsIiIsIiIsIiIsIiIs
+IiIsDQorCS8qQTAtQTcqLyAgICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkIwLUI3Ki8g
+ICAiIiwicmVzZXQtY3B1MC1pMmMtbiIsIiIsInJlc2V0LWNwdTEtaTJjLW4iLCIiLCJyZXNldC1p
+MmMtYnVzNy1uIiwiIiwidXNiMjUxNC0xLXJlc2V0LW4iLA0KKwkvKkIwLUI3Ki8gICAiIiwiYm1j
+LWNwdTAtdWFydC1lbiIsIiIsImhkdC1idWZmLWVuLW4iLCIiLCJhc3NlcnQtY2xlYXItY21vcyIs
+IiIsImhkdC1tdXgtc2VsZWN0LW1vbiIsDQorCS8qQzAtQzcqLyAgICJsZWQtaWRlbnRpZnkiLCJj
+cGxkLWp0YWctb2Utci1uIiwiY3B1MC1zcGQtaG9zdC1jdHJsLW4iLCJyZXNldC1jcGxkLWhkdC1u
+IiwiIiwiaTNjLW11eC1zZWxlY3QiLCIiLCJzcGktbXV4LXNlbGVjdCIsDQorCS8qQzAtQzcqLyAg
+ICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0KKwkvKkQwLUQ3Ki8gICAiIiwiIiwiIiwiIiwiIiwi
+IiwiIiwiIiwNCisJLypEMC1ENyovICAgIiIsIiIsIiIsIiIsIiIsIiIsImJpb3MtcG9zdC1jb21w
+bGV0ZS1idWYtbiIsIiIsDQorCS8qRTAtRTcqLyAgICIiLCIiLCIiLCIiLCIiLCIiLCIiLCIiLA0K
+KwkvKkUwLUU3Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJLypGMC1GNyovICAgInBy
+ZXNlbmNlLWZhbjAtbiIsIiIsInByZXNlbmNlLWZhbjEtbiIsIiIsInByZXNlbmNlLWZhbjItbiIs
+IiIsInByZXNlbmNlLWZhbjMtbiIsIiIsDQorCS8qRjAtRjcqLyAgICJwcmVzZW5jZS1mYW40LW4i
+LCIiLCJwcmVzZW5jZS1mYW41LW4iLCIiLCJwcmVzZW5jZS1jcHUwLW4iLCIiLCJwcmVzZW5jZS1j
+cHUxLW4iLCIiLA0KKwkvKkcwLUc3Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwNCisJLypH
+MC1HNyovICAgIiIsIiIsIiIsIiIsInByZXNlbmNlLXBzdTAtY3BsZC1uIiwiIiwicHJlc2VuY2Ut
+cHN1MS1jcGxkLW4iLCIiLA0KKwkvKkgwLUg3Ki8gICAiIiwiIiwiIiwiIiwiIiwiIiwiIiwiIiwN
+CisJLypIMC1INyovICAgIiIsIiIsIiIsIiIsInByZXNlbmNlLXJpc2VyMC1uIiwiIiwicHJlc2Vu
+Y2UtcmlzZXIxLW4iLCIiOw0KK307DQorDQorDQorJmxwY19zbm9vcCB7DQorCXN0YXR1cyA9ICJv
+a2F5IjsNCisJc25vb3AtcG9ydHMgPSA8MHg4MD47DQorfTsNCisNCismZW1tY19jb250cm9sbGVy
+IHsNCisJc3RhdHVzID0gIm9rYXkiOw0KK307DQorDQorJmVtbWMgew0KKwlzdGF0dXMgPSAib2th
+eSI7DQorCW5vbi1yZW1vdmFibGU7DQorCW1heC1mcmVxdWVuY3kgPSA8NTIwMDAwMDA+Ow0KKwli
+dXMtd2lkdGggPSA8OD47DQorfTsNCisNCismdmlkZW8gew0KKwlzdGF0dXMgPSAib2theSI7DQor
+CW1lbW9yeS1yZWdpb24gPSA8JnZpZGVvX2VuZ2luZV9tZW1vcnk+Ow0KK307DQorDQorJnZodWIg
+ew0KKwlzdGF0dXMgPSAib2theSI7DQorCWFzcGVlZCx2aHViLWRvd25zdHJlYW0tcG9ydHMgPSA8
+Nz47DQorCWFzcGVlZCx2aHViLWdlbmVyaWMtZW5kcG9pbnRzID0gPDIxPjsNCisJcGluY3RybC1u
+YW1lcyA9ICJkZWZhdWx0IjsNCisJcGluY3RybC0wID0gPCZwaW5jdHJsX3VzYjJhZF9kZWZhdWx0
+PjsNCit9Ow0KKw0KKyZydGMgew0KKwlzdGF0dXMgPSAib2theSI7DQorfTsNCisNCi0tIA0KMi4y
+NS4xDQoNCg==
