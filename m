@@ -2,58 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1345E7176BC
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 08:19:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D27A7176C9
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 08:24:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234167AbjEaGTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 02:19:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34784 "EHLO
+        id S233995AbjEaGYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 02:24:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbjEaGTY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 02:19:24 -0400
+        with ESMTP id S229904AbjEaGX6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 02:23:58 -0400
 Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBB4A9F;
-        Tue, 30 May 2023 23:19:20 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AADA011D;
+        Tue, 30 May 2023 23:23:55 -0700 (PDT)
 Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
         (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
         (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id DEEC224DDBE;
-        Wed, 31 May 2023 14:19:17 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 5D9F424DD7D;
+        Wed, 31 May 2023 14:23:54 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
  (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 31 May
- 2023 14:19:17 +0800
-Received: from [192.168.120.57] (171.223.208.138) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 31 May
- 2023 14:19:16 +0800
-Message-ID: <93ba0b97-45aa-e59d-1454-80c4f245acc0@starfivetech.com>
-Date:   Wed, 31 May 2023 14:19:16 +0800
+ 2023 14:23:54 +0800
+Received: from [192.168.125.80] (113.72.147.198) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 31 May
+ 2023 14:23:53 +0800
+Message-ID: <dbb7ca72-fb21-6cc4-0f10-0f17818689db@starfivetech.com>
+Date:   Wed, 31 May 2023 14:23:52 +0800
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v1 2/3] spi: cadence-quadspi: Add clock configuration for
- StarFive JH7110 QSPI
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
+ Thunderbird/102.3.2
+Subject: Re: [PATCH v5 3/3] riscv: dts: starfive: add the node and pins
+ configuration for tdm
+To:     Walker Chen <walker.chen@starfivetech.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Claudiu Beznea <Claudiu.Beznea@microchip.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        "Takashi Iwai" <tiwai@suse.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>
-References: <20230526062529.46747-1-william.qiu@starfivetech.com>
- <20230526062529.46747-3-william.qiu@starfivetech.com>
- <fecc9d6a-022e-49d9-a452-8a63c409ebf3@sirena.org.uk>
- <042c560d-1f36-8e97-3796-7423245592f4@starfivetech.com>
- <86555925-b8dd-29a8-60cd-5c2ff2c1432a@starfivetech.com>
- <eb68722b-bcab-4aa1-aa4e-54bfe95ef414@sirena.org.uk>
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <eb68722b-bcab-4aa1-aa4e-54bfe95ef414@sirena.org.uk>
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230526145402.450-1-walker.chen@starfivetech.com>
+ <20230526145402.450-4-walker.chen@starfivetech.com>
+Content-Language: en-US
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <20230526145402.450-4-walker.chen@starfivetech.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
- (172.16.6.78)
+X-Originating-IP: [113.72.147.198]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
+ (172.16.6.92)
 X-YovoleRuleAgent: yovoleflag
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -64,53 +63,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/5/30 18:33, Mark Brown wrote:
-> On Tue, May 30, 2023 at 10:05:38AM +0800, William Qiu wrote:
->> On 2023/5/29 14:44, William Qiu wrote:
->> > On 2023/5/26 23:36, Mark Brown wrote:
+On Fri, 26 May 2023 22:54:02 +0800, Walker Chen wrote:
+> Add the tdm controller node and pins configuration of tdm for the
+> StarFive JH7110 SoC.
 > 
->> >> Nothing ever disables or unprepares this clock as far as I can tell?
->> >> Perhaps also consider using the clk_bulk_ APIs.
+> Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
+> ---
+>  .../jh7110-starfive-visionfive-2.dtsi         | 40 +++++++++++++++++++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 21 ++++++++++
+>  2 files changed, 61 insertions(+)
 > 
->> > I will add in next version.
-> 
->> 	Now I want to replace the original devm_clk_get API in the
->> driver with devm_clk_bulk_get_all API, which can achieve compatibility,
->> but it seems that it is not good for other ip with only one clock, so I
->> want to ask about that can I replace it? Or define that inside jh7110?
-> 
-> You could always specify a different array of clocks depending on which
-> compatible the driver sees, just like you'd conditionally request clocks
-> individually.
-Hi Mark,
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index 1155b97b593d..19b5954ee72d 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -214,6 +214,40 @@
+>  			slew-rate = <0>;
+>  		};
+>  	};
+> +
+> +	tdm0_pins: tdm0-pins {
+> +		tdm0-pins-tx {
 
-	If specify a different array of clocks depending on which compatible
-the driver sees, since there will also be clock operations in the suspend
-and resume interfaces, this can make the code look complicated.
-	My thoughts are as follows:
-	Modify the following code
+Use consistent naming, so
 
-1658	/* Obtain QSPI clock. */
-1659	cqspi->clk = devm_clk_get(dev, NULL);
-1660	if (IS_ERR(cqspi->clk)) {
-1661		dev_err(dev, "Cannot claim QSPI clock.\n");
-1662		ret = PTR_ERR(cqspi->clk);
-1663		return ret;
-1664	}
+	tdm_pins: tdm-0 {
+		tx-pins {
 
-	as following:
+> +			pinmux = <GPIOMUX(44, GPOUT_SYS_TDM_TXD,
+> +					      GPOEN_ENABLE,
+> +					      GPI_NONE)>;
+> +			bias-pull-up;
+> +			drive-strength = <2>;
+> +			input-disable;
+> +			input-schmitt-disable;
+> +			slew-rate = <0>;
+> +		};
+> +
+> +		tdm0-pins-rx {
 
-	/* Obtain QSPI clock. */
-	cqspi->num_clks = devm_clk_bulk_get_all(dev, &cqspi->clks);
-	if (cqspi->num_clks < 0) {
-		dev_err(dev, "Cannot claim QSPI clock: %u\n", cqspi->num_clks);
-		return -EINVAL;
-	}
+		rx-pins {
 
-	This way, the code will look simpler and clearer. How do you think
-about it.
+> +			pinmux = <GPIOMUX(61, GPOUT_HIGH,
+> +					      GPOEN_DISABLE,
+> +					      GPI_SYS_TDM_RXD)>;
+> +			input-enable;
+> +		};
+> +
+> +		tdm0-pins-sync {
 
-Best Regards,
-William
+		sync-pins {
+
+> +			pinmux = <GPIOMUX(63, GPOUT_HIGH,
+> +					      GPOEN_DISABLE,
+> +					      GPI_SYS_TDM_SYNC)>;
+> +			input-enable;
+> +		};
+> +
+> +		tdm0-pins-pcmclk {
+
+		pcmclk-pins {
+
+> +			pinmux = <GPIOMUX(38, GPOUT_HIGH,
+> +					      GPOEN_DISABLE,
+> +					      GPI_SYS_TDM_CLK)>;
+> +			input-enable;
+> +		};
+> +	};
+>  };
+>  
+>  &uart0 {
+> @@ -221,3 +255,9 @@
+>  	pinctrl-0 = <&uart0_pins>;
+>  	status = "okay";
+>  };
+> +
+> +&tdm {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&tdm0_pins>;
+
+	pinctrl-0 = <&tdm_pins>;
+
+Best regards,
+Hal
+
+> +	status = "okay";
+> +};
+
