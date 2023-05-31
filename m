@@ -2,122 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D45F971810B
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:08:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2A4B71813D
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 15:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236199AbjEaNIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 09:08:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35394 "EHLO
+        id S235951AbjEaNQP convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 31 May 2023 09:16:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236285AbjEaNIo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:08:44 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1C2512B
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 06:08:15 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-96f5d651170so195861466b.1
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 06:08:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685538485; x=1688130485;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1R1Sj0tDi2ehLT48w+P4ulNbR96KWPz5ISY1Z775GFo=;
-        b=SV4Uab3DVC7zDV7JKPV9GphVtB2lFxktAO5OYzfZKvEKlE3tscwKtT1w9JmOVhBvbC
-         jVg447Fofo02GPQFR9WMCpuKzkHrCpBFNunhtg1BwcLmPn/tTD/dldikvQMQN1GssXCU
-         hjbcVbsjii1QLWL4GOcpXxjOKaU42BcMFHXH3u4xkK9VQqSQRoqBlaKExuhPe+RAZkOC
-         AlNCh2nHqwUCQV1Mz7CTXyrYY4eVx3MoZAt1/A0rhFdn6QrgLCK0YoH/cJuzZQ+0DVJp
-         mt+fvgNgOxhqbybJ2eZLSm5TEPnxc1oORhtD2y1xRRgFEpF889Unba21uPF5JD31hn/x
-         3w4g==
+        with ESMTP id S236350AbjEaNQN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 09:16:13 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 594919D;
+        Wed, 31 May 2023 06:16:12 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-38eb2984c82so2018073b6e.0;
+        Wed, 31 May 2023 06:16:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685538485; x=1688130485;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1R1Sj0tDi2ehLT48w+P4ulNbR96KWPz5ISY1Z775GFo=;
-        b=Ym4Y1Rtg8vHAU/G+MJqmrfI0XZmo5JJUC+ZZYg6FL+FZZeSzcA/E3feXaMGKnty1Rp
-         DPBKv/WlzwRhdD0i9Z3Es6079f4V5LuDIe6NDK095PG/ZnXQCGEV1Q0XP4Hu9NYPLEli
-         ER63xu633uNlwAEqTr5wWoqDP1fadLeeHm1WH2d4/YFdtOvZKub9pRGf5/pxnZGJXPb1
-         LXUsN6y97jssUHBkGeuv7Oj8Em4ULi4CbtYgqbl68I3PEvB5jTvxHsld3vcWuiuXA2y9
-         mbwcX95Dv2iLUK2fJh/aoUbBJAljHy7Lpopk7hqXcl1PGDnZ9RtF4OZ2yCH/0iQQ+O85
-         E3Nw==
-X-Gm-Message-State: AC+VfDzpKJ7GrEOc+RtXEhYeClfJNg78Ya1qwP+AUPoX6oS6nXBOF06j
-        PPKGROJhGGeWbgzr1cUGj8D6cQ==
-X-Google-Smtp-Source: ACHHUZ7yi4O3Lr8N0xM2vV/dr4K11JP8UYtS7bQW8y7fQzKozQ/6LPXB7bmNsjtNT1vTVtAOoC2oEw==
-X-Received: by 2002:a17:906:da86:b0:965:6a32:451f with SMTP id xh6-20020a170906da8600b009656a32451fmr5505298ejb.6.1685538484994;
-        Wed, 31 May 2023 06:08:04 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.199.204])
-        by smtp.gmail.com with ESMTPSA id e10-20020a1709061e8a00b0094ebc041e20sm8821224ejj.46.2023.05.31.06.08.02
+        d=1e100.net; s=20221208; t=1685538971; x=1688130971;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kIuhlHydXOIu4C3uuGsJ33JDY8/UzFh5D7EZjgGK2P0=;
+        b=aIHmMaK+yUflF/57rOAdiiYDzcuBOTGTkv6bILCXXb3VdYGxvxN8yiEGxDJV0URS3C
+         xWo4CZnxBEGmO2YVRT029Q0UX4LaOa8gvQhgcpVd3UBrJphp6BmGq7FCjPwch2yIPmvB
+         OkzFaJ8rNvdnM3+fMjrmuqkqZ8TZ2pyfuzJPUIeDFaZe5FOeGtytqSiKLh43lMae8e/Y
+         NKluGjY6c3fj7jjQUW3GdLDnVfBBUF5pQauekkCirR73uvO/DqVf0n6KKg9s4uDJLCol
+         N8DjGQVdtLO9pPoxi4/JLSX53XSv4157FMFCUyZTsMvcxbohTaTJHKxhs5EqOseea8zd
+         S3Qg==
+X-Gm-Message-State: AC+VfDz78UtNaL8pHF9MlOu9xCcOVooY7VE9r8IXGxYbCHzO4dinX2ZA
+        Dxl044pyNpDYamtOVJ18jTgCTt8ddVNkdw==
+X-Google-Smtp-Source: ACHHUZ6a2OcykRInwzKBhmLC3u4+dhdrzOSZZk0ooxCqc7qsWJa9IjKt8Woux4Gu06H7k+Zpb3pNEw==
+X-Received: by 2002:a05:6808:1383:b0:39a:4ac8:34ae with SMTP id c3-20020a056808138300b0039a4ac834aemr1680152oiw.12.1685538971388;
+        Wed, 31 May 2023 06:16:11 -0700 (PDT)
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com. [209.85.222.176])
+        by smtp.gmail.com with ESMTPSA id m10-20020ad44a0a000000b006235e8fe94esm390054qvz.58.2023.05.31.06.16.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 06:08:04 -0700 (PDT)
-Message-ID: <b93b6804-64f9-f9eb-418e-dd4d03d61240@linaro.org>
-Date:   Wed, 31 May 2023 15:08:01 +0200
+        Wed, 31 May 2023 06:16:11 -0700 (PDT)
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-75b050b4fa0so602782885a.0;
+        Wed, 31 May 2023 06:16:11 -0700 (PDT)
+X-Received: by 2002:a0d:f181:0:b0:568:fe3a:46b3 with SMTP id
+ a123-20020a0df181000000b00568fe3a46b3mr1220876ywf.28.1685538581391; Wed, 31
+ May 2023 06:09:41 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: thermal: mediatek: Move auxdac binding
- to yaml
-Content-Language: en-US
-To:     Matthias Brugger <mbrugger@suse.com>, matthias.bgg@kernel.org,
-        rafael@kernel.org, Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     devicetree@vger.kernel.org, Amit Kucheria <amitk@kernel.org>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Zhang Rui <rui.zhang@intel.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>
-References: <20230530150413.12918-1-matthias.bgg@kernel.org>
- <80108a00-4416-a419-e45a-e5e4c1f111a8@linaro.org>
- <31f25021-aaf5-a6ca-049d-bb47f62936b4@suse.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <31f25021-aaf5-a6ca-049d-bb47f62936b4@suse.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <CAMuHMdX_Sdb3RFrLthcwThK__GKhJvJuXWu5+2RsQpGgFRkrXQ@mail.gmail.com>
+ <20230530220347.14049-1-blarson@amd.com>
+In-Reply-To: <20230530220347.14049-1-blarson@amd.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 31 May 2023 15:09:28 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWQGEoB_LLsfLurOV8fT0BO-RYGcsS_Gra49CPiGH9J=g@mail.gmail.com>
+Message-ID: <CAMuHMdWQGEoB_LLsfLurOV8fT0BO-RYGcsS_Gra49CPiGH9J=g@mail.gmail.com>
+Subject: Re: [PATCH v14 6/8] arm64: dts: Add AMD Pensando Elba SoC support
+To:     Brad Larson <blarson@amd.com>
+Cc:     adrian.hunter@intel.com, alcooperx@gmail.com,
+        andy.shevchenko@gmail.com, arnd@arndb.de,
+        brendan.higgins@linux.dev, briannorris@chromium.org,
+        broonie@kernel.org, catalin.marinas@arm.com, conor+dt@kernel.org,
+        davidgow@google.com, devicetree@vger.kernel.org,
+        fancer.lancer@gmail.com, gerg@linux-m68k.org, gsomlo@gmail.com,
+        hal.feng@starfivetech.com, hasegawa-hitomi@fujitsu.com,
+        j.neuschaefer@gmx.net, joel@jms.id.au, kernel@esmil.dk,
+        krzk@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee.jones@linaro.org, lee@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
+        michal.simek@amd.com, p.zabel@pengutronix.de,
+        rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org,
+        skhan@linuxfoundation.org, suravee.suthikulpanit@amd.com,
+        thomas.lendacky@amd.com, tonyhuang.sunplus@gmail.com,
+        ulf.hansson@linaro.org, vaishnav.a@ti.com,
+        walker.chen@starfivetech.com, will@kernel.org, zhuyinbo@loongson.cn
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2023 14:42, Matthias Brugger wrote:
->>> +    soc {
->>> +      #address-cells = <2>;
->>> +      #size-cells = <2>;
->>> +
->>> +      auxadc: auxadc@11001000 {
->>> +        compatible = "mediatek,mt8173-auxadc";
->>> +        reg = <0 0x11001000 0 0x1000>;
->>> +        clocks = <&pericfg CLK_PERI_AUXADC>;
->>> +        clock-names = "main";
->>> +        #io-channel-cells = <1>;
->>> +      };
->>> +
->>> +      apmixedsys: clock-controller@10209000 {
->>> +        compatible = "mediatek,mt8173-apmixedsys";
->>> +        reg = <0 0x10209000 0 0x1000>;
->>> +        #clock-cells = <1>;
->>> +      };
->>
->> Drop both examples, not really relevant to thermal. It grows the example
->> with code already documented somewhere else.
->>
-> 
-> auxadc and apmixedsys are no examples. They are referenced by the thermal node 
-> as described in the binding. Without them the example won't be complete.
-> 
+Hi Brad,
 
-The example is complete, because you have phandles and that's enough.
-the auxadc and apmixedsys have their own examples in their own bindings
-- no need to duplicate them here.
+On Wed, May 31, 2023 at 12:04 AM Brad Larson <blarson@amd.com> wrote:
+> On Wed, May 24, 2023 at 13:52 Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Tue, May 23, 2023 at 9:30â€¯PM Brad Larson <blarson@amd.com> wrote:
+> >> On 5/16/23 09:54, Michal Simek wrote:
+> >> > On 5/15/23 20:16, Brad Larson wrote:
+> >> >> + */
+> >> >> +
+> >> >> +/ {
+> >> >> +    cpus {
+> >> >> +            #address-cells = <2>;
+> >> >> +            #size-cells = <0>;
+> >> >> +
+> >> >> +            cpu-map {
+> >> >> +                    cluster0 {
+> >> >> +                            core0 { cpu = <&cpu0>; };
+> >> >> +                            core1 { cpu = <&cpu1>; };
+> >> >> +                            core2 { cpu = <&cpu2>; };
+> >> >> +                            core3 { cpu = <&cpu3>; };
+> >> >> +                    };
+> >> >> +
+> >> >> +                    cluster1 {
+> >> >> +                            core0 { cpu = <&cpu4>; };
+> >> >> +                            core1 { cpu = <&cpu5>; };
+> >> >> +                            core2 { cpu = <&cpu6>; };
+> >> >> +                            core3 { cpu = <&cpu7>; };
+> >> >> +                    };
+> >> >> +
+> >> >> +                    cluster2 {
+> >> >> +                            core0 { cpu = <&cpu8>; };
+> >> >> +                            core1 { cpu = <&cpu9>; };
+> >> >> +                            core2 { cpu = <&cpu10>; };
+> >> >> +                            core3 { cpu = <&cpu11>; };
+> >> >> +                    };
+> >> >> +
+> >> >> +                    cluster3 {
+> >> >> +                            core0 { cpu = <&cpu12>; };
+> >> >> +                            core1 { cpu = <&cpu13>; };
+> >> >> +                            core2 { cpu = <&cpu14>; };
+> >> >> +                            core3 { cpu = <&cpu15>; };
+> >> >> +                    };
+> >> >> +            };
+> >> >> +
+> >> >> +            /* CLUSTER 0 */
+> >> >> +            cpu0: cpu@0 {
+> >> >> +                    device_type = "cpu";
+> >> >> +                    compatible = "arm,cortex-a72";
+> >> >> +                    reg = <0 0x0>;
+> >> >
+> >> > Do you really need 2/0 split here. The first cell is 0 anyway.
+> >>
+> >> Yes following 64-bit system definition
+> >
+> > You mean for the 64-bit main address space?
+> > The CPU address space under /cpus is unrelated.
+>
+> Yes, the reg prop for this node is CPU/threads per dt spec.  Checked the history and
+> the Elba dt was derived from socionext for these nodes and this is how those device
+> trees are configured along with over a dozen other devices.  I changed to
+> address-cells = <1> and dropped the leading zero from all cpu* reg<> and booting
+> the system I'm observing no change.  Looking in drivers/of I'm not seeing where
+> cpu*/reg is read and used, any recommendation?
 
-Best regards,
-Krzysztof
+drivers/of/cpu.c
 
+Looks like there are lots of DTS files that use #address-cells = <2> for
+CPU nodes :-(
+
+    git grep -w -A1 cpus -- "*dts*" | grep address-cells | grep "<2>"
+
+I would use <1> is the first cell is always zero...
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
