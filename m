@@ -2,164 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 958107184ED
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 16:27:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 863E671850A
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 16:34:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236635AbjEaO1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 10:27:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41916 "EHLO
+        id S231215AbjEaOeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 10:34:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236414AbjEaO12 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 10:27:28 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBEAB18F
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 07:27:18 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4f3b9755961so6720702e87.0
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 07:27:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1685543237; x=1688135237;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ibRavn+wX5+msAj09M0EWRs8rIYs/zZ+2Fkj0xJZO7Q=;
-        b=gfvMrw2N9/F54FNlreQR4aLyfq3lme+iAa0Fg/vVuyJGYydqZQLuxT6lyzbWpRS5rH
-         3e8+g7eCqTtV5ZP9MWDjEACqLRT3qliPXb/dvIZtgNRvhKVgGta7QmuqkNXfaeTt7VCK
-         2DH3iOCLJlsS1j4r/so+wGxfrIXcmbzkKVFBtdwutBKO2Vdmzjw7dIrbnlnM8uM8wCXZ
-         +ciprs5IAY273Sxtz0gFGPkEx8HVlJaTjCPT8Db3OGXir3iir6X41Kk0FcWbbQxIYQ3h
-         F65CG8LCPnQV9ynbb2pM6NpF5eOYtIZlGKZ1tsSAO1mhs1y8w3NZFompB8EtjNUF8YqA
-         YLkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685543237; x=1688135237;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ibRavn+wX5+msAj09M0EWRs8rIYs/zZ+2Fkj0xJZO7Q=;
-        b=FD/p3wNnDe3YrKX/dVtvL06qO3ZBLDe0mmD7Q7yvwhPCyxVVahDloHLsFwANzh7I4J
-         wqKNwYc2Ryt6MbvOGi+U9h3KcaantaERB5C5MgoLFDOvCGXIqtOjc0H1vkIv2HIBNZ+A
-         H+8//GOlgIWPTFslgKA9hyleAT+LOuzN3Td+n8r5siTWBvaZeEpj0jcg1zetlfnOAMJt
-         RbVyUNdZjeHIyCTQx67XGnXz3K+I5jMdgP/yWas4yDnxb7+yqq47K279tol/MrI+gZ8a
-         71/ZJRjqyDniSOwr7C147n2lF97Kg5ybnqWttzqVE+kio2Qdhx4xJHqTdOGtggWAQGdI
-         MeOg==
-X-Gm-Message-State: AC+VfDyrFY+fjoz/V1LQH0bWXFfabe6neQTAuJ/YZZnMzavUJFv9QFEq
-        xro4PtX8C/4VdMd5yAoXhN9YuQ==
-X-Google-Smtp-Source: ACHHUZ6cZDxVaGVsjHJLrjnMmpLueOfFSg6ct2+pvtMlJHc8y97TqJ7ym5DpeaMdiDXr2ZU2eHsbkQ==
-X-Received: by 2002:ac2:5edd:0:b0:4f1:30cc:3dae with SMTP id d29-20020ac25edd000000b004f130cc3daemr3083071lfq.10.1685543237015;
-        Wed, 31 May 2023 07:27:17 -0700 (PDT)
-Received: from [192.168.1.101] (abyj77.neoplus.adsl.tpnet.pl. [83.9.29.77])
-        by smtp.gmail.com with ESMTPSA id c20-20020a197614000000b004f122a378d4sm736372lff.163.2023.05.31.07.27.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 May 2023 07:27:16 -0700 (PDT)
-Message-ID: <eef42615-ed5e-626b-f096-8c81e921e17a@linaro.org>
-Date:   Wed, 31 May 2023 16:27:15 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm8550-qrd: enable PMIC Volume
- and Power buttons
-Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S231953AbjEaOeH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 10:34:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A66D93;
+        Wed, 31 May 2023 07:34:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D20F463CC5;
+        Wed, 31 May 2023 14:34:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFCABC433D2;
+        Wed, 31 May 2023 14:34:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1685543645;
+        bh=mUMjO1OdsoJvyDsLxetTPv8J33WqgzLK/1GWLYInHFg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PAXNydOE+GkDVpKqoWOZlRVZ/KfPMl00INzrkYzHu74AMD8gYPhkASWHup44uXJnU
+         0OcJMyVwR9GqJwAZz0GdW5jfwSAvwih/PE61iH6KAY62sb4GOHRgOy7yPBNYILWvlQ
+         cgkusdjrxXZQXDnJfMMK7OMiKyCrtMiG1rvt3tHA=
+Date:   Wed, 31 May 2023 15:34:02 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v2-0-a3b890604c49@linaro.org>
- <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v2-4-a3b890604c49@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230525-topic-sm8550-upstream-pm8550-lpg-dt-v2-4-a3b890604c49@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v4 04/10] serial: bflb_uart: add Bouffalolab UART Driver
+Message-ID: <2023053119-drab-cartwheel-29af@gregkh>
+References: <20230518152244.2178-1-jszhang@kernel.org>
+ <20230518152244.2178-5-jszhang@kernel.org>
+ <2023053010-gondola-luminous-f5e7@gregkh>
+ <ZHdVNIQpgfCzimRg@xhacker>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZHdVNIQpgfCzimRg@xhacker>
+X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 31.05.2023 14:22, Neil Armstrong wrote:
-> The Volume Down & Power buttons are controlled by the PMIC via
-> the PON hardware, and the Volume Up is connected to a PMIC gpio.
+On Wed, May 31, 2023 at 10:09:56PM +0800, Jisheng Zhang wrote:
+> On Tue, May 30, 2023 at 11:36:00AM +0100, Greg Kroah-Hartman wrote:
+> > On Thu, May 18, 2023 at 11:22:38PM +0800, Jisheng Zhang wrote:
+> > > Add the driver for Bouffalolab UART IP which is found in Bouffalolab
+> > > SoCs such as bl808.
+> > 
+> > New uarts are being created that are NOT 8250-like?  Why????
 > 
-> Enable the necessary hardware and setup the GPIO state for the
-> Volume Up gpio key.
+> Hi,
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 36 +++++++++++++++++++++++++++++++++
->  1 file changed, 36 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> index efff15225e67..24fc368de97b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-> @@ -54,6 +54,22 @@ chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
->  
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&volume_up_n>;
-property-n
-property-names
+> I'm not sure I understand your meaning. I guess you mean writing the new
+> uart driver following 8250 style. And the latest example is
+> sunplus-uart.c, it can be used as an example how to write a 8250 style
+> driver for new non-8250 uart IP. 
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+No, I mean, "why are hardware designers creating new UARTs in 2023 that
+are NOT 8250-based"?  Why do they want to constantly reinvent the wheel?
 
-Konrad
-> +
-> +		key-volume-up {
-> +			label = "Volume Up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&pm8550_gpios 6 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <15>;
-> +			linux,can-disable;
-> +			wakeup-source;
-> +		};
-> +	};
-> +
->  	pmic-glink {
->  		compatible = "qcom,sm8550-pmic-glink", "qcom,pmic-glink";
->  		#address-cells = <1>;
-> @@ -516,6 +532,16 @@ led-1 {
->  	};
->  };
->  
-> +&pm8550_gpios {
-> +	volume_up_n: volume-up-n-state {
-> +		pins = "gpio6";
-> +		function = "normal";
-> +		power-source = <1>;
-> +		bias-pull-up;
-> +		input-enable;
-> +	};
-> +};
-> +
->  &pm8550_pwm {
->  	status = "okay";
->  
-> @@ -548,6 +574,16 @@ &pm8550b_eusb2_repeater {
->  	vdd3-supply = <&vreg_l5b_3p1>;
->  };
->  
-> +&pon_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +&pon_resin {
-> +	linux,code = <KEY_VOLUMEDOWN>;
-> +
-> +	status = "okay";
-> +};
-> +
->  &pcie_1_phy_aux_clk {
->  	clock-frequency = <1000>;
->  };
-> 
+thanks,
+
+greg k-h
