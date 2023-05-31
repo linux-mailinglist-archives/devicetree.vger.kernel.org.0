@@ -2,157 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6456371777F
-	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 09:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9D7771778F
+	for <lists+devicetree@lfdr.de>; Wed, 31 May 2023 09:10:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232387AbjEaHD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 May 2023 03:03:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55608 "EHLO
+        id S234524AbjEaHKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 May 2023 03:10:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232344AbjEaHDz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 03:03:55 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0FCB99
-        for <devicetree@vger.kernel.org>; Wed, 31 May 2023 00:03:54 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q4Fs8-0003ps-Tx; Wed, 31 May 2023 09:03:52 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q4Fs7-0042zE-Sk; Wed, 31 May 2023 09:03:51 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1q4Fs7-009jdE-55; Wed, 31 May 2023 09:03:51 +0200
-Date:   Wed, 31 May 2023 09:03:51 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        kernel@pengutronix.de, Linus Walleij <linus.walleij@linaro.org>,
-        Kent Gibson <warthog618@gmail.com>, linux-gpio@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: introduce hog properties with
- less ambiguity
-Message-ID: <20230531070351.gjh62dssldwworc2@pengutronix.de>
-References: <20230530151946.2317748-1-u.kleine-koenig@pengutronix.de>
- <20230530151946.2317748-2-u.kleine-koenig@pengutronix.de>
- <20230530-gag-doorway-e13660d45161@spud>
+        with ESMTP id S231963AbjEaHKY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 May 2023 03:10:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BDF6113;
+        Wed, 31 May 2023 00:10:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F167F63756;
+        Wed, 31 May 2023 07:10:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 55059C433A1;
+        Wed, 31 May 2023 07:10:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1685517021;
+        bh=vgDLZgUxG3NRbr05w1i59jHhY447JvUfX7GZcVLgbPQ=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=MIRYwLFGov3yMA2Mag3fr1wLeY2n4QKx+N8F5V2W/elKpoZZGlzfWsbjTBdzep+Db
+         zBOW9c1Jy14ufWe3Txfv7EkOJe9RBghqCs22nGg9e4g5xiBXP2Zb388b/hsPht3s/S
+         cOeHtt1ghZdDbv+HPRPcTG/uPiZ4PxMb5LIrJbEi9sWNXn5939wNMnThMnDZsvdpei
+         oN8zUDqbxTVnpH4UXrAwk7bSldsmor9kbCD2WmKffE0P+SoEffdx+9wt5yDQSOwBj4
+         HzShIw5siET5Bm8zY+ewP6U1aZh/fwv6XKMdmdwLPMdqVoCs8JynAUL6NAWH9y3Q5y
+         7vatIQxVRRW4A==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 3D0AAE52C0F;
+        Wed, 31 May 2023 07:10:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="u7fezraaxecn7zsk"
-Content-Disposition: inline
-In-Reply-To: <20230530-gag-doorway-e13660d45161@spud>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v4 0/7] net: dsa: mv88e6xxx: add 88E6361 support
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <168551702124.26195.3362960081498362670.git-patchwork-notify@kernel.org>
+Date:   Wed, 31 May 2023 07:10:21 +0000
+References: <20230529080246.82953-1-alexis.lothore@bootlin.com>
+In-Reply-To: <20230529080246.82953-1-alexis.lothore@bootlin.com>
+To:     =?utf-8?q?Alexis_Lothor=C3=A9_=3Calexis=2Elothore=40bootlin=2Ecom=3E?=@ci.codeaurora.org
+Cc:     andrew@lunn.ch, f.fainelli@gmail.com, olteanv@gmail.com,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, richardcochran@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux@armlinux.org.uk, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        thomas.petazzoni@bootlin.com, paul.arola@telus.com,
+        scott.roberts@telus.com, kabel@kernel.org
+X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello:
 
---u7fezraaxecn7zsk
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Hello Conor,
+On Mon, 29 May 2023 10:02:39 +0200 you wrote:
+> This series brings initial support for Marvell 88E6361 switch.
+> 
+> MV88E6361 is a 8 ports switch with 5 integrated Gigabit PHYs and 3
+> 2.5Gigabit SerDes interfaces. It is in fact a new variant in the
+> 88E639X/88E6193X/88E6191X family with a subset of existing features:
+> - port 0: MII, RMII, RGMII, 1000BaseX, 2500BaseX
+> - port 3 to 7: triple speed internal phys
+> - port 9 and 10: 1000BaseX, 25000BaseX
+> 
+> [...]
 
-On Tue, May 30, 2023 at 11:20:38PM +0100, Conor Dooley wrote:
-> On Tue, May 30, 2023 at 05:19:45PM +0200, Uwe Kleine-K=F6nig wrote:
-> > For active low lines the semantic of output-low and output-high is hard
-> > to grasp because there is a double negation involved and so output-low
-> > is actually a request to drive the line high (aka inactive).
-> >=20
-> > So introduce output-inactive and output-active with the same semantic as
-> > output-low and output-high respectively have today, but with a more
-> > sensible name.
-> >=20
-> > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> > ---
-> >  Documentation/devicetree/bindings/gpio/gpio.txt | 16 +++++++++++-----
-> >  1 file changed, 11 insertions(+), 5 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/gpio/gpio.txt b/Document=
-ation/devicetree/bindings/gpio/gpio.txt
-> > index d82c32217fff..2f037bbd3ffa 100644
-> > --- a/Documentation/devicetree/bindings/gpio/gpio.txt
-> > +++ b/Documentation/devicetree/bindings/gpio/gpio.txt
-> > @@ -209,15 +209,21 @@ Required properties:
-> >  - gpios:      Store the GPIO information (id, flags, ...) for each GPI=
-O to
-> >  	      affect. Shall contain an integer multiple of the number of cells
-> >  	      specified in its parent node (GPIO controller node).
-> > +
-> >  Only one of the following properties scanned in the order shown below.
-> >  This means that when multiple properties are present they will be sear=
-ched
-> >  in the order presented below and the first match is taken as the inten=
-ded
-> >  configuration.
-> > -- input:      A property specifying to set the GPIO direction as input.
-> > -- output-low  A property specifying to set the GPIO direction as outpu=
-t with
-> > -	      the value low.
-> > -- output-high A property specifying to set the GPIO direction as outpu=
-t with
-> > -	      the value high.
-> > +- input:             A property specifying to set the GPIO direction a=
-s input.
-> > +- output-inactive:   A property specifying to set the GPIO direction a=
-s output
-> > +		     with the inactive value (depending on the line's polarity,
-> > +		     which is active-high by default)
-> > +- output-active:     A property specifying to set the GPIO direction a=
-s output
-> > +		     with the active value.
-> > +
-> > +For backwards compatibility "output-low" and "output-high" are support=
-ed as
-> > +aliases for "output-inactive" and "output-active" respectively. Their =
-usage is
-> > +misleading for active-low outputs, so their use is discouraged.
->=20
-> Seems like an improvement to me,
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Here is the summary with links:
+  - [net-next,v4,1/7] dt-bindings: net: dsa: marvell: add MV88E6361 switch to compatibility list
+    https://git.kernel.org/netdev/net-next/c/9229a9483d80
+  - [net-next,v4,2/7] net: dsa: mv88e6xxx: pass directly chip structure to mv88e6xxx_phy_is_internal
+    https://git.kernel.org/netdev/net-next/c/ca345931907f
+  - [net-next,v4,3/7] net: dsa: mv88e6xxx: use mv88e6xxx_phy_is_internal in mv88e6xxx_port_ppu_updates
+    https://git.kernel.org/netdev/net-next/c/7a2dd00be869
+  - [net-next,v4,4/7] net: dsa: mv88e6xxx: add field to specify internal phys layout
+    https://git.kernel.org/netdev/net-next/c/3ba89b28adb2
+  - [net-next,v4,5/7] net: dsa: mv88e6xxx: fix 88E6393X family internal phys layout
+    https://git.kernel.org/netdev/net-next/c/2f93493970df
+  - [net-next,v4,6/7] net: dsa: mv88e6xxx: pass mv88e6xxx_chip structure to port_max_speed_mode
+    https://git.kernel.org/netdev/net-next/c/18e1b7422dff
+  - [net-next,v4,7/7] net: dsa: mv88e6xxx: enable support for 88E6361 switch
+    https://git.kernel.org/netdev/net-next/c/12899f299803
 
-Thanks!
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-> Rob did note that gpio-hog.yaml in dt-schema would need to be updated,
 
-This is a followup-change in a separate repository once the change
-under discussion is in mainline, right?
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---u7fezraaxecn7zsk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmR28VYACgkQj4D7WH0S
-/k4flAf+K42mYop8wPcvFMIl/i4l6r7SKEAKZbfSbfdOolsMgbEE+5MjWKwwFhNk
-S+pzyZpn4Qy8bxnhnAnmUbXHCjrHOJUCZM1pzqfLKI4spKXPZE+t7SxYbF7KJUKj
-RuoSTrYkpwBdxBr7xWtmcbPbBR7mCOyrb6wfAJb7ObuKzMkbb5vD4vrhyRY4jh0P
-AtS82UPY5wTtARBvuyCFC7qTNeoy0gmMe4nsC9GRVL75cSMNfTNqAZTIthqj6pWw
-JrQ5NnT/YHNmD/ty6qoEVFdYIMkkkm1nMLbCc3IvtCcOIDWBkygCSnXyw2N230rF
-j7NlzvgMGhuDtevy1sdBiQzJ7tnIsw==
-=5lC0
------END PGP SIGNATURE-----
-
---u7fezraaxecn7zsk--
